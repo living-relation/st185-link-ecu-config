@@ -209,11 +209,15 @@ Rotary positions are nibble-packed (4 bits each, 0–15 positions per encoder):
 | byte2 | Rotary 5 | Mode switch position |
 
 Assign physical encoders in the configurator:
-- **Rotary 1** → Boost map selector (cluster decodes → sends 0x3EC to ECU)
-- **Rotary 2** → TC map selector (cluster decodes → sends 0x3ED to ECU)
-- **Rotary 3–5 / Mode** → TBD (leave unassigned until you have hardware)
+- **Rotary 1–5 / Mode** → TBD — assign functions once hardware and use-case are confirmed
 
-**Note:** The cluster firmware decodes these rotary values directly from 0x642. The ECU receives the selection via 0x3EC/0x3ED from the cluster, then echoes it back in 0x3EF bytes 5 and 3 — so RealDash reads the selection from the ECU echo, not the cluster directly.
+**Routing note:** CSB3 rotary values (0x642 bytes 0-2) go to the **ECU only**. The ECU decides
+what to do with them. The cluster does NOT read switchboard frames.
+
+The cluster's own boost-map and TC-map encoder inputs come from its physical GPIO encoders
+(center P4 GPIO 30/31/32 and 49/50/51) — those are separate knobs wired directly to the
+cluster board. The cluster sends 0x3EC/0x3ED to the ECU based on those GPIO encoders.
+The CSB3 rotary channels are a separate set of inputs available to the ECU for other functions.
 
 ---
 

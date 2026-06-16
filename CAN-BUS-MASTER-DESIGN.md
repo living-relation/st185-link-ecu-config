@@ -15,7 +15,7 @@ A single shared CAN bus at **1 Mbit/s** connects:
 | Link G4X FuryX ECU | Powertrain controller | Bidirectional. Also internally consumes its CAN-Lambda module (0x3B6) |
 | center-cluster-esp32-p4 | Dash / instrument cluster | Bidirectional (TWAI_MODE_NORMAL) — the **only** dash board on CAN |
 | ECUMaster CAN Switch Board V3 | Accessory I/O (analog inputs, switches, low-side outputs) | Bidirectional (0x640-0x642 out, 0x643 in) |
-| Raspberry Pi 5 + Waveshare dual-MCP2515 hat (RealDash) | Logging / secondary display | Passive listener, channel 1 |
+| Pi4+/Pi5 + USB-CAN adapter (CANable or PCAN USB) running RealDash | Secondary display (840×480, 7") | Passive listener only — receive 0x3EF/0x3F0/0x3F1 |
 
 **Out of scope:** the left and right side displays (`left-side-cluster-esp32s3`, `right-side-cluster-esp32s3`) are **not CAN nodes**. Per `CANBUS-LINK-G4X-CONFIG.md`, they receive data from the center cluster over UART (center GPIO20→left GPIO44, center GPIO21→right GPIO44). They are unaffected by anything in this document.
 
@@ -28,8 +28,8 @@ A single shared CAN bus at **1 Mbit/s** connects:
   - ECU: Link G4X FuryX CANH/CANL (internal, includes CAN-Lambda module on the same internal bus).
   - center-cluster-esp32-p4: SN65HVD230 (3.3V), TWAI GPIO5=TX / GPIO4=RX (per `sdkconfig`/`Kconfig.projbuild`).
   - ECUMaster CAN Switch Board V3: built-in CAN transceiver, CANH/CANL screw terminals.
-  - Pi5 Waveshare hat: MCP2515 channel 1 → SN65HVD230 (or equivalent) onboard, wired to the shared bus. **Channel 2 is left unused/available** for a future independent segment (e.g., a second switchboard or a diagnostic-only bus).
-- **Wiring rule:** all four nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus; termination resistors live at the two physical ends of the harness (commonly: ECU end and Pi5/last-node end). Do not add a third termination point.
+  - Pi USB-CAN adapter (CANable or PCAN USB): plugs into a USB port on the Pi; the adapter's CANH/CANL terminals wire to the shared bus. The Waveshare dual-MCP2515 hat physically present on the Pi is **NOT a CAN node** — it is retained for its cooling fan only. Do not wire its CANH/CANL to the bus.
+- **Wiring rule:** all four nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus; termination resistors live at the two physical ends of the harness (commonly: ECU end and Pi end). Do not add a third termination point.
 
 ---
 
@@ -37,10 +37,10 @@ A single shared CAN bus at **1 Mbit/s** connects:
 
 | Device | Default speed | Required speed on this bus | Action |
 |---|---|---|---|
-| Link G4X FuryX (ECU CAN port + CAN-Lambda) | n/a (configured) | **1 Mbit/s** | Already set — `link_g4x_can_setup.lcs`, CANModule Index="2", BitRate=1000000. No change. |
+| Link G4X FuryX (ECU CAN port + CAN-Lambda) | n/a (configured) | **1 Mbit/s** | Already set — `link_g4x_can_setup.lcs`, CANModule Index="1" (CAN1), BitRate=1000000. No change. |
 | center-cluster-esp32-p4 (TWAI) | n/a (coded) | **1 Mbit/s** | Already coded-complete. No change. |
 | ECUMaster CAN Switch Board V3 | **500 kbps** | **1 Mbit/s** | **Required reconfiguration** — 1000 kbps is a supported, non-default speed per the switchboard manual. Must be changed via the ECUMaster configuration tool before the switchboard is connected to this bus. |
-| Pi5 Waveshare MCP2515 (channel 1, RealDash) | configurable | **1 Mbit/s** | Set in RealDash's CAN adapter configuration for channel 1. |
+| Pi USB-CAN adapter (CANable or PCAN USB) | configurable | **1 Mbit/s** | Set in RealDash's CAN adapter settings. The Waveshare hat is cooling only — not configured here. |
 
 **Why one shared bus:** PCLink's "User Stream" feature (§5) lets the ECU ingest the switchboard's 0x640/0x642 frames directly — but only if the ECU and the switchboard are on the same physical bus segment. This is the architectural reason the switchboard's speed must be changed rather than left on its own 500 kbps segment.
 
@@ -129,13 +129,24 @@ Two independent layers protect against switchboard communication loss:
 
 ---
 
-## 7. RealDash / Raspberry Pi 5 Physical Layer
+## 7. RealDash / Pi Physical Layer
 
-- **Hardware:** Waveshare dual-channel MCP2515 CAN hat.
-- **Channel 1:** wired to the shared vehicle bus. Configure RealDash's CAN adapter for channel 1 at **1 Mbit/s**.
-- **Channel 2:** unused/available for a future independent segment (e.g., a second ECUMaster switchboard at Base ID 0x644+, or a dedicated diagnostics bus).
-- **Role:** RealDash is a **passive listener** on channel 1 — it does not transmit, so it introduces no arbitration or TX-conflict considerations on the shared bus.
-- **RealDash XML:** add `<frame id="...">` / `<value>` definitions for every ID in the allocation table that RealDash should display: 0x3E8-0x3EB, 0x3EE (existing ECU→cluster streams, if RealDash also wants to show them), 0x3EF-0x3F1 (new streams), and 0x640-0x642 (switchboard outputs, if RealDash wants raw accessory telemetry independent of PCLink's interpretation). Exact `<value>` definitions (offset/length/scale/conversion) are produced in Task #9 from the byte layouts in the allocation table.
+- **Hardware:** Pi4+/Pi5 running RealDash on an 840×480 7" screen. CAN interface is a **USB-CAN adapter (CANable or PCAN USB)** connected to one of the Pi's USB ports. The Waveshare dual-MCP2515 hat physically present on the Pi is retained for its cooling fan only — it is **not** wired to the CAN bus and must not be configured in RealDash.
+- **CAN connection:** USB-CAN adapter CANH/CANL → shared vehicle bus. Speed: **1 Mbit/s**. Configure as `bus="0"` (first CAN connection) in RealDash.
+- **Role:** RealDash is a **passive listener** — it does not transmit. No arbitration or TX-conflict considerations.
+- **RealDash XML scope (CRITICAL):** RealDash receives **only** the three new ECU TX frames that the cluster does not display:
+
+  | Frame ID | Decimal | Content |
+  |---|---|---|
+  | 0x3EF | 1007 | Drive Assist & Status (TC state, boost map index, cruise state, AC status, lambda target, TPS) |
+  | 0x3F0 | 1008 | Extended Sensors (fuel temp, engine load, coolant pressure, ethanol %, IAT, cabin temp, turbo speed, trigger errors) |
+  | 0x3F1 | 1009 | IMU & Extended Warnings (accel X/Y/Z, ext warn bits incl. switchboard comm fault) |
+
+  **Excluded from RealDash XML:**
+  - 0x3E8–0x3EE — cluster frames; cluster already shows these. RealDash does not duplicate them.
+  - 0x640–0x642 — switchboard frames; the ECU is the only node that needs to read them. Switchboard active states relevant to display are echoed by the ECU into 0x3EF/0x3F1.
+
+  The RealDash XML is fully defined in `link_g4x_realdash.xml`.
 
 ---
 
@@ -181,4 +192,4 @@ The docx does not address the ECUMaster switchboard's bus segment or speed at al
 | 5 | Cluster firmware: **no changes.** Cluster displays are unchanged — it keeps decoding 0x3E8–0x3EE and transmitting 0x3EC/0x3ED. The new 0x3EF/0x3F0/0x3F1 streams are ECU→RealDash only; switchboard comm-fault (§6) is ECU-detected and surfaced to RealDash via 0x3F1 byte6 bit5. | — (none) |
 | 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §9 — outputs unused/LED-only, low priority | PCLink config (deferred) |
 | 7 | Add RealDash XML frame/value definitions for 0x3EF-0x3F1 (and optionally 0x640-0x642) | RealDash config |
-| 8 | Verify bus termination (120Ω × 2) after adding switchboard + Pi5 hat to the harness | Hardware |
+| 8 | Verify bus termination (120Ω × 2): ECU end + Pi end (USB-CAN adapter side). Waveshare hat is not on the bus. | Hardware |
