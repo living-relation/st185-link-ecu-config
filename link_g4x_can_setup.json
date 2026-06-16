@@ -1,0 +1,133 @@
+{
+  "_comment": "TrackCluster — Link G4X FuryX CAN broadcast config. Apply in PCLink → CAN → Custom Setup. This JSON is the single source of truth; the firmware link_g4x.json must decode every channel listed here.",
+  "name": "Link G4X FuryX — TrackCluster Dashboard",
+  "version": "1.0",
+  "ecu": "Link G4X FuryX",
+  "bit_rate_bps": 1000000,
+  "byte_order": "BigEndian",
+  "streams": [
+    {
+      "id": "0x3E8",
+      "name": "Engine Fast",
+      "cycle_ms": 10,
+      "channels": [
+        { "byte": 0, "length": 2, "name": "Engine Speed",  "pclink_name": "Engine Speed",  "scale": 1,    "offset": 0,    "unit": "RPM",     "note": "raw RPM, no scaling" },
+        { "byte": 2, "length": 2, "name": "MAP Absolute",  "pclink_name": "MGP",            "scale": 1,    "offset": 0,    "unit": "kPa",     "note": "absolute. Firmware subtracts 100 kPa for gauge boost." },
+        { "byte": 4, "length": 1, "name": "ECT",           "pclink_name": "ECT",            "scale": 1,    "offset": 50,   "unit": "°C+50",   "note": "+50 PCLink offset; firmware subtracts 50 then converts to °F." },
+        { "byte": 5, "length": 1, "name": "IAT",           "pclink_name": "IAT",            "scale": 1,    "offset": 50,   "unit": "°C+50",   "note": "Same offset as ECT." },
+        { "byte": 6, "length": 1, "name": "Oil Temp",      "pclink_name": "Oil Temp",       "scale": 1,    "offset": 50,   "unit": "°C+50",   "note": "Same offset." },
+        { "byte": 7, "length": 0, "name": "(unassigned)",  "note": "Leave empty." }
+      ]
+    },
+    {
+      "id": "0x3E9",
+      "name": "Speed / Pressure / Ign",
+      "cycle_ms": 10,
+      "channels": [
+        { "byte": 0, "length": 2, "name": "Ignition Angle","pclink_name": "Ign Angle",      "scale": 10,   "offset": 1000, "unit": "0.1°+100°","note": "Decode: (raw - 1000) / 10.0 = degrees BTDC." },
+        { "byte": 2, "length": 1, "name": "Vehicle Speed", "pclink_name": "Vehicle Speed",  "scale": 1,    "offset": 0,    "unit": "km/h",    "note": "Metric. Firmware converts km/h → MPH." },
+        { "byte": 3, "length": 1, "name": "Oil Pressure",  "pclink_name": "Oil Pressure",   "scale": 1,    "offset": 0,    "unit": "kPa",     "note": "Firmware converts kPa → PSI." },
+        { "byte": 4, "length": 1, "name": "Fuel Pressure", "pclink_name": "Fuel Pressure",  "scale": 1,    "offset": 0,    "unit": "kPa",     "note": "Firmware converts kPa → PSI." },
+        { "byte": 5, "length": 0, "name": "(unassigned)" },
+        { "byte": 6, "length": 0, "name": "(unassigned)" },
+        { "byte": 7, "length": 0, "name": "(unassigned)" }
+      ]
+    },
+    {
+      "id": "0x3EA",
+      "name": "Lambda",
+      "cycle_ms": 10,
+      "channels": [
+        { "byte": 0, "length": 2, "name": "Lambda 1",      "pclink_name": "Lambda 1",       "scale": 1000, "offset": 0,    "unit": "0.001 λ","note": "Decode: raw / 1000.0 = lambda. Do NOT add Lambda 2 / baro." },
+        { "byte": 2, "length": 0, "name": "(unassigned)" },
+        { "byte": 3, "length": 0, "name": "(unassigned)" },
+        { "byte": 4, "length": 0, "name": "(unassigned)" },
+        { "byte": 5, "length": 0, "name": "(unassigned)" },
+        { "byte": 6, "length": 0, "name": "(unassigned)" },
+        { "byte": 7, "length": 0, "name": "(unassigned)" }
+      ]
+    },
+    {
+      "id": "0x3EB",
+      "name": "Gear / Fuel Level",
+      "cycle_ms": 50,
+      "channels": [
+        { "byte": 0, "length": 1, "name": "Gear Position", "pclink_name": "Gear Position",  "scale": 1,    "offset": 0,    "unit": "int",     "note": "0=N, 1-6=gears, 7=R. Firmware remaps 7→-1." },
+        { "byte": 1, "length": 1, "name": "Fuel Level",    "pclink_name": "An Volt x",      "scale": 1,    "offset": 0,    "unit": "%",       "note": "Wire tank sender to an AnVolt input; calibrate 0-100% in PCLink before assigning." },
+        { "byte": 2, "length": 0, "name": "(unassigned)" },
+        { "byte": 3, "length": 0, "name": "(unassigned)" },
+        { "byte": 4, "length": 0, "name": "(unassigned)" },
+        { "byte": 5, "length": 0, "name": "(unassigned)" },
+        { "byte": 6, "length": 0, "name": "(unassigned)" },
+        { "byte": 7, "length": 0, "name": "(unassigned)" }
+      ]
+    },
+    {
+      "id": "0x3EE",
+      "name": "Engine Protection Status",
+      "cycle_ms": 50,
+      "_comment": "Engine-protection/limit flags ONLY. Each byte: 0=OK, nonzero=active. Firmware ORs each nonzero byte into one warning bit and shows the RIGHT-cluster full-screen warning (up to 3, highest priority first: knock > ign-cut > fuel-cut > boost-cut > sensor > throttle). Do NOT put gauge-shown conditions here (oil pressure, fuel level, coolant/oil/IAT temps) — those are already shown by gauge color. Map each byte to a Link limit/protection flag (Link broadcasts limit flags as a bit field; route the relevant bit/level to each byte, or send the limit % directly).",
+      "channels": [
+        { "byte": 0, "length": 1, "name": "Knock",         "pclink_name": "Knock Level / Knock Limit",   "scale": 1, "offset": 0, "unit": "0/active", "note": "Nonzero = knock detected / knock retard active." },
+        { "byte": 1, "length": 1, "name": "Ign Cut",       "pclink_name": "Ignition Cut %",              "scale": 1, "offset": 0, "unit": "0/active", "note": "Nonzero = ignition being cut (limiter active)." },
+        { "byte": 2, "length": 1, "name": "Fuel Cut",      "pclink_name": "Fuel Cut %",                  "scale": 1, "offset": 0, "unit": "0/active", "note": "Nonzero = fuel being cut (limiter active)." },
+        { "byte": 3, "length": 1, "name": "Boost Cut",     "pclink_name": "Boost Limit / Overboost",     "scale": 1, "offset": 0, "unit": "0/active", "note": "Nonzero = overboost / boost-cut limit active." },
+        { "byte": 4, "length": 1, "name": "Sensor Error",  "pclink_name": "Fault Code Active",           "scale": 1, "offset": 0, "unit": "0/active", "note": "Nonzero = any sensor/fault code (ECT/IAT/MAP/etc.)." },
+        { "byte": 5, "length": 1, "name": "Throttle Error","pclink_name": "TPS / ETB Error",             "scale": 1, "offset": 0, "unit": "0/active", "note": "Nonzero = throttle/TPS/electronic-throttle error." },
+        { "byte": 6, "length": 0, "name": "(unassigned)" },
+        { "byte": 7, "length": 0, "name": "(unassigned)" }
+      ]
+    },
+    {
+      "id": "0x3EF",
+      "name": "Drive Assist & Status",
+      "cycle_ms": 50,
+      "_comment": "NEW — ECU->RealDash stream (Section E of CAN-BUS-ID-ALLOCATION-TABLE.md). Custom/BigEndian, ECU-broadcast. Bytes 3 (TC setting) & 5 (boost map) are ECU ECHOES: the ECU receives the cluster 0x3ED/0x3EC selections and re-broadcasts them here, so RealDash never reads cluster frames directly. PCLink: receive 0x3EC/0x3ED into channels, place them in bytes 5/3.",
+      "channels": [
+        { "byte": 0, "length": 2, "name": "Target Lambda",        "pclink_name": "Lambda Target",                        "scale": 1000, "offset": 0,  "unit": "0.001 λ", "note": "raw/1000 = target lambda" },
+        { "byte": 2, "length": 1, "name": "Throttle %",           "pclink_name": "TPS",                                  "scale": 1,    "offset": 0,  "unit": "%" },
+        { "byte": 3, "length": 1, "name": "TC Setting (ECU echo)",     "pclink_name": "CAN Rx 0x3ED byte0", "scale": 1, "offset": 0, "note": "ECU echoes the cluster 0x3ED TC selection." },
+        { "byte": 4, "length": 1, "name": "TC Intervention %",    "pclink_name": "TC Ignition Cut % / Torque Reduction", "scale": 1,    "offset": 0,  "unit": "%" },
+        { "byte": 5, "length": 1, "name": "Boost Map Index (ECU echo)","pclink_name": "CAN Rx 0x3EC byte0", "scale": 1, "offset": 0, "note": "ECU echoes the cluster 0x3EC boost-map selection." },
+        { "byte": 6, "length": 1, "name": "Cruise Control State", "pclink_name": "Cruise Control State",                 "scale": 1,    "offset": 0,  "unit": "enum", "note": "0=Off,1=Standby,2=Set/Active,3=Resume,4=Override" },
+        { "byte": 7, "length": 1, "name": "AC Status",            "pclink_name": "AC Clutch / AC Request (post-VDI)",    "scale": 1,    "offset": 0,  "unit": "enum", "note": "0=Off,1=Requested,2=Compressor Engaged,3=Fault" }
+      ]
+    },
+    {
+      "id": "0x3F0",
+      "name": "Extended Sensors",
+      "cycle_ms": 100,
+      "_comment": "NEW — RealDash-only (Section E). Custom/BigEndian, all ECU-sourced. Temp bytes use +50 PCLink offset (ECT/IAT convention; firmware/RealDash subtract 50). Byte5 Cabin Temp optional — mirrors GP Temp1 (0x640 thermistor); RealDash may read 0x640 directly instead.",
+      "channels": [
+        { "byte": 0, "length": 1, "name": "Fuel Temp",        "pclink_name": "Fuel Temp",         "scale": 1,   "offset": 50, "unit": "°C+50" },
+        { "byte": 1, "length": 1, "name": "Engine Load %",    "pclink_name": "Engine Load",       "scale": 1,   "offset": 0,  "unit": "%" },
+        { "byte": 2, "length": 1, "name": "Coolant Pressure", "pclink_name": "Coolant Pressure",  "scale": 1,   "offset": 0,  "unit": "kPa" },
+        { "byte": 3, "length": 1, "name": "Ethanol %",        "pclink_name": "Ethanol %",         "scale": 1,   "offset": 0,  "unit": "%" },
+        { "byte": 4, "length": 1, "name": "Charge-Pipe IAT",  "pclink_name": "IAT2 / Post-IC Temp","scale": 1,   "offset": 50, "unit": "°C+50", "note": "distinct from 0x3E8 manifold IAT" },
+        { "byte": 5, "length": 1, "name": "Cabin Temp",       "pclink_name": "GP Temp 1",         "scale": 1,   "offset": 50, "unit": "°C+50", "note": "optional mirror; see _comment" },
+        { "byte": 6, "length": 1, "name": "Turbo Speed x100", "pclink_name": "Turbo Speed",       "scale": 100, "offset": 0,  "unit": "RPM",   "note": "raw value × 100 = RPM, e.g. 120 = 12,000" },
+        { "byte": 7, "length": 1, "name": "Trigger Error Count","pclink_name": "Trigger Error Counter","scale": 1,"offset": 0, "unit": "count" }
+      ]
+    },
+    {
+      "id": "0x3F1",
+      "name": "IMU & Extended Warnings",
+      "cycle_ms": 50,
+      "_comment": "NEW — RealDash-only (Section E). Custom/BigEndian. Accel X/Y/Z are SIGNED int16 (scale 10 → raw/10 = g). Byte6 bitmask; byte7 reserved 0x00. Requires PCLink to expose g-force channels and a packed warning bitmask (math/virtual channels).",
+      "channels": [
+        { "byte": 0, "length": 2, "name": "Accel X x10", "pclink_name": "G-Force Longitudinal", "scale": 10, "offset": 0, "unit": "0.1 g", "signed": true, "note": "signed int16; raw/10 = g" },
+        { "byte": 2, "length": 2, "name": "Accel Y x10", "pclink_name": "G-Force Lateral",      "scale": 10, "offset": 0, "unit": "0.1 g", "signed": true },
+        { "byte": 4, "length": 2, "name": "Accel Z x10", "pclink_name": "G-Force Vertical",     "scale": 10, "offset": 0, "unit": "0.1 g", "signed": true },
+        { "byte": 6, "length": 1, "name": "Extended Warnings Bitmask", "scale": 1, "offset": 0, "unit": "bits", "note": "bit0=Flat Shift,bit1=Radiator Fan,bit2=Low Fuel,bit3=High Coolant Press,bit4=Low Oil Press(2nd),bit5=Switchboard Comm Fault(ECU-set),bits6-7=spare" },
+        { "byte": 7, "length": 0, "name": "(reserved)", "note": "0x00" }
+      ]
+    }
+  ],
+  "dashboard_to_ecu": {
+    "_comment": "The center ESP32-P4 TRANSMITS these frames to the ECU (TWAI_MODE_NORMAL). ECU must be configured to receive on these IDs.",
+    "frames": [
+      { "id": "0x3EC", "purpose": "Boost map selection (1 byte: map index 0-3)" },
+      { "id": "0x3ED", "purpose": "TC slip-angle selection (1 byte: angle index 0-4)" }
+    ]
+  }
+}

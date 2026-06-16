@@ -1,0 +1,6 @@
+# st185-link-ecu-config
+# ECU / RealDash / Switchboard config — no build artifacts
+*.bak
+*.tmp
+Thumbs.db
+.DS_Store

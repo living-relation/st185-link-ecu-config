@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Link G4X FuryX + ECUMaster CAN Switch Board V3 — RealDash CAN Frame Definitions
+     Repository : st185-link-ecu-config
+     Format     : RealDashCAN version 2
+     Hardware   : Raspberry Pi 5, Waveshare dual-MCP2515 hat, channel 0, 1 Mbit/s
+     Byte order : BigEndian for all multi-byte values — endian="big" required
+     Import via : RealDash → Settings → Connections → Add Connection → CAN bus → Import XML
+
+     All 11 receive frames covered:
+       ECU TX:  0x3E8 0x3E9 0x3EA 0x3EB 0x3EE 0x3EF 0x3F0 0x3F1
+       CSB3 TX: 0x640 0x641 0x642
+       (Cluster frames 0x3EC / 0x3ED not mapped here — ECU echoes them in 0x3EF)
+
+     Bitmask fields (0x3EE bytes 0-5, 0x3F1 byte6, 0x642 bytes 3-5) are imported
+     as raw uint8. Create per-bit gauge conditions inside RealDash editor — no
+     bitwise operators in conversion formulas. -->
+
+<RealDashCAN version="2">
+  <frames>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3E8  (decimal 1000) — Engine Fast  10 ms
+         [0-1] Engine Speed RPM   [2-3] MGP kPa abs   [4] ECT °C   [5] IAT °C   [6] Oil Temp °C
+         Temp offset: raw − 50 = °C  (stored as uint8, allows −50 to +205 °C)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1000" bus="0" length="8" interval="10">
+      <value type="uint16" units="RPM"  name="Engine Speed"  offset="0" conversion="V"       endian="big"/>
+      <value type="uint16" units="kPa"  name="MGP"           offset="2" conversion="V"       endian="big"/>
+      <value type="uint8"  units="C"    name="ECT"           offset="4" conversion="V-50"/>
+      <value type="uint8"  units="C"    name="IAT"           offset="5" conversion="V-50"/>
+      <value type="uint8"  units="C"    name="Oil Temp"      offset="6" conversion="V-50"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3E9  (decimal 1001) — Speed / Pressure / Ignition  10 ms
+         [0-1] Ign Angle   [2] Vehicle Speed km/h   [3] Oil Pressure kPa   [4] Fuel Pressure kPa
+         Ign Angle encode: raw = (deg + 100) / 0.1 → decode: V*0.1 − 100 (allows negative timing)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1001" bus="0" length="8" interval="10">
+      <value type="uint16" units="deg"  name="Ign Angle"     offset="0" conversion="V*0.1-100" endian="big"/>
+      <value type="uint8"  units="km/h" name="Vehicle Speed" offset="2" conversion="V"/>
+      <value type="uint8"  units="kPa"  name="Oil Pressure"  offset="3" conversion="V"/>
+      <value type="uint8"  units="kPa"  name="Fuel Pressure" offset="4" conversion="V"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3EA  (decimal 1002) — Lambda  10 ms
+         [0-1] Lambda 1 × 0.001 = λ  (1000 raw = λ 1.000)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1002" bus="0" length="8" interval="10">
+      <value type="uint16" units="lambda" name="Lambda 1"    offset="0" conversion="V*0.001" endian="big"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3EB  (decimal 1003) — Gear / Fuel Level  50 ms
+         [0] Gear 0-6 (0=neutral)   [1] Fuel Level 0-100 %
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1003" bus="0" length="8" interval="50">
+      <value type="uint8"  units=""    name="Gear Position"  offset="0" conversion="V"/>
+      <value type="uint8"  units="%"   name="Fuel Level"     offset="1" conversion="V"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3EE  (decimal 1006) — Engine Protection Status  50 ms
+         Each byte 0 = OK, nonzero = protection/limit active.
+         Use RealDash gauge conditions: value > 0 → show warning icon / alarm.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1006" bus="0" length="8" interval="50">
+      <value type="uint8"  units=""    name="Knock"          offset="0" conversion="V"/>
+      <value type="uint8"  units=""    name="Ign Cut"        offset="1" conversion="V"/>
+      <value type="uint8"  units=""    name="Fuel Cut"       offset="2" conversion="V"/>
+      <value type="uint8"  units=""    name="Boost Cut"      offset="3" conversion="V"/>
+      <value type="uint8"  units=""    name="Sensor Error"   offset="4" conversion="V"/>
+      <value type="uint8"  units=""    name="Throttle Error" offset="5" conversion="V"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3EF  (decimal 1007) — Drive Assist & Status  50 ms  [NEW]
+         [0-1] Lambda Target × 0.001 = λ
+         [2]   TPS %
+         [3]   TC Setting (ECU echo of cluster 0x3ED selection)
+         [4]   TC Intervention %
+         [5]   Boost Map Index (ECU echo of cluster 0x3EC selection)
+         [6]   Cruise State  0=off 1=set 2=active 3=hold 4=resume
+         [7]   AC Status     0=off 1=requested 2=active 3=inhibited
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1007" bus="0" length="8" interval="50">
+      <value type="uint16" units="lambda" name="Lambda Target"   offset="0" conversion="V*0.001" endian="big"/>
+      <value type="uint8"  units="%"      name="TPS"             offset="2" conversion="V"/>
+      <value type="uint8"  units=""       name="TC Setting"      offset="3" conversion="V"/>
+      <value type="uint8"  units="%"      name="TC Intervention" offset="4" conversion="V"/>
+      <value type="uint8"  units=""       name="Boost Map Index" offset="5" conversion="V"/>
+      <value type="uint8"  units=""       name="Cruise State"    offset="6" conversion="V"/>
+      <value type="uint8"  units=""       name="AC Status"       offset="7" conversion="V"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3F0  (decimal 1008) — Extended Sensors  100 ms  [NEW]
+         [0] Fuel Temp °C      [1] Engine Load %      [2] Coolant Pressure kPa
+         [3] Ethanol %         [4] Charge-Pipe IAT °C  [5] Cabin Temp °C
+         [6] Turbo Speed RPM × 100 (uint8 → 0-25500 RPM)
+         [7] Trigger Errors count
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1008" bus="0" length="8" interval="100">
+      <value type="uint8"  units="C"    name="Fuel Temp"        offset="0" conversion="V-50"/>
+      <value type="uint8"  units="%"    name="Engine Load"      offset="1" conversion="V"/>
+      <value type="uint8"  units="kPa"  name="Coolant Pressure" offset="2" conversion="V"/>
+      <value type="uint8"  units="%"    name="Ethanol %"        offset="3" conversion="V"/>
+      <value type="uint8"  units="C"    name="Charge-Pipe IAT"  offset="4" conversion="V-50"/>
+      <value type="uint8"  units="C"    name="Cabin Temp"       offset="5" conversion="V-50"/>
+      <value type="uint8"  units="RPM"  name="Turbo Speed"      offset="6" conversion="V*100"/>
+      <value type="uint8"  units=""     name="Trigger Errors"   offset="7" conversion="V"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3F1  (decimal 1009) — IMU & Extended Warnings  50 ms  [NEW]
+         [0-1] Accel X g  [2-3] Accel Y g  [4-5] Accel Z g  (signed int16 BigEndian, ×0.1)
+         [6]   Ext Warn Bits (bitmask, import raw — see bit map below)
+         [7]   Reserved (0x00)
+
+         Ext Warn Bits (byte6) — read via RealDash gauge conditions on "Ext Warn Bits":
+           bit0  ECT over-temp          bit1  Oil pressure low
+           bit2  Fuel pressure low      bit3  Oil temp high
+           bit4  IAT high               bit5  Switchboard comm fault
+           bit6  Trigger error          bit7  Sensor error
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1009" bus="0" length="8" interval="50">
+      <value type="int16"  units="g"   name="Accel X"        offset="0" conversion="V*0.1" endian="big"/>
+      <value type="int16"  units="g"   name="Accel Y"        offset="2" conversion="V*0.1" endian="big"/>
+      <value type="int16"  units="g"   name="Accel Z"        offset="4" conversion="V*0.1" endian="big"/>
+      <value type="uint8"  units=""    name="Ext Warn Bits"  offset="6" conversion="V"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x640  (decimal 1600) — Switchboard Analog Inputs 1–4  ~50 ms
+         Raw mV 0–5000 per channel, uint16 BigEndian.
+         ECU maps Analog 1 → GP Temp1 via thermistor calibration table in PCLink.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1600" bus="0" length="8" interval="50">
+      <value type="uint16" units="mV"  name="SW Analog 1"    offset="0" conversion="V" endian="big"/>
+      <value type="uint16" units="mV"  name="SW Analog 2"    offset="2" conversion="V" endian="big"/>
+      <value type="uint16" units="mV"  name="SW Analog 3"    offset="4" conversion="V" endian="big"/>
+      <value type="uint16" units="mV"  name="SW Analog 4"    offset="6" conversion="V" endian="big"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x641  (decimal 1601) — Switchboard Analog Inputs 5–8  ~50 ms
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1601" bus="0" length="8" interval="50">
+      <value type="uint16" units="mV"  name="SW Analog 5"    offset="0" conversion="V" endian="big"/>
+      <value type="uint16" units="mV"  name="SW Analog 6"    offset="2" conversion="V" endian="big"/>
+      <value type="uint16" units="mV"  name="SW Analog 7"    offset="4" conversion="V" endian="big"/>
+      <value type="uint16" units="mV"  name="SW Analog 8"    offset="6" conversion="V" endian="big"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x642  (decimal 1602) — Switchboard Rotary / Switch / Heartbeat  ~50 ms
+         Byte layout:
+           byte0 [7:4]=Rotary1 [3:0]=Rotary2  (nibble packed, 0-15 each)
+           byte1 [7:4]=Rotary3 [3:0]=Rotary4
+           byte2 [7:4]=Rotary5 [3:0]=Mode switch position
+           byte3 AS_MASK  (analog switch bitmask)
+           byte4 SW_MASK  (digital inputs: bit0=VDI1 bit1=VDI2 bit2=VDI3 bit3=VDI4 bit4=VDI5)
+           byte5 LS_MASK  (low-side output status echo — reflects 0x643 ECU commands)
+           byte6 unused   (0x00)
+           byte7 Heartbeat (0-255 wrapping counter, increments each CSB3 transmission)
+         All bytes imported raw uint8. Decode nibbles/bits inside RealDash gauge conditions.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1602" bus="0" length="8" interval="50">
+      <value type="uint8"  units=""    name="SW Rotary12 Raw"   offset="0" conversion="V"/>
+      <value type="uint8"  units=""    name="SW Rotary34 Raw"   offset="1" conversion="V"/>
+      <value type="uint8"  units=""    name="SW Rotary5Mode Raw" offset="2" conversion="V"/>
+      <value type="uint8"  units=""    name="SW AS_MASK"        offset="3" conversion="V"/>
+      <value type="uint8"  units=""    name="SW SW_MASK"        offset="4" conversion="V"/>
+      <value type="uint8"  units=""    name="SW LS_MASK"        offset="5" conversion="V"/>
+      <value type="uint8"  units=""    name="SW Heartbeat"      offset="7" conversion="V"/>
+    </frame>
+
+  </frames>
+</RealDashCAN>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Link G4X FuryX — TrackCluster CAN Setup
+     Repository : st185-link-ecu-config
+     Canonical source: link_g4x_can_setup.json  (same folder)
+     Import via : PCLink → CAN → Setup → File → Open (.lcs)
+     Confirm against PCLink G4X firmware ≥ 6.20 .lcs schema before importing.
+     v1.1 — Fixed Lambda Target Scale (0.001 not 1000); Accel X/Y/Z Scale (0.1 not 10).
+     PCLink TX encode rule: raw = channel_value / Scale
+     PCLink RX decode rule: value = raw × Scale + Offset -->
+<LinkCANSetup Version="1">
+  <CANModule Index="2">
+    <!-- Use whichever CAN module is wired to the dashboard transceiver -->
+    <!-- BitRate must be set to 1 000 000 (1 Mbit/s) in PCLink CAN module settings -->
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         STREAM 0x3E8 — Engine Fast  (10 ms cycle)
+         Bytes: [0-1] RPM  [2-3] MGP kPa  [4] ECT °C  [5] IAT °C  [6] Oil °C  [7] unused
+         ═══════════════════════════════════════════════════════════════════ -->
+    <Channel ID="0x3E8" Name="Engine Fast" CycleTime="10" Type="Custom">
+      <Parameter Name="Engine Speed"  StartBit="0"  Length="16" Scale="1"    Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="MGP"           StartBit="16" Length="16" Scale="1"    Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="ECT"           StartBit="32" Length="8"  Scale="1"    Offset="-50" ByteOrder="BigEndian" />
+      <Parameter Name="IAT"           StartBit="40" Length="8"  Scale="1"    Offset="-50" ByteOrder="BigEndian" />
+      <Parameter Name="Oil Temp"      StartBit="48" Length="8"  Scale="1"    Offset="-50" ByteOrder="BigEndian" />
+    </Channel>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         STREAM 0x3E9 — Speed / Pressure / Ignition  (10 ms cycle)
+         Bytes: [0-1] Ign° [2] km/h [3] Oil kPa [4] Fuel kPa [5-7] unused
+         Ign Angle decode: raw × 0.1 − 100 = degrees (allows negative timing)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <Channel ID="0x3E9" Name="Speed Press Ign" CycleTime="10" Type="Custom">
+      <Parameter Name="Ign Angle"     StartBit="0"  Length="16" Scale="0.1"  Offset="-100" ByteOrder="BigEndian" />
+      <Parameter Name="Vehicle Speed" StartBit="16" Length="8"  Scale="1"    Offset="0"    ByteOrder="BigEndian" />
+      <Parameter Name="Oil Pressure"  StartBit="24" Length="8"  Scale="1"    Offset="0"    ByteOrder="BigEndian" />
+      <Parameter Name="Fuel Pressure" StartBit="32" Length="8"  Scale="1"    Offset="0"    ByteOrder="BigEndian" />
+    </Channel>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         STREAM 0x3EA — Lambda  (10 ms cycle)
+         Bytes: [0-1] Lambda 1 (×0.001 = λ)  [2-7] unused
+         ═══════════════════════════════════════════════════════════════════ -->
+    <Channel ID="0x3EA" Name="Lambda" CycleTime="10" Type="Custom">
+      <Parameter Name="Lambda 1"      StartBit="0"  Length="16" Scale="0.001" Offset="0"  ByteOrder="BigEndian" />
+    </Channel>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         STREAM 0x3EB — Gear / Fuel Level  (50 ms cycle)
+         Bytes: [0] Gear  [1] Fuel %  [2-7] unused
+         ═══════════════════════════════════════════════════════════════════ -->
+    <Channel ID="0x3EB" Name="Gear Fuel" CycleTime="50" Type="Custom">
+      <Parameter Name="Gear Position" StartBit="0"  Length="8"  Scale="1"    Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="Fuel Level"    StartBit="8"  Length="8"  Scale="1"    Offset="0"   ByteOrder="BigEndian" />
+    </Channel>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         STREAM 0x3EE — Engine Protection Status  (50 ms cycle)
+         Each byte: 0 = OK, nonzero = limit/protection active.
+         Map each parameter to the corresponding Link protection/limiting event.
+         Drives the RIGHT cluster warning overlay.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <Channel ID="0x3EE" Name="Engine Protect" CycleTime="50" Type="Custom">
+      <Parameter Name="Knock"          StartBit="0"  Length="8" Scale="1" Offset="0" ByteOrder="BigEndian" />
+      <Parameter Name="Ign Cut"        StartBit="8"  Length="8" Scale="1" Offset="0" ByteOrder="BigEndian" />
+      <Parameter Name="Fuel Cut"       StartBit="16" Length="8" Scale="1" Offset="0" ByteOrder="BigEndian" />
+      <Parameter Name="Boost Cut"      StartBit="24" Length="8" Scale="1" Offset="0" ByteOrder="BigEndian" />
+      <Parameter Name="Sensor Error"   StartBit="32" Length="8" Scale="1" Offset="0" ByteOrder="BigEndian" />
+      <Parameter Name="Throttle Error" StartBit="40" Length="8" Scale="1" Offset="0" ByteOrder="BigEndian" />
+    </Channel>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         STREAM 0x3EF — Drive Assist & Status  (50 ms cycle)   [NEW]
+         Bytes 3 (TC Setting) and 5 (Boost Map) are ECU ECHOES of the cluster's
+         0x3ED and 0x3EC selections — ECU receives those frames and re-broadcasts
+         them here so RealDash reads only ECU frames, never cluster frames.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <Channel ID="0x3EF" Name="Drive Assist Status" CycleTime="50" Type="Custom">
+      <!-- v1.1 FIX: Scale was 1000 — corrected to 0.001.
+           Encode: raw = lambda_target / 0.001 = 1000 per unit. Decode: raw × 0.001 = λ -->
+      <Parameter Name="Lambda Target"   StartBit="0"  Length="16" Scale="0.001" Offset="0" ByteOrder="BigEndian" />
+      <Parameter Name="TPS"             StartBit="16" Length="8"  Scale="1"     Offset="0" ByteOrder="BigEndian" />
+      <Parameter Name="TC Setting"      StartBit="24" Length="8"  Scale="1"     Offset="0" ByteOrder="BigEndian" />
+      <Parameter Name="TC Intervention" StartBit="32" Length="8"  Scale="1"     Offset="0" ByteOrder="BigEndian" />
+      <Parameter Name="Boost Map Index" StartBit="40" Length="8"  Scale="1"     Offset="0" ByteOrder="BigEndian" />
+      <Parameter Name="Cruise State"    StartBit="48" Length="8"  Scale="1"     Offset="0" ByteOrder="BigEndian" />
+      <Parameter Name="AC Status"       StartBit="56" Length="8"  Scale="1"     Offset="0" ByteOrder="BigEndian" />
+    </Channel>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         STREAM 0x3F0 — Extended Sensors  (100 ms cycle)       [NEW]
+         Temp bytes (0, 4, 5) use Offset=-50 (decoded °C = raw − 50).
+         Byte 5 Cabin Temp mirrors GP Temp1 sourced from 0x640 switchboard.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <Channel ID="0x3F0" Name="Extended Sensors" CycleTime="100" Type="Custom">
+      <Parameter Name="Fuel Temp"        StartBit="0"  Length="8"  Scale="1"   Offset="-50" ByteOrder="BigEndian" />
+      <Parameter Name="Engine Load"      StartBit="8"  Length="8"  Scale="1"   Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="Coolant Pressure" StartBit="16" Length="8"  Scale="1"   Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="Ethanol %"        StartBit="24" Length="8"  Scale="1"   Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="Charge-Pipe IAT"  StartBit="32" Length="8"  Scale="1"   Offset="-50" ByteOrder="BigEndian" />
+      <Parameter Name="Cabin Temp"       StartBit="40" Length="8"  Scale="1"   Offset="-50" ByteOrder="BigEndian" />
+      <Parameter Name="Turbo Speed"      StartBit="48" Length="8"  Scale="100" Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="Trigger Errors"   StartBit="56" Length="8"  Scale="1"   Offset="0"   ByteOrder="BigEndian" />
+    </Channel>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         STREAM 0x3F1 — IMU & Extended Warnings  (50 ms cycle) [NEW]
+         Accel X/Y/Z are SIGNED int16. Decode: raw × 0.1 = g.
+         Byte 6: packed warning bitmask (see CAN-BUS-ID-ALLOCATION-TABLE §E).
+         Byte 7: reserved, transmit 0x00.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <Channel ID="0x3F1" Name="IMU Ext Warnings" CycleTime="50" Type="Custom">
+      <!-- v1.1 FIX: Scale was 10 — corrected to 0.1.
+           Encode: raw = 1.5g / 0.1 = 15. Decode: 15 × 0.1 = 1.5g ✓ -->
+      <Parameter Name="Accel X"       StartBit="0"  Length="16" Scale="0.1" Offset="0" ByteOrder="BigEndian" Signed="true" />
+      <Parameter Name="Accel Y"       StartBit="16" Length="16" Scale="0.1" Offset="0" ByteOrder="BigEndian" Signed="true" />
+      <Parameter Name="Accel Z"       StartBit="32" Length="16" Scale="0.1" Offset="0" ByteOrder="BigEndian" Signed="true" />
+      <Parameter Name="Ext Warn Bits" StartBit="48" Length="8"  Scale="1"   Offset="0" ByteOrder="BigEndian" />
+    </Channel>
+
+  </CANModule>
+</LinkCANSetup>
