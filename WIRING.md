@@ -136,8 +136,8 @@ All inputs use internal pull-ups; wire the common side to **GND**. 44 kΩ… use
 | Side RGB uses strapping GPIO3/45/46 | ✅ acceptable — Waveshare-fixed; panel is idle during boot strap sampling |
 | ESP32-S3 GPIO19/20 startup glitch (datasheet) | ✅ N/A — those pins are USB, not used for our I/O |
 | Errata (S3 + P4) | ✅ no GPIO-level silicon issues affecting this design (entries are cache/secure-boot/PSRAM) |
-| CAN bus now 4 members (ECU, center, switchboard, Pi5/RealDash) | ✅ accounted for — see §7. center-cluster-esp32-p4 wiring (GPIO4/5, SN65HVD230) is unchanged by the new nodes |
-| CAN bus termination plan (2 physical ends + switchboard jumper) | ⚠️ **Action required at install:** confirm 120Ω only at the two physical bus ends (ECU end + Pi5/last-node end per §7); switchboard's onboard 120Ω jumper must stay **OFF** unless it physically becomes an end node — do not create a third termination point |
+| CAN bus now 4 members (ECU, center, switchboard, Pi/RealDash) | ✅ accounted for — see §7. center-cluster-esp32-p4 wiring (GPIO4/5, SN65HVD230) is unchanged by the new nodes |
+| CAN bus termination plan (2 physical ends + switchboard jumper) | ⚠️ **Action required at install:** confirm 120Ω only at the two physical bus ends (ECU end + Pi end per §7); switchboard's onboard 120Ω jumper must stay **OFF** unless it physically becomes an end node — do not create a third termination point |
 
 > Pin values here mirror the firmware `Kconfig.projbuild` of each cluster, which remains authoritative.
 > If you change a pin in menuconfig, update this table to match.
@@ -165,7 +165,7 @@ graph LR
         ECU["Link G4X FuryX ECU<br/>(CAN-Lambda internal)<br/>120Ω term — END A"]
         CENTER["center-cluster-esp32-p4<br/>SN65HVD230 transceiver<br/>GPIO5 TX / GPIO4 RX"]
         SWB["ECUMaster CAN Switch<br/>Board V3<br/>Base ID 0x640<br/>(set to 1 Mbit/s)"]
-        PI5["Raspberry Pi 5 +<br/>Waveshare dual-MCP2515<br/>RealDash, ch.1 @ 1 Mbit/s<br/>120Ω term — END B"]
+        PI5["Pi4+/Pi5 + USB-CAN adapter<br/>(CANable or PCAN USB)<br/>RealDash 840x480 7in screen<br/>120Ω term — END B"]
 
         ECU -- "CANH / CANL" --> CENTER
         CENTER -- "CANH / CANL" --> SWB
@@ -181,7 +181,7 @@ graph LR
 - All four nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus (1 Mbit/s,
   ISO 11898-2) — per `CAN-BUS-MASTER-DESIGN.md` §2.
 - **120 Ω termination lives at the two physical ends of the harness ONLY** — shown above as
-  END A (ECU end) and END B (Pi5/last-node end). **Do not add a third termination point.**
+  END A (ECU end) and END B (Pi end). **Do not add a third termination point.**
   The diagram's linear left-to-right order (ECU → Center → Switchboard → Pi5) is the
   *logical* bus order for this drawing; the *physical* end nodes are whichever two devices sit
   at the actual harness extremities — confirm against the installed harness, not this diagram's
@@ -199,7 +199,7 @@ graph LR
   connecting it to this bus.** This isn't optional: PCLink's "User Stream" ingestion (master
   design §3, §5) requires the switchboard and ECU to be on the same physical bus segment, which
   only works if both run at the same bit rate (1 Mbit/s, matching `link_g4x_can_setup.lcs`
-  CANModule Index="2").
+  CANModule Index="1").
 - **Onboard 120 Ω termination jumper:** the switchboard has its own termination jumper.
   **Leave it OFF** unless the switchboard physically sits at one of the two bus ends (END A/B
   in §7.1). Enabling it elsewhere creates a third termination point on the bus, which is
@@ -207,16 +207,29 @@ graph LR
 
 ---
 
-### 7.3 Raspberry Pi 5 + Waveshare dual-MCP2515 hat — wiring
+### 7.3 Raspberry Pi 4+/Pi5 + USB-CAN Adapter — wiring
 
-- **Channel 1 → shared bus:** wire channel 1's CANH/CANL to the same daisy-chained bus as the
-  other three nodes (§7.1). In RealDash's CAN adapter configuration, set **channel 1 to
-  1 Mbit/s** to match the bus.
-- **Channel 2 → unused/spare:** leave unconnected for now. Available for a future independent
-  CAN segment (e.g., a second switchboard at Base ID 0x644+, or a dedicated diagnostics bus) —
-  master design §7.
-- **Role:** the Pi5 is a **passive listener** on channel 1 — it does not transmit, so there are
-  no TX/arbitration considerations for this node on the shared bus.
+**Device:** Raspberry Pi 4+ or Pi5 (verify exact board at install), 840×480 7" touchscreen,
+running RealDash.
+
+**NOTE on Waveshare hat:** The Waveshare dual-MCP2515 hat is physically mounted on the Pi for its
+cooling fan only. It has **no CAN connections**. Do not wire CANH/CANL to the hat, and do not
+configure it in software. Ignore it for all CAN purposes.
+
+**CAN adapter:** USB-CAN adapter (CANable or PCAN USB — confirm exact model at install) plugged
+into any Pi USB port.
+
+- **Wiring:** adapter CANH → shared bus CANH; adapter CANL → shared bus CANL; adapter GND →
+  chassis/bus GND.
+- **Bus speed:** configure the adapter to **1 Mbit/s** (1,000,000 bps) in RealDash connection
+  settings — Settings → Connections → Add Connection → CAN Bus → [select adapter] → 1,000,000 bps.
+- **Termination:** the Pi is the physical END B of the bus. You MUST provide 120 Ω termination
+  here. Options:
+  - If using a PCAN USB: enable the onboard termination switch on the adapter body.
+  - If using a CANable (no onboard termination): solder a 120 Ω resistor across the CANH/CANL
+    terminals on the adapter, or splice it inline at the bus end of the harness.
+  - Do NOT use the Waveshare hat's termination for this — the hat is not in the CAN circuit.
+- **Role:** passive listener — the Pi does not transmit any CAN frames.
 
 ---
 
@@ -228,5 +241,5 @@ WIRING.md's scope is physical wiring/pinout, not message content. For byte-level
   control): `CAN-BUS-ID-ALLOCATION-TABLE.md` §5.
 - **0x3EF-0x3F1** (new RealDash-only streams — Drive Assist & Status, Extended Sensors, IMU &
   Extended Warnings): `CAN-BUS-ID-ALLOCATION-TABLE.md` §6.
-- Full bus topology, speed reconciliation, fault-tolerance, and RealDash/Pi5 config rationale:
+- Full bus topology, speed reconciliation, fault-tolerance, and RealDash/Pi config rationale:
   `CAN-BUS-MASTER-DESIGN.md` §§1-4, §7.

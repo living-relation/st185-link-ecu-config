@@ -57,7 +57,7 @@ Each analog channel outputs raw mV (0–5000), uint16, BigEndian, at ~20 Hz.
 | CSB3 Analog Input | CAN Frame | Byte Offset | Connected Signal | Notes |
 |---|---|---|---|---|
 | Analog 1 | 0x640 | bytes 0-1 | Cabin temp NTC thermistor | PCLink maps this to GP Temp1 via calibration table |
-| Analog 2 | 0x640 | bytes 2-3 | TBD | |
+| Analog 2 | 0x640 | bytes 2-3 | OEM cruise control stalk (resistor ladder signal) | See Step 4.1 |
 | Analog 3 | 0x640 | bytes 4-5 | TBD | |
 | Analog 4 | 0x640 | bytes 6-7 | TBD | |
 | Analog 5 | 0x641 | bytes 0-1 | TBD | |
@@ -70,6 +70,110 @@ Each analog channel outputs raw mV (0–5000), uint16, BigEndian, at ~20 Hz.
 
 ---
 
+## Step 4.1 — OEM Cruise Control Stalk (Resistor Ladder)
+
+### Background
+
+The 1993 ST185 AllTrac cruise control stalk uses a **resistor ladder** — one signal wire that
+outputs different voltages for each switch position (SET/ACCEL, COAST/DECEL, RESUME/ACCEL,
+CANCEL). This is an analog signal, NOT a digital switch. It connects to a CSB3 **analog input**
+(Analog 2), not a digital input.
+
+The OEM cruise control ECU (C/C ECU) is bypassed entirely in this build. The Link G4X FuryX
+handles cruise control natively via its own cruise control strategy once it receives the correct
+switch inputs.
+
+### What to look up in the ST185 electrical diagram
+
+You need **two things** from the service manual (Electrical section, Cruise Control System):
+
+1. **The signal wire** — which wire on the cruise stalk connector carries the resistor ladder
+   voltage. Common colors in that era: blue/white, blue/yellow. Look for a wire that goes from
+   the stalk to a "CRUISE CONTROL ECU" labeled connector, shown entering on an "STA" or similar
+   signal terminal.
+
+2. **The reference voltage and resistance values** — the table showing each switch state, its
+   resistance (kΩ), and the resulting voltage. This is sometimes labeled "Cruise Switch Voltage"
+   or "Multiswitch Resistance Table" in the electrical manual. Example format:
+   ```
+   Switch pressed    Resistance to GND    Voltage (5V ref)
+   None              Open                 5.0 V
+   CANCEL            3.3 kΩ              ~4.1 V
+   RESUME/ACCEL      1.0 kΩ              ~3.0 V
+   SET/COAST         0.27 kΩ             ~1.3 V
+   ```
+   **Do not assume the values above are correct for the ST185** — they are examples only.
+   Look up the actual values and add them to this table once found.
+
+### Wiring to CSB3 Analog 2
+
+The OEM circuit uses a 5V reference from the cruise control ECU. Since you're bypassing that ECU,
+you need to provide the 5V pull-up yourself. Options:
+
+**Option A — CSB3 provides 5V reference (check CSB3 manual):**
+Some CSB3 analog inputs have a configurable 5V pull-up. If available:
+- Connect the cruise stalk signal wire directly to CSB3 Analog 2 input
+- Enable the internal pull-up in the ECUMaster configurator
+- The voltage divider is formed internally
+
+**Option B — External pull-up resistor:**
+If CSB3 has no internal pull-up:
+- Add a 10 kΩ resistor from CSB3's 5V output to the Analog 2 input line
+- Connect the cruise stalk signal wire to that same junction
+- The stalk's ladder resistors then divide against this 10 kΩ to produce the voltage
+- Verify the resulting voltage levels still fall within distinct thresholds for each switch
+
+**If the OEM circuit is 12V-referenced** (verify in the diagram — look for a 12V supply to the
+cruise stalk connector):
+- Add a voltage divider to bring 12V max → 5V max before CSB3 Analog 2
+- Standard divider: 10 kΩ upper, 6.2 kΩ lower (roughly 3:2 ratio for 12→5V scale)
+- Recalculate all threshold voltages after the divider
+
+### Decoding approach — two options
+
+**Option A — CSB3 AS_MASK threshold decoding (preferred, if supported):**
+
+The CSB3's AS_MASK field (0x642 byte3) suggests built-in support for analog switch decoding.
+Check the ECUMaster CAN Switch Board V3 manual for "Analog Switch" or "AS" configuration.
+If supported:
+1. In the configurator, assign Analog 2 as an Analog Switch input
+2. Enter the voltage thresholds for each switch state (from the ST185 diagram)
+3. Assign each decoded state to an AS_MASK bit (bit0=SET, bit1=RESUME, bit2=CANCEL, etc.)
+4. In PCLink, extend the 0x642 CAN User Stream to include byte3:
+   - AS_MASK bit0 → VDI1 (cruise SET)
+   - AS_MASK bit1 → VDI2 (cruise RESUME — this replaces the current AC assignment; shift AC
+     to a different VDI if needed)
+   - AS_MASK bit2 → VDI3 (cruise CANCEL)
+5. In PCLink cruise control settings, map VDI1=SET, VDI2=RESUME, VDI3=CANCEL
+
+**⚠️ NOTE:** If AS_MASK decodes the cruise stalk, reassign the SW_MASK bits (Step 5) so they
+don't overlap with cruise functions. See Step 5 for the current VDI assignment table.
+
+**Option B — Raw mV decode in PCLink:**
+
+If CSB3 AS_MASK decoding is not available:
+1. Analog 2 → CSB3 → 0x640 bytes 2-3 (raw mV, uint16, BigEndian)
+2. In PCLink, receive 0x640 bytes 2-3 as a GP Voltage channel (e.g., "Cruise Stalk mV")
+3. Use PCLink's Math Channels (or Auxiliary Channels) to decode voltage ranges:
+   ```
+   If Cruise Stalk mV > [CANCEL_LOW] AND < [CANCEL_HIGH] → virtual output: CANCEL = ON
+   If Cruise Stalk mV > [RESUME_LOW] AND < [RESUME_HIGH] → virtual output: RESUME = ON
+   If Cruise Stalk mV > [SET_LOW]    AND < [SET_HIGH]    → virtual output: SET = ON
+   ```
+4. Map each virtual output to a PCLink VDI or directly to the cruise control function inputs
+5. Threshold values come from the ST185 electrical diagram (see table above)
+
+### MAIN switch
+
+The ST185 MAIN cruise on/off switch may be:
+- A separate discrete wire on the stalk connector (goes fully open/close, not through the resistor
+  ladder) → wire to a CSB3 digital input → SW_MASK bit per Step 5
+- OR embedded in the resistor ladder as the "full voltage = off" state (no separate wire needed)
+
+Verify in the ST185 electrical diagram which type the MAIN switch is.
+
+---
+
 ## Step 5 — Digital Switch Assignments (SW_MASK → 0x642 byte4)
 
 The CSB3 packs digital input states into byte4 of 0x642 as a bitmask (SW_MASK).
@@ -77,12 +181,16 @@ PCLink reads this via a CAN User Stream: **0x642 byte4 bits0-4 → VDI1–VDI5**
 
 | SW_MASK Bit | Physical Signal | PCLink VDI | Function |
 |---|---|---|---|
-| bit0 (LSB) | Cruise control button | VDI1 | Cruise set / cancel |
+| bit0 (LSB) | Cruise MAIN switch (if discrete wire — see Step 4.1) | VDI1 | Cruise master on/off |
 | bit1 | AC request button | VDI2 | AC compressor request |
 | bit2 | Evap core over-temp switch | VDI3 | Evap over-temp protect |
 | bit3 | Spare | VDI4 | Assign as needed |
 | bit4 | Spare | VDI5 | Assign as needed |
 | bit5–7 | Unused | — | Not read by PCLink |
+
+**Note:** If the cruise stalk AS_MASK decoding path is used (Step 4.1 Option A), the cruise
+SET/RESUME/CANCEL functions arrive via AS_MASK bits, NOT SW_MASK bits. In that case bit0 here
+only handles the MAIN on/off switch. Reassign VDI mapping in PCLink accordingly.
 
 In the configurator, map physical wires to digital input channels and confirm the bit ordering matches the table above.
 
@@ -146,12 +254,15 @@ Exactly two 120Ω termination resistors go on the bus — one at each physical e
 | Link G4X FuryX ECU | Bus end 1 | **ON** (120Ω — built-in or add inline) |
 | center-cluster-esp32-p4 | Middle | **None** (SN65HVD230 has no termination) |
 | ECUMaster CSB3 | Middle | **Jumper OFF** — do not close onboard termination |
-| Raspberry Pi 5 (Waveshare hat) | Bus end 2 | **ON** (enable via hat jumper or add inline) |
+| Pi4+/Pi5 + USB-CAN adapter | Bus end 2 | **ON** — via adapter termination switch (PCAN USB) or inline 120Ω (CANable) |
+
+**NOTE:** The Waveshare hat on the Pi is for cooling fan only — it has no CAN connections.
+The termination at the Pi end comes from the USB-CAN adapter or an inline resistor, not the hat.
 
 Bus topology (daisy chain, shortest stub lengths):
 ```
-[ECU end] ──── center cluster ──── CSB3 ──── Pi5 [bus end]
-   120Ω                                          120Ω
+[ECU end] ──── center cluster ──── CSB3 ──── Pi/USB-CAN [bus end]
+   120Ω                                              120Ω
 ```
 
 If you need to bench-test the CSB3 alone on a short cable with a USB-CAN adapter, you can close the CSB3 termination jumper temporarily. **Remove it again before connecting to the full bus.**

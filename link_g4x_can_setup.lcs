@@ -8,8 +8,8 @@
      PCLink TX encode rule: raw = channel_value / Scale
      PCLink RX decode rule: value = raw × Scale + Offset -->
 <LinkCANSetup Version="1">
-  <CANModule Index="2">
-    <!-- Use whichever CAN module is wired to the dashboard transceiver -->
+  <CANModule Index="1">
+    <!-- CAN1 — all nodes (ECU, cluster, CSB3, RealDash) share this bus -->
     <!-- BitRate must be set to 1 000 000 (1 Mbit/s) in PCLink CAN module settings -->
 
     <!-- ═══════════════════════════════════════════════════════════════════
