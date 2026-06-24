@@ -10,6 +10,9 @@ Subcommands
 -----------
   simulate-ecu          Send all ECU TX frames (cluster + RealDash) at their
                         real cycle times, sweeping values to exercise gauges.
+  full-cluster          Guided center-P4 -> left/right-S3 test: keeps all five
+                        cluster frames flowing while animating one signal at a
+                        time, prompting what to check on each screen.
   simulate-switchboard  Send 0x640/0x641/0x642 with an incrementing heartbeat.
   inject-ls-command     Send 0x643 low-side output commands to the switchboard.
   monitor               Passively decode every known frame seen on the bus.
@@ -97,7 +100,14 @@ class PeriodicTask:
 
 
 def run_scheduler(bus: "can.BusABC", tasks: List[PeriodicTask],
-                  duration: Optional[float], verbose: bool) -> None:
+                  duration: Optional[float], verbose: bool,
+                  on_tick: Optional[Callable[[float], bool]] = None) -> None:
+    """Send periodic tasks until ``duration`` elapses or Ctrl-C.
+
+    ``on_tick`` is called once per loop iteration with the elapsed seconds; if it
+    returns False the scheduler stops. Use it to drive a scripted scenario that
+    mutates the values the task builders read.
+    """
     start = time.monotonic()
     for task in tasks:
         task.next_due = start
@@ -106,6 +116,8 @@ def run_scheduler(bus: "can.BusABC", tasks: List[PeriodicTask],
             now = time.monotonic()
             elapsed = now - start
             if duration is not None and elapsed >= duration:
+                break
+            if on_tick is not None and on_tick(elapsed) is False:
                 break
             soonest = None
             for task in tasks:
@@ -220,6 +232,212 @@ def cmd_simulate_ecu(args: argparse.Namespace) -> None:
           f"{args.interface}/{args.channel}. Ctrl-C to stop.")
     try:
         run_scheduler(bus, tasks, args.duration, args.verbose)
+    finally:
+        bus.shutdown()
+
+
+# --- full-cluster guided scenario ------------------------------------------
+#
+# The center ESP32-P4 is the only CAN node; it decodes the cluster frames into
+# its dash-data model and forwards them to the left and right ESP32-S3 displays
+# over UART (center GPIO20 -> left, GPIO21 -> right). To verify the WHOLE
+# cluster chain (P4 -> both side S3 boards) we keep all five cluster frames
+# flowing continuously (so the center keeps forwarding live snapshots), but
+# animate one signal at a time with an on-screen prompt of what to look for on
+# each physical screen.
+
+class ClusterState:
+    """Live engineering values, defaulting to a warm idle."""
+    def __init__(self) -> None:
+        self.rpm = 850
+        self.map_kpa = 35
+        self.ect_c = 88.0
+        self.iat_c = 30.0
+        self.oil_temp_c = 90.0
+        self.ign_deg = 12.0
+        self.vehicle_speed = 0
+        self.oil_press = 250
+        self.fuel_press = 350
+        self.lambda1 = 1.00
+        self.gear = 0          # 0=N, 1-6, 7=R
+        self.fuel_pct = 60
+        self.knock = 0
+        self.ignition_cut = 0
+        self.fuel_cut = 0
+        self.boost_cut = 0
+        self.sensor_error = 0
+        self.throttle_error = 0
+
+    def reset_warnings(self) -> None:
+        self.knock = self.ignition_cut = self.fuel_cut = 0
+        self.boost_cut = self.sensor_error = self.throttle_error = 0
+
+
+class Phase:
+    def __init__(self, name: str, duration: float,
+                 apply: Callable[["ClusterState", float], None],
+                 center: str, sides: str):
+        self.name = name
+        self.duration = duration
+        self.apply = apply
+        self.center = center
+        self.sides = sides
+
+
+def build_cluster_scenario() -> List[Phase]:
+    def idle(s: ClusterState, t: float) -> None:
+        pass
+
+    def rpm_sweep(s: ClusterState, t: float) -> None:
+        s.rpm = int(triangle(t, 8.0, 850, 7200))
+        s.map_kpa = int(triangle(t, 8.0, 35, 210))
+
+    def speed_sweep(s: ClusterState, t: float) -> None:
+        s.vehicle_speed = int(triangle(t, 8.0, 0, 180))
+
+    def coolant_rise(s: ClusterState, t: float) -> None:
+        s.ect_c = triangle(t, 10.0, 70, 115)
+        s.oil_temp_c = triangle(t, 10.0, 70, 130)
+        s.iat_c = sine(t, 6.0, 20, 55)
+
+    def gear_cycle(s: ClusterState, t: float) -> None:
+        s.gear = int(t // 1.2) % 8  # N,1..6,R, ~1.2 s each
+
+    def fuel_drop(s: ClusterState, t: float) -> None:
+        s.fuel_pct = int(triangle(t, 12.0, 0, 100))
+
+    def lambda_sweep(s: ClusterState, t: float) -> None:
+        s.lambda1 = sine(t, 5.0, 0.78, 1.10)
+
+    def pressures(s: ClusterState, t: float) -> None:
+        s.oil_press = int(triangle(t, 6.0, 80, 600))
+        s.fuel_press = int(sine(t, 4.0, 250, 420))
+
+    def ignition(s: ClusterState, t: float) -> None:
+        s.ign_deg = sine(t, 5.0, -10, 40)
+
+    warn_keys = ["knock", "ignition_cut", "fuel_cut",
+                 "boost_cut", "sensor_error", "throttle_error"]
+    warn_labels = ["Knock", "Ignition cut", "Fuel cut",
+                   "Boost cut", "Sensor error", "Throttle error"]
+
+    def make_warning(idx: int) -> Callable[["ClusterState", float], None]:
+        key = warn_keys[idx]
+        def apply(s: ClusterState, t: float) -> None:
+            s.reset_warnings()
+            setattr(s, key, 1)
+        return apply
+
+    phases: List[Phase] = [
+        Phase("Idle baseline", 4.0, idle,
+              "Tach ~850, all gauges settled, gear N",
+              "Both side screens show the same idle snapshot (no stale/blank data)"),
+        Phase("RPM + boost sweep", 9.0, rpm_sweep,
+              "Tach sweeps 850->7200 and back; boost/MAP follows",
+              "Whichever side mirrors RPM/boost tracks smoothly"),
+        Phase("Vehicle speed sweep", 9.0, speed_sweep,
+              "Speedo sweeps 0->180->0",
+              "Side screen showing speed tracks it"),
+        Phase("Coolant / oil / IAT temps", 11.0, coolant_rise,
+              "ECT/oil rise to hot; temp gauges change color near the top",
+              "Temp readouts on the sides match the center"),
+        Phase("Gear cycle", 10.0, gear_cycle,
+              "Gear readout steps N,1,2,3,4,5,6,R",
+              "Gear indicator on the sides follows the center exactly"),
+        Phase("Fuel level", 12.0, fuel_drop,
+              "Fuel gauge ramps full<->empty",
+              "Fuel readout mirrored on the sides"),
+        Phase("Lambda / AFR", 6.0, lambda_sweep,
+              "Lambda/AFR swings 0.78<->1.10",
+              "AFR readout mirrored on the sides"),
+        Phase("Oil / fuel pressure", 8.0, pressures,
+              "Oil pressure swings low<->high; low-oil color/warn may trip",
+              "Pressure readouts mirrored on the sides"),
+        Phase("Ignition timing", 6.0, ignition,
+              "Ignition advance swings -10..+40 deg",
+              "Timing readout (if shown) mirrored on the sides"),
+    ]
+    for i, label in enumerate(warn_labels):
+        phases.append(
+            Phase(f"WARNING: {label}", 3.0, make_warning(i),
+                  f"Full-screen ECU WARNING overlay for '{label}'",
+                  "Right side screen raises the warning overlay (0x3EE)"))
+    phases.append(
+        Phase("Clear warnings / idle", 4.0, idle,
+              "Overlay clears, gauges return to idle",
+              "Both sides return to a clean idle snapshot"))
+    return phases
+
+
+def cmd_full_cluster(args: argparse.Namespace) -> None:
+    bus = open_bus(args)
+    state = ClusterState()
+    phases = build_cluster_scenario()
+
+    # All five cluster frames, built from the shared mutable state.
+    def t_engine_fast(_t):
+        return f.ID_ENGINE_FAST, f.encode_engine_fast(
+            state.rpm, state.map_kpa, state.ect_c, state.iat_c, state.oil_temp_c)
+
+    def t_speed(_t):
+        return f.ID_SPEED_PRESS_IGN, f.encode_speed_press_ign(
+            state.ign_deg, state.vehicle_speed, state.oil_press, state.fuel_press)
+
+    def t_lambda(_t):
+        return f.ID_LAMBDA, f.encode_lambda(state.lambda1)
+
+    def t_gear(_t):
+        return f.ID_GEAR_FUEL, f.encode_gear_fuel(state.gear, state.fuel_pct)
+
+    def t_protect(_t):
+        return f.ID_ENGINE_PROTECT, f.encode_engine_protect(
+            state.knock, state.ignition_cut, state.fuel_cut,
+            state.boost_cut, state.sensor_error, state.throttle_error)
+
+    tasks = [
+        PeriodicTask(0.010, t_engine_fast),
+        PeriodicTask(0.010, t_speed),
+        PeriodicTask(0.010, t_lambda),
+        PeriodicTask(0.050, t_gear),
+        PeriodicTask(0.050, t_protect),
+    ]
+
+    ctrl = {"idx": -1, "phase_start": 0.0}
+    total = sum(p.duration for p in phases)
+
+    print("=" * 70)
+    print("FULL CLUSTER TEST  (center P4 -> left & right S3 over UART)")
+    print("Inject CAN into the center board; watch all THREE screens.")
+    print(f"{len(phases)} phases, ~{total:.0f}s total."
+          + ("  Looping until Ctrl-C." if args.loop else "  Ctrl-C to stop."))
+    print("=" * 70, flush=True)
+
+    def on_tick(elapsed: float) -> bool:
+        idx = ctrl["idx"]
+        t_in_phase = elapsed - ctrl["phase_start"]
+        if idx < 0 or t_in_phase >= phases[idx].duration:
+            idx += 1
+            if idx >= len(phases):
+                if args.loop:
+                    idx = 0
+                    state.reset_warnings()
+                else:
+                    return False
+            ctrl["idx"] = idx
+            ctrl["phase_start"] = elapsed
+            t_in_phase = 0.0
+            p = phases[idx]
+            print(f"\n[{idx + 1:2d}/{len(phases)}] {p.name}  (~{p.duration:.0f}s)")
+            print(f"      CENTER : {p.center}")
+            print(f"      SIDES  : {p.sides}", flush=True)
+        phases[ctrl["idx"]].apply(state, t_in_phase)
+        return True
+
+    try:
+        # duration=None: the scenario controls termination via on_tick.
+        run_scheduler(bus, tasks, None, args.verbose, on_tick=on_tick)
+        if not args.loop:
+            print("\nScenario complete.")
     finally:
         bus.shutdown()
 
@@ -355,6 +573,12 @@ def build_parser() -> argparse.ArgumentParser:
     se.add_argument("--cluster-only", action="store_true",
                     help="send only the 5 ECU->cluster frames (skip 0x3EF-0x3F1)")
     se.set_defaults(func=cmd_simulate_ecu)
+
+    fc = sub.add_parser("full-cluster",
+                        help="guided P4->left/right S3 test: one signal at a time")
+    fc.add_argument("--loop", action="store_true",
+                    help="repeat the scenario until Ctrl-C")
+    fc.set_defaults(func=cmd_full_cluster)
 
     ss = sub.add_parser("simulate-switchboard",
                         help="send 0x640/0x641/0x642 with heartbeat")

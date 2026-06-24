@@ -48,18 +48,32 @@ You should see decoded frames (or at minimum raw frames from a live node). Ctrl-
 
 ---
 
-## 1. center-cluster-esp32-p4 (dash cluster)
+## 1. The cluster (center P4 + left/right S3)
 
-**What the cluster expects:** the five ECU→Cluster frames at their cycle times.
-It also *transmits* `0x3EC` / `0x3ED` when you press its boost-map / TC buttons.
+### How the cluster works on the bus
+**Only the center ESP32-P4 is a CAN node.** It decodes the five ECU→Cluster
+frames into its dash-data model, then forwards that data to the **left and right
+ESP32-S3** side displays over UART (center GPIO20 → left GPIO44, center GPIO21 →
+right GPIO44, 921600 8N1). The side boards have **no CAN connection** — they
+mirror whatever the center forwards. The right screen also raises the full-screen
+ECU warning overlay driven by `0x3EE`.
 
-### Inject
-```bash
-# Drive the cluster with realistic, sweeping values (Ctrl-C to stop):
-python3 can_bench.py --interface socketcan --channel can0 simulate-ecu --cluster-only
+```mermaid
+flowchart LR
+    pc["PC + USB-CAN adapter"] -->|"CAN 1 Mbit/s (0x3E8-0x3EE)"| center["center P4"]
+    center -->|"UART1 GPIO20"| left["left S3"]
+    center -->|"UART2 GPIO21"| right["right S3"]
 ```
 
-This sends:
+So to test the **whole cluster**, you inject CAN into the center P4 and watch all
+three screens; the side displays validate the center's UART bridge end-to-end.
+
+### 1a. Quick single-board check (center P4 only on the bench)
+If you only have the center board wired:
+```bash
+python3 can_bench.py --interface socketcan --channel can0 simulate-ecu --cluster-only
+```
+This sweeps every cluster signal at once:
 
 | Frame | ID | Rate | What sweeps |
 |---|---|---|---|
@@ -69,21 +83,49 @@ This sends:
 | Gear/Fuel | 0x3EB | 50 ms | gear cycles N,1-6,R; fuel 0→100 % |
 | Engine Protect | 0x3EE | 50 ms | each warning bit pulses in turn |
 
-### Pass criteria
-- [ ] Tach/gauges sweep smoothly (no freeze, no jitter) — confirms 10 ms frames decode.
-- [ ] Coolant/IAT/oil-temp gauges read plausible °C (temps use offset −50).
-- [ ] Gear readout cycles N → 1..6 → R (raw 7 maps to R/−1).
-- [ ] Fuel gauge ramps 0→100 %.
-- [ ] The full-screen warning overlay shows each protect warning as its bit pulses
-      (knock, ignition cut, fuel cut, boost cut, sensor error, throttle error).
+### 1b. Full cluster test (center P4 → left & right S3) — recommended
+Wire all three boards and run the **guided** scenario. It keeps all five cluster
+frames flowing (so the center keeps forwarding live snapshots to both sides) but
+animates **one signal at a time**, printing what to verify on each screen:
+```bash
+python3 can_bench.py --interface socketcan --channel can0 full-cluster
+# add --loop to repeat until Ctrl-C
+```
+The 16 phases walk through: idle → RPM/boost → speed → temps → gear → fuel →
+lambda → pressures → ignition → each warning bit in turn → clear. Each phase
+prints a `CENTER:` and `SIDES:` prompt so you know exactly what to look at.
 
-### Confirm cluster TX (button responses)
-In a second terminal, monitor while you press the cluster's boost-map / TC buttons:
+#### Wiring for the full-cluster test
+This is **not** a CAN-only rig — the side displays come up over UART, so:
+
+| Connection | From | To |
+|---|---|---|
+| CAN | PC adapter CANH/CANL | center P4 transceiver (GPIO5 TX / GPIO4 RX) |
+| UART to left | center GPIO20 | left S3 GPIO44 |
+| UART to right | center GPIO21 | right S3 GPIO44 |
+| Common ground | PC adapter GND + all three boards GND | tied together |
+| Power | 5 V (≥3 A) | center J8 pin2, left VIN, right VIN |
+
+- CAN termination: 120 Ω at the PC adapter **and** 120 Ω at the center
+  transceiver end (2-device bus = both ends terminated).
+- Flash/monitor the side boards over **USB-C**, not GPIO43/44 — those are the S3
+  console pins and would fight the inter-cluster UART link.
+
+#### Pass criteria
+- [ ] **Center** gauges track every phase smoothly (no freeze/jitter) — confirms 10 ms CAN decode.
+- [ ] **Both side screens** update in lockstep with the center (confirms the UART bridge to each S3).
+- [ ] Temps read plausible °C (offset −50); gear steps N→1..6→R (raw 7 = R/−1); fuel ramps full↔empty.
+- [ ] During the warning phases, the **right screen** raises the full-screen ECU WARNING overlay for each of: knock, ignition cut, fuel cut, boost cut, sensor error, throttle error.
+- [ ] Neither side shows stale/blank data when a signal is held steady (idle phases).
+
+### 1c. Confirm cluster TX (button responses)
+The center also *transmits* when you press its boost-map / TC encoders. In a
+second terminal, monitor while pressing them:
 ```bash
 python3 can_bench.py --interface socketcan --channel can0 monitor --known-only
 ```
-- [ ] Pressing the **boost-map** button emits `0x3EC` with the selected index in byte 0.
-- [ ] Pressing the **TC** button emits `0x3ED` with the selected index in byte 0.
+- [ ] Pressing the **boost-map** encoder emits `0x3EC` with the selected index in byte 0.
+- [ ] Pressing the **TC** encoder emits `0x3ED` with the selected index in byte 0.
 
 ---
 
@@ -180,6 +222,7 @@ All multi-byte fields are **BigEndian**.
 python3 can_bench.py [--interface I] [--channel C] [--bitrate B] [-v] <subcommand>
 
   simulate-ecu [--cluster-only] [--duration S]
+  full-cluster [--loop]
   simulate-switchboard [--toggle-switches] [--duration S]
   inject-ls-command [--l1 N --l2 N --l3 N --l4 N] [--count N] [--period S]
   monitor [--known-only]
