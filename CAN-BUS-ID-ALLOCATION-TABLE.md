@@ -235,5 +235,5 @@ All new streams follow the existing convention: **Custom type, BigEndian, non-mu
 | Add 3 new Custom/BigEndian streams to `link_g4x_can_setup.lcs` / `.json` | 0x3EF (50ms), 0x3F0 (100ms), 0x3F1 (50ms) — see Section E for field layouts |
 | Configure ECUMaster Switch Board V3 | Set CAN speed to 1000 kbps (non-default); confirm Base ID = 0x640; verify SW_MASK assignments match Section 5 |
 | Cluster firmware (`canbus.c`/`dash_data.c`) | **No changes** — cluster displays are unchanged; it keeps decoding 0x3E8–0x3EE and sending 0x3EC/0x3ED. 0x3EF/0x3F0/0x3F1 are ECU→RealDash only |
-| RealDash XML | Add `<frame id="0x3EF">`, `<frame id="0x640">`...`<frame id="0x3F1">` value mappings |
+| RealDash XML | **Done** — `link_g4x_realdash.xml` defines `<frame id="1007/1008/1009">` (0x3EF–0x3F1) as valid RealDash CAN v2 (BigEndian, per-bit warning decode). 0x640–0x642 excluded (ECU echoes display-relevant values). Dashboard layout: `REALDASH-LAYOUT.md` |
 | 0x643 source = **ECU** | L1–L4 control transmitted by ECU (PCLink aux output → CAN TX); switchboard outputs unused for now (likely LED-only). Cluster has no 0x643 TX role — master-design §9 |
