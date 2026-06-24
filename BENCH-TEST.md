@@ -172,32 +172,84 @@ python3 can_bench.py --interface socketcan --channel can0 \
 
 ## 3. Raspberry Pi 5 + USB-CAN adapter (RealDash)
 
-RealDash is a **passive listener** of the three ECU→RealDash frames. Feed it the
-new streams and watch the dashboard.
+RealDash is a **passive listener** of the three ECU→RealDash frames
+(`0x3EF`/`0x3F0`/`0x3F1`). It does not transmit, so the test is: inject those
+three frames and watch the RealDash screen.
 
-### Inject
-```bash
-# Full ECU output including the RealDash-only frames (default — no --cluster-only):
-python3 can_bench.py --interface socketcan --channel can0 simulate-ecu
+### The wrinkle: RealDash reads CAN through its OWN adapter
+RealDash is software running on a device (Pi5 / Android tablet / Windows PC). It
+sees CAN only through a CAN interface attached to *that* device. The bench tool
+runs on your laptop and writes to *its* adapter. So unless RealDash runs on the
+same machine as the tool, **you need two CAN interfaces on one shared 2-wire
+bus** — one transmitting (the tool), one receiving (RealDash).
+
+#### Setup A — real target: Pi5 + RealDash (recommended)
+This tests the actual production device.
+
+```mermaid
+flowchart LR
+    pc["Laptop + USB-CAN adapter #1 (TX, runs the tool)"] <-->|"CANH / CANL, 1 Mbit/s"| pi["Pi5 + USB-CAN adapter #2 (RX, runs RealDash)"]
+    pc -.->|"120 ohm"| pc
+    pi -.->|"120 ohm"| pi
 ```
 
-This adds, on top of the cluster frames:
+Equipment needed (beyond the cluster/switchboard tests):
+- **A second USB-CAN adapter** — one for the laptop, one for the Pi. (The
+  cluster test needed only one adapter because the cluster *is* the CAN node;
+  RealDash needs its own adapter to receive.)
+- The **Pi5 + 7" 840×480 screen** running RealDash, configured with
+  [`link_g4x_realdash.xml`](link_g4x_realdash.xml), CAN connection at **1 Mbit/s**,
+  `bus="0"`.
+- A short 2-wire CAN harness joining the two adapters, **120 Ω at each adapter**
+  (two terminators — it's a 2-node bus). The Waveshare hat is not used.
+- No ECU, cluster, or switchboard on this bench bus — just the two adapters.
 
-| Frame | ID | Rate | Content |
+Run:
+```bash
+python3 can_bench.py --interface socketcan --channel can0 full-realdash
+# add --loop to repeat until Ctrl-C
+```
+
+#### Setup B — quick desktop check: RealDash on the same Linux PC (one adapter)
+If you run **RealDash for Windows/Linux on the same machine** as the tool and the
+adapter is a **SocketCAN** interface, both processes can share `can0` — the tool
+writes, RealDash reads, no second adapter required. (This does *not* work by
+sharing a single slcan/PCAN device between two apps; use SocketCAN for sharing,
+or fall back to Setup A with two adapters.)
+
+```bash
+sudo ip link set can0 up type can bitrate 1000000
+python3 can_bench.py --interface socketcan --channel can0 full-realdash
+# RealDash on the same PC: add a CAN connection on can0 @ 1 Mbit/s
+```
+
+### The guided scenario
+`full-realdash` keeps all three frames flowing at their cycle times (so RealDash
+never times out) while animating **one field at a time** across 26 phases, each
+printing a `REALDASH:` prompt of what to look for:
+
+| Frame | ID | Rate | Fields walked one at a time |
 |---|---|---|---|
-| Drive Assist & Status | 0x3EF | 50 ms | target λ, throttle %, TC setting/intervention, boost map, cruise state, AC status |
-| Extended Sensors | 0x3F0 | 100 ms | fuel temp, engine load, coolant press, ethanol %, charge-pipe IAT, cabin temp, turbo speed, trigger errors |
-| IMU & Ext Warnings | 0x3F1 | 50 ms | accel X/Y/Z (±g), extended-warning bits |
+| Drive Assist & Status | 0x3EF | 50 ms | throttle %, target λ, TC setting, TC intervention %, boost-map index, cruise state, AC status |
+| Extended Sensors | 0x3F0 | 100 ms | fuel temp, engine load %, coolant press, ethanol %, charge-pipe IAT, cabin temp, turbo speed, trigger errors |
+| IMU & Ext Warnings | 0x3F1 | 50 ms | accel X, accel Y, accel Z, then each extended-warning bit in turn |
 
 ### Pass criteria
-- [ ] RealDash CAN connection is at **1 Mbit/s**, `bus="0"`, using the
-      [`link_g4x_realdash.xml`](link_g4x_realdash.xml) definitions.
-- [ ] 0x3EF gauges move: throttle 0→100 %, cruise/AC state enums cycle, boost-map
-      and TC indices change.
-- [ ] 0x3F0 gauges read plausible engineering values (temps offset −50; turbo speed
-      = raw ×100 RPM).
-- [ ] 0x3F1 accel X/Y/Z swing through ± values (scale 0.1 g); extended-warning
-      indicators light as each bit pulses, including **bit5 = Switchboard Comm Fault**.
+- [ ] RealDash CAN connection is at **1 Mbit/s**, `bus="0"`, using
+      [`link_g4x_realdash.xml`](link_g4x_realdash.xml).
+- [ ] Each `0x3EF` field moves in its own phase: throttle 0→100 %, target λ
+      0.80↔1.00, TC setting 0–5, TC intervention 0→40 %, boost-map 0–3, cruise
+      enum Off→Override, AC enum Off→Fault.
+- [ ] Each `0x3F0` field reads plausibly (temps offset −50; turbo speed = raw ×100 RPM).
+- [ ] `0x3F1` accel X/Y/Z swing through ± values (scale 0.1 g); each
+      extended-warning indicator lights in its phase, including **Switchboard
+      Comm Fault** (bit 5).
+- [ ] Holding a steady idle phase shows no stale/blank gauges (frames keep arriving).
+
+> Quick alternative: `simulate-ecu` (no `--cluster-only`) sends the same three
+> frames sweeping all at once — handy for a fast "is anything moving?" check, but
+> `full-realdash` isolates one field at a time so you can confirm each gauge maps
+> to the right signal.
 
 ---
 
@@ -223,6 +275,7 @@ python3 can_bench.py [--interface I] [--channel C] [--bitrate B] [-v] <subcomman
 
   simulate-ecu [--cluster-only] [--duration S]
   full-cluster [--loop]
+  full-realdash [--loop]
   simulate-switchboard [--toggle-switches] [--duration S]
   inject-ls-command [--l1 N --l2 N --l3 N --l4 N] [--count N] [--period S]
   monitor [--known-only]

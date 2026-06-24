@@ -13,6 +13,9 @@ Subcommands
   full-cluster          Guided center-P4 -> left/right-S3 test: keeps all five
                         cluster frames flowing while animating one signal at a
                         time, prompting what to check on each screen.
+  full-realdash         Guided RealDash test: keeps 0x3EF/0x3F0/0x3F1 flowing
+                        while animating one field at a time, prompting what to
+                        check on the RealDash screen.
   simulate-switchboard  Send 0x640/0x641/0x642 with an incrementing heartbeat.
   inject-ls-command     Send 0x643 low-side output commands to the switchboard.
   monitor               Passively decode every known frame seen on the bus.
@@ -268,20 +271,74 @@ class ClusterState:
         self.sensor_error = 0
         self.throttle_error = 0
 
-    def reset_warnings(self) -> None:
+    def reset_transient(self) -> None:
         self.knock = self.ignition_cut = self.fuel_cut = 0
         self.boost_cut = self.sensor_error = self.throttle_error = 0
 
 
 class Phase:
+    """One step of a guided scenario.
+
+    ``apply(state, t_in_phase)`` mutates the shared state; ``prompts`` is a list
+    of ``(label, text)`` lines printed when the phase begins, telling the
+    operator what to verify on each physical screen.
+    """
     def __init__(self, name: str, duration: float,
-                 apply: Callable[["ClusterState", float], None],
-                 center: str, sides: str):
+                 apply: Callable[[object, float], None],
+                 prompts: List[Tuple[str, str]]):
         self.name = name
         self.duration = duration
         self.apply = apply
-        self.center = center
-        self.sides = sides
+        self.prompts = prompts
+
+
+def run_scenario(bus: "can.BusABC", state, tasks: List[PeriodicTask],
+                 phases: List[Phase], title: str, subtitle: str,
+                 loop: bool, verbose: bool) -> None:
+    """Drive a guided one-signal-at-a-time scenario over the given tasks."""
+    ctrl = {"idx": -1, "phase_start": 0.0}
+    total = sum(p.duration for p in phases)
+    label_w = max((len(lbl) for p in phases for lbl, _ in p.prompts), default=6)
+
+    print("=" * 70)
+    print(title)
+    print(subtitle)
+    print(f"{len(phases)} phases, ~{total:.0f}s total."
+          + ("  Looping until Ctrl-C." if loop else "  Ctrl-C to stop."))
+    print("=" * 70, flush=True)
+
+    reset = getattr(state, "reset_transient", None)
+
+    def on_tick(elapsed: float) -> bool:
+        idx = ctrl["idx"]
+        t_in_phase = elapsed - ctrl["phase_start"]
+        if idx < 0 or t_in_phase >= phases[idx].duration:
+            idx += 1
+            if idx >= len(phases):
+                if loop:
+                    idx = 0
+                    if callable(reset):
+                        reset()
+                else:
+                    return False
+            ctrl["idx"] = idx
+            ctrl["phase_start"] = elapsed
+            t_in_phase = 0.0
+            p = phases[idx]
+            print(f"\n[{idx + 1:2d}/{len(phases)}] {p.name}  (~{p.duration:.0f}s)")
+            for lbl, text in p.prompts:
+                print(f"      {lbl:<{label_w}} : {text}")
+            print("", end="", flush=True)
+        phases[ctrl["idx"]].apply(state, t_in_phase)
+        return True
+
+    try:
+        # duration=None: the scenario controls termination via on_tick.
+        run_scheduler(bus, tasks, None, verbose, on_tick=on_tick)
+        if not loop:
+            print("\nScenario complete.")
+    finally:
+        bus.shutdown()
 
 
 def build_cluster_scenario() -> List[Phase]:
@@ -324,48 +381,48 @@ def build_cluster_scenario() -> List[Phase]:
     def make_warning(idx: int) -> Callable[["ClusterState", float], None]:
         key = warn_keys[idx]
         def apply(s: ClusterState, t: float) -> None:
-            s.reset_warnings()
+            s.reset_transient()
             setattr(s, key, 1)
         return apply
 
     phases: List[Phase] = [
-        Phase("Idle baseline", 4.0, idle,
-              "Tach ~850, all gauges settled, gear N",
-              "Both side screens show the same idle snapshot (no stale/blank data)"),
-        Phase("RPM + boost sweep", 9.0, rpm_sweep,
-              "Tach sweeps 850->7200 and back; boost/MAP follows",
-              "Whichever side mirrors RPM/boost tracks smoothly"),
-        Phase("Vehicle speed sweep", 9.0, speed_sweep,
-              "Speedo sweeps 0->180->0",
-              "Side screen showing speed tracks it"),
-        Phase("Coolant / oil / IAT temps", 11.0, coolant_rise,
-              "ECT/oil rise to hot; temp gauges change color near the top",
-              "Temp readouts on the sides match the center"),
-        Phase("Gear cycle", 10.0, gear_cycle,
-              "Gear readout steps N,1,2,3,4,5,6,R",
-              "Gear indicator on the sides follows the center exactly"),
-        Phase("Fuel level", 12.0, fuel_drop,
-              "Fuel gauge ramps full<->empty",
-              "Fuel readout mirrored on the sides"),
-        Phase("Lambda / AFR", 6.0, lambda_sweep,
-              "Lambda/AFR swings 0.78<->1.10",
-              "AFR readout mirrored on the sides"),
-        Phase("Oil / fuel pressure", 8.0, pressures,
-              "Oil pressure swings low<->high; low-oil color/warn may trip",
-              "Pressure readouts mirrored on the sides"),
-        Phase("Ignition timing", 6.0, ignition,
-              "Ignition advance swings -10..+40 deg",
-              "Timing readout (if shown) mirrored on the sides"),
+        Phase("Idle baseline", 4.0, idle, [
+            ("CENTER", "Tach ~850, all gauges settled, gear N"),
+            ("SIDES", "Both side screens show the same idle snapshot (no stale/blank data)")]),
+        Phase("RPM + boost sweep", 9.0, rpm_sweep, [
+            ("CENTER", "Tach sweeps 850->7200 and back; boost/MAP follows"),
+            ("SIDES", "Whichever side mirrors RPM/boost tracks smoothly")]),
+        Phase("Vehicle speed sweep", 9.0, speed_sweep, [
+            ("CENTER", "Speedo sweeps 0->180->0"),
+            ("SIDES", "Side screen showing speed tracks it")]),
+        Phase("Coolant / oil / IAT temps", 11.0, coolant_rise, [
+            ("CENTER", "ECT/oil rise to hot; temp gauges change color near the top"),
+            ("SIDES", "Temp readouts on the sides match the center")]),
+        Phase("Gear cycle", 10.0, gear_cycle, [
+            ("CENTER", "Gear readout steps N,1,2,3,4,5,6,R"),
+            ("SIDES", "Gear indicator on the sides follows the center exactly")]),
+        Phase("Fuel level", 12.0, fuel_drop, [
+            ("CENTER", "Fuel gauge ramps full<->empty"),
+            ("SIDES", "Fuel readout mirrored on the sides")]),
+        Phase("Lambda / AFR", 6.0, lambda_sweep, [
+            ("CENTER", "Lambda/AFR swings 0.78<->1.10"),
+            ("SIDES", "AFR readout mirrored on the sides")]),
+        Phase("Oil / fuel pressure", 8.0, pressures, [
+            ("CENTER", "Oil pressure swings low<->high; low-oil color/warn may trip"),
+            ("SIDES", "Pressure readouts mirrored on the sides")]),
+        Phase("Ignition timing", 6.0, ignition, [
+            ("CENTER", "Ignition advance swings -10..+40 deg"),
+            ("SIDES", "Timing readout (if shown) mirrored on the sides")]),
     ]
     for i, label in enumerate(warn_labels):
         phases.append(
-            Phase(f"WARNING: {label}", 3.0, make_warning(i),
-                  f"Full-screen ECU WARNING overlay for '{label}'",
-                  "Right side screen raises the warning overlay (0x3EE)"))
+            Phase(f"WARNING: {label}", 3.0, make_warning(i), [
+                ("CENTER", f"Full-screen ECU WARNING overlay for '{label}'"),
+                ("SIDES", "Right side screen raises the warning overlay (0x3EE)")]))
     phases.append(
-        Phase("Clear warnings / idle", 4.0, idle,
-              "Overlay clears, gauges return to idle",
-              "Both sides return to a clean idle snapshot"))
+        Phase("Clear warnings / idle", 4.0, idle, [
+            ("CENTER", "Overlay clears, gauges return to idle"),
+            ("SIDES", "Both sides return to a clean idle snapshot")]))
     return phases
 
 
@@ -402,44 +459,175 @@ def cmd_full_cluster(args: argparse.Namespace) -> None:
         PeriodicTask(0.050, t_protect),
     ]
 
-    ctrl = {"idx": -1, "phase_start": 0.0}
-    total = sum(p.duration for p in phases)
+    run_scenario(
+        bus, state, tasks, phases,
+        title="FULL CLUSTER TEST  (center P4 -> left & right S3 over UART)",
+        subtitle="Inject CAN into the center board; watch all THREE screens.",
+        loop=args.loop, verbose=args.verbose)
 
-    print("=" * 70)
-    print("FULL CLUSTER TEST  (center P4 -> left & right S3 over UART)")
-    print("Inject CAN into the center board; watch all THREE screens.")
-    print(f"{len(phases)} phases, ~{total:.0f}s total."
-          + ("  Looping until Ctrl-C." if args.loop else "  Ctrl-C to stop."))
-    print("=" * 70, flush=True)
 
-    def on_tick(elapsed: float) -> bool:
-        idx = ctrl["idx"]
-        t_in_phase = elapsed - ctrl["phase_start"]
-        if idx < 0 or t_in_phase >= phases[idx].duration:
-            idx += 1
-            if idx >= len(phases):
-                if args.loop:
-                    idx = 0
-                    state.reset_warnings()
-                else:
-                    return False
-            ctrl["idx"] = idx
-            ctrl["phase_start"] = elapsed
-            t_in_phase = 0.0
-            p = phases[idx]
-            print(f"\n[{idx + 1:2d}/{len(phases)}] {p.name}  (~{p.duration:.0f}s)")
-            print(f"      CENTER : {p.center}")
-            print(f"      SIDES  : {p.sides}", flush=True)
-        phases[ctrl["idx"]].apply(state, t_in_phase)
-        return True
+# --- full-realdash guided scenario -----------------------------------------
+#
+# RealDash is a passive listener of the three ECU->RealDash frames
+# (0x3EF Drive Assist, 0x3F0 Extended Sensors, 0x3F1 IMU & Warnings). This
+# scenario keeps all three flowing at their cycle times while animating one
+# field at a time, prompting what to confirm on the RealDash screen.
 
-    try:
-        # duration=None: the scenario controls termination via on_tick.
-        run_scheduler(bus, tasks, None, args.verbose, on_tick=on_tick)
-        if not args.loop:
-            print("\nScenario complete.")
-    finally:
-        bus.shutdown()
+class RealDashState:
+    """Live engineering values for the RealDash-only frames; idle defaults."""
+    def __init__(self) -> None:
+        # 0x3EF Drive Assist & Status
+        self.target_lambda = 0.95
+        self.throttle_pct = 0
+        self.tc_setting = 0
+        self.tc_intervention_pct = 0
+        self.boost_map_index = 0
+        self.cruise_state = 0          # 0=Off,1=Standby,2=Set/Active,3=Resume,4=Override
+        self.ac_status = 0             # 0=Off,1=Requested,2=Engaged,3=Fault
+        # 0x3F0 Extended Sensors
+        self.fuel_temp_c = 25.0
+        self.engine_load_pct = 0
+        self.coolant_press_kpa = 100
+        self.ethanol_pct = 10
+        self.charge_pipe_iat_c = 25.0
+        self.cabin_temp_c = 22.0
+        self.turbo_speed_rpm = 0
+        self.trigger_error_count = 0
+        # 0x3F1 IMU & Extended Warnings
+        self.accel_x_g = 0.0
+        self.accel_y_g = 0.0
+        self.accel_z_g = 1.0           # 1 g resting (gravity)
+        self.warnings = 0
+
+    def reset_transient(self) -> None:
+        self.warnings = 0
+
+
+def build_realdash_scenario() -> List[Phase]:
+    def idle(s: RealDashState, t: float) -> None:
+        pass
+
+    # --- 0x3EF Drive Assist & Status ---
+    def throttle(s, t): s.throttle_pct = int(triangle(t, 8.0, 0, 100))
+    def tgt_lambda(s, t): s.target_lambda = sine(t, 5.0, 0.80, 1.00)
+    def tc_set(s, t): s.tc_setting = int(t // 1.5) % 6
+    def tc_interv(s, t): s.tc_intervention_pct = int(triangle(t, 6.0, 0, 40))
+    def boost_idx(s, t): s.boost_map_index = int(t // 1.5) % 4
+    def cruise(s, t): s.cruise_state = int(t // 2.0) % 5
+    def ac(s, t): s.ac_status = int(t // 2.0) % 4
+
+    # --- 0x3F0 Extended Sensors ---
+    def fuel_temp(s, t): s.fuel_temp_c = triangle(t, 8.0, 10, 70)
+    def eng_load(s, t): s.engine_load_pct = int(triangle(t, 8.0, 0, 100))
+    def coolant_p(s, t): s.coolant_press_kpa = int(triangle(t, 8.0, 80, 250))
+    def ethanol(s, t): s.ethanol_pct = int(triangle(t, 8.0, 0, 85))
+    def charge_iat(s, t): s.charge_pipe_iat_c = triangle(t, 8.0, 15, 75)
+    def cabin(s, t): s.cabin_temp_c = sine(t, 8.0, 16, 32)
+    def turbo(s, t): s.turbo_speed_rpm = int(triangle(t, 8.0, 0, 18000))
+    def trig_err(s, t): s.trigger_error_count = int(t // 1.0) % 6
+
+    # --- 0x3F1 IMU & Extended Warnings ---
+    def accel_x(s, t): s.accel_x_g = sine(t, 4.0, -1.5, 1.5)
+    def accel_y(s, t): s.accel_y_g = sine(t, 4.0, -1.5, 1.5)
+    def accel_z(s, t): s.accel_z_g = sine(t, 4.0, -0.5, 2.5)
+
+    warn_bits = [
+        (f.WARN_FLAT_SHIFT, "Flat Shift Active"),
+        (f.WARN_RADIATOR_FAN, "Radiator Fan On"),
+        (f.WARN_LOW_FUEL, "Low Fuel Warning"),
+        (f.WARN_HIGH_COOLANT_PRESS, "High Coolant Pressure"),
+        (f.WARN_LOW_OIL_PRESS, "Low Oil Pressure"),
+        (f.WARN_SWITCHBOARD_COMM_FAULT, "Switchboard Comm Fault"),
+    ]
+
+    def make_warning(bit: int) -> Callable[["RealDashState", float], None]:
+        def apply(s: RealDashState, t: float) -> None:
+            s.reset_transient()
+            s.warnings = bit
+        return apply
+
+    phases: List[Phase] = [
+        Phase("Idle baseline", 4.0, idle, [
+            ("REALDASH", "All gauges live and steady at idle; no missing/stale frames")]),
+        Phase("Throttle % (0x3EF)", 9.0, throttle, [
+            ("REALDASH", "Throttle gauge sweeps 0->100%")]),
+        Phase("Target lambda (0x3EF)", 6.0, tgt_lambda, [
+            ("REALDASH", "Target AFR/lambda swings 0.80<->1.00 (scale 0.001)")]),
+        Phase("TC setting (0x3EF)", 9.0, tc_set, [
+            ("REALDASH", "TC setting index steps 0,1,2,3,4,5")]),
+        Phase("TC intervention % (0x3EF)", 6.0, tc_interv, [
+            ("REALDASH", "TC intervention gauge ramps 0->40%")]),
+        Phase("Boost map index (0x3EF)", 6.0, boost_idx, [
+            ("REALDASH", "Boost map index steps 0,1,2,3")]),
+        Phase("Cruise state (0x3EF)", 10.0, cruise, [
+            ("REALDASH", "Cruise state enum: Off,Standby,Set/Active,Resume,Override")]),
+        Phase("AC status (0x3EF)", 8.0, ac, [
+            ("REALDASH", "AC status enum: Off,Requested,Compressor Engaged,Fault")]),
+        Phase("Fuel temp (0x3F0)", 8.0, fuel_temp, [
+            ("REALDASH", "Fuel temp sweeps ~10..70 C (offset -50)")]),
+        Phase("Engine load % (0x3F0)", 8.0, eng_load, [
+            ("REALDASH", "Engine load gauge sweeps 0->100%")]),
+        Phase("Coolant pressure (0x3F0)", 8.0, coolant_p, [
+            ("REALDASH", "Coolant pressure sweeps ~80..250 kPa")]),
+        Phase("Ethanol % (0x3F0)", 8.0, ethanol, [
+            ("REALDASH", "Flex-fuel ethanol % sweeps 0->85")]),
+        Phase("Charge-pipe IAT (0x3F0)", 8.0, charge_iat, [
+            ("REALDASH", "Post-intercooler IAT sweeps ~15..75 C (offset -50)")]),
+        Phase("Cabin temp (0x3F0)", 8.0, cabin, [
+            ("REALDASH", "Cabin temp mirror swings ~16..32 C (offset -50)")]),
+        Phase("Turbo speed (0x3F0)", 8.0, turbo, [
+            ("REALDASH", "Turbo speed sweeps 0->18000 RPM (raw x100)")]),
+        Phase("Trigger error count (0x3F0)", 6.0, trig_err, [
+            ("REALDASH", "Trigger/sync error count steps 0..5")]),
+        Phase("Accel X (0x3F1)", 6.0, accel_x, [
+            ("REALDASH", "Lateral accel X swings -1.5..+1.5 g (signed, scale 0.1)")]),
+        Phase("Accel Y (0x3F1)", 6.0, accel_y, [
+            ("REALDASH", "Accel Y swings -1.5..+1.5 g (signed)")]),
+        Phase("Accel Z (0x3F1)", 6.0, accel_z, [
+            ("REALDASH", "Accel Z swings -0.5..+2.5 g (signed)")]),
+    ]
+    for bit, label in warn_bits:
+        phases.append(
+            Phase(f"WARNING: {label} (0x3F1)", 3.0, make_warning(bit), [
+                ("REALDASH", f"Extended-warning indicator lights: '{label}'")]))
+    phases.append(
+        Phase("Clear warnings / idle", 4.0, idle, [
+            ("REALDASH", "All warning indicators clear; gauges return to idle")]))
+    return phases
+
+
+def cmd_full_realdash(args: argparse.Namespace) -> None:
+    bus = open_bus(args)
+    state = RealDashState()
+    phases = build_realdash_scenario()
+
+    def t_drive_assist(_t):
+        return f.ID_DRIVE_ASSIST, f.encode_drive_assist(
+            state.target_lambda, state.throttle_pct, state.tc_setting,
+            state.tc_intervention_pct, state.boost_map_index,
+            state.cruise_state, state.ac_status)
+
+    def t_ext_sensors(_t):
+        return f.ID_EXT_SENSORS, f.encode_ext_sensors(
+            state.fuel_temp_c, state.engine_load_pct, state.coolant_press_kpa,
+            state.ethanol_pct, state.charge_pipe_iat_c, state.cabin_temp_c,
+            state.turbo_speed_rpm, state.trigger_error_count)
+
+    def t_imu_warn(_t):
+        return f.ID_IMU_WARN, f.encode_imu_warn(
+            state.accel_x_g, state.accel_y_g, state.accel_z_g, state.warnings)
+
+    tasks = [
+        PeriodicTask(0.050, t_drive_assist),
+        PeriodicTask(0.100, t_ext_sensors),
+        PeriodicTask(0.050, t_imu_warn),
+    ]
+
+    run_scenario(
+        bus, state, tasks, phases,
+        title="FULL REALDASH TEST  (ECU -> RealDash, passive listener)",
+        subtitle="Inject 0x3EF/0x3F0/0x3F1; watch the RealDash screen.",
+        loop=args.loop, verbose=args.verbose)
 
 
 # --- simulate-switchboard --------------------------------------------------
@@ -579,6 +767,12 @@ def build_parser() -> argparse.ArgumentParser:
     fc.add_argument("--loop", action="store_true",
                     help="repeat the scenario until Ctrl-C")
     fc.set_defaults(func=cmd_full_cluster)
+
+    fr = sub.add_parser("full-realdash",
+                        help="guided RealDash test (0x3EF/0x3F0/0x3F1): one signal at a time")
+    fr.add_argument("--loop", action="store_true",
+                    help="repeat the scenario until Ctrl-C")
+    fr.set_defaults(func=cmd_full_realdash)
 
     ss = sub.add_parser("simulate-switchboard",
                         help="send 0x640/0x641/0x642 with heartbeat")
