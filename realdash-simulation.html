@@ -8,38 +8,37 @@
   HTML recreation / live simulation of the RealDash secondary display designed in
   REALDASH-LAYOUT.md for the 1993 Celica GT-Four (3S-GTE) track build.
 
-  - Native 7" Pi panel resolution: 800 x 480, landscape, fixed.
-  - 3 swipeable pages (DRIVE / SENSORS / G-FORCE) + persistent top status strip.
-  - All gauges bind 1:1 to the ST185: inputs in link_g4x_realdash.xml.
-  - Values here are SIMULATED in the browser (smooth random walks) so the layout
-    is glanceable and "alive"; on the real car these come from CAN 0x3EF-0x3F1.
-  - Re-themed to a plum / dark-purple / red / yellow palette (per request),
-    keeping the original "color = meaning" rules: neutral OK, yellow caution,
-    red alarm, plum = active/informational.
+  Layout rev 2:
+    - Pages 1 (DRIVE) and 2 (SENSORS) merged into ONE compact page (page 1).
+    - G-FORCE kept as page 2.
+    - Bluer base palette (deep navy) with plum / violet / yellow / red accents.
+    - Cleaner, sharper, smaller tiles in a uniform grid so more fit per screen.
+    - Center alarm overlay removed; the strip indicator STROBES instead of the
+      full-screen modal.
 
-  Navigation: click the page dots, use < / > arrow keys, or swipe left/right.
+  Native 7" Pi panel: 800 x 480, landscape. Values are SIMULATED in-browser;
+  on the car they arrive on CAN 0x3EF-0x3F1 (see link_g4x_realdash.xml).
+  Navigation: page dots, < / > arrow keys, or swipe. Keys o / c force alarms.
 -->
 <style>
   :root{
-    /* ---- Plum / dark-purple / red / yellow theme ---- */
-    --bg:        #120410;   /* page background  (near-black plum)   */
-    --bg2:       #1d0820;   /* radial lift                         */
-    --panel:     #2a0c28;   /* tile background  (dark plum)        */
-    --panel2:    #200823;   /* tile gradient low                   */
-    --edge:      #4a1442;   /* tile border / inactive arc          */
-    --edge-soft: #3a0f38;
+    /* ---- Blue base + plum / violet / yellow / red accents ---- */
+    --bg:        #06101f;   /* deep navy page background            */
+    --bg2:       #0b1c34;   /* radial lift                          */
+    --panel:     #0e1d33;   /* tile background  (flat, sharp)       */
+    --edge:      #21405f;   /* tile border / inactive bar           */
+    --edge-soft: #16304a;
 
-    --plum:      #c44fa0;   /* primary active accent (bright plum) */
-    --plum-deep: #7a1f6b;   /* deep purple                         */
-    --violet:    #9d4edd;   /* informational on-state (purple)     */
+    --plum:      #d65bb0;   /* primary active accent (bright plum)  */
+    --plum-deep: #8a2e76;
+    --violet:    #8b6cff;   /* informational on-state (blue-violet) */
+    --cyan:      #3fd6e6;   /* cool secondary accent                */
 
-    --text:      #fdeaf6;   /* primary numerals  (warm off-white)  */
-    --dim:       #b387ac;   /* labels / units    (muted mauve)     */
-    --good:      #6ee7a8;   /* in-spec (subtle, used sparingly)    */
-    --caution:   #ffd21f;   /* yellow warning band                 */
-    --alarm:     #ff3b46;   /* red alarm band / overlay            */
-
-    --gutter: 12px;
+    --text:      #eaf3ff;   /* primary numerals (cool off-white)    */
+    --dim:       #7d93b4;   /* labels / units (blue-gray)           */
+    --good:      #56e0a0;
+    --caution:   #ffd21f;   /* yellow caution                       */
+    --alarm:     #ff3b46;   /* red alarm                            */
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -47,173 +46,133 @@
   body{
     font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     display:flex; align-items:center; justify-content:center;
-    min-height:100vh; color:var(--text);
-    -webkit-font-smoothing:antialiased;
+    min-height:100vh; color:var(--text); -webkit-font-smoothing:antialiased;
   }
 
-  /* ---- The physical 7" panel ---- */
   #panel{
-    position:relative;
-    width:800px; height:480px;
-    background:
-      radial-gradient(120% 140% at 50% -20%, var(--bg2) 0%, var(--bg) 55%, #0c020b 100%);
-    border-radius:14px;
-    overflow:hidden;
-    box-shadow:0 0 0 10px #0a0a0c, 0 0 0 12px #1a1a1f, 0 26px 70px rgba(0,0,0,.75);
+    position:relative; width:800px; height:480px;
+    background:radial-gradient(130% 150% at 50% -25%, var(--bg2) 0%, var(--bg) 60%, #03070f 100%);
+    border-radius:12px; overflow:hidden;
+    box-shadow:0 0 0 10px #0a0a0c, 0 0 0 12px #181a20, 0 26px 70px rgba(0,0,0,.75);
     user-select:none;
   }
-  /* fit to smaller viewports while keeping aspect */
-  @media (max-width:840px), (max-height:560px){
-    #panel{ transform:scale(var(--fit,1)); }
-  }
-
+  @media (max-width:840px), (max-height:560px){ #panel{ transform:scale(var(--fit,1)); } }
   .mono{font-variant-numeric:tabular-nums; font-feature-settings:"tnum";}
 
   /* =================== TOP STATUS STRIP =================== */
   #strip{
-    position:absolute; left:0; top:0; width:800px; height:64px;
-    background:linear-gradient(180deg, #2c0c2a, #200824);
-    border-bottom:1px solid var(--edge);
-    display:flex; align-items:center; padding:0 16px; gap:10px; z-index:30;
+    position:absolute; left:0; top:0; width:800px; height:56px;
+    background:#0a1729; border-bottom:1px solid var(--edge);
+    display:flex; align-items:center; padding:0 14px; gap:9px; z-index:30;
   }
   #pageLabel{
-    font-weight:800; font-size:24px; letter-spacing:3px; min-width:148px;
-    color:var(--text);
-    text-shadow:0 0 14px rgba(196,79,160,.55);
+    font-weight:800; font-size:22px; letter-spacing:3px; min-width:170px; color:var(--text);
   }
   .ind{
-    font-size:13px; font-weight:800; letter-spacing:1.5px;
-    padding:7px 11px; border-radius:7px; line-height:1;
-    border:1px solid var(--edge-soft); color:#6e5168; background:#1b0820;
-    transition:all .18s ease; white-space:nowrap;
+    font-size:12.5px; font-weight:800; letter-spacing:1.4px;
+    padding:6px 10px; border-radius:5px; line-height:1;
+    border:1px solid var(--edge-soft); color:#54688a; background:#0c1a2e;
+    transition:color .15s, background .15s, border-color .15s; white-space:nowrap;
   }
-  .ind.info   { color:#f3e4ff; background:rgba(157,78,221,.22); border-color:var(--violet);
-                box-shadow:0 0 12px rgba(157,78,221,.45);}
-  .ind.warn   { color:#1a0a02; background:var(--caution); border-color:#ffe06b;
-                box-shadow:0 0 12px rgba(255,210,31,.5);}
-  .ind.alarm  { color:#fff; background:var(--alarm); border-color:#ff7a82;
-                box-shadow:0 0 16px rgba(255,59,70,.65);}
+  /* solid (info only — fan / flat-shift are just on-states) */
+  .ind.info  { color:#eae2ff; background:rgba(139,108,255,.20); border-color:var(--violet); }
+  /* strobing warnings */
+  .ind.warn  { color:#1a1402; background:var(--caution); border-color:#ffe06b;
+               animation:strobe .55s steps(1,end) infinite; }
+  .ind.alarm { color:#fff;    background:var(--alarm);   border-color:#ff7a82;
+               animation:strobe .32s steps(1,end) infinite; }
+  @keyframes strobe{ 0%,49%{opacity:1;} 50%,100%{opacity:.12;} }
   .spacer{flex:1 1 auto;}
-  .crit-group{display:flex; gap:10px;}
+  .crit-group{display:flex; gap:9px;}
 
   /* =================== PAGES =================== */
-  .page{
-    position:absolute; left:0; top:64px; width:800px; height:416px;
-    padding:16px; display:none;
-  }
+  .page{ position:absolute; left:0; top:56px; width:800px; height:424px; padding:11px; display:none; }
   .page.active{display:block;}
 
+  /* combined page — uniform compact grid */
+  #page-main{ display:none; }
+  #page-main.active{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-rows:repeat(4,1fr);
+    gap:9px;
+  }
+
+  /* ---- sharp, flat tile ---- */
   .tile{
-    position:absolute;
-    background:linear-gradient(180deg, var(--panel), var(--panel2));
-    border:1px solid var(--edge);
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 6px 16px rgba(0,0,0,.45);
+    position:relative; background:var(--panel);
+    border:1px solid var(--edge); border-radius:5px;
+    padding:9px 11px; overflow:hidden;
   }
-  .tile::before{ /* faint top accent line */
-    content:""; position:absolute; left:0; top:0; width:100%; height:2px;
-    background:linear-gradient(90deg, transparent, rgba(196,79,160,.5), transparent);
+  .tile .accent{ position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--edge); }
+  .tile.act .accent{ background:var(--plum); }
+
+  .tlabel{ font-size:10.5px; font-weight:800; letter-spacing:1.6px; color:var(--dim); text-transform:uppercase; }
+  .tval{
+    position:absolute; left:11px; right:11px; top:50%; transform:translateY(-52%);
+    font-weight:800; font-size:34px; line-height:1; color:var(--text);
   }
-  .label{
-    position:absolute; top:12px; left:16px; right:16px;
-    font-size:14px; font-weight:800; letter-spacing:2px; color:var(--dim);
-    text-transform:uppercase;
+  .tval.sm{ font-size:27px; }
+  .tu{ color:var(--dim); font-weight:700; font-size:15px; margin-left:3px; }
+  .tcap{ position:absolute; left:11px; right:11px; bottom:8px; font-size:10.5px; color:var(--dim); letter-spacing:.6px; }
+
+  /* thin progress bar pinned to tile bottom */
+  .tbar{ position:absolute; left:11px; right:11px; bottom:9px; height:5px; border-radius:3px;
+         background:#0a1626; border:1px solid var(--edge-soft); overflow:hidden; }
+  .tbar > i{ display:block; height:100%; width:0; background:var(--plum); transition:width .2s linear, background .2s; }
+  .tbar.warn  > i{ background:var(--caution); }
+  .tbar.alarm > i{ background:var(--alarm); }
+  .tbar.bipolar{ background:#0a1626; }
+  .tbar.bipolar .mid{ position:absolute; left:50%; top:-2px; width:1px; height:9px; background:var(--edge); }
+
+  /* enum-state tiles (cruise / ac span 2 cols) */
+  .tile.state .tval{ font-size:30px; letter-spacing:2px; }
+  .tile.state.on   { background:rgba(139,108,255,.12); }
+  .tile.state.on   .accent{ background:var(--violet); }
+  .tile.state.on   .tval{ color:#efeaff; }
+  .tile.state.plum { background:rgba(214,91,176,.12); }
+  .tile.state.plum .accent{ background:var(--plum); }
+  .tile.state.warn { background:rgba(255,210,31,.12); }
+  .tile.state.warn .accent{ background:var(--caution); }
+  .tile.state.alarm{ background:rgba(255,59,70,.14); }
+  .tile.state.alarm .accent{ background:var(--alarm); }
+
+  .span2{ grid-column:span 2; }
+
+  /* =================== G-FORCE PAGE =================== */
+  .gtile{
+    position:absolute; background:var(--panel);
+    border:1px solid var(--edge); border-radius:5px; overflow:hidden;
   }
-  .sub{
-    position:absolute; left:16px; right:16px;
-    font-size:14px; color:var(--dim); letter-spacing:.5px;
-  }
+  .glabel{ position:absolute; top:9px; left:0; right:0; text-align:center;
+           font-size:11px; font-weight:800; letter-spacing:1.6px; color:var(--dim); }
+  .gval{ position:absolute; left:0; right:0; text-align:center; font-weight:800; color:var(--text); }
+  .vbar{ position:absolute; border-radius:5px; background:#0a1626; border:1px solid var(--edge-soft); overflow:hidden; }
+  .vbar > i{ position:absolute; left:0; right:0; bottom:0; height:0;
+             background:linear-gradient(0deg,var(--plum-deep),var(--plum)); transition:height .15s linear; }
+  .vbar.warn > i{ background:linear-gradient(0deg,#a8841a,var(--caution)); }
+  .gmid{ position:absolute; left:0; right:0; top:50%; height:1px; background:var(--edge); }
+  .peak{ position:absolute; left:0; right:0; text-align:center; color:var(--dim); font-size:13px; letter-spacing:.5px; }
 
-  /* big hero numeral */
-  .hero{
-    position:absolute; left:0; right:0;
-    text-align:center; font-weight:800; line-height:1;
-    color:var(--text);
-  }
-  .unit{ color:var(--dim); font-weight:700; }
-
-  /* segmented index pips (boost map / tc) */
-  .pips{position:absolute; left:0; right:0; display:flex; gap:8px; justify-content:center;}
-  .pip{width:30px; height:12px; border-radius:3px; background:var(--edge-soft); border:1px solid var(--edge);}
-  .pip.on{background:var(--plum); border-color:#e07bc4; box-shadow:0 0 10px rgba(196,79,160,.7);}
-
-  /* horizontal bar */
-  .hbar{position:absolute; height:22px; border-radius:6px; background:#160617; border:1px solid var(--edge); overflow:hidden;}
-  .hbar > i{display:block; height:100%; width:0;
-            background:linear-gradient(90deg, var(--plum-deep), var(--plum)); transition:width .2s ease, background .3s;}
-  .hbar.warn  > i{background:linear-gradient(90deg,#b8901a,var(--caution));}
-  .hbar.alarm > i{background:linear-gradient(90deg,#a8202a,var(--alarm));}
-
-  /* vertical bar */
-  .vbar{position:absolute; border-radius:8px; background:#160617; border:1px solid var(--edge); overflow:hidden;}
-  .vbar > i{position:absolute; left:0; right:0; bottom:0; height:0;
-            background:linear-gradient(0deg, var(--plum-deep), var(--plum)); transition:height .2s ease, background .3s;}
-  .vbar.warn  > i{background:linear-gradient(0deg,#b8901a,var(--caution));}
-  .vbar.alarm > i{background:linear-gradient(0deg,#a8202a,var(--alarm));}
-
-  /* state chip for enum text (cruise / ac) */
-  .enum{
-    position:absolute; left:50%; transform:translateX(-50%);
-    font-weight:800; letter-spacing:2px; padding:10px 22px; border-radius:10px;
-    border:1px solid var(--edge); background:#1a0820; color:var(--dim); font-size:34px;
-  }
-  .enum.on   {color:#f3e4ff; background:rgba(157,78,221,.20); border-color:var(--violet); box-shadow:0 0 16px rgba(157,78,221,.4);}
-  .enum.plum {color:var(--text); background:rgba(196,79,160,.18); border-color:var(--plum); box-shadow:0 0 16px rgba(196,79,160,.4);}
-  .enum.warn {color:#1a0a02; background:var(--caution); border-color:#ffe06b;}
-  .enum.alarm{color:#fff; background:var(--alarm); border-color:#ff7a82;}
-
-  svg{display:block;}
-  .gauge-val{position:absolute; left:0; right:0; text-align:center; font-weight:800; color:var(--text);}
-
-  /* g-force peak text */
-  .peak{position:absolute; left:0; right:0; text-align:center; color:var(--dim); font-size:15px; letter-spacing:.5px;}
-
-  /* =================== ALARM OVERLAY =================== */
-  #overlay{
-    position:absolute; left:80px; top:120px; width:640px; height:240px; z-index:50;
-    background:linear-gradient(180deg, rgba(255,40,50,.96), rgba(190,16,28,.96));
-    border:2px solid #ff8a90; border-radius:16px;
-    display:none; flex-direction:column; align-items:center; justify-content:center;
-    box-shadow:0 0 60px rgba(255,40,50,.6);
-  }
-  #overlay.show{display:flex; animation:blink 1s steps(2,start) infinite;}
-  #overlay .fault{font-size:62px; font-weight:900; color:#fff; letter-spacing:2px; text-align:center;}
-  #overlay .act{font-size:26px; font-weight:800; color:#ffe2e4; letter-spacing:3px; margin-top:10px;}
-  @keyframes blink{50%{opacity:.45;}}
-
-  /* =================== NAV DOTS =================== */
-  #nav{
-    position:absolute; right:16px; bottom:10px; z-index:40;
-    display:flex; gap:9px; align-items:center;
-  }
-  #nav .dot{width:11px; height:11px; border-radius:50%; background:var(--edge);
-            border:1px solid var(--plum-deep); cursor:pointer; transition:all .2s;}
-  #nav .dot.active{background:var(--plum); box-shadow:0 0 10px rgba(196,79,160,.8); transform:scale(1.15);}
-
-  /* live "demo" pill */
-  #demo{
-    position:absolute; left:16px; bottom:10px; z-index:40;
-    font-size:11px; letter-spacing:1.5px; color:var(--dim);
-    border:1px solid var(--edge); border-radius:20px; padding:4px 10px;
-    background:rgba(20,4,16,.6); cursor:pointer;
-  }
-  #demo b{color:var(--plum);}
-  #demo .stop{color:var(--alarm);}
-
-  .hint{
-    position:fixed; bottom:14px; left:0; right:0; text-align:center;
-    color:#5a4357; font-size:12px; letter-spacing:1px;
-  }
+  /* =================== NAV =================== */
+  #nav{ position:absolute; right:14px; bottom:9px; z-index:40; display:flex; gap:8px; }
+  #nav .dot{ width:10px; height:10px; border-radius:50%; background:var(--edge);
+             border:1px solid var(--plum-deep); cursor:pointer; transition:all .2s; }
+  #nav .dot.active{ background:var(--plum); box-shadow:0 0 9px rgba(214,91,176,.8); transform:scale(1.15); }
+  #demo{ position:absolute; left:14px; bottom:9px; z-index:40; font-size:11px; letter-spacing:1.4px;
+         color:var(--dim); border:1px solid var(--edge); border-radius:14px; padding:3px 9px;
+         background:rgba(10,23,41,.7); cursor:pointer; }
+  #demo b{color:var(--plum);} #demo .stop{color:var(--alarm);}
+  .hint{ position:fixed; bottom:14px; left:0; right:0; text-align:center; color:#3f5570; font-size:12px; letter-spacing:1px; }
 </style>
 </head>
 <body>
 
 <div id="panel">
 
-  <!-- ===== TOP STATUS STRIP (§5) ===== -->
+  <!-- ===== TOP STATUS STRIP ===== -->
   <div id="strip">
-    <div id="pageLabel">DRIVE</div>
+    <div id="pageLabel">DASH</div>
     <div class="ind" id="i_flat">FLAT</div>
     <div class="ind" id="i_fan">FAN</div>
     <div class="ind" id="i_lofuel">LOFUEL</div>
@@ -225,411 +184,193 @@
     </div>
   </div>
 
-  <!-- ===== PAGE 1 — DRIVE (§6) ===== -->
-  <section class="page active" id="page-drive">
-    <!-- Boost Map -->
-    <div class="tile" style="left:16px;  top:16px;  width:240px; height:190px;">
-      <div class="label">BOOST MAP</div>
-      <div class="hero" style="top:54px; font-size:84px;"><span id="boostIdx">2</span></div>
-      <div class="sub"  style="top:140px; text-align:center; color:var(--plum); font-weight:800; letter-spacing:3px;" id="boostName">MAP&nbsp;HIGH</div>
-      <div class="pips" id="boostPips" style="top:170px;"></div>
-    </div>
-    <!-- TC Setting + intervention -->
-    <div class="tile" style="left:268px; top:16px; width:240px; height:190px;">
-      <div class="label">TC SETTING</div>
-      <div class="hero" style="top:46px; font-size:78px;"><span id="tcIdx">3</span></div>
-      <div class="sub" style="top:128px;" id="tcInterLbl">intervention 12%</div>
-      <div class="hbar" id="tcInterBar" style="left:16px; right:16px; width:208px; top:150px;"><i></i></div>
-    </div>
-    <!-- Throttle -->
-    <div class="tile" style="left:520px; top:16px; width:264px; height:190px;">
-      <div class="label">THROTTLE</div>
-      <div class="hero mono" style="top:60px; left:auto; right:96px; width:auto; text-align:right; font-size:72px;">
-        <span id="thrVal">87</span><span class="unit" style="font-size:36px;">&nbsp;%</span>
-      </div>
-      <div class="vbar" id="thrBar" style="right:24px; top:42px; width:56px; height:132px;"><i></i></div>
-    </div>
-    <!-- Target Lambda -->
-    <div class="tile" style="left:16px; top:222px; width:240px; height:178px;">
-      <div class="label">TARGET LAMBDA</div>
-      <div class="hero mono" style="top:74px; font-size:66px;">
-        <span id="lamVal">0.88</span><span class="unit" style="font-size:30px;">&nbsp;&#955;</span>
-      </div>
-      <div class="sub" style="top:150px; text-align:center;">tune target</div>
-    </div>
-    <!-- Cruise -->
-    <div class="tile" style="left:268px; top:222px; width:240px; height:178px;">
-      <div class="label">CRUISE</div>
-      <div class="enum" id="cruiseEnum" style="top:78px;">SET</div>
-      <div class="sub" style="top:148px; text-align:center;">control state</div>
-    </div>
-    <!-- A/C -->
-    <div class="tile" style="left:520px; top:222px; width:264px; height:178px;">
-      <div class="label">A/C</div>
-      <div class="enum" id="acEnum" style="top:78px;">ON</div>
-      <div class="sub" style="top:148px; text-align:center;">compressor</div>
-    </div>
+  <!-- ===== PAGE 1 — COMBINED DRIVE + SENSORS ===== -->
+  <section class="page active" id="page-main">
+    <!-- Row 1: driver assist -->
+    <div class="tile act"><span class="accent"></span><div class="tlabel">BOOST MAP</div>
+      <div class="tval"><span id="boostIdx">2</span></div><div class="tcap" id="boostName">MAP HIGH</div></div>
+    <div class="tile act"><span class="accent"></span><div class="tlabel">TC</div>
+      <div class="tval"><span id="tcIdx">3</span></div><div class="tcap" id="tcInterLbl">int 12%</div>
+      <div class="tbar" id="tcInterBar"><i></i></div></div>
+    <div class="tile act"><span class="accent"></span><div class="tlabel">THROTTLE</div>
+      <div class="tval"><span id="thrVal">87</span><span class="tu">%</span></div>
+      <div class="tbar" id="thrBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">TARGET &#955;</div>
+      <div class="tval mono"><span id="lamVal">0.88</span></div><div class="tcap">tune target</div></div>
+
+    <!-- Row 2: heat soak + load -->
+    <div class="tile"><span class="accent"></span><div class="tlabel">CHARGE IAT</div>
+      <div class="tval mono"><span id="iatVal">52</span><span class="tu">&deg;C</span></div>
+      <div class="tbar" id="iatBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">COOLANT P</div>
+      <div class="tval mono"><span id="coolVal">110</span><span class="tu">kPa</span></div>
+      <div class="tbar" id="coolBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">TURBO</div>
+      <div class="tval mono"><span id="turboVal">132</span><span class="tu">k rpm</span></div>
+      <div class="tbar" id="turboBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">ENGINE LOAD</div>
+      <div class="tval mono"><span id="loadVal">64</span><span class="tu">%</span></div>
+      <div class="tbar" id="loadBar"><i></i></div></div>
+
+    <!-- Row 3: fluids + health -->
+    <div class="tile"><span class="accent"></span><div class="tlabel">FUEL TEMP</div>
+      <div class="tval mono"><span id="fuelVal">46</span><span class="tu">&deg;C</span></div>
+      <div class="tbar" id="fuelBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">ETHANOL</div>
+      <div class="tval mono"><span id="ethVal">E30</span></div>
+      <div class="tbar" id="ethBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">CABIN</div>
+      <div class="tval mono"><span id="cabinVal">24</span><span class="tu">&deg;C</span></div><div class="tcap">comfort</div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">TRIGGER ERR</div>
+      <div class="tval mono" id="trigVal">0</div><div class="tcap" id="trigSub">healthy</div></div>
+
+    <!-- Row 4: state (each spans 2 cols) -->
+    <div class="tile state span2" id="cruiseTile"><span class="accent"></span><div class="tlabel">CRUISE</div>
+      <div class="tval" id="cruiseVal">SET</div></div>
+    <div class="tile state span2" id="acTile"><span class="accent"></span><div class="tlabel">A/C</div>
+      <div class="tval" id="acVal">ON</div></div>
   </section>
 
-  <!-- ===== PAGE 2 — SENSORS (§7) ===== -->
-  <section class="page" id="page-sensors">
-    <!-- top row -->
-    <div class="tile" id="t_iat"      style="left:16px;  top:16px;  width:183px; height:190px;"></div>
-    <div class="tile" id="t_coolant"  style="left:211px; top:16px;  width:183px; height:190px;"></div>
-    <div class="tile" id="t_turbo"    style="left:406px; top:16px;  width:183px; height:190px;"></div>
-    <!-- engine load (bar) -->
-    <div class="tile" style="left:601px; top:16px; width:183px; height:190px;">
-      <div class="label">ENGINE LOAD</div>
-      <div class="hero mono" style="top:64px; font-size:54px;"><span id="loadVal">64</span><span class="unit" style="font-size:26px;">&nbsp;%</span></div>
-      <div class="hbar" id="loadBar" style="left:16px; right:16px; width:151px; top:140px; height:26px;"><i></i></div>
-    </div>
-    <!-- bottom row -->
-    <div class="tile" id="t_fuel"     style="left:16px;  top:222px; width:183px; height:178px;"></div>
-    <!-- ethanol (bar) -->
-    <div class="tile" style="left:211px; top:222px; width:183px; height:178px;">
-      <div class="label">ETHANOL</div>
-      <div class="hero mono" style="top:58px; font-size:50px;"><span id="ethVal">E30</span></div>
-      <div class="hbar" id="ethBar" style="left:16px; right:16px; width:151px; top:128px; height:24px;"><i></i></div>
-    </div>
-    <!-- cabin temp -->
-    <div class="tile" style="left:406px; top:222px; width:183px; height:178px;">
-      <div class="label">CABIN</div>
-      <div class="hero mono" style="top:64px; font-size:54px;"><span id="cabinVal">24</span><span class="unit" style="font-size:26px;">&nbsp;&deg;C</span></div>
-      <div class="sub" style="top:138px; text-align:center;">comfort</div>
-    </div>
-    <!-- trigger errors -->
-    <div class="tile" style="left:601px; top:222px; width:183px; height:178px;">
-      <div class="label">TRIGGER ERRORS</div>
-      <div class="hero mono" id="trigHero" style="top:50px; font-size:78px; color:var(--good);"><span id="trigVal">0</span></div>
-      <div class="sub" style="top:140px; text-align:center;" id="trigSub">healthy</div>
-    </div>
-  </section>
-
-  <!-- ===== PAGE 3 — G-FORCE (§8) ===== -->
+  <!-- ===== PAGE 2 — G-FORCE ===== -->
   <section class="page" id="page-gforce">
-    <!-- Long (X) bar tile -->
-    <div class="tile" style="left:16px; top:16px; width:96px; height:374px;">
-      <div class="label" style="left:10px; right:10px; font-size:12px;">LONG&nbsp;X</div>
-      <div class="vbar" id="gxBar" style="left:30px; right:30px; top:40px; height:230px;">
-        <span style="position:absolute; left:0; right:0; top:50%; height:2px; background:var(--edge); z-index:2;"></span>
-        <i style="background:linear-gradient(0deg,var(--plum-deep),var(--plum));"></i>
-      </div>
-      <div class="gauge-val mono" id="gxVal" style="top:282px; font-size:22px;">+0.32</div>
-      <div class="sub" style="top:312px; text-align:center; font-size:12px;">LAT&nbsp;Y</div>
-      <div class="gauge-val mono" id="gyVal" style="top:330px; font-size:20px; color:var(--plum);">+0.00</div>
+    <!-- Long X bar -->
+    <div class="gtile" style="left:11px; top:6px; width:104px; height:402px;">
+      <div class="glabel">LONG&nbsp;X</div>
+      <div class="vbar" id="gxBar" style="left:34px; right:34px; top:38px; height:250px;">
+        <span class="gmid"></span><i></i></div>
+      <div class="gval mono" id="gxVal" style="top:300px; font-size:22px;">+0.32</div>
+      <div class="glabel" style="top:332px;">LAT&nbsp;Y</div>
+      <div class="gval mono" id="gyVal" style="top:356px; font-size:20px; color:var(--plum);">+0.00</div>
     </div>
-
-    <!-- G-Ball -->
-    <div class="tile" style="left:128px; top:16px; width:544px; height:374px;">
-      <div class="label" style="text-align:center; left:0; right:0;">G-BALL &nbsp;&middot;&nbsp; LATERAL vs LONGITUDINAL</div>
-      <div id="gball" style="position:absolute; left:50%; top:40px; transform:translateX(-50%); width:300px; height:300px;"></div>
-      <div class="peak" id="gpeak" style="top:344px;">peak: 1.18 g lat &nbsp;/&nbsp; 1.05 g brake</div>
+    <!-- G-ball -->
+    <div class="gtile" style="left:127px; top:6px; width:546px; height:402px;">
+      <div class="glabel">G-BALL &nbsp;&middot;&nbsp; LATERAL vs LONGITUDINAL</div>
+      <div id="gball" style="position:absolute; left:50%; top:34px; transform:translateX(-50%); width:300px; height:300px;"></div>
+      <div class="peak" id="gpeak" style="top:360px;">peak: 1.18 g lat / 1.05 g brake</div>
     </div>
-
-    <!-- Vert (Z) bar tile -->
-    <div class="tile" style="left:688px; top:16px; width:96px; height:374px;">
-      <div class="label" style="left:10px; right:10px; font-size:12px;">VERT&nbsp;Z</div>
-      <div class="vbar" id="gzBar" style="left:30px; right:30px; top:40px; height:230px;"><i></i></div>
-      <div class="gauge-val mono" id="gzVal" style="top:282px; font-size:22px;">1.02</div>
-      <div class="sub" style="top:312px; text-align:center; font-size:12px;">PEAK</div>
-      <div class="gauge-val mono" id="gzPeak" style="top:330px; font-size:20px; color:var(--plum);">1.30</div>
+    <!-- Vert Z bar -->
+    <div class="gtile" style="left:685px; top:6px; width:104px; height:402px;">
+      <div class="glabel">VERT&nbsp;Z</div>
+      <div class="vbar" id="gzBar" style="left:34px; right:34px; top:38px; height:250px;"><i></i></div>
+      <div class="gval mono" id="gzVal" style="top:300px; font-size:22px;">1.02</div>
+      <div class="glabel" style="top:332px;">PEAK</div>
+      <div class="gval mono" id="gzPeak" style="top:356px; font-size:20px; color:var(--plum);">1.30</div>
     </div>
   </section>
-
-  <!-- ===== ALARM OVERLAY (§9) ===== -->
-  <div id="overlay">
-    <div class="fault" id="ovFault">LOW OIL PRESSURE</div>
-    <div class="act">REDUCE LOAD &middot; CHECK GAUGES</div>
-  </div>
 
   <!-- ===== NAV ===== -->
-  <div id="demo" title="toggle live simulation"><b>&#9679; LIVE</b> SIM &middot; tap to pause</div>
+  <div id="demo"><b>&#9679; LIVE</b> SIM &middot; tap to pause</div>
   <div id="nav">
     <span class="dot active" data-i="0"></span>
     <span class="dot" data-i="1"></span>
-    <span class="dot" data-i="2"></span>
   </div>
 </div>
 
-<div class="hint">800 &times; 480 &middot; 7&Prime; Raspberry Pi RealDash &middot; &larr;/&rarr; or swipe to change page &middot; click a tile to force an alarm</div>
+<div class="hint">800 &times; 480 &middot; 7&Prime; Raspberry Pi RealDash &middot; &larr;/&rarr; or swipe to change page &middot; keys o / c toggle oil / coolant alarms</div>
 
 <script>
 /* ============================================================
-   ST185 RealDash — browser simulation engine
+   ST185 RealDash — simulation engine (layout rev 2)
    ============================================================ */
-
-const PAGES = ["DRIVE","SENSORS","G-FORCE"];
-const pageEls = [document.getElementById("page-drive"),
-                 document.getElementById("page-sensors"),
-                 document.getElementById("page-gforce")];
-let page = 0;
-
+const PAGES=["DASH","G-FORCE"];
+const pageEls=[document.getElementById("page-main"),document.getElementById("page-gforce")];
+let page=0;
 function setPage(i){
-  page = (i + PAGES.length) % PAGES.length;
-  pageEls.forEach((el,n)=>el.classList.toggle("active", n===page));
-  document.getElementById("pageLabel").textContent = PAGES[page];
-  document.querySelectorAll("#nav .dot").forEach((d,n)=>d.classList.toggle("active", n===page));
+  page=(i+PAGES.length)%PAGES.length;
+  pageEls.forEach((el,n)=>el.classList.toggle("active",n===page));
+  document.getElementById("pageLabel").textContent=PAGES[page];
+  document.querySelectorAll("#nav .dot").forEach((d,n)=>d.classList.toggle("active",n===page));
 }
 document.querySelectorAll("#nav .dot").forEach(d=>d.onclick=()=>setPage(+d.dataset.i));
-document.addEventListener("keydown", e=>{
-  if(e.key==="ArrowRight") setPage(page+1);
-  if(e.key==="ArrowLeft")  setPage(page-1);
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight")setPage(page+1);
+  if(e.key==="ArrowLeft")setPage(page-1);
+  if(e.key==="o"||e.key==="O")forcedAlarm=forcedAlarm===1?0:1;
+  if(e.key==="c"||e.key==="C")forcedAlarm=forcedAlarm===2?0:2;
 });
-// swipe
-let sx=null;
-const panel=document.getElementById("panel");
+let sx=null; const panel=document.getElementById("panel");
 panel.addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});
-panel.addEventListener("touchend",e=>{
-  if(sx===null) return;
-  const dx=e.changedTouches[0].clientX-sx;
-  if(Math.abs(dx)>40) setPage(page + (dx<0?1:-1));
-  sx=null;
-});
+panel.addEventListener("touchend",e=>{ if(sx===null)return;
+  const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40)setPage(page+(dx<0?1:-1)); sx=null; });
 
-/* ---------- simulation state (smooth random walks) ---------- */
-const S = {
-  boostMap:2, tc:3, tcInter:12, throttle:78, lambda:0.88,
-  cruise:2 /*SET*/, ac:2 /*ON*/,
-  iat:52, coolant:110, turbo:132000, load:64,
-  fuel:46, ethanol:30, cabin:24, trig:0,
-  gx:0.32, gy:0.0, gz:1.02, gxPeak:1.05, gyPeak:1.18, gzPeak:1.30,
-  // warning bits
+/* ---------- state ---------- */
+const S={
+  boostMap:2, tc:3, tcInter:12, throttle:78, lambda:0.88, cruise:2, ac:2,
+  iat:52, coolant:110, turbo:132000, load:64, fuel:46, ethanol:30, cabin:24, trig:0,
+  gx:0.32, gy:0, gz:1.02, gxPeak:1.05, gyPeak:1.18, gzPeak:1.30,
   flat:0, fan:1, lofuel:0, sbflt:0, coolHi:0, oilLo:0,
 };
-let running = true;
-let forcedAlarm = 0; // 0 none, 1 oil, 2 coolant (from tile click)
-
+let running=true, forcedAlarm=0, t=0;
 const rnd=(a,b)=>a+Math.random()*(b-a);
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
-// drift v toward a wandering target within [min,max]
-function walk(v,min,max,step){ return clamp(v + rnd(-step,step), min, max); }
+const walk=(v,min,max,step)=>clamp(v+rnd(-step,step),min,max);
 
-let t=0;
 function simulate(){
-  if(!running) return;
-  t += 0.05;
-
-  // driver inputs — throttle modeled as a noisy pedal with occasional lifts
-  const lift = Math.sin(t*0.6) > 0.7 ? 1 : 0;
-  S.throttle = clamp(lift? walk(S.throttle,0,30,18) : walk(S.throttle,30,100,16), 0, 100);
-
-  // boost/tc occasionally change as if the driver toggles maps
-  if(Math.random()<0.004) S.boostMap = (S.boostMap+1)%4;
-  if(Math.random()<0.004) S.tc = (S.tc+1)%5;
-  S.tcInter = clamp(walk(S.tcInter, 0, S.throttle>70?55:20, 9), 0, 100);
-
-  S.lambda = walk(S.lambda, 0.78, 0.95, 0.012);
-
-  // sensors track load/throttle a bit
-  S.load    = clamp(0.6*S.load + 0.4*(S.throttle*0.95+rnd(-6,6)), 0, 100);
-  S.turbo   = clamp(40000 + S.load*1700 + rnd(-9000,9000), 0, 200000);
-  S.iat     = walk(S.iat, 36, 72, 1.1) + (S.load>80?0.2:-0.05); S.iat=clamp(S.iat,30,80);
-  S.coolant = walk(S.coolant, 95, 175, 4);
-  S.fuel    = walk(S.fuel, 40, 66, 0.7);
-  S.ethanol = clamp(walk(S.ethanol, 28, 32, 0.3),0,100);
-  S.cabin   = walk(S.cabin, 22, 30, 0.4);
-  S.trig    = Math.random()<0.012 ? clamp(S.trig + (Math.random()<0.5?1:-1),0,7) : S.trig;
-
-  // IMU — lat from steering sinusoid, long from throttle/brake, vert curb noise
-  S.gy = clamp(1.15*Math.sin(t*0.9)+rnd(-0.12,0.12), -1.5, 1.5);          // lateral
-  S.gx = clamp((lift? rnd(-1.2,-0.3) : (S.throttle/100)*0.7)+rnd(-0.1,0.1), -1.5, 1.5); // long
-  S.gz = clamp(1.0 + Math.abs(Math.sin(t*2.3))*0.5 + rnd(-0.06,0.06), 0, 2.0);
-  S.gxPeak=Math.max(S.gxPeak, Math.abs(S.gx));
-  S.gyPeak=Math.max(S.gyPeak, Math.abs(S.gy));
-  S.gzPeak=Math.max(S.gzPeak, S.gz);
-
-  // warning bits
-  S.fan    = S.coolant>120 || Math.sin(t*0.3)>0 ? 1:0;
-  S.flat   = (S.throttle>95 && Math.random()<0.3)?1:S.flat; if(S.throttle<90) S.flat=0;
-  S.lofuel = S.fuel>60 && Math.random()<0.002 ? 1 : S.lofuel;
-  S.sbflt  = Math.random()<0.0008 ? 1 : (Math.random()<0.02?0:S.sbflt);
-  S.coolHi = (forcedAlarm===2) ? 1 : (S.coolant>165?1:0);
-  S.oilLo  = (forcedAlarm===1) ? 1 : 0;
+  if(!running)return; t+=0.05;
+  const lift=Math.sin(t*0.6)>0.7?1:0;
+  S.throttle=clamp(lift?walk(S.throttle,0,30,18):walk(S.throttle,30,100,16),0,100);
+  if(Math.random()<0.004)S.boostMap=(S.boostMap+1)%4;
+  if(Math.random()<0.004)S.tc=(S.tc+1)%5;
+  S.tcInter=clamp(walk(S.tcInter,0,S.throttle>70?55:20,9),0,100);
+  S.lambda=walk(S.lambda,0.78,0.95,0.012);
+  S.load=clamp(0.6*S.load+0.4*(S.throttle*0.95+rnd(-6,6)),0,100);
+  S.turbo=clamp(40000+S.load*1700+rnd(-9000,9000),0,200000);
+  S.iat=clamp(walk(S.iat,36,72,1.1)+(S.load>80?0.2:-0.05),30,80);
+  S.coolant=walk(S.coolant,95,175,4);
+  S.fuel=walk(S.fuel,40,66,0.7);
+  S.ethanol=clamp(walk(S.ethanol,28,32,0.3),0,100);
+  S.cabin=walk(S.cabin,22,30,0.4);
+  S.trig=Math.random()<0.012?clamp(S.trig+(Math.random()<0.5?1:-1),0,7):S.trig;
+  S.gy=clamp(1.15*Math.sin(t*0.9)+rnd(-0.12,0.12),-1.5,1.5);
+  S.gx=clamp((lift?rnd(-1.2,-0.3):(S.throttle/100)*0.7)+rnd(-0.1,0.1),-1.5,1.5);
+  S.gz=clamp(1.0+Math.abs(Math.sin(t*2.3))*0.5+rnd(-0.06,0.06),0,2.0);
+  S.gxPeak=Math.max(S.gxPeak,Math.abs(S.gx));
+  S.gyPeak=Math.max(S.gyPeak,Math.abs(S.gy));
+  S.gzPeak=Math.max(S.gzPeak,S.gz);
+  S.fan=(S.coolant>120||Math.sin(t*0.3)>0)?1:0;
+  if(S.throttle>95&&Math.random()<0.3)S.flat=1; if(S.throttle<90)S.flat=0;
+  if(S.fuel>60&&Math.random()<0.002)S.lofuel=1;
+  S.sbflt=Math.random()<0.0008?1:(Math.random()<0.02?0:S.sbflt);
+  S.coolHi=(forcedAlarm===2)?1:(S.coolant>165?1:0);
+  S.oilLo=(forcedAlarm===1)?1:0;
 }
 
-/* ---------- SVG round gauge factory (§7 needle gauges) ---------- */
-function arc(cx,cy,r,a0,a1){
-  const p0=pol(cx,cy,r,a0), p1=pol(cx,cy,r,a1);
-  const large = (a1-a0)%360 > 180 ? 1 : 0;
-  return `M ${p0.x} ${p0.y} A ${r} ${r} 0 ${large} 1 ${p1.x} ${p1.y}`;
-}
-function pol(cx,cy,r,deg){ const a=(deg-90)*Math.PI/180; return {x:cx+r*Math.cos(a), y:cy+r*Math.sin(a)}; }
-
-// build a round gauge tile: returns an update(value) fn
-function makeRoundTile(tileEl, cfg){
-  // cfg: {label, min, max, unit, fmt, bands:[{to,cls}], dispScale}
-  const W=tileEl.clientWidth, cx=W/2, cy=120, r=58;
-  const A0=-135, A1=135, span=A1-A0;
-  tileEl.innerHTML =
-    `<div class="label">${cfg.label}</div>
-     <svg width="${W}" height="170" style="position:absolute; left:0; top:18px;">
-        <path d="${arc(cx,cy,r,A0,A1)}" stroke="var(--edge)" stroke-width="11" fill="none" stroke-linecap="round"/>
-        <path id="${cfg.id}_fill" d="" stroke="var(--plum)" stroke-width="11" fill="none" stroke-linecap="round"/>
-        <line id="${cfg.id}_ndl" x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy-r+6}"
-              stroke="#fde9f7" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="${cx}" cy="${cy}" r="6" fill="#fde9f7"/>
-     </svg>
-     <div class="gauge-val mono" id="${cfg.id}_val" style="top:118px; font-size:34px;"></div>
-     <div class="sub" style="top:160px; text-align:center; font-size:12px; color:var(--dim);">${cfg.unit}</div>`;
-
-  const fillEl=tileEl.querySelector(`#${cfg.id}_fill`);
-  const ndlEl =tileEl.querySelector(`#${cfg.id}_ndl`);
-  const valEl =tileEl.querySelector(`#${cfg.id}_val`);
-
-  return function(v){
-    const f=clamp((v-cfg.min)/(cfg.max-cfg.min),0,1);
-    const ang=A0+f*span;
-    // band color
-    let cls="ok";
-    for(const b of cfg.bands){ if(v>=b.from && v<b.to){ cls=b.cls; break; } }
-    const col = cls==="alarm"?"var(--alarm)":cls==="warn"?"var(--caution)":"var(--plum)";
-    fillEl.setAttribute("d", arc(cx,cy,r,A0,ang));
-    fillEl.setAttribute("stroke", col);
-    ndlEl.setAttribute("transform",`rotate(${ang} ${cx} ${cy})`);
-    ndlEl.setAttribute("stroke", col);
-    valEl.style.color = cls==="alarm"?"var(--alarm)":cls==="warn"?"var(--caution)":"var(--text)";
-    valEl.innerHTML = cfg.fmt(v);
-  };
-}
-
-const upIat = makeRoundTile(document.getElementById("t_iat"), {
-  id:"iat", label:"CHARGE IAT", min:0, max:80, unit:"&deg;C  (heat soak)",
-  bands:[{from:0,to:50,cls:"ok"},{from:50,to:60,cls:"warn"},{from:60,to:999,cls:"alarm"}],
-  fmt:v=>`${Math.round(v)}<span class="unit" style="font-size:18px;">&deg;C</span>`
-});
-const upCoolant = makeRoundTile(document.getElementById("t_coolant"), {
-  id:"cool", label:"COOLANT P", min:0, max:300, unit:"kPa",
-  bands:[{from:0,to:150,cls:"ok"},{from:150,to:200,cls:"warn"},{from:200,to:999,cls:"alarm"}],
-  fmt:v=>`${Math.round(v)}<span class="unit" style="font-size:18px;">kPa</span>`
-});
-const upTurbo = makeRoundTile(document.getElementById("t_turbo"), {
-  id:"turbo", label:"TURBO SPD", min:0, max:200000, unit:"&times;1000 rpm",
-  bands:[{from:0,to:180000,cls:"ok"},{from:180000,to:190000,cls:"warn"},{from:190000,to:9e9,cls:"alarm"}],
-  fmt:v=>`${(v/1000).toFixed(0)}<span class="unit" style="font-size:18px;">k</span>`
-});
-const upFuel = makeRoundTile(document.getElementById("t_fuel"), {
-  id:"fuel", label:"FUEL TEMP", min:0, max:90, unit:"&deg;C",
-  bands:[{from:0,to:55,cls:"ok"},{from:55,to:70,cls:"warn"},{from:70,to:999,cls:"alarm"}],
-  fmt:v=>`${Math.round(v)}<span class="unit" style="font-size:18px;">&deg;C</span>`
-});
-
-/* ---------- G-ball ---------- */
+/* ---------- g-ball ---------- */
 const gball=document.getElementById("gball");
 gball.innerHTML=`
   <svg width="300" height="300" viewBox="0 0 300 300">
-    <defs>
-      <radialGradient id="gbg" cx="50%" cy="50%" r="50%">
-        <stop offset="0%"  stop-color="#2a0c28"/>
-        <stop offset="100%" stop-color="#160617"/>
-      </radialGradient>
-    </defs>
+    <defs><radialGradient id="gbg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#13294a"/><stop offset="100%" stop-color="#0a1626"/>
+    </radialGradient></defs>
     <circle cx="150" cy="150" r="150" fill="url(#gbg)"/>
-    <circle cx="150" cy="150" r="150" fill="none" stroke="var(--edge)"  stroke-width="2"/>
-    <circle cx="150" cy="150" r="100" fill="none" stroke="var(--edge-soft)" stroke-width="1.5"/>
-    <circle cx="150" cy="150" r="50"  fill="none" stroke="var(--edge-soft)" stroke-width="1.5"/>
+    <circle cx="150" cy="150" r="150" fill="none" stroke="var(--edge)" stroke-width="1.5"/>
+    <circle cx="150" cy="150" r="100" fill="none" stroke="var(--edge-soft)" stroke-width="1.2"/>
+    <circle cx="150" cy="150" r="50"  fill="none" stroke="var(--edge-soft)" stroke-width="1.2"/>
     <line x1="0" y1="150" x2="300" y2="150" stroke="var(--edge-soft)" stroke-width="1"/>
     <line x1="150" y1="0" x2="150" y2="300" stroke="var(--edge-soft)" stroke-width="1"/>
     <text x="156" y="200" fill="var(--dim)" font-size="11">0.5</text>
     <text x="156" y="250" fill="var(--dim)" font-size="11">1.0</text>
     <text x="156" y="298" fill="var(--dim)" font-size="11">1.5g</text>
-    <circle id="gtrail" cx="150" cy="150" r="0" fill="none" stroke="rgba(196,79,160,.25)" stroke-width="2"/>
-    <circle id="gdot" cx="150" cy="150" r="11" fill="var(--plum)" stroke="#fde9f7" stroke-width="2"
-            style="filter:drop-shadow(0 0 8px rgba(196,79,160,.9));"/>
+    <circle id="gdot" cx="150" cy="150" r="10" fill="var(--plum)" stroke="#eaf3ff" stroke-width="2"
+            style="filter:drop-shadow(0 0 7px rgba(214,91,176,.9));"/>
   </svg>`;
 const gdot=document.getElementById("gdot");
 
-/* ---------- enum tables ---------- */
 const CRUISE=["OFF","STBY","SET","RES","OVR"];
 const AC=["OFF","REQ","ON","FLT"];
 const BOOST_NAME=["MAP LOW","MAP MID","MAP HIGH","MAP MAX"];
 
-/* ---------- render ---------- */
-function bandClass(v,warn,alarm){ return v>=alarm?"alarm":v>=warn?"warn":""; }
-
-function render(){
-  // ---- strip indicators ----
-  setInd("i_flat",   S.flat,  "info");
-  setInd("i_fan",    S.fan,   "info");
-  setInd("i_lofuel", S.lofuel,"warn");
-  setInd("i_sbflt",  S.sbflt, "warn");
-  setInd("i_coolant",S.coolHi,"alarm");
-  setInd("i_oil",    S.oilLo, "alarm");
-
-  // ---- DRIVE ----
-  document.getElementById("boostIdx").textContent=S.boostMap;
-  document.getElementById("boostName").textContent=BOOST_NAME[S.boostMap].replace(" ","&nbsp;");
-  document.getElementById("boostName").innerHTML=BOOST_NAME[S.boostMap].replace(" ","&nbsp;");
-  pips("boostPips", S.boostMap, 4);
-
-  document.getElementById("tcIdx").textContent=S.tc;
-  const ti=Math.round(S.tcInter);
-  document.getElementById("tcInterLbl").textContent=`intervention ${ti}%`;
-  setHBar("tcInterBar", S.tcInter, 100, bandClass(S.tcInter,10,40));
-
-  document.getElementById("thrVal").textContent=Math.round(S.throttle);
-  setVBar("thrBar", S.throttle, 100, "");
-
-  document.getElementById("lamVal").textContent=S.lambda.toFixed(2);
-
-  setEnum("cruiseEnum", CRUISE[S.cruise],
-          S.cruise===0?"":(S.cruise===4?"warn":"plum"));
-  setEnum("acEnum", AC[S.ac],
-          S.ac===0?"":(S.ac===3?"alarm":"on"));
-
-  // ---- SENSORS ----
-  upIat(S.iat); upCoolant(S.coolant); upTurbo(S.turbo); upFuel(S.fuel);
-  document.getElementById("loadVal").textContent=Math.round(S.load);
-  setHBar("loadBar", S.load, 100, "");
-  document.getElementById("ethVal").textContent="E"+Math.round(S.ethanol);
-  setHBar("ethBar", S.ethanol, 100, "");
-  document.getElementById("cabinVal").textContent=Math.round(S.cabin);
-
-  const tv=Math.round(S.trig);
-  document.getElementById("trigVal").textContent=tv;
-  const trigHero=document.getElementById("trigHero");
-  const trigSub=document.getElementById("trigSub");
-  if(tv===0){ trigHero.style.color="var(--good)"; trigSub.textContent="healthy"; }
-  else if(tv<5){ trigHero.style.color="var(--caution)"; trigSub.textContent="watch"; }
-  else { trigHero.style.color="var(--alarm)"; trigSub.textContent="SYNC LOSS"; }
-
-  // ---- G-FORCE ----
-  setVBarBipolar("gxBar", S.gx, 1.5);
-  setVBar("gzBar", S.gz, 2.0, S.gz>1.6?"warn":"");
-  document.getElementById("gxVal").textContent=(S.gx>=0?"+":"")+S.gx.toFixed(2);
-  document.getElementById("gyVal").textContent=(S.gy>=0?"+":"")+S.gy.toFixed(2);
-  document.getElementById("gzVal").textContent=S.gz.toFixed(2);
-  document.getElementById("gzPeak").textContent=S.gzPeak.toFixed(2);
-  document.getElementById("gpeak").innerHTML=
-    `peak: <b style="color:var(--plum)">${S.gyPeak.toFixed(2)} g</b> lat &nbsp;/&nbsp; <b style="color:var(--plum)">${S.gxPeak.toFixed(2)} g</b> brake`;
-  // dot: x=lat(gy), y=long(gx, inverted so accel=up)
-  const px=150 + clamp(S.gy/1.5,-1,1)*150;
-  const py=150 - clamp(S.gx/1.5,-1,1)*150;
-  gdot.setAttribute("cx",px); gdot.setAttribute("cy",py);
-
-  // ---- overlay ----
-  const ov=document.getElementById("overlay");
-  if(S.oilLo || S.coolHi){
-    ov.classList.add("show");
-    document.getElementById("ovFault").textContent = S.oilLo? "LOW OIL PRESSURE" : "HIGH COOLANT PRESSURE";
-  } else ov.classList.remove("show");
-}
-
-/* ---- helpers ---- */
-function setInd(id,on,cls){
+/* ---------- helpers ---------- */
+function setInd(id,on,cls){ document.getElementById(id).className="ind"+(on?(" "+cls):""); }
+function setBar(id,pct,cls){
   const el=document.getElementById(id);
-  el.className="ind"+(on?(" "+cls):"");
+  el.className="tbar"+(cls?(" "+cls):"");
+  el.firstElementChild.style.width=clamp(pct,0,100)+"%";
 }
-function pips(id,active,n){
-  const el=document.getElementById(id);
-  if(el.children.length!==n){
-    el.innerHTML=""; for(let i=0;i<n;i++){ const s=document.createElement("span"); s.className="pip"; el.appendChild(s); }
-  }
-  [...el.children].forEach((p,i)=>p.classList.toggle("on", i<=active));
-}
-function setHBar(id,v,max,cls){
-  const el=document.getElementById(id);
-  el.className="hbar"+(cls?(" "+cls):"");
-  el.firstElementChild.style.width=clamp(v/max*100,0,100)+"%";
+function band(v,warn,alarm){ return v>=alarm?"alarm":v>=warn?"warn":""; }
+function valColor(id,cls){
+  document.getElementById(id).style.color=
+    cls==="alarm"?"var(--alarm)":cls==="warn"?"var(--caution)":"var(--text)";
 }
 function setVBar(id,v,max,cls){
   const el=document.getElementById(id);
@@ -637,53 +378,90 @@ function setVBar(id,v,max,cls){
   el.querySelector("i").style.height=clamp(v/max*100,0,100)+"%";
 }
 function setVBarBipolar(id,v,range){
-  // center origin: positive grows up from middle, negative grows down
-  const el=document.getElementById(id);
-  const i=el.querySelector("i");
+  const el=document.getElementById(id), i=el.querySelector("i");
   const f=clamp(v/range,-1,1);
   el.className="vbar"+(Math.abs(v)>1.2?" warn":"");
   if(f>=0){ i.style.bottom="50%"; i.style.top="auto"; i.style.height=(f*50)+"%"; }
-  else    { i.style.top="50%";    i.style.bottom="auto"; i.style.height=(-f*50)+"%"; }
+  else    { i.style.top="50%"; i.style.bottom="auto"; i.style.height=(-f*50)+"%"; }
 }
-function setEnum(id,text,cls){
-  const el=document.getElementById(id);
-  el.textContent=text;
-  el.className="enum"+(cls?(" "+cls):"");
+function setState(tileId,valId,text,cls){
+  document.getElementById(valId).textContent=text;
+  document.getElementById(tileId).className="tile state span2"+(cls?(" "+cls):"");
 }
 
-/* ---------- tile-click forces an alarm (demo) ---------- */
-document.getElementById("t_coolant").style.cursor="pointer";
-document.getElementById("t_fuel").style.cursor="pointer";
-document.getElementById("page-sensors").addEventListener("click", e=>{
-  const tile=e.target.closest(".tile");
-  if(tile && tile.id==="t_coolant"){ forcedAlarm = forcedAlarm===2?0:2; }
-});
-// click anywhere on overlay or oil tile area toggles oil alarm via keyboard 'o'
-document.addEventListener("keydown",e=>{
-  if(e.key==="o"||e.key==="O") forcedAlarm = forcedAlarm===1?0:1;
-  if(e.key==="c"||e.key==="C") forcedAlarm = forcedAlarm===2?0:2;
-});
+/* ---------- render ---------- */
+function render(){
+  // strip — info solid, warn/alarm strobe (CSS animation on the class)
+  setInd("i_flat",   S.flat,  "info");
+  setInd("i_fan",    S.fan,   "info");
+  setInd("i_lofuel", S.lofuel,"warn");
+  setInd("i_sbflt",  S.sbflt, "warn");
+  setInd("i_coolant",S.coolHi,"alarm");
+  setInd("i_oil",    S.oilLo, "alarm");
+
+  // driver assist
+  document.getElementById("boostIdx").textContent=S.boostMap;
+  document.getElementById("boostName").textContent=BOOST_NAME[S.boostMap];
+  document.getElementById("tcIdx").textContent=S.tc;
+  const ti=Math.round(S.tcInter);
+  document.getElementById("tcInterLbl").textContent="int "+ti+"%";
+  setBar("tcInterBar",S.tcInter,band(S.tcInter,10,40));
+  document.getElementById("thrVal").textContent=Math.round(S.throttle);
+  setBar("thrBar",S.throttle,"");
+  document.getElementById("lamVal").textContent=S.lambda.toFixed(2);
+
+  // heat + load
+  document.getElementById("iatVal").textContent=Math.round(S.iat);
+  setBar("iatBar",S.iat/80*100,band(S.iat,50,60)); valColor("iatVal",band(S.iat,50,60));
+  document.getElementById("coolVal").textContent=Math.round(S.coolant);
+  setBar("coolBar",S.coolant/300*100,band(S.coolant,150,200)); valColor("coolVal",band(S.coolant,150,200));
+  document.getElementById("turboVal").textContent=(S.turbo/1000).toFixed(0);
+  setBar("turboBar",S.turbo/200000*100,band(S.turbo,180000,190000)); valColor("turboVal",band(S.turbo,180000,190000));
+  document.getElementById("loadVal").textContent=Math.round(S.load);
+  setBar("loadBar",S.load,"");
+
+  // fluids + health
+  document.getElementById("fuelVal").textContent=Math.round(S.fuel);
+  setBar("fuelBar",S.fuel/90*100,band(S.fuel,55,70)); valColor("fuelVal",band(S.fuel,55,70));
+  document.getElementById("ethVal").textContent="E"+Math.round(S.ethanol);
+  setBar("ethBar",S.ethanol,"");
+  document.getElementById("cabinVal").textContent=Math.round(S.cabin);
+  const tv=Math.round(S.trig); document.getElementById("trigVal").textContent=tv;
+  const trigSub=document.getElementById("trigSub"), trigEl=document.getElementById("trigVal");
+  if(tv===0){ trigEl.style.color="var(--good)"; trigSub.textContent="healthy"; }
+  else if(tv<5){ trigEl.style.color="var(--caution)"; trigSub.textContent="watch"; }
+  else { trigEl.style.color="var(--alarm)"; trigSub.textContent="SYNC LOSS"; }
+
+  // state tiles
+  setState("cruiseTile","cruiseVal",CRUISE[S.cruise], S.cruise===0?"":(S.cruise===4?"warn":"plum"));
+  setState("acTile","acVal",AC[S.ac], S.ac===0?"":(S.ac===3?"alarm":"on"));
+
+  // g-force
+  setVBarBipolar("gxBar",S.gx,1.5);
+  setVBar("gzBar",S.gz,2.0,S.gz>1.6?"warn":"");
+  document.getElementById("gxVal").textContent=(S.gx>=0?"+":"")+S.gx.toFixed(2);
+  document.getElementById("gyVal").textContent=(S.gy>=0?"+":"")+S.gy.toFixed(2);
+  document.getElementById("gzVal").textContent=S.gz.toFixed(2);
+  document.getElementById("gzPeak").textContent=S.gzPeak.toFixed(2);
+  document.getElementById("gpeak").innerHTML=
+    `peak: <b style="color:var(--plum)">${S.gyPeak.toFixed(2)} g</b> lat / <b style="color:var(--plum)">${S.gxPeak.toFixed(2)} g</b> brake`;
+  gdot.setAttribute("cx",150+clamp(S.gy/1.5,-1,1)*150);
+  gdot.setAttribute("cy",150-clamp(S.gx/1.5,-1,1)*150);
+}
 
 /* ---------- live toggle ---------- */
 const demo=document.getElementById("demo");
-demo.onclick=()=>{
-  running=!running;
-  demo.innerHTML = running
-    ? '<b>&#9679; LIVE</b> SIM &middot; tap to pause'
-    : '<span class="stop">&#9632; PAUSED</span> &middot; tap to resume';
-};
+demo.onclick=()=>{ running=!running;
+  demo.innerHTML=running?'<b>&#9679; LIVE</b> SIM &middot; tap to pause'
+                        :'<span class="stop">&#9632; PAUSED</span> &middot; tap to resume'; };
 
-/* ---------- main loop ---------- */
-function loop(){ simulate(); render(); }
-setInterval(loop, 50);   // 20 fps, mirrors the 50 ms CAN frames
+/* ---------- loop ---------- */
+setInterval(()=>{ simulate(); render(); },50);
 render();
 
-/* ---------- fit to small viewports ---------- */
-function fit(){
-  const sw=window.innerWidth/820, sh=window.innerHeight/520;
-  const s=Math.min(1, sw, sh);
-  document.getElementById("panel").style.setProperty("--fit", s.toFixed(3));
-}
+/* ---------- fit ---------- */
+function fit(){ const s=Math.min(1,window.innerWidth/820,window.innerHeight/520);
+  document.getElementById("panel").style.setProperty("--fit",s.toFixed(3)); }
 window.addEventListener("resize",fit); fit();
 </script>
 </body>
