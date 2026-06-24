@@ -1,0 +1,4 @@
+# CAN bench-test tool dependencies
+# python-can provides the Bus abstraction for SocketCAN, slcan (CANable),
+# PCAN USB, and other adapters.
+python-can>=4.0
