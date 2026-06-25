@@ -32,30 +32,28 @@
 
   /* ---- top strip ---- */
   .strip{position:absolute; left:0; top:0; width:800px; height:56px;
-    border-bottom:1px solid var(--edge); display:flex; align-items:center; gap:10px; padding:0 12px}
+    border-bottom:1px solid var(--edge); display:flex; align-items:center; gap:8px; padding:0 12px}
   .brand{font-weight:800; letter-spacing:2px; color:var(--dim); font-size:15px; width:128px}
   .brand b{color:var(--text)}
-  .badge{height:38px; min-width:150px; border-radius:9px; display:flex; align-items:center;
-    justify-content:center; gap:8px; font-weight:800; letter-spacing:1px; font-size:16px;
+  .badge{height:38px; min-width:128px; border-radius:9px; display:flex; align-items:center;
+    justify-content:center; gap:8px; font-weight:800; letter-spacing:1px; font-size:15px; flex:none;
     background:linear-gradient(180deg,#141b25,#0c1119); border:1px solid var(--edge)}
-  .badge .lab{color:var(--dim); font-size:12px; letter-spacing:2px}
-  .leds{display:flex; gap:8px; flex:1; justify-content:center}
-  .led{display:flex; align-items:center; gap:6px; font-size:11px; font-weight:800; letter-spacing:1px;
-    color:var(--dim); padding:4px 8px; border-radius:7px; background:#0c1118; border:1px solid #141b24}
-  .led .dot{width:12px; height:12px; border-radius:50%; background:var(--ledoff);
-    box-shadow:inset 0 0 3px #000}
-  .led.on{color:var(--text)}
-  .led.info.on .dot{background:var(--info); box-shadow:0 0 10px 2px var(--info)}
-  .led.warnA.on{color:#1b150a; background:rgba(245,179,1,.12)}
-  .led.warnA.on .dot{background:var(--caution); box-shadow:0 0 12px 3px var(--caution); animation:strobeA .7s steps(1,end) infinite}
-  .led.warnR.on{background:rgba(255,59,48,.12)}
-  .led.warnR.on .dot{background:var(--alarm); box-shadow:0 0 14px 4px var(--alarm); animation:strobeR .5s steps(1,end) infinite}
-  .led.warnR.fast.on .dot{animation:strobeR .25s steps(1,end) infinite}
-  @keyframes strobeR{0%,49%{opacity:1} 50%,100%{opacity:.12}}
-  @keyframes strobeA{0%,49%{opacity:1} 50%,100%{opacity:.18}}
+  .badge .lab{color:var(--dim); font-size:11px; letter-spacing:2px}
+  .leds{display:flex; gap:6px; flex:1; justify-content:center; min-width:0}
+  /* All strip LEDs behave alike: dim when off; white label + lit colored dot when active.
+     The dot color is the only thing that differs (blue=info, amber=caution, red=alarm). No strobe. */
+  .led{display:flex; align-items:center; gap:6px; font-size:10.5px; font-weight:800; letter-spacing:.5px;
+    color:var(--dim); padding:4px 7px; border-radius:7px; background:#0c1118; border:1px solid #141b24; white-space:nowrap}
+  .led .dot{width:11px; height:11px; border-radius:50%; background:var(--ledoff);
+    box-shadow:inset 0 0 3px #000; flex:none}
+  .led.on{color:var(--text)}                                 /* white text when active */
+  .led.info.on  .dot{background:var(--info);    box-shadow:0 0 10px 2px var(--info)}
+  .led.amber.on .dot{background:var(--caution); box-shadow:0 0 10px 2px var(--caution)}
+  .led.red.on   .dot{background:var(--alarm);   box-shadow:0 0 10px 2px var(--alarm)}
   .clock{color:var(--dim); font-weight:700; font-variant-numeric:tabular-nums}
-  .navbtn{height:40px; border-radius:9px; padding:0 14px; display:flex; align-items:center; gap:8px;
-    font-weight:800; letter-spacing:1px; background:linear-gradient(180deg,#16202c,#0b1118);
+  .navbtn{height:38px; border-radius:9px; padding:0 12px; display:flex; align-items:center; gap:8px;
+    font-weight:800; letter-spacing:1px; white-space:nowrap; flex:none;
+    background:linear-gradient(180deg,#16202c,#0b1118);
     border:1px solid var(--edge); cursor:pointer; color:var(--text)}
 
   /* ---- generic 3D tile ---- */
@@ -141,15 +139,15 @@
   <!-- ============================ DASH PAGE ============================ -->
   <section class="page active" id="dash">
     <div class="strip">
-      <div class="brand"><b>ST185</b></div>
+      <div class="clock" id="clock1" style="width:74px">10:42</div>
       <div class="badge" id="cruise"><span class="lab">CRUISE</span><span class="ok" id="cruiseMode">SET</span></div>
       <div class="leds">
         <div class="led info on"><span class="dot"></span>FLAT</div>
         <div class="led info on"><span class="dot"></span>FAN</div>
-        <div class="led warnA" id="ledFuel"><span class="dot"></span>LOFUEL</div>
-        <div class="led warnA" id="ledSb"><span class="dot"></span>SBFLT</div>
-        <div class="led warnR" id="ledCool"><span class="dot"></span>COOL-P</div>
-        <div class="led warnR fast" id="ledOil"><span class="dot"></span>OILP2</div>
+        <div class="led amber" id="ledFuel"><span class="dot"></span>LOFUEL</div>
+        <div class="led amber" id="ledSb"><span class="dot"></span>SBFLT</div>
+        <div class="led red" id="ledCool"><span class="dot"></span>ECT-P</div>
+        <div class="led red" id="ledOil"><span class="dot"></span>OILP2</div>
       </div>
       <div class="navbtn" data-go="media">&#9834; MEDIA &#9654;</div>
     </div>
@@ -265,9 +263,8 @@
     show(e.dataset.go); location.hash = e.dataset.go + (warn?'?warn':'');
   }));
 
-  // warnings
+  // warnings (cruise is intentionally NOT affected — it only reflects the cruise stalk)
   let warn=false;
-  const warnEls=['ledFuel','ledSb','ledCool','ledOil','tCool','tFuelT','tTrig'];
   function setWarn(on){
     warn=on;
     ['ledFuel','ledSb','ledCool','ledOil'].forEach(id=>document.getElementById(id).classList.toggle('on',on));
@@ -278,8 +275,6 @@
     document.getElementById('iat').className = 'val '+(on?'al':'good');
     document.getElementById('fuelt').textContent = on?'74':'46';
     document.getElementById('trig').textContent = on?'7':'0';
-    document.getElementById('cruiseMode').textContent = on?'OVR':'SET';
-    document.getElementById('cruiseMode').className = on?'cau':'ok';
   }
   document.getElementById('warnBtn').addEventListener('click',()=>{ setWarn(!warn);
     location.hash = (document.getElementById('media').classList.contains('active')?'media':'dash')+(warn?'?warn':''); });
@@ -293,9 +288,9 @@
     let w=55+Math.round(Math.random()*22); l.textContent=w; lb.style.width=w+'%';
   },900);
 
-  // clock
-  setInterval(()=>{const d=new Date();const s=d.toTimeString().slice(0,5);
-    const c=document.getElementById('clock2'); if(c)c.textContent=s;},1000);
+  // clock (both pages)
+  setInterval(()=>{const s=new Date().toTimeString().slice(0,5);
+    ['clock1','clock2'].forEach(id=>{const c=document.getElementById(id); if(c)c.textContent=s;});},1000);
 
   // initial state from hash (#dash / #media / ?warn)
   const h=location.hash.toLowerCase();

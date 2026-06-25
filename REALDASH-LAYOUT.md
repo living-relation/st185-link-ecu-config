@@ -119,13 +119,20 @@ Grab tile/LED art from RealDash **Gallery → Examples** if you don't want to dr
 
 ### 4.3 LEDs
 
-An LED = a small **circular Indicator** (Image or Shape gauge) bound to a 0/1 input:
+An LED indicator in the top strip = a small **circular Indicator** (Image or Shape gauge) + a text
+label, bound to a 0/1 input. **All six strip LEDs behave the same way** (the info LEDs and the
+warning LEDs are styled identically — only the dot color differs):
 
-- **Off:** color `led-off`, opacity ~25% (still faintly visible so the layout reads).
-- **On:** bright fill in the LED's color + a soft outer glow (Route A: a slightly larger blurred
-  circle behind it; Route B: a glow baked into the PNG).
+- **Off / inactive:** dot color `led-off` at ~25% opacity; label `text-dim`.
+- **On / active:** dot lights in its own color with a soft outer glow **and the label turns white
+  (`text`)**. No blink, no background tint — a steady, clean "lit" state.
+- **Dot colors (kept per indicator):** FLAT / FAN = `info` blue · LOFUEL / SBFLT = `caution` amber ·
+  ECT-P / OILP2 = `alarm` red.
 - Use the **Image Blend Color / Normal–Warning–Critical levels** trick (RealDash *Make an indicator*
-  tutorial) so the LED is dim at value 0 and bright at value 1.
+  tutorial) so the LED dot + label are dim at value 0 and bright/white at value 1.
+
+> The **data tiles** (heroes / Row D) still strobe for true critical values — see §4.5. The strip
+> LEDs deliberately do **not** strobe; they are clean status lights.
 
 ### 4.4 Typography
 
@@ -136,7 +143,8 @@ An LED = a small **circular Indicator** (Image or Shape gauge) bound to a 0/1 in
 
 ### 4.5 Strobe (blinking warnings)
 
-Two ways; use **B** for the eye-catching strobe the brief asks for:
+Strobe is reserved for the **data tiles** (heroes + Row D) when a value goes critical/caution — the
+top-strip LEDs stay steady (§4.3). Two ways; use **B** for the eye-catching strobe:
 
 - **A — solid color (no animation):** in the gauge's **Input & Values**, set Warning/Critical levels
   so the active state is "Critical", then set the Critical **color** to red/amber. Color changes but
@@ -154,11 +162,11 @@ Two ways; use **B** for the eye-catching strobe the brief asks for:
 
 ```
 ┌──────────────────────────────────── TOP STRIP (h56) ──────────────────────────────────────┐
-│ ST185  10:42 │ CRUISE: SET │ ●FLAT ●FAN ●LOFUEL ●SBFLT ●COOL-P ●OILP2 │      ♪ MEDIA ►     │
+│ 10:42 │ CRUISE: SET │ ●FLAT ●FAN ●LOFUEL ●SBFLT ●ECT-P ●OILP2 │           ♪ MEDIA ►        │
 ├───────────────────────────┬───────────────────────────┬────────────────────────────────────┤
 │  CHARGE-PIPE IAT          │  COOLANT PRESSURE         │  TURBO SPEED                       │
 │        52 °C              │       110 kPa             │      132,000 rpm                   │ HEROES
-│  (strobe red >60)         │  (strobe red if COOL-P)   │  (red near turbo max)             │ h180
+│  (strobe red >60)         │  (strobe red if ECT-P)    │  (red near turbo max)             │ h180
 ├──────────────┬────────────┼────────────┬──────────────┴──────────────┬─────────────────────┤
 │ BOOST MAP    │ TC SETTING │ THROTTLE   │ ENGINE LOAD                 │                     │
 │   2 "HIGH"   │   3        │   87 %     │   64 %                      │                     │ ROW C
@@ -172,17 +180,26 @@ Two ways; use **B** for the eye-catching strobe the brief asks for:
 
 ### 5.1 Top strip (`x0 y0 w800 h56`, fill `bg`, 1 px bottom border `tile-edge`)
 
+All six LEDs use the same style (steady "lit dot + white label" when active, dim when inactive — see
+§4.3); only the dot color differs. The MEDIA button is kept inside the right margin so it is never
+clipped by the screen edge.
+
 | Element | x,y,w,h | Input | Behavior |
 |---|---|---|---|
-| Title + clock | 12,14,150,30 | built-in **Time** | "ST185" + HH:MM, `text-dim` |
-| **CRUISE badge** | 172,10,150,38 | `ST185: Cruise State` | Text from enum (OFF/STBY/SET/RES/OVR). `text-dim` when OFF; `accent` cyan when SET/RES; **amber** when OVR. Shows the engaged mode at a glance. |
-| LED: FLAT | 336,16,58,26 | `ST185: Flat Shift` | `info` blue when 1, dim when 0. Steady. |
-| LED: FAN | 396,16,52,26 | `ST185: Radiator Fan` | `info` blue when 1. Steady. |
-| LED: LOFUEL | 450,16,76,26 | `ST185: Low Fuel` | **Strobe amber** when 1. |
-| LED: SBFLT | 528,16,66,26 | `ST185: Switchboard Fault` | **Strobe amber** when 1. |
-| LED: COOL-P | 596,16,72,26 | `ST185: High Coolant Press` | **Strobe red** when 1. |
-| LED: OILP2 | 670,16,58,26 | `ST185: Low Oil Press 2` | **Strobe red (fast 0.25 s)** when 1. |
-| **MEDIA nav** | 690,8,98,40 | — | Button. Tap → Page 2 (or just swipe left). Icon "♪ ►". |
+| Clock | 12,14,74,30 | built-in **Time** | HH:MM, `text-dim` (no "ST185" text) |
+| **CRUISE badge** | 96,10,128,38 | `ST185: Cruise State` | Shows the engaged mode from the enum: **OFF / STBY / SET / RES / OVR**. `text-dim` when OFF; `accent` cyan for any active mode. **Not a warning** — it only reflects the OEM cruise-stalk state (see note below). |
+| LED: FLAT | 232,16,56,26 | `ST185: Flat Shift` | dot `info` blue + white label when 1, dim when 0 |
+| LED: FAN | 292,16,52,26 | `ST185: Radiator Fan` | dot `info` blue + white label when 1 |
+| LED: LOFUEL | 348,16,72,26 | `ST185: Low Fuel` | dot `caution` amber + white label when 1 |
+| LED: SBFLT | 424,16,66,26 | `ST185: Switchboard Fault` | dot `caution` amber + white label when 1 |
+| LED: ECT-P | 494,16,62,26 | `ST185: High Coolant Press` | dot `alarm` red + white label when 1 |
+| LED: OILP2 | 560,16,58,26 | `ST185: Low Oil Press 2` | dot `alarm` red + white label when 1 |
+| **MEDIA nav** | 678,9,110,38 | — | Button, fully inside the 12 px right margin (ends at 788). Tap → Page 2 (or swipe left). Icon "♪ ►". |
+
+> **Cruise modes:** the OEM cruise-control stalk feeds the ECU (via the switchboard); the ECU
+> broadcasts the resulting state on 0x3EF byte6, which RealDash shows as the enum text above. The
+> badge is informational only — it never blinks or shows a warning color. (ECT-P = the coolant/ECT
+> pressure warning bit; renamed from COOL-P.)
 
 > The cluster owns primary engine protection (knock, cut, primary oil pressure, over-temp) via its
 > own full-screen overlay. These six LEDs are only the RealDash-side 0x3F1 bits — keep the mental
@@ -306,17 +323,20 @@ platform allows (§2).
 
 Priority high→low. The two **critical** bits also raise a full-screen alert.
 
-| Pri | Condition | Source | Where it shows | Color | Strobe? | Alert? |
+Strip **LEDs are steady** (lit dot + white label when active — §4.3); **data tiles strobe** for true
+critical/caution values. The two critical bits also raise a full-screen alert.
+
+| Pri | Condition | Source | Where it shows | LED dot color | Tile strobe? | Alert? |
 |---|---|---|---|---|---|---|
-| 1 | Low oil pressure (2nd) | `ST185: Low Oil Press 2`=1 | OILP2 LED | red | yes (fast) | **Fullscreen Alert** |
-| 2 | High coolant pressure | `ST185: High Coolant Press`=1 | COOL-P LED + Coolant hero | red | yes | **Fullscreen Alert** |
-| 3 | Trigger errors rising | `ST185: Trigger Errors`≥5 | Trigger tile | red | yes | no |
-| 4 | Charge-pipe IAT critical | value > 60 °C | IAT hero | red | yes | no |
-| 5 | Fuel temp critical | value > 70 °C | Fuel Temp tile | red | yes | no |
-| 6 | Switchboard comm fault | `ST185: Switchboard Fault`=1 | SBFLT LED | amber | yes | no |
-| 7 | Low fuel | `ST185: Low Fuel`=1 | LOFUEL LED | amber | yes | no |
-| 8 | Radiator fan on | `ST185: Radiator Fan`=1 | FAN LED | blue | no (steady) | no |
-| 9 | Flat-shift active | `ST185: Flat Shift`=1 | FLAT LED | blue | no (steady) | no |
+| 1 | Low oil pressure (2nd) | `ST185: Low Oil Press 2`=1 | OILP2 LED (steady) | red | — | **Fullscreen Alert** |
+| 2 | High coolant pressure | `ST185: High Coolant Press`=1 | ECT-P LED (steady) + Coolant hero | red | yes (hero) | **Fullscreen Alert** |
+| 3 | Trigger errors rising | `ST185: Trigger Errors`≥5 | Trigger tile | — | yes | no |
+| 4 | Charge-pipe IAT critical | value > 60 °C | IAT hero | — | yes | no |
+| 5 | Fuel temp critical | value > 70 °C | Fuel Temp tile | — | yes | no |
+| 6 | Switchboard comm fault | `ST185: Switchboard Fault`=1 | SBFLT LED (steady) | amber | — | no |
+| 7 | Low fuel | `ST185: Low Fuel`=1 | LOFUEL LED (steady) | amber | — | no |
+| 8 | Radiator fan on | `ST185: Radiator Fan`=1 | FAN LED (steady) | blue | — | no |
+| 9 | Flat-shift active | `ST185: Flat Shift`=1 | FLAT LED (steady) | blue | — | no |
 
 **Fullscreen alert:** use the built-in **Fullscreen Alert** action from a trigger
 (`Low Oil Press 2`=1 OR `High Coolant Press`=1) → red full-screen message; it clears when the bit
