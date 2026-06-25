@@ -219,9 +219,11 @@ The encoder push switches and the ODO/Trip button connect between their GPIO pin
 and a GND pin. They use the chip's internal pull-ups (active-low), so no external
 resistor is needed.
 
-> The GPIO numbers come from `WIRING.md`, which mirrors the cluster firmware
-> config. Only 5V (pin 2) and GND (pin 39) have confirmed physical pin positions;
-> locate the rest by the GPIO number printed on the back of the header.
+> Cross-checked against the Waveshare ESP32-P4-WIFI6-Touch-LCD-XC schematic: all
+> of these GPIOs (and 3V3, 5V, GND) are routed to the **J8** 40-pin header. The
+> schematic text does not give exact pin positions, so only **5V (pin 2)** and
+> **GND (pin 39)** have confirmed pin numbers (from `WIRING.md`). Locate the rest
+> by the GPIO number printed on the back of the header.
 
 ---
 
