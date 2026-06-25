@@ -129,48 +129,7 @@ python3 can_bench.py --interface socketcan --channel can0 monitor --known-only
 
 ---
 
-## 2. ECUMaster CAN Switch Board V3
-
-The switchboard **generates its own** `0x640`/`0x641`/`0x642` — so the primary
-test is to **monitor and decode** them. You only inject to test its `0x643` input.
-
-> Reminder: confirm the board is set to **1000 kbps** and **Base ID 0x640** first
-> (see [`ECUMASTER_SWITCHBOARD_SETUP.md`](ECUMASTER_SWITCHBOARD_SETUP.md)). A board
-> still at the 500 kbps default will corrupt the bus.
-
-### Monitor its output
-```bash
-python3 can_bench.py --interface socketcan --channel can0 monitor --known-only
-```
-
-### Pass criteria
-- [ ] `0x640` and `0x641` appear at ~20 Hz; analog channels read 0–5000 mV and
-      track when you change the wired input voltage.
-- [ ] `0x642` appears at ~20 Hz; the `heartbeat` field increments every frame and
-      wraps 255→0.
-- [ ] Toggling a wired switch flips the expected `sw_mask` bit
-      (bit0=Evap, bit1=AC Request, bit2=Cruise Active, bit3=Cruise Set, bit4=Cruise Resume).
-- [ ] Turning a rotary changes the matching nibble in `rotaries`.
-
-### Test the 0x643 low-side input (optional)
-With a low-side output wired to an LED/relay/test lamp:
-```bash
-# Pulse L1 on for ~1 s (20 frames @ 50 ms):
-python3 can_bench.py --interface socketcan --channel can0 \
-    inject-ls-command --l1 255 --count 20 --period 0.05
-```
-- [ ] The corresponding low-side output activates while frames are sent.
-
-### Don't have a real board yet?
-Simulate one to validate your monitor/decoder and downstream PCLink config:
-```bash
-python3 can_bench.py --interface socketcan --channel can0 \
-    simulate-switchboard --toggle-switches
-```
-
----
-
-## 3. Raspberry Pi 5 + USB-CAN adapter (RealDash)
+## 2. Raspberry Pi 5 + USB-CAN adapter (RealDash)
 
 RealDash is a **passive listener** of the three ECU→RealDash frames
 (`0x3EF`/`0x3F0`/`0x3F1`). It does not transmit, so the test is: inject those
@@ -253,7 +212,7 @@ printing a `REALDASH:` prompt of what to look for:
 
 ---
 
-## 4. Encoding reference (sanity-check decoded values)
+## 3. Encoding reference (sanity-check decoded values)
 
 | Field type | Raw → physical | Example |
 |---|---|---|
@@ -268,7 +227,7 @@ All multi-byte fields are **BigEndian**.
 
 ---
 
-## 5. Command quick reference
+## 4. Command quick reference
 
 ```text
 python3 can_bench.py [--interface I] [--channel C] [--bitrate B] [-v] <subcommand>
