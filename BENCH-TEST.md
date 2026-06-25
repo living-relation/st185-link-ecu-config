@@ -149,34 +149,73 @@ UART signal wiring.
 
 ---
 
-## 4. Cluster wiring diagram
+## 4. Cluster wiring
 
-Power feeds are labeled 5V or 3.3V. Signal wires are labeled CAN or UART. The
+This is split into a power diagram, a signal diagram, and a pin table.
+
+### 4a. Power wiring
+Power feeds are labeled 5V or 3.3V. All grounds tie to one common ground.
+
+```mermaid
+flowchart TD
+    supply["12V bench supply"] -->|"12V"| buck["12V to 5V buck (3A+)"]
+    buck -->|"5V"| center["Center cluster (5V at J8 pin 2)"]
+    buck -->|"5V"| leftc["Left cluster (5V at VIN)"]
+    buck -->|"5V"| rightc["Right cluster (5V at VIN)"]
+    center -->|"3.3V"| trx["CAN transceiver (VCC)"]
+    buck ---|"GND"| gnd["Common ground (J8 pin 39)"]
+    center ---|"GND"| gnd
+    leftc ---|"GND"| gnd
+    rightc ---|"GND"| gnd
+    trx ---|"GND"| gnd
+```
+
+### 4b. Signal wiring
+CAN is two wires (CAN H + CAN L). UART is one wire per side (TX to RX). The
 encoders and button are inputs to the center cluster.
 
 ```mermaid
 flowchart TD
-    supply["12V bench supply"] -->|"power"| buck["12V to 5V buck converter (3A+)"]
-
-    buck -->|"5V"| center["Center cluster"]
-    buck -->|"5V"| leftc["Left cluster"]
-    buck -->|"5V"| rightc["Right cluster"]
-
-    center -->|"3.3V"| trx["CAN transceiver"]
-
-    center -->|"CAN TX/RX"| trx
-    trx -->|"CAN H + CAN L"| canbus["CAN bus (ECU in car / PCAN on bench)"]
-
-    center -->|"UART TX to RX"| leftc
-    center -->|"UART TX to RX"| rightc
-
-    enc1["Boost-map encoder"] -->|"A / B / push"| center
-    enc2["TC encoder"] -->|"A / B / push"| center
-    btn["ODO / Trip button"] -->|"press"| center
+    bus["CAN bus: PCAN on bench / ECU in car"] <-->|"CAN H + CAN L"| trx["CAN transceiver"]
+    trx <-->|"GPIO5 TX / GPIO4 RX"| center["Center cluster"]
+    center -->|"UART1 TX GPIO20 to left RX GPIO44"| leftc["Left cluster"]
+    center -->|"UART2 TX GPIO21 to right RX GPIO44"| rightc["Right cluster"]
+    enc1["Boost-map encoder"] -->|"GPIO30 / 31 / 32"| center
+    enc2["TC encoder"] -->|"GPIO49 / 50 / 51"| center
+    btn["ODO/Trip button"] -->|"GPIO29"| center
 ```
 
-> All grounds (power supplies, transceiver, encoder and button commons) tie to
-> one common ground — see the Power section.
+### 4c. Center cluster pin table
+All pins are on the center cluster's **J8 40-pin header**. Find each pin by its
+GPIO number.
+
+Signal and input pins:
+
+| Use | Center cluster pin | Wires to |
+|---|---|---|
+| CAN transmit | GPIO5 | transceiver CTX |
+| CAN receive | GPIO4 | transceiver CRX |
+| UART to left cluster | GPIO20 | left cluster GPIO44 |
+| UART to right cluster | GPIO21 | right cluster GPIO44 |
+| Boost-map encoder A | GPIO30 | encoder A / CLK |
+| Boost-map encoder B | GPIO31 | encoder B / DT |
+| Boost-map encoder push | GPIO32 | encoder push switch |
+| TC encoder A | GPIO49 | encoder A / CLK |
+| TC encoder B | GPIO50 | encoder B / DT |
+| TC encoder push | GPIO51 | encoder push switch |
+| ODO/Trip button | GPIO29 | button |
+
+Power pins:
+
+| Use | Center cluster pin | Wires to |
+|---|---|---|
+| 5V power in | J8 pin 2 | buck 5V output |
+| Ground | J8 pin 39 | common ground |
+| 3.3V out | 3V3 pin | transceiver VCC |
+
+The encoder push switches and the ODO/Trip button connect between their GPIO and
+ground. They use the chip's internal pull-ups (active-low), so no external
+resistor is needed.
 
 ---
 
