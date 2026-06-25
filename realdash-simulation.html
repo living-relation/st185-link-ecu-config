@@ -149,9 +149,10 @@
   .span2{ grid-column:span 2; }
 
   /* =================== misc =================== */
-  #demo{ position:absolute; left:14px; bottom:8px; z-index:40; font-size:11px; letter-spacing:1.3px;
+  #demo{ position:absolute; left:14px; bottom:8px; z-index:40; font:inherit; font-size:11px; letter-spacing:1.3px;
          color:var(--dim); border:1px solid var(--edge); border-radius:13px; padding:3px 9px;
          background:rgba(20,30,42,.7); cursor:pointer; }
+  #demo:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
   #demo b{color:var(--cyan);} #demo .stop{color:var(--alarm);}
   #clock{ position:absolute; right:14px; bottom:8px; z-index:40; font-size:11px; letter-spacing:1.3px; color:var(--dim); }
   .hint{ position:fixed; bottom:14px; left:0; right:0; text-align:center; color:#46586c; font-size:12px; letter-spacing:1px; }
@@ -222,7 +223,7 @@
       <div class="tval" id="acVal">ON</div></div>
   </section>
 
-  <div id="demo"><b>&#9679; LIVE</b> SIM &middot; tap to pause</div>
+  <button id="demo" type="button" aria-pressed="false" aria-label="Pause simulation"><b>&#9679; LIVE</b> SIM &middot; tap / P to pause</button>
   <div id="clock">--:--</div>
 </div>
 
@@ -245,6 +246,7 @@ const walk=(v,min,max,step)=>clamp(v+rnd(-step,step),min,max);
 document.addEventListener("keydown",e=>{
   if(e.key==="o"||e.key==="O")forcedAlarm=forcedAlarm===1?0:1;
   if(e.key==="c"||e.key==="C")forcedAlarm=forcedAlarm===2?0:2;
+  if(e.key==="p"||e.key==="P")togglePause();
 });
 
 function simulate(){
@@ -253,6 +255,8 @@ function simulate(){
   S.throttle=clamp(lift?walk(S.throttle,0,30,18):walk(S.throttle,30,100,16),0,100);
   if(Math.random()<0.004)S.boostMap=(S.boostMap+1)%4;
   if(Math.random()<0.004)S.tc=(S.tc+1)%5;
+  if(Math.random()<0.003)S.cruise=Math.floor(rnd(0,5));
+  if(Math.random()<0.003)S.ac=Math.floor(rnd(0,4));
   S.tcInter=clamp(walk(S.tcInter,0,S.throttle>70?55:20,9),0,100);
   S.lambda=walk(S.lambda,0.78,0.95,0.012);
   S.load=clamp(0.6*S.load+0.4*(S.throttle*0.95+rnd(-6,6)),0,100);
@@ -265,10 +269,9 @@ function simulate(){
   S.trig=Math.random()<0.012?clamp(S.trig+(Math.random()<0.5?1:-1),0,7):S.trig;
   S.fan=(S.coolant>120||Math.sin(t*0.3)>0)?1:0;
   if(S.throttle>95&&Math.random()<0.3)S.flat=1; if(S.throttle<90)S.flat=0;
-  if(S.fuel>60&&Math.random()<0.002)S.lofuel=1;
+  // low-fuel level is independent of fuel temperature; rare set, rare clear (refuel)
+  if(S.lofuel){ if(Math.random()<0.001)S.lofuel=0; } else if(Math.random()<0.0006)S.lofuel=1;
   S.sbflt=Math.random()<0.0008?1:(Math.random()<0.02?0:S.sbflt);
-  S.coolHi=(forcedAlarm===2)?1:(S.coolant>165?1:0);
-  S.oilLo=(forcedAlarm===1)?1:0;
 }
 
 const CRUISE=["OFF","STBY","SET","RES","OVR"];
@@ -291,6 +294,9 @@ function setState(tileId,valId,text,cls){
 }
 
 function render(){
+  // alarm bits computed here (not in simulate) so the o/c key toggles work even while paused
+  S.coolHi=(forcedAlarm===2||S.coolant>165)?1:0;
+  S.oilLo=(forcedAlarm===1)?1:0;
   setInd("i_flat",   S.flat,  "info");
   setInd("i_fan",    S.fan,   "info");
   setInd("i_lofuel", S.lofuel,"warn");
@@ -309,8 +315,9 @@ function render(){
 
   document.getElementById("iatVal").textContent=Math.round(S.iat);
   setBar("iatBar",S.iat/80*100,band(S.iat,50,60)); valColor("iatVal",band(S.iat,50,60));
+  const coolCls=S.coolHi?"alarm":(S.coolant>=150?"warn":"");
   document.getElementById("coolVal").textContent=Math.round(S.coolant);
-  setBar("coolBar",S.coolant/300*100,band(S.coolant,150,200)); valColor("coolVal",band(S.coolant,150,200));
+  setBar("coolBar",S.coolant/300*100,coolCls); valColor("coolVal",coolCls);
   document.getElementById("turboVal").textContent=(S.turbo/1000).toFixed(0);
   setBar("turboBar",S.turbo/200000*100,band(S.turbo,180000,190000)); valColor("turboVal",band(S.turbo,180000,190000));
   document.getElementById("loadVal").textContent=Math.round(S.load);
@@ -332,9 +339,11 @@ function render(){
 }
 
 const demo=document.getElementById("demo");
-demo.onclick=()=>{ running=!running;
-  demo.innerHTML=running?'<b>&#9679; LIVE</b> SIM &middot; tap to pause'
-                        :'<span class="stop">&#9632; PAUSED</span> &middot; tap to resume'; };
+function togglePause(){ running=!running;
+  demo.innerHTML=running?'<b>&#9679; LIVE</b> SIM &middot; tap / P to pause'
+                        :'<span class="stop">&#9632; PAUSED</span> &middot; tap / P to resume';
+  demo.setAttribute("aria-pressed",String(!running)); }
+demo.onclick=togglePause;
 
 function clock(){ const d=new Date();
   document.getElementById("clock").textContent=
