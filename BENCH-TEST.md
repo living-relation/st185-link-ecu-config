@@ -186,9 +186,10 @@ flowchart TD
 ```
 
 ### 4c. Center cluster pin table
-All pins are on the center cluster's **40-pin header** (the Waveshare ESP32-P4
-display board). The back of the board silk-prints each pin's **GPIO number**, and
-the power pins are printed **5V**, **3V3**, and **GND**. Match each wire to the
+All pins are on the center cluster's **J8 40-pin header** (the Waveshare ESP32-P4
+display board). The board silk-prints a label next to each pin: a **bare GPIO
+number** for signal pins (for example, `5` means GPIO5), and `3V3`, `5V`, `GND`,
+`SDA`, `SCL`, `RXD`, `TXD` for the power and bus pins. Match each wire to the
 printed label.
 
 Signal and input pins:
@@ -223,7 +224,7 @@ resistor is needed.
 > of these GPIOs (and 3V3, 5V, GND) are routed to the **J8** 40-pin header. The
 > schematic text does not give exact pin positions, so only **5V (pin 2)** and
 > **GND (pin 39)** have confirmed pin numbers (from `WIRING.md`). Locate the rest
-> by the GPIO number printed on the back of the header.
+> by the bare GPIO number printed next to each pin on the header.
 
 ---
 
