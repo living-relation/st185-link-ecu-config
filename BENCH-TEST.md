@@ -1,233 +1,200 @@
 # CAN Node Bench Test Procedure — Celica ST185 TrackCluster
 
-Verify each CAN node in isolation on the bench, before it ever sees the full
-vehicle bus, by connecting a USB-CAN adapter to your laptop and injecting (or
-monitoring) the exact traffic the node expects in normal operation.
+Test the cluster and RealDash on the bench before they go in the car. The tool
+lives in [`bench/`](bench/) and is run with [`bench/can_bench.py`](bench/can_bench.py).
+Frame layouts come from [`CAN-BUS-ID-ALLOCATION-TABLE.md`](CAN-BUS-ID-ALLOCATION-TABLE.md).
 
-All frame layouts come from [`CAN-BUS-ID-ALLOCATION-TABLE.md`](CAN-BUS-ID-ALLOCATION-TABLE.md).
-The tool lives in [`bench/`](bench/) and is driven by
-[`bench/can_bench.py`](bench/can_bench.py).
+There are two tests:
+
+- The cluster test (center cluster + left and right clusters).
+- The RealDash test.
 
 ---
 
 ## 0. One-time setup
 
-### Hardware
-- A USB-CAN adapter:
-  - **CANable / slcan** (`/dev/ttyACM0` on Linux, `COMx` on Windows), or
-  - **PCAN USB** (`PCAN_USBBUS1`), or
-  - any SocketCAN interface on Linux (`can0`).
-- Two 120 Ω terminators on the short bench harness — one at the adapter, one at
-  the node under test. (A single node + adapter is a 2-end bus; it needs both.)
-- 12 V bench supply for the node under test (cluster, switchboard, or Pi).
+### Adapters
+- Use a **PCAN USB** adapter. PCAN units have a **120-ohm terminating resistor
+  built in**, so you do not add any external resistors.
+- Each PCAN connects to its device with a **USB cable**.
+- The tool also works with a CANable/slcan or a Linux SocketCAN interface, but
+  the examples below assume PCAN.
 
 ### Software
 ```bash
 cd bench
-python3 -m pip install -r requirements.txt   # installs python-can
+python3 -m pip install -r requirements.txt
 ```
 
 ### Bring the adapter up at 1 Mbit/s
-- **SocketCAN (CANable in candleLight/gs_usb mode, or built-in controller):**
-  ```bash
-  sudo ip link set can0 up type can bitrate 1000000
-  ```
-  then use `--interface socketcan --channel can0`.
-- **slcan (CANable in slcan firmware):** use
-  `--interface slcan --channel /dev/ttyACM0 --bitrate 1000000`.
-- **PCAN USB:** use `--interface pcan --channel PCAN_USBBUS1 --bitrate 1000000`.
+- **PCAN:** pass `--interface pcan --channel PCAN_USBBUS1 --bitrate 1000000`.
+- **Linux SocketCAN:** `sudo ip link set can0 up type can bitrate 1000000`, then
+  pass `--interface socketcan --channel can0`.
 
-> The examples below use `socketcan/can0`. Swap in your adapter's flags.
-
-### Quick adapter sanity check
-With the adapter looped to itself or to any live node:
+### Quick adapter check
 ```bash
-python3 can_bench.py --interface socketcan --channel can0 monitor
+python3 can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 monitor
 ```
-You should see decoded frames (or at minimum raw frames from a live node). Ctrl-C to stop.
+You should see frames from any live node. Press Ctrl-C to stop.
 
 ---
 
-## 1. The cluster (center P4 + left/right S3)
+## 1. Cluster test (center, left, and right clusters)
 
-### How the cluster works on the bus
-**Only the center ESP32-P4 is a CAN node.** It decodes the five ECU→Cluster
-frames into its dash-data model, then forwards that data to the **left and right
-ESP32-S3** side displays over UART (center GPIO20 → left GPIO44, center GPIO21 →
-right GPIO44, 921600 8N1). The side boards have **no CAN connection** — they
-mirror whatever the center forwards. The right screen also raises the full-screen
-ECU warning overlay driven by `0x3EE`.
+### How it works
+Only the **center cluster** is on the CAN bus. It reads the ECU's CAN frames,
+then sends the data to the **left cluster** and **right cluster** over UART. The
+side clusters are **receive-only** — they take in data but send nothing back.
+The right cluster also shows the full-screen warning overlay.
 
-```mermaid
-flowchart LR
-    pc["PC + USB-CAN adapter"] -->|"CAN 1 Mbit/s (0x3E8-0x3EE)"| center["center P4"]
-    center -->|"UART1 GPIO20"| left["left S3"]
-    center -->|"UART2 GPIO21"| right["right S3"]
-```
+So to test the whole cluster, you feed CAN into the center cluster and watch all
+three screens. If the side screens update, the UART link works.
 
-So to test the **whole cluster**, you inject CAN into the center P4 and watch all
-three screens; the side displays validate the center's UART bridge end-to-end.
+### Signal wiring (CAN + UART only)
+**CAN (two wires):**
+- PCAN **CAN H** to CAN transceiver **CAN H**.
+- PCAN **CAN L** to CAN transceiver **CAN L**.
+- The transceiver connects to the center cluster's CAN pins (GPIO5 = TX, GPIO4 = RX).
 
-### 1a. Quick single-board check (center P4 only on the bench)
-If you only have the center board wired:
+**UART (one wire per side, TX to RX):**
+- Center cluster **UART1 TX (GPIO20)** to left cluster **RX (GPIO44)**.
+- Center cluster **UART2 TX (GPIO21)** to right cluster **RX (GPIO44)**.
+- The side clusters are receive-only, so their TX pins are not connected.
+
+Power and ground are covered in the separate Power section below.
+
+> Flash the side clusters over USB-C, not the GPIO43/44 console pins, so the
+> console does not fight the UART link.
+
+### Quick check (center cluster only)
 ```bash
-python3 can_bench.py --interface socketcan --channel can0 simulate-ecu --cluster-only
+python3 can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 simulate-ecu --cluster-only
 ```
-This sweeps every cluster signal at once:
+This sweeps every cluster value at once.
 
-| Frame | ID | Rate | What sweeps |
-|---|---|---|---|
-| Engine Fast | 0x3E8 | 10 ms | RPM 800→7200, MAP 30→220, ECT/IAT/Oil temps |
-| Speed/Press/Ign | 0x3E9 | 10 ms | ign angle, vehicle speed 0→180, oil/fuel press |
-| Lambda | 0x3EA | 10 ms | λ 0.78→1.10 |
-| Gear/Fuel | 0x3EB | 50 ms | gear cycles N,1-6,R; fuel 0→100 % |
-| Engine Protect | 0x3EE | 50 ms | each warning bit pulses in turn |
-
-### 1b. Full cluster test (center P4 → left & right S3) — recommended
-Wire all three boards and run the **guided** scenario. It keeps all five cluster
-frames flowing (so the center keeps forwarding live snapshots to both sides) but
-animates **one signal at a time**, printing what to verify on each screen:
+### Full guided test (recommended)
 ```bash
-python3 can_bench.py --interface socketcan --channel can0 full-cluster
-# add --loop to repeat until Ctrl-C
+python3 can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 full-cluster
 ```
-The 16 phases walk through: idle → RPM/boost → speed → temps → gear → fuel →
-lambda → pressures → ignition → each warning bit in turn → clear. Each phase
-prints a `CENTER:` and `SIDES:` prompt so you know exactly what to look at.
-
-#### Wiring for the full-cluster test
-This is **not** a CAN-only rig — the side displays come up over UART, so:
-
-| Connection | From | To |
-|---|---|---|
-| CAN | PC adapter CANH/CANL | center P4 transceiver (GPIO5 TX / GPIO4 RX) |
-| UART to left | center GPIO20 | left S3 GPIO44 |
-| UART to right | center GPIO21 | right S3 GPIO44 |
-| Common ground | PC adapter GND + all three boards GND | tied together |
-| Power | 5 V (≥3 A) | center J8 pin2, left VIN, right VIN |
-
-- CAN termination: 120 Ω at the PC adapter **and** 120 Ω at the center
-  transceiver end (2-device bus = both ends terminated).
-- Flash/monitor the side boards over **USB-C**, not GPIO43/44 — those are the S3
-  console pins and would fight the inter-cluster UART link.
-
-#### Pass criteria
-- [ ] **Center** gauges track every phase smoothly (no freeze/jitter) — confirms 10 ms CAN decode.
-- [ ] **Both side screens** update in lockstep with the center (confirms the UART bridge to each S3).
-- [ ] Temps read plausible °C (offset −50); gear steps N→1..6→R (raw 7 = R/−1); fuel ramps full↔empty.
-- [ ] During the warning phases, the **right screen** raises the full-screen ECU WARNING overlay for each of: knock, ignition cut, fuel cut, boost cut, sensor error, throttle error.
-- [ ] Neither side shows stale/blank data when a signal is held steady (idle phases).
-
-### 1c. Confirm cluster TX (button responses)
-The center also *transmits* when you press its boost-map / TC encoders. In a
-second terminal, monitor while pressing them:
-```bash
-python3 can_bench.py --interface socketcan --channel can0 monitor --known-only
-```
-- [ ] Pressing the **boost-map** encoder emits `0x3EC` with the selected index in byte 0.
-- [ ] Pressing the **TC** encoder emits `0x3ED` with the selected index in byte 0.
-
----
-
-## 2. Raspberry Pi 5 + USB-CAN adapter (RealDash)
-
-RealDash is a **passive listener** of the three ECU→RealDash frames
-(`0x3EF`/`0x3F0`/`0x3F1`). It does not transmit, so the test is: inject those
-three frames and watch the RealDash screen.
-
-### The wrinkle: RealDash reads CAN through its OWN adapter
-RealDash is software running on a device (Pi5 / Android tablet / Windows PC). It
-sees CAN only through a CAN interface attached to *that* device. The bench tool
-runs on your laptop and writes to *its* adapter. So unless RealDash runs on the
-same machine as the tool, **you need two CAN interfaces on one shared 2-wire
-bus** — one transmitting (the tool), one receiving (RealDash).
-
-#### Setup A — real target: Pi5 + RealDash (recommended)
-This tests the actual production device.
-
-```mermaid
-flowchart LR
-    pc["Laptop + USB-CAN adapter #1 (TX, runs the tool)"] <-->|"CANH / CANL, 1 Mbit/s"| pi["Pi5 + USB-CAN adapter #2 (RX, runs RealDash)"]
-    pc -.->|"120 ohm"| pc
-    pi -.->|"120 ohm"| pi
-```
-
-Equipment needed (beyond the cluster/switchboard tests):
-- **A second USB-CAN adapter** — one for the laptop, one for the Pi. (The
-  cluster test needed only one adapter because the cluster *is* the CAN node;
-  RealDash needs its own adapter to receive.)
-- The **Pi5 + 7" 840×480 screen** running RealDash, configured with
-  [`link_g4x_realdash.xml`](link_g4x_realdash.xml), CAN connection at **1 Mbit/s**,
-  `bus="0"`.
-- A short 2-wire CAN harness joining the two adapters, **120 Ω at each adapter**
-  (two terminators — it's a 2-node bus). The Waveshare hat is not used.
-- No ECU, cluster, or switchboard on this bench bus — just the two adapters.
-
-Run:
-```bash
-python3 can_bench.py --interface socketcan --channel can0 full-realdash
-# add --loop to repeat until Ctrl-C
-```
-
-#### Setup B — quick desktop check: RealDash on the same Linux PC (one adapter)
-If you run **RealDash for Windows/Linux on the same machine** as the tool and the
-adapter is a **SocketCAN** interface, both processes can share `can0` — the tool
-writes, RealDash reads, no second adapter required. (This does *not* work by
-sharing a single slcan/PCAN device between two apps; use SocketCAN for sharing,
-or fall back to Setup A with two adapters.)
-
-```bash
-sudo ip link set can0 up type can bitrate 1000000
-python3 can_bench.py --interface socketcan --channel can0 full-realdash
-# RealDash on the same PC: add a CAN connection on can0 @ 1 Mbit/s
-```
-
-### The guided scenario
-`full-realdash` keeps all three frames flowing at their cycle times (so RealDash
-never times out) while animating **one field at a time** across 26 phases, each
-printing a `REALDASH:` prompt of what to look for:
-
-| Frame | ID | Rate | Fields walked one at a time |
-|---|---|---|---|
-| Drive Assist & Status | 0x3EF | 50 ms | throttle %, target λ, TC setting, TC intervention %, boost-map index, cruise state, AC status |
-| Extended Sensors | 0x3F0 | 100 ms | fuel temp, engine load %, coolant press, ethanol %, charge-pipe IAT, cabin temp, turbo speed, trigger errors |
-| IMU & Ext Warnings | 0x3F1 | 50 ms | accel X, accel Y, accel Z, then each extended-warning bit in turn |
+Add `--loop` to repeat until Ctrl-C. It walks one value at a time across 16
+phases and prints a `CENTER:` and `SIDES:` prompt for each, so you know what to
+watch.
 
 ### Pass criteria
-- [ ] RealDash CAN connection is at **1 Mbit/s**, `bus="0"`, using
-      [`link_g4x_realdash.xml`](link_g4x_realdash.xml).
-- [ ] Each `0x3EF` field moves in its own phase: throttle 0→100 %, target λ
-      0.80↔1.00, TC setting 0–5, TC intervention 0→40 %, boost-map 0–3, cruise
-      enum Off→Override, AC enum Off→Fault.
-- [ ] Each `0x3F0` field reads plausibly (temps offset −50; turbo speed = raw ×100 RPM).
-- [ ] `0x3F1` accel X/Y/Z swing through ± values (scale 0.1 g); each
-      extended-warning indicator lights in its phase, including **Switchboard
-      Comm Fault** (bit 5).
-- [ ] Holding a steady idle phase shows no stale/blank gauges (frames keep arriving).
+- [ ] Center screen tracks every phase smoothly.
+- [ ] Left and right screens update along with the center (this proves the UART link).
+- [ ] Gear steps N → 1..6 → R; fuel ramps full to empty; temps look right.
+- [ ] During the warning phases, the right screen raises the warning overlay.
+- [ ] No stale or blank data when a value is held steady.
 
-> Quick alternative: `simulate-ecu` (no `--cluster-only`) sends the same three
-> frames sweeping all at once — handy for a fast "is anything moving?" check, but
-> `full-realdash` isolates one field at a time so you can confirm each gauge maps
-> to the right signal.
+### Confirm center cluster send (encoders)
+The center cluster also sends data when you turn its encoders. In a second
+terminal:
+```bash
+python3 can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 monitor --known-only
+```
+- [ ] Turning the boost-map encoder sends `0x3EC`.
+- [ ] Turning the TC encoder sends `0x3ED`.
 
 ---
 
-## 3. Encoding reference (sanity-check decoded values)
+## 2. RealDash test
 
-| Field type | Raw → physical | Example |
+### How it works
+RealDash only listens. It receives three CAN frames from the ECU and shows them.
+It sends nothing.
+
+RealDash reads CAN through its **own** PCAN adapter, so you use two PCAN adapters:
+
+- **PCAN 2** connects to your computer by USB. Your computer runs the tool.
+- **PCAN 1** connects to the RealDash device by USB. That device runs RealDash.
+
+This matches the car, where PCAN 1 stays with RealDash.
+
+### Signal wiring (CAN only)
+- PCAN 2 **CAN H** to PCAN 1 **CAN H**.
+- PCAN 2 **CAN L** to PCAN 1 **CAN L**.
+- Both PCAN units have 120-ohm termination built in, so nothing else is needed
+  on the bus.
+
+Power is covered in the separate Power section below.
+
+### Run the guided test
+```bash
+python3 can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 full-realdash
+```
+Add `--loop` to repeat. It walks one value at a time across 26 phases and prints
+a `REALDASH:` prompt for each. Set RealDash to **1 Mbit/s**, **bus 0**, using
+[`link_g4x_realdash.xml`](link_g4x_realdash.xml).
+
+### Pass criteria
+- [ ] Each value moves in its own phase.
+- [ ] Each warning indicator lights in its phase.
+- [ ] No stale or blank gauges when a value is held steady.
+
+---
+
+## 3. Power wiring (kept separate from signals)
+
+Power and ground are wired on their own. They are **not** part of the CAN or
+UART signal wiring.
+
+- A **12V to 5V buck converter** (rated 3A or more) feeds **5V** to all three clusters.
+- The **CAN transceiver** gets its power from the center cluster's **3.3V** output.
+- On the bench, each cluster and the RealDash device can have its own power supply.
+- **Tie all the power-supply grounds together.** This one shared ground is also
+  the reference the UART signals use. You do not run a separate ground wire just
+  for UART.
+- The encoder and button commons also connect to this same ground.
+
+---
+
+## 4. Cluster wiring diagram
+
+Power feeds are labeled 5V or 3.3V. Signal wires are labeled CAN or UART. The
+encoders and button are inputs to the center cluster.
+
+```mermaid
+flowchart TD
+    supply["12V bench supply"] -->|"power"| buck["12V to 5V buck converter (3A+)"]
+
+    buck -->|"5V"| center["Center cluster"]
+    buck -->|"5V"| leftc["Left cluster"]
+    buck -->|"5V"| rightc["Right cluster"]
+
+    center -->|"3.3V"| trx["CAN transceiver"]
+
+    center -->|"CAN TX/RX"| trx
+    trx -->|"CAN H + CAN L"| canbus["CAN bus (ECU in car / PCAN on bench)"]
+
+    center -->|"UART TX to RX"| leftc
+    center -->|"UART TX to RX"| rightc
+
+    enc1["Boost-map encoder"] -->|"A / B / push"| center
+    enc2["TC encoder"] -->|"A / B / push"| center
+    btn["ODO / Trip button"] -->|"press"| center
+```
+
+> All grounds (power supplies, transceiver, encoder and button commons) tie to
+> one common ground — see the Power section.
+
+---
+
+## 5. Encoding reference (sanity-check decoded values)
+
+| Field type | Raw to physical | Example |
 |---|---|---|
 | Temperatures (ECT, IAT, oil, fuel, cabin, charge-pipe) | `°C = raw − 50` | raw 140 = 90 °C |
 | Ignition angle (0x3E9) | `deg = raw × 0.1 − 100` | raw 1155 = 15.5° |
 | Lambda / target lambda | `λ = raw × 0.001` | raw 950 = 0.950 |
 | Accel X/Y/Z (0x3F1) | `g = raw × 0.1` (signed) | raw −12 = −1.2 g |
 | Turbo speed (0x3F0) | `RPM = raw × 100` | raw 120 = 12 000 RPM |
-| Analog inputs (0x640/1) | raw mV (0–5000) | raw 2500 = 2.50 V |
 
 All multi-byte fields are **BigEndian**.
 
 ---
 
-## 4. Command quick reference
+## 6. Command quick reference
 
 ```text
 python3 can_bench.py [--interface I] [--channel C] [--bitrate B] [-v] <subcommand>
@@ -235,10 +202,9 @@ python3 can_bench.py [--interface I] [--channel C] [--bitrate B] [-v] <subcomman
   simulate-ecu [--cluster-only] [--duration S]
   full-cluster [--loop]
   full-realdash [--loop]
-  simulate-switchboard [--toggle-switches] [--duration S]
-  inject-ls-command [--l1 N --l2 N --l3 N --l4 N] [--count N] [--period S]
   monitor [--known-only]
 ```
 
-`--bitrate` is ignored for `socketcan` (set it via `ip link`); required for
-`slcan`/`pcan`. Defaults: `--interface socketcan --channel can0 --bitrate 1000000`.
+PCAN example flags: `--interface pcan --channel PCAN_USBBUS1 --bitrate 1000000`.
+For SocketCAN, set the bitrate with `ip link` and use
+`--interface socketcan --channel can0`.
