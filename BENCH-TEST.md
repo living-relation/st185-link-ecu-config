@@ -186,12 +186,14 @@ flowchart TD
 ```
 
 ### 4c. Center cluster pin table
-All pins are on the center cluster's **J8 40-pin header**. Find each pin by its
-GPIO number.
+All pins are on the center cluster's **40-pin header** (the Waveshare ESP32-P4
+display board). The back of the board silk-prints each pin's **GPIO number**, and
+the power pins are printed **5V**, **3V3**, and **GND**. Match each wire to the
+printed label.
 
 Signal and input pins:
 
-| Use | Center cluster pin | Wires to |
+| Wire | Silk label on back | Wires to |
 |---|---|---|
 | CAN transmit | GPIO5 | transceiver CTX |
 | CAN receive | GPIO4 | transceiver CRX |
@@ -207,15 +209,19 @@ Signal and input pins:
 
 Power pins:
 
-| Use | Center cluster pin | Wires to |
+| Wire | Silk label on back | Wires to |
 |---|---|---|
-| 5V power in | J8 pin 2 | buck 5V output |
-| Ground | J8 pin 39 | common ground |
-| 3.3V out | 3V3 pin | transceiver VCC |
+| 5V power in | 5V (header pin 2) | buck 5V output |
+| Ground | GND (header pin 39) | common ground |
+| 3.3V out | 3V3 | transceiver VCC |
 
-The encoder push switches and the ODO/Trip button connect between their GPIO and
-ground. They use the chip's internal pull-ups (active-low), so no external
+The encoder push switches and the ODO/Trip button connect between their GPIO pin
+and a GND pin. They use the chip's internal pull-ups (active-low), so no external
 resistor is needed.
+
+> The GPIO numbers come from `WIRING.md`, which mirrors the cluster firmware
+> config. Only 5V (pin 2) and GND (pin 39) have confirmed physical pin positions;
+> locate the rest by the GPIO number printed on the back of the header.
 
 ---
 
