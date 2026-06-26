@@ -81,8 +81,10 @@
   .arc>i{display:block; height:100%; background:linear-gradient(90deg,var(--good),var(--accent))}
 
   /* row C */
-  .rc .val{font-size:46px; margin-top:8px}
-  .rc .sub{position:absolute; left:12px; right:12px; bottom:10px}
+  .rc .val{font-size:46px; margin-top:6px}
+  .sub{position:absolute; left:12px; right:12px; bottom:10px}
+  .minilab{color:var(--dim); font-size:11px; font-weight:800; letter-spacing:1px;
+    text-transform:uppercase; text-align:left; margin-bottom:3px}
   .bar{height:14px; border-radius:7px; background:#0a0f16; overflow:hidden; border:1px solid #131b25}
   .bar>i{display:block; height:100%}
   .idxname{color:var(--dim); font-weight:800; font-size:15px; margin-top:2px}
@@ -154,18 +156,18 @@
 
     <!-- heroes -->
     <div class="tile hero" style="left:12px;top:64px;width:250px;height:180px">
-      <div class="lab">Charge-Pipe IAT</div>
-      <div><span class="val good" id="iat">52</span> <span class="unit">&deg;C</span></div>
-      <div class="arc"><i style="width:65%"></i></div>
+      <div class="lab">Target Lambda</div>
+      <div><span class="val" id="lam">0.88</span></div>
+      <div class="sub"><div class="minilab">Tune</div><div class="bar"><i style="width:40%;background:var(--accent)"></i></div></div>
     </div>
     <div class="tile hero strobeR" id="tCool" style="left:274px;top:64px;width:250px;height:180px">
       <div class="lab">Coolant Pressure</div>
-      <div><span class="val ok" id="cool">110</span> <span class="unit">kPa</span></div>
+      <div><span class="val ok" id="cool">16</span> <span class="unit">PSI</span></div>
       <div class="arc"><i style="width:37%"></i></div>
     </div>
     <div class="tile hero" style="left:536px;top:64px;width:250px;height:180px">
       <div class="lab">Turbo Speed</div>
-      <div><span class="val ok" id="turbo" style="font-size:54px">132,000</span> <span class="unit">rpm</span></div>
+      <div><span class="val ok" id="turbo">132</span><span class="unit">K</span></div>
       <div class="arc"><i style="width:66%"></i></div>
     </div>
 
@@ -178,7 +180,7 @@
     <div class="tile rc" style="left:209px;top:252px;width:185px;height:116px">
       <div class="lab">TC Setting</div>
       <div><span class="val ok">3</span></div>
-      <div class="sub"><div class="bar"><i class="" style="width:12%;background:var(--good)"></i></div></div>
+      <div class="sub"><div class="minilab">Int %</div><div class="bar"><i style="width:12%;background:var(--good)"></i></div></div>
     </div>
     <div class="tile rc" style="left:406px;top:252px;width:185px;height:116px">
       <div class="lab">Throttle</div>
@@ -192,8 +194,8 @@
     </div>
 
     <!-- row D -->
-    <div class="tile rd" style="left:12px;top:376px;width:119px;height:100px">
-      <div class="lab">Target &lambda;</div><div><span class="val">0.88</span></div></div>
+    <div class="tile rd strobeR" id="tIat" style="left:12px;top:376px;width:119px;height:100px">
+      <div class="lab">IAT2 - CP</div><div><span class="val good" id="iat">52</span> <span class="unit">&deg;C</span></div></div>
     <div class="tile rd strobeA" id="tFuelT" style="left:143px;top:376px;width:119px;height:100px">
       <div class="lab">Fuel Temp</div><div><span class="val" id="fuelt">46</span> <span class="unit">&deg;C</span></div></div>
     <div class="tile rd" style="left:274px;top:376px;width:119px;height:100px">
@@ -268,8 +270,8 @@
   function setWarn(on){
     warn=on;
     ['ledFuel','ledSb','ledCool','ledOil'].forEach(id=>document.getElementById(id).classList.toggle('on',on));
-    ['tCool','tFuelT','tTrig'].forEach(id=>document.getElementById(id).classList.toggle('act',on));
-    document.getElementById('cool').textContent = on?'214':'110';
+    ['tCool','tFuelT','tTrig','tIat'].forEach(id=>document.getElementById(id).classList.toggle('act',on));
+    document.getElementById('cool').textContent = on?'31':'16';   // PSI (214 kPa / 110 kPa)
     document.getElementById('cool').className = 'val '+(on?'al':'ok');
     document.getElementById('iat').textContent = on?'63':'52';
     document.getElementById('iat').className = 'val '+(on?'al':'good');

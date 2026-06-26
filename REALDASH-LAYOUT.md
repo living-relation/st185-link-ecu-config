@@ -164,17 +164,17 @@ top-strip LEDs stay steady (§4.3). Two ways; use **B** for the eye-catching str
 ┌──────────────────────────────────── TOP STRIP (h56) ──────────────────────────────────────┐
 │ 10:42 │ CRUISE: SET │ ●FLAT ●FAN ●LOFUEL ●SBFLT ●ECT-P ●OILP2 │           ♪ MEDIA ►        │
 ├───────────────────────────┬───────────────────────────┬────────────────────────────────────┤
-│  CHARGE-PIPE IAT          │  COOLANT PRESSURE         │  TURBO SPEED                       │
-│        52 °C              │       110 kPa             │      132,000 rpm                   │ HEROES
-│  (strobe red >60)         │  (strobe red if ECT-P)    │  (red near turbo max)             │ h180
+│  TARGET LAMBDA            │  COOLANT PRESSURE         │  TURBO SPEED                       │
+│        0.88               │       16 PSI              │      132 K                         │ HEROES
+│  TUNE ▬▬▬□  (no alarm)    │  (strobe red if ECT-P)    │  (red near turbo max)             │ h180
 ├──────────────┬────────────┼────────────┬──────────────┴──────────────┬─────────────────────┤
 │ BOOST MAP    │ TC SETTING │ THROTTLE   │ ENGINE LOAD                 │                     │
 │   2 "HIGH"   │   3        │   87 %     │   64 %                      │                     │ ROW C
-│              │ interv ▭▭□ │  ▌bar      │  ▌bar                       │                     │ h116
+│              │ INT % ▬▭□  │  ▌bar      │  ▌bar                       │                     │ h116
 ├────────┬─────┴────┬───────┴───┬────────┴───┬────────────┬───────────┴─────────────────────┤
-│ TARGET │ FUEL     │ ETHANOL   │ CABIN      │ TRIGGER    │ A/C                              │
-│ LAMBDA │ TEMP     │           │ TEMP       │ ERRORS     │                                  │ ROW D
-│ 0.88 λ │ 46 °C    │ E30       │ 24 °C      │ 0          │ ON                               │ h100
+│IAT2-CP │ FUEL     │ ETHANOL   │ CABIN      │ TRIGGER    │ A/C                              │
+│        │ TEMP     │           │ TEMP       │ ERRORS     │                                  │ ROW D
+│ 52 °C  │ 46 °C    │ E30       │ 24 °C      │ 0          │ ON                               │ h100
 └────────┴──────────┴───────────┴────────────┴────────────┴──────────────────────────────────┘
 ```
 
@@ -207,18 +207,18 @@ clipped by the screen edge.
 
 ### 5.2 Heroes (`y64 h180`, three tiles, w250, x = 12 / 274 / 536)
 
-| # | Tile | Gauge | Input | Range | Caution (amber) | Alarm (red, strobe) | x,y,w,h |
+| # | Tile | Gauge | Input | Display | Caution (amber) | Alarm (red, strobe) | x,y,w,h |
 |---|---|---|---|---|---|---|---|
-| 1 | Charge-Pipe IAT | Numeric hero + small arc | `ST185: Charge-Pipe IAT` | 0–80 °C | 50–60 | **>60** (heat soak → pull timing) | 12,64,250,180 |
-| 2 | Coolant Pressure | Numeric hero + small arc | `ST185: Coolant Pressure` | 0–300 kPa | 150–200 | **>200 or `High Coolant Press`=1** | 274,64,250,180 |
-| 3 | Turbo Speed | Numeric hero + small arc | `ST185: Turbo Speed` | 0–200k rpm | 90–95 % | **>95 % of turbo max** (set to your turbo) | 536,64,250,180 |
+| 1 | **Target Lambda** | Numeric hero + bottom mini-bar | `ST185: Target Lambda` | λ value, 2 decimals; bar spans 0.60–1.30. Left-aligned mini-label **"Tune"** above the bar. Label reads **"Target Lambda"** (the word, no glyph). | — | — (tune reference, no alarm) | 12,64,250,180 |
+| 2 | Coolant Pressure | Numeric hero + small arc | `ST185: Coolant Pressure` | **PSI** — gauge **Gauge Math `=V*0.145038`**, unit "PSI" (input stays kPa). | ~22–29 PSI (150–200 kPa) | **>29 PSI (>200 kPa) or `High Coolant Press`=1** | 274,64,250,180 |
+| 3 | Turbo Speed | Numeric hero + small arc | `ST185: Turbo Speed` | **"K" (thousands)** — Gauge Math `=V/1000`, 0 decimals, suffix **"K"** → 3 digits like `132K`. Optional: show 1 decimal under 1000 rpm (e.g. `0.5K`) via a second gauge gated by a `V<1000` trigger. | 90–95 % | **>95 % of turbo max** (set to your turbo) | 536,64,250,180 |
 
 ### 5.3 Row C (`y252 h116`, four tiles, w185, x = 12 / 209 / 406 / 603)
 
 | # | Tile | Gauge | Input | Range | Notes / colors | x,y,w,h |
 |---|---|---|---|---|---|---|
 | 4 | Boost Map | Big index + name text | `ST185: Boost Map` | 0–3 | `accent`; map name layer 0=LOW,1=MID,2=HIGH,3=MAX | 12,252,185,116 |
-| 5 | TC Setting | Big index + intervention bar | `ST185: TC Setting` (+`ST185: TC Intervention` sub-bar) | 0–4 | index `accent`; bar `good`<10 / amber 10–40 / red >40 | 209,252,185,116 |
+| 5 | TC Setting | Big index + intervention bar | `ST185: TC Setting` (+`ST185: TC Intervention` sub-bar) | 0–4 | index `accent`; left-aligned mini-label **"Int %"** above the bar (= % intervention the ECU applies to correct wheel slip); bar `good`<10 / amber 10–40 / red >40 | 209,252,185,116 |
 | 6 | Throttle | Horizontal bar + % | `ST185: Throttle` | 0–100 % | `accent`, no alarm (driver input) | 406,252,185,116 |
 | 7 | Engine Load | Horizontal bar + % | `ST185: Engine Load` | 0–100 % | `accent`, informational | 603,252,185,116 |
 
@@ -226,7 +226,7 @@ clipped by the screen edge.
 
 | # | Tile | Gauge | Input | Range | Caution / Alarm | x,y,w,h |
 |---|---|---|---|---|---|---|
-| 8 | Target Lambda | Numeric | `ST185: Target Lambda` | 0.60–1.30 λ | — (tune reference) | 12,376,119,100 |
+| 8 | **IAT2 - CP** (charge-pipe IAT) | Numeric | `ST185: Charge-Pipe IAT` | 0–80 °C | amber 50–60 / **strobe red >60** (heat soak) | 12,376,119,100 |
 | 9 | Fuel Temp | Numeric | `ST185: Fuel Temp` | 0–90 °C | amber 55–70 / **strobe red >70** | 143,376,119,100 |
 | 10 | Ethanol % | Numeric (E-blend) | `ST185: Ethanol` | 0–100 % | — (flex reference) | 274,376,119,100 |
 | 11 | Cabin Temp | Numeric | `ST185: Cabin Temp` | −10–60 °C | — (comfort) | 405,376,119,100 |
@@ -329,9 +329,9 @@ critical/caution values. The two critical bits also raise a full-screen alert.
 | Pri | Condition | Source | Where it shows | LED dot color | Tile strobe? | Alert? |
 |---|---|---|---|---|---|---|
 | 1 | Low oil pressure (2nd) | `ST185: Low Oil Press 2`=1 | OILP2 LED (steady) | red | — | **Fullscreen Alert** |
-| 2 | High coolant pressure | `ST185: High Coolant Press`=1 | ECT-P LED (steady) + Coolant hero | red | yes (hero) | **Fullscreen Alert** |
+| 2 | High coolant pressure | `ST185: High Coolant Press`=1 | ECT-P LED (steady) + Coolant hero (PSI) | red | yes (hero) | **Fullscreen Alert** |
 | 3 | Trigger errors rising | `ST185: Trigger Errors`≥5 | Trigger tile | — | yes | no |
-| 4 | Charge-pipe IAT critical | value > 60 °C | IAT hero | — | yes | no |
+| 4 | Charge-pipe IAT critical | value > 60 °C | IAT2-CP tile (Row D) | — | yes | no |
 | 5 | Fuel temp critical | value > 70 °C | Fuel Temp tile | — | yes | no |
 | 6 | Switchboard comm fault | `ST185: Switchboard Fault`=1 | SBFLT LED (steady) | amber | — | no |
 | 7 | Low fuel | `ST185: Low Fuel`=1 | LOFUEL LED (steady) | amber | — | no |
@@ -395,31 +395,34 @@ All CAN gauges bind to custom inputs from `link_g4x_realdash.xml` (Settings → 
 Specific**, prefixed `ST185:`). Media gauges bind to RealDash's built-in **Media** inputs (not the CAN
 XML). Temps carry `units="C"` so you can switch to °F per-gauge.
 
-| Input | Frame | Raw → value | Page / tile |
-|---|---|---|---|
-| `ST185: Charge-Pipe IAT` | 0x3F0 | V−50 °C | DASH hero 1 |
-| `ST185: Coolant Pressure` | 0x3F0 | V kPa | DASH hero 2 |
-| `ST185: Turbo Speed` | 0x3F0 | V×100 rpm | DASH hero 3 |
-| `ST185: Boost Map` | 0x3EF | index 0–3 | DASH C-4 |
-| `ST185: TC Setting` | 0x3EF | index 0–4 | DASH C-5 |
-| `ST185: TC Intervention` | 0x3EF | V % | DASH C-5 sub-bar |
-| `ST185: Throttle` | 0x3EF | V % | DASH C-6 |
-| `ST185: Engine Load` | 0x3F0 | V % | DASH C-7 |
-| `ST185: Target Lambda` | 0x3EF | V×0.001 λ | DASH D-8 |
-| `ST185: Fuel Temp` | 0x3F0 | V−50 °C | DASH D-9 |
-| `ST185: Ethanol` | 0x3F0 | V % | DASH D-10 |
-| `ST185: Cabin Temp` | 0x3F0 | V−50 °C | DASH D-11 |
-| `ST185: Trigger Errors` | 0x3F0 | V count | DASH D-12 |
-| `ST185: AC Status` | 0x3EF | enum | DASH D-13 |
-| `ST185: Cruise State` | 0x3EF | enum | DASH top badge |
-| `ST185: Flat Shift` | 0x3F1 | bit0 | DASH LED |
-| `ST185: Radiator Fan` | 0x3F1 | bit1 | DASH LED |
-| `ST185: Low Fuel` | 0x3F1 | bit2 | DASH LED |
-| `ST185: High Coolant Press` | 0x3F1 | bit3 | DASH LED + hero |
-| `ST185: Low Oil Press 2` | 0x3F1 | bit4 | DASH LED + alert |
-| `ST185: Switchboard Fault` | 0x3F1 | bit5 | DASH LED |
-| `ST185: Accel X/Y/Z` | 0x3F1 | V×0.1 g | defined, not shown |
-| Media: Title / Artist / Album / Album Art / Position / Duration | — | RealDash built-in | MEDIA page |
+Input **names are unchanged** (do not rename them) — the columns below note the **display label/unit**
+the gauge shows, which is a UI-only choice.
+
+| Input (unchanged) | Frame | Raw → value | Display label / unit | Page / tile |
+|---|---|---|---|---|
+| `ST185: Target Lambda` | 0x3EF | V×0.001 λ | "Target Lambda", 2 dp + "Tune" bar | DASH hero 1 |
+| `ST185: Coolant Pressure` | 0x3F0 | V kPa | "Coolant Pressure" in **PSI** (Gauge Math `=V*0.145038`) | DASH hero 2 |
+| `ST185: Turbo Speed` | 0x3F0 | V×100 rpm | "Turbo Speed" in **K** (Gauge Math `=V/1000` + "K") | DASH hero 3 |
+| `ST185: Boost Map` | 0x3EF | index 0–3 | "Boost Map" + name | DASH C-4 |
+| `ST185: TC Setting` | 0x3EF | index 0–4 | "TC Setting" | DASH C-5 |
+| `ST185: TC Intervention` | 0x3EF | V % | "Int %" bar | DASH C-5 sub-bar |
+| `ST185: Throttle` | 0x3EF | V % | "Throttle" % | DASH C-6 |
+| `ST185: Engine Load` | 0x3F0 | V % | "Engine Load" % | DASH C-7 |
+| `ST185: Charge-Pipe IAT` | 0x3F0 | V−50 °C | "IAT2 - CP" °C | DASH D-8 |
+| `ST185: Fuel Temp` | 0x3F0 | V−50 °C | "Fuel Temp" °C | DASH D-9 |
+| `ST185: Ethanol` | 0x3F0 | V % | "Ethanol" (E-blend) | DASH D-10 |
+| `ST185: Cabin Temp` | 0x3F0 | V−50 °C | "Cabin" °C | DASH D-11 |
+| `ST185: Trigger Errors` | 0x3F0 | V count | "Trig Err" | DASH D-12 |
+| `ST185: AC Status` | 0x3EF | enum | "A/C" (enum text) | DASH D-13 |
+| `ST185: Cruise State` | 0x3EF | enum | "CRUISE: <mode>" | DASH top badge |
+| `ST185: Flat Shift` | 0x3F1 | bit0 | "FLAT" LED (blue) | DASH LED |
+| `ST185: Radiator Fan` | 0x3F1 | bit1 | "FAN" LED (blue) | DASH LED |
+| `ST185: Low Fuel` | 0x3F1 | bit2 | "LOFUEL" LED (amber) | DASH LED |
+| `ST185: High Coolant Press` | 0x3F1 | bit3 | "ECT-P" LED (red) + hero strobe | DASH LED + hero |
+| `ST185: Low Oil Press 2` | 0x3F1 | bit4 | "OILP2" LED (red) | DASH LED + alert |
+| `ST185: Switchboard Fault` | 0x3F1 | bit5 | "SBFLT" LED (amber) | DASH LED |
+| `ST185: Accel X/Y/Z` | 0x3F1 | V×0.1 g | — | defined, not shown |
+| Media: Title / Artist / Album / Album Art / Position / Duration | — | RealDash built-in | now-playing | MEDIA page |
 
 ---
 
