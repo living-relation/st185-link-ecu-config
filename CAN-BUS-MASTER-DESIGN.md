@@ -146,7 +146,9 @@ Two independent layers protect against switchboard communication loss:
   - 0x3E8–0x3EE — cluster frames; cluster already shows these. RealDash does not duplicate them.
   - 0x640–0x642 — switchboard frames; the ECU is the only node that needs to read them. Switchboard active states relevant to display are echoed by the ECU into 0x3EF/0x3F1.
 
-  The RealDash XML is fully defined in `link_g4x_realdash.xml`.
+  The RealDash channel-description XML is fully defined in `link_g4x_realdash.xml` (valid RealDash
+  CAN v2, BigEndian, with the 0x3F1 warning bitmask decoded per-bit). The visual dashboard that
+  consumes these inputs is specified in `REALDASH-LAYOUT.md`.
 
 ---
 
@@ -191,5 +193,5 @@ The docx does not address the ECUMaster switchboard's bus segment or speed at al
 | 4 | Configure PCLink receive timeouts (200ms) on 0x640/0x641/0x642 with fail-safe defaults (VDI1-5→0, GP Temp1→hold) | PCLink config |
 | 5 | Cluster firmware: **no changes.** Cluster displays are unchanged — it keeps decoding 0x3E8–0x3EE and transmitting 0x3EC/0x3ED. The new 0x3EF/0x3F0/0x3F1 streams are ECU→RealDash only; switchboard comm-fault (§6) is ECU-detected and surfaced to RealDash via 0x3F1 byte6 bit5. | — (none) |
 | 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §9 — outputs unused/LED-only, low priority | PCLink config (deferred) |
-| 7 | Add RealDash XML frame/value definitions for 0x3EF-0x3F1 (and optionally 0x640-0x642) | RealDash config |
+| 7 | RealDash XML frame/value definitions for 0x3EF-0x3F1 — **done** (`link_g4x_realdash.xml`). Build the dashboard per `REALDASH-LAYOUT.md`. 0x640-0x642 deliberately excluded (ECU echoes display-relevant values) | RealDash config |
 | 8 | Verify bus termination (120Ω × 2): ECU end + Pi end (USB-CAN adapter side). Waveshare hat is not on the bus. | Hardware |

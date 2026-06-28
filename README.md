@@ -23,7 +23,9 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 |---|---|
 | `link_g4x_can_setup.lcs` | PCLink-importable CAN TX stream config. v1.1 has 2 scale bug-fixes. |
 | `link_g4x_can_setup.json` | Canonical CAN config twin — authoritative source of truth for all IDs, offsets, scales, and notes. |
-| `link_g4x_realdash.xml` | RealDash CAN XML v2 — all 11 frames (ECU TX + switchboard TX). |
+| `link_g4x_realdash.xml` | RealDash CAN **channel-description** XML v2 — the 3 ECU→RealDash frames (0x3EF–0x3F1), valid/importable, BigEndian, with bit-decoded warnings and named `ST185:` inputs. |
+| `REALDASH-LAYOUT.md` | RealDash **dashboard layout design** — buildable spec for a 2-page dash (single 800×480 engineering page with 3D tiles, LED warnings + strobing alarms + cruise-mode readout, and a media-player page), plus simple install steps. Binds to the inputs in `link_g4x_realdash.xml`. |
+| `realdash-demo.html` | **Browser preview** of the layout above (not a `.rd` file) — open in any browser to see both pages, the 3D tiles, glowing/strobing LED warnings, and simulated live values. Buttons toggle DASH/MEDIA and the warning strobe. |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |
 | `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 4-node topology. |
 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Master ID allocation table — all byte layouts, sections A–E. |
