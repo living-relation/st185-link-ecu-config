@@ -92,7 +92,13 @@ class Api:
         try:
             with self._lock:
                 if self._bus is not None:
-                    self._bus.shutdown()
+                    # Guard like disconnect(): a failing shutdown() (adapter
+                    # unplugged / driver issue) must not leave a dead bus in
+                    # self._bus, or status()/the next connect() see a stale one.
+                    try:
+                        self._bus.shutdown()
+                    except Exception:
+                        pass
                     self._bus = None
 
                 if backend == "gs_usb":
