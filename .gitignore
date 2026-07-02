@@ -4,3 +4,11 @@
 *.tmp
 Thumbs.db
 .DS_Store
+
+# Python (apps/canbus-live-sender)
+__pycache__/
+*.pyc
+.venv/
+build/
+dist/
+*.spec
