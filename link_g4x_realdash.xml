@@ -51,18 +51,17 @@
 
     <!-- ═══════════════════════════════════════════════════════════════════
          0x3F0  (decimal 1008) — Extended Sensors  (100 ms, BigEndian)
-         [0] Fuel Temp °C  [1] Engine Load %  [2] Coolant Pressure kPa  [3] Ethanol %
-         [4] Charge-Pipe IAT °C  [5] Cabin Temp °C (ECU echo of switchboard AIN1 via GP Temp1)
-         [6] Turbo Speed RPM x100  [7] Trigger Errors count
-         Temp bytes use raw-50 = °C encoding.
+         [0] Fuel Temp °C  [1] Engine Load %  [2-3] Coolant Pressure kPa (u16)  [4] Ethanol %
+         [5] Charge-Pipe IAT °C  [6] Turbo Speed RPM x100  [7] Trigger Errors count
+         Coolant Pressure widened to 2 bytes (2026-06-28); Cabin Temp dropped to make room
+         (read switchboard 0x640 directly for cabin temp). Temp bytes use raw-50 = °C encoding.
          ═══════════════════════════════════════════════════════════════════ -->
     <frame id="1008" endianness="big" timeout="2000">
       <value name="ST185: Fuel Temp"        offset="0" length="1" conversion="V-50"  units="C"/>
       <value name="ST185: Engine Load"      offset="1" length="1" conversion="V"     rangeMin="0" rangeMax="100"/>
-      <value name="ST185: Coolant Pressure" offset="2" length="1" conversion="V"     rangeMin="0" rangeMax="300"/>
-      <value name="ST185: Ethanol"          offset="3" length="1" conversion="V"     rangeMin="0" rangeMax="100"/>
-      <value name="ST185: Charge-Pipe IAT"  offset="4" length="1" conversion="V-50"  units="C"/>
-      <value name="ST185: Cabin Temp"       offset="5" length="1" conversion="V-50"  units="C"/>
+      <value name="ST185: Coolant Pressure" offset="2" length="2" conversion="V"     rangeMin="0" rangeMax="1000"/>
+      <value name="ST185: Ethanol"          offset="4" length="1" conversion="V"     rangeMin="0" rangeMax="100"/>
+      <value name="ST185: Charge-Pipe IAT"  offset="5" length="1" conversion="V-50"  units="C"/>
       <value name="ST185: Turbo Speed"      offset="6" length="1" conversion="V*100" rangeMin="0" rangeMax="200000"/>
       <value name="ST185: Trigger Errors"   offset="7" length="1" conversion="V"     rangeMin="0" rangeMax="255"/>
     </frame>
