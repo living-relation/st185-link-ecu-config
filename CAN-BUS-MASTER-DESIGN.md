@@ -139,7 +139,7 @@ Two independent layers protect against switchboard communication loss:
   | Frame ID | Decimal | Content |
   |---|---|---|
   | 0x3EF | 1007 | Drive Assist & Status (TC state, boost map index, cruise state, AC status, lambda target, TPS) |
-  | 0x3F0 | 1008 | Extended Sensors (fuel temp, engine load, coolant pressure [2 bytes], ethanol %, IAT, cabin temp, turbo speed) — trigger errors dropped 2026-06-28 to fit 2-byte coolant pressure |
+  | 0x3F0 | 1008 | Extended Sensors (fuel temp, engine load, coolant pressure [2 bytes], ethanol %, charge-pipe IAT, turbo speed, trigger errors) — cabin temp dropped 2026-06-28 to fit 2-byte coolant pressure |
   | 0x3F1 | 1009 | IMU & Extended Warnings (accel X/Y/Z, ext warn bits incl. switchboard comm fault) |
 
   **Excluded from RealDash XML:**

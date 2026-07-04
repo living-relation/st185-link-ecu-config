@@ -58,6 +58,9 @@ def _dec(raw: int, scale: float, offset: float) -> float:
 def _u8(value: int) -> int:
     return max(0, min(255, int(value))) & 0xFF
 
+def _u16(value: int) -> int:
+    return max(0, min(65535, int(value))) & 0xFFFF
+
 
 # --- 0x3E8 Engine Fast -----------------------------------------------------
 
@@ -93,8 +96,8 @@ def encode_speed_press_ign(ign_angle_deg: float, vehicle_speed: int,
         ">HBHHB",
         _enc(ign_angle_deg, 0.1, -100) & 0xFFFF,
         _u8(_enc(vehicle_speed, 1, 0)),
-        _enc(oil_press, 1, 0) & 0xFFFF,
-        _enc(fuel_press, 1, 0) & 0xFFFF,
+        _u16(_enc(oil_press, 1, 0)),
+        _u16(_enc(fuel_press, 1, 0)),
         0,  # byte 7 free
     )
 
@@ -208,7 +211,7 @@ def encode_ext_sensors(fuel_temp_c: float, engine_load_pct: int,
         ">BBHBBBB",
         _u8(_enc(fuel_temp_c, 1, -50)),
         _u8(engine_load_pct),
-        _enc(coolant_press_kpa, 1, 0) & 0xFFFF,
+        _u16(_enc(coolant_press_kpa, 1, 0)),
         _u8(ethanol_pct),
         _u8(_enc(charge_pipe_iat_c, 1, -50)),
         _u8(_enc(turbo_speed_rpm, 100, 0)),

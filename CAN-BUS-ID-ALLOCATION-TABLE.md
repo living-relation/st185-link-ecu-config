@@ -23,9 +23,9 @@
 | **0x3F0** | **1008** | **Extended Sensors (NEW)** | ECU → RealDash | 100 ms | New — this allocation |
 | **0x3F1** | **1009** | **IMU & Extended Warnings (NEW)** | ECU → RealDash | 50 ms | New — this allocation |
 | 0x3F2–0x63F | 1010–1599 | — | — | — | Reserved / available for future expansion |
-| 0x640 | 1600 | Switchboard Analog 1–4 (Base+0) | Switchboard → ECU/RealDash | 20 Hz (default) | Existing device, fully mapped below |
-| 0x641 | 1601 | Switchboard Analog 5–8 (Base+1) | Switchboard → ECU/RealDash | 20 Hz (default) | Existing device, fully mapped below |
-| 0x642 | 1602 | Switchboard Rotary/Switch/Heartbeat (Base+2) | Switchboard → ECU/RealDash | 20 Hz (default) | Existing device, fully mapped below |
+| 0x640 | 1600 | Switchboard Analog 1–4 (Base+0) | Switchboard → ECU | 20 Hz (default) | Existing device, fully mapped below. ECU-only; RealDash does not read it — display-relevant values are echoed into 0x3EF/0x3F1. |
+| 0x641 | 1601 | Switchboard Analog 5–8 (Base+1) | Switchboard → ECU | 20 Hz (default) | Existing device, fully mapped below. ECU-only (not read by RealDash). |
+| 0x642 | 1602 | Switchboard Rotary/Switch/Heartbeat (Base+2) | Switchboard → ECU | 20 Hz (default) | Existing device, fully mapped below. ECU-only (not read by RealDash). |
 | 0x643 | 1603 | Switchboard Low-Side Output Control (Base+3) | **ECU** → Switchboard | event | INPUT — source = **ECU** (PCLink aux→CAN TX); outputs unused/LED-only — master-design §9 |
 | 0x644+ | 1604+ | — | — | — | Available if a second switchboard is added (Base ID configurable) |
 
