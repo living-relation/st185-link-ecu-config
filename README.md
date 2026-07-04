@@ -25,6 +25,8 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `link_g4x_can_setup.json` | Canonical CAN config twin — authoritative source of truth for all IDs, offsets, scales, and notes. |
 | `link_g4x_realdash.xml` | RealDash CAN **channel-description** XML v2 — the 3 ECU→RealDash frames (0x3EF–0x3F1), valid/importable, BigEndian, with bit-decoded warnings and named `ST185:` inputs. |
 | `REALDASH-LAYOUT.md` | RealDash **dashboard layout design** — buildable spec for a 2-page dash (single 800×480 engineering page with 3D tiles, LED warnings + strobing alarms + cruise-mode readout, and a media-player page), plus simple install steps. Binds to the inputs in `link_g4x_realdash.xml`. |
+| `realdash-simulation.html` | **Browser preview** of the DASH page — open in any browser to see the finished layout with live simulated values (matches `REALDASH-LAYOUT.md` §5). Not a `.rd`. |
+| `RD-FILE-FORMAT-NOTES.md` | Feasibility note: why the `.rd` dashboard file is binary/editor-only and cannot be generated offline (with sources). |
 | `CAN-CONFIG-STATUS.md` | Handoff/status note — snapshot of the reconciled CAN config, the source-of-truth HTML, and open items. |
 | `XTREMEX-IO-TABLE.md` | Link G4X XtremeX I/O assignment table (ST185 3S-GTE pin/channel plan). |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |

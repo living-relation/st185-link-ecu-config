@@ -11,11 +11,13 @@ pairs 1:1 with the inputs defined in [`link_g4x_realdash.xml`](link_g4x_realdash
 2. **MEDIA** — a music-player page (SD/USB local files, streaming-app control, phone audio over
    Bluetooth — see the platform reality check in §2 before you wire it up).
 
-> **Why a spec and not a `.rd` file?** RealDash dashboards (`.rd`) are a binary format produced only
-> by the in-app visual editor — *"No XML needed of any kind when designing dashboards; XMLs are just
-> for specifying custom connections"* (RealDash devs). So the layout is version-controlled here as a
-> precise, buildable spec plus the importable channel XML it binds to. You build it once in edit
-> mode, then RealDash saves your `.rd`.
+> **Why a spec and not a `.rd` file?** RealDash dashboards (`.rd`) are a **binary, editor-only**
+> format — they **cannot be authored offline** (independently confirmed 2026-07 against RealDash devs
+> and community; sources in [`RD-FILE-FORMAT-NOTES.md`](RD-FILE-FORMAT-NOTES.md)). RealDash XML is only
+> for CAN/OBD channel descriptions, **not** layouts. So the layout is version-controlled here as a
+> precise, buildable spec plus the importable channel XML it binds to. You build it once in edit mode
+> (§8), then RealDash saves your `.rd`. Preview the finished look in
+> [`realdash-simulation.html`](realdash-simulation.html).
 
 ---
 
