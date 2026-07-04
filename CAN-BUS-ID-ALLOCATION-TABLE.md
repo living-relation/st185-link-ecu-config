@@ -1,7 +1,7 @@
 # CAN Bus ID Allocation Table — Celica Project
 
 **Bus:** Single CAN bus, **1 Mbit/s**, ISO 11898-2, 120Ω terminated.
-**Members:** Link G4X XtremeX ECU, center-cluster-esp32-p4 (TWAI, NORMAL/bidirectional), ECUMaster CAN Switch Board V3, Raspberry Pi 5 + Waveshare dual-MCP2515 hat (RealDash).
+**Members:** Link G4X XtremeX ECU, center-cluster-esp32-p4 (TWAI, NORMAL/bidirectional), ECUMaster CAN Switch Board V3, and Raspberry Pi 5 running RealDash via a **USB-CAN adapter** (CANable/PCAN). (The Waveshare dual-MCP2515 hat on the Pi is retained for its fan only — it is **not** on the CAN bus.)
 
 > **Configuration requirement:** the ECUMaster CAN Switch Board V3 ships with a **default speed of 500 kbps**. It must be set to **1 Mbit/s** to share this bus (matches `link_g4x_can_setup.lcs` CANModule Index=1 / CAN1, BitRate=1000000). 1000 kbps is a supported speed per the switchboard manual — this is a config change, not a hardware conflict.
 

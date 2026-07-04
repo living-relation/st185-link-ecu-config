@@ -331,6 +331,7 @@ critical/caution values. The two critical bits also raise a full-screen alert.
 |---|---|---|---|---|---|---|
 | 1 | Low oil pressure (2nd) | `ST185: Low Oil Press 2`=1 | OILP2 LED (steady) | red | — | **Fullscreen Alert** |
 | 2 | High coolant pressure | `ST185: High Coolant Press`=1 | ECT-P LED (steady) + Coolant hero (PSI) | red | yes (hero) | **Fullscreen Alert** |
+| 3 | Trigger/sync errors | `ST185: Trigger Errors` rising (≥1 caution) | Trigger Errors tile (Row D-11) | — | yes | no |
 | 4 | Charge-pipe IAT critical | value > 60 °C | IAT2-CP tile (Row D) | — | yes | no |
 | 5 | Fuel temp critical | value > 70 °C | Fuel Temp tile | — | yes | no |
 | 6 | Switchboard comm fault | `ST185: Switchboard Fault`=1 | SBFLT LED (steady) | amber | — | no |
