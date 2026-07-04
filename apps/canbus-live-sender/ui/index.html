@@ -251,7 +251,7 @@
     <h2>What this covers</h2>
     <table>
       <tr><td>0x3EF (50 ms)</td><td>Target &#955;, Throttle, TC setting/intervention, Boost map, Cruise, A/C</td></tr>
-      <tr><td>0x3F0 (100 ms)</td><td>Fuel/Charge&#8209;IAT/Cabin temps, Engine load, Coolant P, Ethanol, Turbo speed, Trigger errors</td></tr>
+      <tr><td>0x3F0 (100 ms)</td><td>Fuel/Charge&#8209;IAT temps, Engine load, Coolant P (u16), Ethanol, Turbo speed, Trigger errors</td></tr>
       <tr><td>0x3F1 (50 ms)</td><td>G&#8209;force X/Y/Z + 6 extended warning bits (packed in byte 6)</td></tr>
     </table>
   </div>
@@ -324,7 +324,7 @@ const FRAMES = [
   },
   {
     id: '0x3F0', dec: 1008, period: 100,
-    note: 'Extended Sensors — fuel temp, engine load, coolant pressure, ethanol, charge-pipe IAT, cabin temp, turbo speed, and trigger errors all live in this one frame. Temp bytes use the +50 offset (raw − 50 = °C).',
+    note: 'Extended Sensors — fuel temp, engine load, coolant pressure (u16), ethanol, charge-pipe IAT, turbo speed, and trigger errors all live in this one frame. Cabin temp was dropped to make room for 2-byte coolant pressure. Temp bytes use the +50 offset (raw − 50 = °C).',
     signals: [
       { key:'fueltemp', label:'Fuel Temp', gauge:'RealDash: Fuel Temp gauge', byte:0, len:1,
         unit:'°C (sent as °C+50)', wire:'u8, ×1, +50 (decode raw−50)',
@@ -336,25 +336,20 @@ const FRAMES = [
         rangeNote:'0–100% (informational)',
         min:0, max:100, step:1, default:0,
         toRaw:(v)=> Math.round(v) },
-      { key:'coolp', label:'Coolant Pressure', gauge:'RealDash: Coolant Pressure gauge', byte:2, len:1,
-        unit:'kPa', wire:'u8, ×1, +0',
-        rangeNote:'ok 50–150 · caution 150–200 · alarm >200 · u8 wire caps at 255 kPa',
-        min:0, max:255, step:1, default:100,
+      { key:'coolp', label:'Coolant Pressure', gauge:'RealDash: Coolant Pressure gauge', byte:2, len:2,
+        unit:'kPa', wire:'u16, ×1, +0',
+        rangeNote:'ok 50–150 · caution 150–200 · alarm >200 kPa (2-byte headroom)',
+        min:0, max:1000, step:1, default:100,
         toRaw:(v)=> Math.round(v) },
-      { key:'ethanol', label:'Ethanol', gauge:'RealDash: Ethanol bar (E-blend)', byte:3, len:1,
+      { key:'ethanol', label:'Ethanol', gauge:'RealDash: Ethanol bar (E-blend)', byte:4, len:1,
         unit:'% ethanol', wire:'u8, ×1, +0',
         rangeNote:'0–100% flex-blend reference',
         min:0, max:100, step:1, default:30,
         toRaw:(v)=> Math.round(v) },
-      { key:'chargeiat', label:'Charge-Pipe IAT', gauge:'RealDash: Charge-Pipe IAT gauge', byte:4, len:1,
+      { key:'chargeiat', label:'Charge-Pipe IAT', gauge:'RealDash: Charge-Pipe IAT gauge', byte:5, len:1,
         unit:'°C (sent as °C+50)', wire:'u8, ×1, +50 (decode raw−50)',
         rangeNote:'ok <50 · caution 50–60 · alarm >60 °C (heat soak)',
         min:-40, max:150, step:1, default:40,
-        toRaw:(v)=> Math.round(v + 50) },
-      { key:'cabin', label:'Cabin Temp', gauge:'RealDash: Cabin Temp tile', byte:5, len:1,
-        unit:'°C (sent as °C+50)', wire:'u8, ×1, +50 (decode raw−50)',
-        rangeNote:'comfort (optional) · mirrors switchboard GP Temp1',
-        min:-40, max:80, step:1, default:24,
         toRaw:(v)=> Math.round(v + 50) },
       { key:'turbo', label:'Turbo Speed', gauge:'RealDash: Turbo Speed gauge', byte:6, len:1,
         unit:'RPM (sent ÷100)', wire:'u8, ×100, +0 (decode raw×100)',

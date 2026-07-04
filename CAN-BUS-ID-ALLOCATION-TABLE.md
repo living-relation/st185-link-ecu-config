@@ -1,9 +1,9 @@
 # CAN Bus ID Allocation Table — Celica Project
 
 **Bus:** Single CAN bus, **1 Mbit/s**, ISO 11898-2, 120Ω terminated.
-**Members:** Link G4X FuryX ECU, center-cluster-esp32-p4 (TWAI, NORMAL/bidirectional), ECUMaster CAN Switch Board V3, Raspberry Pi 5 + Waveshare dual-MCP2515 hat (RealDash).
+**Members:** Link G4X XtremeX ECU, center-cluster-esp32-p4 (TWAI, NORMAL/bidirectional), ECUMaster CAN Switch Board V3, Raspberry Pi 5 + Waveshare dual-MCP2515 hat (RealDash).
 
-> **Configuration requirement:** the ECUMaster CAN Switch Board V3 ships with a **default speed of 500 kbps**. It must be set to **1 Mbit/s** to share this bus (matches `link_g4x_can_setup.lcs` CANModule Index=2, BitRate=1000000). 1000 kbps is a supported speed per the switchboard manual — this is a config change, not a hardware conflict.
+> **Configuration requirement:** the ECUMaster CAN Switch Board V3 ships with a **default speed of 500 kbps**. It must be set to **1 Mbit/s** to share this bus (matches `link_g4x_can_setup.lcs` CANModule Index=1 / CAN1, BitRate=1000000). 1000 kbps is a supported speed per the switchboard manual — this is a config change, not a hardware conflict.
 
 ---
 
@@ -33,13 +33,13 @@
 
 ## 2. Section A — ECU → Cluster TX (Immutable, coded-complete)
 
-Source: `link_g4x_can_setup.lcs`, `CANBUS-LINK-G4X-CONFIG.md`. All streams are **Custom type, BigEndian, non-multiplexed**, on the 1 Mbit/s `CANModule Index="2"`.
+Source: `link_g4x_can_setup.lcs`, `CANBUS-LINK-G4X-CONFIG.md`. All streams are **Custom type, BigEndian, non-multiplexed**, on the 1 Mbit/s `CANModule Index="1"` (CAN1).
 
 ### 0x3E8 — Engine Fast (CycleTime 10ms)
 | Bytes | Field | Type | Scale | Offset | Notes |
 |---|---|---|---|---|---|
 | 0–1 | Engine Speed (RPM) | uint16 BE | 1 | 0 | |
-| 2–3 | MAP (MGP) | uint16 BE | 1 | 0 | |
+| 2–3 | MAP (absolute) | uint16 BE | 1 | 0 | Use **MAP**, not MGP. ~100 at idle, never negative. Firmware subtracts 100 → gauge boost. |
 | 4 | ECT (Coolant Temp) | uint8 | 1 | -50 | °C |
 | 5 | IAT (Manifold) | uint8 | 1 | -50 | °C |
 | 6 | Oil Temp | uint8 | 1 | -50 | °C |
@@ -50,9 +50,9 @@ Source: `link_g4x_can_setup.lcs`, `CANBUS-LINK-G4X-CONFIG.md`. All streams are *
 |---|---|---|---|---|---|
 | 0–1 | Ignition Angle | uint16 BE | 0.1 | -100 | degrees |
 | 2 | Vehicle Speed | uint8 | 1 | 0 | |
-| 3 | Oil Pressure | uint8 | 1 | 0 | |
-| 4 | Fuel Pressure | uint8 | 1 | 0 | |
-| 5–7 | — | — | — | — | **Free (3 bytes)** |
+| 3–4 | Oil Pressure | uint16 BE | 1 | 0 | kPa — widened from 1 byte (1 byte capped at 37 PSI) |
+| 5–6 | Fuel Pressure | uint16 BE | 1 | 0 | kPa — widened from 1 byte |
+| 7 | — | — | — | — | **Free (1 byte)** |
 
 ### 0x3EA — Lambda (CycleTime 10ms)
 | Bytes | Field | Type | Scale | Offset | Notes |
@@ -183,12 +183,13 @@ All new streams follow the existing convention: **Custom type, BigEndian, non-mu
 |---|---|---|---|---|---|
 | 0 | Fuel Temp | uint8 | 1 | -50 | °C, matches ECT/IAT/OilTemp convention |
 | 1 | Engine Load % | uint8 | 1 | 0 | |
-| 2 | Coolant Pressure | uint8 | 1 | 0 | kPa |
-| 3 | Ethanol % | uint8 | 1 | 0 | flex-fuel sensor |
-| 4 | Charge-Pipe IAT | uint8 | 1 | -50 | °C, post-intercooler (distinct from 0x3E8 manifold IAT) |
-| 5 | Cabin Temp (mirror) | uint8 | 1 | -50 | °C — optional: mirrors ECU's GP Temp1 (PCLink thermistor table on 0x640 bytes0-1). Alternatively RealDash can read 0x640 directly and apply its own thermistor curve, making this byte unnecessary |
+| 2–3 | Coolant Pressure | uint16 BE | 1 | 0 | kPa — widened to 2 bytes for headroom (1 byte capped 255 kPa) |
+| 4 | Ethanol % | uint8 | 1 | 0 | flex-fuel sensor |
+| 5 | Charge-Pipe IAT | uint8 | 1 | -50 | °C, post-intercooler (distinct from 0x3E8 manifold IAT) |
 | 6 | Turbo Speed ÷100 | uint8 | 100 | 0 | RPM, e.g. 120 = 12,000 RPM |
 | 7 | Trigger Error Count | uint8 | 1 | 0 | rolling/cumulative sync-error count |
+
+> **Cabin Temp removed (2026-06-28):** dropped to fit 2-byte Coolant Pressure (frame was full at 8 bytes). Cabin temp is **no longer available via the ST185 RealDash inputs** — RealDash does not read the switchboard 0x640 frame directly. To restore cabin temp, add a new frame 0x3F2 (with a matching RealDash frame/value) rather than reading 0x640.
 
 ### 0x3F1 — IMU & Extended Warnings (CycleTime 50ms)
 | Bytes | Field | Type | Scale | Offset | Notes |

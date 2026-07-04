@@ -26,7 +26,7 @@ The two tools deliberately keep **separate copies** of the signal map;
 | Frame | Period | Signals |
 |---|---|---|
 | `0x3EF` | 50 ms | Target λ, Throttle, TC setting/intervention, Boost map, Cruise, A/C |
-| `0x3F0` | 100 ms | Fuel/Charge-IAT/Cabin temps, Engine load, Coolant P, Ethanol, Turbo speed, Trigger errors |
+| `0x3F0` | 100 ms | Fuel/Charge-IAT temps, Engine load, Coolant P (u16), Ethanol, Turbo speed, Trigger errors |
 | `0x3F1` | 50 ms | G-force X/Y/Z (signed) + 6 extended warning bits packed in byte 6 |
 
 Bus is 1 Mbit/s, standard 11-bit IDs, DLC 8, **big-endian** — the same settings RealDash's

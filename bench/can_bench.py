@@ -204,12 +204,11 @@ def build_ecu_tasks(include_realdash: bool) -> List[PeriodicTask]:
             coolant_p = int(sine(t, 20.0, 80, 200))
             ethanol = int(sine(t, 50.0, 0, 85))
             charge_iat = sine(t, 25.0, 20, 70)
-            cabin = sine(t, 45.0, 18, 30)
             turbo = int(triangle(t, 8.0, 0, 18000))
             trig_err = int(t // 10) % 5
             return f.ID_EXT_SENSORS, f.encode_ext_sensors(
                 fuel_temp, load, coolant_p, ethanol, charge_iat,
-                cabin, turbo, trig_err)
+                turbo, trig_err)
 
         def imu_warn(t: float) -> Tuple[int, bytes]:
             ax = sine(t, 4.0, -1.2, 1.2)
@@ -490,7 +489,6 @@ class RealDashState:
         self.coolant_press_kpa = 100
         self.ethanol_pct = 10
         self.charge_pipe_iat_c = 25.0
-        self.cabin_temp_c = 22.0
         self.turbo_speed_rpm = 0
         self.trigger_error_count = 0
         # 0x3F1 IMU & Extended Warnings
@@ -522,7 +520,6 @@ def build_realdash_scenario() -> List[Phase]:
     def coolant_p(s, t): s.coolant_press_kpa = int(triangle(t, 8.0, 80, 250))
     def ethanol(s, t): s.ethanol_pct = int(triangle(t, 8.0, 0, 85))
     def charge_iat(s, t): s.charge_pipe_iat_c = triangle(t, 8.0, 15, 75)
-    def cabin(s, t): s.cabin_temp_c = sine(t, 8.0, 16, 32)
     def turbo(s, t): s.turbo_speed_rpm = int(triangle(t, 8.0, 0, 18000))
     def trig_err(s, t): s.trigger_error_count = int(t // 1.0) % 6
 
@@ -573,8 +570,6 @@ def build_realdash_scenario() -> List[Phase]:
             ("REALDASH", "Flex-fuel ethanol % sweeps 0->85")]),
         Phase("Charge-pipe IAT (0x3F0)", 8.0, charge_iat, [
             ("REALDASH", "Post-intercooler IAT sweeps ~15..75 C (offset -50)")]),
-        Phase("Cabin temp (0x3F0)", 8.0, cabin, [
-            ("REALDASH", "Cabin temp mirror swings ~16..32 C (offset -50)")]),
         Phase("Turbo speed (0x3F0)", 8.0, turbo, [
             ("REALDASH", "Turbo speed sweeps 0->18000 RPM (raw x100)")]),
         Phase("Trigger error count (0x3F0)", 6.0, trig_err, [
@@ -610,7 +605,7 @@ def cmd_full_realdash(args: argparse.Namespace) -> None:
     def t_ext_sensors(_t):
         return f.ID_EXT_SENSORS, f.encode_ext_sensors(
             state.fuel_temp_c, state.engine_load_pct, state.coolant_press_kpa,
-            state.ethanol_pct, state.charge_pipe_iat_c, state.cabin_temp_c,
+            state.ethanol_pct, state.charge_pipe_iat_c,
             state.turbo_speed_rpm, state.trigger_error_count)
 
     def t_imu_warn(_t):

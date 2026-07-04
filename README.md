@@ -1,6 +1,6 @@
 # st185-link-ecu-config
 
-Link G4X FuryX ECU, RealDash, and ECUMaster CAN Switch Board V3 configuration for the 1993 Toyota Celica GT-Four ST185 (3S-GTE) TrackCluster build.
+Link G4X XtremeX ECU, RealDash, and ECUMaster CAN Switch Board V3 configuration for the 1993 Toyota Celica GT-Four ST185 (3S-GTE) TrackCluster build.
 
 ## Scope
 
@@ -12,7 +12,7 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 
 | Node | ID Range | Role |
 |---|---|---|
-| Link G4X FuryX ECU | 0x3E8–0x3F1 TX, 0x3EC/0x3ED RX | Engine management — bus master |
+| Link G4X XtremeX ECU | 0x3E8–0x3F1 TX, 0x3EC/0x3ED RX | Engine management — bus master |
 | center-cluster-esp32-p4 | 0x3EC/0x3ED TX, all others RX | Gauge cluster — listens + sends driver selections |
 | ECUMaster CAN Switch Board V3 | 0x640–0x642 TX, 0x643 RX | Analog/digital inputs, low-side outputs |
 | Raspberry Pi 5 (RealDash) | passive listener (ch1) | Dashboard display — listen-only |
