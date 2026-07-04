@@ -11,14 +11,14 @@ Link assigns functions to these **named channels** in PCLink, not to bare pin nu
 
 ## CAN plan (important)
 - **User CAN 1 = the 6-pin Comms/Tuning port** (CAN **H = white**, CAN **L = green**). **All peripheral CAN devices live here**, 1 Mbit/s: center cluster, ECUMaster switchboard, RealDash (listen-only), and the **external lambda controller**.
-- **CAN 2 (optional, shares DI 9 / DI 10 on B loom) — left UNUSED.** This keeps DI 9/10 free as digital inputs and puts everything on one bus, as requested.
+- **CAN 2 (optional, shares DI 9 on the A loom / DI 10 on the B loom) — left UNUSED.** This keeps DI 9/10 free as digital inputs and puts everything on one bus, as requested.
 
 | CAN device | Frames | Dir |
 |---|---|---|
 | Center cluster (ESP32-P4) | 0x3E8–0x3EB, 0x3EE (from ECU); 0x3EC/0x3ED (to ECU) | both |
 | RealDash (Pi) | 0x3EF, 0x3F0, 0x3F1 | listen-only |
 | ECUMaster switchboard | 0x640–0x642 (to ECU); 0x643 (from ECU) | both |
-| **External lambda controller** | TBD (controller-specific — see questions) | to ECU |
+| **External lambda controller** | 0x3B6 (950) Link CAN-Lambda → ECU (fills Lambda 1; ECU re-broadcasts on 0x3EA) | to ECU |
 
 ---
 

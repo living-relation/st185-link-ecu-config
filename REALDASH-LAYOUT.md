@@ -172,9 +172,9 @@ top-strip LEDs stay steady (§4.3). Two ways; use **B** for the eye-catching str
 │   2 "HIGH"   │   3        │   87 %     │   64 %                      │                     │ ROW C
 │              │ INT % ▬▭□  │  ▌bar      │  ▌bar                       │                     │ h116
 ├────────┬─────┴────┬───────┴───┬────────┴───┬────────────┬───────────┴─────────────────────┤
-│IAT2-CP │ FUEL     │ ETHANOL   │ CABIN      │ A/C                                          │
-│        │ TEMP     │           │ TEMP       │                                              │ ROW D
-│ 52 °C  │ 46 °C    │ E30       │ 24 °C      │ ON                                           │ h100
+│IAT2-CP │ FUEL     │ ETHANOL   │ TRIG ERR   │ A/C                                          │
+│        │ TEMP     │           │            │                                              │ ROW D
+│ 52 °C  │ 46 °C    │ E30       │ 0          │ ON                                           │ h100
 └────────┴──────────┴───────────┴────────────┴──────────────────────────────────────────────┘
 ```
 
