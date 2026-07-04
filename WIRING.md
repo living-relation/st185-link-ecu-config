@@ -162,7 +162,7 @@ wiring (SN65HVD230, GPIO4/5). The diagram below is the **overall bus-topology vi
 graph LR
     subgraph BUS["Shared CAN Bus — 1 Mbit/s, ISO 11898-2"]
         direction LR
-        ECU["Link G4X FuryX ECU<br/>(CAN-Lambda internal)<br/>120Ω term — END A"]
+        ECU["Link G4X XtremeX ECU<br/>(CAN-Lambda internal)<br/>120Ω term — END A"]
         CENTER["center-cluster-esp32-p4<br/>SN65HVD230 transceiver<br/>GPIO5 TX / GPIO4 RX"]
         SWB["ECUMaster CAN Switch<br/>Board V3<br/>Base ID 0x640<br/>(set to 1 Mbit/s)"]
         PI5["Pi4+/Pi5 + USB-CAN adapter<br/>(CANable or PCAN USB)<br/>RealDash 840x480 7in screen<br/>120Ω term — END B"]

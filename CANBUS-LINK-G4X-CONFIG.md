@@ -1,7 +1,7 @@
 <!-- STATUS: CODED-COMPLETE — config artifacts shipped: link_g4x_can_setup.lcs / .json (this folder); firmware decode map main/protocols/link_g4x.json -->
 # Link G4X — PCLink CAN setup (ECU side)
 
-Apply this to the **Link G4X FuryX** in PCLink so it broadcasts exactly the frames the center
+Apply this to the **Link G4X XtremeX** in PCLink so it broadcasts exactly the frames the center
 cluster decodes. The matching config is shipped two ways in this folder:
 
 - **`link_g4x_can_setup.lcs`** — import directly: PCLink → **CAN → Setup → File → Open**.
@@ -58,8 +58,8 @@ the center forwards in its UART bridge frames.
 |---|---|---|---|---|---|
 | 0 | 2 | Ignition Angle | ×10 | +1000 | 0.1°+100° |
 | 2 | 1 | Vehicle Speed | ×1 | 0 | km/h (firmware → MPH) |
-| 3 | 1 | Oil Pressure | ×1 | 0 | kPa (firmware → PSI) |
-| 4 | 1 | Fuel Pressure | ×1 | 0 | kPa (firmware → PSI) |
+| 3 | 2 | Oil Pressure | ×1 | 0 | kPa (firmware → PSI) — u16, widened from 1 byte |
+| 5 | 2 | Fuel Pressure | ×1 | 0 | kPa (firmware → PSI) — u16, widened from 1 byte |
 
 ### 0x3EA — lambda (10 ms)
 | Byte | Len | Channel | Scale | Offset | On wire |
@@ -89,6 +89,30 @@ each byte, or send the limit % directly).
 > Do **not** put gauge-shown conditions (oil pressure, fuel level, coolant/oil/IAT temps) in
 > 0x3EE — those are already communicated by gauge color on the screens. 0x3EE is only for the
 > full-screen "ECU WARNING" overlay.
+
+---
+
+## Receive setup (ECU ← other nodes on CAN1)
+
+### External Link CAN Lambda (wideband → Lambda 1 → 0x3EA)
+There is no onboard wideband. An external **Link CAN Lambda** module shares CAN1 with the ECU and the
+cluster. The ECU **receives** it into the **Lambda 1** parameter and re-broadcasts Lambda 1 on
+`0x3EA` (above) for the cluster.
+
+1. ECU Controls → **CAN Setup**. In the **Mode** tab, select the CAN module wired to the bus (CAN1);
+   set CAN Configuration = **User Defined**, Bit Rate = **1 Mbit/s**.
+2. In the **Data** box, pick a free channel: Mode = **Link CAN-Lambda**, CAN ID = **950** (0x3B6),
+   format **Normal**. This populates the Lambda 1 parameter.
+3. **CAN Devices** tab → **Find Devices** → confirm the module is assigned to Lambda 1.
+
+Use the module's factory defaults (device identifier **0**, **1 Mbit/s**) — a single module needs no
+reconfiguration. CAN ID = 950 + device identifier (device 0 → 950 / 0x3B6); reconfig commands go on
+958 (0x3BE). These IDs are distinct from the cluster block 0x3E8–0x3EE, so nothing collides.
+
+### Cluster selections (0x3EC / 0x3ED)
+Receive `0x3EC` (boost-map index 0–3) and `0x3ED` (TC index 0–4) from the cluster's rotary encoders to
+switch the ECU boost map / traction level. The ECU echoes those selections back to RealDash in 0x3EF
+bytes 5 / 3 (no direct cluster↔RealDash CAN traffic).
 
 ---
 

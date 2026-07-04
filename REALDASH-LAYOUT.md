@@ -22,7 +22,7 @@ pairs 1:1 with the inputs defined in [`link_g4x_realdash.xml`](link_g4x_realdash
 ## 1. Design principles
 
 RealDash is the **secondary** display. The ESP32 center cluster already shows the primary vitals —
-RPM, boost/MGP, ECT, IAT, oil temp/pressure, speed, gear, **actual** lambda, fuel level, and the
+RPM, boost/MAP, ECT, IAT, oil temp/pressure, speed, gear, **actual** lambda, fuel level, and the
 full-screen engine-protection warnings (0x3E8–0x3EE). **RealDash must not duplicate those.** It
 surfaces what the cluster does not: driver-assist state, extended sensors, ECU health, and the
 RealDash-side warning bits. See [`CAN-BUS-MASTER-DESIGN.md`](CAN-BUS-MASTER-DESIGN.md) §7.
@@ -172,10 +172,10 @@ top-strip LEDs stay steady (§4.3). Two ways; use **B** for the eye-catching str
 │   2 "HIGH"   │   3        │   87 %     │   64 %                      │                     │ ROW C
 │              │ INT % ▬▭□  │  ▌bar      │  ▌bar                       │                     │ h116
 ├────────┬─────┴────┬───────┴───┬────────┴───┬────────────┬───────────┴─────────────────────┤
-│IAT2-CP │ FUEL     │ ETHANOL   │ CABIN      │ TRIGGER    │ A/C                              │
-│        │ TEMP     │           │ TEMP       │ ERRORS     │                                  │ ROW D
-│ 52 °C  │ 46 °C    │ E30       │ 24 °C      │ 0          │ ON                               │ h100
-└────────┴──────────┴───────────┴────────────┴────────────┴──────────────────────────────────┘
+│IAT2-CP │ FUEL     │ ETHANOL   │ TRIG ERR   │ A/C                                          │
+│        │ TEMP     │           │            │                                              │ ROW D
+│ 52 °C  │ 46 °C    │ E30       │ 0          │ ON                                           │ h100
+└────────┴──────────┴───────────┴────────────┴──────────────────────────────────────────────┘
 ```
 
 ### 5.1 Top strip (`x0 y0 w800 h56`, fill `bg`, 1 px bottom border `tile-edge`)
@@ -222,16 +222,17 @@ clipped by the screen edge.
 | 6 | Throttle | Horizontal bar + % | `ST185: Throttle` | 0–100 % | `accent`, no alarm (driver input) | 406,252,185,116 |
 | 7 | Engine Load | Horizontal bar + % | `ST185: Engine Load` | 0–100 % | `accent`, informational | 603,252,185,116 |
 
-### 5.4 Row D (`y376 h100`, six compact tiles, w119, x = 12 / 143 / 274 / 405 / 536 / 667)
+### 5.4 Row D (`y376 h100`, five compact tiles, w145, x = 12 / 169 / 326 / 483 / 640)
+
+> **Cabin Temp tile removed (2026-06-28):** dropped from the CAN config to free a byte for 2-byte Coolant Pressure. Trigger Errors is kept; Row D is now 5 tiles.
 
 | # | Tile | Gauge | Input | Range | Caution / Alarm | x,y,w,h |
 |---|---|---|---|---|---|---|
-| 8 | **IAT2 - CP** (charge-pipe IAT) | Numeric | `ST185: Charge-Pipe IAT` | 0–80 °C | amber 50–60 / **strobe red >60** (heat soak) | 12,376,119,100 |
-| 9 | Fuel Temp | Numeric | `ST185: Fuel Temp` | 0–90 °C | amber 55–70 / **strobe red >70** | 143,376,119,100 |
-| 10 | Ethanol % | Numeric (E-blend) | `ST185: Ethanol` | 0–100 % | — (flex reference) | 274,376,119,100 |
-| 11 | Cabin Temp | Numeric | `ST185: Cabin Temp` | −10–60 °C | — (comfort) | 405,376,119,100 |
-| 12 | Trigger Errors | Numeric (large 0) | `ST185: Trigger Errors` | 0–255 | amber 1–4 / **strobe red ≥5** (sync loss) | 536,376,119,100 |
-| 13 | A/C | Text (enum) | `ST185: AC Status` | enum | `text-dim` OFF / `good` ON / **red FLT** | 667,376,119,100 |
+| 8 | **IAT2 - CP** (charge-pipe IAT) | Numeric | `ST185: Charge-Pipe IAT` | 0–80 °C | amber 50–60 / **strobe red >60** (heat soak) | 12,376,145,100 |
+| 9 | Fuel Temp | Numeric | `ST185: Fuel Temp` | 0–90 °C | amber 55–70 / **strobe red >70** | 169,376,145,100 |
+| 10 | Ethanol % | Numeric (E-blend) | `ST185: Ethanol` | 0–100 % | — (flex reference) | 326,376,145,100 |
+| 11 | Trigger Errors | Numeric | `ST185: Trigger Errors` | 0–255 | amber ≥1 / **red rising** (crank/cam sync loss) | 483,376,145,100 |
+| 12 | A/C | Text (enum) | `ST185: AC Status` | enum | `text-dim` OFF / `good` ON / **red FLT** | 640,376,145,100 |
 
 Cruise (`#15`) lives in the top-strip badge (§5.1) so the engaged mode is always visible. Enum text
 for Cruise and A/C comes straight from the XML; bind the gauge and enable **Show as text / enum**.
@@ -330,7 +331,7 @@ critical/caution values. The two critical bits also raise a full-screen alert.
 |---|---|---|---|---|---|---|
 | 1 | Low oil pressure (2nd) | `ST185: Low Oil Press 2`=1 | OILP2 LED (steady) | red | — | **Fullscreen Alert** |
 | 2 | High coolant pressure | `ST185: High Coolant Press`=1 | ECT-P LED (steady) + Coolant hero (PSI) | red | yes (hero) | **Fullscreen Alert** |
-| 3 | Trigger errors rising | `ST185: Trigger Errors`≥5 | Trigger tile | — | yes | no |
+| 3 | Trigger/sync errors | `ST185: Trigger Errors` rising (≥1 caution) | Trigger Errors tile (Row D-11) | — | yes | no |
 | 4 | Charge-pipe IAT critical | value > 60 °C | IAT2-CP tile (Row D) | — | yes | no |
 | 5 | Fuel temp critical | value > 70 °C | Fuel Temp tile | — | yes | no |
 | 6 | Switchboard comm fault | `ST185: Switchboard Fault`=1 | SBFLT LED (steady) | amber | — | no |
@@ -411,8 +412,7 @@ the gauge shows, which is a UI-only choice.
 | `ST185: Charge-Pipe IAT` | 0x3F0 | V−50 °C | "IAT2 - CP" °C | DASH D-8 |
 | `ST185: Fuel Temp` | 0x3F0 | V−50 °C | "Fuel Temp" °C | DASH D-9 |
 | `ST185: Ethanol` | 0x3F0 | V % | "Ethanol" (E-blend) | DASH D-10 |
-| `ST185: Cabin Temp` | 0x3F0 | V−50 °C | "Cabin" °C | DASH D-11 |
-| `ST185: Trigger Errors` | 0x3F0 | V count | "Trig Err" | DASH D-12 |
+| `ST185: Trigger Errors` | 0x3F0 | V count | "Trig Err" | DASH D-11 |
 | `ST185: AC Status` | 0x3EF | enum | "A/C" (enum text) | DASH D-13 |
 | `ST185: Cruise State` | 0x3EF | enum | "CRUISE: <mode>" | DASH top badge |
 | `ST185: Flat Shift` | 0x3F1 | bit0 | "FLAT" LED (blue) | DASH LED |
