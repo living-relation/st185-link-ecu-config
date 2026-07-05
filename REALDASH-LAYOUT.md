@@ -92,7 +92,7 @@ tiles). Cruise and A/C span two columns on the bottom row.
 | 4 | Target lambda | `ST185: Target Lambda` | 0.60-1.30 lambda | any | — | — |
 | 5 | Charge-Pipe IAT | `ST185: Charge-Pipe IAT` | 0-80 C + bar | <50 | 50-60 | >60 |
 | 6 | Coolant Pressure | `ST185: Coolant Pressure` | kPa (u16) + bar | 50-150 | 150-200 | >200 or `High Coolant Press`=1 |
-| 7 | Turbo Speed | `ST185: Turbo Speed` | 0-25,500 RPM + bar | <22k | 22-24k | >24k (u8 ceiling) |
+| 7 | Turbo Speed | `ST185: Turbo Speed` | 0-200,000 RPM + bar | <90% | 90-95% | >95% of turbo max |
 | 8 | Engine Load | `ST185: Engine Load` | 0-100 % + bar | any | — | — |
 | 9 | Fuel Temp | `ST185: Fuel Temp` | 0-90 C + bar | <55 | 55-70 | >70 |
 | 10 | Ethanol | `ST185: Ethanol` | 0-100 % (E-blend) + bar | any | — | — |
@@ -102,7 +102,7 @@ tiles). Cruise and A/C span two columns on the bottom row.
 | 14 | A/C (spans 2) | `ST185: AC Status` | enum OFF/REQ/ON/FLT | ON blue | — | FLT red |
 
 > **Coolant Pressure** is now a **u16** wire value (0x3F0 bytes 2-3), so it is no longer capped at
-> 255 kPa. **Turbo Speed** is a single byte `raw x100` -> 0-25,500 RPM ceiling. **Cabin Temp was
+> 255 kPa. **Turbo Speed** is a single byte `raw x1000` -> 0-255,000 RPM (1,000 RPM resolution), covering an EFR's full spool range. **Cabin Temp was
 > dropped** from 0x3F0 to make room for the u16 coolant pressure and is no longer a RealDash input
 > (see `CAN-CONFIG-STATUS.md`); tile #11 uses the lateral accel input instead.
 
@@ -122,7 +122,7 @@ Every gauge binds to a custom `ST185:` input under **Settings -> Inputs -> ECU S
 | `ST185: Fuel Temp` / `ST185: Charge-Pipe IAT` | 0x3F0 | V-50 | C |
 | `ST185: Engine Load` / `ST185: Ethanol` | 0x3F0 | V | % |
 | `ST185: Coolant Pressure` | 0x3F0 | V (u16, bytes 2-3) | kPa |
-| `ST185: Turbo Speed` | 0x3F0 | V x100 | RPM |
+| `ST185: Turbo Speed` | 0x3F0 | V x1000 | RPM |
 | `ST185: Trigger Errors` | 0x3F0 | V | count |
 | `ST185: Accel X/Y/Z` | 0x3F1 | V x0.1 (signed) | g |
 | `ST185: Flat Shift` / `ST185: Radiator Fan` / `ST185: Low Fuel` / `ST185: High Coolant Press` / `ST185: Low Oil Press 2` / `ST185: Switchboard Fault` | 0x3F1 | byte6 bits 0-5 | 0/1 |

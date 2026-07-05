@@ -99,7 +99,7 @@
       <Parameter Name="Coolant Pressure" StartBit="16" Length="16" Scale="1"   Offset="0"   ByteOrder="BigEndian" />
       <Parameter Name="Ethanol %"        StartBit="32" Length="8"  Scale="1"   Offset="0"   ByteOrder="BigEndian" />
       <Parameter Name="Charge-Pipe IAT"  StartBit="40" Length="8"  Scale="1"   Offset="-50" ByteOrder="BigEndian" />
-      <Parameter Name="Turbo Speed"      StartBit="48" Length="8"  Scale="100" Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="Turbo Speed"      StartBit="48" Length="8"  Scale="1000" Offset="0"   ByteOrder="BigEndian" />
       <Parameter Name="Trigger Errors"   StartBit="56" Length="8"  Scale="1"   Offset="0"   ByteOrder="BigEndian" />
     </Channel>
 

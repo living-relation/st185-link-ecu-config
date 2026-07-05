@@ -186,7 +186,7 @@ All new streams follow the existing convention: **Custom type, BigEndian, non-mu
 | 2–3 | Coolant Pressure | uint16 BE | 1 | 0 | kPa — widened to 2 bytes for headroom (1 byte capped 255 kPa) |
 | 4 | Ethanol % | uint8 | 1 | 0 | flex-fuel sensor |
 | 5 | Charge-Pipe IAT | uint8 | 1 | -50 | °C, post-intercooler (distinct from 0x3E8 manifold IAT) |
-| 6 | Turbo Speed ÷100 | uint8 | 100 | 0 | RPM, e.g. 120 = 12,000 RPM |
+| 6 | Turbo Speed ÷1000 | uint8 | 1000 | 0 | RPM, 1k resolution (u8 -> 0-255,000), e.g. 150 = 150,000 RPM |
 | 7 | Trigger Error Count | uint8 | 1 | 0 | rolling/cumulative sync-error count |
 
 > **Cabin Temp removed (2026-06-28):** dropped to fit 2-byte Coolant Pressure (frame was full at 8 bytes). Cabin temp is **no longer available via the ST185 RealDash inputs** — RealDash does not read the switchboard 0x640 frame directly. To restore cabin temp, add a new frame 0x3F2 (with a matching RealDash frame/value) rather than reading 0x640.

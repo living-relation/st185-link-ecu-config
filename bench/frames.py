@@ -214,7 +214,7 @@ def encode_ext_sensors(fuel_temp_c: float, engine_load_pct: int,
         _u16(_enc(coolant_press_kpa, 1, 0)),
         _u8(ethanol_pct),
         _u8(_enc(charge_pipe_iat_c, 1, -50)),
-        _u8(_enc(turbo_speed_rpm, 100, 0)),
+        _u8(_enc(turbo_speed_rpm, 1000, 0)),
         _u8(trigger_error_count),
     )
 
@@ -226,7 +226,7 @@ def decode_ext_sensors(data: bytes) -> Dict[str, float]:
         "coolant_press_kpa": cp,
         "ethanol_pct": eth,
         "charge_pipe_iat_c": _dec(cpiat, 1, -50),
-        "turbo_speed_rpm": _dec(turbo, 100, 0),
+        "turbo_speed_rpm": _dec(turbo, 1000, 0),
         "trigger_error_count": trig,
     }
 
