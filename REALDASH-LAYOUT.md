@@ -92,7 +92,7 @@ tiles). Cruise and A/C span two columns on the bottom row.
 | 4 | Target lambda | `ST185: Target Lambda` | 0.60-1.30 lambda | any | — | — |
 | 5 | Charge-Pipe IAT | `ST185: Charge-Pipe IAT` | 0-80 C + bar | <50 | 50-60 | >60 |
 | 6 | Coolant Pressure | `ST185: Coolant Pressure` | kPa (u16) + bar | 50-150 | 150-200 | >200 or `High Coolant Press`=1 |
-| 7 | Turbo Speed | `ST185: Turbo Speed` | 0-25,500 RPM + bar | <180k | 180-190k | >190k (set to your turbo) |
+| 7 | Turbo Speed | `ST185: Turbo Speed` | 0-25,500 RPM + bar | <22k | 22-24k | >24k (u8 ceiling) |
 | 8 | Engine Load | `ST185: Engine Load` | 0-100 % + bar | any | — | — |
 | 9 | Fuel Temp | `ST185: Fuel Temp` | 0-90 C + bar | <55 | 55-70 | >70 |
 | 10 | Ethanol | `ST185: Ethanol` | 0-100 % (E-blend) + bar | any | — | — |
@@ -114,18 +114,18 @@ Every gauge binds to a custom `ST185:` input under **Settings -> Inputs -> ECU S
 
 | Input | Frame | Raw -> value | Unit |
 |---|---|---|---|
-| `Target Lambda` | 0x3EF | V x0.001 | lambda |
-| `Throttle` | 0x3EF | V | % |
-| `TC Setting` / `TC Intervention` | 0x3EF | index / V | — / % |
-| `Boost Map` | 0x3EF | index 0-3 | — |
-| `Cruise State` / `AC Status` | 0x3EF | enum | text |
-| `Fuel Temp` / `Charge-Pipe IAT` | 0x3F0 | V-50 | C |
-| `Engine Load` / `Ethanol` | 0x3F0 | V | % |
-| `Coolant Pressure` | 0x3F0 | V (u16, bytes 2-3) | kPa |
-| `Turbo Speed` | 0x3F0 | V x100 | RPM |
-| `Trigger Errors` | 0x3F0 | V | count |
-| `Accel X/Y/Z` | 0x3F1 | V x0.1 (signed) | g |
-| `Flat Shift` / `Radiator Fan` / `Low Fuel` / `High Coolant Press` / `Low Oil Press 2` / `Switchboard Fault` | 0x3F1 | byte6 bits 0-5 | 0/1 |
+| `ST185: Target Lambda` | 0x3EF | V x0.001 | lambda |
+| `ST185: Throttle` | 0x3EF | V | % |
+| `ST185: TC Setting` / `ST185: TC Intervention` | 0x3EF | index / V | — / % |
+| `ST185: Boost Map` | 0x3EF | index 0-3 | — |
+| `ST185: Cruise State` / `ST185: AC Status` | 0x3EF | enum | text |
+| `ST185: Fuel Temp` / `ST185: Charge-Pipe IAT` | 0x3F0 | V-50 | C |
+| `ST185: Engine Load` / `ST185: Ethanol` | 0x3F0 | V | % |
+| `ST185: Coolant Pressure` | 0x3F0 | V (u16, bytes 2-3) | kPa |
+| `ST185: Turbo Speed` | 0x3F0 | V x100 | RPM |
+| `ST185: Trigger Errors` | 0x3F0 | V | count |
+| `ST185: Accel X/Y/Z` | 0x3F1 | V x0.1 (signed) | g |
+| `ST185: Flat Shift` / `ST185: Radiator Fan` / `ST185: Low Fuel` / `ST185: High Coolant Press` / `ST185: Low Oil Press 2` / `ST185: Switchboard Fault` | 0x3F1 | byte6 bits 0-5 | 0/1 |
 
 > **Cabin Temp is no longer a RealDash input** — dropped from 0x3F0 when Coolant Pressure was widened
 > to u16. To restore it, add a new ECU frame (e.g. 0x3F2) with a matching RealDash value; do not
