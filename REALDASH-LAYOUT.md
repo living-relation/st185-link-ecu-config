@@ -2,440 +2,172 @@
 
 Buildable dashboard design for the **Raspberry Pi RealDash** secondary display on the 1993 Celica
 GT-Four (3S-GTE) track build. This is the spec you build against in the RealDash visual editor; it
-pairs 1:1 with the inputs defined in [`link_g4x_realdash.xml`](link_g4x_realdash.xml).
-
-**Two pages:**
-
-1. **DASH** — one consolidated engineering page (all gauges on a single 800×480 screen, 3D tiles,
-   bright LED warning lights, large automotive fonts, strobing alarms, cruise-mode readout).
-2. **MEDIA** — a music-player page (SD/USB local files, streaming-app control, phone audio over
-   Bluetooth — see the platform reality check in §2 before you wire it up).
+pairs 1:1 with the inputs in [`link_g4x_realdash.xml`](link_g4x_realdash.xml). A browser preview of
+the finished look is [`realdash-simulation.html`](realdash-simulation.html) (open in any browser).
 
 > **Why a spec and not a `.rd` file?** RealDash dashboards (`.rd`) are a binary format produced only
-> by the in-app visual editor — *"No XML needed of any kind when designing dashboards; XMLs are just
-> for specifying custom connections"* (RealDash devs). So the layout is version-controlled here as a
-> precise, buildable spec plus the importable channel XML it binds to. You build it once in edit
-> mode, then RealDash saves your `.rd`.
+> by the in-app visual editor. The layout is version-controlled here as a buildable spec plus the
+> importable channel-description XML it binds to.
+
+> **CAN scope:** RealDash listens only to the three ECU->RealDash frames **0x3EF / 0x3F0 / 0x3F1**.
+> The cluster frames 0x3E8-0x3EE (RPM, boost, temps, speed, gear, lambda, protection) belong to the
+> **center cluster** and are documented in
+> [`CANBUS-ENCODE-DECODE-REFERENCE.html`](CANBUS-ENCODE-DECODE-REFERENCE.html) — RealDash does not
+> display those (no duplication).
 
 ---
 
 ## 1. Design principles
 
-RealDash is the **secondary** display. The ESP32 center cluster already shows the primary vitals —
-RPM, boost/MAP, ECT, IAT, oil temp/pressure, speed, gear, **actual** lambda, fuel level, and the
-full-screen engine-protection warnings (0x3E8–0x3EE). **RealDash must not duplicate those.** It
-surfaces what the cluster does not: driver-assist state, extended sensors, ECU health, and the
-RealDash-side warning bits. See [`CAN-BUS-MASTER-DESIGN.md`](CAN-BUS-MASTER-DESIGN.md) §7.
+RealDash is the **secondary** display; the ESP32 center cluster shows the primary vitals. RealDash
+surfaces what the cluster does **not**: driver-assist state, extended sensors, and the extended
+warning bits.
 
-Track-display rules:
-
-- **Glanceable** — readable in < 0.5 s of peripheral vision; big numerals, high contrast.
-- **Color = meaning** — neutral when OK; amber = caution; red = act now; blue = informational/on.
-- **LEDs for state** — active states light a bright indicator; true warnings **strobe**.
+- **Glanceable** — a value readable in < 0.5 s.
+- **Single page** — one 800x480 engineering grid; no page swiping, no media player.
+- **Color = state** — neutral OK; **amber** = caution; **red** = alarm; **blue** = active/informational.
 - **No duplication** — anything already on the cluster is omitted on purpose.
 
 ---
 
-## 2. Platform & media reality check (read before building Page 2)
-
-RealDash's media features depend heavily on the operating system on your Pi. Be realistic about what
-is and isn't possible:
-
-| You want… | Does RealDash do it? | How |
-|---|---|---|
-| Play **SD-card / USB local files** | ✅ Yes, directly | Settings → User → Music Player → *RealDash as music player*, pick the music folder. Page 2 controls it. |
-| Show now-playing + control **Spotify / Apple / Google** | ✅ Android only | Settings → User → Music Player → pick the service; grant Notification access. |
-| Show now-playing + control **Amazon Prime Music** | ⚠️ Android only, via *Other* | Amazon Music isn't a named source; use the **"Other"** option, which reads the Android media session of any player. Controls = play/pause/next/prev; album art may not appear. |
-| **Stream** Amazon Prime Music *from inside RealDash* | ❌ No | RealDash never streams a service itself. The **Amazon Music app** streams; RealDash only displays/controls it. |
-| **Receive Bluetooth audio** from your phone | ❌ Not in RealDash | *"RealDash has no functionality to receive Bluetooth audio streams"* (RealDash dev). The **OS** must be the Bluetooth A2DP **sink**; RealDash can then show/control it via the media session (Android *Other*). |
-
-**Bottom line / recommendation**
-
-- For the **richest media page** (Amazon Music, Spotify, Bluetooth-from-phone, album art), run
-  **RealDash on Android** on the Pi (Android image / Android board), not the Linux build.
-- The **Linux** RealDash Pi build reliably does **local SD/USB files** and basic transport; streaming
-  metadata and Bluetooth control are limited/OS-dependent.
-- **Bluetooth from your phone** is always an **OS** job (pair + A2DP sink at the OS level). RealDash
-  shows/controls it only if the OS exposes a media session.
-
-Page 2 below is built to **degrade gracefully**: the local-file player and transport always work; the
-streaming/Bluetooth now-playing tiles simply stay blank on platforms that can't provide the data.
-
----
-
-## 3. Hardware & canvas
+## 2. Hardware & canvas
 
 | Property | Value |
 |---|---|
-| Device | Raspberry Pi 4+/Pi 5 running RealDash (**Android recommended** if you want full media — see §2) |
-| Screen | 7" **800 × 480** landscape touch panel (project docs also say "840×480"; design proportionally, RealDash auto-fits) |
-| CAN | USB-CAN adapter (CANable / PCAN), **1 Mbit/s**, passive listener, `bus="0"` |
-| Connection XML | `link_g4x_realdash.xml` (RealDash CAN v2, BigEndian) |
-| Pages | 2 (DASH, MEDIA), swipe left/right to switch |
-
-All coordinates are an **800 × 480** design grid (origin top-left, `x,y,w,h` px). Treat px as
-proportional guidance — RealDash scales the finished dash to the panel. Outer margin 12 px, gutter
-12 px.
+| Device | Raspberry Pi 4+/Pi 5 running RealDash |
+| Screen | 7" panel, **800 x 480** landscape |
+| CAN | USB-CAN adapter, **1 Mbit/s**, passive listener, BigEndian |
+| Connection XML | `link_g4x_realdash.xml` (RealDash CAN v2) |
+| Layout | **One page** + persistent top status strip |
 
 ---
 
-## 4. Visual style — 3D tiles, LEDs, fonts
+## 3. Theme — blue + brushed chrome
 
-### 4.1 Palette
+Bright graphite base with electric-blue and brushed-chrome accents.
 
 | Token | Hex | Use |
 |---|---|---|
-| `bg` | `#070A0F` | page background (near-black) |
-| `tile-top` | `#1C2430` | tile gradient top (lighter — fakes a top light source) |
-| `tile-bot` | `#0E141C` | tile gradient bottom (darker) |
-| `tile-edge` | `#2A3645` | 1 px top/left highlight edge |
-| `tile-shadow` | `#000000 @60%` | drop shadow under each tile |
-| `text` | `#F5F7FA` | primary numerals |
-| `text-dim` | `#8A94A6` | labels, units |
-| `accent` | `#22D3EE` | normal active accent (cyan) |
-| `good` | `#34D399` | in-spec green |
-| `caution` | `#F5B301` | amber / yellow warning |
-| `alarm` | `#FF3B30` | red alarm |
-| `info` | `#3B82F6` | informational on-state (fan, flat-shift) |
-| `led-off` | `#202833` | dim LED when inactive |
-
-### 4.2 The 3D tile look (two routes)
-
-**Route A — no assets (build entirely in RealDash, recommended start).** Each tile is a **Box /
-Background gauge**:
-
-- Fill = vertical **gradient** `tile-top → tile-bot`.
-- **Corner radius** ~14 px.
-- **Border** 1 px `tile-edge` (the light top edge sells the bevel).
-- **Drop shadow:** RealDash boxes don't have a true shadow toggle, so fake it — place a second box
-  **6 px below/right**, same size, solid `#000` at ~45% opacity, *behind* the tile. Group them so the
-  tile reads as floating. (Skip if performance on the Pi suffers; the gradient + edge alone already
-  reads as 3D.)
-
-**Route B — polished PNG tiles (optional later).** Make one 512×512 rounded-rect PNG with a baked
-top-highlight, vertical gradient, and soft outer drop shadow; use it as the **Background Image** of an
-Image gauge behind each tile's value gauges. One PNG reused everywhere keeps it consistent and fast.
-Grab tile/LED art from RealDash **Gallery → Examples** if you don't want to draw your own.
-
-### 4.3 LEDs
-
-An LED indicator in the top strip = a small **circular Indicator** (Image or Shape gauge) + a text
-label, bound to a 0/1 input. **All six strip LEDs behave the same way** (the info LEDs and the
-warning LEDs are styled identically — only the dot color differs):
-
-- **Off / inactive:** dot color `led-off` at ~25% opacity; label `text-dim`.
-- **On / active:** dot lights in its own color with a soft outer glow **and the label turns white
-  (`text`)**. No blink, no background tint — a steady, clean "lit" state.
-- **Dot colors (kept per indicator):** FLAT / FAN = `info` blue · LOFUEL / SBFLT = `caution` amber ·
-  ECT-P / OILP2 = `alarm` red.
-- Use the **Image Blend Color / Normal–Warning–Critical levels** trick (RealDash *Make an indicator*
-  tutorial) so the LED dot + label are dim at value 0 and bright/white at value 1.
-
-> The **data tiles** (heroes / Row D) still strobe for true critical values — see §4.5. The strip
-> LEDs deliberately do **not** strobe; they are clean status lights.
-
-### 4.4 Typography
-
-- **Hero numerals:** condensed bold, 7-seg/`DSEG`-style, **64–84 px**.
-- **Tile numerals:** 34–46 px. **Compact numerals:** 26–32 px.
-- **Labels:** uppercase, letter-spaced ~2 px, `text-dim`, 13–16 px, above the value.
-- **Units:** `text-dim`, ~55% of the numeral size, trailing the value.
-
-### 4.5 Strobe (blinking warnings)
-
-Strobe is reserved for the **data tiles** (heroes + Row D) when a value goes critical/caution — the
-top-strip LEDs stay steady (§4.3). Two ways; use **B** for the eye-catching strobe:
-
-- **A — solid color (no animation):** in the gauge's **Input & Values**, set Warning/Critical levels
-  so the active state is "Critical", then set the Critical **color** to red/amber. Color changes but
-  doesn't flash.
-- **B — true strobe (looping fade):** select the tile/LED → **Edit → Animations → add Fade**, opacity
-  100 → 0, duration **0.35 s**, **Loop = on (ping-pong)**. Gate it with two triggers on the bound
-  input: *value ≥ 1 → start/show*, *value < 1 → stop/hide (opacity 100)*. Result: a steady ~1.4 Hz
-  strobe while the warning is active, off otherwise. (Red strobe = critical, amber/yellow strobe =
-  caution.) Animations save into the `.rd`; to version them as text, export to
-  `realdash_st185_anim.xml` — see <https://github.com/janimm/RealDash-extras/tree/master/Dashboard-animation-examples>.
+| `bg` | `#1a2430` | page background (graphite) |
+| `panel` | `#243243` | tile background |
+| `edge` | `#3c5066` | tile border |
+| `blue` | `#34a8ff` | primary active accent |
+| `cyan` | `#46e6ff` | secondary blue accent |
+| `chrome` | `#f4f7fb -> #c3ccd8 -> #889aac` | brushed-chrome rails / trim / title |
+| `text` | `#f3f8ff` | primary numerals |
+| `dim` | `#9fb1c6` | labels / units |
+| `caution` | `#ffc233` | amber caution |
+| `alarm` | `#ff4d57` | red alarm |
 
 ---
 
-## 5. Page 1 — DASH (single consolidated page)
+## 4. Top status strip (persistent)
 
-```
-┌──────────────────────────────────── TOP STRIP (h56) ──────────────────────────────────────┐
-│ 10:42 │ CRUISE: SET │ ●FLAT ●FAN ●LOFUEL ●SBFLT ●ECT-P ●OILP2 │           ♪ MEDIA ►        │
-├───────────────────────────┬───────────────────────────┬────────────────────────────────────┤
-│  TARGET LAMBDA            │  COOLANT PRESSURE         │  TURBO SPEED                       │
-│        0.88               │       16 PSI              │      132 K                         │ HEROES
-│  TUNE ▬▬▬□  (no alarm)    │  (strobe red if ECT-P)    │  (red near turbo max)             │ h180
-├──────────────┬────────────┼────────────┬──────────────┴──────────────┬─────────────────────┤
-│ BOOST MAP    │ TC SETTING │ THROTTLE   │ ENGINE LOAD                 │                     │
-│   2 "HIGH"   │   3        │   87 %     │   64 %                      │                     │ ROW C
-│              │ INT % ▬▭□  │  ▌bar      │  ▌bar                       │                     │ h116
-├────────┬─────┴────┬───────┴───┬────────┴───┬────────────┬───────────┴─────────────────────┤
-│IAT2-CP │ FUEL     │ ETHANOL   │ TRIG ERR   │ A/C                                          │
-│        │ TEMP     │           │            │                                              │ ROW D
-│ 52 °C  │ 46 °C    │ E30       │ 0          │ ON                                           │ h100
-└────────┴──────────┴───────────┴────────────┴──────────────────────────────────────────────┘
-```
+`x0 y0 w800 h54`, dark-blue bar with a chrome hairline. Left: `ST185 . DASH` title; a clock sits
+bottom-right. Info chips glow solid; caution/alarm chips **strobe** (amber ~2 Hz, red ~3 Hz). There
+is **no full-screen modal overlay** — a strobing strip chip is the alarm.
 
-### 5.1 Top strip (`x0 y0 w800 h56`, fill `bg`, 1 px bottom border `tile-edge`)
-
-All six LEDs use the same style (steady "lit dot + white label" when active, dim when inactive — see
-§4.3); only the dot color differs. The MEDIA button is kept inside the right margin so it is never
-clipped by the screen edge.
-
-| Element | x,y,w,h | Input | Behavior |
-|---|---|---|---|
-| Clock | 12,14,74,30 | built-in **Time** | HH:MM, `text-dim` (no "ST185" text) |
-| **CRUISE badge** | 96,10,128,38 | `ST185: Cruise State` | Shows the engaged mode from the enum: **OFF / STBY / SET / RES / OVR**. `text-dim` when OFF; `accent` cyan for any active mode. **Not a warning** — it only reflects the OEM cruise-stalk state (see note below). |
-| LED: FLAT | 232,16,56,26 | `ST185: Flat Shift` | dot `info` blue + white label when 1, dim when 0 |
-| LED: FAN | 292,16,52,26 | `ST185: Radiator Fan` | dot `info` blue + white label when 1 |
-| LED: LOFUEL | 348,16,72,26 | `ST185: Low Fuel` | dot `caution` amber + white label when 1 |
-| LED: SBFLT | 424,16,66,26 | `ST185: Switchboard Fault` | dot `caution` amber + white label when 1 |
-| LED: ECT-P | 494,16,62,26 | `ST185: High Coolant Press` | dot `alarm` red + white label when 1 |
-| LED: OILP2 | 560,16,58,26 | `ST185: Low Oil Press 2` | dot `alarm` red + white label when 1 |
-| **MEDIA nav** | 678,9,110,38 | — | Button, fully inside the 12 px right margin (ends at 788). Tap → Page 2 (or swipe left). Icon "♪ ►". |
-
-> **Cruise modes:** the OEM cruise-control stalk feeds the ECU (via the switchboard); the ECU
-> broadcasts the resulting state on 0x3EF byte6, which RealDash shows as the enum text above. The
-> badge is informational only — it never blinks or shows a warning color. (ECT-P = the coolant/ECT
-> pressure warning bit; renamed from COOL-P.)
-
-> The cluster owns primary engine protection (knock, cut, primary oil pressure, over-temp) via its
-> own full-screen overlay. These six LEDs are only the RealDash-side 0x3F1 bits — keep the mental
-> model: **cluster = engine protection, RealDash = assist + extended + these bits.**
-
-### 5.2 Heroes (`y64 h180`, three tiles, w250, x = 12 / 274 / 536)
-
-| # | Tile | Gauge | Input | Display | Caution (amber) | Alarm (red, strobe) | x,y,w,h |
-|---|---|---|---|---|---|---|---|
-| 1 | **Target Lambda** | Numeric hero + bottom mini-bar | `ST185: Target Lambda` | λ value, 2 decimals; bar spans 0.60–1.30. Left-aligned mini-label **"Tune"** above the bar. Label reads **"Target Lambda"** (the word, no glyph). | — | — (tune reference, no alarm) | 12,64,250,180 |
-| 2 | Coolant Pressure | Numeric hero + small arc | `ST185: Coolant Pressure` | **PSI** — gauge **Gauge Math `=V*0.145038`**, unit "PSI" (input stays kPa). | ~22–29 PSI (150–200 kPa) | **>29 PSI (>200 kPa) or `High Coolant Press`=1** | 274,64,250,180 |
-| 3 | Turbo Speed | Numeric hero + small arc | `ST185: Turbo Speed` | **"K" (thousands)** — Gauge Math `=V/1000`, 0 decimals, suffix **"K"** → 3 digits like `132K`. Optional: show 1 decimal under 1000 rpm (e.g. `0.5K`) via a second gauge gated by a `V<1000` trigger. | 90–95 % | **>95 % of turbo max** (set to your turbo) | 536,64,250,180 |
-
-### 5.3 Row C (`y252 h116`, four tiles, w185, x = 12 / 209 / 406 / 603)
-
-| # | Tile | Gauge | Input | Range | Notes / colors | x,y,w,h |
-|---|---|---|---|---|---|---|
-| 4 | Boost Map | Big index + name text | `ST185: Boost Map` | 0–3 | `accent`; map name layer 0=LOW,1=MID,2=HIGH,3=MAX | 12,252,185,116 |
-| 5 | TC Setting | Big index + intervention bar | `ST185: TC Setting` (+`ST185: TC Intervention` sub-bar) | 0–4 | index `accent`; left-aligned mini-label **"Int %"** above the bar (= % intervention the ECU applies to correct wheel slip); bar `good`<10 / amber 10–40 / red >40 | 209,252,185,116 |
-| 6 | Throttle | Horizontal bar + % | `ST185: Throttle` | 0–100 % | `accent`, no alarm (driver input) | 406,252,185,116 |
-| 7 | Engine Load | Horizontal bar + % | `ST185: Engine Load` | 0–100 % | `accent`, informational | 603,252,185,116 |
-
-### 5.4 Row D (`y376 h100`, five compact tiles, w145, x = 12 / 169 / 326 / 483 / 640)
-
-> **Cabin Temp tile removed (2026-06-28):** dropped from the CAN config to free a byte for 2-byte Coolant Pressure. Trigger Errors is kept; Row D is now 5 tiles.
-
-| # | Tile | Gauge | Input | Range | Caution / Alarm | x,y,w,h |
-|---|---|---|---|---|---|---|
-| 8 | **IAT2 - CP** (charge-pipe IAT) | Numeric | `ST185: Charge-Pipe IAT` | 0–80 °C | amber 50–60 / **strobe red >60** (heat soak) | 12,376,145,100 |
-| 9 | Fuel Temp | Numeric | `ST185: Fuel Temp` | 0–90 °C | amber 55–70 / **strobe red >70** | 169,376,145,100 |
-| 10 | Ethanol % | Numeric (E-blend) | `ST185: Ethanol` | 0–100 % | — (flex reference) | 326,376,145,100 |
-| 11 | Trigger Errors | Numeric | `ST185: Trigger Errors` | 0–255 | amber ≥1 / **red rising** (crank/cam sync loss) | 483,376,145,100 |
-| 12 | A/C | Text (enum) | `ST185: AC Status` | enum | `text-dim` OFF / `good` ON / **red FLT** | 640,376,145,100 |
-
-Cruise (`#15`) lives in the top-strip badge (§5.1) so the engaged mode is always visible. Enum text
-for Cruise and A/C comes straight from the XML; bind the gauge and enable **Show as text / enum**.
-
-> **Note:** `ST185: Accel X/Y/Z` remain defined in the XML (the IMU frame is still received for the
-> warning bits) but are **not shown** on this layout. They're available if you ever re-add a g-force
-> view.
-
----
-
-## 6. Page 2 — MEDIA (music player)
-
-Built from RealDash's built-in **Media** inputs and **music actions** (not from the CAN XML). See §2
-for what each platform can actually deliver.
-
-```
-┌──────────────────────────────────── TOP STRIP (h56) ──────────────────────────────────────┐
-│ ◄ DASH      MEDIA                       SOURCE: SD CARD ▾                           10:42   │
-├───────────────────────────────┬────────────────────────────────────────────────────────────┤
-│                               │  TRACK TITLE  (large, scrolls if long)                     │
-│         ALBUM ART             │  Artist Name                                               │
-│         300 × 300             │  Album Name                                                │
-│        (blank if n/a)         │  ┌──────────────────────────────── progress ───────────┐  │
-│                               │  0:42                                          3:51      │  │
-│                               │                                                            │
-│                               │   [ ⏮ PREV ]   [ ⏯ PLAY/PAUSE ]   [ ⏭ NEXT ]   [ 🔀 ]   │
-├───────────────────────────────┴────────────────────────────────────────────────────────────┤
-│  MUSIC LIST  (browse SD/USB folders — scrollable; tap a track to play)                       │
-└──────────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
-### 6.1 Top strip (`x0 y0 w800 h56`)
-
-| Element | x,y,w,h | Input / action |
+| Chip | Input | Color when active |
 |---|---|---|
-| **◄ DASH** nav | 12,8,96,40 | Button → Page 1 (or swipe right) |
-| "MEDIA" title | 120,14,120,30 | static text |
-| **SOURCE** label | 430,14,220,30 | static text reflecting Settings → User → Music Player (e.g. "SD CARD", "SPOTIFY", "OTHER"). Optional button = action *Open Settings*. |
-| Clock | 700,14,88,30 | built-in **Time** |
-
-### 6.2 Now-playing + transport
-
-| # | Element | Gauge | Input / action | x,y,w,h |
-|---|---|---|---|---|
-| 1 | Album art | Image gauge | **Media → Album Art** input (blank if unavailable) | 24,80,300,300 |
-| 2 | Track title | Text (large, marquee) | **Media → Track/Title** | 344,86,432,44 |
-| 3 | Artist | Text | **Media → Artist** | 344,134,432,30 |
-| 4 | Album | Text (`text-dim`) | **Media → Album** | 344,166,432,28 |
-| 5 | Progress bar | Horizontal bar | **Media → Position** (range 0…**Media → Duration**) | 344,210,432,16 |
-| 6 | Elapsed / total | Text ×2 (`units="time"`) | Position / Duration | 344,230,432,22 |
-| 7 | **PREV** | Button | action **Previous Song** | 344,276,96,84 |
-| 8 | **PLAY / PAUSE** | Button (toggles icon) | action **Toggle Pause Music** | 452,276,120,84 |
-| 9 | **NEXT** | Button | action **Next Song** | 584,276,96,84 |
-| 10 | **SHUFFLE** | Button (lit when on) | action **Toggle Music Playback Shuffle** | 692,276,84,84 |
-
-Make the transport buttons **big (≥80 px)** — they're the only touch targets you use while moving.
-Give them the same 3D tile treatment (§4.2) and an `accent` glow on press.
-
-### 6.3 Browser
-
-| # | Element | Gauge | Input / action | x,y,w,h |
-|---|---|---|---|---|
-| 11 | Music List | **Music List** gauge | local library / chosen folder | 12,392,776,84 |
-
-The **Music List** gauge is RealDash's built-in file browser/playlist for the local player — tap a
-row to play. (Start from the **Gallery → Examples → Music player** dash if you want a ready-made list
-gauge to copy.) For streaming/Bluetooth sources the list reflects the OS player as far as the
-platform allows (§2).
-
-### 6.4 Configure the music source
-
-1. **Settings → User → Music Player.** Pick one:
-   - **RealDash as music player** → plays **SD/USB local files**; choose the music folder. Album art,
-     list, and all transport work everywhere.
-   - **Spotify / Apple Music / Google Play** *(Android)* → now-playing + transport for that app.
-   - **Other** *(Android)* → for **Amazon Prime Music** and any other player; reads the Android media
-     session (play/pause/next/prev; metadata as the app provides).
-2. **Android only:** grant RealDash **Notification access** (Android Settings → Apps → Special access →
-   Notification access → RealDash) or titles/artist won't show.
-3. **Spotify only:** Spotify app → Settings → enable **Device Broadcast Status**.
-4. **Bluetooth from your phone:** pair the phone to the **Pi's OS** and set the OS as the **A2DP
-   sink** (Android handles this natively; on Linux use e.g. `bluez`/`bluealsa`/PulseAudio). Audio
-   plays through the Pi's output; RealDash then shows/controls it via *Other* if a media session
-   exists. **RealDash itself does not receive the Bluetooth stream** (§2).
+| `FLAT` | `ST185: Flat Shift` | blue (info) |
+| `FAN` | `ST185: Radiator Fan` | blue (info) |
+| `LOFUEL` | `ST185: Low Fuel` | amber, strobe |
+| `SBFLT` | `ST185: Switchboard Fault` | amber, strobe |
+| `COOLANT P` | `ST185: High Coolant Press` | red, strobe |
+| `OIL P 2` | `ST185: Low Oil Press 2` | red, strobe |
 
 ---
 
-## 7. Warning & strobe summary
+## 5. Single page — 4 x 4 tile grid
 
-Priority high→low. The two **critical** bits also raise a full-screen alert.
+Uniform 4-column grid. Each tile: uppercase label, big value, optional bottom progress bar that
+turns amber/red at threshold; a 3px left accent stripe (chrome default, blue on active driver-assist
+tiles). Cruise and A/C span two columns on the bottom row.
 
-Strip **LEDs are steady** (lit dot + white label when active — §4.3); **data tiles strobe** for true
-critical/caution values. The two critical bits also raise a full-screen alert.
-
-| Pri | Condition | Source | Where it shows | LED dot color | Tile strobe? | Alert? |
+| # | Tile | Input | Range / display | OK | Caution | Alarm |
 |---|---|---|---|---|---|---|
-| 1 | Low oil pressure (2nd) | `ST185: Low Oil Press 2`=1 | OILP2 LED (steady) | red | — | **Fullscreen Alert** |
-| 2 | High coolant pressure | `ST185: High Coolant Press`=1 | ECT-P LED (steady) + Coolant hero (PSI) | red | yes (hero) | **Fullscreen Alert** |
-| 3 | Trigger/sync errors | `ST185: Trigger Errors` rising (≥1 caution) | Trigger Errors tile (Row D-11) | — | yes | no |
-| 4 | Charge-pipe IAT critical | value > 60 °C | IAT2-CP tile (Row D) | — | yes | no |
-| 5 | Fuel temp critical | value > 70 °C | Fuel Temp tile | — | yes | no |
-| 6 | Switchboard comm fault | `ST185: Switchboard Fault`=1 | SBFLT LED (steady) | amber | — | no |
-| 7 | Low fuel | `ST185: Low Fuel`=1 | LOFUEL LED (steady) | amber | — | no |
-| 8 | Radiator fan on | `ST185: Radiator Fan`=1 | FAN LED (steady) | blue | — | no |
-| 9 | Flat-shift active | `ST185: Flat Shift`=1 | FLAT LED (steady) | blue | — | no |
+| 1 | Boost Map | `ST185: Boost Map` | index 0-3 (LOW/MID/HIGH/MAX) | — | — | — |
+| 2 | TC + intervention | `ST185: TC Setting` / `TC Intervention` | 0-4 + % bar | <10% | 10-40% | >40% |
+| 3 | Throttle | `ST185: Throttle` | 0-100 % + bar | any | — | — |
+| 4 | Target lambda | `ST185: Target Lambda` | 0.60-1.30 lambda | any | — | — |
+| 5 | Charge-Pipe IAT | `ST185: Charge-Pipe IAT` | 0-80 C + bar | <50 | 50-60 | >60 |
+| 6 | Coolant Pressure | `ST185: Coolant Pressure` | kPa (u16) + bar | 50-150 | 150-200 | >200 or `High Coolant Press`=1 |
+| 7 | Turbo Speed | `ST185: Turbo Speed` | 0-200,000 RPM + bar | <90% | 90-95% | >95% of turbo max |
+| 8 | Engine Load | `ST185: Engine Load` | 0-100 % + bar | any | — | — |
+| 9 | Fuel Temp | `ST185: Fuel Temp` | 0-90 C + bar | <55 | 55-70 | >70 |
+| 10 | Ethanol | `ST185: Ethanol` | 0-100 % (E-blend) + bar | any | — | — |
+| 11 | Lat G | `ST185: Accel Y` | lateral g (signed) | any | — | — |
+| 12 | Trigger Errors | `ST185: Trigger Errors` | count | =0 (green) | 1-4 | >=5 (sync loss) |
+| 13 | Cruise (spans 2) | `ST185: Cruise State` | enum OFF/STBY/SET/RES/OVR | OFF dim / SET-RES blue | OVR amber | — |
+| 14 | A/C (spans 2) | `ST185: AC Status` | enum OFF/REQ/ON/FLT | ON blue | — | FLT red |
 
-**Fullscreen alert:** use the built-in **Fullscreen Alert** action from a trigger
-(`Low Oil Press 2`=1 OR `High Coolant Press`=1) → red full-screen message; it clears when the bit
-clears (latching is the ECU's job, not the display's).
-
----
-
-## 8. Install & build — simple step-by-step
-
-You do this once on the Pi; RealDash then remembers everything.
-
-**Part A — get the data flowing (CAN)**
-
-1. Copy **`link_g4x_realdash.xml`** onto the Pi (USB stick, SD card, or download).
-2. Open RealDash → **Garage** → tap the car door → tap the instrument cluster.
-3. **Connections → add a CAN bus connection** on your USB-CAN adapter, speed **1,000,000 (1 Mbit/s)**.
-4. On that connection: **Select Vehicle → Custom Channel Description File →** browse to
-   `link_g4x_realdash.xml`. Tap **Done**.
-5. Back out of the Garage. Confirm under **Settings → Inputs → ECU Specific** you see the **`ST185:`**
-   values. (Data appears once the car/ECU is powered and broadcasting.)
-
-**Part B — build the DASH page (Page 1)**
-
-6. Create a **new dashboard** (landscape). Set background to `#070A0F`.
-7. Build the **top strip** (§5.1): clock, the cruise badge, the six LEDs, the MEDIA button.
-8. Add the **three hero tiles** (§5.2), **Row C** (§5.3), **Row D** (§5.4). For each tile: add the
-   3D box (§4.2), drop a Numeric/Bar/Text gauge on it, bind it to its `ST185:` input, set the range
-   and Warning/Critical levels, and apply the palette/fonts (§4.4).
-9. Add the **strobe** animations (§4.5, route B) to the warning LEDs and the IAT/Coolant/Fuel/Trigger
-   tiles.
-
-**Part C — build the MEDIA page (Page 2)**
-
-10. Add a **second page** (it auto-becomes swipeable from Page 1).
-11. Add album art, title/artist/album text, progress bar, and the four big transport buttons (§6.2),
-    plus the Music List gauge (§6.3). *Shortcut:* open **Gallery → Examples → Music player**, copy its
-    media gauges onto your page, then restyle to match.
-12. Set your music source and permissions (§6.4).
-
-**Part D — make it car-ready**
-
-13. **Save** the dashboard (`.rd`). Keep `link_g4x_realdash.xml` on the device — the dash needs the
-    `ST185:` inputs to exist.
-14. Settings → set this dash as **default/auto-load**, enable **fullscreen**, and (optional) auto-start
-    RealDash on boot so it comes up with the car.
-
-> **Tip — test on a PC/phone first.** Build and eyeball the whole layout on RealDash for
-> Windows/Android using the **simulator/demo input** before deploying to the Pi; it's much faster than
-> editing on the car.
+> **Coolant Pressure** is now a **u16** wire value (0x3F0 bytes 2-3), so it is no longer capped at
+> 255 kPa. **Turbo Speed** is a single byte `raw x1000` -> 0-255,000 RPM (1,000 RPM resolution), covering an EFR's full spool range. **Cabin Temp was
+> dropped** from 0x3F0 to make room for the u16 coolant pressure and is no longer a RealDash input
+> (see `CAN-CONFIG-STATUS.md`); tile #11 uses the lateral accel input instead.
 
 ---
 
-## 9. Input inventory
+## 6. Input inventory (binds to `link_g4x_realdash.xml`)
 
-All CAN gauges bind to custom inputs from `link_g4x_realdash.xml` (Settings → Inputs → **ECU
-Specific**, prefixed `ST185:`). Media gauges bind to RealDash's built-in **Media** inputs (not the CAN
-XML). Temps carry `units="C"` so you can switch to °F per-gauge.
+Every gauge binds to a custom `ST185:` input under **Settings -> Inputs -> ECU Specific**.
 
-Input **names are unchanged** (do not rename them) — the columns below note the **display label/unit**
-the gauge shows, which is a UI-only choice.
+| Input | Frame | Raw -> value | Unit |
+|---|---|---|---|
+| `ST185: Target Lambda` | 0x3EF | V x0.001 | lambda |
+| `ST185: Throttle` | 0x3EF | V | % |
+| `ST185: TC Setting` / `ST185: TC Intervention` | 0x3EF | index / V | — / % |
+| `ST185: Boost Map` | 0x3EF | index 0-3 | — |
+| `ST185: Cruise State` / `ST185: AC Status` | 0x3EF | enum | text |
+| `ST185: Fuel Temp` / `ST185: Charge-Pipe IAT` | 0x3F0 | V-50 | C |
+| `ST185: Engine Load` / `ST185: Ethanol` | 0x3F0 | V | % |
+| `ST185: Coolant Pressure` | 0x3F0 | V (u16, bytes 2-3) | kPa |
+| `ST185: Turbo Speed` | 0x3F0 | V x1000 | RPM |
+| `ST185: Trigger Errors` | 0x3F0 | V | count |
+| `ST185: Accel X/Y/Z` | 0x3F1 | V x0.1 (signed) | g |
+| `ST185: Flat Shift` / `ST185: Radiator Fan` / `ST185: Low Fuel` / `ST185: High Coolant Press` / `ST185: Low Oil Press 2` / `ST185: Switchboard Fault` | 0x3F1 | byte6 bits 0-5 | 0/1 |
 
-| Input (unchanged) | Frame | Raw → value | Display label / unit | Page / tile |
-|---|---|---|---|---|
-| `ST185: Target Lambda` | 0x3EF | V×0.001 λ | "Target Lambda", 2 dp + "Tune" bar | DASH hero 1 |
-| `ST185: Coolant Pressure` | 0x3F0 | V kPa | "Coolant Pressure" in **PSI** (Gauge Math `=V*0.145038`) | DASH hero 2 |
-| `ST185: Turbo Speed` | 0x3F0 | V×100 rpm | "Turbo Speed" in **K** (Gauge Math `=V/1000` + "K") | DASH hero 3 |
-| `ST185: Boost Map` | 0x3EF | index 0–3 | "Boost Map" + name | DASH C-4 |
-| `ST185: TC Setting` | 0x3EF | index 0–4 | "TC Setting" | DASH C-5 |
-| `ST185: TC Intervention` | 0x3EF | V % | "Int %" bar | DASH C-5 sub-bar |
-| `ST185: Throttle` | 0x3EF | V % | "Throttle" % | DASH C-6 |
-| `ST185: Engine Load` | 0x3F0 | V % | "Engine Load" % | DASH C-7 |
-| `ST185: Charge-Pipe IAT` | 0x3F0 | V−50 °C | "IAT2 - CP" °C | DASH D-8 |
-| `ST185: Fuel Temp` | 0x3F0 | V−50 °C | "Fuel Temp" °C | DASH D-9 |
-| `ST185: Ethanol` | 0x3F0 | V % | "Ethanol" (E-blend) | DASH D-10 |
-| `ST185: Trigger Errors` | 0x3F0 | V count | "Trig Err" | DASH D-11 |
-| `ST185: AC Status` | 0x3EF | enum | "A/C" (enum text) | DASH D-13 |
-| `ST185: Cruise State` | 0x3EF | enum | "CRUISE: <mode>" | DASH top badge |
-| `ST185: Flat Shift` | 0x3F1 | bit0 | "FLAT" LED (blue) | DASH LED |
-| `ST185: Radiator Fan` | 0x3F1 | bit1 | "FAN" LED (blue) | DASH LED |
-| `ST185: Low Fuel` | 0x3F1 | bit2 | "LOFUEL" LED (amber) | DASH LED |
-| `ST185: High Coolant Press` | 0x3F1 | bit3 | "ECT-P" LED (red) + hero strobe | DASH LED + hero |
-| `ST185: Low Oil Press 2` | 0x3F1 | bit4 | "OILP2" LED (red) | DASH LED + alert |
-| `ST185: Switchboard Fault` | 0x3F1 | bit5 | "SBFLT" LED (amber) | DASH LED |
-| `ST185: Accel X/Y/Z` | 0x3F1 | V×0.1 g | — | defined, not shown |
-| Media: Title / Artist / Album / Album Art / Position / Duration | — | RealDash built-in | now-playing | MEDIA page |
+> **Cabin Temp is no longer a RealDash input** — dropped from 0x3F0 when Coolant Pressure was widened
+> to u16. To restore it, add a new ECU frame (e.g. 0x3F2) with a matching RealDash value; do not
+> point RealDash at the switchboard 0x640 frame.
 
 ---
 
-## 10. Maintenance notes
+## 7. Alarm logic
 
-- **Inputs are the contract.** Rename a value in `link_g4x_realdash.xml` and every gauge bound to the
-  old name breaks. Keep names stable or re-bind.
-- **Thresholds are starting points.** IAT/coolant/turbo/fuel-temp bands are sane 3S-GTE defaults —
-  tune to your engine, turbo, and event from logged data. Turbo Speed redline depends on the fitted
-  turbo; set the hero's caution/critical to **your** turbo's max.
-- **No transmit.** RealDash is listen-only here — never add `writeInterval`/`initialValue` to the CAN
-  frames; the ECU owns 0x3EF–0x3F1 (master-design §7 / Conflict B).
-- **Bit map is canonical.** The 0x3F1 byte-6 warning bits follow `link_g4x_can_setup.json` /
-  `CAN-BUS-ID-ALLOCATION-TABLE.md` §6. If those change, update the per-bit `<value>` entries.
-- **Media reality.** Re-read §2 before promising yourself Amazon/Bluetooth on a Linux Pi — Android is
-  the path of least resistance for full media.
+Priority high->low; all surface on the **strip** (no modal overlay):
+
+| Priority | Condition | Chip | Color |
+|---|---|---|---|
+| 1 | `Low Oil Press 2` = 1 | OIL P 2 | red, strobe |
+| 2 | `High Coolant Press` = 1 (or coolant >200 kPa) | COOLANT P | red, strobe |
+| 3 | `Trigger Errors` >= 5 | Trigger Errors tile | red |
+| 4 | `Switchboard Fault` = 1 | SBFLT | amber, strobe |
+| 5 | `Low Fuel` = 1 | LOFUEL | amber, strobe |
+| 6 | `Radiator Fan` / `Flat Shift` = 1 | FAN / FLAT | blue, solid |
+
+Primary engine-protection alarms (knock, cuts, primary oil pressure, over-temp) stay on the
+**cluster** (0x3EE). Cluster = engine protection; RealDash = assist + extended.
+
+---
+
+## 8. Build steps (RealDash editor)
+
+1. **Connect CAN** on the USB-CAN adapter at **1 Mbit/s**.
+2. **Import inputs:** Select Vehicle -> Custom Channel Description File -> `link_g4x_realdash.xml`;
+   confirm the `ST185:` inputs appear under Settings -> Inputs -> ECU Specific.
+3. **New dashboard,** background `#1a2430`, landscape, **one page**.
+4. **Top strip** per section 4; bind each chip to its bit input; strobe the caution/alarm chips.
+5. **4x4 grid** per section 5 — Numerical gauges for values, Bar gauges for progress bars, Text/enum
+   for Cruise and A/C. Apply the section 3 theme and the section 5 bands.
+6. **Save** the `.rd`. Keep `link_g4x_realdash.xml` as the source of truth for input names.
+
+---
+
+## 9. Maintenance notes
+
+- **Inputs are the contract.** Renaming a value in `link_g4x_realdash.xml` breaks every bound gauge.
+- **Thresholds are starting points** — tune to your engine, turbo, and event.
+- **No transmit.** RealDash is listen-only; never add write intervals to 0x3EF-0x3F1.
+- **Bit map is canonical** — the 0x3F1 byte-6 warning bits follow `link_g4x_can_setup.json` /
+  `CAN-BUS-ID-ALLOCATION-TABLE.md`.

@@ -211,8 +211,8 @@
     <div class="tile"><span class="accent"></span><div class="tlabel">ETHANOL</div>
       <div class="tval mono"><span id="ethVal">E30</span></div>
       <div class="tbar" id="ethBar"><i></i></div></div>
-    <div class="tile"><span class="accent"></span><div class="tlabel">CABIN</div>
-      <div class="tval mono"><span id="cabinVal">24</span><span class="tu">&deg;C</span></div><div class="tcap">comfort</div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">LAT G</div>
+      <div class="tval mono"><span id="latgVal">+0.0</span><span class="tu">g</span></div><div class="tcap">lateral accel</div></div>
     <div class="tile"><span class="accent"></span><div class="tlabel">TRIGGER ERR</div>
       <div class="tval mono" id="trigVal">0</div><div class="tcap" id="trigSub">healthy</div></div>
 
@@ -235,7 +235,7 @@
    ============================================================ */
 const S={
   boostMap:2, tc:3, tcInter:12, throttle:78, lambda:0.88, cruise:2, ac:2,
-  iat:52, coolant:110, turbo:132000, load:64, fuel:46, ethanol:30, cabin:24, trig:0,
+  iat:52, coolant:110, turbo:132000, load:64, fuel:46, ethanol:30, latg:0.0, trig:0,
   flat:0, fan:1, lofuel:0, sbflt:0, coolHi:0, oilLo:0,
 };
 let running=true, forcedAlarm=0, t=0;
@@ -265,7 +265,7 @@ function simulate(){
   S.coolant=walk(S.coolant,95,175,4);
   S.fuel=walk(S.fuel,40,66,0.7);
   S.ethanol=clamp(walk(S.ethanol,28,32,0.3),0,100);
-  S.cabin=walk(S.cabin,22,30,0.4);
+  S.latg=clamp(1.15*Math.sin(t*0.9)+rnd(-0.1,0.1),-1.5,1.5);
   S.trig=Math.random()<0.012?clamp(S.trig+(Math.random()<0.5?1:-1),0,7):S.trig;
   S.fan=(S.coolant>120||Math.sin(t*0.3)>0)?1:0;
   if(S.throttle>95&&Math.random()<0.3)S.flat=1; if(S.throttle<90)S.flat=0;
@@ -327,7 +327,7 @@ function render(){
   setBar("fuelBar",S.fuel/90*100,band(S.fuel,55,70)); valColor("fuelVal",band(S.fuel,55,70));
   document.getElementById("ethVal").textContent="E"+Math.round(S.ethanol);
   setBar("ethBar",S.ethanol,"");
-  document.getElementById("cabinVal").textContent=Math.round(S.cabin);
+  document.getElementById("latgVal").textContent=(S.latg>=0?"+":"")+S.latg.toFixed(1);
   const tv=Math.round(S.trig); document.getElementById("trigVal").textContent=tv;
   const trigSub=document.getElementById("trigSub"), trigEl=document.getElementById("trigVal");
   if(tv===0){ trigEl.style.color="var(--good)"; trigSub.textContent="healthy"; }

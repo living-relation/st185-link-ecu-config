@@ -204,7 +204,7 @@ def build_ecu_tasks(include_realdash: bool) -> List[PeriodicTask]:
             coolant_p = int(sine(t, 20.0, 80, 200))
             ethanol = int(sine(t, 50.0, 0, 85))
             charge_iat = sine(t, 25.0, 20, 70)
-            turbo = int(triangle(t, 8.0, 0, 18000))
+            turbo = int(triangle(t, 8.0, 0, 150000))
             trig_err = int(t // 10) % 5
             return f.ID_EXT_SENSORS, f.encode_ext_sensors(
                 fuel_temp, load, coolant_p, ethanol, charge_iat,
@@ -520,7 +520,7 @@ def build_realdash_scenario() -> List[Phase]:
     def coolant_p(s, t): s.coolant_press_kpa = int(triangle(t, 8.0, 80, 250))
     def ethanol(s, t): s.ethanol_pct = int(triangle(t, 8.0, 0, 85))
     def charge_iat(s, t): s.charge_pipe_iat_c = triangle(t, 8.0, 15, 75)
-    def turbo(s, t): s.turbo_speed_rpm = int(triangle(t, 8.0, 0, 18000))
+    def turbo(s, t): s.turbo_speed_rpm = int(triangle(t, 8.0, 0, 150000))
     def trig_err(s, t): s.trigger_error_count = int(t // 1.0) % 6
 
     # --- 0x3F1 IMU & Extended Warnings ---
@@ -571,7 +571,7 @@ def build_realdash_scenario() -> List[Phase]:
         Phase("Charge-pipe IAT (0x3F0)", 8.0, charge_iat, [
             ("REALDASH", "Post-intercooler IAT sweeps ~15..75 C (offset -50)")]),
         Phase("Turbo speed (0x3F0)", 8.0, turbo, [
-            ("REALDASH", "Turbo speed sweeps 0->18000 RPM (raw x100)")]),
+            ("REALDASH", "Turbo speed sweeps 0->150000 RPM (raw x1000)")]),
         Phase("Trigger error count (0x3F0)", 6.0, trig_err, [
             ("REALDASH", "Trigger/sync error count steps 0..5")]),
         Phase("Accel X (0x3F1)", 6.0, accel_x, [
