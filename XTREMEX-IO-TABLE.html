@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!-- Link G4X XtremeX I/O wiring table — color-coded for harness assembly.
+     Engine: 1993 Celica GT-Four ST185, 3S-GTE turbo, DBW (Bosch 74mm ETB), 1ZZ COP, 1400cc injectors,
+     external Link CAN-Lambda, ECUMaster CAN switchboard (inputs + LED outputs only, 0.5A), MRS EPS pump.
+     Fuel temp comes from the Continental 3-pin flex sensor (no separate sensor). No external pull-ups needed.
+     Source: XtremeX Quick Start Guide I/O table + A/B loom diagram + researched Link/MRS behavior (2026-07).
+     Cross-ref the living notes: "AC amplifier input signals.txt" and "Other ECU IO and MATH.txt".
+     DRAFT — 🟡/⬜ rows need one-by-one confirmation. Verify exact wire colors on the official loom diagram. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Link G4X XtremeX — I/O Wiring Table (ST185 3S-GTE, DBW)</title>
+<style>
+  :root{--trigger:#0d9488;--temp:#65a30d;--volt:#16a34a;--knock:#4d7c0f;--di:#0284c7;--inj:#2563eb;--ign:#ea580c;--aux:#7c3aed;--pwr:#dc2626;--gnd:#334155;--can:#0f172a;--sb:#9333ea;}
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;padding:24px;color:#0f172a;background:#f8fafc;line-height:1.4}
+  h1{font-size:22px;margin:0 0 2px} h2{font-size:16px;margin:22px 0 8px;padding-bottom:4px;border-bottom:2px solid #cbd5e1}
+  .sub{color:#64748b;font-size:13px;margin-bottom:16px}
+  table{border-collapse:collapse;width:100%;font-size:12.5px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+  th,td{border:1px solid #e2e8f0;padding:6px 9px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:600}
+  td.chan{font-weight:600;white-space:nowrap}
+  .badge{display:inline-block;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:700}
+  .ok{background:#dcfce7;color:#166534;border:1px solid #86efac}
+  .prop{background:#fef9c3;color:#854d0e;border:1px solid #fde047}
+  .tbd{background:#e2e8f0;color:#475569;border:1px solid #cbd5e1}
+  .drive{font-size:11px;font-weight:700;padding:1px 6px;border-radius:4px;background:#ede9fe;color:#5b21b6;border:1px solid #c4b5fd;white-space:nowrap}
+  .g-trigger td:first-child{border-left:6px solid var(--trigger)} .g-temp td:first-child{border-left:6px solid var(--temp)}
+  .g-volt td:first-child{border-left:6px solid var(--volt)} .g-knock td:first-child{border-left:6px solid var(--knock)}
+  .g-di td:first-child{border-left:6px solid var(--di)} .g-inj td:first-child{border-left:6px solid var(--inj)}
+  .g-ign td:first-child{border-left:6px solid var(--ign)} .g-aux td:first-child{border-left:6px solid var(--aux)}
+  .g-pwr td:first-child{border-left:6px solid var(--pwr)} .g-gnd td:first-child{border-left:6px solid var(--gnd)}
+  .g-can td:first-child{border-left:6px solid var(--can)} .g-sb td:first-child{border-left:6px solid var(--sb)}
+  .panel{border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;margin:12px 0;background:#fff}
+  .panel.can{border-left:6px solid var(--can);background:#f8fafc}
+  .panel.info{border-left:6px solid #16a34a;background:#f0fdf4}
+  .panel.warn{border-left:6px solid #dc2626;background:#fef2f2}
+  .legend span{display:inline-block;margin:2px 10px 2px 0;font-size:12px}
+  .sw{display:inline-block;width:11px;height:11px;border-radius:2px;vertical-align:middle;margin-right:3px}
+  code{background:#f1f5f9;padding:1px 4px;border-radius:3px;font-size:12px}
+  ol,ul{margin:6px 0 0 18px} li{margin:4px 0} a{color:#2563eb}
+  .note{font-size:12px;color:#64748b;margin-top:6px}
+  @media print{body{background:#fff;padding:0}.panel,table{box-shadow:none}}
+</style>
+</head>
+<body>
+
+<h1>Link G4X XtremeX — I/O Wiring Table</h1>
+<div class="sub">1993 Celica GT-Four ST185 · 3S-GTE turbo · <strong>drive-by-wire</strong> · 1ZZ COP · 1400cc inj · Bosch 74mm ETB · external Link CAN-Lambda · ECUMaster CAN switchboard · MRS EPS &nbsp;|&nbsp; DRAFT — 🟡/⬜ need confirmation</div>
+
+<div class="legend panel">
+  <strong>Legend</strong> &nbsp;
+  <span class="badge ok">✅ set</span> <span class="badge prop">🟡 proposed</span> <span class="badge tbd">⬜ TBD/spare</span> &nbsp;|&nbsp;
+  <span><span class="sw" style="background:var(--trigger)"></span>Trigger</span>
+  <span><span class="sw" style="background:var(--temp)"></span>Temp</span>
+  <span><span class="sw" style="background:var(--volt)"></span>An Volt</span>
+  <span><span class="sw" style="background:var(--knock)"></span>Knock</span>
+  <span><span class="sw" style="background:var(--di)"></span>Digital in</span>
+  <span><span class="sw" style="background:var(--inj)"></span>Inj</span>
+  <span><span class="sw" style="background:var(--ign)"></span>Ign</span>
+  <span><span class="sw" style="background:var(--aux)"></span>Aux out</span>
+  <span><span class="sw" style="background:var(--pwr)"></span>Power</span>
+  <span><span class="sw" style="background:var(--sb)"></span>Switchboard (CAN)</span>
+  <div class="note"><strong>Drive types:</strong> Aux 1–4 = <em>low-side only</em>. Aux 5–8 = <em>high or low side</em>. Aux 9–10 = <em>H-bridge</em> (ETB). Spare Ign/Inj = low-side. Low-side outputs sink to ground when active and <strong>float (hi-Z) when off</strong> — no forced high, no pull-up unless a device needs one. Active-HIGH loads must use Aux 5–8 (or a relay). Verify wire colors on the official loom diagram.</div>
+</div>
+
+<div class="panel info">
+  <strong>✔ Confirmed hardware</strong>
+  <ul>
+    <li><strong>Crank trigger:</strong> Toyota OEM reluctor (VR) on <strong>36-2</strong> crank wheel (Beams/5S) → <strong>Trigger 1</strong>.</li>
+    <li><strong>Cam trigger:</strong> RacerX MR2 kit, Cherry <strong>Hall</strong>, intake cam, single tooth → <strong>Trigger 2</strong>.</li>
+    <li><strong>Ignition:</strong> 1ZZ <strong>coil-on-plug</strong> (built-in igniter, logic-level) → Ign 1–4. No distributor.</li>
+    <li><strong>Injectors:</strong> 1400cc ATS/Bosch top-feed, flow-matched (hi-Z → saturated) → Inj 1–4.</li>
+    <li><strong>Throttle:</strong> Bosch Motorsport 74mm ETB → motor Aux 9/10, TP main+sub + APS main+sub on An Volt, power via V-Ethrottle (relay Aux 2).</li>
+    <li><strong>Flex sensor:</strong> Continental 3-pin (freq) → ethanol % <em>and</em> <strong>fuel temp</strong> (no separate fuel-temp sensor).</li>
+    <li><strong>Starter:</strong> ECU-controlled — start input + start-relay output; ECU disables the start relay in software under set conditions (no separate cut relay). <strong>EFI main relay</strong> held by ECU for DBW key-off reset.</li>
+  </ul>
+</div>
+
+<div class="panel warn">
+  <strong>⚠ Output power routing</strong>
+  <ul>
+    <li><strong>Switchboard outputs = 4× low-side @ 0.5A (LED level) only.</strong> Use it for switch/analog <strong>inputs</strong> over CAN + tiny LEDs — never fans/pumps/relays.</li>
+    <li><strong>All power loads on the ECU</strong> (Aux + spare Ign/Inj → external relays, active-low). Overflow → <strong>ECUMaster PMU/PDM</strong> on CAN 1.</li>
+    <li><strong>Switch inputs → switchboard</strong> (brake, reverse, cruise) to keep ECU DIs for frequency inputs.</li>
+  </ul>
+</div>
+
+<div class="panel can">
+  <strong>CAN 1 — all devices on one bus</strong> (6-pin comms port, CAN H=white / CAN L=green, 1 Mbit/s, 120 Ω each end; CAN 2 unused)
+  <table style="margin-top:8px">
+    <tr><th>Device</th><th>Role</th></tr>
+    <tr class="g-can"><td class="chan">Center cluster (P4)</td><td>0x3E8–0x3EB,0x3EE from ECU · 0x3EC/0x3ED to ECU</td></tr>
+    <tr class="g-can"><td class="chan">RealDash (Pi)</td><td>0x3EF/0x3F0/0x3F1 (listen-only)</td></tr>
+    <tr class="g-can"><td class="chan">ECUMaster switchboard</td><td>switch/analog inputs → ECU; small LED outputs</td></tr>
+    <tr class="g-can"><td class="chan">Link CAN-Lambda</td><td>0x3B6 → ECU (Lambda 1)</td></tr>
+    <tr class="g-can"><td class="chan">PMU/PDM (if added)</td><td>output overflow</td></tr>
+  </table>
+</div>
+
+<h2>Inputs — Analog</h2>
+<table>
+  <tr><th>Channel</th><th>Function</th><th>Status</th><th>Notes</th></tr>
+  <tr class="g-trigger"><td class="chan">Trigger 1</td><td>Crank (reluctor/VR)</td><td><span class="badge ok">✅</span></td><td>36-2 toothed crank wheel</td></tr>
+  <tr class="g-trigger"><td class="chan">Trigger 2</td><td>Cam (Hall, single tooth)</td><td><span class="badge ok">✅</span></td><td>RacerX/Cherry kit</td></tr>
+  <tr class="g-temp"><td class="chan">Temp 1</td><td>ECT (coolant)</td><td><span class="badge ok">✅</span></td><td>built-in pull-up</td></tr>
+  <tr class="g-temp"><td class="chan">Temp 2</td><td>IAT — manifold</td><td><span class="badge ok">✅</span></td><td>built-in pull-up</td></tr>
+  <tr class="g-temp"><td class="chan">Temp 3</td><td>Oil temp</td><td><span class="badge ok">✅</span></td><td>1k pull-up</td></tr>
+  <tr class="g-temp"><td class="chan">Temp 4</td><td>Charge-pipe IAT #2 (heat-soak)</td><td><span class="badge ok">✅</span></td><td>built-in pull-up — no external resistor</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 1</td><td>MAP</td><td><span class="badge ok">✅</span></td><td>+5V</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 2</td><td>ETB throttle pos — MAIN</td><td><span class="badge ok">✅</span></td><td>Bosch ETB</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 3</td><td>ETB throttle pos — SUB</td><td><span class="badge ok">✅</span></td><td>Bosch ETB</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 4</td><td>Accel pedal (APS) — MAIN</td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 5</td><td>Accel pedal (APS) — SUB</td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 6</td><td>Oil pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 7</td><td>Fuel pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 8</td><td>Coolant pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 9</td><td>Fuel level sender</td><td><span class="badge prop">🟡</span></td><td>resistive sender needs a divider pull-up on An Volt; calibrate V→% table (points TBD)</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 10–11</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td>wideband on CAN, not analog</td></tr>
+  <tr class="g-knock"><td class="chan">Knock 1</td><td>Knock sensor</td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-knock"><td class="chan">Knock 2</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td></td></tr>
+</table>
+
+<h2>Inputs — Digital (ECU, frequency-priority)</h2>
+<table>
+  <tr><th>Channel</th><th>Function</th><th>Status</th><th>Notes</th></tr>
+  <tr class="g-di"><td class="chan">DI 1</td><td>Turbo speed (frequency)</td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-di"><td class="chan">DI 2</td><td>Flex-fuel sensor (Continental 3-pin) → ethanol% + fuel temp</td><td><span class="badge ok">✅</span></td><td>fuel temp comes from here — no separate sensor</td></tr>
+  <tr class="g-di"><td class="chan">DI 3–6</td><td>ABS wheel speed ×4 (reluctor)</td><td><span class="badge prop">🟡</span></td><td>shielded TP; conditioner if low-speed dropout; drops first</td></tr>
+  <tr class="g-di"><td class="chan">DI 7</td><td>Start request (button/key)</td><td><span class="badge prop">🟡</span></td><td>ECU-controlled start</td></tr>
+  <tr class="g-di"><td class="chan">DI 8</td><td>Clutch switch</td><td><span class="badge prop">🟡</span></td><td>ECU-direct (flat-shift/launch latency)</td></tr>
+  <tr class="g-di"><td class="chan">DI 9–10</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td>(CAN2 unused)</td></tr>
+</table>
+
+<h2>Inputs — via Switchboard (CAN, frees ECU DIs)</h2>
+<table>
+  <tr><th>Signal</th><th>Path</th><th>Notes</th></tr>
+  <tr class="g-sb"><td class="chan">Brake switch</td><td>SB → CAN → ECU</td><td>cruise cancel</td></tr>
+  <tr class="g-sb"><td class="chan">Reverse switch</td><td>SB → CAN → ECU</td><td><strong>ECU sets Gear = 7 (R) on 0x3EB → cluster shows "R"</strong> (cluster remaps 7→−1)</td></tr>
+  <tr class="g-sb"><td class="chan">Cruise on/off + set/res ladder</td><td>SB → CAN → ECU</td><td>resistor ladder on a switchboard analog in</td></tr>
+</table>
+
+<h2>Outputs</h2>
+<table>
+  <tr><th>Channel</th><th>Function</th><th>Drive</th><th>Status</th><th>Notes</th></tr>
+  <tr class="g-inj"><td class="chan">Inj 1–4</td><td>Injectors cyl 1–4</td><td><span class="drive">inj</span></td><td><span class="badge ok">✅</span></td><td>1400cc hi-Z, sequential</td></tr>
+  <tr class="g-ign"><td class="chan">Ign 1–4</td><td>1ZZ COP coils</td><td><span class="drive">ign</span></td><td><span class="badge ok">✅</span></td><td>logic-level trigger</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 1</td><td>Boost solenoid</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 2</td><td>ETB power relay (V-Ethrottle feed)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 3</td><td>Fuel pump relay</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 4</td><td>AC clutch/kill (grounds relay coil or amp ACT)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low sink; <strong>floats when off, no pull-up</strong>; confirm exact amp circuit</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 5</td><td>Engine radiator fan relay</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-aux"><td class="chan">Aux 6</td><td>EFI main relay (ECU power hold)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>keeps ECU powered for DBW key-off reset/cooldown</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 7</td><td>Speed-out → MRS pump SPD pin (Yel/Wht)</td><td><span class="drive">low-side pulse</span></td><td><span class="badge ok">✅</span></td><td>0–5/12V pulse (~4/rev); direct, <strong>no resistor</strong>; set speedo-out scaling so pump idles down &gt;~10 km/h</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 8</td><td>Start relay (ECU-controlled)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>ECU enables/disables in software (clutch/neutral/anti-restart) — no separate cut relay</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 9 / 10</td><td>Bosch ETB motor (H-bridge)</td><td><span class="drive">H-bridge</span></td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
+  <tr class="g-ign"><td class="chan">Ign 5</td><td>2nd rad fan (AC condenser duty)</td><td><span class="drive">low-side</span></td><td><span class="badge prop">🟡</span></td><td>spare ign as aux</td></tr>
+  <tr class="g-ign"><td class="chan">Ign 6</td><td>Oil pressure warning lamp</td><td><span class="drive">low-side</span></td><td><span class="badge prop">🟡</span></td><td>spare ign as aux</td></tr>
+  <tr class="g-inj"><td class="chan">Ign 7–8 / Inj 5–8</td><td>spare low-side aux</td><td><span class="drive">low-side</span></td><td><span class="badge tbd">⬜</span></td><td>→ PMU/PDM if more needed</td></tr>
+</table>
+
+<h2>AC control (per your AC-amp notes)</h2>
+<div class="panel">
+  ECU does <strong>not</strong> drive the compressor. Aux 4 is a <strong>low-side</strong> output that either grounds the AC clutch relay coil (float = off) or feeds the amp's <code>ACT</code> cancel input — <strong>active-low, floats when inactive, no pull-up</strong>. Used to cancel the compressor under high load/throttle/boost. No AC-on input — the XtremeX closed-loop idle absorbs the AC-load dip in software. <em>Confirm whether Aux 4 grounds the clutch relay directly or feeds the amp ACT input, so we set the polarity right.</em>
+</div>
+
+<h2>External pull-up resistors</h2>
+<div class="panel">
+  <strong>None required in the current plan.</strong> The flex sensor supplies fuel temp, which freed a Temp input, so every thermistor (ECT, IAT, oil, charge-pipe IAT) uses the ECU's built-in pull-ups. The MRS speed-out and AC-kill are low-side pulse/sink outputs that need no resistor. Add one only if a specific device's datasheet calls for it (e.g., verify whether the RacerX cam-Hall kit already includes its own pull-up — per its instructions).
+</div>
+
+<h2>Power / ground</h2>
+<table>
+  <tr><th>Channel</th><th>Use</th></tr>
+  <tr class="g-pwr"><td class="chan">+5V Out</td><td>MAP, TPS×2, APS×2, pressures</td></tr>
+  <tr class="g-pwr"><td class="chan">+8V Out</td><td>8V sensors (if any)</td></tr>
+  <tr class="g-pwr"><td class="chan">V-Ethrottle (B connector)</td><td>Relayed 12–14V ETB H-bridge feed (switched by Aux 2)</td></tr>
+  <tr class="g-pwr"><td class="chan">14V +</td><td>Main ECU feed (via EFI main relay, Aux 6)</td></tr>
+  <tr class="g-gnd"><td class="chan">Ground / Shield / Gnd Out</td><td>Sensor grounds &amp; shields</td></tr>
+</table>
+
+<h2>Base-map logic to implement (from your notes)</h2>
+<div class="panel note">
+  Idle-up via closed-loop idle (absorbs AC load, no AC input); inverse-VSS idle-up for EPS current draw; AC-kill by load/throttle/boost; heat-soak comp from dual IAT (manifold Temp 2 + charge-pipe Temp 4); flat-shift; traction from wheel speeds (AWD — front-axle vs rear-axle slip); reverse switch → set Gear = 7 (R) on 0x3EB so the cluster shows "R"; fuel temp read from the flex sensor. (Tune functions, not pins.)
+</div>
+
+<h2>Pin budget</h2>
+<table>
+  <tr><th>Group</th><th>Avail</th><th>Used</th><th>Spare</th></tr>
+  <tr><td>An Volt</td><td>11</td><td>9</td><td>2</td></tr>
+  <tr><td>Temp</td><td>4</td><td>4</td><td>0 (ECT, IAT, oil, charge-pipe IAT — all built-in pull-up)</td></tr>
+  <tr><td>Trigger</td><td>2</td><td>2</td><td>0</td></tr>
+  <tr><td>Knock</td><td>2</td><td>1</td><td>1</td></tr>
+  <tr><td>Digital in</td><td>10</td><td>8</td><td>2 (switches on switchboard)</td></tr>
+  <tr><td>Injection</td><td>8</td><td>4</td><td>4 → aux</td></tr>
+  <tr><td>Ignition</td><td>8</td><td>4 coils + 2 aux</td><td>2</td></tr>
+  <tr><td>Aux</td><td>10</td><td>10 (9/10 = ETB)</td><td>0 → spare Ign/Inj, then PMU/PDM</td></tr>
+</table>
+<div class="note">Comfortable fit — freeing the fuel-temp Temp input and moving switches to the switchboard opened up headroom. Add a PMU/PDM only if output count grows.</div>
+
+<h2>Comms port (6-pin) — USER CAN 1</h2>
+<table>
+  <tr><th>Pin</th><th>Wire</th><th>Function</th></tr>
+  <tr class="g-can"><td class="chan">1</td><td>Brown</td><td>Ground</td></tr>
+  <tr class="g-can"><td class="chan">2</td><td>Blue</td><td>Unused</td></tr>
+  <tr class="g-can"><td class="chan">3</td><td>White</td><td><strong>CAN 1 High</strong></td></tr>
+  <tr class="g-can"><td class="chan">4</td><td>Green</td><td><strong>CAN 1 Low</strong></td></tr>
+  <tr class="g-can"><td class="chan">5</td><td>Yellow</td><td>RS232 TX</td></tr>
+  <tr class="g-can"><td class="chan">6</td><td>Grey</td><td>RS232 RX</td></tr>
+</table>
+
+</body>
+</html>

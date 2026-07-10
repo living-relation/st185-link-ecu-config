@@ -1,0 +1,14 @@
+//Other ECU I/O not directly controlling sensors or devices (but needed)
+-brake light switch
+-EFI main relay?
+-cruise control switch ladder logic?
+-cruise control On off switch?
+-EPS VSS out
+
+//ECU math?
+-inverse of VSS out - idle up for EPS power draw
+-ac kill using load, throttle, boost?
+-heat soak compensation (dual IAT)?
+-flat shift logic
+-traction logic
+-
