@@ -1,0 +1,10 @@
+{
+  "_comment": "OPTIONAL and NOT required for this build. The recommended path is the terminal + tools/automation_helper.py (PyAutoGUI). This file only illustrates how you COULD wire a desktop-control MCP server into Cursor if you prefer MCP over the terminal helper. Replace the placeholder command/args with a real computer-use MCP server of your choice, then copy this to .cursor/mcp.json. The shipped helper needs no MCP.",
+  "mcpServers": {
+    "desktop-control": {
+      "command": "npx",
+      "args": ["-y", "<REPLACE-with-a-computer-use-MCP-server-package>"],
+      "env": {}
+    }
+  }
+}

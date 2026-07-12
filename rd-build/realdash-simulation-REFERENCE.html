@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ST185 TrackCluster — RealDash Simulation</title>
+<!--
+  HTML recreation / live simulation of the RealDash secondary display designed in
+  REALDASH-LAYOUT.md for the 1993 Celica GT-Four (3S-GTE) track build.
+
+  Layout rev 3:
+    - SINGLE page. The G-FORCE page has been removed; everything lives on one
+      compact 4x4 grid (combined Drive + Sensors).
+    - New palette: bright graphite base with electric-blue + brushed-chrome
+      accents (modern instrument look). State colors: blue=active, amber=caution,
+      red=alarm.
+    - Sharper, brighter, flat tiles with a chrome top rail and blue active stripe.
+    - Strip warning indicators STROBE (no center overlay).
+
+  Native 7" Pi panel: 800 x 480, landscape. Values are SIMULATED in-browser;
+  on the car they arrive on CAN 0x3EF-0x3F1 (see link_g4x_realdash.xml).
+  Keys o / c force the oil / coolant alarms.
+-->
+<style>
+  :root{
+    /* ---- Graphite base, electric-blue + brushed-chrome accents ---- */
+    --bg:        #1a2430;   /* brighter graphite                    */
+    --bg2:       #243446;   /* radial lift                          */
+    --panel:     #243243;   /* tile background                      */
+    --panel-hi:  #2c3c50;   /* tile top highlight                   */
+    --edge:      #3c5066;   /* tile border                          */
+    --edge-soft: #2b3c4f;
+
+    --blue:      #34a8ff;   /* primary active accent (electric blue) */
+    --blue-deep: #1c6fd6;
+    --cyan:      #46e6ff;   /* secondary blue accent                 */
+
+    /* brushed chrome — used as a gradient on rails/trim */
+    --chrome-1:  #f4f7fb;
+    --chrome-2:  #c3ccd8;
+    --chrome-3:  #889aac;
+
+    --text:      #f3f8ff;   /* primary numerals (bright)            */
+    --dim:       #9fb1c6;   /* labels / units                       */
+    --good:      #46e0a6;
+    --caution:   #ffc233;   /* amber                                */
+    --alarm:     #ff4d57;   /* red                                  */
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%; background:#0b1118; overflow:hidden;}
+  body{
+    font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    display:flex; align-items:center; justify-content:center;
+    min-height:100vh; color:var(--text); -webkit-font-smoothing:antialiased;
+  }
+
+  #panel{
+    position:relative; width:800px; height:480px;
+    background:radial-gradient(135% 150% at 50% -20%, var(--bg2) 0%, var(--bg) 55%, #0e1822 100%);
+    border-radius:12px; overflow:hidden;
+    box-shadow:0 0 0 9px #14161b, 0 0 0 11px #2a2e36, 0 26px 70px rgba(0,0,0,.7);
+    user-select:none;
+  }
+  @media (max-width:840px), (max-height:560px){ #panel{ transform:scale(var(--fit,1)); } }
+  .mono{font-variant-numeric:tabular-nums; font-feature-settings:"tnum";}
+
+  /* =================== TOP STATUS STRIP =================== */
+  #strip{
+    position:absolute; left:0; top:0; width:800px; height:54px;
+    background:linear-gradient(180deg,#26384c,#1b2836);
+    border-bottom:1px solid var(--edge);
+    display:flex; align-items:center; padding:0 14px; gap:9px; z-index:30;
+  }
+  #strip::after{ /* chrome hairline under the strip */
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px;
+    background:linear-gradient(90deg,transparent,var(--chrome-2),transparent); opacity:.5;
+  }
+  #title{ display:flex; align-items:baseline; gap:8px; min-width:172px; }
+  #title b{ font-weight:800; font-size:21px; letter-spacing:2px;
+    background:linear-gradient(180deg,var(--chrome-1),var(--chrome-2) 55%,var(--chrome-3));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; }
+  #title span{ font-size:11px; letter-spacing:2px; color:var(--blue); font-weight:700; }
+
+  .ind{
+    font-size:12px; font-weight:800; letter-spacing:1.3px;
+    padding:6px 10px; border-radius:4px; line-height:1;
+    border:1px solid var(--edge-soft); color:#647a92; background:#1b2836;
+    transition:color .15s, background .15s, border-color .15s; white-space:nowrap;
+  }
+  .ind.info  { color:#eaf4ff; background:rgba(52,168,255,.20); border-color:var(--blue); }
+  .ind.warn  { color:#211900; background:var(--caution); border-color:#ffd56b;
+               animation:strobe .55s steps(1,end) infinite; }
+  .ind.alarm { color:#fff;    background:var(--alarm);   border-color:#ff8b92;
+               animation:strobe .3s steps(1,end) infinite; }
+  @keyframes strobe{ 0%,49%{opacity:1;} 50%,100%{opacity:.1;} }
+  .spacer{flex:1 1 auto;}
+  .crit-group{display:flex; gap:9px;}
+
+  /* =================== DASH GRID =================== */
+  #grid{
+    position:absolute; left:0; top:54px; width:800px; height:426px; padding:11px;
+    display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(4,1fr); gap:9px;
+  }
+
+  .tile{
+    position:relative;
+    background:linear-gradient(180deg,var(--panel-hi),var(--panel));
+    border:1px solid var(--edge); border-radius:4px;
+    padding:9px 11px; overflow:hidden;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .tile::before{ /* brushed chrome top rail */
+    content:""; position:absolute; left:0; right:0; top:0; height:2px;
+    background:linear-gradient(90deg,transparent,var(--chrome-2),var(--chrome-1),var(--chrome-2),transparent);
+    opacity:.55;
+  }
+  .tile .accent{ position:absolute; left:0; top:2px; bottom:0; width:3px;
+    background:linear-gradient(180deg,var(--chrome-1),var(--chrome-3)); }
+  .tile.act .accent{ background:linear-gradient(180deg,var(--cyan),var(--blue-deep)); }
+
+  .tlabel{ font-size:10.5px; font-weight:800; letter-spacing:1.7px; color:var(--dim); text-transform:uppercase; }
+  .tval{
+    position:absolute; left:13px; right:11px; top:50%; transform:translateY(-52%);
+    font-weight:800; font-size:35px; line-height:1; color:var(--text);
+    text-shadow:0 1px 0 rgba(0,0,0,.35);
+  }
+  .tu{ color:var(--dim); font-weight:700; font-size:15px; margin-left:3px; text-shadow:none; }
+  .tcap{ position:absolute; left:13px; right:11px; bottom:8px; font-size:10.5px; color:var(--dim); letter-spacing:.6px; }
+
+  .tbar{ position:absolute; left:13px; right:11px; bottom:9px; height:5px; border-radius:3px;
+         background:#15212e; border:1px solid var(--edge-soft); overflow:hidden; }
+  .tbar > i{ display:block; height:100%; width:0;
+             background:linear-gradient(90deg,var(--blue-deep),var(--cyan)); transition:width .2s linear, background .2s; }
+  .tbar.warn  > i{ background:linear-gradient(90deg,#c8901a,var(--caution)); }
+  .tbar.alarm > i{ background:linear-gradient(90deg,#c2222c,var(--alarm)); }
+
+  /* state tiles (cruise / ac, span 2 cols) */
+  .tile.state .tval{ font-size:31px; letter-spacing:2px; }
+  .tile.state.on   { background:linear-gradient(180deg,rgba(52,168,255,.20),rgba(52,168,255,.10)); }
+  .tile.state.on   .accent{ background:linear-gradient(180deg,var(--cyan),var(--blue-deep)); }
+  .tile.state.on   .tval{ color:#eaf4ff; }
+  .tile.state.blue { background:linear-gradient(180deg,rgba(52,168,255,.16),rgba(52,168,255,.07)); }
+  .tile.state.blue .accent{ background:linear-gradient(180deg,var(--cyan),var(--blue-deep)); }
+  .tile.state.warn { background:linear-gradient(180deg,rgba(255,194,51,.18),rgba(255,194,51,.08)); }
+  .tile.state.warn .accent{ background:var(--caution); }
+  .tile.state.alarm{ background:linear-gradient(180deg,rgba(255,77,87,.20),rgba(255,77,87,.09)); }
+  .tile.state.alarm .accent{ background:var(--alarm); }
+  .span2{ grid-column:span 2; }
+
+  /* =================== misc =================== */
+  #demo{ position:absolute; left:14px; bottom:8px; z-index:40; font:inherit; font-size:11px; letter-spacing:1.3px;
+         color:var(--dim); border:1px solid var(--edge); border-radius:13px; padding:3px 9px;
+         background:rgba(20,30,42,.7); cursor:pointer; }
+  #demo:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
+  #demo b{color:var(--cyan);} #demo .stop{color:var(--alarm);}
+  #clock{ position:absolute; right:14px; bottom:8px; z-index:40; font-size:11px; letter-spacing:1.3px; color:var(--dim); }
+  .hint{ position:fixed; bottom:14px; left:0; right:0; text-align:center; color:#46586c; font-size:12px; letter-spacing:1px; }
+</style>
+</head>
+<body>
+
+<div id="panel">
+
+  <!-- ===== TOP STATUS STRIP ===== -->
+  <div id="strip">
+    <div id="title"><b>ST185</b><span>DASH</span></div>
+    <div class="ind" id="i_flat">FLAT</div>
+    <div class="ind" id="i_fan">FAN</div>
+    <div class="ind" id="i_lofuel">LOFUEL</div>
+    <div class="ind" id="i_sbflt">SBFLT</div>
+    <div class="spacer"></div>
+    <div class="crit-group">
+      <div class="ind" id="i_coolant">&#9888; COOLANT&nbsp;P</div>
+      <div class="ind" id="i_oil">&#9888; OIL&nbsp;P&nbsp;2</div>
+    </div>
+  </div>
+
+  <!-- ===== DASH GRID (combined Drive + Sensors) ===== -->
+  <section id="grid">
+    <!-- Row 1: driver assist -->
+    <div class="tile act"><span class="accent"></span><div class="tlabel">BOOST MAP</div>
+      <div class="tval"><span id="boostIdx">2</span></div><div class="tcap" id="boostName">MAP HIGH</div></div>
+    <div class="tile act"><span class="accent"></span><div class="tlabel">TC</div>
+      <div class="tval"><span id="tcIdx">3</span></div><div class="tcap" id="tcInterLbl">int 12%</div>
+      <div class="tbar" id="tcInterBar"><i></i></div></div>
+    <div class="tile act"><span class="accent"></span><div class="tlabel">THROTTLE</div>
+      <div class="tval"><span id="thrVal">87</span><span class="tu">%</span></div>
+      <div class="tbar" id="thrBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">TARGET &#955;</div>
+      <div class="tval mono"><span id="lamVal">0.88</span></div><div class="tcap">tune target</div></div>
+
+    <!-- Row 2: heat soak + load -->
+    <div class="tile"><span class="accent"></span><div class="tlabel">CHARGE IAT</div>
+      <div class="tval mono"><span id="iatVal">52</span><span class="tu">&deg;C</span></div>
+      <div class="tbar" id="iatBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">COOLANT P</div>
+      <div class="tval mono"><span id="coolVal">110</span><span class="tu">kPa</span></div>
+      <div class="tbar" id="coolBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">TURBO</div>
+      <div class="tval mono"><span id="turboVal">132</span><span class="tu">k rpm</span></div>
+      <div class="tbar" id="turboBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">ENGINE LOAD</div>
+      <div class="tval mono"><span id="loadVal">64</span><span class="tu">%</span></div>
+      <div class="tbar" id="loadBar"><i></i></div></div>
+
+    <!-- Row 3: fluids + health -->
+    <div class="tile"><span class="accent"></span><div class="tlabel">FUEL TEMP</div>
+      <div class="tval mono"><span id="fuelVal">46</span><span class="tu">&deg;C</span></div>
+      <div class="tbar" id="fuelBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">ETHANOL</div>
+      <div class="tval mono"><span id="ethVal">E30</span></div>
+      <div class="tbar" id="ethBar"><i></i></div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">CABIN</div>
+      <div class="tval mono"><span id="cabinVal">24</span><span class="tu">&deg;C</span></div><div class="tcap">comfort</div></div>
+    <div class="tile"><span class="accent"></span><div class="tlabel">TRIGGER ERR</div>
+      <div class="tval mono" id="trigVal">0</div><div class="tcap" id="trigSub">healthy</div></div>
+
+    <!-- Row 4: state -->
+    <div class="tile state span2" id="cruiseTile"><span class="accent"></span><div class="tlabel">CRUISE</div>
+      <div class="tval" id="cruiseVal">SET</div></div>
+    <div class="tile state span2" id="acTile"><span class="accent"></span><div class="tlabel">A/C</div>
+      <div class="tval" id="acVal">ON</div></div>
+  </section>
+
+  <button id="demo" type="button" aria-pressed="false" aria-label="Pause simulation"><b>&#9679; LIVE</b> SIM &middot; tap / P to pause</button>
+  <div id="clock">--:--</div>
+</div>
+
+<div class="hint">800 &times; 480 &middot; 7&Prime; Raspberry Pi RealDash &middot; keys o / c toggle oil / coolant alarms</div>
+
+<script>
+/* ============================================================
+   ST185 RealDash — simulation engine (layout rev 3, single page)
+   ============================================================ */
+const S={
+  boostMap:2, tc:3, tcInter:12, throttle:78, lambda:0.88, cruise:2, ac:2,
+  iat:52, coolant:110, turbo:132000, load:64, fuel:46, ethanol:30, cabin:24, trig:0,
+  flat:0, fan:1, lofuel:0, sbflt:0, coolHi:0, oilLo:0,
+};
+let running=true, forcedAlarm=0, t=0;
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+const walk=(v,min,max,step)=>clamp(v+rnd(-step,step),min,max);
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="o"||e.key==="O")forcedAlarm=forcedAlarm===1?0:1;
+  if(e.key==="c"||e.key==="C")forcedAlarm=forcedAlarm===2?0:2;
+  if(e.key==="p"||e.key==="P")togglePause();
+});
+
+function simulate(){
+  if(!running)return; t+=0.05;
+  const lift=Math.sin(t*0.6)>0.7?1:0;
+  S.throttle=clamp(lift?walk(S.throttle,0,30,18):walk(S.throttle,30,100,16),0,100);
+  if(Math.random()<0.004)S.boostMap=(S.boostMap+1)%4;
+  if(Math.random()<0.004)S.tc=(S.tc+1)%5;
+  if(Math.random()<0.003)S.cruise=Math.floor(rnd(0,5));
+  if(Math.random()<0.003)S.ac=Math.floor(rnd(0,4));
+  S.tcInter=clamp(walk(S.tcInter,0,S.throttle>70?55:20,9),0,100);
+  S.lambda=walk(S.lambda,0.78,0.95,0.012);
+  S.load=clamp(0.6*S.load+0.4*(S.throttle*0.95+rnd(-6,6)),0,100);
+  S.turbo=clamp(40000+S.load*1700+rnd(-9000,9000),0,200000);
+  S.iat=clamp(walk(S.iat,36,72,1.1)+(S.load>80?0.2:-0.05),30,80);
+  S.coolant=walk(S.coolant,95,175,4);
+  S.fuel=walk(S.fuel,40,66,0.7);
+  S.ethanol=clamp(walk(S.ethanol,28,32,0.3),0,100);
+  S.cabin=walk(S.cabin,22,30,0.4);
+  S.trig=Math.random()<0.012?clamp(S.trig+(Math.random()<0.5?1:-1),0,7):S.trig;
+  S.fan=(S.coolant>120||Math.sin(t*0.3)>0)?1:0;
+  if(S.throttle>95&&Math.random()<0.3)S.flat=1; if(S.throttle<90)S.flat=0;
+  // low-fuel level is independent of fuel temperature; rare set, rare clear (refuel)
+  if(S.lofuel){ if(Math.random()<0.001)S.lofuel=0; } else if(Math.random()<0.0006)S.lofuel=1;
+  S.sbflt=Math.random()<0.0008?1:(Math.random()<0.02?0:S.sbflt);
+}
+
+const CRUISE=["OFF","STBY","SET","RES","OVR"];
+const AC=["OFF","REQ","ON","FLT"];
+const BOOST_NAME=["MAP LOW","MAP MID","MAP HIGH","MAP MAX"];
+
+function setInd(id,on,cls){ document.getElementById(id).className="ind"+(on?(" "+cls):""); }
+function setBar(id,pct,cls){
+  const el=document.getElementById(id);
+  el.className="tbar"+(cls?(" "+cls):"");
+  el.firstElementChild.style.width=clamp(pct,0,100)+"%";
+}
+function band(v,warn,alarm){ return v>=alarm?"alarm":v>=warn?"warn":""; }
+function valColor(id,cls){
+  document.getElementById(id).style.color=cls==="alarm"?"var(--alarm)":cls==="warn"?"var(--caution)":"var(--text)";
+}
+function setState(tileId,valId,text,cls){
+  document.getElementById(valId).textContent=text;
+  document.getElementById(tileId).className="tile state span2"+(cls?(" "+cls):"");
+}
+
+function render(){
+  // alarm bits computed here (not in simulate) so the o/c key toggles work even while paused
+  S.coolHi=(forcedAlarm===2||S.coolant>165)?1:0;
+  S.oilLo=(forcedAlarm===1)?1:0;
+  setInd("i_flat",   S.flat,  "info");
+  setInd("i_fan",    S.fan,   "info");
+  setInd("i_lofuel", S.lofuel,"warn");
+  setInd("i_sbflt",  S.sbflt, "warn");
+  setInd("i_coolant",S.coolHi,"alarm");
+  setInd("i_oil",    S.oilLo, "alarm");
+
+  document.getElementById("boostIdx").textContent=S.boostMap;
+  document.getElementById("boostName").textContent=BOOST_NAME[S.boostMap];
+  document.getElementById("tcIdx").textContent=S.tc;
+  document.getElementById("tcInterLbl").textContent="int "+Math.round(S.tcInter)+"%";
+  setBar("tcInterBar",S.tcInter,band(S.tcInter,10,40));
+  document.getElementById("thrVal").textContent=Math.round(S.throttle);
+  setBar("thrBar",S.throttle,"");
+  document.getElementById("lamVal").textContent=S.lambda.toFixed(2);
+
+  document.getElementById("iatVal").textContent=Math.round(S.iat);
+  setBar("iatBar",S.iat/80*100,band(S.iat,50,60)); valColor("iatVal",band(S.iat,50,60));
+  const coolCls=S.coolHi?"alarm":(S.coolant>=150?"warn":"");
+  document.getElementById("coolVal").textContent=Math.round(S.coolant);
+  setBar("coolBar",S.coolant/300*100,coolCls); valColor("coolVal",coolCls);
+  document.getElementById("turboVal").textContent=(S.turbo/1000).toFixed(0);
+  setBar("turboBar",S.turbo/200000*100,band(S.turbo,180000,190000)); valColor("turboVal",band(S.turbo,180000,190000));
+  document.getElementById("loadVal").textContent=Math.round(S.load);
+  setBar("loadBar",S.load,"");
+
+  document.getElementById("fuelVal").textContent=Math.round(S.fuel);
+  setBar("fuelBar",S.fuel/90*100,band(S.fuel,55,70)); valColor("fuelVal",band(S.fuel,55,70));
+  document.getElementById("ethVal").textContent="E"+Math.round(S.ethanol);
+  setBar("ethBar",S.ethanol,"");
+  document.getElementById("cabinVal").textContent=Math.round(S.cabin);
+  const tv=Math.round(S.trig); document.getElementById("trigVal").textContent=tv;
+  const trigSub=document.getElementById("trigSub"), trigEl=document.getElementById("trigVal");
+  if(tv===0){ trigEl.style.color="var(--good)"; trigSub.textContent="healthy"; }
+  else if(tv<5){ trigEl.style.color="var(--caution)"; trigSub.textContent="watch"; }
+  else { trigEl.style.color="var(--alarm)"; trigSub.textContent="SYNC LOSS"; }
+
+  setState("cruiseTile","cruiseVal",CRUISE[S.cruise], S.cruise===0?"":(S.cruise===4?"warn":"blue"));
+  setState("acTile","acVal",AC[S.ac], S.ac===0?"":(S.ac===3?"alarm":"on"));
+}
+
+const demo=document.getElementById("demo");
+function togglePause(){ running=!running;
+  demo.innerHTML=running?'<b>&#9679; LIVE</b> SIM &middot; tap / P to pause'
+                        :'<span class="stop">&#9632; PAUSED</span> &middot; tap / P to resume';
+  demo.setAttribute("aria-pressed",String(!running)); }
+demo.onclick=togglePause;
+
+function clock(){ const d=new Date();
+  document.getElementById("clock").textContent=
+    String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"); }
+
+setInterval(()=>{ simulate(); render(); },50);
+setInterval(clock,1000); clock(); render();
+
+function fit(){ const s=Math.min(1,window.innerWidth/820,window.innerHeight/520);
+  document.getElementById("panel").style.setProperty("--fit",s.toFixed(3)); }
+window.addEventListener("resize",fit); fit();
+</script>
+</body>
+</html>
