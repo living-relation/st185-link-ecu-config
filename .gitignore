@@ -12,3 +12,7 @@ __pycache__/
 build/
 dist/
 *.spec
+
+# rd-build: local RealDash build package - keep secrets and heavy screenshots out of the public repo
+rd-build/CREDENTIALS.md
+rd-build/shots/

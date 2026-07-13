@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Link G4X XtremeX — RealDash CAN Channel Description File
+     Repository : st185-link-ecu-config
+     Format     : RealDashCAN version 2  (https://github.com/janimm/RealDash-extras/blob/master/RealDash-CAN/realdash-can-description-file.md)
+     Hardware   : Pi4+/Pi5, 7" 800x480 screen, USB-CAN adapter (CANable or PCAN) at 1 Mbit/s
+     Import via : RealDash -> Garage -> tap the CAN connection -> Select Vehicle ->
+                  Custom Channel Description File -> browse to this file.
+
+     SCOPE: Only the three NEW ECU TX frames that the ESP32 cluster does NOT already display.
+       0x3EF Drive Assist & Status  — target lambda, throttle, TC setting/intervention, boost map, cruise, AC
+       0x3F0 Extended Sensors       — fuel temp, engine load, coolant pressure, ethanol, charge-pipe IAT,
+                                      turbo speed, trigger errors
+       0x3F1 IMU & Ext Warnings     — accel X/Y/Z, packed warning bitmask (decoded per-bit below)
+
+     Frames 0x3E8–0x3EE are intentionally excluded — the cluster already handles RPM, MAP, ECT, IAT,
+     oil temp, ign angle, speed, oil/fuel pressure, lambda, gear, fuel level, and engine protection.
+     Switchboard frames 0x640–0x642 are also excluded — the ECU reads them and echoes the few
+     display-relevant values (TC echo, boost echo, comm-fault bit) into the frames above. Cabin temp
+     is not echoed to RealDash (it was dropped from 0x3F0); RealDash does not read 0x640 directly.
+
+     NOTES ON THIS FILE
+       * All custom inputs are created with the "ST185:" prefix and appear under RealDash
+         Settings -> Inputs -> "ECU Specific". The dashboard build spec in PLAN.md binds to these names.
+       * Bus is BigEndian (matches link_g4x_can_setup.json) — set at the frame level via endianness="big".
+       * length is REQUIRED for every value (1 for a byte, 2 for a 16-bit value). RealDash v2 has no
+         "type" attribute; signedness is set with signed="true" and width with length.
+       * units="" is only valid for RealDash's automatic unit conversion set
+         (C,F,K,km/h,mph,bar,psi,time,bit). Display units like %, kPa, RPM, g, lambda are set per-gauge
+         in the dashboard, NOT here. Temperatures use units="C" so RealDash can auto-convert to °F.
+       * timeout="2000" forces all values in a frame to their offline value if the ECU stops
+         broadcasting for 2 s — appropriate for a passive listener. (Temps read -50 °C offline.) -->
+
+<RealDashCAN version="2">
+  <frames>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3EF  (decimal 1007) — Drive Assist & Status  (50 ms, BigEndian)
+         [0-1] Target Lambda x0.001   [2] Throttle %   [3] TC Setting (ECU echo of cluster 0x3ED)
+         [4] TC Intervention %         [5] Boost Map Index (ECU echo of cluster 0x3EC)
+         [6] Cruise State 0=Off 1=Standby 2=Set/Active 3=Resume 4=Override
+         [7] AC Status    0=Off 1=Requested 2=Compressor Engaged 3=Fault
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1007" endianness="big" timeout="2000">
+      <value name="ST185: Target Lambda"    offset="0" length="2" conversion="V*0.001" rangeMin="0.6" rangeMax="1.3"/>
+      <value name="ST185: Throttle"         offset="2" length="1" conversion="V"        rangeMin="0"   rangeMax="100"/>
+      <value name="ST185: TC Setting"       offset="3" length="1" conversion="V"        rangeMin="0"   rangeMax="4"/>
+      <value name="ST185: TC Intervention"  offset="4" length="1" conversion="V"        rangeMin="0"   rangeMax="100"/>
+      <value name="ST185: Boost Map"        offset="5" length="1" conversion="V"        rangeMin="0"   rangeMax="3"/>
+      <value name="ST185: Cruise State"     offset="6" length="1" enum="0:OFF,1:STBY,2:SET,3:RES,4:OVR,#:---"/>
+      <value name="ST185: AC Status"        offset="7" length="1" enum="0:OFF,1:REQ,2:ON,3:FLT,#:---"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3F0  (decimal 1008) — Extended Sensors  (100 ms, BigEndian)
+         [0] Fuel Temp °C  [1] Engine Load %  [2-3] Coolant Pressure kPa (u16)  [4] Ethanol %
+         [5] Charge-Pipe IAT °C  [6] Turbo Speed RPM x100  [7] Trigger Errors count
+         Coolant Pressure widened to 2 bytes (2026-06-28); Cabin Temp dropped to make room —
+         cabin temp is no longer available via the ST185 inputs.
+         Temp bytes use raw-50 = °C encoding.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1008" endianness="big" timeout="2000">
+      <value name="ST185: Fuel Temp"        offset="0" length="1" conversion="V-50"  units="C"/>
+      <value name="ST185: Engine Load"      offset="1" length="1" conversion="V"     rangeMin="0" rangeMax="100"/>
+      <value name="ST185: Coolant Pressure" offset="2" length="2" conversion="V"     rangeMin="0" rangeMax="1000"/>
+      <value name="ST185: Ethanol"          offset="4" length="1" conversion="V"     rangeMin="0" rangeMax="100"/>
+      <value name="ST185: Charge-Pipe IAT"  offset="5" length="1" conversion="V-50"  units="C"/>
+      <value name="ST185: Turbo Speed"      offset="6" length="1" conversion="V*100" rangeMin="0" rangeMax="200000"/>
+      <value name="ST185: Trigger Errors"   offset="7" length="1" conversion="V"     rangeMin="0" rangeMax="255"/>
+    </frame>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3F1  (decimal 1009) — IMU & Extended Warnings  (50 ms, BigEndian)
+         [0-1] Accel X x0.1 g  [2-3] Accel Y x0.1 g  [4-5] Accel Z x0.1 g  (signed int16, BigEndian)
+         [6]   Ext Warn Bits — packed bitmask (canonical map per link_g4x_can_setup.json /
+               CAN-BUS-ID-ALLOCATION-TABLE.md §6). Raw byte kept as "ST185: Warn Bits"; each bit
+               is also exposed as its own 0/1 input below for indicators/alarms:
+                 bit0 Flat Shift Active        bit1 Radiator Fan On
+                 bit2 Low Fuel Warning         bit3 High Coolant Pressure
+                 bit4 Low Oil Pressure (2nd)   bit5 Switchboard Comm Fault (ECU-set)
+                 bits6-7 spare
+         [7]   Reserved (0x00)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1009" endianness="big" timeout="2000">
+      <value name="ST185: Accel X"          offset="0" length="2" signed="true" conversion="V*0.1" rangeMin="-2" rangeMax="2"/>
+      <value name="ST185: Accel Y"          offset="2" length="2" signed="true" conversion="V*0.1" rangeMin="-2" rangeMax="2"/>
+      <value name="ST185: Accel Z"          offset="4" length="2" signed="true" conversion="V*0.1" rangeMin="-2" rangeMax="2"/>
+
+      <value name="ST185: Warn Bits"        offset="6" length="1" conversion="V"/>
+      <value name="ST185: Flat Shift"       offset="6" length="1" startbit="0" bitcount="1" units="bit"/>
+      <value name="ST185: Radiator Fan"     offset="6" length="1" startbit="1" bitcount="1" units="bit"/>
+      <value name="ST185: Low Fuel"         offset="6" length="1" startbit="2" bitcount="1" units="bit"/>
+      <value name="ST185: High Coolant Press" offset="6" length="1" startbit="3" bitcount="1" units="bit"/>
+      <value name="ST185: Low Oil Press 2"  offset="6" length="1" startbit="4" bitcount="1" units="bit"/>
+      <value name="ST185: Switchboard Fault" offset="6" length="1" startbit="5" bitcount="1" units="bit"/>
+    </frame>
+
+  </frames>
+</RealDashCAN>
