@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Link G4X FuryX — TrackCluster CAN Setup
+<!-- Link G4X XtremeX — TrackCluster CAN Setup
      Repository : st185-link-ecu-config
      Canonical source: link_g4x_can_setup.json  (same folder)
      Import via : PCLink → CAN → Setup → File → Open (.lcs)
@@ -14,11 +14,11 @@
 
     <!-- ═══════════════════════════════════════════════════════════════════
          STREAM 0x3E8 — Engine Fast  (10 ms cycle)
-         Bytes: [0-1] RPM  [2-3] MGP kPa  [4] ECT °C  [5] IAT °C  [6] Oil °C  [7] unused
+         Bytes: [0-1] RPM  [2-3] MAP kPa (absolute)  [4] ECT °C  [5] IAT °C  [6] Oil °C  [7] unused
          ═══════════════════════════════════════════════════════════════════ -->
     <Channel ID="0x3E8" Name="Engine Fast" CycleTime="10" Type="Custom">
       <Parameter Name="Engine Speed"  StartBit="0"  Length="16" Scale="1"    Offset="0"   ByteOrder="BigEndian" />
-      <Parameter Name="MGP"           StartBit="16" Length="16" Scale="1"    Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="MAP"           StartBit="16" Length="16" Scale="1"    Offset="0"   ByteOrder="BigEndian" />
       <Parameter Name="ECT"           StartBit="32" Length="8"  Scale="1"    Offset="-50" ByteOrder="BigEndian" />
       <Parameter Name="IAT"           StartBit="40" Length="8"  Scale="1"    Offset="-50" ByteOrder="BigEndian" />
       <Parameter Name="Oil Temp"      StartBit="48" Length="8"  Scale="1"    Offset="-50" ByteOrder="BigEndian" />
@@ -26,14 +26,15 @@
 
     <!-- ═══════════════════════════════════════════════════════════════════
          STREAM 0x3E9 — Speed / Pressure / Ignition  (10 ms cycle)
-         Bytes: [0-1] Ign° [2] km/h [3] Oil kPa [4] Fuel kPa [5-7] unused
+         Bytes: [0-1] Ign° [2] km/h [3-4] Oil kPa (u16) [5-6] Fuel kPa (u16) [7] unused
          Ign Angle decode: raw × 0.1 − 100 = degrees (allows negative timing)
+         Oil/Fuel are 2-byte u16 (widened from 1 byte; 1 byte capped at ~37 PSI / 255 kPa)
          ═══════════════════════════════════════════════════════════════════ -->
     <Channel ID="0x3E9" Name="Speed Press Ign" CycleTime="10" Type="Custom">
       <Parameter Name="Ign Angle"     StartBit="0"  Length="16" Scale="0.1"  Offset="-100" ByteOrder="BigEndian" />
       <Parameter Name="Vehicle Speed" StartBit="16" Length="8"  Scale="1"    Offset="0"    ByteOrder="BigEndian" />
-      <Parameter Name="Oil Pressure"  StartBit="24" Length="8"  Scale="1"    Offset="0"    ByteOrder="BigEndian" />
-      <Parameter Name="Fuel Pressure" StartBit="32" Length="8"  Scale="1"    Offset="0"    ByteOrder="BigEndian" />
+      <Parameter Name="Oil Pressure"  StartBit="24" Length="16" Scale="1"    Offset="0"    ByteOrder="BigEndian" />
+      <Parameter Name="Fuel Pressure" StartBit="40" Length="16" Scale="1"    Offset="0"    ByteOrder="BigEndian" />
     </Channel>
 
     <!-- ═══════════════════════════════════════════════════════════════════
@@ -88,17 +89,17 @@
 
     <!-- ═══════════════════════════════════════════════════════════════════
          STREAM 0x3F0 — Extended Sensors  (100 ms cycle)       [NEW]
-         Temp bytes (0, 4, 5) use Offset=-50 (decoded °C = raw − 50).
-         Byte 5 Cabin Temp mirrors GP Temp1 sourced from 0x640 switchboard.
+         Temp bytes (0, 5) use Offset=-50 (decoded °C = raw − 50).
+         Coolant Pressure is 2 bytes (u16); Cabin Temp was dropped to make room
+         (frame was full at 8 bytes) — cabin temp is no longer sent to RealDash.
          ═══════════════════════════════════════════════════════════════════ -->
     <Channel ID="0x3F0" Name="Extended Sensors" CycleTime="100" Type="Custom">
       <Parameter Name="Fuel Temp"        StartBit="0"  Length="8"  Scale="1"   Offset="-50" ByteOrder="BigEndian" />
       <Parameter Name="Engine Load"      StartBit="8"  Length="8"  Scale="1"   Offset="0"   ByteOrder="BigEndian" />
-      <Parameter Name="Coolant Pressure" StartBit="16" Length="8"  Scale="1"   Offset="0"   ByteOrder="BigEndian" />
-      <Parameter Name="Ethanol %"        StartBit="24" Length="8"  Scale="1"   Offset="0"   ByteOrder="BigEndian" />
-      <Parameter Name="Charge-Pipe IAT"  StartBit="32" Length="8"  Scale="1"   Offset="-50" ByteOrder="BigEndian" />
-      <Parameter Name="Cabin Temp"       StartBit="40" Length="8"  Scale="1"   Offset="-50" ByteOrder="BigEndian" />
-      <Parameter Name="Turbo Speed"      StartBit="48" Length="8"  Scale="100" Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="Coolant Pressure" StartBit="16" Length="16" Scale="1"   Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="Ethanol %"        StartBit="32" Length="8"  Scale="1"   Offset="0"   ByteOrder="BigEndian" />
+      <Parameter Name="Charge-Pipe IAT"  StartBit="40" Length="8"  Scale="1"   Offset="-50" ByteOrder="BigEndian" />
+      <Parameter Name="Turbo Speed"      StartBit="48" Length="8"  Scale="1000" Offset="0"   ByteOrder="BigEndian" />
       <Parameter Name="Trigger Errors"   StartBit="56" Length="8"  Scale="1"   Offset="0"   ByteOrder="BigEndian" />
     </Channel>
 

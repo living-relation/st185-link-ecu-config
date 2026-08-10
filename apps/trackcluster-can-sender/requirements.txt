@@ -4,3 +4,6 @@
 pywebview>=5.1
 python-can[gs_usb]>=4.3.1
 pyserial>=3.5
+# Bundles the native libusb-1.0 backend so gs_usb enumeration works in a
+# portable / frozen build with no system libusb install.
+libusb-package>=1.0.26.2

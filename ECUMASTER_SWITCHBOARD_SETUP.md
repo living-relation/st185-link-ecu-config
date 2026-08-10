@@ -79,7 +79,7 @@ outputs different voltages for each switch position (SET/ACCEL, COAST/DECEL, RES
 CANCEL). This is an analog signal, NOT a digital switch. It connects to a CSB3 **analog input**
 (Analog 2), not a digital input.
 
-The OEM cruise control ECU (C/C ECU) is bypassed entirely in this build. The Link G4X FuryX
+The OEM cruise control ECU (C/C ECU) is bypassed entirely in this build. The Link G4X XtremeX
 handles cruise control natively via its own cruise control strategy once it receives the correct
 switch inputs.
 
@@ -255,7 +255,7 @@ Exactly two 120Ω termination resistors go on the bus — one at each physical e
 
 | Node | Position | Termination |
 |---|---|---|
-| Link G4X FuryX ECU | Bus end 1 | **ON** (120Ω — built-in or add inline) |
+| Link G4X XtremeX ECU | Bus end 1 | **ON** (120Ω — built-in or add inline) |
 | center-cluster-esp32-p4 | Middle | **None** (SN65HVD230 has no termination) |
 | ECUMaster CSB3 | Middle | **Jumper OFF** — do not close onboard termination |
 | Pi4+/Pi5 + USB-CAN adapter | Bus end 2 | **ON** — via adapter termination switch (PCAN USB) or inline 120Ω (CANable) |

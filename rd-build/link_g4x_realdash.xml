@@ -20,7 +20,7 @@
 
      NOTES ON THIS FILE
        * All custom inputs are created with the "ST185:" prefix and appear under RealDash
-         Settings -> Inputs -> "ECU Specific". The dashboard in REALDASH-LAYOUT.md binds to these names.
+         Settings -> Inputs -> "ECU Specific". The dashboard build spec in PLAN.md binds to these names.
        * Bus is BigEndian (matches link_g4x_can_setup.json) — set at the frame level via endianness="big".
        * length is REQUIRED for every value (1 for a byte, 2 for a 16-bit value). RealDash v2 has no
          "type" attribute; signedness is set with signed="true" and width with length.
@@ -53,7 +53,7 @@
     <!-- ═══════════════════════════════════════════════════════════════════
          0x3F0  (decimal 1008) — Extended Sensors  (100 ms, BigEndian)
          [0] Fuel Temp °C  [1] Engine Load %  [2-3] Coolant Pressure kPa (u16)  [4] Ethanol %
-         [5] Charge-Pipe IAT °C  [6] Turbo Speed RPM x1000  [7] Trigger Errors count
+         [5] Charge-Pipe IAT °C  [6] Turbo Speed RPM x100  [7] Trigger Errors count
          Coolant Pressure widened to 2 bytes (2026-06-28); Cabin Temp dropped to make room —
          cabin temp is no longer available via the ST185 inputs.
          Temp bytes use raw-50 = °C encoding.
@@ -64,7 +64,7 @@
       <value name="ST185: Coolant Pressure" offset="2" length="2" conversion="V"     rangeMin="0" rangeMax="1000"/>
       <value name="ST185: Ethanol"          offset="4" length="1" conversion="V"     rangeMin="0" rangeMax="100"/>
       <value name="ST185: Charge-Pipe IAT"  offset="5" length="1" conversion="V-50"  units="C"/>
-      <value name="ST185: Turbo Speed"      offset="6" length="1" conversion="V*1000" rangeMin="0" rangeMax="255000"/>
+      <value name="ST185: Turbo Speed"      offset="6" length="1" conversion="V*100" rangeMin="0" rangeMax="200000"/>
       <value name="ST185: Trigger Errors"   offset="7" length="1" conversion="V"     rangeMin="0" rangeMax="255"/>
     </frame>
 

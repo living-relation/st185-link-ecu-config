@@ -236,7 +236,7 @@ resistor is needed.
 | Ignition angle (0x3E9) | `deg = raw × 0.1 − 100` | raw 1155 = 15.5° |
 | Lambda / target lambda | `λ = raw × 0.001` | raw 950 = 0.950 |
 | Accel X/Y/Z (0x3F1) | `g = raw × 0.1` (signed) | raw −12 = −1.2 g |
-| Turbo speed (0x3F0) | `RPM = raw × 100` | raw 120 = 12 000 RPM |
+| Turbo speed (0x3F0) | `RPM = raw × 1000` | raw 150 = 150 000 RPM |
 
 All multi-byte fields are **BigEndian**.
 

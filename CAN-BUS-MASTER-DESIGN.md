@@ -12,7 +12,7 @@ A single shared CAN bus at **1 Mbit/s** connects:
 
 | Node | Role | CAN participation |
 |---|---|---|
-| Link G4X FuryX ECU | Powertrain controller | Bidirectional. Also internally consumes its CAN-Lambda module (0x3B6) |
+| Link G4X XtremeX ECU | Powertrain controller | Bidirectional. Also internally consumes its CAN-Lambda module (0x3B6) |
 | center-cluster-esp32-p4 | Dash / instrument cluster | Bidirectional (TWAI_MODE_NORMAL) — the **only** dash board on CAN |
 | ECUMaster CAN Switch Board V3 | Accessory I/O (analog inputs, switches, low-side outputs) | Bidirectional (0x640-0x642 out, 0x643 in) |
 | Pi4+/Pi5 + USB-CAN adapter (CANable or PCAN USB) running RealDash | Secondary display (840×480, 7") | Passive listener only — receive 0x3EF/0x3F0/0x3F1 |
@@ -25,7 +25,7 @@ A single shared CAN bus at **1 Mbit/s** connects:
 
 - **Topology:** single linear bus segment, 1 Mbit/s, ISO 11898-2, 120Ω termination at both physical ends of the bus.
 - **Transceivers:**
-  - ECU: Link G4X FuryX CANH/CANL (internal, includes CAN-Lambda module on the same internal bus).
+  - ECU: Link G4X XtremeX CANH/CANL (internal, includes CAN-Lambda module on the same internal bus).
   - center-cluster-esp32-p4: SN65HVD230 (3.3V), TWAI GPIO5=TX / GPIO4=RX (per `sdkconfig`/`Kconfig.projbuild`).
   - ECUMaster CAN Switch Board V3: built-in CAN transceiver, CANH/CANL screw terminals.
   - Pi USB-CAN adapter (CANable or PCAN USB): plugs into a USB port on the Pi; the adapter's CANH/CANL terminals wire to the shared bus. The Waveshare dual-MCP2515 hat physically present on the Pi is **NOT a CAN node** — it is retained for its cooling fan only. Do not wire its CANH/CANL to the bus.
@@ -37,7 +37,7 @@ A single shared CAN bus at **1 Mbit/s** connects:
 
 | Device | Default speed | Required speed on this bus | Action |
 |---|---|---|---|
-| Link G4X FuryX (ECU CAN port + CAN-Lambda) | n/a (configured) | **1 Mbit/s** | Already set — `link_g4x_can_setup.lcs`, CANModule Index="1" (CAN1), BitRate=1000000. No change. |
+| Link G4X XtremeX (ECU CAN port + CAN-Lambda) | n/a (configured) | **1 Mbit/s** | Already set — `link_g4x_can_setup.lcs`, CANModule Index="1" (CAN1), BitRate=1000000. No change. |
 | center-cluster-esp32-p4 (TWAI) | n/a (coded) | **1 Mbit/s** | Already coded-complete. No change. |
 | ECUMaster CAN Switch Board V3 | **500 kbps** | **1 Mbit/s** | **Required reconfiguration** — 1000 kbps is a supported, non-default speed per the switchboard manual. Must be changed via the ECUMaster configuration tool before the switchboard is connected to this bus. |
 | Pi USB-CAN adapter (CANable or PCAN USB) | configurable | **1 Mbit/s** | Set in RealDash's CAN adapter settings. The Waveshare hat is cooling only — not configured here. |
@@ -79,7 +79,7 @@ The Link G4X consumes two switchboard frames via PCLink "User Stream" inputs, co
 ### User Stream 1 — Cabin/Ambient Temperature
 - **Source:** 0x640, bytes 0-1 (Analog Input 1, raw 0-5000 mV from a thermistor wired to the switchboard's AIN1).
 - **PCLink target:** **GP Temp1**, using a PCLink thermistor calibration table to convert the raw millivolt reading to °C.
-- **Downstream use:** GP Temp1 is available to ECU logic (e.g., AC/evap control) and is optionally mirrored to RealDash on 0x3F0 byte5 ("Cabin Temp Mirror") so the dash doesn't need its own thermistor curve.
+- **Downstream use:** GP Temp1 is available to ECU logic (e.g., AC/evap control). It is **not** broadcast to RealDash — the Cabin Temp byte was dropped from 0x3F0 to make room for 2-byte Coolant Pressure, and RealDash does not read the switchboard 0x640 frame directly. To surface cabin temp on RealDash later, add a new ECU frame (e.g. 0x3F2) with a matching RealDash value.
 
 ### User Stream 2 — Accessory Switch States (VDI1-5)
 - **Source:** 0x642, byte 4 (SW_MASK), bits 0-4.
@@ -139,7 +139,7 @@ Two independent layers protect against switchboard communication loss:
   | Frame ID | Decimal | Content |
   |---|---|---|
   | 0x3EF | 1007 | Drive Assist & Status (TC state, boost map index, cruise state, AC status, lambda target, TPS) |
-  | 0x3F0 | 1008 | Extended Sensors (fuel temp, engine load, coolant pressure, ethanol %, IAT, cabin temp, turbo speed, trigger errors) |
+  | 0x3F0 | 1008 | Extended Sensors (fuel temp, engine load, coolant pressure [2 bytes], ethanol %, charge-pipe IAT, turbo speed, trigger errors) — cabin temp dropped 2026-06-28 to fit 2-byte coolant pressure |
   | 0x3F1 | 1009 | IMU & Extended Warnings (accel X/Y/Z, ext warn bits incl. switchboard comm fault) |
 
   **Excluded from RealDash XML:**

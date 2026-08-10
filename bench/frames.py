@@ -58,6 +58,9 @@ def _dec(raw: int, scale: float, offset: float) -> float:
 def _u8(value: int) -> int:
     return max(0, min(255, int(value))) & 0xFF
 
+def _u16(value: int) -> int:
+    return max(0, min(65535, int(value))) & 0xFFFF
+
 
 # --- 0x3E8 Engine Fast -----------------------------------------------------
 
@@ -88,17 +91,18 @@ def decode_engine_fast(data: bytes) -> Dict[str, float]:
 
 def encode_speed_press_ign(ign_angle_deg: float, vehicle_speed: int,
                            oil_press: int, fuel_press: int) -> bytes:
+    # oil (bytes 3-4) and fuel (bytes 5-6) are u16; byte 7 free
     return struct.pack(
-        ">HBBBBBB",
+        ">HBHHB",
         _enc(ign_angle_deg, 0.1, -100) & 0xFFFF,
         _u8(_enc(vehicle_speed, 1, 0)),
-        _u8(_enc(oil_press, 1, 0)),
-        _u8(_enc(fuel_press, 1, 0)),
-        0, 0, 0,  # bytes 5-7 free
+        _u16(_enc(oil_press, 1, 0)),
+        _u16(_enc(fuel_press, 1, 0)),
+        0,  # byte 7 free
     )
 
 def decode_speed_press_ign(data: bytes) -> Dict[str, float]:
-    ign, spd, oilp, fuelp, _, _, _ = struct.unpack(">HBBBBBB", data[:8])
+    ign, spd, oilp, fuelp, _ = struct.unpack(">HBHHB", data[:8])
     return {
         "ign_angle_deg": _dec(ign, 0.1, -100),
         "vehicle_speed": spd,
@@ -200,30 +204,29 @@ def decode_drive_assist(data: bytes) -> Dict[str, float]:
 
 def encode_ext_sensors(fuel_temp_c: float, engine_load_pct: int,
                        coolant_press_kpa: int, ethanol_pct: int,
-                       charge_pipe_iat_c: float, cabin_temp_c: float,
+                       charge_pipe_iat_c: float,
                        turbo_speed_rpm: int, trigger_error_count: int) -> bytes:
+    # Coolant Pressure (bytes 2-3) is u16; Cabin Temp was dropped to make room.
     return struct.pack(
-        ">BBBBBBBB",
+        ">BBHBBBB",
         _u8(_enc(fuel_temp_c, 1, -50)),
         _u8(engine_load_pct),
-        _u8(coolant_press_kpa),
+        _u16(_enc(coolant_press_kpa, 1, 0)),
         _u8(ethanol_pct),
         _u8(_enc(charge_pipe_iat_c, 1, -50)),
-        _u8(_enc(cabin_temp_c, 1, -50)),
-        _u8(_enc(turbo_speed_rpm, 100, 0)),
+        _u8(_enc(turbo_speed_rpm, 1000, 0)),
         _u8(trigger_error_count),
     )
 
 def decode_ext_sensors(data: bytes) -> Dict[str, float]:
-    ft, load, cp, eth, cpiat, cabin, turbo, trig = struct.unpack(">BBBBBBBB", data[:8])
+    ft, load, cp, eth, cpiat, turbo, trig = struct.unpack(">BBHBBBB", data[:8])
     return {
         "fuel_temp_c": _dec(ft, 1, -50),
         "engine_load_pct": load,
         "coolant_press_kpa": cp,
         "ethanol_pct": eth,
         "charge_pipe_iat_c": _dec(cpiat, 1, -50),
-        "cabin_temp_c": _dec(cabin, 1, -50),
-        "turbo_speed_rpm": _dec(turbo, 100, 0),
+        "turbo_speed_rpm": _dec(turbo, 1000, 0),
         "trigger_error_count": trig,
     }
 
