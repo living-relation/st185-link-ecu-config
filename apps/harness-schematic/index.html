@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ST185 Harness — Schematic</title>
+<style>
+  :root{
+    --bg:#0b0b0d; --panel:#141416; --panel2:#1a1a1e; --border:#2c2c32;
+    --text:#f2f2f4; --muted:#8b8b96; --accent:#3dd68c; --warn:#e8b849; --danger:#e85d5d;
+    --canvas:#0e0e10; --grid:#1c1c22; --comp:#1c1c20; --comp-bd:#3e3e46; --hdr:#16161a;
+    --handle:#c8c8d0; --sel:#5b8def;
+    --mono:"IBM Plex Mono","Cascadia Code",ui-monospace,Menlo,monospace;
+    --sans:"IBM Plex Sans",Inter,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);overflow:hidden}
+  #app{display:grid;grid-template-rows:48px 1fr 36px;grid-template-columns:220px 1fr 280px;height:100%}
+  header{grid-column:1/-1;display:flex;align-items:center;gap:14px;padding:0 14px;background:var(--panel);border-bottom:1px solid var(--border)}
+  .logo{display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.02em}
+  .logo-mark{display:flex;gap:3px}
+  .logo-mark i{display:block;width:3px;height:16px;border-radius:1px;transform:skewX(-18deg)}
+  .logo-mark i:nth-child(1){background:#f5c542}
+  .logo-mark i:nth-child(2){background:#f08a2a}
+  .logo-mark i:nth-child(3){background:#8b5cf6}
+  .view-switch{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .view-switch button{background:transparent;color:var(--muted);border:0;padding:6px 12px;cursor:pointer;font:inherit;font-size:12px}
+  .view-switch button.on{background:var(--panel2);color:var(--text)}
+  header .sp{flex:1}
+  header button.tool, .lib-item, footer button{
+    background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:6px;
+    padding:6px 10px;font:inherit;font-size:12px;cursor:pointer
+  }
+  header button.tool:hover,.lib-item:hover,footer button:hover{border-color:#555}
+  .kbd{font-family:var(--mono);font-size:10px;color:var(--muted);border:1px solid var(--border);padding:1px 5px;border-radius:4px}
+  aside{background:var(--panel);border-right:1px solid var(--border);overflow:auto;padding:10px}
+  #inspector{border-right:0;border-left:1px solid var(--border)}
+  .aside-h{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:12px 0 6px}
+  .lib-item{display:flex;width:100%;text-align:left;margin:0 0 6px;gap:8px;align-items:center}
+  .lib-item .ic{width:18px;color:var(--muted);font-family:var(--mono);font-size:11px}
+  #stage-wrap{position:relative;background:var(--canvas);overflow:hidden;cursor:grab}
+  #stage-wrap.space{cursor:grab}
+  #stage-wrap.panning{cursor:grabbing}
+  #stage{position:absolute;left:0;top:0;transform-origin:0 0}
+  svg#canvas{display:block}
+  .dotgrid{fill:var(--grid)}
+  .comp-body{fill:var(--comp);stroke:var(--comp-bd);stroke-width:1.25}
+  .comp.selected .comp-body{stroke:var(--sel);stroke-width:2}
+  .comp-hdr{fill:var(--hdr)}
+  .comp-title{fill:var(--text);font:600 12px var(--sans)}
+  .comp-id{fill:var(--muted);font:500 11px var(--mono)}
+  .pin-num{fill:var(--muted);font:500 10px var(--mono)}
+  .pin-name{fill:var(--text);font:400 11px var(--sans)}
+  .handle{fill:var(--handle);stroke:#111;stroke-width:.6}
+  .handle.hot,.handle:hover{fill:var(--accent)}
+  .wire{fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .wire.selected{stroke-width:3.4;filter:drop-shadow(0 0 3px #fff6)}
+  .wire.dim{opacity:.18}
+  .wire.dash{stroke-dasharray:7 5}
+  .splice{fill:#2a2a30;stroke:#9aa}
+  .note-bg{fill:#1c1a12;stroke:#6a5a2a}
+  .note-tx{fill:#e8d48a;font:400 11px var(--sans)}
+  .badge{font:700 9px var(--sans);letter-spacing:.04em}
+  footer{grid-column:1/-1;display:flex;align-items:center;gap:8px;padding:0 10px;background:var(--panel);border-top:1px solid var(--border);font-size:12px;color:var(--muted)}
+  footer label{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none}
+  footer .sp{flex:1}
+  #ctx{position:fixed;z-index:20;background:#16161a;border:1px solid var(--border);border-radius:8px;padding:6px;min-width:200px;display:none;box-shadow:0 12px 40px #0008}
+  #ctx button{display:block;width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:7px 10px;border-radius:5px;font:inherit;font-size:12px;cursor:pointer}
+  #ctx button:hover{background:#2a2a32}
+  #ctx .sep{height:1px;background:var(--border);margin:4px 0}
+  .insp-row{display:grid;grid-template-columns:72px 1fr;gap:6px;margin:0 0 8px;font-size:12px;align-items:center}
+  .insp-row input, .insp-row select, textarea{
+    width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:5px;padding:5px 7px;font:inherit;font-size:12px
+  }
+  textarea{min-height:70px;resize:vertical}
+  .hint{font-size:11px;color:var(--muted);line-height:1.45}
+  .status-ok{color:var(--accent)} .status-prop{color:var(--warn)} .status-tbd{color:var(--muted)}
+  #layout-empty{display:none;position:absolute;inset:0;align-items:center;justify-content:center;color:var(--muted);font-size:14px;padding:40px;text-align:center}
+  #app.layout #stage-wrap svg, #app.layout aside:first-of-type, #app.layout #inspector{opacity:.35;pointer-events:none}
+  #app.layout #layout-empty{display:flex}
+  .legend-dot{width:10px;height:10px;border-radius:2px;display:inline-block}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="logo"><span class="logo-mark"><i></i><i></i><i></i></span> ST185 harness</div>
+    <div class="view-switch">
+      <button class="on" id="btn-schematic">Schematic</button>
+      <button id="btn-layout">Layout</button>
+    </div>
+    <span class="hint">Celica GT-Four · 3S-GTE · Link G4X XtremeX</span>
+    <span class="sp"></span>
+    <button class="tool" id="btn-fit">Fit</button>
+    <button class="tool" id="btn-export">Export JSON</button>
+    <button class="tool" id="btn-svg">Export SVG</button>
+    <button class="tool" id="btn-reset">Reset ST185</button>
+  </header>
+  <aside>
+    <div class="aside-h">Add to canvas</div>
+    <button class="lib-item" data-add="connector"><span class="ic">C</span> Connector</button>
+    <button class="lib-item" data-add="splice"><span class="ic">S</span> Splice</button>
+    <button class="lib-item" data-add="terminal"><span class="ic">T</span> Terminal</button>
+    <button class="lib-item" data-add="resistor"><span class="ic">R</span> Resistor</button>
+    <button class="lib-item" data-add="diode"><span class="ic">D</span> Diode</button>
+    <button class="lib-item" data-add="note"><span class="ic">N</span> Note</button>
+    <div class="aside-h">Motorsport library</div>
+    <button class="lib-item" data-add="sensor3"><span class="ic">3</span> 3-pin sensor</button>
+    <button class="lib-item" data-add="sensor2"><span class="ic">2</span> 2-pin sensor</button>
+    <button class="lib-item" data-add="relay"><span class="ic">K</span> Relay</button>
+    <button class="lib-item" data-add="can-node"><span class="ic">CAN</span> CAN node</button>
+    <button class="lib-item" data-add="dtm6"><span class="ic">DT</span> Deutsch 6-way</button>
+    <div class="aside-h">Nets</div>
+    <div class="hint" id="net-legend"></div>
+  </aside>
+  <div id="stage-wrap">
+    <div id="stage"><svg id="canvas" xmlns="http://www.w3.org/2000/svg"></svg></div>
+    <div id="layout-empty">Layout view is a placeholder. Physical bundle routing is not defined yet — stay in Schematic and draw the remaining wires. When bundle lengths exist, this view can show the nailboard.</div>
+  </div>
+  <aside id="inspector">
+    <div class="aside-h">Inspector</div>
+    <div id="insp" class="hint">Click a component or wire. Right-click the canvas to add parts. Drag a pin handle to another pin to draw a wire.</div>
+  </aside>
+  <footer>
+    <button id="btn-zoom-out">−</button>
+    <span id="zoom-lbl">100%</span>
+    <button id="btn-zoom-in">+</button>
+    <label><input type="checkbox" id="tog-ids" checked> Show IDs</label>
+    <label><input type="checkbox" id="tog-nets"> Highlight net</label>
+    <label><input type="checkbox" id="tog-dash" checked> Dash incomplete</label>
+    <label><input type="checkbox" id="tog-warn" checked> Show unwired</label>
+    <span class="sp"></span>
+    <span>Pan <span class="kbd">Space</span> drag · Zoom wheel · Wire: drag pin → pin · Delete <span class="kbd">Del</span></span>
+    <span id="stat"></span>
+  </footer>
+</div>
+<div id="ctx"></div>
+<script>
+const PIN_H = 20, HDR = 32, PAD = 8, COMP_W = 196;
+const STORAGE = "st185-harness-v1";
+const NET_COLORS = {
+  CANH:"#f2f2f2", CANL:"#3dd68c", "12V":"#e85d5d", "5V":"#f08a2a", "3V3":"#f5c542",
+  GND:"#8b8b96", SIG:"#5b8def", UART:"#8b5cf6", INJ:"#3b82f6", IGN:"#f97316",
+  AUX:"#a78bfa", TEMP:"#84cc16", TRIG:"#14b8a6", DI:"#38bdf8"
+};
+
+const $ = (s) => document.querySelector(s);
+let state = { components: [], wires: [], view:{x:40,y:30,k:0.85}, sel:null, highlightNet:null };
+let ui = { space:false, pan:null, drag:null, wire:null, ctx:null };
+
+function uid(p){ return p + "-" + Math.random().toString(36).slice(2,8); }
+function pinH(c){ return HDR + (c.pins?.length || 1) * PIN_H + PAD; }
+function pinY(c, i){ return c.y + HDR + 10 + i * PIN_H; }
+function pinXY(c, pin){
+  if (c.kind === "splice") return { x: c.x + 10, y: c.y + 10 };
+  const i = c.pins.findIndex(p => p.id === pin.id);
+  const y = pinY(c, i);
+  const left = pin.side !== "right";
+  return { x: left ? c.x : c.x + (c.w || COMP_W), y };
+}
+
+function mkPins(names, side){
+  return names.map((name, i) => ({ id:"p"+(i+1), num:String(i+1), name, side }));
+}
+function comp(id, name, ident, x, y, names, side, extra={}){
+  return {
+    id, kind: extra.kind || "connector", name, ident, x, y, w: extra.w || COMP_W,
+    pins: extra.pins || mkPins(names, side),
+    status: extra.status || "ok",
+    note: extra.note || "",
+    unwired: !!extra.unwired
+  };
+}
+
+function buildST185(){
+  const C = [];
+  const W = [];
+  const addW = (a, b, net, extra={}) => {
+    const [cid, pid] = a.split(".");
+    const [cid2, pid2] = b.split(".");
+    W.push({
+      id: uid("w"), from:{c:cid,p:pid}, to:{c:cid2,p:pid2},
+      net, color: extra.color || NET_COLORS[net] || extra.color || "#888",
+      label: extra.label || net, dashed: !!extra.dashed
+    });
+  };
+
+  /* ---- Engine sensors (left) ---- */
+  C.push(comp("crank","Crank VR 36-2","S1", 40, 80, ["SIG+","SIG−"], "right"));
+  C.push(comp("cam","Cam Hall RacerX","S2", 40, 180, ["12V","SIG","GND"], "right"));
+  C.push(comp("ect","ECT coolant","S3", 40, 300, ["SIG","GND"], "right"));
+  C.push(comp("iat","IAT manifold","S4", 40, 400, ["SIG","GND"], "right"));
+  C.push(comp("oil-t","Oil temp","S5", 40, 500, ["SIG","GND"], "right"));
+  C.push(comp("cp-iat","Charge-pipe IAT","S6", 40, 600, ["SIG","GND"], "right"));
+  C.push(comp("knock","Knock 1","S7", 40, 700, ["SIG","GND"], "right"));
+  C.push(comp("turbo-spd","Turbo speed","S8", 40, 800, ["12V","SIG","GND"], "right"));
+  C.push(comp("flex","Continental flex","S9", 40, 920, ["12V","FREQ","GND"], "right", {note:"Ethanol % + fuel temp"}));
+
+  C.push(comp("map","MAP","S10", 280, 80, ["5V","SIG","GND"], "right"));
+  C.push(comp("oil-p","Oil pressure","S11", 280, 200, ["5V","SIG","GND"], "right"));
+  C.push(comp("fuel-p","Fuel pressure","S12", 280, 320, ["5V","SIG","GND"], "right"));
+  C.push(comp("clnt-p","Coolant pressure","S13", 280, 440, ["5V","SIG","GND"], "right"));
+
+  /* ---- ECU ---- */
+  C.push(comp("ecu-in","XtremeX · Inputs","C1", 560, 80, [
+    "Trigger 1","Trigger 2","Temp 1 ECT","Temp 2 IAT","Temp 3 Oil T","Temp 4 Chg IAT",
+    "AnV1 MAP","AnV2 ETB TPS M","AnV3 ETB TPS S","AnV4 APS M","AnV5 APS S",
+    "AnV6 Oil P","AnV7 Fuel P","AnV8 Coolant P","Knock 1","DI1 Turbo spd","DI2 Flex",
+    "+5V Out","Sensor GND","Shield GND"
+  ], "left", {w:220}));
+
+  C.push(comp("ecu-out","XtremeX · Outputs","C2", 860, 80, [
+    "Inj 1","Inj 2","Inj 3","Inj 4","Ign 1 COP","Ign 2 COP","Ign 3 COP","Ign 4 COP",
+    "Aux1 Boost sol","Aux2 ETB relay","Aux3 FP relay","Aux4 AC kill","Aux5 Rad fan",
+    "Aux6 EFI hold","Aux7 MRS SPD","Aux8 Start rly","Aux9 ETB M+","Aux10 ETB M−","14V +"
+  ], "right", {w:220}));
+
+  C.push(comp("ecu-com","XtremeX · Comms 6-pin","C3", 560, 560, [
+    "1 GND Brn","2 Unused Blu","3 CAN H Wht","4 CAN L Grn","5 RS232 TX Yel","6 RS232 RX Gry"
+  ], "right", {w:220}));
+
+  /* ---- Actuators ---- */
+  C.push(comp("inj1","Injector 1 1400cc","A1", 1160, 80, ["12V","INJ"], "left"));
+  C.push(comp("inj2","Injector 2 1400cc","A2", 1160, 170, ["12V","INJ"], "left"));
+  C.push(comp("inj3","Injector 3 1400cc","A3", 1160, 260, ["12V","INJ"], "left"));
+  C.push(comp("inj4","Injector 4 1400cc","A4", 1160, 350, ["12V","INJ"], "left"));
+  C.push(comp("cop1","COP 1 1ZZ","A5", 1400, 80, ["12V","GND","TRIG"], "left"));
+  C.push(comp("cop2","COP 2 1ZZ","A6", 1400, 190, ["12V","GND","TRIG"], "left"));
+  C.push(comp("cop3","COP 3 1ZZ","A7", 1400, 300, ["12V","GND","TRIG"], "left"));
+  C.push(comp("cop4","COP 4 1ZZ","A8", 1400, 410, ["12V","GND","TRIG"], "left"));
+  C.push(comp("boost","Boost solenoid","A9", 1160, 450, ["12V","LS"], "left"));
+  C.push(comp("etb","Bosch 74mm ETB","A10", 1400, 540, ["M+","M−","5V","TPS-M","TPS-S","GND"], "left", {w:210}));
+  C.push(comp("aps","Accel pedal APS","A11", 1160, 560, ["5V","APS-M","APS-S","GND"], "left"));
+  C.push(comp("mrs","MRS EPS pump","A12", 1160, 700, ["12V","GND","SPD Yel/Wht"], "left", {note:"Aux7 speed-out, no resistor"}));
+
+  /* ---- Power / relays ---- */
+  C.push(comp("batt","Vehicle 12V IGN","P1", 40, 1100, ["12V+","GND"], "right", {w:180}));
+  C.push(comp("buck","12V→5V buck ≥3A","P2", 280, 1100, ["12V IN","GND","5V OUT"], "right"));
+  C.push({id:"sp-12v", kind:"splice", name:"12V splice", ident:"SP1", x:250, y:1148, w:28,
+    pins:[{id:"p1", num:"1", name:"12V", side:"right"}], status:"ok", note:"IGN 12V distribution"});
+  C.push({id:"sp-gnd", kind:"splice", name:"GND splice", ident:"SP2", x:250, y:1188, w:28,
+    pins:[{id:"p1", num:"1", name:"GND", side:"right"}], status:"ok", note:"Chassis / sensor ground"});
+  C.push({id:"sp-5v", kind:"splice", name:"+5V splice", ident:"SP3", x:500, y:430, w:28,
+    pins:[{id:"p1", num:"1", name:"5V", side:"right"}], status:"ok", note:"ECU +5V Out"});
+  C.push({id:"sp-canh", kind:"splice", name:"CANH", ident:"SP4", x:800, y:620, w:28,
+    pins:[{id:"p1", num:"1", name:"CANH", side:"right"}], status:"ok", note:"CAN 1 High backbone"});
+  C.push({id:"sp-canl", kind:"splice", name:"CANL", ident:"SP5", x:800, y:660, w:28,
+    pins:[{id:"p1", num:"1", name:"CANL", side:"right"}], status:"ok", note:"CAN 1 Low backbone"});
+  C.push(comp("k-efi","EFI main relay","K1", 1640, 80, ["86 coil","85 LS","30 12V","87 ECU 14V"], "left"));
+  C.push(comp("k-etb","ETB power relay","K2", 1640, 200, ["86 coil","85 LS","30 12V","87 V-Ethrottle"], "left"));
+  C.push(comp("k-fp","Fuel pump relay","K3", 1640, 320, ["86 coil","85 LS","30 12V","87 pump"], "left"));
+  C.push(comp("k-fan","Rad fan relay","K4", 1640, 440, ["86 coil","85 LS","30 12V","87 fan"], "left"));
+  C.push(comp("k-str","Start relay","K5", 1640, 560, ["86 coil","85 LS","30 12V","87 starter"], "left"));
+  C.push(comp("ac-rly","AC clutch / amp ACT","K6", 1640, 680, ["86 coil","85 LS Aux4","30 12V","87 clutch"], "left", {status:"prop", note:"Confirm clutch relay vs amp ACT"}));
+
+  /* ---- CAN / dash ---- */
+  C.push(comp("xcvr","SN65HVD230","N1", 860, 780, ["3V3 VCC","GND","CTX","CRX","CANH","CANL"], "left", {w:200}));
+  C.push(comp("center","Center cluster P4 J8","N2", 1160, 860, [
+    "J8-2 5V","J8-39 GND","3V3","GPIO5 TX","GPIO4 RX",
+    "GPIO20 UART1 TX","GPIO18 UART1 RX","GPIO21 UART2 TX","GPIO19 UART2 RX",
+    "GPIO29 ODO btn","GPIO30 Enc1 A","GPIO31 Enc1 B","GPIO32 Enc1 SW",
+    "GPIO49 Enc2 A","GPIO50 Enc2 B","GPIO51 Enc2 SW"
+  ], "left", {w:230}));
+  C.push(comp("left","Left cluster S3","N3", 1480, 860, ["5V VIN","GND","GPIO44 RX","GPIO43 TX"], "left"));
+  C.push(comp("right","Right cluster S3","N4", 1480, 1000, ["5V VIN","GND","GPIO44 RX","GPIO43 TX"], "left"));
+  C.push(comp("csb3","ECUMaster CSB3 V3","N5", 560, 860, [
+    "12V","GND","CANH","CANL",
+    "AIN1 Cabin NTC","AIN2 Cruise ladder","AIN3","AIN4","AIN5","AIN6","AIN7","AIN8",
+    "SW1 Brake","SW2 Reverse","SW3 Cruise MAIN","SW4 AC request","SW5 Evap OT",
+    "SW6","SW7","SW8","LS1 LED","LS2 LED","LS3 LED","LS4 LED"
+  ], "right", {w:230, note:"1 Mbit/s, Base 0x640, term jumper OFF. LS = LED only 0.5A"}));
+  C.push(comp("lambda","Link CAN-Lambda","N6", 280, 780, ["12V","GND","CANH","CANL"], "right"));
+  C.push(comp("usbcan","USB-CAN adapter","N7", 860, 1180, ["CANH","CANL","GND","USB"], "left", {note:"CANable or PCAN · 1 Mbit/s · END B term"}));
+  C.push(comp("pi","Pi 5 + RealDash 7in","N8", 1160, 1280, ["5V USB","GND","USB host"], "left", {note:"Listen-only 0x3EF–0x3F1"}));
+  C.push(comp("r120a","120Ω term END A","R1", 860, 560, ["CANH","CANL"], "left", {kind:"resistor", w:170}));
+  C.push(comp("r120b","120Ω term END B","R2", 860, 1320, ["CANH","CANL"], "left", {kind:"resistor", w:170}));
+
+  C.push(comp("btn","ODO / Trip button","H1", 1480, 1140, ["SW","GND"], "left"));
+  C.push(comp("enc1","Enc 1 Boost map","H2", 1680, 860, ["A","B","SW","GND"], "left"));
+  C.push(comp("enc2","Enc 2 TC slip","H3", 1680, 980, ["A","B","SW","GND"], "left"));
+
+  C.push(comp("cabin","Cabin temp NTC","SB1", 280, 980, ["SIG","GND"], "right"));
+  C.push(comp("brake","Brake switch","SB2", 280, 1080, ["SW","GND"], "right"));
+  C.push(comp("rev","Reverse switch","SB3", 280, 1170, ["SW","GND"], "right"));
+  C.push(comp("cruise","Cruise stalk ladder","SB4", 40, 1220, ["SIG","GND"], "right", {note:"OEM resistor ladder. Confirm voltages."}));
+  C.push(comp("c-main","Cruise MAIN","SB5", 40, 1320, ["SW","GND"], "right"));
+  C.push(comp("ac-req","AC request","SB6", 40, 1410, ["SW","GND"], "right"));
+  C.push(comp("evap","Evap over-temp","SB7", 40, 1500, ["SW","GND"], "right"));
+
+  /* ---- Unwired / TBD (no connections) ---- */
+  const yU = 1680;
+  C.push(comp("fuel-lvl","Fuel level sender","U1", 40, yU, ["SIG","GND"], "right", {unwired:true, status:"prop", note:"Needs divider pull-up on An Volt 9"}));
+  C.push(comp("abs-fl","ABS WSS FL","U2", 280, yU, ["SIG+","SIG−","SHIELD"], "right", {unwired:true, status:"prop"}));
+  C.push(comp("abs-fr","ABS WSS FR","U3", 500, yU, ["SIG+","SIG−","SHIELD"], "right", {unwired:true, status:"prop"}));
+  C.push(comp("abs-rl","ABS WSS RL","U4", 720, yU, ["SIG+","SIG−","SHIELD"], "right", {unwired:true, status:"prop"}));
+  C.push(comp("abs-rr","ABS WSS RR","U5", 940, yU, ["SIG+","SIG−","SHIELD"], "right", {unwired:true, status:"prop"}));
+  C.push(comp("start-sw","Start request","U6", 1160, yU, ["SW","GND"], "left", {unwired:true, status:"prop"}));
+  C.push(comp("clutch","Clutch switch","U7", 1380, yU, ["SW","GND"], "left", {unwired:true, status:"prop"}));
+  C.push(comp("fan2","2nd / condenser fan","U8", 40, yU+140, ["12V","LS"], "right", {unwired:true, status:"prop", note:"Proposed Ign 5"}));
+  C.push(comp("oil-lamp","Oil pressure lamp","U9", 280, yU+140, ["12V","LS"], "right", {unwired:true, status:"prop", note:"Proposed Ign 6"}));
+  C.push(comp("pmu","ECUMaster PMU/PDM","U10", 500, yU+140, ["12V","GND","CANH","CANL"], "right", {unwired:true, status:"tbd", note:"Only if output count grows"}));
+  C.push(comp("hat","Waveshare MCP2515 hat","U11", 760, yU+140, ["CANH","CANL","5V","GND"], "right", {unwired:true, status:"tbd", note:"Cooling fan only — do not wire CAN"}));
+  C.push(comp("knock2","Knock 2","U12", 1020, yU+140, ["SIG","GND"], "right", {unwired:true, status:"tbd"}));
+
+  C.push({
+    id:"note-unwired", kind:"note", name:"Unwired / TBD", ident:"", x:40, y:yU-50, w:520,
+    pins:[], note:"Devices below have no confirmed pin-to-pin yet. Drag them and draw the wires yourself. Do not connect the Waveshare hat to CAN."
+  });
+  C.push({
+    id:"note-can", kind:"note", name:"CAN 1 · 1 Mbit/s", ident:"", x:560, y:740, w:300,
+    pins:[], note:"Linear bus. Term only at END A (ECU) and END B (Pi). CSB3 jumper OFF. Hat is not a CAN node."
+  });
+
+  /* Defined sensor → ECU */
+  addW("crank.p1","ecu-in.p1","TRIG",{label:"Trigger 1"});
+  addW("crank.p2","sp-gnd.p1","GND");
+  addW("cam.p2","ecu-in.p2","TRIG",{label:"Trigger 2"});
+  addW("cam.p1","sp-12v.p1","12V");
+  addW("cam.p3","sp-gnd.p1","GND");
+  addW("ect.p1","ecu-in.p3","TEMP");
+  addW("ect.p2","sp-gnd.p1","GND");
+  addW("iat.p1","ecu-in.p4","TEMP");
+  addW("iat.p2","sp-gnd.p1","GND");
+  addW("oil-t.p1","ecu-in.p5","TEMP");
+  addW("oil-t.p2","sp-gnd.p1","GND");
+  addW("cp-iat.p1","ecu-in.p6","TEMP");
+  addW("cp-iat.p2","sp-gnd.p1","GND");
+  addW("map.p1","sp-5v.p1","5V");
+  addW("map.p2","ecu-in.p7","SIG");
+  addW("map.p3","sp-gnd.p1","GND");
+  addW("oil-p.p1","sp-5v.p1","5V");
+  addW("oil-p.p2","ecu-in.p12","SIG");
+  addW("oil-p.p3","sp-gnd.p1","GND");
+  addW("fuel-p.p1","sp-5v.p1","5V");
+  addW("fuel-p.p2","ecu-in.p13","SIG");
+  addW("fuel-p.p3","sp-gnd.p1","GND");
+  addW("clnt-p.p1","sp-5v.p1","5V");
+  addW("clnt-p.p2","ecu-in.p14","SIG");
+  addW("clnt-p.p3","sp-gnd.p1","GND");
+  addW("knock.p1","ecu-in.p15","TRIG");
+  addW("knock.p2","ecu-in.p20","GND");
+  addW("turbo-spd.p2","ecu-in.p16","DI");
+  addW("turbo-spd.p1","sp-12v.p1","12V");
+  addW("turbo-spd.p3","sp-gnd.p1","GND");
+  addW("flex.p1","sp-12v.p1","12V");
+  addW("flex.p2","ecu-in.p17","DI");
+  addW("flex.p3","sp-gnd.p1","GND");
+  addW("ecu-in.p18","sp-5v.p1","5V");
+  addW("ecu-in.p19","sp-gnd.p1","GND");
+  addW("batt.p1","sp-12v.p1","12V");
+  addW("batt.p2","sp-gnd.p1","GND");
+
+  addW("ecu-out.p1","inj1.p2","INJ"); addW("sp-12v.p1","inj1.p1","12V");
+  addW("ecu-out.p2","inj2.p2","INJ"); addW("sp-12v.p1","inj2.p1","12V");
+  addW("ecu-out.p3","inj3.p2","INJ"); addW("sp-12v.p1","inj3.p1","12V");
+  addW("ecu-out.p4","inj4.p2","INJ"); addW("sp-12v.p1","inj4.p1","12V");
+  addW("ecu-out.p5","cop1.p3","IGN"); addW("sp-12v.p1","cop1.p1","12V"); addW("cop1.p2","sp-gnd.p1","GND");
+  addW("ecu-out.p6","cop2.p3","IGN"); addW("sp-12v.p1","cop2.p1","12V"); addW("cop2.p2","sp-gnd.p1","GND");
+  addW("ecu-out.p7","cop3.p3","IGN"); addW("sp-12v.p1","cop3.p1","12V"); addW("cop3.p2","sp-gnd.p1","GND");
+  addW("ecu-out.p8","cop4.p3","IGN"); addW("sp-12v.p1","cop4.p1","12V"); addW("cop4.p2","sp-gnd.p1","GND");
+  addW("ecu-out.p9","boost.p2","AUX"); addW("sp-12v.p1","boost.p1","12V");
+  addW("ecu-out.p17","etb.p1","AUX"); addW("ecu-out.p18","etb.p2","AUX");
+  addW("sp-5v.p1","etb.p3","5V");
+  addW("etb.p4","ecu-in.p8","SIG");
+  addW("etb.p5","ecu-in.p9","SIG");
+  addW("etb.p6","sp-gnd.p1","GND");
+  addW("sp-5v.p1","aps.p1","5V");
+  addW("aps.p2","ecu-in.p10","SIG");
+  addW("aps.p3","ecu-in.p11","SIG");
+  addW("aps.p4","sp-gnd.p1","GND");
+  addW("ecu-out.p15","mrs.p3","AUX"); addW("sp-12v.p1","mrs.p1","12V"); addW("mrs.p2","sp-gnd.p1","GND");
+
+  addW("ecu-out.p14","k-efi.p2","AUX");
+  addW("ecu-out.p10","k-etb.p2","AUX");
+  addW("ecu-out.p11","k-fp.p2","AUX");
+  addW("ecu-out.p13","k-fan.p2","AUX");
+  addW("ecu-out.p16","k-str.p2","AUX");
+  addW("ecu-out.p12","ac-rly.p2","AUX");
+  addW("sp-12v.p1","k-efi.p1","12V"); addW("sp-12v.p1","k-efi.p3","12V"); addW("k-efi.p4","ecu-out.p19","12V");
+  addW("sp-12v.p1","k-etb.p1","12V"); addW("sp-12v.p1","k-etb.p3","12V");
+  addW("sp-12v.p1","k-fp.p1","12V"); addW("sp-12v.p1","k-fp.p3","12V");
+  addW("sp-12v.p1","k-fan.p1","12V"); addW("sp-12v.p1","k-fan.p3","12V");
+  addW("sp-12v.p1","k-str.p1","12V"); addW("sp-12v.p1","k-str.p3","12V");
+
+  /* CAN backbone via splices (one net each, not a star off the ECU) */
+  addW("ecu-com.p3","sp-canh.p1","CANH");
+  addW("ecu-com.p4","sp-canl.p1","CANL");
+  addW("r120a.p1","sp-canh.p1","CANH");
+  addW("r120a.p2","sp-canl.p1","CANL");
+  addW("xcvr.p5","sp-canh.p1","CANH");
+  addW("xcvr.p6","sp-canl.p1","CANL");
+  addW("csb3.p3","sp-canh.p1","CANH");
+  addW("csb3.p4","sp-canl.p1","CANL");
+  addW("lambda.p3","sp-canh.p1","CANH");
+  addW("lambda.p4","sp-canl.p1","CANL");
+  addW("usbcan.p1","sp-canh.p1","CANH");
+  addW("usbcan.p2","sp-canl.p1","CANL");
+  addW("r120b.p1","sp-canh.p1","CANH");
+  addW("r120b.p2","sp-canl.p1","CANL");
+  addW("lambda.p1","sp-12v.p1","12V"); addW("lambda.p2","sp-gnd.p1","GND");
+  addW("csb3.p1","sp-12v.p1","12V"); addW("csb3.p2","sp-gnd.p1","GND");
+  addW("usbcan.p3","sp-gnd.p1","GND");
+  addW("usbcan.p4","pi.p3","UART",{label:"USB", color:"#64748b"});
+
+  /* Transceiver ↔ center */
+  addW("center.p4","xcvr.p3","UART",{label:"TWAI TX", color:"#38bdf8"});
+  addW("center.p5","xcvr.p4","UART",{label:"TWAI RX", color:"#38bdf8"});
+  addW("center.p3","xcvr.p1","3V3");
+  addW("center.p2","xcvr.p2","GND");
+
+  /* Cluster power + UART */
+  addW("sp-12v.p1","buck.p1","12V"); addW("sp-gnd.p1","buck.p2","GND");
+  addW("buck.p3","center.p1","5V");
+  addW("buck.p3","left.p1","5V");
+  addW("buck.p3","right.p1","5V");
+  addW("sp-gnd.p1","center.p2","GND");
+  addW("sp-gnd.p1","left.p2","GND");
+  addW("sp-gnd.p1","right.p2","GND");
+  addW("center.p6","left.p3","UART");
+  addW("center.p8","right.p3","UART");
+
+  addW("btn.p1","center.p10","DI"); addW("btn.p2","sp-gnd.p1","GND");
+  addW("enc1.p1","center.p11","DI"); addW("enc1.p2","center.p12","DI");
+  addW("enc1.p3","center.p13","DI"); addW("enc1.p4","sp-gnd.p1","GND");
+  addW("enc2.p1","center.p14","DI"); addW("enc2.p2","center.p15","DI");
+  addW("enc2.p3","center.p16","DI"); addW("enc2.p4","sp-gnd.p1","GND");
+
+  /* Switchboard body I/O */
+  addW("cabin.p1","csb3.p5","TEMP"); addW("cabin.p2","sp-gnd.p1","GND");
+  addW("cruise.p1","csb3.p6","SIG"); addW("cruise.p2","sp-gnd.p1","GND");
+  addW("brake.p1","csb3.p13","DI"); addW("brake.p2","sp-gnd.p1","GND");
+  addW("rev.p1","csb3.p14","DI"); addW("rev.p2","sp-gnd.p1","GND");
+  addW("c-main.p1","csb3.p15","DI"); addW("c-main.p2","sp-gnd.p1","GND");
+  addW("ac-req.p1","csb3.p16","DI"); addW("ac-req.p2","sp-gnd.p1","GND");
+  addW("evap.p1","csb3.p17","DI"); addW("evap.p2","sp-gnd.p1","GND");
+
+  return { components:C, wires:W, view:{x:20,y:20,k:0.72} };
+}
+
+function findC(id){ return state.components.find(c => c.id === id); }
+function findPin(c, pid){ return c.pins.find(p => p.id === pid); }
+
+function route(x1,y1,x2,y2,i){
+  const dir1 = x2 >= x1 ? 28 : -28;
+  const mid = x1 + dir1 + ((i % 7) - 3) * 10;
+  const xMid = Math.round((x1 + x2) / 2 + ((i % 5) - 2) * 8);
+  const r = 6;
+  const pts = [[x1,y1],[x1+dir1,y1],[xMid,y1],[xMid,y2],[x2-dir1,y2],[x2,y2]];
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let k=1;k<pts.length;k++){
+    const [ax,ay] = pts[k-1], [bx,by] = pts[k];
+    if (k===1 || k===pts.length-1) d += ` L${bx},${by}`;
+    else d += ` L${bx},${by}`;
+  }
+  return d;
+}
+
+function render(){
+  const svg = $("#canvas");
+  const showIds = $("#tog-ids").checked;
+  const showWarn = $("#tog-warn").checked;
+  const dashInc = $("#tog-dash").checked;
+  const hi = $("#tog-nets").checked ? state.highlightNet : null;
+
+  let minX=0, minY=0, maxX=2000, maxY=2000;
+  state.components.forEach(c => {
+    const h = c.kind==="note" ? 70 : pinH(c);
+    const w = c.w || COMP_W;
+    maxX = Math.max(maxX, c.x+w+80);
+    maxY = Math.max(maxY, c.y+h+80);
+  });
+  svg.setAttribute("width", maxX);
+  svg.setAttribute("height", maxY);
+
+  const ns = "http://www.w3.org/2000/svg";
+  svg.innerHTML = "";
+  const defs = document.createElementNS(ns,"defs");
+  defs.innerHTML = `<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+    <circle class="dotgrid" cx="1" cy="1" r="1"/></pattern>`;
+  svg.appendChild(defs);
+  const bg = document.createElementNS(ns,"rect");
+  bg.setAttribute("width", maxX); bg.setAttribute("height", maxY);
+  bg.setAttribute("fill", "url(#dots)");
+  svg.appendChild(bg);
+
+  const gW = document.createElementNS(ns,"g");
+  gW.setAttribute("id","wires");
+  state.wires.forEach((w,i) => {
+    const a = findC(w.from.c), b = findC(w.to.c);
+    if (!a || !b) return;
+    const pa = findPin(a, w.from.p), pb = findPin(b, w.to.p);
+    if (!pa || !pb) return;
+    const A = pinXY(a, pa), B = pinXY(b, pb);
+    const path = document.createElementNS(ns,"path");
+    path.setAttribute("d", route(A.x, A.y, B.x, B.y, i));
+    path.setAttribute("class", "wire" + (state.sel===w.id?" selected":"") + (hi && w.net!==hi?" dim":"") + ((dashInc && w.dashed)?" dash":""));
+    path.setAttribute("stroke", w.color || "#888");
+    path.dataset.id = w.id;
+    gW.appendChild(path);
+    if (w.label && Math.abs(A.x-B.x)+Math.abs(A.y-B.y) > 80){
+      const t = document.createElementNS(ns,"text");
+      t.setAttribute("x", (A.x+B.x)/2); t.setAttribute("y", (A.y+B.y)/2 - 6);
+      t.setAttribute("fill", w.color || "#aaa");
+      t.setAttribute("font-size","9"); t.setAttribute("font-family","var(--mono)");
+      t.setAttribute("text-anchor","middle");
+      t.textContent = w.label;
+      t.style.pointerEvents = "none";
+      gW.appendChild(t);
+    }
+  });
+  svg.appendChild(gW);
+
+  const gC = document.createElementNS(ns,"g");
+  state.components.forEach(c => {
+    const g = document.createElementNS(ns,"g");
+    g.setAttribute("class", "comp" + (state.sel===c.id?" selected":""));
+    g.dataset.id = c.id;
+    const w = c.w || COMP_W;
+    const h = c.kind==="note" ? 78 : (c.kind==="splice" ? 28 : pinH(c));
+
+    if (c.kind==="note"){
+      const r = document.createElementNS(ns,"rect");
+      r.setAttribute("class","note-bg"); r.setAttribute("x",c.x); r.setAttribute("y",c.y);
+      r.setAttribute("width",w); r.setAttribute("height",h); r.setAttribute("rx","8");
+      g.appendChild(r);
+      const t = document.createElementNS(ns,"text");
+      t.setAttribute("class","note-tx"); t.setAttribute("x", c.x+10); t.setAttribute("y", c.y+18);
+      t.textContent = c.name;
+      g.appendChild(t);
+      wrapText(g, c.note || "", c.x+10, c.y+34, w-20);
+      gC.appendChild(g); return;
+    }
+
+    if (c.kind==="splice"){
+      const ci = document.createElementNS(ns,"circle");
+      ci.setAttribute("class","splice"); ci.setAttribute("cx", c.x+10); ci.setAttribute("cy", c.y+10); ci.setAttribute("r","8");
+      g.appendChild(ci);
+      const hdl = document.createElementNS(ns,"circle");
+      hdl.setAttribute("class","handle");
+      hdl.setAttribute("cx", c.x+10); hdl.setAttribute("cy", c.y+10); hdl.setAttribute("r","4.5");
+      hdl.dataset.cid = c.id; hdl.dataset.pid = (c.pins[0]&&c.pins[0].id) || "p1";
+      g.appendChild(hdl);
+      const lb = document.createElementNS(ns,"text");
+      lb.setAttribute("class","pin-name"); lb.setAttribute("x", c.x+22); lb.setAttribute("y", c.y+14);
+      lb.textContent = c.name;
+      g.appendChild(lb);
+      gC.appendChild(g); return;
+    }
+
+    const body = document.createElementNS(ns,"rect");
+    body.setAttribute("class","comp-body"); body.setAttribute("x",c.x); body.setAttribute("y",c.y);
+    body.setAttribute("width",w); body.setAttribute("height",h); body.setAttribute("rx","8");
+    g.appendChild(body);
+    const hdr = document.createElementNS(ns,"rect");
+    hdr.setAttribute("class","comp-hdr"); hdr.setAttribute("x",c.x); hdr.setAttribute("y",c.y);
+    hdr.setAttribute("width",w); hdr.setAttribute("height",HDR); hdr.setAttribute("rx","8");
+    g.appendChild(hdr);
+    const clip = document.createElementNS(ns,"rect");
+    clip.setAttribute("x",c.x); clip.setAttribute("y",c.y+20); clip.setAttribute("width",w); clip.setAttribute("height",12); clip.setAttribute("fill", "var(--hdr)");
+    g.appendChild(clip);
+
+    const title = document.createElementNS(ns,"text");
+    title.setAttribute("class","comp-title"); title.setAttribute("x", c.x+10); title.setAttribute("y", c.y+20);
+    title.textContent = c.name;
+    g.appendChild(title);
+    if (showIds && c.ident){
+      const idt = document.createElementNS(ns,"text");
+      idt.setAttribute("class","comp-id"); idt.setAttribute("x", c.x+w-8); idt.setAttribute("y", c.y+20);
+      idt.setAttribute("text-anchor","end"); idt.textContent = c.ident;
+      g.appendChild(idt);
+    }
+    if (showWarn && c.unwired){
+      const b = document.createElementNS(ns,"text");
+      b.setAttribute("class","badge"); b.setAttribute("fill","#e8b849");
+      b.setAttribute("x", c.x+10); b.setAttribute("y", c.y+h-4);
+      b.textContent = "UNWIRED";
+      g.appendChild(b);
+    }
+
+    (c.pins||[]).forEach((p,i) => {
+      const y = pinY(c,i);
+      const left = p.side !== "right";
+      const num = document.createElementNS(ns,"text");
+      num.setAttribute("class","pin-num");
+      num.setAttribute("x", left ? c.x+18 : c.x+w-18);
+      num.setAttribute("y", y+4);
+      num.setAttribute("text-anchor", left ? "start" : "end");
+      num.textContent = p.num;
+      g.appendChild(num);
+      const nm = document.createElementNS(ns,"text");
+      nm.setAttribute("class","pin-name");
+      nm.setAttribute("x", left ? c.x+36 : c.x+w-36);
+      nm.setAttribute("y", y+4);
+      nm.setAttribute("text-anchor", left ? "start" : "end");
+      nm.textContent = p.name;
+      g.appendChild(nm);
+      const hdl = document.createElementNS(ns,"circle");
+      hdl.setAttribute("class","handle");
+      hdl.setAttribute("cx", left ? c.x : c.x+w);
+      hdl.setAttribute("cy", y);
+      hdl.setAttribute("r","4.5");
+      hdl.dataset.cid = c.id; hdl.dataset.pid = p.id;
+      g.appendChild(hdl);
+    });
+    gC.appendChild(g);
+  });
+  svg.appendChild(gC);
+  applyView();
+  $("#stat").textContent = state.components.length + " devices · " + state.wires.length + " wires";
+  $("#zoom-lbl").textContent = Math.round(state.view.k*100) + "%";
+  renderLegend();
+  persist();
+}
+
+function wrapText(g, text, x, y, maxW){
+  const ns = "http://www.w3.org/2000/svg";
+  const words = (text||"").split(" ");
+  let line="", ly=y;
+  words.forEach(wd => {
+    const test = line ? line+" "+wd : wd;
+    if (test.length > 42){
+      const t = document.createElementNS(ns,"text");
+      t.setAttribute("class","note-tx"); t.setAttribute("x",x); t.setAttribute("y",ly);
+      t.setAttribute("font-size","10"); t.textContent = line;
+      g.appendChild(t); line=wd; ly+=13;
+    } else line = test;
+  });
+  if (line){
+    const t = document.createElementNS(ns,"text");
+    t.setAttribute("class","note-tx"); t.setAttribute("x",x); t.setAttribute("y",ly);
+    t.setAttribute("font-size","10"); t.textContent = line;
+    g.appendChild(t);
+  }
+}
+
+function applyView(){
+  $("#stage").style.transform = `translate(${state.view.x}px,${state.view.y}px) scale(${state.view.k})`;
+}
+function persist(){
+  try{ localStorage.setItem(STORAGE, JSON.stringify({components:state.components,wires:state.wires,view:state.view})); }catch(e){}
+}
+function load(){
+  try{
+    const raw = localStorage.getItem(STORAGE);
+    if (raw){
+      const d = JSON.parse(raw);
+      if (d.components?.length){
+        state.components = d.components;
+        state.wires = d.wires || [];
+        if (d.view) state.view = d.view;
+        return true;
+      }
+    }
+  }catch(e){}
+  return false;
+}
+
+function renderLegend(){
+  const nets = {};
+  state.wires.forEach(w => { if (w.net) nets[w.net] = w.color; });
+  $("#net-legend").innerHTML = Object.entries(nets).map(([n,c]) =>
+    `<div style="margin:3px 0"><span class="legend-dot" style="background:${c}"></span> ${n}</div>`
+  ).join("");
+}
+
+function inspect(){
+  const box = $("#insp");
+  const c = findC(state.sel);
+  const w = state.wires.find(x => x.id === state.sel);
+  if (c){
+    box.innerHTML = `
+      <div class="insp-row"><span>Name</span><input id="i-name" value="${esc(c.name)}"></div>
+      <div class="insp-row"><span>ID</span><input id="i-id" value="${esc(c.ident||"")}"></div>
+      <div class="insp-row"><span>Status</span>
+        <select id="i-st"><option value="ok">assigned</option><option value="prop">proposed</option><option value="tbd">TBD</option></select>
+      </div>
+      <div class="insp-row" style="grid-template-columns:1fr"><span>Notes</span></div>
+      <textarea id="i-note">${esc(c.note||"")}</textarea>
+      <div class="aside-h">Pins</div>
+      ${(c.pins||[]).map((p,i)=>`<div class="insp-row"><span>${p.num}</span><input data-pin="${p.id}" class="i-pin" value="${esc(p.name)}"></div>`).join("")}
+      <button class="tool" id="i-addpin" style="margin-top:8px">Add pin</button>
+      <p class="hint" style="margin-top:10px">Status: <span class="status-${c.status||"ok"}">${c.status||"ok"}</span>${c.unwired?" · unwired":""}</p>`;
+    $("#i-st").value = c.status || "ok";
+    $("#i-name").oninput = e => { c.name = e.target.value; render(); };
+    $("#i-id").oninput = e => { c.ident = e.target.value; render(); };
+    $("#i-st").onchange = e => { c.status = e.target.value; render(); };
+    $("#i-note").oninput = e => { c.note = e.target.value; };
+    $("#i-note").onchange = () => render();
+    box.querySelectorAll(".i-pin").forEach(inp => {
+      inp.oninput = e => { const p = findPin(c, inp.dataset.pin); if (p) p.name = e.target.value; render(); };
+    });
+    $("#i-addpin").onclick = () => {
+      const n = (c.pins.length||0)+1;
+      const side = c.pins[0]?.side || "right";
+      c.pins.push({id:"p"+n, num:String(n), name:"PIN "+n, side});
+      render(); inspect();
+    };
+  } else if (w){
+    box.innerHTML = `
+      <div class="insp-row"><span>Net</span><input id="i-net" value="${esc(w.net||"")}"></div>
+      <div class="insp-row"><span>Label</span><input id="i-lab" value="${esc(w.label||"")}"></div>
+      <div class="insp-row"><span>Color</span><input id="i-col" type="color" value="${toHex(w.color)}"></div>
+      <label style="font-size:12px"><input type="checkbox" id="i-dash" ${w.dashed?"checked":""}> Incomplete / unrouted</label>
+      <p class="hint" style="margin-top:10px">${w.from.c}.${w.from.p} → ${w.to.c}.${w.to.p}</p>`;
+    $("#i-net").oninput = e => { w.net = e.target.value; state.highlightNet = w.net; render(); };
+    $("#i-lab").oninput = e => { w.label = e.target.value; render(); };
+    $("#i-col").oninput = e => { w.color = e.target.value; render(); };
+    $("#i-dash").onchange = e => { w.dashed = e.target.checked; render(); };
+  } else {
+    box.innerHTML = `<p class="hint">Click a component or wire. Right-click the canvas to add parts. Drag a pin handle to another pin to draw a wire.</p>
+      <p class="hint">Defined nets from the I/O table are already drawn. Yellow <b>UNWIRED</b> blocks are TBD — connect them here.</p>`;
+  }
+}
+function esc(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[m])); }
+function toHex(c){
+  if (!c) return "#888888";
+  if (c[0]==="#") return c.length===7?c:"#888888";
+  return "#888888";
+}
+
+function screenToWorld(ev){
+  const r = $("#stage-wrap").getBoundingClientRect();
+  return {
+    x: (ev.clientX - r.left - state.view.x) / state.view.k,
+    y: (ev.clientY - r.top - state.view.y) / state.view.k
+  };
+}
+
+function hitComp(pt){
+  for (let i=state.components.length-1;i>=0;i--){
+    const c = state.components[i];
+    const w = c.w || COMP_W, h = c.kind==="note"?78:pinH(c);
+    if (pt.x>=c.x && pt.x<=c.x+w && pt.y>=c.y && pt.y<=c.y+h) return c;
+  }
+  return null;
+}
+function hitWire(el){
+  if (el?.classList?.contains("wire")) return el.dataset.id;
+  return null;
+}
+
+const wrap = $("#stage-wrap");
+wrap.addEventListener("mousedown", ev => {
+  hideCtx();
+  if (ev.button===1 || ui.space || ev.button===2) return;
+  const handle = ev.target.closest?.(".handle");
+  if (handle){
+    ui.wire = { from:{c:handle.dataset.cid, p:handle.dataset.pid}, el:null };
+    ev.preventDefault(); return;
+  }
+  const wid = hitWire(ev.target);
+  if (wid){ state.sel = wid; const w = state.wires.find(x=>x.id===wid); state.highlightNet = w?.net; render(); inspect(); return; }
+  const pt = screenToWorld(ev);
+  const c = hitComp(pt);
+  if (c){
+    state.sel = c.id; state.highlightNet = null;
+    ui.drag = { id:c.id, dx:pt.x-c.x, dy:pt.y-c.y };
+    render(); inspect();
+  } else {
+    state.sel = null; state.highlightNet = null; render(); inspect();
+    ui.pan = { x:ev.clientX-state.view.x, y:ev.clientY-state.view.y };
+    wrap.classList.add("panning");
+  }
+});
+window.addEventListener("mousemove", ev => {
+  if (ui.pan){ state.view.x = ev.clientX-ui.pan.x; state.view.y = ev.clientY-ui.pan.y; applyView(); return; }
+  if (ui.drag){
+    const pt = screenToWorld(ev); const c = findC(ui.drag.id);
+    c.x = Math.round((pt.x-ui.drag.dx)/8)*8; c.y = Math.round((pt.y-ui.drag.dy)/8)*8;
+    render(); return;
+  }
+  if (ui.wire){
+    const pt = screenToWorld(ev);
+    let ghost = document.getElementById("ghost");
+    if (!ghost){
+      ghost = document.createElementNS("http://www.w3.org/2000/svg","path");
+      ghost.id="ghost"; ghost.setAttribute("class","wire dash"); ghost.setAttribute("stroke","#aaa");
+      $("#canvas").appendChild(ghost);
+    }
+    const a = findC(ui.wire.from.c); const pa = findPin(a, ui.wire.from.p); const A = pinXY(a, pa);
+    ghost.setAttribute("d", `M${A.x},${A.y} L${pt.x},${pt.y}`);
+  }
+});
+window.addEventListener("mouseup", ev => {
+  wrap.classList.remove("panning");
+  if (ui.wire){
+    const handle = ev.target.closest?.(".handle");
+    if (handle && (handle.dataset.cid!==ui.wire.from.c || handle.dataset.pid!==ui.wire.from.p)){
+      state.wires.push({
+        id: uid("w"), from: ui.wire.from, to:{c:handle.dataset.cid,p:handle.dataset.pid},
+        net:"SIG", color:NET_COLORS.SIG, label:"", dashed:true
+      });
+    }
+    ui.wire = null; render();
+  }
+  ui.drag = null; ui.pan = null;
+});
+wrap.addEventListener("wheel", ev => {
+  ev.preventDefault();
+  const r = wrap.getBoundingClientRect();
+  const mx = ev.clientX-r.left, my = ev.clientY-r.top;
+  const old = state.view.k;
+  const next = Math.min(2.2, Math.max(0.25, old * (ev.deltaY>0?0.92:1.08)));
+  const wx = (mx-state.view.x)/old, wy = (my-state.view.y)/old;
+  state.view.k = next;
+  state.view.x = mx - wx*next; state.view.y = my - wy*next;
+  applyView(); $("#zoom-lbl").textContent = Math.round(next*100)+"%";
+}, {passive:false});
+
+window.addEventListener("keydown", ev => {
+  if (ev.code==="Space"){ ui.space=true; wrap.classList.add("space"); ev.preventDefault(); }
+  if ((ev.key==="Delete" || ev.key==="Backspace") && state.sel && !/input|textarea|select/i.test(ev.target.tagName)){
+    state.components = state.components.filter(c => c.id!==state.sel);
+    state.wires = state.wires.filter(w => w.id!==state.sel && w.from.c!==state.sel && w.to.c!==state.sel);
+    state.sel=null; render(); inspect();
+  }
+  if (ev.key==="Escape"){ hideCtx(); state.sel=null; render(); inspect(); }
+});
+window.addEventListener("keyup", ev => { if (ev.code==="Space"){ ui.space=false; wrap.classList.remove("space"); }});
+
+wrap.addEventListener("contextmenu", ev => {
+  ev.preventDefault();
+  const pt = screenToWorld(ev);
+  ui.ctx = pt;
+  const c = hitComp(pt);
+  const menu = $("#ctx");
+  menu.style.display="block"; menu.style.left=ev.clientX+"px"; menu.style.top=ev.clientY+"px";
+  if (c && c.kind!=="note"){
+    menu.innerHTML = `<button data-act="flip">Flip pin side</button>
+      <button data-act="dup">Duplicate</button>
+      <div class="sep"></div>
+      <button data-act="del">Delete</button>`;
+    menu.onclick = e => {
+      const a = e.target.dataset.act;
+      if (a==="flip") c.pins.forEach(p => p.side = p.side==="right"?"left":"right");
+      if (a==="dup"){ const n = structuredClone(c); n.id=uid("c"); n.ident=(c.ident||"X")+"'"; n.x+=30; n.y+=30; state.components.push(n); }
+      if (a==="del"){ state.components=state.components.filter(x=>x.id!==c.id); state.wires=state.wires.filter(w=>w.from.c!==c.id&&w.to.c!==c.id); }
+      hideCtx(); render(); inspect();
+    };
+  } else {
+    menu.innerHTML = `<button data-add="connector">Connector</button>
+      <button data-add="splice">Splice</button>
+      <button data-add="terminal">Terminal</button>
+      <button data-add="resistor">Resistor</button>
+      <button data-add="diode">Diode</button>
+      <button data-add="note">Note</button>
+      <div class="sep"></div>
+      <button data-add="sensor3">3-pin sensor</button>
+      <button data-add="relay">Relay</button>
+      <button data-add="can-node">CAN node</button>`;
+    menu.onclick = e => { if (e.target.dataset.add) addAt(e.target.dataset.add, pt); hideCtx(); };
+  }
+});
+function hideCtx(){ $("#ctx").style.display="none"; }
+
+function addAt(kind, pt){
+  const x = Math.round((pt?.x||200)/8)*8, y = Math.round((pt?.y||200)/8)*8;
+  const id = uid("c");
+  const recipes = {
+    connector: () => comp(id,"Connector","C",x,y,["12V","GND","SIG"],"right"),
+    splice: () => ({id, kind:"splice", name:"Splice", ident:"SP", x, y, w:24, pins:[{id:"p1",num:"1",name:"NET",side:"right"}]}),
+    terminal: () => comp(id,"Terminal","T",x,y,["RING"],"right",{w:140}),
+    resistor: () => comp(id,"Resistor","R",x,y,["A","B"],"right",{kind:"resistor",w:150}),
+    diode: () => comp(id,"Diode","D",x,y,["A","K"],"right",{kind:"diode",w:140}),
+    note: () => ({id, kind:"note", name:"Note", ident:"", x, y, w:220, pins:[], note:"…"}),
+    sensor3: () => comp(id,"Sensor","S",x,y,["5V","SIG","GND"],"right"),
+    sensor2: () => comp(id,"Sensor","S",x,y,["SIG","GND"],"right"),
+    relay: () => comp(id,"Relay","K",x,y,["86","85","30","87"],"right"),
+    "can-node": () => comp(id,"CAN device","N",x,y,["12V","GND","CANH","CANL"],"right"),
+    dtm6: () => comp(id,"Deutsch DTM 6","DT",x,y,["1","2","3","4","5","6"],"right")
+  };
+  const make = recipes[kind]; if (!make) return;
+  state.components.push(make()); render();
+}
+
+document.querySelectorAll(".lib-item").forEach(b => b.onclick = () => {
+  const pt = { x: (200-state.view.x)/state.view.k, y: (120-state.view.y)/state.view.k };
+  addAt(b.dataset.add, pt);
+});
+$("#btn-fit").onclick = () => {
+  let maxX=100, maxY=100;
+  state.components.forEach(c => { maxX=Math.max(maxX,c.x+(c.w||COMP_W)); maxY=Math.max(maxY,c.y+pinH(c)); });
+  const r = wrap.getBoundingClientRect();
+  state.view.k = Math.min(1.2, Math.min((r.width-40)/maxX, (r.height-40)/maxY));
+  state.view.x = 20; state.view.y = 20; applyView(); $("#zoom-lbl").textContent = Math.round(state.view.k*100)+"%";
+};
+$("#btn-zoom-in").onclick = () => { state.view.k=Math.min(2.2,state.view.k*1.15); applyView(); $("#zoom-lbl").textContent=Math.round(state.view.k*100)+"%"; };
+$("#btn-zoom-out").onclick = () => { state.view.k=Math.max(0.25,state.view.k/1.15); applyView(); $("#zoom-lbl").textContent=Math.round(state.view.k*100)+"%"; };
+$("#btn-reset").onclick = () => { if (confirm("Reload the ST185 seed and discard canvas edits?")){ Object.assign(state, buildST185()); state.sel=null; render(); inspect(); } };
+$("#btn-export").onclick = () => {
+  const blob = new Blob([JSON.stringify({components:state.components,wires:state.wires},null,2)], {type:"application/json"});
+  const a = document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="st185-harness.json"; a.click();
+};
+$("#btn-svg").onclick = () => {
+  const src = $("#canvas").outerHTML;
+  const blob = new Blob([src], {type:"image/svg+xml"});
+  const a = document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="st185-harness.svg"; a.click();
+};
+["tog-ids","tog-nets","tog-dash","tog-warn"].forEach(id => $( "#"+id ).onchange = render);
+$("#btn-schematic").onclick = () => { $("#app").classList.remove("layout"); $("#btn-schematic").classList.add("on"); $("#btn-layout").classList.remove("on"); };
+$("#btn-layout").onclick = () => { $("#app").classList.add("layout"); $("#btn-layout").classList.add("on"); $("#btn-schematic").classList.remove("on"); };
+
+if (!load()) Object.assign(state, buildST185());
+render(); inspect();
+</script>
+</body>
+</html>

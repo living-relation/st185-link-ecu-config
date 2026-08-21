@@ -33,6 +33,7 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Master ID allocation table — all byte layouts, sections A–E. |
 | `CANBUS-LINK-G4X-CONFIG.md` | PCLink setup guide: module settings, stream import, User Stream wiring. |
 | `WIRING.md` | Physical wiring reference — cluster boards + 4-node CAN bus topology. |
+| `apps/harness-schematic/` | Interactive harness schematic (harness.design-style canvas). Open `index.html`. |
 
 ## Import Checklist (PCLink, when ECU is available)
 
