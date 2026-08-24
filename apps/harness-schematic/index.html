@@ -137,7 +137,7 @@
 <div id="ctx"></div>
 <script>
 const PIN_H = 20, HDR = 32, PAD = 8, COMP_W = 196;
-const STORAGE = "st185-harness-v1";
+const STORAGE = "st185-harness-v2";
 const NET_COLORS = {
   CANH:"#f2f2f2", CANL:"#3dd68c", "12V":"#e85d5d", "5V":"#f08a2a", "3V3":"#f5c542",
   GND:"#8b8b96", SIG:"#5b8def", UART:"#8b5cf6", INJ:"#3b82f6", IGN:"#f97316",
@@ -206,13 +206,15 @@ function buildST185(){
     "Trigger 1","Trigger 2","Temp 1 ECT","Temp 2 IAT","Temp 3 Oil T","Temp 4 Chg IAT",
     "AnV1 MAP","AnV2 ETB TPS M","AnV3 ETB TPS S","AnV4 APS M","AnV5 APS S",
     "AnV6 Oil P","AnV7 Fuel P","AnV8 Coolant P","Knock 1","DI1 Turbo spd","DI2 Flex",
-    "+5V Out","Sensor GND","Shield GND"
+    "+5V Out","Sensor GND","Shield GND",
+    "AnV9 Fuel lvl","Knock 2","DI3 WSS FL","DI4 WSS FR","DI5 WSS RL","DI6 WSS RR","DI7 Start","DI8 Clutch"
   ], "left", {w:220}));
 
   C.push(comp("ecu-out","XtremeX · Outputs","C2", 860, 80, [
     "Inj 1","Inj 2","Inj 3","Inj 4","Ign 1 COP","Ign 2 COP","Ign 3 COP","Ign 4 COP",
     "Aux1 Boost sol","Aux2 ETB relay","Aux3 FP relay","Aux4 AC kill","Aux5 Rad fan",
-    "Aux6 EFI hold","Aux7 MRS SPD","Aux8 Start rly","Aux9 ETB M+","Aux10 ETB M−","14V +"
+    "Aux6 EFI hold","Aux7 MRS SPD","Aux8 Start rly","Aux9 ETB M+","Aux10 ETB M−","14V +",
+    "Ign 5 2nd fan","Ign 6 oil lamp"
   ], "right", {w:220}));
 
   C.push(comp("ecu-com","XtremeX · Comms 6-pin","C3", 560, 560, [
@@ -252,6 +254,7 @@ function buildST185(){
   C.push(comp("k-fan","Rad fan relay","K4", 1640, 440, ["86 coil","85 LS","30 12V","87 fan"], "left"));
   C.push(comp("k-str","Start relay","K5", 1640, 560, ["86 coil","85 LS","30 12V","87 starter"], "left"));
   C.push(comp("ac-rly","AC clutch / amp ACT","K6", 1640, 680, ["86 coil","85 LS Aux4","30 12V","87 clutch"], "left", {status:"prop", note:"Confirm clutch relay vs amp ACT"}));
+  C.push(comp("k-fan2","Condenser fan relay","K7", 1640, 800, ["86 coil","85 Ign5 LS","30 12V","87 fan"], "left", {status:"prop", note:"Ign 5 is spare ign used as low-side aux — fan current through this relay, not the ECU pin"}));
 
   /* ---- CAN / dash ---- */
   C.push(comp("xcvr","SN65HVD230","N1", 860, 780, ["3V3 VCC","GND","CTX","CRX","CANH","CANL"], "left", {w:200}));
@@ -271,7 +274,7 @@ function buildST185(){
   ], "right", {w:230, note:"1 Mbit/s, Base 0x640, term jumper OFF. LS = LED only 0.5A"}));
   C.push(comp("lambda","Link CAN-Lambda","N6", 280, 780, ["12V","GND","CANH","CANL"], "right"));
   C.push(comp("usbcan","USB-CAN adapter","N7", 860, 1180, ["CANH","CANL","GND","USB"], "left", {note:"CANable or PCAN · 1 Mbit/s · END B term"}));
-  C.push(comp("pi","Pi 5 + RealDash 7in","N8", 1160, 1280, ["5V USB","GND","USB host"], "left", {note:"Listen-only 0x3EF–0x3F1"}));
+  C.push(comp("pi","Pi 5 + RealDash 7in","N8", 1160, 1280, ["5V USB","GND","USB host","GPIO 5V","GPIO GND"], "left", {note:"Listen-only 0x3EF–0x3F1. GPIO 5V/GND feed the hat fan only."}));
   C.push(comp("r120a","120Ω term END A","R1", 860, 560, ["CANH","CANL"], "left", {kind:"resistor", w:170}));
   C.push(comp("r120b","120Ω term END B","R2", 860, 1320, ["CANH","CANL"], "left", {kind:"resistor", w:170}));
 
@@ -287,24 +290,25 @@ function buildST185(){
   C.push(comp("ac-req","AC request","SB6", 40, 1410, ["SW","GND"], "right"));
   C.push(comp("evap","Evap over-temp","SB7", 40, 1500, ["SW","GND"], "right"));
 
-  /* ---- Unwired / TBD (no connections) ---- */
+  /* ---- Proposed assignments (Link-capable; confirm on the car) ---- */
   const yU = 1680;
-  C.push(comp("fuel-lvl","Fuel level sender","U1", 40, yU, ["SIG","GND"], "right", {unwired:true, status:"prop", note:"Needs divider pull-up on An Volt 9"}));
-  C.push(comp("abs-fl","ABS WSS FL","U2", 280, yU, ["SIG+","SIG−","SHIELD"], "right", {unwired:true, status:"prop"}));
-  C.push(comp("abs-fr","ABS WSS FR","U3", 500, yU, ["SIG+","SIG−","SHIELD"], "right", {unwired:true, status:"prop"}));
-  C.push(comp("abs-rl","ABS WSS RL","U4", 720, yU, ["SIG+","SIG−","SHIELD"], "right", {unwired:true, status:"prop"}));
-  C.push(comp("abs-rr","ABS WSS RR","U5", 940, yU, ["SIG+","SIG−","SHIELD"], "right", {unwired:true, status:"prop"}));
-  C.push(comp("start-sw","Start request","U6", 1160, yU, ["SW","GND"], "left", {unwired:true, status:"prop"}));
-  C.push(comp("clutch","Clutch switch","U7", 1380, yU, ["SW","GND"], "left", {unwired:true, status:"prop"}));
-  C.push(comp("fan2","2nd / condenser fan","U8", 40, yU+140, ["12V","LS"], "right", {unwired:true, status:"prop", note:"Proposed Ign 5"}));
-  C.push(comp("oil-lamp","Oil pressure lamp","U9", 280, yU+140, ["12V","LS"], "right", {unwired:true, status:"prop", note:"Proposed Ign 6"}));
-  C.push(comp("pmu","ECUMaster PMU/PDM","U10", 500, yU+140, ["12V","GND","CANH","CANL"], "right", {unwired:true, status:"tbd", note:"Only if output count grows"}));
-  C.push(comp("hat","Waveshare MCP2515 hat","U11", 760, yU+140, ["CANH","CANL","5V","GND"], "right", {unwired:true, status:"tbd", note:"Cooling fan only — do not wire CAN"}));
-  C.push(comp("knock2","Knock 2","U12", 1020, yU+140, ["SIG","GND"], "right", {unwired:true, status:"tbd"}));
+  C.push(comp("fuel-lvl","Fuel level sender","U1", 40, yU, ["SIG","GND"], "right", {status:"prop", note:"Resistive sender. Link An Volt has no internal pull-up — 470Ω to +5V."}));
+  C.push(comp("r-fuel","470Ω AnV9 pull-up","R3", 280, yU, ["5V","SIG"], "right", {kind:"resistor", w:190, status:"prop", note:"Link An Volt channels need an external pull-up for a resistive sender. ~470–500Ω."}));
+  C.push(comp("abs-fl","ABS WSS FL","U2", 500, yU, ["SIG+","SIG−","SHIELD"], "right", {status:"prop", note:"VR → DI frequency. Shielded twisted pair; add a conditioner if low-speed dropout."}));
+  C.push(comp("abs-fr","ABS WSS FR","U3", 720, yU, ["SIG+","SIG−","SHIELD"], "right", {status:"prop"}));
+  C.push(comp("abs-rl","ABS WSS RL","U4", 940, yU, ["SIG+","SIG−","SHIELD"], "right", {status:"prop"}));
+  C.push(comp("abs-rr","ABS WSS RR","U5", 1160, yU, ["SIG+","SIG−","SHIELD"], "left", {status:"prop"}));
+  C.push(comp("start-sw","Start request","U6", 1380, yU, ["SW","GND"], "left", {status:"prop", note:"ECU-controlled starter. Link DI software pull-up, switch to GND."}));
+  C.push(comp("clutch","Clutch switch","U7", 1580, yU, ["SW","GND"], "left", {status:"prop", note:"ECU-direct for flat-shift/launch. Not via switchboard — latency."}));
+  C.push(comp("fan2","2nd / condenser fan","U8", 40, yU+140, ["12V","GND"], "right", {status:"prop", note:"High current — switched by Ign 5 via relay K7, not the ECU pin."}));
+  C.push(comp("oil-lamp","Oil pressure lamp","U9", 280, yU+140, ["12V","LS"], "right", {status:"prop", note:"Ign 6 as low-side aux. Lamp +12V, ECU sinks to ground."}));
+  C.push(comp("pmu","ECUMaster PMU/PDM","U10", 500, yU+140, ["12V","GND","CANH","CANL"], "right", {status:"tbd", note:"Output overflow only. On CAN 1 at 1 Mbit/s. Do not add a third 120Ω terminator."}));
+  C.push(comp("hat","Waveshare MCP2515 hat","U11", 760, yU+140, ["CANH","CANL","5V","GND"], "right", {unwired:true, status:"tbd", note:"Cooling fan only. 5V/GND from Pi GPIO header. CANH/CANL stay open — not a bus node."}));
+  C.push(comp("knock2","Knock 2","U12", 1020, yU+140, ["SIG","GND"], "right", {status:"tbd", note:"XtremeX Knock 2 input. Wire if a 2nd sensor is fitted; otherwise leave the pin unused."}));
 
   C.push({
-    id:"note-unwired", kind:"note", name:"Unwired / TBD", ident:"", x:40, y:yU-50, w:520,
-    pins:[], note:"Devices below have no confirmed pin-to-pin yet. Drag them and draw the wires yourself. Do not connect the Waveshare hat to CAN."
+    id:"note-unwired", kind:"note", name:"Proposed (dashed)", ident:"", x:40, y:yU-50, w:560,
+    pins:[], note:"Yellow-dashed nets are Link-capable assignments from the I/O table, not yet confirmed on the car. Hat CAN pins stay open. PMU is optional overflow."
   });
   C.push({
     id:"note-can", kind:"note", name:"CAN 1 · 1 Mbit/s", ident:"", x:560, y:740, w:300,
@@ -433,6 +437,44 @@ function buildST185(){
   addW("c-main.p1","csb3.p15","DI"); addW("c-main.p2","sp-gnd.p1","GND");
   addW("ac-req.p1","csb3.p16","DI"); addW("ac-req.p2","sp-gnd.p1","GND");
   addW("evap.p1","csb3.p17","DI"); addW("evap.p2","sp-gnd.p1","GND");
+
+  /* Proposed — Link-capable (dashed until confirmed on the car) */
+  const prop = { dashed:true };
+  addW("fuel-lvl.p1","ecu-in.p21","SIG",{...prop, label:"AnV9"});
+  addW("fuel-lvl.p2","sp-gnd.p1","GND",prop);
+  addW("r-fuel.p1","sp-5v.p1","5V",prop);
+  addW("r-fuel.p2","ecu-in.p21","SIG",{...prop, label:"pull-up"});
+  addW("abs-fl.p1","ecu-in.p23","DI",{...prop, label:"DI3 FL"});
+  addW("abs-fl.p2","sp-gnd.p1","GND",prop);
+  addW("abs-fl.p3","ecu-in.p20","GND",{...prop, label:"SHIELD"});
+  addW("abs-fr.p1","ecu-in.p24","DI",{...prop, label:"DI4 FR"});
+  addW("abs-fr.p2","sp-gnd.p1","GND",prop);
+  addW("abs-fr.p3","ecu-in.p20","GND",prop);
+  addW("abs-rl.p1","ecu-in.p25","DI",{...prop, label:"DI5 RL"});
+  addW("abs-rl.p2","sp-gnd.p1","GND",prop);
+  addW("abs-rl.p3","ecu-in.p20","GND",prop);
+  addW("abs-rr.p1","ecu-in.p26","DI",{...prop, label:"DI6 RR"});
+  addW("abs-rr.p2","sp-gnd.p1","GND",prop);
+  addW("abs-rr.p3","ecu-in.p20","GND",prop);
+  addW("start-sw.p1","ecu-in.p27","DI",{...prop, label:"DI7"});
+  addW("start-sw.p2","sp-gnd.p1","GND",prop);
+  addW("clutch.p1","ecu-in.p28","DI",{...prop, label:"DI8"});
+  addW("clutch.p2","sp-gnd.p1","GND",prop);
+  addW("ecu-out.p20","k-fan2.p2","IGN",{...prop, label:"Ign 5 LS"});
+  addW("sp-12v.p1","k-fan2.p1","12V",prop);
+  addW("sp-12v.p1","k-fan2.p3","12V",prop);
+  addW("k-fan2.p4","fan2.p1","12V",prop);
+  addW("fan2.p2","sp-gnd.p1","GND",prop);
+  addW("ecu-out.p21","oil-lamp.p2","IGN",{...prop, label:"Ign 6 LS"});
+  addW("sp-12v.p1","oil-lamp.p1","12V",prop);
+  addW("knock2.p1","ecu-in.p22","TRIG",{...prop, label:"Knock 2"});
+  addW("knock2.p2","ecu-in.p20","GND",prop);
+  addW("pmu.p1","sp-12v.p1","12V",prop);
+  addW("pmu.p2","sp-gnd.p1","GND",prop);
+  addW("pmu.p3","sp-canh.p1","CANH",prop);
+  addW("pmu.p4","sp-canl.p1","CANL",prop);
+  addW("hat.p3","pi.p4","5V",{...prop, label:"hat fan 5V"});
+  addW("hat.p4","pi.p5","GND",prop);
 
   return { components:C, wires:W, view:{x:20,y:20,k:0.72} };
 }
@@ -708,7 +750,7 @@ function inspect(){
     $("#i-dash").onchange = e => { w.dashed = e.target.checked; render(); };
   } else {
     box.innerHTML = `<p class="hint">Click a component or wire. Right-click the canvas to add parts. Drag a pin handle to another pin to draw a wire.</p>
-      <p class="hint">Defined nets from the I/O table are already drawn. Yellow <b>UNWIRED</b> blocks are TBD — connect them here.</p>`;
+      <p class="hint">Defined nets from the I/O table are solid. Dashed nets are proposed Link-capable assignments — confirm on the car. The hat’s CAN pins stay open.</p>`;
   }
 }
 function esc(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[m])); }

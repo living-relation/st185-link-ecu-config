@@ -2,7 +2,9 @@
 
 Standalone browser schematic editor modeled on [harness.design](https://harness.design): dark canvas, connector blocks with numbered pins, orthogonal wires, right-click add, drag pin-to-pin.
 
-Opens with the Celica GT-Four ST185 / Link G4X XtremeX parts already placed. Assigned I/O from `XTREMEX-IO-TABLE.html` and `WIRING.md` is wired. Yellow **UNWIRED** blocks have no confirmed pin-to-pin yet — drag a pin handle to another pin to draw those yourself.
+Opens with the Celica GT-Four ST185 / Link G4X XtremeX parts already placed. Assigned I/O from `XTREMEX-IO-TABLE.html` and `WIRING.md` is drawn as solid wires. Proposed assignments (fuel level, ABS WSS, start, clutch, 2nd fan, oil lamp, Knock 2, optional PMU) are **dashed** — they match Link channel capability and the I/O table, but are not confirmed on the car.
+
+The Waveshare MCP2515 hat gets Pi header 5 V / GND for its fan. **CANH/CANL stay open.**
 
 ## Run
 
@@ -39,4 +41,4 @@ Device list and pin functions come from:
 - `ECUMASTER_SWITCHBOARD_SETUP.md` (CSB3 analog / switch map)
 - `CAN-BUS-MASTER-DESIGN.md` (4-node 1 Mbit/s bus, termination)
 
-The Waveshare MCP2515 hat is on the canvas **unwired on purpose** — cooling fan only, not a CAN node.
+The Waveshare MCP2515 hat is powered from the Pi GPIO header for its fan. **Do not attach its CANH/CANL to the bus.**
