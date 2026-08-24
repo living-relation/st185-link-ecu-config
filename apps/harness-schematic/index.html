@@ -303,7 +303,7 @@ function buildST185(){
   C.push(comp("fan2","2nd / condenser fan","U8", 40, yU+140, ["12V","GND"], "right", {status:"prop", note:"High current — switched by Ign 5 via relay K7, not the ECU pin."}));
   C.push(comp("oil-lamp","Oil pressure lamp","U9", 280, yU+140, ["12V","LS"], "right", {status:"prop", note:"Ign 6 as low-side aux. Lamp +12V, ECU sinks to ground."}));
   C.push(comp("pmu","ECUMaster PMU/PDM","U10", 500, yU+140, ["12V","GND","CANH","CANL"], "right", {status:"tbd", note:"Output overflow only. On CAN 1 at 1 Mbit/s. Do not add a third 120Ω terminator."}));
-  C.push(comp("hat","Waveshare MCP2515 hat","U11", 760, yU+140, ["CANH","CANL","5V","GND"], "right", {unwired:true, status:"tbd", note:"Cooling fan only. 5V/GND from Pi GPIO header. CANH/CANL stay open — not a bus node."}));
+  C.push(comp("hat","Waveshare MCP2515 hat","U11", 760, yU+140, ["CANH","CANL","5V","GND"], "right", {status:"tbd", note:"Cooling fan only. 5V/GND from Pi GPIO header. CANH/CANL stay open — not a bus node."}));
   C.push(comp("knock2","Knock 2","U12", 1020, yU+140, ["SIG","GND"], "right", {status:"tbd", note:"XtremeX Knock 2 input. Wire if a 2nd sensor is fitted; otherwise leave the pin unused."}));
 
   C.push({
