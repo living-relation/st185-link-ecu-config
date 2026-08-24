@@ -4,7 +4,9 @@ Standalone browser schematic editor modeled on [harness.design](https://harness.
 
 Opens with the Celica GT-Four ST185 / Link G4X XtremeX parts already placed. The ECU is two 34-way Superseal looms — **Connector A** (pins A1–A34) and **Connector B** (B1–B34) — numbered from the G4X XtremeX Quickstart (wire side). Assigned I/O from `XTREMEX-IO-TABLE.html` and `WIRING.md` is drawn as solid wires. Proposed assignments (fuel level, ABS WSS, start, clutch, 2nd fan, oil lamp, Knock 2, optional PMU) are **dashed**.
 
-Unused CSB3 analog/switch/LED pins stay on the **switchboard** block (AIN3–8, SW6–8, LS1–4). They are not XtremeX cavities. On the ECU, **B14** is the only empty Superseal cavity (no terminal). A6 +8V Out and B1–B4 / B10–B11 / B27–B28 / B31–B32 are spare terminals with no wire on this build.
+The ECUMaster CSB3 V3 is on the canvas as a CAN node. It has **no I/O harness connector yet** (spec one). Only PCB screw terminals for 12 V / GND / CAN are shown. Cabin, brake, reverse, cruise, AC request, and evap sit nearby with **no wires and no invented connector** in between.
+
+On the ECU, **B14** is the only empty Superseal cavity (no terminal). A6 +8V Out and B1–B4 / B10–B11 / B27–B28 / B31–B32 are spare terminals with no wire on this build.
 
 The Waveshare MCP2515 hat gets Pi header 5 V / GND for its fan. **CANH/CANL stay open.**
 
@@ -30,7 +32,7 @@ then browse to `apps/harness-schematic/`.
 | Delete | select, then Delete |
 | Fit | Fit button |
 
-Edits autosave in `localStorage` (`st185-harness-v4`). **Reset ST185** reloads the seed. Export JSON or SVG from the header.
+Edits autosave in `localStorage` (`st185-harness-v5`). **Reset ST185** reloads the seed. Export JSON or SVG from the header.
 
 Layout view is a placeholder until bundle lengths exist.
 
