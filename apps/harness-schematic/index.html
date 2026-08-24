@@ -137,7 +137,7 @@
 <div id="ctx"></div>
 <script>
 const PIN_H = 20, HDR = 32, PAD = 8, COMP_W = 196;
-const STORAGE = "st185-harness-v2";
+const STORAGE = "st185-harness-v4";
 const NET_COLORS = {
   CANH:"#f2f2f2", CANL:"#3dd68c", "12V":"#e85d5d", "5V":"#f08a2a", "3V3":"#f5c542",
   GND:"#8b8b96", SIG:"#5b8def", UART:"#8b5cf6", INJ:"#3b82f6", IGN:"#f97316",
@@ -161,6 +161,11 @@ function pinXY(c, pin){
 
 function mkPins(names, side){
   return names.map((name, i) => ({ id:"p"+(i+1), num:String(i+1), name, side }));
+}
+function loomPins(prefix, defs, defaultSide){
+  return defs.map(([n, name, side]) => ({
+    id:"p"+n, num:prefix+n, name, side: side || defaultSide || "left"
+  }));
 }
 function comp(id, name, ident, x, y, names, side, extra={}){
   return {
@@ -201,23 +206,42 @@ function buildST185(){
   C.push(comp("fuel-p","Fuel pressure","S12", 280, 320, ["5V","SIG","GND"], "right"));
   C.push(comp("clnt-p","Coolant pressure","S13", 280, 440, ["5V","SIG","GND"], "right"));
 
-  /* ---- ECU ---- */
-  C.push(comp("ecu-in","XtremeX · Inputs","C1", 560, 80, [
-    "Trigger 1","Trigger 2","Temp 1 ECT","Temp 2 IAT","Temp 3 Oil T","Temp 4 Chg IAT",
-    "AnV1 MAP","AnV2 ETB TPS M","AnV3 ETB TPS S","AnV4 APS M","AnV5 APS S",
-    "AnV6 Oil P","AnV7 Fuel P","AnV8 Coolant P","Knock 1","DI1 Turbo spd","DI2 Flex",
-    "+5V Out","Sensor GND","Shield GND",
-    "AnV9 Fuel lvl","Knock 2","DI3 WSS FL","DI4 WSS FR","DI5 WSS RL","DI6 WSS RR","DI7 Start","DI8 Clutch"
-  ], "left", {w:220}));
+  /* ---- ECU: G4X XtremeX Superseal A/B, pin numbers from XtremeX Quickstart (wire side) ---- */
+  C.push({
+    id:"ecu-a", kind:"connector", name:"XtremeX Connector A", ident:"A", x:500, y:40, w:270,
+    status:"ok", note:"34-way Superseal loom A. Pin numbers = G4X XtremeX Quickstart, wire side. All 34 cavities exist. A6 +8V Out has no wire on this build.",
+    pins: loomPins("A", [
+      [1,"Inj 4","right"],[2,"Inj 3","right"],[3,"Inj 2","right"],[4,"Inj 1","right"],
+      [5,"+14V","right"],[6,"+8V Out unused","right"],
+      [7,"Shield/Gnd","left"],[8,"Trig 1","left"],[9,"Trig 2","left"],
+      [10,"Ign 4","right"],[11,"Ign 3","right"],[12,"Ign 2","right"],[13,"Ign 1","right"],
+      [14,"An Volt 4 APS-M","right"],
+      [15,"Temp 1 ECT","left"],[16,"Temp 2 IAT","left"],[17,"An Volt 1 MAP","left"],
+      [18,"Aux 4 AC kill","right"],[19,"Aux 3 FP rly","right"],[20,"Aux 2 ETB rly","right"],[21,"Aux 1 Boost","right"],
+      [22,"An Volt 2 TPS-M","right"],[23,"DI 3 WSS FL","left"],[24,"Gnd Out","left"],[25,"Ground","left"],
+      [26,"Aux 8 Start rly","right"],[27,"Aux 7 MRS SPD","right"],[28,"Aux 6 EFI hold","right"],[29,"Aux 5 Rad fan","right"],
+      [30,"DI 1 Turbo spd","left"],[31,"DI 2 Flex","left"],[32,"+5V Out","left"],
+      [33,"An Volt 3 TPS-S","right"],[34,"Ground","left"]
+    ])
+  });
+  C.push({
+    id:"ecu-b", kind:"connector", name:"XtremeX Connector B", ident:"B", x:850, y:40, w:280,
+    status:"ok", note:"34-way Superseal loom B. B14 is the only empty cavity (no terminal). Spare terminals, no wire: B1–B4 Inj 8–5, B10–B11 Ign 8–7, B27–B28 DI10/DI9 (CAN 2 unused), B31–B32 An Volt 10–11.",
+    pins: loomPins("B", [
+      [1,"Inj 8 spare","right"],[2,"Inj 7 spare","right"],[3,"Inj 6 spare","right"],[4,"Inj 5 spare","right"],
+      [5,"+14V Aux 9/10","right"],[6,"Temp 3 Oil T","left"],[7,"Temp 4 Chg IAT","left"],
+      [8,"Knock 2","left"],[9,"Knock 1","left"],
+      [10,"Ign 8 spare","right"],[11,"Ign 7 spare","right"],[12,"Ign 6 oil lamp","right"],[13,"Ign 5 2nd fan","right"],
+      [14,"nc empty cavity","left"],[15,"An Volt 6 Oil P","left"],[16,"An Volt 7 Fuel P","left"],[17,"Shield/Gnd","left"],
+      [18,"Aux 9 ETB M+","right"],[19,"DI 6 WSS RR","left"],[20,"DI 5 WSS RL","left"],[21,"DI 4 WSS FR","left"],
+      [22,"Gnd Out","left"],[23,"An Volt 8 Clnt P","left"],[24,"An Volt 9 Fuel lvl","left"],[25,"Ground","left"],
+      [26,"Aux 10 ETB M−","right"],[27,"DI 10 / CAN2 H spare","left"],[28,"DI 9 / CAN2 L spare","left"],
+      [29,"DI 8 Clutch","right"],[30,"DI 7 Start","right"],[31,"An Volt 10 spare","left"],[32,"An Volt 11 spare","left"],
+      [33,"An Volt 5 APS-S","right"],[34,"Ground","left"]
+    ])
+  });
 
-  C.push(comp("ecu-out","XtremeX · Outputs","C2", 860, 80, [
-    "Inj 1","Inj 2","Inj 3","Inj 4","Ign 1 COP","Ign 2 COP","Ign 3 COP","Ign 4 COP",
-    "Aux1 Boost sol","Aux2 ETB relay","Aux3 FP relay","Aux4 AC kill","Aux5 Rad fan",
-    "Aux6 EFI hold","Aux7 MRS SPD","Aux8 Start rly","Aux9 ETB M+","Aux10 ETB M−","14V +",
-    "Ign 5 2nd fan","Ign 6 oil lamp"
-  ], "right", {w:220}));
-
-  C.push(comp("ecu-com","XtremeX · Comms 6-pin","C3", 560, 560, [
+  C.push(comp("ecu-com","XtremeX · Comms 6-pin","C3", 520, 800, [
     "1 GND Brn","2 Unused Blu","3 CAN H Wht","4 CAN L Grn","5 RS232 TX Yel","6 RS232 RX Gry"
   ], "right", {w:220}));
 
@@ -268,10 +292,12 @@ function buildST185(){
   C.push(comp("right","Right cluster S3","N4", 1480, 1000, ["5V VIN","GND","GPIO44 RX","GPIO43 TX"], "left"));
   C.push(comp("csb3","ECUMaster CSB3 V3","N5", 560, 860, [
     "12V","GND","CANH","CANL",
-    "AIN1 Cabin NTC","AIN2 Cruise ladder","AIN3","AIN4","AIN5","AIN6","AIN7","AIN8",
+    "AIN1 Cabin NTC","AIN2 Cruise ladder",
+    "AIN3 unused CSB3","AIN4 unused CSB3","AIN5 unused CSB3","AIN6 unused CSB3","AIN7 unused CSB3","AIN8 unused CSB3",
     "SW1 Brake","SW2 Reverse","SW3 Cruise MAIN","SW4 AC request","SW5 Evap OT",
-    "SW6","SW7","SW8","LS1 LED","LS2 LED","LS3 LED","LS4 LED"
-  ], "right", {w:230, note:"1 Mbit/s, Base 0x640, term jumper OFF. LS = LED only 0.5A"}));
+    "SW6 unused CSB3","SW7 unused CSB3","SW8 unused CSB3",
+    "LS1 unused CSB3","LS2 unused CSB3","LS3 unused CSB3","LS4 unused CSB3"
+  ], "right", {w:240, note:"Switchboard cavities, not XtremeX A/B. Unused: AIN3–8, SW6–8, LS1–4. 1 Mbit/s, Base 0x640, term jumper OFF. LS = LED only 0.5A"}));
   C.push(comp("lambda","Link CAN-Lambda","N6", 280, 780, ["12V","GND","CANH","CANL"], "right"));
   C.push(comp("usbcan","USB-CAN adapter","N7", 860, 1180, ["CANH","CANL","GND","USB"], "left", {note:"CANable or PCAN · 1 Mbit/s · END B term"}));
   C.push(comp("pi","Pi 5 + RealDash 7in","N8", 1160, 1280, ["5V USB","GND","USB host","GPIO 5V","GPIO GND"], "left", {note:"Listen-only 0x3EF–0x3F1. GPIO 5V/GND feed the hat fan only."}));
@@ -311,76 +337,80 @@ function buildST185(){
     pins:[], note:"Yellow-dashed nets are Link-capable assignments from the I/O table, not yet confirmed on the car. Hat CAN pins stay open. PMU is optional overflow."
   });
   C.push({
+    id:"note-cavities", kind:"note", name:"Empty / spare cavities", ident:"", x:850, y:780, w:380, h:150,
+    pins:[], note:"ECU A: all 34 Superseal cavities. A6 +8V unused. ECU B: B14 empty (no terminal). Spare no-wire: B1–B4, B10–B11, B27–B28, B31–B32. CSB3 unused AIN3–8 / SW6–8 / LS1–4 are switchboard cavities, not A/B loom."
+  });
+  C.push({
     id:"note-can", kind:"note", name:"CAN 1 · 1 Mbit/s", ident:"", x:560, y:740, w:300,
     pins:[], note:"Linear bus. Term only at END A (ECU) and END B (Pi). CSB3 jumper OFF. Hat is not a CAN node."
   });
 
   /* Defined sensor → ECU */
-  addW("crank.p1","ecu-in.p1","TRIG",{label:"Trigger 1"});
+  addW("crank.p1","ecu-a.p8","TRIG",{label:"Trigger 1"});
   addW("crank.p2","sp-gnd.p1","GND");
-  addW("cam.p2","ecu-in.p2","TRIG",{label:"Trigger 2"});
+  addW("cam.p2","ecu-a.p9","TRIG",{label:"Trigger 2"});
   addW("cam.p1","sp-12v.p1","12V");
   addW("cam.p3","sp-gnd.p1","GND");
-  addW("ect.p1","ecu-in.p3","TEMP");
+  addW("ect.p1","ecu-a.p15","TEMP");
   addW("ect.p2","sp-gnd.p1","GND");
-  addW("iat.p1","ecu-in.p4","TEMP");
+  addW("iat.p1","ecu-a.p16","TEMP");
   addW("iat.p2","sp-gnd.p1","GND");
-  addW("oil-t.p1","ecu-in.p5","TEMP");
+  addW("oil-t.p1","ecu-b.p6","TEMP");
   addW("oil-t.p2","sp-gnd.p1","GND");
-  addW("cp-iat.p1","ecu-in.p6","TEMP");
+  addW("cp-iat.p1","ecu-b.p7","TEMP");
   addW("cp-iat.p2","sp-gnd.p1","GND");
   addW("map.p1","sp-5v.p1","5V");
-  addW("map.p2","ecu-in.p7","SIG");
+  addW("map.p2","ecu-a.p17","SIG");
   addW("map.p3","sp-gnd.p1","GND");
   addW("oil-p.p1","sp-5v.p1","5V");
-  addW("oil-p.p2","ecu-in.p12","SIG");
+  addW("oil-p.p2","ecu-b.p15","SIG");
   addW("oil-p.p3","sp-gnd.p1","GND");
   addW("fuel-p.p1","sp-5v.p1","5V");
-  addW("fuel-p.p2","ecu-in.p13","SIG");
+  addW("fuel-p.p2","ecu-b.p16","SIG");
   addW("fuel-p.p3","sp-gnd.p1","GND");
   addW("clnt-p.p1","sp-5v.p1","5V");
-  addW("clnt-p.p2","ecu-in.p14","SIG");
+  addW("clnt-p.p2","ecu-b.p23","SIG");
   addW("clnt-p.p3","sp-gnd.p1","GND");
-  addW("knock.p1","ecu-in.p15","TRIG");
-  addW("knock.p2","ecu-in.p20","GND");
-  addW("turbo-spd.p2","ecu-in.p16","DI");
+  addW("knock.p1","ecu-b.p9","TRIG");
+  addW("knock.p2","ecu-a.p7","GND");
+  addW("turbo-spd.p2","ecu-a.p30","DI");
   addW("turbo-spd.p1","sp-12v.p1","12V");
   addW("turbo-spd.p3","sp-gnd.p1","GND");
   addW("flex.p1","sp-12v.p1","12V");
-  addW("flex.p2","ecu-in.p17","DI");
+  addW("flex.p2","ecu-a.p31","DI");
   addW("flex.p3","sp-gnd.p1","GND");
-  addW("ecu-in.p18","sp-5v.p1","5V");
-  addW("ecu-in.p19","sp-gnd.p1","GND");
+  addW("ecu-a.p32","sp-5v.p1","5V");
+  addW("ecu-a.p24","sp-gnd.p1","GND");
   addW("batt.p1","sp-12v.p1","12V");
   addW("batt.p2","sp-gnd.p1","GND");
 
-  addW("ecu-out.p1","inj1.p2","INJ"); addW("sp-12v.p1","inj1.p1","12V");
-  addW("ecu-out.p2","inj2.p2","INJ"); addW("sp-12v.p1","inj2.p1","12V");
-  addW("ecu-out.p3","inj3.p2","INJ"); addW("sp-12v.p1","inj3.p1","12V");
-  addW("ecu-out.p4","inj4.p2","INJ"); addW("sp-12v.p1","inj4.p1","12V");
-  addW("ecu-out.p5","cop1.p3","IGN"); addW("sp-12v.p1","cop1.p1","12V"); addW("cop1.p2","sp-gnd.p1","GND");
-  addW("ecu-out.p6","cop2.p3","IGN"); addW("sp-12v.p1","cop2.p1","12V"); addW("cop2.p2","sp-gnd.p1","GND");
-  addW("ecu-out.p7","cop3.p3","IGN"); addW("sp-12v.p1","cop3.p1","12V"); addW("cop3.p2","sp-gnd.p1","GND");
-  addW("ecu-out.p8","cop4.p3","IGN"); addW("sp-12v.p1","cop4.p1","12V"); addW("cop4.p2","sp-gnd.p1","GND");
-  addW("ecu-out.p9","boost.p2","AUX"); addW("sp-12v.p1","boost.p1","12V");
-  addW("ecu-out.p17","etb.p1","AUX"); addW("ecu-out.p18","etb.p2","AUX");
+  addW("ecu-a.p4","inj1.p2","INJ"); addW("sp-12v.p1","inj1.p1","12V");
+  addW("ecu-a.p3","inj2.p2","INJ"); addW("sp-12v.p1","inj2.p1","12V");
+  addW("ecu-a.p2","inj3.p2","INJ"); addW("sp-12v.p1","inj3.p1","12V");
+  addW("ecu-a.p1","inj4.p2","INJ"); addW("sp-12v.p1","inj4.p1","12V");
+  addW("ecu-a.p13","cop1.p3","IGN"); addW("sp-12v.p1","cop1.p1","12V"); addW("cop1.p2","sp-gnd.p1","GND");
+  addW("ecu-a.p12","cop2.p3","IGN"); addW("sp-12v.p1","cop2.p1","12V"); addW("cop2.p2","sp-gnd.p1","GND");
+  addW("ecu-a.p11","cop3.p3","IGN"); addW("sp-12v.p1","cop3.p1","12V"); addW("cop3.p2","sp-gnd.p1","GND");
+  addW("ecu-a.p10","cop4.p3","IGN"); addW("sp-12v.p1","cop4.p1","12V"); addW("cop4.p2","sp-gnd.p1","GND");
+  addW("ecu-a.p21","boost.p2","AUX"); addW("sp-12v.p1","boost.p1","12V");
+  addW("ecu-b.p18","etb.p1","AUX"); addW("ecu-b.p26","etb.p2","AUX");
   addW("sp-5v.p1","etb.p3","5V");
-  addW("etb.p4","ecu-in.p8","SIG");
-  addW("etb.p5","ecu-in.p9","SIG");
+  addW("etb.p4","ecu-a.p22","SIG");
+  addW("etb.p5","ecu-a.p33","SIG");
   addW("etb.p6","sp-gnd.p1","GND");
   addW("sp-5v.p1","aps.p1","5V");
-  addW("aps.p2","ecu-in.p10","SIG");
-  addW("aps.p3","ecu-in.p11","SIG");
+  addW("aps.p2","ecu-a.p14","SIG");
+  addW("aps.p3","ecu-b.p33","SIG");
   addW("aps.p4","sp-gnd.p1","GND");
-  addW("ecu-out.p15","mrs.p3","AUX"); addW("sp-12v.p1","mrs.p1","12V"); addW("mrs.p2","sp-gnd.p1","GND");
+  addW("ecu-a.p27","mrs.p3","AUX"); addW("sp-12v.p1","mrs.p1","12V"); addW("mrs.p2","sp-gnd.p1","GND");
 
-  addW("ecu-out.p14","k-efi.p2","AUX");
-  addW("ecu-out.p10","k-etb.p2","AUX");
-  addW("ecu-out.p11","k-fp.p2","AUX");
-  addW("ecu-out.p13","k-fan.p2","AUX");
-  addW("ecu-out.p16","k-str.p2","AUX");
-  addW("ecu-out.p12","ac-rly.p2","AUX");
-  addW("sp-12v.p1","k-efi.p1","12V"); addW("sp-12v.p1","k-efi.p3","12V"); addW("k-efi.p4","ecu-out.p19","12V");
+  addW("ecu-a.p28","k-efi.p2","AUX");
+  addW("ecu-a.p20","k-etb.p2","AUX");
+  addW("ecu-a.p19","k-fp.p2","AUX");
+  addW("ecu-a.p29","k-fan.p2","AUX");
+  addW("ecu-a.p26","k-str.p2","AUX");
+  addW("ecu-a.p18","ac-rly.p2","AUX");
+  addW("sp-12v.p1","k-efi.p1","12V"); addW("sp-12v.p1","k-efi.p3","12V"); addW("k-efi.p4","ecu-a.p5","12V");
   addW("sp-12v.p1","k-etb.p1","12V"); addW("sp-12v.p1","k-etb.p3","12V");
   addW("sp-12v.p1","k-fp.p1","12V"); addW("sp-12v.p1","k-fp.p3","12V");
   addW("sp-12v.p1","k-fan.p1","12V"); addW("sp-12v.p1","k-fan.p3","12V");
@@ -440,41 +470,51 @@ function buildST185(){
 
   /* Proposed — Link-capable (dashed until confirmed on the car) */
   const prop = { dashed:true };
-  addW("fuel-lvl.p1","ecu-in.p21","SIG",{...prop, label:"AnV9"});
+  addW("fuel-lvl.p1","ecu-b.p24","SIG",{...prop, label:"AnV9"});
   addW("fuel-lvl.p2","sp-gnd.p1","GND",prop);
   addW("r-fuel.p1","sp-5v.p1","5V",prop);
-  addW("r-fuel.p2","ecu-in.p21","SIG",{...prop, label:"pull-up"});
-  addW("abs-fl.p1","ecu-in.p23","DI",{...prop, label:"DI3 FL"});
+  addW("r-fuel.p2","ecu-b.p24","SIG",{...prop, label:"pull-up"});
+  addW("abs-fl.p1","ecu-a.p23","DI",{...prop, label:"DI3 FL"});
   addW("abs-fl.p2","sp-gnd.p1","GND",prop);
-  addW("abs-fl.p3","ecu-in.p20","GND",{...prop, label:"SHIELD"});
-  addW("abs-fr.p1","ecu-in.p24","DI",{...prop, label:"DI4 FR"});
+  addW("abs-fl.p3","ecu-a.p7","GND",{...prop, label:"SHIELD"});
+  addW("abs-fr.p1","ecu-b.p21","DI",{...prop, label:"DI4 FR"});
   addW("abs-fr.p2","sp-gnd.p1","GND",prop);
-  addW("abs-fr.p3","ecu-in.p20","GND",prop);
-  addW("abs-rl.p1","ecu-in.p25","DI",{...prop, label:"DI5 RL"});
+  addW("abs-fr.p3","ecu-a.p7","GND",prop);
+  addW("abs-rl.p1","ecu-b.p20","DI",{...prop, label:"DI5 RL"});
   addW("abs-rl.p2","sp-gnd.p1","GND",prop);
-  addW("abs-rl.p3","ecu-in.p20","GND",prop);
-  addW("abs-rr.p1","ecu-in.p26","DI",{...prop, label:"DI6 RR"});
+  addW("abs-rl.p3","ecu-a.p7","GND",prop);
+  addW("abs-rr.p1","ecu-b.p19","DI",{...prop, label:"DI6 RR"});
   addW("abs-rr.p2","sp-gnd.p1","GND",prop);
-  addW("abs-rr.p3","ecu-in.p20","GND",prop);
-  addW("start-sw.p1","ecu-in.p27","DI",{...prop, label:"DI7"});
+  addW("abs-rr.p3","ecu-a.p7","GND",prop);
+  addW("start-sw.p1","ecu-b.p30","DI",{...prop, label:"DI7"});
   addW("start-sw.p2","sp-gnd.p1","GND",prop);
-  addW("clutch.p1","ecu-in.p28","DI",{...prop, label:"DI8"});
+  addW("clutch.p1","ecu-b.p29","DI",{...prop, label:"DI8"});
   addW("clutch.p2","sp-gnd.p1","GND",prop);
-  addW("ecu-out.p20","k-fan2.p2","IGN",{...prop, label:"Ign 5 LS"});
+  addW("ecu-b.p13","k-fan2.p2","IGN",{...prop, label:"Ign 5 LS"});
   addW("sp-12v.p1","k-fan2.p1","12V",prop);
   addW("sp-12v.p1","k-fan2.p3","12V",prop);
   addW("k-fan2.p4","fan2.p1","12V",prop);
   addW("fan2.p2","sp-gnd.p1","GND",prop);
-  addW("ecu-out.p21","oil-lamp.p2","IGN",{...prop, label:"Ign 6 LS"});
+  addW("ecu-b.p12","oil-lamp.p2","IGN",{...prop, label:"Ign 6 LS"});
   addW("sp-12v.p1","oil-lamp.p1","12V",prop);
-  addW("knock2.p1","ecu-in.p22","TRIG",{...prop, label:"Knock 2"});
-  addW("knock2.p2","ecu-in.p20","GND",prop);
+  addW("knock2.p1","ecu-b.p8","TRIG",{...prop, label:"Knock 2"});
+  addW("knock2.p2","ecu-a.p7","GND",prop);
   addW("pmu.p1","sp-12v.p1","12V",prop);
   addW("pmu.p2","sp-gnd.p1","GND",prop);
   addW("pmu.p3","sp-canh.p1","CANH",prop);
   addW("pmu.p4","sp-canl.p1","CANL",prop);
   addW("hat.p3","pi.p4","5V",{...prop, label:"hat fan 5V"});
   addW("hat.p4","pi.p5","GND",prop);
+
+  /* H-bridge supply: ETB relay 87 → Connector B pin 5 (+14V Aux 9/10) */
+  addW("k-etb.p4","ecu-b.p5","12V",{label:"B5 +14V Aux9/10"});
+  /* ECU power grounds — QSG A25/A34, B25/B34 */
+  addW("ecu-a.p25","sp-gnd.p1","GND",{label:"A25 Ground"});
+  addW("ecu-a.p34","sp-gnd.p1","GND",{label:"A34 Ground"});
+  addW("ecu-b.p25","sp-gnd.p1","GND",{label:"B25 Ground"});
+  addW("ecu-b.p34","sp-gnd.p1","GND",{label:"B34 Ground"});
+  addW("ecu-b.p22","sp-gnd.p1","GND",{label:"B22 Gnd Out"});
+  addW("ecu-b.p17","ecu-a.p7","GND",{label:"B17 Shield"});
 
   return { components:C, wires:W, view:{x:20,y:20,k:0.72} };
 }
@@ -506,7 +546,7 @@ function render(){
 
   let minX=0, minY=0, maxX=2000, maxY=2000;
   state.components.forEach(c => {
-    const h = c.kind==="note" ? 70 : pinH(c);
+    const h = c.kind==="note" ? (c.h || 78) : pinH(c);
     const w = c.w || COMP_W;
     maxX = Math.max(maxX, c.x+w+80);
     maxY = Math.max(maxY, c.y+h+80);
@@ -558,7 +598,7 @@ function render(){
     g.setAttribute("class", "comp" + (state.sel===c.id?" selected":""));
     g.dataset.id = c.id;
     const w = c.w || COMP_W;
-    const h = c.kind==="note" ? 78 : (c.kind==="splice" ? 28 : pinH(c));
+    const h = c.kind==="note" ? (c.h || 78) : (c.kind==="splice" ? 28 : pinH(c));
 
     if (c.kind==="note"){
       const r = document.createElementNS(ns,"rect");
@@ -624,14 +664,14 @@ function render(){
       const left = p.side !== "right";
       const num = document.createElementNS(ns,"text");
       num.setAttribute("class","pin-num");
-      num.setAttribute("x", left ? c.x+18 : c.x+w-18);
+      num.setAttribute("x", left ? c.x+12 : c.x+w-12);
       num.setAttribute("y", y+4);
       num.setAttribute("text-anchor", left ? "start" : "end");
       num.textContent = p.num;
       g.appendChild(num);
       const nm = document.createElementNS(ns,"text");
       nm.setAttribute("class","pin-name");
-      nm.setAttribute("x", left ? c.x+36 : c.x+w-36);
+      nm.setAttribute("x", left ? c.x+42 : c.x+w-42);
       nm.setAttribute("y", y+4);
       nm.setAttribute("text-anchor", left ? "start" : "end");
       nm.textContent = p.name;
