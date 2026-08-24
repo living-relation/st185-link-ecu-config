@@ -137,7 +137,7 @@
 <div id="ctx"></div>
 <script>
 const PIN_H = 20, HDR = 32, PAD = 8, COMP_W = 196;
-const STORAGE = "st185-harness-v4";
+const STORAGE = "st185-harness-v5";
 const NET_COLORS = {
   CANH:"#f2f2f2", CANL:"#3dd68c", "12V":"#e85d5d", "5V":"#f08a2a", "3V3":"#f5c542",
   GND:"#8b8b96", SIG:"#5b8def", UART:"#8b5cf6", INJ:"#3b82f6", IGN:"#f97316",
@@ -290,14 +290,17 @@ function buildST185(){
   ], "left", {w:230}));
   C.push(comp("left","Left cluster S3","N3", 1480, 860, ["5V VIN","GND","GPIO44 RX","GPIO43 TX"], "left"));
   C.push(comp("right","Right cluster S3","N4", 1480, 1000, ["5V VIN","GND","GPIO44 RX","GPIO43 TX"], "left"));
-  C.push(comp("csb3","ECUMaster CSB3 V3","N5", 560, 860, [
-    "12V","GND","CANH","CANL",
-    "AIN1 Cabin NTC","AIN2 Cruise ladder",
-    "AIN3 unused CSB3","AIN4 unused CSB3","AIN5 unused CSB3","AIN6 unused CSB3","AIN7 unused CSB3","AIN8 unused CSB3",
-    "SW1 Brake","SW2 Reverse","SW3 Cruise MAIN","SW4 AC request","SW5 Evap OT",
-    "SW6 unused CSB3","SW7 unused CSB3","SW8 unused CSB3",
-    "LS1 unused CSB3","LS2 unused CSB3","LS3 unused CSB3","LS4 unused CSB3"
-  ], "right", {w:240, note:"Switchboard cavities, not XtremeX A/B. Unused: AIN3–8, SW6–8, LS1–4. 1 Mbit/s, Base 0x640, term jumper OFF. LS = LED only 0.5A"}));
+  C.push({
+    id:"csb3", kind:"connector", name:"ECUMaster CSB3 V3 — I/O connector TBD", ident:"N5",
+    x:560, y:860, w:280, status:"tbd",
+    note:"This board has no I/O harness connector yet — spec a housing before wiring switches/sensors. The four pins below are PCB screw terminals (power + CAN), not that housing. 1 Mbit/s, Base 0x640, term jumper OFF.",
+    pins:[
+      {id:"p1", num:"ST", name:"12V screw term", side:"right"},
+      {id:"p2", num:"ST", name:"GND screw term", side:"right"},
+      {id:"p3", num:"ST", name:"CANH screw term", side:"right"},
+      {id:"p4", num:"ST", name:"CANL screw term", side:"right"}
+    ]
+  });
   C.push(comp("lambda","Link CAN-Lambda","N6", 280, 780, ["12V","GND","CANH","CANL"], "right"));
   C.push(comp("usbcan","USB-CAN adapter","N7", 860, 1180, ["CANH","CANL","GND","USB"], "left", {note:"CANable or PCAN · 1 Mbit/s · END B term"}));
   C.push(comp("pi","Pi 5 + RealDash 7in","N8", 1160, 1280, ["5V USB","GND","USB host","GPIO 5V","GPIO GND"], "left", {note:"Listen-only 0x3EF–0x3F1. GPIO 5V/GND feed the hat fan only."}));
@@ -308,13 +311,13 @@ function buildST185(){
   C.push(comp("enc1","Enc 1 Boost map","H2", 1680, 860, ["A","B","SW","GND"], "left"));
   C.push(comp("enc2","Enc 2 TC slip","H3", 1680, 980, ["A","B","SW","GND"], "left"));
 
-  C.push(comp("cabin","Cabin temp NTC","SB1", 280, 980, ["SIG","GND"], "right"));
-  C.push(comp("brake","Brake switch","SB2", 280, 1080, ["SW","GND"], "right"));
-  C.push(comp("rev","Reverse switch","SB3", 280, 1170, ["SW","GND"], "right"));
-  C.push(comp("cruise","Cruise stalk ladder","SB4", 40, 1220, ["SIG","GND"], "right", {note:"OEM resistor ladder. Confirm voltages."}));
-  C.push(comp("c-main","Cruise MAIN","SB5", 40, 1320, ["SW","GND"], "right"));
-  C.push(comp("ac-req","AC request","SB6", 40, 1410, ["SW","GND"], "right"));
-  C.push(comp("evap","Evap over-temp","SB7", 40, 1500, ["SW","GND"], "right"));
+  C.push(comp("cabin","Cabin temp NTC","SB1", 280, 980, ["SIG","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec. No wire until that housing is chosen."}));
+  C.push(comp("brake","Brake switch","SB2", 280, 1080, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec. No wire until that housing is chosen."}));
+  C.push(comp("rev","Reverse switch","SB3", 280, 1170, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec. No wire until that housing is chosen."}));
+  C.push(comp("cruise","Cruise stalk ladder","SB4", 40, 1220, ["SIG","GND"], "right", {status:"tbd", unwired:true, note:"OEM resistor ladder. Waits on CSB3 I/O connector spec — no wire, no invented connector in between."}));
+  C.push(comp("c-main","Cruise MAIN","SB5", 40, 1320, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec. No wire until that housing is chosen."}));
+  C.push(comp("ac-req","AC request","SB6", 40, 1410, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec. No wire until that housing is chosen."}));
+  C.push(comp("evap","Evap over-temp","SB7", 40, 1500, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec. No wire until that housing is chosen."}));
 
   /* ---- Proposed assignments (Link-capable; confirm on the car) ---- */
   const yU = 1680;
@@ -338,11 +341,15 @@ function buildST185(){
   });
   C.push({
     id:"note-cavities", kind:"note", name:"Empty / spare cavities", ident:"", x:850, y:780, w:380, h:150,
-    pins:[], note:"ECU A: all 34 Superseal cavities. A6 +8V unused. ECU B: B14 empty (no terminal). Spare no-wire: B1–B4, B10–B11, B27–B28, B31–B32. CSB3 unused AIN3–8 / SW6–8 / LS1–4 are switchboard cavities, not A/B loom."
+    pins:[], note:"ECU A: all 34 Superseal cavities. A6 +8V unused. ECU B: B14 empty (no terminal). Spare no-wire: B1–B4, B10–B11, B27–B28, B31–B32."
   });
   C.push({
     id:"note-can", kind:"note", name:"CAN 1 · 1 Mbit/s", ident:"", x:560, y:740, w:300,
     pins:[], note:"Linear bus. Term only at END A (ECU) and END B (Pi). CSB3 jumper OFF. Hat is not a CAN node."
+  });
+  C.push({
+    id:"note-csb3", kind:"note", name:"CSB3 — no I/O connector yet", ident:"", x:560, y:1000, w:280, h:130,
+    pins:[], note:"Spec a harness connector for the switchboard. Cabin / brake / reverse / cruise / AC / evap stay on the canvas with no wires and no made-up connector in between."
   });
 
   /* Defined sensor → ECU */
@@ -459,14 +466,7 @@ function buildST185(){
   addW("enc2.p1","center.p14","DI"); addW("enc2.p2","center.p15","DI");
   addW("enc2.p3","center.p16","DI"); addW("enc2.p4","sp-gnd.p1","GND");
 
-  /* Switchboard body I/O */
-  addW("cabin.p1","csb3.p5","TEMP"); addW("cabin.p2","sp-gnd.p1","GND");
-  addW("cruise.p1","csb3.p6","SIG"); addW("cruise.p2","sp-gnd.p1","GND");
-  addW("brake.p1","csb3.p13","DI"); addW("brake.p2","sp-gnd.p1","GND");
-  addW("rev.p1","csb3.p14","DI"); addW("rev.p2","sp-gnd.p1","GND");
-  addW("c-main.p1","csb3.p15","DI"); addW("c-main.p2","sp-gnd.p1","GND");
-  addW("ac-req.p1","csb3.p16","DI"); addW("ac-req.p2","sp-gnd.p1","GND");
-  addW("evap.p1","csb3.p17","DI"); addW("evap.p2","sp-gnd.p1","GND");
+  /* CSB3 body I/O is not drawn: no harness connector spec'd yet. */
 
   /* Proposed — Link-capable (dashed until confirmed on the car) */
   const prop = { dashed:true };
