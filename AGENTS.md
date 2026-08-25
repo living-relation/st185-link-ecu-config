@@ -1,44 +1,103 @@
 # AGENTS.md
 
-## Cursor Cloud specific instructions
+## Scope
+- This repo is CAN configuration + bench/tooling for ST185 TrackCluster.
+- Primary code paths are `bench/`, `apps/trackcluster-can-sender/`, and `rd-build/tools/`.
+- Primary contracts are `link_g4x_can_setup.json` and `link_g4x_realdash.xml`.
 
-This repo is mostly CAN-bus **config + documentation** for the Celica ST185 build. The only
-runnable code is:
+## Source Of Truth
+- CAN IDs, offsets, scaling: `link_g4x_can_setup.json`.
+- Architecture and allocation: `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`.
+- Bench behavior: `bench/frames.py`, `bench/can_bench.py`, `BENCH-TEST.md`.
+- RealDash channel definitions: `link_g4x_realdash.xml`.
 
-- `bench/can_bench.py` — a `python-can` CLI bench harness (encode/transmit/monitor CAN frames).
-  Frame layouts live in `bench/frames.py`. This is the primary thing to run/test in the cloud VM.
-- Browser tools (standalone, no build): `apps/canbus-bench-test.html`, `realdash-demo.html`,
-  `realdash-simulation.html`. Open directly, or serve the repo (`python3 -m http.server`) and
-  browse to the file. `apps/canbus-bench-test.html` only covers the 3 RealDash frames
-  (`0x3EF`/`0x3F0`/`0x3F1`); the CLI harness covers the full frame set.
-- `apps/canbus-live-sender/` — a `pywebview` + `python-can` **desktop GUI** that transmits to a
-  physical CAN-USB adapter. It needs native WebKit/GTK libs, `libusb`, and real hardware, so it is
-  **not runnable headless** in the cloud VM. Treat it as out of scope for cloud testing; see its
-  `BUILD.md` for the hardware/desktop setup.
+## Current Runnable Paths
+- `bench/can_bench.py` for monitor/simulate/test workflows.
+- `apps/trackcluster-can-sender/app.py` for desktop CAN sender UI.
+- `rd-build/tools/automation_helper.py` for local RealDash editor automation.
 
-There is **no lint config and no automated test suite**. For a quick correctness check, use
-`python -m py_compile` on the bench scripts and/or an encode→decode round-trip via `frames.py`.
-
-### Python env
-The update script creates a `.venv` at the repo root and installs `bench/requirements.txt` (plus
-`msgpack`, needed for the headless test path below). Run the tools with `.venv/bin/python`.
-
-### Running the bench harness end-to-end (no CAN hardware)
-This cloud VM has **no SocketCAN kernel module and no `ip` command**, so
-`--interface socketcan --channel vcan0` (the README/BENCH-TEST.md default) will **not** work here.
-Use `python-can`'s cross-process `udp_multicast` backend instead — it bridges two processes over
-loopback multicast. Run a monitor and a simulator on the same multicast group:
-
+## Commands
+### Install deps
 ```bash
-# terminal 1 (receiver)
-.venv/bin/python bench/can_bench.py --interface udp_multicast --channel 239.1.2.3 monitor
-# terminal 2 (transmitter)
-.venv/bin/python bench/can_bench.py --interface udp_multicast --channel 239.1.2.3 simulate-ecu --duration 5
+python -m pip install -r bench/requirements.txt
+python -m pip install -r apps/trackcluster-can-sender/requirements.txt
+python -m pip install -r rd-build/tools/requirements.txt
 ```
 
-`monitor` will print every decoded frame. `simulate-switchboard` and `inject-ls-command` work the
-same way. On real hardware/Linux you would instead use `--interface socketcan`/`slcan`/`pcan`.
+### Run bench flows
+```bash
+python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 monitor --known-only
+python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 full-cluster
+python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 full-realdash
+```
 
-### Gotcha
-`-v`/`--verbose` is a **global** flag on `can_bench.py` and must come **before** the subcommand
-(e.g. `can_bench.py -v simulate-ecu`), not after it.
+### Run sender app
+```bash
+python apps/trackcluster-can-sender/app.py
+set TC_DEVICE=cluster && python apps/trackcluster-can-sender/app.py
+set TC_DEVICE=realdash && python apps/trackcluster-can-sender/app.py
+```
+
+### Quick checks
+```bash
+python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py
+python rd-build/tools/automation_helper.py size
+```
+
+## Working Rules
+- Keep CAN changes synchronized across `bench/frames.py`, `link_g4x_can_setup.json`, and `CAN-BUS-ID-ALLOCATION-TABLE.md`.
+- Keep `ST185:` names in `link_g4x_realdash.xml` unchanged unless migration is explicitly requested.
+- Keep warning-bit mapping parity between XML and `bench/frames.py` bit constants.
+- Prefer minimal targeted edits; avoid broad rewrites of stable docs.
+- If editing `rd-build/link_g4x_realdash.xml`, compare against root `link_g4x_realdash.xml` to prevent drift.
+
+## MCP / Integration Notes
+- Optional MCP example exists at `rd-build/tools/mcp.example.json` for desktop control experiments.
+- Caliber hooks exist in `.claude/hooks/` and `.cursor/hooks.json`; keep config guidance compatible with them.
+
+<!-- caliber:managed:pre-commit -->
+## Before Committing
+
+**IMPORTANT:** Before every git commit, you MUST ensure Caliber syncs agent configs with the latest code changes.
+
+First, check if the pre-commit hook is already installed:
+```bash
+grep -q "caliber" .git/hooks/pre-commit 2>/dev/null && echo "hook-active" || echo "no-hook"
+```
+
+- If **hook-active**: the hook handles sync automatically — just commit normally. Tell the user: "Caliber will sync your agent configs automatically via the pre-commit hook."
+- If **no-hook**: run Caliber manually before committing:
+  1. Tell the user: "Caliber: Syncing agent configs with your latest changes..."
+  2. Run: `caliber refresh && git add CLAUDE.md .claude/ .cursor/ .cursorrules .github/copilot-instructions.md .github/instructions/ AGENTS.md CALIBER_LEARNINGS.md .agents/ .opencode/ 2>/dev/null`
+  3. After it completes, briefly tell the user what Caliber updated. Then proceed with the commit.
+
+**Valid `caliber refresh` options:** `--quiet` (suppress output) and `--dry-run` (preview without writing). Do not pass any other flags — options like `--auto-approve`, `--debug`, or `--force` do not exist and will cause errors.
+
+**`caliber config`** takes no flags — it runs an interactive provider setup. Do not pass `--provider`, `--api-key`, or `--endpoint`.
+
+If `caliber` is not found, read `.agents/skills/setup-caliber/SKILL.md` and follow its instructions to install Caliber.
+<!-- /caliber:managed:pre-commit -->
+
+<!-- caliber:managed:learnings -->
+## Session Learnings
+
+Read `CALIBER_LEARNINGS.md` for patterns and anti-patterns learned from previous sessions.
+These are auto-extracted from real tool usage — treat them as project-specific rules.
+<!-- /caliber:managed:learnings -->
+
+<!-- caliber:managed:model-config -->
+## Model Configuration
+
+Recommended default: `claude-sonnet-4-6` with high effort (stronger reasoning; higher cost and latency than smaller models).
+Smaller/faster models trade quality for speed and cost — pick what fits the task.
+Pin your choice (`/model` in Claude Code, or `CALIBER_MODEL` when using Caliber with an API provider) so upstream default changes do not silently change behavior.
+
+<!-- /caliber:managed:model-config -->
+
+<!-- caliber:managed:sync -->
+## Context Sync
+
+This project uses [Caliber](https://github.com/caliber-ai-org/ai-setup) to keep AI agent configs in sync across Claude Code, Cursor, Copilot, and Codex.
+Configs update automatically before each commit via `caliber refresh`.
+If the pre-commit hook is not set up, read `.agents/skills/setup-caliber/SKILL.md` and follow the setup instructions.
+<!-- /caliber:managed:sync -->
