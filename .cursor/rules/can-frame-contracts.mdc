@@ -1,0 +1,15 @@
+---
+description: Enforce CAN frame contract parity
+globs:
+  - bench/**
+  - link_g4x_can_setup.json
+  - CAN-BUS-ID-ALLOCATION-TABLE.md
+  - CANBUS-LINK-G4X-CONFIG.md
+alwaysApply: false
+---
+
+- Keep frame IDs `0x3E8`-`0x3F1` and `0x640`-`0x643` consistent with `link_g4x_can_setup.json`.
+- Keep CAN ID usage and field sizing consistent between `bench/frames.py` and `link_g4x_can_setup.json`.
+- Preserve BigEndian behavior for multibyte fields unless canonical docs change.
+- Keep warning-bit definitions in sync with `WARN_*` constants in `bench/frames.py`.
+- Validate with targeted `bench/can_bench.py` command paths before finalizing.

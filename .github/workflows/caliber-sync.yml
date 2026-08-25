@@ -1,0 +1,16 @@
+name: Caliber Sync
+on:
+  workflow_dispatch:
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: caliber-ai-org/ai-setup@v1
+        with:
+          mode: sync
+          auto-refresh: true
+          comment: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

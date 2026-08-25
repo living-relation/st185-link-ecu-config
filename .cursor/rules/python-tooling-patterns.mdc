@@ -1,0 +1,14 @@
+---
+description: Follow established Python tooling patterns
+globs:
+  - apps/trackcluster-can-sender/**
+  - bench/**
+  - rd-build/tools/**
+alwaysApply: false
+---
+
+- Follow existing adapter handling style in `apps/trackcluster-can-sender/app.py` (`gs_usb`, `slcan`, `seeedstudio`, vendor interfaces).
+- Keep CAN payload validation strict (`11-bit ID`, `8-byte payload`) before transmit.
+- Keep CLI scripts small, explicit, and usage-driven like `rd-build/tools/*.py`.
+- Keep dependencies documented in nearest `requirements.txt`.
+- Respect local desktop constraints documented in `rd-build/FINDINGS.md` and `rd-build/tools/SETUP.md`.
