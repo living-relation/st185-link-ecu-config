@@ -30,6 +30,20 @@ The full harness is ~175 connections. Four things stop that turning into spaghet
 
 **Spacing.** The header **Spacing** control (100 %–230 %) pushes blocks further apart without resizing them. Wires sharing a vertical channel are auto-assigned parallel lanes so they never sit on top of each other.
 
+**Zoomed-out names.** At 70 % zoom and below the in-block text stops being legible, so each component's name is mirrored in a label 2.5 × larger floating above its block. They disappear again above 70 %.
+
+## Editing wires
+
+The workspace has no sheet edge — pan and place parts anywhere, including negative coordinates.
+
+Wires route orthogonally. A wire leaving a pin never folds back over that pin, and a wire meeting a splice stops at the junction instead of overshooting it.
+
+Drag a wire's body to drop a **fix point**: a pinned waypoint that holds its world position when either endpoint later moves, so the path stretches around it and nothing detaches. Fix points snap to horizontal, vertical and 45° against the wire's endpoints and its other fix points. Right-click a wire to add or clear them.
+
+Select a wire to get orange grips on both ends; drag a grip onto another terminal to reattach that end. Labels and power/ground symbols are selectable and can be dragged clear of crossing wires — **Reset label position** in the right-click menu puts them back.
+
+Pressing a terminal only starts a wire once the pointer actually moves, so a plain click on a terminal selects the part underneath it.
+
 ## Controls
 
 | Action | How |
@@ -47,7 +61,7 @@ The full harness is ~175 connections. Four things stop that turning into spaghet
 
 Wire labels are off by default; tick **Wire labels** to show them all, or select a single wire to see just its own.
 
-Edits autosave in `localStorage` (`st185-harness-v6`). **Reset ST185** reloads the seed. Export JSON or SVG from the header.
+Edits autosave in `localStorage` (`st185-harness-v7`). **Reset ST185** reloads the seed. Export JSON or SVG from the header.
 
 Layout view is a placeholder until bundle lengths exist.
 
