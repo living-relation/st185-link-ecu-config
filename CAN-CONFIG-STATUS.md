@@ -17,6 +17,16 @@ channels 0x3E8–0x3EE, and the cluster **send** channels 0x3EC/0x3ED) come from
 2. **`0x3E9` oil & fuel pressure are 2 bytes (u16).** Layout: ign 0-1, speed 2, **oil 3-4**, **fuel 5-6**, byte 7 free. (1 byte capped at ~37 psi; gauges need 125/160 psi.) The cluster firmware (`main/canbus.c`, per the HTML) already decodes this 2-byte layout.
 3. **`0x3F0` coolant pressure is 2 bytes (u16)** (bytes 2-3). To make room (frame was full at 8 bytes), the optional **Cabin Temp** byte was dropped; **Trigger Error Count** is kept (byte 7).
 
+## Corrected 2026-09-04: Turbo Speed scaling in the rd-build package
+`rd-build/link_g4x_realdash.xml` (and its copy embedded in `rd-build/PLAN.md`) had Turbo Speed as
+`conversion="V*100" rangeMax="200000"` — internally inconsistent (a single byte maxes at 25,500 at
+that scale, never 200,000) and disagreed with every other source. Verified against the canonical
+config, `link_g4x_can_setup.json` (`scale: 1000`, "raw x 1000 = RPM"), plus
+`CAN-BUS-ID-ALLOCATION-TABLE.md` and `REALDASH-LAYOUT.md`, which both independently state
+x1000/0-255,000 RPM — matching this repo's root `link_g4x_realdash.xml` all along. Corrected the
+rd-build copy to `V*1000`/`255000` to match. If a `.rd` file was already built from the old rd-build
+package, re-import the corrected channel file before trusting turbo-speed readings on it.
+
 ## RealDash receives (ECU echoes only)
 `0x3EF` drive assist/status, `0x3F0` extended sensors, `0x3F1` IMU + warnings. Bind gauges to the
 `ST185:` input names in `link_g4x_realdash.xml`. RealDash does **not** read `0x3E8–0x3EE` (the cluster
