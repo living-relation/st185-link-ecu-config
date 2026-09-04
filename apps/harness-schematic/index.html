@@ -54,6 +54,41 @@
   .layer .solo:hover{border-color:var(--border);color:var(--text)}
   .layer.off .nm,.layer.off .ct{opacity:.4}
 
+  #lib-search{width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);
+    border-radius:6px;padding:6px 8px;font:inherit;font-size:12px;margin-bottom:6px}
+  .lib-row{display:flex;gap:8px;align-items:center;width:100%;text-align:left;margin:0 0 5px;
+    background:var(--panel2);border:1px solid var(--border);border-radius:6px;padding:5px 7px;cursor:pointer}
+  .lib-row:hover{border-color:#5a5a66;background:#202026}
+  .lib-thumb{width:30px;height:24px;border-radius:4px;flex:none;background:#3a3a42;
+    background-size:cover;background-position:center;border:1px solid #4a4a54}
+  .lib-meta{flex:1;min-width:0}
+  .lib-nm{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lib-sub{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    font-family:var(--mono)}
+  .lib-edit{background:transparent;border:0;color:var(--muted);font-size:11px;cursor:pointer;padding:2px 4px;opacity:0}
+  .lib-row:hover .lib-edit{opacity:1}
+  .lib-edit:hover{color:var(--text)}
+  .lib-empty{font-size:11px;color:var(--muted);padding:6px 2px;line-height:1.5}
+  .row-btns{display:flex;gap:6px;margin-bottom:8px}
+  .row-btns .mini{flex:1;text-align:center}
+
+  #modal-bg{position:fixed;inset:0;background:#000a;z-index:40;display:none;align-items:center;justify-content:center}
+  #modal-bg.on{display:flex}
+  .modal{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px;
+    width:min(560px,92vw);max-height:88vh;overflow:auto;box-shadow:0 24px 70px #000c}
+  .modal h3{margin:0 0 4px;font-size:14px}
+  .modal .sub{font-size:11px;color:var(--muted);margin:0 0 14px;line-height:1.5}
+  .modal label{display:block;font-size:11px;color:var(--muted);margin:10px 0 4px}
+  .modal input[type=text], .modal textarea, .modal select{width:100%;background:var(--bg);color:var(--text);
+    border:1px solid var(--border);border-radius:5px;padding:6px 8px;font:inherit;font-size:12px}
+  .modal .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .modal .acts{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+  .modal .warn{color:var(--warn);font-size:11px;margin-top:8px;line-height:1.5}
+  .modal .err{color:var(--danger);font-size:11px;margin-top:8px;line-height:1.5}
+  .modal .okmsg{color:var(--accent);font-size:11px;margin-top:8px;line-height:1.5}
+  .thumb-prev{width:64px;height:48px;border-radius:5px;background:#3a3a42;background-size:cover;
+    background-position:center;border:1px solid #4a4a54;flex:none}
+
   #stage-wrap{position:relative;background:var(--canvas);overflow:hidden;cursor:grab}
   #stage-wrap.panning{cursor:grabbing}
   #stage{position:absolute;left:0;top:0;transform-origin:0 0}
@@ -149,14 +184,16 @@
     </div>
     <div id="layers"></div>
 
-    <div class="aside-h">Add to canvas</div>
-    <button class="lib-item" data-add="connector"><span class="ic">C</span> Connector</button>
-    <button class="lib-item" data-add="splice"><span class="ic">S</span> Splice</button>
-    <button class="lib-item" data-add="resistor"><span class="ic">R</span> Resistor</button>
-    <button class="lib-item" data-add="relay"><span class="ic">K</span> Relay</button>
-    <button class="lib-item" data-add="sensor3"><span class="ic">3</span> 3-pin sensor</button>
-    <button class="lib-item" data-add="can-node"><span class="ic">CAN</span> CAN node</button>
-    <button class="lib-item" data-add="note"><span class="ic">N</span> Note</button>
+    <div class="aside-h">Component library <span class="sp"></span><span class="ct" id="lib-count"></span></div>
+    <input id="lib-search" type="text" placeholder="Search part no, model or description">
+    <div class="row-btns">
+      <button class="mini" id="lib-add">+ Add component</button>
+      <button class="mini" id="lib-find">Find more…</button>
+    </div>
+    <label style="display:flex;gap:6px;align-items:center;font-size:11px;color:var(--muted);margin-bottom:8px">
+      <input type="checkbox" id="lib-mate"> Show mating connector
+    </label>
+    <div id="lib-list"></div>
 
     <div class="aside-h">Nets</div>
     <div class="hint" id="net-legend"></div>
@@ -188,6 +225,7 @@
   </footer>
 </div>
 <div id="ctx"></div>
+<div id="modal-bg"><div class="modal" id="modal"></div></div>
 <script>
 const PIN_H = 20, HDR = 32, PAD = 8, COMP_W = 196;
 const WORLD = 400000;         // half-extent of the unbounded grid surface
@@ -1486,28 +1524,301 @@ wrap.addEventListener("contextmenu", ev => {
 });
 function hideCtx(){ $("#ctx").style.display="none"; }
 
-function addAt(kind, pt){
-  const x = Math.round(((pt?.x||200)/state.spread)/8)*8, y = Math.round(((pt?.y||200)/state.spread)/8)*8;
-  const id = uid("c");
-  const recipes = {
-    connector: () => comp(id,"Connector","C",x,y,["12V","GND","SIG"],"right"),
-    splice: () => ({id, kind:"splice", name:"Splice", ident:"SP", x, y, w:24, pins:[{id:"p1",num:"1",name:"NET",side:"right"}]}),
-    resistor: () => comp(id,"Resistor","R",x,y,["A","B"],"right",{kind:"resistor",w:170}),
-    note: () => ({id, kind:"note", name:"Note", ident:"", x, y, w:260, h:100, pins:[], note:"…"}),
-    sensor3: () => comp(id,"Sensor","S",x,y,["5V","SIG","GND"],"right"),
-    relay: () => comp(id,"Relay","K",x,y,["86","85","30","87"],"right"),
-    "can-node": () => comp(id,"CAN device","N",x,y,["12V","GND","CANH","CANL"],"right")
-  };
-  const make = recipes[kind]; if (!make) return;
-  const c = make(); c.group = (kind === "note") ? "notes" : "misc";
-  state.components.push(c); render();
+/* ============================ COMPONENT LIBRARY ============================
+   Data-driven, searchable, and persisted separately from the schematic so that
+   library edits never touch parts already placed on the canvas. */
+const LIB_STORAGE = "st185-harness-lib-v1";
+
+/* Generic primitives that are not part of the ST185 seed. */
+const LIB_PRIMITIVES = [
+  { id:"prim-connector", name:"Connector (generic)", kind:"connector", w:COMP_W,
+    desc:"Blank 3-way connector", pins:[["1","12V","right"],["2","GND","right"],["3","SIG","right"]] },
+  { id:"prim-splice",    name:"Splice", kind:"splice", w:24,
+    desc:"Junction / splice point", pins:[["1","NET","right"]] },
+  { id:"prim-resistor",  name:"Resistor", kind:"resistor", w:170,
+    desc:"Two-terminal resistor", pins:[["1","A","right"],["2","B","right"]] },
+  { id:"prim-relay",     name:"Relay (generic)", kind:"connector", w:COMP_W,
+    desc:"ISO micro relay, 4 terminal",
+    pins:[["1","86 coil","right"],["2","85 LS","right"],["3","30 12V","right"],["4","87 out","right"]] },
+  { id:"prim-sensor3",   name:"Sensor, 3-pin", kind:"connector", w:COMP_W,
+    desc:"Ratiometric sensor, 5V / SIG / GND",
+    pins:[["1","5V","right"],["2","SIG","right"],["3","GND","right"]] },
+  { id:"prim-sensor2",   name:"Sensor, 2-pin", kind:"connector", w:COMP_W,
+    desc:"Two-wire sensor or switch", pins:[["1","SIG","right"],["2","GND","right"]] },
+  { id:"prim-cannode",   name:"CAN device (generic)", kind:"connector", w:COMP_W,
+    desc:"Powered CAN bus node",
+    pins:[["1","12V","right"],["2","GND","right"],["3","CANH","right"],["4","CANL","right"]] },
+  { id:"prim-note",      name:"Note", kind:"note", w:260, desc:"Free-text callout", pins:[] }
+];
+
+/* Manufacturers only where the repo itself already names them. Nothing invented. */
+const LIB_MFR = [
+  [/XtremeX|CAN-Lambda|G4X/i, "Link ECU"],
+  [/CSB3|ECUMaster/i,         "ECUMaster"],
+  [/SN65HVD230/i,             "Texas Instruments"],
+  [/Bosch/i,                  "Bosch"],
+  [/Continental/i,            "Continental"],
+  [/Waveshare/i,              "Waveshare"],
+  [/Pi 5|Raspberry/i,         "Raspberry Pi"]
+];
+function guessMfr(name){
+  for (const [re, m] of LIB_MFR) if (re.test(name)) return m;
+  return "";
 }
 
-document.querySelectorAll(".lib-item").forEach(b => b.onclick = () => {
-  addAt(b.dataset.add, { x:(220-state.view.x)/state.view.k, y:(140-state.view.y)/state.view.k });
-});
-/* The sheet is tall, so fitting everything makes it unreadable.
-   Fit to width instead and let the bands scroll vertically. */
+let library = [];
+
+/* Every part the ST185 seed uses becomes a library entry, so nothing that is
+   already on the canvas is missing from the library. */
+function buildLibrary(){
+  const entries = LIB_PRIMITIVES.map(e => ({
+    id:e.id, name:e.name, mfr:"", pn:"", desc:e.desc, kind:e.kind, w:e.w,
+    pins:e.pins.map(([num,nm,side]) => ({ num, name:nm, side })),
+    image:null, builtin:true, primitive:true,
+    mates:[], accessories:{}, crimp:{}, notes:""
+  }));
+  const seen = new Set(entries.map(e => e.name.toLowerCase()));
+  buildST185().components.forEach(c => {
+    if (c.kind === "note") return;
+    const key = c.name.toLowerCase();
+    if (seen.has(key)) return;
+    seen.add(key);
+    entries.push({
+      id:"lib-" + c.id, name:c.name, mfr:guessMfr(c.name), pn:"",
+      desc:(c.note || "").slice(0, 160), kind:c.kind, w:c.w || COMP_W,
+      pins:(c.pins||[]).map(pn => ({ num:pn.num, name:pn.name, side:pn.side })),
+      image:null, builtin:true, primitive:false, group:GROUP_OF[c.id] || "misc",
+      mates:[], accessories:{}, crimp:{}, notes:""
+    });
+  });
+  return entries;
+}
+function saveLibrary(){
+  try{
+    /* Only user entries and user edits are stored; builtins rebuild from the seed. */
+    const diff = library.filter(e => !e.builtin || e.dirty);
+    localStorage.setItem(LIB_STORAGE, JSON.stringify(diff));
+  }catch(e){}
+}
+function loadLibrary(){
+  library = buildLibrary();
+  try{
+    const saved = JSON.parse(localStorage.getItem(LIB_STORAGE) || "[]");
+    saved.forEach(s => {
+      const i = library.findIndex(e => e.id === s.id);
+      if (i >= 0) library[i] = { ...library[i], ...s };
+      else library.push(s);
+    });
+  }catch(e){}
+}
+
+/* Simple relevance: earlier and more exact matches score higher. */
+function libScore(e, q){
+  if (!q) return 1;
+  const hay = [e.pn, e.name, e.mfr, e.desc].map(v => (v||"").toLowerCase());
+  let best = 0;
+  const weights = [100, 80, 50, 30];
+  hay.forEach((h, i) => {
+    if (!h) return;
+    const at = h.indexOf(q);
+    if (at < 0) return;
+    let s = weights[i] - Math.min(at, 20);
+    if (at === 0) s += 25;
+    else if (/[\s\-_/]/.test(h[at-1])) s += 12;
+    if (h === q) s += 40;
+    best = Math.max(best, s);
+  });
+  return best;
+}
+function libResults(){
+  const q = ($("#lib-search").value || "").trim().toLowerCase();
+  return library
+    .map(e => ({ e, s: libScore(e, q) }))
+    .filter(r => r.s > 0)
+    .sort((a,b) => b.s - a.s || a.e.name.localeCompare(b.e.name))
+    .map(r => r.e);
+}
+function renderLibrary(){
+  const res = libResults();
+  const box = $("#lib-list");
+  $("#lib-count").textContent = res.length + "/" + library.length;
+  if (!res.length){
+    box.innerHTML = `<div class="lib-empty">No match. Refine the text, use
+      <b>+ Add component</b> to enter it by hand, or <b>Find more…</b> to look it up.</div>`;
+    return;
+  }
+  box.innerHTML = res.slice(0, 400).map(e => {
+    const sub = [e.mfr, e.pn].filter(Boolean).join(" · ") ||
+                (e.pins.length ? e.pins.length + " pins" : "no pins");
+    const th = e.image ? `style="background-image:url('${e.image}')"` : "";
+    return `<div class="lib-row" data-lib="${e.id}" title="${esc(e.desc || e.name)}">
+      <div class="lib-thumb" ${th}></div>
+      <div class="lib-meta">
+        <div class="lib-nm">${esc(e.name)}</div>
+        <div class="lib-sub">${esc(sub)}${e.pins.length ? " · " + e.pins.length + "p" : ""}</div>
+      </div>
+      <button class="lib-edit" data-libedit="${e.id}" title="Edit entry">edit</button>
+    </div>`;
+  }).join("");
+  box.querySelectorAll("[data-lib]").forEach(r => {
+    r.onclick = ev => {
+      if (ev.target.dataset.libedit) return;
+      placeLibraryItem(r.dataset.lib);
+    };
+  });
+  box.querySelectorAll("[data-libedit]").forEach(b => {
+    b.onclick = ev => { ev.stopPropagation(); openComponentDialog(b.dataset.libedit); };
+  });
+}
+
+function centreWorld(){
+  const r = wrap.getBoundingClientRect();
+  return { x:(r.width/2 - state.view.x)/state.view.k, y:(r.height/2 - state.view.y)/state.view.k };
+}
+function instanceFrom(entry, wx, wy){
+  const id = uid("c");
+  const base = {
+    id, kind:entry.kind || "connector", name:entry.name, ident:(entry.pn || "").slice(0,6) || "X",
+    x:Math.round((wx/state.spread)/8)*8, y:Math.round((wy/state.spread)/8)*8,
+    w:entry.w || COMP_W, status:"tbd", note:entry.desc || "", unwired:false,
+    group:entry.group || "misc",
+    pins:(entry.pins||[]).map((pn,i) => ({ id:"p"+(i+1), num:pn.num || String(i+1),
+                                           name:pn.name, side:pn.side || "right" })),
+    /* Copied by value: later library edits must never rewrite a placed part. */
+    libId:entry.id, mfr:entry.mfr || "", pn:entry.pn || "",
+    mates:JSON.parse(JSON.stringify(entry.mates || [])),
+    accessories:JSON.parse(JSON.stringify(entry.accessories || {})),
+    crimp:JSON.parse(JSON.stringify(entry.crimp || {})),
+    image:entry.image || null
+  };
+  if (entry.kind === "note"){ base.h = 100; base.pins = []; base.note = entry.desc || "…"; }
+  return base;
+}
+function placeLibraryItem(libId){
+  const e = library.find(x => x.id === libId); if (!e) return;
+  const c = centreWorld();
+  const inst = instanceFrom(e, c.x, c.y);
+  state.components.push(inst);
+  /* Optional mate placement. Inert when the entry has no mate assigned yet. */
+  if ($("#lib-mate").checked && (e.mates||[]).length){
+    const mate = e.mates[0];
+    const mEntry = library.find(x => x.pn && mate.pn && x.pn.toLowerCase() === mate.pn.toLowerCase());
+    const mi = mEntry
+      ? instanceFrom(mEntry, c.x + (inst.w + 90) * state.spread, c.y)
+      : instanceFrom({ ...e, id:e.id + "-mate", name:(mate.pn || "Mate") + " (mate)",
+                       pins:(e.pins||[]).map(pp => ({ ...pp, side: pp.side === "right" ? "left" : "right" })) },
+                     c.x + (inst.w + 90) * state.spread, c.y);
+    mi.isMateOf = inst.id;
+    state.components.push(mi);
+  }
+  state.sel = inst.id; state.focus = null;
+  render(); inspect(); saveLibrary();
+}
+
+/* ---- manual add / edit dialog ---- */
+function openModal(html){
+  $("#modal").innerHTML = html;
+  $("#modal-bg").classList.add("on");
+}
+function closeModal(){ $("#modal-bg").classList.remove("on"); }
+$("#modal-bg").addEventListener("mousedown", ev => { if (ev.target.id === "modal-bg") closeModal(); });
+
+function openComponentDialog(libId){
+  const e = libId ? library.find(x => x.id === libId) : null;
+  const pinText = e ? (e.pins||[]).map(p => `${p.num}, ${p.name}, ${p.side}`).join("\n")
+                    : "1, 12V, right\n2, GND, right\n3, SIG, right";
+  openModal(`
+    <h3>${e ? "Edit library entry" : "Add component to library"}</h3>
+    <p class="sub">Library entries are templates. Editing one never changes parts already
+       placed on the canvas.</p>
+    <div class="two">
+      <div><label>Name</label><input type="text" id="m-name" value="${esc(e?.name || "")}"></div>
+      <div><label>Manufacturer</label><input type="text" id="m-mfr" value="${esc(e?.mfr || "")}"></div>
+    </div>
+    <div class="two">
+      <div><label>Part / model number</label><input type="text" id="m-pn" value="${esc(e?.pn || "")}"></div>
+      <div><label>Kind</label>
+        <select id="m-kind">
+          ${["connector","splice","resistor","note"].map(k =>
+            `<option value="${k}"${(e?.kind||"connector")===k?" selected":""}>${k}</option>`).join("")}
+        </select>
+      </div>
+    </div>
+    <label>Description</label><input type="text" id="m-desc" value="${esc(e?.desc || "")}">
+    <label>Pins — one per line as <code>number, label, side</code> (side = left or right)</label>
+    <textarea id="m-pins" style="min-height:120px;font-family:var(--mono)">${esc(pinText)}</textarea>
+    <label>Thumbnail image</label>
+    <div style="display:flex;gap:10px;align-items:center">
+      <div class="thumb-prev" id="m-thumb" ${e?.image ? `style="background-image:url('${e.image}')"` : ""}></div>
+      <div style="flex:1">
+        <input type="file" id="m-file" accept="image/*" style="font-size:11px">
+        <button class="mini" id="m-clearimg" style="margin-top:6px">Remove image</button>
+      </div>
+    </div>
+    <div class="err" id="m-err" style="display:none"></div>
+    <div class="acts">
+      ${e && !e.builtin ? `<button class="mini" id="m-del" style="margin-right:auto">Delete entry</button>` : ""}
+      <button class="mini" id="m-cancel">Cancel</button>
+      <button class="mini" id="m-save" style="border-color:var(--accent);color:var(--accent)">
+        ${e ? "Save" : "Add to library"}</button>
+    </div>`);
+
+  let img = e?.image || null;
+  $("#m-file").onchange = ev => {
+    const f = ev.target.files && ev.target.files[0]; if (!f) return;
+    const fr = new FileReader();
+    fr.onload = () => { img = fr.result; $("#m-thumb").style.backgroundImage = `url('${img}')`; };
+    fr.readAsDataURL(f);
+  };
+  $("#m-clearimg").onclick = () => { img = null; $("#m-thumb").style.backgroundImage = ""; };
+  $("#m-cancel").onclick = closeModal;
+  if ($("#m-del")) $("#m-del").onclick = () => {
+    library = library.filter(x => x.id !== e.id);
+    saveLibrary(); renderLibrary(); closeModal();
+  };
+  $("#m-save").onclick = () => {
+    const name = $("#m-name").value.trim();
+    if (!name){ showErr("m-err", "A name is required."); return; }
+    const pins = parsePinLines($("#m-pins").value);
+    if (pins.bad.length){ showErr("m-err", "Could not read these pin lines: " + pins.bad.join(" ; ")); return; }
+    const rec = {
+      name, mfr:$("#m-mfr").value.trim(), pn:$("#m-pn").value.trim(),
+      desc:$("#m-desc").value.trim(), kind:$("#m-kind").value,
+      pins:pins.ok, image:img, dirty:true
+    };
+    if (e) Object.assign(e, rec);
+    else library.unshift({ id:uid("lib"), builtin:false, primitive:false, w:COMP_W,
+                           mates:[], accessories:{}, crimp:{}, notes:"", ...rec });
+    saveLibrary(); renderLibrary(); closeModal();
+  };
+}
+function showErr(id, msg){ const n = $("#"+id); n.textContent = msg; n.style.display = "block"; }
+function parsePinLines(text){
+  const ok = [], bad = [];
+  String(text||"").split("\n").map(l => l.trim()).filter(Boolean).forEach(line => {
+    const parts = line.split(",").map(s => s.trim());
+    if (parts.length < 2 || !parts[1]){ bad.push(line); return; }
+    const side = (parts[2] || "right").toLowerCase();
+    ok.push({ num:parts[0] || String(ok.length+1), name:parts[1],
+              side: side === "left" ? "left" : "right" });
+  });
+  return { ok, bad };
+}
+
+$("#lib-search").addEventListener("input", renderLibrary);
+$("#lib-add").onclick = () => openComponentDialog(null);
+
+/* Kept so the canvas right-click menu can still drop a primitive directly. */
+function addAt(kind, pt){
+  const map = { connector:"prim-connector", splice:"prim-splice", resistor:"prim-resistor",
+                relay:"prim-relay", sensor3:"prim-sensor3", sensor2:"prim-sensor2",
+                "can-node":"prim-cannode", note:"prim-note" };
+  const e = library.find(x => x.id === map[kind]); if (!e) return;
+  const inst = instanceFrom(e, pt?.x ?? 200, pt?.y ?? 200);
+  state.components.push(inst);
+  state.sel = inst.id; render(); inspect();
+}
+
 function contentBox(){
   let x0=Infinity, y0=Infinity, x1=-Infinity, y1=-Infinity;
   state.components.filter(c => visible(c) && !(state.rails && RAILS[c.id])).forEach(c => {
@@ -1579,6 +1890,8 @@ $("#tog-focus").onchange = () => { if (!$("#tog-focus").checked){ state.focus=nu
 $("#btn-schematic").onclick = () => { $("#app").classList.remove("layout"); $("#btn-schematic").classList.add("on"); $("#btn-layout").classList.remove("on"); };
 $("#btn-layout").onclick = () => { $("#app").classList.add("layout"); $("#btn-layout").classList.add("on"); $("#btn-schematic").classList.remove("on"); };
 
+loadLibrary();
+renderLibrary();
 if (!load()) Object.assign(state, buildST185());
 $("#sel-spread").value = String(state.spread);
 render(); inspect(); fit();

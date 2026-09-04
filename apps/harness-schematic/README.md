@@ -32,6 +32,16 @@ The full harness is ~175 connections. Four things stop that turning into spaghet
 
 **Zoomed-out names.** At 70 % zoom and below the in-block text stops being legible, so each component's name is mirrored in a label 2.5 × larger floating above its block. They disappear again above 70 %.
 
+## Component library
+
+The left panel is a searchable library of preconfigured blocks. Every part the ST185 seed uses is in it, alongside generic primitives (connector, splice, resistor, relay, sensors, CAN node, note). Each entry carries a manufacturer, part/model number, description, pin list and an optional thumbnail; entries without an image get a neutral placeholder.
+
+Typing filters on part number, model, manufacturer and description, sorted best match first. **+ Add component** creates an entry by hand — name, manufacturer, PN, kind, description, pins as `number, label, side`, plus an optional image. Malformed pin lines are reported rather than silently accepted.
+
+Clicking an entry places it at the centre of the view. **Show mating connector** also drops the assigned mate next to it; with no mate assigned the checkbox does nothing.
+
+Library entries are templates. Placing one copies its data onto the new part, so editing the library afterwards never rewrites anything already on the canvas. User entries and edits persist under `st185-harness-lib-v1`, separately from the schematic.
+
 ## Editing wires
 
 The workspace has no sheet edge — pan and place parts anywhere, including negative coordinates.
@@ -56,7 +66,10 @@ Pressing a terminal only starts a wire once the pointer actually moves, so a pla
 | Focus one part | click it, or press `f` |
 | Move a part | drag the block |
 | Draw a wire | drag from one pin handle to another |
-| Add a part | right-click canvas, or the left library |
+| Add a part | click a library entry, or right-click the canvas |
+| Find a part | type in the library search box (part no, model or description) |
+| Create a library entry | **+ Add component** in the library panel |
+| Edit a library entry | hover the row, click **edit** |
 | Delete | select, then `Delete` |
 
 Wire labels are off by default; tick **Wire labels** to show them all, or select a single wire to see just its own.
