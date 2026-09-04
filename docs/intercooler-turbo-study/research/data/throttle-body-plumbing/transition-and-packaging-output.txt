@@ -1,0 +1,27 @@
+=== TRANSITION CONE 2.5 -> 3.0 in, cold side, 0.065 wall ===
+  inlet  ID 60.20 mm  v 144.0 ft/s
+  outlet ID 72.90 mm  v 98.2 ft/s
+   7 deg included -> cone length 103.8 mm (4.09 in)
+  10 deg included -> cone length 72.6 mm (2.86 in)
+  14 deg included -> cone length 51.7 mm (2.04 in)
+
+  sudden step 2.5->3.0, no cone : 0.0391 psi
+  conical diffuser,  7 deg incl : 0.0055 psi   (K=0.14 x ideal)
+  conical diffuser, 10 deg incl : 0.0078 psi   (K=0.20 x ideal)
+  conical diffuser, 14 deg incl : 0.0117 psi   (K=0.30 x ideal)
+
+  For reference, whole cold pipe at 2.5 in = 0.446 psi
+  So a 7 deg cone costs 1.23% of the cold-side pipe loss.
+
+=== PACKAGING: outside diameter that must clear ===
+item                               mm           in          
+bare welded pipe, 2.50 in OD       63.5         2.50        
+bare welded pipe, 2.75 in OD       69.8         2.75        
+bare welded pipe, 3.00 in OD       76.2         3.00        
+
++ 4-ply silicone coupler (2.5 in)  74.5         2.93        
++ 4-ply silicone coupler (3.0 in)  87.2         3.43        
++ coupler + T-bolt clamp band (2.5 in) 80.5         3.17        
++ coupler + T-bolt clamp band (3.0 in) 93.2         3.67        
+
+T-bolt clamp trunnion/bolt sticks out a further ~20-25 mm on ONE side only.

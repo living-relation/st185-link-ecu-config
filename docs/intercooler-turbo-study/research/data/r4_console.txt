@@ -1,0 +1,272 @@
+============================================================================================
+UNIFIED 5S-GTE MODEL - ROUND FOUR
+============================================================================================
+  displacement 2188.8 cc | site 93.87 kPa | ambient 32 C
+  rod ratio 1.516
+  crank hp/lb-min 10.0  x  driveline 0.78-0.83
+  ALL POWER FIGURES ARE ESTIMATES. NO DYNO RUN EXISTS FOR THIS ENGINE.
+
+============================================================================================
+ITEM 1 - MANIFOLD PAIRING, RE-RUN AS VALIDATION OF 1+4 / 2+3
+============================================================================================
+    cyl 1: exhaust valve open  135.0 to  399.0 deg
+    cyl 2: exhaust valve open  675.0 to  219.0 deg
+    cyl 3: exhaust valve open  315.0 to  579.0 deg
+    cyl 4: exhaust valve open  495.0 to   39.0 deg
+  AS BUILT / CORRECT   1+4 / 2+3     1+4: clear gap 96 deg | 2+3: clear gap 96 deg
+  the superseded diagram 1+2 / 3+4   1+2: OVERLAP 84 deg | 3+4: OVERLAP 84 deg
+  -> 1+4 / 2+3 gives 96 deg of clear crank angle in each scroll.
+  -> The manifold Dan has is CORRECT. No penalty applies. Nothing to re-make.
+
+============================================================================================
+ITEM 3 - THE WHOLE RPM RANGE, NOT ONE REDLINE
+============================================================================================
+    rpm    MPS      Z     VE  lb/min  IAT C  whp .78  whp .80  whp .83  d whp  risk
+   6600   20.0  0.463  0.967   47.69   65.1      372      382      396         
+   6800   20.6  0.476  0.965   48.85   66.5      381      391      405     +9  
+   7000   21.2  0.489  0.963   49.98   67.9      390      400      415     +9  stock redline. Nothing is stressed. Stock va
+   7200   21.8  0.502  0.958   50.95   69.1      397      408      423     +8  +200 rpm. Within stock spring capability. No
+   7400   22.4  0.516  0.939   51.27   69.5      400      410      426     +2  approaching reported stock spring float (7,5
+   7500   22.8  0.523  0.929   51.40   69.6      401      411      427     +1  outer limit on stock springs. Fit upgraded s
+   7600   23.1  0.530  0.920   51.51   69.8      402      412      428     +1  upgraded valve springs REQUIRED. Service int
+   7800   23.7  0.543  0.900   51.70   70.0      403      414      429     +2  race territory. 23.7 m/s piston speed on a 1
+   8000   24.3  0.557  0.880   51.82   70.1      404      415      430     +1  24.3 m/s. Buys 4 whp over 7,500. Bearing and
+
+============================================================================================
+ITEM 6 - OFFICIAL BORGWARNER MAP vs THE MODELLED MAPS
+============================================================================================
+  Source: efr-7163-f.pdf - map applies to all 7163 units incl. the 7163-G twin-scroll
+  Printed efficiency contours : [0.58, 0.6, 0.62, 0.64, 0.66, 0.68, 0.7, 0.72, 0.74]  PEAK ISLAND 0.74
+  Printed speed lines (krpm)  : [44, 84, 111, 132, 150]
+  Axes                        : PR (1.0, 4.2), flow (0, 65) lb/min
+  Compressor wheel            : 57 mm inducer / 71 mm OD
+  Turbine wheel               : 56 mm exducer / 63 mm OD
+  Round-four surface fit      : 13 printed labels, quadratic, RMS 0.0210 efficiency points
+     (the prior work claimed RMS 0.048 for this same turbo)
+
+  fit residuals against each printed label:
+     11.3 lb/min, PR 2.01, printed 0.58 -> fit 0.607 (+0.027)
+     54.2 lb/min, PR 2.21, printed 0.58 -> fit 0.572 (-0.008)
+     11.3 lb/min, PR 2.21, printed 0.60 -> fit 0.584 (-0.016)
+     56.9 lb/min, PR 2.71, printed 0.60 -> fit 0.611 (+0.011)
+     14.4 lb/min, PR 2.41, printed 0.62 -> fit 0.593 (-0.027)
+     57.7 lb/min, PR 2.92, printed 0.62 -> fit 0.628 (+0.008)
+     29.0 lb/min, PR 2.86, printed 0.64 -> fit 0.670 (+0.030)
+     57.7 lb/min, PR 3.14, printed 0.64 -> fit 0.648 (+0.008)
+     35.6 lb/min, PR 3.14, printed 0.66 -> fit 0.684 (+0.024)
+     43.6 lb/min, PR 3.50, printed 0.68 -> fit 0.692 (+0.012)
+     50.7 lb/min, PR 3.74, printed 0.70 -> fit 0.692 (-0.008)
+     45.8 lb/min, PR 3.37, printed 0.72 -> fit 0.699 (-0.021)
+     43.6 lb/min, PR 2.92, printed 0.74 -> fit 0.701 (-0.039)
+
+  7000 rpm / 30 psi: 49.98 lb/min, PR 3.42 -> official map eta 0.696 (model used 0.706); surge at 20.9, choke at 60.0
+  7500 rpm / 30 psi: 51.40 lb/min, PR 3.42 -> official map eta 0.693 (model used 0.706); surge at 20.9, choke at 60.0
+  7500 rpm / 32 psi: 53.34 lb/min, PR 3.57 -> official map eta 0.690 (model used 0.706); surge at 23.2, choke at 58.4
+  7500 rpm / 34 psi: 55.25 lb/min, PR 3.72 -> official map eta 0.687 (model used 0.706); surge at 25.5, choke at 57.2
+  8000 rpm / 30 psi: 51.82 lb/min, PR 3.42 -> official map eta 0.692 (model used 0.706); surge at 20.9, choke at 60.0
+
+  HEADLINE RE-SOLVED WITH THE OFFICIAL MAP EFFICIENCY (fixed point):
+    7000 rpm: eta 0.696 (was 0.706) -> compressor out 216 C (was 214), charge 68.3 C (was 67.9), 399 whp (was 400)
+    7200 rpm: eta 0.694 (was 0.706) -> compressor out 217 C (was 214), charge 69.7 C (was 69.1), 407 whp (was 408)
+    7500 rpm: eta 0.693 (was 0.706) -> compressor out 217 C (was 214), charge 70.3 C (was 69.6), 411 whp (was 411)
+    8000 rpm: eta 0.692 (was 0.706) -> compressor out 217 C (was 214), charge 70.8 C (was 70.1), 414 whp (was 415)
+
+  SURGE CHECK ACROSS THE REV RANGE AT FULL BOOST (the new finding):
+     2500 rpm   18.91 lb/min at PR 3.42 | surge line  20.9 | margin   -1.9 lb/min  <-- SURGE
+     2750 rpm   20.89 lb/min at PR 3.42 | surge line  20.9 | margin   +0.0 lb/min  <-- marginal
+     3000 rpm   22.85 lb/min at PR 3.42 | surge line  20.9 | margin   +2.0 lb/min  <-- marginal
+     3250 rpm   24.79 lb/min at PR 3.42 | surge line  20.9 | margin   +3.9 lb/min
+     3500 rpm   26.71 lb/min at PR 3.42 | surge line  20.9 | margin   +5.9 lb/min
+     3750 rpm   28.59 lb/min at PR 3.42 | surge line  20.9 | margin   +7.7 lb/min
+     4000 rpm   30.45 lb/min at PR 3.42 | surge line  20.9 | margin   +9.6 lb/min
+     4250 rpm   32.27 lb/min at PR 3.42 | surge line  20.9 | margin  +11.4 lb/min
+     4500 rpm   34.06 lb/min at PR 3.42 | surge line  20.9 | margin  +13.2 lb/min
+     4750 rpm   35.82 lb/min at PR 3.42 | surge line  20.9 | margin  +15.0 lb/min
+     5000 rpm   37.54 lb/min at PR 3.42 | surge line  20.9 | margin  +16.7 lb/min
+
+============================================================================================
+ITEM 2 - CHARGE PIPE AND THROTTLE BODY, RE-RUN AT 74.5 mm
+============================================================================================
+  design point: 51.40 lb/min (0.3886 kg/s) at 7,500 rpm / 30 psi
+  hot side  311.1 kPa / 214 C     cold side 303.5 kPa / 70 C
+
+   OD in  ID mm |  hot ft/s  hot dP |  cold ft/s  cold dP |   L/m  sys L  fill ms
+    2.00   47.5 |       323   1.666 |        233    1.619 |  1.77  11.02      151
+    2.25   53.8 |       252   0.957 |        181    0.929 |  2.28  12.33      168
+    2.50   60.2 |       201   0.586 |        145    0.569 |  2.85  13.81      188
+    2.75   66.5 |       165   0.378 |        119    0.367 |  3.48  15.46      210
+    3.00   72.9 |       137   0.255 |         99    0.247 |  4.17  17.27      234
+
+  NOTE: round three's 'volume per metre' column was exactly HALF the true
+  value (it used pi/4 * OD^2 / 2). Corrected above, using real bore ID.
+
+  ROUTING ENVELOPE - space each diameter needs, welded construction
+   OD in  real ID  bare tube  at a clamp  bend CLR  90 deg bend box
+    2.25    53.8mm      57.1mm       75.1mm       86mm             114mm
+    2.50    60.2mm      63.5mm       81.5mm       95mm             127mm
+    2.75    66.5mm      69.8mm       87.8mm      105mm             140mm
+    3.00    72.9mm      76.2mm       94.2mm      114mm             152mm
+  -> a 3.00 in 90 degree bend needs 25 mm more corner room than a 2.50 in one,
+     in BOTH directions, at every bend. Over four cold-side bends that is the
+     difference between clearing a frame rail and not.
+
+  COLD SIDE. The 3 inch figure applies ONLY to the bought HD clamp adapter
+  at the throttle body. No charge piping has been purchased. The run itself
+  is a free choice, and routing clearance is a real constraint.
+  cold layout                               max ft/s  dP psi   vol L   sys L  x disp  fill ms  bend box
+  2.50 in run, welded cone to 3.00 last 150 mm       145   0.591    4.47   14.01    6.40      191      127mm
+  2.75 in run, welded cone to 3.00 last 150 mm       119   0.376    5.32   14.87    6.79      203      140mm
+  3.00 in the whole 1.5 m                         99   0.247    6.26   15.80    7.22      216      152mm
+  2.25 in run, welded cone to 3.00 last 150 mm       181   0.971    3.70   13.24    6.05      180      114mm
+  (hot side held at 2.50 in in every row so the comparison is clean)
+
+  THE TRANSITION LOSSES DAN SAID HE IS NOT WORRIED ABOUT - quantified anyway:
+    welded 2.50 -> 3.00 cone at 7 deg/wall :  242.5 Pa = 0.0352 psi
+    the same as a SUDDEN step             :  305.7 Pa = 0.0443 psi
+    -> he is right. Even the sudden step is 0.044 psi, which is 0.15% of a 30 psi manifold pressure and about 0.02 whp.
+
+  INTERCOOLER PORT SIZE - is the cold side forced to 3 inch at BOTH ends?
+    SpeedFactory SS-850, SF-06-089, 24x12x3.0 core : 3.0 in / 3.0 in ONLY
+    SpeedFactory HPX,    24x12x4.5 core            : 3.0 in / 3.5 in
+    Treadstone TR1245,   22x12.5x4.5 core          : 3.0 in / 3.0 in
+    SpeedFactory 'Street', SF-06-082               : 2.5 in / 2.5 in, but the
+      core is only 22x9x3.0 and rated 300-500 hp - too small for this build
+    BARE CORE + FABRICATED TANKS                   : the port is whatever you weld on
+    -> the report already specifies FABRICATED tapered tanks (s08, s14), so the
+       port is a free choice. Weld 2.50 in ports and the cold side is 2.50 in
+       end to end, with one welded cone at the throttle adapter.
+
+  THROTTLE BODY  Bosch 0 280 750 474, bore 74.5 mm (sold as 74 mm; plate stamped 745)
+    bore velocity      28.9 m/s (95 ft/s), Mach 0.078
+    pressure drop      322 Pa = 0.047 psi at K=0.25
+    flow at Mach 0.3   198 lb/min = about 1980 crank hp before it restricts
+    step IN  76.2 -> 74.5 (contraction): K = 0.01853, dP = 21.8 Pa = 0.00316 psi
+    step OUT 74.5 -> 76.2 (expansion)  : K = 0.00195, dP = 2.5 Pa = 0.00036 psi
+    both steps together: 24.3 Pa = 0.00353 psi (0.24% of the 1.5 psi budget)
+    -> NOT worth blending. The step is 0.85 mm on the radius.
+
+  IS 74.5 mm ENOUGH ACROSS THE WHOLE RANGE?
+    7000 rpm / 30 psi: 50.0 lb/min -> 28.0 m/s, Mach 0.076, dP 0.044 psi, using 25% of the throttle's Mach-0.3 capacity
+    7000 rpm / 34 psi: 53.4 lb/min -> 28.0 m/s, Mach 0.075, dP 0.047 psi, using 25% of the throttle's Mach-0.3 capacity
+    7500 rpm / 30 psi: 51.4 lb/min -> 28.9 m/s, Mach 0.078, dP 0.047 psi, using 26% of the throttle's Mach-0.3 capacity
+    7500 rpm / 34 psi: 55.2 lb/min -> 29.1 m/s, Mach 0.078, dP 0.051 psi, using 26% of the throttle's Mach-0.3 capacity
+    8000 rpm / 30 psi: 51.8 lb/min -> 29.2 m/s, Mach 0.079, dP 0.048 psi, using 26% of the throttle's Mach-0.3 capacity
+    8000 rpm / 34 psi: 55.7 lb/min -> 29.5 m/s, Mach 0.078, dP 0.052 psi, using 26% of the throttle's Mach-0.3 capacity
+
+    2.25 in (53.8 mm) -> 3.00 in (72.9 mm) needs 78 mm of taper at 7 deg per wall
+    2.50 in (60.2 mm) -> 3.00 in (72.9 mm) needs 52 mm of taper at 7 deg per wall
+    2.75 in (66.5 mm) -> 3.00 in (72.9 mm) needs 26 mm of taper at 7 deg per wall
+    3.00 in (72.9 mm) -> 3.00 in (72.9 mm) needs 0 mm of taper at 7 deg per wall
+
+  HOT SIDE, chosen independently (turbo outlet is 2.0 in):
+  hot OD      ft/s   Garrett band   dP psi   vol L
+  2.25         252        in band    0.957    2.51
+  2.50         201        in band    0.586    3.13
+  2.75         165     below band    0.378    3.83
+  3.00         137     below band    0.255    4.59
+
+  FINAL BUILD: 2.50 in hot / 2.50 in cold, welded cone to the 3.00 in
+  throttle adapter over the last 150 mm. Pressure-drop budget:
+    hot pipe, 2.50 in, 1.1 m, 3 bends              0.586 psi
+    intercooler core, 610x305x102                  0.180 psi
+    end tanks, fabricated tapered, 2.50 in ports   0.350 psi
+    cold pipe, 2.50 in, 1.35 m, 4 bends            0.547 psi
+    welded 2.50 -> 3.00 cone + 150 mm of 3.00      0.044 psi
+    throttle body, 74.5 mm at WOT                  0.047 psi
+    the two 1.7 mm steps at the throttle           0.004 psi
+    TOTAL                                          1.757 psi = 5.9% of 30 psi boost
+    system volume 14.01 L = 6.40 x displacement, fill 191 ms
+    against the 3.00 in cold build at 1.413 psi:
+      pressure ratio      3.4096 -> 3.4357   (+0.0261)
+      compressor outlet   213.4 C -> 214.7 C   (+1.34 C)
+      charge at the valve after the core, eps 0.793: +0.28 C
+      that is worth about 0.10 whp. Dan is right not to care.
+
+============================================================================================
+ITEM 7 - PACKAGING, WITH REAL GEOMETRY
+============================================================================================
+  radiator: Mishimoto MMRAD-CEL-89  overall (714, 439, 64.5) mm, core (699, 318, 51.8) mm, 2 rows
+
+   core mm         gap to rad   gap after condenser
+        76      203 - 254 mm          183 - 234 mm
+       102      177 - 228 mm          157 - 208 mm
+       114      165 - 216 mm          145 - 196 mm
+
+  core                    vol L  v_face    eps   IAT C   whp  dT air  rad in C  head lost
+  610 x 305 x 76 (24x12x3)   14.1    7.81  0.742    78.8   404   28.0C     63.3C      41.7C
+  610 x 305 x 102 (24x12x4)   19.0    6.84  0.793    69.6   411   34.8C     70.5C      34.5C
+  610 x 305 x 114 (24x12x4.5)   21.2    6.51  0.810    66.6   414   37.6C     73.5C      31.5C
+  685 x 305 x 76 (27x12x3)   15.9    6.95  0.758    76.0   406   28.8C     64.0C      41.0C
+  685 x 305 x 102 (27x12x4)   21.3    6.09  0.807    67.1   413   35.6C     71.3C      33.7C
+  685 x 340 x 102 (27x13.4x4)   23.8    5.47  0.819    64.9   415   36.3C     72.0C      33.0C
+  711 x 305 x 102 (28x12x4) - the ESTIMATE   22.1    5.87  0.811    66.4   414   35.8C     71.5C      33.5C
+
+  76 -> 102 mm core costs 7.2 C of radiator inlet air, which is 9.9% of the bare temperature head.
+  Intercooler shadows 84% of the Mishimoto core face when centred; with 8-10 in of separation the heated wake has spread over effectively all of it.
+
+  DOES THE SHADOWING PENALTY APPLY WHEN THE RADIATOR ACTUALLY MATTERS?
+    sustained WOT climb, 100 km/h      intercooler rejects   55.4 kW | radiator sees  70.0 C | capacity  12.6 of  28.5 kW (55.8% lost)
+    part throttle recovery, 100 km/h   intercooler rejects    4.2 kW | radiator sees  38.3 C | capacity  25.9 of  28.5 kW ( 9.2% lost)
+    cruise, no boost, 100 km/h         intercooler rejects    0.8 kW | radiator sees  36.2 C | capacity  26.7 of  28.5 kW ( 6.2% lost)
+    -> the penalty is large only while on boost, and while on boost the
+       coolant load is an order of magnitude above what any ST185 radiator
+       can shed anyway. On the recovery lap, where the radiator decides
+       whether the session continues, the intercooler is rejecting almost
+       nothing and the shadowing penalty nearly vanishes.
+
+============================================================================================
+ITEM 5 - DRIVETRAIN, AS A BAND
+============================================================================================
+  lightweight wheels on an INERTIA dyno: +2.6 whp of indicated reading
+  lightweight wheels on a STEADY-STATE dyno: +0.0 whp
+  equivalent mass removed (wheels + shaft): about 32 kg of 1,320 kg
+  -> about 2.4% quicker acceleration at the same power. That is the real gain.
+
+    factor   loss %    whp  case
+      0.78    22.0%    401  worst credible AWD loss, plate LSD dragging
+      0.80    20.0%    411  round three baseline, unchanged by the upgrades
+      0.81    19.0%    416  rebuilt trans + 1-pc CF shaft, helical LSD
+      0.83    17.0%    427  best credible; needs a coast-down to justify
+
+============================================================================================
+ITEM 4 - COMMUNITY DYNO SANITY CHECK
+============================================================================================
+  build                                                  whp   whp/L  model says
+  Ford Focus ST 2.0 EcoBoost, EFR 7163, E85 (ZZP)        480   240.0
+  Evo 9 2.3 built, EFR 7163, E85, 36 psi (Driven Fab)    593   257.8
+  Mazda BP 1.8, EFR 7163, E85                            450   250.0
+  3S-GTE, EFR 7163, E85, 25 psi                          402   201.0
+  3S-GTE Gen 3 in AE86, 20 psi, 93 octane                402   201.0
+  ST185 3S-GTE, .50 turbo, 14 psi, 91 octane (EricGT4)   337   168.5
+  Stock ST185 3S-GTE                                     190    95.0
+  5S-GTE high compression, Precision 6262 (mr2man)       700   318.2
+
+  THIS MODEL: 411 whp from 2.19 L = 187.9 whp per litre at 30 psi on E85.
+  Community band for EFR 7163 on E85: 200 - 258 whp per litre.
+  This model sits at 188, inside that band and nearer the bottom,
+  which is what a 20% AWD loss and a 32 C design ambient should produce.
+
+============================================================================================
+BOOST LADDER AT SEVERAL REDLINES (the deliverable table)
+============================================================================================
+    rpm   psi    PR  lb/min  %choke  IAT C  whp lo  whp mid  whp hi
+   7000    20  2.66   40.49   67.5%   50.4     316      324     336
+   7000    25  3.04   45.44   75.7%   58.9     354      364     377
+   7000    28  3.26   48.20   80.3%   64.2     376      386     400
+   7000    30  3.42   49.98   83.3%   67.9     390      400     415
+   7000    32  3.57   51.71   86.2%   71.6     403      414     429
+   7000    34  3.72   53.39   89.0%   75.3     416      427     443
+   7500    20  2.66   41.09   68.5%   51.0     321      329     341
+   7500    25  3.04   46.37   77.3%   59.9     362      371     385
+   7500    28  3.26   49.42   82.4%   65.7     385      395     410
+   7500    30  3.42   51.40   85.7%   69.6     401      411     427
+   7500    32  3.57   53.34   88.9%   73.6     416      427     443
+   7500    34  3.72   55.25   92.1%   77.7     431      442     459
+   8000    20  2.66   41.35   68.9%   51.3     323      331     343
+   8000    25  3.04   46.71   77.9%   60.3     364      374     388
+   8000    28  3.26   49.81   83.0%   66.1     388      398     413
+   8000    30  3.42   51.82   86.4%   70.1     404      415     430
+   8000    32  3.57   53.80   89.7%   74.2     420      430     447
+   8000    34  3.72   55.74   92.9%   78.3     435      446     463
+
+wrote data/unified_model_r4.json

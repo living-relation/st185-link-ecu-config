@@ -1,0 +1,20 @@
+=== COLD SIDE: 3.0 in IC outlet -> 2.5 in pipe -> 3.0 in throttle adapter ===
+  1) contraction 3.0 -> 2.5 at IC outlet
+     sharp-edged, K=0.159          : 0.0615 psi
+     conical 30 deg incl, K=0.06    : 0.0232 psi
+     conical 20 deg incl, K=0.04    : 0.0155 psi
+     conical 14 deg incl, K=0.03    : 0.0116 psi
+  2) expansion 2.5 -> 3.0 at throttle
+     sudden step                   : 0.0391 psi
+     7 deg cone (K=0.14)           : 0.0055 psi
+  both transitions done properly    : 0.0171 psi TOTAL
+
+=== SYSTEM PRESSURE DROP against the 1.5 psi target ===
+  2.5 hot + 2.5 cold (welded, 2 transitions)       1.44 psi  (5.7% of 25 psi)
+  2.5 hot + 3.0 cold (welded, 0 cold transitions)  1.17 psi  (4.7% of 25 psi)
+  2.75 hot + 2.75 cold                             1.13 psi  (4.5% of 25 psi)
+  3.0 hot + 3.0 cold                               0.92 psi  (3.7% of 25 psi)
+
+=== hot side: EFR 2.0 in outlet -> pipe -> 3.0 in IC inlet ===
+  2.5 in pipe: 189.1 ft/s ; expansion from 2.0 in comp outlet is a step UP either way
+  3.0 in pipe: 128.9 ft/s ; expansion from 2.0 in comp outlet is a step UP either way

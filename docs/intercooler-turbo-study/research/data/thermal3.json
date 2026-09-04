@@ -1,0 +1,194 @@
+{
+ "cases": [
+  {
+   "label": "ROUND 1  EFR 7163, 25 psi, 6650 rpm",
+   "boost": 25,
+   "rpm": 6650,
+   "tamb": 32.0,
+   "lbmin": 42.9,
+   "whp": 352,
+   "pr": 2.92,
+   "tc": 184,
+   "iat": 63.2,
+   "eps": 0.795
+  },
+  {
+   "label": "ROUND 2  G25-770,  30 psi, 7200 rpm",
+   "boost": 30,
+   "rpm": 7200,
+   "tamb": 32.0,
+   "lbmin": 50.2,
+   "whp": 412,
+   "pr": 3.3,
+   "tc": 204,
+   "iat": 76.9,
+   "eps": 0.74
+  },
+  {
+   "label": "         G25-770,  32 psi, 7200 rpm",
+   "boost": 32,
+   "rpm": 7200,
+   "tamb": 32.0,
+   "lbmin": 51.9,
+   "whp": 425,
+   "pr": 3.45,
+   "tc": 212,
+   "iat": 81.1,
+   "eps": 0.728
+  },
+  {
+   "label": "worst    G25-770,  30 psi, 7200 rpm, 40 C ambient",
+   "boost": 30,
+   "rpm": 7200,
+   "tamb": 40.0,
+   "lbmin": 49.1,
+   "whp": 402,
+   "pr": 3.3,
+   "tc": 217,
+   "iat": 84.9,
+   "eps": 0.746
+  }
+ ],
+ "sizes": [
+  {
+   "label": "610 x 300 x  75  (base, 24x12x3)",
+   "w": 610,
+   "h": 300,
+   "t": 75,
+   "vol": 13.7,
+   "vface": 8.0,
+   "eps": 0.74,
+   "iat": 76.9,
+   "d_iat": 0.0,
+   "dp_idx": 1.0
+  },
+  {
+   "label": "610 x 300 x 100  (24x12x4)",
+   "w": 610,
+   "h": 300,
+   "t": 100,
+   "vol": 18.3,
+   "vface": 8.0,
+   "eps": 0.812,
+   "iat": 64.4,
+   "d_iat": -12.5,
+   "dp_idx": 1.33
+  },
+  {
+   "label": "610 x 300 x 115  (24x12x4.5)",
+   "w": 610,
+   "h": 300,
+   "t": 115,
+   "vol": 21.0,
+   "vface": 8.0,
+   "eps": 0.844,
+   "iat": 59.0,
+   "d_iat": -17.9,
+   "dp_idx": 1.53
+  },
+  {
+   "label": "610 x 340 x  75  (taller)",
+   "w": 610,
+   "h": 340,
+   "t": 75,
+   "vol": 15.6,
+   "vface": 7.06,
+   "eps": 0.756,
+   "iat": 74.1,
+   "d_iat": -2.8,
+   "dp_idx": 0.78
+  },
+  {
+   "label": "685 x 300 x  75  (wider)",
+   "w": 685,
+   "h": 300,
+   "t": 75,
+   "vol": 15.4,
+   "vface": 7.12,
+   "eps": 0.755,
+   "iat": 74.3,
+   "d_iat": -2.6,
+   "dp_idx": 0.79
+  },
+  {
+   "label": "685 x 340 x  75  (taller+wider)",
+   "w": 685,
+   "h": 340,
+   "t": 75,
+   "vol": 17.5,
+   "vface": 6.29,
+   "eps": 0.77,
+   "iat": 71.6,
+   "d_iat": -5.3,
+   "dp_idx": 0.62
+  },
+  {
+   "label": "685 x 340 x 100  (everything)",
+   "w": 685,
+   "h": 340,
+   "t": 100,
+   "vol": 23.3,
+   "vface": 6.29,
+   "eps": 0.839,
+   "iat": 59.7,
+   "d_iat": -17.2,
+   "dp_idx": 0.82
+  }
+ ],
+ "penalty": [
+  {
+   "label": "610 x 300 x  75  (base, 24x12x3)",
+   "void": 7.5,
+   "fill_ms": 62.6,
+   "mass": 8.5,
+   "soak_s": 4.72
+  },
+  {
+   "label": "610 x 300 x 100  (24x12x4)",
+   "void": 10.1,
+   "fill_ms": 83.4,
+   "mass": 11.3,
+   "soak_s": 6.3
+  },
+  {
+   "label": "610 x 300 x 115  (24x12x4.5)",
+   "void": 11.6,
+   "fill_ms": 95.9,
+   "mass": 13.0,
+   "soak_s": 7.24
+  },
+  {
+   "label": "610 x 340 x  75  (taller)",
+   "void": 8.6,
+   "fill_ms": 70.9,
+   "mass": 9.6,
+   "soak_s": 5.35
+  },
+  {
+   "label": "685 x 300 x  75  (wider)",
+   "void": 8.5,
+   "fill_ms": 70.3,
+   "mass": 9.6,
+   "soak_s": 5.3
+  },
+  {
+   "label": "685 x 340 x  75  (taller+wider)",
+   "void": 9.6,
+   "fill_ms": 79.6,
+   "mass": 10.8,
+   "soak_s": 6.01
+  },
+  {
+   "label": "685 x 340 x 100  (everything)",
+   "void": 12.8,
+   "fill_ms": 106.2,
+   "mass": 14.4,
+   "soak_s": 8.02
+  }
+ ],
+ "spool": {
+  "extra_void_L": 4.03,
+  "vdot_spool_Lps": 99.0,
+  "extra_ms": 41.0
+ }
+}
