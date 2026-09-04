@@ -112,7 +112,10 @@
   .pintbl td{padding:3px 4px;border-bottom:1px solid #ffffff0a;vertical-align:top}
   .pintbl td.pnum{font-family:var(--mono);color:var(--muted);white-space:nowrap}
   .pintbl .mini{padding:2px 5px;font-size:10px}
-  .crimp-set{font-family:var(--mono);font-size:10px;color:var(--text)}
+  .sect-body .fld{display:block;width:100%;text-align:left;margin-top:6px}
+  .pintbl select{max-width:74px}
+  .pintbl td:last-child{width:78px}
+  .crimp-set{font-family:var(--mono);font-size:10px;color:var(--text);word-break:break-all}
   .crimp-none{color:var(--muted);font-size:10px}
   .badge-mate{fill:#1f2430;stroke:#7f8aa3;stroke-width:1.2}
   .badge-mate-pin{fill:#7f8aa3}
@@ -1305,11 +1308,9 @@ function renderDetail(c){
           <button class="xbtn" data-rmmate="${i}" title="Remove">&times;</button>
         </div>`).join("")
         : `<p class="hint">No mating connector recorded yet.</p>`}
-      <div class="two" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
-        <input class="mini" id="m-pn-new"  placeholder="Mate part no" style="text-align:left">
-        <input class="mini" id="m-mfr-new" placeholder="Manufacturer" style="text-align:left">
-      </div>
-      <input class="mini" id="m-note-new" placeholder="Note (optional)" style="width:100%;margin-top:6px;text-align:left">
+      <input class="mini fld" id="m-pn-new"   placeholder="Mate part no">
+      <input class="mini fld" id="m-mfr-new"  placeholder="Manufacturer">
+      <input class="mini fld" id="m-note-new" placeholder="Note (optional)">
       <button class="mini" id="m-add-mate" style="margin-top:6px">Add mate</button>
     </div>
   </details>
