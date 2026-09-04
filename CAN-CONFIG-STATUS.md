@@ -23,6 +23,13 @@ channels 0x3E8–0x3EE, and the cluster **send** channels 0x3EC/0x3ED) come from
 shows those) and does **not** read the switchboard `0x640–0x642` frames directly — the ECU echoes the
 few display-relevant switchboard values (TC echo, boost echo, comm-fault bit) into `0x3EF`/`0x3F1`.
 
+**One deliberate exception, added 2026-09-04:** RealDash also reads the Gear byte of `0x3EB`
+(`ST185: Gear`), as a passive second listener on the same frame the cluster already uses. This exists
+solely to drive a reverse-camera auto-switch on the Pi5/RealDash display when Gear=7(R) — the reverse
+switch itself is wired to the ECUMaster switchboard, not an ECU DI (`XTREMEX-IO-TABLE.html`), and the
+ECU sets Gear=7 on 0x3EB via a PCLink **Trigger** condition. No other byte of `0x3E8–0x3EE` is exposed
+to RealDash; Fuel Level (`0x3EB` byte 1) is intentionally left out to keep this carve-out minimal.
+
 ## Cabin temp
 Cabin temp is **no longer available via the ST185 RealDash inputs** — it was dropped from `0x3F0` and
 RealDash does not read `0x640` directly. To restore it, add a new frame `0x3F2` (ECU broadcast) with a
