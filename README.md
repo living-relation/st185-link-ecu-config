@@ -8,12 +8,16 @@ This repo contains everything on the **CAN bus side** — ECU config, RealDash X
 
 Cluster firmware is frozen. All files in this repo must be compatible with the cluster **as-is**.
 
+## Related repos
+
+- **[center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4)** — the gauge cluster firmware. Its `CANBUS-ENCODE-DECODE-REFERENCE.html` (derived from `main/canbus.c`) is the **single source of truth** for all CAN IDs, byte layouts, and scales on this bus. Any change to CAN framing, IDs, or wiring in this repo must be checked against that repo for compatibility — see `CAN-CONFIG-STATUS.md`.
+
 ## 4-Node CAN Bus (1 Mbit/s, BigEndian)
 
 | Node | ID Range | Role |
 |---|---|---|
 | Link G4X XtremeX ECU | 0x3E8–0x3F1 TX, 0x3EC/0x3ED RX | Engine management — bus master |
-| center-cluster-esp32-p4 | 0x3EC/0x3ED TX, all others RX | Gauge cluster — listens + sends driver selections |
+| [center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4) | 0x3EC/0x3ED TX, all others RX | Gauge cluster — listens + sends driver selections |
 | ECUMaster CAN Switch Board V3 | 0x640–0x642 TX, 0x643 RX | Analog/digital inputs, low-side outputs |
 | Raspberry Pi 5 (RealDash) | passive listener (ch1) | Dashboard display — listen-only |
 
