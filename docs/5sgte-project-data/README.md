@@ -16,8 +16,13 @@ in one place. `docs/` mirrors the Project's "docs" list; `files/` mirrors its "f
   original bytes), so `files/*.extracted-text.md` are text transcriptions — figures, QR codes,
   and the laminate card's visual layout from the originals are not reproduced. The real PDFs
   remain in the claude.ai Project's file uploads.
-- **The 15 `.png` charts and the 14 CSVs/`.py` model came across as exact original bytes** — true
+- **The `.png` charts and the CSVs/`.py` model came across as exact original bytes** — true
   copies, not transcriptions.
+- **14 of the 15 charts were removed from `files/` on 2026-09-04 as byte-identical duplicates**
+  of `docs/intercooler-turbo-study/research/data/prior-turbo-research/` (same MD5 hashes) — kept
+  there instead since that folder is the code-referenced canonical copy for the intercooler/turbo
+  study. Only `01_boost_plan.png` (not duplicated elsewhere) remains in `files/`. If you need one
+  of the removed charts, it's at that path, byte-for-byte identical to what was here.
 - **Some of these docs contain superseded conclusions, kept as-is for history.** In particular:
   - `ECU_WIRING_MASTER_SOURCE_OF_TRUTH.md`, `Reverse_Camera_Trigger_CORRECTED_sourced_from_repos.md`,
     and `ECU-mermaid-chart.md` all describe an earlier "reverse switch → ECU DI4 direct" decision

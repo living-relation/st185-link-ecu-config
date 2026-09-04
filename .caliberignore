@@ -1,0 +1,8 @@
+# Large binary research artifacts — not needed for AI agent context.
+# Kept in the repo for archival/reference purposes; just excluded from
+# context-building (globs use .gitignore syntax).
+docs/intercooler-turbo-study/research/data/**/*.pdf
+docs/intercooler-turbo-study/research/data/**/*.png
+docs/intercooler-turbo-study/research/data/**/*.svg
+docs/intercooler-turbo-study/research/data/**/*.webp
+docs/5sgte-project-data/files/*.png
