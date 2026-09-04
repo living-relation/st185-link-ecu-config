@@ -69,20 +69,33 @@
   .comp-id{fill:var(--muted);font:500 11px var(--mono)}
   .pin-num{fill:var(--muted);font:500 10px var(--mono)}
   .pin-name{fill:#d3d3da;font:400 11px var(--sans)}
-  .handle{fill:var(--handle);stroke:#111;stroke-width:.6}
-  .handle.hot,.handle:hover{fill:var(--accent)}
-  .wire{fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .handle{fill:var(--handle);stroke:#111;stroke-width:.6;pointer-events:none}
+  /* Generous invisible grab target: the 4.5px dot alone was far too small to hit. */
+  .handle-hit{fill:transparent;stroke:none;cursor:crosshair}
+  .handle-hit:hover + .handle, .handle.hot{fill:var(--accent);r:6}
+  .wire{fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
   .wire.selected{stroke-width:3.2;filter:drop-shadow(0 0 4px #fff8)}
   .wire.dim{opacity:.07}
   .wire.dash{stroke-dasharray:7 5}
-  .wire-hit{fill:none;stroke:transparent;stroke-width:12;cursor:pointer}
-  .rail{stroke-width:1.7;fill:none;stroke-linecap:round}
-  .rail-t{font:600 8px var(--mono)}
+  .wire-hit{fill:none;stroke:transparent;stroke-width:10;cursor:pointer}
+  .rail{stroke-width:1.7;fill:none;stroke-linecap:round;pointer-events:none}
+  .rail-t{font:600 9px var(--mono);pointer-events:none}
+  .rail-hit{fill:transparent;stroke:none;cursor:pointer}
+  .rail-g.selected .rail{stroke-width:3}
+  .fixpt{fill:#16161a;stroke:var(--sel);stroke-width:1.6;cursor:move}
+  .fixpt:hover{fill:var(--sel)}
+  .endpt{fill:var(--warn);stroke:#111;stroke-width:1;cursor:grab}
   .splice{fill:#2a2a30;stroke:#9aa}
   .note-bg{fill:#1b1912;stroke:#5f5326}
   .note-tx{fill:#e2cf88;font:400 11px var(--sans)}
   .badge{font:700 9px var(--sans);letter-spacing:.04em}
-  .wlabel{font:500 9px var(--mono);pointer-events:none}
+  /* Halo the label so crossing wires read behind it instead of through it. */
+  .wlabel{font:600 11px var(--mono);cursor:move;
+    paint-order:stroke;stroke:var(--canvas);stroke-width:3.5px;stroke-linejoin:round}
+  .wlabel.selected{stroke:#000;fill:#fff}
+  /* Big mirrored component names that appear when zoomed out past the read threshold. */
+  .zlabel{font-family:var(--sans);font-weight:700;fill:#e8e8f0;pointer-events:none;
+    paint-order:stroke;stroke:#0b0b0dcc;stroke-linejoin:round}
   footer{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:0 10px;background:var(--panel);border-top:1px solid var(--border);font-size:12px;color:var(--muted)}
   footer label{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;white-space:nowrap}
   footer .sp{flex:1}
@@ -177,7 +190,10 @@
 <div id="ctx"></div>
 <script>
 const PIN_H = 20, HDR = 32, PAD = 8, COMP_W = 196;
-const STORAGE = "st185-harness-v6";
+const WORLD = 400000;         // half-extent of the unbounded grid surface
+const STORAGE = "st185-harness-v7";
+const ZOOM_LABEL_AT = 0.70;   // zoom at or below which the big names appear
+const ZOOM_LABEL_SCALE = 2.5; // how much larger those names are than the in-block title   // below this, mirror each component name in a big label
 const NET_COLORS = {
   CANH:"#f2f2f2", CANL:"#3dd68c", "12V":"#e85d5d", "5V":"#f08a2a", "3V3":"#f5c542",
   GND:"#8b8b96", SIG:"#5b8def", UART:"#8b5cf6", INJ:"#3b82f6", IGN:"#f97316",
@@ -195,7 +211,8 @@ const GROUPS = {
   cluster: { name:"Clusters & HMI",     color:"#8b5cf6" },
   body:    { name:"Body & switchboard", color:"#38bdf8" },
   prop:    { name:"Proposed / TBD",     color:"#e8b849" },
-  notes:   { name:"Notes & callouts",   color:"#a9924a" }
+  notes:   { name:"Notes & callouts",   color:"#a9924a" },
+  misc:    { name:"Unsorted",           color:"#9aa0aa" }
 };
 const GROUP_OF = {
   "ecu-a":"ecu","ecu-b":"ecu","ecu-com":"ecu",
@@ -245,10 +262,20 @@ function ex(c){ return c.x * state.spread; }
 function ey(c){ return c.y * state.spread; }
 function pinY(c, i){ return ey(c) + HDR + 10 + i * PIN_H; }
 function pinXY(c, pin){
-  if (c.kind === "splice") return { x: ex(c) + 10, y: ey(c) + 10, side:"right" };
+  /* A splice is a junction, not a directional pin. Reporting it as "right" made every
+     wire shoot 26px past it and double back (the fold/overshoot in the bug reports). */
+  if (c.kind === "splice") return { x: ex(c) + 10, y: ey(c) + 10, side:"omni" };
   const i = c.pins.findIndex(p => p.id === pin.id);
   const left = pin.side !== "right";
   return { x: left ? ex(c) : ex(c) + (c.w || COMP_W), y: pinY(c, i), side: left ? "left" : "right" };
+}
+/* Clickable bounds. A splice's label sits outside its 24px box, so include it. */
+function hitBox(c){
+  if (c.kind === "splice"){
+    const wLbl = 26 + (c.name || "").length * 6.2;
+    return { x: ex(c) - 4, y: ey(c) - 2, w: Math.max(c.w || 24, wLbl), h: compH(c) + 4 };
+  }
+  return { x: ex(c), y: ey(c), w: c.w || COMP_W, h: compH(c) };
 }
 
 function mkPins(names, side){
@@ -633,15 +660,58 @@ function railEnd(w){
   return null;
 }
 
-/* ---- Orthogonal routing: exit sideways, run in a shared vertical lane, enter sideways ---- */
-function orthPath(A, B, lane){
-  const EXT = 26;
-  const ax = A.x + (A.side === "left" ? -EXT : EXT);
-  const bx = B.x + (B.side === "left" ? -EXT : EXT);
-  const chan = (ax + bx) / 2 + lane;
-  if (Math.abs(A.y - B.y) < 1.5) return roundPath([[A.x,A.y],[B.x,B.y]], 0);
-  return roundPath([[A.x,A.y],[ax,A.y],[chan,A.y],[chan,B.y],[bx,B.y],[B.x,B.y]], 9);
+/* ---- Orthogonal routing ----
+   Rules that came out of the reported routing bugs:
+   - "omni" ends (splices) get no exit stub, so a wire never overshoots past the junction.
+   - The vertical channel is clamped between the two exit points, so a wire never folds
+     back across the pin it just left.
+   - When the target sits behind a directional pin, run a horizontal corridor (an S)
+     instead of doubling back over the stub. */
+const EXT = 24;
+function dirOf(side){ return side === "left" ? -1 : side === "right" ? 1 : 0; }
+function clampTo(v, a, b){ return Math.max(Math.min(a,b), Math.min(Math.max(a,b), v)); }
+
+function routePoints(A, B, lane){
+  const aD = dirOf(A.side), bD = dirOf(B.side);
+  const ax = A.x + aD * EXT, bx = B.x + bD * EXT;
+  const pts = [[A.x, A.y]];
+  if (aD) pts.push([ax, A.y]);
+
+  if (Math.abs(A.y - B.y) < 1.2){
+    if (bD) pts.push([bx, B.y]);
+    pts.push([B.x, B.y]);
+    return pts;
+  }
+  const blockedA = aD !== 0 && (bx - ax) * aD < 0;
+  const blockedB = bD !== 0 && (ax - bx) * bD < 0;
+  if (!blockedA && !blockedB){
+    pts.push([clampTo((ax + bx) / 2 + lane, ax, bx), A.y]);
+    pts.push([clampTo((ax + bx) / 2 + lane, ax, bx), B.y]);
+  } else {
+    const midY = (A.y + B.y) / 2 + lane;
+    pts.push([ax, midY], [bx, midY]);
+  }
+  if (bD) pts.push([bx, B.y]);
+  pts.push([B.x, B.y]);
+  return pts;
 }
+
+/* Route through pinned waypoints. Each leg stays orthogonal and the fix points hold
+   their world position when an endpoint later moves, so nothing detaches. */
+function wirePoints(A, B, lane, fixes){
+  if (!fixes || !fixes.length) return routePoints(A, B, lane);
+  const aD = dirOf(A.side), bD = dirOf(B.side);
+  const pts = [[A.x, A.y]];
+  if (aD) pts.push([A.x + aD * EXT, A.y]);
+  let cur = pts[pts.length - 1];
+  fixes.forEach(f => { pts.push([f.x, cur[1]], [f.x, f.y]); cur = [f.x, f.y]; });
+  const bx = B.x + bD * EXT;
+  pts.push([bx, cur[1]]);
+  if (bD) pts.push([bx, B.y]);
+  pts.push([B.x, B.y]);
+  return pts;
+}
+function orthPath(A, B, lane, fixes){ return roundPath(wirePoints(A, B, lane, fixes), 9); }
 function roundPath(raw, r){
   const pts = [];
   raw.forEach(p => {
@@ -706,24 +776,15 @@ function render(){
   const drawn = shown.filter(c => !railHidden(c));
 
   const bandsShown = BANDS.filter(b => drawn.some(c => c.y >= b.y && c.y <= b.y + b.h));
-  let maxX = 1200, maxY = 800;
-  drawn.forEach(c => {
-    maxX = Math.max(maxX, ex(c) + (c.w || COMP_W) + 160);
-    maxY = Math.max(maxY, ey(c) + compH(c) + 160);
-  });
-  bandsShown.forEach(b => {
-    maxX = Math.max(maxX, (b.x + b.w) * state.spread + 80);
-    maxY = Math.max(maxY, (b.y + b.h) * state.spread + 80);
-  });
-  svg.setAttribute("width", maxX);
-  svg.setAttribute("height", maxY);
   svg.innerHTML = "";
 
   const defs = el("defs");
   defs.innerHTML = `<pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
     <circle class="dotgrid" cx="1" cy="1" r="1"/></pattern>`;
   svg.appendChild(defs);
-  svg.appendChild(el("rect", { width:maxX, height:maxY, fill:"url(#dots)" }));
+  /* The workspace has no sheet edge. The grid is one huge tiled rect so it keeps
+     rendering however far the user pans, in any direction including negative. */
+  svg.appendChild(el("rect", { x:-WORLD, y:-WORLD, width:WORLD*2, height:WORLD*2, fill:"url(#dots)" }));
 
   /* Background bands give the eye a place to rest and name each zone.
      A band with nothing visible in it is dropped so isolated layers sit alone. */
@@ -764,10 +825,13 @@ function render(){
   assignLanes(routed);
 
   const gW = el("g");
+  const gOverlay = el("g");          // fix points / endpoint grips for the selected wire
   routed.forEach(it => {
     const { w, A, B } = it;
     const dim = focusSet && !(focusSet.has(w.from.c) && focusSet.has(w.to.c));
-    const d = orthPath(A, B, it.lane);
+    const pts = wirePoints(A, B, it.lane, w.fixes);
+    const d = roundPath(pts, 9);
+    it.pts = pts;
     const hit = el("path", { class:"wire-hit", d });
     hit.dataset.id = w.id;
     gW.appendChild(hit);
@@ -779,12 +843,29 @@ function render(){
     gW.appendChild(path);
 
     if ((showLabels || state.sel === w.id) && w.label && !dim){
+      const mid = pts[Math.floor(pts.length/2)] || [ (A.x+B.x)/2, (A.y+B.y)/2 ];
+      const off = w.labelOff || { x:0, y:-7 };
       const t = el("text", {
-        class:"wlabel", x:(A.x+B.x)/2, y:(A.y+B.y)/2 - 5,
+        class:"wlabel" + (state.sel===w.id ? " selected" : ""),
+        x: mid[0] + off.x, y: mid[1] + off.y,
         fill:w.color || "#aaa", "text-anchor":"middle"
       });
       t.textContent = w.label;
+      t.dataset.labelFor = w.id;
       gW.appendChild(t);
+    }
+
+    if (state.sel === w.id){
+      (w.fixes || []).forEach((f, i) => {
+        const k = el("rect", { class:"fixpt", x:f.x-5, y:f.y-5, width:10, height:10, rx:2 });
+        k.dataset.fix = w.id; k.dataset.fixIdx = i;
+        gOverlay.appendChild(k);
+      });
+      [["from", A], ["to", B]].forEach(([end, P]) => {
+        const e = el("circle", { class:"endpt", cx:P.x, cy:P.y, r:5.5 });
+        e.dataset.endWire = w.id; e.dataset.end = end;
+        gOverlay.appendChild(e);
+      });
     }
   });
   /* Rail symbols: GND points down, supplies point up — the standard schematic cue. */
@@ -792,19 +873,24 @@ function render(){
     const dim = focusSet && !focusSet.has(r.host);
     const dir = r.at.side === "left" ? -1 : 1;
     const col = NET_COLORS[r.net] || "#888";
-    const g = el("g", { opacity: dim ? 0.07 : 1 });
-    const x0 = r.at.x, y0 = r.at.y, x1 = r.at.x + dir*17;
-    g.appendChild(el("path", { class:"rail", d:`M${x0},${y0} L${x1},${y0}`, stroke:col }));
+    const g = el("g", { class:"rail-g" + (state.sel===r.w.id ? " selected" : ""), opacity: dim ? 0.07 : 1 });
+    const ro = r.w.railOff || { x:0, y:0 };
+    const x0 = r.at.x, y0 = r.at.y, x1 = r.at.x + dir*17 + ro.x, y1 = y0 + ro.y;
+    g.appendChild(el("path", { class:"rail", d:`M${x0},${y0} L${x1},${y1}`, stroke:col }));
     if (r.net === "GND"){
-      g.appendChild(el("path", { class:"rail", d:`M${x1},${y0-5} L${x1},${y0+5}`, stroke:col }));
-      g.appendChild(el("path", { class:"rail", d:`M${x1+dir*3},${y0-3} L${x1+dir*3},${y0+3}`, stroke:col }));
-      g.appendChild(el("path", { class:"rail", d:`M${x1+dir*6},${y0-1.5} L${x1+dir*6},${y0+1.5}`, stroke:col }));
+      g.appendChild(el("path", { class:"rail", d:`M${x1},${y1-5} L${x1},${y1+5}`, stroke:col }));
+      g.appendChild(el("path", { class:"rail", d:`M${x1+dir*3},${y1-3} L${x1+dir*3},${y1+3}`, stroke:col }));
+      g.appendChild(el("path", { class:"rail", d:`M${x1+dir*6},${y1-1.5} L${x1+dir*6},${y1+1.5}`, stroke:col }));
     } else {
-      g.appendChild(el("path", { class:"rail", d:`M${x1},${y0-5} L${x1},${y0+5}`, stroke:col }));
-      const t = el("text", { class:"rail-t", x:x1 + dir*4, y:y0 - 7, fill:col, "text-anchor": dir>0 ? "start" : "end" });
+      g.appendChild(el("path", { class:"rail", d:`M${x1},${y1-5} L${x1},${y1+5}`, stroke:col }));
+      const t = el("text", { class:"rail-t", x:x1 + dir*4, y:y1 - 7, fill:col, "text-anchor": dir>0 ? "start" : "end" });
       t.textContent = r.net;
       g.appendChild(t);
     }
+    /* Grab target so the rail tap can be selected and dragged like any other element. */
+    const rh = el("rect", { class:"rail-hit", x:Math.min(x0,x1)-6, y:y1-12, width:Math.abs(x1-x0)+18, height:24 });
+    rh.dataset.rail = r.w.id;
+    g.appendChild(rh);
     gW.appendChild(g);
   });
   svg.appendChild(gW);
@@ -828,9 +914,11 @@ function render(){
     if (c.kind === "splice"){
       g.appendChild(el("circle", { class:"splice", cx:X+10, cy:Y+10, r:8 }));
       const hdl = el("circle", { class:"handle", cx:X+10, cy:Y+10, r:4.5 });
-      hdl.dataset.cid = c.id; hdl.dataset.pid = (c.pins[0] && c.pins[0].id) || "p1";
       g.appendChild(hdl);
-      const lb = el("text", { class:"pin-name", x:X+24, y:Y+14 });
+      const hh = el("circle", { class:"handle-hit", cx:X+10, cy:Y+10, r:9 });
+      hh.dataset.cid = c.id; hh.dataset.pid = (c.pins[0] && c.pins[0].id) || "p1";
+      g.appendChild(hh);
+      const lb = el("text", { class:"pin-name", x:X+24, y:Y+14, "pointer-events":"none" });
       lb.textContent = c.name;
       g.appendChild(lb);
       gC.appendChild(g); return;
@@ -859,19 +947,49 @@ function render(){
 
     (c.pins||[]).forEach((p,i) => {
       const y = pinY(c,i), left = p.side !== "right";
-      const num = el("text", { class:"pin-num", x: left ? X+12 : X+w-12, y:y+4, "text-anchor": left ? "start" : "end" });
+      const num = el("text", { class:"pin-num", x: left ? X+12 : X+w-12, y:y+4, "text-anchor": left ? "start" : "end", "pointer-events":"none" });
       num.textContent = p.num;
       g.appendChild(num);
-      const nm = el("text", { class:"pin-name", x: left ? X+44 : X+w-44, y:y+4, "text-anchor": left ? "start" : "end" });
+      const nm = el("text", { class:"pin-name", x: left ? X+44 : X+w-44, y:y+4, "text-anchor": left ? "start" : "end", "pointer-events":"none" });
       nm.textContent = p.name;
       g.appendChild(nm);
       const hdl = el("circle", { class:"handle", cx: left ? X : X+w, cy:y, r:4.5 });
-      hdl.dataset.cid = c.id; hdl.dataset.pid = p.id;
       g.appendChild(hdl);
+      const hh = el("circle", { class:"handle-hit", cx: left ? X : X+w, cy:y, r:11 });
+      hh.dataset.cid = c.id; hh.dataset.pid = p.id;
+      g.appendChild(hh);
     });
     gC.appendChild(g);
   });
   svg.appendChild(gC);
+  svg.appendChild(gOverlay);
+
+  /* Below the read threshold the in-block text is unreadable, so mirror each
+     component name in a much larger label floating above its block. */
+  if (state.view.k < ZOOM_LABEL_AT){
+    const gZ = el("g");
+    const size = 12 * ZOOM_LABEL_SCALE;      // 2.5x the in-block title
+    const placed = [];
+    drawn.filter(c => c.kind !== "note" && c.name).forEach(c => {
+      const X = ex(c), w = c.w || COMP_W;
+      let y = ey(c) - size * 0.35;
+      // nudge up while this label would sit on one already placed nearby
+      for (let guard = 0; guard < 6; guard++){
+        const clash = placed.some(q => Math.abs(q.y - y) < size * 0.95 &&
+                                       Math.abs(q.x - (X + w/2)) < (q.w + w) / 2 + 40);
+        if (!clash) break;
+        y -= size * 1.0;
+      }
+      placed.push({ x:X + w/2, y, w: Math.max(w, c.name.length * size * 0.5) });
+      const t = el("text", {
+        class:"zlabel", x:X + w/2, y, "text-anchor":"middle",
+        style:`font-size:${size}px;stroke-width:${(size*0.18).toFixed(1)}px`
+      });
+      t.textContent = c.name;
+      gZ.appendChild(t);
+    });
+    svg.appendChild(gZ);
+  }
 
   applyView();
   const hiddenCount = state.components.length - shown.length;
@@ -905,8 +1023,15 @@ function wrapText(g, text, x, y, maxW){
   if (line) flush();
 }
 
+/* World->screen stays `screen = view.x + world*k`; expressing that as a viewBox means
+   pan/zoom/fit math is unchanged but the drawing surface has no edge. */
 function applyView(){
-  $("#stage").style.transform = `translate(${state.view.x}px,${state.view.y}px) scale(${state.view.k})`;
+  const svg = $("#canvas"), r = $("#stage-wrap").getBoundingClientRect();
+  const k = state.view.k;
+  svg.setAttribute("width", Math.max(1, Math.round(r.width)));
+  svg.setAttribute("height", Math.max(1, Math.round(r.height)));
+  svg.setAttribute("viewBox",
+    `${-state.view.x/k} ${-state.view.y/k} ${Math.max(1, r.width/k)} ${Math.max(1, r.height/k)}`);
 }
 function persist(){
   try{
@@ -980,7 +1105,6 @@ function inspect(){
       </div>
       <div class="insp-row" style="grid-template-columns:1fr"><span>Notes</span></div>
       <textarea id="i-note">${esc(c.note||"")}</textarea>
-      <button class="tool" id="i-focus" style="margin-top:8px">Focus this part</button>
       <div class="aside-h">Pins</div>
       ${(c.pins||[]).map(p => `<div class="insp-row"><span>${esc(p.num)}</span><input data-pin="${p.id}" class="i-pin" value="${esc(p.name)}"></div>`).join("")}
       <button class="tool" id="i-addpin" style="margin-top:8px">Add pin</button>
@@ -993,7 +1117,6 @@ function inspect(){
     $("#i-st").onchange = e => { c.status = e.target.value; render(); };
     $("#i-note").oninput = e => { c.note = e.target.value; };
     $("#i-note").onchange = () => render();
-    $("#i-focus").onclick = () => { state.focus = c.id; render(); };
     box.querySelectorAll(".i-pin").forEach(inp => {
       inp.oninput = () => { const p = findPin(c, inp.dataset.pin); if (p) p.name = inp.value; render(); };
     });
@@ -1003,16 +1126,36 @@ function inspect(){
       render(); inspect();
     };
   } else if (w){
+    const known = Object.keys(NET_COLORS);
     box.innerHTML = `
-      <div class="insp-row"><span>Net</span><input id="i-net" value="${esc(w.net||"")}"></div>
+      <div class="insp-row"><span>Net</span>
+        <select id="i-netsel">${known.map(n => `<option value="${n}">${n}</option>`).join("")}
+          <option value="__custom">custom…</option></select>
+      </div>
+      <div class="insp-row"><span></span><input id="i-net" value="${esc(w.net||"")}"></div>
       <div class="insp-row"><span>Label</span><input id="i-lab" value="${esc(w.label||"")}"></div>
       <div class="insp-row"><span>Color</span><input id="i-col" type="color" value="${toHex(w.color)}"></div>
       <label style="font-size:12px"><input type="checkbox" id="i-dash" ${w.dashed?"checked":""}> Proposed / unconfirmed</label>
+      <div class="aside-h">Path</div>
+      <p class="hint">${(w.fixes||[]).length} fix point${(w.fixes||[]).length===1?"":"s"}.
+         Right-click the wire to add or clear them. Drag the wire body to drop one,
+         drag an orange end grip to move the connection to another terminal.</p>
+      <button class="tool" id="i-clearfix">Clear fix points</button>
+      <button class="tool" id="i-resetlab">Reset label / symbol offset</button>
       <p class="hint" style="margin-top:10px">${esc(w.from.c)}.${esc(w.from.p)} → ${esc(w.to.c)}.${esc(w.to.p)}</p>`;
+    $("#i-netsel").value = known.includes(w.net) ? w.net : "__custom";
+    $("#i-netsel").onchange = e => {
+      if (e.target.value === "__custom") { $("#i-net").focus(); return; }
+      w.net = e.target.value; w.color = NET_COLORS[w.net];
+      if (!w.label || known.includes(w.label)) w.label = w.net;
+      render(); inspect();
+    };
     $("#i-net").oninput = e => { w.net = e.target.value; render(); };
     $("#i-lab").oninput = e => { w.label = e.target.value; render(); };
     $("#i-col").oninput = e => { w.color = e.target.value; render(); };
     $("#i-dash").onchange = e => { w.dashed = e.target.checked; render(); };
+    $("#i-clearfix").onclick = () => { w.fixes = []; render(); inspect(); };
+    $("#i-resetlab").onclick = () => { delete w.labelOff; delete w.railOff; render(); inspect(); };
   } else {
     box.innerHTML = `<p class="hint">Click a part to focus it — everything it does not touch fades out. Click empty canvas to clear.</p>
       <p class="hint">Use <b>Layers</b> on the left to hide whole functional groups, or <b>only</b> to isolate one.</p>
@@ -1032,31 +1175,116 @@ function screenToWorld(ev){
 function hitComp(pt){
   const list = state.components.filter(c => visible(c) && !(state.rails && RAILS[c.id]));
   for (let i=list.length-1;i>=0;i--){
-    const c = list[i];
-    const w = c.w || COMP_W, h = compH(c);
-    if (pt.x>=ex(c) && pt.x<=ex(c)+w && pt.y>=ey(c) && pt.y<=ey(c)+h) return c;
+    const b = hitBox(list[i]);
+    if (pt.x>=b.x && pt.x<=b.x+b.w && pt.y>=b.y && pt.y<=b.y+b.h) return list[i];
   }
   return null;
 }
 
 const wrap = $("#stage-wrap");
+const DRAG_SLOP = 4;           // screen px before a press becomes a drag
+const SNAP_TOL  = 10;          // world px within which a drag snaps to an axis / 45deg
+
+/* Snap a dragged point to horizontal, vertical, then 45deg against nearby anchors. */
+function snapPoint(pt, anchors){
+  let x = pt.x, y = pt.y, sx = false, sy = false;
+  anchors.forEach(a => {
+    if (!a) return;
+    if (!sx && Math.abs(pt.x - a.x) < SNAP_TOL){ x = a.x; sx = true; }
+    if (!sy && Math.abs(pt.y - a.y) < SNAP_TOL){ y = a.y; sy = true; }
+  });
+  if (!sx && !sy){
+    for (const a of anchors){
+      if (!a) continue;
+      const dx = pt.x - a.x, dy = pt.y - a.y;
+      const d = (Math.abs(dx) - Math.abs(dy));
+      if (Math.abs(d) < SNAP_TOL){                       // near a 45deg diagonal
+        const m = (Math.abs(dx) + Math.abs(dy)) / 2;
+        x = a.x + Math.sign(dx) * m;
+        y = a.y + Math.sign(dy) * m;
+        break;
+      }
+    }
+  }
+  return { x: Math.round(x), y: Math.round(y) };
+}
+function wireEnds(w){
+  const a = findC(w.from.c), b = findC(w.to.c);
+  const pa = a && findPin(a, w.from.p), pb = b && findPin(b, w.to.p);
+  if (!pa || !pb) return null;
+  return { A: pinXY(a, pa), B: pinXY(b, pb) };
+}
+function polyLen(pts){
+  let L = 0;
+  for (let i=1;i<pts.length;i++) L += Math.abs(pts[i][0]-pts[i-1][0]) + Math.abs(pts[i][1]-pts[i-1][1]);
+  return L;
+}
+/* Insert a waypoint where it costs the least extra wire, which keeps fix points
+   in path order however the user adds them. */
+function insertFix(w, p){
+  const e = wireEnds(w); if (!e) return;
+  const cur = w.fixes || [];
+  let best = 0, bestL = Infinity;
+  for (let i=0;i<=cur.length;i++){
+    const trial = cur.slice(0,i).concat([p], cur.slice(i));
+    const L = polyLen(wirePoints(e.A, e.B, 0, trial));
+    if (L < bestL){ bestL = L; best = i; }
+  }
+  w.fixes = cur.slice(0,best).concat([p], cur.slice(best));
+  return best;
+}
+
 wrap.addEventListener("mousedown", ev => {
   hideCtx();
   if (ev.button === 1 || ev.button === 2) return;
-  const handle = ev.target.closest?.(".handle");
-  if (handle){
-    ui.wire = { from:{ c:handle.dataset.cid, p:handle.dataset.pid } };
+  const tgt = ev.target;
+  const d = tgt.dataset || {};
+  const pt = screenToWorld(ev);
+
+  // 1. pinned waypoint on the selected wire
+  if (tgt.classList?.contains("fixpt")){
+    ui.fix = { id:d.fix, idx:+d.fixIdx };
     ev.preventDefault(); return;
   }
-  const wid = ev.target?.dataset?.id && (ev.target.classList.contains("wire") || ev.target.classList.contains("wire-hit"))
-    ? ev.target.dataset.id : null;
-  if (wid){ state.sel = wid; render(); inspect(); return; }
-  const pt = screenToWorld(ev);
+  // 2. wire endpoint grip -> reattach to another terminal
+  if (tgt.classList?.contains("endpt")){
+    ui.reattach = { id:d.endWire, end:d.end };
+    ev.preventDefault(); return;
+  }
+  // 3. wire label -> select the wire and allow nudging the label clear of wires
+  if (tgt.classList?.contains("wlabel")){
+    const w = state.wires.find(x => x.id === d.labelFor);
+    state.sel = d.labelFor;
+    ui.label = { id:d.labelFor, start:pt, base:{ ...(w?.labelOff || {x:0,y:-7}) } };
+    render(); inspect(); ev.preventDefault(); return;
+  }
+  // 4. power / ground rail tap -> selects its wire, drag to reposition the symbol
+  if (tgt.classList?.contains("rail-hit")){
+    const w = state.wires.find(x => x.id === d.rail);
+    state.sel = d.rail;
+    ui.rail = { id:d.rail, start:pt, base:{ ...(w?.railOff || {x:0,y:0}) } };
+    render(); inspect(); ev.preventDefault(); return;
+  }
+  // 5. terminal -> press becomes a wire only once the pointer actually moves,
+  //    so a plain click still selects the part underneath (splices especially)
+  const handle = tgt.closest?.(".handle-hit");
+  if (handle){
+    ui.pendWire = { from:{ c:handle.dataset.cid, p:handle.dataset.pid }, sx:ev.clientX, sy:ev.clientY };
+    ev.preventDefault(); return;
+  }
+  // 6. wire body -> select; dragging it drops a fix point and reroutes
+  const wid = (tgt.classList?.contains("wire") || tgt.classList?.contains("wire-hit")) ? d.id : null;
+  if (wid){
+    state.sel = wid;
+    ui.pendSeg = { id:wid, sx:ev.clientX, sy:ev.clientY };
+    render(); inspect(); return;
+  }
+  // 7. component
   const c = hitComp(pt);
   if (c){
     state.sel = c.id;
     if ($("#tog-focus").checked) state.focus = c.id;
-    ui.drag = { id:c.id, dx: pt.x - ex(c), dy: pt.y - ey(c) };
+    ui.drag = { id:c.id, dx: pt.x - ex(c), dy: pt.y - ey(c), moved:false };
     render(); inspect();
   } else {
     state.sel = null; state.focus = null;
@@ -1065,39 +1293,110 @@ wrap.addEventListener("mousedown", ev => {
     wrap.classList.add("panning");
   }
 });
+
 window.addEventListener("mousemove", ev => {
   if (ui.pan){ state.view.x = ev.clientX-ui.pan.x; state.view.y = ev.clientY-ui.pan.y; applyView(); return; }
+
   if (ui.drag){
     const pt = screenToWorld(ev), c = findC(ui.drag.id);
     c.x = Math.round(((pt.x-ui.drag.dx)/state.spread)/8)*8;
     c.y = Math.round(((pt.y-ui.drag.dy)/state.spread)/8)*8;
     render(); return;
   }
+  if (ui.fix){
+    const w = state.wires.find(x => x.id === ui.fix.id);
+    const e = w && wireEnds(w); if (!e) return;
+    const others = (w.fixes||[]).filter((_,i) => i !== ui.fix.idx);
+    w.fixes[ui.fix.idx] = snapPoint(screenToWorld(ev), [e.A, e.B, ...others]);
+    render(); return;
+  }
+  if (ui.reattach){
+    const pt = screenToWorld(ev);
+    let ghost = document.getElementById("ghost");
+    if (!ghost){ ghost = el("path", { id:"ghost", class:"wire dash", stroke:"#e8b849" }); $("#canvas").appendChild(ghost); }
+    const w = state.wires.find(x => x.id === ui.reattach.id);
+    const keep = ui.reattach.end === "from" ? w.to : w.from;
+    const kc = findC(keep.c), kp = kc && findPin(kc, keep.p);
+    if (!kp) return;
+    const K = pinXY(kc, kp);
+    ghost.setAttribute("d", `M${K.x},${K.y} L${pt.x},${pt.y}`);
+    return;
+  }
+  if (ui.label){
+    const w = state.wires.find(x => x.id === ui.label.id); if (!w) return;
+    const pt = screenToWorld(ev);
+    w.labelOff = { x: Math.round(ui.label.base.x + pt.x - ui.label.start.x),
+                   y: Math.round(ui.label.base.y + pt.y - ui.label.start.y) };
+    render(); return;
+  }
+  if (ui.rail){
+    const w = state.wires.find(x => x.id === ui.rail.id); if (!w) return;
+    const pt = screenToWorld(ev);
+    w.railOff = { x: Math.round(ui.rail.base.x + pt.x - ui.rail.start.x),
+                  y: Math.round(ui.rail.base.y + pt.y - ui.rail.start.y) };
+    render(); return;
+  }
+  if (ui.pendSeg){
+    if (Math.hypot(ev.clientX-ui.pendSeg.sx, ev.clientY-ui.pendSeg.sy) < DRAG_SLOP) return;
+    const w = state.wires.find(x => x.id === ui.pendSeg.id);
+    const e = w && wireEnds(w);
+    if (e){
+      const p = snapPoint(screenToWorld(ev), [e.A, e.B, ...(w.fixes||[])]);
+      const idx = insertFix(w, p);
+      ui.fix = { id:w.id, idx };
+    }
+    ui.pendSeg = null; render(); return;
+  }
+  if (ui.pendWire){
+    if (Math.hypot(ev.clientX-ui.pendWire.sx, ev.clientY-ui.pendWire.sy) < DRAG_SLOP) return;
+    ui.wire = { from: ui.pendWire.from }; ui.pendWire = null;
+  }
   if (ui.wire){
     const pt = screenToWorld(ev);
     let ghost = document.getElementById("ghost");
-    if (!ghost){
-      ghost = el("path", { id:"ghost", class:"wire dash", stroke:"#aaa" });
-      $("#canvas").appendChild(ghost);
-    }
+    if (!ghost){ ghost = el("path", { id:"ghost", class:"wire dash", stroke:"#aaa" }); $("#canvas").appendChild(ghost); }
     const a = findC(ui.wire.from.c), pa = a && findPin(a, ui.wire.from.p);
     if (!pa) return;
     const A = pinXY(a, pa);
     ghost.setAttribute("d", `M${A.x},${A.y} L${pt.x},${pt.y}`);
   }
 });
+
 window.addEventListener("mouseup", ev => {
   wrap.classList.remove("panning");
+  const handle = ev.target.closest?.(".handle-hit");
+
   if (ui.wire){
-    const handle = ev.target.closest?.(".handle");
     if (handle && (handle.dataset.cid !== ui.wire.from.c || handle.dataset.pid !== ui.wire.from.p)){
       state.wires.push({
         id: uid("w"), from: ui.wire.from, to:{ c:handle.dataset.cid, p:handle.dataset.pid },
-        net:"SIG", color:NET_COLORS.SIG, label:"", dashed:true
+        net:"SIG", color:NET_COLORS.SIG, label:"SIG", dashed:true, fixes:[]
       });
     }
     ui.wire = null; render();
+  } else if (ui.pendWire){
+    /* Press and release on a terminal without moving: treat it as selecting the part. */
+    const c = findC(ui.pendWire.from.c);
+    if (c){
+      state.sel = c.id;
+      if ($("#tog-focus").checked) state.focus = c.id;
+      render(); inspect();
+    }
+    ui.pendWire = null;
+  } else if (ui.reattach){
+    const w = state.wires.find(x => x.id === ui.reattach.id);
+    if (w && handle){
+      const other = ui.reattach.end === "from" ? w.to : w.from;
+      if (handle.dataset.cid !== other.c || handle.dataset.pid !== other.p){
+        w[ui.reattach.end] = { c:handle.dataset.cid, p:handle.dataset.pid };
+      }
+    }
+    document.getElementById("ghost")?.remove();
+    ui.reattach = null; render(); inspect();
+  } else if (ui.pendSeg){
+    ui.pendSeg = null;
   }
+  if (ui.fix || ui.label || ui.rail){ ui.fix = ui.label = ui.rail = null; persist(); }
   ui.drag = null; ui.pan = null;
 });
 wrap.addEventListener("wheel", ev => {
@@ -1108,8 +1407,10 @@ wrap.addEventListener("wheel", ev => {
   state.view.x = mx - ((mx-state.view.x)/old)*next;
   state.view.y = my - ((my-state.view.y)/old)*next;
   state.view.k = next;
+  if ((old < ZOOM_LABEL_AT) !== (next < ZOOM_LABEL_AT)) render();
   applyView(); $("#zoom-lbl").textContent = Math.round(next*100)+"%";
 }, {passive:false});
+window.addEventListener("resize", () => applyView());
 
 window.addEventListener("keydown", ev => {
   if (/input|textarea|select/i.test(ev.target.tagName)) return;
@@ -1125,12 +1426,39 @@ window.addEventListener("keydown", ev => {
 wrap.addEventListener("contextmenu", ev => {
   ev.preventDefault();
   const pt = screenToWorld(ev);
-  const c = hitComp(pt);
   const menu = $("#ctx");
   menu.style.display="block"; menu.style.left=ev.clientX+"px"; menu.style.top=ev.clientY+"px";
+
+  const d = ev.target.dataset || {};
+  const wid = (ev.target.classList?.contains("wire") || ev.target.classList?.contains("wire-hit")) ? d.id
+            : ev.target.classList?.contains("fixpt") ? d.fix
+            : ev.target.classList?.contains("rail-hit") ? d.rail
+            : ev.target.classList?.contains("wlabel") ? d.labelFor : null;
+  if (wid){
+    const w = state.wires.find(x => x.id === wid);
+    const onFix = ev.target.classList?.contains("fixpt") ? +d.fixIdx : -1;
+    state.sel = wid; render(); inspect();
+    menu.innerHTML = `<button data-w="addfix">Add fix point</button>` +
+      (onFix >= 0 ? `<button data-w="rmfix">Remove this fix point</button>` : "") +
+      ((w.fixes||[]).length ? `<button data-w="clearfix">Clear all fix points (${w.fixes.length})</button>` : "") +
+      `<button data-w="resetlabel">Reset label position</button>
+       <div class="sep"></div>
+       <button data-w="del">Delete wire</button>`;
+    menu.onclick = e => {
+      const a = e.target.dataset.w; if (!a) return;
+      if (a==="addfix"){ w.fixes = w.fixes || []; insertFix(w, { x:Math.round(pt.x), y:Math.round(pt.y) }); }
+      if (a==="rmfix") w.fixes.splice(onFix, 1);
+      if (a==="clearfix") w.fixes = [];
+      if (a==="resetlabel"){ delete w.labelOff; delete w.railOff; }
+      if (a==="del") state.wires = state.wires.filter(x => x.id !== wid);
+      hideCtx(); render(); inspect();
+    };
+    return;
+  }
+
+  const c = hitComp(pt);
   if (c && c.kind!=="note"){
-    menu.innerHTML = `<button data-act="focus">Focus this part</button>
-      <button data-act="hide">Hide layer: ${GROUPS[groupOf(c)]?.name || "misc"}</button>
+    menu.innerHTML = `<button data-act="hide">Hide layer: ${GROUPS[groupOf(c)]?.name || "misc"}</button>
       <button data-act="flip">Flip pin side</button>
       <button data-act="dup">Duplicate</button>
       <div class="sep"></div>
@@ -1192,6 +1520,7 @@ function contentBox(){
 /* The sheet is tall, so fitting everything makes it unreadable. Fit width by default
    and frame the visible content only, so isolating a layer actually zooms into it. */
 function fit(all){
+  const wasK = state.view.k;
   const b = contentBox();
   const r = wrap.getBoundingClientRect();
   const kw = r.width / (b.x1-b.x0);
@@ -1200,12 +1529,19 @@ function fit(all){
     : Math.max(0.12, Math.min(1.4, kw));
   state.view.x = -b.x0*state.view.k;
   state.view.y = -b.y0*state.view.k;
+  if ((wasK < ZOOM_LABEL_AT) !== (state.view.k < ZOOM_LABEL_AT)) render();
   applyView(); $("#zoom-lbl").textContent = Math.round(state.view.k*100)+"%";
 }
 $("#btn-fit").onclick = () => fit(false);
 $("#btn-fitall").onclick = () => fit(true);
-$("#btn-zoom-in").onclick = () => { state.view.k=Math.min(2.2,state.view.k*1.15); applyView(); $("#zoom-lbl").textContent=Math.round(state.view.k*100)+"%"; };
-$("#btn-zoom-out").onclick = () => { state.view.k=Math.max(0.12,state.view.k/1.15); applyView(); $("#zoom-lbl").textContent=Math.round(state.view.k*100)+"%"; };
+function setZoom(k){
+  const old = state.view.k;
+  state.view.k = Math.min(2.2, Math.max(0.12, k));
+  if ((old < ZOOM_LABEL_AT) !== (state.view.k < ZOOM_LABEL_AT)) render();
+  applyView(); $("#zoom-lbl").textContent = Math.round(state.view.k*100)+"%";
+}
+$("#btn-zoom-in").onclick = () => setZoom(state.view.k*1.15);
+$("#btn-zoom-out").onclick = () => setZoom(state.view.k/1.15);
 $("#btn-unfocus").onclick = () => { state.focus=null; render(); };
 $("#btn-all").onclick = () => { state.hidden = {}; render(); };
 $("#btn-wide").onclick = () => {
@@ -1226,7 +1562,16 @@ $("#btn-export").onclick = () => {
   const a = document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="st185-harness.json"; a.click();
 };
 $("#btn-svg").onclick = () => {
-  const blob = new Blob([$("#canvas").outerHTML], {type:"image/svg+xml"});
+  /* Snapshot the full content box, not whatever the camera happens to be showing. */
+  const svg = $("#canvas");
+  const keep = { w:svg.getAttribute("width"), h:svg.getAttribute("height"), vb:svg.getAttribute("viewBox") };
+  const b = contentBox();
+  svg.setAttribute("width", Math.round(b.x1-b.x0));
+  svg.setAttribute("height", Math.round(b.y1-b.y0));
+  svg.setAttribute("viewBox", `${b.x0} ${b.y0} ${b.x1-b.x0} ${b.y1-b.y0}`);
+  const markup = svg.outerHTML;
+  svg.setAttribute("width", keep.w); svg.setAttribute("height", keep.h); svg.setAttribute("viewBox", keep.vb);
+  const blob = new Blob([markup], {type:"image/svg+xml"});
   const a = document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="st185-harness.svg"; a.click();
 };
 ["tog-ids","tog-dash","tog-rails","tog-labels"].forEach(id => $("#"+id).onchange = render);
