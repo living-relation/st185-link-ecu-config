@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<!-- ST185 Link G4X XtremeX schematic wiring diagram.
+     Pin numbers: Link XtremeX Quick Start Guide (looking into wire side / ECU header).
+     Channel assignments: XTREMEX-IO-TABLE.html
+     CAN topology: WIRING.md
+     Rule: pin numbers labeled on ECU connectors only. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ST185 — Link G4X XtremeX Schematic Wiring</title>
+<style>
+  :root {
+    --ink: #0f172a;
+    --muted: #64748b;
+    --line: #94a3b8;
+    --ecu: #0f172a;
+    --ok: #059669;
+    --prop: #d97706;
+    --can: #2563eb;
+    --aux: #7c3aed;
+    --ign: #ea580c;
+    --inj: #2563eb;
+    --pwr: #dc2626;
+    --bg: #e8edf3;
+    --paper: #fff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 18px 20px 32px;
+    background: var(--bg); color: var(--ink);
+    font: 12px/1.35 "Segoe UI", system-ui, sans-serif;
+  }
+  h1 { font-size: 18px; margin: 0 0 2px; letter-spacing: -0.02em; }
+  .sub { color: var(--muted); margin: 0 0 12px; font-size: 12px; max-width: 980px; }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 8px; background: #fff; border: 1px solid #cbd5e1;
+    border-radius: 4px; font-size: 11px;
+  }
+  .sw { width: 10px; height: 10px; border-radius: 2px; }
+  .sheet {
+    background: var(--paper);
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 12px;
+    overflow: auto;
+  }
+  svg { display: block; }
+  .note { margin-top: 12px; font-size: 11px; color: var(--muted); max-width: 1100px; }
+  .note ul { margin: 4px 0 0 18px; }
+  .note code { background: #f1f5f9; padding: 1px 4px; border-radius: 3px; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .sheet { border: none; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Link G4X XtremeX — Schematic Wiring</h1>
+<p class="sub">
+  1993 Celica GT-Four ST185 · 3S-GTE · DBW · 1ZZ COP · 1400cc inj · external CAN-Lambda ·
+  ECUMaster switchboard · MRS EPS. Pin numbers on ECU only (A/B 34-pin + Comms 6-pin).
+  Solid = assigned · dashed = proposed/TBD.
+</p>
+
+<div class="legend">
+  <span class="chip"><span class="sw" style="background:var(--ok)"></span>Sensor / DI</span>
+  <span class="chip"><span class="sw" style="background:var(--ign)"></span>Ign / Inj / Aux</span>
+  <span class="chip"><span class="sw" style="background:var(--can)"></span>CAN</span>
+  <span class="chip"><span class="sw" style="background:var(--pwr)"></span>Power</span>
+  <span class="chip"><span class="sw" style="background:#475569"></span>Ground</span>
+</div>
+
+<div class="sheet">
+<svg viewBox="0 0 1500 1080" width="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,1 L7,4 L0,7 Z" fill="#64748b"/>
+    </marker>
+    <style>
+      .t { font: 700 12px "Segoe UI", system-ui, sans-serif; fill: #0f172a; }
+      .s { font: 10px "Segoe UI", system-ui, sans-serif; fill: #64748b; }
+      .p { font: 700 10px Consolas, "Cascadia Mono", monospace; fill: #0f172a; }
+      .pe { font: 700 10px Consolas, "Cascadia Mono", monospace; fill: #e2e8f0; }
+      .pl { font: 9px Consolas, "Cascadia Mono", monospace; fill: #94a3b8; }
+      .w { fill: none; stroke: #475569; stroke-width: 1.15; }
+      .wd { fill: none; stroke: #94a3b8; stroke-width: 1.15; stroke-dasharray: 4 3; }
+      .box { stroke-width: 1.25; }
+    </style>
+  </defs>
+
+  <!-- ===================== ECU BLOCK ===================== -->
+  <rect x="560" y="40" width="380" height="890" rx="8" fill="#0f172a" stroke="#020617" stroke-width="2"/>
+  <text x="750" y="68" text-anchor="middle" fill="#f8fafc" style="font:700 15px Segoe UI,sans-serif">LINK G4X XTREMEX</text>
+  <text x="750" y="84" text-anchor="middle" fill="#64748b" style="font:10px Segoe UI,sans-serif">ECU pin numbers only · wire side / header view</text>
+
+  <!-- Left pin stubs (inputs) -->
+  <g id="ecu-left-pins">
+    <!-- stub helper: circle + label outside left, channel inside -->
+    <!-- y positions aligned to left devices -->
+    <g transform="translate(560,0)">
+      <!-- each: line from -36 to 0, pin badge at -36 -->
+      <!-- A8 -->
+      <line x1="-40" y1="118" x2="0" y2="118" class="w"/>
+      <rect x="-52" y="109" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="121" text-anchor="middle" class="p">A8</text>
+      <text x="8" y="122" class="pl">Trig1</text>
+      <!-- A9 -->
+      <line x1="-40" y1="158" x2="0" y2="158" class="w"/>
+      <rect x="-52" y="149" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="161" text-anchor="middle" class="p">A9</text>
+      <text x="8" y="162" class="pl">Trig2</text>
+      <!-- A15 -->
+      <line x1="-40" y1="198" x2="0" y2="198" class="w"/>
+      <rect x="-52" y="189" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="201" text-anchor="middle" class="p">A15</text>
+      <text x="8" y="202" class="pl">Temp1</text>
+      <!-- A16 -->
+      <line x1="-40" y1="238" x2="0" y2="238" class="w"/>
+      <rect x="-52" y="229" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="241" text-anchor="middle" class="p">A16</text>
+      <text x="8" y="242" class="pl">Temp2</text>
+      <!-- B6 -->
+      <line x1="-40" y1="278" x2="0" y2="278" class="w"/>
+      <rect x="-52" y="269" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="281" text-anchor="middle" class="p">B6</text>
+      <text x="8" y="282" class="pl">Temp3</text>
+      <!-- B7 -->
+      <line x1="-40" y1="318" x2="0" y2="318" class="w"/>
+      <rect x="-52" y="309" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="321" text-anchor="middle" class="p">B7</text>
+      <text x="8" y="322" class="pl">Temp4</text>
+      <!-- A17 -->
+      <line x1="-40" y1="358" x2="0" y2="358" class="w"/>
+      <rect x="-52" y="349" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="361" text-anchor="middle" class="p">A17</text>
+      <text x="8" y="362" class="pl">AnV1</text>
+      <!-- A22 -->
+      <line x1="-40" y1="398" x2="0" y2="398" class="w"/>
+      <rect x="-52" y="389" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="401" text-anchor="middle" class="p">A22</text>
+      <text x="8" y="402" class="pl">AnV2</text>
+      <!-- A33 -->
+      <line x1="-40" y1="428" x2="0" y2="428" class="w"/>
+      <rect x="-52" y="419" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="431" text-anchor="middle" class="p">A33</text>
+      <text x="8" y="432" class="pl">AnV3</text>
+      <!-- A14 -->
+      <line x1="-40" y1="468" x2="0" y2="468" class="w"/>
+      <rect x="-52" y="459" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="471" text-anchor="middle" class="p">A14</text>
+      <text x="8" y="472" class="pl">AnV4</text>
+      <!-- B33 -->
+      <line x1="-40" y1="498" x2="0" y2="498" class="w"/>
+      <rect x="-52" y="489" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="501" text-anchor="middle" class="p">B33</text>
+      <text x="8" y="502" class="pl">AnV5</text>
+      <!-- B14 -->
+      <line x1="-40" y1="538" x2="0" y2="538" class="w"/>
+      <rect x="-52" y="529" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="541" text-anchor="middle" class="p">B14</text>
+      <text x="8" y="542" class="pl">AnV6</text>
+      <!-- B15 -->
+      <line x1="-40" y1="578" x2="0" y2="578" class="w"/>
+      <rect x="-52" y="569" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="581" text-anchor="middle" class="p">B15</text>
+      <text x="8" y="582" class="pl">AnV7</text>
+      <!-- B23 -->
+      <line x1="-40" y1="618" x2="0" y2="618" class="w"/>
+      <rect x="-52" y="609" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="621" text-anchor="middle" class="p">B23</text>
+      <text x="8" y="622" class="pl">AnV8</text>
+      <!-- B24 -->
+      <line x1="-40" y1="658" x2="0" y2="658" class="wd"/>
+      <rect x="-52" y="649" width="28" height="18" rx="2" fill="#fffbeb" stroke="#d97706"/>
+      <text x="-38" y="661" text-anchor="middle" class="p">B24</text>
+      <text x="8" y="662" class="pl">AnV9</text>
+      <!-- B9 -->
+      <line x1="-40" y1="698" x2="0" y2="698" class="w"/>
+      <rect x="-52" y="689" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="701" text-anchor="middle" class="p">B9</text>
+      <text x="8" y="702" class="pl">Knock1</text>
+      <!-- A30 -->
+      <line x1="-40" y1="738" x2="0" y2="738" class="w"/>
+      <rect x="-52" y="729" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="741" text-anchor="middle" class="p">A30</text>
+      <text x="8" y="742" class="pl">DI1</text>
+      <!-- A31 -->
+      <line x1="-40" y1="778" x2="0" y2="778" class="w"/>
+      <rect x="-52" y="769" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+      <text x="-38" y="781" text-anchor="middle" class="p">A31</text>
+      <text x="8" y="782" class="pl">DI2</text>
+    </g>
+  </g>
+
+  <!-- Right pin stubs (outputs) -->
+  <g id="ecu-right-pins" transform="translate(940,0)">
+    <line x1="0" y1="118" x2="40" y2="118" class="w"/>
+    <rect x="24" y="109" width="92" height="18" rx="2" fill="#fff7ed" stroke="#ea580c"/>
+    <text x="70" y="121" text-anchor="middle" class="p">A4–A1</text>
+    <text x="-4" y="122" text-anchor="end" class="pl">Inj1–4</text>
+
+    <line x1="0" y1="168" x2="40" y2="168" class="w"/>
+    <rect x="24" y="159" width="92" height="18" rx="2" fill="#fff7ed" stroke="#ea580c"/>
+    <text x="70" y="171" text-anchor="middle" class="p">A13–A10</text>
+    <text x="-4" y="172" text-anchor="end" class="pl">Ign1–4</text>
+
+    <line x1="0" y1="218" x2="40" y2="218" class="w"/>
+    <rect x="24" y="209" width="48" height="18" rx="2" fill="#f5f3ff" stroke="#7c3aed"/>
+    <text x="48" y="221" text-anchor="middle" class="p">A21</text>
+    <text x="-4" y="222" text-anchor="end" class="pl">Aux1</text>
+
+    <line x1="0" y1="258" x2="40" y2="258" class="w"/>
+    <rect x="24" y="249" width="48" height="18" rx="2" fill="#f5f3ff" stroke="#7c3aed"/>
+    <text x="48" y="261" text-anchor="middle" class="p">A20</text>
+    <text x="-4" y="262" text-anchor="end" class="pl">Aux2</text>
+
+    <line x1="0" y1="298" x2="40" y2="298" class="w"/>
+    <rect x="24" y="289" width="48" height="18" rx="2" fill="#f5f3ff" stroke="#7c3aed"/>
+    <text x="48" y="301" text-anchor="middle" class="p">A19</text>
+    <text x="-4" y="302" text-anchor="end" class="pl">Aux3</text>
+
+    <line x1="0" y1="338" x2="40" y2="338" class="w"/>
+    <rect x="24" y="329" width="48" height="18" rx="2" fill="#f5f3ff" stroke="#7c3aed"/>
+    <text x="48" y="341" text-anchor="middle" class="p">A18</text>
+    <text x="-4" y="342" text-anchor="end" class="pl">Aux4</text>
+
+    <line x1="0" y1="378" x2="40" y2="378" class="w"/>
+    <rect x="24" y="369" width="48" height="18" rx="2" fill="#f5f3ff" stroke="#7c3aed"/>
+    <text x="48" y="381" text-anchor="middle" class="p">A29</text>
+    <text x="-4" y="382" text-anchor="end" class="pl">Aux5</text>
+
+    <line x1="0" y1="418" x2="40" y2="418" class="w"/>
+    <rect x="24" y="409" width="48" height="18" rx="2" fill="#f5f3ff" stroke="#7c3aed"/>
+    <text x="48" y="421" text-anchor="middle" class="p">A28</text>
+    <text x="-4" y="422" text-anchor="end" class="pl">Aux6</text>
+
+    <line x1="0" y1="458" x2="40" y2="458" class="w"/>
+    <rect x="24" y="449" width="48" height="18" rx="2" fill="#f5f3ff" stroke="#7c3aed"/>
+    <text x="48" y="461" text-anchor="middle" class="p">A27</text>
+    <text x="-4" y="462" text-anchor="end" class="pl">Aux7</text>
+
+    <line x1="0" y1="498" x2="40" y2="498" class="w"/>
+    <rect x="24" y="489" width="48" height="18" rx="2" fill="#f5f3ff" stroke="#7c3aed"/>
+    <text x="48" y="501" text-anchor="middle" class="p">A26</text>
+    <text x="-4" y="502" text-anchor="end" class="pl">Aux8</text>
+
+    <line x1="0" y1="548" x2="40" y2="548" class="w"/>
+    <rect x="24" y="539" width="92" height="18" rx="2" fill="#f5f3ff" stroke="#7c3aed"/>
+    <text x="70" y="551" text-anchor="middle" class="p">B18 · B26</text>
+    <text x="-4" y="552" text-anchor="end" class="pl">Aux9/10</text>
+
+    <line x1="0" y1="598" x2="40" y2="598" class="wd"/>
+    <rect x="24" y="589" width="48" height="18" rx="2" fill="#fffbeb" stroke="#d97706"/>
+    <text x="48" y="601" text-anchor="middle" class="p">B13</text>
+    <text x="-4" y="602" text-anchor="end" class="pl">Ign5</text>
+
+    <line x1="0" y1="638" x2="40" y2="638" class="wd"/>
+    <rect x="24" y="629" width="48" height="18" rx="2" fill="#fffbeb" stroke="#d97706"/>
+    <text x="48" y="641" text-anchor="middle" class="p">B12</text>
+    <text x="-4" y="642" text-anchor="end" class="pl">Ign6</text>
+
+    <!-- power / etb feed -->
+    <line x1="0" y1="688" x2="40" y2="688" class="w" stroke="#dc2626"/>
+    <rect x="24" y="679" width="48" height="18" rx="2" fill="#fef2f2" stroke="#dc2626"/>
+    <text x="48" y="691" text-anchor="middle" class="p">B5</text>
+    <text x="-4" y="692" text-anchor="end" class="pl">V-ETB</text>
+
+    <line x1="0" y1="728" x2="40" y2="728" class="w" stroke="#dc2626"/>
+    <rect x="24" y="719" width="48" height="18" rx="2" fill="#fef2f2" stroke="#dc2626"/>
+    <text x="48" y="731" text-anchor="middle" class="p">A5</text>
+    <text x="-4" y="732" text-anchor="end" class="pl">+14V</text>
+
+    <line x1="0" y1="768" x2="40" y2="768" class="w" stroke="#dc2626"/>
+    <rect x="24" y="759" width="48" height="18" rx="2" fill="#fef2f2" stroke="#dc2626"/>
+    <text x="48" y="771" text-anchor="middle" class="p">A32</text>
+    <text x="-4" y="772" text-anchor="end" class="pl">+5V</text>
+  </g>
+
+  <!-- DI proposed stubs (below A30/A31 on left edge) -->
+  <g transform="translate(560,0)">
+    <line x1="-40" y1="818" x2="0" y2="818" class="wd"/>
+    <rect x="-70" y="809" width="46" height="18" rx="2" fill="#fffbeb" stroke="#d97706"/>
+    <text x="-47" y="821" text-anchor="middle" class="p">A23</text>
+    <text x="8" y="822" class="pl">DI3</text>
+
+    <line x1="-40" y1="848" x2="0" y2="848" class="wd"/>
+    <rect x="-70" y="839" width="46" height="18" rx="2" fill="#fffbeb" stroke="#d97706"/>
+    <text x="-47" y="851" text-anchor="middle" class="p">B21–19</text>
+    <text x="8" y="852" class="pl">DI4–6</text>
+
+    <line x1="-40" y1="878" x2="0" y2="878" class="wd"/>
+    <rect x="-70" y="869" width="46" height="18" rx="2" fill="#fffbeb" stroke="#d97706"/>
+    <text x="-47" y="881" text-anchor="middle" class="p">B30</text>
+    <text x="8" y="882" class="pl">DI7</text>
+
+    <line x1="-40" y1="908" x2="0" y2="908" class="wd"/>
+    <rect x="-70" y="899" width="46" height="18" rx="2" fill="#fffbeb" stroke="#d97706"/>
+    <text x="-47" y="911" text-anchor="middle" class="p">B29</text>
+    <text x="8" y="912" class="pl">DI8</text>
+  </g>
+
+  <!-- Comms callout — interior bottom of ECU -->
+  <rect x="600" y="700" width="320" height="90" rx="4" fill="#111827" stroke="#38bdf8"/>
+  <text x="760" y="720" text-anchor="middle" fill="#38bdf8" style="font:700 11px Segoe UI,sans-serif">COMMS (6-pin) · USER CAN 1</text>
+  <text x="616" y="742" class="pe">C1 Gnd · C2 Unused</text>
+  <text x="616" y="758" class="pe">C3 CAN1 H · C4 CAN1 L</text>
+  <text x="616" y="774" class="pe">C5 RS232 TX · C6 RS232 RX</text>
+
+  <!-- Ground notes inside ECU -->
+  <text x="750" y="110" text-anchor="middle" fill="#94a3b8" style="font:9px Segoe UI,sans-serif">Gnd: A25 A34 B25 B34 · Gnd Out: A24 B22 · Shield: A7 B16 · +8V: A6</text>
+
+  <!-- ===================== LEFT DEVICES ===================== -->
+  <text x="24" y="56" class="t" fill="#047857">SENSORS / INPUTS</text>
+
+  <!-- device macro: rect 200x32 at x=24 -->
+  <g id="left-devs">
+    <rect x="24" y="102" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="116" class="t">Crank VR 36-2</text>
+    <text x="32" y="128" class="s">Beams/5S wheel</text>
+    <line x1="234" y1="118" x2="508" y2="118" class="w"/>
+
+    <rect x="24" y="142" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="156" class="t">Cam Hall</text>
+    <text x="32" y="168" class="s">RacerX · single tooth</text>
+    <line x1="234" y1="158" x2="508" y2="158" class="w"/>
+
+    <rect x="24" y="182" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="196" class="t">ECT</text>
+    <text x="32" y="208" class="s">Coolant temp</text>
+    <line x1="234" y1="198" x2="508" y2="198" class="w"/>
+
+    <rect x="24" y="222" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="236" class="t">IAT (manifold)</text>
+    <text x="32" y="248" class="s">Built-in pull-up</text>
+    <line x1="234" y1="238" x2="508" y2="238" class="w"/>
+
+    <rect x="24" y="262" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="276" class="t">Oil temp</text>
+    <text x="32" y="288" class="s">1k pull-up channel</text>
+    <line x1="234" y1="278" x2="508" y2="278" class="w"/>
+
+    <rect x="24" y="302" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="316" class="t">Charge-pipe IAT #2</text>
+    <text x="32" y="328" class="s">Heat-soak</text>
+    <line x1="234" y1="318" x2="508" y2="318" class="w"/>
+
+    <rect x="24" y="342" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="356" class="t">MAP</text>
+    <text x="32" y="368" class="s">+5V sensor</text>
+    <line x1="234" y1="358" x2="508" y2="358" class="w"/>
+
+    <rect x="24" y="382" width="210" height="56" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="396" class="t">Bosch ETB position</text>
+    <text x="32" y="410" class="s">TPS main / TPS sub</text>
+    <text x="32" y="424" class="s">74mm Motorsport</text>
+    <line x1="234" y1="398" x2="508" y2="398" class="w"/>
+    <line x1="234" y1="428" x2="508" y2="428" class="w"/>
+
+    <rect x="24" y="448" width="210" height="56" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="462" class="t">Accel pedal APS</text>
+    <text x="32" y="476" class="s">APS main / APS sub</text>
+    <text x="32" y="490" class="s">DBW pedal</text>
+    <line x1="234" y1="468" x2="508" y2="468" class="w"/>
+    <line x1="234" y1="498" x2="508" y2="498" class="w"/>
+
+    <rect x="24" y="514" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="528" class="t">Oil pressure</text>
+    <text x="32" y="540" class="s">0–5 V transducer</text>
+    <line x1="234" y1="538" x2="508" y2="538" class="w"/>
+
+    <rect x="24" y="554" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="568" class="t">Fuel pressure</text>
+    <text x="32" y="580" class="s">0–5 V transducer</text>
+    <line x1="234" y1="578" x2="508" y2="578" class="w"/>
+
+    <rect x="24" y="594" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="608" class="t">Coolant pressure</text>
+    <text x="32" y="620" class="s">0–5 V transducer</text>
+    <line x1="234" y1="618" x2="508" y2="618" class="w"/>
+
+    <rect x="24" y="634" width="210" height="32" rx="3" fill="#fffbeb" stroke="#d97706" class="box" stroke-dasharray="4 2"/>
+    <text x="32" y="648" class="t">Fuel level sender</text>
+    <text x="32" y="660" class="s">Proposed · divider</text>
+    <line x1="234" y1="658" x2="508" y2="658" class="wd"/>
+
+    <rect x="24" y="674" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="688" class="t">Knock sensor</text>
+    <text x="32" y="700" class="s">Shielded pair</text>
+    <line x1="234" y1="698" x2="508" y2="698" class="w"/>
+
+    <rect x="24" y="714" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="728" class="t">Turbo speed</text>
+    <text x="32" y="740" class="s">Frequency</text>
+    <line x1="234" y1="738" x2="508" y2="738" class="w"/>
+
+    <rect x="24" y="754" width="210" height="32" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="768" class="t">Flex sensor</text>
+    <text x="32" y="780" class="s">Ethanol% + fuel temp</text>
+    <line x1="234" y1="778" x2="508" y2="778" class="w"/>
+
+    <rect x="24" y="798" width="210" height="44" rx="3" fill="#fffbeb" stroke="#d97706" class="box" stroke-dasharray="4 2"/>
+    <text x="32" y="814" class="t">ABS wheel speed ×4</text>
+    <text x="32" y="828" class="s">Proposed · shielded</text>
+    <line x1="234" y1="818" x2="490" y2="818" class="wd"/>
+    <line x1="234" y1="832" x2="490" y2="848" class="wd"/>
+
+    <rect x="24" y="850" width="210" height="32" rx="3" fill="#fffbeb" stroke="#d97706" class="box" stroke-dasharray="4 2"/>
+    <text x="32" y="864" class="t">Start request</text>
+    <text x="32" y="876" class="s">Button / key</text>
+    <line x1="234" y1="866" x2="490" y2="878" class="wd"/>
+
+    <rect x="24" y="890" width="210" height="32" rx="3" fill="#fffbeb" stroke="#d97706" class="box" stroke-dasharray="4 2"/>
+    <text x="32" y="904" class="t">Clutch switch</text>
+    <text x="32" y="916" class="s">Flat-shift / launch</text>
+    <line x1="234" y1="906" x2="490" y2="908" class="wd"/>
+  </g>
+
+  <!-- ===================== RIGHT DEVICES ===================== -->
+  <text x="1280" y="56" class="t" fill="#c2410c">ACTUATORS / OUTPUTS</text>
+
+  <g id="right-devs">
+    <line x1="1056" y1="118" x2="1268" y2="118" class="w"/>
+    <rect x="1268" y="100" width="210" height="36" rx="3" fill="#fff7ed" stroke="#ea580c" class="box"/>
+    <text x="1276" y="116" class="t">Injectors cyl 1–4</text>
+    <text x="1276" y="128" class="s">1400cc hi-Z sequential</text>
+
+    <line x1="1056" y1="168" x2="1268" y2="168" class="w"/>
+    <rect x="1268" y="150" width="210" height="36" rx="3" fill="#fff7ed" stroke="#ea580c" class="box"/>
+    <text x="1276" y="166" class="t">1ZZ COP coils 1–4</text>
+    <text x="1276" y="178" class="s">Logic-level trigger</text>
+
+    <line x1="1032" y1="218" x2="1268" y2="218" class="w"/>
+    <rect x="1268" y="202" width="210" height="32" rx="3" fill="#f5f3ff" stroke="#7c3aed" class="box"/>
+    <text x="1276" y="216" class="t">Boost solenoid</text>
+    <text x="1276" y="228" class="s">Low-side</text>
+
+    <line x1="1032" y1="258" x2="1268" y2="258" class="w"/>
+    <rect x="1268" y="242" width="210" height="32" rx="3" fill="#f5f3ff" stroke="#7c3aed" class="box"/>
+    <text x="1276" y="256" class="t">ETB power relay</text>
+    <text x="1276" y="268" class="s">Feeds V Ethrottle (B5)</text>
+
+    <line x1="1032" y1="298" x2="1268" y2="298" class="w"/>
+    <rect x="1268" y="282" width="210" height="32" rx="3" fill="#f5f3ff" stroke="#7c3aed" class="box"/>
+    <text x="1276" y="296" class="t">Fuel pump relay</text>
+    <text x="1276" y="308" class="s">Low-side</text>
+
+    <line x1="1032" y1="338" x2="1268" y2="338" class="w"/>
+    <rect x="1268" y="322" width="210" height="32" rx="3" fill="#f5f3ff" stroke="#7c3aed" class="box"/>
+    <text x="1276" y="336" class="t">AC clutch / kill</text>
+    <text x="1276" y="348" class="s">Relay coil or amp ACT</text>
+
+    <line x1="1032" y1="378" x2="1268" y2="378" class="w"/>
+    <rect x="1268" y="362" width="210" height="32" rx="3" fill="#f5f3ff" stroke="#7c3aed" class="box"/>
+    <text x="1276" y="376" class="t">Radiator fan relay</text>
+    <text x="1276" y="388" class="s">Hi/lo capable</text>
+
+    <line x1="1032" y1="418" x2="1268" y2="418" class="w"/>
+    <rect x="1268" y="402" width="210" height="32" rx="3" fill="#f5f3ff" stroke="#7c3aed" class="box"/>
+    <text x="1276" y="416" class="t">EFI main relay</text>
+    <text x="1276" y="428" class="s">ECU power hold → A5</text>
+
+    <line x1="1032" y1="458" x2="1268" y2="458" class="w"/>
+    <rect x="1268" y="442" width="210" height="32" rx="3" fill="#f5f3ff" stroke="#7c3aed" class="box"/>
+    <text x="1276" y="456" class="t">MRS EPS SPD</text>
+    <text x="1276" y="468" class="s">Speed-out pulse · no R</text>
+
+    <line x1="1032" y1="498" x2="1268" y2="498" class="w"/>
+    <rect x="1268" y="482" width="210" height="32" rx="3" fill="#f5f3ff" stroke="#7c3aed" class="box"/>
+    <text x="1276" y="496" class="t">Start relay</text>
+    <text x="1276" y="508" class="s">ECU-controlled</text>
+
+    <line x1="1056" y1="548" x2="1268" y2="548" class="w"/>
+    <rect x="1268" y="530" width="210" height="36" rx="3" fill="#f5f3ff" stroke="#7c3aed" class="box"/>
+    <text x="1276" y="546" class="t">Bosch ETB motor</text>
+    <text x="1276" y="558" class="s">H-bridge + / −</text>
+
+    <line x1="1032" y1="598" x2="1268" y2="598" class="wd"/>
+    <rect x="1268" y="582" width="210" height="32" rx="3" fill="#fffbeb" stroke="#d97706" class="box" stroke-dasharray="4 2"/>
+    <text x="1276" y="596" class="t">AC condenser fan</text>
+    <text x="1276" y="608" class="s">Spare Ign as aux</text>
+
+    <line x1="1032" y1="638" x2="1268" y2="638" class="wd"/>
+    <rect x="1268" y="622" width="210" height="32" rx="3" fill="#fffbeb" stroke="#d97706" class="box" stroke-dasharray="4 2"/>
+    <text x="1276" y="636" class="t">Oil pressure lamp</text>
+    <text x="1276" y="648" class="s">Spare Ign as aux</text>
+
+    <!-- Power notes -->
+    <line x1="1032" y1="688" x2="1268" y2="688" class="w" stroke="#dc2626"/>
+    <rect x="1268" y="672" width="210" height="32" rx="3" fill="#fef2f2" stroke="#dc2626" class="box"/>
+    <text x="1276" y="686" class="t">V Ethrottle feed</text>
+    <text x="1276" y="698" class="s">From Aux2 relay</text>
+
+    <line x1="1032" y1="728" x2="1268" y2="728" class="w" stroke="#dc2626"/>
+    <rect x="1268" y="712" width="210" height="32" rx="3" fill="#fef2f2" stroke="#dc2626" class="box"/>
+    <text x="1276" y="726" class="t">ECU +14V supply</text>
+    <text x="1276" y="738" class="s">Via EFI main relay</text>
+
+    <line x1="1032" y1="768" x2="1268" y2="768" class="w" stroke="#dc2626"/>
+    <rect x="1268" y="752" width="210" height="44" rx="3" fill="#fef2f2" stroke="#dc2626" class="box"/>
+    <text x="1276" y="768" class="t">+5V sensor bus</text>
+    <text x="1276" y="780" class="s">MAP · TPS · APS · pressures</text>
+    <text x="1276" y="792" class="s">(implied to left sensors)</text>
+  </g>
+
+  <!-- ===================== CAN BUS ===================== -->
+  <text x="24" y="960" class="t" fill="#1d4ed8">CAN 1 BUS — Comms C3 (H) / C4 (L) · 1 Mbit/s · 120 Ω at physical ends only</text>
+
+  <line x1="40" y1="1010" x2="1460" y2="1010" stroke="#0f172a" stroke-width="2.5"/>
+  <line x1="40" y1="1024" x2="1460" y2="1024" stroke="#475569" stroke-width="2.5"/>
+  <text x="40" y="1002" style="font:700 9px Segoe UI,sans-serif;fill:#2563eb">CAN H</text>
+  <text x="40" y="1042" style="font:700 9px Segoe UI,sans-serif;fill:#475569">CAN L</text>
+
+  <!-- drop from ECU bottom to CAN backbone -->
+  <line x1="750" y1="930" x2="750" y2="1010" stroke="#2563eb" stroke-width="1.5"/>
+  <rect x="670" y="960" width="160" height="36" rx="3" fill="#0f172a"/>
+  <text x="750" y="976" text-anchor="middle" fill="#f8fafc" style="font:700 10px Segoe UI,sans-serif">ECU C3 / C4</text>
+  <text x="750" y="990" text-anchor="middle" fill="#93c5fd" style="font:9px Segoe UI,sans-serif">END A · 120 Ω</text>
+
+  <line x1="200" y1="1010" x2="200" y2="990" stroke="#2563eb" stroke-width="1.25"/>
+  <rect x="120" y="948" width="160" height="40" rx="3" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="200" y="966" text-anchor="middle" class="t">CAN-Lambda</text>
+  <text x="200" y="980" text-anchor="middle" class="s">0x3B6 · LSU 4.9</text>
+
+  <line x1="420" y1="1010" x2="420" y2="990" stroke="#2563eb" stroke-width="1.25"/>
+  <rect x="330" y="948" width="180" height="40" rx="3" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="420" y="966" text-anchor="middle" class="t">Center cluster P4</text>
+  <text x="420" y="980" text-anchor="middle" class="s">0x3E8–3EE · TX 3EC–3ED</text>
+
+  <line x1="1000" y1="1010" x2="1000" y2="990" stroke="#2563eb" stroke-width="1.25"/>
+  <rect x="900" y="948" width="200" height="40" rx="3" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="1000" y="966" text-anchor="middle" class="t">ECUMaster Switchboard V3</text>
+  <text x="1000" y="980" text-anchor="middle" class="s">Base 0x640 · set 1 Mbit/s</text>
+
+  <line x1="1280" y1="1010" x2="1280" y2="990" stroke="#2563eb" stroke-width="1.25"/>
+  <rect x="1180" y="948" width="200" height="40" rx="3" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="1280" y="966" text-anchor="middle" class="t">Pi + USB-CAN</text>
+  <text x="1280" y="980" text-anchor="middle" class="s">RealDash · END B 120 Ω</text>
+
+  <!-- Switchboard I/O note -->
+  <rect x="900" y="1034" width="480" height="36" rx="3" fill="#faf5ff" stroke="#9333ea"/>
+  <text x="912" y="1050" class="t" fill="#7e22ce">Switchboard I/O (not ECU pins)</text>
+  <text x="912" y="1064" class="s">Cabin temp NTC · cruise ladder · brake · reverse · LED outs only (0.5 A)</text>
+</svg>
+</div>
+
+<div class="note">
+  <strong>Notes</strong>
+  <ul>
+    <li>Pin numbers from Link <em>XtremeX Quick Start Guide</em> (looking into wire side / ECU header). Assignments from <code>XTREMEX-IO-TABLE.html</code>.</li>
+    <li>Amber dashed = proposed/TBD. Confirm before cutting the harness.</li>
+    <li>+5V (A32) and Gnd Out (A24/B22) feed the left-side sensors — omitted as individual nets on purpose to keep the drawing readable.</li>
+    <li>ETB path: Aux 2 (A20) drives the V-Ethrottle relay → B5 powers the H-bridge; motor on B18/B26; TPS on A22/A33; APS on A14/B33.</li>
+  </ul>
+</div>
+
+</body>
+</html>

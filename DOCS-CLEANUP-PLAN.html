@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<!-- ST185 ECU documentation cleanup plan. Self-contained. No external dependencies. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ST185 — ECU I/O &amp; Wiring Documentation Cleanup Plan</title>
+<style>
+  :root{
+    --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --bg:#f1f5f9; --paper:#fff;
+    --ok:#059669; --sup:#d97706; --obs:#64748b; --bad:#dc2626; --unv:#7c3aed; --accent:#2563eb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+       font:14px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  header{background:#0f172a;color:#f8fafc;padding:22px 26px}
+  header h1{margin:0 0 4px;font-size:21px;letter-spacing:-.01em}
+  header .sub{color:#94a3b8;font-size:13px}
+  .banner{background:#fef3c7;border-bottom:1px solid #fcd34d;color:#78350f;
+          padding:9px 26px;font-size:13px;font-weight:600}
+  main{max-width:1400px;margin:0 auto;padding:20px 26px 60px}
+  h2{font-size:17px;margin:30px 0 10px;padding-bottom:6px;border-bottom:2px solid #cbd5e1}
+  h3{font-size:14px;margin:20px 0 8px;color:#334155}
+  .cards{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:8px;
+        padding:12px 16px;min-width:130px;flex:1 1 130px}
+  .card .n{font-size:24px;font-weight:700;line-height:1.1}
+  .card .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+  .panel{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:12px 0}
+  .panel.warn{border-left:5px solid var(--bad);background:#fef2f2}
+  .panel.info{border-left:5px solid var(--ok);background:#f0fdf4}
+  .panel.note{border-left:5px solid var(--accent);background:#eff6ff}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 8px}
+  input[type=search],select{font:inherit;padding:7px 10px;border:1px solid #cbd5e1;
+        border-radius:6px;background:#fff;color:var(--ink)}
+  input[type=search]{min-width:260px;flex:1 1 260px}
+  button{font:inherit;padding:7px 12px;border:1px solid #cbd5e1;border-radius:6px;
+        background:#fff;color:var(--ink);cursor:pointer}
+  button:hover{background:#f8fafc}
+  .count{font-size:12px;color:var(--muted);margin-left:auto}
+  .tablewrap{background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:auto;max-height:70vh}
+  table{border-collapse:collapse;width:100%;font-size:12.5px}
+  th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  thead th{position:sticky;top:0;background:#f8fafc;z-index:2;cursor:pointer;
+        user-select:none;white-space:nowrap;font-weight:600;border-bottom:2px solid #cbd5e1}
+  thead th:hover{background:#eef2f7}
+  thead th .ar{color:#94a3b8;font-size:10px;margin-left:3px}
+  tbody tr:hover{background:#f8fafc}
+  td.id{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+  td.path{font-family:Consolas,"Cascadia Mono",monospace;font-size:11.5px;word-break:break-word;max-width:340px}
+  td.date{white-space:nowrap;font-variant-numeric:tabular-nums}
+  .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10.5px;
+        font-weight:700;white-space:nowrap;letter-spacing:.02em}
+  .b-CURRENT{background:#dcfce7;color:#166534;border:1px solid #86efac}
+  .b-SUPERSEDED{background:#fef3c7;color:#854d0e;border:1px solid #fcd34d}
+  .b-OBSOLETE{background:#e2e8f0;color:#475569;border:1px solid #cbd5e1}
+  .b-INCORRECT{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+  .b-UNVERIFIED{background:#ede9fe;color:#5b21b6;border:1px solid #c4b5fd}
+  .b-MISSING{background:#fce7f3;color:#9d174d;border:1px solid #f9a8d4}
+  .loc{font-size:11px;color:var(--muted);white-space:nowrap}
+  .plain th,.plain td{font-size:12.5px}
+  .plain{background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  code{background:#f1f5f9;padding:1px 5px;border-radius:3px;font-size:12px;
+       font-family:Consolas,"Cascadia Mono",monospace}
+  ul,ol{margin:6px 0 6px 20px;padding:0}
+  li{margin:4px 0}
+  a{color:var(--accent)}
+  .rec{font-weight:600;color:#166534}
+  .unres{font-weight:600;color:var(--bad)}
+  footer{color:var(--muted);font-size:12px;margin-top:36px;padding-top:14px;border-top:1px solid #cbd5e1}
+  .empty{padding:20px;text-align:center;color:var(--muted);font-style:italic}
+  @media print{body{background:#fff}.controls,.tablewrap{max-height:none}header{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ECU I/O and Wiring Documentation — Cleanup and Consolidation Plan</h1>
+  <div class="sub">1993 Toyota Celica GT-Four ST185 &middot; 5S-GTE &middot; Link G4X XtremeX &middot; ESP32 cluster set on CAN &nbsp;|&nbsp; Prepared 2026-08-31</div>
+</header>
+
+<div class="banner">PLAN ONLY — nothing has been edited, moved, deleted or consolidated. Approve before any change is made.</div>
+
+<main>
+
+<h2>1. Executive summary</h2>
+
+<div class="cards">
+  <div class="card"><div class="n">55</div><div class="l">documents inventoried</div></div>
+  <div class="card"><div class="n" style="color:var(--bad)">22</div><div class="l">flagged bad</div></div>
+  <div class="card"><div class="n" style="color:var(--sup)">27</div><div class="l">conflicts</div></div>
+  <div class="card"><div class="n" style="color:var(--ok)">4 / 4</div><div class="l">prior CAN fixes verified</div></div>
+  <div class="card"><div class="n" style="color:var(--bad)">2</div><div class="l">best docs unprotected</div></div>
+  <div class="card"><div class="n" style="color:var(--bad)">0</div><div class="l">local copies of the app</div></div>
+</div>
+
+<div class="panel warn">
+  <strong>The two best documents are the two least protected.</strong>
+  <ul>
+    <li><code>XTREMEX-IO-TABLE.html</code> exists only on the local branch <code>ECU-wiring-design</code>. It was never merged to <code>main</code> and never pushed.</li>
+    <li><code>SCHEMATIC-WIRING.html</code> is <strong>untracked by git entirely</strong> — no commit, no push, no backup.</li>
+    <li>The <strong>interactive wiring app has no local copy at all.</strong> It lives only as a hosted Claude artifact. Two Google Docs hold saved states, and those two disagree with each other and with the repo.</li>
+  </ul>
+  If this machine's disk fails today, all three are gone.
+</div>
+
+<div class="panel info">
+  <strong>The good news.</strong> All five new hardware items are <em>already designed and pinned</em> in the two HTML files. The problem is not missing design work — it is that five other documents still describe the old cable-throttle car and contradict it. The throttle body is now positively identified from photographs. All four prior CAN bugfixes are present and correct in <code>link_g4x_can_setup.lcs</code>.
+</div>
+
+<div class="panel warn">
+  <strong>Two facts are wrong in every repo document.</strong> The engine is recorded as <strong>3S-GTE</strong> — it is a <strong>5S-GTE</strong> (5S-FE block, 3S-GTE head, 2.19 L). Much of the source material is for a Link <strong>FuryX</strong> — the ECU is an <strong>XtremeX</strong>. <code>XTREMEX-IO-TABLE.html</code> already contradicts itself on the first point, mentioning a "36-2 crank wheel (Beams/5S)".
+</div>
+
+<h2>2. Inventory — 55 documents</h2>
+<p style="color:var(--muted);font-size:13px;margin:4px 0 0">
+Click any column heading to sort. Type to filter across every field. Status and location filters combine with the search.
+</p>
+
+<div class="controls">
+  <input type="search" id="q" placeholder="Search path, coverage, reason, format&hellip;" aria-label="Search inventory">
+  <select id="fs" aria-label="Filter by status"><option value="">All statuses</option></select>
+  <select id="fl" aria-label="Filter by location"><option value="">All locations</option></select>
+  <button type="button" id="reset">Reset</button>
+  <span class="count" id="count"></span>
+</div>
+
+<div class="tablewrap">
+  <table id="inv">
+    <thead>
+      <tr>
+        <th data-k="id" data-t="num">#<span class="ar"></span></th>
+        <th data-k="loc">Location<span class="ar"></span></th>
+        <th data-k="path">Path / file<span class="ar"></span></th>
+        <th data-k="fmt">Format<span class="ar"></span></th>
+        <th data-k="mod">Modified<span class="ar"></span></th>
+        <th data-k="cov">What it covers<span class="ar"></span></th>
+        <th data-k="st">Status<span class="ar"></span></th>
+        <th data-k="why">Reason<span class="ar"></span></th>
+      </tr>
+    </thead>
+    <tbody id="tb"></tbody>
+  </table>
+  <div class="empty" id="empty" hidden>No rows match those filters.</div>
+</div>
+
+<h2>3. Where the interactive wiring app lives</h2>
+<div class="panel">
+  <ul>
+    <li><strong>Newest and only live copy:</strong> the hosted Claude artifact <code>claude.ai/public/artifacts/fe41bba4-4b82-44aa-9d74-ab1129eae3c8</code>. The URL survives only inside Google Doc #35.</li>
+    <li><strong>Newest saved data:</strong> Google Doc #34, 2026-08-28. 30 devices, 5 bus nodes.</li>
+    <li><strong>Older saved data:</strong> Google Doc #35, 2026-08-22. 31 devices, 5 bus nodes.</li>
+    <li><strong>No source file exists on disk.</strong> Searched every HTML file under <code>C:\projects</code>, <code>C:\Users\danie\Claude</code>, Downloads, Desktop, Documents and the Celica OneDrive folder. The only wiring-related HTML files found are inventory items 1, 2, 8, 19 and 22 — none of them is the app.</li>
+    <li><code>C:\Users\danie\Claude\Projects</code> <strong>does not exist</strong> on this machine.</li>
+  </ul>
+  <h3>What the two saved states disagree on — 6 days apart</h3>
+  <table class="plain">
+    <tr><th>Row</th><th>2026-08-22 save</th><th>2026-08-28 save</th></tr>
+    <tr><td>An Volt 2</td><td>"TPS", confirmed</td><td>"Bosch TB Pos1", confirmed</td></tr>
+    <tr><td>Temp 4</td><td>"Fuel temp", open</td><td>row deleted</td></tr>
+    <tr><td>Aux 2</td><td>"AC Fan", loom A White, decided</td><td>row deleted</td></tr>
+    <tr><td>Aux 7</td><td>absent</td><td>"CEL (Cluster)", open</td></tr>
+    <tr><td>DI 1&ndash;3, Ign 1&ndash;4, Aux 1/4</td><td>status "decided"</td><td>downgraded to "proposed"</td></tr>
+    <tr><td>Bus termination</td><td>cluster terminated; ECU and Pi not</td><td>ECU and Pi terminated; cluster not</td></tr>
+  </table>
+  <p><strong>Neither save reflects the DBW pedal at all.</strong> Both still carry the note "Cable throttle — ST185 is not drive-by-wire".</p>
+</div>
+
+<h2>4. Verification of the four prior CAN bugfixes</h2>
+<p>Checked against <code>link_g4x_can_setup.lcs</code> v1.1, 2026-07-13.</p>
+<table class="plain">
+  <tr><th>Fix required</th><th>Found in the file</th><th>Verdict</th></tr>
+  <tr><td>0x3E8 must use MAP, not MGP</td><td><code>Name="MAP" StartBit="16" Length="16"</code></td><td><span class="badge b-CURRENT">PRESENT</span></td></tr>
+  <tr><td>0x3E9 oil and fuel pressure 2-byte big-endian</td><td>Oil StartBit 24 Len 16; Fuel StartBit 40 Len 16; BigEndian</td><td><span class="badge b-CURRENT">PRESENT</span></td></tr>
+  <tr><td>0x3F0 coolant pressure 2 bytes, everything after shifted</td><td>Coolant 16/16; Ethanol 32; ChargeIAT 40; Turbo 48; TrigErr 56</td><td><span class="badge b-CURRENT">PRESENT</span></td></tr>
+  <tr><td>Ghost Trigger Errors entry removed</td><td>Exactly one, at StartBit 56</td><td><span class="badge b-CURRENT">PRESENT</span></td></tr>
+</table>
+<p>Two further scale fixes are also present and documented in the file header: <code>Lambda Target</code> scale 0.001 (was 1000) and <code>Accel X/Y/Z</code> scale 0.1 (was 10).</p>
+<div class="panel note"><strong>Caveat.</strong> <code>link_g4x_can_setup.json</code> claims to be the canonical twin of the LCS but was not opened this pass. Diff the two before importing either.</div>
+
+<h2>5. The five hardware additions</h2>
+
+<h3>5.1 Link CAN-Lambda wideband controller</h3>
+<table class="plain">
+  <tr><th>Item</th><th>Currently documented</th><th>Change needed</th></tr>
+  <tr><td>Receive ID 0x3B6 (950)</td><td>Yes, reserved</td><td>none</td></tr>
+  <tr><td><strong>Transmit ID 0x3BE (958), ECU &rarr; module</strong></td><td><span class="unres">Not documented anywhere</span></td><td>Reserve the block <strong>0x3B6&ndash;0x3BE</strong> (950&ndash;958)</td></tr>
+  <tr><td>Bit rate</td><td>Not stated</td><td>State "<strong>1 Mbit/s native — no change required</strong>" so it is not mistakenly reconfigured like the switchboard</td></tr>
+  <tr><td>Bus attachment</td><td>CAN 1 (docs) vs <strong>CAN 2 on DI 9/10</strong> (pin map)</td><td>Resolve to CAN 1 — conflict C5</td></tr>
+  <tr><td>ECU pins consumed</td><td>Zero on CAN 1</td><td>none</td></tr>
+</table>
+<p><strong>No ID conflicts.</strong> 0x3B6&ndash;0x3BE sits entirely below the lowest project frame, 0x3E8 (1000). Additional modules would use 951&ndash;957.</p>
+
+<h3>5.2 ECUMaster CAN Switch Board V3</h3>
+<table class="plain">
+  <tr><th>Item</th><th>Currently documented</th><th>Change needed</th></tr>
+  <tr><td>0x640&ndash;0x643 byte layouts</td><td>Yes, allocation table &sect;5</td><td>none</td></tr>
+  <tr><td>500 &rarr; 1000 kbps</td><td>Yes, in three places</td><td>none</td></tr>
+  <tr><td>Data routing rule</td><td>Stated four times, partially</td><td>State once, in one place; delete the partial restatements</td></tr>
+  <tr><td>Output limit 0.5 A, LED level only</td><td>Only in the I/O table HTML</td><td>Promote to the allocation table so nobody wires a fan to it</td></tr>
+  <tr><td>SW_MASK bits 5&ndash;7</td><td>Unassigned</td><td>Assign bit 5 = cabin A/C request; 6 and 7 spare</td></tr>
+</table>
+<p><strong>No ID conflicts.</strong> 0x640&ndash;0x643 is 1600&ndash;1603; the highest project frame is 0x3F1 (1009).</p>
+
+<h3>5.3 Bosch electronic throttle body + Subaru BRZ pedal</h3>
+
+<div class="panel info">
+  <strong>Part identification &mdash; CONFIRMED from photographs of the actual part (2026-08-31).</strong>
+  <table class="plain" style="margin-top:8px">
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Bosch part number</td><td><strong>0 280 750 474</strong></td></tr>
+    <tr><td>Porsche part number</td><td><strong>997 605 115 03</strong></td></tr>
+    <tr><td>VAG part number</td><td><strong>022 133 062 AJ</strong></td></tr>
+    <tr><td>Bore</td><td><strong>74.5 mm</strong> — throttle plate stamped "745"</td></tr>
+    <tr><td>Connector</td><td>6-pin, single integrated housing on the motor/sensor module</td></tr>
+    <tr><td>Mounting</td><td>Square four-bolt flange adapter onto the Soara dual-plenum manifold</td></tr>
+  </table>
+</div>
+
+<div class="panel note">
+  <strong>Two notes on the numbers.</strong>
+  <ul>
+    <li>Retailers list this unit as "74 mm". The plate says 745. <strong>Use 74.5 mm</strong> for the flange step and any airflow work. Same part, rounder number.</li>
+    <li>The Bosch Motorsport ETB data sheet lists bores of 32, 40, 44, 46, 52, 54, 60 and 82 mm and <strong>does not name 0 280 750 474</strong>. This is the Porsche/VAG production unit the motorsport trade resells. The electrical figures below are inherited from that platform data sheet, not from one naming this part. <strong>Verify both sensor voltages on the bench before trusting them.</strong></li>
+  </ul>
+</div>
+
+<h3>Throttle body electrical specification</h3>
+<table class="plain">
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Motor supply voltage</td><td>6 to 16 V</td></tr>
+  <tr><td>Sensor supply voltage</td><td>5 &plusmn; 0.2 V</td></tr>
+  <tr><td>Maximum motor current</td><td>under 10.0 A</td></tr>
+  <tr><td><strong>Output signal I (Pot 1)</strong></td><td><strong>0 V &rarr; 5 V across 0 to 90&deg;</strong> — rises as the plate opens</td></tr>
+  <tr><td><strong>Output signal II (Pot 2)</strong></td><td><strong>5 V &rarr; 0 V across 0 to 90&deg;</strong> — falls as the plate opens</td></tr>
+  <tr><td>Operating temperature</td><td>&minus;40 to 140 &deg;C</td></tr>
+  <tr><td>Default position</td><td>Sprung idle default</td></tr>
+</table>
+<div class="panel note">
+  <strong>The two tracks run in opposite directions at the same gain.</strong> Their sum is nominally a constant 5 V — that is the redundancy check. If Pot 1 + Pot 2 drifts away from 5 V, one track has failed. This is why the G4X needs both configured with the correct orientation: swapping them or calibrating one backwards defeats the check <em>without producing an obvious symptom</em>.
+</div>
+
+<h3>Six-pin connector pinout and mating parts</h3>
+<table class="plain">
+  <tr><th>Pin</th><th>Bosch label</th><th>Function</th><th>Goes to (XtremeX)</th></tr>
+  <tr><td>1 / A</td><td>Motor &minus;</td><td>H-bridge negative</td><td>Aux 10 &mdash; <code>B26</code></td></tr>
+  <tr><td>2 / B</td><td>Pot &minus;</td><td>Sensor ground</td><td>Gnd Out &mdash; <code>A24</code> or <code>B22</code></td></tr>
+  <tr><td>3 / C</td><td>Pot +</td><td>Sensor 5 V supply</td><td>+5V Out &mdash; <code>A32</code></td></tr>
+  <tr><td>4 / D</td><td>Motor +</td><td>H-bridge positive</td><td>Aux 9 &mdash; <code>B18</code></td></tr>
+  <tr><td>5 / E</td><td>Pot 2</td><td>TPS signal, falling 5 V &rarr; 0 V</td><td>An Volt 3 &mdash; <code>A33</code> &mdash; <strong>TPS Sub</strong></td></tr>
+  <tr><td>6 / F</td><td>Pot 1</td><td>TPS signal, rising 0 V &rarr; 5 V</td><td>An Volt 2 &mdash; <code>A22</code> &mdash; <strong>TPS Main</strong></td></tr>
+</table>
+<table class="plain" style="margin-top:10px">
+  <tr><th>Bill of materials</th><th>Part number</th><th>Notes</th></tr>
+  <tr><td>Mating connector, 6-pin AMP</td><td><strong>D 261 205 358-01</strong></td><td>Bosch Motorsport. Also fits 0 280 750 148/149/150/151/156/101.</td></tr>
+  <tr><td>Kit contents</td><td>&mdash;</td><td>Housing, 6 terminals, 6 wire seals, seal retainer</td></tr>
+  <tr><td>Wire gauge</td><td>&mdash;</td><td>Motor pins carry up to 10 A — size those two accordingly. Four sensor wires can be small. Not specified by Bosch; set it in the harness build list.</td></tr>
+</table>
+<p><strong>Buy the kit, not a loose housing.</strong> The AMP terminals in this family are not a common crimp.</p>
+
+<h3>Subaru BRZ pedal &mdash; the trap</h3>
+<div class="panel warn">
+  The BRZ pedal is a Toyota-family design, and Link's help file warns about exactly this family:
+  <blockquote style="margin:8px 0 8px 14px;padding-left:12px;border-left:3px solid #fca5a5;color:#7f1d1d">
+    "Some Accelerator Position sensors have one signal that stops changing before full travel is reached, these sensors are most often found on Toyota and Lexus engines."<br><br>
+    "APS(Main) MUST be assigned to the signal that changes over the full working range and the other signal assigned to APS (Sub). Under no conditions should the orientation and these two signals be swapped."
+  </blockquote>
+  <strong>Action:</strong> measure both pedal tracks across full travel <em>before</em> assigning them. If one track stops rising at roughly 60&ndash;70 percent, that track is APS (Sub), and PCLink's <code>APS (Sub) 100%</code> must be set to the APS (Main) percentage where it stops — <strong>not</strong> left at the default 100. Getting this wrong produces a permanent APS tracking-error fault and an 1800 rpm limit.
+</div>
+
+<h3>Link G4X XtremeX side &mdash; current allocation</h3>
+<table class="plain">
+  <tr><th>Function</th><th>Channel</th><th>ECU pin</th><th>Connects to</th></tr>
+  <tr><td>ETB motor +</td><td>Aux 9</td><td><code>B18</code></td><td>Bosch pin 4 / D</td></tr>
+  <tr><td>ETB motor &minus;</td><td>Aux 10</td><td><code>B26</code></td><td>Bosch pin 1 / A</td></tr>
+  <tr><td>ETB motor supply</td><td>V-Ethrottle</td><td><code>B5</code></td><td>fed by the Aux 2 relay</td></tr>
+  <tr><td>ETB power relay control</td><td>Aux 2</td><td><code>A20</code></td><td>relay coil, low side</td></tr>
+  <tr><td>TPS Main</td><td>An Volt 2</td><td><code>A22</code></td><td>Bosch pin 6 / F — Pot 1, rising</td></tr>
+  <tr><td>TPS Sub</td><td>An Volt 3</td><td><code>A33</code></td><td>Bosch pin 5 / E — Pot 2, falling</td></tr>
+  <tr><td>APS Main</td><td>An Volt 4</td><td><code>A14</code></td><td>BRZ pedal, full-range track</td></tr>
+  <tr><td>APS Sub</td><td>An Volt 5</td><td><code>B33</code></td><td>BRZ pedal, second track</td></tr>
+  <tr><td>Sensor 5 V</td><td>+5V Out</td><td><code>A32</code></td><td>Bosch pin 3 / C, plus both pedal tracks</td></tr>
+  <tr><td>Sensor ground</td><td>Gnd Out</td><td><code>A24</code> / <code>B22</code></td><td>Bosch pin 2 / B, plus both pedal tracks</td></tr>
+  <tr><td>EFI main relay hold</td><td>Aux 6</td><td><code>A28</code></td><td>keeps the ECU alive for key-off throttle reset</td></tr>
+</table>
+<div class="panel info">
+  <strong>Aux 9/10 is the right choice and is not arbitrary.</strong> Link's help file: <em>"Aux1/2 &amp; Aux3/4 require an External Ethrottle Controller whereas Aux9/10 has a built in controller and can be connected directly to the EThrottle motor."</em> The current allocation uses the built-in H-bridge. Nothing extra is needed.
+</div>
+<div class="panel warn">
+  <strong>Supply and ground.</strong> Nine sensor loads share the +5 V rail on <code>A32</code>: MAP, TPS&times;2, APS&times;2, three pressure transducers and the fuel-level divider. <strong>Confirm the XtremeX rail current limit against that total.</strong> If it is marginal, the DBW sensors take priority — Link raises fault code 72 (<em>Analog 5V Supply Error &mdash; E-Throttle</em>) and shuts the throttle down if the rail sags. DBW sensor ground must come from a Gnd Out pin, not a chassis ground, so the reference tracks the ECU.
+</div>
+
+<h3>Calibration procedure &mdash; do not reorder these steps</h3>
+<ol>
+  <li>Wire everything per the schematic.</li>
+  <li><strong>Remove the ETB power relay before first power-up.</strong> This stops the motor being driven unexpectedly.</li>
+  <li>PCLink &rarr; E-Throttle Mode = <strong>Setup Mode</strong>.</li>
+  <li>Set PWM Output = <strong>Aux 9/10</strong>. Set EThrottle Relay = <strong>Aux 2</strong>.</li>
+  <li>Set PWM Frequency (500 Hz to 1 kHz typical), Max Clamp and Min Clamp.</li>
+  <li>Build the E-Throttle Target Table. Y axis = APS (Main), X axis = Engine Speed. Start 1:1. Use a 0 percent target at 0 percent APS so the G4X idle control works properly.</li>
+  <li>APS window: Main Source = An Volt 4, Sub Source = An Volt 5. <strong>Assign Main to the full-range track.</strong></li>
+  <li>Set <code>APS (Sub) 100%</code> — see the pedal trap above. Then run APS Calibration, or enter the four voltages manually.</li>
+  <li>TPS window: Main Source = An Volt 2, Sub Source = An Volt 3.</li>
+  <li><strong>Reinstall the ETB power relay.</strong> Stand clear; the plate can snap open.</li>
+  <li>Run TPS Calibration with the bore clear. If PCLink reports the H-bridge polarity is reversed, fix it by inverting the <strong>Active State of Aux 9</strong> — do not swap the motor wires.</li>
+  <li>Tune the PID gains. Link's typical starting points: P 7.00, I 0.145, D 25.00, Max Clamp 90 %, Min Clamp &minus;90 %. All must be checked on this throttle body.</li>
+  <li>Set E-Throttle Mode = <strong>ON</strong>. Clear ECU fault codes. Confirm none return.</li>
+</ol>
+<div class="panel warn"><strong>Setup Mode disables every safety feature.</strong> The car must never be driven in Setup Mode.</div>
+
+<h3>Fault behaviour</h3>
+<p>With mode ON, any e-throttle fault shuts the throttle down and applies an <strong>1800 rpm limit</strong>. It will not restart until ECU power is cycled or the mode is changed.</p>
+<table class="plain">
+  <tr><th>Code</th><th>Fault</th></tr>
+  <tr><td>69 / 70</td><td>E-Throttle 1 max / min percent duty-cycle limit</td></tr>
+  <tr><td>71</td><td>Aux 9/10 supply error</td></tr>
+  <tr><td>72</td><td>Analog 5 V supply error</td></tr>
+  <tr><td>75</td><td>TPS versus target error</td></tr>
+  <tr><td>76</td><td><strong>TPS (Main) / TPS (Sub) tracking error</strong></td></tr>
+  <tr><td>77</td><td><strong>APS (Main) / APS (Sub) tracking error</strong></td></tr>
+  <tr><td>78 / 79</td><td>TPS Main / TPS Sub fault</td></tr>
+  <tr><td>84</td><td>Aux 9/10 H-bridge integrated circuit over-temperature</td></tr>
+  <tr><td>85 / 86</td><td>APS Main / APS Sub fault</td></tr>
+</table>
+<p><strong>Analog fault thresholds.</strong> Set Error Low and Error High on all four DBW analog channels. Link's typical values are 0.1 V and 4.9 V, tightened toward the sensor's real working range where possible. <strong>Fault Delay</strong> defaults to 1 second — leave it there unless there is a reason.</p>
+<p><strong>Key-off reset.</strong> Aux 6 holds the EFI main relay so the ECU stays powered after key-off, letting the throttle return to its default position under control. That is why Aux 6 exists. It must not be reassigned.</p>
+
+<h3>Conflicts with the FuryX A-B pin map (inventory item 24)</h3>
+<table class="plain">
+  <tr><th>Item</th><th>FuryX pin map says</th><th>Current design says</th><th>Verdict</th></tr>
+  <tr><td>ETB motor</td><td><strong>Aux 9 only</strong> — no Aux 10 row exists</td><td>Aux 9 (B18) <strong>and</strong> Aux 10 (B26)</td><td><span class="unres">Pin map is wrong.</span> An H-bridge needs both halves.</td></tr>
+  <tr><td>ETB relay</td><td>Aux 8 — "ETB Relay Switched"</td><td><strong>Aux 2 (A20)</strong></td><td><span class="unres">Conflict.</span> Aux 8 is the start relay in the current design.</td></tr>
+  <tr><td>V-Ethrottle</td><td>B — "ETB Motor Power In"</td><td>Same (B5)</td><td><span class="rec">Agrees.</span></td></tr>
+  <tr><td>TPS Main</td><td>An Volt 7 (B)</td><td>An Volt 2 (A22)</td><td><span class="unres">Conflict.</span></td></tr>
+  <tr><td>TPS Sub</td><td>An Volt 8 (B)</td><td>An Volt 3 (A33)</td><td><span class="unres">Conflict.</span></td></tr>
+  <tr><td>Pedal Main</td><td>An Volt 5 (B) "FPS MAIN"</td><td>An Volt 4 (A14)</td><td><span class="unres">Conflict.</span></td></tr>
+  <tr><td>Pedal Sub</td><td>An Volt 6 (B) "FPS SUB"</td><td>An Volt 5 (B33)</td><td><span class="unres">Dangerous.</span> The pin map's An Volt 5 is the <em>pedal main</em>; the design's An Volt 5 is the <em>pedal sub</em>. Same channel, two different jobs.</td></tr>
+  <tr><td>CAN-Lambda</td><td>DI 9 / DI 10 as CAN 2</td><td>CAN 1 on the comms port</td><td><span class="unres">Conflict</span> — see C5.</td></tr>
+  <tr><td>Aux 1</td><td>"Active Low Boost"</td><td>Boost solenoid</td><td><span class="rec">Agrees.</span></td></tr>
+</table>
+<div class="panel note">
+  <strong>Recommended: the current design wins on every row.</strong> The FuryX pin map has blank An Volt 1&ndash;4, no MAP sensor, no oil, fuel or coolant pressure channels, and no Aux 10. It is a partial draft, not a competing design — archive it rather than reconcile it. Its one unique contribution worth carrying forward is the sentence <em>"Triggers ETB Relay, to deliver power to V Ethrottle terminal. Acts as safety. ECU controls the relay."</em>
+</div>
+
+<h3>Build note &mdash; throttle bore versus manifold flange</h3>
+<table class="plain">
+  <tr><th>Measurement</th><th>Value</th></tr>
+  <tr><td>Bosch throttle bore</td><td>74.5 mm (plate stamped "745")</td></tr>
+  <tr><td>Soara dual-plenum flange inside diameter</td><td>3.000 in = 76.2 mm</td></tr>
+  <tr><td><strong>Difference</strong></td><td><strong>1.7 mm on diameter · 0.85 mm on radius</strong></td></tr>
+</table>
+<div class="panel info">
+  <strong>Record this, do not fix it.</strong> A 0.85 mm step on the radius is a small backward-facing step in the direction of flow — the better of the two orientations. It costs very little. Blend the adapter's inner edge if the adapter is being machined anyway, but this is not a reason to change parts.
+  <br><br><strong>What still needs specifying:</strong> the square four-bolt flange adapter itself — bolt pattern, thickness, sealing arrangement, and whether its bore is 74.5 mm, 76.2 mm, or tapered between the two. No document describes it.
+</div>
+
+<h3>5.4 Intelligent air conditioning control</h3>
+<div class="panel note">
+  <strong>Decision from Dan, 2026-08-31: document both control paths in parallel, fully specified. Neither is ruled out. He will choose after testing.</strong> This replaces the earlier "Option A preferred, Option B fallback only" framing. Both go into <code>AC-CONTROL.md</code> as equal, complete designs, and Option B's pin cost is treated as a real reservation.
+</div>
+
+<p>From <code>AC amplifier input signals.txt</code> — the OEM amplifier has its own sensors and takes these inputs: ignitor/tach, coolant temp switch, vent outlet/cabin temperature, evaporator core thermocouple, trinary high/low pressure switch, and an ECU cancel/request signal.</p>
+
+<h3>Option A &mdash; through the OEM amplifier</h3>
+<table class="plain">
+  <tr><th>Item</th><th>Detail</th></tr>
+  <tr><td>ECU pin</td><td>Aux 4 (<code>A18</code>), low-side</td></tr>
+  <tr><td>Wiring</td><td>Aux 4 &rarr; amplifier <code>ACT</code> terminal</td></tr>
+  <tr><td>Polarity</td><td>Active low. Sinks to ground to cancel, floats when inactive. <strong>No pull-up.</strong></td></tr>
+  <tr><td>ECU logic</td><td>Cancel on high engine load, wide throttle, or boost above a threshold</td></tr>
+  <tr><td>What the ECU does not do</td><td>It does not drive the compressor clutch. The amplifier keeps all its own protection logic.</td></tr>
+  <tr><td>Extra I/O</td><td><strong>None.</strong> One Aux pin total.</td></tr>
+  <tr><td>Risk</td><td>The exact <code>ACT</code> circuit is unconfirmed. <code>OEM Mini Diagrams\AC compressor simplified.png</code> is the file to check.</td></tr>
+</table>
+
+<h3>Option B &mdash; full Link ECU control</h3>
+<p>The ECU replaces the amplifier entirely and drives the compressor clutch itself. It must therefore take over every protection the amplifier used to provide.</p>
+<table class="plain">
+  <tr><th>Item</th><th>Detail</th></tr>
+  <tr><td>Clutch drive</td><td>Aux 4 (<code>A18</code>), low-side, grounds the A/C clutch relay coil directly. Same pin as Option A, different job.</td></tr>
+  <tr><td>Trinary pressure switch</td><td>One An Volt. <strong>An Volt 10 (spare)</strong> is the natural home.</td></tr>
+  <tr><td>Evaporator core temperature</td><td>One Temp channel — <strong>but Temp has zero spare.</strong> Either move the charge-pipe IAT off Temp 4 to An Volt 11 as a 0&ndash;5 V part, or use An Volt 11 directly with a thermistor and a divider.</td></tr>
+  <tr><td>Cabin A/C request</td><td>Switchboard <code>SW_MASK</code> bit 1 over CAN — <strong>no ECU pin needed.</strong> Already allocated; works for either option.</td></tr>
+  <tr><td>Condenser fan</td><td>Ign 5 (<code>B13</code>) as a spare-ignition low-side output. Same for both options.</td></tr>
+  <tr><td><strong>Extra ECU pins versus Option A</strong></td><td><strong>2</strong> — one An Volt for the trinary, one channel for the evaporator sensor</td></tr>
+  <tr><td>Pin headroom after Option B</td><td>An Volt: 2 spare &rarr; <strong>0 spare</strong>. Temp: 0 spare &rarr; 0 spare, or &minus;1 if the charge-pipe IAT is not moved first.</td></tr>
+</table>
+<div class="panel warn">
+  <strong>Tune logic Option B must implement, which the amplifier currently does for free:</strong>
+  <ol>
+    <li><strong>Low-pressure cut-out</strong> — disengage below the trinary's low threshold, protecting the compressor from running with no charge.</li>
+    <li><strong>High-pressure cut-out</strong> — disengage above the high threshold.</li>
+    <li><strong>Evaporator freeze protection</strong> — disengage as the core sensor drops toward 0 &deg;C, re-engage with hysteresis. Without this the evaporator ices and airflow stops.</li>
+    <li><strong>Cycling hysteresis</strong> — minimum on-time and off-time so the clutch does not chatter.</li>
+    <li><strong>Condenser fan trigger</strong> — fan on with the compressor, and above a pressure threshold.</li>
+    <li><strong>Load-based cancel</strong> — the same high load / wide throttle / boost cancel as Option A.</li>
+    <li><strong>Idle handling</strong> — with DBW this is a throttle-target offset, not an ISC duty, applied on clutch engagement so the engine does not dip.</li>
+  </ol>
+  <strong>The thing that would make Option B a bad decision is doing it without items 1 to 4.</strong> The amplifier is not just a relay, and replacing it means replacing what it protects against.
+</div>
+<div class="panel info">
+  <strong>Honest comparison.</strong> Option A costs one pin and inherits proven protection. Option B costs three pins and moves compressor protection into a hand-written tune. Option B gives finer control, full A/C state on CAN, and removes a 33-year-old module from the system. Both are legitimate.
+  <br><br>
+  <strong>Practical testing order.</strong> The two options share Aux 4 and differ only in what it connects to plus two extra sensor inputs. Option A can be wired and tested first, and Option B adopted later by adding the trinary and evaporator inputs and rerouting Aux 4 — <strong>provided An Volt 10 and 11 are reserved now and not given to anything else.</strong>
+  <br><br>
+  <strong>Recommendation:</strong> reserve An Volt 10 and An Volt 11 for Option B. If Dan settles on Option A, release them.
+</div>
+
+<h3>5.5 Electric power steering pump</h3>
+<p>Current allocation: <strong>Aux 7 (<code>A27</code>)</strong>, low-side pulse output, direct to the MRS pump <code>SPD</code> pin (yellow/white), no series resistor, with speedo-out scaling set so the pump idles down above roughly 10 km/h.</p>
+<table class="plain">
+  <tr><th>Researched fact</th><th>Detail</th></tr>
+  <tr><td>Signal origin</td><td>Normally from the combination meter, not the ECU</td></tr>
+  <tr><td>Pulse rate</td><td><strong>4 pulses per revolution</strong></td></tr>
+  <tr><td>Voltage</td><td><span class="unres">Unresolved — 0&ndash;5 V reported for a related RAV4 system, 0&ndash;12 V reported for MR2 units</span></td></tr>
+  <tr><td>Required?</td><td>No. Without it the pump winds down slowly on its own. With it, assist reduces at speed and reacts faster.</td></tr>
+</table>
+<table class="plain" style="margin-top:10px">
+  <tr><th>Gap</th><th>Detail</th></tr>
+  <tr><td>Signal voltage</td><td>A low-side output pulls to ground and floats when off, so the high level is set by whatever pull-up the pump provides. If the pump has none, a pull-up to 5 V or 12 V is required — <strong>which contradicts the "no external pull-ups needed" claim</strong> in the I/O table. Measure it before wiring.</td></tr>
+  <tr><td>Scaling</td><td>4 pulses per wheel revolution must be converted to a Link speedo-out frequency. Tyre rolling circumference and final drive ratio are needed and are not recorded anywhere.</td></tr>
+  <tr><td>Source of speed</td><td>Four ABS wheel-speed sensors on DI 3&ndash;6, marked proposed. Google Drive #36 names Highlander sensors at the rear, Camry at the front. Confirm they are the two-wire reluctor type the ECU can read.</td></tr>
+  <tr><td>Idle-up</td><td><code>Other ECU IO and MATH.txt</code> calls for "inverse of VSS out — idle up for EPS power draw". With DBW this becomes a throttle-target offset, not an ISC duty. Not yet written as tune logic.</td></tr>
+</table>
+
+<h3>5.6 Proposed new CAN frame 0x3F2</h3>
+<p>The three cluster-facing frames are frozen. The three RealDash frames 0x3EF&ndash;0x3F1 are full. Five of the eight values below have nowhere to go. Rather than disturb anything frozen, add one new ECU &rarr; RealDash frame.</p>
+<p><strong>0x3F2 (decimal 1010) — DBW, A/C and Chassis Extended. ECU &rarr; RealDash. 100 ms. Custom, BigEndian.</strong></p>
+<table class="plain">
+  <tr><th>Byte</th><th>Field</th><th>Type</th><th>Scale</th><th>Offset</th><th>Source</th></tr>
+  <tr><td>0</td><td>ETB target position %</td><td>uint8</td><td>1</td><td>0</td><td>ECU E-Throttle target</td></tr>
+  <tr><td>1</td><td>ETB actual position %</td><td>uint8</td><td>1</td><td>0</td><td>TPS main</td></tr>
+  <tr><td>2</td><td>Accelerator pedal %</td><td>uint8</td><td>1</td><td>0</td><td>APS main</td></tr>
+  <tr><td>3</td><td>DBW fault code</td><td>uint8</td><td>1</td><td>0</td><td>0 = OK; nonzero = Link throttle-error code (69&ndash;86)</td></tr>
+  <tr><td>4</td><td>Lambda controller status</td><td>uint8</td><td>1</td><td>0</td><td>CAN-Lambda module status/error</td></tr>
+  <tr><td>5</td><td>Cabin temperature</td><td>uint8</td><td>1</td><td>&minus;50</td><td>ECU echo of switchboard 0x640 — restores the value dropped from 0x3F0</td></tr>
+  <tr><td>6</td><td>EPS speed-out duty %</td><td>uint8</td><td>1</td><td>0</td><td>What the ECU is sending to the pump</td></tr>
+  <tr><td>7</td><td>A/C cancel state</td><td>uint8</td><td>1</td><td>0</td><td>0 = not cancelling, 1 = cancelling</td></tr>
+</table>
+<div class="panel info">
+  <strong>Why this is safe.</strong> 0x3F2 is inside the block the allocation table already marks "0x3F2&ndash;0x63F reserved / available". It is ECU-transmitted only. The cluster does not decode it and needs <strong>no firmware change</strong>. Only <code>link_g4x_realdash.xml</code> and the LCS/JSON pair change.
+  <br><br>
+  <strong>Byte 5 does not break the routing rule.</strong> The switchboard still talks only to the ECU. The ECU echoes. RealDash still reads only ECU frames. This is exactly the pattern already used for 0x3EF bytes 3 and 5.
+</div>
+
+<h2>6. Conflict list &mdash; 27 items</h2>
+<div class="controls">
+  <input type="search" id="cq" placeholder="Filter conflicts&hellip;" aria-label="Filter conflicts">
+  <span class="count" id="ccount"></span>
+</div>
+<div class="tablewrap" style="max-height:60vh">
+  <table id="cft">
+    <thead><tr>
+      <th data-k="id">#<span class="ar"></span></th>
+      <th data-k="subj">Subject<span class="ar"></span></th>
+      <th data-k="a">Source A<span class="ar"></span></th>
+      <th data-k="b">Source B<span class="ar"></span></th>
+      <th data-k="rec">Recommended<span class="ar"></span></th>
+      <th data-k="why">Why<span class="ar"></span></th>
+    </tr></thead>
+    <tbody id="ctb"></tbody>
+  </table>
+  <div class="empty" id="cempty" hidden>No conflicts match that filter.</div>
+</div>
+
+<h2>7. Proposed single source of truth</h2>
+<table class="plain">
+  <tr><th>Domain</th><th>Authoritative document</th><th>Why</th><th>What it replaces</th></tr>
+  <tr><td><strong>ECU I/O assignment</strong></td><td><code>XTREMEX-IO-TABLE.html</code></td><td>The only complete, internally consistent, DBW-aware channel plan. Carries the pin budget.</td><td><code>XTREMEX-IO-TABLE.md</code>, <code>FuryX_LoomA_LoomB_List.xlsx</code>, Drive <code>ECU I/O List.xlsx</code></td></tr>
+  <tr><td><strong>Wiring diagram</strong></td><td><code>SCHEMATIC-WIRING.html</code></td><td>The only document with real ECU pin numbers on every net.</td><td><code>FuryX A-B Connector_PinMap_v3.xlsx</code>, all FuryX netlist and connector files</td></tr>
+  <tr><td><strong>Harness build list</strong></td><td><code>HARNESS-BUILD-LIST.csv</code> — <em>to be created</em></td><td>Nothing currently holds wire colour, gauge and terminate-at in a form matching the current design.</td><td>Drive <code>ECU I/O List.xlsx</code></td></tr>
+  <tr><td><strong>CAN ID map (human)</strong></td><td><code>CAN-BUS-ID-ALLOCATION-TABLE.md</code></td><td>Already the master map. Needs 0x3BE and 0x3F2 added.</td><td><code>Link ECU CAN stream data.png</code>, <code>CAN-CONFIG-STATUS.md</code></td></tr>
+  <tr><td><strong>CAN frame contract (frozen)</strong></td><td><code>center-cluster-esp32-p4/CANBUS-ENCODE-DECODE-REFERENCE.html</code></td><td>Derived from the frozen cluster firmware. Nothing may contradict it.</td><td>the duplicate copy in <code>st185-link-ecu-config</code></td></tr>
+  <tr><td><strong>PCLink import (machine)</strong></td><td><code>link_g4x_can_setup.lcs</code> + <code>.json</code></td><td>Verified correct.</td><td>none</td></tr>
+  <tr><td><strong>RealDash channel map</strong></td><td><code>link_g4x_realdash.xml</code></td><td>Active work, not frozen.</td><td>none</td></tr>
+  <tr><td><strong>Interactive wiring app</strong></td><td>The hosted artifact, <em>after</em> its data is rebuilt from the schematic and its source is saved into the repo</td><td>Convenient, but currently the least trustworthy and least backed-up artifact in the set.</td><td>the two Google Doc saved states</td></tr>
+</table>
+<p><strong>Retired to <code>archive/</code></strong> — kept, not deleted, each with a one-line note saying why: inventory items 3, 11, 16, 17, 21, 24, 25, 27, 28, 29, 32, 35, 36, 37, 38, 39, 40, 41, 42, 43, 45, 51.</p>
+
+<h2>8. Proposed consolidated structure</h2>
+<div class="panel">
+<pre style="margin:0;font-family:Consolas,'Cascadia Mono',monospace;font-size:12px;line-height:1.5;overflow:auto">st185-link-ecu-config/
+├── README.md                          index + which file is authoritative for what
+├── DOCS-CLEANUP-PLAN.md               this document
+│
+├── docs/ecu/
+│   ├── XTREMEX-IO-TABLE.html          AUTHORITATIVE — channel plan, pin budget
+│   ├── SCHEMATIC-WIRING.html          AUTHORITATIVE — schematic with ECU pin numbers
+│   ├── HARNESS-BUILD-LIST.csv         AUTHORITATIVE — new; wire colour, AWG, terminate-at
+│   └── PIN-BUDGET.md                  new; free vs used per channel group, one page
+│
+├── docs/can/
+│   ├── CAN-BUS-ID-ALLOCATION-TABLE.md AUTHORITATIVE — ID map + byte layouts
+│   ├── CANBUS-ENCODE-DECODE-REFERENCE.html  FROZEN mirror of the cluster contract
+│   ├── CAN-BUS-MASTER-DESIGN.md       architecture, 5 nodes, fault tolerance
+│   └── CANBUS-LINK-G4X-CONFIG.md      PCLink setup steps
+│
+├── docs/devices/
+│   ├── LINK-CAN-LAMBDA.md             new; 0x3B6–0x3BE, 1 Mbit/s native, PCLink steps
+│   ├── ECUMASTER-SWITCHBOARD.md       renamed; 500→1000 kbps, 0.5 A limit, routing rule
+│   ├── DBW-ETB-AND-PEDAL.md           new; Bosch 0 280 750 474 (74.5 mm) + BRZ pedal,
+│   │                                  connector BOM, safety settings, calibration order
+│   ├── AC-CONTROL.md                  new; Option A and Option B BOTH fully specified
+│   │                                  (Dan's decision 2026-08-31 — neither ruled out)
+│   └── EPS-PUMP.md                    new; SPD signal, scaling, pull-up question
+│
+├── docs/notes/
+│   └── OTHER-ECU-IO-AND-MATH.md       living note, converted from .txt
+│
+├── config/
+│   ├── link_g4x_can_setup.lcs
+│   ├── link_g4x_can_setup.json
+│   └── link_g4x_realdash.xml
+│
+├── app/
+│   └── xtremex-wiring-app.html        new; the interactive app's source, saved locally
+│
+├── WIRING.md                          CAN physical topology + cluster power only
+└── archive/
+    └── README.md                      what was retired, when, and why</pre>
+</div>
+<div class="panel note">
+  <strong>Rules to adopt with the structure:</strong>
+  <ol>
+    <li>One fact lives in one file. Everything else links to it.</li>
+    <li>Nothing gets published from a working tree. Commit first.</li>
+    <li>Any file that names a Link ECU model must say <strong>XtremeX</strong>. Any file that names the engine must say <strong>5S-GTE</strong>.</li>
+    <li>The interactive app's source lives in <code>app/</code> and is regenerated from <code>docs/ecu/</code>, never the reverse.</li>
+  </ol>
+</div>
+
+<h2>9. Ordered work plan</h2>
+<table class="plain">
+  <tr><th style="width:52px">Step</th><th>What happens</th><th>Decision needed first</th><th>Depends on</th></tr>
+  <tr><td><strong>0</strong></td><td><strong>Protect what exists — today.</strong> Commit <code>SCHEMATIC-WIRING.html</code>. Merge <code>ECU-wiring-design</code> into <code>main</code> and push (right now <code>main</code> on GitHub does not have the DBW I/O table). Export the app's source from the hosted artifact and commit it to <code>app/</code>. Delete the stale worktree after confirming it holds nothing unique.</td><td><span class="rec">None.</span> Pure risk reduction; nothing is lost by doing it.</td><td>&mdash;</td></tr>
+  <tr><td><strong>1</strong></td><td>Fix the two global facts: 3S-GTE &rarr; 5S-GTE, FuryX &rarr; XtremeX, everywhere.</td><td>Confirm the engine is a 5S-GTE and the ECU is a G4X XtremeX.</td><td>Step 0</td></tr>
+  <tr><td><strong>2</strong></td><td>Retire the contradictions to <code>archive/</code>. Before archiving Drive #36, extract its wire colour and AWG detail into <code>HARNESS-BUILD-LIST.csv</code> — that is the only place that data exists.</td><td>Approve the archive list; confirm Drive #36's wiring detail is worth carrying forward.</td><td>Step 1</td></tr>
+  <tr><td><strong>3</strong></td><td>Resolve the conflicts needing physical measurement: <strong>C11</strong> wire colours from the XtremeX guide; <strong>C18</strong> the two physical harness ends; <strong>C21</strong> the EPS <code>SPD</code> voltage; plus <strong>the BRZ pedal track probe</strong> and the <strong>+5 V rail budget</strong>.</td><td>Dan does the measurements, or approves ordering the work.</td><td>Nothing — can run in parallel with Steps 1&ndash;2</td></tr>
+  <tr><td><strong>4</strong></td><td>Build the consolidated structure. Move files. Write <code>PIN-BUDGET.md</code> and <code>HARNESS-BUILD-LIST.csv</code>. Rewrite <code>README.md</code> as an index naming the authoritative file per domain.</td><td>Approve the structure in section 8.</td><td>Steps 1, 2</td></tr>
+  <tr><td><strong>5</strong></td><td>Close the CAN gaps: reserve 0x3B6&ndash;0x3BE; add 0x3F2 to the allocation table, LCS, JSON and RealDash XML; diff the JSON against the LCS; correct the node count 4 &rarr; 5; assign SW_MASK bits 5&ndash;7.</td><td>Approve the 0x3F2 byte layout and confirm the cabin-temperature echo is wanted.</td><td>Step 4</td></tr>
+  <tr><td><strong>6</strong></td><td>Write the five device documents in full — including both A/C options at equal depth.</td><td>Confirm the ABS wheel-speed sensors are the intended speed source. <span class="rec">A/C no longer needs a decision here.</span></td><td>Steps 3, 4</td></tr>
+  <tr><td><strong>7</strong></td><td>Rebuild the app's data from <code>SCHEMATIC-WIRING.html</code>, not from either Google Doc. Save the source to <code>app/</code>. Retire both saved states.</td><td>Confirm the app should be kept at all, given it has drifted twice and has no backup.</td><td>Steps 4, 5, 6</td></tr>
+  <tr><td><strong>8</strong></td><td>Verify. Three-way cross-check every pin across the build list, the schematic and the I/O table. Confirm no channel is assigned twice. Confirm LCS, JSON, RealDash XML and the allocation table agree byte for byte. Confirm the frozen cluster contract is untouched. Push. Address Copilot review comments.</td><td><span class="rec">None.</span></td><td>All of the above</td></tr>
+</table>
+
+<h2>10. What could not be found or verified</h2>
+<div class="panel warn">
+<ol>
+  <li><strong>The interactive wiring app's source code.</strong> It does not exist on this machine. If the hosted artifact is deleted, the app is gone.</li>
+  <li><strong><code>link_g4x_can_setup.json</code>.</strong> Not opened this pass. Claims to be the canonical twin of the LCS. Unverified.</li>
+  <li><strong>The Bosch part number — RESOLVED 2026-08-31</strong> from photographs. Still unverified: no Bosch data sheet names 0 280 750 474 directly, so the two sensor voltage curves are inherited from the platform data sheet. Confirm on the bench.</li>
+  <li><strong>The BRZ pedal part number and connector pinout.</strong> No factory pinout found in an accessible source. <strong>This matters more than it looks</strong> — if one track stops rising early, <code>APS (Sub) 100%</code> must be set to that value or the throttle will fault out. Probe both tracks before wiring.</li>
+  <li><strong>Ignition and injector wire colours.</strong> Three sources, three answers. None matches the vendor guide because the vendor guide was not parsed.</li>
+  <li><strong>The EPS <code>SPD</code> signal voltage.</strong> Both 0&ndash;5 V and 0&ndash;12 V reported. Determines whether a pull-up is needed.</li>
+  <li><strong>The two physical CAN bus ends.</strong> Three sources, three answers. An install-time measurement, not a documentation decision.</li>
+  <li><strong><code>TE_BOM_with_screenshots.xlsx</code></strong> and <strong><code>st185-furyx-ecu-package.zip</code></strong>. Not opened.</li>
+  <li><strong>The A/C amplifier <code>ACT</code> circuit.</strong> The intent is described; the OEM diagram was not read this pass, so the exact terminal and polarity are unconfirmed.</li>
+  <li><strong>The square four-bolt flange adapter.</strong> The 1.7 mm step is quantified, but no document describes the adapter's bolt pattern, thickness, sealing, or bore.</li>
+  <li><strong>The XtremeX +5 V rail current limit.</strong> Nine sensor loads on it, four safety-critical. Fault code 72 shuts the throttle down if it sags.</li>
+  <li><strong>Tyre rolling circumference and final drive ratio.</strong> Needed for EPS speed-out scaling. Not recorded anywhere.</li>
+  <li><strong>GitHub remote state.</strong> The <code>github</code> MCP server failed to connect this session ("Incompatible auth server: does not support dynamic client registration"), so remote branch state could not be checked directly. Local git says <code>main</code> does not contain commit <code>b945ac6</code>.</li>
+</ol>
+</div>
+
+<h2>11. Assumptions being challenged</h2>
+<div class="panel">
+<ol>
+  <li><strong>"No external pull-up resistors are required."</strong> <code>XTREMEX-IO-TABLE.html</code> states this as settled. It cannot be settled until the EPS <code>SPD</code> line voltage is measured. A low-side output cannot produce a high level on its own.</li>
+  <li><strong>"The pin budget is a comfortable fit."</strong> Aux has <strong>zero</strong> spare outputs. Temp has <strong>zero</strong> spare inputs. An Volt has two spare, and if Dan chooses A/C Option B, <strong>both of those go too</strong>. That is not comfortable — it is exactly full, and one decision away from over-subscribed.</li>
+  <li><strong>Four ABS wheel-speed sensors on DI 3&ndash;6.</strong> This consumes four of ten digital inputs, is still marked "proposed", and carries a note that it "drops first". Committing four inputs to a feature that is first to be cut is worth reconsidering before the harness is cut.</li>
+  <li><strong>The interactive wiring app as a working tool.</strong> It has produced two saved states that disagree with each other and with the repo, and it has no backup. Right now it is a source of drift, not a cure for it. Either it becomes generated output from the repo, or it should be retired.</li>
+</ol>
+</div>
+
+<h2>12. Open questions and decisions for Dan</h2>
+<div class="panel warn">
+<ol>
+  <li><strong>Confirm the engine and ECU.</strong> 5S-GTE (5S-FE block, 3S-GTE head, 2.19 L) and Link G4X <strong>XtremeX</strong>?</li>
+  <li><strong>Approve <code>XTREMEX-IO-TABLE.html</code> and <code>SCHEMATIC-WIRING.html</code> as authoritative</strong>, superseding the two OneDrive spreadsheets and the Markdown I/O table.</li>
+  <li><strong>Approve the archive list</strong> — 22 items moved to <code>archive/</code>, none deleted.</li>
+  <li><strong>Approve the folder structure</strong> in section 8.</li>
+  <li><strong>A/C — decided 2026-08-31: both paths documented, choice deferred.</strong> Follow-on: <strong>approve reserving An Volt 10 and An Volt 11</strong> for Option B's trinary and evaporator sensors. Give them away now and Option B stops being available without moving another channel.</li>
+  <li><strong>Approve new CAN frame 0x3F2</strong> and its byte layout, including the cabin-temperature echo on byte 5.</li>
+  <li><strong>Decide the fate of the interactive wiring app</strong> — keep and regenerate from the schematic, or retire. Step 0 saves it either way.</li>
+  <li><strong>Confirm the speed source</strong> for EPS and traction control — four ABS wheel-speed sensors on DI 3&ndash;6, or something cheaper in pins.</li>
+  <li><strong>Provide tyre rolling circumference and final drive ratio</strong> so EPS speed-out scaling can be calculated.</li>
+  <li><strong>Measure the MRS pump <code>SPD</code> line</strong> — 0&ndash;5 V or 0&ndash;12 V, and whether it has an internal pull-up.</li>
+  <li><strong>Identify the two physical CAN bus ends</strong> on the installed harness so termination is documented once and correctly.</li>
+  <li><strong>Describe the square four-bolt flange adapter</strong> — bolt pattern, thickness, sealing, and whether its bore is 74.5 mm, 76.2 mm or tapered. The 1.7 mm step itself is a recorded build note and needs no action.</li>
+  <li><strong>Probe the BRZ pedal</strong> across full travel. Report both track voltages closed and at full throttle, and — if one track stops rising early — the APS (Main) percentage where it stops. That number goes straight into <code>APS (Sub) 100%</code>.</li>
+  <li><strong>Confirm the XtremeX +5 V rail current limit</strong> against the nine sensor loads on it.</li>
+  <li><strong>Add <code>D 261 205 358-01</code></strong> (Bosch 6-pin mating connector kit) to the parts list if not already bought.</li>
+  <li><strong>Decide where CEL moves to.</strong> Aux 7 now belongs to the EPS speed-out and Aux is full. A spare Ign or Inj output is the obvious home.</li>
+  <li><strong>Fix or replace the GitHub MCP connection</strong> so remote branch state can be checked and Copilot review comments addressed.</li>
+</ol>
+</div>
+
+<footer>
+  Plan only. No files have been changed. Sources: local repos, the Celica OneDrive folder, Google Drive, past Claude session transcripts, Bosch Motorsport, Link Engine Management and ECUMaster published documentation.
+</footer>
+
+</main>
+
+<script>
+"use strict";
+(function () {
+  var INV = [
+    {id:1,loc:"repo st185",path:"XTREMEX-IO-TABLE.html",fmt:"HTML",mod:"2026-07-13",cov:"Full XtremeX channel plan: DBW, EPS, A/C, CAN-Lambda, switchboard, pin budget",st:"CURRENT",why:"The only complete and internally consistent I/O document. Exists only on branch ECU-wiring-design; never merged to main."},
+    {id:2,loc:"repo st185",path:"SCHEMATIC-WIRING.html",fmt:"HTML/SVG",mod:"2026-07-27",cov:"Schematic with real ECU pin numbers (A/B 34-pin + Comms 6-pin)",st:"CURRENT",why:"Newest wiring artifact in the project. UNTRACKED in git - never committed, never pushed."},
+    {id:3,loc:"repo st185",path:"XTREMEX-IO-TABLE.md",fmt:"Markdown",mod:"2026-07-13",cov:"Channel plan",st:"INCORRECT",why:"Says the car is cable throttle and Aux 9/10 unused. An Volt map contradicts item 1 on 8 of 11 channels."},
+    {id:4,loc:"repo st185",path:"CAN-BUS-ID-ALLOCATION-TABLE.md",fmt:"Markdown",mod:"2026-07-13",cov:"Master CAN ID map, byte layouts sections A-E",st:"CURRENT",why:"Accurate for what it covers. Missing CAN-Lambda transmit ID 0x3BE and any DBW/EPS/AC telemetry."},
+    {id:5,loc:"repo st185",path:"link_g4x_can_setup.lcs",fmt:"XML",mod:"2026-07-13",cov:"PCLink CAN transmit streams",st:"CURRENT",why:"All four prior bugfixes verified present. See section 4."},
+    {id:6,loc:"repo st185",path:"link_g4x_can_setup.json",fmt:"JSON",mod:"2026-07-13",cov:"Canonical twin of the LCS",st:"UNVERIFIED",why:"Not opened this pass. Must be diffed against the LCS before it is trusted."},
+    {id:7,loc:"repo st185",path:"link_g4x_realdash.xml",fmt:"XML",mod:"2026-07-13",cov:"RealDash channel description, frames 0x3EF-0x3F1",st:"CURRENT",why:"RealDash is active work, not frozen."},
+    {id:8,loc:"repo st185",path:"CANBUS-ENCODE-DECODE-REFERENCE.html",fmt:"HTML",mod:"2026-07-13",cov:"ECU to cluster encode/decode contract",st:"CURRENT",why:"Byte-identical copy of the cluster repo file (item 19). One is redundant."},
+    {id:9,loc:"repo st185",path:"CANBUS-LINK-G4X-CONFIG.md",fmt:"Markdown",mod:"2026-07-13",cov:"PCLink module settings, stream import, user streams",st:"CURRENT",why:"No issues found."},
+    {id:10,loc:"repo st185",path:"CAN-BUS-MASTER-DESIGN.md",fmt:"Markdown",mod:"2026-07-13",cov:"Bus architecture, fault tolerance, topology",st:"CURRENT",why:"Describes a 4-node bus. There are 5 nodes - CAN-Lambda is on the bus."},
+    {id:11,loc:"repo st185",path:"CAN-CONFIG-STATUS.md",fmt:"Markdown",mod:"2026-07-04",cov:"Handoff snapshot",st:"SUPERSEDED",why:"A dated status note. Content now covered by items 4 and 9."},
+    {id:12,loc:"repo st185",path:"ECUMASTER_SWITCHBOARD_SETUP.md",fmt:"Markdown",mod:"2026-07-13",cov:"Switchboard configuration steps",st:"CURRENT",why:"No issues found."},
+    {id:13,loc:"repo st185",path:"WIRING.md",fmt:"Markdown",mod:"2026-07-13",cov:"CAN physical topology, cluster power, GPIO",st:"CURRENT",why:"Says 4-node bus. Overlaps heavily with item 21."},
+    {id:14,loc:"repo st185",path:"Other ECU IO and MATH.txt",fmt:"Text",mod:"2026-07-13",cov:"Living note: extra I/O, tune math ideas",st:"CURRENT",why:"Raw note. Content already reflected in item 1."},
+    {id:15,loc:"repo st185",path:"AC amplifier input signals.txt",fmt:"Text",mod:"2026-07-13",cov:"Living note: OEM A/C amplifier inputs, ACT cancel approach",st:"CURRENT",why:"Raw note. The basis for the A/C plan in item 1."},
+    {id:16,loc:"repo st185",path:"README.md",fmt:"Markdown",mod:"2026-07-13",cov:"Repo index and file table",st:"SUPERSEDED",why:"File table lists neither item 1 nor item 2. Says 4-node bus. Does not say RealDash is unfrozen."},
+    {id:17,loc:"repo st185",path:".claude/worktrees/bridge-cse_018RH.../*",fmt:"mixed",mod:"2026-07-18",cov:"Full duplicate of 30+ repo files",st:"OBSOLETE",why:"Stale git worktree. Duplicates every document at an older revision. A search-and-confuse hazard."},
+    {id:18,loc:"repo st185",path:"REALDASH-LAYOUT.md, realdash-simulation.html, rd-build/**",fmt:"mixed",mod:"2026-07-13",cov:"RealDash dashboard design",st:"CURRENT",why:"Out of scope for this cleanup except as consumers of the CAN map."},
+    {id:19,loc:"repo cluster",path:"CANBUS-ENCODE-DECODE-REFERENCE.html",fmt:"HTML",mod:"2026-07-04",cov:"ECU to cluster frame contract, derived from main/canbus.c",st:"CURRENT",why:"Named source of truth for frames 0x3E8-0x3EE. FROZEN. Do not change."},
+    {id:20,loc:"repo cluster",path:"PINOUT.md",fmt:"Markdown",mod:"2026-07-04",cov:"Cluster GPIO",st:"CURRENT",why:"Cluster scope, not ECU."},
+    {id:21,loc:"repo cluster",path:"WIRING.md",fmt:"Markdown",mod:"2026-07-04",cov:"Cluster power, CAN transceiver, GPIO",st:"SUPERSEDED",why:"The st185 copy (item 13) is newer and broader."},
+    {id:22,loc:"repo cluster",path:"docs/harness/HARNESS_WIRING_DIAGRAM.html",fmt:"HTML",mod:"2026-07-04",cov:"Cluster harness drawing",st:"CURRENT",why:"Cluster harness, not ECU harness."},
+    {id:23,loc:"repo cluster",path:"docs/harness/CONNECTOR_BOM.csv + CONNECTOR_BOM_AND_HARNESS.md",fmt:"CSV/MD",mod:"2026-07-04",cov:"Cluster connector BOM",st:"CURRENT",why:"Cluster scope."},
+    {id:24,loc:"OneDrive",path:"Tables\\FuryX A-B Connector_PinMap_v3.xlsx",fmt:"XLSX",mod:"2026-07-04",cov:"A/B connector map with DBW pins",st:"INCORRECT",why:"Named for the wrong ECU. Puts CAN-Lambda on CAN2 (DI 9/10). Lists Aux 9 for the ETB motor but no Aux 10 - an H-bridge needs both. An Volt map contradicts item 1, and its An Volt 5 is the pedal MAIN where the design has pedal SUB."},
+    {id:25,loc:"OneDrive",path:"Tables\\FuryX_LoomA_LoomB_List.xlsx",fmt:"XLSX",mod:"2026-07-04",cov:"Loom A and B wire list",st:"OBSOLETE",why:"Every pin number is the literal placeholder A-?? / B-??. No MAP sensor. A/C on Aux 1, ignition on loom B, cam on Trigger 1, directly-wired LSU 4.9 heater. Contradicts every other source."},
+    {id:26,loc:"OneDrive",path:"Tables\\TE_BOM_with_screenshots.xlsx",fmt:"XLSX",mod:"unknown",cov:"Connector and terminal BOM",st:"UNVERIFIED",why:"Not opened this pass."},
+    {id:27,loc:"OneDrive",path:"Tables\\blueprint (2) (2)_OLD.xlsx",fmt:"XLSX",mod:"unknown",cov:"Unknown",st:"OBSOLETE",why:"Marked _OLD in the filename."},
+    {id:28,loc:"OneDrive",path:"Other ECU IO and MATH.txt, AC amplifier input signals.txt",fmt:"Text",mod:"unknown",cov:"Living notes",st:"SUPERSEDED",why:"Duplicates of items 14 and 15. Two copies of a living note is one copy too many."},
+    {id:29,loc:"OneDrive",path:"Link G4X FuryX Trigger & Ignit 1.xml, FuryX Harness Connector Parts, 1.xml",fmt:"XML",mod:"2026-01",cov:"FuryX harness data",st:"OBSOLETE",why:"Predates the switch to XtremeX (commit d2dda23, 2026-07-04)."},
+    {id:30,loc:"OneDrive",path:"XtremeXQuickstartGuide.pdf",fmt:"PDF",mod:"unknown",cov:"Vendor pin and loom reference",st:"CURRENT",why:"The authority for pin numbers and wire colours."},
+    {id:31,loc:"OneDrive",path:"OEM Mini Diagrams\\*.png (9 files)",fmt:"PNG",mod:"unknown",cov:"OEM A/C compressor, combination meter, cooling fan, idle speed, MAP, spark, CEL, circuit opening relay, OEM ECU",st:"CURRENT",why:"Needed for the A/C amplifier and EPS speed-signal work."},
+    {id:32,loc:"OneDrive",path:"TrackCluster CAN Sender\\center_cluster_wiring_diagram_v3.png",fmt:"PNG",mod:"unknown",cov:"Cluster wiring",st:"SUPERSEDED",why:"_v4_shortened.png in the same folder is newer."},
+    {id:33,loc:"OneDrive",path:"Parts Invoices\\*.pdf (68 files)",fmt:"PDF",mod:"unknown",cov:"Purchase records",st:"UNVERIFIED",why:"Image-only scans with no text layer. Could not confirm the Bosch part number from them - Dan confirmed it from photographs of the part instead."},
+    {id:34,loc:"Google Drive",path:"Link ECU Wiring App",fmt:"Google Doc",mod:"2026-08-28",cov:"Saved state of the interactive wiring app (JSON)",st:"CURRENT",why:"The newest saved app state. Still carries the stale note 'ST185 is not drive-by-wire' on the throttle row."},
+    {id:35,loc:"Google Drive",path:"Link ECU wiring app",fmt:"Google Doc",mod:"2026-08-22",cov:"Earlier saved state + the app's artifact URL",st:"SUPERSEDED",why:"Holds the only recorded link to the app: claude.ai/public/artifacts/fe41bba4-4b82-44aa-9d74-ab1129eae3c8"},
+    {id:36,loc:"Google Drive",path:"ECU I/O List.xlsx",fmt:"XLSX",mod:"2026-03-10",cov:"Harness build list: wire colour, AWG, terminate-at",st:"SUPERSEDED",why:"Useful build detail that exists nowhere else, but the design has moved on. Says 'side feed intake manifold'. Lists A/C as 'if there's IO left'."},
+    {id:37,loc:"Google Drive",path:"st185-furyx-ecu-package.zip",fmt:"ZIP",mod:"2026-06-09",cov:"Unknown ECU package",st:"UNVERIFIED",why:"Named for the wrong ECU. Not opened."},
+    {id:38,loc:"Google Drive",path:"FuryX Engine Harness Netlist, 1.pdf + .xml",fmt:"PDF/XML",mod:"2026-01-23",cov:"FuryX netlist",st:"OBSOLETE",why:"Wrong ECU."},
+    {id:39,loc:"Google Drive",path:"FuryX Harness Connector Parts, 1.xml",fmt:"XML",mod:"2026-01-23",cov:"FuryX connectors",st:"OBSOLETE",why:"Wrong ECU. Duplicate of item 29."},
+    {id:40,loc:"Google Drive",path:"Link G4X FuryX Trigger & Ignit 1.pdf + .xml",fmt:"PDF/XML",mod:"2026-01-23",cov:"FuryX trigger/ignition",st:"OBSOLETE",why:"Wrong ECU. Duplicate of item 29."},
+    {id:41,loc:"Google Drive",path:"FuryXQuickstartGuide.pdf, FuryXQuickstartGuide_copy.pdf",fmt:"PDF",mod:"2026-01",cov:"FuryX vendor guide",st:"OBSOLETE",why:"Wrong ECU. Two copies. Item 30 replaces both."},
+    {id:42,loc:"Google Drive",path:"center-CANBUS-LINK-G4X-CONFIG.md + 'Copy of' duplicate",fmt:"Markdown",mod:"2026-05",cov:"Old PCLink config guide",st:"SUPERSEDED",why:"Both 5,033 bytes - identical copies of a May version of item 9."},
+    {id:43,loc:"Google Drive",path:"TrackCluster ECU Dashboard.html",fmt:"HTML",mod:"2026-05-18",cov:"1.3 MB dashboard mock-up",st:"OBSOLETE",why:"Predates the current RealDash work by two months."},
+    {id:44,loc:"Google Drive",path:"Wiring_Harness_Template, Blank_Wiring_Harness_Template",fmt:"Sheets",mod:"2026-06 / 2026-08",cov:"Empty harness templates",st:"UNVERIFIED",why:"Templates, not data."},
+    {id:45,loc:"Google Drive",path:"Link ECU CAN stream data.png",fmt:"PNG",mod:"2026-02-18",cov:"Screenshot of a CAN stream setup",st:"SUPERSEDED",why:"Predates the current CAN map by five months."},
+    {id:46,loc:"Google Drive",path:"3SGTE ECU Pinouts.pdf",fmt:"PDF",mod:"2025-06",cov:"OEM 3S-GTE ECU pinout",st:"CURRENT",why:"Valid as an OEM reference for the donor loom, but it is not this engine."},
+    {id:47,loc:"Google Drive",path:"Toyota - ST185 - Electrical Wiring Diagram.pdf (x2), 90 ST185 Wiring Diagram.pdf/.png",fmt:"PDF/PNG",mod:"2026-02 / 2026-05",cov:"OEM chassis wiring",st:"CURRENT",why:"Four copies of the same 2,410,654-byte document. Keep one."},
+    {id:48,loc:"Google Drive",path:"Custom_stream_setup_LINK.pdf",fmt:"PDF",mod:"2026-03-19",cov:"Link custom stream how-to",st:"CURRENT",why:"Vendor reference."},
+    {id:49,loc:"Google Drive",path:"Daves example Bulkhead Pinouts ST185.pdf",fmt:"PDF",mod:"2026-03-10",cov:"Example bulkhead pinout",st:"CURRENT",why:"Reference."},
+    {id:50,loc:"Google Drive",path:"Motec 4 Cyl Overall Wiring.pdf",fmt:"PDF",mod:"2026-03-03",cov:"Motec example schematic",st:"CURRENT",why:"Reference only. Different ECU brand."},
+    {id:51,loc:"Google Drive",path:"Celica Inventory.xlsx",fmt:"XLSX",mod:"2024-10",cov:"Parts inventory",st:"OBSOLETE",why:"Out of scope, and 22 months old."},
+    {id:52,loc:"Artifact",path:"claude.ai/public/artifacts/fe41bba4-4b82-44aa-9d74-ab1129eae3c8",fmt:"Hosted HTML",mod:"unknown",cov:"Interactive device / pin / bus editor",st:"CURRENT",why:"NO LOCAL COPY EXISTS ANYWHERE. Not in any repo, not in C:\\Users\\danie\\Claude\\Artifacts, not in the Cowork artifact manifest, not in any session transcript. Only the URL and two data exports survive."},
+    {id:53,loc:"Artifact",path:"C:\\Users\\danie\\Claude\\Artifacts\\today-status\\index.html",fmt:"HTML",mod:"2026-05-22",cov:"Unrelated status page",st:"OBSOLETE",why:"Not a Celica artifact. The only file in that folder."},
+    {id:54,loc:"Artifact",path:"C:\\Users\\danie\\Claude\\Projects",fmt:"folder",mod:"n/a",cov:"n/a",st:"MISSING",why:"The directory does not exist on this machine."},
+    {id:55,loc:"Sessions",path:"~57 transcripts under local-agent-mode-sessions",fmt:"JSON",mod:"2026-05 to 2026-08",cov:"Reasoning history",st:"CURRENT",why:"The DBW dual-APP / dual-TPS requirement is in local_f8383d8c-...json (2026-08-26). The 5S-GTE displacement (2.19 L) is confirmed in the 2026-08-30 turbo sessions."}
+  ];
+
+  var CFT = [
+    {id:"C1",subj:"Engine",a:"3S-GTE - every repo document",b:"5S-GTE - Dan, and the 2026-08-30 turbo research (2.19 L, 5S-FE block, 3S-GTE head)",rec:"5S-GTE",why:"XTREMEX-IO-TABLE.html already contradicts itself, saying '36-2 crank wheel (Beams/5S)'. The 3S-GTE label is a copy-forward error."},
+    {id:"C2",subj:"ECU model",a:"FuryX - pin map, loom list, quickstart PDFs, netlist, harness parts, package zip",b:"XtremeX - repo docs, XtremeXQuickstartGuide.pdf, commit d2dda23 (2026-07-04)",rec:"XtremeX",why:"Every FuryX-named file predates 2026-07-04."},
+    {id:"C3",subj:"Throttle type",a:"Cable - XTREMEX-IO-TABLE.md, both app saves",b:"DBW - both HTML files, pin map, Drive I/O list",rec:"DBW",why:"The hardware is bought and photographed. The cable-throttle claim is the single most misleading statement in the documentation set."},
+    {id:"C4",subj:"An Volt allocation",a:"Three incompatible maps: HTML pair / pin map #24 / loom list #25",b:"-",rec:"HTML pair",why:"The only one that is complete, pin-numbered, and consistent with the DBW hardware."},
+    {id:"C5",subj:"CAN-Lambda bus",a:"CAN 1 - HTML pair, all repo docs",b:"CAN 2 on DI 9/10 - pin map #24",rec:"CAN 1",why:"Keeps one bus, keeps DI 9/10 free, and the module is already 1 Mbit/s native. Nothing is gained by a second bus."},
+    {id:"C6",subj:"Aux 1",a:"Boost solenoid - HTML pair, pin map, both app saves",b:"A/C clutch relay - loom list #25",rec:"Boost solenoid",why:"Four sources to one, and the loom list is the file with placeholder pin numbers."},
+    {id:"C7",subj:"Aux 2",a:"ETB power relay - HTML pair",b:"Idle ISC - XTREMEX-IO-TABLE.md; A/C fan - 2026-08-22 app save",rec:"ETB power relay",why:"With DBW there is no ISC valve."},
+    {id:"C8",subj:"Aux 7",a:"EPS speed-out - HTML pair",b:"Tacho/CEL - XTREMEX-IO-TABLE.md; CEL - 2026-08-28 app save",rec:"EPS speed-out",why:"Aux is 100 percent full. CEL must move to a spare Ign or Inj output."},
+    {id:"C9",subj:"Trigger 1",a:"Crank - HTML pair, MD, app saves, pin map",b:"Cam - loom list #25",rec:"Trigger 1 = crank",why:"Loom list is the outlier and is obsolete."},
+    {id:"C10",subj:"Ignition loom",a:"Loom A (A13-A10) - HTML pair, pin map",b:"Loom B - loom list #25",rec:"Loom A",why:"The schematic gives real pin numbers."},
+    {id:"C11",subj:"Ignition wire colour",a:"Orange family - MD; White - pin map",b:"Blue/White etc - loom list",rec:"UNRESOLVED",why:"Read the colours off XtremeXQuickstartGuide.pdf. Do not guess."},
+    {id:"C12",subj:"Turbo speed input",a:"DI 1 (A30) - HTML pair",b:"DI 5 - both app saves; DI 2 - loom list",rec:"DI 1",why:"Schematic has the pin number."},
+    {id:"C13",subj:"Flex-fuel input",a:"DI 2 (A31) - HTML pair",b:"DI 1 - app saves and MD",rec:"DI 2",why:"Schematic has the pin number."},
+    {id:"C14",subj:"Fuel temperature source",a:"Flex sensor - HTML pair",b:"Temp 4 discrete - MD, 08-22 app save; Temp 3 - loom list",rec:"Flex sensor",why:"It frees Temp 4 for the charge-pipe IAT. Temp has zero spare, so this matters."},
+    {id:"C15",subj:"Clutch switch",a:"DI 8 (B29) - HTML pair",b:"DI 2 - app saves and MD",rec:"DI 8",why:"Flat-shift latency is the reason it is ECU-direct."},
+    {id:"C16",subj:"Brake / reverse / cruise",a:"Switchboard over CAN - HTML pair",b:"ECU DI 3/DI 4 - MD, app saves",rec:"Switchboard",why:"Keeps ECU digital inputs for frequency signals, which the switchboard cannot do."},
+    {id:"C17",subj:"Bus node count",a:"4 nodes - WIRING.md, CAN-BUS-MASTER-DESIGN.md, README.md",b:"5 nodes incl. CAN-Lambda - SCHEMATIC-WIRING.html, allocation table",rec:"5 nodes",why:"The lambda module is physically on the bus."},
+    {id:"C18",subj:"120 ohm termination ends",a:"ECU + Pi - WIRING.md, 08-28 app save",b:"CAN-Lambda end + Pi - SCHEMATIC-WIRING.html; cluster - 08-22 app save",rec:"UNRESOLVED",why:"Termination belongs at the two physical harness extremities. Document it as a measured install step, not a drawing. Three terminations will break the bus."},
+    {id:"C19",subj:"Lambda sensor path",a:"CAN-Lambda module - repo docs, HTML pair",b:"Direct LSU 4.9 heater on B connector - loom list #25",rec:"CAN-Lambda module",why:"The XtremeX has no lambda controller in the current plan."},
+    {id:"C20",subj:"Intake manifold",a:"Side-feed - Google Drive #36",b:"Soara dual plenum, 3 in ID flange - Dan",rec:"Soara dual plenum",why:"Drive file is from March. The 74.5 mm bore versus 76.2 mm flange step is quantified in section 5.3 and is a build note, not a conflict."},
+    {id:"C21",subj:"EPS speed signal voltage",a:"0-5 V - RAV4 reference",b:"0-12 V - MR2 reports",rec:"UNRESOLVED - measure it",why:"Determines whether a pull-up resistor is needed, which contradicts the 'no external pull-ups' claim."},
+    {id:"C22",subj:"Wiring app data",a:"2026-08-22 save",b:"2026-08-28 save",rec:"Neither",why:"They disagree with each other on 8 rows and on termination, and both are behind SCHEMATIC-WIRING.html. Rebuild the app's data from the schematic."},
+    {id:"C23",subj:"Cabin temperature",a:"Available on switchboard 0x640",b:"Routing rule forbids RealDash reading 0x640",rec:"ECU echo on 0x3F2 byte 5",why:"Restores the value without breaking the rule."},
+    {id:"C24",subj:"ETB motor output",a:"Aux 9 only, no Aux 10 row - FuryX pin map #24",b:"Aux 9 (B18) + Aux 10 (B26) - HTML pair",rec:"Aux 9 + Aux 10",why:"An H-bridge needs both halves. Aux 9 alone cannot drive the motor in both directions. The pin map is incomplete, not an alternative."},
+    {id:"C25",subj:"ETB power relay",a:"Aux 8 - FuryX pin map #24",b:"Aux 2 (A20) - HTML pair",rec:"Aux 2",why:"Aux 8 is the ECU-controlled start relay in the current design. Using Aux 8 for the ETB relay would collide with it."},
+    {id:"C26",subj:"DBW analog channels",a:"An Volt 5/6/7/8 - FuryX pin map #24",b:"An Volt 2/3/4/5 - HTML pair",rec:"An Volt 2/3/4/5",why:"The two maps assign An Volt 5 to DIFFERENT JOBS - pedal main in one, pedal sub in the other. Wiring to the wrong document swaps a pedal signal for a throttle signal."},
+    {id:"C27",subj:"ETB bore",a:"74 mm - every retailer listing",b:"74.5 mm - plate stamped '745'",rec:"74.5 mm",why:"Same part. Use 74.5 mm for the flange step and any airflow work."}
+  ];
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  // ---------- inventory table ----------
+  var tb = document.getElementById("tb");
+  var q = document.getElementById("q");
+  var fs = document.getElementById("fs");
+  var fl = document.getElementById("fl");
+  var countEl = document.getElementById("count");
+  var emptyEl = document.getElementById("empty");
+  var sortKey = "id", sortDir = 1, sortNum = true;
+
+  function uniq(arr, k) {
+    var seen = {}, out = [];
+    arr.forEach(function (r) { if (!seen[r[k]]) { seen[r[k]] = 1; out.push(r[k]); } });
+    return out.sort();
+  }
+  uniq(INV, "st").forEach(function (v) {
+    var o = document.createElement("option"); o.value = v; o.textContent = v; fs.appendChild(o);
+  });
+  uniq(INV, "loc").forEach(function (v) {
+    var o = document.createElement("option"); o.value = v; o.textContent = v; fl.appendChild(o);
+  });
+
+  function render() {
+    var term = q.value.trim().toLowerCase();
+    var st = fs.value, loc = fl.value;
+    var rows = INV.filter(function (r) {
+      if (st && r.st !== st) return false;
+      if (loc && r.loc !== loc) return false;
+      if (!term) return true;
+      return (r.id + " " + r.loc + " " + r.path + " " + r.fmt + " " + r.mod + " " +
+              r.cov + " " + r.st + " " + r.why).toLowerCase().indexOf(term) !== -1;
+    });
+    rows.sort(function (a, b) {
+      var x = a[sortKey], y = b[sortKey];
+      if (sortNum) { x = +x; y = +y; }
+      else { x = String(x).toLowerCase(); y = String(y).toLowerCase(); }
+      return x < y ? -sortDir : x > y ? sortDir : 0;
+    });
+    tb.innerHTML = rows.map(function (r) {
+      return "<tr><td class='id'>" + r.id + "</td>" +
+             "<td class='loc'>" + esc(r.loc) + "</td>" +
+             "<td class='path'>" + esc(r.path) + "</td>" +
+             "<td>" + esc(r.fmt) + "</td>" +
+             "<td class='date'>" + esc(r.mod) + "</td>" +
+             "<td>" + esc(r.cov) + "</td>" +
+             "<td><span class='badge b-" + r.st + "'>" + r.st + "</span></td>" +
+             "<td>" + esc(r.why) + "</td></tr>";
+    }).join("");
+    countEl.textContent = rows.length + " of " + INV.length + " documents";
+    emptyEl.hidden = rows.length > 0;
+  }
+
+  Array.prototype.forEach.call(
+    document.querySelectorAll("#inv thead th"),
+    function (th) {
+      th.addEventListener("click", function () {
+        var k = th.getAttribute("data-k");
+        if (k === sortKey) { sortDir = -sortDir; }
+        else { sortKey = k; sortDir = 1; sortNum = th.getAttribute("data-t") === "num"; }
+        Array.prototype.forEach.call(
+          document.querySelectorAll("#inv thead th .ar"),
+          function (a) { a.textContent = ""; }
+        );
+        th.querySelector(".ar").textContent = sortDir === 1 ? "\u25B2" : "\u25BC";
+        render();
+      });
+    }
+  );
+
+  q.addEventListener("input", render);
+  fs.addEventListener("change", render);
+  fl.addEventListener("change", render);
+  document.getElementById("reset").addEventListener("click", function () {
+    q.value = ""; fs.value = ""; fl.value = "";
+    sortKey = "id"; sortDir = 1; sortNum = true;
+    Array.prototype.forEach.call(
+      document.querySelectorAll("#inv thead th .ar"),
+      function (a) { a.textContent = ""; }
+    );
+    render();
+  });
+
+  // ---------- conflict table ----------
+  var ctb = document.getElementById("ctb");
+  var cq = document.getElementById("cq");
+  var ccount = document.getElementById("ccount");
+  var cempty = document.getElementById("cempty");
+  var cKey = "id", cDir = 1;
+
+  function recClass(v) {
+    return /UNRESOLVED|Neither/i.test(v) ? "unres" : "rec";
+  }
+
+  function crender() {
+    var term = cq.value.trim().toLowerCase();
+    var rows = CFT.filter(function (r) {
+      if (!term) return true;
+      return (r.id + " " + r.subj + " " + r.a + " " + r.b + " " + r.rec + " " + r.why)
+             .toLowerCase().indexOf(term) !== -1;
+    });
+    rows.sort(function (a, b) {
+      var x, y;
+      if (cKey === "id") { x = +a.id.slice(1); y = +b.id.slice(1); }
+      else { x = String(a[cKey]).toLowerCase(); y = String(b[cKey]).toLowerCase(); }
+      return x < y ? -cDir : x > y ? cDir : 0;
+    });
+    ctb.innerHTML = rows.map(function (r) {
+      return "<tr><td class='id'>" + esc(r.id) + "</td>" +
+             "<td><strong>" + esc(r.subj) + "</strong></td>" +
+             "<td>" + esc(r.a) + "</td>" +
+             "<td>" + esc(r.b) + "</td>" +
+             "<td class='" + recClass(r.rec) + "'>" + esc(r.rec) + "</td>" +
+             "<td>" + esc(r.why) + "</td></tr>";
+    }).join("");
+    ccount.textContent = rows.length + " of " + CFT.length + " conflicts";
+    cempty.hidden = rows.length > 0;
+  }
+
+  Array.prototype.forEach.call(
+    document.querySelectorAll("#cft thead th"),
+    function (th) {
+      th.addEventListener("click", function () {
+        var k = th.getAttribute("data-k");
+        if (k === cKey) { cDir = -cDir; } else { cKey = k; cDir = 1; }
+        Array.prototype.forEach.call(
+          document.querySelectorAll("#cft thead th .ar"),
+          function (a) { a.textContent = ""; }
+        );
+        th.querySelector(".ar").textContent = cDir === 1 ? "\u25B2" : "\u25BC";
+        crender();
+      });
+    }
+  );
+  cq.addEventListener("input", crender);
+
+  render();
+  crender();
+})();
+</script>
+
+</body>
+</html>
