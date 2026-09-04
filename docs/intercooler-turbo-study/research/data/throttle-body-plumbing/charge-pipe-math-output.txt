@@ -1,0 +1,24 @@
+mdot=0.3455 kg/s  rho_hot=2.1064  rho_cold=2.7649 kg/m3
+
+wall 0.049 in -> ID 2.9020 in = 73.71 mm | step to 74.5 plate = +0.79 mm (0.39/side, area +2.2%)
+   hot  v=126.1 ft/s (38.4 m/s) Re=234029 f=0.0153 dP=0.187 psi
+   cold v=96.1 ft/s (29.3 m/s) Re=295433 f=0.0147 dP=0.189 psi | HOT+COLD=0.376 psi
+   Borda-Carnot expansion loss at plate step = 0.00008 psi | volume 4.267 L/m
+wall 0.065 in -> ID 2.8700 in = 72.90 mm | step to 74.5 plate = +1.60 mm (0.80/side, area +4.4%)
+   hot  v=128.9 ft/s (39.3 m/s) Re=236638 f=0.0153 dP=0.196 psi
+   cold v=98.2 ft/s (29.9 m/s) Re=298727 f=0.0147 dP=0.198 psi | HOT+COLD=0.394 psi
+   Borda-Carnot expansion loss at plate step = 0.00033 psi | volume 4.174 L/m
+wall 0.083 in -> ID 2.8340 in = 71.98 mm | step to 74.5 plate = +2.52 mm (1.26/side, area +7.1%)
+   hot  v=132.2 ft/s (40.3 m/s) Re=239644 f=0.0153 dP=0.207 psi
+   cold v=100.7 ft/s (30.7 m/s) Re=302521 f=0.0147 dP=0.209 psi | HOT+COLD=0.416 psi
+   Borda-Carnot expansion loss at plate step = 0.00083 psi | volume 4.070 L/m
+
+BASELINE 2.50 OD x .065: ID 60.20 mm | hot 189.1 ft/s | cold 144.0 ft/s | dP 0.888 psi | vol 2.846 L/m
+BASELINE 2.50 OD x .083: ID 59.28 mm | hot 194.9 ft/s | cold 148.5 ft/s | dP 0.948 psi | vol 2.760 L/m
+
+Area error if you size on OD not ID:
+  3.00 OD .065: 9.3% ;  2.50 OD .065: 11.3%
+Plate bore 74.5 mm = 2.9331 in ; 74.0 mm = 2.9134 in
+  3.000 - 2*0.049 = 2.9020 in = 73.711 mm
+  3.000 - 2*0.065 = 2.8700 in = 72.898 mm
+  3.000 - 2*0.083 = 2.8340 in = 71.984 mm

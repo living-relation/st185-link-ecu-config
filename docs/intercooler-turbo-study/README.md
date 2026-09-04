@@ -12,6 +12,7 @@ build-reference location.
 |---|---|
 | `intercooler-report.html` | The deliverable. Self-contained (inline CSS/JS/charts, no internet needed) — double-click to open. 24 sections, 27 charts, 2 calculators covering core selection, turbo/redline choice, manifold pairing, boost control, and open build questions. |
 | `THROTTLE-BODY-PLUMBING-SPEC.md` | Charge pipe sizing (hot side 2.5 in OD, cold side 3.0 in OD), velocity/pressure-drop tables, bend radii, and the parts list for the throttle body plumbing run. Cross-referenced from the report. |
+| `research/` | The full working project behind the two files above: round-by-round build/verification scripts, chart data and rendered SVG/PNG, raw invoice OCR inputs, prior-round report backups, and the throttle-body-plumbing product/pipe-sizing calc backup. Verbatim mirror of the source research folder (its `node_modules/` and `__pycache__/` excluded as non-source build artifacts). Has its own `README.md` with the full round-by-round history. |
 
 ## Headline numbers (see the report for full derivation)
 
@@ -24,5 +25,5 @@ build-reference location.
 Both documents carry their own error bands and open questions — read those
 sections before ordering hardware.
 
-Source research (build/verification scripts, prior-round backups, raw
-invoice/OCR inputs) lives outside this repo.
+The full modeling/audit trail is in `research/` if you need to re-derive or
+challenge a number.
