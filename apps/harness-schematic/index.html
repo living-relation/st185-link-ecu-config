@@ -86,6 +86,36 @@
   .modal .warn{color:var(--warn);font-size:11px;margin-top:8px;line-height:1.5}
   .modal .err{color:var(--danger);font-size:11px;margin-top:8px;line-height:1.5}
   .modal .okmsg{color:var(--accent);font-size:11px;margin-top:8px;line-height:1.5}
+  details.sect{border:1px solid var(--border);border-radius:6px;margin:8px 0;background:var(--panel2)}
+  details.sect>summary{cursor:pointer;padding:6px 8px;font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted);list-style:none;display:flex;align-items:center;gap:6px}
+  details.sect>summary::-webkit-details-marker{display:none}
+  details.sect>summary:before{content:"\25B8";font-size:9px;transition:transform .12s}
+  details.sect[open]>summary:before{transform:rotate(90deg)}
+  details.sect>summary .ct{margin-left:auto;font-family:var(--mono);font-size:10px}
+  .sect-body{padding:6px 8px 10px}
+  .kv{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center;
+    font-size:11px;padding:4px 0;border-top:1px solid #ffffff0d}
+  .kv:first-child{border-top:0}
+  .kv .pn{font-family:var(--mono);font-size:11px;color:var(--text)}
+  .kv .ds{color:var(--muted);font-size:10px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+  .tag{font-size:9px;padding:1px 5px;border-radius:3px;border:1px solid;letter-spacing:.03em}
+  .tag.req{color:#ffb4b4;border-color:#7a3b3b;background:#3a1f1f}
+  .tag.opt{color:#9fd8ff;border-color:#2f5570;background:#16283a}
+  .xbtn{background:transparent;border:0;color:var(--muted);cursor:pointer;font-size:12px;padding:0 3px}
+  .xbtn:hover{color:var(--danger)}
+  .catrow{display:flex;align-items:center;gap:6px;font-size:11px;padding:3px 0}
+  .catrow input{margin:0}
+  .catrow .nm{flex:1}
+  .pintbl{width:100%;border-collapse:collapse;font-size:10px}
+  .pintbl th{text-align:left;color:var(--muted);font-weight:500;padding:3px 4px;border-bottom:1px solid var(--border)}
+  .pintbl td{padding:3px 4px;border-bottom:1px solid #ffffff0a;vertical-align:top}
+  .pintbl td.pnum{font-family:var(--mono);color:var(--muted);white-space:nowrap}
+  .pintbl .mini{padding:2px 5px;font-size:10px}
+  .crimp-set{font-family:var(--mono);font-size:10px;color:var(--text)}
+  .crimp-none{color:var(--muted);font-size:10px}
+  .badge-mate{fill:#1f2430;stroke:#7f8aa3;stroke-width:1.2}
+  .badge-mate-pin{fill:#7f8aa3}
   .thumb-prev{width:64px;height:48px;border-radius:5px;background:#3a3a42;background-size:cover;
     background-position:center;border:1px solid #4a4a54;flex:none}
 
@@ -933,6 +963,15 @@ function render(){
   });
   svg.appendChild(gW);
 
+  /* Which side does each part's wiring leave from? The mate badge goes on the other. */
+  const wireSides = {};
+  const bumpSide = (cid, side) => {
+    const s = wireSides[cid] || (wireSides[cid] = { left:0, right:0 });
+    if (side === "left") s.left++; else if (side === "right") s.right++;
+  };
+  routed.forEach(it => { bumpSide(it.w.from.c, it.A.side); bumpSide(it.w.to.c, it.B.side); });
+  rails.forEach(r => bumpSide(r.host, r.at.side));
+
   /* ---- components on top, so wires read as passing behind them ---- */
   const gC = el("g");
   drawn.forEach(c => {
@@ -997,6 +1036,10 @@ function render(){
       hh.dataset.cid = c.id; hh.dataset.pid = p.id;
       g.appendChild(hh);
     });
+
+    /* The only new canvas element in this phase: a small generic connector icon
+       marking that this part has a mating half recorded in the Inspector. */
+    if ((c.mates||[]).length) drawMateBadge(g, c, X, Y, w, h, wireSides);
     gC.appendChild(g);
   });
   svg.appendChild(gC);
@@ -1043,6 +1086,41 @@ function render(){
   renderLayers();
   renderLegend();
   persist();
+}
+
+
+/* Mating-connector badge. Sits opposite the wiring, nudged clear of neighbours, and
+   never further than 0.7x its own width from the block edge. */
+const MATE_BADGE_W = 22, MATE_BADGE_H = 16;
+function drawMateBadge(g, c, X, Y, w, h, wireSides){
+  const s = wireSides[c.id] || { left:0, right:0 };
+  const onRight = s.right <= s.left;                 // opposite the busier side
+  const gap = MATE_BADGE_W * 0.7;                    // hard cap from the spec
+  const bx = onRight ? X + w + gap - MATE_BADGE_W/2 : X - gap - MATE_BADGE_W/2;
+  let by = Y + Math.min(h / 2, HDR + 6) - MATE_BADGE_H/2;
+
+  // nudge vertically off any neighbouring block that already occupies that spot
+  for (let n = 0; n < 5; n++){
+    const clash = state.components.some(o => {
+      if (o === c || !visible(o) || (state.rails && RAILS[o.id])) return false;
+      const ob = hitBox(o);
+      return bx + MATE_BADGE_W > ob.x && bx < ob.x + ob.w &&
+             by + MATE_BADGE_H > ob.y && by < ob.y + ob.h;
+    });
+    if (!clash) break;
+    by -= MATE_BADGE_H + 4;
+  }
+  const bg = el("g", { class:"mate-badge" });
+  bg.appendChild(el("rect", { class:"badge-mate", x:bx, y:by,
+    width:MATE_BADGE_W, height:MATE_BADGE_H, rx:3 }));
+  for (let i = 0; i < 3; i++){
+    bg.appendChild(el("circle", { class:"badge-mate-pin",
+      cx:bx + 6 + i*5, cy:by + MATE_BADGE_H/2, r:1.6 }));
+  }
+  const ttl = el("title");
+  ttl.textContent = "Mates: " + (c.mates||[]).map(m => m.pn).filter(Boolean).join(", ");
+  bg.appendChild(ttl);
+  g.appendChild(bg);
 }
 
 function wrapText(g, text, x, y, maxW){
@@ -1146,6 +1224,7 @@ function inspect(){
       <div class="aside-h">Pins</div>
       ${(c.pins||[]).map(p => `<div class="insp-row"><span>${esc(p.num)}</span><input data-pin="${p.id}" class="i-pin" value="${esc(p.name)}"></div>`).join("")}
       <button class="tool" id="i-addpin" style="margin-top:8px">Add pin</button>
+      <div id="i-detail"></div>
       <p class="hint" style="margin-top:10px">Status: <span class="status-${c.status||"ok"}">${c.status||"ok"}</span>${c.unwired?" · no connector yet":""}</p>`;
     $("#i-grp").value = gk;
     $("#i-st").value = c.status || "ok";
@@ -1163,6 +1242,7 @@ function inspect(){
       c.pins.push({ id:"p"+n, num:String(n), name:"PIN "+n, side: c.pins[0]?.side || "right" });
       render(); inspect();
     };
+    renderDetail(c);
   } else if (w){
     const known = Object.keys(NET_COLORS);
     box.innerHTML = `
@@ -1200,6 +1280,225 @@ function inspect(){
       <p class="hint">12V, 5V and GND draw as rail symbols at each pin instead of long wires. Solid nets are assigned; dashed nets are proposed.</p>`;
   }
 }
+
+/* ---------- Inspector detail: mates, accessories, per-pin crimp, notes ----------
+   These live in the Inspector only. The single thing this adds to the canvas is a
+   small mating-connector badge, drawn in render(). */
+function renderDetail(c){
+  const box = $("#i-detail"); if (!box) return;
+  const mates = c.mates = c.mates || [];
+  const acc = accOf(c);
+  const crimp = c.crimp = c.crimp || {};
+  const isConnector = c.kind !== "note" && (c.pins||[]).length > 0;
+  const activeCats = ACC_CATS.filter(k => catOn(c, k.key));
+  const accCount = activeCats.reduce((n,k) => n + (acc[k.key]?.items?.length || 0), 0);
+  const crimped = Object.keys(crimp).filter(k => crimp[k] && crimp[k].pn).length;
+
+  box.innerHTML = `
+  <details class="sect" id="s-mates">
+    <summary>Compatible mates <span class="ct">${mates.length}</span></summary>
+    <div class="sect-body">
+      ${mates.length ? mates.map((m,i) => `
+        <div class="kv">
+          <div><span class="pn">${esc(m.pn||"(no PN)")}</span>
+               <span class="ds">${esc([m.mfr,m.note].filter(Boolean).join(" · "))}</span></div>
+          <button class="xbtn" data-rmmate="${i}" title="Remove">&times;</button>
+        </div>`).join("")
+        : `<p class="hint">No mating connector recorded yet.</p>`}
+      <div class="two" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
+        <input class="mini" id="m-pn-new"  placeholder="Mate part no" style="text-align:left">
+        <input class="mini" id="m-mfr-new" placeholder="Manufacturer" style="text-align:left">
+      </div>
+      <input class="mini" id="m-note-new" placeholder="Note (optional)" style="width:100%;margin-top:6px;text-align:left">
+      <button class="mini" id="m-add-mate" style="margin-top:6px">Add mate</button>
+    </div>
+  </details>
+
+  <details class="sect" id="s-acc">
+    <summary>Accessories <span class="ct">${accCount}</span></summary>
+    <div class="sect-body">
+      <p class="hint" style="margin:0 0 6px">Tick the categories that apply to this part.
+         The choice is remembered on the library entry.</p>
+      ${ACC_CATS.map(k => `
+        <label class="catrow">
+          <input type="checkbox" data-cat="${k.key}" ${catOn(c,k.key)?"checked":""}>
+          <span class="nm">${esc(k.name)}</span>
+          <span class="ct">${acc[k.key]?.items?.length || 0}</span>
+        </label>`).join("")}
+      ${activeCats.map(k => `
+        <div style="margin-top:10px">
+          <div class="aside-h" style="margin:4px 0">${esc(k.name)}</div>
+          ${(acc[k.key].items||[]).map((it,i) => `
+            <div class="kv">
+              <div><span class="pn">${esc(it.pn||"(no PN)")}</span>
+                   <span class="ds">${esc(accSummary(it))}</span></div>
+              <div style="display:flex;gap:4px;align-items:center">
+                <span class="tag ${it.req==="required"?"req":"opt"}"
+                      data-togreq="${k.key}:${i}" style="cursor:pointer"
+                      title="Click to toggle">${it.req==="required"?"required":"optional"}</span>
+                <button class="xbtn" data-rmacc="${k.key}:${i}">&times;</button>
+              </div>
+            </div>`).join("") || `<p class="hint">Nothing added.</p>`}
+          <button class="mini" data-addacc="${k.key}" style="margin-top:5px">Add ${esc(k.name.split(" ")[0].toLowerCase())}</button>
+        </div>`).join("")}
+    </div>
+  </details>
+
+  ${isConnector ? `
+  <details class="sect" id="s-crimp">
+    <summary>Per-pin crimp <span class="ct">${crimped}/${c.pins.length}</span></summary>
+    <div class="sect-body">
+      <p class="hint" style="margin:0 0 6px">Pick a terminal family to fill every cavity
+         (${c.pins.length}), then override any single pin.</p>
+      <div style="display:flex;gap:6px">
+        <select id="cr-family" style="flex:1"><option value="">Terminal family…</option>
+          ${(acc.crimp?.items||[]).map((it,i) =>
+            `<option value="${i}">${esc(it.pn||"(no PN)")} ${esc(it.awg?("· "+it.awg):"")}</option>`).join("")}
+        </select>
+        <button class="mini" id="cr-apply">Fill all</button>
+        <button class="mini" id="cr-clear">Clear</button>
+      </div>
+      ${(acc.crimp?.items||[]).length ? "" :
+        `<p class="hint" style="margin-top:6px">Add crimp terminals under
+          <b>Accessories → Crimp terminals</b> first.</p>`}
+      <table class="pintbl" style="margin-top:8px">
+        <tr><th>Pin</th><th>Crimp</th><th></th></tr>
+        ${c.pins.map(pn => {
+          const t2 = crimp[pn.id];
+          return `<tr>
+            <td class="pnum">${esc(pn.num)}<br><span class="ds">${esc(pn.name)}</span></td>
+            <td>${t2 && t2.pn
+              ? `<span class="crimp-set">${esc(t2.pn)}</span><span class="ds">${esc(accSummary(t2))}</span>`
+              : `<span class="crimp-none">not set</span>`}</td>
+            <td><select data-crimppin="${pn.id}" style="font-size:10px">
+                  <option value="">—</option>
+                  ${(acc.crimp?.items||[]).map((it,i) =>
+                    `<option value="${i}"${t2 && t2.pn===it.pn?" selected":""}>${esc(it.pn||"(no PN)")}</option>`).join("")}
+                </select></td></tr>`;
+        }).join("")}
+      </table>
+    </div>
+  </details>` : ""}
+
+  <div class="aside-h">Notes</div>
+  <textarea id="i-freenote" placeholder="Free text notes for this part">${esc(c.notes||"")}</textarea>`;
+
+  /* --- mates --- */
+  box.querySelectorAll("[data-rmmate]").forEach(b => b.onclick = () => {
+    mates.splice(+b.dataset.rmmate,1); syncLib(c); render(); inspect(); openSect("s-mates"); });
+  $("#m-add-mate").onclick = () => {
+    const pn = $("#m-pn-new").value.trim();
+    if (!pn) return;
+    mates.push({ pn, mfr:$("#m-mfr-new").value.trim(), note:$("#m-note-new").value.trim() });
+    syncLib(c); render(); inspect(); openSect("s-mates");
+  };
+
+  /* --- accessory categories --- */
+  box.querySelectorAll("[data-cat]").forEach(cb => cb.onchange = () => {
+    ensureCat(c, cb.dataset.cat).on = cb.checked;
+    syncLib(c, true); inspect(); openSect("s-acc");
+  });
+  box.querySelectorAll("[data-addacc]").forEach(b => b.onclick = () => openAccessoryDialog(c, b.dataset.addacc));
+  box.querySelectorAll("[data-rmacc]").forEach(b => b.onclick = () => {
+    const [k,i] = b.dataset.rmacc.split(":");
+    acc[k].items.splice(+i,1); syncLib(c); inspect(); openSect("s-acc");
+  });
+  box.querySelectorAll("[data-togreq]").forEach(s => s.onclick = () => {
+    const [k,i] = s.dataset.togreq.split(":");
+    const it = acc[k].items[+i];
+    it.req = it.req === "required" ? "optional" : "required";
+    syncLib(c); inspect(); openSect("s-acc");
+  });
+
+  /* --- crimp --- */
+  if ($("#cr-apply")) $("#cr-apply").onclick = () => {
+    const i = $("#cr-family").value;
+    if (i === "") return;
+    const fam = acc.crimp.items[+i];
+    c.pins.forEach(pn => { crimp[pn.id] = { ...fam }; });   // default = one per cavity
+    syncLib(c); inspect(); openSect("s-crimp");
+  };
+  if ($("#cr-clear")) $("#cr-clear").onclick = () => {
+    c.crimp = {}; syncLib(c); inspect(); openSect("s-crimp");
+  };
+  box.querySelectorAll("[data-crimppin]").forEach(sel => sel.onchange = () => {
+    const pid = sel.dataset.crimppin;
+    if (sel.value === "") delete crimp[pid];
+    else crimp[pid] = { ...acc.crimp.items[+sel.value] };
+    syncLib(c); inspect(); openSect("s-crimp");
+  });
+
+  $("#i-freenote").oninput = e => { c.notes = e.target.value; };
+  $("#i-freenote").onchange = () => { syncLib(c); persist(); };
+}
+function openSect(id){ const d = $("#"+id); if (d) d.open = true; }
+function accSummary(it){
+  return [it.desc, it.awg, it.finish, it.gender, it.type].filter(Boolean).join(" · ");
+}
+/* Category visibility is remembered on the library entry (spec 3.2). Item data is
+   only pushed back to the library for entries the user is editing directly, never
+   the other way round, so a placed part is never reset by a later library change. */
+function libEntryFor(c){
+  /* Parts from the seed carry no libId, so fall back to matching the entry by name. */
+  return (c.libId && library.find(x => x.id === c.libId)) ||
+         library.find(x => x.name === c.name) || null;
+}
+function syncLib(c, catsOnly){
+  {
+    const e = libEntryFor(c);
+    if (e){
+      const ea = accOf(e);
+      ACC_CATS.forEach(k => { if (accOf(c)[k.key]) (ea[k.key] = ea[k.key] || {items:[]}).on = catOn(c,k.key); });
+      if (!catsOnly){
+        ACC_CATS.forEach(k => { if (accOf(c)[k.key]) ea[k.key].items = JSON.parse(JSON.stringify(accOf(c)[k.key].items||[])); });
+        e.mates = JSON.parse(JSON.stringify(c.mates||[]));
+      }
+      e.dirty = true; saveLibrary();
+    }
+  }
+  persist();
+}
+
+function openAccessoryDialog(c, key){
+  const cat = ACC_CATS.find(k => k.key === key);
+  openModal(`
+    <h3>Add ${esc(cat.name)}</h3>
+    <p class="sub">For ${esc(c.name)}. Nothing is looked up automatically — enter what the
+       datasheet says.</p>
+    <div class="two">
+      <div><label>Part number</label><input type="text" id="a-pn"></div>
+      <div><label>Required or optional</label>
+        <select id="a-req"><option value="required">required</option>
+                           <option value="optional" selected>optional</option></select></div>
+    </div>
+    <label>Description</label><input type="text" id="a-desc">
+    <div class="two">
+      <div><label>AWG range</label><input type="text" id="a-awg" placeholder="e.g. 20-18"></div>
+      <div><label>Finish</label><select id="a-fin">${FINISHES.map(f=>`<option value="${f}">${f||"—"}</option>`).join("")}</select></div>
+    </div>
+    <div class="two">
+      <div><label>Gender</label><select id="a-gen">${GENDERS.map(g=>`<option value="${g}">${g||"—"}</option>`).join("")}</select></div>
+      <div><label>Type</label><select id="a-type">${TERM_TYPES.map(x=>`<option value="${x}">${x||"—"}</option>`).join("")}</select></div>
+    </div>
+    <div class="err" id="a-err" style="display:none"></div>
+    <div class="acts">
+      <button class="mini" id="a-cancel">Cancel</button>
+      <button class="mini" id="a-save" style="border-color:var(--accent);color:var(--accent)">Add</button>
+    </div>`);
+  $("#a-cancel").onclick = closeModal;
+  $("#a-save").onclick = () => {
+    const pn = $("#a-pn").value.trim();
+    if (!pn){ showErr("a-err","A part number is required."); return; }
+    ensureCat(c, key).items.push({
+      pn, desc:$("#a-desc").value.trim(), req:$("#a-req").value,
+      awg:$("#a-awg").value.trim(), finish:$("#a-fin").value,
+      gender:$("#a-gen").value, type:$("#a-type").value
+    });
+    ensureCat(c, key).on = true;
+    syncLib(c); closeModal(); inspect(); openSect("s-acc");
+  };
+}
+
 function esc(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[m])); }
 function toHex(c){ return (c && c[0]==="#" && c.length===7) ? c : "#888888"; }
 
@@ -1564,6 +1863,33 @@ const LIB_MFR = [
 function guessMfr(name){
   for (const [re, m] of LIB_MFR) if (re.test(name)) return m;
   return "";
+}
+
+/* Accessory categories offered per component. The catalogue itself is user-entered:
+   no terminal part numbers are shipped, because guessing them would be worse than blank. */
+const ACC_CATS = [
+  { key:"crimp",     name:"Crimp terminals (by AWG)" },
+  { key:"seal",      name:"Wire seals" },
+  { key:"wedge",     name:"Wedge locks / TPA" },
+  { key:"backshell", name:"Backshells / strain relief" },
+  { key:"boot",      name:"Boots (straight, right-angle, heat-shrink, rubber, silicone)" },
+  { key:"plug",      name:"Cavity plugs / blanking seals" },
+  { key:"tool",      name:"Crimp tools / dies" }
+];
+const FINISHES = ["", "gold", "silver", "tin", "nickel"];
+const GENDERS  = ["", "pin", "socket"];
+const TERM_TYPES = ["", "closed barrel", "open barrel", "stamped & formed", "machined",
+                    "insulated", "non-insulated", "solder"];
+
+function accOf(o){ return (o.accessories = o.accessories || {}); }
+function catOn(o, key){
+  const a = accOf(o)[key];
+  return a ? !!a.on : false;
+}
+function ensureCat(o, key){
+  const a = accOf(o);
+  if (!a[key]) a[key] = { on:false, items:[] };
+  return a[key];
 }
 
 let library = [];

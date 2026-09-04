@@ -42,6 +42,21 @@ Clicking an entry places it at the centre of the view. **Show mating connector**
 
 Library entries are templates. Placing one copies its data onto the new part, so editing the library afterwards never rewrites anything already on the canvas. User entries and edits persist under `st185-harness-lib-v1`, separately from the schematic.
 
+## Mates, accessories and crimp detail
+
+Selecting a part adds four sections to the bottom of the Inspector, collapsed until you open them:
+
+- **Compatible mates** — mating connector part numbers, with manufacturer and a note.
+- **Accessories** — tick the categories that apply (crimp terminals by AWG, wire seals, wedge locks / TPA, backshells and strain relief, boots, cavity plugs, crimp tools). Each item you add is tagged **required** or **optional**; click the tag to flip it. The category choice is remembered on the library entry so it comes back next time the part is placed.
+- **Per-pin crimp** — a row per cavity showing terminal PN, description, AWG range, finish, gender and type. Pick a terminal family and **Fill all** defaults one terminal per cavity; any single pin can then be overridden or cleared.
+- **Notes** — free text, stored with the part.
+
+No terminal part numbers ship with the app. The catalogue is whatever you enter, because a guessed PN is worse than a blank one.
+
+This detail stays in the Inspector. The only thing it adds to the schematic is a small connector badge beside any block that has a mate recorded — placed on the side opposite the wiring, nudged clear of neighbours, and never further from the block edge than 0.7 × its own width.
+
+Mates, accessories and crimp choices belong to the placed part. Editing the library afterwards never resets them.
+
 ## Editing wires
 
 The workspace has no sheet edge — pan and place parts anywhere, including negative coordinates.
