@@ -42,6 +42,27 @@ Clicking an entry places it at the centre of the view. **Show mating connector**
 
 Library entries are templates. Placing one copies its data onto the new part, so editing the library afterwards never rewrites anything already on the canvas. User entries and edits persist under `st185-harness-lib-v1`, separately from the schematic.
 
+## Research helper
+
+**Find more…** next to the library search starts a lookup using whatever is in the search box. It opens a confirmation dialog first and will not run on vague input: a subject of at least three characters, a component type, and either a manufacturer or an exact part number are all required, so a bare "ECU" is refused with an explanation rather than a guess.
+
+A result is shown as **unverified** for review — part number, description, pins, the mating connector, and that mate's accessories tagged required or optional. Nothing reaches the library until you accept it, and accepted entries are marked unverified in their notes. Not-found, ambiguous and backend-error outcomes all say so plainly and add nothing.
+
+The helper only ever creates or edits **library** entries. It cannot modify a part already placed on the canvas.
+
+> **There is no search backend.** A static page cannot run a web search, so the shipped
+> `researchBackend()` is a clearly-marked stub that reports "no research backend is
+> configured" and adds nothing. The whole flow — validation, dialog, review, accept,
+> and every failure state — is real and tested against it. To connect a real backend,
+> assign one function:
+>
+> ```js
+> window.HARNESS_RESEARCH = async (spec) => ({ status, entry, mate, accessories, message });
+> ```
+>
+> `spec` is `{ q, mfr, pn, type, pinCount, notes }`; `status` is one of `ok`,
+> `notfound`, `ambiguous` or `error`. That single hook is the only integration point.
+
 ## Mates, accessories and crimp detail
 
 Selecting a part adds four sections to the bottom of the Inspector, collapsed until you open them:
@@ -84,6 +105,7 @@ Pressing a terminal only starts a wire once the pointer actually moves, so a pla
 | Add a part | click a library entry, or right-click the canvas |
 | Find a part | type in the library search box (part no, model or description) |
 | Create a library entry | **+ Add component** in the library panel |
+| Look a part up | **Find more…** next to the library search |
 | Edit a library entry | hover the row, click **edit** |
 | Delete | select, then `Delete` |
 

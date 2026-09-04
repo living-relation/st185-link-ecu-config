@@ -2134,6 +2134,179 @@ function parsePinLines(text){
 $("#lib-search").addEventListener("input", renderLibrary);
 $("#lib-add").onclick = () => openComponentDialog(null);
 
+/* ======================= LIBRARY RESEARCH HELPER (Phase 4) =======================
+   Scope: creates and edits LIBRARY entries only. It can never touch a part that is
+   already placed on the canvas.
+
+   >>> INTEGRATION POINT <<<
+   There is no web-search backend in a static page, so researchBackend() below is a
+   stub. To wire a real one up, assign a single function:
+
+       window.HARNESS_RESEARCH = async (spec) => ({ status, entry, mate, accessories, message })
+
+   spec   : { q, mfr, pn, type, pinCount, notes }
+   status : "ok"        -> entry/mate/accessories populated
+            "notfound"  -> nothing matched
+            "ambiguous" -> too many candidates, needs narrowing
+            "error"     -> backend failed, put the reason in message
+   Anything returned is shown to the user as UNVERIFIED and must be confirmed before
+   it is written to the library. Nothing is auto-accepted. */
+async function researchBackend(spec){
+  if (typeof window.HARNESS_RESEARCH === "function"){
+    try { return await window.HARNESS_RESEARCH(spec); }
+    catch(err){ return { status:"error", message:String(err && err.message || err) }; }
+  }
+  return {
+    status:"stub",
+    message:"No research backend is configured, so nothing was looked up. " +
+            "Enter the part by hand with + Add component, or wire a backend to " +
+            "window.HARNESS_RESEARCH."
+  };
+}
+
+/* A bare "ECU" is not enough to look anything up. Require a real subject plus at
+   least one narrowing fact. */
+function validateResearch(spec){
+  const problems = [];
+  const q = (spec.q||"").trim();
+  const vague = ["ecu","connector","sensor","plug","relay","switch","module","harness","pin","terminal"];
+  if (q.length < 3) problems.push("Say what you are looking for (at least 3 characters).");
+  if (!spec.type) problems.push("Pick a component type.");
+  const hasMfr = !!(spec.mfr||"").trim();
+  const hasPn  = !!(spec.pn||"").trim();
+  if (!hasMfr && !hasPn)
+    problems.push("Give a manufacturer or an exact model / part number \u2014 " +
+                  "there is no way to identify a part from a generic word alone.");
+  if (vague.includes(q.toLowerCase()) && !hasPn && !hasMfr)
+    problems.push(`\u201c${q}\u201d on its own matches thousands of parts.`);
+  return problems;
+}
+
+function openResearchDialog(){
+  const seedQ = ($("#lib-search").value || "").trim();
+  openModal(`
+    <h3>Find a component</h3>
+    <p class="sub">Narrow it down first. A generic word on its own cannot identify a part,
+       so a manufacturer or an exact part number is required.</p>
+    <label>What are you looking for</label>
+    <input type="text" id="r-q" value="${esc(seedQ)}" placeholder="e.g. 34 way sealed ECU header">
+    <div class="two">
+      <div><label>Manufacturer</label><input type="text" id="r-mfr" placeholder="e.g. TE, Deutsch, Molex"></div>
+      <div><label>Exact model / part number (if known)</label><input type="text" id="r-pn"></div>
+    </div>
+    <div class="two">
+      <div><label>Component type</label>
+        <select id="r-type">
+          <option value="">choose\u2026</option>
+          ${["connector","terminal","sensor","relay","module / ECU","splice","other"]
+            .map(x=>`<option value="${x}">${x}</option>`).join("")}
+        </select></div>
+      <div><label>Pin / cavity count (if known)</label><input type="text" id="r-pins" placeholder="e.g. 34"></div>
+    </div>
+    <label>Anything else that narrows it (series, keying, colour, sealed/unsealed)</label>
+    <input type="text" id="r-notes">
+    <div class="err" id="r-err" style="display:none"></div>
+    <div class="warn" id="r-warn" style="display:none"></div>
+    <div class="okmsg" id="r-ok" style="display:none"></div>
+    <div id="r-result"></div>
+    <div class="acts">
+      <button class="mini" id="r-cancel">Cancel</button>
+      <button class="mini" id="r-manual">Enter it by hand instead</button>
+      <button class="mini" id="r-go" style="border-color:var(--accent);color:var(--accent)">Search</button>
+    </div>`);
+
+  $("#r-cancel").onclick = closeModal;
+  $("#r-manual").onclick = () => { closeModal(); openComponentDialog(null); };
+  $("#r-go").onclick = runResearch;
+}
+
+async function runResearch(){
+  const spec = {
+    q:$("#r-q").value, mfr:$("#r-mfr").value, pn:$("#r-pn").value,
+    type:$("#r-type").value, pinCount:$("#r-pins").value, notes:$("#r-notes").value
+  };
+  ["r-err","r-warn","r-ok"].forEach(id => { $("#"+id).style.display = "none"; });
+  $("#r-result").innerHTML = "";
+
+  const problems = validateResearch(spec);
+  if (problems.length){
+    const n = $("#r-err");
+    n.innerHTML = "Not enough to go on:<br>\u2022 " + problems.map(esc).join("<br>\u2022 ");
+    n.style.display = "block";
+    return;
+  }
+  $("#r-go").disabled = true;
+  $("#r-ok").textContent = "Searching\u2026"; $("#r-ok").style.display = "block";
+  const res = await researchBackend(spec);
+  $("#r-go").disabled = false;
+  $("#r-ok").style.display = "none";
+
+  if (!res || res.status !== "ok"){
+    const n = $("#r-warn");
+    const msg = res && res.message ? res.message :
+      res && res.status === "notfound"  ? "Nothing matched that description." :
+      res && res.status === "ambiguous" ? "Too many candidates matched. Add the exact part number." :
+      "The lookup was inconclusive.";
+    n.innerHTML = esc(msg) + "<br><br>Nothing has been added to the library. " +
+      "Use <b>Enter it by hand instead</b> if you already have the datasheet.";
+    n.style.display = "block";
+    return;
+  }
+  showResearchResult(res, spec);
+}
+
+function showResearchResult(res, spec){
+  const e = res.entry || {};
+  const mate = res.mate || null;
+  const accs = res.accessories || [];
+  $("#r-result").innerHTML = `
+    <div class="aside-h" style="margin-top:14px">Result \u2014 unverified</div>
+    <p class="warn" style="display:block">Check this against the datasheet before you rely on it.
+       Nothing is written to the library until you confirm.</p>
+    <div class="kv"><div><span class="pn">${esc(e.pn||"(no PN returned)")}</span>
+      <span class="ds">${esc(e.desc||"")}</span></div><div class="ct">${(e.pins||[]).length} pins</div></div>
+    ${mate ? `<div class="kv"><div><span class="pn">${esc(mate.pn||"(no PN)")}</span>
+      <span class="ds">mating connector \u00b7 ${esc(mate.desc||"")}</span></div></div>` : ""}
+    ${accs.length ? accs.map(a => `<div class="kv">
+        <div><span class="pn">${esc(a.pn||"(no PN)")}</span><span class="ds">${esc(accSummary(a))}</span></div>
+        <span class="tag ${a.req==="required"?"req":"opt"}">${a.req==="required"?"required":"optional"}</span>
+      </div>`).join("") : `<p class="hint">No accessories returned.</p>`}
+    <div class="acts">
+      <button class="mini" id="r-discard">Discard</button>
+      <button class="mini" id="r-accept" style="border-color:var(--accent);color:var(--accent)">
+        Add to library</button>
+    </div>`;
+  $("#r-discard").onclick = () => { $("#r-result").innerHTML = ""; };
+  $("#r-accept").onclick = () => {
+    const entry = {
+      id:uid("lib"), builtin:false, primitive:false, w:COMP_W,
+      name:e.name || spec.q, mfr:e.mfr || spec.mfr || "", pn:e.pn || spec.pn || "",
+      desc:e.desc || "", kind:e.kind || "connector", image:e.image || null,
+      pins:(e.pins||[]).map((pn,i) => ({ num:pn.num || String(i+1),
+                                         name:pn.name || ("PIN "+(i+1)),
+                                         side:pn.side || "right" })),
+      mates:mate ? [{ pn:mate.pn||"", mfr:mate.mfr||"", note:mate.desc||"" }] : [],
+      accessories:{}, crimp:{}, notes:"Added by the research helper \u2014 unverified.",
+      dirty:true
+    };
+    accs.forEach(a => {
+      const key = ACC_CATS.some(k => k.key === a.cat) ? a.cat : "crimp";
+      const cat = (entry.accessories[key] = entry.accessories[key] || { on:true, items:[] });
+      cat.on = true;
+      cat.items.push({ pn:a.pn||"", desc:a.desc||"", req:a.req==="required"?"required":"optional",
+                       awg:a.awg||"", finish:a.finish||"", gender:a.gender||"", type:a.type||"" });
+    });
+    library.unshift(entry);          // library only, never a canvas instance
+    saveLibrary();
+    $("#lib-search").value = entry.pn || entry.name;
+    renderLibrary();
+    closeModal();
+  };
+}
+
+$("#lib-find").onclick = openResearchDialog;
+
+
 /* Kept so the canvas right-click menu can still drop a primitive directly. */
 function addAt(kind, pt){
   const map = { connector:"prim-connector", splice:"prim-splice", resistor:"prim-resistor",
