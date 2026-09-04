@@ -1,0 +1,126 @@
+{
+ "inertia": [
+  {
+   "turbo": "EFR 7163 (current)",
+   "dia": 63.0,
+   "mat": "gamma-Ti",
+   "J_rel": 1.0
+  },
+  {
+   "turbo": "EFR 7670",
+   "dia": 70.0,
+   "mat": "gamma-Ti",
+   "J_rel": 1.694
+  },
+  {
+   "turbo": "EFR 8374",
+   "dia": 74.0,
+   "mat": "gamma-Ti",
+   "J_rel": 2.236
+  },
+  {
+   "turbo": "EFR 9174",
+   "dia": 74.0,
+   "mat": "gamma-Ti",
+   "J_rel": 2.236
+  },
+  {
+   "turbo": "Garrett G25-660",
+   "dia": 54.0,
+   "mat": "Inconel",
+   "J_rel": 0.949
+  },
+  {
+   "turbo": "Garrett G25-770",
+   "dia": 54.0,
+   "mat": "Inconel",
+   "J_rel": 0.949
+  },
+  {
+   "turbo": "Garrett G30-770",
+   "dia": 55.0,
+   "mat": "Inconel",
+   "J_rel": 1.04
+  },
+  {
+   "turbo": "Garrett G30-900",
+   "dia": 55.0,
+   "mat": "Inconel",
+   "J_rel": 1.04
+  },
+  {
+   "turbo": "Precision 6266 G2",
+   "dia": 62.0,
+   "mat": "Inconel",
+   "J_rel": 1.894
+  },
+  {
+   "turbo": "Precision 6466 G2",
+   "dia": 67.0,
+   "mat": "Inconel",
+   "J_rel": 2.791
+  },
+  {
+   "turbo": "Xona XR7169",
+   "dia": 62.0,
+   "mat": "Inconel",
+   "J_rel": 1.894
+  },
+  {
+   "turbo": "Xona XR8267",
+   "dia": 67.0,
+   "mat": "Inconel",
+   "J_rel": 2.791
+  }
+ ],
+ "spool": [
+  {
+   "turbo": "EFR 7163 (current)",
+   "rpm": 4000
+  },
+  {
+   "turbo": "EFR 7670",
+   "rpm": 4825
+  },
+  {
+   "turbo": "EFR 8374 C-type IWG",
+   "rpm": 5200
+  },
+  {
+   "turbo": "EFR 8374 D-type EWG",
+   "rpm": 5446
+  },
+  {
+   "turbo": "EFR 9174",
+   "rpm": 5446
+  },
+  {
+   "turbo": "G25-660 0.92 TS",
+   "rpm": 4248
+  },
+  {
+   "turbo": "G25-770 0.92 TS",
+   "rpm": 4307
+  },
+  {
+   "turbo": "G30-770 1.01 TS",
+   "rpm": 4540
+  },
+  {
+   "turbo": "G30-900 1.01 TS",
+   "rpm": 4540
+  },
+  {
+   "turbo": "PT6266 Gen2 0.85",
+   "rpm": 5169
+  },
+  {
+   "turbo": "PT6466 Gen2 1.00",
+   "rpm": 5959
+  },
+  {
+   "turbo": "Xona XR7169 0.86",
+   "rpm": 4897
+  }
+ ]
+}

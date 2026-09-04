@@ -1,0 +1,35 @@
+Parameter,Value,Source,Status
+Chassis,1991 Toyota Celica GT-Four / All-Trac ST185,"Prior session local_c970efab; RockAuto invoices",Confirmed
+Engine,5S-GTE hybrid: 5S-FE block + crank with 3S-GTE head,User project description,Confirmed
+Displacement,2.2 L (used for all math),"User has said both 2.2 and 2.3 L; 5S-FE is 2164 cc",CONFLICT - Open Q1
+Turbocharger,BorgWarner EFR 7163 supercore PN 11637105000,TurboKits.com order TK.0000015915 ($2629),Confirmed
+Turbine housing,T4 twin-scroll 0.80 A/R internally wastegated,TurboKits.com invoice ($939),Confirmed
+Compressor outlet,2.0 in / 50.8 mm hose coupler,BorgWarner EFR 7163 datasheet,Confirmed
+Compressor inlet,2.5 in hose coupler,BorgWarner EFR 7163 datasheet,Confirmed
+Compressor wheel,71 mm exducer / 57 mm inducer / 64% trim,BorgWarner datasheet,Confirmed
+Turbo max flow,60 lb/min,BorgWarner EFR power range sheet,Confirmed
+Turbo power rating,300-550 hp,BorgWarner EFR power range sheet,Confirmed
+Wastegate actuator,Turbosmart GenV IWG75 EFR Twin Port 14 psi TS-0620-4012,Turbosmart USA invoice 279321 ($259.94),Confirmed
+Blow-off valve,Turbosmart Kompact Dual Port,TurboKits invoice ($159),Confirmed
+Throttle body,Bosch 74 mm motorsport DBW with dual TPS,Prior session local_f8383d8c,In chat only - Open Q5
+ECU,Link G4X FuryX (XtremeX loom A/B),st185-link-ecu-config repo + FuryX pinmap XLSX,Confirmed
+MAP sensor,5 bar (usable to ~58 psi gauge),Prior session local_2f6878e8,Confirmed
+Turbo speed sensor,EFR Hall sensor to FuryX Speed Input SI-3,Prior session local_2f6878e8,Confirmed
+Injectors,1400 cc/min Bosch/Delphi EV14 body,"Tables\1400cc Injector Dead Time Table.pdf; Ballenger 978721",Strong inference - Open Q4
+Fuel pump,Walbro 450 LPH F90000267 (E85 rated) + install/rewire kit,STM Tuned invoice 151651 ($187.97),Confirmed
+Fuel,Flex fuel - Continental/GM composition sensor on DI-5 (frequency),ECU repo CAN Ethanol channel; session local_e0fe603a,Confirmed
+Fuel pressure regulator,Chase Bays compact FPR,Chase Bays 172932 ($134.99),Confirmed
+Fuel filter,Chase Bays high-flow 6AN,Chase Bays 181994,Confirmed
+Boost target,25 psi design / 28 psi worst case,"DERIVED from 1400cc injectors + E85 + 5-bar MAP + EFR headroom",ASSUMED - Open Q2
+Power target,~450 hp crank / ~380-400 whp on E85,DERIVED from 45.7 lb/min x ~10 hp per lb/min,DERIVED - Open Q3
+Charge-pipe IAT sensor,Planned on An Volt 6 (second IAT),XTREMEX-IO-TABLE.md,Confirmed
+Radiator,ST185 alloy - core 690 x 325 x 40 mm; overall 712 x 445 x 105 mm,Speeding Parts ST185 alloy radiator spec,Confirmed
+A/C,"Retained - condenser, evaporator core, expansion valve, compressor clutch purchased","RockAuto 37679 & 27088; Cold Hose 32223",Confirmed - Open Q7
+Oil cooler,Chase Bays 10-row + 1JZ block adapter,Chase Bays 171504,Confirmed - Open Q8
+Front bumper,Carlos Sainz (CS) style,User statement; KBD/Vicrez sell CS bumpers for 1989-93 ST185,Confirmed
+Use case,"Street primary, occasional track, very little drag racing",User statement (prior session local_ditto),Confirmed
+Ducting,Custom ducting planned,User statement,Confirmed
+Location,"Weaverville NC 28787 (Asheville metro, ~640 m / 2100 ft)","Ship-to on Ballenger, Chase Bays, TurboKits, Lowdoller invoices",Confirmed - corrects the brief
+Design ambient,32 C / 90 F,Summer design dry bulb for Asheville area,Assumed
+Site pressure,93.9 kPa,Standard atmosphere at 640 m,Calculated
+Intercooler,NONE PURCHASED,No IC / core / charge piping / couplers in any of 64 invoices,Clean sheet
