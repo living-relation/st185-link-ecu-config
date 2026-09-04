@@ -1,0 +1,22 @@
+--- unit checks ---
+  wall 0.049: ID 2.9020 in -> 73.711 mm ; step to 74.5 = +0.789 mm
+  wall 0.065: ID 2.8700 in -> 72.898 mm ; step to 74.5 = +1.602 mm
+  wall 0.083: ID 2.8340 in -> 71.984 mm ; step to 74.5 = +2.516 mm
+  74.5 mm -> 2.9331 in ; 3.000 in -> 76.20 mm
+--- area error OD vs ID ---
+  3.00/.065: 9.26%  2.50/.065: 11.27%
+--- velocity by continuity, cross-check ---
+  2.5/.065: A=28.461 cm2 hot=189.1 cold=144.0 ft/s
+  3.0/.049: A=42.673 cm2 hot=126.1 cold=96.1 ft/s
+  3.0/.065: A=41.737 cm2 hot=128.9 cold=98.2 ft/s
+  3.0/.083: A=40.697 cm2 hot=132.2 cold=100.7 ft/s
+--- Borda-Carnot at the plate step, cold side ---
+  ID 73.711: dP=0.000076 psi
+  ID 72.898: dP=0.000325 psi
+  ID 71.984: dP=0.000833 psi
+--- dP saving 2.5 -> 3.0 ---
+  0.888 - 0.394 = 0.494 psi
+--- extra volume, cold side 1.5 m ---
+  (4.174-2.846)*1.5 = 1.99 L
+--- bend radius R/D>=1.5 ---
+  2.5 in: 95 mm ; 3.0 in: 114 mm

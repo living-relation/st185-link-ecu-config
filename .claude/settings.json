@@ -1,0 +1,106 @@
+{
+  "hooks": {
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:/Program Files/nodejs/node.exe\" \"C:/Users/Administrator/AppData/Roaming/npm/node_modules/@rely-ai/caliber/dist/bin.js\" refresh --quiet",
+            "description": "Caliber: auto-refreshing docs based on code changes"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "wscript //nologo \"C:/Users/Administrator/AppData/Roaming/npm/node_modules/@rely-ai/caliber/dist/hook-runner.vbs\" \"C:/Program Files/nodejs/node.exe\" \"C:/Users/Administrator/AppData/Roaming/npm/node_modules/@rely-ai/caliber/dist/bin.js\" learn finalize --auto",
+            "description": "Caliber: finalizing session learnings"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/caliber-session-freshness.sh\"",
+            "description": "Caliber: check config freshness on session start"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/caliber-freshness-notify.sh\"",
+            "description": "Caliber: warn when agent configs are stale"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "wscript //nologo \"C:/Users/Administrator/AppData/Roaming/npm/node_modules/@rely-ai/caliber/dist/hook-runner.vbs\" \"C:/Program Files/nodejs/node.exe\" \"C:/Users/Administrator/AppData/Roaming/npm/node_modules/@rely-ai/caliber/dist/bin.js\" learn observe",
+            "description": "Caliber: recording tool usage for session learning"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "wscript //nologo \"C:/Users/Administrator/AppData/Roaming/npm/node_modules/@rely-ai/caliber/dist/hook-runner.vbs\" \"C:/Program Files/nodejs/node.exe\" \"C:/Users/Administrator/AppData/Roaming/npm/node_modules/@rely-ai/caliber/dist/bin.js\" learn observe --failure",
+            "description": "Caliber: recording tool failure for session learning"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "wscript //nologo \"C:/Users/Administrator/AppData/Roaming/npm/node_modules/@rely-ai/caliber/dist/hook-runner.vbs\" \"C:/Program Files/nodejs/node.exe\" \"C:/Users/Administrator/AppData/Roaming/npm/node_modules/@rely-ai/caliber/dist/bin.js\" learn observe --prompt",
+            "description": "Caliber: recording user prompt for correction detection"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/caliber-check-sync.sh\"",
+            "description": "Caliber: offer setup if not configured"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(python *)",
+      "Bash(pip *)",
+      "Bash(pytest *)"
+    ]
+  }
+}

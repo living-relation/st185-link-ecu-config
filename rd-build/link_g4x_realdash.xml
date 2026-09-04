@@ -53,7 +53,11 @@
     <!-- ═══════════════════════════════════════════════════════════════════
          0x3F0  (decimal 1008) — Extended Sensors  (100 ms, BigEndian)
          [0] Fuel Temp °C  [1] Engine Load %  [2-3] Coolant Pressure kPa (u16)  [4] Ethanol %
-         [5] Charge-Pipe IAT °C  [6] Turbo Speed RPM x100  [7] Trigger Errors count
+         [5] Charge-Pipe IAT °C  [6] Turbo Speed RPM x1000  [7] Trigger Errors count
+         (Turbo Speed corrected 2026-09-04: was x100/200000 here, verified wrong against
+         link_g4x_can_setup.json, CAN-BUS-ID-ALLOCATION-TABLE.md, REALDASH-LAYOUT.md, and root
+         link_g4x_realdash.xml, which all agree on x1000/255000. See PLAN.md and
+         CAN-CONFIG-STATUS.md for the full note.)
          Coolant Pressure widened to 2 bytes (2026-06-28); Cabin Temp dropped to make room —
          cabin temp is no longer available via the ST185 inputs.
          Temp bytes use raw-50 = °C encoding.
@@ -64,7 +68,7 @@
       <value name="ST185: Coolant Pressure" offset="2" length="2" conversion="V"     rangeMin="0" rangeMax="1000"/>
       <value name="ST185: Ethanol"          offset="4" length="1" conversion="V"     rangeMin="0" rangeMax="100"/>
       <value name="ST185: Charge-Pipe IAT"  offset="5" length="1" conversion="V-50"  units="C"/>
-      <value name="ST185: Turbo Speed"      offset="6" length="1" conversion="V*100" rangeMin="0" rangeMax="200000"/>
+      <value name="ST185: Turbo Speed"      offset="6" length="1" conversion="V*1000" rangeMin="0" rangeMax="255000"/>
       <value name="ST185: Trigger Errors"   offset="7" length="1" conversion="V"     rangeMin="0" rangeMax="255"/>
     </frame>
 

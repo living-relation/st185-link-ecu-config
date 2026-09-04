@@ -15,6 +15,7 @@ match [`../REALDASH-LAYOUT.md`](../REALDASH-LAYOUT.md).
 
 | App | What it is | How to run |
 |---|---|---|
+| `harness-schematic/` | Dark schematic canvas (harness.design-style). ST185 devices pre-placed; drag pin-to-pin to finish unwired parts. | Open `harness-schematic/index.html`, or `python3 -m http.server` and browse to the folder. |
 | `trackcluster-can-sender/` | Unified desktop app (pywebview + python-can) with a **device selector** — transmits either the RealDash (0x3EF–0x3F1) or Center Cluster (0x3E8–0x3EE) frame set to a connected CAN-USB adapter. Auto-detects adapters, selectable bitrate, Send Once / Send Continuously. Fully self-contained / portable. | See `trackcluster-can-sender/BUILD.md` — run from source or build a portable `.exe`. |
 
 ## Frame coverage

@@ -6,14 +6,21 @@
      Import via : RealDash -> Garage -> tap the CAN connection -> Select Vehicle ->
                   Custom Channel Description File -> browse to this file.
 
-     SCOPE: Only the three NEW ECU TX frames that the ESP32 cluster does NOT already display.
+     SCOPE: The three NEW ECU TX frames that the ESP32 cluster does NOT already display,
+     plus one deliberate carve-out from the cluster's own frames for a RealDash-only feature.
+       0x3EB Gear / Fuel (CARVE-OUT) — gear position only, to drive a reverse-camera auto-switch
+                                      overlay on RealDash. Added 2026-09-04; see note below.
        0x3EF Drive Assist & Status  — target lambda, throttle, TC setting/intervention, boost map, cruise, AC
        0x3F0 Extended Sensors       — fuel temp, engine load, coolant pressure, ethanol, charge-pipe IAT,
                                       turbo speed, trigger errors
        0x3F1 IMU & Ext Warnings     — accel X/Y/Z, packed warning bitmask (decoded per-bit below)
 
-     Frames 0x3E8–0x3EE are intentionally excluded — the cluster already handles RPM, MAP, ECT, IAT,
-     oil temp, ign angle, speed, oil/fuel pressure, lambda, gear, fuel level, and engine protection.
+     Frames 0x3E8–0x3EE are otherwise intentionally excluded — the cluster already handles RPM, MAP,
+     ECT, IAT, oil temp, ign angle, speed, oil/fuel pressure, lambda, gear, fuel level, and engine
+     protection. The single exception is 0x3EB's Gear byte (below): RealDash is a passive second
+     listener on the same frame the cluster already reads, added ONLY so RealDash can flip to a
+     reverse-camera view when Gear=7(R) without the ECU needing a second CAN frame. Do not add any
+     other byte from 0x3E8–0x3EE without updating this SCOPE note and CAN-CONFIG-STATUS.md.
      Switchboard frames 0x640–0x642 are also excluded — the ECU reads them and echoes the few
      display-relevant values (TC echo, boost echo, comm-fault bit) into the frames above. Cabin temp
      is not echoed to RealDash (it was dropped from 0x3F0); RealDash does not read 0x640 directly.
@@ -32,6 +39,18 @@
 
 <RealDashCAN version="2">
   <frames>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         0x3EB  (decimal 1003) — Gear / Fuel  (50 ms, BigEndian)  [CARVE-OUT — see SCOPE note above]
+         [0] Gear Position  0=N, 1-6=gears, 7=R (ECU sets 7 on reverse-switch input; this device does
+             NOT remap 7 — RealDash reads the raw ECU value, unlike the cluster which remaps 7→−1)
+         [1] Fuel Level %
+         [2-7] Free — not exposed here; owned by the cluster contract, do not bind.
+         Only the Gear byte is exposed below. Reverse-camera automation binds to "ST185: Gear" == 7.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <frame id="1003" endianness="big" timeout="2000">
+      <value name="ST185: Gear" offset="0" length="1" conversion="V" enum="0:N,1:1,2:2,3:3,4:4,5:5,6:6,7:R,#:---"/>
+    </frame>
 
     <!-- ═══════════════════════════════════════════════════════════════════
          0x3EF  (decimal 1007) — Drive Assist & Status  (50 ms, BigEndian)

@@ -17,11 +17,28 @@ channels 0x3E8–0x3EE, and the cluster **send** channels 0x3EC/0x3ED) come from
 2. **`0x3E9` oil & fuel pressure are 2 bytes (u16).** Layout: ign 0-1, speed 2, **oil 3-4**, **fuel 5-6**, byte 7 free. (1 byte capped at ~37 psi; gauges need 125/160 psi.) The cluster firmware (`main/canbus.c`, per the HTML) already decodes this 2-byte layout.
 3. **`0x3F0` coolant pressure is 2 bytes (u16)** (bytes 2-3). To make room (frame was full at 8 bytes), the optional **Cabin Temp** byte was dropped; **Trigger Error Count** is kept (byte 7).
 
+## Corrected 2026-09-04: Turbo Speed scaling in the rd-build package
+`rd-build/link_g4x_realdash.xml` (and its copy embedded in `rd-build/PLAN.md`) had Turbo Speed as
+`conversion="V*100" rangeMax="200000"` — internally inconsistent (a single byte maxes at 25,500 at
+that scale, never 200,000) and disagreed with every other source. Verified against the canonical
+config, `link_g4x_can_setup.json` (`scale: 1000`, "raw x 1000 = RPM"), plus
+`CAN-BUS-ID-ALLOCATION-TABLE.md` and `REALDASH-LAYOUT.md`, which both independently state
+x1000/0-255,000 RPM — matching this repo's root `link_g4x_realdash.xml` all along. Corrected the
+rd-build copy to `V*1000`/`255000` to match. If a `.rd` file was already built from the old rd-build
+package, re-import the corrected channel file before trusting turbo-speed readings on it.
+
 ## RealDash receives (ECU echoes only)
 `0x3EF` drive assist/status, `0x3F0` extended sensors, `0x3F1` IMU + warnings. Bind gauges to the
 `ST185:` input names in `link_g4x_realdash.xml`. RealDash does **not** read `0x3E8–0x3EE` (the cluster
 shows those) and does **not** read the switchboard `0x640–0x642` frames directly — the ECU echoes the
 few display-relevant switchboard values (TC echo, boost echo, comm-fault bit) into `0x3EF`/`0x3F1`.
+
+**One deliberate exception, added 2026-09-04:** RealDash also reads the Gear byte of `0x3EB`
+(`ST185: Gear`), as a passive second listener on the same frame the cluster already uses. This exists
+solely to drive a reverse-camera auto-switch on the Pi5/RealDash display when Gear=7(R) — the reverse
+switch itself is wired to the ECUMaster switchboard, not an ECU DI (`XTREMEX-IO-TABLE.html`), and the
+ECU sets Gear=7 on 0x3EB via a PCLink **Trigger** condition. No other byte of `0x3E8–0x3EE` is exposed
+to RealDash; Fuel Level (`0x3EB` byte 1) is intentionally left out to keep this carve-out minimal.
 
 ## Cabin temp
 Cabin temp is **no longer available via the ST185 RealDash inputs** — it was dropped from `0x3F0` and

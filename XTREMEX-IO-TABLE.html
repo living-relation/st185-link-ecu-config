@@ -136,7 +136,7 @@
 <table>
   <tr><th>Signal</th><th>Path</th><th>Notes</th></tr>
   <tr class="g-sb"><td class="chan">Brake switch</td><td>SB → CAN → ECU</td><td>cruise cancel</td></tr>
-  <tr class="g-sb"><td class="chan">Reverse switch</td><td>SB → CAN → ECU</td><td><strong>ECU sets Gear = 7 (R) on 0x3EB → cluster shows "R"</strong> (cluster remaps 7→−1)</td></tr>
+  <tr class="g-sb"><td class="chan">Reverse switch</td><td>SB → CAN → ECU</td><td><strong>ECU sets Gear = 7 (R) on 0x3EB via a PCLink Trigger → cluster shows "R"</strong> (cluster remaps 7→−1). RealDash also reads this byte directly (added 2026-09-04) to drive a reverse-camera auto-switch — see <code>CAN-CONFIG-STATUS.md</code>.</td></tr>
   <tr class="g-sb"><td class="chan">Cruise on/off + set/res ladder</td><td>SB → CAN → ECU</td><td>resistor ladder on a switchboard analog in</td></tr>
 </table>
 
@@ -181,7 +181,7 @@
 
 <h2>Base-map logic to implement (from your notes)</h2>
 <div class="panel note">
-  Idle-up via closed-loop idle (absorbs AC load, no AC input); inverse-VSS idle-up for EPS current draw; AC-kill by load/throttle/boost; heat-soak comp from dual IAT (manifold Temp 2 + charge-pipe Temp 4); flat-shift; traction from wheel speeds (AWD — front-axle vs rear-axle slip); reverse switch → set Gear = 7 (R) on 0x3EB so the cluster shows "R"; fuel temp read from the flex sensor. (Tune functions, not pins.)
+  Idle-up via closed-loop idle (absorbs AC load, no AC input); inverse-VSS idle-up for EPS current draw; AC-kill by load/throttle/boost; heat-soak comp from dual IAT (manifold Temp 2 + charge-pipe Temp 4); flat-shift; traction from wheel speeds (AWD — front-axle vs rear-axle slip); reverse switch → PCLink Trigger sets Gear = 7 (R) on 0x3EB so the cluster shows "R" (and RealDash's reverse-camera view). (Tune functions, not pins.)
 </div>
 
 <h2>Pin budget</h2>
