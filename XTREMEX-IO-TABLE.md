@@ -3,8 +3,8 @@
      per DOCS-CLEANUP-PLAN.md section 7). All channel sections — Trigger, Temp, An Volt, Knock, DI,
      Injection, Ignition, Aux — now match it. The An Volt map previously disagreed on 10 of 11
      channels; that is fixed. Wire colours were dropped rather than carried over (they belonged to
-     the old channel numbers); conflict C11 remains open. One open conflict is flagged inline:
-     injector impedance, hi-Z here vs peak-and-hold on the ATS build sheet. -->
+     the old channel numbers); conflict C11 remains open. The injector-impedance conflict is
+     resolved (2026-09-05): high impedance / saturated, per ATS. -->
 # Link G4X XtremeX — I/O Assignment Table (ST185 5S-GTE)
 
 This is the master pin/channel plan for the **XtremeX** wire-in ECU. It keys off the XtremeX
@@ -90,10 +90,12 @@ for these channels is not fully mapped in Markdown yet — `SCHEMATIC-WIRING.htm
 | Ign 6 | Oil pressure warning lamp | ✅ | spare ignition drive used as aux |
 | Ign 7–8 / Inj 5–8 | spare low-side aux | ⬜ | → PMU/PDM if more capacity needed |
 
-> **Open conflict — injector impedance.** `XTREMEX-IO-TABLE.html` calls the injectors
-> **1400 cc hi-Z**, while `tune/engine_constants.yaml` and `tune/docs/ENGINE_SPEC.md` (from the
-> ATS build sheet) call them **1400 cc peak-and-hold**. Those imply different PCLink injector
-> drive settings. Not resolved here — confirm against the ATS paperwork before first start.
+> **Injector impedance — RESOLVED 2026-09-05.** **High impedance (saturated).** ATS's 3S/5S
+> top-feed injectors are the balanced Bosch EV14 family, which ATS states are high impedance and
+> require the stock low-impedance resistor pack to be deleted. PCLink injector drive = **Saturated**,
+> **not** Peak & Hold. The old "peak-and-hold" label was carried forward from the *stock* 3S-GTE
+> side-feed injectors, which are genuinely low-Z — that is what the resistor pack served.
+> `tune/engine_constants.yaml` and `tune/docs/ENGINE_SPEC.md` were corrected to match.
 
 **Aux section corrected 2026-09-04** — the previous Aux 9/10 rows here said "Unused (cable
 throttle)"; the car is actually drive-by-wire (Bosch ETB), and the table below matches

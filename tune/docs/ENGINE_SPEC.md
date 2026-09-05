@@ -11,8 +11,8 @@
 | Cam LC baseline | 110° ATDC intake, 103° BTDC exhaust (gears slightly retarded — log final ° at install) |
 | Crank trigger | **36-2** multitooth/missing, VR, position = Crank |
 | Cam sync | Cherry Hall, Cam Pulse 1× |
-| Injectors | ATS 1400 cc peak-and-hold, flow-matched |
-| Injector dead time | `config/tables/injector_dead_time_ms.csv` |
+| Injectors | ATS 1400 cc top-feed, **high impedance (saturated)**, flow-matched. PCLink injector drive = **Saturated**, not Peak & Hold. Stock resistor pack deleted. |
+| Injector dead time | `tune/tables/injector_dead_time_ms.csv` |
 | Coils | Toyota 1ZZ COP ×4 sequential |
 | Turbo | BorgWarner EFR 7163-G, 0.80 A/R, internal WG |
 | WG actuator | Turbosmart **TS-0620-4012** GenV IWG, **14 psi** spring |

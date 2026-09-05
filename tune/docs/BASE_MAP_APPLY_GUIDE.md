@@ -9,7 +9,7 @@ Safe startup tune — starts, idles, drives gently. Not optimized for peak perfo
 ## Order
 
 1. Load a conservative Link G4X **startup map** (Toyota / 4-cyl turbo class if available).
-2. Engine constants: 2189 cc, 8.5 CR, firing order, peak-and-hold injectors.
+2. Engine constants: 2189 cc, 8.5 CR, firing order, high-impedance (saturated) injectors.
 3. Import `config/can/link_g4x_can_setup.lcs`.
 4. Pins per `config/io_assignments.yaml` / `SENSOR_WIRING.md`.
 5. Triggers per `TRIGGER_COP_SETUP.md` (36-2 + cam sync).
