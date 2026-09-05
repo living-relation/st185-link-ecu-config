@@ -40,7 +40,7 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `tune/engine_constants.yaml` | Machine-readable engine constants (bore, cams, trigger, injectors, turbo, fuel, targets). Engine calibration only — not an I/O source. |
 | `tune/tables/` | PCLink table seeds — VE (93 + E85), ignition base, injector dead time. Conservative placeholders, not dyno data. See `tune/README.md`. |
 | `FUEL-SYSTEM.md` | Fuel system reference — AN hose sizing and pump capacity notes. Not part of the CAN bus contract. |
-| `archive/` | Retired material — kept for history, **never authoritative**. Also records what was dropped and is *not* recoverable. See `archive/README.md`. |
+| `archive/` | Retired material — kept for history, **never authoritative**, excluded from agent context. Not for normal work; open `archive/README.md` only when tracing why a past decision was made. |
 | `apps/harness-schematic/` | Interactive harness schematic (harness.design-style canvas). Open `index.html`. |
 | `docs/research-hub.html` | Index of everything under `docs/` — the intercooler/turbo study, 5S-GTE build data, and harness wiring — browsable by topic and by section. Open in any browser. Regenerate after editing research with `python docs/build-research-hub.py`. |
 

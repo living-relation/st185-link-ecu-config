@@ -12,7 +12,7 @@
 - **Desktop sender app**: `apps/trackcluster-can-sender/app.py`, `apps/trackcluster-can-sender/ui/index.html`, `apps/trackcluster-can-sender/BUILD.md`, `apps/trackcluster-can-sender/requirements.txt`.
 - **Automation assets**: `rd-build/tools/automation_helper.py`, `rd-build/tools/SETUP.md`, `rd-build/PLAN.md`, `rd-build/FINDINGS.md`.
 - **Engine calibration**: `tune/engine_constants.yaml`, `tune/tables/*.csv`, `tune/README.md` — PCLink seeds only; not an I/O or CAN source.
-- **Archive**: `archive/` — retired material, never authoritative; if it disagrees with a current doc, the current doc wins.
+- **Archive**: `archive/` — retired material. **Do not read or search it during normal work**; it is excluded from agent context and nothing in it is authoritative. Consult it only when explicitly asked why a past decision was made, and if it disagrees with a current doc, the current doc wins.
 - **Agent ecosystem**: `.claude/skills/`, `.cursor/skills/`, `.agents/skills/`, `.cursor/hooks.json`, `.claude/hooks/`.
 
 ## Related Repos (mandatory for CAN bus / wiring work)
