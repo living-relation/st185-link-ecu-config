@@ -14,6 +14,12 @@ This directory covers **engine calibration only**. It is not an I/O or wiring so
 | `tables/ve_e85_pct.csv` | E85 overlay — ~8% richer than the 93 seed at the same cells. |
 | `tables/ignition_base_deg.csv` | Ignition advance [° BTDC] — retarded under boost. |
 | `tables/injector_dead_time_ms.csv` | ATS 1400 cc dead time vs ΔkPa and battery voltage. |
+| `tables/lambda_target.csv` | Target lambda vs load. Still applies — the external CAN-Lambda controller fills Lambda 1; the target table is ECU-side. |
+| `tables/boost_target_psi.csv` | Open-loop boost target vs RPM/TPS. |
+| `tables/multi_fuel_blend.csv` | Ethanol % vs fuel/ignition trim multiplier — the blend axis `ve_e85_pct.csv` pairs with. |
+| `limits.yaml` | ECU protection limits + cluster cosmetic thresholds. Intentionally loose for the startup map. |
+| `docs/` | Engine-side guides: spec, trigger/COP, driveability, limits, first-start, protection, research. |
+| `scripts/` | `calc_engine.py`, `build_limits_tracker.py` (generates `docs/LIMITS_PROTECTION_TRACKER.xlsx`). |
 
 All three main tables share one axis pair: **MAP 20–200 kPa (rows) × RPM 800–7000 (columns)**.
 
@@ -44,8 +50,16 @@ PCLink template after loading the Link startup map.
 `targets.rev_limit_soft_first_start` is 4000. Between 7000 and 8000 RPM PCLink extrapolates off
 the last column. Resolve this before any high-RPM running.
 
-**Companion tables not imported.** `ve_e85_pct.csv` is designed to be used with a Modelled
-Multi-Fuel blend axis, whose `multi_fuel_blend.csv` was not brought across. `lambda_target.csv`
-and `boost_target_psi.csv` also exist in the source repo and are available if wanted.
+**Not imported from the source repo**, as FuryX-specific or repo-meta: `io_assignments.yaml`,
+`docs/references/` (FuryX quickstart PDF, dealer HTML, quickstart notes), the I/O docs
+(`SENSOR_WIRING.md`, `IO_BUDGET.md`, `PWM_OUTPUTS.md`), the agent/session handoff docs, and
+`package_ecu.ps1` (a zip packager for the old standalone repo). `XTREMEX-IO-TABLE.html` is
+authoritative for all channel assignment.
+
+**Channel references were corrected on import.** `docs/ENGINE_SPEC.md` carried FuryX assignments
+inline — flex fuel moved DI5 → DI2 (C13), reverse moved DI10 → switchboard/CAN (C16), and the
+boost/fan/fuel-pump/ethanol Aux numbers were replaced with pointers to `XTREMEX-IO-TABLE.html`
+rather than asserting XtremeX channels that are not yet confirmed. `docs/RESEARCH.md` retains its
+FuryX evaluation section, marked superseded.
 
 Save the tuned result as a `.pclx` — do not edit these seeds in place once tuning starts.
