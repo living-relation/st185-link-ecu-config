@@ -53,7 +53,7 @@ Branch `ECU-wiring-design`, 2 commits ahead of `main`, 3 untracked paths.
 |---|---|---|---|---|---|---|
 | 1 | `XTREMEX-IO-TABLE.html` | HTML | 2026-07-13 | Full XtremeX channel plan: DBW, EPS, A/C, CAN-Lambda, switchboard, pin budget | **CURRENT** | The only complete and internally consistent I/O document. Exists only on branch `ECU-wiring-design`; never merged to `main`. |
 | 2 | `SCHEMATIC-WIRING.html` | HTML/SVG | 2026-07-27 | Schematic with real ECU pin numbers (A/B 34-pin + Comms 6-pin) | **CURRENT** | Newest wiring artifact in the project. **Untracked in git** — never committed, never pushed. |
-| 3 | `XTREMEX-IO-TABLE.md` | Markdown | 2026-07-13 | Channel plan | **INCORRECT** | Says the car is cable throttle and Aux 9/10 are unused. Its An Volt map contradicts #1 on 8 of 11 channels. |
+| 3 | `XTREMEX-IO-TABLE.md` | Markdown | 2026-09-04 (DI/Aux only) | Channel plan | **PARTIALLY CORRECTED** | DI and Aux sections fixed 2026-09-04 to match #1 (DBW, Aux 9/10 = ETB H-bridge). **Still incorrect:** its An Volt map still contradicts #1 on 8 of 11 channels; Trigger/Temp/Knock/Injection/Ignition sections are still the stale 2026-07-01 draft, unverified against #1. |
 | 4 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Markdown | 2026-07-13 | Master CAN ID map, byte layouts sections A–E | **CURRENT** | Accurate for what it covers. Missing the CAN-Lambda transmit ID 0x3BE and any DBW/EPS/A/C telemetry. |
 | 5 | `link_g4x_can_setup.lcs` | XML | 2026-07-13 | PCLink CAN transmit streams | **CURRENT** | All four prior bugfixes verified present. See section 4. |
 | 6 | `link_g4x_can_setup.json` | JSON | 2026-07-13 | Canonical twin of the LCS | **UNVERIFIED** | Not opened this pass. Must be diffed against the LCS before it is trusted. |
@@ -394,7 +394,7 @@ Checked line by line against `Tables\FuryX A-B Connector_PinMap_v3.xlsx`.
 | Pedal supply sharing | Confirm whether the two pedal tracks share one 5 V/ground pair or need separate pairs. |
 | +5 V rail budget | Nine loads on A32. Confirm the XtremeX rail limit. Fault code 72 shuts the throttle down if it sags. |
 | Motor wire gauge | Up to 10 A on two wires. Not yet in any build list. |
-| Idle control | With DBW there is no ISC valve. `XTREMEX-IO-TABLE.md` still lists Aux 2/3 as "Idle (ISC)". |
+| Idle control | ~~With DBW there is no ISC valve. `XTREMEX-IO-TABLE.md` still lists Aux 2/3 as "Idle (ISC)".~~ **Resolved 2026-09-04** — `XTREMEX-IO-TABLE.md` Aux section corrected; Aux 2/3 now read ETB power relay / fuel pump relay, matching #1. |
 | Manifold description | Google Drive #36 says "side feed intake manifold". Dan says Soara dual plenum. |
 | CAN telemetry | 0x3EE byte 5 already carries `Throttle Error` to the cluster and is frozen — that covers the warning light. Full DBW telemetry for RealDash is proposed in section 5.6. |
 

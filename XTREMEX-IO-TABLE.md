@@ -1,4 +1,9 @@
 <!-- STATUS: DRAFT baseline for one-by-one verification. Source: Link G4X XtremeX Quick Start Guide (Installer I/O Table + A/B loom pin diagram). Engine: 1993 Celica GT-Four ST185, 3S-GTE turbo. Date: 2026-07-01 -->
+<!-- UPDATE 2026-09-04: DI and Aux sections corrected to match XTREMEX-IO-TABLE.html (2026-07-13,
+     current — drive-by-wire, not cable throttle). Trigger/Temp/An Volt/Knock/Injection/Ignition
+     sections below are still the stale 2026-07-01 draft; per DOCS-CLEANUP-PLAN.md this doc's
+     An Volt map disagrees with XTREMEX-IO-TABLE.html on 8 of 11 channels and has not been
+     reconciled yet. Do not treat this file as fully current outside DI/Aux. -->
 # Link G4X XtremeX — I/O Assignment Table (ST185 3S-GTE)
 
 This is the master pin/channel plan for the **XtremeX** wire-in ECU. It keys off the XtremeX
@@ -45,16 +50,23 @@ Link assigns functions to these **named channels** in PCLink, not to bare pin nu
 | An Volt 11 | A / White | spare | ⬜ |
 | Knock 1 | B / Grey-ish | Knock sensor | ✅ |
 | Knock 2 | B | 2nd knock (if fitted) | ⬜ |
-| DI 1 | A / Red | Flex-fuel sensor (frequency) → ethanol % + fuel temp | 🟡 confirm |
-| DI 2 | A / Red-White | Clutch switch | 🟡 |
-| DI 3 | A / Red-Blue | Brake switch | 🟡 |
-| DI 4 | B / Grey-Purple | Launch / spare | ⬜ |
-| DI 5 | B / Grey-White | spare | ⬜ |
-| DI 6 | B / Grey | spare | ⬜ |
-| DI 7 | B / Grey-Yellow | spare | ⬜ |
-| DI 8 | B / Grey-Green | spare | ⬜ |
-| DI 9 / CAN2 L | A / White | **DI only** (CAN2 unused) — spare DI | ⬜ |
-| DI 10 / CAN2 H | B / White | **DI only** (CAN2 unused) — spare DI | ⬜ |
+
+**DI section corrected 2026-09-04** — the previous DI 1–10 rows here were a stale cable-throttle-era
+draft (2026-07-01) with different channel assignments and no DBW hardware; see git history for that
+version. This table now matches `XTREMEX-IO-TABLE.html` (2026-07-13, current). Loom pin / wire color
+for these channels is not fully mapped in Markdown yet — `SCHEMATIC-WIRING.html` pins only a subset
+(e.g. Aux 2 = A20, ETB motor = B18/B26); do not infer colors from the old table.
+
+| XtremeX channel | Function (ST185, DBW) | Status | Note |
+|---|---|---|---|
+| DI 1 | Turbo speed (frequency) | ✅ | |
+| DI 2 | Flex-fuel sensor (Continental 3-pin) → ethanol% + fuel temp | ✅ | fuel temp comes from here — no separate sensor |
+| DI 3–6 | ABS wheel speed ×4 (reluctor) | 🟡 | shielded TP; conditioner if low-speed dropout; drops first |
+| DI 7 | Start request (button/key) | 🟡 | ECU-controlled start |
+| DI 8 | Clutch switch | 🟡 | ECU-direct (flat-shift/launch latency) |
+| DI 9–10 | spare | ⬜ | (CAN2 unused) |
+| Reverse switch | SB → CAN → ECU | ✅ | ECU sets Gear = 7 (R) on 0x3EB via a PCLink Trigger → cluster shows "R" (cluster remaps 7→−1). RealDash also reads this byte directly (added 2026-09-04) to drive a reverse-camera auto-switch — see `CAN-CONFIG-STATUS.md`. |
+| Cruise on/off + set/res ladder | SB → CAN → ECU | ⬜ | resistor ladder on a switchboard analog in |
 
 ## Outputs
 
@@ -64,20 +76,29 @@ Link assigns functions to these **named channels** in PCLink, not to bare pin nu
 | Injection 5–8 | B / Blue family | spare (usable as aux) | ⬜ |
 | Ignition 1–4 | A / Orange family | Coils (COP or wasted-spark) | 🟡 confirm ignition type |
 | Ignition 5–8 | B / Orange family | spare (usable as aux) | ⬜ |
-| Aux 1 | A / Orange-Yellow | Boost control solenoid | 🟡 |
-| Aux 2 | A / Orange-Green | Idle (ISC) — pin of a pair if 3-wire | 🟡 |
-| Aux 3 | A / Orange-Blue | Idle (ISC) 2nd / spare | ⬜ |
-| Aux 4 | A / Orange-Purple | Fuel pump relay | 🟡 |
-| Aux 5 | A / (A-loom) | Radiator fan | 🟡 |
-| Aux 6 | A / (A-loom) | AC clutch (or via switchboard low-side) | ⬜ |
-| Aux 7 | A / Brown-Orange | Tacho out / CEL | ⬜ |
-| Aux 8 | A / Brown-Red | spare | ⬜ |
-| Aux 9 (E-throttle +) | A / Purple | **Unused** (ST185 is cable throttle) | 🟡 confirm cable vs DBW |
-| Aux 10 (E-throttle −) | A / Purple-White | **Unused** (cable throttle) | 🟡 |
+
+**Aux section corrected 2026-09-04** — the previous Aux 9/10 rows here said "Unused (cable
+throttle)"; the car is actually drive-by-wire (Bosch ETB), and the table below matches
+`XTREMEX-IO-TABLE.html` (2026-07-13, current). Drive types: Aux 1–4 low-side only, Aux 5–8
+hi/lo, Aux 9–10 H-bridge (ETB). All 10 native Aux channels are now spoken for — extra capacity
+beyond that comes from spare Ignition/Injection 5–8 (see rows above), then a PMU/PDM.
+
+| XtremeX channel | Function (ST185, DBW) | Drive | Status | Note |
+|---|---|---|---|---|
+| Aux 1 | Boost solenoid | low-side | ✅ | active-low |
+| Aux 2 | ETB power relay (V-Ethrottle feed) | low-side | ✅ | active-low |
+| Aux 3 | Fuel pump relay | low-side | ✅ | active-low |
+| Aux 4 | AC clutch/kill (grounds relay coil or amp ACT) | low-side | ✅ | active-low sink; floats when off, no pull-up; confirm exact amp circuit |
+| Aux 5 | Engine radiator fan relay | hi/lo | ✅ | |
+| Aux 6 | EFI main relay (ECU power hold) | hi/lo | ✅ | keeps ECU powered for DBW key-off reset/cooldown |
+| Aux 7 | Speed-out → MRS pump SPD pin (Yel/Wht) | low-side pulse | ✅ | 0–5/12V pulse (~4/rev); direct, no resistor; set speedo-out scaling so pump idles down >~10 km/h |
+| Aux 8 | Start relay (ECU-controlled) | hi/lo | ✅ | ECU enables/disables in software (clutch/neutral/anti-restart) — no separate cut relay |
+| Aux 9 / 10 | Bosch ETB motor (H-bridge) | H-bridge | ✅ | DBW |
 
 ## Power / ground
 | Channel | Loom / color | Use |
 |---|---|---|
+| V-Ethrottle (B connector) | — | Relayed 12–14V ETB H-bridge feed (switched by Aux 2) |
 | +5V Out | A / Red | TPS + MAP sensor power |
 | +8V Out | A / (A-loom) | 8V sensor power (if used) |
 | 14V + | A / (A-loom) | Main ECU battery feed (switched) |
@@ -86,6 +107,8 @@ Link assigns functions to these **named channels** in PCLink, not to bare pin nu
 ---
 
 ## To finish this table (one-by-one pass)
-Confirm, in order: (1) trigger type/pattern, (2) ignition type (COP vs distributor/wasted), (3) injector
-size/impedance, (4) which analog volts carry which pressure/flex/wideband, (5) idle valve type, (6) each
-Aux output's load, (7) each DI's switch. I'll fill each row as you confirm it, then lock the table.
+DI and Aux (2026-09-04) are corrected and match `XTREMEX-IO-TABLE.html`; no longer open items here.
+Still open, per `DOCS-CLEANUP-PLAN.md`: (1) trigger type/pattern, (2) ignition type (COP vs
+distributor/wasted), (3) injector size/impedance, (4) which analog volts carry which
+pressure/flex/wideband (An Volt map disagrees with the HTML source on 8/11 channels), (5) idle
+valve type — likely moot now under DBW, confirm. Fill each row as it's confirmed, then lock the table.
