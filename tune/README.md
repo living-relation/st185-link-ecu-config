@@ -18,7 +18,7 @@ This directory covers **engine calibration only**. It is not an I/O or wiring so
 | `tables/boost_target_psi.csv` | Open-loop boost target vs RPM/TPS. |
 | `tables/multi_fuel_blend.csv` | Ethanol % vs fuel/ignition trim multiplier — the blend axis `ve_e85_pct.csv` pairs with. |
 | `limits.yaml` | ECU protection limits + cluster cosmetic thresholds. Intentionally loose for the startup map. |
-| `docs/` | Engine-side guides: spec, trigger/COP, driveability, limits, first-start, protection, research, 0x3EE alarm mapping policy. |
+| `docs/` | Engine-side guides: spec, trigger/COP, driveability, limits, first-start, protection, research. |
 | `scripts/` | `calc_engine.py`, `build_limits_tracker.py` (generates `docs/LIMITS_PROTECTION_TRACKER.xlsx`). |
 
 All three main tables share one axis pair: **MAP 20–200 kPa (rows) × RPM 800–7000 (columns)**.
