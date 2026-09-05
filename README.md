@@ -39,6 +39,7 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `WIRING.md` | Physical wiring reference — cluster boards + 4-node CAN bus topology. |
 | `FUEL-SYSTEM.md` | Fuel system reference — AN hose sizing and pump capacity notes. Not part of the CAN bus contract. |
 | `apps/harness-schematic/` | Interactive harness schematic (harness.design-style canvas). Open `index.html`. |
+| `docs/research-hub.html` | Index of everything under `docs/` — the intercooler/turbo study, 5S-GTE build data, and harness wiring — browsable by topic and by section. Open in any browser. Regenerate after editing research with `python docs/build-research-hub.py`. |
 
 ## Import Checklist (PCLink, when ECU is available)
 
