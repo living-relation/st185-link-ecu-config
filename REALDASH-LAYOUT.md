@@ -1,7 +1,7 @@
 # RealDash Layout Design — ST185 TrackCluster
 
 Buildable dashboard design for the **Raspberry Pi RealDash** secondary display on the 1993 Celica
-GT-Four (3S-GTE) track build. This is the spec you build against in the RealDash visual editor; it
+GT-Four (5S-GTE) track build. This is the spec you build against in the RealDash visual editor; it
 pairs 1:1 with the inputs in [`link_g4x_realdash.xml`](link_g4x_realdash.xml). A browser preview of
 the finished look is [`realdash-simulation.html`](realdash-simulation.html) (open in any browser).
 

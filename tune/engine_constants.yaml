@@ -1,0 +1,73 @@
+engine:
+  name: st185_5sgte_hybrid
+  vehicle: ST185 Celica All-Trac
+  bore_mm: 87.5
+  stroke_mm: 91.0
+  displacement_cc: 2189
+  compression_ratio: 8.5
+  firing_order: [1, 3, 4, 2]
+  chambers_cc: 49
+  piston_dish_cc: -14
+
+cams:
+  intake: "HKS 2202-RT063 264deg"
+  exhaust: "HKS 2202-RT064 264deg"
+  vvt: false
+  lobe_center_intake_atdc_deg: 110
+  lobe_center_exhaust_btdc_deg: 103
+  gear_note: "slightly retarded vs marks — document final degrees in ENGINE_SPEC"
+
+trigger:
+  crank: "36-2 multitooth/missing VR"
+  tooth_count: 36
+  missing_teeth: 2
+  position: crank
+  cam_sync: "Cam Pulse 1x Hall"
+
+injectors:
+  flow_cc: 1400
+  type: "ATS top-feed peak-and-hold"
+  dead_time_table: "tune/tables/injector_dead_time_ms.csv"
+
+turbo:
+  model: "BorgWarner EFR 7163-G"
+  ar: 0.80
+  iwg: true
+  wg_actuator: "Turbosmart TS-0620-4012 GenV IWG 14 psi"
+
+intercooler:
+  type: FMIC
+  core_in: "4 x 14 x 28 in bar-plate"
+  piping_in: 3
+
+fuel:
+  injectors_cc: 1400
+  pump: "Walbro F90000295"
+  fpr: "Chase Bays 1:1 boost-referenced"
+  base_pressure_psi: 43.5
+  rail: "8AN top-feed"
+  flex_sensor: "Continental PWM DI — 2.4k pull-up on signal"
+
+driveline:
+  transmission: "Toyota E150F"
+  vss: "gearbox OEM — calibrate in PCLink"
+  reverse_switch: "ECUMaster switchboard -> CAN -> ECU (Gear=7 on 0x3EB); DI9/DI10 spare"
+  center_diff: "viscous coupling — not ECU controlled"
+  rear_diff: "RX300 Torsen LSD"
+
+ignition:
+  coils: "Toyota 1ZZ COP sequential x4"
+
+ecu:
+  model: "Link G4X XtremeX"
+  can_dashboard: CAN1
+  can2: disabled
+  di_count: 10
+
+targets:
+  startup_map_goal: "safe idle and short shakedown only"
+  boost_psi_street_seed: 18
+  boost_psi_max_eventual: 30
+  power_bhp_eventual: 600
+  rev_limit_rpm: 8000
+  rev_limit_soft_first_start: 4000

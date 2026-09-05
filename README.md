@@ -1,6 +1,6 @@
 # st185-link-ecu-config
 
-Link G4X XtremeX ECU, RealDash, and ECUMaster CAN Switch Board V3 configuration for the 1993 Toyota Celica GT-Four ST185 (3S-GTE) TrackCluster build.
+Link G4X XtremeX ECU, RealDash, and ECUMaster CAN Switch Board V3 configuration for the 1993 Toyota Celica GT-Four ST185 (5S-GTE) TrackCluster build.
 
 ## Scope
 
@@ -31,12 +31,14 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `CANBUS-ENCODE-DECODE-REFERENCE.html` | **Canonical CAN encode/decode reference** (ECU <-> center cluster, frames 0x3E8-0x3EE + lambda) — source of truth for wire size/scale/offset. Open in any browser. |
 | `REALDASH-LAYOUT.md` | RealDash **dashboard layout design** — buildable spec for the **single-page** blue/chrome 800x480 engineering dash (4x4 tile grid + strobing warning strip; no media page). Binds to `link_g4x_realdash.xml`. |
 | `CAN-CONFIG-STATUS.md` | Handoff/status note — snapshot of the reconciled CAN config, the source-of-truth HTML, and open items. |
-| `XTREMEX-IO-TABLE.md` | Link G4X XtremeX I/O assignment table (ST185 3S-GTE pin/channel plan). |
+| `XTREMEX-IO-TABLE.md` | Link G4X XtremeX I/O assignment table (ST185 5S-GTE pin/channel plan). |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |
 | `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 4-node topology. |
 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Master ID allocation table — all byte layouts, sections A–E. |
 | `CANBUS-LINK-G4X-CONFIG.md` | PCLink setup guide: module settings, stream import, User Stream wiring. |
 | `WIRING.md` | Physical wiring reference — cluster boards + 4-node CAN bus topology. |
+| `tune/engine_constants.yaml` | Machine-readable engine constants (bore, cams, trigger, injectors, turbo, fuel, targets). Engine calibration only — not an I/O source. |
+| `tune/tables/` | PCLink table seeds — VE (93 + E85), ignition base, injector dead time. Conservative placeholders, not dyno data. See `tune/README.md`. |
 | `FUEL-SYSTEM.md` | Fuel system reference — AN hose sizing and pump capacity notes. Not part of the CAN bus contract. |
 | `apps/harness-schematic/` | Interactive harness schematic (harness.design-style canvas). Open `index.html`. |
 | `docs/research-hub.html` | Index of everything under `docs/` — the intercooler/turbo study, 5S-GTE build data, and harness wiring — browsable by topic and by section. Open in any browser. Regenerate after editing research with `python docs/build-research-hub.py`. |

@@ -1,16 +1,16 @@
-<!-- STATUS: DRAFT baseline for one-by-one verification. Source: Link G4X XtremeX Quick Start Guide (Installer I/O Table + A/B loom pin diagram). Engine: 1993 Celica GT-Four ST185, 3S-GTE turbo. Date: 2026-07-01 -->
+<!-- STATUS: DRAFT baseline for one-by-one verification. Source: Link G4X XtremeX Quick Start Guide (Installer I/O Table + A/B loom pin diagram). Engine: 1993 Celica GT-Four ST185, 5S-GTE turbo. Date: 2026-07-01 -->
 <!-- UPDATE 2026-09-04: DI and Aux sections corrected to match XTREMEX-IO-TABLE.html (2026-07-13,
      current — drive-by-wire, not cable throttle). Trigger/Temp/An Volt/Knock/Injection/Ignition
      sections below are still the stale 2026-07-01 draft; per DOCS-CLEANUP-PLAN.md this doc's
      An Volt map disagrees with XTREMEX-IO-TABLE.html on 8 of 11 channels and has not been
      reconciled yet. Do not treat this file as fully current outside DI/Aux. -->
-# Link G4X XtremeX — I/O Assignment Table (ST185 3S-GTE)
+# Link G4X XtremeX — I/O Assignment Table (ST185 5S-GTE)
 
 This is the master pin/channel plan for the **XtremeX** wire-in ECU. It keys off the XtremeX
 Quick Start Guide "Installer I/O Table" and the A/B loom diagram (channel name + loom + wire color —
 Link assigns functions to these **named channels** in PCLink, not to bare pin numbers).
 
-**Status key:** ✅ assigned (already in CAN/wiring docs) · 🟡 proposed (typical 3S-GTE — confirm) · ⬜ TBD (verify one-by-one)
+**Status key:** ✅ assigned (already in CAN/wiring docs) · 🟡 proposed (typical 5S-GTE — confirm) · ⬜ TBD (verify one-by-one)
 
 ---
 
@@ -29,7 +29,7 @@ Link assigns functions to these **named channels** in PCLink, not to bare pin nu
 
 ## Inputs
 
-| XtremeX channel | Loom / wire color | Function (ST185 3S-GTE) | Status |
+| XtremeX channel | Loom / wire color | Function (ST185 5S-GTE) | Status |
 |---|---|---|---|
 | Trigger 1 | A / Yellow | Crank position (Ne) | 🟡 confirm trigger type/pattern |
 | Trigger 2 | A / Yellow-Brown | Cam / home (G) | 🟡 confirm |
@@ -70,7 +70,7 @@ for these channels is not fully mapped in Markdown yet — `SCHEMATIC-WIRING.htm
 
 ## Outputs
 
-| XtremeX channel | Loom / wire color | Function (ST185 3S-GTE) | Status |
+| XtremeX channel | Loom / wire color | Function (ST185 5S-GTE) | Status |
 |---|---|---|---|
 | Injection 1–4 | A / Blue family | Injectors, cyl 1–4 (sequential) | ✅ |
 | Injection 5–8 | B / Blue family | spare (usable as aux) | ⬜ |

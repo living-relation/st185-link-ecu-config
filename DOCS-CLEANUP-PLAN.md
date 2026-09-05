@@ -503,6 +503,22 @@ The three cluster-facing frames are frozen. The three RealDash frames 0x3EF–0x
 
 Every place two sources disagree, with the recommended resolution.
 
+> **Resolution log**
+>
+> - **C1 (engine 3S-GTE → 5S-GTE) — RESOLVED 2026-09-04.** Applied to the whole-engine identity
+>   labels in `README.md`, `XTREMEX-IO-TABLE.md`, `XTREMEX-IO-TABLE.html`, `SCHEMATIC-WIRING.html`,
+>   `FUEL-SYSTEM.md`, `REALDASH-LAYOUT.md`, `realdash-simulation.html`, `rd-build/README.md` and
+>   `rd-build/realdash-simulation-REFERENCE.html` (16 occurrences). Deliberately **not** applied to
+>   genuine 3S-GTE *cylinder head* references, PDF-extracted source text, the intercooler research
+>   set, generated reports, or the Source A column of this table — the head really is a 3S-GTE, and
+>   rewriting quoted sources would falsify provenance.
+> - **C2 (ECU FuryX → XtremeX) — RESOLVED 2026-09-04 for imported calibration data.** The engine
+>   calibration in `tune/` was imported from the FuryX-era `st185-furyx-base-map` repo with
+>   `ecu.model` corrected to XtremeX and `driveline.reverse_switch` corrected per **C16**
+>   (switchboard → CAN, DI 9/10 spare). That repo's `io_assignments.yaml` and `config/can/*` were
+>   **not** imported — see `tune/README.md`. C2 remains open for the FuryX-sourced files listed in
+>   section 2 that are still awaiting archival.
+
 | # | Subject | Source A | Source B | Recommended | Why |
 |---|---|---|---|---|---|
 | C1 | Engine | 3S-GTE — every repo document | 5S-GTE — Dan, and the 2026-08-30 turbo research (2.19 L, 5S-FE block, 3S-GTE head) | **5S-GTE** | `XTREMEX-IO-TABLE.html` already contradicts itself, saying "36-2 crank wheel (Beams/5S)". The 3S-GTE label is a copy-forward error. |

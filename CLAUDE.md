@@ -11,6 +11,7 @@
 - **Bench tooling**: `bench/can_bench.py`, `bench/frames.py`, `bench/requirements.txt`, `BENCH-TEST.md`.
 - **Desktop sender app**: `apps/trackcluster-can-sender/app.py`, `apps/trackcluster-can-sender/ui/index.html`, `apps/trackcluster-can-sender/BUILD.md`, `apps/trackcluster-can-sender/requirements.txt`.
 - **Automation assets**: `rd-build/tools/automation_helper.py`, `rd-build/tools/SETUP.md`, `rd-build/PLAN.md`, `rd-build/FINDINGS.md`.
+- **Engine calibration**: `tune/engine_constants.yaml`, `tune/tables/*.csv`, `tune/README.md` — PCLink seeds only; not an I/O or CAN source.
 - **Agent ecosystem**: `.claude/skills/`, `.cursor/skills/`, `.agents/skills/`, `.cursor/hooks.json`, `.claude/hooks/`.
 
 ## Related Repos (mandatory for CAN bus / wiring work)
@@ -84,6 +85,7 @@ python rd-build/tools/automation_helper.py screenshot rd-build/rd_screen.png
 ## Known Gotchas
 - `AGENTS.md` previously referenced removed paths like `apps/canbus-live-sender/`; use `apps/trackcluster-can-sender/`.
 - Root `link_g4x_realdash.xml` is the single copy (the `rd-build/` duplicate was removed 2026-09-04 after drifting); do not reintroduce one.
+- The sibling repo `st185-furyx-base-map` holds an older **FuryX-era** copy of `link_g4x_can_setup.json`/`.lcs` and `CANBUS-LINK-G4X-CONFIG.md`. This repo's versions are newer (frames `0x3EF`/`0x3F0`/`0x3F1`, 2-byte oil/fuel pressure, `MAP` not `MGP`) — never copy CAN files from it. Its `io_assignments.yaml` is FuryX-only and contradicts `XTREMEX-IO-TABLE.md`.
 - `rd-build/tools/automation_helper.py` depends on desktop permissions and local GUI session; headless runs are unsupported per `rd-build/FINDINGS.md`.
 
 ## Change Workflow
