@@ -2,7 +2,6 @@
 description: Preserve RealDash XML input contract
 globs:
   - link_g4x_realdash.xml
-  - rd-build/link_g4x_realdash.xml
   - REALDASH-LAYOUT.md
   - realdash-simulation.html
 alwaysApply: false
@@ -12,4 +11,4 @@ alwaysApply: false
 - Keep RealDash frame scope aligned to documented ECU streams (`0x3EF`, `0x3F0`, `0x3F1`).
 - Maintain conversion parity with `bench/frames.py` for scale/offset consistency.
 - Keep warning bits (`startbit`) mapped to canonical byte-6 bit assignments.
-- When touching `rd-build/link_g4x_realdash.xml`, confirm parity with root `link_g4x_realdash.xml`.
+- Root `link_g4x_realdash.xml` is the single copy; do not reintroduce a duplicate under `rd-build/`.

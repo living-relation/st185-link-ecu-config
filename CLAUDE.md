@@ -83,7 +83,7 @@ python rd-build/tools/automation_helper.py screenshot rd-build/rd_screen.png
 
 ## Known Gotchas
 - `AGENTS.md` previously referenced removed paths like `apps/canbus-live-sender/`; use `apps/trackcluster-can-sender/`.
-- `rd-build/link_g4x_realdash.xml` can drift from `link_g4x_realdash.xml`; verify conversion parity when touching either.
+- Root `link_g4x_realdash.xml` is the single copy (the `rd-build/` duplicate was removed 2026-09-04 after drifting); do not reintroduce one.
 - `rd-build/tools/automation_helper.py` depends on desktop permissions and local GUI session; headless runs are unsupported per `rd-build/FINDINGS.md`.
 
 ## Change Workflow

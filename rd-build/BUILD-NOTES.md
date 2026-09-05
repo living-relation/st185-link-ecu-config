@@ -5,7 +5,7 @@ Built with RealDash 2.6.7 (Windows, Microsoft Store) via editor automation on Da
 ## Deliverables
 - `st185_dash.rd` (repo root + `rd-build/realdash-root/st185_dash.rd`) — 39,248 bytes
 - No `_anim.xml` sidecar (no animations created — see deviations)
-- CAN channel file: `rd-build/link_g4x_realdash.xml` (imported into a RealDash CAN / WIFI-LAN connection)
+- CAN channel file: `link_g4x_realdash.xml` (repo root — imported into a RealDash CAN / WIFI-LAN connection)
 
 ## What was built (per PLAN.md §4)
 - Editor canvas 1920×1080; all spec coords scaled ×2.4 (X/W) and ×2.25 (Y/H).
