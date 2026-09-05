@@ -236,8 +236,12 @@ def build() -> dict:
 
 
 def render(data: dict) -> str:
-    now = datetime.now().strftime("%Y-%m-%d %H:%M")
-    payload = json.dumps(data, default=str)
+    # Derived from the sources, not the clock: regenerating without changing any
+    # research must produce a byte-identical file, or the committed output churns
+    # on every run and collides between concurrent sessions.
+    dates = [d["modified"] for t in data["topics"] for d in t["docs"] if d.get("modified")]
+    latest = max(dates) if dates else "unknown"
+    payload = json.dumps(data, default=str, sort_keys=True)
     total_read = sum(t["counts"]["deliverable"] + t["counts"]["research"]
                      for t in data["topics"])
     total_all = sum(len(t["docs"]) for t in data["topics"])
@@ -325,8 +329,8 @@ def render(data: dict) -> str:
 <div class="wrap">
 <header>
   <h1>ST185 Research Hub</h1>
-  <p class="sub">Generated {now} &middot; {total_read} readable documents of {total_all} files across
-     {len(data["topics"])} topics &middot; regenerate with
+  <p class="sub">Sources last updated {latest} &middot; {total_read} readable documents of
+     {total_all} files across {len(data["topics"])} topics &middot; regenerate with
      <code>python docs/build-research-hub.py</code></p>
 </header>
 
