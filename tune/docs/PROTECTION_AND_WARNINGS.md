@@ -48,7 +48,7 @@ Motorsport feature in PCLink. **Not** a cluster warning category. Do not documen
 
 ## Throttle / ETB (exception)
 
-Only case with an intentional **two-step** policy: cluster **THROTTLE ERR** (byte 5) for early deviation so you can pull over; separate Link **limit** shuts the engine. See `ALARM_CAN_SPEC.md`.
+Only case with an intentional **two-step** policy: cluster **THROTTLE ERR** (byte 5) for early deviation so you can pull over; separate Link **limit** shuts the engine. See `CAN-BUS-ID-ALLOCATION-TABLE.md` for the 0x3EE byte layout.
 
 ## Traction control (separate UI)
 
