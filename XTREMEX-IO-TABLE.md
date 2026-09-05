@@ -1,9 +1,10 @@
 <!-- STATUS: DRAFT baseline for one-by-one verification. Source: Link G4X XtremeX Quick Start Guide (Installer I/O Table + A/B loom pin diagram). Engine: 1993 Celica GT-Four ST185, 5S-GTE turbo. Date: 2026-07-01 -->
-<!-- UPDATE 2026-09-04: DI and Aux sections corrected to match XTREMEX-IO-TABLE.html (2026-07-13,
-     current — drive-by-wire, not cable throttle). Trigger/Temp/An Volt/Knock/Injection/Ignition
-     sections below are still the stale 2026-07-01 draft; per DOCS-CLEANUP-PLAN.md this doc's
-     An Volt map disagrees with XTREMEX-IO-TABLE.html on 8 of 11 channels and has not been
-     reconciled yet. Do not treat this file as fully current outside DI/Aux. -->
+<!-- UPDATE 2026-09-05: fully reconciled against XTREMEX-IO-TABLE.html (2026-07-13, authoritative
+     per DOCS-CLEANUP-PLAN.md section 7). All channel sections — Trigger, Temp, An Volt, Knock, DI,
+     Injection, Ignition, Aux — now match it. The An Volt map previously disagreed on 10 of 11
+     channels; that is fixed. Wire colours were dropped rather than carried over (they belonged to
+     the old channel numbers); conflict C11 remains open. One open conflict is flagged inline:
+     injector impedance, hi-Z here vs peak-and-hold on the ATS build sheet. -->
 # Link G4X XtremeX — I/O Assignment Table (ST185 5S-GTE)
 
 This is the master pin/channel plan for the **XtremeX** wire-in ECU. It keys off the XtremeX
@@ -29,27 +30,37 @@ Link assigns functions to these **named channels** in PCLink, not to bare pin nu
 
 ## Inputs
 
-| XtremeX channel | Loom / wire color | Function (ST185 5S-GTE) | Status |
+**Reconciled 2026-09-05** — Trigger / Temp / An Volt / Knock now match `XTREMEX-IO-TABLE.html`
+(2026-07-13, authoritative per `DOCS-CLEANUP-PLAN.md` §7). The previous rows were the stale
+2026-07-01 cable-throttle draft and disagreed on 10 of 11 An Volt channels. The **Loom / wire
+color** column has been dropped rather than carried over: those colours were tied to the old
+channel numbers, and re-attaching them here would invent data. `SCHEMATIC-WIRING.html` pins only a
+subset; conflict **C11** (read colours off `XtremeXQuickstartGuide.pdf`) is still open.
+
+| XtremeX channel | Function (ST185 5S-GTE, DBW) | Status | Note |
 |---|---|---|---|
-| Trigger 1 | A / Yellow | Crank position (Ne) | 🟡 confirm trigger type/pattern |
-| Trigger 2 | A / Yellow-Brown | Cam / home (G) | 🟡 confirm |
-| Temp 1 | A / Red-White | ECT (coolant temp) | ✅ |
-| Temp 2 | A / Green | IAT (intake air temp) | ✅ |
-| Temp 3 | B / Yellow-Green | Oil temp | ✅ |
-| Temp 4 | A / Yellow-Orange | Fuel temp (or from flex sensor) | ⬜ |
-| An Volt 1 | A / Red | MAP sensor | ✅ |
-| An Volt 2 | A / (A-loom) | TPS (throttle position) | ✅ |
-| An Volt 3 | A / Green | Oil pressure | ✅ |
-| An Volt 4 | A / (A-loom) | Fuel pressure | ✅ |
-| An Volt 5 | B / Green | Coolant pressure | ✅ |
-| An Volt 6 | B / Yellow-Green | Charge-pipe IAT (2nd, if analog) | ⬜ |
-| An Volt 7 | B / (B-loom) | Wideband (only if analog 0–5V type) | ⬜ depends on lambda choice |
-| An Volt 8 | B / (B-loom) | spare | ⬜ |
-| An Volt 9 | A / White-Green | spare | ⬜ |
-| An Volt 10 | A / White-Blue | spare | ⬜ |
-| An Volt 11 | A / White | spare | ⬜ |
-| Knock 1 | B / Grey-ish | Knock sensor | ✅ |
-| Knock 2 | B | 2nd knock (if fitted) | ⬜ |
+| Trigger 1 | Crank (reluctor / VR) | ✅ | 36-2 toothed crank wheel |
+| Trigger 2 | Cam (Hall, single tooth) | ✅ | RacerX / Cherry kit |
+| Temp 1 | ECT (coolant) | ✅ | built-in pull-up |
+| Temp 2 | IAT — manifold | ✅ | built-in pull-up |
+| Temp 3 | Oil temp | ✅ | 1k pull-up |
+| Temp 4 | Charge-pipe IAT #2 (heat-soak) | ✅ | built-in pull-up — no external resistor. Fuel temp is **not** here; it comes from the flex sensor on DI 2 (conflict C14). |
+| An Volt 1 | MAP | ✅ | +5V |
+| An Volt 2 | ETB throttle position — **MAIN** | ✅ | Bosch ETB |
+| An Volt 3 | ETB throttle position — **SUB** | ✅ | Bosch ETB |
+| An Volt 4 | Accelerator pedal (APS) — **MAIN** | ✅ | DBW |
+| An Volt 5 | Accelerator pedal (APS) — **SUB** | ✅ | DBW |
+| An Volt 6 | Oil pressure | ✅ | |
+| An Volt 7 | Fuel pressure | ✅ | |
+| An Volt 8 | Coolant pressure | ✅ | |
+| An Volt 9 | Fuel level sender | 🟡 | resistive sender needs a divider pull-up on An Volt; calibrate V→% table (points TBD) |
+| An Volt 10–11 | spare | ⬜ | wideband is on CAN, not analog (conflict C19) |
+| Knock 1 | Knock sensor | ✅ | |
+| Knock 2 | spare | ⬜ | |
+
+> **Do not wire An Volt from any older document.** Conflict **C26**: the superseded FuryX map put
+> the pedal on An Volt 3/4 and the throttle on An Volt 5/6, which swaps a pedal signal for a
+> throttle signal. The rows above are the correct pairing.
 
 **DI section corrected 2026-09-04** — the previous DI 1–10 rows here were a stale cable-throttle-era
 draft (2026-07-01) with different channel assignments and no DBW hardware; see git history for that
@@ -65,17 +76,24 @@ for these channels is not fully mapped in Markdown yet — `SCHEMATIC-WIRING.htm
 | DI 7 | Start request (button/key) | 🟡 | ECU-controlled start |
 | DI 8 | Clutch switch | 🟡 | ECU-direct (flat-shift/launch latency) |
 | DI 9–10 | spare | ⬜ | (CAN2 unused) |
+| Brake switch | SB → CAN → ECU | ✅ | cruise cancel |
 | Reverse switch | SB → CAN → ECU | ✅ | ECU sets Gear = 7 (R) on 0x3EB via a PCLink Trigger → cluster shows "R" (cluster remaps 7→−1). RealDash also reads this byte directly (added 2026-09-04) to drive a reverse-camera auto-switch — see `CAN-CONFIG-STATUS.md`. |
 | Cruise on/off + set/res ladder | SB → CAN → ECU | ⬜ | resistor ladder on a switchboard analog in |
 
 ## Outputs
 
-| XtremeX channel | Loom / wire color | Function (ST185 5S-GTE) | Status |
+| XtremeX channel | Function (ST185 5S-GTE, DBW) | Status | Note |
 |---|---|---|---|
-| Injection 1–4 | A / Blue family | Injectors, cyl 1–4 (sequential) | ✅ |
-| Injection 5–8 | B / Blue family | spare (usable as aux) | ⬜ |
-| Ignition 1–4 | A / Orange family | Coils (COP or wasted-spark) | 🟡 confirm ignition type |
-| Ignition 5–8 | B / Orange family | spare (usable as aux) | ⬜ |
+| Inj 1–4 | Injectors cyl 1–4, sequential | ✅ | 1400 cc — see impedance note below |
+| Ign 1–4 | 1ZZ COP coils | ✅ | logic-level trigger |
+| Ign 5 | 2nd radiator fan (A/C condenser duty) | ✅ | spare ignition drive used as aux |
+| Ign 6 | Oil pressure warning lamp | ✅ | spare ignition drive used as aux |
+| Ign 7–8 / Inj 5–8 | spare low-side aux | ⬜ | → PMU/PDM if more capacity needed |
+
+> **Open conflict — injector impedance.** `XTREMEX-IO-TABLE.html` calls the injectors
+> **1400 cc hi-Z**, while `tune/engine_constants.yaml` and `tune/docs/ENGINE_SPEC.md` (from the
+> ATS build sheet) call them **1400 cc peak-and-hold**. Those imply different PCLink injector
+> drive settings. Not resolved here — confirm against the ATS paperwork before first start.
 
 **Aux section corrected 2026-09-04** — the previous Aux 9/10 rows here said "Unused (cable
 throttle)"; the car is actually drive-by-wire (Bosch ETB), and the table below matches
@@ -107,7 +125,7 @@ beyond that comes from spare Ignition/Injection 5–8 (see rows above), then a P
 ---
 
 ## To finish this table (one-by-one pass)
-DI and Aux (2026-09-04) are corrected and match `XTREMEX-IO-TABLE.html`; no longer open items here.
+All channel sections are reconciled against `XTREMEX-IO-TABLE.html` (2026-09-05); channel assignment is no longer an open item here. What remains open: **C11** wire colours (read off `XtremeXQuickstartGuide.pdf`), the **injector impedance** conflict flagged under Outputs, and the fuel-level sender calibration points on An Volt 9.
 Still open, per `DOCS-CLEANUP-PLAN.md`: (1) trigger type/pattern, (2) ignition type (COP vs
 distributor/wasted), (3) injector size/impedance, (4) which analog volts carry which
 pressure/flex/wideband (An Volt map disagrees with the HTML source on 8/11 channels), (5) idle
