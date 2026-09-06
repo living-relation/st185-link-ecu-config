@@ -36,7 +36,7 @@ The engine data was verified accurate and carried over unchanged. Three ECU-spec
 | `injectors.dead_time_table` | `config/tables/…` | `tune/tables/…` | Path follows the file |
 
 Nothing else from the base-map repo was imported. In particular its `config/io_assignments.yaml`
-was **excluded**: it contradicts `XTREMEX-IO-TABLE.md` on roughly ten channels and declares an
+was **excluded**: it contradicts `XTREMEX-IO-TABLE.html` on roughly ten channels and declares an
 onboard `wideband_onboard_lsu49` block, which is a FuryX-only feature. This build uses an external
 Link CAN-Lambda on `0x3B6` (conflict C19).
 

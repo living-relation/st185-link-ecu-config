@@ -53,7 +53,7 @@ Branch `ECU-wiring-design`, 2 commits ahead of `main`, 3 untracked paths.
 |---|---|---|---|---|---|---|
 | 1 | `XTREMEX-IO-TABLE.html` | HTML | 2026-07-13 | Full XtremeX channel plan: DBW, EPS, A/C, CAN-Lambda, switchboard, pin budget | **CURRENT** | The only complete and internally consistent I/O document. Exists only on branch `ECU-wiring-design`; never merged to `main`. |
 | 2 | `SCHEMATIC-WIRING.html` | HTML/SVG | 2026-07-27 | Schematic with real ECU pin numbers (A/B 34-pin + Comms 6-pin) | **CURRENT** | Newest wiring artifact in the project. **Untracked in git** — never committed, never pushed. |
-| 3 | `XTREMEX-IO-TABLE.md` | Markdown | 2026-09-04 (DI/Aux only) | Channel plan | **PARTIALLY CORRECTED** | DI and Aux sections fixed 2026-09-04 to match #1 (DBW, Aux 9/10 = ETB H-bridge). **Still incorrect:** its An Volt map still contradicts #1 on 8 of 11 channels; Trigger/Temp/Knock/Injection/Ignition sections are still the stale 2026-07-01 draft, unverified against #1. |
+| 3 | ~~`XTREMEX-IO-TABLE.md`~~ | Markdown | — | Channel plan | **DELETED 2026-09-06** | Fully reconciled against #1 on 2026-09-05 (the An Volt map had disagreed on 10 of 11 channels, not 8), then deleted 2026-09-06 as a duplicate maintenance surface. `XTREMEX-IO-TABLE.html` is the single channel plan. The README row now points at the `.html`. Recoverable from git history. |
 | 4 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Markdown | 2026-07-13 | Master CAN ID map, byte layouts sections A–E | **CURRENT** | Accurate for what it covers. Missing the CAN-Lambda transmit ID 0x3BE and any DBW/EPS/A/C telemetry. |
 | 5 | `link_g4x_can_setup.lcs` | XML | 2026-07-13 | PCLink CAN transmit streams | **CURRENT** | All four prior bugfixes verified present. See section 4. |
 | 6 | `link_g4x_can_setup.json` | JSON | 2026-07-13 | Canonical twin of the LCS | **UNVERIFIED** | Not opened this pass. Must be diffed against the LCS before it is trusted. |
@@ -518,6 +518,16 @@ Every place two sources disagree, with the recommended resolution.
 >   (switchboard → CAN, DI 9/10 spare). That repo's `io_assignments.yaml` and `config/can/*` were
 >   **not** imported — see `tune/README.md`. C2 remains open for the FuryX-sourced files listed in
 >   section 2 that are still awaiting archival.
+> - **C3 (throttle type) — CLOSED 2026-09-06.** The cable-throttle claim lived only in
+>   `XTREMEX-IO-TABLE.md`, which is now deleted. No current document asserts cable throttle.
+> - **C7 / C8 (Aux 2, Aux 7) — CLOSED 2026-09-06.** Source B for both was `XTREMEX-IO-TABLE.md`;
+>   with it deleted, `XTREMEX-IO-TABLE.html` is uncontested. C8's consequence still stands as
+>   open decision 14 (where CEL moves to).
+> - **C26 (DBW analog channels) — CLOSED 2026-09-05.** The An Volt map was reconciled against
+>   `XTREMEX-IO-TABLE.html`; the pedal/throttle swap risk is gone from every live document.
+> - **C11 (wire colours) — STILL OPEN.** Colours were deliberately dropped rather than carried
+>   onto corrected channel numbers. Read them off `XtremeXQuickstartGuide.pdf`.
+
 
 | # | Subject | Source A | Source B | Recommended | Why |
 |---|---|---|---|---|---|
@@ -728,7 +738,7 @@ Stated plainly.
 6. **The EPS `SPD` signal voltage.** Sources give both 0–5 V and 0–12 V. This determines whether a pull-up resistor is needed.
 7. **The two physical CAN bus ends.** Three sources give three different answers. This is an install-time measurement, not a documentation decision.
 8. **`TE_BOM_with_screenshots.xlsx`** and **`st185-furyx-ecu-package.zip`.** Not opened.
-9. **The A/C amplifier `ACT` circuit.** `AC amplifier input signals.txt` describes the intent. The OEM diagram in `OEM Mini Diagrams\AC compressor simplified.png` was not read this pass, so the exact terminal and polarity are unconfirmed.
+9. **~~The A/C amplifier `ACT` circuit.~~ RESOLVED 2026-09-06.** Aux 4 drives the amplifier `ACT` terminal: **ground = kill, floating = normal** — active-low sink, no pull-up, matching `AC amplifier input signals.txt`. `AC1` is an **input** to the amplifier and is **never** a kill signal; it appears nowhere in the repo and must not be introduced. Written into `XTREMEX-IO-TABLE.html` and the harness schematic. Still worth confirming the terminal against `OEM Mini Diagrams\AC compressor simplified.png` before crimping.
 10. **The square four-bolt flange adapter** between the 74.5 mm ETB and the 76.2 mm Soara plenum. The step itself is quantified (1.7 mm on diameter — see 5.3.8), but no document describes the adapter's bolt pattern, thickness, sealing arrangement, or whether its bore is 74.5 mm, 76.2 mm, or tapered.
 10a. **The XtremeX +5 V rail current limit.** Nine sensor loads are on it, four of them safety-critical DBW channels. Fault code 72 shuts the throttle down if the rail sags.
 11. **Tyre rolling circumference and final drive ratio.** Needed for EPS speed-out scaling. Not recorded anywhere.
@@ -740,7 +750,7 @@ Stated plainly.
 
 Four things the documentation currently asserts that deserve pushback.
 
-1. **"No external pull-up resistors are required."** `XTREMEX-IO-TABLE.html` states this as settled. It cannot be settled until the EPS `SPD` line voltage is measured. A low-side output cannot produce a high level on its own.
+1. **"No external pull-up resistors are required."** ~~`XTREMEX-IO-TABLE.html` states this as settled.~~ **Falsified 2026-09-06** — the cam Hall on Trigger 2 needs a **1.8k pull-up to +8V Out**. (Not the 2.4k in the RacerX kit; that value is sized for a 12V supply and is wrong on the 8V rail.) The claim also still cannot be settled for the EPS `SPD` line until its voltage is measured — a low-side output cannot produce a high level on its own.
 
 2. **"The pin budget is a comfortable fit."** Aux has **zero** spare outputs. Temp has **zero** spare inputs. An Volt has two spare, and if Dan chooses A/C Option B, **both of those go too**. Adding one more actuator means a spare Ign/Inj output or a power distribution module. That is not comfortable — it is exactly full, and one decision away from being over-subscribed.
 
@@ -773,4 +783,62 @@ Four things the documentation currently asserts that deserve pushback.
 
 ---
 
-*End of plan. No files have been changed.*
+16. **PDM vs direct Aux for the fuel pump (Aux 3) and radiator fan (Aux 5).** `XTREMEX-IO-TABLE.html`
+    currently shows both as **direct Aux** with relays. A power distribution module was discussed but
+    never landed in any document. This is a real fork, not an oversight: direct Aux is what is drawn
+    and costs nothing more; a PDM frees Aux outputs (Aux is at **zero spare** — see assumption 2) and
+    consolidates the fusing, at the cost of a new device on the harness and possibly on CAN.
+    **Nothing has been changed either way — Dan's call.**
+
+17. **VR wheel-speed dropout at low road speed.** The four ABS sensors on DI 3–6 are variable
+    reluctance. A VR sensor's output amplitude falls with speed, and Link's own forum moderator puts
+    the DI arming threshold at roughly **1.5 V**, with VR wheel-speed sensors going dead below about
+    **24 km/h**. `XTREMEX-IO-TABLE.html` already hedges with "conditioner if low-speed dropout", but
+    no part has been chosen. The recommended fix is a **VR-to-Hall converter** on each channel.
+    This is a real functional gap for traction control, which needs wheel speed exactly in the
+    low-speed range where the sensors stop reporting. It also interacts with assumption 3 (four DIs
+    committed to a feature marked "drops first") and with decision 8. **Dan's call** — accept the
+    low-speed blind spot, fit conditioners, or change the speed source.
+
+---
+
+## 13. Reconciliation log — 2026-09-06
+
+Applied to the repo this pass. Listed so section 9's step numbering does not have to absorb them.
+
+| Decision | Status | Where it landed |
+|---|---|---|
+| Reverse switch on the switchboard over CAN, **not** DI 4 | **Already correct** — no change needed | `XTREMEX-IO-TABLE.html` switchboard table; DI 3–6 all four wheel speeds. The harness schematic confirms `B21 = DI 4 WSS FR`. There is **no DI shortage**: four sensors on DI 3/4/5/6, DI 9–10 spare. |
+| A/C kill on amp `ACT`, ground = kill, floating = normal; `AC1` never a kill signal | **Fixed** | Aux 4 row + A/C panel in `XTREMEX-IO-TABLE.html`; relay note in the harness schematic. `AC1` appears nowhere in the repo — verified, and it must stay that way. |
+| "V-Ethrottle", never "+14V Aux 9/10" | **Fixed** | `apps/harness-schematic/index.html` — connector B pin label and the ETB relay wire label. Remaining "Aux 9/10" uses are correct: they name the **motor outputs** and the PCLink E-throttle setting. |
+| Cam sensor: +8V Out, **1.8k** pull-up (not the kit's 2.4k), Brown/Black/Blue, shield at ECU end only | **Added** — was absent | Trigger 2 row, pull-up panel and harness-build tasks in `XTREMEX-IO-TABLE.html`; `A6 +8V Out` relabelled in the schematic. The only 2.4k in the repo is the **flex sensor**, which is a different device and stays. |
+| Loom B has no native +5V; jumper from Loom A | **Added** — was absent | Power/ground table + harness-build task. Verified against the schematic pin lists: `A32 = +5V Out`, Loom B has no 5V pin. |
+| Grounds: Gnd Out for sensors only, never chassis; Ground = ECU reference; shields carry no current, ECU end only; APS/TPS may share Gnd Out | **Added** — was vague | Power/ground table split into four explicit rows. |
+| Headers: 5S-GTE, 74.5 mm | **Fixed** | 5S-GTE was done 2026-09-05. 74.5 mm applied to `XTREMEX-IO-TABLE.html`, the schematic app and its README. |
+| `XTREMEX-IO-TABLE.md` deleted, README repointed | **Done** | Repo-wide grep first: the only live pointers were `README.md`, `CLAUDE.md`, `archive/README.md` and `tune/README.md`, all repointed to the `.html`. References inside this plan are kept as historical conflict records. |
+
+**Not decided — see decisions 16 and 17 above.**
+
+### Still unverified after this pass
+
+**Every physical pin number** — `A20`, `A22`, `B18`, `B5`, `B21`, `A32` and all others in
+`SCHEMATIC-WIRING.html`, `apps/harness-schematic/index.html` and this document — is **drafted, not
+confirmed**. Authority order: Link's `XtremeXQuickstartGuide.pdf` first, then other official Link
+documentation, then Link forums / HPAcademy / MR2 / ST185 AllTrac forums (Link-affiliated forum
+accounts are trustworthy sources). A caveat panel saying so now sits in `XTREMEX-IO-TABLE.html`.
+Nothing in this pass verified a pin number, and none was invented.
+
+### Contradictions found but not rewritten
+
+Two files under `docs/5sgte-project-data/` are copies of a claude.ai Project and are **source
+material**, so they were left intact rather than edited:
+
+- `ECU_WIRING_MASTER_SOURCE_OF_TRUTH.md` — titled "master source of truth" but is a **staging
+  draft** that never landed. It proposes DI4/DI5 decisions that contradict the current wheel-speed
+  block. The title is dangerous; treat `XTREMEX-IO-TABLE.html` as authoritative.
+- `Reverse_Camera_Trigger_CORRECTED_sourced_from_repos.md` — states "DI4–DI10 (7 channels) are
+  marked spare". Stale: DI 4–6 are wheel speed, DI 7 start, DI 8 clutch.
+
+---
+
+*Sections 0–12 were written 2026-08-31 as plan-only. Section 13 records changes actually applied on 2026-09-06.*

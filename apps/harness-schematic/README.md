@@ -61,7 +61,7 @@ The Waveshare MCP2515 hat takes Pi header 5 V / GND for its fan. **Its CANH/CANL
 
 ## Sources
 
-- `XTREMEX-IO-TABLE.html` — ECU I/O (DBW Bosch 74 mm ETB, 1ZZ COP, flex sensor, MRS EPS)
+- `XTREMEX-IO-TABLE.html` — ECU I/O (DBW Bosch 74.5 mm ETB, 1ZZ COP, flex sensor, MRS EPS)
 - G4X XtremeX Quickstart — Connector A / B Superseal pin numbers, wire side
 - `WIRING.md` — cluster GPIO, 5 V buck, UART, CAN transceiver
 - `ECUMASTER_SWITCHBOARD_SETUP.md` — CSB3 analog / switch map

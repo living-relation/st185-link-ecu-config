@@ -23,7 +23,7 @@ committed to this repo, so they are **not** recoverable from this history:
 
 | File | What it was | Why it was dropped |
 |---|---|---|
-| `config/io_assignments.yaml` | Full FuryX channel map | Contradicted `XTREMEX-IO-TABLE.md` on ~10 channels; declared an onboard LSU 4.9 the XtremeX does not have (conflicts C19, C26) |
+| `config/io_assignments.yaml` | Full FuryX channel map | Contradicted `XTREMEX-IO-TABLE.html` on ~10 channels; declared an onboard LSU 4.9 the XtremeX does not have (conflicts C19, C26) |
 | `docs/references/FuryXQuickstartGuide.pdf` | Link FuryX quickstart | Wrong ECU (conflict C2) |
 | `docs/references/linkecu-furyx-dealer.html` | Dealer page scrape | Wrong ECU |
 | `docs/references/FURYX_QUICKSTART_NOTES.md` | FuryX pinout notes | Same wrong An Volt / ETB / onboard-wideband map as `io_assignments.yaml` |

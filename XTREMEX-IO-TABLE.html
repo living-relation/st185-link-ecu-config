@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Link G4X XtremeX I/O wiring table — color-coded for harness assembly.
-     Engine: 1993 Celica GT-Four ST185, 5S-GTE turbo, DBW (Bosch 74mm ETB), 1ZZ COP, 1400cc injectors,
+     Engine: 1993 Celica GT-Four ST185, 5S-GTE turbo, DBW (Bosch 74.5mm ETB), 1ZZ COP, 1400cc injectors,
      external Link CAN-Lambda, ECUMaster CAN switchboard (inputs + LED outputs only, 0.5A), MRS EPS pump.
      Fuel temp comes from the Continental 3-pin flex sensor (no separate sensor). No external pull-ups needed.
      Source: XtremeX Quick Start Guide I/O table + A/B loom diagram + researched Link/MRS behavior (2026-07).
@@ -46,7 +46,7 @@
 <body>
 
 <h1>Link G4X XtremeX — I/O Wiring Table</h1>
-<div class="sub">1993 Celica GT-Four ST185 · 5S-GTE turbo · <strong>drive-by-wire</strong> · 1ZZ COP · 1400cc inj · Bosch 74mm ETB · external Link CAN-Lambda · ECUMaster CAN switchboard · MRS EPS &nbsp;|&nbsp; DRAFT — 🟡/⬜ need confirmation</div>
+<div class="sub">1993 Celica GT-Four ST185 · 5S-GTE turbo · <strong>drive-by-wire</strong> · 1ZZ COP · 1400cc inj · Bosch 74.5mm ETB · external Link CAN-Lambda · ECUMaster CAN switchboard · MRS EPS &nbsp;|&nbsp; DRAFT — 🟡/⬜ need confirmation</div>
 
 <div class="legend panel">
   <strong>Legend</strong> &nbsp;
@@ -71,7 +71,7 @@
     <li><strong>Cam trigger:</strong> RacerX MR2 kit, Cherry <strong>Hall</strong>, intake cam, single tooth → <strong>Trigger 2</strong>.</li>
     <li><strong>Ignition:</strong> 1ZZ <strong>coil-on-plug</strong> (built-in igniter, logic-level) → Ign 1–4. No distributor.</li>
     <li><strong>Injectors:</strong> 1400cc ATS/Bosch top-feed, flow-matched (hi-Z → saturated) → Inj 1–4.</li>
-    <li><strong>Throttle:</strong> Bosch Motorsport 74mm ETB → motor Aux 9/10, TP main+sub + APS main+sub on An Volt, power via V-Ethrottle (relay Aux 2).</li>
+    <li><strong>Throttle:</strong> Bosch Motorsport 74.5mm ETB → motor Aux 9/10, TP main+sub + APS main+sub on An Volt, power via V-Ethrottle (relay Aux 2).</li>
     <li><strong>Flex sensor:</strong> Continental 3-pin (freq) → ethanol % <em>and</em> <strong>fuel temp</strong> (no separate fuel-temp sensor).</li>
     <li><strong>Starter:</strong> ECU-controlled — start input + start-relay output; ECU disables the start relay in software under set conditions (no separate cut relay). <strong>EFI main relay</strong> held by ECU for DBW key-off reset.</li>
   </ul>
@@ -102,7 +102,7 @@
 <table>
   <tr><th>Channel</th><th>Function</th><th>Status</th><th>Notes</th></tr>
   <tr class="g-trigger"><td class="chan">Trigger 1</td><td>Crank (reluctor/VR)</td><td><span class="badge ok">✅</span></td><td>36-2 toothed crank wheel</td></tr>
-  <tr class="g-trigger"><td class="chan">Trigger 2</td><td>Cam (Hall, single tooth)</td><td><span class="badge ok">✅</span></td><td>RacerX/Cherry kit</td></tr>
+  <tr class="g-trigger"><td class="chan">Trigger 2</td><td>Cam (Hall, single tooth)</td><td><span class="badge ok">✅</span></td><td>RacerX/Cherry kit. Power from ECU <strong>+8V Out</strong>, <strong>1.8k pull-up</strong> on signal — <em>not</em> the kit's 2.4k (sized for 12V). Brown = VCC/+8V, Black = Signal/Trigger 2, Blue = Gnd Out. Shielded, terminated <strong>ECU end only</strong>.</td></tr>
   <tr class="g-temp"><td class="chan">Temp 1</td><td>ECT (coolant)</td><td><span class="badge ok">✅</span></td><td>built-in pull-up</td></tr>
   <tr class="g-temp"><td class="chan">Temp 2</td><td>IAT — manifold</td><td><span class="badge ok">✅</span></td><td>built-in pull-up</td></tr>
   <tr class="g-temp"><td class="chan">Temp 3</td><td>Oil temp</td><td><span class="badge ok">✅</span></td><td>1k pull-up</td></tr>
@@ -148,7 +148,7 @@
   <tr class="g-aux"><td class="chan">Aux 1</td><td>Boost solenoid</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
   <tr class="g-aux"><td class="chan">Aux 2</td><td>ETB power relay (V-Ethrottle feed)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
   <tr class="g-aux"><td class="chan">Aux 3</td><td>Fuel pump relay</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 4</td><td>AC clutch/kill (grounds relay coil or amp ACT)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low sink; <strong>floats when off, no pull-up</strong>; confirm exact amp circuit</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 4</td><td>AC clutch/kill (grounds relay coil or amp ACT)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low sink; <strong>floats when off, no pull-up</strong>. Amp <code>ACT</code>: <strong>ground = kill, floating = normal</strong>. <code>AC1</code> is input-only and is <strong>never</strong> a kill signal.</td></tr>
   <tr class="g-aux"><td class="chan">Aux 5</td><td>Engine radiator fan relay</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-aux"><td class="chan">Aux 6</td><td>EFI main relay (ECU power hold)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>keeps ECU powered for DBW key-off reset/cooldown</td></tr>
   <tr class="g-aux"><td class="chan">Aux 7</td><td>Speed-out → MRS pump SPD pin (Yel/Wht)</td><td><span class="drive">low-side pulse</span></td><td><span class="badge ok">✅</span></td><td>0–5/12V pulse (~4/rev); direct, <strong>no resistor</strong>; set speedo-out scaling so pump idles down &gt;~10 km/h</td></tr>
@@ -161,12 +161,12 @@
 
 <h2>AC control (per your AC-amp notes)</h2>
 <div class="panel">
-  ECU does <strong>not</strong> drive the compressor. Aux 4 is a <strong>low-side</strong> output that either grounds the AC clutch relay coil (float = off) or feeds the amp's <code>ACT</code> cancel input — <strong>active-low, floats when inactive, no pull-up</strong>. Used to cancel the compressor under high load/throttle/boost. No AC-on input — the XtremeX closed-loop idle absorbs the AC-load dip in software. <em>Confirm whether Aux 4 grounds the clutch relay directly or feeds the amp ACT input, so we set the polarity right.</em>
+  ECU does <strong>not</strong> drive the compressor. Aux 4 is a <strong>low-side</strong> output that either grounds the AC clutch relay coil (float = off) or feeds the amp's <code>ACT</code> cancel input — <strong>active-low, floats when inactive, no pull-up</strong>. Used to cancel the compressor under high load/throttle/boost. No AC-on input — the XtremeX closed-loop idle absorbs the AC-load dip in software. <strong>Polarity resolved:</strong> Aux 4 drives the amplifier's <code>ACT</code> terminal — <strong>ground = kill, floating = normal</strong>. Active-low sink, no pull-up. <code>AC1</code> is an <em>input</em> to the amplifier and must never be used as a kill signal.
 </div>
 
 <h2>External pull-up resistors</h2>
 <div class="panel">
-  <strong>None required in the current plan.</strong> The flex sensor supplies fuel temp, which freed a Temp input, so every thermistor (ECT, IAT, oil, charge-pipe IAT) uses the ECU's built-in pull-ups. The MRS speed-out and AC-kill are low-side pulse/sink outputs that need no resistor. Add one only if a specific device's datasheet calls for it (e.g., verify whether the RacerX cam-Hall kit already includes its own pull-up — per its instructions).
+  <strong>None required in the current plan.</strong> The flex sensor supplies fuel temp, which freed a Temp input, so every thermistor (ECT, IAT, oil, charge-pipe IAT) uses the ECU's built-in pull-ups. The MRS speed-out and AC-kill are low-side pulse/sink outputs that need no resistor. One exception: the <strong>cam Hall on Trigger 2</strong> takes a <strong>1.8k pull-up to +8V Out</strong>. The kit ships a 2.4k, which is sized for a 12V supply — do not fit it on the 8V rail.
 </div>
 
 <h2>Power / ground</h2>
@@ -176,12 +176,35 @@
   <tr class="g-pwr"><td class="chan">+8V Out</td><td>8V sensors (if any)</td></tr>
   <tr class="g-pwr"><td class="chan">V-Ethrottle (B connector)</td><td>Relayed 12–14V ETB H-bridge feed (switched by Aux 2)</td></tr>
   <tr class="g-pwr"><td class="chan">14V +</td><td>Main ECU feed (via EFI main relay, Aux 6)</td></tr>
-  <tr class="g-gnd"><td class="chan">Ground / Shield / Gnd Out</td><td>Sensor grounds &amp; shields</td></tr>
+  <tr class="g-gnd"><td class="chan">Gnd Out</td><td><strong>All sensor grounds.</strong> Never chassis. APS and TPS may share a Gnd Out.</td></tr>
+  <tr class="g-gnd"><td class="chan">Ground</td><td><strong>ECU reference only</strong> — not a sensor return.</td></tr>
+  <tr class="g-gnd"><td class="chan">Shield / Shield-Gnd</td><td>Carries <strong>no current</strong>. Terminate at the <strong>ECU end only</strong>; float at the sensor end.</td></tr>
+  <tr class="g-gnd"><td class="chan">Loom B +5V</td><td><strong>Loom B has no native +5V pin.</strong> Coolant pressure, fuel level (and turbo speed) need a <strong>5V jumper from Loom A</strong> — see harness-build tasks.</td></tr>
 </table>
 
 <h2>Base-map logic to implement (from your notes)</h2>
 <div class="panel note">
   Idle-up via closed-loop idle (absorbs AC load, no AC input); inverse-VSS idle-up for EPS current draw; AC-kill by load/throttle/boost; heat-soak comp from dual IAT (manifold Temp 2 + charge-pipe Temp 4); flat-shift; traction from wheel speeds (AWD — front-axle vs rear-axle slip); reverse switch → PCLink Trigger sets Gear = 7 (R) on 0x3EB so the cluster shows "R" (and RealDash's reverse-camera view). (Tune functions, not pins.)
+</div>
+
+<h2>Harness-build tasks</h2>
+<div class="panel">
+  <ol>
+    <li><strong>Loom B +5V jumper.</strong> Loom B has <em>no native +5V pin</em>. Coolant pressure, fuel level and turbo speed need 5V jumpered across from the Loom A +5V Out. Build this into the harness — it is not an ECU setting. <em>(Turbo speed sits on DI 1 in the A loom, so confirm whether its 5V is already local before running a jumper.)</em></li>
+    <li><strong>Cam Hall pull-up.</strong> Fit <strong>1.8k</strong> from signal to +8V Out. Do <em>not</em> fit the 2.4k in the RacerX kit — that value assumes a 12V supply.</li>
+    <li><strong>Shields.</strong> Terminate every shield at the <strong>ECU end only</strong>, floating at the sensor end. Shields carry no current.</li>
+    <li><strong>Sensor grounds.</strong> Gnd Out only, never chassis. APS and TPS may share a Gnd Out.</li>
+    <li><strong>Wire colours (open — conflict C11).</strong> Read off <code>XtremeXQuickstartGuide.pdf</code>. Not recorded anywhere reliable yet.</li>
+  </ol>
+</div>
+
+<div class="panel note">
+  <strong>Physical pin numbers are UNVERIFIED.</strong> Every <code>A##</code> / <code>B##</code> in this
+  repo — including those in <code>SCHEMATIC-WIRING.html</code> and the harness schematic app — is
+  drafted, not confirmed against Link documentation. Authority order: Link's
+  <code>XtremeXQuickstartGuide.pdf</code> first, then other official Link documentation, then Link
+  forums / HPAcademy / MR2 / ST185 AllTrac forums (Link-affiliated forum accounts are trustworthy).
+  Verify before crimping.
 </div>
 
 <h2>Pin budget</h2>

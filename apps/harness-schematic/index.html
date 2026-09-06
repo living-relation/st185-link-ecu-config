@@ -315,10 +315,10 @@ function buildST185(){
   const X3 = 780;
   C.push({
     id:"ecu-a", kind:"connector", name:"XtremeX Connector A", ident:"A", x:X3, y:40, w:290,
-    status:"ok", note:"34-way Superseal loom A. Pin numbers = G4X XtremeX Quickstart, wire side. All 34 cavities exist. A6 +8V Out has no wire on this build.",
+    status:"ok", note:"34-way Superseal loom A. Pin numbers = G4X XtremeX Quickstart, wire side. All 34 cavities exist. A6 +8V Out feeds the cam Hall sensor (1.8k pull-up on signal).",
     pins: loomPins("A", [
       [1,"Inj 4","right"],[2,"Inj 3","right"],[3,"Inj 2","right"],[4,"Inj 1","right"],
-      [5,"+14V","right"],[6,"+8V Out unused","right"],
+      [5,"+14V","right"],[6,"+8V Out cam Hall","right"],
       [7,"Shield/Gnd","left"],[8,"Trig 1","left"],[9,"Trig 2","left"],
       [10,"Ign 4","right"],[11,"Ign 3","right"],[12,"Ign 2","right"],[13,"Ign 1","right"],
       [14,"An Volt 4 APS-M","left"],
@@ -335,7 +335,7 @@ function buildST185(){
     status:"ok", note:"34-way Superseal loom B. B14 is the only empty cavity (no terminal). Spare terminals, no wire: B1–B4 Inj 8–5, B10–B11 Ign 8–7, B27–B28 DI10/DI9 (CAN 2 unused), B31–B32 An Volt 10–11.",
     pins: loomPins("B", [
       [1,"Inj 8 spare","right"],[2,"Inj 7 spare","right"],[3,"Inj 6 spare","right"],[4,"Inj 5 spare","right"],
-      [5,"+14V Aux 9/10","right"],[6,"Temp 3 Oil T","left"],[7,"Temp 4 Chg IAT","left"],
+      [5,"V-Ethrottle in","right"],[6,"Temp 3 Oil T","left"],[7,"Temp 4 Chg IAT","left"],
       [8,"Knock 2","left"],[9,"Knock 1","left"],
       [10,"Ign 8 spare","right"],[11,"Ign 7 spare","right"],[12,"Ign 6 oil lamp","right"],[13,"Ign 5 2nd fan","right"],
       [14,"nc empty cavity","left"],[15,"An Volt 6 Oil P","left"],[16,"An Volt 7 Fuel P","left"],[17,"Shield/Gnd","left"],
@@ -358,7 +358,7 @@ function buildST185(){
   C.push(comp("cop3","COP 3 1ZZ","A7", X4, 660, ["12V","GND","TRIG"], "left"));
   C.push(comp("cop4","COP 4 1ZZ","A8", X4, 770, ["12V","GND","TRIG"], "left"));
   C.push(comp("boost","Boost solenoid","A9", X4, 890, ["12V","LS"], "left"));
-  C.push(comp("etb","Bosch 74mm ETB","A10", X4, 990, ["M+","M−","5V","TPS-M","TPS-S","GND"], "left", {w:220}));
+  C.push(comp("etb","Bosch 74.5mm ETB","A10", X4, 990, ["M+","M−","5V","TPS-M","TPS-S","GND"], "left", {w:220}));
   C.push(comp("mrs","MRS EPS pump","A12", X4, 1190, ["12V","GND","SPD Yel/Wht"], "left", {w:220, note:"Aux7 speed-out, no resistor"}));
   C.push(comp("fan2","2nd / condenser fan","U8", X4, 1320, ["12V","GND"], "left", {status:"prop", note:"High current — switched by Ign 5 via relay K7, not the ECU pin."}));
   C.push(comp("oil-lamp","Oil pressure lamp","U9", X4, 1420, ["12V","LS"], "left", {status:"prop", note:"Ign 6 as low-side aux. Lamp +12V, ECU sinks to ground."}));
@@ -370,7 +370,7 @@ function buildST185(){
   C.push(comp("k-fp","Fuel pump relay","K3", X5, 340, ["86 coil","85 LS","30 12V","87 pump"], "left"));
   C.push(comp("k-fan","Rad fan relay","K4", X5, 480, ["86 coil","85 LS","30 12V","87 fan"], "left"));
   C.push(comp("k-str","Start relay","K5", X5, 620, ["86 coil","85 LS","30 12V","87 starter"], "left"));
-  C.push(comp("ac-rly","AC clutch / amp ACT","K6", X5, 760, ["86 coil","85 LS Aux4","30 12V","87 clutch"], "left", {status:"prop", note:"Confirm clutch relay vs amp ACT"}));
+  C.push(comp("ac-rly","AC clutch / amp ACT","K6", X5, 760, ["86 coil","85 LS Aux4","30 12V","87 clutch"], "left", {status:"prop", note:"Amp ACT: ground = kill, float = normal. Active-low sink, no pull-up. AC1 is input-only, never a kill signal."}));
   C.push(comp("k-fan2","Condenser fan relay","K7", X5, 900, ["86 coil","85 Ign5 LS","30 12V","87 fan"], "left", {status:"prop", note:"Ign 5 is a spare ignition drive used as a low-side aux — fan current goes through this relay, not the ECU pin."}));
   C.push(comp("batt","Vehicle 12V IGN","P1", X5, 1060, ["12V+","GND"], "left"));
   C.push(comp("buck","12V→5V buck ≥3A","P2", X5, 1180, ["12V IN","GND","5V OUT"], "left"));
@@ -608,7 +608,7 @@ function buildST185(){
   addW("hat.p4","pi.p5","GND",prop);
 
   /* ================= Wires · ECU power ============================================ */
-  addW("k-etb.p4","ecu-b.p5","12V",{label:"B5 +14V Aux9/10"});
+  addW("k-etb.p4","ecu-b.p5","12V",{label:"B5 V-Ethrottle"});
   addW("ecu-a.p25","sp-gnd.p1","GND",{label:"A25 Ground"});
   addW("ecu-a.p34","sp-gnd.p1","GND",{label:"A34 Ground"});
   addW("ecu-b.p25","sp-gnd.p1","GND",{label:"B25 Ground"});
