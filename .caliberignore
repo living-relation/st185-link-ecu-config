@@ -5,7 +5,6 @@ docs/intercooler-turbo-study/research/data/**/*.pdf
 docs/intercooler-turbo-study/research/data/**/*.png
 docs/intercooler-turbo-study/research/data/**/*.svg
 docs/intercooler-turbo-study/research/data/**/*.webp
-docs/5sgte-project-data/files/*.png
 
 # Retired material — kept in the repo for history, excluded from agent context.
 # Nothing here is authoritative; see archive/README.md.

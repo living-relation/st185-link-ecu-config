@@ -1,3 +1,7 @@
+<!-- RETIRED 2026-09-06. Describes the superseded "reverse switch -> ECU DI4 direct" decision.
+     Current: reverse is on the ECUMaster switchboard over CAN; DI 3-6 are ABS wheel speed.
+     Authoritative for ECU I/O: XTREMEX-IO-TABLE.html -->
+
 ```mermaid
 graph LR
     ECU["Link G4X XtremeX ECU"]

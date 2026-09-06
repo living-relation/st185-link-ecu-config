@@ -1,3 +1,11 @@
+<!-- ══════════════════════════════════════════════════════════════════════
+     RETIRED 2026-09-06 — NOT A SOURCE OF TRUTH, DESPITE THE FILENAME.
+     This was an unlanded staging draft. Its DI4/DI5 proposals contradict the
+     current design: reverse is on the ECUMaster switchboard over CAN, and
+     DI 3-6 all four carry ABS wheel speed.
+     Authoritative for ECU I/O: XTREMEX-IO-TABLE.html
+     ══════════════════════════════════════════════════════════════════════ -->
+
 # ECU Wiring — Master Source of Truth (v1)
 
 **Vehicle:** 1993 Toyota Celica GT-Four ST185 AllTrac, "5S-GTE" hybrid (5S-FE block bored 87.5mm + 3S-GTE Gen 2 head)

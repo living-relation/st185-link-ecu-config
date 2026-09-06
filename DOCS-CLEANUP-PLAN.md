@@ -830,16 +830,44 @@ documentation, then Link forums / HPAcademy / MR2 / ST185 AllTrac forums (Link-a
 accounts are trustworthy sources). A caveat panel saying so now sits in `XTREMEX-IO-TABLE.html`.
 Nothing in this pass verified a pin number, and none was invented.
 
-### Contradictions found but not rewritten
+### Doc consolidation — `docs/5sgte-project-data/` retired 2026-09-06
 
-Two files under `docs/5sgte-project-data/` are copies of a claude.ai Project and are **source
-material**, so they were left intact rather than edited:
+Dan's call: too many documents assert ECU I/O, and they contradict each other. Target shape is
+**two visuals, one user-readable document, one rules document**. Eleven files carried I/O claims
+before this pass. The whole `docs/5sgte-project-data/` tree (a snapshot of the claude.ai Project)
+was crawled file by file, then split:
 
-- `ECU_WIRING_MASTER_SOURCE_OF_TRUTH.md` — titled "master source of truth" but is a **staging
-  draft** that never landed. It proposes DI4/DI5 decisions that contradict the current wheel-speed
-  block. The title is dangerous; treat `XTREMEX-IO-TABLE.html` as authoritative.
-- `Reverse_Camera_Trigger_CORRECTED_sourced_from_repos.md` — states "DI4–DI10 (7 channels) are
-  marked spare". Stale: DI 4–6 are wheel speed, DI 7 start, DI 8 clutch.
+**Promoted to `tune/` — engine data that would have been lost in an archive:**
+
+| File | Now | Why it is not research chaff |
+|---|---|---|
+| `03_g4x_boost_target.csv` | `tune/tables/boost_target_full_psi.csv` | Header reads "Link G4X XtremeX / EFR 7163-G / 5S-GTE". A live tuning table. |
+| `04_g4x_duty_base.csv` | `tune/tables/boost_duty_base_pct.csv` | **Filled a real gap** — there was no wastegate duty table anywhere in `tune/`. |
+| `08_shakedown_tables.csv` | `tune/tables/boost_shakedown_stages.csv` | Staged Stage 0–3 boost/duty with a per-stage overboost cut. Safety-relevant and operational. |
+| `13_g4x_boost_target_table.csv` | `tune/tables/boost_target_full_detail.csv` | Same curve with flow, compressor efficiency, charge temp and WHP per point. |
+| `5SGTE_Timing_Belt_Cam_Degreeing` | `tune/docs/` | **Derives the 110° ATDC / 103° BTDC lobe centres** that `tune/engine_constants.yaml` asserts. It is the source for a value the repo depends on. |
+| `5SGTE_Quick_Card`, `..._INSTALL_HKS` | `tune/docs/` | FSM torque figures and the timing-belt procedure for the same job. |
+| `01_boost_plan.png` | `tune/docs/boost_plan.png` | The only chart in the tree not duplicated elsewhere. |
+
+**Retired to `archive/5sgte-project-data/`:** turbo-selection research (`05_*`, `06_turbo_model.py`,
+`11_charge_temp_summary.csv`), the two head-flow studies, and the three superseded wiring documents,
+each given a retirement banner:
+
+- `ECU_WIRING_MASTER_SOURCE_OF_TRUTH.md` — **never was one.** An unlanded staging draft whose
+  DI4/DI5 proposals contradict the wheel-speed block. The filename was the trap.
+- `Reverse_Camera_Trigger_CORRECTED_sourced_from_repos.md` — claims "DI4–DI10 are marked spare".
+  Stale: DI 4–6 are wheel speed, DI 7 start, DI 8 clutch.
+- `ECU-mermaid-chart.md` — draws the superseded "reverse → ECU DI4 direct" routing.
+
+`docs/build-research-hub.py` had the tree registered as a topic; that entry was removed and
+`docs/research-hub.html` regenerated (2 topics, no stale links). A committed `__pycache__` was also
+purged and added to `.gitignore`.
+
+**A conflict this surfaced:** there are now **two boost target tables and they are not
+interchangeable.** `boost_target_psi.csv` is the street seed (TPS × RPM, 18 psi ceiling);
+`boost_target_full_psi.csv` is the full-power curve (RPM only, 30 psi peak) whose own header says
+*"do NOT load this for a first start"*. Different axis structures, so one cannot be dropped in for
+the other. Documented in `tune/README.md` with the ramp order: shakedown stages → street seed → full.
 
 ---
 

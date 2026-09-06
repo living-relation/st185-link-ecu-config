@@ -1,3 +1,7 @@
+<!-- RETIRED 2026-09-06. Describes the superseded "reverse switch -> ECU DI4 direct" decision.
+     Current: reverse is on the ECUMaster switchboard over CAN; DI 3-6 are ABS wheel speed.
+     Authoritative for ECU I/O: XTREMEX-IO-TABLE.html -->
+
 # Reverse-Camera Trigger — CORRECTED, Sourced from Dan's Actual Repos
 
 **Supersedes the earlier "Reverse-Camera Trigger for ST185 5S-GTE Build" artifact**, which was built from generic Link documentation because the GitHub repos weren't reachable at the time. This version is sourced directly from `living-relation/st185-link-ecu-config`, `living-relation/center-cluster-esp32-p4`, and Google Drive.

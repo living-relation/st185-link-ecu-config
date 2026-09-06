@@ -31,13 +31,6 @@ TOPICS: list[dict] = [
                  "scope, separate from the CAN/ECU config.",
     },
     {
-        "dir": "5sgte-project-data",
-        "title": "5S-GTE Build Data",
-        "blurb": "Imported project archive: head airflow analysis, boost/duty target "
-                 "tables, ECU wiring source-of-truth, and reverse-camera trigger "
-                 "resolution. Some documents carry superseded conclusions, kept for history.",
-    },
-    {
         "dir": "harness",
         "title": "Harness & Wiring",
         "blurb": "Harness wiring diagram for the ECU/cluster/switchboard install.",

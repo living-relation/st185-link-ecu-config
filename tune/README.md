@@ -15,7 +15,11 @@ This directory covers **engine calibration only**. It is not an I/O or wiring so
 | `tables/ignition_base_deg.csv` | Ignition advance [° BTDC] — retarded under boost. |
 | `tables/injector_dead_time_ms.csv` | ATS 1400 cc dead time vs ΔkPa and battery voltage. |
 | `tables/lambda_target.csv` | Target lambda vs load. Still applies — the external CAN-Lambda controller fills Lambda 1; the target table is ECU-side. |
-| `tables/boost_target_psi.csv` | Open-loop boost target vs RPM/TPS. |
+| `tables/boost_target_psi.csv` | **Street seed** open-loop boost target vs RPM/TPS, caps at 18 psi. Use this one for shakedown. |
+| `tables/boost_target_full_psi.csv` | **Full-power** boost target vs RPM, EFR 7163-G / E85, peaks at 30 psi. **Do not load for a first start.** |
+| `tables/boost_target_full_detail.csv` | The same full-power curve with estimated flow, compressor efficiency, charge temp and WHP per point. |
+| `tables/boost_duty_base_pct.csv` | Boost-control **wastegate duty** base table, open-loop starting values. MAC 4-port + Turbosmart GenV IWG 14 psi spring. |
+| `tables/boost_shakedown_stages.csv` | **Staged shakedown** boost/duty tables, Stage 0-3. Load one stage at a time; set the overboost cut for that stage before the first pull. |
 | `tables/multi_fuel_blend.csv` | Ethanol % vs fuel/ignition trim multiplier — the blend axis `ve_e85_pct.csv` pairs with. |
 | `limits.yaml` | ECU protection limits + cluster cosmetic thresholds. Intentionally loose for the startup map. |
 | `docs/` | Engine-side guides: spec, trigger/COP, driveability, limits, first-start, protection, research. |
@@ -45,6 +49,13 @@ Link CAN-Lambda on `0x3B6` (conflict C19).
 **These tables are seeds, not dyno data.** Carried forward verbatim from the source repo's own
 note: *"These are conservative placeholders, not dyno data."* Units and axes must match your
 PCLink template after loading the Link startup map.
+
+**Two boost target tables, and they are not interchangeable.** `boost_target_psi.csv` is the
+street seed (TPS x RPM axes, 18 psi ceiling, matches `targets.boost_psi_street_seed`).
+`boost_target_full_psi.csv` is the eventual full-power curve (RPM axis only, 30 psi peak, matches
+`targets.boost_psi_max_eventual`) and its own header says *"do NOT load this for a first start"*.
+Different axis structures, so they are not drop-in replacements for each other. Ramp:
+`boost_shakedown_stages.csv` -> street seed -> full.
 
 **No data above 7000 RPM.** The tables stop at 7000 RPM but `targets.rev_limit_rpm` is 8000, and
 `targets.rev_limit_soft_first_start` is 4000. Between 7000 and 8000 RPM PCLink extrapolates off
