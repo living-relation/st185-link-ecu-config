@@ -219,7 +219,7 @@
   <tr><td>Ignition</td><td>8</td><td>4 coils + 2 aux</td><td>2</td></tr>
   <tr><td>Aux</td><td>10</td><td>10 (9/10 = ETB)</td><td>0 → spare Ign/Inj, then PMU/PDM</td></tr>
 </table>
-<div class="note">Comfortable fit — freeing the fuel-temp Temp input and moving switches to the switchboard opened up headroom. Add a PMU/PDM only if output count grows.</div>
+<div class="note"><strong>Aux is exactly full — zero spare.</strong> Freeing the fuel-temp Temp input and moving switches to the switchboard opened up headroom on the input side, but every one of the 10 Aux outputs is allocated. <strong>No PDM in the plan</strong> (Dan, 2026-09-06): use all ECU outputs first — the next actuator comes out of a spare Ign 5–8 / Inj 5–8 low-side drive. A PDM is a later add-on Dan fits himself if the ECU genuinely runs out.</div>
 
 <h2>Comms port (6-pin) — USER CAN 1</h2>
 <table>

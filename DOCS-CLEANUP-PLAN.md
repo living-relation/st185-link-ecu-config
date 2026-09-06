@@ -783,12 +783,14 @@ Four things the documentation currently asserts that deserve pushback.
 
 ---
 
-16. **PDM vs direct Aux for the fuel pump (Aux 3) and radiator fan (Aux 5).** `XTREMEX-IO-TABLE.html`
-    currently shows both as **direct Aux** with relays. A power distribution module was discussed but
-    never landed in any document. This is a real fork, not an oversight: direct Aux is what is drawn
-    and costs nothing more; a PDM frees Aux outputs (Aux is at **zero spare** — see assumption 2) and
-    consolidates the fusing, at the cost of a new device on the harness and possibly on CAN.
-    **Nothing has been changed either way — Dan's call.**
+16. **~~PDM vs direct Aux for the fuel pump (Aux 3) and radiator fan (Aux 5).~~ DECIDED 2026-09-06 —
+    direct Aux, no PDM.** Dan: *"I will only use a PDM if I am completely out of outputs on my ECU.
+    Plan on using all of my ECU outputs first... I can add it myself without much trouble later on."*
+    The PDM is **out of the plan**. Plan against the ECU's own outputs — all 10 Aux, then the spare
+    Ign 5–8 / Inj 5–8 low-side drives. `XTREMEX-IO-TABLE.html` already reflects this. Where existing
+    text says "→ PMU/PDM if more needed", read it as *the fallback Dan adds himself later*, not a
+    design step. Note the standing constraint from assumption 2: Aux is at **zero spare**, so any new
+    actuator must come out of a spare Ign/Inj output.
 
 17. **VR wheel-speed dropout at low road speed.** The four ABS sensors on DI 3–6 are variable
     reluctance. A VR sensor's output amplitude falls with speed, and Link's own forum moderator puts
