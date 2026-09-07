@@ -5,7 +5,8 @@
      Fuel temp comes from the Continental 3-pin flex sensor (no separate sensor). No external pull-ups needed.
      Source: XtremeX Quick Start Guide I/O table + A/B loom diagram + researched Link/MRS behavior (2026-07).
      Cross-ref the living notes: "AC amplifier input signals.txt" and "Other ECU IO and MATH.txt".
-     DRAFT — 🟡/⬜ rows need one-by-one confirmation. Verify exact wire colors on the official loom diagram. -->
+     All listed channels are in use — no provisional rows.
+     Pin numbers + wire colours folded in 2026-09-06 from the XtremeX Quickstart Guide loom diagrams (verified). -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -16,6 +17,8 @@
   body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;padding:24px;color:#0f172a;background:#f8fafc;line-height:1.4}
   h1{font-size:22px;margin:0 0 2px} h2{font-size:16px;margin:22px 0 8px;padding-bottom:4px;border-bottom:2px solid #cbd5e1}
   .sub{color:#64748b;font-size:13px;margin-bottom:16px}
+  td.pin{font-weight:700;white-space:nowrap;font-family:ui-monospace,Menlo,Consolas,monospace}
+  td.wire{white-space:nowrap;color:#475569;font-size:11.5px}
   table{border-collapse:collapse;width:100%;font-size:12.5px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06)}
   th,td{border:1px solid #e2e8f0;padding:6px 9px;text-align:left;vertical-align:top}
   th{background:#f1f5f9;font-weight:600}
@@ -46,7 +49,7 @@
 <body>
 
 <h1>Link G4X XtremeX — I/O Wiring Table</h1>
-<div class="sub">1993 Celica GT-Four ST185 · 5S-GTE turbo · <strong>drive-by-wire</strong> · 1ZZ COP · 1400cc inj · Bosch 74.5mm ETB · external Link CAN-Lambda · ECUMaster CAN switchboard · MRS EPS &nbsp;|&nbsp; DRAFT — 🟡/⬜ need confirmation</div>
+<div class="sub">1993 Celica GT-Four ST185 · 5S-GTE turbo · <strong>drive-by-wire</strong> · 1ZZ COP · 1400cc inj · Bosch 74.5mm ETB · external Link CAN-Lambda · ECUMaster CAN switchboard · MRS EPS &nbsp;|&nbsp; ALL CHANNELS IN USE</div>
 
 <div class="legend panel">
   <strong>Legend</strong> &nbsp;
@@ -61,7 +64,7 @@
   <span><span class="sw" style="background:var(--aux)"></span>Aux out</span>
   <span><span class="sw" style="background:var(--pwr)"></span>Power</span>
   <span><span class="sw" style="background:var(--sb)"></span>Switchboard (CAN)</span>
-  <div class="note"><strong>Drive types:</strong> Aux 1–4 = <em>low-side only</em>. Aux 5–8 = <em>high or low side</em>. Aux 9–10 = <em>H-bridge</em> (ETB). Spare Ign/Inj = low-side. Low-side outputs sink to ground when active and <strong>float (hi-Z) when off</strong> — no forced high, no pull-up unless a device needs one. Active-HIGH loads must use Aux 5–8 (or a relay). Verify wire colors on the official loom diagram.</div>
+  <div class="note"><strong>Drive types:</strong> Aux 1–4 = <em>low-side only</em>. Aux 5–10 = <em>high or low side</em> per Link — here Aux 9–10 are dedicated to the ETB <em>H-bridge</em>. Spare Ign/Inj = low-side. Low-side outputs sink to ground when active and <strong>float (hi-Z) when off</strong> — no forced high, no pull-up unless a device needs one. Active-HIGH loads must use Aux 5–8 (or a relay), since Aux 9–10 are committed to the ETB. <br><br><strong>Wire scheme:</strong> one solid colour per signal group — Red 12V · Black ECU ground · Black/White sensor ground (Gnd Out) · Green/Yellow shield drain · Orange +5V · Orange/White +8V · Red/White V-Ethrottle · White analog · Yellow temp · Blue trigger · Green digital · Grey knock · Brown injector · Violet ignition · Pink aux. Individual channels are identified by a <strong>printed pin-number marker at both ends</strong>, not by stripe colour — ten spools instead of forty, and the pin number is readable years later. Pin numbers verified against the G4X XtremeX Quickstart Guide loom diagrams, cross-checked against Link dealer wire-gauge data (A5/B5 red 0.75mm², A25/A34/B25/B34 black) — 2026-09-06.</div>
 </div>
 
 <div class="panel info">
@@ -100,41 +103,42 @@
 
 <h2>Inputs — Analog</h2>
 <table>
-  <tr><th>Channel</th><th>Function</th><th>Status</th><th>Notes</th></tr>
-  <tr class="g-trigger"><td class="chan">Trigger 1</td><td>Crank (reluctor/VR)</td><td><span class="badge ok">✅</span></td><td>36-2 toothed crank wheel</td></tr>
-  <tr class="g-trigger"><td class="chan">Trigger 2</td><td>Cam (Hall, single tooth)</td><td><span class="badge ok">✅</span></td><td>RacerX/Cherry kit. Power from ECU <strong>+8V Out</strong>, <strong>1.8k pull-up</strong> on signal — <em>not</em> the kit's 2.4k (sized for 12V). Brown = VCC/+8V, Black = Signal/Trigger 2, Blue = Gnd Out. Shielded, terminated <strong>ECU end only</strong>.</td></tr>
-  <tr class="g-temp"><td class="chan">Temp 1</td><td>ECT (coolant)</td><td><span class="badge ok">✅</span></td><td>built-in pull-up</td></tr>
-  <tr class="g-temp"><td class="chan">Temp 2</td><td>IAT — manifold</td><td><span class="badge ok">✅</span></td><td>built-in pull-up</td></tr>
-  <tr class="g-temp"><td class="chan">Temp 3</td><td>Oil temp</td><td><span class="badge ok">✅</span></td><td>1k pull-up</td></tr>
-  <tr class="g-temp"><td class="chan">Temp 4</td><td>Charge-pipe IAT #2 (heat-soak)</td><td><span class="badge ok">✅</span></td><td>built-in pull-up — no external resistor</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 1</td><td>MAP</td><td><span class="badge ok">✅</span></td><td>+5V</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 2</td><td>ETB throttle pos — MAIN</td><td><span class="badge ok">✅</span></td><td>Bosch ETB</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 3</td><td>ETB throttle pos — SUB</td><td><span class="badge ok">✅</span></td><td>Bosch ETB</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 4</td><td>Accel pedal (APS) — MAIN</td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 5</td><td>Accel pedal (APS) — SUB</td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 6</td><td>Oil pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 7</td><td>Fuel pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 8</td><td>Coolant pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 9</td><td>Fuel level sender</td><td><span class="badge prop">🟡</span></td><td>resistive sender needs a divider pull-up on An Volt; calibrate V→% table (points TBD)</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 10–11</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td>wideband on CAN, not analog</td></tr>
-  <tr class="g-knock"><td class="chan">Knock 1</td><td>Knock sensor</td><td><span class="badge ok">✅</span></td><td></td></tr>
-  <tr class="g-knock"><td class="chan">Knock 2</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td></td></tr>
+  <tr><th>Channel</th><th>Pin</th><th>Wire</th><th>Function</th><th>Status</th><th>Notes</th></tr>
+  <tr class="g-trigger"><td class="chan">Trigger 1</td><td class="pin">A8</td><td class="wire">Blue</td><td>Crank (reluctor/VR)</td><td><span class="badge ok">✅</span></td><td>36-2 toothed crank wheel</td></tr>
+  <tr class="g-trigger"><td class="chan">Trigger 2</td><td class="pin">A9</td><td class="wire">Blue</td><td>Cam (Hall, single tooth)</td><td><span class="badge ok">✅</span></td><td>RacerX/Cherry kit. Power from ECU <strong>+8V Out</strong>, <strong>1.8k pull-up</strong> on signal — <em>not</em> the kit's 2.4k (sized for 12V). Brown = VCC/+8V, Black = Signal/Trigger 2, Blue = Gnd Out. Shielded, terminated <strong>ECU end only</strong>.</td></tr>
+  <tr class="g-temp"><td class="chan">Temp 1</td><td class="pin">A15</td><td class="wire">Yellow</td><td>ECT (coolant)</td><td><span class="badge ok">✅</span></td><td>Toyota OEM <strong>89422-20010</strong> (Sensor, Water Temperature — For E.F.I.), water neck outlet. Selectable pull-up.</td></tr>
+  <tr class="g-temp"><td class="chan">Temp 2</td><td class="pin">A16</td><td class="wire">Yellow</td><td>IAT — manifold</td><td><span class="badge ok">✅</span></td><td>built-in pull-up</td></tr>
+  <tr class="g-temp"><td class="chan">Temp 3</td><td class="pin">B6</td><td class="wire">Yellow</td><td>Oil temp</td><td><span class="badge ok">✅</span></td><td>Fixed 1k pull-up (Temp 3/4 are not selectable)</td></tr>
+  <tr class="g-temp"><td class="chan">Temp 4</td><td class="pin">B7</td><td class="wire">Yellow</td><td>Charge-pipe IAT #2 (heat-soak)</td><td><span class="badge ok">✅</span></td><td>No external resistor, but <strong>Temp 3 and Temp 4 are fixed at 1k</strong> — only Temp 1/2 are selectable. Same NTC part as the manifold IAT on Temp 2, so the two need <em>separate calibration tables</em> in PCLink — same sensor, different pull-up.</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 1</td><td class="pin">A17</td><td class="wire">White</td><td>MAP</td><td><span class="badge ok">✅</span></td><td>+5V</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 2</td><td class="pin">A22</td><td class="wire">White</td><td>ETB throttle pos — MAIN</td><td><span class="badge ok">✅</span></td><td>Bosch ETB</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 3</td><td class="pin">A33</td><td class="wire">White</td><td>ETB throttle pos — SUB</td><td><span class="badge ok">✅</span></td><td>Bosch ETB</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 4</td><td class="pin">A14</td><td class="wire">White</td><td>Accel pedal (APS) — MAIN</td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 5</td><td class="pin">B33</td><td class="wire">White</td><td>Accel pedal (APS) — SUB</td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 6</td><td class="pin">B15</td><td class="wire">White</td><td>Oil pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 7</td><td class="pin">B16</td><td class="wire">White</td><td>Fuel pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 8</td><td class="pin">B23</td><td class="wire">White</td><td>Coolant pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 9</td><td class="pin">B24</td><td class="wire">White</td><td>Fuel level sender</td><td><span class="badge ok">✅</span></td><td>resistive sender needs a divider pull-up on An Volt; calibrate V→% table (points TBD)</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 10–11</td><td class="pin">B31 · B32</td><td class="wire">White</td><td>Available</td><td><span class="badge tbd">⬜</span></td><td>Not reserved. The AC amplifier handles compressor protection itself, so no analog channels are needed for AC.</td></tr>
+  <tr class="g-knock"><td class="chan">Knock 1</td><td class="pin">B9</td><td class="wire">Grey</td><td>Knock sensor</td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-knock"><td class="chan">Knock 2</td><td class="pin">B8</td><td class="wire">Grey</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td></td></tr>
 </table>
 
 <h2>Inputs — Digital (ECU, frequency-priority)</h2>
 <table>
-  <tr><th>Channel</th><th>Function</th><th>Status</th><th>Notes</th></tr>
-  <tr class="g-di"><td class="chan">DI 1</td><td>Turbo speed (frequency)</td><td><span class="badge ok">✅</span></td><td></td></tr>
-  <tr class="g-di"><td class="chan">DI 2</td><td>Flex-fuel sensor (Continental 3-pin) → ethanol% + fuel temp</td><td><span class="badge ok">✅</span></td><td>fuel temp comes from here — no separate sensor</td></tr>
-  <tr class="g-di"><td class="chan">DI 3–6</td><td>ABS wheel speed ×4 (reluctor)</td><td><span class="badge prop">🟡</span></td><td>shielded TP; conditioner if low-speed dropout; drops first</td></tr>
-  <tr class="g-di"><td class="chan">DI 7</td><td>Start request (button/key)</td><td><span class="badge prop">🟡</span></td><td>ECU-controlled start</td></tr>
-  <tr class="g-di"><td class="chan">DI 8</td><td>Clutch switch</td><td><span class="badge prop">🟡</span></td><td>ECU-direct (flat-shift/launch latency)</td></tr>
-  <tr class="g-di"><td class="chan">DI 9–10</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td>(CAN2 unused)</td></tr>
+  <tr><th>Channel</th><th>Pin</th><th>Wire</th><th>Function</th><th>Status</th><th>Notes</th></tr>
+  <tr class="g-di"><td class="chan">DI 1</td><td class="pin">A30</td><td class="wire">Green</td><td>Turbo speed (frequency)</td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-di"><td class="chan">DI 2</td><td class="pin">A31</td><td class="wire">Green</td><td>Flex-fuel sensor (Continental 3-pin) → ethanol% + fuel temp</td><td><span class="badge ok">✅</span></td><td>fuel temp comes from here — no separate sensor</td></tr>
+  <tr class="g-di"><td class="chan">DI 3–6</td><td class="pin">A23 · B21 · B20 · B19</td><td class="wire">Green</td><td>ABS wheel speed ×4 (reluctor)</td><td><span class="badge ok">✅</span></td><td>Shielded twisted pair. Fed through a <strong>MAX9926 VR conditioner</strong> — see <code>docs/devices/VR-WHEEL-SPEED-CONDITIONER.md</code>. Conditioner ground = Gnd Out, 5V from the external supply.</td></tr>
+  <tr class="g-di"><td class="chan">DI 7</td><td class="pin">B30</td><td class="wire">Green</td><td>Start request (button/key)</td><td><span class="badge ok">✅</span></td><td>ECU-controlled start</td></tr>
+  <tr class="g-di"><td class="chan">DI 8</td><td class="pin">B29</td><td class="wire">Green</td><td>Available</td><td><span class="badge tbd">⬜</span></td><td>Freed 2026-09-06 — clutch switch moved to the switchboard.</td></tr>
+  <tr class="g-di"><td class="chan">DI 9–10</td><td class="pin">B28 · B27</td><td class="wire">Green</td><td>Available</td><td><span class="badge tbd">⬜</span></td><td><strong>Available for use.</strong> CAN 2 is not being used, so these are ordinary digital inputs, not reserved.</td></tr>
 </table>
 
 <h2>Inputs — via Switchboard (CAN, frees ECU DIs)</h2>
 <table>
   <tr><th>Signal</th><th>Path</th><th>Notes</th></tr>
+  <tr class="g-sb"><td class="chan">Clutch switch</td><td>SB → CAN → ECU</td><td>flat shift, launch, cruise cancel</td></tr>
   <tr class="g-sb"><td class="chan">Brake switch</td><td>SB → CAN → ECU</td><td>cruise cancel</td></tr>
   <tr class="g-sb"><td class="chan">Reverse switch</td><td>SB → CAN → ECU</td><td><strong>ECU sets Gear = 7 (R) on 0x3EB via a PCLink Trigger → cluster shows "R"</strong> (cluster remaps 7→−1). RealDash also reads this byte directly (added 2026-09-04) to drive a reverse-camera auto-switch — see <code>CAN-CONFIG-STATUS.md</code>.</td></tr>
   <tr class="g-sb"><td class="chan">Cruise on/off + set/res ladder</td><td>SB → CAN → ECU</td><td>resistor ladder on a switchboard analog in</td></tr>
@@ -142,26 +146,27 @@
 
 <h2>Outputs</h2>
 <table>
-  <tr><th>Channel</th><th>Function</th><th>Drive</th><th>Status</th><th>Notes</th></tr>
-  <tr class="g-inj"><td class="chan">Inj 1–4</td><td>Injectors cyl 1–4</td><td><span class="drive">inj</span></td><td><span class="badge ok">✅</span></td><td>1400cc hi-Z, sequential</td></tr>
-  <tr class="g-ign"><td class="chan">Ign 1–4</td><td>1ZZ COP coils</td><td><span class="drive">ign</span></td><td><span class="badge ok">✅</span></td><td>logic-level trigger</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 1</td><td>Boost solenoid</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 2</td><td>ETB power relay (V-Ethrottle feed)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 3</td><td>Fuel pump relay</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 4</td><td>AC clutch/kill (grounds relay coil or amp ACT)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low sink; <strong>floats when off, no pull-up</strong>. Amp <code>ACT</code>: <strong>ground = kill, floating = normal</strong>. <code>AC1</code> is input-only and is <strong>never</strong> a kill signal.</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 5</td><td>Engine radiator fan relay</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td></td></tr>
-  <tr class="g-aux"><td class="chan">Aux 6</td><td>EFI main relay (ECU power hold)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>keeps ECU powered for DBW key-off reset/cooldown</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 7</td><td>Speed-out → MRS pump SPD pin (Yel/Wht)</td><td><span class="drive">low-side pulse</span></td><td><span class="badge ok">✅</span></td><td>0–5/12V pulse (~4/rev); direct, <strong>no resistor</strong>; set speedo-out scaling so pump idles down &gt;~10 km/h</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 8</td><td>Start relay (ECU-controlled)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>ECU enables/disables in software (clutch/neutral/anti-restart) — no separate cut relay</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 9 / 10</td><td>Bosch ETB motor (H-bridge)</td><td><span class="drive">H-bridge</span></td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
-  <tr class="g-ign"><td class="chan">Ign 5</td><td>2nd rad fan (AC condenser duty)</td><td><span class="drive">low-side</span></td><td><span class="badge prop">🟡</span></td><td>spare ign as aux</td></tr>
-  <tr class="g-ign"><td class="chan">Ign 6</td><td>Oil pressure warning lamp</td><td><span class="drive">low-side</span></td><td><span class="badge prop">🟡</span></td><td>spare ign as aux</td></tr>
-  <tr class="g-inj"><td class="chan">Ign 7–8 / Inj 5–8</td><td>spare low-side aux</td><td><span class="drive">low-side</span></td><td><span class="badge tbd">⬜</span></td><td>→ PMU/PDM if more needed</td></tr>
+  <tr><th>Channel</th><th>Pin</th><th>Wire</th><th>Function</th><th>Drive</th><th>Status</th><th>Notes</th></tr>
+  <tr class="g-inj"><td class="chan">Inj 1–4</td><td class="pin">A4 A3 A2 A1</td><td class="wire">Brown</td><td>Injectors cyl 1–4</td><td><span class="drive">inj</span></td><td><span class="badge ok">✅</span></td><td>1400cc hi-Z, sequential</td></tr>
+  <tr class="g-ign"><td class="chan">Ign 1–4</td><td class="pin">A13 A12 A11 A10</td><td class="wire">Violet</td><td>1ZZ COP coils</td><td><span class="drive">ign</span></td><td><span class="badge ok">✅</span></td><td>logic-level trigger</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 1</td><td class="pin">A21</td><td class="wire">Pink</td><td>Boost solenoid</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 2</td><td class="pin">A20</td><td class="wire">Pink</td><td>ETB power relay (V-Ethrottle feed)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 3</td><td class="pin">A19</td><td class="wire">Pink</td><td>Fuel pump relay</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 4</td><td class="pin">A18</td><td class="wire">Pink</td><td>AC clutch/kill (grounds relay coil or amp ACT)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low sink; <strong>floats when off, no pull-up</strong>. Amp <code>ACT</code>: <strong>ground = kill, floating = normal</strong>. <code>AC1</code> is input-only and is <strong>never</strong> a kill signal.</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 5</td><td class="pin">A29</td><td class="wire">Pink</td><td>Engine radiator fan relay</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td></td></tr>
+  <tr class="g-aux"><td class="chan">Aux 6</td><td class="pin">A28</td><td class="wire">Pink</td><td>EFI main relay (ECU power hold)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>keeps ECU powered for DBW key-off reset/cooldown</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 7</td><td class="pin">A27</td><td class="wire">Pink</td><td>Speed-out → MRS pump SPD pin (Yel/Wht)</td><td>4 pulses per revolution, <strong>0–5V</strong> (scoped on the RAV4-family PS ECU, same violet/white SPD line). Link Aux is low-side sinking, so this needs a <strong>pull-up to 5V</strong> to make the high level. Link's own moderator confirms MRS pumps run fine from a speedo-out Aux or GP PWM.</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 8</td><td class="pin">A26</td><td class="wire">Pink</td><td>Start relay (ECU-controlled)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>ECU enables/disables in software (clutch/neutral/anti-restart) — no separate cut relay</td></tr>
+  <tr class="g-pwr"><td class="chan">V-Ethrottle 12V switched input</td><td class="pin">B5</td><td class="wire">Red/White</td><td>ETB H-bridge supply — <strong>power in, not an output</strong>. Triggered by Aux 2 (A20).</td><td><span class="drive">12V in</span></td><td><span class="badge ok">✅</span></td><td>0.75 mm². Present on the loom but absent from the Quickstart I/O table — always list it explicitly.</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 9 / 10</td><td class="pin">B18 · B26</td><td class="wire">Pink</td><td>Bosch ETB motor (H-bridge)</td><td><span class="drive">H-bridge</span></td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
+  <tr class="g-ign"><td class="chan">Ign 5</td><td class="pin">B13</td><td class="wire">Violet</td><td>2nd rad fan (AC condenser duty)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>spare ign as aux</td></tr>
+  <tr class="g-ign"><td class="chan">Ign 6</td><td class="pin">B12</td><td class="wire">Violet</td><td>Available</td><td><span class="drive">low-side</span></td><td><span class="badge tbd">⬜</span></td><td>Freed 2026-09-06 — no ECU-driven warning lamps. The stock combination meter is gone; the replacement cluster handles indicators over CAN.</td></tr>
+  <tr class="g-inj"><td class="chan">Ign 7–8 / Inj 5–8</td><td class="pin">B11 B10 · B4–B1</td><td class="wire">Brown</td><td>spare low-side aux</td><td><span class="drive">low-side</span></td><td><span class="badge tbd">⬜</span></td><td>→ PMU/PDM if more needed</td></tr>
 </table>
 
 <h2>AC control (per your AC-amp notes)</h2>
 <div class="panel">
-  ECU does <strong>not</strong> drive the compressor. Aux 4 is a <strong>low-side</strong> output that either grounds the AC clutch relay coil (float = off) or feeds the amp's <code>ACT</code> cancel input — <strong>active-low, floats when inactive, no pull-up</strong>. Used to cancel the compressor under high load/throttle/boost. No AC-on input — the XtremeX closed-loop idle absorbs the AC-load dip in software. <strong>Polarity resolved:</strong> Aux 4 drives the amplifier's <code>ACT</code> terminal — <strong>ground = kill, floating = normal</strong>. Active-low sink, no pull-up. <code>AC1</code> is an <em>input</em> to the amplifier and must never be used as a kill signal.
+  ECU does <strong>not</strong> drive the compressor. The <strong>only</strong> AC signal on the ECU is this kill output. Aux 4 is a <strong>low-side</strong> output feeding the amplifier's <code>ACT</code> cancel input — <strong>active-low, floats when inactive, no pull-up</strong>. Used to cancel the compressor under high load/throttle/boost. No AC-on input — the XtremeX closed-loop idle absorbs the AC-load dip in software. <strong>Polarity resolved:</strong> Aux 4 drives the amplifier's <code>ACT</code> terminal — <strong>ground = kill, floating = normal</strong>. Active-low sink, no pull-up. <code>AC1</code> is an <em>input</em> to the amplifier and must never be used as a kill signal.
 </div>
 
 <h2>External pull-up resistors</h2>
@@ -171,15 +176,15 @@
 
 <h2>Power / ground</h2>
 <table>
-  <tr><th>Channel</th><th>Use</th></tr>
-  <tr class="g-pwr"><td class="chan">+5V Out</td><td>MAP, TPS×2, APS×2, pressures</td></tr>
-  <tr class="g-pwr"><td class="chan">+8V Out</td><td>8V sensors (if any)</td></tr>
-  <tr class="g-pwr"><td class="chan">V-Ethrottle (B connector)</td><td>Relayed 12–14V ETB H-bridge feed (switched by Aux 2)</td></tr>
-  <tr class="g-pwr"><td class="chan">14V +</td><td>Main ECU feed (via EFI main relay, Aux 6)</td></tr>
-  <tr class="g-gnd"><td class="chan">Gnd Out</td><td><strong>All sensor grounds.</strong> Never chassis. APS and TPS may share a Gnd Out.</td></tr>
-  <tr class="g-gnd"><td class="chan">Ground</td><td><strong>ECU reference only</strong> — not a sensor return.</td></tr>
-  <tr class="g-gnd"><td class="chan">Shield / Shield-Gnd</td><td>Carries <strong>no current</strong>. Terminate at the <strong>ECU end only</strong>; float at the sensor end.</td></tr>
-  <tr class="g-gnd"><td class="chan">Loom B +5V</td><td><strong>Loom B has no native +5V pin.</strong> Coolant pressure, fuel level (and turbo speed) need a <strong>5V jumper from Loom A</strong> — see harness-build tasks.</td></tr>
+  <tr><th>Channel</th><th>Pin</th><th>Wire</th><th>Use</th></tr>
+  <tr class="g-pwr"><td class="chan">+5V Out</td><td class="pin">A32</td><td class="wire">Orange</td><td>MAP, TPS×2, APS×2, pressures</td></tr>
+  <tr class="g-pwr"><td class="chan">+8V Out</td><td class="pin">A6</td><td class="wire">Orange/White</td><td>Cam Hall sensor on Trigger 2 (1.8k pull-up on signal)</td></tr>
+  <tr class="g-pwr"><td class="chan">V-Ethrottle 12V switched input</td><td class="pin">B5</td><td class="wire">Red/White</td><td>Relayed 12–14V feed to the ETB H-bridge. <strong>Trigger = Aux 2 (A20)</strong>, which grounds the relay coil (pin 85). Relay: 30 = fused battery, 86 = ignition-switched 12V, 87 → B5. Do not fit the isolating relay until Aux 2, Aux 9 and Aux 10 are all wired and configured.</td></tr>
+  <tr class="g-pwr"><td class="chan">14V +</td><td class="pin">A5</td><td class="wire">Red</td><td>Main ECU feed (via EFI main relay, Aux 6)</td></tr>
+  <tr class="g-gnd"><td class="chan">Gnd Out</td><td class="pin">A24 · B22</td><td class="wire">Black/White</td><td><strong>All sensor grounds.</strong> Never chassis. APS and TPS may share a Gnd Out.</td></tr>
+  <tr class="g-gnd"><td class="chan">Ground</td><td class="pin">A25 A34 · B25 B34</td><td class="wire">Black</td><td><strong>ECU reference only</strong> — not a sensor return.</td></tr>
+  <tr class="g-gnd"><td class="chan">Shield / Shield-Gnd</td><td class="pin">A7 · B17</td><td class="wire">Green/Yellow</td><td>Carries <strong>no current</strong>. Terminate at the <strong>ECU end only</strong>; float at the sensor end.</td></tr>
+  <tr class="g-gnd"><td class="chan">Loom B +5V</td><td class="pin">—</td><td class="wire">Orange (jumper from A32)</td><td><strong>Loom B has no native +5V pin.</strong> Coolant pressure, fuel level (and turbo speed) need a <strong>5V jumper from Loom A</strong> — see harness-build tasks.</td></tr>
 </table>
 
 <h2>Base-map logic to implement (from your notes)</h2>
@@ -194,7 +199,7 @@
     <li><strong>Cam Hall pull-up.</strong> Fit <strong>1.8k</strong> from signal to +8V Out. Do <em>not</em> fit the 2.4k in the RacerX kit — that value assumes a 12V supply.</li>
     <li><strong>Shields.</strong> Terminate every shield at the <strong>ECU end only</strong>, floating at the sensor end. Shields carry no current.</li>
     <li><strong>Sensor grounds.</strong> Gnd Out only, never chassis. APS and TPS may share a Gnd Out.</li>
-    <li><strong>Wire colours (open — conflict C11).</strong> Read off <code>XtremeXQuickstartGuide.pdf</code>. Not recorded anywhere reliable yet.</li>
+    
   </ol>
 </div>
 
