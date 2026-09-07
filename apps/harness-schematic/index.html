@@ -353,10 +353,10 @@ function buildST185(){
   C.push(comp("inj2","Injector 2 1400cc","A2", X4, 150, ["12V","INJ"], "left"));
   C.push(comp("inj3","Injector 3 1400cc","A3", X4, 240, ["12V","INJ"], "left"));
   C.push(comp("inj4","Injector 4 1400cc","A4", X4, 330, ["12V","INJ"], "left"));
-  C.push(comp("cop1","COP 1 1ZZ","A5", X4, 440, ["12V","GND","TRIG"], "left"));
-  C.push(comp("cop2","COP 2 1ZZ","A6", X4, 550, ["12V","GND","TRIG"], "left"));
-  C.push(comp("cop3","COP 3 1ZZ","A7", X4, 660, ["12V","GND","TRIG"], "left"));
-  C.push(comp("cop4","COP 4 1ZZ","A8", X4, 770, ["12V","GND","TRIG"], "left"));
+  C.push(comp("cop1","COP 1 1ZZ","COP1", X4, 440, ["12V","GND","TRIG"], "left"));
+  C.push(comp("cop2","COP 2 1ZZ","COP2", X4, 550, ["12V","GND","TRIG"], "left"));
+  C.push(comp("cop3","COP 3 1ZZ","COP3", X4, 660, ["12V","GND","TRIG"], "left"));
+  C.push(comp("cop4","COP 4 1ZZ","COP4", X4, 770, ["12V","GND","TRIG"], "left"));
   C.push(comp("boost","Boost solenoid","A9", X4, 890, ["12V","LS"], "left"));
   C.push(comp("etb","Bosch 74.5mm ETB","A10", X4, 990, ["M+","M−","5V","TPS-M","TPS-S","GND"], "left", {w:220}));
   C.push(comp("mrs","MRS EPS pump","A12", X4, 1190, ["12V","GND","SPD Yel/Wht"], "left", {w:220, note:"Aux7 speed-out, no resistor"}));
@@ -435,7 +435,7 @@ function buildST185(){
   /* ================= Notes ======================================================== */
   C.push({
     id:"note-cavities", group:"ecu", kind:"note", name:"Empty / spare ECU cavities", ident:"", x:2000, y:60, w:330, h:150,
-    pins:[], note:"Connector A: all 34 Superseal cavities present, A6 +8V unused. Connector B: B14 is empty, no terminal. Spare terminals with no wire: B1–B4, B10–B11, B27–B28, B31–B32."
+    pins:[], note:"Connector A: all 34 Superseal cavities present, none spare — A6 +8V Out feeds the cam Hall sensor. Connector B: B14 is empty, no terminal. Spare terminals with no wire: B1–B4, B10–B11, B27–B28, B31–B32."
   });
   C.push({
     id:"note-power", group:"power", kind:"note", name:"Power shown as symbols", ident:"", x:2000, y:240, w:330, h:150,
