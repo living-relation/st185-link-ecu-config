@@ -57,6 +57,25 @@ street seed (TPS x RPM axes, 18 psi ceiling, matches `targets.boost_psi_street_s
 Different axis structures, so they are not drop-in replacements for each other. Ramp:
 `boost_shakedown_stages.csv` -> street seed -> full.
 
+**Should the axes match? No -- leave them as-is.** Both tables limit boost, for different reasons at
+different build stages, and their axis choice is correct for each:
+
+- `boost_target_full_psi.csv` (and `boost_target_full_detail.csv`) is **RPM-only**. That is the
+  axis Link's own G4X documentation gives for the standard Boost Target table, and it fits a dyno
+  pull: at wide-open throttle, TPS is always ~100%, so a TPS axis adds nothing.
+- `boost_target_psi.csv` (street seed) and `boost_shakedown_stages.csv` use **TPS x RPM** (or a
+  staged progression). That is the axis that matters for early street/shakedown driving, where the
+  driver is not at WOT and boost should track how far the pedal is actually pressed.
+
+Forcing one axis onto both would make the street table cruder (losing partial-throttle response)
+or the dyno table pointlessly larger (a TPS axis with no data variation across it). The real
+question is not the axis -- it's **how PCLink switches between them**. The G4X supports "Multiple
+Target and Base Position Tables" for boost control as a native feature (per Link's own G4X
+specifications), which is the intended mechanism for stepping shakedown -> street -> full without
+re-flashing or hand-editing a table each time. **Not yet configured in PCLink** -- wiring up that
+table-switch condition (a start-map / gear / gp-switch selector, matching how the shakedown stages
+already ramp) is an open task, not a repo file.
+
 **No data above 7000 RPM.** The tables stop at 7000 RPM but `targets.rev_limit_rpm` is 8000, and
 `targets.rev_limit_soft_first_start` is 4000. Between 7000 and 8000 RPM PCLink extrapolates off
 the last column. Resolve this before any high-RPM running.

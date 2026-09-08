@@ -3,7 +3,7 @@
 Four ABS reluctor sensors feed DI 3–6 on the Link G4X XtremeX. A bare reluctor
 sensor produces a sine wave whose amplitude falls with wheel speed, and the
 ECU's digital inputs arm at a fixed hardware threshold of roughly 1.5–1.8 V.
-Below about 20–24 km/h the sensors go dead, which is exactly the speed range
+Below about 12–15 mph the sensors go dead, which is exactly the speed range
 traction control needs most. A conditioner turns each sine wave into a clean
 5 V square wave that stays valid down to walking pace.
 

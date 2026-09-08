@@ -31,6 +31,13 @@ TOPICS: list[dict] = [
                  "scope, separate from the CAN/ECU config.",
     },
     {
+        "dir": "5sgte-project-data",
+        "title": "5S-GTE Build Data",
+        "blurb": "Turbo-selection research and head airflow studies for the 5S-GTE hybrid "
+                 "build. ECU wiring docs that were also in this tree have been retired to "
+                 "archive/5sgte-project-data/ -- see that folder's README for why.",
+    },
+    {
         "dir": "harness",
         "title": "Harness & Wiring",
         "blurb": "Harness wiring diagram for the ECU/cluster/switchboard install.",

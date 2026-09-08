@@ -464,7 +464,7 @@ The ECU replaces the amplifier entirely and drives the compressor clutch itself.
 - **4 pulses per revolution.** Reported as 0–5 V on a related RAV4 system; 0–12 V is also reported for MR2 units and is **not resolved**.
 - The signal is not required for the pump to run. Without it the pump winds down slowly on its own. With it, the pump reduces assist at speed and reacts faster.
 
-**Current allocation:** Aux 7 (A27), low-side pulse output, direct to the MRS pump `SPD` pin (yellow/white), no series resistor, with speedo-out scaling set so the pump idles down above roughly 10 km/h.
+**Current allocation:** Aux 7 (A27), low-side pulse output, direct to the MRS pump `SPD` pin (yellow/white), no series resistor, with speedo-out scaling set so the pump idles down above roughly 6 mph.
 
 **Delta and gaps:**
 
@@ -792,15 +792,13 @@ Four things the documentation currently asserts that deserve pushback.
     design step. Note the standing constraint from assumption 2: Aux is at **zero spare**, so any new
     actuator must come out of a spare Ign/Inj output.
 
-17. **VR wheel-speed dropout at low road speed.** The four ABS sensors on DI 3–6 are variable
-    reluctance. A VR sensor's output amplitude falls with speed, and Link's own forum moderator puts
-    the DI arming threshold at roughly **1.5 V**, with VR wheel-speed sensors going dead below about
-    **24 km/h**. `XTREMEX-IO-TABLE.html` already hedges with "conditioner if low-speed dropout", but
-    no part has been chosen. The recommended fix is a **VR-to-Hall converter** on each channel.
-    This is a real functional gap for traction control, which needs wheel speed exactly in the
-    low-speed range where the sensors stop reporting. It also interacts with assumption 3 (four DIs
-    committed to a feature marked "drops first") and with decision 8. **Dan's call** — accept the
-    low-speed blind spot, fit conditioners, or change the speed source.
+17. **~~VR wheel-speed dropout at low road speed.~~ RESOLVED 2026-09-06.** The four ABS sensors
+    on DI 3–6 are variable reluctance; amplitude falls with speed, and the DI arming threshold of
+    roughly 1.5 V meant sensors going dead below about **15 mph** (~24 km/h) — exactly the range
+    traction control needs most. Fixed with 2 × dual-channel **NCV1124 VR conditioners** (one board
+    per axle), purchased and specced in `docs/devices/VR-WHEEL-SPEED-CONDITIONER.md`. The NCV1124's
+    fixed ±160 mV threshold is roughly tenfold more sensitive than the ECU's own DI arming voltage,
+    so the dropout is gone. Grounded to ECU sensor ground (Gnd Out), not chassis.
 
 ---
 
