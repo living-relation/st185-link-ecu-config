@@ -468,7 +468,7 @@ function buildST185(){
   C.push(comp("k-fp","Fuel pump relay","K3", X5, 340, ["86 coil","85 LS","30 12V","87 pump"], "left"));
   C.push(comp("k-fan","Rad fan relay","K4", X5, 480, ["86 coil","85 LS","30 12V","87 fan"], "left"));
   C.push(comp("k-str","Start relay","K5", X5, 620, ["86 coil","85 LS","30 12V","87 starter"], "left"));
-  C.push(comp("ac-rly","AC clutch / amp ACT","K6", X5, 760, ["86 coil","85 LS Aux4","30 12V","87 clutch"], "left", {status:"prop", note:"Amp ACT: ground = kill, float = normal. Active-low sink, no pull-up. AC1 is input-only, never a kill signal."}));
+  C.push(comp("ac-rly","AC clutch / amp ACT","K6", X5, 760, ["86 coil","85 LS Aux4","30 12V","87 clutch"], "left", {status:"prop", note:"Amp ACT: ground = kill, float = normal. Active-low sink, no pull-up. No AC1 wire in this install; ACT is the only AC signal."}));
   C.push(comp("k-fan2","Condenser fan relay","K7", X5, 900, ["86 coil","85 Ign5 LS","30 12V","87 fan"], "left", {status:"prop", note:"Ign 5 is a spare ignition drive used as a low-side aux — fan current goes through this relay, not the ECU pin."}));
   C.push(comp("batt","Vehicle 12V IGN","P1", X5, 1060, ["12V+","GND"], "left"));
   C.push(comp("buck","12V→5V buck ≥3A","P2", X5, 1180, ["12V IN","GND","5V OUT"], "left"));
