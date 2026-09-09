@@ -1,0 +1,47 @@
+name: Regenerate research hub
+
+# Keeps docs/research-hub.html in sync with the docs/ sources it indexes.
+# Loop-safe by three independent guards:
+#   1. path filter excludes the generated file itself,
+#   2. the bot's commit carries [skip ci] so it never re-triggers CI,
+#   3. the job skips runs actored by the bot,
+# and the generator is idempotent, so a redundant run produces no diff.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - '!docs/research-hub.html'
+  workflow_dispatch:
+
+concurrency:
+  group: research-hub-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # generator reads git history for per-file "modified" dates
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate research hub
+        run: python3 docs/build-research-hub.py
+      - name: Commit regenerated hub if it changed
+        run: |
+          if [ -n "$(git status --porcelain docs/research-hub.html)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add docs/research-hub.html
+            git commit -m "Auto-regenerate research hub [skip ci]"
+            git push
+          else
+            echo "research-hub.html already up to date"
+          fi
