@@ -109,7 +109,7 @@ turbos:
     turbine_type: mixed-flow
     max_flow_lbmin: 60
     hp_rating: [300, 550]
-    matchbot_compressor: "71S..."     # confirm exact MatchBot code in Phase 2
+    matchbot_compressor: "71x80"     # MatchBot compressor id for EFR 7163
     housing_pick: "0.80 A/R T4 twin (G)"
     part_no_G: "11639880002"
     repo_current_choice: true
