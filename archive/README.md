@@ -12,7 +12,7 @@ is both wrong and duplicated elsewhere.
 
 | File | Retired | Why |
 |---|---|---|
-| `5sgte-project-data/` | 2026-09-06 | Snapshot of the claude.ai Project "5sgte Project Data". Turbo-selection research, head-flow studies, and three superseded ECU-wiring docs (including one misleadingly named `ECU_WIRING_MASTER_SOURCE_OF_TRUTH.md` that was never authoritative). Engine calibration and build references were promoted to `tune/` first — see `ORIGINAL-README.md` for the source snapshot's own caveats. |
+| `5sgte-project-data/` | 2026-09-06 | Snapshot of the claude.ai Project "5sgte Project Data". Holds the superseded ECU-wiring docs (including one misleadingly named `ECU_WIRING_MASTER_SOURCE_OF_TRUTH.md` that was never authoritative) and the reverse-camera trigger resolution. The turbo-selection research and head-flow studies were **restored to `docs/5sgte-project-data/`** as live references (not retired); engine calibration and build references were promoted to `tune/` first — see `ORIGINAL-README.md` for the source snapshot's own caveats. |
 | `ALARM_MAPPING_POLICY.md` | 2026-09-05 | Temporary `0x3EE` alarm-mapping rule used while designing the cluster layouts ("never duplicate gauge-shown conditions as alarm bytes"). No ECU meaning. Byte layout lives in `CAN-BUS-ID-ALLOCATION-TABLE.md`. |
 
 ## Lost, not archived
