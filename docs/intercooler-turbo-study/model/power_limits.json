@@ -1,0 +1,183 @@
+{
+  "matchbot_curve": [
+    {
+      "rpm": 3000,
+      "boost_psi": 15.0,
+      "cor_lbmin": 15.54,
+      "pr": 2.03,
+      "iat_c": 28.9,
+      "t2_c": 124.2,
+      "emp_psi": 8.9,
+      "dp_psi": 6.0,
+      "phi": 0.0202,
+      "wg_pct": 25.18,
+      "pump_crank_bhp_matchbot": 175,
+      "pump_whp_matchbot": 145,
+      "e85_crank_bhp": 171,
+      "e85_whp": 142
+    },
+    {
+      "rpm": 4000,
+      "boost_psi": 25.0,
+      "cor_lbmin": 29.86,
+      "pr": 2.76,
+      "iat_c": 33.8,
+      "t2_c": 165.3,
+      "emp_psi": 17.0,
+      "dp_psi": 8.0,
+      "phi": 0.028,
+      "wg_pct": 27.33,
+      "pump_crank_bhp_matchbot": 326,
+      "pump_whp_matchbot": 271,
+      "e85_crank_bhp": 328,
+      "e85_whp": 273
+    },
+    {
+      "rpm": 5000,
+      "boost_psi": 30.0,
+      "cor_lbmin": 43.84,
+      "pr": 3.18,
+      "iat_c": 39.4,
+      "t2_c": 179.3,
+      "emp_psi": 24.0,
+      "dp_psi": 6.0,
+      "phi": 0.0342,
+      "wg_pct": 25.51,
+      "pump_crank_bhp_matchbot": 454,
+      "pump_whp_matchbot": 377,
+      "e85_crank_bhp": 482,
+      "e85_whp": 400
+    },
+    {
+      "rpm": 6000,
+      "boost_psi": 30.0,
+      "cor_lbmin": 50.49,
+      "pr": 3.22,
+      "iat_c": 42.3,
+      "t2_c": 177.3,
+      "emp_psi": 27.9,
+      "dp_psi": 2.0,
+      "phi": 0.0331,
+      "wg_pct": 30.43,
+      "pump_crank_bhp_matchbot": 500,
+      "pump_whp_matchbot": 415,
+      "e85_crank_bhp": 555,
+      "e85_whp": 461
+    },
+    {
+      "rpm": 7000,
+      "boost_psi": 28.0,
+      "cor_lbmin": 50.77,
+      "pr": 3.08,
+      "iat_c": 45.6,
+      "t2_c": 178.8,
+      "emp_psi": 29.9,
+      "dp_psi": -2.0,
+      "phi": 0.0313,
+      "wg_pct": 31.59,
+      "pump_crank_bhp_matchbot": 450,
+      "pump_whp_matchbot": 374,
+      "e85_crank_bhp": 558,
+      "e85_whp": 464
+    },
+    {
+      "rpm": 8000,
+      "boost_psi": 27.0,
+      "cor_lbmin": 55.13,
+      "pr": 3.04,
+      "iat_c": 48.9,
+      "t2_c": 190.6,
+      "emp_psi": 31.1,
+      "dp_psi": -4.0,
+      "phi": 0.0353,
+      "wg_pct": 26.84,
+      "pump_crank_bhp_matchbot": 455,
+      "pump_whp_matchbot": 378,
+      "e85_crank_bhp": 606,
+      "e85_whp": 503
+    }
+  ],
+  "grid_peaks": {
+    "7500_30": {
+      "pr": 3.041,
+      "mdot_lbmin": 58.68,
+      "pump_93": {
+        "crank_bhp": 587,
+        "whp": 487
+      },
+      "e85": {
+        "crank_bhp": 645,
+        "whp": 536
+      }
+    },
+    "8000_27": {
+      "pr": 2.837,
+      "mdot_lbmin": 55.03,
+      "pump_93": {
+        "crank_bhp": 550,
+        "whp": 457
+      },
+      "e85": {
+        "crank_bhp": 605,
+        "whp": 502
+      }
+    },
+    "6000_30": {
+      "pr": 3.041,
+      "mdot_lbmin": 54.5,
+      "pump_93": {
+        "crank_bhp": 545,
+        "whp": 452
+      },
+      "e85": {
+        "crank_bhp": 599,
+        "whp": 498
+      }
+    },
+    "5000_30": {
+      "pr": 3.041,
+      "mdot_lbmin": 47.21,
+      "pump_93": {
+        "crank_bhp": 472,
+        "whp": 392
+      },
+      "e85": {
+        "crank_bhp": 519,
+        "whp": 431
+      }
+    }
+  },
+  "knock": {
+    "pump_93": {
+      "knock_limited": true,
+      "planning_boost_ceiling_psi": 22,
+      "why": "8.5:1 forged 5S-GTE on 93. MatchBot IAT at 25\u201330 psi is still in the 47 C region after a 4.5 in core \u2014 survivable, but 93 will want timing pulled as boost climbs. Street seed stays 18 psi; 22 psi is the planning ceiling until a knock-logged pull says otherwise.",
+      "use_water_meth": false
+    },
+    "e85": {
+      "knock_limited": false,
+      "planning_boost_ceiling_psi": 30,
+      "why": "E85 at \u03bb\u22480.78 is not knock-limited at these cylinder pressures on 8.5:1. The ceiling is compressor choke / turbine dP / IAT, not octane. 30 psi is the hardware max, not a required point.",
+      "use_water_meth": true,
+      "water_meth_engage_psi": 27,
+      "water_meth_effect": "Engage \u226527 psi to cut compressor-out temp 20\u201340 C in the hottest island. That is extra IAT margin and can hold 28\u201330 psi farther into the redline band instead of tapering to 27. It is not free power \u2014 it is permission to keep the boost you already computed."
+    }
+  },
+  "headline": {
+    "e85_peak_rpm": 8000,
+    "e85_peak_boost_psi": 27.0,
+    "e85_crank_bhp": 606,
+    "e85_whp": 503,
+    "pump_peak_rpm": 6000,
+    "pump_crank_bhp_matchbot": 500,
+    "pump_whp_matchbot": 415,
+    "driveline_loss": 0.17,
+    "note": "MatchBot pump-gas hp uses official gasoline BSFC/AFR (tooltip: keep those even for alcohol). E85 crank uses 11 hp per lb/min on the same corrected airflow. Wheel figures use 17% AWD loss (carbon 1-pc shaft + lightened flywheel + rebuilt E150F)."
+  },
+  "turbo_fit": {
+    "EFR_7064": "55 lb/min @ PR 3.0 is the published 56 lb/min wall. Choke. Not the turbo.",
+    "EFR_7163": "55 lb/min sits on the right side of a 60 lb/min map. Usable, little choke margin at 8000/27.",
+    "EFR_7670": "55 lb/min is inside a 64 lb/min map. Best top-end island; more shaft inertia than 7163.",
+    "recommendation": "Keep 7163-G if the car is a road car and you value 3\u20134k response (mixed-flow 63 mm turbine, 0.80 A/R). Step to 7670-C if the goal is holding 30 psi to 7500+ without riding the 7163 choke line. 7064 is the wrong compressor for this displacement \u00d7 boost. That agrees with the prior Drive PDF on 7670-C first / 7163-G second, now on 2189 cc and 8000 rpm instead of 2164 cc / 7500."
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "face_m": {
+    "w": 0.68,
+    "h": 0.3
+  },
+  "mdot_lbmin_peak": 55.13,
+  "t2_c": 177.0,
+  "cores_at_60mph": [
+    {
+      "kind": "bar_plate",
+      "thick_in": 3.0,
+      "metal_kg": 5.88,
+      "thermal_cap_kj_k": 5.29,
+      "ua_w_k": 982.0,
+      "ntu": 2.34,
+      "effectiveness": 0.87,
+      "t_out_c": 44.7,
+      "q_kw": 55.5,
+      "charge_dp_psi": 1.65,
+      "tau_soak_s": 36.0,
+      "tau_recover_s": 5.4,
+      "v_air_ms": 11.98
+    },
+    {
+      "kind": "bar_plate",
+      "thick_in": 4.0,
+      "metal_kg": 7.83,
+      "thermal_cap_kj_k": 7.05,
+      "ua_w_k": 1309.0,
+      "ntu": 3.12,
+      "effectiveness": 0.928,
+      "t_out_c": 35.9,
+      "q_kw": 59.2,
+      "charge_dp_psi": 2.19,
+      "tau_soak_s": 36.0,
+      "tau_recover_s": 5.4,
+      "v_air_ms": 11.98
+    },
+    {
+      "kind": "bar_plate",
+      "thick_in": 4.5,
+      "metal_kg": 8.81,
+      "thermal_cap_kj_k": 7.93,
+      "ua_w_k": 1473.0,
+      "ntu": 3.51,
+      "effectiveness": 0.946,
+      "t_out_c": 33.2,
+      "q_kw": 60.3,
+      "charge_dp_psi": 2.47,
+      "tau_soak_s": 36.0,
+      "tau_recover_s": 5.4,
+      "v_air_ms": 11.98
+    },
+    {
+      "kind": "bar_plate",
+      "thick_in": 5.0,
+      "metal_kg": 9.79,
+      "thermal_cap_kj_k": 8.81,
+      "ua_w_k": 1637.0,
+      "ntu": 3.9,
+      "effectiveness": 0.959,
+      "t_out_c": 31.3,
+      "q_kw": 61.2,
+      "charge_dp_psi": 2.74,
+      "tau_soak_s": 36.0,
+      "tau_recover_s": 5.4,
+      "v_air_ms": 11.98
+    },
+    {
+      "kind": "tube_fin",
+      "thick_in": 3.0,
+      "metal_kg": 3.15,
+      "thermal_cap_kj_k": 2.83,
+      "ua_w_k": 618.0,
+      "ntu": 1.47,
+      "effectiveness": 0.737,
+      "t_out_c": 64.9,
+      "q_kw": 47.0,
+      "charge_dp_psi": 0.61,
+      "tau_soak_s": 31.0,
+      "tau_recover_s": 4.6,
+      "v_air_ms": 11.98
+    },
+    {
+      "kind": "tube_fin",
+      "thick_in": 4.0,
+      "metal_kg": 4.2,
+      "thermal_cap_kj_k": 3.78,
+      "ua_w_k": 824.0,
+      "ntu": 1.96,
+      "effectiveness": 0.825,
+      "t_out_c": 51.6,
+      "q_kw": 52.6,
+      "charge_dp_psi": 0.82,
+      "tau_soak_s": 31.0,
+      "tau_recover_s": 4.6,
+      "v_air_ms": 11.98
+    },
+    {
+      "kind": "tube_fin",
+      "thick_in": 4.5,
+      "metal_kg": 4.72,
+      "thermal_cap_kj_k": 4.25,
+      "ua_w_k": 927.0,
+      "ntu": 2.21,
+      "effectiveness": 0.856,
+      "t_out_c": 46.9,
+      "q_kw": 54.6,
+      "charge_dp_psi": 0.92,
+      "tau_soak_s": 31.0,
+      "tau_recover_s": 4.6,
+      "v_air_ms": 11.98
+    },
+    {
+      "kind": "tube_fin",
+      "thick_in": 5.0,
+      "metal_kg": 5.25,
+      "thermal_cap_kj_k": 4.72,
+      "ua_w_k": 1030.0,
+      "ntu": 2.45,
+      "effectiveness": 0.881,
+      "t_out_c": 43.1,
+      "q_kw": 56.2,
+      "charge_dp_psi": 1.02,
+      "tau_soak_s": 31.0,
+      "tau_recover_s": 4.6,
+      "v_air_ms": 11.98
+    }
+  ],
+  "soak_at_idle_4_5in": [
+    {
+      "kind": "bar_plate",
+      "thick_in": 4.5,
+      "metal_kg": 8.81,
+      "thermal_cap_kj_k": 7.93,
+      "ua_w_k": 1612.0,
+      "ntu": 15.36,
+      "effectiveness": 1.0,
+      "t_out_c": 25.0,
+      "q_kw": 15.9,
+      "charge_dp_psi": 0.15,
+      "tau_soak_s": 33.0,
+      "tau_recover_s": 4.9,
+      "v_air_ms": 13.11
+    },
+    {
+      "kind": "tube_fin",
+      "thick_in": 4.5,
+      "metal_kg": 4.72,
+      "thermal_cap_kj_k": 4.25,
+      "ua_w_k": 1014.0,
+      "ntu": 9.66,
+      "effectiveness": 1.0,
+      "t_out_c": 25.0,
+      "q_kw": 15.9,
+      "charge_dp_psi": 0.06,
+      "tau_soak_s": 28.0,
+      "tau_recover_s": 4.2,
+      "v_air_ms": 13.11
+    }
+  ],
+  "stack": {
+    "road_60mph": {
+      "full_condenser": {
+        "v_core_ms": 11.16,
+        "mdot_kg_s": 2.696,
+        "k_sum": 5.85,
+        "layers": [
+          "bumper_inlet",
+          "intercooler",
+          "oil_cooler",
+          "trans_cooler",
+          "ac_condenser_full",
+          "radiator",
+          "fan_shroud"
+        ]
+      },
+      "half_condenser": {
+        "v_core_ms": 11.98,
+        "mdot_kg_s": 2.893,
+        "k_sum": 4.95,
+        "layers": [
+          "bumper_inlet",
+          "intercooler",
+          "oil_cooler",
+          "trans_cooler",
+          "ac_condenser_half",
+          "radiator",
+          "fan_shroud"
+        ]
+      }
+    },
+    "idle_fans": {
+      "full_condenser": {
+        "v_core_ms": 12.22,
+        "mdot_kg_s": 2.951,
+        "k_sum": 5.85,
+        "layers": [
+          "bumper_inlet",
+          "intercooler",
+          "oil_cooler",
+          "trans_cooler",
+          "ac_condenser_full",
+          "radiator",
+          "fan_shroud"
+        ]
+      },
+      "half_condenser": {
+        "v_core_ms": 13.11,
+        "mdot_kg_s": 3.166,
+        "k_sum": 4.95,
+        "layers": [
+          "bumper_inlet",
+          "intercooler",
+          "oil_cooler",
+          "trans_cooler",
+          "ac_condenser_half",
+          "radiator",
+          "fan_shroud"
+        ]
+      }
+    }
+  },
+  "radiator": {
+    "road_60mph": {
+      "full_condenser": {
+        "air_kg_s": 2.696,
+        "vs_need": 1.04,
+        "ok": true
+      },
+      "half_condenser": {
+        "air_kg_s": 2.893,
+        "vs_need": 1.11,
+        "ok": true
+      }
+    },
+    "idle_fans": {
+      "full_condenser": {
+        "air_kg_s": 2.951,
+        "vs_need": 1.14,
+        "ok": true
+      },
+      "half_condenser": {
+        "air_kg_s": 3.166,
+        "vs_need": 1.22,
+        "ok": true
+      }
+    }
+  },
+  "pick": {
+    "core": "tube_fin",
+    "thick_in": 4.5,
+    "why": "Road car: most time is part-throttle. Tube-and-fin has ~half the metal mass of bar-and-plate at the same 4.5 in / 27x12 in face, so recovery at speed is faster and heat-soak after a pull-then-traffic is shorter. Steady-state \u03b5 is a few points lower; we buy that back with 4.5 in thickness (allowed). Bar-plate wins a 95% WOT duty cycle (time-attack, drag) where the extra UA stays useful and soak never has time to matter. Charge dP is also lower on tube-fin, which is compressor efficiency the turbo does not have to pay.",
+    "inlet_outlet": {
+      "hot_side_od_in": 2.5,
+      "cold_side_od_in": 3.0,
+      "source": "THROTTLE-BODY-PLUMBING-SPEC.md (kept, not re-litigated)"
+    },
+    "end_tanks": "cast or welded triangular, full-height inlet/outlet, no log-style dead ends",
+    "condenser": "half-width, passenger side, so the driver-side rad face sees ram air",
+    "radiator": "Mishimoto 2-row racing (Celica / 5S-class), slim PWM pair behind",
+    "stack_order_front_to_back": [
+      "bumper / crash bar",
+      "FMIC (4.5 in tube-fin, 27 x 12 in face)",
+      "oil cooler (low, off the rad face if possible)",
+      "trans cooler (same)",
+      "half-width AC condenser",
+      "Mishimoto racing radiator + slim fans"
+    ]
+  },
+  "sources": [
+    "Kays & London, Compact Heat Exchangers \u2014 NTU / \u03b5 for unmixed cross-flow",
+    "Incropera, Fundamentals of Heat and Mass Transfer \u2014 Colburn j / f factors",
+    "BorgWarner MatchBot IC-effectiveness and IC-dP field help (square-law dP)",
+    "Mishimoto racing-radiator product class (two-row aluminum, Celica fitment)",
+    "docs/intercooler-turbo-study/THROTTLE-BODY-PLUMBING-SPEC.md"
+  ]
+}

@@ -19,8 +19,10 @@ Working: `oilcooler_crashbar.py` → `data/r6_data.json`.
 
 ## Open this
 
-**`intercooler-report.html`** — the deliverable. Double-click it. Self-contained: all CSS,
-JavaScript and charts are inline, no internet needed. 24 sections, 27 charts, 2 calculators.
+**`../intercooler-report.html`** and **`../turbo-comparison.html`** — the
+current deliverables (rebuilt 2026-09-09 from `../model/`). This folder is
+the old working trail only. The byte-identical report copy that used to live
+here was removed so it cannot drift.
 
 ---
 
@@ -105,7 +107,7 @@ worth ~37 °C, where the largest difference between core types is ~10 °C.
 
 | File | What it is |
 |---|---|
-| `intercooler-report.html` | **The report — open this** |
+| `../intercooler-report.html` | Current deliverable (parent folder; rebuilt 2026-09-09) |
 | `intercooler-report.round2.bak.html` | Before round three |
 | `intercooler-report.round1.bak.html` | Before the turbo work |
 | **`data/prior-turbo-research/`** | **The supplied earlier turbo research, preserved verbatim** — the shared model, 4 CSVs, the head-flow reference, and 15 charts |
