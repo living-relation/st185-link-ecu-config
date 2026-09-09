@@ -1,0 +1,4 @@
+{
+  "name": "ST185 TrackCluster CAN tooling",
+  "install": "bash .cursor/install.sh"
+}
