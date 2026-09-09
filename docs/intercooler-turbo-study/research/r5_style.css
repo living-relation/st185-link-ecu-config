@@ -22,7 +22,7 @@ nav.toc .wrap{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:0}
 nav.toc a{color:var(--tx2);text-decoration:none;font-size:12.2px;padding:4px 9px;
  border-radius:5px;white-space:nowrap}
 nav.toc a:hover{background:var(--card2);color:var(--tx)}
-section{margin:0 0 46px;scroll-margin-top:56px}
+section{margin:0 0 46px;scroll-margin-top:84px}
 h2{font-size:22px;margin:0 0 4px;letter-spacing:-.2px;font-weight:640}
 h2 .num{color:var(--acc);font-family:var(--mono);font-size:15px;margin-right:9px}
 h3{font-size:16px;margin:26px 0 8px;color:var(--tx);font-weight:620}
