@@ -1,0 +1,1656 @@
+{
+  "coeff": 0.0029568489583333335,
+  "loss": 0.17,
+  "rows": [
+    {
+      "rpm": 2000,
+      "ve": 0.85,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 11.18,
+          "pump_93": {
+            "crank_bhp": 112,
+            "whp": 93
+          },
+          "e85": {
+            "crank_bhp": 123,
+            "whp": 102
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 12.55,
+          "pump_93": {
+            "crank_bhp": 126,
+            "whp": 104
+          },
+          "e85": {
+            "crank_bhp": 138,
+            "whp": 115
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 13.58,
+          "pump_93": {
+            "crank_bhp": 136,
+            "whp": 113
+          },
+          "e85": {
+            "crank_bhp": 149,
+            "whp": 124
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 14.26,
+          "pump_93": {
+            "crank_bhp": 143,
+            "whp": 118
+          },
+          "e85": {
+            "crank_bhp": 157,
+            "whp": 130
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 15.29,
+          "pump_93": {
+            "crank_bhp": 153,
+            "whp": 127
+          },
+          "e85": {
+            "crank_bhp": 168,
+            "whp": 140
+          }
+        }
+      }
+    },
+    {
+      "rpm": 2250,
+      "ve": 0.865,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 12.8,
+          "pump_93": {
+            "crank_bhp": 128,
+            "whp": 106
+          },
+          "e85": {
+            "crank_bhp": 141,
+            "whp": 117
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 14.37,
+          "pump_93": {
+            "crank_bhp": 144,
+            "whp": 119
+          },
+          "e85": {
+            "crank_bhp": 158,
+            "whp": 131
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 15.54,
+          "pump_93": {
+            "crank_bhp": 155,
+            "whp": 129
+          },
+          "e85": {
+            "crank_bhp": 171,
+            "whp": 142
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 16.33,
+          "pump_93": {
+            "crank_bhp": 163,
+            "whp": 136
+          },
+          "e85": {
+            "crank_bhp": 180,
+            "whp": 149
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 17.5,
+          "pump_93": {
+            "crank_bhp": 175,
+            "whp": 145
+          },
+          "e85": {
+            "crank_bhp": 193,
+            "whp": 160
+          }
+        }
+      }
+    },
+    {
+      "rpm": 2500,
+      "ve": 0.88,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 14.47,
+          "pump_93": {
+            "crank_bhp": 145,
+            "whp": 120
+          },
+          "e85": {
+            "crank_bhp": 159,
+            "whp": 132
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 16.24,
+          "pump_93": {
+            "crank_bhp": 162,
+            "whp": 135
+          },
+          "e85": {
+            "crank_bhp": 179,
+            "whp": 148
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 17.57,
+          "pump_93": {
+            "crank_bhp": 176,
+            "whp": 146
+          },
+          "e85": {
+            "crank_bhp": 193,
+            "whp": 160
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 18.46,
+          "pump_93": {
+            "crank_bhp": 185,
+            "whp": 153
+          },
+          "e85": {
+            "crank_bhp": 203,
+            "whp": 169
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 19.78,
+          "pump_93": {
+            "crank_bhp": 198,
+            "whp": 164
+          },
+          "e85": {
+            "crank_bhp": 218,
+            "whp": 181
+          }
+        }
+      }
+    },
+    {
+      "rpm": 2750,
+      "ve": 0.9,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 16.28,
+          "pump_93": {
+            "crank_bhp": 163,
+            "whp": 135
+          },
+          "e85": {
+            "crank_bhp": 179,
+            "whp": 149
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 18.27,
+          "pump_93": {
+            "crank_bhp": 183,
+            "whp": 152
+          },
+          "e85": {
+            "crank_bhp": 201,
+            "whp": 167
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 19.77,
+          "pump_93": {
+            "crank_bhp": 198,
+            "whp": 164
+          },
+          "e85": {
+            "crank_bhp": 217,
+            "whp": 180
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 20.76,
+          "pump_93": {
+            "crank_bhp": 208,
+            "whp": 172
+          },
+          "e85": {
+            "crank_bhp": 228,
+            "whp": 190
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 22.26,
+          "pump_93": {
+            "crank_bhp": 223,
+            "whp": 185
+          },
+          "e85": {
+            "crank_bhp": 245,
+            "whp": 203
+          }
+        }
+      }
+    },
+    {
+      "rpm": 3000,
+      "ve": 0.92,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 18.16,
+          "pump_93": {
+            "crank_bhp": 182,
+            "whp": 151
+          },
+          "e85": {
+            "crank_bhp": 200,
+            "whp": 166
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 20.38,
+          "pump_93": {
+            "crank_bhp": 204,
+            "whp": 169
+          },
+          "e85": {
+            "crank_bhp": 224,
+            "whp": 186
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 22.04,
+          "pump_93": {
+            "crank_bhp": 220,
+            "whp": 183
+          },
+          "e85": {
+            "crank_bhp": 242,
+            "whp": 201
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 23.15,
+          "pump_93": {
+            "crank_bhp": 232,
+            "whp": 192
+          },
+          "e85": {
+            "crank_bhp": 255,
+            "whp": 211
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 24.82,
+          "pump_93": {
+            "crank_bhp": 248,
+            "whp": 206
+          },
+          "e85": {
+            "crank_bhp": 273,
+            "whp": 227
+          }
+        }
+      }
+    },
+    {
+      "rpm": 3250,
+      "ve": 0.94,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 20.1,
+          "pump_93": {
+            "crank_bhp": 201,
+            "whp": 167
+          },
+          "e85": {
+            "crank_bhp": 221,
+            "whp": 183
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 22.56,
+          "pump_93": {
+            "crank_bhp": 226,
+            "whp": 187
+          },
+          "e85": {
+            "crank_bhp": 248,
+            "whp": 206
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 24.4,
+          "pump_93": {
+            "crank_bhp": 244,
+            "whp": 203
+          },
+          "e85": {
+            "crank_bhp": 268,
+            "whp": 223
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 25.63,
+          "pump_93": {
+            "crank_bhp": 256,
+            "whp": 213
+          },
+          "e85": {
+            "crank_bhp": 282,
+            "whp": 234
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 27.47,
+          "pump_93": {
+            "crank_bhp": 275,
+            "whp": 228
+          },
+          "e85": {
+            "crank_bhp": 302,
+            "whp": 251
+          }
+        }
+      }
+    },
+    {
+      "rpm": 3500,
+      "ve": 0.96,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 22.1,
+          "pump_93": {
+            "crank_bhp": 221,
+            "whp": 183
+          },
+          "e85": {
+            "crank_bhp": 243,
+            "whp": 202
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 24.81,
+          "pump_93": {
+            "crank_bhp": 248,
+            "whp": 206
+          },
+          "e85": {
+            "crank_bhp": 273,
+            "whp": 226
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 26.84,
+          "pump_93": {
+            "crank_bhp": 268,
+            "whp": 223
+          },
+          "e85": {
+            "crank_bhp": 295,
+            "whp": 245
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 28.19,
+          "pump_93": {
+            "crank_bhp": 282,
+            "whp": 234
+          },
+          "e85": {
+            "crank_bhp": 310,
+            "whp": 257
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 30.22,
+          "pump_93": {
+            "crank_bhp": 302,
+            "whp": 251
+          },
+          "e85": {
+            "crank_bhp": 332,
+            "whp": 276
+          }
+        }
+      }
+    },
+    {
+      "rpm": 3750,
+      "ve": 0.98,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 24.18,
+          "pump_93": {
+            "crank_bhp": 242,
+            "whp": 201
+          },
+          "e85": {
+            "crank_bhp": 266,
+            "whp": 221
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 27.13,
+          "pump_93": {
+            "crank_bhp": 271,
+            "whp": 225
+          },
+          "e85": {
+            "crank_bhp": 298,
+            "whp": 248
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 29.35,
+          "pump_93": {
+            "crank_bhp": 294,
+            "whp": 244
+          },
+          "e85": {
+            "crank_bhp": 323,
+            "whp": 268
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 30.83,
+          "pump_93": {
+            "crank_bhp": 308,
+            "whp": 256
+          },
+          "e85": {
+            "crank_bhp": 339,
+            "whp": 281
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 33.05,
+          "pump_93": {
+            "crank_bhp": 330,
+            "whp": 274
+          },
+          "e85": {
+            "crank_bhp": 364,
+            "whp": 302
+          }
+        }
+      }
+    },
+    {
+      "rpm": 4000,
+      "ve": 1.0,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 26.31,
+          "pump_93": {
+            "crank_bhp": 263,
+            "whp": 218
+          },
+          "e85": {
+            "crank_bhp": 289,
+            "whp": 240
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 29.53,
+          "pump_93": {
+            "crank_bhp": 295,
+            "whp": 245
+          },
+          "e85": {
+            "crank_bhp": 325,
+            "whp": 270
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 31.95,
+          "pump_93": {
+            "crank_bhp": 319,
+            "whp": 265
+          },
+          "e85": {
+            "crank_bhp": 351,
+            "whp": 292
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 33.56,
+          "pump_93": {
+            "crank_bhp": 336,
+            "whp": 279
+          },
+          "e85": {
+            "crank_bhp": 369,
+            "whp": 306
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 35.97,
+          "pump_93": {
+            "crank_bhp": 360,
+            "whp": 299
+          },
+          "e85": {
+            "crank_bhp": 396,
+            "whp": 328
+          }
+        }
+      }
+    },
+    {
+      "rpm": 4250,
+      "ve": 1.015,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 28.38,
+          "pump_93": {
+            "crank_bhp": 284,
+            "whp": 236
+          },
+          "e85": {
+            "crank_bhp": 312,
+            "whp": 259
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 31.85,
+          "pump_93": {
+            "crank_bhp": 318,
+            "whp": 264
+          },
+          "e85": {
+            "crank_bhp": 350,
+            "whp": 291
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 34.45,
+          "pump_93": {
+            "crank_bhp": 345,
+            "whp": 286
+          },
+          "e85": {
+            "crank_bhp": 379,
+            "whp": 315
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 36.19,
+          "pump_93": {
+            "crank_bhp": 362,
+            "whp": 300
+          },
+          "e85": {
+            "crank_bhp": 398,
+            "whp": 330
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 38.79,
+          "pump_93": {
+            "crank_bhp": 388,
+            "whp": 322
+          },
+          "e85": {
+            "crank_bhp": 427,
+            "whp": 354
+          }
+        }
+      }
+    },
+    {
+      "rpm": 4500,
+      "ve": 1.03,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 30.49,
+          "pump_93": {
+            "crank_bhp": 305,
+            "whp": 253
+          },
+          "e85": {
+            "crank_bhp": 335,
+            "whp": 278
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 34.22,
+          "pump_93": {
+            "crank_bhp": 342,
+            "whp": 284
+          },
+          "e85": {
+            "crank_bhp": 376,
+            "whp": 312
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 37.02,
+          "pump_93": {
+            "crank_bhp": 370,
+            "whp": 307
+          },
+          "e85": {
+            "crank_bhp": 407,
+            "whp": 338
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 38.88,
+          "pump_93": {
+            "crank_bhp": 389,
+            "whp": 323
+          },
+          "e85": {
+            "crank_bhp": 428,
+            "whp": 355
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 41.68,
+          "pump_93": {
+            "crank_bhp": 417,
+            "whp": 346
+          },
+          "e85": {
+            "crank_bhp": 459,
+            "whp": 381
+          }
+        }
+      }
+    },
+    {
+      "rpm": 4750,
+      "ve": 1.04,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 32.5,
+          "pump_93": {
+            "crank_bhp": 325,
+            "whp": 270
+          },
+          "e85": {
+            "crank_bhp": 357,
+            "whp": 297
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 36.47,
+          "pump_93": {
+            "crank_bhp": 365,
+            "whp": 303
+          },
+          "e85": {
+            "crank_bhp": 401,
+            "whp": 333
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 39.46,
+          "pump_93": {
+            "crank_bhp": 395,
+            "whp": 327
+          },
+          "e85": {
+            "crank_bhp": 434,
+            "whp": 360
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 41.44,
+          "pump_93": {
+            "crank_bhp": 414,
+            "whp": 344
+          },
+          "e85": {
+            "crank_bhp": 456,
+            "whp": 378
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 44.42,
+          "pump_93": {
+            "crank_bhp": 444,
+            "whp": 369
+          },
+          "e85": {
+            "crank_bhp": 489,
+            "whp": 406
+          }
+        }
+      }
+    },
+    {
+      "rpm": 5000,
+      "ve": 1.05,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 34.54,
+          "pump_93": {
+            "crank_bhp": 345,
+            "whp": 287
+          },
+          "e85": {
+            "crank_bhp": 380,
+            "whp": 315
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 38.76,
+          "pump_93": {
+            "crank_bhp": 388,
+            "whp": 322
+          },
+          "e85": {
+            "crank_bhp": 426,
+            "whp": 354
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 41.93,
+          "pump_93": {
+            "crank_bhp": 419,
+            "whp": 348
+          },
+          "e85": {
+            "crank_bhp": 461,
+            "whp": 383
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 44.04,
+          "pump_93": {
+            "crank_bhp": 440,
+            "whp": 366
+          },
+          "e85": {
+            "crank_bhp": 484,
+            "whp": 402
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 47.21,
+          "pump_93": {
+            "crank_bhp": 472,
+            "whp": 392
+          },
+          "e85": {
+            "crank_bhp": 519,
+            "whp": 431
+          }
+        }
+      }
+    },
+    {
+      "rpm": 5250,
+      "ve": 1.045,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 36.09,
+          "pump_93": {
+            "crank_bhp": 361,
+            "whp": 300
+          },
+          "e85": {
+            "crank_bhp": 397,
+            "whp": 330
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 40.51,
+          "pump_93": {
+            "crank_bhp": 405,
+            "whp": 336
+          },
+          "e85": {
+            "crank_bhp": 446,
+            "whp": 370
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 43.82,
+          "pump_93": {
+            "crank_bhp": 438,
+            "whp": 364
+          },
+          "e85": {
+            "crank_bhp": 482,
+            "whp": 400
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 46.03,
+          "pump_93": {
+            "crank_bhp": 460,
+            "whp": 382
+          },
+          "e85": {
+            "crank_bhp": 506,
+            "whp": 420
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 49.34,
+          "pump_93": {
+            "crank_bhp": 493,
+            "whp": 409
+          },
+          "e85": {
+            "crank_bhp": 543,
+            "whp": 450
+          }
+        }
+      }
+    },
+    {
+      "rpm": 5500,
+      "ve": 1.04,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 37.63,
+          "pump_93": {
+            "crank_bhp": 376,
+            "whp": 312
+          },
+          "e85": {
+            "crank_bhp": 414,
+            "whp": 344
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 42.23,
+          "pump_93": {
+            "crank_bhp": 422,
+            "whp": 351
+          },
+          "e85": {
+            "crank_bhp": 465,
+            "whp": 386
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 45.68,
+          "pump_93": {
+            "crank_bhp": 457,
+            "whp": 379
+          },
+          "e85": {
+            "crank_bhp": 503,
+            "whp": 417
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 47.99,
+          "pump_93": {
+            "crank_bhp": 480,
+            "whp": 398
+          },
+          "e85": {
+            "crank_bhp": 528,
+            "whp": 438
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 51.44,
+          "pump_93": {
+            "crank_bhp": 514,
+            "whp": 427
+          },
+          "e85": {
+            "crank_bhp": 566,
+            "whp": 470
+          }
+        }
+      }
+    },
+    {
+      "rpm": 5750,
+      "ve": 1.025,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 38.77,
+          "pump_93": {
+            "crank_bhp": 388,
+            "whp": 322
+          },
+          "e85": {
+            "crank_bhp": 426,
+            "whp": 354
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 43.52,
+          "pump_93": {
+            "crank_bhp": 435,
+            "whp": 361
+          },
+          "e85": {
+            "crank_bhp": 479,
+            "whp": 397
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 47.07,
+          "pump_93": {
+            "crank_bhp": 471,
+            "whp": 391
+          },
+          "e85": {
+            "crank_bhp": 518,
+            "whp": 430
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 49.44,
+          "pump_93": {
+            "crank_bhp": 494,
+            "whp": 410
+          },
+          "e85": {
+            "crank_bhp": 544,
+            "whp": 451
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 53.0,
+          "pump_93": {
+            "crank_bhp": 530,
+            "whp": 440
+          },
+          "e85": {
+            "crank_bhp": 583,
+            "whp": 484
+          }
+        }
+      }
+    },
+    {
+      "rpm": 6000,
+      "ve": 1.01,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 39.87,
+          "pump_93": {
+            "crank_bhp": 399,
+            "whp": 331
+          },
+          "e85": {
+            "crank_bhp": 439,
+            "whp": 364
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 44.74,
+          "pump_93": {
+            "crank_bhp": 447,
+            "whp": 371
+          },
+          "e85": {
+            "crank_bhp": 492,
+            "whp": 409
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 48.4,
+          "pump_93": {
+            "crank_bhp": 484,
+            "whp": 402
+          },
+          "e85": {
+            "crank_bhp": 532,
+            "whp": 442
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 50.84,
+          "pump_93": {
+            "crank_bhp": 508,
+            "whp": 422
+          },
+          "e85": {
+            "crank_bhp": 559,
+            "whp": 464
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 54.5,
+          "pump_93": {
+            "crank_bhp": 545,
+            "whp": 452
+          },
+          "e85": {
+            "crank_bhp": 599,
+            "whp": 498
+          }
+        }
+      }
+    },
+    {
+      "rpm": 6250,
+      "ve": 0.99,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 40.7,
+          "pump_93": {
+            "crank_bhp": 407,
+            "whp": 338
+          },
+          "e85": {
+            "crank_bhp": 448,
+            "whp": 372
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 45.68,
+          "pump_93": {
+            "crank_bhp": 457,
+            "whp": 379
+          },
+          "e85": {
+            "crank_bhp": 503,
+            "whp": 417
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 49.42,
+          "pump_93": {
+            "crank_bhp": 494,
+            "whp": 410
+          },
+          "e85": {
+            "crank_bhp": 544,
+            "whp": 451
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 51.91,
+          "pump_93": {
+            "crank_bhp": 519,
+            "whp": 431
+          },
+          "e85": {
+            "crank_bhp": 571,
+            "whp": 474
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 55.64,
+          "pump_93": {
+            "crank_bhp": 556,
+            "whp": 462
+          },
+          "e85": {
+            "crank_bhp": 612,
+            "whp": 508
+          }
+        }
+      }
+    },
+    {
+      "rpm": 6500,
+      "ve": 0.97,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 41.48,
+          "pump_93": {
+            "crank_bhp": 415,
+            "whp": 344
+          },
+          "e85": {
+            "crank_bhp": 456,
+            "whp": 379
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 46.55,
+          "pump_93": {
+            "crank_bhp": 466,
+            "whp": 386
+          },
+          "e85": {
+            "crank_bhp": 512,
+            "whp": 425
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 50.36,
+          "pump_93": {
+            "crank_bhp": 504,
+            "whp": 418
+          },
+          "e85": {
+            "crank_bhp": 554,
+            "whp": 460
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 52.89,
+          "pump_93": {
+            "crank_bhp": 529,
+            "whp": 439
+          },
+          "e85": {
+            "crank_bhp": 582,
+            "whp": 483
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 56.7,
+          "pump_93": {
+            "crank_bhp": 567,
+            "whp": 471
+          },
+          "e85": {
+            "crank_bhp": 624,
+            "whp": 518
+          }
+        }
+      }
+    },
+    {
+      "rpm": 6750,
+      "ve": 0.945,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 41.96,
+          "pump_93": {
+            "crank_bhp": 420,
+            "whp": 348
+          },
+          "e85": {
+            "crank_bhp": 462,
+            "whp": 383
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 47.1,
+          "pump_93": {
+            "crank_bhp": 471,
+            "whp": 391
+          },
+          "e85": {
+            "crank_bhp": 518,
+            "whp": 430
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 50.95,
+          "pump_93": {
+            "crank_bhp": 509,
+            "whp": 423
+          },
+          "e85": {
+            "crank_bhp": 560,
+            "whp": 465
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 53.51,
+          "pump_93": {
+            "crank_bhp": 535,
+            "whp": 444
+          },
+          "e85": {
+            "crank_bhp": 589,
+            "whp": 489
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 57.36,
+          "pump_93": {
+            "crank_bhp": 574,
+            "whp": 476
+          },
+          "e85": {
+            "crank_bhp": 631,
+            "whp": 524
+          }
+        }
+      }
+    },
+    {
+      "rpm": 7000,
+      "ve": 0.92,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 42.37,
+          "pump_93": {
+            "crank_bhp": 424,
+            "whp": 352
+          },
+          "e85": {
+            "crank_bhp": 466,
+            "whp": 387
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 47.55,
+          "pump_93": {
+            "crank_bhp": 475,
+            "whp": 395
+          },
+          "e85": {
+            "crank_bhp": 523,
+            "whp": 434
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 51.44,
+          "pump_93": {
+            "crank_bhp": 514,
+            "whp": 427
+          },
+          "e85": {
+            "crank_bhp": 566,
+            "whp": 470
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 54.03,
+          "pump_93": {
+            "crank_bhp": 540,
+            "whp": 448
+          },
+          "e85": {
+            "crank_bhp": 594,
+            "whp": 493
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 57.91,
+          "pump_93": {
+            "crank_bhp": 579,
+            "whp": 481
+          },
+          "e85": {
+            "crank_bhp": 637,
+            "whp": 529
+          }
+        }
+      }
+    },
+    {
+      "rpm": 7250,
+      "ve": 0.895,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 42.69,
+          "pump_93": {
+            "crank_bhp": 427,
+            "whp": 354
+          },
+          "e85": {
+            "crank_bhp": 470,
+            "whp": 390
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 47.91,
+          "pump_93": {
+            "crank_bhp": 479,
+            "whp": 398
+          },
+          "e85": {
+            "crank_bhp": 527,
+            "whp": 437
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 51.82,
+          "pump_93": {
+            "crank_bhp": 518,
+            "whp": 430
+          },
+          "e85": {
+            "crank_bhp": 570,
+            "whp": 473
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 54.44,
+          "pump_93": {
+            "crank_bhp": 544,
+            "whp": 452
+          },
+          "e85": {
+            "crank_bhp": 599,
+            "whp": 497
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 58.35,
+          "pump_93": {
+            "crank_bhp": 584,
+            "whp": 484
+          },
+          "e85": {
+            "crank_bhp": 642,
+            "whp": 533
+          }
+        }
+      }
+    },
+    {
+      "rpm": 7500,
+      "ve": 0.87,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 42.92,
+          "pump_93": {
+            "crank_bhp": 429,
+            "whp": 356
+          },
+          "e85": {
+            "crank_bhp": 472,
+            "whp": 392
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 48.18,
+          "pump_93": {
+            "crank_bhp": 482,
+            "whp": 400
+          },
+          "e85": {
+            "crank_bhp": 530,
+            "whp": 440
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 52.11,
+          "pump_93": {
+            "crank_bhp": 521,
+            "whp": 433
+          },
+          "e85": {
+            "crank_bhp": 573,
+            "whp": 476
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 54.74,
+          "pump_93": {
+            "crank_bhp": 547,
+            "whp": 454
+          },
+          "e85": {
+            "crank_bhp": 602,
+            "whp": 500
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 58.68,
+          "pump_93": {
+            "crank_bhp": 587,
+            "whp": 487
+          },
+          "e85": {
+            "crank_bhp": 645,
+            "whp": 536
+          }
+        }
+      }
+    },
+    {
+      "rpm": 7750,
+      "ve": 0.845,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 43.08,
+          "pump_93": {
+            "crank_bhp": 431,
+            "whp": 358
+          },
+          "e85": {
+            "crank_bhp": 474,
+            "whp": 393
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 48.35,
+          "pump_93": {
+            "crank_bhp": 484,
+            "whp": 401
+          },
+          "e85": {
+            "crank_bhp": 532,
+            "whp": 441
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 52.3,
+          "pump_93": {
+            "crank_bhp": 523,
+            "whp": 434
+          },
+          "e85": {
+            "crank_bhp": 575,
+            "whp": 478
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 54.94,
+          "pump_93": {
+            "crank_bhp": 549,
+            "whp": 456
+          },
+          "e85": {
+            "crank_bhp": 604,
+            "whp": 502
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 58.89,
+          "pump_93": {
+            "crank_bhp": 589,
+            "whp": 489
+          },
+          "e85": {
+            "crank_bhp": 648,
+            "whp": 538
+          }
+        }
+      }
+    },
+    {
+      "rpm": 8000,
+      "ve": 0.82,
+      "boost": {
+        "18": {
+          "pr": 2.225,
+          "mdot_lbmin": 43.15,
+          "pump_93": {
+            "crank_bhp": 432,
+            "whp": 358
+          },
+          "e85": {
+            "crank_bhp": 475,
+            "whp": 394
+          }
+        },
+        "22": {
+          "pr": 2.497,
+          "mdot_lbmin": 48.43,
+          "pump_93": {
+            "crank_bhp": 484,
+            "whp": 402
+          },
+          "e85": {
+            "crank_bhp": 533,
+            "whp": 442
+          }
+        },
+        "25": {
+          "pr": 2.701,
+          "mdot_lbmin": 52.39,
+          "pump_93": {
+            "crank_bhp": 524,
+            "whp": 435
+          },
+          "e85": {
+            "crank_bhp": 576,
+            "whp": 478
+          }
+        },
+        "27": {
+          "pr": 2.837,
+          "mdot_lbmin": 55.03,
+          "pump_93": {
+            "crank_bhp": 550,
+            "whp": 457
+          },
+          "e85": {
+            "crank_bhp": 605,
+            "whp": 502
+          }
+        },
+        "30": {
+          "pr": 3.041,
+          "mdot_lbmin": 58.99,
+          "pump_93": {
+            "crank_bhp": 590,
+            "whp": 490
+          },
+          "e85": {
+            "crank_bhp": 649,
+            "whp": 539
+          }
+        }
+      }
+    }
+  ]
+}
