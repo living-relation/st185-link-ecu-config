@@ -108,8 +108,7 @@ worth ~37 °C, where the largest difference between core types is ~10 °C.
 | File | What it is |
 |---|---|
 | `../intercooler-report.html` | Current deliverable (parent folder; rebuilt 2026-09-09) |
-| `intercooler-report.round2.bak.html` | Before round three |
-| `intercooler-report.round1.bak.html` | Before the turbo work |
+| *(round 1/2/3/5 `.bak.html` and `PATCH-NOTE-intercooler-report.md` deleted)* | Replaced by the model-built report |
 | **`data/prior-turbo-research/`** | **The supplied earlier turbo research, preserved verbatim** — the shared model, 4 CSVs, the head-flow reference, and 15 charts |
 | **`reconcile.py`** | Round three — forensic diff of the prior research (stage 1), then the unified model (stage 2) |
 | **`unified_model.py`** | Round three — the model itself. One consistent set of constants, charge temperature coupled to airflow. |

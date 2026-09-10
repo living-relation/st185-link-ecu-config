@@ -53,9 +53,7 @@ SKIP_PATTERNS = [re.compile(r"\.bak\.html$"), re.compile(r"^__pycache__$")]
 # A readable file sitting directly in a topic folder is a deliverable; anything
 # deeper (research/, data/) is the working trail behind it. These two lists
 # override that inference where the layout lies.
-FORCE_RESEARCH = {  # readable, but an intermediate rather than something to read
-    "docs/intercooler-turbo-study/research/data/report-splice-scripts/_new_sections.html",
-}
+FORCE_RESEARCH: set[str] = set()
 FORCE_DELIVERABLE: set[str] = set()
 
 
