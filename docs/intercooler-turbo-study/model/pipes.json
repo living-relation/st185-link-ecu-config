@@ -1,0 +1,66 @@
+{
+  "peak_lbmin": 55.13,
+  "base_lbmin": 45.7,
+  "garrett_fts": [
+    200.0,
+    300.0
+  ],
+  "rows": {
+    "2.50": {
+      "od_in": 2.5,
+      "id_mm": 60.2,
+      "hot_fts": 228.1,
+      "cold_fts": 173.7,
+      "hot_dp_psi": 0.643,
+      "cold_dp_psi": 0.649,
+      "vol_L_per_m": 2.85,
+      "hot_vol_L": 3.14,
+      "cold_vol_L": 4.28,
+      "hot_transit_ms": 15.8,
+      "cold_transit_ms": 28.3,
+      "hot_in_garrett": true,
+      "cold_in_garrett": false
+    },
+    "2.75": {
+      "od_in": 2.75,
+      "id_mm": 66.55,
+      "hot_fts": 186.6,
+      "cold_fts": 142.2,
+      "hot_dp_psi": 0.419,
+      "cold_dp_psi": 0.423,
+      "vol_L_per_m": 3.48,
+      "hot_vol_L": 3.83,
+      "cold_vol_L": 5.22,
+      "hot_transit_ms": 19.3,
+      "cold_transit_ms": 34.6,
+      "hot_in_garrett": false,
+      "cold_in_garrett": false
+    },
+    "3.00": {
+      "od_in": 3.0,
+      "id_mm": 72.9,
+      "hot_fts": 155.5,
+      "cold_fts": 118.5,
+      "hot_dp_psi": 0.285,
+      "cold_dp_psi": 0.288,
+      "vol_L_per_m": 4.17,
+      "hot_vol_L": 4.59,
+      "cold_vol_L": 6.25,
+      "hot_transit_ms": 23.2,
+      "cold_transit_ms": 41.5,
+      "hot_in_garrett": false,
+      "cold_in_garrett": false
+    }
+  },
+  "mixed": {
+    "hot_2_5_cold_2_5_dp": 1.292,
+    "hot_2_5_cold_3_0_dp": 0.931,
+    "extra_cold_volume_L": 1.97,
+    "extra_cold_transit_ms": 13.2
+  },
+  "pick": {
+    "hot_od_in": 2.5,
+    "cold_od_in": 2.5,
+    "why": "At 55.13 lb/min the 2.50 in hot side is 228 ft/s \u2014 inside Garrett's 200\u2013300 ft/s band. The 2.50 in cold side is 174 ft/s, under the band because the charge is denser after the IC, but dP is 0.65 psi and the pipe is not a restriction versus the 7163's 60 lb/min wall or the engine's 55 lb/min demand. 3.00 in cold saves ~0.36 psi and adds 2.0 L plus ~14 ms of fill delay. That volume is why 3 in felt slower. Both sides stay 2.50 in \u00d7 0.065 wall."
+  }
+}

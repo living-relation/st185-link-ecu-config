@@ -65,11 +65,35 @@ fuels:
     wot_lambda_target: 0.78        # ~7.6:1 AFR at high load
     hp_per_lbmin_crank: 11.0       # E85 tolerates more timing + charge cooling
     knock_limited: false           # effectively knock-tolerant at these boost levels
+  mix_50_50:
+    name: "50/50 93 + E85 (approx E42)"
+    stoich_afr: 12.23              # 0.5*14.7 + 0.5*9.765
+    wot_lambda_target: 0.79
+    hp_per_lbmin_crank: 10.5
+    knock_limited: true
+    _source: "blend of the two fuels above; ethanol fraction ~42%"
 
-# Charge-cooling aid, engaged only in the hottest turbo-outlet region.
+# Water/meth 50/50, post-IC / pre-TB. Activation is fuel-specific (see power_limits.py).
+# Do not assign a Link DI or Aux in this file — ECU plan is a GP Output on a
+# free low-side when one exists (all Aux 1–10 are currently taken).
 water_meth:
-  engage_boost_psi: 27             # user: enable at 27 psi and above
-  purpose: "cool intake charge in the high-boost/high-turbo-temp zone; may allow higher redline boost / less taper"
+  mix: "50/50 water / methanol"
+  injector_location: "post-IC, pre-throttle"
+  t2_drop_c: 30                    # typical evaporative drop at high flow when spraying
+  hp_per_lbmin_bump:
+    pump_93: 0.40                  # timing + IAT on knock-limited 93
+    mix_50_50: 0.25
+    e85: 0.15                      # mostly IAT; little extra timing
+  activate:
+    pump_93:    {min_boost_psi: 22, min_rpm: 3500, min_tps_pct: 80, min_iat_c: 40}
+    mix_50_50:  {min_boost_psi: 25, min_rpm: 4000, min_tps_pct: 80, min_iat_c: 42}
+    e85:        {min_boost_psi: 27, min_rpm: 4500, min_tps_pct: 80, min_iat_c: 45}
+  ecu:
+    drive: "GP Output → relay coil (low-side Aux or switchboard output when one is free)"
+    do_not_assign_di: true
+    do_not_assign_aux_now: true    # Aux 1–10 are all committed in XTREMEX-IO-TABLE.html
+    optional_level_di: "use a free DI later for tank empty — do not take a live DI"
+  purpose: "cut charge temp; on 93 also buy timing. Not free airflow."
   modeled: true
 
 # Drivetrain loss for crank<->wheel conversion. AWD ST185 All-Trac is lossy;

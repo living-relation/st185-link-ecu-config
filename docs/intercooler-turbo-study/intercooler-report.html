@@ -40,6 +40,7 @@ td.n,th.n{text-align:right;font-family:var(--mono)}
 .kpi{background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:12px 14px}
 .kpi .lab{font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:.6px}
 .kpi .val{font-size:24px;font-weight:660;font-family:var(--mono);color:var(--acc)}
+.kpi .val.g{color:var(--acc2)}
 .kpi .note{font-size:11.5px;color:var(--tx3)}
 .callout{border-radius:9px;padding:12px 15px;margin:12px 0;border:1px solid}
 .c-info{background:#0e1e2e;border-color:#1f4468;color:#c2ddf5}
@@ -53,21 +54,25 @@ td.n,th.n{text-align:right;font-family:var(--mono)}
 .d1{background:#4ea3ff}.d2{background:#38d39f}.d3{background:#ffb347}
 .d4{background:#ff6b6b}.d5{background:#c084fc}.d6{background:#f472b6}
 .note{font-size:12.5px;color:var(--tx3)}
+.chart{margin:14px 0}
 a{color:var(--acc)}
 </style></head><body>
 <header class="hero"><div class="wrap">
 <h1>Intercooler, front stack, calculated power</h1>
 <p class="sub">Rebuilt from one input file, official EFR maps, a valid MatchBot
-turbine match, and a heat-exchanger model. Power is calculated. 91 and 93 MY
-are mechanically identical.</p>
+turbine match, and a heat-exchanger model. Power is calculated for 93, 50/50
+93+E85 (~E42), and E85 — dry and with water-meth. Pipes stay 2.50 in both
+sides. 91 and 93 MY are mechanically identical.</p>
 <p class="meta">ECU Link G4X XtremeX · Walbro F90000295 · flex DI 2 ·
 turbo EFR 7163-G current · 2026-09-09</p>
 </div></header>
 <nav class="toc"><div class="wrap">
 <a href="#headlines">Headlines</a>
 <a href="#power">Power</a>
+<a href="#wmi">Water meth</a>
 <a href="#turbo">Turbo</a>
 <a href="#ic">Intercooler</a>
+<a href="#fpi">FPI</a>
 <a href="#stack">Front stack</a>
 <a href="#pipes">Pipes</a>
 <a href="#sources">Sources</a>
@@ -77,50 +82,98 @@ turbo EFR 7163-G current · 2026-09-09</p>
 <section id="headlines">
 <h2><span class="num">01</span>Headlines</h2>
 <div class="grid g3">
-<div class="kpi"><div class="lab">E85 peak (calculated)</div>
-<div class="val g">606 / 503</div>
-<div class="note">crank BHP / WHP @ 8000 rpm / 27.0 psi. 17% AWD loss.</div></div>
-<div class="kpi"><div class="lab">Pump-gas MatchBot</div>
-<div class="val">500 / 415</div>
-<div class="note">crank / wheel at 6000 rpm / 30 psi using official gasoline BSFC.</div></div>
+<div class="kpi"><div class="lab">E85 + WMI</div>
+<div class="val g">658 / 546</div>
+<div class="note">crank / WHP @ 8000 / 30.0 psi. Dry 649 @ 8000/30.</div></div>
+<div class="kpi"><div class="lab">50/50 93+E85 + WMI</div>
+<div class="val">634 / 526</div>
+<div class="note">~E42 · dry 550 @ 8000/25 · 17% AWD.</div></div>
+<div class="kpi"><div class="lab">93 + WMI</div>
+<div class="val">572 / 475</div>
+<div class="note">dry 484 @ 7750/22 · WMI @ 8000/27.</div></div>
+</div>
+<div class="grid g3">
 <div class="kpi"><div class="lab">Core pick</div>
 <div class="val">4.5 in TF</div>
-<div class="note">Tube-and-fin, ~27×12 in face. Bar-plate is the time-attack core, not the road-car core.</div></div>
+<div class="note">12 FPI tube-fin · ~27×12 in face. Bar-plate 10 FPI.</div></div>
+<div class="kpi"><div class="lab">Pipes</div>
+<div class="val">2.50 / 2.50</div>
+<div class="note">hot / cold · combined 1.29 psi @ 55.13 lb/min</div></div>
+<div class="kpi"><div class="lab">3 in cold?</div>
+<div class="val" style="color:var(--bad)">No</div>
+<div class="note">+2.0 L / 13 ms · saves 0.36 psi only</div></div>
 </div>
 <div class="callout c-warn">30 psi is the <b>max boost</b>, not a required operating point.
 Street seed stays 18 psi. Redline is a band (7200–8000), not a single number.
-93 pump is knock-limited around 22 psi until a logged pull says otherwise.
-E85 is hardware-limited (turbo choke / IAT / turbine dP), not octane-limited.
-Water/meth engages at ≥27 psi to hold that boost farther into the band.</div>
+93 pump is knock-limited around 22 psi dry; WMI at ≥22 psi / ≥3500 rpm buys
+toward 27. 50/50 (~E42) is 25 dry / 30 with WMI. E85 is hardware-limited;
+WMI at ≥27 psi / ≥4500 rpm holds IAT, not octane.</div>
 </section>
 
 <section id="power">
-<h2><span class="num">02</span>Calculated power</h2>
-<p class="lede">Two methods, same air. Phase 1 is VE × CID × PR (eroded VE at
-8000 = 0.82). MatchBot is the live tool with breathing VE 90–105% and
-density-after-IC. They agree at the top: ~55 lb/min.</p>
-<div class="card"><table><thead><tr><th>rpm / psi</th><th class="n">corr lb/min</th><th class="n">pump crank</th><th class="n">E85 crank</th><th class="n">E85 WHP</th><th class="n">IAT °C</th><th class="n">engine dP</th></tr></thead><tbody><tr><td>3000 / 15.0</td><td class="n">15.54</td><td class="n">175</td><td class="n">171</td><td class="n">142</td><td class="n">28.9</td><td class="n">6.0</td></tr><tr><td>4000 / 25.0</td><td class="n">29.86</td><td class="n">326</td><td class="n">328</td><td class="n">273</td><td class="n">33.8</td><td class="n">8.0</td></tr><tr><td>5000 / 30.0</td><td class="n">43.84</td><td class="n">454</td><td class="n">482</td><td class="n">400</td><td class="n">39.4</td><td class="n">6.0</td></tr><tr><td>6000 / 30.0</td><td class="n">50.49</td><td class="n">500</td><td class="n">555</td><td class="n">461</td><td class="n">42.3</td><td class="n">2.0</td></tr><tr><td>7000 / 28.0</td><td class="n">50.77</td><td class="n">450</td><td class="n">558</td><td class="n">464</td><td class="n">45.6</td><td class="n">-2.0</td></tr><tr><td>8000 / 27.0</td><td class="n">55.13</td><td class="n">455</td><td class="n">606</td><td class="n">503</td><td class="n">48.9</td><td class="n">-4.0</td></tr></tbody></table></div>
-<div class="grid g2">
+<h2><span class="num">02</span>Calculated power — dry vs water meth</h2>
+<p class="lede">Solid = WMI-strategy (spray only when that fuel's gate is true).
+Dashed = dry. Markers on the solid traces are activation. 50/50 93+E85 is
+~E42 (stoich 12.23, 10.5 hp/lb-min). AWD loss 17%.</p>
+<div class="chart"><svg viewBox="0 0 720 260" width="100%" style="background:#101620;border-radius:8px"><text x="40" y="16" fill="#9fb0c4" font-size="11">WHP vs RPM — dry (dashed) vs WMI-strategy (solid). Markers = WMI gate on.</text><polyline fill="none" stroke="#38d39f" stroke-width="1.5" stroke-dasharray="5 4" points="40.0,173.6 168.0,130.8 296.0,89.3 424.0,69.3 552.0,68.4 680.0,55.6"/><polyline fill="none" stroke="#38d39f" stroke-width="2.4" points="40.0,173.6 168.0,130.8 296.0,89.3 424.0,69.3 552.0,66.4 680.0,53.3"/><circle cx="552.0" cy="66.4" r="4" fill="#38d39f" stroke="#fff" stroke-width="1"/><circle cx="680.0" cy="53.3" r="4" fill="#38d39f" stroke="#fff" stroke-width="1"/><polyline fill="none" stroke="#4ea3ff" stroke-width="1.5" stroke-dasharray="5 4" points="40.0,175.9 168.0,135.0 296.0,95.2 424.0,76.2 552.0,75.6 680.0,63.1"/><polyline fill="none" stroke="#4ea3ff" stroke-width="2.4" points="40.0,175.9 168.0,135.0 296.0,95.2 424.0,72.9 552.0,72.0 680.0,59.2"/><circle cx="424.0" cy="72.9" r="4" fill="#4ea3ff" stroke="#fff" stroke-width="1"/><circle cx="552.0" cy="72.0" r="4" fill="#4ea3ff" stroke="#fff" stroke-width="1"/><circle cx="680.0" cy="59.2" r="4" fill="#4ea3ff" stroke="#fff" stroke-width="1"/><polyline fill="none" stroke="#ffb347" stroke-width="1.5" stroke-dasharray="5 4" points="40.0,177.8 168.0,139.0 296.0,101.0 424.0,83.1 552.0,82.4 680.0,70.3"/><polyline fill="none" stroke="#ffb347" stroke-width="2.4" points="40.0,177.8 168.0,139.0 296.0,101.0 424.0,83.1 552.0,82.4 680.0,64.4"/><circle cx="680.0" cy="64.4" r="4" fill="#ffb347" stroke="#fff" stroke-width="1"/><text x="560" y="252" fill="#9fb0c4" font-size="10">E85 · 50/50 · 93 &nbsp; ○ WMI on</text></svg></div>
+<div class="card"><table><thead><tr><th>rpm / psi</th><th class="n">lb/min</th><th class="n">E85 dry/used</th><th class="n">50/50 dry/used</th><th class="n">93 dry/used</th><th class="n">IAT °C</th><th class="n">WMI gate</th></tr></thead><tbody><tr><td>3000 / 15.0</td><td class="n">15.54</td><td class="n">171/171</td><td class="n">163/163</td><td class="n">155/155</td><td class="n">28.9</td><td class="n">e85:off / mix:off / pump:off</td></tr><tr><td>4000 / 25.0</td><td class="n">29.86</td><td class="n">328/328</td><td class="n">314/314</td><td class="n">299/299</td><td class="n">33.8</td><td class="n">e85:off / mix:off / pump:off</td></tr><tr><td>5000 / 30.0</td><td class="n">43.84</td><td class="n">482/482</td><td class="n">460/460</td><td class="n">438/438</td><td class="n">39.4</td><td class="n">e85:off / mix:off / pump:off</td></tr><tr><td>6000 / 30.0</td><td class="n">50.49</td><td class="n">555/555</td><td class="n">530/543</td><td class="n">505/505</td><td class="n">42.3</td><td class="n">e85:off / mix:ON / pump:off</td></tr><tr><td>7000 / 28.0</td><td class="n">50.77</td><td class="n">558/566</td><td class="n">533/546</td><td class="n">508/508</td><td class="n">45.6</td><td class="n">e85:ON / mix:ON / pump:off</td></tr><tr><td>8000 / 27.0</td><td class="n">55.13</td><td class="n">606/615</td><td class="n">579/593</td><td class="n">551/573</td><td class="n">48.9</td><td class="n">e85:ON / mix:ON / pump:ON</td></tr></tbody></table></div>
+<div class="grid g3">
 <div class="card"><h3>93 pump</h3>
-<p>8.5:1 forged 5S-GTE on 93. MatchBot IAT at 25–30 psi is still in the 47 C region after a 4.5 in core — survivable, but 93 will want timing pulled as boost climbs. Street seed stays 18 psi; 22 psi is the planning ceiling until a knock-logged pull says otherwise.</p>
-<p>Planning ceiling: <b>22 psi</b>.</p></div>
-<div class="card"><h3>E85 + water/meth ≥27 psi</h3>
-<p>E85 at λ≈0.78 is not knock-limited at these cylinder pressures on 8.5:1. The ceiling is compressor choke / turbine dP / IAT, not octane. 30 psi is the hardware max, not a required point.</p>
-<p>Engage ≥27 psi to cut compressor-out temp 20–40 C in the hottest island. That is extra IAT margin and can hold 28–30 psi farther into the redline band instead of tapering to 27. It is not free power — it is permission to keep the boost you already computed.</p></div>
+<p>8.5:1 on 93. Without WMI, plan 22 psi. WMI at ≥22 psi / ≥3500 rpm buys IAT and timing toward 27.</p>
+<p>Ceiling dry <b>22 psi</b> · with WMI
+<b>27 psi</b>.</p></div>
+<div class="card"><h3>50/50 93+E85 (~E42)</h3>
+<p>50/50 93+E85 is ~E42. Mid octane. 25 psi dry, 30 psi with WMI once RPM ≥4000.</p>
+<p>Ceiling dry <b>25 psi</b> · with WMI
+<b>30 psi</b>.</p></div>
+<div class="card"><h3>E85</h3>
+<p>E85 is hardware-limited. WMI at ≥27 psi / ≥4500 rpm is IAT margin so 28–30 psi can hold farther into the redline band.</p>
+<p>Ceiling dry and WMI both <b>30 psi</b> — hardware, not octane.</p></div>
 </div>
 <div class="eq">mdot = VE · (CID · RPM / 2 / 1728) · ρ · PR
-crank = mdot · (10 hp/lb-min on 93, 11 on E85)
+crank = mdot · (10 / 10.5 / 11 hp/lb-min on 93 / 50/50 / E85)
++ WMI bump 0.40 / 0.25 / 0.15 when the gate is true
 wheel = crank · (1 − 0.17)</div>
+<p class="note">Dry crank uses hp/lb-min (10 / 10.5 / 11) and stops at that fuel's knock ceiling (22 / 25 / 30 psi). WMI adds 0.40 / 0.25 / 0.15 hp/lb-min when the gate is true and may raise the ceiling (27 / 30 / 30). Wheel uses 17% AWD loss. Headlines are from the Phase-1 rpm×boost grid so 93 dry is not taken from a 27 psi MatchBot point.</p>
+</section>
+
+<section id="wmi">
+<h2><span class="num">03</span>When to spray</h2>
+<p class="lede">Spray only where T2/IAT and cylinder pressure need it. 93 gates earliest (knock). E42 in the middle. E85 last (compressor-outlet heat at high PR × high flow). Cold IAT and part-throttle stay dry so the tank lasts and the charge is not over-wet at idle. Green cells are spray-on at WOT / hot IAT.
+Do not spray in vacuum, cruise, or cold charge.</p>
+<div class="card"><table><thead><tr><th>fuel</th><th class="n">min boost</th><th class="n">min rpm</th><th class="n">TPS</th><th class="n">IAT</th><th class="n">why</th></tr></thead><tbody><tr><td>93 octane pump gasoline</td><td class="n">22 psi</td><td class="n">3500</td><td class="n">80%</td><td class="n">40 °C</td><td class="n">8.5:1 on 93. Without WMI, plan 22 psi. WMI at ≥22 psi / ≥3500 rpm buys IAT and timing toward 27.</td></tr><tr><td>50/50 93 + E85 (approx E42)</td><td class="n">25 psi</td><td class="n">4000</td><td class="n">80%</td><td class="n">42 °C</td><td class="n">50/50 93+E85 is ~E42. Mid octane. 25 psi dry, 30 psi with WMI once RPM ≥4000.</td></tr><tr><td>E85 (flex)</td><td class="n">27 psi</td><td class="n">4500</td><td class="n">80%</td><td class="n">45 °C</td><td class="n">E85 is hardware-limited. WMI at ≥27 psi / ≥4500 rpm is IAT margin so 28–30 psi can hold farther into the redline band.</td></tr></tbody></table></div>
+<div class="grid g3">
+<div><div class="chart"><svg viewBox="0 0 448 178" width="100%" style="background:#101620;border-radius:8px"><text x="48" y="16" fill="#9fb0c4" font-size="11">93 — spray (green)</text><text x="8" y="62" fill="#6f8098" font-size="10">30</text><rect x="56" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="168" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="196" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="224" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="252" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="280" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="308" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="336" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="364" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="392" y="48" width="25" height="19" rx="3" fill="#1c5240"/><text x="8" y="84" fill="#6f8098" font-size="10">27</text><rect x="56" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="168" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="196" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="224" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="252" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="280" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="308" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="336" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="364" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="392" y="70" width="25" height="19" rx="3" fill="#1c5240"/><text x="8" y="106" fill="#6f8098" font-size="10">25</text><rect x="56" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="168" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="196" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="224" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="252" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="280" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="308" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="336" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="364" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="392" y="92" width="25" height="19" rx="3" fill="#1c5240"/><text x="8" y="128" fill="#6f8098" font-size="10">22</text><rect x="56" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="114" width="25" height="19" rx="3" fill="#1c5240"/><rect x="168" y="114" width="25" height="19" rx="3" fill="#1c5240"/><rect x="196" y="114" width="25" height="19" rx="3" fill="#1c5240"/><rect x="224" y="114" width="25" height="19" rx="3" fill="#1c5240"/><rect x="252" y="114" width="25" height="19" rx="3" fill="#1c5240"/><rect x="280" y="114" width="25" height="19" rx="3" fill="#1c5240"/><rect x="308" y="114" width="25" height="19" rx="3" fill="#1c5240"/><rect x="336" y="114" width="25" height="19" rx="3" fill="#1c5240"/><rect x="364" y="114" width="25" height="19" rx="3" fill="#1c5240"/><rect x="392" y="114" width="25" height="19" rx="3" fill="#1c5240"/><text x="8" y="150" fill="#6f8098" font-size="10">18</text><rect x="56" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="168" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="196" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="224" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="252" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="280" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="308" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="336" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="364" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="392" y="136" width="25" height="19" rx="3" fill="#212936"/><text x="56" y="172" fill="#6f8098" font-size="9">2000</text><text x="84" y="172" fill="#6f8098" font-size="9">2500</text><text x="112" y="172" fill="#6f8098" font-size="9">3000</text><text x="140" y="172" fill="#6f8098" font-size="9">3500</text><text x="168" y="172" fill="#6f8098" font-size="9">4000</text><text x="196" y="172" fill="#6f8098" font-size="9">4500</text><text x="224" y="172" fill="#6f8098" font-size="9">5000</text><text x="252" y="172" fill="#6f8098" font-size="9">5500</text><text x="280" y="172" fill="#6f8098" font-size="9">6000</text><text x="308" y="172" fill="#6f8098" font-size="9">6500</text><text x="336" y="172" fill="#6f8098" font-size="9">7000</text><text x="364" y="172" fill="#6f8098" font-size="9">7500</text><text x="392" y="172" fill="#6f8098" font-size="9">8000</text></svg></div></div>
+<div><div class="chart"><svg viewBox="0 0 448 178" width="100%" style="background:#101620;border-radius:8px"><text x="48" y="16" fill="#9fb0c4" font-size="11">50/50 — spray (green)</text><text x="8" y="62" fill="#6f8098" font-size="10">30</text><rect x="56" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="168" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="196" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="224" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="252" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="280" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="308" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="336" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="364" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="392" y="48" width="25" height="19" rx="3" fill="#1c5240"/><text x="8" y="84" fill="#6f8098" font-size="10">27</text><rect x="56" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="168" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="196" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="224" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="252" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="280" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="308" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="336" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="364" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="392" y="70" width="25" height="19" rx="3" fill="#1c5240"/><text x="8" y="106" fill="#6f8098" font-size="10">25</text><rect x="56" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="168" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="196" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="224" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="252" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="280" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="308" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="336" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="364" y="92" width="25" height="19" rx="3" fill="#1c5240"/><rect x="392" y="92" width="25" height="19" rx="3" fill="#1c5240"/><text x="8" y="128" fill="#6f8098" font-size="10">22</text><rect x="56" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="168" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="196" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="224" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="252" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="280" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="308" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="336" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="364" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="392" y="114" width="25" height="19" rx="3" fill="#212936"/><text x="8" y="150" fill="#6f8098" font-size="10">18</text><rect x="56" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="168" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="196" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="224" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="252" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="280" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="308" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="336" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="364" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="392" y="136" width="25" height="19" rx="3" fill="#212936"/><text x="56" y="172" fill="#6f8098" font-size="9">2000</text><text x="84" y="172" fill="#6f8098" font-size="9">2500</text><text x="112" y="172" fill="#6f8098" font-size="9">3000</text><text x="140" y="172" fill="#6f8098" font-size="9">3500</text><text x="168" y="172" fill="#6f8098" font-size="9">4000</text><text x="196" y="172" fill="#6f8098" font-size="9">4500</text><text x="224" y="172" fill="#6f8098" font-size="9">5000</text><text x="252" y="172" fill="#6f8098" font-size="9">5500</text><text x="280" y="172" fill="#6f8098" font-size="9">6000</text><text x="308" y="172" fill="#6f8098" font-size="9">6500</text><text x="336" y="172" fill="#6f8098" font-size="9">7000</text><text x="364" y="172" fill="#6f8098" font-size="9">7500</text><text x="392" y="172" fill="#6f8098" font-size="9">8000</text></svg></div></div>
+<div><div class="chart"><svg viewBox="0 0 448 178" width="100%" style="background:#101620;border-radius:8px"><text x="48" y="16" fill="#9fb0c4" font-size="11">E85 — spray (green)</text><text x="8" y="62" fill="#6f8098" font-size="10">30</text><rect x="56" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="168" y="48" width="25" height="19" rx="3" fill="#212936"/><rect x="196" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="224" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="252" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="280" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="308" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="336" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="364" y="48" width="25" height="19" rx="3" fill="#1c5240"/><rect x="392" y="48" width="25" height="19" rx="3" fill="#1c5240"/><text x="8" y="84" fill="#6f8098" font-size="10">27</text><rect x="56" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="168" y="70" width="25" height="19" rx="3" fill="#212936"/><rect x="196" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="224" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="252" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="280" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="308" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="336" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="364" y="70" width="25" height="19" rx="3" fill="#1c5240"/><rect x="392" y="70" width="25" height="19" rx="3" fill="#1c5240"/><text x="8" y="106" fill="#6f8098" font-size="10">25</text><rect x="56" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="168" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="196" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="224" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="252" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="280" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="308" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="336" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="364" y="92" width="25" height="19" rx="3" fill="#212936"/><rect x="392" y="92" width="25" height="19" rx="3" fill="#212936"/><text x="8" y="128" fill="#6f8098" font-size="10">22</text><rect x="56" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="168" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="196" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="224" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="252" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="280" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="308" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="336" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="364" y="114" width="25" height="19" rx="3" fill="#212936"/><rect x="392" y="114" width="25" height="19" rx="3" fill="#212936"/><text x="8" y="150" fill="#6f8098" font-size="10">18</text><rect x="56" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="84" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="112" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="140" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="168" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="196" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="224" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="252" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="280" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="308" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="336" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="364" y="136" width="25" height="19" rx="3" fill="#212936"/><rect x="392" y="136" width="25" height="19" rx="3" fill="#212936"/><text x="56" y="172" fill="#6f8098" font-size="9">2000</text><text x="84" y="172" fill="#6f8098" font-size="9">2500</text><text x="112" y="172" fill="#6f8098" font-size="9">3000</text><text x="140" y="172" fill="#6f8098" font-size="9">3500</text><text x="168" y="172" fill="#6f8098" font-size="9">4000</text><text x="196" y="172" fill="#6f8098" font-size="9">4500</text><text x="224" y="172" fill="#6f8098" font-size="9">5000</text><text x="252" y="172" fill="#6f8098" font-size="9">5500</text><text x="280" y="172" fill="#6f8098" font-size="9">6000</text><text x="308" y="172" fill="#6f8098" font-size="9">6500</text><text x="336" y="172" fill="#6f8098" font-size="9">7000</text><text x="364" y="172" fill="#6f8098" font-size="9">7500</text><text x="392" y="172" fill="#6f8098" font-size="9">8000</text></svg></div></div>
+</div>
+<div class="callout c-info">
+<h3 style="margin:0 0 .4rem">ECU control — digital output, no pin assigned</h3>
+<p>GP Output → relay coil (low-side Aux or switchboard output when one is free). Aux 1–10 are all taken in
+<code>XTREMEX-IO-TABLE.html</code>. Do <strong>not</strong> steal a Digital
+Input for the pump (use a free DI later for tank empty — do not take a live DI).</p>
+<ol>
+<li>GP Output → relay coil for an on/off or PWM pump. Prefer a
+<strong>switchboard digital output</strong> when one exists so the XtremeX
+Aux map stays untouched. If a low-side Aux later frees, that works too.</li>
+<li>Conditions (three GP Output tables, or one table with ethanol% as a 4D
+axis once flex is trusted): MAP ≥ gate, RPM ≥ gate, TPS ≥ 80%, IAT ≥ gate,
+AND a user-enable (dash or virtual Aux).</li>
+<li>Hardware: 50/50 water / methanol, post-IC, pre-throttle, check
+valve, arming switch. Fail-safe = off if the output is faulted.</li>
+<li>A free DI later can be tank-empty / flow-switch AND-inhibit only.
+Do not assign that DI now — DI 8–10 stay uncommitted.</li>
+</ol>
+</div>
 </section>
 
 <section id="turbo">
-<h2><span class="num">03</span>Turbo</h2>
-<p class="lede">Full overlays live in <a href="turbo-comparison.html">turbo-comparison.html</a>.
-Short version:</p>
+<h2><span class="num">04</span>Turbo</h2>
+<p class="lede">Full overlays live in <a href="turbo-comparison.html">turbo-comparison.html</a>.</p>
 <div class="grid g3">
-<div class="card"><b>7064</b> — wrong compressor. 55 lb/min vs 56 published.</div>
-<div class="card"><b>7163-G</b> — keep for a road car. 0.80 T4 twin, mixed-flow 63 mm. Redline point is on the right side of the map, not off it.</div>
-<div class="card"><b>7670-C</b> — step up if you want 30 psi held to 7500+ in the island. Prior Drive PDF first pick, still valid on 2189 cc / 8000 rpm.</div>
+<div class="card"><b>7064</b> — 55 lb/min @ PR 3.0 is the published 56 lb/min wall. Choke.</div>
+<div class="card"><b>7163-G</b> — 55 lb/min sits on the right side of a 60 lb/min map.</div>
+<div class="card"><b>7670-C</b> — 55 lb/min is inside a 64 lb/min map.</div>
 </div>
 <div class="callout c-good">Valid turbine match: PHI 0.020–0.035, wastegate 25–32%,
 port 16–23 mm, engine dP +6 to −4 psi. The first MatchBot pass that used
@@ -129,7 +182,7 @@ blind All+ produced N/A wastegate and −35 dP — that run is discarded. See
 </section>
 
 <section id="ic">
-<h2><span class="num">04</span>Bar-plate vs tube-and-fin</h2>
+<h2><span class="num">05</span>Bar-plate vs tube-and-fin</h2>
 <p class="lede">Same 27×12 in face, same 55 lb/min charge, same 60 mph stack
 airflow. The difference is the core, not the size. Effectiveness is calibrated
 into MatchBot's official "typical IC" high-speed band (85–90%). Thermal mass
@@ -138,25 +191,35 @@ and recovery come from aluminum volume × Cp / UA.</p>
 <div class="callout c-info">Road car: most time is part-throttle. Tube-and-fin has ~half the metal mass of bar-and-plate at the same 4.5 in / 27x12 in face, so recovery at speed is faster and heat-soak after a pull-then-traffic is shorter. Steady-state ε is a few points lower; we buy that back with 4.5 in thickness (allowed). Bar-plate wins a 95% WOT duty cycle (time-attack, drag) where the extra UA stays useful and soak never has time to matter. Charge dP is also lower on tube-fin, which is compressor efficiency the turbo does not have to pay.</div>
 <div class="grid g2">
 <div class="card"><h3>Idle / traffic soak (4.5 in)</h3>
-<p>Bar-plate 8.81 kg
-vs tube-fin 4.72 kg.
-After a pull the thicker metal store keeps heating the next charge slug until
-ram air returns. Recovery τ is
-4.6 s
-tube-fin vs
-5.4 s
-bar-plate at 60 mph — the road-car number that matters,
-because you are not at WOT 95% of the lap.</p></div>
+<p>Bar-plate 8.81 kg vs tube-fin 4.72 kg.
+Recovery τ at 60 mph is 4.6 s tube-fin vs
+5.4 s bar-plate — the road-car number that matters.</p></div>
 <div class="card"><h3>What 4–5 in buys</h3>
-<p>3 in tube-fin drops to ~61% ε on this face at 55 lb/min — too thin. 4.0–4.5 in
-is where tube-fin enters the 85% band. 5 in still helps bar-plate more than
-tube-fin (diminishing NTU). 4.5 in is the pick: fits the crash-bar depth the
-user allowed, without paying bar-plate soak.</p></div>
+<p>3 in tube-fin drops out of the 85% band on this face at 55 lb/min.
+4.0–4.5 in is where tube-fin enters it. 5 in still helps bar-plate more than
+tube-fin (diminishing NTU). 4.5 in is the pick: fits the crash-bar depth.</p></div>
 </div>
 </section>
 
+<section id="fpi">
+<h2><span class="num">06</span>Fins per inch</h2>
+<p class="lede">Pro Alloy: 12–14 FPI for a typical IC so the radiator still sees air; denser pitches choke the stack. Tube-fin at 12 FPI is the street/debris pick (16+ is race, clogs). Bar-plate already runs a denser internal pack — 10 FPI air-side keeps the 4.5 in core from starving the Mishimoto rad. PRL: higher FPI is more UA and more dP; we are UA-rich at 4.5 in.</p>
+<div class="grid g2">
+<div class="card"><h3>Tube-fin (this pick) — 12 FPI</h3>
+<p>Street/track default for extruded-tube cores. 14 FPI is a drag-only step
+when the water radiator is dedicated and you do not care about the OEM fan.
+Below 10 FPI you give away charge cooling the 7163 still needs at 55 lb/min.</p></div>
+<div class="card"><h3>Bar-plate — 10 FPI</h3>
+<p>Bar-plate already has more internal surface per inch of thickness. Packing
+14–16 FPI in front of this radiator is how the 4.5 in bricks overheat the
+water. 12 FPI bar-plate is acceptable only if the core is thinner (2.0–2.5 in)
+and offset from the rad.</p></div>
+</div>
+<p class="note">Sources: Pro Alloy, Intercooler Cores Explained — 12–14 FPI typical; PRL Motorsports, Intercooler Fin Design — FPI vs cooling/dP.</p>
+</section>
+
 <section id="stack">
-<h2><span class="num">05</span>Front stack</h2>
+<h2><span class="num">07</span>Front stack</h2>
 <p class="lede">Order, front to back: bumper / crash bar, FMIC (4.5 in tube-fin, 27 x 12 in face), oil cooler (low, off the rad face if possible), trans cooler (same), half-width AC condenser, Mishimoto racing radiator + slim fans.</p>
 <div class="grid g2">
 <div class="card"><h3>Half-width condenser</h3>
@@ -164,41 +227,42 @@ user allowed, without paying bar-plate soak.</p></div>
 (1.11× need) vs full-width
 2.696 kg/s
 (1.04×). The half-width unit sits
-passenger-side so the driver-side rad face sees ram air. A full condenser in
-front of a racing rad is how these cars overheat with the AC on.</p></div>
+passenger-side so the driver-side rad face sees ram air.</p></div>
 <div class="card"><h3>Radiator + fans</h3>
 <p>Mishimoto 2-row racing (Celica / 5S-class), slim PWM pair behind. Two-row aluminum, Celica / 5S-class. Slim PWM pair
-behind the core, not a thick OE clutch fan. Oil and trans coolers live
-<i>off</i> the rad face (low in the opening or ducted) so they do not eat
-the remaining air.</p></div>
+behind the core. Oil and trans coolers live <i>off</i> the rad face.</p></div>
 </div>
 </section>
 
 <section id="pipes">
-<h2><span class="num">06</span>Pipes and throttle body</h2>
-<p class="lede">Unchanged recommendation from <a href="THROTTLE-BODY-PLUMBING-SPEC.md">THROTTLE-BODY-PLUMBING-SPEC.md</a>
-— the clamp does not force 3 in through the whole system.</p>
+<h2><span class="num">08</span>Pipes — 2.50 in both sides</h2>
+<p class="lede">At 55.13 lb/min the 2.50 in hot side is 228 ft/s — inside Garrett's 200–300 ft/s band. The 2.50 in cold side is 174 ft/s, under the band because the charge is denser after the IC, but dP is 0.65 psi and the pipe is not a restriction versus the 7163's 60 lb/min wall or the engine's 55 lb/min demand. 3.00 in cold saves ~0.36 psi and adds 2.0 L plus ~14 ms of fill delay. That volume is why 3 in felt slower. Both sides stay 2.50 in × 0.065 wall.</p>
 <div class="grid g2">
 <div class="kpi"><div class="lab">Hot side</div><div class="val">2.50 in</div>
-<div class="note">OD × 0.065 wall. Past the turbine in the tight bay. ~0.44 psi over the run.</div></div>
-<div class="kpi"><div class="lab">Cold side</div><div class="val">3.00 in</div>
-<div class="note">SpeedFactory SS-850 outlet and Outsider Garage TB adapter are already 3 in. No transitions. Welded 3 in is slimmer than clamped 2.5 in.</div></div>
+<div class="note">228 ft/s · 0.64 psi · Garrett 200–300</div></div>
+<div class="kpi"><div class="lab">Cold side</div><div class="val">2.50 in</div>
+<div class="note">174 ft/s · 0.65 psi · 3.00 in withdrawn</div></div>
 </div>
-<p>End tanks: cast or welded triangular, full-height inlet/outlet, no log-style dead ends.</p>
+<div class="card"><table><thead><tr><th>run @ 55.13 lb/min</th><th class="n">ft/s</th><th class="n">ΔP psi</th><th class="n">in Garrett band</th><th class="n">verdict</th></tr></thead><tbody><tr><td>2.50 hot @ 55.13</td><td class="n">228</td><td class="n">0.64</td><td class="n">yes</td><td class="n">keep</td></tr><tr><td>2.50 cold @ 55.13</td><td class="n">174</td><td class="n">0.65</td><td class="n">n/a (denser)</td><td class="n">keep</td></tr><tr><td>3.00 cold (withdrawn)</td><td class="n">118</td><td class="n">0.29</td><td class="n">n/a</td><td class="n">volume / lag only</td></tr></tbody></table></div>
+<p>End tanks: cast or welded triangular, full-height inlet/outlet, no log-style dead ends. Adapters at the 3 in compressor outlet / TB
+step to 2.50 in — do not run 3 in pipe just to avoid a transition. Full
+joint/BOM notes: <a href="THROTTLE-BODY-PLUMBING-SPEC.md">THROTTLE-BODY-PLUMBING-SPEC.md</a>
+Rev 3.</p>
 </section>
 
 <section id="sources">
-<h2><span class="num">07</span>Sources and what this replaces</h2>
+<h2><span class="num">09</span>Sources and what this replaces</h2>
 <div class="card">
 <ul>
-<li><code>tune/engine_constants.yaml</code> — 2189 cc, 87.5×91, CR 8.5, HKS 264, F90000295, 7163-G, 8000 rev limit.</li>
+<li><code>tune/engine_constants.yaml</code> — 2189 cc, 87.5×91, CR 8.5, HKS 264, F90000295, 7163-G, 8000 rev limit, 2.50/2.50 pipes.</li>
 <li>BorgWarner MatchBot field help + official EFR map PDFs / JPEGs.</li>
 <li>Kays &amp; London NTU-ε; Incropera Colburn j/f (calibrated to MatchBot's 85–90% IC band).</li>
+<li>Pro Alloy / PRL FPI notes; Colebrook pipe table scaled 45.7 → 55.13 lb/min.</li>
 <li>Head-flow notes in <code>docs/5sgte-project-data/</code>.</li>
 <li>This report replaces the previous six-way-inconsistent intercooler HTML
-(FuryX leftovers, 25 vs 30 psi, 3 vs 4 in, 404 vs 600 hp). The
-<code>research/</code> byte-identical copy is removed. Working calcs stay in
-<code>model/</code>.</li>
+and the round 1/2/3/5 <code>.bak.html</code> copies plus
+<code>PATCH-NOTE-intercooler-report.md</code> (those files are deleted).
+Working calcs stay in <code>model/</code>.</li>
 </ul>
 </div>
 </section>

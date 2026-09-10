@@ -107,8 +107,9 @@ def core_row(kind, thick_in, mdot_kgs, v_air_ms, t2_k=T2_K):
     t_out = t2_k - eff * (t2_k - T_AMB_K)
     q_w = c_hot * (t2_k - t_out)
 
-    # Charge velocity is set by the 3 in cold-side pipe / end-tank inlet, not
-    # by core thickness. Thickness only changes the flow *length*, so dP
+    # Charge velocity into the core is set by the end-tank inlet (SS-850 and
+    # similar tanks are still 3 in spigots even when the pipe stays 2.50 in),
+    # not by core thickness. Thickness only changes the flow *length*, so dP
     # rises with a thicker core (the opposite of the earlier bug).
     a_inlet = 3.1416 * (1.50 * 0.0254) ** 2
     v_charge = mdot_kgs / max(RHO_CHARGE * a_inlet, 1e-6)
@@ -260,10 +261,26 @@ def main():
                 "Charge dP is also lower on tube-fin, which is compressor "
                 "efficiency the turbo does not have to pay."
             ),
+            "fpi": {
+                "tube_fin": 12,
+                "bar_plate": 10,
+                "why": (
+                    "Pro Alloy: 12–14 FPI for a typical IC so the radiator still "
+                    "sees air; denser pitches choke the stack. Tube-fin at 12 FPI "
+                    "is the street/debris pick (16+ is race, clogs). Bar-plate "
+                    "already runs a denser internal pack — 10 FPI air-side keeps "
+                    "the 4.5 in core from starving the Mishimoto rad. PRL: higher "
+                    "FPI is more UA and more dP; we are UA-rich at 4.5 in."
+                ),
+                "sources": [
+                    "Pro Alloy, Intercooler Cores Explained — 12–14 FPI typical",
+                    "PRL Motorsports, Intercooler Fin Design — FPI vs cooling/dP",
+                ],
+            },
             "inlet_outlet": {
                 "hot_side_od_in": 2.50,
-                "cold_side_od_in": 3.00,
-                "source": "THROTTLE-BODY-PLUMBING-SPEC.md (kept, not re-litigated)",
+                "cold_side_od_in": 2.50,
+                "source": "validated at 2.50 both sides; 3.00 cold withdrawn (volume/delay)",
             },
             "end_tanks": "cast or welded triangular, full-height inlet/outlet, no log-style dead ends",
             "condenser": "half-width, passenger side, so the driver-side rad face sees ram air",

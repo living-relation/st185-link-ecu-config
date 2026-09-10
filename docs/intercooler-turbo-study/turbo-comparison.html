@@ -40,6 +40,7 @@ td.n,th.n{text-align:right;font-family:var(--mono)}
 .kpi{background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:12px 14px}
 .kpi .lab{font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:.6px}
 .kpi .val{font-size:24px;font-weight:660;font-family:var(--mono);color:var(--acc)}
+.kpi .val.g{color:var(--acc2)}
 .kpi .note{font-size:11.5px;color:var(--tx3)}
 .callout{border-radius:9px;padding:12px 15px;margin:12px 0;border:1px solid}
 .c-info{background:#0e1e2e;border-color:#1f4468;color:#c2ddf5}
@@ -53,6 +54,7 @@ td.n,th.n{text-align:right;font-family:var(--mono)}
 .d1{background:#4ea3ff}.d2{background:#38d39f}.d3{background:#ffb347}
 .d4{background:#ff6b6b}.d5{background:#c084fc}.d6{background:#f472b6}
 .note{font-size:12.5px;color:var(--tx3)}
+.chart{margin:14px 0}
 a{color:var(--acc)}
 </style></head><body>
 <header class="hero"><div class="wrap">
@@ -61,7 +63,7 @@ a{color:var(--acc)}
 operating line. Turbine match from live MatchBot, using the tool's own field
 help — not guessed TER / VE / BSFC.</p>
 <p class="meta">ST185 · 2189 cc · HKS 264 · CR 8.5 · sea level · Pump-Gas
-MatchBot case (E85 power from airflow × 11 hp/lb-min) · 2026-09-09</p>
+MatchBot case (E85 / 50/50 / 93 power from airflow × hp/lb-min) · 2026-09-09</p>
 </div></header>
 <nav class="toc"><div class="wrap">
 <a href="#verdict">Verdict</a><a href="#maps">Maps</a>
@@ -79,7 +81,7 @@ MatchBot case (E85 power from airflow × 11 hp/lb-min) · 2026-09-09</p>
 <div class="kpi"><div class="lab">7670-C</div><div class="val" style="color:var(--warn)">If top-end</div>
 <div class="note">64 lb/min map still has island at 55 / PR 3.0. More inertia. Drive PDF's first pick.</div></div>
 </div>
-<div class="callout c-info">Keep 7163-G if the car is a road car and you value 3–4k response (mixed-flow 63 mm turbine, 0.80 A/R). Step to 7670-C if the goal is holding 30 psi to 7500+ without riding the 7163 choke line. 7064 is the wrong compressor for this displacement × boost. That agrees with the prior Drive PDF on 7670-C first / 7163-G second, now on 2189 cc and 8000 rpm instead of 2164 cc / 7500.</div>
+<div class="callout c-info">Keep 7163-G for a road car. Step to 7670-C to hold 30 psi to 7500+ in-island. 7064 is the wrong compressor.</div>
 </section>
 <section id="maps">
 <h2><span class="num">02</span>Official maps + this engine's line</h2>
@@ -143,11 +145,12 @@ bonus at low rpm. TER set so engine dP matches the catalog example
 PHI 0.020–0.035 sits inside the EFR housing band (0.020–0.048). Wastegate
 25–32% is inside the 40% internal-gate design intent. Port demand 16–23 mm
 vs 36 mm on the C/G housings.</p>
-<div class="card"><table><thead><tr><th>rpm / psi</th><th class="n">corr lb/min</th><th class="n">PR</th><th class="n">CE%</th><th class="n">IAT °C</th><th class="n">EMP psi</th><th class="n">dP</th><th class="n">PHI</th><th class="n">WG%</th><th class="n">pump crank</th><th class="n">E85 crank</th><th class="n">E85 WHP</th></tr></thead><tbody><tr><td>3000 / 15</td><td class="n">15.54</td><td class="n">2.03</td><td class="n">66</td><td class="n">28.9</td><td class="n">8.9</td><td class="n">6</td><td class="n">0.0202</td><td class="n">25.18</td><td class="n">175</td><td class="n">171</td><td class="n">142</td></tr><tr><td>4000 / 25</td><td class="n">29.86</td><td class="n">2.76</td><td class="n">70</td><td class="n">33.8</td><td class="n">17</td><td class="n">8</td><td class="n">0.028</td><td class="n">27.33</td><td class="n">326</td><td class="n">328</td><td class="n">273</td></tr><tr><td>5000 / 30</td><td class="n">43.84</td><td class="n">3.18</td><td class="n">74</td><td class="n">39.4</td><td class="n">24</td><td class="n">6</td><td class="n">0.0342</td><td class="n">25.51</td><td class="n">454</td><td class="n">482</td><td class="n">400</td></tr><tr><td>6000 / 30</td><td class="n">50.49</td><td class="n">3.22</td><td class="n">76</td><td class="n">42.3</td><td class="n">27.9</td><td class="n">2</td><td class="n">0.0331</td><td class="n">30.43</td><td class="n">500</td><td class="n">555</td><td class="n">461</td></tr><tr><td>7000 / 28</td><td class="n">50.77</td><td class="n">3.08</td><td class="n">72</td><td class="n">45.6</td><td class="n">29.9</td><td class="n">-2</td><td class="n">0.0313</td><td class="n">31.59</td><td class="n">450</td><td class="n">558</td><td class="n">464</td></tr><tr><td>8000 / 27</td><td class="n">55.13</td><td class="n">3.04</td><td class="n">66</td><td class="n">48.9</td><td class="n">31.1</td><td class="n">-4</td><td class="n">0.0353</td><td class="n">26.84</td><td class="n">455</td><td class="n">606</td><td class="n">503</td></tr></tbody></table></div>
+<div class="card"><table><thead><tr><th>rpm / psi</th><th class="n">corr lb/min</th><th class="n">PR</th><th class="n">CE%</th><th class="n">IAT °C</th><th class="n">EMP psi</th><th class="n">dP</th><th class="n">PHI</th><th class="n">WG%</th><th class="n">MB pump crank</th><th class="n">93 / 50/50 / E85 crank</th></tr></thead><tbody><tr><td>3000 / 15</td><td class="n">15.54</td><td class="n">2.03</td><td class="n">66</td><td class="n">28.9</td><td class="n">8.9</td><td class="n">6</td><td class="n">0.0202</td><td class="n">25.18</td><td class="n">175</td><td class="n">155/163/171</td></tr><tr><td>4000 / 25</td><td class="n">29.86</td><td class="n">2.76</td><td class="n">70</td><td class="n">33.8</td><td class="n">17</td><td class="n">8</td><td class="n">0.028</td><td class="n">27.33</td><td class="n">326</td><td class="n">299/314/328</td></tr><tr><td>5000 / 30</td><td class="n">43.84</td><td class="n">3.18</td><td class="n">74</td><td class="n">39.4</td><td class="n">24</td><td class="n">6</td><td class="n">0.0342</td><td class="n">25.51</td><td class="n">454</td><td class="n">438/460/482</td></tr><tr><td>6000 / 30</td><td class="n">50.49</td><td class="n">3.22</td><td class="n">76</td><td class="n">42.3</td><td class="n">27.9</td><td class="n">2</td><td class="n">0.0331</td><td class="n">30.43</td><td class="n">500</td><td class="n">505/543/555</td></tr><tr><td>7000 / 28</td><td class="n">50.77</td><td class="n">3.08</td><td class="n">72</td><td class="n">45.6</td><td class="n">29.9</td><td class="n">-2</td><td class="n">0.0313</td><td class="n">31.59</td><td class="n">450</td><td class="n">508/546/566</td></tr><tr><td>8000 / 27</td><td class="n">55.13</td><td class="n">3.04</td><td class="n">66</td><td class="n">48.9</td><td class="n">31.1</td><td class="n">-4</td><td class="n">0.0353</td><td class="n">26.84</td><td class="n">455</td><td class="n">573/593/615</td></tr></tbody></table></div>
 <p class="note">Engine-side airflow/power is compressor-independent until CE is
 refined from the islands. The maps above are what actually differentiates the
 three turbos. MatchBot pump-gas hp uses official gasoline BSFC/AFR (the E85
-dropdown overwrites VE — do not use it; see matchbot_procedure.md).</p>
+dropdown overwrites VE — do not use it; see matchbot_procedure.md). The last
+column is this repo's dry/WMI-strategy crank for 93, 50/50 (~E42), and E85.</p>
 </section>
 <section id="method">
 <h2><span class="num">04</span>Method</h2>

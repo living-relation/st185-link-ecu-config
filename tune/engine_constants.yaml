@@ -41,7 +41,7 @@ intercooler:
   type: FMIC
   core_in: "4.5 x 12 x 27 in tube-and-fin"   # research pick; see docs/intercooler-turbo-study/
   piping_hot_in: 2.5
-  piping_cold_in: 3.0
+  piping_cold_in: 2.5              # 3.0 in cold added volume/delay; both sides stay 2.5
 
 fuel:
   injectors_cc: 1400

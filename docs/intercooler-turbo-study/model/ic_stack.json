@@ -251,10 +251,19 @@
     "core": "tube_fin",
     "thick_in": 4.5,
     "why": "Road car: most time is part-throttle. Tube-and-fin has ~half the metal mass of bar-and-plate at the same 4.5 in / 27x12 in face, so recovery at speed is faster and heat-soak after a pull-then-traffic is shorter. Steady-state \u03b5 is a few points lower; we buy that back with 4.5 in thickness (allowed). Bar-plate wins a 95% WOT duty cycle (time-attack, drag) where the extra UA stays useful and soak never has time to matter. Charge dP is also lower on tube-fin, which is compressor efficiency the turbo does not have to pay.",
+    "fpi": {
+      "tube_fin": 12,
+      "bar_plate": 10,
+      "why": "Pro Alloy: 12\u201314 FPI for a typical IC so the radiator still sees air; denser pitches choke the stack. Tube-fin at 12 FPI is the street/debris pick (16+ is race, clogs). Bar-plate already runs a denser internal pack \u2014 10 FPI air-side keeps the 4.5 in core from starving the Mishimoto rad. PRL: higher FPI is more UA and more dP; we are UA-rich at 4.5 in.",
+      "sources": [
+        "Pro Alloy, Intercooler Cores Explained \u2014 12\u201314 FPI typical",
+        "PRL Motorsports, Intercooler Fin Design \u2014 FPI vs cooling/dP"
+      ]
+    },
     "inlet_outlet": {
       "hot_side_od_in": 2.5,
-      "cold_side_od_in": 3.0,
-      "source": "THROTTLE-BODY-PLUMBING-SPEC.md (kept, not re-litigated)"
+      "cold_side_od_in": 2.5,
+      "source": "validated at 2.50 both sides; 3.00 cold withdrawn (volume/delay)"
     },
     "end_tanks": "cast or welded triangular, full-height inlet/outlet, no log-style dead ends",
     "condenser": "half-width, passenger side, so the driver-side rad face sees ram air",
