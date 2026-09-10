@@ -161,7 +161,8 @@
   .wlabel{font:600 11px var(--mono);cursor:move;
     paint-order:stroke;stroke:var(--canvas);stroke-width:3.5px;stroke-linejoin:round}
   .wlabel.selected{stroke:#000;fill:#fff}
-  /* Big mirrored component names that appear when zoomed out past the read threshold. */
+  /* Zoom names: family/weight only. Font size and stroke live on the SVG node
+     as user units so they scale with the viewBox like every other canvas object. */
   .zlabel{font-family:var(--sans);font-weight:700;fill:#e8e8f0;pointer-events:none;
     paint-order:stroke;stroke:#0b0b0dcc;stroke-linejoin:round}
   footer{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:0 10px;background:var(--panel);border-top:1px solid var(--border);font-size:12px;color:var(--muted)}
@@ -264,7 +265,10 @@ const PIN_H = 20, HDR = 32, PAD = 8, COMP_W = 196;
 const WORLD = 400000;         // half-extent of the unbounded grid surface
 const STORAGE = "st185-harness-v7";
 const ZOOM_LABEL_AT = 0.70;   // zoom at or below which the big names appear
-const ZOOM_LABEL_SCALE = 2.5; // how much larger those names are than the in-block title   // below this, mirror each component name in a big label
+/* World-unit multiplier vs the 12-unit in-block title. Labels must share the
+   canvas zoom (viewBox user units) — never divide by state.view.k, or they
+   grow as you zoom out and bury the drawing. */
+const ZOOM_LABEL_SCALE = 2.5;
 const NET_COLORS = {
   CANH:"#f2f2f2", CANL:"#3dd68c", "12V":"#e85d5d", "5V":"#f08a2a", "3V3":"#f5c542",
   GND:"#8b8b96", SIG:"#5b8def", UART:"#8b5cf6", INJ:"#3b82f6", IGN:"#f97316",
@@ -1049,10 +1053,12 @@ function render(){
   svg.appendChild(gOverlay);
 
   /* Below the read threshold the in-block text is unreadable, so mirror each
-     component name in a much larger label floating above its block. */
+     component name above its block. Size is in SVG user units so the label
+     shrinks with the rest of the canvas; a 1/k screen-constant size would
+     overlap neighbours and eat clicks as you zoom out. */
   if (state.view.k < ZOOM_LABEL_AT){
     const gZ = el("g");
-    const size = 12 * ZOOM_LABEL_SCALE;      // 2.5x the in-block title
+    const size = 12 * ZOOM_LABEL_SCALE;      // world units, same space as blocks
     const placed = [];
     drawn.filter(c => c.kind !== "note" && c.name).forEach(c => {
       const X = ex(c), w = c.w || COMP_W;
@@ -1067,7 +1073,8 @@ function render(){
       placed.push({ x:X + w/2, y, w: Math.max(w, c.name.length * size * 0.5) });
       const t = el("text", {
         class:"zlabel", x:X + w/2, y, "text-anchor":"middle",
-        style:`font-size:${size}px;stroke-width:${(size*0.18).toFixed(1)}px`
+        "font-size": String(size),
+        "stroke-width": (size * 0.18).toFixed(1)
       });
       t.textContent = c.name;
       gZ.appendChild(t);

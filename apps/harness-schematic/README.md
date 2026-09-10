@@ -30,7 +30,7 @@ The full harness is ~175 connections. Four things stop that turning into spaghet
 
 **Spacing.** The header **Spacing** control (100 %–230 %) pushes blocks further apart without resizing them. Wires sharing a vertical channel are auto-assigned parallel lanes so they never sit on top of each other.
 
-**Zoomed-out names.** At 70 % zoom and below the in-block text stops being legible, so each component's name is mirrored in a label 2.5 × larger floating above its block. They disappear again above 70 %.
+**Zoomed-out names.** At 70 % zoom and below the in-block text stops being legible, so each component's name is mirrored in a label 2.5 × the in-block title, floating above its block. The size is in canvas units, so the labels shrink with the rest of the drawing as you zoom out further — they do not stay a constant screen size, which would overlap neighbours and get in the way of editing. They disappear again above 70 %. They never capture clicks.
 
 ## Component library
 
