@@ -33,6 +33,6 @@ CAN connection uses.
 
 - `../realdash-simulation.html` — a preview of the RealDash *display itself* (what these frames
   drive). Use the sender app to transmit frames; use the simulation to see the layout.
-- `../BENCH-TEST.md` / `../bench/` — a separate command-line bench harness for the whole 4-node
+- `../BENCH-TEST.md` / `../bench/` — a separate command-line bench harness for the whole 5-node
   bus (cluster + RealDash). These `apps/` tools are the browser/desktop, RealDash-focused
   equivalent of the center cluster's own `apps/` tooling.

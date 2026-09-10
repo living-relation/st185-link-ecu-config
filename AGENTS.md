@@ -25,7 +25,7 @@ before making changes:
   `CAN-CONFIG-STATUS.md` in this repo.
 - Its `main/protocols/link_g4x.json` and `sdkconfig`/`Kconfig.projbuild` define the
   cluster's TWAI GPIO pinout and transceiver wiring — see `WIRING.md` and
-  `CAN-BUS-MASTER-DESIGN.md` in this repo for how it fits the 4-node topology.
+  `CAN-BUS-MASTER-DESIGN.md` in this repo for how it fits the 5-node topology.
 - Do not introduce a CAN ID, frame layout, or wiring change here that the cluster
   firmware doesn't already decode/expect — the cluster is not being modified as
   part of work in this repo.

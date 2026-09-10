@@ -12,11 +12,12 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 
 - **[center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4)** — the gauge cluster firmware. Its `CANBUS-ENCODE-DECODE-REFERENCE.html` (derived from `main/canbus.c`) is the **single source of truth** for all CAN IDs, byte layouts, and scales on this bus. Any change to CAN framing, IDs, or wiring in this repo must be checked against that repo for compatibility — see `CAN-CONFIG-STATUS.md`.
 
-## 4-Node CAN Bus (1 Mbit/s, BigEndian)
+## 5-Node CAN Bus (1 Mbit/s, BigEndian)
 
 | Node | ID Range | Role |
 |---|---|---|
 | Link G4X XtremeX ECU | 0x3E8–0x3F1 TX, 0x3EC/0x3ED RX | Engine management — bus master |
+| Link CAN-Lambda | 0x3B6 TX (0x3BE RX) | External wideband module — physically on the bus |
 | [center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4) | 0x3EC/0x3ED TX, all others RX | Gauge cluster — listens + sends driver selections |
 | ECUMaster CAN Switch Board V3 | 0x640–0x642 TX, 0x643 RX | Analog/digital inputs, low-side outputs |
 | Raspberry Pi 5 (RealDash) | passive listener (ch1) | Dashboard display — listen-only |
@@ -33,10 +34,10 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `CAN-CONFIG-STATUS.md` | Handoff/status note — snapshot of the reconciled CAN config, the source-of-truth HTML, and open items. |
 | `XTREMEX-IO-TABLE.html` | **Authoritative** Link G4X XtremeX I/O assignment table (ST185 5S-GTE, DBW) — channel plan, pin budget, harness-build tasks. Open in a browser. |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |
-| `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 4-node topology. |
+| `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 5-node topology. |
 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Master ID allocation table — all byte layouts, sections A–E. |
 | `CANBUS-LINK-G4X-CONFIG.md` | PCLink setup guide: module settings, stream import, User Stream wiring. |
-| `WIRING.md` | Physical wiring reference — cluster boards + 4-node CAN bus topology. |
+| `WIRING.md` | Physical wiring reference — cluster boards + 5-node CAN bus topology. |
 | `tune/engine_constants.yaml` | Machine-readable engine constants (bore, cams, trigger, injectors, turbo, fuel, targets). Engine calibration only — not an I/O source. |
 | `tune/tables/` | PCLink table seeds — VE (93 + E85), ignition base, injector dead time. Conservative placeholders, not dyno data. See `tune/README.md`. |
 | `FUEL-SYSTEM.md` | Fuel system reference — AN hose sizing and pump capacity notes. Not part of the CAN bus contract. |
