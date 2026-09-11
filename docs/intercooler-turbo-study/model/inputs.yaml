@@ -1,0 +1,157 @@
+# ============================================================================
+# Single source of truth for the ST185 5S-GTE turbo/intercooler model.
+#
+# Every chart, table, and prediction in the rebuilt research docs reads from
+# this file. It replaces the scattered, self-contradicting values that lived in
+# the old reports (six different peak-power figures, 25 vs 30 psi, 4 vs 3 in
+# core, FuryX vs XtremeX, etc.).
+#
+# Authoritative engine data mirrors tune/engine_constants.yaml (the repo's
+# canonical build spec). Where a value is estimated rather than measured, it is
+# labelled `_source: estimated` with the basis.
+# ============================================================================
+
+meta:
+  vehicle: "1991/1993 Toyota Celica GT-Four / All-Trac (ST185)"    # 91 and 93 MY are mechanically identical; the difference is semantic
+  drivetrain: AWD
+  build: "fully forged 5S-GTE hybrid (5S block + 3S-GTE head), DBW"
+  updated: "2026-09-09"
+  note: >
+    Rev ceiling modelled to the ECU rev limit (8000 rpm), not the 7500 rpm
+    ceiling the older Drive analysis assumed. The user wants the true limit of
+    the combination, so power is computed across the full usable band.
+
+engine:
+  displacement_cc: 2189          # bore 87.5 x stroke 91.0 (tune/engine_constants.yaml)
+  bore_mm: 87.5
+  stroke_mm: 91.0
+  cid: 133.58                    # 2189 cc / 16.3871 = 133.58 in^3
+  compression_ratio: 8.5
+  cams: "HKS 2202-RT063/064, 264 deg in/ex"
+  rev_limit_rpm: 8000
+  rev_limit_soft_first_start_rpm: 4000
+  redline_range_rpm: [7200, 8000]   # usable redline is a band, not a fixed number; taper/limit set in tune
+
+# Volumetric efficiency vs rpm (fraction). ESTIMATED, not dyno-measured.
+# Basis: 3S-GTE/5S-GTE head-flow studies in docs/5sgte-project-data/
+# (stock Gen-2 intake ~240-250 CFM @28"; ported hybrid head + HKS 264 cams +
+# twin-scroll long-tube header + dual-plenum intake), scaled against comparable
+# built 2.0-2.4 L four-cylinder dyno VE. Peaks ~5000 rpm, falls off up top as
+# turbine backpressure rises. CONFIRM on a load-bearing dyno with a comp-speed
+# sensor. High-rpm fall-off depends on the specific turbine housing A/R.
+ve_curve:
+  _source: estimated
+  rpm:  [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000]
+  ve:   [0.85, 0.88, 0.92, 0.96, 1.00, 1.03, 1.05, 1.04, 1.01, 0.97, 0.92, 0.87, 0.82]
+
+ambient:
+  baro_kpa: 101.3
+  baro_psi: 14.696
+  air_temp_c: 25
+  air_density_lb_ft3: 0.0765     # standard, sea-level 15 C reference used for corrected-flow math
+
+# Fuels the tune transitions between. "Ideal" boosted targets for a forged,
+# intercooled turbo engine: rich enough for knock/thermal safety at high load.
+fuels:
+  pump_93:
+    name: "93 octane pump gasoline"
+    stoich_afr: 14.7
+    wot_lambda_target: 0.80        # ~11.8:1 AFR at high load
+    hp_per_lbmin_crank: 10.0       # rule-of-thumb; gasoline
+    knock_limited: true
+  e85:
+    name: "E85 (flex)"
+    stoich_afr: 9.765
+    wot_lambda_target: 0.78        # ~7.6:1 AFR at high load
+    hp_per_lbmin_crank: 11.0       # E85 tolerates more timing + charge cooling
+    knock_limited: false           # effectively knock-tolerant at these boost levels
+  mix_50_50:
+    name: "50/50 93 + E85 (approx E42)"
+    stoich_afr: 12.23              # 0.5*14.7 + 0.5*9.765
+    wot_lambda_target: 0.79
+    hp_per_lbmin_crank: 10.5
+    knock_limited: true
+    _source: "blend of the two fuels above; ethanol fraction ~42%"
+
+# Water/meth 50/50, post-IC / pre-TB. Activation is fuel-specific (see power_limits.py).
+# Do not assign a Link DI or Aux in this file — ECU plan is a GP Output on a
+# free low-side when one exists (all Aux 1–10 are currently taken).
+water_meth:
+  mix: "50/50 water / methanol"
+  injector_location: "post-IC, pre-throttle"
+  t2_drop_c: 30                    # typical evaporative drop at high flow when spraying
+  hp_per_lbmin_bump:
+    pump_93: 0.40                  # timing + IAT on knock-limited 93
+    mix_50_50: 0.25
+    e85: 0.15                      # mostly IAT; little extra timing
+  activate:
+    pump_93:    {min_boost_psi: 22, min_rpm: 3500, min_tps_pct: 80, min_iat_c: 40}
+    mix_50_50:  {min_boost_psi: 25, min_rpm: 4000, min_tps_pct: 80, min_iat_c: 42}
+    e85:        {min_boost_psi: 27, min_rpm: 4500, min_tps_pct: 80, min_iat_c: 45}
+  ecu:
+    drive: "GP Output → relay coil (low-side Aux or switchboard output when one is free)"
+    do_not_assign_di: true
+    do_not_assign_aux_now: true    # Aux 1–10 are all committed in XTREMEX-IO-TABLE.html
+    optional_level_di: "use a free DI later for tank empty — do not take a live DI"
+  purpose: "cut charge temp; on 93 also buy timing. Not free airflow."
+  modeled: true
+
+# Drivetrain loss for crank<->wheel conversion. AWD ST185 All-Trac is lossy;
+# the user's rebuilt trans (stock internals), single-piece carbon driveshaft,
+# and factory-lightened/resurfaced flywheel reduce it vs a stock heavy driveline.
+driveline:
+  awd: true
+  loss_fraction_baseline: 0.20     # typical stock AWD All-Trac parasitic loss
+  loss_fraction_modeled: 0.17      # reduced for carbon 1-pc driveshaft + lightened flywheel + fresh trans
+  mods: ["rebuilt E150F stock internals", "1-piece carbon-fiber driveshaft", "factory lightened + resurfaced flywheel"]
+  _source: estimated
+
+# Boost scenarios swept in the reports.
+boost_scenarios_psi: [18, 22, 25, 27, 30]
+rpm_axis: [2000, 2250, 2500, 2750, 3000, 3250, 3500, 3750, 4000, 4250, 4500,
+           4750, 5000, 5250, 5500, 5750, 6000, 6250, 6500, 6750, 7000, 7250,
+           7500, 7750, 8000]
+
+# Candidate turbos (EFR-only per scope decision; all modellable in MatchBot with
+# official BorgWarner maps). Housing choice per the twin-scroll T4 manifold.
+turbos:
+  - id: EFR_7064
+    frame: B2
+    comp_inducer_mm: 52
+    comp_od_mm: 70
+    turbine_od_mm: 64
+    max_flow_lbmin: 56
+    hp_rating: [300, 550]
+    matchbot_compressor: "70S75"
+    housing_pick: "0.92 A/R T4 twin (C)"
+    part_no_C: "179389"
+  - id: EFR_7163
+    frame: B1
+    comp_inducer_mm: 57
+    comp_od_mm: 71
+    turbine_od_mm: 63
+    turbine_type: mixed-flow
+    max_flow_lbmin: 60
+    hp_rating: [300, 550]
+    matchbot_compressor: "71x80"     # MatchBot compressor id for EFR 7163
+    housing_pick: "0.80 A/R T4 twin (G)"
+    part_no_G: "11639880002"
+    repo_current_choice: true
+  - id: EFR_7670
+    frame: B2
+    comp_inducer_mm: 57.2
+    comp_od_mm: 76
+    turbine_od_mm: 70
+    max_flow_lbmin: 64
+    hp_rating: [375, 650]
+    matchbot_compressor: "76S75"
+    housing_pick: "0.92 A/R T4 twin (C)"
+    part_no_C: "179390"
+    prior_analysis_recommended: true
+
+# Provenance of the inputs above.
+sources:
+  engine: "tune/engine_constants.yaml (repo canonical build spec)"
+  ve_and_airflow_model: "Drive: 'BorgWarner EFR Turbo Selection for a Built 2.2L 5S-GTE at 7,500' + docs/5sgte-project-data head-flow studies"
+  turbo_specs: "BorgWarner official EFR dimensional-reference sheets + EFR Power Range chart (to be map-verified in Phase 2 via MatchBot)"
+  fsm_baseline: "Drive: 3S-GTE Engine Repair Manual Supplement 1991; 5S-FE Engine Mechanical service specs"

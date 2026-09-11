@@ -1,0 +1,3926 @@
+{
+  "matchbot_curve": [
+    {
+      "rpm": 3000,
+      "boost_psi": 15.0,
+      "cor_lbmin": 15.54,
+      "pr": 2.03,
+      "iat_c": 28.9,
+      "iat_c_wmi": 15.4,
+      "t2_c": 124.2,
+      "emp_psi": 8.9,
+      "dp_psi": 6.0,
+      "phi": 0.0202,
+      "wg_pct": 25.18,
+      "pump_crank_bhp_matchbot": 175,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "over_dry_ceiling": false,
+          "over_wmi_ceiling": false,
+          "crank_off": 155,
+          "whp_off": 129,
+          "crank_on": 162,
+          "whp_on": 134,
+          "crank_used": 155,
+          "whp_used": 129
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "over_dry_ceiling": false,
+          "over_wmi_ceiling": false,
+          "crank_off": 163,
+          "whp_off": 135,
+          "crank_on": 167,
+          "whp_on": 139,
+          "crank_used": 163,
+          "whp_used": 135
+        },
+        "e85": {
+          "wmi_gate": false,
+          "over_dry_ceiling": false,
+          "over_wmi_ceiling": false,
+          "crank_off": 171,
+          "whp_off": 142,
+          "crank_on": 173,
+          "whp_on": 144,
+          "crank_used": 171,
+          "whp_used": 142
+        }
+      }
+    },
+    {
+      "rpm": 4000,
+      "boost_psi": 25.0,
+      "cor_lbmin": 29.86,
+      "pr": 2.76,
+      "iat_c": 33.8,
+      "iat_c_wmi": 20.3,
+      "t2_c": 165.3,
+      "emp_psi": 17.0,
+      "dp_psi": 8.0,
+      "phi": 0.028,
+      "wg_pct": 27.33,
+      "pump_crank_bhp_matchbot": 326,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "over_dry_ceiling": true,
+          "over_wmi_ceiling": false,
+          "crank_off": 299,
+          "whp_off": 248,
+          "crank_on": 311,
+          "whp_on": 258,
+          "crank_used": 299,
+          "whp_used": 248
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "over_dry_ceiling": false,
+          "over_wmi_ceiling": false,
+          "crank_off": 314,
+          "whp_off": 260,
+          "crank_on": 321,
+          "whp_on": 266,
+          "crank_used": 314,
+          "whp_used": 260
+        },
+        "e85": {
+          "wmi_gate": false,
+          "over_dry_ceiling": false,
+          "over_wmi_ceiling": false,
+          "crank_off": 328,
+          "whp_off": 273,
+          "crank_on": 333,
+          "whp_on": 276,
+          "crank_used": 328,
+          "whp_used": 273
+        }
+      }
+    },
+    {
+      "rpm": 5000,
+      "boost_psi": 30.0,
+      "cor_lbmin": 43.84,
+      "pr": 3.18,
+      "iat_c": 39.4,
+      "iat_c_wmi": 25.9,
+      "t2_c": 179.3,
+      "emp_psi": 24.0,
+      "dp_psi": 6.0,
+      "phi": 0.0342,
+      "wg_pct": 25.51,
+      "pump_crank_bhp_matchbot": 454,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "over_dry_ceiling": true,
+          "over_wmi_ceiling": true,
+          "crank_off": 438,
+          "whp_off": 364,
+          "crank_on": 456,
+          "whp_on": 378,
+          "crank_used": 438,
+          "whp_used": 364
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "over_dry_ceiling": true,
+          "over_wmi_ceiling": false,
+          "crank_off": 460,
+          "whp_off": 382,
+          "crank_on": 471,
+          "whp_on": 391,
+          "crank_used": 460,
+          "whp_used": 382
+        },
+        "e85": {
+          "wmi_gate": false,
+          "over_dry_ceiling": false,
+          "over_wmi_ceiling": false,
+          "crank_off": 482,
+          "whp_off": 400,
+          "crank_on": 489,
+          "whp_on": 406,
+          "crank_used": 482,
+          "whp_used": 400
+        }
+      }
+    },
+    {
+      "rpm": 6000,
+      "boost_psi": 30.0,
+      "cor_lbmin": 50.49,
+      "pr": 3.22,
+      "iat_c": 42.3,
+      "iat_c_wmi": 28.8,
+      "t2_c": 177.3,
+      "emp_psi": 27.9,
+      "dp_psi": 2.0,
+      "phi": 0.0331,
+      "wg_pct": 30.43,
+      "pump_crank_bhp_matchbot": 500,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "over_dry_ceiling": true,
+          "over_wmi_ceiling": true,
+          "crank_off": 505,
+          "whp_off": 419,
+          "crank_on": 525,
+          "whp_on": 436,
+          "crank_used": 505,
+          "whp_used": 419
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "over_dry_ceiling": true,
+          "over_wmi_ceiling": false,
+          "crank_off": 530,
+          "whp_off": 440,
+          "crank_on": 543,
+          "whp_on": 450,
+          "crank_used": 543,
+          "whp_used": 450
+        },
+        "e85": {
+          "wmi_gate": false,
+          "over_dry_ceiling": false,
+          "over_wmi_ceiling": false,
+          "crank_off": 555,
+          "whp_off": 461,
+          "crank_on": 563,
+          "whp_on": 467,
+          "crank_used": 555,
+          "whp_used": 461
+        }
+      }
+    },
+    {
+      "rpm": 7000,
+      "boost_psi": 28.0,
+      "cor_lbmin": 50.77,
+      "pr": 3.08,
+      "iat_c": 45.6,
+      "iat_c_wmi": 32.1,
+      "t2_c": 178.8,
+      "emp_psi": 29.9,
+      "dp_psi": -2.0,
+      "phi": 0.0313,
+      "wg_pct": 31.59,
+      "pump_crank_bhp_matchbot": 450,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "over_dry_ceiling": true,
+          "over_wmi_ceiling": true,
+          "crank_off": 508,
+          "whp_off": 421,
+          "crank_on": 528,
+          "whp_on": 438,
+          "crank_used": 508,
+          "whp_used": 421
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "over_dry_ceiling": true,
+          "over_wmi_ceiling": false,
+          "crank_off": 533,
+          "whp_off": 442,
+          "crank_on": 546,
+          "whp_on": 453,
+          "crank_used": 546,
+          "whp_used": 453
+        },
+        "e85": {
+          "wmi_gate": true,
+          "over_dry_ceiling": false,
+          "over_wmi_ceiling": false,
+          "crank_off": 558,
+          "whp_off": 464,
+          "crank_on": 566,
+          "whp_on": 470,
+          "crank_used": 566,
+          "whp_used": 470
+        }
+      }
+    },
+    {
+      "rpm": 8000,
+      "boost_psi": 27.0,
+      "cor_lbmin": 55.13,
+      "pr": 3.04,
+      "iat_c": 48.9,
+      "iat_c_wmi": 35.4,
+      "t2_c": 190.6,
+      "emp_psi": 31.1,
+      "dp_psi": -4.0,
+      "phi": 0.0353,
+      "wg_pct": 26.84,
+      "pump_crank_bhp_matchbot": 455,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "over_dry_ceiling": true,
+          "over_wmi_ceiling": false,
+          "crank_off": 551,
+          "whp_off": 458,
+          "crank_on": 573,
+          "whp_on": 476,
+          "crank_used": 573,
+          "whp_used": 476
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "over_dry_ceiling": true,
+          "over_wmi_ceiling": false,
+          "crank_off": 579,
+          "whp_off": 480,
+          "crank_on": 593,
+          "whp_on": 492,
+          "crank_used": 593,
+          "whp_used": 492
+        },
+        "e85": {
+          "wmi_gate": true,
+          "over_dry_ceiling": false,
+          "over_wmi_ceiling": false,
+          "crank_off": 606,
+          "whp_off": 503,
+          "crank_on": 615,
+          "whp_on": 510,
+          "crank_used": 615,
+          "whp_used": 510
+        }
+      }
+    }
+  ],
+  "grid": [
+    {
+      "rpm": 2000,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 11.18,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 112,
+          "whp_off": 93,
+          "crank_on": 116,
+          "whp_on": 97
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 117,
+          "whp_off": 97,
+          "crank_on": 120,
+          "whp_on": 100
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 123,
+          "whp_off": 102,
+          "crank_on": 125,
+          "whp_on": 103
+        }
+      }
+    },
+    {
+      "rpm": 2000,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 12.55,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 126,
+          "whp_off": 104,
+          "crank_on": 131,
+          "whp_on": 108
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 132,
+          "whp_off": 109,
+          "crank_on": 135,
+          "whp_on": 112
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 138,
+          "whp_off": 115,
+          "crank_on": 140,
+          "whp_on": 116
+        }
+      }
+    },
+    {
+      "rpm": 2000,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 13.58,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 136,
+          "whp_off": 113,
+          "crank_on": 141,
+          "whp_on": 117
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 143,
+          "whp_off": 118,
+          "crank_on": 146,
+          "whp_on": 121
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 149,
+          "whp_off": 124,
+          "crank_on": 151,
+          "whp_on": 126
+        }
+      }
+    },
+    {
+      "rpm": 2000,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 14.26,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 143,
+          "whp_off": 118,
+          "crank_on": 148,
+          "whp_on": 123
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 150,
+          "whp_off": 124,
+          "crank_on": 153,
+          "whp_on": 127
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 157,
+          "whp_off": 130,
+          "crank_on": 159,
+          "whp_on": 132
+        }
+      }
+    },
+    {
+      "rpm": 2000,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 15.29,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 153,
+          "whp_off": 127,
+          "crank_on": 159,
+          "whp_on": 132
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 161,
+          "whp_off": 133,
+          "crank_on": 164,
+          "whp_on": 136
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 168,
+          "whp_off": 140,
+          "crank_on": 170,
+          "whp_on": 142
+        }
+      }
+    },
+    {
+      "rpm": 2250,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 12.8,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 128,
+          "whp_off": 106,
+          "crank_on": 133,
+          "whp_on": 110
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 134,
+          "whp_off": 112,
+          "crank_on": 138,
+          "whp_on": 114
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 141,
+          "whp_off": 117,
+          "crank_on": 143,
+          "whp_on": 118
+        }
+      }
+    },
+    {
+      "rpm": 2250,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 14.37,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 144,
+          "whp_off": 119,
+          "crank_on": 149,
+          "whp_on": 124
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 151,
+          "whp_off": 125,
+          "crank_on": 154,
+          "whp_on": 128
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 158,
+          "whp_off": 131,
+          "crank_on": 160,
+          "whp_on": 133
+        }
+      }
+    },
+    {
+      "rpm": 2250,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 15.54,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 155,
+          "whp_off": 129,
+          "crank_on": 162,
+          "whp_on": 134
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 163,
+          "whp_off": 135,
+          "crank_on": 167,
+          "whp_on": 139
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 171,
+          "whp_off": 142,
+          "crank_on": 173,
+          "whp_on": 144
+        }
+      }
+    },
+    {
+      "rpm": 2250,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 16.33,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 163,
+          "whp_off": 136,
+          "crank_on": 170,
+          "whp_on": 141
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 171,
+          "whp_off": 142,
+          "crank_on": 176,
+          "whp_on": 146
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 180,
+          "whp_off": 149,
+          "crank_on": 182,
+          "whp_on": 151
+        }
+      }
+    },
+    {
+      "rpm": 2250,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 17.5,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 175,
+          "whp_off": 145,
+          "crank_on": 182,
+          "whp_on": 151
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 184,
+          "whp_off": 153,
+          "crank_on": 188,
+          "whp_on": 156
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 192,
+          "whp_off": 160,
+          "crank_on": 195,
+          "whp_on": 162
+        }
+      }
+    },
+    {
+      "rpm": 2500,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 14.47,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 145,
+          "whp_off": 120,
+          "crank_on": 150,
+          "whp_on": 125
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 152,
+          "whp_off": 126,
+          "crank_on": 156,
+          "whp_on": 129
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 159,
+          "whp_off": 132,
+          "crank_on": 161,
+          "whp_on": 134
+        }
+      }
+    },
+    {
+      "rpm": 2500,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 16.24,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 162,
+          "whp_off": 135,
+          "crank_on": 169,
+          "whp_on": 140
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 171,
+          "whp_off": 142,
+          "crank_on": 175,
+          "whp_on": 145
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 179,
+          "whp_off": 148,
+          "crank_on": 181,
+          "whp_on": 150
+        }
+      }
+    },
+    {
+      "rpm": 2500,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 17.57,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 176,
+          "whp_off": 146,
+          "crank_on": 183,
+          "whp_on": 152
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 184,
+          "whp_off": 153,
+          "crank_on": 189,
+          "whp_on": 157
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 193,
+          "whp_off": 160,
+          "crank_on": 196,
+          "whp_on": 163
+        }
+      }
+    },
+    {
+      "rpm": 2500,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 18.46,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 185,
+          "whp_off": 153,
+          "crank_on": 192,
+          "whp_on": 159
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 194,
+          "whp_off": 161,
+          "crank_on": 198,
+          "whp_on": 165
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 203,
+          "whp_off": 169,
+          "crank_on": 206,
+          "whp_on": 171
+        }
+      }
+    },
+    {
+      "rpm": 2500,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 19.78,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 198,
+          "whp_off": 164,
+          "crank_on": 206,
+          "whp_on": 171
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 208,
+          "whp_off": 172,
+          "crank_on": 213,
+          "whp_on": 176
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 218,
+          "whp_off": 181,
+          "crank_on": 221,
+          "whp_on": 183
+        }
+      }
+    },
+    {
+      "rpm": 2750,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 16.28,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 163,
+          "whp_off": 135,
+          "crank_on": 169,
+          "whp_on": 141
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 171,
+          "whp_off": 142,
+          "crank_on": 175,
+          "whp_on": 145
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 179,
+          "whp_off": 149,
+          "crank_on": 182,
+          "whp_on": 151
+        }
+      }
+    },
+    {
+      "rpm": 2750,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 18.27,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 183,
+          "whp_off": 152,
+          "crank_on": 190,
+          "whp_on": 158
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 192,
+          "whp_off": 159,
+          "crank_on": 196,
+          "whp_on": 163
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 201,
+          "whp_off": 167,
+          "crank_on": 204,
+          "whp_on": 169
+        }
+      }
+    },
+    {
+      "rpm": 2750,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 19.77,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 198,
+          "whp_off": 164,
+          "crank_on": 206,
+          "whp_on": 171
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 208,
+          "whp_off": 172,
+          "crank_on": 213,
+          "whp_on": 176
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 217,
+          "whp_off": 181,
+          "crank_on": 220,
+          "whp_on": 183
+        }
+      }
+    },
+    {
+      "rpm": 2750,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 20.76,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 208,
+          "whp_off": 172,
+          "crank_on": 216,
+          "whp_on": 179
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 218,
+          "whp_off": 181,
+          "crank_on": 223,
+          "whp_on": 185
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 228,
+          "whp_off": 190,
+          "crank_on": 231,
+          "whp_on": 192
+        }
+      }
+    },
+    {
+      "rpm": 2750,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 22.26,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 223,
+          "whp_off": 185,
+          "crank_on": 232,
+          "whp_on": 192
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 234,
+          "whp_off": 194,
+          "crank_on": 239,
+          "whp_on": 199
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 245,
+          "whp_off": 203,
+          "crank_on": 248,
+          "whp_on": 206
+        }
+      }
+    },
+    {
+      "rpm": 3000,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 18.16,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 182,
+          "whp_off": 151,
+          "crank_on": 189,
+          "whp_on": 157
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 191,
+          "whp_off": 158,
+          "crank_on": 195,
+          "whp_on": 162
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 200,
+          "whp_off": 166,
+          "crank_on": 202,
+          "whp_on": 168
+        }
+      }
+    },
+    {
+      "rpm": 3000,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 20.38,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 204,
+          "whp_off": 169,
+          "crank_on": 212,
+          "whp_on": 176
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 214,
+          "whp_off": 178,
+          "crank_on": 219,
+          "whp_on": 182
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 224,
+          "whp_off": 186,
+          "crank_on": 227,
+          "whp_on": 189
+        }
+      }
+    },
+    {
+      "rpm": 3000,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 22.04,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 220,
+          "whp_off": 183,
+          "crank_on": 229,
+          "whp_on": 190
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 231,
+          "whp_off": 192,
+          "crank_on": 237,
+          "whp_on": 197
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 242,
+          "whp_off": 201,
+          "crank_on": 246,
+          "whp_on": 204
+        }
+      }
+    },
+    {
+      "rpm": 3000,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 23.15,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 232,
+          "whp_off": 192,
+          "crank_on": 241,
+          "whp_on": 200
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 243,
+          "whp_off": 202,
+          "crank_on": 249,
+          "whp_on": 207
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 255,
+          "whp_off": 211,
+          "crank_on": 258,
+          "whp_on": 214
+        }
+      }
+    },
+    {
+      "rpm": 3000,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 24.82,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 248,
+          "whp_off": 206,
+          "crank_on": 258,
+          "whp_on": 214
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 261,
+          "whp_off": 216,
+          "crank_on": 267,
+          "whp_on": 221
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 273,
+          "whp_off": 227,
+          "crank_on": 277,
+          "whp_on": 230
+        }
+      }
+    },
+    {
+      "rpm": 3250,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 20.1,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 201,
+          "whp_off": 167,
+          "crank_on": 209,
+          "whp_on": 174
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 211,
+          "whp_off": 175,
+          "crank_on": 216,
+          "whp_on": 179
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 221,
+          "whp_off": 184,
+          "crank_on": 224,
+          "whp_on": 186
+        }
+      }
+    },
+    {
+      "rpm": 3250,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 22.56,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 226,
+          "whp_off": 187,
+          "crank_on": 235,
+          "whp_on": 195
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 237,
+          "whp_off": 197,
+          "crank_on": 243,
+          "whp_on": 201
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 248,
+          "whp_off": 206,
+          "crank_on": 252,
+          "whp_on": 209
+        }
+      }
+    },
+    {
+      "rpm": 3250,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 24.4,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 244,
+          "whp_off": 203,
+          "crank_on": 254,
+          "whp_on": 211
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 256,
+          "whp_off": 213,
+          "crank_on": 262,
+          "whp_on": 218
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 268,
+          "whp_off": 223,
+          "crank_on": 272,
+          "whp_on": 226
+        }
+      }
+    },
+    {
+      "rpm": 3250,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 25.63,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 256,
+          "whp_off": 213,
+          "crank_on": 267,
+          "whp_on": 221
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 269,
+          "whp_off": 223,
+          "crank_on": 276,
+          "whp_on": 229
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 282,
+          "whp_off": 234,
+          "crank_on": 286,
+          "whp_on": 237
+        }
+      }
+    },
+    {
+      "rpm": 3250,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 27.47,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 275,
+          "whp_off": 228,
+          "crank_on": 286,
+          "whp_on": 237
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 288,
+          "whp_off": 239,
+          "crank_on": 295,
+          "whp_on": 245
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 302,
+          "whp_off": 251,
+          "crank_on": 306,
+          "whp_on": 254
+        }
+      }
+    },
+    {
+      "rpm": 3500,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 22.1,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 221,
+          "whp_off": 183,
+          "crank_on": 230,
+          "whp_on": 191
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 232,
+          "whp_off": 193,
+          "crank_on": 238,
+          "whp_on": 197
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 243,
+          "whp_off": 202,
+          "crank_on": 246,
+          "whp_on": 205
+        }
+      }
+    },
+    {
+      "rpm": 3500,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 24.81,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 248,
+          "whp_off": 206,
+          "crank_on": 258,
+          "whp_on": 214
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 261,
+          "whp_off": 216,
+          "crank_on": 267,
+          "whp_on": 221
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 273,
+          "whp_off": 227,
+          "crank_on": 277,
+          "whp_on": 230
+        }
+      }
+    },
+    {
+      "rpm": 3500,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 26.84,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 268,
+          "whp_off": 223,
+          "crank_on": 279,
+          "whp_on": 232
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 282,
+          "whp_off": 234,
+          "crank_on": 289,
+          "whp_on": 239
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 295,
+          "whp_off": 245,
+          "crank_on": 299,
+          "whp_on": 248
+        }
+      }
+    },
+    {
+      "rpm": 3500,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 28.19,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 282,
+          "whp_off": 234,
+          "crank_on": 293,
+          "whp_on": 243
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 296,
+          "whp_off": 246,
+          "crank_on": 303,
+          "whp_on": 252
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 310,
+          "whp_off": 257,
+          "crank_on": 314,
+          "whp_on": 261
+        }
+      }
+    },
+    {
+      "rpm": 3500,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 30.22,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 302,
+          "whp_off": 251,
+          "crank_on": 314,
+          "whp_on": 261
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 317,
+          "whp_off": 263,
+          "crank_on": 325,
+          "whp_on": 270
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 332,
+          "whp_off": 276,
+          "crank_on": 337,
+          "whp_on": 280
+        }
+      }
+    },
+    {
+      "rpm": 3750,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 24.18,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 242,
+          "whp_off": 201,
+          "crank_on": 251,
+          "whp_on": 209
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 254,
+          "whp_off": 211,
+          "crank_on": 260,
+          "whp_on": 216
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 266,
+          "whp_off": 221,
+          "crank_on": 270,
+          "whp_on": 224
+        }
+      }
+    },
+    {
+      "rpm": 3750,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 27.13,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 271,
+          "whp_off": 225,
+          "crank_on": 282,
+          "whp_on": 234
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 285,
+          "whp_off": 236,
+          "crank_on": 292,
+          "whp_on": 242
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 298,
+          "whp_off": 248,
+          "crank_on": 302,
+          "whp_on": 251
+        }
+      }
+    },
+    {
+      "rpm": 3750,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 29.35,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 294,
+          "whp_off": 244,
+          "crank_on": 305,
+          "whp_on": 253
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 308,
+          "whp_off": 256,
+          "crank_on": 316,
+          "whp_on": 262
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 323,
+          "whp_off": 268,
+          "crank_on": 327,
+          "whp_on": 272
+        }
+      }
+    },
+    {
+      "rpm": 3750,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 30.83,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 308,
+          "whp_off": 256,
+          "crank_on": 321,
+          "whp_on": 266
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 324,
+          "whp_off": 269,
+          "crank_on": 331,
+          "whp_on": 275
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 339,
+          "whp_off": 281,
+          "crank_on": 344,
+          "whp_on": 285
+        }
+      }
+    },
+    {
+      "rpm": 3750,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 33.05,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 330,
+          "whp_off": 274,
+          "crank_on": 344,
+          "whp_on": 285
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 347,
+          "whp_off": 288,
+          "crank_on": 355,
+          "whp_on": 295
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 364,
+          "whp_off": 302,
+          "crank_on": 369,
+          "whp_on": 306
+        }
+      }
+    },
+    {
+      "rpm": 4000,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 26.31,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 263,
+          "whp_off": 218,
+          "crank_on": 274,
+          "whp_on": 227
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 276,
+          "whp_off": 229,
+          "crank_on": 283,
+          "whp_on": 235
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 289,
+          "whp_off": 240,
+          "crank_on": 293,
+          "whp_on": 243
+        }
+      }
+    },
+    {
+      "rpm": 4000,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 29.53,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 295,
+          "whp_off": 245,
+          "crank_on": 307,
+          "whp_on": 255
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 310,
+          "whp_off": 257,
+          "crank_on": 317,
+          "whp_on": 263
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 325,
+          "whp_off": 270,
+          "crank_on": 329,
+          "whp_on": 273
+        }
+      }
+    },
+    {
+      "rpm": 4000,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 31.95,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 320,
+          "whp_off": 265,
+          "crank_on": 332,
+          "whp_on": 276
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 335,
+          "whp_off": 278,
+          "crank_on": 343,
+          "whp_on": 285
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 351,
+          "whp_off": 292,
+          "crank_on": 356,
+          "whp_on": 296
+        }
+      }
+    },
+    {
+      "rpm": 4000,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 33.56,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 336,
+          "whp_off": 279,
+          "crank_on": 349,
+          "whp_on": 290
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 352,
+          "whp_off": 292,
+          "crank_on": 361,
+          "whp_on": 299
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 369,
+          "whp_off": 306,
+          "crank_on": 374,
+          "whp_on": 311
+        }
+      }
+    },
+    {
+      "rpm": 4000,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 35.97,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 360,
+          "whp_off": 299,
+          "crank_on": 374,
+          "whp_on": 310
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 378,
+          "whp_off": 313,
+          "crank_on": 387,
+          "whp_on": 321
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 396,
+          "whp_off": 328,
+          "crank_on": 401,
+          "whp_on": 333
+        }
+      }
+    },
+    {
+      "rpm": 4250,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 28.38,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 284,
+          "whp_off": 236,
+          "crank_on": 295,
+          "whp_on": 245
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 298,
+          "whp_off": 247,
+          "crank_on": 305,
+          "whp_on": 253
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 312,
+          "whp_off": 259,
+          "crank_on": 316,
+          "whp_on": 263
+        }
+      }
+    },
+    {
+      "rpm": 4250,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 31.85,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 318,
+          "whp_off": 264,
+          "crank_on": 331,
+          "whp_on": 275
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 334,
+          "whp_off": 278,
+          "crank_on": 342,
+          "whp_on": 284
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 350,
+          "whp_off": 291,
+          "crank_on": 355,
+          "whp_on": 295
+        }
+      }
+    },
+    {
+      "rpm": 4250,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 34.45,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 344,
+          "whp_off": 286,
+          "crank_on": 358,
+          "whp_on": 297
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 362,
+          "whp_off": 300,
+          "crank_on": 370,
+          "whp_on": 307
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 379,
+          "whp_off": 315,
+          "crank_on": 384,
+          "whp_on": 319
+        }
+      }
+    },
+    {
+      "rpm": 4250,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 36.19,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 362,
+          "whp_off": 300,
+          "crank_on": 376,
+          "whp_on": 312
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 380,
+          "whp_off": 315,
+          "crank_on": 389,
+          "whp_on": 323
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 398,
+          "whp_off": 330,
+          "crank_on": 404,
+          "whp_on": 335
+        }
+      }
+    },
+    {
+      "rpm": 4250,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 38.79,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 388,
+          "whp_off": 322,
+          "crank_on": 403,
+          "whp_on": 335
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 407,
+          "whp_off": 338,
+          "crank_on": 417,
+          "whp_on": 346
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 427,
+          "whp_off": 354,
+          "crank_on": 433,
+          "whp_on": 359
+        }
+      }
+    },
+    {
+      "rpm": 4500,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 30.49,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 305,
+          "whp_off": 253,
+          "crank_on": 317,
+          "whp_on": 263
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 320,
+          "whp_off": 266,
+          "crank_on": 328,
+          "whp_on": 272
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 335,
+          "whp_off": 278,
+          "crank_on": 340,
+          "whp_on": 282
+        }
+      }
+    },
+    {
+      "rpm": 4500,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 34.22,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 342,
+          "whp_off": 284,
+          "crank_on": 356,
+          "whp_on": 295
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 359,
+          "whp_off": 298,
+          "crank_on": 368,
+          "whp_on": 305
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 376,
+          "whp_off": 312,
+          "crank_on": 382,
+          "whp_on": 317
+        }
+      }
+    },
+    {
+      "rpm": 4500,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 37.02,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 370,
+          "whp_off": 307,
+          "crank_on": 385,
+          "whp_on": 320
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 389,
+          "whp_off": 323,
+          "crank_on": 398,
+          "whp_on": 330
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 407,
+          "whp_off": 338,
+          "crank_on": 413,
+          "whp_on": 343
+        }
+      }
+    },
+    {
+      "rpm": 4500,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 38.88,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 389,
+          "whp_off": 323,
+          "crank_on": 404,
+          "whp_on": 336
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 408,
+          "whp_off": 339,
+          "crank_on": 418,
+          "whp_on": 347
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 428,
+          "whp_off": 355,
+          "crank_on": 434,
+          "whp_on": 360
+        }
+      }
+    },
+    {
+      "rpm": 4500,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 41.68,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 417,
+          "whp_off": 346,
+          "crank_on": 433,
+          "whp_on": 360
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 438,
+          "whp_off": 363,
+          "crank_on": 448,
+          "whp_on": 372
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 458,
+          "whp_off": 381,
+          "crank_on": 465,
+          "whp_on": 386
+        }
+      }
+    },
+    {
+      "rpm": 4750,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 32.5,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 325,
+          "whp_off": 270,
+          "crank_on": 338,
+          "whp_on": 281
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 341,
+          "whp_off": 283,
+          "crank_on": 349,
+          "whp_on": 290
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 358,
+          "whp_off": 297,
+          "crank_on": 362,
+          "whp_on": 301
+        }
+      }
+    },
+    {
+      "rpm": 4750,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 36.47,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 365,
+          "whp_off": 303,
+          "crank_on": 379,
+          "whp_on": 315
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 383,
+          "whp_off": 318,
+          "crank_on": 392,
+          "whp_on": 325
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 401,
+          "whp_off": 333,
+          "crank_on": 407,
+          "whp_on": 338
+        }
+      }
+    },
+    {
+      "rpm": 4750,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 39.46,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 395,
+          "whp_off": 328,
+          "crank_on": 410,
+          "whp_on": 341
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 414,
+          "whp_off": 344,
+          "crank_on": 424,
+          "whp_on": 352
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 434,
+          "whp_off": 360,
+          "crank_on": 440,
+          "whp_on": 365
+        }
+      }
+    },
+    {
+      "rpm": 4750,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 41.44,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 414,
+          "whp_off": 344,
+          "crank_on": 431,
+          "whp_on": 358
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 435,
+          "whp_off": 361,
+          "crank_on": 445,
+          "whp_on": 370
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 456,
+          "whp_off": 378,
+          "crank_on": 462,
+          "whp_on": 384
+        }
+      }
+    },
+    {
+      "rpm": 4750,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 44.42,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 444,
+          "whp_off": 369,
+          "crank_on": 462,
+          "whp_on": 383
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 466,
+          "whp_off": 387,
+          "crank_on": 478,
+          "whp_on": 396
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 489,
+          "whp_off": 406,
+          "crank_on": 495,
+          "whp_on": 411
+        }
+      }
+    },
+    {
+      "rpm": 5000,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 34.54,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 345,
+          "whp_off": 287,
+          "crank_on": 359,
+          "whp_on": 298
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 363,
+          "whp_off": 301,
+          "crank_on": 371,
+          "whp_on": 308
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 380,
+          "whp_off": 315,
+          "crank_on": 385,
+          "whp_on": 320
+        }
+      }
+    },
+    {
+      "rpm": 5000,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 38.76,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 388,
+          "whp_off": 322,
+          "crank_on": 403,
+          "whp_on": 335
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 407,
+          "whp_off": 338,
+          "crank_on": 417,
+          "whp_on": 346
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 426,
+          "whp_off": 354,
+          "crank_on": 432,
+          "whp_on": 359
+        }
+      }
+    },
+    {
+      "rpm": 5000,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 41.93,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 419,
+          "whp_off": 348,
+          "crank_on": 436,
+          "whp_on": 362
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 440,
+          "whp_off": 365,
+          "crank_on": 451,
+          "whp_on": 374
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 461,
+          "whp_off": 383,
+          "crank_on": 468,
+          "whp_on": 388
+        }
+      }
+    },
+    {
+      "rpm": 5000,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 44.04,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 440,
+          "whp_off": 366,
+          "crank_on": 458,
+          "whp_on": 380
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 462,
+          "whp_off": 384,
+          "crank_on": 473,
+          "whp_on": 393
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 484,
+          "whp_off": 402,
+          "crank_on": 491,
+          "whp_on": 408
+        }
+      }
+    },
+    {
+      "rpm": 5000,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 47.21,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 472,
+          "whp_off": 392,
+          "crank_on": 491,
+          "whp_on": 408
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 496,
+          "whp_off": 411,
+          "crank_on": 508,
+          "whp_on": 421
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 519,
+          "whp_off": 431,
+          "crank_on": 526,
+          "whp_on": 437
+        }
+      }
+    },
+    {
+      "rpm": 5250,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 36.09,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 361,
+          "whp_off": 300,
+          "crank_on": 375,
+          "whp_on": 312
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 379,
+          "whp_off": 315,
+          "crank_on": 388,
+          "whp_on": 322
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 397,
+          "whp_off": 330,
+          "crank_on": 402,
+          "whp_on": 334
+        }
+      }
+    },
+    {
+      "rpm": 5250,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 40.51,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 405,
+          "whp_off": 336,
+          "crank_on": 421,
+          "whp_on": 350
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 425,
+          "whp_off": 353,
+          "crank_on": 435,
+          "whp_on": 361
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 446,
+          "whp_off": 370,
+          "crank_on": 452,
+          "whp_on": 375
+        }
+      }
+    },
+    {
+      "rpm": 5250,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 43.82,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 438,
+          "whp_off": 364,
+          "crank_on": 456,
+          "whp_on": 378
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 460,
+          "whp_off": 382,
+          "crank_on": 471,
+          "whp_on": 391
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 482,
+          "whp_off": 400,
+          "crank_on": 489,
+          "whp_on": 406
+        }
+      }
+    },
+    {
+      "rpm": 5250,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 46.03,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 460,
+          "whp_off": 382,
+          "crank_on": 479,
+          "whp_on": 397
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 483,
+          "whp_off": 401,
+          "crank_on": 495,
+          "whp_on": 411
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 506,
+          "whp_off": 420,
+          "crank_on": 513,
+          "whp_on": 426
+        }
+      }
+    },
+    {
+      "rpm": 5250,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 49.34,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 493,
+          "whp_off": 410,
+          "crank_on": 513,
+          "whp_on": 426
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 518,
+          "whp_off": 430,
+          "crank_on": 530,
+          "whp_on": 440
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 543,
+          "whp_off": 450,
+          "crank_on": 550,
+          "whp_on": 457
+        }
+      }
+    },
+    {
+      "rpm": 5500,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 37.63,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 376,
+          "whp_off": 312,
+          "crank_on": 391,
+          "whp_on": 325
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 395,
+          "whp_off": 328,
+          "crank_on": 405,
+          "whp_on": 336
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 414,
+          "whp_off": 344,
+          "crank_on": 420,
+          "whp_on": 348
+        }
+      }
+    },
+    {
+      "rpm": 5500,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 42.23,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 422,
+          "whp_off": 351,
+          "crank_on": 439,
+          "whp_on": 365
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 443,
+          "whp_off": 368,
+          "crank_on": 454,
+          "whp_on": 377
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 465,
+          "whp_off": 386,
+          "crank_on": 471,
+          "whp_on": 391
+        }
+      }
+    },
+    {
+      "rpm": 5500,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 45.68,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 457,
+          "whp_off": 379,
+          "crank_on": 475,
+          "whp_on": 394
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 480,
+          "whp_off": 398,
+          "crank_on": 491,
+          "whp_on": 408
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 502,
+          "whp_off": 417,
+          "crank_on": 509,
+          "whp_on": 423
+        }
+      }
+    },
+    {
+      "rpm": 5500,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 47.99,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 480,
+          "whp_off": 398,
+          "crank_on": 499,
+          "whp_on": 414
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 504,
+          "whp_off": 418,
+          "crank_on": 516,
+          "whp_on": 428
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 528,
+          "whp_off": 438,
+          "crank_on": 535,
+          "whp_on": 444
+        }
+      }
+    },
+    {
+      "rpm": 5500,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 51.44,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 514,
+          "whp_off": 427,
+          "crank_on": 535,
+          "whp_on": 444
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 540,
+          "whp_off": 448,
+          "crank_on": 553,
+          "whp_on": 459
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 566,
+          "whp_off": 470,
+          "crank_on": 574,
+          "whp_on": 476
+        }
+      }
+    },
+    {
+      "rpm": 5750,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 38.77,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 388,
+          "whp_off": 322,
+          "crank_on": 403,
+          "whp_on": 335
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 407,
+          "whp_off": 338,
+          "crank_on": 417,
+          "whp_on": 346
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 426,
+          "whp_off": 354,
+          "crank_on": 432,
+          "whp_on": 359
+        }
+      }
+    },
+    {
+      "rpm": 5750,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 43.52,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 435,
+          "whp_off": 361,
+          "crank_on": 453,
+          "whp_on": 376
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 457,
+          "whp_off": 379,
+          "crank_on": 468,
+          "whp_on": 388
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 479,
+          "whp_off": 397,
+          "crank_on": 485,
+          "whp_on": 403
+        }
+      }
+    },
+    {
+      "rpm": 5750,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 47.07,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 471,
+          "whp_off": 391,
+          "crank_on": 490,
+          "whp_on": 406
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 494,
+          "whp_off": 410,
+          "crank_on": 506,
+          "whp_on": 420
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 518,
+          "whp_off": 430,
+          "crank_on": 525,
+          "whp_on": 436
+        }
+      }
+    },
+    {
+      "rpm": 5750,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 49.44,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 494,
+          "whp_off": 410,
+          "crank_on": 514,
+          "whp_on": 427
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 519,
+          "whp_off": 431,
+          "crank_on": 531,
+          "whp_on": 441
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 544,
+          "whp_off": 451,
+          "crank_on": 551,
+          "whp_on": 458
+        }
+      }
+    },
+    {
+      "rpm": 5750,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 53.0,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 530,
+          "whp_off": 440,
+          "crank_on": 551,
+          "whp_on": 457
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 556,
+          "whp_off": 462,
+          "crank_on": 570,
+          "whp_on": 473
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 583,
+          "whp_off": 484,
+          "crank_on": 591,
+          "whp_on": 490
+        }
+      }
+    },
+    {
+      "rpm": 6000,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 39.87,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 399,
+          "whp_off": 331,
+          "crank_on": 415,
+          "whp_on": 344
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 419,
+          "whp_off": 347,
+          "crank_on": 429,
+          "whp_on": 356
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 439,
+          "whp_off": 364,
+          "crank_on": 445,
+          "whp_on": 369
+        }
+      }
+    },
+    {
+      "rpm": 6000,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 44.74,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 447,
+          "whp_off": 371,
+          "crank_on": 465,
+          "whp_on": 386
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 470,
+          "whp_off": 390,
+          "crank_on": 481,
+          "whp_on": 399
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 492,
+          "whp_off": 408,
+          "crank_on": 499,
+          "whp_on": 414
+        }
+      }
+    },
+    {
+      "rpm": 6000,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 48.4,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 484,
+          "whp_off": 402,
+          "crank_on": 503,
+          "whp_on": 418
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 508,
+          "whp_off": 422,
+          "crank_on": 520,
+          "whp_on": 432
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 532,
+          "whp_off": 442,
+          "crank_on": 540,
+          "whp_on": 448
+        }
+      }
+    },
+    {
+      "rpm": 6000,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 50.84,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 508,
+          "whp_off": 422,
+          "crank_on": 529,
+          "whp_on": 439
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 534,
+          "whp_off": 443,
+          "crank_on": 547,
+          "whp_on": 454
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 559,
+          "whp_off": 464,
+          "crank_on": 567,
+          "whp_on": 470
+        }
+      }
+    },
+    {
+      "rpm": 6000,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 54.5,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 545,
+          "whp_off": 452,
+          "crank_on": 567,
+          "whp_on": 470
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 572,
+          "whp_off": 475,
+          "crank_on": 586,
+          "whp_on": 486
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 600,
+          "whp_off": 498,
+          "crank_on": 608,
+          "whp_on": 504
+        }
+      }
+    },
+    {
+      "rpm": 6250,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 40.7,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 407,
+          "whp_off": 338,
+          "crank_on": 423,
+          "whp_on": 351
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 427,
+          "whp_off": 355,
+          "crank_on": 438,
+          "whp_on": 363
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 448,
+          "whp_off": 372,
+          "crank_on": 454,
+          "whp_on": 377
+        }
+      }
+    },
+    {
+      "rpm": 6250,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 45.68,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 457,
+          "whp_off": 379,
+          "crank_on": 475,
+          "whp_on": 394
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 480,
+          "whp_off": 398,
+          "crank_on": 491,
+          "whp_on": 408
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 502,
+          "whp_off": 417,
+          "crank_on": 509,
+          "whp_on": 423
+        }
+      }
+    },
+    {
+      "rpm": 6250,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 49.42,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 494,
+          "whp_off": 410,
+          "crank_on": 514,
+          "whp_on": 427
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 519,
+          "whp_off": 431,
+          "crank_on": 531,
+          "whp_on": 441
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 544,
+          "whp_off": 451,
+          "crank_on": 551,
+          "whp_on": 457
+        }
+      }
+    },
+    {
+      "rpm": 6250,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 51.91,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 519,
+          "whp_off": 431,
+          "crank_on": 540,
+          "whp_on": 448
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 545,
+          "whp_off": 452,
+          "crank_on": 558,
+          "whp_on": 463
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 571,
+          "whp_off": 474,
+          "crank_on": 579,
+          "whp_on": 480
+        }
+      }
+    },
+    {
+      "rpm": 6250,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 55.64,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 556,
+          "whp_off": 462,
+          "crank_on": 579,
+          "whp_on": 480
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 584,
+          "whp_off": 485,
+          "crank_on": 598,
+          "whp_on": 496
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 612,
+          "whp_off": 508,
+          "crank_on": 620,
+          "whp_on": 515
+        }
+      }
+    },
+    {
+      "rpm": 6500,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 41.48,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 415,
+          "whp_off": 344,
+          "crank_on": 431,
+          "whp_on": 358
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 436,
+          "whp_off": 361,
+          "crank_on": 446,
+          "whp_on": 370
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 456,
+          "whp_off": 379,
+          "crank_on": 463,
+          "whp_on": 384
+        }
+      }
+    },
+    {
+      "rpm": 6500,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 46.55,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 466,
+          "whp_off": 386,
+          "crank_on": 484,
+          "whp_on": 402
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 489,
+          "whp_off": 406,
+          "crank_on": 500,
+          "whp_on": 415
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 512,
+          "whp_off": 425,
+          "crank_on": 519,
+          "whp_on": 431
+        }
+      }
+    },
+    {
+      "rpm": 6500,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 50.36,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 504,
+          "whp_off": 418,
+          "crank_on": 524,
+          "whp_on": 435
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 529,
+          "whp_off": 439,
+          "crank_on": 541,
+          "whp_on": 449
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 554,
+          "whp_off": 460,
+          "crank_on": 562,
+          "whp_on": 466
+        }
+      }
+    },
+    {
+      "rpm": 6500,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 52.89,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 529,
+          "whp_off": 439,
+          "crank_on": 550,
+          "whp_on": 457
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 555,
+          "whp_off": 461,
+          "crank_on": 569,
+          "whp_on": 472
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 582,
+          "whp_off": 483,
+          "crank_on": 590,
+          "whp_on": 489
+        }
+      }
+    },
+    {
+      "rpm": 6500,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 56.7,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 567,
+          "whp_off": 471,
+          "crank_on": 590,
+          "whp_on": 489
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 595,
+          "whp_off": 494,
+          "crank_on": 610,
+          "whp_on": 506
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 624,
+          "whp_off": 518,
+          "crank_on": 632,
+          "whp_on": 525
+        }
+      }
+    },
+    {
+      "rpm": 6750,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 41.96,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 420,
+          "whp_off": 348,
+          "crank_on": 436,
+          "whp_on": 362
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 441,
+          "whp_off": 366,
+          "crank_on": 451,
+          "whp_on": 374
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 462,
+          "whp_off": 383,
+          "crank_on": 468,
+          "whp_on": 388
+        }
+      }
+    },
+    {
+      "rpm": 6750,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 47.1,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 471,
+          "whp_off": 391,
+          "crank_on": 490,
+          "whp_on": 407
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 495,
+          "whp_off": 410,
+          "crank_on": 506,
+          "whp_on": 420
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 518,
+          "whp_off": 430,
+          "crank_on": 525,
+          "whp_on": 436
+        }
+      }
+    },
+    {
+      "rpm": 6750,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 50.95,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 510,
+          "whp_off": 423,
+          "crank_on": 530,
+          "whp_on": 440
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 535,
+          "whp_off": 444,
+          "crank_on": 548,
+          "whp_on": 455
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 560,
+          "whp_off": 465,
+          "crank_on": 568,
+          "whp_on": 472
+        }
+      }
+    },
+    {
+      "rpm": 6750,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 53.51,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 535,
+          "whp_off": 444,
+          "crank_on": 557,
+          "whp_on": 462
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 562,
+          "whp_off": 466,
+          "crank_on": 575,
+          "whp_on": 477
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 589,
+          "whp_off": 489,
+          "crank_on": 597,
+          "whp_on": 495
+        }
+      }
+    },
+    {
+      "rpm": 6750,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 57.36,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 574,
+          "whp_off": 476,
+          "crank_on": 597,
+          "whp_on": 495
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 602,
+          "whp_off": 500,
+          "crank_on": 617,
+          "whp_on": 512
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 631,
+          "whp_off": 524,
+          "crank_on": 640,
+          "whp_on": 531
+        }
+      }
+    },
+    {
+      "rpm": 7000,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 42.37,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 424,
+          "whp_off": 352,
+          "crank_on": 441,
+          "whp_on": 366
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 445,
+          "whp_off": 369,
+          "crank_on": 455,
+          "whp_on": 378
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 466,
+          "whp_off": 387,
+          "crank_on": 472,
+          "whp_on": 392
+        }
+      }
+    },
+    {
+      "rpm": 7000,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 47.55,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 476,
+          "whp_off": 395,
+          "crank_on": 495,
+          "whp_on": 410
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 499,
+          "whp_off": 414,
+          "crank_on": 511,
+          "whp_on": 424
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 523,
+          "whp_off": 434,
+          "crank_on": 530,
+          "whp_on": 440
+        }
+      }
+    },
+    {
+      "rpm": 7000,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 51.44,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 514,
+          "whp_off": 427,
+          "crank_on": 535,
+          "whp_on": 444
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 540,
+          "whp_off": 448,
+          "crank_on": 553,
+          "whp_on": 459
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 566,
+          "whp_off": 470,
+          "crank_on": 574,
+          "whp_on": 476
+        }
+      }
+    },
+    {
+      "rpm": 7000,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 54.03,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 540,
+          "whp_off": 448,
+          "crank_on": 562,
+          "whp_on": 466
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 567,
+          "whp_off": 471,
+          "crank_on": 581,
+          "whp_on": 482
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 594,
+          "whp_off": 493,
+          "crank_on": 602,
+          "whp_on": 500
+        }
+      }
+    },
+    {
+      "rpm": 7000,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 57.91,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 579,
+          "whp_off": 481,
+          "crank_on": 602,
+          "whp_on": 500
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 608,
+          "whp_off": 505,
+          "crank_on": 623,
+          "whp_on": 517
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 637,
+          "whp_off": 529,
+          "crank_on": 646,
+          "whp_on": 536
+        }
+      }
+    },
+    {
+      "rpm": 7250,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 42.69,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 427,
+          "whp_off": 354,
+          "crank_on": 444,
+          "whp_on": 369
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 448,
+          "whp_off": 372,
+          "crank_on": 459,
+          "whp_on": 381
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 470,
+          "whp_off": 390,
+          "crank_on": 476,
+          "whp_on": 395
+        }
+      }
+    },
+    {
+      "rpm": 7250,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 47.91,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 479,
+          "whp_off": 398,
+          "crank_on": 498,
+          "whp_on": 414
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 503,
+          "whp_off": 418,
+          "crank_on": 515,
+          "whp_on": 427
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 527,
+          "whp_off": 437,
+          "crank_on": 534,
+          "whp_on": 443
+        }
+      }
+    },
+    {
+      "rpm": 7250,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 51.82,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 518,
+          "whp_off": 430,
+          "crank_on": 539,
+          "whp_on": 447
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 544,
+          "whp_off": 452,
+          "crank_on": 557,
+          "whp_on": 462
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 570,
+          "whp_off": 473,
+          "crank_on": 578,
+          "whp_on": 480
+        }
+      }
+    },
+    {
+      "rpm": 7250,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 54.44,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 544,
+          "whp_off": 452,
+          "crank_on": 566,
+          "whp_on": 470
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 572,
+          "whp_off": 474,
+          "crank_on": 585,
+          "whp_on": 486
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 599,
+          "whp_off": 497,
+          "crank_on": 607,
+          "whp_on": 504
+        }
+      }
+    },
+    {
+      "rpm": 7250,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 58.35,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 584,
+          "whp_off": 484,
+          "crank_on": 607,
+          "whp_on": 504
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 613,
+          "whp_off": 509,
+          "crank_on": 627,
+          "whp_on": 521
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 642,
+          "whp_off": 533,
+          "crank_on": 651,
+          "whp_on": 540
+        }
+      }
+    },
+    {
+      "rpm": 7500,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 42.92,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 429,
+          "whp_off": 356,
+          "crank_on": 446,
+          "whp_on": 370
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 451,
+          "whp_off": 374,
+          "crank_on": 461,
+          "whp_on": 383
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 472,
+          "whp_off": 392,
+          "crank_on": 479,
+          "whp_on": 397
+        }
+      }
+    },
+    {
+      "rpm": 7500,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 48.18,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 482,
+          "whp_off": 400,
+          "crank_on": 501,
+          "whp_on": 416
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 506,
+          "whp_off": 420,
+          "crank_on": 518,
+          "whp_on": 430
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 530,
+          "whp_off": 440,
+          "crank_on": 537,
+          "whp_on": 446
+        }
+      }
+    },
+    {
+      "rpm": 7500,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 52.11,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 521,
+          "whp_off": 433,
+          "crank_on": 542,
+          "whp_on": 450
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 547,
+          "whp_off": 454,
+          "crank_on": 560,
+          "whp_on": 465
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 573,
+          "whp_off": 476,
+          "crank_on": 581,
+          "whp_on": 482
+        }
+      }
+    },
+    {
+      "rpm": 7500,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 54.74,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 547,
+          "whp_off": 454,
+          "crank_on": 569,
+          "whp_on": 473
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 575,
+          "whp_off": 477,
+          "crank_on": 588,
+          "whp_on": 488
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 602,
+          "whp_off": 500,
+          "crank_on": 610,
+          "whp_on": 507
+        }
+      }
+    },
+    {
+      "rpm": 7500,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 58.68,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 587,
+          "whp_off": 487,
+          "crank_on": 610,
+          "whp_on": 507
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 616,
+          "whp_off": 511,
+          "crank_on": 631,
+          "whp_on": 524
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 645,
+          "whp_off": 536,
+          "crank_on": 654,
+          "whp_on": 543
+        }
+      }
+    },
+    {
+      "rpm": 7750,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 43.08,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 431,
+          "whp_off": 358,
+          "crank_on": 448,
+          "whp_on": 372
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 452,
+          "whp_off": 375,
+          "crank_on": 463,
+          "whp_on": 384
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 474,
+          "whp_off": 393,
+          "crank_on": 480,
+          "whp_on": 399
+        }
+      }
+    },
+    {
+      "rpm": 7750,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 48.35,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 484,
+          "whp_off": 401,
+          "crank_on": 503,
+          "whp_on": 417
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 508,
+          "whp_off": 421,
+          "crank_on": 520,
+          "whp_on": 431
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 532,
+          "whp_off": 441,
+          "crank_on": 539,
+          "whp_on": 447
+        }
+      }
+    },
+    {
+      "rpm": 7750,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 52.3,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 523,
+          "whp_off": 434,
+          "crank_on": 544,
+          "whp_on": 451
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 549,
+          "whp_off": 456,
+          "crank_on": 562,
+          "whp_on": 467
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 575,
+          "whp_off": 477,
+          "crank_on": 583,
+          "whp_on": 484
+        }
+      }
+    },
+    {
+      "rpm": 7750,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 54.94,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 549,
+          "whp_off": 456,
+          "crank_on": 571,
+          "whp_on": 474
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 577,
+          "whp_off": 479,
+          "crank_on": 591,
+          "whp_on": 490
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 604,
+          "whp_off": 502,
+          "crank_on": 613,
+          "whp_on": 508
+        }
+      }
+    },
+    {
+      "rpm": 7750,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 58.89,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 589,
+          "whp_off": 489,
+          "crank_on": 612,
+          "whp_on": 508
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 618,
+          "whp_off": 513,
+          "crank_on": 633,
+          "whp_on": 525
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 648,
+          "whp_off": 538,
+          "crank_on": 657,
+          "whp_on": 545
+        }
+      }
+    },
+    {
+      "rpm": 8000,
+      "boost_psi": 18.0,
+      "mdot_lbmin": 43.15,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": false,
+          "crank_off": 432,
+          "whp_off": 358,
+          "crank_on": 449,
+          "whp_on": 372
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 453,
+          "whp_off": 376,
+          "crank_on": 464,
+          "whp_on": 385
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 475,
+          "whp_off": 394,
+          "crank_on": 481,
+          "whp_on": 399
+        }
+      }
+    },
+    {
+      "rpm": 8000,
+      "boost_psi": 22.0,
+      "mdot_lbmin": 48.43,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 484,
+          "whp_off": 402,
+          "crank_on": 504,
+          "whp_on": 418
+        },
+        "mix_50_50": {
+          "wmi_gate": false,
+          "crank_off": 509,
+          "whp_off": 422,
+          "crank_on": 521,
+          "whp_on": 432
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 533,
+          "whp_off": 442,
+          "crank_on": 540,
+          "whp_on": 448
+        }
+      }
+    },
+    {
+      "rpm": 8000,
+      "boost_psi": 25.0,
+      "mdot_lbmin": 52.39,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 524,
+          "whp_off": 435,
+          "crank_on": 545,
+          "whp_on": 452
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 550,
+          "whp_off": 457,
+          "crank_on": 563,
+          "whp_on": 467
+        },
+        "e85": {
+          "wmi_gate": false,
+          "crank_off": 576,
+          "whp_off": 478,
+          "crank_on": 584,
+          "whp_on": 485
+        }
+      }
+    },
+    {
+      "rpm": 8000,
+      "boost_psi": 27.0,
+      "mdot_lbmin": 55.03,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 550,
+          "whp_off": 457,
+          "crank_on": 572,
+          "whp_on": 475
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 578,
+          "whp_off": 480,
+          "crank_on": 592,
+          "whp_on": 491
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 605,
+          "whp_off": 502,
+          "crank_on": 614,
+          "whp_on": 509
+        }
+      }
+    },
+    {
+      "rpm": 8000,
+      "boost_psi": 30.0,
+      "mdot_lbmin": 58.99,
+      "fuels": {
+        "pump_93": {
+          "wmi_gate": true,
+          "crank_off": 590,
+          "whp_off": 490,
+          "crank_on": 613,
+          "whp_on": 509
+        },
+        "mix_50_50": {
+          "wmi_gate": true,
+          "crank_off": 619,
+          "whp_off": 514,
+          "crank_on": 634,
+          "whp_on": 526
+        },
+        "e85": {
+          "wmi_gate": true,
+          "crank_off": 649,
+          "whp_off": 539,
+          "crank_on": 658,
+          "whp_on": 546
+        }
+      }
+    }
+  ],
+  "knock": {
+    "pump_93": {
+      "knock_limited": true,
+      "ceiling_psi_no_wmi": 22,
+      "ceiling_psi_wmi": 27,
+      "why": "8.5:1 on 93. Without WMI, plan 22 psi. WMI at \u226522 psi / \u22653500 rpm buys IAT and timing toward 27."
+    },
+    "mix_50_50": {
+      "knock_limited": true,
+      "ceiling_psi_no_wmi": 25,
+      "ceiling_psi_wmi": 30,
+      "why": "50/50 93+E85 is ~E42. Mid octane. 25 psi dry, 30 psi with WMI once RPM \u22654000."
+    },
+    "e85": {
+      "knock_limited": false,
+      "ceiling_psi_no_wmi": 30,
+      "ceiling_psi_wmi": 30,
+      "why": "E85 is hardware-limited. WMI at \u226527 psi / \u22654500 rpm is IAT margin so 28\u201330 psi can hold farther into the redline band."
+    }
+  },
+  "wmi": {
+    "mix": "50/50 water / methanol",
+    "t2_drop_c": 30,
+    "activate": {
+      "pump_93": {
+        "min_boost_psi": 22,
+        "min_rpm": 3500,
+        "min_tps_pct": 80,
+        "min_iat_c": 40
+      },
+      "mix_50_50": {
+        "min_boost_psi": 25,
+        "min_rpm": 4000,
+        "min_tps_pct": 80,
+        "min_iat_c": 42
+      },
+      "e85": {
+        "min_boost_psi": 27,
+        "min_rpm": 4500,
+        "min_tps_pct": 80,
+        "min_iat_c": 45
+      }
+    },
+    "bump": {
+      "pump_93": 0.4,
+      "mix_50_50": 0.25,
+      "e85": 0.15
+    },
+    "ecu": {
+      "drive": "GP Output \u2192 relay coil (low-side Aux or switchboard output when one is free)",
+      "do_not_assign_di": true,
+      "do_not_assign_aux_now": true,
+      "optional_level_di": "use a free DI later for tank empty \u2014 do not take a live DI"
+    },
+    "why_gates": "Spray only where T2/IAT and cylinder pressure need it. 93 gates earliest (knock). E42 in the middle. E85 last (compressor-outlet heat at high PR \u00d7 high flow). Cold IAT and part-throttle stay dry so the tank lasts and the charge is not over-wet at idle."
+  },
+  "activation_chart": [
+    {
+      "fuel": "93 octane pump gasoline",
+      "key": "pump_93",
+      "min_boost_psi": 22,
+      "min_rpm": 3500,
+      "min_tps_pct": 80,
+      "min_iat_c": 40,
+      "why": "8.5:1 on 93. Without WMI, plan 22 psi. WMI at \u226522 psi / \u22653500 rpm buys IAT and timing toward 27."
+    },
+    {
+      "fuel": "50/50 93 + E85 (approx E42)",
+      "key": "mix_50_50",
+      "min_boost_psi": 25,
+      "min_rpm": 4000,
+      "min_tps_pct": 80,
+      "min_iat_c": 42,
+      "why": "50/50 93+E85 is ~E42. Mid octane. 25 psi dry, 30 psi with WMI once RPM \u22654000."
+    },
+    {
+      "fuel": "E85 (flex)",
+      "key": "e85",
+      "min_boost_psi": 27,
+      "min_rpm": 4500,
+      "min_tps_pct": 80,
+      "min_iat_c": 45,
+      "why": "E85 is hardware-limited. WMI at \u226527 psi / \u22654500 rpm is IAT margin so 28\u201330 psi can hold farther into the redline band."
+    }
+  ],
+  "headline": {
+    "e85": {
+      "rpm": 8000,
+      "boost_psi": 30.0,
+      "crank_wmi_strategy": 658,
+      "whp_wmi_strategy": 546,
+      "crank_dry": 649,
+      "whp_dry": 539,
+      "dry_rpm": 8000,
+      "dry_boost_psi": 30.0
+    },
+    "mix": {
+      "rpm": 8000,
+      "boost_psi": 30.0,
+      "crank_wmi_strategy": 634,
+      "whp_wmi_strategy": 526,
+      "crank_dry": 550,
+      "whp_dry": 457,
+      "dry_rpm": 8000,
+      "dry_boost_psi": 25.0
+    },
+    "pump": {
+      "rpm": 8000,
+      "boost_psi": 27.0,
+      "crank_wmi_strategy": 572,
+      "whp_wmi_strategy": 475,
+      "crank_dry": 484,
+      "whp_dry": 401,
+      "dry_rpm": 7750,
+      "dry_boost_psi": 22.0
+    },
+    "driveline_loss": 0.17,
+    "note": "Dry crank uses hp/lb-min (10 / 10.5 / 11) and stops at that fuel's knock ceiling (22 / 25 / 30 psi). WMI adds 0.40 / 0.25 / 0.15 hp/lb-min when the gate is true and may raise the ceiling (27 / 30 / 30). Wheel uses 17% AWD loss. Headlines are from the Phase-1 rpm\u00d7boost grid so 93 dry is not taken from a 27 psi MatchBot point."
+  },
+  "turbo_fit": {
+    "EFR_7064": "55 lb/min @ PR 3.0 is the published 56 lb/min wall. Choke.",
+    "EFR_7163": "55 lb/min sits on the right side of a 60 lb/min map.",
+    "EFR_7670": "55 lb/min is inside a 64 lb/min map.",
+    "recommendation": "Keep 7163-G for a road car. Step to 7670-C to hold 30 psi to 7500+ in-island. 7064 is the wrong compressor."
+  },
+  "iat_road_c": 46.9
+}

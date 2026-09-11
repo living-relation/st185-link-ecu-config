@@ -8,11 +8,12 @@ This document supersedes the bus-topology, ingestion, and fault-handling assumpt
 
 ## 1. Overview & Scope
 
-A single shared CAN bus at **1 Mbit/s** connects:
+A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 
 | Node | Role | CAN participation |
 |---|---|---|
-| Link G4X XtremeX ECU | Powertrain controller | Bidirectional. Also internally consumes its CAN-Lambda module (0x3B6) |
+| Link G4X XtremeX ECU | Powertrain controller | Bidirectional |
+| Link CAN-Lambda | External wideband (Bosch LSU 4.9) | Transmit 0x3B6; receive 0x3BE. Physically on the bus — not an ECU-internal-only device |
 | center-cluster-esp32-p4 | Dash / instrument cluster | Bidirectional (TWAI_MODE_NORMAL) — the **only** dash board on CAN |
 | ECUMaster CAN Switch Board V3 | Accessory I/O (analog inputs, switches, low-side outputs) | Bidirectional (0x640-0x642 out, 0x643 in) |
 | Pi4+/Pi5 + USB-CAN adapter (CANable or PCAN USB) running RealDash | Secondary display (840×480, 7") | Passive listener only — receive 0x3EF/0x3F0/0x3F1 |
@@ -25,11 +26,12 @@ A single shared CAN bus at **1 Mbit/s** connects:
 
 - **Topology:** single linear bus segment, 1 Mbit/s, ISO 11898-2, 120Ω termination at both physical ends of the bus.
 - **Transceivers:**
-  - ECU: Link G4X XtremeX CANH/CANL (internal, includes CAN-Lambda module on the same internal bus).
+  - ECU: Link G4X XtremeX CANH/CANL.
+  - Link CAN-Lambda: module CANH/CANL on the shared bus (0x3B6 / 0x3BE). This is the fifth node.
   - center-cluster-esp32-p4: SN65HVD230 (3.3V), TWAI GPIO5=TX / GPIO4=RX (per `sdkconfig`/`Kconfig.projbuild`).
   - ECUMaster CAN Switch Board V3: built-in CAN transceiver, CANH/CANL screw terminals.
   - Pi USB-CAN adapter (CANable or PCAN USB): plugs into a USB port on the Pi; the adapter's CANH/CANL terminals wire to the shared bus. The Waveshare dual-MCP2515 hat physically present on the Pi is **NOT a CAN node** — it is retained for its cooling fan only. Do not wire its CANH/CANL to the bus.
-- **Wiring rule:** all four nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus; termination resistors live at the two physical ends of the harness (commonly: ECU end and Pi end). Do not add a third termination point.
+- **Wiring rule:** all five nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus; termination resistors live at the two physical ends of the harness (commonly: ECU end and Pi end). Do not add a third termination point.
 
 ---
 
@@ -37,7 +39,8 @@ A single shared CAN bus at **1 Mbit/s** connects:
 
 | Device | Default speed | Required speed on this bus | Action |
 |---|---|---|---|
-| Link G4X XtremeX (ECU CAN port + CAN-Lambda) | n/a (configured) | **1 Mbit/s** | Already set — `link_g4x_can_setup.lcs`, CANModule Index="1" (CAN1), BitRate=1000000. No change. |
+| Link G4X XtremeX (ECU CAN port) | n/a (configured) | **1 Mbit/s** | Already set — `link_g4x_can_setup.lcs`, CANModule Index="1" (CAN1), BitRate=1000000. No change. |
+| Link CAN-Lambda (external module) | 1 Mbit/s native | **1 Mbit/s** | On-bus node. PCLink mode `Link CAN-Lambda`, ID 950 (0x3B6). |
 | center-cluster-esp32-p4 (TWAI) | n/a (coded) | **1 Mbit/s** | Already coded-complete. No change. |
 | ECUMaster CAN Switch Board V3 | **500 kbps** | **1 Mbit/s** | **Required reconfiguration** — 1000 kbps is a supported, non-default speed per the switchboard manual. Must be changed via the ECUMaster configuration tool before the switchboard is connected to this bus. |
 | Pi USB-CAN adapter (CANable or PCAN USB) | configurable | **1 Mbit/s** | Set in RealDash's CAN adapter settings. The Waveshare hat is cooling only — not configured here. |

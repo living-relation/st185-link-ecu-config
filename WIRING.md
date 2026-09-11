@@ -146,9 +146,10 @@ All inputs use internal pull-ups; wire the common side to **GND**. 44 kΩ… use
 
 ## 7. Shared CAN Bus — Switchboard & RealDash (Pi5)
 
-The CAN bus described in §2 (ECU ↔ Center) has grown into a **4-node shared bus**: Link G4X ECU,
-center-cluster-esp32-p4, ECUMaster CAN Switch Board V3, and a Raspberry Pi 5 + Waveshare
-dual-MCP2515 hat running RealDash. Full architecture/config rationale lives in
+The CAN bus described in §2 (ECU ↔ Center) is a **5-node shared bus**: Link G4X ECU,
+external Link CAN-Lambda, center-cluster-esp32-p4, ECUMaster CAN Switch Board V3, and a
+Raspberry Pi 5 + USB-CAN adapter running RealDash. The Waveshare dual-MCP2515 hat on the
+Pi is cooling only — not a bus node. Full architecture/config rationale lives in
 `CAN-BUS-MASTER-DESIGN.md` (§§1-4, §7); byte-level frame layouts live in
 `CAN-BUS-ID-ALLOCATION-TABLE.md`. This section covers **physical wiring only** — it does not
 replace or duplicate either doc.
@@ -156,18 +157,20 @@ replace or duplicate either doc.
 §2's ASCII diagram still stands as the one-level-down detail for the ECU↔Center transceiver
 wiring (SN65HVD230, GPIO4/5). The diagram below is the **overall bus-topology view**.
 
-### 7.1 Bus topology — 4 nodes, linear daisy-chain
+### 7.1 Bus topology — 5 nodes, linear daisy-chain
 
 ```mermaid
 graph LR
     subgraph BUS["Shared CAN Bus — 1 Mbit/s, ISO 11898-2"]
         direction LR
-        ECU["Link G4X XtremeX ECU<br/>(CAN-Lambda internal)<br/>120Ω term — END A"]
+        ECU["Link G4X XtremeX ECU<br/>120Ω term — END A"]
+        LAMBDA["Link CAN-Lambda<br/>0x3B6 / 0x3BE"]
         CENTER["center-cluster-esp32-p4<br/>SN65HVD230 transceiver<br/>GPIO5 TX / GPIO4 RX"]
         SWB["ECUMaster CAN Switch<br/>Board V3<br/>Base ID 0x640<br/>(set to 1 Mbit/s)"]
         PI5["Pi4+/Pi5 + USB-CAN adapter<br/>(CANable or PCAN USB)<br/>RealDash 840x480 7in screen<br/>120Ω term — END B"]
 
-        ECU -- "CANH / CANL" --> CENTER
+        ECU -- "CANH / CANL" --> LAMBDA
+        LAMBDA -- "CANH / CANL" --> CENTER
         CENTER -- "CANH / CANL" --> SWB
         SWB -- "CANH / CANL" --> PI5
     end
@@ -178,11 +181,11 @@ graph LR
     class CENTER,SWB node;
 ```
 
-- All four nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus (1 Mbit/s,
+- All five nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus (1 Mbit/s,
   ISO 11898-2) — per `CAN-BUS-MASTER-DESIGN.md` §2.
 - **120 Ω termination lives at the two physical ends of the harness ONLY** — shown above as
   END A (ECU end) and END B (Pi end). **Do not add a third termination point.**
-  The diagram's linear left-to-right order (ECU → Center → Switchboard → Pi5) is the
+  The diagram's linear left-to-right order (ECU → CAN-Lambda → Center → Switchboard → Pi5) is the
   *logical* bus order for this drawing; the *physical* end nodes are whichever two devices sit
   at the actual harness extremities — confirm against the installed harness, not this diagram's
   layout.

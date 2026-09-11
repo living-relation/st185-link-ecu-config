@@ -35,7 +35,7 @@ TOPICS: list[dict] = [
         "title": "5S-GTE Build Data",
         "blurb": "Turbo-selection research and head airflow studies for the 5S-GTE hybrid "
                  "build. ECU wiring docs that were also in this tree have been retired to "
-                 "archive/5sgte-project-data/ -- see that folder's README for why.",
+                 "archive/5sgte-project-data/ -- see archive/README.md for why.",
     },
     {
         "dir": "harness",
@@ -53,9 +53,7 @@ SKIP_PATTERNS = [re.compile(r"\.bak\.html$"), re.compile(r"^__pycache__$")]
 # A readable file sitting directly in a topic folder is a deliverable; anything
 # deeper (research/, data/) is the working trail behind it. These two lists
 # override that inference where the layout lies.
-FORCE_RESEARCH = {  # readable, but an intermediate rather than something to read
-    "docs/intercooler-turbo-study/research/data/report-splice-scripts/_new_sections.html",
-}
+FORCE_RESEARCH: set[str] = set()
 FORCE_DELIVERABLE: set[str] = set()
 
 
@@ -156,7 +154,9 @@ def classify(p: Path, topic_dir: Path, rel: str) -> str:
 
 def collect(topic_dir: Path) -> list[Doc]:
     docs: list[Doc] = []
-    for p in sorted(topic_dir.rglob("*")):
+    # Case-insensitive path sort so regeneration is stable across platforms
+    # (POSIX rglob is case-sensitive; Windows/macOS effectively are not).
+    for p in sorted(topic_dir.rglob("*"), key=lambda p: p.as_posix().lower()):
         if not p.is_file():
             continue
         if p.name in SKIP_NAMES:
@@ -198,8 +198,9 @@ def build() -> dict:
     topics = []
     seen_dirs = {t["dir"] for t in TOPICS}
     extra = sorted(
-        d.name for d in DOCS.iterdir()
-        if d.is_dir() and d.name not in seen_dirs and not d.name.startswith(".")
+        (d.name for d in DOCS.iterdir()
+         if d.is_dir() and d.name not in seen_dirs and not d.name.startswith(".")),
+        key=str.lower,
     )
     spec = TOPICS + [{"dir": d, "title": d.replace("-", " ").title(), "blurb": ""} for d in extra]
 

@@ -19,3 +19,6 @@ rd-build/shots/
 
 # Caliber local state
 .caliber/
+
+# MatchBot full-page captures (regenerate with model/run_matchbot.mjs)
+docs/intercooler-turbo-study/model/matchbot_shots/

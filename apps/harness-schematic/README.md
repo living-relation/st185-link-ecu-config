@@ -30,6 +30,66 @@ The full harness is ~175 connections. Four things stop that turning into spaghet
 
 **Spacing.** The header **Spacing** control (100 %–230 %) pushes blocks further apart without resizing them. Wires sharing a vertical channel are auto-assigned parallel lanes so they never sit on top of each other.
 
+**Zoomed-out names.** At 70 % zoom and below the in-block text stops being legible, so each component's name is mirrored in a label 2.5 × the in-block title, floating above its block. The size is in canvas units, so the labels shrink with the rest of the drawing as you zoom out further — they do not stay a constant screen size, which would overlap neighbours and get in the way of editing. They disappear again above 70 %. They never capture clicks.
+
+## Component library
+
+The left panel is a searchable library of preconfigured blocks. Every part the ST185 seed uses is in it, alongside generic primitives (connector, splice, resistor, relay, sensors, CAN node, note). Each entry carries a manufacturer, part/model number, description, pin list and an optional thumbnail; entries without an image get a neutral placeholder.
+
+Typing filters on part number, model, manufacturer and description, sorted best match first. **+ Add component** creates an entry by hand — name, manufacturer, PN, kind, description, pins as `number, label, side`, plus an optional image. Malformed pin lines are reported rather than silently accepted.
+
+Clicking an entry places it at the centre of the view. **Show mating connector** also drops the assigned mate next to it; with no mate assigned the checkbox does nothing.
+
+Library entries are templates. Placing one copies its data onto the new part, so editing the library afterwards never rewrites anything already on the canvas. User entries and edits persist under `st185-harness-lib-v1`, separately from the schematic.
+
+## Research helper
+
+**Find more…** next to the library search starts a lookup using whatever is in the search box. It opens a confirmation dialog first and will not run on vague input: a subject of at least three characters, a component type, and either a manufacturer or an exact part number are all required, so a bare "ECU" is refused with an explanation rather than a guess.
+
+A result is shown as **unverified** for review — part number, description, pins, the mating connector, and that mate's accessories tagged required or optional. Nothing reaches the library until you accept it, and accepted entries are marked unverified in their notes. Not-found, ambiguous and backend-error outcomes all say so plainly and add nothing.
+
+The helper only ever creates or edits **library** entries. It cannot modify a part already placed on the canvas.
+
+> **There is no search backend.** A static page cannot run a web search, so the shipped
+> `researchBackend()` is a clearly-marked stub that reports "no research backend is
+> configured" and adds nothing. The whole flow — validation, dialog, review, accept,
+> and every failure state — is real and tested against it. To connect a real backend,
+> assign one function:
+>
+> ```js
+> window.HARNESS_RESEARCH = async (spec) => ({ status, entry, mate, accessories, message });
+> ```
+>
+> `spec` is `{ q, mfr, pn, type, pinCount, notes }`; `status` is one of `ok`,
+> `notfound`, `ambiguous` or `error`. That single hook is the only integration point.
+
+## Mates, accessories and crimp detail
+
+Selecting a part adds four sections to the bottom of the Inspector, collapsed until you open them:
+
+- **Compatible mates** — mating connector part numbers, with manufacturer and a note.
+- **Accessories** — tick the categories that apply (crimp terminals by AWG, wire seals, wedge locks / TPA, backshells and strain relief, boots, cavity plugs, crimp tools). Each item you add is tagged **required** or **optional**; click the tag to flip it. The category choice is remembered on the library entry so it comes back next time the part is placed.
+- **Per-pin crimp** — a row per cavity showing terminal PN, description, AWG range, finish, gender and type. Pick a terminal family and **Fill all** defaults one terminal per cavity; any single pin can then be overridden or cleared.
+- **Notes** — free text, stored with the part.
+
+No terminal part numbers ship with the app. The catalogue is whatever you enter, because a guessed PN is worse than a blank one.
+
+This detail stays in the Inspector. The only thing it adds to the schematic is a small connector badge beside any block that has a mate recorded — placed on the side opposite the wiring, nudged clear of neighbours, and never further from the block edge than 0.7 × its own width.
+
+Mates, accessories and crimp choices belong to the placed part. Editing the library afterwards never resets them.
+
+## Editing wires
+
+The workspace has no sheet edge — pan and place parts anywhere, including negative coordinates.
+
+Wires route orthogonally. A wire leaving a pin never folds back over that pin, and a wire meeting a splice stops at the junction instead of overshooting it.
+
+Drag a wire's body to drop a **fix point**: a pinned waypoint that holds its world position when either endpoint later moves, so the path stretches around it and nothing detaches. Fix points snap to horizontal, vertical and 45° against the wire's endpoints and its other fix points. Right-click a wire to add or clear them.
+
+Select a wire to get orange grips on both ends; drag a grip onto another terminal to reattach that end. Labels and power/ground symbols are selectable and can be dragged clear of crossing wires — **Reset label position** in the right-click menu puts them back.
+
+Pressing a terminal only starts a wire once the pointer actually moves, so a plain click on a terminal selects the part underneath it.
+
 ## Controls
 
 | Action | How |
@@ -42,12 +102,16 @@ The full harness is ~175 connections. Four things stop that turning into spaghet
 | Focus one part | click it, or press `f` |
 | Move a part | drag the block |
 | Draw a wire | drag from one pin handle to another |
-| Add a part | right-click canvas, or the left library |
+| Add a part | click a library entry, or right-click the canvas |
+| Find a part | type in the library search box (part no, model or description) |
+| Create a library entry | **+ Add component** in the library panel |
+| Look a part up | **Find more…** next to the library search |
+| Edit a library entry | hover the row, click **edit** |
 | Delete | select, then `Delete` |
 
 Wire labels are off by default; tick **Wire labels** to show them all, or select a single wire to see just its own.
 
-Edits autosave in `localStorage` (`st185-harness-v6`). **Reset ST185** reloads the seed. Export JSON or SVG from the header.
+Edits autosave in `localStorage` (`st185-harness-v7`). **Reset ST185** reloads the seed. Export JSON or SVG from the header.
 
 Layout view is a placeholder until bundle lengths exist.
 
@@ -65,4 +129,4 @@ The Waveshare MCP2515 hat takes Pi header 5 V / GND for its fan. **Its CANH/CANL
 - G4X XtremeX Quickstart — Connector A / B Superseal pin numbers, wire side
 - `WIRING.md` — cluster GPIO, 5 V buck, UART, CAN transceiver
 - `ECUMASTER_SWITCHBOARD_SETUP.md` — CSB3 analog / switch map
-- `CAN-BUS-MASTER-DESIGN.md` — 4-node 1 Mbit/s bus, termination
+- `CAN-BUS-MASTER-DESIGN.md` — 5-node 1 Mbit/s bus, termination

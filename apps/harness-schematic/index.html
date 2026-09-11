@@ -54,6 +54,74 @@
   .layer .solo:hover{border-color:var(--border);color:var(--text)}
   .layer.off .nm,.layer.off .ct{opacity:.4}
 
+  #lib-search{width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);
+    border-radius:6px;padding:6px 8px;font:inherit;font-size:12px;margin-bottom:6px}
+  .lib-row{display:flex;gap:8px;align-items:center;width:100%;text-align:left;margin:0 0 5px;
+    background:var(--panel2);border:1px solid var(--border);border-radius:6px;padding:5px 7px;cursor:pointer}
+  .lib-row:hover{border-color:#5a5a66;background:#202026}
+  .lib-thumb{width:30px;height:24px;border-radius:4px;flex:none;background:#3a3a42;
+    background-size:cover;background-position:center;border:1px solid #4a4a54}
+  .lib-meta{flex:1;min-width:0}
+  .lib-nm{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lib-sub{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    font-family:var(--mono)}
+  .lib-edit{background:transparent;border:0;color:var(--muted);font-size:11px;cursor:pointer;padding:2px 4px;opacity:0}
+  .lib-row:hover .lib-edit{opacity:1}
+  .lib-edit:hover{color:var(--text)}
+  .lib-empty{font-size:11px;color:var(--muted);padding:6px 2px;line-height:1.5}
+  .row-btns{display:flex;gap:6px;margin-bottom:8px}
+  .row-btns .mini{flex:1;text-align:center}
+
+  #modal-bg{position:fixed;inset:0;background:#000a;z-index:40;display:none;align-items:center;justify-content:center}
+  #modal-bg.on{display:flex}
+  .modal{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px;
+    width:min(560px,92vw);max-height:88vh;overflow:auto;box-shadow:0 24px 70px #000c}
+  .modal h3{margin:0 0 4px;font-size:14px}
+  .modal .sub{font-size:11px;color:var(--muted);margin:0 0 14px;line-height:1.5}
+  .modal label{display:block;font-size:11px;color:var(--muted);margin:10px 0 4px}
+  .modal input[type=text], .modal textarea, .modal select{width:100%;background:var(--bg);color:var(--text);
+    border:1px solid var(--border);border-radius:5px;padding:6px 8px;font:inherit;font-size:12px}
+  .modal .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .modal .acts{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+  .modal .warn{color:var(--warn);font-size:11px;margin-top:8px;line-height:1.5}
+  .modal .err{color:var(--danger);font-size:11px;margin-top:8px;line-height:1.5}
+  .modal .okmsg{color:var(--accent);font-size:11px;margin-top:8px;line-height:1.5}
+  details.sect{border:1px solid var(--border);border-radius:6px;margin:8px 0;background:var(--panel2)}
+  details.sect>summary{cursor:pointer;padding:6px 8px;font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted);list-style:none;display:flex;align-items:center;gap:6px}
+  details.sect>summary::-webkit-details-marker{display:none}
+  details.sect>summary:before{content:"\25B8";font-size:9px;transition:transform .12s}
+  details.sect[open]>summary:before{transform:rotate(90deg)}
+  details.sect>summary .ct{margin-left:auto;font-family:var(--mono);font-size:10px}
+  .sect-body{padding:6px 8px 10px}
+  .kv{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center;
+    font-size:11px;padding:4px 0;border-top:1px solid #ffffff0d}
+  .kv:first-child{border-top:0}
+  .kv .pn{font-family:var(--mono);font-size:11px;color:var(--text)}
+  .kv .ds{color:var(--muted);font-size:10px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+  .tag{font-size:9px;padding:1px 5px;border-radius:3px;border:1px solid;letter-spacing:.03em}
+  .tag.req{color:#ffb4b4;border-color:#7a3b3b;background:#3a1f1f}
+  .tag.opt{color:#9fd8ff;border-color:#2f5570;background:#16283a}
+  .xbtn{background:transparent;border:0;color:var(--muted);cursor:pointer;font-size:12px;padding:0 3px}
+  .xbtn:hover{color:var(--danger)}
+  .catrow{display:flex;align-items:center;gap:6px;font-size:11px;padding:3px 0}
+  .catrow input{margin:0}
+  .catrow .nm{flex:1}
+  .pintbl{width:100%;border-collapse:collapse;font-size:10px}
+  .pintbl th{text-align:left;color:var(--muted);font-weight:500;padding:3px 4px;border-bottom:1px solid var(--border)}
+  .pintbl td{padding:3px 4px;border-bottom:1px solid #ffffff0a;vertical-align:top}
+  .pintbl td.pnum{font-family:var(--mono);color:var(--muted);white-space:nowrap}
+  .pintbl .mini{padding:2px 5px;font-size:10px}
+  .sect-body .fld{display:block;width:100%;text-align:left;margin-top:6px}
+  .pintbl select{max-width:74px}
+  .pintbl td:last-child{width:78px}
+  .crimp-set{font-family:var(--mono);font-size:10px;color:var(--text);word-break:break-all}
+  .crimp-none{color:var(--muted);font-size:10px}
+  .badge-mate{fill:#1f2430;stroke:#7f8aa3;stroke-width:1.2}
+  .badge-mate-pin{fill:#7f8aa3}
+  .thumb-prev{width:64px;height:48px;border-radius:5px;background:#3a3a42;background-size:cover;
+    background-position:center;border:1px solid #4a4a54;flex:none}
+
   #stage-wrap{position:relative;background:var(--canvas);overflow:hidden;cursor:grab}
   #stage-wrap.panning{cursor:grabbing}
   #stage{position:absolute;left:0;top:0;transform-origin:0 0}
@@ -69,20 +137,34 @@
   .comp-id{fill:var(--muted);font:500 11px var(--mono)}
   .pin-num{fill:var(--muted);font:500 10px var(--mono)}
   .pin-name{fill:#d3d3da;font:400 11px var(--sans)}
-  .handle{fill:var(--handle);stroke:#111;stroke-width:.6}
-  .handle.hot,.handle:hover{fill:var(--accent)}
-  .wire{fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .handle{fill:var(--handle);stroke:#111;stroke-width:.6;pointer-events:none}
+  /* Generous invisible grab target: the 4.5px dot alone was far too small to hit. */
+  .handle-hit{fill:transparent;stroke:none;cursor:crosshair}
+  .handle-hit:hover + .handle, .handle.hot{fill:var(--accent);r:6}
+  .wire{fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
   .wire.selected{stroke-width:3.2;filter:drop-shadow(0 0 4px #fff8)}
   .wire.dim{opacity:.07}
   .wire.dash{stroke-dasharray:7 5}
-  .wire-hit{fill:none;stroke:transparent;stroke-width:12;cursor:pointer}
-  .rail{stroke-width:1.7;fill:none;stroke-linecap:round}
-  .rail-t{font:600 8px var(--mono)}
+  .wire-hit{fill:none;stroke:transparent;stroke-width:10;cursor:pointer}
+  .rail{stroke-width:1.7;fill:none;stroke-linecap:round;pointer-events:none}
+  .rail-t{font:600 9px var(--mono);pointer-events:none}
+  .rail-hit{fill:transparent;stroke:none;cursor:pointer}
+  .rail-g.selected .rail{stroke-width:3}
+  .fixpt{fill:#16161a;stroke:var(--sel);stroke-width:1.6;cursor:move}
+  .fixpt:hover{fill:var(--sel)}
+  .endpt{fill:var(--warn);stroke:#111;stroke-width:1;cursor:grab}
   .splice{fill:#2a2a30;stroke:#9aa}
   .note-bg{fill:#1b1912;stroke:#5f5326}
   .note-tx{fill:#e2cf88;font:400 11px var(--sans)}
   .badge{font:700 9px var(--sans);letter-spacing:.04em}
-  .wlabel{font:500 9px var(--mono);pointer-events:none}
+  /* Halo the label so crossing wires read behind it instead of through it. */
+  .wlabel{font:600 11px var(--mono);cursor:move;
+    paint-order:stroke;stroke:var(--canvas);stroke-width:3.5px;stroke-linejoin:round}
+  .wlabel.selected{stroke:#000;fill:#fff}
+  /* Zoom names: family/weight only. Font size and stroke live on the SVG node
+     as user units so they scale with the viewBox like every other canvas object. */
+  .zlabel{font-family:var(--sans);font-weight:700;fill:#e8e8f0;pointer-events:none;
+    paint-order:stroke;stroke:#0b0b0dcc;stroke-linejoin:round}
   footer{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:0 10px;background:var(--panel);border-top:1px solid var(--border);font-size:12px;color:var(--muted)}
   footer label{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;white-space:nowrap}
   footer .sp{flex:1}
@@ -136,14 +218,16 @@
     </div>
     <div id="layers"></div>
 
-    <div class="aside-h">Add to canvas</div>
-    <button class="lib-item" data-add="connector"><span class="ic">C</span> Connector</button>
-    <button class="lib-item" data-add="splice"><span class="ic">S</span> Splice</button>
-    <button class="lib-item" data-add="resistor"><span class="ic">R</span> Resistor</button>
-    <button class="lib-item" data-add="relay"><span class="ic">K</span> Relay</button>
-    <button class="lib-item" data-add="sensor3"><span class="ic">3</span> 3-pin sensor</button>
-    <button class="lib-item" data-add="can-node"><span class="ic">CAN</span> CAN node</button>
-    <button class="lib-item" data-add="note"><span class="ic">N</span> Note</button>
+    <div class="aside-h">Component library <span class="sp"></span><span class="ct" id="lib-count"></span></div>
+    <input id="lib-search" type="text" placeholder="Search part no, model or description">
+    <div class="row-btns">
+      <button class="mini" id="lib-add">+ Add component</button>
+      <button class="mini" id="lib-find">Find more…</button>
+    </div>
+    <label style="display:flex;gap:6px;align-items:center;font-size:11px;color:var(--muted);margin-bottom:8px">
+      <input type="checkbox" id="lib-mate"> Show mating connector
+    </label>
+    <div id="lib-list"></div>
 
     <div class="aside-h">Nets</div>
     <div class="hint" id="net-legend"></div>
@@ -175,9 +259,16 @@
   </footer>
 </div>
 <div id="ctx"></div>
+<div id="modal-bg"><div class="modal" id="modal"></div></div>
 <script>
 const PIN_H = 20, HDR = 32, PAD = 8, COMP_W = 196;
-const STORAGE = "st185-harness-v6";
+const WORLD = 400000;         // half-extent of the unbounded grid surface
+const STORAGE = "st185-harness-v7";
+const ZOOM_LABEL_AT = 0.70;   // zoom at or below which the big names appear
+/* World-unit multiplier vs the 12-unit in-block title. Labels must share the
+   canvas zoom (viewBox user units) — never divide by state.view.k, or they
+   grow as you zoom out and bury the drawing. */
+const ZOOM_LABEL_SCALE = 2.5;
 const NET_COLORS = {
   CANH:"#f2f2f2", CANL:"#3dd68c", "12V":"#e85d5d", "5V":"#f08a2a", "3V3":"#f5c542",
   GND:"#8b8b96", SIG:"#5b8def", UART:"#8b5cf6", INJ:"#3b82f6", IGN:"#f97316",
@@ -195,7 +286,8 @@ const GROUPS = {
   cluster: { name:"Clusters & HMI",     color:"#8b5cf6" },
   body:    { name:"Body & switchboard", color:"#38bdf8" },
   prop:    { name:"Proposed / TBD",     color:"#e8b849" },
-  notes:   { name:"Notes & callouts",   color:"#a9924a" }
+  notes:   { name:"Notes & callouts",   color:"#a9924a" },
+  misc:    { name:"Unsorted",           color:"#9aa0aa" }
 };
 const GROUP_OF = {
   "ecu-a":"ecu","ecu-b":"ecu","ecu-com":"ecu",
@@ -245,10 +337,20 @@ function ex(c){ return c.x * state.spread; }
 function ey(c){ return c.y * state.spread; }
 function pinY(c, i){ return ey(c) + HDR + 10 + i * PIN_H; }
 function pinXY(c, pin){
-  if (c.kind === "splice") return { x: ex(c) + 10, y: ey(c) + 10, side:"right" };
+  /* A splice is a junction, not a directional pin. Reporting it as "right" made every
+     wire shoot 26px past it and double back (the fold/overshoot in the bug reports). */
+  if (c.kind === "splice") return { x: ex(c) + 10, y: ey(c) + 10, side:"omni" };
   const i = c.pins.findIndex(p => p.id === pin.id);
   const left = pin.side !== "right";
   return { x: left ? ex(c) : ex(c) + (c.w || COMP_W), y: pinY(c, i), side: left ? "left" : "right" };
+}
+/* Clickable bounds. A splice's label sits outside its 24px box, so include it. */
+function hitBox(c){
+  if (c.kind === "splice"){
+    const wLbl = 26 + (c.name || "").length * 6.2;
+    return { x: ex(c) - 4, y: ey(c) - 2, w: Math.max(c.w || 24, wLbl), h: compH(c) + 4 };
+  }
+  return { x: ex(c), y: ey(c), w: c.w || COMP_W, h: compH(c) };
 }
 
 function mkPins(names, side){
@@ -370,7 +472,7 @@ function buildST185(){
   C.push(comp("k-fp","Fuel pump relay","K3", X5, 340, ["86 coil","85 LS","30 12V","87 pump"], "left"));
   C.push(comp("k-fan","Rad fan relay","K4", X5, 480, ["86 coil","85 LS","30 12V","87 fan"], "left"));
   C.push(comp("k-str","Start relay","K5", X5, 620, ["86 coil","85 LS","30 12V","87 starter"], "left"));
-  C.push(comp("ac-rly","AC clutch / amp ACT","K6", X5, 760, ["86 coil","85 LS Aux4","30 12V","87 clutch"], "left", {status:"prop", note:"Amp ACT: ground = kill, float = normal. Active-low sink, no pull-up. AC1 is input-only, never a kill signal."}));
+  C.push(comp("ac-rly","AC clutch / amp ACT","K6", X5, 760, ["86 coil","85 LS Aux4","30 12V","87 clutch"], "left", {status:"prop", note:"Amp ACT: ground = kill, float = normal. Active-low sink, no pull-up. No AC1 wire in this install; ACT is the only AC signal."}));
   C.push(comp("k-fan2","Condenser fan relay","K7", X5, 900, ["86 coil","85 Ign5 LS","30 12V","87 fan"], "left", {status:"prop", note:"Ign 5 is a spare ignition drive used as a low-side aux — fan current goes through this relay, not the ECU pin."}));
   C.push(comp("batt","Vehicle 12V IGN","P1", X5, 1060, ["12V+","GND"], "left"));
   C.push(comp("buck","12V→5V buck ≥3A","P2", X5, 1180, ["12V IN","GND","5V OUT"], "left"));
@@ -633,15 +735,58 @@ function railEnd(w){
   return null;
 }
 
-/* ---- Orthogonal routing: exit sideways, run in a shared vertical lane, enter sideways ---- */
-function orthPath(A, B, lane){
-  const EXT = 26;
-  const ax = A.x + (A.side === "left" ? -EXT : EXT);
-  const bx = B.x + (B.side === "left" ? -EXT : EXT);
-  const chan = (ax + bx) / 2 + lane;
-  if (Math.abs(A.y - B.y) < 1.5) return roundPath([[A.x,A.y],[B.x,B.y]], 0);
-  return roundPath([[A.x,A.y],[ax,A.y],[chan,A.y],[chan,B.y],[bx,B.y],[B.x,B.y]], 9);
+/* ---- Orthogonal routing ----
+   Rules that came out of the reported routing bugs:
+   - "omni" ends (splices) get no exit stub, so a wire never overshoots past the junction.
+   - The vertical channel is clamped between the two exit points, so a wire never folds
+     back across the pin it just left.
+   - When the target sits behind a directional pin, run a horizontal corridor (an S)
+     instead of doubling back over the stub. */
+const EXT = 24;
+function dirOf(side){ return side === "left" ? -1 : side === "right" ? 1 : 0; }
+function clampTo(v, a, b){ return Math.max(Math.min(a,b), Math.min(Math.max(a,b), v)); }
+
+function routePoints(A, B, lane){
+  const aD = dirOf(A.side), bD = dirOf(B.side);
+  const ax = A.x + aD * EXT, bx = B.x + bD * EXT;
+  const pts = [[A.x, A.y]];
+  if (aD) pts.push([ax, A.y]);
+
+  if (Math.abs(A.y - B.y) < 1.2){
+    if (bD) pts.push([bx, B.y]);
+    pts.push([B.x, B.y]);
+    return pts;
+  }
+  const blockedA = aD !== 0 && (bx - ax) * aD < 0;
+  const blockedB = bD !== 0 && (ax - bx) * bD < 0;
+  if (!blockedA && !blockedB){
+    pts.push([clampTo((ax + bx) / 2 + lane, ax, bx), A.y]);
+    pts.push([clampTo((ax + bx) / 2 + lane, ax, bx), B.y]);
+  } else {
+    const midY = (A.y + B.y) / 2 + lane;
+    pts.push([ax, midY], [bx, midY]);
+  }
+  if (bD) pts.push([bx, B.y]);
+  pts.push([B.x, B.y]);
+  return pts;
 }
+
+/* Route through pinned waypoints. Each leg stays orthogonal and the fix points hold
+   their world position when an endpoint later moves, so nothing detaches. */
+function wirePoints(A, B, lane, fixes){
+  if (!fixes || !fixes.length) return routePoints(A, B, lane);
+  const aD = dirOf(A.side), bD = dirOf(B.side);
+  const pts = [[A.x, A.y]];
+  if (aD) pts.push([A.x + aD * EXT, A.y]);
+  let cur = pts[pts.length - 1];
+  fixes.forEach(f => { pts.push([f.x, cur[1]], [f.x, f.y]); cur = [f.x, f.y]; });
+  const bx = B.x + bD * EXT;
+  pts.push([bx, cur[1]]);
+  if (bD) pts.push([bx, B.y]);
+  pts.push([B.x, B.y]);
+  return pts;
+}
+function orthPath(A, B, lane, fixes){ return roundPath(wirePoints(A, B, lane, fixes), 9); }
 function roundPath(raw, r){
   const pts = [];
   raw.forEach(p => {
@@ -706,24 +851,15 @@ function render(){
   const drawn = shown.filter(c => !railHidden(c));
 
   const bandsShown = BANDS.filter(b => drawn.some(c => c.y >= b.y && c.y <= b.y + b.h));
-  let maxX = 1200, maxY = 800;
-  drawn.forEach(c => {
-    maxX = Math.max(maxX, ex(c) + (c.w || COMP_W) + 160);
-    maxY = Math.max(maxY, ey(c) + compH(c) + 160);
-  });
-  bandsShown.forEach(b => {
-    maxX = Math.max(maxX, (b.x + b.w) * state.spread + 80);
-    maxY = Math.max(maxY, (b.y + b.h) * state.spread + 80);
-  });
-  svg.setAttribute("width", maxX);
-  svg.setAttribute("height", maxY);
   svg.innerHTML = "";
 
   const defs = el("defs");
   defs.innerHTML = `<pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
     <circle class="dotgrid" cx="1" cy="1" r="1"/></pattern>`;
   svg.appendChild(defs);
-  svg.appendChild(el("rect", { width:maxX, height:maxY, fill:"url(#dots)" }));
+  /* The workspace has no sheet edge. The grid is one huge tiled rect so it keeps
+     rendering however far the user pans, in any direction including negative. */
+  svg.appendChild(el("rect", { x:-WORLD, y:-WORLD, width:WORLD*2, height:WORLD*2, fill:"url(#dots)" }));
 
   /* Background bands give the eye a place to rest and name each zone.
      A band with nothing visible in it is dropped so isolated layers sit alone. */
@@ -764,10 +900,13 @@ function render(){
   assignLanes(routed);
 
   const gW = el("g");
+  const gOverlay = el("g");          // fix points / endpoint grips for the selected wire
   routed.forEach(it => {
     const { w, A, B } = it;
     const dim = focusSet && !(focusSet.has(w.from.c) && focusSet.has(w.to.c));
-    const d = orthPath(A, B, it.lane);
+    const pts = wirePoints(A, B, it.lane, w.fixes);
+    const d = roundPath(pts, 9);
+    it.pts = pts;
     const hit = el("path", { class:"wire-hit", d });
     hit.dataset.id = w.id;
     gW.appendChild(hit);
@@ -779,12 +918,29 @@ function render(){
     gW.appendChild(path);
 
     if ((showLabels || state.sel === w.id) && w.label && !dim){
+      const mid = pts[Math.floor(pts.length/2)] || [ (A.x+B.x)/2, (A.y+B.y)/2 ];
+      const off = w.labelOff || { x:0, y:-7 };
       const t = el("text", {
-        class:"wlabel", x:(A.x+B.x)/2, y:(A.y+B.y)/2 - 5,
+        class:"wlabel" + (state.sel===w.id ? " selected" : ""),
+        x: mid[0] + off.x, y: mid[1] + off.y,
         fill:w.color || "#aaa", "text-anchor":"middle"
       });
       t.textContent = w.label;
+      t.dataset.labelFor = w.id;
       gW.appendChild(t);
+    }
+
+    if (state.sel === w.id){
+      (w.fixes || []).forEach((f, i) => {
+        const k = el("rect", { class:"fixpt", x:f.x-5, y:f.y-5, width:10, height:10, rx:2 });
+        k.dataset.fix = w.id; k.dataset.fixIdx = i;
+        gOverlay.appendChild(k);
+      });
+      [["from", A], ["to", B]].forEach(([end, P]) => {
+        const e = el("circle", { class:"endpt", cx:P.x, cy:P.y, r:5.5 });
+        e.dataset.endWire = w.id; e.dataset.end = end;
+        gOverlay.appendChild(e);
+      });
     }
   });
   /* Rail symbols: GND points down, supplies point up — the standard schematic cue. */
@@ -792,22 +948,36 @@ function render(){
     const dim = focusSet && !focusSet.has(r.host);
     const dir = r.at.side === "left" ? -1 : 1;
     const col = NET_COLORS[r.net] || "#888";
-    const g = el("g", { opacity: dim ? 0.07 : 1 });
-    const x0 = r.at.x, y0 = r.at.y, x1 = r.at.x + dir*17;
-    g.appendChild(el("path", { class:"rail", d:`M${x0},${y0} L${x1},${y0}`, stroke:col }));
+    const g = el("g", { class:"rail-g" + (state.sel===r.w.id ? " selected" : ""), opacity: dim ? 0.07 : 1 });
+    const ro = r.w.railOff || { x:0, y:0 };
+    const x0 = r.at.x, y0 = r.at.y, x1 = r.at.x + dir*17 + ro.x, y1 = y0 + ro.y;
+    g.appendChild(el("path", { class:"rail", d:`M${x0},${y0} L${x1},${y1}`, stroke:col }));
     if (r.net === "GND"){
-      g.appendChild(el("path", { class:"rail", d:`M${x1},${y0-5} L${x1},${y0+5}`, stroke:col }));
-      g.appendChild(el("path", { class:"rail", d:`M${x1+dir*3},${y0-3} L${x1+dir*3},${y0+3}`, stroke:col }));
-      g.appendChild(el("path", { class:"rail", d:`M${x1+dir*6},${y0-1.5} L${x1+dir*6},${y0+1.5}`, stroke:col }));
+      g.appendChild(el("path", { class:"rail", d:`M${x1},${y1-5} L${x1},${y1+5}`, stroke:col }));
+      g.appendChild(el("path", { class:"rail", d:`M${x1+dir*3},${y1-3} L${x1+dir*3},${y1+3}`, stroke:col }));
+      g.appendChild(el("path", { class:"rail", d:`M${x1+dir*6},${y1-1.5} L${x1+dir*6},${y1+1.5}`, stroke:col }));
     } else {
-      g.appendChild(el("path", { class:"rail", d:`M${x1},${y0-5} L${x1},${y0+5}`, stroke:col }));
-      const t = el("text", { class:"rail-t", x:x1 + dir*4, y:y0 - 7, fill:col, "text-anchor": dir>0 ? "start" : "end" });
+      g.appendChild(el("path", { class:"rail", d:`M${x1},${y1-5} L${x1},${y1+5}`, stroke:col }));
+      const t = el("text", { class:"rail-t", x:x1 + dir*4, y:y1 - 7, fill:col, "text-anchor": dir>0 ? "start" : "end" });
       t.textContent = r.net;
       g.appendChild(t);
     }
+    /* Grab target so the rail tap can be selected and dragged like any other element. */
+    const rh = el("rect", { class:"rail-hit", x:Math.min(x0,x1)-6, y:y1-12, width:Math.abs(x1-x0)+18, height:24 });
+    rh.dataset.rail = r.w.id;
+    g.appendChild(rh);
     gW.appendChild(g);
   });
   svg.appendChild(gW);
+
+  /* Which side does each part's wiring leave from? The mate badge goes on the other. */
+  const wireSides = {};
+  const bumpSide = (cid, side) => {
+    const s = wireSides[cid] || (wireSides[cid] = { left:0, right:0 });
+    if (side === "left") s.left++; else if (side === "right") s.right++;
+  };
+  routed.forEach(it => { bumpSide(it.w.from.c, it.A.side); bumpSide(it.w.to.c, it.B.side); });
+  rails.forEach(r => bumpSide(r.host, r.at.side));
 
   /* ---- components on top, so wires read as passing behind them ---- */
   const gC = el("g");
@@ -828,9 +998,11 @@ function render(){
     if (c.kind === "splice"){
       g.appendChild(el("circle", { class:"splice", cx:X+10, cy:Y+10, r:8 }));
       const hdl = el("circle", { class:"handle", cx:X+10, cy:Y+10, r:4.5 });
-      hdl.dataset.cid = c.id; hdl.dataset.pid = (c.pins[0] && c.pins[0].id) || "p1";
       g.appendChild(hdl);
-      const lb = el("text", { class:"pin-name", x:X+24, y:Y+14 });
+      const hh = el("circle", { class:"handle-hit", cx:X+10, cy:Y+10, r:9 });
+      hh.dataset.cid = c.id; hh.dataset.pid = (c.pins[0] && c.pins[0].id) || "p1";
+      g.appendChild(hh);
+      const lb = el("text", { class:"pin-name", x:X+24, y:Y+14, "pointer-events":"none" });
       lb.textContent = c.name;
       g.appendChild(lb);
       gC.appendChild(g); return;
@@ -859,19 +1031,56 @@ function render(){
 
     (c.pins||[]).forEach((p,i) => {
       const y = pinY(c,i), left = p.side !== "right";
-      const num = el("text", { class:"pin-num", x: left ? X+12 : X+w-12, y:y+4, "text-anchor": left ? "start" : "end" });
+      const num = el("text", { class:"pin-num", x: left ? X+12 : X+w-12, y:y+4, "text-anchor": left ? "start" : "end", "pointer-events":"none" });
       num.textContent = p.num;
       g.appendChild(num);
-      const nm = el("text", { class:"pin-name", x: left ? X+44 : X+w-44, y:y+4, "text-anchor": left ? "start" : "end" });
+      const nm = el("text", { class:"pin-name", x: left ? X+44 : X+w-44, y:y+4, "text-anchor": left ? "start" : "end", "pointer-events":"none" });
       nm.textContent = p.name;
       g.appendChild(nm);
       const hdl = el("circle", { class:"handle", cx: left ? X : X+w, cy:y, r:4.5 });
-      hdl.dataset.cid = c.id; hdl.dataset.pid = p.id;
       g.appendChild(hdl);
+      const hh = el("circle", { class:"handle-hit", cx: left ? X : X+w, cy:y, r:11 });
+      hh.dataset.cid = c.id; hh.dataset.pid = p.id;
+      g.appendChild(hh);
     });
+
+    /* The only new canvas element in this phase: a small generic connector icon
+       marking that this part has a mating half recorded in the Inspector. */
+    if ((c.mates||[]).length) drawMateBadge(g, c, X, Y, w, h, wireSides);
     gC.appendChild(g);
   });
   svg.appendChild(gC);
+  svg.appendChild(gOverlay);
+
+  /* Below the read threshold the in-block text is unreadable, so mirror each
+     component name above its block. Size is in SVG user units so the label
+     shrinks with the rest of the canvas; a 1/k screen-constant size would
+     overlap neighbours and eat clicks as you zoom out. */
+  if (state.view.k < ZOOM_LABEL_AT){
+    const gZ = el("g");
+    const size = 12 * ZOOM_LABEL_SCALE;      // world units, same space as blocks
+    const placed = [];
+    drawn.filter(c => c.kind !== "note" && c.name).forEach(c => {
+      const X = ex(c), w = c.w || COMP_W;
+      let y = ey(c) - size * 0.35;
+      // nudge up while this label would sit on one already placed nearby
+      for (let guard = 0; guard < 6; guard++){
+        const clash = placed.some(q => Math.abs(q.y - y) < size * 0.95 &&
+                                       Math.abs(q.x - (X + w/2)) < (q.w + w) / 2 + 40);
+        if (!clash) break;
+        y -= size * 1.0;
+      }
+      placed.push({ x:X + w/2, y, w: Math.max(w, c.name.length * size * 0.5) });
+      const t = el("text", {
+        class:"zlabel", x:X + w/2, y, "text-anchor":"middle",
+        "font-size": String(size),
+        "stroke-width": (size * 0.18).toFixed(1)
+      });
+      t.textContent = c.name;
+      gZ.appendChild(t);
+    });
+    svg.appendChild(gZ);
+  }
 
   applyView();
   const hiddenCount = state.components.length - shown.length;
@@ -887,6 +1096,41 @@ function render(){
   renderLayers();
   renderLegend();
   persist();
+}
+
+
+/* Mating-connector badge. Sits opposite the wiring, nudged clear of neighbours, and
+   never further than 0.7x its own width from the block edge. */
+const MATE_BADGE_W = 22, MATE_BADGE_H = 16;
+function drawMateBadge(g, c, X, Y, w, h, wireSides){
+  const s = wireSides[c.id] || { left:0, right:0 };
+  const onRight = s.right <= s.left;                 // opposite the busier side
+  const gap = MATE_BADGE_W * 0.7;                    // hard cap from the spec
+  const bx = onRight ? X + w + gap - MATE_BADGE_W/2 : X - gap - MATE_BADGE_W/2;
+  let by = Y + Math.min(h / 2, HDR + 6) - MATE_BADGE_H/2;
+
+  // nudge vertically off any neighbouring block that already occupies that spot
+  for (let n = 0; n < 5; n++){
+    const clash = state.components.some(o => {
+      if (o === c || !visible(o) || (state.rails && RAILS[o.id])) return false;
+      const ob = hitBox(o);
+      return bx + MATE_BADGE_W > ob.x && bx < ob.x + ob.w &&
+             by + MATE_BADGE_H > ob.y && by < ob.y + ob.h;
+    });
+    if (!clash) break;
+    by -= MATE_BADGE_H + 4;
+  }
+  const bg = el("g", { class:"mate-badge" });
+  bg.appendChild(el("rect", { class:"badge-mate", x:bx, y:by,
+    width:MATE_BADGE_W, height:MATE_BADGE_H, rx:3 }));
+  for (let i = 0; i < 3; i++){
+    bg.appendChild(el("circle", { class:"badge-mate-pin",
+      cx:bx + 6 + i*5, cy:by + MATE_BADGE_H/2, r:1.6 }));
+  }
+  const ttl = el("title");
+  ttl.textContent = "Mates: " + (c.mates||[]).map(m => m.pn).filter(Boolean).join(", ");
+  bg.appendChild(ttl);
+  g.appendChild(bg);
 }
 
 function wrapText(g, text, x, y, maxW){
@@ -905,8 +1149,15 @@ function wrapText(g, text, x, y, maxW){
   if (line) flush();
 }
 
+/* World->screen stays `screen = view.x + world*k`; expressing that as a viewBox means
+   pan/zoom/fit math is unchanged but the drawing surface has no edge. */
 function applyView(){
-  $("#stage").style.transform = `translate(${state.view.x}px,${state.view.y}px) scale(${state.view.k})`;
+  const svg = $("#canvas"), r = $("#stage-wrap").getBoundingClientRect();
+  const k = state.view.k;
+  svg.setAttribute("width", Math.max(1, Math.round(r.width)));
+  svg.setAttribute("height", Math.max(1, Math.round(r.height)));
+  svg.setAttribute("viewBox",
+    `${-state.view.x/k} ${-state.view.y/k} ${Math.max(1, r.width/k)} ${Math.max(1, r.height/k)}`);
 }
 function persist(){
   try{
@@ -980,10 +1231,10 @@ function inspect(){
       </div>
       <div class="insp-row" style="grid-template-columns:1fr"><span>Notes</span></div>
       <textarea id="i-note">${esc(c.note||"")}</textarea>
-      <button class="tool" id="i-focus" style="margin-top:8px">Focus this part</button>
       <div class="aside-h">Pins</div>
       ${(c.pins||[]).map(p => `<div class="insp-row"><span>${esc(p.num)}</span><input data-pin="${p.id}" class="i-pin" value="${esc(p.name)}"></div>`).join("")}
       <button class="tool" id="i-addpin" style="margin-top:8px">Add pin</button>
+      <div id="i-detail"></div>
       <p class="hint" style="margin-top:10px">Status: <span class="status-${c.status||"ok"}">${c.status||"ok"}</span>${c.unwired?" · no connector yet":""}</p>`;
     $("#i-grp").value = gk;
     $("#i-st").value = c.status || "ok";
@@ -993,7 +1244,6 @@ function inspect(){
     $("#i-st").onchange = e => { c.status = e.target.value; render(); };
     $("#i-note").oninput = e => { c.note = e.target.value; };
     $("#i-note").onchange = () => render();
-    $("#i-focus").onclick = () => { state.focus = c.id; render(); };
     box.querySelectorAll(".i-pin").forEach(inp => {
       inp.oninput = () => { const p = findPin(c, inp.dataset.pin); if (p) p.name = inp.value; render(); };
     });
@@ -1002,23 +1252,261 @@ function inspect(){
       c.pins.push({ id:"p"+n, num:String(n), name:"PIN "+n, side: c.pins[0]?.side || "right" });
       render(); inspect();
     };
+    renderDetail(c);
   } else if (w){
+    const known = Object.keys(NET_COLORS);
     box.innerHTML = `
-      <div class="insp-row"><span>Net</span><input id="i-net" value="${esc(w.net||"")}"></div>
+      <div class="insp-row"><span>Net</span>
+        <select id="i-netsel">${known.map(n => `<option value="${n}">${n}</option>`).join("")}
+          <option value="__custom">custom…</option></select>
+      </div>
+      <div class="insp-row"><span></span><input id="i-net" value="${esc(w.net||"")}"></div>
       <div class="insp-row"><span>Label</span><input id="i-lab" value="${esc(w.label||"")}"></div>
       <div class="insp-row"><span>Color</span><input id="i-col" type="color" value="${toHex(w.color)}"></div>
       <label style="font-size:12px"><input type="checkbox" id="i-dash" ${w.dashed?"checked":""}> Proposed / unconfirmed</label>
+      <div class="aside-h">Path</div>
+      <p class="hint">${(w.fixes||[]).length} fix point${(w.fixes||[]).length===1?"":"s"}.
+         Right-click the wire to add or clear them. Drag the wire body to drop one,
+         drag an orange end grip to move the connection to another terminal.</p>
+      <button class="tool" id="i-clearfix">Clear fix points</button>
+      <button class="tool" id="i-resetlab">Reset label / symbol offset</button>
       <p class="hint" style="margin-top:10px">${esc(w.from.c)}.${esc(w.from.p)} → ${esc(w.to.c)}.${esc(w.to.p)}</p>`;
+    $("#i-netsel").value = known.includes(w.net) ? w.net : "__custom";
+    $("#i-netsel").onchange = e => {
+      if (e.target.value === "__custom") { $("#i-net").focus(); return; }
+      w.net = e.target.value; w.color = NET_COLORS[w.net];
+      if (!w.label || known.includes(w.label)) w.label = w.net;
+      render(); inspect();
+    };
     $("#i-net").oninput = e => { w.net = e.target.value; render(); };
     $("#i-lab").oninput = e => { w.label = e.target.value; render(); };
     $("#i-col").oninput = e => { w.color = e.target.value; render(); };
     $("#i-dash").onchange = e => { w.dashed = e.target.checked; render(); };
+    $("#i-clearfix").onclick = () => { w.fixes = []; render(); inspect(); };
+    $("#i-resetlab").onclick = () => { delete w.labelOff; delete w.railOff; render(); inspect(); };
   } else {
     box.innerHTML = `<p class="hint">Click a part to focus it — everything it does not touch fades out. Click empty canvas to clear.</p>
       <p class="hint">Use <b>Layers</b> on the left to hide whole functional groups, or <b>only</b> to isolate one.</p>
       <p class="hint">12V, 5V and GND draw as rail symbols at each pin instead of long wires. Solid nets are assigned; dashed nets are proposed.</p>`;
   }
 }
+
+/* ---------- Inspector detail: mates, accessories, per-pin crimp, notes ----------
+   These live in the Inspector only. The single thing this adds to the canvas is a
+   small mating-connector badge, drawn in render(). */
+function renderDetail(c){
+  const box = $("#i-detail"); if (!box) return;
+  const mates = c.mates = c.mates || [];
+  const acc = accOf(c);
+  const crimp = c.crimp = c.crimp || {};
+  const isConnector = c.kind !== "note" && (c.pins||[]).length > 0;
+  const activeCats = ACC_CATS.filter(k => catOn(c, k.key));
+  const accCount = activeCats.reduce((n,k) => n + (acc[k.key]?.items?.length || 0), 0);
+  const crimped = Object.keys(crimp).filter(k => crimp[k] && crimp[k].pn).length;
+
+  box.innerHTML = `
+  <details class="sect" id="s-mates">
+    <summary>Compatible mates <span class="ct">${mates.length}</span></summary>
+    <div class="sect-body">
+      ${mates.length ? mates.map((m,i) => `
+        <div class="kv">
+          <div><span class="pn">${esc(m.pn||"(no PN)")}</span>
+               <span class="ds">${esc([m.mfr,m.note].filter(Boolean).join(" · "))}</span></div>
+          <button class="xbtn" data-rmmate="${i}" title="Remove">&times;</button>
+        </div>`).join("")
+        : `<p class="hint">No mating connector recorded yet.</p>`}
+      <input class="mini fld" id="m-pn-new"   placeholder="Mate part no">
+      <input class="mini fld" id="m-mfr-new"  placeholder="Manufacturer">
+      <input class="mini fld" id="m-note-new" placeholder="Note (optional)">
+      <button class="mini" id="m-add-mate" style="margin-top:6px">Add mate</button>
+    </div>
+  </details>
+
+  <details class="sect" id="s-acc">
+    <summary>Accessories <span class="ct">${accCount}</span></summary>
+    <div class="sect-body">
+      <p class="hint" style="margin:0 0 6px">Tick the categories that apply to this part.
+         The choice is remembered on the library entry.</p>
+      ${ACC_CATS.map(k => `
+        <label class="catrow">
+          <input type="checkbox" data-cat="${k.key}" ${catOn(c,k.key)?"checked":""}>
+          <span class="nm">${esc(k.name)}</span>
+          <span class="ct">${acc[k.key]?.items?.length || 0}</span>
+        </label>`).join("")}
+      ${activeCats.map(k => `
+        <div style="margin-top:10px">
+          <div class="aside-h" style="margin:4px 0">${esc(k.name)}</div>
+          ${(acc[k.key].items||[]).map((it,i) => `
+            <div class="kv">
+              <div><span class="pn">${esc(it.pn||"(no PN)")}</span>
+                   <span class="ds">${esc(accSummary(it))}</span></div>
+              <div style="display:flex;gap:4px;align-items:center">
+                <span class="tag ${it.req==="required"?"req":"opt"}"
+                      data-togreq="${k.key}:${i}" style="cursor:pointer"
+                      title="Click to toggle">${it.req==="required"?"required":"optional"}</span>
+                <button class="xbtn" data-rmacc="${k.key}:${i}">&times;</button>
+              </div>
+            </div>`).join("") || `<p class="hint">Nothing added.</p>`}
+          <button class="mini" data-addacc="${k.key}" style="margin-top:5px">Add ${esc(k.name.split(" ")[0].toLowerCase())}</button>
+        </div>`).join("")}
+    </div>
+  </details>
+
+  ${isConnector ? `
+  <details class="sect" id="s-crimp">
+    <summary>Per-pin crimp <span class="ct">${crimped}/${c.pins.length}</span></summary>
+    <div class="sect-body">
+      <p class="hint" style="margin:0 0 6px">Pick a terminal family to fill every cavity
+         (${c.pins.length}), then override any single pin.</p>
+      <div style="display:flex;gap:6px">
+        <select id="cr-family" style="flex:1"><option value="">Terminal family…</option>
+          ${(acc.crimp?.items||[]).map((it,i) =>
+            `<option value="${i}">${esc(it.pn||"(no PN)")} ${esc(it.awg?("· "+it.awg):"")}</option>`).join("")}
+        </select>
+        <button class="mini" id="cr-apply">Fill all</button>
+        <button class="mini" id="cr-clear">Clear</button>
+      </div>
+      ${(acc.crimp?.items||[]).length ? "" :
+        `<p class="hint" style="margin-top:6px">Add crimp terminals under
+          <b>Accessories → Crimp terminals</b> first.</p>`}
+      <table class="pintbl" style="margin-top:8px">
+        <tr><th>Pin</th><th>Crimp</th><th></th></tr>
+        ${c.pins.map(pn => {
+          const t2 = crimp[pn.id];
+          return `<tr>
+            <td class="pnum">${esc(pn.num)}<br><span class="ds">${esc(pn.name)}</span></td>
+            <td>${t2 && t2.pn
+              ? `<span class="crimp-set">${esc(t2.pn)}</span><span class="ds">${esc(accSummary(t2))}</span>`
+              : `<span class="crimp-none">not set</span>`}</td>
+            <td><select data-crimppin="${pn.id}" style="font-size:10px">
+                  <option value="">—</option>
+                  ${(acc.crimp?.items||[]).map((it,i) =>
+                    `<option value="${i}"${t2 && t2.pn===it.pn?" selected":""}>${esc(it.pn||"(no PN)")}</option>`).join("")}
+                </select></td></tr>`;
+        }).join("")}
+      </table>
+    </div>
+  </details>` : ""}
+
+  <div class="aside-h">Notes</div>
+  <textarea id="i-freenote" placeholder="Free text notes for this part">${esc(c.notes||"")}</textarea>`;
+
+  /* --- mates --- */
+  box.querySelectorAll("[data-rmmate]").forEach(b => b.onclick = () => {
+    mates.splice(+b.dataset.rmmate,1); syncLib(c); render(); inspect(); openSect("s-mates"); });
+  $("#m-add-mate").onclick = () => {
+    const pn = $("#m-pn-new").value.trim();
+    if (!pn) return;
+    mates.push({ pn, mfr:$("#m-mfr-new").value.trim(), note:$("#m-note-new").value.trim() });
+    syncLib(c); render(); inspect(); openSect("s-mates");
+  };
+
+  /* --- accessory categories --- */
+  box.querySelectorAll("[data-cat]").forEach(cb => cb.onchange = () => {
+    ensureCat(c, cb.dataset.cat).on = cb.checked;
+    syncLib(c, true); inspect(); openSect("s-acc");
+  });
+  box.querySelectorAll("[data-addacc]").forEach(b => b.onclick = () => openAccessoryDialog(c, b.dataset.addacc));
+  box.querySelectorAll("[data-rmacc]").forEach(b => b.onclick = () => {
+    const [k,i] = b.dataset.rmacc.split(":");
+    acc[k].items.splice(+i,1); syncLib(c); inspect(); openSect("s-acc");
+  });
+  box.querySelectorAll("[data-togreq]").forEach(s => s.onclick = () => {
+    const [k,i] = s.dataset.togreq.split(":");
+    const it = acc[k].items[+i];
+    it.req = it.req === "required" ? "optional" : "required";
+    syncLib(c); inspect(); openSect("s-acc");
+  });
+
+  /* --- crimp --- */
+  if ($("#cr-apply")) $("#cr-apply").onclick = () => {
+    const i = $("#cr-family").value;
+    if (i === "") return;
+    const fam = acc.crimp.items[+i];
+    c.pins.forEach(pn => { crimp[pn.id] = { ...fam }; });   // default = one per cavity
+    syncLib(c); inspect(); openSect("s-crimp");
+  };
+  if ($("#cr-clear")) $("#cr-clear").onclick = () => {
+    c.crimp = {}; syncLib(c); inspect(); openSect("s-crimp");
+  };
+  box.querySelectorAll("[data-crimppin]").forEach(sel => sel.onchange = () => {
+    const pid = sel.dataset.crimppin;
+    if (sel.value === "") delete crimp[pid];
+    else crimp[pid] = { ...acc.crimp.items[+sel.value] };
+    syncLib(c); inspect(); openSect("s-crimp");
+  });
+
+  $("#i-freenote").oninput = e => { c.notes = e.target.value; };
+  $("#i-freenote").onchange = () => { syncLib(c); persist(); };
+}
+function openSect(id){ const d = $("#"+id); if (d) d.open = true; }
+function accSummary(it){
+  return [it.desc, it.awg, it.finish, it.gender, it.type].filter(Boolean).join(" · ");
+}
+/* Category visibility is remembered on the library entry (spec 3.2). Item data is
+   only pushed back to the library for entries the user is editing directly, never
+   the other way round, so a placed part is never reset by a later library change. */
+function libEntryFor(c){
+  /* Parts from the seed carry no libId, so fall back to matching the entry by name. */
+  return (c.libId && library.find(x => x.id === c.libId)) ||
+         library.find(x => x.name === c.name) || null;
+}
+function syncLib(c, catsOnly){
+  {
+    const e = libEntryFor(c);
+    if (e){
+      const ea = accOf(e);
+      ACC_CATS.forEach(k => { if (accOf(c)[k.key]) (ea[k.key] = ea[k.key] || {items:[]}).on = catOn(c,k.key); });
+      if (!catsOnly){
+        ACC_CATS.forEach(k => { if (accOf(c)[k.key]) ea[k.key].items = JSON.parse(JSON.stringify(accOf(c)[k.key].items||[])); });
+        e.mates = JSON.parse(JSON.stringify(c.mates||[]));
+      }
+      e.dirty = true; saveLibrary();
+    }
+  }
+  persist();
+}
+
+function openAccessoryDialog(c, key){
+  const cat = ACC_CATS.find(k => k.key === key);
+  openModal(`
+    <h3>Add ${esc(cat.name)}</h3>
+    <p class="sub">For ${esc(c.name)}. Nothing is looked up automatically — enter what the
+       datasheet says.</p>
+    <div class="two">
+      <div><label>Part number</label><input type="text" id="a-pn"></div>
+      <div><label>Required or optional</label>
+        <select id="a-req"><option value="required">required</option>
+                           <option value="optional" selected>optional</option></select></div>
+    </div>
+    <label>Description</label><input type="text" id="a-desc">
+    <div class="two">
+      <div><label>AWG range</label><input type="text" id="a-awg" placeholder="e.g. 20-18"></div>
+      <div><label>Finish</label><select id="a-fin">${FINISHES.map(f=>`<option value="${f}">${f||"—"}</option>`).join("")}</select></div>
+    </div>
+    <div class="two">
+      <div><label>Gender</label><select id="a-gen">${GENDERS.map(g=>`<option value="${g}">${g||"—"}</option>`).join("")}</select></div>
+      <div><label>Type</label><select id="a-type">${TERM_TYPES.map(x=>`<option value="${x}">${x||"—"}</option>`).join("")}</select></div>
+    </div>
+    <div class="err" id="a-err" style="display:none"></div>
+    <div class="acts">
+      <button class="mini" id="a-cancel">Cancel</button>
+      <button class="mini" id="a-save" style="border-color:var(--accent);color:var(--accent)">Add</button>
+    </div>`);
+  $("#a-cancel").onclick = closeModal;
+  $("#a-save").onclick = () => {
+    const pn = $("#a-pn").value.trim();
+    if (!pn){ showErr("a-err","A part number is required."); return; }
+    ensureCat(c, key).items.push({
+      pn, desc:$("#a-desc").value.trim(), req:$("#a-req").value,
+      awg:$("#a-awg").value.trim(), finish:$("#a-fin").value,
+      gender:$("#a-gen").value, type:$("#a-type").value
+    });
+    ensureCat(c, key).on = true;
+    syncLib(c); closeModal(); inspect(); openSect("s-acc");
+  };
+}
+
 function esc(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[m])); }
 function toHex(c){ return (c && c[0]==="#" && c.length===7) ? c : "#888888"; }
 
@@ -1032,31 +1520,116 @@ function screenToWorld(ev){
 function hitComp(pt){
   const list = state.components.filter(c => visible(c) && !(state.rails && RAILS[c.id]));
   for (let i=list.length-1;i>=0;i--){
-    const c = list[i];
-    const w = c.w || COMP_W, h = compH(c);
-    if (pt.x>=ex(c) && pt.x<=ex(c)+w && pt.y>=ey(c) && pt.y<=ey(c)+h) return c;
+    const b = hitBox(list[i]);
+    if (pt.x>=b.x && pt.x<=b.x+b.w && pt.y>=b.y && pt.y<=b.y+b.h) return list[i];
   }
   return null;
 }
 
 const wrap = $("#stage-wrap");
+const DRAG_SLOP = 4;           // screen px before a press becomes a drag
+const SNAP_TOL  = 10;          // world px within which a drag snaps to an axis / 45deg
+
+/* Snap a dragged point to horizontal, vertical, then 45deg against nearby anchors. */
+function snapPoint(pt, anchors){
+  let x = pt.x, y = pt.y, sx = false, sy = false;
+  anchors.forEach(a => {
+    if (!a) return;
+    if (!sx && Math.abs(pt.x - a.x) < SNAP_TOL){ x = a.x; sx = true; }
+    if (!sy && Math.abs(pt.y - a.y) < SNAP_TOL){ y = a.y; sy = true; }
+  });
+  if (!sx && !sy){
+    for (const a of anchors){
+      if (!a) continue;
+      const dx = pt.x - a.x, dy = pt.y - a.y;
+      const d = (Math.abs(dx) - Math.abs(dy));
+      if (Math.abs(d) < SNAP_TOL){                       // near a 45deg diagonal
+        const m = (Math.abs(dx) + Math.abs(dy)) / 2;
+        x = a.x + Math.sign(dx) * m;
+        y = a.y + Math.sign(dy) * m;
+        break;
+      }
+    }
+  }
+  return { x: Math.round(x), y: Math.round(y) };
+}
+function wireEnds(w){
+  const a = findC(w.from.c), b = findC(w.to.c);
+  const pa = a && findPin(a, w.from.p), pb = b && findPin(b, w.to.p);
+  if (!pa || !pb) return null;
+  return { A: pinXY(a, pa), B: pinXY(b, pb) };
+}
+function polyLen(pts){
+  let L = 0;
+  for (let i=1;i<pts.length;i++) L += Math.abs(pts[i][0]-pts[i-1][0]) + Math.abs(pts[i][1]-pts[i-1][1]);
+  return L;
+}
+/* Insert a waypoint where it costs the least extra wire, which keeps fix points
+   in path order however the user adds them. */
+function insertFix(w, p){
+  const e = wireEnds(w); if (!e) return;
+  const cur = w.fixes || [];
+  let best = 0, bestL = Infinity;
+  for (let i=0;i<=cur.length;i++){
+    const trial = cur.slice(0,i).concat([p], cur.slice(i));
+    const L = polyLen(wirePoints(e.A, e.B, 0, trial));
+    if (L < bestL){ bestL = L; best = i; }
+  }
+  w.fixes = cur.slice(0,best).concat([p], cur.slice(best));
+  return best;
+}
+
 wrap.addEventListener("mousedown", ev => {
   hideCtx();
   if (ev.button === 1 || ev.button === 2) return;
-  const handle = ev.target.closest?.(".handle");
-  if (handle){
-    ui.wire = { from:{ c:handle.dataset.cid, p:handle.dataset.pid } };
+  const tgt = ev.target;
+  const d = tgt.dataset || {};
+  const pt = screenToWorld(ev);
+
+  // 1. pinned waypoint on the selected wire
+  if (tgt.classList?.contains("fixpt")){
+    ui.fix = { id:d.fix, idx:+d.fixIdx };
     ev.preventDefault(); return;
   }
-  const wid = ev.target?.dataset?.id && (ev.target.classList.contains("wire") || ev.target.classList.contains("wire-hit"))
-    ? ev.target.dataset.id : null;
-  if (wid){ state.sel = wid; render(); inspect(); return; }
-  const pt = screenToWorld(ev);
+  // 2. wire endpoint grip -> reattach to another terminal
+  if (tgt.classList?.contains("endpt")){
+    ui.reattach = { id:d.endWire, end:d.end };
+    ev.preventDefault(); return;
+  }
+  // 3. wire label -> select the wire and allow nudging the label clear of wires
+  if (tgt.classList?.contains("wlabel")){
+    const w = state.wires.find(x => x.id === d.labelFor);
+    state.sel = d.labelFor;
+    ui.label = { id:d.labelFor, start:pt, base:{ ...(w?.labelOff || {x:0,y:-7}) } };
+    render(); inspect(); ev.preventDefault(); return;
+  }
+  // 4. power / ground rail tap -> selects its wire, drag to reposition the symbol
+  if (tgt.classList?.contains("rail-hit")){
+    const w = state.wires.find(x => x.id === d.rail);
+    state.sel = d.rail;
+    ui.rail = { id:d.rail, start:pt, base:{ ...(w?.railOff || {x:0,y:0}) } };
+    render(); inspect(); ev.preventDefault(); return;
+  }
+  // 5. terminal -> press becomes a wire only once the pointer actually moves,
+  //    so a plain click still selects the part underneath (splices especially)
+  const handle = tgt.closest?.(".handle-hit");
+  if (handle){
+    ui.pendWire = { from:{ c:handle.dataset.cid, p:handle.dataset.pid }, sx:ev.clientX, sy:ev.clientY };
+    ev.preventDefault(); return;
+  }
+  // 6. wire body -> select; dragging it drops a fix point and reroutes
+  const wid = (tgt.classList?.contains("wire") || tgt.classList?.contains("wire-hit")) ? d.id : null;
+  if (wid){
+    state.sel = wid;
+    ui.pendSeg = { id:wid, sx:ev.clientX, sy:ev.clientY };
+    render(); inspect(); return;
+  }
+  // 7. component
   const c = hitComp(pt);
   if (c){
     state.sel = c.id;
     if ($("#tog-focus").checked) state.focus = c.id;
-    ui.drag = { id:c.id, dx: pt.x - ex(c), dy: pt.y - ey(c) };
+    ui.drag = { id:c.id, dx: pt.x - ex(c), dy: pt.y - ey(c), moved:false };
     render(); inspect();
   } else {
     state.sel = null; state.focus = null;
@@ -1065,39 +1638,110 @@ wrap.addEventListener("mousedown", ev => {
     wrap.classList.add("panning");
   }
 });
+
 window.addEventListener("mousemove", ev => {
   if (ui.pan){ state.view.x = ev.clientX-ui.pan.x; state.view.y = ev.clientY-ui.pan.y; applyView(); return; }
+
   if (ui.drag){
     const pt = screenToWorld(ev), c = findC(ui.drag.id);
     c.x = Math.round(((pt.x-ui.drag.dx)/state.spread)/8)*8;
     c.y = Math.round(((pt.y-ui.drag.dy)/state.spread)/8)*8;
     render(); return;
   }
+  if (ui.fix){
+    const w = state.wires.find(x => x.id === ui.fix.id);
+    const e = w && wireEnds(w); if (!e) return;
+    const others = (w.fixes||[]).filter((_,i) => i !== ui.fix.idx);
+    w.fixes[ui.fix.idx] = snapPoint(screenToWorld(ev), [e.A, e.B, ...others]);
+    render(); return;
+  }
+  if (ui.reattach){
+    const pt = screenToWorld(ev);
+    let ghost = document.getElementById("ghost");
+    if (!ghost){ ghost = el("path", { id:"ghost", class:"wire dash", stroke:"#e8b849" }); $("#canvas").appendChild(ghost); }
+    const w = state.wires.find(x => x.id === ui.reattach.id);
+    const keep = ui.reattach.end === "from" ? w.to : w.from;
+    const kc = findC(keep.c), kp = kc && findPin(kc, keep.p);
+    if (!kp) return;
+    const K = pinXY(kc, kp);
+    ghost.setAttribute("d", `M${K.x},${K.y} L${pt.x},${pt.y}`);
+    return;
+  }
+  if (ui.label){
+    const w = state.wires.find(x => x.id === ui.label.id); if (!w) return;
+    const pt = screenToWorld(ev);
+    w.labelOff = { x: Math.round(ui.label.base.x + pt.x - ui.label.start.x),
+                   y: Math.round(ui.label.base.y + pt.y - ui.label.start.y) };
+    render(); return;
+  }
+  if (ui.rail){
+    const w = state.wires.find(x => x.id === ui.rail.id); if (!w) return;
+    const pt = screenToWorld(ev);
+    w.railOff = { x: Math.round(ui.rail.base.x + pt.x - ui.rail.start.x),
+                  y: Math.round(ui.rail.base.y + pt.y - ui.rail.start.y) };
+    render(); return;
+  }
+  if (ui.pendSeg){
+    if (Math.hypot(ev.clientX-ui.pendSeg.sx, ev.clientY-ui.pendSeg.sy) < DRAG_SLOP) return;
+    const w = state.wires.find(x => x.id === ui.pendSeg.id);
+    const e = w && wireEnds(w);
+    if (e){
+      const p = snapPoint(screenToWorld(ev), [e.A, e.B, ...(w.fixes||[])]);
+      const idx = insertFix(w, p);
+      ui.fix = { id:w.id, idx };
+    }
+    ui.pendSeg = null; render(); return;
+  }
+  if (ui.pendWire){
+    if (Math.hypot(ev.clientX-ui.pendWire.sx, ev.clientY-ui.pendWire.sy) < DRAG_SLOP) return;
+    ui.wire = { from: ui.pendWire.from }; ui.pendWire = null;
+  }
   if (ui.wire){
     const pt = screenToWorld(ev);
     let ghost = document.getElementById("ghost");
-    if (!ghost){
-      ghost = el("path", { id:"ghost", class:"wire dash", stroke:"#aaa" });
-      $("#canvas").appendChild(ghost);
-    }
+    if (!ghost){ ghost = el("path", { id:"ghost", class:"wire dash", stroke:"#aaa" }); $("#canvas").appendChild(ghost); }
     const a = findC(ui.wire.from.c), pa = a && findPin(a, ui.wire.from.p);
     if (!pa) return;
     const A = pinXY(a, pa);
     ghost.setAttribute("d", `M${A.x},${A.y} L${pt.x},${pt.y}`);
   }
 });
+
 window.addEventListener("mouseup", ev => {
   wrap.classList.remove("panning");
+  const handle = ev.target.closest?.(".handle-hit");
+
   if (ui.wire){
-    const handle = ev.target.closest?.(".handle");
     if (handle && (handle.dataset.cid !== ui.wire.from.c || handle.dataset.pid !== ui.wire.from.p)){
       state.wires.push({
         id: uid("w"), from: ui.wire.from, to:{ c:handle.dataset.cid, p:handle.dataset.pid },
-        net:"SIG", color:NET_COLORS.SIG, label:"", dashed:true
+        net:"SIG", color:NET_COLORS.SIG, label:"SIG", dashed:true, fixes:[]
       });
     }
     ui.wire = null; render();
+  } else if (ui.pendWire){
+    /* Press and release on a terminal without moving: treat it as selecting the part. */
+    const c = findC(ui.pendWire.from.c);
+    if (c){
+      state.sel = c.id;
+      if ($("#tog-focus").checked) state.focus = c.id;
+      render(); inspect();
+    }
+    ui.pendWire = null;
+  } else if (ui.reattach){
+    const w = state.wires.find(x => x.id === ui.reattach.id);
+    if (w && handle){
+      const other = ui.reattach.end === "from" ? w.to : w.from;
+      if (handle.dataset.cid !== other.c || handle.dataset.pid !== other.p){
+        w[ui.reattach.end] = { c:handle.dataset.cid, p:handle.dataset.pid };
+      }
+    }
+    document.getElementById("ghost")?.remove();
+    ui.reattach = null; render(); inspect();
+  } else if (ui.pendSeg){
+    ui.pendSeg = null;
   }
+  if (ui.fix || ui.label || ui.rail){ ui.fix = ui.label = ui.rail = null; persist(); }
   ui.drag = null; ui.pan = null;
 });
 wrap.addEventListener("wheel", ev => {
@@ -1108,8 +1752,10 @@ wrap.addEventListener("wheel", ev => {
   state.view.x = mx - ((mx-state.view.x)/old)*next;
   state.view.y = my - ((my-state.view.y)/old)*next;
   state.view.k = next;
+  if ((old < ZOOM_LABEL_AT) !== (next < ZOOM_LABEL_AT)) render();
   applyView(); $("#zoom-lbl").textContent = Math.round(next*100)+"%";
 }, {passive:false});
+window.addEventListener("resize", () => applyView());
 
 window.addEventListener("keydown", ev => {
   if (/input|textarea|select/i.test(ev.target.tagName)) return;
@@ -1125,12 +1771,39 @@ window.addEventListener("keydown", ev => {
 wrap.addEventListener("contextmenu", ev => {
   ev.preventDefault();
   const pt = screenToWorld(ev);
-  const c = hitComp(pt);
   const menu = $("#ctx");
   menu.style.display="block"; menu.style.left=ev.clientX+"px"; menu.style.top=ev.clientY+"px";
+
+  const d = ev.target.dataset || {};
+  const wid = (ev.target.classList?.contains("wire") || ev.target.classList?.contains("wire-hit")) ? d.id
+            : ev.target.classList?.contains("fixpt") ? d.fix
+            : ev.target.classList?.contains("rail-hit") ? d.rail
+            : ev.target.classList?.contains("wlabel") ? d.labelFor : null;
+  if (wid){
+    const w = state.wires.find(x => x.id === wid);
+    const onFix = ev.target.classList?.contains("fixpt") ? +d.fixIdx : -1;
+    state.sel = wid; render(); inspect();
+    menu.innerHTML = `<button data-w="addfix">Add fix point</button>` +
+      (onFix >= 0 ? `<button data-w="rmfix">Remove this fix point</button>` : "") +
+      ((w.fixes||[]).length ? `<button data-w="clearfix">Clear all fix points (${w.fixes.length})</button>` : "") +
+      `<button data-w="resetlabel">Reset label position</button>
+       <div class="sep"></div>
+       <button data-w="del">Delete wire</button>`;
+    menu.onclick = e => {
+      const a = e.target.dataset.w; if (!a) return;
+      if (a==="addfix"){ w.fixes = w.fixes || []; insertFix(w, { x:Math.round(pt.x), y:Math.round(pt.y) }); }
+      if (a==="rmfix") w.fixes.splice(onFix, 1);
+      if (a==="clearfix") w.fixes = [];
+      if (a==="resetlabel"){ delete w.labelOff; delete w.railOff; }
+      if (a==="del") state.wires = state.wires.filter(x => x.id !== wid);
+      hideCtx(); render(); inspect();
+    };
+    return;
+  }
+
+  const c = hitComp(pt);
   if (c && c.kind!=="note"){
-    menu.innerHTML = `<button data-act="focus">Focus this part</button>
-      <button data-act="hide">Hide layer: ${GROUPS[groupOf(c)]?.name || "misc"}</button>
+    menu.innerHTML = `<button data-act="hide">Hide layer: ${GROUPS[groupOf(c)]?.name || "misc"}</button>
       <button data-act="flip">Flip pin side</button>
       <button data-act="dup">Duplicate</button>
       <div class="sep"></div>
@@ -1158,28 +1831,501 @@ wrap.addEventListener("contextmenu", ev => {
 });
 function hideCtx(){ $("#ctx").style.display="none"; }
 
-function addAt(kind, pt){
-  const x = Math.round(((pt?.x||200)/state.spread)/8)*8, y = Math.round(((pt?.y||200)/state.spread)/8)*8;
-  const id = uid("c");
-  const recipes = {
-    connector: () => comp(id,"Connector","C",x,y,["12V","GND","SIG"],"right"),
-    splice: () => ({id, kind:"splice", name:"Splice", ident:"SP", x, y, w:24, pins:[{id:"p1",num:"1",name:"NET",side:"right"}]}),
-    resistor: () => comp(id,"Resistor","R",x,y,["A","B"],"right",{kind:"resistor",w:170}),
-    note: () => ({id, kind:"note", name:"Note", ident:"", x, y, w:260, h:100, pins:[], note:"…"}),
-    sensor3: () => comp(id,"Sensor","S",x,y,["5V","SIG","GND"],"right"),
-    relay: () => comp(id,"Relay","K",x,y,["86","85","30","87"],"right"),
-    "can-node": () => comp(id,"CAN device","N",x,y,["12V","GND","CANH","CANL"],"right")
-  };
-  const make = recipes[kind]; if (!make) return;
-  const c = make(); c.group = (kind === "note") ? "notes" : "misc";
-  state.components.push(c); render();
+/* ============================ COMPONENT LIBRARY ============================
+   Data-driven, searchable, and persisted separately from the schematic so that
+   library edits never touch parts already placed on the canvas. */
+const LIB_STORAGE = "st185-harness-lib-v1";
+
+/* Generic primitives that are not part of the ST185 seed. */
+const LIB_PRIMITIVES = [
+  { id:"prim-connector", name:"Connector (generic)", kind:"connector", w:COMP_W,
+    desc:"Blank 3-way connector", pins:[["1","12V","right"],["2","GND","right"],["3","SIG","right"]] },
+  { id:"prim-splice",    name:"Splice", kind:"splice", w:24,
+    desc:"Junction / splice point", pins:[["1","NET","right"]] },
+  { id:"prim-resistor",  name:"Resistor", kind:"resistor", w:170,
+    desc:"Two-terminal resistor", pins:[["1","A","right"],["2","B","right"]] },
+  { id:"prim-relay",     name:"Relay (generic)", kind:"connector", w:COMP_W,
+    desc:"ISO micro relay, 4 terminal",
+    pins:[["1","86 coil","right"],["2","85 LS","right"],["3","30 12V","right"],["4","87 out","right"]] },
+  { id:"prim-sensor3",   name:"Sensor, 3-pin", kind:"connector", w:COMP_W,
+    desc:"Ratiometric sensor, 5V / SIG / GND",
+    pins:[["1","5V","right"],["2","SIG","right"],["3","GND","right"]] },
+  { id:"prim-sensor2",   name:"Sensor, 2-pin", kind:"connector", w:COMP_W,
+    desc:"Two-wire sensor or switch", pins:[["1","SIG","right"],["2","GND","right"]] },
+  { id:"prim-cannode",   name:"CAN device (generic)", kind:"connector", w:COMP_W,
+    desc:"Powered CAN bus node",
+    pins:[["1","12V","right"],["2","GND","right"],["3","CANH","right"],["4","CANL","right"]] },
+  { id:"prim-note",      name:"Note", kind:"note", w:260, desc:"Free-text callout", pins:[] }
+];
+
+/* Manufacturers only where the repo itself already names them. Nothing invented. */
+const LIB_MFR = [
+  [/XtremeX|CAN-Lambda|G4X/i, "Link ECU"],
+  [/CSB3|ECUMaster/i,         "ECUMaster"],
+  [/SN65HVD230/i,             "Texas Instruments"],
+  [/Bosch/i,                  "Bosch"],
+  [/Continental/i,            "Continental"],
+  [/Waveshare/i,              "Waveshare"],
+  [/Pi 5|Raspberry/i,         "Raspberry Pi"]
+];
+function guessMfr(name){
+  for (const [re, m] of LIB_MFR) if (re.test(name)) return m;
+  return "";
 }
 
-document.querySelectorAll(".lib-item").forEach(b => b.onclick = () => {
-  addAt(b.dataset.add, { x:(220-state.view.x)/state.view.k, y:(140-state.view.y)/state.view.k });
-});
-/* The sheet is tall, so fitting everything makes it unreadable.
-   Fit to width instead and let the bands scroll vertically. */
+/* Accessory categories offered per component. The catalogue itself is user-entered:
+   no terminal part numbers are shipped, because guessing them would be worse than blank. */
+const ACC_CATS = [
+  { key:"crimp",     name:"Crimp terminals (by AWG)" },
+  { key:"seal",      name:"Wire seals" },
+  { key:"wedge",     name:"Wedge locks / TPA" },
+  { key:"backshell", name:"Backshells / strain relief" },
+  { key:"boot",      name:"Boots (straight, right-angle, heat-shrink, rubber, silicone)" },
+  { key:"plug",      name:"Cavity plugs / blanking seals" },
+  { key:"tool",      name:"Crimp tools / dies" }
+];
+const FINISHES = ["", "gold", "silver", "tin", "nickel"];
+const GENDERS  = ["", "pin", "socket"];
+const TERM_TYPES = ["", "closed barrel", "open barrel", "stamped & formed", "machined",
+                    "insulated", "non-insulated", "solder"];
+
+function accOf(o){ return (o.accessories = o.accessories || {}); }
+function catOn(o, key){
+  const a = accOf(o)[key];
+  return a ? !!a.on : false;
+}
+function ensureCat(o, key){
+  const a = accOf(o);
+  if (!a[key]) a[key] = { on:false, items:[] };
+  return a[key];
+}
+
+let library = [];
+
+/* Every part the ST185 seed uses becomes a library entry, so nothing that is
+   already on the canvas is missing from the library. */
+function buildLibrary(){
+  const entries = LIB_PRIMITIVES.map(e => ({
+    id:e.id, name:e.name, mfr:"", pn:"", desc:e.desc, kind:e.kind, w:e.w,
+    pins:e.pins.map(([num,nm,side]) => ({ num, name:nm, side })),
+    image:null, builtin:true, primitive:true,
+    mates:[], accessories:{}, crimp:{}, notes:""
+  }));
+  const seen = new Set(entries.map(e => e.name.toLowerCase()));
+  buildST185().components.forEach(c => {
+    if (c.kind === "note") return;
+    const key = c.name.toLowerCase();
+    if (seen.has(key)) return;
+    seen.add(key);
+    entries.push({
+      id:"lib-" + c.id, name:c.name, mfr:guessMfr(c.name), pn:"",
+      desc:(c.note || "").slice(0, 160), kind:c.kind, w:c.w || COMP_W,
+      pins:(c.pins||[]).map(pn => ({ num:pn.num, name:pn.name, side:pn.side })),
+      image:null, builtin:true, primitive:false, group:GROUP_OF[c.id] || "misc",
+      mates:[], accessories:{}, crimp:{}, notes:""
+    });
+  });
+  return entries;
+}
+function saveLibrary(){
+  try{
+    /* Only user entries and user edits are stored; builtins rebuild from the seed. */
+    const diff = library.filter(e => !e.builtin || e.dirty);
+    localStorage.setItem(LIB_STORAGE, JSON.stringify(diff));
+  }catch(e){}
+}
+function loadLibrary(){
+  library = buildLibrary();
+  try{
+    const saved = JSON.parse(localStorage.getItem(LIB_STORAGE) || "[]");
+    saved.forEach(s => {
+      const i = library.findIndex(e => e.id === s.id);
+      if (i >= 0) library[i] = { ...library[i], ...s };
+      else library.push(s);
+    });
+  }catch(e){}
+}
+
+/* Simple relevance: earlier and more exact matches score higher. */
+function libScore(e, q){
+  if (!q) return 1;
+  const hay = [e.pn, e.name, e.mfr, e.desc].map(v => (v||"").toLowerCase());
+  let best = 0;
+  const weights = [100, 80, 50, 30];
+  hay.forEach((h, i) => {
+    if (!h) return;
+    const at = h.indexOf(q);
+    if (at < 0) return;
+    let s = weights[i] - Math.min(at, 20);
+    if (at === 0) s += 25;
+    else if (/[\s\-_/]/.test(h[at-1])) s += 12;
+    if (h === q) s += 40;
+    best = Math.max(best, s);
+  });
+  return best;
+}
+function libResults(){
+  const q = ($("#lib-search").value || "").trim().toLowerCase();
+  return library
+    .map(e => ({ e, s: libScore(e, q) }))
+    .filter(r => r.s > 0)
+    .sort((a,b) => b.s - a.s || a.e.name.localeCompare(b.e.name))
+    .map(r => r.e);
+}
+function renderLibrary(){
+  const res = libResults();
+  const box = $("#lib-list");
+  $("#lib-count").textContent = res.length + "/" + library.length;
+  if (!res.length){
+    box.innerHTML = `<div class="lib-empty">No match. Refine the text, use
+      <b>+ Add component</b> to enter it by hand, or <b>Find more…</b> to look it up.</div>`;
+    return;
+  }
+  box.innerHTML = res.slice(0, 400).map(e => {
+    const sub = [e.mfr, e.pn].filter(Boolean).join(" · ") ||
+                (e.pins.length ? e.pins.length + " pins" : "no pins");
+    const th = e.image ? `style="background-image:url('${e.image}')"` : "";
+    return `<div class="lib-row" data-lib="${e.id}" title="${esc(e.desc || e.name)}">
+      <div class="lib-thumb" ${th}></div>
+      <div class="lib-meta">
+        <div class="lib-nm">${esc(e.name)}</div>
+        <div class="lib-sub">${esc(sub)}${e.pins.length ? " · " + e.pins.length + "p" : ""}</div>
+      </div>
+      <button class="lib-edit" data-libedit="${e.id}" title="Edit entry">edit</button>
+    </div>`;
+  }).join("");
+  box.querySelectorAll("[data-lib]").forEach(r => {
+    r.onclick = ev => {
+      if (ev.target.dataset.libedit) return;
+      placeLibraryItem(r.dataset.lib);
+    };
+  });
+  box.querySelectorAll("[data-libedit]").forEach(b => {
+    b.onclick = ev => { ev.stopPropagation(); openComponentDialog(b.dataset.libedit); };
+  });
+}
+
+function centreWorld(){
+  const r = wrap.getBoundingClientRect();
+  return { x:(r.width/2 - state.view.x)/state.view.k, y:(r.height/2 - state.view.y)/state.view.k };
+}
+function instanceFrom(entry, wx, wy){
+  const id = uid("c");
+  const base = {
+    id, kind:entry.kind || "connector", name:entry.name, ident:(entry.pn || "").slice(0,6) || "X",
+    x:Math.round((wx/state.spread)/8)*8, y:Math.round((wy/state.spread)/8)*8,
+    w:entry.w || COMP_W, status:"tbd", note:entry.desc || "", unwired:false,
+    group:entry.group || "misc",
+    pins:(entry.pins||[]).map((pn,i) => ({ id:"p"+(i+1), num:pn.num || String(i+1),
+                                           name:pn.name, side:pn.side || "right" })),
+    /* Copied by value: later library edits must never rewrite a placed part. */
+    libId:entry.id, mfr:entry.mfr || "", pn:entry.pn || "",
+    mates:JSON.parse(JSON.stringify(entry.mates || [])),
+    accessories:JSON.parse(JSON.stringify(entry.accessories || {})),
+    crimp:JSON.parse(JSON.stringify(entry.crimp || {})),
+    image:entry.image || null
+  };
+  if (entry.kind === "note"){ base.h = 100; base.pins = []; base.note = entry.desc || "…"; }
+  return base;
+}
+function placeLibraryItem(libId){
+  const e = library.find(x => x.id === libId); if (!e) return;
+  const c = centreWorld();
+  const inst = instanceFrom(e, c.x, c.y);
+  state.components.push(inst);
+  /* Optional mate placement. Inert when the entry has no mate assigned yet. */
+  if ($("#lib-mate").checked && (e.mates||[]).length){
+    const mate = e.mates[0];
+    const mEntry = library.find(x => x.pn && mate.pn && x.pn.toLowerCase() === mate.pn.toLowerCase());
+    const mi = mEntry
+      ? instanceFrom(mEntry, c.x + (inst.w + 90) * state.spread, c.y)
+      : instanceFrom({ ...e, id:e.id + "-mate", name:(mate.pn || "Mate") + " (mate)",
+                       pins:(e.pins||[]).map(pp => ({ ...pp, side: pp.side === "right" ? "left" : "right" })) },
+                     c.x + (inst.w + 90) * state.spread, c.y);
+    mi.isMateOf = inst.id;
+    state.components.push(mi);
+  }
+  state.sel = inst.id; state.focus = null;
+  render(); inspect(); saveLibrary();
+}
+
+/* ---- manual add / edit dialog ---- */
+function openModal(html){
+  $("#modal").innerHTML = html;
+  $("#modal-bg").classList.add("on");
+}
+function closeModal(){ $("#modal-bg").classList.remove("on"); }
+$("#modal-bg").addEventListener("mousedown", ev => { if (ev.target.id === "modal-bg") closeModal(); });
+
+function openComponentDialog(libId){
+  const e = libId ? library.find(x => x.id === libId) : null;
+  const pinText = e ? (e.pins||[]).map(p => `${p.num}, ${p.name}, ${p.side}`).join("\n")
+                    : "1, 12V, right\n2, GND, right\n3, SIG, right";
+  openModal(`
+    <h3>${e ? "Edit library entry" : "Add component to library"}</h3>
+    <p class="sub">Library entries are templates. Editing one never changes parts already
+       placed on the canvas.</p>
+    <div class="two">
+      <div><label>Name</label><input type="text" id="m-name" value="${esc(e?.name || "")}"></div>
+      <div><label>Manufacturer</label><input type="text" id="m-mfr" value="${esc(e?.mfr || "")}"></div>
+    </div>
+    <div class="two">
+      <div><label>Part / model number</label><input type="text" id="m-pn" value="${esc(e?.pn || "")}"></div>
+      <div><label>Kind</label>
+        <select id="m-kind">
+          ${["connector","splice","resistor","note"].map(k =>
+            `<option value="${k}"${(e?.kind||"connector")===k?" selected":""}>${k}</option>`).join("")}
+        </select>
+      </div>
+    </div>
+    <label>Description</label><input type="text" id="m-desc" value="${esc(e?.desc || "")}">
+    <label>Pins — one per line as <code>number, label, side</code> (side = left or right)</label>
+    <textarea id="m-pins" style="min-height:120px;font-family:var(--mono)">${esc(pinText)}</textarea>
+    <label>Thumbnail image</label>
+    <div style="display:flex;gap:10px;align-items:center">
+      <div class="thumb-prev" id="m-thumb" ${e?.image ? `style="background-image:url('${e.image}')"` : ""}></div>
+      <div style="flex:1">
+        <input type="file" id="m-file" accept="image/*" style="font-size:11px">
+        <button class="mini" id="m-clearimg" style="margin-top:6px">Remove image</button>
+      </div>
+    </div>
+    <div class="err" id="m-err" style="display:none"></div>
+    <div class="acts">
+      ${e && !e.builtin ? `<button class="mini" id="m-del" style="margin-right:auto">Delete entry</button>` : ""}
+      <button class="mini" id="m-cancel">Cancel</button>
+      <button class="mini" id="m-save" style="border-color:var(--accent);color:var(--accent)">
+        ${e ? "Save" : "Add to library"}</button>
+    </div>`);
+
+  let img = e?.image || null;
+  $("#m-file").onchange = ev => {
+    const f = ev.target.files && ev.target.files[0]; if (!f) return;
+    const fr = new FileReader();
+    fr.onload = () => { img = fr.result; $("#m-thumb").style.backgroundImage = `url('${img}')`; };
+    fr.readAsDataURL(f);
+  };
+  $("#m-clearimg").onclick = () => { img = null; $("#m-thumb").style.backgroundImage = ""; };
+  $("#m-cancel").onclick = closeModal;
+  if ($("#m-del")) $("#m-del").onclick = () => {
+    library = library.filter(x => x.id !== e.id);
+    saveLibrary(); renderLibrary(); closeModal();
+  };
+  $("#m-save").onclick = () => {
+    const name = $("#m-name").value.trim();
+    if (!name){ showErr("m-err", "A name is required."); return; }
+    const pins = parsePinLines($("#m-pins").value);
+    if (pins.bad.length){ showErr("m-err", "Could not read these pin lines: " + pins.bad.join(" ; ")); return; }
+    const rec = {
+      name, mfr:$("#m-mfr").value.trim(), pn:$("#m-pn").value.trim(),
+      desc:$("#m-desc").value.trim(), kind:$("#m-kind").value,
+      pins:pins.ok, image:img, dirty:true
+    };
+    if (e) Object.assign(e, rec);
+    else library.unshift({ id:uid("lib"), builtin:false, primitive:false, w:COMP_W,
+                           mates:[], accessories:{}, crimp:{}, notes:"", ...rec });
+    saveLibrary(); renderLibrary(); closeModal();
+  };
+}
+function showErr(id, msg){ const n = $("#"+id); n.textContent = msg; n.style.display = "block"; }
+function parsePinLines(text){
+  const ok = [], bad = [];
+  String(text||"").split("\n").map(l => l.trim()).filter(Boolean).forEach(line => {
+    const parts = line.split(",").map(s => s.trim());
+    if (parts.length < 2 || !parts[1]){ bad.push(line); return; }
+    const side = (parts[2] || "right").toLowerCase();
+    ok.push({ num:parts[0] || String(ok.length+1), name:parts[1],
+              side: side === "left" ? "left" : "right" });
+  });
+  return { ok, bad };
+}
+
+$("#lib-search").addEventListener("input", renderLibrary);
+$("#lib-add").onclick = () => openComponentDialog(null);
+
+/* ======================= LIBRARY RESEARCH HELPER (Phase 4) =======================
+   Scope: creates and edits LIBRARY entries only. It can never touch a part that is
+   already placed on the canvas.
+
+   >>> INTEGRATION POINT <<<
+   There is no web-search backend in a static page, so researchBackend() below is a
+   stub. To wire a real one up, assign a single function:
+
+       window.HARNESS_RESEARCH = async (spec) => ({ status, entry, mate, accessories, message })
+
+   spec   : { q, mfr, pn, type, pinCount, notes }
+   status : "ok"        -> entry/mate/accessories populated
+            "notfound"  -> nothing matched
+            "ambiguous" -> too many candidates, needs narrowing
+            "error"     -> backend failed, put the reason in message
+   Anything returned is shown to the user as UNVERIFIED and must be confirmed before
+   it is written to the library. Nothing is auto-accepted. */
+async function researchBackend(spec){
+  if (typeof window.HARNESS_RESEARCH === "function"){
+    try { return await window.HARNESS_RESEARCH(spec); }
+    catch(err){ return { status:"error", message:String(err && err.message || err) }; }
+  }
+  return {
+    status:"stub",
+    message:"No research backend is configured, so nothing was looked up. " +
+            "Enter the part by hand with + Add component, or wire a backend to " +
+            "window.HARNESS_RESEARCH."
+  };
+}
+
+/* A bare "ECU" is not enough to look anything up. Require a real subject plus at
+   least one narrowing fact. */
+function validateResearch(spec){
+  const problems = [];
+  const q = (spec.q||"").trim();
+  const vague = ["ecu","connector","sensor","plug","relay","switch","module","harness","pin","terminal"];
+  if (q.length < 3) problems.push("Say what you are looking for (at least 3 characters).");
+  if (!spec.type) problems.push("Pick a component type.");
+  const hasMfr = !!(spec.mfr||"").trim();
+  const hasPn  = !!(spec.pn||"").trim();
+  if (!hasMfr && !hasPn)
+    problems.push("Give a manufacturer or an exact model / part number \u2014 " +
+                  "there is no way to identify a part from a generic word alone.");
+  if (vague.includes(q.toLowerCase()) && !hasPn && !hasMfr)
+    problems.push(`\u201c${q}\u201d on its own matches thousands of parts.`);
+  return problems;
+}
+
+function openResearchDialog(){
+  const seedQ = ($("#lib-search").value || "").trim();
+  openModal(`
+    <h3>Find a component</h3>
+    <p class="sub">Narrow it down first. A generic word on its own cannot identify a part,
+       so a manufacturer or an exact part number is required.</p>
+    <label>What are you looking for</label>
+    <input type="text" id="r-q" value="${esc(seedQ)}" placeholder="e.g. 34 way sealed ECU header">
+    <div class="two">
+      <div><label>Manufacturer</label><input type="text" id="r-mfr" placeholder="e.g. TE, Deutsch, Molex"></div>
+      <div><label>Exact model / part number (if known)</label><input type="text" id="r-pn"></div>
+    </div>
+    <div class="two">
+      <div><label>Component type</label>
+        <select id="r-type">
+          <option value="">choose\u2026</option>
+          ${["connector","terminal","sensor","relay","module / ECU","splice","other"]
+            .map(x=>`<option value="${x}">${x}</option>`).join("")}
+        </select></div>
+      <div><label>Pin / cavity count (if known)</label><input type="text" id="r-pins" placeholder="e.g. 34"></div>
+    </div>
+    <label>Anything else that narrows it (series, keying, colour, sealed/unsealed)</label>
+    <input type="text" id="r-notes">
+    <div class="err" id="r-err" style="display:none"></div>
+    <div class="warn" id="r-warn" style="display:none"></div>
+    <div class="okmsg" id="r-ok" style="display:none"></div>
+    <div id="r-result"></div>
+    <div class="acts">
+      <button class="mini" id="r-cancel">Cancel</button>
+      <button class="mini" id="r-manual">Enter it by hand instead</button>
+      <button class="mini" id="r-go" style="border-color:var(--accent);color:var(--accent)">Search</button>
+    </div>`);
+
+  $("#r-cancel").onclick = closeModal;
+  $("#r-manual").onclick = () => { closeModal(); openComponentDialog(null); };
+  $("#r-go").onclick = runResearch;
+}
+
+async function runResearch(){
+  const spec = {
+    q:$("#r-q").value, mfr:$("#r-mfr").value, pn:$("#r-pn").value,
+    type:$("#r-type").value, pinCount:$("#r-pins").value, notes:$("#r-notes").value
+  };
+  ["r-err","r-warn","r-ok"].forEach(id => { $("#"+id).style.display = "none"; });
+  $("#r-result").innerHTML = "";
+
+  const problems = validateResearch(spec);
+  if (problems.length){
+    const n = $("#r-err");
+    n.innerHTML = "Not enough to go on:<br>\u2022 " + problems.map(esc).join("<br>\u2022 ");
+    n.style.display = "block";
+    return;
+  }
+  $("#r-go").disabled = true;
+  $("#r-ok").textContent = "Searching\u2026"; $("#r-ok").style.display = "block";
+  const res = await researchBackend(spec);
+  $("#r-go").disabled = false;
+  $("#r-ok").style.display = "none";
+
+  if (!res || res.status !== "ok"){
+    const n = $("#r-warn");
+    const msg = res && res.message ? res.message :
+      res && res.status === "notfound"  ? "Nothing matched that description." :
+      res && res.status === "ambiguous" ? "Too many candidates matched. Add the exact part number." :
+      "The lookup was inconclusive.";
+    n.innerHTML = esc(msg) + "<br><br>Nothing has been added to the library. " +
+      "Use <b>Enter it by hand instead</b> if you already have the datasheet.";
+    n.style.display = "block";
+    return;
+  }
+  showResearchResult(res, spec);
+}
+
+function showResearchResult(res, spec){
+  const e = res.entry || {};
+  const mate = res.mate || null;
+  const accs = res.accessories || [];
+  $("#r-result").innerHTML = `
+    <div class="aside-h" style="margin-top:14px">Result \u2014 unverified</div>
+    <p class="warn" style="display:block">Check this against the datasheet before you rely on it.
+       Nothing is written to the library until you confirm.</p>
+    <div class="kv"><div><span class="pn">${esc(e.pn||"(no PN returned)")}</span>
+      <span class="ds">${esc(e.desc||"")}</span></div><div class="ct">${(e.pins||[]).length} pins</div></div>
+    ${mate ? `<div class="kv"><div><span class="pn">${esc(mate.pn||"(no PN)")}</span>
+      <span class="ds">mating connector \u00b7 ${esc(mate.desc||"")}</span></div></div>` : ""}
+    ${accs.length ? accs.map(a => `<div class="kv">
+        <div><span class="pn">${esc(a.pn||"(no PN)")}</span><span class="ds">${esc(accSummary(a))}</span></div>
+        <span class="tag ${a.req==="required"?"req":"opt"}">${a.req==="required"?"required":"optional"}</span>
+      </div>`).join("") : `<p class="hint">No accessories returned.</p>`}
+    <div class="acts">
+      <button class="mini" id="r-discard">Discard</button>
+      <button class="mini" id="r-accept" style="border-color:var(--accent);color:var(--accent)">
+        Add to library</button>
+    </div>`;
+  $("#r-discard").onclick = () => { $("#r-result").innerHTML = ""; };
+  $("#r-accept").onclick = () => {
+    const entry = {
+      id:uid("lib"), builtin:false, primitive:false, w:COMP_W,
+      name:e.name || spec.q, mfr:e.mfr || spec.mfr || "", pn:e.pn || spec.pn || "",
+      desc:e.desc || "", kind:e.kind || "connector", image:e.image || null,
+      pins:(e.pins||[]).map((pn,i) => ({ num:pn.num || String(i+1),
+                                         name:pn.name || ("PIN "+(i+1)),
+                                         side:pn.side || "right" })),
+      mates:mate ? [{ pn:mate.pn||"", mfr:mate.mfr||"", note:mate.desc||"" }] : [],
+      accessories:{}, crimp:{}, notes:"Added by the research helper \u2014 unverified.",
+      dirty:true
+    };
+    accs.forEach(a => {
+      const key = ACC_CATS.some(k => k.key === a.cat) ? a.cat : "crimp";
+      const cat = (entry.accessories[key] = entry.accessories[key] || { on:true, items:[] });
+      cat.on = true;
+      cat.items.push({ pn:a.pn||"", desc:a.desc||"", req:a.req==="required"?"required":"optional",
+                       awg:a.awg||"", finish:a.finish||"", gender:a.gender||"", type:a.type||"" });
+    });
+    library.unshift(entry);          // library only, never a canvas instance
+    saveLibrary();
+    $("#lib-search").value = entry.pn || entry.name;
+    renderLibrary();
+    closeModal();
+  };
+}
+
+$("#lib-find").onclick = openResearchDialog;
+
+
+/* Kept so the canvas right-click menu can still drop a primitive directly. */
+function addAt(kind, pt){
+  const map = { connector:"prim-connector", splice:"prim-splice", resistor:"prim-resistor",
+                relay:"prim-relay", sensor3:"prim-sensor3", sensor2:"prim-sensor2",
+                "can-node":"prim-cannode", note:"prim-note" };
+  const e = library.find(x => x.id === map[kind]); if (!e) return;
+  const inst = instanceFrom(e, pt?.x ?? 200, pt?.y ?? 200);
+  state.components.push(inst);
+  state.sel = inst.id; render(); inspect();
+}
+
 function contentBox(){
   let x0=Infinity, y0=Infinity, x1=-Infinity, y1=-Infinity;
   state.components.filter(c => visible(c) && !(state.rails && RAILS[c.id])).forEach(c => {
@@ -1192,6 +2338,7 @@ function contentBox(){
 /* The sheet is tall, so fitting everything makes it unreadable. Fit width by default
    and frame the visible content only, so isolating a layer actually zooms into it. */
 function fit(all){
+  const wasK = state.view.k;
   const b = contentBox();
   const r = wrap.getBoundingClientRect();
   const kw = r.width / (b.x1-b.x0);
@@ -1200,12 +2347,19 @@ function fit(all){
     : Math.max(0.12, Math.min(1.4, kw));
   state.view.x = -b.x0*state.view.k;
   state.view.y = -b.y0*state.view.k;
+  if ((wasK < ZOOM_LABEL_AT) !== (state.view.k < ZOOM_LABEL_AT)) render();
   applyView(); $("#zoom-lbl").textContent = Math.round(state.view.k*100)+"%";
 }
 $("#btn-fit").onclick = () => fit(false);
 $("#btn-fitall").onclick = () => fit(true);
-$("#btn-zoom-in").onclick = () => { state.view.k=Math.min(2.2,state.view.k*1.15); applyView(); $("#zoom-lbl").textContent=Math.round(state.view.k*100)+"%"; };
-$("#btn-zoom-out").onclick = () => { state.view.k=Math.max(0.12,state.view.k/1.15); applyView(); $("#zoom-lbl").textContent=Math.round(state.view.k*100)+"%"; };
+function setZoom(k){
+  const old = state.view.k;
+  state.view.k = Math.min(2.2, Math.max(0.12, k));
+  if ((old < ZOOM_LABEL_AT) !== (state.view.k < ZOOM_LABEL_AT)) render();
+  applyView(); $("#zoom-lbl").textContent = Math.round(state.view.k*100)+"%";
+}
+$("#btn-zoom-in").onclick = () => setZoom(state.view.k*1.15);
+$("#btn-zoom-out").onclick = () => setZoom(state.view.k/1.15);
 $("#btn-unfocus").onclick = () => { state.focus=null; render(); };
 $("#btn-all").onclick = () => { state.hidden = {}; render(); };
 $("#btn-wide").onclick = () => {
@@ -1226,7 +2380,16 @@ $("#btn-export").onclick = () => {
   const a = document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="st185-harness.json"; a.click();
 };
 $("#btn-svg").onclick = () => {
-  const blob = new Blob([$("#canvas").outerHTML], {type:"image/svg+xml"});
+  /* Snapshot the full content box, not whatever the camera happens to be showing. */
+  const svg = $("#canvas");
+  const keep = { w:svg.getAttribute("width"), h:svg.getAttribute("height"), vb:svg.getAttribute("viewBox") };
+  const b = contentBox();
+  svg.setAttribute("width", Math.round(b.x1-b.x0));
+  svg.setAttribute("height", Math.round(b.y1-b.y0));
+  svg.setAttribute("viewBox", `${b.x0} ${b.y0} ${b.x1-b.x0} ${b.y1-b.y0}`);
+  const markup = svg.outerHTML;
+  svg.setAttribute("width", keep.w); svg.setAttribute("height", keep.h); svg.setAttribute("viewBox", keep.vb);
+  const blob = new Blob([markup], {type:"image/svg+xml"});
   const a = document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="st185-harness.svg"; a.click();
 };
 ["tog-ids","tog-dash","tog-rails","tog-labels"].forEach(id => $("#"+id).onchange = render);
@@ -1234,6 +2397,8 @@ $("#tog-focus").onchange = () => { if (!$("#tog-focus").checked){ state.focus=nu
 $("#btn-schematic").onclick = () => { $("#app").classList.remove("layout"); $("#btn-schematic").classList.add("on"); $("#btn-layout").classList.remove("on"); };
 $("#btn-layout").onclick = () => { $("#app").classList.add("layout"); $("#btn-layout").classList.add("on"); $("#btn-schematic").classList.remove("on"); };
 
+loadLibrary();
+renderLibrary();
 if (!load()) Object.assign(state, buildST185());
 $("#sel-spread").value = String(state.spread);
 render(); inspect(); fit();
