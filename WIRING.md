@@ -1,8 +1,6 @@
 # TrackCluster — Wiring & Pinout (physical install)
 
-**Reference only — NOT flashed.** Lives at the center repo root so it's immediately visible.
-Everything below is GPIO/connector-validated against the ESP32-P4 / ESP32-S3
-datasheets + errata and the two Waveshare board schematics (June 2026).
+**ECU Superseal pinout** (Link G4X XtremeX Connector A/B) lives in [`XTREMEX-IO-TABLE.html`](XTREMEX-IO-TABLE.html). Pin numbers were confirmed 2026-09-11 against the official [XtremeX Quick Start Guide](https://linkecu.com/documentation/XtremeXQuickstartGuide.pdf) — see `docs/XTREMEX-IO-VERIFY-2026-09-11.md`. This file covers cluster GPIO and the shared CAN bus, not ECU cavity numbers.
 
 Three boards:
 - **Center** — Waveshare ESP32-P4-WIFI6-Touch-LCD-XC, 800×800, 40-pin header **J8**.

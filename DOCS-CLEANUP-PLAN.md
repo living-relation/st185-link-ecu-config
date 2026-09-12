@@ -525,8 +525,8 @@ Every place two sources disagree, with the recommended resolution.
 >   open decision 14 (where CEL moves to).
 > - **C26 (DBW analog channels) — CLOSED 2026-09-05.** The An Volt map was reconciled against
 >   `XTREMEX-IO-TABLE.html`; the pedal/throttle swap risk is gone from every live document.
-> - **C11 (wire colours) — STILL OPEN.** Colours were deliberately dropped rather than carried
->   onto corrected channel numbers. Read them off `XtremeXQuickstartGuide.pdf`.
+> - **C11 (wire colours) — CLOSED 2026-09-11.** Official QSG factory ign is the blue family (Ign 1 Blue, Ign 2 Blue/Brown, … Ign 8 Blue/Purple). This harness uses violet as the signal-group colour plus pin-number markers. Both are documented in `XTREMEX-IO-TABLE.html`. Do not mix schemes on one end.
+> - **C15 (clutch) — UPDATED 2026-09-11.** Live SoT (`XTREMEX-IO-TABLE.html`) moved clutch to the switchboard on 2026-09-06 and freed DI 8. The 2026-09-01 cleanup row below still says DI 8; treat that row as historical.
 
 
 | # | Subject | Source A | Source B | Recommended | Why |
@@ -541,7 +541,7 @@ Every place two sources disagree, with the recommended resolution.
 | C8 | Aux 7 | EPS speed-out — HTML pair | Tacho/CEL — `XTREMEX-IO-TABLE.md`; CEL — 2026-08-28 app save | **EPS speed-out** | Aux is 100 percent full. CEL must move to a spare Ign or Inj output. |
 | C9 | Trigger 1 | Crank — HTML pair, MD, app saves, pin map | Cam — loom list #25 | **Trigger 1 = crank** | Loom list is the outlier and is obsolete. |
 | C10 | Ignition loom | Loom A (A13–A10) — HTML pair, pin map | Loom B — loom list #25 | **Loom A** | The schematic gives real pin numbers. |
-| C11 | Ignition wire colour | Orange family — MD; White — pin map; Blue/White etc — loom list | — | **UNRESOLVED** | Read the colours off `XtremeXQuickstartGuide.pdf`. Do not guess. |
+| C11 | Ignition wire colour | Orange family — MD; White — pin map; Blue/White etc — loom list | Official QSG: blue family | **RESOLVED 2026-09-11 — factory blue family; this harness violet + pin markers** | Read off `XtremeXQuickstartGuide.pdf` (2023-06-22). See `XTREMEX-IO-TABLE.html` colour table. |
 | C12 | Turbo speed input | DI 1 (A30) — HTML pair | DI 5 — both app saves; DI 2 — loom list | **DI 1** | Schematic has the pin number. |
 | C13 | Flex-fuel input | DI 2 (A31) — HTML pair | DI 1 — app saves and MD | **DI 2** | Same reason. |
 | C14 | Fuel temperature source | Flex sensor — HTML pair | Temp 4 discrete — MD, 08-22 app save; Temp 3 — loom list | **Flex sensor** | It frees the Temp 4 input for the charge-pipe IAT. Temp has zero spare, so this matters. |
@@ -555,7 +555,7 @@ Every place two sources disagree, with the recommended resolution.
 | C25 | ETB power relay | **Aux 8** — FuryX pin map #24 | **Aux 2 (A20)** — HTML pair | **Aux 2** | Aux 8 is the ECU-controlled start relay in the current design. Using Aux 8 for the ETB relay would collide with it. |
 | C26 | DBW analog channels | An Volt 5/6/7/8 — FuryX pin map #24 | An Volt 2/3/4/5 — HTML pair | **An Volt 2/3/4/5** | The two maps assign **An Volt 5 to different jobs** — pedal main in one, pedal sub in the other. Wiring to the wrong document swaps a pedal signal for a throttle signal. |
 | C27 | ETB bore | 74 mm — every retailer listing | **74.5 mm** — plate stamped "745" | **74.5 mm** | Same part. Use 74.5 mm for the flange step and any airflow work. |
-| C21 | EPS speed signal voltage | 0–5 V — RAV4 reference | 0–12 V — MR2 reports | **UNRESOLVED — measure it** | Determines whether a pull-up resistor is needed, which contradicts the "no external pull-ups" claim. |
+| C21 | EPS speed signal voltage | 0–5 V — RAV4 reference | 0–12 V — MR2 reports; Aux 5–8 internal ~1.5 kΩ pull-up ≈ 5–14 V | **OPEN — scope Aux 7 on this G4X** | Do not add a 5 V pull-up until the high level is measured. |
 | C22 | Wiring app data | 2026-08-22 save | 2026-08-28 save | **Neither** | They disagree with each other on 8 rows and on termination, and both are behind `SCHEMATIC-WIRING.html` (2026-07-27 content, but pin-accurate). Rebuild the app's data from the schematic. |
 | C23 | Cabin temperature | Available on switchboard 0x640 | Routing rule forbids RealDash reading 0x640 | **ECU echo on 0x3F2 byte 5** | Restores the value without breaking the rule. |
 
@@ -667,7 +667,7 @@ Each step lists what Dan must decide before it can start.
 
 - **C11 wire colours:** read them off `XtremeXQuickstartGuide.pdf` and put them in the harness build list.
 - **C18 termination:** identify the two physical harness ends and record which devices they are.
-- **C21 EPS voltage:** measure the `SPD` line on the MRS pump. Determine whether a pull-up is needed.
+- **C21 EPS voltage:** scope Aux 7 (MRS SPD) high level on this G4X before adding a 5 V pull-up.
 
 **Decision needed:** Dan does the measurements, or approves ordering the work.
 **Depends on:** nothing. Can run in parallel with Steps 1–2.

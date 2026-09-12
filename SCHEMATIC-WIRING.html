@@ -63,8 +63,9 @@
 <h1>Link G4X XtremeX — Schematic Wiring</h1>
 <p class="sub">
   1993 Celica GT-Four ST185 · 5S-GTE · DBW · 1ZZ COP · 1400cc inj · external CAN-Lambda ·
-  ECUMaster switchboard · MRS EPS. Pin numbers on ECU only (A/B 34-pin + Comms 6-pin).
-  Solid = assigned · dashed = proposed/TBD.
+  ECUMaster switchboard · MRS EPS. Pin numbers on ECU only (A/B 34-pin + Comms 6-pin),
+  confirmed against the official XtremeX Quick Start Guide (2026-09-11).
+  Solid = assigned · dashed = not yet on the car.
 </p>
 
 <div class="legend">
@@ -159,15 +160,15 @@
       <rect x="-52" y="489" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
       <text x="-38" y="501" text-anchor="middle" class="p">B33</text>
       <text x="8" y="502" class="pl">AnV5</text>
-      <!-- B14 -->
+      <!-- B15 An Volt 6 oil pressure — B14 is the empty cavity, not shown -->
       <line x1="-40" y1="538" x2="0" y2="538" class="w"/>
       <rect x="-52" y="529" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
-      <text x="-38" y="541" text-anchor="middle" class="p">B14</text>
+      <text x="-38" y="541" text-anchor="middle" class="p">B15</text>
       <text x="8" y="542" class="pl">AnV6</text>
-      <!-- B15 -->
+      <!-- B16 An Volt 7 fuel pressure -->
       <line x1="-40" y1="578" x2="0" y2="578" class="w"/>
       <rect x="-52" y="569" width="28" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
-      <text x="-38" y="581" text-anchor="middle" class="p">B15</text>
+      <text x="-38" y="581" text-anchor="middle" class="p">B16</text>
       <text x="8" y="582" class="pl">AnV7</text>
       <!-- B23 -->
       <line x1="-40" y1="618" x2="0" y2="618" class="w"/>
@@ -312,7 +313,7 @@
   <text x="616" y="774" class="pe">C5 RS232 TX · C6 RS232 RX</text>
 
   <!-- Ground notes inside ECU -->
-  <text x="750" y="110" text-anchor="middle" fill="#94a3b8" style="font:9px Segoe UI,sans-serif">Gnd: A25 A34 B25 B34 · Gnd Out: A24 B22 · Shield: A7 B16 · +8V: A6</text>
+  <text x="750" y="110" text-anchor="middle" fill="#94a3b8" style="font:9px Segoe UI,sans-serif">Gnd: A25 A34 B25 B34 · Gnd Out: A24 B22 · Shield: A7 B17 · +8V: A6 · B14 empty</text>
 
   <!-- ===================== LEFT DEVICES ===================== -->
   <text x="24" y="56" class="t" fill="#047857">SENSORS / INPUTS</text>
@@ -415,8 +416,8 @@
     <line x1="234" y1="866" x2="490" y2="878" class="wd"/>
 
     <rect x="24" y="890" width="210" height="32" rx="3" fill="#fffbeb" stroke="#d97706" class="box" stroke-dasharray="4 2"/>
-    <text x="32" y="904" class="t">Clutch switch (via switchboard)</text>
-    <text x="32" y="916" class="s">Flat-shift / launch</text>
+    <text x="32" y="904" class="t">DI 8 — spare / OEM VSS</text>
+    <text x="32" y="916" class="s">Clutch is on the switchboard</text>
     <line x1="234" y1="906" x2="490" y2="908" class="wd"/>
   </g>
 
@@ -467,7 +468,7 @@
     <line x1="1032" y1="458" x2="1268" y2="458" class="w"/>
     <rect x="1268" y="442" width="210" height="32" rx="3" fill="#f5f3ff" stroke="#7c3aed" class="box"/>
     <text x="1276" y="456" class="t">MRS EPS SPD</text>
-    <text x="1276" y="468" class="s">Speed-out pulse · no R</text>
+    <text x="1276" y="468" class="s">Speedo out · scope 0–5 V</text>
 
     <line x1="1032" y1="498" x2="1268" y2="498" class="w"/>
     <rect x="1268" y="482" width="210" height="32" rx="3" fill="#f5f3ff" stroke="#7c3aed" class="box"/>
@@ -544,16 +545,16 @@
   <!-- Switchboard I/O note -->
   <rect x="900" y="1034" width="480" height="36" rx="3" fill="#faf5ff" stroke="#9333ea"/>
   <text x="912" y="1050" class="t" fill="#7e22ce">Switchboard I/O (not ECU pins)</text>
-  <text x="912" y="1064" class="s">Cabin temp NTC · cruise ladder · brake · reverse · LED outs only (0.5 A)</text>
+  <text x="912" y="1064" class="s">Clutch · cabin temp NTC · cruise ladder · brake · reverse · LED outs only (0.5 A)</text>
 </svg>
 </div>
 
 <div class="note">
   <strong>Notes</strong>
   <ul>
-    <li>Pin numbers from Link <em>XtremeX Quick Start Guide</em> (looking into wire side / ECU header). Assignments from <code>XTREMEX-IO-TABLE.html</code>.</li>
-    <li>Amber dashed = proposed/TBD. Confirm before cutting the harness.</li>
-    <li>+5V (A32) and Gnd Out (A24/B22) feed the left-side sensors — omitted as individual nets on purpose to keep the drawing readable.</li>
+    <li><strong>CONFIRMED 2026-09-11:</strong> pin numbers match the official Link <em>XtremeX Quick Start Guide</em> (wire side / ECU header). Channel assignments from <code>XTREMEX-IO-TABLE.html</code>. Record: <code>docs/XTREMEX-IO-VERIFY-2026-09-11.md</code>.</li>
+    <li>Amber dashed = proposed/TBD on the car (not a pin-number doubt). B14 is an empty cavity — An Volt 6/7 are <strong>B15 / B16</strong>.</li>
+    <li>+5V (A32) and Gnd Out (A24/B22) feed the left-side sensors — omitted as individual nets on purpose to keep the drawing readable. Loom B has no native +5 V pin.</li>
     <li>ETB path: Aux 2 (A20) drives the V-Ethrottle relay → B5 powers the H-bridge; motor on B18/B26; TPS on A22/A33; APS on A14/B33.</li>
   </ul>
 </div>

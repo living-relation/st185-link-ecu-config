@@ -49,7 +49,7 @@ fuel:
   fpr: "Chase Bays 1:1 boost-referenced"
   base_pressure_psi: 43.5
   rail: "8AN top-feed"
-  flex_sensor: "Continental PWM DI — 2.4k pull-up on signal"
+  flex_sensor: "Continental PWM DI — PCLink Ethanol Sensor, DI pull-up ON (no extra 2.4k unless scoped weak)"
 
 driveline:
   transmission: "Toyota E150F"

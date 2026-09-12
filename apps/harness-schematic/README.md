@@ -16,7 +16,7 @@ Signal flows **left to right**, the way schematics are normally drawn:
 | Band 2 | CAN bus at 1 Mbit/s, clusters, RealDash |
 | Band 3 | Body and switchboard parts, still unwired |
 
-Solid wires are assigned in `XTREMEX-IO-TABLE.html` and `WIRING.md`. **Dashed** wires are proposed Link-capable assignments, not confirmed on the car.
+Solid wires are assigned in `XTREMEX-IO-TABLE.html` and `WIRING.md`. **Dashed** wires are assigned in the I/O table but not yet confirmed on the car. ECU Superseal pin numbers were confirmed 2026-09-11 against the official G4X XtremeX Quick Start Guide (wire side).
 
 ## Keeping it readable
 
@@ -117,16 +117,17 @@ Layout view is a placeholder until bundle lengths exist.
 
 ## Connector notes
 
-The ECU is two 34-way Superseal looms, **Connector A** (A1–A34) and **Connector B** (B1–B34), numbered from the G4X XtremeX Quickstart (wire side). **B14** is the only empty cavity — no terminal. A6 +8V Out, B1–B4, B10–B11, B27–B28 and B31–B32 are spare terminals with no wire on this build.
+The ECU is two 34-way Superseal looms, **Connector A** (A1–A34) and **Connector B** (B1–B34), numbered from the G4X XtremeX Quickstart (wire side) and **confirmed 2026-09-11**. **B14** is the only empty cavity — no terminal. Spare terminals with no wire on this build: B1–B4, B8, B10–B12, B27–B29, B31–B32. A6 (+8 V Out) is used (cam Hall + 1.8 kΩ pull-up).
 
-The ECUMaster CSB3 V3 has **no I/O harness connector yet**. It appears as a CAN node with PCB screw terminals only. Cabin temp, brake, reverse, cruise, AC request and evap sit in band 3 with no wires and no invented connector in between.
+The ECUMaster CSB3 V3 has **no I/O harness connector yet**. It appears as a CAN node with PCB screw terminals only. Clutch, cabin temp, brake, reverse, cruise, AC request and evap sit in band 3 with no wires and no invented connector in between.
 
 The Waveshare MCP2515 hat takes Pi header 5 V / GND for its fan. **Its CANH/CANL stay open** — it is not a bus node.
 
 ## Sources
 
-- `XTREMEX-IO-TABLE.html` — ECU I/O (DBW Bosch 74.5 mm ETB, 1ZZ COP, flex sensor, MRS EPS)
-- G4X XtremeX Quickstart — Connector A / B Superseal pin numbers, wire side
+- `XTREMEX-IO-TABLE.html` — ECU I/O (DBW Bosch 74.5 mm ETB, 1ZZ COP, flex sensor, MRS EPS). Pin numbers confirmed 2026-09-11 vs official XtremeX Quickstart.
+- G4X XtremeX Quickstart — https://linkecu.com/documentation/XtremeXQuickstartGuide.pdf (Connector A / B Superseal, wire side)
+- `docs/XTREMEX-IO-VERIFY-2026-09-11.md` — pin-by-pin verification record
 - `WIRING.md` — cluster GPIO, 5 V buck, UART, CAN transceiver
 - `ECUMASTER_SWITCHBOARD_SETUP.md` — CSB3 analog / switch map
 - `CAN-BUS-MASTER-DESIGN.md` — 5-node 1 Mbit/s bus, termination
