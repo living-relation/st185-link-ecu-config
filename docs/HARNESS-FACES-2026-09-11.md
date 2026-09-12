@@ -6,7 +6,7 @@ One harness, two faces. Do not crown one and burn the other.
 | Face | Where | Job | Score today |
 |------|-------|-----|-------------|
 | Loom / read | Claude artifact + `apps\harness-schematic\` | Trace nets, layers, pin story | Readable; as cut/crimp sheet **4/10** (no AWG/length/terminate-at/checkbox) |
-| SoT / BOM | Desktop `.harness` in harness.design | Connector PNs, cavities, splices | Structure OK; as finished build pack **3/10** (100-wire free cap; half unwired; 0 cavity crimps) |
+| SoT / BOM | `docs/harness/ST185-Power.harness` + `ST185-Signal.harness` (repo); Desktop copy in harness.design | Connector PNs, cavities, splices | Structure OK; as finished build pack **3/10** (100-wire free cap; half unwired; 0 cavity crimps) |
 
 ## Rules
 - Crown **shipping** copies as ACTIVE (Desktop HTML hashes differ).
@@ -17,4 +17,5 @@ One harness, two faces. Do not crown one and burn the other.
 ## Sources
 - Grimoire compare (Grim Council 2026-09-11)
 - Claude app: https://claude.ai/public/artifacts/62e39e19-dcdd-41cf-bf4c-9bbc91bb8c1d
-- `.harness`: `Documents\Wire Harnesses\ST185 Link G4X XtremeX - ECU Harness.harness`
+- Repo `.harness`: `docs/harness/ST185-Power.harness`, `docs/harness/ST185-Signal.harness`
+- Desktop copy (may drift): `Documents\Wire Harnesses\ST185 Link G4X XtremeX - ECU Harness.harness`

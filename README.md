@@ -35,6 +35,9 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `XTREMEX-IO-TABLE.html` | **Authoritative** Link G4X XtremeX I/O assignment table (ST185 5S-GTE, DBW) — channel plan, pin budget, harness-build tasks. Pin numbers confirmed 2026-09-11 against the official Quick Start Guide. Open in a browser. |
 | `docs/XTREMEX-IO-VERIFY-2026-09-11.md` | Pin-by-pin verification record vs official XtremeX QSG + terminal/pull-up notes. |
 | `docs/HARNESS-FACES-2026-09-11.md` | Harness "two faces" status note (2026-09-11) — schematic/loom view (`apps/harness-schematic/`) vs `.harness` SoT/BOM file, sync rules, and next steps. |
+| `docs/ECU-IO-AUDIT-2026-09-12.md` | Cross-check of every pin claim in the repo against the IO table, plus the harness.design defects found and fixed. |
+| `docs/harness/ST185-Power.harness` | harness.design SoT — **power** half (12 V / +5 V / +8 V / Gnd Out / chassis). Open at app.harness.design. |
+| `docs/harness/ST185-Signal.harness` | harness.design SoT — **signal** half (sense/control, CAN, cluster). Open at app.harness.design. |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |
 | `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 5-node topology. |
 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Master ID allocation table — all byte layouts, sections A–E. |
@@ -45,6 +48,8 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `FUEL-SYSTEM.md` | Fuel system reference — AN hose sizing and pump capacity notes. Not part of the CAN bus contract. |
 | `archive/` | Retired material — kept for history, **never authoritative**, excluded from agent context. Not for normal work; open `archive/README.md` only when tracing why a past decision was made. |
 | `apps/harness-schematic/` | Interactive harness schematic (harness.design-style canvas). Open `index.html`. |
+| `docs/harness/ST185-Power.harness` | harness.design v0.9 power loom (relays, fused 12 V, ignition feed). Open in [harness.design](https://harness.design). |
+| `docs/harness/ST185-Signal.harness` | harness.design v0.9 signal loom (ECU A/B/C, sensors, APS, CAN). Open in [harness.design](https://harness.design). |
 | `docs/research-hub.html` | Index of everything under `docs/` — the intercooler/turbo study, 5S-GTE build data, and harness wiring — browsable by topic and by section. Open in any browser. Regenerate after editing research with `python docs/build-research-hub.py`. |
 
 ## Import Checklist (PCLink, when ECU is available)

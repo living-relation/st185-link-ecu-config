@@ -1,0 +1,3021 @@
+{
+  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
+  "version": 0.9,
+  "lengthUnit": "mm",
+  "wires": [
+    {
+      "id": "w65",
+      "color": "Red",
+      "source": {
+        "id": "batt_ring",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_12v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w74",
+      "color": "Red",
+      "source": {
+        "id": "k_efi",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "batt_ring",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w79",
+      "color": "Red",
+      "source": {
+        "id": "k_etb",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "batt_ring",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w223",
+      "color": "Red",
+      "source": {
+        "id": "sp_12v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "k_fp",
+        "handle": "c3"
+      }
+    },
+    {
+      "id": "w_fan30",
+      "color": "Red",
+      "source": {
+        "id": "sp_12v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "k_fan",
+        "handle": "c3"
+      }
+    },
+    {
+      "id": "w_fan230",
+      "color": "Red",
+      "source": {
+        "id": "sp_12v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "k_fan2",
+        "handle": "c3"
+      }
+    },
+    {
+      "id": "w_str30",
+      "color": "Red",
+      "source": {
+        "id": "sp_12v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "k_str",
+        "handle": "c3"
+      }
+    },
+    {
+      "id": "w221",
+      "color": "Red",
+      "source": {
+        "id": "k_efi",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "batt_ring",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w222",
+      "color": "Red",
+      "source": {
+        "id": "k_etb",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "batt_ring",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_fp86",
+      "color": "Red",
+      "source": {
+        "id": "k_fp",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "batt_ring",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_fan86",
+      "color": "Red",
+      "source": {
+        "id": "k_fan",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "batt_ring",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_fan286",
+      "color": "Red",
+      "source": {
+        "id": "k_fan2",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "batt_ring",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_str86",
+      "color": "Red",
+      "source": {
+        "id": "k_str",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "batt_ring",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w77",
+      "color": "Red",
+      "source": {
+        "id": "k_efi",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w78",
+      "color": "Red",
+      "source": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "ecu_a",
+        "handle": "a5"
+      }
+    },
+    {
+      "id": "w211",
+      "color": "Red",
+      "source": {
+        "id": "inj1",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w212",
+      "color": "Red",
+      "source": {
+        "id": "inj2",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w213",
+      "color": "Red",
+      "source": {
+        "id": "inj3",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w214",
+      "color": "Red",
+      "source": {
+        "id": "inj4",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w112",
+      "color": "Red",
+      "source": {
+        "id": "cop1",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w113",
+      "color": "Red",
+      "source": {
+        "id": "cop2",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w114",
+      "color": "Red",
+      "source": {
+        "id": "cop3",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w115",
+      "color": "Red",
+      "source": {
+        "id": "cop4",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w218",
+      "color": "Red",
+      "source": {
+        "id": "turbospd",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w219",
+      "color": "Red",
+      "source": {
+        "id": "boost",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w82",
+      "color": "Red",
+      "source": {
+        "id": "k_etb",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b5"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w124",
+      "color": "Pink",
+      "source": {
+        "id": "etb",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b18"
+      }
+    },
+    {
+      "id": "w215",
+      "color": "Pink",
+      "source": {
+        "id": "etb",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b26"
+      }
+    },
+    {
+      "id": "w_fpump",
+      "color": "Red",
+      "source": {
+        "id": "k_fp",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "fuelpump",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_radl",
+      "color": "Red",
+      "source": {
+        "id": "k_fan",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "rad_fan",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_fan2l",
+      "color": "Red",
+      "source": {
+        "id": "k_fan2",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "fan2",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_strl",
+      "color": "Red",
+      "source": {
+        "id": "k_str",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "starter_trigger",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_lam12",
+      "color": "Red",
+      "source": {
+        "id": "lambda",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_csb12",
+      "color": "Red",
+      "source": {
+        "id": "csb3io",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_12v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_mrs12",
+      "color": "Red",
+      "source": {
+        "id": "mrs_pwr",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_12v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_buck12",
+      "color": "Red",
+      "source": {
+        "id": "buck",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_12v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w67",
+      "color": "Orange",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a32"
+      },
+      "target": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w206",
+      "color": "Orange",
+      "source": {
+        "id": "map",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w207",
+      "color": "Orange",
+      "source": {
+        "id": "oilp",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w208",
+      "color": "Orange",
+      "source": {
+        "id": "fuelp",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w209",
+      "color": "Orange",
+      "source": {
+        "id": "clntp",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w210",
+      "color": "Orange",
+      "source": {
+        "id": "aps",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w126",
+      "color": "Orange",
+      "source": {
+        "id": "etb",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w55",
+      "color": "Orange",
+      "source": {
+        "id": "vr1_5v",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_5vbuck",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w63",
+      "color": "Orange",
+      "source": {
+        "id": "vr2_5v",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_5vbuck",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_buck5",
+      "color": "Orange",
+      "source": {
+        "id": "buck",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_5vbuck",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w19",
+      "color": "Orange",
+      "source": {
+        "id": "sp_8v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "ecu_a",
+        "handle": "a6"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w216",
+      "color": "Orange",
+      "source": {
+        "id": "cam",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_8v",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w217",
+      "color": "Red",
+      "source": {
+        "id": "flex",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w68",
+      "color": "Black",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a24"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w69",
+      "color": "Black",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b22"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w2",
+      "color": "Black",
+      "source": {
+        "id": "crank",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w4",
+      "color": "Black",
+      "source": {
+        "id": "ect",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w6",
+      "color": "Black",
+      "source": {
+        "id": "iat",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w8",
+      "color": "Black",
+      "source": {
+        "id": "oilt",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w10",
+      "color": "Black",
+      "source": {
+        "id": "cpiat",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w24",
+      "color": "Black",
+      "source": {
+        "id": "cam",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w27",
+      "color": "Black",
+      "source": {
+        "id": "map",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w30",
+      "color": "Black",
+      "source": {
+        "id": "oilp",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w33",
+      "color": "Black",
+      "source": {
+        "id": "fuelp",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w36",
+      "color": "Black",
+      "source": {
+        "id": "clntp",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w40",
+      "color": "Black",
+      "source": {
+        "id": "aps",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w45",
+      "color": "Black",
+      "source": {
+        "id": "fuellvl",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w47",
+      "color": "Black",
+      "source": {
+        "id": "flex",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w17",
+      "color": "Black",
+      "source": {
+        "id": "turbospd",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w127",
+      "color": "Black",
+      "source": {
+        "id": "etb",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w56",
+      "color": "Black",
+      "source": {
+        "id": "vr1_gnd",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w64",
+      "color": "Black",
+      "source": {
+        "id": "vr2_gnd",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w66",
+      "color": "Black",
+      "source": {
+        "id": "chassis_ring",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w70",
+      "color": "Black",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a25"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_a34",
+      "color": "Black",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a34"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_b25",
+      "color": "Black",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b25"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_b34",
+      "color": "Black",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b34"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_cop1g",
+      "color": "Black",
+      "source": {
+        "id": "cop1",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_cop2g",
+      "color": "Black",
+      "source": {
+        "id": "cop2",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_cop3g",
+      "color": "Black",
+      "source": {
+        "id": "cop3",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_cop4g",
+      "color": "Black",
+      "source": {
+        "id": "cop4",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_fpg",
+      "color": "Black",
+      "source": {
+        "id": "fuelpump",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_radg",
+      "color": "Black",
+      "source": {
+        "id": "rad_fan",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_fan2g",
+      "color": "Black",
+      "source": {
+        "id": "fan2",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_mrsg",
+      "color": "Black",
+      "source": {
+        "id": "mrs_pwr",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_lamg",
+      "color": "Black",
+      "source": {
+        "id": "lambda",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_csbg",
+      "color": "Black",
+      "source": {
+        "id": "csb3io",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_buckg",
+      "color": "Black",
+      "source": {
+        "id": "buck",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_buckgo",
+      "color": "Black",
+      "source": {
+        "id": "buck",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      }
+    }
+  ],
+  "connectors": [
+    {
+      "id": "ecu_a",
+      "label": "ECU-A (power pins)",
+      "width": 210,
+      "cavities": [
+        {
+          "id": "a5",
+          "signal": "+14V",
+          "designation": "A5"
+        },
+        {
+          "id": "a6",
+          "signal": "+8V Out",
+          "designation": "A6"
+        },
+        {
+          "id": "a24",
+          "signal": "Gnd Out",
+          "designation": "A24"
+        },
+        {
+          "id": "a25",
+          "signal": "Ground",
+          "designation": "A25"
+        },
+        {
+          "id": "a32",
+          "signal": "+5V Out",
+          "designation": "A32"
+        },
+        {
+          "id": "a34",
+          "signal": "Ground",
+          "designation": "A34"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1980,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 990,
+        "y": 180
+      }
+    },
+    {
+      "id": "ecu_b",
+      "label": "ECU-B (power pins)",
+      "width": 210,
+      "cavities": [
+        {
+          "id": "b5",
+          "signal": "V-Ethrottle In",
+          "designation": "B5"
+        },
+        {
+          "id": "b18",
+          "signal": "Aux 9 (ETB M+)",
+          "designation": "B18"
+        },
+        {
+          "id": "b22",
+          "signal": "Gnd Out",
+          "designation": "B22"
+        },
+        {
+          "id": "b25",
+          "signal": "Ground",
+          "designation": "B25"
+        },
+        {
+          "id": "b26",
+          "signal": "Aux 10 (ETB M-)",
+          "designation": "B26"
+        },
+        {
+          "id": "b34",
+          "signal": "Ground",
+          "designation": "B34"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1980,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 990,
+        "y": 480
+      }
+    },
+    {
+      "id": "k_efi",
+      "label": "EFI Main Relay Socket",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "86 (+12V Coil)"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "30 (+12V)"
+        },
+        {
+          "id": "c4",
+          "signal": "87 (switched)"
+        },
+        {
+          "id": "c5",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 1320,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 330,
+        "y": 180
+      }
+    },
+    {
+      "id": "k_etb",
+      "label": "ETB Power Relay Socket",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "86 (+12V Coil)"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "30 (+12V)"
+        },
+        {
+          "id": "c4",
+          "signal": "87 (V-Ethrottle)"
+        },
+        {
+          "id": "c5",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 1320,
+        "y": 450
+      },
+      "schematicPosition": {
+        "x": 330,
+        "y": 450
+      }
+    },
+    {
+      "id": "k_fp",
+      "label": "Fuel Pump Relay Socket",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "86 (+12V Coil)"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "30 (+12V)"
+        },
+        {
+          "id": "c4",
+          "signal": "87 (Pump)"
+        },
+        {
+          "id": "c5",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 1320,
+        "y": 720
+      },
+      "schematicPosition": {
+        "x": 330,
+        "y": 720
+      }
+    },
+    {
+      "id": "k_fan",
+      "label": "Radiator Fan Relay Socket",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "86 (+12V Coil)"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "30 (+12V)"
+        },
+        {
+          "id": "c4",
+          "signal": "87 (Fan)"
+        },
+        {
+          "id": "c5",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 1320,
+        "y": 990
+      },
+      "schematicPosition": {
+        "x": 330,
+        "y": 990
+      }
+    },
+    {
+      "id": "k_fan2",
+      "label": "Condenser Fan Relay Socket",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "86 (+12V Coil)"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "30 (+12V)"
+        },
+        {
+          "id": "c4",
+          "signal": "87 (Fan)"
+        },
+        {
+          "id": "c5",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1260
+      },
+      "schematicPosition": {
+        "x": 330,
+        "y": 1260
+      }
+    },
+    {
+      "id": "k_str",
+      "label": "Start Relay Socket",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "86 (+12V Coil)"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "30 (+12V)"
+        },
+        {
+          "id": "c4",
+          "signal": "87 (Starter)"
+        },
+        {
+          "id": "c5",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1530
+      },
+      "schematicPosition": {
+        "x": 330,
+        "y": 1530
+      }
+    },
+    {
+      "id": "inj1",
+      "label": "Injector 1",
+      "rotated": true,
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 2370,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 180
+      }
+    },
+    {
+      "id": "inj2",
+      "label": "Injector 2",
+      "rotated": true,
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 2370,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 360
+      }
+    },
+    {
+      "id": "inj3",
+      "label": "Injector 3",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 2370,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 540
+      }
+    },
+    {
+      "id": "inj4",
+      "label": "Injector 4",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 2370,
+        "y": 720
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 720
+      }
+    },
+    {
+      "id": "cop1",
+      "label": "COP 1",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "GND"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "notConnected": true,
+          "signal": "IGF (to signal file)"
+        },
+        {
+          "id": "c4",
+          "signal": "12V"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2370,
+        "y": 900
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 900
+      }
+    },
+    {
+      "id": "cop2",
+      "label": "COP 2",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "GND"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "notConnected": true,
+          "signal": "IGF (to signal file)"
+        },
+        {
+          "id": "c4",
+          "signal": "12V"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2370,
+        "y": 1140
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 1140
+      }
+    },
+    {
+      "id": "cop3",
+      "label": "COP 3",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "GND"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "notConnected": true,
+          "signal": "IGF (to signal file)"
+        },
+        {
+          "id": "c4",
+          "signal": "12V"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2370,
+        "y": 1380
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 1380
+      }
+    },
+    {
+      "id": "cop4",
+      "label": "COP 4",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "GND"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "notConnected": true,
+          "signal": "IGF (to signal file)"
+        },
+        {
+          "id": "c4",
+          "signal": "12V"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2370,
+        "y": 1620
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 1620
+      }
+    },
+    {
+      "id": "etb",
+      "label": "Bosch 74.5mm ETB",
+      "width": 210,
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Motor-"
+        },
+        {
+          "id": "c2",
+          "signal": "Poti- (GND)"
+        },
+        {
+          "id": "c3",
+          "signal": "+5V (TPS supply)"
+        },
+        {
+          "id": "c4",
+          "signal": "Motor+"
+        },
+        {
+          "id": "c5",
+          "notConnected": true
+        },
+        {
+          "id": "c6",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 2700,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 1710,
+        "y": 180
+      }
+    },
+    {
+      "id": "crank",
+      "label": "Crank VR Sensor",
+      "cavities": [
+        {
+          "id": "c1",
+          "notConnected": true
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 1890
+      }
+    },
+    {
+      "id": "ect",
+      "label": "ECT Sensor",
+      "cavities": [
+        {
+          "id": "c1",
+          "notConnected": true
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 570
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 2070
+      }
+    },
+    {
+      "id": "iat",
+      "label": "IAT Sensor",
+      "cavities": [
+        {
+          "id": "c1",
+          "notConnected": true
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 750
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 2250
+      }
+    },
+    {
+      "id": "oilt",
+      "label": "Oil Temp Sensor",
+      "cavities": [
+        {
+          "id": "c1",
+          "notConnected": true
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 930
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 2430
+      }
+    },
+    {
+      "id": "cpiat",
+      "label": "Charge-Pipe IAT",
+      "cavities": [
+        {
+          "id": "c1",
+          "notConnected": true
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 1110
+      },
+      "schematicPosition": {
+        "x": 2430,
+        "y": 180
+      }
+    },
+    {
+      "id": "cam",
+      "label": "Cam Hall Sensor",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+8V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "Gnd Out"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 1020
+      }
+    },
+    {
+      "id": "map",
+      "label": "MAP Sensor",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "5V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "Gnd Out"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 1290
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 180
+      }
+    },
+    {
+      "id": "oilp",
+      "label": "Oil Pressure Sensor",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "5V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "Gnd Out"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 1500
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 390
+      }
+    },
+    {
+      "id": "fuelp",
+      "label": "Fuel Pressure Sensor",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "5V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "Gnd Out"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 1710
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 600
+      }
+    },
+    {
+      "id": "clntp",
+      "label": "Coolant Pressure Sensor",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "5V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "Gnd Out"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 1920
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 810
+      }
+    },
+    {
+      "id": "aps",
+      "label": "Accel Pedal (APS)",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "5V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "notConnected": true,
+          "signal": "APS-2 5V"
+        },
+        {
+          "id": "c4",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1980,
+        "y": 780
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 1650
+      }
+    },
+    {
+      "id": "turbospd",
+      "label": "Turbo Speed Sensor",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "signal": "Gnd Out"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 2130
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 1440
+      }
+    },
+    {
+      "id": "boost",
+      "label": "Boost Control Solenoid",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 2700,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 1710,
+        "y": 480
+      }
+    },
+    {
+      "id": "flex",
+      "label": "Flex Fuel Sensor",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        },
+        {
+          "id": "c3",
+          "notConnected": true,
+          "signal": "Signal (to signal file)"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3420,
+        "y": 2340
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 1230
+      }
+    },
+    {
+      "id": "fuellvl",
+      "label": "Fuel Level Sender",
+      "cavities": [
+        {
+          "id": "c1",
+          "notConnected": true
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3750,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 2430,
+        "y": 360
+      }
+    },
+    {
+      "id": "fuelpump",
+      "label": "Fuel Pump",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2700,
+        "y": 1200
+      },
+      "schematicPosition": {
+        "x": 1710,
+        "y": 1020
+      }
+    },
+    {
+      "id": "rad_fan",
+      "label": "Radiator Fan Motor",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2700,
+        "y": 660
+      },
+      "schematicPosition": {
+        "x": 1710,
+        "y": 660
+      }
+    },
+    {
+      "id": "fan2",
+      "label": "2nd/Condenser Fan Motor",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2700,
+        "y": 840
+      },
+      "schematicPosition": {
+        "x": 1710,
+        "y": 840
+      }
+    },
+    {
+      "id": "mrs_pwr",
+      "label": "MRS EPS Pump — Power",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2700,
+        "y": 1020
+      },
+      "schematicPosition": {
+        "x": 1710,
+        "y": 1200
+      }
+    },
+    {
+      "id": "lambda",
+      "label": "Link CAN-Lambda",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        },
+        {
+          "id": "c3",
+          "notConnected": true,
+          "signal": "CAN H (signal file)"
+        },
+        {
+          "id": "c4",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 2700,
+        "y": 1380
+      },
+      "schematicPosition": {
+        "x": 1710,
+        "y": 1380
+      }
+    },
+    {
+      "id": "csb3io",
+      "label": "CSB3 Power",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1980,
+        "y": 1020
+      },
+      "schematicPosition": {
+        "x": 1710,
+        "y": 1620
+      }
+    },
+    {
+      "id": "buck",
+      "label": "12V-5V Buck Converter",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V IN"
+        },
+        {
+          "id": "c2",
+          "signal": "GND IN"
+        },
+        {
+          "id": "c3",
+          "signal": "5V OUT"
+        },
+        {
+          "id": "c4",
+          "signal": "GND OUT"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1980,
+        "y": 1200
+      },
+      "schematicPosition": {
+        "x": 1710,
+        "y": 1800
+      }
+    }
+  ],
+  "terminals": [
+    {
+      "id": "batt_ring",
+      "type": "Ring",
+      "signal": "Battery/Ignition +12V Source",
+      "layoutPosition": {
+        "x": 0,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 180
+      }
+    },
+    {
+      "id": "chassis_ring",
+      "type": "Ring",
+      "signal": "Chassis Ground Point",
+      "layoutPosition": {
+        "x": 0,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 300
+      }
+    },
+    {
+      "id": "starter_trigger",
+      "type": "Spade",
+      "signal": "Starter Solenoid Trigger (S)",
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1800
+      },
+      "schematicPosition": {
+        "x": 330,
+        "y": 1800
+      }
+    },
+    {
+      "id": "vr1_5v",
+      "type": "Loose",
+      "signal": "VR-Cond Front 5V",
+      "layoutPosition": {
+        "x": 4080,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 2430,
+        "y": 540
+      }
+    },
+    {
+      "id": "vr1_gnd",
+      "type": "Loose",
+      "signal": "VR-Cond Front GND",
+      "layoutPosition": {
+        "x": 4080,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 2430,
+        "y": 660
+      }
+    },
+    {
+      "id": "vr2_5v",
+      "type": "Loose",
+      "signal": "VR-Cond Rear 5V",
+      "layoutPosition": {
+        "x": 4080,
+        "y": 420
+      },
+      "schematicPosition": {
+        "x": 2430,
+        "y": 780
+      }
+    },
+    {
+      "id": "vr2_gnd",
+      "type": "Loose",
+      "signal": "VR-Cond Rear GND",
+      "layoutPosition": {
+        "x": 4080,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 2430,
+        "y": 900
+      }
+    }
+  ],
+  "bundles": [
+    {
+      "id": "bn_a0",
+      "label": "A power",
+      "length": {
+        "unit": "mm",
+        "value": 80
+      },
+      "sourceId": "ecu_a",
+      "targetId": "bp_a_out"
+    },
+    {
+      "id": "bn_b0",
+      "label": "B power",
+      "length": {
+        "unit": "mm",
+        "value": 80
+      },
+      "sourceId": "ecu_b",
+      "targetId": "bp_b_out"
+    },
+    {
+      "id": "bn_ab",
+      "length": {
+        "unit": "mm",
+        "value": 400
+      },
+      "sourceId": "bp_a_out",
+      "targetId": "bp_eng"
+    },
+    {
+      "id": "bn_bb",
+      "length": {
+        "unit": "mm",
+        "value": 400
+      },
+      "sourceId": "bp_b_out",
+      "targetId": "bp_eng"
+    },
+    {
+      "id": "bn_cab",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_a_out",
+      "targetId": "bp_cabin"
+    },
+    {
+      "id": "bn_batt",
+      "length": {
+        "unit": "mm",
+        "value": 80
+      },
+      "sourceId": "batt_ring",
+      "targetId": "bp_a_out"
+    },
+    {
+      "id": "bn_chg",
+      "length": {
+        "unit": "mm",
+        "value": 80
+      },
+      "sourceId": "chassis_ring",
+      "targetId": "bp_b_out"
+    },
+    {
+      "id": "bn_kefi",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "k_efi"
+    },
+    {
+      "id": "bn_ketb",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "k_etb"
+    },
+    {
+      "id": "bn_kfp",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "k_fp"
+    },
+    {
+      "id": "bn_etb",
+      "length": {
+        "unit": "mm",
+        "value": 450
+      },
+      "sourceId": "bp_eng",
+      "targetId": "etb"
+    },
+    {
+      "id": "bn_inj1",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "sourceId": "bp_eng",
+      "targetId": "inj1"
+    },
+    {
+      "id": "bn_cop1",
+      "length": {
+        "unit": "mm",
+        "value": 160
+      },
+      "sourceId": "bp_eng",
+      "targetId": "cop1"
+    },
+    {
+      "id": "bn_sp_12v",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "sourceId": "bp_a_out",
+      "targetId": "sp_12v"
+    },
+    {
+      "id": "bn_sp_sw12",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "sourceId": "bp_a_out",
+      "targetId": "sp_sw12"
+    },
+    {
+      "id": "bn_sp_5v",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "sourceId": "bp_a_out",
+      "targetId": "sp_5v"
+    },
+    {
+      "id": "bn_sp_8v",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "sourceId": "bp_a_out",
+      "targetId": "sp_8v"
+    },
+    {
+      "id": "bn_sp_gndout",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "sourceId": "bp_eng",
+      "targetId": "sp_gndout"
+    },
+    {
+      "id": "bn_sp_chassis",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "sourceId": "bp_b_out",
+      "targetId": "sp_chassis"
+    },
+    {
+      "id": "bn_sp_5vbuck",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "sp_5vbuck"
+    },
+    {
+      "id": "bn_k_fan",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "k_fan"
+    },
+    {
+      "id": "bn_k_fan2",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "k_fan2"
+    },
+    {
+      "id": "bn_k_str",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "k_str"
+    },
+    {
+      "id": "bn_starter_trigger",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "starter_trigger"
+    },
+    {
+      "id": "bn_aps",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "aps"
+    },
+    {
+      "id": "bn_csb3io",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "csb3io"
+    },
+    {
+      "id": "bn_buck",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "buck"
+    },
+    {
+      "id": "bn_inj2",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "inj2"
+    },
+    {
+      "id": "bn_inj3",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "inj3"
+    },
+    {
+      "id": "bn_inj4",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "inj4"
+    },
+    {
+      "id": "bn_cop2",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "cop2"
+    },
+    {
+      "id": "bn_cop3",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "cop3"
+    },
+    {
+      "id": "bn_cop4",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "cop4"
+    },
+    {
+      "id": "bn_boost",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "boost"
+    },
+    {
+      "id": "bn_rad_fan",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "rad_fan"
+    },
+    {
+      "id": "bn_fan2",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "fan2"
+    },
+    {
+      "id": "bn_mrs_pwr",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "mrs_pwr"
+    },
+    {
+      "id": "bn_fuelpump",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "fuelpump"
+    },
+    {
+      "id": "bn_lambda",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "lambda"
+    },
+    {
+      "id": "bn_crank",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "crank"
+    },
+    {
+      "id": "bn_cam",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "cam"
+    },
+    {
+      "id": "bn_ect",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "ect"
+    },
+    {
+      "id": "bn_iat",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "iat"
+    },
+    {
+      "id": "bn_oilt",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "oilt"
+    },
+    {
+      "id": "bn_cpiat",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "cpiat"
+    },
+    {
+      "id": "bn_map",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "map"
+    },
+    {
+      "id": "bn_oilp",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "oilp"
+    },
+    {
+      "id": "bn_fuelp",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "fuelp"
+    },
+    {
+      "id": "bn_clntp",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "clntp"
+    },
+    {
+      "id": "bn_turbospd",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "turbospd"
+    },
+    {
+      "id": "bn_flex",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "flex"
+    },
+    {
+      "id": "bn_fuellvl",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "fuellvl"
+    },
+    {
+      "id": "bn_vr1_5v",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "vr1_5v"
+    },
+    {
+      "id": "bn_vr1_gnd",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "vr1_gnd"
+    },
+    {
+      "id": "bn_vr2_5v",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "vr2_5v"
+    },
+    {
+      "id": "bn_vr2_gnd",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_eng",
+      "targetId": "vr2_gnd"
+    }
+  ],
+  "splices": [
+    {
+      "id": "sp_12v",
+      "layoutPosition": {
+        "x": 660,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 180
+      }
+    },
+    {
+      "id": "sp_sw12",
+      "layoutPosition": {
+        "x": 660,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 300
+      }
+    },
+    {
+      "id": "sp_5v",
+      "layoutPosition": {
+        "x": 660,
+        "y": 420
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 420
+      }
+    },
+    {
+      "id": "sp_8v",
+      "layoutPosition": {
+        "x": 660,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 540
+      }
+    },
+    {
+      "id": "sp_gndout",
+      "layoutPosition": {
+        "x": 660,
+        "y": 660
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 660
+      }
+    },
+    {
+      "id": "sp_chassis",
+      "layoutPosition": {
+        "x": 660,
+        "y": 780
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 780
+      }
+    },
+    {
+      "id": "sp_5vbuck",
+      "layoutPosition": {
+        "x": 660,
+        "y": 900
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 900
+      }
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_pwr",
+      "text": "POWER harness (this file). 12V / +5V / +8V / Gnd Out / chassis. Signals: app.harness.design/KQL8. Relay pin 85 stays on the signal file.",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": -240
+      }
+    },
+    {
+      "id": "shdr_source",
+      "text": "SOURCE",
+      "color": "Red",
+      "width": 210,
+      "schematicPosition": {
+        "x": 0,
+        "y": 30
+      }
+    },
+    {
+      "id": "shdr_relays",
+      "text": "RELAYS",
+      "color": "Green",
+      "width": 210,
+      "schematicPosition": {
+        "x": 330,
+        "y": 30
+      }
+    },
+    {
+      "id": "shdr_distribution_splices",
+      "text": "DISTRIBUTION SPLICES",
+      "color": "Red",
+      "width": 210,
+      "schematicPosition": {
+        "x": 660,
+        "y": 30
+      }
+    },
+    {
+      "id": "shdr_ecu_power_pins",
+      "text": "ECU POWER PINS",
+      "color": "Blue",
+      "width": 210,
+      "schematicPosition": {
+        "x": 990,
+        "y": 30
+      }
+    },
+    {
+      "id": "shdr_loads_injection_&_ignition",
+      "text": "LOADS - injection & ignition",
+      "color": "Orange",
+      "width": 210,
+      "schematicPosition": {
+        "x": 1380,
+        "y": 30
+      }
+    },
+    {
+      "id": "shdr_loads_motors_&_modules",
+      "text": "LOADS - motors & modules",
+      "color": "Orange",
+      "width": 210,
+      "schematicPosition": {
+        "x": 1710,
+        "y": 30
+      }
+    },
+    {
+      "id": "shdr_sensor_supply_&_return",
+      "text": "SENSOR SUPPLY & RETURN",
+      "color": "Yellow",
+      "width": 210,
+      "schematicPosition": {
+        "x": 2100,
+        "y": 30
+      }
+    }
+  ],
+  "branchPoints": [
+    {
+      "id": "bp_a_out",
+      "layoutPosition": {
+        "x": 330,
+        "y": 180
+      }
+    },
+    {
+      "id": "bp_b_out",
+      "layoutPosition": {
+        "x": 1650,
+        "y": 180
+      }
+    },
+    {
+      "id": "bp_cabin",
+      "layoutPosition": {
+        "x": 990,
+        "y": 180
+      }
+    },
+    {
+      "id": "bp_eng",
+      "layoutPosition": {
+        "x": 3090,
+        "y": 180
+      }
+    }
+  ],
+  "layoutNotes": [
+    {
+      "id": "ln_pwr",
+      "text": "POWER harness (this file). 12V / +5V / +8V / Gnd Out / chassis. Signals: app.harness.design/KQL8. Relay pin 85 stays on the signal file.",
+      "width": 390,
+      "layoutPosition": {
+        "x": 0,
+        "y": -240
+      }
+    },
+    {
+      "id": "lhdr_source",
+      "text": "SOURCE",
+      "color": "Red",
+      "width": 210,
+      "layoutPosition": {
+        "x": 0,
+        "y": 30
+      }
+    },
+    {
+      "id": "lhdr_distribution_splices",
+      "text": "DISTRIBUTION SPLICES",
+      "color": "Red",
+      "width": 210,
+      "layoutPosition": {
+        "x": 660,
+        "y": 30
+      }
+    },
+    {
+      "id": "lhdr_cabin_relays",
+      "text": "CABIN - relays",
+      "color": "Green",
+      "width": 210,
+      "layoutPosition": {
+        "x": 1320,
+        "y": 30
+      }
+    },
+    {
+      "id": "lhdr_cabin_ecu_&_aux",
+      "text": "CABIN - ECU & aux",
+      "color": "Blue",
+      "width": 210,
+      "layoutPosition": {
+        "x": 1980,
+        "y": 30
+      }
+    },
+    {
+      "id": "lhdr_engine_injection_&_ignition",
+      "text": "ENGINE - injection & ignition",
+      "color": "Orange",
+      "width": 210,
+      "layoutPosition": {
+        "x": 2370,
+        "y": 30
+      }
+    },
+    {
+      "id": "lhdr_engine_actuators_&_motors",
+      "text": "ENGINE - actuators & motors",
+      "color": "Orange",
+      "width": 210,
+      "layoutPosition": {
+        "x": 2700,
+        "y": 30
+      }
+    },
+    {
+      "id": "lhdr_engine_sensors",
+      "text": "ENGINE - sensors",
+      "color": "Yellow",
+      "width": 210,
+      "layoutPosition": {
+        "x": 3420,
+        "y": 30
+      }
+    },
+    {
+      "id": "lhdr_vr_conditioners",
+      "text": "VR CONDITIONERS",
+      "color": "Orange",
+      "width": 210,
+      "layoutPosition": {
+        "x": 4080,
+        "y": 30
+      }
+    }
+  ]
+}
