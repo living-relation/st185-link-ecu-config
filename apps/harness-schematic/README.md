@@ -10,11 +10,13 @@ Signal flows **left to right**, the way schematics are normally drawn:
 
 | Zone | Contents |
 |---|---|
-| Far left | Sensors and switches (inputs) |
+| Far left | Sensors and OEM switch blocks (inputs) |
 | Middle | XtremeX **Connector A** over **Connector B** |
-| Right | Injectors, coils, ETB, relays (outputs) |
+| Right | Injectors, coils, ETB, OEM relay blocks (outputs) |
 | Band 2 | CAN bus at 1 Mbit/s, clusters, RealDash |
-| Band 3 | Body and switchboard parts, still unwired |
+| Band 3 | OEM body / bulkhead blocks and switchboard parts, still unwired |
+
+The Subaru BRZ e-throttle pedal is a 6-pin Sumitomo TS 025 (not a 4-pin APS). Relays, bulkheads, and OEM body switches are generic **OEM blocks** — internals are not modelled. Ignition Switch (dummy OEM block) feeds DI 9 for Hold Power.
 
 Solid wires are assigned in `XTREMEX-IO-TABLE.html` and `WIRING.md`. **Dashed** wires are assigned in the I/O table but not yet confirmed on the car. ECU Superseal pin numbers were confirmed 2026-09-11 against the official G4X XtremeX Quick Start Guide (wire side).
 

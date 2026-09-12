@@ -74,7 +74,7 @@
     <li><strong>Cam trigger:</strong> RacerX MR2 kit, Cherry <strong>Hall</strong>, intake cam, single tooth → <strong>Trigger 2</strong>.</li>
     <li><strong>Ignition:</strong> 1ZZ <strong>coil-on-plug</strong> (built-in igniter, logic-level) → Ign 1–4. No distributor.</li>
     <li><strong>Injectors:</strong> 1400cc ATS/Bosch top-feed, flow-matched (hi-Z → saturated) → Inj 1–4.</li>
-    <li><strong>Throttle:</strong> Bosch Motorsport 74.5mm ETB → motor Aux 9/10, TP main+sub + APS main+sub on An Volt, power via V-Ethrottle (relay Aux 2).</li>
+    <li><strong>Throttle:</strong> Bosch Motorsport 74.5mm ETB → motor Aux 9/10, TP main+sub. APS is a Subaru BRZ 6-pin pedal (VPA1→An Volt 4 A14, VPA2→An Volt 5 B33), power via V-Ethrottle (relay Aux 2).</li>
     <li><strong>Flex sensor:</strong> Continental 3-pin (freq) → ethanol % <em>and</em> <strong>fuel temp</strong> (no separate fuel-temp sensor).</li>
     <li><strong>Starter:</strong> ECU-controlled — start input + start-relay output; ECU disables the start relay in software under set conditions (no separate cut relay). <strong>EFI main relay</strong> held by ECU for DBW key-off reset.</li>
   </ul>
@@ -113,8 +113,8 @@
   <tr class="g-volt"><td class="chan">An Volt 1</td><td class="pin">A17</td><td class="wire">White</td><td>MAP</td><td><span class="badge ok">✅</span></td><td>+5V</td></tr>
   <tr class="g-volt"><td class="chan">An Volt 2</td><td class="pin">A22</td><td class="wire">White</td><td>ETB throttle pos — MAIN</td><td><span class="badge ok">✅</span></td><td>Bosch ETB</td></tr>
   <tr class="g-volt"><td class="chan">An Volt 3</td><td class="pin">A33</td><td class="wire">White</td><td>ETB throttle pos — SUB</td><td><span class="badge ok">✅</span></td><td>Bosch ETB</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 4</td><td class="pin">A14</td><td class="wire">White</td><td>Accel pedal (APS) — MAIN</td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 5</td><td class="pin">B33</td><td class="wire">White</td><td>Accel pedal (APS) — SUB</td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 4</td><td class="pin">A14</td><td class="wire">White</td><td>BRZ APS MAIN (VPA1 pin 6)</td><td><span class="badge ok">✅</span></td><td>Subaru BRZ / Toyota-family e-throttle pedal, Sumitomo TS 025 6-way. Pin 6 = VPA1 full-range track. Independent +5 V (pin 4 VC1) and Gnd Out (pin 5 GND1).</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 5</td><td class="pin">B33</td><td class="wire">White</td><td>BRZ APS SUB (VPA2 pin 3)</td><td><span class="badge ok">✅</span></td><td>Pedal pin 3 = VPA2. Independent +5 V (pin 1 VC2) and Gnd Out (pin 2 GND2). Toyota-family sub track often saturates ~60–70 % — set PCLink <code>APS (Sub) 100%</code> after probing.</td></tr>
   <tr class="g-volt"><td class="chan">An Volt 6</td><td class="pin">B15</td><td class="wire">White</td><td>Oil pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-volt"><td class="chan">An Volt 7</td><td class="pin">B16</td><td class="wire">White</td><td>Fuel pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-volt"><td class="chan">An Volt 8</td><td class="pin">B23</td><td class="wire">White</td><td>Coolant pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
@@ -132,7 +132,8 @@
   <tr class="g-di"><td class="chan">DI 3–6</td><td class="pin">A23 · B21 · B20 · B19</td><td class="wire">Green</td><td>ABS wheel speed ×4 (reluctor)</td><td><span class="badge ok">✅</span></td><td>Shielded twisted pair. Fed through a <strong>NCV1124 VR conditioner</strong> — see <code>docs/devices/VR-WHEEL-SPEED-CONDITIONER.md</code>. Conditioner ground = Gnd Out, 5V from the external supply.</td></tr>
   <tr class="g-di"><td class="chan">DI 7</td><td class="pin">B30</td><td class="wire">Green</td><td>Start request (button/key)</td><td><span class="badge ok">✅</span></td><td>ECU-controlled start</td></tr>
   <tr class="g-di"><td class="chan">DI 8</td><td class="pin">B29</td><td class="wire">Green</td><td>Candidate: OEM trans-output VSS</td><td><span class="badge tbd">⬜</span></td><td>Freed 2026-09-06 — clutch switch moved to the switchboard. Toyota OEM VSS (powered, reads the trans-output ring gear) fits here: a driven square-wave source, not a passive VR sensor, so it does not lose amplitude at low speed the way DI 3–6 did before the NCV1124 conditioners. <strong>No DI needs to be freed for it</strong> — clutch, brake, reverse and cruise are already on the switchboard, not the ECU.</td></tr>
-  <tr class="g-di"><td class="chan">DI 9–10</td><td class="pin">B28 · B27</td><td class="wire">Green</td><td>Available</td><td><span class="badge tbd">⬜</span></td><td><strong>Available for use.</strong> CAN 2 is not being used, so these are ordinary digital inputs, not reserved.</td></tr>
+  <tr class="g-di"><td class="chan">DI 9</td><td class="pin">B28</td><td class="wire">Green</td><td>Ignition Switch (Hold Power)</td><td><span class="badge ok">✅</span></td><td>Dummy <strong>OEM ignition-switch block</strong> — key-on sense for PCLink Hold Power (pairs with Aux 6 EFI-main hold). OEM internals not modelled. CAN 2 unused, so B28 is an ordinary DI.</td></tr>
+  <tr class="g-di"><td class="chan">DI 10</td><td class="pin">B27</td><td class="wire">Green</td><td>Available</td><td><span class="badge tbd">⬜</span></td><td>CAN 2 unused. Ordinary digital input.</td></tr>
 </table>
 
 <h2>Inputs — via Switchboard (CAN, frees ECU DIs)</h2>
@@ -154,7 +155,7 @@
   <tr class="g-aux"><td class="chan">Aux 3</td><td class="pin">A19</td><td class="wire">Pink</td><td>Fuel pump relay</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
   <tr class="g-aux"><td class="chan">Aux 4</td><td class="pin">A18</td><td class="wire">Pink</td><td>AC clutch/kill (grounds relay coil or amp ACT)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low sink; <strong>floats when off, no pull-up</strong>. Amp <code>ACT</code>: <strong>ground = kill, floating = normal</strong>.</td></tr>
   <tr class="g-aux"><td class="chan">Aux 5</td><td class="pin">A29</td><td class="wire">Pink</td><td>Engine radiator fan relay</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td></td></tr>
-  <tr class="g-aux"><td class="chan">Aux 6</td><td class="pin">A28</td><td class="wire">Pink</td><td>EFI main relay (ECU power hold)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>keeps ECU powered for DBW key-off reset/cooldown. PCLink Hold Power also wants an <strong>Ignition Switch</strong> input — none assigned yet (spare DI or switchboard VDI).</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 6</td><td class="pin">A28</td><td class="wire">Pink</td><td>EFI main relay (ECU power hold)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>keeps ECU powered for DBW key-off reset/cooldown. PCLink Hold Power Ignition Switch input is <strong>DI 9 (B28)</strong> from the dummy OEM ignition-switch block.</td></tr>
   <tr class="g-aux"><td class="chan">Aux 7</td><td class="pin">A27</td><td class="wire">Pink</td><td>Speed-out → MRS pump SPD pin (Yel/Wht)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>PCLink Speedo Out / GP PWM is a valid Aux 5–8 function. MRS wants ~4 pulses/rev, <strong>0–5 V</strong> (scoped on the RAV4-family PS ECU). Aux 5–8 have an internal ~1.5 kΩ pull-up (high polarity ≈ 5–14 V per the wiring manual) — <strong>scope the high level before adding a second 5 V pull-up</strong>; a 12 V high needs a divider/clamp, a hi-Z-off low-side needs a 5 V pull-up.</td></tr>
   <tr class="g-aux"><td class="chan">Aux 8</td><td class="pin">A26</td><td class="wire">Pink</td><td>Start relay (ECU-controlled)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>ECU enables/disables in software (clutch/neutral/anti-restart) — no separate cut relay</td></tr>
   <tr class="g-pwr"><td class="chan">V-Ethrottle 12V switched input</td><td class="pin">B5</td><td class="wire">Red/White</td><td>ETB H-bridge supply — <strong>power in, not an output</strong>. Triggered by Aux 2 (A20).</td><td><span class="drive">12V in</span></td><td><span class="badge ok">✅</span></td><td>0.75 mm². Present on the loom but absent from the Quickstart I/O table — always list it explicitly.</td></tr>
@@ -189,11 +190,11 @@
 <h2>Power / ground</h2>
 <table>
   <tr><th>Channel</th><th>Pin</th><th>Wire</th><th>Use</th></tr>
-  <tr class="g-pwr"><td class="chan">+5V Out</td><td class="pin">A32</td><td class="wire">Orange</td><td>MAP, TPS×2, APS×2, pressures</td></tr>
+  <tr class="g-pwr"><td class="chan">+5V Out</td><td class="pin">A32</td><td class="wire">Orange</td><td>MAP, TPS×2, BRZ APS VC1+VC2, pressures</td></tr>
   <tr class="g-pwr"><td class="chan">+8V Out</td><td class="pin">A6</td><td class="wire">Orange/White</td><td>Cam Hall sensor on Trigger 2 (1.8k pull-up on signal)</td></tr>
-  <tr class="g-pwr"><td class="chan">V-Ethrottle 12V switched input</td><td class="pin">B5</td><td class="wire">Red/White</td><td>Relayed 12–14V feed to the ETB H-bridge. <strong>Trigger = Aux 2 (A20)</strong>, which grounds the relay coil (pin 85). Relay: 30 = fused battery, 86 = ignition-switched 12V, 87 → B5. Do not fit the isolating relay until Aux 2, Aux 9 and Aux 10 are all wired and configured.</td></tr>
+  <tr class="g-pwr"><td class="chan">V-Ethrottle 12V switched input</td><td class="pin">B5</td><td class="wire">Red/White</td><td>Relayed 12–14V feed to the ETB H-bridge. <strong>Trigger = Aux 2 (A20)</strong> (ECU low-side on the OEM relay block coil). 12V IN = fused battery, 12V OUT → B5. Do not fit the isolating relay until Aux 2, Aux 9 and Aux 10 are all wired and configured.</td></tr>
   <tr class="g-pwr"><td class="chan">14V +</td><td class="pin">A5</td><td class="wire">Red</td><td>Main ECU feed (via EFI main relay, Aux 6)</td></tr>
-  <tr class="g-gnd"><td class="chan">Gnd Out</td><td class="pin">A24 · B22</td><td class="wire">Black/White</td><td><strong>All sensor grounds.</strong> Never chassis. APS and TPS may share a Gnd Out.</td></tr>
+  <tr class="g-gnd"><td class="chan">Gnd Out</td><td class="pin">A24 · B22</td><td class="wire">Black/White</td><td><strong>All sensor grounds.</strong> Never chassis. BRZ APS uses two Gnd Out pins (GND1 + GND2); TPS may share the same Gnd Out rail.</td></tr>
   <tr class="g-gnd"><td class="chan">Ground</td><td class="pin">A25 A34 · B25 B34</td><td class="wire">Black</td><td><strong>ECU reference only</strong> — not a sensor return.</td></tr>
   <tr class="g-gnd"><td class="chan">Shield / Shield-Gnd</td><td class="pin">A7 · B17</td><td class="wire">Green/Yellow</td><td>Carries <strong>no current</strong>. Terminate at the <strong>ECU end only</strong>; float at the sensor end.</td></tr>
   <tr class="g-gnd"><td class="chan">Loom B +5V</td><td class="pin">—</td><td class="wire">Orange (jumper from A32)</td><td><strong>Loom B has no native +5V pin.</strong> Coolant pressure, fuel level (and turbo speed) need a <strong>5V jumper from Loom A</strong> — see harness-build tasks.</td></tr>
@@ -211,8 +212,9 @@
     <li><strong>Cam Hall pull-up.</strong> Fit <strong>1.8 kΩ</strong> from signal to +8 V Out (A6). Do <em>not</em> fit the 2.4 kΩ in the RacerX kit.</li>
     <li><strong>B14.</strong> Leave empty — no Superseal terminal.</li>
     <li><strong>Shields.</strong> Terminate at the <strong>ECU end only</strong> (A7 / B17). Shields carry no current.</li>
-    <li><strong>Sensor grounds.</strong> Gnd Out only (A24 / B22), never chassis. APS and TPS may share a Gnd Out.</li>
-    <li><strong>ECU Hold Power.</strong> Aux 6 (A28) can hold the EFI main relay, but PCLink Hold Power also wants an <strong>Ignition Switch</strong> input. No ECU DI is assigned to key-sense yet — use a spare DI (8/9/10) or a switchboard VDI before relying on DBW key-off reset.</li>
+    <li><strong>Sensor grounds.</strong> Gnd Out only (A24 / B22), never chassis. BRZ APS GND1 and GND2 both return to Gnd Out; TPS may share that rail.</li>
+    <li><strong>ECU Hold Power.</strong> Aux 6 (A28) holds the EFI main relay. Ignition Switch sense is <strong>DI 9 (B28)</strong> from a dummy OEM ignition-switch block (key-on 12 V). OEM switch internals are not modelled.</li>
+    <li><strong>OEM blocks.</strong> Relays, bulkheads, and body-side switches/triggers (clutch, cruise stalk, brake, reverse, start, ignition switch) are generic OEM blocks on every drawing — do not invent OEM pinouts. The BRZ e-throttle pedal is the exception: it is a known 6-pin Sumitomo TS 025.</li>
     <li><strong>Aux 7 MRS.</strong> Scope the speed-out high level before adding a 5 V pull-up.</li>
   </ol>
 </div>
@@ -234,7 +236,7 @@
   <tr><td>Temp</td><td>4</td><td>4</td><td>0 (ECT, IAT, oil, charge-pipe IAT — ECU pull-ups)</td></tr>
   <tr><td>Trigger</td><td>2</td><td>2</td><td>0</td></tr>
   <tr><td>Knock</td><td>2</td><td>1</td><td>1 (Knock 2 / B8)</td></tr>
-  <tr><td>Digital in</td><td>10</td><td>7</td><td>3 (DI 8 VSS-candidate; DI 9/10 free — CAN 2 unused)</td></tr>
+  <tr><td>Digital in</td><td>10</td><td>8</td><td>2 (DI 8 VSS-candidate; DI 10 free — CAN 2 unused)</td></tr>
   <tr><td>Injection</td><td>8</td><td>4</td><td>4 → aux (B1–B4)</td></tr>
   <tr><td>Ignition</td><td>8</td><td>4 coils + 1 aux (Ign 5)</td><td>3 (Ign 6–8)</td></tr>
   <tr><td>Aux</td><td>10</td><td>10 (9/10 = ETB)</td><td>0 → spare Ign/Inj</td></tr>
