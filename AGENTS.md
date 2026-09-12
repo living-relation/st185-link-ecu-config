@@ -1,4 +1,4 @@
-﻿# AGENTS.md
+# AGENTS.md
 
 ## Scope
 - This repo is CAN configuration + bench/tooling for ST185 TrackCluster.
@@ -16,6 +16,7 @@
 ## Board / progress snapshot
 - Claude progress board is a **stale artifact** (last updated 2026-09-01). Do not treat it as SoT.
 - Conflict sheet (board vs git vs husk session memory): `docs/BOARD-VERIFY-2026-09-11.md`.
+- Harness faces status (schematic vs `.harness` SoT sync): `docs/HARNESS-FACES-2026-09-11.md`.
 - Paste **CONFLICT rows only** into the ACTIVE `shipping\` trance; park husk-keyed chats.
 ## Related Repos (mandatory for CAN bus / wiring work)
 This repo defines only one side of the CAN bus (ECU, RealDash, switchboard). The

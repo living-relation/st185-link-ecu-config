@@ -34,6 +34,7 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `CAN-CONFIG-STATUS.md` | Handoff/status note — snapshot of the reconciled CAN config, the source-of-truth HTML, and open items. |
 | `XTREMEX-IO-TABLE.html` | **Authoritative** Link G4X XtremeX I/O assignment table (ST185 5S-GTE, DBW) — channel plan, pin budget, harness-build tasks. Pin numbers confirmed 2026-09-11 against the official Quick Start Guide. Open in a browser. |
 | `docs/XTREMEX-IO-VERIFY-2026-09-11.md` | Pin-by-pin verification record vs official XtremeX QSG + terminal/pull-up notes. |
+| `docs/HARNESS-FACES-2026-09-11.md` | Harness "two faces" status note (2026-09-11) — schematic/loom view (`apps/harness-schematic/`) vs `.harness` SoT/BOM file, sync rules, and next steps. |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |
 | `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 5-node topology. |
 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Master ID allocation table — all byte layouts, sections A–E. |
