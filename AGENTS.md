@@ -79,6 +79,16 @@ python rd-build/tools/automation_helper.py size
 - Optional MCP example exists at `rd-build/tools/mcp.example.json` for desktop control experiments.
 - Caliber hooks exist in `.claude/hooks/` and `.cursor/hooks.json`; keep config guidance compatible with them.
 
+## Cursor Cloud specific instructions
+- The Cloud Agent environment is defined by `.cursor/environment.json`, which runs `.cursor/install.sh` (installs the WebKit2 GTK backend for the `pywebview` sender app plus the Python deps from the three `requirements.txt` files).
+- No USB-CAN hardware is attached in Cloud Agents, and `vcan`/SocketCAN is unavailable (no `ip`/`modprobe` kernel-module tooling). Validate `bench/can_bench.py` flows against the `python-can` `virtual` interface by default, e.g.:
+  ```bash
+  python bench/can_bench.py --interface virtual --channel bench --bitrate 1000000 -v simulate-ecu --duration 1.5
+  ```
+  Reserve the `socketcan`/`pcan`/`slcan` commands elsewhere in this doc for real hardware.
+- The `-v/--verbose` flag is global and must come before the subcommand.
+- The desktop sender app (`apps/trackcluster-can-sender/app.py`) renders via `pywebview` on the VM display; use GUI/computer-use testing to verify it.
+
 <!-- caliber:managed:pre-commit -->
 ## Before Committing
 
