@@ -155,22 +155,79 @@ the drawing reads wide rather than as one long ribbon.
 - Rectangle-intersection test on real footprints — **0 overlaps** in all four views.
 - Dead-end stubs — **0** remaining in both files.
 
+## Follow-up pass — 2026-09-12, after Daniel's answers
+
+### Flex-fuel supply confirmed at 12 V — item 3 closed
+
+AEM's datasheet for the same Continental sensor (kit 30-2200 / 30-2201) gives
+**Battery Voltage 9 to 18 V** and the pinout **1 = Vcc Battery 12 V, 2 = GND,
+3 = Vout**. Output is 50 Hz = 0 % ethanol to 150 Hz = 100 %, with the negative
+pulse width carrying fuel temperature. It wants a 12 V-tolerant frequency input
+with an internal pull-up, which is exactly what DI 2 with the pull-up on
+provides. The +8 V rail was below the sensor's 9 V minimum, so the move to
+switched 12 V was required, not merely tidier.
+
+Watch out for one error in that datasheet: the pull-up paragraph names "pins 1
+(Vout) and 3 (Vcc)", which contradicts its own pinout table on the next page.
+The table is right.
+
+Source: <https://documents.aemelectronics.com/techlibrary_30-2201_flex_fuel_content_sensor_kit.pdf>
+
+### Bulkheads are now real connectors — item 2 closed
+
+Per Daniel: one circular MIL connector per Superseal loom, assigned straight
+through. This supersedes the "bulkheads stay 2-cavity TBD blocks" line in
+`.claude/rules/harness-wiring-conventions.md`, which has been updated.
+
+| Loom | Firewall receptacle | Engine plug | Contacts | Used | Spare |
+|---|---|---|---|---|---|
+| A | `8STA0-14-35SN` | `8STA6-14-35PN` | 37 | 26 | 11 |
+| B | `8STA0-14-35SA` | `8STA6-14-35PA` | 37 | 9 | 28 |
+
+Souriau 8STA, shell 14 arrangement 35 = **37 contacts, size #22D**. Contact
+count cross-checked against the MIL-DTL-38999 insert-arrangement table, where
+the equivalent shell-15 arrangement 35 is also 37 contacts — the arrangement
+number is not the contact count, so it has to be looked up. Keyway **N** on
+loom A and **A** on loom B, so the two bulkheads physically cannot be
+cross-mated. Both are stocked by XTRA Motorsport, the same supplier as the
+`202K142-25-0` shell-14 boot already in the BOM.
+
+Every wire crossing the firewall is now two wires terminating in a cavity —
+`<id>_c` on the cabin side, `<id>_e` on the engine side — so the file yields a
+real bulkhead pin schedule. 35 wires were split (86 → 121).
+
+Cavities are numbered straight through in wire order, as asked. Note that the
+A/B split follows **physical routing**, not the loom letter: `w205` (ECU-B B9,
+knock sensor) and `w54` (ECU-B B21, front-right wheel speed) cross through
+bulkhead **A**, because those devices sit on the A-side of the engine bay.
+
+### Duplicate parts removed
+
+Five power-only connectors (`rad_fan`, `fan2`, `buck`, `fuelpump`, `mrs_pwr`)
+were deleted from the signal file, and the signal-only `ign_sw` block was
+deleted from the power file — the same duplication in the other direction. All
+six were verified to carry zero wires in the file they were removed from.
+
+### `DOCS-CLEANUP-PLAN.html` archived
+
+Moved to `archive/`. It was a 76 KB clone of the markdown that had drifted: it
+never gained §0 "Terms defined on first use" or §13 "Reconciliation log". Eight
+files across the repo cite the markdown; nothing cited the HTML.
+
 ## Still open
 
-1. **Flex-fuel supply (item 3)** — confirm the sensor is a 12 V Continental part before crimping.
-2. **Bulkhead connectors carry no wires.** All four `bh_*` 37-way parts have zero
-   wire terminations; the A/B trunks pass them as bundles only. Until wires
-   actually land in bulkhead cavities there is no pin-to-pin bulkhead schedule to
-   build from.
-3. **Five power-only parts still exist unwired in the SIGNAL file**
-   (`rad_fan`, `fan2`, `buck`, `fuelpump`, `mrs_pwr`). They duplicate the POWER
-   file. Left in place — deleting connectors is your call.
-4. **Three resistor wires do not route through bundles** (`r_cam`, `r_fuellvl`,
+1. **Bulkhead contact and backshell part numbers are not yet in the BOM.** The
+   shells are specified; the size 22D crimp pins and sockets are placeholder
+   entries (`ct_8sta22p` / `ct_8sta22s`) and the shell-14 boot is already there
+   as `202K142-25-0`. Confirm the exact contact and backshell numbers with the
+   supplier before ordering.
+2. **Wire gauge, length and terminate-at are still absent everywhere.** That is
+   the remaining gap between this file and a cut-and-crimp sheet — see the
+   `HARNESS-BUILD-LIST` note in `docs/HARNESS-FACES-2026-09-11.md`.
+3. **Three resistor wires do not route through bundles** (`r_cam`, `r_fuellvl`,
    `r_cruise`). Each resistor has a `locationId`, which is how harness.design
    places an inline part, so this is expected — flagged only so it is not
    re-diagnosed later.
-5. `DOCS-CLEANUP-PLAN.md` and `.html` are 76 KB of the same content in two
-   formats. Candidate for consolidation.
 
 ## 2026-09-12 follow-up (OEM blocks + BRZ pedal)
 
@@ -178,6 +235,10 @@ Later the same day the APS connector became a Subaru BRZ 6-pin Sumitomo TS 025
 (not MP150 4-way), OEM connections were redrawn as generic blocks, and
 bulkheads were collapsed from empty 37-way parts to 2-cavity TBD blocks.
 Hold Power Ignition Switch is DI 9 (B28). See
-`docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md`. Item 2 above is partly
-addressed (no fake 37-way schedule); wires still do not land in bulkhead
-cavities. Item 5 is the consolidation proposal in that same plan.
+`docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md`.
+
+**Superseded in part.** The bulkhead-as-TBD-block decision was reversed by
+Daniel the same day — bulkheads are real 8STA connectors with wires landing in
+cavities, as recorded in the follow-up section above. The OEM-block treatment
+still stands for relays, switches, the cruise stalk, the AC amplifier and the
+ignition switch.

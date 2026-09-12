@@ -1640,7 +1640,7 @@
       },
       "schematicPosition": {
         "x": 2100,
-        "y": 1890
+        "y": 1950
       }
     },
     {
@@ -1662,7 +1662,7 @@
       },
       "schematicPosition": {
         "x": 2100,
-        "y": 2070
+        "y": 2130
       }
     },
     {
@@ -1684,7 +1684,7 @@
       },
       "schematicPosition": {
         "x": 2100,
-        "y": 2250
+        "y": 2310
       }
     },
     {
@@ -1705,8 +1705,8 @@
         "y": 930
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 2430
+        "x": 2430,
+        "y": 180
       }
     },
     {
@@ -1728,7 +1728,7 @@
       },
       "schematicPosition": {
         "x": 2430,
-        "y": 180
+        "y": 360
       }
     },
     {
@@ -2001,7 +2001,7 @@
       },
       "schematicPosition": {
         "x": 2430,
-        "y": 360
+        "y": 540
       }
     },
     {
@@ -2168,33 +2168,10 @@
       ],
       "layoutPosition": {
         "x": 1980,
-        "y": 1320
+        "y": 1260
       },
       "schematicPosition": {
         "x": 1710,
-        "y": 1800
-      }
-    },
-    {
-      "id": "ign_sw",
-      "label": "OEM block — Ignition Switch",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "IGN ON",
-          "notConnected": true
-        },
-        {
-          "id": "c2",
-          "notConnected": true
-        }
-      ],
-      "layoutPosition": {
-        "x": 1320,
-        "y": 1800
-      },
-      "schematicPosition": {
-        "x": 330,
         "y": 1800
       }
     }
@@ -2249,7 +2226,7 @@
       },
       "schematicPosition": {
         "x": 2430,
-        "y": 540
+        "y": 720
       }
     },
     {
@@ -2262,7 +2239,7 @@
       },
       "schematicPosition": {
         "x": 2430,
-        "y": 660
+        "y": 840
       }
     },
     {
@@ -2275,7 +2252,7 @@
       },
       "schematicPosition": {
         "x": 2430,
-        "y": 780
+        "y": 960
       }
     },
     {
@@ -2288,7 +2265,7 @@
       },
       "schematicPosition": {
         "x": 2430,
-        "y": 900
+        "y": 1080
       }
     }
   ],
@@ -2798,15 +2775,6 @@
       },
       "sourceId": "bp_eng",
       "targetId": "vr2_gnd"
-    },
-    {
-      "id": "bn_ign_sw",
-      "length": {
-        "unit": "mm",
-        "value": 400
-      },
-      "sourceId": "bp_cabin",
-      "targetId": "ign_sw"
     }
   ],
   "splices": [
@@ -3031,7 +2999,7 @@
     },
     {
       "id": "lhdr_cabin_relays",
-      "text": "CABIN - OEM relay blocks",
+      "text": "CABIN - relays",
       "color": "Green",
       "width": 210,
       "layoutPosition": {

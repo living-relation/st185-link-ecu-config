@@ -5,28 +5,52 @@
   "lengthUnit": "mm",
   "wires": [
     {
-      "id": "w12",
-      "color": "Gray",
+      "id": "w12_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a7"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c1"
+      },
+      "color": "Gray"
+    },
+    {
+      "id": "w12_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c1"
+      },
+      "target": {
         "id": "knock1",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a7"
-      }
+      "color": "Gray"
     },
     {
-      "id": "w16",
-      "color": "Green",
+      "id": "w16_c",
       "source": {
-        "id": "turbospd",
+        "id": "ecu_a",
+        "handle": "a30"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c2"
+      },
+      "color": "Green"
+    },
+    {
+      "id": "w16_e",
+      "source": {
+        "id": "bh_a_eng",
         "handle": "c2"
       },
       "target": {
-        "id": "ecu_a",
-        "handle": "a30"
-      }
+        "id": "turbospd",
+        "handle": "c2"
+      },
+      "color": "Green"
     },
     {
       "id": "w20",
@@ -42,64 +66,124 @@
       "stripeColor": "White"
     },
     {
-      "id": "w23",
-      "color": "Blue",
+      "id": "w23_c",
       "source": {
+        "id": "r_cam",
+        "handle": "Left"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c3"
+      },
+      "color": "Blue"
+    },
+    {
+      "id": "w23_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c3"
+      },
+      "target": {
         "id": "cam",
         "handle": "c2"
       },
-      "target": {
-        "id": "r_cam",
-        "handle": "Left"
-      }
+      "color": "Blue"
     },
     {
-      "id": "w26",
-      "color": "White",
+      "id": "w26_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a17"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c4"
+      },
+      "color": "White"
+    },
+    {
+      "id": "w26_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c4"
+      },
+      "target": {
         "id": "map",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a17"
-      }
+      "color": "White"
     },
     {
-      "id": "w29",
-      "color": "White",
+      "id": "w29_c",
       "source": {
+        "id": "ecu_b",
+        "handle": "b15"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c1"
+      },
+      "color": "White"
+    },
+    {
+      "id": "w29_e",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c1"
+      },
+      "target": {
         "id": "oilp",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_b",
-        "handle": "b15"
-      }
+      "color": "White"
     },
     {
-      "id": "w32",
-      "color": "White",
+      "id": "w32_c",
       "source": {
+        "id": "ecu_b",
+        "handle": "b16"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c2"
+      },
+      "color": "White"
+    },
+    {
+      "id": "w32_e",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c2"
+      },
+      "target": {
         "id": "fuelp",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_b",
-        "handle": "b16"
-      }
+      "color": "White"
     },
     {
-      "id": "w35",
-      "color": "White",
+      "id": "w35_c",
       "source": {
+        "id": "ecu_b",
+        "handle": "b23"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c3"
+      },
+      "color": "White"
+    },
+    {
+      "id": "w35_e",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c3"
+      },
+      "target": {
         "id": "clntp",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_b",
-        "handle": "b23"
-      }
+      "color": "White"
     },
     {
       "id": "w38",
@@ -150,16 +234,28 @@
       }
     },
     {
-      "id": "w48",
-      "color": "Green",
+      "id": "w48_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a31"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c5"
+      },
+      "color": "Green"
+    },
+    {
+      "id": "w48_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c5"
+      },
+      "target": {
         "id": "flex",
         "handle": "c3"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a31"
-      }
+      "color": "Green"
     },
     {
       "id": "w50",
@@ -174,40 +270,76 @@
       }
     },
     {
-      "id": "w51",
-      "color": "Green",
+      "id": "w51_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a23"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c6"
+      },
+      "color": "Green"
+    },
+    {
+      "id": "w51_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c6"
+      },
+      "target": {
         "id": "vr1_out1",
         "handle": "Terminal"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a23"
-      }
+      "color": "Green"
     },
     {
-      "id": "w53",
-      "color": "White",
+      "id": "w53_c",
       "source": {
         "id": "wss_fr",
         "handle": "c2"
       },
       "target": {
-        "id": "vr1_ch2n",
-        "handle": "Terminal"
-      }
+        "id": "bh_a_fw",
+        "handle": "c7"
+      },
+      "color": "White"
     },
     {
-      "id": "w54",
-      "color": "Green",
+      "id": "w53_e",
       "source": {
+        "id": "bh_a_eng",
+        "handle": "c7"
+      },
+      "target": {
+        "id": "vr1_ch2n",
+        "handle": "Terminal"
+      },
+      "color": "White"
+    },
+    {
+      "id": "w54_c",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b21"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c8"
+      },
+      "color": "Green"
+    },
+    {
+      "id": "w54_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c8"
+      },
+      "target": {
         "id": "vr1_out2",
         "handle": "Terminal"
       },
-      "target": {
-        "id": "ecu_b",
-        "handle": "b21"
-      }
+      "color": "Green"
     },
     {
       "id": "w58",
@@ -282,136 +414,268 @@
       }
     },
     {
-      "id": "w108",
-      "color": "Brown",
+      "id": "w108_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a4"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c9"
+      },
+      "color": "Brown"
+    },
+    {
+      "id": "w108_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c9"
+      },
+      "target": {
         "id": "inj1",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a4"
-      }
+      "color": "Brown"
     },
     {
-      "id": "w109",
-      "color": "Brown",
+      "id": "w109_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a3"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c10"
+      },
+      "color": "Brown"
+    },
+    {
+      "id": "w109_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c10"
+      },
+      "target": {
         "id": "inj2",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a3"
-      }
+      "color": "Brown"
     },
     {
-      "id": "w110",
-      "color": "Brown",
+      "id": "w110_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a2"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c11"
+      },
+      "color": "Brown"
+    },
+    {
+      "id": "w110_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c11"
+      },
+      "target": {
         "id": "inj3",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a2"
-      }
+      "color": "Brown"
     },
     {
-      "id": "w111",
-      "color": "Brown",
+      "id": "w111_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a1"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c12"
+      },
+      "color": "Brown"
+    },
+    {
+      "id": "w111_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c12"
+      },
+      "target": {
         "id": "inj4",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a1"
-      }
+      "color": "Brown"
     },
     {
-      "id": "w120",
-      "color": "Violet",
+      "id": "w120_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a13"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c13"
+      },
+      "color": "Violet"
+    },
+    {
+      "id": "w120_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c13"
+      },
+      "target": {
         "id": "cop1",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a13"
-      }
+      "color": "Violet"
     },
     {
-      "id": "w121",
-      "color": "Violet",
+      "id": "w121_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a12"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c14"
+      },
+      "color": "Violet"
+    },
+    {
+      "id": "w121_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c14"
+      },
+      "target": {
         "id": "cop2",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a12"
-      }
+      "color": "Violet"
     },
     {
-      "id": "w122",
-      "color": "Violet",
+      "id": "w122_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a11"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c15"
+      },
+      "color": "Violet"
+    },
+    {
+      "id": "w122_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c15"
+      },
+      "target": {
         "id": "cop3",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a11"
-      }
+      "color": "Violet"
     },
     {
-      "id": "w123",
-      "color": "Violet",
+      "id": "w123_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a10"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c16"
+      },
+      "color": "Violet"
+    },
+    {
+      "id": "w123_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c16"
+      },
+      "target": {
         "id": "cop4",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a10"
-      }
+      "color": "Violet"
     },
     {
-      "id": "w128",
-      "color": "White",
+      "id": "w128_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a22"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c17"
+      },
+      "color": "White"
+    },
+    {
+      "id": "w128_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c17"
+      },
+      "target": {
         "id": "etb",
         "handle": "c6"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a22"
-      }
+      "color": "White"
     },
     {
-      "id": "w129",
-      "color": "White",
+      "id": "w129_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a33"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c18"
+      },
+      "color": "White"
+    },
+    {
+      "id": "w129_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c18"
+      },
+      "target": {
         "id": "etb",
         "handle": "c5"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a33"
-      }
+      "color": "White"
     },
     {
-      "id": "w103",
-      "color": "Pink",
+      "id": "w103_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a21"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c19"
+      },
+      "color": "Pink"
+    },
+    {
+      "id": "w103_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c19"
+      },
+      "target": {
         "id": "boost",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a21"
-      }
+      "color": "Pink"
     },
     {
       "id": "w130",
@@ -426,76 +690,148 @@
       }
     },
     {
-      "id": "w200",
-      "color": "Blue",
+      "id": "w200_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a8"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c20"
+      },
+      "color": "Blue"
+    },
+    {
+      "id": "w200_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c20"
+      },
+      "target": {
         "id": "crank",
         "handle": "c1"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a8"
-      }
+      "color": "Blue"
     },
     {
-      "id": "w201",
-      "color": "Yellow",
+      "id": "w201_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a15"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c21"
+      },
+      "color": "Yellow"
+    },
+    {
+      "id": "w201_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c21"
+      },
+      "target": {
         "id": "ect",
         "handle": "c1"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a15"
-      }
+      "color": "Yellow"
     },
     {
-      "id": "w202",
-      "color": "Yellow",
+      "id": "w202_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a16"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c22"
+      },
+      "color": "Yellow"
+    },
+    {
+      "id": "w202_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c22"
+      },
+      "target": {
         "id": "iat",
         "handle": "c1"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a16"
-      }
+      "color": "Yellow"
     },
     {
-      "id": "w203",
-      "color": "Yellow",
+      "id": "w203_c",
       "source": {
+        "id": "ecu_b",
+        "handle": "b6"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c4"
+      },
+      "color": "Yellow"
+    },
+    {
+      "id": "w203_e",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c4"
+      },
+      "target": {
         "id": "oilt",
         "handle": "c1"
       },
-      "target": {
-        "id": "ecu_b",
-        "handle": "b6"
-      }
+      "color": "Yellow"
     },
     {
-      "id": "w204",
-      "color": "Yellow",
+      "id": "w204_c",
       "source": {
+        "id": "ecu_b",
+        "handle": "b7"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c5"
+      },
+      "color": "Yellow"
+    },
+    {
+      "id": "w204_e",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c5"
+      },
+      "target": {
         "id": "cpiat",
         "handle": "c1"
       },
-      "target": {
-        "id": "ecu_b",
-        "handle": "b7"
-      }
+      "color": "Yellow"
     },
     {
-      "id": "w205",
-      "color": "Gray",
+      "id": "w205_c",
       "source": {
+        "id": "ecu_b",
+        "handle": "b9"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c23"
+      },
+      "color": "Gray"
+    },
+    {
+      "id": "w205_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c23"
+      },
+      "target": {
         "id": "knock1",
         "handle": "c1"
       },
-      "target": {
-        "id": "ecu_b",
-        "handle": "b9"
-      }
+      "color": "Gray"
     },
     {
       "id": "w_flp",
@@ -510,16 +846,28 @@
       }
     },
     {
-      "id": "w_frp",
-      "color": "White",
+      "id": "w_frp_c",
       "source": {
         "id": "wss_fr",
         "handle": "c1"
       },
       "target": {
+        "id": "bh_a_fw",
+        "handle": "c24"
+      },
+      "color": "White"
+    },
+    {
+      "id": "w_frp_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c24"
+      },
+      "target": {
         "id": "vr1_ch2p",
         "handle": "Terminal"
-      }
+      },
+      "color": "White"
     },
     {
       "id": "w_rlp",
@@ -654,16 +1002,28 @@
       }
     },
     {
-      "id": "w_sw7",
-      "color": "Green",
+      "id": "w_sw7_c",
       "source": {
+        "id": "csb3io",
+        "handle": "c14"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c6"
+      },
+      "color": "Green"
+    },
+    {
+      "id": "w_sw7_e",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c6"
+      },
+      "target": {
         "id": "reverse_sw",
         "handle": "c1"
       },
-      "target": {
-        "id": "csb3io",
-        "handle": "c14"
-      }
+      "color": "Green"
     },
     {
       "id": "w_start",
@@ -678,16 +1038,28 @@
       }
     },
     {
-      "id": "w_mrs",
-      "color": "Pink",
+      "id": "w_mrs_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a27"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c7"
+      },
+      "color": "Pink"
+    },
+    {
+      "id": "w_mrs_e",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c7"
+      },
+      "target": {
         "id": "mrs_ctrl",
         "handle": "c1"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a27"
-      }
+      "color": "Pink"
     },
     {
       "id": "w_fp85",
@@ -906,40 +1278,76 @@
       }
     },
     {
-      "id": "w_tri_hi",
-      "color": "Green",
+      "id": "w_tri_hi_c",
       "source": {
+        "id": "acamp",
+        "handle": "c5"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c8"
+      },
+      "color": "Green"
+    },
+    {
+      "id": "w_tri_hi_e",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c8"
+      },
+      "target": {
         "id": "ac_trinary",
         "handle": "c1"
       },
-      "target": {
-        "id": "acamp",
-        "handle": "c5"
-      }
+      "color": "Green"
     },
     {
-      "id": "w_tri_lo",
-      "color": "Green",
+      "id": "w_tri_lo_c",
       "source": {
+        "id": "acamp",
+        "handle": "c6"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c9"
+      },
+      "color": "Green"
+    },
+    {
+      "id": "w_tri_lo_e",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c9"
+      },
+      "target": {
         "id": "ac_trinary",
         "handle": "c2"
       },
-      "target": {
-        "id": "acamp",
-        "handle": "c6"
-      }
+      "color": "Green"
     },
     {
-      "id": "w_cam_sig",
-      "color": "Blue",
+      "id": "w_cam_sig_c",
       "source": {
+        "id": "ecu_a",
+        "handle": "a9"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c25"
+      },
+      "color": "Blue"
+    },
+    {
+      "id": "w_cam_sig_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c25"
+      },
+      "target": {
         "id": "cam",
         "handle": "c2"
       },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a9"
-      }
+      "color": "Blue"
     },
     {
       "id": "w_fl_sig",
@@ -993,16 +1401,29 @@
       "identLabel": "CAN"
     },
     {
-      "id": "w_can_ecu_lam",
-      "color": "Green",
+      "id": "w_can_ecu_lam_c",
       "source": {
         "id": "ecu_com",
         "handle": "c3"
       },
       "target": {
+        "id": "bh_a_fw",
+        "handle": "c26"
+      },
+      "color": "Green",
+      "identLabel": "CAN"
+    },
+    {
+      "id": "w_can_ecu_lam_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c26"
+      },
+      "target": {
         "id": "lambda",
         "handle": "c4"
       },
+      "color": "Green",
       "identLabel": "CAN"
     },
     {
@@ -1066,7 +1487,7 @@
         }
       },
       "layoutPosition": {
-        "x": 5340,
+        "x": 4890,
         "y": 180
       },
       "schematicPosition": {
@@ -1089,7 +1510,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 1800
       },
       "schematicPosition": {
@@ -1112,7 +1533,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 510
       },
       "schematicPosition": {
@@ -1135,7 +1556,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 5340,
+        "x": 4890,
         "y": 600
       },
       "schematicPosition": {
@@ -1158,7 +1579,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 7050,
+        "x": 6600,
         "y": 180
       },
       "schematicPosition": {
@@ -1181,7 +1602,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6000,
+        "x": 5550,
         "y": 1860
       },
       "schematicPosition": {
@@ -1208,7 +1629,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 1590
       },
       "schematicPosition": {
@@ -1235,7 +1656,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 180
       },
       "schematicPosition": {
@@ -1262,7 +1683,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 990
       },
       "schematicPosition": {
@@ -1289,7 +1710,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 2160
       },
       "schematicPosition": {
@@ -1316,7 +1737,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 2370
       },
       "schematicPosition": {
@@ -1343,7 +1764,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 7050,
+        "x": 6600,
         "y": 360
       },
       "schematicPosition": {
@@ -1423,7 +1844,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 1980
       },
       "schematicPosition": {
@@ -1446,8 +1867,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 5340,
-        "y": 1710
+        "x": 4890,
+        "y": 1170
       },
       "schematicPosition": {
         "x": 660,
@@ -1477,8 +1898,8 @@
         }
       },
       "layoutPosition": {
-        "x": 8430,
-        "y": 660
+        "x": 7980,
+        "y": 480
       },
       "schematicPosition": {
         "x": 660,
@@ -1500,8 +1921,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 8430,
-        "y": 840
+        "x": 7980,
+        "y": 660
       },
       "schematicPosition": {
         "x": 660,
@@ -1941,7 +2362,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6000,
+        "x": 5550,
         "y": 180
       },
       "schematicPosition": {
@@ -1964,7 +2385,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6000,
+        "x": 5550,
         "y": 360
       },
       "schematicPosition": {
@@ -1987,7 +2408,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6000,
+        "x": 5550,
         "y": 540
       },
       "schematicPosition": {
@@ -2010,7 +2431,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6000,
+        "x": 5550,
         "y": 720
       },
       "schematicPosition": {
@@ -2041,7 +2462,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6000,
+        "x": 5550,
         "y": 900
       },
       "schematicPosition": {
@@ -2072,7 +2493,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6000,
+        "x": 5550,
         "y": 1140
       },
       "schematicPosition": {
@@ -2103,7 +2524,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6000,
+        "x": 5550,
         "y": 1380
       },
       "schematicPosition": {
@@ -2134,7 +2555,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6000,
+        "x": 5550,
         "y": 1620
       },
       "schematicPosition": {
@@ -2157,7 +2578,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 1200
       },
       "schematicPosition": {
@@ -2197,35 +2618,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 690
       },
       "schematicPosition": {
         "x": 2430,
         "y": 180
-      }
-    },
-    {
-      "id": "fan2",
-      "label": "2nd/Condenser Fan Motor",
-      "partId": "cp_mp150_2",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 5340,
-        "y": 1530
-      },
-      "schematicPosition": {
-        "x": 2820,
-        "y": 360
       }
     },
     {
@@ -2265,11 +2663,11 @@
       ],
       "layoutPosition": {
         "x": 2220,
-        "y": 420
+        "y": 480
       },
       "schematicPosition": {
         "x": 3210,
-        "y": 600
+        "y": 840
       }
     },
     {
@@ -2483,37 +2881,6 @@
       }
     },
     {
-      "id": "buck",
-      "label": "12V-5V Buck Converter",
-      "partId": "cp_buck",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V IN"
-        },
-        {
-          "id": "c2",
-          "signal": "GND IN"
-        },
-        {
-          "id": "c3",
-          "signal": "5V OUT"
-        },
-        {
-          "id": "c4",
-          "signal": "GND OUT"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1110,
-        "y": 1800
-      },
-      "schematicPosition": {
-        "x": 2820,
-        "y": 1080
-      }
-    },
-    {
       "id": "fuellvl",
       "label": "Fuel Level Sender",
       "partId": "cp_mp150_2",
@@ -2528,35 +2895,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 8430,
+        "x": 7980,
         "y": 180
       },
       "schematicPosition": {
         "x": 990,
         "y": 420
-      }
-    },
-    {
-      "id": "fuelpump",
-      "label": "Fuel Pump (Walbro F90000295)",
-      "partId": "cp_fuelpump",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 8430,
-        "y": 480
-      },
-      "schematicPosition": {
-        "x": 2820,
-        "y": 540
       }
     },
     {
@@ -2578,35 +2922,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 1380
       },
       "schematicPosition": {
         "x": 330,
         "y": 180
-      }
-    },
-    {
-      "id": "mrs_pwr",
-      "label": "MRS EPS Pump — Power",
-      "partId": "cp_mrs_pwr",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 5340,
-        "y": 960
-      },
-      "schematicPosition": {
-        "x": 2430,
-        "y": 2460
       }
     },
     {
@@ -2624,7 +2945,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 5340,
+        "x": 4890,
         "y": 780
       },
       "schematicPosition": {
@@ -2655,7 +2976,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 5340,
+        "x": 4890,
         "y": 360
       },
       "schematicPosition": {
@@ -2728,7 +3049,7 @@
       ],
       "layoutPosition": {
         "x": 1110,
-        "y": 2040
+        "y": 1800
       },
       "schematicPosition": {
         "x": 4110,
@@ -2807,7 +3128,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 180
       },
       "schematicPosition": {
@@ -2838,7 +3159,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 780
       },
       "schematicPosition": {
@@ -2869,35 +3190,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 1020
       },
       "schematicPosition": {
         "x": 4110,
         "y": 1800
-      }
-    },
-    {
-      "id": "rad_fan",
-      "label": "Radiator Fan Motor",
-      "partId": "cp_mp150_2",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 5340,
-        "y": 1350
-      },
-      "schematicPosition": {
-        "x": 2820,
-        "y": 180
       }
     },
     {
@@ -2916,11 +3214,11 @@
       ],
       "layoutPosition": {
         "x": 2220,
-        "y": 750
+        "y": 810
       },
       "schematicPosition": {
         "x": 3210,
-        "y": 930
+        "y": 1170
       }
     },
     {
@@ -2939,11 +3237,11 @@
       ],
       "layoutPosition": {
         "x": 2220,
-        "y": 930
+        "y": 990
       },
       "schematicPosition": {
         "x": 3210,
-        "y": 1110
+        "y": 1350
       }
     },
     {
@@ -2962,11 +3260,11 @@
       ],
       "layoutPosition": {
         "x": 2220,
-        "y": 1110
+        "y": 1170
       },
       "schematicPosition": {
         "x": 3210,
-        "y": 1290
+        "y": 1530
       }
     },
     {
@@ -2988,12 +3286,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 5340,
-        "y": 1140
+        "x": 4890,
+        "y": 960
       },
       "schematicPosition": {
         "x": 3210,
-        "y": 1470
+        "y": 1710
       }
     },
     {
@@ -3012,11 +3310,11 @@
       ],
       "layoutPosition": {
         "x": 2220,
-        "y": 1290
+        "y": 1350
       },
       "schematicPosition": {
         "x": 3210,
-        "y": 1680
+        "y": 1920
       }
     },
     {
@@ -3035,11 +3333,11 @@
       ],
       "layoutPosition": {
         "x": 2220,
-        "y": 1470
+        "y": 1530
       },
       "schematicPosition": {
         "x": 3210,
-        "y": 1860
+        "y": 2100
       }
     },
     {
@@ -3058,11 +3356,11 @@
       ],
       "layoutPosition": {
         "x": 2220,
-        "y": 1650
+        "y": 1710
       },
       "schematicPosition": {
         "x": 3210,
-        "y": 2040
+        "y": 2280
       }
     },
     {
@@ -3080,12 +3378,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 2670,
-        "y": 300
+        "x": 2220,
+        "y": 2280
       },
       "schematicPosition": {
         "x": 3660,
-        "y": 660
+        "y": 570
       }
     },
     {
@@ -3103,12 +3401,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 2670,
-        "y": 480
+        "x": 2220,
+        "y": 2460
       },
       "schematicPosition": {
         "x": 3660,
-        "y": 840
+        "y": 750
       }
     },
     {
@@ -3126,7 +3424,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 7050,
+        "x": 6600,
         "y": 570
       },
       "schematicPosition": {
@@ -3150,12 +3448,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 1500,
-        "y": 180
+        "x": 1110,
+        "y": 2340
       },
       "schematicPosition": {
         "x": 3210,
-        "y": 420
+        "y": 480
       }
     },
     {
@@ -3187,30 +3485,207 @@
       ],
       "layoutPosition": {
         "x": 2220,
-        "y": 2370
+        "y": 1890
       },
       "schematicPosition": {
         "x": 3660,
-        "y": 360
+        "y": 180
       }
     },
     {
       "id": "bh_a_fw",
-      "label": "OEM block — Bulkhead A (firewall)",
+      "label": "Bulkhead A - firewall (8STA0-14-35SN)",
       "width": 210,
-      "partId": "cp_oem_block_2",
+      "partId": "cp_8sta0_14_35sn",
       "cavities": [
         {
           "id": "c1",
-          "signal": "TBD (OEM pinout not modelled)"
+          "designation": "1",
+          "signal": "ECU-A A7"
         },
         {
           "id": "c2",
-          "notConnected": true
+          "designation": "2",
+          "signal": "ECU-A A30"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "r_cam Left"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "ECU-A A17"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "ECU-A A31"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "ECU-A A23"
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "ABS Wheel Speed FR SIG-"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "ECU-B B21"
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "ECU-A A4"
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "ECU-A A3"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "ECU-A A2"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "ECU-A A1"
+        },
+        {
+          "id": "c13",
+          "designation": "13",
+          "signal": "ECU-A A13"
+        },
+        {
+          "id": "c14",
+          "designation": "14",
+          "signal": "ECU-A A12"
+        },
+        {
+          "id": "c15",
+          "designation": "15",
+          "signal": "ECU-A A11"
+        },
+        {
+          "id": "c16",
+          "designation": "16",
+          "signal": "ECU-A A10"
+        },
+        {
+          "id": "c17",
+          "designation": "17",
+          "signal": "ECU-A A22"
+        },
+        {
+          "id": "c18",
+          "designation": "18",
+          "signal": "ECU-A A33"
+        },
+        {
+          "id": "c19",
+          "designation": "19",
+          "signal": "ECU-A A21"
+        },
+        {
+          "id": "c20",
+          "designation": "20",
+          "signal": "ECU-A A8"
+        },
+        {
+          "id": "c21",
+          "designation": "21",
+          "signal": "ECU-A A15"
+        },
+        {
+          "id": "c22",
+          "designation": "22",
+          "signal": "ECU-A A16"
+        },
+        {
+          "id": "c23",
+          "designation": "23",
+          "signal": "ECU-B B9"
+        },
+        {
+          "id": "c24",
+          "designation": "24",
+          "signal": "ABS Wheel Speed FR SIG+"
+        },
+        {
+          "id": "c25",
+          "designation": "25",
+          "signal": "ECU-A A9"
+        },
+        {
+          "id": "c26",
+          "designation": "26",
+          "signal": "ECU Comms/Tuning Port C3"
+        },
+        {
+          "id": "c27",
+          "designation": "27",
+          "signal": "spare"
+        },
+        {
+          "id": "c28",
+          "designation": "28",
+          "signal": "spare"
+        },
+        {
+          "id": "c29",
+          "designation": "29",
+          "signal": "spare"
+        },
+        {
+          "id": "c30",
+          "designation": "30",
+          "signal": "spare"
+        },
+        {
+          "id": "c31",
+          "designation": "31",
+          "signal": "spare"
+        },
+        {
+          "id": "c32",
+          "designation": "32",
+          "signal": "spare"
+        },
+        {
+          "id": "c33",
+          "designation": "33",
+          "signal": "spare"
+        },
+        {
+          "id": "c34",
+          "designation": "34",
+          "signal": "spare"
+        },
+        {
+          "id": "c35",
+          "designation": "35",
+          "signal": "spare"
+        },
+        {
+          "id": "c36",
+          "designation": "36",
+          "signal": "spare"
+        },
+        {
+          "id": "c37",
+          "designation": "37",
+          "signal": "spare"
         }
       ],
       "layoutPosition": {
-        "x": 4230,
+        "x": 3780,
         "y": 180
       },
       "schematicPosition": {
@@ -3220,21 +3695,198 @@
     },
     {
       "id": "bh_a_eng",
-      "label": "OEM block — Bulkhead A (engine)",
+      "label": "Bulkhead A - engine plug (8STA6-14-35PN)",
       "width": 210,
-      "partId": "cp_oem_block_2",
+      "partId": "cp_8sta6_14_35pn",
       "cavities": [
         {
           "id": "c1",
-          "signal": "TBD (OEM pinout not modelled)"
+          "designation": "1",
+          "signal": "ECU-A A7"
         },
         {
           "id": "c2",
-          "notConnected": true
+          "designation": "2",
+          "signal": "ECU-A A30"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "r_cam Left"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "ECU-A A17"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "ECU-A A31"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "ECU-A A23"
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "ABS Wheel Speed FR SIG-"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "ECU-B B21"
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "ECU-A A4"
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "ECU-A A3"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "ECU-A A2"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "ECU-A A1"
+        },
+        {
+          "id": "c13",
+          "designation": "13",
+          "signal": "ECU-A A13"
+        },
+        {
+          "id": "c14",
+          "designation": "14",
+          "signal": "ECU-A A12"
+        },
+        {
+          "id": "c15",
+          "designation": "15",
+          "signal": "ECU-A A11"
+        },
+        {
+          "id": "c16",
+          "designation": "16",
+          "signal": "ECU-A A10"
+        },
+        {
+          "id": "c17",
+          "designation": "17",
+          "signal": "ECU-A A22"
+        },
+        {
+          "id": "c18",
+          "designation": "18",
+          "signal": "ECU-A A33"
+        },
+        {
+          "id": "c19",
+          "designation": "19",
+          "signal": "ECU-A A21"
+        },
+        {
+          "id": "c20",
+          "designation": "20",
+          "signal": "ECU-A A8"
+        },
+        {
+          "id": "c21",
+          "designation": "21",
+          "signal": "ECU-A A15"
+        },
+        {
+          "id": "c22",
+          "designation": "22",
+          "signal": "ECU-A A16"
+        },
+        {
+          "id": "c23",
+          "designation": "23",
+          "signal": "ECU-B B9"
+        },
+        {
+          "id": "c24",
+          "designation": "24",
+          "signal": "ABS Wheel Speed FR SIG+"
+        },
+        {
+          "id": "c25",
+          "designation": "25",
+          "signal": "ECU-A A9"
+        },
+        {
+          "id": "c26",
+          "designation": "26",
+          "signal": "ECU Comms/Tuning Port C3"
+        },
+        {
+          "id": "c27",
+          "designation": "27",
+          "signal": "spare"
+        },
+        {
+          "id": "c28",
+          "designation": "28",
+          "signal": "spare"
+        },
+        {
+          "id": "c29",
+          "designation": "29",
+          "signal": "spare"
+        },
+        {
+          "id": "c30",
+          "designation": "30",
+          "signal": "spare"
+        },
+        {
+          "id": "c31",
+          "designation": "31",
+          "signal": "spare"
+        },
+        {
+          "id": "c32",
+          "designation": "32",
+          "signal": "spare"
+        },
+        {
+          "id": "c33",
+          "designation": "33",
+          "signal": "spare"
+        },
+        {
+          "id": "c34",
+          "designation": "34",
+          "signal": "spare"
+        },
+        {
+          "id": "c35",
+          "designation": "35",
+          "signal": "spare"
+        },
+        {
+          "id": "c36",
+          "designation": "36",
+          "signal": "spare"
+        },
+        {
+          "id": "c37",
+          "designation": "37",
+          "signal": "spare"
         }
       ],
       "layoutPosition": {
-        "x": 4230,
+        "x": 3780,
         "y": 1410
       },
       "schematicPosition": {
@@ -3244,21 +3896,198 @@
     },
     {
       "id": "bh_b_fw",
-      "label": "OEM block — Bulkhead B (firewall)",
+      "label": "Bulkhead B - firewall (8STA0-14-35SA)",
       "width": 210,
-      "partId": "cp_oem_block_2",
+      "partId": "cp_8sta0_14_35sa",
       "cavities": [
         {
           "id": "c1",
-          "signal": "TBD (OEM pinout not modelled)"
+          "designation": "1",
+          "signal": "ECU-B B15"
         },
         {
           "id": "c2",
-          "notConnected": true
+          "designation": "2",
+          "signal": "ECU-B B16"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "ECU-B B23"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "ECU-B B6"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "ECU-B B7"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "ECU-A A27"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "OEM block — AC Amplifier Trinary HI"
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "OEM block — AC Amplifier Trinary LO"
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "spare"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "spare"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "spare"
+        },
+        {
+          "id": "c13",
+          "designation": "13",
+          "signal": "spare"
+        },
+        {
+          "id": "c14",
+          "designation": "14",
+          "signal": "spare"
+        },
+        {
+          "id": "c15",
+          "designation": "15",
+          "signal": "spare"
+        },
+        {
+          "id": "c16",
+          "designation": "16",
+          "signal": "spare"
+        },
+        {
+          "id": "c17",
+          "designation": "17",
+          "signal": "spare"
+        },
+        {
+          "id": "c18",
+          "designation": "18",
+          "signal": "spare"
+        },
+        {
+          "id": "c19",
+          "designation": "19",
+          "signal": "spare"
+        },
+        {
+          "id": "c20",
+          "designation": "20",
+          "signal": "spare"
+        },
+        {
+          "id": "c21",
+          "designation": "21",
+          "signal": "spare"
+        },
+        {
+          "id": "c22",
+          "designation": "22",
+          "signal": "spare"
+        },
+        {
+          "id": "c23",
+          "designation": "23",
+          "signal": "spare"
+        },
+        {
+          "id": "c24",
+          "designation": "24",
+          "signal": "spare"
+        },
+        {
+          "id": "c25",
+          "designation": "25",
+          "signal": "spare"
+        },
+        {
+          "id": "c26",
+          "designation": "26",
+          "signal": "spare"
+        },
+        {
+          "id": "c27",
+          "designation": "27",
+          "signal": "spare"
+        },
+        {
+          "id": "c28",
+          "designation": "28",
+          "signal": "spare"
+        },
+        {
+          "id": "c29",
+          "designation": "29",
+          "signal": "spare"
+        },
+        {
+          "id": "c30",
+          "designation": "30",
+          "signal": "spare"
+        },
+        {
+          "id": "c31",
+          "designation": "31",
+          "signal": "spare"
+        },
+        {
+          "id": "c32",
+          "designation": "32",
+          "signal": "spare"
+        },
+        {
+          "id": "c33",
+          "designation": "33",
+          "signal": "spare"
+        },
+        {
+          "id": "c34",
+          "designation": "34",
+          "signal": "spare"
+        },
+        {
+          "id": "c35",
+          "designation": "35",
+          "signal": "spare"
+        },
+        {
+          "id": "c36",
+          "designation": "36",
+          "signal": "spare"
+        },
+        {
+          "id": "c37",
+          "designation": "37",
+          "signal": "spare"
         }
       ],
       "layoutPosition": {
-        "x": 4620,
+        "x": 4170,
         "y": 180
       },
       "schematicPosition": {
@@ -3268,21 +4097,198 @@
     },
     {
       "id": "bh_b_eng",
-      "label": "OEM block — Bulkhead B (engine)",
+      "label": "Bulkhead B - engine plug (8STA6-14-35PA)",
       "width": 210,
-      "partId": "cp_oem_block_2",
+      "partId": "cp_8sta6_14_35pa",
       "cavities": [
         {
           "id": "c1",
-          "signal": "TBD (OEM pinout not modelled)"
+          "designation": "1",
+          "signal": "ECU-B B15"
         },
         {
           "id": "c2",
-          "notConnected": true
+          "designation": "2",
+          "signal": "ECU-B B16"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "ECU-B B23"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "ECU-B B6"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "ECU-B B7"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "ECU-A A27"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "OEM block — AC Amplifier Trinary HI"
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "OEM block — AC Amplifier Trinary LO"
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "spare"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "spare"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "spare"
+        },
+        {
+          "id": "c13",
+          "designation": "13",
+          "signal": "spare"
+        },
+        {
+          "id": "c14",
+          "designation": "14",
+          "signal": "spare"
+        },
+        {
+          "id": "c15",
+          "designation": "15",
+          "signal": "spare"
+        },
+        {
+          "id": "c16",
+          "designation": "16",
+          "signal": "spare"
+        },
+        {
+          "id": "c17",
+          "designation": "17",
+          "signal": "spare"
+        },
+        {
+          "id": "c18",
+          "designation": "18",
+          "signal": "spare"
+        },
+        {
+          "id": "c19",
+          "designation": "19",
+          "signal": "spare"
+        },
+        {
+          "id": "c20",
+          "designation": "20",
+          "signal": "spare"
+        },
+        {
+          "id": "c21",
+          "designation": "21",
+          "signal": "spare"
+        },
+        {
+          "id": "c22",
+          "designation": "22",
+          "signal": "spare"
+        },
+        {
+          "id": "c23",
+          "designation": "23",
+          "signal": "spare"
+        },
+        {
+          "id": "c24",
+          "designation": "24",
+          "signal": "spare"
+        },
+        {
+          "id": "c25",
+          "designation": "25",
+          "signal": "spare"
+        },
+        {
+          "id": "c26",
+          "designation": "26",
+          "signal": "spare"
+        },
+        {
+          "id": "c27",
+          "designation": "27",
+          "signal": "spare"
+        },
+        {
+          "id": "c28",
+          "designation": "28",
+          "signal": "spare"
+        },
+        {
+          "id": "c29",
+          "designation": "29",
+          "signal": "spare"
+        },
+        {
+          "id": "c30",
+          "designation": "30",
+          "signal": "spare"
+        },
+        {
+          "id": "c31",
+          "designation": "31",
+          "signal": "spare"
+        },
+        {
+          "id": "c32",
+          "designation": "32",
+          "signal": "spare"
+        },
+        {
+          "id": "c33",
+          "designation": "33",
+          "signal": "spare"
+        },
+        {
+          "id": "c34",
+          "designation": "34",
+          "signal": "spare"
+        },
+        {
+          "id": "c35",
+          "designation": "35",
+          "signal": "spare"
+        },
+        {
+          "id": "c36",
+          "designation": "36",
+          "signal": "spare"
+        },
+        {
+          "id": "c37",
+          "designation": "37",
+          "signal": "spare"
         }
       ],
       "layoutPosition": {
-        "x": 4620,
+        "x": 4170,
         "y": 1410
       },
       "schematicPosition": {
@@ -3306,11 +4312,11 @@
       ],
       "layoutPosition": {
         "x": 1500,
-        "y": 360
+        "y": 180
       },
       "schematicPosition": {
-        "x": 3660,
-        "y": 1200
+        "x": 3210,
+        "y": 660
       }
     }
   ],
@@ -3325,7 +4331,7 @@
       },
       "schematicPosition": {
         "x": 2820,
-        "y": 840
+        "y": 180
       }
     },
     {
@@ -3338,7 +4344,7 @@
       },
       "schematicPosition": {
         "x": 2820,
-        "y": 960
+        "y": 300
       }
     },
     {
@@ -3346,7 +4352,7 @@
       "type": "Loose",
       "signal": "SN65HVD230 3V3",
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 1260
       },
       "schematicPosition": {
@@ -3359,7 +4365,7 @@
       "type": "Loose",
       "signal": "SN65HVD230 GND",
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 1380
       },
       "schematicPosition": {
@@ -3372,7 +4378,7 @@
       "type": "Loose",
       "signal": "SN65HVD230 CTX (TWAI TX)",
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 1500
       },
       "schematicPosition": {
@@ -3385,7 +4391,7 @@
       "type": "Loose",
       "signal": "SN65HVD230 CRX (TWAI RX)",
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 1620
       },
       "schematicPosition": {
@@ -3398,7 +4404,7 @@
       "type": "Loose",
       "signal": "CAN",
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 1740
       },
       "schematicPosition": {
@@ -3411,7 +4417,7 @@
       "type": "Loose",
       "signal": "SN65HVD230 CANL",
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 1860
       },
       "schematicPosition": {
@@ -3424,7 +4430,7 @@
       "type": "Loose",
       "signal": "CAN",
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 1980
       },
       "schematicPosition": {
@@ -3437,7 +4443,7 @@
       "type": "Loose",
       "signal": "USB-CAN Adapter CANL",
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 2100
       },
       "schematicPosition": {
@@ -3450,7 +4456,7 @@
       "type": "Loose",
       "signal": "USB-CAN Adapter GND",
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 2220
       },
       "schematicPosition": {
@@ -3463,7 +4469,7 @@
       "type": "Loose",
       "signal": "Pi GPIO 5V",
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 2340
       },
       "schematicPosition": {
@@ -3476,7 +4482,7 @@
       "type": "Loose",
       "signal": "Pi GPIO GND",
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 2460
       },
       "schematicPosition": {
@@ -3489,7 +4495,7 @@
       "type": "Loose",
       "signal": "MCP2515 Hat Fan 5V",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 180
       },
       "schematicPosition": {
@@ -3502,7 +4508,7 @@
       "type": "Loose",
       "signal": "MCP2515 Hat Fan GND",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 300
       },
       "schematicPosition": {
@@ -3515,7 +4521,7 @@
       "type": "Loose",
       "signal": "VR-Cond Front CH1 VR+ (FL)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 180
       },
       "schematicPosition": {
@@ -3528,7 +4534,7 @@
       "type": "Loose",
       "signal": "VR-Cond Front CH1 VR- (FL)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 300
       },
       "schematicPosition": {
@@ -3541,7 +4547,7 @@
       "type": "Loose",
       "signal": "VR-Cond Front CH2 VR+ (FR)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 420
       },
       "schematicPosition": {
@@ -3554,7 +4560,7 @@
       "type": "Loose",
       "signal": "VR-Cond Front CH2 VR- (FR)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 540
       },
       "schematicPosition": {
@@ -3567,7 +4573,7 @@
       "type": "Loose",
       "signal": "VR-Cond Front 5V",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 660
       },
       "schematicPosition": {
@@ -3580,7 +4586,7 @@
       "type": "Loose",
       "signal": "VR-Cond Front GND",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 780
       },
       "schematicPosition": {
@@ -3593,7 +4599,7 @@
       "type": "Loose",
       "signal": "VR-Cond Front OUT1 (FL)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 900
       },
       "schematicPosition": {
@@ -3606,7 +4612,7 @@
       "type": "Loose",
       "signal": "VR-Cond Front OUT2 (FR)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 1020
       },
       "schematicPosition": {
@@ -3619,7 +4625,7 @@
       "type": "Loose",
       "signal": "VR-Cond Rear CH1 VR+ (RL)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 1140
       },
       "schematicPosition": {
@@ -3632,7 +4638,7 @@
       "type": "Loose",
       "signal": "VR-Cond Rear CH1 VR- (RL)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 1260
       },
       "schematicPosition": {
@@ -3645,7 +4651,7 @@
       "type": "Loose",
       "signal": "VR-Cond Rear CH2 VR+ (RR)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 1380
       },
       "schematicPosition": {
@@ -3658,7 +4664,7 @@
       "type": "Loose",
       "signal": "VR-Cond Rear CH2 VR- (RR)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 1500
       },
       "schematicPosition": {
@@ -3671,7 +4677,7 @@
       "type": "Loose",
       "signal": "VR-Cond Rear 5V",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 1620
       },
       "schematicPosition": {
@@ -3684,7 +4690,7 @@
       "type": "Loose",
       "signal": "VR-Cond Rear GND",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 1740
       },
       "schematicPosition": {
@@ -3697,7 +4703,7 @@
       "type": "Loose",
       "signal": "VR-Cond Rear OUT1 (RL)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 1860
       },
       "schematicPosition": {
@@ -3710,7 +4716,7 @@
       "type": "Loose",
       "signal": "VR-Cond Rear OUT2 (RR)",
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 1980
       },
       "schematicPosition": {
@@ -3723,7 +4729,7 @@
       "type": "Loose",
       "signal": "ODO/Trip Button SW",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 420
       },
       "schematicPosition": {
@@ -3736,7 +4742,7 @@
       "type": "Loose",
       "signal": "ODO/Trip Button GND",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 540
       },
       "schematicPosition": {
@@ -3749,7 +4755,7 @@
       "type": "Loose",
       "signal": "Encoder 1 (Boost Map) A",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 660
       },
       "schematicPosition": {
@@ -3762,7 +4768,7 @@
       "type": "Loose",
       "signal": "Encoder 1 (Boost Map) B",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 780
       },
       "schematicPosition": {
@@ -3775,7 +4781,7 @@
       "type": "Loose",
       "signal": "Encoder 1 (Boost Map) SW",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 900
       },
       "schematicPosition": {
@@ -3788,7 +4794,7 @@
       "type": "Loose",
       "signal": "Encoder 1 (Boost Map) GND",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 1020
       },
       "schematicPosition": {
@@ -3801,7 +4807,7 @@
       "type": "Loose",
       "signal": "Encoder 2 (TC Slip) A",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 1140
       },
       "schematicPosition": {
@@ -3814,7 +4820,7 @@
       "type": "Loose",
       "signal": "Encoder 2 (TC Slip) B",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 1260
       },
       "schematicPosition": {
@@ -3827,7 +4833,7 @@
       "type": "Loose",
       "signal": "Encoder 2 (TC Slip) SW",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 1380
       },
       "schematicPosition": {
@@ -3840,7 +4846,7 @@
       "type": "Loose",
       "signal": "Encoder 2 (TC Slip) GND",
       "layoutPosition": {
-        "x": 3840,
+        "x": 3390,
         "y": 1500
       },
       "schematicPosition": {
@@ -3857,8 +4863,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 2820,
-        "y": 720
+        "x": 2430,
+        "y": 2460
       }
     }
   ],
@@ -4793,7 +5799,7 @@
       "partId": "rp_1k8",
       "locationId": "cam",
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 390
       },
       "schematicPosition": {
@@ -4806,7 +5812,7 @@
       "partId": "rp_470",
       "locationId": "fuellvl",
       "layoutPosition": {
-        "x": 8430,
+        "x": 7980,
         "y": 360
       },
       "schematicPosition": {
@@ -4819,12 +5825,12 @@
       "partId": "rp_10k",
       "locationId": "cruise_stalk",
       "layoutPosition": {
-        "x": 2670,
-        "y": 180
+        "x": 2220,
+        "y": 2160
       },
       "schematicPosition": {
         "x": 3660,
-        "y": 540
+        "y": 450
       }
     }
   ],
@@ -4951,7 +5957,7 @@
     },
     {
       "id": "lhdr_cabin_ac_cruise_pedal",
-      "text": "CABIN - OEM blocks / BRZ pedal",
+      "text": "CABIN - AC / cruise / pedal",
       "color": "Green",
       "width": 270,
       "layoutPosition": {
@@ -4965,7 +5971,7 @@
       "color": "Red",
       "width": 210,
       "layoutPosition": {
-        "x": 3450,
+        "x": 3000,
         "y": 30
       }
     },
@@ -4975,7 +5981,7 @@
       "color": "Blue",
       "width": 210,
       "layoutPosition": {
-        "x": 4230,
+        "x": 3780,
         "y": 30
       }
     },
@@ -4985,7 +5991,7 @@
       "color": "Yellow",
       "width": 210,
       "layoutPosition": {
-        "x": 5340,
+        "x": 4890,
         "y": 30
       }
     },
@@ -4995,7 +6001,7 @@
       "color": "Yellow",
       "width": 210,
       "layoutPosition": {
-        "x": 6000,
+        "x": 5550,
         "y": 30
       }
     },
@@ -5005,7 +6011,7 @@
       "color": "Yellow",
       "width": 210,
       "layoutPosition": {
-        "x": 6660,
+        "x": 6210,
         "y": 30
       }
     },
@@ -5015,7 +6021,7 @@
       "color": "Orange",
       "width": 210,
       "layoutPosition": {
-        "x": 7770,
+        "x": 7320,
         "y": 30
       }
     },
@@ -5025,7 +6031,7 @@
       "color": "Orange",
       "width": 210,
       "layoutPosition": {
-        "x": 8430,
+        "x": 7980,
         "y": 30
       }
     }
@@ -5055,21 +6061,21 @@
     {
       "id": "bp_a_pass",
       "layoutPosition": {
-        "x": 5010,
+        "x": 4560,
         "y": 180
       }
     },
     {
       "id": "bp_b_pass",
       "layoutPosition": {
-        "x": 5010,
+        "x": 4560,
         "y": 300
       }
     },
     {
       "id": "bp_a_ctr",
       "layoutPosition": {
-        "x": 5670,
+        "x": 5220,
         "y": 180
       }
     },
@@ -5083,42 +6089,42 @@
     {
       "id": "bp_a_drv",
       "layoutPosition": {
-        "x": 6330,
+        "x": 5880,
         "y": 180
       }
     },
     {
       "id": "bp_b_drv",
       "layoutPosition": {
-        "x": 6330,
+        "x": 5880,
         "y": 300
       }
     },
     {
       "id": "bp_rear",
       "layoutPosition": {
-        "x": 8100,
+        "x": 7650,
         "y": 180
       }
     },
     {
       "id": "bp_dash",
       "layoutPosition": {
-        "x": 3120,
+        "x": 2670,
         "y": 180
       }
     },
     {
       "id": "bp_vr1",
       "layoutPosition": {
-        "x": 7440,
+        "x": 6990,
         "y": 180
       }
     },
     {
       "id": "bp_vr2",
       "layoutPosition": {
-        "x": 7440,
+        "x": 6990,
         "y": 300
       }
     },
@@ -5285,6 +6291,38 @@
       "partNumber": "M39029/58-360",
       "description": "Size 22D gold pin, 22–26 AWG, 5 A — 8STA/AS series",
       "manufacturer": "Eaton / Souriau"
+    },
+    {
+      "id": "ct_8sta22s",
+      "manufacturer": "Souriau (Eaton)",
+      "partNumber": "RM22M12K",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 24
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "description": "Size 22D crimp socket for 8STA / 38999 inserts"
+    },
+    {
+      "id": "ct_8sta22p",
+      "manufacturer": "Souriau (Eaton)",
+      "partNumber": "RC22M12K",
+      "type": "Crimp",
+      "gender": "Pin",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 24
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "description": "Size 22D crimp pin for 8STA / 38999 inserts"
     }
   ],
   "resistorParts": [
@@ -5420,21 +6458,6 @@
         }
       ],
       "numberOfCavities": 3
-    },
-    {
-      "id": "cp_mp150_4",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "12162144",
-      "description": "MP150.2 4-way (not used for APS — APS is BRZ 6-pin TS 025)",
-      "manufacturer": "Aptiv",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_mp150_skt"
-        }
-      ],
-      "numberOfCavities": 4
     },
     {
       "id": "cp_knock",
@@ -5574,21 +6597,6 @@
       "numberOfCavities": 2
     },
     {
-      "id": "cp_relay5",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "1-1904045-6",
-      "description": "ISO micro relay socket",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_relay_blade"
-        }
-      ],
-      "numberOfCavities": 5
-    },
-    {
       "id": "cp_mrs_pwr",
       "gender": "Female",
       "hasShell": false,
@@ -5707,69 +6715,6 @@
         }
       ],
       "numberOfCavities": 3
-    },
-    {
-      "id": "cp_dt04_2p",
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DT04-2P",
-      "description": "DT 2-way pin receptacle — mates DT06-2S",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_w2p",
-          "contactPartId": "ct_dt_pin"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_dt04_3p",
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DT04-3P",
-      "description": "DT 3-way pin receptacle — mates DT06-3S",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_w3p",
-          "contactPartId": "ct_dt_pin"
-        }
-      ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "cp_dtm04_6p",
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DTM04-6P",
-      "description": "DTM 6-way pin — mates DTM06-6S",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dtm6wp",
-          "contactPartId": "ct_dt_pin"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_dtm04_4p",
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DTM04-4P",
-      "description": "DTM 4-way pin — mates DTM06-4S",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_dt_pin"
-        }
-      ],
-      "numberOfCavities": 4
     },
     {
       "id": "cp_8sta0_14_35sn",
