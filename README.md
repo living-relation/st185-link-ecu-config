@@ -48,8 +48,9 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `FUEL-SYSTEM.md` | Fuel system reference — AN hose sizing and pump capacity notes. Not part of the CAN bus contract. |
 | `archive/` | Retired material — kept for history, **never authoritative**, excluded from agent context. Not for normal work; open `archive/README.md` only when tracing why a past decision was made. |
 | `apps/harness-schematic/` | Interactive harness schematic (harness.design-style canvas). Open `index.html`. |
-| `docs/harness/ST185-Power.harness` | harness.design v0.9 power loom (relays, fused 12 V, ignition feed). Open in [harness.design](https://harness.design). |
-| `docs/harness/ST185-Signal.harness` | harness.design v0.9 signal loom (ECU A/B/C, sensors, APS, CAN). Open in [harness.design](https://harness.design). |
+| `docs/harness/ST185-Power.harness` | harness.design v0.9 power loom (OEM relay blocks, fused 12 V, BRZ pedal supplies). Open in [harness.design](https://harness.design). |
+| `docs/harness/ST185-Signal.harness` | harness.design v0.9 signal loom (ECU A/B/C, sensors, 6-pin BRZ APS, OEM body blocks, CAN). Open in [harness.design](https://harness.design). |
+| `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` | Which wiring docs are redundant, and the intended Power vs Signal layout. |
 | `docs/research-hub.html` | Index of everything under `docs/` — the intercooler/turbo study, 5S-GTE build data, and harness wiring — browsable by topic and by section. Open in any browser. Regenerate after editing research with `python docs/build-research-hub.py`. |
 
 ## Import Checklist (PCLink, when ECU is available)

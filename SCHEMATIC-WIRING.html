@@ -303,6 +303,11 @@
     <rect x="-70" y="899" width="46" height="18" rx="2" fill="#fffbeb" stroke="#d97706"/>
     <text x="-47" y="911" text-anchor="middle" class="p">B29</text>
     <text x="8" y="912" class="pl">DI8</text>
+
+    <line x1="-40" y1="938" x2="0" y2="938" class="w"/>
+    <rect x="-70" y="929" width="46" height="18" rx="2" fill="#ecfdf5" stroke="#059669"/>
+    <text x="-47" y="941" text-anchor="middle" class="p">B28</text>
+    <text x="8" y="942" class="pl">DI9</text>
   </g>
 
   <!-- Comms callout — interior bottom of ECU -->
@@ -363,9 +368,9 @@
     <line x1="234" y1="428" x2="508" y2="428" class="w"/>
 
     <rect x="24" y="448" width="210" height="56" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
-    <text x="32" y="462" class="t">Accel pedal APS</text>
-    <text x="32" y="476" class="s">APS main / APS sub</text>
-    <text x="32" y="490" class="s">DBW pedal</text>
+    <text x="32" y="462" class="t">BRZ e-throttle pedal</text>
+    <text x="32" y="476" class="s">6-pin TS 025 · VPA1→A14</text>
+    <text x="32" y="490" class="s">VPA2→B33 · split 5V/GND</text>
     <line x1="234" y1="468" x2="508" y2="468" class="w"/>
     <line x1="234" y1="498" x2="508" y2="498" class="w"/>
 
@@ -419,6 +424,11 @@
     <text x="32" y="904" class="t">DI 8 — spare / OEM VSS</text>
     <text x="32" y="916" class="s">Clutch is on the switchboard</text>
     <line x1="234" y1="906" x2="490" y2="908" class="wd"/>
+
+    <rect x="24" y="930" width="210" height="40" rx="3" fill="#ecfdf5" stroke="#059669" class="box"/>
+    <text x="32" y="944" class="t">OEM block — Ignition sw</text>
+    <text x="32" y="958" class="s">DI 9 Hold Power sense</text>
+    <line x1="234" y1="948" x2="490" y2="938" class="w"/>
   </g>
 
   <!-- ===================== RIGHT DEVICES ===================== -->
@@ -545,7 +555,7 @@
   <!-- Switchboard I/O note -->
   <rect x="900" y="1034" width="480" height="36" rx="3" fill="#faf5ff" stroke="#9333ea"/>
   <text x="912" y="1050" class="t" fill="#7e22ce">Switchboard I/O (not ECU pins)</text>
-  <text x="912" y="1064" class="s">Clutch · cabin temp NTC · cruise ladder · brake · reverse · LED outs only (0.5 A)</text>
+  <text x="912" y="1064" class="s">OEM blocks: clutch · cruise stalk · brake · reverse · cabin temp · LED outs only (0.5 A)</text>
 </svg>
 </div>
 
@@ -555,7 +565,9 @@
     <li><strong>CONFIRMED 2026-09-11:</strong> pin numbers match the official Link <em>XtremeX Quick Start Guide</em> (wire side / ECU header). Channel assignments from <code>XTREMEX-IO-TABLE.html</code>. Record: <code>docs/XTREMEX-IO-VERIFY-2026-09-11.md</code>.</li>
     <li>Amber dashed = proposed/TBD on the car (not a pin-number doubt). B14 is an empty cavity — An Volt 6/7 are <strong>B15 / B16</strong>.</li>
     <li>+5V (A32) and Gnd Out (A24/B22) feed the left-side sensors — omitted as individual nets on purpose to keep the drawing readable. Loom B has no native +5 V pin.</li>
-    <li>ETB path: Aux 2 (A20) drives the V-Ethrottle relay → B5 powers the H-bridge; motor on B18/B26; TPS on A22/A33; APS on A14/B33.</li>
+    <li>ETB path: Aux 2 (A20) drives the V-Ethrottle relay → B5 powers the H-bridge; motor on B18/B26; TPS on A22/A33. APS is a Subaru BRZ 6-pin pedal (VPA1 pin 6 → A14, VPA2 pin 3 → B33).</li>
+    <li>Hold Power: Aux 6 (A28) holds EFI main; Ignition Switch sense is DI 9 (B28) from a dummy OEM ignition-switch block.</li>
+    <li>OEM connections (relays, bulkheads, body switches/triggers) are generic blocks — internals not modelled.</li>
   </ul>
 </div>
 

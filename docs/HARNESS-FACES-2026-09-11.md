@@ -11,8 +11,10 @@ One harness, two faces. Do not crown one and burn the other.
 ## Rules
 - Crown **shipping** copies as ACTIVE (Desktop HTML hashes differ).
 - Colour SoT: `XTREMEX-IO-TABLE.html` + XtremeX Quickstart (not stale Desktop diagram).
+- OEM body connections (relays, bulkheads, clutch, cruise stalk, brake, reverse, start, ignition switch) are generic **blocks** — do not invent OEM pinouts. Exception: Subaru BRZ APS is a real 6-pin TS 025.
 - Band 3 / CSB3 stays dashed until real I/O connector exists.
 - Next spell: generate `HARNESS-BUILD-LIST` from schematic graph (From/To/colour/AWG/terminate-at/splice/done).
+- Layout/consolidation proposal: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md`.
 
 ## 2026-09-12 — the `.harness` pair now lives in this repo
 The desktop `.harness` files were split into a power half and a signal half and

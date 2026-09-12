@@ -107,7 +107,7 @@ Comms 6-pin (CAN 1): C1 Brown GND, C2 Blue unused, C3 White CAN H, C4 Green CAN 
 
 - **C18** — which two physical CAN ends get the 120 Ω resistors (install measurement).
 - **C21** — Aux 7 MRS high-level voltage on this ECU (scope before a 5 V pull-up).
-- **ECU Hold Power** — Aux 6 is the relay, but PCLink also wants an Ignition Switch input. No DI assigned yet; spare DI 8/9/10 or a switchboard VDI.
+- **ECU Hold Power** — Aux 6 holds the EFI main relay. Ignition Switch sense is **DI 9 (B28)** from a dummy OEM ignition-switch block (2026-09-12).
 - Fuel-level divider value and V→% table.
 - Band 3 CSB3 I/O connector (clutch, brake, reverse, cruise, cabin temp) still unwired.
 - Cluster GPIO in `WIRING.md` is a different domain (ESP32), not re-litigated here.
@@ -120,3 +120,9 @@ Once the pin errors above were fixed, these agree with the official QSG and with
 - `SCHEMATIC-WIRING.html`
 - `apps/harness-schematic/index.html` + `README.md`
 - `WIRING.md` (CAN topology only; ECU cavities point here)
+
+## 2026-09-12 follow-up
+
+- Ignition Switch mapped to **DI 9 (B28)** via dummy OEM ignition-switch block.
+- OEM connections (relays, bulkheads, clutch, cruise stalk, brake, reverse, start) drawn as generic blocks.
+- APS is the Subaru BRZ 6-pin Sumitomo TS 025 pedal (not a 4-pin MP150).

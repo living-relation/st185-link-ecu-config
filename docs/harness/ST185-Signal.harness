@@ -106,7 +106,7 @@
       "color": "White",
       "source": {
         "id": "aps",
-        "handle": "c2"
+        "handle": "c6"
       },
       "target": {
         "id": "ecu_a",
@@ -597,8 +597,8 @@
       "id": "w_sw2",
       "color": "Green",
       "source": {
-        "id": "cruise_active_sw",
-        "handle": "c1"
+        "id": "cruise_stalk",
+        "handle": "c3"
       },
       "target": {
         "id": "csb3io",
@@ -609,8 +609,8 @@
       "id": "w_sw3",
       "color": "Green",
       "source": {
-        "id": "cruise_set_sw",
-        "handle": "c1"
+        "id": "cruise_stalk",
+        "handle": "c4"
       },
       "target": {
         "id": "csb3io",
@@ -621,8 +621,8 @@
       "id": "w_sw4",
       "color": "Green",
       "source": {
-        "id": "cruise_resume_sw",
-        "handle": "c1"
+        "id": "cruise_stalk",
+        "handle": "c5"
       },
       "target": {
         "id": "csb3io",
@@ -1028,6 +1028,18 @@
         "id": "ecu_a",
         "handle": "a32"
       }
+    },
+    {
+      "id": "w_ign",
+      "color": "Green",
+      "source": {
+        "id": "ign_sw",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b28"
+      }
     }
   ],
   "connectors": [
@@ -1341,24 +1353,42 @@
     },
     {
       "id": "aps",
-      "label": "Accel Pedal (APS)",
-      "partId": "cp_mp150_4",
+      "label": "BRZ e-throttle pedal (APS)",
+      "partId": "cp_brz_aps6",
       "cavities": [
         {
           "id": "c1",
-          "signal": "5V"
+          "designation": "1",
+          "signal": "VC2 +5V (sub)",
+          "notConnected": true
         },
         {
           "id": "c2",
-          "signal": "APS-M"
+          "designation": "2",
+          "signal": "GND2 (sub)",
+          "notConnected": true
         },
         {
           "id": "c3",
-          "signal": "APS-S"
+          "designation": "3",
+          "signal": "VPA2 APS-S"
         },
         {
           "id": "c4",
-          "signal": "GND"
+          "designation": "4",
+          "signal": "VC1 +5V (main)",
+          "notConnected": true
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "GND1 (main)",
+          "notConnected": true
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "VPA1 APS-M"
         }
       ],
       "wiringTable": {
@@ -1808,7 +1838,7 @@
         {
           "id": "b28",
           "designation": "B28",
-          "notConnected": true
+          "signal": "DI 9 (Ignition Switch)"
         },
         {
           "id": "b29",
@@ -2200,7 +2230,7 @@
     },
     {
       "id": "acamp",
-      "label": "AC Amplifier",
+      "label": "OEM block — AC Amplifier",
       "width": 210,
       "partId": "cp_acamp",
       "cavities": [
@@ -2244,24 +2274,24 @@
     },
     {
       "id": "k_efi",
-      "label": "EFI Main Relay Socket",
-      "partId": "cp_relay5",
+      "label": "OEM block — EFI Main Relay",
+      "partId": "cp_oem_block_5",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
-          "signal": "85 (ECU LS)"
+          "signal": "COIL ECU LS"
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (ECU +14V Out)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -2279,24 +2309,24 @@
     },
     {
       "id": "k_etb",
-      "label": "ETB Power Relay Socket",
-      "partId": "cp_relay5",
+      "label": "OEM block — ETB Power Relay",
+      "partId": "cp_oem_block_5",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
-          "signal": "85 (ECU LS)"
+          "signal": "COIL ECU LS"
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (V-Ethrottle)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -2314,24 +2344,24 @@
     },
     {
       "id": "k_fp",
-      "label": "Fuel Pump Relay Socket",
-      "partId": "cp_relay5",
+      "label": "OEM block — Fuel Pump Relay",
+      "partId": "cp_oem_block_5",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
-          "signal": "85 (ECU LS)"
+          "signal": "COIL ECU LS"
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (Pump)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -2349,24 +2379,24 @@
     },
     {
       "id": "k_fan",
-      "label": "Radiator Fan Relay Socket",
-      "partId": "cp_relay5",
+      "label": "OEM block — Radiator Fan Relay",
+      "partId": "cp_oem_block_5",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
-          "signal": "85 (ECU LS)"
+          "signal": "COIL ECU LS"
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (Fan)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -2384,24 +2414,24 @@
     },
     {
       "id": "k_str",
-      "label": "Start Relay Socket",
-      "partId": "cp_relay5",
+      "label": "OEM block — Start Relay",
+      "partId": "cp_oem_block_5",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
-          "signal": "85 (ECU LS)"
+          "signal": "COIL ECU LS"
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (Starter)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -2419,24 +2449,24 @@
     },
     {
       "id": "k_fan2",
-      "label": "Condenser Fan Relay Socket",
-      "partId": "cp_relay5",
+      "label": "OEM block — Condenser Fan Relay",
+      "partId": "cp_oem_block_5",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
-          "signal": "85 (Ign5 LS)"
+          "signal": "COIL ECU LS"
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (Fan)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -2991,8 +3021,8 @@
     },
     {
       "id": "evap_switch",
-      "label": "Evaporator Core Over-temp Switch (CSB3 SW0)",
-      "partId": "cp_toy2p",
+      "label": "OEM block — Evap Over-temp Switch",
+      "partId": "cp_oem_block_2",
       "cavities": [
         {
           "id": "c1",
@@ -3014,8 +3044,8 @@
     },
     {
       "id": "ac_request_btn",
-      "label": "AC Request Button (CSB3 SW1)",
-      "partId": "cp_toy2p",
+      "label": "OEM block — AC Request",
+      "partId": "cp_oem_block_2",
       "cavities": [
         {
           "id": "c1",
@@ -3036,78 +3066,9 @@
       }
     },
     {
-      "id": "cruise_active_sw",
-      "label": "Cruise Main On/Off Switch (CSB3 SW2)",
-      "partId": "cp_toy2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SW"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2220,
-        "y": 1830
-      },
-      "schematicPosition": {
-        "x": 3210,
-        "y": 2220
-      }
-    },
-    {
-      "id": "cruise_set_sw",
-      "label": "Cruise Set/Accelerate Switch (CSB3 SW3)",
-      "partId": "cp_toy2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SW"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2220,
-        "y": 2010
-      },
-      "schematicPosition": {
-        "x": 3210,
-        "y": 2400
-      }
-    },
-    {
-      "id": "cruise_resume_sw",
-      "label": "Cruise Resume/Decelerate Switch (CSB3 SW4)",
-      "partId": "cp_toy2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SW"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2220,
-        "y": 2190
-      },
-      "schematicPosition": {
-        "x": 3660,
-        "y": 180
-      }
-    },
-    {
       "id": "clutch_sw",
-      "label": "Clutch Switch (CSB3 SW5, proposed)",
-      "partId": "cp_toy2p",
+      "label": "OEM block — Clutch Switch",
+      "partId": "cp_oem_block_2",
       "cavities": [
         {
           "id": "c1",
@@ -3129,8 +3090,8 @@
     },
     {
       "id": "brake_sw",
-      "label": "Brake Switch (CSB3 SW6, proposed)",
-      "partId": "cp_toy2p",
+      "label": "OEM block — Brake Switch",
+      "partId": "cp_oem_block_2",
       "cavities": [
         {
           "id": "c1",
@@ -3152,8 +3113,8 @@
     },
     {
       "id": "reverse_sw",
-      "label": "Reverse Switch (CSB3 SW7, proposed)",
-      "partId": "cp_toy2p",
+      "label": "OEM block — Reverse Switch",
+      "partId": "cp_oem_block_2",
       "cavities": [
         {
           "id": "c1",
@@ -3175,9 +3136,9 @@
     },
     {
       "id": "start_req",
-      "label": "Start Request Switch (DI 7)",
+      "label": "OEM block — Start Request",
       "width": 210,
-      "partId": "cp_toy2p",
+      "partId": "cp_oem_block_2",
       "cavities": [
         {
           "id": "c1",
@@ -3199,9 +3160,9 @@
     },
     {
       "id": "cruise_stalk",
-      "label": "OEM Cruise Stalk Ladder (CSB3 AN2)",
+      "label": "OEM block — Cruise Control Stalk",
       "width": 270,
-      "partId": "cp_toy2p",
+      "partId": "cp_oem_block_5",
       "cavities": [
         {
           "id": "c1",
@@ -3210,6 +3171,18 @@
         {
           "id": "c2",
           "signal": "GND"
+        },
+        {
+          "id": "c3",
+          "signal": "MAIN ON"
+        },
+        {
+          "id": "c4",
+          "signal": "SET/ACCEL"
+        },
+        {
+          "id": "c5",
+          "signal": "RESUME/DECEL"
         }
       ],
       "layoutPosition": {
@@ -3223,157 +3196,17 @@
     },
     {
       "id": "bh_a_fw",
-      "label": "Bulkhead A — firewall (8STA0-14-35SN)",
+      "label": "OEM block — Bulkhead A (firewall)",
       "width": 210,
-      "partId": "cp_8sta0_14_35sn",
+      "partId": "cp_oem_block_2",
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "signal": "TBD (OEM pinout not modelled)"
         },
         {
           "id": "c2",
-          "designation": "2"
-        },
-        {
-          "id": "c3",
-          "designation": "3"
-        },
-        {
-          "id": "c4",
-          "designation": "4"
-        },
-        {
-          "id": "c5",
-          "designation": "5"
-        },
-        {
-          "id": "c6",
-          "designation": "6"
-        },
-        {
-          "id": "c7",
-          "designation": "7"
-        },
-        {
-          "id": "c8",
-          "designation": "8"
-        },
-        {
-          "id": "c9",
-          "designation": "9"
-        },
-        {
-          "id": "c10",
-          "designation": "10"
-        },
-        {
-          "id": "c11",
-          "designation": "11"
-        },
-        {
-          "id": "c12",
-          "designation": "12"
-        },
-        {
-          "id": "c13",
-          "designation": "13"
-        },
-        {
-          "id": "c14",
-          "designation": "14"
-        },
-        {
-          "id": "c15",
-          "designation": "15"
-        },
-        {
-          "id": "c16",
-          "designation": "16"
-        },
-        {
-          "id": "c17",
-          "designation": "17"
-        },
-        {
-          "id": "c18",
-          "designation": "18"
-        },
-        {
-          "id": "c19",
-          "designation": "19"
-        },
-        {
-          "id": "c20",
-          "designation": "20"
-        },
-        {
-          "id": "c21",
-          "designation": "21"
-        },
-        {
-          "id": "c22",
-          "designation": "22"
-        },
-        {
-          "id": "c23",
-          "designation": "23"
-        },
-        {
-          "id": "c24",
-          "designation": "24"
-        },
-        {
-          "id": "c25",
-          "designation": "25"
-        },
-        {
-          "id": "c26",
-          "designation": "26"
-        },
-        {
-          "id": "c27",
-          "designation": "27"
-        },
-        {
-          "id": "c28",
-          "designation": "28"
-        },
-        {
-          "id": "c29",
-          "designation": "29"
-        },
-        {
-          "id": "c30",
-          "designation": "30"
-        },
-        {
-          "id": "c31",
-          "designation": "31"
-        },
-        {
-          "id": "c32",
-          "designation": "32"
-        },
-        {
-          "id": "c33",
-          "designation": "33"
-        },
-        {
-          "id": "c34",
-          "designation": "34"
-        },
-        {
-          "id": "c35",
-          "designation": "35"
-        },
-        {
-          "id": "c36",
-          "designation": "36"
-        },
-        {
-          "id": "c37",
-          "designation": "37"
+          "notConnected": true
         }
       ],
       "layoutPosition": {
@@ -3387,157 +3220,17 @@
     },
     {
       "id": "bh_a_eng",
-      "label": "Bulkhead A — engine plug (8STA6-14-35PN)",
+      "label": "OEM block — Bulkhead A (engine)",
       "width": 210,
-      "partId": "cp_8sta6_14_35pn",
+      "partId": "cp_oem_block_2",
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "signal": "TBD (OEM pinout not modelled)"
         },
         {
           "id": "c2",
-          "designation": "2"
-        },
-        {
-          "id": "c3",
-          "designation": "3"
-        },
-        {
-          "id": "c4",
-          "designation": "4"
-        },
-        {
-          "id": "c5",
-          "designation": "5"
-        },
-        {
-          "id": "c6",
-          "designation": "6"
-        },
-        {
-          "id": "c7",
-          "designation": "7"
-        },
-        {
-          "id": "c8",
-          "designation": "8"
-        },
-        {
-          "id": "c9",
-          "designation": "9"
-        },
-        {
-          "id": "c10",
-          "designation": "10"
-        },
-        {
-          "id": "c11",
-          "designation": "11"
-        },
-        {
-          "id": "c12",
-          "designation": "12"
-        },
-        {
-          "id": "c13",
-          "designation": "13"
-        },
-        {
-          "id": "c14",
-          "designation": "14"
-        },
-        {
-          "id": "c15",
-          "designation": "15"
-        },
-        {
-          "id": "c16",
-          "designation": "16"
-        },
-        {
-          "id": "c17",
-          "designation": "17"
-        },
-        {
-          "id": "c18",
-          "designation": "18"
-        },
-        {
-          "id": "c19",
-          "designation": "19"
-        },
-        {
-          "id": "c20",
-          "designation": "20"
-        },
-        {
-          "id": "c21",
-          "designation": "21"
-        },
-        {
-          "id": "c22",
-          "designation": "22"
-        },
-        {
-          "id": "c23",
-          "designation": "23"
-        },
-        {
-          "id": "c24",
-          "designation": "24"
-        },
-        {
-          "id": "c25",
-          "designation": "25"
-        },
-        {
-          "id": "c26",
-          "designation": "26"
-        },
-        {
-          "id": "c27",
-          "designation": "27"
-        },
-        {
-          "id": "c28",
-          "designation": "28"
-        },
-        {
-          "id": "c29",
-          "designation": "29"
-        },
-        {
-          "id": "c30",
-          "designation": "30"
-        },
-        {
-          "id": "c31",
-          "designation": "31"
-        },
-        {
-          "id": "c32",
-          "designation": "32"
-        },
-        {
-          "id": "c33",
-          "designation": "33"
-        },
-        {
-          "id": "c34",
-          "designation": "34"
-        },
-        {
-          "id": "c35",
-          "designation": "35"
-        },
-        {
-          "id": "c36",
-          "designation": "36"
-        },
-        {
-          "id": "c37",
-          "designation": "37"
+          "notConnected": true
         }
       ],
       "layoutPosition": {
@@ -3551,157 +3244,17 @@
     },
     {
       "id": "bh_b_fw",
-      "label": "Bulkhead B — firewall (8STA0-14-35SA)",
+      "label": "OEM block — Bulkhead B (firewall)",
       "width": 210,
-      "partId": "cp_8sta0_14_35sa",
+      "partId": "cp_oem_block_2",
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "signal": "TBD (OEM pinout not modelled)"
         },
         {
           "id": "c2",
-          "designation": "2"
-        },
-        {
-          "id": "c3",
-          "designation": "3"
-        },
-        {
-          "id": "c4",
-          "designation": "4"
-        },
-        {
-          "id": "c5",
-          "designation": "5"
-        },
-        {
-          "id": "c6",
-          "designation": "6"
-        },
-        {
-          "id": "c7",
-          "designation": "7"
-        },
-        {
-          "id": "c8",
-          "designation": "8"
-        },
-        {
-          "id": "c9",
-          "designation": "9"
-        },
-        {
-          "id": "c10",
-          "designation": "10"
-        },
-        {
-          "id": "c11",
-          "designation": "11"
-        },
-        {
-          "id": "c12",
-          "designation": "12"
-        },
-        {
-          "id": "c13",
-          "designation": "13"
-        },
-        {
-          "id": "c14",
-          "designation": "14"
-        },
-        {
-          "id": "c15",
-          "designation": "15"
-        },
-        {
-          "id": "c16",
-          "designation": "16"
-        },
-        {
-          "id": "c17",
-          "designation": "17"
-        },
-        {
-          "id": "c18",
-          "designation": "18"
-        },
-        {
-          "id": "c19",
-          "designation": "19"
-        },
-        {
-          "id": "c20",
-          "designation": "20"
-        },
-        {
-          "id": "c21",
-          "designation": "21"
-        },
-        {
-          "id": "c22",
-          "designation": "22"
-        },
-        {
-          "id": "c23",
-          "designation": "23"
-        },
-        {
-          "id": "c24",
-          "designation": "24"
-        },
-        {
-          "id": "c25",
-          "designation": "25"
-        },
-        {
-          "id": "c26",
-          "designation": "26"
-        },
-        {
-          "id": "c27",
-          "designation": "27"
-        },
-        {
-          "id": "c28",
-          "designation": "28"
-        },
-        {
-          "id": "c29",
-          "designation": "29"
-        },
-        {
-          "id": "c30",
-          "designation": "30"
-        },
-        {
-          "id": "c31",
-          "designation": "31"
-        },
-        {
-          "id": "c32",
-          "designation": "32"
-        },
-        {
-          "id": "c33",
-          "designation": "33"
-        },
-        {
-          "id": "c34",
-          "designation": "34"
-        },
-        {
-          "id": "c35",
-          "designation": "35"
-        },
-        {
-          "id": "c36",
-          "designation": "36"
-        },
-        {
-          "id": "c37",
-          "designation": "37"
+          "notConnected": true
         }
       ],
       "layoutPosition": {
@@ -3715,157 +3268,17 @@
     },
     {
       "id": "bh_b_eng",
-      "label": "Bulkhead B — engine plug (8STA6-14-35PA)",
+      "label": "OEM block — Bulkhead B (engine)",
       "width": 210,
-      "partId": "cp_8sta6_14_35pa",
+      "partId": "cp_oem_block_2",
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "signal": "TBD (OEM pinout not modelled)"
         },
         {
           "id": "c2",
-          "designation": "2"
-        },
-        {
-          "id": "c3",
-          "designation": "3"
-        },
-        {
-          "id": "c4",
-          "designation": "4"
-        },
-        {
-          "id": "c5",
-          "designation": "5"
-        },
-        {
-          "id": "c6",
-          "designation": "6"
-        },
-        {
-          "id": "c7",
-          "designation": "7"
-        },
-        {
-          "id": "c8",
-          "designation": "8"
-        },
-        {
-          "id": "c9",
-          "designation": "9"
-        },
-        {
-          "id": "c10",
-          "designation": "10"
-        },
-        {
-          "id": "c11",
-          "designation": "11"
-        },
-        {
-          "id": "c12",
-          "designation": "12"
-        },
-        {
-          "id": "c13",
-          "designation": "13"
-        },
-        {
-          "id": "c14",
-          "designation": "14"
-        },
-        {
-          "id": "c15",
-          "designation": "15"
-        },
-        {
-          "id": "c16",
-          "designation": "16"
-        },
-        {
-          "id": "c17",
-          "designation": "17"
-        },
-        {
-          "id": "c18",
-          "designation": "18"
-        },
-        {
-          "id": "c19",
-          "designation": "19"
-        },
-        {
-          "id": "c20",
-          "designation": "20"
-        },
-        {
-          "id": "c21",
-          "designation": "21"
-        },
-        {
-          "id": "c22",
-          "designation": "22"
-        },
-        {
-          "id": "c23",
-          "designation": "23"
-        },
-        {
-          "id": "c24",
-          "designation": "24"
-        },
-        {
-          "id": "c25",
-          "designation": "25"
-        },
-        {
-          "id": "c26",
-          "designation": "26"
-        },
-        {
-          "id": "c27",
-          "designation": "27"
-        },
-        {
-          "id": "c28",
-          "designation": "28"
-        },
-        {
-          "id": "c29",
-          "designation": "29"
-        },
-        {
-          "id": "c30",
-          "designation": "30"
-        },
-        {
-          "id": "c31",
-          "designation": "31"
-        },
-        {
-          "id": "c32",
-          "designation": "32"
-        },
-        {
-          "id": "c33",
-          "designation": "33"
-        },
-        {
-          "id": "c34",
-          "designation": "34"
-        },
-        {
-          "id": "c35",
-          "designation": "35"
-        },
-        {
-          "id": "c36",
-          "designation": "36"
-        },
-        {
-          "id": "c37",
-          "designation": "37"
+          "notConnected": true
         }
       ],
       "layoutPosition": {
@@ -3875,6 +3288,29 @@
       "schematicPosition": {
         "x": 5280,
         "y": 1410
+      }
+    },
+    {
+      "id": "ign_sw",
+      "label": "OEM block — Ignition Switch",
+      "partId": "cp_oem_block_2",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "IGN ON"
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 1500,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 3660,
+        "y": 1200
       }
     }
   ],
@@ -5029,33 +4465,6 @@
       "targetId": "ac_request_btn"
     },
     {
-      "id": "bn_cact",
-      "length": {
-        "unit": "mm",
-        "value": 450
-      },
-      "sourceId": "bp_cabin",
-      "targetId": "cruise_active_sw"
-    },
-    {
-      "id": "bn_cset",
-      "length": {
-        "unit": "mm",
-        "value": 450
-      },
-      "sourceId": "bp_cabin",
-      "targetId": "cruise_set_sw"
-    },
-    {
-      "id": "bn_cres",
-      "length": {
-        "unit": "mm",
-        "value": 450
-      },
-      "sourceId": "bp_cabin",
-      "targetId": "cruise_resume_sw"
-    },
-    {
       "id": "bn_clutch",
       "length": {
         "unit": "mm",
@@ -5355,6 +4764,15 @@
       },
       "sourceId": "bp_dash",
       "targetId": "enc2_sw"
+    },
+    {
+      "id": "bn_ign_sw",
+      "length": {
+        "unit": "mm",
+        "value": 400
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "ign_sw"
     }
   ],
   "mates": [
@@ -5533,7 +4951,7 @@
     },
     {
       "id": "lhdr_cabin_ac_cruise_pedal",
-      "text": "CABIN - AC / cruise / pedal",
+      "text": "CABIN - OEM blocks / BRZ pedal",
       "color": "Green",
       "width": 270,
       "layoutPosition": {
@@ -6008,7 +5426,7 @@
       "gender": "Female",
       "hasShell": false,
       "partNumber": "12162144",
-      "description": "MP150.2 4-way APS",
+      "description": "MP150.2 4-way (not used for APS — APS is BRZ 6-pin TS 025)",
       "manufacturer": "Aptiv",
       "configurations": [
         {
@@ -6420,6 +5838,33 @@
         }
       ],
       "numberOfCavities": 37
+    },
+    {
+      "id": "cp_oem_block_2",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "(OEM block)",
+      "description": "Generic OEM block — 2 cavities. No invented OEM pinout.",
+      "manufacturer": "OEM / unspecified",
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_oem_block_5",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "(OEM block)",
+      "description": "Generic OEM block — 5 cavities (relay / cruise stalk).",
+      "manufacturer": "OEM / unspecified",
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_brz_aps6",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "Sumitomo TS 025 6-way",
+      "description": "Subaru BRZ / Toyota-family e-throttle pedal. Looking into connector, locking tab at top: 1 VC2, 2 GND2, 3 VPA2, 4 VC1, 5 GND1, 6 VPA1.",
+      "manufacturer": "Sumitomo / Subaru",
+      "numberOfCavities": 6
     }
   ],
   "groupParts": [
@@ -6523,8 +5968,20 @@
     {
       "id": "gp_cruisestalk",
       "partNumber": "(OEM ST185 cruise stalk)",
-      "description": "Resistor-ladder cruise stalk — signal to CSB3 Analog 2",
+      "description": "OEM cruise stalk as one block: resistor ladder + MAIN/SET/RESUME. CSB3 Analog 2 + SW2–SW4. Internals not modelled.",
       "manufacturer": "Toyota"
+    },
+    {
+      "id": "gp_brz_aps",
+      "partNumber": "Subaru BRZ APS (Toyota-family)",
+      "description": "6-pin e-throttle pedal. Main track (VPA1 pin 6, full range) → An Volt 4 A14. Sub track (VPA2 pin 3) → An Volt 5 B33. Independent 5V/GND pairs. Set PCLink APS (Sub) 100% after probing — Toyota-family sub often saturates ~60–70%.",
+      "manufacturer": "Subaru / Toyota"
+    },
+    {
+      "id": "gp_ign_sw",
+      "partNumber": "(OEM ignition switch block)",
+      "description": "Dummy OEM ignition-switch block. Key-on sense to ECU DI 9 (B28) for PCLink Hold Power. OEM internals not modelled.",
+      "manufacturer": "Toyota OEM"
     }
   ],
   "lockParts": [

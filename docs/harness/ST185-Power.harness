@@ -757,7 +757,7 @@
       "color": "Black",
       "source": {
         "id": "aps",
-        "handle": "c4"
+        "handle": "c5"
       },
       "target": {
         "id": "sp_gndout",
@@ -1046,6 +1046,31 @@
         "id": "sp_chassis",
         "handle": "Splice"
       }
+    },
+    {
+      "id": "w_aps_vc1",
+      "color": "Orange",
+      "source": {
+        "id": "aps",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_aps_gnd2",
+      "color": "Black",
+      "stripeColor": "White",
+      "source": {
+        "id": "aps",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      }
     }
   ],
   "connectors": [
@@ -1141,11 +1166,11 @@
     },
     {
       "id": "k_efi",
-      "label": "EFI Main Relay Socket",
+      "label": "OEM block — EFI Main Relay",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
@@ -1153,11 +1178,11 @@
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (switched)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -1175,11 +1200,11 @@
     },
     {
       "id": "k_etb",
-      "label": "ETB Power Relay Socket",
+      "label": "OEM block — ETB Power Relay",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
@@ -1187,11 +1212,11 @@
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (V-Ethrottle)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -1209,11 +1234,11 @@
     },
     {
       "id": "k_fp",
-      "label": "Fuel Pump Relay Socket",
+      "label": "OEM block — Fuel Pump Relay",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
@@ -1221,11 +1246,11 @@
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (Pump)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -1243,11 +1268,11 @@
     },
     {
       "id": "k_fan",
-      "label": "Radiator Fan Relay Socket",
+      "label": "OEM block — Radiator Fan Relay",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
@@ -1255,11 +1280,11 @@
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (Fan)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -1277,11 +1302,11 @@
     },
     {
       "id": "k_fan2",
-      "label": "Condenser Fan Relay Socket",
+      "label": "OEM block — Condenser Fan Relay",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
@@ -1289,11 +1314,11 @@
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (Fan)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -1311,11 +1336,11 @@
     },
     {
       "id": "k_str",
-      "label": "Start Relay Socket",
+      "label": "OEM block — Start Relay",
       "cavities": [
         {
           "id": "c1",
-          "signal": "86 (+12V Coil)"
+          "signal": "COIL +12V"
         },
         {
           "id": "c2",
@@ -1323,11 +1348,11 @@
         },
         {
           "id": "c3",
-          "signal": "30 (+12V)"
+          "signal": "12V IN"
         },
         {
           "id": "c4",
-          "signal": "87 (Starter)"
+          "signal": "12V OUT"
         },
         {
           "id": "c5",
@@ -1838,24 +1863,39 @@
     },
     {
       "id": "aps",
-      "label": "Accel Pedal (APS)",
+      "label": "BRZ e-throttle pedal (APS)",
       "cavities": [
         {
           "id": "c1",
-          "signal": "5V"
+          "designation": "1",
+          "signal": "VC2 +5V (sub)"
         },
         {
           "id": "c2",
-          "notConnected": true
+          "designation": "2",
+          "signal": "GND2 (sub)"
         },
         {
           "id": "c3",
-          "notConnected": true,
-          "signal": "APS-2 5V"
+          "designation": "3",
+          "signal": "VPA2 APS-S",
+          "notConnected": true
         },
         {
           "id": "c4",
-          "signal": "GND"
+          "designation": "4",
+          "signal": "VC1 +5V (main)"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "GND1 (main)"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "VPA1 APS-M",
+          "notConnected": true
         }
       ],
       "layoutPosition": {
@@ -2098,7 +2138,7 @@
       ],
       "layoutPosition": {
         "x": 1980,
-        "y": 1020
+        "y": 1080
       },
       "schematicPosition": {
         "x": 1710,
@@ -2128,10 +2168,33 @@
       ],
       "layoutPosition": {
         "x": 1980,
-        "y": 1200
+        "y": 1320
       },
       "schematicPosition": {
         "x": 1710,
+        "y": 1800
+      }
+    },
+    {
+      "id": "ign_sw",
+      "label": "OEM block — Ignition Switch",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "IGN ON",
+          "notConnected": true
+        },
+        {
+          "id": "c2",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1800
+      },
+      "schematicPosition": {
+        "x": 330,
         "y": 1800
       }
     }
@@ -2735,6 +2798,15 @@
       },
       "sourceId": "bp_eng",
       "targetId": "vr2_gnd"
+    },
+    {
+      "id": "bn_ign_sw",
+      "length": {
+        "unit": "mm",
+        "value": 400
+      },
+      "sourceId": "bp_cabin",
+      "targetId": "ign_sw"
     }
   ],
   "splices": [
@@ -2930,7 +3002,7 @@
   "layoutNotes": [
     {
       "id": "ln_pwr",
-      "text": "POWER harness (this file). 12V / +5V / +8V / Gnd Out / chassis. Signals: app.harness.design/KQL8. Relay pin 85 stays on the signal file.",
+      "text": "POWER harness (this file). 12V / +5V / +8V / Gnd Out / chassis. Signals: docs/harness/ST185-Signal.harness. Relays, bulkheads and body switches are OEM blocks — internals not modelled. BRZ APS is 6-pin (supplies here, VPA1/VPA2 in the signal file).",
       "width": 390,
       "layoutPosition": {
         "x": 0,
@@ -2959,7 +3031,7 @@
     },
     {
       "id": "lhdr_cabin_relays",
-      "text": "CABIN - relays",
+      "text": "CABIN - OEM relay blocks",
       "color": "Green",
       "width": 210,
       "layoutPosition": {

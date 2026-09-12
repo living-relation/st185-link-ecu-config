@@ -171,3 +171,13 @@ the drawing reads wide rather than as one long ribbon.
    re-diagnosed later.
 5. `DOCS-CLEANUP-PLAN.md` and `.html` are 76 KB of the same content in two
    formats. Candidate for consolidation.
+
+## 2026-09-12 follow-up (OEM blocks + BRZ pedal)
+
+Later the same day the APS connector became a Subaru BRZ 6-pin Sumitomo TS 025
+(not MP150 4-way), OEM connections were redrawn as generic blocks, and
+bulkheads were collapsed from empty 37-way parts to 2-cavity TBD blocks.
+Hold Power Ignition Switch is DI 9 (B28). See
+`docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md`. Item 2 above is partly
+addressed (no fake 37-way schedule); wires still do not land in bulkhead
+cavities. Item 5 is the consolidation proposal in that same plan.
