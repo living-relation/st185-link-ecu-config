@@ -1,4 +1,4 @@
-# AGENTS.md
+﻿# AGENTS.md
 
 ## Scope
 - This repo is CAN configuration + bench/tooling for ST185 TrackCluster.
@@ -10,7 +10,13 @@
 - Architecture and allocation: `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`.
 - Bench behavior: `bench/frames.py`, `bench/can_bench.py`, `BENCH-TEST.md`.
 - RealDash channel definitions: `link_g4x_realdash.xml`.
+- ECU Superseal I/O (pins, pull-ups, drive types): `XTREMEX-IO-TABLE.html` — pin numbers confirmed 2026-09-11 vs official XtremeX Quick Start Guide (`docs/XTREMEX-IO-VERIFY-2026-09-11.md`).
 
+
+## Board / progress snapshot
+- Claude progress board is a **stale artifact** (last updated 2026-09-01). Do not treat it as SoT.
+- Conflict sheet (board vs git vs husk session memory): `docs/BOARD-VERIFY-2026-09-11.md`.
+- Paste **CONFLICT rows only** into the ACTIVE `shipping\` trance; park husk-keyed chats.
 ## Related Repos (mandatory for CAN bus / wiring work)
 This repo defines only one side of the CAN bus (ECU, RealDash, switchboard). The
 other node — the gauge cluster — lives in a separate repo:
@@ -31,7 +37,7 @@ before making changes:
   part of work in this repo.
 
 If a local checkout of `center-cluster-esp32-p4` exists (commonly
-`C:\projects\center-cluster-esp32-p4`), prefer reading its source files directly;
+`C:\projects\shipping\center-cluster-esp32-p4`), prefer reading its source files directly;
 otherwise consult the GitHub repo linked above.
 
 ## Current Runnable Paths

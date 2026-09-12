@@ -32,7 +32,8 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `CANBUS-ENCODE-DECODE-REFERENCE.html` | **Canonical CAN encode/decode reference** (ECU <-> center cluster, frames 0x3E8-0x3EE + lambda) — source of truth for wire size/scale/offset. Open in any browser. |
 | `REALDASH-LAYOUT.md` | RealDash **dashboard layout design** — buildable spec for the **single-page** blue/chrome 800x480 engineering dash (4x4 tile grid + strobing warning strip; no media page). Binds to `link_g4x_realdash.xml`. |
 | `CAN-CONFIG-STATUS.md` | Handoff/status note — snapshot of the reconciled CAN config, the source-of-truth HTML, and open items. |
-| `XTREMEX-IO-TABLE.html` | **Authoritative** Link G4X XtremeX I/O assignment table (ST185 5S-GTE, DBW) — channel plan, pin budget, harness-build tasks. Open in a browser. |
+| `XTREMEX-IO-TABLE.html` | **Authoritative** Link G4X XtremeX I/O assignment table (ST185 5S-GTE, DBW) — channel plan, pin budget, harness-build tasks. Pin numbers confirmed 2026-09-11 against the official Quick Start Guide. Open in a browser. |
+| `docs/XTREMEX-IO-VERIFY-2026-09-11.md` | Pin-by-pin verification record vs official XtremeX QSG + terminal/pull-up notes. |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |
 | `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 5-node topology. |
 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Master ID allocation table — all byte layouts, sections A–E. |

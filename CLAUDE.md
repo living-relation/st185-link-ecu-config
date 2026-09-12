@@ -44,6 +44,8 @@ otherwise consult the GitHub repo linked above.
   - `@./CAN-BUS-ID-ALLOCATION-TABLE.md`
   - `@./CAN-BUS-MASTER-DESIGN.md`
   - `@./CANBUS-LINK-G4X-CONFIG.md`
+  - `@./XTREMEX-IO-TABLE.html`
+  - `@./docs/XTREMEX-IO-VERIFY-2026-09-11.md`
   - `@./BENCH-TEST.md`
 
 ## Fast Commands
