@@ -432,22 +432,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_inj_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w211_r1",
           "schematicPosition": {
-            "x": 1824,
+            "x": 3078,
             "y": 45
           }
         },
         {
           "id": "w211_r2",
           "schematicPosition": {
-            "x": 1824,
-            "y": 135
+            "x": 3078,
+            "y": 11685
           }
         }
       ]
@@ -460,22 +460,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_inj_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w212_r1",
           "schematicPosition": {
-            "x": 1842,
+            "x": 3096,
             "y": 225
           }
         },
         {
           "id": "w212_r2",
           "schematicPosition": {
-            "x": 1842,
-            "y": 135
+            "x": 3096,
+            "y": 11685
           }
         }
       ]
@@ -488,22 +488,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_inj_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w213_r1",
           "schematicPosition": {
-            "x": 1860,
+            "x": 3114,
             "y": 405
           }
         },
         {
           "id": "w213_r2",
           "schematicPosition": {
-            "x": 1860,
-            "y": 135
+            "x": 3114,
+            "y": 11685
           }
         }
       ]
@@ -516,22 +516,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_inj_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w214_r1",
           "schematicPosition": {
-            "x": 1878,
+            "x": 3132,
             "y": 585
           }
         },
         {
           "id": "w214_r2",
           "schematicPosition": {
-            "x": 1878,
-            "y": 135
+            "x": 3132,
+            "y": 11685
           }
         }
       ]
@@ -544,22 +544,22 @@
         "handle": "c4"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_cop_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w112_r1",
           "schematicPosition": {
-            "x": 1428,
+            "x": 2736,
             "y": 855
           }
         },
         {
           "id": "w112_r2",
           "schematicPosition": {
-            "x": 1428,
-            "y": 135
+            "x": 2736,
+            "y": 11805
           }
         }
       ]
@@ -572,22 +572,22 @@
         "handle": "c4"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_cop_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w113_r1",
           "schematicPosition": {
-            "x": 1464,
+            "x": 2772,
             "y": 1095
           }
         },
         {
           "id": "w113_r2",
           "schematicPosition": {
-            "x": 1464,
-            "y": 135
+            "x": 2772,
+            "y": 11805
           }
         }
       ]
@@ -600,22 +600,22 @@
         "handle": "c4"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_cop_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w114_r1",
           "schematicPosition": {
-            "x": 1500,
+            "x": 2808,
             "y": 1335
           }
         },
         {
           "id": "w114_r2",
           "schematicPosition": {
-            "x": 1500,
-            "y": 135
+            "x": 2808,
+            "y": 11805
           }
         }
       ]
@@ -628,22 +628,22 @@
         "handle": "c4"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_cop_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w115_r1",
           "schematicPosition": {
-            "x": 1536,
+            "x": 2844,
             "y": 1575
           }
         },
         {
           "id": "w115_r2",
           "schematicPosition": {
-            "x": 1536,
-            "y": 135
+            "x": 2844,
+            "y": 11805
           }
         }
       ]
@@ -656,22 +656,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_sw12_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w218_r1",
           "schematicPosition": {
-            "x": 2076,
+            "x": 2532,
             "y": 4155
           }
         },
         {
           "id": "w218_r2",
           "schematicPosition": {
-            "x": 2076,
-            "y": 135
+            "x": 2532,
+            "y": 11445
           }
         }
       ]
@@ -684,22 +684,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_sw12_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w219_r1",
           "schematicPosition": {
-            "x": 1320,
+            "x": 2646,
             "y": 2025
           }
         },
         {
           "id": "w219_r2",
           "schematicPosition": {
-            "x": 1320,
-            "y": 135
+            "x": 2646,
+            "y": 11445
           }
         }
       ]
@@ -734,62 +734,6 @@
       ]
     },
     {
-      "id": "w124",
-      "color": "Pink",
-      "source": {
-        "id": "etb",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "ecu_b",
-        "handle": "b18"
-      },
-      "layoutPoints": [
-        {
-          "id": "w124_r1",
-          "schematicPosition": {
-            "x": 1662,
-            "y": 1815
-          }
-        },
-        {
-          "id": "w124_r2",
-          "schematicPosition": {
-            "x": 1662,
-            "y": 1095
-          }
-        }
-      ]
-    },
-    {
-      "id": "w215",
-      "color": "Pink",
-      "source": {
-        "id": "etb",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "ecu_b",
-        "handle": "b26"
-      },
-      "layoutPoints": [
-        {
-          "id": "w215_r1",
-          "schematicPosition": {
-            "x": 1608,
-            "y": 1725
-          }
-        },
-        {
-          "id": "w215_r2",
-          "schematicPosition": {
-            "x": 1608,
-            "y": 1185
-          }
-        }
-      ]
-    },
-    {
       "id": "w_fpump",
       "color": "Red",
       "source": {
@@ -804,71 +748,15 @@
         {
           "id": "w_fpump_r1",
           "schematicPosition": {
-            "x": -804,
+            "x": -786,
             "y": 1035
           }
         },
         {
           "id": "w_fpump_r2",
           "schematicPosition": {
-            "x": -804,
+            "x": -786,
             "y": 4755
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_radl",
-      "color": "Red",
-      "source": {
-        "id": "k_fan",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "rad_fan",
-        "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_radl_r1",
-          "schematicPosition": {
-            "x": -822,
-            "y": 1305
-          }
-        },
-        {
-          "id": "w_radl_r2",
-          "schematicPosition": {
-            "x": -822,
-            "y": 4935
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_fan2l",
-      "color": "Red",
-      "source": {
-        "id": "k_fan2",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "fan2",
-        "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fan2l_r1",
-          "schematicPosition": {
-            "x": -840,
-            "y": 1575
-          }
-        },
-        {
-          "id": "w_fan2l_r2",
-          "schematicPosition": {
-            "x": -840,
-            "y": 5115
           }
         }
       ]
@@ -909,22 +797,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_sw12_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w_lam12_r1",
           "schematicPosition": {
-            "x": 1896,
+            "x": 3150,
             "y": 5475
           }
         },
         {
           "id": "w_lam12_r2",
           "schematicPosition": {
-            "x": 1896,
-            "y": 135
+            "x": 3150,
+            "y": 11445
           }
         }
       ]
@@ -952,34 +840,6 @@
           "id": "w_csb12_r2",
           "schematicPosition": {
             "x": 318,
-            "y": 15
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_mrs12",
-      "color": "Red",
-      "source": {
-        "id": "mrs_pwr",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "sp_12v",
-        "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_mrs12_r1",
-          "schematicPosition": {
-            "x": 1968,
-            "y": 5295
-          }
-        },
-        {
-          "id": "w_mrs12_r2",
-          "schematicPosition": {
-            "x": 1968,
             "y": 15
           }
         }
@@ -1021,22 +881,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_5v",
+        "id": "sp_5v_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w206_r1",
           "schematicPosition": {
-            "x": 1932,
+            "x": 3186,
             "y": 3315
           }
         },
         {
           "id": "w206_r2",
           "schematicPosition": {
-            "x": 1932,
-            "y": 255
+            "x": 3186,
+            "y": 11205
           }
         }
       ]
@@ -1049,22 +909,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_5v",
+        "id": "sp_5v_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w207_r1",
           "schematicPosition": {
-            "x": 2004,
+            "x": 2460,
             "y": 3525
           }
         },
         {
           "id": "w207_r2",
           "schematicPosition": {
-            "x": 2004,
-            "y": 255
+            "x": 2460,
+            "y": 11205
           }
         }
       ]
@@ -1077,22 +937,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_5v",
+        "id": "sp_5v_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w208_r1",
           "schematicPosition": {
-            "x": 1752,
+            "x": 3024,
             "y": 3735
           }
         },
         {
           "id": "w208_r2",
           "schematicPosition": {
-            "x": 1752,
-            "y": 255
+            "x": 3024,
+            "y": 11205
           }
         }
       ]
@@ -1105,22 +965,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_5v",
+        "id": "sp_5v_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w209_r1",
           "schematicPosition": {
-            "x": 1374,
+            "x": 2682,
             "y": 3945
           }
         },
         {
           "id": "w209_r2",
           "schematicPosition": {
-            "x": 1374,
-            "y": 255
+            "x": 2682,
+            "y": 11205
           }
         }
       ]
@@ -1161,22 +1021,22 @@
         "handle": "c3"
       },
       "target": {
-        "id": "sp_5v",
+        "id": "sp_5v_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w126_r1",
           "schematicPosition": {
-            "x": 1644,
+            "x": 2952,
             "y": 1785
           }
         },
         {
           "id": "w126_r2",
           "schematicPosition": {
-            "x": 1644,
-            "y": 255
+            "x": 2952,
+            "y": 11205
           }
         }
       ]
@@ -1211,35 +1071,6 @@
       ]
     },
     {
-      "id": "w216",
-      "color": "Orange",
-      "source": {
-        "id": "cam",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "sp_8v",
-        "handle": "Splice"
-      },
-      "stripeColor": "White",
-      "layoutPoints": [
-        {
-          "id": "w216_r1",
-          "schematicPosition": {
-            "x": 1338,
-            "y": 3105
-          }
-        },
-        {
-          "id": "w216_r2",
-          "schematicPosition": {
-            "x": 1338,
-            "y": 375
-          }
-        }
-      ]
-    },
-    {
       "id": "w217",
       "color": "Red",
       "source": {
@@ -1247,7 +1078,7 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_sw12",
+        "id": "sp_sw12_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1255,15 +1086,15 @@
         {
           "id": "w217_r1",
           "schematicPosition": {
-            "x": 1698,
+            "x": 2988,
             "y": 4365
           }
         },
         {
           "id": "w217_r2",
           "schematicPosition": {
-            "x": 1698,
-            "y": 135
+            "x": 2988,
+            "y": 11445
           }
         }
       ]
@@ -1334,7 +1165,7 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1342,15 +1173,15 @@
         {
           "id": "w2_r1",
           "schematicPosition": {
-            "x": 1572,
+            "x": 2880,
             "y": 2235
           }
         },
         {
           "id": "w2_r2",
           "schematicPosition": {
-            "x": 1572,
-            "y": 495
+            "x": 2880,
+            "y": 11325
           }
         }
       ]
@@ -1363,7 +1194,7 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1371,15 +1202,15 @@
         {
           "id": "w4_r1",
           "schematicPosition": {
-            "x": 1590,
+            "x": 2898,
             "y": 2415
           }
         },
         {
           "id": "w4_r2",
           "schematicPosition": {
-            "x": 1590,
-            "y": 495
+            "x": 2898,
+            "y": 11325
           }
         }
       ]
@@ -1392,7 +1223,7 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1400,15 +1231,15 @@
         {
           "id": "w6_r1",
           "schematicPosition": {
-            "x": 1806,
+            "x": 3060,
             "y": 2595
           }
         },
         {
           "id": "w6_r2",
           "schematicPosition": {
-            "x": 1806,
-            "y": 495
+            "x": 3060,
+            "y": 11325
           }
         }
       ]
@@ -1421,7 +1252,7 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1429,15 +1260,15 @@
         {
           "id": "w8_r1",
           "schematicPosition": {
-            "x": 2040,
+            "x": 2496,
             "y": 2775
           }
         },
         {
           "id": "w8_r2",
           "schematicPosition": {
-            "x": 2040,
-            "y": 495
+            "x": 2496,
+            "y": 11325
           }
         }
       ]
@@ -1450,7 +1281,7 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1458,15 +1289,15 @@
         {
           "id": "w10_r1",
           "schematicPosition": {
-            "x": 1554,
+            "x": 2862,
             "y": 2955
           }
         },
         {
           "id": "w10_r2",
           "schematicPosition": {
-            "x": 1554,
-            "y": 495
+            "x": 2862,
+            "y": 11325
           }
         }
       ]
@@ -1479,7 +1310,7 @@
         "handle": "c3"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1487,15 +1318,15 @@
         {
           "id": "w24_r1",
           "schematicPosition": {
-            "x": 1356,
+            "x": 2664,
             "y": 3165
           }
         },
         {
           "id": "w24_r2",
           "schematicPosition": {
-            "x": 1356,
-            "y": 495
+            "x": 2664,
+            "y": 11325
           }
         }
       ]
@@ -1508,7 +1339,7 @@
         "handle": "c3"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1516,15 +1347,15 @@
         {
           "id": "w27_r1",
           "schematicPosition": {
-            "x": 1950,
+            "x": 3204,
             "y": 3375
           }
         },
         {
           "id": "w27_r2",
           "schematicPosition": {
-            "x": 1950,
-            "y": 495
+            "x": 3204,
+            "y": 11325
           }
         }
       ]
@@ -1537,7 +1368,7 @@
         "handle": "c3"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1545,15 +1376,15 @@
         {
           "id": "w30_r1",
           "schematicPosition": {
-            "x": 2022,
+            "x": 2478,
             "y": 3585
           }
         },
         {
           "id": "w30_r2",
           "schematicPosition": {
-            "x": 2022,
-            "y": 495
+            "x": 2478,
+            "y": 11325
           }
         }
       ]
@@ -1566,7 +1397,7 @@
         "handle": "c3"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1574,15 +1405,15 @@
         {
           "id": "w33_r1",
           "schematicPosition": {
-            "x": 1770,
+            "x": 3042,
             "y": 3795
           }
         },
         {
           "id": "w33_r2",
           "schematicPosition": {
-            "x": 1770,
-            "y": 495
+            "x": 3042,
+            "y": 11325
           }
         }
       ]
@@ -1595,7 +1426,7 @@
         "handle": "c3"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1603,15 +1434,15 @@
         {
           "id": "w36_r1",
           "schematicPosition": {
-            "x": 1392,
+            "x": 2700,
             "y": 4005
           }
         },
         {
           "id": "w36_r2",
           "schematicPosition": {
-            "x": 1392,
-            "y": 495
+            "x": 2700,
+            "y": 11325
           }
         }
       ]
@@ -1661,14 +1492,14 @@
         {
           "id": "w45_r1",
           "schematicPosition": {
-            "x": 1734,
+            "x": 1356,
             "y": 4605
           }
         },
         {
           "id": "w45_r2",
           "schematicPosition": {
-            "x": 1734,
+            "x": 1356,
             "y": 495
           }
         }
@@ -1682,7 +1513,7 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1690,15 +1521,15 @@
         {
           "id": "w47_r1",
           "schematicPosition": {
-            "x": 1716,
+            "x": 3006,
             "y": 4395
           }
         },
         {
           "id": "w47_r2",
           "schematicPosition": {
-            "x": 1716,
-            "y": 495
+            "x": 3006,
+            "y": 11325
           }
         }
       ]
@@ -1711,7 +1542,7 @@
         "handle": "c3"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1719,15 +1550,15 @@
         {
           "id": "w17_r1",
           "schematicPosition": {
-            "x": 2094,
+            "x": 2550,
             "y": 4215
           }
         },
         {
           "id": "w17_r2",
           "schematicPosition": {
-            "x": 2094,
-            "y": 495
+            "x": 2550,
+            "y": 11325
           }
         }
       ]
@@ -1740,7 +1571,7 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1748,15 +1579,15 @@
         {
           "id": "w127_r1",
           "schematicPosition": {
-            "x": 1626,
+            "x": 2934,
             "y": 1755
           }
         },
         {
           "id": "w127_r2",
           "schematicPosition": {
-            "x": 1626,
-            "y": 495
+            "x": 2934,
+            "y": 11325
           }
         }
       ]
@@ -1769,7 +1600,7 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1777,15 +1608,15 @@
         {
           "id": "w56_r1",
           "schematicPosition": {
-            "x": 1350,
+            "x": 2586,
             "y": 5805
           }
         },
         {
           "id": "w56_r2",
           "schematicPosition": {
-            "x": 1350,
-            "y": 495
+            "x": 2586,
+            "y": 11325
           }
         }
       ]
@@ -1798,7 +1629,7 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "sp_gndout",
+        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1806,15 +1637,15 @@
         {
           "id": "w64_r1",
           "schematicPosition": {
-            "x": 1386,
+            "x": 2622,
             "y": 6045
           }
         },
         {
           "id": "w64_r2",
           "schematicPosition": {
-            "x": 1386,
-            "y": 495
+            "x": 2622,
+            "y": 11325
           }
         }
       ]
@@ -1967,22 +1798,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_chassis",
+        "id": "sp_chassis_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w_cop1g_r1",
           "schematicPosition": {
-            "x": 1410,
+            "x": 2718,
             "y": 765
           }
         },
         {
           "id": "w_cop1g_r2",
           "schematicPosition": {
-            "x": 1410,
-            "y": 615
+            "x": 2718,
+            "y": 11565
           }
         }
       ]
@@ -1995,22 +1826,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_chassis",
+        "id": "sp_chassis_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w_cop2g_r1",
           "schematicPosition": {
-            "x": 1446,
+            "x": 2754,
             "y": 1005
           }
         },
         {
           "id": "w_cop2g_r2",
           "schematicPosition": {
-            "x": 1446,
-            "y": 615
+            "x": 2754,
+            "y": 11565
           }
         }
       ]
@@ -2023,22 +1854,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_chassis",
+        "id": "sp_chassis_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w_cop3g_r1",
           "schematicPosition": {
-            "x": 1482,
+            "x": 2790,
             "y": 1245
           }
         },
         {
           "id": "w_cop3g_r2",
           "schematicPosition": {
-            "x": 1482,
-            "y": 615
+            "x": 2790,
+            "y": 11565
           }
         }
       ]
@@ -2051,22 +1882,22 @@
         "handle": "c1"
       },
       "target": {
-        "id": "sp_chassis",
+        "id": "sp_chassis_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w_cop4g_r1",
           "schematicPosition": {
-            "x": 1518,
+            "x": 2826,
             "y": 1485
           }
         },
         {
           "id": "w_cop4g_r2",
           "schematicPosition": {
-            "x": 1518,
-            "y": 615
+            "x": 2826,
+            "y": 11565
           }
         }
       ]
@@ -2086,14 +1917,14 @@
         {
           "id": "w_fpg_r1",
           "schematicPosition": {
-            "x": 1788,
+            "x": 1374,
             "y": 4785
           }
         },
         {
           "id": "w_fpg_r2",
           "schematicPosition": {
-            "x": 1788,
+            "x": 1374,
             "y": 615
           }
         }
@@ -2107,22 +1938,22 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_chassis",
+        "id": "sp_chassis_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w_radg_r1",
           "schematicPosition": {
-            "x": 2058,
+            "x": 2514,
             "y": 4965
           }
         },
         {
           "id": "w_radg_r2",
           "schematicPosition": {
-            "x": 2058,
-            "y": 615
+            "x": 2514,
+            "y": 11565
           }
         }
       ]
@@ -2135,22 +1966,22 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_chassis",
+        "id": "sp_chassis_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w_fan2g_r1",
           "schematicPosition": {
-            "x": 1680,
+            "x": 2970,
             "y": 5145
           }
         },
         {
           "id": "w_fan2g_r2",
           "schematicPosition": {
-            "x": 1680,
-            "y": 615
+            "x": 2970,
+            "y": 11565
           }
         }
       ]
@@ -2163,22 +1994,22 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_chassis",
+        "id": "sp_chassis_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w_mrsg_r1",
           "schematicPosition": {
-            "x": 1986,
+            "x": 2442,
             "y": 5325
           }
         },
         {
           "id": "w_mrsg_r2",
           "schematicPosition": {
-            "x": 1986,
-            "y": 615
+            "x": 2442,
+            "y": 11565
           }
         }
       ]
@@ -2191,22 +2022,22 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_chassis",
+        "id": "sp_chassis_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w_lamg_r1",
           "schematicPosition": {
-            "x": 1914,
+            "x": 3168,
             "y": 5505
           }
         },
         {
           "id": "w_lamg_r2",
           "schematicPosition": {
-            "x": 1914,
-            "y": 615
+            "x": 3168,
+            "y": 11565
           }
         }
       ]
@@ -2304,22 +2135,22 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "sp_5v",
+        "id": "sp_5v_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w_vr1_5v_from_ecu5v_r1",
           "schematicPosition": {
-            "x": 1332,
+            "x": 2568,
             "y": 5685
           }
         },
         {
           "id": "w_vr1_5v_from_ecu5v_r2",
           "schematicPosition": {
-            "x": 1332,
-            "y": 255
+            "x": 2568,
+            "y": 11205
           }
         }
       ]
@@ -2332,22 +2163,726 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "sp_5v",
+        "id": "sp_5v_eng",
         "handle": "Splice"
       },
       "layoutPoints": [
         {
           "id": "w_vr2_5v_from_ecu5v_r1",
           "schematicPosition": {
-            "x": 1368,
+            "x": 2604,
             "y": 5925
           }
         },
         {
           "id": "w_vr2_5v_from_ecu5v_r2",
           "schematicPosition": {
-            "x": 1368,
+            "x": 2604,
+            "y": 11205
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_rail_sp_5v_c",
+      "source": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c33"
+      },
+      "color": "Orange",
+      "layoutPoints": [
+        {
+          "id": "w_rail_sp_5v_c_r1",
+          "schematicPosition": {
+            "x": 1410,
             "y": 255
+          }
+        },
+        {
+          "id": "w_rail_sp_5v_c_r2",
+          "schematicPosition": {
+            "x": 1410,
+            "y": 7155
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_rail_sp_5v_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c33"
+      },
+      "target": {
+        "id": "sp_5v_eng",
+        "handle": "Splice"
+      },
+      "color": "Orange",
+      "layoutPoints": [
+        {
+          "id": "w_rail_sp_5v_e_r1",
+          "schematicPosition": {
+            "x": 2430,
+            "y": 8385
+          }
+        },
+        {
+          "id": "w_rail_sp_5v_e_r2",
+          "schematicPosition": {
+            "x": 2430,
+            "y": 11205
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_rail_sp_gndout_c",
+      "source": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c34"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w_rail_sp_gndout_c_r1",
+          "schematicPosition": {
+            "x": 1446,
+            "y": 495
+          }
+        },
+        {
+          "id": "w_rail_sp_gndout_c_r2",
+          "schematicPosition": {
+            "x": 1446,
+            "y": 7185
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_rail_sp_gndout_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c34"
+      },
+      "target": {
+        "id": "sp_gndout_eng",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w_rail_sp_gndout_e_r1",
+          "schematicPosition": {
+            "x": 2448,
+            "y": 8415
+          }
+        },
+        {
+          "id": "w_rail_sp_gndout_e_r2",
+          "schematicPosition": {
+            "x": 2448,
+            "y": 11325
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_rail_sp_8v_c",
+      "source": {
+        "id": "sp_8v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c35"
+      },
+      "color": "Orange",
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w_rail_sp_8v_c_r1",
+          "schematicPosition": {
+            "x": 1428,
+            "y": 375
+          }
+        },
+        {
+          "id": "w_rail_sp_8v_c_r2",
+          "schematicPosition": {
+            "x": 1428,
+            "y": 7215
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_rail_sp_8v_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c35"
+      },
+      "target": {
+        "id": "cam",
+        "handle": "c1"
+      },
+      "color": "Orange",
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w_rail_sp_8v_e_r1",
+          "schematicPosition": {
+            "x": 2466,
+            "y": 8445
+          }
+        },
+        {
+          "id": "w_rail_sp_8v_e_r2",
+          "schematicPosition": {
+            "x": 2466,
+            "y": 3105
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_rail_sp_sw12_c",
+      "source": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c36"
+      },
+      "color": "Red",
+      "layoutPoints": [
+        {
+          "id": "w_rail_sp_sw12_c_r1",
+          "schematicPosition": {
+            "x": 1464,
+            "y": 135
+          }
+        },
+        {
+          "id": "w_rail_sp_sw12_c_r2",
+          "schematicPosition": {
+            "x": 1464,
+            "y": 7245
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_rail_sp_sw12_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c36"
+      },
+      "target": {
+        "id": "sp_sw12_eng",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "layoutPoints": [
+        {
+          "id": "w_rail_sp_sw12_e_r1",
+          "schematicPosition": {
+            "x": 2484,
+            "y": 8475
+          }
+        },
+        {
+          "id": "w_rail_sp_sw12_e_r2",
+          "schematicPosition": {
+            "x": 2484,
+            "y": 11445
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_eng_gnd",
+      "color": "Black",
+      "source": {
+        "id": "eng_gnd_ring",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_chassis_eng",
+        "handle": "Splice"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_eng_gnd_r1",
+          "schematicPosition": {
+            "x": 2916,
+            "y": 11085
+          }
+        },
+        {
+          "id": "w_eng_gnd_r2",
+          "schematicPosition": {
+            "x": 2916,
+            "y": 11565
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_hv_rad_fan_c",
+      "color": "Red",
+      "source": {
+        "id": "k_fan",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c9"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_hv_rad_fan_c_r1",
+          "schematicPosition": {
+            "x": -804,
+            "y": 1305
+          }
+        },
+        {
+          "id": "w_hv_rad_fan_c_r2",
+          "schematicPosition": {
+            "x": -804,
+            "y": 8895
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_hv_rad_fan_e",
+      "color": "Red",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c9"
+      },
+      "target": {
+        "id": "rad_fan",
+        "handle": "c1"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_hv_rad_fan_e_r1",
+          "schematicPosition": {
+            "x": 2628,
+            "y": 10125
+          }
+        },
+        {
+          "id": "w_hv_rad_fan_e_r2",
+          "schematicPosition": {
+            "x": 2628,
+            "y": 4935
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_hv_fan2_c",
+      "color": "Red",
+      "source": {
+        "id": "k_fan2",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c10"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_hv_fan2_c_r1",
+          "schematicPosition": {
+            "x": -822,
+            "y": 1575
+          }
+        },
+        {
+          "id": "w_hv_fan2_c_r2",
+          "schematicPosition": {
+            "x": -822,
+            "y": 8925
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_hv_fan2_e",
+      "color": "Red",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c10"
+      },
+      "target": {
+        "id": "fan2",
+        "handle": "c1"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_hv_fan2_e_r1",
+          "schematicPosition": {
+            "x": 2502,
+            "y": 10155
+          }
+        },
+        {
+          "id": "w_hv_fan2_e_r2",
+          "schematicPosition": {
+            "x": 2502,
+            "y": 5115
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_hv_mrs_pwr_c",
+      "color": "Red",
+      "source": {
+        "id": "sp_12v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c11"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_hv_mrs_pwr_c_r1",
+          "schematicPosition": {
+            "x": 1392,
+            "y": 15
+          }
+        },
+        {
+          "id": "w_hv_mrs_pwr_c_r2",
+          "schematicPosition": {
+            "x": 1392,
+            "y": 8955
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_hv_mrs_pwr_e",
+      "color": "Red",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c11"
+      },
+      "target": {
+        "id": "mrs_pwr",
+        "handle": "c1"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_hv_mrs_pwr_e_r1",
+          "schematicPosition": {
+            "x": 2520,
+            "y": 10185
+          }
+        },
+        {
+          "id": "w_hv_mrs_pwr_e_r2",
+          "schematicPosition": {
+            "x": 2520,
+            "y": 5295
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_hv_etb_c",
+      "color": "Red",
+      "source": {
+        "id": "k_etb",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c12"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_hv_etb_c_r1",
+          "schematicPosition": {
+            "x": -840,
+            "y": 765
+          }
+        },
+        {
+          "id": "w_hv_etb_c_r2",
+          "schematicPosition": {
+            "x": -840,
+            "y": 8985
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_hv_etb_e",
+      "color": "Red",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c12"
+      },
+      "target": {
+        "id": "etb",
+        "handle": "c3"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_hv_etb_e_r1",
+          "schematicPosition": {
+            "x": 2538,
+            "y": 10215
+          }
+        },
+        {
+          "id": "w_hv_etb_e_r2",
+          "schematicPosition": {
+            "x": 2538,
+            "y": 1785
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_inj_pwr_c",
+      "color": "Red",
+      "source": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c13"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_inj_pwr_c_r1",
+          "schematicPosition": {
+            "x": 1482,
+            "y": 135
+          }
+        },
+        {
+          "id": "w_inj_pwr_c_r2",
+          "schematicPosition": {
+            "x": 1482,
+            "y": 9015
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_inj_pwr_e",
+      "color": "Red",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c13"
+      },
+      "target": {
+        "id": "sp_inj_eng",
+        "handle": "Splice"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_inj_pwr_e_r1",
+          "schematicPosition": {
+            "x": 2556,
+            "y": 10245
+          }
+        },
+        {
+          "id": "w_inj_pwr_e_r2",
+          "schematicPosition": {
+            "x": 2556,
+            "y": 11685
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_cop_pwr_c",
+      "color": "Red",
+      "source": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c14"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_cop_pwr_c_r1",
+          "schematicPosition": {
+            "x": 1500,
+            "y": 135
+          }
+        },
+        {
+          "id": "w_cop_pwr_c_r2",
+          "schematicPosition": {
+            "x": 1500,
+            "y": 9045
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_cop_pwr_e",
+      "color": "Red",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c14"
+      },
+      "target": {
+        "id": "sp_cop_eng",
+        "handle": "Splice"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_cop_pwr_e_r1",
+          "schematicPosition": {
+            "x": 2574,
+            "y": 10275
+          }
+        },
+        {
+          "id": "w_cop_pwr_e_r2",
+          "schematicPosition": {
+            "x": 2574,
+            "y": 11805
+          }
+        }
+      ]
+    },
+    {
+      "id": "w124_c",
+      "color": "Pink",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b18"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c15"
+      },
+      "layoutPoints": [
+        {
+          "id": "w124_c_r1",
+          "schematicPosition": {
+            "x": 1320,
+            "y": 1095
+          }
+        },
+        {
+          "id": "w124_c_r2",
+          "schematicPosition": {
+            "x": 1320,
+            "y": 9075
+          }
+        }
+      ]
+    },
+    {
+      "id": "w124_e",
+      "color": "Pink",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c15"
+      },
+      "target": {
+        "id": "etb",
+        "handle": "c4"
+      },
+      "layoutPoints": [
+        {
+          "id": "w124_e_r1",
+          "schematicPosition": {
+            "x": 2592,
+            "y": 10305
+          }
+        },
+        {
+          "id": "w124_e_r2",
+          "schematicPosition": {
+            "x": 2592,
+            "y": 1815
+          }
+        }
+      ]
+    },
+    {
+      "id": "w215_c",
+      "color": "Pink",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b26"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c16"
+      },
+      "layoutPoints": [
+        {
+          "id": "w215_c_r1",
+          "schematicPosition": {
+            "x": 1338,
+            "y": 1185
+          }
+        },
+        {
+          "id": "w215_c_r2",
+          "schematicPosition": {
+            "x": 1338,
+            "y": 9105
+          }
+        }
+      ]
+    },
+    {
+      "id": "w215_e",
+      "color": "Pink",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c16"
+      },
+      "target": {
+        "id": "etb",
+        "handle": "c1"
+      },
+      "layoutPoints": [
+        {
+          "id": "w215_e_r1",
+          "schematicPosition": {
+            "x": 2610,
+            "y": 10335
+          }
+        },
+        {
+          "id": "w215_e_r2",
+          "schematicPosition": {
+            "x": 2610,
+            "y": 1725
           }
         }
       ]
@@ -2391,7 +2926,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 300,
+        "x": 420,
         "y": 1200
       },
       "schematicPosition": {
@@ -2436,7 +2971,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 420,
+        "x": 540,
         "y": -1500
       },
       "schematicPosition": {
@@ -2470,7 +3005,7 @@
         }
       ],
       "layoutPosition": {
-        "x": -540,
+        "x": -420,
         "y": -300
       },
       "schematicPosition": {
@@ -2504,7 +3039,7 @@
         }
       ],
       "layoutPosition": {
-        "x": -420,
+        "x": -300,
         "y": 300
       },
       "schematicPosition": {
@@ -2538,7 +3073,7 @@
         }
       ],
       "layoutPosition": {
-        "x": -300,
+        "x": -180,
         "y": -600
       },
       "schematicPosition": {
@@ -2572,7 +3107,7 @@
         }
       ],
       "layoutPosition": {
-        "x": -180,
+        "x": -60,
         "y": 600
       },
       "schematicPosition": {
@@ -2606,7 +3141,7 @@
         }
       ],
       "layoutPosition": {
-        "x": -60,
+        "x": 60,
         "y": -900
       },
       "schematicPosition": {
@@ -2640,7 +3175,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 60,
+        "x": 180,
         "y": 900
       },
       "schematicPosition": {
@@ -2662,7 +3197,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1260,
+        "x": 2700,
         "y": -300
       },
       "schematicPosition": {
@@ -2684,7 +3219,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1380,
+        "x": 2820,
         "y": 300
       },
       "schematicPosition": {
@@ -2706,7 +3241,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1500,
+        "x": 2940,
         "y": -600
       },
       "schematicPosition": {
@@ -2728,7 +3263,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1620,
+        "x": 3060,
         "y": 600
       },
       "schematicPosition": {
@@ -2759,7 +3294,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 900,
+        "x": 3060,
         "y": -300
       },
       "schematicPosition": {
@@ -2790,7 +3325,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1020,
+        "x": 3180,
         "y": 300
       },
       "schematicPosition": {
@@ -2821,7 +3356,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1140,
+        "x": 3300,
         "y": -600
       },
       "schematicPosition": {
@@ -2852,7 +3387,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1260,
+        "x": 3420,
         "y": 600
       },
       "schematicPosition": {
@@ -2891,7 +3426,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1620,
+        "x": 3420,
         "y": -300
       },
       "schematicPosition": {
@@ -2913,7 +3448,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2100,
+        "x": 3900,
         "y": 300
       },
       "schematicPosition": {
@@ -2935,7 +3470,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2220,
+        "x": 4020,
         "y": -600
       },
       "schematicPosition": {
@@ -2957,7 +3492,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1980,
+        "x": 3780,
         "y": 600
       },
       "schematicPosition": {
@@ -2979,7 +3514,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2340,
+        "x": 4140,
         "y": 600
       },
       "schematicPosition": {
@@ -3001,7 +3536,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2700,
+        "x": 4500,
         "y": 600
       },
       "schematicPosition": {
@@ -3027,7 +3562,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1980,
+        "x": 3780,
         "y": -300
       },
       "schematicPosition": {
@@ -3053,7 +3588,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1860,
+        "x": 3660,
         "y": -600
       },
       "schematicPosition": {
@@ -3079,7 +3614,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2340,
+        "x": 4140,
         "y": -300
       },
       "schematicPosition": {
@@ -3105,7 +3640,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2460,
+        "x": 4260,
         "y": 300
       },
       "schematicPosition": {
@@ -3131,7 +3666,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2580,
+        "x": 4380,
         "y": -600
       },
       "schematicPosition": {
@@ -3177,7 +3712,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 540,
+        "x": 660,
         "y": 1500
       },
       "schematicPosition": {
@@ -3203,7 +3738,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2700,
+        "x": 4500,
         "y": -300
       },
       "schematicPosition": {
@@ -3225,7 +3760,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1740,
+        "x": 3540,
         "y": 300
       },
       "schematicPosition": {
@@ -3252,7 +3787,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2820,
+        "x": 4620,
         "y": 300
       },
       "schematicPosition": {
@@ -3318,7 +3853,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 3060,
+        "x": 4740,
         "y": -300
       },
       "schematicPosition": {
@@ -3340,7 +3875,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 3180,
+        "x": 4860,
         "y": 300
       },
       "schematicPosition": {
@@ -3362,7 +3897,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 3060,
+        "x": 4860,
         "y": 600
       },
       "schematicPosition": {
@@ -3393,7 +3928,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2940,
+        "x": 4740,
         "y": -600
       },
       "schematicPosition": {
@@ -3415,12 +3950,816 @@
         }
       ],
       "layoutPosition": {
-        "x": 660,
+        "x": 780,
         "y": -1800
       },
       "schematicPosition": {
         "x": 0,
         "y": 2280
+      }
+    },
+    {
+      "id": "bh_a_fw",
+      "label": "Bulkhead A - firewall (8STA0-14-35SN)",
+      "partId": "cp_8sta0_14_35sn",
+      "width": 210,
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "signal file"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "signal file"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "signal file"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "signal file"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "signal file"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "signal file"
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "signal file"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "signal file"
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "signal file"
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "signal file"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "signal file"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "signal file"
+        },
+        {
+          "id": "c13",
+          "designation": "13",
+          "signal": "signal file"
+        },
+        {
+          "id": "c14",
+          "designation": "14",
+          "signal": "signal file"
+        },
+        {
+          "id": "c15",
+          "designation": "15",
+          "signal": "signal file"
+        },
+        {
+          "id": "c16",
+          "designation": "16",
+          "signal": "signal file"
+        },
+        {
+          "id": "c17",
+          "designation": "17",
+          "signal": "signal file"
+        },
+        {
+          "id": "c18",
+          "designation": "18",
+          "signal": "signal file"
+        },
+        {
+          "id": "c19",
+          "designation": "19",
+          "signal": "signal file"
+        },
+        {
+          "id": "c20",
+          "designation": "20",
+          "signal": "signal file"
+        },
+        {
+          "id": "c21",
+          "designation": "21",
+          "signal": "signal file"
+        },
+        {
+          "id": "c22",
+          "designation": "22",
+          "signal": "signal file"
+        },
+        {
+          "id": "c23",
+          "designation": "23",
+          "signal": "signal file"
+        },
+        {
+          "id": "c24",
+          "designation": "24",
+          "signal": "signal file"
+        },
+        {
+          "id": "c25",
+          "designation": "25",
+          "signal": "signal file"
+        },
+        {
+          "id": "c26",
+          "designation": "26",
+          "signal": "signal file"
+        },
+        {
+          "id": "c27",
+          "designation": "27",
+          "signal": "signal file"
+        },
+        {
+          "id": "c28",
+          "designation": "28",
+          "signal": "signal file"
+        },
+        {
+          "id": "c29",
+          "designation": "29",
+          "signal": "signal file"
+        },
+        {
+          "id": "c30",
+          "designation": "30",
+          "signal": "signal file"
+        },
+        {
+          "id": "c31",
+          "designation": "31",
+          "signal": "signal file"
+        },
+        {
+          "id": "c32",
+          "designation": "32",
+          "signal": "signal file"
+        },
+        {
+          "id": "c33",
+          "designation": "33",
+          "signal": "+5V Out to engine sensors"
+        },
+        {
+          "id": "c34",
+          "designation": "34",
+          "signal": "Gnd Out to engine sensors"
+        },
+        {
+          "id": "c35",
+          "designation": "35",
+          "signal": "+8V Out to cam Hall"
+        },
+        {
+          "id": "c36",
+          "designation": "36",
+          "signal": "Switched 12V to engine sensors"
+        },
+        {
+          "id": "c37",
+          "designation": "37",
+          "signal": "spare"
+        }
+      ],
+      "schematicPosition": {
+        "x": 2160,
+        "y": 6150
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 0
+      }
+    },
+    {
+      "id": "bh_a_eng",
+      "label": "Bulkhead A - engine plug (8STA6-14-35PN)",
+      "partId": "cp_8sta6_14_35pn",
+      "width": 210,
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "signal file"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "signal file"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "signal file"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "signal file"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "signal file"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "signal file"
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "signal file"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "signal file"
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "signal file"
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "signal file"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "signal file"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "signal file"
+        },
+        {
+          "id": "c13",
+          "designation": "13",
+          "signal": "signal file"
+        },
+        {
+          "id": "c14",
+          "designation": "14",
+          "signal": "signal file"
+        },
+        {
+          "id": "c15",
+          "designation": "15",
+          "signal": "signal file"
+        },
+        {
+          "id": "c16",
+          "designation": "16",
+          "signal": "signal file"
+        },
+        {
+          "id": "c17",
+          "designation": "17",
+          "signal": "signal file"
+        },
+        {
+          "id": "c18",
+          "designation": "18",
+          "signal": "signal file"
+        },
+        {
+          "id": "c19",
+          "designation": "19",
+          "signal": "signal file"
+        },
+        {
+          "id": "c20",
+          "designation": "20",
+          "signal": "signal file"
+        },
+        {
+          "id": "c21",
+          "designation": "21",
+          "signal": "signal file"
+        },
+        {
+          "id": "c22",
+          "designation": "22",
+          "signal": "signal file"
+        },
+        {
+          "id": "c23",
+          "designation": "23",
+          "signal": "signal file"
+        },
+        {
+          "id": "c24",
+          "designation": "24",
+          "signal": "signal file"
+        },
+        {
+          "id": "c25",
+          "designation": "25",
+          "signal": "signal file"
+        },
+        {
+          "id": "c26",
+          "designation": "26",
+          "signal": "signal file"
+        },
+        {
+          "id": "c27",
+          "designation": "27",
+          "signal": "signal file"
+        },
+        {
+          "id": "c28",
+          "designation": "28",
+          "signal": "signal file"
+        },
+        {
+          "id": "c29",
+          "designation": "29",
+          "signal": "signal file"
+        },
+        {
+          "id": "c30",
+          "designation": "30",
+          "signal": "signal file"
+        },
+        {
+          "id": "c31",
+          "designation": "31",
+          "signal": "signal file"
+        },
+        {
+          "id": "c32",
+          "designation": "32",
+          "signal": "signal file"
+        },
+        {
+          "id": "c33",
+          "designation": "33",
+          "signal": "+5V Out to engine sensors"
+        },
+        {
+          "id": "c34",
+          "designation": "34",
+          "signal": "Gnd Out to engine sensors"
+        },
+        {
+          "id": "c35",
+          "designation": "35",
+          "signal": "+8V Out to cam Hall"
+        },
+        {
+          "id": "c36",
+          "designation": "36",
+          "signal": "Switched 12V to engine sensors"
+        },
+        {
+          "id": "c37",
+          "designation": "37",
+          "signal": "spare"
+        }
+      ],
+      "schematicPosition": {
+        "x": 2160,
+        "y": 7380
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": 0
+      }
+    },
+    {
+      "id": "bh_b_fw",
+      "label": "Bulkhead B - firewall (8STA0-14-35SA)",
+      "partId": "cp_8sta0_14_35sa",
+      "width": 210,
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "signal file"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "signal file"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "signal file"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "signal file"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "signal file"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "signal file"
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "signal file"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "signal file"
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "Radiator fan feed (relay 87)"
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "Condenser fan feed (relay 87)"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "MRS EPS pump 12V"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "V-Ethrottle motor supply"
+        },
+        {
+          "id": "c13",
+          "designation": "13",
+          "signal": "Injector bank 12V"
+        },
+        {
+          "id": "c14",
+          "designation": "14",
+          "signal": "Coil bank 12V"
+        },
+        {
+          "id": "c15",
+          "designation": "15",
+          "signal": "ETB motor + (Aux 9, B18)"
+        },
+        {
+          "id": "c16",
+          "designation": "16",
+          "signal": "ETB motor - (Aux 10, B26)"
+        },
+        {
+          "id": "c17",
+          "designation": "17",
+          "signal": "spare"
+        },
+        {
+          "id": "c18",
+          "designation": "18",
+          "signal": "spare"
+        },
+        {
+          "id": "c19",
+          "designation": "19",
+          "signal": "spare"
+        },
+        {
+          "id": "c20",
+          "designation": "20",
+          "signal": "spare"
+        },
+        {
+          "id": "c21",
+          "designation": "21",
+          "signal": "spare"
+        },
+        {
+          "id": "c22",
+          "designation": "22",
+          "signal": "spare"
+        },
+        {
+          "id": "c23",
+          "designation": "23",
+          "signal": "spare"
+        },
+        {
+          "id": "c24",
+          "designation": "24",
+          "signal": "spare"
+        },
+        {
+          "id": "c25",
+          "designation": "25",
+          "signal": "spare"
+        },
+        {
+          "id": "c26",
+          "designation": "26",
+          "signal": "spare"
+        },
+        {
+          "id": "c27",
+          "designation": "27",
+          "signal": "spare"
+        },
+        {
+          "id": "c28",
+          "designation": "28",
+          "signal": "spare"
+        },
+        {
+          "id": "c29",
+          "designation": "29",
+          "signal": "spare"
+        },
+        {
+          "id": "c30",
+          "designation": "30",
+          "signal": "spare"
+        },
+        {
+          "id": "c31",
+          "designation": "31",
+          "signal": "spare"
+        },
+        {
+          "id": "c32",
+          "designation": "32",
+          "signal": "spare"
+        },
+        {
+          "id": "c33",
+          "designation": "33",
+          "signal": "spare"
+        },
+        {
+          "id": "c34",
+          "designation": "34",
+          "signal": "spare"
+        },
+        {
+          "id": "c35",
+          "designation": "35",
+          "signal": "spare"
+        },
+        {
+          "id": "c36",
+          "designation": "36",
+          "signal": "spare"
+        },
+        {
+          "id": "c37",
+          "designation": "37",
+          "signal": "spare"
+        }
+      ],
+      "schematicPosition": {
+        "x": 2160,
+        "y": 8610
+      },
+      "layoutPosition": {
+        "x": 1440,
+        "y": 0
+      }
+    },
+    {
+      "id": "bh_b_eng",
+      "label": "Bulkhead B - engine plug (8STA6-14-35PA)",
+      "partId": "cp_8sta6_14_35pa",
+      "width": 210,
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "signal file"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "signal file"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "signal file"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "signal file"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "signal file"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "signal file"
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "signal file"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "signal file"
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "Radiator fan feed (relay 87)"
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "Condenser fan feed (relay 87)"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "MRS EPS pump 12V"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "V-Ethrottle motor supply"
+        },
+        {
+          "id": "c13",
+          "designation": "13",
+          "signal": "Injector bank 12V"
+        },
+        {
+          "id": "c14",
+          "designation": "14",
+          "signal": "Coil bank 12V"
+        },
+        {
+          "id": "c15",
+          "designation": "15",
+          "signal": "ETB motor + (Aux 9, B18)"
+        },
+        {
+          "id": "c16",
+          "designation": "16",
+          "signal": "ETB motor - (Aux 10, B26)"
+        },
+        {
+          "id": "c17",
+          "designation": "17",
+          "signal": "spare"
+        },
+        {
+          "id": "c18",
+          "designation": "18",
+          "signal": "spare"
+        },
+        {
+          "id": "c19",
+          "designation": "19",
+          "signal": "spare"
+        },
+        {
+          "id": "c20",
+          "designation": "20",
+          "signal": "spare"
+        },
+        {
+          "id": "c21",
+          "designation": "21",
+          "signal": "spare"
+        },
+        {
+          "id": "c22",
+          "designation": "22",
+          "signal": "spare"
+        },
+        {
+          "id": "c23",
+          "designation": "23",
+          "signal": "spare"
+        },
+        {
+          "id": "c24",
+          "designation": "24",
+          "signal": "spare"
+        },
+        {
+          "id": "c25",
+          "designation": "25",
+          "signal": "spare"
+        },
+        {
+          "id": "c26",
+          "designation": "26",
+          "signal": "spare"
+        },
+        {
+          "id": "c27",
+          "designation": "27",
+          "signal": "spare"
+        },
+        {
+          "id": "c28",
+          "designation": "28",
+          "signal": "spare"
+        },
+        {
+          "id": "c29",
+          "designation": "29",
+          "signal": "spare"
+        },
+        {
+          "id": "c30",
+          "designation": "30",
+          "signal": "spare"
+        },
+        {
+          "id": "c31",
+          "designation": "31",
+          "signal": "spare"
+        },
+        {
+          "id": "c32",
+          "designation": "32",
+          "signal": "spare"
+        },
+        {
+          "id": "c33",
+          "designation": "33",
+          "signal": "spare"
+        },
+        {
+          "id": "c34",
+          "designation": "34",
+          "signal": "spare"
+        },
+        {
+          "id": "c35",
+          "designation": "35",
+          "signal": "spare"
+        },
+        {
+          "id": "c36",
+          "designation": "36",
+          "signal": "spare"
+        },
+        {
+          "id": "c37",
+          "designation": "37",
+          "signal": "spare"
+        }
+      ],
+      "schematicPosition": {
+        "x": 2160,
+        "y": 9840
+      },
+      "layoutPosition": {
+        "x": 2520,
+        "y": 0
       }
     }
   ],
@@ -3456,7 +4795,7 @@
       "type": "Spade",
       "signal": "Starter Solenoid Trigger (S)",
       "layoutPosition": {
-        "x": 180,
+        "x": 300,
         "y": -1200
       },
       "schematicPosition": {
@@ -3469,7 +4808,7 @@
       "type": "Loose",
       "signal": "VR-Cond Front 5V",
       "layoutPosition": {
-        "x": 3300,
+        "x": 4980,
         "y": -600
       },
       "schematicPosition": {
@@ -3482,7 +4821,7 @@
       "type": "Loose",
       "signal": "VR-Cond Front GND",
       "layoutPosition": {
-        "x": 3420,
+        "x": 5100,
         "y": 600
       },
       "schematicPosition": {
@@ -3495,8 +4834,8 @@
       "type": "Loose",
       "signal": "VR-Cond Rear 5V",
       "layoutPosition": {
-        "x": 3540,
-        "y": -300
+        "x": 5220,
+        "y": -900
       },
       "schematicPosition": {
         "x": 2160,
@@ -3508,12 +4847,25 @@
       "type": "Loose",
       "signal": "VR-Cond Rear GND",
       "layoutPosition": {
-        "x": 3660,
-        "y": 300
+        "x": 5340,
+        "y": 900
       },
       "schematicPosition": {
         "x": 2160,
         "y": 6030
+      }
+    },
+    {
+      "id": "eng_gnd_ring",
+      "type": "Ring",
+      "signal": "Engine block ground stud (power ground)",
+      "layoutPosition": {
+        "x": 2520,
+        "y": -1200
+      },
+      "schematicPosition": {
+        "x": 2160,
+        "y": 11070
       }
     }
   ],
@@ -3539,14 +4891,43 @@
       "label": "to rear of car"
     },
     {
-      "id": "bn_bp_cab__bp_p0",
+      "id": "bn_bp_cab__bh_a_fw",
       "length": {
         "unit": "mm",
         "value": 900
       },
       "sourceId": "bp_cab",
+      "targetId": "bh_a_fw",
+      "label": "A to firewall"
+    },
+    {
+      "id": "bn_bp_cab__bh_b_fw",
+      "length": {
+        "unit": "mm",
+        "value": 900
+      },
+      "sourceId": "bp_cab",
+      "targetId": "bh_b_fw",
+      "label": "B to firewall"
+    },
+    {
+      "id": "bn_bh_a_eng__bp_p0",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bh_a_eng",
       "targetId": "bp_p0",
-      "label": "through firewall to engine bay"
+      "label": "engine trunk"
+    },
+    {
+      "id": "bn_bh_b_eng__bp_p0",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bh_b_eng",
+      "targetId": "bp_p0"
     },
     {
       "id": "bn_bp_p0__bp_p1",
@@ -3597,7 +4978,7 @@
       "id": "bn_bp_p5__bp_p6",
       "length": {
         "unit": "mm",
-        "value": 400
+        "value": 300
       },
       "sourceId": "bp_p5",
       "targetId": "bp_p6"
@@ -3606,7 +4987,7 @@
       "id": "bn_bp_p6__bp_p7",
       "length": {
         "unit": "mm",
-        "value": 600
+        "value": 400
       },
       "sourceId": "bp_p6",
       "targetId": "bp_p7"
@@ -3704,7 +5085,7 @@
         {
           "id": "bn_bp_cab__k_efi_p1",
           "layoutPosition": {
-            "x": -540,
+            "x": -420,
             "y": 0
           }
         }
@@ -3722,7 +5103,7 @@
         {
           "id": "bn_bp_cab__k_etb_p1",
           "layoutPosition": {
-            "x": -420,
+            "x": -300,
             "y": 0
           }
         }
@@ -3740,7 +5121,7 @@
         {
           "id": "bn_bp_cab__k_fp_p1",
           "layoutPosition": {
-            "x": -300,
+            "x": -180,
             "y": 0
           }
         }
@@ -3758,7 +5139,7 @@
         {
           "id": "bn_bp_cab__k_fan_p1",
           "layoutPosition": {
-            "x": -180,
+            "x": -60,
             "y": 0
           }
         }
@@ -3776,7 +5157,7 @@
         {
           "id": "bn_bp_cab__k_fan2_p1",
           "layoutPosition": {
-            "x": -60,
+            "x": 60,
             "y": 0
           }
         }
@@ -3794,7 +5175,7 @@
         {
           "id": "bn_bp_cab__k_str_p1",
           "layoutPosition": {
-            "x": 60,
+            "x": 180,
             "y": 0
           }
         }
@@ -3812,7 +5193,7 @@
         {
           "id": "bn_bp_cab__starter_trigger_p1",
           "layoutPosition": {
-            "x": 180,
+            "x": 300,
             "y": 0
           }
         }
@@ -3830,7 +5211,7 @@
         {
           "id": "bn_bp_cab__ecu_a_p1",
           "layoutPosition": {
-            "x": 300,
+            "x": 420,
             "y": 0
           }
         }
@@ -3848,7 +5229,7 @@
         {
           "id": "bn_bp_cab__ecu_b_p1",
           "layoutPosition": {
-            "x": 420,
+            "x": 540,
             "y": 0
           }
         }
@@ -3866,7 +5247,7 @@
         {
           "id": "bn_bp_cab__aps_p1",
           "layoutPosition": {
-            "x": 540,
+            "x": 660,
             "y": 0
           }
         }
@@ -3884,7 +5265,7 @@
         {
           "id": "bn_bp_cab__csb3io_p1",
           "layoutPosition": {
-            "x": 660,
+            "x": 780,
             "y": 0
           }
         }
@@ -3902,7 +5283,7 @@
         {
           "id": "bn_bp_cab__sp_5v_p1",
           "layoutPosition": {
-            "x": 1020,
+            "x": 900,
             "y": 0
           }
         }
@@ -3920,7 +5301,7 @@
         {
           "id": "bn_bp_cab__sp_8v_p1",
           "layoutPosition": {
-            "x": 1140,
+            "x": 1020,
             "y": 0
           }
         }
@@ -3938,7 +5319,7 @@
         {
           "id": "bn_bp_cab__sp_gndout_p1",
           "layoutPosition": {
-            "x": 1260,
+            "x": 1140,
             "y": 0
           }
         }
@@ -3981,72 +5362,117 @@
       ]
     },
     {
-      "id": "bn_bp_p0__cop1",
+      "id": "bn_bp_p0__sp_5v_eng",
       "length": {
         "unit": "mm",
         "value": 250
       },
       "sourceId": "bp_p0",
-      "targetId": "cop1",
+      "targetId": "sp_5v_eng",
       "layoutPoints": [
         {
-          "id": "bn_bp_p0__cop1_p1",
+          "id": "bn_bp_p0__sp_5v_eng_p1",
           "layoutPosition": {
-            "x": 900,
+            "x": 1800,
             "y": 0
           }
         }
       ]
     },
     {
-      "id": "bn_bp_p0__cop2",
+      "id": "bn_bp_p0__sp_gndout_eng",
       "length": {
         "unit": "mm",
         "value": 250
       },
       "sourceId": "bp_p0",
-      "targetId": "cop2",
+      "targetId": "sp_gndout_eng",
       "layoutPoints": [
         {
-          "id": "bn_bp_p0__cop2_p1",
+          "id": "bn_bp_p0__sp_gndout_eng_p1",
           "layoutPosition": {
-            "x": 1020,
+            "x": 1920,
             "y": 0
           }
         }
       ]
     },
     {
-      "id": "bn_bp_p0__cop3",
+      "id": "bn_bp_p0__sp_sw12_eng",
       "length": {
         "unit": "mm",
         "value": 250
       },
       "sourceId": "bp_p0",
-      "targetId": "cop3",
+      "targetId": "sp_sw12_eng",
       "layoutPoints": [
         {
-          "id": "bn_bp_p0__cop3_p1",
+          "id": "bn_bp_p0__sp_sw12_eng_p1",
           "layoutPosition": {
-            "x": 1140,
+            "x": 2040,
             "y": 0
           }
         }
       ]
     },
     {
-      "id": "bn_bp_p0__cop4",
+      "id": "bn_bp_p0__sp_chassis_eng",
       "length": {
         "unit": "mm",
         "value": 250
       },
       "sourceId": "bp_p0",
-      "targetId": "cop4",
+      "targetId": "sp_chassis_eng"
+    },
+    {
+      "id": "bn_bp_p0__sp_inj_eng",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p0",
+      "targetId": "sp_inj_eng",
       "layoutPoints": [
         {
-          "id": "bn_bp_p0__cop4_p1",
+          "id": "bn_bp_p0__sp_inj_eng_p1",
           "layoutPosition": {
-            "x": 1260,
+            "x": 2280,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p0__sp_cop_eng",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p0",
+      "targetId": "sp_cop_eng",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p0__sp_cop_eng_p1",
+          "layoutPosition": {
+            "x": 2400,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p0__eng_gnd_ring",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p0",
+      "targetId": "eng_gnd_ring",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p0__eng_gnd_ring_p1",
+          "layoutPosition": {
+            "x": 2520,
             "y": 0
           }
         }
@@ -4064,7 +5490,7 @@
         {
           "id": "bn_bp_p1__inj1_p1",
           "layoutPosition": {
-            "x": 1260,
+            "x": 2700,
             "y": 0
           }
         }
@@ -4082,7 +5508,7 @@
         {
           "id": "bn_bp_p1__inj2_p1",
           "layoutPosition": {
-            "x": 1380,
+            "x": 2820,
             "y": 0
           }
         }
@@ -4100,7 +5526,7 @@
         {
           "id": "bn_bp_p1__inj3_p1",
           "layoutPosition": {
-            "x": 1500,
+            "x": 2940,
             "y": 0
           }
         }
@@ -4118,293 +5544,23 @@
         {
           "id": "bn_bp_p1__inj4_p1",
           "layoutPosition": {
-            "x": 1620,
+            "x": 3060,
             "y": 0
           }
         }
       ]
     },
     {
-      "id": "bn_bp_p2__etb",
+      "id": "bn_bp_p2__cop1",
       "length": {
         "unit": "mm",
         "value": 250
       },
       "sourceId": "bp_p2",
-      "targetId": "etb",
+      "targetId": "cop1",
       "layoutPoints": [
         {
-          "id": "bn_bp_p2__etb_p1",
-          "layoutPosition": {
-            "x": 1620,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p2__boost",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p2",
-      "targetId": "boost",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p2__boost_p1",
-          "layoutPosition": {
-            "x": 1740,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p2__map",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p2",
-      "targetId": "map",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p2__map_p1",
-          "layoutPosition": {
-            "x": 1860,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p2__iat",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p2",
-      "targetId": "iat",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p2__iat_p1",
-          "layoutPosition": {
-            "x": 1980,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p3__cam",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p3",
-      "targetId": "cam",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p3__cam_p1",
-          "layoutPosition": {
-            "x": 1980,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p3__crank",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p3",
-      "targetId": "crank",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p3__crank_p1",
-          "layoutPosition": {
-            "x": 2100,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p3__ect",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p3",
-      "targetId": "ect",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p3__ect_p1",
-          "layoutPosition": {
-            "x": 2220,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p3__oilt",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p3",
-      "targetId": "oilt",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p3__oilt_p1",
-          "layoutPosition": {
-            "x": 2340,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p4__oilp",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p4",
-      "targetId": "oilp",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p4__oilp_p1",
-          "layoutPosition": {
-            "x": 2340,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p4__fuelp",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p4",
-      "targetId": "fuelp",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p4__fuelp_p1",
-          "layoutPosition": {
-            "x": 2460,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p4__clntp",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p4",
-      "targetId": "clntp",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p4__clntp_p1",
-          "layoutPosition": {
-            "x": 2580,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p4__cpiat",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p4",
-      "targetId": "cpiat",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p4__cpiat_p1",
-          "layoutPosition": {
-            "x": 2700,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p5__turbospd",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p5",
-      "targetId": "turbospd",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p5__turbospd_p1",
-          "layoutPosition": {
-            "x": 2700,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p5__flex",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p5",
-      "targetId": "flex",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p5__flex_p1",
-          "layoutPosition": {
-            "x": 2820,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p5__lambda",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p5",
-      "targetId": "lambda",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p5__lambda_p1",
-          "layoutPosition": {
-            "x": 2940,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p5__mrs_pwr",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p5",
-      "targetId": "mrs_pwr",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p5__mrs_pwr_p1",
+          "id": "bn_bp_p2__cop1_p1",
           "layoutPosition": {
             "x": 3060,
             "y": 0
@@ -4413,34 +5569,16 @@
       ]
     },
     {
-      "id": "bn_bp_p6__rad_fan",
+      "id": "bn_bp_p2__cop2",
       "length": {
         "unit": "mm",
         "value": 250
       },
-      "sourceId": "bp_p6",
-      "targetId": "rad_fan",
+      "sourceId": "bp_p2",
+      "targetId": "cop2",
       "layoutPoints": [
         {
-          "id": "bn_bp_p6__rad_fan_p1",
-          "layoutPosition": {
-            "x": 3060,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_p6__fan2",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_p6",
-      "targetId": "fan2",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_p6__fan2_p1",
+          "id": "bn_bp_p2__cop2_p1",
           "layoutPosition": {
             "x": 3180,
             "y": 0
@@ -4449,16 +5587,16 @@
       ]
     },
     {
-      "id": "bn_bp_p6__vr1_5v",
+      "id": "bn_bp_p2__cop3",
       "length": {
         "unit": "mm",
         "value": 250
       },
-      "sourceId": "bp_p6",
-      "targetId": "vr1_5v",
+      "sourceId": "bp_p2",
+      "targetId": "cop3",
       "layoutPoints": [
         {
-          "id": "bn_bp_p6__vr1_5v_p1",
+          "id": "bn_bp_p2__cop3_p1",
           "layoutPosition": {
             "x": 3300,
             "y": 0
@@ -4467,18 +5605,378 @@
       ]
     },
     {
-      "id": "bn_bp_p6__vr1_gnd",
+      "id": "bn_bp_p2__cop4",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p2",
+      "targetId": "cop4",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p2__cop4_p1",
+          "layoutPosition": {
+            "x": 3420,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p3__etb",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p3",
+      "targetId": "etb",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p3__etb_p1",
+          "layoutPosition": {
+            "x": 3420,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p3__boost",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p3",
+      "targetId": "boost",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p3__boost_p1",
+          "layoutPosition": {
+            "x": 3540,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p3__map",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p3",
+      "targetId": "map",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p3__map_p1",
+          "layoutPosition": {
+            "x": 3660,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p3__iat",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p3",
+      "targetId": "iat",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p3__iat_p1",
+          "layoutPosition": {
+            "x": 3780,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p4__cam",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p4",
+      "targetId": "cam",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p4__cam_p1",
+          "layoutPosition": {
+            "x": 3780,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p4__crank",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p4",
+      "targetId": "crank",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p4__crank_p1",
+          "layoutPosition": {
+            "x": 3900,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p4__ect",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p4",
+      "targetId": "ect",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p4__ect_p1",
+          "layoutPosition": {
+            "x": 4020,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p4__oilt",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p4",
+      "targetId": "oilt",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p4__oilt_p1",
+          "layoutPosition": {
+            "x": 4140,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p5__oilp",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p5",
+      "targetId": "oilp",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p5__oilp_p1",
+          "layoutPosition": {
+            "x": 4140,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p5__fuelp",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p5",
+      "targetId": "fuelp",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p5__fuelp_p1",
+          "layoutPosition": {
+            "x": 4260,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p5__clntp",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p5",
+      "targetId": "clntp",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p5__clntp_p1",
+          "layoutPosition": {
+            "x": 4380,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p5__cpiat",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p5",
+      "targetId": "cpiat",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p5__cpiat_p1",
+          "layoutPosition": {
+            "x": 4500,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p6__turbospd",
       "length": {
         "unit": "mm",
         "value": 250
       },
       "sourceId": "bp_p6",
+      "targetId": "turbospd",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p6__turbospd_p1",
+          "layoutPosition": {
+            "x": 4500,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p6__flex",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p6",
+      "targetId": "flex",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p6__flex_p1",
+          "layoutPosition": {
+            "x": 4620,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p6__lambda",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p6",
+      "targetId": "lambda",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p6__lambda_p1",
+          "layoutPosition": {
+            "x": 4740,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p6__mrs_pwr",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p6",
+      "targetId": "mrs_pwr",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p6__mrs_pwr_p1",
+          "layoutPosition": {
+            "x": 4860,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p7__rad_fan",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p7",
+      "targetId": "rad_fan",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p7__rad_fan_p1",
+          "layoutPosition": {
+            "x": 4740,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p7__fan2",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p7",
+      "targetId": "fan2",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p7__fan2_p1",
+          "layoutPosition": {
+            "x": 4860,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p7__vr1_5v",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p7",
+      "targetId": "vr1_5v",
+      "layoutPoints": [
+        {
+          "id": "bn_bp_p7__vr1_5v_p1",
+          "layoutPosition": {
+            "x": 4980,
+            "y": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "bn_bp_p7__vr1_gnd",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_p7",
       "targetId": "vr1_gnd",
       "layoutPoints": [
         {
-          "id": "bn_bp_p6__vr1_gnd_p1",
+          "id": "bn_bp_p7__vr1_gnd_p1",
           "layoutPosition": {
-            "x": 3420,
+            "x": 5100,
             "y": 0
           }
         }
@@ -4496,7 +5994,7 @@
         {
           "id": "bn_bp_p7__vr2_5v_p1",
           "layoutPosition": {
-            "x": 3540,
+            "x": 5220,
             "y": 0
           }
         }
@@ -4514,7 +6012,7 @@
         {
           "id": "bn_bp_p7__vr2_gnd_p1",
           "layoutPosition": {
-            "x": 3660,
+            "x": 5340,
             "y": 0
           }
         }
@@ -4547,8 +6045,8 @@
     {
       "id": "sp_5v",
       "layoutPosition": {
-        "x": 1020,
-        "y": 2100
+        "x": 900,
+        "y": 1800
       },
       "schematicPosition": {
         "x": 1050,
@@ -4558,8 +6056,8 @@
     {
       "id": "sp_8v",
       "layoutPosition": {
-        "x": 1140,
-        "y": -2400
+        "x": 1020,
+        "y": -2100
       },
       "schematicPosition": {
         "x": 1050,
@@ -4569,8 +6067,8 @@
     {
       "id": "sp_gndout",
       "layoutPosition": {
-        "x": 1260,
-        "y": 2400
+        "x": 1140,
+        "y": 2100
       },
       "schematicPosition": {
         "x": 1050,
@@ -4586,6 +6084,72 @@
       "schematicPosition": {
         "x": 1050,
         "y": 600
+      }
+    },
+    {
+      "id": "sp_5v_eng",
+      "layoutPosition": {
+        "x": 1800,
+        "y": -300
+      },
+      "schematicPosition": {
+        "x": 2160,
+        "y": 11190
+      }
+    },
+    {
+      "id": "sp_gndout_eng",
+      "layoutPosition": {
+        "x": 1920,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 2160,
+        "y": 11310
+      }
+    },
+    {
+      "id": "sp_sw12_eng",
+      "layoutPosition": {
+        "x": 2040,
+        "y": -600
+      },
+      "schematicPosition": {
+        "x": 2160,
+        "y": 11430
+      }
+    },
+    {
+      "id": "sp_chassis_eng",
+      "layoutPosition": {
+        "x": 2160,
+        "y": 600
+      },
+      "schematicPosition": {
+        "x": 2160,
+        "y": 11550
+      }
+    },
+    {
+      "id": "sp_inj_eng",
+      "layoutPosition": {
+        "x": 2280,
+        "y": -900
+      },
+      "schematicPosition": {
+        "x": 2160,
+        "y": 11670
+      }
+    },
+    {
+      "id": "sp_cop_eng",
+      "layoutPosition": {
+        "x": 2400,
+        "y": 900
+      },
+      "schematicPosition": {
+        "x": 2160,
+        "y": 11790
       }
     }
   ],
@@ -4658,7 +6222,7 @@
     {
       "id": "bp_p0",
       "layoutPosition": {
-        "x": 1080,
+        "x": 2160,
         "y": 0
       },
       "bootPartId": "boot_breakout"
@@ -4666,7 +6230,7 @@
     {
       "id": "bp_p1",
       "layoutPosition": {
-        "x": 1440,
+        "x": 2880,
         "y": 0
       },
       "bootPartId": "boot_breakout"
@@ -4674,7 +6238,7 @@
     {
       "id": "bp_p2",
       "layoutPosition": {
-        "x": 1800,
+        "x": 3240,
         "y": 0
       },
       "bootPartId": "boot_breakout"
@@ -4682,7 +6246,7 @@
     {
       "id": "bp_p3",
       "layoutPosition": {
-        "x": 2160,
+        "x": 3600,
         "y": 0
       },
       "bootPartId": "boot_breakout"
@@ -4690,7 +6254,7 @@
     {
       "id": "bp_p4",
       "layoutPosition": {
-        "x": 2520,
+        "x": 3960,
         "y": 0
       },
       "bootPartId": "boot_breakout"
@@ -4698,7 +6262,7 @@
     {
       "id": "bp_p5",
       "layoutPosition": {
-        "x": 2880,
+        "x": 4320,
         "y": 0
       },
       "bootPartId": "boot_breakout"
@@ -4706,7 +6270,7 @@
     {
       "id": "bp_p6",
       "layoutPosition": {
-        "x": 3240,
+        "x": 4680,
         "y": 0
       },
       "bootPartId": "boot_breakout"
@@ -4714,7 +6278,7 @@
     {
       "id": "bp_p7",
       "layoutPosition": {
-        "x": 3600,
+        "x": 5040,
         "y": 0
       },
       "bootPartId": "boot_breakout"
@@ -4817,6 +6381,88 @@
       "manufacturer": "TE Connectivity / Raychem",
       "partNumber": "TBD - moulded breakout boot",
       "description": "Adhesive-lined moulded transition boot at each loom breakout. Size per branch OD - confirm dash number before ordering."
+    }
+  ],
+  "connectorParts": [
+    {
+      "id": "cp_8sta0_14_35sn",
+      "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
+      "color": "Red",
+      "gender": "Female",
+      "partNumber": "8STA0-14-35SN",
+      "description": "Oval-flange bulkhead receptacle, 37×22D sockets, N/red keyway — A-loom firewall",
+      "manufacturer": "Eaton / Souriau",
+      "configurations": [
+        {
+          "id": "cfg",
+          "bootPartId": "boot_8sta14",
+          "contactPartId": "ct_22d_skt"
+        }
+      ],
+      "numberOfCavities": 37
+    },
+    {
+      "id": "cp_8sta6_14_35pn",
+      "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
+      "color": "Red",
+      "gender": "Male",
+      "partNumber": "8STA6-14-35PN",
+      "description": "Free plug, 37×22D pins, N/red keyway — A-loom engine side",
+      "manufacturer": "Eaton / Souriau",
+      "configurations": [
+        {
+          "id": "cfg",
+          "bootPartId": "boot_8sta14",
+          "contactPartId": "ct_22d_pin"
+        }
+      ],
+      "numberOfCavities": 37
+    },
+    {
+      "id": "cp_8sta0_14_35sa",
+      "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
+      "color": "Yellow",
+      "gender": "Female",
+      "partNumber": "8STA0-14-35SA",
+      "description": "Oval-flange bulkhead receptacle, 37×22D sockets, A/yellow keyway — B-loom firewall",
+      "manufacturer": "Eaton / Souriau",
+      "configurations": [
+        {
+          "id": "cfg",
+          "bootPartId": "boot_8sta14",
+          "contactPartId": "ct_22d_skt"
+        }
+      ],
+      "numberOfCavities": 37
+    },
+    {
+      "id": "cp_8sta6_14_35pa",
+      "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
+      "color": "Yellow",
+      "gender": "Male",
+      "partNumber": "8STA6-14-35PA",
+      "description": "Free plug, 37×22D pins, A/yellow keyway — B-loom engine side",
+      "manufacturer": "Eaton / Souriau",
+      "configurations": [
+        {
+          "id": "cfg",
+          "bootPartId": "boot_8sta14",
+          "contactPartId": "ct_22d_pin"
+        }
+      ],
+      "numberOfCavities": 37
+    }
+  ],
+  "mates": [
+    {
+      "id": "mate_bh_a",
+      "sourceId": "bh_a_eng",
+      "targetId": "bh_a_fw"
+    },
+    {
+      "id": "mate_bh_b",
+      "sourceId": "bh_b_eng",
+      "targetId": "bh_b_fw"
     }
   ]
 }
