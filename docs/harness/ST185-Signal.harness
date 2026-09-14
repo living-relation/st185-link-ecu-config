@@ -14,7 +14,23 @@
         "id": "bh_a_fw",
         "handle": "c1"
       },
-      "color": "Gray"
+      "color": "Gray",
+      "layoutPoints": [
+        {
+          "id": "w12_c_r1",
+          "schematicPosition": {
+            "x": 1314,
+            "y": 225
+          }
+        },
+        {
+          "id": "w12_c_r2",
+          "schematicPosition": {
+            "x": 1314,
+            "y": 2625
+          }
+        }
+      ]
     },
     {
       "id": "w12_e",
@@ -26,7 +42,23 @@
         "id": "knock1",
         "handle": "c2"
       },
-      "color": "Gray"
+      "color": "Gray",
+      "layoutPoints": [
+        {
+          "id": "w12_e_r1",
+          "schematicPosition": {
+            "x": 1440,
+            "y": 5085
+          }
+        },
+        {
+          "id": "w12_e_r2",
+          "schematicPosition": {
+            "x": 1440,
+            "y": 1305
+          }
+        }
+      ]
     },
     {
       "id": "w16_c",
@@ -38,7 +70,23 @@
         "id": "bh_a_fw",
         "handle": "c2"
       },
-      "color": "Green"
+      "color": "Green",
+      "layoutPoints": [
+        {
+          "id": "w16_c_r1",
+          "schematicPosition": {
+            "x": 1242,
+            "y": 915
+          }
+        },
+        {
+          "id": "w16_c_r2",
+          "schematicPosition": {
+            "x": 1242,
+            "y": 2655
+          }
+        }
+      ]
     },
     {
       "id": "w16_e",
@@ -50,7 +98,23 @@
         "id": "turbospd",
         "handle": "c2"
       },
-      "color": "Green"
+      "color": "Green",
+      "layoutPoints": [
+        {
+          "id": "w16_e_r1",
+          "schematicPosition": {
+            "x": 1638,
+            "y": 5115
+          }
+        },
+        {
+          "id": "w16_e_r2",
+          "schematicPosition": {
+            "x": 1638,
+            "y": 2325
+          }
+        }
+      ]
     },
     {
       "id": "w20",
@@ -63,7 +127,23 @@
         "id": "ecu_a",
         "handle": "a6"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w20_r1",
+          "schematicPosition": {
+            "x": 2088,
+            "y": 405
+          }
+        },
+        {
+          "id": "w20_r2",
+          "schematicPosition": {
+            "x": 2088,
+            "y": 195
+          }
+        }
+      ]
     },
     {
       "id": "w23_c",
@@ -75,7 +155,23 @@
         "id": "bh_a_fw",
         "handle": "c3"
       },
-      "color": "Blue"
+      "color": "Blue",
+      "layoutPoints": [
+        {
+          "id": "w23_c_r1",
+          "schematicPosition": {
+            "x": 2070,
+            "y": 405
+          }
+        },
+        {
+          "id": "w23_c_r2",
+          "schematicPosition": {
+            "x": 2070,
+            "y": 2685
+          }
+        }
+      ]
     },
     {
       "id": "w23_e",
@@ -87,7 +183,23 @@
         "id": "cam",
         "handle": "c2"
       },
-      "color": "Blue"
+      "color": "Blue",
+      "layoutPoints": [
+        {
+          "id": "w23_e_r1",
+          "schematicPosition": {
+            "x": 1764,
+            "y": 5145
+          }
+        },
+        {
+          "id": "w23_e_r2",
+          "schematicPosition": {
+            "x": 1764,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w26_c",
@@ -99,7 +211,23 @@
         "id": "bh_a_fw",
         "handle": "c4"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w26_c_r1",
+          "schematicPosition": {
+            "x": 1236,
+            "y": 525
+          }
+        },
+        {
+          "id": "w26_c_r2",
+          "schematicPosition": {
+            "x": 1236,
+            "y": 2715
+          }
+        }
+      ]
     },
     {
       "id": "w26_e",
@@ -111,7 +239,23 @@
         "id": "map",
         "handle": "c2"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w26_e_r1",
+          "schematicPosition": {
+            "x": 1818,
+            "y": 5175
+          }
+        },
+        {
+          "id": "w26_e_r2",
+          "schematicPosition": {
+            "x": 1818,
+            "y": 1485
+          }
+        }
+      ]
     },
     {
       "id": "w29_c",
@@ -123,7 +267,23 @@
         "id": "bh_b_fw",
         "handle": "c1"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w29_c_r1",
+          "schematicPosition": {
+            "x": 1248,
+            "y": 1605
+          }
+        },
+        {
+          "id": "w29_c_r2",
+          "schematicPosition": {
+            "x": 1248,
+            "y": 3855
+          }
+        }
+      ]
     },
     {
       "id": "w29_e",
@@ -135,7 +295,23 @@
         "id": "oilp",
         "handle": "c2"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w29_e_r1",
+          "schematicPosition": {
+            "x": 1926,
+            "y": 6315
+          }
+        },
+        {
+          "id": "w29_e_r2",
+          "schematicPosition": {
+            "x": 1926,
+            "y": 1695
+          }
+        }
+      ]
     },
     {
       "id": "w32_c",
@@ -147,7 +323,23 @@
         "id": "bh_b_fw",
         "handle": "c2"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w32_c_r1",
+          "schematicPosition": {
+            "x": 1266,
+            "y": 1635
+          }
+        },
+        {
+          "id": "w32_c_r2",
+          "schematicPosition": {
+            "x": 1266,
+            "y": 3885
+          }
+        }
+      ]
     },
     {
       "id": "w32_e",
@@ -159,7 +351,23 @@
         "id": "fuelp",
         "handle": "c2"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w32_e_r1",
+          "schematicPosition": {
+            "x": 1944,
+            "y": 6345
+          }
+        },
+        {
+          "id": "w32_e_r2",
+          "schematicPosition": {
+            "x": 1944,
+            "y": 1905
+          }
+        }
+      ]
     },
     {
       "id": "w35_c",
@@ -171,7 +379,23 @@
         "id": "bh_b_fw",
         "handle": "c3"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w35_c_r1",
+          "schematicPosition": {
+            "x": 1302,
+            "y": 1845
+          }
+        },
+        {
+          "id": "w35_c_r2",
+          "schematicPosition": {
+            "x": 1302,
+            "y": 3915
+          }
+        }
+      ]
     },
     {
       "id": "w35_e",
@@ -183,7 +407,23 @@
         "id": "clntp",
         "handle": "c2"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w35_e_r1",
+          "schematicPosition": {
+            "x": 1962,
+            "y": 6375
+          }
+        },
+        {
+          "id": "w35_e_r2",
+          "schematicPosition": {
+            "x": 1962,
+            "y": 2115
+          }
+        }
+      ]
     },
     {
       "id": "w38",
@@ -195,7 +435,23 @@
       "target": {
         "id": "ecu_a",
         "handle": "a14"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w38_r1",
+          "schematicPosition": {
+            "x": 348,
+            "y": 1215
+          }
+        },
+        {
+          "id": "w38_r2",
+          "schematicPosition": {
+            "x": 348,
+            "y": 435
+          }
+        }
+      ]
     },
     {
       "id": "w39",
@@ -207,7 +463,23 @@
       "target": {
         "id": "ecu_b",
         "handle": "b33"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w39_r1",
+          "schematicPosition": {
+            "x": 330,
+            "y": 1125
+          }
+        },
+        {
+          "id": "w39_r2",
+          "schematicPosition": {
+            "x": 330,
+            "y": 2145
+          }
+        }
+      ]
     },
     {
       "id": "w43",
@@ -219,7 +491,23 @@
       "target": {
         "id": "r_fuellvl",
         "handle": "Left"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w43_r1",
+          "schematicPosition": {
+            "x": 2550,
+            "y": 6195
+          }
+        },
+        {
+          "id": "w43_r2",
+          "schematicPosition": {
+            "x": 2550,
+            "y": 6345
+          }
+        }
+      ]
     },
     {
       "id": "w44",
@@ -231,7 +519,23 @@
       "target": {
         "id": "ecu_a",
         "handle": "a32"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w44_r1",
+          "schematicPosition": {
+            "x": 2106,
+            "y": 6345
+          }
+        },
+        {
+          "id": "w44_r2",
+          "schematicPosition": {
+            "x": 2106,
+            "y": 975
+          }
+        }
+      ]
     },
     {
       "id": "w48_c",
@@ -243,7 +547,23 @@
         "id": "bh_a_fw",
         "handle": "c5"
       },
-      "color": "Green"
+      "color": "Green",
+      "layoutPoints": [
+        {
+          "id": "w48_c_r1",
+          "schematicPosition": {
+            "x": 1260,
+            "y": 945
+          }
+        },
+        {
+          "id": "w48_c_r2",
+          "schematicPosition": {
+            "x": 1260,
+            "y": 2745
+          }
+        }
+      ]
     },
     {
       "id": "w48_e",
@@ -255,7 +575,23 @@
         "id": "flex",
         "handle": "c3"
       },
-      "color": "Green"
+      "color": "Green",
+      "layoutPoints": [
+        {
+          "id": "w48_e_r1",
+          "schematicPosition": {
+            "x": 1836,
+            "y": 5205
+          }
+        },
+        {
+          "id": "w48_e_r2",
+          "schematicPosition": {
+            "x": 1836,
+            "y": 2565
+          }
+        }
+      ]
     },
     {
       "id": "w50",
@@ -267,7 +603,23 @@
       "target": {
         "id": "vr1_ch1n",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w50_r1",
+          "schematicPosition": {
+            "x": 2586,
+            "y": 5505
+          }
+        },
+        {
+          "id": "w50_r2",
+          "schematicPosition": {
+            "x": 2586,
+            "y": 6585
+          }
+        }
+      ]
     },
     {
       "id": "w51_c",
@@ -279,7 +631,23 @@
         "id": "bh_a_fw",
         "handle": "c6"
       },
-      "color": "Green"
+      "color": "Green",
+      "layoutPoints": [
+        {
+          "id": "w51_c_r1",
+          "schematicPosition": {
+            "x": 1308,
+            "y": 705
+          }
+        },
+        {
+          "id": "w51_c_r2",
+          "schematicPosition": {
+            "x": 1308,
+            "y": 2775
+          }
+        }
+      ]
     },
     {
       "id": "w51_e",
@@ -291,7 +659,23 @@
         "id": "vr1_out1",
         "handle": "Terminal"
       },
-      "color": "Green"
+      "color": "Green",
+      "layoutPoints": [
+        {
+          "id": "w51_e_r1",
+          "schematicPosition": {
+            "x": 1854,
+            "y": 5235
+          }
+        },
+        {
+          "id": "w51_e_r2",
+          "schematicPosition": {
+            "x": 1854,
+            "y": 6945
+          }
+        }
+      ]
     },
     {
       "id": "w53_c",
@@ -303,7 +687,23 @@
         "id": "bh_a_eng",
         "handle": "c7"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w53_c_r1",
+          "schematicPosition": {
+            "x": 2178,
+            "y": 5685
+          }
+        },
+        {
+          "id": "w53_c_r2",
+          "schematicPosition": {
+            "x": 2178,
+            "y": 5265
+          }
+        }
+      ]
     },
     {
       "id": "w53_e",
@@ -315,7 +715,23 @@
         "id": "vr1_ch2n",
         "handle": "Terminal"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w53_e_r1",
+          "schematicPosition": {
+            "x": 1872,
+            "y": 5265
+          }
+        },
+        {
+          "id": "w53_e_r2",
+          "schematicPosition": {
+            "x": 1872,
+            "y": 6825
+          }
+        }
+      ]
     },
     {
       "id": "w54_c",
@@ -327,7 +743,23 @@
         "id": "bh_a_fw",
         "handle": "c8"
       },
-      "color": "Green"
+      "color": "Green",
+      "layoutPoints": [
+        {
+          "id": "w54_c_r1",
+          "schematicPosition": {
+            "x": 1284,
+            "y": 1785
+          }
+        },
+        {
+          "id": "w54_c_r2",
+          "schematicPosition": {
+            "x": 1284,
+            "y": 2835
+          }
+        }
+      ]
     },
     {
       "id": "w54_e",
@@ -339,7 +771,23 @@
         "id": "vr1_out2",
         "handle": "Terminal"
       },
-      "color": "Green"
+      "color": "Green",
+      "layoutPoints": [
+        {
+          "id": "w54_e_r1",
+          "schematicPosition": {
+            "x": 1890,
+            "y": 5295
+          }
+        },
+        {
+          "id": "w54_e_r2",
+          "schematicPosition": {
+            "x": 1890,
+            "y": 7065
+          }
+        }
+      ]
     },
     {
       "id": "w58",
@@ -351,7 +799,23 @@
       "target": {
         "id": "vr2_ch1n",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w58_r1",
+          "schematicPosition": {
+            "x": 2622,
+            "y": 5865
+          }
+        },
+        {
+          "id": "w58_r2",
+          "schematicPosition": {
+            "x": 2622,
+            "y": 7305
+          }
+        }
+      ]
     },
     {
       "id": "w59",
@@ -363,7 +827,23 @@
       "target": {
         "id": "ecu_b",
         "handle": "b20"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w59_r1",
+          "schematicPosition": {
+            "x": 2124,
+            "y": 7665
+          }
+        },
+        {
+          "id": "w59_r2",
+          "schematicPosition": {
+            "x": 2124,
+            "y": 1755
+          }
+        }
+      ]
     },
     {
       "id": "w61",
@@ -375,7 +855,23 @@
       "target": {
         "id": "vr2_ch2n",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w61_r1",
+          "schematicPosition": {
+            "x": 2658,
+            "y": 6045
+          }
+        },
+        {
+          "id": "w61_r2",
+          "schematicPosition": {
+            "x": 2658,
+            "y": 7545
+          }
+        }
+      ]
     },
     {
       "id": "w62",
@@ -387,7 +883,23 @@
       "target": {
         "id": "ecu_b",
         "handle": "b19"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w62_r1",
+          "schematicPosition": {
+            "x": 2142,
+            "y": 7785
+          }
+        },
+        {
+          "id": "w62_r2",
+          "schematicPosition": {
+            "x": 2142,
+            "y": 1725
+          }
+        }
+      ]
     },
     {
       "id": "w76",
@@ -399,7 +911,23 @@
       "target": {
         "id": "ecu_a",
         "handle": "a28"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w76_r1",
+          "schematicPosition": {
+            "x": 456,
+            "y": 1545
+          }
+        },
+        {
+          "id": "w76_r2",
+          "schematicPosition": {
+            "x": 456,
+            "y": 855
+          }
+        }
+      ]
     },
     {
       "id": "w81",
@@ -411,7 +939,23 @@
       "target": {
         "id": "ecu_a",
         "handle": "a20"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w81_r1",
+          "schematicPosition": {
+            "x": 474,
+            "y": 1815
+          }
+        },
+        {
+          "id": "w81_r2",
+          "schematicPosition": {
+            "x": 474,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w108_c",
@@ -423,7 +967,23 @@
         "id": "bh_a_fw",
         "handle": "c9"
       },
-      "color": "Brown"
+      "color": "Brown",
+      "layoutPoints": [
+        {
+          "id": "w108_c_r1",
+          "schematicPosition": {
+            "x": 1296,
+            "y": 135
+          }
+        },
+        {
+          "id": "w108_c_r2",
+          "schematicPosition": {
+            "x": 1296,
+            "y": 2865
+          }
+        }
+      ]
     },
     {
       "id": "w108_e",
@@ -435,7 +995,23 @@
         "id": "inj1",
         "handle": "c2"
       },
-      "color": "Brown"
+      "color": "Brown",
+      "layoutPoints": [
+        {
+          "id": "w108_e_r1",
+          "schematicPosition": {
+            "x": 1908,
+            "y": 5325
+          }
+        },
+        {
+          "id": "w108_e_r2",
+          "schematicPosition": {
+            "x": 1908,
+            "y": 3825
+          }
+        }
+      ]
     },
     {
       "id": "w109_c",
@@ -447,7 +1023,23 @@
         "id": "bh_a_fw",
         "handle": "c10"
       },
-      "color": "Brown"
+      "color": "Brown",
+      "layoutPoints": [
+        {
+          "id": "w109_c_r1",
+          "schematicPosition": {
+            "x": 1344,
+            "y": 105
+          }
+        },
+        {
+          "id": "w109_c_r2",
+          "schematicPosition": {
+            "x": 1344,
+            "y": 2895
+          }
+        }
+      ]
     },
     {
       "id": "w109_e",
@@ -459,7 +1051,23 @@
         "id": "inj2",
         "handle": "c2"
       },
-      "color": "Brown"
+      "color": "Brown",
+      "layoutPoints": [
+        {
+          "id": "w109_e_r1",
+          "schematicPosition": {
+            "x": 1458,
+            "y": 5355
+          }
+        },
+        {
+          "id": "w109_e_r2",
+          "schematicPosition": {
+            "x": 1458,
+            "y": 4005
+          }
+        }
+      ]
     },
     {
       "id": "w110_c",
@@ -471,7 +1079,23 @@
         "id": "bh_a_fw",
         "handle": "c11"
       },
-      "color": "Brown"
+      "color": "Brown",
+      "layoutPoints": [
+        {
+          "id": "w110_c_r1",
+          "schematicPosition": {
+            "x": 1254,
+            "y": 75
+          }
+        },
+        {
+          "id": "w110_c_r2",
+          "schematicPosition": {
+            "x": 1254,
+            "y": 2925
+          }
+        }
+      ]
     },
     {
       "id": "w110_e",
@@ -483,7 +1107,23 @@
         "id": "inj3",
         "handle": "c2"
       },
-      "color": "Brown"
+      "color": "Brown",
+      "layoutPoints": [
+        {
+          "id": "w110_e_r1",
+          "schematicPosition": {
+            "x": 1476,
+            "y": 5385
+          }
+        },
+        {
+          "id": "w110_e_r2",
+          "schematicPosition": {
+            "x": 1476,
+            "y": 4185
+          }
+        }
+      ]
     },
     {
       "id": "w111_c",
@@ -495,7 +1135,23 @@
         "id": "bh_a_fw",
         "handle": "c12"
       },
-      "color": "Brown"
+      "color": "Brown",
+      "layoutPoints": [
+        {
+          "id": "w111_c_r1",
+          "schematicPosition": {
+            "x": 1230,
+            "y": 45
+          }
+        },
+        {
+          "id": "w111_c_r2",
+          "schematicPosition": {
+            "x": 1230,
+            "y": 2955
+          }
+        }
+      ]
     },
     {
       "id": "w111_e",
@@ -507,7 +1163,23 @@
         "id": "inj4",
         "handle": "c2"
       },
-      "color": "Brown"
+      "color": "Brown",
+      "layoutPoints": [
+        {
+          "id": "w111_e_r1",
+          "schematicPosition": {
+            "x": 1494,
+            "y": 5415
+          }
+        },
+        {
+          "id": "w111_e_r2",
+          "schematicPosition": {
+            "x": 1494,
+            "y": 4365
+          }
+        }
+      ]
     },
     {
       "id": "w120_c",
@@ -519,7 +1191,23 @@
         "id": "bh_a_fw",
         "handle": "c13"
       },
-      "color": "Violet"
+      "color": "Violet",
+      "layoutPoints": [
+        {
+          "id": "w120_c_r1",
+          "schematicPosition": {
+            "x": 1302,
+            "y": 405
+          }
+        },
+        {
+          "id": "w120_c_r2",
+          "schematicPosition": {
+            "x": 1302,
+            "y": 2985
+          }
+        }
+      ]
     },
     {
       "id": "w120_e",
@@ -531,7 +1219,23 @@
         "id": "cop1",
         "handle": "c2"
       },
-      "color": "Violet"
+      "color": "Violet",
+      "layoutPoints": [
+        {
+          "id": "w120_e_r1",
+          "schematicPosition": {
+            "x": 1512,
+            "y": 5445
+          }
+        },
+        {
+          "id": "w120_e_r2",
+          "schematicPosition": {
+            "x": 1512,
+            "y": 4545
+          }
+        }
+      ]
     },
     {
       "id": "w121_c",
@@ -543,7 +1247,23 @@
         "id": "bh_a_fw",
         "handle": "c14"
       },
-      "color": "Violet"
+      "color": "Violet",
+      "layoutPoints": [
+        {
+          "id": "w121_c_r1",
+          "schematicPosition": {
+            "x": 1284,
+            "y": 375
+          }
+        },
+        {
+          "id": "w121_c_r2",
+          "schematicPosition": {
+            "x": 1284,
+            "y": 3015
+          }
+        }
+      ]
     },
     {
       "id": "w121_e",
@@ -555,7 +1275,23 @@
         "id": "cop2",
         "handle": "c2"
       },
-      "color": "Violet"
+      "color": "Violet",
+      "layoutPoints": [
+        {
+          "id": "w121_e_r1",
+          "schematicPosition": {
+            "x": 1530,
+            "y": 5475
+          }
+        },
+        {
+          "id": "w121_e_r2",
+          "schematicPosition": {
+            "x": 1530,
+            "y": 4785
+          }
+        }
+      ]
     },
     {
       "id": "w122_c",
@@ -567,7 +1303,23 @@
         "id": "bh_a_fw",
         "handle": "c15"
       },
-      "color": "Violet"
+      "color": "Violet",
+      "layoutPoints": [
+        {
+          "id": "w122_c_r1",
+          "schematicPosition": {
+            "x": 1266,
+            "y": 345
+          }
+        },
+        {
+          "id": "w122_c_r2",
+          "schematicPosition": {
+            "x": 1266,
+            "y": 3045
+          }
+        }
+      ]
     },
     {
       "id": "w122_e",
@@ -579,7 +1331,23 @@
         "id": "cop3",
         "handle": "c2"
       },
-      "color": "Violet"
+      "color": "Violet",
+      "layoutPoints": [
+        {
+          "id": "w122_e_r1",
+          "schematicPosition": {
+            "x": 1548,
+            "y": 5505
+          }
+        },
+        {
+          "id": "w122_e_r2",
+          "schematicPosition": {
+            "x": 1548,
+            "y": 5025
+          }
+        }
+      ]
     },
     {
       "id": "w123_c",
@@ -591,7 +1359,23 @@
         "id": "bh_a_fw",
         "handle": "c16"
       },
-      "color": "Violet"
+      "color": "Violet",
+      "layoutPoints": [
+        {
+          "id": "w123_c_r1",
+          "schematicPosition": {
+            "x": 1248,
+            "y": 315
+          }
+        },
+        {
+          "id": "w123_c_r2",
+          "schematicPosition": {
+            "x": 1248,
+            "y": 3075
+          }
+        }
+      ]
     },
     {
       "id": "w123_e",
@@ -603,7 +1387,23 @@
         "id": "cop4",
         "handle": "c2"
       },
-      "color": "Violet"
+      "color": "Violet",
+      "layoutPoints": [
+        {
+          "id": "w123_e_r1",
+          "schematicPosition": {
+            "x": 1566,
+            "y": 5535
+          }
+        },
+        {
+          "id": "w123_e_r2",
+          "schematicPosition": {
+            "x": 1566,
+            "y": 5265
+          }
+        }
+      ]
     },
     {
       "id": "w128_c",
@@ -615,7 +1415,23 @@
         "id": "bh_a_fw",
         "handle": "c17"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w128_c_r1",
+          "schematicPosition": {
+            "x": 1290,
+            "y": 675
+          }
+        },
+        {
+          "id": "w128_c_r2",
+          "schematicPosition": {
+            "x": 1290,
+            "y": 3105
+          }
+        }
+      ]
     },
     {
       "id": "w128_e",
@@ -627,7 +1443,23 @@
         "id": "etb",
         "handle": "c6"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w128_e_r1",
+          "schematicPosition": {
+            "x": 1584,
+            "y": 5565
+          }
+        },
+        {
+          "id": "w128_e_r2",
+          "schematicPosition": {
+            "x": 1584,
+            "y": 3105
+          }
+        }
+      ]
     },
     {
       "id": "w129_c",
@@ -639,7 +1471,23 @@
         "id": "bh_a_fw",
         "handle": "c18"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w129_c_r1",
+          "schematicPosition": {
+            "x": 1278,
+            "y": 1005
+          }
+        },
+        {
+          "id": "w129_c_r2",
+          "schematicPosition": {
+            "x": 1278,
+            "y": 3135
+          }
+        }
+      ]
     },
     {
       "id": "w129_e",
@@ -651,7 +1499,23 @@
         "id": "etb",
         "handle": "c5"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w129_e_r1",
+          "schematicPosition": {
+            "x": 1602,
+            "y": 5595
+          }
+        },
+        {
+          "id": "w129_e_r2",
+          "schematicPosition": {
+            "x": 1602,
+            "y": 3075
+          }
+        }
+      ]
     },
     {
       "id": "w103_c",
@@ -663,7 +1527,23 @@
         "id": "bh_a_fw",
         "handle": "c19"
       },
-      "color": "Pink"
+      "color": "Pink",
+      "layoutPoints": [
+        {
+          "id": "w103_c_r1",
+          "schematicPosition": {
+            "x": 1272,
+            "y": 645
+          }
+        },
+        {
+          "id": "w103_c_r2",
+          "schematicPosition": {
+            "x": 1272,
+            "y": 3165
+          }
+        }
+      ]
     },
     {
       "id": "w103_e",
@@ -675,7 +1555,23 @@
         "id": "boost",
         "handle": "c2"
       },
-      "color": "Pink"
+      "color": "Pink",
+      "layoutPoints": [
+        {
+          "id": "w103_e_r1",
+          "schematicPosition": {
+            "x": 1620,
+            "y": 5625
+          }
+        },
+        {
+          "id": "w103_e_r2",
+          "schematicPosition": {
+            "x": 1620,
+            "y": 3285
+          }
+        }
+      ]
     },
     {
       "id": "w200_c",
@@ -687,7 +1583,23 @@
         "id": "bh_a_fw",
         "handle": "c20"
       },
-      "color": "Blue"
+      "color": "Blue",
+      "layoutPoints": [
+        {
+          "id": "w200_c_r1",
+          "schematicPosition": {
+            "x": 1332,
+            "y": 255
+          }
+        },
+        {
+          "id": "w200_c_r2",
+          "schematicPosition": {
+            "x": 1332,
+            "y": 3195
+          }
+        }
+      ]
     },
     {
       "id": "w200_e",
@@ -699,7 +1611,23 @@
         "id": "crank",
         "handle": "c1"
       },
-      "color": "Blue"
+      "color": "Blue",
+      "layoutPoints": [
+        {
+          "id": "w200_e_r1",
+          "schematicPosition": {
+            "x": 1656,
+            "y": 5655
+          }
+        },
+        {
+          "id": "w200_e_r2",
+          "schematicPosition": {
+            "x": 1656,
+            "y": 45
+          }
+        }
+      ]
     },
     {
       "id": "w201_c",
@@ -711,7 +1639,23 @@
         "id": "bh_a_fw",
         "handle": "c21"
       },
-      "color": "Yellow"
+      "color": "Yellow",
+      "layoutPoints": [
+        {
+          "id": "w201_c_r1",
+          "schematicPosition": {
+            "x": 1320,
+            "y": 465
+          }
+        },
+        {
+          "id": "w201_c_r2",
+          "schematicPosition": {
+            "x": 1320,
+            "y": 3225
+          }
+        }
+      ]
     },
     {
       "id": "w201_e",
@@ -723,7 +1667,23 @@
         "id": "ect",
         "handle": "c1"
       },
-      "color": "Yellow"
+      "color": "Yellow",
+      "layoutPoints": [
+        {
+          "id": "w201_e_r1",
+          "schematicPosition": {
+            "x": 1674,
+            "y": 5685
+          }
+        },
+        {
+          "id": "w201_e_r2",
+          "schematicPosition": {
+            "x": 1674,
+            "y": 555
+          }
+        }
+      ]
     },
     {
       "id": "w202_c",
@@ -735,7 +1695,23 @@
         "id": "bh_a_fw",
         "handle": "c22"
       },
-      "color": "Yellow"
+      "color": "Yellow",
+      "layoutPoints": [
+        {
+          "id": "w202_c_r1",
+          "schematicPosition": {
+            "x": 1338,
+            "y": 495
+          }
+        },
+        {
+          "id": "w202_c_r2",
+          "schematicPosition": {
+            "x": 1338,
+            "y": 3255
+          }
+        }
+      ]
     },
     {
       "id": "w202_e",
@@ -747,7 +1723,23 @@
         "id": "iat",
         "handle": "c1"
       },
-      "color": "Yellow"
+      "color": "Yellow",
+      "layoutPoints": [
+        {
+          "id": "w202_e_r1",
+          "schematicPosition": {
+            "x": 1692,
+            "y": 5715
+          }
+        },
+        {
+          "id": "w202_e_r2",
+          "schematicPosition": {
+            "x": 1692,
+            "y": 735
+          }
+        }
+      ]
     },
     {
       "id": "w203_c",
@@ -759,7 +1751,23 @@
         "id": "bh_b_fw",
         "handle": "c4"
       },
-      "color": "Yellow"
+      "color": "Yellow",
+      "layoutPoints": [
+        {
+          "id": "w203_c_r1",
+          "schematicPosition": {
+            "x": 1320,
+            "y": 1335
+          }
+        },
+        {
+          "id": "w203_c_r2",
+          "schematicPosition": {
+            "x": 1320,
+            "y": 3945
+          }
+        }
+      ]
     },
     {
       "id": "w203_e",
@@ -771,7 +1779,23 @@
         "id": "oilt",
         "handle": "c1"
       },
-      "color": "Yellow"
+      "color": "Yellow",
+      "layoutPoints": [
+        {
+          "id": "w203_e_r1",
+          "schematicPosition": {
+            "x": 1980,
+            "y": 6405
+          }
+        },
+        {
+          "id": "w203_e_r2",
+          "schematicPosition": {
+            "x": 1980,
+            "y": 915
+          }
+        }
+      ]
     },
     {
       "id": "w204_c",
@@ -783,7 +1807,23 @@
         "id": "bh_b_fw",
         "handle": "c5"
       },
-      "color": "Yellow"
+      "color": "Yellow",
+      "layoutPoints": [
+        {
+          "id": "w204_c_r1",
+          "schematicPosition": {
+            "x": 1338,
+            "y": 1365
+          }
+        },
+        {
+          "id": "w204_c_r2",
+          "schematicPosition": {
+            "x": 1338,
+            "y": 3975
+          }
+        }
+      ]
     },
     {
       "id": "w204_e",
@@ -795,7 +1835,23 @@
         "id": "cpiat",
         "handle": "c1"
       },
-      "color": "Yellow"
+      "color": "Yellow",
+      "layoutPoints": [
+        {
+          "id": "w204_e_r1",
+          "schematicPosition": {
+            "x": 1998,
+            "y": 6435
+          }
+        },
+        {
+          "id": "w204_e_r2",
+          "schematicPosition": {
+            "x": 1998,
+            "y": 1095
+          }
+        }
+      ]
     },
     {
       "id": "w205_c",
@@ -807,7 +1863,23 @@
         "id": "bh_a_fw",
         "handle": "c23"
       },
-      "color": "Gray"
+      "color": "Gray",
+      "layoutPoints": [
+        {
+          "id": "w205_c_r1",
+          "schematicPosition": {
+            "x": 1236,
+            "y": 1425
+          }
+        },
+        {
+          "id": "w205_c_r2",
+          "schematicPosition": {
+            "x": 1236,
+            "y": 3285
+          }
+        }
+      ]
     },
     {
       "id": "w205_e",
@@ -819,7 +1891,23 @@
         "id": "knock1",
         "handle": "c1"
       },
-      "color": "Gray"
+      "color": "Gray",
+      "layoutPoints": [
+        {
+          "id": "w205_e_r1",
+          "schematicPosition": {
+            "x": 1710,
+            "y": 5745
+          }
+        },
+        {
+          "id": "w205_e_r2",
+          "schematicPosition": {
+            "x": 1710,
+            "y": 1275
+          }
+        }
+      ]
     },
     {
       "id": "w_flp",
@@ -831,7 +1919,23 @@
       "target": {
         "id": "vr1_ch1p",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_flp_r1",
+          "schematicPosition": {
+            "x": 2568,
+            "y": 5475
+          }
+        },
+        {
+          "id": "w_flp_r2",
+          "schematicPosition": {
+            "x": 2568,
+            "y": 6465
+          }
+        }
+      ]
     },
     {
       "id": "w_frp_c",
@@ -843,7 +1947,23 @@
         "id": "bh_a_eng",
         "handle": "c24"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w_frp_c_r1",
+          "schematicPosition": {
+            "x": 2160,
+            "y": 5655
+          }
+        },
+        {
+          "id": "w_frp_c_r2",
+          "schematicPosition": {
+            "x": 2160,
+            "y": 5775
+          }
+        }
+      ]
     },
     {
       "id": "w_frp_e",
@@ -855,7 +1975,23 @@
         "id": "vr1_ch2p",
         "handle": "Terminal"
       },
-      "color": "White"
+      "color": "White",
+      "layoutPoints": [
+        {
+          "id": "w_frp_e_r1",
+          "schematicPosition": {
+            "x": 1728,
+            "y": 5775
+          }
+        },
+        {
+          "id": "w_frp_e_r2",
+          "schematicPosition": {
+            "x": 1728,
+            "y": 6705
+          }
+        }
+      ]
     },
     {
       "id": "w_rlp",
@@ -867,7 +2003,23 @@
       "target": {
         "id": "vr2_ch1p",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_rlp_r1",
+          "schematicPosition": {
+            "x": 2604,
+            "y": 5835
+          }
+        },
+        {
+          "id": "w_rlp_r2",
+          "schematicPosition": {
+            "x": 2604,
+            "y": 7185
+          }
+        }
+      ]
     },
     {
       "id": "w_rrp",
@@ -879,7 +2031,23 @@
       "target": {
         "id": "vr2_ch2p",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_rrp_r1",
+          "schematicPosition": {
+            "x": 2640,
+            "y": 6015
+          }
+        },
+        {
+          "id": "w_rrp_r2",
+          "schematicPosition": {
+            "x": 2640,
+            "y": 7425
+          }
+        }
+      ]
     },
     {
       "id": "w_an2",
@@ -891,7 +2059,23 @@
       "target": {
         "id": "csb3io",
         "handle": "c6"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_an2_r1",
+          "schematicPosition": {
+            "x": -768,
+            "y": 3855
+          }
+        },
+        {
+          "id": "w_an2_r2",
+          "schematicPosition": {
+            "x": -768,
+            "y": 195
+          }
+        }
+      ]
     },
     {
       "id": "w_sw2",
@@ -903,7 +2087,23 @@
       "target": {
         "id": "csb3io",
         "handle": "c9"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_sw2_r1",
+          "schematicPosition": {
+            "x": -750,
+            "y": 3915
+          }
+        },
+        {
+          "id": "w_sw2_r2",
+          "schematicPosition": {
+            "x": -750,
+            "y": 285
+          }
+        }
+      ]
     },
     {
       "id": "w_sw3",
@@ -915,7 +2115,23 @@
       "target": {
         "id": "csb3io",
         "handle": "c10"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_sw3_r1",
+          "schematicPosition": {
+            "x": -732,
+            "y": 3945
+          }
+        },
+        {
+          "id": "w_sw3_r2",
+          "schematicPosition": {
+            "x": -732,
+            "y": 315
+          }
+        }
+      ]
     },
     {
       "id": "w_sw4",
@@ -927,7 +2143,23 @@
       "target": {
         "id": "csb3io",
         "handle": "c11"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_sw4_r1",
+          "schematicPosition": {
+            "x": -714,
+            "y": 3975
+          }
+        },
+        {
+          "id": "w_sw4_r2",
+          "schematicPosition": {
+            "x": -714,
+            "y": 345
+          }
+        }
+      ]
     },
     {
       "id": "w_sw5",
@@ -939,7 +2171,23 @@
       "target": {
         "id": "csb3io",
         "handle": "c12"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_sw5_r1",
+          "schematicPosition": {
+            "x": -786,
+            "y": 3135
+          }
+        },
+        {
+          "id": "w_sw5_r2",
+          "schematicPosition": {
+            "x": -786,
+            "y": 375
+          }
+        }
+      ]
     },
     {
       "id": "w_sw6",
@@ -951,7 +2199,23 @@
       "target": {
         "id": "csb3io",
         "handle": "c13"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_sw6_r1",
+          "schematicPosition": {
+            "x": -840,
+            "y": 3315
+          }
+        },
+        {
+          "id": "w_sw6_r2",
+          "schematicPosition": {
+            "x": -840,
+            "y": 405
+          }
+        }
+      ]
     },
     {
       "id": "w_sw7_c",
@@ -963,7 +2227,23 @@
         "id": "bh_b_fw",
         "handle": "c6"
       },
-      "color": "Green"
+      "color": "Green",
+      "layoutPoints": [
+        {
+          "id": "w_sw7_c_r1",
+          "schematicPosition": {
+            "x": 366,
+            "y": 435
+          }
+        },
+        {
+          "id": "w_sw7_c_r2",
+          "schematicPosition": {
+            "x": 366,
+            "y": 4005
+          }
+        }
+      ]
     },
     {
       "id": "w_sw7_e",
@@ -975,7 +2255,23 @@
         "id": "reverse_sw",
         "handle": "c1"
       },
-      "color": "Green"
+      "color": "Green",
+      "layoutPoints": [
+        {
+          "id": "w_sw7_e_r1",
+          "schematicPosition": {
+            "x": 2016,
+            "y": 6465
+          }
+        },
+        {
+          "id": "w_sw7_e_r2",
+          "schematicPosition": {
+            "x": 2016,
+            "y": 3615
+          }
+        }
+      ]
     },
     {
       "id": "w_start",
@@ -987,7 +2283,23 @@
       "target": {
         "id": "ecu_b",
         "handle": "b30"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_start_r1",
+          "schematicPosition": {
+            "x": 582,
+            "y": 3495
+          }
+        },
+        {
+          "id": "w_start_r2",
+          "schematicPosition": {
+            "x": 582,
+            "y": 2055
+          }
+        }
+      ]
     },
     {
       "id": "w_mrs_c",
@@ -999,7 +2311,23 @@
         "id": "bh_b_fw",
         "handle": "c7"
       },
-      "color": "Pink"
+      "color": "Pink",
+      "layoutPoints": [
+        {
+          "id": "w_mrs_c_r1",
+          "schematicPosition": {
+            "x": 1326,
+            "y": 825
+          }
+        },
+        {
+          "id": "w_mrs_c_r2",
+          "schematicPosition": {
+            "x": 1326,
+            "y": 4035
+          }
+        }
+      ]
     },
     {
       "id": "w_mrs_e",
@@ -1011,7 +2339,23 @@
         "id": "mrs_ctrl",
         "handle": "c1"
       },
-      "color": "Pink"
+      "color": "Pink",
+      "layoutPoints": [
+        {
+          "id": "w_mrs_e_r1",
+          "schematicPosition": {
+            "x": 2034,
+            "y": 6495
+          }
+        },
+        {
+          "id": "w_mrs_e_r2",
+          "schematicPosition": {
+            "x": 2034,
+            "y": 3435
+          }
+        }
+      ]
     },
     {
       "id": "w_fp85",
@@ -1023,7 +2367,23 @@
       "target": {
         "id": "ecu_a",
         "handle": "a19"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fp85_r1",
+          "schematicPosition": {
+            "x": 528,
+            "y": 2085
+          }
+        },
+        {
+          "id": "w_fp85_r2",
+          "schematicPosition": {
+            "x": 528,
+            "y": 585
+          }
+        }
+      ]
     },
     {
       "id": "w_fan85",
@@ -1035,7 +2395,23 @@
       "target": {
         "id": "ecu_a",
         "handle": "a29"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fan85_r1",
+          "schematicPosition": {
+            "x": 510,
+            "y": 2355
+          }
+        },
+        {
+          "id": "w_fan85_r2",
+          "schematicPosition": {
+            "x": 510,
+            "y": 885
+          }
+        }
+      ]
     },
     {
       "id": "w_fan285",
@@ -1047,7 +2423,23 @@
       "target": {
         "id": "ecu_b",
         "handle": "b13"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fan285_r1",
+          "schematicPosition": {
+            "x": 492,
+            "y": 2625
+          }
+        },
+        {
+          "id": "w_fan285_r2",
+          "schematicPosition": {
+            "x": 492,
+            "y": 1545
+          }
+        }
+      ]
     },
     {
       "id": "w_str85",
@@ -1059,7 +2451,23 @@
       "target": {
         "id": "ecu_a",
         "handle": "a26"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_str85_r1",
+          "schematicPosition": {
+            "x": 546,
+            "y": 2895
+          }
+        },
+        {
+          "id": "w_str85_r2",
+          "schematicPosition": {
+            "x": 546,
+            "y": 795
+          }
+        }
+      ]
     },
     {
       "id": "w_cam_sig_c",
@@ -1071,7 +2479,23 @@
         "id": "bh_a_fw",
         "handle": "c25"
       },
-      "color": "Blue"
+      "color": "Blue",
+      "layoutPoints": [
+        {
+          "id": "w_cam_sig_c_r1",
+          "schematicPosition": {
+            "x": 1230,
+            "y": 285
+          }
+        },
+        {
+          "id": "w_cam_sig_c_r2",
+          "schematicPosition": {
+            "x": 1230,
+            "y": 3345
+          }
+        }
+      ]
     },
     {
       "id": "w_cam_sig_e",
@@ -1083,7 +2507,23 @@
         "id": "cam",
         "handle": "c2"
       },
-      "color": "Blue"
+      "color": "Blue",
+      "layoutPoints": [
+        {
+          "id": "w_cam_sig_e_r1",
+          "schematicPosition": {
+            "x": 1746,
+            "y": 5805
+          }
+        },
+        {
+          "id": "w_cam_sig_e_r2",
+          "schematicPosition": {
+            "x": 1746,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w_fl_sig",
@@ -1095,7 +2535,23 @@
       "target": {
         "id": "ecu_b",
         "handle": "b24"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fl_sig_r1",
+          "schematicPosition": {
+            "x": 2052,
+            "y": 6195
+          }
+        },
+        {
+          "id": "w_fl_sig_r2",
+          "schematicPosition": {
+            "x": 2052,
+            "y": 1875
+          }
+        }
+      ]
     },
     {
       "id": "w_cru_sig",
@@ -1107,7 +2563,23 @@
       "target": {
         "id": "csb3io",
         "handle": "c6"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_cru_sig_r1",
+          "schematicPosition": {
+            "x": -660,
+            "y": 4095
+          }
+        },
+        {
+          "id": "w_cru_sig_r2",
+          "schematicPosition": {
+            "x": -660,
+            "y": 195
+          }
+        }
+      ]
     },
     {
       "id": "w_cru_5v",
@@ -1119,7 +2591,23 @@
       "target": {
         "id": "ecu_a",
         "handle": "a32"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_cru_5v_r1",
+          "schematicPosition": {
+            "x": 564,
+            "y": 4095
+          }
+        },
+        {
+          "id": "w_cru_5v_r2",
+          "schematicPosition": {
+            "x": 564,
+            "y": 975
+          }
+        }
+      ]
     },
     {
       "id": "w_ign",
@@ -1131,7 +2619,23 @@
       "target": {
         "id": "ecu_b",
         "handle": "b28"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_ign_r1",
+          "schematicPosition": {
+            "x": 438,
+            "y": 3675
+          }
+        },
+        {
+          "id": "w_ign_r2",
+          "schematicPosition": {
+            "x": 438,
+            "y": 1995
+          }
+        }
+      ]
     },
     {
       "id": "w_ac_kill",
@@ -1143,151 +2647,303 @@
       "target": {
         "id": "acamp",
         "handle": "c1"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_ac_kill_r1",
+          "schematicPosition": {
+            "x": 384,
+            "y": 555
+          }
+        },
+        {
+          "id": "w_ac_kill_r2",
+          "schematicPosition": {
+            "x": 384,
+            "y": 1365
+          }
+        }
+      ]
     },
     {
-      "id": "w_canh_0_c",
+      "id": "w_canh_0",
+      "color": "Green",
       "source": {
         "id": "ecu_com",
         "handle": "c3"
       },
       "target": {
-        "id": "bh_a_fw",
-        "handle": "c26"
+        "id": "csb3io",
+        "handle": "c3"
       },
-      "color": "Green"
+      "layoutPoints": [
+        {
+          "id": "w_canh_0_r1",
+          "schematicPosition": {
+            "x": 402,
+            "y": 2385
+          }
+        },
+        {
+          "id": "w_canh_0_r2",
+          "schematicPosition": {
+            "x": 402,
+            "y": 105
+          }
+        }
+      ]
     },
     {
-      "id": "w_canh_0_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c26"
-      },
-      "target": {
-        "id": "lambda",
-        "handle": "c1"
-      },
-      "color": "Green"
-    },
-    {
-      "id": "w_canl_0_c",
+      "id": "w_canl_0",
+      "color": "White",
       "source": {
         "id": "ecu_com",
         "handle": "c4"
       },
       "target": {
-        "id": "bh_a_fw",
-        "handle": "c27"
+        "id": "csb3io",
+        "handle": "c4"
       },
-      "color": "White"
+      "layoutPoints": [
+        {
+          "id": "w_canl_0_r1",
+          "schematicPosition": {
+            "x": 420,
+            "y": 2415
+          }
+        },
+        {
+          "id": "w_canl_0_r2",
+          "schematicPosition": {
+            "x": 420,
+            "y": 135
+          }
+        }
+      ]
     },
     {
-      "id": "w_canl_0_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c27"
-      },
-      "target": {
-        "id": "lambda",
-        "handle": "c2"
-      },
-      "color": "White"
-    },
-    {
-      "id": "w_canh_1_c",
+      "id": "w_canh_1",
+      "color": "Green",
       "source": {
         "id": "csb3io",
         "handle": "c3"
       },
       "target": {
-        "id": "bh_a_fw",
-        "handle": "c28"
-      },
-      "color": "Green"
-    },
-    {
-      "id": "w_canh_1_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c28"
-      },
-      "target": {
-        "id": "lambda",
+        "id": "cluster",
         "handle": "c1"
       },
-      "color": "Green"
+      "layoutPoints": [
+        {
+          "id": "w_canh_1_r1",
+          "schematicPosition": {
+            "x": -696,
+            "y": 105
+          }
+        },
+        {
+          "id": "w_canh_1_r2",
+          "schematicPosition": {
+            "x": -696,
+            "y": 585
+          }
+        }
+      ]
     },
     {
-      "id": "w_canl_1_c",
+      "id": "w_canl_1",
+      "color": "White",
       "source": {
         "id": "csb3io",
         "handle": "c4"
       },
       "target": {
-        "id": "bh_a_fw",
-        "handle": "c29"
-      },
-      "color": "White"
-    },
-    {
-      "id": "w_canl_1_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c29"
-      },
-      "target": {
-        "id": "lambda",
+        "id": "cluster",
         "handle": "c2"
       },
-      "color": "White"
+      "layoutPoints": [
+        {
+          "id": "w_canl_1_r1",
+          "schematicPosition": {
+            "x": -678,
+            "y": 135
+          }
+        },
+        {
+          "id": "w_canl_1_r2",
+          "schematicPosition": {
+            "x": -678,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_canh_2",
       "color": "Green",
       "source": {
-        "id": "csb3io",
-        "handle": "c3"
-      },
-      "target": {
         "id": "cluster",
         "handle": "c1"
-      }
+      },
+      "target": {
+        "id": "realdash_pi",
+        "handle": "c1"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_canh_2_r1",
+          "schematicPosition": {
+            "x": -822,
+            "y": 585
+          }
+        },
+        {
+          "id": "w_canh_2_r2",
+          "schematicPosition": {
+            "x": -822,
+            "y": 825
+          }
+        }
+      ]
     },
     {
       "id": "w_canl_2",
       "color": "White",
       "source": {
-        "id": "csb3io",
+        "id": "cluster",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "realdash_pi",
+        "handle": "c2"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_canl_2_r1",
+          "schematicPosition": {
+            "x": -804,
+            "y": 615
+          }
+        },
+        {
+          "id": "w_canl_2_r2",
+          "schematicPosition": {
+            "x": -804,
+            "y": 855
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_can_bh0_c",
+      "color": "Green",
+      "source": {
+        "id": "ecu_com",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c30"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_can_bh0_c_r1",
+          "schematicPosition": {
+            "x": 1254,
+            "y": 2385
+          }
+        },
+        {
+          "id": "w_can_bh0_c_r2",
+          "schematicPosition": {
+            "x": 1254,
+            "y": 3495
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_can_bh0_e",
+      "color": "Green",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c30"
+      },
+      "target": {
+        "id": "lambda",
+        "handle": "c1"
+      },
+      "layoutPoints": [
+        {
+          "id": "w_can_bh0_e_r1",
+          "schematicPosition": {
+            "x": 1782,
+            "y": 5955
+          }
+        },
+        {
+          "id": "w_can_bh0_e_r2",
+          "schematicPosition": {
+            "x": 1782,
+            "y": 2715
+          }
+        }
+      ]
+    },
+    {
+      "id": "w_can_bh1_c",
+      "color": "White",
+      "source": {
+        "id": "ecu_com",
         "handle": "c4"
       },
       "target": {
-        "id": "cluster",
-        "handle": "c2"
-      }
-    },
-    {
-      "id": "w_canh_3",
-      "color": "Green",
-      "source": {
-        "id": "cluster",
-        "handle": "c1"
+        "id": "bh_a_fw",
+        "handle": "c31"
       },
-      "target": {
-        "id": "realdash_pi",
-        "handle": "c1"
-      }
+      "layoutPoints": [
+        {
+          "id": "w_can_bh1_c_r1",
+          "schematicPosition": {
+            "x": 1272,
+            "y": 2415
+          }
+        },
+        {
+          "id": "w_can_bh1_c_r2",
+          "schematicPosition": {
+            "x": 1272,
+            "y": 3525
+          }
+        }
+      ]
     },
     {
-      "id": "w_canl_3",
+      "id": "w_can_bh1_e",
       "color": "White",
       "source": {
-        "id": "cluster",
-        "handle": "c2"
+        "id": "bh_a_eng",
+        "handle": "c31"
       },
       "target": {
-        "id": "realdash_pi",
+        "id": "lambda",
         "handle": "c2"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_can_bh1_e_r1",
+          "schematicPosition": {
+            "x": 1800,
+            "y": 5985
+          }
+        },
+        {
+          "id": "w_can_bh1_e_r2",
+          "schematicPosition": {
+            "x": 1800,
+            "y": 2745
+          }
+        }
+      ]
     }
   ],
   "connectors": [
@@ -1318,8 +2974,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 360
+        "x": 2280,
+        "y": 0
       }
     },
     {
@@ -1341,8 +2997,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 870
+        "x": 2280,
+        "y": 510
       }
     },
     {
@@ -1364,8 +3020,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 1050
+        "x": 2280,
+        "y": 690
       }
     },
     {
@@ -1387,8 +3043,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 1230
+        "x": 2280,
+        "y": 870
       }
     },
     {
@@ -1410,8 +3066,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 1410
+        "x": 2280,
+        "y": 1050
       }
     },
     {
@@ -1433,8 +3089,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 1590
+        "x": 2280,
+        "y": 1230
       }
     },
     {
@@ -1460,8 +3116,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 2610
+        "x": 2280,
+        "y": 2250
       }
     },
     {
@@ -1487,8 +3143,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 540
+        "x": 2280,
+        "y": 180
       }
     },
     {
@@ -1514,8 +3170,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 1770
+        "x": 2280,
+        "y": 1410
       }
     },
     {
@@ -1541,8 +3197,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 1980
+        "x": 2280,
+        "y": 1620
       }
     },
     {
@@ -1568,8 +3224,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 2190
+        "x": 2280,
+        "y": 1830
       }
     },
     {
@@ -1595,8 +3251,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 2400
+        "x": 2280,
+        "y": 2040
       }
     },
     {
@@ -1652,8 +3308,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 6090,
-        "y": 930
+        "x": 0,
+        "y": 1020
       }
     },
     {
@@ -1675,8 +3331,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 360
+        "x": 2280,
+        "y": 5430
       }
     },
     {
@@ -1698,8 +3354,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 540
+        "x": 2280,
+        "y": 5610
       }
     },
     {
@@ -1729,8 +3385,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 720
+        "x": 2280,
+        "y": 5790
       }
     },
     {
@@ -1752,8 +3408,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 900
+        "x": 2280,
+        "y": 5970
       }
     },
     {
@@ -1938,8 +3594,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 3270,
-        "y": 360
+        "x": 1170,
+        "y": 0
       }
     },
     {
@@ -2124,8 +3780,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 3270,
-        "y": 1500
+        "x": 1170,
+        "y": 1140
       }
     },
     {
@@ -2170,8 +3826,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 3960,
-        "y": 360
+        "x": 1170,
+        "y": 2280
       }
     },
     {
@@ -2193,8 +3849,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 4650,
-        "y": 360
+        "x": 2280,
+        "y": 3750
       }
     },
     {
@@ -2216,8 +3872,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 4650,
-        "y": 540
+        "x": 2280,
+        "y": 3930
       }
     },
     {
@@ -2239,8 +3895,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 4650,
-        "y": 720
+        "x": 2280,
+        "y": 4110
       }
     },
     {
@@ -2262,8 +3918,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 4650,
-        "y": 900
+        "x": 2280,
+        "y": 4290
       }
     },
     {
@@ -2293,8 +3949,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 4650,
-        "y": 1080
+        "x": 2280,
+        "y": 4470
       }
     },
     {
@@ -2324,8 +3980,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 4650,
-        "y": 1320
+        "x": 2280,
+        "y": 4710
       }
     },
     {
@@ -2355,8 +4011,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 4650,
-        "y": 1560
+        "x": 2280,
+        "y": 4950
       }
     },
     {
@@ -2386,8 +4042,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 4650,
-        "y": 1800
+        "x": 2280,
+        "y": 5190
       }
     },
     {
@@ -2409,8 +4065,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 4650,
-        "y": 2340
+        "x": 2280,
+        "y": 3210
       }
     },
     {
@@ -2449,8 +4105,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 4650,
-        "y": 2040
+        "x": 2280,
+        "y": 2910
       }
     },
     {
@@ -2470,8 +4126,8 @@
         "y": -900
       },
       "schematicPosition": {
-        "x": 6090,
-        "y": 1230
+        "x": 0,
+        "y": 1320
       }
     },
     {
@@ -2505,8 +4161,8 @@
         "y": 900
       },
       "schematicPosition": {
-        "x": 5340,
-        "y": 360
+        "x": 0,
+        "y": 1470
       }
     },
     {
@@ -2540,8 +4196,8 @@
         "y": -1200
       },
       "schematicPosition": {
-        "x": 5340,
-        "y": 630
+        "x": 0,
+        "y": 1740
       }
     },
     {
@@ -2575,8 +4231,8 @@
         "y": 1200
       },
       "schematicPosition": {
-        "x": 5340,
-        "y": 900
+        "x": 0,
+        "y": 2010
       }
     },
     {
@@ -2610,8 +4266,8 @@
         "y": -1500
       },
       "schematicPosition": {
-        "x": 5340,
-        "y": 1170
+        "x": 0,
+        "y": 2280
       }
     },
     {
@@ -2645,8 +4301,8 @@
         "y": -1800
       },
       "schematicPosition": {
-        "x": 5340,
-        "y": 1710
+        "x": 0,
+        "y": 2820
       }
     },
     {
@@ -2680,8 +4336,8 @@
         "y": 1500
       },
       "schematicPosition": {
-        "x": 5340,
-        "y": 1440
+        "x": 0,
+        "y": 2550
       }
     },
     {
@@ -2703,8 +4359,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 2520
+        "x": 2280,
+        "y": 6150
       }
     },
     {
@@ -2730,8 +4386,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 630,
-        "y": 360
+        "x": 2280,
+        "y": 2460
       }
     },
     {
@@ -2753,8 +4409,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 4650,
-        "y": 2520
+        "x": 2280,
+        "y": 3390
       }
     },
     {
@@ -2784,8 +4440,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 6840,
-        "y": 360
+        "x": 2280,
+        "y": 2670
       }
     },
     {
@@ -2856,8 +4512,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 6840,
-        "y": 600
+        "x": 0,
+        "y": 0
       }
     },
     {
@@ -2892,8 +4548,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 6840,
-        "y": 1140
+        "x": 0,
+        "y": 540
       }
     },
     {
@@ -2915,8 +4571,8 @@
         "y": 1800
       },
       "schematicPosition": {
-        "x": 5340,
-        "y": 1980
+        "x": 0,
+        "y": 3090
       }
     },
     {
@@ -2938,8 +4594,8 @@
         "y": -2100
       },
       "schematicPosition": {
-        "x": 5340,
-        "y": 2160
+        "x": 0,
+        "y": 3270
       }
     },
     {
@@ -2961,8 +4617,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 5340,
-        "y": 2340
+        "x": 2280,
+        "y": 3570
       }
     },
     {
@@ -2985,8 +4641,8 @@
         "y": 2100
       },
       "schematicPosition": {
-        "x": 5340,
-        "y": 2520
+        "x": 0,
+        "y": 3450
       }
     },
     {
@@ -3021,8 +4677,8 @@
         "y": 2400
       },
       "schematicPosition": {
-        "x": 6090,
-        "y": 540
+        "x": 0,
+        "y": 3810
       }
     },
     {
@@ -3179,12 +4835,12 @@
         {
           "id": "c30",
           "designation": "30",
-          "signal": "spare"
+          "signal": "CAN H to Lambda"
         },
         {
           "id": "c31",
           "designation": "31",
-          "signal": "spare"
+          "signal": "CAN L to Lambda"
         },
         {
           "id": "c32",
@@ -3222,8 +4878,8 @@
         "y": 0
       },
       "schematicPosition": {
-        "x": 1890,
-        "y": 1590
+        "x": 1170,
+        "y": 2580
       }
     },
     {
@@ -3380,12 +5036,12 @@
         {
           "id": "c30",
           "designation": "30",
-          "signal": "spare"
+          "signal": "CAN H to Lambda"
         },
         {
           "id": "c31",
           "designation": "31",
-          "signal": "spare"
+          "signal": "CAN L to Lambda"
         },
         {
           "id": "c32",
@@ -3423,8 +5079,8 @@
         "y": 0
       },
       "schematicPosition": {
-        "x": 1890,
-        "y": 360
+        "x": 1170,
+        "y": 5040
       }
     },
     {
@@ -3624,8 +5280,8 @@
         "y": 0
       },
       "schematicPosition": {
-        "x": 2580,
-        "y": 1590
+        "x": 1170,
+        "y": 3810
       }
     },
     {
@@ -3825,8 +5481,8 @@
         "y": 0
       },
       "schematicPosition": {
-        "x": 2580,
-        "y": 360
+        "x": 1170,
+        "y": 6270
       }
     },
     {
@@ -3848,8 +5504,8 @@
         "y": -2400
       },
       "schematicPosition": {
-        "x": 6090,
-        "y": 360
+        "x": 0,
+        "y": 3630
       }
     },
     {
@@ -3884,8 +5540,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 6840,
-        "y": 1380
+        "x": 0,
+        "y": 780
       }
     }
   ],
@@ -3899,8 +5555,8 @@
         "y": 900
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 1080
+        "x": 2280,
+        "y": 6450
       }
     },
     {
@@ -3912,8 +5568,8 @@
         "y": 1500
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 1200
+        "x": 2280,
+        "y": 6570
       }
     },
     {
@@ -3925,8 +5581,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 1320
+        "x": 2280,
+        "y": 6690
       }
     },
     {
@@ -3938,8 +5594,8 @@
         "y": 1800
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 1440
+        "x": 2280,
+        "y": 6810
       }
     },
     {
@@ -3951,8 +5607,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 1560
+        "x": 2280,
+        "y": 6930
       }
     },
     {
@@ -3964,8 +5620,8 @@
         "y": 2100
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 1680
+        "x": 2280,
+        "y": 7050
       }
     },
     {
@@ -3977,8 +5633,8 @@
         "y": 900
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 1800
+        "x": 2280,
+        "y": 7170
       }
     },
     {
@@ -3990,8 +5646,8 @@
         "y": 1500
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 1920
+        "x": 2280,
+        "y": 7290
       }
     },
     {
@@ -4003,8 +5659,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 2040
+        "x": 2280,
+        "y": 7410
       }
     },
     {
@@ -4016,8 +5672,8 @@
         "y": 1800
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 2160
+        "x": 2280,
+        "y": 7530
       }
     },
     {
@@ -4029,8 +5685,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 2280
+        "x": 2280,
+        "y": 7650
       }
     },
     {
@@ -4042,8 +5698,8 @@
         "y": 2100
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 2400
+        "x": 2280,
+        "y": 7770
       }
     }
   ],
@@ -5305,12 +6961,12 @@
       "partId": "rp_1k8",
       "locationId": "cam",
       "layoutPosition": {
-        "x": 6210,
-        "y": 390
+        "x": 3900,
+        "y": -300
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 750
+        "x": 2460,
+        "y": 180
       }
     },
     {
@@ -5318,12 +6974,12 @@
       "partId": "rp_470",
       "locationId": "fuellvl",
       "layoutPosition": {
-        "x": 7980,
-        "y": 360
+        "x": 600,
+        "y": -300
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 2700
+        "x": 2460,
+        "y": 6150
       }
     },
     {
@@ -5331,93 +6987,53 @@
       "partId": "rp_10k",
       "locationId": "cruise_stalk",
       "layoutPosition": {
-        "x": 2220,
-        "y": 2160
+        "x": 1320,
+        "y": 2400
       },
       "schematicPosition": {
-        "x": 6090,
-        "y": 810
+        "x": 300,
+        "y": 3810
       }
     }
   ],
   "schematicNotes": [
     {
-      "id": "note_free_limit",
-      "text": "SIGNAL harness. Cabin loom: ECU to bulkhead A/B at the passenger firewall. Engine loom: mating plugs, then one trunk around the motor. Rear (fuel level, rear ABS) bypasses the bulkhead. Power: ST185-Power.harness.",
+      "id": "note_intro",
+      "text": "SIGNAL harness - ECU focused. Cabin loom: ECU to bulkhead A/B at the passenger firewall. Engine loom: mating plugs, then one trunk around the motor. Rear (fuel level, rear ABS) bypasses the bulkhead. CAN crosses the firewall once, to the Lambda controller only. Power: ST185-Power.harness.",
       "width": 390,
       "schematicPosition": {
         "x": 0,
-        "y": -180
+        "y": -420
       }
     },
     {
-      "id": "shdr_engine_sensors",
-      "text": "ENGINE SENSORS",
-      "color": "Yellow",
-      "width": 270,
-      "schematicPosition": {
-        "x": 0,
-        "y": 120
-      }
-    },
-    {
-      "id": "shdr_wheel_speed__rear",
-      "text": "WHEEL SPEED + REAR",
-      "color": "Orange",
-      "width": 270,
-      "schematicPosition": {
-        "x": 1260,
-        "y": 120
-      }
-    },
-    {
-      "id": "shdr_bulkhead_a__b",
-      "text": "BULKHEAD A / B",
-      "color": "Blue",
-      "width": 270,
-      "schematicPosition": {
-        "x": 1890,
-        "y": 120
-      }
-    },
-    {
-      "id": "shdr_ecu",
-      "text": "ECU",
-      "color": "Blue",
-      "width": 270,
-      "schematicPosition": {
-        "x": 3270,
-        "y": 120
-      }
-    },
-    {
-      "id": "shdr_engine_outputs",
-      "text": "ENGINE OUTPUTS",
-      "color": "Orange",
-      "width": 270,
-      "schematicPosition": {
-        "x": 4650,
-        "y": 120
-      }
-    },
-    {
-      "id": "shdr_cabin_relays__switches",
-      "text": "CABIN RELAYS + SWITCHES",
+      "id": "shdr_0",
+      "text": "CABIN DEVICES",
       "color": "Green",
       "width": 270,
       "schematicPosition": {
-        "x": 5340,
-        "y": 120
+        "x": 0,
+        "y": -150
       }
     },
     {
-      "id": "shdr_can_chain",
-      "text": "CAN CHAIN",
-      "color": "Red",
+      "id": "shdr_1",
+      "text": "ECU + BULKHEAD",
+      "color": "Blue",
       "width": 270,
       "schematicPosition": {
-        "x": 6840,
-        "y": 120
+        "x": 1170,
+        "y": -150
+      }
+    },
+    {
+      "id": "shdr_2",
+      "text": "ENGINE + REAR",
+      "color": "Yellow",
+      "width": 270,
+      "schematicPosition": {
+        "x": 2280,
+        "y": -150
       }
     }
   ],

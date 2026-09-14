@@ -14,7 +14,23 @@
       "target": {
         "id": "sp_12v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w65_r1",
+          "schematicPosition": {
+            "x": 282,
+            "y": 15
+          }
+        },
+        {
+          "id": "w65_r2",
+          "schematicPosition": {
+            "x": 282,
+            "y": 15
+          }
+        }
+      ]
     },
     {
       "id": "w74",
@@ -26,7 +42,23 @@
       "target": {
         "id": "batt_ring",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w74_r1",
+          "schematicPosition": {
+            "x": -822,
+            "y": 465
+          }
+        },
+        {
+          "id": "w74_r2",
+          "schematicPosition": {
+            "x": -822,
+            "y": 15
+          }
+        }
+      ]
     },
     {
       "id": "w79",
@@ -38,7 +70,23 @@
       "target": {
         "id": "batt_ring",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w79_r1",
+          "schematicPosition": {
+            "x": -786,
+            "y": 735
+          }
+        },
+        {
+          "id": "w79_r2",
+          "schematicPosition": {
+            "x": -786,
+            "y": 15
+          }
+        }
+      ]
     },
     {
       "id": "w223",
@@ -50,7 +98,23 @@
       "target": {
         "id": "k_fp",
         "handle": "c3"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w223_r1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 15
+          }
+        },
+        {
+          "id": "w223_r2",
+          "schematicPosition": {
+            "x": 390,
+            "y": 1005
+          }
+        }
+      ]
     },
     {
       "id": "w_fan30",
@@ -62,7 +126,23 @@
       "target": {
         "id": "k_fan",
         "handle": "c3"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fan30_r1",
+          "schematicPosition": {
+            "x": 408,
+            "y": 15
+          }
+        },
+        {
+          "id": "w_fan30_r2",
+          "schematicPosition": {
+            "x": 408,
+            "y": 1275
+          }
+        }
+      ]
     },
     {
       "id": "w_fan230",
@@ -74,7 +154,23 @@
       "target": {
         "id": "k_fan2",
         "handle": "c3"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fan230_r1",
+          "schematicPosition": {
+            "x": 426,
+            "y": 15
+          }
+        },
+        {
+          "id": "w_fan230_r2",
+          "schematicPosition": {
+            "x": 426,
+            "y": 1545
+          }
+        }
+      ]
     },
     {
       "id": "w_str30",
@@ -86,7 +182,23 @@
       "target": {
         "id": "k_str",
         "handle": "c3"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_str30_r1",
+          "schematicPosition": {
+            "x": 444,
+            "y": 15
+          }
+        },
+        {
+          "id": "w_str30_r2",
+          "schematicPosition": {
+            "x": 444,
+            "y": 1815
+          }
+        }
+      ]
     },
     {
       "id": "w221",
@@ -98,7 +210,23 @@
       "target": {
         "id": "batt_ring",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w221_r1",
+          "schematicPosition": {
+            "x": -840,
+            "y": 405
+          }
+        },
+        {
+          "id": "w221_r2",
+          "schematicPosition": {
+            "x": -840,
+            "y": 15
+          }
+        }
+      ]
     },
     {
       "id": "w222",
@@ -110,7 +238,23 @@
       "target": {
         "id": "batt_ring",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w222_r1",
+          "schematicPosition": {
+            "x": -804,
+            "y": 675
+          }
+        },
+        {
+          "id": "w222_r2",
+          "schematicPosition": {
+            "x": -804,
+            "y": 15
+          }
+        }
+      ]
     },
     {
       "id": "w_fp86",
@@ -122,7 +266,23 @@
       "target": {
         "id": "batt_ring",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fp86_r1",
+          "schematicPosition": {
+            "x": -732,
+            "y": 945
+          }
+        },
+        {
+          "id": "w_fp86_r2",
+          "schematicPosition": {
+            "x": -732,
+            "y": 15
+          }
+        }
+      ]
     },
     {
       "id": "w_fan86",
@@ -134,7 +294,23 @@
       "target": {
         "id": "batt_ring",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fan86_r1",
+          "schematicPosition": {
+            "x": -750,
+            "y": 1215
+          }
+        },
+        {
+          "id": "w_fan86_r2",
+          "schematicPosition": {
+            "x": -750,
+            "y": 15
+          }
+        }
+      ]
     },
     {
       "id": "w_fan286",
@@ -146,7 +322,23 @@
       "target": {
         "id": "batt_ring",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fan286_r1",
+          "schematicPosition": {
+            "x": -768,
+            "y": 1485
+          }
+        },
+        {
+          "id": "w_fan286_r2",
+          "schematicPosition": {
+            "x": -768,
+            "y": 15
+          }
+        }
+      ]
     },
     {
       "id": "w_str86",
@@ -158,7 +350,23 @@
       "target": {
         "id": "batt_ring",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_str86_r1",
+          "schematicPosition": {
+            "x": -714,
+            "y": 1755
+          }
+        },
+        {
+          "id": "w_str86_r2",
+          "schematicPosition": {
+            "x": -714,
+            "y": 15
+          }
+        }
+      ]
     },
     {
       "id": "w77",
@@ -170,7 +378,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w77_r1",
+          "schematicPosition": {
+            "x": 354,
+            "y": 495
+          }
+        },
+        {
+          "id": "w77_r2",
+          "schematicPosition": {
+            "x": 354,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w78",
@@ -182,7 +406,23 @@
       "target": {
         "id": "ecu_a",
         "handle": "a5"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w78_r1",
+          "schematicPosition": {
+            "x": 1134,
+            "y": 135
+          }
+        },
+        {
+          "id": "w78_r2",
+          "schematicPosition": {
+            "x": 1134,
+            "y": 765
+          }
+        }
+      ]
     },
     {
       "id": "w211",
@@ -194,7 +434,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w211_r1",
+          "schematicPosition": {
+            "x": 1824,
+            "y": 45
+          }
+        },
+        {
+          "id": "w211_r2",
+          "schematicPosition": {
+            "x": 1824,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w212",
@@ -206,7 +462,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w212_r1",
+          "schematicPosition": {
+            "x": 1842,
+            "y": 225
+          }
+        },
+        {
+          "id": "w212_r2",
+          "schematicPosition": {
+            "x": 1842,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w213",
@@ -218,7 +490,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w213_r1",
+          "schematicPosition": {
+            "x": 1860,
+            "y": 405
+          }
+        },
+        {
+          "id": "w213_r2",
+          "schematicPosition": {
+            "x": 1860,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w214",
@@ -230,7 +518,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w214_r1",
+          "schematicPosition": {
+            "x": 1878,
+            "y": 585
+          }
+        },
+        {
+          "id": "w214_r2",
+          "schematicPosition": {
+            "x": 1878,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w112",
@@ -242,7 +546,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w112_r1",
+          "schematicPosition": {
+            "x": 1428,
+            "y": 855
+          }
+        },
+        {
+          "id": "w112_r2",
+          "schematicPosition": {
+            "x": 1428,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w113",
@@ -254,7 +574,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w113_r1",
+          "schematicPosition": {
+            "x": 1464,
+            "y": 1095
+          }
+        },
+        {
+          "id": "w113_r2",
+          "schematicPosition": {
+            "x": 1464,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w114",
@@ -266,7 +602,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w114_r1",
+          "schematicPosition": {
+            "x": 1500,
+            "y": 1335
+          }
+        },
+        {
+          "id": "w114_r2",
+          "schematicPosition": {
+            "x": 1500,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w115",
@@ -278,7 +630,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w115_r1",
+          "schematicPosition": {
+            "x": 1536,
+            "y": 1575
+          }
+        },
+        {
+          "id": "w115_r2",
+          "schematicPosition": {
+            "x": 1536,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w218",
@@ -290,7 +658,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w218_r1",
+          "schematicPosition": {
+            "x": 2076,
+            "y": 4155
+          }
+        },
+        {
+          "id": "w218_r2",
+          "schematicPosition": {
+            "x": 2076,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w219",
@@ -302,7 +686,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w219_r1",
+          "schematicPosition": {
+            "x": 1320,
+            "y": 2025
+          }
+        },
+        {
+          "id": "w219_r2",
+          "schematicPosition": {
+            "x": 1320,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w82",
@@ -315,7 +715,23 @@
         "id": "ecu_b",
         "handle": "b5"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w82_r1",
+          "schematicPosition": {
+            "x": 372,
+            "y": 765
+          }
+        },
+        {
+          "id": "w82_r2",
+          "schematicPosition": {
+            "x": 372,
+            "y": 1065
+          }
+        }
+      ]
     },
     {
       "id": "w124",
@@ -327,7 +743,23 @@
       "target": {
         "id": "ecu_b",
         "handle": "b18"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w124_r1",
+          "schematicPosition": {
+            "x": 1662,
+            "y": 1815
+          }
+        },
+        {
+          "id": "w124_r2",
+          "schematicPosition": {
+            "x": 1662,
+            "y": 1095
+          }
+        }
+      ]
     },
     {
       "id": "w215",
@@ -339,7 +771,23 @@
       "target": {
         "id": "ecu_b",
         "handle": "b26"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w215_r1",
+          "schematicPosition": {
+            "x": 1608,
+            "y": 1725
+          }
+        },
+        {
+          "id": "w215_r2",
+          "schematicPosition": {
+            "x": 1608,
+            "y": 1185
+          }
+        }
+      ]
     },
     {
       "id": "w_fpump",
@@ -351,7 +799,23 @@
       "target": {
         "id": "fuelpump",
         "handle": "c1"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fpump_r1",
+          "schematicPosition": {
+            "x": -804,
+            "y": 1035
+          }
+        },
+        {
+          "id": "w_fpump_r2",
+          "schematicPosition": {
+            "x": -804,
+            "y": 4755
+          }
+        }
+      ]
     },
     {
       "id": "w_radl",
@@ -363,7 +827,23 @@
       "target": {
         "id": "rad_fan",
         "handle": "c1"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_radl_r1",
+          "schematicPosition": {
+            "x": -822,
+            "y": 1305
+          }
+        },
+        {
+          "id": "w_radl_r2",
+          "schematicPosition": {
+            "x": -822,
+            "y": 4935
+          }
+        }
+      ]
     },
     {
       "id": "w_fan2l",
@@ -375,7 +855,23 @@
       "target": {
         "id": "fan2",
         "handle": "c1"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fan2l_r1",
+          "schematicPosition": {
+            "x": -840,
+            "y": 1575
+          }
+        },
+        {
+          "id": "w_fan2l_r2",
+          "schematicPosition": {
+            "x": -840,
+            "y": 5115
+          }
+        }
+      ]
     },
     {
       "id": "w_strl",
@@ -387,7 +883,23 @@
       "target": {
         "id": "starter_trigger",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_strl_r1",
+          "schematicPosition": {
+            "x": -696,
+            "y": 1845
+          }
+        },
+        {
+          "id": "w_strl_r2",
+          "schematicPosition": {
+            "x": -696,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w_lam12",
@@ -399,7 +911,23 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_lam12_r1",
+          "schematicPosition": {
+            "x": 1896,
+            "y": 5475
+          }
+        },
+        {
+          "id": "w_lam12_r2",
+          "schematicPosition": {
+            "x": 1896,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w_csb12",
@@ -411,7 +939,23 @@
       "target": {
         "id": "sp_12v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_csb12_r1",
+          "schematicPosition": {
+            "x": 318,
+            "y": 2325
+          }
+        },
+        {
+          "id": "w_csb12_r2",
+          "schematicPosition": {
+            "x": 318,
+            "y": 15
+          }
+        }
+      ]
     },
     {
       "id": "w_mrs12",
@@ -423,7 +967,23 @@
       "target": {
         "id": "sp_12v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_mrs12_r1",
+          "schematicPosition": {
+            "x": 1968,
+            "y": 5295
+          }
+        },
+        {
+          "id": "w_mrs12_r2",
+          "schematicPosition": {
+            "x": 1968,
+            "y": 15
+          }
+        }
+      ]
     },
     {
       "id": "w67",
@@ -435,7 +995,23 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w67_r1",
+          "schematicPosition": {
+            "x": 1146,
+            "y": 885
+          }
+        },
+        {
+          "id": "w67_r2",
+          "schematicPosition": {
+            "x": 1146,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w206",
@@ -447,7 +1023,23 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w206_r1",
+          "schematicPosition": {
+            "x": 1932,
+            "y": 3315
+          }
+        },
+        {
+          "id": "w206_r2",
+          "schematicPosition": {
+            "x": 1932,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w207",
@@ -459,7 +1051,23 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w207_r1",
+          "schematicPosition": {
+            "x": 2004,
+            "y": 3525
+          }
+        },
+        {
+          "id": "w207_r2",
+          "schematicPosition": {
+            "x": 2004,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w208",
@@ -471,7 +1079,23 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w208_r1",
+          "schematicPosition": {
+            "x": 1752,
+            "y": 3735
+          }
+        },
+        {
+          "id": "w208_r2",
+          "schematicPosition": {
+            "x": 1752,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w209",
@@ -483,7 +1107,23 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w209_r1",
+          "schematicPosition": {
+            "x": 1374,
+            "y": 3945
+          }
+        },
+        {
+          "id": "w209_r2",
+          "schematicPosition": {
+            "x": 1374,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w210",
@@ -495,7 +1135,23 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w210_r1",
+          "schematicPosition": {
+            "x": 210,
+            "y": 2025
+          }
+        },
+        {
+          "id": "w210_r2",
+          "schematicPosition": {
+            "x": 210,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w126",
@@ -507,7 +1163,23 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w126_r1",
+          "schematicPosition": {
+            "x": 1644,
+            "y": 1785
+          }
+        },
+        {
+          "id": "w126_r2",
+          "schematicPosition": {
+            "x": 1644,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w19",
@@ -520,7 +1192,23 @@
         "id": "ecu_a",
         "handle": "a6"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w19_r1",
+          "schematicPosition": {
+            "x": 1116,
+            "y": 375
+          }
+        },
+        {
+          "id": "w19_r2",
+          "schematicPosition": {
+            "x": 1116,
+            "y": 795
+          }
+        }
+      ]
     },
     {
       "id": "w216",
@@ -533,7 +1221,23 @@
         "id": "sp_8v",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w216_r1",
+          "schematicPosition": {
+            "x": 1338,
+            "y": 3105
+          }
+        },
+        {
+          "id": "w216_r2",
+          "schematicPosition": {
+            "x": 1338,
+            "y": 375
+          }
+        }
+      ]
     },
     {
       "id": "w217",
@@ -546,7 +1250,23 @@
         "id": "sp_sw12",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w217_r1",
+          "schematicPosition": {
+            "x": 1698,
+            "y": 4365
+          }
+        },
+        {
+          "id": "w217_r2",
+          "schematicPosition": {
+            "x": 1698,
+            "y": 135
+          }
+        }
+      ]
     },
     {
       "id": "w68",
@@ -559,7 +1279,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w68_r1",
+          "schematicPosition": {
+            "x": 1110,
+            "y": 825
+          }
+        },
+        {
+          "id": "w68_r2",
+          "schematicPosition": {
+            "x": 1110,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w69",
@@ -572,7 +1308,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w69_r1",
+          "schematicPosition": {
+            "x": 1182,
+            "y": 1125
+          }
+        },
+        {
+          "id": "w69_r2",
+          "schematicPosition": {
+            "x": 1182,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w2",
@@ -585,7 +1337,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w2_r1",
+          "schematicPosition": {
+            "x": 1572,
+            "y": 2235
+          }
+        },
+        {
+          "id": "w2_r2",
+          "schematicPosition": {
+            "x": 1572,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w4",
@@ -598,7 +1366,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w4_r1",
+          "schematicPosition": {
+            "x": 1590,
+            "y": 2415
+          }
+        },
+        {
+          "id": "w4_r2",
+          "schematicPosition": {
+            "x": 1590,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w6",
@@ -611,7 +1395,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w6_r1",
+          "schematicPosition": {
+            "x": 1806,
+            "y": 2595
+          }
+        },
+        {
+          "id": "w6_r2",
+          "schematicPosition": {
+            "x": 1806,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w8",
@@ -624,7 +1424,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w8_r1",
+          "schematicPosition": {
+            "x": 2040,
+            "y": 2775
+          }
+        },
+        {
+          "id": "w8_r2",
+          "schematicPosition": {
+            "x": 2040,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w10",
@@ -637,7 +1453,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w10_r1",
+          "schematicPosition": {
+            "x": 1554,
+            "y": 2955
+          }
+        },
+        {
+          "id": "w10_r2",
+          "schematicPosition": {
+            "x": 1554,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w24",
@@ -650,7 +1482,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w24_r1",
+          "schematicPosition": {
+            "x": 1356,
+            "y": 3165
+          }
+        },
+        {
+          "id": "w24_r2",
+          "schematicPosition": {
+            "x": 1356,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w27",
@@ -663,7 +1511,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w27_r1",
+          "schematicPosition": {
+            "x": 1950,
+            "y": 3375
+          }
+        },
+        {
+          "id": "w27_r2",
+          "schematicPosition": {
+            "x": 1950,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w30",
@@ -676,7 +1540,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w30_r1",
+          "schematicPosition": {
+            "x": 2022,
+            "y": 3585
+          }
+        },
+        {
+          "id": "w30_r2",
+          "schematicPosition": {
+            "x": 2022,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w33",
@@ -689,7 +1569,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w33_r1",
+          "schematicPosition": {
+            "x": 1770,
+            "y": 3795
+          }
+        },
+        {
+          "id": "w33_r2",
+          "schematicPosition": {
+            "x": 1770,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w36",
@@ -702,7 +1598,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w36_r1",
+          "schematicPosition": {
+            "x": 1392,
+            "y": 4005
+          }
+        },
+        {
+          "id": "w36_r2",
+          "schematicPosition": {
+            "x": 1392,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w40",
@@ -715,7 +1627,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w40_r1",
+          "schematicPosition": {
+            "x": 264,
+            "y": 2145
+          }
+        },
+        {
+          "id": "w40_r2",
+          "schematicPosition": {
+            "x": 264,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w45",
@@ -728,7 +1656,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w45_r1",
+          "schematicPosition": {
+            "x": 1734,
+            "y": 4605
+          }
+        },
+        {
+          "id": "w45_r2",
+          "schematicPosition": {
+            "x": 1734,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w47",
@@ -741,7 +1685,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w47_r1",
+          "schematicPosition": {
+            "x": 1716,
+            "y": 4395
+          }
+        },
+        {
+          "id": "w47_r2",
+          "schematicPosition": {
+            "x": 1716,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w17",
@@ -754,7 +1714,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w17_r1",
+          "schematicPosition": {
+            "x": 2094,
+            "y": 4215
+          }
+        },
+        {
+          "id": "w17_r2",
+          "schematicPosition": {
+            "x": 2094,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w127",
@@ -767,7 +1743,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w127_r1",
+          "schematicPosition": {
+            "x": 1626,
+            "y": 1755
+          }
+        },
+        {
+          "id": "w127_r2",
+          "schematicPosition": {
+            "x": 1626,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w56",
@@ -780,7 +1772,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w56_r1",
+          "schematicPosition": {
+            "x": 1350,
+            "y": 5805
+          }
+        },
+        {
+          "id": "w56_r2",
+          "schematicPosition": {
+            "x": 1350,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w64",
@@ -793,7 +1801,23 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White"
+      "stripeColor": "White",
+      "layoutPoints": [
+        {
+          "id": "w64_r1",
+          "schematicPosition": {
+            "x": 1386,
+            "y": 6045
+          }
+        },
+        {
+          "id": "w64_r2",
+          "schematicPosition": {
+            "x": 1386,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w66",
@@ -805,7 +1829,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w66_r1",
+          "schematicPosition": {
+            "x": 300,
+            "y": 135
+          }
+        },
+        {
+          "id": "w66_r2",
+          "schematicPosition": {
+            "x": 300,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w70",
@@ -817,7 +1857,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w70_r1",
+          "schematicPosition": {
+            "x": 1128,
+            "y": 855
+          }
+        },
+        {
+          "id": "w70_r2",
+          "schematicPosition": {
+            "x": 1128,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_a34",
@@ -829,7 +1885,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_a34_r1",
+          "schematicPosition": {
+            "x": 1164,
+            "y": 915
+          }
+        },
+        {
+          "id": "w_a34_r2",
+          "schematicPosition": {
+            "x": 1164,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_b25",
@@ -841,7 +1913,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_b25_r1",
+          "schematicPosition": {
+            "x": 1200,
+            "y": 1155
+          }
+        },
+        {
+          "id": "w_b25_r2",
+          "schematicPosition": {
+            "x": 1200,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_b34",
@@ -853,7 +1941,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_b34_r1",
+          "schematicPosition": {
+            "x": 1218,
+            "y": 1215
+          }
+        },
+        {
+          "id": "w_b34_r2",
+          "schematicPosition": {
+            "x": 1218,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_cop1g",
@@ -865,7 +1969,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_cop1g_r1",
+          "schematicPosition": {
+            "x": 1410,
+            "y": 765
+          }
+        },
+        {
+          "id": "w_cop1g_r2",
+          "schematicPosition": {
+            "x": 1410,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_cop2g",
@@ -877,7 +1997,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_cop2g_r1",
+          "schematicPosition": {
+            "x": 1446,
+            "y": 1005
+          }
+        },
+        {
+          "id": "w_cop2g_r2",
+          "schematicPosition": {
+            "x": 1446,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_cop3g",
@@ -889,7 +2025,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_cop3g_r1",
+          "schematicPosition": {
+            "x": 1482,
+            "y": 1245
+          }
+        },
+        {
+          "id": "w_cop3g_r2",
+          "schematicPosition": {
+            "x": 1482,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_cop4g",
@@ -901,7 +2053,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_cop4g_r1",
+          "schematicPosition": {
+            "x": 1518,
+            "y": 1485
+          }
+        },
+        {
+          "id": "w_cop4g_r2",
+          "schematicPosition": {
+            "x": 1518,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_fpg",
@@ -913,7 +2081,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fpg_r1",
+          "schematicPosition": {
+            "x": 1788,
+            "y": 4785
+          }
+        },
+        {
+          "id": "w_fpg_r2",
+          "schematicPosition": {
+            "x": 1788,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_radg",
@@ -925,7 +2109,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_radg_r1",
+          "schematicPosition": {
+            "x": 2058,
+            "y": 4965
+          }
+        },
+        {
+          "id": "w_radg_r2",
+          "schematicPosition": {
+            "x": 2058,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_fan2g",
@@ -937,7 +2137,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_fan2g_r1",
+          "schematicPosition": {
+            "x": 1680,
+            "y": 5145
+          }
+        },
+        {
+          "id": "w_fan2g_r2",
+          "schematicPosition": {
+            "x": 1680,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_mrsg",
@@ -949,7 +2165,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_mrsg_r1",
+          "schematicPosition": {
+            "x": 1986,
+            "y": 5325
+          }
+        },
+        {
+          "id": "w_mrsg_r2",
+          "schematicPosition": {
+            "x": 1986,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_lamg",
@@ -961,7 +2193,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_lamg_r1",
+          "schematicPosition": {
+            "x": 1914,
+            "y": 5505
+          }
+        },
+        {
+          "id": "w_lamg_r2",
+          "schematicPosition": {
+            "x": 1914,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_csbg",
@@ -973,7 +2221,23 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_csbg_r1",
+          "schematicPosition": {
+            "x": 336,
+            "y": 2355
+          }
+        },
+        {
+          "id": "w_csbg_r2",
+          "schematicPosition": {
+            "x": 336,
+            "y": 615
+          }
+        }
+      ]
     },
     {
       "id": "w_aps_vc1",
@@ -985,7 +2249,23 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_aps_vc1_r1",
+          "schematicPosition": {
+            "x": 246,
+            "y": 2115
+          }
+        },
+        {
+          "id": "w_aps_vc1_r2",
+          "schematicPosition": {
+            "x": 246,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w_aps_gnd2",
@@ -998,55 +2278,23 @@
       "target": {
         "id": "sp_gndout",
         "handle": "Splice"
-      }
-    },
-    {
-      "id": "w_cluster_12v",
-      "color": "Red",
-      "source": {
-        "id": "cluster",
-        "handle": "c1"
       },
-      "target": {
-        "id": "sp_12v",
-        "handle": "Splice"
-      }
-    },
-    {
-      "id": "w_cluster_gnd",
-      "color": "Black",
-      "source": {
-        "id": "cluster",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "sp_chassis",
-        "handle": "Splice"
-      }
-    },
-    {
-      "id": "w_realdash_pi_12v",
-      "color": "Red",
-      "source": {
-        "id": "realdash_pi",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "sp_12v",
-        "handle": "Splice"
-      }
-    },
-    {
-      "id": "w_realdash_pi_gnd",
-      "color": "Black",
-      "source": {
-        "id": "realdash_pi",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "sp_chassis",
-        "handle": "Splice"
-      }
+      "layoutPoints": [
+        {
+          "id": "w_aps_gnd2_r1",
+          "schematicPosition": {
+            "x": 228,
+            "y": 2055
+          }
+        },
+        {
+          "id": "w_aps_gnd2_r2",
+          "schematicPosition": {
+            "x": 228,
+            "y": 495
+          }
+        }
+      ]
     },
     {
       "id": "w_vr1_5v_from_ecu5v",
@@ -1058,7 +2306,23 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_vr1_5v_from_ecu5v_r1",
+          "schematicPosition": {
+            "x": 1332,
+            "y": 5685
+          }
+        },
+        {
+          "id": "w_vr1_5v_from_ecu5v_r2",
+          "schematicPosition": {
+            "x": 1332,
+            "y": 255
+          }
+        }
+      ]
     },
     {
       "id": "w_vr2_5v_from_ecu5v",
@@ -1070,7 +2334,23 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_vr2_5v_from_ecu5v_r1",
+          "schematicPosition": {
+            "x": 1368,
+            "y": 5925
+          }
+        },
+        {
+          "id": "w_vr2_5v_from_ecu5v_r2",
+          "schematicPosition": {
+            "x": 1368,
+            "y": 255
+          }
+        }
+      ]
     }
   ],
   "connectors": [
@@ -1115,8 +2395,8 @@
         "y": 1200
       },
       "schematicPosition": {
-        "x": 990,
-        "y": 180
+        "x": 1050,
+        "y": 720
       }
     },
     {
@@ -1160,8 +2440,8 @@
         "y": -1500
       },
       "schematicPosition": {
-        "x": 990,
-        "y": 480
+        "x": 1050,
+        "y": 1020
       }
     },
     {
@@ -1194,8 +2474,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 330,
-        "y": 180
+        "x": 0,
+        "y": 360
       }
     },
     {
@@ -1228,8 +2508,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 330,
-        "y": 450
+        "x": 0,
+        "y": 630
       }
     },
     {
@@ -1262,8 +2542,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 330,
-        "y": 720
+        "x": 0,
+        "y": 900
       }
     },
     {
@@ -1296,8 +2576,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 330,
-        "y": 990
+        "x": 0,
+        "y": 1170
       }
     },
     {
@@ -1330,8 +2610,8 @@
         "y": -900
       },
       "schematicPosition": {
-        "x": 330,
-        "y": 1260
+        "x": 0,
+        "y": 1440
       }
     },
     {
@@ -1364,8 +2644,8 @@
         "y": 900
       },
       "schematicPosition": {
-        "x": 330,
-        "y": 1530
+        "x": 0,
+        "y": 1710
       }
     },
     {
@@ -1386,8 +2666,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 180
+        "x": 2160,
+        "y": 0
       }
     },
     {
@@ -1408,8 +2688,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 360
+        "x": 2160,
+        "y": 180
       }
     },
     {
@@ -1430,8 +2710,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 540
+        "x": 2160,
+        "y": 360
       }
     },
     {
@@ -1452,8 +2732,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 720
+        "x": 2160,
+        "y": 540
       }
     },
     {
@@ -1483,8 +2763,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 900
+        "x": 2160,
+        "y": 720
       }
     },
     {
@@ -1514,8 +2794,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 1140
+        "x": 2160,
+        "y": 960
       }
     },
     {
@@ -1545,8 +2825,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 1380
+        "x": 2160,
+        "y": 1200
       }
     },
     {
@@ -1576,8 +2856,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 1620
+        "x": 2160,
+        "y": 1440
       }
     },
     {
@@ -1615,8 +2895,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 1710,
-        "y": 180
+        "x": 2160,
+        "y": 1680
       }
     },
     {
@@ -1637,8 +2917,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 1950
+        "x": 2160,
+        "y": 2160
       }
     },
     {
@@ -1659,8 +2939,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 2130
+        "x": 2160,
+        "y": 2340
       }
     },
     {
@@ -1681,8 +2961,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 2310
+        "x": 2160,
+        "y": 2520
       }
     },
     {
@@ -1703,8 +2983,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 2430,
-        "y": 180
+        "x": 2160,
+        "y": 2700
       }
     },
     {
@@ -1725,8 +3005,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 2430,
-        "y": 360
+        "x": 2160,
+        "y": 2880
       }
     },
     {
@@ -1751,8 +3031,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 1020
+        "x": 2160,
+        "y": 3060
       }
     },
     {
@@ -1777,8 +3057,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 180
+        "x": 2160,
+        "y": 3270
       }
     },
     {
@@ -1803,8 +3083,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 390
+        "x": 2160,
+        "y": 3480
       }
     },
     {
@@ -1829,8 +3109,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 600
+        "x": 2160,
+        "y": 3690
       }
     },
     {
@@ -1855,8 +3135,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 810
+        "x": 2160,
+        "y": 3900
       }
     },
     {
@@ -1901,8 +3181,8 @@
         "y": 1500
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 1650
+        "x": 0,
+        "y": 1980
       }
     },
     {
@@ -1927,8 +3207,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 1440
+        "x": 2160,
+        "y": 4110
       }
     },
     {
@@ -1949,8 +3229,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 1710,
-        "y": 480
+        "x": 2160,
+        "y": 1980
       }
     },
     {
@@ -1976,8 +3256,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 2100,
-        "y": 1230
+        "x": 2160,
+        "y": 4320
       }
     },
     {
@@ -1998,8 +3278,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 2430,
-        "y": 540
+        "x": 2160,
+        "y": 4530
       }
     },
     {
@@ -2020,8 +3300,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 1710,
-        "y": 1020
+        "x": 2160,
+        "y": 4710
       }
     },
     {
@@ -2042,8 +3322,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 1710,
-        "y": 660
+        "x": 2160,
+        "y": 4890
       }
     },
     {
@@ -2064,8 +3344,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 1710,
-        "y": 840
+        "x": 2160,
+        "y": 5070
       }
     },
     {
@@ -2086,8 +3366,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 1710,
-        "y": 1200
+        "x": 2160,
+        "y": 5250
       }
     },
     {
@@ -2117,8 +3397,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 1710,
-        "y": 1380
+        "x": 2160,
+        "y": 5430
       }
     },
     {
@@ -2139,50 +3419,8 @@
         "y": -1800
       },
       "schematicPosition": {
-        "x": 1710,
-        "y": 1620
-      }
-    },
-    {
-      "id": "cluster",
-      "label": "TrackCluster - ESP32-P4 power",
-      "width": 150,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "+12V"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 780,
-        "y": 1800
-      }
-    },
-    {
-      "id": "realdash_pi",
-      "label": "RealDash Pi 5 - power",
-      "width": 150,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "+12V"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 900,
-        "y": -2100
+        "x": 0,
+        "y": 2280
       }
     }
   ],
@@ -2197,7 +3435,7 @@
       },
       "schematicPosition": {
         "x": 0,
-        "y": 180
+        "y": 0
       }
     },
     {
@@ -2210,7 +3448,7 @@
       },
       "schematicPosition": {
         "x": 0,
-        "y": 300
+        "y": 120
       }
     },
     {
@@ -2222,8 +3460,8 @@
         "y": -1200
       },
       "schematicPosition": {
-        "x": 330,
-        "y": 1800
+        "x": 0,
+        "y": 240
       }
     },
     {
@@ -2235,8 +3473,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 2430,
-        "y": 720
+        "x": 2160,
+        "y": 5670
       }
     },
     {
@@ -2248,8 +3486,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 2430,
-        "y": 840
+        "x": 2160,
+        "y": 5790
       }
     },
     {
@@ -2261,8 +3499,8 @@
         "y": -300
       },
       "schematicPosition": {
-        "x": 2430,
-        "y": 960
+        "x": 2160,
+        "y": 5910
       }
     },
     {
@@ -2274,8 +3512,8 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 2430,
-        "y": 1080
+        "x": 2160,
+        "y": 6030
       }
     }
   ],
@@ -2647,42 +3885,6 @@
           "id": "bn_bp_cab__csb3io_p1",
           "layoutPosition": {
             "x": 660,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_cab__cluster",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_cab",
-      "targetId": "cluster",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_cab__cluster_p1",
-          "layoutPosition": {
-            "x": 780,
-            "y": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_bp_cab__realdash_pi",
-      "length": {
-        "unit": "mm",
-        "value": 250
-      },
-      "sourceId": "bp_cab",
-      "targetId": "realdash_pi",
-      "layoutPoints": [
-        {
-          "id": "bn_bp_cab__realdash_pi_p1",
-          "layoutPosition": {
-            "x": 900,
             "y": 0
           }
         }
@@ -3327,8 +4529,8 @@
         "y": -600
       },
       "schematicPosition": {
-        "x": 660,
-        "y": 180
+        "x": 1050,
+        "y": 0
       }
     },
     {
@@ -3338,8 +4540,8 @@
         "y": 600
       },
       "schematicPosition": {
-        "x": 660,
-        "y": 300
+        "x": 1050,
+        "y": 120
       }
     },
     {
@@ -3349,8 +4551,8 @@
         "y": 2100
       },
       "schematicPosition": {
-        "x": 660,
-        "y": 420
+        "x": 1050,
+        "y": 240
       }
     },
     {
@@ -3360,8 +4562,8 @@
         "y": -2400
       },
       "schematicPosition": {
-        "x": 660,
-        "y": 540
+        "x": 1050,
+        "y": 360
       }
     },
     {
@@ -3371,8 +4573,8 @@
         "y": 2400
       },
       "schematicPosition": {
-        "x": 660,
-        "y": 660
+        "x": 1050,
+        "y": 480
       }
     },
     {
@@ -3382,89 +4584,49 @@
         "y": -900
       },
       "schematicPosition": {
-        "x": 660,
-        "y": 780
+        "x": 1050,
+        "y": 600
       }
     }
   ],
   "schematicNotes": [
     {
-      "id": "n_pwr",
-      "text": "POWER harness (this file). 12V / +5V / +8V / Gnd Out / chassis. Signals: app.harness.design/KQL8. Relay pin 85 stays on the signal file.",
+      "id": "note_intro",
+      "text": "POWER harness - ECU focused. Battery and fuses in the passenger footwell. 12V / +5V / +8V / Gnd Out / chassis. Display devices are CAN-only and are not powered from this harness. Signals: ST185-Signal.harness.",
       "width": 390,
       "schematicPosition": {
         "x": 0,
-        "y": -240
+        "y": -420
       }
     },
     {
-      "id": "shdr_source",
-      "text": "SOURCE",
-      "color": "Red",
-      "width": 210,
+      "id": "shdr_0",
+      "text": "CABIN - source, fuses, relays",
+      "color": "Green",
+      "width": 270,
       "schematicPosition": {
         "x": 0,
-        "y": 30
+        "y": -150
       }
     },
     {
-      "id": "shdr_relays",
-      "text": "RELAYS",
-      "color": "Green",
-      "width": 210,
-      "schematicPosition": {
-        "x": 330,
-        "y": 30
-      }
-    },
-    {
-      "id": "shdr_distribution_splices",
-      "text": "DISTRIBUTION SPLICES",
+      "id": "shdr_1",
+      "text": "SPLICES + ECU PINS",
       "color": "Red",
-      "width": 210,
+      "width": 270,
       "schematicPosition": {
-        "x": 660,
-        "y": 30
+        "x": 1050,
+        "y": -150
       }
     },
     {
-      "id": "shdr_ecu_power_pins",
-      "text": "ECU POWER PINS",
-      "color": "Blue",
-      "width": 210,
-      "schematicPosition": {
-        "x": 990,
-        "y": 30
-      }
-    },
-    {
-      "id": "shdr_loads_injection_&_ignition",
-      "text": "LOADS - injection & ignition",
+      "id": "shdr_2",
+      "text": "ENGINE + REAR LOADS",
       "color": "Orange",
-      "width": 210,
+      "width": 270,
       "schematicPosition": {
-        "x": 1380,
-        "y": 30
-      }
-    },
-    {
-      "id": "shdr_loads_motors_&_modules",
-      "text": "LOADS - motors & modules",
-      "color": "Orange",
-      "width": 210,
-      "schematicPosition": {
-        "x": 1710,
-        "y": 30
-      }
-    },
-    {
-      "id": "shdr_sensor_supply_&_return",
-      "text": "SENSOR SUPPLY & RETURN",
-      "color": "Yellow",
-      "width": 210,
-      "schematicPosition": {
-        "x": 2100,
-        "y": 30
+        "x": 2160,
+        "y": -150
       }
     }
   ],
