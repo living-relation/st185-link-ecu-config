@@ -2191,7 +2191,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c33"
+    "handle": "c2"
    },
    "color": "Orange",
    "layoutPoints": [
@@ -2206,7 +2206,7 @@
      "id": "w_rail_sp_5v_c_r2",
      "schematicPosition": {
       "x": 1410,
-      "y": 7155
+      "y": 6225
      }
     }
    ]
@@ -2215,7 +2215,7 @@
    "id": "w_rail_sp_5v_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c33"
+    "handle": "c2"
    },
    "target": {
     "id": "sp_5v_eng",
@@ -2227,7 +2227,7 @@
      "id": "w_rail_sp_5v_e_r1",
      "schematicPosition": {
       "x": 2430,
-      "y": 8385
+      "y": 7455
      }
     },
     {
@@ -2247,7 +2247,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c34"
+    "handle": "c3"
    },
    "color": "Black",
    "stripeColor": "White",
@@ -2263,7 +2263,7 @@
      "id": "w_rail_sp_gndout_c_r2",
      "schematicPosition": {
       "x": 1446,
-      "y": 7185
+      "y": 6255
      }
     }
    ]
@@ -2272,7 +2272,7 @@
    "id": "w_rail_sp_gndout_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c34"
+    "handle": "c3"
    },
    "target": {
     "id": "sp_gndout_eng",
@@ -2285,7 +2285,7 @@
      "id": "w_rail_sp_gndout_e_r1",
      "schematicPosition": {
       "x": 2448,
-      "y": 8415
+      "y": 7485
      }
     },
     {
@@ -2305,7 +2305,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c35"
+    "handle": "c4"
    },
    "color": "Orange",
    "stripeColor": "White",
@@ -2321,7 +2321,7 @@
      "id": "w_rail_sp_8v_c_r2",
      "schematicPosition": {
       "x": 1428,
-      "y": 7215
+      "y": 6285
      }
     }
    ]
@@ -2330,7 +2330,7 @@
    "id": "w_rail_sp_8v_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c35"
+    "handle": "c4"
    },
    "target": {
     "id": "cam",
@@ -2343,7 +2343,7 @@
      "id": "w_rail_sp_8v_e_r1",
      "schematicPosition": {
       "x": 2466,
-      "y": 8445
+      "y": 7515
      }
     },
     {
@@ -2363,7 +2363,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c36"
+    "handle": "c5"
    },
    "color": "Red",
    "layoutPoints": [
@@ -2378,7 +2378,7 @@
      "id": "w_rail_sp_sw12_c_r2",
      "schematicPosition": {
       "x": 1464,
-      "y": 7245
+      "y": 6315
      }
     }
    ]
@@ -2387,7 +2387,7 @@
    "id": "w_rail_sp_sw12_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c36"
+    "handle": "c5"
    },
    "target": {
     "id": "sp_sw12_eng",
@@ -2399,7 +2399,7 @@
      "id": "w_rail_sp_sw12_e_r1",
      "schematicPosition": {
       "x": 2484,
-      "y": 8475
+      "y": 7545
      }
     },
     {
@@ -2448,7 +2448,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c9"
+    "handle": "c4"
    },
    "layoutPoints": [
     {
@@ -2462,7 +2462,7 @@
      "id": "w_hv_rad_fan_c_r2",
      "schematicPosition": {
       "x": -804,
-      "y": 8895
+      "y": 8745
      }
     }
    ]
@@ -2472,7 +2472,7 @@
    "color": "Red",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c9"
+    "handle": "c4"
    },
    "target": {
     "id": "rad_fan",
@@ -2483,7 +2483,7 @@
      "id": "w_hv_rad_fan_e_r1",
      "schematicPosition": {
       "x": 2628,
-      "y": 10125
+      "y": 9975
      }
     },
     {
@@ -2504,7 +2504,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c10"
+    "handle": "c5"
    },
    "layoutPoints": [
     {
@@ -2518,7 +2518,7 @@
      "id": "w_hv_fan2_c_r2",
      "schematicPosition": {
       "x": -822,
-      "y": 8925
+      "y": 8775
      }
     }
    ]
@@ -2528,7 +2528,7 @@
    "color": "Red",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c10"
+    "handle": "c5"
    },
    "target": {
     "id": "fan2",
@@ -2539,7 +2539,7 @@
      "id": "w_hv_fan2_e_r1",
      "schematicPosition": {
       "x": 2502,
-      "y": 10155
+      "y": 10005
      }
     },
     {
@@ -2560,7 +2560,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c11"
+    "handle": "c2"
    },
    "layoutPoints": [
     {
@@ -2574,7 +2574,7 @@
      "id": "w_hv_mrs_pwr_c_r2",
      "schematicPosition": {
       "x": 1392,
-      "y": 8955
+      "y": 8685
      }
     }
    ]
@@ -2584,7 +2584,7 @@
    "color": "Red",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c11"
+    "handle": "c2"
    },
    "target": {
     "id": "mrs_pwr",
@@ -2595,7 +2595,7 @@
      "id": "w_hv_mrs_pwr_e_r1",
      "schematicPosition": {
       "x": 2520,
-      "y": 10185
+      "y": 9915
      }
     },
     {
@@ -2616,7 +2616,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c12"
+    "handle": "c6"
    },
    "layoutPoints": [
     {
@@ -2630,7 +2630,7 @@
      "id": "w_hv_etb_c_r2",
      "schematicPosition": {
       "x": -840,
-      "y": 8985
+      "y": 8805
      }
     }
    ]
@@ -2640,7 +2640,7 @@
    "color": "Red",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c12"
+    "handle": "c6"
    },
    "target": {
     "id": "etb",
@@ -2651,7 +2651,7 @@
      "id": "w_hv_etb_e_r1",
      "schematicPosition": {
       "x": 2538,
-      "y": 10215
+      "y": 10035
      }
     },
     {
@@ -2672,7 +2672,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c13"
+    "handle": "c7"
    },
    "layoutPoints": [
     {
@@ -2686,7 +2686,7 @@
      "id": "w_inj_pwr_c_r2",
      "schematicPosition": {
       "x": 1482,
-      "y": 9015
+      "y": 8835
      }
     }
    ]
@@ -2696,7 +2696,7 @@
    "color": "Red",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c13"
+    "handle": "c7"
    },
    "target": {
     "id": "sp_inj_eng",
@@ -2707,7 +2707,7 @@
      "id": "w_inj_pwr_e_r1",
      "schematicPosition": {
       "x": 2556,
-      "y": 10245
+      "y": 10065
      }
     },
     {
@@ -2728,7 +2728,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c14"
+    "handle": "c8"
    },
    "layoutPoints": [
     {
@@ -2742,7 +2742,7 @@
      "id": "w_cop_pwr_c_r2",
      "schematicPosition": {
       "x": 1500,
-      "y": 9045
+      "y": 8865
      }
     }
    ]
@@ -2752,7 +2752,7 @@
    "color": "Red",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c14"
+    "handle": "c8"
    },
    "target": {
     "id": "sp_cop_eng",
@@ -2763,7 +2763,7 @@
      "id": "w_cop_pwr_e_r1",
      "schematicPosition": {
       "x": 2574,
-      "y": 10275
+      "y": 10095
      }
     },
     {
@@ -2784,7 +2784,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c15"
+    "handle": "c5"
    },
    "layoutPoints": [
     {
@@ -2798,7 +2798,7 @@
      "id": "w124_c_r2",
      "schematicPosition": {
       "x": 1320,
-      "y": 9075
+      "y": 8775
      }
     }
    ]
@@ -2808,7 +2808,7 @@
    "color": "Pink",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c15"
+    "handle": "c5"
    },
    "target": {
     "id": "etb",
@@ -2819,7 +2819,7 @@
      "id": "w124_e_r1",
      "schematicPosition": {
       "x": 2592,
-      "y": 10305
+      "y": 10005
      }
     },
     {
@@ -2840,7 +2840,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c16"
+    "handle": "c6"
    },
    "layoutPoints": [
     {
@@ -2854,7 +2854,7 @@
      "id": "w215_c_r2",
      "schematicPosition": {
       "x": 1338,
-      "y": 9105
+      "y": 8805
      }
     }
    ]
@@ -2864,7 +2864,7 @@
    "color": "Pink",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c16"
+    "handle": "c6"
    },
    "target": {
     "id": "etb",
@@ -2875,7 +2875,7 @@
      "id": "w215_e_r1",
      "schematicPosition": {
       "x": 2610,
-      "y": 10335
+      "y": 10035
      }
     },
     {
@@ -3960,194 +3960,291 @@
   },
   {
    "id": "bh_a_fw",
-   "label": "Bulkhead A - firewall (8STA0-14-35SN)",
-   "partId": "cp_8sta0_14_35sn",
+   "label": "Bulkhead A - firewall (HDP24-24-47PE-L017)",
+   "partId": "cp_hdp_a_fw",
    "width": 210,
    "cavities": [
     {
      "id": "c1",
      "designation": "1",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16p",
+     "signal": "Shield drain (engine bay, single)"
     },
     {
      "id": "c2",
      "designation": "2",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16p",
+     "signal": "+5V Out to engine sensors"
     },
     {
      "id": "c3",
      "designation": "3",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16p",
+     "signal": "Gnd Out to engine sensors"
     },
     {
      "id": "c4",
      "designation": "4",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16p",
+     "signal": "+8V Out to cam Hall"
     },
     {
      "id": "c5",
      "designation": "5",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16p",
+     "signal": "Switched 12V to engine sensors"
     },
     {
      "id": "c6",
      "designation": "6",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A7"
     },
     {
      "id": "c7",
      "designation": "7",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A30"
     },
     {
      "id": "c8",
      "designation": "8",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A17"
     },
     {
      "id": "c9",
      "designation": "9",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A31"
     },
     {
      "id": "c10",
      "designation": "10",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A23"
     },
     {
      "id": "c11",
      "designation": "11",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ABS Wheel Speed FR SIG-"
     },
     {
      "id": "c12",
      "designation": "12",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-B B21"
     },
     {
      "id": "c13",
      "designation": "13",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A4"
     },
     {
      "id": "c14",
      "designation": "14",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A3"
     },
     {
      "id": "c15",
      "designation": "15",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A2"
     },
     {
      "id": "c16",
      "designation": "16",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A1"
     },
     {
      "id": "c17",
      "designation": "17",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A13"
     },
     {
      "id": "c18",
      "designation": "18",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A12"
     },
     {
      "id": "c19",
      "designation": "19",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A11"
     },
     {
      "id": "c20",
      "designation": "20",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A10"
     },
     {
      "id": "c21",
      "designation": "21",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A22"
     },
     {
      "id": "c22",
      "designation": "22",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A33"
     },
     {
      "id": "c23",
      "designation": "23",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A21"
     },
     {
      "id": "c24",
      "designation": "24",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A8"
     },
     {
      "id": "c25",
      "designation": "25",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A15"
     },
     {
      "id": "c26",
      "designation": "26",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A16"
     },
     {
      "id": "c27",
      "designation": "27",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-B B9"
     },
     {
      "id": "c28",
      "designation": "28",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ABS Wheel Speed FR SIG+"
     },
     {
      "id": "c29",
      "designation": "29",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A9"
     },
     {
      "id": "c30",
      "designation": "30",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "CAN H to Lambda"
     },
     {
      "id": "c31",
      "designation": "31",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "CAN L to Lambda"
     },
     {
      "id": "c32",
      "designation": "32",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20p",
+     "signal": "Trig 2 cam signal (after 1.8k pull-up)"
     },
     {
      "id": "c33",
      "designation": "33",
-     "signal": "+5V Out to engine sensors"
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c34",
      "designation": "34",
-     "signal": "Gnd Out to engine sensors"
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c35",
      "designation": "35",
-     "signal": "+8V Out to cam Hall"
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c36",
      "designation": "36",
-     "signal": "Switched 12V to engine sensors"
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c37",
      "designation": "37",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c38",
+     "designation": "38",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c39",
+     "designation": "39",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c40",
+     "designation": "40",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c41",
+     "designation": "41",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c42",
+     "designation": "42",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c43",
+     "designation": "43",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c44",
+     "designation": "44",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c45",
+     "designation": "45",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c46",
+     "designation": "46",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c47",
+     "designation": "47",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
     }
    ],
    "schematicPosition": {
@@ -4161,194 +4258,291 @@
   },
   {
    "id": "bh_a_eng",
-   "label": "Bulkhead A - engine plug (8STA6-14-35PN)",
-   "partId": "cp_8sta6_14_35pn",
+   "label": "Bulkhead A - engine plug (HDP26-24-47SE-L015)",
+   "partId": "cp_hdp_a_eng",
    "width": 210,
    "cavities": [
     {
      "id": "c1",
      "designation": "1",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16s",
+     "signal": "Shield drain (engine bay, single)"
     },
     {
      "id": "c2",
      "designation": "2",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16s",
+     "signal": "+5V Out to engine sensors"
     },
     {
      "id": "c3",
      "designation": "3",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16s",
+     "signal": "Gnd Out to engine sensors"
     },
     {
      "id": "c4",
      "designation": "4",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16s",
+     "signal": "+8V Out to cam Hall"
     },
     {
      "id": "c5",
      "designation": "5",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16s",
+     "signal": "Switched 12V to engine sensors"
     },
     {
      "id": "c6",
      "designation": "6",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A7"
     },
     {
      "id": "c7",
      "designation": "7",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A30"
     },
     {
      "id": "c8",
      "designation": "8",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A17"
     },
     {
      "id": "c9",
      "designation": "9",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A31"
     },
     {
      "id": "c10",
      "designation": "10",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A23"
     },
     {
      "id": "c11",
      "designation": "11",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ABS Wheel Speed FR SIG-"
     },
     {
      "id": "c12",
      "designation": "12",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-B B21"
     },
     {
      "id": "c13",
      "designation": "13",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A4"
     },
     {
      "id": "c14",
      "designation": "14",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A3"
     },
     {
      "id": "c15",
      "designation": "15",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A2"
     },
     {
      "id": "c16",
      "designation": "16",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A1"
     },
     {
      "id": "c17",
      "designation": "17",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A13"
     },
     {
      "id": "c18",
      "designation": "18",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A12"
     },
     {
      "id": "c19",
      "designation": "19",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A11"
     },
     {
      "id": "c20",
      "designation": "20",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A10"
     },
     {
      "id": "c21",
      "designation": "21",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A22"
     },
     {
      "id": "c22",
      "designation": "22",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A33"
     },
     {
      "id": "c23",
      "designation": "23",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A21"
     },
     {
      "id": "c24",
      "designation": "24",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A8"
     },
     {
      "id": "c25",
      "designation": "25",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A15"
     },
     {
      "id": "c26",
      "designation": "26",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A16"
     },
     {
      "id": "c27",
      "designation": "27",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-B B9"
     },
     {
      "id": "c28",
      "designation": "28",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ABS Wheel Speed FR SIG+"
     },
     {
      "id": "c29",
      "designation": "29",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A9"
     },
     {
      "id": "c30",
      "designation": "30",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "CAN H to Lambda"
     },
     {
      "id": "c31",
      "designation": "31",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "CAN L to Lambda"
     },
     {
      "id": "c32",
      "designation": "32",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp20s",
+     "signal": "Trig 2 cam signal (after 1.8k pull-up)"
     },
     {
      "id": "c33",
      "designation": "33",
-     "signal": "+5V Out to engine sensors"
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c34",
      "designation": "34",
-     "signal": "Gnd Out to engine sensors"
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c35",
      "designation": "35",
-     "signal": "+8V Out to cam Hall"
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c36",
      "designation": "36",
-     "signal": "Switched 12V to engine sensors"
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c37",
      "designation": "37",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c38",
+     "designation": "38",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c39",
+     "designation": "39",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c40",
+     "designation": "40",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c41",
+     "designation": "41",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c42",
+     "designation": "42",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c43",
+     "designation": "43",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c44",
+     "designation": "44",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c45",
+     "designation": "45",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c46",
+     "designation": "46",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c47",
+     "designation": "47",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
     }
    ],
    "schematicPosition": {
@@ -4362,194 +4556,135 @@
   },
   {
    "id": "bh_b_fw",
-   "label": "Bulkhead B - firewall (8STA0-14-35SA)",
-   "partId": "cp_8sta0_14_35sa",
+   "label": "Bulkhead B - firewall (HDP24-24-21PN)",
+   "partId": "cp_hdp_b_fw",
    "width": 210,
    "cavities": [
     {
      "id": "c1",
      "designation": "1",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp12p",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c2",
      "designation": "2",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp12p",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c3",
      "designation": "3",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp12p",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c4",
      "designation": "4",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp12p",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c5",
      "designation": "5",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ETB motor + (Aux 9, B18)"
     },
     {
      "id": "c6",
      "designation": "6",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ETB motor - (Aux 10, B26)"
     },
     {
      "id": "c7",
      "designation": "7",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-B B15"
     },
     {
      "id": "c8",
      "designation": "8",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-B B16"
     },
     {
      "id": "c9",
      "designation": "9",
-     "signal": "Radiator fan feed (relay 87)"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-B B23"
     },
     {
      "id": "c10",
      "designation": "10",
-     "signal": "Condenser fan feed (relay 87)"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-B B6"
     },
     {
      "id": "c11",
      "designation": "11",
-     "signal": "MRS EPS pump 12V"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-B B7"
     },
     {
      "id": "c12",
      "designation": "12",
-     "signal": "V-Ethrottle motor supply"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
     },
     {
      "id": "c13",
      "designation": "13",
-     "signal": "Injector bank 12V"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-A A27"
     },
     {
      "id": "c14",
      "designation": "14",
-     "signal": "Coil bank 12V"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c15",
      "designation": "15",
-     "signal": "ETB motor + (Aux 9, B18)"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c16",
      "designation": "16",
-     "signal": "ETB motor - (Aux 10, B26)"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c17",
      "designation": "17",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c18",
      "designation": "18",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c19",
      "designation": "19",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c20",
      "designation": "20",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c21",
      "designation": "21",
-     "signal": "spare"
-    },
-    {
-     "id": "c22",
-     "designation": "22",
-     "signal": "spare"
-    },
-    {
-     "id": "c23",
-     "designation": "23",
-     "signal": "spare"
-    },
-    {
-     "id": "c24",
-     "designation": "24",
-     "signal": "spare"
-    },
-    {
-     "id": "c25",
-     "designation": "25",
-     "signal": "spare"
-    },
-    {
-     "id": "c26",
-     "designation": "26",
-     "signal": "spare"
-    },
-    {
-     "id": "c27",
-     "designation": "27",
-     "signal": "spare"
-    },
-    {
-     "id": "c28",
-     "designation": "28",
-     "signal": "spare"
-    },
-    {
-     "id": "c29",
-     "designation": "29",
-     "signal": "spare"
-    },
-    {
-     "id": "c30",
-     "designation": "30",
-     "signal": "spare"
-    },
-    {
-     "id": "c31",
-     "designation": "31",
-     "signal": "spare"
-    },
-    {
-     "id": "c32",
-     "designation": "32",
-     "signal": "spare"
-    },
-    {
-     "id": "c33",
-     "designation": "33",
-     "signal": "spare"
-    },
-    {
-     "id": "c34",
-     "designation": "34",
-     "signal": "spare"
-    },
-    {
-     "id": "c35",
-     "designation": "35",
-     "signal": "spare"
-    },
-    {
-     "id": "c36",
-     "designation": "36",
-     "signal": "spare"
-    },
-    {
-     "id": "c37",
-     "designation": "37",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     }
    ],
    "schematicPosition": {
@@ -4563,194 +4698,135 @@
   },
   {
    "id": "bh_b_eng",
-   "label": "Bulkhead B - engine plug (8STA6-14-35PA)",
-   "partId": "cp_8sta6_14_35pa",
+   "label": "Bulkhead B - engine plug (HDP26-24-21SN)",
+   "partId": "cp_hdp_b_eng",
    "width": 210,
    "cavities": [
     {
      "id": "c1",
      "designation": "1",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp12s",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c2",
      "designation": "2",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp12s",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c3",
      "designation": "3",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp12s",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c4",
      "designation": "4",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp12s",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c5",
      "designation": "5",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ETB motor + (Aux 9, B18)"
     },
     {
      "id": "c6",
      "designation": "6",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ETB motor - (Aux 10, B26)"
     },
     {
      "id": "c7",
      "designation": "7",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-B B15"
     },
     {
      "id": "c8",
      "designation": "8",
-     "signal": "signal file"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-B B16"
     },
     {
      "id": "c9",
      "designation": "9",
-     "signal": "Radiator fan feed (relay 87)"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-B B23"
     },
     {
      "id": "c10",
      "designation": "10",
-     "signal": "Condenser fan feed (relay 87)"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-B B6"
     },
     {
      "id": "c11",
      "designation": "11",
-     "signal": "MRS EPS pump 12V"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-B B7"
     },
     {
      "id": "c12",
      "designation": "12",
-     "signal": "V-Ethrottle motor supply"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
     },
     {
      "id": "c13",
      "designation": "13",
-     "signal": "Injector bank 12V"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-A A27"
     },
     {
      "id": "c14",
      "designation": "14",
-     "signal": "Coil bank 12V"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c15",
      "designation": "15",
-     "signal": "ETB motor + (Aux 9, B18)"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c16",
      "designation": "16",
-     "signal": "ETB motor - (Aux 10, B26)"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c17",
      "designation": "17",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c18",
      "designation": "18",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c19",
      "designation": "19",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c20",
      "designation": "20",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c21",
      "designation": "21",
-     "signal": "spare"
-    },
-    {
-     "id": "c22",
-     "designation": "22",
-     "signal": "spare"
-    },
-    {
-     "id": "c23",
-     "designation": "23",
-     "signal": "spare"
-    },
-    {
-     "id": "c24",
-     "designation": "24",
-     "signal": "spare"
-    },
-    {
-     "id": "c25",
-     "designation": "25",
-     "signal": "spare"
-    },
-    {
-     "id": "c26",
-     "designation": "26",
-     "signal": "spare"
-    },
-    {
-     "id": "c27",
-     "designation": "27",
-     "signal": "spare"
-    },
-    {
-     "id": "c28",
-     "designation": "28",
-     "signal": "spare"
-    },
-    {
-     "id": "c29",
-     "designation": "29",
-     "signal": "spare"
-    },
-    {
-     "id": "c30",
-     "designation": "30",
-     "signal": "spare"
-    },
-    {
-     "id": "c31",
-     "designation": "31",
-     "signal": "spare"
-    },
-    {
-     "id": "c32",
-     "designation": "32",
-     "signal": "spare"
-    },
-    {
-     "id": "c33",
-     "designation": "33",
-     "signal": "spare"
-    },
-    {
-     "id": "c34",
-     "designation": "34",
-     "signal": "spare"
-    },
-    {
-     "id": "c35",
-     "designation": "35",
-     "signal": "spare"
-    },
-    {
-     "id": "c36",
-     "designation": "36",
-     "signal": "spare"
-    },
-    {
-     "id": "c37",
-     "designation": "37",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     }
    ],
    "schematicPosition": {
@@ -4761,6 +4837,146 @@
     "x": 2520,
     "y": 0
    }
+  },
+  {
+   "id": "bh_c_fw",
+   "cavities": [
+    {
+     "id": "c1",
+     "designation": "1",
+     "contactPartId": "ct_hdp4p",
+     "signal": "spare (size 4)"
+    },
+    {
+     "id": "c2",
+     "designation": "2",
+     "contactPartId": "ct_hdp8p",
+     "signal": "MRS EPS pump 12V"
+    },
+    {
+     "id": "c3",
+     "designation": "3",
+     "contactPartId": "ct_hdp8p",
+     "signal": "spare (size 8)"
+    },
+    {
+     "id": "c4",
+     "designation": "4",
+     "contactPartId": "ct_hdp12p",
+     "signal": "Radiator fan feed (relay 87)"
+    },
+    {
+     "id": "c5",
+     "designation": "5",
+     "contactPartId": "ct_hdp12p",
+     "signal": "Condenser fan feed (relay 87)"
+    },
+    {
+     "id": "c6",
+     "designation": "6",
+     "contactPartId": "ct_hdp12p",
+     "signal": "V-Ethrottle motor supply"
+    },
+    {
+     "id": "c7",
+     "designation": "7",
+     "contactPartId": "ct_hdp12p",
+     "signal": "Injector bank 12V"
+    },
+    {
+     "id": "c8",
+     "designation": "8",
+     "contactPartId": "ct_hdp12p",
+     "signal": "Coil bank 12V"
+    },
+    {
+     "id": "c9",
+     "designation": "9",
+     "contactPartId": "ct_hdp12p",
+     "signal": "spare (size 12)"
+    }
+   ],
+   "width": 270,
+   "schematicPosition": {
+    "x": 0,
+    "y": 0
+   },
+   "layoutPosition": {
+    "x": 0,
+    "y": 0
+   },
+   "partId": "cp_hdp_c_fw",
+   "label": "Bulkhead C - firewall (HDP24-24-9PE)"
+  },
+  {
+   "id": "bh_c_eng",
+   "cavities": [
+    {
+     "id": "c1",
+     "designation": "1",
+     "contactPartId": "ct_hdp4s",
+     "signal": "spare (size 4)"
+    },
+    {
+     "id": "c2",
+     "designation": "2",
+     "contactPartId": "ct_hdp8s",
+     "signal": "MRS EPS pump 12V"
+    },
+    {
+     "id": "c3",
+     "designation": "3",
+     "contactPartId": "ct_hdp8s",
+     "signal": "spare (size 8)"
+    },
+    {
+     "id": "c4",
+     "designation": "4",
+     "contactPartId": "ct_hdp12s",
+     "signal": "Radiator fan feed (relay 87)"
+    },
+    {
+     "id": "c5",
+     "designation": "5",
+     "contactPartId": "ct_hdp12s",
+     "signal": "Condenser fan feed (relay 87)"
+    },
+    {
+     "id": "c6",
+     "designation": "6",
+     "contactPartId": "ct_hdp12s",
+     "signal": "V-Ethrottle motor supply"
+    },
+    {
+     "id": "c7",
+     "designation": "7",
+     "contactPartId": "ct_hdp12s",
+     "signal": "Injector bank 12V"
+    },
+    {
+     "id": "c8",
+     "designation": "8",
+     "contactPartId": "ct_hdp12s",
+     "signal": "Coil bank 12V"
+    },
+    {
+     "id": "c9",
+     "designation": "9",
+     "contactPartId": "ct_hdp12s",
+     "signal": "spare (size 12)"
+    }
+   ],
+   "width": 270,
+   "schematicPosition": {
+    "x": 0,
+    "y": 0
+   },
+   "layoutPosition": {
+    "x": 0,
+    "y": 0
+   },
+   "partId": "cp_hdp_c_eng",
+   "label": "Bulkhead C - engine plug (HDP26-24-9SE)"
   }
  ],
  "terminals": [
@@ -6385,72 +6601,40 @@
  ],
  "connectorParts": [
   {
-   "id": "cp_8sta0_14_35sn",
-   "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-   "color": "Red",
-   "gender": "Female",
-   "partNumber": "8STA0-14-35SN",
-   "description": "Oval-flange bulkhead receptacle, 37×22D sockets, N/red keyway — A-loom firewall",
-   "manufacturer": "Eaton / Souriau",
-   "configurations": [
-    {
-     "id": "cfg",
-     "bootPartId": "boot_8sta14",
-     "contactPartId": "ct_22d_skt"
-    }
-   ],
-   "numberOfCavities": 37
+   "id": "cp_hdp_a_fw",
+   "partNumber": "HDP24-24-47PE-L017",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 47-way receptacle, PIN, E seal, reverse ring flange - bulkhead A, firewall side"
   },
   {
-   "id": "cp_8sta6_14_35pn",
-   "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-   "color": "Red",
-   "gender": "Male",
-   "partNumber": "8STA6-14-35PN",
-   "description": "Free plug, 37×22D pins, N/red keyway — A-loom engine side",
-   "manufacturer": "Eaton / Souriau",
-   "configurations": [
-    {
-     "id": "cfg",
-     "bootPartId": "boot_8sta14",
-     "contactPartId": "ct_22d_pin"
-    }
-   ],
-   "numberOfCavities": 37
+   "id": "cp_hdp_a_eng",
+   "partNumber": "HDP26-24-47SE-L015",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 47-way plug, SOCKET, E seal, threaded - bulkhead A, engine side"
   },
   {
-   "id": "cp_8sta0_14_35sa",
-   "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-   "color": "Yellow",
-   "gender": "Female",
-   "partNumber": "8STA0-14-35SA",
-   "description": "Oval-flange bulkhead receptacle, 37×22D sockets, A/yellow keyway — B-loom firewall",
-   "manufacturer": "Eaton / Souriau",
-   "configurations": [
-    {
-     "id": "cfg",
-     "bootPartId": "boot_8sta14",
-     "contactPartId": "ct_22d_skt"
-    }
-   ],
-   "numberOfCavities": 37
+   "id": "cp_hdp_b_fw",
+   "partNumber": "HDP24-24-21PN",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 21-way receptacle, PIN, N seal - bulkhead B, firewall side"
   },
   {
-   "id": "cp_8sta6_14_35pa",
-   "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-   "color": "Yellow",
-   "gender": "Male",
-   "partNumber": "8STA6-14-35PA",
-   "description": "Free plug, 37×22D pins, A/yellow keyway — B-loom engine side",
-   "manufacturer": "Eaton / Souriau",
-   "configurations": [
-    {
-     "id": "cfg",
-     "bootPartId": "boot_8sta14",
-     "contactPartId": "ct_22d_pin"
-    }
-   ],
-   "numberOfCavities": 37
+   "id": "cp_hdp_b_eng",
+   "partNumber": "HDP26-24-21SN",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 21-way plug, SOCKET, N seal - bulkhead B, engine side"
+  },
+  {
+   "id": "cp_hdp_c_fw",
+   "partNumber": "HDP24-24-9PE",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 9-way receptacle, PIN, E seal - bulkhead C, high current, firewall side"
+  },
+  {
+   "id": "cp_hdp_c_eng",
+   "partNumber": "HDP26-24-9SE",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 9-way plug, SOCKET, E seal - bulkhead C, high current, engine side"
   }
  ],
  "mates": [
@@ -6463,6 +6647,173 @@
    "id": "mate_bh_b",
    "sourceId": "bh_b_eng",
    "targetId": "bh_b_fw"
+  },
+  {
+   "id": "mate_bh_c",
+   "sourceId": "bh_c_fw",
+   "targetId": "bh_c_eng"
+  }
+ ],
+ "contactParts": [
+  {
+   "id": "ct_hdp4p",
+   "partNumber": "0460-204-0490",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 4 solid PIN, 6 AWG, 100 A - OWNED (qty 5)",
+   "gender": "Pin",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 6
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 6
+   }
+  },
+  {
+   "id": "ct_hdp4s",
+   "partNumber": "0462-203-04141",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 4 solid SOCKET, 6 AWG, 100 A - OWNED (qty 9)",
+   "gender": "Socket",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 6
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 6
+   }
+  },
+  {
+   "id": "ct_hdp8p",
+   "partNumber": "0460-204-08141",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 8 solid PIN, 8-10 AWG, 60 A - OWNED (qty 5)",
+   "gender": "Pin",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 8
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 10
+   }
+  },
+  {
+   "id": "ct_hdp8s",
+   "partNumber": "0462-203-08141",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 8 solid SOCKET, 8-10 AWG, 60 A - OWNED (qty 9)",
+   "gender": "Socket",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 8
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 10
+   }
+  },
+  {
+   "id": "ct_hdp12p",
+   "partNumber": "0460-220-1231",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 12 solid PIN, 12-14 AWG, 25 A - OWNED (qty 20)",
+   "gender": "Pin",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 12
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 14
+   }
+  },
+  {
+   "id": "ct_hdp12s",
+   "partNumber": "0462-210-1231",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 12 solid SOCKET, 12-14 AWG, 25 A - OWNED (qty 20)",
+   "gender": "Socket",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 12
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 14
+   }
+  },
+  {
+   "id": "ct_hdp16p",
+   "partNumber": "0460-202-1631",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 16 solid PIN, 16-20 AWG, 13 A - OWNED (qty 130)",
+   "gender": "Pin",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 16
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 20
+   }
+  },
+  {
+   "id": "ct_hdp16s",
+   "partNumber": "0462-201-1631",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 16 solid SOCKET, 16-20 AWG, 13 A - OWNED (qty 118)",
+   "gender": "Socket",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 16
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 20
+   }
+  },
+  {
+   "id": "ct_hdp20p",
+   "partNumber": "0460-202-2031",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY",
+   "gender": "Pin",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 20
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 20
+   }
+  },
+  {
+   "id": "ct_hdp20s",
+   "partNumber": "0462-201-2031",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY",
+   "gender": "Socket",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 20
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 20
+   }
   }
  ]
 }

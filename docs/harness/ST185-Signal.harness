@@ -12,7 +12,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c1"
+    "handle": "c6"
    },
    "color": "Gray",
    "layoutPoints": [
@@ -27,7 +27,7 @@
      "id": "w12_c_r2",
      "schematicPosition": {
       "x": 1332,
-      "y": 2625
+      "y": 2775
      }
     }
    ]
@@ -36,7 +36,7 @@
    "id": "w12_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c1"
+    "handle": "c6"
    },
    "target": {
     "id": "knock1",
@@ -48,7 +48,7 @@
      "id": "w12_e_r1",
      "schematicPosition": {
       "x": 1440,
-      "y": 5085
+      "y": 5235
      }
     },
     {
@@ -68,7 +68,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c2"
+    "handle": "c7"
    },
    "color": "Green",
    "layoutPoints": [
@@ -83,7 +83,7 @@
      "id": "w16_c_r2",
      "schematicPosition": {
       "x": 1260,
-      "y": 2655
+      "y": 2805
      }
     }
    ]
@@ -92,7 +92,7 @@
    "id": "w16_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c2"
+    "handle": "c7"
    },
    "target": {
     "id": "turbospd",
@@ -104,7 +104,7 @@
      "id": "w16_e_r1",
      "schematicPosition": {
       "x": 1638,
-      "y": 5115
+      "y": 5265
      }
     },
     {
@@ -124,7 +124,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c4"
+    "handle": "c8"
    },
    "color": "White",
    "layoutPoints": [
@@ -139,7 +139,7 @@
      "id": "w26_c_r2",
      "schematicPosition": {
       "x": 1254,
-      "y": 2715
+      "y": 2835
      }
     }
    ]
@@ -148,7 +148,7 @@
    "id": "w26_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c4"
+    "handle": "c8"
    },
    "target": {
     "id": "map",
@@ -160,7 +160,7 @@
      "id": "w26_e_r1",
      "schematicPosition": {
       "x": 1800,
-      "y": 5175
+      "y": 5295
      }
     },
     {
@@ -180,7 +180,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c1"
+    "handle": "c7"
    },
    "color": "White",
    "layoutPoints": [
@@ -195,7 +195,7 @@
      "id": "w29_c_r2",
      "schematicPosition": {
       "x": 1266,
-      "y": 3855
+      "y": 4035
      }
     }
    ]
@@ -204,7 +204,7 @@
    "id": "w29_e",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c1"
+    "handle": "c7"
    },
    "target": {
     "id": "oilp",
@@ -216,7 +216,7 @@
      "id": "w29_e_r1",
      "schematicPosition": {
       "x": 1926,
-      "y": 6315
+      "y": 6495
      }
     },
     {
@@ -236,7 +236,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c2"
+    "handle": "c8"
    },
    "color": "White",
    "layoutPoints": [
@@ -251,7 +251,7 @@
      "id": "w32_c_r2",
      "schematicPosition": {
       "x": 1284,
-      "y": 3885
+      "y": 4065
      }
     }
    ]
@@ -260,7 +260,7 @@
    "id": "w32_e",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c2"
+    "handle": "c8"
    },
    "target": {
     "id": "fuelp",
@@ -272,7 +272,7 @@
      "id": "w32_e_r1",
      "schematicPosition": {
       "x": 1944,
-      "y": 6345
+      "y": 6525
      }
     },
     {
@@ -292,7 +292,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c3"
+    "handle": "c9"
    },
    "color": "White",
    "layoutPoints": [
@@ -307,7 +307,7 @@
      "id": "w35_c_r2",
      "schematicPosition": {
       "x": 1320,
-      "y": 3915
+      "y": 4095
      }
     }
    ]
@@ -316,7 +316,7 @@
    "id": "w35_e",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c3"
+    "handle": "c9"
    },
    "target": {
     "id": "clntp",
@@ -328,7 +328,7 @@
      "id": "w35_e_r1",
      "schematicPosition": {
       "x": 1962,
-      "y": 6375
+      "y": 6555
      }
     },
     {
@@ -460,7 +460,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c5"
+    "handle": "c9"
    },
    "color": "Green",
    "layoutPoints": [
@@ -475,7 +475,7 @@
      "id": "w48_c_r2",
      "schematicPosition": {
       "x": 1278,
-      "y": 2745
+      "y": 2865
      }
     }
    ]
@@ -484,7 +484,7 @@
    "id": "w48_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c5"
+    "handle": "c9"
    },
    "target": {
     "id": "flex",
@@ -496,7 +496,7 @@
      "id": "w48_e_r1",
      "schematicPosition": {
       "x": 1818,
-      "y": 5205
+      "y": 5325
      }
     },
     {
@@ -544,7 +544,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c6"
+    "handle": "c10"
    },
    "color": "Green",
    "layoutPoints": [
@@ -559,7 +559,7 @@
      "id": "w51_c_r2",
      "schematicPosition": {
       "x": 1326,
-      "y": 2775
+      "y": 2895
      }
     }
    ]
@@ -568,7 +568,7 @@
    "id": "w51_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c6"
+    "handle": "c10"
    },
    "target": {
     "id": "vr1_out1",
@@ -580,7 +580,7 @@
      "id": "w51_e_r1",
      "schematicPosition": {
       "x": 1836,
-      "y": 5235
+      "y": 5355
      }
     },
     {
@@ -600,7 +600,7 @@
    },
    "target": {
     "id": "bh_a_eng",
-    "handle": "c7"
+    "handle": "c11"
    },
    "color": "White",
    "layoutPoints": [
@@ -615,7 +615,7 @@
      "id": "w53_c_r2",
      "schematicPosition": {
       "x": 2214,
-      "y": 5265
+      "y": 5385
      }
     }
    ]
@@ -624,7 +624,7 @@
    "id": "w53_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c7"
+    "handle": "c11"
    },
    "target": {
     "id": "vr1_ch2n",
@@ -636,7 +636,7 @@
      "id": "w53_e_r1",
      "schematicPosition": {
       "x": 1854,
-      "y": 5265
+      "y": 5385
      }
     },
     {
@@ -656,7 +656,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c8"
+    "handle": "c12"
    },
    "color": "Green",
    "layoutPoints": [
@@ -671,7 +671,7 @@
      "id": "w54_c_r2",
      "schematicPosition": {
       "x": 1302,
-      "y": 2835
+      "y": 2955
      }
     }
    ]
@@ -680,7 +680,7 @@
    "id": "w54_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c8"
+    "handle": "c12"
    },
    "target": {
     "id": "vr1_out2",
@@ -692,7 +692,7 @@
      "id": "w54_e_r1",
      "schematicPosition": {
       "x": 1872,
-      "y": 5295
+      "y": 5415
      }
     },
     {
@@ -880,7 +880,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c9"
+    "handle": "c13"
    },
    "color": "Brown",
    "layoutPoints": [
@@ -895,7 +895,7 @@
      "id": "w108_c_r2",
      "schematicPosition": {
       "x": 1314,
-      "y": 2865
+      "y": 2985
      }
     }
    ]
@@ -904,7 +904,7 @@
    "id": "w108_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c9"
+    "handle": "c13"
    },
    "target": {
     "id": "inj1",
@@ -916,7 +916,7 @@
      "id": "w108_e_r1",
      "schematicPosition": {
       "x": 1890,
-      "y": 5325
+      "y": 5445
      }
     },
     {
@@ -936,7 +936,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c10"
+    "handle": "c14"
    },
    "color": "Brown",
    "layoutPoints": [
@@ -951,7 +951,7 @@
      "id": "w109_c_r2",
      "schematicPosition": {
       "x": 1242,
-      "y": 2895
+      "y": 3015
      }
     }
    ]
@@ -960,7 +960,7 @@
    "id": "w109_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c10"
+    "handle": "c14"
    },
    "target": {
     "id": "inj2",
@@ -972,7 +972,7 @@
      "id": "w109_e_r1",
      "schematicPosition": {
       "x": 1458,
-      "y": 5355
+      "y": 5475
      }
     },
     {
@@ -992,7 +992,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c11"
+    "handle": "c15"
    },
    "color": "Brown",
    "layoutPoints": [
@@ -1007,7 +1007,7 @@
      "id": "w110_c_r2",
      "schematicPosition": {
       "x": 1272,
-      "y": 2925
+      "y": 3045
      }
     }
    ]
@@ -1016,7 +1016,7 @@
    "id": "w110_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c11"
+    "handle": "c15"
    },
    "target": {
     "id": "inj3",
@@ -1028,7 +1028,7 @@
      "id": "w110_e_r1",
      "schematicPosition": {
       "x": 1476,
-      "y": 5385
+      "y": 5505
      }
     },
     {
@@ -1048,7 +1048,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c12"
+    "handle": "c16"
    },
    "color": "Brown",
    "layoutPoints": [
@@ -1063,7 +1063,7 @@
      "id": "w111_c_r2",
      "schematicPosition": {
       "x": 1248,
-      "y": 2955
+      "y": 3075
      }
     }
    ]
@@ -1072,7 +1072,7 @@
    "id": "w111_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c12"
+    "handle": "c16"
    },
    "target": {
     "id": "inj4",
@@ -1084,7 +1084,7 @@
      "id": "w111_e_r1",
      "schematicPosition": {
       "x": 1494,
-      "y": 5415
+      "y": 5535
      }
     },
     {
@@ -1104,7 +1104,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c13"
+    "handle": "c17"
    },
    "color": "Violet",
    "layoutPoints": [
@@ -1119,7 +1119,7 @@
      "id": "w120_c_r2",
      "schematicPosition": {
       "x": 1320,
-      "y": 2985
+      "y": 3105
      }
     }
    ]
@@ -1128,7 +1128,7 @@
    "id": "w120_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c13"
+    "handle": "c17"
    },
    "target": {
     "id": "cop1",
@@ -1140,7 +1140,7 @@
      "id": "w120_e_r1",
      "schematicPosition": {
       "x": 1512,
-      "y": 5445
+      "y": 5565
      }
     },
     {
@@ -1160,7 +1160,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c14"
+    "handle": "c18"
    },
    "color": "Violet",
    "layoutPoints": [
@@ -1175,7 +1175,7 @@
      "id": "w121_c_r2",
      "schematicPosition": {
       "x": 1302,
-      "y": 3015
+      "y": 3135
      }
     }
    ]
@@ -1184,7 +1184,7 @@
    "id": "w121_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c14"
+    "handle": "c18"
    },
    "target": {
     "id": "cop2",
@@ -1196,7 +1196,7 @@
      "id": "w121_e_r1",
      "schematicPosition": {
       "x": 1530,
-      "y": 5475
+      "y": 5595
      }
     },
     {
@@ -1216,7 +1216,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c15"
+    "handle": "c19"
    },
    "color": "Violet",
    "layoutPoints": [
@@ -1231,7 +1231,7 @@
      "id": "w122_c_r2",
      "schematicPosition": {
       "x": 1284,
-      "y": 3045
+      "y": 3165
      }
     }
    ]
@@ -1240,7 +1240,7 @@
    "id": "w122_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c15"
+    "handle": "c19"
    },
    "target": {
     "id": "cop3",
@@ -1252,7 +1252,7 @@
      "id": "w122_e_r1",
      "schematicPosition": {
       "x": 1548,
-      "y": 5505
+      "y": 5625
      }
     },
     {
@@ -1272,7 +1272,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c16"
+    "handle": "c20"
    },
    "color": "Violet",
    "layoutPoints": [
@@ -1287,7 +1287,7 @@
      "id": "w123_c_r2",
      "schematicPosition": {
       "x": 1266,
-      "y": 3075
+      "y": 3195
      }
     }
    ]
@@ -1296,7 +1296,7 @@
    "id": "w123_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c16"
+    "handle": "c20"
    },
    "target": {
     "id": "cop4",
@@ -1308,7 +1308,7 @@
      "id": "w123_e_r1",
      "schematicPosition": {
       "x": 1566,
-      "y": 5535
+      "y": 5655
      }
     },
     {
@@ -1328,7 +1328,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c17"
+    "handle": "c21"
    },
    "color": "White",
    "layoutPoints": [
@@ -1343,7 +1343,7 @@
      "id": "w128_c_r2",
      "schematicPosition": {
       "x": 1308,
-      "y": 3105
+      "y": 3225
      }
     }
    ]
@@ -1352,7 +1352,7 @@
    "id": "w128_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c17"
+    "handle": "c21"
    },
    "target": {
     "id": "etb",
@@ -1364,7 +1364,7 @@
      "id": "w128_e_r1",
      "schematicPosition": {
       "x": 1584,
-      "y": 5565
+      "y": 5685
      }
     },
     {
@@ -1384,7 +1384,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c18"
+    "handle": "c22"
    },
    "color": "White",
    "layoutPoints": [
@@ -1399,7 +1399,7 @@
      "id": "w129_c_r2",
      "schematicPosition": {
       "x": 1296,
-      "y": 3135
+      "y": 3255
      }
     }
    ]
@@ -1408,7 +1408,7 @@
    "id": "w129_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c18"
+    "handle": "c22"
    },
    "target": {
     "id": "etb",
@@ -1420,7 +1420,7 @@
      "id": "w129_e_r1",
      "schematicPosition": {
       "x": 1602,
-      "y": 5595
+      "y": 5715
      }
     },
     {
@@ -1440,7 +1440,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c19"
+    "handle": "c23"
    },
    "color": "Pink",
    "layoutPoints": [
@@ -1455,7 +1455,7 @@
      "id": "w103_c_r2",
      "schematicPosition": {
       "x": 1290,
-      "y": 3165
+      "y": 3285
      }
     }
    ]
@@ -1464,7 +1464,7 @@
    "id": "w103_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c19"
+    "handle": "c23"
    },
    "target": {
     "id": "boost",
@@ -1476,7 +1476,7 @@
      "id": "w103_e_r1",
      "schematicPosition": {
       "x": 1620,
-      "y": 5625
+      "y": 5745
      }
     },
     {
@@ -1496,7 +1496,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c20"
+    "handle": "c24"
    },
    "color": "Blue",
    "layoutPoints": [
@@ -1511,7 +1511,7 @@
      "id": "w200_c_r2",
      "schematicPosition": {
       "x": 1230,
-      "y": 3195
+      "y": 3315
      }
     }
    ]
@@ -1520,7 +1520,7 @@
    "id": "w200_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c20"
+    "handle": "c24"
    },
    "target": {
     "id": "crank",
@@ -1532,7 +1532,7 @@
      "id": "w200_e_r1",
      "schematicPosition": {
       "x": 1656,
-      "y": 5655
+      "y": 5775
      }
     },
     {
@@ -1552,7 +1552,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c21"
+    "handle": "c25"
    },
    "color": "Yellow",
    "layoutPoints": [
@@ -1567,7 +1567,7 @@
      "id": "w201_c_r2",
      "schematicPosition": {
       "x": 1338,
-      "y": 3225
+      "y": 3345
      }
     }
    ]
@@ -1576,7 +1576,7 @@
    "id": "w201_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c21"
+    "handle": "c25"
    },
    "target": {
     "id": "ect",
@@ -1588,7 +1588,7 @@
      "id": "w201_e_r1",
      "schematicPosition": {
       "x": 1674,
-      "y": 5685
+      "y": 5805
      }
     },
     {
@@ -1608,7 +1608,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c22"
+    "handle": "c26"
    },
    "color": "Yellow",
    "layoutPoints": [
@@ -1623,7 +1623,7 @@
      "id": "w202_c_r2",
      "schematicPosition": {
       "x": 1236,
-      "y": 3255
+      "y": 3375
      }
     }
    ]
@@ -1632,7 +1632,7 @@
    "id": "w202_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c22"
+    "handle": "c26"
    },
    "target": {
     "id": "iat",
@@ -1644,7 +1644,7 @@
      "id": "w202_e_r1",
      "schematicPosition": {
       "x": 1692,
-      "y": 5715
+      "y": 5835
      }
     },
     {
@@ -1664,7 +1664,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c4"
+    "handle": "c10"
    },
    "color": "Yellow",
    "layoutPoints": [
@@ -1679,7 +1679,7 @@
      "id": "w203_c_r2",
      "schematicPosition": {
       "x": 1338,
-      "y": 3945
+      "y": 4125
      }
     }
    ]
@@ -1688,7 +1688,7 @@
    "id": "w203_e",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c4"
+    "handle": "c10"
    },
    "target": {
     "id": "oilt",
@@ -1700,7 +1700,7 @@
      "id": "w203_e_r1",
      "schematicPosition": {
       "x": 1980,
-      "y": 6405
+      "y": 6585
      }
     },
     {
@@ -1720,7 +1720,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c5"
+    "handle": "c11"
    },
    "color": "Yellow",
    "layoutPoints": [
@@ -1735,7 +1735,7 @@
      "id": "w204_c_r2",
      "schematicPosition": {
       "x": 1236,
-      "y": 3975
+      "y": 4155
      }
     }
    ]
@@ -1744,7 +1744,7 @@
    "id": "w204_e",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c5"
+    "handle": "c11"
    },
    "target": {
     "id": "cpiat",
@@ -1756,7 +1756,7 @@
      "id": "w204_e_r1",
      "schematicPosition": {
       "x": 1998,
-      "y": 6435
+      "y": 6615
      }
     },
     {
@@ -1776,7 +1776,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c23"
+    "handle": "c27"
    },
    "color": "Gray",
    "layoutPoints": [
@@ -1791,7 +1791,7 @@
      "id": "w205_c_r2",
      "schematicPosition": {
       "x": 1254,
-      "y": 3285
+      "y": 3405
      }
     }
    ]
@@ -1800,7 +1800,7 @@
    "id": "w205_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c23"
+    "handle": "c27"
    },
    "target": {
     "id": "knock1",
@@ -1812,7 +1812,7 @@
      "id": "w205_e_r1",
      "schematicPosition": {
       "x": 1710,
-      "y": 5745
+      "y": 5865
      }
     },
     {
@@ -1860,7 +1860,7 @@
    },
    "target": {
     "id": "bh_a_eng",
-    "handle": "c24"
+    "handle": "c28"
    },
    "color": "White",
    "layoutPoints": [
@@ -1875,7 +1875,7 @@
      "id": "w_frp_c_r2",
      "schematicPosition": {
       "x": 2196,
-      "y": 5775
+      "y": 5895
      }
     }
    ]
@@ -1884,7 +1884,7 @@
    "id": "w_frp_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c24"
+    "handle": "c28"
    },
    "target": {
     "id": "vr1_ch2p",
@@ -1896,7 +1896,7 @@
      "id": "w_frp_e_r1",
      "schematicPosition": {
       "x": 1728,
-      "y": 5775
+      "y": 5895
      }
     },
     {
@@ -2140,7 +2140,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c6"
+    "handle": "c12"
    },
    "color": "Green",
    "layoutPoints": [
@@ -2155,7 +2155,7 @@
      "id": "w_sw7_c_r2",
      "schematicPosition": {
       "x": 366,
-      "y": 4005
+      "y": 4185
      }
     }
    ]
@@ -2164,7 +2164,7 @@
    "id": "w_sw7_e",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c6"
+    "handle": "c12"
    },
    "target": {
     "id": "reverse_sw",
@@ -2176,7 +2176,7 @@
      "id": "w_sw7_e_r1",
      "schematicPosition": {
       "x": 2016,
-      "y": 6465
+      "y": 6645
      }
     },
     {
@@ -2224,7 +2224,7 @@
    },
    "target": {
     "id": "bh_b_fw",
-    "handle": "c7"
+    "handle": "c13"
    },
    "color": "Pink",
    "layoutPoints": [
@@ -2239,7 +2239,7 @@
      "id": "w_mrs_c_r2",
      "schematicPosition": {
       "x": 1344,
-      "y": 4035
+      "y": 4215
      }
     }
    ]
@@ -2248,7 +2248,7 @@
    "id": "w_mrs_e",
    "source": {
     "id": "bh_b_eng",
-    "handle": "c7"
+    "handle": "c13"
    },
    "target": {
     "id": "mrs_ctrl",
@@ -2260,7 +2260,7 @@
      "id": "w_mrs_e_r1",
      "schematicPosition": {
       "x": 2034,
-      "y": 6495
+      "y": 6675
      }
     },
     {
@@ -2392,7 +2392,7 @@
    },
    "target": {
     "id": "bh_a_fw",
-    "handle": "c25"
+    "handle": "c29"
    },
    "color": "Blue",
    "layoutPoints": [
@@ -2407,7 +2407,7 @@
      "id": "w_cam_sig_c_r2",
      "schematicPosition": {
       "x": 1248,
-      "y": 3345
+      "y": 3465
      }
     }
    ]
@@ -2416,7 +2416,7 @@
    "id": "w_cam_sig_e",
    "source": {
     "id": "bh_a_eng",
-    "handle": "c25"
+    "handle": "c29"
    },
    "target": {
     "id": "cam",
@@ -2428,7 +2428,7 @@
      "id": "w_cam_sig_e_r1",
      "schematicPosition": {
       "x": 1746,
-      "y": 5805
+      "y": 5925
      }
     },
     {
@@ -2576,174 +2576,6 @@
      "schematicPosition": {
       "x": 384,
       "y": 1365
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_canh_0",
-   "color": "Green",
-   "source": {
-    "id": "ecu_com",
-    "handle": "c3"
-   },
-   "target": {
-    "id": "csb3io",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_canh_0_r1",
-     "schematicPosition": {
-      "x": 402,
-      "y": 2385
-     }
-    },
-    {
-     "id": "w_canh_0_r2",
-     "schematicPosition": {
-      "x": 402,
-      "y": 105
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_canl_0",
-   "color": "White",
-   "source": {
-    "id": "ecu_com",
-    "handle": "c4"
-   },
-   "target": {
-    "id": "csb3io",
-    "handle": "c4"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_canl_0_r1",
-     "schematicPosition": {
-      "x": 420,
-      "y": 2415
-     }
-    },
-    {
-     "id": "w_canl_0_r2",
-     "schematicPosition": {
-      "x": 420,
-      "y": 135
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_canh_1",
-   "color": "Green",
-   "source": {
-    "id": "csb3io",
-    "handle": "c3"
-   },
-   "target": {
-    "id": "cluster",
-    "handle": "c1"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_canh_1_r1",
-     "schematicPosition": {
-      "x": -696,
-      "y": 105
-     }
-    },
-    {
-     "id": "w_canh_1_r2",
-     "schematicPosition": {
-      "x": -696,
-      "y": 585
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_canl_1",
-   "color": "White",
-   "source": {
-    "id": "csb3io",
-    "handle": "c4"
-   },
-   "target": {
-    "id": "cluster",
-    "handle": "c2"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_canl_1_r1",
-     "schematicPosition": {
-      "x": -678,
-      "y": 135
-     }
-    },
-    {
-     "id": "w_canl_1_r2",
-     "schematicPosition": {
-      "x": -678,
-      "y": 615
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_canh_2",
-   "color": "Green",
-   "source": {
-    "id": "cluster",
-    "handle": "c1"
-   },
-   "target": {
-    "id": "realdash_pi",
-    "handle": "c1"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_canh_2_r1",
-     "schematicPosition": {
-      "x": -822,
-      "y": 585
-     }
-    },
-    {
-     "id": "w_canh_2_r2",
-     "schematicPosition": {
-      "x": -822,
-      "y": 825
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_canl_2",
-   "color": "White",
-   "source": {
-    "id": "cluster",
-    "handle": "c2"
-   },
-   "target": {
-    "id": "realdash_pi",
-    "handle": "c2"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_canl_2_r1",
-     "schematicPosition": {
-      "x": -804,
-      "y": 615
-     }
-    },
-    {
-     "id": "w_canl_2_r2",
-     "schematicPosition": {
-      "x": -804,
-      "y": 855
      }
     }
    ]
@@ -3015,7 +2847,7 @@
    },
    "target": {
     "id": "bh_a_eng",
-    "handle": "c32"
+    "handle": "c1"
    },
    "layoutPoints": [
     {
@@ -3029,7 +2861,7 @@
      "id": "w_drain_bh_e_r2",
      "schematicPosition": {
       "x": 2142,
-      "y": 6015
+      "y": 5085
      }
     }
    ]
@@ -3040,7 +2872,7 @@
    "stripeColor": "Yellow",
    "source": {
     "id": "bh_a_fw",
-    "handle": "c32"
+    "handle": "c1"
    },
    "target": {
     "id": "sp_shield_cab",
@@ -3051,7 +2883,7 @@
      "id": "w_drain_bh_c_r1",
      "schematicPosition": {
       "x": 1908,
-      "y": 3555
+      "y": 2625
      }
     },
     {
@@ -3245,7 +3077,7 @@
    },
    "target": {
     "id": "bh_a_eng",
-    "handle": "c3"
+    "handle": "c32"
    },
    "layoutPoints": [
     {
@@ -3259,7 +3091,7 @@
      "id": "w20_e_r2",
      "schematicPosition": {
       "x": 2070,
-      "y": 5145
+      "y": 6015
      }
     }
    ]
@@ -3269,7 +3101,7 @@
    "color": "Orange",
    "source": {
     "id": "bh_a_fw",
-    "handle": "c3"
+    "handle": "c32"
    },
    "target": {
     "id": "ecu_a",
@@ -3280,7 +3112,7 @@
      "id": "w20_c_r1",
      "schematicPosition": {
       "x": 1230,
-      "y": 2685
+      "y": 3555
      }
     },
     {
@@ -4892,42 +4724,6 @@
    }
   },
   {
-   "id": "cluster",
-   "label": "TrackCluster - ESP32-P4 (CAN + power)",
-   "width": 210,
-   "partId": "cp_dev4",
-   "cavities": [
-    {
-     "id": "c1",
-     "designation": "1",
-     "signal": "CAN H"
-    },
-    {
-     "id": "c2",
-     "designation": "2",
-     "signal": "CAN L"
-    },
-    {
-     "id": "c3",
-     "designation": "3",
-     "signal": "+12V (power file)"
-    },
-    {
-     "id": "c4",
-     "designation": "4",
-     "signal": "GND (power file)"
-    }
-   ],
-   "layoutPosition": {
-    "x": -480,
-    "y": 300
-   },
-   "schematicPosition": {
-    "x": 0,
-    "y": 540
-   }
-  },
-  {
    "id": "clutch_sw",
    "label": "OEM block — Clutch Switch",
    "partId": "cp_oem_block_2",
@@ -5058,194 +4854,291 @@
   },
   {
    "id": "bh_a_fw",
-   "label": "Bulkhead A - firewall (8STA0-14-35SN)",
+   "label": "Bulkhead A - firewall (HDP24-24-47PE-L017)",
    "width": 210,
-   "partId": "cp_8sta0_14_35sn",
+   "partId": "cp_hdp_a_fw",
    "cavities": [
     {
      "id": "c1",
      "designation": "1",
-     "signal": "ECU-A A7"
+     "contactPartId": "ct_hdp16p",
+     "signal": "Shield drain (engine bay, single)"
     },
     {
      "id": "c2",
      "designation": "2",
-     "signal": "ECU-A A30"
+     "contactPartId": "ct_hdp16p",
+     "signal": "+5V Out to engine sensors"
     },
     {
      "id": "c3",
      "designation": "3",
-     "signal": "Trig 2 cam signal (after 1.8k pull-up)"
+     "contactPartId": "ct_hdp16p",
+     "signal": "Gnd Out to engine sensors"
     },
     {
      "id": "c4",
      "designation": "4",
-     "signal": "ECU-A A17"
+     "contactPartId": "ct_hdp16p",
+     "signal": "+8V Out to cam Hall"
     },
     {
      "id": "c5",
      "designation": "5",
-     "signal": "ECU-A A31"
+     "contactPartId": "ct_hdp16p",
+     "signal": "Switched 12V to engine sensors"
     },
     {
      "id": "c6",
      "designation": "6",
-     "signal": "ECU-A A23"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A7"
     },
     {
      "id": "c7",
      "designation": "7",
-     "signal": "ABS Wheel Speed FR SIG-"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A30"
     },
     {
      "id": "c8",
      "designation": "8",
-     "signal": "ECU-B B21"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A17"
     },
     {
      "id": "c9",
      "designation": "9",
-     "signal": "ECU-A A4"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A31"
     },
     {
      "id": "c10",
      "designation": "10",
-     "signal": "ECU-A A3"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A23"
     },
     {
      "id": "c11",
      "designation": "11",
-     "signal": "ECU-A A2"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ABS Wheel Speed FR SIG-"
     },
     {
      "id": "c12",
      "designation": "12",
-     "signal": "ECU-A A1"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-B B21"
     },
     {
      "id": "c13",
      "designation": "13",
-     "signal": "ECU-A A13"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A4"
     },
     {
      "id": "c14",
      "designation": "14",
-     "signal": "ECU-A A12"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A3"
     },
     {
      "id": "c15",
      "designation": "15",
-     "signal": "ECU-A A11"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A2"
     },
     {
      "id": "c16",
      "designation": "16",
-     "signal": "ECU-A A10"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A1"
     },
     {
      "id": "c17",
      "designation": "17",
-     "signal": "ECU-A A22"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A13"
     },
     {
      "id": "c18",
      "designation": "18",
-     "signal": "ECU-A A33"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A12"
     },
     {
      "id": "c19",
      "designation": "19",
-     "signal": "ECU-A A21"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A11"
     },
     {
      "id": "c20",
      "designation": "20",
-     "signal": "ECU-A A8"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A10"
     },
     {
      "id": "c21",
      "designation": "21",
-     "signal": "ECU-A A15"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A22"
     },
     {
      "id": "c22",
      "designation": "22",
-     "signal": "ECU-A A16"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A33"
     },
     {
      "id": "c23",
      "designation": "23",
-     "signal": "ECU-B B9"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A21"
     },
     {
      "id": "c24",
      "designation": "24",
-     "signal": "ABS Wheel Speed FR SIG+"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A8"
     },
     {
      "id": "c25",
      "designation": "25",
-     "signal": "ECU-A A9"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A15"
     },
     {
      "id": "c26",
      "designation": "26",
-     "signal": "in use"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A16"
     },
     {
      "id": "c27",
      "designation": "27",
-     "signal": "in use"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-B B9"
     },
     {
      "id": "c28",
      "designation": "28",
-     "signal": "in use"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ABS Wheel Speed FR SIG+"
     },
     {
      "id": "c29",
      "designation": "29",
-     "signal": "in use"
+     "contactPartId": "ct_hdp20p",
+     "signal": "ECU-A A9"
     },
     {
      "id": "c30",
      "designation": "30",
+     "contactPartId": "ct_hdp20p",
      "signal": "CAN H to Lambda"
     },
     {
      "id": "c31",
      "designation": "31",
+     "contactPartId": "ct_hdp20p",
      "signal": "CAN L to Lambda"
     },
     {
      "id": "c32",
      "designation": "32",
-     "signal": "Shield drain (engine bay, single)"
+     "contactPartId": "ct_hdp20p",
+     "signal": "Trig 2 cam signal (after 1.8k pull-up)"
     },
     {
      "id": "c33",
      "designation": "33",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c34",
      "designation": "34",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c35",
      "designation": "35",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c36",
      "designation": "36",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c37",
      "designation": "37",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c38",
+     "designation": "38",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c39",
+     "designation": "39",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c40",
+     "designation": "40",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c41",
+     "designation": "41",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c42",
+     "designation": "42",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c43",
+     "designation": "43",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c44",
+     "designation": "44",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c45",
+     "designation": "45",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c46",
+     "designation": "46",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c47",
+     "designation": "47",
+     "contactPartId": "ct_hdp20p",
+     "signal": "spare (size 20)"
     }
    ],
    "layoutPosition": {
@@ -5259,194 +5152,291 @@
   },
   {
    "id": "bh_a_eng",
-   "label": "Bulkhead A - engine plug (8STA6-14-35PN)",
+   "label": "Bulkhead A - engine plug (HDP26-24-47SE-L015)",
    "width": 210,
-   "partId": "cp_8sta6_14_35pn",
+   "partId": "cp_hdp_a_eng",
    "cavities": [
     {
      "id": "c1",
      "designation": "1",
-     "signal": "ECU-A A7"
+     "contactPartId": "ct_hdp16s",
+     "signal": "Shield drain (engine bay, single)"
     },
     {
      "id": "c2",
      "designation": "2",
-     "signal": "ECU-A A30"
+     "contactPartId": "ct_hdp16s",
+     "signal": "+5V Out to engine sensors"
     },
     {
      "id": "c3",
      "designation": "3",
-     "signal": "Trig 2 cam signal (after 1.8k pull-up)"
+     "contactPartId": "ct_hdp16s",
+     "signal": "Gnd Out to engine sensors"
     },
     {
      "id": "c4",
      "designation": "4",
-     "signal": "ECU-A A17"
+     "contactPartId": "ct_hdp16s",
+     "signal": "+8V Out to cam Hall"
     },
     {
      "id": "c5",
      "designation": "5",
-     "signal": "ECU-A A31"
+     "contactPartId": "ct_hdp16s",
+     "signal": "Switched 12V to engine sensors"
     },
     {
      "id": "c6",
      "designation": "6",
-     "signal": "ECU-A A23"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A7"
     },
     {
      "id": "c7",
      "designation": "7",
-     "signal": "ABS Wheel Speed FR SIG-"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A30"
     },
     {
      "id": "c8",
      "designation": "8",
-     "signal": "ECU-B B21"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A17"
     },
     {
      "id": "c9",
      "designation": "9",
-     "signal": "ECU-A A4"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A31"
     },
     {
      "id": "c10",
      "designation": "10",
-     "signal": "ECU-A A3"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A23"
     },
     {
      "id": "c11",
      "designation": "11",
-     "signal": "ECU-A A2"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ABS Wheel Speed FR SIG-"
     },
     {
      "id": "c12",
      "designation": "12",
-     "signal": "ECU-A A1"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-B B21"
     },
     {
      "id": "c13",
      "designation": "13",
-     "signal": "ECU-A A13"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A4"
     },
     {
      "id": "c14",
      "designation": "14",
-     "signal": "ECU-A A12"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A3"
     },
     {
      "id": "c15",
      "designation": "15",
-     "signal": "ECU-A A11"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A2"
     },
     {
      "id": "c16",
      "designation": "16",
-     "signal": "ECU-A A10"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A1"
     },
     {
      "id": "c17",
      "designation": "17",
-     "signal": "ECU-A A22"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A13"
     },
     {
      "id": "c18",
      "designation": "18",
-     "signal": "ECU-A A33"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A12"
     },
     {
      "id": "c19",
      "designation": "19",
-     "signal": "ECU-A A21"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A11"
     },
     {
      "id": "c20",
      "designation": "20",
-     "signal": "ECU-A A8"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A10"
     },
     {
      "id": "c21",
      "designation": "21",
-     "signal": "ECU-A A15"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A22"
     },
     {
      "id": "c22",
      "designation": "22",
-     "signal": "ECU-A A16"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A33"
     },
     {
      "id": "c23",
      "designation": "23",
-     "signal": "ECU-B B9"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A21"
     },
     {
      "id": "c24",
      "designation": "24",
-     "signal": "ABS Wheel Speed FR SIG+"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A8"
     },
     {
      "id": "c25",
      "designation": "25",
-     "signal": "ECU-A A9"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A15"
     },
     {
      "id": "c26",
      "designation": "26",
-     "signal": "in use"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A16"
     },
     {
      "id": "c27",
      "designation": "27",
-     "signal": "in use"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-B B9"
     },
     {
      "id": "c28",
      "designation": "28",
-     "signal": "in use"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ABS Wheel Speed FR SIG+"
     },
     {
      "id": "c29",
      "designation": "29",
-     "signal": "in use"
+     "contactPartId": "ct_hdp20s",
+     "signal": "ECU-A A9"
     },
     {
      "id": "c30",
      "designation": "30",
+     "contactPartId": "ct_hdp20s",
      "signal": "CAN H to Lambda"
     },
     {
      "id": "c31",
      "designation": "31",
+     "contactPartId": "ct_hdp20s",
      "signal": "CAN L to Lambda"
     },
     {
      "id": "c32",
      "designation": "32",
-     "signal": "Shield drain (engine bay, single)"
+     "contactPartId": "ct_hdp20s",
+     "signal": "Trig 2 cam signal (after 1.8k pull-up)"
     },
     {
      "id": "c33",
      "designation": "33",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c34",
      "designation": "34",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c35",
      "designation": "35",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c36",
      "designation": "36",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
     },
     {
      "id": "c37",
      "designation": "37",
-     "signal": "spare"
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c38",
+     "designation": "38",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c39",
+     "designation": "39",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c40",
+     "designation": "40",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c41",
+     "designation": "41",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c42",
+     "designation": "42",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c43",
+     "designation": "43",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c44",
+     "designation": "44",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c45",
+     "designation": "45",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c46",
+     "designation": "46",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
+    },
+    {
+     "id": "c47",
+     "designation": "47",
+     "contactPartId": "ct_hdp20s",
+     "signal": "spare (size 20)"
     }
    ],
    "layoutPosition": {
@@ -5460,194 +5450,135 @@
   },
   {
    "id": "bh_b_fw",
-   "label": "Bulkhead B - firewall (8STA0-14-35SA)",
+   "label": "Bulkhead B - firewall (HDP24-24-21PN)",
    "width": 210,
-   "partId": "cp_8sta0_14_35sa",
+   "partId": "cp_hdp_b_fw",
    "cavities": [
     {
      "id": "c1",
      "designation": "1",
-     "signal": "ECU-B B15"
+     "contactPartId": "ct_hdp12p",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c2",
      "designation": "2",
-     "signal": "ECU-B B16"
+     "contactPartId": "ct_hdp12p",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c3",
      "designation": "3",
-     "signal": "ECU-B B23"
+     "contactPartId": "ct_hdp12p",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c4",
      "designation": "4",
-     "signal": "ECU-B B6"
+     "contactPartId": "ct_hdp12p",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c5",
      "designation": "5",
-     "signal": "ECU-B B7"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ETB motor + (Aux 9, B18)"
     },
     {
      "id": "c6",
      "designation": "6",
-     "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ETB motor - (Aux 10, B26)"
     },
     {
      "id": "c7",
      "designation": "7",
-     "signal": "ECU-A A27"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-B B15"
     },
     {
      "id": "c8",
      "designation": "8",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-B B16"
     },
     {
      "id": "c9",
      "designation": "9",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-B B23"
     },
     {
      "id": "c10",
      "designation": "10",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-B B6"
     },
     {
      "id": "c11",
      "designation": "11",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-B B7"
     },
     {
      "id": "c12",
      "designation": "12",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
     },
     {
      "id": "c13",
      "designation": "13",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "ECU-A A27"
     },
     {
      "id": "c14",
      "designation": "14",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c15",
      "designation": "15",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c16",
      "designation": "16",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c17",
      "designation": "17",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c18",
      "designation": "18",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c19",
      "designation": "19",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c20",
      "designation": "20",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c21",
      "designation": "21",
-     "signal": "spare"
-    },
-    {
-     "id": "c22",
-     "designation": "22",
-     "signal": "spare"
-    },
-    {
-     "id": "c23",
-     "designation": "23",
-     "signal": "spare"
-    },
-    {
-     "id": "c24",
-     "designation": "24",
-     "signal": "spare"
-    },
-    {
-     "id": "c25",
-     "designation": "25",
-     "signal": "spare"
-    },
-    {
-     "id": "c26",
-     "designation": "26",
-     "signal": "spare"
-    },
-    {
-     "id": "c27",
-     "designation": "27",
-     "signal": "spare"
-    },
-    {
-     "id": "c28",
-     "designation": "28",
-     "signal": "spare"
-    },
-    {
-     "id": "c29",
-     "designation": "29",
-     "signal": "spare"
-    },
-    {
-     "id": "c30",
-     "designation": "30",
-     "signal": "spare"
-    },
-    {
-     "id": "c31",
-     "designation": "31",
-     "signal": "spare"
-    },
-    {
-     "id": "c32",
-     "designation": "32",
-     "signal": "spare"
-    },
-    {
-     "id": "c33",
-     "designation": "33",
-     "signal": "spare"
-    },
-    {
-     "id": "c34",
-     "designation": "34",
-     "signal": "spare"
-    },
-    {
-     "id": "c35",
-     "designation": "35",
-     "signal": "spare"
-    },
-    {
-     "id": "c36",
-     "designation": "36",
-     "signal": "spare"
-    },
-    {
-     "id": "c37",
-     "designation": "37",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16p",
+     "signal": "spare (size 16)"
     }
    ],
    "layoutPosition": {
@@ -5661,194 +5592,135 @@
   },
   {
    "id": "bh_b_eng",
-   "label": "Bulkhead B - engine plug (8STA6-14-35PA)",
+   "label": "Bulkhead B - engine plug (HDP26-24-21SN)",
    "width": 210,
-   "partId": "cp_8sta6_14_35pa",
+   "partId": "cp_hdp_b_eng",
    "cavities": [
     {
      "id": "c1",
      "designation": "1",
-     "signal": "ECU-B B15"
+     "contactPartId": "ct_hdp12s",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c2",
      "designation": "2",
-     "signal": "ECU-B B16"
+     "contactPartId": "ct_hdp12s",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c3",
      "designation": "3",
-     "signal": "ECU-B B23"
+     "contactPartId": "ct_hdp12s",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c4",
      "designation": "4",
-     "signal": "ECU-B B6"
+     "contactPartId": "ct_hdp12s",
+     "signal": "spare (size 12)"
     },
     {
      "id": "c5",
      "designation": "5",
-     "signal": "ECU-B B7"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ETB motor + (Aux 9, B18)"
     },
     {
      "id": "c6",
      "designation": "6",
-     "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ETB motor - (Aux 10, B26)"
     },
     {
      "id": "c7",
      "designation": "7",
-     "signal": "ECU-A A27"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-B B15"
     },
     {
      "id": "c8",
      "designation": "8",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-B B16"
     },
     {
      "id": "c9",
      "designation": "9",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-B B23"
     },
     {
      "id": "c10",
      "designation": "10",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-B B6"
     },
     {
      "id": "c11",
      "designation": "11",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-B B7"
     },
     {
      "id": "c12",
      "designation": "12",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
     },
     {
      "id": "c13",
      "designation": "13",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "ECU-A A27"
     },
     {
      "id": "c14",
      "designation": "14",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c15",
      "designation": "15",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c16",
      "designation": "16",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c17",
      "designation": "17",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c18",
      "designation": "18",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c19",
      "designation": "19",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c20",
      "designation": "20",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     },
     {
      "id": "c21",
      "designation": "21",
-     "signal": "spare"
-    },
-    {
-     "id": "c22",
-     "designation": "22",
-     "signal": "spare"
-    },
-    {
-     "id": "c23",
-     "designation": "23",
-     "signal": "spare"
-    },
-    {
-     "id": "c24",
-     "designation": "24",
-     "signal": "spare"
-    },
-    {
-     "id": "c25",
-     "designation": "25",
-     "signal": "spare"
-    },
-    {
-     "id": "c26",
-     "designation": "26",
-     "signal": "spare"
-    },
-    {
-     "id": "c27",
-     "designation": "27",
-     "signal": "spare"
-    },
-    {
-     "id": "c28",
-     "designation": "28",
-     "signal": "spare"
-    },
-    {
-     "id": "c29",
-     "designation": "29",
-     "signal": "spare"
-    },
-    {
-     "id": "c30",
-     "designation": "30",
-     "signal": "spare"
-    },
-    {
-     "id": "c31",
-     "designation": "31",
-     "signal": "spare"
-    },
-    {
-     "id": "c32",
-     "designation": "32",
-     "signal": "spare"
-    },
-    {
-     "id": "c33",
-     "designation": "33",
-     "signal": "spare"
-    },
-    {
-     "id": "c34",
-     "designation": "34",
-     "signal": "spare"
-    },
-    {
-     "id": "c35",
-     "designation": "35",
-     "signal": "spare"
-    },
-    {
-     "id": "c36",
-     "designation": "36",
-     "signal": "spare"
-    },
-    {
-     "id": "c37",
-     "designation": "37",
-     "signal": "spare"
+     "contactPartId": "ct_hdp16s",
+     "signal": "spare (size 16)"
     }
    ],
    "layoutPosition": {
@@ -5884,40 +5756,144 @@
    }
   },
   {
-   "id": "realdash_pi",
-   "label": "RealDash - Raspberry Pi 5 (CAN + power)",
-   "partId": "cp_dev4",
-   "width": 210,
+   "id": "bh_c_fw",
    "cavities": [
     {
      "id": "c1",
      "designation": "1",
-     "signal": "CAN H"
+     "contactPartId": "ct_hdp4p",
+     "signal": "spare (size 4)"
     },
     {
      "id": "c2",
      "designation": "2",
-     "signal": "CAN L"
+     "contactPartId": "ct_hdp8p",
+     "signal": "MRS EPS pump 12V"
     },
     {
      "id": "c3",
      "designation": "3",
-     "signal": "+12V (power file)"
+     "contactPartId": "ct_hdp8p",
+     "signal": "spare (size 8)"
     },
     {
      "id": "c4",
      "designation": "4",
-     "signal": "GND (power file)"
+     "contactPartId": "ct_hdp12p",
+     "signal": "Radiator fan feed (relay 87)"
+    },
+    {
+     "id": "c5",
+     "designation": "5",
+     "contactPartId": "ct_hdp12p",
+     "signal": "Condenser fan feed (relay 87)"
+    },
+    {
+     "id": "c6",
+     "designation": "6",
+     "contactPartId": "ct_hdp12p",
+     "signal": "V-Ethrottle motor supply"
+    },
+    {
+     "id": "c7",
+     "designation": "7",
+     "contactPartId": "ct_hdp12p",
+     "signal": "Injector bank 12V"
+    },
+    {
+     "id": "c8",
+     "designation": "8",
+     "contactPartId": "ct_hdp12p",
+     "signal": "Coil bank 12V"
+    },
+    {
+     "id": "c9",
+     "designation": "9",
+     "contactPartId": "ct_hdp12p",
+     "signal": "spare (size 12)"
     }
    ],
-   "layoutPosition": {
-    "x": -360,
-    "y": -600
-   },
+   "width": 270,
    "schematicPosition": {
     "x": 0,
-    "y": 780
-   }
+    "y": 0
+   },
+   "layoutPosition": {
+    "x": 0,
+    "y": 0
+   },
+   "partId": "cp_hdp_c_fw",
+   "label": "Bulkhead C - firewall (HDP24-24-9PE)"
+  },
+  {
+   "id": "bh_c_eng",
+   "cavities": [
+    {
+     "id": "c1",
+     "designation": "1",
+     "contactPartId": "ct_hdp4s",
+     "signal": "spare (size 4)"
+    },
+    {
+     "id": "c2",
+     "designation": "2",
+     "contactPartId": "ct_hdp8s",
+     "signal": "MRS EPS pump 12V"
+    },
+    {
+     "id": "c3",
+     "designation": "3",
+     "contactPartId": "ct_hdp8s",
+     "signal": "spare (size 8)"
+    },
+    {
+     "id": "c4",
+     "designation": "4",
+     "contactPartId": "ct_hdp12s",
+     "signal": "Radiator fan feed (relay 87)"
+    },
+    {
+     "id": "c5",
+     "designation": "5",
+     "contactPartId": "ct_hdp12s",
+     "signal": "Condenser fan feed (relay 87)"
+    },
+    {
+     "id": "c6",
+     "designation": "6",
+     "contactPartId": "ct_hdp12s",
+     "signal": "V-Ethrottle motor supply"
+    },
+    {
+     "id": "c7",
+     "designation": "7",
+     "contactPartId": "ct_hdp12s",
+     "signal": "Injector bank 12V"
+    },
+    {
+     "id": "c8",
+     "designation": "8",
+     "contactPartId": "ct_hdp12s",
+     "signal": "Coil bank 12V"
+    },
+    {
+     "id": "c9",
+     "designation": "9",
+     "contactPartId": "ct_hdp12s",
+     "signal": "spare (size 12)"
+    }
+   ],
+   "width": 270,
+   "schematicPosition": {
+    "x": 0,
+    "y": 0
+   },
+   "layoutPosition": {
+    "x": 0,
+    "y": 0
+   },
+   "partId": "cp_hdp_c_eng",
+   "label": "Bulkhead C - engine plug (HDP26-24-9SE)"
   }
  ],
  "terminals": [
@@ -6286,42 +6262,6 @@
      "id": "bn_bp_cabin__csb3io_c",
      "layoutPosition": {
       "x": -585,
-      "y": 15
-     }
-    }
-   ]
-  },
-  {
-   "id": "bn_bp_cabin__cluster",
-   "length": {
-    "unit": "mm",
-    "value": 250
-   },
-   "sourceId": "bp_cabin",
-   "targetId": "cluster",
-   "layoutPoints": [
-    {
-     "id": "bn_bp_cabin__cluster_c",
-     "layoutPosition": {
-      "x": -465,
-      "y": 15
-     }
-    }
-   ]
-  },
-  {
-   "id": "bn_bp_cabin__realdash_pi",
-   "length": {
-    "unit": "mm",
-    "value": 250
-   },
-   "sourceId": "bp_cabin",
-   "targetId": "realdash_pi",
-   "layoutPoints": [
-    {
-     "id": "bn_bp_cabin__realdash_pi_c",
-     "layoutPosition": {
-      "x": -345,
       "y": 15
      }
     }
@@ -7436,6 +7376,11 @@
    "id": "mate_bh_b",
    "sourceId": "bh_b_eng",
    "targetId": "bh_b_fw"
+  },
+  {
+   "id": "mate_bh_c",
+   "sourceId": "bh_c_fw",
+   "targetId": "bh_c_eng"
   }
  ],
  "resistors": [
@@ -7720,38 +7665,164 @@
    "manufacturer": "Bosch"
   },
   {
-   "id": "ct_22d_skt",
-   "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
+   "id": "ct_hdp4p",
+   "partNumber": "0460-204-0490",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 4 solid PIN, 6 AWG, 100 A - OWNED (qty 5)",
+   "gender": "Pin",
    "type": "Crimp",
-   "gender": "Socket",
    "maxGauge": {
     "unit": "AWG",
-    "value": 22
+    "value": 6
    },
    "minGauge": {
     "unit": "AWG",
-    "value": 26
-   },
-   "partNumber": "M39029/56-348",
-   "description": "Size 22D gold socket, 22–26 AWG, 5 A — 8STA/AS series",
-   "manufacturer": "Eaton / Souriau"
+    "value": 6
+   }
   },
   {
-   "id": "ct_22d_pin",
-   "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
+   "id": "ct_hdp4s",
+   "partNumber": "0462-203-04141",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 4 solid SOCKET, 6 AWG, 100 A - OWNED (qty 9)",
+   "gender": "Socket",
    "type": "Crimp",
-   "gender": "Pin",
    "maxGauge": {
     "unit": "AWG",
-    "value": 22
+    "value": 6
    },
    "minGauge": {
     "unit": "AWG",
-    "value": 26
+    "value": 6
+   }
+  },
+  {
+   "id": "ct_hdp8p",
+   "partNumber": "0460-204-08141",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 8 solid PIN, 8-10 AWG, 60 A - OWNED (qty 5)",
+   "gender": "Pin",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 8
    },
-   "partNumber": "M39029/58-360",
-   "description": "Size 22D gold pin, 22–26 AWG, 5 A — 8STA/AS series",
-   "manufacturer": "Eaton / Souriau"
+   "minGauge": {
+    "unit": "AWG",
+    "value": 10
+   }
+  },
+  {
+   "id": "ct_hdp8s",
+   "partNumber": "0462-203-08141",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 8 solid SOCKET, 8-10 AWG, 60 A - OWNED (qty 9)",
+   "gender": "Socket",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 8
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 10
+   }
+  },
+  {
+   "id": "ct_hdp12p",
+   "partNumber": "0460-220-1231",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 12 solid PIN, 12-14 AWG, 25 A - OWNED (qty 20)",
+   "gender": "Pin",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 12
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 14
+   }
+  },
+  {
+   "id": "ct_hdp12s",
+   "partNumber": "0462-210-1231",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 12 solid SOCKET, 12-14 AWG, 25 A - OWNED (qty 20)",
+   "gender": "Socket",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 12
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 14
+   }
+  },
+  {
+   "id": "ct_hdp16p",
+   "partNumber": "0460-202-1631",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 16 solid PIN, 16-20 AWG, 13 A - OWNED (qty 130)",
+   "gender": "Pin",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 16
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 20
+   }
+  },
+  {
+   "id": "ct_hdp16s",
+   "partNumber": "0462-201-1631",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 16 solid SOCKET, 16-20 AWG, 13 A - OWNED (qty 118)",
+   "gender": "Socket",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 16
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 20
+   }
+  },
+  {
+   "id": "ct_hdp20p",
+   "partNumber": "0460-202-2031",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY",
+   "gender": "Pin",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 20
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 20
+   }
+  },
+  {
+   "id": "ct_hdp20s",
+   "partNumber": "0462-201-2031",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY",
+   "gender": "Socket",
+   "type": "Crimp",
+   "maxGauge": {
+    "unit": "AWG",
+    "value": 20
+   },
+   "minGauge": {
+    "unit": "AWG",
+    "value": 20
+   }
   }
  ],
  "resistorParts": [
@@ -8056,78 +8127,10 @@
    "numberOfCavities": 7
   },
   {
-   "id": "cp_8sta0_14_35sn",
-   "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-   "color": "Red",
-   "gender": "Female",
-   "partNumber": "8STA0-14-35SN",
-   "description": "Oval-flange bulkhead receptacle, 37×22D sockets, N/red keyway — A-loom firewall",
-   "manufacturer": "Eaton / Souriau",
-   "configurations": [
-    {
-     "id": "cfg",
-     "bootPartId": "boot_8sta14",
-     "contactPartId": "ct_22d_skt"
-    }
-   ],
-   "numberOfCavities": 37
-  },
-  {
-   "id": "cp_8sta6_14_35pn",
-   "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-   "color": "Red",
-   "gender": "Male",
-   "partNumber": "8STA6-14-35PN",
-   "description": "Free plug, 37×22D pins, N/red keyway — A-loom engine side",
-   "manufacturer": "Eaton / Souriau",
-   "configurations": [
-    {
-     "id": "cfg",
-     "bootPartId": "boot_8sta14",
-     "contactPartId": "ct_22d_pin"
-    }
-   ],
-   "numberOfCavities": 37
-  },
-  {
-   "id": "cp_8sta0_14_35sa",
-   "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-   "color": "Yellow",
-   "gender": "Female",
-   "partNumber": "8STA0-14-35SA",
-   "description": "Oval-flange bulkhead receptacle, 37×22D sockets, A/yellow keyway — B-loom firewall",
-   "manufacturer": "Eaton / Souriau",
-   "configurations": [
-    {
-     "id": "cfg",
-     "bootPartId": "boot_8sta14",
-     "contactPartId": "ct_22d_skt"
-    }
-   ],
-   "numberOfCavities": 37
-  },
-  {
-   "id": "cp_8sta6_14_35pa",
-   "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-   "color": "Yellow",
-   "gender": "Male",
-   "partNumber": "8STA6-14-35PA",
-   "description": "Free plug, 37×22D pins, A/yellow keyway — B-loom engine side",
-   "manufacturer": "Eaton / Souriau",
-   "configurations": [
-    {
-     "id": "cfg",
-     "bootPartId": "boot_8sta14",
-     "contactPartId": "ct_22d_pin"
-    }
-   ],
-   "numberOfCavities": 37
-  },
-  {
    "id": "cp_oem_block_2",
    "gender": "Female",
    "hasShell": false,
-   "partNumber": "(OEM block)",
+   "partNumber": "(OEM block, 2-way)",
    "description": "Generic OEM block — 2 cavities. No invented OEM pinout.",
    "manufacturer": "OEM / unspecified",
    "numberOfCavities": 2
@@ -8136,7 +8139,7 @@
    "id": "cp_oem_block_5",
    "gender": "Female",
    "hasShell": false,
-   "partNumber": "(OEM block)",
+   "partNumber": "(OEM block, 5-way)",
    "description": "Generic OEM block — 5 cavities (relay / cruise stalk).",
    "manufacturer": "OEM / unspecified",
    "numberOfCavities": 5
@@ -8151,19 +8154,40 @@
    "numberOfCavities": 6
   },
   {
-   "id": "cp_dev4",
-   "manufacturer": "Deutsch",
-   "partNumber": "DTM06-4S",
-   "gender": "Female",
-   "hasShell": false,
-   "numberOfCavities": 4,
-   "description": "DTM 4-way plug - CAN H / CAN L / +12V / GND device tail",
-   "configurations": [
-    {
-     "id": "cfg",
-     "contactPartId": "ct_dtm_skt"
-    }
-   ]
+   "id": "cp_hdp_a_fw",
+   "partNumber": "HDP24-24-47PE-L017",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 47-way receptacle, PIN, E seal, reverse ring flange - bulkhead A, firewall side"
+  },
+  {
+   "id": "cp_hdp_a_eng",
+   "partNumber": "HDP26-24-47SE-L015",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 47-way plug, SOCKET, E seal, threaded - bulkhead A, engine side"
+  },
+  {
+   "id": "cp_hdp_b_fw",
+   "partNumber": "HDP24-24-21PN",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 21-way receptacle, PIN, N seal - bulkhead B, firewall side"
+  },
+  {
+   "id": "cp_hdp_b_eng",
+   "partNumber": "HDP26-24-21SN",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 21-way plug, SOCKET, N seal - bulkhead B, engine side"
+  },
+  {
+   "id": "cp_hdp_c_fw",
+   "partNumber": "HDP24-24-9PE",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 9-way receptacle, PIN, E seal - bulkhead C, high current, firewall side"
+  },
+  {
+   "id": "cp_hdp_c_eng",
+   "partNumber": "HDP26-24-9SE",
+   "manufacturer": "TE DEUTSCH",
+   "description": "HDP20 sz24 9-way plug, SOCKET, E seal - bulkhead C, high current, engine side"
   }
  ],
  "bootParts": [
