@@ -354,91 +354,106 @@
      "id": "c33",
      "designation": "33",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c34",
      "designation": "34",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c35",
      "designation": "35",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c36",
      "designation": "36",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c37",
      "designation": "37",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c38",
      "designation": "38",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c39",
      "designation": "39",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c40",
      "designation": "40",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c41",
      "designation": "41",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c42",
      "designation": "42",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c43",
      "designation": "43",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c44",
      "designation": "44",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c45",
      "designation": "45",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c46",
      "designation": "46",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c47",
      "designation": "47",
      "contactPartId": "ct_hdp20p",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     }
    ],
    "layoutPosition": {
@@ -652,91 +667,106 @@
      "id": "c33",
      "designation": "33",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c34",
      "designation": "34",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c35",
      "designation": "35",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c36",
      "designation": "36",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c37",
      "designation": "37",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c38",
      "designation": "38",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c39",
      "designation": "39",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c40",
      "designation": "40",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c41",
      "designation": "41",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c42",
      "designation": "42",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c43",
      "designation": "43",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c44",
      "designation": "44",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c45",
      "designation": "45",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c46",
      "designation": "46",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     },
     {
      "id": "c47",
      "designation": "47",
      "contactPartId": "ct_hdp20s",
-     "signal": "spare (size 20)"
+     "signal": "spare (size 20)",
+     "cavityPlugPartId": "pl_sz20"
     }
    ],
    "layoutPosition": {
@@ -1436,6 +1466,12 @@
    "partNumber": "HDP26-24-47SE-L015",
    "manufacturer": "TE DEUTSCH",
    "description": "HDP20 sz24 47-way plug, SOCKET, E seal, threaded - bulkhead A, engine side"
+  },
+  {
+   "id": "pl_sz20",
+   "partNumber": "0413-204-2005",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Sealing plug, size 20, red"
   }
  ],
  "contactParts": [
