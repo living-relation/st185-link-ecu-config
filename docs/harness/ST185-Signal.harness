@@ -4339,28 +4339,33 @@
   },
   {
    "id": "k_efi",
-   "label": "OEM block — EFI Main Relay",
+   "label": "EFI Main Relay",
    "partId": "cp_oem_block_5",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "Fused +12V in (F1 30A)"
     },
     {
      "id": "c2",
-     "signal": "COIL ECU LS"
+     "designation": "85",
+     "signal": "Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "+12V out -> ECU A5, injectors, coils, ETB relay"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {
@@ -4374,28 +4379,33 @@
   },
   {
    "id": "k_etb",
-   "label": "OEM block — ETB Power Relay",
+   "label": "ETB Power Relay",
    "partId": "cp_oem_block_5",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "Fused +12V in (F3 15A)"
     },
     {
      "id": "c2",
-     "signal": "COIL ECU LS"
+     "designation": "85",
+     "signal": "Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "+12V out -> ECU B5 V-Ethrottle"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {
@@ -4409,28 +4419,33 @@
   },
   {
    "id": "k_fp",
-   "label": "OEM block — Fuel Pump Relay",
+   "label": "Fuel Pump Relay",
    "partId": "cp_oem_block_5",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "Fused +12V in (F2 20A)"
     },
     {
      "id": "c2",
-     "signal": "COIL ECU LS"
+     "designation": "85",
+     "signal": "Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "+12V out -> fuel pump"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {
@@ -4444,28 +4459,33 @@
   },
   {
    "id": "k_fan",
-   "label": "OEM block — Radiator Fan Relay",
+   "label": "Radiator Fan Relay (on/off)",
    "partId": "cp_oem_block_5",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "Fused +12V in (F5 30A)"
     },
     {
      "id": "c2",
-     "signal": "COIL ECU LS"
+     "designation": "85",
+     "signal": "Coil - -> Aux 5 / A29 - low-side"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "+12V out -> radiator fan motor"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {
@@ -4479,28 +4499,33 @@
   },
   {
    "id": "k_str",
-   "label": "OEM block — Start Relay",
+   "label": "Start Relay",
    "partId": "cp_oem_block_5",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "Fused +12V in (F4 30A)"
     },
     {
      "id": "c2",
-     "signal": "COIL ECU LS"
+     "designation": "85",
+     "signal": "Coil - -> Aux 8 / A26 - low-side"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "+12V out -> starter solenoid S"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {
@@ -4514,28 +4539,33 @@
   },
   {
    "id": "k_fan2",
-   "label": "OEM block — Condenser Fan Relay",
+   "label": "Condenser Fan Relay (on/off)",
    "partId": "cp_oem_block_5",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "Fused +12V in (F6 20A)"
     },
     {
      "id": "c2",
-     "signal": "COIL ECU LS"
+     "designation": "85",
+     "signal": "Coil - -> Ign 5 / B13 - low-side, NO internal flywheel diode - diode-suppressed relay required"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "+12V out -> condenser fan motor"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {

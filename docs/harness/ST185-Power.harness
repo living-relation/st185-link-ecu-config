@@ -33,174 +33,6 @@
    ]
   },
   {
-   "id": "w221",
-   "color": "Red",
-   "source": {
-    "id": "k_efi",
-    "handle": "c1"
-   },
-   "target": {
-    "id": "batt_ring",
-    "handle": "Terminal"
-   },
-   "layoutPoints": [
-    {
-     "id": "w221_r1",
-     "schematicPosition": {
-      "x": -840,
-      "y": 1185
-     }
-    },
-    {
-     "id": "w221_r2",
-     "schematicPosition": {
-      "x": -840,
-      "y": 795
-     }
-    }
-   ]
-  },
-  {
-   "id": "w222",
-   "color": "Red",
-   "source": {
-    "id": "k_etb",
-    "handle": "c1"
-   },
-   "target": {
-    "id": "batt_ring",
-    "handle": "Terminal"
-   },
-   "layoutPoints": [
-    {
-     "id": "w222_r1",
-     "schematicPosition": {
-      "x": -804,
-      "y": 1455
-     }
-    },
-    {
-     "id": "w222_r2",
-     "schematicPosition": {
-      "x": -804,
-      "y": 795
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fp86",
-   "color": "Red",
-   "source": {
-    "id": "k_fp",
-    "handle": "c1"
-   },
-   "target": {
-    "id": "batt_ring",
-    "handle": "Terminal"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fp86_r1",
-     "schematicPosition": {
-      "x": -732,
-      "y": 1725
-     }
-    },
-    {
-     "id": "w_fp86_r2",
-     "schematicPosition": {
-      "x": -732,
-      "y": 795
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fan86",
-   "color": "Red",
-   "source": {
-    "id": "k_fan",
-    "handle": "c1"
-   },
-   "target": {
-    "id": "batt_ring",
-    "handle": "Terminal"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fan86_r1",
-     "schematicPosition": {
-      "x": -750,
-      "y": 1995
-     }
-    },
-    {
-     "id": "w_fan86_r2",
-     "schematicPosition": {
-      "x": -750,
-      "y": 795
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fan286",
-   "color": "Red",
-   "source": {
-    "id": "k_fan2",
-    "handle": "c1"
-   },
-   "target": {
-    "id": "batt_ring",
-    "handle": "Terminal"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fan286_r1",
-     "schematicPosition": {
-      "x": -768,
-      "y": 2265
-     }
-    },
-    {
-     "id": "w_fan286_r2",
-     "schematicPosition": {
-      "x": -768,
-      "y": 795
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_str86",
-   "color": "Red",
-   "source": {
-    "id": "k_str",
-    "handle": "c1"
-   },
-   "target": {
-    "id": "batt_ring",
-    "handle": "Terminal"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_str86_r1",
-     "schematicPosition": {
-      "x": -714,
-      "y": 2535
-     }
-    },
-    {
-     "id": "w_str86_r2",
-     "schematicPosition": {
-      "x": -714,
-      "y": 795
-     }
-    }
-   ]
-  },
-  {
    "id": "w77",
    "color": "Red",
    "source": {
@@ -2692,258 +2524,6 @@
    ]
   },
   {
-   "id": "w_fb_in",
-   "color": "Red",
-   "source": {
-    "id": "batt_ring",
-    "handle": "Terminal"
-   },
-   "target": {
-    "id": "fusebox",
-    "handle": "c12"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fb_in_o1",
-     "schematicPosition": {
-      "x": 330,
-      "y": 795
-     }
-    },
-    {
-     "id": "w_fb_in_o2",
-     "schematicPosition": {
-      "x": 330,
-      "y": 2775
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fb_k_efi",
-   "color": "Red",
-   "source": {
-    "id": "fusebox",
-    "handle": "c1"
-   },
-   "target": {
-    "id": "k_efi",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fb_k_efi_o1",
-     "schematicPosition": {
-      "x": 330,
-      "y": 2445
-     }
-    },
-    {
-     "id": "w_fb_k_efi_o2",
-     "schematicPosition": {
-      "x": 330,
-      "y": 1245
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fb_k_fp",
-   "color": "Red",
-   "source": {
-    "id": "fusebox",
-    "handle": "c2"
-   },
-   "target": {
-    "id": "k_fp",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fb_k_fp_o1",
-     "schematicPosition": {
-      "x": 330,
-      "y": 2475
-     }
-    },
-    {
-     "id": "w_fb_k_fp_o2",
-     "schematicPosition": {
-      "x": 330,
-      "y": 1785
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fb_k_etb",
-   "color": "Red",
-   "source": {
-    "id": "fusebox",
-    "handle": "c3"
-   },
-   "target": {
-    "id": "k_etb",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fb_k_etb_o1",
-     "schematicPosition": {
-      "x": 330,
-      "y": 2505
-     }
-    },
-    {
-     "id": "w_fb_k_etb_o2",
-     "schematicPosition": {
-      "x": 330,
-      "y": 1515
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fb_k_str",
-   "color": "Red",
-   "source": {
-    "id": "fusebox",
-    "handle": "c4"
-   },
-   "target": {
-    "id": "k_str",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fb_k_str_o1",
-     "schematicPosition": {
-      "x": 330,
-      "y": 2535
-     }
-    },
-    {
-     "id": "w_fb_k_str_o2",
-     "schematicPosition": {
-      "x": 330,
-      "y": 2595
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fb_k_fan",
-   "color": "Red",
-   "source": {
-    "id": "fusebox",
-    "handle": "c5"
-   },
-   "target": {
-    "id": "k_fan",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fb_k_fan_o1",
-     "schematicPosition": {
-      "x": 330,
-      "y": 2565
-     }
-    },
-    {
-     "id": "w_fb_k_fan_o2",
-     "schematicPosition": {
-      "x": 330,
-      "y": 2055
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fb_k_fan2",
-   "color": "Red",
-   "source": {
-    "id": "fusebox",
-    "handle": "c6"
-   },
-   "target": {
-    "id": "k_fan2",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fb_k_fan2_o1",
-     "schematicPosition": {
-      "x": 330,
-      "y": 2595
-     }
-    },
-    {
-     "id": "w_fb_k_fan2_o2",
-     "schematicPosition": {
-      "x": 330,
-      "y": 2325
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fb_k_eps",
-   "color": "Red",
-   "source": {
-    "id": "fusebox",
-    "handle": "c7"
-   },
-   "target": {
-    "id": "k_eps",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fb_k_eps_o1",
-     "schematicPosition": {
-      "x": 1320,
-      "y": 2625
-     }
-    },
-    {
-     "id": "w_fb_k_eps_o2",
-     "schematicPosition": {
-      "x": 1320,
-      "y": 2505
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_eps86",
-   "color": "Red",
-   "source": {
-    "id": "k_eps",
-    "handle": "c1"
-   },
-   "target": {
-    "id": "batt_ring",
-    "handle": "Terminal"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_eps86_o1",
-     "schematicPosition": {
-      "x": 990,
-      "y": 2445
-     }
-    },
-    {
-     "id": "w_eps86_o2",
-     "schematicPosition": {
-      "x": 990,
-      "y": 795
-     }
-    }
-   ]
-  },
-  {
    "id": "w_eps87",
    "color": "Red",
    "source": {
@@ -3150,6 +2730,438 @@
      }
     }
    ]
+  },
+  {
+   "id": "w_fb_in",
+   "color": "Red",
+   "source": {
+    "id": "batt_ring",
+    "handle": "Terminal"
+   },
+   "target": {
+    "id": "fusebox",
+    "handle": "c13"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_in_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 795
+     }
+    },
+    {
+     "id": "w_fb_in_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2805
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_efi_30",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c1"
+   },
+   "target": {
+    "id": "k_efi",
+    "handle": "c1"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_efi_30_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2445
+     }
+    },
+    {
+     "id": "w_fb_k_efi_30_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 1185
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_k_efi_86",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c12"
+   },
+   "target": {
+    "id": "k_efi",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_k_efi_86_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2775
+     }
+    },
+    {
+     "id": "w_k_efi_86_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 1245
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_fp_30",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c2"
+   },
+   "target": {
+    "id": "k_fp",
+    "handle": "c1"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_fp_30_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2475
+     }
+    },
+    {
+     "id": "w_fb_k_fp_30_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 1725
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_k_fp_86",
+   "color": "Red",
+   "source": {
+    "id": "sp_sw12",
+    "handle": "Splice"
+   },
+   "target": {
+    "id": "k_fp",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_k_fp_86_o1",
+     "schematicPosition": {
+      "x": 540,
+      "y": 135
+     }
+    },
+    {
+     "id": "w_k_fp_86_o2",
+     "schematicPosition": {
+      "x": 540,
+      "y": 1785
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_etb_30",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c3"
+   },
+   "target": {
+    "id": "k_etb",
+    "handle": "c1"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_etb_30_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2505
+     }
+    },
+    {
+     "id": "w_fb_k_etb_30_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 1455
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_k_etb_86",
+   "color": "Red",
+   "source": {
+    "id": "sp_sw12",
+    "handle": "Splice"
+   },
+   "target": {
+    "id": "k_etb",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_k_etb_86_o1",
+     "schematicPosition": {
+      "x": 540,
+      "y": 135
+     }
+    },
+    {
+     "id": "w_k_etb_86_o2",
+     "schematicPosition": {
+      "x": 540,
+      "y": 1515
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_str_30",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c4"
+   },
+   "target": {
+    "id": "k_str",
+    "handle": "c1"
+   }
+  },
+  {
+   "id": "w_k_str_86",
+   "color": "Red",
+   "source": {
+    "id": "sp_sw12",
+    "handle": "Splice"
+   },
+   "target": {
+    "id": "k_str",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_k_str_86_o1",
+     "schematicPosition": {
+      "x": 540,
+      "y": 135
+     }
+    },
+    {
+     "id": "w_k_str_86_o2",
+     "schematicPosition": {
+      "x": 540,
+      "y": 2595
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_fan_30",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c5"
+   },
+   "target": {
+    "id": "k_fan",
+    "handle": "c1"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_fan_30_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2565
+     }
+    },
+    {
+     "id": "w_fb_k_fan_30_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 1995
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_k_fan_86",
+   "color": "Red",
+   "source": {
+    "id": "sp_sw12",
+    "handle": "Splice"
+   },
+   "target": {
+    "id": "k_fan",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_k_fan_86_o1",
+     "schematicPosition": {
+      "x": 540,
+      "y": 135
+     }
+    },
+    {
+     "id": "w_k_fan_86_o2",
+     "schematicPosition": {
+      "x": 540,
+      "y": 2055
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_fan2_30",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c6"
+   },
+   "target": {
+    "id": "k_fan2",
+    "handle": "c1"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_fan2_30_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2595
+     }
+    },
+    {
+     "id": "w_fb_k_fan2_30_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2265
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_k_fan2_86",
+   "color": "Red",
+   "source": {
+    "id": "sp_sw12",
+    "handle": "Splice"
+   },
+   "target": {
+    "id": "k_fan2",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_k_fan2_86_o1",
+     "schematicPosition": {
+      "x": 540,
+      "y": 135
+     }
+    },
+    {
+     "id": "w_k_fan2_86_o2",
+     "schematicPosition": {
+      "x": 540,
+      "y": 2325
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_eps_30",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c7"
+   },
+   "target": {
+    "id": "k_eps",
+    "handle": "c1"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_eps_30_o1",
+     "schematicPosition": {
+      "x": 1320,
+      "y": 2625
+     }
+    },
+    {
+     "id": "w_fb_k_eps_30_o2",
+     "schematicPosition": {
+      "x": 1320,
+      "y": 2445
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_k_eps_86",
+   "color": "Red",
+   "source": {
+    "id": "sp_sw12",
+    "handle": "Splice"
+   },
+   "target": {
+    "id": "k_eps",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_k_eps_86_o1",
+     "schematicPosition": {
+      "x": 1500,
+      "y": 135
+     }
+    },
+    {
+     "id": "w_k_eps_86_o2",
+     "schematicPosition": {
+      "x": 1500,
+      "y": 2505
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_k_eps_85",
+   "color": "Black",
+   "source": {
+    "id": "k_eps",
+    "handle": "c2"
+   },
+   "target": {
+    "id": "sp_chassis",
+    "handle": "Splice"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_k_eps_85_o1",
+     "schematicPosition": {
+      "x": 1500,
+      "y": 2475
+     }
+    },
+    {
+     "id": "w_k_eps_85_o2",
+     "schematicPosition": {
+      "x": 1500,
+      "y": 615
+     }
+    }
+   ]
   }
  ],
  "connectors": [
@@ -3250,22 +3262,22 @@
     {
      "id": "c1",
      "designation": "30",
-     "signal": "12V IN (fused)"
+     "signal": "Fused +12V in (F1 30A)"
     },
     {
      "id": "c2",
      "designation": "85",
-     "signal": "COIL - (ECU Aux low-side)"
+     "signal": "Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)"
     },
     {
      "id": "c3",
      "designation": "86",
-     "signal": "COIL +12V"
+     "signal": "Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)"
     },
     {
      "id": "c4",
      "designation": "87",
-     "signal": "12V OUT to load"
+     "signal": "+12V out -> ECU A5, injectors, coils, ETB relay"
     },
     {
      "id": "c5",
@@ -3290,22 +3302,22 @@
     {
      "id": "c1",
      "designation": "30",
-     "signal": "12V IN (fused)"
+     "signal": "Fused +12V in (F3 15A)"
     },
     {
      "id": "c2",
      "designation": "85",
-     "signal": "COIL - (ECU Aux low-side)"
+     "signal": "Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)"
     },
     {
      "id": "c3",
      "designation": "86",
-     "signal": "COIL +12V"
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
     },
     {
      "id": "c4",
      "designation": "87",
-     "signal": "12V OUT to load"
+     "signal": "+12V out -> ECU B5 V-Ethrottle"
     },
     {
      "id": "c5",
@@ -3330,22 +3342,22 @@
     {
      "id": "c1",
      "designation": "30",
-     "signal": "12V IN (fused)"
+     "signal": "Fused +12V in (F2 20A)"
     },
     {
      "id": "c2",
      "designation": "85",
-     "signal": "COIL - (ECU Aux low-side)"
+     "signal": "Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)"
     },
     {
      "id": "c3",
      "designation": "86",
-     "signal": "COIL +12V"
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
     },
     {
      "id": "c4",
      "designation": "87",
-     "signal": "12V OUT to load"
+     "signal": "+12V out -> fuel pump"
     },
     {
      "id": "c5",
@@ -3370,22 +3382,22 @@
     {
      "id": "c1",
      "designation": "30",
-     "signal": "12V IN (fused)"
+     "signal": "Fused +12V in (F5 30A)"
     },
     {
      "id": "c2",
      "designation": "85",
-     "signal": "COIL - (ECU Aux low-side)"
+     "signal": "Coil - -> Aux 5 / A29 - low-side"
     },
     {
      "id": "c3",
      "designation": "86",
-     "signal": "COIL +12V"
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
     },
     {
      "id": "c4",
      "designation": "87",
-     "signal": "12V OUT to load"
+     "signal": "+12V out -> radiator fan motor"
     },
     {
      "id": "c5",
@@ -3410,22 +3422,22 @@
     {
      "id": "c1",
      "designation": "30",
-     "signal": "12V IN (fused)"
+     "signal": "Fused +12V in (F6 20A)"
     },
     {
      "id": "c2",
      "designation": "85",
-     "signal": "COIL - (ECU Aux low-side)"
+     "signal": "Coil - -> Ign 5 / B13 - low-side, NO internal flywheel diode - diode-suppressed relay required"
     },
     {
      "id": "c3",
      "designation": "86",
-     "signal": "COIL +12V"
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
     },
     {
      "id": "c4",
      "designation": "87",
-     "signal": "12V OUT to load"
+     "signal": "+12V out -> condenser fan motor"
     },
     {
      "id": "c5",
@@ -3450,22 +3462,22 @@
     {
      "id": "c1",
      "designation": "30",
-     "signal": "12V IN (fused)"
+     "signal": "Fused +12V in (F4 30A)"
     },
     {
      "id": "c2",
      "designation": "85",
-     "signal": "COIL - (ECU Aux low-side)"
+     "signal": "Coil - -> Aux 8 / A26 - low-side"
     },
     {
      "id": "c3",
      "designation": "86",
-     "signal": "COIL +12V"
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
     },
     {
      "id": "c4",
      "designation": "87",
-     "signal": "12V OUT to load"
+     "signal": "+12V out -> starter solenoid S"
     },
     {
      "id": "c5",
@@ -5309,22 +5321,22 @@
     {
      "id": "c1",
      "designation": "30",
-     "signal": "12V IN (fused)"
+     "signal": "Fused +12V in (F7 60A)"
     },
     {
      "id": "c2",
      "designation": "85",
-     "signal": "COIL - (ECU Aux low-side)"
+     "signal": "Coil - -> chassis ground - no ECU channel - Aux is full. Coil grounded, pump runs whenever the key is on; assist level is set by the Aux 7 / A27 speed-out signal on the pump's SPD pin"
     },
     {
      "id": "c3",
      "designation": "86",
-     "signal": "COIL +12V"
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
     },
     {
      "id": "c4",
      "designation": "87",
-     "signal": "12V OUT to load"
+     "signal": "+12V out -> MRS EPS pump"
     },
     {
      "id": "c5",
@@ -5404,6 +5416,11 @@
     },
     {
      "id": "c12",
+     "designation": "F12",
+     "signal": "5A - relay coil feed, PERMANENT (EFI main relay 86)"
+    },
+    {
+     "id": "c13",
      "designation": "IN",
      "signal": "Battery feed in from master"
     }
