@@ -3123,6 +3123,34 @@
      }
     }
    ]
+  },
+  {
+   "id": "w_mrs_relay_req",
+   "color": "White",
+   "source": {
+    "id": "mrs_ctrl",
+    "handle": "c3"
+   },
+   "target": {
+    "id": "k_eps",
+    "handle": "c2"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_mrs_relay_req_r1",
+     "schematicPosition": {
+      "x": 2490,
+      "y": 3495
+     }
+    },
+    {
+     "id": "w_mrs_relay_req_r2",
+     "schematicPosition": {
+      "x": 2490,
+      "y": 3435
+     }
+    }
+   ]
   }
  ],
  "connectors": [
@@ -4629,7 +4657,7 @@
   },
   {
    "id": "mrs_ctrl",
-   "label": "MRS EPS Pump — Control",
+   "label": "MRS EPS Pump \u2014 Control",
    "partId": "cp_mrs_ctrl",
    "cavities": [
     {
@@ -4639,6 +4667,10 @@
     {
      "id": "c2",
      "notConnected": true
+    },
+    {
+     "id": "c3",
+     "signal": "Relay request out -> k_eps coil 85. Pump grounds this pin itself when ready to draw power (factory/community relay wiring, DIY Electric Car Forums 'MR2 Gen3 Power Steering Help'). Exact physical pin number (5 or 6 on the connector) to confirm against the pump in hand."
     }
    ],
    "layoutPosition": {
@@ -4683,7 +4715,7 @@
   },
   {
    "id": "csb3io",
-   "label": "ECUMaster CSB3 — Power/CAN/Switch I/O",
+   "label": "ECUMaster CSB3 \u2014 Power/CAN/Switch I/O",
    "width": 210,
    "partId": "cp_csb3io",
    "cavities": [
@@ -4755,7 +4787,7 @@
   },
   {
    "id": "clutch_sw",
-   "label": "OEM block — Clutch Switch",
+   "label": "OEM block \u2014 Clutch Switch",
    "partId": "cp_oem_block_2",
    "cavities": [
     {
@@ -4778,7 +4810,7 @@
   },
   {
    "id": "brake_sw",
-   "label": "OEM block — Brake Switch",
+   "label": "OEM block \u2014 Brake Switch",
    "partId": "cp_oem_block_2",
    "cavities": [
     {
@@ -4801,7 +4833,7 @@
   },
   {
    "id": "reverse_sw",
-   "label": "OEM block — Reverse Switch",
+   "label": "OEM block \u2014 Reverse Switch",
    "partId": "cp_oem_block_2",
    "cavities": [
     {
@@ -4824,7 +4856,7 @@
   },
   {
    "id": "start_req",
-   "label": "OEM block — Start Request",
+   "label": "OEM block \u2014 Start Request",
    "width": 210,
    "partId": "cp_oem_block_2",
    "cavities": [
@@ -4848,7 +4880,7 @@
   },
   {
    "id": "cruise_stalk",
-   "label": "OEM block — Cruise Control Stalk",
+   "label": "OEM block \u2014 Cruise Control Stalk",
    "width": 270,
    "partId": "cp_oem_block_5",
    "cavities": [
@@ -5588,7 +5620,7 @@
      "id": "c12",
      "designation": "12",
      "contactPartId": "ct_hdp16p",
-     "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
+     "signal": "ECUMaster CSB3 \u2014 Power/CAN/Switch I/O SW"
     },
     {
      "id": "c13",
@@ -5742,7 +5774,7 @@
      "id": "c12",
      "designation": "12",
      "contactPartId": "ct_hdp16s",
-     "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
+     "signal": "ECUMaster CSB3 \u2014 Power/CAN/Switch I/O SW"
     },
     {
      "id": "c13",
@@ -5818,7 +5850,7 @@
   },
   {
    "id": "ign_sw",
-   "label": "OEM block — Ignition Switch",
+   "label": "OEM block \u2014 Ignition Switch",
    "partId": "cp_oem_block_2",
    "cavities": [
     {
@@ -5984,6 +6016,47 @@
    },
    "partId": "cp_hdp_c_eng",
    "label": "Bulkhead C - engine plug (HDP26-24-9SE)"
+  },
+  {
+   "id": "k_eps",
+   "partId": "cp_oem_block_5",
+   "label": "MRS EPS Pump Relay (HCR 150, 130 A)",
+   "width": 210,
+   "schematicPosition": {
+    "x": 2700,
+    "y": 3390
+   },
+   "layoutPosition": {
+    "x": 2700,
+    "y": -600
+   },
+   "cavities": [
+    {
+     "id": "c1",
+     "designation": "30",
+     "signal": "Fused +12V in (F7 60A)"
+    },
+    {
+     "id": "c2",
+     "designation": "85",
+     "signal": "Coil - -> MRS pump's own relay-request signal (pump connector B, modeled as mrs_ctrl cavity c3 in the Signal file) - pump internally grounds this pin when it wants power. Matches the factory/community relay wiring (DIY Electric Car Forums, 'MR2 Gen3 Power Steering Help'). No ECU pin used - Ign 6 / B12 stays spare."
+    },
+    {
+     "id": "c3",
+     "designation": "86",
+     "signal": "Coil + - ignition-switched 12V (EFI main relay 87)"
+    },
+    {
+     "id": "c4",
+     "designation": "87",
+     "signal": "+12V out -> MRS EPS pump"
+    },
+    {
+     "id": "c5",
+     "designation": "87a",
+     "signal": "not used"
+    }
+   ]
   }
  ],
  "terminals": [
@@ -7752,7 +7825,7 @@
    "type": "Crimp",
    "gender": "Socket",
    "partNumber": "(generic)",
-   "description": "Generic machined pin socket for header-style / unspecified board connectors — confirm before ordering",
+   "description": "Generic machined pin socket for header-style / unspecified board connectors \u2014 confirm before ordering",
    "manufacturer": "Generic"
   },
   {
@@ -7957,7 +8030,7 @@
    "gender": "Female",
    "hasShell": false,
    "partNumber": "4-1437290-1",
-   "description": "SUPERSEAL 1.0 34-way receptacle COD 2 — Link XtremeX loom A",
+   "description": "SUPERSEAL 1.0 34-way receptacle COD 2 \u2014 Link XtremeX loom A",
    "manufacturer": "TE Connectivity",
    "configurations": [
     {
@@ -7972,7 +8045,7 @@
    "gender": "Female",
    "hasShell": false,
    "partNumber": "4-1437290-0",
-   "description": "SUPERSEAL 1.0 34-way receptacle COD 1 — Link XtremeX loom B",
+   "description": "SUPERSEAL 1.0 34-way receptacle COD 1 \u2014 Link XtremeX loom B",
    "manufacturer": "TE Connectivity",
    "configurations": [
     {
@@ -7987,7 +8060,7 @@
    "gender": "Female",
    "hasShell": false,
    "partNumber": "DTM06-6S",
-   "description": "DTM 6-way socket — ECU comms harness side",
+   "description": "DTM 6-way socket \u2014 ECU comms harness side",
    "manufacturer": "Deutsch",
    "configurations": [
     {
@@ -8003,7 +8076,7 @@
    "gender": "Female",
    "hasShell": false,
    "partNumber": "DTM06-4S",
-   "description": "DTM 4-way socket — CAN-Lambda harness side",
+   "description": "DTM 4-way socket \u2014 CAN-Lambda harness side",
    "manufacturer": "Deutsch",
    "configurations": [
     {
@@ -8078,7 +8151,7 @@
    "gender": "Female",
    "hasShell": false,
    "partNumber": "12052641",
-   "description": "2-way sealed connector — fuel level sender / 2nd (condenser) fan motor",
+   "description": "2-way sealed connector \u2014 fuel level sender / 2nd (condenser) fan motor",
    "manufacturer": "Aptiv (Delphi) Metri-Pack 150",
    "configurations": [
     {
@@ -8109,7 +8182,7 @@
    "gender": "Female",
    "hasShell": false,
    "partNumber": "(kit-supplied pigtail)",
-   "description": "3-pin pigtail supplied with the RacerX MR2 Cherry Hall cam-position sensor kit — generic placeholder, confirm exact housing against kit contents",
+   "description": "3-pin pigtail supplied with the RacerX MR2 Cherry Hall cam-position sensor kit \u2014 generic placeholder, confirm exact housing against kit contents",
    "manufacturer": "RacerX",
    "configurations": [
     {
@@ -8185,7 +8258,7 @@
    "gender": "Female",
    "hasShell": false,
    "partNumber": "90980-10942",
-   "description": "MR-S EHPS pump — small control connector housing (pigtail 82998-12440). Only the speed-out pin is used in this build; simplified to 2 cavities.",
+   "description": "MR-S EHPS pump \u2014 small control connector housing (pigtail 82998-12440). Speed-out and relay-request pins used; 3rd cavity unused. Pin numbering (which physical pin is speed vs relay-request) needs confirming against the pump in hand \u2014 modeled from the DIY Electric Car Forums diagram, not a Toyota pinout sheet.",
    "manufacturer": "Toyota",
    "configurations": [
     {
@@ -8193,13 +8266,13 @@
      "contactPartId": "ct_toy_ts"
     }
    ],
-   "numberOfCavities": 2
+   "numberOfCavities": 3
   },
   {
    "id": "cp_csb3io",
    "gender": "Female",
    "hasShell": false,
-   "partNumber": "(none — PCB screw terminals)",
+   "partNumber": "(none \u2014 PCB screw terminals)",
    "description": "CAN Switch Board V3 screw-terminal I/O. No harness-side connector spec'd yet; cavity layout follows the CSB3 channel list (power, CAN, cabin-temp + cruise-ladder analog inputs, 8 switch inputs). Analog 3-8, low-side outs 1-4 and rotary/mode inputs remain spare/unused on this build. Verify against board silkscreen before crimping.",
    "manufacturer": "ECUMaster",
    "configurations": [
@@ -8214,7 +8287,7 @@
    "id": "cp_acamp",
    "gender": "Female",
    "hasShell": false,
-   "partNumber": "(unspecified — OEM ST185 AC amplifier)",
+   "partNumber": "(unspecified \u2014 OEM ST185 AC amplifier)",
    "description": "AC amplifier control connector. Pin count/layout inferred from 'AC amplifier input signals.txt' (IGN tach out, coolant temp switch, cabin outlet air temp, AC core thermocouple, trinary hi/lo pressure switch, ECU ACT kill input). Verify against the ST185 electrical diagram before crimping.",
    "manufacturer": "Toyota",
    "configurations": [
@@ -8230,7 +8303,7 @@
    "gender": "Female",
    "hasShell": false,
    "partNumber": "(OEM block, 2-way)",
-   "description": "Generic OEM block — 2 cavities. No invented OEM pinout.",
+   "description": "Generic OEM block \u2014 2 cavities. No invented OEM pinout.",
    "manufacturer": "OEM / unspecified",
    "numberOfCavities": 2
   },
@@ -8239,7 +8312,7 @@
    "gender": "Female",
    "hasShell": false,
    "partNumber": "(OEM block, 5-way)",
-   "description": "Generic OEM block — 5 cavities (relay / cruise stalk).",
+   "description": "Generic OEM block \u2014 5 cavities (relay / cruise stalk).",
    "manufacturer": "OEM / unspecified",
    "numberOfCavities": 5
   },

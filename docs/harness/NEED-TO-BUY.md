@@ -2,7 +2,7 @@
 
 Generated from `ST185-Signal.harness`, `ST185-Power.harness` and `ST185-CAN.harness` on 2026-09-15.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
-Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
+Regenerate with `hw/buylist.py` after any harness change — do not hand-edit.
 
 ## Short — order these
 
@@ -48,7 +48,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `114018-ZZ` | Sealing plug, size 8, white | 2 | 10 |
 | `114019-ZZ` | Sealing plug, size 4, white | 2 | 10 |
 | `13519047` | GT150 3-way flex-fuel sensor | 1 | 1 |
-| `1416010-1` | V23132-A2001-B200 HCR 150 high current relay, 1 form A (NO), 1 | 1 | 2 |
 | `2141029-1` | Fuse box assembly, hard wired | 1 | 1 |
 | `2411-001-2405` | Panel nut size 24 | 3 | 4 |
 | `2428-011-2405` | Backshell 24SZ right-angle L017 | 1 | 1 |
@@ -72,7 +71,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Modelled as | What it really is | Qty |
 |---|---|---:|
 | `(OEM block, 2-way)` | Generic OEM block — 2 cavities. No invented OEM pinout. | 5 |
-| `(OEM block, 5-way)` | Generic OEM block — 5 cavities (relay / cruise stalk). | 7 |
+| `(OEM block, 5-way)` | Generic OEM block — 5 cavities (relay / cruise stalk). | 8 |
 | `(kit-supplied pigtail)` | 3-pin pigtail supplied with the RacerX MR2 Cherry Hall cam-pos | 1 |
 | `(none — PCB screw terminals)` | CAN Switch Board V3 screw-terminal I/O. No harness-side connec | 1 |
 | `(unspecified — OEM ST185 AC amplifier)` | AC amplifier control connector. Pin count/layout inferred from | 1 |

@@ -3136,29 +3136,57 @@
    ]
   },
   {
-   "id": "w_k_eps_85",
-   "color": "Black",
+   "id": "w_fb_mrs_en",
+   "color": "Red",
    "source": {
-    "id": "k_eps",
-    "handle": "c2"
+    "id": "fusebox",
+    "handle": "c14"
    },
    "target": {
-    "id": "sp_chassis",
-    "handle": "Splice"
+    "id": "bh_b_fw",
+    "handle": "c14"
    },
    "layoutPoints": [
     {
-     "id": "w_k_eps_85_o1",
+     "id": "w_fb_mrs_en_o1",
      "schematicPosition": {
-      "x": 1500,
-      "y": 2475
+      "x": 1290,
+      "y": 2865
      }
     },
     {
-     "id": "w_k_eps_85_o2",
+     "id": "w_fb_mrs_en_o2",
      "schematicPosition": {
-      "x": 1500,
-      "y": 615
+      "x": 1290,
+      "y": 9675
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_hv_mrs_en_e",
+   "color": "Red",
+   "source": {
+    "id": "bh_b_eng",
+    "handle": "c14"
+   },
+   "target": {
+    "id": "mrs_en",
+    "handle": "c1"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_hv_mrs_en_e_r1",
+     "schematicPosition": {
+      "x": 2160,
+      "y": 10425
+     }
+    },
+    {
+     "id": "w_hv_mrs_en_e_r2",
+     "schematicPosition": {
+      "x": 2160,
+      "y": 5595
      }
     }
    ]
@@ -4197,7 +4225,7 @@
   },
   {
    "id": "mrs_pwr",
-   "label": "MRS EPS Pump — Power",
+   "label": "MRS EPS Pump \u2014 Power",
    "cavities": [
     {
      "id": "c1",
@@ -4976,7 +5004,7 @@
      "id": "c12",
      "designation": "12",
      "contactPartId": "ct_hdp16p",
-     "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
+     "signal": "ECUMaster CSB3 \u2014 Power/CAN/Switch I/O SW"
     },
     {
      "id": "c13",
@@ -4988,8 +5016,7 @@
      "id": "c14",
      "designation": "14",
      "contactPartId": "ct_hdp16p",
-     "signal": "spare (size 16)",
-     "cavityPlugPartId": "pl_sz16"
+     "signal": "MRS EPS pump logic enable (F13 7.5A, ignition-switched)"
     },
     {
      "id": "c15",
@@ -5130,7 +5157,7 @@
      "id": "c12",
      "designation": "12",
      "contactPartId": "ct_hdp16s",
-     "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
+     "signal": "ECUMaster CSB3 \u2014 Power/CAN/Switch I/O SW"
     },
     {
      "id": "c13",
@@ -5142,8 +5169,7 @@
      "id": "c14",
      "designation": "14",
      "contactPartId": "ct_hdp16s",
-     "signal": "spare (size 16)",
-     "cavityPlugPartId": "pl_sz16"
+     "signal": "MRS EPS pump logic enable (F13 7.5A, ignition-switched)"
     },
     {
      "id": "c15",
@@ -5372,7 +5398,7 @@
     {
      "id": "c2",
      "designation": "85",
-     "signal": "Coil - -> chassis ground - no ECU channel - Aux is full. Coil grounded, pump runs whenever the key is on; assist level is set by the Aux 7 / A27 speed-out signal on the pump's SPD pin"
+     "signal": "Coil - -> MRS pump's own relay-request signal (pump connector B, modeled as mrs_ctrl cavity c3 in the Signal file) - pump internally grounds this pin when it wants power. Matches the factory/community relay wiring (DIY Electric Car Forums, 'MR2 Gen3 Power Steering Help'). No ECU pin used - Ign 6 / B12 stays spare."
     },
     {
      "id": "c3",
@@ -5469,6 +5495,11 @@
      "id": "c13",
      "designation": "IN",
      "signal": "Battery feed in from master"
+    },
+    {
+     "id": "c14",
+     "designation": "F13",
+     "signal": "7.5A - MRS EPS pump logic enable (ignition-switched)"
     }
    ]
   },
@@ -5555,6 +5586,24 @@
      "signal": "heavy DC"
     }
    ]
+  },
+  {
+   "id": "mrs_en",
+   "label": "MRS EPS Pump \u2014 Enable (ignition-switched logic power)",
+   "cavities": [
+    {
+     "id": "c1",
+     "signal": "12V ignition-switched (F13, 7.5A) - powers pump's internal control logic. Separate small connector on the pump body (pump connector C per DIY Electric Car Forums diagram)."
+    }
+   ],
+   "layoutPosition": {
+    "x": 4860,
+    "y": 720
+   },
+   "schematicPosition": {
+    "x": 2400,
+    "y": 5580
+   }
   }
  ],
  "terminals": [
@@ -7420,7 +7469,7 @@
  "layoutNotes": [
   {
    "id": "ln_pwr",
-   "text": "POWER harness (this file). 12V / +5V / +8V / Gnd Out / chassis. Signals: docs/harness/ST185-Signal.harness. Relays, bulkheads and body switches are OEM blocks — internals not modelled. BRZ APS is 6-pin (supplies here, VPA1/VPA2 in the signal file).",
+   "text": "POWER harness (this file). 12V / +5V / +8V / Gnd Out / chassis. Signals: docs/harness/ST185-Signal.harness. Relays, bulkheads and body switches are OEM blocks \u2014 internals not modelled. BRZ APS is 6-pin (supplies here, VPA1/VPA2 in the signal file).",
    "width": 390,
    "layoutPosition": {
     "x": 0,
@@ -7575,7 +7624,7 @@
    "id": "cp_rly_hcr150",
    "partNumber": "1416010-1",
    "manufacturer": "TE Connectivity",
-   "description": "V23132-A2001-B200 HCR 150 high current relay, 1 form A (NO), 130A contact, 12VDC coil, IP67 - OWNED (qty 2)"
+   "description": "V23132-A2001-B200 HCR 150 high current relay, 1 form A (NO), 130A contact, 12VDC coil (37 ohm, 3.9W, ~0.32A), coil has internal parallel suppression resistor - OWNED (qty 2)"
   },
   {
    "id": "cp_fusebox",
