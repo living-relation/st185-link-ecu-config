@@ -4662,7 +4662,8 @@
    "cavities": [
     {
      "id": "c1",
-     "signal": "SPD Out"
+     "signal": "SPD Out (speed-pulse output)",
+     "designation": "2"
     },
     {
      "id": "c2",
@@ -4670,7 +4671,8 @@
     },
     {
      "id": "c3",
-     "signal": "Relay request out -> k_eps coil 85. Pump grounds this pin itself when ready to draw power (factory/community relay wiring, DIY Electric Car Forums 'MR2 Gen3 Power Steering Help'). Exact physical pin number (5 or 6 on the connector) to confirm against the pump in hand."
+     "signal": "Relay request out -> k_eps coil 85. Pump grounds this pin itself when ready to draw power (confirmed from Daniel's photos of the pump, DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector B pin 6).",
+     "designation": "6"
     }
    ],
    "layoutPosition": {
@@ -8257,8 +8259,8 @@
    "id": "cp_mrs_ctrl",
    "gender": "Female",
    "hasShell": false,
-   "partNumber": "90980-10942",
-   "description": "MR-S EHPS pump \u2014 small control connector housing (pigtail 82998-12440). Speed-out and relay-request pins used; 3rd cavity unused. Pin numbering (which physical pin is speed vs relay-request) needs confirming against the pump in hand \u2014 modeled from the DIY Electric Car Forums diagram, not a Toyota pinout sheet.",
+   "partNumber": "90980-10897",
+   "description": "MR-S EHPS pump \u2014 control connector housing (pigtail 82998-12440). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part (checked TE's site, no match; corrected from an earlier draft that mislabeled this as 90980-10942, which is actually the small ignition-enable connector). 6 physical cavities, only 2 used: pin 2 = speed-pulse output (SPD Out), pin 6 = relay-request output (grounds k_eps coil 85 when pump wants power). Confirmed directly from Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'B') - both pin numbers are legible in the source image. Housing/pigtail part numbers sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
    "manufacturer": "Toyota",
    "configurations": [
     {
@@ -8266,7 +8268,7 @@
      "contactPartId": "ct_toy_ts"
     }
    ],
-   "numberOfCavities": 3
+   "numberOfCavities": 6
   },
   {
    "id": "cp_csb3io",

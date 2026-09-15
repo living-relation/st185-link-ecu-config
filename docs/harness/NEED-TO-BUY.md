@@ -27,7 +27,6 @@ Regenerate with `hw/buylist.py` after any harness change — do not hand-edit.
 | `10k 1/4W` | Generic | 10k pull-up for OEM cruise stalk resistor ladder into CSB3 Ana | 1 | 0 | **1** |
 | `12052641` | Aptiv (Delphi) Metri-Pack 150 | 2-way sealed connector — fuel level sender / 2nd (condenser) f | 2 | 1 | **1** |
 | `470R 1/4W` | Generic | 470 ohm pull-up, fuel level sender (An Volt 9) to +5V | 1 | 0 | **1** |
-| `90980-10942` | Toyota | MR-S EHPS pump — small control connector housing (pigtail 8299 | 1 | 0 | **1** |
 | `Sumitomo TS 025 6-way` | Sumitomo / Subaru | Subaru BRZ / Toyota-family e-throttle pedal. Looking into conn | 1 | 0 | **1** |
 | `HCR 150 mating hardware` | TE Connectivity | Receptacle / terminals for V23132-A2001-B200 - CONFIRM with supplier | 1 | 0 | **1** |
 
@@ -53,6 +52,9 @@ Regenerate with `hw/buylist.py` after any harness change — do not hand-edit.
 | `2428-011-2405` | Backshell 24SZ right-angle L017 | 1 | 1 |
 | `4-1437290-0` | SUPERSEAL 1.0 34-way receptacle COD 1 — Link XtremeX loom B | 1 | 2 |
 | `4-1437290-1` | SUPERSEAL 1.0 34-way receptacle COD 2 — Link XtremeX loom A | 1 | 2 |
+| `90980-10897` | MR-S EHPS pump — control connector housing (pigtail 82998-1244 | 1 | 1 |
+| `90980-10942` | MR-S EHPS pump — small ignition-enable connector housing (pigt | 1 | 1 |
+| `90980-12068` | MR-S EHPS pump — main power connector housing (pigtail 82998-1 | 1 | 1 |
 | `D 261 205 358-01` | 6-pin Bosch Motorsport ETB mate | 1 | 1 |
 | `DT06-3S` | DT 3-way socket plug | 1 | 2 |
 | `DTM06-4S` | DTM 4-way socket — CAN-Lambda harness side | 1 | 1 |

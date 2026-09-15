@@ -15,6 +15,8 @@ ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "DTM06-4S":1,"DTM06-6S":1,"12084200":6,"15326427":5,"42281-1":20,"60249-1":21,
  "1928403970":2,"GT150-2":1,"FLEX-3":1,"TSPD-3":1,"1 928 403 874":1,
  "13519047":1,"D 261 205 358-01":1,"12052641":1,
+ # MRS EPS pump connectors - Toyota/Sumitomo TS090, on hand (not from TE invoices)
+ "90980-12068":1,"90980-10897":1,"90980-10942":1,
 }
 EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("1-1904045-6","TE Connectivity","Micro ISO relay connector kit (harness-side socket for the V23074 relays)",6,0),

@@ -4229,11 +4229,13 @@
    "cavities": [
     {
      "id": "c1",
-     "signal": "12V"
+     "signal": "12V",
+     "designation": "1"
     },
     {
      "id": "c2",
-     "signal": "GND"
+     "signal": "GND",
+     "designation": "2"
     }
    ],
    "layoutPosition": {
@@ -4243,7 +4245,8 @@
    "schematicPosition": {
     "x": 2160,
     "y": 5580
-   }
+   },
+   "partId": "cp_mrs_pwr"
   },
   {
    "id": "lambda",
@@ -5593,7 +5596,14 @@
    "cavities": [
     {
      "id": "c1",
-     "signal": "12V ignition-switched (F13, 7.5A) - powers pump's internal control logic. Separate small connector on the pump body (pump connector C per DIY Electric Car Forums diagram)."
+     "signal": "12V ignition-switched (F13, 7.5A) - powers pump's internal control logic. Separate small connector on the pump body (pump connector C per DIY Electric Car Forums diagram).",
+     "designation": "1"
+    },
+    {
+     "id": "c2",
+     "designation": "2",
+     "notConnected": true,
+     "signal": "Unused on this application"
     }
    ],
    "layoutPosition": {
@@ -5603,7 +5613,8 @@
    "schematicPosition": {
     "x": 2400,
     "y": 5580
-   }
+   },
+   "partId": "cp_mrs_en"
   }
  ],
  "terminals": [
@@ -7673,6 +7684,36 @@
    "partNumber": "0413-204-2005",
    "manufacturer": "TE DEUTSCH",
    "description": "Sealing plug, size 20, red"
+  },
+  {
+   "id": "cp_mrs_pwr",
+   "gender": "Female",
+   "hasShell": false,
+   "partNumber": "90980-12068",
+   "description": "MR-S EHPS pump \u2014 main power connector housing (pigtail 82998-12500). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part (checked TE's site, no match; this is Toyota/Sumitomo). Pin 1 = switched 12V in from relay 87, pin 2 = ground. Confirmed against Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'A'). Part number sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
+   "manufacturer": "Toyota",
+   "configurations": [
+    {
+     "id": "cfg",
+     "contactPartId": "ct_toy_ts"
+    }
+   ],
+   "numberOfCavities": 2
+  },
+  {
+   "id": "cp_mrs_en",
+   "gender": "Female",
+   "hasShell": false,
+   "partNumber": "90980-10942",
+   "description": "MR-S EHPS pump \u2014 small ignition-enable connector housing (pigtail 82998-12440, shared with the control connector). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part. 2 cavities, only pin 1 used (ignition-switched 12V logic supply); pin 2 unused. Confirmed against Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'C'). Part number sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
+   "manufacturer": "Toyota",
+   "configurations": [
+    {
+     "id": "cfg",
+     "contactPartId": "ct_toy_ts"
+    }
+   ],
+   "numberOfCavities": 2
   }
  ],
  "mates": [
@@ -7862,6 +7903,14 @@
     "unit": "AWG",
     "value": 20
    }
+  },
+  {
+   "id": "ct_toy_ts",
+   "type": "Crimp",
+   "gender": "Socket",
+   "partNumber": "TS 2.3 (090 type)",
+   "description": "Toyota/Denso 2.3mm female sensor/coil terminal",
+   "manufacturer": "Sumitomo"
   }
  ]
 }
