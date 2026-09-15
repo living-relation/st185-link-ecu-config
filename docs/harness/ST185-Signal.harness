@@ -195,7 +195,7 @@
      "id": "w29_c_r2",
      "schematicPosition": {
       "x": 1266,
-      "y": 4035
+      "y": 4335
      }
     }
    ]
@@ -216,7 +216,7 @@
      "id": "w29_e_r1",
      "schematicPosition": {
       "x": 1926,
-      "y": 6495
+      "y": 6795
      }
     },
     {
@@ -251,7 +251,7 @@
      "id": "w32_c_r2",
      "schematicPosition": {
       "x": 1284,
-      "y": 4065
+      "y": 4365
      }
     }
    ]
@@ -272,7 +272,7 @@
      "id": "w32_e_r1",
      "schematicPosition": {
       "x": 1944,
-      "y": 6525
+      "y": 6825
      }
     },
     {
@@ -307,7 +307,7 @@
      "id": "w35_c_r2",
      "schematicPosition": {
       "x": 1320,
-      "y": 4095
+      "y": 4395
      }
     }
    ]
@@ -328,7 +328,7 @@
      "id": "w35_e_r1",
      "schematicPosition": {
       "x": 1962,
-      "y": 6555
+      "y": 6855
      }
     },
     {
@@ -356,7 +356,7 @@
      "id": "w38_r1",
      "schematicPosition": {
       "x": 348,
-      "y": 1215
+      "y": 1515
      }
     },
     {
@@ -384,7 +384,7 @@
      "id": "w39_r1",
      "schematicPosition": {
       "x": 330,
-      "y": 1125
+      "y": 1425
      }
     },
     {
@@ -419,7 +419,7 @@
      "id": "w43_r2",
      "schematicPosition": {
       "x": 2604,
-      "y": 6165
+      "y": 6345
      }
     }
    ]
@@ -440,7 +440,7 @@
      "id": "w44_r1",
      "schematicPosition": {
       "x": 2088,
-      "y": 6165
+      "y": 6345
      }
     },
     {
@@ -599,7 +599,7 @@
     "handle": "c2"
    },
    "target": {
-    "id": "bh_a_eng",
+    "id": "bh_a_fw",
     "handle": "c11"
    },
    "color": "White",
@@ -615,7 +615,7 @@
      "id": "w53_c_r2",
      "schematicPosition": {
       "x": 2214,
-      "y": 5385
+      "y": 2925
      }
     }
    ]
@@ -832,7 +832,7 @@
      "id": "w76_r1",
      "schematicPosition": {
       "x": 456,
-      "y": 1545
+      "y": 1845
      }
     },
     {
@@ -860,7 +860,7 @@
      "id": "w81_r1",
      "schematicPosition": {
       "x": 474,
-      "y": 1815
+      "y": 2115
      }
     },
     {
@@ -1679,7 +1679,7 @@
      "id": "w203_c_r2",
      "schematicPosition": {
       "x": 1338,
-      "y": 4125
+      "y": 4425
      }
     }
    ]
@@ -1700,7 +1700,7 @@
      "id": "w203_e_r1",
      "schematicPosition": {
       "x": 1980,
-      "y": 6585
+      "y": 6885
      }
     },
     {
@@ -1735,7 +1735,7 @@
      "id": "w204_c_r2",
      "schematicPosition": {
       "x": 1236,
-      "y": 4155
+      "y": 4455
      }
     }
    ]
@@ -1756,7 +1756,7 @@
      "id": "w204_e_r1",
      "schematicPosition": {
       "x": 1998,
-      "y": 6615
+      "y": 6915
      }
     },
     {
@@ -1859,7 +1859,7 @@
     "handle": "c1"
    },
    "target": {
-    "id": "bh_a_eng",
+    "id": "bh_a_fw",
     "handle": "c28"
    },
    "color": "White",
@@ -1875,7 +1875,7 @@
      "id": "w_frp_c_r2",
      "schematicPosition": {
       "x": 2196,
-      "y": 5895
+      "y": 3435
      }
     }
    ]
@@ -1980,7 +1980,7 @@
      "id": "w_an2_r1",
      "schematicPosition": {
       "x": -768,
-      "y": 3855
+      "y": 4155
      }
     },
     {
@@ -2008,7 +2008,7 @@
      "id": "w_sw2_r1",
      "schematicPosition": {
       "x": -750,
-      "y": 3915
+      "y": 4215
      }
     },
     {
@@ -2036,7 +2036,7 @@
      "id": "w_sw3_r1",
      "schematicPosition": {
       "x": -732,
-      "y": 3945
+      "y": 4245
      }
     },
     {
@@ -2064,7 +2064,7 @@
      "id": "w_sw4_r1",
      "schematicPosition": {
       "x": -714,
-      "y": 3975
+      "y": 4275
      }
     },
     {
@@ -2092,7 +2092,7 @@
      "id": "w_sw5_r1",
      "schematicPosition": {
       "x": -786,
-      "y": 3135
+      "y": 3435
      }
     },
     {
@@ -2120,7 +2120,7 @@
      "id": "w_sw6_r1",
      "schematicPosition": {
       "x": -840,
-      "y": 3315
+      "y": 3615
      }
     },
     {
@@ -2155,7 +2155,7 @@
      "id": "w_sw7_c_r2",
      "schematicPosition": {
       "x": 366,
-      "y": 4185
+      "y": 4485
      }
     }
    ]
@@ -2176,7 +2176,7 @@
      "id": "w_sw7_e_r1",
      "schematicPosition": {
       "x": 2016,
-      "y": 6645
+      "y": 6945
      }
     },
     {
@@ -2204,7 +2204,7 @@
      "id": "w_start_r1",
      "schematicPosition": {
       "x": 582,
-      "y": 3495
+      "y": 3795
      }
     },
     {
@@ -2239,7 +2239,7 @@
      "id": "w_mrs_c_r2",
      "schematicPosition": {
       "x": 1344,
-      "y": 4215
+      "y": 4515
      }
     }
    ]
@@ -2260,7 +2260,7 @@
      "id": "w_mrs_e_r1",
      "schematicPosition": {
       "x": 2034,
-      "y": 6675
+      "y": 6975
      }
     },
     {
@@ -2288,7 +2288,7 @@
      "id": "w_fp85_r1",
      "schematicPosition": {
       "x": 528,
-      "y": 2085
+      "y": 2385
      }
     },
     {
@@ -2316,7 +2316,7 @@
      "id": "w_fan85_r1",
      "schematicPosition": {
       "x": 510,
-      "y": 2355
+      "y": 2655
      }
     },
     {
@@ -2344,7 +2344,7 @@
      "id": "w_fan285_r1",
      "schematicPosition": {
       "x": 492,
-      "y": 2625
+      "y": 2925
      }
     },
     {
@@ -2372,7 +2372,7 @@
      "id": "w_str85_r1",
      "schematicPosition": {
       "x": 546,
-      "y": 2895
+      "y": 3195
      }
     },
     {
@@ -2540,7 +2540,7 @@
      "id": "w_ign_r1",
      "schematicPosition": {
       "x": 438,
-      "y": 3675
+      "y": 3975
      }
     },
     {
@@ -2575,7 +2575,7 @@
      "id": "w_ac_kill_r2",
      "schematicPosition": {
       "x": 384,
-      "y": 1365
+      "y": 1665
      }
     }
    ]
@@ -3063,7 +3063,7 @@
      "id": "w23_r2",
      "schematicPosition": {
       "x": 2550,
-      "y": 195
+      "y": 405
      }
     }
    ]
@@ -3084,7 +3084,7 @@
      "id": "w20_e_r1",
      "schematicPosition": {
       "x": 2070,
-      "y": 195
+      "y": 405
      }
     },
     {
@@ -3500,7 +3500,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 1020
+    "y": 1320
    }
   },
   {
@@ -4334,7 +4334,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 1320
+    "y": 1620
    }
   },
   {
@@ -4369,7 +4369,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 1470
+    "y": 1770
    }
   },
   {
@@ -4404,7 +4404,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 1740
+    "y": 2040
    }
   },
   {
@@ -4439,7 +4439,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 2010
+    "y": 2310
    }
   },
   {
@@ -4474,7 +4474,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 2280
+    "y": 2580
    }
   },
   {
@@ -4509,7 +4509,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 2820
+    "y": 3120
    }
   },
   {
@@ -4544,7 +4544,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 2550
+    "y": 2850
    }
   },
   {
@@ -4743,7 +4743,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 3090
+    "y": 3390
    }
   },
   {
@@ -4766,7 +4766,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 3270
+    "y": 3570
    }
   },
   {
@@ -4813,7 +4813,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 3450
+    "y": 3750
    }
   },
   {
@@ -4849,7 +4849,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 3810
+    "y": 4110
    }
   },
   {
@@ -5587,7 +5587,7 @@
    },
    "schematicPosition": {
     "x": 1170,
-    "y": 3810
+    "y": 4110
    }
   },
   {
@@ -5729,7 +5729,7 @@
    },
    "schematicPosition": {
     "x": 1170,
-    "y": 6270
+    "y": 6570
    }
   },
   {
@@ -5752,7 +5752,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 3630
+    "y": 3930
    }
   },
   {
@@ -5816,7 +5816,7 @@
    "width": 270,
    "schematicPosition": {
     "x": 0,
-    "y": 0
+    "y": 540
    },
    "layoutPosition": {
     "x": 0,
@@ -5886,11 +5886,11 @@
    "width": 270,
    "schematicPosition": {
     "x": 0,
-    "y": 0
+    "y": 930
    },
    "layoutPosition": {
     "x": 0,
-    "y": 0
+    "y": 120
    },
    "partId": "cp_hdp_c_eng",
    "label": "Bulkhead C - engine plug (HDP26-24-9SE)"
@@ -6063,7 +6063,16 @@
    },
    "sourceId": "bp_ecu",
    "targetId": "bp_cabin",
-   "label": "cabin trunk"
+   "label": "cabin trunk",
+   "layoutPoints": [
+    {
+     "id": "bn_bp_ecu__bp_cabin_c",
+     "layoutPosition": {
+      "x": 375,
+      "y": 255
+     }
+    }
+   ]
   },
   {
    "id": "bn_bp_cabin__bp_rear",
@@ -6190,7 +6199,7 @@
      "id": "bn_bp_ecu__ecu_a_c",
      "layoutPosition": {
       "x": -165,
-      "y": 15
+      "y": 255
      }
     }
    ]
@@ -6208,7 +6217,7 @@
      "id": "bn_bp_ecu__ecu_b_c",
      "layoutPosition": {
       "x": -45,
-      "y": 15
+      "y": 255
      }
     }
    ]
@@ -6226,7 +6235,7 @@
      "id": "bn_bp_ecu__ecu_com_c",
      "layoutPosition": {
       "x": 75,
-      "y": 15
+      "y": 255
      }
     }
    ]
@@ -6244,7 +6253,7 @@
      "id": "bn_bp_ecu__sp_shield_cab_c",
      "layoutPosition": {
       "x": 195,
-      "y": 15
+      "y": 255
      }
     }
    ]
@@ -7390,11 +7399,11 @@
    "locationId": "cam",
    "layoutPosition": {
     "x": 3780,
-    "y": -300
+    "y": -180
    },
    "schematicPosition": {
     "x": 2460,
-    "y": 180
+    "y": 390
    }
   },
   {
@@ -7403,11 +7412,11 @@
    "locationId": "fuellvl",
    "layoutPosition": {
     "x": 480,
-    "y": -300
+    "y": -180
    },
    "schematicPosition": {
     "x": 2460,
-    "y": 6150
+    "y": 6330
    }
   },
   {
@@ -7416,7 +7425,7 @@
    "locationId": "cruise_stalk",
    "layoutPosition": {
     "x": 1260,
-    "y": 2400
+    "y": 2520
    },
    "schematicPosition": {
     "x": 300,
@@ -7481,7 +7490,7 @@
    "id": "bp_ecu",
    "layoutPosition": {
     "x": 0,
-    "y": 0
+    "y": 240
    },
    "bootPartId": "boot_breakout"
   },

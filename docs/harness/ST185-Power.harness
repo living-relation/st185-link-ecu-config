@@ -20,7 +20,7 @@
      "id": "w65_r1",
      "schematicPosition": {
       "x": 282,
-      "y": 15
+      "y": 795
      }
     },
     {
@@ -28,174 +28,6 @@
      "schematicPosition": {
       "x": 282,
       "y": 15
-     }
-    }
-   ]
-  },
-  {
-   "id": "w74",
-   "color": "Red",
-   "source": {
-    "id": "k_efi",
-    "handle": "c3"
-   },
-   "target": {
-    "id": "batt_ring",
-    "handle": "Terminal"
-   },
-   "layoutPoints": [
-    {
-     "id": "w74_r1",
-     "schematicPosition": {
-      "x": -822,
-      "y": 465
-     }
-    },
-    {
-     "id": "w74_r2",
-     "schematicPosition": {
-      "x": -822,
-      "y": 15
-     }
-    }
-   ]
-  },
-  {
-   "id": "w79",
-   "color": "Red",
-   "source": {
-    "id": "k_etb",
-    "handle": "c3"
-   },
-   "target": {
-    "id": "batt_ring",
-    "handle": "Terminal"
-   },
-   "layoutPoints": [
-    {
-     "id": "w79_r1",
-     "schematicPosition": {
-      "x": -786,
-      "y": 735
-     }
-    },
-    {
-     "id": "w79_r2",
-     "schematicPosition": {
-      "x": -786,
-      "y": 15
-     }
-    }
-   ]
-  },
-  {
-   "id": "w223",
-   "color": "Red",
-   "source": {
-    "id": "sp_12v",
-    "handle": "Splice"
-   },
-   "target": {
-    "id": "k_fp",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w223_r1",
-     "schematicPosition": {
-      "x": 390,
-      "y": 15
-     }
-    },
-    {
-     "id": "w223_r2",
-     "schematicPosition": {
-      "x": 390,
-      "y": 1005
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fan30",
-   "color": "Red",
-   "source": {
-    "id": "sp_12v",
-    "handle": "Splice"
-   },
-   "target": {
-    "id": "k_fan",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fan30_r1",
-     "schematicPosition": {
-      "x": 408,
-      "y": 15
-     }
-    },
-    {
-     "id": "w_fan30_r2",
-     "schematicPosition": {
-      "x": 408,
-      "y": 1275
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_fan230",
-   "color": "Red",
-   "source": {
-    "id": "sp_12v",
-    "handle": "Splice"
-   },
-   "target": {
-    "id": "k_fan2",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_fan230_r1",
-     "schematicPosition": {
-      "x": 426,
-      "y": 15
-     }
-    },
-    {
-     "id": "w_fan230_r2",
-     "schematicPosition": {
-      "x": 426,
-      "y": 1545
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_str30",
-   "color": "Red",
-   "source": {
-    "id": "sp_12v",
-    "handle": "Splice"
-   },
-   "target": {
-    "id": "k_str",
-    "handle": "c3"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_str30_r1",
-     "schematicPosition": {
-      "x": 444,
-      "y": 15
-     }
-    },
-    {
-     "id": "w_str30_r2",
-     "schematicPosition": {
-      "x": 444,
-      "y": 1815
      }
     }
    ]
@@ -216,14 +48,14 @@
      "id": "w221_r1",
      "schematicPosition": {
       "x": -840,
-      "y": 405
+      "y": 1185
      }
     },
     {
      "id": "w221_r2",
      "schematicPosition": {
       "x": -840,
-      "y": 15
+      "y": 795
      }
     }
    ]
@@ -244,14 +76,14 @@
      "id": "w222_r1",
      "schematicPosition": {
       "x": -804,
-      "y": 675
+      "y": 1455
      }
     },
     {
      "id": "w222_r2",
      "schematicPosition": {
       "x": -804,
-      "y": 15
+      "y": 795
      }
     }
    ]
@@ -272,14 +104,14 @@
      "id": "w_fp86_r1",
      "schematicPosition": {
       "x": -732,
-      "y": 945
+      "y": 1725
      }
     },
     {
      "id": "w_fp86_r2",
      "schematicPosition": {
       "x": -732,
-      "y": 15
+      "y": 795
      }
     }
    ]
@@ -300,14 +132,14 @@
      "id": "w_fan86_r1",
      "schematicPosition": {
       "x": -750,
-      "y": 1215
+      "y": 1995
      }
     },
     {
      "id": "w_fan86_r2",
      "schematicPosition": {
       "x": -750,
-      "y": 15
+      "y": 795
      }
     }
    ]
@@ -328,14 +160,14 @@
      "id": "w_fan286_r1",
      "schematicPosition": {
       "x": -768,
-      "y": 1485
+      "y": 2265
      }
     },
     {
      "id": "w_fan286_r2",
      "schematicPosition": {
       "x": -768,
-      "y": 15
+      "y": 795
      }
     }
    ]
@@ -356,14 +188,14 @@
      "id": "w_str86_r1",
      "schematicPosition": {
       "x": -714,
-      "y": 1755
+      "y": 2535
      }
     },
     {
      "id": "w_str86_r2",
      "schematicPosition": {
       "x": -714,
-      "y": 15
+      "y": 795
      }
     }
    ]
@@ -384,7 +216,7 @@
      "id": "w77_r1",
      "schematicPosition": {
       "x": 354,
-      "y": 495
+      "y": 1275
      }
     },
     {
@@ -664,7 +496,7 @@
      "id": "w218_r1",
      "schematicPosition": {
       "x": 2532,
-      "y": 4155
+      "y": 4485
      }
     },
     {
@@ -721,7 +553,7 @@
      "id": "w82_r1",
      "schematicPosition": {
       "x": 372,
-      "y": 765
+      "y": 1545
      }
     },
     {
@@ -749,14 +581,14 @@
      "id": "w_fpump_r1",
      "schematicPosition": {
       "x": -786,
-      "y": 1035
+      "y": 1815
      }
     },
     {
      "id": "w_fpump_r2",
      "schematicPosition": {
       "x": -786,
-      "y": 4755
+      "y": 5085
      }
     }
    ]
@@ -777,14 +609,14 @@
      "id": "w_strl_r1",
      "schematicPosition": {
       "x": -696,
-      "y": 1845
+      "y": 2625
      }
     },
     {
      "id": "w_strl_r2",
      "schematicPosition": {
       "x": -696,
-      "y": 255
+      "y": 1035
      }
     }
    ]
@@ -805,7 +637,7 @@
      "id": "w_lam12_r1",
      "schematicPosition": {
       "x": 3150,
-      "y": 5475
+      "y": 5805
      }
     },
     {
@@ -833,7 +665,7 @@
      "id": "w_csb12_r1",
      "schematicPosition": {
       "x": 318,
-      "y": 2325
+      "y": 3105
      }
     },
     {
@@ -889,7 +721,7 @@
      "id": "w206_r1",
      "schematicPosition": {
       "x": 3186,
-      "y": 3315
+      "y": 3645
      }
     },
     {
@@ -917,7 +749,7 @@
      "id": "w207_r1",
      "schematicPosition": {
       "x": 2460,
-      "y": 3525
+      "y": 3855
      }
     },
     {
@@ -945,7 +777,7 @@
      "id": "w208_r1",
      "schematicPosition": {
       "x": 3024,
-      "y": 3735
+      "y": 4065
      }
     },
     {
@@ -973,7 +805,7 @@
      "id": "w209_r1",
      "schematicPosition": {
       "x": 2682,
-      "y": 3945
+      "y": 4275
      }
     },
     {
@@ -1001,7 +833,7 @@
      "id": "w210_r1",
      "schematicPosition": {
       "x": 210,
-      "y": 2025
+      "y": 2805
      }
     },
     {
@@ -1087,7 +919,7 @@
      "id": "w217_r1",
      "schematicPosition": {
       "x": 2988,
-      "y": 4365
+      "y": 4695
      }
     },
     {
@@ -1203,7 +1035,7 @@
      "id": "w4_r1",
      "schematicPosition": {
       "x": 2898,
-      "y": 2415
+      "y": 2745
      }
     },
     {
@@ -1232,7 +1064,7 @@
      "id": "w6_r1",
      "schematicPosition": {
       "x": 3060,
-      "y": 2595
+      "y": 2925
      }
     },
     {
@@ -1261,7 +1093,7 @@
      "id": "w8_r1",
      "schematicPosition": {
       "x": 2496,
-      "y": 2775
+      "y": 3105
      }
     },
     {
@@ -1290,7 +1122,7 @@
      "id": "w10_r1",
      "schematicPosition": {
       "x": 2862,
-      "y": 2955
+      "y": 3285
      }
     },
     {
@@ -1319,7 +1151,7 @@
      "id": "w24_r1",
      "schematicPosition": {
       "x": 2664,
-      "y": 3165
+      "y": 3495
      }
     },
     {
@@ -1348,7 +1180,7 @@
      "id": "w27_r1",
      "schematicPosition": {
       "x": 3204,
-      "y": 3375
+      "y": 3705
      }
     },
     {
@@ -1377,7 +1209,7 @@
      "id": "w30_r1",
      "schematicPosition": {
       "x": 2478,
-      "y": 3585
+      "y": 3915
      }
     },
     {
@@ -1406,7 +1238,7 @@
      "id": "w33_r1",
      "schematicPosition": {
       "x": 3042,
-      "y": 3795
+      "y": 4125
      }
     },
     {
@@ -1435,7 +1267,7 @@
      "id": "w36_r1",
      "schematicPosition": {
       "x": 2700,
-      "y": 4005
+      "y": 4335
      }
     },
     {
@@ -1464,7 +1296,7 @@
      "id": "w40_r1",
      "schematicPosition": {
       "x": 264,
-      "y": 2145
+      "y": 2925
      }
     },
     {
@@ -1493,7 +1325,7 @@
      "id": "w45_r1",
      "schematicPosition": {
       "x": 1356,
-      "y": 4605
+      "y": 4935
      }
     },
     {
@@ -1522,7 +1354,7 @@
      "id": "w47_r1",
      "schematicPosition": {
       "x": 3006,
-      "y": 4395
+      "y": 4725
      }
     },
     {
@@ -1551,7 +1383,7 @@
      "id": "w17_r1",
      "schematicPosition": {
       "x": 2550,
-      "y": 4215
+      "y": 4545
      }
     },
     {
@@ -1609,7 +1441,7 @@
      "id": "w56_r1",
      "schematicPosition": {
       "x": 2586,
-      "y": 5805
+      "y": 6015
      }
     },
     {
@@ -1666,7 +1498,7 @@
      "id": "w66_r1",
      "schematicPosition": {
       "x": 300,
-      "y": 135
+      "y": 915
      }
     },
     {
@@ -1918,7 +1750,7 @@
      "id": "w_fpg_r1",
      "schematicPosition": {
       "x": 1374,
-      "y": 4785
+      "y": 5115
      }
     },
     {
@@ -1946,7 +1778,7 @@
      "id": "w_radg_r1",
      "schematicPosition": {
       "x": 2514,
-      "y": 4965
+      "y": 5295
      }
     },
     {
@@ -1974,7 +1806,7 @@
      "id": "w_fan2g_r1",
      "schematicPosition": {
       "x": 2970,
-      "y": 5145
+      "y": 5475
      }
     },
     {
@@ -2002,7 +1834,7 @@
      "id": "w_mrsg_r1",
      "schematicPosition": {
       "x": 2442,
-      "y": 5325
+      "y": 5655
      }
     },
     {
@@ -2030,7 +1862,7 @@
      "id": "w_lamg_r1",
      "schematicPosition": {
       "x": 3168,
-      "y": 5505
+      "y": 5835
      }
     },
     {
@@ -2058,7 +1890,7 @@
      "id": "w_csbg_r1",
      "schematicPosition": {
       "x": 336,
-      "y": 2355
+      "y": 3135
      }
     },
     {
@@ -2086,7 +1918,7 @@
      "id": "w_aps_vc1_r1",
      "schematicPosition": {
       "x": 246,
-      "y": 2115
+      "y": 2895
      }
     },
     {
@@ -2115,7 +1947,7 @@
      "id": "w_aps_gnd2_r1",
      "schematicPosition": {
       "x": 228,
-      "y": 2055
+      "y": 2835
      }
     },
     {
@@ -2227,7 +2059,7 @@
      "id": "w_rail_sp_5v_e_r1",
      "schematicPosition": {
       "x": 2430,
-      "y": 7455
+      "y": 7755
      }
     },
     {
@@ -2285,7 +2117,7 @@
      "id": "w_rail_sp_gndout_e_r1",
      "schematicPosition": {
       "x": 2448,
-      "y": 7485
+      "y": 7785
      }
     },
     {
@@ -2343,14 +2175,14 @@
      "id": "w_rail_sp_8v_e_r1",
      "schematicPosition": {
       "x": 2466,
-      "y": 7515
+      "y": 7815
      }
     },
     {
      "id": "w_rail_sp_8v_e_r2",
      "schematicPosition": {
       "x": 2466,
-      "y": 3105
+      "y": 3435
      }
     }
    ]
@@ -2399,7 +2231,7 @@
      "id": "w_rail_sp_sw12_e_r1",
      "schematicPosition": {
       "x": 2484,
-      "y": 7545
+      "y": 7845
      }
     },
     {
@@ -2447,7 +2279,7 @@
     "handle": "c4"
    },
    "target": {
-    "id": "bh_b_fw",
+    "id": "bh_c_fw",
     "handle": "c4"
    },
    "layoutPoints": [
@@ -2455,14 +2287,14 @@
      "id": "w_hv_rad_fan_c_r1",
      "schematicPosition": {
       "x": -804,
-      "y": 1305
+      "y": 2085
      }
     },
     {
      "id": "w_hv_rad_fan_c_r2",
      "schematicPosition": {
       "x": -804,
-      "y": 8745
+      "y": 135
      }
     }
    ]
@@ -2471,7 +2303,7 @@
    "id": "w_hv_rad_fan_e",
    "color": "Red",
    "source": {
-    "id": "bh_b_eng",
+    "id": "bh_c_eng",
     "handle": "c4"
    },
    "target": {
@@ -2483,14 +2315,14 @@
      "id": "w_hv_rad_fan_e_r1",
      "schematicPosition": {
       "x": 2628,
-      "y": 9975
+      "y": 525
      }
     },
     {
      "id": "w_hv_rad_fan_e_r2",
      "schematicPosition": {
       "x": 2628,
-      "y": 4935
+      "y": 5265
      }
     }
    ]
@@ -2503,7 +2335,7 @@
     "handle": "c4"
    },
    "target": {
-    "id": "bh_b_fw",
+    "id": "bh_c_fw",
     "handle": "c5"
    },
    "layoutPoints": [
@@ -2511,14 +2343,14 @@
      "id": "w_hv_fan2_c_r1",
      "schematicPosition": {
       "x": -822,
-      "y": 1575
+      "y": 2355
      }
     },
     {
      "id": "w_hv_fan2_c_r2",
      "schematicPosition": {
       "x": -822,
-      "y": 8775
+      "y": 165
      }
     }
    ]
@@ -2527,7 +2359,7 @@
    "id": "w_hv_fan2_e",
    "color": "Red",
    "source": {
-    "id": "bh_b_eng",
+    "id": "bh_c_eng",
     "handle": "c5"
    },
    "target": {
@@ -2539,42 +2371,14 @@
      "id": "w_hv_fan2_e_r1",
      "schematicPosition": {
       "x": 2502,
-      "y": 10005
+      "y": 555
      }
     },
     {
      "id": "w_hv_fan2_e_r2",
      "schematicPosition": {
       "x": 2502,
-      "y": 5115
-     }
-    }
-   ]
-  },
-  {
-   "id": "w_hv_mrs_pwr_c",
-   "color": "Red",
-   "source": {
-    "id": "sp_12v",
-    "handle": "Splice"
-   },
-   "target": {
-    "id": "bh_b_fw",
-    "handle": "c2"
-   },
-   "layoutPoints": [
-    {
-     "id": "w_hv_mrs_pwr_c_r1",
-     "schematicPosition": {
-      "x": 1392,
-      "y": 15
-     }
-    },
-    {
-     "id": "w_hv_mrs_pwr_c_r2",
-     "schematicPosition": {
-      "x": 1392,
-      "y": 8685
+      "y": 5445
      }
     }
    ]
@@ -2583,7 +2387,7 @@
    "id": "w_hv_mrs_pwr_e",
    "color": "Red",
    "source": {
-    "id": "bh_b_eng",
+    "id": "bh_c_eng",
     "handle": "c2"
    },
    "target": {
@@ -2595,14 +2399,14 @@
      "id": "w_hv_mrs_pwr_e_r1",
      "schematicPosition": {
       "x": 2520,
-      "y": 9915
+      "y": 465
      }
     },
     {
      "id": "w_hv_mrs_pwr_e_r2",
      "schematicPosition": {
       "x": 2520,
-      "y": 5295
+      "y": 5625
      }
     }
    ]
@@ -2615,7 +2419,7 @@
     "handle": "c4"
    },
    "target": {
-    "id": "bh_b_fw",
+    "id": "bh_c_fw",
     "handle": "c6"
    },
    "layoutPoints": [
@@ -2623,14 +2427,14 @@
      "id": "w_hv_etb_c_r1",
      "schematicPosition": {
       "x": -840,
-      "y": 765
+      "y": 1545
      }
     },
     {
      "id": "w_hv_etb_c_r2",
      "schematicPosition": {
       "x": -840,
-      "y": 8805
+      "y": 195
      }
     }
    ]
@@ -2639,7 +2443,7 @@
    "id": "w_hv_etb_e",
    "color": "Red",
    "source": {
-    "id": "bh_b_eng",
+    "id": "bh_c_eng",
     "handle": "c6"
    },
    "target": {
@@ -2651,7 +2455,7 @@
      "id": "w_hv_etb_e_r1",
      "schematicPosition": {
       "x": 2538,
-      "y": 10035
+      "y": 585
      }
     },
     {
@@ -2686,7 +2490,7 @@
      "id": "w_inj_pwr_c_r2",
      "schematicPosition": {
       "x": 1482,
-      "y": 8835
+      "y": 9435
      }
     }
    ]
@@ -2707,7 +2511,7 @@
      "id": "w_inj_pwr_e_r1",
      "schematicPosition": {
       "x": 2556,
-      "y": 10065
+      "y": 10185
      }
     },
     {
@@ -2742,7 +2546,7 @@
      "id": "w_cop_pwr_c_r2",
      "schematicPosition": {
       "x": 1500,
-      "y": 8865
+      "y": 9465
      }
     }
    ]
@@ -2763,7 +2567,7 @@
      "id": "w_cop_pwr_e_r1",
      "schematicPosition": {
       "x": 2574,
-      "y": 10095
+      "y": 10215
      }
     },
     {
@@ -2798,7 +2602,7 @@
      "id": "w124_c_r2",
      "schematicPosition": {
       "x": 1320,
-      "y": 8775
+      "y": 9375
      }
     }
    ]
@@ -2819,7 +2623,7 @@
      "id": "w124_e_r1",
      "schematicPosition": {
       "x": 2592,
-      "y": 10005
+      "y": 10125
      }
     },
     {
@@ -2854,7 +2658,7 @@
      "id": "w215_c_r2",
      "schematicPosition": {
       "x": 1338,
-      "y": 8805
+      "y": 9405
      }
     }
    ]
@@ -2875,7 +2679,7 @@
      "id": "w215_e_r1",
      "schematicPosition": {
       "x": 2610,
-      "y": 10035
+      "y": 10155
      }
     },
     {
@@ -2883,6 +2687,466 @@
      "schematicPosition": {
       "x": 2610,
       "y": 1725
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_in",
+   "color": "Red",
+   "source": {
+    "id": "batt_ring",
+    "handle": "Terminal"
+   },
+   "target": {
+    "id": "fusebox",
+    "handle": "c12"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_in_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 795
+     }
+    },
+    {
+     "id": "w_fb_in_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2775
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_efi",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c1"
+   },
+   "target": {
+    "id": "k_efi",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_efi_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2445
+     }
+    },
+    {
+     "id": "w_fb_k_efi_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 1245
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_fp",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c2"
+   },
+   "target": {
+    "id": "k_fp",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_fp_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2475
+     }
+    },
+    {
+     "id": "w_fb_k_fp_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 1785
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_etb",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c3"
+   },
+   "target": {
+    "id": "k_etb",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_etb_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2505
+     }
+    },
+    {
+     "id": "w_fb_k_etb_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 1515
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_str",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c4"
+   },
+   "target": {
+    "id": "k_str",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_str_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2535
+     }
+    },
+    {
+     "id": "w_fb_k_str_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2595
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_fan",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c5"
+   },
+   "target": {
+    "id": "k_fan",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_fan_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2565
+     }
+    },
+    {
+     "id": "w_fb_k_fan_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2055
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_fan2",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c6"
+   },
+   "target": {
+    "id": "k_fan2",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_fan2_o1",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2595
+     }
+    },
+    {
+     "id": "w_fb_k_fan2_o2",
+     "schematicPosition": {
+      "x": 330,
+      "y": 2325
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_k_eps",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c7"
+   },
+   "target": {
+    "id": "k_eps",
+    "handle": "c3"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_k_eps_o1",
+     "schematicPosition": {
+      "x": 1320,
+      "y": 2625
+     }
+    },
+    {
+     "id": "w_fb_k_eps_o2",
+     "schematicPosition": {
+      "x": 1320,
+      "y": 2505
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_eps86",
+   "color": "Red",
+   "source": {
+    "id": "k_eps",
+    "handle": "c1"
+   },
+   "target": {
+    "id": "batt_ring",
+    "handle": "Terminal"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_eps86_o1",
+     "schematicPosition": {
+      "x": 990,
+      "y": 2445
+     }
+    },
+    {
+     "id": "w_eps86_o2",
+     "schematicPosition": {
+      "x": 990,
+      "y": 795
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_eps87",
+   "color": "Red",
+   "source": {
+    "id": "k_eps",
+    "handle": "c4"
+   },
+   "target": {
+    "id": "bh_c_fw",
+    "handle": "c2"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_eps87_o1",
+     "schematicPosition": {
+      "x": 990,
+      "y": 2535
+     }
+    },
+    {
+     "id": "w_eps87_o2",
+     "schematicPosition": {
+      "x": 990,
+      "y": 75
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_sw12",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c9"
+   },
+   "target": {
+    "id": "sp_sw12",
+    "handle": "Splice"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_sw12_o1",
+     "schematicPosition": {
+      "x": 840,
+      "y": 2685
+     }
+    },
+    {
+     "id": "w_fb_sw12_o2",
+     "schematicPosition": {
+      "x": 840,
+      "y": 135
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_fb_ecu",
+   "color": "Red",
+   "source": {
+    "id": "fusebox",
+    "handle": "c8"
+   },
+   "target": {
+    "id": "sp_12v",
+    "handle": "Splice"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_fb_ecu_o1",
+     "schematicPosition": {
+      "x": 840,
+      "y": 2655
+     }
+    },
+    {
+     "id": "w_fb_ecu_o2",
+     "schematicPosition": {
+      "x": 840,
+      "y": 15
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_hv_batt_fw",
+   "color": "Red",
+   "source": {
+    "id": "t_batt_pos",
+    "handle": "Terminal"
+   },
+   "target": {
+    "id": "rl_pos_fw",
+    "handle": "c1"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_hv_batt_fw_o1",
+     "schematicPosition": {
+      "x": 450,
+      "y": -1485
+     }
+    },
+    {
+     "id": "w_hv_batt_fw_o2",
+     "schematicPosition": {
+      "x": 450,
+      "y": -1455
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_hv_batt_eng",
+   "color": "Red",
+   "source": {
+    "id": "rl_pos_eng",
+    "handle": "c1"
+   },
+   "target": {
+    "id": "t_starter_b",
+    "handle": "Terminal"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_hv_batt_eng_o1",
+     "schematicPosition": {
+      "x": 1950,
+      "y": -1455
+     }
+    },
+    {
+     "id": "w_hv_batt_eng_o2",
+     "schematicPosition": {
+      "x": 1950,
+      "y": -1485
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_hv_alt",
+   "color": "Red",
+   "source": {
+    "id": "t_alt_b",
+    "handle": "Terminal"
+   },
+   "target": {
+    "id": "t_starter_b",
+    "handle": "Terminal"
+   }
+  },
+  {
+   "id": "w_hv_gnd_fw",
+   "color": "Black",
+   "source": {
+    "id": "t_batt_neg",
+    "handle": "Terminal"
+   },
+   "target": {
+    "id": "rl_neg_fw",
+    "handle": "c1"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_hv_gnd_fw_o1",
+     "schematicPosition": {
+      "x": 450,
+      "y": -1185
+     }
+    },
+    {
+     "id": "w_hv_gnd_fw_o2",
+     "schematicPosition": {
+      "x": 450,
+      "y": -1155
+     }
+    }
+   ]
+  },
+  {
+   "id": "w_hv_gnd_eng",
+   "color": "Black",
+   "source": {
+    "id": "rl_neg_eng",
+    "handle": "c1"
+   },
+   "target": {
+    "id": "t_eng_block",
+    "handle": "Terminal"
+   },
+   "layoutPoints": [
+    {
+     "id": "w_hv_gnd_eng_o1",
+     "schematicPosition": {
+      "x": 1950,
+      "y": -1155
+     }
+    },
+    {
+     "id": "w_hv_gnd_eng_o2",
+     "schematicPosition": {
+      "x": 1950,
+      "y": -1185
      }
     }
    ]
@@ -2981,27 +3245,32 @@
   },
   {
    "id": "k_efi",
-   "label": "OEM block — EFI Main Relay",
+   "label": "EFI Main Relay",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "12V IN (fused)"
     },
     {
      "id": "c2",
-     "notConnected": true
+     "designation": "85",
+     "signal": "COIL - (ECU Aux low-side)"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "COIL +12V"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "12V OUT to load"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {
@@ -3010,32 +3279,38 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 360
-   }
+    "y": 1140
+   },
+   "partId": "cp_rly_nod"
   },
   {
    "id": "k_etb",
-   "label": "OEM block — ETB Power Relay",
+   "label": "ETB Power Relay",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "12V IN (fused)"
     },
     {
      "id": "c2",
-     "notConnected": true
+     "designation": "85",
+     "signal": "COIL - (ECU Aux low-side)"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "COIL +12V"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "12V OUT to load"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {
@@ -3044,32 +3319,38 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 630
-   }
+    "y": 1410
+   },
+   "partId": "cp_rly_nor"
   },
   {
    "id": "k_fp",
-   "label": "OEM block — Fuel Pump Relay",
+   "label": "Fuel Pump Relay",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "12V IN (fused)"
     },
     {
      "id": "c2",
-     "notConnected": true
+     "designation": "85",
+     "signal": "COIL - (ECU Aux low-side)"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "COIL +12V"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "12V OUT to load"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {
@@ -3078,32 +3359,38 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 900
-   }
+    "y": 1680
+   },
+   "partId": "cp_rly_nod"
   },
   {
    "id": "k_fan",
-   "label": "OEM block — Radiator Fan Relay",
+   "label": "Radiator Fan Relay (on/off)",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "12V IN (fused)"
     },
     {
      "id": "c2",
-     "notConnected": true
+     "designation": "85",
+     "signal": "COIL - (ECU Aux low-side)"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "COIL +12V"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "12V OUT to load"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {
@@ -3112,32 +3399,38 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 1170
-   }
+    "y": 1950
+   },
+   "partId": "cp_rly_cod"
   },
   {
    "id": "k_fan2",
-   "label": "OEM block — Condenser Fan Relay",
+   "label": "Condenser Fan Relay (on/off)",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "12V IN (fused)"
     },
     {
      "id": "c2",
-     "notConnected": true
+     "designation": "85",
+     "signal": "COIL - (ECU Aux low-side)"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "COIL +12V"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "12V OUT to load"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {
@@ -3146,32 +3439,38 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 1440
-   }
+    "y": 2220
+   },
+   "partId": "cp_rly_cod"
   },
   {
    "id": "k_str",
-   "label": "OEM block — Start Relay",
+   "label": "Start Relay",
    "cavities": [
     {
      "id": "c1",
-     "signal": "COIL +12V"
+     "designation": "30",
+     "signal": "12V IN (fused)"
     },
     {
      "id": "c2",
-     "notConnected": true
+     "designation": "85",
+     "signal": "COIL - (ECU Aux low-side)"
     },
     {
      "id": "c3",
-     "signal": "12V IN"
+     "designation": "86",
+     "signal": "COIL +12V"
     },
     {
      "id": "c4",
-     "signal": "12V OUT"
+     "designation": "87",
+     "signal": "12V OUT to load"
     },
     {
      "id": "c5",
-     "notConnected": true
+     "designation": "87a",
+     "signal": "not used"
     }
    ],
    "layoutPosition": {
@@ -3180,8 +3479,9 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 1710
-   }
+    "y": 2490
+   },
+   "partId": "cp_rly_nor"
   },
   {
    "id": "inj1",
@@ -3475,7 +3775,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 2340
+    "y": 2670
    }
   },
   {
@@ -3497,7 +3797,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 2520
+    "y": 2850
    }
   },
   {
@@ -3519,7 +3819,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 2700
+    "y": 3030
    }
   },
   {
@@ -3541,7 +3841,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 2880
+    "y": 3210
    }
   },
   {
@@ -3567,7 +3867,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 3060
+    "y": 3390
    }
   },
   {
@@ -3593,7 +3893,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 3270
+    "y": 3600
    }
   },
   {
@@ -3619,7 +3919,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 3480
+    "y": 3810
    }
   },
   {
@@ -3645,7 +3945,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 3690
+    "y": 4020
    }
   },
   {
@@ -3671,7 +3971,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 3900
+    "y": 4230
    }
   },
   {
@@ -3717,7 +4017,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 1980
+    "y": 2760
    }
   },
   {
@@ -3743,7 +4043,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 4110
+    "y": 4440
    }
   },
   {
@@ -3792,7 +4092,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 4320
+    "y": 4650
    }
   },
   {
@@ -3814,7 +4114,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 4530
+    "y": 4860
    }
   },
   {
@@ -3836,7 +4136,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 4710
+    "y": 5040
    }
   },
   {
@@ -3858,7 +4158,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 4890
+    "y": 5220
    }
   },
   {
@@ -3880,7 +4180,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 5070
+    "y": 5400
    }
   },
   {
@@ -3902,7 +4202,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 5250
+    "y": 5580
    }
   },
   {
@@ -3933,7 +4233,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 5430
+    "y": 5760
    }
   },
   {
@@ -3955,7 +4255,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 2280
+    "y": 3060
    }
   },
   {
@@ -4547,7 +4847,7 @@
    ],
    "schematicPosition": {
     "x": 2160,
-    "y": 7380
+    "y": 7680
    },
    "layoutPosition": {
     "x": 1800,
@@ -4564,25 +4864,29 @@
      "id": "c1",
      "designation": "1",
      "contactPartId": "ct_hdp12p",
-     "signal": "spare (size 12)"
+     "signal": "spare (size 12)",
+     "cavityPlugPartId": "pl_sz12"
     },
     {
      "id": "c2",
      "designation": "2",
      "contactPartId": "ct_hdp12p",
-     "signal": "spare (size 12)"
+     "signal": "spare (size 12)",
+     "cavityPlugPartId": "pl_sz12"
     },
     {
      "id": "c3",
      "designation": "3",
      "contactPartId": "ct_hdp12p",
-     "signal": "spare (size 12)"
+     "signal": "spare (size 12)",
+     "cavityPlugPartId": "pl_sz12"
     },
     {
      "id": "c4",
      "designation": "4",
      "contactPartId": "ct_hdp12p",
-     "signal": "spare (size 12)"
+     "signal": "spare (size 12)",
+     "cavityPlugPartId": "pl_sz12"
     },
     {
      "id": "c5",
@@ -4689,7 +4993,7 @@
    ],
    "schematicPosition": {
     "x": 2160,
-    "y": 8610
+    "y": 9210
    },
    "layoutPosition": {
     "x": 1440,
@@ -4706,25 +5010,29 @@
      "id": "c1",
      "designation": "1",
      "contactPartId": "ct_hdp12s",
-     "signal": "spare (size 12)"
+     "signal": "spare (size 12)",
+     "cavityPlugPartId": "pl_sz12"
     },
     {
      "id": "c2",
      "designation": "2",
      "contactPartId": "ct_hdp12s",
-     "signal": "spare (size 12)"
+     "signal": "spare (size 12)",
+     "cavityPlugPartId": "pl_sz12"
     },
     {
      "id": "c3",
      "designation": "3",
      "contactPartId": "ct_hdp12s",
-     "signal": "spare (size 12)"
+     "signal": "spare (size 12)",
+     "cavityPlugPartId": "pl_sz12"
     },
     {
      "id": "c4",
      "designation": "4",
      "contactPartId": "ct_hdp12s",
-     "signal": "spare (size 12)"
+     "signal": "spare (size 12)",
+     "cavityPlugPartId": "pl_sz12"
     },
     {
      "id": "c5",
@@ -4831,7 +5139,7 @@
    ],
    "schematicPosition": {
     "x": 2160,
-    "y": 9840
+    "y": 9960
    },
    "layoutPosition": {
     "x": 2520,
@@ -4845,7 +5153,8 @@
      "id": "c1",
      "designation": "1",
      "contactPartId": "ct_hdp4p",
-     "signal": "spare (size 4)"
+     "signal": "spare (size 4)",
+     "cavityPlugPartId": "pl_sz4"
     },
     {
      "id": "c2",
@@ -4857,7 +5166,8 @@
      "id": "c3",
      "designation": "3",
      "contactPartId": "ct_hdp8p",
-     "signal": "spare (size 8)"
+     "signal": "spare (size 8)",
+     "cavityPlugPartId": "pl_sz8"
     },
     {
      "id": "c4",
@@ -4893,7 +5203,8 @@
      "id": "c9",
      "designation": "9",
      "contactPartId": "ct_hdp12p",
-     "signal": "spare (size 12)"
+     "signal": "spare (size 12)",
+     "cavityPlugPartId": "pl_sz12"
     }
    ],
    "width": 270,
@@ -4915,7 +5226,8 @@
      "id": "c1",
      "designation": "1",
      "contactPartId": "ct_hdp4s",
-     "signal": "spare (size 4)"
+     "signal": "spare (size 4)",
+     "cavityPlugPartId": "pl_sz4"
     },
     {
      "id": "c2",
@@ -4927,7 +5239,8 @@
      "id": "c3",
      "designation": "3",
      "contactPartId": "ct_hdp8s",
-     "signal": "spare (size 8)"
+     "signal": "spare (size 8)",
+     "cavityPlugPartId": "pl_sz8"
     },
     {
      "id": "c4",
@@ -4963,20 +5276,222 @@
      "id": "c9",
      "designation": "9",
      "contactPartId": "ct_hdp12s",
-     "signal": "spare (size 12)"
+     "signal": "spare (size 12)",
+     "cavityPlugPartId": "pl_sz12"
     }
    ],
    "width": 270,
    "schematicPosition": {
     "x": 0,
-    "y": 0
+    "y": 390
    },
    "layoutPosition": {
     "x": 0,
-    "y": 0
+    "y": 120
    },
    "partId": "cp_hdp_c_eng",
    "label": "Bulkhead C - engine plug (HDP26-24-9SE)"
+  },
+  {
+   "id": "k_eps",
+   "partId": "cp_rly_hcr150",
+   "label": "MRS EPS Pump Relay (HCR 150, 130 A)",
+   "width": 210,
+   "schematicPosition": {
+    "x": 1980,
+    "y": 2400
+   },
+   "layoutPosition": {
+    "x": 1560,
+    "y": -600
+   },
+   "cavities": [
+    {
+     "id": "c1",
+     "designation": "30",
+     "signal": "12V IN (fused)"
+    },
+    {
+     "id": "c2",
+     "designation": "85",
+     "signal": "COIL - (ECU Aux low-side)"
+    },
+    {
+     "id": "c3",
+     "designation": "86",
+     "signal": "COIL +12V"
+    },
+    {
+     "id": "c4",
+     "designation": "87",
+     "signal": "12V OUT to load"
+    },
+    {
+     "id": "c5",
+     "designation": "87a",
+     "signal": "not used"
+    }
+   ]
+  },
+  {
+   "id": "fusebox",
+   "partId": "cp_fusebox",
+   "label": "Cabin fuse block (passenger footwell)",
+   "width": 270,
+   "schematicPosition": {
+    "x": 660,
+    "y": 2400
+   },
+   "layoutPosition": {
+    "x": 120,
+    "y": -600
+   },
+   "cavities": [
+    {
+     "id": "c1",
+     "designation": "F1",
+     "signal": "30A - EFI main relay 30"
+    },
+    {
+     "id": "c2",
+     "designation": "F2",
+     "signal": "20A - fuel pump relay 30"
+    },
+    {
+     "id": "c3",
+     "designation": "F3",
+     "signal": "15A - ETB power relay 30"
+    },
+    {
+     "id": "c4",
+     "designation": "F4",
+     "signal": "30A - start relay 30"
+    },
+    {
+     "id": "c5",
+     "designation": "F5",
+     "signal": "30A - radiator fan relay 30"
+    },
+    {
+     "id": "c6",
+     "designation": "F6",
+     "signal": "20A - condenser fan relay 30"
+    },
+    {
+     "id": "c7",
+     "designation": "F7",
+     "signal": "60A - EPS pump relay 30"
+    },
+    {
+     "id": "c8",
+     "designation": "F8",
+     "signal": "10A - ECU permanent +12V"
+    },
+    {
+     "id": "c9",
+     "designation": "F9",
+     "signal": "10A - switched 12V sensor rail"
+    },
+    {
+     "id": "c10",
+     "designation": "F10",
+     "signal": "20A - coil bank"
+    },
+    {
+     "id": "c11",
+     "designation": "F11",
+     "signal": "15A - injector bank"
+    },
+    {
+     "id": "c12",
+     "designation": "IN",
+     "signal": "Battery feed in from master"
+    }
+   ]
+  },
+  {
+   "id": "rl_pos_fw",
+   "partId": "cp_rl_red",
+   "label": "RADLOK + - firewall",
+   "width": 210,
+   "schematicPosition": {
+    "x": 900,
+    "y": -1500
+   },
+   "layoutPosition": {
+    "x": 900,
+    "y": -1500
+   },
+   "cavities": [
+    {
+     "id": "c1",
+     "designation": "1",
+     "signal": "heavy DC"
+    }
+   ]
+  },
+  {
+   "id": "rl_pos_eng",
+   "partId": "cp_rl_red",
+   "label": "RADLOK + - engine side",
+   "width": 210,
+   "schematicPosition": {
+    "x": 1500,
+    "y": -1500
+   },
+   "layoutPosition": {
+    "x": 1500,
+    "y": -1500
+   },
+   "cavities": [
+    {
+     "id": "c1",
+     "designation": "1",
+     "signal": "heavy DC"
+    }
+   ]
+  },
+  {
+   "id": "rl_neg_fw",
+   "partId": "cp_rl_blk",
+   "label": "RADLOK - - firewall",
+   "width": 210,
+   "schematicPosition": {
+    "x": 900,
+    "y": -1200
+   },
+   "layoutPosition": {
+    "x": 900,
+    "y": -1200
+   },
+   "cavities": [
+    {
+     "id": "c1",
+     "designation": "1",
+     "signal": "heavy DC"
+    }
+   ]
+  },
+  {
+   "id": "rl_neg_eng",
+   "partId": "cp_rl_blk",
+   "label": "RADLOK - - engine side",
+   "width": 210,
+   "schematicPosition": {
+    "x": 1500,
+    "y": -1200
+   },
+   "layoutPosition": {
+    "x": 1500,
+    "y": -1200
+   },
+   "cavities": [
+    {
+     "id": "c1",
+     "designation": "1",
+     "signal": "heavy DC"
+    }
+   ]
   }
  ],
  "terminals": [
@@ -4990,7 +5505,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 0
+    "y": 780
    }
   },
   {
@@ -5003,7 +5518,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 120
+    "y": 900
    }
   },
   {
@@ -5016,7 +5531,7 @@
    },
    "schematicPosition": {
     "x": 0,
-    "y": 240
+    "y": 1020
    }
   },
   {
@@ -5042,7 +5557,7 @@
    },
    "schematicPosition": {
     "x": 2160,
-    "y": 5790
+    "y": 6000
    }
   },
   {
@@ -5083,6 +5598,76 @@
     "x": 2160,
     "y": 11070
    }
+  },
+  {
+   "id": "t_batt_pos",
+   "type": "Ring",
+   "signal": "Battery + (cabin, passenger footwell) - 2 AWG",
+   "width": 210,
+   "schematicPosition": {
+    "x": 0,
+    "y": -1500
+   },
+   "layoutPosition": {
+    "x": 0,
+    "y": -1500
+   }
+  },
+  {
+   "id": "t_starter_b",
+   "type": "Ring",
+   "signal": "Starter B+ post - 2 AWG",
+   "width": 210,
+   "schematicPosition": {
+    "x": 2400,
+    "y": -1500
+   },
+   "layoutPosition": {
+    "x": 2400,
+    "y": -1500
+   }
+  },
+  {
+   "id": "t_alt_b",
+   "type": "Ring",
+   "signal": "Alternator B+ (rear of block, under intake) - 4 AWG",
+   "width": 210,
+   "schematicPosition": {
+    "x": 3000,
+    "y": -1500
+   },
+   "layoutPosition": {
+    "x": 3000,
+    "y": -1500
+   }
+  },
+  {
+   "id": "t_batt_neg",
+   "type": "Ring",
+   "signal": "Battery - (cabin) - 2 AWG",
+   "width": 210,
+   "schematicPosition": {
+    "x": 0,
+    "y": -1200
+   },
+   "layoutPosition": {
+    "x": 0,
+    "y": -1200
+   }
+  },
+  {
+   "id": "t_eng_block",
+   "type": "Ring",
+   "signal": "Engine block ground stud - 2 AWG",
+   "width": 210,
+   "schematicPosition": {
+    "x": 2400,
+    "y": -1200
+   },
+   "layoutPosition": {
+    "x": 2400,
+    "y": -1200
+   }
   }
  ],
  "bundles": [
@@ -5094,7 +5679,16 @@
    },
    "sourceId": "bp_fuse",
    "targetId": "bp_cab",
-   "label": "passenger footwell - battery + fuses"
+   "label": "passenger footwell - battery + fuses",
+   "layoutPoints": [
+    {
+     "id": "bn_bp_fuse__bp_cab_c",
+     "layoutPosition": {
+      "x": 375,
+      "y": 255
+     }
+    }
+   ]
   },
   {
    "id": "bn_bp_cab__bp_rear",
@@ -5221,7 +5815,7 @@
      "id": "bn_bp_fuse__batt_ring_c",
      "layoutPosition": {
       "x": -225,
-      "y": 15
+      "y": 255
      }
     }
    ]
@@ -5239,7 +5833,7 @@
      "id": "bn_bp_fuse__chassis_ring_c",
      "layoutPosition": {
       "x": -105,
-      "y": 15
+      "y": 255
      }
     }
    ]
@@ -5266,7 +5860,7 @@
      "id": "bn_bp_fuse__sp_sw12_c",
      "layoutPosition": {
       "x": 135,
-      "y": 15
+      "y": 255
      }
     }
    ]
@@ -5284,7 +5878,7 @@
      "id": "bn_bp_fuse__sp_chassis_c",
      "layoutPosition": {
       "x": 255,
-      "y": 15
+      "y": 255
      }
     }
    ]
@@ -6233,6 +6827,250 @@
      }
     }
    ]
+  },
+  {
+   "id": "bn_bp_fuse__fusebox",
+   "sourceId": "bp_fuse",
+   "targetId": "fusebox",
+   "length": {
+    "unit": "mm",
+    "value": 200
+   },
+   "label": "battery / fuse block - passenger footwell",
+   "layoutPoints": [
+    {
+     "id": "bn_bp_fuse__fusebox_c",
+     "layoutPosition": {
+      "x": 135,
+      "y": 255
+     }
+    }
+   ]
+  },
+  {
+   "id": "bn_fusebox__k_efi",
+   "sourceId": "fusebox",
+   "targetId": "k_efi",
+   "length": {
+    "unit": "mm",
+    "value": 250
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_fusebox__k_efi_c",
+     "layoutPosition": {
+      "x": -405,
+      "y": -585
+     }
+    }
+   ]
+  },
+  {
+   "id": "bn_fusebox__k_fp",
+   "sourceId": "fusebox",
+   "targetId": "k_fp",
+   "length": {
+    "unit": "mm",
+    "value": 250
+   }
+  },
+  {
+   "id": "bn_fusebox__k_etb",
+   "sourceId": "fusebox",
+   "targetId": "k_etb",
+   "length": {
+    "unit": "mm",
+    "value": 250
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_fusebox__k_etb_c",
+     "layoutPosition": {
+      "x": -285,
+      "y": -585
+     }
+    }
+   ]
+  },
+  {
+   "id": "bn_fusebox__k_str",
+   "sourceId": "fusebox",
+   "targetId": "k_str",
+   "length": {
+    "unit": "mm",
+    "value": 250
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_fusebox__k_str_c",
+     "layoutPosition": {
+      "x": 195,
+      "y": -585
+     }
+    }
+   ]
+  },
+  {
+   "id": "bn_fusebox__k_fan",
+   "sourceId": "fusebox",
+   "targetId": "k_fan",
+   "length": {
+    "unit": "mm",
+    "value": 250
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_fusebox__k_fan_c",
+     "layoutPosition": {
+      "x": -45,
+      "y": -585
+     }
+    }
+   ]
+  },
+  {
+   "id": "bn_fusebox__k_fan2",
+   "sourceId": "fusebox",
+   "targetId": "k_fan2",
+   "length": {
+    "unit": "mm",
+    "value": 250
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_fusebox__k_fan2_c",
+     "layoutPosition": {
+      "x": 75,
+      "y": -585
+     }
+    }
+   ]
+  },
+  {
+   "id": "bn_fusebox__k_eps",
+   "sourceId": "fusebox",
+   "targetId": "k_eps",
+   "length": {
+    "unit": "mm",
+    "value": 250
+   }
+  },
+  {
+   "id": "bn_bp_cab__k_eps",
+   "sourceId": "bp_cab",
+   "targetId": "k_eps",
+   "length": {
+    "unit": "mm",
+    "value": 300
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_bp_cab__k_eps_c",
+     "layoutPosition": {
+      "x": 1575,
+      "y": 15
+     }
+    }
+   ]
+  },
+  {
+   "id": "bn_bp_heavy__t_batt_pos",
+   "sourceId": "bp_heavy",
+   "targetId": "t_batt_pos",
+   "length": {
+    "unit": "mm",
+    "value": 200
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_bp_heavy__t_batt_pos_c",
+     "layoutPosition": {
+      "x": 15,
+      "y": -1365
+     }
+    }
+   ]
+  },
+  {
+   "id": "bn_bp_heavy__t_batt_neg",
+   "sourceId": "bp_heavy",
+   "targetId": "t_batt_neg",
+   "length": {
+    "unit": "mm",
+    "value": 200
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_bp_heavy__t_batt_neg_c",
+     "layoutPosition": {
+      "x": 15,
+      "y": -1365
+     }
+    }
+   ]
+  },
+  {
+   "id": "bn_bp_heavy__rl_pos_fw",
+   "sourceId": "bp_heavy",
+   "targetId": "rl_pos_fw",
+   "length": {
+    "unit": "mm",
+    "value": 500
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_bp_heavy__rl_pos_fw_c",
+     "layoutPosition": {
+      "x": 915,
+      "y": -1365
+     }
+    }
+   ]
+  },
+  {
+   "id": "bn_bp_heavy__rl_neg_fw",
+   "sourceId": "bp_heavy",
+   "targetId": "rl_neg_fw",
+   "length": {
+    "unit": "mm",
+    "value": 500
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_bp_heavy__rl_neg_fw_c",
+     "layoutPosition": {
+      "x": 915,
+      "y": -1365
+     }
+    }
+   ]
+  },
+  {
+   "id": "bn_rl_pos_eng__t_starter_b",
+   "sourceId": "rl_pos_eng",
+   "targetId": "t_starter_b",
+   "length": {
+    "unit": "mm",
+    "value": 900
+   }
+  },
+  {
+   "id": "bn_rl_neg_eng__t_eng_block",
+   "sourceId": "rl_neg_eng",
+   "targetId": "t_eng_block",
+   "length": {
+    "unit": "mm",
+    "value": 800
+   }
+  },
+  {
+   "id": "bn_t_starter_b__t_alt_b",
+   "sourceId": "t_starter_b",
+   "targetId": "t_alt_b",
+   "length": {
+    "unit": "mm",
+    "value": 450
+   }
   }
  ],
  "splices": [
@@ -6408,6 +7246,15 @@
     "x": 2160,
     "y": -150
    }
+  },
+  {
+   "id": "n_heavy",
+   "width": 390,
+   "schematicPosition": {
+    "x": 0,
+    "y": -1950
+   },
+   "text": "HEAVY DC - drawn separately at the top. Battery and all fusing live in the cabin (passenger footwell). Battery + to starter B+ and battery - to engine block cross the firewall on RADLOK bulkheads, 2 AWG. Alternator B+ (rear of block, under the intake) joins at the starter B+ post and does not cross. Nothing else heavy crosses."
   }
  ],
  "branchPoints": [
@@ -6415,7 +7262,7 @@
    "id": "bp_fuse",
    "layoutPosition": {
     "x": 0,
-    "y": 0
+    "y": 240
    },
    "bootPartId": "boot_breakout"
   },
@@ -6498,6 +7345,13 @@
     "y": 0
    },
    "bootPartId": "boot_breakout"
+  },
+  {
+   "id": "bp_heavy",
+   "layoutPosition": {
+    "x": 600,
+    "y": -1380
+   }
   }
  ],
  "layoutNotes": [
@@ -6635,6 +7489,66 @@
    "partNumber": "HDP26-24-9SE",
    "manufacturer": "TE DEUTSCH",
    "description": "HDP20 sz24 9-way plug, SOCKET, E seal - bulkhead C, high current, engine side"
+  },
+  {
+   "id": "cp_rly_nod",
+   "partNumber": "5-1393292-8",
+   "manufacturer": "TE Connectivity",
+   "description": "V23074-A2001-A402 Micro ISO relay, 1 form A (NO), diode coil suppression, 12VDC coil, 30A @23C / 25A @85C - OWNED (qty 2)"
+  },
+  {
+   "id": "cp_rly_nor",
+   "partNumber": "4-1904124-2",
+   "manufacturer": "TE Connectivity",
+   "description": "V23074-A1001-A402 Micro ISO relay, 1 form A (NO), 680R resistor coil suppression, 12VDC coil, 30A @23C / 25A @85C - OWNED (qty 2)"
+  },
+  {
+   "id": "cp_rly_cod",
+   "partNumber": "6-1419137-4",
+   "manufacturer": "TE Connectivity",
+   "description": "V23074-A2001-A403 Micro ISO relay, 1 form C (CO), diode coil suppression, 12VDC coil, 30A @23C / 25A @85C - OWNED (qty 2). Used as NO; 87a left empty"
+  },
+  {
+   "id": "cp_rly_hcr150",
+   "partNumber": "1416010-1",
+   "manufacturer": "TE Connectivity",
+   "description": "V23132-A2001-B200 HCR 150 high current relay, 1 form A (NO), 130A contact, 12VDC coil, IP67 - OWNED (qty 2)"
+  },
+  {
+   "id": "cp_fusebox",
+   "partNumber": "2141029-1",
+   "manufacturer": "TE Connectivity",
+   "description": "Fuse box assembly, hard wired - OWNED (qty 1). Cover 2141033-1, bracket 2141031-1 also owned"
+  },
+  {
+   "id": "cp_rl_red",
+   "partNumber": "RL00571-35 red shell",
+   "manufacturer": "Amphenol",
+   "description": "RADLOK 5.7mm RADSOK bulkhead pair, red, 2 AWG / 25 mm2 - battery positive firewall pass-through"
+  },
+  {
+   "id": "cp_rl_blk",
+   "partNumber": "RL00571-35 black shell",
+   "manufacturer": "Amphenol",
+   "description": "RADLOK 5.7mm RADSOK bulkhead pair, black, 2 AWG / 25 mm2 - battery negative firewall pass-through"
+  },
+  {
+   "id": "pl_sz4",
+   "partNumber": "114019-ZZ",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Sealing plug, size 4, white - OWNED (qty 10)"
+  },
+  {
+   "id": "pl_sz8",
+   "partNumber": "114018-ZZ",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Sealing plug, size 8, white - OWNED (qty 10)"
+  },
+  {
+   "id": "pl_sz12",
+   "partNumber": "0413-214-1205",
+   "manufacturer": "TE DEUTSCH",
+   "description": "Sealing plug, size 12, yellow - OWNED (qty 10)"
   }
  ],
  "mates": [
@@ -6652,6 +7566,16 @@
    "id": "mate_bh_c",
    "sourceId": "bh_c_fw",
    "targetId": "bh_c_eng"
+  },
+  {
+   "id": "mate_rl_pos",
+   "sourceId": "rl_pos_fw",
+   "targetId": "rl_pos_eng"
+  },
+  {
+   "id": "mate_rl_neg",
+   "sourceId": "rl_neg_fw",
+   "targetId": "rl_neg_eng"
   }
  ],
  "contactParts": [

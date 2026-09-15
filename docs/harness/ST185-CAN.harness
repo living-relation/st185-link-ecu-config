@@ -1298,7 +1298,16 @@
    "length": {
     "unit": "mm",
     "value": 700
-   }
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_cab_fw_c",
+     "layoutPosition": {
+      "x": 1815,
+      "y": 15
+     }
+    }
+   ]
   },
   {
    "id": "bn_fw_bh",
@@ -1307,7 +1316,16 @@
    "length": {
     "unit": "mm",
     "value": 100
-   }
+   },
+   "layoutPoints": [
+    {
+     "id": "bn_fw_bh_c",
+     "layoutPosition": {
+      "x": 1515,
+      "y": 135
+     }
+    }
+   ]
   },
   {
    "id": "bn_eng_lam",
@@ -1349,7 +1367,7 @@
    "id": "bp_can_fw",
    "layoutPosition": {
     "x": 1800,
-    "y": 0
+    "y": 120
    }
   }
  ],
