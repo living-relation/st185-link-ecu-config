@@ -2,7 +2,7 @@
 
 Retired material. **Nothing here is authoritative.** Each entry is kept only so a
 past decision can be re-read if the question comes up again, with a one-line note
-saying why it was retired — the convention set out in `DOCS-CLEANUP-PLAN.md` §7.
+saying why it was retired — the convention set out in `archive/DOCS-CLEANUP-PLAN.md` §7.
 
 Rule: if a file here disagrees with a current document, the current document wins.
 Files are retired here rather than deleted; deletion is reserved for material that
@@ -13,7 +13,8 @@ is both wrong and duplicated elsewhere.
 | File | Retired | Why |
 |---|---|---|
 | `5sgte-project-data/` | 2026-09-06 | Snapshot of the claude.ai Project "5sgte Project Data". Holds the superseded ECU-wiring docs (including one misleadingly named `ECU_WIRING_MASTER_SOURCE_OF_TRUTH.md` that was never authoritative) and the reverse-camera trigger resolution. The turbo-selection research and head-flow studies were **restored to `docs/5sgte-project-data/`** as live references (not retired); engine calibration and build references were promoted to `tune/` first — see `ORIGINAL-README.md` for the source snapshot's own caveats. |
-| `DOCS-CLEANUP-PLAN.html` | 2026-09-12 | Rendered clone of `DOCS-CLEANUP-PLAN.md` (76 KB, same content in two formats) that had drifted — it never gained §0 "Terms defined on first use" or §13 "Reconciliation log — 2026-09-06". Nothing in the repo cited the HTML; eight files cite the markdown. The markdown stays live at the repo root and is the only copy to edit. |
+| `DOCS-CLEANUP-PLAN.html` | 2026-09-12 | Rendered clone of `DOCS-CLEANUP-PLAN.md` (76 KB, same content in two formats) that had drifted — it never gained §0 "Terms defined on first use" or §13 "Reconciliation log — 2026-09-06". Nothing in the repo cited the HTML; eight files cite the markdown. The markdown was retired here too on 2026-09-16 — see the row below. |
+| `DOCS-CLEANUP-PLAN.md` | 2026-09-16 | The 2026-08-31 inventory (55 docs, 27 conflicts, 15 open decisions) plus its 2026-09-06 reconciliation log. Superseded by `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` (2026-09-12), which calls it stale and reassigns the doc roles it proposed. Its folder-consolidation steps 4-8 were never executed and are not planned; its open-decision list was closed out at Daniel's direction. Carries a superseded banner. |
 | `ALARM_MAPPING_POLICY.md` | 2026-09-05 | Temporary `0x3EE` alarm-mapping rule used while designing the cluster layouts ("never duplicate gauge-shown conditions as alarm bytes"). No ECU meaning. Byte layout lives in `CAN-BUS-ID-ALLOCATION-TABLE.md`. |
 
 ## Lost, not archived

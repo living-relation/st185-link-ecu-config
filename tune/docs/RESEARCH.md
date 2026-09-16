@@ -21,7 +21,7 @@ Private tune-project research. Not dyno data — conservative starting points wi
 
 - [FuryX dealer spec](https://dealers.linkecu.com/G4X-FuryX) — 10 DI with CAN2 disabled; onboard LSU; peak-and-hold injectors.
   > **Superseded 2026-07-04.** The ECU is a Link G4X **XtremeX**, which has **no onboard lambda
-  > controller** — this build uses an external Link CAN-Lambda on `0x3B6`. See `DOCS-CLEANUP-PLAN.md`
+  > controller** — this build uses an external Link CAN-Lambda on `0x3B6`. See `archive/DOCS-CLEANUP-PLAN.md`
   > conflicts C2 and C19. The 10-DI / CAN2-disabled point still holds. Retained as a record of the
   > original ECU evaluation.
 - [Link startup maps](https://linkecu.com/getting-started/start-up-maps/) — start from conservative template, then apply this project's limits.

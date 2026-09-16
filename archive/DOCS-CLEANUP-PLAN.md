@@ -1,3 +1,19 @@
+> **SUPERSEDED - 2026-09-16.** This is the 2026-08-31 documentation inventory (with a
+> 2026-09-06 reconciliation log). It is kept as a historical record only. Do not work
+> from it, and do not update it.
+>
+> Current authority:
+>
+> - Doc roles, what is a source of truth vs. a face of one, harness layout ->
+>   `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` (2026-09-12)
+> - ECU pins / channels -> `XTREMEX-IO-TABLE.html`
+> - Print schematic -> `SCHEMATIC-WIRING.html`
+> - Harness BOM / layout -> `docs/harness/ST185-Power.harness`, `ST185-Signal.harness`
+> - Wire build list -> `docs/harness/HARNESS-BUILD-LIST.csv`
+>
+> Its open-decision list (section 12) and the to-do items in sections 9-11 were closed
+> out on 2026-09-16 at Daniel's direction. This is not a live backlog.
+
 # ECU I/O and Wiring Documentation — Cleanup and Consolidation Plan
 
 **Vehicle:** 1993 Toyota Celica GT-Four ST185 · 5S-GTE · Link G4X XtremeX · ESP32 cluster set on CAN
