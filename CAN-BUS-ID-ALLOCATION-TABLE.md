@@ -80,7 +80,7 @@ Drives the full-screen warning overlay (max 3 shown, priority-ordered). 0 = OK, 
 | 5 | Throttle Error | uint8 | |
 | 6–7 | — | — | **Free (2 bytes)** |
 
-> **Free-byte note:** the 18 free bytes above (0x3E8 byte7, 0x3E9 bytes5-7, 0x3EA bytes2-7, 0x3EB bytes2-7, 0x3EE bytes6-7) are **not assigned in this allocation**. Using them requires the firmware "Adding a channel later" procedure (dash_data.h → canbus.c/dash_data.c/ui_*.c → .lcs/.json) across all three cluster boards — out of scope for the current pass. They remain available for a future firmware revision.
+> **Free-byte note:** the 16 free bytes above (0x3E8 byte7, 0x3E9 byte7, 0x3EA bytes2-7, 0x3EB bytes2-7, 0x3EE bytes6-7) are **not assigned in this allocation**. Using them requires the firmware "Adding a channel later" procedure (dash_data.h → canbus.c/dash_data.c/ui_*.c → .lcs/.json) across all three cluster boards — out of scope for the current pass. They remain available for a future firmware revision.
 
 ---
 

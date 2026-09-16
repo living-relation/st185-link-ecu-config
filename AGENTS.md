@@ -115,3 +115,13 @@ python rd-build/tools/automation_helper.py size
 Pin the model and effort level explicitly rather than relying on the upstream default
 (`/model` in Claude Code, the model picker in Cursor), so a vendor default change does not
 silently alter how this project is worked on.
+
+## Handoffs are never committed
+
+Work orders, handoffs and session summaries do not belong in this repo. A committed handoff
+reads as outstanding work long after it is done, and the next agent redoes it or reports it
+as incomplete. Deliver a handoff in chat so it can be copied to whoever needs it.
+
+What does belong in the repo: durable rules, decisions and reference material. If a handoff
+contains an open item worth keeping, record the item itself in the relevant doc - not the
+work order around it.
