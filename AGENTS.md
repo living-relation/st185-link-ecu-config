@@ -14,7 +14,6 @@
 >
 > Link CAN-Lambda is on CAN bus 1. CAN bus 2 is unused and its ECU pins are free.
 
-
 ## Scope
 - This repo is CAN configuration + bench/tooling for ST185 TrackCluster.
 - Primary code paths are `bench/`, `apps/trackcluster-can-sender/`, and `rd-build/tools/`.
@@ -26,7 +25,6 @@
 - Bench behavior: `bench/frames.py`, `bench/can_bench.py`, `BENCH-TEST.md`.
 - RealDash channel definitions: `link_g4x_realdash.xml`.
 - ECU Superseal I/O (pins, pull-ups, drive types): `XTREMEX-IO-TABLE.html` — pin numbers confirmed 2026-09-11 vs official XtremeX Quick Start Guide (`docs/XTREMEX-IO-VERIFY-2026-09-11.md`).
-
 
 ## Board / progress snapshot
 - Claude progress board is a **stale artifact** (last updated 2026-09-01). Do not treat it as SoT.
@@ -101,7 +99,6 @@ python rd-build/tools/automation_helper.py size
 
 ## MCP / Integration Notes
 - Optional MCP example exists at `rd-build/tools/mcp.example.json` for desktop control experiments.
-- Caliber hooks exist in `.claude/hooks/` and `.cursor/hooks.json`; keep config guidance compatible with them.
 
 ## Cursor Cloud specific instructions
 - The Cloud Agent environment is defined by `.cursor/environment.json`, which runs `.cursor/install.sh` (installs the WebKit2 GTK backend for the `pywebview` sender app plus the Python deps from the three `requirements.txt` files).
@@ -113,49 +110,8 @@ python rd-build/tools/automation_helper.py size
 - The `-v/--verbose` flag is global and must come before the subcommand.
 - The desktop sender app (`apps/trackcluster-can-sender/app.py`) renders via `pywebview` on the VM display; use GUI/computer-use testing to verify it.
 
-<!-- caliber:managed:pre-commit -->
-## Before Committing
+## Model
 
-**IMPORTANT:** Before every git commit, you MUST ensure Caliber syncs agent configs with the latest code changes.
-
-First, check if the pre-commit hook is already installed:
-```bash
-grep -q "caliber" .git/hooks/pre-commit 2>/dev/null && echo "hook-active" || echo "no-hook"
-```
-
-- If **hook-active**: the hook handles sync automatically — just commit normally. Tell the user: "Caliber will sync your agent configs automatically via the pre-commit hook."
-- If **no-hook**: run Caliber manually before committing:
-  1. Tell the user: "Caliber: Syncing agent configs with your latest changes..."
-  2. Run: `caliber refresh && git add CLAUDE.md .claude/ .cursor/ .cursorrules AGENTS.md CALIBER_LEARNINGS.md .agents/ .opencode/ 2>/dev/null`
-  3. After it completes, briefly tell the user what Caliber updated. Then proceed with the commit.
-
-**Valid `caliber refresh` options:** `--quiet` (suppress output) and `--dry-run` (preview without writing). Do not pass any other flags — options like `--auto-approve`, `--debug`, or `--force` do not exist and will cause errors.
-
-**`caliber config`** takes no flags — it runs an interactive provider setup. Do not pass `--provider`, `--api-key`, or `--endpoint`.
-
-If `caliber` is not found, read `.agents/skills/setup-caliber/SKILL.md` and follow its instructions to install Caliber.
-<!-- /caliber:managed:pre-commit -->
-
-<!-- caliber:managed:learnings -->
-## Session Learnings
-
-Read `CALIBER_LEARNINGS.md` for patterns and anti-patterns learned from previous sessions.
-These are auto-extracted from real tool usage — treat them as project-specific rules.
-<!-- /caliber:managed:learnings -->
-
-<!-- caliber:managed:model-config -->
-## Model Configuration
-
-Recommended default: `claude-sonnet-4-6` with high effort (stronger reasoning; higher cost and latency than smaller models).
-Smaller/faster models trade quality for speed and cost — pick what fits the task.
-Pin your choice (`/model` in Claude Code, or `CALIBER_MODEL` when using Caliber with an API provider) so upstream default changes do not silently change behavior.
-
-<!-- /caliber:managed:model-config -->
-
-<!-- caliber:managed:sync -->
-## Context Sync
-
-This project uses [Caliber](https://github.com/caliber-ai-org/ai-setup) to keep AI agent configs in sync across Claude Code, Cursor, and Codex.
-Configs update automatically before each commit via `caliber refresh`.
-If the pre-commit hook is not set up, read `.agents/skills/setup-caliber/SKILL.md` and follow the setup instructions.
-<!-- /caliber:managed:sync -->
+Pin the model and effort level explicitly rather than relying on the upstream default
+(`/model` in Claude Code, the model picker in Cursor), so a vendor default change does not
+silently alter how this project is worked on.

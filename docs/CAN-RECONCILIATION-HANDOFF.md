@@ -59,7 +59,8 @@ cluster, and the ECUMaster CSB3?
 **Reconcile against all three consumers:**
 
 1. **Center cluster** — `center-cluster-esp32-p4` repo, `main/canbus.c` and
-   `main/protocols/link_g4x.json`. Registered as a Caliber external source, so paths resolve.
+   `main/protocols/link_g4x.json`. Checked out at
+   `C:\projects\shipping\center-cluster-esp32-p4`.
 2. **RealDash** — as Task 1.
 3. **ECUMaster CSB3** — `ECUMASTER_SWITCHBOARD_SETUP.md`.
 
