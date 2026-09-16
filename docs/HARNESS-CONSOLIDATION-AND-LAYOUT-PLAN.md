@@ -223,3 +223,56 @@ switched **12V**. That is a 12V-to-5V short that would take out both TPS tracks 
 the ECU's 5V regulator. A Bosch DBW throttle body has no power input — the relay's job is
 feeding the ECU's V-Ethrottle pin, which `w81`/`w82` already do. **Delete `w_hv_etb_c` and
 `w_hv_etb_e`.** Motor +/− stay on bulkhead B, TPS signals stay on bulkhead A.
+
+### 6.11 Which file a wire belongs in — supersedes §4.1
+
+§4.1 split the files by "power vs signal hardware". That is replaced by a pin-level rule.
+
+**Default: every ECU pin is Signal.** Two carve-outs go to Power.
+
+| Goes in **Signal** | Goes in **Power** |
+|---|---|
+| Every ECU pin, by default | ECU **12V ignition supply**, with its power-hold wiring |
+| **All** pedal (APS) pins — supplies included | **All relay trigger outputs** (the ECU wires that drive relay coils) |
+| **All** ETB pins — motor +/− included | Relays, fuses, battery feed, grounds |
+| **All** 5V sensor power, and the 5V splices | 12V circuits not named on the left |
+| Sensors, CAN, injector and coil **drive** wires | Injector and coil **12V feeds** |
+
+The relay-trigger carve-out is deliberate: it keeps each relay circuit whole in one drawing,
+per §6.2 ("relays appear only in the power harness, with every wire routed to its real
+destination").
+
+A part legitimately appears in **both** files when it has both a power pin and a signal pin
+(injectors, COPs, the MRS pump's control connector). That is not duplication.
+
+Consequences for the current files:
+
+- `sp_5v` and `sp_5v_eng` move to Signal.
+- ETB leaves Power entirely, motor pair included — which makes the earlier "which bulkhead
+  does ETB power cross" question moot.
+- The BRZ pedal supply pins (VC1, VC2, GND1, GND2) move to Signal. This clears the
+  `validate_harness` warnings about those cavities being flagged `notConnected` while
+  carrying signal text — the contradiction only existed because the pins sat in Power.
+- `k_fan` and `k_fan2` become Power-only.
+
+### 6.12 Shields — how to model a floating shield without validation errors
+
+The app supports a one-end shield natively. From its editing guide: a cable's `shield` core
+"may connect at only one end (omit `target`)", using `color: "Shield"`.
+
+So each shielded run is modelled as a **cable**, not as loose wires:
+
+- `cores` — the signal conductors.
+- `shield` — `source` set to the **ECU connector's shell** cavity, and **no `target`**. That
+  is a genuinely floating shield at the device end.
+
+A connector's `shell` field is the shield/backshell termination point, and the part invariant
+is: a connector has a `shell` **iff** its part's `hasShell` is true.
+
+Therefore the device-end connectors carry **no shell** — nothing is terminated there. Only
+the ECU has one. This is the fix for the `part_mismatch` warnings on crank, knock, cam and
+the four wheel-speed connectors: remove the shell from those connectors rather than adding
+`hasShell` to their parts.
+
+Note to check when converting: cables are schematic-only nodes in this app. Confirm the
+layout view still routes the cores through bundles as expected before converting all of them.
