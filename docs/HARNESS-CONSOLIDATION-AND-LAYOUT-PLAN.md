@@ -122,3 +122,104 @@ Main = full-range track. After probing, set PCLink `APS (Sub) 100%` if the sub t
 - Relays, bulkheads, clutch, cruise stalk, brake, reverse, start, AC amp labelled as OEM blocks.
 - Cruise MAIN/SET/RESUME + ladder collapsed to **one** stalk block in the Signal file and the schematic app.
 - BRZ 6-pin APS in Power, Signal, IO table, SVG schematic, and the interactive app.
+
+## 6. Build rules — set by Daniel, 2026-09-16
+
+These govern the rework. Where they conflict with anything above, these win.
+
+### 6.1 Harness split
+
+Three harnesses. **Only two bulkhead connectors exist.**
+
+| Harness | Crosses | Carries |
+|---|---|---|
+| **A / B** (engine + signal) | Bulkheads A and B, **passenger side** | Everything ECU-side. All IAT sensors live here. |
+| **C — Engine Room Harness** | **No bulkhead.** Exits the driver fender, around the front of the bay | Radiator fan, condenser fan, EPS pump, headlights + headlight motors, turn, horn, wipers, washer pump, and any power for devices not already on A/B |
+
+`bh_c` is deleted. Its rad fan, condenser fan and MRS pump loads move to the Engine Room
+Harness. **Nothing else comes off A/B except the EPS pump.**
+
+Acceptance test for the split: pull the engine, unplug two connectors, the engine loom
+comes with it.
+
+### 6.2 Power distribution — PDM or relay+fuse, never both
+
+- A load is fed **either** from a PDM output **or** from a relay and fuse. Not both.
+- Any load exceeding the PDM's per-output capacity gets a relay and fuse instead.
+- Where a load exceeds one output but the PDM is still the right source, **combine
+  outputs** (the fuel pump is the likely case). Check the PDM's per-output cap before
+  assigning.
+- Relays appear **only in the power harness**, with every wire routed to its real
+  destination. No placeholders, no bare "ground" stubs standing in for a path.
+- Relay coil polarity follows the ECU's drive type (active low vs active high) per the
+  Link manual, or the terminal's capability.
+
+### 6.3 Bulkhead pin priority — revised
+
+Supersedes the earlier "power and ground take precedence over shields" rule.
+
+1. **Every shield gets its own bulkhead pin.** Shields are allocated first.
+2. **Sensor 5V and sensor ground are spliced at the bulkhead connector**, not at the ECU.
+   Saves pins and keeps the ECU-side harness smaller.
+
+Current headroom: bulkhead A is 47 cavities with 32 used, B is 21 with 10 used — 26 spare
+against roughly 18-19 engine-side shields. It fits, but the spare breakout and the new
+device connectors will eat into that. Recount before committing the layout.
+
+**Open:** whether shields for timing- and fuelling-critical sensors (crank, cam, knock)
+stay individually unspliced, or are grouped by signal type. Not yet decided.
+
+### 6.4 Shields
+
+- Drawn as a dotted oblong at the connector/device end, described **"drain"**.
+- Terminated **only** at the ECU shield-ground end. Floating at the device end, always.
+- Carried through the bulkhead and continued to the ECU connector shield ground.
+- Kept separate rather than spliced, ideally until just before the ECU connector.
+
+### 6.5 Grounds
+
+- Sensor grounds go to **Gnd Out**. ECU ground goes to **battery negative**.
+- Sensors never land on chassis ground or battery ground — coils excepted (and possibly
+  injectors, to confirm).
+
+### 6.6 Wire and contact selection
+
+- **Gauge:** sized on typical peak amps for the **high-performance** version of the device
+  (size the fan circuit off a high-output fan's real draw, not the OEM unit), plus margin,
+  and constrained by the available contact sizes where the circuit crosses a bulkhead.
+- **Wire:** high-temp — Tefzel, TXL, or mil-spec equivalent.
+- **Contacts:** gold, barrel where available, sized to peak current and temperature.
+- Don't forget backshells, strain relief, sealing and rubber boots, wire seals, wedge
+  locks, Raychem, junction boots, heat shrink, and shielded cable where specified.
+
+### 6.7 Connectors
+
+- Every connector is **named for the device it connects to**.
+- No wire runs direct to a device. Anything currently drawn that way gets a connector:
+  look up the real one, invent a generic part number with correct pins and assignments, or
+  use a Deutsch connector for PCB-type hardware (ECUMaster switchboard, CAN transceivers,
+  the two dual-channel ABS sensor conditioner boards).
+- Cam sensor is **8V** and needs a connector; the pull-up resistor was already specified in
+  an earlier session. The boost control solenoid needs a connector too.
+- Nothing downstream of the CAN transceiver — no cluster parts.
+- Spare breakout to be added while the design is still on paper: spare Aux, spare An Volt,
+  spare power, and the PDM's unused outputs.
+
+### 6.8 Resistors
+
+Only where physically required — not where the ECU already provides the pull-up or
+pull-down internally. Any that are required must be drawn with a complete path and listed
+on the master BOM.
+
+### 6.9 Layout
+
+Orthogonal on a 30px grid. Diagonals only where a part fan-out makes them unavoidable.
+
+### 6.10 Known fault to fix
+
+ETB cavity c3 (+5V TPS supply) currently has two wires on it: the engine-side 5V splice
+(correct) and `w_hv_etb` from the ETB Power Relay through bulkhead C, which carries
+switched **12V**. That is a 12V-to-5V short that would take out both TPS tracks and likely
+the ECU's 5V regulator. A Bosch DBW throttle body has no power input — the relay's job is
+feeding the ECU's V-Ethrottle pin, which `w81`/`w82` already do. **Delete `w_hv_etb_c` and
+`w_hv_etb_e`.** Motor +/− stay on bulkhead B, TPS signals stay on bulkhead A.
