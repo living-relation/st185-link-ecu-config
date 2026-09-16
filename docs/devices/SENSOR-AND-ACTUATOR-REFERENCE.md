@@ -90,25 +90,26 @@ the XtremeX-specific quickstart guide, not the StormX one.
 
 ---
 
-## Unresolved device specs
+## Cam sensor — settled
 
-Two device-level questions are genuinely open. They are recorded here because they are
-facts about hardware, not tasks.
+Racer X kit, Cherry/ZF GS1007 Hall, single tooth.
 
-**Cam sensor supply — conflicting sources.** The Racer X kit (Cherry/ZF GS1007 Hall, single
-tooth) ships a 2.4 kΩ pull-up and its instructions call that required. The ZF datasheet ties
-resistor value to supply voltage: 1k @ 5V, 1.8k @ 9V, 2.4k @ 12V. So the shipped resistor
-implies a 12V supply. Two viable routes:
+- **Supply: the ECU's +8V Out.** Not switched 12V.
+- **Pull-up: 1.8 kΩ**, bought separately. The ZF datasheet maps resistor to supply
+  (1k @ 5V, 1.8k @ 9V, 2.4k @ 12V); 8V interpolates to about 1.6k, and 1.8k is the
+  nearest standard value. The 2.4 kΩ the kit ships is sized for 12V and is not used.
+- Wiring: Brown = VCC (+8V), Black = signal to Trigger 2, Blue = ground (Gnd Out, not
+  chassis). Shielded, terminated at the ECU end only.
+- Needs a connector — the kit pigtail is a placeholder. Still to be chosen.
 
-- switched 12V with the 2.4 kΩ the kit supplies, or
-- the ECU's **+8V Out** with a **1.8 kΩ** pull-up bought separately (~1.6k interpolated,
-  1.8k being the nearest standard value).
+## Fuel pump and radiator fan — governed by the power rule
 
-Wiring is the same either way: Brown = VCC, Black = signal to Trigger 2, Blue = ground
-(Gnd Out, not chassis). Shielded, terminated at the ECU end only. Decide before ordering.
+Not an open fork. Section 6.2 of `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` decides
+it: a load is fed **either** from a PDM output **or** from a relay and fuse, never both.
+Any load above the PDM's per-output capacity takes a relay and fuse instead, and where the
+PDM is still the right source for a large load, outputs are combined — the fuel pump being
+the likely case.
 
-**Fuel pump and radiator fan — PDM or direct Aux.** `XTREMEX-IO-TABLE.html` currently has
-Aux 3 = fuel pump relay and Aux 5 = rad fan relay, wired direct. The PDM option discussed
-earlier never made it into the design. Moving both to the PDM would free two Aux channels.
-This is a design decision, not a lookup — and if it lands as yes, the PDM must also be added
-as a node in `WIRING.md` and `CAN-BUS-MASTER-DESIGN.md`.
+The only thing outstanding is a lookup, not a decision: confirm the PDM's per-output
+current cap, then apply the rule to the fuel pump and both fans. If either ends up on the
+PDM, the PDM also has to be added as a node in `WIRING.md` and `CAN-BUS-MASTER-DESIGN.md`.
