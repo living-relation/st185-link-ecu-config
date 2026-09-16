@@ -6,7 +6,7 @@ Before every git commit, check if the Caliber pre-commit hook is installed:
 Run: `grep -q "caliber" .git/hooks/pre-commit 2>/dev/null && echo "hook-active" || echo "no-hook"`
 
 If hook-active: just commit normally — Caliber syncs automatically via the hook. Tell the user: "Caliber will sync your agent configs automatically."
-If no-hook: run `caliber refresh && git add CLAUDE.md .claude/ .cursor/ .cursorrules .github/copilot-instructions.md .github/instructions/ AGENTS.md CALIBER_LEARNINGS.md .agents/ .opencode/ 2>/dev/null` before committing, and tell the user what was updated.
+If no-hook: run `caliber refresh && git add CLAUDE.md .claude/ .cursor/ .cursorrules AGENTS.md CALIBER_LEARNINGS.md .agents/ .opencode/ 2>/dev/null` before committing, and tell the user what was updated.
 
 Valid `caliber refresh` options: `--quiet` and `--dry-run` only. Do not pass `--auto-approve`, `--debug`, `--force`, or any other flags.
 `caliber config` takes no flags — it is interactive. Do not pass `--provider`, `--api-key`, or `--endpoint`.

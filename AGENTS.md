@@ -1,5 +1,20 @@
 # AGENTS.md
 
+> ## Before any wiring or CAN change — binding on every agent
+>
+> Read **`docs/RECONCILIATION-RULES.md`**. Two rules, both non-optional:
+>
+> 1. **Wiring** — a change to one wiring document is not done until it is checked against
+>    the source-of-truth chain and **every other wiring surface**, including ones you did
+>    not edit. `XTREMEX-IO-TABLE.html` is the pin source of truth; everything else is a
+>    face of it.
+> 2. **CAN** — a change on any device must be reconciled against **all** of them: Link ECU,
+>    center cluster, RealDash, ECUMaster CSB3. This crosses repo boundaries. The cluster
+>    firmware is frozen and outranks everything; on conflict, the other device changes.
+>
+> Link CAN-Lambda is on CAN bus 1. CAN bus 2 is unused and its ECU pins are free.
+
+
 ## Scope
 - This repo is CAN configuration + bench/tooling for ST185 TrackCluster.
 - Primary code paths are `bench/`, `apps/trackcluster-can-sender/`, and `rd-build/tools/`.
@@ -111,7 +126,7 @@ grep -q "caliber" .git/hooks/pre-commit 2>/dev/null && echo "hook-active" || ech
 - If **hook-active**: the hook handles sync automatically — just commit normally. Tell the user: "Caliber will sync your agent configs automatically via the pre-commit hook."
 - If **no-hook**: run Caliber manually before committing:
   1. Tell the user: "Caliber: Syncing agent configs with your latest changes..."
-  2. Run: `caliber refresh && git add CLAUDE.md .claude/ .cursor/ .cursorrules .github/copilot-instructions.md .github/instructions/ AGENTS.md CALIBER_LEARNINGS.md .agents/ .opencode/ 2>/dev/null`
+  2. Run: `caliber refresh && git add CLAUDE.md .claude/ .cursor/ .cursorrules AGENTS.md CALIBER_LEARNINGS.md .agents/ .opencode/ 2>/dev/null`
   3. After it completes, briefly tell the user what Caliber updated. Then proceed with the commit.
 
 **Valid `caliber refresh` options:** `--quiet` (suppress output) and `--dry-run` (preview without writing). Do not pass any other flags — options like `--auto-approve`, `--debug`, or `--force` do not exist and will cause errors.
@@ -140,7 +155,7 @@ Pin your choice (`/model` in Claude Code, or `CALIBER_MODEL` when using Caliber 
 <!-- caliber:managed:sync -->
 ## Context Sync
 
-This project uses [Caliber](https://github.com/caliber-ai-org/ai-setup) to keep AI agent configs in sync across Claude Code, Cursor, Copilot, and Codex.
+This project uses [Caliber](https://github.com/caliber-ai-org/ai-setup) to keep AI agent configs in sync across Claude Code, Cursor, and Codex.
 Configs update automatically before each commit via `caliber refresh`.
 If the pre-commit hook is not set up, read `.agents/skills/setup-caliber/SKILL.md` and follow the setup instructions.
 <!-- /caliber:managed:sync -->
