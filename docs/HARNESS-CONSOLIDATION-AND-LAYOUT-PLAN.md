@@ -231,6 +231,22 @@ stay individually unspliced, or are grouped by signal type. Not yet decided.
 - Don't forget backshells, strain relief, sealing and rubber boots, wire seals, wedge
   locks, Raychem, junction boots, heat shrink, and shielded cable where specified.
 
+**Gauge sizing basis — settled by Daniel, 2026-09-17.** Applies to all 275 wires; none
+currently carries a gauge.
+
+1. Start from the **peak** current of the **high-performance version** of the device, not
+   the OEM part's rating.
+2. Add margin for **error, high ambient temperature and voltage drop**. Engine-bay runs
+   and long runs get more.
+3. **The wire is sized first. The contact is then chosen to fit the wire** — never the
+   reverse.
+4. A wire must **not exceed the maximum AWG its connector's contacts accept**. If the
+   required wire is too big for the contact, change the contact or the connector; do not
+   thin the wire.
+5. When two sizes are defensible, **take the larger one**. Size for caution.
+- Don't forget backshells, strain relief, sealing and rubber boots, wire seals, wedge
+  locks, Raychem, junction boots, heat shrink, and shielded cable where specified.
+
 ### 6.7 Connectors
 
 - Every connector is **named for the device it connects to**.
