@@ -186,3 +186,50 @@ outranks this note.
 
 If one of `mrs_ctrl`'s four unused pins turns out to be a load or fault output, that
 replaces the current sensor for the price of one wire. Worth metering before buying.
+
+## Cam sensor resistor - drawn wrong, fix before building
+
+The component the diagrams call `r_cam` is a **1.8 kOhm resistor** for the cam position
+sensor, currently placed at the sensor in the engine bay. Rename it to `cam_pullup`,
+label "Cam sensor pull-up 1.8k".
+
+**What it is for.** The cam sensor is a Hall-effect type running on 8 V. Its output does
+not drive the line high - it only pulls the line down to ground. Left alone the line floats
+between pulses and the ECU sees noise. A pull-up resistor ties the signal line to the 8 V
+rail so it rests high, and every time the sensor switches it yanks the line low. That gives
+the clean square edge the trigger input needs.
+
+**The fault.** It is drawn in **series** with the signal, not pulling it up:
+
+```
+   drawn now:   cam.c2 --[1.8k]-- bh_a_eng.c32 == bh_a_fw.c32 -- ecu_a.a9 (Trig 2)
+```
+
+A9 is Trigger 2. So the resistor sits directly in the cam trigger path, where it attenuates
+and slows the edge instead of conditioning it. That is the opposite of the intent.
+
+**Correct arrangement** - the resistor bridges the 8 V rail to the signal line, and the
+signal runs straight through:
+
+```
+   ECU 8V Out (A6) --[1.8k]--+
+                             |
+   cam signal ---------------+------------- ECU Trig 2 (A9)
+   (sensor sinks this to ground)
+```
+
+**Put it on the ECU side**, in the cabin. Three reasons: it is out of engine-bay heat and
+vibration; the value is easy to change on the bench while setting the trigger up; and it
+needs no bulkhead pins of its own - 8 V already crosses on bulkhead A pin 4 for the
+sensor's supply, and the cam signal already crosses on pin 32. Nothing new is added.
+
+`r_fuellvl` (470 Ohm) and `r_cruise` (10k) are wired correctly as pull-ups to A32 and do
+not need this change - only the cam one is wrong.
+
+## Wheel-speed sensors - their own loom, settled 2026-09-17
+
+All four VR wheel-speed sensors and both dual-channel conditioner boards come out of looms
+A and B into `ST185-WheelSpeed.harness`. **No bulkhead connector** - this loom does not
+cross bulkhead A or B, so the front sensors stop being firewall crossings with nowhere to
+cross. Its only ties to the rest of the car are the conditioner outputs to the ECU and the
+conditioner power and ground, which follow the shared-part rule in plan doc 6.15.

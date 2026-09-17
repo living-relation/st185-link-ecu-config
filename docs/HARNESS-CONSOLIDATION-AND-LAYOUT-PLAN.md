@@ -365,3 +365,79 @@ cabin side while `ST185-EngineRoom-C.harness` draws it in the engine bay. With `
 settled as **engine bay** (see the EPS section of `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`)
 that wire becomes engine-to-engine, and the relay's coil feed from `sp_sw12` becomes the
 crossing that needs a bulkhead B pin.
+
+
+### 6.14 File structure - revised by Daniel 2026-09-17, supersedes the table in 6.13
+
+Loom **A** is the sensor / signal loom. Loom **B** is the power loom. Each is cut at the
+firewall into an ECU-side and an engine-side drawing. The wheel-speed sensors come out of
+both into a loom of their own.
+
+| File | Holds |
+|---|---|
+| `ST185-A-ECU.harness` | Loom A, ECU side of bulkheads A and B |
+| `ST185-A-engine.harness` | Loom A, engine side |
+| `ST185-B-ECU.harness` | Loom B, ECU side. **All relays live here.** MR-S EPS pump is loom B |
+| `ST185-B-engine.harness` | Loom B, engine side |
+| `ST185-WheelSpeed.harness` | **New.** All four VR wheel-speed sensors and both conditioner boards. **No bulkhead connector** - this loom does not cross A or B |
+| `ST185-EngineRoom-C.harness` | Loom C. 33 wires, fits one file; split it only if it outgrows the cap |
+| `ST185-CAN.harness` | 16 wires, unchanged |
+
+Do not split by "cabin vs engine" as a two-file scheme - that was the 6.13 proposal and it
+is replaced by the four files above.
+
+### 6.15 Shared parts across drawings - set by Daniel 2026-09-17
+
+A part must appear on **exactly one** harness BOM. Otherwise the global buy list
+double-counts it and we order twice.
+
+**The rule.** A shared part is drawn in full, with its real part number, on the **one**
+harness that owns it. Relays are owned by the **power loom (B)**. On every other drawing
+the wire runs instead to a **dummy connection block** labelled with the component ID and
+the pin it lands on - and that dummy block carries **no part number and no contacts**, so
+it contributes nothing to that drawing's BOM.
+
+```
+Owning drawing (B-ECU)            Other drawing (A-ECU)
+  ┌──────────────┐                  ┌──────────────────┐
+  │ K4  Rad Fan  │                  │  K4-85           │   dummy block
+  │ 6-1419137-4  │   ◄── same net ──│  (no part, no    │
+  │ 85 86 30 87  │                  │   contacts)      │
+  └──────────────┘                  └──────────────────┘
+```
+
+Apply the same pattern to **any** part shared between drawings - bulkheads, the fuse block,
+the PDB, the PMU-16, splices - not only relays.
+
+**Component IDs.** Every shared component carries a stable ID printed on every drawing it
+appears on, so a wire can be traced across sheets by eye.
+
+| ID | Internal id | Component | Owned by |
+|---|---|---|---|
+| `K1` | `k_efi` | EFI Main relay | B |
+| `K2` | `k_etb` | E-throttle power relay | B |
+| `K3` | `k_fp` | Fuel pump relay | B |
+| `K4` | `k_fan` | Radiator fan relay | B |
+| `K5` | `k_fan2` | Condenser fan relay | B |
+| `K6` | `k_str` | Start relay | B |
+| `K7` | `k_eps` | EPS pump relay (HCR 150) | B, engine side |
+| `BH-A` | `bh_a_fw` / `bh_a_eng` | Bulkhead A, 47-way | A |
+| `BH-B` | `bh_b_fw` / `bh_b_eng` | Bulkhead B, 21-way | A |
+| `FB1` | `fusebox` | Cabin fuse block | B |
+| `PDB1` | *(to add)* | Glove-box power distribution block | B |
+| `PMU1` | *(to add)* | ECUMaster PMU-16 | B |
+
+A dummy block is labelled `<ID>-<pin>`, e.g. `K4-85`, `BH-A-12`, `FB1-3`.
+
+### 6.16 EPS pump relay is ECU-driven - settled by Daniel 2026-09-17
+
+The pump runs only while the engine runs, so the ECU switches it rather than plain
+ignition-switched 12 V.
+
+- Coil high side: switched 12 V, as now.
+- Coil low side: **Ign 6 / pin B12**, violet, low-side drive. Recorded "Available" in
+  `XTREMEX-IO-TABLE.html`, freed 2026-09-06. Ign 5 / B13 already drives the condenser-fan
+  relay, so the two relay triggers sit adjacent.
+- **Delete `w_mrs_relay_req`** (`mrs_ctrl` to `k_eps`). The pump does not switch its own
+  relay; that wire was a copy of the factory-reference drawing and is wrong for this build.
+- Per 6.11 the trigger is a relay output, so it lives in the **power loom (B)**.
