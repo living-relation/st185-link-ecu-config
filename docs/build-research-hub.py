@@ -42,6 +42,11 @@ TOPICS: list[dict] = [
         "title": "Harness & Wiring",
         "blurb": "Harness wiring diagram for the ECU/cluster/switchboard install.",
     },
+    {
+        "dir": "electrical",
+        "title": "Engine-room power redistribution",
+        "blurb": "OEM kick-panel / J/B2 splice table and factory EWD snips for the trunk-battery / glove-box PDB move. Partial engine-room C is in docs/harness/.",
+    },
 ]
 
 # Files matching these are working artifacts, not things you read.

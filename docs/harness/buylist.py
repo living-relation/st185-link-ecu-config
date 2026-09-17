@@ -1,6 +1,6 @@
 import json, os, re, collections, datetime
-R = r"C:\projects\shipping\st185-link-ecu-config\docs\harness"
-F = ("ST185-Signal.harness","ST185-Power.harness","ST185-CAN.harness")
+R = os.path.dirname(os.path.abspath(__file__))
+F = ("ST185-Signal.harness","ST185-Power.harness","ST185-CAN.harness","ST185-EngineRoom-C.harness")
 
 ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "0460-202-1631":130,"0460-215-1631":60,"0462-201-1631":118,"0462-209-1631":51,
@@ -23,6 +23,10 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("VCF7-1000 / 1393310-4","TE Connectivity","Maxi relay mounting block",1,1),
  ("280756-4","TE Connectivity","250-series terminal 12-10 AWG, for VCF7 power legs",4,0),
  ("HCR 150 mating hardware","TE Connectivity","Receptacle / terminals for V23132-A2001-B200 - CONFIRM with supplier",1,0),
+ ("2 AWG welding cable red/black","generic","Trunk battery +/−, RADLOK charge/start, jump post. Length TBD on the car.",1,0),
+ ("Jump lugs 2 AWG / 1/0","generic","Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post",8,0),
+ ("8 AWG TXL red/black","generic","EPS pump 12V/GND (passenger ABS trough) and uprated fan 12V/GND (core support)",1,0),
+ ("ANL 150A + holder","generic","PMU-16 M6 input fuse at the glove-box PDB (or PMU's own input fuse)",1,0),
  ("2428-011-2405","TE DEUTSCH","Backshell 24SZ right-angle L017",1,1),
  ("M902-2243","TE DEUTSCH","Backshell 24SZ straight L015",1,1),
  ("16-04477","TE DEUTSCH","Gasket 24SZ",6,4),
@@ -68,10 +72,10 @@ for pn, mf, desc, n, have in EXTRA:
 
 out = ["# Harness — need to buy",
  "",
- "Generated from `ST185-Signal.harness`, `ST185-Power.harness` and `ST185-CAN.harness` on %s."
+ "Generated from `ST185-Signal.harness`, `ST185-Power.harness`, `ST185-CAN.harness` and `ST185-EngineRoom-C.harness` on %s."
  % datetime.date.today().isoformat(),
  "On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.",
- "Regenerate with `hw/buylist.py` after any harness change — do not hand-edit.",
+ "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",
  "", "## Short — order these", "",
  "| Part number | Mfr | Description | Need | Have | **Buy** |", "|---|---|---|---:|---:|---:|"]
 for r in sorted(rows_buy, key=lambda x: -x[5]):

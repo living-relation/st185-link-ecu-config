@@ -5304,7 +5304,7 @@
     "y": 0
    },
    "partId": "cp_hdp_c_fw",
-   "label": "Bulkhead C - firewall (HDP24-24-9PE)"
+   "label": "DO NOT BUILD Bulkhead C - leftover HDP20. Fans/EPS: EngineRoom-C. ETB/inj/coil 12V still need A/B pins."
   },
   {
    "id": "bh_c_eng",
@@ -5377,7 +5377,7 @@
     "y": 120
    },
    "partId": "cp_hdp_c_eng",
-   "label": "Bulkhead C - engine plug (HDP26-24-9SE)"
+   "label": "DO NOT BUILD Bulkhead C engine plug - leftover. See ST185-EngineRoom-C.harness."
   },
   {
    "id": "k_eps",
@@ -5423,7 +5423,7 @@
   {
    "id": "fusebox",
    "partId": "cp_fusebox",
-   "label": "Cabin fuse block (passenger footwell)",
+   "label": "Cabin fuse block (passenger glove box)",
    "width": 270,
    "schematicPosition": {
     "x": 660,
@@ -5725,7 +5725,7 @@
   {
    "id": "t_batt_pos",
    "type": "Ring",
-   "signal": "Battery + (cabin, passenger footwell) - 2 AWG",
+   "signal": "Battery + (trunk -> glove-box PDB) - 2 AWG",
    "width": 210,
    "schematicPosition": {
     "x": 0,
@@ -5767,7 +5767,7 @@
   {
    "id": "t_batt_neg",
    "type": "Ring",
-   "signal": "Battery - (cabin) - 2 AWG",
+   "signal": "Battery - (trunk -> glove-box PDB) - 2 AWG",
    "width": 210,
    "schematicPosition": {
     "x": 0,
@@ -5802,7 +5802,7 @@
    },
    "sourceId": "bp_fuse",
    "targetId": "bp_cab",
-   "label": "passenger footwell - battery + fuses",
+   "label": "glove box - PDB + fuses",
    "layoutPoints": [
     {
      "id": "bn_bp_fuse__bp_cab_c",
@@ -7333,7 +7333,7 @@
  "schematicNotes": [
   {
    "id": "note_intro",
-   "text": "POWER harness - ECU focused. Battery and fuses in the passenger footwell. 12V / +5V / +8V / Gnd Out / chassis. Display devices are CAN-only and are not powered from this harness. Signals: ST185-Signal.harness.",
+   "text": "POWER harness - ECU focused. Battery in the trunk; PDB, fuse block, PMU-16 and remaining relays in the passenger glove box. 12V / +5V / +8V / Gnd Out / chassis. Engine-room OEM feeds and uprated fans / EPS power: ST185-EngineRoom-C.harness. Signals: ST185-Signal.harness. Splice table: docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md.",
    "width": 390,
    "schematicPosition": {
     "x": 0,
@@ -7377,7 +7377,7 @@
     "x": 0,
     "y": -1950
    },
-   "text": "HEAVY DC - drawn separately at the top. Battery and all fusing live in the cabin (passenger footwell). Battery + to starter B+ and battery - to engine block cross the firewall on RADLOK bulkheads, 2 AWG. Alternator B+ (rear of block, under the intake) joins at the starter B+ post and does not cross. Nothing else heavy crosses."
+   "text": "HEAVY DC - drawn separately at the top. Battery lives in the trunk; PDB / fuses / PMU live in the passenger glove box. Battery + to starter B+ and battery - to engine block cross the firewall on RADLOK bulkheads, 2 AWG. Alternator B+ (rear of block, under the intake) joins at the starter B+ post and does not cross. Jump lugs at trunk, PDB, starter and block. OEM kick-panel J/B feeds are in ST185-EngineRoom-C.harness."
   }
  ],
  "branchPoints": [

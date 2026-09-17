@@ -241,7 +241,7 @@
   <tr><td>Ignition</td><td>8</td><td>4 coils + 1 aux (Ign 5)</td><td>3 (Ign 6–8)</td></tr>
   <tr><td>Aux</td><td>10</td><td>10 (9/10 = ETB)</td><td>0 → spare Ign/Inj</td></tr>
 </table>
-<div class="note"><strong>Aux is exactly full — zero spare.</strong> Freeing the fuel-temp Temp input and moving switches to the switchboard opened up headroom on the input side, but every one of the 10 Aux outputs is allocated. <strong>No PDM in the plan</strong> (Dan, 2026-09-06): use all ECU outputs first — the next actuator comes out of a spare Ign 6–8 / Inj 5–8 low-side drive (Ign 5 is already the condenser fan). A PDM is a later add-on if the ECU genuinely runs out.</div>
+<div class="note"><strong>Aux is exactly full — zero spare.</strong> Every one of the 10 Aux outputs is allocated. The next <em>ECU</em> actuator still comes out of spare Ign 6–8 / Inj 5–8 (Ign 5 is already the condenser-fan relay coil). A PMU-16 is now in the plan for <em>body / lighting</em> overflow at the vacated engine-bay J/B No.2 — not as a substitute for these Aux pins. See <code>docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md</code>.</div>
 
 <h2>Factory loom colours (QSG) vs this harness</h2>
 <p class="note">Official A/B loom drawings print a unique stripe per pin. This build uses one solid colour per signal group plus pin-number markers. Both are valid; they must not be mixed on the same termination. C11 (ignition colour) is resolved: factory ign is the <strong>blue family</strong>; this harness uses <strong>violet</strong>.</p>
