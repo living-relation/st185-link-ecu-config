@@ -1,15 +1,72 @@
 ---
-description: Enforce CAN frame contract parity
+description: CAN frame contract parity and cross-device reconciliation across ECU, cluster, RealDash and switchboard
 globs:
   - bench/**
+  - rd-build/**
   - link_g4x_can_setup.json
+  - link_g4x_can_setup.lcs
+  - link_g4x_realdash.xml
+  - st185_dash.rd
   - CAN-BUS-ID-ALLOCATION-TABLE.md
+  - CAN-BUS-MASTER-DESIGN.md
+  - CAN-CONFIG-STATUS.md
   - CANBUS-LINK-G4X-CONFIG.md
+  - CANBUS-ENCODE-DECODE-REFERENCE.html
+  - REALDASH-LAYOUT.md
+  - ECUMASTER_SWITCHBOARD_SETUP.md
+  - BENCH-TEST.md
+  - realdash-simulation.html
+  - docs/harness/ST185-CAN.harness
+  - docs/RECONCILIATION-RULES.md
 alwaysApply: false
 ---
 
+# CAN Frame Contracts
+
+## Reconcile across every device, every time
+
+**Read `docs/RECONCILIATION-RULES.md` Rule 2 before finalizing any CAN change.** A CAN change
+on any one device is not done until it has been reconciled against **all** the others:
+
+| Device | Config lives in |
+|---|---|
+| Link G4X XtremeX ECU | `link_g4x_can_setup.json`, `.lcs`, `CANBUS-LINK-G4X-CONFIG.md` |
+| Center cluster ESP32-P4 | `center-cluster-esp32-p4` repo — `main/canbus.c`, `main/protocols/link_g4x.json` |
+| RealDash | `link_g4x_realdash.xml`, `st185_dash.rd`, `REALDASH-LAYOUT.md`, `rd-build/` |
+| ECUMaster CSB3 switchboard | `ECUMASTER_SWITCHBOARD_SETUP.md` |
+| Link CAN-Lambda | On the same bus — see below |
+
+This crosses repository boundaries. A change here that affects the cluster is not complete
+until the cluster side is checked, even though it lives in another repo.
+
+For every frame touched, confirm across all participants: frame ID, byte offsets, field
+widths, endianness, scaling, offset, units, and which device transmits vs receives.
+
+## Bus facts
+
+- **Link CAN-Lambda is on CAN bus 1**, with everything else. Not a separate bus.
+- **CAN bus 2 is unused.** Its ECU pins are free for any purpose — do not reserve them.
+- Single bus, 1 Mbit/s.
+
+## Authority order
+
+1. **Center cluster firmware as flashed** — highest, and it is **frozen**.
+2. PCLink CAN configuration on the ECU.
+3. Everything else.
+
+Frozen means the *other* device changes when there is a conflict. Reflashing the cluster is a
+last resort and requires explicit approval from Daniel — never do it just to clear a mismatch.
+
+## Contract details
+
 - Keep frame IDs `0x3E8`-`0x3F1` and `0x640`-`0x643` consistent with `link_g4x_can_setup.json`.
-- Keep CAN ID usage and field sizing consistent between `bench/frames.py` and `link_g4x_can_setup.json`.
-- Preserve BigEndian behavior for multibyte fields unless canonical docs change.
-- Keep warning-bit definitions in sync with `WARN_*` constants in `bench/frames.py`.
+- Keep CAN ID usage and field sizing consistent between `bench/frames.py` and
+  `link_g4x_can_setup.json`.
+- Preserve BigEndian for multibyte fields unless a canonical doc changes it.
+- Keep warning-bit definitions in sync with the `WARN_*` constants in `bench/frames.py`.
+- RealDash receives the ECU-owned `0x3EF`-`0x3F1` frames and does **not** read the switchboard
+  `0x640`-`0x642` directly.
 - Validate with targeted `bench/can_bench.py` command paths before finalizing.
+
+If a mismatch is found and not fixed in the same pass, write it down as an open item. Never
+leave it silent.

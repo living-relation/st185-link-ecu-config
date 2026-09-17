@@ -1,0 +1,29 @@
+# Link G4X XtremeX - Boost Control Duty Cycle base table
+"# MAC 46A-AA1-JDBA-1BA 4-port + Turbosmart GenV IWG, 14 psi spring"
+# OPEN LOOP STARTING VALUES ONLY - closed loop trims from here.
+# 0 % duty parks on spring pressure. Duty below the spring value is meaningless.
+
+RPM,Target boost (psi),Base duty (%)
+2000,0.5,0
+2250,1.0,0
+2500,1.5,0
+2750,3.5,0
+3000,6.5,0
+3250,11.5,0
+3500,17.5,13
+3750,22.5,31
+4000,26.0,43
+4250,28.0,50
+4500,29.0,54
+4750,29.5,55
+5000,30.0,57
+5250,30.0,57
+5500,30.0,57
+5750,30.0,57
+6000,29.5,55
+6250,29.0,54
+6500,28.5,52
+6750,28.0,50
+7000,27.5,48
+7250,27.5,48
+7500,27.0,46

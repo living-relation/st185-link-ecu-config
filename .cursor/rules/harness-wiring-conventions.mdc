@@ -1,0 +1,90 @@
+---
+description: Harness drawing conventions, pin SoT hierarchy, and the all-documents reconciliation rule
+globs:
+  - XTREMEX-IO-TABLE.html
+  - SCHEMATIC-WIRING.html
+  - WIRING.md
+  - apps/harness-schematic/**
+  - docs/harness/**
+  - docs/HARNESS-*.md
+  - docs/RECONCILIATION-RULES.md
+  - docs/ECU-IO-AUDIT-*.md
+  - docs/XTREMEX-IO-VERIFY-*.md
+  - docs/devices/**
+  - SENSORS_AND_COMPONENTS_MASTER.csv
+alwaysApply: false
+---
+
+# Harness Wiring Conventions
+
+## Reconcile every wiring document, not just the one you changed
+
+**Read `docs/RECONCILIATION-RULES.md` Rule 1 before finalizing any wiring change.** A change
+to one wiring document is not done until it has been checked against the source-of-truth
+chain **and** every other wiring surface listed there — including the ones you did not edit.
+They must all agree.
+
+## Source of truth
+
+`XTREMEX-IO-TABLE.html` is the living pin source of truth. `SCHEMATIC-WIRING.html`, the
+interactive schematic app, and the three `.harness` files are **faces** of it, not peers. New
+pin facts go into the table first, then propagate. The harness.design app copy is a mirror —
+pull from the repo into it, never treat it as the source.
+
+Dated `VERIFY` / `AUDIT` / `FACES` / `BOARD-VERIFY` notes in `docs/` are frozen records. Read
+them; never update them; never treat them as living pin maps.
+
+## Which file a wire belongs in
+
+**Every ECU pin is Signal by default.** Two carve-outs go to Power: the ECU 12V ignition
+supply with its power-hold wiring, and **all relay trigger outputs** (so each relay circuit
+stays whole in one drawing).
+
+- **All** pedal (APS) pins are Signal — supplies included. (This reverses an earlier rule
+  that put pins 1/2/4/5 in Power.)
+- **All** ETB pins are Signal — motor pair included.
+- **All** 5V sensor power is Signal, including the 5V splices.
+- Only 12V circuits not named above are Power.
+
+A part legitimately appears in both files when it has both a power pin and a signal pin
+(injectors, COPs, the MRS control connector). That is not duplication.
+
+## Bulkheads
+
+**There are exactly two bulkhead connectors, A and B, and they are HDP20 from owned stock:**
+
+- Loom A: `HDP24-24-47PE-L017` firewall to `HDP26-24-47SE-L015` engine plug (47 cavities)
+- Loom B: `HDP24-24-21PN` firewall to `HDP26-24-21SN` engine plug (21 cavities)
+
+Bulkhead C is deleted. The earlier Souriau 8STA 37-way design is **superseded** — do not
+reintroduce it. Bulkheads are real connectors, not OEM blocks.
+
+Every wire crossing the firewall terminates in a bulkhead cavity: two wires (`<id>_c` cabin
+side, `<id>_e` engine side), not one wire passing through.
+
+Pin priority: **every shield gets its own bulkhead pin first**, then sensor 5V and ground are
+spliced at the bulkhead connector.
+
+## Harness C — Engine Room Harness
+
+Separate loom, **no bulkhead connector**. Exits the driver fender and runs around the front of
+the engine bay. Carries radiator fan, condenser fan, EPS pump, headlights and headlight
+motors, turn, horn, wipers, washer pump. Nothing else comes off A/B except the EPS pump. All
+IAT sensors stay in the engine harness.
+
+## Drawing conventions
+
+- OEM body/engine-bay connections (relays, clutch, cruise stalk, brake, reverse, start,
+  ignition switch, AC amplifier) are generic **blocks** — draw only the wires this harness
+  lands; do not invent OEM internal pinouts.
+- Real pinouts only for parts this build controls: Link Superseal A/B/comms, aftermarket
+  sensors we specify, and the BRZ e-throttle pedal (6-pin Sumitomo TS 025 — not a 4-pin APS).
+- Ignition Switch is a dummy OEM block feeding **DI 9 (B28)** for ECU Hold Power (PCLink
+  Ignition Switch function, paired with the Aux 6 relay hold).
+- No wire runs direct to a device — every device gets a connector.
+- Shields: terminated at the ECU end only, floating at the device end. Model a shielded run as
+  a **cable** whose `shield` core has a `source` and **no `target`**. Device-end connectors
+  carry no shell.
+- Layout stays orthogonal on a 30px grid.
+
+Full build rules: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.

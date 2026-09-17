@@ -1,0 +1,41 @@
+{
+ "oil": [
+  {
+   "opt": "A. Behind the IC",
+   "charge": 0.0,
+   "rad": 5.751007972058389,
+   "oil_eff": 59.77198969039962,
+   "verdict": "works, but costs the radiator"
+  },
+  {
+   "opt": "B. In front of the IC",
+   "charge": 4.974270737599369,
+   "rad": 5.751007972058393,
+   "oil_eff": 100.0,
+   "verdict": "worst - penalises both"
+  },
+  {
+   "opt": "C. Corner / fender well",
+   "charge": 0.0,
+   "rad": 0.0,
+   "oil_eff": 100.0,
+   "verdict": "RECOMMENDED"
+  }
+ ],
+ "bar": {
+  "blockage_pct": 11.0,
+  "eff_blockage_pct": 27.6,
+  "cd": {
+   "square": 2.05,
+   "radiused": 1.2,
+   "faired": 0.45
+  }
+ },
+ "dp": {
+  "iat0": 63.6,
+  "eps0": 0.828,
+  "dT_ic": 35.4,
+  "t_rad_A": 73.2,
+  "iatB": 68.6
+ }
+}

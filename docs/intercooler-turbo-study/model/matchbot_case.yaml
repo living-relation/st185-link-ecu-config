@@ -1,0 +1,106 @@
+# MatchBot engine case for the ST185 5S-GTE — filled per official field help
+# in matchbot_procedure.md. Fuel dropdown stays Pump Gas even for E85 power
+# estimates (BSFC tooltip: use gasoline AFR/BSFC so airflow math stays correct).
+
+meta:
+  tool: "https://www.borgwarner.com/matchbot/"
+  bot_js_version: "1.4"
+  updated: "2026-09-09"
+
+engine:
+  turbo_config: single          # option value 1
+  displacement_l: 2.189         # 2189 cc → 133.57 CID (tool uses * 61.02)
+  ambient_f: 75                 # MatchBot default
+  altitude_ft: 0                # sea-level; baro ≈ 14.706 psi
+  fueltype: pump_gas            # option value 1 — do NOT pick E85 in the dropdown
+
+# Breathing VE (head + HKS 264), floored at BW's 90% gasoline low-speed floor.
+# This is NOT the backpressure-eroded ve_curve in inputs.yaml.
+points:
+  - id: 1
+    rpm: 3000
+    ve_pct: 92
+    boost_psi: 15
+    ic_eff_pct: 95
+    ce_pct_default: 66
+    te_pct: 84          # default 75 + 12% twin-scroll / divided-manifold bonus
+    egt_f: 1650         # gasoline ~11.5:1 full load
+    ter_start: 1.21
+    bsfc: 0.45
+    afr: 12.0
+  - id: 2
+    rpm: 4000
+    ve_pct: 100
+    boost_psi: 25
+    ic_eff_pct: 93
+    ce_pct_default: 70
+    te_pct: 80          # default 73 + ~10% twin-scroll bonus
+    egt_f: 1650
+    ter_start: 1.38
+    bsfc: 0.48
+    afr: 11.5
+  - id: 3
+    rpm: 5000
+    ve_pct: 105
+    boost_psi: 30
+    ic_eff_pct: 90
+    ce_pct_default: 74
+    te_pct: 72
+    egt_f: 1650
+    ter_start: 1.61
+    bsfc: 0.50
+    afr: 11.5
+  - id: 4
+    rpm: 6000
+    ve_pct: 101
+    boost_psi: 30
+    ic_eff_pct: 88
+    ce_pct_default: 76
+    te_pct: 71
+    egt_f: 1650
+    ter_start: 1.81
+    bsfc: 0.52
+    afr: 11.5
+  - id: 5
+    rpm: 7000
+    ve_pct: 92
+    boost_psi: 28
+    ic_eff_pct: 86
+    ce_pct_default: 72
+    te_pct: 70
+    egt_f: 1650
+    ter_start: 1.98
+    bsfc: 0.58          # 7500-9000 gasoline band starts 0.60; 7000 is mid-high
+    afr: 11.5
+  - id: 6
+    rpm: 8000
+    ve_pct: 90
+    boost_psi: 27
+    ic_eff_pct: 85
+    ce_pct_default: 66
+    te_pct: 70
+    egt_f: 1650
+    ter_start: 2.18
+    bsfc: 0.62          # official high-speed gasoline 0.60–0.70
+    afr: 11.5
+
+# Peak-power restrictions, then square-law scaled in the driver from each
+# point's actual (uncorrected) airflow vs the peak-flow point.
+restrictions_at_peak:
+  ic_dp_psi: 1.5        # mid of official 1–2 psi typical IC+piping
+  filter_psi: 0.5       # official "low restriction system"
+  muffler_psi: 2.0      # race header + 3" exhaust, not stock 6–7 psi
+  peak_ref: "highest actual lb/min among the six points after first calc"
+
+compressors:
+  - id: EFR_7064
+    matchbot: "70s75"
+  - id: EFR_7163
+    matchbot: "71x80"
+  - id: EFR_7670
+    matchbot: "76s75"
+
+notes:
+  - "TER is iterated with All+/All− until no point has N/A wastegate and PHI is 0.020–0.048."
+  - "CE is left at defaults for the first plot, then overwritten from the island under each dot."
+  - "E85 crank/WHP is computed outside MatchBot from corrected airflow."

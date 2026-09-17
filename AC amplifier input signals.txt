@@ -1,0 +1,12 @@
+AC amplifier input signals (uses own sensors):
+IN - (IGN) IGNITOR - tach out?
+IN - Coolant temp switch
+IN - air vent outlet temperature/cabin temperature
+IN - AC core thermocouple
+IN - Trinary switch - hi/low pressure
+IN - from ECU. AC Cancel/Request signal. kills AC compressor under some conditions.
+
+
+...CAN connect ACT term on amplifier to grounded output (active low) on Link ECU to allow intelligent AC control (kill request only).
+Set to active low (sinks to ground to cancel; floats when inactive - no pull-up).
+-----------------------------------

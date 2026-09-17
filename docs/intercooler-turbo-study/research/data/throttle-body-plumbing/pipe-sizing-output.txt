@@ -1,0 +1,20 @@
+design point: mdot=0.3455 kg/s | rho_hot=2.106 | rho_cold=2.765 kg/m3
+all diameters below are INSIDE diameters at 0.065 in wall
+
+OD       ID        | HOT  1.1 m / 3 bends     | COLD 1.5 m / 4 bends     | volume
+--------------------------------------------------------------------------------------------------------
+2.50 in  60.20 mm  |  189.1 ft/s  dP 0.442 psi |  144.0 ft/s  dP 0.446 psi | 2.85 L/m
+2.75 in  66.55 mm  |  154.7 ft/s  dP 0.288 psi |  117.9 ft/s  dP 0.291 psi | 3.48 L/m
+3.00 in  72.90 mm  |  128.9 ft/s  dP 0.196 psi |   98.2 ft/s  dP 0.198 psi | 4.17 L/m
+
+Garrett guidance band is 200-300 ft/s; below ~100 ft/s the pipe is mostly dead volume.
+
+=== total pipe pressure drop, hot + cold ===
+  2.50 in : 0.888 psi   (3.55% of 25 psi boost)
+  2.75 in : 0.580 psi   (2.32% of 25 psi boost)
+  3.00 in : 0.394 psi   (1.58% of 25 psi boost)
+
+=== mixed build: 2.5 hot + 2.5 cold vs 2.5 hot + 3.0 cold ===
+  2.5 hot 0.442 + 2.5 cold 0.446 = 0.888 psi
+  2.5 hot 0.442 + 3.0 cold 0.198 = 0.640 psi
+  2.5 hot 0.442 + 2.75 cold 0.291 = 0.733 psi

@@ -1,0 +1,796 @@
+{
+ "ve_table": [
+  {
+   "rpm": 5500,
+   "mps": 16.68,
+   "Z": 0.395,
+   "ve_r1": 1.02,
+   "ve_mach": 0.998
+  },
+  {
+   "rpm": 6000,
+   "mps": 18.2,
+   "Z": 0.431,
+   "ve_r1": 0.996,
+   "ve_mach": 1.0
+  },
+  {
+   "rpm": 6650,
+   "mps": 20.17,
+   "Z": 0.477,
+   "ve_r1": 0.927,
+   "ve_mach": 0.999
+  },
+  {
+   "rpm": 7000,
+   "mps": 21.23,
+   "Z": 0.502,
+   "ve_r1": 0.872,
+   "ve_mach": 0.994
+  },
+  {
+   "rpm": 7200,
+   "mps": 21.84,
+   "Z": 0.517,
+   "ve_r1": 0.835,
+   "ve_mach": 0.974
+  },
+  {
+   "rpm": 7500,
+   "mps": 22.75,
+   "Z": 0.538,
+   "ve_r1": 0.773,
+   "ve_mach": 0.944
+  },
+  {
+   "rpm": 7800,
+   "mps": 23.66,
+   "Z": 0.56,
+   "ve_r1": 0.701,
+   "ve_mach": 0.914
+  },
+  {
+   "rpm": 8100,
+   "mps": 24.57,
+   "Z": 0.581,
+   "ve_r1": 0.7,
+   "ve_mach": 0.883
+  },
+  {
+   "rpm": 8400,
+   "mps": 25.48,
+   "Z": 0.603,
+   "ve_r1": 0.7,
+   "ve_mach": 0.851
+  }
+ ],
+ "fixed_boost_7163": [
+  {
+   "rpm": 6000,
+   "lbmin": 44.8,
+   "whp": 367
+  },
+  {
+   "rpm": 6650,
+   "lbmin": 49.6,
+   "whp": 407
+  },
+  {
+   "rpm": 7200,
+   "lbmin": 52.4,
+   "whp": 429
+  },
+  {
+   "rpm": 7800,
+   "lbmin": 53.2,
+   "whp": 436
+  },
+  {
+   "rpm": 8400,
+   "lbmin": 53.4,
+   "whp": 437
+  }
+ ],
+ "boost_500whp": [
+  {
+   "rpm": 6000,
+   "boost": 43.1,
+   "pr": 4.29
+  },
+  {
+   "rpm": 6650,
+   "boost": 37.6,
+   "pr": 3.88
+  },
+  {
+   "rpm": 7200,
+   "boost": 34.9,
+   "pr": 3.67
+  },
+  {
+   "rpm": 7800,
+   "boost": 34.1,
+   "pr": 3.61
+  },
+  {
+   "rpm": 8400,
+   "boost": 33.9,
+   "pr": 3.6
+  }
+ ],
+ "rows": [
+  {
+   "turbo": "EFR 7163 (current)",
+   "choke": 60,
+   "pr_cap": 3.6,
+   "turbine_mm": 63,
+   "material": "g-TiAl",
+   "ar": 0.8,
+   "bearing": "ball",
+   "price": 2629,
+   "comp_mm": 71,
+   "spool": 4000,
+   "J_turbine_only": 1.0,
+   "J_with_comp": 1.0,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "PR",
+     "lbmin": 56.6,
+     "boost": 33.9,
+     "pr": 3.6,
+     "crank": 566,
+     "whp": 464
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "choke",
+     "lbmin": 57.0,
+     "boost": 31.7,
+     "pr": 3.43,
+     "crank": 570,
+     "whp": 467
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "choke",
+     "lbmin": 57.0,
+     "boost": 31.0,
+     "pr": 3.38,
+     "crank": 570,
+     "whp": 467
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "choke",
+     "lbmin": 57.0,
+     "boost": 30.8,
+     "pr": 3.37,
+     "crank": 570,
+     "whp": 467
+    }
+   },
+   "crossover_rpm": 6700,
+   "gain_7200": 3,
+   "gain_7800": 3
+  },
+  {
+   "turbo": "EFR 7670",
+   "choke": 67,
+   "pr_cap": 3.8,
+   "turbine_mm": 70,
+   "material": "g-TiAl",
+   "ar": 0.92,
+   "bearing": "ball",
+   "price": 2500,
+   "comp_mm": 76,
+   "spool": 4825,
+   "J_turbine_only": 1.694,
+   "J_with_comp": 1.576,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "PR",
+     "lbmin": 59.8,
+     "boost": 36.6,
+     "pr": 3.8,
+     "crank": 598,
+     "whp": 490
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "PR",
+     "lbmin": 63.1,
+     "boost": 36.6,
+     "pr": 3.8,
+     "crank": 631,
+     "whp": 518
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "choke",
+     "lbmin": 63.6,
+     "boost": 36.2,
+     "pr": 3.77,
+     "crank": 636,
+     "whp": 522
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "choke",
+     "lbmin": 63.6,
+     "boost": 36.0,
+     "pr": 3.76,
+     "crank": 636,
+     "whp": 522
+    }
+   },
+   "crossover_rpm": 7450,
+   "gain_7200": 28,
+   "gain_7800": 32
+  },
+  {
+   "turbo": "EFR 8374",
+   "choke": 79,
+   "pr_cap": 4.0,
+   "turbine_mm": 74,
+   "material": "g-TiAl",
+   "ar": 0.92,
+   "bearing": "ball",
+   "price": 2367,
+   "comp_mm": 83,
+   "spool": 5200,
+   "J_turbine_only": 2.236,
+   "J_with_comp": 2.214,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "PR",
+     "lbmin": 62.9,
+     "boost": 39.2,
+     "pr": 4.0,
+     "crank": 629,
+     "whp": 516
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "PR",
+     "lbmin": 66.5,
+     "boost": 39.2,
+     "pr": 4.0,
+     "crank": 665,
+     "whp": 545
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "PR",
+     "lbmin": 67.5,
+     "boost": 39.2,
+     "pr": 4.0,
+     "crank": 675,
+     "whp": 554
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "PR",
+     "lbmin": 67.7,
+     "boost": 39.2,
+     "pr": 4.0,
+     "crank": 677,
+     "whp": 555
+    }
+   },
+   "crossover_rpm": null,
+   "gain_7200": 29,
+   "gain_7800": 38
+  },
+  {
+   "turbo": "EFR 9174",
+   "choke": 105,
+   "pr_cap": 4.2,
+   "turbine_mm": 74,
+   "material": "g-TiAl",
+   "ar": 1.05,
+   "bearing": "ball",
+   "price": 3200,
+   "comp_mm": 91,
+   "spool": 5446,
+   "J_turbine_only": 2.236,
+   "J_with_comp": 2.736,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "PR",
+     "lbmin": 66.1,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 661,
+     "whp": 542
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "PR",
+     "lbmin": 69.8,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 698,
+     "whp": 572
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "PR",
+     "lbmin": 70.9,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 709,
+     "whp": 581
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "PR",
+     "lbmin": 71.1,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 711,
+     "whp": 583
+    }
+   },
+   "crossover_rpm": null,
+   "gain_7200": 30,
+   "gain_7800": 39
+  },
+  {
+   "turbo": "Garrett G25-660",
+   "choke": 64,
+   "pr_cap": 3.9,
+   "turbine_mm": 54,
+   "material": "Inconel",
+   "ar": 0.92,
+   "bearing": "ball",
+   "price": 1750,
+   "comp_mm": 60,
+   "spool": 4248,
+   "J_turbine_only": 0.949,
+   "J_with_comp": 0.737,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "choke",
+     "lbmin": 60.8,
+     "boost": 37.4,
+     "pr": 3.86,
+     "crank": 608,
+     "whp": 499
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "choke",
+     "lbmin": 60.8,
+     "boost": 34.7,
+     "pr": 3.66,
+     "crank": 608,
+     "whp": 499
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "choke",
+     "lbmin": 60.8,
+     "boost": 34.0,
+     "pr": 3.6,
+     "crank": 608,
+     "whp": 499
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "choke",
+     "lbmin": 60.8,
+     "boost": 33.8,
+     "pr": 3.59,
+     "crank": 608,
+     "whp": 499
+    }
+   },
+   "crossover_rpm": 6600,
+   "gain_7200": 0,
+   "gain_7800": 0
+  },
+  {
+   "turbo": "Garrett G25-770",
+   "choke": 73,
+   "pr_cap": 4.1,
+   "turbine_mm": 54,
+   "material": "Inconel",
+   "ar": 0.92,
+   "bearing": "ball",
+   "price": 1850,
+   "comp_mm": 62,
+   "spool": 4307,
+   "J_turbine_only": 0.949,
+   "J_with_comp": 0.769,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "PR",
+     "lbmin": 64.5,
+     "boost": 40.5,
+     "pr": 4.1,
+     "crank": 645,
+     "whp": 529
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "PR",
+     "lbmin": 68.1,
+     "boost": 40.5,
+     "pr": 4.1,
+     "crank": 681,
+     "whp": 559
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "PR",
+     "lbmin": 69.2,
+     "boost": 40.5,
+     "pr": 4.1,
+     "crank": 692,
+     "whp": 568
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "choke",
+     "lbmin": 69.3,
+     "boost": 40.5,
+     "pr": 4.1,
+     "crank": 694,
+     "whp": 569
+    }
+   },
+   "crossover_rpm": 7975,
+   "gain_7200": 30,
+   "gain_7800": 39
+  },
+  {
+   "turbo": "Garrett G30-770",
+   "choke": 77,
+   "pr_cap": 4.0,
+   "turbine_mm": 55,
+   "material": "Inconel",
+   "ar": 1.01,
+   "bearing": "ball",
+   "price": 2050,
+   "comp_mm": 62,
+   "spool": 4540,
+   "J_turbine_only": 1.04,
+   "J_with_comp": 0.822,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "PR",
+     "lbmin": 62.9,
+     "boost": 39.2,
+     "pr": 4.0,
+     "crank": 629,
+     "whp": 516
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "PR",
+     "lbmin": 66.5,
+     "boost": 39.2,
+     "pr": 4.0,
+     "crank": 665,
+     "whp": 545
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "PR",
+     "lbmin": 67.5,
+     "boost": 39.2,
+     "pr": 4.0,
+     "crank": 675,
+     "whp": 554
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "PR",
+     "lbmin": 67.7,
+     "boost": 39.2,
+     "pr": 4.0,
+     "crank": 677,
+     "whp": 555
+    }
+   },
+   "crossover_rpm": null,
+   "gain_7200": 29,
+   "gain_7800": 38
+  },
+  {
+   "turbo": "Garrett G30-900",
+   "choke": 88,
+   "pr_cap": 4.2,
+   "turbine_mm": 55,
+   "material": "Inconel",
+   "ar": 1.01,
+   "bearing": "ball",
+   "price": 2200,
+   "comp_mm": 65,
+   "spool": 4540,
+   "J_turbine_only": 1.04,
+   "J_with_comp": 0.878,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "PR",
+     "lbmin": 66.1,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 661,
+     "whp": 542
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "PR",
+     "lbmin": 69.8,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 698,
+     "whp": 572
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "PR",
+     "lbmin": 70.9,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 709,
+     "whp": 581
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "PR",
+     "lbmin": 71.1,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 711,
+     "whp": 583
+    }
+   },
+   "crossover_rpm": null,
+   "gain_7200": 30,
+   "gain_7800": 39
+  },
+  {
+   "turbo": "Precision 6266 Gen2",
+   "choke": 72,
+   "pr_cap": 3.9,
+   "turbine_mm": 62,
+   "material": "Inconel",
+   "ar": 0.85,
+   "bearing": "journal",
+   "price": 1500,
+   "comp_mm": 62,
+   "spool": 5169,
+   "J_turbine_only": 1.894,
+   "J_with_comp": 1.327,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "PR",
+     "lbmin": 61.4,
+     "boost": 37.9,
+     "pr": 3.9,
+     "crank": 614,
+     "whp": 503
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "PR",
+     "lbmin": 64.8,
+     "boost": 37.9,
+     "pr": 3.9,
+     "crank": 648,
+     "whp": 531
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "PR",
+     "lbmin": 65.8,
+     "boost": 37.9,
+     "pr": 3.9,
+     "crank": 658,
+     "whp": 540
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "PR",
+     "lbmin": 66.0,
+     "boost": 37.9,
+     "pr": 3.9,
+     "crank": 660,
+     "whp": 541
+    }
+   },
+   "crossover_rpm": null,
+   "gain_7200": 28,
+   "gain_7800": 37
+  },
+  {
+   "turbo": "Precision 6466 Gen2",
+   "choke": 82,
+   "pr_cap": 4.1,
+   "turbine_mm": 67,
+   "material": "Inconel",
+   "ar": 1.0,
+   "bearing": "journal",
+   "price": 1650,
+   "comp_mm": 64,
+   "spool": 5959,
+   "J_turbine_only": 2.791,
+   "J_with_comp": 1.893,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "PR",
+     "lbmin": 64.5,
+     "boost": 40.5,
+     "pr": 4.1,
+     "crank": 645,
+     "whp": 529
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "PR",
+     "lbmin": 68.1,
+     "boost": 40.5,
+     "pr": 4.1,
+     "crank": 681,
+     "whp": 559
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "PR",
+     "lbmin": 69.2,
+     "boost": 40.5,
+     "pr": 4.1,
+     "crank": 692,
+     "whp": 568
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "PR",
+     "lbmin": 69.4,
+     "boost": 40.5,
+     "pr": 4.1,
+     "crank": 694,
+     "whp": 569
+    }
+   },
+   "crossover_rpm": null,
+   "gain_7200": 30,
+   "gain_7800": 39
+  },
+  {
+   "turbo": "Xona Rotor XR7169",
+   "choke": 75,
+   "pr_cap": 4.2,
+   "turbine_mm": 62,
+   "material": "Inconel",
+   "ar": 0.86,
+   "bearing": "ball",
+   "price": 2400,
+   "comp_mm": 62,
+   "spool": 4897,
+   "J_turbine_only": 1.894,
+   "J_with_comp": 1.327,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "PR",
+     "lbmin": 66.1,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 661,
+     "whp": 542
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "PR",
+     "lbmin": 69.8,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 698,
+     "whp": 572
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "PR",
+     "lbmin": 70.9,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 709,
+     "whp": 581
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "PR",
+     "lbmin": 71.1,
+     "boost": 41.9,
+     "pr": 4.2,
+     "crank": 711,
+     "whp": 583
+    }
+   },
+   "crossover_rpm": null,
+   "gain_7200": 30,
+   "gain_7800": 39
+  },
+  {
+   "turbo": "Xona Rotor XR8267",
+   "choke": 88,
+   "pr_cap": 4.3,
+   "turbine_mm": 67,
+   "material": "Inconel",
+   "ar": 1.0,
+   "bearing": "ball",
+   "price": 2600,
+   "comp_mm": 67,
+   "spool": 6100,
+   "J_turbine_only": 2.791,
+   "J_with_comp": 1.955,
+   "by_rpm": {
+    "6650": {
+     "ve": 0.999,
+     "limit": "PR",
+     "lbmin": 67.7,
+     "boost": 43.2,
+     "pr": 4.3,
+     "crank": 677,
+     "whp": 555
+    },
+    "7200": {
+     "ve": 0.974,
+     "limit": "PR",
+     "lbmin": 71.4,
+     "boost": 43.2,
+     "pr": 4.3,
+     "crank": 714,
+     "whp": 586
+    },
+    "7800": {
+     "ve": 0.914,
+     "limit": "PR",
+     "lbmin": 72.6,
+     "boost": 43.2,
+     "pr": 4.3,
+     "crank": 726,
+     "whp": 595
+    },
+    "8400": {
+     "ve": 0.851,
+     "limit": "PR",
+     "lbmin": 72.8,
+     "boost": 43.2,
+     "pr": 4.3,
+     "crank": 728,
+     "whp": 597
+    }
+   },
+   "crossover_rpm": null,
+   "gain_7200": 31,
+   "gain_7800": 40
+  }
+ ],
+ "site": {
+  "p_amb_kpa": 93.87,
+  "alt_m": 640.0,
+  "t_amb": 32.0,
+  "disp_cc": 2188.8,
+  "rod_ratio": 1.516
+ },
+ "redlines": [
+  6650,
+  7200,
+  7800,
+  8400
+ ]
+}

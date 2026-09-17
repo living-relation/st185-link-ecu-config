@@ -13,9 +13,13 @@ build/
 dist/
 *.spec
 
+# Official Link PDFs downloaded for pin verification — do not commit vendor docs
+docs/vendor/
+
 # rd-build: local RealDash build package - keep secrets and heavy screenshots out of the public repo
 rd-build/CREDENTIALS.md
 rd-build/shots/
 
-# Caliber local state
-.caliber/
+
+# MatchBot full-page captures (regenerate with model/run_matchbot.mjs)
+docs/intercooler-turbo-study/model/matchbot_shots/

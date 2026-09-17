@@ -106,6 +106,19 @@ Guidelines:
 
 ## 3. Import the CAN channel description (the data contract)
 
+> **Correction, 2026-09-04 — Turbo Speed scaling was wrong in this package.** This file's Turbo
+> Speed line previously read `conversion="V*100" rangeMax="200000"`, which is inconsistent with
+> its own stated range (a single byte, max raw 255, can only reach 25,500 at x100 — never
+> 200,000) and disagreed with every other source in the repo. Checked against the canonical
+> config contract, `link_g4x_can_setup.json` ("Turbo Speed x1000... raw x 1000 = RPM... e.g. 150 =
+> 150,000"), plus `CAN-BUS-ID-ALLOCATION-TABLE.md`, `REALDASH-LAYOUT.md`, and the root
+> `link_g4x_realdash.xml` — all four agree on **x1000, range 0–255,000 RPM**. Corrected below and
+> in `rd-build/link_g4x_realdash.xml`. This also means the row-7 TURBO tile's `value/1000 → "k rpm"`
+> display logic (section 4.3) was already written for the *correct* scaling — it just needs to
+> receive a correctly-scaled input, which this fix provides. If a `.rd` file was already built
+> against the old `V*100` line, re-import this corrected channel file before trusting turbo-speed
+> readings on it.
+
 Copy the file below onto the VM as `link_g4x_realdash.xml`, then in RealDash: **Garage → add/open
 the car → Connections → add a CAN/Serial connection → Select Vehicle → Custom Channel Description
 File → browse to `link_g4x_realdash.xml` → Done.** This registers every `ST185:`-prefixed input
@@ -137,7 +150,7 @@ matter to RealDash — `0x3E8–0x3EE` and `0x640–0x643` are read by the clust
       <value name="ST185: Coolant Pressure" offset="2" length="2" conversion="V"     rangeMin="0" rangeMax="1000"/>
       <value name="ST185: Ethanol"          offset="4" length="1" conversion="V"     rangeMin="0" rangeMax="100"/>
       <value name="ST185: Charge-Pipe IAT"  offset="5" length="1" conversion="V-50"  units="C"/>
-      <value name="ST185: Turbo Speed"      offset="6" length="1" conversion="V*100" rangeMin="0" rangeMax="200000"/>
+      <value name="ST185: Turbo Speed"      offset="6" length="1" conversion="V*1000" rangeMin="0" rangeMax="255000"/>
       <value name="ST185: Trigger Errors"   offset="7" length="1" conversion="V"     rangeMin="0" rangeMax="255"/>
     </frame>
 
