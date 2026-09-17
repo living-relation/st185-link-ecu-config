@@ -495,3 +495,74 @@ feeds the fuse block, PMU-16 and accessories, 250 A is generous.
 Four studs either way. Current draw on `PDB1`: battery in, fuse block out, PMU-16 in
 (150 A ANL), heavy DC to the engine bay, plus the jump lug - so four studs is the minimum,
 and doubling lugs on a stud is acceptable within its torque spec.
+
+
+### 6.20 Starter and alternator feeds - verified against the 1990 OEM EWD 2026-09-17
+
+Read from `docs/electrical/ewd-snips/1990-st185-starting.png` (page 48) and
+`1990-st185-charging.png` (page 52).
+
+**What the factory actually does:**
+
+```
+BATTERY + ──┬── heavy black, NO fuse, NO fusible link ──► STARTER terminal B
+            │
+            └── FL MAIN 2.0L ──► F11 FUSIBLE LINK BOX
+                                   ├─ 100A FL ALT ──► Alternator B
+                                   ├─ 40A  FL AM1 ──► Ignition sw AM1
+                                   └─ 30A  FL AM2 ──► Ignition sw AM2
+```
+
+Two corrections fall out of this.
+
+**1. The starter lead is unfused in OEM - and we must not copy that.** The factory gets
+away with it because the battery sits in the engine bay and the cable is about two feet
+long. Our battery is in the **trunk**, so the same cable becomes a ~12 ft unfused run
+through the cabin. A chafe-through anywhere along it has the full battery behind it and
+nothing to open the circuit.
+
+Fit a high-amp fuse (ANL, MEGA or Class T, 250-400 A) **within ~18 in of the trunk battery
+positive**, ahead of everything. It is the only thing protecting the cabin run. Everything
+downstream - starter, `PDB1`, the fuse block, PMU-16 - sits behind it. A battery master
+cutoff belongs in the same place.
+
+**2. The alternator is fused in OEM; our plan currently is not.** The factory runs
+alternator B through a **100 A FL ALT** back to the link box - it does **not** join at the
+starter post. Section 6.1 has the 160 A alternator joining at the starter B+ post with no
+protection, which leaves an alternator-cable short unprotected all the way to the battery.
+Fuse the alternator lead at **150-175 A** (160 A alternator, so OEM's 100 A does not scale
+directly) close to where it joins.
+
+**3. `w_strl` is not heavy DC.** Page 48 shows the starter relay driving starter terminal
+**1 / A** - the solenoid trigger, a thin wire. Terminal **B** is the heavy lead, and it
+comes from the battery, not from a relay. So `w_strl` may *route* with the heavy DC bundle,
+but it takes no stud on `PDB1` and gets no heavy-gauge wire. Size it per 6.6 for solenoid
+pull-in current.
+
+Net effect on 6.19: **starter current does not pass through `PDB1`.** The starter is fed
+direct from the main cable, OEM-style. `PDB1` feeds the fuse block, PMU-16 and accessories
+only - so the **250 A Blue Sea 2127 with cover 2719** is the right part, not the 600 A one.
+
+### 6.21 Loom C and the heavy DC - related but not the same bundle
+
+Loom C now carries the radiator and condenser fan power, all EPS wiring, and the OEM
+engine-room injection. It runs alongside the heavy DC, but the two are not interchangeable:
+
+| | Heavy DC | Loom C power |
+|---|---|---|
+| Gauge | 2 AWG | 8 AWG and smaller |
+| Switched? | No - always live | Yes, through relays |
+| Protection | Main fuse at the battery only | Individually fused |
+| Terminations | RADLOK, studs, lugs | Connectors per 6.7 |
+
+They may share a routing path. They must not share a sleeve, a lug or a stud.
+
+**The EMI problem to design around.** The two ECU-sourced EPS wires - the `Ign 6 / B12`
+relay trigger and the `Aux 7 / A27` speed pulse - now run from the ECU into loom C, beside
+fan motor power and a 60-80 A EPS feed. The speed pulse is a 0-5 V square wave at roughly
+4 pulses/rev; fan brush noise and the EPS current step are exactly what corrupts that kind
+of signal.
+
+- Run the speed pulse as a **twisted pair with its own return**, or shielded per 6.12.
+- Keep both signal wires **out of the heavy bundle** for the last stretch into the pump.
+- Do not splice their grounds into the fan or EPS power grounds.
