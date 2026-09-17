@@ -1,8 +1,8 @@
 # Harness — need to buy
 
-Generated from `ST185-Signal.harness`, `ST185-Power.harness` and `ST185-CAN.harness` on 2026-09-15.
+Generated from `ST185-Signal.harness`, `ST185-Power.harness`, `ST185-CAN.harness` and `ST185-EngineRoom-C.harness` on 2026-09-17.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
-Regenerate with `hw/buylist.py` after any harness change — do not hand-edit.
+Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
 ## Short — order these
 
@@ -12,6 +12,7 @@ Regenerate with `hw/buylist.py` after any harness change — do not hand-edit.
 | `0462-201-2031` | TE DEUTSCH | Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY | 42 | 0 | **42** |
 | `0413-204-2005` | TE DEUTSCH | Sealing plug, size 20, red | 30 | 0 | **30** |
 | `114017` | TE DEUTSCH | Sealing plug, size 16, white | 16 | 0 | **16** |
+| `Jump lugs 2 AWG / 1/0` | generic | Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post | 8 | 0 | **8** |
 | `1-1904045-6` | TE Connectivity | Micro ISO relay connector kit (harness-side socket for the V23074 relays) | 6 | 0 | **6** |
 | `12110293` | Aptiv | MP150.2 3-way sealed sensor | 4 | 0 | **4** |
 | `15419715` | Aptiv | GT150 2-way gray USCAR/EV6 injector | 4 | 0 | **4** |
@@ -27,8 +28,14 @@ Regenerate with `hw/buylist.py` after any harness change — do not hand-edit.
 | `10k 1/4W` | Generic | 10k pull-up for OEM cruise stalk resistor ladder into CSB3 Ana | 1 | 0 | **1** |
 | `12052641` | Aptiv (Delphi) Metri-Pack 150 | 2-way sealed connector — fuel level sender / 2nd (condenser) f | 2 | 1 | **1** |
 | `470R 1/4W` | Generic | 470 ohm pull-up, fuel level sender (An Volt 9) to +5V | 1 | 0 | **1** |
+| `PDB-M8x8` | TBD | 8-stud power distribution block at glove box, M8, 150-250 A bu | 1 | 0 | **1** |
+| `PMU-16` | ECUMaster | 10x25A + 6x15A high-side, 150A total, M6 stud + 39-way. On CAN | 1 | 0 | **1** |
 | `Sumitomo TS 025 6-way` | Sumitomo / Subaru | Subaru BRZ / Toyota-family e-throttle pedal. Looking into conn | 1 | 0 | **1** |
+| `jump-post-M8` | TBD | Engine-bay jump / accessory post on starter B+ net. | 1 | 0 | **1** |
 | `HCR 150 mating hardware` | TE Connectivity | Receptacle / terminals for V23132-A2001-B200 - CONFIRM with supplier | 1 | 0 | **1** |
+| `2 AWG welding cable red/black` | generic | Trunk battery +/−, RADLOK charge/start, jump post. Length TBD on the car. | 1 | 0 | **1** |
+| `8 AWG TXL red/black` | generic | EPS pump 12V/GND (passenger ABS trough) and uprated fan 12V/GND (core support) | 1 | 0 | **1** |
+| `ANL 150A + holder` | generic | PMU-16 M6 input fuse at the glove-box PDB (or PMU's own input fuse) | 1 | 0 | **1** |
 
 ## Covered by stock
 
@@ -72,6 +79,7 @@ Regenerate with `hw/buylist.py` after any harness change — do not hand-edit.
 
 | Modelled as | What it really is | Qty |
 |---|---|---:|
+| `(OEM block)` | Generic OEM block - only the pins this harness lands. No inven | 8 |
 | `(OEM block, 2-way)` | Generic OEM block — 2 cavities. No invented OEM pinout. | 5 |
 | `(OEM block, 5-way)` | Generic OEM block — 5 cavities (relay / cruise stalk). | 8 |
 | `(kit-supplied pigtail)` | 3-pin pigtail supplied with the RacerX MR2 Cherry Hall cam-pos | 1 |

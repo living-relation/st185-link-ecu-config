@@ -25,7 +25,7 @@ XTREMEX-IO-TABLE.html        ECU pins + channels      ← SoT, nothing outranks 
 SCHEMATIC-WIRING.html        print face (derived)
 apps/harness-schematic/      interactive face (derived)
       ↓
-docs/harness/*.harness       Power / Signal / CAN     ← physical SoT
+docs/harness/*.harness       Power / Signal / CAN / EngineRoom-C  ← physical SoT
       ↓
 harness.design app copy      mirror — never edit as source
 ```
@@ -44,6 +44,8 @@ reverse.
 | `docs/harness/ST185-Signal.harness` | Signal loom |
 | `docs/harness/ST185-Power.harness` | Power loom |
 | `docs/harness/ST185-CAN.harness` | CAN loom |
+| `docs/harness/ST185-EngineRoom-C.harness` | Partial engine-room add-on + OEM J/B injection |
+| `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table |
 | `docs/harness/HARNESS-BUILD-LIST.csv` | Generated — re-run `buildlist.py` |
 | `docs/harness/NEED-TO-BUY.md` | Generated — re-run `buylist.py` |
 | `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` | Build rules and doc roles |
