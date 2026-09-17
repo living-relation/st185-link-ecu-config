@@ -652,13 +652,17 @@ stock of one of them; which is not yet confirmed.
 
 | Candidate | Construction | Notes |
 |---|---|---|
-| **Raychem 55A1131-20** | Spec 55 single conductor, shielded and jacketed, 20 AWG | Filename in Drive already carries the 20 AWG size - most likely the stock on hand |
+| ~~**Raychem 55A1131-20**~~ | **NOT single conductor.** TE lists `55A1131-*` as a **twisted pair / 3-conductor** cable (product 320771-000 etc.) | Ruled out 2026-09-17. The datasheet is in Drive but it is the wrong construction for this job |
 | **M27500-\*SB1T23** | NEMA WC27500, 1 conductor, stranded tinned copper, crosslinked ETFE insulation, round tinned copper braid (85% coverage), crosslinked ETFE jacket, -65 to +200 C | Sizes 30 through 12 AWG. `M27500-20SB1T23` is 20 AWG, OD .084-.089 in |
 
-Either satisfies 6.6 - both are crosslinked ETFE, which is the specified wire family.
-**20 AWG is the right size** for this signal: it carries almost no current, so the gauge is
-set by handling and by the pump connector's contact range, and 20 AWG sits mid-range for
-Sumitomo 0.5-1.25 mm2 contacts.
+**Daniel's stock is white Tefzel, 22 AWG.** That matches **`M27500-22SB1T23`** exactly -
+1 conductor, 22 AWG, jacket code 23 = white crosslinked ETFE (Tefzel). The Spec 55
+equivalent would be a `55A1111-22-9` class single-conductor shielded, not the 55A1131 in
+Drive. **Confirm the part number off the spool before ordering more.**
+
+22 AWG is fine for this signal: it carries almost no current, so the gauge is set by
+handling and by the pump connector's contact range. The Superseal contacts already on hand
+(`3-1447221-4`, 0.5 mm2) cover 22 AWG.
 
 **Note on the return path.** Single-conductor shielded has no second conductor, so the
 shield is a **screen, not a return**. The pump's signal return goes through its own ground.
