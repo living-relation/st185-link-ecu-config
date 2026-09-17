@@ -36,6 +36,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `2 AWG welding cable red/black` | generic | Trunk battery +/−, RADLOK charge/start, jump post. Length TBD on the car. | 1 | 0 | **1** |
 | `8 AWG TXL red/black` | generic | EPS pump 12V/GND (passenger ABS trough) and uprated fan 12V/GND (core support) | 1 | 0 | **1** |
 | `ANL 150A + holder` | generic | PMU-16 M6 input fuse at the glove-box PDB (or PMU's own input fuse) | 1 | 0 | **1** |
+| `2127 or 2104` | Blue Sea Systems | PDB1 glove-box distribution block. 2127 = 250A / four 5/16"-18; 2104 = 600A / four 3/8"-16. Pick per plan doc 6.19 - depends whether starter current passes through it. | 1 | 0 | **1** |
+| `2719 or 2708` | Blue Sea Systems | Insulating cover for PDB1. 2719 fits 2127, 2708 fits 2104. Not optional - PDB1 is inside the cabin. | 1 | 0 | **1** |
 
 ## Covered by stock
 

@@ -441,3 +441,57 @@ ignition-switched 12 V.
 - **Delete `w_mrs_relay_req`** (`mrs_ctrl` to `k_eps`). The pump does not switch its own
   relay; that wire was a copy of the factory-reference drawing and is wrong for this build.
 - Per 6.11 the trigger is a relay output, so it lives in the **power loom (B)**.
+
+
+### 6.17 EPS moves entirely to loom C - settled by Daniel 2026-09-17
+
+**Every EPS wire lives on loom C.** That includes the 60 A feed, the relay coil feed, the
+relay `K7` itself and all three pump connectors. Loom B keeps none of it.
+
+Consequences, all good:
+
+- The two crossings 6.16 created - `w_fb_k_eps_30` and `w_k_eps_86` - disappear. Loom B no
+  longer reaches the EPS at all.
+- Bulkhead B gets **two pins back**: `c13` and `c14`, previously the pump speed and enable
+  wires. Bank them against the shield allocation in 6.3.
+- Loom C already runs EPS power up the passenger fender, so the relay now sits on a feed
+  that was going there anyway.
+
+**Open:** two EPS wires still start at the ECU - the `Ign 6 / B12` relay trigger and the
+`Aux 7 / A27` speed pulse. Loom C has no bulkhead, so how they reach it is not yet decided.
+Do not draw them until it is.
+
+### 6.18 Starter trigger goes with the heavy DC - settled by Daniel 2026-09-17
+
+`w_strl` (start relay `K6` to the starter solenoid) gets no bulkhead pin. It routes with
+the heavy DC run and lands at the distribution block.
+
+### 6.19 Glove-box distribution block `PDB1` - sourced 2026-09-17
+
+Replaces the `PDB-M8x8 / TBD` placeholder in the buy list. Two verified candidates, both
+tin-plated copper bus on UL 94-V0 glass-reinforced thermoplastic, both rated 300 V AC /
+48 V DC, both with a matching insulating cover - which the glove-box location needs.
+
+| | Blue Sea **2127** MaxiBus | Blue Sea **2104** PowerBar |
+|---|---|---|
+| Continuous | 250 A | **600 A DC** (545 A AC) |
+| Studs | four 5/16"-18 | four 3/8"-16 |
+| Stud torque | 132 in-lb (14.9 N·m) | see drawing |
+| Max operating temp | 130 C | - |
+| Insulating cover | **2719** | **2708** |
+| Suits | 2 AWG lugs | 2 AWG through 1/0 lugs |
+
+Source: bluesea.com product pages for 2127, 2104, 2719 and 2708.
+
+**Which one depends on a question 6.1 has not answered:** does starter cranking current
+pass *through* `PDB1`? 6.1 says "trunk battery -> glove-box PDB -> starter B+", which reads
+as yes. Cranking is 200-400 A for a few seconds, so 250 A continuous would survive it but
+with no margin. If the starter instead taps the main battery cable directly and `PDB1` only
+feeds the fuse block, PMU-16 and accessories, 250 A is generous.
+
+- Starter current through the block -> **2104 + 2708**.
+- Starter fed off the main cable, block for accessories -> **2127 + 2719**.
+
+Four studs either way. Current draw on `PDB1`: battery in, fuse block out, PMU-16 in
+(150 A ANL), heavy DC to the engine bay, plus the jump lug - so four studs is the minimum,
+and doubling lugs on a stud is acceptable within its torque spec.
