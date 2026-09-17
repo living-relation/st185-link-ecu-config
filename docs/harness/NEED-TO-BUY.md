@@ -41,7 +41,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `ANL/MEGA 300A + holder` | generic | MAIN battery fuse, within ~18in of the trunk battery positive. Protects the whole cabin run - OEM leaves the starter lead unfused but its battery is 2ft away, ours is 12ft. See plan 6.20. | 1 | 0 | **1** |
 | `ANL 175A + holder` | generic | Alternator B+ protection. OEM uses 100A FL ALT for the stock alternator; scaled for the 160A unit. See plan 6.20. | 1 | 0 | **1** |
 | `Battery master cutoff` | generic | Trunk, alongside the main fuse. Motorsport requirement and the sane place for it. | 1 | 0 | **1** |
-| `55A1131-20 or M27500-20SB1T23` | TE / Raychem | Single-conductor shielded, 20 AWG, crosslinked ETFE. EPS speed pulse (Aux 7 -> pump conn B) and any other screened single signal. Shield grounded at the ECU end only. CONFIRM which of the two is the stock on hand - see plan 6.24. | 1 | 0 | **1** |
 
 ## Covered by stock
 
@@ -80,6 +79,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `HDP26-24-9SE` | HDP20 sz24 9-way plug, SOCKET, E seal - bulkhead C, high curre | 1 | 2 |
 | `M902-2243` | Backshell 24SZ straight L015 | 1 | 1 |
 | `VCF7-1000 / 1393310-4` | Maxi relay mounting block | 1 | 1 |
+| `generic` | 22 AWG WHITE TEFZEL, SINGLE CONDUCTOR, SHIELDED (tinned copper braid). EPS speed pulse Aux 7 -> pump conn B, and any other screened single signal. Shield grounded at the ECU end only. IN STOCK. | 1 | 1 |
 
 ## Not purchased — already on the car, or supplied with the device
 

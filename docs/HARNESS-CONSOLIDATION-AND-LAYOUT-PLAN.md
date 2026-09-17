@@ -641,34 +641,55 @@ Mapping, factory to ours:
 | Battery to starter, direct unfused | 2 AWG behind the main fuse |
 
 
-### 6.24 Shielded single-conductor cable - settled by Daniel 2026-09-17
+### 6.24 Wire and cable are GENERIC in every BOM - set by Daniel 2026-09-17
 
-The EPS speed pulse (`Aux 7 / A27` to the pump's 6-way connector B) is run as **shielded
-single-conductor**, not a twisted pair. Shield grounded at the **ECU end only**, floating
-at the pump, modelled per 6.12.
+**Wire and cable never carry a manufacturer part number in this project's BOMs.** Daniel
+holds large stock of many types; any 22 AWG white Tefzel shielded cable is interchangeable
+with any other. Chasing a specific part number wastes time and produces a buy list that
+looks short when the shelf is full.
 
-Two TE/Raychem datasheets for single-conductor shielded cable are in Drive. Daniel owns
-stock of one of them; which is not yet confirmed.
+Instead, every wire and cable line is described so it can be matched off the shelf:
 
-| Candidate | Construction | Notes |
-|---|---|---|
-| ~~**Raychem 55A1131-20**~~ | **NOT single conductor.** TE lists `55A1131-*` as a **twisted pair / 3-conductor** cable (product 320771-000 etc.) | Ruled out 2026-09-17. The datasheet is in Drive but it is the wrong construction for this job |
-| **M27500-\*SB1T23** | NEMA WC27500, 1 conductor, stranded tinned copper, crosslinked ETFE insulation, round tinned copper braid (85% coverage), crosslinked ETFE jacket, -65 to +200 C | Sizes 30 through 12 AWG. `M27500-20SB1T23` is 20 AWG, OD .084-.089 in |
+| Field | Example |
+|---|---|
+| Gauge | 22 AWG |
+| Insulation / jacket | Tefzel (crosslinked ETFE) |
+| Colour | White |
+| Construction | Single conductor, shielded, tinned copper braid |
+| Where it is used | EPS speed pulse, Aux 7 to pump connector B |
 
-**Daniel's stock is white Tefzel, 22 AWG.** That matches **`M27500-22SB1T23`** exactly -
-1 conductor, 22 AWG, jacket code 23 = white crosslinked ETFE (Tefzel). The Spec 55
-equivalent would be a `55A1111-22-9` class single-conductor shielded, not the 55A1131 in
-Drive. **Confirm the part number off the spool before ordering more.**
+That is the whole spec. Manufacturer and part number columns stay blank or read `generic`.
 
-22 AWG is fine for this signal: it carries almost no current, so the gauge is set by
-handling and by the pump connector's contact range. The Superseal contacts already on hand
-(`3-1447221-4`, 0.5 mm2) cover 22 AWG.
+This applies **only to wire and cable**. Connectors, contacts, seals, backshells, relays,
+fuses and distribution hardware still carry real part numbers - those are not
+interchangeable and getting one wrong costs a rebuild.
 
-**Note on the return path.** Single-conductor shielded has no second conductor, so the
-shield is a **screen, not a return**. The pump's signal return goes through its own ground.
-Never use the shield as the signal return - that defeats the screening and puts pump ground
-current on the drain wire.
+### 6.25 EPS speed pulse cable
 
-No quantity-on-hand line for either part could be found in the Drive inventory
-(`TE_BOM_with_screenshots.xlsx`), so the buy list carries it as needed-unknown until the
-part number and stock are confirmed.
+Single conductor, **22 AWG**, white Tefzel, shielded. Shield grounded at the **ECU end
+only**, floating at the pump, modelled per 6.12. Daniel has this in stock.
+
+**The shield is a screen, not a return.** Single-conductor shielded has no second
+conductor, so the pump's signal return goes through its own ground. Tying the shield at
+both ends, or using it as the return, defeats the screening and puts pump ground current
+on the drain wire.
+
+22 AWG suits the job: the signal carries almost no current, so gauge is set by handling and
+by the connector contact range. The Superseal contacts already on hand (`3-1447221-4`,
+0.5 mm2) cover it.
+
+### 6.26 Where the purchase records live
+
+For confirming what is already owned, in order of usefulness:
+
+| Source | Holds |
+|---|---|
+| Google Drive `/cars/Celica/parts invoices` | Invoices from TE, Crimp Zone, Ballenger and others - most of the car |
+| Gmail, saved-receipts and receipts labels | Anything not filed in Drive |
+| `TE_BOM_with_screenshots.xlsx` | Connectors, contacts, heat shrink, fittings. **No wire or cable lines** |
+
+Note: the TE invoice PDFs in Drive are image-only scans - text extraction returns nothing
+from them. They have to be read as images.
+
+Per 6.24, none of this applies to wire and cable. Do not go looking for a wire part number
+in an invoice; describe the wire and move on.
