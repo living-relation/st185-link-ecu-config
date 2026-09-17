@@ -148,7 +148,11 @@ Acceptance test for the engine split: pull the engine, unplug bulkheads A and B,
 
 Splice table, factory citations and the C drawing: `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`, `docs/harness/ST185-EngineRoom-C.harness`.
 
-### 6.2 Power distribution — PDM or relay+fuse, never both
+### 6.2 Power distribution — per load, PDM or relay+fuse, never both
+
+**The rule is per load, not per car.** A mixed system is expected and correct: the PMU
+feeds what fits, relays feed what does not. What is forbidden is putting a *single* load
+behind both a PMU output and a relay.
 
 - A load is fed **either** from a PDM output **or** from a relay and fuse. Not both.
 - Any load exceeding the PDM's per-output capacity gets a relay and fuse instead.
@@ -159,6 +163,35 @@ Splice table, factory citations and the C drawing: `docs/electrical/ENGINE-ROOM-
   destination. No placeholders, no bare "ground" stubs standing in for a path.
 - Relay coil polarity follows the ECU's drive type (active low vs active high) per the
   Link manual, or the terminal's capability.
+
+#### 6.2.1 PMU-16 scope — settled by Daniel, 2026-09-17
+
+**ECUMaster PMU-16, in the passenger glove box.** Verified spec: 10 × 25 A continuous,
+6 × 15 A continuous, 150 A total, outputs may be paralleled (max three → 75 A),
+2 × CAN 2.0 to 1 Mbit, 16 analog inputs, 5 V / 500 mA sensor supply, and one dedicated
+output with wiper braking. Source: ecumaster.com/products/pmu/.
+
+The PMU carries **body, lighting and the small engine accessories**. Four loads stay on
+relay + fuse because they do not fit a 25 A channel:
+
+| Load | Draw | Source |
+|---|---|---|
+| EPS pump (MR-S EHPS) | 60–80 A peak | Relay `k_eps`, HCR 150 / F7 60 A |
+| Radiator fan (uprated) | 20–25 A run, 40–60 A inrush | Relay `k_fan` |
+| Condenser fan | 10–15 A run, 30–40 A inrush | Relay `k_fan2` |
+| Fuel pump (450 lph, E85) | ~22–25 A at pressure | Relay `k_fp` |
+
+Everything else that draws under ~15 A goes on a PMU channel: headlights and pop-up
+motors, turn / hazard, horn, wipers (use the braking output), washer, dome, rear defog,
+accessories, plus ECU main, O2 heater, boost solenoid and purge.
+
+Rejected: putting the PMU on engine / high-current loads. It would burn three or four
+paralleled channels per load, still could not take the EPS pump, would leave ten channels
+idle, and would put the engine behind one device that cannot be swapped trackside.
+
+The PMU is a **CAN 1** node at 1 Mbit/s. Add it to `WIRING.md` and
+`CAN-BUS-MASTER-DESIGN.md` in the same change that lands it on the car, and do **not**
+add a third 120 Ω terminator.
 
 ### 6.3 Bulkhead pin priority — revised
 

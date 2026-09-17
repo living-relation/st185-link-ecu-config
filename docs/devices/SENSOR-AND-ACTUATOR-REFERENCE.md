@@ -117,7 +117,11 @@ real limit. Applied in `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`:
 - Fuel pump stays on cabin relay `k_fp` (Power file).
 - Both uprated fans stay on `k_fan` / `k_fan2` (peak current above one 25 A pin).
 - EPS stays on `k_eps` HCR 150 / F7 60 A.
-- PMU-16 takes HEAD LH/RH, HAZ-HORN, DOME and RTR at the vacated J/B No.2 cavities.
+- PMU-16 takes HEAD LH/RH, HAZ-HORN, DOME and RTR at the vacated J/B No.2 cavities, plus
+  the rest of body / lighting and the small engine accessories (ECU main, O2 heater,
+  boost solenoid, purge). Scope settled 2026-09-17 — see
+  `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.2.1 for the full split and the
+  verified PMU-16 spec.
 
 When the PMU is fitted it is a CAN 1 node at 1 Mbit/s — add it to `WIRING.md` and
 `CAN-BUS-MASTER-DESIGN.md` in the same change that lands it on the car, and do

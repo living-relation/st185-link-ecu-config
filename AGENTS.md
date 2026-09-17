@@ -127,3 +127,21 @@ as incomplete. Deliver a handoff in chat so it can be copied to whoever needs it
 What does belong in the repo: durable rules, decisions and reference material. If a handoff
 contains an open item worth keeping, record the item itself in the relevant doc - not the
 work order around it.
+
+## Generated files - who owns them
+
+| File | Owner | Rule |
+|---|---|---|
+| `docs/research-hub.html` | **The "Regenerate research hub" Action** | **Never commit it.** Run `docs/build-research-hub.py` locally to preview, then `git checkout -- docs/research-hub.html` before you commit. The bot regenerates and commits it to the same path on `main` after every push that touches `docs/**`. Committing it locally is what causes the rebase conflicts. |
+| `docs/harness/HARNESS-BUILD-LIST.csv` | `docs/harness/buildlist.py` | Commit it, but always regenerate - never hand-edit, never hand-merge. |
+| `docs/harness/NEED-TO-BUY.md` | `docs/harness/buylist.py` | Same. |
+
+`.gitattributes` marks all three `linguist-generated` and gives `research-hub.html`
+`merge=ours`. Enable the driver once per clone:
+
+```
+git config merge.ours.driver true
+```
+
+If you still land in a conflict on one of these, do not resolve it by hand. Take either
+side, re-run the generator, and stage the result.

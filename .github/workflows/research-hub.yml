@@ -41,7 +41,14 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add docs/research-hub.html
             git commit -m "Auto-regenerate research hub [skip ci]"
-            git push
+            # Someone may have pushed while this job ran. Rebase and retry rather
+            # than failing the run and leaving the hub stale.
+            for i in 1 2 3; do
+              git push && exit 0
+              git pull --rebase -X ours origin main || true
+            done
+            echo "push failed after 3 attempts" >&2
+            exit 1
           else
             echo "research-hub.html already up to date"
           fi
