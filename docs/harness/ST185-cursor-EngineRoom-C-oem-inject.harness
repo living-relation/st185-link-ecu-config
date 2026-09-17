@@ -1,0 +1,1754 @@
+{
+  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
+  "version": 0.9,
+  "lengthUnit": "mm",
+  "gaugeUnit": "AWG",
+  "titleBlock": {
+    "company": "ST185 TrackCluster",
+    "title": "ST185 cursor Engine Room C \u2014 OEM kick-panel / J/B2 injection + PMU-16",
+    "drawingNumber": "ER-C-CURSOR-OEM-INJECT",
+    "date": "2026-09-17",
+    "drawnBy": "cursor"
+  },
+  "wires": [
+    {
+      "id": "W1",
+      "color": "Red",
+      "partId": "wp_10r",
+      "source": {
+        "id": "pdb",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_body",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "W2",
+      "color": "Red",
+      "partId": "wp_10r",
+      "source": {
+        "id": "sp_body",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "f_hot",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "W3",
+      "color": "White",
+      "partId": "wp_14w",
+      "source": {
+        "id": "f_hot",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "oem_1i",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "W4",
+      "color": "Red",
+      "partId": "wp_10r",
+      "source": {
+        "id": "sp_body",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "f_am1",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "W5",
+      "color": "White",
+      "partId": "wp_14w",
+      "source": {
+        "id": "f_am1",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "oem_ie1",
+        "handle": "c10"
+      }
+    },
+    {
+      "id": "W6",
+      "color": "Red",
+      "partId": "wp_10r",
+      "source": {
+        "id": "sp_body",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "f_am2",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "W7",
+      "color": "Brown",
+      "partId": "wp_14br",
+      "source": {
+        "id": "f_am2",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "oem_ie1",
+        "handle": "c17"
+      },
+      "stripeColor": "Red"
+    },
+    {
+      "id": "W8",
+      "color": "Red",
+      "partId": "wp_10r",
+      "source": {
+        "id": "sp_body",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "f_pmu",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "W9",
+      "color": "Red",
+      "partId": "wp_2r",
+      "source": {
+        "id": "f_pmu",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "t_pmu_m6",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "W10",
+      "color": "Red",
+      "partId": "wp_10r",
+      "source": {
+        "id": "sp_body",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "oem_rb4",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "W11",
+      "color": "Red",
+      "partId": "wp_10r",
+      "source": {
+        "id": "sp_body",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "oem_rb2",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "W12",
+      "color": "Black",
+      "partId": "wp_2b",
+      "source": {
+        "id": "pdb",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gnd",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "W13",
+      "color": "Black",
+      "partId": "wp_2b",
+      "source": {
+        "id": "sp_gnd",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "t_gnd_id",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "W14",
+      "color": "Black",
+      "partId": "wp_2b",
+      "source": {
+        "id": "sp_gnd",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "t_gnd_ig",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "W15",
+      "color": "Black",
+      "partId": "wp_18b",
+      "source": {
+        "id": "sp_gnd",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "pmu",
+        "handle": "c17"
+      }
+    },
+    {
+      "id": "W16",
+      "color": "Red",
+      "partId": "wp_12r",
+      "source": {
+        "id": "pmu",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_hl",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "W17",
+      "color": "Red",
+      "partId": "wp_12r",
+      "source": {
+        "id": "sp_hl",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "oem_2a",
+        "handle": "c3"
+      }
+    },
+    {
+      "id": "W18",
+      "color": "Red",
+      "partId": "wp_12r",
+      "source": {
+        "id": "sp_hl",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "oem_2d",
+        "handle": "c2"
+      }
+    },
+    {
+      "id": "W19",
+      "color": "Red",
+      "partId": "wp_12r",
+      "source": {
+        "id": "pmu",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_hr",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "W20",
+      "color": "Red",
+      "partId": "wp_12r",
+      "source": {
+        "id": "sp_hr",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "oem_2a",
+        "handle": "c6"
+      }
+    },
+    {
+      "id": "W21",
+      "color": "Red",
+      "partId": "wp_12r",
+      "source": {
+        "id": "sp_hr",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "oem_2d",
+        "handle": "c6"
+      }
+    },
+    {
+      "id": "W22",
+      "color": "Red",
+      "partId": "wp_12r",
+      "source": {
+        "id": "pmu",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "oem_2e",
+        "handle": "c4"
+      }
+    },
+    {
+      "id": "W23",
+      "color": "Red",
+      "partId": "wp_12r",
+      "source": {
+        "id": "pmu",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "oem_2e",
+        "handle": "c3"
+      }
+    },
+    {
+      "id": "W24",
+      "color": "Red",
+      "partId": "wp_12r",
+      "source": {
+        "id": "pmu",
+        "handle": "c5"
+      },
+      "target": {
+        "id": "oem_2e",
+        "handle": "c2"
+      }
+    },
+    {
+      "id": "W25",
+      "color": "Red",
+      "partId": "wp_18r",
+      "source": {
+        "id": "t_ig_on",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "pmu",
+        "handle": "c18"
+      }
+    },
+    {
+      "id": "W26",
+      "color": "White",
+      "partId": "wp_20w",
+      "source": {
+        "id": "pmu",
+        "handle": "c19"
+      },
+      "target": {
+        "id": "can_tap",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "W27",
+      "color": "Green",
+      "partId": "wp_20g",
+      "source": {
+        "id": "pmu",
+        "handle": "c20"
+      },
+      "target": {
+        "id": "can_tap",
+        "handle": "c2"
+      }
+    }
+  ],
+  "connectors": [
+    {
+      "id": "pdb",
+      "label": "Cabin PDB \u2014 body-feed studs",
+      "width": 210,
+      "partId": "cp_pdb",
+      "schematicPosition": {
+        "x": -360,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": -360,
+        "y": 3180
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "BODY+",
+          "signal": "From heavy-DC PDB BAT+ stud",
+          "contactPartId": "ct_pdb_ring"
+        },
+        {
+          "id": "c2",
+          "designation": "GND",
+          "signal": "From heavy-DC PDB GND stud",
+          "contactPartId": "ct_pdb_ring"
+        }
+      ]
+    },
+    {
+      "id": "f_hot",
+      "label": "MIDI 50 A OEM HOT (1I-1)",
+      "width": 210,
+      "partId": "cp_midi50",
+      "schematicPosition": {
+        "x": 0,
+        "y": -60
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": 2940
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "IN",
+          "signal": "Always-hot to J/B1",
+          "contactPartId": "ct_midi"
+        },
+        {
+          "id": "c2",
+          "designation": "OUT",
+          "signal": "To OEM 1I pin 1",
+          "contactPartId": "ct_midi"
+        }
+      ]
+    },
+    {
+      "id": "f_am1",
+      "label": "MIDI 40 A AM1 (replaces FL AM1)",
+      "width": 210,
+      "partId": "cp_midi40",
+      "schematicPosition": {
+        "x": 0,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": 3180
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "IN",
+          "signal": "AM1 supply",
+          "contactPartId": "ct_midi"
+        },
+        {
+          "id": "c2",
+          "designation": "OUT",
+          "signal": "To OEM IE1 pin 10",
+          "contactPartId": "ct_midi"
+        }
+      ]
+    },
+    {
+      "id": "f_am2",
+      "label": "MIDI 30 A AM2 (replaces FL AM2)",
+      "width": 210,
+      "partId": "cp_midi30",
+      "schematicPosition": {
+        "x": 0,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": 3420
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "IN",
+          "signal": "AM2 supply",
+          "contactPartId": "ct_midi"
+        },
+        {
+          "id": "c2",
+          "designation": "OUT",
+          "signal": "To OEM IE1 pin 17",
+          "contactPartId": "ct_midi"
+        }
+      ]
+    },
+    {
+      "id": "f_pmu",
+      "label": "ANL 150 A PMU-16 M6 input",
+      "width": 210,
+      "partId": "cp_anl150",
+      "schematicPosition": {
+        "x": 0,
+        "y": 660
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": 3660
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "IN",
+          "signal": "From PDB BODY+",
+          "contactPartId": "ct_midi"
+        },
+        {
+          "id": "c2",
+          "designation": "OUT",
+          "signal": "To PMU M6 stud",
+          "contactPartId": "ct_midi"
+        }
+      ]
+    },
+    {
+      "id": "pmu",
+      "label": "ECUMaster PMU-16 harness plug",
+      "width": 390,
+      "partId": "cp_pmu",
+      "schematicPosition": {
+        "x": 360,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 360,
+        "y": 3180
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "O1",
+          "signal": "HEAD LH -> J/B2 2A-3 / 2D-2",
+          "contactPartId": "ct_sicma28"
+        },
+        {
+          "id": "c2",
+          "designation": "O2",
+          "signal": "HEAD RH -> J/B2 2A-6 / 2D-6",
+          "contactPartId": "ct_sicma28"
+        },
+        {
+          "id": "c3",
+          "designation": "O3",
+          "signal": "HAZ-HORN -> 2E-3 PROBE vs AM2 first",
+          "contactPartId": "ct_sicma28"
+        },
+        {
+          "id": "c4",
+          "designation": "O4",
+          "signal": "DOME -> J/B2 2E-4",
+          "contactPartId": "ct_sicma28"
+        },
+        {
+          "id": "c5",
+          "designation": "O5",
+          "signal": "RTR -> 2E-2 PROBE vs AM1 first",
+          "contactPartId": "ct_sicma28"
+        },
+        {
+          "id": "c6",
+          "designation": "O6",
+          "signal": "PMU output 6 unused in this loom",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c7",
+          "designation": "O7",
+          "signal": "PMU output 7 unused in this loom",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c8",
+          "designation": "O8",
+          "signal": "PMU output 8 unused in this loom",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c9",
+          "designation": "O9",
+          "signal": "PMU output 9 unused in this loom",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c10",
+          "designation": "O10",
+          "signal": "PMU output 10 unused in this loom",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c11",
+          "designation": "O11",
+          "signal": "PMU output 11 unused in this loom",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c12",
+          "designation": "O12",
+          "signal": "PMU output 12 unused in this loom",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c13",
+          "designation": "O13",
+          "signal": "PMU output 13 unused in this loom",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c14",
+          "designation": "O14",
+          "signal": "PMU output 14 unused in this loom",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c15",
+          "designation": "O15",
+          "signal": "PMU output 15 unused in this loom",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c16",
+          "designation": "O16",
+          "signal": "PMU output 16 unused in this loom",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c17",
+          "designation": "GND",
+          "signal": "PMU chassis / PDB ground",
+          "contactPartId": "ct_sicma15"
+        },
+        {
+          "id": "c18",
+          "designation": "IGN",
+          "signal": "Switch-on enable (pin 7 family) after AM2 restore",
+          "contactPartId": "ct_sicma15"
+        },
+        {
+          "id": "c19",
+          "designation": "CANH",
+          "signal": "CAN 1 H \u2014 tap existing bus, no third 120 ohm",
+          "contactPartId": "ct_sicma15"
+        },
+        {
+          "id": "c20",
+          "designation": "CANL",
+          "signal": "CAN 1 L",
+          "contactPartId": "ct_sicma15"
+        }
+      ]
+    },
+    {
+      "id": "can_tap",
+      "label": "CAN 1 tap (existing bus)",
+      "width": 210,
+      "partId": "cp_dtm2",
+      "schematicPosition": {
+        "x": 720,
+        "y": 660
+      },
+      "layoutPosition": {
+        "x": 720,
+        "y": 3660
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "H",
+          "signal": "Twisted with L \u2014 1 Mbit/s, no extra terminator",
+          "contactPartId": "ct_dtm20s"
+        },
+        {
+          "id": "c2",
+          "designation": "L",
+          "signal": "Twisted with H",
+          "contactPartId": "ct_dtm20s"
+        }
+      ]
+    },
+    {
+      "id": "oem_1i",
+      "label": "OEM J/B1 1I (left kick) \u2014 pin 1 only",
+      "width": 270,
+      "partId": "cp_oem_1i",
+      "schematicPosition": {
+        "x": 1080,
+        "y": -60
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 2940
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Always-hot B into STOP / ECU-B / DEFOGGER / tail-relay B+",
+          "contactPartId": "ct_toy_ts"
+        }
+      ]
+    },
+    {
+      "id": "oem_ie1",
+      "label": "OEM IE1 (left kick ER main \u2194 cowl)",
+      "width": 270,
+      "partId": "cp_oem_ie1",
+      "schematicPosition": {
+        "x": 1080,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 3180
+      },
+      "cavities": [
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "W  AM1 to ignition I9-4",
+          "contactPartId": "ct_toy_ts"
+        },
+        {
+          "id": "c17",
+          "designation": "17",
+          "signal": "B\u2013R AM2 to ignition I9-10",
+          "contactPartId": "ct_toy_ts"
+        }
+      ]
+    },
+    {
+      "id": "oem_2a",
+      "label": "OEM J/B2 2A dummy header (ER main)",
+      "width": 270,
+      "partId": "cp_oem_2a",
+      "schematicPosition": {
+        "x": 1080,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 3420
+      },
+      "cavities": [
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "CDS FAN \u2014 DO NOT REFEED",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "15A HEAD LH (inner circuit p.21)",
+          "contactPartId": "ct_toy_ts"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "RDI FAN \u2014 DO NOT REFEED",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "Engine main 87 \u2014 Link EFI in Power",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "15A HEAD RH (inner circuit p.21)",
+          "contactPartId": "ct_toy_ts"
+        }
+      ]
+    },
+    {
+      "id": "oem_2d",
+      "label": "OEM J/B2 2D dummy header (ER main)",
+      "width": 270,
+      "partId": "cp_oem_2d",
+      "schematicPosition": {
+        "x": 1080,
+        "y": 780
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 3780
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Unused in inner circuit",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "HEAD LH twin of 2A-3 \u2014 dummy jumper required",
+          "contactPartId": "ct_toy_ts"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "Headlight relay coil \u2014 unused, PMU switches lamps",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "Rad fan relay coil \u2014 unused",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "HEAD RH twin of 2A-6 \u2014 dummy jumper required",
+          "contactPartId": "ct_toy_ts"
+        }
+      ]
+    },
+    {
+      "id": "oem_2e",
+      "label": "OEM J/B2 2E dummy header (ER main)",
+      "width": 270,
+      "partId": "cp_oem_2e",
+      "schematicPosition": {
+        "x": 1440,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": 1440,
+        "y": 3420
+      },
+      "cavities": [
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "PROBE: inner p.21 = RTR; starting p.48 = AM1 with 2E-5",
+          "contactPartId": "ct_toy_ts"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "PROBE: inner p.21 = HAZ-HORN; starting p.48 = AM2 with 2E-6",
+          "contactPartId": "ct_toy_ts"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "20A DOME \u2014 not on AM1/AM2 pass-through",
+          "contactPartId": "ct_toy_ts"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "AM1 pass-through \u2014 do not PMU-feed; restored at IE1-10",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "AM2 / engine-main related \u2014 restored at IE1-17",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "Headlight relay \u2014 unused",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "15A EFI \u2014 unused, cabin k_efi",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        }
+      ]
+    },
+    {
+      "id": "oem_rb4",
+      "label": "OEM R/B4 (right kick, by glove box)",
+      "width": 270,
+      "partId": "cp_oem_rb4",
+      "schematicPosition": {
+        "x": 1440,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 1440,
+        "y": 3000
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "HTR1",
+          "signal": "40A HEATER fuse input (housing pins 1\u20132)",
+          "contactPartId": "ct_toy_ts"
+        },
+        {
+          "id": "c2",
+          "designation": "HTR2",
+          "signal": "Heater fuse output \u2014 stays OEM, do not overlay",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        },
+        {
+          "id": "c3",
+          "designation": "STR",
+          "signal": "OEM starter relay \u2014 isolate, Link k_str owns start",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        }
+      ]
+    },
+    {
+      "id": "oem_rb2",
+      "label": "OEM R/B2 (left kick) 30A POWER",
+      "width": 210,
+      "partId": "cp_oem_rb2",
+      "schematicPosition": {
+        "x": 1440,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 1440,
+        "y": 3180
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "PWR1",
+          "signal": "30A POWER fuse input (housing pins 1\u20132)",
+          "contactPartId": "ct_toy_ts"
+        },
+        {
+          "id": "c2",
+          "designation": "PWR2",
+          "signal": "Power fuse output \u2014 stays OEM",
+          "contactPartId": null,
+          "notConnected": true,
+          "cavityPlugPartId": "pl_toy"
+        }
+      ]
+    }
+  ],
+  "terminals": [
+    {
+      "id": "t_pmu_m6",
+      "type": "Ring",
+      "signal": "PMU-16 M6 battery stud",
+      "width": 210,
+      "partId": "tp_ring2_m6",
+      "schematicPosition": {
+        "x": 360,
+        "y": -60
+      },
+      "layoutPosition": {
+        "x": 360,
+        "y": 2940
+      }
+    },
+    {
+      "id": "t_gnd_id",
+      "type": "Ring",
+      "signal": "OEM ground ID \u2014 left kick panel",
+      "width": 210,
+      "partId": "tp_ring2_m8",
+      "schematicPosition": {
+        "x": 1800,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": 3180
+      }
+    },
+    {
+      "id": "t_gnd_ig",
+      "type": "Ring",
+      "signal": "OEM ground IG \u2014 R/B4 set bolt",
+      "width": 210,
+      "partId": "tp_ring2_m8",
+      "schematicPosition": {
+        "x": 1800,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": 3000
+      }
+    },
+    {
+      "id": "t_ig_on",
+      "type": "QuickConnectFemale",
+      "signal": "IG-ON tap after AM2 restore (J/B1 1H-7 B\u2013O / I9 IG2) \u2014 tap only, do not overlay",
+      "width": 210,
+      "partId": "tp_qc_ig",
+      "schematicPosition": {
+        "x": 360,
+        "y": 660
+      },
+      "layoutPosition": {
+        "x": 360,
+        "y": 3660
+      }
+    }
+  ],
+  "splices": [
+    {
+      "id": "sp_body",
+      "partId": "sp_heavy",
+      "schematicPosition": {
+        "x": 0,
+        "y": -240
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": 2760
+      }
+    },
+    {
+      "id": "sp_gnd",
+      "partId": "sp_solder",
+      "schematicPosition": {
+        "x": 360,
+        "y": 900
+      },
+      "layoutPosition": {
+        "x": 360,
+        "y": 3900
+      }
+    },
+    {
+      "id": "sp_hl",
+      "partId": "sp_solder",
+      "schematicPosition": {
+        "x": 720,
+        "y": 300
+      },
+      "layoutPosition": {
+        "x": 720,
+        "y": 3300
+      }
+    },
+    {
+      "id": "sp_hr",
+      "partId": "sp_solder",
+      "schematicPosition": {
+        "x": 720,
+        "y": 480
+      },
+      "layoutPosition": {
+        "x": 720,
+        "y": 3480
+      }
+    }
+  ],
+  "mates": [],
+  "schematicNotes": [
+    {
+      "id": "n0",
+      "text": "ST185 cursor Engine Room C \u2014 OEM INJECTION. Kick-panel J/Bs stay. Unplug engine-bay J/B2 and F11. Probe 2E-2 / 2E-3 vs IE1 before landing PMU O5 / O3.",
+      "width": 390,
+      "schematicPosition": {
+        "x": -360,
+        "y": -420
+      },
+      "color": "Red"
+    },
+    {
+      "id": "n1",
+      "text": "Primary restores: 1I-1 always-hot, IE1-10 AM1, IE1-17 AM2, R/B4 heater in, R/B2 POWER in, grounds ID + IG. Dummy header recreates 2A-3\u21942D-2 and 2A-6\u21942D-6.",
+      "width": 390,
+      "schematicPosition": {
+        "x": -360,
+        "y": -540
+      },
+      "color": "Orange"
+    },
+    {
+      "id": "h0",
+      "text": "GLOVE BOX FUSES",
+      "width": 270,
+      "schematicPosition": {
+        "x": -360,
+        "y": -240
+      },
+      "color": "Green"
+    },
+    {
+      "id": "h1",
+      "text": "PMU-16",
+      "width": 210,
+      "schematicPosition": {
+        "x": 360,
+        "y": -240
+      },
+      "color": "Blue"
+    },
+    {
+      "id": "h2",
+      "text": "OEM KICK / J/B2",
+      "width": 270,
+      "schematicPosition": {
+        "x": 1080,
+        "y": -240
+      },
+      "color": "Red"
+    }
+  ],
+  "connectorParts": [
+    {
+      "id": "cp_pdb",
+      "partNumber": "PDB-M8x8",
+      "manufacturer": "TBD",
+      "description": "Same glove-box PDB as heavy-DC drawing (body studs)",
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_midi50",
+      "partNumber": "MIDI-50 + holder",
+      "manufacturer": "Littelfuse",
+      "description": "MIDI 50 A, J/B1 always-hot",
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_midi40",
+      "partNumber": "MIDI-40 + holder",
+      "manufacturer": "Littelfuse",
+      "description": "MIDI 40 A AM1 (was F11 40A FL AM1)",
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_midi30",
+      "partNumber": "MIDI-30 + holder",
+      "manufacturer": "Littelfuse",
+      "description": "MIDI 30 A AM2 (was F11 30A FL AM2)",
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_anl150",
+      "partNumber": "ANL-150 + holder",
+      "manufacturer": "Littelfuse",
+      "description": "ANL 150 A on PMU-16 M6 stud feed",
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_pmu",
+      "partNumber": "PMU-16",
+      "manufacturer": "ECUMaster",
+      "description": "10\u00d725 A + 6\u00d715 A high-side, 150 A total, M6 stud + 39-way. This plug models 20 cavities used here.",
+      "numberOfCavities": 20
+    },
+    {
+      "id": "cp_dtm2",
+      "partNumber": "DTM06-2S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "DTM 2-way socket \u2014 CAN 1 tap",
+      "numberOfCavities": 2,
+      "gender": "Female"
+    },
+    {
+      "id": "cp_oem_1i",
+      "partNumber": "(OEM 1I plug)",
+      "manufacturer": "Toyota",
+      "description": "Factory J/B1 1I harness plug \u2014 reuse, pin 1 only",
+      "numberOfCavities": 1
+    },
+    {
+      "id": "cp_oem_ie1",
+      "partNumber": "(OEM IE1 plug)",
+      "manufacturer": "Toyota",
+      "description": "Factory IE1 joiner \u2014 land pins 10 and 17 only",
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_oem_2a",
+      "partNumber": "(OEM 2A plug)",
+      "manufacturer": "Toyota",
+      "description": "Factory J/B2 2A engine-room-main plug, dummy header",
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_oem_2d",
+      "partNumber": "(OEM 2D plug)",
+      "manufacturer": "Toyota",
+      "description": "Factory J/B2 2D engine-room-main plug, dummy header",
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_oem_2e",
+      "partNumber": "(OEM 2E plug)",
+      "manufacturer": "Toyota",
+      "description": "Factory J/B2 2E engine-room-main plug, dummy header",
+      "numberOfCavities": 7
+    },
+    {
+      "id": "cp_oem_rb4",
+      "partNumber": "(OEM R/B4)",
+      "manufacturer": "Toyota",
+      "description": "Right-kick R/B No.4 \u2014 heater fuse input + isolate starter",
+      "numberOfCavities": 3
+    },
+    {
+      "id": "cp_oem_rb2",
+      "partNumber": "(OEM R/B2)",
+      "manufacturer": "Toyota",
+      "description": "Left-kick R/B No.2 \u2014 30A POWER fuse input",
+      "numberOfCavities": 2
+    }
+  ],
+  "contactParts": [
+    {
+      "id": "ct_radsok",
+      "partNumber": "RADSOK 5.7mm 2 AWG",
+      "manufacturer": "Amphenol",
+      "description": "RADSOK contact supplied with RL00571-35",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 2
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 2
+      }
+    },
+    {
+      "id": "ct_sicma28",
+      "partNumber": "15324724",
+      "manufacturer": "Aptiv",
+      "description": "Sicma 2.8 female, 12-14 AWG, 25 A \u2014 PMU-16 high-side outputs",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 14
+      }
+    },
+    {
+      "id": "ct_sicma15",
+      "partNumber": "282403-1",
+      "manufacturer": "TE Connectivity",
+      "description": "Superseal 1.5 / Sicma 1.5 female, 18-20 AWG \u2014 PMU CAN, IGN, GND pin",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      }
+    },
+    {
+      "id": "ct_iso_pwr",
+      "partNumber": "280756-4",
+      "manufacturer": "TE Connectivity",
+      "description": "250-series female 12-10 AWG \u2014 Micro ISO 30/87 (on hand extra list)",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 12
+      }
+    },
+    {
+      "id": "ct_iso_coil",
+      "partNumber": "180360-0",
+      "manufacturer": "TE Connectivity",
+      "description": "6.3 mm female 20-16 AWG \u2014 Micro ISO coil 85/86",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      }
+    },
+    {
+      "id": "ct_hcr_pwr",
+      "partNumber": "HCR150-PWR-8AWG",
+      "manufacturer": "TE Connectivity",
+      "description": "HCR 150 power contact 8-10 AWG for 30/87 \u2014 confirm kit with TE for V23132-A2001-B200",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      }
+    },
+    {
+      "id": "ct_hcr_coil",
+      "partNumber": "HCR150-COIL",
+      "manufacturer": "TE Connectivity",
+      "description": "HCR 150 coil contact 16-20 AWG for 85/86 \u2014 confirm kit with TE",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      }
+    },
+    {
+      "id": "ct_dthd8s",
+      "partNumber": "0462-203-08141",
+      "manufacturer": "TE DEUTSCH",
+      "description": "Size 8 solid SOCKET, 8-10 AWG, 60 A \u2014 OWNED (qty 9)",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      }
+    },
+    {
+      "id": "ct_toy_pwr",
+      "partNumber": "Sumitomo 090 8mm F",
+      "manufacturer": "Sumitomo",
+      "description": "Large 090 female 8-10 AWG for 90980-12068 EPS power (pigtail 82998-12500)",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      }
+    },
+    {
+      "id": "ct_toy_ts",
+      "partNumber": "TS 2.3 (090 type)",
+      "manufacturer": "Sumitomo",
+      "description": "Toyota/Denso 2.3 mm female \u2014 J/B dummy header and 90980-10942 / 10897",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      }
+    },
+    {
+      "id": "ct_midi",
+      "partNumber": "MIDI-M8-RING",
+      "manufacturer": "Littelfuse",
+      "description": "M8 ring on MIDI/ANL fuse holder stud, 2-4 AWG",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 2
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 4
+      }
+    },
+    {
+      "id": "ct_pdb_ring",
+      "partNumber": "LCA2-14-Q",
+      "manufacturer": "Panduit",
+      "description": "2 AWG copper lug, 1/4 in / M8 stud \u2014 PDB and battery posts",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 2
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 2
+      }
+    },
+    {
+      "id": "ct_fuse_in",
+      "partNumber": "968855-1",
+      "manufacturer": "TE Connectivity",
+      "description": "TE 2141029-1 fuse-box hard-wire contact, 12-10 AWG",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 12
+      }
+    },
+    {
+      "id": "ct_dtm20s",
+      "partNumber": "0462-201-2031",
+      "manufacturer": "TE DEUTSCH",
+      "description": "Size 20 solid SOCKET, 20 AWG \u2014 CAN tap DTM",
+      "gender": "Socket",
+      "type": "Crimp",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      }
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "id": "pl_sz8",
+      "partNumber": "114018-ZZ",
+      "manufacturer": "TE DEUTSCH",
+      "description": "Sealing plug, size 8, white"
+    },
+    {
+      "id": "pl_sz16",
+      "partNumber": "114017",
+      "manufacturer": "TE DEUTSCH",
+      "description": "Sealing plug, size 16, white"
+    },
+    {
+      "id": "pl_sz20",
+      "partNumber": "0413-204-2005",
+      "manufacturer": "TE DEUTSCH",
+      "description": "Sealing plug, size 20, red"
+    },
+    {
+      "id": "pl_toy",
+      "partNumber": "(OEM cavity plug)",
+      "manufacturer": "Toyota",
+      "description": "Blank cavity in reused OEM J/B2 plug"
+    }
+  ],
+  "terminalParts": [
+    {
+      "id": "tp_ring2_m8",
+      "partNumber": "LCA2-14-Q",
+      "manufacturer": "Panduit",
+      "description": "2 AWG ring, M8 / 1/4 in stud, jump lug",
+      "type": "Ring",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 2
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 2
+      }
+    },
+    {
+      "id": "tp_ring4_m8",
+      "partNumber": "LCA4-14-L",
+      "manufacturer": "Panduit",
+      "description": "4 AWG ring, M8 stud \u2014 160 A alt B+",
+      "type": "Ring",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 4
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 4
+      }
+    },
+    {
+      "id": "tp_ring8_m8",
+      "partNumber": "LCA8-14-L",
+      "manufacturer": "Panduit",
+      "description": "8 AWG ring, M8 stud \u2014 EPS / fan grounds",
+      "type": "Ring",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      }
+    },
+    {
+      "id": "tp_ring2_m6",
+      "partNumber": "LCA2-10-Q",
+      "manufacturer": "Panduit",
+      "description": "2 AWG ring, M6 stud \u2014 PMU-16 battery stud",
+      "type": "Ring",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 2
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 2
+      }
+    },
+    {
+      "id": "tp_qc_ig",
+      "partNumber": "640903-1",
+      "manufacturer": "TE Connectivity",
+      "description": "Faston 6.3 mm tap for IG-ON / Aux coil leads",
+      "type": "QuickConnectFemale",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 18
+      }
+    }
+  ],
+  "spliceParts": [
+    {
+      "id": "sp_solder",
+      "partNumber": "D-181-32",
+      "manufacturer": "TE Raychem",
+      "description": "Solder-sleeve splice, sealed, 12-18 AWG family",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 18
+      }
+    },
+    {
+      "id": "sp_heavy",
+      "partNumber": "B-106-11",
+      "manufacturer": "TE Raychem",
+      "description": "Heavy solder-sleeve / crimp splice, 8-4 AWG",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 4
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      }
+    }
+  ],
+  "wireParts": [
+    {
+      "id": "wp_2r",
+      "partNumber": "TXL-2-RED",
+      "manufacturer": "generic",
+      "description": "2 AWG TXL / welding cable, battery and RADLOK",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 2
+      }
+    },
+    {
+      "id": "wp_2b",
+      "partNumber": "TXL-2-BLK",
+      "manufacturer": "generic",
+      "description": "2 AWG TXL / welding cable, battery negative",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 2
+      }
+    },
+    {
+      "id": "wp_4r",
+      "partNumber": "TXL-4-RED",
+      "manufacturer": "generic",
+      "description": "4 AWG TXL, 160 A alternator B+ to starter",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 4
+      }
+    },
+    {
+      "id": "wp_8r",
+      "partNumber": "TXL-8-RED",
+      "manufacturer": "generic",
+      "description": "8 AWG TXL, EPS pump and uprated fans +",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 8
+      }
+    },
+    {
+      "id": "wp_8b",
+      "partNumber": "TXL-8-BLK",
+      "manufacturer": "generic",
+      "description": "8 AWG TXL, EPS pump and uprated fans \u2212",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 8
+      }
+    },
+    {
+      "id": "wp_10r",
+      "partNumber": "TXL-10-RED",
+      "manufacturer": "generic",
+      "description": "10 AWG TXL, AM1/AM2/OEM-HOT body feeds",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 10
+      }
+    },
+    {
+      "id": "wp_12r",
+      "partNumber": "TXL-12-RED",
+      "manufacturer": "generic",
+      "description": "12 AWG TXL, HEAD / DOME / HAZ PMU outputs",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 12
+      }
+    },
+    {
+      "id": "wp_14w",
+      "partNumber": "TXL-14-WHT",
+      "manufacturer": "generic",
+      "description": "14 AWG TXL, AM1 (factory W)",
+      "color": "White",
+      "gauge": {
+        "unit": "AWG",
+        "value": 14
+      }
+    },
+    {
+      "id": "wp_14br",
+      "partNumber": "TXL-14-BRN",
+      "manufacturer": "generic",
+      "description": "14 AWG TXL, AM2 (factory B\u2013R)",
+      "color": "Brown",
+      "gauge": {
+        "unit": "AWG",
+        "value": 14
+      }
+    },
+    {
+      "id": "wp_18b",
+      "partNumber": "TXL-18-BLK",
+      "manufacturer": "generic",
+      "description": "18 AWG TXL, grounds and relay coils \u2212",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 18
+      }
+    },
+    {
+      "id": "wp_18r",
+      "partNumber": "TXL-18-RED",
+      "manufacturer": "generic",
+      "description": "18 AWG TXL, relay coils + / EPS enable",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 18
+      }
+    },
+    {
+      "id": "wp_20w",
+      "partNumber": "TXL-20-WHT",
+      "manufacturer": "generic",
+      "description": "20 AWG TXL, CAN 1 tap",
+      "color": "White",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      }
+    },
+    {
+      "id": "wp_20g",
+      "partNumber": "TXL-20-GRN",
+      "manufacturer": "generic",
+      "description": "20 AWG TXL, CAN 1 L tap",
+      "color": "Green",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      }
+    }
+  ]
+}
