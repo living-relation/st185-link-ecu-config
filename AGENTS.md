@@ -24,6 +24,8 @@
 - Architecture and allocation: `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`.
 - Bench behavior: `bench/frames.py`, `bench/can_bench.py`, `BENCH-TEST.md`.
 - RealDash channel definitions: `link_g4x_realdash.xml`.
+- Engine-room power splice table (kick-panel J/Bs, vacated J/B2): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
+- Partial engine-room add-on loom: `docs/harness/ST185-EngineRoom-C.harness`.
 - ECU Superseal I/O (pins, pull-ups, drive types): `XTREMEX-IO-TABLE.html` — pin numbers confirmed 2026-09-11 vs official XtremeX Quick Start Guide (`docs/XTREMEX-IO-VERIFY-2026-09-11.md`).
 
 ## Board / progress snapshot

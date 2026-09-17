@@ -1,7 +1,8 @@
 import json, os, csv, datetime, collections, heapq
 
-R = r"C:\projects\shipping\st185-link-ecu-config\docs\harness"
-F = (("Signal","ST185-Signal.harness"), ("Power","ST185-Power.harness"), ("CAN","ST185-CAN.harness"))
+R = os.path.dirname(os.path.abspath(__file__))
+F = (("Signal","ST185-Signal.harness"), ("Power","ST185-Power.harness"),
+     ("CAN","ST185-CAN.harness"), ("EngineRoomC","ST185-EngineRoom-C.harness"))
 
 def load(fn):
     return json.load(open(os.path.join(R, fn), encoding="utf-8"))
