@@ -39,6 +39,8 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `docs/harness/ST185-Power.harness` | harness.design SoT — **power** half (12 V / +5 V / +8 V / Gnd Out / chassis). Open at app.harness.design. |
 | `docs/harness/ST185-Signal.harness` | harness.design SoT — **signal** half (sense/control, cluster). Open at app.harness.design. |
 | `docs/harness/ST185-CAN.harness` | harness.design SoT — **CAN bus** half (CAN H/L twisted pair, termination resistor, bulkhead A crossing). Open at app.harness.design. |
+| `docs/harness/ST185-EngineRoom-C.harness` | harness.design SoT — **partial engine-room C** (trunk battery, glove-box PDB/PMU, RADLOK, OEM J/B injection, EPS power, uprated fans). Open at app.harness.design. |
+| `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table with factory EWD snips. How power and ground re-enter the OEM engine-room, cowl and dash looms after the battery and fuse box leave the bay. |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |
 | `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 5-node topology. |
 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Master ID allocation table — all byte layouts, sections A–E. |
@@ -52,8 +54,9 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `docs/harness/ST185-Power.harness` | harness.design v0.9 power loom (OEM relay blocks, fused 12 V, BRZ pedal supplies). Open in [harness.design](https://harness.design). |
 | `docs/harness/ST185-Signal.harness` | harness.design v0.9 signal loom (ECU A/B/C, sensors, 6-pin BRZ APS, OEM body blocks). Open in [harness.design](https://harness.design). |
 | `docs/harness/ST185-CAN.harness` | harness.design v0.9 CAN loom (CAN H/L pair, termination, ECU/cluster/RealDash/CSB3/Lambda drops, bulkhead A crossing). Open in [harness.design](https://harness.design). |
-| `docs/harness/buildlist.py` | Generates `HARNESS-BUILD-LIST.csv` from the three `.harness` files — per-wire From/To/pin/signal/terminal/colour/route/length build sheet. Regenerate after any harness change. |
-| `docs/harness/HARNESS-BUILD-LIST.csv` | Generated per-wire build list for the Signal/Power/CAN looms. Do not hand-edit — regenerate with `buildlist.py`. |
+| `docs/harness/ST185-EngineRoom-C.harness` | harness.design v0.9 partial engine-room add-on (OEM injection + EPS/fans/heavy DC). Open in [harness.design](https://harness.design). |
+| `docs/harness/buildlist.py` | Generates `HARNESS-BUILD-LIST.csv` from the four `.harness` files — per-wire From/To/pin/signal/terminal/colour/route/length build sheet. Regenerate after any harness change. |
+| `docs/harness/HARNESS-BUILD-LIST.csv` | Generated per-wire build list for the Signal/Power/CAN/EngineRoom-C looms. Do not hand-edit — regenerate with `buildlist.py`. |
 | `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` | Which wiring docs are redundant, and the intended Power vs Signal layout. |
 | `docs/research-hub.html` | Index of everything under `docs/` — the intercooler/turbo study, 5S-GTE build data, and harness wiring — browsable by topic and by section. Open in any browser. Regenerate after editing research with `python docs/build-research-hub.py`. |
 

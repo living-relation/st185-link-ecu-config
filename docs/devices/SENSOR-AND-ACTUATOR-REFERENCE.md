@@ -110,6 +110,15 @@ Any load above the PDM's per-output capacity takes a relay and fuse instead, and
 PDM is still the right source for a large load, outputs are combined — the fuel pump being
 the likely case.
 
-The only thing outstanding is a lookup, not a decision: confirm the PDM's per-output
-current cap, then apply the rule to the fuel pump and both fans. If either ends up on the
-PDM, the PDM also has to be added as a node in `WIRING.md` and `CAN-BUS-MASTER-DESIGN.md`.
+The lookup is done. ECUMaster **PMU-16**: 10 × 25 A and 6 × 15 A high-side, 150 A total;
+same-rating outputs may be paralleled (max three → 75 A). Connector terminals are the
+real limit. Applied in `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`:
+
+- Fuel pump stays on cabin relay `k_fp` (Power file).
+- Both uprated fans stay on `k_fan` / `k_fan2` (peak current above one 25 A pin).
+- EPS stays on `k_eps` HCR 150 / F7 60 A.
+- PMU-16 takes HEAD LH/RH, HAZ-HORN, DOME and RTR at the vacated J/B No.2 cavities.
+
+When the PMU is fitted it is a CAN 1 node at 1 Mbit/s — add it to `WIRING.md` and
+`CAN-BUS-MASTER-DESIGN.md` in the same change that lands it on the car, and do
+**not** add a third 120 Ω terminator.
