@@ -639,3 +639,32 @@ Mapping, factory to ours:
 | `60A FL ABS` | Deleted - no ABS in this build |
 | `30A FL RDI FAN` / `30A FL CDS FAN` off engine main relay | Loom C fan feeds, relay + fuse per 6.2 |
 | Battery to starter, direct unfused | 2 AWG behind the main fuse |
+
+
+### 6.24 Shielded single-conductor cable - settled by Daniel 2026-09-17
+
+The EPS speed pulse (`Aux 7 / A27` to the pump's 6-way connector B) is run as **shielded
+single-conductor**, not a twisted pair. Shield grounded at the **ECU end only**, floating
+at the pump, modelled per 6.12.
+
+Two TE/Raychem datasheets for single-conductor shielded cable are in Drive. Daniel owns
+stock of one of them; which is not yet confirmed.
+
+| Candidate | Construction | Notes |
+|---|---|---|
+| **Raychem 55A1131-20** | Spec 55 single conductor, shielded and jacketed, 20 AWG | Filename in Drive already carries the 20 AWG size - most likely the stock on hand |
+| **M27500-\*SB1T23** | NEMA WC27500, 1 conductor, stranded tinned copper, crosslinked ETFE insulation, round tinned copper braid (85% coverage), crosslinked ETFE jacket, -65 to +200 C | Sizes 30 through 12 AWG. `M27500-20SB1T23` is 20 AWG, OD .084-.089 in |
+
+Either satisfies 6.6 - both are crosslinked ETFE, which is the specified wire family.
+**20 AWG is the right size** for this signal: it carries almost no current, so the gauge is
+set by handling and by the pump connector's contact range, and 20 AWG sits mid-range for
+Sumitomo 0.5-1.25 mm2 contacts.
+
+**Note on the return path.** Single-conductor shielded has no second conductor, so the
+shield is a **screen, not a return**. The pump's signal return goes through its own ground.
+Never use the shield as the signal return - that defeats the screening and puts pump ground
+current on the drain wire.
+
+No quantity-on-hand line for either part could be found in the Drive inventory
+(`TE_BOM_with_screenshots.xlsx`), so the buy list carries it as needed-unknown until the
+part number and stock are confirmed.

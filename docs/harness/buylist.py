@@ -32,6 +32,7 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("ANL/MEGA 300A + holder","generic","MAIN battery fuse, within ~18in of the trunk battery positive. Protects the whole cabin run - OEM leaves the starter lead unfused but its battery is 2ft away, ours is 12ft. See plan 6.20.",1,0),
  ("ANL 175A + holder","generic","Alternator B+ protection. OEM uses 100A FL ALT for the stock alternator; scaled for the 160A unit. See plan 6.20.",1,0),
  ("Battery master cutoff","generic","Trunk, alongside the main fuse. Motorsport requirement and the sane place for it.",1,0),
+ ("55A1131-20 or M27500-20SB1T23","TE / Raychem","Single-conductor shielded, 20 AWG, crosslinked ETFE. EPS speed pulse (Aux 7 -> pump conn B) and any other screened single signal. Shield grounded at the ECU end only. CONFIRM which of the two is the stock on hand - see plan 6.24.",1,0),
  ("2428-011-2405","TE DEUTSCH","Backshell 24SZ right-angle L017",1,1),
  ("M902-2243","TE DEUTSCH","Backshell 24SZ straight L015",1,1),
  ("16-04477","TE DEUTSCH","Gasket 24SZ",6,4),
