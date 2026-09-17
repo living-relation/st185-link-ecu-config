@@ -566,3 +566,76 @@ of signal.
 - Run the speed pulse as a **twisted pair with its own return**, or shielded per 6.12.
 - Keep both signal wires **out of the heavy bundle** for the last stretch into the pump.
 - Do not splice their grounds into the fan or EPS power grounds.
+
+
+### 6.22 How the factory connects to the battery - EWD page 46, read 2026-09-17
+
+Supersedes the partial picture in 6.20, which was read off page 48 and only showed three
+of the four fusible links.
+
+```
+BATTERY + ──┬── FL MAIN 2.0L ──► F11 FUSIBLE LINK BOX ──┬─ 60A  FL ABS  ──► ABS relay
+            │   (fusible link,                          ├─ 30A  FL AM2  ──► Ignition sw AM2
+            │    at the battery)                        ├─ 40A  FL AM1  ──► Ignition sw AM1
+            │                                           └─ 100A FL ALT  ──► Alternator B
+            │
+            └── heavy black, DIRECT, unfused ─────────────► STARTER terminal B
+```
+
+**Answer to the question: fusible link.** Everything except the starter leaves the battery
+through **one** protected main feed and is then split by a distribution box. Only the
+starter lead is a direct unfused connection.
+
+Note: the "2.0L" in `FL MAIN 2.0L` is the **fusible-link wire size, 2.0 mm²** - not the
+engine. Do not read it as a displacement when sizing a replacement.
+
+Page 46 also shows the factory fan feeds - `30A FL RDI FAN` and `30A FL CDS FAN` off the
+ENGINE MAIN RELAY - which is what loom C replaces.
+
+**Year coverage.** The snips in `docs/electrical/ewd-snips/` are the **1990** book, which
+is what could actually be verified. No 1991-1993 EWD or factory supplement was findable
+online in a form worth citing. The architecture is very unlikely to have changed across
+1990-93, but that is an assumption, not a verified fact. If the 1991-93 book is to hand,
+snip the equivalents of pages 46, 48 and 52 and they can be diffed against these.
+
+### 6.23 Our battery connection - mirrors OEM, settled by Daniel 2026-09-17
+
+Same topology as the factory, with the protection scaled for a trunk battery and a long
+cabin run.
+
+```
+TRUNK BATTERY +
+   │
+   ├── BATTERY KILL SWITCH ── at the main post
+   │
+   └── MAIN FUSE ── ANL / MEGA / Class T, within ~18 in of the post
+         │
+         ├── 2 AWG ──► RADLOK ──► STARTER B+
+         │     (OEM runs this unfused, but its cable is 2 ft in the engine bay.
+         │      Ours is a ~12 ft run through the cabin, so it sits behind the
+         │      main fuse. This is the one place we deliberately depart from OEM.)
+         │
+         └── main feed ──► PDB1, glove box        [mirrors FL MAIN -> F11 link box]
+               ├── fuse block
+               ├── ANL 150A ──► PMU-16
+               └── jump lug
+```
+
+Alternator B+ gets its own **175 A** fuse - the factory protects it at 100 A FL ALT for the
+stock unit, scaled here for the 160 A alternator. It is **never** joined unprotected at the
+starter post.
+
+Standing rule, set by Daniel: **every large-gauge conductor is fused near the battery, and
+one battery kill switch sits at the main post.**
+
+Mapping, factory to ours:
+
+| Factory | Ours |
+|---|---|
+| `FL MAIN 2.0L` at the battery | Main ANL/MEGA/Class T + kill switch, trunk |
+| `F11` fusible link box | `PDB1` (Blue Sea 2127), glove box |
+| `100A FL ALT` | ANL 175 A on the alternator lead |
+| `40A FL AM1` / `30A FL AM2` | Cabin fuse block feeds off `PDB1` |
+| `60A FL ABS` | Deleted - no ABS in this build |
+| `30A FL RDI FAN` / `30A FL CDS FAN` off engine main relay | Loom C fan feeds, relay + fuse per 6.2 |
+| Battery to starter, direct unfused | 2 AWG behind the main fuse |
