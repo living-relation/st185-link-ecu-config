@@ -1,7 +1,7 @@
 # ST185 RealDash `.rd` build package (local Cursor agent edition)
 
 Self-contained handoff for building a real RealDash `.rd` dashboard for the 1993 Toyota Celica
-GT-Four ST185 (3S-GTE) "TrackCluster". Hand this whole folder to a **Cursor agent running locally on
+GT-Four ST185 (5S-GTE) "TrackCluster". Hand this whole folder to a **Cursor agent running locally on
 a PC that has RealDash installed and a real GPU-backed desktop**. Everything the agent needs is here.
 
 ## Quick start (for the local agent)

@@ -1,0 +1,14 @@
+# Multi-fuel blend trim multipliers vs ethanol [%]
+# fuel_mult: multiply fuel delivery; ign_mult: degrees add (negative = retard on E85)
+ethanol_pct,fuel_mult,ign_trim_deg
+0,1.00,0.0
+10,1.04,0.0
+20,1.08,-0.5
+30,1.12,-1.0
+40,1.16,-1.5
+50,1.20,-2.0
+60,1.24,-2.5
+70,1.28,-3.0
+80,1.32,-3.5
+90,1.36,-4.0
+100,1.40,-4.5

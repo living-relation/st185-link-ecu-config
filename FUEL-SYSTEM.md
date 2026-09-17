@@ -1,6 +1,6 @@
 # Fuel System — AN Hose & Pump Sizing
 
-Reference notes for fuel delivery sizing on the ST185 3S-GTE build. This is **not** part of the
+Reference notes for fuel delivery sizing on the ST185 5S-GTE build. This is **not** part of the
 CAN bus contract (see `README.md` Scope) — informational build reference only, kept here for
 convenience alongside the rest of the build documentation.
 

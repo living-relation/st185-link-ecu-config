@@ -1,0 +1,47 @@
+# archive/
+
+Retired material. **Nothing here is authoritative.** Each entry is kept only so a
+past decision can be re-read if the question comes up again, with a one-line note
+saying why it was retired — the convention set out in `archive/DOCS-CLEANUP-PLAN.md` §7.
+
+Rule: if a file here disagrees with a current document, the current document wins.
+Files are retired here rather than deleted; deletion is reserved for material that
+is both wrong and duplicated elsewhere.
+
+## Contents
+
+| File | Retired | Why |
+|---|---|---|
+| `5sgte-project-data/` | 2026-09-06 | Snapshot of the claude.ai Project "5sgte Project Data". Holds the superseded ECU-wiring docs (including one misleadingly named `ECU_WIRING_MASTER_SOURCE_OF_TRUTH.md` that was never authoritative) and the reverse-camera trigger resolution. The turbo-selection research and head-flow studies were **restored to `docs/5sgte-project-data/`** as live references (not retired); engine calibration and build references were promoted to `tune/` first — see `ORIGINAL-README.md` for the source snapshot's own caveats. |
+| `DOCS-CLEANUP-PLAN.html` | 2026-09-12 | Rendered clone of `DOCS-CLEANUP-PLAN.md` (76 KB, same content in two formats) that had drifted — it never gained §0 "Terms defined on first use" or §13 "Reconciliation log — 2026-09-06". Nothing in the repo cited the HTML; eight files cite the markdown. The markdown was retired here too on 2026-09-16 — see the row below. |
+| `DOCS-CLEANUP-PLAN.md` | 2026-09-16 | The 2026-08-31 inventory (55 docs, 27 conflicts, 15 open decisions) plus its 2026-09-06 reconciliation log. Superseded by `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` (2026-09-12), which calls it stale and reassigns the doc roles it proposed. Its folder-consolidation steps 4-8 were never executed and are not planned; its open-decision list was closed out at Daniel's direction. Carries a superseded banner. |
+| `ALARM_MAPPING_POLICY.md` | 2026-09-05 | Temporary `0x3EE` alarm-mapping rule used while designing the cluster layouts ("never duplicate gauge-shown conditions as alarm bytes"). No ECU meaning. Byte layout lives in `CAN-BUS-ID-ALLOCATION-TABLE.md`. |
+
+## Lost, not archived
+
+Recorded so a future search does not waste time looking. These came from the
+sibling repo `st185-furyx-base-map`, which had **no git remote** and was deleted
+2026-09-05 after its engine data was imported into `tune/`. They were never
+committed to this repo, so they are **not** recoverable from this history:
+
+| File | What it was | Why it was dropped |
+|---|---|---|
+| `config/io_assignments.yaml` | Full FuryX channel map | Contradicted `XTREMEX-IO-TABLE.html` on ~10 channels; declared an onboard LSU 4.9 the XtremeX does not have (conflicts C19, C26) |
+| `docs/references/FuryXQuickstartGuide.pdf` | Link FuryX quickstart | Wrong ECU (conflict C2) |
+| `docs/references/linkecu-furyx-dealer.html` | Dealer page scrape | Wrong ECU |
+| `docs/references/FURYX_QUICKSTART_NOTES.md` | FuryX pinout notes | Same wrong An Volt / ETB / onboard-wideband map as `io_assignments.yaml` |
+| `docs/SENSOR_WIRING.md`, `docs/IO_BUDGET.md`, `docs/PWM_OUTPUTS.md` | FuryX I/O allocation docs | I/O domain — superseded by `XTREMEX-IO-TABLE.html` |
+| `docs/AGENT_GUIDE.md`, `docs/AGENT_SESSION_CONTEXT.md`, `docs/ECU_SESSION_CHECKPOINT.md`, `docs/ECU_PACKAGE_README.md` | Handoff notes for the old repo's own workflow | Repo-meta, not engine data |
+| `scripts/package_ecu.ps1` | Zip packager for the standalone FuryX bundle | Redundant once the content lived in a repo with a remote |
+
+Everything engine-side from that repo **was** imported and is live under `tune/`.
+
+## Recovering something retired here
+
+Files in this folder are readable as-is. For anything removed from the repo in a
+past commit, git still has it:
+
+```bash
+git log --oneline --all -- <path>      # find the commit that last had it
+git show <commit>:<path>               # print it
+```

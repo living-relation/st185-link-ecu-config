@@ -11,6 +11,8 @@
 - **Bench tooling**: `bench/can_bench.py`, `bench/frames.py`, `bench/requirements.txt`, `BENCH-TEST.md`.
 - **Desktop sender app**: `apps/trackcluster-can-sender/app.py`, `apps/trackcluster-can-sender/ui/index.html`, `apps/trackcluster-can-sender/BUILD.md`, `apps/trackcluster-can-sender/requirements.txt`.
 - **Automation assets**: `rd-build/tools/automation_helper.py`, `rd-build/tools/SETUP.md`, `rd-build/PLAN.md`, `rd-build/FINDINGS.md`.
+- **Engine calibration**: `tune/engine_constants.yaml`, `tune/tables/*.csv`, `tune/README.md` — PCLink seeds only; not an I/O or CAN source.
+- **Archive**: `archive/` — retired material. **Do not read or search it during normal work**; it is excluded from agent context and nothing in it is authoritative. Consult it only when explicitly asked why a past decision was made, and if it disagrees with a current doc, the current doc wins.
 - **Agent ecosystem**: `.claude/skills/`, `.cursor/skills/`, `.agents/skills/`, `.cursor/hooks.json`, `.claude/hooks/`.
 
 ## Related Repos (mandatory for CAN bus / wiring work)
@@ -27,7 +29,7 @@ before making changes:
   `CAN-CONFIG-STATUS.md` in this repo.
 - Its `main/protocols/link_g4x.json` and `sdkconfig`/`Kconfig.projbuild` define the
   cluster's TWAI GPIO pinout and transceiver wiring — see `WIRING.md` and
-  `CAN-BUS-MASTER-DESIGN.md` in this repo for how it fits the 4-node topology.
+  `CAN-BUS-MASTER-DESIGN.md` in this repo for how it fits the 5-node topology.
 - Do not introduce a CAN ID, frame layout, or wiring change here that the cluster
   firmware doesn't already decode/expect — the cluster is not being modified as
   part of work in this repo.
@@ -42,6 +44,8 @@ otherwise consult the GitHub repo linked above.
   - `@./CAN-BUS-ID-ALLOCATION-TABLE.md`
   - `@./CAN-BUS-MASTER-DESIGN.md`
   - `@./CANBUS-LINK-G4X-CONFIG.md`
+  - `@./XTREMEX-IO-TABLE.html`
+  - `@./docs/XTREMEX-IO-VERIFY-2026-09-11.md`
   - `@./BENCH-TEST.md`
 
 ## Fast Commands
@@ -83,7 +87,8 @@ python rd-build/tools/automation_helper.py screenshot rd-build/rd_screen.png
 
 ## Known Gotchas
 - `AGENTS.md` previously referenced removed paths like `apps/canbus-live-sender/`; use `apps/trackcluster-can-sender/`.
-- `rd-build/link_g4x_realdash.xml` can drift from `link_g4x_realdash.xml`; verify conversion parity when touching either.
+- Root `link_g4x_realdash.xml` is the single copy (the `rd-build/` duplicate was removed 2026-09-04 after drifting); do not reintroduce one.
+- The sibling repo `st185-furyx-base-map` holds an older **FuryX-era** copy of `link_g4x_can_setup.json`/`.lcs` and `CANBUS-LINK-G4X-CONFIG.md`. This repo's versions are newer (frames `0x3EF`/`0x3F0`/`0x3F1`, 2-byte oil/fuel pressure, `MAP` not `MGP`) — never copy CAN files from it. Its `io_assignments.yaml` is FuryX-only and contradicts `XTREMEX-IO-TABLE.html`.
 - `rd-build/tools/automation_helper.py` depends on desktop permissions and local GUI session; headless runs are unsupported per `rd-build/FINDINGS.md`.
 
 ## Change Workflow
@@ -97,49 +102,22 @@ python rd-build/tools/automation_helper.py screenshot rd-build/rd_screen.png
 - Optional desktop-control MCP example exists at `rd-build/tools/mcp.example.json`.
 - Do not create or edit `.claude/settings.json`, `.claude/settings.local.json`, or `mcpServers` configs from this file.
 
-<!-- caliber:managed:pre-commit -->
-## Before Committing
+## Local environment
 
-**IMPORTANT:** Before every git commit, you MUST ensure Caliber syncs agent configs with the latest code changes.
+- Local checkout of this repo on dansPC is `C:\projects\shipping\st185-link-ecu-config` (moved from `C:\projects\st185-link-ecu-config`).
 
-First, check if the pre-commit hook is already installed:
-```bash
-grep -q "caliber" .git/hooks/pre-commit 2>/dev/null && echo "hook-active" || echo "no-hook"
-```
+## Model
 
-- If **hook-active**: the hook handles sync automatically — just commit normally. Tell the user: "Caliber will sync your agent configs automatically via the pre-commit hook."
-- If **no-hook**: run Caliber manually before committing:
-  1. Tell the user: "Caliber: Syncing agent configs with your latest changes..."
-  2. Run: `caliber refresh && git add CALIBER_LEARNINGS.md CLAUDE.md .claude/ .cursor/ .cursorrules AGENTS.md .agents/ 2>/dev/null`
-  3. After it completes, briefly tell the user what Caliber updated. Then proceed with the commit.
+Pin the model and effort level explicitly rather than relying on the upstream default
+(`/model` in Claude Code, the model picker in Cursor), so a vendor default change does not
+silently alter how this project is worked on.
 
-**Valid `caliber refresh` options:** `--quiet` (suppress output) and `--dry-run` (preview without writing). Do not pass any other flags — options like `--auto-approve`, `--debug`, or `--force` do not exist and will cause errors.
+## Handoffs are never committed
 
-**`caliber config`** takes no flags — it runs an interactive provider setup. Do not pass `--provider`, `--api-key`, or `--endpoint`.
+Work orders, handoffs and session summaries do not belong in this repo. A committed handoff
+reads as outstanding work long after it is done, and the next agent redoes it or reports it
+as incomplete. Deliver a handoff in chat so it can be copied to whoever needs it.
 
-If `caliber` is not found, tell the user: "This project uses Caliber for agent config sync. Run /setup-caliber to get set up."
-<!-- /caliber:managed:pre-commit -->
-
-<!-- caliber:managed:learnings -->
-## Session Learnings
-
-Read `CALIBER_LEARNINGS.md` for patterns and anti-patterns learned from previous sessions.
-These are auto-extracted from real tool usage — treat them as project-specific rules.
-<!-- /caliber:managed:learnings -->
-
-<!-- caliber:managed:model-config -->
-## Model Configuration
-
-Recommended default: `claude-sonnet-4-6` with high effort (stronger reasoning; higher cost and latency than smaller models).
-Smaller/faster models trade quality for speed and cost — pick what fits the task.
-Pin your choice (`/model` in Claude Code, or `CALIBER_MODEL` when using Caliber with an API provider) so upstream default changes do not silently change behavior.
-
-<!-- /caliber:managed:model-config -->
-
-<!-- caliber:managed:sync -->
-## Context Sync
-
-This project uses [Caliber](https://github.com/caliber-ai-org/ai-setup) to keep AI agent configs in sync across Claude Code, Cursor, Copilot, and Codex.
-Configs update automatically before each commit via `caliber refresh`.
-If the pre-commit hook is not set up, run `/setup-caliber` to configure everything automatically.
-<!-- /caliber:managed:sync -->
+What does belong in the repo: durable rules, decisions and reference material. If a handoff
+contains an open item worth keeping, record the item itself in the relevant doc - not the
+work order around it.

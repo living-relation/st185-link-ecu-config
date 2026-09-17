@@ -1,0 +1,76 @@
+# Link limits + cluster cosmetic thresholds (ST185 XtremeX)
+#
+# ECU protection limits for st185-furyx-base-v1: intentionally LOOSE / HIGH.
+# Purpose: get the engine running and street-driving while tables are wrong.
+# Tight limits matter under full load on a finished tune — set those in a later .pclx.
+#
+# Cluster gauge colors below are cosmetic only (not ECU limits).
+
+ecu_limits:
+  phase: base_startup
+
+  knock:
+    # Keep knock *logging/retard*; raise cut threshold so tuning noise does not kill a start.
+    # Start from Link G4X startup map knock page; only severe knock should assert KNOCK / cuts.
+    cut_only_if_severe: true
+    notes: "Do not chase knock cuts at idle during first fires — fix fuel/ign first."
+
+  boost:
+    overboost_cut_psi: 32        # loose — street target ~18 psi; tighten to 29 post-dyno
+    overboost_cut_psi_tuned_ref: 29
+
+  ect_f:
+    limit_on: 265                # hard cut only — very unlikely during startup
+    limit_off: 255
+    limit_on_tuned_ref: 240
+
+  oil_press:
+    limit_psi: 5                 # catastrophic floor only
+    rpm_gate: 4500               # ignore at idle / low RPM (loose clearances, 10W-50)
+    map_gate_kpa: 120            # only under real load
+    limit_psi_tuned_ref: 10      # after hot-idle logged + load tested
+    map_gate_kpa_tuned_ref: 90
+
+  fuel_press:
+    limit_kpa: null              # off for v1 — enable with sane floor after fuel tune stable
+
+  coolant_pressure:
+    limit_kpa: null              # off for v1 — optional after validation
+
+  rev_limit_rpm: 8000            # motorsport feature — not a cluster warning flag
+  gp_soft_limit_rpm_first_start: 4000   # operator/PCLink soft cap until stable (see OPERATOR_FIRST_START)
+
+# --- Cluster UI only (unchanged during startup vs tuned) ---
+
+boost:
+  bar_red_psi: 25
+  bg_flash_on_psi: 27
+  bg_flash_off_psi: 25
+
+ect_f:
+  cluster_color_hot: 230
+
+oil_temp_f:
+  ring_on: 235
+  ring_off: 232
+
+ac:
+  cut_map_psi: 17
+  reengage_map_psi: 14
+  reengage_hold_s: 3
+  cut_rpm: 5000
+  reengage_rpm: 4500
+
+oil_press:
+  cluster_ring_min_psi: 25
+  cluster_ring_min_rpm: 2000
+
+lambda:
+  widget_red_low: 0.70
+  widget_red_high: 1.05
+
+fuel_low:
+  cluster_ring_pct: 20
+  hardwired_lamp: true
+  link_limit: false
+  can_alarm: false

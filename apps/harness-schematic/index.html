@@ -303,9 +303,9 @@ const GROUP_OF = {
   xcvr:"can",csb3:"can",lambda:"can",usbcan:"can",pi:"can",r120a:"can",r120b:"can",
   "sp-canh":"can","sp-canl":"can",
   center:"cluster",left:"cluster",right:"cluster",btn:"cluster",enc1:"cluster",enc2:"cluster",
-  cabin:"body",brake:"body",rev:"body",cruise:"body","c-main":"body","ac-req":"body",evap:"body",
+  cabin:"body",brake:"body",rev:"body",cruise:"body","ac-req":"body",evap:"body",clutch:"body","ign-sw":"body","bh-a":"body","bh-b":"body",
   "fuel-lvl":"prop","r-fuel":"prop","abs-fl":"prop","abs-fr":"prop","abs-rl":"prop","abs-rr":"prop",
-  "start-sw":"prop",clutch:"prop","k-fan2":"prop",fan2:"prop","oil-lamp":"prop",pmu:"prop",
+  "start-sw":"prop","k-fan2":"prop",fan2:"prop",pmu:"prop",
   hat:"prop",knock2:"prop"
 };
 /* Splices that behave as global rails. Wires to these draw as a power/ground symbol. */
@@ -315,7 +315,7 @@ const RAILS = { "sp-12v":"12V", "sp-gnd":"GND", "sp-5v":"5V" };
 const BANDS = [
   { x:20,  y:-40,  w:2320, h:1760, label:"Engine management — sensors in · ECU · actuators out" },
   { x:20,  y:1740, w:2320, h:820,  label:"CAN bus 1 Mbit/s · clusters · RealDash" },
-  { x:20,  y:2580, w:2320, h:300,  label:"Body & switchboard — waiting on CSB3 connector" }
+  { x:20,  y:2580, w:2320, h:380,  label:"Body & switchboard — waiting on CSB3 connector" }
 ];
 
 const $ = (s) => document.querySelector(s);
@@ -407,20 +407,20 @@ function buildST185(){
   C.push(comp("oil-p","Oil pressure","S11", X2, 180, ["5V","SIG","GND"], "right"));
   C.push(comp("fuel-p","Fuel pressure","S12", X2, 300, ["5V","SIG","GND"], "right"));
   C.push(comp("clnt-p","Coolant pressure","S13", X2, 420, ["5V","SIG","GND"], "right"));
-  C.push(comp("aps","Accel pedal APS","A11", X2, 560, ["5V","APS-M","APS-S","GND"], "right"));
-  C.push(comp("fuel-lvl","Fuel level sender","U1", X2, 700, ["SIG","GND"], "right", {status:"prop", note:"Resistive sender. Link An Volt has no internal pull-up — 470Ω to +5V."}));
-  C.push(comp("r-fuel","470Ω AnV9 pull-up","R3", X2, 800, ["5V","SIG"], "right", {kind:"resistor", status:"prop", note:"External pull-up for a resistive sender. ~470–500Ω."}));
-  C.push(comp("start-sw","Start request","U6", X2, 900, ["SW","GND"], "right", {status:"prop", note:"ECU-controlled starter. Link DI software pull-up, switch to GND."}));
-  C.push(comp("clutch","Clutch switch","U7", X2, 1000, ["SW","GND"], "right", {status:"prop", note:"ECU-direct for flat-shift/launch. Not via switchboard — latency."}));
+  C.push(comp("aps","BRZ e-throttle pedal","A11", X2, 560, ["VC2 5V","GND2","VPA2 APS-S","VC1 5V","GND1","VPA1 APS-M"], "right", {w:220, note:"Subaru BRZ / Toyota-family Sumitomo TS 025 6-way. Looking into connector, tab at top: 1 VC2, 2 GND2, 3 VPA2, 4 VC1, 5 GND1, 6 VPA1. Main (full-range, pin 6) → An Volt 4. Sub (pin 3) → An Volt 5. Independent 5V/GND pairs. Set PCLink APS (Sub) 100% after probing."}));
+  C.push(comp("fuel-lvl","Fuel level sender","U1", X2, 760, ["SIG","GND"], "right", {status:"prop", note:"Resistive sender. Link An Volt has no internal pull-up — 470Ω to +5V."}));
+  C.push(comp("r-fuel","470Ω AnV9 pull-up","R3", X2, 860, ["5V","SIG"], "right", {kind:"resistor", status:"prop", note:"External pull-up for a resistive sender. ~470–500Ω."}));
+  C.push(comp("start-sw","OEM block — Start request","U6", X2, 960, ["SW","GND"], "right", {status:"prop", note:"Dummy OEM start switch. ECU-controlled starter. Link DI software pull-up, switch to GND. OEM internals not modelled."}));
+  C.push(comp("ign-sw","OEM block — Ignition switch","U13", X2, 1080, ["IGN ON"], "right", {note:"Dummy OEM ignition-switch block. Key-on 12V sense → DI 9 (B28) for PCLink Hold Power. OEM internals not modelled."}));
 
   /* ================= Band 1 · column 3 — the ECU, stacked A over B ================ */
   const X3 = 780;
   C.push({
     id:"ecu-a", kind:"connector", name:"XtremeX Connector A", ident:"A", x:X3, y:40, w:290,
-    status:"ok", note:"34-way Superseal loom A. Pin numbers = G4X XtremeX Quickstart, wire side. All 34 cavities exist. A6 +8V Out has no wire on this build.",
+    status:"ok", note:"34-way Superseal loom A. Pin numbers CONFIRMED against G4X XtremeX Quickstart (wire side, 2026-09-11). All 34 cavities exist. A6 +8V Out feeds the cam Hall sensor (1.8k pull-up on signal).",
     pins: loomPins("A", [
       [1,"Inj 4","right"],[2,"Inj 3","right"],[3,"Inj 2","right"],[4,"Inj 1","right"],
-      [5,"+14V","right"],[6,"+8V Out unused","right"],
+      [5,"+14V","right"],[6,"+8V Out cam Hall","right"],
       [7,"Shield/Gnd","left"],[8,"Trig 1","left"],[9,"Trig 2","left"],
       [10,"Ign 4","right"],[11,"Ign 3","right"],[12,"Ign 2","right"],[13,"Ign 1","right"],
       [14,"An Volt 4 APS-M","left"],
@@ -434,17 +434,17 @@ function buildST185(){
   });
   C.push({
     id:"ecu-b", kind:"connector", name:"XtremeX Connector B", ident:"B", x:X3, y:820, w:290,
-    status:"ok", note:"34-way Superseal loom B. B14 is the only empty cavity (no terminal). Spare terminals, no wire: B1–B4 Inj 8–5, B10–B11 Ign 8–7, B27–B28 DI10/DI9 (CAN 2 unused), B31–B32 An Volt 10–11.",
+    status:"ok", note:"34-way Superseal loom B. Pin numbers CONFIRMED against G4X XtremeX Quickstart (wire side, 2026-09-11). B14 is the only empty cavity (no terminal). Spare terminals, no wire: B1–B4 Inj 8–5, B8 Knock 2, B10–B12 Ign 8–6, B27 DI10, B29 DI8, B31–B32 An Volt 10–11. B28 is DI 9 Ignition Switch.",
     pins: loomPins("B", [
       [1,"Inj 8 spare","right"],[2,"Inj 7 spare","right"],[3,"Inj 6 spare","right"],[4,"Inj 5 spare","right"],
-      [5,"+14V Aux 9/10","right"],[6,"Temp 3 Oil T","left"],[7,"Temp 4 Chg IAT","left"],
+      [5,"V-Ethrottle in","right"],[6,"Temp 3 Oil T","left"],[7,"Temp 4 Chg IAT","left"],
       [8,"Knock 2","left"],[9,"Knock 1","left"],
-      [10,"Ign 8 spare","right"],[11,"Ign 7 spare","right"],[12,"Ign 6 oil lamp","right"],[13,"Ign 5 2nd fan","right"],
+      [10,"Ign 8 spare","right"],[11,"Ign 7 spare","right"],[12,"Ign 6 spare","right"],[13,"Ign 5 2nd fan","right"],
       [14,"nc empty cavity","left"],[15,"An Volt 6 Oil P","left"],[16,"An Volt 7 Fuel P","left"],[17,"Shield/Gnd","left"],
       [18,"Aux 9 ETB M+","right"],[19,"DI 6 WSS RR","left"],[20,"DI 5 WSS RL","left"],[21,"DI 4 WSS FR","left"],
       [22,"Gnd Out","left"],[23,"An Volt 8 Clnt P","left"],[24,"An Volt 9 Fuel lvl","left"],[25,"Ground","left"],
-      [26,"Aux 10 ETB M−","right"],[27,"DI 10 / CAN2 H spare","left"],[28,"DI 9 / CAN2 L spare","left"],
-      [29,"DI 8 Clutch","left"],[30,"DI 7 Start","left"],[31,"An Volt 10 spare","left"],[32,"An Volt 11 spare","left"],
+      [26,"Aux 10 ETB M−","right"],[27,"DI 10 / CAN2 H spare","left"],[28,"DI 9 Ignition Switch","left"],
+      [29,"DI 8 spare / VSS cand.","left"],[30,"DI 7 Start","left"],[31,"An Volt 10 spare","left"],[32,"An Volt 11 spare","left"],
       [33,"An Volt 5 APS-S","left"],[34,"Ground","left"]
     ])
   });
@@ -455,25 +455,24 @@ function buildST185(){
   C.push(comp("inj2","Injector 2 1400cc","A2", X4, 150, ["12V","INJ"], "left"));
   C.push(comp("inj3","Injector 3 1400cc","A3", X4, 240, ["12V","INJ"], "left"));
   C.push(comp("inj4","Injector 4 1400cc","A4", X4, 330, ["12V","INJ"], "left"));
-  C.push(comp("cop1","COP 1 1ZZ","A5", X4, 440, ["12V","GND","TRIG"], "left"));
-  C.push(comp("cop2","COP 2 1ZZ","A6", X4, 550, ["12V","GND","TRIG"], "left"));
-  C.push(comp("cop3","COP 3 1ZZ","A7", X4, 660, ["12V","GND","TRIG"], "left"));
-  C.push(comp("cop4","COP 4 1ZZ","A8", X4, 770, ["12V","GND","TRIG"], "left"));
+  C.push(comp("cop1","COP 1 1ZZ","COP1", X4, 440, ["12V","GND","TRIG"], "left"));
+  C.push(comp("cop2","COP 2 1ZZ","COP2", X4, 550, ["12V","GND","TRIG"], "left"));
+  C.push(comp("cop3","COP 3 1ZZ","COP3", X4, 660, ["12V","GND","TRIG"], "left"));
+  C.push(comp("cop4","COP 4 1ZZ","COP4", X4, 770, ["12V","GND","TRIG"], "left"));
   C.push(comp("boost","Boost solenoid","A9", X4, 890, ["12V","LS"], "left"));
-  C.push(comp("etb","Bosch 74mm ETB","A10", X4, 990, ["M+","M−","5V","TPS-M","TPS-S","GND"], "left", {w:220}));
-  C.push(comp("mrs","MRS EPS pump","A12", X4, 1190, ["12V","GND","SPD Yel/Wht"], "left", {w:220, note:"Aux7 speed-out, no resistor"}));
+  C.push(comp("etb","Bosch 74.5mm ETB","A10", X4, 990, ["M+","M−","5V","TPS-M","TPS-S","GND"], "left", {w:220}));
+  C.push(comp("mrs","MRS EPS pump","A12", X4, 1190, ["12V","GND","SPD Yel/Wht"], "left", {w:220, note:"Aux7 Speedo Out. Scope high level before adding a 5V pull-up — Aux 5–8 have ~1.5k internal pull-up."}));
   C.push(comp("fan2","2nd / condenser fan","U8", X4, 1320, ["12V","GND"], "left", {status:"prop", note:"High current — switched by Ign 5 via relay K7, not the ECU pin."}));
-  C.push(comp("oil-lamp","Oil pressure lamp","U9", X4, 1420, ["12V","LS"], "left", {status:"prop", note:"Ign 6 as low-side aux. Lamp +12V, ECU sinks to ground."}));
 
   /* ================= Band 1 · column 5 — relays and power ========================= */
   const X5 = 1660;
-  C.push(comp("k-efi","EFI main relay","K1", X5, 60, ["86 coil","85 LS","30 12V","87 ECU 14V"], "left"));
-  C.push(comp("k-etb","ETB power relay","K2", X5, 200, ["86 coil","85 LS","30 12V","87 V-Ethrottle"], "left"));
-  C.push(comp("k-fp","Fuel pump relay","K3", X5, 340, ["86 coil","85 LS","30 12V","87 pump"], "left"));
-  C.push(comp("k-fan","Rad fan relay","K4", X5, 480, ["86 coil","85 LS","30 12V","87 fan"], "left"));
-  C.push(comp("k-str","Start relay","K5", X5, 620, ["86 coil","85 LS","30 12V","87 starter"], "left"));
-  C.push(comp("ac-rly","AC clutch / amp ACT","K6", X5, 760, ["86 coil","85 LS Aux4","30 12V","87 clutch"], "left", {status:"prop", note:"Confirm clutch relay vs amp ACT"}));
-  C.push(comp("k-fan2","Condenser fan relay","K7", X5, 900, ["86 coil","85 Ign5 LS","30 12V","87 fan"], "left", {status:"prop", note:"Ign 5 is a spare ignition drive used as a low-side aux — fan current goes through this relay, not the ECU pin."}));
+  C.push(comp("k-efi","OEM block — EFI main relay","K1", X5, 60, ["COIL +12V","ECU LS","12V IN","12V OUT"], "left", {note:"OEM/aftermarket relay as a generic block. Internals not modelled."}));
+  C.push(comp("k-etb","OEM block — ETB power relay","K2", X5, 200, ["COIL +12V","ECU LS","12V IN","12V OUT"], "left"));
+  C.push(comp("k-fp","OEM block — Fuel pump relay","K3", X5, 340, ["COIL +12V","ECU LS","12V IN","12V OUT"], "left"));
+  C.push(comp("k-fan","OEM block — Rad fan relay","K4", X5, 480, ["COIL +12V","ECU LS","12V IN","12V OUT"], "left"));
+  C.push(comp("k-str","OEM block — Start relay","K5", X5, 620, ["COIL +12V","ECU LS","12V IN","12V OUT"], "left"));
+  C.push(comp("ac-rly","OEM block — AC clutch / amp ACT","K6", X5, 760, ["COIL +12V","ECU LS Aux4","12V IN","12V OUT"], "left", {status:"prop", note:"Amp ACT: ground = kill, float = normal. Active-low sink, no pull-up. No AC1 wire in this install; ACT is the only AC signal. OEM internals not modelled."}));
+  C.push(comp("k-fan2","OEM block — Condenser fan relay","K7", X5, 900, ["COIL +12V","Ign5 LS","12V IN","12V OUT"], "left", {status:"prop", note:"Ign 5 is a spare ignition drive used as a low-side aux — fan current goes through this relay, not the ECU pin."}));
   C.push(comp("batt","Vehicle 12V IGN","P1", X5, 1060, ["12V+","GND"], "left"));
   C.push(comp("buck","12V→5V buck ≥3A","P2", X5, 1180, ["12V IN","GND","5V OUT"], "left"));
   C.push({id:"sp-12v", kind:"splice", name:"12V rail", ident:"SP1", x:X5+20, y:1330, w:24,
@@ -527,17 +526,19 @@ function buildST185(){
   /* ================= Band 3 · body / switchboard (unwired) ======================== */
   const yB = 2660;
   C.push(comp("cabin","Cabin temp NTC","SB1", 60, yB, ["SIG","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec. No wire until that housing is chosen."}));
-  C.push(comp("brake","Brake switch","SB2", 290, yB, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec."}));
-  C.push(comp("rev","Reverse switch","SB3", 520, yB, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec."}));
-  C.push(comp("cruise","Cruise stalk ladder","SB4", 750, yB, ["SIG","GND"], "right", {status:"tbd", unwired:true, note:"OEM resistor ladder. Waits on CSB3 I/O connector spec."}));
-  C.push(comp("c-main","Cruise MAIN","SB5", 980, yB, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec."}));
-  C.push(comp("ac-req","AC request","SB6", 1210, yB, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec."}));
-  C.push(comp("evap","Evap over-temp","SB7", 1440, yB, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"Waits on CSB3 I/O connector spec."}));
+  C.push(comp("brake","OEM block — Brake switch","SB2", 290, yB, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"OEM body switch as a generic block. Internals not modelled. Waits on CSB3 I/O connector spec."}));
+  C.push(comp("rev","OEM block — Reverse switch","SB3", 520, yB, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"OEM body switch as a generic block. Internals not modelled."}));
+  C.push(comp("cruise","OEM block — Cruise stalk","SB4", 750, yB, ["LADDER","GND","MAIN","SET","RESUME"], "right", {w:220, status:"tbd", unwired:true, note:"One OEM cruise-stalk block: resistor ladder + MAIN/SET/RESUME. Internals not modelled. Waits on CSB3 I/O connector spec."}));
+  C.push(comp("ac-req","OEM block — AC request","SB6", 1040, yB, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"OEM body switch as a generic block."}));
+  C.push(comp("evap","OEM block — Evap over-temp","SB7", 1270, yB, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"OEM body switch as a generic block."}));
+  C.push(comp("clutch","OEM block — Clutch switch","SB8", 60, yB+160, ["SW","GND"], "right", {status:"tbd", unwired:true, note:"Moved off ECU DI 8 (2026-09-06). Flat-shift/launch via switchboard CAN. OEM internals not modelled."}));
+  C.push(comp("bh-a","OEM block — Bulkhead A","BH1", 290, yB+160, ["TBD","TBD"], "right", {status:"tbd", unwired:true, note:"Firewall bulkhead as a generic OEM block. No invented 37-way pinout until wires land in cavities."}));
+  C.push(comp("bh-b","OEM block — Bulkhead B","BH2", 520, yB+160, ["TBD","TBD"], "right", {status:"tbd", unwired:true, note:"Firewall bulkhead as a generic OEM block."}));
 
   /* ================= Notes ======================================================== */
   C.push({
     id:"note-cavities", group:"ecu", kind:"note", name:"Empty / spare ECU cavities", ident:"", x:2000, y:60, w:330, h:150,
-    pins:[], note:"Connector A: all 34 Superseal cavities present, A6 +8V unused. Connector B: B14 is empty, no terminal. Spare terminals with no wire: B1–B4, B10–B11, B27–B28, B31–B32."
+    pins:[], note:"Connector A: all 34 Superseal cavities present — A6 +8V Out feeds the cam Hall sensor. Connector B: B14 is empty, no terminal (official QSG). Spare terminals with no wire: B1–B4, B8, B10–B12, B27 DI10, B29 DI8, B31–B32. B28 is DI 9 Ignition Switch."
   });
   C.push({
     id:"note-power", group:"power", kind:"note", name:"Power shown as symbols", ident:"", x:2000, y:240, w:330, h:150,
@@ -549,7 +550,7 @@ function buildST185(){
   });
   C.push({
     id:"note-csb3", group:"can", kind:"note", name:"CSB3 — no I/O connector yet", ident:"", x:60, y:2130, w:290, h:130,
-    pins:[], note:"Spec a harness connector for the switchboard. Cabin, brake, reverse, cruise, AC and evap stay on the canvas with no wires and no made-up connector in between."
+    pins:[], note:"Spec a harness connector for the switchboard. OEM body switches (clutch, brake, reverse, cruise stalk, AC, evap) and bulkheads stay as generic blocks with no invented pinouts and no wires until that housing is chosen."
   });
   C.push({
     id:"note-unwired", group:"prop", kind:"note", name:"Proposed nets are dashed", ident:"", x:1680, y:2660, w:560, h:150,
@@ -611,9 +612,11 @@ function buildST185(){
   addW("etb.p5","ecu-a.p33","SIG");
   addW("etb.p6","sp-gnd.p1","GND");
   addW("sp-5v.p1","aps.p1","5V");
-  addW("aps.p2","ecu-a.p14","SIG");
+  addW("aps.p2","sp-gnd.p1","GND");
   addW("aps.p3","ecu-b.p33","SIG");
-  addW("aps.p4","sp-gnd.p1","GND");
+  addW("sp-5v.p1","aps.p4","5V");
+  addW("aps.p5","sp-gnd.p1","GND");
+  addW("aps.p6","ecu-a.p14","SIG");
   addW("ecu-a.p27","mrs.p3","AUX"); addW("sp-12v.p1","mrs.p1","12V"); addW("mrs.p2","sp-gnd.p1","GND");
 
   /* ================= Wires · relays =============================================== */
@@ -691,15 +694,12 @@ function buildST185(){
   addW("abs-rr.p3","ecu-a.p7","GND",prop);
   addW("start-sw.p1","ecu-b.p30","DI",{...prop, label:"DI7"});
   addW("start-sw.p2","sp-gnd.p1","GND",prop);
-  addW("clutch.p1","ecu-b.p29","DI",{...prop, label:"DI8"});
-  addW("clutch.p2","sp-gnd.p1","GND",prop);
+  addW("ign-sw.p1","ecu-b.p28","DI",{label:"Ignition Switch"});
   addW("ecu-b.p13","k-fan2.p2","IGN",{...prop, label:"Ign 5 LS"});
   addW("sp-12v.p1","k-fan2.p1","12V",prop);
   addW("sp-12v.p1","k-fan2.p3","12V",prop);
   addW("k-fan2.p4","fan2.p1","12V",prop);
   addW("fan2.p2","sp-gnd.p1","GND",prop);
-  addW("ecu-b.p12","oil-lamp.p2","IGN",{...prop, label:"Ign 6 LS"});
-  addW("sp-12v.p1","oil-lamp.p1","12V",prop);
   addW("knock2.p1","ecu-b.p8","TRIG",{...prop, label:"Knock 2"});
   addW("knock2.p2","ecu-a.p7","GND",prop);
   addW("pmu.p1","sp-12v.p1","12V",prop);
@@ -710,7 +710,7 @@ function buildST185(){
   addW("hat.p4","pi.p5","GND",prop);
 
   /* ================= Wires · ECU power ============================================ */
-  addW("k-etb.p4","ecu-b.p5","12V",{label:"B5 +14V Aux9/10"});
+  addW("k-etb.p4","ecu-b.p5","12V",{label:"B5 V-Ethrottle"});
   addW("ecu-a.p25","sp-gnd.p1","GND",{label:"A25 Ground"});
   addW("ecu-a.p34","sp-gnd.p1","GND",{label:"A34 Ground"});
   addW("ecu-b.p25","sp-gnd.p1","GND",{label:"B25 Ground"});
@@ -1844,6 +1844,9 @@ const LIB_PRIMITIVES = [
     desc:"Junction / splice point", pins:[["1","NET","right"]] },
   { id:"prim-resistor",  name:"Resistor", kind:"resistor", w:170,
     desc:"Two-terminal resistor", pins:[["1","A","right"],["2","B","right"]] },
+  { id:"prim-oem-block", name:"OEM block (generic)", kind:"connector", w:COMP_W,
+    desc:"Opaque OEM connection — relays, bulkheads, body switches. Do not invent internals.",
+    pins:[["1","SIG","right"],["2","GND","right"]] },
   { id:"prim-relay",     name:"Relay (generic)", kind:"connector", w:COMP_W,
     desc:"ISO micro relay, 4 terminal",
     pins:[["1","86 coil","right"],["2","85 LS","right"],["3","30 12V","right"],["4","87 out","right"]] },
