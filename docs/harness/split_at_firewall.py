@@ -19,13 +19,31 @@ BH = CABIN_BH | ENGINE_BH
 
 # Settled by Daniel 2026-09-17: the EPS control module is bolted to the pump, so
 # the relay and all three pump connectors are engine bay.
-OVERRIDE = {"k_eps": "engine", "mrs_pwr": "engine",
-            "mrs_en": "engine", "mrs_ctrl": "engine"}
+OVERRIDE = {
+    # EPS pump and its relay - control module is bolted to the pump.
+    "k_eps": "engine", "mrs_pwr": "engine",
+    "mrs_en": "engine", "mrs_ctrl": "engine",
+    # Heavy DC islands. These hang off RADLOK mates, not wires, so the flood
+    # fill cannot reach them from a bulkhead - place them by hand.
+    "t_batt_pos": "cabin", "t_batt_neg": "cabin",
+    "rl_pos_fw": "cabin", "rl_neg_fw": "cabin",
+    "rl_pos_eng": "engine", "rl_neg_eng": "engine",
+    "t_starter_b": "engine", "t_alt_b": "engine", "t_eng_block": "engine",
+    # Body-side devices: behind the dash or down the tunnel, not over the
+    # firewall. They ride the ECU-side drawing.
+    "fuelpump": "cabin", "fuellvl": "cabin", "starter_trigger": "engine",
+    "batt_ring": "cabin", "chassis_ring": "cabin",
+}
 
 # Wires that must cross the firewall and do not yet have a bulkhead pin.
 # Each becomes a _c / _e pair once a pin is allocated. Cut here so the flood
 # fill does not smear one side into the other.
-CUT = {"w_k_eps_86", "w_mrs_relay_req"}
+CUT = {
+    "w_k_eps_86",        # relay coil feed from the cabin switched-12V splice
+    "w_mrs_relay_req",   # deleted per 6.16 - pump does not switch its own relay
+    "w_fb_k_eps_30",     # 60 A feed, cabin fuse block -> engine-bay relay: heavy DC
+    "w_strl",            # start relay -> starter solenoid, crosses with no pin
+}
 
 # Bulkhead C is deleted (plan doc 6.1) but still drawn. Until it is actually
 # removed it bridges cabin and engine and smears the whole classification, so
@@ -69,6 +87,8 @@ def classify(doc):
             continue
         s, t = endpoints(w)
         for a, b in ((s, t), (t, s)):
+            if b in OVERRIDE:
+                continue
             if a in CABIN_BH and b and b not in BH:
                 side.setdefault(b, set()).add("cabin")
             elif a in ENGINE_BH and b and b not in BH:
@@ -78,6 +98,8 @@ def classify(doc):
     while changed:
         changed = False
         for n in list(adj):
+            if n in OVERRIDE:      # an override is final - never widened by a neighbour
+                continue
             cur = side.get(n, set())
             new = set(cur)
             for m in adj[n]:
@@ -94,6 +116,72 @@ def classify(doc):
     for n in ENGINE_BH:
         final[n] = "engine"
     return final, leaks
+
+
+def find_bridges(doc, extra_cut, limit=12):
+    """Name the wires that let one side reach the other with no bulkhead.
+
+    Repeatedly shortest-paths from an engine-anchored node to a cabin-anchored
+    one, cutting the path each round, so every crossing that still needs a
+    bulkhead pin gets named instead of guessed at.
+    """
+    cut = set(CUT) | set(extra_cut)
+    found = []
+    for _ in range(limit):
+        adj = collections.defaultdict(list)
+        for w in doc["wires"]:
+            if w.get("id") in cut:
+                continue
+            s, t = endpoints(w)
+            if s in BH or t in BH or s in DELETED or t in DELETED:
+                continue
+            adj[s].append((t, w["id"]))
+            adj[t].append((s, w["id"]))
+
+        anchor = {}
+        for w in doc["wires"]:
+            if w.get("id") in cut:
+                continue
+            s, t = endpoints(w)
+            for a, b in ((s, t), (t, s)):
+                if b in BH or b in DELETED:
+                    continue
+                if a in ENGINE_BH:
+                    anchor.setdefault(b, "engine")
+                elif a in CABIN_BH:
+                    anchor.setdefault(b, "cabin")
+        for n, v in OVERRIDE.items():
+            anchor[n] = v
+
+        prev, q = {}, collections.deque()
+        for n, v in anchor.items():
+            if v == "engine":
+                prev[n] = None
+                q.append(n)
+        hit = None
+        while q:
+            n = q.popleft()
+            if anchor.get(n) == "cabin":
+                hit = n
+                break
+            for m, wid in adj[n]:
+                if m not in prev:
+                    prev[m] = (n, wid)
+                    q.append(m)
+        if not hit:
+            return found
+        cur, chain = hit, []
+        while prev.get(cur):
+            p, wid = prev[cur]
+            chain.append((wid, p, cur))
+            cur = p
+        chain.reverse()
+        # cut where the path leaves the engine-anchored end - that is the wire
+        # actually crossing, not wherever the search happened to finish
+        wid, a, b = chain[0]
+        found.append((wid, a, b))
+        cut.add(wid)
+    return found
 
 
 def side_of_wire(w, side):
@@ -147,10 +235,11 @@ def main():
         print("=" * 66)
         print(name, " wires:", len(doc.get("wires", [])))
         if leaks:
-            print("  LEAKS - these reach both sides without crossing a bulkhead;")
-            print("  add them to CUT and allocate a bulkhead pin:")
-            for n in leaks:
-                print("     ", n)
+            bridges = find_bridges(doc, ())
+            print("  CROSSINGS with no bulkhead pin - add to CUT and allocate one:")
+            for wid, a, b in bridges:
+                print("      %-18s %-16s -> %s" % (wid, a, b))
+            print("  (they smear %d nodes across both sides)" % len(leaks))
         unplaced = [w.get("id") for w in doc.get("wires", [])
                     if w.get("id") not in CUT
                     and not (set(endpoints(w)) & DELETED)
