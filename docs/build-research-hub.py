@@ -47,6 +47,20 @@ TOPICS: list[dict] = [
         "title": "Engine-room power redistribution",
         "blurb": "OEM kick-panel / J/B2 splice table and factory EWD snips for the trunk-battery / glove-box PDB move. Partial engine-room C is in docs/harness/.",
     },
+    {
+        "dir": "devices",
+        "title": "Sensors & Actuators",
+        "blurb": "Per-device reference: part numbers, pinouts, calibrations and drive "
+                 "types for every sensor and actuator on the car, plus the VR wheel-speed "
+                 "conditioner. Pin assignments themselves live in XTREMEX-IO-TABLE.html.",
+    },
+    {
+        "dir": "vendor",
+        "title": "Vendor Documentation",
+        "blurb": "Official Link G4X / XtremeX manuals and spec sheets, plus rendered QSG "
+                 "pages. These outrank every derived doc in this repo -- when a Link "
+                 "document disagrees with ours, the Link document wins.",
+    },
 ]
 
 # Files matching these are working artifacts, not things you read.
