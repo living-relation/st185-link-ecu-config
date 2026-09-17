@@ -331,3 +331,37 @@ the four wheel-speed connectors: remove the shell from those connectors rather t
 
 Note to check when converting: cables are schematic-only nodes in this app. Confirm the
 layout view still routes the cores through bundles as expected before converting all of them.
+
+
+### 6.13 File split - cut at the firewall, settled by Daniel 2026-09-17
+
+harness.design caps a document at **100 connections**. Signal (112) and Power (114) both
+exceed it, which makes them read-only in the app. The fix is to split each loom at the
+bulkhead:
+
+| Loom | Files | Holds |
+|---|---|---|
+| **A - sensor / signal** | `ST185-Signal-cabin.harness`<br>`ST185-Signal-engine.harness` | cut at bulkheads A and B |
+| **B - power** | `ST185-Power-cabin.harness`<br>`ST185-Power-engine.harness` | cut at bulkheads A and B. **The MR-S EPS pump belongs to this loom.** |
+| CAN | `ST185-CAN.harness` | 16 wires, unchanged |
+| Engine room C | `ST185-EngineRoom-C.harness` | 33 wires, unchanged |
+
+Each new file lands near 56 connections, leaving room for shields, the spare breakout and
+new connectors before the cap bites again.
+
+**The cut is already marked in the data.** Every firewall-crossing wire is drawn as a
+`_c` / `_e` pair - `w12_c` runs `ecu_a` to `bh_a_fw`, `w12_e` runs `bh_a_eng` to `knock1`.
+The cabin file takes the `_fw` halves, the engine file takes the `_eng` halves, and both
+bulkheads appear in both drawings as the interface.
+
+**Do not split by bulkhead A vs B.** It does not partition: `ecu_b` has wires through
+bulkhead A (`w54_c`), and the engine-side splices `sp_gndout_eng`, `sp_5v_eng`,
+`sp_sw12_eng` and `sp_cop_eng` each feed devices behind both bulkheads. That split would
+duplicate shared nodes across files, which is how copies drift apart.
+
+**One wire currently skips the firewall entirely:** `w_mrs_relay_req` runs from
+`mrs_ctrl` (engine bay) straight to `k_eps`, which the Power and Signal files draw on the
+cabin side while `ST185-EngineRoom-C.harness` draws it in the engine bay. With `k_eps`
+settled as **engine bay** (see the EPS section of `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`)
+that wire becomes engine-to-engine, and the relay's coil feed from `sp_sw12` becomes the
+crossing that needs a bulkhead B pin.

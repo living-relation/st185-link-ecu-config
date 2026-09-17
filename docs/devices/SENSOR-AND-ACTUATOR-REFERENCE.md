@@ -126,3 +126,63 @@ real limit. Applied in `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`:
 When the PMU is fitted it is a CAN 1 node at 1 Mbit/s — add it to `WIRING.md` and
 `CAN-BUS-MASTER-DESIGN.md` in the same change that lands it on the car, and do
 **not** add a third 120 Ω terminator.
+
+## MR-S (ZZW30) EHPS power steering pump - settled 2026-09-17
+
+Confirmed from Daniel's photos of the actual pump. The EPS control module is **bolted to
+the pump itself**, so everything below lives in the engine bay.
+
+### Three connectors
+
+| Ours | On the pump | Cavities | Part number | Used |
+|---|---|---:|---|---|
+| `mrs_pwr` | **A** - main power | 2 | `90980-12068` | 1 = +12 V from `k_eps`, 2 = GND to block |
+| `mrs_ctrl` | **B** - signal | **6** | *not yet identified* | speed pulse; the rest unused |
+| `mrs_en` | **C** - ignition | 2 | `90980-10942` | 1 = switched 12 V (7.5 A ign fuse), 2 unused |
+
+**`mrs_ctrl` is a 6-way, not a 3-way.** The diagrams draw only the wired pins. Draw all six
+and mark the spares unused - that is what the "3 vs 6 cavities" note was about. Its part
+number is still unidentified; `90980-*` family, to confirm.
+
+### Relay placement
+
+`k_eps` (HCR 150) lives in the **engine bay, next to the pump** - not the cabin. The pump
+draws 60-80 A peak, so the short heavy run wins and only the thin coil trigger crosses the
+firewall. Any drawing that puts `k_eps` on the cabin side is wrong.
+
+The reference wiring feeds the relay coil straight from ignition-switched 12 V. Our
+diagrams currently run `w_mrs_relay_req` from `mrs_ctrl.c3` to `k_eps.c2`, i.e. the pump
+switching its own main relay. That is **not** in the factory arrangement - confirm the
+intent before building it.
+
+### Speed signal - it is an ECU output
+
+`Aux 7 / A27` generates the SPD pulse train **to** the pump (~4 pulses/rev, 0-5 V). It is
+not an input and carries no load information. Aux 5-8 already have an internal ~1.5 kOhm
+pull-up, so **no external pull-up goes on this line until the high level has been scoped**
+(see `XTREMEX-IO-TABLE.html`). Remove any pull-up drawn on it in the meantime.
+
+### Idle-up for pump current draw - settled 2026-09-17
+
+Pump current follows **steering effort, not road speed**: stopped-and-straight is a light
+load, stopped-and-turning is the 60-80 A case. Plain inverse-VSS therefore raises idle at
+every traffic light for nothing and does nothing during a fast corner. The strategy is:
+
+1. **Measure the current.** Hall-effect sensor (ACS758 class, 0-5 V ratiometric) on the
+   pump's 12 V feed into a spare **An Volt** input - `B31` or `B32` are free. Feed idle-up
+   forward from measured amps. Also gives pump diagnostics and a CAN log channel.
+2. **System-voltage droop idle-up** as the backstop. No hardware; catches every large load,
+   not just the pump.
+3. **Inverse-VSS is demoted to a gate**, not a trigger: idle-up only when speed is below
+   roughly 5 km/h **and** (1) or (2) says the pump is actually pulling.
+
+**Test before fitting the sensor.** The build is drive-by-wire and Link closed-loop idle on
+an e-throttle absorbs load well. Once the car runs: idle it, log RPM, turn lock to lock.
+Under roughly 100 rpm dip, fit nothing. Large dip or hunting, fit the current sensor.
+
+Confirm the exact PCLink setting names against the **G4X Help built into PCLink** (F1) -
+Link's online help was not reachable when this was written, and Link documentation
+outranks this note.
+
+If one of `mrs_ctrl`'s four unused pins turns out to be a load or fault output, that
+replaces the current sensor for the price of one wire. Worth metering before buying.
