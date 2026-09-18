@@ -126,3 +126,10 @@ Once the pin errors above were fixed, these agree with the official QSG and with
 - Ignition Switch mapped to **DI 9 (B28)** via dummy OEM ignition-switch block.
 - OEM connections (relays, bulkheads, clutch, cruise stalk, brake, reverse, start) drawn as generic blocks.
 - APS is the Subaru BRZ 6-pin Sumitomo TS 025 pedal (not a 4-pin MP150).
+
+## Daniel seals pointer (2026-09-18)
+See `WIRING-AUDIT-2026-09-18.md` and `POWER-AND-COMMS-ARCHITECTURE.md`.
+- SoT: Claude + living-relation primary; rd-st185 secondary.
+- Low-fuel: An Volt + smoothing → 12V LED; thermistor dropped.
+- Cluster warning LEDs: OEM taps after gauge remove.
+- Reverse: CSB → Gear=7 on 0x3EB; RealDash camera deferred 2026-09-04.

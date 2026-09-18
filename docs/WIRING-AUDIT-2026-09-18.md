@@ -3,7 +3,7 @@
 ## Purpose
 Read-only pass: living ECU IO vs harness.design vs HTML/MD faces. **Pass A mechanical applied** on feature branch (see below).
 
-Vehicle: **1993** ST185 / 5S-GTE / Link G4X XtremeX.
+Vehicle: **1991** ST185 / 5S-GTE / Link G4X XtremeX.
 
 ## Trust order (Seeker's lamps)
 1. Latest Claude/Cursor wiring decisions
@@ -21,7 +21,7 @@ Living ECU IO channel IDs match pin-for-pin across `XTREMEX-IO-TABLE.html` + rep
 - A7 shield bulkhead run `w12_c` / `w12_e`: **Gray → Green/Yellow**
 - Gnd Out harness colours: **Black → Black/White** (Power `sp_gndout*` rails)
 - B29 / DI8: **SEALED car-side** — gearbox **3-wire 12V Toyota VSS** (not 4-wire); mate = **generic oval 3-pin plug with socket contacts**, **PN TBD**; signal → B29 / DI 8; oval cavity map TBD (do not invent); **not** OEM SPD tap (path A). Stub `vss_gbx` in Signal (no wire yet).
-- Fuel level: OEM sender + divider locked; **Ω TBD** (470 Ω = starting guess only)
+- Fuel level: OEM sender + divider; pull-up **`r_fuellvl` = 470 Ω** (living SoT — SENSOR-AND-ACTUATOR-REFERENCE / NEED-TO-BUY / harness; cal may refine later)
 - AC kill: intentional OEM amp; **ground = kill, float = run**
 - BUILD-LIST / NEED-TO-BUY regenerated from harness crown
 
@@ -35,7 +35,7 @@ Living ECU IO channel IDs match pin-for-pin across `XTREMEX-IO-TABLE.html` + rep
 | DONE | Gnd Out colour | Power rails **Black/White** |
 | INFO | BOARD-VERIFY | "pins unverified" is a stale snapshot |
 | LOCKED | B29 harness wire | **Path B** @ `784c712`: gearbox **3-wire 12V Toyota VSS** → generic **oval 3-pin sockets**, P/N TBD. Faces **IGN / GND / SP1** (not pin #s). **SP1 → B29/DI8** only into ECU loom; IGN+GND bay-local. Path A jarred. Cavity order still open. |
-| OPEN | Fuel divider Ω | Approach locked; value TBD for BOM/calibration |
+| LOCKED | Fuel pull-up Ω | **`r_fuellvl` = 470 Ω** to +5V (A32) for An Volt 9 / B24 — living SoT in SENSOR-AND-ACTUATOR-REFERENCE + NEED-TO-BUY + ST185 harness. Float ~3/110 Ω. Level only (no low-fuel LED). | OEM float **~3 Ω full / ~110 Ω empty** (SENSOR-AND-ACTUATOR-REFERENCE). An Volt 9 / B24 + external pull-up to +5 V (not 12 V gauge into Link). Pull-up value TBD (`r_fuellvl` 470 Ω = guess only). Low-fuel silver 1-wire = thermistor (IG→lamp→wire→case GND when dry/~40s); LED reuse that path or threshold float. Thermistor F18 cavity TBD. |
 
 ## Pin-graph (crowned on Pass A)
 `docs/harness/ecu_pin_graph.csv` (crowned @ `37af8f6`).
@@ -63,11 +63,11 @@ Living SoT + Link primary + Daniel locks:
 - **Loom C / bh_c** — **deleted** `bh_c_*` from ACTIVE; no bulkhead; EngineRoom-C / RADLOK pass-thru
 - **A7 colours** — **Green/Yellow** (applied on Signal shield bulkhead run)
 - **B29** — **SEALED**: gearbox **3-wire 12V Toyota VSS** (not 4-wire); generic oval 3-pin socket plug **PN TBD**; signal → B29 / DI 8; cavity map TBD; **not** OEM SPD tap (path A)
-- **Fuel level** — OEM sender + **voltage divider** (Ω TBD)
+- **Fuel level** — OEM sender + **`r_fuellvl` 470 Ω** pull-up (living SoT)
 - **Git** — **feature branch only**; no main until verified
 
 ## Open locks (Daniel)
-None on policy. Remaining **build** openers: (1) which oval cavity = IGN / GND / SP1 (2) fuel-divider ohms TBD (3) no main until Daniel verifies Pass A. VSS Path B sealed on `pass-a-bh-c-delete-locks` tips `784c712` (VSS) + `d0bd909` (power/comms). Main untouched @ `b3e417d`. Writer slot free.
+Policy locks (Daniel 2026-09-18): VSS wire to labeled 12V/GND/Signal (cavity order later, no invent); fuel pull-up **`r_fuellvl` = 470 Ω** (living SoT: SENSOR-AND-ACTUATOR-REFERENCE + NEED-TO-BUY + harness); KEEP RTR+horn on Loom C; residual LED harness face **YES**; RADLOK must exceed **160 A continuous**; UVC cam TBD; car year **1991**; push of `pass-a-bh-c-delete-locks` approved (Grimoire fires from 1:1). Batt LED: alternator sense may light charge LED — checking, don’t invent CSB bit yet. **Repo rule:** never put ask-lists / open-question docs in-repo.
 
 
 
@@ -76,6 +76,155 @@ See `docs/POWER-AND-COMMS-ARCHITECTURE.md` (@ `d0bd909`). Summary:
 - Trunk batt → kill + fusible link → RADLOKs to engine (starter/alt); jump lugs near firewall; fuse/relay box + PDU glovebox side
 - **CAN 1 only:** 3-cluster + RealDash Pi 7" + CAN-Lambda + ECUMaster CSB + PDU; CAN1 comms cable carries **12V+GND out** for displays/CSB
 - Reverse: OEM reverse switch → ECU gear=7 on CAN → cluster **R** + RealDash USB camera
+
+
+## Fuel sender measurement (2026-09-18)
+- OEM float is **resistive** (~3 Ω full / ~110 Ω empty), not a native 5 V sender.
+- Factory gauge is on the **12 V body** side; Link An Volt is **0–5 V** only → **+5 V pull-up/divider** on An Volt 9 / B24 (do not feed 12 V gauge circuit into B24).
+- Low-fuel **silver single-wire** cylinder = thermistor (not float). See **Low-fuel thermistor** below.
+- **EWD cite:** ST185 Combination Meter pp.145–146; F18 float 3–4 ≈ 3 Ω full / 110 Ω empty; gauge on **15A GAUGE 12 V**.
+- Harness colors (sheet + community): **Y–R** level, **Y–L** empty-lamp candidate, **BR** float ground (Y–L = thermistor candidate until F18 pin page locks).
+
+
+## CAN gear / reverse (SoT check 2026-09-18)
+- Bus (`0x3EB` byte 0): `0=N, 1–6=fwd, 7=R` — frozen in center-cluster `canbus.c` + `CANBUS-ENCODE-DECODE-REFERENCE.html`
+- Center UI: `7 → −1` then glyph **R**
+- RealDash: not set up yet — reflash + listen-frame; map wire `7` → R/−1 or Reverse Lights
+- Reverse path: OEM reverse switch → ECU → CAN gear=7 → cluster R; RealDash USB camera after reflash
+
+## RealDash reverse camera status (2026-09-18)
+- **Pi Linux caveat (2026-09-18):** USB camera as RealDash **Video Gauge** is **Android-proven only** — Pi/Linux in-gauge cam path **unverified**. Gate any Pi reflash on a **Pi in-gauge cam smoke test**. **Jump-to-Page** (gear/R page) can ship separately without waiting on video gauge.
+Do **not** reflash Pi until camera page + triggers exist.
+
+| Piece | Status |
+|-------|--------|
+| Path: OEM reverse → ECUMaster CSB → CAN → ECU Trigger → Gear=7 on `0x3EB` | Sealed |
+| `link_g4x_realdash.xml` Gear carve-out (`ST185: Gear`, frame 1003) | Written (bind when building) |
+| Camera page + triggers in `.rd` | **Not built** — deferred 2026-09-04; flash **`.rd`+XML together** when ready |
+| Layout plan | Still single-page; no page swipe / media player yet |
+
+Verified capability: Jump to Page / Video Gauge Play from trigger (in-app; no Linux app-switch). **Trigger:** existing Link **Gear on `0x3EB`** (map 7→R page only; **not** Reverse Lights; **do not display gear** on RealDash). Camera page still **unbuilt**; when ready, flash **`.rd` + XML together**. Do not reflash Pi on XML alone.
+
+## Low-fuel LED algorithm (Daniel + Grimoire 2026-09-18)
+> **SCRAPPED 2026-09-18 afternoon** — float An Volt is fuel level only; no LED/thermistor lamp path.
+
+Thermistor **dropped**. Drive **12V low-fuel LED** from float An Volt (B24).
+
+**Two stages** (Grimoire 2026-09-18):
+- **Gauge path:** short upstream filter **4–8 s** (smooth needle / An Volt display)
+- **Lamp path:** separate **~45 s** confirm + hysteresis (not the same filter as the gauge)
+
+Prefer **hysteresis + confirm timers** (not raw MA alone):
+- **On:** smoothed level below threshold for **45 s continuous**
+- **Off:** smoothed level above threshold + ~**5–8%** hysteresis for **15–20 s**
+- Smooth: exponential MA, τ ≈ **20–30 s** (or 40–60 samples @ 1 Hz)
+OEM thermistor ~40 s dry→lamp was thermal lag; this recreates that calm in software.
+
+## Daniel correction (2026-09-18 afternoon) — SCRAP low-fuel LED parchment
+**SCRAP** all low-fuel LED / thermistor / cluster lamp drive plans. Float An Volt + divider is for **FUEL LEVEL display only** (not a lamp driver).
+
+### RealDash reverse (corrected)
+- **MUST** use existing Link **Gear on `0x3EB`** (already in ECU CAN + center cluster). **NOT** Reverse Lights.
+- **No new ECU I/O.** Do **not** display gear on RealDash.
+- Prefer **return-to-main** after out-of-R for **10 s** (or **10 mph** if speed listen is added later).
+- Cam page still unbuilt; Pi USB Video Gauge unverified; Jump-to-Page can ship separately; flash `.rd`+XML together when ready.
+
+### Warning LEDs present (no low-fuel LED)
+- **Hi beam, L+R turn, park brake** — body electronics / residual dash harness taps behind removed cluster
+- **Batt charge** — residual dash stub: **C12(C)9 B–O** = IG, **C12(C)8 Y** = alt **L** (EWD ~p.144; regulator grounds L to light lamp). **No CSB bit.** Oil pressure LED still Link → CSB (active-low verify).
+- **Ignore OEM meter pin faces** (C10/C11/C12 fuel/lamp faces) — residual dash harness only, not a full meter rebuild
+
+F18 2–1 thermistor map remains archival OEM only; not used.
+
+## RealDash / CSB LED bits (Grimoire 2026-09-18)
+- Reverse cam: `ST185: Gear` on `0x3EB` already carved in `link_g4x_realdash.xml` — cam only; **no** Reverse Lights; **no** gear gauge on RealDash.
+- **Return-to-main:** Dummy Timer — Gear≠7 resets; timer ≥ **10 s** → Jump to main (no MPH listen required).
+- RealDash Gear carve-out already in `link_g4x_realdash.xml` (`ST185: Gear` / `0x3EB`) — cam-only, no gear gauge.
+- Oil: `0x3F1` bit4 = Low Oil Press 2 already allocated; cluster has oil kPa on `0x3E9`.
+- CSB `0x643` confirmed ECU→CSB **low-side** (GND switch); **LS4+** currently spare after fan/AC.
+- **Batt charge:** alt **L** path sealed — **no CAN/CSB bit**. Oil pressure stays Link→CSB.
+- UVC cam candidates + Pi smoke-test gate: see POWER-AND-COMMS / council notes.
+
+## Daniel seals (2026-09-18) — SUPERSEDED where conflicted by afternoon correction — living-relation + Claude SoT
+Defer to **Claude 5sgte/cowork** + **living-relation/`st185-link-ecu-config`** as primary; **rd-st185** Cursor work is secondary.
+
+1. **Global SoT** — Claude + living-relation primary; rd-st185 secondary.
+2. **Low fuel** — **drop** in-tank low-fuel thermistor. Drive cluster **12V low-fuel LED** from float **An Volt** (B24) + **smoothing** (target ~40–60 s), not thermistor self-heat.
+3. **Loom C purpose** — OEM loom-C mods + **12V/GND injection** for trunk battery / fuse relocate; keep **kick-panel junctions** + most inner OEM harness. Many loom-C diagrams are **intentional** (purpose docs), even where Pass A removed `bh_c_*` ACTIVE bulkhead shells.
+4. **Cluster 12V LEDs** — low fuel, low oil pressure, alt/charge, park brake, high beam, L/R turn. Prefer **OEM cluster circuit taps** after gauge remove; do **not** rework dash loom beyond cluster removal. Fuel taps inked (F18 / C10–C11); other warning LEDs (oil/alt/park/beam/turn) still need EWD face.
+5. **Reverse** — already in SoT: OEM reverse → **ECUMaster CSB** → CAN → ECU Trigger **Gear=7** on `0x3EB`. RealDash USB camera page **DEFERRED** as of 2026-09-04 (not a wiring blocker).
+
+No main merge until Daniel verifies.
+
+## Cluster / F18 EWD pin-map (Seeker 2026-09-18) — archival; ignore meter faces for build
+Cite: ST185 EWD p.145 circuit + p.146 hints. Meter codes **C10(A) / C11(B) / C12(C)** (ignore C13–C15 header mismatch).
+
+### F18 fuel sender
+| Pins | Function | Colors | Notes |
+|------|----------|--------|-------|
+| **3–4** | Float | **Y–R** / **BR** | ≈ 3 Ω full / ≈ 110 Ω empty — living An Volt path |
+| **2–1** | Low-fuel thermistor | **Y–L** / **W–B** | Lamp side → case GND; path F18 → BP1 → IF1 → meter. **Cavity locked** but thermistor **still DROPPED** for An Volt % → 12V LED |
+
+### Cluster fuel taps (OEM after gauge remove)
+- Fuel gauge: **C11(B) pin 3** ← Y–R ← F18-3
+- Low-fuel lamp: **C10(A) pin 10** ← Y–L ← F18-2
+- Gauge power: **C11(B) pin 7** ← R–L from 15A GAUGE
+
+Full C10–C12 cavity art not in this EWD (location only). No pin rewrite if float stays on An Volt.
+
+## Residual dash-harness taps (Seeker 2026-09-18)
+OEM meter **gone** — splice **harness stubs** at C10/C11/C12 (**not** meter PCB). Cite EWD p.144 / p.72 / p.82.
+
+| LED | Stub cavity | Color | Body source (upstream) |
+|-----|-------------|-------|------------------------|
+| Hi beam | **C11(B)12** | **R–L** | High-beam feed (dimmer HIGH / same as RH high) |
+| Turn L | **C11(B)2** | **G–B** | Turn/hazard flasher LH |
+| Turn R | **C11(B)11** | **G–Y** | Turn/hazard flasher RH |
+| Charge / alt L | **C12(C)8** | **Y** | Alt regulator **L** (grounds to light) — keep L to alt; splice residual |
+| Charge / IG feed | **C12(C)9** | **B–O** | IG feed for charge lamp — residual |
+| Park brake | **C12(C)1** | **R–G** | Grounds via **P1** (and/or B2 fluid) — sense ground-side |
+
+Oil + batt = Link/CSB (`0x3F1` / `0x643`), not body loom. Dummy Timer ≈10s exit-R (no native Delay). **No** load-bearing STEP ST185+3S-GTE (mesh/scan only; ignore Fujimi kit STLs as loom CAD).
+
+### Pi5 UVC cam candidates (still smoke-test gate)
+1. ELP-USBFHD06H-BH36 — waterproof FHD UVC
+2. Kayeton KYT-U200-CA01
+3. Goobuy UC-531 IP67
+Ignore AHD / LCD backup kits. RealDash Linux USB Video Gauge still unproven.
+
+
+## Loom C ↔ EWD flag pass (Roger Roger 2026-09-18) — read-only
+Inventory: SoT `docs/harness/ST185-EngineRoom-C.harness` + 3 cursor splits (schematic only). EWD = 1990 All-Trac PDF in inbox.
+
+**MATCH:** OEM-stay + trunk 12V/GND inject; no bh_c; EA1/IE1/ID1; AM1/AM2 at IE1-10/17; HEAD 2A-3/6; DOME 2E-4; grounds; residual stubs C11/C12 colors; ABS/SRS deleted.
+
+**FLAG (top)**
+1. Layout missing on all EngineRoom-C `.harness` (schematic-only)
+2. 2E-2 / 2E-3 still wired despite PROBE — ohmmeter before crimp
+3. Probe note overclaims EWD p.48 (AM1/AM2 vs RTR/HAZ)
+4. `w_pdb_am2` color Brown vs EWD **B–R**
+5. Inject colors generic Red vs Toyota stripes
+6. Stale consolidation docs still mention bh_c leftovers
+7. Meter hint codes C13–C15 ≠ circuit C10–C12 — ignore hints
+8. Residuals MD-only, not in any `.harness`
+9. RADLOK must **exceed 160 A continuous** (alt 160 A upgraded) — size TBD to meet that
+10. Book year 1990 vs car 1991 — spot-check on car
+
+
+No edits/push from this pass. Full detail in Roger 1:1 if needed.
+
+
+## Daniel locks (2026-09-18 evening)
+- **Repo rule:** never put ask lists / open questions / handoff TODOs in the repo — living asks stay in chat/memory only.
+- **VSS:** wire to labeled 12V / GND / Signal; cavity order later (no invent).
+- **Fuel pull-up:** **`r_fuellvl` = 470 Ω** (found in SENSOR-AND-ACTUATOR-REFERENCE + NEED-TO-BUY + harness) — level only.
+- **KEEP** RTR + horn on Loom C.
+- Residual LED harness face: **YES**.
+- Batt/charge LED: **C12(C)8 Y** = alt **L**, **C12(C)9 B–O** = IG — residual splice; **no CSB**.
+- **RADLOK** must exceed **160 A continuous** (alt is 160 A upgraded).
+- UVC cam: TBD (prior candidates rejected).
+- Push of `pass-a-bh-c-delete-locks` **approved** — Grimoire pushes from 1:1.
+- Vehicle year: **1991** (not 1993). EWD family same.
 
 ## Related shelves
 - `docs/BOARD-VERIFY-2026-09-11.md`
@@ -121,5 +270,19 @@ Also check Link forum discussions on:
 - **ECU landing:** signal → **B29 / DI 8** for mph.
 - **Pin map:** oval cavities PWR / SIG / GND = **TBD** — do not invent.
 - **Not chosen:** OEM SPD tap (path A).
-- **Fuel divider Ω:** remains **TBD** (unchanged).
+- **Fuel pull-up:** **`r_fuellvl` = 470 Ω** (living SoT; not an open ask).
 - Harness: stub connector `vss_gbx` + part `cp_vss_oval3` in `ST185-Signal.harness`; B29 still `notConnected` until SIG cavity known.
+
+## Low-fuel thermistor — **DROPPED** (Daniel 2026-09-18; was Seeker FSM lantern)
+> **SCRAPPED 2026-09-18 afternoon** — float An Volt is fuel level only; no LED/thermistor lamp path.
+
+- **DROPPED:** do not wire in-tank thermistor. Cluster low-fuel **12V LED** from float An Volt + smoothing (~40–60 s).
+- Single-wire silver cylinder is the **low-fuel thermistor**, not the float (float = F18 pins 3–4 ohms).
+- Toyota instrument FSM bench (Celica-family): battery on sensor terminal; test lamp body to ground — **dry → lamp on within ~40 s**; **immersed → lamp stays off**.
+- OEM intent: **IG → lamp → single wire → case ground** when hot/dry. Bare LED alone is the wrong load (needs ~incandescent ballast / self-heat current).
+- **LED options for Daniel (no pin invent):**
+  1. **SEALED:** float An Volt 9 / B24 → cluster **12V low-fuel LED** + smoothing ~40–60 s (thermistor dropped)
+  2. Keep thermistor: **IG → ballast/lamp → wire → case GND**, sense node with transistor/optocoupler → LED
+  3. Tap lamp voltage into an An Volt and threshold
+- Thermistor F18 cavity **locked: pins 2–1** (Y–L / W–B) — path still **DROPPED**; do not wire for cluster LED. Local EWD PDF: `inbox/.../Toyota - ST185 - Electrical Wiring Diagram.pdf` COMBINATION METER pp.145–146.
+
