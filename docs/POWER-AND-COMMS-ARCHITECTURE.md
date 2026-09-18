@@ -35,11 +35,12 @@ The ECU **CAN 1 comms cable** also carries **12V** and **GND out** to power the 
 
 - ECU IO / colours: XTREMEX-IO-TABLE.html
 - Wiring audit: docs/WIRING-AUDIT-2026-09-18.md
+- Residual cluster LED face (diagram SoT): docs/harness/RESIDUAL-LED-FACE.md
 - VSS car-side (Path B): gearbox 3-wire 12V Toyota VSS on generic oval 3-pin sockets (PN TBD); Quill faces IGN / GND / SP1 with SP1 to B29 - cavity order still open.
 
 ## Still TBD
 
-- Fuel sender divider ohms
+- Fuel V→% cal on-car (pull-up locked: r_fuellvl = 470 Ω)
 - VSS oval cavity order (IGN / GND / SP1 assignment)
 - Main merge until Daniel verifies feature branch pass-a-bh-c-delete-locks
 
@@ -53,6 +54,7 @@ The ECU **CAN 1 comms cable** also carries **12V** and **GND out** to power the 
 - Many loom-C diagrams remain **intentional** documentation even where ACTIVE `bh_c_*` bulkhead shells were removed in Pass A.
 
 ### Cluster 12V warning LEDs
+Face / diagram SoT: [`docs/harness/RESIDUAL-LED-FACE.md`](harness/RESIDUAL-LED-FACE.md).
 After OEM gauge remove, prefer **OEM cluster circuit taps** (do not rework dash loom beyond cluster removal):
 - low fuel, low oil pressure, alt/charge, park brake, high beam, L/R turn
 
@@ -94,5 +96,6 @@ Path sealed via CSB / Gear=7. Camera page + triggers **not built** (deferred 202
 - No ask-lists in repo.
 
 ## Charge LED (Daniel 2026-09-18)
+- **Diagram SoT:** [`docs/harness/RESIDUAL-LED-FACE.md`](harness/RESIDUAL-LED-FACE.md)
 - Residual dash: **C12(C)9 B–O** = IG, **C12(C)8 Y** = alt **L** (EWD ~p.144).
 - No CSB / CAN invent for charge. Oil LED still Link→CSB.
