@@ -35,7 +35,7 @@ Living ECU IO channel IDs match pin-for-pin across `XTREMEX-IO-TABLE.html` + rep
 | DONE | Gnd Out colour | Power rails **Black/White** |
 | INFO | BOARD-VERIFY | "pins unverified" is a stale snapshot |
 | LOCKED | B29 harness wire | **Path B** @ `784c712`: gearbox **3-wire 12V Toyota VSS** → generic **oval 3-pin sockets**, P/N TBD. Faces **IGN / GND / SP1** (not pin #s). **SP1 → B29/DI8** only into ECU loom; IGN+GND bay-local. Path A jarred. Cavity order still open. |
-| LOCKED | Fuel pull-up Ω | **`r_fuellvl` = 470 Ω** to +5V (A32) for An Volt 9 / B24 — living SoT in SENSOR-AND-ACTUATOR-REFERENCE + NEED-TO-BUY + ST185 harness. Float ~3/110 Ω. Level only (no low-fuel LED). | OEM float **~3 Ω full / ~110 Ω empty** (SENSOR-AND-ACTUATOR-REFERENCE). An Volt 9 / B24 + external pull-up to +5 V (not 12 V gauge into Link). Pull-up value TBD (`r_fuellvl` 470 Ω = guess only). Low-fuel silver 1-wire = thermistor (IG→lamp→wire→case GND when dry/~40s); LED reuse that path or threshold float. Thermistor F18 cavity TBD. |
+| LOCKED | Fuel pull-up Ω | **`r_fuellvl` = 470 Ω** to +5V (A32) for An Volt 9 / B24 — living SoT (SENSOR-AND-ACTUATOR-REFERENCE + NEED-TO-BUY + harness). Float ~3/110 Ω. Level only (no low-fuel LED). V→% cal on-car. |
 
 ## Pin-graph (crowned on Pass A)
 `docs/harness/ecu_pin_graph.csv` (crowned @ `37af8f6`).
@@ -47,7 +47,7 @@ Living ECU IO channel IDs match pin-for-pin across `XTREMEX-IO-TABLE.html` + rep
 4. ~~Regenerate BUILD-LIST / NEED-TO-BUY~~ **DONE** (this pass)
 5. Leave VERIFY / AUDIT / BOARD frozen (BOARD/VERIFY still frozen; this audit is the living Pass A record)
 6. Stop editing OneDrive monolith
-7. Draw B29→`vss_gbx` signal wire once oval cavity map (which cavity = SIG) is known; set fuel-divider Ω at calibration. PN for oval 3-pin still TBD.
+7. Draw B29→`vss_gbx` signal wire once oval cavity map (which cavity = SIG) is known; Fuel pull-up locked `r_fuellvl` = 470 Ω; V→% cal on-car. PN for oval 3-pin still TBD.
 
 ## Consolidation
 Option A: pin-graph as IO index + four `.harness` as manufacturing SoT; HTML/MD generated or thin pointers. Keep harness.design first-class.
@@ -67,7 +67,7 @@ Living SoT + Link primary + Daniel locks:
 - **Git** — **feature branch only**; no main until verified
 
 ## Open locks (Daniel)
-Policy locks (Daniel 2026-09-18): VSS wire to labeled 12V/GND/Signal (cavity order later, no invent); fuel pull-up **`r_fuellvl` = 470 Ω** (living SoT: SENSOR-AND-ACTUATOR-REFERENCE + NEED-TO-BUY + harness); KEEP RTR+horn on Loom C; residual LED harness face **YES**; RADLOK must exceed **160 A continuous**; UVC cam TBD; car year **1991**; push of `pass-a-bh-c-delete-locks` approved (Grimoire fires from 1:1). Batt LED: alternator sense may light charge LED — checking, don’t invent CSB bit yet. **Repo rule:** never put ask-lists / open-question docs in-repo.
+Policy locks (Daniel 2026-09-18): VSS wire to labeled 12V/GND/Signal (cavity order later, no invent); fuel pull-up **`r_fuellvl` = 470 Ω** (living SoT: SENSOR-AND-ACTUATOR-REFERENCE + NEED-TO-BUY + harness); KEEP RTR+horn on Loom C; residual LED harness face **YES**; RADLOK must exceed **160 A continuous**; UVC cam TBD; car year **1991**; push of `pass-a-bh-c-delete-locks` approved (Grimoire fires from 1:1). Batt LED: C12(C)8 Y = alt L, C12(C)9 B–O = IG — residual; no CSB. **Repo rule:** never put ask-lists / open-question docs in-repo.
 
 
 
