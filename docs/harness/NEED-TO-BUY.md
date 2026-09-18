@@ -31,6 +31,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `PDB-M8x8` | TBD | 8-stud power distribution block at glove box, M8, 150-250 A bu | 1 | 0 | **1** |
 | `PMU-16` | ECUMaster | 10x25A + 6x15A high-side, 150A total, M6 stud + 39-way. On CAN | 1 | 0 | **1** |
 | `Sumitomo TS 025 6-way` | Sumitomo / Subaru | Subaru BRZ / Toyota-family e-throttle pedal. Looking into conn | 1 | 0 | **1** |
+| `generic oval 3-pin socket (PN TBD)` | TBD / generic | Generic oval 3-pin plug with socket contacts — mate for gearbo | 1 | 0 | **1** |
 | `jump-post-M8` | TBD | Engine-bay jump / accessory post on starter B+ net. | 1 | 0 | **1** |
 | `HCR 150 mating hardware` | TE Connectivity | Receptacle / terminals for V23132-A2001-B200 - CONFIRM with supplier | 1 | 0 | **1** |
 | `2 AWG welding cable red/black` | generic | Trunk battery +/−, RADLOK charge/start, jump post. Length TBD on the car. | 1 | 0 | **1** |

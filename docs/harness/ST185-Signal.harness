@@ -5913,6 +5913,18 @@
           "signal": "not used"
         }
       ]
+    },
+    {
+      "id": "vss_gbx",
+      "label": "Gearbox VSS (3-wire 12V Toyota) — oval 3-pin sockets",
+      "partId": "cp_vss_oval3",
+      "cavities": [
+        { "id": "a", "signal": "TBD" },
+        { "id": "b", "signal": "TBD" },
+        { "id": "c", "signal": "TBD" }
+      ],
+      "layoutPosition": { "x": 4200, "y": 900 },
+      "schematicPosition": { "x": 2400, "y": 780 }
     }
   ],
   "terminals": [
@@ -7524,7 +7536,7 @@
     },
     {
       "id": "n_pass_a_b29",
-      "label": "Pass A: B29 / DI8 = VSS from trans for mph (IO locked). OEM VSS cavity not drawn — do not invent pins.",
+      "label": "Daniel lock: B29 / DI8 = gearbox 3-wire 12V Toyota VSS for mph (not 4-wire). Mate = generic oval 3-pin socket plug, PN TBD. Signal → B29. Oval cavity map TBD — do not invent PWR/SIG/GND. Chosen landing = gearbox VSS (not OEM SPD tap / path A). Stub: vss_gbx. No wire drawn yet.",
       "schematicPosition": {
         "x": 0,
         "y": 0
@@ -8288,6 +8300,21 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
+    },
+    {
+      "id": "cp_vss_oval3",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "generic oval 3-pin socket (PN TBD)",
+      "description": "Generic oval 3-pin plug with socket contacts — mate for gearbox 3-wire 12V Toyota VSS. PN TBD. Cavity map (PWR/SIG/GND) TBD — do not invent which oval cavity is which.",
+      "manufacturer": "TBD / generic",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_generic_skt"
+        }
+      ],
+      "numberOfCavities": 3
     }
   ],
   "bootParts": [
