@@ -227,7 +227,7 @@ No edits/push from this pass. Full detail in Roger 1:1 if needed.
 - Vehicle year: **1991** (not 1993). EWD family same.
 
 ## Related shelves
-- Residual LED face (diagram SoT): `docs/harness/RESIDUAL-LED-FACE.md`
+- Cluster LED diagram SoT: `docs/electrical/CLUSTER-LED-DIAGRAM.html` (`docs/harness/RESIDUAL-LED-FACE.md` = pointer only)
 - `docs/BOARD-VERIFY-2026-09-11.md`
 - `docs/HARNESS-FACES-2026-09-11.md`
 - `XTREMEX-IO-TABLE.html`
