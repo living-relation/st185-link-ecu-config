@@ -15,7 +15,7 @@ Do not circular-reconcile HTML↔MD.
 ## Bottom line
 Living ECU IO channel IDs match pin-for-pin across `XTREMEX-IO-TABLE.html` + repo `docs/harness/*.harness`. No material channel mismatches.
 
-**Pass A COMPLETE** (2026-09-18, branch `pass-a-bh-c-delete-locks` @ `37af8f6` pushed):
+**Pass A COMPLETE** (2026-09-18, branch `pass-a-bh-c-delete-locks`; Pass A @ `37af8f6`, VSS Path B @ `784c712`, power/comms arch @ `d0bd909` pushed):
 - Commits: `37dab05` residue · `4aa016f` bh_c delete · `0c868d4` B29/fuel/AC IO · `37af8f6` audit + BOM + pin-graph crown
 - `bh_c_*` deleted from ACTIVE Signal + Power (empty shells + leftover HV). Fan/EPS HV already live in `ST185-EngineRoom-C.harness` (direct, no HDP20). ETB 12 V via bh_c removed as leftover — V-Ethrottle remains `k_etb` → B5 (`w82`); do not invent A/B cavities.
 - A7 shield bulkhead run `w12_c` / `w12_e`: **Gray → Green/Yellow**
@@ -34,7 +34,7 @@ Living ECU IO channel IDs match pin-for-pin across `XTREMEX-IO-TABLE.html` + rep
 | DONE | A7 shield | **Green/Yellow** on Signal `w12_c`/`w12_e` (matches XTREMEX-IO-TABLE) |
 | DONE | Gnd Out colour | Power rails **Black/White** |
 | INFO | BOARD-VERIFY | "pins unverified" is a stale snapshot |
-| LOCKED | B29 harness wire | **Path B:** gearbox **3-wire 12V Toyota VSS** → generic **oval 3-pin plug (socket contacts)**, part # TBD; signal → **B29 / DI8**. Power/gnd/pin map on oval TBD. Path A (OEM SPD tap) jarred. |
+| LOCKED | B29 harness wire | **Path B** @ `784c712`: gearbox **3-wire 12V Toyota VSS** → generic **oval 3-pin sockets**, P/N TBD. Faces **IGN / GND / SP1** (not pin #s). **SP1 → B29/DI8** only into ECU loom; IGN+GND bay-local. Path A jarred. Cavity order still open. |
 | OPEN | Fuel divider Ω | Approach locked; value TBD for BOM/calibration |
 
 ## Pin-graph (crowned on Pass A)
@@ -67,13 +67,21 @@ Living SoT + Link primary + Daniel locks:
 - **Git** — **feature branch only**; no main until verified
 
 ## Open locks (Daniel)
-None on policy. Remaining **build** openers: oval 3-pin **PN TBD** + which cavity is SIG (do not invent PWR/SIG/GND); fuel-divider Ω for BOM. Branch `pass-a-bh-c-delete-locks` only — **no main merge**. Writer: Grimoire / local DansPC.
+None on policy. Remaining **build** openers: (1) which oval cavity = IGN / GND / SP1 (2) fuel-divider ohms TBD (3) no main until Daniel verifies Pass A. VSS Path B sealed on `pass-a-bh-c-delete-locks` tips `784c712` (VSS) + `d0bd909` (power/comms). Main untouched @ `b3e417d`. Writer slot free.
 
+
+
+## Power + CAN1 face (Daniel 2026-09-18)
+See `docs/POWER-AND-COMMS-ARCHITECTURE.md` (@ `d0bd909`). Summary:
+- Trunk batt → kill + fusible link → RADLOKs to engine (starter/alt); jump lugs near firewall; fuse/relay box + PDU glovebox side
+- **CAN 1 only:** 3-cluster + RealDash Pi 7" + CAN-Lambda + ECUMaster CSB + PDU; CAN1 comms cable carries **12V+GND out** for displays/CSB
+- Reverse: OEM reverse switch → ECU gear=7 on CAN → cluster **R** + RealDash USB camera
 
 ## Related shelves
 - `docs/BOARD-VERIFY-2026-09-11.md`
 - `docs/HARNESS-FACES-2026-09-11.md`
 - `XTREMEX-IO-TABLE.html`
+- `docs/POWER-AND-COMMS-ARCHITECTURE.md` — race power + CAN1/comms (Daniel 2026-09-18)
 
 ## Sixth crown (2026-09-18)
 Link G4X XtremeX QSG + Link admin posts (ST185/MR2) + HP Academy / official manuals — verify living IO before Pass A. 3SGTE AC threads = pattern evidence only, not ST185 pin fact.
