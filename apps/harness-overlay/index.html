@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ST185 Combined Harness Overlay</title>
+<style>
+  :root{
+    --bg:#0b0b0d; --panel:#141416; --panel2:#1a1a1e; --border:#2c2c32;
+    --text:#f2f2f4; --muted:#8b8b96; --accent:#3dd68c; --warn:#e8b849; --danger:#e85d5d;
+    --canvas:#0e0e10; --grid:#1a1a20; --comp:#1c1c20; --comp-bd:#3e3e46;
+    --sel:#5b8def;
+    --mono:"IBM Plex Mono","Cascadia Code",ui-monospace,Menlo,monospace;
+    --sans:"IBM Plex Sans",Inter,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);overflow:hidden}
+  #app{display:grid;grid-template-rows:48px 1fr 32px;grid-template-columns:280px 1fr;height:100%}
+  header{grid-column:1/-1;display:flex;align-items:center;gap:12px;padding:0 14px;background:var(--panel);border-bottom:1px solid var(--border)}
+  .logo{display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+  .logo-mark{display:flex;gap:3px}
+  .logo-mark i{display:block;width:3px;height:16px;border-radius:1px;transform:skewX(-18deg)}
+  .logo-mark i:nth-child(1){background:#f5c542}
+  .logo-mark i:nth-child(2){background:#f08a2a}
+  .logo-mark i:nth-child(3){background:#8b5cf6}
+  header .sp{flex:1}
+  header .hint, footer{font-size:12px;color:var(--muted)}
+  button.tool, .mini{
+    background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:6px;
+    padding:6px 10px;font:inherit;font-size:12px;cursor:pointer;white-space:nowrap
+  }
+  button.tool:hover,.mini:hover{border-color:#5a5a66}
+  aside{background:var(--panel);border-right:1px solid var(--border);overflow:auto;padding:10px}
+  .aside-h{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px;display:flex;align-items:center;gap:6px}
+  .aside-h:first-child{margin-top:2px}
+  .aside-h .sp{flex:1}
+  .row-btns{display:flex;gap:6px;margin-bottom:8px}
+  .row-btns .mini{flex:1;text-align:center}
+  .layer{display:flex;align-items:center;gap:7px;padding:4px 5px;border-radius:6px;font-size:12px}
+  .layer:hover{background:#1e1e24}
+  .layer input{margin:0;cursor:pointer}
+  .layer .sw{width:10px;height:10px;border-radius:2px;flex:none;border:1px solid #ffffff22}
+  .layer .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .layer .ct{color:var(--muted);font-family:var(--mono);font-size:10px}
+  .layer.off .nm,.layer.off .ct{opacity:.4}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 12px;margin:8px 0 4px;font-size:11px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+  #stage-wrap{position:relative;background:var(--canvas);overflow:hidden;cursor:grab}
+  #stage-wrap.panning{cursor:grabbing}
+  #stage{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+  svg#canvas{display:block}
+  .comp-body{fill:var(--comp);stroke:var(--comp-bd);stroke-width:1.25}
+  .comp-title{fill:var(--text);font:600 11px var(--sans)}
+  .comp-id{fill:var(--muted);font:500 9px var(--mono)}
+  .wire{fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+  .wire.stub{opacity:.85}
+  .comp.hidden,.wire.hidden{display:none}
+  footer{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:0 12px;background:var(--panel);border-top:1px solid var(--border)}
+  footer .sp{flex:1}
+  .kbd{font-family:var(--mono);font-size:10px;color:var(--muted);border:1px solid var(--border);padding:1px 5px;border-radius:4px}
+  #empty{display:none;position:absolute;inset:0;align-items:center;justify-content:center;color:var(--muted);font-size:14px;padding:40px;text-align:center}
+  #empty.on{display:flex}
+  .hint-box{margin:0;line-height:1.5;font-size:11px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="logo"><span class="logo-mark"><i></i><i></i><i></i></span> ST185 Combined Harness Overlay</div>
+    <span class="sp"></span>
+    <span class="hint">Wheel zoom · drag pan · toggle harness / device groups</span>
+    <button class="tool" id="btn-fit" type="button">Fit</button>
+    <button class="tool" id="btn-reset" type="button">Reset view</button>
+  </header>
+  <aside id="sidebar">
+    <div class="aside-h">Harnesses <span class="sp"></span></div>
+    <div class="row-btns">
+      <button class="mini" id="btn-h-all" type="button">Show all</button>
+      <button class="mini" id="btn-h-none" type="button">Hide all</button>
+    </div>
+    <div id="harness-list"></div>
+    <div class="legend" id="legend"></div>
+
+    <div class="aside-h">Device types <span class="sp"></span></div>
+    <div class="row-btns">
+      <button class="mini" id="btn-d-all" type="button">Show all</button>
+      <button class="mini" id="btn-d-none" type="button">Hide all</button>
+    </div>
+    <div id="dtype-list"></div>
+
+    <div class="aside-h">Notes</div>
+    <p class="hint-box">
+      Wire shows if either endpoint is visible. One end hidden → short stub + label toward the hidden mate.
+      Both ends hidden → wire hidden. Overlay is not a pin bible — pin truth stays in harness/IO tables.
+    </p>
+  </aside>
+  <div id="stage-wrap">
+    <div id="stage"><svg id="canvas" xmlns="http://www.w3.org/2000/svg"></svg></div>
+    <div id="empty">No devices visible — enable a harness or device group.</div>
+  </div>
+  <footer>
+    <span id="status">Loading…</span>
+    <span class="sp"></span>
+    <span><span class="kbd">drag</span> pan · <span class="kbd">wheel</span> zoom</span>
+  </footer>
+</div>
+<script src="data.js"></script>
+<script src="overlay.js"></script>
+</body>
+</html>
