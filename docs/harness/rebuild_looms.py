@@ -138,6 +138,34 @@ def main():
         report.append("%-8s %3d -> %3d wires after deleting bulkhead C and "
                       "w_mrs_relay_req" % (name, before, len(d.get("wires", []))))
 
+    # 6.12 - shields. Daniel's rules, 2026-09-19:
+    #   a shield is NEVER connected at the device end, only at the ECU;
+    #   none of his connectors have a shell for a shield;
+    #   a shield is cable only until it terminates at the ECU;
+    #   it passes THROUGH the bulkhead on its own pin, not on the shell.
+    # So: strip every shell, and delete every drain that lands on a device.
+    shells = 0
+    for d in (sig, pwr, can, room):
+        for c in d.get("connectors", []):
+            if c.pop("shell", None) is not None:
+                shells += 1
+    dropped = []
+    for d in (sig, pwr, can, room):
+        keep = []
+        for w in d.get("wires", []):
+            s, t = w.get("source") or {}, w.get("target") or {}
+            device_end = (s.get("handle") == "shield" or t.get("handle") == "shield")
+            if device_end:
+                dropped.append(w.get("id"))
+                continue
+            keep.append(w)
+        d["wires"] = keep
+    # place_crossings works from `originals`, which still holds these, so without
+    # this they get resurrected as cross-loom wires later in the run.
+    KILL_WIRES.update(dropped)
+    report.append("shields: stripped %d connector shells, dropped %d device-end "
+                  "drains (%s)" % (shells, len(dropped), ", ".join(sorted(dropped))))
+
     # 6.16 - ECU-driven EPS relay trigger, Ign 6 / ecu_b.b12 low-side to K7 coil.
     eps_trig = {
         "id": "w_eps_trig", "color": "Violet",
@@ -221,6 +249,7 @@ def main():
     total = sum(len(v.get("wires", [])) for v in outputs.values())
     # Deleted: KILL_WIRES plus w20_c (the duplicate cam leg). Added: w_eps_trig,
     # which is already counted in originals, so nothing to add here.
+    # KILL_WIRES has already absorbed the device-end drains, so only w20_c is extra.
     deleted = len(KILL_WIRES) + 1
     expect = start - deleted
     print("accounting: %d in, %d deleted, %d out%s"

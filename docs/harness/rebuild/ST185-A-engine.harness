@@ -33,10 +33,6 @@
       "schematicPosition": {
         "x": 2280,
         "y": 0
-      },
-      "shell": {
-        "id": "shield",
-        "signal": "Cable shield - floating at this end"
       }
     },
     {
@@ -152,10 +148,6 @@
       "schematicPosition": {
         "x": 2280,
         "y": 1230
-      },
-      "shell": {
-        "id": "shield",
-        "signal": "Cable shield - floating at this end"
       }
     },
     {
@@ -210,10 +202,6 @@
       "schematicPosition": {
         "x": 2280,
         "y": 180
-      },
-      "shell": {
-        "id": "shield",
-        "signal": "Cable shield - floating at this end"
       }
     },
     {
@@ -1946,93 +1934,6 @@
           "schematicPosition": {
             "x": 1782,
             "y": 2745
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_drain_crank",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "source": {
-        "id": "crank",
-        "handle": "shield"
-      },
-      "target": {
-        "id": "sp_shield_eng",
-        "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_drain_crank_r1",
-          "schematicPosition": {
-            "x": 2586,
-            "y": 45
-          }
-        },
-        {
-          "id": "w_drain_crank_r2",
-          "schematicPosition": {
-            "x": 2586,
-            "y": 7905
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_drain_cam",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "source": {
-        "id": "cam",
-        "handle": "shield"
-      },
-      "target": {
-        "id": "sp_shield_eng",
-        "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_drain_cam_r1",
-          "schematicPosition": {
-            "x": 2568,
-            "y": 225
-          }
-        },
-        {
-          "id": "w_drain_cam_r2",
-          "schematicPosition": {
-            "x": 2568,
-            "y": 7905
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_drain_knock1",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "source": {
-        "id": "knock1",
-        "handle": "shield"
-      },
-      "target": {
-        "id": "sp_shield_eng",
-        "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_drain_knock1_r1",
-          "schematicPosition": {
-            "x": 2622,
-            "y": 1275
-          }
-        },
-        {
-          "id": "w_drain_knock1_r2",
-          "schematicPosition": {
-            "x": 2622,
-            "y": 7905
           }
         }
       ]

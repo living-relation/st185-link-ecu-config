@@ -25,10 +25,6 @@
       "schematicPosition": {
         "x": 2280,
         "y": 5430
-      },
-      "shell": {
-        "id": "shield",
-        "signal": "Cable shield - floating at this end"
       }
     },
     {
@@ -52,10 +48,6 @@
       "schematicPosition": {
         "x": 2280,
         "y": 5610
-      },
-      "shell": {
-        "id": "shield",
-        "signal": "Cable shield - floating at this end"
       }
     },
     {
@@ -87,10 +79,6 @@
       "schematicPosition": {
         "x": 2280,
         "y": 5790
-      },
-      "shell": {
-        "id": "shield",
-        "signal": "Cable shield - floating at this end"
       }
     },
     {
@@ -114,10 +102,6 @@
       "schematicPosition": {
         "x": 2280,
         "y": 5970
-      },
-      "shell": {
-        "id": "shield",
-        "signal": "Cable shield - floating at this end"
       }
     },
     {
@@ -281,8 +265,8 @@
       }
     },
     {
-      "id": "dm_sp_shield_eng_Splice",
-      "label": "sp_shield_eng-Splice",
+      "id": "dm_sp_shield_cab_Splice",
+      "label": "sp_shield_cab-Splice",
       "width": 150,
       "cavities": [
         {
@@ -301,26 +285,6 @@
       }
     },
     {
-      "id": "dm_sp_shield_cab_Splice",
-      "label": "sp_shield_cab-Splice",
-      "width": 150,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
-        }
-      ],
-      "schematicPosition": {
-        "x": 4200,
-        "y": 2520
-      },
-      "layoutPosition": {
-        "x": 4200,
-        "y": 2760
-      }
-    },
-    {
       "id": "dm_sp_gndout_eng_Splice",
       "label": "sp_gndout_eng-Splice",
       "width": 150,
@@ -333,11 +297,11 @@
       ],
       "schematicPosition": {
         "x": 4200,
-        "y": 2760
+        "y": 2280
       },
       "layoutPosition": {
         "x": 4200,
-        "y": 3000
+        "y": 2520
       }
     },
     {
@@ -353,11 +317,11 @@
       ],
       "schematicPosition": {
         "x": 4200,
-        "y": 3240
+        "y": 2760
       },
       "layoutPosition": {
         "x": 4200,
-        "y": 3480
+        "y": 3000
       }
     }
   ],
@@ -754,64 +718,6 @@
       ]
     },
     {
-      "id": "w_drain_wss_rl",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "source": {
-        "id": "wss_rl",
-        "handle": "shield"
-      },
-      "target": {
-        "id": "sp_shield_rear",
-        "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_drain_wss_rl_r1",
-          "schematicPosition": {
-            "x": 2766,
-            "y": 5835
-          }
-        },
-        {
-          "id": "w_drain_wss_rl_r2",
-          "schematicPosition": {
-            "x": 2766,
-            "y": 8145
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_drain_wss_rr",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "source": {
-        "id": "wss_rr",
-        "handle": "shield"
-      },
-      "target": {
-        "id": "sp_shield_rear",
-        "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_drain_wss_rr_r1",
-          "schematicPosition": {
-            "x": 2820,
-            "y": 6015
-          }
-        },
-        {
-          "id": "w_drain_wss_rr_r2",
-          "schematicPosition": {
-            "x": 2820,
-            "y": 8145
-          }
-        }
-      ]
-    },
-    {
       "id": "w51_e",
       "source": {
         "id": "dm_bh_a_eng_c10",
@@ -1031,64 +937,6 @@
           "schematicPosition": {
             "x": 1728,
             "y": 6705
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_drain_wss_fl",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "source": {
-        "id": "wss_fl",
-        "handle": "shield"
-      },
-      "target": {
-        "id": "dm_sp_shield_eng_Splice",
-        "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_drain_wss_fl_r1",
-          "schematicPosition": {
-            "x": 2694,
-            "y": 5475
-          }
-        },
-        {
-          "id": "w_drain_wss_fl_r2",
-          "schematicPosition": {
-            "x": 2694,
-            "y": 7905
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_drain_wss_fr",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "source": {
-        "id": "wss_fr",
-        "handle": "shield"
-      },
-      "target": {
-        "id": "dm_sp_shield_eng_Splice",
-        "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_drain_wss_fr_r1",
-          "schematicPosition": {
-            "x": 2712,
-            "y": 5655
-          }
-        },
-        {
-          "id": "w_drain_wss_fr_r2",
-          "schematicPosition": {
-            "x": 2712,
-            "y": 7905
           }
         }
       ]

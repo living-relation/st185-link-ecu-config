@@ -32,7 +32,17 @@ EXPECT_GONE = {
     "w23": "renamed w_cam_pullup_8v and rewired to bridge 8V to the signal",
     "w20_e": "renamed w_cam_pullup_sig and rewired to the ECU side",
     "w20_c": "deleted - duplicate cam path to a9; the signal runs on pin 29",
-    "w_rlp": "RADLOK copy renamed w_rl_pos; the id collided with wheel speed",
+    # w_rlp is NOT listed here: the id collided across files, and the verifier
+    # applies the same rename to `before`, so both sides compare cleanly.
+    # 6.12: shields are never connected at the device end. Every drain landing
+    # on a device shell goes; the run to the ECU stays.
+    "w_drain_crank": "device-end drain removed - shields float at the device",
+    "w_drain_cam": "device-end drain removed - shields float at the device",
+    "w_drain_knock1": "device-end drain removed - shields float at the device",
+    "w_drain_wss_fl": "device-end drain removed - shields float at the device",
+    "w_drain_wss_fr": "device-end drain removed - shields float at the device",
+    "w_drain_wss_rl": "device-end drain removed - shields float at the device",
+    "w_drain_wss_rr": "device-end drain removed - shields float at the device",
 }
 EXPECT_NEW = {
     "w_eps_trig": "6.16 ECU-driven EPS relay trigger, Ign 6 / ecu_b.b12",
@@ -121,6 +131,13 @@ def main():
         else:
             ok = False
             print("  UNEXPECTED     %-20s %s" % (w, sorted(after[w])))
+    # A wire that was MEANT to be deleted but is still there produces no diff at
+    # all, so check for it explicitly - that is how the shield drains slipped
+    # through the first time.
+    for w in sorted(set(EXPECT_GONE) & set(after)):
+        ok = False
+        print("  STILL PRESENT   %-20s should have gone: %s"
+              % (w, EXPECT_GONE[w]))
     for w in sorted(changed):
         ok = False
         print("  CHANGED        %-20s" % w)

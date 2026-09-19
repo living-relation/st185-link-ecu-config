@@ -693,3 +693,52 @@ from them. They have to be read as images.
 
 Per 6.24, none of this applies to wire and cable. Do not go looking for a wire part number
 in an invoice; describe the wire and move on.
+
+
+### 6.27 Shields - the rules, set by Daniel 2026-09-19. Supersedes 6.12
+
+Five rules. They are absolute; there are no per-device exceptions.
+
+1. **A shield is never connected at the device end.** It floats there. Always.
+2. **It terminates at the ECU end only.** That is its single ground reference.
+3. **None of the connectors in this build have a shell for a shield.** Do not model
+   one, do not spec a connector that needs one, do not wire a drain to a connector body.
+4. **A shield is cable only until it terminates at the ECU** - it is a core inside the
+   cable, not a wire in its own right, right up to the ECU end.
+5. **Shields pass THROUGH the bulkhead on their own pin, not on the bulkhead shell.**
+
+Also settled: the ABS wheel-speed sensors have **two wires**. No third conductor, no
+shield connection at the sensor.
+
+**Applied 2026-09-19.** `rebuild_looms.py` strips every connector shell and deletes every
+drain that landed on a device:
+
+| Removed | Was |
+|---|---|
+| 7 connector shells | `crank`, `knock1`, `cam`, `wss_fl`, `wss_fr`, `wss_rl`, `wss_rr` |
+| 7 device-end drains | `w_drain_crank`, `w_drain_cam`, `w_drain_knock1`, `w_drain_wss_fl`, `w_drain_wss_fr`, `w_drain_wss_rl`, `w_drain_wss_rr` |
+
+The ECU-side runs stay: `w_drain_bh_e`, `w_drain_bh_c`, `w_drain_rear`, `w_drain_ecu_a`,
+`w_drain_ecu_b`. That is the shield's real path - device (floating) through a bulkhead pin
+to the ECU shield ground.
+
+**Still to do, and it needs bulkhead pins counted first.** Rule 4 means each shielded run
+becomes a **cable** - the signal conductor or conductors plus a shield core whose `source`
+is the ECU-side shield termination and which has **no `target`**, so it floats at the
+device. There are no cables in any file yet, so this is an all-new pass. Rule 5 plus the
+6.3 "every shield gets its own bulkhead pin" rule means **7 shielded runs need 7 bulkhead
+pins** where today they share one after a splice. Count the headroom before drawing:
+bulkhead A is 47 cavities, bulkhead B is 21, and 6.17 just handed back B `c13` and `c14`.
+
+### 6.28 Superseded diagrams are archived, not deleted - Daniel 2026-09-19
+
+An old diagram goes to `archive/superseded-diagrams/`. It is never deleted - the repo
+already had an `archive/` folder and that is where retired material lives.
+
+| Archived 2026-09-19 | Replaced by |
+|---|---|
+| `docs/electrical/CLUSTER-LED-DIAGRAM.html` | `ST185-ClusterLED` in harness.design (`wkRX`) |
+| `docs/harness/RESIDUAL-LED-FACE.md` | same - it was only a pointer to the HTML |
+
+Per `CLAUDE.md`, nothing in `archive/` is authoritative and it is excluded from normal
+agent context. It is there for "why did we do it that way", nothing else.
