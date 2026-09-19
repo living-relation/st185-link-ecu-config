@@ -1,0 +1,267 @@
+{
+  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
+  "version": 0.9,
+  "lengthUnit": "mm",
+  "connectors": [
+    {
+      "id": "cl_c11",
+      "label": "OEM cluster connector C11",
+      "schematicPosition": {
+        "x": 120,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 120,
+        "y": 120
+      },
+      "width": 270,
+      "cavities": [
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Turn L (G-B) - flasher LH stub"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "Turn R (G-Y) - flasher RH stub"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "High beam (R-L) - body residual feed"
+        }
+      ]
+    },
+    {
+      "id": "cl_c12",
+      "label": "OEM cluster connector C12",
+      "schematicPosition": {
+        "x": 120,
+        "y": 480
+      },
+      "layoutPosition": {
+        "x": 120,
+        "y": 480
+      },
+      "width": 270,
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Park brake (R-G) - grounds via OEM P1 / B2"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "Alt L (Y) - charge-lamp drive"
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "IG +12 (B-O) - charge LED anode side"
+        }
+      ]
+    },
+    {
+      "id": "led_board",
+      "label": "Cluster LED indicator board",
+      "schematicPosition": {
+        "x": 720,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 720,
+        "y": 240
+      },
+      "width": 210,
+      "cavities": [
+        {
+          "id": "hb",
+          "designation": "HB",
+          "signal": "High beam LED"
+        },
+        {
+          "id": "tl",
+          "designation": "TL",
+          "signal": "Turn L LED"
+        },
+        {
+          "id": "tr",
+          "designation": "TR",
+          "signal": "Turn R LED"
+        },
+        {
+          "id": "pk",
+          "designation": "PK",
+          "signal": "Park brake LED"
+        },
+        {
+          "id": "chg_a",
+          "designation": "CHG+",
+          "signal": "Charge LED anode, IG side"
+        },
+        {
+          "id": "chg_k",
+          "designation": "CHG-",
+          "signal": "Charge LED cathode, to alternator L"
+        },
+        {
+          "id": "oil_k",
+          "designation": "OIL-",
+          "signal": "Oil LED cathode, sunk by the CSB low-side"
+        }
+      ]
+    },
+    {
+      "id": "dm_csb_ls",
+      "label": "CSB-LS",
+      "schematicPosition": {
+        "x": 720,
+        "y": 700
+      },
+      "width": 150,
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "CSB low-side out - dummy, owned by CAN loom"
+        }
+      ]
+    }
+  ],
+  "wires": [
+    {
+      "id": "w_led_hb",
+      "color": "Red",
+      "source": {
+        "id": "cl_c11",
+        "handle": "c12"
+      },
+      "target": {
+        "id": "led_board",
+        "handle": "hb"
+      }
+    },
+    {
+      "id": "w_led_tl",
+      "color": "Green",
+      "source": {
+        "id": "cl_c11",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "led_board",
+        "handle": "tl"
+      }
+    },
+    {
+      "id": "w_led_tr",
+      "color": "Green",
+      "source": {
+        "id": "cl_c11",
+        "handle": "c11"
+      },
+      "target": {
+        "id": "led_board",
+        "handle": "tr"
+      }
+    },
+    {
+      "id": "w_led_pk",
+      "color": "Red",
+      "source": {
+        "id": "cl_c12",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "led_board",
+        "handle": "pk"
+      }
+    },
+    {
+      "id": "w_led_chg_ig",
+      "color": "Black",
+      "source": {
+        "id": "cl_c12",
+        "handle": "c9"
+      },
+      "target": {
+        "id": "led_board",
+        "handle": "chg_a"
+      }
+    },
+    {
+      "id": "w_led_chg_l",
+      "color": "Yellow",
+      "source": {
+        "id": "led_board",
+        "handle": "chg_k"
+      },
+      "target": {
+        "id": "cl_c12",
+        "handle": "c8"
+      }
+    },
+    {
+      "id": "w_led_oil",
+      "color": "White",
+      "source": {
+        "id": "dm_csb_ls",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "led_board",
+        "handle": "oil_k"
+      }
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_src",
+      "schematicPosition": {
+        "x": 120,
+        "y": 900
+      },
+      "width": 390,
+      "text": "ST185 cluster LED loom. A separate circuit from the cluster itself - warning and status indicators only. Migrated 2026-09-19 from docs/electrical/CLUSTER-LED-DIAGRAM.html, which was the only record of these connections."
+    },
+    {
+      "id": "n_stripe",
+      "schematicPosition": {
+        "x": 560,
+        "y": 900
+      },
+      "width": 390,
+      "text": "Stripe colours live in the cavity text - the schema colour list has no striped values. C11-2 G-B, C11-11 G-Y, C11-12 R-L, C12-1 R-G, C12-8 Y, C12-9 B-O."
+    },
+    {
+      "id": "n_chg",
+      "schematicPosition": {
+        "x": 120,
+        "y": 1120
+      },
+      "width": 390,
+      "text": "Charge LED is a series path: IG +12 (C12-9) to LED to alternator L (C12-8). ON when the regulator grounds L (not charging), OFF when L sits near battery volts. Alternator S is a battery sense line, NOT a lamp - do not wire it here."
+    },
+    {
+      "id": "n_oil",
+      "schematicPosition": {
+        "x": 560,
+        "y": 1120
+      },
+      "width": 390,
+      "text": "Oil LED is CAN-driven, no discrete sense wire. Link sets Low Oil Press 2 on 0x3F1 bit4; PCLink packs the CSB low-side on 0x643. The CSB sinks the cathode; the anode goes to +12 IG."
+    },
+    {
+      "id": "n_open",
+      "schematicPosition": {
+        "x": 120,
+        "y": 1340
+      },
+      "width": 390,
+      "text": "NOT YET DETERMINED - do not build until settled. 1) The common ground or return for the high beam, turn L and turn R LEDs; the source diagram does not state it. 2) Whether the LED board carries its own current-limiting resistors or the loom must. 3) The oil LED anode feed (+12 IG) - stated as existing but no pin given. Park brake grounds through the OEM P1 / B2 path, so it needs no return here."
+    }
+  ]
+}

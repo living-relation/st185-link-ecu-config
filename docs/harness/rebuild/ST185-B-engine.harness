@@ -1112,17 +1112,22 @@
     {
       "id": "dm_k_str_c4",
       "label": "K6-c4",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 120
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 360
+      }
     }
   ],
   "splices": [

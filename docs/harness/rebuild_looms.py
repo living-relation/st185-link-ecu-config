@@ -243,17 +243,32 @@ def main():
         print("\nreport only - pass --write to create docs/harness/rebuild/")
 
 
-def dummy(node_id, pin, label):
+_DUMMY_N = {}
+
+
+def dummy(node_id, pin, label, owner="x"):
     """A connection block standing in for a component owned by another file.
 
     Per 6.15 it carries no part number and no contacts, so it adds nothing to
     this drawing's BOM. Shape taken from Grok's rework.py, which had this right.
     """
+    # v0.9 schema: connectors take no `notes` key, so the explanation rides in
+    # the cavity signal text instead.
     return {"id": "dm_%s_%s" % (node_id, pin),
             "label": "%s-%s" % (label, pin),
-            "cavities": [{"id": "c1", "designation": "1"}],
-            "schematicPosition": {"x": 0, "y": 0},
-            "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."}
+            "width": 150,
+            "cavities": [{"id": "c1", "designation": "1",
+                          "signal": "Dummy - real part on the owning drawing, 6.15"}],
+            "schematicPosition": _dummy_pos(owner),
+            "layoutPosition": _dummy_pos(owner, bump=False)}
+
+
+def _dummy_pos(owner, bump=True):
+    """Stack dummies down the right-hand edge instead of piling them at 0,0."""
+    n = _DUMMY_N.get(owner, 0)
+    if bump:
+        _DUMMY_N[owner] = n + 1
+    return {"x": 4200, "y": 120 + n * 240}
 
 
 # Which output file owns a wire that crosses between looms, and therefore which
@@ -304,7 +319,7 @@ def place_crossings(outputs, originals):
         fid = (w.get(far) or {}).get("id")
         fpin = (w.get(far) or {}).get("handle")
         lbl = LABEL.get(fid, fid)
-        blk = dummy(fid, fpin, lbl)
+        blk = dummy(fid, fpin, lbl, owner)
         if blk["id"] not in {c.get("id") for c in doc.get("connectors", [])}:
             doc.setdefault("connectors", []).append(blk)
         nw = copy.deepcopy(w)

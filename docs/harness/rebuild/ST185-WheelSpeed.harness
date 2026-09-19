@@ -123,182 +123,242 @@
     {
       "id": "dm_bh_a_eng_c10",
       "label": "BH-A-c10",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 120
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 360
+      }
     },
     {
       "id": "dm_bh_a_fw_c11",
       "label": "BH-A-c11",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 360
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 600
+      }
     },
     {
       "id": "dm_bh_a_eng_c11",
       "label": "BH-A-c11",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 600
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 840
+      }
     },
     {
       "id": "dm_bh_a_eng_c12",
       "label": "BH-A-c12",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 840
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 1080
+      }
     },
     {
       "id": "dm_ecu_b_b20",
       "label": "ECU-B-b20",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 1080
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 1320
+      }
     },
     {
       "id": "dm_ecu_b_b19",
       "label": "ECU-B-b19",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 1320
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 1560
+      }
     },
     {
       "id": "dm_bh_a_fw_c28",
       "label": "BH-A-c28",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 1560
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 1800
+      }
     },
     {
       "id": "dm_bh_a_eng_c28",
       "label": "BH-A-c28",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 1800
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 2040
+      }
     },
     {
       "id": "dm_sp_shield_eng_Splice",
       "label": "sp_shield_eng-Splice",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 2040
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 2280
+      }
     },
     {
       "id": "dm_sp_shield_cab_Splice",
       "label": "sp_shield_cab-Splice",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 2520
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 2760
+      }
     },
     {
       "id": "dm_sp_gndout_eng_Splice",
       "label": "sp_gndout_eng-Splice",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 2760
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 3000
+      }
     },
     {
       "id": "dm_sp_5v_eng_Splice",
       "label": "sp_5v_eng-Splice",
+      "width": 150,
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
         }
       ],
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 4200,
+        "y": 3240
       },
-      "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."
+      "layoutPosition": {
+        "x": 4200,
+        "y": 3480
+      }
     }
   ],
   "splices": [

@@ -17,6 +17,14 @@ OUT = os.path.join(R, "rebuild")
 LIVE = ["ST185-Signal.harness", "ST185-Power.harness",
         "ST185-CAN.harness", "ST185-EngineRoom-C.harness"]
 
+# ClusterLED is a new loom migrated from CLUSTER-LED-DIAGRAM.html, not derived
+# from any live .harness file, so it has no "before" to compare against.
+SKIP = ("ClusterLED",)
+
+
+def rebuilt_files():
+    return sorted(f for f in os.listdir(OUT) if not any(s in f for s in SKIP))
+
 # Differences the rebuild is supposed to introduce. Anything outside this list
 # is a real fault.
 EXPECT_GONE = {
@@ -74,7 +82,7 @@ def main():
 
     # Map every dummy block back to the real node and pin it represents.
     resolve = {}
-    for fn in sorted(os.listdir(OUT)):
+    for fn in rebuilt_files():
         d = load(os.path.join(OUT, fn))
         for c in d.get("connectors", []):
             cid = c.get("id", "")
@@ -91,7 +99,7 @@ def main():
                 print("  ! could not resolve dummy", cid)
 
     after = {}
-    for fn in sorted(os.listdir(OUT)):
+    for fn in rebuilt_files():
         after.update(endpoints(load(os.path.join(OUT, fn)), resolve))
 
     gone = set(before) - set(after)
