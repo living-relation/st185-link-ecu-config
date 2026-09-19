@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ST185 Cluster LED Diagram (Crown)</title>
+<style>
+  :root{
+    --bg:#0b0b0d; --panel:#141416; --panel2:#1a1a1e; --border:#2c2c32;
+    --text:#f2f2f4; --muted:#8b8b96; --accent:#3dd68c; --warn:#e8b849;
+    --sel:#5b8def; --purple:#c084fc;
+    --mono:"IBM Plex Mono","Cascadia Code",ui-monospace,Menlo,monospace;
+    --sans:"IBM Plex Sans",Inter,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.45;padding:24px}
+  h1{font-size:20px;margin:0 0 6px}
+  h2{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;border-bottom:1px solid var(--border);padding-bottom:6px}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 20px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+  .card h3{margin:0 0 8px;font-size:15px}
+  .card .meta{font-family:var(--mono);font-size:12px;color:var(--sel);margin:0 0 8px}
+  .card p{margin:0;font-size:13px;color:#d6d6de}
+  .led{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:middle;box-shadow:0 0 8px currentColor}
+  .hb{color:#6ea8ff}.tl{color:#3dd68c}.tr{color:#3dd68c}.pk{color:#e85d5d}.ch{color:#e8b849}.oil{color:#f08a2a}
+  .alt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+  .term{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:12px}
+  .term .t{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--warn)}
+  .term .n{font-size:12px;color:var(--muted);margin-top:4px}
+  .term.note{border-color:#5f5326;background:#1b1912}
+  .term.note .t{color:#e2cf88}
+  .flow{font-family:var(--mono);font-size:12px;background:#0e0e10;border:1px solid var(--border);border-radius:8px;padding:12px;white-space:pre-wrap;color:#c8c8d0;margin:12px 0}
+  .tag{display:inline-block;font-size:10px;padding:2px 6px;border-radius:4px;border:1px solid var(--border);color:var(--muted);margin-left:6px}
+  a{color:var(--sel)}
+</style>
+</head>
+<body>
+  <h1>ST185 Cluster LED Diagram <span class="tag">crown</span></h1>
+  <p class="sub">1991 Celica GT-Four ST185 · residual dash stubs + Link/CSB · living face on <code>pass-a-bh-c-delete-locks</code></p>
+
+  <h2>A) Residual LEDs</h2>
+  <div class="grid">
+    <div class="card">
+      <h3><span class="led hb"></span>High beam</h3>
+      <div class="meta">C11-12 · R-L</div>
+      <p>Body residual high-beam feed. LED on when high-beam circuit is hot.</p>
+    </div>
+    <div class="card">
+      <h3><span class="led tl"></span>Turn L</h3>
+      <div class="meta">C11-2 · G-B</div>
+      <p>Flasher LH stub. Blink with left turn / hazard.</p>
+    </div>
+    <div class="card">
+      <h3><span class="led tr"></span>Turn R</h3>
+      <div class="meta">C11-11 · G-Y</div>
+      <p>Flasher RH stub. Blink with right turn / hazard.</p>
+    </div>
+    <div class="card">
+      <h3><span class="led pk"></span>Park</h3>
+      <div class="meta">C12-1 · R-G</div>
+      <p>Park-brake warning. Grounds via P1 / B2 fluid path on OEM side.</p>
+    </div>
+    <div class="card">
+      <h3><span class="led ch"></span>Charge</h3>
+      <div class="meta">C12-9 B-O (IG) + C12-8 Y (alt L)</div>
+      <p>Series path: IG feed → charge LED → alternator <strong>L</strong>. LED ON when regulator grounds L (not charging); OFF when L is near battery (charging).</p>
+    </div>
+    <div class="card">
+      <h3><span class="led oil"></span>Oil</h3>
+      <div class="meta">CSB · 0x3F1 bit4 → 0x643 LS</div>
+      <p>Link sets Low Oil Press 2 on <code>0x3F1</code> bit4; PCLink packs CSB low-side on <code>0x643</code>. CSB LS sinks LED cathode (anode to +12 IG). Active-low / GND switch.</p>
+    </div>
+  </div>
+
+  <div class="flow">Charge LED path:
+  IG (+12 switched) ── C12-9 B-O ── [12V charge LED] ── C12-8 Y ── alt L
+
+Oil LED path:
+  Link 0x3F1 bit4 ── CSB 0x643 LS ── sinks LED cathode (anode = +12 IG)</div>
+
+  <h2>B) Alternator terminals (not LED faces)</h2>
+  <p class="sub">OEM charging regulator terminals. These are wiring/power nodes — only <strong>L</strong> drives the charge LED face above. <strong>S is sense, not a lamp.</strong></p>
+  <div class="alt-grid">
+    <div class="term">
+      <div class="t">B</div>
+      <div class="n">B+ output — heavy DC to starter B+ / charge cable (Power harness).</div>
+    </div>
+    <div class="term note">
+      <div class="t">S</div>
+      <div class="n">Battery sense / voltage feedback to regulator. <strong>NOT a lamp.</strong></div>
+    </div>
+    <div class="term">
+      <div class="t">IG</div>
+      <div class="n">Ignition-switched +12 into regulator (feed side of charge LED path via C12-9).</div>
+    </div>
+    <div class="term">
+      <div class="t">L</div>
+      <div class="n">Charge-lamp drive — C12-8 Y to custom cluster LED (section A).</div>
+    </div>
+  </div>
+
+  <p class="sub" style="margin-top:28px">Pointer doc: <code>docs/harness/RESIDUAL-LED-FACE.md</code> → this file.</p>
+</body>
+</html>

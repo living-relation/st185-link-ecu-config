@@ -765,7 +765,7 @@
     },
     {
       "id": "w68",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "ecu_a",
         "handle": "a24"
@@ -794,7 +794,7 @@
     },
     {
       "id": "w69",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "ecu_b",
         "handle": "b22"
@@ -823,7 +823,7 @@
     },
     {
       "id": "w2",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "crank",
         "handle": "c2"
@@ -852,7 +852,7 @@
     },
     {
       "id": "w4",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "ect",
         "handle": "c2"
@@ -881,7 +881,7 @@
     },
     {
       "id": "w6",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "iat",
         "handle": "c2"
@@ -910,7 +910,7 @@
     },
     {
       "id": "w8",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "oilt",
         "handle": "c2"
@@ -939,7 +939,7 @@
     },
     {
       "id": "w10",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "cpiat",
         "handle": "c2"
@@ -968,7 +968,7 @@
     },
     {
       "id": "w24",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "cam",
         "handle": "c3"
@@ -997,7 +997,7 @@
     },
     {
       "id": "w27",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "map",
         "handle": "c3"
@@ -1026,7 +1026,7 @@
     },
     {
       "id": "w30",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "oilp",
         "handle": "c3"
@@ -1055,7 +1055,7 @@
     },
     {
       "id": "w33",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "fuelp",
         "handle": "c3"
@@ -1084,7 +1084,7 @@
     },
     {
       "id": "w36",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "clntp",
         "handle": "c3"
@@ -1113,7 +1113,7 @@
     },
     {
       "id": "w40",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "aps",
         "handle": "c5"
@@ -1142,7 +1142,7 @@
     },
     {
       "id": "w45",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "fuellvl",
         "handle": "c2"
@@ -1171,7 +1171,7 @@
     },
     {
       "id": "w47",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "flex",
         "handle": "c2"
@@ -1200,7 +1200,7 @@
     },
     {
       "id": "w17",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "turbospd",
         "handle": "c3"
@@ -1229,7 +1229,7 @@
     },
     {
       "id": "w127",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "etb",
         "handle": "c2"
@@ -1258,7 +1258,7 @@
     },
     {
       "id": "w56",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "vr1_gnd",
         "handle": "Terminal"
@@ -1287,7 +1287,7 @@
     },
     {
       "id": "w64",
-      "color": "Black",
+      "color": "Black/White",
       "source": {
         "id": "vr2_gnd",
         "handle": "Terminal"
@@ -1764,7 +1764,7 @@
     },
     {
       "id": "w_aps_gnd2",
-      "color": "Black",
+      "color": "Black/White",
       "stripeColor": "White",
       "source": {
         "id": "aps",
@@ -1913,7 +1913,7 @@
         "id": "bh_a_fw",
         "handle": "c3"
       },
-      "color": "Black",
+      "color": "Black/White",
       "stripeColor": "White",
       "layoutPoints": [
         {
@@ -1942,7 +1942,7 @@
         "id": "sp_gndout_eng",
         "handle": "Splice"
       },
-      "color": "Black",
+      "color": "Black/White",
       "stripeColor": "White",
       "layoutPoints": [
         {
@@ -2099,202 +2099,6 @@
           "schematicPosition": {
             "x": 2916,
             "y": 11565
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_hv_rad_fan_c",
-      "color": "Red",
-      "source": {
-        "id": "k_fan",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "bh_c_fw",
-        "handle": "c4"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_hv_rad_fan_c_r1",
-          "schematicPosition": {
-            "x": -804,
-            "y": 2085
-          }
-        },
-        {
-          "id": "w_hv_rad_fan_c_r2",
-          "schematicPosition": {
-            "x": -804,
-            "y": 135
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_hv_rad_fan_e",
-      "color": "Red",
-      "source": {
-        "id": "bh_c_eng",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "rad_fan",
-        "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_hv_rad_fan_e_r1",
-          "schematicPosition": {
-            "x": 2628,
-            "y": 525
-          }
-        },
-        {
-          "id": "w_hv_rad_fan_e_r2",
-          "schematicPosition": {
-            "x": 2628,
-            "y": 5265
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_hv_fan2_c",
-      "color": "Red",
-      "source": {
-        "id": "k_fan2",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "bh_c_fw",
-        "handle": "c5"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_hv_fan2_c_r1",
-          "schematicPosition": {
-            "x": -822,
-            "y": 2355
-          }
-        },
-        {
-          "id": "w_hv_fan2_c_r2",
-          "schematicPosition": {
-            "x": -822,
-            "y": 165
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_hv_fan2_e",
-      "color": "Red",
-      "source": {
-        "id": "bh_c_eng",
-        "handle": "c5"
-      },
-      "target": {
-        "id": "fan2",
-        "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_hv_fan2_e_r1",
-          "schematicPosition": {
-            "x": 2502,
-            "y": 555
-          }
-        },
-        {
-          "id": "w_hv_fan2_e_r2",
-          "schematicPosition": {
-            "x": 2502,
-            "y": 5445
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_hv_mrs_pwr_e",
-      "color": "Red",
-      "source": {
-        "id": "bh_c_eng",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "mrs_pwr",
-        "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_hv_mrs_pwr_e_r1",
-          "schematicPosition": {
-            "x": 2520,
-            "y": 465
-          }
-        },
-        {
-          "id": "w_hv_mrs_pwr_e_r2",
-          "schematicPosition": {
-            "x": 2520,
-            "y": 5625
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_hv_etb_c",
-      "color": "Red",
-      "source": {
-        "id": "k_etb",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "bh_c_fw",
-        "handle": "c6"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_hv_etb_c_r1",
-          "schematicPosition": {
-            "x": -840,
-            "y": 1545
-          }
-        },
-        {
-          "id": "w_hv_etb_c_r2",
-          "schematicPosition": {
-            "x": -840,
-            "y": 195
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_hv_etb_e",
-      "color": "Red",
-      "source": {
-        "id": "bh_c_eng",
-        "handle": "c6"
-      },
-      "target": {
-        "id": "etb",
-        "handle": "c3"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_hv_etb_e_r1",
-          "schematicPosition": {
-            "x": 2538,
-            "y": 585
-          }
-        },
-        {
-          "id": "w_hv_etb_e_r2",
-          "schematicPosition": {
-            "x": 2538,
-            "y": 1785
           }
         }
       ]
@@ -2519,34 +2323,6 @@
           "schematicPosition": {
             "x": 2610,
             "y": 1725
-          }
-        }
-      ]
-    },
-    {
-      "id": "w_eps87",
-      "color": "Red",
-      "source": {
-        "id": "k_eps",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "bh_c_fw",
-        "handle": "c2"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_eps87_o1",
-          "schematicPosition": {
-            "x": 990,
-            "y": 2535
-          }
-        },
-        {
-          "id": "w_eps87_o2",
-          "schematicPosition": {
-            "x": 990,
-            "y": 75
           }
         }
       ]
@@ -5234,152 +5010,6 @@
       }
     },
     {
-      "id": "bh_c_fw",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "contactPartId": "ct_hdp4p",
-          "signal": "spare (size 4)",
-          "cavityPlugPartId": "pl_sz4"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "contactPartId": "ct_hdp8p",
-          "signal": "MRS EPS pump 12V"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "contactPartId": "ct_hdp8p",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "contactPartId": "ct_hdp12p",
-          "signal": "Radiator fan feed (relay 87)"
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "contactPartId": "ct_hdp12p",
-          "signal": "Condenser fan feed (relay 87)"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "contactPartId": "ct_hdp12p",
-          "signal": "V-Ethrottle motor supply"
-        },
-        {
-          "id": "c7",
-          "designation": "7",
-          "contactPartId": "ct_hdp12p",
-          "signal": "Injector bank 12V"
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "contactPartId": "ct_hdp12p",
-          "signal": "Coil bank 12V"
-        },
-        {
-          "id": "c9",
-          "designation": "9",
-          "contactPartId": "ct_hdp12p",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
-        }
-      ],
-      "width": 270,
-      "schematicPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "partId": "cp_hdp_c_fw",
-      "label": "DO NOT BUILD Bulkhead C - leftover HDP20. Fans/EPS: EngineRoom-C. ETB/inj/coil 12V still need A/B pins."
-    },
-    {
-      "id": "bh_c_eng",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "contactPartId": "ct_hdp4s",
-          "signal": "spare (size 4)",
-          "cavityPlugPartId": "pl_sz4"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "contactPartId": "ct_hdp8s",
-          "signal": "MRS EPS pump 12V"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "contactPartId": "ct_hdp8s",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "contactPartId": "ct_hdp12s",
-          "signal": "Radiator fan feed (relay 87)"
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "contactPartId": "ct_hdp12s",
-          "signal": "Condenser fan feed (relay 87)"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "contactPartId": "ct_hdp12s",
-          "signal": "V-Ethrottle motor supply"
-        },
-        {
-          "id": "c7",
-          "designation": "7",
-          "contactPartId": "ct_hdp12s",
-          "signal": "Injector bank 12V"
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "contactPartId": "ct_hdp12s",
-          "signal": "Coil bank 12V"
-        },
-        {
-          "id": "c9",
-          "designation": "9",
-          "contactPartId": "ct_hdp12s",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
-        }
-      ],
-      "width": 270,
-      "schematicPosition": {
-        "x": 0,
-        "y": 390
-      },
-      "layoutPosition": {
-        "x": 0,
-        "y": 120
-      },
-      "partId": "cp_hdp_c_eng",
-      "label": "DO NOT BUILD Bulkhead C engine plug - leftover. See ST185-EngineRoom-C.harness."
-    },
-    {
       "id": "k_eps",
       "partId": "cp_rly_hcr150",
       "label": "MRS EPS Pump Relay (HCR 150, 130 A)",
@@ -7208,11 +6838,6 @@
       "targetId": "bh_b_fw"
     },
     {
-      "id": "mate_bh_c",
-      "sourceId": "bh_c_fw",
-      "targetId": "bh_c_eng"
-    },
-    {
       "id": "mate_rl_pos",
       "sourceId": "rl_pos_fw",
       "targetId": "rl_pos_eng"
@@ -7789,18 +7414,6 @@
       "partNumber": "HDP26-24-21SN",
       "manufacturer": "TE DEUTSCH",
       "description": "HDP20 sz24 21-way plug, SOCKET, N seal - bulkhead B, engine side"
-    },
-    {
-      "id": "cp_hdp_c_fw",
-      "partNumber": "HDP24-24-9PE",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 9-way receptacle, PIN, E seal - bulkhead C, high current, firewall side"
-    },
-    {
-      "id": "cp_hdp_c_eng",
-      "partNumber": "HDP26-24-9SE",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 9-way plug, SOCKET, E seal - bulkhead C, high current, engine side"
     },
     {
       "id": "cp_rly_nod",

@@ -1,0 +1,69 @@
+pin,io_channel,io_function,io_colour,mech_signal,mech_cavity,mech_dests,mech_colours,mech_files,loom_label,onedrive_signal,io_notes
+A1,Inj 4,Brown,"Brown/Orange, Brown/Red, Brown, Brown/Black",Inj 4,a1,bh_a_fw/ECU-A A1,Brown,ST185-Signal.harness,Inj 4,Inj 4,
+A2,Inj 3,Brown,"Brown/Orange, Brown/Red, Brown, Brown/Black",Inj 3,a2,bh_a_fw/ECU-A A2,Brown,ST185-Signal.harness,Inj 3,Inj 3,
+A3,Inj 2,Brown,"Brown/Orange, Brown/Red, Brown, Brown/Black",Inj 2,a3,bh_a_fw/ECU-A A3,Brown,ST185-Signal.harness,Inj 2,Inj 2,
+A4,Inj 1,Brown,"Brown/Orange, Brown/Red, Brown, Brown/Black",Inj 1,a4,bh_a_fw/ECU-A A4,Brown,ST185-Signal.harness,Inj 1,Inj 1,
+A5,14V +,"Main ECU feed (via EFI main relay, Aux 6)",Red,+14V,a5,sp_sw12/Splice,Red,ST185-Power.harness; ST185-Signal.harness,+14V,+14V,
+A6,+8V Out,Cam Hall sensor on Trigger 2 (1.8k pull-up on signal),Orange/White,+8V Out,a6,sp_8v/Splice,Orange,ST185-Power.harness; ST185-Signal.harness,+8V Out cam Hall,+8V Out,
+A7,Shield/Gnd,Green/Yellow,Green,Shield/Gnd,a7,bh_a_fw/ECU-A A7; sp_shield_cab/Splice,Gray; Green,ST185-Signal.harness,Shield/Gnd,Shield/Gnd,
+A8,Trigger 1,Crank (reluctor/VR),Blue,Trig 1,a8,bh_a_fw/ECU-A A8,Blue,ST185-Signal.harness,Trig 1,Trig 1,✅ | 36-2 toothed crank wheel
+A9,Trigger 2,"Cam (Hall, single tooth)",Blue,Trig 2,a9,bh_a_fw/ECU-A A9; bh_a_fw/Trig 2 cam signal (after 1.8k pull-up),Blue; Orange,ST185-Signal.harness,Trig 2,Trig 2,"✅ | RacerX/Cherry kit. Power from ECU +8V Out , 1.8k pull-up on signal — not the kit's 2.4k (sized for 12V). Brown = VCC/+8V, Black = Signal/Trigger 2, Blue = G"
+A10,Ign 4,Violet,"Blue/Orange, Blue/Red, Blue/Brown, Blue",Ign 4,a10,bh_a_fw/ECU-A A10,Violet,ST185-Signal.harness,Ign 4,Ign 4,
+A11,Ign 3,Violet,"Blue/Orange, Blue/Red, Blue/Brown, Blue",Ign 3,a11,bh_a_fw/ECU-A A11,Violet,ST185-Signal.harness,Ign 3,Ign 3,
+A12,Ign 2,Violet,"Blue/Orange, Blue/Red, Blue/Brown, Blue",Ign 2,a12,bh_a_fw/ECU-A A12,Violet,ST185-Signal.harness,Ign 2,Ign 2,
+A13,Ign 1,Violet,"Blue/Orange, Blue/Red, Blue/Brown, Blue",Ign 1,a13,bh_a_fw/ECU-A A13,Violet,ST185-Signal.harness,Ign 1,Ign 1,
+A14,An Volt 4,BRZ APS MAIN (VPA1 pin 6),White,An Volt 4 (APS-M),a14,aps/VPA1 APS-M,White,ST185-Signal.harness,An Volt 4 APS-M,An Volt 4 (APS-M),"✅ | Subaru BRZ / Toyota-family e-throttle pedal, Sumitomo TS 025 6-way. Pin 6 = VPA1 full-range track. Independent +5 V (pin 4 VC1) and Gnd Out (pin 5 GND1)."
+A15,Temp 1,ECT (coolant),Yellow,Temp 1 (ECT),a15,bh_a_fw/ECU-A A15,Yellow,ST185-Signal.harness,Temp 1 ECT,Temp 1 (ECT),"✅ | Toyota OEM 89422-20010 (Sensor, Water Temperature — For E.F.I.), water neck outlet. Selectable pull-up."
+A16,Temp 2,IAT — manifold,Yellow,Temp 2 (IAT),a16,bh_a_fw/ECU-A A16,Yellow,ST185-Signal.harness,Temp 2 IAT,Temp 2 (IAT),✅ | built-in pull-up
+A17,An Volt 1,MAP,White,An Volt 1 (MAP),a17,bh_a_fw/ECU-A A17,White,ST185-Signal.harness,An Volt 1 MAP,An Volt 1 (MAP),✅ | +5V
+A18,Aux 4,AC clutch/kill (grounds relay coil or amp ACT),Pink,Aux 4 (AC Kill),a18,acamp/A/C kill (ground = kill),Pink,ST185-Signal.harness,Aux 4 AC kill,Aux 4 (AC Kill),"low-side | ✅ | active-low sink; floats when off, no pull-up . Amp ACT : ground = kill, floating = normal ."
+A19,Aux 3,Fuel pump relay,Pink,Aux 3 (FP Rly),a19,k_fp/Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4),Pink,ST185-Signal.harness,Aux 3 FP rly,Aux 3 (FP Rly),low-side | ✅ | active-low
+A20,Aux 2,ETB power relay (V-Ethrottle feed),Pink,Aux 2 (ETB Rly),a20,k_etb/Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4),Pink,ST185-Signal.harness,Aux 2 ETB rly,Aux 2 (ETB Rly),low-side | ✅ | active-low
+A21,Aux 1,Boost solenoid,Pink,Aux 1 (Boost),a21,bh_a_fw/ECU-A A21,Pink,ST185-Signal.harness,Aux 1 Boost,Aux 1 (Boost),low-side | ✅ | active-low
+A22,An Volt 2,ETB throttle pos — MAIN,White,An Volt 2 (TPS-M),a22,bh_a_fw/ECU-A A22,White,ST185-Signal.harness,An Volt 2 TPS-M,An Volt 2 (TPS-M),✅ | Bosch ETB
+A23,DI 3,ABS wheel speed ×4 (reluctor),Green,DI 3 (WSS FL),a23,bh_a_fw/ECU-A A23,Green,ST185-Signal.harness,DI 3 WSS FL,DI 3 (WSS FL),"✅ | Shielded twisted pair. Fed through a NCV1124 VR conditioner — see docs/devices/VR-WHEEL-SPEED-CONDITIONER.md . Conditioner ground = Gnd Out, 5V from the ext"
+A24,Gnd Out,Black/White,Green,Gnd Out,a24,sp_gndout/Splice,Black,ST185-Power.harness; ST185-Signal.harness,Gnd Out,Gnd Out,
+A25,Ground,Black,Black,Ground,a25,sp_chassis/Splice,Black,ST185-Power.harness; ST185-Signal.harness,Ground,Ground,
+A26,Aux 8,Start relay (ECU-controlled),Pink,Aux 8 (Start Rly),a26,k_str/Coil - -> Aux 8 / A26 - low-side,Pink,ST185-Signal.harness,Aux 8 Start rly,Aux 8 (Start Rly),hi/lo | ✅ | ECU enables/disables in software (clutch/neutral/anti-restart) — no separate cut relay
+A27,Aux 7,Speed-out → MRS pump SPD pin (Yel/Wht),Pink,Aux 7 (MRS SPD),a27,bh_b_fw/ECU-A A27,Pink,ST185-Signal.harness,Aux 7 MRS SPD,Aux 7 (MRS SPD),"hi/lo | ✅ | PCLink Speedo Out / GP PWM is a valid Aux 5–8 function. MRS wants ~4 pulses/rev, 0–5 V (scoped on the RAV4-family PS ECU). Aux 5–8 have an internal "
+A28,Aux 6,EFI main relay (ECU power hold),Pink,Aux 6 (EFI Hold),a28,k_efi/Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power),Pink,ST185-Signal.harness,Aux 6 EFI hold,Aux 6 (EFI Hold),hi/lo | ✅ | keeps ECU powered for DBW key-off reset/cooldown. PCLink Hold Power Ignition Switch input is DI 9 (B28) from the dummy OEM ignition-switch block.
+A29,Aux 5,Engine radiator fan relay,Pink,Aux 5 (Rad Fan),a29,k_fan/Coil - -> Aux 5 / A29 - low-side,Pink,ST185-Signal.harness,Aux 5 Rad fan,Aux 5 (Rad Fan),hi/lo | ✅ | 
+A30,DI 1,Turbo speed (frequency),Green,DI 1 (Turbo Spd),a30,bh_a_fw/ECU-A A30,Green,ST185-Signal.harness,DI 1 Turbo spd,DI 1 (Turbo Spd),✅ | 
+A31,DI 2,Flex-fuel sensor (Continental 3-pin) → ethanol% + fuel temp,Green,DI 2 (Flex),a31,bh_a_fw/ECU-A A31,Green,ST185-Signal.harness,DI 2 Flex,DI 2 (Flex),✅ | 12 V / Gnd Out / signal. PCLink Ethanol Sensor + DI pull-up ON . No extra 2.4 kΩ unless the edge is weak on a scope. Fuel temp comes from here — no separate
+A32,+5V Out,"MAP, TPS×2, BRZ APS VC1+VC2, pressures",Orange,+5V Out,a32,r_fuellvl/Right; r_cruise/Right; sp_5v/Splice,Orange,ST185-Power.harness; ST185-Signal.harness,+5V Out,+5V Out,
+A33,An Volt 3,ETB throttle pos — SUB,White,An Volt 3 (TPS-S),a33,bh_a_fw/ECU-A A33,White,ST185-Signal.harness,An Volt 3 TPS-S,An Volt 3 (TPS-S),✅ | Bosch ETB
+A34,Ground,Black,Black,Ground,a34,sp_chassis/Splice,Black,ST185-Power.harness; ST185-Signal.harness,Ground,Ground,
+B1,Ign 7–8 / Inj 5–8,spare low-side aux,Brown,,b1,,,ST185-Signal.harness,Inj 8 spare,,low-side | ⬜ | → PMU/PDM if more needed
+B2,Ign 7–8 / Inj 5–8,spare low-side aux,Brown,,b2,,,ST185-Signal.harness,Inj 7 spare,,low-side | ⬜ | → PMU/PDM if more needed
+B3,Ign 7–8 / Inj 5–8,spare low-side aux,Brown,,b3,,,ST185-Signal.harness,Inj 6 spare,,low-side | ⬜ | → PMU/PDM if more needed
+B4,Ign 7–8 / Inj 5–8,spare low-side aux,Brown,,b4,,,ST185-Signal.harness,Inj 5 spare,,low-side | ⬜ | → PMU/PDM if more needed
+B5,V-Ethrottle 12V switched input,"ETB H-bridge supply — power in, not an output . Triggered by Aux 2 (A20).",Red/White,V-Ethrottle In,b5,k_etb/+12V out -> ECU B5 V-Ethrottle,Red,ST185-Power.harness; ST185-Signal.harness,V-Ethrottle in,V-Ethrottle In,12V in | ✅ | 0.75 mm². Present on the loom but absent from the Quickstart I/O table — always list it explicitly.
+B6,Temp 3,Oil temp,Yellow,Temp 3 (Oil T),b6,bh_b_fw/ECU-B B6,Yellow,ST185-Signal.harness,Temp 3 Oil T,Temp 3 (Oil T),✅ | Fixed 1k pull-up (Temp 3/4 are not selectable)
+B7,Temp 4,Charge-pipe IAT #2 (heat-soak),Yellow,Temp 4 (Chg IAT),b7,bh_b_fw/ECU-B B7,Yellow,ST185-Signal.harness,Temp 4 Chg IAT,Temp 4 (Chg IAT),"✅ | No external resistor, but Temp 3 and Temp 4 are fixed at 1k — only Temp 1/2 are selectable. Same NTC part as the manifold IAT on Temp 2, so the two need sep"
+B8,Knock 2,spare,Grey,Knock 2 (spare),b8,,,ST185-Signal.harness,Knock 2,Knock 2 (spare),⬜ | 
+B9,Knock 1,Knock sensor,Grey,Knock 1,b9,bh_a_fw/ECU-B B9,Gray,ST185-Signal.harness,Knock 1,Knock 1,✅ | 
+B10,Ign 8…5,Violet,"Blue/Purple, Blue/Black, Blue/Green, Blue/Yellow",,b10,,,ST185-Signal.harness,Ign 8 spare,,
+B11,Ign 8…5,Violet,"Blue/Purple, Blue/Black, Blue/Green, Blue/Yellow",,b11,,,ST185-Signal.harness,Ign 7 spare,,
+B12,Ign 6,Available,Violet,,b12,,,ST185-Signal.harness,Ign 6 spare,,low-side | ⬜ | Freed 2026-09-06 — no ECU-driven warning lamps. The stock combination meter is gone; the replacement cluster handles indicators over CAN.
+B13,Ign 5,2nd rad fan (AC condenser duty),Violet,Ign 5 (2nd Fan),b13,"k_fan2/Coil - -> Ign 5 / B13 - low-side, NO internal flywheel diode - diode-suppressed relay required",Violet,ST185-Signal.harness,Ign 5 2nd fan,Ign 5 (2nd Fan),low-side | ✅ | spare ign as aux
+B14,,,,,b14,,,ST185-Signal.harness,nc empty cavity,,
+B15,An Volt 6,Oil pressure,White,An Volt 6 (Oil P),b15,bh_b_fw/ECU-B B15,White,ST185-Signal.harness,An Volt 6 Oil P,An Volt 6 (Oil P),✅ | 
+B16,An Volt 7,Fuel pressure,White,An Volt 7 (Fuel P),b16,bh_b_fw/ECU-B B16,White,ST185-Signal.harness,An Volt 7 Fuel P,An Volt 7 (Fuel P),✅ | 
+B17,Shield/Gnd,Green/Yellow,Green,Shield/Gnd,b17,sp_shield_cab/Splice,Green,ST185-Signal.harness,Shield/Gnd,Shield/Gnd,
+B18,Aux 9,Bosch ETB motor (H-bridge),Pink,Aux 9 (ETB M+),b18,"bh_b_fw/ETB motor + (Aux 9, B18)",Pink,ST185-Power.harness; ST185-Signal.harness,Aux 9 ETB M+,Aux 9 (ETB M+),H-bridge | ✅ | DBW
+B19,DI 6,ABS wheel speed ×4 (reluctor),Green,DI 6 (WSS RR),b19,vr2_out2/Terminal,Green,ST185-Signal.harness,DI 6 WSS RR,DI 6 (WSS RR),"✅ | Shielded twisted pair. Fed through a NCV1124 VR conditioner — see docs/devices/VR-WHEEL-SPEED-CONDITIONER.md . Conditioner ground = Gnd Out, 5V from the ext"
+B20,DI 5,ABS wheel speed ×4 (reluctor),Green,DI 5 (WSS RL),b20,vr2_out1/Terminal,Green,ST185-Signal.harness,DI 5 WSS RL,DI 5 (WSS RL),"✅ | Shielded twisted pair. Fed through a NCV1124 VR conditioner — see docs/devices/VR-WHEEL-SPEED-CONDITIONER.md . Conditioner ground = Gnd Out, 5V from the ext"
+B21,DI 4,ABS wheel speed ×4 (reluctor),Green,DI 4 (WSS FR),b21,bh_a_fw/ECU-B B21,Green,ST185-Signal.harness,DI 4 WSS FR,DI 4 (WSS FR),"✅ | Shielded twisted pair. Fed through a NCV1124 VR conditioner — see docs/devices/VR-WHEEL-SPEED-CONDITIONER.md . Conditioner ground = Gnd Out, 5V from the ext"
+B22,Gnd Out,Black/White,Green,Gnd Out,b22,sp_gndout/Splice,Black,ST185-Power.harness; ST185-Signal.harness,Gnd Out,Gnd Out,
+B23,An Volt 8,Coolant pressure,White,An Volt 8 (Clnt P),b23,bh_b_fw/ECU-B B23,White,ST185-Signal.harness,An Volt 8 Clnt P,An Volt 8 (Clnt P),✅ | 
+B24,An Volt 9,Fuel level sender,White,An Volt 9 (Fuel Lvl),b24,fuellvl/SIG,White,ST185-Signal.harness,An Volt 9 Fuel lvl,An Volt 9 (Fuel Lvl),✅ | An Volt has no internal pull-up (QSG: 0–5 V only). External divider to +5 V required; calibrate V→% (resistor value TBD).
+B25,Ground,Black,Black,Ground,b25,sp_chassis/Splice,Black,ST185-Power.harness; ST185-Signal.harness,Ground,Ground,
+B26,Aux 10,Bosch ETB motor (H-bridge),Pink,Aux 10 (ETB M-),b26,"bh_b_fw/ETB motor - (Aux 10, B26)",Pink,ST185-Power.harness; ST185-Signal.harness,Aux 10 ETB M−,Aux 10 (ETB M-),H-bridge | ✅ | DBW
+B27,DI 10,Available,Green,,b27,,,ST185-Signal.harness,DI 10 / CAN2 H spare,,⬜ | CAN 2 unused. Ordinary digital input.
+B28,DI 9,Ignition Switch (Hold Power),Green,DI 9 (Ignition Switch),b28,ign_sw/IGN ON,Green,ST185-Signal.harness,DI 9 Ignition Switch,,"✅ | Dummy OEM ignition-switch block — key-on sense for PCLink Hold Power (pairs with Aux 6 EFI-main hold). OEM internals not modelled. CAN 2 unused, so B28 is a"
+B29,DI 8,Gearbox 3-wire 12V Toyota VSS (mph),Green,,b29,vss_gbx (stub; cavity map TBD),,ST185-Signal.harness,DI 8 / B29 VSS,,Daniel lock: gearbox 3-wire 12V Toyota VSS (not 4-wire). Oval 3-pin socket plug PN TBD. Signal to B29. Cavity PWR/SIG/GND TBD — do not invent. Not OEM SPD tap (path A).
+B30,DI 7,Start request (button/key),Green,DI 7 (Start Req),b30,start_req/SW,Green,ST185-Signal.harness,DI 7 Start,DI 7 (Start Req),✅ | ECU-controlled start
+B31,An Volt 10,Available,White,,b31,,,ST185-Signal.harness,An Volt 10 spare,,"⬜ | Not reserved. The AC amplifier handles compressor protection itself, so no analog channels are needed for AC."
+B32,An Volt 11,Available,White,,b32,,,ST185-Signal.harness,An Volt 11 spare,,"⬜ | Not reserved. The AC amplifier handles compressor protection itself, so no analog channels are needed for AC."
+B33,An Volt 5,BRZ APS SUB (VPA2 pin 3),White,An Volt 5 (APS-S),b33,aps/VPA2 APS-S,White,ST185-Signal.harness,An Volt 5 APS-S,An Volt 5 (APS-S),✅ | Pedal pin 3 = VPA2. Independent +5 V (pin 1 VC2) and Gnd Out (pin 2 GND2). Toyota-family sub track often saturates ~60–70 % — set PCLink APS (Sub) 100% afte
+B34,Ground,Black,Black,Ground,b34,sp_chassis/Splice,Black,ST185-Power.harness; ST185-Signal.harness,Ground,Ground,

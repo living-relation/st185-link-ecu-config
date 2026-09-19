@@ -376,7 +376,7 @@ Clamp".
 
 ---
 
-## Open questions
+## Domain unknowns (measurements — not agent asks)
 
 1. **2.50 inch is the pick on both sides.** Confirm the 2.50 → 3.00 cone at the
    TB and the 3.00 → 2.50 reducer at the IC outlet clear the frame rail. Do not

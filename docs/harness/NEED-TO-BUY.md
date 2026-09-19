@@ -1,6 +1,6 @@
 # Harness — need to buy
 
-Generated from `ST185-Signal.harness`, `ST185-Power.harness`, `ST185-CAN.harness` and `ST185-EngineRoom-C.harness` on 2026-09-17.
+Generated from `ST185-Signal.harness`, `ST185-Power.harness`, `ST185-CAN.harness` and `ST185-EngineRoom-C.harness` on 2026-09-18.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
@@ -31,6 +31,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `PDB-M8x8` | TBD | 8-stud power distribution block at glove box, M8, 150-250 A bu | 1 | 0 | **1** |
 | `PMU-16` | ECUMaster | 10x25A + 6x15A high-side, 150A total, M6 stud + 39-way. On CAN | 1 | 0 | **1** |
 | `Sumitomo TS 025 6-way` | Sumitomo / Subaru | Subaru BRZ / Toyota-family e-throttle pedal. Looking into conn | 1 | 0 | **1** |
+| `generic oval 3-pin socket (PN TBD)` | TBD / generic | Generic oval 3-pin plug with socket contacts — mate for gearbo | 1 | 0 | **1** |
 | `jump-post-M8` | TBD | Engine-bay jump / accessory post on starter B+ net. | 1 | 0 | **1** |
 | `HCR 150 mating hardware` | TE Connectivity | Receptacle / terminals for V23132-A2001-B200 - CONFIRM with supplier | 1 | 0 | **1** |
 | `2 AWG welding cable red/black` | generic | Trunk battery +/−, RADLOK charge/start, jump post. Length TBD on the car. | 1 | 0 | **1** |
@@ -46,18 +47,12 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
-| `0413-214-1205` | Sealing plug, size 12, yellow | 10 | 10 |
+| `0413-214-1205` | Sealing plug, size 12, yellow | 8 | 10 |
 | `0460-202-1631` | Size 16 solid PIN, 16-20 AWG, 13 A | 22 | 130 |
-| `0460-204-0490` | Size 4 solid PIN, 6 AWG, 100 A | 1 | 5 |
-| `0460-204-08141` | Size 8 solid PIN, 8-10 AWG, 60 A | 2 | 5 |
-| `0460-220-1231` | Size 12 solid PIN, 12-14 AWG, 25 A | 10 | 20 |
+| `0460-220-1231` | Size 12 solid PIN, 12-14 AWG, 25 A | 4 | 20 |
 | `0462-201-1631` | Size 16 solid SOCKET, 16-20 AWG, 13 A | 22 | 118 |
-| `0462-203-04141` | Size 4 solid SOCKET, 6 AWG, 100 A | 1 | 9 |
-| `0462-203-08141` | Size 8 solid SOCKET, 8-10 AWG, 60 A | 2 | 9 |
-| `0462-210-1231` | Size 12 solid SOCKET, 12-14 AWG, 25 A | 10 | 20 |
+| `0462-210-1231` | Size 12 solid SOCKET, 12-14 AWG, 25 A | 4 | 20 |
 | `1 928 403 874` | 2-way knock sensor connector | 1 | 1 |
-| `114018-ZZ` | Sealing plug, size 8, white | 2 | 10 |
-| `114019-ZZ` | Sealing plug, size 4, white | 2 | 10 |
 | `13519047` | GT150 3-way flex-fuel sensor | 1 | 1 |
 | `2141029-1` | Fuse box assembly, hard wired | 1 | 1 |
 | `2411-001-2405` | Panel nut size 24 | 3 | 4 |
@@ -73,10 +68,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `DTM06-6S` | DTM 6-way socket — ECU comms harness side | 1 | 1 |
 | `HDP24-24-21PN` | HDP20 sz24 21-way receptacle, PIN, N seal - bulkhead B, firewa | 1 | 1 |
 | `HDP24-24-47PE-L017` | HDP20 sz24 47-way receptacle, PIN, E seal, reverse ring flange | 1 | 1 |
-| `HDP24-24-9PE` | HDP20 sz24 9-way receptacle, PIN, E seal - bulkhead C, high cu | 1 | 2 |
 | `HDP26-24-21SN` | HDP20 sz24 21-way plug, SOCKET, N seal - bulkhead B, engine si | 1 | 1 |
 | `HDP26-24-47SE-L015` | HDP20 sz24 47-way plug, SOCKET, E seal, threaded - bulkhead A, | 1 | 1 |
-| `HDP26-24-9SE` | HDP20 sz24 9-way plug, SOCKET, E seal - bulkhead C, high curre | 1 | 2 |
 | `M902-2243` | Backshell 24SZ straight L015 | 1 | 1 |
 | `VCF7-1000 / 1393310-4` | Maxi relay mounting block | 1 | 1 |
 | `generic` | 22 AWG WHITE TEFZEL, SINGLE CONDUCTOR, SHIELDED (tinned copper braid). EPS speed pulse Aux 7 -> pump conn B, and any other screened single signal. Shield grounded at the ECU end only. IN STOCK. | 1 | 1 |

@@ -14,7 +14,7 @@
         "id": "bh_a_fw",
         "handle": "c6"
       },
-      "color": "Gray",
+      "color": "Green/Yellow",
       "layoutPoints": [
         {
           "id": "w12_c_r1",
@@ -42,7 +42,7 @@
         "id": "knock1",
         "handle": "c2"
       },
-      "color": "Gray",
+      "color": "Green/Yellow",
       "layoutPoints": [
         {
           "id": "w12_e_r1",
@@ -5874,152 +5874,6 @@
       }
     },
     {
-      "id": "bh_c_fw",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "contactPartId": "ct_hdp4p",
-          "signal": "spare (size 4)",
-          "cavityPlugPartId": "pl_sz4"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "contactPartId": "ct_hdp8p",
-          "signal": "MRS EPS pump 12V"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "contactPartId": "ct_hdp8p",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "contactPartId": "ct_hdp12p",
-          "signal": "Radiator fan feed (relay 87)"
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "contactPartId": "ct_hdp12p",
-          "signal": "Condenser fan feed (relay 87)"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "contactPartId": "ct_hdp12p",
-          "signal": "V-Ethrottle motor supply"
-        },
-        {
-          "id": "c7",
-          "designation": "7",
-          "contactPartId": "ct_hdp12p",
-          "signal": "Injector bank 12V"
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "contactPartId": "ct_hdp12p",
-          "signal": "Coil bank 12V"
-        },
-        {
-          "id": "c9",
-          "designation": "9",
-          "contactPartId": "ct_hdp12p",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
-        }
-      ],
-      "width": 270,
-      "schematicPosition": {
-        "x": 0,
-        "y": 540
-      },
-      "layoutPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "partId": "cp_hdp_c_fw",
-      "label": "Bulkhead C - firewall (HDP24-24-9PE)"
-    },
-    {
-      "id": "bh_c_eng",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "contactPartId": "ct_hdp4s",
-          "signal": "spare (size 4)",
-          "cavityPlugPartId": "pl_sz4"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "contactPartId": "ct_hdp8s",
-          "signal": "MRS EPS pump 12V"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "contactPartId": "ct_hdp8s",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "contactPartId": "ct_hdp12s",
-          "signal": "Radiator fan feed (relay 87)"
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "contactPartId": "ct_hdp12s",
-          "signal": "Condenser fan feed (relay 87)"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "contactPartId": "ct_hdp12s",
-          "signal": "V-Ethrottle motor supply"
-        },
-        {
-          "id": "c7",
-          "designation": "7",
-          "contactPartId": "ct_hdp12s",
-          "signal": "Injector bank 12V"
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "contactPartId": "ct_hdp12s",
-          "signal": "Coil bank 12V"
-        },
-        {
-          "id": "c9",
-          "designation": "9",
-          "contactPartId": "ct_hdp12s",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
-        }
-      ],
-      "width": 270,
-      "schematicPosition": {
-        "x": 0,
-        "y": 930
-      },
-      "layoutPosition": {
-        "x": 0,
-        "y": 120
-      },
-      "partId": "cp_hdp_c_eng",
-      "label": "Bulkhead C - engine plug (HDP26-24-9SE)"
-    },
-    {
       "id": "k_eps",
       "partId": "cp_oem_block_5",
       "label": "MRS EPS Pump Relay (HCR 150, 130 A)",
@@ -6059,6 +5913,18 @@
           "signal": "not used"
         }
       ]
+    },
+    {
+      "id": "vss_gbx",
+      "label": "Gearbox VSS (3-wire 12V Toyota) — oval 3-pin sockets",
+      "partId": "cp_vss_oval3",
+      "cavities": [
+        { "id": "a", "signal": "TBD" },
+        { "id": "b", "signal": "TBD" },
+        { "id": "c", "signal": "TBD" }
+      ],
+      "layoutPosition": { "x": 4200, "y": 900 },
+      "schematicPosition": { "x": 2400, "y": 780 }
     }
   ],
   "terminals": [
@@ -7550,11 +7416,6 @@
       "id": "mate_bh_b",
       "sourceId": "bh_b_eng",
       "targetId": "bh_b_fw"
-    },
-    {
-      "id": "mate_bh_c",
-      "sourceId": "bh_c_fw",
-      "targetId": "bh_c_eng"
     }
   ],
   "splices": [
@@ -7671,6 +7532,30 @@
       "schematicPosition": {
         "x": 2280,
         "y": -150
+      }
+    },
+    {
+      "id": "n_pass_a_b29",
+      "label": "Daniel lock: B29 / DI8 = gearbox 3-wire 12V Toyota VSS for mph (not 4-wire). Mate = generic oval 3-pin socket plug, PN TBD. Signal → B29. Oval cavity map TBD — do not invent PWR/SIG/GND. Chosen landing = gearbox VSS (not OEM SPD tap / path A). Stub: vss_gbx. No wire drawn yet.",
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "n_pass_a_fuel",
+      "label": "Pass A: Fuel level = OEM sender + voltage divider to +5V (An Volt 9 / B24). Ω TBD — 470R in BOM is a starting guess only.",
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "n_pass_a_ac",
+      "label": "Pass A: AC kill intentional — Aux4 to OEM amp ACT; ground=kill, float=run; no Request DI.",
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
       }
     }
   ],
@@ -8387,18 +8272,6 @@
       "description": "HDP20 sz24 21-way plug, SOCKET, N seal - bulkhead B, engine side"
     },
     {
-      "id": "cp_hdp_c_fw",
-      "partNumber": "HDP24-24-9PE",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 9-way receptacle, PIN, E seal - bulkhead C, high current, firewall side"
-    },
-    {
-      "id": "cp_hdp_c_eng",
-      "partNumber": "HDP26-24-9SE",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 9-way plug, SOCKET, E seal - bulkhead C, high current, engine side"
-    },
-    {
       "id": "pl_sz4",
       "partNumber": "114019-ZZ",
       "manufacturer": "TE DEUTSCH",
@@ -8427,6 +8300,21 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
+    },
+    {
+      "id": "cp_vss_oval3",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "generic oval 3-pin socket (PN TBD)",
+      "description": "Generic oval 3-pin plug with socket contacts — mate for gearbox 3-wire 12V Toyota VSS. PN TBD. Cavity map (PWR/SIG/GND) TBD — do not invent which oval cavity is which.",
+      "manufacturer": "TBD / generic",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_generic_skt"
+        }
+      ],
+      "numberOfCavities": 3
     }
   ],
   "bootParts": [

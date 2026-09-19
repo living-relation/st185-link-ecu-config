@@ -145,3 +145,6 @@ git config merge.ours.driver true
 
 If you still land in a conflict on one of these, do not resolve it by hand. Take either
 side, re-run the generator, and stage the result.
+
+## Wiring audit
+- Provisional conflict sheet: `docs/WIRING-AUDIT-2026-09-18.md` (2026-09-18). No mass rewrites until Daniel locks bh_c / A7 / pin-graph.

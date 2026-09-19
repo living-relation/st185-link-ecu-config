@@ -162,7 +162,7 @@ manifold pairing *geometry* is exact; its *consequences* are worth ±50%. Bumper
 dimensions are estimated from adjacent known parts — **measure M1–M5 in §13 and §24 before
 ordering anything.**
 
-## Open questions
+## Domain unknowns (measurements — not agent asks)
 
 Sixteen, listed in §24 of the report. The three that block everything else:
 
