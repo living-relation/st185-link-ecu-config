@@ -118,6 +118,13 @@ def main():
     write = "--write" in sys.argv
     sig, pwr = load("ST185-Signal.harness"), load("ST185-Power.harness")
     can, room = load("ST185-CAN.harness"), load("ST185-EngineRoom-C.harness")
+    # w_rlp is used twice across the repo: the rear-left wheel-speed wire in
+    # Signal and the RADLOK positive pair in EngineRoom-C. Same id, different
+    # wires - any cross-file tool silently keeps one. Rename the RADLOK one;
+    # w_rlp belongs with w_flp / w_frp / w_rrp.
+    for w in room.get("wires", []):
+        if w.get("id") == "w_rlp":
+            w["id"] = "w_rl_pos"
     originals = {w["id"]: copy.deepcopy(w)
                  for d in (sig, pwr) for w in d.get("wires", [])}
     report = []
@@ -164,13 +171,11 @@ def main():
             fixed += 1
         elif s == "r_cam" or t == "r_cam":
             fixed += 1
-    # Taking the resistor out of series leaves the cam signal with nothing
-    # between the sensor and the bulkhead. Put the straight-through run back.
-    sig["wires"].append({
-        "id": "w_cam_sig_e", "color": "Blue",
-        "source": {"id": "cam", "handle": "c2"},
-        "target": {"id": "bh_a_eng", "handle": "c32"},
-    })
+    # The straight-through cam signal already exists on bulkhead A pin 29
+    # (w_cam_sig_e / w_cam_sig_c, added in Pass A), so the old resistor-in-series
+    # leg on pin 32 is a second, parallel path to the same ECU pin. Drop its
+    # cabin half too - w23 and w20_e are rewired above, w20_c just goes.
+    sig["wires"] = [w for w in sig["wires"] if w.get("id") != "w20_c"]
     report.append("cam pull-up rewired ECU-side (8V a6 -> resistor -> Trig2 a9), "
                   "%d wires touched" % fixed)
 
@@ -214,11 +219,12 @@ def main():
     print("-" * 66)
     start = len(originals) + len(can.get("wires", [])) + 33
     total = sum(len(v.get("wires", [])) for v in outputs.values())
-    # start already counts w_eps_trig (registered in originals); w_cam_sig_e is
-    # the only addition outside it.
-    expect = start - len(KILL_WIRES) + 1
-    print("accounting: %d in, %d deleted, %d added, %d out%s"
-          % (start, len(KILL_WIRES), 2, total,
+    # Deleted: KILL_WIRES plus w20_c (the duplicate cam leg). Added: w_eps_trig,
+    # which is already counted in originals, so nothing to add here.
+    deleted = len(KILL_WIRES) + 1
+    expect = start - deleted
+    print("accounting: %d in, %d deleted, %d out%s"
+          % (start, deleted, total,
              "  OK - nothing lost" if total == expect else "  <-- MISMATCH"))
     for k in sorted(outputs):
         v = outputs[k]

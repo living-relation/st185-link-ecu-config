@@ -3113,34 +3113,6 @@
           }
         }
       ]
-    },
-    {
-      "id": "w20_c",
-      "color": "Orange",
-      "source": {
-        "id": "bh_a_fw",
-        "handle": "c32"
-      },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a9"
-      },
-      "layoutPoints": [
-        {
-          "id": "w20_c_r1",
-          "schematicPosition": {
-            "x": 1230,
-            "y": 3555
-          }
-        },
-        {
-          "id": "w20_c_r2",
-          "schematicPosition": {
-            "x": 1230,
-            "y": 285
-          }
-        }
-      ]
     }
   ],
   "connectorParts": [

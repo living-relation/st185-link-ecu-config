@@ -2065,18 +2065,6 @@
           }
         }
       ]
-    },
-    {
-      "id": "w_cam_sig_e",
-      "color": "Blue",
-      "source": {
-        "id": "cam",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "bh_a_eng",
-        "handle": "c32"
-      }
     }
   ],
   "connectorParts": [
