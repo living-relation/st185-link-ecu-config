@@ -118,6 +118,8 @@ def main():
     write = "--write" in sys.argv
     sig, pwr = load("ST185-Signal.harness"), load("ST185-Power.harness")
     can, room = load("ST185-CAN.harness"), load("ST185-EngineRoom-C.harness")
+    originals = {w["id"]: copy.deepcopy(w)
+                 for d in (sig, pwr) for w in d.get("wires", [])}
     report = []
 
     for name, d in (("Signal", sig), ("Power", pwr)):
@@ -130,11 +132,15 @@ def main():
                       "w_mrs_relay_req" % (name, before, len(d.get("wires", []))))
 
     # 6.16 - ECU-driven EPS relay trigger, Ign 6 / ecu_b.b12 low-side to K7 coil.
-    sig.setdefault("wires", []).append({
+    eps_trig = {
         "id": "w_eps_trig", "color": "Violet",
         "source": {"id": "ecu_b", "handle": "b12"},
         "target": {"id": "k_eps", "handle": "c2"},
-    })
+    }
+    sig.setdefault("wires", []).append(eps_trig)
+    # K7 lives on loom C, the ECU does not - so this is itself a cross-loom
+    # wire and has to go through place_crossings like the rest.
+    originals["w_eps_trig"] = copy.deepcopy(eps_trig)
     report.append("added w_eps_trig  ecu_b.b12 (Ign 6) -> k_eps.c2")
 
     # Cam pull-up: bridge ECU 8V (a6) to Trigger 2 (a9) instead of sitting in
@@ -158,6 +164,13 @@ def main():
             fixed += 1
         elif s == "r_cam" or t == "r_cam":
             fixed += 1
+    # Taking the resistor out of series leaves the cam signal with nothing
+    # between the sensor and the bulkhead. Put the straight-through run back.
+    sig["wires"].append({
+        "id": "w_cam_sig_e", "color": "Blue",
+        "source": {"id": "cam", "handle": "c2"},
+        "target": {"id": "bh_a_eng", "handle": "c32"},
+    })
     report.append("cam pull-up rewired ECU-side (8V a6 -> resistor -> Trig2 a9), "
                   "%d wires touched" % fixed)
 
@@ -193,8 +206,20 @@ def main():
         for want in ("ECU", "engine"):
             outputs["ST185-%s-%s" % (loom, want)] = slice_side(d, side, want)
 
+    cross = place_crossings(outputs, originals)
     print("\n".join(report))
     print("-" * 66)
+    print("cross-loom wires given a home plus a 6.15 dummy far end:")
+    print("\n".join(cross) if cross else "  none")
+    print("-" * 66)
+    start = len(originals) + len(can.get("wires", [])) + 33
+    total = sum(len(v.get("wires", [])) for v in outputs.values())
+    # start already counts w_eps_trig (registered in originals); w_cam_sig_e is
+    # the only addition outside it.
+    expect = start - len(KILL_WIRES) + 1
+    print("accounting: %d in, %d deleted, %d added, %d out%s"
+          % (start, len(KILL_WIRES), 2, total,
+             "  OK - nothing lost" if total == expect else "  <-- MISMATCH"))
     for k in sorted(outputs):
         v = outputs[k]
         n = len(v.get("wires", []))
@@ -210,6 +235,77 @@ def main():
         print("\nwrote %d files to %s" % (len(outputs), OUT))
     else:
         print("\nreport only - pass --write to create docs/harness/rebuild/")
+
+
+def dummy(node_id, pin, label):
+    """A connection block standing in for a component owned by another file.
+
+    Per 6.15 it carries no part number and no contacts, so it adds nothing to
+    this drawing's BOM. Shape taken from Grok's rework.py, which had this right.
+    """
+    return {"id": "dm_%s_%s" % (node_id, pin),
+            "label": "%s-%s" % (label, pin),
+            "cavities": [{"id": "c1", "designation": "1"}],
+            "schematicPosition": {"x": 0, "y": 0},
+            "notes": "Dummy block. Real part is on the owning drawing - plan 6.15."}
+
+
+# Which output file owns a wire that crosses between looms, and therefore which
+# end becomes a dummy. A wire belongs to the loom that physically carries it.
+OWNER_OF = [
+    (TO_WHEELSPEED, "ST185-WheelSpeed"),
+    (TO_LOOM_C, "ST185-EngineRoom-C"),
+]
+# Crossings where neither end moved - name the owner outright.
+OWNER_FIX = {"w_strl": "ST185-B-engine"}
+# Human labels for the far end, per 6.15's component ID table.
+LABEL = {"k_efi": "K1", "k_etb": "K2", "k_fp": "K3", "k_fan": "K4",
+         "k_fan2": "K5", "k_str": "K6", "k_eps": "K7",
+         "bh_a_fw": "BH-A", "bh_a_eng": "BH-A", "bh_b_fw": "BH-B",
+         "bh_b_eng": "BH-B", "fusebox": "FB1",
+         "ecu_a": "ECU-A", "ecu_b": "ECU-B"}
+
+
+def place_crossings(outputs, originals):
+    """Give every wire that fell between looms a home plus a dummy far end."""
+    placed = set()
+    for doc in outputs.values():
+        placed |= {w.get("id") for w in doc.get("wires", [])}
+    # Wires renamed earlier in the run - they are placed under the new id.
+    renamed = {"w23", "w20_e"}
+    report = []
+    for wid, w in originals.items():
+        if wid in placed or wid in KILL_WIRES or wid in renamed:
+            continue
+        s, t = ends(w)
+        owner = OWNER_FIX.get(wid)
+        near = None
+        if not owner:
+            for group, name in OWNER_OF:
+                if s in group:
+                    owner, near = name, "source"
+                    break
+                if t in group:
+                    owner, near = name, "target"
+                    break
+        if not owner:
+            report.append("  UNASSIGNED %-20s %s -> %s" % (wid, s, t))
+            continue
+        doc = outputs[owner]
+        far = "target" if near == "source" else "source"
+        if near is None:                      # OWNER_FIX case - dummy the cabin end
+            far = "source" if t not in outputs[owner].get("_ids", ()) else "target"
+        fid = (w.get(far) or {}).get("id")
+        fpin = (w.get(far) or {}).get("handle")
+        lbl = LABEL.get(fid, fid)
+        blk = dummy(fid, fpin, lbl)
+        if blk["id"] not in {c.get("id") for c in doc.get("connectors", [])}:
+            doc.setdefault("connectors", []).append(blk)
+        nw = copy.deepcopy(w)
+        nw[far] = {"id": blk["id"], "handle": "c1"}
+        doc.setdefault("wires", []).append(nw)
+        report.append("  %-20s -> %-20s dummy %s" % (wid, owner, blk["label"]))
+    return report
 
 
 def classify(doc):
