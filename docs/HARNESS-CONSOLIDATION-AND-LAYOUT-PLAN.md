@@ -851,26 +851,29 @@ the shield count is well under that.
 Same geometry on all of them, no exceptions, so any drawing can be read without relearning it.
 
 ```
-   REAR of car                                            ENGINE BAY
+   REAR of car                              FIREWALL      ENGINE BAY + FRONT
    (leftmost)                                             (far right)
-  ┌──────────────────────────────────────────────────────────────────┐
-  │  rear driver-side items        │  BH-A│BH-A │   engine bay       │  DRIVER
-  │                       ┌──────┐ │  fw  │ eng │   driver-side      │  SIDE
-  │                       │ ECU  │ │      │     │   items            │  (top)
-  │  ─────────────────────│ A  B │─┤ face │face ├────────────────────│
-  │                       └──────┘ │  ►   │  ◄  │                    │  PASSENGER
-  │  rear passenger-side items     │  BH-B│BH-B │   engine bay       │  SIDE
-  │                                │  fw  │ eng │   passenger-side   │  (bottom)
-  └──────────────────────────────────────────────────────────────────┘
-        left of centre ─┘
+  ┌──────────────────────────────────────────────────────────────────────┐
+  │  rear driver-side items         ┌──────┬──────┐                      │ DRIVER
+  │                        ┌──────┐ │ BH-A │ BH-A │  engine bay AND      │ SIDE
+  │                        │ ECU  │ │cabin │ eng  │  front-of-car        │ (top)
+  │  ──────────────────────│ A  B │─┤      ►◄     ├──────────────────────│
+  │                        └──────┘ │ BH-B │ BH-B │  driver top,         │ PASS
+  │  rear passenger-side items      │cabin │ eng  │  passenger bottom    │ SIDE
+  │                                 └──────┴──────┘                      │ (bottom)
+  └──────────────────────────────────────────────────────────────────────┘
+         left of centre ─┘          cabin pair │ engine pair
 ```
 
 - **ECU A and B always adjacent**, placed **left of centre**.
 - **Rear-of-car items** occupy the **leftmost** portion.
 - **Driver side** in the **top half**, **passenger side** in the **bottom half**.
-- **Bulkheads A and B near each other, to the right of the ECU.**
-- **Engine-bay bulkhead halves immediately to their right, faces facing each other.**
-- **Engine bay devices far right**, driver side top, passenger side bottom.
+- **The two CABIN bulkhead halves, A and B, always sit next to each other** as a pair, to
+  the right of the ECU.
+- **The two ENGINE-BAY halves, A and B, sit next to each other** as their own pair,
+  immediately right of the cabin pair, **faces facing the cabin pair**.
+- **Engine bay devices AND front-of-car devices go in the far-right region** - driver side
+  top, passenger side bottom. Front-of-car counts as right, the same as engine bay.
 
 ### 6.34 Wire lengths and the path overlay deliverable
 
