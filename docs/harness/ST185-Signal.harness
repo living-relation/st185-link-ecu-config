@@ -3168,14 +3168,6 @@
           "signal": "SIG-"
         }
       ],
-      "wiringTable": {
-        "layout": {
-          "position": {
-            "x": 570,
-            "y": 330
-          }
-        }
-      },
       "layoutPosition": {
         "x": 3960,
         "y": -600
@@ -3514,17 +3506,9 @@
           "signal": "VPA1 APS-M"
         }
       ],
-      "wiringTable": {
-        "layout": {
-          "position": {
-            "x": 150,
-            "y": 630
-          }
-        }
-      },
       "layoutPosition": {
-        "x": -240,
-        "y": 600
+        "x": -660,
+        "y": 120
       },
       "schematicPosition": {
         "x": 0,
@@ -3599,14 +3583,6 @@
           "signal": "SIG-"
         }
       ],
-      "wiringTable": {
-        "layout": {
-          "position": {
-            "x": 660,
-            "y": 630
-          }
-        }
-      },
       "layoutPosition": {
         "x": 660,
         "y": -600
@@ -3825,8 +3801,8 @@
         }
       ],
       "layoutPosition": {
-        "x": -180,
-        "y": -300
+        "x": -780,
+        "y": 600
       },
       "schematicPosition": {
         "x": 1170,
@@ -4011,8 +3987,8 @@
         }
       ],
       "layoutPosition": {
-        "x": -60,
-        "y": 300
+        "x": -780,
+        "y": 690
       },
       "schematicPosition": {
         "x": 1170,
@@ -4057,8 +4033,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 60,
-        "y": -600
+        "x": -750,
+        "y": 360
       },
       "schematicPosition": {
         "x": 1170,
@@ -5842,8 +5818,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2520,
-        "y": 0
+        "x": 1770,
+        "y": 90
       },
       "schematicPosition": {
         "x": 1170,
@@ -5919,12 +5895,27 @@
       "label": "Gearbox VSS (3-wire 12V Toyota) — oval 3-pin sockets",
       "partId": "cp_vss_oval3",
       "cavities": [
-        { "id": "a", "signal": "TBD" },
-        { "id": "b", "signal": "TBD" },
-        { "id": "c", "signal": "TBD" }
+        {
+          "id": "a",
+          "signal": "TBD"
+        },
+        {
+          "id": "b",
+          "signal": "TBD"
+        },
+        {
+          "id": "c",
+          "signal": "TBD"
+        }
       ],
-      "layoutPosition": { "x": 4200, "y": 900 },
-      "schematicPosition": { "x": 2400, "y": 780 }
+      "layoutPosition": {
+        "x": 4200,
+        "y": 900
+      },
+      "schematicPosition": {
+        "x": 2400,
+        "y": 780
+      }
     }
   ],
   "terminals": [
@@ -6099,8 +6090,8 @@
         {
           "id": "bn_bp_ecu__bp_cabin_c",
           "layoutPosition": {
-            "x": 375,
-            "y": 255
+            "x": 300,
+            "y": 120
           }
         }
       ]
@@ -6265,8 +6256,8 @@
         {
           "id": "bn_bp_ecu__ecu_com_c",
           "layoutPosition": {
-            "x": 75,
-            "y": 255
+            "x": -150,
+            "y": 60
           }
         }
       ]
@@ -6337,8 +6328,8 @@
         {
           "id": "bn_bp_cabin__acamp_c",
           "layoutPosition": {
-            "x": -105,
-            "y": 15
+            "x": -120,
+            "y": -30
           }
         }
       ]
@@ -6373,8 +6364,8 @@
         {
           "id": "bn_bp_cabin__k_etb_c",
           "layoutPosition": {
-            "x": 135,
-            "y": 15
+            "x": 150,
+            "y": -30
           }
         }
       ]
@@ -7433,8 +7424,8 @@
     {
       "id": "sp_shield_cab",
       "layoutPosition": {
-        "x": 180,
-        "y": 180
+        "x": 0,
+        "y": 90
       },
       "schematicPosition": {
         "x": 2280,
@@ -7574,8 +7565,8 @@
     {
       "id": "bp_ecu",
       "layoutPosition": {
-        "x": 0,
-        "y": 240
+        "x": -120,
+        "y": 120
       },
       "bootPartId": "boot_breakout"
     },

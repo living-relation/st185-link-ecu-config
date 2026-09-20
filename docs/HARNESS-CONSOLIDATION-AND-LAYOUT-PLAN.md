@@ -786,3 +786,115 @@ firewall on its own grommet, not through bulkhead A - so the six `dm_bh_a_*` dum
 split left in `ST185-WheelSpeed.harness` are leftovers from the old routing and come out.
 If the front sensors are in fact meant to keep using bulkhead A, say so and they go back,
 costing 2 signal pins plus 1 shield pin on A.
+
+
+### 6.30 VR conditioner gets a shielded enclosure - CORRECTS 6.29
+
+**6.29 was wrong on one point and this replaces it.** The shield does **not** sink to the
+conditioner's PCB ground. Daniel is building the conditioner a **small shielded enclosure**
+so the ABS shield stays **virtually one continuous shield from sensor to ECU**, isolated
+from noisy supply ground.
+
+```
+  ABS sensor        VR conditioner enclosure shell        ECU
+  (FLOAT) ══════════ shell ── shell ══════════════════════ (SINK: shield gnd)
+                  one continuous shield, PCB isolated from the shell
+```
+
+Conditioner enclosure, per channel pair:
+
+| Connector | Ways | Carries |
+|---|---|---|
+| Input LEFT | 3-pin | shielded sensor in |
+| Input RIGHT | 3-pin | shielded sensor in |
+| Output | combined | conditioner power in, plus shielded left and right output signals |
+
+**The PCB is isolated from the enclosure shell.** That is the whole point - the shell
+carries the shield straight through, the PCB ground never touches it, and the only
+termination is at the ECU shield ground. 6.27 still holds: one shield, one termination,
+never at the device.
+
+The four ABS shields therefore reach the ECU after all, so they are back in the bulkhead
+pin count - see 6.32.
+
+### 6.31 ABS routing - set by Daniel 2026-09-20
+
+| Pair | Runs with |
+|---|---|
+| **Front** (FL, FR) | Through the fenders, **with loom C** |
+| **Rear** (RL, RR) | With the **fuel pump and level sender** |
+
+Neither pair gets its own firewall crossing - they ride looms that already cross.
+
+### 6.32 Shield bulkhead pins - the allocation rule
+
+**First choice: every shield gets its own bulkhead passthrough pin.** Allocate them that
+way whenever the pins exist.
+
+**When they do not:**
+
+1. **Critical sensors keep their own dedicated shield pin.** Crank and cam first - they are
+   the trigger inputs, and a corrupted trigger is a dead or damaged engine. Knock next.
+2. **Everything else shares.** Non-critical shields combine onto a shared passthrough pin
+   to get into the cabin, then **split back out** to each device cable on the far side.
+3. **They all terminate together at the ECU shield grounds** regardless of how they
+   crossed.
+
+Sharing a passthrough is a packaging compromise, not a change to 6.27 - each shield still
+has exactly one termination, at the ECU.
+
+Current headroom says it does not come to that: 16 free pairs on bulkhead A, 11 on B, and
+the shield count is well under that.
+
+### 6.33 Diagram layout standard - applies to EVERY harness diagram
+
+Same geometry on all of them, no exceptions, so any drawing can be read without relearning it.
+
+```
+   REAR of car                                            ENGINE BAY
+   (leftmost)                                             (far right)
+  ┌──────────────────────────────────────────────────────────────────┐
+  │  rear driver-side items        │  BH-A│BH-A │   engine bay       │  DRIVER
+  │                       ┌──────┐ │  fw  │ eng │   driver-side      │  SIDE
+  │                       │ ECU  │ │      │     │   items            │  (top)
+  │  ─────────────────────│ A  B │─┤ face │face ├────────────────────│
+  │                       └──────┘ │  ►   │  ◄  │                    │  PASSENGER
+  │  rear passenger-side items     │  BH-B│BH-B │   engine bay       │  SIDE
+  │                                │  fw  │ eng │   passenger-side   │  (bottom)
+  └──────────────────────────────────────────────────────────────────┘
+        left of centre ─┘
+```
+
+- **ECU A and B always adjacent**, placed **left of centre**.
+- **Rear-of-car items** occupy the **leftmost** portion.
+- **Driver side** in the **top half**, **passenger side** in the **bottom half**.
+- **Bulkheads A and B near each other, to the right of the ECU.**
+- **Engine-bay bulkhead halves immediately to their right, faces facing each other.**
+- **Engine bay devices far right**, driver side top, passenger side bottom.
+
+### 6.34 Wire lengths and the path overlay deliverable
+
+**Lengths** come from the **Toyota body repair manual dimensions**, using a best-fit path -
+not guessed, not scaled off a screen.
+
+**Every harness gets a path image** alongside its diagram:
+
+- SVG or PNG, one per harness
+- built on the **body manual images** actually used for that harness
+- with a **red line overlaid** showing the cable harness path
+- the source figures cited so the estimate can be rechecked
+
+**Source, found 2026-09-20 in Google Drive** - not a blocker after all:
+
+| File | Size | Use |
+|---|---|---|
+| `93 Repair - Chassis & Body.pdf` | 33 MB | Primary. Body dimensions and the figures to overlay |
+| `Repair Manual 1990 BGB.pdf` | 20 MB | Cross-check |
+| `Body_Repairs_General_Body_Repairs.pdf` | 2 MB | General body-repair sections |
+
+The repo only holds the 1990 *electrical* snips, so the body pages have to be pulled from
+Drive and the ones actually used committed alongside each overlay - same pattern as
+`docs/electrical/ewd-snips/`. Suggested home: `docs/body/brm-snips/`.
+
+Every length must trace to a cited figure. A length with no citation is a guess and does
+not go in the build list.
