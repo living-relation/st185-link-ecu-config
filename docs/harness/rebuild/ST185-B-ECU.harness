@@ -41,12 +41,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 420,
-        "y": 1200
+        "x": 1620,
+        "y": 600
       },
       "schematicPosition": {
-        "x": 1050,
-        "y": 720
+        "x": 1620,
+        "y": 600
       }
     },
     {
@@ -86,12 +86,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 540,
-        "y": -1500
+        "x": 2080,
+        "y": 600
       },
       "schematicPosition": {
-        "x": 1050,
-        "y": 1020
+        "x": 2080,
+        "y": 600
       }
     },
     {
@@ -125,12 +125,12 @@
         }
       ],
       "layoutPosition": {
-        "x": -420,
-        "y": -300
+        "x": 1080,
+        "y": 2906
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 1140
+        "x": 1080,
+        "y": 2906
       },
       "partId": "cp_rly_nod"
     },
@@ -165,12 +165,12 @@
         }
       ],
       "layoutPosition": {
-        "x": -300,
-        "y": 300
+        "x": 1080,
+        "y": 3312
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 1410
+        "x": 1080,
+        "y": 3312
       },
       "partId": "cp_rly_nor"
     },
@@ -205,12 +205,12 @@
         }
       ],
       "layoutPosition": {
-        "x": -180,
-        "y": -600
+        "x": 1080,
+        "y": 4530
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 1680
+        "x": 1080,
+        "y": 4530
       },
       "partId": "cp_rly_nod"
     },
@@ -245,12 +245,12 @@
         }
       ],
       "layoutPosition": {
-        "x": -60,
-        "y": 600
+        "x": 1080,
+        "y": 3718
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 1950
+        "x": 1080,
+        "y": 3718
       },
       "partId": "cp_rly_cod"
     },
@@ -285,12 +285,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 60,
-        "y": -900
+        "x": 1080,
+        "y": 4124
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 2220
+        "x": 1080,
+        "y": 4124
       },
       "partId": "cp_rly_cod"
     },
@@ -325,12 +325,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 180,
-        "y": 900
+        "x": 1080,
+        "y": 4936
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 2490
+        "x": 1080,
+        "y": 4936
       },
       "partId": "cp_rly_nor"
     },
@@ -372,12 +372,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 660,
-        "y": 1500
+        "x": 620,
+        "y": 0
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 2760
+        "x": 620,
+        "y": 0
       }
     },
     {
@@ -394,12 +394,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 780,
-        "y": 300
+        "x": 0,
+        "y": 270
       },
       "schematicPosition": {
-        "x": 2160,
-        "y": 4860
+        "x": 0,
+        "y": 270
       }
     },
     {
@@ -416,12 +416,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 660,
-        "y": -300
+        "x": 0,
+        "y": 574
       },
       "schematicPosition": {
-        "x": 2160,
-        "y": 5040
+        "x": 0,
+        "y": 574
       }
     },
     {
@@ -438,12 +438,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 780,
-        "y": -1800
+        "x": 1080,
+        "y": 270
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 3060
+        "x": 1080,
+        "y": 270
       }
     },
     {
@@ -751,11 +751,11 @@
         }
       ],
       "schematicPosition": {
-        "x": 2160,
-        "y": 6150
+        "x": 2680,
+        "y": 0
       },
       "layoutPosition": {
-        "x": 1080,
+        "x": 2680,
         "y": 0
       }
     },
@@ -839,7 +839,7 @@
           "id": "c12",
           "designation": "12",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECUMaster CSB3 — Power/CAN/Switch I/O SW"
+          "signal": "ECUMaster CSB3 - Power/CAN/Switch I/O SW"
         },
         {
           "id": "c13",
@@ -904,12 +904,12 @@
         }
       ],
       "schematicPosition": {
-        "x": 2160,
-        "y": 9210
+        "x": 2680,
+        "y": 2374
       },
       "layoutPosition": {
-        "x": 1440,
-        "y": 0
+        "x": 2680,
+        "y": 2374
       }
     },
     {
@@ -918,12 +918,12 @@
       "label": "Cabin fuse block (passenger glove box)",
       "width": 270,
       "schematicPosition": {
-        "x": 660,
-        "y": 2400
+        "x": 1080,
+        "y": 2194
       },
       "layoutPosition": {
-        "x": 120,
-        "y": -600
+        "x": 1080,
+        "y": 2194
       },
       "cavities": [
         {
@@ -1004,12 +1004,12 @@
       "label": "RADLOK + - firewall",
       "width": 210,
       "schematicPosition": {
-        "x": 900,
-        "y": -1500
+        "x": 2680,
+        "y": 2104
       },
       "layoutPosition": {
-        "x": 900,
-        "y": -1500
+        "x": 2680,
+        "y": 2104
       },
       "cavities": [
         {
@@ -1025,12 +1025,12 @@
       "label": "RADLOK - - firewall",
       "width": 210,
       "schematicPosition": {
-        "x": 900,
-        "y": -1200
+        "x": 2680,
+        "y": 1834
       },
       "layoutPosition": {
-        "x": 900,
-        "y": -1200
+        "x": 2680,
+        "y": 1834
       },
       "cavities": [
         {
@@ -1045,67 +1045,67 @@
     {
       "id": "sp_12v",
       "layoutPosition": {
-        "x": 0,
-        "y": 180
+        "x": 1080,
+        "y": 574
       },
       "schematicPosition": {
-        "x": 1050,
-        "y": 0
+        "x": 1080,
+        "y": 574
       }
     },
     {
       "id": "sp_sw12",
       "layoutPosition": {
-        "x": 120,
-        "y": -180
+        "x": 1080,
+        "y": 1924
       },
       "schematicPosition": {
-        "x": 1050,
-        "y": 120
+        "x": 1080,
+        "y": 1924
       }
     },
     {
       "id": "sp_5v",
       "layoutPosition": {
-        "x": 900,
-        "y": 180
+        "x": 1080,
+        "y": 844
       },
       "schematicPosition": {
-        "x": 1050,
-        "y": 240
+        "x": 1080,
+        "y": 844
       }
     },
     {
       "id": "sp_8v",
       "layoutPosition": {
-        "x": 1020,
-        "y": -180
+        "x": 1080,
+        "y": 1114
       },
       "schematicPosition": {
-        "x": 1050,
-        "y": 360
+        "x": 1080,
+        "y": 1114
       }
     },
     {
       "id": "sp_gndout",
       "layoutPosition": {
-        "x": 1140,
-        "y": 360
+        "x": 1080,
+        "y": 1654
       },
       "schematicPosition": {
-        "x": 1050,
-        "y": 480
+        "x": 1080,
+        "y": 1654
       }
     },
     {
       "id": "sp_chassis",
       "layoutPosition": {
-        "x": 240,
-        "y": 360
+        "x": 1080,
+        "y": 1384
       },
       "schematicPosition": {
-        "x": 1050,
-        "y": 600
+        "x": 1080,
+        "y": 1384
       }
     }
   ],
@@ -1115,12 +1115,12 @@
       "type": "Ring",
       "signal": "Battery/Ignition +12V Source",
       "layoutPosition": {
-        "x": -240,
-        "y": -300
+        "x": 0,
+        "y": 0
       },
       "schematicPosition": {
         "x": 0,
-        "y": 780
+        "y": 0
       }
     },
     {
@@ -1128,12 +1128,12 @@
       "type": "Ring",
       "signal": "Chassis Ground Point",
       "layoutPosition": {
-        "x": -120,
-        "y": 300
+        "x": 1080,
+        "y": 0
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 900
+        "x": 1080,
+        "y": 0
       }
     },
     {
@@ -1143,11 +1143,11 @@
       "width": 210,
       "schematicPosition": {
         "x": 0,
-        "y": -1500
+        "y": 1148
       },
       "layoutPosition": {
         "x": 0,
-        "y": -1500
+        "y": 1148
       }
     },
     {
@@ -1157,11 +1157,11 @@
       "width": 210,
       "schematicPosition": {
         "x": 0,
-        "y": -1200
+        "y": 878
       },
       "layoutPosition": {
         "x": 0,
-        "y": -1200
+        "y": 878
       }
     }
   ],
@@ -1176,23 +1176,7 @@
       "target": {
         "id": "sp_12v",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w65_r1",
-          "schematicPosition": {
-            "x": 282,
-            "y": 795
-          }
-        },
-        {
-          "id": "w65_r2",
-          "schematicPosition": {
-            "x": 282,
-            "y": 15
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w77",
@@ -1204,23 +1188,7 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w77_r1",
-          "schematicPosition": {
-            "x": 354,
-            "y": 1275
-          }
-        },
-        {
-          "id": "w77_r2",
-          "schematicPosition": {
-            "x": 354,
-            "y": 135
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w78",
@@ -1232,23 +1200,7 @@
       "target": {
         "id": "ecu_a",
         "handle": "a5"
-      },
-      "layoutPoints": [
-        {
-          "id": "w78_r1",
-          "schematicPosition": {
-            "x": 1134,
-            "y": 135
-          }
-        },
-        {
-          "id": "w78_r2",
-          "schematicPosition": {
-            "x": 1134,
-            "y": 765
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w82",
@@ -1261,23 +1213,7 @@
         "id": "ecu_b",
         "handle": "b5"
       },
-      "stripeColor": "White",
-      "layoutPoints": [
-        {
-          "id": "w82_r1",
-          "schematicPosition": {
-            "x": 372,
-            "y": 1545
-          }
-        },
-        {
-          "id": "w82_r2",
-          "schematicPosition": {
-            "x": 372,
-            "y": 1065
-          }
-        }
-      ]
+      "stripeColor": "White"
     },
     {
       "id": "w_fpump",
@@ -1289,23 +1225,7 @@
       "target": {
         "id": "fuelpump",
         "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fpump_r1",
-          "schematicPosition": {
-            "x": -786,
-            "y": 1815
-          }
-        },
-        {
-          "id": "w_fpump_r2",
-          "schematicPosition": {
-            "x": -786,
-            "y": 5085
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_csb12",
@@ -1317,23 +1237,7 @@
       "target": {
         "id": "sp_12v",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_csb12_r1",
-          "schematicPosition": {
-            "x": 318,
-            "y": 3105
-          }
-        },
-        {
-          "id": "w_csb12_r2",
-          "schematicPosition": {
-            "x": 318,
-            "y": 15
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w67",
@@ -1345,23 +1249,7 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w67_r1",
-          "schematicPosition": {
-            "x": 1146,
-            "y": 885
-          }
-        },
-        {
-          "id": "w67_r2",
-          "schematicPosition": {
-            "x": 1146,
-            "y": 255
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w210",
@@ -1373,23 +1261,7 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w210_r1",
-          "schematicPosition": {
-            "x": 210,
-            "y": 2805
-          }
-        },
-        {
-          "id": "w210_r2",
-          "schematicPosition": {
-            "x": 210,
-            "y": 255
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w19",
@@ -1402,23 +1274,7 @@
         "id": "ecu_a",
         "handle": "a6"
       },
-      "stripeColor": "White",
-      "layoutPoints": [
-        {
-          "id": "w19_r1",
-          "schematicPosition": {
-            "x": 1116,
-            "y": 375
-          }
-        },
-        {
-          "id": "w19_r2",
-          "schematicPosition": {
-            "x": 1116,
-            "y": 795
-          }
-        }
-      ]
+      "stripeColor": "White"
     },
     {
       "id": "w68",
@@ -1431,23 +1287,7 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White",
-      "layoutPoints": [
-        {
-          "id": "w68_r1",
-          "schematicPosition": {
-            "x": 1110,
-            "y": 825
-          }
-        },
-        {
-          "id": "w68_r2",
-          "schematicPosition": {
-            "x": 1110,
-            "y": 495
-          }
-        }
-      ]
+      "stripeColor": "White"
     },
     {
       "id": "w69",
@@ -1460,23 +1300,7 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White",
-      "layoutPoints": [
-        {
-          "id": "w69_r1",
-          "schematicPosition": {
-            "x": 1182,
-            "y": 1125
-          }
-        },
-        {
-          "id": "w69_r2",
-          "schematicPosition": {
-            "x": 1182,
-            "y": 495
-          }
-        }
-      ]
+      "stripeColor": "White"
     },
     {
       "id": "w40",
@@ -1489,23 +1313,7 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White",
-      "layoutPoints": [
-        {
-          "id": "w40_r1",
-          "schematicPosition": {
-            "x": 264,
-            "y": 2925
-          }
-        },
-        {
-          "id": "w40_r2",
-          "schematicPosition": {
-            "x": 264,
-            "y": 495
-          }
-        }
-      ]
+      "stripeColor": "White"
     },
     {
       "id": "w45",
@@ -1518,23 +1326,7 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White",
-      "layoutPoints": [
-        {
-          "id": "w45_r1",
-          "schematicPosition": {
-            "x": 1356,
-            "y": 4935
-          }
-        },
-        {
-          "id": "w45_r2",
-          "schematicPosition": {
-            "x": 1356,
-            "y": 495
-          }
-        }
-      ]
+      "stripeColor": "White"
     },
     {
       "id": "w66",
@@ -1546,23 +1338,7 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w66_r1",
-          "schematicPosition": {
-            "x": 300,
-            "y": 915
-          }
-        },
-        {
-          "id": "w66_r2",
-          "schematicPosition": {
-            "x": 300,
-            "y": 615
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w70",
@@ -1574,23 +1350,7 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w70_r1",
-          "schematicPosition": {
-            "x": 1128,
-            "y": 855
-          }
-        },
-        {
-          "id": "w70_r2",
-          "schematicPosition": {
-            "x": 1128,
-            "y": 615
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_a34",
@@ -1602,23 +1362,7 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_a34_r1",
-          "schematicPosition": {
-            "x": 1164,
-            "y": 915
-          }
-        },
-        {
-          "id": "w_a34_r2",
-          "schematicPosition": {
-            "x": 1164,
-            "y": 615
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_b25",
@@ -1630,23 +1374,7 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_b25_r1",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 1155
-          }
-        },
-        {
-          "id": "w_b25_r2",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 615
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_b34",
@@ -1658,23 +1386,7 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_b34_r1",
-          "schematicPosition": {
-            "x": 1218,
-            "y": 1215
-          }
-        },
-        {
-          "id": "w_b34_r2",
-          "schematicPosition": {
-            "x": 1218,
-            "y": 615
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_fpg",
@@ -1686,23 +1398,7 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fpg_r1",
-          "schematicPosition": {
-            "x": 1374,
-            "y": 5115
-          }
-        },
-        {
-          "id": "w_fpg_r2",
-          "schematicPosition": {
-            "x": 1374,
-            "y": 615
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_csbg",
@@ -1714,23 +1410,7 @@
       "target": {
         "id": "sp_chassis",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_csbg_r1",
-          "schematicPosition": {
-            "x": 336,
-            "y": 3135
-          }
-        },
-        {
-          "id": "w_csbg_r2",
-          "schematicPosition": {
-            "x": 336,
-            "y": 615
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_aps_vc1",
@@ -1742,23 +1422,7 @@
       "target": {
         "id": "sp_5v",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_aps_vc1_r1",
-          "schematicPosition": {
-            "x": 246,
-            "y": 2895
-          }
-        },
-        {
-          "id": "w_aps_vc1_r2",
-          "schematicPosition": {
-            "x": 246,
-            "y": 255
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_aps_gnd2",
@@ -1771,23 +1435,7 @@
       "target": {
         "id": "sp_gndout",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_aps_gnd2_r1",
-          "schematicPosition": {
-            "x": 228,
-            "y": 2835
-          }
-        },
-        {
-          "id": "w_aps_gnd2_r2",
-          "schematicPosition": {
-            "x": 228,
-            "y": 495
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_rail_sp_5v_c",
@@ -1799,23 +1447,7 @@
         "id": "bh_a_fw",
         "handle": "c2"
       },
-      "color": "Orange",
-      "layoutPoints": [
-        {
-          "id": "w_rail_sp_5v_c_r1",
-          "schematicPosition": {
-            "x": 1410,
-            "y": 255
-          }
-        },
-        {
-          "id": "w_rail_sp_5v_c_r2",
-          "schematicPosition": {
-            "x": 1410,
-            "y": 6225
-          }
-        }
-      ]
+      "color": "Orange"
     },
     {
       "id": "w_rail_sp_gndout_c",
@@ -1828,23 +1460,7 @@
         "handle": "c3"
       },
       "color": "Black/White",
-      "stripeColor": "White",
-      "layoutPoints": [
-        {
-          "id": "w_rail_sp_gndout_c_r1",
-          "schematicPosition": {
-            "x": 1446,
-            "y": 495
-          }
-        },
-        {
-          "id": "w_rail_sp_gndout_c_r2",
-          "schematicPosition": {
-            "x": 1446,
-            "y": 6255
-          }
-        }
-      ]
+      "stripeColor": "White"
     },
     {
       "id": "w_rail_sp_8v_c",
@@ -1857,23 +1473,7 @@
         "handle": "c4"
       },
       "color": "Orange",
-      "stripeColor": "White",
-      "layoutPoints": [
-        {
-          "id": "w_rail_sp_8v_c_r1",
-          "schematicPosition": {
-            "x": 1428,
-            "y": 375
-          }
-        },
-        {
-          "id": "w_rail_sp_8v_c_r2",
-          "schematicPosition": {
-            "x": 1428,
-            "y": 6285
-          }
-        }
-      ]
+      "stripeColor": "White"
     },
     {
       "id": "w_rail_sp_sw12_c",
@@ -1885,23 +1485,7 @@
         "id": "bh_a_fw",
         "handle": "c5"
       },
-      "color": "Red",
-      "layoutPoints": [
-        {
-          "id": "w_rail_sp_sw12_c_r1",
-          "schematicPosition": {
-            "x": 1464,
-            "y": 135
-          }
-        },
-        {
-          "id": "w_rail_sp_sw12_c_r2",
-          "schematicPosition": {
-            "x": 1464,
-            "y": 6315
-          }
-        }
-      ]
+      "color": "Red"
     },
     {
       "id": "w_inj_pwr_c",
@@ -1913,23 +1497,7 @@
       "target": {
         "id": "bh_b_fw",
         "handle": "c7"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_inj_pwr_c_r1",
-          "schematicPosition": {
-            "x": 1482,
-            "y": 135
-          }
-        },
-        {
-          "id": "w_inj_pwr_c_r2",
-          "schematicPosition": {
-            "x": 1482,
-            "y": 9435
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_cop_pwr_c",
@@ -1941,23 +1509,7 @@
       "target": {
         "id": "bh_b_fw",
         "handle": "c8"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_cop_pwr_c_r1",
-          "schematicPosition": {
-            "x": 1500,
-            "y": 135
-          }
-        },
-        {
-          "id": "w_cop_pwr_c_r2",
-          "schematicPosition": {
-            "x": 1500,
-            "y": 9465
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w124_c",
@@ -1969,23 +1521,7 @@
       "target": {
         "id": "bh_b_fw",
         "handle": "c5"
-      },
-      "layoutPoints": [
-        {
-          "id": "w124_c_r1",
-          "schematicPosition": {
-            "x": 1320,
-            "y": 1095
-          }
-        },
-        {
-          "id": "w124_c_r2",
-          "schematicPosition": {
-            "x": 1320,
-            "y": 9375
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w215_c",
@@ -1997,23 +1533,7 @@
       "target": {
         "id": "bh_b_fw",
         "handle": "c6"
-      },
-      "layoutPoints": [
-        {
-          "id": "w215_c_r1",
-          "schematicPosition": {
-            "x": 1338,
-            "y": 1185
-          }
-        },
-        {
-          "id": "w215_c_r2",
-          "schematicPosition": {
-            "x": 1338,
-            "y": 9405
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_fb_sw12",
@@ -2025,23 +1545,7 @@
       "target": {
         "id": "sp_sw12",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fb_sw12_o1",
-          "schematicPosition": {
-            "x": 840,
-            "y": 2685
-          }
-        },
-        {
-          "id": "w_fb_sw12_o2",
-          "schematicPosition": {
-            "x": 840,
-            "y": 135
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_fb_ecu",
@@ -2053,23 +1557,7 @@
       "target": {
         "id": "sp_12v",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fb_ecu_o1",
-          "schematicPosition": {
-            "x": 840,
-            "y": 2655
-          }
-        },
-        {
-          "id": "w_fb_ecu_o2",
-          "schematicPosition": {
-            "x": 840,
-            "y": 15
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_hv_batt_fw",
@@ -2081,23 +1569,7 @@
       "target": {
         "id": "rl_pos_fw",
         "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_hv_batt_fw_o1",
-          "schematicPosition": {
-            "x": 450,
-            "y": -1485
-          }
-        },
-        {
-          "id": "w_hv_batt_fw_o2",
-          "schematicPosition": {
-            "x": 450,
-            "y": -1455
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_hv_gnd_fw",
@@ -2109,23 +1581,7 @@
       "target": {
         "id": "rl_neg_fw",
         "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_hv_gnd_fw_o1",
-          "schematicPosition": {
-            "x": 450,
-            "y": -1185
-          }
-        },
-        {
-          "id": "w_hv_gnd_fw_o2",
-          "schematicPosition": {
-            "x": 450,
-            "y": -1155
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_fb_in",
@@ -2137,23 +1593,7 @@
       "target": {
         "id": "fusebox",
         "handle": "c13"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fb_in_o1",
-          "schematicPosition": {
-            "x": 330,
-            "y": 795
-          }
-        },
-        {
-          "id": "w_fb_in_o2",
-          "schematicPosition": {
-            "x": 330,
-            "y": 2805
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_fb_k_efi_30",
@@ -2165,23 +1605,7 @@
       "target": {
         "id": "k_efi",
         "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fb_k_efi_30_o1",
-          "schematicPosition": {
-            "x": 330,
-            "y": 2445
-          }
-        },
-        {
-          "id": "w_fb_k_efi_30_o2",
-          "schematicPosition": {
-            "x": 330,
-            "y": 1185
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_k_efi_86",
@@ -2193,23 +1617,7 @@
       "target": {
         "id": "k_efi",
         "handle": "c3"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_k_efi_86_o1",
-          "schematicPosition": {
-            "x": 330,
-            "y": 2775
-          }
-        },
-        {
-          "id": "w_k_efi_86_o2",
-          "schematicPosition": {
-            "x": 330,
-            "y": 1245
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_fb_k_fp_30",
@@ -2221,23 +1629,7 @@
       "target": {
         "id": "k_fp",
         "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fb_k_fp_30_o1",
-          "schematicPosition": {
-            "x": 330,
-            "y": 2475
-          }
-        },
-        {
-          "id": "w_fb_k_fp_30_o2",
-          "schematicPosition": {
-            "x": 330,
-            "y": 1725
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_k_fp_86",
@@ -2249,23 +1641,7 @@
       "target": {
         "id": "k_fp",
         "handle": "c3"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_k_fp_86_o1",
-          "schematicPosition": {
-            "x": 540,
-            "y": 135
-          }
-        },
-        {
-          "id": "w_k_fp_86_o2",
-          "schematicPosition": {
-            "x": 540,
-            "y": 1785
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_fb_k_etb_30",
@@ -2277,23 +1653,7 @@
       "target": {
         "id": "k_etb",
         "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fb_k_etb_30_o1",
-          "schematicPosition": {
-            "x": 330,
-            "y": 2505
-          }
-        },
-        {
-          "id": "w_fb_k_etb_30_o2",
-          "schematicPosition": {
-            "x": 330,
-            "y": 1455
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_k_etb_86",
@@ -2305,23 +1665,7 @@
       "target": {
         "id": "k_etb",
         "handle": "c3"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_k_etb_86_o1",
-          "schematicPosition": {
-            "x": 540,
-            "y": 135
-          }
-        },
-        {
-          "id": "w_k_etb_86_o2",
-          "schematicPosition": {
-            "x": 540,
-            "y": 1515
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_fb_k_str_30",
@@ -2345,23 +1689,7 @@
       "target": {
         "id": "k_str",
         "handle": "c3"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_k_str_86_o1",
-          "schematicPosition": {
-            "x": 540,
-            "y": 135
-          }
-        },
-        {
-          "id": "w_k_str_86_o2",
-          "schematicPosition": {
-            "x": 540,
-            "y": 2595
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_fb_k_fan_30",
@@ -2373,23 +1701,7 @@
       "target": {
         "id": "k_fan",
         "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fb_k_fan_30_o1",
-          "schematicPosition": {
-            "x": 330,
-            "y": 2565
-          }
-        },
-        {
-          "id": "w_fb_k_fan_30_o2",
-          "schematicPosition": {
-            "x": 330,
-            "y": 1995
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_k_fan_86",
@@ -2401,23 +1713,7 @@
       "target": {
         "id": "k_fan",
         "handle": "c3"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_k_fan_86_o1",
-          "schematicPosition": {
-            "x": 540,
-            "y": 135
-          }
-        },
-        {
-          "id": "w_k_fan_86_o2",
-          "schematicPosition": {
-            "x": 540,
-            "y": 2055
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_fb_k_fan2_30",
@@ -2429,23 +1725,7 @@
       "target": {
         "id": "k_fan2",
         "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fb_k_fan2_30_o1",
-          "schematicPosition": {
-            "x": 330,
-            "y": 2595
-          }
-        },
-        {
-          "id": "w_fb_k_fan2_30_o2",
-          "schematicPosition": {
-            "x": 330,
-            "y": 2265
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_k_fan2_86",
@@ -2457,23 +1737,7 @@
       "target": {
         "id": "k_fan2",
         "handle": "c3"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_k_fan2_86_o1",
-          "schematicPosition": {
-            "x": 540,
-            "y": 135
-          }
-        },
-        {
-          "id": "w_k_fan2_86_o2",
-          "schematicPosition": {
-            "x": 540,
-            "y": 2325
-          }
-        }
-      ]
+      }
     },
     {
       "id": "w_fb_mrs_en",
@@ -2485,23 +1749,7 @@
       "target": {
         "id": "bh_b_fw",
         "handle": "c14"
-      },
-      "layoutPoints": [
-        {
-          "id": "w_fb_mrs_en_o1",
-          "schematicPosition": {
-            "x": 1290,
-            "y": 2865
-          }
-        },
-        {
-          "id": "w_fb_mrs_en_o2",
-          "schematicPosition": {
-            "x": 1290,
-            "y": 9675
-          }
-        }
-      ]
+      }
     }
   ],
   "bundles": [
@@ -2707,7 +1955,7 @@
       "gender": "Female",
       "hasShell": false,
       "partNumber": "90980-12068",
-      "description": "MR-S EHPS pump — main power connector housing (pigtail 82998-12500). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part (checked TE's site, no match; this is Toyota/Sumitomo). Pin 1 = switched 12V in from relay 87, pin 2 = ground. Confirmed against Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'A'). Part number sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
+      "description": "MR-S EHPS pump - main power connector housing (pigtail 82998-12500). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part (checked TE's site, no match; this is Toyota/Sumitomo). Pin 1 = switched 12V in from relay 87, pin 2 = ground. Confirmed against Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'A'). Part number sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
       "manufacturer": "Toyota",
       "configurations": [
         {
@@ -2722,7 +1970,7 @@
       "gender": "Female",
       "hasShell": false,
       "partNumber": "90980-10942",
-      "description": "MR-S EHPS pump — small ignition-enable connector housing (pigtail 82998-12440, shared with the control connector). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part. 2 cavities, only pin 1 used (ignition-switched 12V logic supply); pin 2 unused. Confirmed against Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'C'). Part number sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
+      "description": "MR-S EHPS pump - small ignition-enable connector housing (pigtail 82998-12440, shared with the control connector). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part. 2 cavities, only pin 1 used (ignition-switched 12V logic supply); pin 2 unused. Confirmed against Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'C'). Part number sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
       "manufacturer": "Toyota",
       "configurations": [
         {

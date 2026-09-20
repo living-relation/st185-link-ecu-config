@@ -1,0 +1,26 @@
+Apply 6.33 layout standard to all eight rebuild files
+
+layout_633.py places every connector, splice and ring terminal into the
+column band 6.33 calls for - rear of car, cabin, ECU A next to ECU B left
+of centre, the two cabin bulkheads, the two engine bulkheads facing them,
+then engine bay and front of car on the right. Driver-side items sit high
+in each column, passenger-side low.
+
+Also in the same pass, because all three broke the drawings:
+
+- Ring terminals were never being placed at all. They now get zones.
+- Wire layoutPoints were hand-placed against the old coordinates, so every
+  one of them was an elbow pointing at empty space. Dropped; the app routes.
+- Schematic notes were anchored to the old grid and landed on top of
+  connectors. Stacked into a banner above the drawing.
+- Labels that went through cp1252 came back as mojibake. Repaired, and the
+  scripts now open files with an explicit utf-8 encoding so it stops
+  happening.
+- width is a strict enum in v0.9 - 60/90/150/210/270/390 only. 240, 300 and
+  540 were in the files and are a hard upload reject. snap_widths() rounds
+  up to the next legal step.
+
+ST185-EngineRoom-C uploaded to harness.design as nz65.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

@@ -8,12 +8,12 @@
       "id": "cl_c11",
       "label": "OEM cluster connector C11",
       "schematicPosition": {
-        "x": 120,
-        "y": 120
+        "x": 620,
+        "y": 0
       },
       "layoutPosition": {
-        "x": 120,
-        "y": 120
+        "x": 620,
+        "y": 0
       },
       "width": 270,
       "cavities": [
@@ -38,12 +38,12 @@
       "id": "cl_c12",
       "label": "OEM cluster connector C12",
       "schematicPosition": {
-        "x": 120,
-        "y": 480
+        "x": 620,
+        "y": 338
       },
       "layoutPosition": {
-        "x": 120,
-        "y": 480
+        "x": 620,
+        "y": 338
       },
       "width": 270,
       "cavities": [
@@ -68,12 +68,12 @@
       "id": "led_board",
       "label": "Cluster LED indicator board",
       "schematicPosition": {
-        "x": 720,
-        "y": 240
+        "x": 620,
+        "y": 676
       },
       "layoutPosition": {
-        "x": 720,
-        "y": 240
+        "x": 620,
+        "y": 676
       },
       "width": 210,
       "cavities": [
@@ -118,8 +118,8 @@
       "id": "dm_csb_ls",
       "label": "CSB-LS",
       "schematicPosition": {
-        "x": 720,
-        "y": 700
+        "x": 1080,
+        "y": 0
       },
       "width": 150,
       "cavities": [
@@ -128,7 +128,11 @@
           "designation": "1",
           "signal": "CSB low-side out - dummy, owned by CAN loom"
         }
-      ]
+      ],
+      "layoutPosition": {
+        "x": 1080,
+        "y": 0
+      }
     }
   ],
   "wires": [
@@ -221,8 +225,8 @@
     {
       "id": "n_src",
       "schematicPosition": {
-        "x": 120,
-        "y": 900
+        "x": 0,
+        "y": -1400
       },
       "width": 390,
       "text": "ST185 cluster LED loom. A separate circuit from the cluster itself - warning and status indicators only. Migrated 2026-09-19 from docs/electrical/CLUSTER-LED-DIAGRAM.html, which was the only record of these connections."
@@ -230,8 +234,8 @@
     {
       "id": "n_stripe",
       "schematicPosition": {
-        "x": 560,
-        "y": 900
+        "x": 0,
+        "y": -1140
       },
       "width": 390,
       "text": "Stripe colours live in the cavity text - the schema colour list has no striped values. C11-2 G-B, C11-11 G-Y, C11-12 R-L, C12-1 R-G, C12-8 Y, C12-9 B-O."
@@ -239,8 +243,8 @@
     {
       "id": "n_chg",
       "schematicPosition": {
-        "x": 120,
-        "y": 1120
+        "x": 0,
+        "y": -880
       },
       "width": 390,
       "text": "Charge LED is a series path: IG +12 (C12-9) to LED to alternator L (C12-8). ON when the regulator grounds L (not charging), OFF when L sits near battery volts. Alternator S is a battery sense line, NOT a lamp - do not wire it here."
@@ -248,8 +252,8 @@
     {
       "id": "n_oil",
       "schematicPosition": {
-        "x": 560,
-        "y": 1120
+        "x": 0,
+        "y": -620
       },
       "width": 390,
       "text": "Oil LED is CAN-driven, no discrete sense wire. Link sets Low Oil Press 2 on 0x3F1 bit4; PCLink packs the CSB low-side on 0x643. The CSB sinks the cathode; the anode goes to +12 IG."
@@ -257,8 +261,8 @@
     {
       "id": "n_open",
       "schematicPosition": {
-        "x": 120,
-        "y": 1340
+        "x": 0,
+        "y": -360
       },
       "width": 390,
       "text": "NOT YET DETERMINED - do not build until settled. 1) The common ground or return for the high beam, turn L and turn R LEDs; the source diagram does not state it. 2) Whether the LED board carries its own current-limiting resistors or the loom must. 3) The oil LED anode feed (+12 IG) - stated as existing but no pin given. Park brake grounds through the OEM P1 / B2 path, so it needs no return here."

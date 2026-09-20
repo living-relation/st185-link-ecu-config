@@ -41,17 +41,17 @@
         }
       ],
       "layoutPosition": {
-        "x": 0,
+        "x": 620,
         "y": 0
       },
       "schematicPosition": {
-        "x": 0,
+        "x": 620,
         "y": 0
       }
     },
     {
       "id": "csb3io",
-      "label": "ECUMaster CSB3 — Power/CAN/Switch I/O",
+      "label": "ECUMaster CSB3 - Power/CAN/Switch I/O",
       "width": 210,
       "partId": "cp_csb3io",
       "cavities": [
@@ -113,12 +113,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 750,
-        "y": -300
+        "x": 1080,
+        "y": 0
       },
       "schematicPosition": {
-        "x": 1200,
-        "y": -600
+        "x": 1080,
+        "y": 0
       }
     },
     {
@@ -144,11 +144,11 @@
         }
       ],
       "layoutPosition": {
-        "x": 2400,
-        "y": -300
+        "x": 3860,
+        "y": 0
       },
       "schematicPosition": {
-        "x": 3000,
+        "x": 3860,
         "y": 0
       }
     },
@@ -457,11 +457,11 @@
         }
       ],
       "layoutPosition": {
-        "x": 1500,
+        "x": 2680,
         "y": 0
       },
       "schematicPosition": {
-        "x": 1800,
+        "x": 2680,
         "y": 0
       }
     },
@@ -770,11 +770,11 @@
         }
       ],
       "layoutPosition": {
-        "x": 1800,
+        "x": 3220,
         "y": 0
       },
       "schematicPosition": {
-        "x": 2400,
+        "x": 3220,
         "y": 0
       }
     }
@@ -783,23 +783,23 @@
     {
       "id": "sp_canh",
       "schematicPosition": {
-        "x": 600,
-        "y": 0
+        "x": 1080,
+        "y": 712
       },
       "layoutPosition": {
-        "x": 390,
-        "y": -180
+        "x": 1080,
+        "y": 712
       }
     },
     {
       "id": "sp_canl",
       "schematicPosition": {
-        "x": 600,
-        "y": 300
+        "x": 1080,
+        "y": 982
       },
       "layoutPosition": {
-        "x": 390,
-        "y": 180
+        "x": 1080,
+        "y": 982
       }
     }
   ],
@@ -809,12 +809,12 @@
       "type": "Loose",
       "width": 210,
       "schematicPosition": {
-        "x": 1200,
-        "y": 300
+        "x": 620,
+        "y": 440
       },
       "layoutPosition": {
-        "x": 750,
-        "y": 300
+        "x": 620,
+        "y": 440
       },
       "signal": "TrackCluster ESP32-P4 - CAN drop (device not in this harness)"
     },
@@ -823,12 +823,12 @@
       "type": "Loose",
       "width": 210,
       "schematicPosition": {
-        "x": 1200,
-        "y": 600
+        "x": 620,
+        "y": 710
       },
       "layoutPosition": {
-        "x": 990,
-        "y": 300
+        "x": 620,
+        "y": 710
       },
       "signal": "RealDash Pi 5 - CAN drop (device not in this harness)"
     }
@@ -844,23 +844,7 @@
       "target": {
         "id": "sp_canh",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "wc_h_ecu_o1",
-          "schematicPosition": {
-            "x": 300,
-            "y": 105
-          }
-        },
-        {
-          "id": "wc_h_ecu_o2",
-          "schematicPosition": {
-            "x": 300,
-            "y": 15
-          }
-        }
-      ]
+      }
     },
     {
       "id": "wc_l_ecu",
@@ -872,23 +856,7 @@
       "target": {
         "id": "sp_canl",
         "handle": "Splice"
-      },
-      "layoutPoints": [
-        {
-          "id": "wc_l_ecu_o1",
-          "schematicPosition": {
-            "x": 300,
-            "y": 135
-          }
-        },
-        {
-          "id": "wc_l_ecu_o2",
-          "schematicPosition": {
-            "x": 300,
-            "y": 315
-          }
-        }
-      ]
+      }
     },
     {
       "id": "wc_h_csb",
@@ -900,23 +868,7 @@
       "target": {
         "id": "csb3io",
         "handle": "c3"
-      },
-      "layoutPoints": [
-        {
-          "id": "wc_h_csb_o1",
-          "schematicPosition": {
-            "x": 900,
-            "y": 15
-          }
-        },
-        {
-          "id": "wc_h_csb_o2",
-          "schematicPosition": {
-            "x": 900,
-            "y": -495
-          }
-        }
-      ]
+      }
     },
     {
       "id": "wc_l_csb",
@@ -928,23 +880,7 @@
       "target": {
         "id": "csb3io",
         "handle": "c4"
-      },
-      "layoutPoints": [
-        {
-          "id": "wc_l_csb_o1",
-          "schematicPosition": {
-            "x": 900,
-            "y": 315
-          }
-        },
-        {
-          "id": "wc_l_csb_o2",
-          "schematicPosition": {
-            "x": 900,
-            "y": -465
-          }
-        }
-      ]
+      }
     },
     {
       "id": "wc_h_clu",
@@ -956,23 +892,7 @@
       "target": {
         "id": "t_cluster_can",
         "handle": "Terminal"
-      },
-      "layoutPoints": [
-        {
-          "id": "wc_h_clu_o1",
-          "schematicPosition": {
-            "x": 900,
-            "y": 15
-          }
-        },
-        {
-          "id": "wc_h_clu_o2",
-          "schematicPosition": {
-            "x": 900,
-            "y": 315
-          }
-        }
-      ]
+      }
     },
     {
       "id": "wc_l_clu",
@@ -996,23 +916,7 @@
       "target": {
         "id": "t_realdash_can",
         "handle": "Terminal"
-      },
-      "layoutPoints": [
-        {
-          "id": "wc_h_rd_o1",
-          "schematicPosition": {
-            "x": 900,
-            "y": 15
-          }
-        },
-        {
-          "id": "wc_h_rd_o2",
-          "schematicPosition": {
-            "x": 900,
-            "y": 615
-          }
-        }
-      ]
+      }
     },
     {
       "id": "wc_l_rd",
@@ -1024,23 +928,7 @@
       "target": {
         "id": "t_realdash_can",
         "handle": "Terminal"
-      },
-      "layoutPoints": [
-        {
-          "id": "wc_l_rd_o1",
-          "schematicPosition": {
-            "x": 900,
-            "y": 315
-          }
-        },
-        {
-          "id": "wc_l_rd_o2",
-          "schematicPosition": {
-            "x": 900,
-            "y": 615
-          }
-        }
-      ]
+      }
     },
     {
       "id": "wc_h_bh",
@@ -1052,23 +940,7 @@
       "target": {
         "id": "bh_a_fw",
         "handle": "c30"
-      },
-      "layoutPoints": [
-        {
-          "id": "wc_h_bh_o1",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 15
-          }
-        },
-        {
-          "id": "wc_h_bh_o2",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 915
-          }
-        }
-      ]
+      }
     },
     {
       "id": "wc_l_bh",
@@ -1080,23 +952,7 @@
       "target": {
         "id": "bh_a_fw",
         "handle": "c31"
-      },
-      "layoutPoints": [
-        {
-          "id": "wc_l_bh_o1",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 315
-          }
-        },
-        {
-          "id": "wc_l_bh_o2",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 945
-          }
-        }
-      ]
+      }
     },
     {
       "id": "wc_h_lam",
@@ -1108,23 +964,7 @@
       "target": {
         "id": "lambda",
         "handle": "c1"
-      },
-      "layoutPoints": [
-        {
-          "id": "wc_h_lam_o1",
-          "schematicPosition": {
-            "x": 2700,
-            "y": 915
-          }
-        },
-        {
-          "id": "wc_h_lam_o2",
-          "schematicPosition": {
-            "x": 2700,
-            "y": 45
-          }
-        }
-      ]
+      }
     },
     {
       "id": "wc_l_lam",
@@ -1136,23 +976,7 @@
       "target": {
         "id": "lambda",
         "handle": "c2"
-      },
-      "layoutPoints": [
-        {
-          "id": "wc_l_lam_o1",
-          "schematicPosition": {
-            "x": 2700,
-            "y": 945
-          }
-        },
-        {
-          "id": "wc_l_lam_o2",
-          "schematicPosition": {
-            "x": 2700,
-            "y": 75
-          }
-        }
-      ]
+      }
     },
     {
       "id": "wc_term1",
@@ -1414,7 +1238,7 @@
       "gender": "Female",
       "hasShell": false,
       "partNumber": "DTM06-6S",
-      "description": "DTM 6-way socket — ECU comms harness side",
+      "description": "DTM 6-way socket - ECU comms harness side",
       "manufacturer": "Deutsch",
       "configurations": [
         {
@@ -1430,7 +1254,7 @@
       "gender": "Female",
       "hasShell": false,
       "partNumber": "DTM06-4S",
-      "description": "DTM 4-way socket — CAN-Lambda harness side",
+      "description": "DTM 4-way socket - CAN-Lambda harness side",
       "manufacturer": "Deutsch",
       "configurations": [
         {
@@ -1444,7 +1268,7 @@
       "id": "cp_csb3io",
       "gender": "Female",
       "hasShell": false,
-      "partNumber": "(none — PCB screw terminals)",
+      "partNumber": "(none - PCB screw terminals)",
       "description": "CAN Switch Board V3 screw-terminal I/O. No harness-side connector spec'd yet; cavity layout follows the CSB3 channel list (power, CAN, cabin-temp + cruise-ladder analog inputs, 8 switch inputs). Analog 3-8, low-side outs 1-4 and rotary/mode inputs remain spare/unused on this build. Verify against board silkscreen before crimping.",
       "manufacturer": "ECUMaster",
       "configurations": [
@@ -1582,7 +1406,7 @@
       "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Only the CAN-Lambda crosses the firewall; the cluster and RealDash are CAN drops only - their devices and their power are not part of this harness. 120R termination at the ECU end and at the lambda end.",
       "schematicPosition": {
         "x": 0,
-        "y": -600
+        "y": -1400
       }
     }
   ],

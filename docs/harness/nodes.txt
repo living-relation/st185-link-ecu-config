@@ -1,0 +1,178 @@
+﻿== ST185-A-ECU.harness  wires=58
+   aps                    BRZ e-throttle pedal (APS)   cav=6   x=0       y=1320   
+   ecu_a                  ECU-A                        cav=34  x=1170    y=0      
+   ecu_b                  ECU-B                        cav=34  x=1170    y=1140   
+   ecu_com                ECU Comms/Tuning Port        cav=6   x=1170    y=2280   
+   acamp                  A/C Amplifier - ECU kill inp cav=1   x=0       y=1620   
+   k_efi                  EFI Main Relay               cav=5   x=0       y=1770   
+   k_etb                  ETB Power Relay              cav=5   x=0       y=2040   
+   k_fp                   Fuel Pump Relay              cav=5   x=0       y=2310   
+   k_fan                  Radiator Fan Relay (on/off)  cav=5   x=0       y=2580   
+   k_str                  Start Relay                  cav=5   x=0       y=3120   
+   k_fan2                 Condenser Fan Relay (on/off) cav=5   x=0       y=2850   
+   fuellvl                Fuel Level Sender            cav=2   x=2280    y=6150   
+   csb3io                 ECUMaster CSB3 ΓÇö Power/CAN cav=14  x=0       y=0      
+   clutch_sw              OEM block ΓÇö Clutch Switch  cav=2   x=0       y=3390   
+   brake_sw               OEM block ΓÇö Brake Switch   cav=2   x=0       y=3570   
+   start_req              OEM block ΓÇö Start Request  cav=2   x=0       y=3750   
+   cruise_stalk           OEM block ΓÇö Cruise Control cav=5   x=0       y=4110   
+   bh_a_fw                Bulkhead A - firewall (HDP24 cav=47  x=960     y=2580   
+   bh_b_fw                Bulkhead B - firewall (HDP24 cav=21  x=930     y=4140   
+   ign_sw                 OEM block ΓÇö Ignition Switc cav=2   x=0       y=3930   
+   SPLICE sp_shield_cab    None
+
+== ST185-A-engine.harness  wires=29
+   crank                  Crank VR Sensor (36-2)       cav=2   x=2280    y=0      
+   ect                    ECT Sensor                   cav=2   x=2280    y=510    
+   iat                    IAT Sensor (Manifold)        cav=2   x=2280    y=690    
+   oilt                   Oil Temp Sensor              cav=2   x=2280    y=870    
+   cpiat                  Charge-Pipe IAT Sensor       cav=2   x=2280    y=1050   
+   knock1                 Knock Sensor 1               cav=2   x=2280    y=1230   
+   turbospd               Turbo Speed Sensor           cav=3   x=2280    y=2250   
+   cam                    Cam Hall Sensor (RacerX)     cav=3   x=2280    y=180    
+   map                    MAP Sensor                   cav=3   x=2280    y=1410   
+   oilp                   Oil Pressure Sensor          cav=3   x=2280    y=1620   
+   fuelp                  Fuel Pressure Sensor         cav=3   x=2280    y=1830   
+   clntp                  Coolant Pressure Sensor      cav=3   x=2280    y=2040   
+   inj1                   Injector 1                   cav=2   x=2280    y=3750   
+   inj2                   Injector 2                   cav=2   x=2280    y=3930   
+   inj3                   Injector 3                   cav=2   x=2280    y=4110   
+   inj4                   Injector 4                   cav=2   x=2280    y=4290   
+   cop1                   COP 1 (1ZZ)                  cav=4   x=2280    y=4470   
+   cop2                   COP 2 (1ZZ)                  cav=4   x=2280    y=4710   
+   cop3                   COP 3 (1ZZ)                  cav=4   x=2280    y=4950   
+   cop4                   COP 4 (1ZZ)                  cav=4   x=2280    y=5190   
+   boost                  Boost Control Solenoid       cav=2   x=2280    y=3210   
+   etb                    Bosch 74.5mm ETB             cav=6   x=2280    y=2910   
+   flex                   Flex Fuel Sensor             cav=3   x=2280    y=2460   
+   lambda                 Link CAN-Lambda              cav=4   x=2280    y=2670   
+   reverse_sw             OEM block ΓÇö Reverse Switch cav=2   x=2280    y=3570   
+   bh_a_eng               Bulkhead A - engine plug (HD cav=47  x=1170    y=5040   
+   bh_b_eng               Bulkhead B - engine plug (HD cav=21  x=1170    y=6570   
+   SPLICE sp_shield_eng    None
+
+== ST185-B-ECU.harness  wires=48
+   ecu_a                  ECU-A (power pins)           cav=6   x=1050    y=720    
+   ecu_b                  ECU-B (power pins)           cav=6   x=1050    y=1020   
+   k_efi                  EFI Main Relay               cav=5   x=0       y=1140   
+   k_etb                  ETB Power Relay              cav=5   x=0       y=1410   
+   k_fp                   Fuel Pump Relay              cav=5   x=0       y=1680   
+   k_fan                  Radiator Fan Relay (on/off)  cav=5   x=0       y=1950   
+   k_fan2                 Condenser Fan Relay (on/off) cav=5   x=0       y=2220   
+   k_str                  Start Relay                  cav=5   x=0       y=2490   
+   aps                    BRZ e-throttle pedal (APS)   cav=6   x=0       y=2760   
+   fuellvl                Fuel Level Sender            cav=2   x=2160    y=4860   
+   fuelpump               Fuel Pump                    cav=2   x=2160    y=5040   
+   csb3io                 ECUMaster CSB3 - power       cav=2   x=0       y=3060   
+   bh_a_fw                Bulkhead A - firewall (HDP24 cav=47  x=2160    y=6150   
+   bh_b_fw                Bulkhead B - firewall (HDP24 cav=21  x=2160    y=9210   
+   fusebox                Cabin fuse block (passenger  cav=14  x=660     y=2400   
+   rl_pos_fw              RADLOK + - firewall          cav=1   x=900     y=-1500  
+   rl_neg_fw              RADLOK - - firewall          cav=1   x=900     y=-1200  
+   SPLICE sp_12v           None
+   SPLICE sp_sw12          None
+   SPLICE sp_5v            None
+   SPLICE sp_8v            None
+   SPLICE sp_gndout        None
+   SPLICE sp_chassis       None
+
+== ST185-B-engine.harness  wires=48
+   inj1                   Injector 1                   cav=2   x=2160    y=0      
+   inj2                   Injector 2                   cav=2   x=2160    y=180    
+   inj3                   Injector 3                   cav=2   x=2160    y=360    
+   inj4                   Injector 4                   cav=2   x=2160    y=540    
+   cop1                   COP 1                        cav=4   x=2160    y=720    
+   cop2                   COP 2                        cav=4   x=2160    y=960    
+   cop3                   COP 3                        cav=4   x=2160    y=1200   
+   cop4                   COP 4                        cav=4   x=2160    y=1440   
+   etb                    Bosch 74.5mm ETB             cav=6   x=2160    y=1680   
+   crank                  Crank VR Sensor              cav=2   x=2160    y=2160   
+   ect                    ECT Sensor                   cav=2   x=2160    y=2670   
+   iat                    IAT Sensor                   cav=2   x=2160    y=2850   
+   oilt                   Oil Temp Sensor              cav=2   x=2160    y=3030   
+   cpiat                  Charge-Pipe IAT              cav=2   x=2160    y=3210   
+   cam                    Cam Hall Sensor              cav=3   x=2160    y=3390   
+   map                    MAP Sensor                   cav=3   x=2160    y=3600   
+   oilp                   Oil Pressure Sensor          cav=3   x=2160    y=3810   
+   fuelp                  Fuel Pressure Sensor         cav=3   x=2160    y=4020   
+   clntp                  Coolant Pressure Sensor      cav=3   x=2160    y=4230   
+   turbospd               Turbo Speed Sensor           cav=3   x=2160    y=4440   
+   boost                  Boost Control Solenoid       cav=2   x=2160    y=1980   
+   flex                   Flex Fuel Sensor             cav=3   x=2160    y=4650   
+   lambda                 Link CAN-Lambda              cav=4   x=2160    y=5760   
+   bh_a_eng               Bulkhead A - engine plug (HD cav=47  x=2160    y=7680   
+   bh_b_eng               Bulkhead B - engine plug (HD cav=21  x=2160    y=9960   
+   rl_pos_eng             RADLOK + - engine side       cav=1   x=1500    y=-1500  
+   rl_neg_eng             RADLOK - - engine side       cav=1   x=1500    y=-1200  
+   dm_k_str_c4            K6-c4                        cav=1   x=4200    y=120    
+   SPLICE sp_5v_eng        None
+   SPLICE sp_gndout_eng    None
+   SPLICE sp_sw12_eng      None
+   SPLICE sp_chassis_eng   None
+   SPLICE sp_inj_eng       None
+   SPLICE sp_cop_eng       None
+
+== ST185-CAN.harness  wires=16
+   ecu_com                ECU Comms/Tuning Port        cav=6   x=0       y=0      
+   csb3io                 ECUMaster CSB3 ΓÇö Power/CAN cav=14  x=1200    y=-600   
+   lambda                 Link CAN-Lambda              cav=4   x=3000    y=0      
+   bh_a_fw                Bulkhead A - firewall (HDP24 cav=47  x=1800    y=0      
+   bh_a_eng               Bulkhead A - engine plug (HD cav=47  x=2400    y=0      
+   SPLICE sp_canh          None
+   SPLICE sp_canl          None
+
+== ST185-ClusterLED.harness  wires=7
+   cl_c11                 OEM cluster connector C11    cav=3   x=120     y=120    
+   cl_c12                 OEM cluster connector C12    cav=3   x=120     y=480    
+   led_board              Cluster LED indicator board  cav=7   x=720     y=240    
+   dm_csb_ls              CSB-LS                       cav=1   x=720     y=700    
+
+== ST185-EngineRoom-C.harness  wires=41
+   pdb                    Cabin PDB (glove box)        cav=8   x=0       y=180    
+   pmu                    ECUMaster PMU-16             cav=11  x=0       y=720    
+   k_eps                  EPS pump relay HCR150        cav=5   x=360     y=180    
+   k_fan                  Rad fan relay (uprated)      cav=5   x=360     y=540    
+   k_fan2                 Condenser fan relay (uprated cav=5   x=360     y=900    
+   rl_pos_fw              RADLOK + firewall            cav=1   x=0       y=-240   
+   rl_pos_eng             RADLOK + engine              cav=1   x=720     y=-240   
+   rl_neg_fw              RADLOK - firewall            cav=1   x=0       y=0      
+   rl_neg_eng             RADLOK - engine              cav=1   x=720     y=0      
+   oem_jb2_2a             OEM J/B2 2A (engine room mai cav=5   x=1080    y=180    
+   oem_jb2_2d             OEM J/B2 2D (engine room mai cav=4   x=1080    y=540    
+   oem_jb2_2e             OEM J/B2 2E (engine room mai cav=6   x=1080    y=900    
+   oem_jb1_1i             OEM J/B1 1I (left kick, ER m cav=1   x=1440    y=180    
+   oem_jb1_1h             OEM J/B1 1H (left kick, ER m cav=2   x=1440    y=420    
+   oem_ie1                OEM IE1 (left kick, ER main  cav=2   x=1440    y=720    
+   oem_rb4                OEM R/B4 (right kick, by glo cav=3   x=1440    y=1020   
+   oem_rb2                OEM R/B2 (left kick)         cav=2   x=1440    y=1320   
+   mrs_pwr                MRS EPS pump power 90980-120 cav=2   x=1800    y=180    
+   mrs_en                 MRS EPS enable 90980-10942   cav=2   x=1800    y=420    
+   rad_fan                Uprated radiator fan         cav=2   x=1800    y=720    
+   fan2                   Uprated condenser fan        cav=2   x=1800    y=960    
+   jump_pos               Engine-bay jump post         cav=1   x=720     y=-480   
+   mrs_ctrl               MRS EPS Pump ΓÇö Control     cav=3   x=2280    y=3390   
+   dm_bh_b_eng_c13        BH-B-c13                     cav=1   x=4200    y=120    
+   dm_sp_chassis_eng_Splice sp_chassis_eng-Splice        cav=1   x=4200    y=360    
+   dm_fusebox_c7          FB1-c7                       cav=1   x=4200    y=1080   
+   dm_sp_sw12_Splice      sp_sw12-Splice               cav=1   x=4200    y=1320   
+   dm_bh_b_eng_c14        BH-B-c14                     cav=1   x=4200    y=1560   
+   dm_ecu_b_b12           ECU-B-b12                    cav=1   x=4200    y=1800   
+
+== ST185-WheelSpeed.harness  wires=19
+   wss_fl                 ABS Wheel Speed FL           cav=2   x=2280    y=5430   
+   wss_fr                 ABS Wheel Speed FR           cav=2   x=2280    y=5610   
+   wss_rl                 ABS Wheel Speed RL           cav=2   x=2280    y=5790   
+   wss_rr                 ABS Wheel Speed RR           cav=2   x=2280    y=5970   
+   dm_bh_a_eng_c10        BH-A-c10                     cav=1   x=4200    y=120    
+   dm_bh_a_fw_c11         BH-A-c11                     cav=1   x=4200    y=360    
+   dm_bh_a_eng_c11        BH-A-c11                     cav=1   x=4200    y=600    
+   dm_bh_a_eng_c12        BH-A-c12                     cav=1   x=4200    y=840    
+   dm_ecu_b_b20           ECU-B-b20                    cav=1   x=4200    y=1080   
+   dm_ecu_b_b19           ECU-B-b19                    cav=1   x=4200    y=1320   
+   dm_bh_a_fw_c28         BH-A-c28                     cav=1   x=4200    y=1560   
+   dm_bh_a_eng_c28        BH-A-c28                     cav=1   x=4200    y=1800   
+   dm_sp_shield_cab_Splice sp_shield_cab-Splice         cav=1   x=4200    y=2040   
+   dm_sp_gndout_eng_Splice sp_gndout_eng-Splice         cav=1   x=4200    y=2280   
+   dm_sp_5v_eng_Splice    sp_5v_eng-Splice             cav=1   x=4200    y=2760   
+   SPLICE sp_shield_rear   None
+
