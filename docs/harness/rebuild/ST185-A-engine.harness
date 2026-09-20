@@ -18,14 +18,6 @@
           "signal": "SIG-"
         }
       ],
-      "wiringTable": {
-        "layout": {
-          "position": {
-            "x": 570,
-            "y": 330
-          }
-        }
-      },
       "layoutPosition": {
         "x": 4420,
         "y": 3346
@@ -1164,7 +1156,8 @@
         "id": "knock1",
         "handle": "c2"
       },
-      "color": "Green/Yellow"
+      "color": "Green",
+      "stripeColor": "Yellow"
     },
     {
       "id": "w16_e",

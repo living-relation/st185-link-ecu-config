@@ -1278,7 +1278,7 @@
     },
     {
       "id": "w68",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "ecu_a",
         "handle": "a24"
@@ -1291,7 +1291,7 @@
     },
     {
       "id": "w69",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "ecu_b",
         "handle": "b22"
@@ -1304,7 +1304,7 @@
     },
     {
       "id": "w40",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "aps",
         "handle": "c5"
@@ -1317,7 +1317,7 @@
     },
     {
       "id": "w45",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "fuellvl",
         "handle": "c2"
@@ -1426,7 +1426,7 @@
     },
     {
       "id": "w_aps_gnd2",
-      "color": "Black/White",
+      "color": "Black",
       "stripeColor": "White",
       "source": {
         "id": "aps",
@@ -1459,7 +1459,7 @@
         "id": "bh_a_fw",
         "handle": "c3"
       },
-      "color": "Black/White",
+      "color": "Black",
       "stripeColor": "White"
     },
     {

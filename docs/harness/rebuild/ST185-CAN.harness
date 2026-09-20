@@ -1378,24 +1378,24 @@
       "id": "r_term_ecu",
       "partId": "rp_120",
       "schematicPosition": {
-        "x": 0,
-        "y": 600
+        "x": 1280,
+        "y": -120
       },
       "layoutPosition": {
-        "x": 0,
-        "y": 300
+        "x": 1280,
+        "y": -120
       }
     },
     {
       "id": "r_term_end",
       "partId": "rp_120",
       "schematicPosition": {
-        "x": 3000,
-        "y": 600
+        "x": 1280,
+        "y": -120
       },
       "layoutPosition": {
-        "x": 2400,
-        "y": 300
+        "x": 1280,
+        "y": -120
       }
     }
   ],

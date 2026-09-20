@@ -1659,6 +1659,15 @@
       "partNumber": "jump-post-M8",
       "manufacturer": "TBD",
       "description": "Engine-bay jump / accessory post on starter B+ net."
+    },
+    {
+      "id": "cp_mrs_ctrl",
+      "partNumber": "90980-10897",
+      "manufacturer": "Toyota",
+      "gender": "Female",
+      "hasShell": false,
+      "numberOfCavities": 6,
+      "description": "MR-S EHPS pump control connector B, pigtail 82998-12440. Sumitomo TS090 / Yazaki 090-II family, not a TE part. 6 cavities, 2 used: pin 2 speed-pulse out, pin 6 relay-request out. Confirm against the pump in hand before ordering."
     }
   ]
 }

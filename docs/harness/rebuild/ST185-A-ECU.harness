@@ -44,14 +44,6 @@
           "signal": "VPA1 APS-M"
         }
       ],
-      "wiringTable": {
-        "layout": {
-          "position": {
-            "x": 150,
-            "y": 630
-          }
-        }
-      },
       "layoutPosition": {
         "x": 620,
         "y": 0
@@ -1451,12 +1443,12 @@
       "partId": "rp_1k8",
       "locationId": "ecu_a",
       "layoutPosition": {
-        "x": 3780,
-        "y": -180
+        "x": 1820,
+        "y": 480
       },
       "schematicPosition": {
-        "x": 2460,
-        "y": 390
+        "x": 1820,
+        "y": 480
       }
     },
     {
@@ -1464,12 +1456,12 @@
       "partId": "rp_470",
       "locationId": "fuellvl",
       "layoutPosition": {
-        "x": 480,
-        "y": -180
+        "x": 200,
+        "y": -120
       },
       "schematicPosition": {
-        "x": 2460,
-        "y": 6330
+        "x": 200,
+        "y": -120
       }
     },
     {
@@ -1477,12 +1469,12 @@
       "partId": "rp_10k",
       "locationId": "cruise_stalk",
       "layoutPosition": {
-        "x": 1260,
-        "y": 2520
+        "x": 820,
+        "y": 928
       },
       "schematicPosition": {
-        "x": 300,
-        "y": 3870
+        "x": 820,
+        "y": 928
       }
     }
   ],
@@ -1497,7 +1489,8 @@
         "id": "bh_a_fw",
         "handle": "c6"
       },
-      "color": "Green/Yellow"
+      "color": "Green",
+      "stripeColor": "Yellow"
     },
     {
       "id": "w16_c",
@@ -2808,6 +2801,26 @@
       "manufacturer": "TE Connectivity / Raychem",
       "partNumber": "TBD - moulded breakout boot",
       "description": "Adhesive-lined moulded transition boot at each loom breakout. Size per branch OD - confirm dash number before ordering."
+    }
+  ],
+  "resistorParts": [
+    {
+      "id": "rp_1k8",
+      "partNumber": "1.8k 1/4W",
+      "manufacturer": "generic",
+      "description": "Cam Hall pull-up, +8V (A6) to Trig 2 (A9)"
+    },
+    {
+      "id": "rp_470",
+      "partNumber": "470R 1/4W",
+      "manufacturer": "generic",
+      "description": "Fuel level sender pull-up to +5V (A32)"
+    },
+    {
+      "id": "rp_10k",
+      "partNumber": "10k 1/4W",
+      "manufacturer": "generic",
+      "description": "Cruise ladder pull-up to +5V (A32)"
     }
   ]
 }

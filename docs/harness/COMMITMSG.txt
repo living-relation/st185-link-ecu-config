@@ -1,26 +1,30 @@
-Apply 6.33 layout standard to all eight rebuild files
+Add v0.9 lint, fix dangling parts, normalize striped wire colours
 
-layout_633.py places every connector, splice and ring terminal into the
-column band 6.33 calls for - rear of car, cabin, ECU A next to ECU B left
-of centre, the two cabin bulkheads, the two engine bulkheads facing them,
-then engine bay and front of car on the right. Driver-side items sit high
-in each column, passenger-side low.
+lint_v09.py checks every rebuild file against the schema rules we have
+learned by rejection, so an upload stops being a guess. It found two real
+bugs that would also have made the BOMs come up short:
 
-Also in the same pass, because all three broke the drawings:
+- A-ECU referenced resistor parts rp_1k8 / rp_470 / rp_10k that were never
+  defined. The cam pull-up, fuel-level pull-up and cruise-ladder pull-up
+  had no part behind them.
+- EngineRoom-C referenced connector part cp_mrs_ctrl, also undefined.
 
-- Ring terminals were never being placed at all. They now get zones.
-- Wire layoutPoints were hand-placed against the old coordinates, so every
-  one of them was an elbow pointing at empty space. Dropped; the app routes.
-- Schematic notes were anchored to the old grid and landed on top of
-  connectors. Stacked into a banner above the drawing.
-- Labels that went through cp1252 came back as mojibake. Repaired, and the
-  scripts now open files with an explicit utf-8 encoding so it stops
-  happening.
-- width is a strict enum in v0.9 - 60/90/150/210/270/390 only. 240, 300 and
-  540 were in the files and are a hard upload reject. snap_widths() rounds
-  up to the next legal step.
+Both added in fix_missing_parts.py. Lint is now clean on all eight files.
 
-ST185-EngineRoom-C uploaded to harness.design as nz65.
+split_colors() in layout_633.py: v0.9 has no striped wire colours, so
+"Green/Yellow" is a hard reject. 24 wires across five files carried one.
+The stripe now goes in its own stripeColor field.
+
+layout_633.py also places resistors, following each one's locationId so it
+sits beside the part it is fitted at, and drops stale wiringTable positions.
+
+verify_rebuild.py still reports MATCH - 267 wires in, 259 out, every
+connection accounted for.
+
+Uploaded: ST185-EngineRoom-C = nz65, ST185-A-ECU = oOXY.
+
+Known open: ecu_com cavity C4 carries CAN L (w_can_bh1_c) but is still
+marked notConnected. Needs fixing before the CAN file is trusted.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

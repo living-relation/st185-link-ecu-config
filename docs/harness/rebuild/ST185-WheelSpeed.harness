@@ -64,14 +64,6 @@
           "signal": "SIG-"
         }
       ],
-      "wiringTable": {
-        "layout": {
-          "position": {
-            "x": 660,
-            "y": 630
-          }
-        }
-      },
       "layoutPosition": {
         "x": 0,
         "y": 0
@@ -732,7 +724,7 @@
     },
     {
       "id": "w56",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "vr1_gnd",
         "handle": "Terminal"
@@ -745,7 +737,7 @@
     },
     {
       "id": "w64",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "vr2_gnd",
         "handle": "Terminal"

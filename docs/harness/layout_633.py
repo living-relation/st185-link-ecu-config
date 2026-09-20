@@ -234,6 +234,37 @@ def demojibake(obj):
 WIDTHS = [60, 90, 150, 210, 270, 390]
 
 
+COLORS = {"Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue",
+          "Violet", "Gray", "White", "Pink", "Tan", "Maroon", "Light Yellow",
+          "Light Green", "Light Blue", "Light Gray", "Transparent", "Shield"}
+
+
+def split_colors(doc):
+    """v0.9 has no striped colours.  'Green/Yellow' is a hard reject - the
+    stripe goes in its own stripeColor field."""
+    n = 0
+    for key in ("wires", "cables"):
+        for w in doc.get(key, []):
+            c = w.get("color")
+            if not c or c in COLORS:
+                continue
+            base, _, stripe = c.partition("/")
+            base, stripe = base.strip(), stripe.strip()
+            w["color"] = base if base in COLORS else "White"
+            if stripe in COLORS:
+                w["stripeColor"] = stripe
+            n += 1
+            for core in w.get("cores", []):
+                cc = core.get("color")
+                if cc and cc not in COLORS:
+                    b, _, s = cc.partition("/")
+                    core["color"] = b.strip() if b.strip() in COLORS else "White"
+                    if s.strip() in COLORS:
+                        core["stripeColor"] = s.strip()
+                    n += 1
+    return n
+
+
 def snap_widths(doc):
     """v0.9 accepts only 60/90/150/210/270/390 for width.  Anything else is a
     hard reject on upload, so round up to the next legal step."""
@@ -277,6 +308,17 @@ def place(doc):
             n["layoutPosition"] = {"x": COL_X[col], "y": y}
             y += height(n) + GAP
 
+    # A resistor belongs beside the part it is fitted at, so follow its
+    # locationId rather than giving it a zone of its own.
+    where = {}
+    for n in nodes + splices:
+        where[n.get("id")] = n.get("schematicPosition")
+    for r in doc.get("resistors", []):
+        anchor = where.get(r.get("locationId")) or {"x": COL_X[2], "y": 0}
+        pos = {"x": anchor["x"] + 200, "y": anchor["y"] - 120}
+        r["schematicPosition"] = pos
+        r["layoutPosition"] = dict(pos)
+
     # Wire routing points were hand-placed against the OLD coordinates.  They
     # are now elbows pointing at empty space, so drop them and let the app
     # route straight.
@@ -302,7 +344,7 @@ def main():
         p = os.path.join(SRC, fn)
         with open(p, encoding="utf-8") as fh:
             doc = json.load(fh)
-        fixed = demojibake(doc) + snap_widths(doc)
+        fixed = demojibake(doc) + snap_widths(doc) + split_colors(doc)
         n, unk = place(doc)
         with open(p, "w", encoding="utf-8") as fh:
             json.dump(doc, fh, indent=2)

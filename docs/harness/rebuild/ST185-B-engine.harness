@@ -1476,7 +1476,7 @@
     },
     {
       "id": "w2",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "crank",
         "handle": "c2"
@@ -1489,7 +1489,7 @@
     },
     {
       "id": "w4",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "ect",
         "handle": "c2"
@@ -1502,7 +1502,7 @@
     },
     {
       "id": "w6",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "iat",
         "handle": "c2"
@@ -1515,7 +1515,7 @@
     },
     {
       "id": "w8",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "oilt",
         "handle": "c2"
@@ -1528,7 +1528,7 @@
     },
     {
       "id": "w10",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "cpiat",
         "handle": "c2"
@@ -1541,7 +1541,7 @@
     },
     {
       "id": "w24",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "cam",
         "handle": "c3"
@@ -1554,7 +1554,7 @@
     },
     {
       "id": "w27",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "map",
         "handle": "c3"
@@ -1567,7 +1567,7 @@
     },
     {
       "id": "w30",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "oilp",
         "handle": "c3"
@@ -1580,7 +1580,7 @@
     },
     {
       "id": "w33",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "fuelp",
         "handle": "c3"
@@ -1593,7 +1593,7 @@
     },
     {
       "id": "w36",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "clntp",
         "handle": "c3"
@@ -1606,7 +1606,7 @@
     },
     {
       "id": "w47",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "flex",
         "handle": "c2"
@@ -1619,7 +1619,7 @@
     },
     {
       "id": "w17",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "turbospd",
         "handle": "c3"
@@ -1632,7 +1632,7 @@
     },
     {
       "id": "w127",
-      "color": "Black/White",
+      "color": "Black",
       "source": {
         "id": "etb",
         "handle": "c2"
@@ -1725,7 +1725,7 @@
         "id": "sp_gndout_eng",
         "handle": "Splice"
       },
-      "color": "Black/White",
+      "color": "Black",
       "stripeColor": "White"
     },
     {
