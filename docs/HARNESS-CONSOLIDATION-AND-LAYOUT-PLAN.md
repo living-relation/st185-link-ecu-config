@@ -742,3 +742,47 @@ already had an `archive/` folder and that is where retired material lives.
 
 Per `CLAUDE.md`, nothing in `archive/` is authoritative and it is excluded from normal
 agent context. It is there for "why did we do it that way", nothing else.
+
+
+### 6.29 Wheel-speed shield topology - set by Daniel 2026-09-20
+
+The VR conditioners have no shield in/out terminal, so a wheel-speed shield cannot run
+unbroken from sensor to ECU. It is **two shielded segments**, each sinking at exactly one
+end and floating at the other:
+
+```
+  ABS sensor           VR conditioner PCB              ECU
+  (FLOAT) ═════════════ (SINK: power ground)
+                        (FLOAT) ═════════════════════ (SINK: shield ground)
+           segment 1                  segment 2
+```
+
+- **Segment 1** - sensor to conditioner. Shield floats at the sensor, sinks to the
+  conditioner's **PCB power ground**.
+- **Segment 2** - conditioner output to ECU. Shield floats at the conditioner, sinks to
+  **ECU shield ground**.
+
+Front pair (FL, FR) goes to one conditioner, rear pair (RL, RR) to the other. Two sensors
+per conditioner, two conditioners.
+
+This is consistent with 6.27: every shield still terminates at exactly one end, and never
+at the device.
+
+**Consequence for the bulkhead count.** The four wheel-speed shields die at their
+conditioner - they never reach a bulkhead. Only the engine sensors need a bulkhead pin of
+their own:
+
+| Shield | Needs a bulkhead pin? |
+|---|---|
+| crank, cam, knock1 | **Yes** - 3 pins, engine side to ECU |
+| wss_fl, wss_fr, wss_rl, wss_rr | No - segment 1 ends at the conditioner |
+
+So **3 pins, not 7**. Measured headroom is 16 free pairs on bulkhead A and 11 on B, so
+this is comfortable.
+
+**Assumption flagged, not guessed at.** Daniel said the wheel-speed loom gets no bulkhead
+connector and is a harness of its own. Taken at face value, that means it crosses the
+firewall on its own grommet, not through bulkhead A - so the six `dm_bh_a_*` dummies the
+split left in `ST185-WheelSpeed.harness` are leftovers from the old routing and come out.
+If the front sensors are in fact meant to keep using bulkhead A, say so and they go back,
+costing 2 signal pins plus 1 shield pin on A.
