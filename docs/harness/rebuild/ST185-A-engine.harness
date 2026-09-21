@@ -1947,10 +1947,7 @@
           "color": "Blue"
         }
       ],
-      "shield": {
-        "id": "sh",
-        "color": "Shield"
-      }
+      "shielded": true
     },
     {
       "id": "cab_sh_2c",
@@ -1960,17 +1957,15 @@
       "cores": [
         {
           "id": "k1",
-          "color": "White"
+          "color": "White",
+          "twistedWithNext": true
         },
         {
           "id": "k2",
           "color": "Green"
         }
       ],
-      "shield": {
-        "id": "sh",
-        "color": "Shield"
-      }
+      "shielded": true
     }
   ]
 }

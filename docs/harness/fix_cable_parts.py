@@ -4,7 +4,10 @@ Two problems the upload warnings and the guide between them expose:
 
 1. A cable that has a shield needs its CablePart to declare one, the same way a
    connector with a shell needs hasShell. harness.design warned on all six
-   WheelSpeed cables for this.
+   WheelSpeed cables for this. The key is the BOOLEAN "shielded" on the part -
+   NOT a "shield" object. v0.9 rejects the whole upload with "Unrecognized
+   key(s) in object: 'shield'" if you copy the cable instance's shape onto the
+   part. The shield object only ever lives on the cable instance.
 2. Cores align with the part's cores BY POSITION, so a 1-core cable pointed at a
    2-core part is a mismatch. cab_crank and cab_cam are single-core; cab_knock1
    is a twisted pair.
@@ -24,18 +27,19 @@ CABLE_PARTS = {
         "description": "1-core shielded sensor cable, overall foil + braid screen, "
                        "20 AWG. Cable is generic in BOMs per 6.24.",
         "cores": [{"id": "k1", "color": "Blue"}],
-        "shield": {"id": "sh", "color": "Shield"}},
+        "shielded": True},
     2: {"id": "cab_sh_2c", "partNumber": "(generic)", "manufacturer": "generic",
         "description": "2-core twisted shielded cable, overall foil + braid screen, "
                        "20 AWG. Cable is generic in BOMs per 6.24.",
-        "cores": [{"id": "k1", "color": "White"}, {"id": "k2", "color": "Green"}],
-        "shield": {"id": "sh", "color": "Shield"}},
+        "cores": [{"id": "k1", "color": "White", "twistedWithNext": True},
+                  {"id": "k2", "color": "Green"}],
+        "shielded": True},
     4: {"id": "cab_sh_4c", "partNumber": "(generic)", "manufacturer": "generic",
         "description": "4-core shielded cable, overall foil + braid screen, 20 AWG. "
                        "Conditioner to ECU. Cable is generic in BOMs per 6.24.",
         "cores": [{"id": "k1", "color": "Orange"}, {"id": "k2", "color": "Black"},
                   {"id": "k3", "color": "Blue"}, {"id": "k4", "color": "Violet"}],
-        "shield": {"id": "sh", "color": "Shield"}},
+        "shielded": True},
 }
 
 

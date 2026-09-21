@@ -8,6 +8,9 @@ Each rule here cost a failed set_document_json at least once:
   - cavities take no 'description'
   - connectors take no 'notes'
   - connectors take no 'shell' (6.27: no connector on this car has one)
+  - a CablePart declares its screen with the boolean 'shielded'; the object
+    form 'shield' belongs to the cable instance only
+  - a cable's core count must match its CablePart's core count
   - every partId / contactPartId / cavityPlugPartId must resolve
   - every wire end must point at a node and a cavity that exist
 """
@@ -38,6 +41,16 @@ def check(fn):
             if pid in parts:
                 bad.append("duplicate part id %s in %s" % (pid, key))
             parts.add(pid)
+
+    # A CablePart declares its screen with the BOOLEAN "shielded". Copying the
+    # cable instance's {"shield": {...}} shape onto the part is rejected
+    # outright - "Unrecognized key(s) in object: 'shield'". Cost one upload.
+    cable_parts = {}
+    for p in d.get("cableParts", []):
+        cable_parts[p.get("id")] = p
+        if "shield" in p:
+            bad.append("cable part %s has a 'shield' key - the part takes the "
+                       "boolean 'shielded'" % p.get("id"))
 
     # A part's own configuration references other parts. Those have to resolve
     # too - a connector part whose contact was trimmed out from under it still
@@ -153,6 +166,17 @@ def check(fn):
             bad.append("cable %s has no schematicPosition (required)" % cid)
         if cb.get("partId") and cb["partId"] not in parts:
             bad.append("cable %s -> missing part %s" % (cid, cb["partId"]))
+        cp = cable_parts.get(cb.get("partId"))
+        if cp:
+            # Cores align with the part's cores BY POSITION, so a count
+            # mismatch means the wrong gauge and colour on real copper.
+            n = len(cp.get("cores", []))
+            if n != len(cb.get("cores", [])):
+                bad.append("cable %s has %d cores but part %s has %d"
+                           % (cid, len(cb.get("cores", [])), cb["partId"], n))
+            if cb.get("shield") and not cp.get("shielded"):
+                bad.append("cable %s has a shield but part %s is not shielded"
+                           % (cid, cb["partId"]))
         for core in cb.get("cores", []):
             kid = core.get("id")
             if kid in seen:
