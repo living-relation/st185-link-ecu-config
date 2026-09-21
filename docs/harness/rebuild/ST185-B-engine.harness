@@ -19,11 +19,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 1792
+        "y": 2096
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 1792
+        "y": 2096
       }
     },
     {
@@ -41,11 +41,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 2096
+        "y": 2400
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 2096
+        "y": 2400
       }
     },
     {
@@ -63,11 +63,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 2400
+        "y": 2704
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 2400
+        "y": 2704
       }
     },
     {
@@ -85,11 +85,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 2704
+        "y": 3008
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 2704
+        "y": 3008
       }
     },
     {
@@ -115,11 +115,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 0
+        "y": 608
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 0
+        "y": 608
       }
     },
     {
@@ -145,11 +145,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 372
+        "y": 980
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 372
+        "y": 980
       }
     },
     {
@@ -175,11 +175,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 744
+        "y": 1352
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 744
+        "y": 1352
       }
     },
     {
@@ -205,11 +205,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 1116
+        "y": 1724
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 1116
+        "y": 1724
       }
     },
     {
@@ -243,12 +243,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 4980,
-        "y": 304
+        "x": 3860,
+        "y": 2906
       },
       "schematicPosition": {
-        "x": 4980,
-        "y": 304
+        "x": 3860,
+        "y": 2906
       }
     },
     {
@@ -266,11 +266,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 3346
+        "y": 3650
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 3346
+        "y": 3650
       }
     },
     {
@@ -288,11 +288,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 3650
+        "y": 0
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 3650
+        "y": 0
       }
     },
     {
@@ -309,12 +309,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 4420,
-        "y": 1488
+        "x": 3860,
+        "y": 3346
       },
       "schematicPosition": {
-        "x": 4420,
-        "y": 1488
+        "x": 3860,
+        "y": 3346
       }
     },
     {
@@ -331,12 +331,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 3860,
-        "y": 2432
+        "x": 4420,
+        "y": 304
       },
       "schematicPosition": {
-        "x": 3860,
-        "y": 2432
+        "x": 4420,
+        "y": 304
       }
     },
     {
@@ -380,11 +380,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 3008
+        "y": 3312
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 3008
+        "y": 3312
       }
     },
     {
@@ -405,12 +405,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 4980,
-        "y": 1082
+        "x": 3860,
+        "y": 3650
       },
       "schematicPosition": {
-        "x": 4980,
-        "y": 1082
+        "x": 3860,
+        "y": 3650
       }
     },
     {
@@ -432,11 +432,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 2094
+        "y": 1960
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 2094
+        "y": 1960
       }
     },
     {
@@ -457,12 +457,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 4980,
-        "y": 744
+        "x": 3860,
+        "y": 1250
       },
       "schematicPosition": {
-        "x": 4980,
-        "y": 744
+        "x": 3860,
+        "y": 1250
       }
     },
     {
@@ -484,11 +484,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 1384
+        "y": 304
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 1384
+        "y": 304
       }
     },
     {
@@ -510,11 +510,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 4356
+        "y": 2568
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 4356
+        "y": 2568
       }
     },
     {
@@ -532,11 +532,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 1080
+        "y": 0
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 1080
+        "y": 0
       }
     },
     {
@@ -557,12 +557,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 4420,
-        "y": 3954
+        "x": 3860,
+        "y": 912
       },
       "schematicPosition": {
-        "x": 4420,
-        "y": 3954
+        "x": 3860,
+        "y": 912
       }
     },
     {
@@ -588,11 +588,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 1722
+        "y": 1588
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 1722
+        "y": 1588
       }
     },
     {
@@ -797,22 +797,19 @@
           "id": "c33",
           "designation": "33",
           "contactPartId": "ct_hdp20s",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Crank VR screen (6.32 dedicated shield pin)"
         },
         {
           "id": "c34",
           "designation": "34",
           "contactPartId": "ct_hdp20s",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Cam Hall screen (6.32 dedicated shield pin)"
         },
         {
           "id": "c35",
           "designation": "35",
           "contactPartId": "ct_hdp20s",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Knock 1 screen (6.32 dedicated shield pin)"
         },
         {
           "id": "c36",
@@ -1129,66 +1126,66 @@
       "id": "sp_5v_eng",
       "layoutPosition": {
         "x": 3860,
-        "y": 2736
+        "y": 3988
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 2736
+        "y": 3988
       }
     },
     {
       "id": "sp_gndout_eng",
       "layoutPosition": {
         "x": 3860,
-        "y": 3546
+        "y": 4798
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 3546
+        "y": 4798
       }
     },
     {
       "id": "sp_sw12_eng",
       "layoutPosition": {
         "x": 3860,
-        "y": 4086
+        "y": 5338
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 4086
+        "y": 5338
       }
     },
     {
       "id": "sp_chassis_eng",
       "layoutPosition": {
         "x": 3860,
-        "y": 3006
+        "y": 4258
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 3006
+        "y": 4258
       }
     },
     {
       "id": "sp_inj_eng",
       "layoutPosition": {
         "x": 3860,
-        "y": 3816
+        "y": 5068
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 3816
+        "y": 5068
       }
     },
     {
       "id": "sp_cop_eng",
       "layoutPosition": {
         "x": 3860,
-        "y": 3276
+        "y": 4528
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 3276
+        "y": 4528
       }
     }
   ],
@@ -1198,12 +1195,12 @@
       "type": "Spade",
       "signal": "Starter Solenoid Trigger (S)",
       "layoutPosition": {
-        "x": 3860,
-        "y": 270
+        "x": 4980,
+        "y": 304
       },
       "schematicPosition": {
-        "x": 3860,
-        "y": 270
+        "x": 4980,
+        "y": 304
       }
     },
     {
@@ -1212,11 +1209,11 @@
       "signal": "Engine block ground stud (power ground)",
       "layoutPosition": {
         "x": 3860,
-        "y": 0
+        "y": 642
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 0
+        "y": 642
       }
     },
     {
@@ -1225,12 +1222,12 @@
       "signal": "Starter B+ post - 2 AWG",
       "width": 210,
       "schematicPosition": {
-        "x": 3860,
-        "y": 810
+        "x": 4980,
+        "y": 574
       },
       "layoutPosition": {
-        "x": 3860,
-        "y": 810
+        "x": 4980,
+        "y": 574
       }
     },
     {
@@ -1240,11 +1237,11 @@
       "width": 210,
       "schematicPosition": {
         "x": 4420,
-        "y": 4292
+        "y": 3954
       },
       "layoutPosition": {
         "x": 4420,
-        "y": 4292
+        "y": 3954
       }
     },
     {
@@ -1254,11 +1251,11 @@
       "width": 210,
       "schematicPosition": {
         "x": 3860,
-        "y": 540
+        "y": 2298
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 540
+        "y": 2298
       }
     }
   ],

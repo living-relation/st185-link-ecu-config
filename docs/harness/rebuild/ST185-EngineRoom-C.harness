@@ -838,11 +838,11 @@
       "width": 270,
       "schematicPosition": {
         "x": 3860,
-        "y": 2264
+        "y": 1994
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 2264
+        "y": 1994
       },
       "cavities": [
         {
@@ -879,11 +879,11 @@
       "width": 270,
       "schematicPosition": {
         "x": 3860,
-        "y": 2670
+        "y": 2400
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 2670
+        "y": 2400
       },
       "cavities": [
         {
@@ -915,11 +915,11 @@
       "width": 270,
       "schematicPosition": {
         "x": 3860,
-        "y": 3042
+        "y": 2772
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 3042
+        "y": 2772
       },
       "cavities": [
         {
@@ -1288,11 +1288,11 @@
       ],
       "schematicPosition": {
         "x": 3860,
-        "y": 1994
+        "y": 1724
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 1994
+        "y": 1724
       }
     },
     {
@@ -1411,12 +1411,12 @@
       "signal": "Starter B+ post, jump lug, 2 AWG",
       "width": 210,
       "schematicPosition": {
-        "x": 3860,
-        "y": 1724
+        "x": 4980,
+        "y": 0
       },
       "layoutPosition": {
-        "x": 3860,
-        "y": 1724
+        "x": 4980,
+        "y": 0
       }
     },
     {

@@ -7,7 +7,7 @@
       "id": "wss_fl",
       "label": "ABS Wheel Speed FL",
       "width": 210,
-      "partId": "cp_abs2",
+      "partId": "cp_dt2s_abs",
       "cavities": [
         {
           "id": "c1",
@@ -33,7 +33,7 @@
       "id": "wss_fr",
       "label": "ABS Wheel Speed FR",
       "width": 210,
-      "partId": "cp_abs2",
+      "partId": "cp_dt2s_abs",
       "cavities": [
         {
           "id": "c1",
@@ -59,7 +59,7 @@
       "id": "wss_rl",
       "label": "ABS Wheel Speed RL",
       "width": 210,
-      "partId": "cp_abs2",
+      "partId": "cp_dt2s_abs",
       "cavities": [
         {
           "id": "c1",
@@ -85,7 +85,7 @@
       "id": "wss_rr",
       "label": "ABS Wheel Speed RR",
       "width": 210,
-      "partId": "cp_abs2",
+      "partId": "cp_dt2s_abs",
       "cavities": [
         {
           "id": "c1",
@@ -846,15 +846,6 @@
   ],
   "connectorParts": [
     {
-      "id": "cp_abs2",
-      "partNumber": "(OEM 2-way)",
-      "manufacturer": "Toyota",
-      "gender": "Female",
-      "hasShell": false,
-      "numberOfCavities": 2,
-      "description": "OEM ST185 ABS wheel speed sensor connector. Two wires only - the sensor has no shield pin, which is why the screen floats at this end. Confirm the exact housing against the car before ordering mates."
-    },
-    {
       "id": "cp_m8_4f",
       "partNumber": "86 6618 1121 00004",
       "manufacturer": "binder",
@@ -871,6 +862,50 @@
       "hasShell": true,
       "numberOfCavities": 4,
       "description": "M8 4-way male panel mount, shieldable, THT, IP67, front fastened. Same ratings as the female. Male so a sensor lead cannot be plugged into the output by mistake."
+    },
+    {
+      "id": "cp_dt2s_abs",
+      "partNumber": "DT06-2S",
+      "manufacturer": "Deutsch (TE)",
+      "gender": "Female",
+      "hasShell": false,
+      "numberOfCavities": 2,
+      "configurations": [
+        {
+          "id": "cfg",
+          "lockPartId": "lp_w2s",
+          "contactPartId": "ct_dt16s"
+        }
+      ],
+      "description": "DT 2-way plug, harness side of the ABS wheel speed sensor. Mates to DT04-2P on the sensor pigtail. Size 16 contacts, 16-20 AWG - the sensor cable is 20 AWG for this reason."
+    },
+    {
+      "id": "cp_dt2p_abs",
+      "partNumber": "DT04-2P",
+      "manufacturer": "Deutsch (TE)",
+      "gender": "Male",
+      "hasShell": false,
+      "numberOfCavities": 2,
+      "configurations": [
+        {
+          "id": "cfg",
+          "lockPartId": "lp_w2p",
+          "contactPartId": "ct_dt16p"
+        }
+      ],
+      "description": "DT 2-way receptacle, SENSOR side. Goes on the ABS sensor pigtail when it is re-terminated. Not wired on this drawing - listed so it reaches the buy list."
+    },
+    {
+      "id": "lp_w2s",
+      "partNumber": "W2S",
+      "manufacturer": "Deutsch (TE)",
+      "description": "Wedgelock for DT06-2S"
+    },
+    {
+      "id": "lp_w2p",
+      "partNumber": "W2P",
+      "manufacturer": "Deutsch (TE)",
+      "description": "Wedgelock for DT04-2P"
     }
   ],
   "cableParts": [
@@ -878,7 +913,7 @@
       "id": "cab_2c_sh",
       "partNumber": "(generic)",
       "manufacturer": "generic",
-      "description": "2-core twisted, overall foil + braid screen, 22 AWG. Sensor to conditioner. Cable is generic in BOMs per 6.24.",
+      "description": "2-core twisted, overall foil + braid screen, 20 AWG. Sensor to conditioner. 20 AWG NOT 22 - the DT size 16 contact is 16-20 AWG and will not crimp 22 reliably. Cable is generic in BOMs per 6.24.",
       "cores": [
         {
           "id": "k1",
@@ -913,6 +948,40 @@
           "color": "Violet"
         }
       ]
+    }
+  ],
+  "contactParts": [
+    {
+      "id": "ct_dt16s",
+      "partNumber": "0462-201-16141",
+      "manufacturer": "Deutsch (TE)",
+      "gender": "Socket",
+      "type": "Crimp",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "description": "DT size 16 solid socket, 16-20 AWG. Harness side. Same contact already used on the DT/DTM sensor connectors elsewhere."
+    },
+    {
+      "id": "ct_dt16p",
+      "partNumber": "0460-202-16141",
+      "manufacturer": "Deutsch (TE)",
+      "gender": "Pin",
+      "type": "Crimp",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "description": "DT size 16 solid pin, 16-20 AWG. Sensor pigtail side."
     }
   ]
 }

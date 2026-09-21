@@ -70,6 +70,14 @@ EXPECT_GONE = {
     "w64":     "-> cab_rout_gnd (same move to cabin sp_gndout)",
     "w_drain_rear": "-> cab_rout_sh (rear screen now runs inside the output cable to "
                     "the cabin shield splice)",
+
+    # ---- engine shielded sensors become cables, 6.27 rule 4 ---------------
+    # Same endpoints, same net - the wire is now a core inside a screened cable
+    # so the screen has somewhere to live.
+    "w200_e":      "-> cab_crank_c1  (crank signal, unchanged endpoints)",
+    "w_cam_sig_e": "-> cab_cam_c2    (cam signal, unchanged endpoints)",
+    "w205_e":      "-> cab_knock1_c1 (knock SIG+, unchanged endpoints)",
+    "w12_e":       "-> cab_knock1_c2 (knock SIG-, unchanged endpoints)",
 }
 EXPECT_NEW = {
     "w_eps_trig": "6.16 ECU-driven EPS relay trigger, Ign 6 / ecu_b.b12",
@@ -86,6 +94,16 @@ EXPECT_NEW = {
     "cab_rr_sh": "RR sensor screen, floats at the sensor, 360 deg on VRC Rear IN-R",
     "cab_fout_sh": "front output screen, VRC Front OUT shell to the cabin shield "
                    "splice - the single ground point for the front pair",
+
+    # 6.32 engine screens. Each floats at the sensor (one endpoint) and crosses
+    # the firewall on its OWN bulkhead pin - first choice, because the pins are
+    # there: 16 free pairs on A.
+    "cab_crank_sh":  "crank screen, floats at the sensor, bulkhead A c33",
+    "cab_cam_sh":    "cam screen, floats at the sensor, bulkhead A c34",
+    "cab_knock1_sh": "knock screen, floats at the sensor, bulkhead A c35",
+    "w_sh_crank":  "crank screen, bulkhead A c33 to the engine-bay shield collector",
+    "w_sh_cam":    "cam screen, bulkhead A c34 to the engine-bay shield collector",
+    "w_sh_knock1": "knock screen, bulkhead A c35 to the engine-bay shield collector",
 }
 # A connection that legitimately moved to a different pin.
 EXPECT_CHANGED = {

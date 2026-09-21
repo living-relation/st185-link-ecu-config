@@ -95,14 +95,19 @@ ZONE = {
     "bh_a_eng": (6, D),
     "bh_b_eng": (6, P),
 
-    # ---- engine bay, rear band (firewall side: turbo, exhaust) -------
-    "knock1":   (7, C),
-    "turbospd": (7, C),
-    "lambda":   (7, C),
-    "boost":    (7, C),
-    "oilp":     (7, C),
-    "oilt":     (7, C),
-    "clntp":    (7, C),
+    # ---- engine bay, rear band (firewall side) -----------------------
+    # Sides below are Daniel's, from the car, 2026-09-21 - not inferred.
+    "knock1":   (7, C),        # centre, rear of block
+    "iat":      (7, C),        # manifold, centre near firewall, rear of block
+    "etb":      (7, C),        # intake manifold is at the rear, so ETB is too
+    "map":      (7, C),
+    "oilp":     (7, D),        # driver side of bay, at the firewall
+    "fuelp":    (7, D),        # driver side of bay, at the firewall
+    "flex":     (7, D),        # driver side of bay, at the firewall
+    "turbospd": (7, D),
+    "lambda":   (7, D),
+    "boost":    (7, D),
+    "clntp":    (7, D),
     "reverse_sw": (7, D),      # transaxle, driver side
     "k_eps":    (7, D),
     "mrs_pwr":  (7, D),
@@ -116,20 +121,16 @@ ZONE = {
     "sp_inj_eng":     (7, C),
     "sp_cop_eng":     (7, C),
 
-    # ---- engine bay, mid band (head: injectors, coils, cams) ---------
+    # ---- engine bay, mid band (head: injectors, coils) ---------------
     "inj1": (8, C), "inj2": (8, C), "inj3": (8, C), "inj4": (8, C),
     "cop1": (8, C), "cop2": (8, C), "cop3": (8, C), "cop4": (8, C),
-    "cam":   (8, P),           # timing end = passenger
-    "crank": (8, P),           # crank pulley = passenger
-    "ect":   (8, P),           # thermostat housing
-    "iat":   (8, C),
-    "flex":  (8, P),
+    "crank": (8, P),           # passenger side - Daniel, from the car
+    "cam":   (8, P),           # ASSUMED with crank at the timing end. NOT confirmed
+    "ect":   (8, D),           # driver side water outlet
+    "oilt":  (8, D),
 
-    # ---- engine bay, front band (intake, charge pipe) ----------------
-    "etb":    (9, C),
-    "map":    (9, C),
-    "cpiat":  (9, C),
-    "fuelp":  (9, C),
+    # ---- engine bay, front band --------------------------------------
+    "cpiat":  (9, D),          # charge pipe, driver side, front of bay
 
     # ---- front of car -------------------------------------------------
     "rad_fan":   (10, C),
@@ -150,13 +151,14 @@ ZONE = {
     "t_batt_pos":  (0, C), "t_batt_neg":  (0, C),
     "t_gnd_id": (1, D),          # left kick panel
     "t_gnd_ig": (1, P),          # right kick, R/B4 set bolt
-    "t_starter_b":  (7, D),      # transaxle end = driver
+    "t_starter_b":  (9, D),      # driver side, FRONT of block / trans
+    "starter_trigger": (9, D),
     "t_eng_block":  (7, D),
-    "t_alt_b":      (8, P),      # accessory belt end = passenger
+    "eng_gnd_ring": (7, D),
+    "t_alt_b":      (8, P),      # passenger side, rear of block
     "t_gnd_eb": (10, D),         # left front fender
     "t_gnd_ea": (10, P),         # right front fender
     "batt_ring": (0, C), "chassis_ring": (2, C),
-    "eng_gnd_ring": (7, D), "starter_trigger": (7, D),
     "t_cluster_can": (1, C), "t_realdash_can": (1, C),
 
     # VR conditioners live in the cabin, near the ECU (6.30 enclosures).

@@ -1161,22 +1161,19 @@
           "id": "c33",
           "designation": "33",
           "contactPartId": "ct_hdp20p",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Crank VR screen (6.32 dedicated shield pin)"
         },
         {
           "id": "c34",
           "designation": "34",
           "contactPartId": "ct_hdp20p",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Cam Hall screen (6.32 dedicated shield pin)"
         },
         {
           "id": "c35",
           "designation": "35",
           "contactPartId": "ct_hdp20p",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Knock 1 screen (6.32 dedicated shield pin)"
         },
         {
           "id": "c36",

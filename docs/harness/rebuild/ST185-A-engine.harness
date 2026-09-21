@@ -20,11 +20,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 3346
+        "y": 3650
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 3346
+        "y": 3650
       }
     },
     {
@@ -43,11 +43,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 3650
+        "y": 0
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 3650
+        "y": 0
       }
     },
     {
@@ -65,12 +65,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 4420,
-        "y": 1488
+        "x": 3860,
+        "y": 3110
       },
       "schematicPosition": {
-        "x": 4420,
-        "y": 1488
+        "x": 3860,
+        "y": 3110
       }
     },
     {
@@ -88,12 +88,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 3860,
-        "y": 1960
+        "x": 4420,
+        "y": 304
       },
       "schematicPosition": {
-        "x": 3860,
-        "y": 1960
+        "x": 4420,
+        "y": 304
       }
     },
     {
@@ -135,11 +135,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 946
+        "y": 3414
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 946
+        "y": 3414
       }
     },
     {
@@ -162,11 +162,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 2534
+        "y": 2332
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 2534
+        "y": 2332
       }
     },
     {
@@ -189,11 +189,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 3008
+        "y": 3312
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 3008
+        "y": 3312
       }
     },
     {
@@ -215,12 +215,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 4980,
-        "y": 1082
+        "x": 3860,
+        "y": 3718
       },
       "schematicPosition": {
-        "x": 4980,
-        "y": 1082
+        "x": 3860,
+        "y": 3718
       }
     },
     {
@@ -243,11 +243,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 1622
+        "y": 1690
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 1622
+        "y": 1690
       }
     },
     {
@@ -269,12 +269,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 4980,
-        "y": 744
+        "x": 3860,
+        "y": 980
       },
       "schematicPosition": {
-        "x": 4980,
-        "y": 744
+        "x": 3860,
+        "y": 980
       }
     },
     {
@@ -297,11 +297,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 608
+        "y": 304
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 608
+        "y": 304
       }
     },
     {
@@ -320,11 +320,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 1792
+        "y": 2096
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 1792
+        "y": 2096
       }
     },
     {
@@ -343,11 +343,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 2096
+        "y": 2400
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 2096
+        "y": 2400
       }
     },
     {
@@ -366,11 +366,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 2400
+        "y": 2704
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 2400
+        "y": 2704
       }
     },
     {
@@ -389,11 +389,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 2704
+        "y": 3008
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 2704
+        "y": 3008
       }
     },
     {
@@ -420,11 +420,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 0
+        "y": 608
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 0
+        "y": 608
       }
     },
     {
@@ -451,11 +451,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 372
+        "y": 980
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 372
+        "y": 980
       }
     },
     {
@@ -482,11 +482,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 744
+        "y": 1352
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 744
+        "y": 1352
       }
     },
     {
@@ -513,11 +513,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 1116
+        "y": 1724
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 1116
+        "y": 1724
       }
     },
     {
@@ -536,11 +536,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 304
+        "y": 0
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 304
+        "y": 0
       }
     },
     {
@@ -575,12 +575,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 4980,
-        "y": 304
+        "x": 3860,
+        "y": 2670
       },
       "schematicPosition": {
-        "x": 4980,
-        "y": 304
+        "x": 3860,
+        "y": 2670
       }
     },
     {
@@ -602,12 +602,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 4420,
-        "y": 3954
+        "x": 3860,
+        "y": 642
       },
       "schematicPosition": {
-        "x": 4420,
-        "y": 3954
+        "x": 3860,
+        "y": 642
       }
     },
     {
@@ -634,11 +634,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 1250
+        "y": 1318
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 1250
+        "y": 1318
       }
     },
     {
@@ -657,11 +657,11 @@
       ],
       "layoutPosition": {
         "x": 3860,
-        "y": 0
+        "y": 2028
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 0
+        "y": 2028
       }
     },
     {
@@ -866,22 +866,19 @@
           "id": "c33",
           "designation": "33",
           "contactPartId": "ct_hdp20s",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Crank VR screen (6.32 dedicated shield pin)"
         },
         {
           "id": "c34",
           "designation": "34",
           "contactPartId": "ct_hdp20s",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Cam Hall screen (6.32 dedicated shield pin)"
         },
         {
           "id": "c35",
           "designation": "35",
           "contactPartId": "ct_hdp20s",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Knock 1 screen (6.32 dedicated shield pin)"
         },
         {
           "id": "c36",
@@ -1137,28 +1134,15 @@
       "id": "sp_shield_eng",
       "layoutPosition": {
         "x": 3860,
-        "y": 2264
+        "y": 4056
       },
       "schematicPosition": {
         "x": 3860,
-        "y": 2264
+        "y": 4056
       }
     }
   ],
   "wires": [
-    {
-      "id": "w12_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c6"
-      },
-      "target": {
-        "id": "knock1",
-        "handle": "c2"
-      },
-      "color": "Green",
-      "stripeColor": "Yellow"
-    },
     {
       "id": "w16_e",
       "source": {
@@ -1364,18 +1348,6 @@
       "color": "Pink"
     },
     {
-      "id": "w200_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c24"
-      },
-      "target": {
-        "id": "crank",
-        "handle": "c1"
-      },
-      "color": "Blue"
-    },
-    {
       "id": "w201_e",
       "source": {
         "id": "bh_a_eng",
@@ -1424,18 +1396,6 @@
       "color": "Yellow"
     },
     {
-      "id": "w205_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c27"
-      },
-      "target": {
-        "id": "knock1",
-        "handle": "c1"
-      },
-      "color": "Gray"
-    },
-    {
       "id": "w_sw7_e",
       "source": {
         "id": "bh_b_eng",
@@ -1446,18 +1406,6 @@
         "handle": "c1"
       },
       "color": "Green"
-    },
-    {
-      "id": "w_cam_sig_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c29"
-      },
-      "target": {
-        "id": "cam",
-        "handle": "c2"
-      },
-      "color": "Blue"
     },
     {
       "id": "w_can_bh0_e",
@@ -1494,6 +1442,42 @@
       "target": {
         "id": "bh_a_eng",
         "handle": "c1"
+      }
+    },
+    {
+      "id": "w_sh_crank",
+      "color": "Shield",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c33"
+      },
+      "target": {
+        "id": "sp_shield_eng",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_sh_cam",
+      "color": "Shield",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c34"
+      },
+      "target": {
+        "id": "sp_shield_eng",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_sh_knock1",
+      "color": "Shield",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c35"
+      },
+      "target": {
+        "id": "sp_shield_eng",
+        "handle": "Splice"
       }
     }
   ],
@@ -2118,6 +2102,129 @@
       "manufacturer": "TE Connectivity / Raychem",
       "partNumber": "TBD - moulded breakout boot",
       "description": "Adhesive-lined moulded transition boot at each loom breakout. Size per branch OD - confirm dash number before ordering."
+    }
+  ],
+  "cables": [
+    {
+      "id": "cab_crank",
+      "partId": "cab_sh_gen",
+      "schematicPosition": {
+        "x": 3620,
+        "y": 1216
+      },
+      "cores": [
+        {
+          "id": "cab_crank_c1",
+          "color": "Blue",
+          "source": {
+            "id": "bh_a_eng",
+            "handle": "c24"
+          },
+          "target": {
+            "id": "crank",
+            "handle": "c1"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_crank_sh",
+        "color": "Shield",
+        "source": {
+          "id": "bh_a_eng",
+          "handle": "c33"
+        }
+      }
+    },
+    {
+      "id": "cab_cam",
+      "partId": "cab_sh_gen",
+      "schematicPosition": {
+        "x": 3620,
+        "y": 1104
+      },
+      "cores": [
+        {
+          "id": "cab_cam_c2",
+          "color": "Blue",
+          "source": {
+            "id": "bh_a_eng",
+            "handle": "c29"
+          },
+          "target": {
+            "id": "cam",
+            "handle": "c2"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_cam_sh",
+        "color": "Shield",
+        "source": {
+          "id": "bh_a_eng",
+          "handle": "c34"
+        }
+      }
+    },
+    {
+      "id": "cab_knock1",
+      "partId": "cab_sh_gen",
+      "schematicPosition": {
+        "x": 3476,
+        "y": 1365
+      },
+      "cores": [
+        {
+          "id": "cab_knock1_c1",
+          "color": "Gray",
+          "source": {
+            "id": "bh_a_eng",
+            "handle": "c27"
+          },
+          "target": {
+            "id": "knock1",
+            "handle": "c1"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "cab_knock1_c2",
+          "color": "Green",
+          "source": {
+            "id": "bh_a_eng",
+            "handle": "c6"
+          },
+          "target": {
+            "id": "knock1",
+            "handle": "c2"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_knock1_sh",
+        "color": "Shield",
+        "source": {
+          "id": "bh_a_eng",
+          "handle": "c35"
+        }
+      }
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_sh_gen",
+      "partNumber": "(generic)",
+      "manufacturer": "generic",
+      "description": "Shielded sensor cable, overall foil + braid screen, 20 AWG. Core count per run. Cable is generic in BOMs per 6.24.",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Blue"
+        },
+        {
+          "id": "k2",
+          "color": "Gray"
+        }
+      ]
     }
   ]
 }
