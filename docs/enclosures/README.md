@@ -11,7 +11,7 @@ CSV sources of truth for the two enclosure families sealed in
 ## Rules
 
 - Edit the CSV only. Pretty tables are regenerated from it.
-- Prefer DigiKey / Mouser stock links; free STEP when the manufacturer or DigiKey publishes one; otherwise leave `cad_url` empty or `N/A`.
+- Prefer DigiKey / Mouser stock links with the current listing URL (not a stale product-ID suffix); put manufacturer STEP ZIPs in `cad_url` when published, otherwise leave empty or `N/A`. Record live-check notes in `stock_note` — do not freeze snapshot quantities.
 - Wire and cable stay generic per plan 6.24 — not listed here.
 - Do not undo loom / rebuild work on other paths; this folder is enclosure buy lists only.
 
