@@ -52,17 +52,32 @@ def used_part_ids(d):
     for key in ("resistors", "terminals", "cables", "splices", "diodes"):
         for e in d.get(key, []):
             used.add(e.get("partId"))
-    # a connector part's own configuration can pull in contacts and locks
-    for p in d.get("connectorParts", []):
-        if p.get("id") in used:
-            for cfg in (p.get("configurations") or []):
-                used.add(cfg.get("lockPartId"))
-                used.add(cfg.get("contactPartId"))
-    used.discard(None)
     # Some parts are in the file ON PURPOSE without being wired to anything -
     # the mating half of a connector still has to reach the buy list. Trimming
     # them out silently loses them from the BOM.
+    #
+    # This has to come BEFORE the configuration walk below. Adding it after left
+    # cp_dt2p_abs in the file but trimmed its own contact ct_dt16p out from
+    # under it, because nothing else referenced that contact.
     used |= KEEP_UNREFERENCED
+
+    # A connector part's own configuration pulls in contacts and locks. Repeat
+    # until it settles, so a kept part's contacts are kept too.
+    for _ in range(4):
+        grew = False
+        for p in d.get("connectorParts", []):
+            if p.get("id") not in used:
+                continue
+            for cfg in (p.get("configurations") or []):
+                for k in ("lockPartId", "contactPartId", "cavityPlugPartId",
+                          "bootPartId", "backshellPartId"):
+                    v = cfg.get(k)
+                    if v and v not in used:
+                        used.add(v)
+                        grew = True
+        if not grew:
+            break
+    used.discard(None)
     return used
 
 

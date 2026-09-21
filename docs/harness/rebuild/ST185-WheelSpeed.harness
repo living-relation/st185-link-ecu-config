@@ -974,6 +974,22 @@
         "value": 20
       },
       "description": "DT size 16 solid socket, 16-20 AWG. Harness side. Same contact already used on the DT/DTM sensor connectors elsewhere."
+    },
+    {
+      "id": "ct_dt16p",
+      "partNumber": "0460-202-16141",
+      "manufacturer": "Deutsch (TE)",
+      "gender": "Pin",
+      "type": "Crimp",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "description": "DT size 16 solid pin, 16-20 AWG. Sensor pigtail side."
     }
   ]
 }

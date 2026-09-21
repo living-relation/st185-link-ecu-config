@@ -1702,6 +1702,18 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
+    },
+    {
+      "id": "lp_dt2wl",
+      "partNumber": "W2S",
+      "manufacturer": "Deutsch (TE)",
+      "description": "Wedgelock for DT06-2S, 2-way socket housing"
+    },
+    {
+      "id": "lp_dt3wl",
+      "partNumber": "W3S",
+      "manufacturer": "Deutsch (TE)",
+      "description": "Wedgelock for DT06-3S, 3-way socket housing"
     }
   ],
   "contactParts": [

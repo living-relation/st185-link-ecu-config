@@ -1290,6 +1290,12 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
+    },
+    {
+      "id": "lp_dtm6wl",
+      "partNumber": "WM-6S",
+      "manufacturer": "Deutsch (TE)",
+      "description": "Wedgelock for DTM06-6S, 6-way socket housing"
     }
   ],
   "contactParts": [
@@ -1356,6 +1362,30 @@
         "unit": "AWG",
         "value": 20
       }
+    },
+    {
+      "id": "ct_dtm_skt",
+      "partNumber": "0462-201-16141",
+      "manufacturer": "Deutsch (TE)",
+      "gender": "Socket",
+      "type": "Crimp",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "description": "DT/DTM size 16 solid socket, 16-20 AWG"
+    },
+    {
+      "id": "ct_generic_skt",
+      "partNumber": "(generic)",
+      "manufacturer": "Generic",
+      "gender": "Socket",
+      "type": "Crimp",
+      "description": "Generic machined socket for a board-level or unspecified housing - confirm before ordering"
     }
   ],
   "resistorParts": [

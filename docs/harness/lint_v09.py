@@ -39,6 +39,19 @@ def check(fn):
                 bad.append("duplicate part id %s in %s" % (pid, key))
             parts.add(pid)
 
+    # A part's own configuration references other parts. Those have to resolve
+    # too - a connector part whose contact was trimmed out from under it still
+    # looks fine on the connector, and the missing contact only shows up as a
+    # short BOM.
+    for p in d.get("connectorParts", []):
+        for cfg in (p.get("configurations") or []):
+            for k in ("lockPartId", "contactPartId", "cavityPlugPartId",
+                      "bootPartId", "backshellPartId"):
+                v = cfg.get(k)
+                if v and v not in parts:
+                    bad.append("part %s config %s -> missing part %s"
+                               % (p.get("id"), k, v))
+
     # nodes and their cavity ids
     cav = {}
     for c in d.get("connectors", []):
