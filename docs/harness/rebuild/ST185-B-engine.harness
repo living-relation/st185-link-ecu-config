@@ -1887,58 +1887,16 @@
   ],
   "connectorParts": [
     {
-      "id": "cp_hdp_a_fw",
-      "partNumber": "HDP24-24-47PE-L017",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 47-way receptacle, PIN, E seal, reverse ring flange - bulkhead A, firewall side"
-    },
-    {
       "id": "cp_hdp_a_eng",
       "partNumber": "HDP26-24-47SE-L015",
       "manufacturer": "TE DEUTSCH",
       "description": "HDP20 sz24 47-way plug, SOCKET, E seal, threaded - bulkhead A, engine side"
     },
     {
-      "id": "cp_hdp_b_fw",
-      "partNumber": "HDP24-24-21PN",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 21-way receptacle, PIN, N seal - bulkhead B, firewall side"
-    },
-    {
       "id": "cp_hdp_b_eng",
       "partNumber": "HDP26-24-21SN",
       "manufacturer": "TE DEUTSCH",
       "description": "HDP20 sz24 21-way plug, SOCKET, N seal - bulkhead B, engine side"
-    },
-    {
-      "id": "cp_rly_nod",
-      "partNumber": "5-1393292-8",
-      "manufacturer": "TE Connectivity",
-      "description": "V23074-A2001-A402 Micro ISO relay, 1 form A (NO), diode coil suppression, 12VDC coil, 30A @23C / 25A @85C - OWNED (qty 2)"
-    },
-    {
-      "id": "cp_rly_nor",
-      "partNumber": "4-1904124-2",
-      "manufacturer": "TE Connectivity",
-      "description": "V23074-A1001-A402 Micro ISO relay, 1 form A (NO), 680R resistor coil suppression, 12VDC coil, 30A @23C / 25A @85C - OWNED (qty 2)"
-    },
-    {
-      "id": "cp_rly_cod",
-      "partNumber": "6-1419137-4",
-      "manufacturer": "TE Connectivity",
-      "description": "V23074-A2001-A403 Micro ISO relay, 1 form C (CO), diode coil suppression, 12VDC coil, 30A @23C / 25A @85C - OWNED (qty 2). Used as NO; 87a left empty"
-    },
-    {
-      "id": "cp_rly_hcr150",
-      "partNumber": "1416010-1",
-      "manufacturer": "TE Connectivity",
-      "description": "V23132-A2001-B200 HCR 150 high current relay, 1 form A (NO), 130A contact, 12VDC coil (37 ohm, 3.9W, ~0.32A), coil has internal parallel suppression resistor - OWNED (qty 2)"
-    },
-    {
-      "id": "cp_fusebox",
-      "partNumber": "2141029-1",
-      "manufacturer": "TE Connectivity",
-      "description": "Fuse box assembly, hard wired - OWNED (qty 1). Cover 2141033-1, bracket 2141031-1 also owned"
     },
     {
       "id": "cp_rl_red",
@@ -1951,18 +1909,6 @@
       "partNumber": "RL00571-35 black shell",
       "manufacturer": "Amphenol",
       "description": "RADLOK 5.7mm RADSOK bulkhead pair, black, 2 AWG / 25 mm2 - battery negative firewall pass-through"
-    },
-    {
-      "id": "pl_sz4",
-      "partNumber": "114019-ZZ",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 4, white"
-    },
-    {
-      "id": "pl_sz8",
-      "partNumber": "114018-ZZ",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 8, white"
     },
     {
       "id": "pl_sz12",
@@ -1981,119 +1927,9 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
-    },
-    {
-      "id": "cp_mrs_pwr",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-12068",
-      "description": "MR-S EHPS pump - main power connector housing (pigtail 82998-12500). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part (checked TE's site, no match; this is Toyota/Sumitomo). Pin 1 = switched 12V in from relay 87, pin 2 = ground. Confirmed against Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'A'). Part number sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_mrs_en",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-10942",
-      "description": "MR-S EHPS pump - small ignition-enable connector housing (pigtail 82998-12440, shared with the control connector). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part. 2 cavities, only pin 1 used (ignition-switched 12V logic supply); pin 2 unused. Confirmed against Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'C'). Part number sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 2
     }
   ],
   "contactParts": [
-    {
-      "id": "ct_hdp4p",
-      "partNumber": "0460-204-0490",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 4 solid PIN, 6 AWG, 100 A - OWNED (qty 5)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 6
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 6
-      }
-    },
-    {
-      "id": "ct_hdp4s",
-      "partNumber": "0462-203-04141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 4 solid SOCKET, 6 AWG, 100 A - OWNED (qty 9)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 6
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 6
-      }
-    },
-    {
-      "id": "ct_hdp8p",
-      "partNumber": "0460-204-08141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 8 solid PIN, 8-10 AWG, 60 A - OWNED (qty 5)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 8
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 10
-      }
-    },
-    {
-      "id": "ct_hdp8s",
-      "partNumber": "0462-203-08141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 8 solid SOCKET, 8-10 AWG, 60 A - OWNED (qty 9)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 8
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 10
-      }
-    },
-    {
-      "id": "ct_hdp12p",
-      "partNumber": "0460-220-1231",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 12 solid PIN, 12-14 AWG, 25 A - OWNED (qty 20)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 12
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 14
-      }
-    },
     {
       "id": "ct_hdp12s",
       "partNumber": "0462-210-1231",
@@ -2111,22 +1947,6 @@
       }
     },
     {
-      "id": "ct_hdp16p",
-      "partNumber": "0460-202-1631",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 16 solid PIN, 16-20 AWG, 13 A - OWNED (qty 130)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
-    },
-    {
       "id": "ct_hdp16s",
       "partNumber": "0462-201-1631",
       "manufacturer": "TE DEUTSCH",
@@ -2136,22 +1956,6 @@
       "maxGauge": {
         "unit": "AWG",
         "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
-    },
-    {
-      "id": "ct_hdp20p",
-      "partNumber": "0460-202-2031",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 20
       },
       "minGauge": {
         "unit": "AWG",
@@ -2173,22 +1977,6 @@
         "unit": "AWG",
         "value": 20
       }
-    },
-    {
-      "id": "ct_toy_ts",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "TS 2.3 (090 type)",
-      "description": "Toyota/Denso 2.3mm female sensor/coil terminal",
-      "manufacturer": "Sumitomo"
-    }
-  ],
-  "bootParts": [
-    {
-      "id": "boot_breakout",
-      "manufacturer": "TE Connectivity / Raychem",
-      "partNumber": "TBD - moulded breakout boot",
-      "description": "Adhesive-lined moulded transition boot at each loom breakout. Size per branch OD - confirm dash number before ordering."
     }
   ]
 }
