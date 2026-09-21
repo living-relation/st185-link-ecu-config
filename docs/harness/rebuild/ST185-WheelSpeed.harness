@@ -492,7 +492,7 @@
   "cables": [
     {
       "id": "cab_fl",
-      "partId": "cab_2c_sh",
+      "partId": "cab_sh_2c",
       "schematicPosition": {
         "x": 2872,
         "y": 0
@@ -535,7 +535,7 @@
     },
     {
       "id": "cab_fr",
-      "partId": "cab_2c_sh",
+      "partId": "cab_sh_2c",
       "schematicPosition": {
         "x": 2872,
         "y": 344
@@ -578,7 +578,7 @@
     },
     {
       "id": "cab_rl",
-      "partId": "cab_2c_sh",
+      "partId": "cab_sh_2c",
       "schematicPosition": {
         "x": 648,
         "y": 1155
@@ -621,7 +621,7 @@
     },
     {
       "id": "cab_rr",
-      "partId": "cab_2c_sh",
+      "partId": "cab_sh_2c",
       "schematicPosition": {
         "x": 648,
         "y": 1500
@@ -664,7 +664,7 @@
     },
     {
       "id": "cab_fout",
-      "partId": "cab_4c_sh",
+      "partId": "cab_sh_4c",
       "schematicPosition": {
         "x": 1234,
         "y": 961
@@ -734,7 +734,7 @@
     },
     {
       "id": "cab_rout",
-      "partId": "cab_4c_sh",
+      "partId": "cab_sh_4c",
       "schematicPosition": {
         "x": 1280,
         "y": 1897
@@ -910,10 +910,10 @@
   ],
   "cableParts": [
     {
-      "id": "cab_2c_sh",
+      "id": "cab_sh_2c",
       "partNumber": "(generic)",
       "manufacturer": "generic",
-      "description": "2-core twisted, overall foil + braid screen, 20 AWG. Sensor to conditioner. 20 AWG NOT 22 - the DT size 16 contact is 16-20 AWG and will not crimp 22 reliably. Cable is generic in BOMs per 6.24.",
+      "description": "2-core twisted shielded cable, overall foil + braid screen, 20 AWG. Cable is generic in BOMs per 6.24.",
       "cores": [
         {
           "id": "k1",
@@ -923,13 +923,17 @@
           "id": "k2",
           "color": "Green"
         }
-      ]
+      ],
+      "shield": {
+        "id": "sh",
+        "color": "Shield"
+      }
     },
     {
-      "id": "cab_4c_sh",
+      "id": "cab_sh_4c",
       "partNumber": "(generic)",
       "manufacturer": "generic",
-      "description": "4-core, overall foil + braid screen, 22 AWG. Conditioner to ECU. Cable is generic in BOMs per 6.24.",
+      "description": "4-core shielded cable, overall foil + braid screen, 20 AWG. Conditioner to ECU. Cable is generic in BOMs per 6.24.",
       "cores": [
         {
           "id": "k1",
@@ -947,7 +951,11 @@
           "id": "k4",
           "color": "Violet"
         }
-      ]
+      ],
+      "shield": {
+        "id": "sh",
+        "color": "Shield"
+      }
     }
   ],
   "contactParts": [
@@ -966,22 +974,6 @@
         "value": 20
       },
       "description": "DT size 16 solid socket, 16-20 AWG. Harness side. Same contact already used on the DT/DTM sensor connectors elsewhere."
-    },
-    {
-      "id": "ct_dt16p",
-      "partNumber": "0460-202-16141",
-      "manufacturer": "Deutsch (TE)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "description": "DT size 16 solid pin, 16-20 AWG. Sensor pigtail side."
     }
   ]
 }

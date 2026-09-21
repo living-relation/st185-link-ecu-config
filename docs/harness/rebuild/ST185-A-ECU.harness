@@ -2252,81 +2252,6 @@
       "numberOfCavities": 6
     },
     {
-      "id": "cp_dtm4s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-4S",
-      "description": "DTM 4-way socket - CAN-Lambda harness side",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_dtm_skt"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_etb",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "D 261 205 358-01",
-      "description": "6-pin Bosch Motorsport ETB mate",
-      "manufacturer": "Bosch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_toy2p",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-11062",
-      "description": "2-pin sensor pigtail",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_mp150_3",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "12110293",
-      "description": "MP150.2 3-way sealed sensor",
-      "manufacturer": "Aptiv",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_mp150_skt"
-        }
-      ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "cp_knock",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "1 928 403 874",
-      "description": "2-way knock sensor connector",
-      "manufacturer": "Bosch (Compact 1.1a)",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_bdk28"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
       "id": "cp_mp150_2",
       "gender": "Female",
       "hasShell": false,
@@ -2340,113 +2265,6 @@
         }
       ],
       "numberOfCavities": 2
-    },
-    {
-      "id": "cp_dt2s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DT06-2S",
-      "description": "DT 2-way socket plug",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dt2wl",
-          "contactPartId": "ct_dtm_skt"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_camkit",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(kit-supplied pigtail)",
-      "description": "3-pin pigtail supplied with the RacerX MR2 Cherry Hall cam-position sensor kit - generic placeholder, confirm exact housing against kit contents",
-      "manufacturer": "RacerX",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "cp_dt3s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DT06-3S",
-      "description": "DT 3-way socket plug",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dt3wl",
-          "contactPartId": "ct_dtm_skt"
-        }
-      ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "cp_gt150",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "13519047",
-      "description": "GT150 3-way flex-fuel sensor",
-      "manufacturer": "Aptiv",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_gt150_skt"
-        }
-      ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "cp_inj",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "15419715",
-      "description": "GT150 2-way gray USCAR/EV6 injector",
-      "manufacturer": "Aptiv",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_gt150_skt"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_cop",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-11885",
-      "description": "4-way 1ZZ COP connector",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_mrs_ctrl",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-10897",
-      "description": "MR-S EHPS pump - control connector housing (pigtail 82998-12440). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part (checked TE's site, no match; corrected from an earlier draft that mislabeled this as 90980-10942, which is actually the small ignition-enable connector). 6 physical cavities, only 2 used: pin 2 = speed-pulse output (SPD Out), pin 6 = relay-request output (grounds k_eps coil 85 when pump wants power). Confirmed directly from Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'B') - both pin numbers are legible in the source image. Housing/pigtail part numbers sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 6
     },
     {
       "id": "cp_csb3io",
@@ -2512,34 +2330,10 @@
       "description": "HDP20 sz24 47-way receptacle, PIN, E seal, reverse ring flange - bulkhead A, firewall side"
     },
     {
-      "id": "cp_hdp_a_eng",
-      "partNumber": "HDP26-24-47SE-L015",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 47-way plug, SOCKET, E seal, threaded - bulkhead A, engine side"
-    },
-    {
       "id": "cp_hdp_b_fw",
       "partNumber": "HDP24-24-21PN",
       "manufacturer": "TE DEUTSCH",
       "description": "HDP20 sz24 21-way receptacle, PIN, N seal - bulkhead B, firewall side"
-    },
-    {
-      "id": "cp_hdp_b_eng",
-      "partNumber": "HDP26-24-21SN",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 21-way plug, SOCKET, N seal - bulkhead B, engine side"
-    },
-    {
-      "id": "pl_sz4",
-      "partNumber": "114019-ZZ",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 4, white"
-    },
-    {
-      "id": "pl_sz8",
-      "partNumber": "114018-ZZ",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 8, white"
     },
     {
       "id": "pl_sz12",
@@ -2558,21 +2352,6 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
-    },
-    {
-      "id": "cp_vss_oval3",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "generic oval 3-pin socket (PN TBD)",
-      "description": "Generic oval 3-pin plug with socket contacts - mate for gearbox 3-wire 12V Toyota VSS. PN TBD. Cavity map (PWR/SIG/GND) TBD - do not invent which oval cavity is which.",
-      "manufacturer": "TBD / generic",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 3
     }
   ],
   "contactParts": [
@@ -2610,36 +2389,12 @@
       "manufacturer": "Deutsch (TE Connectivity)"
     },
     {
-      "id": "ct_toy_ts",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "TS 2.3 (090 type)",
-      "description": "Toyota/Denso 2.3mm female sensor/coil terminal",
-      "manufacturer": "Sumitomo"
-    },
-    {
       "id": "ct_mp150_skt",
       "type": "Crimp",
       "gender": "Socket",
       "partNumber": "12084200",
       "description": "Metri-Pack 150.2 female 22-20 AWG",
       "manufacturer": "Aptiv"
-    },
-    {
-      "id": "ct_bdk28",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "BDK 2.8",
-      "description": "BDK 2.8mm female terminal, 0.5-1.0mm2, for Bosch Compact 1.1a knock sensor connector",
-      "manufacturer": "Bosch"
-    },
-    {
-      "id": "ct_gt150_skt",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "15326427",
-      "description": "GT150 series gold female terminal (flex-fuel sensor connector)",
-      "manufacturer": "Aptiv (Delphi)"
     },
     {
       "id": "ct_generic_skt",
@@ -2650,99 +2405,11 @@
       "manufacturer": "Generic"
     },
     {
-      "id": "wbsN09tiboovqanDL_xZA",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "(kit socket)",
-      "description": "Gold socket supplied with D 261 205 358-01 ETB kit",
-      "manufacturer": "Bosch"
-    },
-    {
-      "id": "ct_hdp4p",
-      "partNumber": "0460-204-0490",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 4 solid PIN, 6 AWG, 100 A - OWNED (qty 5)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 6
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 6
-      }
-    },
-    {
-      "id": "ct_hdp4s",
-      "partNumber": "0462-203-04141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 4 solid SOCKET, 6 AWG, 100 A - OWNED (qty 9)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 6
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 6
-      }
-    },
-    {
-      "id": "ct_hdp8p",
-      "partNumber": "0460-204-08141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 8 solid PIN, 8-10 AWG, 60 A - OWNED (qty 5)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 8
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 10
-      }
-    },
-    {
-      "id": "ct_hdp8s",
-      "partNumber": "0462-203-08141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 8 solid SOCKET, 8-10 AWG, 60 A - OWNED (qty 9)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 8
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 10
-      }
-    },
-    {
       "id": "ct_hdp12p",
       "partNumber": "0460-220-1231",
       "manufacturer": "TE DEUTSCH",
       "description": "Size 12 solid PIN, 12-14 AWG, 25 A - OWNED (qty 20)",
       "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 12
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 14
-      }
-    },
-    {
-      "id": "ct_hdp12s",
-      "partNumber": "0462-210-1231",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 12 solid SOCKET, 12-14 AWG, 25 A - OWNED (qty 20)",
-      "gender": "Socket",
       "type": "Crimp",
       "maxGauge": {
         "unit": "AWG",
@@ -2770,22 +2437,6 @@
       }
     },
     {
-      "id": "ct_hdp16s",
-      "partNumber": "0462-201-1631",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 16 solid SOCKET, 16-20 AWG, 13 A - OWNED (qty 118)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
-    },
-    {
       "id": "ct_hdp20p",
       "partNumber": "0460-202-2031",
       "manufacturer": "TE DEUTSCH",
@@ -2800,30 +2451,6 @@
         "unit": "AWG",
         "value": 20
       }
-    },
-    {
-      "id": "ct_hdp20s",
-      "partNumber": "0462-201-2031",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
-    }
-  ],
-  "bootParts": [
-    {
-      "id": "boot_breakout",
-      "manufacturer": "TE Connectivity / Raychem",
-      "partNumber": "TBD - moulded breakout boot",
-      "description": "Adhesive-lined moulded transition boot at each loom breakout. Size per branch OD - confirm dash number before ordering."
     }
   ],
   "resistorParts": [

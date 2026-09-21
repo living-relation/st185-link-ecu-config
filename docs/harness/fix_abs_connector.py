@@ -34,7 +34,13 @@ for c in d["connectors"]:
     if c["id"].startswith("wss_"):
         c["partId"] = "cp_dt2s_abs"
 
-d["connectorParts"] = [x for x in d["connectorParts"] if x["id"] != "cp_abs2"]
+NEW_CONN = ("cp_abs2", "cp_dt2s_abs", "cp_dt2p_abs", "lp_w2s", "lp_w2p")
+NEW_CONT = ("ct_dt16s", "ct_dt16p")
+
+# Idempotent: strip anything this script owns before adding it back, or a second
+# run duplicates every part id it appends.
+d["connectorParts"] = [x for x in d["connectorParts"] if x["id"] not in NEW_CONN]
+d["contactParts"] = [x for x in d.get("contactParts", []) if x["id"] not in NEW_CONT]
 d["connectorParts"] += [
     {"id": "cp_dt2s_abs", "partNumber": "DT06-2S", "manufacturer": "Deutsch (TE)",
      "gender": "Female", "hasShell": False, "numberOfCavities": 2,

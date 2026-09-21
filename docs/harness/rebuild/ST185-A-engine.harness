@@ -1483,53 +1483,6 @@
   ],
   "connectorParts": [
     {
-      "id": "cp_ss34a",
-      "url": "https://www.te.com/en/product-4-1437290-1.html",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "4-1437290-1",
-      "description": "SUPERSEAL 1.0 34-way receptacle COD 2 - Link XtremeX loom A",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_ss10"
-        }
-      ],
-      "numberOfCavities": 34
-    },
-    {
-      "id": "cp_ss34b",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "4-1437290-0",
-      "description": "SUPERSEAL 1.0 34-way receptacle COD 1 - Link XtremeX loom B",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_ss10"
-        }
-      ],
-      "numberOfCavities": 34
-    },
-    {
-      "id": "cp_dtm6s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-6S",
-      "description": "DTM 6-way socket - ECU comms harness side",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dtm6wl",
-          "contactPartId": "ct_dtm_skt"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
       "id": "cp_dtm4s",
       "gender": "Female",
       "hasShell": false,
@@ -1712,51 +1665,6 @@
       "numberOfCavities": 4
     },
     {
-      "id": "cp_mrs_ctrl",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-10897",
-      "description": "MR-S EHPS pump - control connector housing (pigtail 82998-12440). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part (checked TE's site, no match; corrected from an earlier draft that mislabeled this as 90980-10942, which is actually the small ignition-enable connector). 6 physical cavities, only 2 used: pin 2 = speed-pulse output (SPD Out), pin 6 = relay-request output (grounds k_eps coil 85 when pump wants power). Confirmed directly from Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'B') - both pin numbers are legible in the source image. Housing/pigtail part numbers sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_csb3io",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(none - PCB screw terminals)",
-      "description": "CAN Switch Board V3 screw-terminal I/O. No harness-side connector spec'd yet; cavity layout follows the CSB3 channel list (power, CAN, cabin-temp + cruise-ladder analog inputs, 8 switch inputs). Analog 3-8, low-side outs 1-4 and rotary/mode inputs remain spare/unused on this build. Verify against board silkscreen before crimping.",
-      "manufacturer": "ECUMaster",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 14
-    },
-    {
-      "id": "cp_acamp",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(unspecified - OEM ST185 AC amplifier)",
-      "description": "AC amplifier control connector. Pin count/layout inferred from 'AC amplifier input signals.txt' (IGN tach out, coolant temp switch, cabin outlet air temp, AC core thermocouple, trinary hi/lo pressure switch, ECU ACT kill input). Verify against the ST185 electrical diagram before crimping.",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 7
-    },
-    {
       "id": "cp_oem_block_2",
       "gender": "Female",
       "hasShell": false,
@@ -1766,58 +1674,16 @@
       "numberOfCavities": 2
     },
     {
-      "id": "cp_oem_block_5",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(OEM block, 5-way)",
-      "description": "Generic OEM block - 5 cavities (relay / cruise stalk).",
-      "manufacturer": "OEM / unspecified",
-      "numberOfCavities": 5
-    },
-    {
-      "id": "cp_brz_aps6",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "Sumitomo TS 025 6-way",
-      "description": "Subaru BRZ / Toyota-family e-throttle pedal. Looking into connector, locking tab at top: 1 VC2, 2 GND2, 3 VPA2, 4 VC1, 5 GND1, 6 VPA1.",
-      "manufacturer": "Sumitomo / Subaru",
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_hdp_a_fw",
-      "partNumber": "HDP24-24-47PE-L017",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 47-way receptacle, PIN, E seal, reverse ring flange - bulkhead A, firewall side"
-    },
-    {
       "id": "cp_hdp_a_eng",
       "partNumber": "HDP26-24-47SE-L015",
       "manufacturer": "TE DEUTSCH",
       "description": "HDP20 sz24 47-way plug, SOCKET, E seal, threaded - bulkhead A, engine side"
     },
     {
-      "id": "cp_hdp_b_fw",
-      "partNumber": "HDP24-24-21PN",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 21-way receptacle, PIN, N seal - bulkhead B, firewall side"
-    },
-    {
       "id": "cp_hdp_b_eng",
       "partNumber": "HDP26-24-21SN",
       "manufacturer": "TE DEUTSCH",
       "description": "HDP20 sz24 21-way plug, SOCKET, N seal - bulkhead B, engine side"
-    },
-    {
-      "id": "pl_sz4",
-      "partNumber": "114019-ZZ",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 4, white"
-    },
-    {
-      "id": "pl_sz8",
-      "partNumber": "114018-ZZ",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 8, white"
     },
     {
       "id": "pl_sz12",
@@ -1836,41 +1702,9 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
-    },
-    {
-      "id": "cp_vss_oval3",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "generic oval 3-pin socket (PN TBD)",
-      "description": "Generic oval 3-pin plug with socket contacts - mate for gearbox 3-wire 12V Toyota VSS. PN TBD. Cavity map (PWR/SIG/GND) TBD - do not invent which oval cavity is which.",
-      "manufacturer": "TBD / generic",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 3
     }
   ],
   "contactParts": [
-    {
-      "id": "ct_ss10",
-      "url": "https://www.te.com/en/product-4-1437290-1.html",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 18
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "partNumber": "3-1447221-4",
-      "description": "SUPERSEAL 1.0 gold socket 0.5mm2 / 20 AWG",
-      "manufacturer": "TE Connectivity"
-    },
     {
       "id": "ct_dtm_skt",
       "type": "Crimp",
@@ -1936,86 +1770,6 @@
       "manufacturer": "Bosch"
     },
     {
-      "id": "ct_hdp4p",
-      "partNumber": "0460-204-0490",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 4 solid PIN, 6 AWG, 100 A - OWNED (qty 5)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 6
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 6
-      }
-    },
-    {
-      "id": "ct_hdp4s",
-      "partNumber": "0462-203-04141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 4 solid SOCKET, 6 AWG, 100 A - OWNED (qty 9)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 6
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 6
-      }
-    },
-    {
-      "id": "ct_hdp8p",
-      "partNumber": "0460-204-08141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 8 solid PIN, 8-10 AWG, 60 A - OWNED (qty 5)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 8
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 10
-      }
-    },
-    {
-      "id": "ct_hdp8s",
-      "partNumber": "0462-203-08141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 8 solid SOCKET, 8-10 AWG, 60 A - OWNED (qty 9)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 8
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 10
-      }
-    },
-    {
-      "id": "ct_hdp12p",
-      "partNumber": "0460-220-1231",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 12 solid PIN, 12-14 AWG, 25 A - OWNED (qty 20)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 12
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 14
-      }
-    },
-    {
       "id": "ct_hdp12s",
       "partNumber": "0462-210-1231",
       "manufacturer": "TE DEUTSCH",
@@ -2032,22 +1786,6 @@
       }
     },
     {
-      "id": "ct_hdp16p",
-      "partNumber": "0460-202-1631",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 16 solid PIN, 16-20 AWG, 13 A - OWNED (qty 130)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
-    },
-    {
       "id": "ct_hdp16s",
       "partNumber": "0462-201-1631",
       "manufacturer": "TE DEUTSCH",
@@ -2057,22 +1795,6 @@
       "maxGauge": {
         "unit": "AWG",
         "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
-    },
-    {
-      "id": "ct_hdp20p",
-      "partNumber": "0460-202-2031",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 20
       },
       "minGauge": {
         "unit": "AWG",
@@ -2096,18 +1818,10 @@
       }
     }
   ],
-  "bootParts": [
-    {
-      "id": "boot_breakout",
-      "manufacturer": "TE Connectivity / Raychem",
-      "partNumber": "TBD - moulded breakout boot",
-      "description": "Adhesive-lined moulded transition boot at each loom breakout. Size per branch OD - confirm dash number before ordering."
-    }
-  ],
   "cables": [
     {
       "id": "cab_crank",
-      "partId": "cab_sh_gen",
+      "partId": "cab_sh_1c",
       "schematicPosition": {
         "x": 3620,
         "y": 1216
@@ -2137,7 +1851,7 @@
     },
     {
       "id": "cab_cam",
-      "partId": "cab_sh_gen",
+      "partId": "cab_sh_1c",
       "schematicPosition": {
         "x": 3620,
         "y": 0
@@ -2167,7 +1881,7 @@
     },
     {
       "id": "cab_knock1",
-      "partId": "cab_sh_gen",
+      "partId": "cab_sh_2c",
       "schematicPosition": {
         "x": 3476,
         "y": 1365
@@ -2211,20 +1925,40 @@
   ],
   "cableParts": [
     {
-      "id": "cab_sh_gen",
+      "id": "cab_sh_1c",
       "partNumber": "(generic)",
       "manufacturer": "generic",
-      "description": "Shielded sensor cable, overall foil + braid screen, 20 AWG. Core count per run. Cable is generic in BOMs per 6.24.",
+      "description": "1-core shielded sensor cable, overall foil + braid screen, 20 AWG. Cable is generic in BOMs per 6.24.",
       "cores": [
         {
           "id": "k1",
           "color": "Blue"
+        }
+      ],
+      "shield": {
+        "id": "sh",
+        "color": "Shield"
+      }
+    },
+    {
+      "id": "cab_sh_2c",
+      "partNumber": "(generic)",
+      "manufacturer": "generic",
+      "description": "2-core twisted shielded cable, overall foil + braid screen, 20 AWG. Cable is generic in BOMs per 6.24.",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White"
         },
         {
           "id": "k2",
-          "color": "Gray"
+          "color": "Green"
         }
-      ]
+      ],
+      "shield": {
+        "id": "sh",
+        "color": "Shield"
+      }
     }
   ]
 }

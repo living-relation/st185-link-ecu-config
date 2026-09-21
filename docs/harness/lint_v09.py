@@ -32,7 +32,12 @@ def check(fn):
                 "cableParts", "wireParts", "bootParts", "spliceParts",
                 "terminalParts", "tapeParts", "tubeParts"):
         for p in d.get(key, []):
-            parts.add(p.get("id"))
+            pid = p.get("id")
+            # A part id listed twice is how a non-idempotent fix script quietly
+            # doubles the BOM. Catch it here, not on the bench.
+            if pid in parts:
+                bad.append("duplicate part id %s in %s" % (pid, key))
+            parts.add(pid)
 
     # nodes and their cavity ids
     cav = {}
