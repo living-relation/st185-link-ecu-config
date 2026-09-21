@@ -982,3 +982,106 @@ its mate are always read together, so if one is reordered the other is reordered
 
 Schematic crossings are not a defect to chase. Nothing is built from the picture - the
 build follows the pin table.
+
+---
+
+## 6.37 CSB3 enclosure - single AMPSEAL connector
+
+Settled with Daniel 2026-09-21. One connector carries every CSB3 terminal. The
+board is 33 x 33 x 5 mm, so the connector sets the box size, same as 6.35.
+
+### Pin count comes from the ECUMaster manual, not from what we use today
+
+From `switchboardManual.pdf` v2.1, section 3:
+
+| Group | Terminals | Count |
+|---|---|---|
+| Low side outputs | L1-L4, 0.5 A each | 4 |
+| Analog inputs | A1-A8, 0-5 V, 10-bit, software pull-up | 8 |
+| Switch inputs | S1-S8, switched to ground | 8 |
+| CAN | CAN H, CAN L | 2 |
+| Power | +12V (switched), GND | 2 |
+| Sensor supply | +5V, SGND | 2 |
+| | **Total** | **26** |
+
+This build currently lands 14 of those. The other 12 are brought out anyway so a
+spare channel never means opening the box.
+
+Board spec worth recording: AEC-Q Grade 1, -40 to +125 C, 6-22 V, CAN 2.0 A/B up
+to 1000 kbps, on-board 120 ohm terminator behind a jumper. **That jumper stays
+OPEN** - 6.x already puts the two bus terminations at the ECU and the Pi.
+
+### Why AMPSEAL and not AMPSEAL 16
+
+AMPSEAL 16 tops out at 12 positions. It is the nicer, smaller system and it is
+simply not big enough. Classic AMPSEAL goes 8 / 14 / 23 / 35, so 35 is the only
+size that takes all 26 in one connector.
+
+AMPSEAL headers are ECU connectors by design - flanged, sealed, made to mount
+through an enclosure wall. That is exactly this job.
+
+### Parts
+
+| Role | Part number | Notes |
+|---|---|---|
+| Enclosure side | **1-776231-1** | 35-pos vertical PCB header, WITH flange seal, black, gold |
+| Mating plug | **776164-1** | 35-pos plug housing, black |
+| Socket contacts | **770854-3** | Gold, loose piece. 26 needed plus spares |
+| Cavity seal plugs | **770678-1** | 9 needed for the unused cavities |
+| Wire relief | **776463-1** | Two halves per housing, so order 2 |
+| Hand crimp tool | **58440-1** | |
+
+Gold, not tin, for two reasons: the analog inputs read millivolts, and gold is
+rated -40 to +125 C against tin's +105 C. Rated up to 17 A per contact, 1.3 mm
+pin and socket, IP67, glass-reinforced PBT.
+
+**Wire gauge is a hard constraint: 20-16 AWG, insulation 1.7-2.7 mm.** 22 AWG
+will not crimp reliably in these contacts. Signal runs to this box are 20 AWG
+minimum - do not default to 22 out of habit.
+
+### Cavity assignment
+
+Grouped by function per 6.36, and deliberately ordered so the four switching
+outputs sit as far as possible from the analog inputs and the CAN pair.
+
+| Cavity | Signal | | Cavity | Signal |
+|---|---|---|---|---|
+| 1 | +12V (ignition switched) | | 15 | S1 |
+| 2 | GND | | 16 | S2 |
+| 3 | +5V sensor supply out | | 17 | S3 |
+| 4 | SGND sensor ground | | 18 | S4 |
+| 5 | CAN H | | 19 | S5 |
+| 6 | CAN L | | 20 | S6 |
+| 7 | A1 | | 21 | S7 |
+| 8 | A2 | | 22 | S8 |
+| 9 | A3 | | 23 | L1 low side |
+| 10 | A4 | | 24 | L2 low side |
+| 11 | A5 | | 25 | L3 low side |
+| 12 | A6 | | 26 | L4 low side |
+| 13 | A7 | | 27-35 | spare, seal plug 770678-1 |
+| 14 | A8 | | | |
+
+CAN H and CAN L on 5 and 6 so the twisted pair stays twisted right up to the
+connector.
+
+### Build
+
+Wires solder to the CSB3 pads - the board has no connector of its own. So:
+header flange-mounts in the box wall, 26 short wires run from its solder tails
+to the board pads, contacts are crimped on the harness side only.
+
+- Box: diecast aluminium. The 35-position right-angle header is 76.9 x 59.4 mm
+  overall; confirm the vertical version's flange footprint off the TE drawing
+  before buying a box, then allow about 15 mm around it
+- Working estimate, to be confirmed: roughly 90 x 70 x 35 mm internal
+- Strain relief on the harness side is the 776463-1 pair, not a zip tie
+- Leave enough service loop inside to lift the board out without desoldering
+
+### Open
+
+- Confirm the vertical header flange footprint and hole pattern from the TE
+  customer drawing, then pick the box part number
+- If the box comes out too big, the lever is the four low-side outputs. Dropping
+  L1-L4 takes it to 22 terminals, which fits a 23-position AMPSEAL (plug
+  770680-1, vertical sealed header 1-776228-1) with one spare. Only worth doing
+  if illuminated switches are off the table for good
