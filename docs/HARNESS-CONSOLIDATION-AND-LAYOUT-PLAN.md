@@ -1155,3 +1155,97 @@ add margin. 45-60 s is the starting point.
 - Confirm the PMU can hold an output after ignition drops on a timer in its
   own config, rather than needing the ECU to command it
 - Measure the Pi's actual shutdown time before fixing the hold delay
+
+---
+
+## 6.39 Sealed devices - where the harness stops
+
+Settled with Daniel 2026-09-21. **The harness ends at the device connector.**
+
+The TrackCluster and the RealDash Pi are each a single sealed device with their
+own buck converter and CAN transceiver inside. Neither gets a drawing. Neither
+appears in a BOM beyond its mating connector.
+
+What that means in practice:
+
+- The harness delivers four wires to each: 12V, GND, CAN H, CAN L. Nothing else
+  crosses that boundary
+- **No DC-DC converter in the harness.** 6.38 originally spec'd a 12V-to-5.1V
+  5 A supply for the Pi. That is inside the sealed device. Struck
+- No 5 V anywhere near these two. The harness is 12 V only at that connector
+- Their internals - display, transceiver, regulator, SD card - are out of scope.
+  If one dies it is swapped as a unit
+
+The current draw still matters even though the converter is theirs: the Pi 5
+with the official 7" Touch Display 2 pulls 5 V at 5 A internally, so budget
+about 2.5 A at 12 V steady and more at switch-on. That sizes the PMU output, the
+fuse and the wire - not a converter we buy.
+
+This supersedes the DC-DC line in 6.38 and the "confirm the Pi model" open item.
+
+---
+
+## 6.40 CSB3 enclosure connector - REVISED, Deutsch HD30 not AMPSEAL
+
+Supersedes the parts table in 6.37. The pin count, cavity assignment and build
+notes in 6.37 all still stand - only the connector family changes.
+
+Daniel lifted the "AMP style" constraint and asked for the best part. It is not
+AMPSEAL.
+
+### Why the change
+
+AMPSEAL 35 works but it is a big rectangular connector on a 33 mm board: the
+35-position header is 76.9 x 59.4 mm, about 4,570 mm2 of panel face. Shell size
+24 of the Deutsch HD30 range holds **33 contacts, all size 20**, in a 50.8 mm
+circular flange - roughly 2,030 mm2, under half the area. On a box whose size is
+set entirely by its connector, that halves the box.
+
+Three more things fall out of it, and together they matter more than the size:
+
+| | AMPSEAL 35 | HD34-24-33 |
+|---|---|---|
+| Panel face | 76.9 x 59.4 mm rectangular | 50.8 mm round |
+| Contacts | 770854-3, a system used nowhere else on this car | **The same size 20 contacts as bulkhead A** |
+| Crimp tool | 58440-1, another tool | The HDP20 tool already needed |
+| Sealing | IP67, -40 to +125 C | IP68, -55 to +125 C |
+| Spare ways | 9 | 7 |
+| Panel cutout | rectangular, hard to cut cleanly | round hole, trivial on a mill or a hole saw |
+
+Bulkhead A is HDP24-24-47, which is 5 size 16 plus 42 size 20 - the same shell
+size 24 and the same contact system. So the CSB3 box lands on one contact
+family, one crimp tool, one removal tool for the whole car.
+
+### Parts
+
+| Role | Part number | Notes |
+|---|---|---|
+| Enclosure side | **HD34-24-33PE** | HD30 flange-mount receptacle, shell 24, 33 size-20 PINS, E seal. Pins, because the box is dead when the plug is off |
+| Mating plug | **HD36-24-33SE** | HD30 plug, 33 SOCKETS, E seal. Sockets on the harness so the live 12 V side is shrouded when unplugged |
+| Contacts, harness side | **0462-201-2031** | Size 20 solid socket, 20 AWG. Already on the buy list for bulkhead A |
+| Contacts, box side | **0460-202-2031** | Size 20 solid pin. Same |
+| Cavity plugs | **0413-204-2005** | Size 20 sealing plug, red. 7 needed |
+
+E seal to match bulkhead A, so one seal type across the car.
+
+### Box
+
+- Panel face at least 51 mm across the flange, so about **70 x 70 mm** face with
+  margin. Mounting holes on a 43.08 mm circle, cutout per the TE drawing
+- Working envelope, to be confirmed: roughly **70 x 70 x 40 mm** internal
+- Same build as 6.37: flange-mount the receptacle, run 26 short wires from its
+  contacts to the CSB3 solder pads, nylon standoffs under the board
+
+### Still to confirm before ordering
+
+- **That HD30 and HDP20 genuinely share the size 20 contact.** They sit in the
+  same TE technical manual and the arrangements line up, which is why this is
+  the recommendation - but the datasheet page did not state it outright, and the
+  whole benefit rests on it. Check the TE customer drawing for HD34-24-33PE
+- The HD36 plug part number and its clamp/backshell options
+- Behind-panel depth of the receptacle, which sets the box depth
+
+### Unchanged from 6.37
+
+26 terminals, the cavity assignment grouped by function, wire 20-16 AWG, and the
+CSB3 on-board 120 ohm terminator jumper stays OPEN.
