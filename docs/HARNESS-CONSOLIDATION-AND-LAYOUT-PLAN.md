@@ -1085,3 +1085,73 @@ to the board pads, contacts are crimped on the harness side only.
   L1-L4 takes it to 22 terminals, which fits a 23-position AMPSEAL (plug
   770680-1, vertical sealed header 1-776228-1) with one spare. Only worth doing
   if illuminated switches are off the table for good
+
+---
+
+## 6.38 Dash and CAN device power - PMU outputs
+
+Settled with Daniel 2026-09-21. The cluster, the CSB3 and the RealDash Pi all
+come off PMU-16 outputs, not the CAN cable and not the fuse block.
+
+### Why not the CAN cable
+
+The obvious-looking answer was the Link CAN cable, which does carry 12V. It does
+not come from the ECU. Per Link's own spec for CANLTW, only CAN H and CAN L land
+on the ECU's 6-pin connector; the 12V and GND are **500 mm flying leads** the
+installer feeds from their own source. The DTM4 at the device end is:
+
+| DTM4 pin | Function |
+|---|---|
+| 1 | 12V - flying lead, your own fused feed |
+| 2 | Ground - flying lead |
+| 3 | CAN L - from the ECU |
+| 4 | CAN H - from the ECU |
+
+The XtremeX has no 12V output at all - the quick start guide lists +5V Out and
++8V Out only. So there was never a supply to borrow.
+
+**Adopt that DTM4 pinout as the house standard for CAN device drops** so
+anything Link-compatible plugs straight in. Just feed pin 1 properly.
+
+### Loads
+
+| Device | Draw | At 12 V |
+|---|---|---|
+| Pi 5 + official 7" Touch Display 2 | 5 V @ 5 A = 25 W (Raspberry Pi's own PSU spec) | ~2.5 A via a DC-DC, ~3.1 A at a 9 V cranking dip |
+| ESP32 cluster + display | order of 10 W | under 1 A |
+| CSB3 | 6-22 V direct, board draw negligible; L1-L4 add up to 0.5 A each if loaded | under 2 A worst case |
+
+The Pi is the whole reason this is not a fuse-block job. It wants 25 W of clean
+5 V in a system that dips to 9 V cranking and spikes on load dump.
+
+### Feed
+
+- One PMU 15 A output per device, three outputs. Current limit set per device,
+  not one shared feed
+- Pi output limit around 8 A - well above the ~2.5 A steady draw, so converter
+  inrush does not trip it, and well under what the wire takes. 16 AWG is ample
+- Pi needs a **12 V to 5.1 V DC-DC rated 5 A continuous minimum**, tolerant of
+  6-16 V in. Not a cheap buck module - it has to ride out cranking
+- CSB3 takes 12 V directly, no converter. It is specified 6-22 V
+
+### The real reason for the PMU: clean shutdown
+
+A Pi is a Linux box. Cutting power at key-off corrupts SD cards, and it will do
+it slowly enough that it looks like bad luck rather than a design fault.
+
+1. PMU holds the Pi's output live for a set delay after ignition drops
+2. The Pi sees ignition go false - it is already on the CAN bus for RealDash, so
+   it can read that state rather than needing another wire
+3. A shutdown script runs
+4. The PMU output drops after the delay expires
+
+Set the delay from a measured shutdown, not a guess - time it on the bench and
+add margin. 45-60 s is the starting point.
+
+### Open
+
+- Pick the DC-DC converter. Needs 5 V 5 A continuous, wide input, automotive
+  transient rating
+- Confirm the PMU can hold an output after ignition drops on a timer in its
+  own config, rather than needing the ECU to command it
+- Measure the Pi's actual shutdown time before fixing the hold delay
