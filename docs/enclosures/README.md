@@ -21,3 +21,7 @@ CSV sources of truth for the two enclosure families sealed in
 - VR: PCB on nylon standoffs; shell carries the screen (6.30).
 - CSB3: on-board 120 ohm terminator jumper stays OPEN.
 - CSB3: signal wire to this box is 20 AWG minimum (HD30 size-20 contacts).
+
+## Shelf
+- Map: `C:\projects\docs\project-structure.md` (Enclosure BOMs 2026-09-21).
+- Branch: `docs/enclosure-bom-vr-csb3`. Do not hand-edit two HTML faces — regenerate from these CSVs.
