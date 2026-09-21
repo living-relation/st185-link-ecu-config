@@ -43,11 +43,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 0
+        "y": 338
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 0
+        "y": 338
       }
     },
     {
@@ -89,11 +89,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 304
+        "y": 642
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 304
+        "y": 642
       }
     },
     {
@@ -189,11 +189,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 3312
+        "y": 0
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 3312
+        "y": 0
       }
     },
     {
@@ -320,11 +320,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 2096
+        "y": 2434
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 2096
+        "y": 2434
       }
     },
     {
@@ -343,11 +343,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 2400
+        "y": 2738
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 2400
+        "y": 2738
       }
     },
     {
@@ -366,11 +366,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 2704
+        "y": 3042
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 2704
+        "y": 3042
       }
     },
     {
@@ -389,11 +389,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 3008
+        "y": 3346
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 3008
+        "y": 3346
       }
     },
     {
@@ -420,11 +420,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 608
+        "y": 946
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 608
+        "y": 946
       }
     },
     {
@@ -451,11 +451,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 980
+        "y": 1318
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 980
+        "y": 1318
       }
     },
     {
@@ -482,11 +482,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 1352
+        "y": 1690
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 1352
+        "y": 1690
       }
     },
     {
@@ -513,11 +513,11 @@
       ],
       "layoutPosition": {
         "x": 4420,
-        "y": 1724
+        "y": 2062
       },
       "schematicPosition": {
         "x": 4420,
-        "y": 1724
+        "y": 2062
       }
     },
     {
@@ -2140,7 +2140,7 @@
       "partId": "cab_sh_gen",
       "schematicPosition": {
         "x": 3620,
-        "y": 1104
+        "y": 0
       },
       "cores": [
         {

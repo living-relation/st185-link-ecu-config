@@ -23,3 +23,6 @@ rd-build/shots/
 
 # MatchBot full-page captures (regenerate with model/run_matchbot.mjs)
 docs/intercooler-turbo-study/model/matchbot_shots/
+
+# Screenshots delivered to chat land here; not repo content
+Claude outputs/

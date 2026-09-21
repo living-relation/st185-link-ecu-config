@@ -125,7 +125,7 @@ ZONE = {
     "inj1": (8, C), "inj2": (8, C), "inj3": (8, C), "inj4": (8, C),
     "cop1": (8, C), "cop2": (8, C), "cop3": (8, C), "cop4": (8, C),
     "crank": (8, P),           # passenger side - Daniel, from the car
-    "cam":   (8, P),           # ASSUMED with crank at the timing end. NOT confirmed
+    "cam":   (8, D),           # driver side, in the old distributor location
     "ect":   (8, D),           # driver side water outlet
     "oilt":  (8, D),
 
