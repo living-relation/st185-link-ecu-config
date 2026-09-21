@@ -1263,7 +1263,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
+          "signal": "Bulkhead B cavity 13 → ECU-A A27 (Aux 7, MRS SPD) — wired on ST185-A-ECU"
         }
       ],
       "schematicPosition": {
@@ -1283,7 +1283,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
+          "signal": "Chassis ground splice (sp_chassis) — wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1303,7 +1303,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
+          "signal": "Fusebox F7, 60A — EPS pump relay 30, wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1323,7 +1323,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
+          "signal": "Ignition-switched +12V splice (sp_sw12) — feeds EFI/ETB/fuel/fan relay coils, wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1343,7 +1343,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
+          "signal": "Bulkhead B cavity 14 → MRS EPS pump logic enable (F13, 7.5A, ignition-switched) — wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1363,7 +1363,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
+          "signal": "ECU-B pin B12 (Ign 6) — EPS relay trigger per 6.16, branches off at the ECU into loom C. NOTE: B12 still reads notConnected on ST185-A-ECU - fix there."
         }
       ],
       "schematicPosition": {

@@ -51,65 +51,18 @@
     },
     {
       "id": "csb3io",
-      "label": "ECUMaster CSB3 - Power/CAN/Switch I/O",
+      "label": "ECUMaster CSB3 (CAN feed — full I/O on ST185-A-ECU)",
       "width": 210,
-      "partId": "cp_csb3io",
       "cavities": [
         {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        },
-        {
-          "id": "c3",
-          "signal": "CANH screw term"
-        },
-        {
-          "id": "c4",
-          "signal": "CANL screw term"
-        },
-        {
           "id": "c5",
-          "signal": "AN1 (Cabin Temp)"
+          "designation": "5",
+          "signal": "CAN H"
         },
         {
           "id": "c6",
-          "signal": "AN2 (Cruise Ladder)"
-        },
-        {
-          "id": "c7",
-          "signal": "SW0 (Evap Core)"
-        },
-        {
-          "id": "c8",
-          "signal": "SW1 (AC Request)"
-        },
-        {
-          "id": "c9",
-          "signal": "SW2 (Cruise Active)"
-        },
-        {
-          "id": "c10",
-          "signal": "SW3 (Cruise Set)"
-        },
-        {
-          "id": "c11",
-          "signal": "SW4 (Cruise Resume)"
-        },
-        {
-          "id": "c12",
-          "signal": "SW5 (Clutch, proposed)"
-        },
-        {
-          "id": "c13",
-          "signal": "SW6 (Brake, proposed)"
-        },
-        {
-          "id": "c14",
-          "signal": "SW7 (Reverse, proposed)"
+          "designation": "6",
+          "signal": "CAN L"
         }
       ],
       "layoutPosition": {
@@ -861,7 +814,7 @@
       },
       "target": {
         "id": "csb3io",
-        "handle": "c3"
+        "handle": "c5"
       }
     },
     {
@@ -873,7 +826,7 @@
       },
       "target": {
         "id": "csb3io",
-        "handle": "c4"
+        "handle": "c6"
       }
     },
     {
@@ -1257,21 +1210,6 @@
         }
       ],
       "numberOfCavities": 4
-    },
-    {
-      "id": "cp_csb3io",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(none - PCB screw terminals)",
-      "description": "CAN Switch Board V3 screw-terminal I/O. No harness-side connector spec'd yet; cavity layout follows the CSB3 channel list (power, CAN, cabin-temp + cruise-ladder analog inputs, 8 switch inputs). Analog 3-8, low-side outs 1-4 and rotary/mode inputs remain spare/unused on this build. Verify against board silkscreen before crimping.",
-      "manufacturer": "ECUMaster",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 14
     },
     {
       "id": "cp_hdp_a_fw",

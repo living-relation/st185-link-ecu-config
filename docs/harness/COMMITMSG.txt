@@ -1,31 +1,27 @@
-Cable parts: 'shielded' boolean, not a 'shield' object
+CSB3 on the real HD30 connector, one copy, plus the cruise-ladder short
 
-set_document_json rejected the WheelSpeed upload outright:
+The CSB3 existed three times with three different cavity maps - a 14-way on
+A-ECU, a 2-way on B-ECU, a 14-way on CAN - and none of them matched the part
+we are actually buying. Now there is one connector part, HD36-24-33SE, built
+to the 6.37 cavity map that 6.40 re-homed onto HD30:
 
-  cableParts.0  Unrecognized key(s) in object: 'shield'
-  cableParts.1  Unrecognized key(s) in object: 'shield'
+  1-2   power        5-6   CAN H/L      7-14  A1-A8
+  15-22 S1-S8        23-26 L1-L4        27-33 spare, plug 0413-204-2005
 
-I had inferred the shape from the connector hasShell/shell pair - if a
-connector with a shell needs its part to declare hasShell, a cable with a
-shield needs its part to declare a shield. Half right. The part declares it,
-but with the boolean 'shielded'. The 'shield' OBJECT belongs to the cable
-instance only, where it is the conductor that carries the screen.
+Contacts are 0462-201-2031 size 20 sockets, the same family as bulkhead A, so
+the box stays on one crimp tool. Matches docs/enclosures/csb3-bom.csv.
 
-Changes:
-- fix_cable_parts.py: 'shield' object -> 'shielded': True on all three cable
-  parts. Also set twistedWithNext on core 1 of the 2-core part - cab_knock1 is
-  a twisted pair and the flag lives on the part, not the instance.
-- lint_v09.py: reject a 'shield' key on any cablePart; check a cable's core
-  count against its part's core count; check that a cable with a shield points
-  at a part marked shielded. Cores align BY POSITION, so a count mismatch is
-  the wrong gauge and colour on real copper.
-- make_min.py: new. Writes the upload copy of each rebuild file into min/ with
-  the whitespace stripped. This was being done by hand, which is how min/ goes
-  stale and an upload silently ships the previous revision.
-- run_pipeline.bat: new. fix_cable_parts -> layout_633 -> lint_v09 ->
-  verify_rebuild -> make_min, stopping on the first failure.
+A-ECU carries the connector. B-ECU and CAN show the same cavities with no part
+assigned, so the plug is counted once in the BOM, not three times.
 
-Lint clean on all eight. verify_rebuild MATCH, 267 conductors in, 268 out.
+Also fixed: the cruise ladder had the stalk signal AND the pull-up resistor
+landing on one cavity, which is a short. They meet at sp_cruise_ladder now and
+one wire runs to A2.
+
+Cross-reference nodes on EngineRoom-C and ClusterLED said "Dummy - real part on
+the owning drawing" and told you nothing. They name the real pin and signal now.
+The ClusterLED CSB low-side node was showing park-brake text, copy-pasted from
+the wrong connector.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

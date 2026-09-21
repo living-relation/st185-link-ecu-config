@@ -424,14 +424,16 @@
     },
     {
       "id": "csb3io",
-      "label": "ECUMaster CSB3 - power",
+      "label": "ECUMaster CSB3 (power feed — full I/O on ST185-A-ECU)",
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V"
+          "designation": "1",
+          "signal": "+12V (ignition switched)"
         },
         {
           "id": "c2",
+          "designation": "2",
           "signal": "GND"
         }
       ],

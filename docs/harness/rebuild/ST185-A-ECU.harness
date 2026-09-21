@@ -785,63 +785,172 @@
       "id": "csb3io",
       "label": "ECUMaster CSB3 - Power/CAN/Switch I/O",
       "width": 210,
-      "partId": "cp_csb3io",
+      "partId": "cp_csb3_plug",
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V"
+          "signal": "+12V (ignition switched) — wired on ST185-B-ECU",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c2",
-          "signal": "GND"
+          "signal": "GND — wired on ST185-B-ECU",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c3",
-          "signal": "CANH screw term"
+          "signal": "+5V sensor supply (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c4",
-          "signal": "CANL screw term"
+          "signal": "SGND sensor ground (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c5",
-          "signal": "AN1 (Cabin Temp)"
+          "signal": "CAN H — wired on ST185-CAN",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c6",
-          "signal": "AN2 (Cruise Ladder)"
+          "signal": "CAN L — wired on ST185-CAN",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c7",
-          "signal": "SW0 (Evap Core)"
+          "signal": "A1 - Cabin Temp (source not yet wired - open item)",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c8",
-          "signal": "SW1 (AC Request)"
+          "signal": "A2 - Cruise Ladder",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c9",
-          "signal": "SW2 (Cruise Active)"
+          "signal": "A3 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c10",
-          "signal": "SW3 (Cruise Set)"
+          "signal": "A4 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c11",
-          "signal": "SW4 (Cruise Resume)"
+          "signal": "A5 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c12",
-          "signal": "SW5 (Clutch, proposed)"
+          "signal": "A6 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c13",
-          "signal": "SW6 (Brake, proposed)"
+          "signal": "A7 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c14",
-          "signal": "SW7 (Reverse, proposed)"
+          "signal": "A8 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c15",
+          "signal": "S1 - Evap Core (source not yet wired - open item)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c16",
+          "signal": "S2 - AC Request (source not yet wired - open item)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c17",
+          "signal": "S3 - Cruise Main On",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c18",
+          "signal": "S4 - Cruise Set/Accel",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c19",
+          "signal": "S5 - Cruise Resume/Decel",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c20",
+          "signal": "S6 - Clutch Switch",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c21",
+          "signal": "S7 - Brake Switch",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c22",
+          "signal": "S8 - Reverse (via Bulkhead B c12)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c23",
+          "signal": "L1 low-side (spare — oil lamp channel TBD, see open items)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c24",
+          "signal": "L2 low-side (spare — oil lamp channel TBD, see open items)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c25",
+          "signal": "L3 low-side (spare — oil lamp channel TBD, see open items)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c26",
+          "signal": "L4 low-side (spare — oil lamp channel TBD, see open items)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c27",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c28",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c29",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c30",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c31",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c32",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c33",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
         }
       ],
       "layoutPosition": {
@@ -1458,6 +1567,17 @@
         "x": 1080,
         "y": 712
       }
+    },
+    {
+      "id": "sp_cruise_ladder",
+      "layoutPosition": {
+        "x": 820,
+        "y": 1050
+      },
+      "schematicPosition": {
+        "x": 820,
+        "y": 1050
+      }
     }
   ],
   "resistors": [
@@ -1895,8 +2015,8 @@
         "handle": "c1"
       },
       "target": {
-        "id": "csb3io",
-        "handle": "c6"
+        "id": "sp_cruise_ladder",
+        "handle": "Splice"
       }
     },
     {
@@ -1908,7 +2028,7 @@
       },
       "target": {
         "id": "csb3io",
-        "handle": "c9"
+        "handle": "c17"
       }
     },
     {
@@ -1920,7 +2040,7 @@
       },
       "target": {
         "id": "csb3io",
-        "handle": "c10"
+        "handle": "c18"
       }
     },
     {
@@ -1932,7 +2052,7 @@
       },
       "target": {
         "id": "csb3io",
-        "handle": "c11"
+        "handle": "c19"
       }
     },
     {
@@ -1944,7 +2064,7 @@
       },
       "target": {
         "id": "csb3io",
-        "handle": "c12"
+        "handle": "c20"
       }
     },
     {
@@ -1956,14 +2076,14 @@
       },
       "target": {
         "id": "csb3io",
-        "handle": "c13"
+        "handle": "c21"
       }
     },
     {
       "id": "w_sw7_c",
       "source": {
         "id": "csb3io",
-        "handle": "c14"
+        "handle": "c22"
       },
       "target": {
         "id": "bh_b_fw",
@@ -2075,8 +2195,8 @@
         "handle": "Left"
       },
       "target": {
-        "id": "csb3io",
-        "handle": "c6"
+        "id": "sp_cruise_ladder",
+        "handle": "Splice"
       }
     },
     {
@@ -2201,6 +2321,18 @@
         "id": "ecu_a",
         "handle": "a9"
       }
+    },
+    {
+      "id": "w_cru_ladder_out",
+      "color": "White",
+      "source": {
+        "id": "sp_cruise_ladder",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "csb3io",
+        "handle": "c8"
+      }
     }
   ],
   "connectorParts": [
@@ -2265,21 +2397,6 @@
         }
       ],
       "numberOfCavities": 2
-    },
-    {
-      "id": "cp_csb3io",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(none - PCB screw terminals)",
-      "description": "CAN Switch Board V3 screw-terminal I/O. No harness-side connector spec'd yet; cavity layout follows the CSB3 channel list (power, CAN, cabin-temp + cruise-ladder analog inputs, 8 switch inputs). Analog 3-8, low-side outs 1-4 and rotary/mode inputs remain spare/unused on this build. Verify against board silkscreen before crimping.",
-      "manufacturer": "ECUMaster",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 14
     },
     {
       "id": "cp_acamp",
@@ -2358,6 +2475,22 @@
       "partNumber": "WM-6S",
       "manufacturer": "Deutsch (TE)",
       "description": "Wedgelock for DTM06-6S, 6-way socket housing"
+    },
+    {
+      "id": "cp_csb3_plug",
+      "gender": "Female",
+      "hasShell": false,
+      "numberOfCavities": 33,
+      "partNumber": "HD36-24-33SE",
+      "description": "Deutsch HD30 shell 24, 33-way harness plug, sockets, E-seal - CSB3 enclosure mating plug (harness side). Box-side receptacle is HD34-24-33PE (device, not modeled). Cavity map per HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md 6.37/6.40.",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_hdp20s",
+          "cavityPlugPartId": "pl_sz20"
+        }
+      ]
     }
   ],
   "contactParts": [
@@ -2457,6 +2590,22 @@
         "unit": "AWG",
         "value": 20
       }
+    },
+    {
+      "id": "ct_hdp20s",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-2031",
+      "description": "Size 20 solid SOCKET, 20 AWG - harness side (matches HDP20 size 20 pin family)",
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "resistorParts": [

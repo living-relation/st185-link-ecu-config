@@ -104,11 +104,27 @@ EXPECT_NEW = {
     "w_sh_crank":  "crank screen, bulkhead A c33 to the engine-bay shield collector",
     "w_sh_cam":    "cam screen, bulkhead A c34 to the engine-bay shield collector",
     "w_sh_knock1": "knock screen, bulkhead A c35 to the engine-bay shield collector",
+    "w_cru_ladder_out": "pass 2: splice to CSB3 A2. The stalk signal and the pull-up "
+                        "used to land on the same cavity, which is a short. They now "
+                        "meet at sp_cruise_ladder and one wire carries the ladder in.",
 }
 # A connection that legitimately moved to a different pin.
 EXPECT_CHANGED = {
     "w_mrs_e": "mrs_ctrl slot c1 -> c2, so the cavity matches the pin 2 it has "
                "always been labelled. Same net, same wire, corrected slot.",
+    # Pass 2: CSB3 renumbered from the old ad-hoc 14-way to the real 33-way
+    # HD36-24-33SE cavity map in 6.37 / 6.40. Same nets, new cavity numbers.
+    "w_an2":     "cruise ladder now goes stalk -> sp_cruise_ladder (was a second wire "
+                 "onto the same CSB3 cavity as the pull-up)",
+    "w_cru_sig": "pull-up now goes r_cruise -> sp_cruise_ladder, same reason",
+    "w_sw2":     "CSB3 6.37 map: cruise main on is S3, cavity 17 (was 9)",
+    "w_sw3":     "CSB3 6.37 map: cruise set/accel is S4, cavity 18 (was 10)",
+    "w_sw4":     "CSB3 6.37 map: cruise resume/decel is S5, cavity 19 (was 11)",
+    "w_sw5":     "CSB3 6.37 map: clutch is S6, cavity 20 (was 12)",
+    "w_sw6":     "CSB3 6.37 map: brake is S7, cavity 21 (was 13)",
+    "w_sw7_c":   "CSB3 6.37 map: reverse is S8, cavity 22 (was 14)",
+    "wc_h_csb":  "CSB3 6.37 map: CAN H is cavity 5 (was 3)",
+    "wc_l_csb":  "CSB3 6.37 map: CAN L is cavity 6 (was 4)",
 }
 
 

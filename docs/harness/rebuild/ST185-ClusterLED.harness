@@ -126,7 +126,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "CSB low-side out - dummy, owned by CAN loom"
+          "signal": "ECUMaster CSB3 low-side output, L1-L4 — channel TBD (see ST185-A-ECU C10 cavities 23-26, and CAN 0x643), wired on ST185-A-ECU"
         }
       ],
       "layoutPosition": {
