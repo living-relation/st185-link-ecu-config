@@ -11,33 +11,33 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Ground",
+          "signal": "Ground (Brown)",
           "designation": "C1"
         },
         {
           "id": "c2",
           "designation": "C2",
-          "notConnected": true
+          "signal": "Unused (Blue)"
         },
         {
           "id": "c3",
-          "signal": "CAN",
+          "signal": "CAN 1 High (White)",
           "designation": "C3"
         },
         {
           "id": "c4",
           "designation": "C4",
-          "notConnected": true
+          "signal": "CAN 1 Low (Green)"
         },
         {
           "id": "c5",
           "designation": "C5",
-          "notConnected": true
+          "signal": "RS232 TX (Yellow) - not used on this build"
         },
         {
           "id": "c6",
           "designation": "C6",
-          "notConnected": true
+          "signal": "RS232 RX (Grey) - not used on this build"
         }
       ],
       "layoutPosition": {
@@ -65,11 +65,11 @@
         },
         {
           "id": "c3",
-          "signal": "CAN"
+          "signal": "CANH screw term"
         },
         {
           "id": "c4",
-          "notConnected": true
+          "signal": "CANL screw term"
         },
         {
           "id": "c5",

@@ -12,14 +12,12 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "VC2 +5V (sub)",
-          "notConnected": true
+          "signal": "VC2 +5V (sub)"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "GND2 (sub)",
-          "notConnected": true
+          "signal": "GND2 (sub)"
         },
         {
           "id": "c3",
@@ -29,14 +27,12 @@
         {
           "id": "c4",
           "designation": "4",
-          "signal": "VC1 +5V (main)",
-          "notConnected": true
+          "signal": "VC1 +5V (main)"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "GND1 (main)",
-          "notConnected": true
+          "signal": "GND1 (main)"
         },
         {
           "id": "c6",
@@ -433,42 +429,42 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Ground",
+          "signal": "Ground (Brown)",
           "designation": "C1"
         },
         {
           "id": "c2",
           "designation": "C2",
-          "notConnected": true
+          "signal": "Unused (Blue)"
         },
         {
           "id": "c3",
-          "signal": "CAN",
+          "signal": "CAN 1 High (White)",
           "designation": "C3"
         },
         {
           "id": "c4",
           "designation": "C4",
-          "notConnected": true
+          "signal": "CAN 1 Low (Green)"
         },
         {
           "id": "c5",
           "designation": "C5",
-          "notConnected": true
+          "signal": "RS232 TX (Yellow) - not used on this build"
         },
         {
           "id": "c6",
           "designation": "C6",
-          "notConnected": true
+          "signal": "RS232 RX (Grey) - not used on this build"
         }
       ],
       "layoutPosition": {
         "x": 620,
-        "y": 2332
+        "y": 2536
       },
       "schematicPosition": {
         "x": 620,
-        "y": 2332
+        "y": 2536
       }
     },
     {
@@ -479,8 +475,38 @@
       "cavities": [
         {
           "id": "c1",
-          "designation": "ACT",
+          "designation": "1",
           "signal": "A/C kill (ground = kill)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "notConnected": true
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "notConnected": true
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "notConnected": true
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "notConnected": true
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "notConnected": true
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "notConnected": true
         }
       ],
       "layoutPosition": {
@@ -771,11 +797,11 @@
         },
         {
           "id": "c3",
-          "signal": "CAN"
+          "signal": "CANH screw term"
         },
         {
           "id": "c4",
-          "notConnected": true
+          "signal": "CANL screw term"
         },
         {
           "id": "c5",

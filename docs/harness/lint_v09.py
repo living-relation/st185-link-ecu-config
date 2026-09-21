@@ -41,7 +41,12 @@ def check(fn):
         if c.get("width") is not None and c["width"] not in WIDTHS:
             bad.append("connector %s width %s" % (c["id"], c["width"]))
         if "shell" in c:
-            bad.append("connector %s still has a shell (6.27)" % c["id"])
+            # 6.27: no connector on this car has a shield shell - except the VR
+            # conditioner enclosures, where 6.35 says the shell IS the screen path.
+            if not c["id"].startswith("vrc_"):
+                bad.append("connector %s has a shell (6.27 says none do "
+                           "except vrc_*)" % c["id"])
+            cav[c["id"]].add(c["shell"].get("id"))
         if "notes" in c:
             bad.append("connector %s has a notes key" % c["id"])
         for x in c.get("cavities", []):
@@ -73,27 +78,81 @@ def check(fn):
         if n.get("width") is not None and n["width"] not in WIDTHS:
             bad.append("note %s width %s" % (n.get("id"), n["width"]))
 
-    seen = set()
-    for w in d.get("wires", []) + d.get("cables", []):
-        wid = w.get("id")
-        if wid in seen:
-            bad.append("duplicate wire id %s" % wid)
-        seen.add(wid)
-        if "signal" in w:
-            bad.append("wire %s has a signal key" % wid)
+    # notConnected and a signal on the same cavity contradict each other, and
+    # the app rejects a wire landing on a notConnected cavity.
+    wired = set()
+    parts_by_id = {}
+    for p in d.get("connectorParts", []):
+        parts_by_id[p.get("id")] = p
+    for c in d.get("connectors", []):
+        for x in c.get("cavities", []):
+            if x.get("notConnected") and x.get("signal"):
+                bad.append("cavity %s/%s is notConnected but has a signal"
+                           % (c["id"], x.get("id")))
+        p = parts_by_id.get(c.get("partId"))
+        if p:
+            n = p.get("numberOfCavities")
+            if n is not None and n != len(c.get("cavities", [])):
+                bad.append("connector %s has %d cavities but part %s says %s"
+                           % (c["id"], len(c.get("cavities", [])), c["partId"], n))
+            if bool(p.get("hasShell")) != ("shell" in c):
+                bad.append("connector %s shell does not match part %s hasShell=%s"
+                           % (c["id"], c["partId"], p.get("hasShell")))
+
+    def check_conductor(kind, wid, obj):
+        if "signal" in obj:
+            bad.append("%s %s has a signal key" % (kind, wid))
         for k in ("color", "stripeColor"):
-            if w.get(k) and w[k] not in COLORS:
-                bad.append("wire %s %s %r" % (wid, k, w[k]))
+            if obj.get(k) and obj[k] not in COLORS:
+                bad.append("%s %s %s %r" % (kind, wid, k, obj[k]))
         for end in ("source", "target"):
-            e = w.get(end)
+            e = obj.get(end)
             if not e:
                 continue          # a shield core legitimately has one end
             nid, h = e.get("id"), e.get("handle")
             if nid not in cav:
-                bad.append("wire %s %s -> unknown node %s" % (wid, end, nid))
+                bad.append("%s %s %s -> unknown node %s" % (kind, wid, end, nid))
             elif h not in cav[nid]:
-                bad.append("wire %s %s -> %s has no cavity %s"
-                           % (wid, end, nid, h))
+                bad.append("%s %s %s -> %s has no cavity %s"
+                           % (kind, wid, end, nid, h))
+            else:
+                wired.add((nid, h))
+
+    seen = set()
+    for w in d.get("wires", []):
+        wid = w.get("id")
+        if wid in seen:
+            bad.append("duplicate wire id %s" % wid)
+        seen.add(wid)
+        check_conductor("wire", wid, w)
+
+    for cb in d.get("cables", []):
+        cid = cb.get("id")
+        if cid in seen:
+            bad.append("duplicate id %s" % cid)
+        seen.add(cid)
+        if not cb.get("schematicPosition"):
+            bad.append("cable %s has no schematicPosition (required)" % cid)
+        if cb.get("partId") and cb["partId"] not in parts:
+            bad.append("cable %s -> missing part %s" % (cid, cb["partId"]))
+        for core in cb.get("cores", []):
+            kid = core.get("id")
+            if kid in seen:
+                bad.append("duplicate id %s" % kid)
+            seen.add(kid)
+            check_conductor("core", kid, core)
+        sh = cb.get("shield")
+        if sh:
+            if sh.get("color") != "Shield":
+                bad.append("cable %s shield colour is %r, must be 'Shield'"
+                           % (cid, sh.get("color")))
+            check_conductor("shield", sh.get("id"), sh)
+
+    for c in d.get("connectors", []):
+        for x in c.get("cavities", []):
+            if x.get("notConnected") and (c["id"], x.get("id")) in wired:
+                bad.append("cavity %s/%s is notConnected but has a conductor on it"
+                           % (c["id"], x.get("id")))
     return bad
 
 

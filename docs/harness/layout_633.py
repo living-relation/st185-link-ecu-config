@@ -166,6 +166,10 @@ ZONE = {
     "vr2_ch1p": (2, P), "vr2_ch1n": (2, P), "vr2_ch2p": (2, P),
     "vr2_ch2n": (2, P), "vr2_out1": (2, P), "vr2_out2": (2, P),
     "vr2_5v": (2, P), "vr2_gnd": (2, P),
+
+    # 6.35 conditioner enclosures, both in the cabin near the ECU
+    "vrc_f_inl": (2, D), "vrc_f_inr": (2, D), "vrc_f_out": (2, D),
+    "vrc_r_inl": (2, P), "vrc_r_inr": (2, P), "vrc_r_out": (2, P),
 }
 
 # A 6.15 dummy block stands in for a real part on another drawing.  Put it in
@@ -176,8 +180,11 @@ DUMMY_COL = [
     ("dm_bh_a_eng", (6, D)), ("dm_bh_b_eng", (6, P)),
     ("dm_fusebox", (2, P)), ("dm_k_", (2, P)), ("dm_csb", (2, C)),
     ("dm_sp_shield_cab", (2, C)), ("dm_sp_sw12_", (2, C)),
+    # The _eng entries MUST stay above the bare ones - first prefix match wins,
+    # and "dm_sp_5v" would otherwise swallow "dm_sp_5v_eng".
     ("dm_sp_chassis_eng", (7, C)), ("dm_sp_gndout_eng", (7, C)),
     ("dm_sp_5v_eng", (7, C)),
+    ("dm_sp_gndout", (2, C)), ("dm_sp_5v", (2, C)), ("dm_sp_chassis", (2, C)),
 ]
 
 GAP = 140
@@ -318,6 +325,23 @@ def place(doc):
         pos = {"x": anchor["x"] + 200, "y": anchor["y"] - 120}
         r["schematicPosition"] = pos
         r["layoutPosition"] = dict(pos)
+
+    # A cable is a schematic-only node that sits between the things its cores
+    # join, so park it at the midpoint of its endpoints.
+    for cb in doc.get("cables", []):
+        xs, ys = [], []
+        conductors = list(cb.get("cores", []))
+        if cb.get("shield"):
+            conductors.append(cb["shield"])
+        for core in conductors:
+            for end in ("source", "target"):
+                e = core.get(end)
+                if e and where.get(e.get("id")):
+                    xs.append(where[e["id"]]["x"])
+                    ys.append(where[e["id"]]["y"])
+        if xs:
+            cb["schematicPosition"] = {"x": sum(xs) // len(xs),
+                                       "y": sum(ys) // len(ys)}
 
     # Wire routing points were hand-placed against the OLD coordinates.  They
     # are now elbows pointing at empty space, so drop them and let the app

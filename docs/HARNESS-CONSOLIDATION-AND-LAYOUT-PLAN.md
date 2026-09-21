@@ -901,3 +901,84 @@ Drive and the ones actually used committed alongside each overlay - same pattern
 
 Every length must trace to a cited figure. A length with no citation is a guess and does
 not go in the build list.
+
+---
+
+## 6.35 VR conditioner enclosures - connectors and box sizing
+
+Settled with Daniel 2026-09-21. The boards are tiny, so the connectors set the box size.
+Two identical boxes: one front (FL/FR), one rear (RL/RR), per 6.31.
+
+### Why M8 and not DT/DTM
+
+6.30 wants the ABS cable shield continuous from sensor to ECU, with the PCB isolated from
+the shell. There are only two ways to carry a shield across an enclosure wall:
+
+| Method | How it works | Verdict |
+|---|---|---|
+| Discrete shield pin | Shield crimped into an ordinary contact, jumpered pin-to-pin inside the box | Works, but it is a pigtail at both walls. Adds inductance exactly where we are trying to keep the screen tight. AT/ATM and DT/DTM are all-plastic, so this is the only option with those families |
+| Metal shell, 360 degrees | Shield clamps to the connector body, body bonds to the panel, panel carries it to the next connector body | No pigtail. This is what 6.30 actually describes when it says "shielded enclosure" |
+
+So the conditioner boxes are the one place on this car that uses metal-shell connectors.
+Everything else stays as 6.27 says - shields are cable-only, no shell, floating at the
+device end.
+
+### Parts
+
+All three positions use the same 4-way shieldable M8 so there is one contact system to
+stock and one crimp setup. Inputs are female, output is male, which makes it physically
+impossible to plug a sensor lead into the output.
+
+| Position | Part number | Manufacturer | Contacts used | Notes |
+|---|---|---|---|---|
+| IN-L (sensor) | 86 6618 1121 00004 | binder | VR+, VR-, 1 spare | Female, shieldable, THT, IP67, M10x0.75 front fastened |
+| IN-R (sensor) | 86 6618 1121 00004 | binder | VR+, VR-, 1 spare | Same part |
+| OUT (to ECU) | 86 6319 1121 00004 | binder | 5V, GND, OUT-L, OUT-R | Male, shieldable, THT, IP67, front fastened |
+
+Verified ratings: 4.0 A per contact, 50 V AC / 60 V DC, IP67, -40 to +85 C, shield
+terminated by a shielding plate against the panel. Roughly USD 16 each, so about USD 96
+of connectors for both boxes before mating cable plugs.
+
+Ratings are far beyond what these circuits need - the conditioner runs off the ECU 5 V
+sensor supply and the outputs are logic-level pulses. The parts are chosen for the shield
+path and the size, not the current.
+
+### Box
+
+Requirement, not a confirmed part number:
+
+- Diecast aluminium, conductive. The shielding plate needs bare metal against the panel
+- Internal envelope at least 50 x 50 x 30 mm
+- One connector per face: IN-L left, IN-R right, OUT back. Keeps each face down to about
+  30 mm of usable width and makes the cable routing fall out naturally
+- Panel cutout 10.2 mm with an anti-rotation flat, roughly 10 mm edge margin
+- PCB on nylon standoffs, not metal. 6.30 - the board floats, the shell carries the screen
+- MASK THE THREE CONNECTOR LANDINGS BEFORE POWDER COAT. A coated panel breaks the shield
+  path and the fault will look like sensor noise, not a coating problem
+
+Hammond's small diecast range is the obvious place to look. Confirm the exact part against
+the connector flange diameter and the board outline before ordering.
+
+### Open
+
+- Mating cable plugs and the shielded cable between sensor and box are still to spec
+- -40 to +85 C is fine in the cabin. If either box ends up in the engine bay, re-check it
+
+---
+
+## 6.36 Bulkhead pin ordering
+
+Settled with Daniel 2026-09-21. Two separate things that were being confused:
+
+1. **Pin assignment stays grouped by function.** Injectors together, coils together,
+   sensor supplies together. This is what makes the bundle sane to build and to fault-find,
+   and it is why the A-ECU schematic shows a lot of crossing lines - ECU pin order and
+   bulkhead pin order do not match, and they should not have to.
+2. **Wiring-table row order is free.** Rows do not have to run 1, 2, 3 or A1, A2, A3. They
+   are ordered for whatever reads cleanest on the drawing.
+
+The one hard rule: **the mating connector follows the exact same order.** A pin table and
+its mate are always read together, so if one is reordered the other is reordered with it.
+
+Schematic crossings are not a defect to chase. Nothing is built from the picture - the
+build follows the pin table.

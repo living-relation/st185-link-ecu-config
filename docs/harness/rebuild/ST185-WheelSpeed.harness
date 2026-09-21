@@ -1,28 +1,30 @@
 {
   "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
-  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
   "version": 0.9,
   "lengthUnit": "mm",
   "connectors": [
     {
       "id": "wss_fl",
       "label": "ABS Wheel Speed FL",
-      "partId": "cp_dt2s",
+      "width": 210,
+      "partId": "cp_abs2",
       "cavities": [
         {
           "id": "c1",
-          "signal": "SIG+"
+          "designation": "1",
+          "signal": "VR+ (front left)"
         },
         {
           "id": "c2",
-          "signal": "SIG-"
+          "designation": "2",
+          "signal": "VR- (front left)"
         }
       ],
-      "layoutPosition": {
+      "schematicPosition": {
         "x": 5560,
         "y": 0
       },
-      "schematicPosition": {
+      "layoutPosition": {
         "x": 5560,
         "y": 0
       }
@@ -30,22 +32,25 @@
     {
       "id": "wss_fr",
       "label": "ABS Wheel Speed FR",
-      "partId": "cp_dt2s",
+      "width": 210,
+      "partId": "cp_abs2",
       "cavities": [
         {
           "id": "c1",
-          "signal": "SIG+"
+          "designation": "1",
+          "signal": "VR+ (front right)"
         },
         {
           "id": "c2",
-          "signal": "SIG-"
+          "designation": "2",
+          "signal": "VR- (front right)"
         }
       ],
-      "layoutPosition": {
+      "schematicPosition": {
         "x": 5560,
         "y": 304
       },
-      "schematicPosition": {
+      "layoutPosition": {
         "x": 5560,
         "y": 304
       }
@@ -53,22 +58,25 @@
     {
       "id": "wss_rl",
       "label": "ABS Wheel Speed RL",
-      "partId": "cp_dt2s",
+      "width": 210,
+      "partId": "cp_abs2",
       "cavities": [
         {
           "id": "c1",
-          "signal": "SIG+"
+          "designation": "1",
+          "signal": "VR+ (rear left)"
         },
         {
           "id": "c2",
-          "signal": "SIG-"
+          "designation": "2",
+          "signal": "VR- (rear left)"
         }
       ],
-      "layoutPosition": {
+      "schematicPosition": {
         "x": 0,
         "y": 0
       },
-      "schematicPosition": {
+      "layoutPosition": {
         "x": 0,
         "y": 0
       }
@@ -76,29 +84,272 @@
     {
       "id": "wss_rr",
       "label": "ABS Wheel Speed RR",
-      "partId": "cp_dt2s",
+      "width": 210,
+      "partId": "cp_abs2",
       "cavities": [
         {
           "id": "c1",
-          "signal": "SIG+"
+          "designation": "1",
+          "signal": "VR+ (rear right)"
         },
         {
           "id": "c2",
-          "signal": "SIG-"
+          "designation": "2",
+          "signal": "VR- (rear right)"
         }
       ],
-      "layoutPosition": {
-        "x": 0,
-        "y": 574
-      },
       "schematicPosition": {
         "x": 0,
-        "y": 574
+        "y": 304
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": 304
       }
     },
     {
-      "id": "dm_bh_a_eng_c10",
-      "label": "BH-A-c10",
+      "id": "vrc_f_inl",
+      "label": "VRC Front - IN-L",
+      "width": 270,
+      "partId": "cp_m8_4f",
+      "shell": {
+        "id": "shell",
+        "signal": "Screen from FL, 360 deg to the enclosure"
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "VR+ in (FL)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "VR- in (FL)"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "notConnected": true
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "notConnected": true
+        }
+      ],
+      "schematicPosition": {
+        "x": 1080,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 0
+      }
+    },
+    {
+      "id": "vrc_f_inr",
+      "label": "VRC Front - IN-R",
+      "width": 270,
+      "partId": "cp_m8_4f",
+      "shell": {
+        "id": "shell",
+        "signal": "Screen from FR, 360 deg to the enclosure"
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "VR+ in (FR)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "VR- in (FR)"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "notConnected": true
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "notConnected": true
+        }
+      ],
+      "schematicPosition": {
+        "x": 1080,
+        "y": 372
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 372
+      }
+    },
+    {
+      "id": "vrc_f_out",
+      "label": "VRC Front - OUT",
+      "width": 270,
+      "partId": "cp_m8_4m",
+      "shell": {
+        "id": "shell",
+        "signal": "Screen onward to the ECU shield ground"
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+5V from ECU sensor supply"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Sensor ground"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "Conditioned pulse out (FL)"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "Conditioned pulse out (FR)"
+        }
+      ],
+      "schematicPosition": {
+        "x": 1080,
+        "y": 744
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 744
+      }
+    },
+    {
+      "id": "vrc_r_inl",
+      "label": "VRC Rear - IN-L",
+      "width": 270,
+      "partId": "cp_m8_4f",
+      "shell": {
+        "id": "shell",
+        "signal": "Screen from RL, 360 deg to the enclosure"
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "VR+ in (RL)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "VR- in (RL)"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "notConnected": true
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "notConnected": true
+        }
+      ],
+      "schematicPosition": {
+        "x": 1080,
+        "y": 1926
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 1926
+      }
+    },
+    {
+      "id": "vrc_r_inr",
+      "label": "VRC Rear - IN-R",
+      "width": 270,
+      "partId": "cp_m8_4f",
+      "shell": {
+        "id": "shell",
+        "signal": "Screen from RR, 360 deg to the enclosure"
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "VR+ in (RR)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "VR- in (RR)"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "notConnected": true
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "notConnected": true
+        }
+      ],
+      "schematicPosition": {
+        "x": 1080,
+        "y": 2298
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 2298
+      }
+    },
+    {
+      "id": "vrc_r_out",
+      "label": "VRC Rear - OUT",
+      "width": 270,
+      "partId": "cp_m8_4m",
+      "shell": {
+        "id": "shell",
+        "signal": "Screen onward to the ECU shield ground"
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+5V from ECU sensor supply"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Sensor ground"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "Conditioned pulse out (RL)"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "Conditioned pulse out (RR)"
+        }
+      ],
+      "schematicPosition": {
+        "x": 1080,
+        "y": 2670
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 2670
+      }
+    },
+    {
+      "id": "dm_ecu_a_a23",
+      "label": "ECU-A-a23",
       "width": 150,
       "cavities": [
         {
@@ -108,17 +359,17 @@
         }
       ],
       "schematicPosition": {
-        "x": 3220,
-        "y": 0
+        "x": 1620,
+        "y": 600
       },
       "layoutPosition": {
-        "x": 3220,
-        "y": 0
+        "x": 1620,
+        "y": 600
       }
     },
     {
-      "id": "dm_bh_a_fw_c11",
-      "label": "BH-A-c11",
+      "id": "dm_ecu_b_b21",
+      "label": "ECU-B-b21",
       "width": 150,
       "cavities": [
         {
@@ -128,52 +379,12 @@
         }
       ],
       "schematicPosition": {
-        "x": 2680,
-        "y": 0
+        "x": 2080,
+        "y": 1140
       },
       "layoutPosition": {
-        "x": 2680,
-        "y": 0
-      }
-    },
-    {
-      "id": "dm_bh_a_eng_c11",
-      "label": "BH-A-c11",
-      "width": 150,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
-        }
-      ],
-      "schematicPosition": {
-        "x": 3220,
-        "y": 270
-      },
-      "layoutPosition": {
-        "x": 3220,
-        "y": 270
-      }
-    },
-    {
-      "id": "dm_bh_a_eng_c12",
-      "label": "BH-A-c12",
-      "width": 150,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
-        }
-      ],
-      "schematicPosition": {
-        "x": 3220,
-        "y": 540
-      },
-      "layoutPosition": {
-        "x": 3220,
-        "y": 540
+        "x": 2080,
+        "y": 1140
       }
     },
     {
@@ -217,8 +428,8 @@
       }
     },
     {
-      "id": "dm_bh_a_fw_c28",
-      "label": "BH-A-c28",
+      "id": "dm_sp_5v_Splice",
+      "label": "sp_5v-Splice",
       "width": 150,
       "cavities": [
         {
@@ -228,17 +439,17 @@
         }
       ],
       "schematicPosition": {
-        "x": 2680,
-        "y": 270
+        "x": 1080,
+        "y": 1116
       },
       "layoutPosition": {
-        "x": 2680,
-        "y": 270
+        "x": 1080,
+        "y": 1116
       }
     },
     {
-      "id": "dm_bh_a_eng_c28",
-      "label": "BH-A-c28",
+      "id": "dm_sp_gndout_Splice",
+      "label": "sp_gndout-Splice",
       "width": 150,
       "cavities": [
         {
@@ -248,12 +459,12 @@
         }
       ],
       "schematicPosition": {
-        "x": 3220,
-        "y": 810
+        "x": 1080,
+        "y": 1386
       },
       "layoutPosition": {
-        "x": 3220,
-        "y": 810
+        "x": 1080,
+        "y": 1386
       }
     },
     {
@@ -269,1131 +480,439 @@
       ],
       "schematicPosition": {
         "x": 1080,
-        "y": 2160
+        "y": 1656
       },
       "layoutPosition": {
         "x": 1080,
-        "y": 2160
+        "y": 1656
       }
-    },
+    }
+  ],
+  "wires": [],
+  "cables": [
     {
-      "id": "dm_sp_gndout_eng_Splice",
-      "label": "sp_gndout_eng-Splice",
-      "width": 150,
-      "cavities": [
+      "id": "cab_fl",
+      "partId": "cab_2c_sh",
+      "schematicPosition": {
+        "x": 2872,
+        "y": 0
+      },
+      "cores": [
         {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
+          "id": "cab_fl_p",
+          "color": "White",
+          "twistedWithNext": true,
+          "source": {
+            "id": "wss_fl",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "vrc_f_inl",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_fl_n",
+          "color": "Green",
+          "source": {
+            "id": "wss_fl",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "vrc_f_inl",
+            "handle": "c2"
+          }
         }
       ],
-      "schematicPosition": {
-        "x": 3860,
-        "y": 270
-      },
-      "layoutPosition": {
-        "x": 3860,
-        "y": 270
+      "shield": {
+        "id": "cab_fl_sh",
+        "color": "Shield",
+        "source": {
+          "id": "vrc_f_inl",
+          "handle": "shell"
+        }
       }
     },
     {
-      "id": "dm_sp_5v_eng_Splice",
-      "label": "sp_5v_eng-Splice",
-      "width": 150,
-      "cavities": [
+      "id": "cab_fr",
+      "partId": "cab_2c_sh",
+      "schematicPosition": {
+        "x": 2872,
+        "y": 344
+      },
+      "cores": [
         {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
+          "id": "cab_fr_p",
+          "color": "White",
+          "twistedWithNext": true,
+          "source": {
+            "id": "wss_fr",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "vrc_f_inr",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_fr_n",
+          "color": "Green",
+          "source": {
+            "id": "wss_fr",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "vrc_f_inr",
+            "handle": "c2"
+          }
         }
       ],
+      "shield": {
+        "id": "cab_fr_sh",
+        "color": "Shield",
+        "source": {
+          "id": "vrc_f_inr",
+          "handle": "shell"
+        }
+      }
+    },
+    {
+      "id": "cab_rl",
+      "partId": "cab_2c_sh",
       "schematicPosition": {
-        "x": 3860,
-        "y": 0
+        "x": 648,
+        "y": 1155
       },
-      "layoutPosition": {
-        "x": 3860,
-        "y": 0
+      "cores": [
+        {
+          "id": "cab_rl_p",
+          "color": "White",
+          "twistedWithNext": true,
+          "source": {
+            "id": "wss_rl",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "vrc_r_inl",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_rl_n",
+          "color": "Green",
+          "source": {
+            "id": "wss_rl",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "vrc_r_inl",
+            "handle": "c2"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_rl_sh",
+        "color": "Shield",
+        "source": {
+          "id": "vrc_r_inl",
+          "handle": "shell"
+        }
+      }
+    },
+    {
+      "id": "cab_rr",
+      "partId": "cab_2c_sh",
+      "schematicPosition": {
+        "x": 648,
+        "y": 1500
+      },
+      "cores": [
+        {
+          "id": "cab_rr_p",
+          "color": "White",
+          "twistedWithNext": true,
+          "source": {
+            "id": "wss_rr",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "vrc_r_inr",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_rr_n",
+          "color": "Green",
+          "source": {
+            "id": "wss_rr",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "vrc_r_inr",
+            "handle": "c2"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_rr_sh",
+        "color": "Shield",
+        "source": {
+          "id": "vrc_r_inr",
+          "handle": "shell"
+        }
+      }
+    },
+    {
+      "id": "cab_fout",
+      "partId": "cab_4c_sh",
+      "schematicPosition": {
+        "x": 1234,
+        "y": 961
+      },
+      "cores": [
+        {
+          "id": "cab_fout_5v",
+          "color": "Orange",
+          "source": {
+            "id": "dm_sp_5v_Splice",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "vrc_f_out",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_fout_gnd",
+          "color": "Black",
+          "source": {
+            "id": "dm_sp_gndout_Splice",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "vrc_f_out",
+            "handle": "c2"
+          }
+        },
+        {
+          "id": "cab_fout_l",
+          "color": "Blue",
+          "source": {
+            "id": "vrc_f_out",
+            "handle": "c3"
+          },
+          "target": {
+            "id": "dm_ecu_a_a23",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_fout_r",
+          "color": "Violet",
+          "source": {
+            "id": "vrc_f_out",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "dm_ecu_b_b21",
+            "handle": "c1"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_fout_sh",
+        "color": "Shield",
+        "source": {
+          "id": "vrc_f_out",
+          "handle": "shell"
+        },
+        "target": {
+          "id": "dm_sp_shield_cab_Splice",
+          "handle": "c1"
+        }
+      }
+    },
+    {
+      "id": "cab_rout",
+      "partId": "cab_4c_sh",
+      "schematicPosition": {
+        "x": 1280,
+        "y": 1897
+      },
+      "cores": [
+        {
+          "id": "cab_rout_5v",
+          "color": "Orange",
+          "source": {
+            "id": "dm_sp_5v_Splice",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "vrc_r_out",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_rout_gnd",
+          "color": "Black",
+          "source": {
+            "id": "dm_sp_gndout_Splice",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "vrc_r_out",
+            "handle": "c2"
+          }
+        },
+        {
+          "id": "cab_rout_l",
+          "color": "Blue",
+          "source": {
+            "id": "vrc_r_out",
+            "handle": "c3"
+          },
+          "target": {
+            "id": "dm_ecu_b_b20",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_rout_r",
+          "color": "Violet",
+          "source": {
+            "id": "vrc_r_out",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "dm_ecu_b_b19",
+            "handle": "c1"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_rout_sh",
+        "color": "Shield",
+        "source": {
+          "id": "vrc_r_out",
+          "handle": "shell"
+        },
+        "target": {
+          "id": "dm_sp_shield_cab_Splice",
+          "handle": "c1"
+        }
       }
     }
   ],
-  "splices": [
+  "schematicNotes": [
     {
-      "id": "sp_shield_rear",
-      "layoutPosition": {
+      "id": "n_scope",
+      "width": 390,
+      "schematicPosition": {
         "x": 0,
-        "y": 304
+        "y": -1400
       },
+      "text": "WHEEL SPEED - STANDALONE HARNESS. No bulkhead connectors anywhere in this drawing (6.31). Sensor cables cross the firewall through a rubber grommet so each screen stays unbroken. Front pair rides the fenders with loom C; rear pair rides with the fuel pump and level sender."
+    },
+    {
+      "id": "n_shield",
+      "width": 390,
+      "color": "Orange",
       "schematicPosition": {
         "x": 0,
-        "y": 304
-      }
-    }
-  ],
-  "terminals": [
-    {
-      "id": "vr1_ch1p",
-      "type": "Loose",
-      "signal": "VR-Cond Front CH1 VR+ (FL)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 540
+        "y": -1140
       },
+      "text": "SHIELD, END TO END, GROUNDED ONCE (6.30). Sensor end floats. Screen lands 360 deg on the IN connector shell, crosses the metal enclosure, leaves on the OUT connector shell, and grounds only at the ECU shield pin via the cabin shield splice."
+    },
+    {
+      "id": "n_iso",
+      "width": 390,
+      "color": "Red",
       "schematicPosition": {
-        "x": 1080,
-        "y": 540
-      }
+        "x": 0,
+        "y": -880
+      },
+      "text": "TWO ISOLATION RULES. 1. The enclosure must not touch chassis - it is part of the screen, not a ground. Nylon mounting hardware. 2. The PCB must not touch the enclosure - nylon standoffs. The board grounds through the output cable only. If either is bonded, the screen picks up supply-ground noise and it will read as a flaky sensor."
     },
     {
-      "id": "vr1_ch1n",
-      "type": "Loose",
-      "signal": "VR-Cond Front CH1 VR- (FL)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 270
-      },
+      "id": "n_coat",
+      "width": 390,
+      "color": "Red",
       "schematicPosition": {
-        "x": 1080,
-        "y": 270
-      }
-    },
-    {
-      "id": "vr1_ch2p",
-      "type": "Loose",
-      "signal": "VR-Cond Front CH2 VR+ (FR)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 1080
+        "x": 0,
+        "y": -620
       },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 1080
-      }
-    },
-    {
-      "id": "vr1_ch2n",
-      "type": "Loose",
-      "signal": "VR-Cond Front CH2 VR- (FR)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 810
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 810
-      }
-    },
-    {
-      "id": "vr1_out1",
-      "type": "Loose",
-      "signal": "VR-Cond Front OUT1 (FL)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 1620
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 1620
-      }
-    },
-    {
-      "id": "vr1_out2",
-      "type": "Loose",
-      "signal": "VR-Cond Front OUT2 (FR)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 1890
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 1890
-      }
-    },
-    {
-      "id": "vr2_ch1p",
-      "type": "Loose",
-      "signal": "VR-Cond Rear CH1 VR+ (RL)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 2970
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 2970
-      }
-    },
-    {
-      "id": "vr2_ch1n",
-      "type": "Loose",
-      "signal": "VR-Cond Rear CH1 VR- (RL)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 2700
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 2700
-      }
-    },
-    {
-      "id": "vr2_ch2p",
-      "type": "Loose",
-      "signal": "VR-Cond Rear CH2 VR+ (RR)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 3510
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 3510
-      }
-    },
-    {
-      "id": "vr2_ch2n",
-      "type": "Loose",
-      "signal": "VR-Cond Rear CH2 VR- (RR)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 3240
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 3240
-      }
-    },
-    {
-      "id": "vr2_out1",
-      "type": "Loose",
-      "signal": "VR-Cond Rear OUT1 (RL)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 4050
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 4050
-      }
-    },
-    {
-      "id": "vr2_out2",
-      "type": "Loose",
-      "signal": "VR-Cond Rear OUT2 (RR)",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 4320
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 4320
-      }
-    },
-    {
-      "id": "vr1_5v",
-      "type": "Loose",
-      "signal": "VR-Cond Front 5V",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 0
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 0
-      }
-    },
-    {
-      "id": "vr1_gnd",
-      "type": "Loose",
-      "signal": "VR-Cond Front GND",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 1350
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 1350
-      }
-    },
-    {
-      "id": "vr2_5v",
-      "type": "Loose",
-      "signal": "VR-Cond Rear 5V",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 2430
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 2430
-      }
-    },
-    {
-      "id": "vr2_gnd",
-      "type": "Loose",
-      "signal": "VR-Cond Rear GND",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 3780
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 3780
-      }
-    }
-  ],
-  "wires": [
-    {
-      "id": "w50",
-      "color": "White",
-      "source": {
-        "id": "wss_fl",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "vr1_ch1n",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "w58",
-      "color": "White",
-      "source": {
-        "id": "wss_rl",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "vr2_ch1n",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "w61",
-      "color": "White",
-      "source": {
-        "id": "wss_rr",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "vr2_ch2n",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "w_flp",
-      "color": "White",
-      "source": {
-        "id": "wss_fl",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "vr1_ch1p",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "w_rlp",
-      "color": "White",
-      "source": {
-        "id": "wss_rl",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "vr2_ch1p",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "w_rrp",
-      "color": "White",
-      "source": {
-        "id": "wss_rr",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "vr2_ch2p",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "w51_e",
-      "source": {
-        "id": "dm_bh_a_eng_c10",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "vr1_out1",
-        "handle": "Terminal"
-      },
-      "color": "Green"
-    },
-    {
-      "id": "w53_c",
-      "source": {
-        "id": "wss_fr",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "dm_bh_a_fw_c11",
-        "handle": "c1"
-      },
-      "color": "White"
-    },
-    {
-      "id": "w53_e",
-      "source": {
-        "id": "dm_bh_a_eng_c11",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "vr1_ch2n",
-        "handle": "Terminal"
-      },
-      "color": "White"
-    },
-    {
-      "id": "w54_e",
-      "source": {
-        "id": "dm_bh_a_eng_c12",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "vr1_out2",
-        "handle": "Terminal"
-      },
-      "color": "Green"
-    },
-    {
-      "id": "w59",
-      "color": "Green",
-      "source": {
-        "id": "vr2_out1",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "dm_ecu_b_b20",
-        "handle": "c1"
-      }
-    },
-    {
-      "id": "w62",
-      "color": "Green",
-      "source": {
-        "id": "vr2_out2",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "dm_ecu_b_b19",
-        "handle": "c1"
-      }
-    },
-    {
-      "id": "w_frp_c",
-      "source": {
-        "id": "wss_fr",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "dm_bh_a_fw_c28",
-        "handle": "c1"
-      },
-      "color": "White"
-    },
-    {
-      "id": "w_frp_e",
-      "source": {
-        "id": "dm_bh_a_eng_c28",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "vr1_ch2p",
-        "handle": "Terminal"
-      },
-      "color": "White"
-    },
-    {
-      "id": "w_drain_rear",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "source": {
-        "id": "sp_shield_rear",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "dm_sp_shield_cab_Splice",
-        "handle": "c1"
-      }
-    },
-    {
-      "id": "w56",
-      "color": "Black",
-      "source": {
-        "id": "vr1_gnd",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "dm_sp_gndout_eng_Splice",
-        "handle": "c1"
-      },
-      "stripeColor": "White"
-    },
-    {
-      "id": "w64",
-      "color": "Black",
-      "source": {
-        "id": "vr2_gnd",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "dm_sp_gndout_eng_Splice",
-        "handle": "c1"
-      },
-      "stripeColor": "White"
-    },
-    {
-      "id": "w_vr1_5v_from_ecu5v",
-      "color": "Orange",
-      "source": {
-        "id": "vr1_5v",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "dm_sp_5v_eng_Splice",
-        "handle": "c1"
-      }
-    },
-    {
-      "id": "w_vr2_5v_from_ecu5v",
-      "color": "Orange",
-      "source": {
-        "id": "vr2_5v",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "dm_sp_5v_eng_Splice",
-        "handle": "c1"
-      }
+      "text": "MASK THE THREE CONNECTOR LANDINGS BEFORE POWDER COAT. The binder shielding plate needs bare metal against the panel. A coated landing silently breaks the screen."
     }
   ],
   "connectorParts": [
     {
-      "id": "cp_ss34a",
-      "url": "https://www.te.com/en/product-4-1437290-1.html",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "4-1437290-1",
-      "description": "SUPERSEAL 1.0 34-way receptacle COD 2 - Link XtremeX loom A",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_ss10"
-        }
-      ],
-      "numberOfCavities": 34
-    },
-    {
-      "id": "cp_ss34b",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "4-1437290-0",
-      "description": "SUPERSEAL 1.0 34-way receptacle COD 1 - Link XtremeX loom B",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_ss10"
-        }
-      ],
-      "numberOfCavities": 34
-    },
-    {
-      "id": "cp_dtm6s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-6S",
-      "description": "DTM 6-way socket - ECU comms harness side",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dtm6wl",
-          "contactPartId": "ct_dtm_skt"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_dtm4s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-4S",
-      "description": "DTM 4-way socket - CAN-Lambda harness side",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_dtm_skt"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_etb",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "D 261 205 358-01",
-      "description": "6-pin Bosch Motorsport ETB mate",
-      "manufacturer": "Bosch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_toy2p",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-11062",
-      "description": "2-pin sensor pigtail",
+      "id": "cp_abs2",
+      "partNumber": "(OEM 2-way)",
       "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_mp150_3",
       "gender": "Female",
       "hasShell": false,
-      "partNumber": "12110293",
-      "description": "MP150.2 3-way sealed sensor",
-      "manufacturer": "Aptiv",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_mp150_skt"
-        }
-      ],
-      "numberOfCavities": 3
+      "numberOfCavities": 2,
+      "description": "OEM ST185 ABS wheel speed sensor connector. Two wires only - the sensor has no shield pin, which is why the screen floats at this end. Confirm the exact housing against the car before ordering mates."
     },
     {
-      "id": "cp_knock",
+      "id": "cp_m8_4f",
+      "partNumber": "86 6618 1121 00004",
+      "manufacturer": "binder",
       "gender": "Female",
-      "hasShell": false,
-      "partNumber": "1 928 403 874",
-      "description": "2-way knock sensor connector",
-      "manufacturer": "Bosch (Compact 1.1a)",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_bdk28"
-        }
-      ],
-      "numberOfCavities": 2
+      "hasShell": true,
+      "numberOfCavities": 4,
+      "description": "M8 4-way female panel mount, shieldable, THT, IP67, M10x0.75 front fastened. 4.0 A, 50 V AC / 60 V DC, -40 to +85 C. Screen terminates on the shielding plate against the panel, so the panel must be bare metal. VR conditioner enclosure inputs."
     },
     {
-      "id": "cp_mp150_2",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "12052641",
-      "description": "2-way sealed connector - fuel level sender / 2nd (condenser) fan motor",
-      "manufacturer": "Aptiv (Delphi) Metri-Pack 150",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_mp150_skt"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_dt2s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DT06-2S",
-      "description": "DT 2-way socket plug",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dt2wl",
-          "contactPartId": "ct_dtm_skt"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_camkit",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(kit-supplied pigtail)",
-      "description": "3-pin pigtail supplied with the RacerX MR2 Cherry Hall cam-position sensor kit - generic placeholder, confirm exact housing against kit contents",
-      "manufacturer": "RacerX",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "cp_dt3s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DT06-3S",
-      "description": "DT 3-way socket plug",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dt3wl",
-          "contactPartId": "ct_dtm_skt"
-        }
-      ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "cp_gt150",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "13519047",
-      "description": "GT150 3-way flex-fuel sensor",
-      "manufacturer": "Aptiv",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_gt150_skt"
-        }
-      ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "cp_inj",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "15419715",
-      "description": "GT150 2-way gray USCAR/EV6 injector",
-      "manufacturer": "Aptiv",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_gt150_skt"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_cop",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-11885",
-      "description": "4-way 1ZZ COP connector",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_mrs_ctrl",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-10897",
-      "description": "MR-S EHPS pump - control connector housing (pigtail 82998-12440). Toyota generic connector family (Sumitomo TS090 / Yazaki 090-II series) - NOT a TE Connectivity part (checked TE's site, no match; corrected from an earlier draft that mislabeled this as 90980-10942, which is actually the small ignition-enable connector). 6 physical cavities, only 2 used: pin 2 = speed-pulse output (SPD Out), pin 6 = relay-request output (grounds k_eps coil 85 when pump wants power). Confirmed directly from Daniel's photos of the pump (DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector 'B') - both pin numbers are legible in the source image. Housing/pigtail part numbers sourced from a separate DIYElectricCar thread ('Power Steering using Toyota MR2 EHPS pump') - cross-check against the pump in hand before ordering. - OWNED (Daniel confirmed on hand)",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_csb3io",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(none - PCB screw terminals)",
-      "description": "CAN Switch Board V3 screw-terminal I/O. No harness-side connector spec'd yet; cavity layout follows the CSB3 channel list (power, CAN, cabin-temp + cruise-ladder analog inputs, 8 switch inputs). Analog 3-8, low-side outs 1-4 and rotary/mode inputs remain spare/unused on this build. Verify against board silkscreen before crimping.",
-      "manufacturer": "ECUMaster",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 14
-    },
-    {
-      "id": "cp_acamp",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(unspecified - OEM ST185 AC amplifier)",
-      "description": "AC amplifier control connector. Pin count/layout inferred from 'AC amplifier input signals.txt' (IGN tach out, coolant temp switch, cabin outlet air temp, AC core thermocouple, trinary hi/lo pressure switch, ECU ACT kill input). Verify against the ST185 electrical diagram before crimping.",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 7
-    },
-    {
-      "id": "cp_oem_block_2",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(OEM block, 2-way)",
-      "description": "Generic OEM block - 2 cavities. No invented OEM pinout.",
-      "manufacturer": "OEM / unspecified",
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_oem_block_5",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(OEM block, 5-way)",
-      "description": "Generic OEM block - 5 cavities (relay / cruise stalk).",
-      "manufacturer": "OEM / unspecified",
-      "numberOfCavities": 5
-    },
-    {
-      "id": "cp_brz_aps6",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "Sumitomo TS 025 6-way",
-      "description": "Subaru BRZ / Toyota-family e-throttle pedal. Looking into connector, locking tab at top: 1 VC2, 2 GND2, 3 VPA2, 4 VC1, 5 GND1, 6 VPA1.",
-      "manufacturer": "Sumitomo / Subaru",
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_hdp_a_fw",
-      "partNumber": "HDP24-24-47PE-L017",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 47-way receptacle, PIN, E seal, reverse ring flange - bulkhead A, firewall side"
-    },
-    {
-      "id": "cp_hdp_a_eng",
-      "partNumber": "HDP26-24-47SE-L015",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 47-way plug, SOCKET, E seal, threaded - bulkhead A, engine side"
-    },
-    {
-      "id": "cp_hdp_b_fw",
-      "partNumber": "HDP24-24-21PN",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 21-way receptacle, PIN, N seal - bulkhead B, firewall side"
-    },
-    {
-      "id": "cp_hdp_b_eng",
-      "partNumber": "HDP26-24-21SN",
-      "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 21-way plug, SOCKET, N seal - bulkhead B, engine side"
-    },
-    {
-      "id": "pl_sz4",
-      "partNumber": "114019-ZZ",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 4, white"
-    },
-    {
-      "id": "pl_sz8",
-      "partNumber": "114018-ZZ",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 8, white"
-    },
-    {
-      "id": "pl_sz12",
-      "partNumber": "0413-214-1205",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 12, yellow"
-    },
-    {
-      "id": "pl_sz16",
-      "partNumber": "114017",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 16, white"
-    },
-    {
-      "id": "pl_sz20",
-      "partNumber": "0413-204-2005",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 20, red"
-    },
-    {
-      "id": "cp_vss_oval3",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "generic oval 3-pin socket (PN TBD)",
-      "description": "Generic oval 3-pin plug with socket contacts - mate for gearbox 3-wire 12V Toyota VSS. PN TBD. Cavity map (PWR/SIG/GND) TBD - do not invent which oval cavity is which.",
-      "manufacturer": "TBD / generic",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 3
+      "id": "cp_m8_4m",
+      "partNumber": "86 6319 1121 00004",
+      "manufacturer": "binder",
+      "gender": "Male",
+      "hasShell": true,
+      "numberOfCavities": 4,
+      "description": "M8 4-way male panel mount, shieldable, THT, IP67, front fastened. Same ratings as the female. Male so a sensor lead cannot be plugged into the output by mistake."
     }
   ],
-  "contactParts": [
+  "cableParts": [
     {
-      "id": "ct_ss10",
-      "url": "https://www.te.com/en/product-4-1437290-1.html",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 18
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "partNumber": "3-1447221-4",
-      "description": "SUPERSEAL 1.0 gold socket 0.5mm2 / 20 AWG",
-      "manufacturer": "TE Connectivity"
-    },
-    {
-      "id": "ct_dtm_skt",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "partNumber": "0462-201-16141",
-      "description": "DT/DTM size 16 socket 16-20 AWG",
-      "manufacturer": "Deutsch (TE Connectivity)"
-    },
-    {
-      "id": "ct_toy_ts",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "TS 2.3 (090 type)",
-      "description": "Toyota/Denso 2.3mm female sensor/coil terminal",
-      "manufacturer": "Sumitomo"
-    },
-    {
-      "id": "ct_mp150_skt",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "12084200",
-      "description": "Metri-Pack 150.2 female 22-20 AWG",
-      "manufacturer": "Aptiv"
-    },
-    {
-      "id": "ct_bdk28",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "BDK 2.8",
-      "description": "BDK 2.8mm female terminal, 0.5-1.0mm2, for Bosch Compact 1.1a knock sensor connector",
-      "manufacturer": "Bosch"
-    },
-    {
-      "id": "ct_gt150_skt",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "15326427",
-      "description": "GT150 series gold female terminal (flex-fuel sensor connector)",
-      "manufacturer": "Aptiv (Delphi)"
-    },
-    {
-      "id": "ct_generic_skt",
-      "type": "Crimp",
-      "gender": "Socket",
+      "id": "cab_2c_sh",
       "partNumber": "(generic)",
-      "description": "Generic machined pin socket for header-style / unspecified board connectors - confirm before ordering",
-      "manufacturer": "Generic"
+      "manufacturer": "generic",
+      "description": "2-core twisted, overall foil + braid screen, 22 AWG. Sensor to conditioner. Cable is generic in BOMs per 6.24.",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White"
+        },
+        {
+          "id": "k2",
+          "color": "Green"
+        }
+      ]
     },
     {
-      "id": "wbsN09tiboovqanDL_xZA",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "(kit socket)",
-      "description": "Gold socket supplied with D 261 205 358-01 ETB kit",
-      "manufacturer": "Bosch"
-    },
-    {
-      "id": "ct_hdp4p",
-      "partNumber": "0460-204-0490",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 4 solid PIN, 6 AWG, 100 A - OWNED (qty 5)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 6
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 6
-      }
-    },
-    {
-      "id": "ct_hdp4s",
-      "partNumber": "0462-203-04141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 4 solid SOCKET, 6 AWG, 100 A - OWNED (qty 9)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 6
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 6
-      }
-    },
-    {
-      "id": "ct_hdp8p",
-      "partNumber": "0460-204-08141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 8 solid PIN, 8-10 AWG, 60 A - OWNED (qty 5)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 8
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 10
-      }
-    },
-    {
-      "id": "ct_hdp8s",
-      "partNumber": "0462-203-08141",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 8 solid SOCKET, 8-10 AWG, 60 A - OWNED (qty 9)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 8
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 10
-      }
-    },
-    {
-      "id": "ct_hdp12p",
-      "partNumber": "0460-220-1231",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 12 solid PIN, 12-14 AWG, 25 A - OWNED (qty 20)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 12
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 14
-      }
-    },
-    {
-      "id": "ct_hdp12s",
-      "partNumber": "0462-210-1231",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 12 solid SOCKET, 12-14 AWG, 25 A - OWNED (qty 20)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 12
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 14
-      }
-    },
-    {
-      "id": "ct_hdp16p",
-      "partNumber": "0460-202-1631",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 16 solid PIN, 16-20 AWG, 13 A - OWNED (qty 130)",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
-    },
-    {
-      "id": "ct_hdp16s",
-      "partNumber": "0462-201-1631",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 16 solid SOCKET, 16-20 AWG, 13 A - OWNED (qty 118)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
-    },
-    {
-      "id": "ct_hdp20p",
-      "partNumber": "0460-202-2031",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY",
-      "gender": "Pin",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
-    },
-    {
-      "id": "ct_hdp20s",
-      "partNumber": "0462-201-2031",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
-    }
-  ],
-  "bootParts": [
-    {
-      "id": "boot_breakout",
-      "manufacturer": "TE Connectivity / Raychem",
-      "partNumber": "TBD - moulded breakout boot",
-      "description": "Adhesive-lined moulded transition boot at each loom breakout. Size per branch OD - confirm dash number before ordering."
+      "id": "cab_4c_sh",
+      "partNumber": "(generic)",
+      "manufacturer": "generic",
+      "description": "4-core, overall foil + braid screen, 22 AWG. Conditioner to ECU. Cable is generic in BOMs per 6.24.",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Orange"
+        },
+        {
+          "id": "k2",
+          "color": "Black"
+        },
+        {
+          "id": "k3",
+          "color": "Blue"
+        },
+        {
+          "id": "k4",
+          "color": "Violet"
+        }
+      ]
     }
   ]
 }

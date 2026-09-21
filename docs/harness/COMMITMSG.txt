@@ -1,30 +1,58 @@
-Add v0.9 lint, fix dangling parts, normalize striped wire colours
+Rebuild WheelSpeed per 6.30/6.31/6.35, fix four live-pin-flagged-dead bugs
 
-lint_v09.py checks every rebuild file against the schema rules we have
-learned by rejection, so an upload stops being a guess. It found two real
-bugs that would also have made the BOMs come up short:
+ST185-WheelSpeed was wrong against Daniel's own rules in four ways and is
+rebuilt from scratch in gen_wheelspeed.py:
 
-- A-ECU referenced resistor parts rp_1k8 / rp_470 / rp_10k that were never
-  defined. The cam pull-up, fuel-level pull-up and cruise-ladder pull-up
-  had no part behind them.
-- EngineRoom-C referenced connector part cp_mrs_ctrl, also undefined.
+- wss_fr routed through bulkhead A pins 11/28. 6.31 says no bulkhead for any
+  wheel VR sensor. Gone - the cables cross the firewall through a grommet, so
+  each screen stays unbroken.
+- FL and FR outputs dead-ended at bulkhead dummies and never reached an ECU
+  pin at all. They now land A23 and B21.
+- The two conditioners were bare ring terminals. They are now the 6.30
+  enclosures: 2x shielded input, 1x shielded output, screen carried 360 deg on
+  the connector shells across a metal box, PCB isolated.
+- The file had no cables, so no shields existed in it. Six shielded cables now.
 
-Both added in fix_missing_parts.py. Lint is now clean on all eight files.
+6.35 added to the plan: binder M8 4-way shieldable panel mounts, 86 6618 1121
+00004 female for the inputs and 86 6319 1121 00004 male for the output, on a
+diecast box of at least 50x50x30 internal. Male on the output so a sensor lead
+cannot be plugged into it. Two isolation rules written down because both fail
+silently as "flaky sensor": the box must not touch chassis, and the PCB must
+not touch the box. Mask the connector landings before powder coat.
 
-split_colors() in layout_633.py: v0.9 has no striped wire colours, so
-"Green/Yellow" is a hard reject. 24 wires across five files carried one.
-The stripe now goes in its own stripeColor field.
+6.36 added: pin assignment stays grouped by function, wiring-table row order is
+free, and the mating connector always follows the same order.
 
-layout_633.py also places resistors, following each one's locationId so it
-sits beside the part it is fitted at, and drops stale wiringTable positions.
+Four pins were marked notConnected while carrying a signal. All four are the
+same bug - a live pin flagged dead:
 
-verify_rebuild.py still reports MATCH - 267 wires in, 259 out, every
-connection accounted for.
+- ecu_com C4 is CAN 1 Low (green). Per XTREMEX-IO-TABLE.html the comms port is
+  1 GND, 2 unused, 3 CAN 1 High, 4 CAN 1 Low, 5 RS232 TX, 6 RS232 RX. All six
+  relabelled from the source table.
+- csb3io c4 is the CSB3 CANL screw terminal, with wc_l_csb already landing on
+  it. c3/c4 now read CANH/CANL.
+- acamp declared 7 cavities in its part but modelled 1.
+- mrs_ctrl declared 6 but modelled 3, and the two pins we actually know - pin 2
+  speed out, pin 6 relay request - sat in slots 1 and 3, so the drawing
+  disagreed with the pin numbers in its own signal text. Rebuilt in pin order
+  and w_mrs_e re-pointed to the right cavity.
 
-Uploaded: ST185-EngineRoom-C = nz65, ST185-A-ECU = oOXY.
+Tooling, because all four of the above were found by machine and not by eye:
 
-Known open: ecu_com cavity C4 carries CAN L (w_can_bh1_c) but is still
-marked notConnected. Needs fixing before the CAN file is trusted.
+- lint_v09.py now reads cable cores and shields, checks the part invariants
+  (cavity count, shell iff hasShell), catches notConnected sitting next to a
+  signal or a conductor, and allows a shell only on vrc_* per 6.35.
+- verify_rebuild.py now counts cable cores as conductors. It previously read
+  only `wires`, so it would have called this entire rebuild a data loss while
+  the replacement cores sat right there unexamined. EXPECT_GONE entries now
+  name the conductor that took each connection over, and the verifier fails if
+  a named replacement does not exist - a mapping, not an excuse.
+
+verify_rebuild.py: 267 conductors before, 262 after, MATCH.
+lint_v09.py: clean on all eight files.
+
+Body manual pages supplied by Daniel for the 6.34 length work are still to be
+committed - the folder grant was not answered, so they are in the session only.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

@@ -106,7 +106,6 @@
         },
         {
           "id": "c3",
-          "notConnected": true,
           "signal": "IGF (to signal file)"
         },
         {
@@ -137,7 +136,6 @@
         },
         {
           "id": "c3",
-          "notConnected": true,
           "signal": "IGF (to signal file)"
         },
         {
@@ -168,7 +166,6 @@
         },
         {
           "id": "c3",
-          "notConnected": true,
           "signal": "IGF (to signal file)"
         },
         {
@@ -199,7 +196,6 @@
         },
         {
           "id": "c3",
-          "notConnected": true,
           "signal": "IGF (to signal file)"
         },
         {
@@ -557,7 +553,6 @@
         },
         {
           "id": "c3",
-          "notConnected": true,
           "signal": "Signal (to signal file)"
         }
       ],
@@ -584,7 +579,6 @@
         },
         {
           "id": "c3",
-          "notConnected": true,
           "signal": "CAN H (signal file)"
         },
         {

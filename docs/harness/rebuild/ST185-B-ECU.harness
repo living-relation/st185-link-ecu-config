@@ -351,8 +351,7 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "VPA2 APS-S",
-          "notConnected": true
+          "signal": "VPA2 APS-S"
         },
         {
           "id": "c4",
@@ -367,8 +366,7 @@
         {
           "id": "c6",
           "designation": "6",
-          "signal": "VPA1 APS-M",
-          "notConnected": true
+          "signal": "VPA1 APS-M"
         }
       ],
       "layoutPosition": {

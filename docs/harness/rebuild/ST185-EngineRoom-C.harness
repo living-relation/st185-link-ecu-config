@@ -408,7 +408,7 @@
       },
       "target": {
         "id": "mrs_ctrl",
-        "handle": "c1"
+        "handle": "c2"
       },
       "color": "Pink"
     },
@@ -661,8 +661,7 @@
         {
           "id": "c5",
           "designation": "87a",
-          "signal": "not used",
-          "notConnected": true
+          "signal": "not used"
         }
       ],
       "partId": "cp_rly_hcr150"
@@ -703,8 +702,7 @@
         {
           "id": "c5",
           "designation": "87a",
-          "signal": "not used",
-          "notConnected": true
+          "signal": "not used"
         }
       ],
       "partId": "cp_rly_cod"
@@ -745,8 +743,7 @@
         {
           "id": "c5",
           "designation": "87a",
-          "signal": "not used",
-          "notConnected": true
+          "signal": "not used"
         }
       ],
       "partId": "cp_rly_cod"
@@ -841,18 +838,17 @@
       "width": 270,
       "schematicPosition": {
         "x": 3860,
-        "y": 2162
+        "y": 2264
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 2162
+        "y": 2264
       },
       "cavities": [
         {
           "id": "c2",
           "designation": "2",
-          "signal": "30A CDS FAN out - DO NOT REFEED, fan moved to k_fan2",
-          "notConnected": true
+          "signal": "30A CDS FAN out - DO NOT REFEED, fan moved to k_fan2"
         },
         {
           "id": "c3",
@@ -862,14 +858,12 @@
         {
           "id": "c4",
           "designation": "4",
-          "signal": "RDI FAN out - DO NOT REFEED, fan moved to k_fan",
-          "notConnected": true
+          "signal": "RDI FAN out - DO NOT REFEED, fan moved to k_fan"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Engine main relay 87 - DO NOT REFEED, Link EFI in Power",
-          "notConnected": true
+          "signal": "Engine main relay 87 - DO NOT REFEED, Link EFI in Power"
         },
         {
           "id": "c6",
@@ -885,11 +879,11 @@
       "width": 270,
       "schematicPosition": {
         "x": 3860,
-        "y": 2568
+        "y": 2670
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 2568
+        "y": 2670
       },
       "cavities": [
         {
@@ -900,14 +894,12 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "Headlight relay coil - unused, PMU switches the lamps",
-          "notConnected": true
+          "signal": "Headlight relay coil - unused, PMU switches the lamps"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Rad fan relay coil - unused after fan move",
-          "notConnected": true
+          "signal": "Rad fan relay coil - unused after fan move"
         },
         {
           "id": "c6",
@@ -923,11 +915,11 @@
       "width": 270,
       "schematicPosition": {
         "x": 3860,
-        "y": 2940
+        "y": 3042
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 2940
+        "y": 3042
       },
       "cavities": [
         {
@@ -948,20 +940,17 @@
         {
           "id": "c5",
           "designation": "5",
-          "signal": "AM1 pass-through (starting p.48). Do not PMU-feed. Restored at IE1-10",
-          "notConnected": true
+          "signal": "AM1 pass-through (starting p.48). Do not PMU-feed. Restored at IE1-10"
         },
         {
           "id": "c6",
           "designation": "6",
-          "signal": "AM2 / engine-main related. Do not PMU-feed. Restored at IE1-17",
-          "notConnected": true
+          "signal": "AM2 / engine-main related. Do not PMU-feed. Restored at IE1-17"
         },
         {
           "id": "c8",
           "designation": "8",
-          "signal": "15A EFI - unused, Link EFI relay in cabin",
-          "notConnected": true
+          "signal": "15A EFI - unused, Link EFI relay in cabin"
         }
       ],
       "partId": "cp_oem"
@@ -1102,11 +1091,11 @@
       "width": 270,
       "schematicPosition": {
         "x": 3860,
-        "y": 1048
+        "y": 1150
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 1048
+        "y": 1150
       },
       "cavities": [
         {
@@ -1128,11 +1117,11 @@
       "width": 270,
       "schematicPosition": {
         "x": 3860,
-        "y": 744
+        "y": 846
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 744
+        "y": 846
       },
       "cavities": [
         {
@@ -1143,8 +1132,7 @@
         {
           "id": "c2",
           "designation": "2",
-          "signal": "unused",
-          "notConnected": true
+          "signal": "unused"
         }
       ],
       "partId": "cp_mrs_en"
@@ -1229,17 +1217,33 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "SPD Out (speed-pulse output)",
-          "designation": "2"
-        },
-        {
-          "id": "c2",
+          "designation": "1",
           "notConnected": true
         },
         {
+          "id": "c2",
+          "designation": "2",
+          "signal": "SPD Out - speed-pulse output"
+        },
+        {
           "id": "c3",
-          "signal": "Relay request out -> k_eps coil 85. Pump grounds this pin itself when ready to draw power (confirmed from Daniel's photos of the pump, DIY Electric Car Forums 'MR2 Gen3 Power Steering Help' diagram, connector B pin 6).",
-          "designation": "6"
+          "designation": "3",
+          "notConnected": true
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "notConnected": true
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "notConnected": true
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "Relay request out. Not wired - 6.16 moved the EPS relay trigger to the ECU (Ign 6 / B12). Kept for reference."
         }
       ],
       "layoutPosition": {
@@ -1284,11 +1288,11 @@
       ],
       "schematicPosition": {
         "x": 3860,
-        "y": 1892
+        "y": 1994
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 1892
+        "y": 1994
       }
     },
     {
@@ -1408,11 +1412,11 @@
       "width": 210,
       "schematicPosition": {
         "x": 3860,
-        "y": 1622
+        "y": 1724
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 1622
+        "y": 1724
       }
     },
     {
@@ -1436,11 +1440,11 @@
       "width": 210,
       "schematicPosition": {
         "x": 3860,
-        "y": 1352
+        "y": 1454
       },
       "layoutPosition": {
         "x": 3860,
-        "y": 1352
+        "y": 1454
       }
     },
     {
