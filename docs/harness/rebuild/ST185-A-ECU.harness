@@ -521,7 +521,7 @@
     {
       "id": "k_efi",
       "label": "EFI Main Relay",
-      "partId": "cp_oem_block_5",
+      "partId": "cp_rly_nod",
       "cavities": [
         {
           "id": "c1",
@@ -561,7 +561,7 @@
     {
       "id": "k_etb",
       "label": "ETB Power Relay",
-      "partId": "cp_oem_block_5",
+      "partId": "cp_rly_nor",
       "cavities": [
         {
           "id": "c1",
@@ -601,7 +601,7 @@
     {
       "id": "k_fp",
       "label": "Fuel Pump Relay",
-      "partId": "cp_oem_block_5",
+      "partId": "cp_rly_nod",
       "cavities": [
         {
           "id": "c1",
@@ -641,7 +641,7 @@
     {
       "id": "k_fan",
       "label": "Radiator Fan Relay (on/off)",
-      "partId": "cp_oem_block_5",
+      "partId": "cp_rly_cod",
       "cavities": [
         {
           "id": "c1",
@@ -681,7 +681,7 @@
     {
       "id": "k_str",
       "label": "Start Relay",
-      "partId": "cp_oem_block_5",
+      "partId": "cp_rly_nor",
       "cavities": [
         {
           "id": "c1",
@@ -721,7 +721,7 @@
     {
       "id": "k_fan2",
       "label": "Condenser Fan Relay (on/off)",
-      "partId": "cp_oem_block_5",
+      "partId": "cp_rly_cod",
       "cavities": [
         {
           "id": "c1",
@@ -789,12 +789,12 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12V (ignition switched) \u2014 wired on ST185-B-ECU",
+          "signal": "+12V (ignition switched) — wired on ST185-B-ECU",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c2",
-          "signal": "GND \u2014 wired on ST185-B-ECU",
+          "signal": "GND — wired on ST185-B-ECU",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -809,12 +809,12 @@
         },
         {
           "id": "c5",
-          "signal": "CAN H \u2014 wired on ST185-CAN",
+          "signal": "CAN H — wired on ST185-CAN",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c6",
-          "signal": "CAN L \u2014 wired on ST185-CAN",
+          "signal": "CAN L — wired on ST185-CAN",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -899,22 +899,22 @@
         },
         {
           "id": "c23",
-          "signal": "L1 low-side (spare \u2014 oil lamp channel TBD, see open items)",
+          "signal": "L1 low-side (spare — oil lamp channel TBD, see open items)",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c24",
-          "signal": "L2 low-side (spare \u2014 oil lamp channel TBD, see open items)",
+          "signal": "L2 low-side (spare — oil lamp channel TBD, see open items)",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c25",
-          "signal": "L3 low-side (spare \u2014 oil lamp channel TBD, see open items)",
+          "signal": "L3 low-side (spare — oil lamp channel TBD, see open items)",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c26",
-          "signal": "L4 low-side (spare \u2014 oil lamp channel TBD, see open items)",
+          "signal": "L4 low-side (spare — oil lamp channel TBD, see open items)",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -1137,8 +1137,8 @@
         {
           "id": "c11",
           "designation": "11",
-          "contactPartId": "ct_hdp20p",
-          "signal": "ABS Wheel Speed FR SIG-"
+          "signal": "ABS Wheel Speed FR SIG-",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c12",
@@ -1239,8 +1239,8 @@
         {
           "id": "c28",
           "designation": "28",
-          "contactPartId": "ct_hdp20p",
-          "signal": "ABS Wheel Speed FR SIG+"
+          "signal": "ABS Wheel Speed FR SIG+",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c29",
@@ -1263,108 +1263,96 @@
         {
           "id": "c32",
           "designation": "32",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Trig 2 cam signal (after 1.8k pull-up)"
+          "signal": "Trig 2 cam signal (after 1.8k pull-up)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c33",
           "designation": "33",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Crank VR screen (6.32 dedicated shield pin)"
+          "signal": "Crank VR screen (6.32 dedicated shield pin)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c34",
           "designation": "34",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Cam Hall screen (6.32 dedicated shield pin)"
+          "signal": "Cam Hall screen (6.32 dedicated shield pin)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c35",
           "designation": "35",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Knock 1 screen (6.32 dedicated shield pin)"
+          "signal": "Knock 1 screen (6.32 dedicated shield pin)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c36",
           "designation": "36",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c37",
           "designation": "37",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c38",
           "designation": "38",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c39",
           "designation": "39",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c40",
           "designation": "40",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c41",
           "designation": "41",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c42",
           "designation": "42",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c43",
           "designation": "43",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c44",
           "designation": "44",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c45",
           "designation": "45",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c46",
           "designation": "46",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c47",
           "designation": "47",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         }
@@ -1387,30 +1375,26 @@
         {
           "id": "c1",
           "designation": "1",
-          "contactPartId": "ct_hdp12p",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
           "designation": "2",
-          "contactPartId": "ct_hdp12p",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c3",
           "designation": "3",
-          "contactPartId": "ct_hdp12p",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c4",
           "designation": "4",
-          "contactPartId": "ct_hdp12p",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c5",
@@ -1470,55 +1454,47 @@
           "id": "c14",
           "designation": "14",
           "contactPartId": "ct_hdp16p",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "spare (size 16)"
         },
         {
           "id": "c15",
           "designation": "15",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c16",
           "designation": "16",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c17",
           "designation": "17",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c18",
           "designation": "18",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c19",
           "designation": "19",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c20",
           "designation": "20",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c21",
           "designation": "21",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         }
@@ -2453,12 +2429,6 @@
       "description": "HDP20 sz24 21-way receptacle, PIN, N seal - bulkhead B, firewall side"
     },
     {
-      "id": "pl_sz12",
-      "partNumber": "0413-214-1205",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 12, yellow"
-    },
-    {
       "id": "pl_sz16",
       "partNumber": "114017",
       "manufacturer": "TE DEUTSCH",
@@ -2491,6 +2461,24 @@
           "cavityPlugPartId": "pl_sz20"
         }
       ]
+    },
+    {
+      "id": "cp_rly_nod",
+      "partNumber": "5-1393292-8",
+      "manufacturer": "TE Connectivity",
+      "description": "Micro ISO relay V23074, 1 Form A make, 12V coil, 25A, diode suppressed"
+    },
+    {
+      "id": "cp_rly_nor",
+      "partNumber": "4-1904124-2",
+      "manufacturer": "TE Connectivity",
+      "description": "Micro ISO relay V23074, 1 Form A make, 12V coil 119R, 25A - suppression UNVERIFIED"
+    },
+    {
+      "id": "cp_rly_cod",
+      "partNumber": "6-1419137-4",
+      "manufacturer": "TE Connectivity",
+      "description": "Micro ISO relay V23074, 1 Form C changeover, 12V coil, 25A, diode suppressed"
     }
   ],
   "contactParts": [

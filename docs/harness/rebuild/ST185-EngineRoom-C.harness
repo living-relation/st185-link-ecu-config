@@ -767,7 +767,7 @@
           "signal": "heavy DC +"
         }
       ],
-      "partId": "cp_rl_red"
+      "partId": "cp_rl_red_fw"
     },
     {
       "id": "rl_pos_eng",
@@ -788,7 +788,7 @@
           "signal": "heavy DC +"
         }
       ],
-      "partId": "cp_rl_red"
+      "partId": "cp_rl_red_eng"
     },
     {
       "id": "rl_neg_fw",
@@ -809,7 +809,7 @@
           "signal": "heavy DC -"
         }
       ],
-      "partId": "cp_rl_blk"
+      "partId": "cp_rl_blk_fw"
     },
     {
       "id": "rl_neg_eng",
@@ -830,7 +830,7 @@
           "signal": "heavy DC -"
         }
       ],
-      "partId": "cp_rl_blk"
+      "partId": "cp_rl_blk_eng"
     },
     {
       "id": "oem_jb2_2a",
@@ -1618,21 +1618,9 @@
     },
     {
       "id": "cp_rly_cod",
-      "partNumber": "V23074 / 5-1393292-8",
+      "partNumber": "6-1419137-4",
       "manufacturer": "TE Connectivity",
-      "description": "Micro ISO diode-suppressed relay, fan coils."
-    },
-    {
-      "id": "cp_rl_red",
-      "partNumber": "RL00571-35 red shell",
-      "manufacturer": "Amphenol",
-      "description": "RADLOK 5.7mm RADSOK bulkhead pair, red, 2 AWG / 25 mm2"
-    },
-    {
-      "id": "cp_rl_blk",
-      "partNumber": "RL00571-35 black shell",
-      "manufacturer": "Amphenol",
-      "description": "RADLOK 5.7mm RADSOK bulkhead pair, black, 2 AWG / 25 mm2"
+      "description": "Micro ISO relay V23074, 1 Form C changeover, 12V coil, 25A, diode suppressed"
     },
     {
       "id": "cp_oem",
@@ -1672,6 +1660,30 @@
       "hasShell": false,
       "numberOfCavities": 6,
       "description": "MR-S EHPS pump control connector B, pigtail 82998-12440. Sumitomo TS090 / Yazaki 090-II family, not a TE part. 6 cavities, 2 used: pin 2 speed-pulse out, pin 6 relay-request out. Confirm against the pump in hand before ordering."
+    },
+    {
+      "id": "cp_rl_red_fw",
+      "partNumber": "TBD RADLOK red, cabin side",
+      "manufacturer": "Amphenol",
+      "description": "RADLOK 5.7 battery positive, CABIN side of the firewall. UNVERIFIED - Amphenol lists RL00571-16/-25 (16/25 mm2), no -35, and it is a cable-mount receptacle, not a bulkhead pair. 2 AWG = 33.6 mm2 will not fit 25 mm2. Pick the real part before ordering."
+    },
+    {
+      "id": "cp_rl_red_eng",
+      "partNumber": "TBD RADLOK red, engine side",
+      "manufacturer": "Amphenol",
+      "description": "RADLOK 5.7 battery positive, ENGINE side, mates the cabin half. UNVERIFIED - Amphenol lists RL00571-16/-25 (16/25 mm2), no -35, and it is a cable-mount receptacle, not a bulkhead pair. 2 AWG = 33.6 mm2 will not fit 25 mm2. Pick the real part before ordering."
+    },
+    {
+      "id": "cp_rl_blk_fw",
+      "partNumber": "TBD RADLOK black, cabin side",
+      "manufacturer": "Amphenol",
+      "description": "RADLOK 5.7 battery negative, CABIN side of the firewall. UNVERIFIED - Amphenol lists RL00571-16/-25 (16/25 mm2), no -35, and it is a cable-mount receptacle, not a bulkhead pair. 2 AWG = 33.6 mm2 will not fit 25 mm2. Pick the real part before ordering."
+    },
+    {
+      "id": "cp_rl_blk_eng",
+      "partNumber": "TBD RADLOK black, engine side",
+      "manufacturer": "Amphenol",
+      "description": "RADLOK 5.7 battery negative, ENGINE side, mates the cabin half. UNVERIFIED - Amphenol lists RL00571-16/-25 (16/25 mm2), no -35, and it is a cable-mount receptacle, not a bulkhead pair. 2 AWG = 33.6 mm2 will not fit 25 mm2. Pick the real part before ordering."
     }
   ],
   "groupParts": [

@@ -99,8 +99,17 @@ for tag, fn in F:
     d = load(fn)
     ix, cav, g = node_index(d), cavity_info(d), bundle_graph(d)
     ccache = {}
-    for w in d.get("wires", []):
-        rec = {"File": tag, "Wire": w["id"]}
+    # WheelSpeed has no `wires` at all - every conductor is a cable core or a
+    # cable shield - so a loop over `wires` alone dropped the whole loom off the
+    # build list, and three A-engine shielded runs with it. Fixed 2026-09-22.
+    conds = [(w, "") for w in d.get("wires", [])]
+    for cb in d.get("cables", []):
+        for co in cb.get("cores", []):
+            conds.append((co, cb["id"]))
+        if cb.get("shield"):
+            conds.append((cb["shield"], cb["id"]))
+    for w, cable in conds:
+        rec = {"File": tag, "Wire": w["id"], "Cable": cable}
         for end, key in (("From","source"), ("To","target")):
             e = w.get(key) or {}
             nid, h = e.get("id",""), e.get("handle","")
@@ -130,7 +139,7 @@ for tag, fn in F:
         rec["Done"] = ""
         rows.append(rec)
 
-COLS = ["File","Wire","From","From pin","From signal","From terminal",
+COLS = ["File","Wire","Cable","From","From pin","From signal","From terminal",
         "To","To pin","To signal","To terminal",
         "Colour","AWG","Route","Est mm","Splice","Done"]
 

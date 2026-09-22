@@ -424,7 +424,7 @@
     },
     {
       "id": "csb3io",
-      "label": "ECUMaster CSB3 (power feed \u2014 full I/O on ST185-A-ECU)",
+      "label": "ECUMaster CSB3 (power feed — full I/O on ST185-A-ECU)",
       "cavities": [
         {
           "id": "c1",
@@ -515,8 +515,8 @@
         {
           "id": "c11",
           "designation": "11",
-          "contactPartId": "ct_hdp20p",
-          "signal": "ABS Wheel Speed FR SIG-"
+          "signal": "ABS Wheel Speed FR SIG-",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c12",
@@ -617,8 +617,8 @@
         {
           "id": "c28",
           "designation": "28",
-          "contactPartId": "ct_hdp20p",
-          "signal": "ABS Wheel Speed FR SIG+"
+          "signal": "ABS Wheel Speed FR SIG+",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c29",
@@ -641,108 +641,96 @@
         {
           "id": "c32",
           "designation": "32",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Trig 2 cam signal (after 1.8k pull-up)"
+          "signal": "Trig 2 cam signal (after 1.8k pull-up)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c33",
           "designation": "33",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Crank VR screen (6.32 dedicated shield pin)"
+          "signal": "Crank VR screen (6.32 dedicated shield pin)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c34",
           "designation": "34",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Cam Hall screen (6.32 dedicated shield pin)"
+          "signal": "Cam Hall screen (6.32 dedicated shield pin)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c35",
           "designation": "35",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Knock 1 screen (6.32 dedicated shield pin)"
+          "signal": "Knock 1 screen (6.32 dedicated shield pin)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c36",
           "designation": "36",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c37",
           "designation": "37",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c38",
           "designation": "38",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c39",
           "designation": "39",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c40",
           "designation": "40",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c41",
           "designation": "41",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c42",
           "designation": "42",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c43",
           "designation": "43",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c44",
           "designation": "44",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c45",
           "designation": "45",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c46",
           "designation": "46",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c47",
           "designation": "47",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         }
@@ -765,30 +753,26 @@
         {
           "id": "c1",
           "designation": "1",
-          "contactPartId": "ct_hdp12p",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
           "designation": "2",
-          "contactPartId": "ct_hdp12p",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c3",
           "designation": "3",
-          "contactPartId": "ct_hdp12p",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c4",
           "designation": "4",
-          "contactPartId": "ct_hdp12p",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c5",
@@ -853,49 +837,42 @@
         {
           "id": "c15",
           "designation": "15",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c16",
           "designation": "16",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c17",
           "designation": "17",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c18",
           "designation": "18",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c19",
           "designation": "19",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c20",
           "designation": "20",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c21",
           "designation": "21",
-          "contactPartId": "ct_hdp16p",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         }
@@ -997,7 +974,7 @@
     },
     {
       "id": "rl_pos_fw",
-      "partId": "cp_rl_red",
+      "partId": "cp_rl_red_fw",
       "label": "RADLOK + - firewall",
       "width": 210,
       "schematicPosition": {
@@ -1018,7 +995,7 @@
     },
     {
       "id": "rl_neg_fw",
-      "partId": "cp_rl_blk",
+      "partId": "cp_rl_blk_fw",
       "label": "RADLOK - - firewall",
       "width": 210,
       "schematicPosition": {
@@ -1867,43 +1844,25 @@
       "id": "cp_rly_nod",
       "partNumber": "5-1393292-8",
       "manufacturer": "TE Connectivity",
-      "description": "V23074-A2001-A402 Micro ISO relay, 1 form A (NO), diode coil suppression, 12VDC coil, 30A @23C / 25A @85C - OWNED (qty 2)"
+      "description": "Micro ISO relay V23074, 1 Form A make, 12V coil, 25A, diode suppressed"
     },
     {
       "id": "cp_rly_nor",
       "partNumber": "4-1904124-2",
       "manufacturer": "TE Connectivity",
-      "description": "V23074-A1001-A402 Micro ISO relay, 1 form A (NO), 680R resistor coil suppression, 12VDC coil, 30A @23C / 25A @85C - OWNED (qty 2)"
+      "description": "Micro ISO relay V23074, 1 Form A make, 12V coil 119R, 25A - suppression UNVERIFIED"
     },
     {
       "id": "cp_rly_cod",
       "partNumber": "6-1419137-4",
       "manufacturer": "TE Connectivity",
-      "description": "V23074-A2001-A403 Micro ISO relay, 1 form C (CO), diode coil suppression, 12VDC coil, 30A @23C / 25A @85C - OWNED (qty 2). Used as NO; 87a left empty"
+      "description": "Micro ISO relay V23074, 1 Form C changeover, 12V coil, 25A, diode suppressed"
     },
     {
       "id": "cp_fusebox",
       "partNumber": "2141029-1",
       "manufacturer": "TE Connectivity",
       "description": "Fuse box assembly, hard wired - OWNED (qty 1). Cover 2141033-1, bracket 2141031-1 also owned"
-    },
-    {
-      "id": "cp_rl_red",
-      "partNumber": "RL00571-35 red shell",
-      "manufacturer": "Amphenol",
-      "description": "RADLOK 5.7mm RADSOK bulkhead pair, red, 2 AWG / 25 mm2 - battery positive firewall pass-through"
-    },
-    {
-      "id": "cp_rl_blk",
-      "partNumber": "RL00571-35 black shell",
-      "manufacturer": "Amphenol",
-      "description": "RADLOK 5.7mm RADSOK bulkhead pair, black, 2 AWG / 25 mm2 - battery negative firewall pass-through"
-    },
-    {
-      "id": "pl_sz12",
-      "partNumber": "0413-214-1205",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 12, yellow"
     },
     {
       "id": "pl_sz16",
@@ -1916,6 +1875,18 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
+    },
+    {
+      "id": "cp_rl_red_fw",
+      "partNumber": "TBD RADLOK red, cabin side",
+      "manufacturer": "Amphenol",
+      "description": "RADLOK 5.7 battery positive, CABIN side of the firewall. UNVERIFIED - Amphenol lists RL00571-16/-25 (16/25 mm2), no -35, and it is a cable-mount receptacle, not a bulkhead pair. 2 AWG = 33.6 mm2 will not fit 25 mm2. Pick the real part before ordering."
+    },
+    {
+      "id": "cp_rl_blk_fw",
+      "partNumber": "TBD RADLOK black, cabin side",
+      "manufacturer": "Amphenol",
+      "description": "RADLOK 5.7 battery negative, CABIN side of the firewall. UNVERIFIED - Amphenol lists RL00571-16/-25 (16/25 mm2), no -35, and it is a cable-mount receptacle, not a bulkhead pair. 2 AWG = 33.6 mm2 will not fit 25 mm2. Pick the real part before ordering."
     }
   ],
   "contactParts": [

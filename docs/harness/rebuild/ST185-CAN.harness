@@ -51,7 +51,7 @@
     },
     {
       "id": "csb3io",
-      "label": "ECUMaster CSB3 (CAN feed \u2014 full I/O on ST185-A-ECU)",
+      "label": "ECUMaster CSB3 (CAN feed — full I/O on ST185-A-ECU)",
       "width": 210,
       "cavities": [
         {
@@ -174,8 +174,8 @@
         {
           "id": "c11",
           "designation": "11",
-          "contactPartId": "ct_hdp20p",
-          "signal": "ABS Wheel Speed FR SIG-"
+          "signal": "ABS Wheel Speed FR SIG-",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c12",
@@ -276,8 +276,8 @@
         {
           "id": "c28",
           "designation": "28",
-          "contactPartId": "ct_hdp20p",
-          "signal": "ABS Wheel Speed FR SIG+"
+          "signal": "ABS Wheel Speed FR SIG+",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c29",
@@ -300,108 +300,96 @@
         {
           "id": "c32",
           "designation": "32",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Trig 2 cam signal (after 1.8k pull-up)"
+          "signal": "Trig 2 cam signal (after 1.8k pull-up)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c33",
           "designation": "33",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Crank VR screen (6.32 dedicated shield pin)"
+          "signal": "Crank VR screen (6.32 dedicated shield pin)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c34",
           "designation": "34",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Cam Hall screen (6.32 dedicated shield pin)"
+          "signal": "Cam Hall screen (6.32 dedicated shield pin)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c35",
           "designation": "35",
-          "contactPartId": "ct_hdp20p",
-          "signal": "Knock 1 screen (6.32 dedicated shield pin)"
+          "signal": "Knock 1 screen (6.32 dedicated shield pin)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c36",
           "designation": "36",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c37",
           "designation": "37",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c38",
           "designation": "38",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c39",
           "designation": "39",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c40",
           "designation": "40",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c41",
           "designation": "41",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c42",
           "designation": "42",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c43",
           "designation": "43",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c44",
           "designation": "44",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c45",
           "designation": "45",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c46",
           "designation": "46",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c47",
           "designation": "47",
-          "contactPartId": "ct_hdp20p",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         }
@@ -478,20 +466,20 @@
         {
           "id": "c10",
           "designation": "10",
-          "contactPartId": "ct_hdp20s",
-          "signal": "ECU-A A23"
+          "signal": "ECU-A A23",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c11",
           "designation": "11",
-          "contactPartId": "ct_hdp20s",
-          "signal": "ABS Wheel Speed FR SIG-"
+          "signal": "ABS Wheel Speed FR SIG-",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c12",
           "designation": "12",
-          "contactPartId": "ct_hdp20s",
-          "signal": "ECU-B B21"
+          "signal": "ECU-B B21",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c13",
@@ -586,8 +574,8 @@
         {
           "id": "c28",
           "designation": "28",
-          "contactPartId": "ct_hdp20s",
-          "signal": "ABS Wheel Speed FR SIG+"
+          "signal": "ABS Wheel Speed FR SIG+",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c29",
@@ -610,8 +598,8 @@
         {
           "id": "c32",
           "designation": "32",
-          "contactPartId": "ct_hdp20s",
-          "signal": "Trig 2 cam signal (after 1.8k pull-up)"
+          "signal": "Trig 2 cam signal (after 1.8k pull-up)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c33",
@@ -634,84 +622,72 @@
         {
           "id": "c36",
           "designation": "36",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c37",
           "designation": "37",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c38",
           "designation": "38",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c39",
           "designation": "39",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c40",
           "designation": "40",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c41",
           "designation": "41",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c42",
           "designation": "42",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c43",
           "designation": "43",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c44",
           "designation": "44",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c45",
           "designation": "45",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c46",
           "designation": "46",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c47",
           "designation": "47",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         }

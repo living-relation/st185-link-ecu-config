@@ -658,20 +658,20 @@
         {
           "id": "c10",
           "designation": "10",
-          "contactPartId": "ct_hdp20s",
-          "signal": "ECU-A A23"
+          "signal": "ECU-A A23",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c11",
           "designation": "11",
-          "contactPartId": "ct_hdp20s",
-          "signal": "ABS Wheel Speed FR SIG-"
+          "signal": "ABS Wheel Speed FR SIG-",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c12",
           "designation": "12",
-          "contactPartId": "ct_hdp20s",
-          "signal": "ECU-B B21"
+          "signal": "ECU-B B21",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c13",
@@ -766,8 +766,8 @@
         {
           "id": "c28",
           "designation": "28",
-          "contactPartId": "ct_hdp20s",
-          "signal": "ABS Wheel Speed FR SIG+"
+          "signal": "ABS Wheel Speed FR SIG+",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c29",
@@ -790,8 +790,8 @@
         {
           "id": "c32",
           "designation": "32",
-          "contactPartId": "ct_hdp20s",
-          "signal": "Trig 2 cam signal (after 1.8k pull-up)"
+          "signal": "Trig 2 cam signal (after 1.8k pull-up)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c33",
@@ -814,84 +814,72 @@
         {
           "id": "c36",
           "designation": "36",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c37",
           "designation": "37",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c38",
           "designation": "38",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c39",
           "designation": "39",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c40",
           "designation": "40",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c41",
           "designation": "41",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c42",
           "designation": "42",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c43",
           "designation": "43",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c44",
           "designation": "44",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c45",
           "designation": "45",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c46",
           "designation": "46",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c47",
           "designation": "47",
-          "contactPartId": "ct_hdp20s",
           "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         }
@@ -914,30 +902,26 @@
         {
           "id": "c1",
           "designation": "1",
-          "contactPartId": "ct_hdp12s",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
           "designation": "2",
-          "contactPartId": "ct_hdp12s",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c3",
           "designation": "3",
-          "contactPartId": "ct_hdp12s",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c4",
           "designation": "4",
-          "contactPartId": "ct_hdp12s",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c5",
@@ -990,61 +974,54 @@
         {
           "id": "c13",
           "designation": "13",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A27"
+          "signal": "ECU-A A27",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c14",
           "designation": "14",
-          "contactPartId": "ct_hdp16s",
-          "signal": "MRS EPS pump logic enable (F13 7.5A, ignition-switched)"
+          "signal": "MRS EPS pump logic enable (F13 7.5A, ignition-switched)",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c15",
           "designation": "15",
-          "contactPartId": "ct_hdp16s",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c16",
           "designation": "16",
-          "contactPartId": "ct_hdp16s",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c17",
           "designation": "17",
-          "contactPartId": "ct_hdp16s",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c18",
           "designation": "18",
-          "contactPartId": "ct_hdp16s",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c19",
           "designation": "19",
-          "contactPartId": "ct_hdp16s",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c20",
           "designation": "20",
-          "contactPartId": "ct_hdp16s",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c21",
           "designation": "21",
-          "contactPartId": "ct_hdp16s",
           "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         }
@@ -1060,7 +1037,7 @@
     },
     {
       "id": "rl_pos_eng",
-      "partId": "cp_rl_red",
+      "partId": "cp_rl_red_eng",
       "label": "RADLOK + - engine side",
       "width": 210,
       "schematicPosition": {
@@ -1081,7 +1058,7 @@
     },
     {
       "id": "rl_neg_eng",
-      "partId": "cp_rl_blk",
+      "partId": "cp_rl_blk_eng",
       "label": "RADLOK - - engine side",
       "width": 210,
       "schematicPosition": {
@@ -1896,18 +1873,6 @@
       "description": "HDP20 sz24 21-way plug, SOCKET, N seal - bulkhead B, engine side"
     },
     {
-      "id": "cp_rl_red",
-      "partNumber": "RL00571-35 red shell",
-      "manufacturer": "Amphenol",
-      "description": "RADLOK 5.7mm RADSOK bulkhead pair, red, 2 AWG / 25 mm2 - battery positive firewall pass-through"
-    },
-    {
-      "id": "cp_rl_blk",
-      "partNumber": "RL00571-35 black shell",
-      "manufacturer": "Amphenol",
-      "description": "RADLOK 5.7mm RADSOK bulkhead pair, black, 2 AWG / 25 mm2 - battery negative firewall pass-through"
-    },
-    {
       "id": "pl_sz12",
       "partNumber": "0413-214-1205",
       "manufacturer": "TE DEUTSCH",
@@ -1924,6 +1889,18 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
+    },
+    {
+      "id": "cp_rl_red_eng",
+      "partNumber": "TBD RADLOK red, engine side",
+      "manufacturer": "Amphenol",
+      "description": "RADLOK 5.7 battery positive, ENGINE side, mates the cabin half. UNVERIFIED - Amphenol lists RL00571-16/-25 (16/25 mm2), no -35, and it is a cable-mount receptacle, not a bulkhead pair. 2 AWG = 33.6 mm2 will not fit 25 mm2. Pick the real part before ordering."
+    },
+    {
+      "id": "cp_rl_blk_eng",
+      "partNumber": "TBD RADLOK black, engine side",
+      "manufacturer": "Amphenol",
+      "description": "RADLOK 5.7 battery negative, ENGINE side, mates the cabin half. UNVERIFIED - Amphenol lists RL00571-16/-25 (16/25 mm2), no -35, and it is a cable-mount receptacle, not a bulkhead pair. 2 AWG = 33.6 mm2 will not fit 25 mm2. Pick the real part before ordering."
     }
   ],
   "contactParts": [

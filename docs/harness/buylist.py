@@ -50,27 +50,61 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
 ]
 
 req, meta = collections.Counter(), {}
-seen_conn = set()
+# A connector that appears in more than one loom is ONE physical part - bulkhead A
+# lives in three files, bulkhead B in two.  Count the first copy and skip the rest.
+# The dedupe keys on the component id, so it is only safe while the same id always
+# means the same item: SHARED below records what got skipped, and the run aborts if
+# two files disagree about a shared connector's part or contact stamps.
+copies = collections.OrderedDict()   # connector id -> [(loom, connector, parts), ...]
 for f in F:
+    loom = f[6:-8]
     d = json.load(open(os.path.join(R,f), encoding="utf-8"))
     parts = {}
     for k in [x for x in d if x.endswith("Parts")]:
         for q in d[k]: parts[q["id"]] = q
     for c in d.get("connectors", []):
-        if c["id"] in seen_conn: continue
-        seen_conn.add(c["id"])
-        if c.get("partId") and c["partId"] in parts:
-            q = parts[c["partId"]]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
-        for cv in c.get("cavities", []):
-            for key in ("contactPartId","cavityPlugPartId"):
-                pid = cv.get(key)
-                if pid and pid in parts:
-                    q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
-    for coll, pk in (("resistors","resistorParts"),("branchPoints","bootParts")):
+        copies.setdefault(c["id"], []).append((loom, c, parts))
+    for coll in ("resistors", "diodes", "terminals", "branchPoints"):
         for n in d.get(coll, []):
             pid = n.get("partId") or n.get("bootPartId")
             if pid and pid in parts:
                 q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+
+def stamp(c, parts):
+    """What this copy claims: its part number and every contact/plug it names.
+    A cross-reference dummy claims nothing, so it stamps empty and never wins."""
+    pn = (parts.get(c.get("partId")) or {}).get("partNumber")
+    ct = tuple(sorted((cv["id"], cv.get("contactPartId"), cv.get("cavityPlugPartId"))
+                      for cv in c.get("cavities", []) if cv.get("contactPartId")
+                      or cv.get("cavityPlugPartId")))
+    return pn, ct
+
+SHARED, clash = {}, []
+for cid, cc in copies.items():
+    stamps = [(loom, stamp(c, p)) for loom, c, p in cc]
+    real = [s for s in stamps if s[1][0] or s[1][1]]   # copies that claim a part
+    if not real:
+        continue                                        # partless everywhere - nothing to buy
+    # every copy that claims anything must claim the SAME thing, or the dedupe
+    # below would silently pick one of two different items.
+    for loom, s in real[1:]:
+        if s != real[0][1]:
+            clash.append("%s: %s disagrees with %s" % (cid, loom, real[0][0]))
+    if len(cc) > 1:
+        SHARED[cid] = ([loom for loom, _, _ in cc], real[0][0])
+    # count the copy that actually carries the parts, not whichever file came first
+    loom0 = real[0][0]
+    c, parts = next((c, p) for l, c, p in cc if l == loom0)
+    if c.get("partId") and c["partId"] in parts:
+        q = parts[c["partId"]]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+    for cv in c.get("cavities", []):
+        for key in ("contactPartId","cavityPlugPartId"):
+            pid = cv.get(key)
+            if pid and pid in parts:
+                q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+if clash:
+    raise SystemExit("Shared connectors are inconsistent between looms:\n  "
+                     + "\n  ".join(clash))
 
 # things that are modelled as blocks but are not parts anyone buys for this harness:
 # OEM items already on the car, or device-side terminals that come with the device.
@@ -88,8 +122,9 @@ for pn, mf, desc, n, have in EXTRA:
 
 out = ["# Harness — need to buy",
  "",
- "Generated from `ST185-Signal.harness`, `ST185-Power.harness`, `ST185-CAN.harness` and `ST185-EngineRoom-C.harness` on %s."
+ "Generated on %s from the eight `.harness` files in `docs/harness/rebuild/`:"
  % datetime.date.today().isoformat(),
+ "`" + "`, `".join(x[6:-8] for x in F) + "`.",
  "On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.",
  "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",
  "", "## Short — order these", "",
@@ -104,6 +139,14 @@ out += ["", "## Not purchased — already on the car, or supplied with the devic
         "| Modelled as | What it really is | Qty |", "|---|---|---:|"]
 for r in sorted(rows_na):
     out.append("| `%s` | %s | %d |" % (r[0], r[2], r[3]))
+out += ["", "## Counted once, drawn more than once", "",
+ "These connectors are one physical part that appears on several drawings — a bulkhead",
+ "has to be on both looms that pass through it. The buy list counts the first copy and",
+ "skips the rest. If you add up the parts lists off the individual drawings by hand you",
+ "will over-order these; use this list, not the drawings.", "",
+ "| Connector | One part, drawn on | Counted in |", "|---|---|---|"]
+for cid, (looms, owner) in sorted(SHARED.items()):
+    out.append("| `%s` | %s | %s |" % (cid, ", ".join(looms), owner))
 out += ["", "## Still unspecified", "",
  "- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. "
  "Needs a real dash number per branch OD once the trunk diameters are known.",

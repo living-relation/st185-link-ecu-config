@@ -1,6 +1,7 @@
 # Harness — need to buy
 
-Generated from `ST185-Signal.harness`, `ST185-Power.harness`, `ST185-CAN.harness` and `ST185-EngineRoom-C.harness` on 2026-09-22.
+Generated on 2026-09-22 from the eight `.harness` files in `docs/harness/rebuild/`:
+`A-ECU`, `A-engine`, `B-ECU`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
@@ -8,10 +9,10 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `0462-201-2031` | TE DEUTSCH | Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY | 68 | 0 | **68** |
-| `0460-202-2031` | TE DEUTSCH | Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY | 42 | 0 | **42** |
-| `0413-204-2005` | TE DEUTSCH | Sealing plug, size 20, red | 31 | 0 | **31** |
-| `114017` | TE DEUTSCH | Sealing plug, size 16, white | 16 | 0 | **16** |
+| `0462-201-2031` | TE DEUTSCH | Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY | 51 | 0 | **51** |
+| `0413-204-2005` | TE DEUTSCH | Sealing plug, size 20, red | 42 | 0 | **42** |
+| `0460-202-2031` | TE DEUTSCH | Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY | 24 | 0 | **24** |
+| `114017` | TE DEUTSCH | Sealing plug, size 16, white | 24 | 0 | **24** |
 | `Jump lugs 2 AWG / 1/0` | generic | Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post | 8 | 0 | **8** |
 | `1-1904045-6` | TE Connectivity | Micro ISO relay connector kit (harness-side socket for the V23074 relays) | 6 | 0 | **6** |
 | `DT06-2S` | Deutsch (TE) | DT 2-way plug, harness side of the ABS wheel speed sensor. Mat | 7 | 2 | **5** |
@@ -24,8 +25,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `Micro ISO relays x4` | TE Connectivity | HEAD LH, HEAD RH, RTR, device-hold and alternator-excite relays replacing the PMU (plan 6.48). 8 owned, 6 already assigned to k_efi/k_etb/k_fp/k_fan/k_fan2/k_str. | 4 | 0 | **4** |
 | `120R 1/4W` | Generic | 120 ohm CAN bus termination | 2 | 0 | **2** |
 | `86 6319 1121 00004` | binder | M8 4-way male panel mount, shieldable, THT, IP67, front fasten | 2 | 0 | **2** |
-| `RL00571-35 black shell` | Amphenol | RADLOK 5.7mm RADSOK bulkhead pair, black, 2 AWG / 25 mm2 - bat | 2 | 0 | **2** |
-| `RL00571-35 red shell` | Amphenol | RADLOK 5.7mm RADSOK bulkhead pair, red, 2 AWG / 25 mm2 - batte | 2 | 0 | **2** |
 | `16-04477` | TE DEUTSCH | Gasket 24SZ | 6 | 4 | **2** |
 | `1.8k 1/4W` | generic | Cam Hall pull-up, +8V (A6) to Trig 2 (A9) | 1 | 0 | **1** |
 | `10k 1/4W` | generic | Cruise ladder pull-up to +5V (A32) | 1 | 0 | **1** |
@@ -51,11 +50,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
-| `0413-214-1205` | Sealing plug, size 12, yellow | 8 | 10 |
-| `0460-202-1631` | Size 16 solid PIN, 16-20 AWG, 13 A | 22 | 130 |
-| `0460-220-1231` | Size 12 solid PIN, 12-14 AWG, 25 A | 4 | 20 |
-| `0462-201-1631` | Size 16 solid SOCKET, 16-20 AWG, 13 A | 22 | 118 |
-| `0462-210-1231` | Size 12 solid SOCKET, 12-14 AWG, 25 A | 4 | 20 |
+| `0460-202-1631` | Size 16 solid PIN, 16-20 AWG, 13 A | 15 | 130 |
+| `0462-201-1631` | Size 16 solid SOCKET, 16-20 AWG, 13 A | 13 | 118 |
 | `1 928 403 874` | 2-way knock sensor connector | 1 | 1 |
 | `13519047` | GT150 3-way flex-fuel sensor | 1 | 1 |
 | `2141029-1` | Fuse box assembly, hard wired | 1 | 1 |
@@ -63,6 +59,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `2428-011-2405` | Backshell 24SZ right-angle L017 | 1 | 1 |
 | `4-1437290-0` | SUPERSEAL 1.0 34-way receptacle COD 1 - Link XtremeX loom B | 1 | 2 |
 | `4-1437290-1` | SUPERSEAL 1.0 34-way receptacle COD 2 - Link XtremeX loom A | 1 | 2 |
+| `4-1904124-2` | Micro ISO relay V23074, 1 Form A make, 12V coil 119R, 25A - su | 2 | 2 |
+| `5-1393292-8` | Micro ISO relay V23074, 1 Form A make, 12V coil, 25A, diode su | 2 | 2 |
+| `6-1419137-4` | Micro ISO relay V23074, 1 Form C changeover, 12V coil, 25A, di | 2 | 2 |
 | `90980-10897` | MR-S EHPS pump control connector B, pigtail 82998-12440. Sumit | 1 | 1 |
 | `90980-10942` | MR-S EHPS pump enable. OWNED. | 1 | 1 |
 | `90980-12068` | MR-S EHPS pump main power. OWNED. | 1 | 1 |
@@ -84,10 +83,68 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 |---|---|---:|
 | `(OEM block)` | Generic OEM block - only the pins this harness lands. No inven | 8 |
 | `(OEM block, 2-way)` | Generic OEM block - 2 cavities. No invented OEM pinout. | 5 |
-| `(OEM block, 5-way)` | Generic OEM block - 5 cavities (relay / cruise stalk). | 7 |
+| `(OEM block, 5-way)` | Generic OEM block - 5 cavities (relay / cruise stalk). | 1 |
+| `(generic indicator LED - type TBD)` | Cluster warning indicator LED. Colour, package and forward cur | 6 |
 | `(glove-box body block - 2nd fuse block + relays)` | Replaces the ECUMaster PMU-16, dropped 2026-09-22 (plan 6.46-6 | 1 |
 | `(kit-supplied pigtail)` | 3-pin pigtail supplied with the RacerX MR2 Cherry Hall cam-pos | 1 |
 | `(unspecified - OEM ST185 AC amplifier)` | AC amplifier control connector. Pin count/layout inferred from | 1 |
+| `TBD RADLOK black, cabin side` | RADLOK 5.7 battery negative, CABIN side of the firewall. UNVER | 1 |
+| `TBD RADLOK black, engine side` | RADLOK 5.7 battery negative, ENGINE side, mates the cabin half | 1 |
+| `TBD RADLOK red, cabin side` | RADLOK 5.7 battery positive, CABIN side of the firewall. UNVER | 1 |
+| `TBD RADLOK red, engine side` | RADLOK 5.7 battery positive, ENGINE side, mates the cabin half | 1 |
+
+## Counted once, drawn more than once
+
+These connectors are one physical part that appears on several drawings — a bulkhead
+has to be on both looms that pass through it. The buy list counts the first copy and
+skips the rest. If you add up the parts lists off the individual drawings by hand you
+will over-order these; use this list, not the drawings.
+
+| Connector | One part, drawn on | Counted in |
+|---|---|---|
+| `aps` | A-ECU, B-ECU | A-ECU |
+| `bh_a_eng` | A-engine, B-engine, CAN | A-engine |
+| `bh_a_fw` | A-ECU, B-ECU, CAN | A-ECU |
+| `bh_b_eng` | A-engine, B-engine | A-engine |
+| `bh_b_fw` | A-ECU, B-ECU | A-ECU |
+| `boost` | A-engine, B-engine | A-engine |
+| `cam` | A-engine, B-engine | A-engine |
+| `clntp` | A-engine, B-engine | A-engine |
+| `cop1` | A-engine, B-engine | A-engine |
+| `cop2` | A-engine, B-engine | A-engine |
+| `cop3` | A-engine, B-engine | A-engine |
+| `cop4` | A-engine, B-engine | A-engine |
+| `cpiat` | A-engine, B-engine | A-engine |
+| `crank` | A-engine, B-engine | A-engine |
+| `csb3io` | A-ECU, B-ECU, CAN | A-ECU |
+| `ect` | A-engine, B-engine | A-engine |
+| `ecu_a` | A-ECU, B-ECU | A-ECU |
+| `ecu_b` | A-ECU, B-ECU | A-ECU |
+| `ecu_com` | A-ECU, CAN | A-ECU |
+| `etb` | A-engine, B-engine | A-engine |
+| `flex` | A-engine, B-engine | A-engine |
+| `fuellvl` | A-ECU, B-ECU | A-ECU |
+| `fuelp` | A-engine, B-engine | A-engine |
+| `iat` | A-engine, B-engine | A-engine |
+| `inj1` | A-engine, B-engine | A-engine |
+| `inj2` | A-engine, B-engine | A-engine |
+| `inj3` | A-engine, B-engine | A-engine |
+| `inj4` | A-engine, B-engine | A-engine |
+| `k_efi` | A-ECU, B-ECU | A-ECU |
+| `k_etb` | A-ECU, B-ECU | A-ECU |
+| `k_fan` | A-ECU, B-ECU, EngineRoom-C | A-ECU |
+| `k_fan2` | A-ECU, B-ECU, EngineRoom-C | A-ECU |
+| `k_fp` | A-ECU, B-ECU | A-ECU |
+| `k_str` | A-ECU, B-ECU | A-ECU |
+| `lambda` | A-engine, B-engine, CAN | A-engine |
+| `map` | A-engine, B-engine | A-engine |
+| `oilp` | A-engine, B-engine | A-engine |
+| `oilt` | A-engine, B-engine | A-engine |
+| `rl_neg_eng` | B-engine, EngineRoom-C | B-engine |
+| `rl_neg_fw` | B-ECU, EngineRoom-C | B-ECU |
+| `rl_pos_eng` | B-engine, EngineRoom-C | B-engine |
+| `rl_pos_fw` | B-ECU, EngineRoom-C | B-ECU |
+| `turbospd` | A-engine, B-engine | A-engine |
 
 ## Still unspecified
 
