@@ -66,8 +66,38 @@ rebuild/*.harness            <- edit here, or via a fix_*/gen_* script
   +-- min/*.harness          -> uploaded to harness.design
 ```
 
+`check_all.py` runs the whole thing in one command and exits non-zero if
+anything fails. Use it before every commit:
+
+```
+python docs/harness/check_all.py
+```
+
 `run_pipeline.bat` runs the first four in order. Run `buylist.py` and
 `buildlist.py` after any part change.
+
+## Parts rules
+
+Four rules the checks enforce, all added 2026-09-22 after the buy list was found
+to be double-counting:
+
+1. **One cavity, one part.** A cavity holds a contact or a sealing plug, never
+   both. A cavity wired in *any* loom gets a contact; a cavity wired in *no* loom
+   gets a plug, in its own size. `audit_cavity_parts.py` fails the build otherwise.
+2. **One physical connector, one part number, everywhere it is drawn.** Bulkhead A
+   is on three drawings and bulkhead B on two. Every copy must carry the same part
+   and the same contact stamps; `buylist.py` aborts if two looms disagree. It then
+   counts the copy that carries the parts - not whichever file is read first - and
+   prints a *Counted once, drawn more than once* table in `NEED-TO-BUY.md`.
+3. **Cross-reference dummies claim nothing.** A connector drawn on a second loom
+   only so the wire has somewhere to land has no `partId` and no contact stamps.
+   That is how the tools tell a dummy from the real thing.
+4. **Never invent a part number.** A part that has not been checked against the
+   manufacturer gets `TBD ...` and the reason in its description. The RADLOK
+   firewall pass-through is the current example.
+
+Adding up the parts lists off the individual drawings by hand will over-order.
+`NEED-TO-BUY.md` is the only correct total.
 
 **Both generators were repointed on 2026-09-22.** They used to read the pre-split
 files, so every buy list before that date was generated from the wrong harnesses -

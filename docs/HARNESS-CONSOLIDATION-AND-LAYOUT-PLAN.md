@@ -2009,3 +2009,85 @@ $60, no new module. Unrelated to any of the above.
 - Confirm whether the car already has a horn relay.
 - Pick the 12-way second fuse block.
 - Specify a master cutoff with an alternator-excite terminal.
+
+---
+
+## 6.49 Parts lists that do not double up (2026-09-22)
+
+Daniel: *"Make sure every harness uses a parts list that doesn't double up on
+devices."* Three new audits were written to answer it. They found four real
+defects, not one.
+
+### What was wrong
+
+| # | Defect | Effect on the buy list |
+|---|---|---|
+| 1 | 118 bulkhead cavities claimed a contact **and** a sealing plug | ~70 plugs ordered for cavities that already have a pin. The app hid it - assigning one clears the other - so only the JSON showed it |
+| 2 | A-ECU drew all six relays as the generic `(OEM block, 5-way)` placeholder while B-ECU already had the real TE parts | A-ECU is read first, so the relays fell out of the count entirely and were being hand-patched back through `EXTRA` |
+| 3 | `cp_rly_cod` had **two different part numbers** - `6-1419137-4` in B-ECU, `5-1393292-8` in EngineRoom-C | The make-contact relay was sitting under the id used for the changeover one. Order from the wrong drawing and the fan relay has no 87a |
+| 4 | `buildlist.py` walked `wires` only | WheelSpeed has no `wires` element at all - every conductor is a cable core or shield - so the **whole loom** was missing from the build list, and three A-engine shielded runs with it. 254 -> 283 wires |
+
+Defect 4 is the dangerous one. The same blind spot in the cavity pass would have
+put sealing plugs into seven live bulkhead cavities.
+
+### Relays, verified on te.com 2026-09-22
+
+| Part | Contact | Coil | Rating | Suppression |
+|---|---|---|---|---|
+| `5-1393292-8` | 1 Form A, make | 12 V | 25 A | Diode |
+| `6-1419137-4` | 1 Form C, changeover | 12 V | 25 A | Diode |
+| `4-1904124-2` | 1 Form A, make | 12 V, 119 R, 1.42 W | 25 A | **not stated by TE - UNVERIFIED** |
+
+`4-1904124-2` is used for `k_etb` and `k_str`. Neither drives an inductive load
+back into a low-side ECU output that needs the diode, so it is not urgent, but
+the description now says UNVERIFIED rather than "resistor suppressed".
+
+### RADLOK firewall pass-through - part number is wrong
+
+The battery feed-through was drawn as one part number, `RL00571-35`, used twice,
+described as a "bulkhead pair". Checked against Amphenol:
+
+- The RADLOK catalogue lists **RL00571-16** and **RL00571-25** for the 5.7 mm
+  RADSOK contact. The trailing number is the cable size in mm2. **There is no -35.**
+- `RL00571-25` is a **cable-mount receptacle**, one piece. Not a pair, and not a
+  panel mount. The mating half is a different part number.
+- 5.7 mm RADSOK is rated **120 A**.
+- The harness calls for **2 AWG**, which is **33.6 mm2**. It will not fit a 25 mm2
+  connector. 25 mm2 is about 3 AWG.
+
+The four connectors now carry four distinct `TBD ...` parts with that text in the
+description, so the count is honest and nobody orders off a guess. **No
+replacement part number has been invented.**
+
+### Bulkhead cavities wired on one side only
+
+`audit_bulkhead_pairs.py` is new. A bulkhead cavity must be wired on both halves
+or neither, or the circuit dead-ends in the connector. Seven are one-sided:
+
+| Cavity | Signal | Verdict |
+|---|---|---|
+| `bh_a_fw` c10 | ECU-A A23 (WSS FL) | known 6.41 loom-crossing violation |
+| `bh_a_fw` c12 | ECU-B B21 (WSS FR) | known 6.41 loom-crossing violation |
+| `bh_b_fw` c13 | ECU-A A27 (MRS speed) | known 6.41 loom-crossing violation |
+| `bh_b_fw` c14 | "spare (size 16)" | known 6.41 loom-crossing violation |
+| `bh_a_eng` c33 | Crank VR screen | **open - the screen lands in the bulkhead and stops** |
+| `bh_a_eng` c34 | Cam Hall screen | **open - same** |
+| `bh_a_eng` c35 | Knock 1 screen | **open - same** |
+
+The first four disappear when 6.41 moves those wires out of bulkheads A and B.
+The three screens do not. 6.32 gave each one a dedicated bulkhead pin, but the
+cabin side was never wired, so today they terminate nowhere. Either wire
+`bh_a_fw` c33-c35 through to the cabin shield splice, or drop the three pins and
+let the screens share the existing single drain on c1.
+
+### Rules now enforced
+
+See `docs/harness/README.md` -> Parts rules. `check_all.py` runs the lot.
+
+### Open
+
+- Pick the real RADLOK part numbers, for 2 AWG, both halves. Or change the cable
+  size to suit a 25 mm2 connector.
+- Confirm `4-1904124-2` coil suppression with TE.
+- Decide the crank / cam / knock screen termination (three dedicated pins, or
+  share the c1 drain).
