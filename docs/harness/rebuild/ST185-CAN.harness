@@ -115,7 +115,7 @@
           "id": "c1",
           "designation": "1",
           "contactPartId": "ct_hdp16p",
-          "signal": "Shield drain (engine bay, single)"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
         },
         {
           "id": "c2",
@@ -413,7 +413,7 @@
           "id": "c1",
           "designation": "1",
           "contactPartId": "ct_hdp16s",
-          "signal": "Shield drain (engine bay, single)"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
         },
         {
           "id": "c2",

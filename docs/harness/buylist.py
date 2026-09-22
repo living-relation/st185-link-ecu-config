@@ -7,7 +7,8 @@ R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
 F = ("ST185-A-ECU.harness", "ST185-A-engine.harness",
      "ST185-B-ECU.harness", "ST185-B-engine.harness",
      "ST185-CAN.harness", "ST185-EngineRoom-C.harness",
-     "ST185-ClusterLED.harness", "ST185-WheelSpeed.harness")
+     "ST185-ClusterLED.harness", "ST185-WheelSpeed.harness",
+     "ST185-AntiTheft.harness")
 
 ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "0460-202-1631":130,"0460-215-1631":60,"0462-201-1631":118,"0462-209-1631":51,

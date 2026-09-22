@@ -32,7 +32,12 @@ def screens():
         d = json.load(open(f, encoding="utf-8"))
         loom = os.path.basename(f)[6:-8]
         for w in d.get("wires", []):
-            if w.get("color") == "Shield" or "_sh" in w["id"] or "drain" in w["id"]:
+            # Match the colour, or an id whose LAST segment marks it a screen.
+            # A plain "_sh" substring is too loose - it caught w_at_shk_sig, the
+            # anti-theft shock sensor, which is a signal wire and not a screen.
+            tail = w["id"].rsplit("_", 1)[-1]
+            if w.get("color") == "Shield" or tail in ("sh", "shield", "drain") \
+                    or w["id"].startswith("w_drain"):
                 yield loom, w, None
         for cb in d.get("cables", []):
             if cb.get("shield"):

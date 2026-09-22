@@ -22,7 +22,7 @@ LIVE = ["ST185-Signal.harness", "ST185-Power.harness",
 
 # ClusterLED is a new loom migrated from CLUSTER-LED-DIAGRAM.html, not derived
 # from any live .harness file, so it has no "before" to compare against.
-SKIP = ("ClusterLED",)
+SKIP = ("ClusterLED", "AntiTheft")
 
 
 def rebuilt_files():

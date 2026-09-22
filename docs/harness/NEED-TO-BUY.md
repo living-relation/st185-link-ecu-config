@@ -1,7 +1,7 @@
 # Harness — need to buy
 
 Generated on 2026-09-22 from the eight `.harness` files in `docs/harness/rebuild/`:
-`A-ECU`, `A-engine`, `B-ECU`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed`.
+`A-ECU`, `A-engine`, `B-ECU`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed`, `AntiTheft`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
@@ -93,6 +93,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(glove-box body block - 2nd fuse block + relays)` | Replaces the ECUMaster PMU-16, dropped 2026-09-22 (plan 6.46-6 | 1 |
 | `(kit-supplied pigtail)` | 3-pin pigtail supplied with the RacerX MR2 Cherry Hall cam-pos | 1 |
 | `(unspecified - OEM ST185 AC amplifier)` | AC amplifier control connector. Pin count/layout inferred from | 1 |
+| `TBD - 3-way shock sensor plug` | 3-way plug for a dual-stage shock / tilt sensor (Directed 508D | 1 |
+| `TBD - alarm module main harness plug` | 12-way main harness plug on a basic one-way alarm module (Vipe | 1 |
+| `TBD - generic 2-way` | Generic sealed 2-way for the siren, status LED and valet switc | 3 |
 
 ## Counted once, drawn more than once
 

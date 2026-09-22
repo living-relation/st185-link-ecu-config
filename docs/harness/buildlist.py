@@ -7,7 +7,8 @@ R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
 F = (("A-ECU","ST185-A-ECU.harness"), ("A-engine","ST185-A-engine.harness"),
      ("B-ECU","ST185-B-ECU.harness"), ("B-engine","ST185-B-engine.harness"),
      ("CAN","ST185-CAN.harness"), ("EngineRoomC","ST185-EngineRoom-C.harness"),
-     ("ClusterLED","ST185-ClusterLED.harness"), ("WheelSpeed","ST185-WheelSpeed.harness"))
+     ("ClusterLED","ST185-ClusterLED.harness"), ("WheelSpeed","ST185-WheelSpeed.harness"),
+     ("AntiTheft","ST185-AntiTheft.harness"))
 
 def load(fn):
     return json.load(open(os.path.join(R, fn), encoding="utf-8"))
