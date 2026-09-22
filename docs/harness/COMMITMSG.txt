@@ -1,32 +1,36 @@
-plan 6.46: is the PDU worth buying at all - open decision, counted honestly
+plan 6.47: surveyed bigger PDUs for option C - none of them work here
 
-Daniel pushed back right after 6.44 landed: if both junction blocks stay and we
-only inject a few feeds, why buy an expensive PDU when relays do it? He is right
-to ask, and the numbers do not favour the PDU.
+Daniel asked whether a different PDU has the channels and current to make
+deleting both junction blocks worth it. Priced and spec'd the field today.
 
-Counted what is actually kept. J/B No.1 keeps 10 fuses and 4 relays, R/B No.2 one
-and one, R/B No.3 one relay, R/B No.4 three fuses and the heater relay - 14 fuses
-and 7 relays, factory-wired, zero labour. J/B No.2 is the only block deleted, and
-it held five circuits.
+Option C needs about 24 outputs with three of them carrying 30-40 A.
 
-So under option B the PDU is a sixteen-channel device replacing five circuits and
-doing some timing. PMU-16 is $1,499 today. The relay equivalent is 2-3 more micro
-ISO relays on top of the 8 already owned, a second fuse block because the TE
-2141029-1 is full at F1-F13, and about $150-250.
+  ECUMaster PMU-16   16 ch, 25 A max    $1,499   too few
+  Haltech PD16       16 ch, 25 A max    $1,099   DISQUALIFIED - Haltech Elite or
+                                                 Nexus ECU only, will not run
+                                                 standalone, and we are on a Link
+  Racepak SmartWire  ~30 ch             $1,750   closest fit
+  MoTeC PDM32        32 ch, 20 A max    $5,165   absurd here, and no channel
+                                                 even reaches 25 A
+  2 x PMU-16         32 ch              $2,998   works, silly
 
-The part that makes it work is the CSB3. Its four low-side outputs are unassigned,
-the ECU commands them on 0x643, and the ECU is alive through key-off on its own
-hold power - so Pi hold, kill relay coil and alternator excite drop all have a free
-home. They land exactly full at four, with the oil lamp as the fourth and nothing
-spare, so that contention is written down.
+Two things kill option C whichever one is bought.
 
-Also checked option C while there: re-homing 14 fuses and 7 relays does not fit one
-PMU-16 either, so full J/B deletion is a two-unit decision.
+The heater blower is 40 A and the best channel in the field is 25 A, so the
+blower keeps a relay and a fuse regardless - which means R/B No.4 cannot actually
+be deleted, and DEFOGGER and RTR both need paralleled channels everywhere.
 
-Recommendation recorded: drop it unless the per-channel current monitoring is
-something he actively wants. Marked OPEN and flagged that 6.38, 6.44 and 6.45 all
-need rewriting if it goes. Nothing further should be built on a PMU assumption
-until this closes.
+And J/B No.1's integration relay runs intermittent wipers, courtesy delay and the
+seatbelt and key warnings. Replacing it means running door, seatbelt and key
+switches into the PDM as inputs and writing the logic - more wires into the dash,
+which is the opposite of what Daniel asked for.
+
+So: no. 6.46's recommendation stands and this strengthens it.
+
+Added the cheap way to get the one thing a PDU was genuinely offering. The CSB3
+has eight analog inputs and only two are used. Hall current sensors on the six
+circuits worth watching feed A3-A8, go out on CAN, and display on RealDash and the
+TrackCluster, both already on the bus. About $60, no new module, no new CAN node.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

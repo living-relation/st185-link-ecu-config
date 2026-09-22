@@ -1805,3 +1805,71 @@ CSB3.
 
 - Keep the PMU-16 or drop it. Everything above is written so either answer can be
   executed; nothing else should be built on a PMU assumption until this is closed.
+
+---
+
+## 6.47 Is there a bigger PDU that makes option C worth it? - surveyed, no
+
+Asked by Daniel 2026-09-22 as the follow-up to 6.46. Prices and specs checked the
+same day.
+
+### What option C would actually need
+
+Deleting both junction blocks means re-homing everything in 6.46's kept table,
+plus what J/B No.2 already lost, plus the devices:
+
+| | Outputs |
+|---|---|
+| J/B No.1 fuses | 10 |
+| R/B No.2 POWER, R/B No.4 HEATER / A/C / FR FOG | 4 |
+| J/B No.2 circuits | 5 |
+| TrackCluster, CSB3, RealDash Pi | 3 |
+| Alternator excite, kill | 2 |
+| **Total** | **~24** |
+
+With at least three channels able to carry 30-40 A: HEATER 40, DEFOGGER 30, RTR 30.
+
+### The market
+
+| Unit | Outputs | Max per channel | Price USD | Verdict |
+|---|---|---|---|---|
+| ECUMaster PMU-16 | 16 - 10 x 25 A, 6 x 15 A, 150 A total | 25 A | **1,499** | Too few for C |
+| Haltech PD16 | 16 - 10 high-side, 2 half-bridge, 4 x 25 A, 120 A | 25 A | **1,099** | **Disqualified** - runs only with a Haltech Elite or Nexus ECU, not standalone. We are on a Link G4X |
+| Racepak SmartWire | ~30 (per the SW30 designation; per-channel split not confirmed) | not confirmed | **1,750** | Closest fit. Sold explicitly as a fuse-panel-and-relay replacement |
+| MoTeC PDM32 | 32 - 8 x 20 A, 24 x 8 A | 20 A | **5,165** | Price absurd here, and **no channel reaches 25 A** |
+| 2 x PMU-16 | 32, 300 A | 25 A | **2,998** | Works. Silly |
+
+### Two things kill option C regardless of which unit is bought
+
+**1. The blower does not fit any of them.** R/B No.4's HEATER circuit is 40 A. The
+best channel in the table is 25 A. So the blower stays on a relay and a fuse
+whatever is bought, which means **R/B No.4 cannot actually be deleted** - and
+DEFOGGER 30 A and RTR 30 A need paralleled channels on every unit listed.
+
+**2. The integration relay.** J/B No.1's integration relay runs intermittent
+wipers, courtesy-light delay and the seatbelt / key warnings. Reproducing it means
+feeding door switches, the seatbelt switch and the key switch into the PDM as
+inputs, then writing the logic. That is more wires going **into** the dash, which
+is the opposite of the goal, and it is config work on top.
+
+### Conclusion
+
+**No, there is no PDU that makes deleting both junction blocks worth it on this
+car.** The cheapest unit with the channel count costs $1,750, still cannot run the
+blower, still leaves R/B No.4 in place, and asks for new dash inputs to replace a
+relay that already works.
+
+6.46's recommendation stands, and this strengthens it: relays, a second fuse block
+and the CSB3's low-side outputs.
+
+### If the monitoring is what Daniel actually wants
+
+That was the one real argument for a PDU, and it can be had for about $60.
+
+The CSB3 has **eight analog inputs and only A1 and A2 are used**. Hall-effect
+current sensors on the circuits worth watching - fuel pump, fans, EPS, headlights,
+blower, defogger - feed A3 to A8, go out on CAN, and land on RealDash and the
+TrackCluster, both already CAN nodes.
+
+Six monitored circuits, no new module, no new CAN node, and it uses inputs that
+are already paid for and currently idle.
