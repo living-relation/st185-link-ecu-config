@@ -2086,8 +2086,181 @@ See `docs/harness/README.md` -> Parts rules. `check_all.py` runs the lot.
 
 ### Open
 
-- Pick the real RADLOK part numbers, for 2 AWG, both halves. Or change the cable
-  size to suit a 25 mm2 connector.
-- Confirm `4-1904124-2` coil suppression with TE.
-- Decide the crank / cam / knock screen termination (three dedicated pins, or
-  share the c1 drain).
+All three closed the same day:
+
+- ~~Pick the real RADLOK part numbers.~~ **Closed, see 6.50.** Sized on current
+  instead of guessed: 1/0 cable and RADLOK 8.0.
+- ~~Confirm `4-1904124-2` coil suppression.~~ **Closed.** Daniel: the ECU I/O and
+  most relays carry their own suppression, so it does not matter. What does
+  matter is carrying over filtering the **OEM** fitted externally - see 6.51.
+- ~~Decide the crank / cam / knock screen termination.~~ **Not a decision - it was
+  already settled** in 6.27 rule 5 and 6.32. I raised it as open because
+  SHIELD-RULES.md lived only in the claude.ai project and nothing in the repo
+  checked it. See 6.50.
+
+---
+
+## 6.50 Shield rules, enforced — and why they kept getting re-asked (2026-09-22)
+
+Daniel: *"Refer to my previous guidance regarding passing Shields through the
+bulkheads to the ECU. This has been discussed a number of times. You need to keep
+better track of rules like this."*
+
+Fair. The rules were settled in 6.27 / 6.30 / 6.31 / 6.32 and summarised in a
+`SHIELD-RULES.md` that lived **only in the claude.ai project, not the repo**.
+Nothing in the pipeline checked them, so a half-finished migration survived and
+got written up as an open question instead of a defect.
+
+### The fix, in two parts
+
+1. **`docs/SHIELD-RULES.md`** is now in the repo, next to the plan.
+2. **`docs/harness/audit_shields.py`** enforces four of the five rules as a hard
+   gate in `check_all.py`. Break one and the build fails.
+
+| Rule | Checked? |
+|---|---|
+| R1 never connected at the device end | yes |
+| R2 terminates at the ECU end only, and does reach it | yes |
+| R3 no drain on a connector shell, except the VR enclosures | yes |
+| R4 cable, not a wire, until the ECU | no — a modelling convention the schema cannot express |
+| R5 crosses a bulkhead on its own pin, wired on **both** halves | yes |
+
+The audit has to learn two things the schema does not say: a `dm_*`
+cross-reference dummy is the same electrical node as the connector it names, and
+all shells on one VR conditioner enclosure are one node (6.30). Without those it
+false-flags the entire wheel-speed loom.
+
+### What it found immediately
+
+6.32 was half applied. The crank, cam and knock screens landed on their own pins
+on the **engine** half of bulkhead A — c33, c34, c35 — and **nothing on the cabin
+half**. So the dedicated pins dead-ended inside the connector and all three
+screens were still travelling on the old shared c1 drain.
+
+6.32 first choice is one pin per screen whenever the pins exist, and bulkhead A
+has 16 free pairs, so the migration is now finished rather than rolled back:
+
+```
+  sensor ──(floats)══ cable screen ══ bh_a_eng c33/34/35
+                                          │  (own pin, both halves)
+                      bh_a_fw c33/34/35 ──┘
+                                          └── sp_shield_cab ── ECU-A A7
+                                                            └─ ECU-B B17
+```
+
+| Change | |
+|---|---|
+| **+** `w_shc_crank` / `_cam` / `_knock1` | `bh_a_fw` c33/c34/c35 → `sp_shield_cab` |
+| **−** `w_sh_crank` / `_cam` / `_knock1` | jumpers to the engine-bay collector |
+| **−** `sp_shield_eng` | collector splice, now empty |
+| **−** `w_drain_bh_c`, `w_drain_bh_e` | the shared c1 drain — both halves of c1 are spare |
+
+Each screen now floats at the sensor, crosses on its own pin wired both sides,
+and terminates exactly once, at the ECU.
+
+## 6.51 Firewall heavy-DC feed-through, sized properly (2026-09-22)
+
+Daniel: *"Choose for me using current capacity and deciding wire size based on
+that length."*
+
+**What crosses.** The positive runs trunk battery → cabin PDB → firewall →
+starter B+, and the alternator lands on that same starter post, so the full
+charge current comes back through this one crossing. The negative is a dedicated
+return from the engine block.
+
+- Continuous design case: **160 A** (alternator at rating)
+- Peak design case: **~300 A for a few seconds** (cranking a 2.2 L four)
+
+**Wire size, from the length.** ~18 ft each way, so ~36 ft round trip:
+
+| Case | 2 AWG | **1/0** | 2/0 |
+|---|---|---|---|
+| 160 A continuous | 0.90 V | **0.57 V (4%)** | 0.45 V |
+| ~300 A cranking | 1.69 V (**13%**) | **1.06 V (8.4%)** | 0.84 V |
+
+2 AWG blows past the 10% a starter circuit is normally held to. 2/0 buys 0.2 V
+for a lot more money and a much worse bend radius. **1/0 (50 mm²)**, which is
+exactly the RADLOK 8.0 cable size.
+
+**Connector.** Three pieces per polarity — the feed-through lives in the
+firewall, a cable connector plugs onto each side:
+
+| Piece | Part | Qty |
+|---|---|---|
+| Feed-through, positive | `RL9080-301-F1RE` — 8.0 mm RADLOK, panel mount, pin both sides, 200 A / 1 kV, IP40 mated, red | 1 |
+| Feed-through, negative | `RL9080-301-F1` — same, black | 1 |
+| Cable connector, positive | `RL00801-50RE` — female, 200 A, 50 mm², red | 2 |
+| Cable connector, negative | `RL00801-50BK` — same, black | 2 |
+
+200 A continuous gives 25% headroom on the alternator case, and a connector of
+this class shrugs off a few seconds of cranking. The `-303` nickel variant is
+discontinued; RS names `-301` as its replacement.
+
+H1–H4, H6 and H7 go to 1/0. H5 (alternator B+ to starter post) stays 2 AWG — it
+is a short engine-bay jumper that never crosses the firewall.
+
+## 6.52 OEM filtering carried into our drawings (2026-09-22)
+
+Daniel: *"Suppression isn't a big deal because many of the ECU IO have their own
+built-in suppression or flywheeled pins... Just make sure that any circuits in the
+OEM wiring diagrams that contain filtering diodes or capacitors specify those in
+our diagrams so I can replace them where necessary only where external filtering
+stuff was used on the OEM."*
+
+Read of the EWD snips in `docs/electrical/ewd-snips`:
+
+| EWD page | What is in it | Verdict |
+|---|---|---|
+| p.19 J/B No.1 inner circuit | **one 3-terminal diode**, two diodes with a common cathode on pin 2 | Inside a block we **keep**. Nothing to build — but do not inject power in a way that bypasses or backfeeds it |
+| p.21 J/B No.2 inner circuit | nothing — relays and fuses only | — |
+| p.22 J/B No.3 inner circuit | nothing — pure junction block | — |
+| p.46 Power source | nothing | — |
+| p.48 Starting and ignition | diode inside the **S2 start injector time switch**, between the STJ and STA coils | Deleted with the cold-start injector |
+| p.52 Charging | the **C12 charge lamp**, pin 9 (IG, B-O) to pin 8 (alt L, Y) | **This one matters — see below** |
+
+**No capacitors anywhere in the snipped pages.**
+
+### The charge lamp is not an indicator
+
+It is the alternator's pre-excitation path: IG → bulb → L terminal → field. A
+3.4 W bulb passes roughly **250 mA** at 13.8 V. The LED replacing it passes about
+**20 mA** — an order of magnitude less — and many IC regulators will not
+self-excite on that, so the car would not start charging until it was revved.
+
+Added to `ST185-ClusterLED`: **`r_chg_excite`, 56 Ω 5 W, in parallel with the
+charge LED**, carrying the current the bulb used to. It only dissipates while the
+lamp condition is true — once charging, both ends sit at ~14 V. The value is the
+bulb-equivalent starting point and is marked **CONFIRM against the fitted
+alternator**; it is the one number here that depends on a part not yet bench-tested.
+
+The same drawing now carries a schematic note listing all of the above, so it
+travels with the diagram rather than living in a commit message.
+
+### Bonus, off p.24 (R/B No.5)
+
+**The car already has a horn relay**, in the engine-compartment front-right relay
+block. That closes a 6.48 open item.
+
+## 6.53 The EPS pump is one part, not a Group (2026-09-22)
+
+Daniel: *"Why create a group? Just create a part with the correct number of total
+pins (both used and not used) and give the pins specific labels so I know which
+connector is which on EPS housing."*
+
+Right, and it sidesteps the fact that the MCP tools cannot create Groups anyway.
+`mrs_pwr`, `mrs_ctrl` and `mrs_en` are now one 10-pin connector, `mrs_eps`, with
+the housing letter in every designation and every signal:
+
+| Pin | Housing | Signal |
+|---|---|---|
+| A-1 | `90980-12068` 2-way, main power, 8 AWG | +12V from `k_eps` 87, passenger fender |
+| A-2 | same | GND, 8 AWG to engine block / EB |
+| B-1 | `90980-10897` 6-way, signal, pigtail `82998-12440` | not used |
+| B-2 | same | **SPD Out** — speed pulse → ECU-A A27 |
+| B-3 … B-5 | same | not used |
+| B-6 | same | relay request out — **not wired**, 6.16 moved the trigger to the ECU (Ign 6 / B12) |
+| C-1 | `90980-10942` 2-way, ignition | IG-switched, F13 7.5 A — pump enable |
+| C-2 | same | not used |
+
+Five wires re-pointed, no net changed. `gp_mrs_ehps` dropped. `k_eps` stays
+separate — it is an HCR150 bolted beside the pump, not part of it.
