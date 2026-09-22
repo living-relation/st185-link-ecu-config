@@ -1078,7 +1078,7 @@
           "id": "c1",
           "designation": "1",
           "contactPartId": "ct_hdp16p",
-          "signal": "Shield drain (engine bay, single)"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
         },
         {
           "id": "c2",
@@ -1269,19 +1269,19 @@
         {
           "id": "c33",
           "designation": "33",
-          "signal": "Crank VR screen (6.32 dedicated shield pin)",
+          "signal": "Crank VR screen - own pin per 6.32, terminates at the ECU",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c34",
           "designation": "34",
-          "signal": "Cam Hall screen (6.32 dedicated shield pin)",
+          "signal": "Cam Hall screen - own pin per 6.32, terminates at the ECU",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c35",
           "designation": "35",
-          "signal": "Knock 1 screen (6.32 dedicated shield pin)",
+          "signal": "Knock 1 screen - own pin per 6.32, terminates at the ECU",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -2236,19 +2236,6 @@
       }
     },
     {
-      "id": "w_drain_bh_c",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "source": {
-        "id": "bh_a_fw",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "sp_shield_cab",
-        "handle": "Splice"
-      }
-    },
-    {
       "id": "w_drain_ecu_a",
       "color": "Green",
       "stripeColor": "Yellow",
@@ -2308,6 +2295,42 @@
       "target": {
         "id": "csb3io",
         "handle": "c8"
+      }
+    },
+    {
+      "id": "w_shc_crank",
+      "color": "Shield",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c33"
+      },
+      "target": {
+        "id": "sp_shield_cab",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_shc_cam",
+      "color": "Shield",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c34"
+      },
+      "target": {
+        "id": "sp_shield_cab",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_shc_knock1",
+      "color": "Shield",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c35"
+      },
+      "target": {
+        "id": "sp_shield_cab",
+        "handle": "Splice"
       }
     }
   ],

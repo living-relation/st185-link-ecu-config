@@ -674,7 +674,7 @@
           "id": "c1",
           "designation": "1",
           "contactPartId": "ct_hdp16s",
-          "signal": "Shield drain (engine bay, single)"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
         },
         {
           "id": "c2",
@@ -866,19 +866,19 @@
           "id": "c33",
           "designation": "33",
           "contactPartId": "ct_hdp20s",
-          "signal": "Crank VR screen (6.32 dedicated shield pin)"
+          "signal": "Crank VR screen - own pin per 6.32, floats at the sensor"
         },
         {
           "id": "c34",
           "designation": "34",
           "contactPartId": "ct_hdp20s",
-          "signal": "Cam Hall screen (6.32 dedicated shield pin)"
+          "signal": "Cam Hall screen - own pin per 6.32, floats at the sensor"
         },
         {
           "id": "c35",
           "designation": "35",
           "contactPartId": "ct_hdp20s",
-          "signal": "Knock 1 screen (6.32 dedicated shield pin)"
+          "signal": "Knock 1 screen - own pin per 6.32, floats at the sensor"
         },
         {
           "id": "c36",
@@ -1105,19 +1105,7 @@
       }
     }
   ],
-  "splices": [
-    {
-      "id": "sp_shield_eng",
-      "layoutPosition": {
-        "x": 3860,
-        "y": 4056
-      },
-      "schematicPosition": {
-        "x": 3860,
-        "y": 4056
-      }
-    }
-  ],
+  "splices": [],
   "wires": [
     {
       "id": "w16_e",
@@ -1405,55 +1393,6 @@
       "target": {
         "id": "lambda",
         "handle": "c2"
-      }
-    },
-    {
-      "id": "w_drain_bh_e",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "source": {
-        "id": "sp_shield_eng",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_a_eng",
-        "handle": "c1"
-      }
-    },
-    {
-      "id": "w_sh_crank",
-      "color": "Shield",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c33"
-      },
-      "target": {
-        "id": "sp_shield_eng",
-        "handle": "Splice"
-      }
-    },
-    {
-      "id": "w_sh_cam",
-      "color": "Shield",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c34"
-      },
-      "target": {
-        "id": "sp_shield_eng",
-        "handle": "Splice"
-      }
-    },
-    {
-      "id": "w_sh_knock1",
-      "color": "Shield",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c35"
-      },
-      "target": {
-        "id": "sp_shield_eng",
-        "handle": "Splice"
       }
     }
   ],

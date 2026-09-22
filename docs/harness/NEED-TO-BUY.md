@@ -13,7 +13,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `0413-204-2005` | TE DEUTSCH | Sealing plug, size 20, red | 42 | 0 | **42** |
 | `0460-202-2031` | TE DEUTSCH | Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY | 24 | 0 | **24** |
 | `114017` | TE DEUTSCH | Sealing plug, size 16, white | 16 | 0 | **16** |
-| `Jump lugs 2 AWG / 1/0` | generic | Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post | 8 | 0 | **8** |
+| `Jump lugs 1/0` | generic | Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post | 8 | 0 | **8** |
 | `1-1904045-6` | TE Connectivity | Micro ISO relay connector kit (harness-side socket for the V23074 relays) | 6 | 0 | **6** |
 | `DT06-2S` | Deutsch (TE) | DT 2-way plug, harness side of the ABS wheel speed sensor. Mat | 7 | 2 | **5** |
 | `12110293` | Aptiv | MP150.2 3-way sealed sensor | 4 | 0 | **4** |
@@ -25,6 +25,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `Micro ISO relays x4` | TE Connectivity | HEAD LH, HEAD RH, RTR, device-hold and alternator-excite relays replacing the PMU (plan 6.48). 8 owned, 6 already assigned to k_efi/k_etb/k_fp/k_fan/k_fan2/k_str. | 4 | 0 | **4** |
 | `120R 1/4W` | Generic | 120 ohm CAN bus termination | 2 | 0 | **2** |
 | `86 6319 1121 00004` | binder | M8 4-way male panel mount, shieldable, THT, IP67, front fasten | 2 | 0 | **2** |
+| `RL00801-50BK` | Amphenol | Battery negative, ENGINE side. RADLOK 8.0 female cable connect | 2 | 0 | **2** |
+| `RL00801-50RE` | Amphenol | Battery positive, ENGINE side. RADLOK 8.0 female cable connect | 2 | 0 | **2** |
 | `16-04477` | TE DEUTSCH | Gasket 24SZ | 6 | 4 | **2** |
 | `1.8k 1/4W` | generic | Cam Hall pull-up, +8V (A6) to Trig 2 (A9) | 1 | 0 | **1** |
 | `10k 1/4W` | generic | Cruise ladder pull-up to +5V (A32) | 1 | 0 | **1** |
@@ -36,7 +38,10 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `V23132-A2001-B200` | TE Connectivity | HCR 150 12VDC 37 ohm / 3.9W, internal suppression. OWNED matin | 1 | 0 | **1** |
 | `jump-post-M8` | TBD | Engine-bay jump / accessory post on starter B+ net. | 1 | 0 | **1** |
 | `HCR 150 mating hardware` | TE Connectivity | Receptacle / terminals for V23132-A2001-B200 - CONFIRM with supplier | 1 | 0 | **1** |
-| `2 AWG welding cable red/black` | generic | Trunk battery +/−, RADLOK charge/start, jump post. Length TBD on the car. | 1 | 0 | **1** |
+| `RL9080-301-F1RE` | Amphenol | RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, RED - firewall POSITIVE. Mates RL00801-50RE each side. | 1 | 0 | **1** |
+| `RL9080-301-F1` | Amphenol | RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, BLACK - firewall NEGATIVE. Mates RL00801-50BK each side. | 1 | 0 | **1** |
+| `1/0 AWG welding cable red/black` | generic | Trunk battery +/−, firewall crossing, engine ground. Sized on voltage drop over a ~36 ft round trip: 1.06V cranking, 0.57V at 160A charge. 2 AWG was 13% cranking drop - too much. ~45 ft each colour. | 1 | 0 | **1** |
+| `2 AWG welding cable` | generic | Alternator B+ to starter post only. Short engine-bay jumper, never crosses the firewall. | 1 | 0 | **1** |
 | `8 AWG TXL red/black` | generic | EPS pump 12V/GND (passenger ABS trough) and uprated fan 12V/GND (core support) | 1 | 0 | **1** |
 | `2nd fuse block 12-16 way` | generic | Glove box, for the ex-J/B2 body circuits: HEAD LH 15, HEAD RH 15, HAZ-HORN 15, DOME 20, RTR 30, CSB3 5, cluster 10, Pi 15, alt excite 5. TE 2141029-1 is full at F1-F13. Plan 6.48. | 1 | 0 | **1** |
 | `ANL 100A + holder` | generic | Feed for the second fuse block off the PDB stud. Plan 6.48 / redistribution 8. | 1 | 0 | **1** |
@@ -89,10 +94,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(glove-box body block - 2nd fuse block + relays)` | Replaces the ECUMaster PMU-16, dropped 2026-09-22 (plan 6.46-6 | 1 |
 | `(kit-supplied pigtail)` | 3-pin pigtail supplied with the RacerX MR2 Cherry Hall cam-pos | 1 |
 | `(unspecified - OEM ST185 AC amplifier)` | AC amplifier control connector. Pin count/layout inferred from | 1 |
-| `TBD RADLOK black, cabin side` | RADLOK 5.7 battery negative, CABIN side of the firewall. UNVER | 1 |
-| `TBD RADLOK black, engine side` | RADLOK 5.7 battery negative, ENGINE side, mates the cabin half | 1 |
-| `TBD RADLOK red, cabin side` | RADLOK 5.7 battery positive, CABIN side of the firewall. UNVER | 1 |
-| `TBD RADLOK red, engine side` | RADLOK 5.7 battery positive, ENGINE side, mates the cabin half | 1 |
 
 ## Counted once, drawn more than once
 

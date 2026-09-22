@@ -39,6 +39,14 @@ EXPECT_GONE = {
     # applies the same rename to `before`, so both sides compare cleanly.
     # 6.12: shields are never connected at the device end. Every drain landing
     # on a device shell goes; the run to the ECU stays.
+    # 2026-09-22, 6.32 finished: the shared c1 drain and the engine-bay collector
+    # splice are retired. Each screen crosses on its own pin instead, c33/c34/c35,
+    # wired on both halves, straight to the cabin shield splice.
+    "w_drain_bh_c": "shared c1 drain retired - every screen has its own pin now",
+    "w_drain_bh_e": "shared c1 drain retired - sp_shield_eng collector removed with it",
+    "w_sh_crank": "-> w_shc_crank (now runs through to the cabin, not to a collector)",
+    "w_sh_cam": "-> w_shc_cam (same)",
+    "w_sh_knock1": "-> w_shc_knock1 (same)",
     "w_drain_crank": "device-end drain removed - shields float at the device",
     "w_drain_cam": "device-end drain removed - shields float at the device",
     "w_drain_knock1": "device-end drain removed - shields float at the device",
@@ -104,9 +112,13 @@ EXPECT_NEW = {
     "cab_crank_sh":  "crank screen, floats at the sensor, bulkhead A c33",
     "cab_cam_sh":    "cam screen, floats at the sensor, bulkhead A c34",
     "cab_knock1_sh": "knock screen, floats at the sensor, bulkhead A c35",
-    "w_sh_crank":  "crank screen, bulkhead A c33 to the engine-bay shield collector",
-    "w_sh_cam":    "cam screen, bulkhead A c34 to the engine-bay shield collector",
-    "w_sh_knock1": "knock screen, bulkhead A c35 to the engine-bay shield collector",
+    # 2026-09-22: the engine-bay collector splice is gone. Each screen now runs on
+    # its own bulkhead pin all the way to sp_shield_cab, which is the single ECU
+    # termination SHIELD-RULES 6.27 rule 2 asks for. The old shared c1 drain went
+    # with it - both halves of c1 are spare.
+    "w_shc_crank":  "crank screen, bulkhead A c33 through to the cabin shield splice",
+    "w_shc_cam":    "cam screen, bulkhead A c34 through to the cabin shield splice",
+    "w_shc_knock1": "knock screen, bulkhead A c35 through to the cabin shield splice",
     "w_cru_ladder_out": "pass 2: splice to CSB3 A2. The stalk signal and the pull-up "
                         "used to land on the same cavity, which is a short. They now "
                         "meet at sp_cruise_ladder and one wire carries the ladder in.",

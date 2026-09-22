@@ -7,6 +7,7 @@ What it runs, in order:
   lint_v09.py            schema and reference check, all eight looms
   verify_rebuild.py      no connection lost against the frozen legacy baseline
   audit_cavity_parts.py  no cavity claims both a contact and a sealing plug
+  audit_shields.py       docs/SHIELD-RULES.md, enforced
   audit_bulkhead_pairs.py  no bulkhead cavity wired on one side only
   buylist.py             buy list, and the shared-connector consistency check
   buildlist.py           per-wire build list
@@ -20,7 +21,7 @@ import subprocess, sys, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 HARD = ["lint_v09.py", "verify_rebuild.py", "audit_cavity_parts.py",
-        "buylist.py", "buildlist.py", "make_min.py"]
+        "audit_shields.py", "buylist.py", "buildlist.py", "make_min.py"]
 SOFT = ["audit_bulkhead_pairs.py"]
 
 fails = []

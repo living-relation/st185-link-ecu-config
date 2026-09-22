@@ -1884,15 +1884,15 @@
     },
     {
       "id": "cp_rl_red_fw",
-      "partNumber": "TBD RADLOK red, cabin side",
+      "partNumber": "RL00801-50RE",
       "manufacturer": "Amphenol",
-      "description": "RADLOK 5.7 battery positive, CABIN side of the firewall. UNVERIFIED - Amphenol lists RL00571-16/-25 (16/25 mm2), no -35, and it is a cable-mount receptacle, not a bulkhead pair. 2 AWG = 33.6 mm2 will not fit 25 mm2. Pick the real part before ordering."
+      "description": "Battery positive, CABIN side. RADLOK 8.0 female cable connector, 200A, 50 mm2 (1/0), RED. Mates the RL9080-301-F1RE firewall feed-through."
     },
     {
       "id": "cp_rl_blk_fw",
-      "partNumber": "TBD RADLOK black, cabin side",
+      "partNumber": "RL00801-50BK",
       "manufacturer": "Amphenol",
-      "description": "RADLOK 5.7 battery negative, CABIN side of the firewall. UNVERIFIED - Amphenol lists RL00571-16/-25 (16/25 mm2), no -35, and it is a cable-mount receptacle, not a bulkhead pair. 2 AWG = 33.6 mm2 will not fit 25 mm2. Pick the real part before ordering."
+      "description": "Battery negative, CABIN side. RADLOK 8.0 female cable connector, 200A, 50 mm2 (1/0), BLACK. Mates the RL9080-301-F1 firewall feed-through."
     }
   ],
   "contactParts": [

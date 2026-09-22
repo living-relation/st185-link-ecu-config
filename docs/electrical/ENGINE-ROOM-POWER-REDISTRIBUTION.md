@@ -155,20 +155,52 @@ Wire colours are Toyota EWD codes: **W** white, **B** black, **B–R** black wit
 
 | # | Net | AWG | From | To | Hardware | Notes |
 |---|---|---|---|---|---|---|
-| H1 | Battery + | 2 AWG (1/0 if the 160 A alt is to run at rating) | Trunk battery + post, jump lug | Glove-box PDB BAT+ stud, jump lug | Cable along cabin floor / tunnel | Replaces engine-bay battery + F11 FL MAIN 2.0L |
-| H2 | Battery − | same | Trunk battery − , jump lug | PDB ground + body | Bond to the cargo floor | Separate from sensor Gnd Out |
-| H3 | Charge / start + | 2 AWG | PDB ALT/STR stud | RADLOK + firewall (red RL00571-35) | Already owned in the buy list | |
-| H4 | Charge / start + | 2 AWG | RADLOK + engine | Starter B+ post, jump lug | | |
-| H5 | Alternator B+ | 4 AWG min; 2 AWG preferred at 160 A | Alternator B+ (rear of block, under intake) | Starter B+ | Does **not** recross the firewall | Factory A17 pin B is W; we replace that cable |
-| H6 | Engine ground | 2 AWG | RADLOK − engine (black RL00571-35) | Engine block stud, jump lug | OEM grounds EA / EB / EC stay | |
-| H7 | Cabin ground | 2 AWG | PDB ground | Kick-panel ground **ID** (left) and a new glove-box ground near R/B4 | | |
+| H1 | Battery + | **1/0** | Trunk battery + post, jump lug | Glove-box PDB BAT+ stud, jump lug | Cable along cabin floor / tunnel | Replaces engine-bay battery + F11 FL MAIN 2.0L |
+| H2 | Battery − | **1/0** | Trunk battery − , jump lug | PDB ground + body | Bond to the cargo floor | Separate from sensor Gnd Out |
+| H3 | Charge / start + | **1/0** | PDB ALT/STR stud | RADLOK + firewall, cabin side (`RL00801-50RE`) | Feed-through is `RL9080-301-F1RE` | |
+| H4 | Charge / start + | **1/0** | RADLOK + firewall, engine side (`RL00801-50RE`) | Starter B+ post, jump lug | | |
+| H5 | Alternator B+ | 2 AWG | Alternator B+ (rear of block, under intake) | Starter B+ | Does **not** recross the firewall | Short bay jumper; factory A17 pin B is W, we replace that cable |
+| H6 | Engine ground | **1/0** | RADLOK − firewall, engine side (`RL00801-50BK`) | Engine block stud, jump lug | Feed-through is `RL9080-301-F1` | OEM grounds EA / EB / EC stay |
+| H7 | Cabin ground | **1/0** | PDB ground | Kick-panel ground **ID** (left) and a new glove-box ground near R/B4 | | |
 | H8 | Jump post | 2 AWG | Starter B+ | Engine-bay jump post | So you can still jump-start from the bay | |
 
 ![Starting, EWD p.48 — AM1/AM2 through IE1, starter via R/B4](ewd-snips/1990-st185-starting.png)
 
 ![Charging, EWD p.52 — alt B+ is W into J/B2 / F11](ewd-snips/1990-st185-charging.png)
 
-**160 A vs 5.7 mm RADLOK:** RL00571-35 is specified in this repo for 2 AWG / 25 mm². That is enough for cranking (short duty). A 160 A continuous charge path is happier on 1/0 (53 mm²) and an 8 mm RADLOK. Do not order a second 5.7 mm pair for the alt until that is decided; the alt already lands on the starter post.
+**SETTLED 2026-09-22 — 1/0 and RADLOK 8.0.** The old `RL00571-35` spec was wrong twice
+over: Amphenol's catalogue has no `-35` (the trailing number is cable mm², and only
+`-16` and `-25` exist for 5.7 mm), and 5.7 mm RADSOK is rated **120 A** — under the
+160 A the alternator can push back through this crossing.
+
+Sizing, done properly:
+
+| Case | Current | 2 AWG drop | **1/0 drop** | 2/0 drop |
+|---|---|---|---|---|
+| Alternator at rating, continuous | 160 A | 0.90 V | **0.57 V (4%)** | 0.45 V |
+| Cranking, a few seconds | ~300 A | 1.69 V (13%) | **1.06 V (8.4%)** | 0.84 V |
+
+Round trip is about **36 ft** — roughly 18 ft each way, trunk → PDB → firewall →
+starter, with a dedicated negative of similar length. 2 AWG blows past the 10%
+a starter circuit is normally held to. 2/0 buys 0.2 V for a lot more money and a
+much worse bend radius. **1/0 (50 mm²)** it is, which is exactly the RADLOK 8.0
+cable size.
+
+| Piece | Part | Qty |
+|---|---|---|
+| Firewall feed-through, positive | `RL9080-301-F1RE` — 8.0 mm RADLOK, panel mount, pin both sides, 200 A / 1 kV, IP40 mated, red | 1 |
+| Firewall feed-through, negative | `RL9080-301-F1` — same, black | 1 |
+| Cable connector, positive | `RL00801-50RE` — female, 200 A, 50 mm², red | 2 (one each side) |
+| Cable connector, negative | `RL00801-50BK` — same, black | 2 (one each side) |
+
+Each polarity is three pieces: the feed-through lives in the firewall, a cable
+connector plugs onto each side. 200 A continuous gives 25% headroom over the
+alternator case, and a connector of this class shrugs off a few seconds of
+cranking. The `-303` nickel variant is discontinued; RS names `-301` as its
+replacement.
+
+The alternator still lands on the starter post (H5), so it never needs a second
+crossing.
 
 ### 5.2 Left kick panel — J/B No.1 (keep)
 
