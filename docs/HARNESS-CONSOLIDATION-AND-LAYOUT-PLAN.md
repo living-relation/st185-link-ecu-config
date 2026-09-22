@@ -1296,13 +1296,34 @@ than being split across A-ECU, B-ECU and CAN. The CSB3 HD36-24-33SE connector
 (6.37 map, 6.40 family) is owned there, once, and every other drawing that
 touches it shows a cross-reference node with no part assigned.
 
-### Wheel speed
+### Wheel speed - split front and rear
 
-- The sensor runs - all four wheels to the VR conditioner boxes - move to loom C.
-- The conditioner **outputs** merge into whichever loom holds their assigned ECU
-  pin: FL -> ECU-A A23 -> loom A; FR, RL, RR -> ECU-B B21, B20, B19 -> loom B.
-- The VRC boxes are in the cabin, so the outputs never cross a bulkhead. They are
-  cabin-side wires joining the A or B bundle under the dash, which rule 4 allows.
+Settled 2026-09-22. The two VR conditioner boxes do not share a loom.
+
+| | Front | Rear |
+|---|---|---|
+| Sensor drops | FL, FR | RL, RR |
+| VRC box | front box, **loom C** | rear box, **rear trunk loom** |
+| Also on that loom | the rest of the engine room | fuel level sender, fuel pump |
+
+The conditioner **outputs** merge into whichever loom holds their assigned ECU
+pin, per the rule above: FL -> ECU-A A23 -> loom A. FR, RL, RR -> ECU-B B21, B20,
+B19 -> loom B. Fuel level -> ECU-B B24 -> loom B.
+
+Putting the rear box in the trunk rather than the cabin is the right way round for
+noise: the raw VR millivolts travel a few feet from the rear hubs to the box, and
+the conditioned square wave makes the long run forward.
+
+### Rear trunk loom - new drawing
+
+Third new loom, alongside loom C and the cabin accessory loom. Carries:
+
+- RL and RR sensor drops, screened, into the rear VRC box
+- The rear VRC box: 5 V and ground in, two conditioned outputs forward
+- Fuel level sender
+- Fuel pump power and ground
+
+Fuel level and fuel pump come **out of** `ST185-B-ECU`, where they sit today.
 
 ### Known violations to fix, found 2026-09-21
 
@@ -1315,11 +1336,40 @@ touches it shows a cross-reference node with no part assigned.
 | ECU-B B12 | Reads notConnected on A-ECU, but 6.16 makes it the EPS trigger |
 | CSB3 | Owned across three drawings instead of the cabin accessory loom |
 
+### The loom list after this section
+
+| Loom | Drawing | Scope |
+|---|---|---|
+| A | `ST185-A-ECU` + `ST185-A-engine` | ECU-A pins through bulkhead A |
+| B | `ST185-B-ECU` + `ST185-B-engine` | ECU-B pins through bulkhead B |
+| C | `ST185-EngineRoom-C` | engine room, EPS, front VRC, front sensor drops |
+| CAN | `ST185-CAN` | CAN backbone |
+| Cabin accessory | new | CSB3, cluster LEDs, dash devices |
+| Rear trunk | new | rear VRC, rear sensor drops, fuel level, fuel pump |
+
+`ST185-WheelSpeed` and `ST185-ClusterLED` are absorbed by the looms above; they
+stop being drawings of their own.
+
+### Parts selection
+
+Before speccing any connector, contact or seal, read `docs/sourcing/README.md`.
+Order is: what Daniel already owns, then TE Connectivity (free samples preferred),
+then anything else. The on-hand list is `docs/sourcing/te-on-hand-bom.csv`.
+
+Two facts from that list bear on this section directly:
+
+- **No size-20 contacts on hand**, against roughly 300 size-16. Bulkhead A and the
+  6.40 CSB3 connector both need size 20.
+- An unassigned `HD34-24-21SN` / `HD36-24-21PN` HD30 pair is on the shelf in sizes
+  12/16. It is a live alternative to the 6.40 CSB3 connector - 21 ways is 14 used
+  plus 7 spare - at the cost of flipped gender and no room to bring out all 26.
+
 ### Open
 
-- Rear wheel sensors: loom C is the engine-room loom, and RL/RR are at the back
-  of the car. Confirm whether the rear pair rides loom C anyway, a rear/trunk
-  loom, or the wheel-speed drawing stays its own loom.
+- Where the rear trunk loom joins the cabin looms. Its outputs belong to loom A/B
+  by ECU pin, so it needs a defined junction - a rear bulkhead or inline connector
+  behind the seat, or a straight run to the dash. Not decided.
+- Whether the CSB3 uses the on-hand 21-way HD30 pair or the 6.40 33-way pair.
 - `docs/RECONCILIATION-RULES.md` still lists `ST185-Signal.harness` and
   `ST185-Power.harness` in its source-of-truth table. The `rebuild/` A/B/engine
   split replaced those. Update the table once this restructure lands, not before,

@@ -1,26 +1,29 @@
-plan 6.41: loom boundaries - what belongs in A, B and C
+sourcing: import the TE on-hand BOM, and pick parts from it first
 
-Settled 2026-09-22, after pass 2 turned up ECU-A wires riding bulkhead B, EPS
-wires riding bulkhead B, and the CSB3 owned by three drawings at once.
+Daniel's TE BOM and his three TE order confirmations live in Google Drive. The
+spreadsheet is now a CSV in the repo so an agent can actually read it, and
+docs/sourcing/README.md sets the selection order: what he already owns, then TE
+Connectivity with free samples preferred, then anything else. Added to the
+RECONCILIATION-RULES surfaces table so every agent has to check it.
 
-Looms A and B are independent. The ECU pin decides which loom a wire joins.
-Anything not bound for its own bulkhead branches at the ECU connector and runs
-direct to its loom. Looms A and B carry only wires entering the engine bay
-through their own bulkhead, and nothing crosses from A or B into another loom on
-the engine-bay side. Cabin-side branching is fine - the reverse switch comes in
-on A or B and branches under the dash to the CSB3.
+The order confirmations are image-only PDFs and cannot be parsed - linked by URL
+with that noted, so nobody wastes another pass trying.
 
-EPS is loom C only, ECU trigger included.
+Two things the list changes immediately:
 
-The CSB3, the cluster LED loom and the dash devices get their own cabin
-accessory drawing, and the HD30 connector is owned there once.
+- There are ZERO size-20 contacts on hand, against roughly 300 size-16. Bulkhead A
+  is a 16/20 arrangement and 6.40 wants 26 more size-20 for the CSB3 box. That is
+  a real buy, and DigiKey had the socket at zero stock on 2026-09-21.
+- An HD34-24-21SN / HD36-24-21PN HD30 pair is sitting unassigned in sizes 12/16,
+  which are the contacts he has by the hundred. Twenty-one ways is exactly the
+  CSB3's 14 used plus 7 spare. Flagged as an alternative to the 6.40 connector -
+  gender is flipped and it cannot bring out all 26, so it is Daniel's call.
 
-Wheel speed sensor runs move to loom C. The conditioner outputs merge into
-whichever loom holds their ECU pin - FL to loom A, FR/RL/RR to loom B. The boxes
-are in the cabin so those outputs never cross a bulkhead.
-
-Also records the six known violations to fix and two open items: where the rear
-wheel sensors ride, and the stale harness file list in RECONCILIATION-RULES.md.
+Also settled in 6.41: the rear VR conditioner leaves loom C and gets its own rear
+trunk loom, together with the fuel level sender and the fuel pump. Front VRC and
+the front sensor drops stay on loom C. Conditioner outputs still merge into the
+loom holding their ECU pin. The raw VR millivolts now travel a few feet instead of
+the length of the car, which is the right way round for noise.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

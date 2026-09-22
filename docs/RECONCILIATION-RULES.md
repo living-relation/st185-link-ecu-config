@@ -51,6 +51,7 @@ reverse.
 | `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` | Build rules and doc roles |
 | `WIRING.md` | Cluster GPIO + CAN physical topology |
 | `SENSORS_AND_COMPONENTS_MASTER.csv` | Device names, part numbers, locations |
+| `docs/sourcing/te-on-hand-bom.csv` | Parts already owned — check before speccing anything new |
 
 Dated `VERIFY` / `AUDIT` / `FACES` / `BOARD-VERIFY` notes in `docs/` are **frozen records**.
 Read them, never update them, never treat them as living pin maps.
