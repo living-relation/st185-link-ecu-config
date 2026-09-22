@@ -1,41 +1,45 @@
-plan 6.48: no PDU - relays, a second fuse block, and the CSB3 does the logic
+6.48 rewritten: no PDU, no added logic - and loom C laid out properly
 
-Daniel's decision. The PMU-16 is not being bought. This closes 6.46 and rewrites
-every PMU assumption in the repo.
+Daniel cut the scope, correctly. The first draft of 6.48 invented a shutdown
+system nobody asked for. Rewritten in place rather than stacked behind another
+supersede banner, because the supersede chain was already three deep.
 
-What replaces it. Both junction blocks stay. The five ex-J/B2 circuits get relays
-and a second fuse block in the glove box - HEAD LH and HEAD RH and RTR on relays,
-HAZ-HORN and DOME on fuses alone. AM1 and AM2 go back to plain fused PDB feeds,
-which is what redistribution 3.1 always said before 6.44 briefly moved them. So
-the net effect of the entire PDU question is that nothing in the cabin changes.
+Withdrawn entirely: the device-hold relay, the PDU-controlled battery kill, the
+alternator excite sequencing, and the permanently live CSB3.
 
-The logic moves to the CSB3's four low-sides: L1 device relay hold for the Pi's
-clean shutdown, L2 kill relay coil, L3 alternator excite, L4 oil lamp. Full, none
-spare. The CSB3 itself takes a permanent fused feed because it has to be alive
-through the kill sequence and cannot hold the relay that powers it - parasitic
-draw flagged for measurement.
+  - CSB3, cluster and Pi each get a fuse off ignition-switched 12 V. They come up
+    with the key and die with it. The CSB3 is not always live; that idea only ever
+    existed to serve a kill sequence that no longer exists.
+  - The Pi is an info display. It has no role in any shutdown.
+  - Battery kill is a manual master cutoff in the trunk. No relay, no ECU, no
+    sequencing. The HCR150 goes back to being just the EPS pump relay.
+  - The only logic on the car is the ECU's own hold power on Aux 6, exactly as
+    already built and entirely self-contained.
 
-Shutdown order is unchanged in intent: ECU parks the ETB on its own hold power and
-is the innermost authority, the Pi shuts down on CAN state, the CSB3 releases the
-device relay when the Pi reports down, and only an actual kill command drops
-excitation and then the HCR150. Normal key-off is not a kill.
+All four CSB3 low-sides are free again; the oil lamp is the only candidate.
+Relay count drops to 3-4 and the second fuse block to 12 ways.
 
-Docs updated. Supersede banners on 6.38, 6.44 and 6.45 saying exactly which parts
-survive - the DTM4 house standard and load figures in 6.38 still stand, and so
-does 6.44's injection-point constraint, which is the reason both J/Bs stay
-whether or not a PDU exists. Redistribution 3.1 gets a translation table so its
-thirty "PMU Ox" references stay readable instead of being hand-edited into
-inconsistency; the architecture diagram, fuse schedule, build steps and power-up
-order are corrected properly.
+6.43 and 6.45 now carry withdrawal banners rather than being left live. Two
+findings from 6.45 are carried forward into 6.48 because they still matter: a
+130 A relay was never going to carry 100-300 A of cranking, and opening a master
+switch on a running alternator is a load dump, so buy a switch with an excite-kill
+terminal.
 
-Harness updated too, rather than left to drift. Loom C's pmu node is now "Glove-box
-body block (fuses + relays, ex-J/B2)" - same element id so its seven wires survive,
-same cavity count, new label and cavity text, and the two dead CAN cavities
-repurposed as the CSB3 permanent feed and the device relay feed. Live on
-harness.design and mirrored locally by fix_no_pdu.py.
+Corrected an overstatement of mine: I wrote that nothing in the cabin changes.
+Wrong. The dash branch wiring is untouched, but power and ground delivery to the
+junction blocks is entirely new - seven new terminations, from a PDB that did not
+exist, on a battery that now lives in the trunk. 6.48 lists them.
 
-Buy list swaps the PMU-16 for 4 micro ISO relays, a 12-16 way fuse block and a
-100 A ANL. Lint 8/8, verify clean at 269 conductors, both lists regenerated.
+Layout. Loom C had 38 nodes spread over 5500 x 3300 with all four section headers
+stacked at x=0, nowhere near the zones they name. Now four zones in reading order -
+trunk and glove box, firewall RADLOK, OEM injection, new engine-room loads - each
+under its own header, with cross-reference stubs in a fifth column. Canvas is
+3150 x 2220. layout_room_c.py holds the zone table so it can be re-run.
+
+Harness node updated to match: the ex-pmu body block's CSB3 and device cavities
+are plain switched feeds now.
+
+Lint 8/8.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

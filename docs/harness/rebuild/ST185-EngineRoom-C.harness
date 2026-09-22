@@ -503,12 +503,12 @@
       "label": "Cabin PDB (glove box)",
       "width": 270,
       "schematicPosition": {
-        "x": 620,
-        "y": 1790
+        "x": 0,
+        "y": 330
       },
       "layoutPosition": {
-        "x": 620,
-        "y": 1790
+        "x": 0,
+        "y": 330
       },
       "cavities": [
         {
@@ -559,12 +559,12 @@
       "label": "Glove-box body block (fuses + relays, ex-J/B2)",
       "width": 270,
       "schematicPosition": {
-        "x": 620,
-        "y": 2298
+        "x": 0,
+        "y": 690
       },
       "layoutPosition": {
-        "x": 620,
-        "y": 2298
+        "x": 0,
+        "y": 690
       },
       "cavities": [
         {
@@ -630,12 +630,12 @@
       "label": "EPS pump relay HCR150",
       "width": 270,
       "schematicPosition": {
-        "x": 3860,
-        "y": 0
+        "x": 2160,
+        "y": 90
       },
       "layoutPosition": {
-        "x": 3860,
-        "y": 0
+        "x": 2160,
+        "y": 90
       },
       "cavities": [
         {
@@ -671,12 +671,12 @@
       "label": "Rad fan relay (uprated)",
       "width": 270,
       "schematicPosition": {
-        "x": 1080,
-        "y": 540
+        "x": 0,
+        "y": 1140
       },
       "layoutPosition": {
-        "x": 1080,
-        "y": 540
+        "x": 0,
+        "y": 1140
       },
       "cavities": [
         {
@@ -712,12 +712,12 @@
       "label": "Condenser fan relay (uprated)",
       "width": 270,
       "schematicPosition": {
-        "x": 1080,
-        "y": 946
+        "x": 0,
+        "y": 1410
       },
       "layoutPosition": {
-        "x": 1080,
-        "y": 946
+        "x": 0,
+        "y": 1410
       },
       "cavities": [
         {
@@ -753,12 +753,12 @@
       "label": "RADLOK + firewall",
       "width": 210,
       "schematicPosition": {
-        "x": 2680,
-        "y": 270
+        "x": 720,
+        "y": 90
       },
       "layoutPosition": {
-        "x": 2680,
-        "y": 270
+        "x": 720,
+        "y": 90
       },
       "cavities": [
         {
@@ -774,12 +774,12 @@
       "label": "RADLOK + engine",
       "width": 210,
       "schematicPosition": {
-        "x": 3220,
-        "y": 270
+        "x": 720,
+        "y": 240
       },
       "layoutPosition": {
-        "x": 3220,
-        "y": 270
+        "x": 720,
+        "y": 240
       },
       "cavities": [
         {
@@ -795,12 +795,12 @@
       "label": "RADLOK - firewall",
       "width": 210,
       "schematicPosition": {
-        "x": 2680,
-        "y": 0
+        "x": 720,
+        "y": 390
       },
       "layoutPosition": {
-        "x": 2680,
-        "y": 0
+        "x": 720,
+        "y": 390
       },
       "cavities": [
         {
@@ -816,12 +816,12 @@
       "label": "RADLOK - engine",
       "width": 210,
       "schematicPosition": {
-        "x": 3220,
-        "y": 0
+        "x": 720,
+        "y": 540
       },
       "layoutPosition": {
-        "x": 3220,
-        "y": 0
+        "x": 720,
+        "y": 540
       },
       "cavities": [
         {
@@ -837,12 +837,12 @@
       "label": "OEM J/B2 2A (engine room main)",
       "width": 270,
       "schematicPosition": {
-        "x": 3860,
-        "y": 1994
+        "x": 1440,
+        "y": 990
       },
       "layoutPosition": {
-        "x": 3860,
-        "y": 1994
+        "x": 1440,
+        "y": 990
       },
       "cavities": [
         {
@@ -878,12 +878,12 @@
       "label": "OEM J/B2 2D (engine room main)",
       "width": 270,
       "schematicPosition": {
-        "x": 3860,
-        "y": 2400
+        "x": 1440,
+        "y": 1260
       },
       "layoutPosition": {
-        "x": 3860,
-        "y": 2400
+        "x": 1440,
+        "y": 1260
       },
       "cavities": [
         {
@@ -914,12 +914,12 @@
       "label": "OEM J/B2 2E (engine room main)",
       "width": 270,
       "schematicPosition": {
-        "x": 3860,
-        "y": 2772
+        "x": 1440,
+        "y": 1500
       },
       "layoutPosition": {
-        "x": 3860,
-        "y": 2772
+        "x": 1440,
+        "y": 1500
       },
       "cavities": [
         {
@@ -960,12 +960,12 @@
       "label": "OEM J/B1 1I (left kick, ER main)",
       "width": 270,
       "schematicPosition": {
-        "x": 620,
-        "y": 608
+        "x": 1440,
+        "y": 450
       },
       "layoutPosition": {
-        "x": 620,
-        "y": 608
+        "x": 1440,
+        "y": 450
       },
       "cavities": [
         {
@@ -981,12 +981,12 @@
       "label": "OEM J/B1 1H (left kick, ER main)",
       "width": 270,
       "schematicPosition": {
-        "x": 620,
-        "y": 304
+        "x": 1440,
+        "y": 270
       },
       "layoutPosition": {
-        "x": 620,
-        "y": 304
+        "x": 1440,
+        "y": 270
       },
       "cavities": [
         {
@@ -1007,12 +1007,12 @@
       "label": "OEM IE1 (left kick, ER main <-> cowl)",
       "width": 270,
       "schematicPosition": {
-        "x": 620,
-        "y": 0
+        "x": 1440,
+        "y": 90
       },
       "layoutPosition": {
-        "x": 620,
-        "y": 0
+        "x": 1440,
+        "y": 90
       },
       "cavities": [
         {
@@ -1033,12 +1033,12 @@
       "label": "OEM R/B4 (right kick, by glove box)",
       "width": 270,
       "schematicPosition": {
-        "x": 620,
-        "y": 1452
+        "x": 1440,
+        "y": 780
       },
       "layoutPosition": {
-        "x": 620,
-        "y": 1452
+        "x": 1440,
+        "y": 780
       },
       "cavities": [
         {
@@ -1064,12 +1064,12 @@
       "label": "OEM R/B2 (left kick)",
       "width": 270,
       "schematicPosition": {
-        "x": 620,
-        "y": 878
+        "x": 1440,
+        "y": 600
       },
       "layoutPosition": {
-        "x": 620,
-        "y": 878
+        "x": 1440,
+        "y": 600
       },
       "cavities": [
         {
@@ -1090,12 +1090,12 @@
       "label": "MRS EPS pump power 90980-12068",
       "width": 270,
       "schematicPosition": {
-        "x": 3860,
-        "y": 1150
+        "x": 2160,
+        "y": 540
       },
       "layoutPosition": {
-        "x": 3860,
-        "y": 1150
+        "x": 2160,
+        "y": 540
       },
       "cavities": [
         {
@@ -1116,12 +1116,12 @@
       "label": "MRS EPS enable 90980-10942",
       "width": 270,
       "schematicPosition": {
-        "x": 3860,
-        "y": 846
+        "x": 2160,
+        "y": 360
       },
       "layoutPosition": {
-        "x": 3860,
-        "y": 846
+        "x": 2160,
+        "y": 360
       },
       "cavities": [
         {
@@ -1142,12 +1142,12 @@
       "label": "Uprated radiator fan",
       "width": 270,
       "schematicPosition": {
-        "x": 5560,
-        "y": 844
+        "x": 2160,
+        "y": 1020
       },
       "layoutPosition": {
-        "x": 5560,
-        "y": 844
+        "x": 2160,
+        "y": 1020
       },
       "cavities": [
         {
@@ -1168,12 +1168,12 @@
       "label": "Uprated condenser fan",
       "width": 270,
       "schematicPosition": {
-        "x": 5560,
-        "y": 540
+        "x": 2160,
+        "y": 1200
       },
       "layoutPosition": {
-        "x": 5560,
-        "y": 540
+        "x": 2160,
+        "y": 1200
       },
       "cavities": [
         {
@@ -1194,12 +1194,12 @@
       "label": "Engine-bay jump post",
       "width": 210,
       "schematicPosition": {
-        "x": 5560,
-        "y": 0
+        "x": 720,
+        "y": 930
       },
       "layoutPosition": {
-        "x": 5560,
-        "y": 0
+        "x": 720,
+        "y": 930
       },
       "cavities": [
         {
@@ -1247,12 +1247,12 @@
         }
       ],
       "layoutPosition": {
-        "x": 3860,
-        "y": 406
+        "x": 2160,
+        "y": 720
       },
       "schematicPosition": {
-        "x": 3860,
-        "y": 406
+        "x": 2160,
+        "y": 720
       }
     },
     {
@@ -1267,12 +1267,12 @@
         }
       ],
       "schematicPosition": {
-        "x": 3220,
-        "y": 540
+        "x": 2880,
+        "y": 90
       },
       "layoutPosition": {
-        "x": 3220,
-        "y": 540
+        "x": 2880,
+        "y": 90
       }
     },
     {
@@ -1287,12 +1287,12 @@
         }
       ],
       "schematicPosition": {
-        "x": 3860,
-        "y": 1724
+        "x": 2880,
+        "y": 690
       },
       "layoutPosition": {
-        "x": 3860,
-        "y": 1724
+        "x": 2880,
+        "y": 690
       }
     },
     {
@@ -1307,12 +1307,12 @@
         }
       ],
       "schematicPosition": {
-        "x": 1080,
-        "y": 270
+        "x": 2880,
+        "y": 540
       },
       "layoutPosition": {
-        "x": 1080,
-        "y": 270
+        "x": 2880,
+        "y": 540
       }
     },
     {
@@ -1327,12 +1327,12 @@
         }
       ],
       "schematicPosition": {
-        "x": 1080,
-        "y": 0
+        "x": 2880,
+        "y": 840
       },
       "layoutPosition": {
-        "x": 1080,
-        "y": 0
+        "x": 2880,
+        "y": 840
       }
     },
     {
@@ -1347,12 +1347,12 @@
         }
       ],
       "schematicPosition": {
-        "x": 3220,
-        "y": 810
+        "x": 2880,
+        "y": 240
       },
       "layoutPosition": {
-        "x": 3220,
-        "y": 810
+        "x": 2880,
+        "y": 240
       }
     },
     {
@@ -1367,12 +1367,12 @@
         }
       ],
       "schematicPosition": {
-        "x": 2080,
-        "y": 600
+        "x": 2880,
+        "y": 390
       },
       "layoutPosition": {
-        "x": 2080,
-        "y": 600
+        "x": 2880,
+        "y": 390
       }
     }
   ],
@@ -1384,11 +1384,11 @@
       "width": 210,
       "schematicPosition": {
         "x": 0,
-        "y": 270
+        "y": 90
       },
       "layoutPosition": {
         "x": 0,
-        "y": 270
+        "y": 90
       }
     },
     {
@@ -1398,11 +1398,11 @@
       "width": 210,
       "schematicPosition": {
         "x": 0,
-        "y": 0
+        "y": 210
       },
       "layoutPosition": {
         "x": 0,
-        "y": 0
+        "y": 210
       }
     },
     {
@@ -1411,12 +1411,12 @@
       "signal": "Starter B+ post, jump lug, 2 AWG",
       "width": 210,
       "schematicPosition": {
-        "x": 4980,
-        "y": 0
+        "x": 720,
+        "y": 690
       },
       "layoutPosition": {
-        "x": 4980,
-        "y": 0
+        "x": 720,
+        "y": 690
       }
     },
     {
@@ -1425,12 +1425,12 @@
       "signal": "160 A alternator B+, 4 AWG to starter B+",
       "width": 210,
       "schematicPosition": {
-        "x": 4420,
-        "y": 0
+        "x": 720,
+        "y": 810
       },
       "layoutPosition": {
-        "x": 4420,
-        "y": 0
+        "x": 720,
+        "y": 810
       }
     },
     {
@@ -1439,12 +1439,12 @@
       "signal": "Engine block ground stud, 2 AWG, jump lug",
       "width": 210,
       "schematicPosition": {
-        "x": 3860,
-        "y": 1454
+        "x": 720,
+        "y": 1080
       },
       "layoutPosition": {
-        "x": 3860,
-        "y": 1454
+        "x": 720,
+        "y": 1080
       }
     },
     {
@@ -1453,12 +1453,12 @@
       "signal": "OEM ground EA - right front fender",
       "width": 210,
       "schematicPosition": {
-        "x": 5560,
-        "y": 1148
+        "x": 2160,
+        "y": 1380
       },
       "layoutPosition": {
-        "x": 5560,
-        "y": 1148
+        "x": 2160,
+        "y": 1380
       }
     },
     {
@@ -1467,12 +1467,12 @@
       "signal": "OEM ground EB - left front fender",
       "width": 210,
       "schematicPosition": {
-        "x": 5560,
-        "y": 270
+        "x": 2160,
+        "y": 1500
       },
       "layoutPosition": {
-        "x": 5560,
-        "y": 270
+        "x": 2160,
+        "y": 1500
       }
     },
     {
@@ -1481,12 +1481,12 @@
       "signal": "OEM ground ID - left kick panel",
       "width": 210,
       "schematicPosition": {
-        "x": 620,
-        "y": 1182
+        "x": 1440,
+        "y": 1800
       },
       "layoutPosition": {
-        "x": 620,
-        "y": 1182
+        "x": 1440,
+        "y": 1800
       }
     },
     {
@@ -1495,12 +1495,12 @@
       "signal": "OEM ground IG - R/B4 set bolt, right kick",
       "width": 210,
       "schematicPosition": {
-        "x": 620,
-        "y": 2908
+        "x": 1440,
+        "y": 1920
       },
       "layoutPosition": {
-        "x": 620,
-        "y": 2908
+        "x": 1440,
+        "y": 1920
       }
     }
   ],
@@ -1523,7 +1523,7 @@
       "width": 390,
       "schematicPosition": {
         "x": 0,
-        "y": -1400
+        "y": -390
       }
     },
     {
@@ -1531,8 +1531,8 @@
       "text": "HEAVY DC: trunk battery -> cabin PDB (glove box) -> RADLOK 5.7 mm through the firewall -> starter B+. 160 A alt B+ joins the starter post and does not recross. Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. 2 AWG is OK for cranking; 160 A continuous charge may need 1/0 + 8 mm RADLOK - see the table.",
       "width": 390,
       "schematicPosition": {
-        "x": 0,
-        "y": -1140
+        "x": 420,
+        "y": -390
       },
       "color": "Orange"
     },
@@ -1541,8 +1541,8 @@
       "text": "EPS 12 V / GND ride the passenger fender in the vacated ABS actuator space. Fans ride the core-support run of the OEM engine-room main. A/C compressor clutch stays on engine harness A/B (Power/Signal files). Crash sensors and ABS solenoid are deleted - do not refeed 60A FL ABS, A7/A8, A11/A12, A37.",
       "width": 390,
       "schematicPosition": {
-        "x": 0,
-        "y": -880
+        "x": 840,
+        "y": -390
       },
       "color": "Green"
     },
@@ -1552,7 +1552,7 @@
       "width": 270,
       "schematicPosition": {
         "x": 0,
-        "y": -620
+        "y": 0
       },
       "color": "Green"
     },
@@ -1561,8 +1561,8 @@
       "text": "FIREWALL RADLOK",
       "width": 270,
       "schematicPosition": {
-        "x": 0,
-        "y": -360
+        "x": 720,
+        "y": 0
       },
       "color": "Orange"
     },
@@ -1571,8 +1571,8 @@
       "text": "PROBE BEFORE CRIMPING 2E-2 / 2E-3. Starting + ignition (EWD p.48) puts AM1 on 2E-2/2E-5 and AM2 on 2E-3/2E-6, then IE1-10 / IE1-17. Inner circuit (p.21) puts 30A RTR on 2E-2 and 15A HAZ-HORN on 2E-3. If the unplugged 2E-2 shows continuity to IE1-10, that pin is AM1 - do not land PMU O5 there. Same for 2E-3 vs IE1-17 / AM2. HEAD 2A-3/2A-6 and DOME 2E-4 do not sit on that pass-through. Horn fallback is R/B5.",
       "width": 390,
       "schematicPosition": {
-        "x": 0,
-        "y": -100
+        "x": 1260,
+        "y": -390
       },
       "color": "Red"
     },
@@ -1581,8 +1581,8 @@
       "text": "OEM INJECTION (keep J/Bs)",
       "width": 390,
       "schematicPosition": {
-        "x": 0,
-        "y": 160
+        "x": 1440,
+        "y": 0
       },
       "color": "Red"
     },
@@ -1591,8 +1591,8 @@
       "text": "NEW ENGINE-ROOM LOADS",
       "width": 270,
       "schematicPosition": {
-        "x": 0,
-        "y": 420
+        "x": 2160,
+        "y": 0
       },
       "color": "Blue"
     }

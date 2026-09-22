@@ -1538,6 +1538,9 @@ with another high consumer, and never sits on a PDU output alone.
 
 ### Battery kill
 
+> **WITHDRAWN 2026-09-22.** Manual master cutoff only - see 6.48. The paragraph
+> below recorded an idea that was dropped; the HCR150 is just the EPS pump relay.
+
 Daniel wants a high-current relay acting as the battery kill, driven by the PDU
 rather than only by a mechanical switch.
 
@@ -1676,10 +1679,20 @@ more wires from `pmu` to `oem_ie1` in that same file.
 
 ## 6.45 Battery kill - final shape
 
-> **AMENDED 2026-09-22 by 6.48 - there is no PDU.** The kill relay coil and the
-> alternator excite drop are driven by **CSB3 low-sides L2 and L3**, not PDU
-> outputs. The two-devices rule, the starter-path finding and the sequenced
-> shutdown below are all unchanged.
+> # WITHDRAWN 2026-09-22 - see 6.48
+>
+> There is no electronic battery kill. Daniel's call: **a manual master cutoff in
+> the trunk, and nothing else.** No relay, no CSB3 channel, no sequencing.
+>
+> Two findings below are worth keeping and are carried into 6.48:
+>
+> - A four-cylinder petrol starter draws 100-300 A cranking, so a 130 A HCR150
+>   could never have been in the starter path. The manual cutoff is sized for the
+>   whole car including the starter cable, which is the right answer anyway.
+> - Opening a master switch on a running alternator is a load dump. Buy a switch
+>   with an auxiliary excite-kill terminal.
+>
+> Everything else in this section is dead. The HCR150 is just the EPS pump relay.
 
 Settled with Daniel 2026-09-22, closing the three questions raised in 6.43.
 
@@ -1890,99 +1903,109 @@ are already paid for and currently idle.
 
 ---
 
-## 6.48 NO PDU - the replacement architecture
+## 6.48 NO PDU, and no added logic
 
-**Settled with Daniel 2026-09-22. The PMU-16 is not being bought.**
+**Settled with Daniel 2026-09-22.** Rewritten the same day after he cut the scope:
+the first draft of this section invented a shutdown system nobody asked for.
 
-This closes 6.46 and supersedes every PMU assumption in **6.38, 6.44 and 6.45**.
-Where those sections say "PDU output", read this section instead.
+Two decisions:
 
-Reasoning is in 6.46 (a sixteen-channel unit doing five circuits for $1,499) and
-6.47 (nothing bigger fixes it - the 40 A blower does not fit any PDM channel on
-the market, so R/B No.4 survives regardless).
+1. **The PMU-16 is not being bought.** Reasoning in 6.46 and 6.47.
+2. **The only logic on this car is the ECU's own hold power.** Everything else the
+   first draft added - device hold relays, a PDU-controlled battery kill,
+   alternator excite sequencing, a permanently live CSB3 - is **withdrawn**.
 
-### What replaces it
+This supersedes the PMU parts of **6.38** and **6.44**, and **withdraws the
+electronic kill in 6.43 and 6.45** entirely.
 
-Both junction blocks stay, exactly as in option B. The five deleted J/B No.2
-circuits and the device feeds move to relays and a second fuse block, and the
-logic moves to the CSB3.
+### What the five ex-J/B2 circuits get
 
-| Circuit | Was going to be | Now |
-|---|---|---|
-| HEAD LH 15 A | PDU O1 | relay + fuse -> J/B2 2A-3 |
-| HEAD RH 15 A | PDU O2 | relay + fuse -> J/B2 2A-6 |
-| HAZ-HORN 15 A | PDU O3 | fuse -> 2E-3, plus a horn relay if the car has none |
-| DOME 20 A | PDU O4 | fuse -> 2E-4, always-hot, no relay |
-| RTR 30 A | PDU O5 | relay + fuse -> 2E-2 |
-| AM1 40 A | PDU (6.44) | **plain fused feed from the PDB** -> IE1-10, as 3.1 always had it |
-| AM2 30 A | PDU (6.44) | **plain fused feed from the PDB** -> IE1-17 |
-| Always-hot | plain fused feed | unchanged |
-| TrackCluster, RealDash Pi | PDU outputs | one **device relay**, fused per device |
-| CSB3 | PDU output | **permanent fused feed** - see below |
-
-### Why the CSB3 gets a permanent feed
-
-The CSB3 is the logic now, so it has to be alive through key-off and through the
-kill sequence. It cannot hang off a relay it is itself holding.
-
-Board draw is negligible (6.37), and the battery-kill relay removes it when the
-car is parked long-term, so the parasitic drain is bounded. **Measure it anyway
-before signing this off** - a permanent feed is the one thing here that can flatten
-a battery over a month.
-
-### The four low-side outputs, allocated
-
-| | Job |
+| Circuit | Source |
 |---|---|
-| L1 | Device relay hold - keeps the cluster and Pi alive after key-off for the Pi's clean shutdown |
-| L2 | Battery-kill relay coil (HCR150) |
-| L3 | Alternator excite relay - opened first in the kill sequence |
-| L4 | Oil pressure lamp |
+| HEAD LH 15 A | relay + fuse -> J/B2 2A-3 / 2D-2 |
+| HEAD RH 15 A | relay + fuse -> J/B2 2A-6 / 2D-6 |
+| RTR 30 A | relay + fuse -> 2E-2 |
+| HAZ-HORN 15 A | fuse -> 2E-3, plus a horn relay if the car has none |
+| DOME 20 A | fuse only, always-hot -> 2E-4 |
 
-Full, nothing spare. The oil lamp is the one to move to the TrackCluster if a
-fifth job appears.
+A second fuse block in the glove box, because TE `2141029-1` is full at F1-F13.
 
-### Shutdown sequence, unchanged in intent
+### CAN devices - ordinary switched feeds
 
-The ECU remains the innermost authority and nothing guesses a timer:
+CSB3, TrackCluster and RealDash Pi each get **a fuse off ignition-switched 12 V**.
+No relay to hold them, no permanent feed, nothing clever. They come up with the key
+and die with it.
 
-1. Key off. ECU holds `k_efi` on Aux 6, parks the ETB, saves, releases.
-2. Pi sees ignition false on CAN, runs its shutdown script.
-3. CSB3 holds L1 until the Pi reports down, then releases the device relay.
-4. On an actual kill command only: L3 drops alternator excitation, short delay,
-   then L2 opens the HCR150.
+**The CSB3 is not always live.** That idea existed only to serve the kill sequence,
+and there is no kill sequence.
 
-Normal key-off is not a kill. The HCR150 only opens on a kill command.
+**The Pi is an info display and nothing more.** It has no role in any shutdown. Its
+SD card is exposed to hard power-off the same way any carputer's is; that is a known
+and accepted trade, not a problem to engineer around here.
+
+### Battery kill - manual switch, full stop
+
+A **manual master cutoff in the trunk**, already on the buy list. No relay, no ECU
+involvement, no sequencing.
+
+The HCR150 goes back to being just the EPS pump relay. Two are owned, one is used,
+one is spare for anything.
+
+One practical note, offered once: opening a master switch with the engine running
+is a load dump on the alternator. Most motorsport master switches carry an
+auxiliary terminal for exactly this - it kills the alternator excite as the main
+contacts open. Worth specifying when the switch is bought. Shutting the engine off
+first also solves it.
+
+### ECU hold power - unchanged, and the only logic
+
+Exactly as already built: `k_efi` coil positive on permanent battery through F12
+5 A, coil negative on ECU **Aux 6 / A28**. The ECU holds its own relay after key-off
+to park the electronic throttle and save, then releases.
+
+Self-contained in the ECU. Nothing else participates and nothing else needs to know.
+
+### CSB3 low-side outputs
+
+All four are **free again**. The only candidate is the oil pressure lamp (6.43 /
+ClusterLED). Three spare.
 
 ### Relay and fuse count
 
-Relays: HEAD LH, HEAD RH, RTR, horn (if needed), device hold, alternator excite -
-**about 6 micro ISO**. Eight are owned and six are already assigned to `k_efi`,
-`k_etb`, `k_fp`, `k_fan`, `k_fan2` and `k_str`, so **buy roughly 4 more** plus
-sockets. The HCR150 is owned.
+Relays: HEAD LH, HEAD RH, RTR, and a horn relay if needed - **3 to 4 micro ISO**.
+Eight are owned with six assigned to `k_efi`, `k_etb`, `k_fp`, `k_fan`, `k_fan2`
+and `k_str`, so **buy 2 spare** and the count works.
 
 Fuse ways: HEAD LH 15, HEAD RH 15, HAZ-HORN 15, DOME 20, RTR 30, CSB3 5, cluster
-10, Pi 15, alt excite 5 - **9 ways, so a 12-16 way second block.** The TE
-`2141029-1` is full at F1-F13. AM1 40 A and AM2 30 A stay as PDB-mounted fuses,
-not blade ways, exactly as 3.1 and §8 of the redistribution doc already had them.
+10, Pi 15 - **8 ways, so a 12-way second block** with room left.
+
+### What DOES change in the cabin
+
+Correcting an overstatement in the first draft of this section. The dash branch
+wiring is untouched, but **power and ground delivery to the junction blocks is
+entirely new**, and that is real cabin work:
+
+| New injection | Where |
+|---|---|
+| Always-hot | J/B1 `1I-1` |
+| AM1 40 A | `IE1-10` |
+| AM2 30 A | `IE1-17` |
+| POWER feed | R/B No.2 fuse input |
+| HEATER feed | R/B No.4 fuse input |
+| Ground strap | left-kick `ID` stud |
+| Ground | new stud at the R/B No.4 set bolt |
+
+Seven new terminations in the cabin, from a PDB that did not exist before, on a
+battery that is now in the trunk. What is *not* changing is anything downstream of
+a junction block fuse.
 
 ### Monitoring, if wanted later
 
-Per 6.47: hall current sensors into CSB3 analog inputs **A3-A8**, which are idle.
-Six monitored circuits on CAN to RealDash and the cluster, about $60, no new module.
-
-### Already done in the repo
-
-`rebuild/ST185-EngineRoom-C.harness` has been updated the same day. The `pmu` node
-is now **"Glove-box body block (fuses + relays, ex-J/B2)"** - same element id so the
-seven wires stay intact, same cavity count, new label and cavity text. The two dead
-CAN cavities were repurposed as the CSB3 permanent feed and the device relay feed.
-The buy list no longer asks for a PMU-16.
-
-Lint 8/8, verify clean, both generated lists regenerated.
+Per 6.47: hall current sensors into CSB3 analog inputs A3-A8, which are idle. About
+$60, no new module. Unrelated to any of the above.
 
 ### Open
 
-- Measure CSB3 permanent-feed parasitic draw.
-- Confirm whether the car already has a horn relay, or whether one is needed.
-- Pick the second fuse block (12-16 way, with the TE block's mounting style).
+- Confirm whether the car already has a horn relay.
+- Pick the 12-way second fuse block.
+- Specify a master cutoff with an alternator-excite terminal.
