@@ -1,8 +1,13 @@
 import json, os, csv, datetime, collections, heapq
 
-R = os.path.dirname(os.path.abspath(__file__))
-F = (("Signal","ST185-Signal.harness"), ("Power","ST185-Power.harness"),
-     ("CAN","ST185-CAN.harness"), ("EngineRoomC","ST185-EngineRoom-C.harness"))
+R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
+# The eight current looms. Repointed 2026-09-22 - this used to read the
+# pre-split Signal/Power/CAN/EngineRoom-C files, so every build list generated
+# before that date described the old two-loom structure, not the built one.
+F = (("A-ECU","ST185-A-ECU.harness"), ("A-engine","ST185-A-engine.harness"),
+     ("B-ECU","ST185-B-ECU.harness"), ("B-engine","ST185-B-engine.harness"),
+     ("CAN","ST185-CAN.harness"), ("EngineRoomC","ST185-EngineRoom-C.harness"),
+     ("ClusterLED","ST185-ClusterLED.harness"), ("WheelSpeed","ST185-WheelSpeed.harness"))
 
 def load(fn):
     return json.load(open(os.path.join(R, fn), encoding="utf-8"))
@@ -129,7 +134,7 @@ COLS = ["File","Wire","From","From pin","From signal","From terminal",
         "To","To pin","To signal","To terminal",
         "Colour","AWG","Route","Est mm","Splice","Done"]
 
-p = os.path.join(R, "HARNESS-BUILD-LIST.csv")
+p = os.path.join(os.path.dirname(R), "HARNESS-BUILD-LIST.csv")
 with open(p, "w", newline="", encoding="utf-8") as fh:
     wr = csv.DictWriter(fh, fieldnames=COLS, extrasaction="ignore")
     wr.writeheader()

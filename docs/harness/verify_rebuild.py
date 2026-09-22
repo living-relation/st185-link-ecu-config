@@ -13,6 +13,9 @@ import json, io, os, sys
 
 R = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(R, "rebuild")
+# The pre-split baseline moved into legacy-prebuild/ on 2026-09-22. It is frozen;
+# this diff against it is the only reason it still exists.
+LEGACY = os.path.join(R, "legacy-prebuild")
 
 LIVE = ["ST185-Signal.harness", "ST185-Power.harness",
         "ST185-CAN.harness", "ST185-EngineRoom-C.harness"]
@@ -184,7 +187,7 @@ def main():
     before = {}
     node_ids = set()
     for fn in LIVE:
-        d = load(os.path.join(R, fn))
+        d = load(os.path.join(LEGACY, fn))
         # Same w_rlp collision the rebuild fixes - apply it here too, or this
         # comparison silently drops one of the two wires exactly as the repo did.
         if fn == "ST185-EngineRoom-C.harness":

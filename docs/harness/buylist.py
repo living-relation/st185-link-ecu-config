@@ -1,6 +1,13 @@
 import json, os, re, collections, datetime
-R = os.path.dirname(os.path.abspath(__file__))
-F = ("ST185-Signal.harness","ST185-Power.harness","ST185-CAN.harness","ST185-EngineRoom-C.harness")
+R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
+# The eight current looms. Repointed 2026-09-22 - this used to read the
+# pre-split Signal/Power/CAN/EngineRoom-C files, so every buy list generated
+# before that date missed everything the rebuild added (the CSB3 HD30
+# connector and its size-20 contacts among them).
+F = ("ST185-A-ECU.harness", "ST185-A-engine.harness",
+     "ST185-B-ECU.harness", "ST185-B-engine.harness",
+     "ST185-CAN.harness", "ST185-EngineRoom-C.harness",
+     "ST185-ClusterLED.harness", "ST185-WheelSpeed.harness")
 
 ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "0460-202-1631":130,"0460-215-1631":60,"0462-201-1631":118,"0462-209-1631":51,
@@ -99,7 +106,7 @@ out += ["", "## Still unspecified", "",
  "Needs a real dash number per branch OD once the trunk diameters are known.",
  "- **HCR 150 mating hardware** — confirm the receptacle and terminal part numbers for "
  "`V23132-A2001-B200` with the supplier before ordering.", ""]
-p = os.path.join(R, "NEED-TO-BUY.md")
+p = os.path.join(os.path.dirname(R), "NEED-TO-BUY.md")
 open(p, "w", encoding="utf-8").write("\n".join(out))
 print("wrote", p)
 print("to buy: %d lines, covered: %d lines" % (len(rows_buy), len(rows_ok)))

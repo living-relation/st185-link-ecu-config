@@ -424,7 +424,7 @@
     },
     {
       "id": "csb3io",
-      "label": "ECUMaster CSB3 (power feed — full I/O on ST185-A-ECU)",
+      "label": "ECUMaster CSB3 (power feed \u2014 full I/O on ST185-A-ECU)",
       "cavities": [
         {
           "id": "c1",

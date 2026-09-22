@@ -2,6 +2,28 @@
 
 Proposal only for *where files should live* and *how the two `.harness` drawings should be laid out*. Pin assignments in this note match the 2026-09-12 OEM-block / BRZ-pedal pass; do not treat dated audit notes as living pin maps.
 
+> ## READ THIS FIRST — the document contradicts itself on purpose
+>
+> This file grew by accretion. **Sections 1–5 describe the world of 2026-09-12**,
+> when there were two living harness files, `ST185-Power.harness` and
+> `ST185-Signal.harness`. That is no longer the structure.
+>
+> **Where sections 1–5 and section 6.x disagree, 6.x wins, and the highest
+> numbered subsection wins within 6.x.** The current loom structure is defined in
+> **6.41**, not in section 2.
+>
+> | Then (sections 1–5) | Now (6.41) |
+> |---|---|
+> | 2 living looms: Power, Signal | 6 looms: A, B, C, CAN, cabin accessory, rear trunk |
+> | Split by power vs signal | Split by which bulkhead a wire crosses |
+> | `docs/harness/*.harness` | `docs/harness/rebuild/*.harness` |
+>
+> Sections 1–5 are kept because the reasoning in them — one living pin map, faces
+> not peers, frozen dated notes, the OEM-block drawing convention in section 3 —
+> is still binding. Only the two-file loom split is superseded.
+>
+> **Which harness file is current: `docs/harness/README.md`.**
+
 ## 1. What is redundant today
 
 Several surfaces describe the same ECU pin story. They drifted before; they will drift again if all of them stay “living.”
@@ -1511,8 +1533,8 @@ with another high consumer, and never sits on a PDU output alone.
 
 ### Battery kill
 
-Daniel wants a solid-state / high-current relay acting as the battery kill, driven
-by the PDU rather than only by a mechanical switch.
+Daniel wants a high-current relay acting as the battery kill, driven by the PDU
+rather than only by a mechanical switch.
 
 On hand and suited: **`1416010-1` / V23132-A2001-B200, the TE HCR150** - SPST-NO,
 130 A, 12 V coil at 3.9 W, IP67, flange mount, screw terminals. Two are owned and

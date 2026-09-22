@@ -1,45 +1,41 @@
-plan 6.41-6.43: fuel pump circuit, segmented shielding, PDU power split
+harness: one folder per generation, and fix the two stale generators
 
-Fuel pump. Looked the pump up rather than guessing: Walbro F90000295, 450 LPH,
-Radium bench test 14.4 A at 13.5 V. Design at 20 A for E85 and a 14.4 V charging
-system. 12 AWG feed and ground, 25-30 A fuse, its own relay, local chassis ground
-in the trunk. The 60 A figure is the right order for INRUSH, not steady draw -
-wire and fuse size on continuous current, and the contact only has to survive a
-millisecond spike. Industry hardwire kits for this pump ship a 30 A fuse and 40 A
-relay, which is the practical answer to the transient.
+Daniel could not tell which harness file was current. Fair - there were 24
+.harness files for 8 real looms, in four places, with no map.
 
-The pump keeps its own connector, 12 inches from the pump, and that is the only
-break the circuit needs. It is out of the inline connector entirely. If a service
-disconnect is ever wanted, the part is a Deutsch size 12 contact (25 A, 20 of each
-gender on hand), not the size 16 used elsewhere.
+Sorted into generations:
 
-Fuel level sender uses the OEM connector, both halves on hand. Nothing to source.
+  rebuild/          the 8 current looms - the source, matches harness.design
+  min/              build product of rebuild/, upload copies
+  legacy-prebuild/  the 4 pre-split looms, frozen (was docs/harness/*.harness)
+  archive/cursor-engineroom-experiments/  Cursor's throwaway variants
 
-The inline DT connector now carries seven signal conductors instead of nine, so
-five ways spare. Packaging recorded: rear VRC at the rear driver-side frame in the
-back seat area, tank all the way back in the trunk, pump and sender wires bundled
-with the VRC harness but their connectors nowhere near each other.
+docs/harness/README.md is the new map: what each folder is, which of the eight
+looms does what, the pipeline, and the rule that a new generation gets a new
+folder rather than a -v2 suffix.
 
-6.42, shielding. A continuous screen is not practical and is not being built. Two
-segments, each grounded at one end: sensor drop screens terminate on the VRC case
-and float at the sensor; VRC output screens terminate at the ECU and float at the
-box. Front and rear the same. The ABS sensor drops take their own routes after the
-box, away from adjacent harnesses - raw VR is millivolts. Forward of the box the
-signals are square waves, which is why the pump feed can share that bundle.
+legacy-prebuild/ cannot be deleted yet. verify_rebuild.py diffs every conductor
+in rebuild/ against it, and that diff is the only thing standing between us and a
+silently dropped wire. It goes when 6.41 lands and a new baseline is taken.
 
-6.43, power. The PDU (the PMU-16, not the cabin PDB) owns most internal low-power
-and accessory circuits directly. Every high consumer gets its own relay. Battery
-kill goes to the spare HCR150 - 130 A, IP67, one of two owned, the other being the
-EPS relay - under PDU control.
+The real find: buylist.py and buildlist.py were both still reading the pre-split
+files. Every buy list this project has generated was built from the wrong
+harnesses. Repointed at rebuild/, and the first run immediately surfaced what was
+hidden - 68 size-20 sockets and 42 size-20 pins needed, zero on hand, plus the
+HD36-24-33SE. That is the same gap the TE BOM turned up yesterday, which nobody
+would have caught from NEED-TO-BUY.md.
 
-Three things flagged before that gets designed in: an HCR150 does not carry
-cranking current, so it cannot break the starter feed; the PDU cannot sit
-downstream of its own kill relay or it can never re-close it; and killing the
-battery on a running alternator is a load dump, so excitation has to drop too.
+Both generators now read rebuild/ and write back up to docs/harness/, and
+verify_rebuild.py reads its baseline from legacy-prebuild/. Pipeline re-run:
+lint 8/8 OK, verify MATCH at 269 conductors, both lists regenerated.
 
-Also recorded: the TE BOM lists no solid-state relays. All four relay types on it
-are electromechanical. If solid-state parts exist from another order, their part
-numbers need adding before anything is designed around them.
+Also put a banner at the top of the consolidation plan. Sections 1-5 of that
+document describe the two-file Power/Signal world of 2026-09-12 and flatly
+contradict 6.41, which is most of why the repo felt unreadable. The banner states
+the precedence: 6.x beats 1-5, highest subsection wins, and 6.41 defines the looms.
+
+Fixed in 6.43: Daniel confirmed he has no solid-state relays. The battery kill is
+the electromechanical HCR150.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

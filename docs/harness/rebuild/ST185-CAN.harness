@@ -51,7 +51,7 @@
     },
     {
       "id": "csb3io",
-      "label": "ECUMaster CSB3 (CAN feed — full I/O on ST185-A-ECU)",
+      "label": "ECUMaster CSB3 (CAN feed \u2014 full I/O on ST185-A-ECU)",
       "width": 210,
       "cavities": [
         {
@@ -731,22 +731,22 @@
       "id": "sp_canh",
       "schematicPosition": {
         "x": 1080,
-        "y": 712
+        "y": 304
       },
       "layoutPosition": {
         "x": 1080,
-        "y": 712
+        "y": 304
       }
     },
     {
       "id": "sp_canl",
       "schematicPosition": {
         "x": 1080,
-        "y": 982
+        "y": 574
       },
       "layoutPosition": {
         "x": 1080,
-        "y": 982
+        "y": 574
       }
     }
   ],
@@ -1316,14 +1316,6 @@
         "value": 20
       },
       "description": "DT/DTM size 16 solid socket, 16-20 AWG"
-    },
-    {
-      "id": "ct_generic_skt",
-      "partNumber": "(generic)",
-      "manufacturer": "Generic",
-      "gender": "Socket",
-      "type": "Crimp",
-      "description": "Generic machined socket for a board-level or unspecified housing - confirm before ordering"
     }
   ],
   "resistorParts": [

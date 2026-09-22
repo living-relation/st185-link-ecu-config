@@ -551,11 +551,11 @@
       ],
       "layoutPosition": {
         "x": 1080,
-        "y": 982
+        "y": 1898
       },
       "schematicPosition": {
         "x": 1080,
-        "y": 982
+        "y": 1898
       }
     },
     {
@@ -591,11 +591,11 @@
       ],
       "layoutPosition": {
         "x": 1080,
-        "y": 1388
+        "y": 2304
       },
       "schematicPosition": {
         "x": 1080,
-        "y": 1388
+        "y": 2304
       }
     },
     {
@@ -631,11 +631,11 @@
       ],
       "layoutPosition": {
         "x": 1080,
-        "y": 2606
+        "y": 3522
       },
       "schematicPosition": {
         "x": 1080,
-        "y": 2606
+        "y": 3522
       }
     },
     {
@@ -671,11 +671,11 @@
       ],
       "layoutPosition": {
         "x": 1080,
-        "y": 1794
+        "y": 2710
       },
       "schematicPosition": {
         "x": 1080,
-        "y": 1794
+        "y": 2710
       }
     },
     {
@@ -711,11 +711,11 @@
       ],
       "layoutPosition": {
         "x": 1080,
-        "y": 3012
+        "y": 3928
       },
       "schematicPosition": {
         "x": 1080,
-        "y": 3012
+        "y": 3928
       }
     },
     {
@@ -751,11 +751,11 @@
       ],
       "layoutPosition": {
         "x": 1080,
-        "y": 2200
+        "y": 3116
       },
       "schematicPosition": {
         "x": 1080,
-        "y": 2200
+        "y": 3116
       }
     },
     {
@@ -789,12 +789,12 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12V (ignition switched) — wired on ST185-B-ECU",
+          "signal": "+12V (ignition switched) \u2014 wired on ST185-B-ECU",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c2",
-          "signal": "GND — wired on ST185-B-ECU",
+          "signal": "GND \u2014 wired on ST185-B-ECU",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -809,12 +809,12 @@
         },
         {
           "id": "c5",
-          "signal": "CAN H — wired on ST185-CAN",
+          "signal": "CAN H \u2014 wired on ST185-CAN",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c6",
-          "signal": "CAN L — wired on ST185-CAN",
+          "signal": "CAN L \u2014 wired on ST185-CAN",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -899,22 +899,22 @@
         },
         {
           "id": "c23",
-          "signal": "L1 low-side (spare — oil lamp channel TBD, see open items)",
+          "signal": "L1 low-side (spare \u2014 oil lamp channel TBD, see open items)",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c24",
-          "signal": "L2 low-side (spare — oil lamp channel TBD, see open items)",
+          "signal": "L2 low-side (spare \u2014 oil lamp channel TBD, see open items)",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c25",
-          "signal": "L3 low-side (spare — oil lamp channel TBD, see open items)",
+          "signal": "L3 low-side (spare \u2014 oil lamp channel TBD, see open items)",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c26",
-          "signal": "L4 low-side (spare — oil lamp channel TBD, see open items)",
+          "signal": "L4 low-side (spare \u2014 oil lamp channel TBD, see open items)",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -1561,22 +1561,22 @@
       "id": "sp_shield_cab",
       "layoutPosition": {
         "x": 1080,
-        "y": 712
+        "y": 1628
       },
       "schematicPosition": {
         "x": 1080,
-        "y": 712
+        "y": 1628
       }
     },
     {
       "id": "sp_cruise_ladder",
       "layoutPosition": {
-        "x": 820,
-        "y": 1050
+        "x": 1080,
+        "y": 1358
       },
       "schematicPosition": {
-        "x": 820,
-        "y": 1050
+        "x": 1080,
+        "y": 1358
       }
     }
   ],

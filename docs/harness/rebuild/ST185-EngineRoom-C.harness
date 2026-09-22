@@ -1263,7 +1263,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Bulkhead B cavity 13 → ECU-A A27 (Aux 7, MRS SPD) — wired on ST185-A-ECU"
+          "signal": "Bulkhead B cavity 13 \u2192 ECU-A A27 (Aux 7, MRS SPD) \u2014 wired on ST185-A-ECU"
         }
       ],
       "schematicPosition": {
@@ -1283,7 +1283,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Chassis ground splice (sp_chassis) — wired on ST185-B-ECU"
+          "signal": "Chassis ground splice (sp_chassis) \u2014 wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1303,7 +1303,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Fusebox F7, 60A — EPS pump relay 30, wired on ST185-B-ECU"
+          "signal": "Fusebox F7, 60A \u2014 EPS pump relay 30, wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1323,7 +1323,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Ignition-switched +12V splice (sp_sw12) — feeds EFI/ETB/fuel/fan relay coils, wired on ST185-B-ECU"
+          "signal": "Ignition-switched +12V splice (sp_sw12) \u2014 feeds EFI/ETB/fuel/fan relay coils, wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1343,7 +1343,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Bulkhead B cavity 14 → MRS EPS pump logic enable (F13, 7.5A, ignition-switched) — wired on ST185-B-ECU"
+          "signal": "Bulkhead B cavity 14 \u2192 MRS EPS pump logic enable (F13, 7.5A, ignition-switched) \u2014 wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1363,7 +1363,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "ECU-B pin B12 (Ign 6) — EPS relay trigger per 6.16, branches off at the ECU into loom C. NOTE: B12 still reads notConnected on ST185-A-ECU - fix there."
+          "signal": "ECU-B pin B12 (Ign 6) \u2014 EPS relay trigger per 6.16, branches off at the ECU into loom C. NOTE: B12 still reads notConnected on ST185-A-ECU - fix there."
         }
       ],
       "schematicPosition": {
