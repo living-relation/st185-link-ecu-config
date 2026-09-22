@@ -60,10 +60,13 @@ for d in docs.values():
             if cv.get("cavityPlugPartId"):
                 plug_of[c["id"]][cv["cavityPlugPartId"]] += 1
 
-# a cavity can need a different contact size than its neighbours (sz16 vs sz20
-# on the HDP bulkheads), so remember the per-cavity contact rather than the
-# connector's most common one.  The plug is one size per connector.
+# a cavity can need a different size than its neighbours - the HDP bulkheads mix
+# size 12, 16 and 20 - so remember the contact and the plug that cavity already
+# had, and only fall back to the connector's most common plug for a cavity that
+# has never had one.  Using the dominant plug everywhere put size-16 plugs in
+# bulkhead B's four size-12 cavities.
 per_cavity_contact = collections.defaultdict(dict)
+per_cavity_plug = collections.defaultdict(dict)
 for d in docs.values():
     for c in d.get("connectors", []):
         if c["id"] not in targets:
@@ -71,6 +74,8 @@ for d in docs.values():
         for cv in c.get("cavities", []):
             if cv.get("contactPartId"):
                 per_cavity_contact[c["id"]].setdefault(cv["id"], cv["contactPartId"])
+            if cv.get("cavityPlugPartId"):
+                per_cavity_plug[c["id"]].setdefault(cv["id"], cv["cavityPlugPartId"])
 
 changed = collections.Counter()
 for f, d in docs.items():
@@ -87,8 +92,9 @@ for f, d in docs.items():
                 cv.pop("cavityPlugPartId", None)
             else:
                 cv.pop("contactPartId", None)
-                if plug:
-                    cv["cavityPlugPartId"] = plug
+                pl = per_cavity_plug[c["id"]].get(cv["id"]) or plug
+                if pl:
+                    cv["cavityPlugPartId"] = pl
             if (cv.get("contactPartId"), cv.get("cavityPlugPartId")) != before:
                 changed[os.path.basename(f)[6:-8] + " " + c["id"]] += 1
 

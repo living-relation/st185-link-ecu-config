@@ -1376,25 +1376,25 @@
           "id": "c1",
           "designation": "1",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c2",
           "designation": "2",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c3",
           "designation": "3",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c4",
           "designation": "4",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c5",
@@ -2427,6 +2427,12 @@
       "partNumber": "HDP24-24-21PN",
       "manufacturer": "TE DEUTSCH",
       "description": "HDP20 sz24 21-way receptacle, PIN, N seal - bulkhead B, firewall side"
+    },
+    {
+      "id": "pl_sz12",
+      "partNumber": "0413-214-1205",
+      "manufacturer": "TE DEUTSCH",
+      "description": "Sealing plug, size 12, yellow"
     },
     {
       "id": "pl_sz16",

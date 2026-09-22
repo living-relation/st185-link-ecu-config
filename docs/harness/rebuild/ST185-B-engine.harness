@@ -903,25 +903,25 @@
           "id": "c1",
           "designation": "1",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c2",
           "designation": "2",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c3",
           "designation": "3",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c4",
           "designation": "4",
           "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c5",

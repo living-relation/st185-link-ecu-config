@@ -12,7 +12,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `0462-201-2031` | TE DEUTSCH | Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY | 51 | 0 | **51** |
 | `0413-204-2005` | TE DEUTSCH | Sealing plug, size 20, red | 42 | 0 | **42** |
 | `0460-202-2031` | TE DEUTSCH | Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY | 24 | 0 | **24** |
-| `114017` | TE DEUTSCH | Sealing plug, size 16, white | 24 | 0 | **24** |
+| `114017` | TE DEUTSCH | Sealing plug, size 16, white | 16 | 0 | **16** |
 | `Jump lugs 2 AWG / 1/0` | generic | Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post | 8 | 0 | **8** |
 | `1-1904045-6` | TE Connectivity | Micro ISO relay connector kit (harness-side socket for the V23074 relays) | 6 | 0 | **6** |
 | `DT06-2S` | Deutsch (TE) | DT 2-way plug, harness side of the ABS wheel speed sensor. Mat | 7 | 2 | **5** |
@@ -50,6 +50,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
+| `0413-214-1205` | Sealing plug, size 12, yellow | 8 | 10 |
 | `0460-202-1631` | Size 16 solid PIN, 16-20 AWG, 13 A | 15 | 130 |
 | `0462-201-1631` | Size 16 solid SOCKET, 16-20 AWG, 13 A | 13 | 118 |
 | `1 928 403 874` | 2-way knock sensor connector | 1 | 1 |
