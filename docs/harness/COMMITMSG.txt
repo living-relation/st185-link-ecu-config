@@ -1,27 +1,26 @@
-CSB3 on the real HD30 connector, one copy, plus the cruise-ladder short
+plan 6.41: loom boundaries - what belongs in A, B and C
 
-The CSB3 existed three times with three different cavity maps - a 14-way on
-A-ECU, a 2-way on B-ECU, a 14-way on CAN - and none of them matched the part
-we are actually buying. Now there is one connector part, HD36-24-33SE, built
-to the 6.37 cavity map that 6.40 re-homed onto HD30:
+Settled 2026-09-22, after pass 2 turned up ECU-A wires riding bulkhead B, EPS
+wires riding bulkhead B, and the CSB3 owned by three drawings at once.
 
-  1-2   power        5-6   CAN H/L      7-14  A1-A8
-  15-22 S1-S8        23-26 L1-L4        27-33 spare, plug 0413-204-2005
+Looms A and B are independent. The ECU pin decides which loom a wire joins.
+Anything not bound for its own bulkhead branches at the ECU connector and runs
+direct to its loom. Looms A and B carry only wires entering the engine bay
+through their own bulkhead, and nothing crosses from A or B into another loom on
+the engine-bay side. Cabin-side branching is fine - the reverse switch comes in
+on A or B and branches under the dash to the CSB3.
 
-Contacts are 0462-201-2031 size 20 sockets, the same family as bulkhead A, so
-the box stays on one crimp tool. Matches docs/enclosures/csb3-bom.csv.
+EPS is loom C only, ECU trigger included.
 
-A-ECU carries the connector. B-ECU and CAN show the same cavities with no part
-assigned, so the plug is counted once in the BOM, not three times.
+The CSB3, the cluster LED loom and the dash devices get their own cabin
+accessory drawing, and the HD30 connector is owned there once.
 
-Also fixed: the cruise ladder had the stalk signal AND the pull-up resistor
-landing on one cavity, which is a short. They meet at sp_cruise_ladder now and
-one wire runs to A2.
+Wheel speed sensor runs move to loom C. The conditioner outputs merge into
+whichever loom holds their ECU pin - FL to loom A, FR/RL/RR to loom B. The boxes
+are in the cabin so those outputs never cross a bulkhead.
 
-Cross-reference nodes on EngineRoom-C and ClusterLED said "Dummy - real part on
-the owning drawing" and told you nothing. They name the real pin and signal now.
-The ClusterLED CSB low-side node was showing park-brake text, copy-pasted from
-the wrong connector.
+Also records the six known violations to fix and two open items: where the rear
+wheel sensors ride, and the stale harness file list in RECONCILIATION-RULES.md.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

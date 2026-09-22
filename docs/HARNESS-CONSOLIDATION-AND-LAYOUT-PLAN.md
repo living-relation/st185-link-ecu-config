@@ -1249,3 +1249,78 @@ E seal to match bulkhead A, so one seal type across the car.
 
 26 terminals, the cavity assignment grouped by function, wire 20-16 AWG, and the
 CSB3 on-board 120 ohm terminator jumper stays OPEN.
+
+---
+
+## 6.41 Loom boundaries - what belongs in A, B and C
+
+Settled with Daniel 2026-09-22. This section is binding on every harness rebuild.
+It exists because pass 2 found ECU-A wires riding bulkhead B, EPS wires riding
+bulkhead B, and the CSB3 split across three drawings.
+
+### The looms are independent
+
+```
+ECU-A  ->  bulkhead A cabin  ==  bulkhead A engine  ->  engine bay
+ECU-B  ->  bulkhead B cabin  ==  bulkhead B engine  ->  engine bay
+```
+
+Loom A does not dictate loom B and loom B does not dictate loom A. They are two
+separate looms that happen to leave the same ECU.
+
+### Which loom a wire belongs to
+
+1. **The ECU pin decides.** A pin on ECU-A puts the wire in loom A. A pin on
+   ECU-B puts it in loom B.
+2. **Anything not bound for its own bulkhead branches at the ECU connector** and
+   runs direct to its loom. It does not travel down loom A or B to a bulkhead
+   first.
+3. **Looms A and B carry only wires entering the engine bay through their own
+   bulkhead.** Nothing crosses from loom A or B into another loom on the
+   engine-bay side.
+4. **Cabin-side branching is allowed.** Rule 3 is about the engine-bay side. A
+   wire may enter on loom A or B and branch under the dash to a cabin device.
+   Stated example: the reverse switch comes in on A or B and branches under the
+   dash to the CSB3.
+
+### EPS
+
+EPS lives in loom C. Only loom C. The pump power, the pump ground, the relay,
+the enable feed and the ECU trigger (Ign 6 / ECU-B B12, per 6.16) are all loom C.
+None of it belongs on bulkhead B.
+
+### Cabin accessory loom - new drawing
+
+The CSB3, the cluster LED loom and the dash devices get their own drawing rather
+than being split across A-ECU, B-ECU and CAN. The CSB3 HD36-24-33SE connector
+(6.37 map, 6.40 family) is owned there, once, and every other drawing that
+touches it shows a cross-reference node with no part assigned.
+
+### Wheel speed
+
+- The sensor runs - all four wheels to the VR conditioner boxes - move to loom C.
+- The conditioner **outputs** merge into whichever loom holds their assigned ECU
+  pin: FL -> ECU-A A23 -> loom A; FR, RL, RR -> ECU-B B21, B20, B19 -> loom B.
+- The VRC boxes are in the cabin, so the outputs never cross a bulkhead. They are
+  cabin-side wires joining the A or B bundle under the dash, which rule 4 allows.
+
+### Known violations to fix, found 2026-09-21
+
+| Where | Violation |
+|---|---|
+| Bulkhead B cavity 13 | Carries ECU-A A27 (Aux 7, MRS SPD) |
+| Bulkhead B cavity 14 | Carries MRS EPS enable from the cabin fuse block |
+| Bulkhead B cavity 12 | Carries the CSB3 reverse switch out to the engine bay |
+| Bulkhead A cavities 11 / 28 | Carry ABS wheel speed FR |
+| ECU-B B12 | Reads notConnected on A-ECU, but 6.16 makes it the EPS trigger |
+| CSB3 | Owned across three drawings instead of the cabin accessory loom |
+
+### Open
+
+- Rear wheel sensors: loom C is the engine-room loom, and RL/RR are at the back
+  of the car. Confirm whether the rear pair rides loom C anyway, a rear/trunk
+  loom, or the wheel-speed drawing stays its own loom.
+- `docs/RECONCILIATION-RULES.md` still lists `ST185-Signal.harness` and
+  `ST185-Power.harness` in its source-of-truth table. The `rebuild/` A/B/engine
+  split replaced those. Update the table once this restructure lands, not before,
+  so it is rewritten once.
