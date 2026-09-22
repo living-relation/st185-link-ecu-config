@@ -1325,6 +1325,42 @@ Third new loom, alongside loom C and the cabin accessory loom. Carries:
 
 Fuel level and fuel pump come **out of** `ST185-B-ECU`, where they sit today.
 
+#### Junction: an inline connector
+
+Settled 2026-09-22. The trunk loom meets the cabin looms at one **inline
+connector**, not a bulkhead. Forward of it the conductors split by ECU pin into
+loom A or loom B as the rule above requires.
+
+Nine conductors cross it:
+
+| Conductor | Pair | Forward to |
+|---|---|---|
+| RL pulse out | | ECU-B B20, loom B |
+| RR pulse out | | ECU-B B19, loom B |
+| VRC +5 V in | | ECU +5 V rail |
+| VRC ground in | | Gnd Out rail |
+| Rear output cable screen | | cabin shield splice |
+| Fuel level SIG | | ECU-B B24, loom B |
+| Fuel level GND | | Gnd Out rail |
+| Fuel pump +12 V | heavy | fuel pump relay 87 |
+| Fuel pump GND | heavy | chassis |
+
+**Proposed part, all on hand:** `DT04-12PA` receptacle + `DT06-12SA` plug with
+`W12P` / `W12S` wedgelocks - a sealed 12-way Deutsch DT pair, two sets owned and
+unassigned (`docs/sourcing/te-on-hand-bom.csv`). Twelve ways covers the nine above
+with three spare. DT takes the same size 16 contacts already in stock: the
+16-20 AWG variant for the seven signal lines, the **14 AWG** variant
+(`0460-215-1631` / `0462-209-1631`) for the pump pair.
+
+Confirm before building: the fuel pump's actual running current. A size 16 contact
+is good for roughly 13 A, so a big pump plus the voltage drop over a trunk-length
+run is the one thing that could push the pump pair out of this connector and into
+its own.
+
+Running the pump feed alongside the conditioned outputs is acceptable - by that
+point the wheel signals are square waves, not raw VR millivolts. Do not run it
+next to the RL/RR sensor drops behind the box.
+
 ### Known violations to fix, found 2026-09-21
 
 | Where | Violation |
@@ -1360,16 +1396,28 @@ Two facts from that list bear on this section directly:
 
 - **No size-20 contacts on hand**, against roughly 300 size-16. Bulkhead A and the
   6.40 CSB3 connector both need size 20.
-- An unassigned `HD34-24-21SN` / `HD36-24-21PN` HD30 pair is on the shelf in sizes
-  12/16. It is a live alternative to the 6.40 CSB3 connector - 21 ways is 14 used
-  plus 7 spare - at the cost of flipped gender and no room to bring out all 26.
+- The on-hand `HD34-24-21SN` / `HD36-24-21PN` HD30 pair was weighed against the
+  6.40 connector for the CSB3 box and **not** chosen - see below. It stays
+  unassigned and available.
+
+### CSB3 connector - 6.40 stands
+
+Settled 2026-09-22. The CSB3 box keeps the 6.40 pair, `HD34-24-33PE` receptacle
+and `HD36-24-33SE` plug, bought new with 26 size-20 sockets.
+
+The 21-way HD30 pair already on the shelf was the cheaper road and was rejected on
+merit: it would have put pins on the harness and left the live 12 V unshrouded when
+unplugged, and 21 ways cannot bring out all 26 CSB3 terminals, which is the whole
+point of 6.37 - a spare channel must never mean opening the box.
+
+So size-20 contacts are a confirmed buy: 26 sockets for this box, plus bulkhead A's
+own count, from TE direct. None are on hand and DigiKey showed the socket at zero
+stock on 2026-09-21.
 
 ### Open
 
-- Where the rear trunk loom joins the cabin looms. Its outputs belong to loom A/B
-  by ECU pin, so it needs a defined junction - a rear bulkhead or inline connector
-  behind the seat, or a straight run to the dash. Not decided.
-- Whether the CSB3 uses the on-hand 21-way HD30 pair or the 6.40 33-way pair.
+- Fuel pump running current, which decides whether the pump pair stays in the
+  trunk inline connector or gets its own. See the rear trunk loom above.
 - `docs/RECONCILIATION-RULES.md` still lists `ST185-Signal.harness` and
   `ST185-Power.harness` in its source-of-truth table. The `rebuild/` A/B/engine
   split replaced those. Update the table once this restructure lands, not before,

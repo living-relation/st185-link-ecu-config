@@ -27,8 +27,8 @@ HDP24-24-9PE,"REC, 9P, BLK, E, 4/8/12, PIN",2,heavy pass-through,unassigned
 HDP26-24-9SE,"PLG, 9P, BLK, E, 4/8/12, SKT",2,heavy pass-through,unassigned
 HDP24-18-6PN-C030,"REC, 6P, BLK, N, 4, PIN",1,heavy pass-through,unassigned
 HDP26-18-6SN-C030,"PLG, 6P, BLK, N, 4, SKT",1,heavy pass-through,unassigned
-HD34-24-21SN,"REC, 21P, AL, N, 12/16, SKT",1,HD30 flange,UNASSIGNED - candidate for the CSB3 box (see README)
-HD36-24-21PN,"PLG, 21P, AL, N, 12/16, PIN",1,HD30 flange,UNASSIGNED - mates the above
+HD34-24-21SN,"REC, 21P, AL, N, 12/16, SKT",1,HD30 flange,UNASSIGNED - weighed for the CSB3 box and not chosen (plan 6.41); still free
+HD36-24-21PN,"PLG, 21P, AL, N, 12/16, PIN",1,HD30 flange,UNASSIGNED - mates the above; still free
 16-04477,"GASKET, 24SZ, BLK, HD30",2,HD30 accessory,
 2411-001-2405,PANEL NUT SIZE 24,2,HD30 accessory,
 HD30-24BT-BK,"BOOT, 24SZ, ST, BLK",5,HD30 accessory,
@@ -50,10 +50,10 @@ M902-2243,"BKSHL, 24SZ, CBL SZ .430-.570, HDP L015",1,shell 24 accessory,
 1-1393304-0,V23134J1052X281-EV-CBOX,2,relay,unassigned
 1-1414147-0,V23134J0052X429-EV-CBOX,3,relay,unassigned
 1393310-4,VCF7-1000=FROM SEC,1,relay accessory,
-DT04-12PA,"REC, 12P, GRY, N, A",2,Deutsch DT,unassigned
-DT06-12SA,"PLG, 12P, GRY, N, A",2,Deutsch DT,unassigned
-W12P,"WEDGE LOCK, 12P, REC, GRN, DT",2,Deutsch DT,
-W12S,"WEDGE LOCK, 12P, PLG, ORG, STD, DT",2,Deutsch DT,
+DT04-12PA,"REC, 12P, GRY, N, A",2,Deutsch DT,CLAIMED - rear trunk loom inline connector (plan 6.41)
+DT06-12SA,"PLG, 12P, GRY, N, A",2,Deutsch DT,CLAIMED - mates the above
+W12P,"WEDGE LOCK, 12P, REC, GRN, DT",2,Deutsch DT,rear trunk inline
+W12S,"WEDGE LOCK, 12P, PLG, ORG, STD, DT",2,Deutsch DT,rear trunk inline
 YD369-MP33-NP00000,"369 3 WAY SHIELDED PLUG, NO CONTACTS, PIN",1,369 shielded,UNASSIGNED - candidate for a VR sensor screened drop
 YD369-MR33-NS00000,"369 3 WAY SHIELDED REC, NO CONTACTS, SKT",1,369 shielded,UNASSIGNED - mates the above
 D369-STB-3,369 3 WAY BACKSHELL STRAIGHT TIE WRAP,2,369 accessory,

@@ -1,29 +1,29 @@
-sourcing: import the TE on-hand BOM, and pick parts from it first
+plan 6.41: CSB3 keeps the 6.40 connector, trunk loom joins on an inline DT
 
-Daniel's TE BOM and his three TE order confirmations live in Google Drive. The
-spreadsheet is now a CSV in the repo so an agent can actually read it, and
-docs/sourcing/README.md sets the selection order: what he already owns, then TE
-Connectivity with free samples preferred, then anything else. Added to the
-RECONCILIATION-RULES surfaces table so every agent has to check it.
+Two decisions settled 2026-09-22.
 
-The order confirmations are image-only PDFs and cannot be parsed - linked by URL
-with that noted, so nobody wastes another pass trying.
+CSB3 connector: the 6.40 pair stands - HD34-24-33PE receptacle, HD36-24-33SE
+plug, 26 size-20 sockets bought new. The 21-way HD30 pair already on the shelf
+was the cheaper road and lost on merit: it puts pins on the harness so the live
+12 V sits unshrouded when unplugged, and 21 ways cannot bring out all 26 CSB3
+terminals, which is the entire point of 6.37. That pair stays free for something
+else. Size-20 contacts are now a confirmed TE buy - none on hand, and DigiKey had
+the socket at zero on 2026-09-21.
 
-Two things the list changes immediately:
+Rear trunk loom junction: one inline connector, not a bulkhead. Nine conductors
+cross it - two conditioned rear wheel pulses, the VRC 5 V and ground, the output
+cable screen, fuel level signal and ground, and the pump pair. Forward of the
+connector they split by ECU pin into loom A or B as 6.41 requires.
 
-- There are ZERO size-20 contacts on hand, against roughly 300 size-16. Bulkhead A
-  is a 16/20 arrangement and 6.40 wants 26 more size-20 for the CSB3 box. That is
-  a real buy, and DigiKey had the socket at zero stock on 2026-09-21.
-- An HD34-24-21SN / HD36-24-21PN HD30 pair is sitting unassigned in sizes 12/16,
-  which are the contacts he has by the hundred. Twenty-one ways is exactly the
-  CSB3's 14 used plus 7 spare. Flagged as an alternative to the 6.40 connector -
-  gender is flipped and it cannot bring out all 26, so it is Daniel's call.
+The connector comes off the shelf per the new sourcing rule: DT04-12PA /
+DT06-12SA with W12P / W12S wedgelocks, a sealed 12-way Deutsch DT pair, two sets
+owned and unassigned. Twelve ways covers nine with three spare, and DT takes the
+size 16 contacts already in stock - the 16-20 AWG variant for the signals, the
+14 AWG variant for the pump pair. Marked CLAIMED in the on-hand CSV.
 
-Also settled in 6.41: the rear VR conditioner leaves loom C and gets its own rear
-trunk loom, together with the fuel level sender and the fuel pump. Front VRC and
-the front sensor drops stay on loom C. Conditioner outputs still merge into the
-loom holding their ECU pin. The raw VR millivolts now travel a few feet instead of
-the length of the car, which is the right way round for noise.
+Open, and worth measuring before anyone crimps: the fuel pump's running current.
+A size 16 contact is good for about 13 A, so a big pump plus trunk-length voltage
+drop is the one thing that would push the pump pair into its own connector.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR
