@@ -1708,3 +1708,100 @@ Set the delay from a measured field-collapse time on the bench, not a guess.
 The mechanical master cutoff in the trunk gets no such courtesy, which is the
 normal trade for a crash switch - that is what the alternator's own load-dump
 rating is for.
+
+---
+
+## 6.46 Is the PDU worth buying at all? - OPEN DECISION
+
+Raised by Daniel 2026-09-22, immediately after 6.44 settled on option B. The
+question is fair and the answer is not obviously yes. **Do not order a PMU-16
+until this is closed.**
+
+### What changed
+
+Under option B the PDU keeps both junction blocks alive and only feeds buses. So
+it is no longer replacing the cabin's fusing - it is replacing **J/B No.2 alone**,
+plus doing some logic. That is a much smaller job than the architecture in 3.1 and
+6.38 was written for.
+
+### What is actually kept vs deleted
+
+| | Fuses | Relays |
+|---|---|---|
+| **J/B No.1** - kept, untouched | 10 (ECU-IG 15, WIPER 20, GAUGE 15, TURN 10, IGN 7.5, CIG/RADIO 15, STOP 15, ECU-B 15, TAIL 15, DEFOGGER 30) | 4 (taillight, defogger, turn flasher, integration) |
+| **R/B No.2** - kept | 1 (POWER 30) | 1 (power main) |
+| **R/B No.3** - kept | - | 1 (fog) |
+| **R/B No.4** - kept | 3 (HEATER 40, A/C 10, FR FOG 20) | 1 heater + OEM starter relay (isolated) |
+| **Totals kept** | **14** | **7** |
+| **J/B No.2** - deleted | 5 (HEAD LH 15, HEAD RH 15, HAZ-HORN 15, DOME 20, RTR 30) | headlight + rad fan coil, both now unused |
+
+So the car keeps 14 factory fuses and 7 factory relays, already wired, at zero
+labour. The PDU's entire fusing job is the five J/B No.2 circuits.
+
+### The two paths, costed
+
+**PMU-16: $1,499** (ECUMaster USA, 2026-09-22; 39-pin connector and terminals
+included, USB-to-CAN programming cable extra).
+
+**Relays and fuses instead:**
+
+| Need | Part | Note |
+|---|---|---|
+| HEAD LH, HEAD RH, RTR, horn | 4 micro ISO relays | 8 owned, 6 already assigned to k_efi/k_etb/k_fp/k_fan/k_fan2/k_str, so buy ~2-3 more |
+| DOME, AM1, AM2, 3 CAN device feeds | fuse ways only | AM1/AM2 were always plain fused feeds in 3.1 |
+| 10 new fuse ways | second fuse block | TE `2141029-1` is full at F1-F13 |
+| Pi hold after key-off | **CSB3 low-side** holding a relay coil | |
+| Kill relay coil | **CSB3 low-side** | |
+| Alternator excite drop | **CSB3 low-side** | |
+
+Order of **$150-250** against $1,499.
+
+### The CSB3 is the hidden reason this works
+
+The logic the PDU was going to do can mostly go to the CSB3's four low-side
+outputs, which are presently unassigned. The ECU commands them over CAN on 0x643,
+and the ECU is alive throughout key-off because of its own hold power.
+
+**They are exactly used up, with nothing spare:**
+
+| L-channel | Job |
+|---|---|
+| L1 | Pi hold relay |
+| L2 | Kill relay coil |
+| L3 | Alternator excite drop |
+| L4 | Oil pressure lamp (6.43 / ClusterLED) |
+
+If a fifth low-side job appears, something has to move - most likely the oil lamp,
+which the TrackCluster could drive itself since it is already a CAN node.
+
+### Check on option C as well
+
+Deleting both junction blocks means re-homing 14 fuses and 7 relays. After the
+three CAN devices, AM-bus and sequencing loads, that does **not** fit in one
+PMU-16 either. Option C is a two-unit decision, not a one-unit decision.
+
+### What the money actually buys
+
+Keep the PDU for: per-channel current monitoring on CAN, resettable electronic
+fusing, soft-start on the retract motors and headlights, load shedding during
+crank, sequencing without spending CSB3 channels, and four spare outputs.
+
+Drop the PDU for: about $1,300, one fewer CAN node to configure, and failure modes
+a person can diagnose with a test light instead of a laptop.
+
+### Recommendation
+
+**Daniel's instinct is right.** With both junction blocks staying, a PMU-16 is
+poor value - it is a sixteen-channel device doing five circuits and some timing,
+and the timing has a free home in the CSB3. The honest case for buying it is
+wanting the diagnostics, or intending to go to option C later.
+
+Recommend dropping it unless the current monitoring is something he actively
+wants. If it is dropped, 6.38, 6.44 and 6.45 all need rewriting - the cluster,
+CSB3 and Pi feeds move to fused relay outputs, and the kill sequence moves to the
+CSB3.
+
+### Open
+
+- Keep the PMU-16 or drop it. Everything above is written so either answer can be
+  executed; nothing else should be built on a PMU assumption until this is closed.
