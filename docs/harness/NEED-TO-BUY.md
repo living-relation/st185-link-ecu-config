@@ -32,7 +32,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `10k 1/4W` | generic | Cruise ladder pull-up to +5V (A32) | 1 | 0 | **1** |
 | `12052641` | Aptiv (Delphi) Metri-Pack 150 | 2-way sealed connector - fuel level sender / 2nd (condenser) f | 2 | 1 | **1** |
 | `470R 1/4W` | generic | Fuel level sender pull-up to +5V (A32) | 1 | 0 | **1** |
+| `56R 5W` | generic | Alternator pre-excitation, in parallel with the charge LED. Re | 1 | 0 | **1** |
 | `HD36-24-33SE` | TE DEUTSCH | Deutsch HD30 shell 24, 33-way harness plug, sockets, E-seal -  | 1 | 0 | **1** |
+| `MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942` | Toyota / Sumitomo | Electro-hydraulic power steering pump from the MR-S (ZZW30), c | 1 | 0 | **1** |
 | `PDB-M8x8` | TBD | 8-stud power distribution block at glove box, M8, 150-250 A bu | 1 | 0 | **1** |
 | `Sumitomo TS 025 6-way` | Sumitomo / Subaru | Subaru BRZ / Toyota-family e-throttle pedal. Looking into conn | 1 | 0 | **1** |
 | `V23132-A2001-B200` | TE Connectivity | HCR 150 12VDC 37 ohm / 3.9W, internal suppression. OWNED matin | 1 | 0 | **1** |
@@ -68,9 +70,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `4-1904124-2` | Micro ISO relay V23074, 1 Form A make, 12V coil 119R, 25A - su | 2 | 2 |
 | `5-1393292-8` | Micro ISO relay V23074, 1 Form A make, 12V coil, 25A, diode su | 2 | 2 |
 | `6-1419137-4` | Micro ISO relay V23074, 1 Form C changeover, 12V coil, 25A, di | 2 | 2 |
-| `90980-10897` | MR-S EHPS pump control connector B, pigtail 82998-12440. Sumit | 1 | 1 |
-| `90980-10942` | MR-S EHPS pump enable. OWNED. | 1 | 1 |
-| `90980-12068` | MR-S EHPS pump main power. OWNED. | 1 | 1 |
 | `D 261 205 358-01` | 6-pin Bosch Motorsport ETB mate | 1 | 1 |
 | `DT06-3S` | DT 3-way socket plug | 1 | 2 |
 | `DTM06-4S` | DTM 4-way socket - CAN-Lambda harness side | 1 | 1 |

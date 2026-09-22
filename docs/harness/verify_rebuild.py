@@ -125,8 +125,16 @@ EXPECT_NEW = {
 }
 # A connection that legitimately moved to a different pin.
 EXPECT_CHANGED = {
-    "w_mrs_e": "mrs_ctrl slot c1 -> c2, so the cavity matches the pin 2 it has "
-               "always been labelled. Same net, same wire, corrected slot.",
+    # 2026-09-22: the pump's three housings are one 10-pin part now, mrs_eps, with
+    # the housing letter in every designation. Same wires, same pins, one node.
+    #   mrs_pwr c1 -> a1   mrs_pwr c2 -> a2   mrs_ctrl c2 -> b2   mrs_en c1 -> c1
+    "w_mrs_e": "mrs_ctrl c2 -> mrs_eps b2; the pump is one 10-pin part now. The "
+               "slot was also corrected from c1 to c2 earlier, to match the pin 2 "
+               "it has always been labelled. Same net, same wire.",
+    "w_eps_pwr": "mrs_pwr c1 -> mrs_eps a1, the pump is one 10-pin part now",
+    "w_eps_gnd": "mrs_pwr c2 -> mrs_eps a2, same",
+    "w_mrsg": "mrs_pwr c2 -> mrs_eps a2, same",
+    "w_hv_mrs_en_e": "mrs_en c1 -> mrs_eps c1, same",
     # Pass 2: CSB3 renumbered from the old ad-hoc 14-way to the real 33-way
     # HD36-24-33SE cavity map in 6.37 / 6.40. Same nets, new cavity numbers.
     "w_an2":     "cruise ladder now goes stalk -> sp_cruise_ladder (was a second wire "

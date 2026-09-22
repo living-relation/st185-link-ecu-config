@@ -276,16 +276,16 @@
         "handle": "c4"
       },
       "target": {
-        "id": "mrs_pwr",
-        "handle": "c1"
+        "id": "mrs_eps",
+        "handle": "a1"
       }
     },
     {
       "id": "w_eps_gnd",
       "color": "Black",
       "source": {
-        "id": "mrs_pwr",
-        "handle": "c2"
+        "id": "mrs_eps",
+        "handle": "a2"
       },
       "target": {
         "id": "t_eng_block",
@@ -407,8 +407,8 @@
         "handle": "c1"
       },
       "target": {
-        "id": "mrs_ctrl",
-        "handle": "c2"
+        "id": "mrs_eps",
+        "handle": "b2"
       },
       "color": "Pink"
     },
@@ -440,8 +440,8 @@
       "id": "w_mrsg",
       "color": "Black",
       "source": {
-        "id": "mrs_pwr",
-        "handle": "c2"
+        "id": "mrs_eps",
+        "handle": "a2"
       },
       "target": {
         "id": "dm_sp_chassis_eng_Splice",
@@ -480,7 +480,7 @@
         "handle": "c1"
       },
       "target": {
-        "id": "mrs_en",
+        "id": "mrs_eps",
         "handle": "c1"
       }
     },
@@ -1086,58 +1086,6 @@
       "partId": "cp_oem"
     },
     {
-      "id": "mrs_pwr",
-      "label": "MR-S EHPS pump - A, main power (90980-12068)",
-      "width": 270,
-      "schematicPosition": {
-        "x": 2160,
-        "y": 540
-      },
-      "layoutPosition": {
-        "x": 2160,
-        "y": 540
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "12V from k_eps 87, 8 AWG, passenger fender"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "GND, 8 AWG to engine block / EB"
-        }
-      ],
-      "partId": "cp_mrs_pwr"
-    },
-    {
-      "id": "mrs_en",
-      "label": "MR-S EHPS pump - C, ignition (90980-10942)",
-      "width": 270,
-      "schematicPosition": {
-        "x": 2160,
-        "y": 360
-      },
-      "layoutPosition": {
-        "x": 2160,
-        "y": 360
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "IG-switched 7.5A F13"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "unused"
-        }
-      ],
-      "partId": "cp_mrs_en"
-    },
-    {
       "id": "rad_fan",
       "label": "Uprated radiator fan",
       "width": 270,
@@ -1209,51 +1157,6 @@
         }
       ],
       "partId": "cp_jump"
-    },
-    {
-      "id": "mrs_ctrl",
-      "label": "MR-S EHPS pump - B, signal (PN not yet identified)",
-      "partId": "cp_mrs_ctrl",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "notConnected": true
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "SPD Out - speed-pulse output"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "notConnected": true
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "notConnected": true
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "notConnected": true
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "signal": "Relay request out. Not wired - 6.16 moved the EPS relay trigger to the ECU (Ign 6 / B12). Kept for reference."
-        }
-      ],
-      "layoutPosition": {
-        "x": 2160,
-        "y": 720
-      },
-      "schematicPosition": {
-        "x": 2160,
-        "y": 720
-      }
     },
     {
       "id": "dm_bh_b_eng_c13",
@@ -1373,6 +1276,72 @@
       "layoutPosition": {
         "x": 2880,
         "y": 390
+      }
+    },
+    {
+      "id": "mrs_eps",
+      "label": "MR-S EHPS pump (A power / B signal / C ignition)",
+      "width": 270,
+      "partId": "cp_mrs_eps",
+      "cavities": [
+        {
+          "id": "a1",
+          "designation": "A-1",
+          "signal": "[A 90980-12068 pin 1] +12V from k_eps 87, 8 AWG, passenger fender"
+        },
+        {
+          "id": "a2",
+          "designation": "A-2",
+          "signal": "[A 90980-12068 pin 2] GND, 8 AWG to engine block / EB"
+        },
+        {
+          "id": "b1",
+          "designation": "B-1",
+          "signal": "[B 90980-10897 pin 1] not used"
+        },
+        {
+          "id": "b2",
+          "designation": "B-2",
+          "signal": "[B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27"
+        },
+        {
+          "id": "b3",
+          "designation": "B-3",
+          "signal": "[B 90980-10897 pin 3] not used"
+        },
+        {
+          "id": "b4",
+          "designation": "B-4",
+          "signal": "[B 90980-10897 pin 4] not used"
+        },
+        {
+          "id": "b5",
+          "designation": "B-5",
+          "signal": "[B 90980-10897 pin 5] not used"
+        },
+        {
+          "id": "b6",
+          "designation": "B-6",
+          "signal": "[B 90980-10897 pin 6] relay request out - NOT WIRED. 6.16 moved the EPS relay trigger to the ECU (Ign 6 / ecu_b B12). Kept for reference."
+        },
+        {
+          "id": "c1",
+          "designation": "C-1",
+          "signal": "[C 90980-10942 pin 1] IG-switched, F13 7.5A - pump enable"
+        },
+        {
+          "id": "c2",
+          "designation": "C-2",
+          "signal": "[C 90980-10942 pin 2] not used"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2160,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 2160,
+        "y": 540
       }
     }
   ],
@@ -1629,18 +1598,6 @@
       "description": "Generic OEM block - only the pins this harness lands. No invented J/B internals."
     },
     {
-      "id": "cp_mrs_pwr",
-      "partNumber": "90980-12068",
-      "manufacturer": "Toyota / Sumitomo",
-      "description": "MR-S EHPS pump main power. OWNED."
-    },
-    {
-      "id": "cp_mrs_en",
-      "partNumber": "90980-10942",
-      "manufacturer": "Toyota / Sumitomo",
-      "description": "MR-S EHPS pump enable. OWNED."
-    },
-    {
       "id": "cp_fan",
       "partNumber": "DT06-2S",
       "manufacturer": "Deutsch",
@@ -1651,15 +1608,6 @@
       "partNumber": "jump-post-M8",
       "manufacturer": "TBD",
       "description": "Engine-bay jump / accessory post on starter B+ net."
-    },
-    {
-      "id": "cp_mrs_ctrl",
-      "partNumber": "90980-10897",
-      "manufacturer": "Toyota",
-      "gender": "Female",
-      "hasShell": false,
-      "numberOfCavities": 6,
-      "description": "MR-S EHPS pump control connector B, pigtail 82998-12440. Sumitomo TS090 / Yazaki 090-II family, not a TE part. 6 cavities, 2 used: pin 2 speed-pulse out, pin 6 relay-request out. Confirm against the pump in hand before ordering."
     },
     {
       "id": "cp_rl_red_fw",
@@ -1684,14 +1632,15 @@
       "partNumber": "RL00801-50BK",
       "manufacturer": "Amphenol",
       "description": "Battery negative, ENGINE side. RADLOK 8.0 female cable connector, 200A, 50 mm2 (1/0), BLACK. Mates the RL9080-301-F1 firewall feed-through."
-    }
-  ],
-  "groupParts": [
+    },
     {
-      "id": "gp_mrs_ehps",
-      "partNumber": "MR-S ZZW30 EHPS pump",
-      "manufacturer": "Toyota",
-      "description": "Electro-hydraulic power steering pump from the MR-S (ZZW30). One device, mounted in the engine bay with its control module bolted to the pump. Presents three connectors - A main power, B signal, C ignition - and is switched by k_eps, an HCR150 mounted beside it. Group k_eps, mrs_pwr, mrs_ctrl and mrs_en together and assign this part. See docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md."
+      "id": "cp_mrs_eps",
+      "partNumber": "MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942",
+      "manufacturer": "Toyota / Sumitomo",
+      "gender": "Female",
+      "hasShell": false,
+      "numberOfCavities": 10,
+      "description": "Electro-hydraulic power steering pump from the MR-S (ZZW30), controller bolted to the pump. THREE separate housings on the device, drawn here as one 10-pin part so the pin labels say which housing each wire lands in: A 90980-12068 2-way main power (8 AWG), B 90980-10897 6-way signal (pigtail 82998-12440, Sumitomo TS090 family), C 90980-10942 2-way ignition. All three on hand. Switched by k_eps, an HCR150 mounted beside it - that is a separate part."
     }
   ]
 }
