@@ -1,35 +1,44 @@
-electrical: bring the engine-room redistribution doc current, flag the 6.43 clash
+plan 6.44-6.45: PDU feeds buses not circuits, and the battery kill is settled
 
-That document was last touched 2026-09-17, before 6.38, 6.41 and 6.43 were
-written, and it had drifted.
+Option B, with the granularity defined properly - 6.44.
 
-Fixed, factually:
+The constraint nobody had written down: inside a junction block the fuses share
+internal buses, so a single fuse input cannot be reached without cutting into the
+block. "Move a few circuits to the PDU" is therefore not free-form. The only
+places a PDU output can land without dash surgery are the injection points the
+J/B already has, and for J/B No.1 there are exactly three - always-hot at 1I-1,
+AM1 at IE1-10, AM2 at IE1-17.
 
-- Section 6 named ST185-Power.harness and ST185-Signal.harness as the drawings.
-  Repointed at the eight rebuild/ looms, with legacy-prebuild/ named as frozen.
-- The closing paragraph warned that Power still carried a leftover bh_c bulkhead
-  with unassigned ETB / injector / coil 12 V on it. That is done - bh_c is gone
-  from every harness file, verified. Marked closed instead of left as a warning.
-- It also said the harness.design MCP was not connected. It is.
+So the PDU takes AM1 and AM2. Both are ignition-switched, which makes the PDU the
+ignition master and gives load-shed during crank and a clean dash drop on kill.
+Always-hot stays a plain fused feed - it has to stay hot regardless, so there is
+no control to gain, and it carries DEFOGGER's 30 A. Everything inside J/B No.1
+and both kick-panel R/Bs is untouched. Two wires, no dash rewiring.
 
-Flagged, not fixed - new section 10:
+No new harness file either: loom C already carries oem_ie1, oem_jb1_1i, oem_rb2
+and oem_rb4, so the injection loom Daniel expected to need already exists.
 
-6.43 says the PDU owns most internal low-power and accessory circuits. Section
-3.1 of this document keeps wiper, gauge, turn, CIG, ECU-IG, IGN, STOP, TAIL,
-ECU-B and DEFOGGER on J/B No.1 fuses, and the heater and window circuits in the
-kick-panel R/Bs. Those are the same circuits. Both cannot be right.
+Channel budget 12 of 16, 4 spare. Flagged for measurement: the 40 A and 30 A on
+AM1 and AM2 are fusible-link ratings, not loads, and a PMU output is 25 A. Added a
+clamp-meter step to the pre-teardown probes in the redistribution execution order,
+since it decides one channel or two paralleled per bus.
 
-The channel count settles half of it on its own. A PMU-16 has 16 outputs. Five
-are committed to the body channels in 3.1, three to the CAN devices in 6.38, one
-to the battery-kill coil in 6.43 - nine used, seven free. J/B No.1 alone is about
-ten circuits, so 6.43's "most" cannot mean all of them whatever Daniel decides.
+Battery kill - 6.45, closing the three questions from 6.43.
 
-Three options written up with that arithmetic. Until one is picked, 3.1 stands,
-because it is the one that is fully specified and fits the hardware. Cross-linked
-from 6.43's open list.
+A four-cylinder petrol starter draws 100-300 A cranking and the 3S-GTE's
+gear-reduction unit is in the upper half of that, against 130 A for the HCR150.
+It is not in the starter path and never will be. Wrote the distinction down
+explicitly because conflating the two is dangerous: the mechanical cutoff in the
+trunk is the real master switch and covers the starter cable; the HCR150 is a
+PDU-controlled main-bus disconnect for everything downstream of the PDB.
 
-Also removed the last trace of the solid-state relay mix-up - Daniel confirmed he
-has none.
+PDU feed position relative to the kill relay - disregarded at Daniel's direction.
+
+Alternator excitation now drops with the kill, as a PDU sequenced shutdown rather
+than a circuit: drop excitation, short delay for field collapse, then open the
+relay. One channel, no extra hardware, delay measured on the bench. The mechanical
+cutoff gets no such courtesy, which is what the alternator's load-dump rating is
+for.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

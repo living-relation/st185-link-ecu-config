@@ -332,7 +332,7 @@ Heater and POWER keep their OEM fuses in the kick-panel R/Bs. We only restore th
 ## 9. Execution order
 
 1. Photograph and label every J/B2 / F11 / ABS / crash-sensor connector **before** unplugging. Pull the 2A / 2D / 2E plugs and write the wire colour of each cavity on the table.
-2. Continuity-map §5.4.1 (2E-2/3 vs IE1) and L1 (1I-1 → battery + on the stock car) while the factory battery is still in the bay, then disconnect it.
+2. Continuity-map §5.4.1 (2E-2/3 vs IE1) and L1 (1I-1 → battery + on the stock car) while the factory battery is still in the bay, then disconnect it. **Also clamp-meter AM1 and AM2 draw with the ignition on and the dash loaded** — that number decides whether each takes one PMU channel or two paralleled (§10).
 3. Unplug F11, 2A–2E, 2B, 2C. Remove ABS actuator, ABS relays, crash-sensor connectors. Do not cut the engine-room main, cowl or dash looms.
 4. Trunk battery, cabin-floor 2 AWG / 1/0, glove-box PDB, TE fuse block, PMU-16, remaining relays. RADLOK through the firewall. Jump lugs at trunk, PDB, starter, block, bay post.
 5. Inject L1, L6, L7, L8, L9, R1, R5. Isolate R2 (OEM starter relay). Do not land J3/J4 until the probe in step 2 says so.
@@ -349,9 +349,35 @@ is gone from every harness file. Nothing here is blocked on it any more.
 
 ---
 
-## 10. Open conflict with plan 6.43 — how much does the PDU own?
+## 10. How much does the PDU own? — RESOLVED, option B
 
-Raised 2026-09-22. **Not resolved. Do not build the kick-panel feeds until it is.**
+**Settled 2026-09-22. Option B. The full working is in plan 6.44; the summary is:**
+
+The PDU feeds **bus injection points**, never individual dash circuits, because
+inside a junction block the fuses share internal buses and a single fuse input
+cannot be reached without cutting into the block.
+
+| Bus | Owner |
+|---|---|
+| AM1 → `IE1-10` | **PDU** (new) |
+| AM2 → `IE1-17` | **PDU** (new) |
+| Always-hot → `1I-1` | plain fused feed from the PDB |
+| R/B No.2 POWER, R/B No.4 HEATER | OEM fuses, unchanged |
+| Everything inside J/B No.1 | **untouched** — §3.1 below stands as written |
+
+Two extra wires from the glove box to two cavities that are already being injected.
+No dash rewiring, no new harness file — loom C already carries `oem_ie1`.
+
+**Before committing: clamp-meter AM1 and AM2 on the stock car.** The 40 A and 30 A
+figures below are fusible-link ratings, not loads, and a PMU output is 25 A. Add
+this to step 2 of the execution order in §9, with the other pre-teardown probes.
+
+The rest of this section is the original write-up of the conflict, kept for the
+reasoning.
+
+---
+
+### Original statement of the conflict (2026-09-22)
 
 Plan 6.43 says the PDU "owns most internal low-power and accessory circuits."
 Section 3.1 of this document says the opposite for a specific list: wiper, gauge,
@@ -388,5 +414,5 @@ document's list cannot survive untouched either.
   would need a second unit or a fused sub-block, so this is a buy decision, not a
   wiring one.
 
-Until Daniel picks, §3.1 stands as the working assumption, because it is the one
-that is fully specified and fits the hardware.
+**Picked: B.** §3.1 stands for everything inside J/B No.1 and both R/Bs; the PDU
+takes AM1 and AM2 at the two IE1 cavities. See the top of this section.

@@ -1575,14 +1575,136 @@ types on it are all electromechanical:
 Daniel confirmed 2026-09-22 that he owns no solid-state relays - the earlier
 mention was a slip. The battery kill is the electromechanical HCR150 above.
 
-### Open
+### Closed
 
-- **How much the PDU actually owns.** This section says "most internal low-power
-  and accessory circuits." `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`
-  §3.1 keeps the J/B No.1 list and both kick-panel R/Bs on OEM fuses. Both cannot
-  be right, and the channel count says 6.43's "most" cannot mean all of them -
-  nine of sixteen PMU outputs are already committed. Three options are written up
-  in §10 of that document. Until it is picked, §3.1 stands.
-- Whether the kill relay breaks the starter feed (decides HCR150 vs a contactor).
-- Where the PDU's own feed taps in relative to the kill relay.
-- How alternator excitation is dropped when the kill fires.
+All four open items here were settled 2026-09-22:
+
+- **How much the PDU owns** - option B, defined by junction-block injection points
+  rather than by circuit. See **6.44**.
+- **Kill relay in the starter path** - no. See **6.45**.
+- **PDU feed relative to the kill relay** - disregarded at Daniel's direction.
+- **Alternator excitation** - dropped by PDU sequencing before the relay opens.
+  See **6.45**.
+
+---
+
+## 6.44 How the PDU is actually used - feed buses, not circuits
+
+Settled with Daniel 2026-09-22. Resolves the 6.43 / redistribution-doc conflict in
+favour of **option B**, with the granularity defined properly.
+
+### The constraint that decides everything
+
+**Inside a junction block, fuses share internal buses.** You cannot feed one
+fuse's input without cutting into the block. So "move a few circuits to the PDU"
+is not free-form - the only places a PDU output can land without dash surgery are
+the **upstream injection points the J/B already has**.
+
+That is the whole answer. The granularity available is the injection list, not the
+fuse list.
+
+For J/B No.1 there are exactly three:
+
+| Injection point | Bus | Feeds |
+|---|---|---|
+| `1I-1` | always-hot | STOP, ECU-B, DEFOGGER, taillight relay battery side |
+| `IE1-10` | AM1 | ignition switch I9-4 |
+| `IE1-17` | AM2 | ignition switch I9-10 |
+
+### What the PDU takes
+
+| Bus | Owner | Why |
+|---|---|---|
+| AM1 -> `IE1-10` | **PDU** | Ignition-switched. Makes the PDU the ignition master: load-shed during crank, clean drop on kill, one place to kill the dash |
+| AM2 -> `IE1-17` | **PDU** | Same |
+| Always-hot -> `1I-1` | **plain fused feed from the PDB** | Must stay hot regardless, so there is no control to gain - and it carries DEFOGGER's 30 A |
+| R/B No.2 POWER 30 A (windows, locks) | **OEM fuse** | High current, no control value, already beside the glove box |
+| R/B No.4 HEATER 40 A (blower) | **OEM fuse** | Same |
+| Everything inside J/B No.1 | **untouched** | Wiper, gauge, turn, CIG, ECU-IG, IGN, STOP, TAIL, ECU-B, DEFOGGER keep their factory fuses and factory branch wiring |
+
+**Nothing in the dash is rewired.** Two wires from the glove box to two existing
+cavities is the entire change.
+
+### Channel budget
+
+| | Channels |
+|---|---|
+| HEAD LH, HEAD RH, HAZ-HORN, DOME, RTR (J/B2 injection) | 5 |
+| TrackCluster, CSB3, RealDash Pi (6.38) | 3 |
+| Battery-kill relay coil (6.43) | 1 |
+| **AM1, AM2 (new here)** | **2** |
+| Alternator excitation (see below) | 1 |
+| **Used** | **12 of 16** |
+| **Spare** | **4** |
+
+Wiper park on O8 stays as written in redistribution §3.1 - optional, not counted.
+
+### Measure before committing AM1 and AM2
+
+40 A and 30 A are **fusible-link ratings, not loads**. A PMU output is 25 A, and
+paralleling costs a second channel. Actual draw decides whether each bus is one
+channel or two, and if both need two the budget goes to 14 of 16.
+
+This is measurable on the stock car with a clamp meter before anything is
+unplugged - add it to step 2 of the redistribution execution order, alongside the
+2E-2/3 and 1I-1 probes already listed there.
+
+### Why not more
+
+Every further circuit would mean opening a junction block to reach a single fuse
+input. That is the dash rewiring this decision exists to avoid, and the PDU's
+value on a 15 A gauge-cluster fuse is close to zero anyway.
+
+### Files affected
+
+**None new.** The injection loom Daniel expected to need already exists - loom C
+(`rebuild/ST185-EngineRoom-C.harness`) already carries `oem_jb1_1i`, `oem_jb1_1h`,
+`oem_ie1`, `oem_rb2`, `oem_rb4` and the three J/B2 blocks. AM1 and AM2 become two
+more wires from `pmu` to `oem_ie1` in that same file.
+
+---
+
+## 6.45 Battery kill - final shape
+
+Settled with Daniel 2026-09-22, closing the three questions raised in 6.43.
+
+### 1. The kill relay is not in the starter path
+
+A four-cylinder petrol starter draws **100-300 A cranking**, highest in the first
+second, and the 3S-GTE's gear-reduction unit sits in the upper half of that.
+The HCR150 is 130 A continuous. It cannot carry cranking current and is not asked
+to.
+
+So the car has **two separate things, and they must not be confused**:
+
+| | What it is | Covers |
+|---|---|---|
+| **Mechanical master cutoff**, trunk, beside the main fuse | The real master switch, already on the buy list | Everything including the starter cable |
+| **HCR150 under PDU control** | A main-bus disconnect for the cabin and accessory side | Everything downstream of the PDB except the starter feed |
+
+The starter stays on the direct battery cable per 6.20. Calling the HCR150 a
+"battery kill" in shorthand is fine; wiring it as if it were the FIA master switch
+is not.
+
+### 2. PDU feed relative to the kill relay
+
+Daniel's call: disregard. Not treated as a design constraint.
+
+### 3. Alternator excitation drops with the kill
+
+Required. Opening a main feed on a live alternator is a load dump, and the engine
+keeps running on a kill that only opens the battery.
+
+The PDU already has the logic to do this with no extra hardware - it is a
+**sequenced shutdown**, not a circuit:
+
+1. PDU drops the alternator excitation output
+2. short delay, long enough for field collapse
+3. PDU de-energises the HCR150 coil
+
+This costs one PDU channel for the alternator excite feed, counted in 6.44 above.
+Set the delay from a measured field-collapse time on the bench, not a guess.
+
+The mechanical master cutoff in the trunk gets no such courtesy, which is the
+normal trade for a crash switch - that is what the alternator's own load-dump
+rating is for.
