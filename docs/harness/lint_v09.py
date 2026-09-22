@@ -32,8 +32,8 @@ def check(fn):
 
     parts = set()
     for key in ("connectorParts", "contactParts", "resistorParts",
-                "cableParts", "wireParts", "bootParts", "spliceParts",
-                "terminalParts", "tapeParts", "tubeParts"):
+                "diodeParts", "cableParts", "wireParts", "bootParts",
+                "spliceParts", "terminalParts", "tapeParts", "tubeParts"):
         for p in d.get(key, []):
             pid = p.get("id")
             # A part id listed twice is how a non-idempotent fix script quietly
@@ -104,6 +104,12 @@ def check(fn):
         cav[r["id"]] = {"Left", "Right"}
         if r.get("partId") and r["partId"] not in parts:
             bad.append("resistor %s -> missing part %s" % (r["id"], r["partId"]))
+    # Diodes are two-terminal nodes exactly like resistors. Added 2026-09-22 when
+    # ClusterLED went to individual LEDs and every one of them linted as unknown.
+    for x in d.get("diodes", []):
+        cav[x["id"]] = {"Left", "Right"}
+        if x.get("partId") and x["partId"] not in parts:
+            bad.append("diode %s -> missing part %s" % (x["id"], x["partId"]))
 
     for n in d.get("schematicNotes", []):
         if n.get("width") is not None and n["width"] not in WIDTHS:

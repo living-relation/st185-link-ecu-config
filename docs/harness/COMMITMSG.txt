@@ -1,45 +1,38 @@
-6.48 rewritten: no PDU, no added logic - and loom C laid out properly
+ClusterLED: six individual LEDs instead of one lumped board
 
-Daniel cut the scope, correctly. The first draft of 6.48 invented a shutdown
-system nobody asked for. Rewritten in place rather than stacked behind another
-supersede banner, because the supersede chain was already three deep.
+Task 12. Daniel asked twice for each LED drawn the way it will actually be wired,
+and the old drawing was a single seven-cavity "Cluster LED indicator board" that
+answered none of that.
 
-Withdrawn entirely: the device-hold relay, the PDU-controlled battery kill, the
-alternator excite sequencing, and the permanently live CSB3.
+Each LED is now a diode with real polarity - anode left, cathode right - so the
+drawing shows which way current goes and where each leg lands:
 
-  - CSB3, cluster and Pi each get a fuse off ignition-switched 12 V. They come up
-    with the key and die with it. The CSB3 is not always live; that idea only ever
-    existed to serve a kill sequence that no longer exists.
-  - The Pi is an info display. It has no role in any shutdown.
-  - Battery kill is a manual master cutoff in the trunk. No relay, no ECU, no
-    sequencing. The HCR150 goes back to being just the EPS pump relay.
-  - The only logic on the car is the ECU's own hold power on Aux 6, exactly as
-    already built and entirely self-contained.
+  high beam   C11-12 (R-L)  -> anode,  cathode -> common return
+  turn L      C11-2  (G-B)  -> anode,  cathode -> common return
+  turn R      C11-11 (G-Y)  -> anode,  cathode -> common return
+  park brake  +12 IG        -> anode,  cathode -> C12-1, grounds via OEM P1/B2
+  charge      C12-9 (B-O)   -> anode,  cathode -> C12-8 alternator L
+  oil         +12 IG        -> anode,  cathode -> CSB3 low-side
 
-All four CSB3 low-sides are free again; the oil lamp is the only candidate.
-Relay count drops to 3-4 and the second fuse block to 12 ways.
+The three feed-side LEDs join at sp_led_gnd. Park brake and oil share sp_led_12v.
 
-6.43 and 6.45 now carry withdrawal banners rather than being left live. Two
-findings from 6.45 are carried forward into 6.48 because they still matter: a
-130 A relay was never going to carry 100-300 A of cranking, and opening a master
-switch on a running alternator is a load dump, so buy a switch with an excite-kill
-terminal.
+The two things that are not known are now drawn as named dead ends rather than
+buried in a note - t_led_gnd for the common return, whose destination the source
+diagram never states, and t_led_12v for the +12V IG anode feed, which is stated to
+exist but has no pin. A local chassis ground is the obvious answer for the first
+one and I have not assumed it. Current limiting is still open too, so no resistors
+are drawn.
 
-Corrected an overstatement of mine: I wrote that nothing in the cabin changes.
-Wrong. The dash branch wiring is untouched, but power and ground delivery to the
-junction blocks is entirely new - seven new terminations, from a PDB that did not
-exist, on a battery that now lives in the trunk. 6.48 lists them.
+gen_cluster_led.py rewritten as the generator for all of this, so the file can be
+rebuilt rather than hand-patched.
 
-Layout. Loom C had 38 nodes spread over 5500 x 3300 with all four section headers
-stacked at x=0, nowhere near the zones they name. Now four zones in reading order -
-trunk and glove box, firewall RADLOK, OEM injection, new engine-room loads - each
-under its own header, with cross-reference stubs in a fifth column. Canvas is
-3150 x 2220. layout_room_c.py holds the zone table so it can be re-run.
+Two linter gaps found doing it, both fixed: lint_v09.py did not treat diodes as
+two-terminal nodes, so every LED wire read as "unknown node", and diodeParts was
+missing from the part-id set, so every partId read as missing. The document was
+valid the whole time - harness.design accepted it with zero warnings - the linter
+just could not see diodes at all.
 
-Harness node updated to match: the ex-pmu body block's CSB3 and device cavities
-are plain switched feeds now.
-
-Lint 8/8.
+Lint 8/8, verify MATCH at 269 conductors.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR
