@@ -33,7 +33,10 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("2 AWG welding cable red/black","generic","Trunk battery +/−, RADLOK charge/start, jump post. Length TBD on the car.",1,0),
  ("Jump lugs 2 AWG / 1/0","generic","Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post",8,0),
  ("8 AWG TXL red/black","generic","EPS pump 12V/GND (passenger ABS trough) and uprated fan 12V/GND (core support)",1,0),
- ("ANL 150A + holder","generic","PMU-16 M6 input fuse at the glove-box PDB (or PMU's own input fuse)",1,0),
+
+ ("Micro ISO relays x4","TE Connectivity","HEAD LH, HEAD RH, RTR, device-hold and alternator-excite relays replacing the PMU (plan 6.48). 8 owned, 6 already assigned to k_efi/k_etb/k_fp/k_fan/k_fan2/k_str.",4,0),
+ ("2nd fuse block 12-16 way","generic","Glove box, for the ex-J/B2 body circuits: HEAD LH 15, HEAD RH 15, HAZ-HORN 15, DOME 20, RTR 30, CSB3 5, cluster 10, Pi 15, alt excite 5. TE 2141029-1 is full at F1-F13. Plan 6.48.",1,0),
+ ("ANL 100A + holder","generic","Feed for the second fuse block off the PDB stud. Plan 6.48 / redistribution 8.",1,0),
  ("2127","Blue Sea Systems","PDB1 glove-box distribution block, 250A, four 5/16\"-18 studs. Starter is fed direct from the main cable per OEM (plan 6.20), so PDB1 carries accessories only.",1,0),
  ("2719","Blue Sea Systems","MaxiBus insulating cover for PDB1 / 2127. Not optional - PDB1 is inside the cabin.",1,0),
  ("ANL/MEGA 300A + holder","generic","MAIN battery fuse, within ~18in of the trunk battery positive. Protects the whole cabin run - OEM leaves the starter lead unfused but its battery is 2ft away, ours is 12ft. See plan 6.20.",1,0),

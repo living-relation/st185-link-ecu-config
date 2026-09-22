@@ -1,36 +1,41 @@
-plan 6.47: surveyed bigger PDUs for option C - none of them work here
+plan 6.48: no PDU - relays, a second fuse block, and the CSB3 does the logic
 
-Daniel asked whether a different PDU has the channels and current to make
-deleting both junction blocks worth it. Priced and spec'd the field today.
+Daniel's decision. The PMU-16 is not being bought. This closes 6.46 and rewrites
+every PMU assumption in the repo.
 
-Option C needs about 24 outputs with three of them carrying 30-40 A.
+What replaces it. Both junction blocks stay. The five ex-J/B2 circuits get relays
+and a second fuse block in the glove box - HEAD LH and HEAD RH and RTR on relays,
+HAZ-HORN and DOME on fuses alone. AM1 and AM2 go back to plain fused PDB feeds,
+which is what redistribution 3.1 always said before 6.44 briefly moved them. So
+the net effect of the entire PDU question is that nothing in the cabin changes.
 
-  ECUMaster PMU-16   16 ch, 25 A max    $1,499   too few
-  Haltech PD16       16 ch, 25 A max    $1,099   DISQUALIFIED - Haltech Elite or
-                                                 Nexus ECU only, will not run
-                                                 standalone, and we are on a Link
-  Racepak SmartWire  ~30 ch             $1,750   closest fit
-  MoTeC PDM32        32 ch, 20 A max    $5,165   absurd here, and no channel
-                                                 even reaches 25 A
-  2 x PMU-16         32 ch              $2,998   works, silly
+The logic moves to the CSB3's four low-sides: L1 device relay hold for the Pi's
+clean shutdown, L2 kill relay coil, L3 alternator excite, L4 oil lamp. Full, none
+spare. The CSB3 itself takes a permanent fused feed because it has to be alive
+through the kill sequence and cannot hold the relay that powers it - parasitic
+draw flagged for measurement.
 
-Two things kill option C whichever one is bought.
+Shutdown order is unchanged in intent: ECU parks the ETB on its own hold power and
+is the innermost authority, the Pi shuts down on CAN state, the CSB3 releases the
+device relay when the Pi reports down, and only an actual kill command drops
+excitation and then the HCR150. Normal key-off is not a kill.
 
-The heater blower is 40 A and the best channel in the field is 25 A, so the
-blower keeps a relay and a fuse regardless - which means R/B No.4 cannot actually
-be deleted, and DEFOGGER and RTR both need paralleled channels everywhere.
+Docs updated. Supersede banners on 6.38, 6.44 and 6.45 saying exactly which parts
+survive - the DTM4 house standard and load figures in 6.38 still stand, and so
+does 6.44's injection-point constraint, which is the reason both J/Bs stay
+whether or not a PDU exists. Redistribution 3.1 gets a translation table so its
+thirty "PMU Ox" references stay readable instead of being hand-edited into
+inconsistency; the architecture diagram, fuse schedule, build steps and power-up
+order are corrected properly.
 
-And J/B No.1's integration relay runs intermittent wipers, courtesy delay and the
-seatbelt and key warnings. Replacing it means running door, seatbelt and key
-switches into the PDM as inputs and writing the logic - more wires into the dash,
-which is the opposite of what Daniel asked for.
+Harness updated too, rather than left to drift. Loom C's pmu node is now "Glove-box
+body block (fuses + relays, ex-J/B2)" - same element id so its seven wires survive,
+same cavity count, new label and cavity text, and the two dead CAN cavities
+repurposed as the CSB3 permanent feed and the device relay feed. Live on
+harness.design and mirrored locally by fix_no_pdu.py.
 
-So: no. 6.46's recommendation stands and this strengthens it.
-
-Added the cheap way to get the one thing a PDU was genuinely offering. The CSB3
-has eight analog inputs and only two are used. Hall current sensors on the six
-circuits worth watching feed A3-A8, go out on CAN, and display on RealDash and the
-TrackCluster, both already on the bus. About $60, no new module, no new CAN node.
+Buy list swaps the PMU-16 for 4 micro ISO relays, a 12-16 way fuse block and a
+100 A ANL. Lint 8/8, verify clean at 269 conductors, both lists regenerated.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

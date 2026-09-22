@@ -23,9 +23,15 @@ no way to tell them apart. Read this before opening any of them.
 | `ST185-B-ECU.harness` | B, cabin | ECU-B pins to bulkhead B |
 | `ST185-B-engine.harness` | B, engine | bulkhead B to the engine bay |
 | `ST185-CAN.harness` | CAN | the CAN backbone |
-| `ST185-EngineRoom-C.harness` | C | engine room, PMU, PDB, EPS, OEM J/B injection |
+| `ST185-EngineRoom-C.harness` | C | engine room, PDB, fuse blocks + relays, EPS, OEM J/B injection |
 | `ST185-ClusterLED.harness` | (folding into the cabin accessory loom) | cluster warning LEDs |
 | `ST185-WheelSpeed.harness` | (splitting into loom C + rear trunk) | four ABS drops and both VR conditioners |
+
+Loom C's `pmu` node was **repurposed on 2026-09-22**, not deleted. The PMU-16 was
+dropped (plan 6.46–6.48) and the node is now the glove-box body block — a second
+fuse block plus micro ISO relays — carrying the same ex-J/B2 circuits on the same
+wires, plus the CSB3 and device feeds. The element id stays `pmu` for wire
+continuity; the label and cavities tell the truth.
 
 The last two are **in transition**. Plan 6.41 dissolves them: ClusterLED joins the
 new cabin accessory loom, and WheelSpeed splits - front half into loom C, rear half

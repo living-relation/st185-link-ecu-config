@@ -24,7 +24,7 @@ Two ways were on the table:
 That also matches the already-written split in `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.1, with three refinements from this pass:
 
 1. Battery moves to the **trunk**, not the passenger footwell. Cables run forward to a glove-box PDB.
-2. The relocated fuse block, PMU-16 and the relays the PMU cannot replace sit in the **passenger glove box**, next to OEM R/B No.3 / No.4 (right kick).
+2. The relocated fuse block, a second fuse block for the ex-J/B2 body circuits, and the relays sit in the **passenger glove box**, next to OEM R/B No.3 / No.4 (right kick). (No PMU — see plan 6.48.)
 3. EPS power uses the vacated **passenger-side ABS actuator** path, not a third HDP20 bulkhead. `bh_c` stays deleted. Large cables (battery / starter / alternator charge) still cross the firewall on **RADLOK**.
 
 ---
@@ -66,7 +66,7 @@ J/B No.2 is the box we are physically removing from the bay. Everything downstre
 
 ```
 TRUNK battery +  ──2 AWG / 1/0──►  GLOVE BOX PDB  ─┬─► TE 2141029-1 fuse block (ECU / pump / EPS / fans)
-                     jump lug                     ├─► PMU-16 M6 stud (body / lighting overflow)
+                     jump lug                     ├─► 2nd fuse block + relays (body / lighting, ex-J/B2)
 TRUNK battery −  ──2 AWG / 1/0──►  PDB ground     ├─► always-hot + AM1 + AM2 to kick-panel J/Bs
                                                   └─► RADLOK +  ──firewall──► starter B+ ◄── 160 A alt B+
                                                      RADLOK −  ──firewall──► engine block
@@ -80,6 +80,33 @@ Glove box is passenger side, so R/B No.3 and R/B No.4 are a short hop. J/B No.1 
 ![Engine-bay J/B2 / R/B5 / ABS relays, EWD p.16](ewd-snips/1990-st185-locations-engine-bay.png)
 
 ### 3.1 What the PMU-16 can and cannot take
+
+> ## NO PMU — decided 2026-09-22, see plan 6.46 / 6.47 / 6.48
+>
+> The PMU-16 is **not being bought**. A sixteen-channel $1,499 unit was doing five
+> circuits, and nothing bigger fixed it — the 40 A blower exceeds every PDM channel
+> on the market, so R/B No.4 survives regardless.
+>
+> **This section is still correct about which loads go where. Only the word "PMU"
+> is wrong.** Translate as you read:
+>
+> | This section says | Actually |
+> |---|---|
+> | PMU O1 / O2 — HEAD LH / RH | relay + fuse, second fuse block |
+> | PMU O3 — HAZ-HORN | fuse (+ horn relay if the car lacks one) |
+> | PMU O4 — DOME | fuse only, always-hot |
+> | PMU O5 — RTR | relay + fuse |
+> | PMU O8 — wiper park | relay + fuse, still optional |
+> | "PMU stud" / "PMU-16 M6" | the PDB stud feeding the second fuse block |
+> | "a PMU output is 25 A" | a micro ISO relay is 30 A, a blade fuse way whatever it is rated |
+>
+> The **either a PMU output or a relay+fuse, never both** rule below becomes simply
+> *one source per load*, which it always really was.
+>
+> Logic that was going to live in the PMU — device hold, kill relay, alternator
+> excite — now lives on the **CSB3's four low-side outputs**. See plan 6.48.
+
+Original text follows.
 
 ECUMaster PMU-16: **10 × 25 A** + **6 × 15 A** high-side, **150 A** total, outputs of the same rating may be paralleled (max three → 75 A). Connector terminals are the real limit (Sicma 2.8 ≈ 25 A). On CAN 1 at 1 Mbit/s; do not add a third 120 Ω terminator.
 
@@ -288,7 +315,7 @@ see `docs/harness/README.md` for the current file map.
 | `docs/harness/rebuild/ST185-B-ECU.harness` | Cabin fuse block, EFI / ETB / FP / start relays, ECU 12 V, RADLOK cabin side, injector / coil 12 V |
 | `docs/harness/rebuild/ST185-A-ECU.harness` | ECU-A sensors and switch inputs |
 | `docs/harness/rebuild/ST185-B-engine.harness` | EPS speed, ETB, injector / coil 12 V on the engine side |
-| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB → PMU, RADLOK, OEM injection blocks, EPS power, uprated fans |
+| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB → fuse blocks + relays, RADLOK, OEM injection blocks, EPS power, uprated fans. **Still contains an obsolete `pmu` node — remove in the 6.41 restructure** |
 | `docs/harness/legacy-prebuild/ST185-{Power,Signal}.harness` | Frozen pre-split baseline. Read-only, kept only for `verify_rebuild.py` |
 | This document | Splice table and factory citations. No second current-flow diagram of the OEM loom |
 
@@ -321,7 +348,7 @@ TE `2141029-1` already owns F1–F13 in `ST185-Power.harness` (EFI, pump, ETB, s
 | OEM HOT | 40–60 A | FL ALT feed into J/B1 | 1I-1 (L1) |
 | HEATER feed | unfused stub; 40 A lives in R/B4 | FL ALT → E13 → R/B4 | R/B4 fuse pins 1–2 (R1) |
 | POWER feed | unfused stub; 30 A lives in R/B2 | FL ALT → I2 → R/B2 | R/B2 fuse pins 1–2 (L9) |
-| PMU-16 M6 | ANL / mega 150 A (or PMU's own input fuse) | J/B2 HEAD/HAZ/DOME/RTR fuses | PMU stud |
+| 2nd fuse block feed | ANL / mega 100 A | J/B2 HEAD/HAZ/DOME/RTR fuses | PDB stud → second block |
 | Charge / start | none at PDB, or ANL 200 A | F11 100A FL ALT | RADLOK + → starter B+ |
 | ABS | **omit** | F11 60A FL ABS | deleted |
 
@@ -332,13 +359,13 @@ Heater and POWER keep their OEM fuses in the kick-panel R/Bs. We only restore th
 ## 9. Execution order
 
 1. Photograph and label every J/B2 / F11 / ABS / crash-sensor connector **before** unplugging. Pull the 2A / 2D / 2E plugs and write the wire colour of each cavity on the table.
-2. Continuity-map §5.4.1 (2E-2/3 vs IE1) and L1 (1I-1 → battery + on the stock car) while the factory battery is still in the bay, then disconnect it. **Also clamp-meter AM1 and AM2 draw with the ignition on and the dash loaded** — that number decides whether each takes one PMU channel or two paralleled (§10).
+2. Continuity-map §5.4.1 (2E-2/3 vs IE1) and L1 (1I-1 → battery + on the stock car) while the factory battery is still in the bay, then disconnect it. **Also clamp-meter AM1 and AM2 draw with the ignition on and the dash loaded** — sizes the PDB fuse and the feed wire (§10).
 3. Unplug F11, 2A–2E, 2B, 2C. Remove ABS actuator, ABS relays, crash-sensor connectors. Do not cut the engine-room main, cowl or dash looms.
-4. Trunk battery, cabin-floor 2 AWG / 1/0, glove-box PDB, TE fuse block, PMU-16, remaining relays. RADLOK through the firewall. Jump lugs at trunk, PDB, starter, block, bay post.
+4. Trunk battery, cabin-floor 2 AWG / 1/0, glove-box PDB, TE fuse block, second fuse block, relays. RADLOK through the firewall. Jump lugs at trunk, PDB, starter, block, bay post.
 5. Inject L1, L6, L7, L8, L9, R1, R5. Isolate R2 (OEM starter relay). Do not land J3/J4 until the probe in step 2 says so.
 6. Dummy-header J1 / J2 / J5 (HEAD LH/RH + DOME) along the passenger fender / ABS trough / EA1. Jumper 2A-3↔2D-2 and 2A-6↔2D-6.
 7. Engine Room C add-ons: EPS 8 AWG in the vacated ABS trough; uprated fans 8 AWG on the core support. A/C clutch stays on A/B.
-8. Power-up: PDB only → 1I-1 lights J/B1 STOP/ECU-B/DEFOGGER → AM1/AM2 crank the ignition switch → PMU enable → headlights / dome. Starter last.
+8. Power-up: PDB only → 1I-1 lights J/B1 STOP/ECU-B/DEFOGGER → AM1/AM2 crank the ignition switch → second fuse block live → headlights / dome. Starter last.
 
 Loom C is `docs/harness/rebuild/ST185-EngineRoom-C.harness`, live on harness.design.
 Cabin ECU power is in `rebuild/ST185-B-ECU.harness`.
@@ -357,20 +384,26 @@ The PDU feeds **bus injection points**, never individual dash circuits, because
 inside a junction block the fuses share internal buses and a single fuse input
 cannot be reached without cutting into the block.
 
+**Amended 2026-09-22: no PDU at all.** See plan 6.48. AM1 and AM2 stay plain fused
+feeds, as this document always had them.
+
 | Bus | Owner |
 |---|---|
-| AM1 → `IE1-10` | **PDU** (new) |
-| AM2 → `IE1-17` | **PDU** (new) |
+| AM1 → `IE1-10` | plain fused feed from the PDB, 40 A |
+| AM2 → `IE1-17` | plain fused feed from the PDB, 30 A |
 | Always-hot → `1I-1` | plain fused feed from the PDB |
 | R/B No.2 POWER, R/B No.4 HEATER | OEM fuses, unchanged |
-| Everything inside J/B No.1 | **untouched** — §3.1 below stands as written |
+| Everything inside J/B No.1 | **untouched** — §3.1 stands as written |
+| Ex-J/B2 body circuits | second fuse block + relays in the glove box |
 
-Two extra wires from the glove box to two cavities that are already being injected.
-No dash rewiring, no new harness file — loom C already carries `oem_ie1`.
+No dash rewiring, no new harness file. The net effect of the whole PDU question is
+that **nothing in the cabin changes from what §3.1 already described** — only the
+five ex-J/B2 circuits get a home, and they get relays and fuses rather than a
+$1,499 module.
 
-**Before committing: clamp-meter AM1 and AM2 on the stock car.** The 40 A and 30 A
-figures below are fusible-link ratings, not loads, and a PMU output is 25 A. Add
-this to step 2 of the execution order in §9, with the other pre-teardown probes.
+**Still worth measuring: clamp-meter AM1 and AM2 on the stock car.** The 40 A and
+30 A figures are fusible-link ratings, not loads, and they size the PDB fuse and
+the feed wire. Step 2 of §9.
 
 The rest of this section is the original write-up of the conflict, kept for the
 reasoning.

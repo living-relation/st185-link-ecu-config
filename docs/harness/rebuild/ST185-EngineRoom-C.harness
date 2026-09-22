@@ -556,7 +556,7 @@
     },
     {
       "id": "pmu",
-      "label": "ECUMaster PMU-16",
+      "label": "Glove-box body block (fuses + relays, ex-J/B2)",
       "width": 270,
       "schematicPosition": {
         "x": 620,
@@ -569,8 +569,8 @@
       "cavities": [
         {
           "id": "c1",
-          "designation": "M6",
-          "signal": "Battery stud, 150 A total cap"
+          "designation": "IN",
+          "signal": "Feed from PDB stud, ANL 100 A"
         },
         {
           "id": "c2",
@@ -579,48 +579,48 @@
         },
         {
           "id": "c3",
-          "designation": "+12V SW",
-          "signal": "Ignition switch-on (pin 7)"
+          "designation": "IGN",
+          "signal": "Ignition-switched relay coil feed (not yet wired)"
         },
         {
           "id": "c4",
-          "designation": "O1 25A",
-          "signal": "HEAD LH feed -> J/B2 2A-3 / 2D-2"
+          "designation": "HL",
+          "signal": "HEAD LH - relay 87, 15 A fuse -> J/B2 2A-3 / 2D-2"
         },
         {
           "id": "c5",
-          "designation": "O2 25A",
-          "signal": "HEAD RH feed -> J/B2 2A-6 / 2D-6"
+          "designation": "HR",
+          "signal": "HEAD RH - relay 87, 15 A fuse -> J/B2 2A-6 / 2D-6"
         },
         {
           "id": "c6",
-          "designation": "O3 25A",
-          "signal": "HAZ-HORN 15A bus -> J/B2 2E-3"
+          "designation": "HZ",
+          "signal": "HAZ-HORN - 15 A fuse -> J/B2 2E-3"
         },
         {
           "id": "c7",
-          "designation": "O4 25A",
-          "signal": "DOME 20A bus -> J/B2 2E-4"
+          "designation": "DM",
+          "signal": "DOME - 20 A fuse, always-hot -> J/B2 2E-4"
         },
         {
           "id": "c8",
-          "designation": "O5 25A",
-          "signal": "RTR 30A bus -> J/B2 2E-2"
+          "designation": "RT",
+          "signal": "RTR - relay 87, 30 A fuse -> J/B2 2E-2"
         },
         {
           "id": "c9",
-          "designation": "O8 15A",
-          "signal": "Wiper park/brake (optional, unused yet)"
+          "designation": "WP",
+          "signal": "Wiper park - relay 87, 15 A fuse (optional, unused)"
         },
         {
           "id": "c10",
-          "designation": "CANH",
-          "signal": "CAN 1, 1 Mbit/s, no extra 120 ohm"
+          "designation": "CSB",
+          "signal": "CSB3 permanent feed, 5 A - stays live for the kill sequence (plan 6.48)"
         },
         {
           "id": "c11",
-          "designation": "CANL",
-          "signal": "CAN 1"
+          "designation": "DEV",
+          "signal": "Cluster + RealDash Pi - device relay 87, held by CSB3 low-side L1 (plan 6.48)"
         }
       ],
       "partId": "cp_pmu"
@@ -1263,7 +1263,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Bulkhead B cavity 13 \u2192 ECU-A A27 (Aux 7, MRS SPD) \u2014 wired on ST185-A-ECU"
+          "signal": "Bulkhead B cavity 13 → ECU-A A27 (Aux 7, MRS SPD) — wired on ST185-A-ECU"
         }
       ],
       "schematicPosition": {
@@ -1283,7 +1283,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Chassis ground splice (sp_chassis) \u2014 wired on ST185-B-ECU"
+          "signal": "Chassis ground splice (sp_chassis) — wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1303,7 +1303,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Fusebox F7, 60A \u2014 EPS pump relay 30, wired on ST185-B-ECU"
+          "signal": "Fusebox F7, 60A — EPS pump relay 30, wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1323,7 +1323,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Ignition-switched +12V splice (sp_sw12) \u2014 feeds EFI/ETB/fuel/fan relay coils, wired on ST185-B-ECU"
+          "signal": "Ignition-switched +12V splice (sp_sw12) — feeds EFI/ETB/fuel/fan relay coils, wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1343,7 +1343,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Bulkhead B cavity 14 \u2192 MRS EPS pump logic enable (F13, 7.5A, ignition-switched) \u2014 wired on ST185-B-ECU"
+          "signal": "Bulkhead B cavity 14 → MRS EPS pump logic enable (F13, 7.5A, ignition-switched) — wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1363,7 +1363,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "ECU-B pin B12 (Ign 6) \u2014 EPS relay trigger per 6.16, branches off at the ECU into loom C. NOTE: B12 still reads notConnected on ST185-A-ECU - fix there."
+          "signal": "ECU-B pin B12 (Ign 6) — EPS relay trigger per 6.16, branches off at the ECU into loom C. NOTE: B12 still reads notConnected on ST185-A-ECU - fix there."
         }
       ],
       "schematicPosition": {
@@ -1606,9 +1606,9 @@
     },
     {
       "id": "cp_pmu",
-      "partNumber": "PMU-16",
-      "manufacturer": "ECUMaster",
-      "description": "10x25A + 6x15A high-side, 150A total, M6 stud + 39-way. On CAN 1 at 1 Mbit/s, no third terminator."
+      "partNumber": "(glove-box body block - 2nd fuse block + relays)",
+      "manufacturer": "assembly",
+      "description": "Replaces the ECUMaster PMU-16, dropped 2026-09-22 (plan 6.46-6.48). A 12-16 way fuse block plus micro ISO relays in the glove box, carrying the ex-J/B2 body circuits and the CAN device feeds. Not a single purchased part - see NEED-TO-BUY."
     },
     {
       "id": "cp_rly_hcr150",

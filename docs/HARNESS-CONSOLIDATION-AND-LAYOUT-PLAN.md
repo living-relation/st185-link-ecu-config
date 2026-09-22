@@ -1112,6 +1112,11 @@ to the board pads, contacts are crimped on the harness side only.
 
 ## 6.38 Dash and CAN device power - PMU outputs
 
+> **SUPERSEDED 2026-09-22 by 6.48 - there is no PMU.** The cluster and Pi come off
+> a relay, the CSB3 off a permanent fused feed. Everything below about *why* these
+> devices need their own clean feed, the DTM4 house standard, the load figures and
+> the clean-shutdown requirement still stands. Only "PMU output" is wrong.
+
 Settled with Daniel 2026-09-21. The cluster, the CSB3 and the RealDash Pi all
 come off PMU-16 outputs, not the CAN cable and not the fuse block.
 
@@ -1590,6 +1595,11 @@ All four open items here were settled 2026-09-22:
 
 ## 6.44 How the PDU is actually used - feed buses, not circuits
 
+> **SUPERSEDED 2026-09-22 by 6.48 - there is no PDU.** AM1 and AM2 revert to plain
+> fused feeds from the PDB. The reasoning below is kept because it is still the
+> reason both junction blocks stay: **the injection-point constraint is what makes
+> option B work at all**, PDU or no PDU.
+
 Settled with Daniel 2026-09-22. Resolves the 6.43 / redistribution-doc conflict in
 favour of **option B**, with the granularity defined properly.
 
@@ -1665,6 +1675,11 @@ more wires from `pmu` to `oem_ie1` in that same file.
 ---
 
 ## 6.45 Battery kill - final shape
+
+> **AMENDED 2026-09-22 by 6.48 - there is no PDU.** The kill relay coil and the
+> alternator excite drop are driven by **CSB3 low-sides L2 and L3**, not PDU
+> outputs. The two-devices rule, the starter-path finding and the sequenced
+> shutdown below are all unchanged.
 
 Settled with Daniel 2026-09-22, closing the three questions raised in 6.43.
 
@@ -1801,10 +1816,9 @@ wants. If it is dropped, 6.38, 6.44 and 6.45 all need rewriting - the cluster,
 CSB3 and Pi feeds move to fused relay outputs, and the kill sequence moves to the
 CSB3.
 
-### Open
+### CLOSED 2026-09-22 - dropped
 
-- Keep the PMU-16 or drop it. Everything above is written so either answer can be
-  executed; nothing else should be built on a PMU assumption until this is closed.
+Daniel's answer: no PDU. The replacement architecture is **6.48**.
 
 ---
 
@@ -1873,3 +1887,102 @@ TrackCluster, both already CAN nodes.
 
 Six monitored circuits, no new module, no new CAN node, and it uses inputs that
 are already paid for and currently idle.
+
+---
+
+## 6.48 NO PDU - the replacement architecture
+
+**Settled with Daniel 2026-09-22. The PMU-16 is not being bought.**
+
+This closes 6.46 and supersedes every PMU assumption in **6.38, 6.44 and 6.45**.
+Where those sections say "PDU output", read this section instead.
+
+Reasoning is in 6.46 (a sixteen-channel unit doing five circuits for $1,499) and
+6.47 (nothing bigger fixes it - the 40 A blower does not fit any PDM channel on
+the market, so R/B No.4 survives regardless).
+
+### What replaces it
+
+Both junction blocks stay, exactly as in option B. The five deleted J/B No.2
+circuits and the device feeds move to relays and a second fuse block, and the
+logic moves to the CSB3.
+
+| Circuit | Was going to be | Now |
+|---|---|---|
+| HEAD LH 15 A | PDU O1 | relay + fuse -> J/B2 2A-3 |
+| HEAD RH 15 A | PDU O2 | relay + fuse -> J/B2 2A-6 |
+| HAZ-HORN 15 A | PDU O3 | fuse -> 2E-3, plus a horn relay if the car has none |
+| DOME 20 A | PDU O4 | fuse -> 2E-4, always-hot, no relay |
+| RTR 30 A | PDU O5 | relay + fuse -> 2E-2 |
+| AM1 40 A | PDU (6.44) | **plain fused feed from the PDB** -> IE1-10, as 3.1 always had it |
+| AM2 30 A | PDU (6.44) | **plain fused feed from the PDB** -> IE1-17 |
+| Always-hot | plain fused feed | unchanged |
+| TrackCluster, RealDash Pi | PDU outputs | one **device relay**, fused per device |
+| CSB3 | PDU output | **permanent fused feed** - see below |
+
+### Why the CSB3 gets a permanent feed
+
+The CSB3 is the logic now, so it has to be alive through key-off and through the
+kill sequence. It cannot hang off a relay it is itself holding.
+
+Board draw is negligible (6.37), and the battery-kill relay removes it when the
+car is parked long-term, so the parasitic drain is bounded. **Measure it anyway
+before signing this off** - a permanent feed is the one thing here that can flatten
+a battery over a month.
+
+### The four low-side outputs, allocated
+
+| | Job |
+|---|---|
+| L1 | Device relay hold - keeps the cluster and Pi alive after key-off for the Pi's clean shutdown |
+| L2 | Battery-kill relay coil (HCR150) |
+| L3 | Alternator excite relay - opened first in the kill sequence |
+| L4 | Oil pressure lamp |
+
+Full, nothing spare. The oil lamp is the one to move to the TrackCluster if a
+fifth job appears.
+
+### Shutdown sequence, unchanged in intent
+
+The ECU remains the innermost authority and nothing guesses a timer:
+
+1. Key off. ECU holds `k_efi` on Aux 6, parks the ETB, saves, releases.
+2. Pi sees ignition false on CAN, runs its shutdown script.
+3. CSB3 holds L1 until the Pi reports down, then releases the device relay.
+4. On an actual kill command only: L3 drops alternator excitation, short delay,
+   then L2 opens the HCR150.
+
+Normal key-off is not a kill. The HCR150 only opens on a kill command.
+
+### Relay and fuse count
+
+Relays: HEAD LH, HEAD RH, RTR, horn (if needed), device hold, alternator excite -
+**about 6 micro ISO**. Eight are owned and six are already assigned to `k_efi`,
+`k_etb`, `k_fp`, `k_fan`, `k_fan2` and `k_str`, so **buy roughly 4 more** plus
+sockets. The HCR150 is owned.
+
+Fuse ways: HEAD LH 15, HEAD RH 15, HAZ-HORN 15, DOME 20, RTR 30, CSB3 5, cluster
+10, Pi 15, alt excite 5 - **9 ways, so a 12-16 way second block.** The TE
+`2141029-1` is full at F1-F13. AM1 40 A and AM2 30 A stay as PDB-mounted fuses,
+not blade ways, exactly as 3.1 and §8 of the redistribution doc already had them.
+
+### Monitoring, if wanted later
+
+Per 6.47: hall current sensors into CSB3 analog inputs **A3-A8**, which are idle.
+Six monitored circuits on CAN to RealDash and the cluster, about $60, no new module.
+
+### Already done in the repo
+
+`rebuild/ST185-EngineRoom-C.harness` has been updated the same day. The `pmu` node
+is now **"Glove-box body block (fuses + relays, ex-J/B2)"** - same element id so the
+seven wires stay intact, same cavity count, new label and cavity text. The two dead
+CAN cavities were repurposed as the CSB3 permanent feed and the device relay feed.
+The buy list no longer asks for a PMU-16.
+
+Lint 8/8, verify clean, both generated lists regenerated.
+
+### Open
+
+- Measure CSB3 permanent-feed parasitic draw.
+- Confirm whether the car already has a horn relay, or whether one is needed.
+- Pick the second fuse block (12-16 way, with the TE block's mounting style).
