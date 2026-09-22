@@ -627,7 +627,7 @@
     },
     {
       "id": "k_eps",
-      "label": "EPS pump relay HCR150",
+      "label": "MR-S EHPS pump relay (HCR150, engine bay)",
       "width": 270,
       "schematicPosition": {
         "x": 2160,
@@ -1087,7 +1087,7 @@
     },
     {
       "id": "mrs_pwr",
-      "label": "MRS EPS pump power 90980-12068",
+      "label": "MR-S EHPS pump - A, main power (90980-12068)",
       "width": 270,
       "schematicPosition": {
         "x": 2160,
@@ -1113,7 +1113,7 @@
     },
     {
       "id": "mrs_en",
-      "label": "MRS EPS enable 90980-10942",
+      "label": "MR-S EHPS pump - C, ignition (90980-10942)",
       "width": 270,
       "schematicPosition": {
         "x": 2160,
@@ -1212,7 +1212,7 @@
     },
     {
       "id": "mrs_ctrl",
-      "label": "MRS EPS Pump - Control",
+      "label": "MR-S EHPS pump - B, signal (PN not yet identified)",
       "partId": "cp_mrs_ctrl",
       "cavities": [
         {
@@ -1588,7 +1588,7 @@
     },
     {
       "id": "shdr_3",
-      "text": "NEW ENGINE-ROOM LOADS",
+      "text": "NEW ENGINE-ROOM LOADS - MR-S EHPS pump (one device: relay + 3 connectors) and both uprated fans",
       "width": 270,
       "schematicPosition": {
         "x": 2160,
@@ -1672,6 +1672,14 @@
       "hasShell": false,
       "numberOfCavities": 6,
       "description": "MR-S EHPS pump control connector B, pigtail 82998-12440. Sumitomo TS090 / Yazaki 090-II family, not a TE part. 6 cavities, 2 used: pin 2 speed-pulse out, pin 6 relay-request out. Confirm against the pump in hand before ordering."
+    }
+  ],
+  "groupParts": [
+    {
+      "id": "gp_mrs_ehps",
+      "partNumber": "MR-S ZZW30 EHPS pump",
+      "manufacturer": "Toyota",
+      "description": "Electro-hydraulic power steering pump from the MR-S (ZZW30). One device, mounted in the engine bay with its control module bolted to the pump. Presents three connectors - A main power, B signal, C ignition - and is switched by k_eps, an HCR150 mounted beside it. Group k_eps, mrs_pwr, mrs_ctrl and mrs_en together and assign this part. See docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md."
     }
   ]
 }

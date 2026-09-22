@@ -1,38 +1,28 @@
-ClusterLED: six individual LEDs instead of one lumped board
+EPS and MRS are the same device - name it that way
 
-Task 12. Daniel asked twice for each LED drawn the way it will actually be wired,
-and the old drawing was a single seven-cavity "Cluster LED indicator board" that
-answered none of that.
+Daniel caught me listing "EPS" and "MRS" as two separate things in a loom C zone
+summary. They are one device: the MR-S (ZZW30) electro-hydraulic power steering
+pump, control module bolted to the pump, living in the engine bay.
 
-Each LED is now a diode with real polarity - anode left, cathode right - so the
-drawing shows which way current goes and where each leg lands:
+Four nodes, one device:
 
-  high beam   C11-12 (R-L)  -> anode,  cathode -> common return
-  turn L      C11-2  (G-B)  -> anode,  cathode -> common return
-  turn R      C11-11 (G-Y)  -> anode,  cathode -> common return
-  park brake  +12 IG        -> anode,  cathode -> C12-1, grounds via OEM P1/B2
-  charge      C12-9 (B-O)   -> anode,  cathode -> C12-8 alternator L
-  oil         +12 IG        -> anode,  cathode -> CSB3 low-side
+  k_eps     its relay, HCR150, mounted beside the pump
+  mrs_pwr   connector A, main power, 90980-12068
+  mrs_ctrl  connector B, signal, 6-way, PN still unidentified
+  mrs_en    connector C, ignition, 90980-10942
 
-The three feed-side LEDs join at sp_led_gnd. Park brake and oil share sp_led_12v.
+The old labels read like two unrelated systems - "EPS pump relay HCR150" next to
+"MRS EPS pump power" - which is how the mistake happened in the first place. All
+four now say MR-S EHPS pump and name which connector they are.
 
-The two things that are not known are now drawn as named dead ends rather than
-buried in a note - t_led_gnd for the common return, whose destination the source
-diagram never states, and t_led_12v for the +12V IG anode feed, which is stated to
-exist but has no pin. A local chassis ground is the obvious answer for the first
-one and I have not assumed it. Current limiting is still open too, so no resistors
-are drawn.
+Added gp_mrs_ehps, the GroupPart that records the device, per the devices guide.
+The editing tools cannot create the Group itself, so that is a one-time job in the
+app: select those four nodes, group them, assign the part.
 
-gen_cluster_led.py rewritten as the generator for all of this, so the file can be
-rebuilt rather than hand-patched.
+Naming authority is docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md, which spells it
+MR-S EHPS. The harness had been spelling it MRS.
 
-Two linter gaps found doing it, both fixed: lint_v09.py did not treat diodes as
-two-terminal nodes, so every LED wire read as "unknown node", and diodeParts was
-missing from the part-id set, so every partId read as missing. The document was
-valid the whole time - harness.design accepted it with zero warnings - the linter
-just could not see diodes at all.
-
-Lint 8/8, verify MATCH at 269 conductors.
+Lint 8/8, verify MATCH.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR
