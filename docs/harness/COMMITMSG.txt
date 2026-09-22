@@ -1,29 +1,45 @@
-plan 6.41: CSB3 keeps the 6.40 connector, trunk loom joins on an inline DT
+plan 6.41-6.43: fuel pump circuit, segmented shielding, PDU power split
 
-Two decisions settled 2026-09-22.
+Fuel pump. Looked the pump up rather than guessing: Walbro F90000295, 450 LPH,
+Radium bench test 14.4 A at 13.5 V. Design at 20 A for E85 and a 14.4 V charging
+system. 12 AWG feed and ground, 25-30 A fuse, its own relay, local chassis ground
+in the trunk. The 60 A figure is the right order for INRUSH, not steady draw -
+wire and fuse size on continuous current, and the contact only has to survive a
+millisecond spike. Industry hardwire kits for this pump ship a 30 A fuse and 40 A
+relay, which is the practical answer to the transient.
 
-CSB3 connector: the 6.40 pair stands - HD34-24-33PE receptacle, HD36-24-33SE
-plug, 26 size-20 sockets bought new. The 21-way HD30 pair already on the shelf
-was the cheaper road and lost on merit: it puts pins on the harness so the live
-12 V sits unshrouded when unplugged, and 21 ways cannot bring out all 26 CSB3
-terminals, which is the entire point of 6.37. That pair stays free for something
-else. Size-20 contacts are now a confirmed TE buy - none on hand, and DigiKey had
-the socket at zero on 2026-09-21.
+The pump keeps its own connector, 12 inches from the pump, and that is the only
+break the circuit needs. It is out of the inline connector entirely. If a service
+disconnect is ever wanted, the part is a Deutsch size 12 contact (25 A, 20 of each
+gender on hand), not the size 16 used elsewhere.
 
-Rear trunk loom junction: one inline connector, not a bulkhead. Nine conductors
-cross it - two conditioned rear wheel pulses, the VRC 5 V and ground, the output
-cable screen, fuel level signal and ground, and the pump pair. Forward of the
-connector they split by ECU pin into loom A or B as 6.41 requires.
+Fuel level sender uses the OEM connector, both halves on hand. Nothing to source.
 
-The connector comes off the shelf per the new sourcing rule: DT04-12PA /
-DT06-12SA with W12P / W12S wedgelocks, a sealed 12-way Deutsch DT pair, two sets
-owned and unassigned. Twelve ways covers nine with three spare, and DT takes the
-size 16 contacts already in stock - the 16-20 AWG variant for the signals, the
-14 AWG variant for the pump pair. Marked CLAIMED in the on-hand CSV.
+The inline DT connector now carries seven signal conductors instead of nine, so
+five ways spare. Packaging recorded: rear VRC at the rear driver-side frame in the
+back seat area, tank all the way back in the trunk, pump and sender wires bundled
+with the VRC harness but their connectors nowhere near each other.
 
-Open, and worth measuring before anyone crimps: the fuel pump's running current.
-A size 16 contact is good for about 13 A, so a big pump plus trunk-length voltage
-drop is the one thing that would push the pump pair into its own connector.
+6.42, shielding. A continuous screen is not practical and is not being built. Two
+segments, each grounded at one end: sensor drop screens terminate on the VRC case
+and float at the sensor; VRC output screens terminate at the ECU and float at the
+box. Front and rear the same. The ABS sensor drops take their own routes after the
+box, away from adjacent harnesses - raw VR is millivolts. Forward of the box the
+signals are square waves, which is why the pump feed can share that bundle.
+
+6.43, power. The PDU (the PMU-16, not the cabin PDB) owns most internal low-power
+and accessory circuits directly. Every high consumer gets its own relay. Battery
+kill goes to the spare HCR150 - 130 A, IP67, one of two owned, the other being the
+EPS relay - under PDU control.
+
+Three things flagged before that gets designed in: an HCR150 does not carry
+cranking current, so it cannot break the starter feed; the PDU cannot sit
+downstream of its own kill relay or it can never re-close it; and killing the
+battery on a running alternator is a load dump, so excitation has to drop too.
+
+Also recorded: the TE BOM lists no solid-state relays. All four relay types on it
+are electromechanical. If solid-state parts exist from another order, their part
+numbers need adding before anything is designed around them.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

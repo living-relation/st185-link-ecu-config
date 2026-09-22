@@ -46,9 +46,9 @@ M902-2243,"BKSHL, 24SZ, CBL SZ .430-.570, HDP L015",1,shell 24 accessory,
 4-1904124-2,V23074A1001A402-EV-CBOX,2,micro ISO relay,1 form A NO resistor
 4-1904124-3,V23074A1001A403-EV-CBOX,2,micro ISO relay,
 6-1419137-4,V23074A2001A403-EV-CBOX,2,micro ISO relay,1 form C CO diode
-1416010-1,V23132A2001B200-EV-CBOX,2,HCR150 relay,EPS pump relay - loom C
-1-1393304-0,V23134J1052X281-EV-CBOX,2,relay,unassigned
-1-1414147-0,V23134J0052X429-EV-CBOX,3,relay,unassigned
+1416010-1,V23132A2001B200-EV-CBOX,2,HCR150 relay,"SPST-NO 130A 12V coil 3.9W IP67. One is the EPS pump relay (loom C); the other is the battery-kill candidate, plan 6.43"
+1-1393304-0,V23134J1052X281-EV-CBOX,2,F7 PCB power relay,unassigned - electromechanical not solid state
+1-1414147-0,V23134J0052X429-EV-CBOX,3,F7 PCB power relay,unassigned - electromechanical not solid state
 1393310-4,VCF7-1000=FROM SEC,1,relay accessory,
 DT04-12PA,"REC, 12P, GRY, N, A",2,Deutsch DT,CLAIMED - rear trunk loom inline connector (plan 6.41)
 DT06-12SA,"PLG, 12P, GRY, N, A",2,Deutsch DT,CLAIMED - mates the above

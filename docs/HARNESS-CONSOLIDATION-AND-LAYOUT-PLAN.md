@@ -1320,46 +1320,74 @@ Third new loom, alongside loom C and the cabin accessory loom. Carries:
 
 - RL and RR sensor drops, screened, into the rear VRC box
 - The rear VRC box: 5 V and ground in, two conditioned outputs forward
-- Fuel level sender
-- Fuel pump power and ground
+- Fuel level sender - uses the **OEM connector**, both halves on hand. Settled;
+  no part to source.
+- Fuel pump power and ground - its own circuit, see below
 
 Fuel level and fuel pump come **out of** `ST185-B-ECU`, where they sit today.
 
-#### Junction: an inline connector
+#### Physical layout
 
-Settled 2026-09-22. The trunk loom meets the cabin looms at one **inline
+Settled 2026-09-22.
+
+- The **rear VRC box** sits at the rear driver-side frame, in the back seat area.
+- The **fuel tank** is all the way back in the trunk.
+
+So the pump and level-sender runs are long, and the VRC is not near either. The
+pump and sender wires **run in the same bundle as the VRC harness for packaging**,
+but their connectors are in different places. Nothing is co-located just because
+it shares a loom.
+
+#### Junction: an inline connector, signals only
+
+The signal side of the trunk loom meets the cabin looms at one **inline
 connector**, not a bulkhead. Forward of it the conductors split by ECU pin into
 loom A or loom B as the rule above requires.
 
-Nine conductors cross it:
+Seven conductors cross it:
 
-| Conductor | Pair | Forward to |
-|---|---|---|
-| RL pulse out | | ECU-B B20, loom B |
-| RR pulse out | | ECU-B B19, loom B |
-| VRC +5 V in | | ECU +5 V rail |
-| VRC ground in | | Gnd Out rail |
-| Rear output cable screen | | cabin shield splice |
-| Fuel level SIG | | ECU-B B24, loom B |
-| Fuel level GND | | Gnd Out rail |
-| Fuel pump +12 V | heavy | fuel pump relay 87 |
-| Fuel pump GND | heavy | chassis |
+| Conductor | Forward to |
+|---|---|
+| RL pulse out | ECU-B B20, loom B |
+| RR pulse out | ECU-B B19, loom B |
+| VRC +5 V in | ECU +5 V rail |
+| VRC ground in | Gnd Out rail |
+| Rear output cable screen | ECU-end shield termination (see 6.42) |
+| Fuel level SIG | ECU-B B24, loom B |
+| Fuel level GND | Gnd Out rail |
 
-**Proposed part, all on hand:** `DT04-12PA` receptacle + `DT06-12SA` plug with
-`W12P` / `W12S` wedgelocks - a sealed 12-way Deutsch DT pair, two sets owned and
-unassigned (`docs/sourcing/te-on-hand-bom.csv`). Twelve ways covers the nine above
-with three spare. DT takes the same size 16 contacts already in stock: the
-16-20 AWG variant for the seven signal lines, the **14 AWG** variant
-(`0460-215-1631` / `0462-209-1631`) for the pump pair.
+**Part, all on hand:** `DT04-12PA` receptacle + `DT06-12SA` plug with `W12P` /
+`W12S` wedgelocks - a sealed 12-way Deutsch DT pair, two sets owned and previously
+unassigned. Twelve ways covers seven with five spare, on the size 16 contacts
+already in stock.
 
-Confirm before building: the fuel pump's actual running current. A size 16 contact
-is good for roughly 13 A, so a big pump plus the voltage drop over a trunk-length
-run is the one thing that could push the pump pair out of this connector and into
-its own.
+#### Fuel pump - its own circuit, its own connector
 
-Running the pump feed alongside the conditioned outputs is acceptable - by that
-point the wheel signals are square waves, not raw VR millivolts. Do not run it
-next to the RL/RR sensor drops behind the box.
+The pump is a **Walbro F90000295**, 450 LPH (`FUEL-SYSTEM.md`). It does not share
+the inline connector with anything.
+
+| | |
+|---|---|
+| Running current | **14.4 A at 13.5 V**, Radium bench test |
+| Design current | **20 A** - E85 draws more than gasoline, and a 14.4 V charging system pushes it up again |
+| Inrush | a brushed DC motor pulls several times running current for tens of milliseconds at switch-on. Industry hardwire kits for this pump ship a **30 A fuse and a 40 A relay**, which is the practical answer to it |
+| Fuse | 25-30 A |
+| Wire | **12 AWG** feed and ground. At 20 A over a trunk-length run, 12 AWG holds the drop near 0.4 V; this pump's flow is voltage-sensitive, so do not go smaller to save room |
+| Relay | dedicated, per the high-consumer rule in 6.43 |
+| Ground | local chassis stud in the trunk, not run forward |
+
+**Connector: the pump's own.** It comes with one, 12 inches from the pump, and
+that is the only break the circuit needs. Running 12 AWG unbroken from the relay
+to that connector is better than adding a second joint in a 20 A circuit.
+
+If a service disconnect is wanted anyway, the contact to use is Deutsch **size 12**
+(`0460-220-1231` pin / `0462-210-1231` socket, 20 of each on hand, rated 25 A) -
+not the size 16 used elsewhere, which tops out near 13 A and would be undersized.
+
+Correcting the earlier estimate: 60 A is the right order for the **inrush
+transient**, not for steady draw. Wire and fuse are sized on continuous current;
+the contact only has to survive the spike, and contact ratings are continuous
+thermal ratings, so a 25 A contact is not troubled by a 60 A millisecond event.
 
 ### Known violations to fix, found 2026-09-21
 
@@ -1422,3 +1450,112 @@ stock on 2026-09-21.
   `ST185-Power.harness` in its source-of-truth table. The `rebuild/` A/B/engine
   split replaced those. Update the table once this restructure lands, not before,
   so it is rewritten once.
+
+---
+
+## 6.42 Wheel speed shielding - segmented, not continuous
+
+Settled with Daniel 2026-09-22. Supersedes any earlier assumption that a screen
+runs unbroken from sensor to ECU.
+
+**A continuous shield is not practical here and is not being built.** The screen
+is segmented at the VR conditioner box, and each segment is grounded at one end
+only. This is what makes the small enclosures buildable - a continuous screen
+would force a shielded connector and a 360 degree termination at every break.
+
+### The two segments
+
+| Segment | Screen terminates | Screen floats |
+|---|---|---|
+| Sensor drop: wheel to VRC box | **VRC case** | at the sensor |
+| VRC output: box to ECU | **ECU end** | at the VRC box |
+
+Both VRC boxes follow this - front and rear, identically.
+
+Consequences that must show up in the drawings:
+
+- Each ABS sensor drop carries **its own screen**, terminated on the case of the
+  box it lands in. Not spliced to a neighbour, not carried through.
+- The VRC output cable screen is a conductor that runs the whole way forward and
+  lands at the ECU end. On the rear loom it crosses the inline connector as one of
+  the seven signal conductors.
+- The box case is a screen termination point. It is still isolated from chassis
+  per 6.35 - nylon hardware, board on nylon standoffs. Screen and chassis are not
+  the same thing.
+
+### Routing after the box
+
+**The ABS sensor drops take their own paths once they leave the box** - separate
+from any adjacent harness. They do not get bundled with the output cable, the
+pump feed, or anything else. Raw VR output is millivolts; it gets its own route.
+
+Forward of the box the conditioned outputs are square waves and may share a bundle,
+which is why the pump feed running alongside the VRC harness is acceptable.
+
+---
+
+## 6.43 Power architecture - what the PDU owns and what gets a relay
+
+Settled with Daniel 2026-09-22. "PDU" here is the **ECUMaster PMU-16** already in
+`ST185-EngineRoom-C`; the cabin PDB is the stud/busbar block, a different thing.
+
+### The split
+
+| Class | Switched by | Examples |
+|---|---|---|
+| Internal low-power and accessory circuits | **PDU outputs, directly** | dash devices, CSB3, cluster, lighting, wipers, interior |
+| High consumers | **their own individual relay**, coil driven by the PDU or the ECU | fuel pump, radiator fan, condenser fan, EPS pump, starter |
+
+The PDU owns **most** of the low-power side. A high consumer never shares a relay
+with another high consumer, and never sits on a PDU output alone.
+
+### Battery kill
+
+Daniel wants a solid-state / high-current relay acting as the battery kill, driven
+by the PDU rather than only by a mechanical switch.
+
+On hand and suited: **`1416010-1` / V23132-A2001-B200, the TE HCR150** - SPST-NO,
+130 A, 12 V coil at 3.9 W, IP67, flange mount, screw terminals. Two are owned and
+one is already spoken for by the EPS pump relay, which leaves exactly one.
+
+Three things to settle before this is designed in. None are guesses; all three
+will bite if skipped:
+
+1. **Does it sit in the starter path?** 130 A carries the whole car but not
+   cranking current, which runs several hundred amps. An HCR150 works as a
+   disconnect for everything *except* the starter feed. If it has to break the
+   starter circuit too, it is the wrong part and this needs a proper contactor.
+2. **The PDU cannot be downstream of its own kill relay.** If the relay cuts power
+   to the PDU, the PDU drops out, the coil de-energises, and nothing can re-close
+   it. The PDU feed has to come from ahead of the relay, or the relay has to be
+   latching.
+3. **Killing the battery does not stop the alternator.** A running engine keeps
+   generating, and opening the main feed on a live alternator is how load dump
+   kills electronics. A kill circuit needs to drop the alternator excitation as
+   well, or the engine first.
+
+A NO relay is the right fail-safe shape for this - lose the coil, lose the power.
+That is also why the coil draw matters: 3.9 W, about 325 mA, held continuously
+whenever the car is live.
+
+### Correction worth recording
+
+The TE BOM in `docs/sourcing/` lists **no solid-state relays**. The four relay
+types on it are all electromechanical:
+
+| Part | What it is |
+|---|---|
+| V23074-A*, `5-1393292-8` / `4-1904124-2` / `6-1419137-4` | micro ISO, 30 A |
+| V23132-A2001-B200, `1416010-1` | HCR150, 130 A |
+| V23134-J1052-X281, `1-1393304-0` | F7 series PCB power relay |
+| V23134-J0052-X429, `1-1414147-0` | F7 series PCB power relay |
+
+If the solid-state parts came from a different order, their part numbers need to
+go on the on-hand list before anything is designed around them.
+
+### Open
+
+- Whether the kill relay breaks the starter feed (decides HCR150 vs a contactor).
+- Where the PDU's own feed taps in relative to the kill relay.
+- How alternator excitation is dropped when the kill fires.
+- Part numbers for the solid-state relays, if they exist outside the TE BOM.
