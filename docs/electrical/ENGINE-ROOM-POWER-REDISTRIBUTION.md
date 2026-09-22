@@ -280,14 +280,20 @@ Wiper, washer, headlights, turn, park, horn motors **stay on the OEM engine-room
 
 ## 6. What lives in which drawing
 
+Updated 2026-09-22. The two-file Power/Signal split this table used to name is gone;
+see `docs/harness/README.md` for the current file map.
+
 | File | Owns |
 |---|---|
-| `docs/harness/ST185-Power.harness` | Cabin fuse block, EFI / ETB / FP / start relays, ECU 12 V, RADLOK cabin side, injector / coil 12 V |
-| `docs/harness/ST185-Signal.harness` | ECU A/B, sensors, EPS speed + relay-request, ETB, pedal |
-| `docs/harness/ST185-EngineRoom-C.harness` | **Partial C:** trunk → PDB → PMU, RADLOK, OEM injection blocks, EPS power, uprated fans |
+| `docs/harness/rebuild/ST185-B-ECU.harness` | Cabin fuse block, EFI / ETB / FP / start relays, ECU 12 V, RADLOK cabin side, injector / coil 12 V |
+| `docs/harness/rebuild/ST185-A-ECU.harness` | ECU-A sensors and switch inputs |
+| `docs/harness/rebuild/ST185-B-engine.harness` | EPS speed, ETB, injector / coil 12 V on the engine side |
+| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB → PMU, RADLOK, OEM injection blocks, EPS power, uprated fans |
+| `docs/harness/legacy-prebuild/ST185-{Power,Signal}.harness` | Frozen pre-split baseline. Read-only, kept only for `verify_rebuild.py` |
 | This document | Splice table and factory citations. No second current-flow diagram of the OEM loom |
 
-`bh_c` (HDP20 9-way) remains deleted. Fans and EPS do not cross a signal bulkhead.
+`bh_c` (HDP20 9-way) **is deleted** — confirmed 2026-09-22, zero references in any
+harness file. Fans and EPS do not cross a signal bulkhead.
 
 ---
 
@@ -334,4 +340,53 @@ Heater and POWER keep their OEM fuses in the kick-panel R/Bs. We only restore th
 7. Engine Room C add-ons: EPS 8 AWG in the vacated ABS trough; uprated fans 8 AWG on the core support. A/C clutch stays on A/B.
 8. Power-up: PDB only → 1I-1 lights J/B1 STOP/ECU-B/DEFOGGER → AM1/AM2 crank the ignition switch → PMU enable → headlights / dome. Starter last.
 
-The harness.design MCP is not connected in this environment. Open `docs/harness/ST185-EngineRoom-C.harness` at [app.harness.design](https://app.harness.design). Cabin ECU power stays in `ST185-Power.harness`. Power still contains a leftover HDP20 `bh_c` (fans / EPS / some engine 12 V) — **do not build that bulkhead**; fans and EPS power in this C file replace it. ETB / injector / coil 12 V still drawn on `bh_c` in Power need an A/B pin assignment before `bh_c` is deleted from that file.
+Loom C is `docs/harness/rebuild/ST185-EngineRoom-C.harness`, live on harness.design.
+Cabin ECU power is in `rebuild/ST185-B-ECU.harness`.
+
+**Closed 2026-09-22:** the leftover `bh_c` bulkhead and the ETB / injector / coil
+12 V wires that were still drawn on it have been reassigned to A/B pins and `bh_c`
+is gone from every harness file. Nothing here is blocked on it any more.
+
+---
+
+## 10. Open conflict with plan 6.43 — how much does the PDU own?
+
+Raised 2026-09-22. **Not resolved. Do not build the kick-panel feeds until it is.**
+
+Plan 6.43 says the PDU "owns most internal low-power and accessory circuits."
+Section 3.1 of this document says the opposite for a specific list: wiper, gauge,
+turn, CIG, ECU-IG, IGN, STOP, TAIL, ECU-B and DEFOGGER all **stay as J/B No.1
+fuses**, and heater blower and power windows/locks stay in R/B No.4 and R/B No.2.
+
+Those are exactly the circuits 6.43 describes. Both cannot be right.
+
+### The channel arithmetic decides it
+
+PMU-16 has **16 outputs** — 10 × 25 A and 6 × 15 A.
+
+| Committed | Channels |
+|---|---|
+| HEAD LH, HEAD RH, HAZ-HORN, DOME, RTR (§3.1) | 5 |
+| TrackCluster, CSB3, RealDash Pi (plan 6.38) | 3 |
+| Battery-kill relay coil (plan 6.43) | 1 |
+| **Used** | **9** |
+| **Free** | **7** |
+
+J/B No.1 alone carries about ten circuits. **They do not fit in seven channels**,
+before anything is left spare. So 6.43's "most" cannot mean all of them, and this
+document's list cannot survive untouched either.
+
+### The options
+
+- **A. Keep 3.1 as written.** J/B No.1 and both R/Bs stay on OEM fusing; the PDU
+  owns only the five body channels plus the three CAN devices and the kill coil.
+  Cheapest, keeps the OEM fuse layout the EWD documents, leaves 7 channels spare.
+- **B. Move a chosen few.** Pick the circuits that gain something real from CAN
+  control or soft-start — headlight dimming, defogger timeout, wiper park — and
+  leave the rest on OEM fuses. Needs a named list and a channel budget.
+- **C. Delete J/B No.1.** Everything to the PDU. Does not fit in one PMU-16 and
+  would need a second unit or a fused sub-block, so this is a buy decision, not a
+  wiring one.
+
+Until Daniel picks, §3.1 stands as the working assumption, because it is the one
+that is fully specified and fits the hardware.

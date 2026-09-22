@@ -1,41 +1,35 @@
-harness: one folder per generation, and fix the two stale generators
+electrical: bring the engine-room redistribution doc current, flag the 6.43 clash
 
-Daniel could not tell which harness file was current. Fair - there were 24
-.harness files for 8 real looms, in four places, with no map.
+That document was last touched 2026-09-17, before 6.38, 6.41 and 6.43 were
+written, and it had drifted.
 
-Sorted into generations:
+Fixed, factually:
 
-  rebuild/          the 8 current looms - the source, matches harness.design
-  min/              build product of rebuild/, upload copies
-  legacy-prebuild/  the 4 pre-split looms, frozen (was docs/harness/*.harness)
-  archive/cursor-engineroom-experiments/  Cursor's throwaway variants
+- Section 6 named ST185-Power.harness and ST185-Signal.harness as the drawings.
+  Repointed at the eight rebuild/ looms, with legacy-prebuild/ named as frozen.
+- The closing paragraph warned that Power still carried a leftover bh_c bulkhead
+  with unassigned ETB / injector / coil 12 V on it. That is done - bh_c is gone
+  from every harness file, verified. Marked closed instead of left as a warning.
+- It also said the harness.design MCP was not connected. It is.
 
-docs/harness/README.md is the new map: what each folder is, which of the eight
-looms does what, the pipeline, and the rule that a new generation gets a new
-folder rather than a -v2 suffix.
+Flagged, not fixed - new section 10:
 
-legacy-prebuild/ cannot be deleted yet. verify_rebuild.py diffs every conductor
-in rebuild/ against it, and that diff is the only thing standing between us and a
-silently dropped wire. It goes when 6.41 lands and a new baseline is taken.
+6.43 says the PDU owns most internal low-power and accessory circuits. Section
+3.1 of this document keeps wiper, gauge, turn, CIG, ECU-IG, IGN, STOP, TAIL,
+ECU-B and DEFOGGER on J/B No.1 fuses, and the heater and window circuits in the
+kick-panel R/Bs. Those are the same circuits. Both cannot be right.
 
-The real find: buylist.py and buildlist.py were both still reading the pre-split
-files. Every buy list this project has generated was built from the wrong
-harnesses. Repointed at rebuild/, and the first run immediately surfaced what was
-hidden - 68 size-20 sockets and 42 size-20 pins needed, zero on hand, plus the
-HD36-24-33SE. That is the same gap the TE BOM turned up yesterday, which nobody
-would have caught from NEED-TO-BUY.md.
+The channel count settles half of it on its own. A PMU-16 has 16 outputs. Five
+are committed to the body channels in 3.1, three to the CAN devices in 6.38, one
+to the battery-kill coil in 6.43 - nine used, seven free. J/B No.1 alone is about
+ten circuits, so 6.43's "most" cannot mean all of them whatever Daniel decides.
 
-Both generators now read rebuild/ and write back up to docs/harness/, and
-verify_rebuild.py reads its baseline from legacy-prebuild/. Pipeline re-run:
-lint 8/8 OK, verify MATCH at 269 conductors, both lists regenerated.
+Three options written up with that arithmetic. Until one is picked, 3.1 stands,
+because it is the one that is fully specified and fits the hardware. Cross-linked
+from 6.43's open list.
 
-Also put a banner at the top of the consolidation plan. Sections 1-5 of that
-document describe the two-file Power/Signal world of 2026-09-12 and flatly
-contradict 6.41, which is most of why the repo felt unreadable. The banner states
-the precedence: 6.x beats 1-5, highest subsection wins, and 6.41 defines the looms.
-
-Fixed in 6.43: Daniel confirmed he has no solid-state relays. The battery kill is
-the electromechanical HCR150.
+Also removed the last trace of the solid-state relay mix-up - Daniel confirmed he
+has none.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

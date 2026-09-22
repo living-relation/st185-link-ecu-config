@@ -1572,12 +1572,17 @@ types on it are all electromechanical:
 | V23134-J1052-X281, `1-1393304-0` | F7 series PCB power relay |
 | V23134-J0052-X429, `1-1414147-0` | F7 series PCB power relay |
 
-If the solid-state parts came from a different order, their part numbers need to
-go on the on-hand list before anything is designed around them.
+Daniel confirmed 2026-09-22 that he owns no solid-state relays - the earlier
+mention was a slip. The battery kill is the electromechanical HCR150 above.
 
 ### Open
 
+- **How much the PDU actually owns.** This section says "most internal low-power
+  and accessory circuits." `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`
+  §3.1 keeps the J/B No.1 list and both kick-panel R/Bs on OEM fuses. Both cannot
+  be right, and the channel count says 6.43's "most" cannot mean all of them -
+  nine of sixteen PMU outputs are already committed. Three options are written up
+  in §10 of that document. Until it is picked, §3.1 stands.
 - Whether the kill relay breaks the starter feed (decides HCR150 vs a contactor).
 - Where the PDU's own feed taps in relative to the kill relay.
 - How alternator excitation is dropped when the kill fires.
-- Part numbers for the solid-state relays, if they exist outside the TE BOM.
