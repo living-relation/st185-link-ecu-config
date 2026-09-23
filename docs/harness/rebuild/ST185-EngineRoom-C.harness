@@ -495,6 +495,66 @@
         "id": "k_eps",
         "handle": "c2"
       }
+    },
+    {
+      "id": "w_amb_sig",
+      "color": "Yellow",
+      "source": {
+        "id": "amb_temp",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "dm_acamp",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_amb_rtn",
+      "color": "Yellow",
+      "source": {
+        "id": "amb_temp",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "dm_acamp",
+        "handle": "c2"
+      }
+    },
+    {
+      "id": "w_acp_1",
+      "color": "Blue",
+      "source": {
+        "id": "ac_press",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "dm_acamp",
+        "handle": "c3"
+      }
+    },
+    {
+      "id": "w_acp_2",
+      "color": "Blue",
+      "source": {
+        "id": "ac_press",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "dm_acamp",
+        "handle": "c4"
+      }
+    },
+    {
+      "id": "w_acp_3",
+      "color": "Blue",
+      "source": {
+        "id": "ac_press",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "dm_acamp",
+        "handle": "c5"
+      }
     }
   ],
   "connectors": [
@@ -1343,6 +1403,98 @@
         "x": 2160,
         "y": 540
       }
+    },
+    {
+      "id": "amb_temp",
+      "label": "A/C Ambient Temp Sensor (EWD A1, behind front bumper)",
+      "width": 270,
+      "partId": "cp_amb_temp",
+      "schematicPosition": {
+        "x": 180,
+        "y": 2400
+      },
+      "layoutPosition": {
+        "x": 180,
+        "y": 2400
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp."
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out."
+        }
+      ]
+    },
+    {
+      "id": "ac_press",
+      "label": "A/C Pressure Switch (EWD A5, engine compartment)",
+      "width": 270,
+      "partId": "cp_ac_press",
+      "schematicPosition": {
+        "x": 180,
+        "y": 2580
+      },
+      "layoutPosition": {
+        "x": 180,
+        "y": 2580
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "A/C pressure switch -> A/C amplifier"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "A/C pressure switch return -> A/C amplifier"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "Third pole IF this is a trinary (hi/lo + fan). CONFIRM 2-wire vs 3-wire from the A/C circuit page before crimping."
+        }
+      ]
+    },
+    {
+      "id": "dm_acamp",
+      "label": "A/C Amplifier (dash module - wired on the cabin loom)",
+      "width": 270,
+      "schematicPosition": {
+        "x": 900,
+        "y": 2400
+      },
+      "layoutPosition": {
+        "x": 900,
+        "y": 2400
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Ambient temp in - A/C AMP PIN TBD"
+        },
+        {
+          "id": "c2",
+          "signal": "Ambient temp return - A/C AMP PIN TBD"
+        },
+        {
+          "id": "c3",
+          "signal": "A/C pressure switch in - A/C AMP PIN TBD"
+        },
+        {
+          "id": "c4",
+          "signal": "A/C pressure switch return - A/C AMP PIN TBD"
+        },
+        {
+          "id": "c5",
+          "signal": "A/C pressure switch 3rd pole if fitted - A/C AMP PIN TBD"
+        }
+      ]
     }
   ],
   "terminals": [
@@ -1564,6 +1716,14 @@
         "y": 0
       },
       "color": "Blue"
+    },
+    {
+      "id": "note_acamp",
+      "text": "A/C IS THE A/C AMPLIFIER'S, NOT THE ECU'S\nVerified in the ST185 factory EWD parts-location list. The auto A/C\nsensor set all feeds the A/C amplifier:\n  A 1  Ambient Temp Sensor    engine bay, behind the front bumper  <- loom C\n  A 5  A/C Pressure Switch    engine bay                           <- loom C\n  A 23 Room Temp Sensor       cabin\n  A 24 Solar Sensor           cabin, dash top\n  A 26 Thermistor             evaporator\n  A 27 Water Temp Sensor\nThe ECU sees none of these. Its only A/C tie is Aux 4 / A18, the A/C\nkill output into the amp.\nOPEN: A/C amp pin numbers, both connector part numbers, and whether the\npressure switch is 2-wire or 3-wire. All need the A/C system CIRCUIT\npage - the parts-location list names the parts but not the wiring.",
+      "schematicPosition": {
+        "x": 180,
+        "y": 2760
+      }
     }
   ],
   "connectorParts": [
@@ -1641,6 +1801,24 @@
       "hasShell": false,
       "numberOfCavities": 10,
       "description": "Electro-hydraulic power steering pump from the MR-S (ZZW30), controller bolted to the pump. THREE separate housings on the device, drawn here as one 10-pin part so the pin labels say which housing each wire lands in: A 90980-12068 2-way main power (8 AWG), B 90980-10897 6-way signal (pigtail 82998-12440, Sumitomo TS090 family), C 90980-10942 2-way ignition. All three on hand. Switched by k_eps, an HCR150 mounted beside it - that is a separate part."
+    },
+    {
+      "id": "cp_amb_temp",
+      "partNumber": "TBD - ambient temp sensor connector",
+      "manufacturer": "Toyota",
+      "gender": "Female",
+      "hasShell": false,
+      "numberOfCavities": 2,
+      "description": "2-way for the A/C ambient temp thermistor, EWD A1, mounted behind the front bumper. Connector PN TBD - needs the A/C system circuit page. The parts-location list in the ST185 EWD names the component but not its connector."
+    },
+    {
+      "id": "cp_ac_press",
+      "partNumber": "TBD - A/C pressure switch connector",
+      "manufacturer": "Toyota",
+      "gender": "Female",
+      "hasShell": false,
+      "numberOfCavities": 3,
+      "description": "A/C pressure switch, EWD A5, engine compartment. Drawn 3-way for a trinary; drop to 2-way if the circuit page shows a dual switch. Connector PN TBD - needs the A/C system circuit page. The parts-location list in the ST185 EWD names the component but not its connector."
     }
   ]
 }

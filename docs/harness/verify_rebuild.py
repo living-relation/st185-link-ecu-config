@@ -119,6 +119,14 @@ EXPECT_NEW = {
     "w_shc_crank":  "crank screen, bulkhead A c33 through to the cabin shield splice",
     "w_shc_cam":    "cam screen, bulkhead A c34 through to the cabin shield splice",
     "w_shc_knock1": "knock screen, bulkhead A c35 through to the cabin shield splice",
+    # 2026-09-23: the two engine-bay A/C sensors join loom C. Verified in the
+    # ST185 EWD parts-location list - A1 ambient temp and A5 pressure switch both
+    # feed the A/C AMPLIFIER, not the ECU. Pins still TBD, see the drawing note.
+    "w_amb_sig": "A/C ambient temp sensor (EWD A1) -> A/C amplifier, new in loom C",
+    "w_amb_rtn": "same, sensor return",
+    "w_acp_1": "A/C pressure switch (EWD A5) -> A/C amplifier, new in loom C",
+    "w_acp_2": "same, return",
+    "w_acp_3": "same, third pole if the switch is a trinary",
     "w_cru_ladder_out": "pass 2: splice to CSB3 A2. The stalk signal and the pull-up "
                         "used to land on the same cavity, which is a short. They now "
                         "meet at sp_cruise_ladder and one wire carries the ladder in.",
