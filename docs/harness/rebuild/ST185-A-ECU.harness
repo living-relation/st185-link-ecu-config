@@ -1375,14 +1375,14 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "signal": "Switched 12V - INJECTOR power feed (size 12, 25A)",
+          "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "signal": "Switched 12V - COP / ignition coil power feed (size 12, 25A)",
+          "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c3",

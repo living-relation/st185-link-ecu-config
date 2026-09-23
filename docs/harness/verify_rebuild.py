@@ -143,6 +143,14 @@ EXPECT_CHANGED = {
     "w_drain_ecu_a": "sp_shield_cab -> sp_shield_a; A and B shield grounds are "
                      "no longer bridged",
     "w_drain_ecu_b": "sp_shield_cab -> sp_shield_b; same",
+    # 2026-09-23: bulkhead B c7 and c8 each carried TWO circuits - an analog
+    # sensor signal from the A files and switched 12V from the B files. 12V on
+    # An Volt 6 and 7. Power moved to the spare size-12 pins; signals unchanged.
+    "w_inj_pwr_c": "injector 12V off bh_b c7 (shared with An Volt 6 oil P) onto "
+                   "the spare size-12 c1",
+    "w_cop_pwr_c": "COP 12V off bh_b c8 (shared with An Volt 7 fuel P) onto c2",
+    "w_inj_pwr_e": "engine half of the same move, c7 -> c1",
+    "w_cop_pwr_e": "engine half of the same move, c8 -> c2",
     "w_eps_pwr": "mrs_pwr c1 -> mrs_eps a1, the pump is one 10-pin part now",
     "w_eps_gnd": "mrs_pwr c2 -> mrs_eps a2, same",
     "w_mrsg": "mrs_pwr c2 -> mrs_eps a2, same",

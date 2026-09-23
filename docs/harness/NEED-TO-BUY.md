@@ -1,6 +1,6 @@
 # Harness — need to buy
 
-Generated on 2026-09-22 from the eight `.harness` files in `docs/harness/rebuild/`:
+Generated on 2026-09-23 from the eight `.harness` files in `docs/harness/rebuild/`:
 `A-ECU`, `A-engine`, `B-ECU`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed`, `AntiTheft`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
@@ -57,9 +57,11 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
-| `0413-214-1205` | Sealing plug, size 12, yellow | 8 | 10 |
+| `0413-214-1205` | Sealing plug, size 12, yellow | 4 | 10 |
 | `0460-202-1631` | Size 16 solid PIN, 16-20 AWG, 13 A | 15 | 130 |
+| `0460-220-1231` | Size 12 solid PIN, 12-14 AWG, 25 A | 2 | 20 |
 | `0462-201-1631` | Size 16 solid SOCKET, 16-20 AWG, 13 A | 13 | 118 |
+| `0462-210-1231` | Size 12 solid SOCKET, 12-14 AWG, 25 A | 2 | 20 |
 | `1 928 403 874` | 2-way knock sensor connector | 1 | 1 |
 | `13519047` | GT150 3-way flex-fuel sensor | 1 | 1 |
 | `2141029-1` | Fuse box assembly, hard wired | 1 | 1 |
