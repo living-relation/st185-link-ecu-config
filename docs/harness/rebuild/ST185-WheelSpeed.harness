@@ -468,16 +468,9 @@
       }
     },
     {
-      "id": "dm_sp_shield_cab_Splice",
-      "label": "sp_shield_cab-Splice",
-      "width": 150,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
-        }
-      ],
+      "id": "dm_sp_shield_a_Splice",
+      "label": "sp_shield_a (wired on ST185-A-ECU)",
+      "width": 270,
       "schematicPosition": {
         "x": 1080,
         "y": 1656
@@ -485,7 +478,32 @@
       "layoutPosition": {
         "x": 1080,
         "y": 1656
-      }
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Front VRC output screen -> sp_shield_a -> ECU-A A7. DRAIN ONLY. Front pair is FL A23 / FR B21; one screen gets one termination and A is chosen for FL."
+        }
+      ]
+    },
+    {
+      "id": "dm_sp_shield_b_Splice",
+      "label": "sp_shield_b (wired on ST185-A-ECU)",
+      "width": 270,
+      "schematicPosition": {
+        "x": 1080,
+        "y": 1776
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 1776
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Rear VRC output screen -> sp_shield_b -> ECU-B B17. DRAIN ONLY. Rear pair is RL B20 / RR B19, both ECU-B."
+        }
+      ]
     }
   ],
   "wires": [],
@@ -727,7 +745,7 @@
           "handle": "shell"
         },
         "target": {
-          "id": "dm_sp_shield_cab_Splice",
+          "id": "dm_sp_shield_a_Splice",
           "handle": "c1"
         }
       }
@@ -797,7 +815,7 @@
           "handle": "shell"
         },
         "target": {
-          "id": "dm_sp_shield_cab_Splice",
+          "id": "dm_sp_shield_b_Splice",
           "handle": "c1"
         }
       }

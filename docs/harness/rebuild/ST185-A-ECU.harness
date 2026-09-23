@@ -1530,20 +1530,28 @@
         "x": 620,
         "y": 1454
       }
+    },
+    {
+      "id": "dm_sp_gndout_Splice",
+      "label": "Sensor Gnd Out splice (wired on B-ECU)",
+      "width": 270,
+      "schematicPosition": {
+        "x": 1380,
+        "y": 300
+      },
+      "layoutPosition": {
+        "x": 1380,
+        "y": 300
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Gnd Out sensor ground rail -> ECU-A A24 / ECU-B B22. Knock 1 SIG- lands here, NOT on A7. A7 is shield ground and carries drains only."
+        }
+      ]
     }
   ],
   "splices": [
-    {
-      "id": "sp_shield_cab",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 1628
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 1628
-      }
-    },
     {
       "id": "sp_cruise_ladder",
       "layoutPosition": {
@@ -1553,6 +1561,28 @@
       "schematicPosition": {
         "x": 1080,
         "y": 1358
+      }
+    },
+    {
+      "id": "sp_shield_a",
+      "schematicPosition": {
+        "x": 1080,
+        "y": 1628
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 1628
+      }
+    },
+    {
+      "id": "sp_shield_b",
+      "schematicPosition": {
+        "x": 1080,
+        "y": 1748
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 1748
       }
     }
   ],
@@ -1601,15 +1631,14 @@
     {
       "id": "w12_c",
       "source": {
-        "id": "ecu_a",
-        "handle": "a7"
-      },
-      "target": {
         "id": "bh_a_fw",
         "handle": "c6"
       },
-      "color": "Green",
-      "stripeColor": "Yellow"
+      "target": {
+        "id": "dm_sp_gndout_Splice",
+        "handle": "c1"
+      },
+      "color": "Black"
     },
     {
       "id": "w16_c",
@@ -2240,7 +2269,7 @@
       "color": "Green",
       "stripeColor": "Yellow",
       "source": {
-        "id": "sp_shield_cab",
+        "id": "sp_shield_a",
         "handle": "Splice"
       },
       "target": {
@@ -2253,7 +2282,7 @@
       "color": "Green",
       "stripeColor": "Yellow",
       "source": {
-        "id": "sp_shield_cab",
+        "id": "sp_shield_b",
         "handle": "Splice"
       },
       "target": {
@@ -2305,7 +2334,7 @@
         "handle": "c33"
       },
       "target": {
-        "id": "sp_shield_cab",
+        "id": "sp_shield_a",
         "handle": "Splice"
       }
     },
@@ -2317,7 +2346,7 @@
         "handle": "c34"
       },
       "target": {
-        "id": "sp_shield_cab",
+        "id": "sp_shield_a",
         "handle": "Splice"
       }
     },
@@ -2329,7 +2358,7 @@
         "handle": "c35"
       },
       "target": {
-        "id": "sp_shield_cab",
+        "id": "sp_shield_b",
         "handle": "Splice"
       }
     }

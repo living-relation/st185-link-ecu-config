@@ -131,6 +131,18 @@ EXPECT_CHANGED = {
     "w_mrs_e": "mrs_ctrl c2 -> mrs_eps b2; the pump is one 10-pin part now. The "
                "slot was also corrected from c1 to c2 earlier, to match the pin 2 "
                "it has always been labelled. Same net, same wire.",
+    # 2026-09-23. Daniel: "No signals or power may flow over any shield ground
+    # ever! Never!" w12_c was knock 1's SIG- return sitting on ECU-A A7, which is
+    # Shield/Gnd. Link staff (Adamw, forum 17263) confirm "the 'Gnd Out' and
+    # 'Shield/Gnd' pins are both sensor ground", so Gnd Out is an approved
+    # landing and the screen reference stays clean. Same net, correct pin.
+    "w12_c": "knock 1 SIG- moved off ECU-A A7 (shield ground) onto the Gnd Out "
+             "sensor ground rail. Nothing but drains may touch a shield ground.",
+    # Loom A and loom B shield grounds must never be bridged - one splice fed
+    # both a7 and b17. Split into sp_shield_a and sp_shield_b.
+    "w_drain_ecu_a": "sp_shield_cab -> sp_shield_a; A and B shield grounds are "
+                     "no longer bridged",
+    "w_drain_ecu_b": "sp_shield_cab -> sp_shield_b; same",
     "w_eps_pwr": "mrs_pwr c1 -> mrs_eps a1, the pump is one 10-pin part now",
     "w_eps_gnd": "mrs_pwr c2 -> mrs_eps a2, same",
     "w_mrsg": "mrs_pwr c2 -> mrs_eps a2, same",
