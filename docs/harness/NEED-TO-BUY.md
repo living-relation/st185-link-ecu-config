@@ -96,10 +96,11 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(kit-supplied pigtail)` | 3-pin pigtail supplied with the RacerX MR2 Cherry Hall cam-pos | 1 |
 | `(unspecified - OEM ST185 AC amplifier)` | AC amplifier control connector. Pin count/layout inferred from | 1 |
 | `TBD - 3-way shock sensor plug` | 3-way plug for a dual-stage shock / tilt sensor (Directed 508D | 1 |
-| `TBD - A/C pressure switch connector` | A/C pressure switch, EWD A5, engine compartment. Drawn 3-way f | 1 |
+| `TBD - A/C pressure switch connector, 2-way` | A/C pressure switch, EWD A5, engine compartment. CONFIRMED 2-W | 1 |
 | `TBD - alarm module main harness plug` | 12-way main harness plug on a basic one-way alarm module (Vipe | 1 |
-| `TBD - ambient temp sensor connector` | 2-way for the A/C ambient temp thermistor, EWD A1, mounted beh | 1 |
+| `TBD - ambient temp sensor connector` | 2-way for the A/C ambient temp thermistor, EWD A1, behind the  | 1 |
 | `TBD - generic 2-way` | Generic sealed 2-way for the siren, status LED and valet switc | 3 |
+| `TBD - generic oval 3-pin, socket contacts` | Gearbox 3-wire 12V Toyota VSS, NOT the 4-wire type (Daniel loc | 1 |
 
 ## Counted once, drawn more than once
 

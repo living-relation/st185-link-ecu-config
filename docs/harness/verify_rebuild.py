@@ -122,6 +122,15 @@ EXPECT_NEW = {
     # 2026-09-23: the two engine-bay A/C sensors join loom C. Verified in the
     # ST185 EWD parts-location list - A1 ambient temp and A5 pressure switch both
     # feed the A/C AMPLIFIER, not the ECU. Pins still TBD, see the drawing note.
+    # 2026-09-24: the VSS was never wired - b29 was notConnected with no signal,
+    # so it existed only in XTREMEX-IO-TABLE.html. Daniel: "Vss is used for
+    # actual vehicle speed. Don't delete." Three wires per his 2026-09-18 lock
+    # (gearbox 3-wire 12V Toyota VSS). Separate from the wheel-speed inputs,
+    # which are traction control only.
+    "w_vss_12v": "VSS +12V off the engine switched-12V rail, new",
+    "w_vss_gnd": "VSS ground off the engine sensor-ground rail, new",
+    "w_vss_sig_e": "VSS signal -> bulkhead B c15, engine half, new",
+    "w_vss_sig_c": "VSS signal bulkhead B c15 -> ECU-B B29 (DI 8), cabin half, new",
     "w_amb_sig": "A/C ambient temp sensor (EWD A1) -> A/C amplifier, new in loom C",
     "w_amb_rtn": "same, sensor return",
     "w_acp_1": "A/C pressure switch (EWD A5) -> A/C amplifier, new in loom C",

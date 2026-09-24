@@ -1096,6 +1096,37 @@
         "x": 1080,
         "y": 0
       }
+    },
+    {
+      "id": "vss",
+      "label": "Gearbox VSS (3-wire, Toyota) - actual road speed",
+      "width": 270,
+      "partId": "cp_vss3",
+      "schematicPosition": {
+        "x": 180,
+        "y": 2100
+      },
+      "layoutPosition": {
+        "x": 180,
+        "y": 2100
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+12V switched"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Ground"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "Gearbox VSS signal -> bulkhead B c15 -> ECU-B B29 (DI 8). Actual road speed. 12V direct, no divider - Link DI is +/-50V tolerant with a selectable 4k7 pull-up to 12V."
+        }
+      ]
     }
   ],
   "splices": [
@@ -1828,6 +1859,42 @@
         "id": "starter_trigger",
         "handle": "Terminal"
       }
+    },
+    {
+      "id": "w_vss_12v",
+      "color": "Red",
+      "source": {
+        "id": "sp_sw12_eng",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "vss",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_vss_gnd",
+      "color": "Black",
+      "source": {
+        "id": "vss",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout_eng",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_vss_sig_e",
+      "color": "Green",
+      "source": {
+        "id": "vss",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "bh_b_eng",
+        "handle": "c15"
+      }
     }
   ],
   "bundles": [
@@ -1901,6 +1968,15 @@
       "partNumber": "RL00801-50BK",
       "manufacturer": "Amphenol",
       "description": "Battery negative, ENGINE side. RADLOK 8.0 female cable connector, 200A, 50 mm2 (1/0), BLACK. Mates the RL9080-301-F1 firewall feed-through."
+    },
+    {
+      "id": "cp_vss3",
+      "partNumber": "TBD - generic oval 3-pin, socket contacts",
+      "manufacturer": "Toyota",
+      "gender": "Female",
+      "hasShell": false,
+      "numberOfCavities": 3,
+      "description": "Gearbox 3-wire 12V Toyota VSS, NOT the 4-wire type (Daniel lock 2026-09-18, XTREMEX-IO-TABLE.html DI 8). Harness mate is a generic oval 3-pin plug with socket contacts - PN still TBD, measure the plug on the box."
     }
   ],
   "contactParts": [

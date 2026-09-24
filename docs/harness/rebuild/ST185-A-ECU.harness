@@ -384,7 +384,7 @@
         {
           "id": "b29",
           "designation": "B29",
-          "notConnected": true
+          "signal": "DI 8 (VSS - actual road speed)"
         },
         {
           "id": "b30",
@@ -2360,6 +2360,18 @@
       "target": {
         "id": "sp_shield_b",
         "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_vss_sig_c",
+      "color": "Green",
+      "source": {
+        "id": "bh_b_fw",
+        "handle": "c15"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b29"
       }
     }
   ],
