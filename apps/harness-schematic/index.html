@@ -511,17 +511,16 @@ function buildST185(){
   C.push(comp("hat","Waveshare MCP2515 hat","U11", 1320, 2150, ["CANH","CANL","5V","GND"], "left", {status:"tbd", note:"Cooling fan only. 5V/GND from Pi GPIO header. CANH/CANL stay open — not a bus node."}));
 
   /* ================= Band 2 · clusters ============================================ */
-  C.push(comp("center","Center cluster P4 J8","N2", 1680, 1800, [
-    "J8-2 5V","J8-39 GND","3V3","GPIO5 TX","GPIO4 RX",
-    "GPIO20 UART1 TX","GPIO18 UART1 RX","GPIO21 UART2 TX","GPIO19 UART2 RX",
-    "GPIO29 ODO btn","GPIO30 Enc1 A","GPIO31 Enc1 B","GPIO32 Enc1 SW",
-    "GPIO49 Enc2 A","GPIO50 Enc2 B","GPIO51 Enc2 SW"
-  ], "left", {w:250}));
-  C.push(comp("left","Left cluster S3","N3", 2020, 1800, ["5V VIN","GND","GPIO44 RX","GPIO43 TX"], "left"));
-  C.push(comp("right","Right cluster S3","N4", 2020, 1940, ["5V VIN","GND","GPIO44 RX","GPIO43 TX"], "left"));
-  C.push(comp("btn","ODO / Trip button","H1", 2020, 2080, ["SW","GND"], "left"));
-  C.push(comp("enc1","Enc 1 Boost map","H2", 2020, 2180, ["A","B","SW","GND"], "left"));
-  C.push(comp("enc2","Enc 2 TC slip","H3", 2020, 2320, ["A","B","SW","GND"], "left"));
+  /* 2026-09-24: the center cluster is a CAN BUS NODE here, nothing more. Its J8
+     pinout, encoders, buttons and inter-cluster UART belong to
+     center-cluster-esp32-p4 (PINOUT.md + main/Kconfig.projbuild are
+     authoritative) and the copy that used to live here had gone stale - it
+     still reserved GPIO18/19 as center UART RX and knew nothing of Encoder 3
+     or the headlight sense input. Do not re-add cluster internals to this file.
+     See center-cluster-esp32-p4/docs/RECONCILIATION-FROM-ST185-2026-09-24.md */
+  C.push(comp("center","Center cluster P4 (CAN node)","N2", 1680, 1800, [
+    "5V","GND","CAN H","CAN L"
+  ], "left", {w:250, note:"CAN bus node. J8 pinout, encoders, buttons and inter-cluster UART live in center-cluster-esp32-p4, not here."}));
 
   /* ================= Band 3 · body / switchboard (unwired) ======================== */
   const yB = 2660;
