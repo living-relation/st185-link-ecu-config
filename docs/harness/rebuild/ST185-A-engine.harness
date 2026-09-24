@@ -1407,7 +1407,7 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_dtm_skt"
+          "contactPartId": "ct_hdp20s"
         }
       ],
       "numberOfCavities": 4

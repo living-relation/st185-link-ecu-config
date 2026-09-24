@@ -23,6 +23,7 @@ ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "DTM06-4S":1,"DTM06-6S":1,"12084200":6,"15326427":5,"42281-1":20,"60249-1":21,
  "1928403970":2,"GT150-2":1,"FLEX-3":1,"TSPD-3":1,"1 928 403 874":1,
  "13519047":1,"D 261 205 358-01":1,"12052641":1,
+ "DT06-12SA":2,"DT04-12PA":2,"W12P":2,"W12S":2,
  # MRS EPS pump connectors - Toyota/Sumitomo TS090, on hand (not from TE invoices)
  "90980-12068":1,"90980-10897":1,"90980-10942":1,
 }
@@ -53,7 +54,20 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("2411-001-2405","TE DEUTSCH","Panel nut size 24",3,4),
 ]
 
+# Pin-side mates crimped onto device flying leads. Device side, so not drawn on
+# any loom (harness.design rule: the drawing ends at the harness connector).
+DEVICE_SIDE = [
+ ("DT04-12PA","TE DEUTSCH","CONN RECP DT 12-WAY PIN SEALED A-KEY - alarm module lead, mates DT06-12SA",1),
+ ("W12P","TE DEUTSCH","WEDGELOCK, DT, 12-WAY RECEPTACLE",1),
+ ("DT04-2P","TE DEUTSCH","CONN RECP DT 2-WAY PIN SEALED - siren, status LED, valet switch leads",3),
+ ("W2P","TE DEUTSCH","WEDGELOCK, DT, 2-WAY RECEPTACLE",3),
+ ("DT04-3P","TE DEUTSCH","CONN RECP DT 3-WAY PIN SEALED - shock sensor lead",1),
+ ("W3P","TE DEUTSCH","WEDGELOCK, DT, 3-WAY RECEPTACLE",1),
+ ("0460-202-1631","TE DEUTSCH","CONTACT, PIN, SOLID, SIZE 16, 20-16 AWG, 13A, GOLD - device-lead mates",21),
+]
+
 req, meta = collections.Counter(), {}
+WIRED = {}   # loom -> {(node id, handle)} every conductor end, to resolve default contacts
 # A connector that appears in more than one loom is ONE physical part - bulkhead A
 # lives in three files, bulkhead B in two.  Count the first copy and skip the rest.
 # The dedupe keys on the component id, so it is only safe while the same id always
@@ -66,9 +80,18 @@ for f in F:
     parts = {}
     for k in [x for x in d if x.endswith("Parts")]:
         for q in d[k]: parts[q["id"]] = q
+    w = set()
+    for x in d.get("wires", []):
+        for e in (x.get("source"), x.get("target")):
+            if e: w.add((e.get("id"), e.get("handle")))
+    for cb in d.get("cables", []) + d.get("twistedWires", []):
+        for x in cb.get("cores", []) + cb.get("wires", []) + ([cb["shield"]] if cb.get("shield") else []):
+            for e in (x.get("source"), x.get("target")):
+                if e: w.add((e.get("id"), e.get("handle")))
+    WIRED[loom] = w
     for c in d.get("connectors", []):
         copies.setdefault(c["id"], []).append((loom, c, parts))
-    for coll in ("resistors", "diodes", "terminals", "branchPoints"):
+    for coll in ("resistors", "diodes", "terminals", "splices", "branchPoints"):
         for n in d.get(coll, []):
             pid = n.get("partId") or n.get("bootPartId")
             if pid and pid in parts:
@@ -101,14 +124,35 @@ for cid, cc in copies.items():
     c, parts = next((c, p) for l, c, p in cc if l == loom0)
     if c.get("partId") and c["partId"] in parts:
         q = parts[c["partId"]]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+    # The part's configuration supplies the lock/boot/backshell and the DEFAULT
+    # contact (wired cavity) or plug (unwired cavity). Before 2026-09-24 only
+    # explicitly stamped cavities were counted, so every config-default contact
+    # and every wedgelock was missing from the buy list.
+    cfgs = (parts.get(c.get("partId")) or {}).get("configurations") or []
+    cfg = next((x for x in cfgs if x.get("id") == c.get("configurationId")), cfgs[0] if cfgs else {})
+    for key in ("lockPartId","bootPartId","backshellPartId","mountPartId","dustCoverPartId"):
+        pid = cfg.get(key)
+        if pid and pid in parts:
+            q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
     for cv in c.get("cavities", []):
-        for key in ("contactPartId","cavityPlugPartId"):
-            pid = cv.get(key)
+        if cv.get("notConnected"):
+            continue
+        if "contactPartId" in cv or "cavityPlugPartId" in cv:
+            pids = [cv.get("contactPartId"), cv.get("cavityPlugPartId")]
+        elif any((cid, cv["id"]) in WIRED[l] for l, _, _ in cc):
+            pids = [cfg.get("contactPartId")]
+        else:
+            pids = [cfg.get("cavityPlugPartId")]
+        for pid in pids:
             if pid and pid in parts:
                 q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
 if clash:
     raise SystemExit("Shared connectors are inconsistent between looms:\n  "
                      + "\n  ".join(clash))
+
+for pn, mf, desc, n in DEVICE_SIDE:
+    req[pn] += n
+    meta.setdefault(pn, {"partNumber": pn, "manufacturer": mf, "description": desc})
 
 # things that are modelled as blocks but are not parts anyone buys for this harness:
 # OEM items already on the car, or device-side terminals that come with the device.

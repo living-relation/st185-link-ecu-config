@@ -2418,7 +2418,7 @@
         {
           "id": "cfg",
           "lockPartId": "lp_dtm6wl",
-          "contactPartId": "ct_dtm_skt"
+          "contactPartId": "ct_hdp20s"
         }
       ],
       "numberOfCavities": 6
@@ -2568,22 +2568,6 @@
       "partNumber": "3-1447221-4",
       "description": "SUPERSEAL 1.0 gold socket 0.5mm2 / 20 AWG",
       "manufacturer": "TE Connectivity"
-    },
-    {
-      "id": "ct_dtm_skt",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "partNumber": "0462-201-16141",
-      "description": "DT/DTM size 16 socket 16-20 AWG",
-      "manufacturer": "Deutsch (TE Connectivity)"
     },
     {
       "id": "ct_mp150_skt",

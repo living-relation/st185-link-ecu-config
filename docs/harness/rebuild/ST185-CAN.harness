@@ -1167,7 +1167,7 @@
         {
           "id": "cfg",
           "lockPartId": "lp_dtm6wl",
-          "contactPartId": "ct_dtm_skt"
+          "contactPartId": "ct_hdp20s"
         }
       ],
       "numberOfCavities": 6
@@ -1182,7 +1182,7 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_dtm_skt"
+          "contactPartId": "ct_hdp20s"
         }
       ],
       "numberOfCavities": 4
@@ -1276,22 +1276,6 @@
         "unit": "AWG",
         "value": 20
       }
-    },
-    {
-      "id": "ct_dtm_skt",
-      "partNumber": "0462-201-16141",
-      "manufacturer": "Deutsch (TE)",
-      "gender": "Socket",
-      "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "description": "DT/DTM size 16 solid socket, 16-20 AWG"
     }
   ],
   "resistorParts": [

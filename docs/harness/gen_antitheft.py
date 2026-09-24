@@ -1,4 +1,8 @@
-"""A simple, generic aftermarket alarm harness - example only.
+"""SUPERSEDED 2026-09-24 - do not rerun. rebuild/ST185-AntiTheft.harness is now
+the finished DT-housing version edited in harness.design (mEnr); running this
+would put the old TBD housings back.
+
+A simple, generic aftermarket alarm harness - example only.
 
 Daniel: "make a simple harness diagram for a generic anti theft device or use
 one of the items you listed for me as an example."

@@ -33,7 +33,9 @@ def check(fn):
     parts = set()
     for key in ("connectorParts", "contactParts", "resistorParts",
                 "diodeParts", "cableParts", "wireParts", "bootParts",
-                "spliceParts", "terminalParts", "tapeParts", "tubeParts"):
+                "spliceParts", "terminalParts", "tapeParts", "tubeParts",
+                "lockParts", "cavityPlugParts", "cavitySealParts", "backshellParts",
+                "mountParts", "dustCoverParts", "groupParts", "coveringParts"):
         for p in d.get(key, []):
             pid = p.get("id")
             # A part id listed twice is how a non-idempotent fix script quietly
