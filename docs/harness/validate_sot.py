@@ -19,6 +19,9 @@ PASS 2 - do the drawings agree with the SoT?
   D2  every ecu_a / ecu_b cavity a drawing wires is a pin the SoT says is
       usable - never a spare, an nc, or the empty B14 cavity.
   D3  a cavity the SoT marks nc is not wired anywhere.
+  D4  a signal-class ECU pin has exactly one conductor on it across all the
+      drawings. Two conductors on one signal pin is two sources shorted
+      together. Rails, grounds and screens are shared by design and exempt.
 
 Exit 1 on any finding. Read-only - it changes nothing.
 """
@@ -78,6 +81,8 @@ USABLE = {(r["conn"], r["pin"]) for r in rows
           if r["status"] in ("set", "proposed") and r["class"] != "nc"}
 NC = {(r["conn"], r["pin"]) for r in rows if r["status"] == "nc"}
 SPARE = {(r["conn"], r["pin"]) for r in rows if r["status"] == "spare"}
+SIGNAL = {(r["conn"], r["pin"]) for r in rows if r["class"] == "signal"}
+landings = collections.defaultdict(list)
 
 
 def is_drain(cond, cable_shield):
@@ -102,6 +107,19 @@ def conductors(d):
     return out
 
 
+def passive_ends(d):
+    """Resistor and diode nodes. A conductor that runs from an ECU pin to one
+    of these is a pull-up or a terminator, not a second source, so it does not
+    count against the one-conductor-per-signal-pin rule. The cam Hall pull-up
+    (1.8k from Trigger 2 to +8V) and the CAN 120 ohm terminators are both this
+    shape."""
+    ids = set()
+    for k in ("resistors", "diodes"):
+        for p in d.get(k, []):
+            ids.add(p["id"])
+    return ids
+
+
 def ecu_ref(node_id):
     """Map a drawing node to an SoT connector: the real ECU connectors, and
     the dm_ecu_a_a23 / dm_ecu_b_b12 cross-reference dummies, which are the
@@ -117,9 +135,11 @@ def ecu_ref(node_id):
 checked = 0
 for path in sorted(REB.glob("*.harness")):
     d = json.loads(path.read_text(encoding="utf-8"))
+    passives = passive_ends(d)
     for cond, cable_shield in conductors(d):
         for end in ("source", "target"):
             e = cond.get(end) or {}
+            far = (cond.get("target" if end == "source" else "source") or {}).get("id")
             conn, forced = ecu_ref(e.get("id", ""))
             if not conn:
                 continue
@@ -128,6 +148,8 @@ for path in sorted(REB.glob("*.harness")):
                 continue
             key = (conn, pin)
             checked += 1
+            if key in SIGNAL and far not in passives:
+                landings[key].append("%s %s" % (path.name[6:-8], cond["id"]))
             if key in SCREEN_PINS and not is_drain(cond, cable_shield):
                 bad("D1", "%s: %s lands on %s.%s - shield grounds carry drains only"
                     % (path.name, cond["id"], conn, pin))
@@ -140,6 +162,11 @@ for path in sorted(REB.glob("*.harness")):
             elif key not in USABLE:
                 bad("D2", "%s: %s wires %s.%s which is not in the SoT"
                     % (path.name, cond["id"], conn, pin))
+
+for key, who in sorted(landings.items()):
+    if len(who) > 1:
+        bad("D4", "%s.%s has %d conductors on one signal pin: %s"
+            % (key + (len(who), "; ".join(who))))
 
 # ---------------------------------------------------------------- report
 if findings:

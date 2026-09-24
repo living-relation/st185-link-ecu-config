@@ -81,7 +81,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `2141029-1` | Fuse box assembly, hard wired | 1 | 1 |
 | `2411-001-2405` | Panel nut size 24 | 3 | 4 |
 | `2428-011-2405` | Backshell 24SZ right-angle L017 | 1 | 1 |
-| `3-1447221-4` | SUPERSEAL 1.0 gold socket 0.5mm2 / 20 AWG | 54 | 68 |
+| `3-1447221-4` | SUPERSEAL 1.0 gold socket 0.5mm2 / 20 AWG | 52 | 68 |
 | `4-1437290-0` | SUPERSEAL 1.0 34-way receptacle COD 1 - Link XtremeX loom B | 1 | 2 |
 | `4-1437290-1` | SUPERSEAL 1.0 34-way receptacle COD 2 - Link XtremeX loom A | 1 | 2 |
 | `4-1904124-2` | Micro ISO relay V23074, 1 Form A make, 12V coil 119R, 25A - su | 2 | 2 |

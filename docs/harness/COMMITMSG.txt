@@ -1,16 +1,40 @@
-SoT: sot/channels.csv is now the root, and check_all gates on it
+Every circuit crosses on the bulkhead its ECU pin belongs to
 
-Every ECU A/B/comms pin plus the VRC, A/C amplifier, EPS relay and MRS pump
-channels live in one machine-readable file with owner, class, pull-up, shield
-pin, status and source. validate_sot.py checks the SoT is self-consistent and
-then checks every drawing against it - 63 ECU landings, zero disagreements.
+Knock 1 is ECU B9 but all three of its conductors crossed on bulkhead A - SIG+
+on c27, SIG- on c6, screen on c35. The screen was the tell: it crossed bulkhead
+A and then terminated on SHIELD_B at the ECU, taking the long way round its own
+loom. Moved to bh_b c16 / c17 / c18, both halves.
 
-Two things the evidence settled along the way:
-  - B12 / Ign 6 is NOT available. It is the EPS pump relay trigger, already
-    drawn in EngineRoom-C (k_eps coil 85). The IO table said "Available".
-  - The A/C pressure switch is pin 1 and pin 4 per EWD p152, not c1/c2, and
-    the ambient sensor return is a shared sensor common whose amplifier pin
-    is on neither p150 nor p152 - left TBD rather than invented.
+Aux 7 MRS speed-out is the mirror image - ECU pin A27, so a loom-A circuit, but
+it crossed on bh_b c13. Moved to bh_a c36, and the EngineRoom-C dummy renamed.
+
+Deleted w51_c and w54_c. These were the cabin halves of the front wheel-speed
+runs from before the NCV1124 conditioner went in. Their engine halves were
+retired into cab_fout_l / cab_fout_r at the time; the cabin halves were not, so
+A23 and B21 each had TWO conductors on them - the conditioner's clean output
+AND a bulkhead cavity whose other half went nowhere. Two outputs on one input.
+validate_sot.py grew rule D4 to catch exactly this, with an exemption for a
+conductor that runs to a resistor or diode, because the cam Hall pull-up and
+the CAN terminators share an ECU pin legitimately.
+
+Canonicalised six bulkhead cavity names. The cabin copy said "terminates at the
+ECU" and the engine copy said "floats at the sensor" for the same screen pin -
+both true, and neither belongs in a cavity name. That behaviour lives in
+SHIELD-RULES.md and sot/channels.csv; the cavity gets the plain circuit name.
+
+audit_pin_names.py is now a HARD gate. It reported zero for the first time
+today and both of Daniel's absolute rules live in it.
+
+  shield-rule violations      0
+  pin-name violations        11 -> 0
+  one-sided bulkhead cavities 7 -> 2
+  ECU signal pins with two sources  2 -> 0
+
+Still open: the two FRONT wheel sensors sit outside the cabin, so their raw VR
+pairs must cross the firewall to reach the conditioner, and no drawing shows
+that crossing - 3 cavities per channel. Which bulkhead they land on needs
+Daniel's call, because it turns on whether a raw VR pair belongs to the ECU pin
+it eventually feeds or to the conditioner that owns both of them.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

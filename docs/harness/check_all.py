@@ -22,14 +22,17 @@ import subprocess, sys, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 HARD = ["validate_sot.py", "lint_v09.py", "verify_rebuild.py", "audit_cavity_parts.py",
-        "audit_shields.py", "buylist.py", "buildlist.py", "make_min.py"]
-SOFT = ["audit_bulkhead_pairs.py", "audit_pin_names.py", "audit_bh_collisions.py"]
-# audit_pin_names and audit_bh_collisions are SOFT only until their current
-# findings are cleared - the bulkhead rename is awaiting review, and the four
-# remaining collisions are the CAN pair drawn twice (ST185-CAN carries its own
-# copy of bh_a_fw/bh_a_eng c30/c31). MAKE BOTH HARD the
-# moment they report zero. Rule 1 in audit_pin_names (nothing but a drain on a
-# shield ground) is already at zero and must never go back above it.
+        "audit_shields.py", "audit_pin_names.py", "buylist.py", "buildlist.py",
+        "make_min.py"]
+SOFT = ["audit_bulkhead_pairs.py", "audit_bh_collisions.py"]
+# audit_pin_names went HARD on 2026-09-24, the day it first reported zero, and
+# it stays there. Both of Daniel's absolute rules live in it: nothing but a
+# drain on a shield ground, and one name per bulkhead cavity across a mating
+# pair. Neither may ever go back above zero.
+#
+# audit_bh_collisions is SOFT for one reason only: the four remaining findings
+# are the CAN pair drawn twice, because ST185-CAN carries its own copy of
+# bh_a_fw/bh_a_eng c30/c31. Make it HARD once that duplicate is resolved.
 
 fails = []
 for name in HARD + SOFT:

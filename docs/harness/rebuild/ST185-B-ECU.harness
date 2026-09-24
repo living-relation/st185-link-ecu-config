@@ -486,7 +486,7 @@
           "id": "c6",
           "designation": "6",
           "contactPartId": "ct_hdp20p",
-          "signal": "ECU-A A7"
+          "signal": "spare"
         },
         {
           "id": "c7",
@@ -510,7 +510,7 @@
           "id": "c10",
           "designation": "10",
           "contactPartId": "ct_hdp20p",
-          "signal": "ECU-A A23"
+          "signal": "spare"
         },
         {
           "id": "c11",
@@ -522,7 +522,7 @@
           "id": "c12",
           "designation": "12",
           "contactPartId": "ct_hdp20p",
-          "signal": "ECU-B B21"
+          "signal": "spare"
         },
         {
           "id": "c13",
@@ -612,7 +612,7 @@
           "id": "c27",
           "designation": "27",
           "contactPartId": "ct_hdp20p",
-          "signal": "ECU-B B9"
+          "signal": "spare"
         },
         {
           "id": "c28",
@@ -647,25 +647,25 @@
         {
           "id": "c33",
           "designation": "33",
-          "signal": "Crank VR screen (6.32 dedicated shield pin)",
+          "signal": "Crank VR screen",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c34",
           "designation": "34",
-          "signal": "Cam Hall screen (6.32 dedicated shield pin)",
+          "signal": "Cam Hall screen",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c35",
           "designation": "35",
-          "signal": "Knock 1 screen (6.32 dedicated shield pin)",
+          "signal": "spare",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c36",
           "designation": "36",
-          "signal": "spare (size 20)",
+          "signal": "Aux 7 MRS speed-out (ECU A27)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -826,7 +826,7 @@
           "id": "c13",
           "designation": "13",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-A A27"
+          "signal": "spare"
         },
         {
           "id": "c14",
@@ -843,19 +843,19 @@
         {
           "id": "c16",
           "designation": "16",
-          "signal": "spare (size 16)",
+          "signal": "Knock 1 SIG+ (ECU B9)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c17",
           "designation": "17",
-          "signal": "spare (size 16)",
+          "signal": "Knock 1 SIG- (to Gnd Out B22)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c18",
           "designation": "18",
-          "signal": "spare (size 16)",
+          "signal": "Knock 1 screen",
           "cavityPlugPartId": "pl_sz16"
         },
         {

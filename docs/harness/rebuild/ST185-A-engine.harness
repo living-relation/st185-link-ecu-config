@@ -704,7 +704,7 @@
           "id": "c6",
           "designation": "6",
           "contactPartId": "ct_hdp20s",
-          "signal": "ECU-A A7"
+          "signal": "spare"
         },
         {
           "id": "c7",
@@ -727,7 +727,7 @@
         {
           "id": "c10",
           "designation": "10",
-          "signal": "ECU-A A23",
+          "signal": "spare",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -739,7 +739,7 @@
         {
           "id": "c12",
           "designation": "12",
-          "signal": "ECU-B B21",
+          "signal": "spare",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -830,7 +830,7 @@
           "id": "c27",
           "designation": "27",
           "contactPartId": "ct_hdp20s",
-          "signal": "ECU-B B9"
+          "signal": "spare"
         },
         {
           "id": "c28",
@@ -866,24 +866,24 @@
           "id": "c33",
           "designation": "33",
           "contactPartId": "ct_hdp20s",
-          "signal": "Crank VR screen - own pin per 6.32, floats at the sensor"
+          "signal": "Crank VR screen"
         },
         {
           "id": "c34",
           "designation": "34",
           "contactPartId": "ct_hdp20s",
-          "signal": "Cam Hall screen - own pin per 6.32, floats at the sensor"
+          "signal": "Cam Hall screen"
         },
         {
           "id": "c35",
           "designation": "35",
           "contactPartId": "ct_hdp20s",
-          "signal": "Knock 1 screen - own pin per 6.32, floats at the sensor"
+          "signal": "spare"
         },
         {
           "id": "c36",
           "designation": "36",
-          "signal": "spare (size 20)",
+          "signal": "Aux 7 MRS speed-out (ECU A27)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -1043,13 +1043,13 @@
         {
           "id": "c13",
           "designation": "13",
-          "signal": "ECU-A A27",
+          "signal": "spare",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c14",
           "designation": "14",
-          "signal": "spare (size 16)",
+          "signal": "MRS EPS pump logic enable (F13 7.5A, ignition-switched)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
@@ -1061,19 +1061,19 @@
         {
           "id": "c16",
           "designation": "16",
-          "signal": "spare (size 16)",
+          "signal": "Knock 1 SIG+ (ECU B9)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c17",
           "designation": "17",
-          "signal": "spare (size 16)",
+          "signal": "Knock 1 SIG- (to Gnd Out B22)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c18",
           "designation": "18",
-          "signal": "spare (size 16)",
+          "signal": "Knock 1 screen",
           "cavityPlugPartId": "pl_sz16"
         },
         {
@@ -1818,8 +1818,8 @@
           "id": "cab_knock1_c1",
           "color": "Gray",
           "source": {
-            "id": "bh_a_eng",
-            "handle": "c27"
+            "id": "bh_b_eng",
+            "handle": "c16"
           },
           "target": {
             "id": "knock1",
@@ -1831,8 +1831,8 @@
           "id": "cab_knock1_c2",
           "color": "Green",
           "source": {
-            "id": "bh_a_eng",
-            "handle": "c6"
+            "id": "bh_b_eng",
+            "handle": "c17"
           },
           "target": {
             "id": "knock1",
@@ -1844,8 +1844,8 @@
         "id": "cab_knock1_sh",
         "color": "Shield",
         "source": {
-          "id": "bh_a_eng",
-          "handle": "c35"
+          "id": "bh_b_eng",
+          "handle": "c18"
         }
       }
     }

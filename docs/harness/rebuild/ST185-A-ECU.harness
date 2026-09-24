@@ -1108,7 +1108,7 @@
           "id": "c6",
           "designation": "6",
           "contactPartId": "ct_hdp20p",
-          "signal": "ECU-A A7"
+          "signal": "spare"
         },
         {
           "id": "c7",
@@ -1132,7 +1132,7 @@
           "id": "c10",
           "designation": "10",
           "contactPartId": "ct_hdp20p",
-          "signal": "ECU-A A23"
+          "signal": "spare"
         },
         {
           "id": "c11",
@@ -1144,7 +1144,7 @@
           "id": "c12",
           "designation": "12",
           "contactPartId": "ct_hdp20p",
-          "signal": "ECU-B B21"
+          "signal": "spare"
         },
         {
           "id": "c13",
@@ -1234,7 +1234,7 @@
           "id": "c27",
           "designation": "27",
           "contactPartId": "ct_hdp20p",
-          "signal": "ECU-B B9"
+          "signal": "spare"
         },
         {
           "id": "c28",
@@ -1269,25 +1269,25 @@
         {
           "id": "c33",
           "designation": "33",
-          "signal": "Crank VR screen - own pin per 6.32, terminates at the ECU",
+          "signal": "Crank VR screen",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c34",
           "designation": "34",
-          "signal": "Cam Hall screen - own pin per 6.32, terminates at the ECU",
+          "signal": "Cam Hall screen",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c35",
           "designation": "35",
-          "signal": "Knock 1 screen - own pin per 6.32, terminates at the ECU",
+          "signal": "spare",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c36",
           "designation": "36",
-          "signal": "spare (size 20)",
+          "signal": "Aux 7 MRS speed-out (ECU A27)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -1448,13 +1448,13 @@
           "id": "c13",
           "designation": "13",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-A A27"
+          "signal": "spare"
         },
         {
           "id": "c14",
           "designation": "14",
           "contactPartId": "ct_hdp16p",
-          "signal": "spare (size 16)"
+          "signal": "MRS EPS pump logic enable (F13 7.5A, ignition-switched)"
         },
         {
           "id": "c15",
@@ -1465,19 +1465,19 @@
         {
           "id": "c16",
           "designation": "16",
-          "signal": "spare (size 16)",
+          "signal": "Knock 1 SIG+ (ECU B9)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c17",
           "designation": "17",
-          "signal": "spare (size 16)",
+          "signal": "Knock 1 SIG- (to Gnd Out B22)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c18",
           "designation": "18",
-          "signal": "spare (size 16)",
+          "signal": "Knock 1 screen",
           "cavityPlugPartId": "pl_sz16"
         },
         {
@@ -1631,8 +1631,8 @@
     {
       "id": "w12_c",
       "source": {
-        "id": "bh_a_fw",
-        "handle": "c6"
+        "id": "bh_b_fw",
+        "handle": "c17"
       },
       "target": {
         "id": "dm_sp_gndout_Splice",
@@ -1757,30 +1757,6 @@
       "target": {
         "id": "bh_a_fw",
         "handle": "c9"
-      },
-      "color": "Green"
-    },
-    {
-      "id": "w51_c",
-      "source": {
-        "id": "ecu_a",
-        "handle": "a23"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c10"
-      },
-      "color": "Green"
-    },
-    {
-      "id": "w54_c",
-      "source": {
-        "id": "ecu_b",
-        "handle": "b21"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c12"
       },
       "color": "Green"
     },
@@ -2007,8 +1983,8 @@
         "handle": "b9"
       },
       "target": {
-        "id": "bh_a_fw",
-        "handle": "c27"
+        "id": "bh_b_fw",
+        "handle": "c16"
       },
       "color": "Gray"
     },
@@ -2115,8 +2091,8 @@
         "handle": "a27"
       },
       "target": {
-        "id": "bh_b_fw",
-        "handle": "c13"
+        "id": "bh_a_fw",
+        "handle": "c36"
       },
       "color": "Pink"
     },
@@ -2354,8 +2330,8 @@
       "id": "w_shc_knock1",
       "color": "Shield",
       "source": {
-        "id": "bh_a_fw",
-        "handle": "c35"
+        "id": "bh_b_fw",
+        "handle": "c18"
       },
       "target": {
         "id": "sp_shield_b",

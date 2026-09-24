@@ -35,6 +35,14 @@ EXPECT_GONE = {
     "w23": "renamed w_cam_pullup_8v and rewired to bridge 8V to the signal",
     "w20_e": "renamed w_cam_pullup_sig and rewired to the ECU side",
     "w20_c": "deleted - duplicate cam path to a9; the signal runs on pin 29",
+    # 2026-09-24: the cabin halves of the pre-conditioner front wheel-speed runs.
+    # Their engine halves were retired into cab_fout_l / cab_fout_r when the
+    # NCV1124 went in, but these two survived, so A23 and B21 each had the
+    # conditioner output AND a bulkhead cavity landing on them. Two outputs on
+    # one input. bh_a c10 and c12 are spare again.
+    "w51_c": "deleted - left A23 with two sources; the conditioner output is "
+             "cab_fout_l and this was the old direct path",
+    "w54_c": "deleted - left B21 with two sources; same, cab_fout_r",
     # w_rlp is NOT listed here: the id collided across files, and the verifier
     # applies the same rename to `before`, so both sides compare cleanly.
     # 6.12: shields are never connected at the device end. Every drain landing
@@ -111,14 +119,14 @@ EXPECT_NEW = {
     # there: 16 free pairs on A.
     "cab_crank_sh":  "crank screen, floats at the sensor, bulkhead A c33",
     "cab_cam_sh":    "cam screen, floats at the sensor, bulkhead A c34",
-    "cab_knock1_sh": "knock screen, floats at the sensor, bulkhead A c35",
+    "cab_knock1_sh": "knock screen, floats at the sensor, bulkhead B c18",
     # 2026-09-22: the engine-bay collector splice is gone. Each screen now runs on
     # its own bulkhead pin all the way to sp_shield_cab, which is the single ECU
     # termination SHIELD-RULES 6.27 rule 2 asks for. The old shared c1 drain went
     # with it - both halves of c1 are spare.
     "w_shc_crank":  "crank screen, bulkhead A c33 through to the cabin shield splice",
     "w_shc_cam":    "cam screen, bulkhead A c34 through to the cabin shield splice",
-    "w_shc_knock1": "knock screen, bulkhead A c35 through to the cabin shield splice",
+    "w_shc_knock1": "knock screen, bulkhead B c18 through to the cabin shield splice",
     # 2026-09-23: the two engine-bay A/C sensors join loom C. Verified in the
     # ST185 EWD parts-location list - A1 ambient temp and A5 pressure switch both
     # feed the A/C AMPLIFIER, not the ECU. Pins still TBD, see the drawing note.
@@ -142,6 +150,17 @@ EXPECT_NEW = {
 }
 # A connection that legitimately moved to a different pin.
 EXPECT_CHANGED = {
+    # 2026-09-24. Daniel: "A sensor location must be based on link ECU docs and
+    # ECU IO ... move knock to the harness that corresponds with the ECU knock
+    # pin." Knock 1 is ECU B9, so it is a loom-B circuit, but all three of its
+    # conductors crossed on bulkhead A. The screen was the tell: it crossed
+    # bulkhead A and then terminated on SHIELD_B at the ECU. Now bh_b c16/c17/c18.
+    "w205_c": "knock 1 SIG+ moved bh_a c27 -> bh_b c16; knock is ECU pin B9 so "
+              "it crosses on bulkhead B",
+    # The mirror of the same rule: Aux 7 is ECU A27, a loom-A pin, but its
+    # speed-out to the MRS pump crossed on bulkhead B c13.
+    "w_mrs_c": "Aux 7 MRS speed-out moved bh_b c13 -> bh_a c36; Aux 7 is ECU "
+               "pin A27 so it crosses on bulkhead A",
     # 2026-09-22: the pump's three housings are one 10-pin part now, mrs_eps, with
     # the housing letter in every designation. Same wires, same pins, one node.
     #   mrs_pwr c1 -> a1   mrs_pwr c2 -> a2   mrs_ctrl c2 -> b2   mrs_en c1 -> c1
