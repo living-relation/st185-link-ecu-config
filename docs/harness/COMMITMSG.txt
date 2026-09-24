@@ -1,28 +1,16 @@
-EPS and MRS are the same device - name it that way
+SoT: sot/channels.csv is now the root, and check_all gates on it
 
-Daniel caught me listing "EPS" and "MRS" as two separate things in a loom C zone
-summary. They are one device: the MR-S (ZZW30) electro-hydraulic power steering
-pump, control module bolted to the pump, living in the engine bay.
+Every ECU A/B/comms pin plus the VRC, A/C amplifier, EPS relay and MRS pump
+channels live in one machine-readable file with owner, class, pull-up, shield
+pin, status and source. validate_sot.py checks the SoT is self-consistent and
+then checks every drawing against it - 63 ECU landings, zero disagreements.
 
-Four nodes, one device:
-
-  k_eps     its relay, HCR150, mounted beside the pump
-  mrs_pwr   connector A, main power, 90980-12068
-  mrs_ctrl  connector B, signal, 6-way, PN still unidentified
-  mrs_en    connector C, ignition, 90980-10942
-
-The old labels read like two unrelated systems - "EPS pump relay HCR150" next to
-"MRS EPS pump power" - which is how the mistake happened in the first place. All
-four now say MR-S EHPS pump and name which connector they are.
-
-Added gp_mrs_ehps, the GroupPart that records the device, per the devices guide.
-The editing tools cannot create the Group itself, so that is a one-time job in the
-app: select those four nodes, group them, assign the part.
-
-Naming authority is docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md, which spells it
-MR-S EHPS. The harness had been spelling it MRS.
-
-Lint 8/8, verify MATCH.
+Two things the evidence settled along the way:
+  - B12 / Ign 6 is NOT available. It is the EPS pump relay trigger, already
+    drawn in EngineRoom-C (k_eps coil 85). The IO table said "Available".
+  - The A/C pressure switch is pin 1 and pin 4 per EWD p152, not c1/c2, and
+    the ambient sensor return is a shared sensor common whose amplifier pin
+    is on neither p150 nor p152 - left TBD rather than invented.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01HnHFco3imTn3BeYxkAK9YR

@@ -1,0 +1,103 @@
+owner,channel,conn,pin,net,label,class,dir,type,pullup,shield,loom,status,source,notes
+ECU,Inj 1,ecu_a,a4,INJ1,Injector cyl 1,signal,out,lowside-sat,none,,A,set,QSG-IO,1400cc hi-Z sequential
+ECU,Inj 2,ecu_a,a3,INJ2,Injector cyl 2,signal,out,lowside-sat,none,,A,set,QSG-IO,1400cc hi-Z sequential
+ECU,Inj 3,ecu_a,a2,INJ3,Injector cyl 3,signal,out,lowside-sat,none,,A,set,QSG-IO,1400cc hi-Z sequential
+ECU,Inj 4,ecu_a,a1,INJ4,Injector cyl 4,signal,out,lowside-sat,none,,A,set,QSG-IO,1400cc hi-Z sequential
+ECU,14V +,ecu_a,a5,P14V,Main ECU feed,power,in,rail-12v,none,,A,set,QSG-IO,0.75mm2; held by EFI main relay on Aux 6
+ECU,+8V Out,ecu_a,a6,P8V,+8V sensor rail,rail,out,rail-8v,none,,A,set,QSG-IO,Cam Hall on Trigger 2 only
+ECU,Shield/Gnd,ecu_a,a7,SHIELD_A,Loom A screen termination,screen,na,screen,none,,A,set,QSG-IO,DRAIN ONLY - no signal and no current may land here; do not bridge to SHIELD_B
+ECU,Trigger 1,ecu_a,a8,TRIG1_CRANK,Crank VR,signal,in,vr,none,a7,A,set,QSG-IO,Toyota OEM reluctor on 36-2 wheel
+ECU,Trigger 2,ecu_a,a9,TRIG2_CAM,Cam Hall,signal,in,hall-oc,ext-1k8-to-8v,a7,A,set,QSG-IO,RacerX/Cherry; fit 1k8 not the kit 2k4
+ECU,Ign 1,ecu_a,a13,IGN1,COP cyl 1,signal,out,logic-5v,none,,A,set,QSG-IO,1ZZ COP built-in igniter
+ECU,Ign 2,ecu_a,a12,IGN2,COP cyl 2,signal,out,logic-5v,none,,A,set,QSG-IO,1ZZ COP built-in igniter
+ECU,Ign 3,ecu_a,a11,IGN3,COP cyl 3,signal,out,logic-5v,none,,A,set,QSG-IO,1ZZ COP built-in igniter
+ECU,Ign 4,ecu_a,a10,IGN4,COP cyl 4,signal,out,logic-5v,none,,A,set,QSG-IO,1ZZ COP built-in igniter
+ECU,An Volt 4,ecu_a,a14,AV4_APS_MAIN,APS main VPA1,signal,in,0-5v,none,,A,set,QSG-IO,BRZ pedal pin 6; VC1 = pedal pin 4; GND1 = pedal pin 5
+ECU,Temp 1,ecu_a,a15,TEMP1_ECT,Coolant temp,signal,in,ntc,sel-1k,,A,set,QSG-IO,Toyota 89422-20010 at water neck
+ECU,Temp 2,ecu_a,a16,TEMP2_IAT,Manifold IAT,signal,in,ntc,sel-1k,,A,set,QSG-IO,Set internal 1k to match Temp 3/4
+ECU,An Volt 1,ecu_a,a17,AV1_MAP,MAP,signal,in,0-5v,none,,A,set,QSG-IO,+5V from A32
+ECU,Aux 4,ecu_a,a18,AUX4_AC_KILL,A/C kill to amp ACT,signal,out,lowside-2a,none,,A,set,QSG-IO,Active-low sink; floats when off; ground = kill
+ECU,Aux 3,ecu_a,a19,AUX3_FP_RLY,Fuel pump relay coil,signal,out,lowside-2a,none,,A,set,QSG-IO,Active-low; relay in cabin
+ECU,Aux 2,ecu_a,a20,AUX2_ETB_RLY,ETB power relay coil,signal,out,lowside-2a,none,,A,set,QSG-IO,Active-low; feeds B5 V-Ethrottle
+ECU,Aux 1,ecu_a,a21,AUX1_BOOST,Boost solenoid,signal,out,lowside-2a,none,,A,set,QSG-IO,Active-low
+ECU,An Volt 2,ecu_a,a22,AV2_TPS_MAIN,ETB TPS main,signal,in,0-5v,none,,A,set,QSG-IO,Bosch 74.5mm ETB
+ECU,DI 3,ecu_a,a23,DI3_WSS_FL,Wheel speed front left,signal,in,freq-di,none,,A,set,QSG-IO,Square wave from front VRC out c3; raw VR never reaches the ECU
+ECU,Gnd Out,ecu_a,a24,GNDOUT,Sensor return rail,rail,out,gnd,none,,A,set,QSG-IO,All sensor returns; never chassis; never SHIELD
+ECU,Ground,ecu_a,a25,GND_ECU,ECU reference ground,ground,na,gnd,none,,A,set,QSG-IO,ECU reference only - not a sensor return
+ECU,Aux 8,ecu_a,a26,AUX8_START_RLY,Start relay coil,signal,out,hilo-2a,int-1k5,,A,set,QSG-IO,ECU inhibits in software; no separate cut relay
+ECU,Aux 7,ecu_a,a27,AUX7_MRS_SPD,Speed out to MRS pump,signal,out,hilo-2a,int-1k5,,A,set,QSG-IO,MRS wants ~4 pulses/rev 0-5V; scope the high level before adding a 5V pull-up
+ECU,Aux 6,ecu_a,a28,AUX6_EFI_HOLD,EFI main relay coil,signal,out,hilo-2a,int-1k5,,A,set,QSG-IO,Hold Power; pairs with DI 9
+ECU,Aux 5,ecu_a,a29,AUX5_RAD_FAN,Rad fan relay coil,signal,out,hilo-2a,int-1k5,,A,set,QSG-IO,Relay in cabin
+ECU,DI 1,ecu_a,a30,DI1_TURBO_SPD,Turbo speed,signal,in,freq-di,sel-4k7-to-12v,,A,set,QSG-IO,Confirm local 5V before running a B-loom jumper
+ECU,DI 2,ecu_a,a31,DI2_FLEX,Flex fuel sensor,signal,in,freq-di,sel-4k7-to-12v,,A,set,QSG-IO,Continental 3-pin; supplies ethanol% and fuel temp; DI pull-up ON
+ECU,+5V Out,ecu_a,a32,P5V,+5V sensor rail,rail,out,rail-5v,none,,A,set,QSG-IO,Only native +5V pin; loom B jumpers from here
+ECU,An Volt 3,ecu_a,a33,AV3_TPS_SUB,ETB TPS sub,signal,in,0-5v,none,,A,set,QSG-IO,Bosch 74.5mm ETB
+ECU,Ground,ecu_a,a34,GND_ECU,ECU reference ground,ground,na,gnd,none,,A,set,QSG-IO,ECU reference only - not a sensor return
+ECU,Inj 5,ecu_b,b4,,spare low-side,spare,out,lowside-sat,none,,B,spare,QSG-IO,No flywheel diode on spare inj
+ECU,Inj 6,ecu_b,b3,,spare low-side,spare,out,lowside-sat,none,,B,spare,QSG-IO,No flywheel diode on spare inj
+ECU,Inj 7,ecu_b,b2,,spare low-side,spare,out,lowside-sat,none,,B,spare,QSG-IO,No flywheel diode on spare inj
+ECU,Inj 8,ecu_b,b1,,spare low-side,spare,out,lowside-sat,none,,B,spare,QSG-IO,No flywheel diode on spare inj
+ECU,V-Ethrottle,ecu_b,b5,VETH12,ETB H-bridge supply,power,in,12v-in,none,,B,set,QSG-loom,0.75mm2; switched by Aux 2; absent from the QSG IO table - always list explicitly
+ECU,Temp 3,ecu_b,b6,TEMP3_OIL_T,Oil temp,signal,in,ntc,fixed-1k,,B,set,QSG-IO,Temp 3/4 pull-up is fixed and not selectable
+ECU,Temp 4,ecu_b,b7,TEMP4_CHG_IAT,Charge-pipe IAT,signal,in,ntc,fixed-1k,,B,set,QSG-IO,Same NTC as Temp 2 but its own PCLink cal table
+ECU,Knock 2,ecu_b,b8,,spare knock,spare,in,piezo-knock,none,,B,spare,QSG-IO,
+ECU,Knock 1,ecu_b,b9,KNOCK1_SIG,Knock sensor signal,signal,in,piezo-knock,none,b17,B,set,QSG-IO,SIG- returns to Gnd Out B22; the drain and only the drain lands on B17
+ECU,Ign 7,ecu_b,b11,,spare low-side,spare,out,lowside-2a,none,,B,spare,QSG-IO,No internal flywheel diode
+ECU,Ign 8,ecu_b,b10,,spare low-side,spare,out,lowside-2a,none,,B,spare,QSG-IO,No internal flywheel diode
+ECU,Ign 6,ecu_b,b12,IGN6_EPS_RLY,EPS pump relay coil,signal,out,lowside-2a,none,,B,set,harness-EngineRoom-C,Drives k_eps coil terminal 85; active-low; no internal flywheel diode so the relay must be diode-suppressed
+ECU,Ign 5,ecu_b,b13,IGN5_FAN2,Condenser fan relay coil,signal,out,lowside-2a,none,,B,set,QSG-IO,Active-low; diode-suppressed relay required
+ECU,-,ecu_b,b14,,empty cavity,nc,na,none,none,,B,nc,QSG-loom,Official B-loom drawing shows no terminal and no wire
+ECU,An Volt 6,ecu_b,b15,AV6_OIL_P,Oil pressure,signal,in,0-5v,none,,B,set,QSG-IO,5V jumpered from A32
+ECU,An Volt 7,ecu_b,b16,AV7_FUEL_P,Fuel pressure,signal,in,0-5v,none,,B,set,QSG-IO,5V jumpered from A32
+ECU,Shield/Gnd,ecu_b,b17,SHIELD_B,Loom B screen termination,screen,na,screen,none,,B,set,QSG-IO,DRAIN ONLY - no signal and no current may land here; do not bridge to SHIELD_A
+ECU,Aux 9,ecu_b,b18,AUX9_ETB_MP,ETB motor +,signal,out,hbridge-4a,none,,B,set,QSG-IO,Committed to the Bosch ETB H-bridge
+ECU,DI 6,ecu_b,b19,DI6_WSS_RR,Wheel speed rear right,signal,in,freq-di,none,,B,set,QSG-IO,Square wave from rear VRC out c4
+ECU,DI 5,ecu_b,b20,DI5_WSS_RL,Wheel speed rear left,signal,in,freq-di,none,,B,set,QSG-IO,Square wave from rear VRC out c3
+ECU,DI 4,ecu_b,b21,DI4_WSS_FR,Wheel speed front right,signal,in,freq-di,none,,B,set,QSG-IO,Square wave from front VRC out c4
+ECU,Gnd Out,ecu_b,b22,GNDOUT,Sensor return rail,rail,out,gnd,none,,B,set,QSG-IO,Same net as A24; all sensor returns
+ECU,An Volt 8,ecu_b,b23,AV8_CLNT_P,Coolant pressure,signal,in,0-5v,none,,B,set,QSG-IO,5V jumpered from A32
+ECU,An Volt 9,ecu_b,b24,AV9_FUEL_LVL,Fuel level sender,signal,in,0-5v,ext-div-to-5v,,B,set,QSG-IO,An Volt has no internal pull-up; 470R is the locked buy; the V-to-% cal table is still open
+ECU,Ground,ecu_b,b25,GND_ECU,ECU reference ground,ground,na,gnd,none,,B,set,QSG-IO,ECU reference only - not a sensor return
+ECU,Aux 10,ecu_b,b26,AUX10_ETB_MN,ETB motor -,signal,out,hbridge-4a,none,,B,set,QSG-IO,Committed to the Bosch ETB H-bridge
+ECU,DI 10,ecu_b,b27,,available,spare,in,freq-di,sel-4k7-to-12v,,B,spare,QSG-IO,CAN 2 unused so this is an ordinary DI
+ECU,DI 9,ecu_b,b28,DI9_IGN_SW,Ignition switch sense,signal,in,freq-di,sel-4k7-to-12v,,B,set,QSG-IO,Key-on 12V from the dummy OEM ignition-switch block; PCLink Hold Power input
+ECU,DI 8,ecu_b,b29,DI8_VSS,Gearbox vehicle speed,signal,in,freq-di,sel-4k7-to-12v,,B,set,Daniel-lock-2026-09-18,3-wire 12V Toyota gearbox VSS driven square wave; actual road speed not traction control. Mate = generic oval 3-pin socket plug PN TBD; cavity map PWR/SIG/GND TBD - do not invent
+ECU,DI 7,ecu_b,b30,DI7_START_REQ,Start request,signal,in,freq-di,sel-4k7-to-12v,,B,set,QSG-IO,Switch to ground; DI pull-up ON
+ECU,An Volt 10,ecu_b,b31,,available,spare,in,0-5v,none,,B,spare,QSG-IO,Not reserved
+ECU,An Volt 11,ecu_b,b32,,available,spare,in,0-5v,none,,B,spare,QSG-IO,Not reserved
+ECU,An Volt 5,ecu_b,b33,AV5_APS_SUB,APS sub VPA2,signal,in,0-5v,none,,B,set,QSG-IO,BRZ pedal pin 3; VC2 = pedal pin 1; GND2 = pedal pin 2
+ECU,Ground,ecu_b,b34,GND_ECU,ECU reference ground,ground,na,gnd,none,,B,set,QSG-IO,ECU reference only - not a sensor return
+ECU,Comms 1,ecu_com,c1,COMMS_GND,Comms port ground,ground,na,gnd,none,,CAN,set,QSG-comms,Brown
+ECU,Comms 2,ecu_com,c2,,unused,nc,na,none,none,,CAN,nc,QSG-comms,Blue
+ECU,CAN 1 High,ecu_com,c3,CAN1H,CAN 1 high,signal,bidir,can,none,,CAN,set,QSG-comms,White; 120R terminator at this end
+ECU,CAN 1 Low,ecu_com,c4,CAN1L,CAN 1 low,signal,bidir,can,none,,CAN,set,QSG-comms,Green; 120R terminator at this end
+ECU,RS232 TX,ecu_com,c5,,RS232 TX,nc,out,rs232,none,,CAN,nc,QSG-comms,Yellow; not used in this build
+ECU,RS232 RX,ecu_com,c6,,RS232 RX,nc,in,rs232,none,,CAN,nc,QSG-comms,Grey; not used in this build
+VRC,Front in L,vrc_f_inl,c1,WSS_FL_P,Front left sensor +,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR; screen stays separate all the way to the VRC input
+VRC,Front in L,vrc_f_inl,c2,WSS_FL_N,Front left sensor -,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
+VRC,Front in R,vrc_f_inr,c1,WSS_FR_P,Front right sensor +,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
+VRC,Front in R,vrc_f_inr,c2,WSS_FR_N,Front right sensor -,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
+VRC,Front out,vrc_f_out,c1,P5V,Conditioner supply,rail,in,rail-5v,none,,WS,set,harness-WheelSpeed,From sp_5v
+VRC,Front out,vrc_f_out,c2,GNDOUT,Conditioner ground,rail,in,gnd,none,,WS,set,harness-WheelSpeed,From sp_gndout
+VRC,Front out,vrc_f_out,c3,DI3_WSS_FL,Conditioned FL,signal,out,freq-di,none,a7,WS,set,harness-WheelSpeed,To ECU A23
+VRC,Front out,vrc_f_out,c4,DI4_WSS_FR,Conditioned FR,signal,out,freq-di,none,a7,WS,set,harness-WheelSpeed,To ECU B21; single shield only on the VRC output
+VRC,Rear in L,vrc_r_inl,c1,WSS_RL_P,Rear left sensor +,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
+VRC,Rear in L,vrc_r_inl,c2,WSS_RL_N,Rear left sensor -,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
+VRC,Rear in R,vrc_r_inr,c1,WSS_RR_P,Rear right sensor +,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
+VRC,Rear in R,vrc_r_inr,c2,WSS_RR_N,Rear right sensor -,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
+VRC,Rear out,vrc_r_out,c1,P5V,Conditioner supply,rail,in,rail-5v,none,,WS,set,harness-WheelSpeed,From sp_5v
+VRC,Rear out,vrc_r_out,c2,GNDOUT,Conditioner ground,rail,in,gnd,none,,WS,set,harness-WheelSpeed,From sp_gndout
+VRC,Rear out,vrc_r_out,c3,DI5_WSS_RL,Conditioned RL,signal,out,freq-di,none,b17,WS,set,harness-WheelSpeed,To ECU B20
+VRC,Rear out,vrc_r_out,c4,DI6_WSS_RR,Conditioned RR,signal,out,freq-di,none,b17,WS,set,harness-WheelSpeed,To ECU B19
+ACAMP,TAM,acamp_c,6,TAM_SIG,Ambient temp signal,signal,in,ntc,amp-internal,,C,set,EWD-1990-p150,AUTO A/C AMPLIFIER connector C is A34; ambient sensor A1 pin 2 Y-B via EA1 pin 4 and IQ1 pin 1
+ACAMP,Ambient return,acamp_c,TBD,TAM_RTN,Ambient temp return,signal,in,ntc,none,,C,tbd,EWD-1990-p150,Sensor A1 pin 1 is plain Y and joins a shared sensor-common bus with the A26 thermistor; the amp pin it lands on is not on p150 or p152 - do not invent
+ACAMP,Pressure SW,acamp_18,13,ACP_SIG,A/C pressure switch signal,signal,in,switch-12v,none,,C,set,EWD-1990-p152,A/C AMPLIFIER A18 pin 13 Y-R from pressure switch A5 pin 4 via EB2 pin 2 and E10
+ACAMP,ACT,acamp_18,TBD,AUX4_AC_KILL,Compressor cancel input,signal,in,switch-gnd,none,,C,tbd,Daniel-lock,Ground = kill and floating = normal; the amp terminal number is not on p150 or p152 - do not invent
+PWR,Coil 30,k_eps,c1,FUSEBOX_C7,EPS relay battery feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,From fuse box c7; relay lives in the cabin
+PWR,Coil 85,k_eps,c2,IGN6_EPS_RLY,EPS relay trigger,signal,in,lowside-2a,none,,C,set,harness-EngineRoom-C,From ECU B12
+PWR,Coil 86,k_eps,c3,SW12,EPS relay coil feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,From sp_sw12
+PWR,Contact 87,k_eps,c4,EPS_PWR,EPS pump feed,power,out,rail-12v,none,,C,set,harness-EngineRoom-C,To mrs_eps a1
+MRS,Power,mrs_eps,a1,EPS_PWR,Pump battery feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,
+MRS,Ground,mrs_eps,a2,CHASSIS_ENG,Pump ground,ground,na,gnd,none,,C,set,harness-EngineRoom-C,To engine block terminal
+MRS,SPD,mrs_eps,b2,AUX7_MRS_SPD,Speed input,signal,in,freq-di,none,,C,set,harness-EngineRoom-C,Yel/Wht; crosses at bh_b_eng c13
+MRS,Enable,mrs_eps,c1,MRS_EN,Pump enable,signal,in,switch-12v,none,,C,set,harness-EngineRoom-C,Crosses at bh_b_eng c14

@@ -4,6 +4,7 @@
 
 What it runs, in order:
 
+  validate_sot.py        sot/channels.csv, and every drawing against it
   lint_v09.py            schema and reference check, all eight looms
   verify_rebuild.py      no connection lost against the frozen legacy baseline
   audit_cavity_parts.py  no cavity claims both a contact and a sealing plug
@@ -20,12 +21,13 @@ violations that plan 6.41 fixes.  Everything else is a hard gate.
 import subprocess, sys, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-HARD = ["lint_v09.py", "verify_rebuild.py", "audit_cavity_parts.py",
+HARD = ["validate_sot.py", "lint_v09.py", "verify_rebuild.py", "audit_cavity_parts.py",
         "audit_shields.py", "buylist.py", "buildlist.py", "make_min.py"]
 SOFT = ["audit_bulkhead_pairs.py", "audit_pin_names.py", "audit_bh_collisions.py"]
 # audit_pin_names and audit_bh_collisions are SOFT only until their current
-# findings are cleared - the bulkhead rename is awaiting review and the bh_b
-# c7/c8 short needs Daniel's call on which circuit moves. MAKE BOTH HARD the
+# findings are cleared - the bulkhead rename is awaiting review, and the four
+# remaining collisions are the CAN pair drawn twice (ST185-CAN carries its own
+# copy of bh_a_fw/bh_a_eng c30/c31). MAKE BOTH HARD the
 # moment they report zero. Rule 1 in audit_pin_names (nothing but a drain on a
 # shield ground) is already at zero and must never go back above it.
 
