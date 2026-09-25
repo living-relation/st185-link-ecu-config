@@ -298,8 +298,8 @@
         },
         {
           "id": "b12",
-          "designation": "B12",
-          "notConnected": true
+          "signal": "Ign 6 (EPS Rly)",
+          "designation": "B12"
         },
         {
           "id": "b13",
@@ -373,8 +373,8 @@
         },
         {
           "id": "b27",
-          "designation": "B27",
-          "notConnected": true
+          "signal": "DI 10 (Anti-Theft)",
+          "designation": "B27"
         },
         {
           "id": "b28",
@@ -419,52 +419,6 @@
       "schematicPosition": {
         "x": 2080,
         "y": 600
-      }
-    },
-    {
-      "id": "ecu_com",
-      "label": "ECU Comms/Tuning Port",
-      "width": 210,
-      "partId": "cp_dtm6s",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "Ground (Brown)",
-          "designation": "C1"
-        },
-        {
-          "id": "c2",
-          "designation": "C2",
-          "signal": "Unused (Blue)"
-        },
-        {
-          "id": "c3",
-          "signal": "CAN 1 High (White)",
-          "designation": "C3"
-        },
-        {
-          "id": "c4",
-          "designation": "C4",
-          "signal": "CAN 1 Low (Green)"
-        },
-        {
-          "id": "c5",
-          "designation": "C5",
-          "signal": "RS232 TX (Yellow) - not used on this build"
-        },
-        {
-          "id": "c6",
-          "designation": "C6",
-          "signal": "RS232 RX (Grey) - not used on this build"
-        }
-      ],
-      "layoutPosition": {
-        "x": 620,
-        "y": 2536
-      },
-      "schematicPosition": {
-        "x": 620,
-        "y": 2536
       }
     },
     {
@@ -1077,8 +1031,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "contactPartId": "ct_hdp16p",
-          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
@@ -1107,8 +1061,8 @@
         {
           "id": "c6",
           "designation": "6",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c7",
@@ -1131,20 +1085,20 @@
         {
           "id": "c10",
           "designation": "10",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c11",
           "designation": "11",
-          "signal": "ABS Wheel Speed FR SIG-",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c12",
           "designation": "12",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c13",
@@ -1233,13 +1187,13 @@
         {
           "id": "c27",
           "designation": "27",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c28",
           "designation": "28",
-          "signal": "ABS Wheel Speed FR SIG+",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -1270,13 +1224,13 @@
           "id": "c33",
           "designation": "33",
           "signal": "Crank VR screen",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c34",
           "designation": "34",
           "signal": "Cam Hall screen",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c35",
@@ -1288,7 +1242,7 @@
           "id": "c36",
           "designation": "36",
           "signal": "Aux 7 MRS speed-out (ECU A27)",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c37",
@@ -1447,8 +1401,8 @@
         {
           "id": "c13",
           "designation": "13",
-          "contactPartId": "ct_hdp16p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c14",
@@ -1459,26 +1413,26 @@
         {
           "id": "c15",
           "designation": "15",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c16",
           "designation": "16",
           "signal": "Knock 1 SIG+ (ECU B9)",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c17",
           "designation": "17",
           "signal": "Knock 1 SIG- (to Gnd Out B22)",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c18",
           "designation": "18",
           "signal": "Knock 1 screen",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c19",
@@ -2217,30 +2171,6 @@
       }
     },
     {
-      "id": "w_can_bh0_c",
-      "color": "Green",
-      "source": {
-        "id": "ecu_com",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c30"
-      }
-    },
-    {
-      "id": "w_can_bh1_c",
-      "color": "White",
-      "source": {
-        "id": "ecu_com",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c31"
-      }
-    },
-    {
       "id": "w_drain_ecu_a",
       "color": "Green",
       "stripeColor": "Yellow",
@@ -2382,22 +2312,6 @@
         }
       ],
       "numberOfCavities": 34
-    },
-    {
-      "id": "cp_dtm6s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-6S",
-      "description": "DTM 6-way socket - ECU comms harness side",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dtm6wl",
-          "contactPartId": "ct_hdp20s"
-        }
-      ],
-      "numberOfCavities": 6
     },
     {
       "id": "cp_mp150_2",

@@ -20,41 +20,51 @@ edit. They must all agree. A change that leaves two documents disagreeing is not
 ### Source-of-truth chain
 
 ```
-XTREMEX-IO-TABLE.html        ECU pins + channels      ← SoT, nothing outranks it
-      ↓
-SCHEMATIC-WIRING.html        print face (derived)
-apps/harness-schematic/      interactive face (derived)
-      ↓
-docs/harness/*.harness       Power / Signal / CAN / EngineRoom-C  ← physical SoT
-      ↓
-harness.design app copy      mirror — never edit as source
+sot/channels.csv             every pin and channel    <- SoT, nothing outranks it
+      |
+      +-- XTREMEX-IO-TABLE.html        visual face; sync_io_table.py --check gates it
+      +-- docs/harness/rebuild/*.harness   the physical looms  <- what gets built
+              |
+              +-- docs/harness/min/*.harness   upload copies (make_min.py)
+                      |
+                      +-- harness.design app copy   mirror - never edit as source
 ```
 
-New pin facts go into `XTREMEX-IO-TABLE.html` **first**, then propagate outward. If a
-downstream face disagrees with the table, the face is wrong and gets corrected — never the
-reverse.
+New pin facts go into `sot/channels.csv` **first** (Daniel, 2026-09-25), then the IO
+table and the looms follow. If anything disagrees with the CSV, the other thing is wrong
+and gets corrected - never the reverse. `python docs/harness/check_all.py` enforces the
+whole chain and must pass before every commit.
 
 ### Every wiring surface that must agree
 
 | Surface | Role |
 |---|---|
-| `XTREMEX-IO-TABLE.html` | Pin/channel SoT |
-| `SCHEMATIC-WIRING.html` | Print face |
-| `apps/harness-schematic/index.html` | Interactive face |
-| `docs/harness/ST185-Signal.harness` | Signal loom |
-| `docs/harness/ST185-Power.harness` | Power loom |
-| `docs/harness/ST185-CAN.harness` | CAN loom |
-| `docs/harness/ST185-EngineRoom-C.harness` | Partial engine-room add-on + OEM J/B injection |
+| `sot/channels.csv` | Pin/channel SoT |
+| `XTREMEX-IO-TABLE.html` | Visual face of the SoT, with a generated pin map |
+| `docs/harness/rebuild/ST185-A-ECU.harness` | Cabin side, signal circuits from both ECU connectors to the bulkhead A and B cabin halves |
+| `docs/harness/rebuild/ST185-A-engine.harness` | Engine side of those signal circuits |
+| `docs/harness/rebuild/ST185-B-ECU.harness` | Cabin side, power: ECU power pins, relays, cabin fuse block |
+| `docs/harness/rebuild/ST185-B-engine.harness` | Engine side of those power circuits |
+| `docs/harness/rebuild/ST185-CAN.harness` | CAN backbone - the only drawing with CAN H/L |
+| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | Loom C engine room, no bulkhead |
+| `docs/harness/rebuild/ST185-WheelSpeed.harness` | Wheel speed drops + VR conditioners (front = loom C fender sub-loom) |
+| `docs/harness/rebuild/ST185-ClusterLED.harness` | Cluster warning LEDs |
+| `docs/harness/rebuild/ST185-AntiTheft.harness` | Anti-theft |
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table |
-| `docs/harness/HARNESS-BUILD-LIST.csv` | Generated — re-run `buildlist.py` |
-| `docs/harness/NEED-TO-BUY.md` | Generated — re-run `buylist.py` |
-| `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` | Build rules and doc roles |
-| `WIRING.md` | Cluster GPIO + CAN physical topology |
-| `SENSORS_AND_COMPONENTS_MASTER.csv` | Device names, part numbers, locations |
-| `docs/sourcing/te-on-hand-bom.csv` | Parts already owned — check before speccing anything new |
+| `docs/harness/HARNESS-BUILD-LIST.csv` | Generated - re-run `buildlist.py` |
+| `docs/harness/NEED-TO-BUY.md` | Generated - re-run `buylist.py` |
+| `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` | Build rules (section 6) |
+| `docs/SHIELD-RULES.md` | Shield rules, enforced by the audits |
+| `docs/sourcing/te-on-hand-bom.csv` | Parts already owned - check before speccing anything new |
 
-Dated `VERIFY` / `AUDIT` / `FACES` / `BOARD-VERIFY` notes in `docs/` are **frozen records**.
-Read them, never update them, never treat them as living pin maps.
+The file names do not follow the bulkhead letter - a file can carry both bulkheads.
+What must hold is per **bulkhead**: every cavity on the bulkhead A cabin half mates the
+same cavity on the bulkhead A engine half, same for B, and a circuit crosses on the
+bulkhead of its ECU pin's loom. `audit_mating.py` and `audit_pin_names.py` check that.
+
+`docs/harness/legacy-prebuild/` is the frozen baseline `verify_rebuild.py` diffs against.
+Read it, never edit it. Retired diagrams, dated audit notes and one-shot fix scripts live in
+`archive/2026-09-25-cleanup/` and are not authoritative.
 
 Generated files are never hand-edited — re-run their script.
 

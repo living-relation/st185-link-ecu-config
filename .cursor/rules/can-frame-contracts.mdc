@@ -16,7 +16,7 @@ globs:
   - ECUMASTER_SWITCHBOARD_SETUP.md
   - BENCH-TEST.md
   - realdash-simulation.html
-  - docs/harness/ST185-CAN.harness
+  - docs/harness/rebuild/ST185-CAN.harness
   - docs/RECONCILIATION-RULES.md
 alwaysApply: false
 ---

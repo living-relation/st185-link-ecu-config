@@ -4,6 +4,10 @@ Proposal only for *where files should live* and *how the two `.harness` drawings
 
 > ## READ THIS FIRST — the document contradicts itself on purpose
 >
+> **2026-09-25:** the pin SoT is `sot/channels.csv`. The retired diagrams and
+> dated audit notes named in the section 1 table were moved to
+> `archive/2026-09-25-cleanup/`. The looms are `docs/harness/rebuild/*.harness`.
+>
 > This file grew by accretion. **Sections 1–5 describe the world of 2026-09-12**,
 > when there were two living harness files, `ST185-Power.harness` and
 > `ST185-Signal.harness`. That is no longer the structure.
@@ -1336,6 +1340,12 @@ Settled 2026-09-22. The two VR conditioner boxes do not share a loom.
 The conditioner **outputs** merge into whichever loom holds their assigned ECU
 pin, per the rule above: FL -> ECU-A A23 -> loom A. FR, RL, RR -> ECU-B B21, B20,
 B19 -> loom B. Fuel level -> ECU-B B24 -> loom B.
+
+**Front raw VR pairs - no firewall crossing (Daniel, 2026-09-25).** The front
+sensor drops run in a **fender sub-loom of loom C** (the engine room harness),
+drawn separately in `ST185-WheelSpeed.harness`. Loom C leaves through the driver
+fender, not a bulkhead, so these pairs get no bulkhead cavity and no drawing
+should show one. Not an open item.
 
 Putting the rear box in the trunk rather than the cabin is the right way round for
 noise: the raw VR millivolts travel a few feet from the rear hubs to the box, and

@@ -482,7 +482,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Front VRC output screen -> sp_shield_a -> ECU-A A7. DRAIN ONLY. Front pair is FL A23 / FR B21; one screen gets one termination and A is chosen for FL."
+          "signal": "Front VRC output screen (FL cable) -> sp_shield_a -> ECU-A A7. DRAIN ONLY."
         }
       ]
     },
@@ -501,7 +501,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Rear VRC output screen -> sp_shield_b -> ECU-B B17. DRAIN ONLY. Rear pair is RL B20 / RR B19, both ECU-B."
+          "signal": "Rear VRC output screen and the front FR output screen -> sp_shield_b -> ECU-B B17. DRAIN ONLY. The FR screen floats at the VRC end so A7 and B17 never meet through the enclosure (Daniel, 2026-09-25)."
         }
       ]
     }
@@ -682,7 +682,7 @@
     },
     {
       "id": "cab_fout",
-      "partId": "cab_sh_4c",
+      "partId": "cab_sh_3c",
       "schematicPosition": {
         "x": 1234,
         "y": 961
@@ -721,18 +721,6 @@
           },
           "target": {
             "id": "dm_ecu_a_a23",
-            "handle": "c1"
-          }
-        },
-        {
-          "id": "cab_fout_r",
-          "color": "Violet",
-          "source": {
-            "id": "vrc_f_out",
-            "handle": "c4"
-          },
-          "target": {
-            "id": "dm_ecu_b_b21",
             "handle": "c1"
           }
         }
@@ -819,6 +807,36 @@
           "handle": "c1"
         }
       }
+    },
+    {
+      "id": "cab_fout_fr",
+      "partId": "cab_sh_1c_vio",
+      "schematicPosition": {
+        "x": 1234,
+        "y": 1250
+      },
+      "cores": [
+        {
+          "id": "cab_fout_r",
+          "color": "Violet",
+          "source": {
+            "id": "vrc_f_out",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "dm_ecu_b_b21",
+            "handle": "c1"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_fout_fr_sh",
+        "color": "Shield",
+        "source": {
+          "id": "dm_sp_shield_b_Splice",
+          "handle": "c1"
+        }
+      }
     }
   ],
   "schematicNotes": [
@@ -829,7 +847,7 @@
         "x": 0,
         "y": -1400
       },
-      "text": "WHEEL SPEED - STANDALONE HARNESS. No bulkhead connectors anywhere in this drawing (6.31). Sensor cables cross the firewall through a rubber grommet so each screen stays unbroken. Front pair rides the fenders with loom C; rear pair rides with the fuel pump and level sender."
+      "text": "WHEEL SPEED - STANDALONE HARNESS. No bulkhead connectors anywhere in this drawing (6.31). Front drops are a fender sub-loom of loom C (engine room harness) into the front VRC box; they never cross a bulkhead (Daniel, 2026-09-25). Rear drops run with the fuel pump and level sender to the rear VRC box in the trunk. Only the conditioned output cables reach the ECU, through grommets, so each screen stays unbroken."
     },
     {
       "id": "n_shield",
@@ -965,6 +983,40 @@
         },
         {
           "id": "k4",
+          "color": "Violet"
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_3c",
+      "partNumber": "(generic)",
+      "manufacturer": "generic",
+      "description": "3-core shielded cable, overall foil + braid screen, 20 AWG. Front VRC to ECU: +5V, Gnd Out, FL pulse. Screen to A7. Cable is generic in BOMs per 6.24.",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Orange"
+        },
+        {
+          "id": "k2",
+          "color": "Black"
+        },
+        {
+          "id": "k3",
+          "color": "Blue"
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_1c_vio",
+      "partNumber": "(generic)",
+      "manufacturer": "generic",
+      "description": "1-core shielded cable, overall foil + braid screen, 20 AWG. Front VRC FR pulse to ECU B21. Screen to B17 only, floats at the VRC so it never touches the enclosure (A7 side). Cable is generic in BOMs per 6.24.",
+      "cores": [
+        {
+          "id": "k1",
           "color": "Violet"
         }
       ],

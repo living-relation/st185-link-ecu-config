@@ -611,37 +611,6 @@
       }
     },
     {
-      "id": "lambda",
-      "label": "Link CAN-Lambda",
-      "partId": "cp_dtm4s",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        },
-        {
-          "id": "c3",
-          "notConnected": true
-        },
-        {
-          "id": "c4",
-          "signal": "CAN"
-        }
-      ],
-      "layoutPosition": {
-        "x": 3860,
-        "y": 1318
-      },
-      "schematicPosition": {
-        "x": 3860,
-        "y": 1318
-      }
-    },
-    {
       "id": "reverse_sw",
       "label": "OEM block - Reverse Switch",
       "partId": "cp_oem_block_2",
@@ -673,8 +642,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "contactPartId": "ct_hdp16s",
-          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
@@ -703,8 +672,8 @@
         {
           "id": "c6",
           "designation": "6",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c7",
@@ -733,7 +702,7 @@
         {
           "id": "c11",
           "designation": "11",
-          "signal": "ABS Wheel Speed FR SIG-",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -829,13 +798,13 @@
         {
           "id": "c27",
           "designation": "27",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c28",
           "designation": "28",
-          "signal": "ABS Wheel Speed FR SIG+",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -877,14 +846,14 @@
         {
           "id": "c35",
           "designation": "35",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c36",
           "designation": "36",
           "signal": "Aux 7 MRS speed-out (ECU A27)",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c37",
@@ -1050,31 +1019,31 @@
           "id": "c14",
           "designation": "14",
           "signal": "MRS EPS pump logic enable (F13 7.5A, ignition-switched)",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c15",
           "designation": "15",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c16",
           "designation": "16",
           "signal": "Knock 1 SIG+ (ECU B9)",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c17",
           "designation": "17",
           "signal": "Knock 1 SIG- (to Gnd Out B22)",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c18",
           "designation": "18",
           "signal": "Knock 1 screen",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c19",
@@ -1370,48 +1339,9 @@
         "handle": "c1"
       },
       "color": "Green"
-    },
-    {
-      "id": "w_can_bh0_e",
-      "color": "Green",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c30"
-      },
-      "target": {
-        "id": "lambda",
-        "handle": "c1"
-      }
-    },
-    {
-      "id": "w_can_bh1_e",
-      "color": "White",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c31"
-      },
-      "target": {
-        "id": "lambda",
-        "handle": "c2"
-      }
     }
   ],
   "connectorParts": [
-    {
-      "id": "cp_dtm4s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-4S",
-      "description": "DTM 4-way socket - CAN-Lambda harness side",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_hdp20s"
-        }
-      ],
-      "numberOfCavities": 4
-    },
     {
       "id": "cp_etb",
       "gender": "Female",

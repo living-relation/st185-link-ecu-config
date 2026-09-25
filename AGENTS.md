@@ -25,15 +25,14 @@
 - Bench behavior: `bench/frames.py`, `bench/can_bench.py`, `BENCH-TEST.md`.
 - RealDash channel definitions: `link_g4x_realdash.xml`.
 - Engine-room power splice table (kick-panel J/Bs, vacated J/B2): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
-- Partial engine-room add-on loom: `docs/harness/ST185-EngineRoom-C.harness`.
-- ECU Superseal I/O (pins, pull-ups, drive types): `XTREMEX-IO-TABLE.html` — pin numbers confirmed 2026-09-11 vs official XtremeX Quick Start Guide (`docs/XTREMEX-IO-VERIFY-2026-09-11.md`).
+- Wiring SoT (every ECU pin and channel): `sot/channels.csv`. Visual face: `XTREMEX-IO-TABLE.html` (gated by `docs/harness/sync_io_table.py --check`).
+- The looms: `docs/harness/rebuild/*.harness` (nine files; `docs/harness/README.md`). Gate: `python docs/harness/check_all.py`.
+- Wiring reconciliation rules: `docs/RECONCILIATION-RULES.md` Rule 1.
 
 ## Board / progress snapshot
 - Claude progress board is a **stale artifact** (last updated 2026-09-01). Do not treat it as SoT.
-- Conflict sheet (board vs git vs husk session memory): `docs/BOARD-VERIFY-2026-09-11.md`.
-- Harness faces status (schematic vs `.harness` SoT sync): `docs/HARNESS-FACES-2026-09-11.md`.
-- Harness consolidation + Power/Signal layout proposal: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md`.
-- ECU I/O and pinout audit (all pin claims cross-checked, `.harness` defects found and fixed): `docs/ECU-IO-AUDIT-2026-09-12.md`.
+- Harness build rules: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.
+- Dated audit/verify notes and retired diagrams were moved to `archive/2026-09-25-cleanup/` — not authoritative.
 - Paste **CONFLICT rows only** into the ACTIVE `shipping\` trance; park husk-keyed chats.
 ## Related Repos (mandatory for CAN bus / wiring work)
 This repo defines only one side of the CAN bus (ECU, RealDash, switchboard). The
@@ -147,4 +146,4 @@ If you still land in a conflict on one of these, do not resolve it by hand. Take
 side, re-run the generator, and stage the result.
 
 ## Wiring audit
-- Provisional conflict sheet: `docs/WIRING-AUDIT-2026-09-18.md` (2026-09-18). No mass rewrites until Daniel locks bh_c / A7 / pin-graph.
+- `python docs/harness/check_all.py` is the wiring audit. The 2026-09-18 conflict sheet is archived; its bh_c / A7 questions are settled (bulkhead C deleted, A7 and B17 are separate shield grounds).

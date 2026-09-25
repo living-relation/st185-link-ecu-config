@@ -31,6 +31,14 @@ def rebuilt_files():
 # Differences the rebuild is supposed to introduce. Anything outside this list
 # is a real fault.
 EXPECT_GONE = {
+    # 2026-09-25: the RADLOK heavy-DC pair was drawn on the B looms AND on
+    # EngineRoom-C. Daniel: loom C owns it. Same path lives there as
+    # w_pdb_rlp / w_rl_pos / w_rlp_str / w_alt / w_pdb_rln / w_rln / w_rln_blk.
+    "w_hv_batt_fw": "deleted - heavy DC is loom C's (w_pdb_rlp)",
+    "w_hv_gnd_fw": "deleted - heavy DC is loom C's (w_pdb_rln)",
+    "w_hv_batt_eng": "deleted - heavy DC is loom C's (w_rlp_str)",
+    "w_hv_gnd_eng": "deleted - heavy DC is loom C's (w_rln_blk)",
+    "w_hv_alt": "deleted - heavy DC is loom C's (w_alt)",
     "w_mrs_relay_req": "deleted per 6.16 - the pump does not switch its own relay",
     "w23": "renamed w_cam_pullup_8v and rewired to bridge 8V to the signal",
     "w20_e": "renamed w_cam_pullup_sig and rewired to the ECU side",
@@ -43,6 +51,13 @@ EXPECT_GONE = {
     "w51_c": "deleted - left A23 with two sources; the conditioner output is "
              "cab_fout_l and this was the old direct path",
     "w54_c": "deleted - left B21 with two sources; same, cab_fout_r",
+    # 2026-09-25: the CAN pair was drawn twice across bulkhead A c30/c31 - once
+    # here and once in ST185-CAN (wc_h_bh / wc_l_bh / wc_h_lam / wc_l_lam, same
+    # cavities, same ends). ST185-CAN is the only CAN drawing now.
+    "w_can_bh0_c": "deleted - duplicate of ST185-CAN wc_h_ecu/wc_h_bh",
+    "w_can_bh1_c": "deleted - duplicate of ST185-CAN wc_l_ecu/wc_l_bh",
+    "w_can_bh0_e": "deleted - duplicate of ST185-CAN wc_h_lam",
+    "w_can_bh1_e": "deleted - duplicate of ST185-CAN wc_l_lam",
     # w_rlp is NOT listed here: the id collided across files, and the verifier
     # applies the same rename to `before`, so both sides compare cleanly.
     # 6.12: shields are never connected at the device end. Every drain landing
@@ -99,6 +114,7 @@ EXPECT_GONE = {
     "w12_e":       "-> cab_knock1_c2 (knock SIG-, unchanged endpoints)",
 }
 EXPECT_NEW = {
+    "cab_fout_fr_sh": "FR conditioned output screen on its own cable, to sp_shield_b / B17; floats at the VRC (Daniel 2026-09-25)",
     "w_eps_trig": "6.16 ECU-driven EPS relay trigger, Ign 6 / ecu_b.b12",
     "w_rl_pos": "RADLOK positive pair, renamed out of the w_rlp collision",
     "w_cam_pullup_8v": "cam pull-up, ECU 8V a6 to resistor",
@@ -150,6 +166,12 @@ EXPECT_NEW = {
 }
 # A connection that legitimately moved to a different pin.
 EXPECT_CHANGED = {
+    # 2026-09-25: CAN H/L were on the CAN-Lambda power pins 1/2. Link QSG DTM4:
+    # 1 Power, 2 GND, 3 CAN L, 4 CAN H. Moved to 4 (H) and 3 (L), terminator too.
+    "wc_h_lam": "CAN H lambda c1 -> c4 (Link QSG pin 4 = CAN H)",
+    "wc_l_lam": "CAN L lambda c2 -> c3 (Link QSG pin 3 = CAN L)",
+    "wc_term3": "end terminator follows CAN H to lambda c4",
+    "wc_term4": "end terminator follows CAN L to lambda c3",
     # 2026-09-24. Daniel: "A sensor location must be based on link ECU docs and
     # ECU IO ... move knock to the harness that corresponds with the ECU knock
     # pin." Knock 1 is ECU B9, so it is a loom-B circuit, but all three of its

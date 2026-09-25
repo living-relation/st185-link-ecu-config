@@ -524,11 +524,11 @@
       "id": "w_acp_1",
       "color": "Violet",
       "source": {
-        "id": "ac_press",
-        "handle": "c1"
+        "id": "pmu",
+        "handle": "c12"
       },
       "target": {
-        "id": "dm_fusebox_c7",
+        "id": "ac_press",
         "handle": "c1"
       }
     },
@@ -669,6 +669,11 @@
           "id": "c11",
           "designation": "DEV",
           "signal": "Cluster + RealDash Pi - device relay 87, held by CSB3 low-side L1 (plan 6.48)"
+        },
+        {
+          "id": "c12",
+          "designation": "APS",
+          "signal": "A/C pressure switch +12V, 5 A fuse, ignition-switched (was wrongly on F7 60A, the EPS pump fuse)"
         }
       ],
       "partId": "cp_pmu"
@@ -1208,13 +1213,13 @@
     },
     {
       "id": "dm_bh_a_eng_c36",
-      "label": "BH-B-c13",
+      "label": "BH-A-c36",
       "width": 150,
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Bulkhead B cavity 13 → ECU-A A27 (Aux 7, MRS SPD) — wired on ST185-A-ECU"
+          "signal": "Bulkhead A cavity 36 → ECU-A A27 (Aux 7, MRS SPD) — wired on ST185-A-ECU"
         }
       ],
       "schematicPosition": {
@@ -1254,7 +1259,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Fusebox F7, 60A — EPS pump relay 30, wired on ST185-B-ECU"
+          "signal": "Fusebox F7, 60A — EPS pump relay 30 ONLY, wired on ST185-B-ECU"
         }
       ],
       "schematicPosition": {
@@ -1314,7 +1319,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "ECU-B pin B12 (Ign 6) — EPS relay trigger per 6.16, branches off at the ECU into loom C. NOTE: B12 still reads notConnected on ST185-A-ECU - fix there."
+          "signal": "ECU-B pin B12 (Ign 6) — EPS relay trigger per 6.16, branches off at the ECU into loom C."
         }
       ],
       "schematicPosition": {
@@ -1435,7 +1440,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+12V in, wire V-R. EWD p152."
+          "signal": "+12V in, wire V-R. EWD p152. Fed from the glove-box body block APS, 5 A."
         },
         {
           "id": "c2",

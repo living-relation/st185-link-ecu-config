@@ -59,7 +59,7 @@ ECU,An Volt 8,ecu_b,b23,AV8_CLNT_P,Coolant pressure,signal,in,0-5v,none,,B,set,Q
 ECU,An Volt 9,ecu_b,b24,AV9_FUEL_LVL,Fuel level sender,signal,in,0-5v,ext-div-to-5v,,B,set,QSG-IO,An Volt has no internal pull-up; 470R is the locked buy; the V-to-% cal table is still open
 ECU,Ground,ecu_b,b25,GND_ECU,ECU reference ground,ground,na,gnd,none,,B,set,QSG-IO,ECU reference only - not a sensor return
 ECU,Aux 10,ecu_b,b26,AUX10_ETB_MN,ETB motor -,signal,out,hbridge-4a,none,,B,set,QSG-IO,Committed to the Bosch ETB H-bridge
-ECU,DI 10,ecu_b,b27,,available,spare,in,freq-di,sel-4k7-to-12v,,B,spare,QSG-IO,CAN 2 unused so this is an ordinary DI
+ECU,DI 10,ecu_b,b27,DI10_ANTITHEFT,Anti-theft input,signal,in,switch-gnd,sel-4k7-to-12v,,B,set,Daniel-lock-2026-09-25,Alarm immobiliser out grounds when armed; PCLink Anti-Theft DI with pull-up ON. CAN 2 unused so this is an ordinary DI
 ECU,DI 9,ecu_b,b28,DI9_IGN_SW,Ignition switch sense,signal,in,freq-di,sel-4k7-to-12v,,B,set,QSG-IO,Key-on 12V from the dummy OEM ignition-switch block; PCLink Hold Power input
 ECU,DI 8,ecu_b,b29,DI8_VSS,Gearbox vehicle speed,signal,in,freq-di,sel-4k7-to-12v,,B,set,Daniel-lock-2026-09-18,3-wire 12V Toyota gearbox VSS driven square wave; actual road speed not traction control. Mate = generic oval 3-pin socket plug PN TBD; cavity map PWR/SIG/GND TBD - do not invent
 ECU,DI 7,ecu_b,b30,DI7_START_REQ,Start request,signal,in,freq-di,sel-4k7-to-12v,,B,set,QSG-IO,Switch to ground; DI pull-up ON
@@ -73,14 +73,14 @@ ECU,CAN 1 High,ecu_com,c3,CAN1H,CAN 1 high,signal,bidir,can,none,,CAN,set,QSG-co
 ECU,CAN 1 Low,ecu_com,c4,CAN1L,CAN 1 low,signal,bidir,can,none,,CAN,set,QSG-comms,Green; 120R terminator at this end
 ECU,RS232 TX,ecu_com,c5,,RS232 TX,nc,out,rs232,none,,CAN,nc,QSG-comms,Yellow; not used in this build
 ECU,RS232 RX,ecu_com,c6,,RS232 RX,nc,in,rs232,none,,CAN,nc,QSG-comms,Grey; not used in this build
-VRC,Front in L,vrc_f_inl,c1,WSS_FL_P,Front left sensor +,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR; screen stays separate all the way to the VRC input
-VRC,Front in L,vrc_f_inl,c2,WSS_FL_N,Front left sensor -,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
-VRC,Front in R,vrc_f_inr,c1,WSS_FR_P,Front right sensor +,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
-VRC,Front in R,vrc_f_inr,c2,WSS_FR_N,Front right sensor -,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
+VRC,Front in L,vrc_f_inl,c1,WSS_FL_P,Front left sensor +,signal,in,vr,none,own,C,set,harness-WheelSpeed,Raw VR; screen stays separate all the way to the VRC input; loom C fender sub-loom, no bulkhead (Daniel 2026-09-25)
+VRC,Front in L,vrc_f_inl,c2,WSS_FL_N,Front left sensor -,signal,in,vr,none,own,C,set,harness-WheelSpeed,Raw VR; loom C fender sub-loom, no bulkhead (Daniel 2026-09-25)
+VRC,Front in R,vrc_f_inr,c1,WSS_FR_P,Front right sensor +,signal,in,vr,none,own,C,set,harness-WheelSpeed,Raw VR; loom C fender sub-loom, no bulkhead (Daniel 2026-09-25)
+VRC,Front in R,vrc_f_inr,c2,WSS_FR_N,Front right sensor -,signal,in,vr,none,own,C,set,harness-WheelSpeed,Raw VR; loom C fender sub-loom, no bulkhead (Daniel 2026-09-25)
 VRC,Front out,vrc_f_out,c1,P5V,Conditioner supply,rail,in,rail-5v,none,,WS,set,harness-WheelSpeed,From sp_5v
 VRC,Front out,vrc_f_out,c2,GNDOUT,Conditioner ground,rail,in,gnd,none,,WS,set,harness-WheelSpeed,From sp_gndout
 VRC,Front out,vrc_f_out,c3,DI3_WSS_FL,Conditioned FL,signal,out,freq-di,none,a7,WS,set,harness-WheelSpeed,To ECU A23
-VRC,Front out,vrc_f_out,c4,DI4_WSS_FR,Conditioned FR,signal,out,freq-di,none,a7,WS,set,harness-WheelSpeed,To ECU B21; single shield only on the VRC output
+VRC,Front out,vrc_f_out,c4,DI4_WSS_FR,Conditioned FR,signal,out,freq-di,none,b17,WS,set,harness-WheelSpeed,To ECU B21 on its own 1-core screened cable; screen to B17 (loom B), floats at the VRC (Daniel 2026-09-25)
 VRC,Rear in L,vrc_r_inl,c1,WSS_RL_P,Rear left sensor +,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
 VRC,Rear in L,vrc_r_inl,c2,WSS_RL_N,Rear left sensor -,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
 VRC,Rear in R,vrc_r_inr,c1,WSS_RR_P,Rear right sensor +,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR

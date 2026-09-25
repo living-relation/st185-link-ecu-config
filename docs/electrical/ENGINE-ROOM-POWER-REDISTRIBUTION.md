@@ -4,7 +4,7 @@
 
 This is the living splice table. Pin facts come from the 1990 ST185 All-Trac EWD (the All-Trac-specific book) cross-checked against the 1992 Celica EWD132U (covers ST185, year-adjacent to 1993). The 1993 bound book is EWD160U; the freely available PDF of that number is the FWD AT180/ST184 book, so it is **not** used as All-Trac pin authority.
 
-Factory snips live in `docs/electrical/ewd-snips/`. The partial drawing is `docs/harness/ST185-EngineRoom-C.harness`. Cabin ECU power stays in `ST185-Power.harness`.
+Factory snips live in `docs/electrical/ewd-snips/`. The drawing is `docs/harness/rebuild/ST185-EngineRoom-C.harness`. Cabin ECU power stays in `docs/harness/rebuild/ST185-B-ECU.harness`.
 
 ---
 
@@ -118,7 +118,7 @@ Rule from §6.2 still holds: a load is **either** a PMU output **or** a relay+fu
 | 160 A alternator B+ | 4 AWG (or 2 AWG) to starter B+, does not recross | Already in Power |
 | MRS EPS pump | `k_eps` HCR 150, F7 60 A | >25 A; three paralleled PMU pins would burn three of sixteen channels |
 | Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Same; PWM later can still be the relay coil from Aux 5 / Ign 5 |
-| EFI main, ETB, fuel pump | Cabin relays in `ST185-Power.harness` | Hold-power and Link's published ETB circuit |
+| EFI main, ETB, fuel pump | Cabin relays in `ST185-B-ECU.harness` | Hold-power and Link's published ETB circuit |
 | HEAD LH / HEAD RH | PMU O1 / O2 (25 A) into J/B2 2A-3 / 2A-6 | Replaces 15 A HEAD fuses in J/B2 |
 | HAZ-HORN | PMU O3 into 2E-3 | Replaces 15 A HAZ-HORN |
 | DOME | PMU O4 (25 A channel) into 2E-4 | Replaces 20 A DOME |
@@ -371,7 +371,7 @@ On-car check before first power-up: with J/B2 unplugged and the battery still is
 
 ## 8. Glove-box fuse / feed schedule (replaces F11 + J/B2 mains)
 
-TE `2141029-1` already owns F1–F13 in `ST185-Power.harness` (EFI, pump, ETB, start, fans, EPS, ECU +12, coils, injectors, EPS enable). The PDB next to it adds the **body** feeds this document restores:
+TE `2141029-1` already owns F1–F13 in `ST185-B-ECU.harness` (EFI, pump, ETB, start, fans, EPS, ECU +12, coils, injectors, EPS enable). The PDB next to it adds the **body** feeds this document restores:
 
 | Fuse / device | Rating | Replaces | Lands on |
 |---|---|---|---|

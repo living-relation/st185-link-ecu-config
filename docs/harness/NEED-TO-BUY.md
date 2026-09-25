@@ -1,6 +1,6 @@
 # Harness — need to buy
 
-Generated on 2026-09-24 from the eight `.harness` files in `docs/harness/rebuild/`:
+Generated on 2026-09-25 from the eight `.harness` files in `docs/harness/rebuild/`:
 `A-ECU`, `A-engine`, `B-ECU`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed`, `AntiTheft`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
@@ -10,10 +10,10 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
 | `0462-201-2031` | TE DEUTSCH | Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY | 55 | 0 | **55** |
-| `0413-204-2005` | TE DEUTSCH | Sealing plug, size 20, red | 42 | 0 | **42** |
-| `0460-202-2031` | TE DEUTSCH | Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY | 24 | 0 | **24** |
+| `0413-204-2005` | TE DEUTSCH | Sealing plug, size 20, red | 45 | 0 | **45** |
+| `0460-202-2031` | TE DEUTSCH | Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY | 23 | 0 | **23** |
 | `TS 2.3 (090 type)` | Sumitomo | Toyota/Denso 2.3mm female sensor/coil terminal | 20 | 0 | **20** |
-| `114017` | TE DEUTSCH | Sealing plug, size 16, white | 16 | 0 | **16** |
+| `114017` | TE DEUTSCH | Sealing plug, size 16, white | 10 | 0 | **10** |
 | `12084200` | Aptiv | Metri-Pack 150.2 female 22-20 AWG | 16 | 6 | **10** |
 | `DT06-2S` | Deutsch | DT 2-POS, RECP, SKT | 10 | 2 | **8** |
 | `W2S` | Deutsch | DT 2-way plug wedgelock | 8 | 0 | **8** |
@@ -72,9 +72,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
 | `0413-214-1205` | Sealing plug, size 12, yellow | 4 | 10 |
-| `0460-202-1631` | Size 16 solid PIN, 16-20 AWG, 13 A | 36 | 130 |
+| `0460-202-1631` | Size 16 solid PIN, 16-20 AWG, 13 A | 38 | 130 |
 | `0460-220-1231` | Size 12 solid PIN, 12-14 AWG, 25 A | 2 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, 20-16 AWG, 13A, GOLD | 34 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, 20-16 AWG, 13A, GOLD | 38 | 118 |
 | `0462-210-1231` | Size 12 solid SOCKET, 12-14 AWG, 25 A | 2 | 20 |
 | `1 928 403 874` | 2-way knock sensor connector | 1 | 1 |
 | `13519047` | GT150 3-way flex-fuel sensor | 1 | 1 |
@@ -147,7 +147,6 @@ will over-order these; use this list, not the drawings.
 | `ect` | A-engine, B-engine | A-engine |
 | `ecu_a` | A-ECU, B-ECU | A-ECU |
 | `ecu_b` | A-ECU, B-ECU | A-ECU |
-| `ecu_com` | A-ECU, CAN | A-ECU |
 | `etb` | A-engine, B-engine | A-engine |
 | `flex` | A-engine, B-engine | A-engine |
 | `fuellvl` | A-ECU, B-ECU | A-ECU |
@@ -163,14 +162,10 @@ will over-order these; use this list, not the drawings.
 | `k_fan2` | A-ECU, B-ECU, EngineRoom-C | A-ECU |
 | `k_fp` | A-ECU, B-ECU | A-ECU |
 | `k_str` | A-ECU, B-ECU | A-ECU |
-| `lambda` | A-engine, B-engine, CAN | A-engine |
+| `lambda` | B-engine, CAN | CAN |
 | `map` | A-engine, B-engine | A-engine |
 | `oilp` | A-engine, B-engine | A-engine |
 | `oilt` | A-engine, B-engine | A-engine |
-| `rl_neg_eng` | B-engine, EngineRoom-C | B-engine |
-| `rl_neg_fw` | B-ECU, EngineRoom-C | B-ECU |
-| `rl_pos_eng` | B-engine, EngineRoom-C | B-engine |
-| `rl_pos_fw` | B-ECU, EngineRoom-C | B-ECU |
 | `turbospd` | A-engine, B-engine | A-engine |
 
 ## Still unspecified

@@ -219,8 +219,8 @@
         "handle": "c9"
       },
       "target": {
-        "id": "t_at_ecu_di",
-        "handle": "Terminal"
+        "id": "dm_ecu_b_b27",
+        "handle": "c1"
       }
     },
     {
@@ -451,7 +451,7 @@
         "value": 300
       },
       "sourceId": "bp_5",
-      "targetId": "t_at_ecu_di"
+      "targetId": "dm_ecu_b_b27"
     },
     {
       "id": "bn_door",
@@ -778,20 +778,6 @@
         "x": 1350,
         "y": 600
       }
-    },
-    {
-      "id": "t_at_ecu_di",
-      "type": "Loose",
-      "width": 390,
-      "signal": "G4X spare DIGITAL INPUT (Anti-Theft) - pinned in the ECU loom, 4k7 pull-up ON, channel per IO table",
-      "layoutPosition": {
-        "x": 1260,
-        "y": 120
-      },
-      "schematicPosition": {
-        "x": -600,
-        "y": 510
-      }
     }
   ],
   "wireParts": [
@@ -1091,6 +1077,26 @@
       "schematicPosition": {
         "x": 780,
         "y": 390
+      }
+    },
+    {
+      "id": "dm_ecu_b_b27",
+      "label": "ECU-B-b27 (DI 10)",
+      "width": 270,
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "ECU-B B27, DI 10 - Anti-Theft input, pull-up ON (Daniel, 2026-09-25). Real pin on ST185-A-ECU."
+        }
+      ],
+      "layoutPosition": {
+        "x": 1260,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": -600,
+        "y": 510
       }
     }
   ],

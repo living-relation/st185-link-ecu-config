@@ -81,19 +81,19 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V"
+          "signal": "Power +12V ign, 10A fused - wired on ST185-B-engine"
         },
         {
           "id": "c2",
-          "signal": "GND"
+          "signal": "GND - wired on ST185-B-engine"
         },
         {
           "id": "c3",
-          "notConnected": true
+          "signal": "CAN L"
         },
         {
           "id": "c4",
-          "signal": "CAN"
+          "signal": "CAN H"
         }
       ],
       "layoutPosition": {
@@ -114,8 +114,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "contactPartId": "ct_hdp16p",
-          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
@@ -144,8 +144,8 @@
         {
           "id": "c6",
           "designation": "6",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c7",
@@ -168,20 +168,20 @@
         {
           "id": "c10",
           "designation": "10",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c11",
           "designation": "11",
-          "signal": "ABS Wheel Speed FR SIG-",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c12",
           "designation": "12",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c13",
@@ -270,13 +270,13 @@
         {
           "id": "c27",
           "designation": "27",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c28",
           "designation": "28",
-          "signal": "ABS Wheel Speed FR SIG+",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -307,13 +307,13 @@
           "id": "c33",
           "designation": "33",
           "signal": "Crank VR screen",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c34",
           "designation": "34",
           "signal": "Cam Hall screen",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c35",
@@ -325,7 +325,7 @@
           "id": "c36",
           "designation": "36",
           "signal": "Aux 7 MRS speed-out (ECU A27)",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c37",
@@ -412,8 +412,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "contactPartId": "ct_hdp16s",
-          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
@@ -442,8 +442,8 @@
         {
           "id": "c6",
           "designation": "6",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c7",
@@ -472,7 +472,7 @@
         {
           "id": "c11",
           "designation": "11",
-          "signal": "ABS Wheel Speed FR SIG-",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -568,13 +568,13 @@
         {
           "id": "c27",
           "designation": "27",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c28",
           "designation": "28",
-          "signal": "ABS Wheel Speed FR SIG+",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -616,14 +616,14 @@
         {
           "id": "c35",
           "designation": "35",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c36",
           "designation": "36",
           "signal": "Aux 7 MRS speed-out (ECU A27)",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c37",
@@ -759,7 +759,7 @@
   "wires": [
     {
       "id": "wc_h_ecu",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "ecu_com",
         "handle": "c3"
@@ -771,7 +771,7 @@
     },
     {
       "id": "wc_l_ecu",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "ecu_com",
         "handle": "c4"
@@ -783,7 +783,7 @@
     },
     {
       "id": "wc_h_csb",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "sp_canh",
         "handle": "Splice"
@@ -795,7 +795,7 @@
     },
     {
       "id": "wc_l_csb",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "sp_canl",
         "handle": "Splice"
@@ -807,7 +807,7 @@
     },
     {
       "id": "wc_h_clu",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "sp_canh",
         "handle": "Splice"
@@ -819,7 +819,7 @@
     },
     {
       "id": "wc_l_clu",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "sp_canl",
         "handle": "Splice"
@@ -831,7 +831,7 @@
     },
     {
       "id": "wc_h_rd",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "sp_canh",
         "handle": "Splice"
@@ -843,7 +843,7 @@
     },
     {
       "id": "wc_l_rd",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "sp_canl",
         "handle": "Splice"
@@ -855,7 +855,7 @@
     },
     {
       "id": "wc_h_bh",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "sp_canh",
         "handle": "Splice"
@@ -867,7 +867,7 @@
     },
     {
       "id": "wc_l_bh",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "sp_canl",
         "handle": "Splice"
@@ -879,31 +879,31 @@
     },
     {
       "id": "wc_h_lam",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "bh_a_eng",
         "handle": "c30"
       },
       "target": {
         "id": "lambda",
-        "handle": "c1"
+        "handle": "c4"
       }
     },
     {
       "id": "wc_l_lam",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "bh_a_eng",
         "handle": "c31"
       },
       "target": {
         "id": "lambda",
-        "handle": "c2"
+        "handle": "c3"
       }
     },
     {
       "id": "wc_term1",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "r_term_ecu",
         "handle": "Left"
@@ -915,7 +915,7 @@
     },
     {
       "id": "wc_term2",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "r_term_ecu",
         "handle": "Right"
@@ -927,26 +927,26 @@
     },
     {
       "id": "wc_term3",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "r_term_end",
         "handle": "Left"
       },
       "target": {
         "id": "lambda",
-        "handle": "c1"
+        "handle": "c4"
       }
     },
     {
       "id": "wc_term4",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "r_term_end",
         "handle": "Right"
       },
       "target": {
         "id": "lambda",
-        "handle": "c2"
+        "handle": "c3"
       }
     }
   ],
@@ -1210,6 +1210,12 @@
       "partNumber": "WM-6S",
       "manufacturer": "Deutsch (TE)",
       "description": "Wedgelock for DTM06-6S, 6-way socket housing"
+    },
+    {
+      "id": "pl_sz16",
+      "partNumber": "114017",
+      "manufacturer": "TE DEUTSCH",
+      "description": "Sealing plug, size 16, white"
     }
   ],
   "contactParts": [

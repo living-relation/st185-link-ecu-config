@@ -1,7 +1,10 @@
 # Harness files - which one is current
 
-Written 2026-09-22 because the folder had 24 `.harness` files for 8 real looms and
-no way to tell them apart. Read this before opening any of them.
+Written 2026-09-22, updated 2026-09-25. Read this before opening any loom.
+
+**The wiring source of truth is `sot/channels.csv`** (every ECU pin and channel).
+The looms below are the physical build and must agree with it; `check_all.py`
+enforces that.
 
 ## The short answer
 
@@ -9,12 +12,12 @@ no way to tell them apart. Read this before opening any of them.
 
 | Folder | What it is | Edit it? |
 |---|---|---|
-| **`rebuild/`** | The 8 current looms. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
-| `min/` | Same 8 documents, whitespace stripped, for upload | No - `make_min.py` regenerates it |
+| **`rebuild/`** | The 9 current looms. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
+| `min/` | Same 9 documents, whitespace stripped, for upload | No - `make_min.py` regenerates it |
 | `legacy-prebuild/` | The 4 pre-split looms the rebuild came from | No - frozen baseline, see below |
-| `archive/cursor-engineroom-experiments/` | Cursor's throwaway EngineRoom-C variants | No - history only |
+| `../../archive/2026-09-25-cleanup/docs/harness/` | One-shot fix/gen scripts, old screenshots, the retired diagram stub | No - history only |
 
-## The 8 current looms
+## The 9 current looms
 
 | File | Loom | Scope |
 |---|---|---|
@@ -25,7 +28,14 @@ no way to tell them apart. Read this before opening any of them.
 | `ST185-CAN.harness` | CAN | the CAN backbone |
 | `ST185-EngineRoom-C.harness` | C | engine room, PDB, fuse blocks + relays, EPS, OEM J/B injection |
 | `ST185-ClusterLED.harness` | (folding into the cabin accessory loom) | cluster warning LEDs |
-| `ST185-WheelSpeed.harness` | (splitting into loom C + rear trunk) | four ABS drops and both VR conditioners |
+| `ST185-WheelSpeed.harness` | front = loom C fender sub-loom (no bulkhead), rear = rear trunk | four ABS drops and both VR conditioners |
+| `ST185-AntiTheft.harness` | cabin | anti-theft |
+
+File names do not follow the bulkhead letter: `A-ECU` / `A-engine` carry the
+signal circuits over **both** bulkheads, `B-ECU` / `B-engine` the power circuits.
+What must hold is per bulkhead - A cabin cN mates A engine cN, B cabin cN mates
+B engine cN, and a circuit crosses on the bulkhead of its ECU pin's loom.
+`audit_mating.py` checks that. CAN H/L is drawn only in `ST185-CAN`.
 
 Loom C's `pmu` node was **repurposed on 2026-09-22**, not deleted. The PMU-16 was
 dropped (plan 6.46–6.48) and the node is now the glove-box body block — a second
@@ -54,27 +64,34 @@ Until then: read them for history, never edit them.
 ## The pipeline
 
 ```
-rebuild/*.harness            <- edit here, or via a fix_*/gen_* script
+sot/channels.csv             <- pin SoT; new pin facts go here first
+rebuild/*.harness            <- edit the looms here
   |
-  +-- lint_v09.py            schema and rule check
-  +-- verify_rebuild.py      conductor diff against legacy-prebuild/
-  +-- layout_633.py          applies the 6.33 layout standard
-  +-- make_min.py            writes min/
-  +-- buylist.py             writes ../NEED-TO-BUY.md
-  +-- buildlist.py           writes ../HARNESS-BUILD-LIST.csv
-  |
-  +-- min/*.harness          -> uploaded to harness.design
+  +-- check_all.py           runs every gate below, in order, all hard
+        validate_sot.py          drawings vs the SoT
+        sync_io_table.py --check XTREMEX-IO-TABLE.html vs the SoT
+        lint_v09.py              schema and references
+        verify_rebuild.py        no conductor lost vs legacy-prebuild/
+        audit_cavity_parts.py    contact or plug, never both
+        audit_shields.py         docs/SHIELD-RULES.md
+        audit_pin_names.py       drains only on A7/B17; one name per mating cavity
+        audit_mating.py          A mates A, B mates B; screens stay in their loom
+        audit_bulkhead_pairs.py  no one-sided bulkhead cavity
+        audit_bh_collisions.py   no two circuits on one cavity half
+        buylist.py               writes ../NEED-TO-BUY.md
+        buildlist.py             writes ../HARNESS-BUILD-LIST.csv
+        make_min.py              writes min/  -> uploaded to harness.design
 ```
 
-`check_all.py` runs the whole thing in one command and exits non-zero if
-anything fails. Use it before every commit:
+Use it before every commit:
 
 ```
 python docs/harness/check_all.py
 ```
 
-`run_pipeline.bat` runs the first four in order. Run `buylist.py` and
-`buildlist.py` after any part change.
+`run_pipeline.bat` runs the layout steps (`fix_cable_parts.py`, `layout_633.py`)
+plus lint, verify and make_min. `sync_io_table.py` without `--check` rewrites the
+generated pin map in the IO table after a CSV change.
 
 ## Parts rules
 
@@ -115,5 +132,5 @@ one generation:
 
 ## Audit
 
-`audit_repo.py` prints every harness file and wiring document with its element
-counts and last commit date. Run it when this README looks out of date.
+`check_all.py` is the audit. The old `audit_repo.py` doc-staleness reporter was
+archived on 2026-09-25 with the documents it tracked.

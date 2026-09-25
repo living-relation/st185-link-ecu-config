@@ -571,7 +571,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V"
+          "signal": "Power +12V (10A fused per Link QSG)"
         },
         {
           "id": "c2",
@@ -579,11 +579,11 @@
         },
         {
           "id": "c3",
-          "signal": "CAN H (signal file)"
+          "signal": "CAN L - wired on ST185-CAN"
         },
         {
           "id": "c4",
-          "notConnected": true
+          "signal": "CAN H - wired on ST185-CAN"
         }
       ],
       "layoutPosition": {
@@ -604,8 +604,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "contactPartId": "ct_hdp16s",
-          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
@@ -634,8 +634,8 @@
         {
           "id": "c6",
           "designation": "6",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c7",
@@ -664,7 +664,7 @@
         {
           "id": "c11",
           "designation": "11",
-          "signal": "ABS Wheel Speed FR SIG-",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -760,13 +760,13 @@
         {
           "id": "c27",
           "designation": "27",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c28",
           "designation": "28",
-          "signal": "ABS Wheel Speed FR SIG+",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -808,14 +808,14 @@
         {
           "id": "c35",
           "designation": "35",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c36",
           "designation": "36",
           "signal": "Aux 7 MRS speed-out (ECU A27)",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c37",
@@ -981,31 +981,31 @@
           "id": "c14",
           "designation": "14",
           "signal": "MRS EPS pump logic enable (F13 7.5A, ignition-switched)",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c15",
           "designation": "15",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c16",
           "designation": "16",
           "signal": "Knock 1 SIG+ (ECU B9)",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c17",
           "designation": "17",
           "signal": "Knock 1 SIG- (to Gnd Out B22)",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c18",
           "designation": "18",
           "signal": "Knock 1 screen",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c19",
@@ -1034,48 +1034,6 @@
         "x": 3220,
         "y": 2374
       }
-    },
-    {
-      "id": "rl_pos_eng",
-      "partId": "cp_rl_red_eng",
-      "label": "RADLOK + - engine side",
-      "width": 210,
-      "schematicPosition": {
-        "x": 3220,
-        "y": 2104
-      },
-      "layoutPosition": {
-        "x": 3220,
-        "y": 2104
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "heavy DC"
-        }
-      ]
-    },
-    {
-      "id": "rl_neg_eng",
-      "partId": "cp_rl_blk_eng",
-      "label": "RADLOK - - engine side",
-      "width": 210,
-      "schematicPosition": {
-        "x": 3220,
-        "y": 1834
-      },
-      "layoutPosition": {
-        "x": 3220,
-        "y": 1834
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "heavy DC"
-        }
-      ]
     },
     {
       "id": "dm_k_str_c4",
@@ -1222,48 +1180,6 @@
       "schematicPosition": {
         "x": 3860,
         "y": 642
-      }
-    },
-    {
-      "id": "t_starter_b",
-      "type": "Ring",
-      "signal": "Starter B+ post - 2 AWG",
-      "width": 210,
-      "schematicPosition": {
-        "x": 4980,
-        "y": 574
-      },
-      "layoutPosition": {
-        "x": 4980,
-        "y": 574
-      }
-    },
-    {
-      "id": "t_alt_b",
-      "type": "Ring",
-      "signal": "Alternator B+ (rear of block, under intake) - 4 AWG",
-      "width": 210,
-      "schematicPosition": {
-        "x": 4420,
-        "y": 3954
-      },
-      "layoutPosition": {
-        "x": 4420,
-        "y": 3954
-      }
-    },
-    {
-      "id": "t_eng_block",
-      "type": "Ring",
-      "signal": "Engine block ground stud - 2 AWG",
-      "width": 210,
-      "schematicPosition": {
-        "x": 3860,
-        "y": 2298
-      },
-      "layoutPosition": {
-        "x": 3860,
-        "y": 2298
       }
     }
   ],
@@ -1813,42 +1729,6 @@
       }
     },
     {
-      "id": "w_hv_batt_eng",
-      "color": "Red",
-      "source": {
-        "id": "rl_pos_eng",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "t_starter_b",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "w_hv_alt",
-      "color": "Red",
-      "source": {
-        "id": "t_alt_b",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "t_starter_b",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "w_hv_gnd_eng",
-      "color": "Black",
-      "source": {
-        "id": "rl_neg_eng",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "t_eng_block",
-        "handle": "Terminal"
-      }
-    },
-    {
       "id": "w_strl",
       "color": "Red",
       "source": {
@@ -1897,35 +1777,6 @@
       }
     }
   ],
-  "bundles": [
-    {
-      "id": "bn_rl_pos_eng__t_starter_b",
-      "sourceId": "rl_pos_eng",
-      "targetId": "t_starter_b",
-      "length": {
-        "unit": "mm",
-        "value": 900
-      }
-    },
-    {
-      "id": "bn_rl_neg_eng__t_eng_block",
-      "sourceId": "rl_neg_eng",
-      "targetId": "t_eng_block",
-      "length": {
-        "unit": "mm",
-        "value": 800
-      }
-    },
-    {
-      "id": "bn_t_starter_b__t_alt_b",
-      "sourceId": "t_starter_b",
-      "targetId": "t_alt_b",
-      "length": {
-        "unit": "mm",
-        "value": 450
-      }
-    }
-  ],
   "connectorParts": [
     {
       "id": "cp_hdp_a_eng",
@@ -1956,18 +1807,6 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
-    },
-    {
-      "id": "cp_rl_red_eng",
-      "partNumber": "RL00801-50RE",
-      "manufacturer": "Amphenol",
-      "description": "Battery positive, ENGINE side. RADLOK 8.0 female cable connector, 200A, 50 mm2 (1/0), RED. Mates the RL9080-301-F1RE firewall feed-through."
-    },
-    {
-      "id": "cp_rl_blk_eng",
-      "partNumber": "RL00801-50BK",
-      "manufacturer": "Amphenol",
-      "description": "Battery negative, ENGINE side. RADLOK 8.0 female cable connector, 200A, 50 mm2 (1/0), BLACK. Mates the RL9080-301-F1 firewall feed-through."
     },
     {
       "id": "cp_vss3",

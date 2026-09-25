@@ -455,8 +455,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "contactPartId": "ct_hdp16p",
-          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
@@ -485,8 +485,8 @@
         {
           "id": "c6",
           "designation": "6",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c7",
@@ -509,20 +509,20 @@
         {
           "id": "c10",
           "designation": "10",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c11",
           "designation": "11",
-          "signal": "ABS Wheel Speed FR SIG-",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c12",
           "designation": "12",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c13",
@@ -611,13 +611,13 @@
         {
           "id": "c27",
           "designation": "27",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c28",
           "designation": "28",
-          "signal": "ABS Wheel Speed FR SIG+",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -648,13 +648,13 @@
           "id": "c33",
           "designation": "33",
           "signal": "Crank VR screen",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c34",
           "designation": "34",
           "signal": "Cam Hall screen",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c35",
@@ -666,7 +666,7 @@
           "id": "c36",
           "designation": "36",
           "signal": "Aux 7 MRS speed-out (ECU A27)",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c37",
@@ -825,8 +825,8 @@
         {
           "id": "c13",
           "designation": "13",
-          "contactPartId": "ct_hdp16p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c14",
@@ -837,26 +837,26 @@
         {
           "id": "c15",
           "designation": "15",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c16",
           "designation": "16",
           "signal": "Knock 1 SIG+ (ECU B9)",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c17",
           "designation": "17",
           "signal": "Knock 1 SIG- (to Gnd Out B22)",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c18",
           "designation": "18",
           "signal": "Knock 1 screen",
-          "cavityPlugPartId": "pl_sz16"
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c19",
@@ -971,48 +971,6 @@
           "signal": "7.5A - MRS EPS pump logic enable (ignition-switched)"
         }
       ]
-    },
-    {
-      "id": "rl_pos_fw",
-      "partId": "cp_rl_red_fw",
-      "label": "RADLOK + - firewall",
-      "width": 210,
-      "schematicPosition": {
-        "x": 2680,
-        "y": 2104
-      },
-      "layoutPosition": {
-        "x": 2680,
-        "y": 2104
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "heavy DC"
-        }
-      ]
-    },
-    {
-      "id": "rl_neg_fw",
-      "partId": "cp_rl_blk_fw",
-      "label": "RADLOK - - firewall",
-      "width": 210,
-      "schematicPosition": {
-        "x": 2680,
-        "y": 1834
-      },
-      "layoutPosition": {
-        "x": 2680,
-        "y": 1834
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "heavy DC"
-        }
-      ]
     }
   ],
   "splices": [
@@ -1108,34 +1066,6 @@
       "schematicPosition": {
         "x": 1080,
         "y": 0
-      }
-    },
-    {
-      "id": "t_batt_pos",
-      "type": "Ring",
-      "signal": "Battery + (trunk -> glove-box PDB) - 2 AWG",
-      "width": 210,
-      "schematicPosition": {
-        "x": 0,
-        "y": 1148
-      },
-      "layoutPosition": {
-        "x": 0,
-        "y": 1148
-      }
-    },
-    {
-      "id": "t_batt_neg",
-      "type": "Ring",
-      "signal": "Battery - (trunk -> glove-box PDB) - 2 AWG",
-      "width": 210,
-      "schematicPosition": {
-        "x": 0,
-        "y": 878
-      },
-      "layoutPosition": {
-        "x": 0,
-        "y": 878
       }
     }
   ],
@@ -1534,30 +1464,6 @@
       }
     },
     {
-      "id": "w_hv_batt_fw",
-      "color": "Red",
-      "source": {
-        "id": "t_batt_pos",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "rl_pos_fw",
-        "handle": "c1"
-      }
-    },
-    {
-      "id": "w_hv_gnd_fw",
-      "color": "Black",
-      "source": {
-        "id": "t_batt_neg",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "rl_neg_fw",
-        "handle": "c1"
-      }
-    },
-    {
       "id": "w_fb_in",
       "color": "Red",
       "source": {
@@ -1881,18 +1787,6 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
-    },
-    {
-      "id": "cp_rl_red_fw",
-      "partNumber": "RL00801-50RE",
-      "manufacturer": "Amphenol",
-      "description": "Battery positive, CABIN side. RADLOK 8.0 female cable connector, 200A, 50 mm2 (1/0), RED. Mates the RL9080-301-F1RE firewall feed-through."
-    },
-    {
-      "id": "cp_rl_blk_fw",
-      "partNumber": "RL00801-50BK",
-      "manufacturer": "Amphenol",
-      "description": "Battery negative, CABIN side. RADLOK 8.0 female cable connector, 200A, 50 mm2 (1/0), BLACK. Mates the RL9080-301-F1 firewall feed-through."
     }
   ],
   "contactParts": [
