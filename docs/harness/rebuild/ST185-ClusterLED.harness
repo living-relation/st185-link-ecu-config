@@ -27,8 +27,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 930,
-        "y": -240
+        "x": 960,
+        "y": -150
       },
       "partId": "cp_cluster"
     },
@@ -50,7 +50,7 @@
         {
           "id": "c9",
           "designation": "9",
-          "signal": "IG +12 (B-O) - charge LED anode side"
+          "signal": "IG +12 (B-O) - one tap feeds every LED anode and the charge excite resistor"
         }
       ],
       "schematicPosition": {
@@ -64,14 +64,14 @@
       "partId": "cp_cluster"
     },
     {
-      "id": "dm_csb_ls",
-      "label": "CSB-LS",
+      "id": "dm_csb3io_c26",
+      "label": "CSB3-c26 (L4)",
       "width": 390,
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "ECUMaster CSB3 low-side output, L1-L4 *"
+          "signal": "ECUMaster CSB3 L4 low-side - oil pressure LED sink, CAN 0x643 *"
         }
       ],
       "schematicPosition": {
@@ -79,7 +79,7 @@
         "y": 90
       },
       "layoutPosition": {
-        "x": 1020,
+        "x": 1200,
         "y": 180
       },
       "partId": "cp_xref",
@@ -91,31 +91,16 @@
       "id": "t_led_gnd",
       "type": "Ring",
       "width": 390,
-      "signal": "LED common return - DESTINATION NOT CONFIRMED *",
+      "signal": "LED common return - OEM ground ID, left kick panel (M6, assumed)",
       "schematicPosition": {
         "x": 660,
         "y": 0
       },
       "layoutPosition": {
-        "x": 990,
-        "y": -330
+        "x": 1080,
+        "y": -390
       },
       "partId": "tp_ring_m6_22_16"
-    },
-    {
-      "id": "t_led_12v",
-      "type": "Loose",
-      "width": 390,
-      "signal": "+12V IG to LED anodes - SOURCE PIN NOT *",
-      "schematicPosition": {
-        "x": 0,
-        "y": 360
-      },
-      "layoutPosition": {
-        "x": 960,
-        "y": -150
-      },
-      "partId": "tp_flying_lead"
     }
   ],
   "splices": [
@@ -126,8 +111,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 1050,
-        "y": -360
+        "x": 1140,
+        "y": -330
       },
       "partId": "spp_solder_26_14",
       "locationId": "bp_990"
@@ -139,10 +124,10 @@
         "y": 360
       },
       "layoutPosition": {
-        "x": 1050,
-        "y": -180
+        "x": 1140,
+        "y": -390
       },
-      "partId": "spp_solder_26_14",
+      "partId": "spp_crimp_14_10",
       "locationId": "bp_990"
     }
   ],
@@ -156,8 +141,8 @@
         "y": 180
       },
       "layoutPosition": {
-        "x": 900,
-        "y": -360
+        "x": 1020,
+        "y": -330
       }
     }
   ],
@@ -171,8 +156,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 900,
-        "y": -180
+        "x": 1020,
+        "y": -390
       },
       "locationId": "bp_960"
     },
@@ -185,8 +170,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 900,
-        "y": -120
+        "x": 1020,
+        "y": -450
       },
       "locationId": "bp_960"
     },
@@ -199,8 +184,8 @@
         "y": 60
       },
       "layoutPosition": {
-        "x": 870,
-        "y": -270
+        "x": 1020,
+        "y": -510
       },
       "locationId": "bp_960"
     },
@@ -213,8 +198,8 @@
         "y": 180
       },
       "layoutPosition": {
-        "x": 960,
-        "y": -390
+        "x": 1020,
+        "y": -570
       },
       "locationId": "bp_960"
     },
@@ -227,8 +212,8 @@
         "y": 180
       },
       "layoutPosition": {
-        "x": 1050,
-        "y": -300
+        "x": 1020,
+        "y": -630
       },
       "locationId": "bp_960"
     },
@@ -241,8 +226,8 @@
         "y": 90
       },
       "layoutPosition": {
-        "x": 1050,
-        "y": -120
+        "x": 1260,
+        "y": -330
       },
       "locationId": "bp_1020"
     }
@@ -340,19 +325,6 @@
       "partId": "wp_20_blk"
     },
     {
-      "id": "w_12v_in",
-      "color": "Red",
-      "source": {
-        "id": "t_led_12v",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_led_12v",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_red"
-    },
-    {
       "id": "w_pk_a",
       "color": "Red",
       "source": {
@@ -383,8 +355,8 @@
       "id": "w_chg_a",
       "color": "Black",
       "source": {
-        "id": "cl_c12",
-        "handle": "c9"
+        "id": "sp_led_12v",
+        "handle": "Splice"
       },
       "target": {
         "id": "d_chg",
@@ -427,7 +399,7 @@
         "handle": "Right"
       },
       "target": {
-        "id": "dm_csb_ls",
+        "id": "dm_csb3io_c26",
         "handle": "c1"
       },
       "partId": "wp_20_wht"
@@ -436,8 +408,8 @@
       "id": "w_chg_ex_a",
       "color": "Black",
       "source": {
-        "id": "cl_c12",
-        "handle": "c9"
+        "id": "sp_led_12v",
+        "handle": "Splice"
       },
       "target": {
         "id": "r_chg_excite",
@@ -457,6 +429,20 @@
         "handle": "c8"
       },
       "partId": "wp_20_yel"
+    },
+    {
+      "id": "w_ig_tap",
+      "color": "Black",
+      "stripeColor": "Orange",
+      "source": {
+        "id": "cl_c12",
+        "handle": "c9"
+      },
+      "target": {
+        "id": "sp_led_12v",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_blk_org"
     }
   ],
   "bundles": [
@@ -506,18 +492,9 @@
       }
     },
     {
-      "id": "bn_bp_960__t_led_12v",
-      "sourceId": "bp_960",
-      "targetId": "t_led_12v",
-      "length": {
-        "value": 110,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1020__dm_csb_ls",
+      "id": "bn_bp_1020__dm_csb3io_c26",
       "sourceId": "bp_1020",
-      "targetId": "dm_csb_ls",
+      "targetId": "dm_csb3io_c26",
       "length": {
         "value": 780,
         "unit": "mm"
@@ -535,14 +512,14 @@
     {
       "id": "bp_990",
       "layoutPosition": {
-        "x": 990,
+        "x": 1080,
         "y": -240
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1020,
+        "x": 1200,
         "y": -240
       }
     }
@@ -586,7 +563,7 @@
     },
     {
       "id": "n_open",
-      "text": "STILL OPEN - do not build these two. 1) Where the LED common return actually lands. The three feed-side LEDs (high beam, turn L, turn R) are drawn joining at sp_led_gnd and running to t_led_gnd; a local chassis ground is the obvious answer but the source diagram does not say, so t_led_gnd has no destination yet. 2) The +12V IG anode feed for the park brake and oil LEDs - stated as existing, no pin given, drawn as t_led_12v. 3) Current limiting: whether the LED board carries its own resistors or the loom must. No resistors are drawn. Park brake grounds through the OEM P1 / B2 path, which is why its cathode goes to C12-1 and not to the common return.",
+      "text": "ASSUMPTIONS (2026-09-25, closes the old open items) 1) LED common return: sp_led_gnd -> t_led_gnd on OEM ground point ID, left kick panel (M6 stud assumed). 2) +12V IG for the LED anodes: one tap off C12-9 (IG +12, B-O) to sp_led_12v, which feeds the charge, park-brake and oil LEDs and the 56R excite resistor. 3) Current limiting is on the LED board; the loom carries no resistors. Oil LED sinks on CSB3 L4 (plan 6.48 L-channel table). Park brake grounds through the OEM P1 / B2 path, which is why its cathode goes to C12-1 and not to the common return.",
       "width": 390,
       "schematicPosition": {
         "x": 1200,
@@ -603,7 +580,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCSB-LS 1: ECUMaster CSB3 low-side output, L1-L4 - channel TBD (see ST185-A-ECU C10 cavities 23-26, and CAN 0x643), wired on ST185-A-ECU\nt_led_gnd: LED common return - DESTINATION NOT CONFIRMED (open item)\nt_led_12v: +12V IG to LED anodes - SOURCE PIN NOT IDENTIFIED (open item)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCSB3-c26 (L4) 1: ECUMaster CSB3 L4 low-side - oil pressure LED sink, commanded on CAN 0x643; the CSB3 plug is on ST185-A-ECU (csb3io c26)\nt_led_gnd: LED common return - OEM ground point ID, left kick panel (assumed)",
       "schematicPosition": {
         "x": 1200,
         "y": 1380
@@ -702,31 +679,24 @@
           "contactPartId": "ct_generic_skt"
         }
       ],
-      "id": "cp_cluster"
+      "id": "cp_cluster",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-combination-meter.png"
+      }
     },
     {
       "partNumber": "(cross-reference - no part)",
       "manufacturer": "n/a",
       "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
-      "id": "cp_xref"
+      "id": "cp_xref",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png"
+      }
     }
   ],
   "terminalParts": [
-    {
-      "type": "Loose",
-      "partNumber": "GENERIC FLYING LEAD",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
-      "id": "tp_flying_lead"
-    },
     {
       "type": "Ring",
       "size": "M6",
@@ -758,6 +728,20 @@
       },
       "description": "SPLICE, SOLDER SLEEVE, WITH ADHESIVE HEATSHRINK, COMBINED 26-14 AWG (Raychem D-406 class)",
       "id": "spp_solder_26_14"
+    },
+    {
+      "partNumber": "GENERIC CRIMP SPLICE 14-10",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 14,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
+      "id": "spp_crimp_14_10"
     }
   ],
   "contactParts": [
@@ -773,9 +757,9 @@
   "diodeParts": [
     {
       "id": "dp_led",
-      "partNumber": "(generic indicator LED - type TBD)",
-      "manufacturer": "TBD",
-      "description": "DIODE, LIGHT EMITTING, INDICATOR, 12 V WITH SERIES RESISTOR - cluster warning indicator. Colour, package and current TBD"
+      "partNumber": "(LED board indicator - 12 V, resistor on board)",
+      "manufacturer": "LED board",
+      "description": "DIODE, LIGHT EMITTING, INDICATOR, 12 V - cluster warning indicator on the LED board; current-limit resistor is on the board, the loom carries none (assumption 2026-09-25)"
     }
   ],
   "resistorParts": [
@@ -785,5 +769,6 @@
       "manufacturer": "generic",
       "description": "RESISTOR, FIXED, WIREWOUND, 56 OHM, 5 W - alternator pre-excitation, parallel to the charge LED"
     }
-  ]
+  ],
+  "mates": []
 }
