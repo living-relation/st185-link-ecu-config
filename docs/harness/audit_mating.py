@@ -12,11 +12,18 @@ checks, against sot/channels.csv:
       loom is A crosses on bulkhead A, loom B on bulkhead B.
   M3  screens stay in their own loom: a drain on bulkhead A reaches SHIELD_A
       (A7) only, a drain on bulkhead B reaches SHIELD_B (B17) only.
-  M4  SHIELD_A and SHIELD_B are never joined anywhere in any drawing.
+  M4  SHIELD_A and SHIELD_B are never joined anywhere. Checked on ONE graph of
+      all nine looms: mated bulkhead halves are one node per cavity, dm_
+      cross-references (dm_sp_*_Splice, dm_ecu_*, dm_<component>_<cavity>)
+      resolve to the node they name, and each VR conditioner box is one node
+      (its case joins the OUT shielding plate and the IN pin-3 screens, 6.30).
+      Fails if A7 can reach B17 by any path.
   M5  one cavity, one ECU signal: a cavity never reaches two different
       signal-class ECU pins.
   M6  loom C has no bulkhead: the front wheel-speed drops (fender sub-loom of
       loom C) never land on a bulkhead cavity.
+  M7  a device connector drawn on two looms has each cavity wired on one loom
+      only (one cavity, one circuit).
 
 Shared rails (+5V, +8V, Gnd Out) are exempt from M2: loom B has no +5V pin, so
 it borrows A32 by design. Pin *names* across each mating pair are checked by
@@ -185,11 +192,78 @@ for (nid, cav), looms in sorted(cav_owner.items()):
         bad.append("M7 %s %s is wired on %d looms (%s) - one cavity, one circuit"
                    % (nid, cav, len(looms), ", ".join(sorted(looms))))
 
-# M4 - shields never bridged
-for loom, g in graphs.items():
-    a = ("ECU", "ecu_a", "a7")
-    if a in g and ("ecu_b", "b17") in reach(g, a):
-        bad.append("M4 %s: SHIELD_A (A7) and SHIELD_B (B17) are joined - never bridge them" % loom)
+# M4 - shields never bridged, checked on one graph across every loom.
+COMPONENTS = set()
+DOCS = {}
+for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
+    d = json.load(open(path, encoding="utf-8"))
+    DOCS[os.path.basename(path)[6:-8]] = d
+    for k in ("connectors", "terminals", "resistors", "diodes"):
+        for c in d.get(k, []):
+            if not c["id"].startswith("dm_"):
+                COMPONENTS.add(c["id"])
+MATE = dict(PAIRS)
+VRC_BOX = {("vrc_f_inl", "c3"): "F", ("vrc_f_inr", "c3"): "F", ("vrc_f_out", "shell"): "F",
+           ("vrc_f_inl", "shell"): "F", ("vrc_f_inr", "shell"): "F",
+           ("vrc_r_inl", "c3"): "R", ("vrc_r_inr", "c3"): "R", ("vrc_r_out", "shell"): "R",
+           ("vrc_r_inl", "shell"): "R", ("vrc_r_inr", "shell"): "R"}
+
+
+def gnode(e):
+    """One electrical node per physical point, whichever drawing names it."""
+    nid, h = e.get("id", ""), e.get("handle")
+    k = ecu_key(e)
+    if k:
+        return ("ECU",) + k
+    if nid.startswith("dm_"):
+        body = nid[3:]
+        if body.endswith("_Splice"):
+            return ("SP", body[:-7])
+        if body.startswith("bh_"):
+            bh, cav = body.rsplit("_", 1)
+            return ("C", MATE.get(bh, bh), cav)
+        comp, _, cav = body.rpartition("_")
+        if comp in COMPONENTS:
+            return gnode({"id": comp, "handle": cav})
+        return ("DM", nid)
+    if h == "Splice" or nid.startswith("sp_"):
+        return ("SP", nid)
+    if (nid, h) in VRC_BOX:
+        return ("BOX", VRC_BOX[(nid, h)])
+    return ("C", MATE.get(nid, nid), h)
+
+
+G = collections.defaultdict(set)
+for loom, d in DOCS.items():
+    for c in conductors(d):
+        s, t = c.get("source") or {}, c.get("target") or {}
+        if s.get("id") and t.get("id"):
+            a, b = gnode(s), gnode(t)
+            G[a].add(b)
+            G[b].add(a)
+
+
+def path_between(start, goal):
+    prev, todo = {start: None}, [start]
+    while todo:
+        n = todo.pop(0)
+        if n == goal:
+            out = []
+            while n is not None:
+                out.append(n)
+                n = prev[n]
+            return out[::-1]
+        for m in G.get(n, ()):
+            if m not in prev:
+                prev[m] = n
+                todo.append(m)
+    return None
+
+
+p = path_between(("ECU", "ecu_a", "a7"), ("ECU", "ecu_b", "b17"))
+if p:
+    bad.append("M4 SHIELD_A (A7) and SHIELD_B (B17) are joined - never bridge them. Path: "
+               + " -> ".join(":".join(str(x) for x in n) for n in p))
 
 for line in bad:
     print(line)
