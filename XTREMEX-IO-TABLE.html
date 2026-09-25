@@ -179,7 +179,7 @@
   <div class="pmc pm-volt" title="Fuel level sender · loom B · set"><b>B24</b><span class="pmch">An Volt 9</span><span class="pmnet">AV9_FUEL_LVL</span><span class="pmlb">Fuel level sender</span></div>
   <div class="pmc pm-gnd" title="ECU reference ground · loom B · set"><b>B25</b><span class="pmch">Ground</span><span class="pmnet">GND_ECU</span><span class="pmlb">ECU reference ground</span></div>
   <div class="pmc pm-aux" title="ETB motor - · loom B · set"><b>B26</b><span class="pmch">Aux 10</span><span class="pmnet">AUX10_ETB_MN</span><span class="pmlb">ETB motor -</span></div>
-  <div class="pmc pm-tbd" title="available · loom B · spare"><b>B27</b><span class="pmch">DI 10</span><span class="pmnet">—</span><span class="pmlb">available</span></div>
+  <div class="pmc pm-di" title="Anti-theft input · loom B · set"><b>B27</b><span class="pmch">DI 10</span><span class="pmnet">DI10_ANTITHEFT</span><span class="pmlb">Anti-theft input</span></div>
   <div class="pmc pm-di" title="Ignition switch sense · loom B · set"><b>B28</b><span class="pmch">DI 9</span><span class="pmnet">DI9_IGN_SW</span><span class="pmlb">Ignition switch sense</span></div>
   <div class="pmc pm-di" title="Gearbox vehicle speed · loom B · set"><b>B29</b><span class="pmch">DI 8</span><span class="pmnet">DI8_VSS</span><span class="pmlb">Gearbox vehicle speed</span></div>
   <div class="pmc pm-di" title="Start request · loom B · set"><b>B30</b><span class="pmch">DI 7</span><span class="pmnet">DI7_START_REQ</span><span class="pmlb">Start request</span></div>
@@ -231,7 +231,7 @@
   <tr class="g-di"><td class="chan">DI 7</td><td class="pin">B30</td><td class="wire">Green</td><td>Start request (button/key)</td><td><span class="badge ok">✅</span></td><td>ECU-controlled start</td></tr>
   <tr class="g-di"><td class="chan">DI 8</td><td class="pin">B29</td><td class="wire">Green</td><td>Gearbox 3-wire 12V Toyota VSS (mph)</td><td><span class="badge ok">✅</span></td><td>Daniel lock 2026-09-18: <strong>gearbox 3-wire 12V Toyota VSS</strong> (not 4-wire). Harness mate = <strong>generic oval 3-pin plug with socket contacts</strong>, <strong>PN TBD</strong>. Signal → B29 / DI 8 for mph. Oval cavity map (PWR/SIG/GND) <strong>TBD</strong> — do not invent. <strong>Chosen landing = gearbox VSS</strong>, not OEM SPD tap (path A). Clutch/brake/reverse/cruise stay on the switchboard. Driven square-wave, not passive VR. No harness wire drawn yet (stub <code>vss_gbx</code> in Signal).</td></tr>
   <tr class="g-di"><td class="chan">DI 9</td><td class="pin">B28</td><td class="wire">Green</td><td>Ignition Switch (Hold Power)</td><td><span class="badge ok">✅</span></td><td>Dummy <strong>OEM ignition-switch block</strong> — key-on sense for PCLink Hold Power (pairs with Aux 6 EFI-main hold). OEM internals not modelled. CAN 2 unused, so B28 is an ordinary DI.</td></tr>
-  <tr class="g-di"><td class="chan">DI 10</td><td class="pin">B27</td><td class="wire">Green</td><td>Available</td><td><span class="badge tbd">⬜</span></td><td>CAN 2 unused. Ordinary digital input.</td></tr>
+  <tr class="g-di"><td class="chan">DI 10</td><td class="pin">B27</td><td class="wire">Green</td><td>Anti-theft input (alarm immobiliser out)</td><td><span class="badge ok">✅</span></td><td>Daniel lock 2026-09-25. Alarm grounds it when armed; PCLink Anti-Theft on this DI, pull-up ON. CAN 2 unused, so B27 is an ordinary DI.</td></tr>
 </table>
 
 <h2>Inputs — via Switchboard (CAN, frees ECU DIs)</h2>
@@ -334,7 +334,7 @@
   <tr><td>Temp</td><td>4</td><td>4</td><td>0 (ECT, IAT, oil, charge-pipe IAT — ECU pull-ups)</td></tr>
   <tr><td>Trigger</td><td>2</td><td>2</td><td>0</td></tr>
   <tr><td>Knock</td><td>2</td><td>1</td><td>1 (Knock 2 / B8)</td></tr>
-  <tr><td>Digital in</td><td>10</td><td>9</td><td>1 (DI 10 / B27 — CAN 2 unused)</td></tr>
+  <tr><td>Digital in</td><td>10</td><td>10</td><td>0 (DI 10 / B27 = anti-theft)</td></tr>
   <tr><td>Injection</td><td>8</td><td>4</td><td>4 → aux (B1–B4)</td></tr>
   <tr><td>Ignition</td><td>8</td><td>4 coils + 2 aux (Ign 5, Ign 6)</td><td>2 (Ign 7–8)</td></tr>
   <tr><td>Aux</td><td>10</td><td>10 (9/10 = ETB)</td><td>0 → spare Ign/Inj</td></tr>

@@ -1036,48 +1036,6 @@
       }
     },
     {
-      "id": "rl_pos_eng",
-      "partId": "cp_rl_red_eng",
-      "label": "RADLOK + - engine side",
-      "width": 210,
-      "schematicPosition": {
-        "x": 3220,
-        "y": 2104
-      },
-      "layoutPosition": {
-        "x": 3220,
-        "y": 2104
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "heavy DC"
-        }
-      ]
-    },
-    {
-      "id": "rl_neg_eng",
-      "partId": "cp_rl_blk_eng",
-      "label": "RADLOK - - engine side",
-      "width": 210,
-      "schematicPosition": {
-        "x": 3220,
-        "y": 1834
-      },
-      "layoutPosition": {
-        "x": 3220,
-        "y": 1834
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "heavy DC"
-        }
-      ]
-    },
-    {
       "id": "dm_k_str_c4",
       "label": "K6-c4",
       "width": 150,
@@ -1222,48 +1180,6 @@
       "schematicPosition": {
         "x": 3860,
         "y": 642
-      }
-    },
-    {
-      "id": "t_starter_b",
-      "type": "Ring",
-      "signal": "Starter B+ post - 2 AWG",
-      "width": 210,
-      "schematicPosition": {
-        "x": 4980,
-        "y": 574
-      },
-      "layoutPosition": {
-        "x": 4980,
-        "y": 574
-      }
-    },
-    {
-      "id": "t_alt_b",
-      "type": "Ring",
-      "signal": "Alternator B+ (rear of block, under intake) - 4 AWG",
-      "width": 210,
-      "schematicPosition": {
-        "x": 4420,
-        "y": 3954
-      },
-      "layoutPosition": {
-        "x": 4420,
-        "y": 3954
-      }
-    },
-    {
-      "id": "t_eng_block",
-      "type": "Ring",
-      "signal": "Engine block ground stud - 2 AWG",
-      "width": 210,
-      "schematicPosition": {
-        "x": 3860,
-        "y": 2298
-      },
-      "layoutPosition": {
-        "x": 3860,
-        "y": 2298
       }
     }
   ],
@@ -1813,42 +1729,6 @@
       }
     },
     {
-      "id": "w_hv_batt_eng",
-      "color": "Red",
-      "source": {
-        "id": "rl_pos_eng",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "t_starter_b",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "w_hv_alt",
-      "color": "Red",
-      "source": {
-        "id": "t_alt_b",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "t_starter_b",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "w_hv_gnd_eng",
-      "color": "Black",
-      "source": {
-        "id": "rl_neg_eng",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "t_eng_block",
-        "handle": "Terminal"
-      }
-    },
-    {
       "id": "w_strl",
       "color": "Red",
       "source": {
@@ -1897,35 +1777,6 @@
       }
     }
   ],
-  "bundles": [
-    {
-      "id": "bn_rl_pos_eng__t_starter_b",
-      "sourceId": "rl_pos_eng",
-      "targetId": "t_starter_b",
-      "length": {
-        "unit": "mm",
-        "value": 900
-      }
-    },
-    {
-      "id": "bn_rl_neg_eng__t_eng_block",
-      "sourceId": "rl_neg_eng",
-      "targetId": "t_eng_block",
-      "length": {
-        "unit": "mm",
-        "value": 800
-      }
-    },
-    {
-      "id": "bn_t_starter_b__t_alt_b",
-      "sourceId": "t_starter_b",
-      "targetId": "t_alt_b",
-      "length": {
-        "unit": "mm",
-        "value": 450
-      }
-    }
-  ],
   "connectorParts": [
     {
       "id": "cp_hdp_a_eng",
@@ -1956,18 +1807,6 @@
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
       "description": "Sealing plug, size 20, red"
-    },
-    {
-      "id": "cp_rl_red_eng",
-      "partNumber": "RL00801-50RE",
-      "manufacturer": "Amphenol",
-      "description": "Battery positive, ENGINE side. RADLOK 8.0 female cable connector, 200A, 50 mm2 (1/0), RED. Mates the RL9080-301-F1RE firewall feed-through."
-    },
-    {
-      "id": "cp_rl_blk_eng",
-      "partNumber": "RL00801-50BK",
-      "manufacturer": "Amphenol",
-      "description": "Battery negative, ENGINE side. RADLOK 8.0 female cable connector, 200A, 50 mm2 (1/0), BLACK. Mates the RL9080-301-F1 firewall feed-through."
     },
     {
       "id": "cp_vss3",

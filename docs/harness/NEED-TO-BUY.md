@@ -166,10 +166,6 @@ will over-order these; use this list, not the drawings.
 | `map` | A-engine, B-engine | A-engine |
 | `oilp` | A-engine, B-engine | A-engine |
 | `oilt` | A-engine, B-engine | A-engine |
-| `rl_neg_eng` | B-engine, EngineRoom-C | B-engine |
-| `rl_neg_fw` | B-ECU, EngineRoom-C | B-ECU |
-| `rl_pos_eng` | B-engine, EngineRoom-C | B-engine |
-| `rl_pos_fw` | B-ECU, EngineRoom-C | B-ECU |
 | `turbospd` | A-engine, B-engine | A-engine |
 
 ## Still unspecified

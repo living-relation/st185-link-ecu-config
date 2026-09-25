@@ -373,8 +373,8 @@
         },
         {
           "id": "b27",
-          "designation": "B27",
-          "notConnected": true
+          "signal": "DI 10 (Anti-Theft)",
+          "designation": "B27"
         },
         {
           "id": "b28",

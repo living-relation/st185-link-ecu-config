@@ -42,7 +42,8 @@ Fallback, if that ever stops being true:
 | crank | cable floats at the sensor → `bh_a_eng` c33 → `bh_a_fw` c33 → `sp_shield_a` → **ECU-A A7** | own pin, bulkhead A |
 | cam | same, c34 → `sp_shield_a` → **A7** | own pin, bulkhead A |
 | knock 1 | cable floats at the sensor → `bh_b_eng` c18 → `bh_b_fw` c18 → `sp_shield_b` → **ECU-B B17** (knock is pin B9, loom B) | own pin, bulkhead B |
-| wss FL, FR | continuous through the **front** VRC enclosure, loom C fender sub-loom, no bulkhead; output screen → `sp_shield_a` → A7 | none — fender |
+| wss FL, FR (raw) | continuous through the **front** VRC enclosure, loom C fender sub-loom, no bulkhead; FL output cable screen → `sp_shield_a` → A7 | none — fender |
+| wss FR (conditioned) | own 1-core screened cable, VRC OUT c4 → ECU-B B21; screen → `sp_shield_b` → **B17**, floats at the VRC so it never touches the enclosure (Daniel, 2026-09-25) | none |
 | wss RL, RR | continuous through the **rear** VRC enclosure, no bulkhead; output screen → `sp_shield_b` → B17 | none — grommet |
 
 **The two shield grounds are never joined.** Loom A screens land on A7 through

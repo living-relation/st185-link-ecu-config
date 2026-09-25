@@ -31,6 +31,14 @@ def rebuilt_files():
 # Differences the rebuild is supposed to introduce. Anything outside this list
 # is a real fault.
 EXPECT_GONE = {
+    # 2026-09-25: the RADLOK heavy-DC pair was drawn on the B looms AND on
+    # EngineRoom-C. Daniel: loom C owns it. Same path lives there as
+    # w_pdb_rlp / w_rl_pos / w_rlp_str / w_alt / w_pdb_rln / w_rln / w_rln_blk.
+    "w_hv_batt_fw": "deleted - heavy DC is loom C's (w_pdb_rlp)",
+    "w_hv_gnd_fw": "deleted - heavy DC is loom C's (w_pdb_rln)",
+    "w_hv_batt_eng": "deleted - heavy DC is loom C's (w_rlp_str)",
+    "w_hv_gnd_eng": "deleted - heavy DC is loom C's (w_rln_blk)",
+    "w_hv_alt": "deleted - heavy DC is loom C's (w_alt)",
     "w_mrs_relay_req": "deleted per 6.16 - the pump does not switch its own relay",
     "w23": "renamed w_cam_pullup_8v and rewired to bridge 8V to the signal",
     "w20_e": "renamed w_cam_pullup_sig and rewired to the ECU side",
@@ -106,6 +114,7 @@ EXPECT_GONE = {
     "w12_e":       "-> cab_knock1_c2 (knock SIG-, unchanged endpoints)",
 }
 EXPECT_NEW = {
+    "cab_fout_fr_sh": "FR conditioned output screen on its own cable, to sp_shield_b / B17; floats at the VRC (Daniel 2026-09-25)",
     "w_eps_trig": "6.16 ECU-driven EPS relay trigger, Ign 6 / ecu_b.b12",
     "w_rl_pos": "RADLOK positive pair, renamed out of the w_rlp collision",
     "w_cam_pullup_8v": "cam pull-up, ECU 8V a6 to resistor",

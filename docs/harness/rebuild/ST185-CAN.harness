@@ -759,7 +759,7 @@
   "wires": [
     {
       "id": "wc_h_ecu",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "ecu_com",
         "handle": "c3"
@@ -771,7 +771,7 @@
     },
     {
       "id": "wc_l_ecu",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "ecu_com",
         "handle": "c4"
@@ -783,7 +783,7 @@
     },
     {
       "id": "wc_h_csb",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "sp_canh",
         "handle": "Splice"
@@ -795,7 +795,7 @@
     },
     {
       "id": "wc_l_csb",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "sp_canl",
         "handle": "Splice"
@@ -807,7 +807,7 @@
     },
     {
       "id": "wc_h_clu",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "sp_canh",
         "handle": "Splice"
@@ -819,7 +819,7 @@
     },
     {
       "id": "wc_l_clu",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "sp_canl",
         "handle": "Splice"
@@ -831,7 +831,7 @@
     },
     {
       "id": "wc_h_rd",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "sp_canh",
         "handle": "Splice"
@@ -843,7 +843,7 @@
     },
     {
       "id": "wc_l_rd",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "sp_canl",
         "handle": "Splice"
@@ -855,7 +855,7 @@
     },
     {
       "id": "wc_h_bh",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "sp_canh",
         "handle": "Splice"
@@ -867,7 +867,7 @@
     },
     {
       "id": "wc_l_bh",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "sp_canl",
         "handle": "Splice"
@@ -879,7 +879,7 @@
     },
     {
       "id": "wc_h_lam",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "bh_a_eng",
         "handle": "c30"
@@ -891,7 +891,7 @@
     },
     {
       "id": "wc_l_lam",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "bh_a_eng",
         "handle": "c31"
@@ -903,7 +903,7 @@
     },
     {
       "id": "wc_term1",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "r_term_ecu",
         "handle": "Left"
@@ -915,7 +915,7 @@
     },
     {
       "id": "wc_term2",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "r_term_ecu",
         "handle": "Right"
@@ -927,7 +927,7 @@
     },
     {
       "id": "wc_term3",
-      "color": "Green",
+      "color": "White",
       "source": {
         "id": "r_term_end",
         "handle": "Left"
@@ -939,7 +939,7 @@
     },
     {
       "id": "wc_term4",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "r_term_end",
         "handle": "Right"
