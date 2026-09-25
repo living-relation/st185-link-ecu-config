@@ -11,7 +11,8 @@ interface and every node hanging off it.
 > `main/Kconfig.projbuild` are authoritative for those, and this repo's copy had
 > gone stale (it still reserved GPIO18/19 as center UART RX and knew nothing of
 > Encoder 3 or the headlight sense input). See
-> `center-cluster-esp32-p4/docs/RECONCILIATION-FROM-ST185-2026-09-24.md`.
+> `center-cluster-esp32-p4/archive/2026-09-25-wiring/RECONCILIATION-FROM-ST185-2026-09-24.md`
+> (resolved and archived 2026-09-25).
 >
 > The center cluster is a **node on the CAN bus** described below. That
 > interface is this repo's; everything inside the cluster is not.
