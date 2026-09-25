@@ -28,7 +28,6 @@ ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "90980-12068":1,"90980-10897":1,"90980-10942":1,
 }
 EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
- ("1-1904045-6","TE Connectivity","Micro ISO relay connector kit (harness-side socket for the V23074 relays)",6,0),
  ("VCF7-1000 / 1393310-4","TE Connectivity","Maxi relay mounting block",1,1),
  ("280756-4","TE Connectivity","250-series terminal 12-10 AWG, for VCF7 power legs",4,0),
  ("HCR 150 mating hardware","TE Connectivity","Receptacle / terminals for V23132-A2001-B200 - CONFIRM with supplier",1,0),
@@ -40,7 +39,7 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("8 AWG TXL red/black","generic","EPS pump 12V/GND (passenger ABS trough) and uprated fan 12V/GND (core support)",1,0),
 
  ("Micro ISO relays x4","TE Connectivity","HEAD LH, HEAD RH, RTR, device-hold and alternator-excite relays replacing the PMU (plan 6.48). 8 owned, 6 already assigned to k_efi/k_etb/k_fp/k_fan/k_fan2/k_str.",4,0),
- ("2nd fuse block 12-16 way","generic","Glove box, for the ex-J/B2 body circuits: HEAD LH 15, HEAD RH 15, HAZ-HORN 15, DOME 20, RTR 30, CSB3 5, cluster 10, Pi 15, alt excite 5. TE 2141029-1 is full at F1-F13. Plan 6.48.",1,0),
+ ("2nd fuse block 12-16 way","generic","Glove box, for the ex-J/B2 body circuits: HEAD LH 15, HEAD RH 15, HAZ-HORN 15, DOME 20, RTR 30, CSB3 5, cluster 10, Pi 15, alt excite 5, ACPS (A/C pressure switch, IG) 5. TE 2141029-1 is full at F1-F13. Plan 6.48.",1,0),
  ("ANL 100A + holder","generic","Feed for the second fuse block off the PDB stud. Plan 6.48 / redistribution 8.",1,0),
  ("2127","Blue Sea Systems","PDB1 glove-box distribution block, 250A, four 5/16\"-18 studs. Starter is fed direct from the main cable per OEM (plan 6.20), so PDB1 carries accessories only.",1,0),
  ("2719","Blue Sea Systems","MaxiBus insulating cover for PDB1 / 2127. Not optional - PDB1 is inside the cabin.",1,0),
@@ -93,13 +92,19 @@ for f in F:
         copies.setdefault(c["id"], []).append((loom, c, parts))
     for coll in ("resistors", "diodes", "terminals", "splices", "branchPoints"):
         for n in d.get(coll, []):
+            if n.get("excludeFromBom"):
+                continue
             pid = n.get("partId") or n.get("bootPartId")
             if pid and pid in parts:
                 q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
 
 def stamp(c, parts):
     """What this copy claims: its part number and every contact/plug it names.
-    A cross-reference dummy claims nothing, so it stamps empty and never wins."""
+    A cross-reference dummy claims nothing, so it stamps empty and never wins.
+    2026-09-25: neither does a copy marked excludeFromBom - every non-owner copy
+    of a shared connector is excluded, so it is counted once, on its owner loom."""
+    if c.get("excludeFromBom"):
+        return None, ()
     pn = (parts.get(c.get("partId")) or {}).get("partNumber")
     ct = tuple(sorted((cv["id"], cv.get("contactPartId"), cv.get("cavityPlugPartId"))
                       for cv in c.get("cavities", []) if cv.get("contactPartId")

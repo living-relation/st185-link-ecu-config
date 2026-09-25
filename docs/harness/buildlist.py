@@ -36,8 +36,10 @@ def cavity_info(d):
             out[(c["id"], cv["id"])] = (cv.get("designation",""), cv.get("signal",""))
     return out
 
-def contact_for(d, conn_id):
-    """connector -> contact part number to crimp (via connectorPart configurations)"""
+def contact_for(d, conn_id, cav_id=None):
+    """connector cavity -> contact part number to crimp: the cavity's own
+    contactPartId override first (2026-09-25: ECU power pins, fuse-block and
+    relay cavities carry per-cavity contacts), else the part's default."""
     parts = {}
     for k in [x for x in d if x.endswith("Parts")]:
         for q in d[k]:
@@ -46,6 +48,9 @@ def contact_for(d, conn_id):
         if c["id"] != conn_id:
             continue
         pid = c.get("partId")
+        for cv in c.get("cavities", []):
+            if cv["id"] == cav_id and cv.get("contactPartId") in parts:
+                return parts[cv["contactPartId"]].get("partNumber", "")
         if not pid or pid not in parts:
             return ""
         cfgs = parts[pid].get("configurations") or []
@@ -100,6 +105,8 @@ for tag, fn in F:
     d = load(fn)
     ix, cav, g = node_index(d), cavity_info(d), bundle_graph(d)
     ccache = {}
+    wparts = {q["id"]: q for k in d if k.endswith("Parts") for q in d[k]}
+    cable_part = {cb["id"]: cb.get("partId") for cb in d.get("cables", [])}
     # WheelSpeed has no `wires` at all - every conductor is a cable core or a
     # cable shield - so a loop over `wires` alone dropped the whole loom off the
     # build list, and three A-engine shielded runs with it. Fixed 2026-09-22.
@@ -121,16 +128,22 @@ for tag, fn in F:
             rec[end + " signal"] = sig
             rec[end + " kind"] = kind
             if kind == "connector":
-                if nid not in ccache:
-                    ccache[nid] = contact_for(d, nid)
-                rec[end + " terminal"] = ccache[nid]
+                if (nid, h) not in ccache:
+                    ccache[(nid, h)] = contact_for(d, nid, h)
+                rec[end + " terminal"] = ccache[(nid, h)]
             else:
                 rec[end + " terminal"] = ""
         col = w.get("color","")
         if w.get("stripeColor"):
             col += "/" + w["stripeColor"]
         rec["Colour"] = col
-        rec["AWG"] = ""
+        # gauge comes from the wire's part (cable cores from the cable part)
+        gp = wparts.get(w.get("partId")) or {}
+        gg = (gp.get("gauge") or {})
+        if not gg and cable:
+            cp = wparts.get(cable_part.get(cable)) or {}
+            gg = next(((k.get("gauge") or {}) for k in cp.get("cores", []) if k.get("gauge")), {})
+        rec["AWG"] = ("%s" % gg.get("value", "")) + ("" if gg.get("unit", "AWG") == "AWG" else " mm2")
         segs, mm = route(g, (w.get("source") or {}).get("id"), (w.get("target") or {}).get("id"))
         rec["Route"] = segs
         rec["Est mm"] = mm

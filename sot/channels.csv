@@ -93,11 +93,11 @@ ACAMP,TAM,acamp_c,6,TAM_SIG,Ambient temp signal,signal,in,ntc,amp-internal,,C,se
 ACAMP,Ambient return,acamp_c,TBD,TAM_RTN,Ambient temp return,signal,in,ntc,none,,C,tbd,EWD-1990-p150,Sensor A1 pin 1 is plain Y and joins a shared sensor-common bus with the A26 thermistor; the amp pin it lands on is not on p150 or p152 - do not invent
 ACAMP,Pressure SW,acamp_18,13,ACP_SIG,A/C pressure switch signal,signal,in,switch-12v,none,,C,set,EWD-1990-p152,A/C AMPLIFIER A18 pin 13 Y-R from pressure switch A5 pin 4 via EB2 pin 2 and E10
 ACAMP,ACT,acamp_18,TBD,AUX4_AC_KILL,Compressor cancel input,signal,in,switch-gnd,none,,C,tbd,Daniel-lock,Ground = kill and floating = normal; the amp terminal number is not on p150 or p152 - do not invent
-PWR,Coil 30,k_eps,c1,FUSEBOX_C7,EPS relay battery feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,From fuse box c7; relay lives in the cabin
+PWR,Coil 30,k_eps,c1,FUSEBOX_C7,EPS relay battery feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,From fuse box c7 (F7 60A, ST185-B-ECU); HCR 150 relay lives in the engine bay, passenger fender
 PWR,Coil 85,k_eps,c2,IGN6_EPS_RLY,EPS relay trigger,signal,in,lowside-2a,none,,C,set,harness-EngineRoom-C,From ECU B12
 PWR,Coil 86,k_eps,c3,SW12,EPS relay coil feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,From sp_sw12
 PWR,Contact 87,k_eps,c4,EPS_PWR,EPS pump feed,power,out,rail-12v,none,,C,set,harness-EngineRoom-C,To mrs_eps a1
 MRS,Power,mrs_eps,a1,EPS_PWR,Pump battery feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,
 MRS,Ground,mrs_eps,a2,CHASSIS_ENG,Pump ground,ground,na,gnd,none,,C,set,harness-EngineRoom-C,To engine block terminal
-MRS,SPD,mrs_eps,b2,AUX7_MRS_SPD,Speed input,signal,in,freq-di,none,,C,set,harness-EngineRoom-C,Yel/Wht; crosses at bh_b_eng c13
+MRS,SPD,mrs_eps,b2,AUX7_MRS_SPD,Speed input,signal,in,freq-di,none,,C,set,harness-EngineRoom-C,Yel/Wht; crosses at bh_a_eng c36 (ECU-A A27)
 MRS,Enable,mrs_eps,c1,MRS_EN,Pump enable,signal,in,switch-12v,none,,C,set,harness-EngineRoom-C,Crosses at bh_b_eng c14

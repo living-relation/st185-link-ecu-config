@@ -160,6 +160,12 @@ EXPECT_NEW = {
     "w_acp_1": "A/C pressure switch (EWD A5) -> A/C amplifier, new in loom C",
     "w_acp_2": "same, return",
     "w_acp_3": "same, third pole if the switch is a trinary",
+    # 2026-09-25: one wire per contact. harness.design sums the wires in a
+    # contact, and a Superseal 1.0 / size-20 socket takes one 20 AWG wire.
+    "w_trig2_pin": "ECU-A A9 to sp_trig2 - the cam signal and its pull-up meet at the splice",
+    "w_fl_sig_pin": "sp_fl_sig to ECU-B B24 - the fuel level signal and its pull-up meet at the splice",
+    "wc_h_lam_pin": "sp_canh_lam to CAN-Lambda c4 - bus and end terminator meet at the splice",
+    "wc_l_lam_pin": "sp_canl_lam to CAN-Lambda c3 - bus and end terminator meet at the splice",
     "w_cru_ladder_out": "pass 2: splice to CSB3 A2. The stalk signal and the pull-up "
                         "used to land on the same cavity, which is a short. They now "
                         "meet at sp_cruise_ladder and one wire carries the ladder in.",
@@ -168,10 +174,21 @@ EXPECT_NEW = {
 EXPECT_CHANGED = {
     # 2026-09-25: CAN H/L were on the CAN-Lambda power pins 1/2. Link QSG DTM4:
     # 1 Power, 2 GND, 3 CAN L, 4 CAN H. Moved to 4 (H) and 3 (L), terminator too.
-    "wc_h_lam": "CAN H lambda c1 -> c4 (Link QSG pin 4 = CAN H)",
-    "wc_l_lam": "CAN L lambda c2 -> c3 (Link QSG pin 3 = CAN L)",
-    "wc_term3": "end terminator follows CAN H to lambda c4",
-    "wc_term4": "end terminator follows CAN L to lambda c3",
+    "wc_h_lam": "CAN H lambda c1 -> c4 (Link QSG pin 4 = CAN H); 2026-09-25 lands on "
+                "sp_canh_lam, one wire per contact (wc_h_lam_pin carries it to c4)",
+    "wc_l_lam": "CAN L lambda c2 -> c3 (Link QSG pin 3 = CAN L); 2026-09-25 via sp_canl_lam",
+    "wc_term3": "end terminator follows CAN H to lambda c4; 2026-09-25 joins at sp_canh_lam",
+    "wc_term4": "end terminator follows CAN L to lambda c3; 2026-09-25 joins at sp_canl_lam",
+    # 2026-09-25: one wire per contact (see EXPECT_NEW). Same nets throughout.
+    "wc_term1": "ECU-end terminator H leg moved off ecu_com c3 onto sp_canh (same net)",
+    "wc_term2": "ECU-end terminator L leg moved off ecu_com c4 onto sp_canl (same net)",
+    "w44": "fuel level pull-up +5V leg moved off ECU-A A32 onto sp_5v (same rail, B-ECU)",
+    "w_cru_5v": "cruise ladder pull-up +5V leg moved off ECU-A A32 onto sp_5v (same rail)",
+    "w_cam_pullup_8v": "cam pull-up +8V leg moved off ECU-A A6 onto sp_8v (same rail, B-ECU)",
+    "w_cam_sig_c": "cam signal lands on sp_trig2; w_trig2_pin carries it to ECU-A A9",
+    "w_cam_pullup_sig": "cam pull-up signal leg moved off ECU-A A9 onto sp_trig2",
+    "w_fl_sig": "fuel level signal lands on sp_fl_sig; w_fl_sig_pin carries it to ECU-B B24",
+    "w43": "fuel level pull-up leg moved off the sender pin onto sp_fl_sig at the ECU",
     # 2026-09-24. Daniel: "A sensor location must be based on link ECU docs and
     # ECU IO ... move knock to the harness that corresponds with the ECU knock
     # pin." Knock 1 is ECU B9, so it is a loom-B circuit, but all three of its
@@ -226,6 +243,14 @@ EXPECT_CHANGED = {
     "w_sw7_c":   "CSB3 6.37 map: reverse is S8, cavity 22 (was 14)",
     "wc_h_csb":  "CSB3 6.37 map: CAN H is cavity 5 (was 3)",
     "wc_l_csb":  "CSB3 6.37 map: CAN L is cavity 6 (was 4)",
+    # 2026-09-25: one cable per crimp lug. Several conductors shared one ring
+    # terminal (harness.design sums them and no lug takes 1/0 + 2 + 2). Each
+    # extra cable now has its own lug <terminal>_N on the SAME stud. Same net.
+    "w65":        "own M8 ring (batt_ring_2) on the battery-feed stud, beside the 4 AWG lug",
+    "w_alt":      "own M10 lug (t_starter_b_2) on the starter B+ stud",
+    "w_jump":     "own M10 lug (t_starter_b_3) on the starter B+ stud",
+    "w_gnd_eb":   "own M10 lug (t_eng_block_2) on the engine block ground stud",
+    "w_fan2_gnd": "own M8 lug (t_gnd_ea_2) on ground stud A",
 }
 
 

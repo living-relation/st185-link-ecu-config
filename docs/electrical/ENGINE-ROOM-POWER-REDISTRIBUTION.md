@@ -381,6 +381,7 @@ TE `2141029-1` already owns F1–F13 in `ST185-B-ECU.harness` (EFI, pump, ETB, s
 | HEATER feed | unfused stub; 40 A lives in R/B4 | FL ALT → E13 → R/B4 | R/B4 fuse pins 1–2 (R1) |
 | POWER feed | unfused stub; 30 A lives in R/B2 | FL ALT → I2 → R/B2 | R/B2 fuse pins 1–2 (L9) |
 | 2nd fuse block feed | ANL / mega 100 A | J/B2 HEAD/HAZ/DOME/RTR fuses | PDB stud → second block |
+| ACPS (A/C pressure switch +12V) | 5 A, ignition-switched, in the second fuse block | OEM A/C circuit feed to A5 pin 1 (V-R), EWD p.152 | second block → `ac_press` c1 (`w_acp_1`, 18 AWG); switched return A5 pin 4 → A/C amplifier A18 pin 13 (`w_acp_2`) |
 | Charge / start | none at PDB, or ANL 200 A | F11 100A FL ALT | RADLOK + → starter B+ |
 | ABS | **omit** | F11 60A FL ABS | deleted |
 
