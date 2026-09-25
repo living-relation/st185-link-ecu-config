@@ -1,6 +1,6 @@
 # Harness — need to buy
 
-Generated on 2026-09-24 from the eight `.harness` files in `docs/harness/rebuild/`:
+Generated on 2026-09-25 from the eight `.harness` files in `docs/harness/rebuild/`:
 `A-ECU`, `A-engine`, `B-ECU`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed`, `AntiTheft`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
@@ -147,7 +147,6 @@ will over-order these; use this list, not the drawings.
 | `ect` | A-engine, B-engine | A-engine |
 | `ecu_a` | A-ECU, B-ECU | A-ECU |
 | `ecu_b` | A-ECU, B-ECU | A-ECU |
-| `ecu_com` | A-ECU, CAN | A-ECU |
 | `etb` | A-engine, B-engine | A-engine |
 | `flex` | A-engine, B-engine | A-engine |
 | `fuellvl` | A-ECU, B-ECU | A-ECU |
@@ -163,7 +162,7 @@ will over-order these; use this list, not the drawings.
 | `k_fan2` | A-ECU, B-ECU, EngineRoom-C | A-ECU |
 | `k_fp` | A-ECU, B-ECU | A-ECU |
 | `k_str` | A-ECU, B-ECU | A-ECU |
-| `lambda` | A-engine, B-engine, CAN | A-engine |
+| `lambda` | B-engine, CAN | CAN |
 | `map` | A-engine, B-engine | A-engine |
 | `oilp` | A-engine, B-engine | A-engine |
 | `oilt` | A-engine, B-engine | A-engine |

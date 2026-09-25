@@ -422,52 +422,6 @@
       }
     },
     {
-      "id": "ecu_com",
-      "label": "ECU Comms/Tuning Port",
-      "width": 210,
-      "partId": "cp_dtm6s",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "Ground (Brown)",
-          "designation": "C1"
-        },
-        {
-          "id": "c2",
-          "designation": "C2",
-          "signal": "Unused (Blue)"
-        },
-        {
-          "id": "c3",
-          "signal": "CAN 1 High (White)",
-          "designation": "C3"
-        },
-        {
-          "id": "c4",
-          "designation": "C4",
-          "signal": "CAN 1 Low (Green)"
-        },
-        {
-          "id": "c5",
-          "designation": "C5",
-          "signal": "RS232 TX (Yellow) - not used on this build"
-        },
-        {
-          "id": "c6",
-          "designation": "C6",
-          "signal": "RS232 RX (Grey) - not used on this build"
-        }
-      ],
-      "layoutPosition": {
-        "x": 620,
-        "y": 2536
-      },
-      "schematicPosition": {
-        "x": 620,
-        "y": 2536
-      }
-    },
-    {
       "id": "acamp",
       "label": "A/C Amplifier - ECU kill input only",
       "width": 210,
@@ -2217,30 +2171,6 @@
       }
     },
     {
-      "id": "w_can_bh0_c",
-      "color": "Green",
-      "source": {
-        "id": "ecu_com",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c30"
-      }
-    },
-    {
-      "id": "w_can_bh1_c",
-      "color": "White",
-      "source": {
-        "id": "ecu_com",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c31"
-      }
-    },
-    {
       "id": "w_drain_ecu_a",
       "color": "Green",
       "stripeColor": "Yellow",
@@ -2382,22 +2312,6 @@
         }
       ],
       "numberOfCavities": 34
-    },
-    {
-      "id": "cp_dtm6s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-6S",
-      "description": "DTM 6-way socket - ECU comms harness side",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dtm6wl",
-          "contactPartId": "ct_hdp20s"
-        }
-      ],
-      "numberOfCavities": 6
     },
     {
       "id": "cp_mp150_2",

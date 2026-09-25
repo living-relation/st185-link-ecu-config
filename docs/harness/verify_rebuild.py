@@ -43,6 +43,13 @@ EXPECT_GONE = {
     "w51_c": "deleted - left A23 with two sources; the conditioner output is "
              "cab_fout_l and this was the old direct path",
     "w54_c": "deleted - left B21 with two sources; same, cab_fout_r",
+    # 2026-09-25: the CAN pair was drawn twice across bulkhead A c30/c31 - once
+    # here and once in ST185-CAN (wc_h_bh / wc_l_bh / wc_h_lam / wc_l_lam, same
+    # cavities, same ends). ST185-CAN is the only CAN drawing now.
+    "w_can_bh0_c": "deleted - duplicate of ST185-CAN wc_h_ecu/wc_h_bh",
+    "w_can_bh1_c": "deleted - duplicate of ST185-CAN wc_l_ecu/wc_l_bh",
+    "w_can_bh0_e": "deleted - duplicate of ST185-CAN wc_h_lam",
+    "w_can_bh1_e": "deleted - duplicate of ST185-CAN wc_l_lam",
     # w_rlp is NOT listed here: the id collided across files, and the verifier
     # applies the same rename to `before`, so both sides compare cleanly.
     # 6.12: shields are never connected at the device end. Every drain landing
