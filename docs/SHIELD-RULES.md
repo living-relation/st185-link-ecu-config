@@ -59,7 +59,9 @@ reaches A7, or the two pins are ever connected.
 ## §6.30 — VR conditioner enclosures (the rule 3 exception, powered-device form)
 
 The conditioner is a powered device, so its case is the screen junction. Two
-segments meet there and each is still grounded at the ECU end only:
+segments meet there and each is still grounded at the ECU end only. Plan §6.42
+(wheel speed shielding, segmented) describes the same arrangement; this section
+is the governing wording (the §6.42 table was corrected to match on 2026-09-25):
 
 ```
   ABS sensor           VR conditioner enclosure (case)               ECU

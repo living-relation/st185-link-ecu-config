@@ -116,7 +116,7 @@ real limit. Applied in `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`:
 
 - Fuel pump stays on cabin relay `k_fp` (Power file).
 - Both uprated fans stay on `k_fan` / `k_fan2` (peak current above one 25 A pin).
-- EPS stays on `k_eps` HCR 150 / F7 60 A.
+- EPS stays on `k_eps` HCR 150, fused 60 A AMI at HCFB H4 (was F7 on the mini fuse module, which cannot carry 60 A).
 - PMU-16 takes HEAD LH/RH, HAZ-HORN, DOME and RTR at the vacated J/B No.2 cavities, plus
   the rest of body / lighting and the small engine accessories (ECU main, O2 heater,
   boost solenoid, purge). Scope settled 2026-09-17 — see

@@ -1496,16 +1496,20 @@ Settled with Daniel 2026-09-22. Supersedes any earlier assumption that a screen
 runs unbroken from sensor to ECU.
 
 **A continuous shield is not practical here and is not being built.** The screen
-is segmented at the VR conditioner box, and each segment is grounded at one end
-only. This is what makes the small enclosures buildable - a continuous screen
+is segmented at the VR conditioner box. The box case joins the two segments into
+one screen node, and that node is grounded at one point only: the ECU shield
+splice (`SHIELD-RULES.md` §6.30 is the governing wording; corrected 2026-09-25,
+the earlier text here said the output screen floats at the box, which contradicted
+§6.30). This is what makes the small enclosures buildable - a continuous screen
 would force a shielded connector and a 360 degree termination at every break.
 
 ### The two segments
 
 | Segment | Screen terminates | Screen floats |
 |---|---|---|
-| Sensor drop: wheel to VRC box | **VRC case** | at the sensor |
-| VRC output: box to ECU | **ECU end** | at the VRC box |
+| Sensor drop: wheel to VRC box | **VRC case** (IN pin 3, ring terminal on the case) | at the sensor |
+| VRC output: box to ECU | **VRC case** at the OUT shielding plate **and** the ECU shield splice (front A7, rear B17) | nowhere - it is the one path to ground |
+| FR output (exception, §6.30) | ECU shield splice `sp_shield_b` / B17 only | at the VRC (never touches the front case, which is on A7) |
 
 Both VRC boxes follow this - front and rear, identically.
 
@@ -2274,3 +2278,87 @@ the housing letter in every designation and every signal:
 
 Five wires re-pointed, no net changed. `gp_mrs_ehps` dropped. `k_eps` stays
 separate — it is an HCR150 bolted beside the pump, not part of it.
+
+## 6.54 Finish pass - contact limits, fusing and feeds (2026-09-25)
+
+Daniel's rulings applied in one pass across all nine looms. Every wire is now
+inside its contact's rated range and every fuse sits on a wire sized for it.
+
+### Relays - plug-in Maxi ISO F7 on the VCF7 socket
+
+The Micro ISO socket contact `160927-4` stops at 14 AWG, too small for the 12 and
+8 AWG load wires. Load relays move to TE F7 relays from the on-hand sheet, on
+socket `1393310-4`:
+
+| Relay | Part | Load contacts (30 / 87) | Coil contacts (85 / 86) |
+|---|---|---|---|
+| `k_efi`, `k_fp` | `1-1414147-0` (680 ohm, owned 3) | `280756-4`, 12-10 AWG | `42281-1`, 18-14 AWG |
+| `k_str` | `1-1393304-0` (560 ohm, owned 2) | `280756-4` | `42281-1` |
+| `k_fan` | `1-1393304-0` | `280755-4`, 10-8 AWG | `42281-1` |
+| `k_fan2` | `7-1904094-9` (diode, cathode on 86, buy 1) | `280755-4` | `42281-1` |
+
+Cavity 87a is gone (the F7 relays are 1 Form A). Coil wires are 18 AWG. `k_etb`
+stays on the Micro ISO socket, its wires fit.
+
+### High-current fuse block HCFB
+
+The MFINITY module `2141029-1` takes 30 A mini fuses at most, and the total feed
+exceeded its bus, so the 60 A EPS fuse and both fan fuses leave it. New block in
+the glove box: Eaton Bussmann LMI (`LMI1-M-1-1` input, 4x `LMI1-M-1-0`, busbar),
+input on an M8 stud from the PDB, 4 AWG.
+
+| Position | Fuse | Load | Wire |
+|---|---|---|---|
+| H1 | 50 A AMI | FB1 IN (permanent bus) | 10 AWG |
+| H2 | 40 A AMI | `k_fan` 30 | 8 AWG |
+| H3 | 30 A AMI | `k_fan2` 30 | 8 AWG |
+| H4 | 60 A AMI | `k_eps` 30 (loom C) | 8 AWG |
+
+FB1 bus is split: IN feeds F1-F4, F8, F12, F13 (permanent); SW IN (`c15`) takes
+the EFI main relay 87 (`w77`, 10 AWG) and feeds F9-F11. That makes F9 the only
+feed into `sp_sw12`. Bus feed contacts `1-1355844-1` (4-6 mm2). F2 (fuel pump) is
+25 A on 12 AWG, F3 (ETB) is 10 A, F10 feeds the COP bank and F11 the injector bank.
+`w65` (unfused battery into `sp_12v`) is deleted. `w_pdb_jb1` (6 AWG) is fused
+60 A at the PDB.
+
+### Fans, grounds, splices
+
+- Fan power and ground each get a 1-way DTHD plug `DTHD06-1-8S` with size 8
+  contacts `0462-203-08141` (owned 9), which take 8 AWG.
+- The doubled fan / EPS grounds on loom C are drawn once.
+- `sp_chassis_eng` takes the larger size (crimp splice 10-6, `w_eng_gnd` 10 AWG),
+  and both 5 V rail legs are 18 AWG.
+- Fuel pump ground lands on its own trunk stud `t_trunk_fp_gnd`, not the ECU
+  chassis splice.
+- ClusterLED: one IG tap off C12-9 feeds `sp_led_12v`; the oil LED sinks on CSB3
+  L4 (`csb3io` c26).
+- Cam pull-up colours: +8 V side Orange/White, signal side Blue (same as the cam
+  signal).
+
+### Working assumptions (best evidence, confirm at the car)
+
+These close the old unverified items. Each one is also written into the part or
+cavity it affects.
+
+| Item | Assumption |
+|---|---|
+| COP plug `90980-11885` | 1 +B, 2 IGF (not used), 3 IGT, 4 GND (Denso 4-pin pattern) |
+| Turbo speed sensor | Garrett 781328-type; pin 1 is +5 V from the ECU rail (the kit's 12 V lead is for its gauge only) |
+| Toyota TS 090 terminals | Sumitomo `8100-0461`, 0.5-1.25 mm2 (20-16 AWG), family match to each OEM housing |
+| Starter S terminal | 6.3 mm single spade |
+| Stud sizes | Ground studs M6 (including the trunk fuel-pump stud), PDB and HCFB input M8, HCR 150 load studs M6 (TE datasheet) |
+| FB1 `2141029-1` | Bus can be split into IN and SW IN; total rating spec not found |
+| LMI busbar | `B109-7046-5` |
+| ETB contacts | Come in the Bosch `D 261 205 358-01` kit |
+| OEM blocks | Existing OEM connectors are kept, not rebuilt |
+| MR-S EHPS power terminal | Takes 8 AWG |
+| ClusterLED | Common return on OEM ground ID, left kick panel; current-limit resistors are on the LED board |
+| Binder M8 VRC leads | Cable plugs `99 3363 100 04` / `99 3362 100 04` (0.14-0.5 mm2, cable OD 4.0-5.5 mm) mate the panel parts in `docs/enclosures/vr-conditioner-bom.csv` |
+
+### Parts library and connector images
+
+- Every part in the nine looms is now in the shared ST185 Parts Library (5LO8), matched by part number. The Toyota TS contact is `8100-0461`, updated in place.
+- Shielded cable parts carry their own part numbers (`GENERIC SHLD CABLE 1C 20AWG BLU`, `... 1C 20AWG VIO`, `... 2C TP 20AWG`, `... 3C 20AWG`, `... 4C 20AWG`) instead of a shared `(generic)`, so the library can hold one of each. They are still generic cable per 6.24.
+- EngineRoom-C carries one RADLOK part per colour (`RL00801-50BK`, `RL00801-50RE`), used on both sides of the feed-through. Qty 2 each.
+- Every connector part has an image. Manufacturer or distributor photos are linked by URL (TE, Mouser, Bosch and Toyota vendors). OEM, TBD and cross-reference parts, which have no catalogue photo, use representative drawings in `docs/harness/part-images/`. Those drawings are labelled as drawings, not photos.
+- Shared-family photos: the three F7 relays share TE's Power Relay F7 family photo. `4-1904124-2` uses the Micro ISO photo from `9-1904105-7`. `HD36-24-33SE` uses the `HD36-24-33SN` photo (same shell, N key). All four 8STA parts use Mouser's series photo.

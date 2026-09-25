@@ -26,11 +26,18 @@ ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "DT06-12SA":2,"DT04-12PA":2,"W12P":2,"W12S":2,
  # MRS EPS pump connectors - Toyota/Sumitomo TS090, on hand (not from TE invoices)
  "90980-12068":1,"90980-10897":1,"90980-10942":1,
+ # 2026-09-25 from docs/sourcing/te-on-hand-bom.csv (not in the older xlsx pull)
+ "1393310-4":1,"282080-1":2,"282110-1":10,"281934-2":10,
 }
 EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
- ("VCF7-1000 / 1393310-4","TE Connectivity","Maxi relay mounting block",1,1),
- ("280756-4","TE Connectivity","250-series terminal 12-10 AWG, for VCF7 power legs",4,0),
- ("HCR 150 mating hardware","TE Connectivity","Receptacle / terminals for V23132-A2001-B200 - CONFIRM with supplier",1,0),
+ # 2026-09-25: the relays now sit in VCF7 sockets drawn as mount parts, so the
+ # socket and its 280755-4 / 280756-4 / 42281-1 terminals come off the drawings.
+ ("282080-1","TE Connectivity","Superseal 1.5 2-way plug housing - HCR 150 (k_eps) coil mate; contacts 282110-1 are on the drawing",1,2),
+ ("281934-2","TE Connectivity","Superseal 1.5 wire seal - HCR 150 coil plug",2,10),
+ ("AMI-50","Eaton Bussmann","AMI fuse 50 A, M5 bolt-down - HCFB H1, feeds FB1",1,0),
+ ("AMI-40","Eaton Bussmann","AMI fuse 40 A, M5 bolt-down - HCFB H2, radiator fan relay",1,0),
+ ("AMI-30","Eaton Bussmann","AMI fuse 30 A, M5 bolt-down - HCFB H3, condenser fan relay",1,0),
+ ("AMI-60","Eaton Bussmann","AMI fuse 60 A, M5 bolt-down - HCFB H4, EPS pump relay",1,0),
  ("RL9080-301-F1RE","Amphenol","RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, RED - firewall POSITIVE. Mates RL00801-50RE each side.",1,0),
  ("RL9080-301-F1","Amphenol","RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, BLACK - firewall NEGATIVE. Mates RL00801-50BK each side.",1,0),
  ("1/0 AWG welding cable red/black","generic","Trunk battery +/−, firewall crossing, engine ground. Sized on voltage drop over a ~36 ft round trip: 1.06V cranking, 0.57V at 160A charge. 2 AWG was 13% cranking drop - too much. ~45 ft each colour.",1,0),
@@ -38,8 +45,8 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("Jump lugs 1/0","generic","Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post",8,0),
  ("8 AWG TXL red/black","generic","EPS pump 12V/GND (passenger ABS trough) and uprated fan 12V/GND (core support)",1,0),
 
- ("Micro ISO relays x4","TE Connectivity","HEAD LH, HEAD RH, RTR, device-hold and alternator-excite relays replacing the PMU (plan 6.48). 8 owned, 6 already assigned to k_efi/k_etb/k_fp/k_fan/k_fan2/k_str.",4,0),
- ("2nd fuse block 12-16 way","generic","Glove box, for the ex-J/B2 body circuits: HEAD LH 15, HEAD RH 15, HAZ-HORN 15, DOME 20, RTR 30, CSB3 5, cluster 10, Pi 15, alt excite 5, ACPS (A/C pressure switch, IG) 5. TE 2141029-1 is full at F1-F13. Plan 6.48.",1,0),
+ ("Micro ISO relays x4","TE Connectivity","HEAD LH, HEAD RH, RTR, device-hold and alternator-excite relays replacing the PMU (plan 6.48). 8 owned; since 2026-09-25 only k_etb uses one (k_efi/k_fp/k_str/k_fan/k_fan2 moved to Maxi F7), so 7 are free.",4,4),
+ ("2nd fuse block 12-16 way","generic","Glove box, for the ex-J/B2 body circuits: HEAD LH 15, HEAD RH 15, HAZ-HORN 15, DOME 20, RTR 30, CSB3 5, cluster 10, Pi 15, alt excite 5, ACPS (A/C pressure switch, IG) 5. TE 2141029-1 carries the engine circuits (F1-F4, F8-F13). Plan 6.48.",1,0),
  ("ANL 100A + holder","generic","Feed for the second fuse block off the PDB stud. Plan 6.48 / redistribution 8.",1,0),
  ("2127","Blue Sea Systems","PDB1 glove-box distribution block, 250A, four 5/16\"-18 studs. Starter is fed direct from the main cable per OEM (plan 6.20), so PDB1 carries accessories only.",1,0),
  ("2719","Blue Sea Systems","MaxiBus insulating cover for PDB1 / 2127. Not optional - PDB1 is inside the cabin.",1,0),
@@ -203,8 +210,7 @@ for cid, (looms, owner) in sorted(SHARED.items()):
 out += ["", "## Still unspecified", "",
  "- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. "
  "Needs a real dash number per branch OD once the trunk diameters are known.",
- "- **HCR 150 mating hardware** — confirm the receptacle and terminal part numbers for "
- "`V23132-A2001-B200` with the supplier before ordering.", ""]
+ ""]
 p = os.path.join(os.path.dirname(R), "NEED-TO-BUY.md")
 open(p, "w", encoding="utf-8").write("\n".join(out))
 print("wrote", p)

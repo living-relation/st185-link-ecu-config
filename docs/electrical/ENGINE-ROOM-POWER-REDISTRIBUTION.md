@@ -116,7 +116,7 @@ Rule from §6.2 still holds: a load is **either** a PMU output **or** a relay+fu
 |---|---|---|
 | Starter motor | Battery cable + RADLOK + existing `k_str` for solenoid | Cranking amps, not a PMU job |
 | 160 A alternator B+ | 4 AWG (or 2 AWG) to starter B+, does not recross | Already in Power |
-| MRS EPS pump | `k_eps` HCR 150, F7 60 A | >25 A; three paralleled PMU pins would burn three of sixteen channels |
+| MRS EPS pump | `k_eps` HCR 150, HCFB H4 60 A AMI (2026-09-25; the mini fuse module cannot take 60 A) | >25 A; three paralleled PMU pins would burn three of sixteen channels |
 | Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Same; PWM later can still be the relay coil from Aux 5 / Ign 5 |
 | EFI main, ETB, fuel pump | Cabin relays in `ST185-B-ECU.harness` | Hold-power and Link's published ETB circuit |
 | HEAD LH / HEAD RH | PMU O1 / O2 (25 A) into J/B2 2A-3 / 2A-6 | Replaces 15 A HEAD fuses in J/B2 |
@@ -377,7 +377,7 @@ TE `2141029-1` already owns F1–F13 in `ST185-B-ECU.harness` (EFI, pump, ETB, s
 |---|---|---|---|
 | AM1 | 40 A | F11 40A FL AM1 | IE1-10 (L6) |
 | AM2 | 30 A | F11 30A FL AM2 | IE1-17 (L7) |
-| OEM HOT | 40–60 A | FL ALT feed into J/B1 | 1I-1 (L1) |
+| OEM HOT | 60 A (set 2026-09-25, 6 AWG `w_pdb_jb1`) | FL ALT feed into J/B1 | 1I-1 (L1) |
 | HEATER feed | unfused stub; 40 A lives in R/B4 | FL ALT → E13 → R/B4 | R/B4 fuse pins 1–2 (R1) |
 | POWER feed | unfused stub; 30 A lives in R/B2 | FL ALT → I2 → R/B2 | R/B2 fuse pins 1–2 (L9) |
 | 2nd fuse block feed | ANL / mega 100 A | J/B2 HEAD/HAZ/DOME/RTR fuses | PDB stud → second block |

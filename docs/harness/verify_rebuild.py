@@ -112,8 +112,14 @@ EXPECT_GONE = {
     "w_cam_sig_e": "-> cab_cam_c2    (cam signal, unchanged endpoints)",
     "w205_e":      "-> cab_knock1_c1 (knock SIG+, unchanged endpoints)",
     "w12_e":       "-> cab_knock1_c2 (knock SIG-, unchanged endpoints)",
+    # 2026-09-25 finish pass (Daniel's decisions 2 and 3).
+    "w65": "deleted - it fed sp_12v straight off the battery stud with no fuse; sp_12v is fed by F8 (w_fb_ecu)",
+    "w_radg": "deleted - duplicate of w_fan_gnd (rad fan ground was drawn twice); the ring-lug ground stays",
+    "w_fan2g": "deleted - duplicate of w_fan2_gnd (condenser fan ground drawn twice)",
+    "w_mrsg": "deleted - duplicate of w_eps_gnd (EPS pump ground drawn twice)",
 }
 EXPECT_NEW = {
+    "w_hc_fb": "2026-09-25: 50 A feed HCFB H1 -> FB1 IN; the mini fuse module is now fed from the high-current fuse block",
     "cab_fout_fr_sh": "FR conditioned output screen on its own cable, to sp_shield_b / B17; floats at the VRC (Daniel 2026-09-25)",
     "w_eps_trig": "6.16 ECU-driven EPS relay trigger, Ign 6 / ecu_b.b12",
     "w_rl_pos": "RADLOK positive pair, renamed out of the w_rlp collision",
@@ -172,6 +178,28 @@ EXPECT_NEW = {
 }
 # A connection that legitimately moved to a different pin.
 EXPECT_CHANGED = {
+    # 2026-09-25 finish pass. Toyota/Denso COP plug 90980-11885: 1 +B, 2 IGF,
+    # 3 IGT, 4 GND. The drawings had 1 GND / 2 IGT / 4 12V.
+    "w112": "COP1 +B moved c4 -> c1 (Denso COP pin 1 = +B)",
+    "w113": "COP2 +B moved c4 -> c1",
+    "w114": "COP3 +B moved c4 -> c1",
+    "w115": "COP4 +B moved c4 -> c1",
+    "w_cop1g": "COP1 ground moved c1 -> c4 (Denso COP pin 4 = GND)",
+    "w_cop2g": "COP2 ground moved c1 -> c4",
+    "w_cop3g": "COP3 ground moved c1 -> c4",
+    "w_cop4g": "COP4 ground moved c1 -> c4",
+    "w120_e": "COP1 IGT moved c2 -> c3 (Denso COP pin 3 = IGT; pin 2 IGF unused)",
+    "w121_e": "COP2 IGT moved c2 -> c3",
+    "w122_e": "COP3 IGT moved c2 -> c3",
+    "w123_e": "COP4 IGT moved c2 -> c3",
+    "w218": "turbo speed sensor supply moved sp_sw12_eng -> sp_5v_eng (Garrett-style sensor: +5 V supply, 12 V lead is gauge-only)",
+    "w77": "EFI main relay 87 now lands on FB1 SW IN (switched bus for F9-F11) instead of sp_sw12, so every switched load is fused",
+    "w_fb_in": "battery feed now lands on the high-current fuse block HCFB IN; FB1 is fed 50 A from HCFB H1",
+    "w_fb_k_fan_30": "rad fan relay 30 fed from HCFB H2 (40 A AMI); mini fuses stop at 30 A and the 8 AWG wire is past the mini-fuse contact",
+    "w_fb_k_fan2_30": "condenser fan relay 30 fed from HCFB H3 (30 A AMI), same reason",
+    "w_fb_k_eps_30": "EPS relay 30 fed from HCFB H4 (60 A AMI) via dm_hcfb_h4; F7 60 A could not live on the mini fuse module",
+    "w_fpg": "fuel pump ground to its own trunk stud t_trunk_fp_gnd (plan 6.41), off the ECU chassis splice",
+    "w_fan_gnd": "rad fan ground leaves from its own single-pole DTHD size-8 plug rad_fan_g (DT size-16 contacts can't take 8 AWG)",
     # 2026-09-25: CAN H/L were on the CAN-Lambda power pins 1/2. Link QSG DTM4:
     # 1 Power, 2 GND, 3 CAN L, 4 CAN H. Moved to 4 (H) and 3 (L), terminator too.
     "wc_h_lam": "CAN H lambda c1 -> c4 (Link QSG pin 4 = CAN H); 2026-09-25 lands on "
@@ -221,9 +249,9 @@ EXPECT_CHANGED = {
     # 2026-09-23: bulkhead B c7 and c8 each carried TWO circuits - an analog
     # sensor signal from the A files and switched 12V from the B files. 12V on
     # An Volt 6 and 7. Power moved to the spare size-12 pins; signals unchanged.
-    "w_inj_pwr_c": "injector 12V off bh_b c7 (shared with An Volt 6 oil P) onto "
+    "w_inj_pwr_c": "2026-09-25 cabin end now fused on FB1 F11 (was sp_sw12). Earlier: injector 12V off bh_b c7 (shared with An Volt 6 oil P) onto "
                    "the spare size-12 c1",
-    "w_cop_pwr_c": "COP 12V off bh_b c8 (shared with An Volt 7 fuel P) onto c2",
+    "w_cop_pwr_c": "2026-09-25 cabin end now fused on FB1 F10 (was sp_sw12). Earlier: COP 12V off bh_b c8 (shared with An Volt 7 fuel P) onto c2",
     "w_inj_pwr_e": "engine half of the same move, c7 -> c1",
     "w_cop_pwr_e": "engine half of the same move, c8 -> c2",
     "w_eps_pwr": "mrs_pwr c1 -> mrs_eps a1, the pump is one 10-pin part now",
@@ -246,11 +274,10 @@ EXPECT_CHANGED = {
     # 2026-09-25: one cable per crimp lug. Several conductors shared one ring
     # terminal (harness.design sums them and no lug takes 1/0 + 2 + 2). Each
     # extra cable now has its own lug <terminal>_N on the SAME stud. Same net.
-    "w65":        "own M8 ring (batt_ring_2) on the battery-feed stud, beside the 4 AWG lug",
     "w_alt":      "own M10 lug (t_starter_b_2) on the starter B+ stud",
     "w_jump":     "own M10 lug (t_starter_b_3) on the starter B+ stud",
     "w_gnd_eb":   "own M10 lug (t_eng_block_2) on the engine block ground stud",
-    "w_fan2_gnd": "own M8 lug (t_gnd_ea_2) on ground stud A",
+    "w_fan2_gnd": "own M8 lug (t_gnd_ea_2) on ground stud A; 2026-09-25 leaves from its own DTHD size-8 plug fan2_g",
 }
 
 

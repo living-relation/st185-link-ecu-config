@@ -7,7 +7,7 @@ ECU,14V +,ecu_a,a5,P14V,Main ECU feed,power,in,rail-12v,none,,A,set,QSG-IO,0.75m
 ECU,+8V Out,ecu_a,a6,P8V,+8V sensor rail,rail,out,rail-8v,none,,A,set,QSG-IO,Cam Hall on Trigger 2 only
 ECU,Shield/Gnd,ecu_a,a7,SHIELD_A,Loom A screen termination,screen,na,screen,none,,A,set,QSG-IO,DRAIN ONLY - no signal and no current may land here; do not bridge to SHIELD_B
 ECU,Trigger 1,ecu_a,a8,TRIG1_CRANK,Crank VR,signal,in,vr,none,a7,A,set,QSG-IO,Toyota OEM reluctor on 36-2 wheel
-ECU,Trigger 2,ecu_a,a9,TRIG2_CAM,Cam Hall,signal,in,hall-oc,ext-1k8-to-8v,a7,A,set,QSG-IO,RacerX/Cherry; fit 1k8 not the kit 2k4
+ECU,Trigger 2,ecu_a,a9,TRIG2_CAM,Cam Hall,signal,in,hall-oc,ext-1k8-to-8v,a7,A,set,QSG-IO,RacerX/Cherry; fit 1k8 not the kit 2k4. Pull-up wiring colours (2026-09-25): 8V leg Orange/White (P8V rail), signal leg Blue (cam signal) - drawings match
 ECU,Ign 1,ecu_a,a13,IGN1,COP cyl 1,signal,out,logic-5v,none,,A,set,QSG-IO,1ZZ COP built-in igniter
 ECU,Ign 2,ecu_a,a12,IGN2,COP cyl 2,signal,out,logic-5v,none,,A,set,QSG-IO,1ZZ COP built-in igniter
 ECU,Ign 3,ecu_a,a11,IGN3,COP cyl 3,signal,out,logic-5v,none,,A,set,QSG-IO,1ZZ COP built-in igniter
@@ -28,7 +28,7 @@ ECU,Aux 8,ecu_a,a26,AUX8_START_RLY,Start relay coil,signal,out,hilo-2a,int-1k5,,
 ECU,Aux 7,ecu_a,a27,AUX7_MRS_SPD,Speed out to MRS pump,signal,out,hilo-2a,int-1k5,,A,set,QSG-IO,MRS wants ~4 pulses/rev 0-5V; scope the high level before adding a 5V pull-up
 ECU,Aux 6,ecu_a,a28,AUX6_EFI_HOLD,EFI main relay coil,signal,out,hilo-2a,int-1k5,,A,set,QSG-IO,Hold Power; pairs with DI 9
 ECU,Aux 5,ecu_a,a29,AUX5_RAD_FAN,Rad fan relay coil,signal,out,hilo-2a,int-1k5,,A,set,QSG-IO,Relay in cabin
-ECU,DI 1,ecu_a,a30,DI1_TURBO_SPD,Turbo speed,signal,in,freq-di,sel-4k7-to-12v,,A,set,QSG-IO,Confirm local 5V before running a B-loom jumper
+ECU,DI 1,ecu_a,a30,DI1_TURBO_SPD,Turbo speed,signal,in,freq-di,sel-4k7-to-12v,,A,set,QSG-IO,Sensor supplied +5V from sp_5v_eng (2026-09-25 assumption: Garrett 781328-style sensor - orange +5V, green signal, black ground; the red 12V lead only powers the gauge)
 ECU,DI 2,ecu_a,a31,DI2_FLEX,Flex fuel sensor,signal,in,freq-di,sel-4k7-to-12v,,A,set,QSG-IO,Continental 3-pin; supplies ethanol% and fuel temp; DI pull-up ON
 ECU,+5V Out,ecu_a,a32,P5V,+5V sensor rail,rail,out,rail-5v,none,,A,set,QSG-IO,Only native +5V pin; loom B jumpers from here
 ECU,An Volt 3,ecu_a,a33,AV3_TPS_SUB,ETB TPS sub,signal,in,0-5v,none,,A,set,QSG-IO,Bosch 74.5mm ETB
@@ -45,7 +45,7 @@ ECU,Knock 1,ecu_b,b9,KNOCK1_SIG,Knock sensor signal,signal,in,piezo-knock,none,b
 ECU,Ign 7,ecu_b,b11,,spare low-side,spare,out,lowside-2a,none,,B,spare,QSG-IO,No internal flywheel diode
 ECU,Ign 8,ecu_b,b10,,spare low-side,spare,out,lowside-2a,none,,B,spare,QSG-IO,No internal flywheel diode
 ECU,Ign 6,ecu_b,b12,IGN6_EPS_RLY,EPS pump relay coil,signal,out,lowside-2a,none,,B,set,harness-EngineRoom-C,Drives k_eps coil terminal 85; active-low; no internal flywheel diode so the relay must be diode-suppressed
-ECU,Ign 5,ecu_b,b13,IGN5_FAN2,Condenser fan relay coil,signal,out,lowside-2a,none,,B,set,QSG-IO,Active-low; diode-suppressed relay required
+ECU,Ign 5,ecu_b,b13,IGN5_FAN2,Condenser fan relay coil,signal,out,lowside-2a,none,,B,set,QSG-IO,Active-low; diode-suppressed relay required - fitted TE 7-1904094-9 (Maxi F7 V23134-J0052-X439, diode cathode on 86)
 ECU,-,ecu_b,b14,,empty cavity,nc,na,none,none,,B,nc,QSG-loom,Official B-loom drawing shows no terminal and no wire
 ECU,An Volt 6,ecu_b,b15,AV6_OIL_P,Oil pressure,signal,in,0-5v,none,,B,set,QSG-IO,5V jumpered from A32
 ECU,An Volt 7,ecu_b,b16,AV7_FUEL_P,Fuel pressure,signal,in,0-5v,none,,B,set,QSG-IO,5V jumpered from A32
@@ -93,7 +93,7 @@ ACAMP,TAM,acamp_c,6,TAM_SIG,Ambient temp signal,signal,in,ntc,amp-internal,,C,se
 ACAMP,Ambient return,acamp_c,TBD,TAM_RTN,Ambient temp return,signal,in,ntc,none,,C,tbd,EWD-1990-p150,Sensor A1 pin 1 is plain Y and joins a shared sensor-common bus with the A26 thermistor; the amp pin it lands on is not on p150 or p152 - do not invent
 ACAMP,Pressure SW,acamp_18,13,ACP_SIG,A/C pressure switch signal,signal,in,switch-12v,none,,C,set,EWD-1990-p152,A/C AMPLIFIER A18 pin 13 Y-R from pressure switch A5 pin 4 via EB2 pin 2 and E10
 ACAMP,ACT,acamp_18,TBD,AUX4_AC_KILL,Compressor cancel input,signal,in,switch-gnd,none,,C,tbd,Daniel-lock,Ground = kill and floating = normal; the amp terminal number is not on p150 or p152 - do not invent
-PWR,Coil 30,k_eps,c1,FUSEBOX_C7,EPS relay battery feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,From fuse box c7 (F7 60A, ST185-B-ECU); HCR 150 relay lives in the engine bay, passenger fender
+PWR,Coil 30,k_eps,c1,HCFB_H4,EPS relay battery feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,"From high-current fuse block HCFB H4 (60 A AMI, ST185-B-ECU, glove box; 2026-09-25 - F7 60 A could not live on the mini fuse module); HCR 150 relay lives in the engine bay, passenger fender"
 PWR,Coil 85,k_eps,c2,IGN6_EPS_RLY,EPS relay trigger,signal,in,lowside-2a,none,,C,set,harness-EngineRoom-C,From ECU B12
 PWR,Coil 86,k_eps,c3,SW12,EPS relay coil feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,From sp_sw12
 PWR,Contact 87,k_eps,c4,EPS_PWR,EPS pump feed,power,out,rail-12v,none,,C,set,harness-EngineRoom-C,To mrs_eps a1

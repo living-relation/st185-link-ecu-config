@@ -23,18 +23,18 @@ import json, glob, os
 SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
 
 CABLE_PARTS = {
-    1: {"id": "cab_sh_1c", "partNumber": "(generic)", "manufacturer": "generic",
+    1: {"id": "cab_sh_1c", "partNumber": "GENERIC SHLD CABLE 1C 20AWG BLU", "manufacturer": "generic",
         "description": "1-core shielded sensor cable, overall foil + braid screen, "
                        "20 AWG. Cable is generic in BOMs per 6.24.",
         "cores": [{"id": "k1", "color": "Blue"}],
         "shielded": True},
-    2: {"id": "cab_sh_2c", "partNumber": "(generic)", "manufacturer": "generic",
+    2: {"id": "cab_sh_2c", "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG", "manufacturer": "generic",
         "description": "2-core twisted shielded cable, overall foil + braid screen, "
                        "20 AWG. Cable is generic in BOMs per 6.24.",
         "cores": [{"id": "k1", "color": "White", "twistedWithNext": True},
                   {"id": "k2", "color": "Green"}],
         "shielded": True},
-    4: {"id": "cab_sh_4c", "partNumber": "(generic)", "manufacturer": "generic",
+    4: {"id": "cab_sh_4c", "partNumber": "GENERIC SHLD CABLE 4C 20AWG", "manufacturer": "generic",
         "description": "4-core shielded cable, overall foil + braid screen, 20 AWG. "
                        "Conditioner to ECU. Cable is generic in BOMs per 6.24.",
         "cores": [{"id": "k1", "color": "Orange"}, {"id": "k2", "color": "Black"},
