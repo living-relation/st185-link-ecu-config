@@ -14,7 +14,8 @@ nothing checked them.
 2. **It terminates at the ECU end only.** That is its single ground reference.
 3. **No connector in this build has a shell for a shield.** Do not model one, do
    not spec a connector that needs one, do not wire a drain to a connector body.
-   *One documented exception: the VR conditioner enclosures (§6.30 / §6.35).*
+   *One documented exception: the VR conditioner enclosures (§6.30 / §6.35) - the
+   OUT screen lands on the shielding plate, the IN screens ride pin 3 to the case.*
 4. **A shield is cable only until it terminates at the ECU** — a core inside the
    cable, not a wire in its own right, right up to the ECU end.
 5. **Shields pass THROUGH the bulkhead on their own pin, not on the bulkhead
@@ -55,23 +56,40 @@ reaches A7, or the two pins are ever connected.
 `bh_a_fw` c1 / `bh_a_eng` c1 used to be a single shared drain. **Retired
 2026-09-22** when §6.32 first choice was finally applied. Both are spare.
 
-## §6.30 — VR conditioner enclosures (the rule 3 exception)
+## §6.30 — VR conditioner enclosures (the rule 3 exception, powered-device form)
 
-The screen runs **unbroken** sensor → enclosure → ECU:
+The conditioner is a powered device, so its case is the screen junction. Two
+segments meet there and each is still grounded at the ECU end only:
 
 ```
-  ABS sensor        VR conditioner enclosure shell        ECU
-  (FLOAT) ══════════ shell ── shell ══════════════════════ (SINK: shield gnd)
-                  one continuous shield, PCB isolated from the shell
+  ABS sensor           VR conditioner enclosure (case)               ECU
+  (FLOAT) ═══ IN pin 3 ── wire inside box ── ring terminal on case
+                                              case ── OUT shielding plate ═══ shield splice ── A7 or B17
+                     PCB isolated from the case; case isolated from chassis
 ```
+
+- **Sensor drop (raw VR pair):** floats at the sensor, crosses the IN connector on
+  **pin 3** (not the shell), and a short wire inside the box takes it to a ring
+  terminal on the case.
+- **VRC output cable:** screen bonded to the case at the OUT connector's shielding
+  plate **and** to the ECU shield splice. Front box → `sp_shield_a` → **A7**; rear
+  box → `sp_shield_b` → **B17**.
+- **FR exception (Daniel, 2026-09-25).** The front box's FR conditioned output goes
+  to ECU-B B21, so its screen belongs to B17. It rides its own 1-core screened cable
+  whose screen lands on `sp_shield_b` only and **floats at the VRC** — it never
+  touches the front case, which is on A7. That keeps A7 and B17 apart.
+- `audit_shields.py` treats each box's IN pin 3 landings and OUT shell as one case
+  node; `audit_mating.py` M4 fails the build if A7 can reach B17 through any box.
 
 Two isolation rules, both of which fail silently and read as a flaky sensor:
 
 - The **enclosure must not touch chassis**. It is part of the screen, not a ground.
+  Nylon mounting hardware.
 - The **PCB must not touch the enclosure**. Nylon standoffs. The board grounds
   through the output cable only.
 
-Mask the connector landings before powder coat — a coated landing breaks the screen.
+Mask the three connector landings **and the case ring-terminal spot** before powder
+coat — a coated landing breaks the screen.
 
 ## §6.31 — ABS routing
 

@@ -114,7 +114,7 @@
       "partId": "cp_m8_4f",
       "shell": {
         "id": "shell",
-        "signal": "Screen from FL, 360 deg to the enclosure"
+        "signal": "Not used for the screen - it rides pin 3"
       },
       "cavities": [
         {
@@ -130,7 +130,7 @@
         {
           "id": "c3",
           "designation": "3",
-          "notConnected": true
+          "signal": "Screen (FL) - wire inside box to case ring terminal"
         },
         {
           "id": "c4",
@@ -154,7 +154,7 @@
       "partId": "cp_m8_4f",
       "shell": {
         "id": "shell",
-        "signal": "Screen from FR, 360 deg to the enclosure"
+        "signal": "Not used for the screen - it rides pin 3"
       },
       "cavities": [
         {
@@ -170,7 +170,7 @@
         {
           "id": "c3",
           "designation": "3",
-          "notConnected": true
+          "signal": "Screen (FR) - wire inside box to case ring terminal"
         },
         {
           "id": "c4",
@@ -194,7 +194,7 @@
       "partId": "cp_m8_4m",
       "shell": {
         "id": "shell",
-        "signal": "Screen onward to the ECU shield ground"
+        "signal": "Screen bonded to the box case here AND at the ECU (powered-device exception)"
       },
       "cavities": [
         {
@@ -234,7 +234,7 @@
       "partId": "cp_m8_4f",
       "shell": {
         "id": "shell",
-        "signal": "Screen from RL, 360 deg to the enclosure"
+        "signal": "Not used for the screen - it rides pin 3"
       },
       "cavities": [
         {
@@ -250,7 +250,7 @@
         {
           "id": "c3",
           "designation": "3",
-          "notConnected": true
+          "signal": "Screen (RL) - wire inside box to case ring terminal"
         },
         {
           "id": "c4",
@@ -274,7 +274,7 @@
       "partId": "cp_m8_4f",
       "shell": {
         "id": "shell",
-        "signal": "Screen from RR, 360 deg to the enclosure"
+        "signal": "Not used for the screen - it rides pin 3"
       },
       "cavities": [
         {
@@ -290,7 +290,7 @@
         {
           "id": "c3",
           "designation": "3",
-          "notConnected": true
+          "signal": "Screen (RR) - wire inside box to case ring terminal"
         },
         {
           "id": "c4",
@@ -314,7 +314,7 @@
       "partId": "cp_m8_4m",
       "shell": {
         "id": "shell",
-        "signal": "Screen onward to the ECU shield ground"
+        "signal": "Screen bonded to the box case here AND at the ECU (powered-device exception)"
       },
       "cavities": [
         {
@@ -547,7 +547,7 @@
         "color": "Shield",
         "source": {
           "id": "vrc_f_inl",
-          "handle": "shell"
+          "handle": "c3"
         }
       }
     },
@@ -590,7 +590,7 @@
         "color": "Shield",
         "source": {
           "id": "vrc_f_inr",
-          "handle": "shell"
+          "handle": "c3"
         }
       }
     },
@@ -633,7 +633,7 @@
         "color": "Shield",
         "source": {
           "id": "vrc_r_inl",
-          "handle": "shell"
+          "handle": "c3"
         }
       }
     },
@@ -676,7 +676,7 @@
         "color": "Shield",
         "source": {
           "id": "vrc_r_inr",
-          "handle": "shell"
+          "handle": "c3"
         }
       }
     },
@@ -857,7 +857,7 @@
         "x": 0,
         "y": -1140
       },
-      "text": "SHIELD, END TO END, GROUNDED ONCE (6.30). Sensor end floats. Screen lands 360 deg on the IN connector shell, crosses the metal enclosure, leaves on the OUT connector shell, and grounds only at the ECU shield pin via the cabin shield splice."
+      "text": "SHIELDS - POWERED-DEVICE EXCEPTION (docs/SHIELD-RULES.md). Sensor drop: floats at the sensor, crosses the IN connector on pin 3, wire inside the box to a ring terminal on the case. VRC output: bonded to the box case (OUT connector shielding plate) AND to the ECU shield splice. The case is the junction - still isolated from chassis."
     },
     {
       "id": "n_iso",
@@ -877,7 +877,7 @@
         "x": 0,
         "y": -620
       },
-      "text": "MASK THE THREE CONNECTOR LANDINGS BEFORE POWDER COAT. The binder shielding plate needs bare metal against the panel. A coated landing silently breaks the screen."
+      "text": "MASK THE THREE CONNECTOR LANDINGS AND THE CASE RING-TERMINAL SPOT BEFORE POWDER COAT. The OUT shielding plate and the input screen ring terminals need bare metal. A coated landing silently breaks the screen."
     }
   ],
   "connectorParts": [
@@ -888,7 +888,7 @@
       "gender": "Female",
       "hasShell": true,
       "numberOfCavities": 4,
-      "description": "M8 4-way female panel mount, shieldable, THT, IP67, M10x0.75 front fastened. 4.0 A, 50 V AC / 60 V DC, -40 to +85 C. Screen terminates on the shielding plate against the panel, so the panel must be bare metal. VR conditioner enclosure inputs."
+      "description": "M8 4-way female panel mount, shieldable, THT, IP67, M10x0.75 front fastened. 4.0 A, 50 V AC / 60 V DC, -40 to +85 C. Pin 3 carries the sensor-drop screen; inside the box it runs to a ring terminal on the case (SHIELD-RULES, powered-device exception). The 4 contacts are VR+, VR-, screen, spare."
     },
     {
       "id": "cp_m8_4m",

@@ -109,14 +109,19 @@ for f in sorted(glob.glob(os.path.join(R, "*.harness"))):
                 net[(c["id"], cv["id"])].add((comp, handle))
                 net[(comp, handle)].add((c["id"], cv["id"]))
 
-# 6.30: inside a VR conditioner the screen is continuous through the enclosure -
-# every shell on one box is one node, joined by the case, not by a wire.
-for box in (("vrc_f_inl", "vrc_f_inr", "vrc_f_out"),
-            ("vrc_r_inl", "vrc_r_inr", "vrc_r_out")):
-    for a in box:
-        for b in box:
+# 6.30: inside a VR conditioner the case is the screen junction - every landing
+# on one box is one node, joined by the case, not by a drawn wire.  The OUT
+# connector's screen lands on its shielding plate ("shell"); each IN connector's
+# sensor-drop screen rides pin 3 and a wire inside the box takes it to a ring
+# terminal on the case (SHIELD-RULES 6.30, powered-device exception).
+VRC_BOXES = ((("vrc_f_inl", "c3"), ("vrc_f_inr", "c3"), ("vrc_f_out", "shell")),
+             (("vrc_r_inl", "c3"), ("vrc_r_inr", "c3"), ("vrc_r_out", "shell")))
+for box in VRC_BOXES:
+    nodes = list(box) + [(c, "shell") for c, _ in box]
+    for a in nodes:
+        for b in nodes:
             if a != b:
-                net[(a, "shell")].add((b, "shell"))
+                net[a].add(b)
 
 
 def reaches_ecu(start):
