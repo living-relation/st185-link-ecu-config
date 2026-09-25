@@ -829,7 +829,7 @@
         "x": 0,
         "y": -1400
       },
-      "text": "WHEEL SPEED - STANDALONE HARNESS. No bulkhead connectors anywhere in this drawing (6.31). Sensor cables cross the firewall through a rubber grommet so each screen stays unbroken. Front pair rides the fenders with loom C; rear pair rides with the fuel pump and level sender."
+      "text": "WHEEL SPEED - STANDALONE HARNESS. No bulkhead connectors anywhere in this drawing (6.31). Front drops are a fender sub-loom of loom C (engine room harness) into the front VRC box; they never cross a bulkhead (Daniel, 2026-09-25). Rear drops run with the fuel pump and level sender to the rear VRC box in the trunk. Only the conditioned output cables reach the ECU, through grommets, so each screen stays unbroken."
     },
     {
       "id": "n_shield",
