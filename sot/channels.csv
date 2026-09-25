@@ -73,10 +73,10 @@ ECU,CAN 1 High,ecu_com,c3,CAN1H,CAN 1 high,signal,bidir,can,none,,CAN,set,QSG-co
 ECU,CAN 1 Low,ecu_com,c4,CAN1L,CAN 1 low,signal,bidir,can,none,,CAN,set,QSG-comms,Green; 120R terminator at this end
 ECU,RS232 TX,ecu_com,c5,,RS232 TX,nc,out,rs232,none,,CAN,nc,QSG-comms,Yellow; not used in this build
 ECU,RS232 RX,ecu_com,c6,,RS232 RX,nc,in,rs232,none,,CAN,nc,QSG-comms,Grey; not used in this build
-VRC,Front in L,vrc_f_inl,c1,WSS_FL_P,Front left sensor +,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR; screen stays separate all the way to the VRC input
-VRC,Front in L,vrc_f_inl,c2,WSS_FL_N,Front left sensor -,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
-VRC,Front in R,vrc_f_inr,c1,WSS_FR_P,Front right sensor +,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
-VRC,Front in R,vrc_f_inr,c2,WSS_FR_N,Front right sensor -,signal,in,vr,none,own,WS,set,harness-WheelSpeed,Raw VR
+VRC,Front in L,vrc_f_inl,c1,WSS_FL_P,Front left sensor +,signal,in,vr,none,own,C,set,harness-WheelSpeed,Raw VR; screen stays separate all the way to the VRC input; loom C fender sub-loom, no bulkhead (Daniel 2026-09-25)
+VRC,Front in L,vrc_f_inl,c2,WSS_FL_N,Front left sensor -,signal,in,vr,none,own,C,set,harness-WheelSpeed,Raw VR; loom C fender sub-loom, no bulkhead (Daniel 2026-09-25)
+VRC,Front in R,vrc_f_inr,c1,WSS_FR_P,Front right sensor +,signal,in,vr,none,own,C,set,harness-WheelSpeed,Raw VR; loom C fender sub-loom, no bulkhead (Daniel 2026-09-25)
+VRC,Front in R,vrc_f_inr,c2,WSS_FR_N,Front right sensor -,signal,in,vr,none,own,C,set,harness-WheelSpeed,Raw VR; loom C fender sub-loom, no bulkhead (Daniel 2026-09-25)
 VRC,Front out,vrc_f_out,c1,P5V,Conditioner supply,rail,in,rail-5v,none,,WS,set,harness-WheelSpeed,From sp_5v
 VRC,Front out,vrc_f_out,c2,GNDOUT,Conditioner ground,rail,in,gnd,none,,WS,set,harness-WheelSpeed,From sp_gndout
 VRC,Front out,vrc_f_out,c3,DI3_WSS_FL,Conditioned FL,signal,out,freq-di,none,a7,WS,set,harness-WheelSpeed,To ECU A23

@@ -1,7 +1,10 @@
 # Source of truth
 
-`channels.csv` is the root of the harness tree. Every drawing is validated
-against it, never the other way round.
+`channels.csv` is the root of the harness tree and the single wiring source of
+truth (Daniel, 2026-09-25). Every drawing is validated against it, never the
+other way round. `XTREMEX-IO-TABLE.html` is its visual face:
+`python docs/harness/sync_io_table.py` rewrites the table's generated pin map, and
+`--check` (run by `check_all.py`) fails if any row disagrees with this file.
 
 Run the gate:
 
@@ -48,5 +51,6 @@ raw wheel-speed pairs, the fuse box owns the OEM power splices.
 
 ## TBD means TBD
 
-Four rows are `tbd`. They stay blank until a document says otherwise - do not
-invent a pin number to make a drawing look finished.
+Two rows are `tbd` (the A/C amp's ambient-sensor return and ACT terminal numbers).
+They stay blank until a document says otherwise - do not invent a pin number to
+make a drawing look finished.

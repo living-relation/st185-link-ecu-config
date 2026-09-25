@@ -15,6 +15,8 @@ checks, against sot/channels.csv:
   M4  SHIELD_A and SHIELD_B are never joined anywhere in any drawing.
   M5  one cavity, one ECU signal: a cavity never reaches two different
       signal-class ECU pins.
+  M6  loom C has no bulkhead: the front wheel-speed drops (fender sub-loom of
+      loom C) never land on a bulkhead cavity.
 
 Shared rails (+5V, +8V, Gnd Out) are exempt from M2: loom B has no +5V pin, so
 it borrows A32 by design. Pin *names* across each mating pair are checked by
@@ -145,6 +147,17 @@ for loom, g in graphs.items():
         if len(sig) > 1:
             bad.append("M5 %s: %s %s reaches %d signal pins: %s"
                        % (loom, n[1], n[2], len(sig), ", ".join("%s.%s" % k for k in sorted(sig))))
+
+# M6 - loom C has no bulkhead: the front wheel-speed drops (a fender sub-loom
+# of loom C, Daniel 2026-09-25) must never land on a bulkhead cavity.
+LOOM_C_ENDS = {"wss_fl", "wss_fr", "vrc_f_inl", "vrc_f_inr"}
+for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
+    d = json.load(open(path, encoding="utf-8"))
+    for c in conductors(d):
+        ids = {(c.get(k) or {}).get("id", "") for k in ("source", "target")}
+        if ids & LOOM_C_ENDS and any(i in LETTER or i.startswith("dm_bh_") for i in ids):
+            bad.append("M6 %s: %s puts a front wheel-speed drop on a bulkhead - loom C "
+                       "leaves through the fender, not a bulkhead" % (os.path.basename(path), c["id"]))
 
 # M4 - shields never bridged
 for loom, g in graphs.items():

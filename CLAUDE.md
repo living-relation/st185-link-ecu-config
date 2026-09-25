@@ -11,7 +11,8 @@
 - **Bench tooling**: `bench/can_bench.py`, `bench/frames.py`, `bench/requirements.txt`, `BENCH-TEST.md`.
 - **Desktop sender app**: `apps/trackcluster-can-sender/app.py`, `apps/trackcluster-can-sender/ui/index.html`, `apps/trackcluster-can-sender/BUILD.md`, `apps/trackcluster-can-sender/requirements.txt`.
 - **Automation assets**: `rd-build/tools/automation_helper.py`, `rd-build/tools/SETUP.md`, `rd-build/PLAN.md`, `rd-build/FINDINGS.md`.
-- **Harness / electrical**: `docs/harness/ST185-Power.harness`, `ST185-Signal.harness`, `ST185-CAN.harness`, `ST185-EngineRoom-C.harness`, `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
+- **Wiring SoT**: `sot/channels.csv` (every ECU pin and channel). `XTREMEX-IO-TABLE.html` is its visual face.
+- **Harness / electrical**: `docs/harness/rebuild/*.harness` (the nine looms; see `docs/harness/README.md`), gate `python docs/harness/check_all.py`, `docs/SHIELD-RULES.md`, `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - **Engine calibration**: `tune/engine_constants.yaml`, `tune/tables/*.csv`, `tune/README.md` — PCLink seeds only; not an I/O or CAN source.
 - **Archive**: `archive/` — retired material. **Do not read or search it during normal work**; it is excluded from agent context and nothing in it is authoritative. Consult it only when explicitly asked why a past decision was made, and if it disagrees with a current doc, the current doc wins.
 - **Agent ecosystem**: `.claude/skills/`, `.cursor/skills/`, `.agents/skills/`, `.cursor/hooks.json`, `.claude/hooks/`.
@@ -46,7 +47,7 @@ otherwise consult the GitHub repo linked above.
   - `@./CAN-BUS-MASTER-DESIGN.md`
   - `@./CANBUS-LINK-G4X-CONFIG.md`
   - `@./XTREMEX-IO-TABLE.html`
-  - `@./docs/XTREMEX-IO-VERIFY-2026-09-11.md`
+  - `@./docs/RECONCILIATION-RULES.md`
   - `@./BENCH-TEST.md`
 
 ## Fast Commands

@@ -8,28 +8,36 @@ a second copy, so the two cannot drift apart.
 
 A change to one wiring document is not done until it is checked against the source-of-truth
 chain **and every other wiring surface**, including the ones you did not edit. They must all
-agree.
+agree. `python docs/harness/check_all.py` must pass before every commit.
 
 ## Source of truth
 
-`XTREMEX-IO-TABLE.html` → `SCHEMATIC-WIRING.html` + `apps/harness-schematic/` →
-`docs/harness/*.harness` → harness.design app copy (mirror only).
+`sot/channels.csv` → `XTREMEX-IO-TABLE.html` (visual face, gated by `sync_io_table.py`) +
+`docs/harness/rebuild/*.harness` (the looms) → `docs/harness/min/` → harness.design app copy
+(mirror only, never edit as source).
 
-New pin facts go into the table first. If a downstream face disagrees, the face is wrong.
+New pin facts go into `sot/channels.csv` first. If anything disagrees with it, the other
+thing is wrong.
 
 ## Facts that are commonly stale
 
 - **Two bulkheads only**, A and B, HDP20 from owned stock: A is `HDP24-24-47PE-L017` /
   `HDP26-24-47SE-L015`, B is `HDP24-24-21PN` / `HDP26-24-21SN`. Bulkhead C is deleted. The
   Souriau 8STA 37-way design is superseded — do not reintroduce it.
-- **Every ECU pin is Signal by default.** Exceptions to Power: the 12V ignition supply with
-  its hold wiring, and all relay trigger outputs.
-- **All pedal pins are Signal**, supplies included. This reverses the older rule that put
-  pins 1/2/4/5 in Power.
-- **All ETB pins are Signal**, motor pair included. **All 5V sensor power is Signal.**
+- **The ECU pin decides the loom.** An ECU-A pin crosses on bulkhead A, an ECU-B pin on
+  bulkhead B (the `loom` column in `sot/channels.csv`). Shared rails (+5V, +8V, Gnd Out) are
+  the exception: loom B has no +5V pin and borrows A32.
+- **Each bulkhead cavity mates its twin.** Bulkhead A cabin cN = bulkhead A engine cN, same
+  for B, same name on both halves. The looms are separate drawings, so only the audits join
+  them (`audit_mating.py`, `audit_pin_names.py`).
+- **The old Power / Signal file split is gone.** The looms are the nine files in
+  `docs/harness/rebuild/`. File names do not follow the bulkhead letter.
 - **Harness C is the Engine Room Harness** — no bulkhead, exits the driver fender around the
-  front of the bay.
-- **Shields** terminate at the ECU only. Model a shielded run as a cable whose `shield` core
-  has a `source` and no `target`. Device-end connectors carry no shell.
+  front of the bay. The front wheel-speed drops are a fender sub-loom of it (drawn in
+  `ST185-WheelSpeed.harness`) and never touch a bulkhead.
+- **CAN H/L is drawn once**, in `ST185-CAN.harness`. No other loom draws it.
+- **Shields** float at the device and terminate at the ECU only: loom A screens on A7
+  (SHIELD_A), loom B screens on B17 (SHIELD_B). **A7 and B17 are never joined.** Nothing but a
+  drain ever lands on either. Full rules: `docs/SHIELD-RULES.md`.
 
 Full build rules: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.

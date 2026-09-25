@@ -5,7 +5,7 @@
      Fuel temp comes from the Continental 3-pin flex sensor (no separate sensor).
      Source: official Link G4X XtremeX Quick Start Guide (linkecu.com/documentation/XtremeXQuickstartGuide.pdf,
      InDesign 2023-06-22) I/O table + A/B loom diagrams, plus PCLink-family wiring specs for ratings.
-     Cross-ref the living notes: "AC amplifier input signals.txt" and "Other ECU IO and MATH.txt".
+     Every pin here must agree with sot/channels.csv (the SoT) - docs/harness/sync_io_table.py --check gates it.
      Pin numbers confirmed 2026-09-11 against that PDF (wire-side / ECU-header view). -->
 <html lang="en">
 <head>
@@ -321,10 +321,10 @@
   <strong>✔ Pin numbers CONFIRMED 2026-09-11</strong> against the official
   <a href="https://linkecu.com/documentation/XtremeXQuickstartGuide.pdf">G4X XtremeX Quick Start Guide</a>
   (Adobe InDesign 18.3, 2023-06-22), wire-side / ECU-header view. Every <code>A##</code> / <code>B##</code>
-  in this table, <code>SCHEMATIC-WIRING.html</code>, and <code>apps/harness-schematic/</code> now matches
+  in this table and in <code>sot/channels.csv</code> now matches
   that drawing. Drive ratings (2 A aux, 4 A ETB, 20 mA @ 5 V ign high, 1 kΩ temp pull-ups) come from the
-  PCLink-family Wiring and Installation Manual that the QSG defers to. Work record:
-  <code>docs/XTREMEX-IO-VERIFY-2026-09-11.md</code>.
+  PCLink-family Wiring and Installation Manual that the QSG defers to. The dated work record
+  is archived; <code>sot/channels.csv</code> now carries the per-pin source for every row.
 </div>
 
 <h2>Pin budget</h2>

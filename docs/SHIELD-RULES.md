@@ -39,11 +39,17 @@ Fallback, if that ever stops being true:
 
 | Shield | Route | Bulkhead pin |
 |---|---|---|
-| crank | cable floats at the sensor → `bh_a_eng` c33 → `bh_a_fw` c33 → `sp_shield_cab` → ECU-A A7 / ECU-B B17 | own pin |
-| cam | same, c34 | own pin |
-| knock 1 | same, c35 | own pin |
-| wss FL, FR | continuous through the **front** VRC enclosure, no bulkhead | none — grommet |
-| wss RL, RR | continuous through the **rear** VRC enclosure, no bulkhead | none — grommet |
+| crank | cable floats at the sensor → `bh_a_eng` c33 → `bh_a_fw` c33 → `sp_shield_a` → **ECU-A A7** | own pin, bulkhead A |
+| cam | same, c34 → `sp_shield_a` → **A7** | own pin, bulkhead A |
+| knock 1 | cable floats at the sensor → `bh_b_eng` c18 → `bh_b_fw` c18 → `sp_shield_b` → **ECU-B B17** (knock is pin B9, loom B) | own pin, bulkhead B |
+| wss FL, FR | continuous through the **front** VRC enclosure, loom C fender sub-loom, no bulkhead; output screen → `sp_shield_a` → A7 | none — fender |
+| wss RL, RR | continuous through the **rear** VRC enclosure, no bulkhead; output screen → `sp_shield_b` → B17 | none — grommet |
+
+**The two shield grounds are never joined.** Loom A screens land on A7 through
+`sp_shield_a`, loom B screens on B17 through `sp_shield_b`. The old shared
+`sp_shield_cab` that tied A7 to B17 was split on 2026-09-22. `audit_mating.py`
+(M3, M4) fails the build if a bulkhead-A screen reaches B17, a bulkhead-B screen
+reaches A7, or the two pins are ever connected.
 
 `bh_a_fw` c1 / `bh_a_eng` c1 used to be a single shared drain. **Retired
 2026-09-22** when §6.32 first choice was finally applied. Both are spare.
