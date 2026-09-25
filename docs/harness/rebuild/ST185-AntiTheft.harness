@@ -84,7 +84,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 960,
+        "x": 1080,
         "y": -300
       },
       "schematicPosition": {
@@ -118,7 +118,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1200,
+        "x": 1800,
         "y": 0
       },
       "schematicPosition": {
@@ -146,7 +146,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 270,
+        "x": 300,
         "y": -390
       },
       "schematicPosition": {
@@ -174,7 +174,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1050,
+        "x": 1440,
         "y": -120
       },
       "schematicPosition": {
@@ -202,7 +202,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1050,
+        "x": 1440,
         "y": -390
       },
       "schematicPosition": {
@@ -222,7 +222,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1110,
+        "x": 1680,
         "y": 300
       },
       "schematicPosition": {
@@ -240,7 +240,7 @@
       "width": 390,
       "signal": "+12V CONSTANT, 5A from the cabin fuse block *",
       "layoutPosition": {
-        "x": 990,
+        "x": 1200,
         "y": 360
       },
       "schematicPosition": {
@@ -255,7 +255,7 @@
       "width": 390,
       "signal": "+12V IGNITION from the cabin fuse block",
       "layoutPosition": {
-        "x": 930,
+        "x": 960,
         "y": 330
       },
       "schematicPosition": {
@@ -271,7 +271,7 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Cabin chassis ground stud M6 - ring A *",
       "layoutPosition": {
-        "x": 990,
+        "x": 1200,
         "y": -390
       },
       "schematicPosition": {
@@ -285,7 +285,7 @@
       "width": 390,
       "signal": "OEM door courtesy switches *",
       "layoutPosition": {
-        "x": 1260,
+        "x": 1920,
         "y": -420
       },
       "schematicPosition": {
@@ -315,7 +315,7 @@
       "width": 150,
       "signal": "Trunk pin switch",
       "layoutPosition": {
-        "x": 2520,
+        "x": 3180,
         "y": 0
       },
       "schematicPosition": {
@@ -330,7 +330,7 @@
       "width": 390,
       "signal": "Park lamp flash - to a relay in the CABIN *",
       "layoutPosition": {
-        "x": 1080,
+        "x": 1560,
         "y": 390
       },
       "schematicPosition": {
@@ -346,8 +346,8 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Cabin chassis ground stud M6 - ring B *",
       "layoutPosition": {
-        "x": 1020,
-        "y": -390
+        "x": 1320,
+        "y": -450
       },
       "schematicPosition": {
         "x": 1980,
@@ -361,8 +361,8 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Cabin chassis ground stud M6 - ring C (valet)",
       "layoutPosition": {
-        "x": 1080,
-        "y": -390
+        "x": 1560,
+        "y": -450
       },
       "schematicPosition": {
         "x": 1980,
@@ -375,8 +375,8 @@
       "width": 390,
       "signal": "+12V CONSTANT, 2A fuse, cabin fuse block *",
       "layoutPosition": {
-        "x": 1020,
-        "y": 360
+        "x": 1320,
+        "y": 420
       },
       "schematicPosition": {
         "x": 1980,
@@ -390,8 +390,8 @@
       "id": "sp_12v",
       "partId": "spp_solder_26_14",
       "layoutPosition": {
-        "x": 960,
-        "y": -240
+        "x": 1260,
+        "y": -390
       },
       "schematicPosition": {
         "x": 510,
@@ -403,8 +403,8 @@
       "id": "sp_ig",
       "partId": "spp_solder_26_14",
       "layoutPosition": {
-        "x": 900,
-        "y": -240
+        "x": 1020,
+        "y": -390
       },
       "schematicPosition": {
         "x": 510,
@@ -416,7 +416,7 @@
       "id": "sp_door",
       "partId": "spp_solder_26_14",
       "layoutPosition": {
-        "x": 1140,
+        "x": 1740,
         "y": -390
       },
       "schematicPosition": {
@@ -429,8 +429,8 @@
       "id": "sp_hood",
       "partId": "spp_solder_26_14",
       "layoutPosition": {
-        "x": 270,
-        "y": -240
+        "x": 360,
+        "y": -390
       },
       "schematicPosition": {
         "x": 510,
@@ -442,8 +442,8 @@
       "id": "sp_trunk",
       "partId": "spp_solder_26_14",
       "layoutPosition": {
-        "x": 1260,
-        "y": -240
+        "x": 1980,
+        "y": -390
       },
       "schematicPosition": {
         "x": 510,
@@ -455,8 +455,8 @@
       "id": "sp_park",
       "partId": "spp_solder_26_14",
       "layoutPosition": {
-        "x": 960,
-        "y": -180
+        "x": 1380,
+        "y": -390
       },
       "schematicPosition": {
         "x": 1170,
@@ -468,8 +468,8 @@
       "id": "sp_12v_shk",
       "partId": "spp_solder_26_14",
       "layoutPosition": {
-        "x": 1140,
-        "y": -240
+        "x": 1740,
+        "y": -450
       },
       "schematicPosition": {
         "x": 1830,
@@ -1046,70 +1046,70 @@
     {
       "id": "bp_270",
       "layoutPosition": {
-        "x": 270,
+        "x": 300,
         "y": -300
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 930,
+        "x": 960,
         "y": -300
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
-        "x": 990,
+        "x": 1200,
         "y": -300
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1020,
+        "x": 1320,
         "y": -300
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1050,
+        "x": 1440,
         "y": -300
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": 1080,
+        "x": 1560,
         "y": -300
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": 1110,
+        "x": 1680,
         "y": -300
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
-        "x": 1200,
+        "x": 1800,
         "y": -300
       }
     },
     {
       "id": "bp_1260",
       "layoutPosition": {
-        "x": 1260,
+        "x": 1920,
         "y": -300
       }
     },
     {
       "id": "bp_2520",
       "layoutPosition": {
-        "x": 2520,
+        "x": 3180,
         "y": -300
       }
     }
@@ -1354,7 +1354,11 @@
       "partNumber": "(cross-reference - no part)",
       "manufacturer": "n/a",
       "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
-      "id": "cp_xref"
+      "id": "cp_xref",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png"
+      }
     },
     {
       "partNumber": "DT06-2S",
