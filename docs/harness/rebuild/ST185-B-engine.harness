@@ -18,7 +18,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
+        "x": 1410,
         "y": -150
       },
       "schematicPosition": {
@@ -43,7 +43,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 630,
+        "x": 1530,
         "y": -60
       },
       "schematicPosition": {
@@ -68,7 +68,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 660,
+        "x": 1650,
         "y": 30
       },
       "schematicPosition": {
@@ -93,7 +93,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 690,
+        "x": 1770,
         "y": 120
       },
       "schematicPosition": {
@@ -110,23 +110,23 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "GND"
+          "signal": "+B 12V (switched, F10)"
         },
         {
           "id": "c2",
-          "signal": "IGT - wired on ST185-A-engine"
-        },
-        {
-          "id": "c3",
           "notConnected": true
         },
         {
+          "id": "c3",
+          "signal": "IGT - wired on ST185-A-engine"
+        },
+        {
           "id": "c4",
-          "signal": "12V"
+          "signal": "GND"
         }
       ],
       "layoutPosition": {
-        "x": 720,
+        "x": 1890,
         "y": -150
       },
       "schematicPosition": {
@@ -143,23 +143,23 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "GND"
+          "signal": "+B 12V (switched, F10)"
         },
         {
           "id": "c2",
-          "signal": "IGT - wired on ST185-A-engine"
-        },
-        {
-          "id": "c3",
           "notConnected": true
         },
         {
+          "id": "c3",
+          "signal": "IGT - wired on ST185-A-engine"
+        },
+        {
           "id": "c4",
-          "signal": "12V"
+          "signal": "GND"
         }
       ],
       "layoutPosition": {
-        "x": 750,
+        "x": 2010,
         "y": -60
       },
       "schematicPosition": {
@@ -176,23 +176,23 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "GND"
+          "signal": "+B 12V (switched, F10)"
         },
         {
           "id": "c2",
-          "signal": "IGT - wired on ST185-A-engine"
-        },
-        {
-          "id": "c3",
           "notConnected": true
         },
         {
+          "id": "c3",
+          "signal": "IGT - wired on ST185-A-engine"
+        },
+        {
           "id": "c4",
-          "signal": "12V"
+          "signal": "GND"
         }
       ],
       "layoutPosition": {
-        "x": 810,
+        "x": 2250,
         "y": 30
       },
       "schematicPosition": {
@@ -209,23 +209,23 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "GND"
+          "signal": "+B 12V (switched, F10)"
         },
         {
           "id": "c2",
-          "signal": "IGT - wired on ST185-A-engine"
-        },
-        {
-          "id": "c3",
           "notConnected": true
         },
         {
+          "id": "c3",
+          "signal": "IGT - wired on ST185-A-engine"
+        },
+        {
           "id": "c4",
-          "signal": "12V"
+          "signal": "GND"
         }
       ],
       "layoutPosition": {
-        "x": 840,
+        "x": 2370,
         "y": 120
       },
       "schematicPosition": {
@@ -267,7 +267,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 630,
+        "x": 1530,
         "y": 300
       },
       "schematicPosition": {
@@ -291,7 +291,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 450,
+        "x": 810,
         "y": -210
       },
       "schematicPosition": {
@@ -316,7 +316,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 540,
+        "x": 1170,
         "y": -270
       },
       "schematicPosition": {
@@ -341,8 +341,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 660,
-        "y": 300
+        "x": 1650,
+        "y": 360
       },
       "schematicPosition": {
         "x": 1980,
@@ -366,7 +366,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 480,
+        "x": 930,
         "y": 30
       },
       "schematicPosition": {
@@ -420,7 +420,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 900,
+        "x": 2610,
         "y": -270
       },
       "schematicPosition": {
@@ -449,7 +449,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1020,
+        "x": 3090,
         "y": 120
       },
       "schematicPosition": {
@@ -478,7 +478,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 510,
+        "x": 1050,
         "y": 90
       },
       "schematicPosition": {
@@ -507,8 +507,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 870,
-        "y": 120
+        "x": 2490,
+        "y": 60
       },
       "schematicPosition": {
         "x": 1980,
@@ -536,7 +536,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 570,
+        "x": 1290,
         "y": -210
       },
       "schematicPosition": {
@@ -553,7 +553,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V",
+          "signal": "+5V (sensor supply; kit red 12V lead is for the gauge only)",
           "designation": "A"
         },
         {
@@ -568,8 +568,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 420,
-        "y": 120
+        "x": 690,
+        "y": 0
       },
       "schematicPosition": {
         "x": 1980,
@@ -593,8 +593,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 360,
-        "y": 300
+        "x": 450,
+        "y": 360
       },
       "schematicPosition": {
         "x": 1980,
@@ -622,7 +622,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 750,
+        "x": 2010,
         "y": 300
       },
       "schematicPosition": {
@@ -655,7 +655,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 390,
+        "x": 570,
         "y": 90
       },
       "schematicPosition": {
@@ -960,8 +960,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 1050,
-        "y": 120
+        "x": 3210,
+        "y": 60
       },
       "excludeFromBom": true
     },
@@ -1103,7 +1103,7 @@
         "y": 1500
       },
       "layoutPosition": {
-        "x": 780,
+        "x": 2130,
         "y": 210
       },
       "excludeFromBom": true
@@ -1124,7 +1124,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 1020,
+        "x": 3090,
         "y": 390
       },
       "partId": "cp_xref",
@@ -1140,8 +1140,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 930,
-        "y": -300
+        "x": 2730,
+        "y": -360
       },
       "cavities": [
         {
@@ -1168,7 +1168,7 @@
       "type": "Spade",
       "signal": "Starter Solenoid Trigger (S)",
       "layoutPosition": {
-        "x": 990,
+        "x": 2970,
         "y": -180
       },
       "schematicPosition": {
@@ -1183,14 +1183,14 @@
       "type": "Ring",
       "signal": "Engine block ground stud (power ground)",
       "layoutPosition": {
-        "x": 960,
+        "x": 2850,
         "y": -90
       },
       "schematicPosition": {
         "x": 1980,
         "y": 330
       },
-      "partId": "tp_ring_m6_16_14",
+      "partId": "tp_ring_m6_12_10",
       "width": 390
     }
   ],
@@ -1198,7 +1198,7 @@
     {
       "id": "sp_5v_eng",
       "layoutPosition": {
-        "x": 780,
+        "x": 2070,
         "y": 120
       },
       "schematicPosition": {
@@ -1211,8 +1211,8 @@
     {
       "id": "sp_gndout_eng",
       "layoutPosition": {
-        "x": 540,
-        "y": 270
+        "x": 1710,
+        "y": 120
       },
       "schematicPosition": {
         "x": 1830,
@@ -1224,8 +1224,8 @@
     {
       "id": "sp_sw12_eng",
       "layoutPosition": {
-        "x": 810,
-        "y": 270
+        "x": 1710,
+        "y": 60
       },
       "schematicPosition": {
         "x": 1830,
@@ -1237,21 +1237,21 @@
     {
       "id": "sp_chassis_eng",
       "layoutPosition": {
-        "x": 870,
-        "y": 30
+        "x": 2070,
+        "y": 60
       },
       "schematicPosition": {
         "x": 2490,
         "y": 720
       },
-      "partId": "spp_crimp_6_2",
+      "partId": "spp_crimp_10_6",
       "locationId": "bp_750"
     },
     {
       "id": "sp_inj_eng",
       "layoutPosition": {
-        "x": 480,
-        "y": -30
+        "x": 1710,
+        "y": 0
       },
       "schematicPosition": {
         "x": 2490,
@@ -1263,8 +1263,8 @@
     {
       "id": "sp_cop_eng",
       "layoutPosition": {
-        "x": 870,
-        "y": 270
+        "x": 2070,
+        "y": 0
       },
       "schematicPosition": {
         "x": 2490,
@@ -1332,7 +1332,7 @@
       "color": "Red",
       "source": {
         "id": "cop1",
-        "handle": "c4"
+        "handle": "c1"
       },
       "target": {
         "id": "sp_cop_eng",
@@ -1345,7 +1345,7 @@
       "color": "Red",
       "source": {
         "id": "cop2",
-        "handle": "c4"
+        "handle": "c1"
       },
       "target": {
         "id": "sp_cop_eng",
@@ -1358,7 +1358,7 @@
       "color": "Red",
       "source": {
         "id": "cop3",
-        "handle": "c4"
+        "handle": "c1"
       },
       "target": {
         "id": "sp_cop_eng",
@@ -1371,7 +1371,7 @@
       "color": "Red",
       "source": {
         "id": "cop4",
-        "handle": "c4"
+        "handle": "c1"
       },
       "target": {
         "id": "sp_cop_eng",
@@ -1381,16 +1381,16 @@
     },
     {
       "id": "w218",
-      "color": "Red",
+      "color": "Orange",
       "source": {
         "id": "turbospd",
         "handle": "c1"
       },
       "target": {
-        "id": "sp_sw12_eng",
+        "id": "sp_5v_eng",
         "handle": "Splice"
       },
-      "partId": "wp_20_red"
+      "partId": "wp_20_org"
     },
     {
       "id": "w219",
@@ -1684,7 +1684,7 @@
       "color": "Black",
       "source": {
         "id": "cop1",
-        "handle": "c1"
+        "handle": "c4"
       },
       "target": {
         "id": "sp_chassis_eng",
@@ -1697,7 +1697,7 @@
       "color": "Black",
       "source": {
         "id": "cop2",
-        "handle": "c1"
+        "handle": "c4"
       },
       "target": {
         "id": "sp_chassis_eng",
@@ -1710,7 +1710,7 @@
       "color": "Black",
       "source": {
         "id": "cop3",
-        "handle": "c1"
+        "handle": "c4"
       },
       "target": {
         "id": "sp_chassis_eng",
@@ -1723,7 +1723,7 @@
       "color": "Black",
       "source": {
         "id": "cop4",
-        "handle": "c1"
+        "handle": "c4"
       },
       "target": {
         "id": "sp_chassis_eng",
@@ -1755,7 +1755,7 @@
         "handle": "Splice"
       },
       "color": "Orange",
-      "partId": "wp_20_org"
+      "partId": "wp_18_org"
     },
     {
       "id": "w_rail_sp_gndout_e",
@@ -1809,7 +1809,7 @@
         "id": "sp_chassis_eng",
         "handle": "Splice"
       },
-      "partId": "wp_14_blk"
+      "partId": "wp_10_blk"
     },
     {
       "id": "w_inj_pwr_e",
@@ -2397,161 +2397,161 @@
     {
       "id": "bp_360",
       "layoutPosition": {
-        "x": 360,
+        "x": 450,
         "y": 210
       }
     },
     {
       "id": "bp_390",
       "layoutPosition": {
-        "x": 390,
+        "x": 570,
         "y": 210
       }
     },
     {
       "id": "bp_420",
       "layoutPosition": {
-        "x": 420,
+        "x": 690,
         "y": 210
       }
     },
     {
       "id": "bp_450",
       "layoutPosition": {
-        "x": 450,
+        "x": 810,
         "y": 210
       }
     },
     {
       "id": "bp_480",
       "layoutPosition": {
-        "x": 480,
+        "x": 930,
         "y": 210
       }
     },
     {
       "id": "bp_510",
       "layoutPosition": {
-        "x": 510,
+        "x": 1050,
         "y": 210
       }
     },
     {
       "id": "bp_540",
       "layoutPosition": {
-        "x": 540,
+        "x": 1170,
         "y": 210
       }
     },
     {
       "id": "bp_570",
       "layoutPosition": {
-        "x": 570,
+        "x": 1290,
         "y": 210
       }
     },
     {
       "id": "bp_600",
       "layoutPosition": {
-        "x": 600,
+        "x": 1410,
         "y": 210
       }
     },
     {
       "id": "bp_630",
       "layoutPosition": {
-        "x": 630,
+        "x": 1530,
         "y": 210
       }
     },
     {
       "id": "bp_660",
       "layoutPosition": {
-        "x": 660,
+        "x": 1650,
         "y": 210
       }
     },
     {
       "id": "bp_690",
       "layoutPosition": {
-        "x": 690,
+        "x": 1770,
         "y": 210
       }
     },
     {
       "id": "bp_720",
       "layoutPosition": {
-        "x": 720,
+        "x": 1890,
         "y": 210
       }
     },
     {
       "id": "bp_750",
       "layoutPosition": {
-        "x": 750,
+        "x": 2010,
         "y": 210
       }
     },
     {
       "id": "bp_810",
       "layoutPosition": {
-        "x": 810,
+        "x": 2250,
         "y": 210
       }
     },
     {
       "id": "bp_840",
       "layoutPosition": {
-        "x": 840,
+        "x": 2370,
         "y": 210
       }
     },
     {
       "id": "bp_870",
       "layoutPosition": {
-        "x": 870,
+        "x": 2490,
         "y": 210
       }
     },
     {
       "id": "bp_900",
       "layoutPosition": {
-        "x": 900,
+        "x": 2610,
         "y": 210
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 930,
+        "x": 2730,
         "y": 210
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
-        "x": 960,
+        "x": 2850,
         "y": 210
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
-        "x": 990,
+        "x": 2970,
         "y": 210
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1020,
+        "x": 3090,
         "y": 210
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1050,
+        "x": 3210,
         "y": 210
       }
     }
@@ -2575,17 +2575,6 @@
       "color": "Red",
       "gauge": {
         "value": 12,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_14_blk",
-      "partNumber": "EW-1C14-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 14 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
-      "gauge": {
-        "value": 14,
         "unit": "AWG"
       }
     },
@@ -2724,6 +2713,28 @@
         "value": 20,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "wp_18_org",
+      "partNumber": "EW-1C18-ORG",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Orange",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_10_blk",
+      "partNumber": "EW-1C10-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 10 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
     }
   ],
   "connectorParts": [
@@ -2740,7 +2751,11 @@
           "contactPartId": "ct_generic_skt"
         }
       ],
-      "id": "cp_camkit"
+      "id": "cp_camkit",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cam-sensor-kit-pigtail.png"
+      }
     },
     {
       "partNumber": "90980-11885",
@@ -2755,7 +2770,12 @@
           "contactPartId": "ct_toy_ts"
         }
       ],
-      "id": "cp_cop"
+      "id": "cp_cop",
+      "image": {
+        "source": "url",
+        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/4-way-connector-kit-for-toyota-denso-90980-11885-ignition-coil-pack-22-20-awg-343.webp",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/4-way-connector-kit-for-toyota-denso-90980-11885-ignition-coil-pack-22-20-awg-343_200x.webp"
+      }
     },
     {
       "partNumber": "DT06-2S",
@@ -2908,7 +2928,12 @@
           "lockPartId": "lp_wm4s"
         }
       ],
-      "id": "cp_dtm4s"
+      "id": "cp_dtm4s",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-details.png"
+      }
     },
     {
       "partNumber": "D 261 205 358-01",
@@ -2923,7 +2948,12 @@
           "contactPartId": "wbsN09tiboovqanDL_xZA"
         }
       ],
-      "id": "cp_etb"
+      "id": "cp_etb",
+      "image": {
+        "source": "url",
+        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/6-way-connector-kit-same-as-bosch-d261-205-358-01-24-20-awg-285.webp",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/6-way-connector-kit-same-as-bosch-d261-205-358-01-24-20-awg-285_200x.webp"
+      }
     },
     {
       "partNumber": "13519047",
@@ -2938,7 +2968,12 @@
           "contactPartId": "ct_gt150_skt"
         }
       ],
-      "id": "cp_gt150"
+      "id": "cp_gt150",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/13519047982_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/13519047982_SPL.jpg"
+      }
     },
     {
       "partNumber": "HDP26-24-47SE-L015",
@@ -2953,7 +2988,12 @@
           "cavityPlugPartId": "pl_sz20"
         }
       ],
-      "id": "cp_hdp_a_eng"
+      "id": "cp_hdp_a_eng",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/HDP/262/447/HDP26-24-47SE-L015-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/HDP/262/447/HDP26-24-47SE-L015-t1.jpg/jcr:content/renditions/product-details.png"
+      }
     },
     {
       "partNumber": "HDP26-24-21SN",
@@ -2968,7 +3008,12 @@
           "cavityPlugPartId": "pl_sz16"
         }
       ],
-      "id": "cp_hdp_b_eng"
+      "id": "cp_hdp_b_eng",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/catalog/common/images/PartImages/prhdp26-24-21sn.jpg",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp26-24-21sn.jpg"
+      }
     },
     {
       "partNumber": "15419715",
@@ -2983,7 +3028,12 @@
           "contactPartId": "ct_gt150_skt"
         }
       ],
-      "id": "cp_inj"
+      "id": "cp_inj",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/15419715982_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/15419715982_SPL.jpg"
+      }
     },
     {
       "partNumber": "12052641",
@@ -2998,7 +3048,12 @@
           "contactPartId": "ct_mp150_skt"
         }
       ],
-      "id": "cp_mp150_2"
+      "id": "cp_mp150_2",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/12052641982_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/12052641982_SPL.jpg"
+      }
     },
     {
       "partNumber": "12110293",
@@ -3013,7 +3068,12 @@
           "contactPartId": "ct_mp150_skt"
         }
       ],
-      "id": "cp_mp150_3"
+      "id": "cp_mp150_3",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/121102-93982_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/121102-93982_SPL.jpg"
+      }
     },
     {
       "partNumber": "90980-11062",
@@ -3028,7 +3088,12 @@
           "contactPartId": "ct_toy_ts"
         }
       ],
-      "id": "cp_toy2p"
+      "id": "cp_toy2p",
+      "image": {
+        "source": "url",
+        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399.webp",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399_200x.webp"
+      }
     },
     {
       "partNumber": "TBD - generic oval 3-pin, socket contacts",
@@ -3043,32 +3108,24 @@
           "contactPartId": "ct_toy_ts"
         }
       ],
-      "id": "cp_vss3"
+      "id": "cp_vss3",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/toyota-oval-3pos.png"
+      }
     },
     {
       "partNumber": "(cross-reference - no part)",
       "manufacturer": "n/a",
       "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
-      "id": "cp_xref"
+      "id": "cp_xref",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png"
+      }
     }
   ],
   "terminalParts": [
-    {
-      "type": "Ring",
-      "size": "M6",
-      "partNumber": "GENERIC RING M6 16-14",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 16-14 AWG",
-      "id": "tp_ring_m6_16_14"
-    },
     {
       "type": "Spade",
       "partNumber": "GENERIC SPADE RECEPTACLE 12-10",
@@ -3081,8 +3138,24 @@
         "value": 10,
         "unit": "AWG"
       },
-      "description": "TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 12-10 AWG - starter S terminal. TERMINAL STYLE NOT VERIFIED ON THE STARTER",
+      "description": "TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 6.3 MM (250) TAB, 12-10 AWG - starter S terminal (6.3 mm single-pole spade assumed 2026-09-25)",
       "id": "tp_spade_str"
+    },
+    {
+      "type": "Ring",
+      "size": "M6",
+      "partNumber": "GENERIC RING M6 12-10",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 12,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
+      "id": "tp_ring_m6_12_10"
     }
   ],
   "spliceParts": [
@@ -3113,20 +3186,6 @@
       },
       "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
       "id": "spp_crimp_14_10"
-    },
-    {
-      "partNumber": "GENERIC CRIMP SPLICE 6-2",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 2,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 6-2 AWG, ADHESIVE HEATSHRINK OVER",
-      "id": "spp_crimp_6_2"
     }
   ],
   "contactParts": [
@@ -3237,13 +3296,21 @@
       "id": "ct_mp150_skt"
     },
     {
-      "partNumber": "TS 2.3 (090 type)",
+      "partNumber": "8100-0461",
       "manufacturer": "Sumitomo",
       "type": "Crimp",
       "gender": "Socket",
       "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN - Toyota sensor/coil terminal. Wire range NOT CONFIRMED - get the PN off the housing before ordering",
-      "id": "ct_toy_ts"
+      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) - Toyota sensor/coil terminal (8100-0460 is the 0.3-0.5 mm2 size). Family match to each OEM housing assumed 2026-09-25",
+      "id": "ct_toy_ts",
+      "minGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
     },
     {
       "partNumber": "(kit socket, D 261 205 358-01)",
@@ -3293,5 +3360,6 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity",
       "id": "pl_sz20"
     }
-  ]
+  ],
+  "mates": []
 }
