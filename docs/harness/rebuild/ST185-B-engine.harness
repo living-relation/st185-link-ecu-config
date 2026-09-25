@@ -571,7 +571,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V"
+          "signal": "Power +12V (10A fused per Link QSG)"
         },
         {
           "id": "c2",
@@ -579,11 +579,11 @@
         },
         {
           "id": "c3",
-          "signal": "CAN H (signal file)"
+          "signal": "CAN L - wired on ST185-CAN"
         },
         {
           "id": "c4",
-          "notConnected": true
+          "signal": "CAN H - wired on ST185-CAN"
         }
       ],
       "layoutPosition": {

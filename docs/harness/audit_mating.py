@@ -166,6 +166,33 @@ for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
                     bad.append("M6 %s: %s %s is named %r - no wheel-speed circuit crosses a "
                                "bulkhead" % (os.path.basename(path), cn["id"], cv["id"], t))
 
+# M7 - a device connector drawn on two looms: each cavity is wired on one
+# loom only. Found 2026-09-25: ST185-CAN put CAN H/L on the CAN-Lambda's
+# pins 1/2 while ST185-B-engine fed the same pins +12V and ground.
+cav_owner = collections.defaultdict(set)
+for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
+    loom = os.path.basename(path)[6:-8]
+    d = json.load(open(path, encoding="utf-8"))
+    for c in conductors(d):
+        for e in (c.get("source") or {}, c.get("target") or {}):
+            nid = e.get("id", "")
+            if not nid or nid in LETTER or nid.startswith(("dm_", "sp_", "ecu_")) \
+                    or e.get("handle") in ("Splice", "Terminal", "Left", "Right", None):
+                continue
+            cav_owner[(nid, e["handle"])].add(loom)
+# OPEN ITEM, not a pass: the RADLOK heavy-DC pair is drawn on B-ECU/B-engine
+# AND on EngineRoom-C. Which loom owns it is Daniel's call; until then these
+# four are printed but do not fail the build. Remove an entry the day it is
+# resolved - never add one to hide a new finding.
+KNOWN_OPEN = {("rl_pos_fw", "c1"), ("rl_pos_eng", "c1"), ("rl_neg_fw", "c1"), ("rl_neg_eng", "c1")}
+for (nid, cav), looms in sorted(cav_owner.items()):
+    if len(looms) > 1 and (nid, cav) in KNOWN_OPEN:
+        print("OPEN M7 %s %s drawn on %s - owner not decided" % (nid, cav, ", ".join(sorted(looms))))
+        continue
+    if len(looms) > 1:
+        bad.append("M7 %s %s is wired on %d looms (%s) - one cavity, one circuit"
+                   % (nid, cav, len(looms), ", ".join(sorted(looms))))
+
 # M4 - shields never bridged
 for loom, g in graphs.items():
     a = ("ECU", "ecu_a", "a7")

@@ -81,19 +81,19 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V"
+          "signal": "Power +12V ign, 10A fused - wired on ST185-B-engine"
         },
         {
           "id": "c2",
-          "signal": "GND"
+          "signal": "GND - wired on ST185-B-engine"
         },
         {
           "id": "c3",
-          "notConnected": true
+          "signal": "CAN L"
         },
         {
           "id": "c4",
-          "signal": "CAN"
+          "signal": "CAN H"
         }
       ],
       "layoutPosition": {
@@ -886,7 +886,7 @@
       },
       "target": {
         "id": "lambda",
-        "handle": "c1"
+        "handle": "c4"
       }
     },
     {
@@ -898,7 +898,7 @@
       },
       "target": {
         "id": "lambda",
-        "handle": "c2"
+        "handle": "c3"
       }
     },
     {
@@ -934,7 +934,7 @@
       },
       "target": {
         "id": "lambda",
-        "handle": "c1"
+        "handle": "c4"
       }
     },
     {
@@ -946,7 +946,7 @@
       },
       "target": {
         "id": "lambda",
-        "handle": "c2"
+        "handle": "c3"
       }
     }
   ],

@@ -9,7 +9,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `0462-201-2031` | TE DEUTSCH | Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY | 53 | 0 | **53** |
+| `0462-201-2031` | TE DEUTSCH | Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY | 55 | 0 | **55** |
 | `0413-204-2005` | TE DEUTSCH | Sealing plug, size 20, red | 45 | 0 | **45** |
 | `0460-202-2031` | TE DEUTSCH | Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY | 23 | 0 | **23** |
 | `TS 2.3 (090 type)` | Sumitomo | Toyota/Denso 2.3mm female sensor/coil terminal | 20 | 0 | **20** |

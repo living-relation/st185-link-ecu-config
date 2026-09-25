@@ -157,6 +157,12 @@ EXPECT_NEW = {
 }
 # A connection that legitimately moved to a different pin.
 EXPECT_CHANGED = {
+    # 2026-09-25: CAN H/L were on the CAN-Lambda power pins 1/2. Link QSG DTM4:
+    # 1 Power, 2 GND, 3 CAN L, 4 CAN H. Moved to 4 (H) and 3 (L), terminator too.
+    "wc_h_lam": "CAN H lambda c1 -> c4 (Link QSG pin 4 = CAN H)",
+    "wc_l_lam": "CAN L lambda c2 -> c3 (Link QSG pin 3 = CAN L)",
+    "wc_term3": "end terminator follows CAN H to lambda c4",
+    "wc_term4": "end terminator follows CAN L to lambda c3",
     # 2026-09-24. Daniel: "A sensor location must be based on link ECU docs and
     # ECU IO ... move knock to the harness that corresponds with the ECU knock
     # pin." Knock 1 is ECU B9, so it is a loom-B circuit, but all three of its
