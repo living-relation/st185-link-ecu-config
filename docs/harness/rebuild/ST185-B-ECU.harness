@@ -41,7 +41,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 990,
+        "x": 1440,
         "y": 240
       },
       "schematicPosition": {
@@ -88,7 +88,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1080,
+        "x": 1920,
         "y": 330
       },
       "schematicPosition": {
@@ -105,40 +105,37 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (F1 30A)"
+          "signal": "Fused +12V in (F1 30A)",
+          "contactPartId": "ct_f7_load"
         },
         {
           "id": "c2",
           "designation": "85",
           "signal": "ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side *",
-          "contactPartId": "ct_relay_coil"
+          "contactPartId": "ct_f7_coil"
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - PERMANENT battery via F12 5A *",
-          "contactPartId": "ct_relay_coil"
+          "contactPartId": "ct_f7_coil"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> ECU A5, injectors, coils, ETB relay"
-        },
-        {
-          "id": "c5",
-          "designation": "87a",
-          "signal": "not used"
+          "signal": "+12V out -> FB1 SW IN (F9 sensors/coils, F10 COP, F11 injectors)",
+          "contactPartId": "ct_f7_load"
         }
       ],
       "layoutPosition": {
-        "x": 1110,
-        "y": 330
+        "x": 2040,
+        "y": 390
       },
       "schematicPosition": {
         "x": 1200,
         "y": 750
       },
-      "partId": "cp_rly_nod",
+      "partId": "cp_rly_f7_b",
       "width": 390
     },
     {
@@ -148,7 +145,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (F3 15A)"
+          "signal": "Fused +12V in (F3 10A)"
         },
         {
           "id": "c2",
@@ -174,8 +171,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1140,
-        "y": 360
+        "x": 2160,
+        "y": 480
       },
       "schematicPosition": {
         "x": 1200,
@@ -191,40 +188,37 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (F2 20A)"
+          "signal": "Fused +12V in (F2 25A)",
+          "contactPartId": "ct_f7_load"
         },
         {
           "id": "c2",
           "designation": "85",
           "signal": "ACTIVE-LOW Coil - -> Aux 3 / A19 *",
-          "contactPartId": "ct_relay_coil"
+          "contactPartId": "ct_f7_coil"
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - ignition-switched 12V *",
-          "contactPartId": "ct_relay_coil"
+          "contactPartId": "ct_f7_coil"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> fuel pump"
-        },
-        {
-          "id": "c5",
-          "designation": "87a",
-          "signal": "not used"
+          "signal": "+12V out -> fuel pump",
+          "contactPartId": "ct_f7_load"
         }
       ],
       "layoutPosition": {
-        "x": 1170,
+        "x": 2280,
         "y": 360
       },
       "schematicPosition": {
         "x": 1200,
         "y": 1710
       },
-      "partId": "cp_rly_nod",
+      "partId": "cp_rly_f7_b",
       "width": 390
     },
     {
@@ -234,83 +228,77 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (F5 30A)"
+          "signal": "Fused +12V in (HCFB H2 40A)",
+          "contactPartId": "ct_f7_load8"
         },
         {
           "id": "c2",
           "designation": "85",
           "signal": "ACTIVE-LOW Coil - -> Aux 5 / A29 - low-side",
-          "contactPartId": "ct_relay_coil"
+          "contactPartId": "ct_f7_coil"
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - ignition-switched 12V *",
-          "contactPartId": "ct_relay_coil"
+          "contactPartId": "ct_f7_coil"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> radiator fan motor"
-        },
-        {
-          "id": "c5",
-          "designation": "87a",
-          "signal": "not used"
+          "signal": "+12V out -> radiator fan motor",
+          "contactPartId": "ct_f7_load8"
         }
       ],
       "layoutPosition": {
-        "x": 1230,
-        "y": 420
+        "x": 2520,
+        "y": 540
       },
       "schematicPosition": {
         "x": 1200,
         "y": 1230
       },
-      "partId": "cp_rly_cod",
+      "partId": "cp_rly_f7_a",
       "width": 390
     },
     {
       "id": "k_fan2",
-      "label": "Condenser Fan Relay (on/off)",
+      "label": "Condenser Fan Relay (on/off, diode)",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (F6 20A)"
+          "signal": "Fused +12V in (HCFB H3 30A)",
+          "contactPartId": "ct_f7_load8"
         },
         {
           "id": "c2",
           "designation": "85",
           "signal": "ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side *",
-          "contactPartId": "ct_relay_coil"
+          "contactPartId": "ct_f7_coil"
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - ignition-switched 12V *",
-          "contactPartId": "ct_relay_coil"
+          "contactPartId": "ct_f7_coil"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> condenser fan motor"
-        },
-        {
-          "id": "c5",
-          "designation": "87a",
-          "signal": "not used"
+          "signal": "+12V out -> condenser fan motor",
+          "contactPartId": "ct_f7_load8"
         }
       ],
       "layoutPosition": {
-        "x": 1260,
+        "x": 2640,
         "y": 450
       },
       "schematicPosition": {
         "x": 1200,
         "y": 1470
       },
-      "partId": "cp_rly_cod",
+      "partId": "cp_rly_f7_d",
       "width": 390
     },
     {
@@ -320,40 +308,37 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (F4 30A)"
+          "signal": "Fused +12V in (F4 30A)",
+          "contactPartId": "ct_f7_load"
         },
         {
           "id": "c2",
           "designation": "85",
           "signal": "ACTIVE-LOW Coil - -> Aux 8 / A26 - low-side",
-          "contactPartId": "ct_relay_coil"
+          "contactPartId": "ct_f7_coil"
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - ignition-switched 12V *",
-          "contactPartId": "ct_relay_coil"
+          "contactPartId": "ct_f7_coil"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> starter solenoid S"
-        },
-        {
-          "id": "c5",
-          "designation": "87a",
-          "signal": "not used"
+          "signal": "+12V out -> starter solenoid S",
+          "contactPartId": "ct_f7_load"
         }
       ],
       "layoutPosition": {
-        "x": 1200,
-        "y": 390
+        "x": 2400,
+        "y": 450
       },
       "schematicPosition": {
         "x": 1200,
         "y": 1950
       },
-      "partId": "cp_rly_nor",
+      "partId": "cp_rly_f7_a",
       "width": 390
     },
     {
@@ -392,7 +377,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 900,
+        "x": 1080,
         "y": -240
       },
       "schematicPosition": {
@@ -417,7 +402,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2130,
+        "x": 3600,
         "y": 90
       },
       "schematicPosition": {
@@ -442,7 +427,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2100,
+        "x": 3480,
         "y": 30
       },
       "schematicPosition": {
@@ -468,7 +453,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1020,
+        "x": 1560,
         "y": 150
       },
       "schematicPosition": {
@@ -916,8 +901,8 @@
         "y": 1500
       },
       "layoutPosition": {
-        "x": 870,
-        "y": 150
+        "x": 960,
+        "y": 90
       },
       "excludeFromBom": true
     },
@@ -931,7 +916,7 @@
         "y": 240
       },
       "layoutPosition": {
-        "x": 1050,
+        "x": 1680,
         "y": 360
       },
       "cavities": [
@@ -944,33 +929,19 @@
         {
           "id": "c2",
           "designation": "F2",
-          "signal": "20A - fuel pump relay 30"
+          "signal": "25A - fuel pump relay 30",
+          "contactPartId": "ct_fb_4"
         },
         {
           "id": "c3",
           "designation": "F3",
-          "signal": "15A - ETB power relay 30"
+          "signal": "10A - ETB power relay 30"
         },
         {
           "id": "c4",
           "designation": "F4",
           "signal": "30A - start relay 30",
           "contactPartId": "ct_fb_4"
-        },
-        {
-          "id": "c5",
-          "designation": "F5",
-          "signal": "30A - radiator fan relay 30"
-        },
-        {
-          "id": "c6",
-          "designation": "F6",
-          "signal": "20A - condenser fan relay 30"
-        },
-        {
-          "id": "c7",
-          "designation": "F7",
-          "signal": "60A - EPS pump relay 30"
         },
         {
           "id": "c8",
@@ -980,17 +951,17 @@
         {
           "id": "c9",
           "designation": "F9",
-          "signal": "10A - switched 12V sensor rail"
+          "signal": "10A - SW bus: switched 12V sensor rail, ECU +14V, relay coils"
         },
         {
           "id": "c10",
           "designation": "F10",
-          "signal": "20A - coil bank"
+          "signal": "20A - SW bus: COP / ignition coil bank"
         },
         {
           "id": "c11",
           "designation": "F11",
-          "signal": "15A - injector bank"
+          "signal": "15A - SW bus: injector bank"
         },
         {
           "id": "c12",
@@ -1001,15 +972,68 @@
         {
           "id": "c13",
           "designation": "IN",
-          "signal": "Battery feed in from master"
+          "signal": "Permanent bus in - 50A from HCFB H1",
+          "contactPartId": "ct_fb_bus"
         },
         {
           "id": "c14",
           "designation": "F13",
           "signal": "7.5A - MRS EPS pump logic enable *",
           "contactPartId": "ct_fb_05"
+        },
+        {
+          "id": "c15",
+          "designation": "SW IN",
+          "signal": "Switched bus in - EFI main relay 87",
+          "contactPartId": "ct_fb_bus"
         }
       ]
+    },
+    {
+      "id": "hcfb",
+      "label": "High-current fuse block HCFB (glove box)",
+      "partId": "cp_lmi5",
+      "width": 390,
+      "cavities": [
+        {
+          "id": "in",
+          "designation": "IN",
+          "signal": "Battery feed in from PDB stud (M8)",
+          "contactPartId": "ct_ring_m8_4"
+        },
+        {
+          "id": "h1",
+          "designation": "H1",
+          "signal": "50A AMI - FB1 IN (mini fuse module feed)",
+          "contactPartId": "ct_ring_m5_10_8"
+        },
+        {
+          "id": "h2",
+          "designation": "H2",
+          "signal": "40A AMI - radiator fan relay 30",
+          "contactPartId": "ct_ring_m5_10_8"
+        },
+        {
+          "id": "h3",
+          "designation": "H3",
+          "signal": "30A AMI - condenser fan relay 30",
+          "contactPartId": "ct_ring_m5_10_8"
+        },
+        {
+          "id": "h4",
+          "designation": "H4",
+          "signal": "60A AMI - EPS pump relay 30 (wire on ST185-EngineRoom-C) *",
+          "contactPartId": "ct_ring_m5_10_8"
+        }
+      ],
+      "schematicPosition": {
+        "x": 480,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": 450
+      }
     }
   ],
   "terminals": [
@@ -1018,7 +1042,7 @@
       "type": "Ring",
       "signal": "Battery/Ignition +12V Source",
       "layoutPosition": {
-        "x": 930,
+        "x": 1200,
         "y": 390
       },
       "schematicPosition": {
@@ -1029,26 +1053,11 @@
       "width": 270
     },
     {
-      "id": "batt_ring_2",
-      "type": "Ring",
-      "signal": "Battery/Ignition +12V Source - lug 2, same stud",
-      "layoutPosition": {
-        "x": 960,
-        "y": 390
-      },
-      "schematicPosition": {
-        "x": 0,
-        "y": 90
-      },
-      "partId": "tp_ring_m8_22_16",
-      "width": 390
-    },
-    {
       "id": "chassis_ring",
       "type": "Ring",
       "signal": "Chassis Ground Point",
       "layoutPosition": {
-        "x": 1020,
+        "x": 1560,
         "y": 450
       },
       "schematicPosition": {
@@ -1057,27 +1066,42 @@
       },
       "partId": "tp_ring_m6_12_10",
       "width": 210
+    },
+    {
+      "id": "t_trunk_fp_gnd",
+      "type": "Ring",
+      "signal": "Trunk chassis ground stud - fuel pump return (plan 6.41; M6 assumed)",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 480
+      },
+      "layoutPosition": {
+        "x": 3720,
+        "y": 0
+      },
+      "partId": "tp_ring_m6_12_10"
     }
   ],
   "splices": [
     {
       "id": "sp_12v",
       "layoutPosition": {
-        "x": 990,
-        "y": 300
+        "x": 1620,
+        "y": 150
       },
       "schematicPosition": {
         "x": 1050,
         "y": 150
       },
-      "partId": "spp_crimp_14_10",
+      "partId": "spp_solder_26_14",
       "locationId": "bp_1020"
     },
     {
       "id": "sp_sw12",
       "layoutPosition": {
-        "x": 960,
-        "y": 180
+        "x": 1980,
+        "y": 150
       },
       "schematicPosition": {
         "x": 1710,
@@ -1089,8 +1113,8 @@
     {
       "id": "sp_5v",
       "layoutPosition": {
-        "x": 930,
-        "y": 120
+        "x": 1140,
+        "y": 150
       },
       "schematicPosition": {
         "x": 1710,
@@ -1102,7 +1126,7 @@
     {
       "id": "sp_8v",
       "layoutPosition": {
-        "x": 810,
+        "x": 1140,
         "y": 90
       },
       "schematicPosition": {
@@ -1115,8 +1139,8 @@
     {
       "id": "sp_gndout",
       "layoutPosition": {
-        "x": 1140,
-        "y": 180
+        "x": 2220,
+        "y": 150
       },
       "schematicPosition": {
         "x": 1050,
@@ -1128,8 +1152,8 @@
     {
       "id": "sp_chassis",
       "layoutPosition": {
-        "x": 1080,
-        "y": 180
+        "x": 2340,
+        "y": 150
       },
       "schematicPosition": {
         "x": 1710,
@@ -1141,19 +1165,6 @@
   ],
   "wires": [
     {
-      "id": "w65",
-      "color": "Red",
-      "source": {
-        "id": "batt_ring_2",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_12v",
-        "handle": "Splice"
-      },
-      "partId": "wp_18_red"
-    },
-    {
       "id": "w77",
       "color": "Red",
       "source": {
@@ -1161,10 +1172,10 @@
         "handle": "c4"
       },
       "target": {
-        "id": "sp_sw12",
-        "handle": "Splice"
+        "id": "fusebox",
+        "handle": "c15"
       },
-      "partId": "wp_12_red"
+      "partId": "wp_10_red"
     },
     {
       "id": "w78",
@@ -1388,8 +1399,8 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_chassis",
-        "handle": "Splice"
+        "id": "t_trunk_fp_gnd",
+        "handle": "Terminal"
       },
       "partId": "wp_12_blk"
     },
@@ -1444,7 +1455,7 @@
         "handle": "c2"
       },
       "color": "Orange",
-      "partId": "wp_20_org"
+      "partId": "wp_18_org"
     },
     {
       "id": "w_rail_sp_gndout_c",
@@ -1491,8 +1502,8 @@
       "id": "w_inj_pwr_c",
       "color": "Red",
       "source": {
-        "id": "sp_sw12",
-        "handle": "Splice"
+        "id": "fusebox",
+        "handle": "c11"
       },
       "target": {
         "id": "bh_b_fw",
@@ -1504,8 +1515,8 @@
       "id": "w_cop_pwr_c",
       "color": "Red",
       "source": {
-        "id": "sp_sw12",
-        "handle": "Splice"
+        "id": "fusebox",
+        "handle": "c10"
       },
       "target": {
         "id": "bh_b_fw",
@@ -1573,8 +1584,8 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "fusebox",
-        "handle": "c13"
+        "id": "hcfb",
+        "handle": "in"
       },
       "partId": "wp_4_red"
     },
@@ -1602,7 +1613,7 @@
         "id": "k_efi",
         "handle": "c3"
       },
-      "partId": "wp_20_red"
+      "partId": "wp_18_red"
     },
     {
       "id": "w_fb_k_fp_30",
@@ -1615,7 +1626,7 @@
         "id": "k_fp",
         "handle": "c1"
       },
-      "partId": "wp_14_red"
+      "partId": "wp_12_red"
     },
     {
       "id": "w_k_fp_86",
@@ -1628,7 +1639,7 @@
         "id": "k_fp",
         "handle": "c3"
       },
-      "partId": "wp_20_red"
+      "partId": "wp_18_red"
     },
     {
       "id": "w_fb_k_etb_30",
@@ -1680,14 +1691,14 @@
         "id": "k_str",
         "handle": "c3"
       },
-      "partId": "wp_20_red"
+      "partId": "wp_18_red"
     },
     {
       "id": "w_fb_k_fan_30",
       "color": "Red",
       "source": {
-        "id": "fusebox",
-        "handle": "c5"
+        "id": "hcfb",
+        "handle": "h2"
       },
       "target": {
         "id": "k_fan",
@@ -1706,14 +1717,14 @@
         "id": "k_fan",
         "handle": "c3"
       },
-      "partId": "wp_20_red"
+      "partId": "wp_18_red"
     },
     {
       "id": "w_fb_k_fan2_30",
       "color": "Red",
       "source": {
-        "id": "fusebox",
-        "handle": "c6"
+        "id": "hcfb",
+        "handle": "h3"
       },
       "target": {
         "id": "k_fan2",
@@ -1732,7 +1743,7 @@
         "id": "k_fan2",
         "handle": "c3"
       },
-      "partId": "wp_20_red"
+      "partId": "wp_18_red"
     },
     {
       "id": "w_fb_mrs_en",
@@ -1746,6 +1757,19 @@
         "handle": "c14"
       },
       "partId": "wp_20_red"
+    },
+    {
+      "id": "w_hc_fb",
+      "color": "Red",
+      "source": {
+        "id": "hcfb",
+        "handle": "h1"
+      },
+      "target": {
+        "id": "fusebox",
+        "handle": "c13"
+      },
+      "partId": "wp_10_red"
     }
   ],
   "bundles": [
@@ -1807,15 +1831,6 @@
       "id": "bn_bp_1020__bp_1050",
       "sourceId": "bp_1020",
       "targetId": "bp_1050",
-      "length": {
-        "value": 60,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1050__bp_1080",
-      "sourceId": "bp_1050",
-      "targetId": "bp_1080",
       "length": {
         "value": 60,
         "unit": "mm"
@@ -1930,15 +1945,6 @@
       }
     },
     {
-      "id": "bn_bp_960__batt_ring_2",
-      "sourceId": "bp_960",
-      "targetId": "batt_ring_2",
-      "length": {
-        "value": 260,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_1020__chassis_ring",
       "sourceId": "bp_1020",
       "targetId": "chassis_ring",
@@ -2045,6 +2051,51 @@
         "value": 290,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_2130__bp_2190",
+      "sourceId": "bp_2130",
+      "targetId": "bp_2190",
+      "length": {
+        "value": 60,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_2190__t_trunk_fp_gnd",
+      "sourceId": "bp_2190",
+      "targetId": "t_trunk_fp_gnd",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1050__bp_1065",
+      "sourceId": "bp_1050",
+      "targetId": "bp_1065",
+      "length": {
+        "value": 30,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1065__bp_1080",
+      "sourceId": "bp_1065",
+      "targetId": "bp_1080",
+      "length": {
+        "value": 30,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1065__hcfb",
+      "sourceId": "bp_1065",
+      "targetId": "hcfb",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -2058,105 +2109,119 @@
     {
       "id": "bp_870",
       "layoutPosition": {
-        "x": 870,
+        "x": 960,
         "y": 240
       }
     },
     {
       "id": "bp_900",
       "layoutPosition": {
-        "x": 900,
+        "x": 1080,
         "y": 240
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 930,
+        "x": 1200,
         "y": 240
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
-        "x": 960,
+        "x": 1320,
         "y": 240
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1020,
+        "x": 1560,
         "y": 240
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1050,
+        "x": 1680,
         "y": 240
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": 1080,
+        "x": 1920,
         "y": 240
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": 1110,
+        "x": 2040,
         "y": 240
       }
     },
     {
       "id": "bp_1140",
       "layoutPosition": {
-        "x": 1140,
+        "x": 2160,
         "y": 240
       }
     },
     {
       "id": "bp_1170",
       "layoutPosition": {
-        "x": 1170,
+        "x": 2280,
         "y": 240
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
-        "x": 1200,
+        "x": 2400,
         "y": 240
       }
     },
     {
       "id": "bp_1230",
       "layoutPosition": {
-        "x": 1230,
+        "x": 2520,
         "y": 240
       }
     },
     {
       "id": "bp_1260",
       "layoutPosition": {
-        "x": 1260,
+        "x": 2640,
         "y": 240
       }
     },
     {
       "id": "bp_2100",
       "layoutPosition": {
-        "x": 2100,
+        "x": 3480,
         "y": 240
       }
     },
     {
       "id": "bp_2130",
       "layoutPosition": {
-        "x": 2130,
+        "x": 3600,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_2190",
+      "layoutPosition": {
+        "x": 3720,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_1065",
+      "layoutPosition": {
+        "x": 1800,
         "y": 240
       }
     }
@@ -2164,7 +2229,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nCondenser Fan Relay (on/off) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, NO internal flywheel diode - diode-suppressed relay required\nCondenser Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\ncsb3io (label): ECUMaster CSB3 (power feed — full I/O on ST185-A-ECU)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead B - firewall (HDP24-2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - firewall (HDP24-2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nBulkhead B - firewall (HDP24-2 14: MRS EPS pump logic enable (F13 7.5A, ignition-switched)\nCabin fuse block (passenger gl F12: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nCabin fuse block (passenger gl F13: 7.5A - MRS EPS pump logic enable (ignition-switched)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, NO internal flywheel diode - diode-suppressed relay fitted (TE 7-1904094-9)\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\ncsb3io (label): ECUMaster CSB3 (power feed — full I/O on ST185-A-ECU)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead B - firewall (HDP24-2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - firewall (HDP24-2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nBulkhead B - firewall (HDP24-2 14: MRS EPS pump logic enable (F13 7.5A, ignition-switched)\nCabin fuse block (passenger gl F12: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nCabin fuse block (passenger gl F13: 7.5A - MRS EPS pump logic enable (ignition-switched)\nHigh-current fuse block HCFB H4: 60A AMI - EPS pump relay 30 (wire drawn on ST185-EngineRoom-C from dm_hcfb_h4)",
       "schematicPosition": {
         "x": 3360,
         "y": 0
@@ -2350,6 +2415,28 @@
         "value": 8,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "wp_10_red",
+      "partNumber": "EW-1C10-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 10 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_18_org",
+      "partNumber": "EW-1C18-ORG",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Orange",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
     }
   ],
   "connectorParts": [
@@ -2366,7 +2453,12 @@
           "contactPartId": "ct_generic_skt"
         }
       ],
-      "id": "cp_brz_aps6"
+      "id": "cp_brz_aps6",
+      "image": {
+        "source": "url",
+        "url": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring.jpg",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring_200x.jpg"
+      }
     },
     {
       "partNumber": "(pump pigtail - Walbro F90000295)",
@@ -2381,19 +2473,29 @@
           "contactPartId": "ct_generic_skt"
         }
       ],
-      "id": "cp_fuelpump"
+      "id": "cp_fuelpump",
+      "image": {
+        "source": "url",
+        "url": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/original/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg",
+        "lowResUrl": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/80w/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg"
+      }
     },
     {
       "partNumber": "2141029-1",
       "manufacturer": "TE Connectivity",
-      "description": "FUSE HOLDER, MODULE, MFINITY, 16 POS MINI FUSE, HARD WIRED - OWNED (qty 1), cover 2141033. MINI FUSES STOP AT 30 A: F7 60 A cannot live here (open decision)",
+      "description": "FUSE HOLDER, MODULE, MFINITY, 16 POS MINI FUSE, HARD WIRED - OWNED (qty 1), cover 2141033. Mini fuses max 30 A per position. Fed 50 A from HCFB H1; bus split: IN feeds F1-F4, F8, F12, F13 (permanent), SW IN feeds F9-F11 (EFI main relay 87)",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_fb_25"
         }
       ],
-      "id": "cp_fusebox"
+      "id": "cp_fusebox",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr2141029-1.jpg",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th2141029-1.jpg"
+      }
     },
     {
       "partNumber": "HDP24-24-47PE-L017",
@@ -2408,7 +2510,12 @@
           "cavityPlugPartId": "pl_sz20"
         }
       ],
-      "id": "cp_hdp_a_fw"
+      "id": "cp_hdp_a_fw",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/HDP/242/447/HDP24-24-47PE-L017-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/HDP/242/447/HDP24-24-47PE-L017-t1.jpg/jcr:content/renditions/product-details.png"
+      }
     },
     {
       "partNumber": "HDP24-24-21PN",
@@ -2423,7 +2530,12 @@
           "cavityPlugPartId": "pl_sz16"
         }
       ],
-      "id": "cp_hdp_b_fw"
+      "id": "cp_hdp_b_fw",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/catalog/common/images/PartImages/prhdp24-24-21pn.jpg",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp24-24-21pn.jpg"
+      }
     },
     {
       "partNumber": "12052641",
@@ -2438,35 +2550,12 @@
           "contactPartId": "ct_mp150_skt"
         }
       ],
-      "id": "cp_mp150_2"
-    },
-    {
-      "partNumber": "6-1419137-4",
-      "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MICRO ISO V23074, 1 FORM C, 12 V COIL, 25 A, DIODE SUPPRESSED - plugs into socket 1-1904045-6",
-      "numberOfCavities": 5,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_relay_63",
-          "mountPartId": "mt_relay_skt"
-        }
-      ],
-      "id": "cp_rly_cod"
-    },
-    {
-      "partNumber": "5-1393292-8",
-      "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MICRO ISO V23074, 1 FORM A, 12 V COIL, 25 A, DIODE SUPPRESSED - plugs into socket 1-1904045-6",
-      "numberOfCavities": 5,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_relay_63",
-          "mountPartId": "mt_relay_skt"
-        }
-      ],
-      "id": "cp_rly_nod"
+      "id": "cp_mp150_2",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/12052641982_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/12052641982_SPL.jpg"
+      }
     },
     {
       "partNumber": "4-1904124-2",
@@ -2480,13 +2569,97 @@
           "mountPartId": "mt_relay_skt"
         }
       ],
-      "id": "cp_rly_nor"
+      "id": "cp_rly_nor",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/919/041/057/9-1904105-7-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/919/041/057/9-1904105-7-t1.jpg/jcr:content/renditions/product-details.png"
+      }
     },
     {
       "partNumber": "(cross-reference - no part)",
       "manufacturer": "n/a",
       "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
-      "id": "cp_xref"
+      "id": "cp_xref",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png"
+      }
+    },
+    {
+      "partNumber": "1-1414147-0",
+      "manufacturer": "TE Connectivity",
+      "description": "RELAY, PLUG-IN, MAXI ISO F7 (V23134-J0052-X429), 1 FORM A, 12 V COIL, 680 OHM PARALLEL RESISTOR, 70 A AT 23 C / 50 A AT 85 C - OWNED (qty 3); plugs into socket 1393310-4",
+      "numberOfCavities": 4,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_f7_load",
+          "mountPartId": "mt_vcf7"
+        }
+      ],
+      "id": "cp_rly_f7_b",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
+      }
+    },
+    {
+      "partNumber": "1-1393304-0",
+      "manufacturer": "TE Connectivity",
+      "description": "RELAY, PLUG-IN, MAXI ISO F7 (V23134-J1052-X281), 1 FORM A, 12 V COIL, 560 OHM PARALLEL RESISTOR, 70 A AT 23 C / 50 A AT 85 C, MOUNTING BRACKET - OWNED (qty 2); plugs into socket 1393310-4",
+      "numberOfCavities": 4,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_f7_load",
+          "mountPartId": "mt_vcf7"
+        }
+      ],
+      "id": "cp_rly_f7_a",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
+      }
+    },
+    {
+      "partNumber": "7-1904094-9",
+      "manufacturer": "TE Connectivity",
+      "description": "RELAY, PLUG-IN, MAXI ISO F7 (V23134-J0052-X439), 1 FORM A, 12 V COIL, DIODE SUPPRESSED (CATHODE ON 86), 70 A AT 23 C / 50 A AT 85 C - plugs into socket 1393310-4; required on Ign 5 / B13 (no flywheel diode in the ECU output)",
+      "numberOfCavities": 4,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_f7_load",
+          "mountPartId": "mt_vcf7"
+        }
+      ],
+      "id": "cp_rly_f7_d",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
+      }
+    },
+    {
+      "partNumber": "LMI5-M-2-CB1AD",
+      "manufacturer": "Eaton Bussmann",
+      "description": "FUSE BLOCK, MODULAR, LMI, METRIC, 1 INPUT MODULE (M8 STUD) + 4 AMI FUSE MODULES (M5 STUDS), 400 A MAX COMBINED - glove box beside FB1. Order as components (assembled code has a 100 MOQ): 1x LMI1-M-1-1 input, 4x LMI1-M-1-0 fuse modules, 1x B109-7046-5 busbar, AMI fuses 50/40/30/60 A",
+      "numberOfCavities": 5,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_ring_m5_10_8"
+        }
+      ],
+      "id": "cp_lmi5",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/eatoncorporation/lrg/LMI1-series_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/eatoncorporation/sm/LMI1-series_SPL.jpg"
+      }
     }
   ],
   "terminalParts": [
@@ -2521,22 +2694,6 @@
       },
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
       "id": "tp_ring_m6_12_10"
-    },
-    {
-      "type": "Ring",
-      "size": "M8",
-      "partNumber": "GENERIC RING M8 22-16",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG - own lug on a shared stud",
-      "id": "tp_ring_m8_22_16"
     }
   ],
   "spliceParts": [
@@ -2741,6 +2898,108 @@
       "contactColor": "Silver",
       "description": "CONTACT, RECEPTACLE, 4.8 X 0.8, TIN, 0.5-1.5 MM2 (20-16 AWG) - micro ISO socket 1-1904045-6, coil cavities 85/86",
       "id": "ct_relay_coil"
+    },
+    {
+      "partNumber": "280756-4",
+      "manufacturer": "TE Connectivity",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 12,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "contactColor": "Silver",
+      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) - VCF7 socket 1393310-4, load cavities 30/87",
+      "id": "ct_f7_load"
+    },
+    {
+      "partNumber": "42281-1",
+      "manufacturer": "TE Connectivity",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 18,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 14,
+        "unit": "AWG"
+      },
+      "contactColor": "Silver",
+      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 250 (6.3 MM), TIN, 0.8-2.0 MM2 (18-14 AWG) - VCF7 socket 1393310-4, coil cavities 85/86 - OWNED (qty 20)",
+      "id": "ct_f7_coil"
+    },
+    {
+      "partNumber": "280755-4",
+      "manufacturer": "TE Connectivity",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 8,
+        "unit": "AWG"
+      },
+      "contactColor": "Silver",
+      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 6-10 MM2 (10-8 AWG) - VCF7 socket 1393310-4, 8 AWG fan load cavities 30/87",
+      "id": "ct_f7_load8"
+    },
+    {
+      "partNumber": "GENERIC RING M5 10-8",
+      "manufacturer": "generic",
+      "type": "Other",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 8,
+        "unit": "AWG"
+      },
+      "contactColor": "Silver",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M5 STUD, ADHESIVE HEATSHRINK - LMI fuse module output studs",
+      "id": "ct_ring_m5_10_8"
+    },
+    {
+      "partNumber": "GENERIC LUG M8 4AWG",
+      "manufacturer": "generic",
+      "type": "Other",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 6,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 4,
+        "unit": "AWG"
+      },
+      "contactColor": "Silver",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK - LMI input module stud",
+      "id": "ct_ring_m8_4"
+    },
+    {
+      "partNumber": "1-1355844-1",
+      "manufacturer": "TE Connectivity",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 4,
+        "unit": "Metric"
+      },
+      "maxGauge": {
+        "value": 6,
+        "unit": "Metric"
+      },
+      "contactColor": "Silver",
+      "description": "CONTACT, BUSBAR FEED, CUNISI PRE-TINNED, 4.0-6.0 MM2 (10 AWG) - MFINITY mini fuse module 2141029-1 bus inputs IN / SW IN",
+      "id": "ct_fb_bus"
     }
   ],
   "cavityPlugParts": [
@@ -2769,6 +3028,13 @@
       "manufacturer": "TE Connectivity",
       "description": "SOCKET, RELAY, MICRO ISO, 5 POS, WITH MOUNTING FLAP (V23333-Z0001-B046) - harness side of the plug-in relay; terminals 280919-4 / 281197-2 / 160927-4",
       "id": "mt_relay_skt"
+    },
+    {
+      "partNumber": "1393310-4",
+      "manufacturer": "TE Connectivity",
+      "description": "SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS - harness side of the plug-in F7 relay; load terminals 280756-4 (12-10 AWG) or 280755-4 (10-8 AWG), coil terminals 42281-1 (18-14 AWG)",
+      "id": "mt_vcf7"
     }
-  ]
+  ],
+  "mates": []
 }
