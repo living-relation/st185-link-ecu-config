@@ -174,7 +174,7 @@
         {
           "id": "c11",
           "designation": "11",
-          "signal": "ABS Wheel Speed FR SIG-",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -276,7 +276,7 @@
         {
           "id": "c28",
           "designation": "28",
-          "signal": "ABS Wheel Speed FR SIG+",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -472,7 +472,7 @@
         {
           "id": "c11",
           "designation": "11",
-          "signal": "ABS Wheel Speed FR SIG-",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -574,7 +574,7 @@
         {
           "id": "c28",
           "designation": "28",
-          "signal": "ABS Wheel Speed FR SIG+",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {

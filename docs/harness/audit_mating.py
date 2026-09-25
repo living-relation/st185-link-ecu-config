@@ -158,6 +158,13 @@ for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
         if ids & LOOM_C_ENDS and any(i in LETTER or i.startswith("dm_bh_") for i in ids):
             bad.append("M6 %s: %s puts a front wheel-speed drop on a bulkhead - loom C "
                        "leaves through the fender, not a bulkhead" % (os.path.basename(path), c["id"]))
+    for cn in d.get("connectors", []):
+        if cn["id"] in LETTER:
+            for cv in cn.get("cavities", []):
+                t = cv.get("signal") or ""
+                if "wheel speed" in t.lower() or "wss" in t.lower():
+                    bad.append("M6 %s: %s %s is named %r - no wheel-speed circuit crosses a "
+                               "bulkhead" % (os.path.basename(path), cn["id"], cv["id"], t))
 
 # M4 - shields never bridged
 for loom, g in graphs.items():
