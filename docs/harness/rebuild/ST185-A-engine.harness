@@ -19,7 +19,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 450,
+        "x": 690,
         "y": -210
       },
       "schematicPosition": {
@@ -43,7 +43,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 570,
+        "x": 1170,
         "y": -240
       },
       "schematicPosition": {
@@ -67,7 +67,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 660,
+        "x": 1530,
         "y": 270
       },
       "schematicPosition": {
@@ -91,7 +91,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 480,
+        "x": 810,
         "y": 30
       },
       "schematicPosition": {
@@ -139,7 +139,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 540,
+        "x": 1050,
         "y": 0
       },
       "schematicPosition": {
@@ -155,7 +155,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V",
+          "signal": "+5V - wired on ST185-B-engine",
           "designation": "A"
         },
         {
@@ -170,7 +170,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 420,
+        "x": 570,
         "y": 90
       },
       "schematicPosition": {
@@ -198,7 +198,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 900,
+        "x": 2490,
         "y": -240
       },
       "schematicPosition": {
@@ -226,7 +226,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 720,
+        "x": 1770,
         "y": 270
       },
       "schematicPosition": {
@@ -254,7 +254,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 510,
+        "x": 930,
         "y": 90
       },
       "schematicPosition": {
@@ -282,7 +282,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
+        "x": 1290,
         "y": 270
       },
       "schematicPosition": {
@@ -310,8 +310,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
-        "y": -210
+        "x": 1290,
+        "y": -330
       },
       "schematicPosition": {
         "x": 660,
@@ -335,7 +335,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 630,
+        "x": 1410,
         "y": -150
       },
       "schematicPosition": {
@@ -360,7 +360,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 660,
+        "x": 1530,
         "y": -60
       },
       "schematicPosition": {
@@ -385,7 +385,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 690,
+        "x": 1650,
         "y": 60
       },
       "schematicPosition": {
@@ -410,8 +410,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 720,
-        "y": 90
+        "x": 1770,
+        "y": -30
       },
       "schematicPosition": {
         "x": 1200,
@@ -426,23 +426,23 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "GND"
+          "signal": "+B 12V - wired on ST185-B-engine"
         },
         {
           "id": "c2",
-          "signal": "TRIG"
-        },
-        {
-          "id": "c3",
           "notConnected": true
         },
         {
+          "id": "c3",
+          "signal": "IGT (TRIG)"
+        },
+        {
           "id": "c4",
-          "signal": "12V"
+          "signal": "GND - wired on ST185-B-engine"
         }
       ],
       "layoutPosition": {
-        "x": 750,
+        "x": 1890,
         "y": -150
       },
       "schematicPosition": {
@@ -458,23 +458,23 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "GND"
+          "signal": "+B 12V - wired on ST185-B-engine"
         },
         {
           "id": "c2",
-          "signal": "TRIG"
-        },
-        {
-          "id": "c3",
           "notConnected": true
         },
         {
+          "id": "c3",
+          "signal": "IGT (TRIG)"
+        },
+        {
           "id": "c4",
-          "signal": "12V"
+          "signal": "GND - wired on ST185-B-engine"
         }
       ],
       "layoutPosition": {
-        "x": 810,
+        "x": 2130,
         "y": -60
       },
       "schematicPosition": {
@@ -490,23 +490,23 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "GND"
+          "signal": "+B 12V - wired on ST185-B-engine"
         },
         {
           "id": "c2",
-          "signal": "TRIG"
-        },
-        {
-          "id": "c3",
           "notConnected": true
         },
         {
+          "id": "c3",
+          "signal": "IGT (TRIG)"
+        },
+        {
           "id": "c4",
-          "signal": "12V"
+          "signal": "GND - wired on ST185-B-engine"
         }
       ],
       "layoutPosition": {
-        "x": 840,
+        "x": 2250,
         "y": 60
       },
       "schematicPosition": {
@@ -522,24 +522,24 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "GND"
+          "signal": "+B 12V - wired on ST185-B-engine"
         },
         {
           "id": "c2",
-          "signal": "TRIG"
-        },
-        {
-          "id": "c3",
           "notConnected": true
         },
         {
+          "id": "c3",
+          "signal": "IGT (TRIG)"
+        },
+        {
           "id": "c4",
-          "signal": "12V"
+          "signal": "GND - wired on ST185-B-engine"
         }
       ],
       "layoutPosition": {
-        "x": 870,
-        "y": 90
+        "x": 2370,
+        "y": -30
       },
       "schematicPosition": {
         "x": 1200,
@@ -562,8 +562,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 360,
-        "y": 270
+        "x": 450,
+        "y": 330
       },
       "schematicPosition": {
         "x": 660,
@@ -603,8 +603,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 630,
-        "y": 270
+        "x": 1410,
+        "y": 330
       },
       "schematicPosition": {
         "x": 660,
@@ -631,8 +631,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 750,
-        "y": 300
+        "x": 1890,
+        "y": 360
       },
       "schematicPosition": {
         "x": 660,
@@ -655,7 +655,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 930,
+        "x": 2610,
         "y": -330
       },
       "schematicPosition": {
@@ -954,7 +954,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 780,
+        "x": 2010,
         "y": 180
       },
       "schematicPosition": {
@@ -1096,7 +1096,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 810,
+        "x": 2130,
         "y": 270
       },
       "schematicPosition": {
@@ -1245,7 +1245,7 @@
       },
       "target": {
         "id": "cop1",
-        "handle": "c2"
+        "handle": "c3"
       },
       "color": "Violet",
       "partId": "wp_20_vio"
@@ -1258,7 +1258,7 @@
       },
       "target": {
         "id": "cop2",
-        "handle": "c2"
+        "handle": "c3"
       },
       "color": "Violet",
       "partId": "wp_20_vio"
@@ -1271,7 +1271,7 @@
       },
       "target": {
         "id": "cop3",
-        "handle": "c2"
+        "handle": "c3"
       },
       "color": "Violet",
       "partId": "wp_20_vio"
@@ -1284,7 +1284,7 @@
       },
       "target": {
         "id": "cop4",
-        "handle": "c2"
+        "handle": "c3"
       },
       "color": "Violet",
       "partId": "wp_20_vio"
@@ -1908,126 +1908,126 @@
     {
       "id": "bp_360",
       "layoutPosition": {
-        "x": 360,
+        "x": 450,
         "y": 180
       }
     },
     {
       "id": "bp_420",
       "layoutPosition": {
-        "x": 420,
+        "x": 570,
         "y": 180
       }
     },
     {
       "id": "bp_450",
       "layoutPosition": {
-        "x": 450,
+        "x": 690,
         "y": 180
       }
     },
     {
       "id": "bp_480",
       "layoutPosition": {
-        "x": 480,
+        "x": 810,
         "y": 180
       }
     },
     {
       "id": "bp_510",
       "layoutPosition": {
-        "x": 510,
+        "x": 930,
         "y": 180
       }
     },
     {
       "id": "bp_540",
       "layoutPosition": {
-        "x": 540,
+        "x": 1050,
         "y": 180
       }
     },
     {
       "id": "bp_570",
       "layoutPosition": {
-        "x": 570,
+        "x": 1170,
         "y": 180
       }
     },
     {
       "id": "bp_600",
       "layoutPosition": {
-        "x": 600,
+        "x": 1290,
         "y": 180
       }
     },
     {
       "id": "bp_630",
       "layoutPosition": {
-        "x": 630,
+        "x": 1410,
         "y": 180
       }
     },
     {
       "id": "bp_660",
       "layoutPosition": {
-        "x": 660,
+        "x": 1530,
         "y": 180
       }
     },
     {
       "id": "bp_690",
       "layoutPosition": {
-        "x": 690,
+        "x": 1650,
         "y": 180
       }
     },
     {
       "id": "bp_720",
       "layoutPosition": {
-        "x": 720,
+        "x": 1770,
         "y": 180
       }
     },
     {
       "id": "bp_750",
       "layoutPosition": {
-        "x": 750,
+        "x": 1890,
         "y": 180
       }
     },
     {
       "id": "bp_810",
       "layoutPosition": {
-        "x": 810,
+        "x": 2130,
         "y": 180
       }
     },
     {
       "id": "bp_840",
       "layoutPosition": {
-        "x": 840,
+        "x": 2250,
         "y": 180
       }
     },
     {
       "id": "bp_870",
       "layoutPosition": {
-        "x": 870,
+        "x": 2370,
         "y": 180
       }
     },
     {
       "id": "bp_900",
       "layoutPosition": {
-        "x": 900,
+        "x": 2490,
         "y": 180
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 930,
+        "x": 2610,
         "y": 180
       }
     }
@@ -2124,7 +2124,11 @@
           "contactPartId": "ct_generic_skt"
         }
       ],
-      "id": "cp_camkit"
+      "id": "cp_camkit",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cam-sensor-kit-pigtail.png"
+      }
     },
     {
       "partNumber": "90980-11885",
@@ -2139,7 +2143,12 @@
           "contactPartId": "ct_toy_ts"
         }
       ],
-      "id": "cp_cop"
+      "id": "cp_cop",
+      "image": {
+        "source": "url",
+        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/4-way-connector-kit-for-toyota-denso-90980-11885-ignition-coil-pack-22-20-awg-343.webp",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/4-way-connector-kit-for-toyota-denso-90980-11885-ignition-coil-pack-22-20-awg-343_200x.webp"
+      }
     },
     {
       "partNumber": "DT06-2S",
@@ -2290,7 +2299,12 @@
           "contactPartId": "wbsN09tiboovqanDL_xZA"
         }
       ],
-      "id": "cp_etb"
+      "id": "cp_etb",
+      "image": {
+        "source": "url",
+        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/6-way-connector-kit-same-as-bosch-d261-205-358-01-24-20-awg-285.webp",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/6-way-connector-kit-same-as-bosch-d261-205-358-01-24-20-awg-285_200x.webp"
+      }
     },
     {
       "partNumber": "13519047",
@@ -2305,7 +2319,12 @@
           "contactPartId": "ct_gt150_skt"
         }
       ],
-      "id": "cp_gt150"
+      "id": "cp_gt150",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/13519047982_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/13519047982_SPL.jpg"
+      }
     },
     {
       "partNumber": "HDP26-24-47SE-L015",
@@ -2320,7 +2339,12 @@
           "cavityPlugPartId": "pl_sz20"
         }
       ],
-      "id": "cp_hdp_a_eng"
+      "id": "cp_hdp_a_eng",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/HDP/262/447/HDP26-24-47SE-L015-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/HDP/262/447/HDP26-24-47SE-L015-t1.jpg/jcr:content/renditions/product-details.png"
+      }
     },
     {
       "partNumber": "HDP26-24-21SN",
@@ -2335,7 +2359,12 @@
           "cavityPlugPartId": "pl_sz16"
         }
       ],
-      "id": "cp_hdp_b_eng"
+      "id": "cp_hdp_b_eng",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/catalog/common/images/PartImages/prhdp26-24-21sn.jpg",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp26-24-21sn.jpg"
+      }
     },
     {
       "partNumber": "15419715",
@@ -2350,7 +2379,12 @@
           "contactPartId": "ct_gt150_skt"
         }
       ],
-      "id": "cp_inj"
+      "id": "cp_inj",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/15419715982_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/15419715982_SPL.jpg"
+      }
     },
     {
       "partNumber": "1 928 403 874",
@@ -2365,7 +2399,12 @@
           "contactPartId": "ct_bdk28"
         }
       ],
-      "id": "cp_knock"
+      "id": "cp_knock",
+      "image": {
+        "source": "url",
+        "url": "https://www.automotiveconnectors.com/user/products/large/DA61-1928403874-H.jpg",
+        "lowResUrl": "https://www.automotiveconnectors.com/user/products/thumbnails/DA61-1928403874-H.jpg"
+      }
     },
     {
       "partNumber": "12052641",
@@ -2380,7 +2419,12 @@
           "contactPartId": "ct_mp150_skt"
         }
       ],
-      "id": "cp_mp150_2"
+      "id": "cp_mp150_2",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/12052641982_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/12052641982_SPL.jpg"
+      }
     },
     {
       "partNumber": "12110293",
@@ -2395,7 +2439,12 @@
           "contactPartId": "ct_mp150_skt"
         }
       ],
-      "id": "cp_mp150_3"
+      "id": "cp_mp150_3",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/121102-93982_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/121102-93982_SPL.jpg"
+      }
     },
     {
       "partNumber": "(OEM block, 2-way)",
@@ -2410,7 +2459,11 @@
           "contactPartId": "ct_generic_skt"
         }
       ],
-      "id": "cp_oem_block_2"
+      "id": "cp_oem_block_2",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-block-2way.png"
+      }
     },
     {
       "partNumber": "90980-11062",
@@ -2425,7 +2478,12 @@
           "contactPartId": "ct_toy_ts"
         }
       ],
-      "id": "cp_toy2p"
+      "id": "cp_toy2p",
+      "image": {
+        "source": "url",
+        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399.webp",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399_200x.webp"
+      }
     }
   ],
   "contactParts": [
@@ -2568,13 +2626,21 @@
       "id": "ct_mp150_skt"
     },
     {
-      "partNumber": "TS 2.3 (090 type)",
+      "partNumber": "8100-0461",
       "manufacturer": "Sumitomo",
       "type": "Crimp",
       "gender": "Socket",
       "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN - Toyota sensor/coil terminal. Wire range NOT CONFIRMED - get the PN off the housing before ordering",
-      "id": "ct_toy_ts"
+      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) - Toyota sensor/coil terminal (8100-0460 is the 0.3-0.5 mm2 size). Family match to each OEM housing assumed 2026-09-25",
+      "id": "ct_toy_ts",
+      "minGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
     },
     {
       "partNumber": "(kit socket, D 261 205 358-01)",
@@ -2588,7 +2654,7 @@
   "cableParts": [
     {
       "id": "cab_sh_1c",
-      "partNumber": "(generic)",
+      "partNumber": "GENERIC SHLD CABLE 1C 20AWG BLU",
       "manufacturer": "generic",
       "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - VR / Hall sensor signal (generic per 6.24)",
       "cores": [
@@ -2605,7 +2671,7 @@
     },
     {
       "id": "cab_sh_2c",
-      "partNumber": "(generic)",
+      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
       "manufacturer": "generic",
       "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - sensor pair (generic per 6.24)",
       "cores": [
