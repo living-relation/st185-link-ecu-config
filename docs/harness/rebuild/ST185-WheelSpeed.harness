@@ -77,7 +77,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 1890,
+        "x": 2610,
         "y": -420
       }
     },
@@ -103,7 +103,7 @@
         "y": 150
       },
       "layoutPosition": {
-        "x": 1890,
+        "x": 2610,
         "y": 420
       }
     },
@@ -111,7 +111,7 @@
       "id": "vrc_f_inl",
       "label": "VRC Front - IN-L",
       "width": 390,
-      "partId": "cp_m8_4f",
+      "partId": "cp_m8_plug_m",
       "shell": {
         "id": "shell",
         "signal": "Not used for the screen - it rides pin 3"
@@ -143,7 +143,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 870,
+        "x": 960,
         "y": 0
       }
     },
@@ -151,7 +151,7 @@
       "id": "vrc_f_inr",
       "label": "VRC Front - IN-R",
       "width": 390,
-      "partId": "cp_m8_4f",
+      "partId": "cp_m8_plug_m",
       "shell": {
         "id": "shell",
         "signal": "Not used for the screen - it rides pin 3"
@@ -183,7 +183,7 @@
         "y": 240
       },
       "layoutPosition": {
-        "x": 870,
+        "x": 960,
         "y": 180
       }
     },
@@ -191,7 +191,7 @@
       "id": "vrc_f_out",
       "label": "VRC Front - OUT",
       "width": 270,
-      "partId": "cp_m8_4m",
+      "partId": "cp_m8_plug_f",
       "shell": {
         "id": "shell",
         "signal": "Screen bonded to the box case here AND at the ECU (powered-device exception)"
@@ -231,7 +231,7 @@
       "id": "vrc_r_inl",
       "label": "VRC Rear - IN-L",
       "width": 390,
-      "partId": "cp_m8_4f",
+      "partId": "cp_m8_plug_m",
       "shell": {
         "id": "shell",
         "signal": "Not used for the screen - it rides pin 3"
@@ -263,7 +263,7 @@
         "y": 1200
       },
       "layoutPosition": {
-        "x": 2010,
+        "x": 2730,
         "y": -30
       }
     },
@@ -271,7 +271,7 @@
       "id": "vrc_r_inr",
       "label": "VRC Rear - IN-R",
       "width": 390,
-      "partId": "cp_m8_4f",
+      "partId": "cp_m8_plug_m",
       "shell": {
         "id": "shell",
         "signal": "Not used for the screen - it rides pin 3"
@@ -303,7 +303,7 @@
         "y": 1440
       },
       "layoutPosition": {
-        "x": 2010,
+        "x": 2730,
         "y": 180
       }
     },
@@ -311,7 +311,7 @@
       "id": "vrc_r_out",
       "label": "VRC Rear - OUT",
       "width": 270,
-      "partId": "cp_m8_4m",
+      "partId": "cp_m8_plug_f",
       "shell": {
         "id": "shell",
         "signal": "Screen bonded to the box case here AND at the ECU (powered-device exception)"
@@ -343,8 +343,8 @@
         "y": 1680
       },
       "layoutPosition": {
-        "x": 2040,
-        "y": 0
+        "x": 2850,
+        "y": -120
       }
     },
     {
@@ -363,7 +363,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 990,
+        "x": 1080,
         "y": 240
       },
       "partId": "cp_xref",
@@ -385,8 +385,8 @@
         "y": 240
       },
       "layoutPosition": {
-        "x": 1170,
-        "y": 300
+        "x": 1800,
+        "y": 360
       },
       "partId": "cp_xref",
       "excludeFromBom": true
@@ -407,7 +407,7 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": 1140,
+        "x": 1680,
         "y": 300
       },
       "partId": "cp_xref",
@@ -429,8 +429,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 1110,
-        "y": 300
+        "x": 1560,
+        "y": 360
       },
       "partId": "cp_xref",
       "excludeFromBom": true
@@ -451,8 +451,8 @@
         "y": 720
       },
       "layoutPosition": {
-        "x": 1020,
-        "y": 240
+        "x": 1200,
+        "y": 300
       },
       "partId": "cp_xref",
       "excludeFromBom": true
@@ -473,7 +473,7 @@
         "y": 840
       },
       "layoutPosition": {
-        "x": 1050,
+        "x": 1320,
         "y": 240
       },
       "partId": "cp_xref",
@@ -488,8 +488,8 @@
         "y": 960
       },
       "layoutPosition": {
-        "x": 1080,
-        "y": 240
+        "x": 1440,
+        "y": 300
       },
       "cavities": [
         {
@@ -509,7 +509,7 @@
         "y": 1080
       },
       "layoutPosition": {
-        "x": 1200,
+        "x": 1920,
         "y": 300
       },
       "cavities": [
@@ -1138,84 +1138,84 @@
     {
       "id": "bp_870",
       "layoutPosition": {
-        "x": 870,
+        "x": 960,
         "y": 90
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
-        "x": 990,
+        "x": 1080,
         "y": 90
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1020,
+        "x": 1200,
         "y": 90
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1050,
+        "x": 1320,
         "y": 90
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": 1080,
+        "x": 1440,
         "y": 90
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": 1110,
+        "x": 1560,
         "y": 90
       }
     },
     {
       "id": "bp_1140",
       "layoutPosition": {
-        "x": 1140,
+        "x": 1680,
         "y": 90
       }
     },
     {
       "id": "bp_1170",
       "layoutPosition": {
-        "x": 1170,
+        "x": 1800,
         "y": 90
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
-        "x": 1200,
+        "x": 1920,
         "y": 90
       }
     },
     {
       "id": "bp_1890",
       "layoutPosition": {
-        "x": 1890,
+        "x": 2610,
         "y": 90
       }
     },
     {
       "id": "bp_2010",
       "layoutPosition": {
-        "x": 2010,
+        "x": 2730,
         "y": 90
       }
     },
     {
       "id": "bp_2040",
       "layoutPosition": {
-        "x": 2040,
+        "x": 2850,
         "y": 90
       }
     }
@@ -1330,44 +1330,54 @@
       "id": "cp_dt2s_ni"
     },
     {
-      "partNumber": "86 6618 1121 00004",
-      "manufacturer": "binder",
-      "description": "CONNECTOR, RECEPTACLE, M8, 4 POS, FEMALE, PANEL MOUNT REAR, SHIELDABLE, THT, IP67 - VRC input. Pin 3 carries the sensor-drop screen to a case ring terminal inside the box",
-      "numberOfCavities": 4,
-      "gender": "Female",
-      "hasShell": true,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_m8_integral"
-        }
-      ],
+      "partNumber": "(cross-reference - no part)",
+      "manufacturer": "n/a",
+      "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
+      "id": "cp_xref",
       "image": {
-        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014368650.jpg",
-        "source": "cloud"
-      },
-      "id": "cp_m8_4f"
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png"
+      }
     },
     {
-      "partNumber": "86 6319 1121 00004",
+      "partNumber": "99 3363 100 04",
       "manufacturer": "binder",
-      "description": "CONNECTOR, RECEPTACLE, M8, 4 POS, MALE, PANEL MOUNT FRONT, SHIELDABLE, THT, IP67 - VRC output (male so a sensor lead cannot plug in by mistake)",
+      "description": "CONNECTOR, PLUG, M8, 4 POS, MALE, CABLE, SHIELDABLE, SCREW CLAMP 0.14-0.5 MM2, CABLE OD 4.0-5.5 MM, IP67 - VRC input lead; mates the box panel receptacle 86 6618 1121 00004. Pin 3 carries the sensor-drop screen (to the case ring inside the box)",
       "numberOfCavities": 4,
       "gender": "Male",
       "hasShell": true,
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_m8_integral_pin"
+          "contactPartId": "ct_m8_clamp_pin"
         }
       ],
-      "id": "cp_m8_4m"
+      "image": {
+        "source": "url",
+        "url": "https://www.binder-connector.com/prod_media/produktfoto_seo/768_1_KSS.jpg",
+        "lowResUrl": "https://www.binder-connector.com/prod_media/_processed_/3/3/csm_768_1_KSS_2db6dbcc1d.jpg"
+      },
+      "id": "cp_m8_plug_m"
     },
     {
-      "partNumber": "(cross-reference - no part)",
-      "manufacturer": "n/a",
-      "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
-      "id": "cp_xref"
+      "partNumber": "99 3362 100 04",
+      "manufacturer": "binder",
+      "description": "CONNECTOR, PLUG, M8, 4 POS, FEMALE, CABLE, SHIELDABLE, SCREW CLAMP 0.14-0.5 MM2, CABLE OD 4.0-5.5 MM, IP67 - VRC output lead; mates the box panel connector 86 6319 1121 00004 (male on the box so a sensor lead cannot plug in)",
+      "numberOfCavities": 4,
+      "gender": "Female",
+      "hasShell": true,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_m8_clamp_skt"
+        }
+      ],
+      "image": {
+        "source": "url",
+        "url": "https://www.binder-connector.com/prod_media/produktfoto_seo/768_2_KDS.jpg",
+        "lowResUrl": "https://www.binder-connector.com/prod_media/_processed_/2/9/csm_768_2_KDS_964a4b2a49.jpg"
+      },
+      "id": "cp_m8_plug_f"
     }
   ],
   "contactParts": [
@@ -1389,26 +1399,42 @@
       "id": "ct_dt16s_ni"
     },
     {
-      "partNumber": "(integral THT contact)",
+      "partNumber": "(integral screw clamp - 99 3363 100 04)",
       "manufacturer": "binder",
-      "type": "Solder",
-      "gender": "Socket",
-      "description": "CONTACT, INTEGRAL, THT SOLDER TO PCB - binder M8 panel mount, no loose contact",
-      "id": "ct_m8_integral"
+      "type": "Other",
+      "gender": "Pin",
+      "minGauge": {
+        "value": 26,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "description": "CONTACT, PIN, INTEGRAL SCREW CLAMP, 0.14-0.5 MM2 (26-20 AWG) - binder M8 male cable connector, no loose contact",
+      "id": "ct_m8_clamp_pin"
     },
     {
-      "partNumber": "(integral THT contact)",
+      "partNumber": "(integral screw clamp - 99 3362 100 04)",
       "manufacturer": "binder",
-      "type": "Solder",
-      "gender": "Pin",
-      "description": "CONTACT, PIN, INTEGRAL, THT SOLDER TO PCB - binder M8 male panel mount, no loose contact",
-      "id": "ct_m8_integral_pin"
+      "type": "Other",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 26,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "description": "CONTACT, SOCKET, INTEGRAL SCREW CLAMP, 0.14-0.5 MM2 (26-20 AWG) - binder M8 female cable connector, no loose contact",
+      "id": "ct_m8_clamp_skt"
     }
   ],
   "cableParts": [
     {
       "id": "cab_sh_1c_vio",
-      "partNumber": "(generic)",
+      "partNumber": "GENERIC SHLD CABLE 1C 20AWG VIO",
       "manufacturer": "generic",
       "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, VIOLET, FOIL + TINNED COPPER BRAID, JACKETED - front VRC FR pulse to ECU B21. Screen to B17 only, floats at the VRC (generic per 6.24)",
       "cores": [
@@ -1425,7 +1451,7 @@
     },
     {
       "id": "cab_sh_2c",
-      "partNumber": "(generic)",
+      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
       "manufacturer": "generic",
       "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - sensor pair (generic per 6.24)",
       "cores": [
@@ -1451,7 +1477,7 @@
     },
     {
       "id": "cab_sh_3c",
-      "partNumber": "(generic)",
+      "partNumber": "GENERIC SHLD CABLE 3C 20AWG",
       "manufacturer": "generic",
       "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - front VRC to ECU: +5V, Gnd Out, FL pulse. Screen to A7 (generic per 6.24)",
       "cores": [
@@ -1484,7 +1510,7 @@
     },
     {
       "id": "cab_sh_4c",
-      "partNumber": "(generic)",
+      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
       "manufacturer": "generic",
       "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - rear VRC to ECU (generic per 6.24)",
       "cores": [
@@ -1539,5 +1565,6 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
       "id": "pl_sz16"
     }
-  ]
+  ],
+  "mates": []
 }
