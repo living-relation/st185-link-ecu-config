@@ -298,8 +298,8 @@
         },
         {
           "id": "b12",
-          "designation": "B12",
-          "notConnected": true
+          "signal": "Ign 6 (EPS Rly)",
+          "designation": "B12"
         },
         {
           "id": "b13",

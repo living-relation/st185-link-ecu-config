@@ -1208,13 +1208,13 @@
     },
     {
       "id": "dm_bh_a_eng_c36",
-      "label": "BH-B-c13",
+      "label": "BH-A-c36",
       "width": 150,
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Bulkhead B cavity 13 → ECU-A A27 (Aux 7, MRS SPD) — wired on ST185-A-ECU"
+          "signal": "Bulkhead A cavity 36 → ECU-A A27 (Aux 7, MRS SPD) — wired on ST185-A-ECU"
         }
       ],
       "schematicPosition": {
@@ -1314,7 +1314,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "ECU-B pin B12 (Ign 6) — EPS relay trigger per 6.16, branches off at the ECU into loom C. NOTE: B12 still reads notConnected on ST185-A-ECU - fix there."
+          "signal": "ECU-B pin B12 (Ign 6) — EPS relay trigger per 6.16, branches off at the ECU into loom C."
         }
       ],
       "schematicPosition": {
