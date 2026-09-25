@@ -6,7 +6,7 @@
     {
       "id": "ecu_com",
       "label": "ECU Comms/Tuning Port",
-      "width": 210,
+      "width": 390,
       "partId": "cp_dtm6s",
       "cavities": [
         {
@@ -41,18 +41,18 @@
         }
       ],
       "layoutPosition": {
-        "x": 620,
-        "y": 0
+        "x": 1020,
+        "y": 150
       },
       "schematicPosition": {
-        "x": 620,
+        "x": 0,
         "y": 0
       }
     },
     {
       "id": "csb3io",
-      "label": "ECUMaster CSB3 (CAN feed — full I/O on ST185-A-ECU)",
-      "width": 210,
+      "label": "ECUMaster CSB3 *",
+      "width": 390,
       "cavities": [
         {
           "id": "c5",
@@ -66,13 +66,15 @@
         }
       ],
       "layoutPosition": {
-        "x": 1080,
-        "y": 0
+        "x": 1050,
+        "y": 240
       },
       "schematicPosition": {
-        "x": 1080,
+        "x": 660,
         "y": 0
-      }
+      },
+      "partId": "cp_xref",
+      "excludeFromBom": true
     },
     {
       "id": "lambda",
@@ -81,7 +83,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Power +12V ign, 10A fused - wired on ST185-B-engine"
+          "signal": "Power +12V ign, 10A fused *"
         },
         {
           "id": "c2",
@@ -97,24 +99,25 @@
         }
       ],
       "layoutPosition": {
-        "x": 3860,
-        "y": 0
+        "x": 390,
+        "y": 60
       },
       "schematicPosition": {
-        "x": 3860,
+        "x": 2640,
         "y": 0
-      }
+      },
+      "width": 390
     },
     {
       "id": "bh_a_fw",
       "label": "Bulkhead A - firewall (HDP24-24-47PE-L017)",
-      "width": 210,
+      "width": 390,
       "partId": "cp_hdp_a_fw",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32",
+          "signal": "spare (size 16) - was the shared shield *",
           "cavityPlugPartId": "pl_sz16"
         },
         {
@@ -395,24 +398,25 @@
         }
       ],
       "layoutPosition": {
-        "x": 2680,
-        "y": 0
+        "x": 840,
+        "y": 240
       },
       "schematicPosition": {
-        "x": 2680,
+        "x": 1320,
         "y": 0
-      }
+      },
+      "excludeFromBom": true
     },
     {
       "id": "bh_a_eng",
       "label": "Bulkhead A - engine plug (HDP26-24-47SE-L015)",
-      "width": 210,
+      "width": 390,
       "partId": "cp_hdp_a_eng",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32",
+          "signal": "spare (size 16) - was the shared shield *",
           "cavityPlugPartId": "pl_sz16"
         },
         {
@@ -693,67 +697,128 @@
         }
       ],
       "layoutPosition": {
-        "x": 3220,
+        "x": 780,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 1980,
         "y": 0
       },
-      "schematicPosition": {
-        "x": 3220,
-        "y": 0
-      }
-    }
-  ],
-  "splices": [
-    {
-      "id": "sp_canh",
-      "schematicPosition": {
-        "x": 1080,
-        "y": 304
-      },
-      "layoutPosition": {
-        "x": 1080,
-        "y": 304
-      }
-    },
-    {
-      "id": "sp_canl",
-      "schematicPosition": {
-        "x": 1080,
-        "y": 574
-      },
-      "layoutPosition": {
-        "x": 1080,
-        "y": 574
-      }
+      "excludeFromBom": true
     }
   ],
   "terminals": [
     {
       "id": "t_cluster_can",
       "type": "Loose",
-      "width": 210,
+      "width": 390,
       "schematicPosition": {
-        "x": 620,
-        "y": 440
+        "x": 0,
+        "y": 270
       },
       "layoutPosition": {
-        "x": 620,
-        "y": 440
+        "x": 930,
+        "y": -210
       },
-      "signal": "TrackCluster ESP32-P4 - CAN drop (device not in this harness)"
+      "signal": "TrackCluster ESP32-P4 - CAN drop *",
+      "partId": "tp_flying_lead"
     },
     {
       "id": "t_realdash_can",
       "type": "Loose",
-      "width": 210,
+      "width": 390,
       "schematicPosition": {
-        "x": 620,
-        "y": 710
+        "x": 0,
+        "y": 360
       },
       "layoutPosition": {
-        "x": 620,
-        "y": 710
+        "x": 1050,
+        "y": 0
       },
-      "signal": "RealDash Pi 5 - CAN drop (device not in this harness)"
+      "signal": "RealDash Pi 5 - CAN drop *",
+      "partId": "tp_flying_lead"
+    }
+  ],
+  "splices": [
+    {
+      "id": "sp_canh",
+      "schematicPosition": {
+        "x": 510,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 900,
+        "y": 60
+      },
+      "partId": "spp_crimp_14_10",
+      "locationId": "bp_930"
+    },
+    {
+      "id": "sp_canl",
+      "schematicPosition": {
+        "x": 450,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": 60
+      },
+      "partId": "spp_crimp_14_10",
+      "locationId": "bp_930"
+    },
+    {
+      "id": "sp_canh_lam",
+      "schematicPosition": {
+        "x": 2490,
+        "y": 0
+      },
+      "partId": "spp_solder_26_14",
+      "locationId": "bp_780",
+      "layoutPosition": {
+        "x": 720,
+        "y": 180
+      }
+    },
+    {
+      "id": "sp_canl_lam",
+      "schematicPosition": {
+        "x": 2430,
+        "y": 0
+      },
+      "partId": "spp_solder_26_14",
+      "locationId": "bp_780",
+      "layoutPosition": {
+        "x": 720,
+        "y": 240
+      }
+    }
+  ],
+  "resistors": [
+    {
+      "id": "r_term_ecu",
+      "partId": "rp_120",
+      "schematicPosition": {
+        "x": 510,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 1020,
+        "y": 60
+      },
+      "locationId": "bp_1050"
+    },
+    {
+      "id": "r_term_end",
+      "partId": "rp_120",
+      "schematicPosition": {
+        "x": 450,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 330,
+        "y": 30
+      },
+      "locationId": "bp_390"
     }
   ],
   "wires": [
@@ -767,7 +832,8 @@
       "target": {
         "id": "sp_canh",
         "handle": "Splice"
-      }
+      },
+      "partId": "wp_20_wht"
     },
     {
       "id": "wc_l_ecu",
@@ -779,7 +845,8 @@
       "target": {
         "id": "sp_canl",
         "handle": "Splice"
-      }
+      },
+      "partId": "wp_20_grn"
     },
     {
       "id": "wc_h_csb",
@@ -791,7 +858,8 @@
       "target": {
         "id": "csb3io",
         "handle": "c5"
-      }
+      },
+      "partId": "wp_20_wht"
     },
     {
       "id": "wc_l_csb",
@@ -803,7 +871,8 @@
       "target": {
         "id": "csb3io",
         "handle": "c6"
-      }
+      },
+      "partId": "wp_20_grn"
     },
     {
       "id": "wc_h_clu",
@@ -815,7 +884,8 @@
       "target": {
         "id": "t_cluster_can",
         "handle": "Terminal"
-      }
+      },
+      "partId": "wp_20_wht"
     },
     {
       "id": "wc_l_clu",
@@ -827,7 +897,8 @@
       "target": {
         "id": "t_cluster_can",
         "handle": "Terminal"
-      }
+      },
+      "partId": "wp_20_grn"
     },
     {
       "id": "wc_h_rd",
@@ -839,7 +910,8 @@
       "target": {
         "id": "t_realdash_can",
         "handle": "Terminal"
-      }
+      },
+      "partId": "wp_20_wht"
     },
     {
       "id": "wc_l_rd",
@@ -851,7 +923,8 @@
       "target": {
         "id": "t_realdash_can",
         "handle": "Terminal"
-      }
+      },
+      "partId": "wp_20_grn"
     },
     {
       "id": "wc_h_bh",
@@ -863,7 +936,8 @@
       "target": {
         "id": "bh_a_fw",
         "handle": "c30"
-      }
+      },
+      "partId": "wp_20_wht"
     },
     {
       "id": "wc_l_bh",
@@ -875,7 +949,8 @@
       "target": {
         "id": "bh_a_fw",
         "handle": "c31"
-      }
+      },
+      "partId": "wp_20_grn"
     },
     {
       "id": "wc_h_lam",
@@ -885,9 +960,10 @@
         "handle": "c30"
       },
       "target": {
-        "id": "lambda",
-        "handle": "c4"
-      }
+        "id": "sp_canh_lam",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_wht"
     },
     {
       "id": "wc_l_lam",
@@ -897,9 +973,10 @@
         "handle": "c31"
       },
       "target": {
-        "id": "lambda",
-        "handle": "c3"
-      }
+        "id": "sp_canl_lam",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_grn"
     },
     {
       "id": "wc_term1",
@@ -909,9 +986,10 @@
         "handle": "Left"
       },
       "target": {
-        "id": "ecu_com",
-        "handle": "c3"
-      }
+        "id": "sp_canh",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_wht"
     },
     {
       "id": "wc_term2",
@@ -921,9 +999,10 @@
         "handle": "Right"
       },
       "target": {
-        "id": "ecu_com",
-        "handle": "c4"
-      }
+        "id": "sp_canl",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_grn"
     },
     {
       "id": "wc_term3",
@@ -933,9 +1012,10 @@
         "handle": "Left"
       },
       "target": {
-        "id": "lambda",
-        "handle": "c4"
-      }
+        "id": "sp_canh_lam",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_wht"
     },
     {
       "id": "wc_term4",
@@ -945,206 +1025,173 @@
         "handle": "Right"
       },
       "target": {
+        "id": "sp_canl_lam",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_grn"
+    },
+    {
+      "id": "wc_h_lam_pin",
+      "color": "White",
+      "source": {
+        "id": "sp_canh_lam",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "lambda",
+        "handle": "c4"
+      },
+      "partId": "wp_20_wht"
+    },
+    {
+      "id": "wc_l_lam_pin",
+      "color": "Green",
+      "source": {
+        "id": "sp_canl_lam",
+        "handle": "Splice"
+      },
+      "target": {
         "id": "lambda",
         "handle": "c3"
-      }
+      },
+      "partId": "wp_20_grn"
     }
   ],
   "bundles": [
     {
-      "id": "bn_ecu_cab",
-      "sourceId": "ecu_com",
-      "targetId": "bp_can_cab",
+      "id": "bn_bp_390__bp_780",
+      "sourceId": "bp_390",
+      "targetId": "bp_780",
       "length": {
-        "unit": "mm",
-        "value": 300
+        "value": 690,
+        "unit": "mm"
       }
     },
     {
-      "id": "bn_cab_term",
-      "sourceId": "bp_can_cab",
-      "targetId": "r_term_ecu",
+      "id": "bn_bp_780__bp_840",
+      "sourceId": "bp_780",
+      "targetId": "bp_840",
       "length": {
-        "unit": "mm",
-        "value": 100
-      },
-      "layoutPoints": [
-        {
-          "id": "bn_cab_term_c",
-          "layoutPosition": {
-            "x": 15,
-            "y": 15
-          }
-        }
-      ]
+        "value": 130,
+        "unit": "mm"
+      }
     },
     {
-      "id": "bn_cab_h",
-      "sourceId": "bp_can_cab",
-      "targetId": "sp_canh",
+      "id": "bn_bp_840__bp_930",
+      "sourceId": "bp_840",
+      "targetId": "bp_930",
       "length": {
-        "unit": "mm",
-        "value": 60
-      },
-      "layoutPoints": [
-        {
-          "id": "bn_cab_h_c",
-          "layoutPosition": {
-            "x": 405,
-            "y": 15
-          }
-        }
-      ]
+        "value": 160,
+        "unit": "mm"
+      }
     },
     {
-      "id": "bn_cab_l",
-      "sourceId": "bp_can_cab",
-      "targetId": "sp_canl",
+      "id": "bn_bp_930__ecu_com",
+      "sourceId": "bp_930",
+      "targetId": "ecu_com",
       "length": {
-        "unit": "mm",
-        "value": 60
-      },
-      "layoutPoints": [
-        {
-          "id": "bn_cab_l_c",
-          "layoutPosition": {
-            "x": 405,
-            "y": 15
-          }
-        }
-      ]
+        "value": 180,
+        "unit": "mm"
+      }
     },
     {
-      "id": "bn_cab_csb",
-      "sourceId": "bp_can_cab",
-      "targetId": "csb3io",
+      "id": "bn_ecu_com__bp_1050",
+      "sourceId": "ecu_com",
+      "targetId": "bp_1050",
       "length": {
-        "unit": "mm",
-        "value": 400
-      },
-      "layoutPoints": [
-        {
-          "id": "bn_cab_csb_c",
-          "layoutPosition": {
-            "x": 765,
-            "y": 15
-          }
-        }
-      ]
+        "value": 10,
+        "unit": "mm"
+      }
     },
     {
-      "id": "bn_cab_clu",
-      "sourceId": "bp_can_cab",
-      "targetId": "t_cluster_can",
-      "length": {
-        "unit": "mm",
-        "value": 600
-      },
-      "layoutPoints": [
-        {
-          "id": "bn_cab_clu_c",
-          "layoutPosition": {
-            "x": 765,
-            "y": 15
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_cab_rd",
-      "sourceId": "bp_can_cab",
-      "targetId": "t_realdash_can",
-      "length": {
-        "unit": "mm",
-        "value": 900
-      },
-      "layoutPoints": [
-        {
-          "id": "bn_cab_rd_c",
-          "layoutPosition": {
-            "x": 1005,
-            "y": 15
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_cab_fw",
-      "sourceId": "bp_can_cab",
-      "targetId": "bp_can_fw",
-      "length": {
-        "unit": "mm",
-        "value": 700
-      },
-      "layoutPoints": [
-        {
-          "id": "bn_cab_fw_c",
-          "layoutPosition": {
-            "x": 1815,
-            "y": 15
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_fw_bh",
-      "sourceId": "bp_can_fw",
-      "targetId": "bh_a_fw",
-      "length": {
-        "unit": "mm",
-        "value": 100
-      },
-      "layoutPoints": [
-        {
-          "id": "bn_fw_bh_c",
-          "layoutPosition": {
-            "x": 1515,
-            "y": 135
-          }
-        }
-      ]
-    },
-    {
-      "id": "bn_eng_lam",
-      "sourceId": "bh_a_eng",
+      "id": "bn_bp_390__lambda",
+      "sourceId": "bp_390",
       "targetId": "lambda",
       "length": {
-        "unit": "mm",
-        "value": 900
-      },
-      "layoutPoints": [
-        {
-          "id": "bn_eng_lam_c",
-          "layoutPosition": {
-            "x": 2415,
-            "y": 15
-          }
-        }
-      ]
+        "value": 90,
+        "unit": "mm"
+      }
     },
     {
-      "id": "bn_eng_term",
-      "sourceId": "lambda",
-      "targetId": "r_term_end",
+      "id": "bn_bp_780__bh_a_eng",
+      "sourceId": "bp_780",
+      "targetId": "bh_a_eng",
       "length": {
-        "unit": "mm",
-        "value": 60
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__bh_a_fw",
+      "sourceId": "bp_840",
+      "targetId": "bh_a_fw",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_930__t_cluster_can",
+      "sourceId": "bp_930",
+      "targetId": "t_cluster_can",
+      "length": {
+        "value": 660,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1050__t_realdash_can",
+      "sourceId": "bp_1050",
+      "targetId": "t_realdash_can",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1050__csb3io",
+      "sourceId": "bp_1050",
+      "targetId": "csb3io",
+      "length": {
+        "value": 90,
+        "unit": "mm"
       }
     }
   ],
   "branchPoints": [
     {
-      "id": "bp_can_cab",
+      "id": "bp_390",
       "layoutPosition": {
-        "x": 600,
-        "y": 0
+        "x": 390,
+        "y": 150
       }
     },
     {
-      "id": "bp_can_fw",
+      "id": "bp_780",
       "layoutPosition": {
-        "x": 1800,
-        "y": 120
+        "x": 780,
+        "y": 150
+      }
+    },
+    {
+      "id": "bp_840",
+      "layoutPosition": {
+        "x": 840,
+        "y": 150
+      }
+    },
+    {
+      "id": "bp_930",
+      "layoutPosition": {
+        "x": 930,
+        "y": 150
+      }
+    },
+    {
+      "id": "bp_1050",
+      "layoutPosition": {
+        "x": 1050,
+        "y": 150
       }
     }
   ],
@@ -1155,133 +1202,233 @@
       "targetId": "bh_a_eng"
     }
   ],
+  "schematicNotes": [
+    {
+      "id": "n_can",
+      "width": 390,
+      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Only the CAN-Lambda crosses the firewall; the cluster and RealDash are CAN drops only - their devices and their power are not part of this harness. 120R termination at the ECU end and at the lambda end.",
+      "schematicPosition": {
+        "x": 3180,
+        "y": 0
+      }
+    },
+    {
+      "id": "n_cavity_notes",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\ncsb3io (label): ECUMaster CSB3 (CAN feed — full I/O on ST185-A-ECU)\nLink CAN-Lambda c1: Power +12V ign, 10A fused - wired on ST185-B-engine\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - engine plug (HDP2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)",
+      "schematicPosition": {
+        "x": 3180,
+        "y": 150
+      }
+    }
+  ],
+  "layoutNotes": [],
+  "wireParts": [
+    {
+      "id": "wp_20_grn",
+      "partNumber": "EW-1C20-GRN",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Green",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_wht",
+      "partNumber": "EW-1C20-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    }
+  ],
   "connectorParts": [
     {
-      "id": "cp_dtm6s",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-6S",
-      "description": "DTM 6-way socket - ECU comms harness side",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dtm6wl",
-          "contactPartId": "ct_hdp20s"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_dtm4s",
-      "gender": "Female",
-      "hasShell": false,
       "partNumber": "DTM06-4S",
-      "description": "DTM 4-way socket - CAN-Lambda harness side",
-      "manufacturer": "Deutsch",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY - Link CAN-Lambda, harness side",
+      "numberOfCavities": 4,
+      "gender": "Female",
+      "hasShell": false,
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp20s",
+          "cavityPlugPartId": "pl_sz20",
+          "lockPartId": "lp_wm4s"
         }
       ],
-      "numberOfCavities": 4
+      "id": "cp_dtm4s"
     },
     {
-      "id": "cp_hdp_a_fw",
-      "partNumber": "HDP24-24-47PE-L017",
+      "partNumber": "DTM06-6S",
       "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 47-way receptacle, PIN, E seal, reverse ring flange - bulkhead A, firewall side"
+      "description": "CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY - Link ECU comms / tuning port, harness side",
+      "numberOfCavities": 6,
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_hdp20s",
+          "cavityPlugPartId": "pl_sz20",
+          "lockPartId": "lp_wm6s"
+        }
+      ],
+      "id": "cp_dtm6s"
     },
     {
-      "id": "cp_hdp_a_eng",
       "partNumber": "HDP26-24-47SE-L015",
       "manufacturer": "TE DEUTSCH",
-      "description": "HDP20 sz24 47-way plug, SOCKET, E seal, threaded - bulkhead A, engine side"
+      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 47 POS, SOCKET CONTACTS, E SEAL, THREADED COUPLING - bulkhead A, engine side",
+      "numberOfCavities": 47,
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "cavityPlugPartId": "pl_sz20"
+        }
+      ],
+      "id": "cp_hdp_a_eng"
     },
     {
-      "id": "pl_sz20",
-      "partNumber": "0413-204-2005",
+      "partNumber": "HDP24-24-47PE-L017",
       "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 20, red"
+      "description": "CONNECTOR, RECEPTACLE, HDP20, SHELL 24, 47 POS, PIN CONTACTS, E SEAL, REVERSE RING FLANGE - bulkhead A, cabin side",
+      "numberOfCavities": 47,
+      "gender": "Male",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "cavityPlugPartId": "pl_sz20"
+        }
+      ],
+      "id": "cp_hdp_a_fw"
     },
     {
-      "id": "lp_dtm6wl",
-      "partNumber": "WM-6S",
-      "manufacturer": "Deutsch (TE)",
-      "description": "Wedgelock for DTM06-6S, 6-way socket housing"
+      "partNumber": "(cross-reference - no part)",
+      "manufacturer": "n/a",
+      "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
+      "id": "cp_xref"
+    }
+  ],
+  "terminalParts": [
+    {
+      "type": "Loose",
+      "partNumber": "GENERIC FLYING LEAD",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "id": "tp_flying_lead"
+    }
+  ],
+  "spliceParts": [
+    {
+      "partNumber": "GENERIC CRIMP SPLICE 14-10",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 14,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
+      "id": "spp_crimp_14_10"
     },
     {
-      "id": "pl_sz16",
-      "partNumber": "114017",
-      "manufacturer": "TE DEUTSCH",
-      "description": "Sealing plug, size 16, white"
+      "partNumber": "GENERIC SOLDER SLEEVE 26-14",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 26,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 14,
+        "unit": "AWG"
+      },
+      "description": "SPLICE, SOLDER SLEEVE, WITH ADHESIVE HEATSHRINK, COMBINED 26-14 AWG (Raychem D-406 class)",
+      "id": "spp_solder_26_14"
     }
   ],
   "contactParts": [
     {
-      "id": "ct_hdp16p",
       "partNumber": "0460-202-1631",
       "manufacturer": "TE DEUTSCH",
-      "description": "Size 16 solid PIN, 16-20 AWG, 13 A - OWNED (qty 130)",
-      "gender": "Pin",
       "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
+      "gender": "Pin",
       "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - OWNED (qty 130)",
+      "id": "ct_hdp16p"
     },
     {
-      "id": "ct_hdp16s",
       "partNumber": "0462-201-1631",
       "manufacturer": "TE DEUTSCH",
-      "description": "Size 16 solid SOCKET, 16-20 AWG, 13 A - OWNED (qty 118)",
-      "gender": "Socket",
       "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
+      "gender": "Socket",
       "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - OWNED (qty 118)",
+      "id": "ct_hdp16s"
     },
     {
-      "id": "ct_hdp20p",
       "partNumber": "0460-202-2031",
       "manufacturer": "TE DEUTSCH",
-      "description": "Size 20 solid PIN, 20 AWG, 7.5 A - TO BUY",
-      "gender": "Pin",
       "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
+      "gender": "Pin",
       "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "description": "CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD30 / DTM",
+      "id": "ct_hdp20p"
     },
     {
-      "id": "ct_hdp20s",
       "partNumber": "0462-201-2031",
       "manufacturer": "TE DEUTSCH",
-      "description": "Size 20 solid SOCKET, 20 AWG, 7.5 A - TO BUY",
-      "gender": "Socket",
       "type": "Crimp",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
+      "gender": "Socket",
       "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      }
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD30 / DTM",
+      "id": "ct_hdp20s"
     }
   ],
   "resistorParts": [
@@ -1289,46 +1436,36 @@
       "id": "rp_120",
       "partNumber": "120R 1/4W",
       "manufacturer": "Generic",
-      "description": "120 ohm CAN bus termination",
+      "description": "RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W - CAN bus termination",
       "resistance": 120
     }
   ],
-  "resistors": [
+  "lockParts": [
     {
-      "id": "r_term_ecu",
-      "partId": "rp_120",
-      "schematicPosition": {
-        "x": 1280,
-        "y": -120
-      },
-      "layoutPosition": {
-        "x": 1280,
-        "y": -120
-      }
+      "partNumber": "WM-4S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DTM, 4-WAY PLUG",
+      "id": "lp_wm4s"
     },
     {
-      "id": "r_term_end",
-      "partId": "rp_120",
-      "schematicPosition": {
-        "x": 1280,
-        "y": -120
-      },
-      "layoutPosition": {
-        "x": 1280,
-        "y": -120
-      }
+      "partNumber": "WM-6S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DTM, 6-WAY PLUG",
+      "id": "lp_wm6s"
     }
   ],
-  "schematicNotes": [
+  "cavityPlugParts": [
     {
-      "id": "n_can",
-      "width": 390,
-      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Only the CAN-Lambda crosses the firewall; the cluster and RealDash are CAN drops only - their devices and their power are not part of this harness. 120R termination at the ECU end and at the lambda end.",
-      "schematicPosition": {
-        "x": 0,
-        "y": -1400
-      }
+      "partNumber": "114017",
+      "manufacturer": "TE DEUTSCH",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
+      "id": "pl_sz16"
+    },
+    {
+      "partNumber": "0413-204-2005",
+      "manufacturer": "TE DEUTSCH",
+      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity",
+      "id": "pl_sz20"
     }
-  ],
-  "layoutNotes": []
+  ]
 }
