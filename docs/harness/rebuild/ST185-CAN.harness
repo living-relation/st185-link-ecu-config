@@ -114,8 +114,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "contactPartId": "ct_hdp16p",
-          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
@@ -144,8 +144,8 @@
         {
           "id": "c6",
           "designation": "6",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c7",
@@ -168,8 +168,8 @@
         {
           "id": "c10",
           "designation": "10",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c11",
@@ -180,8 +180,8 @@
         {
           "id": "c12",
           "designation": "12",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c13",
@@ -270,8 +270,8 @@
         {
           "id": "c27",
           "designation": "27",
-          "contactPartId": "ct_hdp20p",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c28",
@@ -307,13 +307,13 @@
           "id": "c33",
           "designation": "33",
           "signal": "Crank VR screen",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c34",
           "designation": "34",
           "signal": "Cam Hall screen",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c35",
@@ -325,7 +325,7 @@
           "id": "c36",
           "designation": "36",
           "signal": "Aux 7 MRS speed-out (ECU A27)",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c37",
@@ -412,8 +412,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "contactPartId": "ct_hdp16s",
-          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32"
+          "signal": "spare (size 16) - was the shared shield drain, retired by 6.32",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
@@ -442,8 +442,8 @@
         {
           "id": "c6",
           "designation": "6",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c7",
@@ -568,8 +568,8 @@
         {
           "id": "c27",
           "designation": "27",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c28",
@@ -616,14 +616,14 @@
         {
           "id": "c35",
           "designation": "35",
-          "contactPartId": "ct_hdp20s",
-          "signal": "spare"
+          "signal": "spare",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c36",
           "designation": "36",
           "signal": "Aux 7 MRS speed-out (ECU A27)",
-          "cavityPlugPartId": "pl_sz20"
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c37",
@@ -1210,6 +1210,12 @@
       "partNumber": "WM-6S",
       "manufacturer": "Deutsch (TE)",
       "description": "Wedgelock for DTM06-6S, 6-way socket housing"
+    },
+    {
+      "id": "pl_sz16",
+      "partNumber": "114017",
+      "manufacturer": "TE DEUTSCH",
+      "description": "Sealing plug, size 16, white"
     }
   ],
   "contactParts": [
