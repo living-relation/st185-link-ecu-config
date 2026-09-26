@@ -52,9 +52,10 @@ jobs:
           html = Path('docs/research-hub.html').read_text(encoding='utf-8')
           start = html.index('const DATA = ') + len('const DATA = ')
           data, _ = json.JSONDecoder().raw_decode(html[start:])
+          tables = (data.get('parts') or {}).get('tables') or {}
           assert data.get('topics'), 'hub has no topics'
-          assert data.get('parts', {}).get('tables'), 'hub has no parts tables'
-          print('topics', len(data['topics']), 'tables', sorted(data['parts']['tables']))
+          assert 'buy' in tables, 'hub is missing the NEED-TO-BUY table'
+          print('topics', len(data['topics']), 'tables', sorted(tables))
           "
       - name: Upload preview HTML
         if: github.event_name == 'pull_request'

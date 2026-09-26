@@ -783,9 +783,10 @@ function cellHtml(col, row) {
   return esc(v);
 }
 
-function renderOneTable(spec, mountId) {
+function renderOneTable(spec, inst) {
   if (!spec) return "";
-  const st = tableState[spec.id] || (tableState[spec.id] = {q: "", sort: "", dir: 1});
+  const key = inst || spec.id;
+  const st = tableState[key] || (tableState[key] = {q: "", sort: "", dir: 1});
   const q = (st.q || "").toLowerCase();
   let rows = spec.rows.slice();
   if (q) rows = rows.filter(r => hayOf(r).includes(q));
@@ -809,19 +810,20 @@ function renderOneTable(spec, mountId) {
     return `<tr data-hay="${esc(hayOf(r))}">${tds}</tr>`;
   }).join("");
   return `
-    <section class="tbl" data-tid="${esc(spec.id)}" data-hay="${esc((spec.title + " " + spec.source).toLowerCase())}">
+    <section class="tbl" data-tid="${esc(spec.id)}" data-inst="${esc(key)}"
+             data-hay="${esc((spec.title + " " + spec.source).toLowerCase())}">
       <div class="tmeta">
         <div>
           <strong>${esc(spec.title)}</strong>
           <span class="chip">${esc(spec.source)}</span>
           <span>${rows.length} / ${spec.rows.length}</span>
         </div>
-        <input class="tfilter" data-tid="${esc(spec.id)}" type="search"
+        <input class="tfilter" data-tid="${esc(spec.id)}" data-inst="${esc(key)}" type="search"
                placeholder="Filter this table…" value="${esc(st.q)}" autocomplete="off">
       </div>
       ${spec.note ? `<p class="blurb">${esc(spec.note)}</p>` : ""}
       <div class="twrap">
-        <table class="data" data-tid="${esc(spec.id)}">
+        <table class="data" data-tid="${esc(spec.id)}" data-inst="${esc(key)}">
           <thead><tr>${heads}</tr></thead>
           <tbody>${body}</tbody>
         </table>
@@ -843,18 +845,21 @@ function findSpec(id) {
   return null;
 }
 
-function replaceTable(id) {
-  const spec = findSpec(id);
-  const mount = document.querySelector(`.tbl[data-tid="${id}"]`);
-  if (!spec || !mount) return;
-  const focus = document.activeElement?.classList?.contains("tfilter")
-    && document.activeElement.dataset.tid === id;
-  const start = focus ? document.activeElement.selectionStart : null;
-  mount.outerHTML = renderOneTable(spec);
-  const next = document.querySelector(`.tbl[data-tid="${id}"]`);
-  if (next) bindTables(next);
+function replaceTable(mount) {
+  if (!mount || !mount.parentNode) return;
+  const spec = findSpec(mount.dataset.tid);
+  if (!spec) return;
+  const inst = mount.dataset.inst || mount.dataset.tid;
+  const filterEl = mount.querySelector(".tfilter");
+  const focus = document.activeElement === filterEl;
+  const start = focus ? filterEl.selectionStart : null;
+  const wrap = document.createElement("div");
+  wrap.innerHTML = renderOneTable(spec, inst).trim();
+  const next = wrap.firstElementChild;
+  mount.replaceWith(next);
+  bindTables(next);
   if (focus) {
-    const inp = document.querySelector(`.tfilter[data-tid="${id}"]`);
+    const inp = next.querySelector(".tfilter");
     if (inp) { inp.focus(); if (start != null) inp.setSelectionRange(start, start); }
   }
 }
@@ -864,23 +869,24 @@ function bindTables(root) {
     if (inp.dataset.bound) return;
     inp.dataset.bound = "1";
     inp.addEventListener("input", e => {
-      const id = e.currentTarget.dataset.tid;
-      tableState[id] = tableState[id] || {q: "", sort: "", dir: 1};
-      tableState[id].q = e.currentTarget.value;
-      replaceTable(id);
+      const mount = e.currentTarget.closest(".tbl");
+      const inst = e.currentTarget.dataset.inst || e.currentTarget.dataset.tid;
+      tableState[inst] = tableState[inst] || {q: "", sort: "", dir: 1};
+      tableState[inst].q = e.currentTarget.value;
+      replaceTable(mount);
     });
   });
   root.querySelectorAll("th[data-sort]").forEach(th => {
     if (th.dataset.bound) return;
     th.dataset.bound = "1";
     th.addEventListener("click", e => {
-      const table = e.currentTarget.closest("table");
-      const id = table.dataset.tid;
+      const mount = e.currentTarget.closest(".tbl");
+      const inst = mount.dataset.inst || mount.dataset.tid;
       const key = e.currentTarget.dataset.sort;
-      tableState[id] = tableState[id] || {q: "", sort: "", dir: 1};
-      if (tableState[id].sort === key) tableState[id].dir *= -1;
-      else { tableState[id].sort = key; tableState[id].dir = 1; }
-      replaceTable(id);
+      tableState[inst] = tableState[inst] || {q: "", sort: "", dir: 1};
+      if (tableState[inst].sort === key) tableState[inst].dir *= -1;
+      else { tableState[inst].sort = key; tableState[inst].dir = 1; }
+      replaceTable(mount);
     });
   });
 }
@@ -934,9 +940,10 @@ function partsHtml() {
 
   let body = "";
   if (active === "enclosures") {
-    body = [P.tables.csb3, P.tables.vr].filter(Boolean).map(t => renderOneTable(t)).join("");
+    body = [P.tables.csb3, P.tables.vr].filter(Boolean)
+      .map(t => renderOneTable(t, "board-" + t.id)).join("");
   } else if (P.tables[active]) {
-    body = renderOneTable(P.tables[active]);
+    body = renderOneTable(P.tables[active], "board-" + active);
   }
 
   const buy = S.buy_lines || 0, cov = S.covered_lines || 0, own = S.onhand_skus || 0;
@@ -975,8 +982,9 @@ function refreshParts() {
       activePartsTab = tab;
       const body = document.getElementById("parts-body");
       body.innerHTML = tab === "enclosures"
-        ? [DATA.parts.tables.csb3, DATA.parts.tables.vr].filter(Boolean).map(renderOneTable).join("")
-        : renderOneTable(DATA.parts.tables[tab] || null);
+        ? [DATA.parts.tables.csb3, DATA.parts.tables.vr].filter(Boolean)
+            .map(t => renderOneTable(t, "board-" + t.id)).join("")
+        : renderOneTable(DATA.parts.tables[tab] || null, "board-" + tab);
       bindTables(body);
     });
   });
@@ -986,7 +994,8 @@ function refreshParts() {
 function topicTables(dir) {
   const ids = (DATA.parts.topic_tables || {})[dir] || [];
   if (!ids.length) return "";
-  return `<div class="topic-tables">${ids.map(id => renderOneTable(DATA.parts.tables[id])).join("")}</div>`;
+  return `<div class="topic-tables">${ids.map(id =>
+    renderOneTable(DATA.parts.tables[id], `topic-${dir}-${id}`)).join("")}</div>`;
 }
 
 function renderNav() {
@@ -1042,6 +1051,15 @@ function filter() {
   document.querySelectorAll("[data-hay]").forEach(el => {
     el.classList.toggle("hidden", q && !el.dataset.hay.includes(q));
   });
+  if (q) {
+    document.querySelectorAll("[data-hay]:not(.hidden)").forEach(el => {
+      let p = el.parentElement;
+      while (p) {
+        if (p.hasAttribute && p.hasAttribute("data-hay")) p.classList.remove("hidden");
+        p = p.parentElement;
+      }
+    });
+  }
   document.querySelectorAll(".topic").forEach(sec => {
     const anyVisible = sec.querySelector("[data-hay]:not(.hidden)");
     sec.classList.toggle("hidden", !!q && !anyVisible);
@@ -1074,15 +1092,25 @@ document.getElementById("q").addEventListener("input", filter);
     render();
   });
 });
+function readTheme() {
+  try { return localStorage.getItem("hub-theme") || ""; }
+  catch (err) { return ""; }
+}
+function writeTheme(theme) {
+  try {
+    if (theme) localStorage.setItem("hub-theme", theme);
+    else localStorage.removeItem("hub-theme");
+  } catch (err) { /* file:// or privacy mode */ }
+}
+
 document.getElementById("t-theme").addEventListener("click", () => {
   const cur = document.documentElement.getAttribute("data-theme");
   const next = cur === "dark" ? "light" : cur === "light" ? "" : "dark";
-  if (next) localStorage.setItem("hub-theme", next);
-  else localStorage.removeItem("hub-theme");
+  writeTheme(next);
   applyTheme(next);
 });
 
-applyTheme(localStorage.getItem("hub-theme") || "");
+applyTheme(readTheme());
 renderNav();
 renderDupes();
 refreshParts();
@@ -1090,10 +1118,28 @@ render();
 """
 
 
+def embed_js_json(data: dict) -> str:
+    """JSON for an inline <script>. Escape '<' so a CSV cell cannot close the tag."""
+    return json.dumps(data, default=str, sort_keys=True).replace("<", "\\u003c")
+
+
+def parse_embedded_data(html_text: str) -> dict:
+    marker = "const DATA = "
+    start = html_text.index(marker) + len(marker)
+    data, _ = json.JSONDecoder().raw_decode(html_text[start:])
+    return data
+
+
+def require_parts_tables(data: dict) -> None:
+    tables = (data.get("parts") or {}).get("tables") or {}
+    if "buy" not in tables:
+        raise SystemExit("research hub is missing the NEED-TO-BUY table")
+
+
 def render(data: dict) -> str:
     dates = [d["modified"] for t in data["topics"] for d in t["docs"] if d.get("modified")]
     latest = max(dates) if dates else "unknown"
-    payload = json.dumps(data, default=str, sort_keys=True)
+    payload = embed_js_json(data)
     total_read = sum(t["counts"]["deliverable"] + t["counts"]["research"]
                      for t in data["topics"])
     total_all = sum(len(t["docs"]) for t in data["topics"])
@@ -1143,6 +1189,7 @@ def render(data: dict) -> str:
 
 def main() -> None:
     data = build()
+    require_parts_tables(data)
     for t in data["topics"]:
         for d in t["docs"]:
             d["human_size"] = human_size(d["size"])
