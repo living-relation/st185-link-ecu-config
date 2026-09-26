@@ -7,6 +7,8 @@ The rules live in docs/SHIELD-RULES.md (short form) and plan 6.27 / 6.30 / 6.31 
   R3  no drain lands on a connector shell, except the VR conditioner enclosures
   R5  a screen crossing a bulkhead uses its own pin, wired on BOTH halves
   R2  every screen reaches an ECU shield-ground pin, and only one of them
+  R6  a cable screen landed at BOTH ends is allowed only where SHIELD-RULES
+      lists it as a powered-device exception (today: the two VRC output cables)
 
 R4 ("cable only until it terminates at the ECU") is a modelling convention the
 schema cannot express, so it is not checked here.
@@ -19,9 +21,12 @@ import json, glob, os, sys, collections
 R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
 
 ECU_SHIELD_PINS = {("ecu_a", "a7"), ("ecu_b", "b17")}
-# 6.30: the VR conditioner enclosures are the one documented shell exception
-SHELL_OK = {"vrc_f_inl", "vrc_f_inr", "vrc_r_inl", "vrc_r_inr",
-            "vrc_f_out", "vrc_r_out"}
+# Powered-device exception (SHIELD-RULES, 2026-09-25): only the VRC OUT
+# connectors land a screen on their shielding plate. The IN screens ride pin 3,
+# so an IN shell landing is a violation.
+SHELL_OK = {"vrc_f_out", "vrc_r_out"}
+# Screens allowed a landing at both ends - the listed exception, nothing else.
+BOTH_ENDS_OK = {"cab_fout_sh", "cab_rout_sh"}
 BULKHEAD_PAIRS = {"bh_a_fw": "bh_a_eng", "bh_a_eng": "bh_a_fw",
                   "bh_b_fw": "bh_b_eng", "bh_b_eng": "bh_b_fw"}
 
@@ -140,6 +145,12 @@ def reaches_ecu(start):
             stack.append(m)
     return False
 
+
+# R6 - bonded at both ends only under a listed powered-device exception
+for loom, w, cable in screens():
+    if cable and w.get("source") and w.get("target") and w["id"] not in BOTH_ENDS_OK:
+        bad.append("R6 %s/%s is bonded at both ends - not a listed powered-device"
+                   " exception" % (loom, w["id"]))
 
 for sid, ends in sorted(lands.items()):
     if not any(reaches_ecu(e) for e in ends):

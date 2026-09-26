@@ -216,7 +216,7 @@
   <tr class="g-volt"><td class="chan">An Volt 6</td><td class="pin">B15</td><td class="wire">White</td><td>Oil pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-volt"><td class="chan">An Volt 7</td><td class="pin">B16</td><td class="wire">White</td><td>Fuel pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-volt"><td class="chan">An Volt 8</td><td class="pin">B23</td><td class="wire">White</td><td>Coolant pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 9</td><td class="pin">B24</td><td class="wire">White</td><td>Fuel level sender</td><td><span class="badge ok">✅</span></td><td>An Volt has <strong>no internal pull-up</strong> (QSG: 0–5 V only). External divider to +5 V required; calibrate V→% (resistor value TBD).</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 9</td><td class="pin">B24</td><td class="wire">White</td><td>Fuel level sender</td><td><span class="badge ok">✅</span></td><td>An Volt has <strong>no internal pull-up</strong> (QSG: 0–5 V only). External pull-up to +5 V (<code>r_fuellvl</code>) — value and cal status live in <code>sot/channels.csv</code> row b24.</td></tr>
   <tr class="g-volt"><td class="chan">An Volt 10–11</td><td class="pin">B31 · B32</td><td class="wire">White</td><td>Available</td><td><span class="badge tbd">⬜</span></td><td>Not reserved. The AC amplifier handles compressor protection itself, so no analog channels are needed for AC.</td></tr>
   <tr class="g-knock"><td class="chan">Knock 1</td><td class="pin">B9</td><td class="wire">Grey</td><td>Knock sensor</td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-knock"><td class="chan">Knock 2</td><td class="pin">B8</td><td class="wire">Grey</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td></td></tr>
@@ -260,7 +260,7 @@
   <tr class="g-aux"><td class="chan">Aux 9 / 10</td><td class="pin">B18 · B26</td><td class="wire">Pink</td><td>Bosch ETB motor (H-bridge)</td><td><span class="drive">H-bridge</span></td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
   <tr class="g-ign"><td class="chan">Ign 5</td><td class="pin">B13</td><td class="wire">Violet</td><td>2nd rad fan (AC condenser duty)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>spare ign as aux</td></tr>
   <tr class="g-ign"><td class="chan">Ign 6</td><td class="pin">B12</td><td class="wire">Violet</td><td>EPS pump relay coil</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>Spare ign used as aux (per <code>sot/channels.csv</code>). No ECU-driven warning lamps — the replacement cluster handles indicators over CAN.</td></tr>
-  <tr class="g-inj"><td class="chan">Ign 7–8 / Inj 5–8</td><td class="pin">B11 B10 · B4–B1</td><td class="wire">Brown</td><td>spare low-side aux</td><td><span class="drive">low-side</span></td><td><span class="badge tbd">⬜</span></td><td>→ PMU/PDM if more needed</td></tr>
+  <tr class="g-inj"><td class="chan">Ign 7–8 / Inj 5–8</td><td class="pin">B11 B10 · B4–B1</td><td class="wire">Brown</td><td>spare low-side aux</td><td><span class="drive">low-side</span></td><td><span class="badge tbd">⬜</span></td><td>The only spare ECU drives left — the next ECU actuator comes from here (no PMU/PDM, plan 6.48)</td></tr>
 </table>
 
 <h2>AC control (per your AC-amp notes)</h2>
@@ -274,7 +274,7 @@
   <ul>
     <li><strong>An Temp 1 / 2 (A15 / A16):</strong> selectable internal pull-up, or none. Set both to <strong>1 kΩ internal</strong> so they match Temp 3/4. No external resistor on ECT or manifold IAT.</li>
     <li><strong>An Temp 3 / 4 (B6 / B7):</strong> <em>fixed 1 kΩ</em> to 5 V (QSG). Oil temp and charge-pipe IAT stay on these pins; same NTC as Temp 2 still needs its <em>own</em> PCLink cal table.</li>
-    <li><strong>An Volt 1–11:</strong> <em>no</em> internal pull-up, 0–5 V only. Fuel level on An Volt 9: <strong>OEM sender + voltage divider</strong> (Pass A lock). External divider to +5 V required — <strong>Ω TBD</strong> for BOM/calibration (470 Ω in the harness/NEED-TO-BUY is a starting guess only, not a confirmed part).</li>
+    <li><strong>An Volt 1–11:</strong> <em>no</em> internal pull-up, 0–5 V only. Fuel level on An Volt 9: <strong>OEM sender + voltage divider</strong> (Pass A lock). External pull-up to +5 V — value: <code>sot/channels.csv</code> row b24 (Daniel lock 2026-09-18). V→% calibration is done on the car.</li>
     <li><strong>Digital inputs:</strong> software-selectable pull-up, active state, all channels to 10 kHz (product spec). Enable the DI pull-up for the start switch (to GND) and for the Continental flex sensor on DI 2 (Ethanol Sensor function). Do <em>not</em> add a second 2.4 kΩ on the flex signal unless a scope shows a weak edge — the ECU pull-up is the intended source.</li>
     <li><strong>Trigger 2 cam Hall:</strong> open-collector. Fit <strong>1.8 kΩ to +8 V Out (A6)</strong>. Do not fit the kit's 2.4 kΩ (that value assumes 12 V). Sensor is 5–24 V; staying on the ECU +8 V rail is correct.</li>
     <li><strong>Aux 4 AC kill:</strong> flywheeled low-side. With no inductive load the pin is hi-Z when off — <strong>no pull-up</strong>. Amp ACT: ground = kill, floating = normal.</li>

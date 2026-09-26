@@ -79,65 +79,43 @@ Glove box is passenger side, so R/B No.3 and R/B No.4 are a short hop. J/B No.1 
 
 ![Engine-bay J/B2 / R/B5 / ABS relays, EWD p.16](ewd-snips/1990-st185-locations-engine-bay.png)
 
-### 3.1 What the PMU-16 can and cannot take
+### 3.1 Where each load gets its power
 
-> ## NO PMU — decided 2026-09-22, see plan 6.46 / 6.47 / 6.48
->
-> The PMU-16 is **not being bought**. A sixteen-channel $1,499 unit was doing five
-> circuits, and nothing bigger fixed it — the 40 A blower exceeds every PDM channel
-> on the market, so R/B No.4 survives regardless.
->
-> **This section is still correct about which loads go where. Only the word "PMU"
-> is wrong.** Translate as you read:
->
-> | This section says | Actually |
-> |---|---|
-> | PMU O1 / O2 — HEAD LH / RH | relay + fuse, second fuse block |
-> | PMU O3 — HAZ-HORN | fuse (+ horn relay if the car lacks one) |
-> | PMU O4 — DOME | fuse only, always-hot |
-> | PMU O5 — RTR | relay + fuse |
-> | PMU O8 — wiper park | relay + fuse, still optional |
-> | "PMU stud" / "PMU-16 M6" | the PDB stud feeding the second fuse block |
-> | "a PMU output is 25 A" | a micro ISO relay is 30 A, a blade fuse way whatever it is rated |
->
-> The **either a PMU output or a relay+fuse, never both** rule below becomes simply
-> *one source per load*, which it always really was.
->
-> Logic that was going to live in the PMU — device hold, kill relay, alternator
-> excite — now lives on the **CSB3's four low-side outputs**. See plan 6.48.
+No PMU/PDM — dropped 2026-09-22 (plan 6.46 / 6.47 / 6.48). The 40 A blower exceeds
+every PDM channel on the market, so R/B No.4 survives regardless. Logic that was
+going to live in a PMU — device hold, kill relay, alternator excite — lives on the
+**CSB3's four low-side outputs** (plan 6.48). Every relay and fuse is in the cabin.
 
-Original text follows.
-
-ECUMaster PMU-16: **10 × 25 A** + **6 × 15 A** high-side, **150 A** total, outputs of the same rating may be paralleled (max three → 75 A). Connector terminals are the real limit (Sicma 2.8 ≈ 25 A). On CAN 1 at 1 Mbit/s; do not add a third 120 Ω terminator.
-
-Rule from §6.2 still holds: a load is **either** a PMU output **or** a relay+fuse, never both.
+Rule: **one source per load** — never two paths feeding the same circuit.
 
 | Load | Path | Why |
 |---|---|---|
-| Starter motor | Battery cable + RADLOK + existing `k_str` for solenoid | Cranking amps, not a PMU job |
-| 160 A alternator B+ | 4 AWG (or 2 AWG) to starter B+, does not recross | Already in Power |
-| MRS EPS pump | `k_eps` HCR 150, HCFB H4 60 A AMI (2026-09-25; the mini fuse module cannot take 60 A) | >25 A; three paralleled PMU pins would burn three of sixteen channels |
-| Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Same; PWM later can still be the relay coil from Aux 5 / Ign 5 |
+| Starter motor | Battery cable + RADLOK + existing `k_str` for solenoid | Cranking amps |
+| 160 A alternator B+ | 4 AWG (or 2 AWG) to starter B+, does not recross | Heavy cable, not a fused branch |
+| MRS EPS pump | `k_eps` HCR 150, HCFB H4 60 A AMI (2026-09-25; the mini fuse module cannot take 60 A) | Too big for a micro relay |
+| Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Coils from Aux 5 / Ign 5 |
 | EFI main, ETB, fuel pump | Cabin relays in `ST185-B-ECU.harness` | Hold-power and Link's published ETB circuit |
-| HEAD LH / HEAD RH | PMU O1 / O2 (25 A) into J/B2 2A-3 / 2A-6 | Replaces 15 A HEAD fuses in J/B2 |
-| HAZ-HORN | PMU O3 into 2E-3 | Replaces 15 A HAZ-HORN |
-| DOME | PMU O4 (25 A channel) into 2E-4 | Replaces 20 A DOME |
-| Retract motors | PMU O5 into 2E-2 | Replaces 30 A RTR; confirm inrush on the car |
-| Heater blower | Keep 40 A fuse in **R/B No.4** | 40 A > 25 A and the OEM fuse/relay already sit at the right kick |
+| HEAD LH / HEAD RH | Relay + fuse, second fuse block, into J/B2 2A-3 / 2A-6 | Replaces 15 A HEAD fuses in J/B2 |
+| HAZ-HORN | Fuse (+ horn relay if the car lacks one) into 2E-3 | Replaces 15 A HAZ-HORN |
+| DOME | Fuse only, always-hot, into 2E-4 | Replaces 20 A DOME |
+| Retract motors | Relay + fuse into 2E-2 | Replaces 30 A RTR; confirm inrush on the car |
+| Wiper park | Relay + fuse, optional | Only if the park circuit needs it |
+| Heater blower | Keep 40 A fuse in **R/B No.4** | OEM fuse/relay already sit at the right kick |
 | Power windows / locks | Keep 30 A POWER in **R/B No.2** | Same reason, driver kick |
 | Wiper, gauge, turn, CIG, ECU-IG, IGN, STOP, TAIL, ECU-B, DEFOGGER | Stay as **J/B No.1** fuses | That is why the J/B stays. We only restore its upstream B+ and IG |
 | A/C compressor | Engine harness A/B (already drawn) | Not engine-room C |
 | ABS actuator / ABS relays / 60 A FL ABS | **Deleted** | Solenoid module removed |
 | Crash / SRS sensors | **Deleted** | Do not refeed the airbag IGN circuit |
 
-PMU therefore uses five body channels plus ignition-switched enable, and still has headroom. It does not replace the kick-panel J/Bs.
+The second fuse block is fed from the PDB stud in the glove box. Fuse and relay
+ratings not written above are `TBD` until sized against the load.
 
 ---
 
 ## 4. Method — unplug J/B No.2, inject at both ends of the engine-room main
 
 1. Disconnect the battery (once it still lives in the bay) and **unplug J/B No.2 connectors 2A, 2B, 2C, 2D, 2E** and fusible-link box **F11**. Remove the ABS actuator, ABS relays, and crash-sensor connectors. Leave the engine-room main, cowl and dash looms in the car.
-2. Build the glove-box PDB + fuse block + PMU + remaining relays.
+2. Build the glove-box PDB, the second fuse block and the relays.
 3. Restore **always-hot** into J/B No.1 at **1I pin 1** (left kick). That is the bus behind 15A STOP, 15A ECU-B, 30A DEFOGGER and the taillight-relay battery side.
 4. Restore **AM1** and **AM2** at **IE1 pins 10 and 17** (left kick, engine-room main ↔ cowl). Those two wires are the ignition-switch supply. From the starting diagram they already pass IE1 on the way from F11 to I9.
 5. Restore lighting / horn / dome / retract at the **vacated 2A / 2D / 2E cavities** with a short jumper harness from the glove box, routed with the passenger-side engine-room main (EA1 / ABS trough).
@@ -234,7 +212,7 @@ Do not land new wires on 1A/1B/1C/1D/1E/1F/1G unless a circuit is dead after L1/
 |---|---|---|---|---|---|---|
 | R1 | **YES** | **R/B No.4** 40A HEATER fuse | input (housing pins 1–2) | Heater / blower battery | PDB, short run | Keep the OEM 40A fuse and heater relay |
 | R2 | isolate | **R/B No.4** starter relay | 30 / 87 | OEM starter | Link `k_str` in the Power file | Unplug or tape the OEM relay. Do not parallel two starter relays |
-| R3 | keep | **R/B No.4** 10A A/C, 20A FR FOG | as-is | Fog / A/C amp | Follows R1 if they share the R/B hot bus; otherwise feed from PMU | Fog is optional |
+| R3 | keep | **R/B No.4** 10A A/C, 20A FR FOG | as-is | Fog / A/C amp | Follows R1 if they share the R/B hot bus; otherwise feed from the second fuse block | Fog is optional |
 | R4 | keep | **R/B No.3** fog-light relay | coil / 30 | Fog | Only if fog lights stay | |
 | R5 | **YES** | New ground near R/B4 set bolt (OEM **IG** is the R/B4 set bolt) | stud | W–B | PDB ground | EWD ground index p.171 |
 
@@ -248,12 +226,12 @@ Make a **J/B2 dummy header**: the mating plugs that used to snap onto J/B No.2, 
 
 | # | J/B2 cavity | Factory job | New source | Populate? |
 |---|---|---|---|---|
-| J1 | **2A-3** / **2D-2** | 15A HEAD LH | PMU O1 | **YES** |
-| J2 | **2A-6** / **2D-6** | 15A HEAD RH | PMU O2 | **YES** |
-| J3 | **2E-2** | Inner cct: 30A RTR. Starting p.48: AM1 with 2E-5 | PMU O5 **only if probe fails AM1** | **PROBE** — see §5.4.1 |
-| J4 | **2E-3** | Inner cct: 15A HAZ-HORN. Starting p.48: AM2 with 2E-6 | PMU O3 **only if probe fails AM2** | **PROBE** — horn fallback is R/B5 |
-| J5 | **2E-4** | 20A DOME | PMU O4 | **YES** — not on the AM1/AM2 pass-through |
-| J6 | **2E-5** | AM1 into engine room (starting p.48, with 2E-2) | Backfed from IE1-10 once L6 is in | Do not PMU-feed |
+| J1 | **2A-3** / **2D-2** | 15A HEAD LH | HEAD LH relay + fuse | **YES** |
+| J2 | **2A-6** / **2D-6** | 15A HEAD RH | HEAD RH relay + fuse | **YES** |
+| J3 | **2E-2** | Inner cct: 30A RTR. Starting p.48: AM1 with 2E-5 | RTR relay + fuse **only if probe fails AM1** | **PROBE** — see §5.4.1 |
+| J4 | **2E-3** | Inner cct: 15A HAZ-HORN. Starting p.48: AM2 with 2E-6 | HAZ-HORN fuse **only if probe fails AM2** | **PROBE** — horn fallback is R/B5 |
+| J5 | **2E-4** | 20A DOME | DOME fuse | **YES** — not on the AM1/AM2 pass-through |
+| J6 | **2E-5** | AM1 into engine room (starting p.48, with 2E-2) | Backfed from IE1-10 once L6 is in | Do not feed from the second fuse block |
 | J7 | **2A-5** / **2C-3** | Engine main relay 87 | **No.** Link EFI / ignition switched rail is `sp_sw12` in Power | |
 | J8 | **2E-8** / **2C-4** | 15A EFI / EFI main relay | **No.** Cabin `k_efi` | |
 | J9 | **2A-4** / **2D-5** | 30A FL RDI FAN / fan relay | **No.** Uprated fan is Engine Room C `k_fan` | |
@@ -264,7 +242,7 @@ Make a **J/B2 dummy header**: the mating plugs that used to snap onto J/B No.2, 
 
 Pin numbers on 2A/2D/2E are taken from EWD p.20–21 (housing + inner circuit). **Verify with a meter on the unplugged J/B2 connector** before crimping the dummy header: confirm 2A-3 shows continuity to the left headlight feed, 2A-6 to the right, 2E-4 to dome. For 2E-2 / 2E-3 follow §5.4.1.
 
-When J/B No.2 is unplugged, the **inner** HEAD LH / HEAD RH jumpers disappear. The dummy header must recreate **2A-3 ↔ 2D-2** and **2A-6 ↔ 2D-6** (or splice PMU O1/O2 to both cavities). Feeding only 2A leaves 2D dead.
+When J/B No.2 is unplugged, the **inner** HEAD LH / HEAD RH jumpers disappear. The dummy header must recreate **2A-3 ↔ 2D-2** and **2A-6 ↔ 2D-6** (or splice HEAD LH relay + fuse/O2 to both cavities). Feeding only 2A leaves 2D dead.
 
 ### 5.4.1 Same-book pin collision — 2E-2 / 2E-3
 
@@ -282,11 +260,11 @@ IE1-10 / IE1-17 as AM1/AM2 (L6 / L7) is unambiguous — both the starting diagra
 
 Then, with 2E unplugged and AM1/AM2 **not** yet injected, ohmmeter:
 
-1. 2E-2 → IE1-10 and 2E-5. Continuity means 2E-2 **is AM1**. Do **not** land PMU O5. Retract, if kept, gets a dedicated feed at the retract-control relay **R9** / motor, not at 2E-2.
-2. 2E-3 → IE1-17 and 2E-6. Continuity means 2E-3 **is AM2**. Do **not** land PMU O3 (that would short a PMU output onto ignition AM2). Horn stays on **R/B No.5** horn relay, battery-side fed from the PDB.
-3. No continuity to IE1: treat them as the inner-circuit load outputs and land PMU O5 / O3.
+1. 2E-2 → IE1-10 and 2E-5. Continuity means 2E-2 **is AM1**. Do **not** land the RTR relay + fuse. Retract, if kept, gets a dedicated feed at the retract-control relay **R9** / motor, not at 2E-2.
+2. 2E-3 → IE1-17 and 2E-6. Continuity means 2E-3 **is AM2**. Do **not** land the HAZ-HORN fuse (that would short a fused feed onto ignition AM2). Horn stays on **R/B No.5** horn relay, battery-side fed from the PDB.
+3. No continuity to IE1: treat them as the inner-circuit load outputs and land the RTR relay + fuse / O3.
 
-Landing PMU on an AM1/AM2 pass-through pin after L6/L7 are live will backfeed the ignition switch supply from a switched PMU channel, or fight two sources. The HEAD and DOME pins do not have this collision.
+Landing a fused feed on an AM1/AM2 pass-through pin after L6/L7 are live will backfeed the ignition switch supply from a switched fused feed, or fight two sources. The HEAD and DOME pins do not have this collision.
 
 ### 5.5 Engine-room grounds (keep the OEM rings)
 
@@ -314,7 +292,7 @@ Landing PMU on an AM1/AM2 pass-through pin after L6/L7 are live will backfeed th
 | OEM EFI main / circuit opening / OEM ECU | J/B2 EFI fuse, R/B5 fuel-pump relay, C7 | Replaced by Link `k_efi` / `k_fp` |
 | OEM radiator / condenser fan relays in J/B2 and R/B5 | R/B5 fan relays 2 and 3; J/B2 RDI FAN relay | Replaced by `k_fan` / `k_fan2` |
 
-R/B No.5 (engine-bay front right) can stay as a **horn-only** island if you would rather not spend a PMU pin on the horn. Otherwise unplug it and let PMU O3 drive HAZ-HORN at 2E-3, which already feeds the horn relay coil bus.
+R/B No.5 (engine-bay front right) can stay as a **horn-only** island if you would rather not spend a fuse-block way on the horn. Otherwise unplug it and let the HAZ-HORN fuse drive HAZ-HORN at 2E-3, which already feeds the horn relay coil bus.
 
 ### 5.7 New Engine Room C runs (the only new bay wiring)
 
@@ -363,7 +341,6 @@ harness file. Fans and EPS do not cross a signal bulkhead.
 | 1990 Celica All-Trac/4WD Electrical Wiring Diagram | ST185-only EWD (168 p.) | All-Trac J/B, F11, ABS, grounds, IE1/EA1. Snips above. |
 | 1992 Celica Electrical Wiring Diagram | EWD132U | Covers ST185; year-adjacent to 1993. Same J/B No.1 / No.2 / kick-panel layout with All-Trac callouts. |
 | 1993 Celica EWD160U | Dealer 265 p. book | The All-Trac pages of this book are the year-exact match. The public PDF labelled EWD160U is the **FWD** AT180/ST184 book — do not mix its J/B2 pin numbers into this table. |
-| ECUMaster PMU-16 manual / pinout v1.1 | — | 10×25 A + 6×15 A, 150 A total, parallel rule |
 
 On-car check before first power-up: with J/B2 unplugged and the battery still isolated, ohmmeter from each row's cavity to the named load (headlight, dome, ignition I9-4 / I9-10, J/B1 1I-1). Write the measured colour next to the table if it differs.
 

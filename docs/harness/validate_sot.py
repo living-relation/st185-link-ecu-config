@@ -168,6 +168,38 @@ for key, who in sorted(landings.items()):
         bad("D4", "%s.%s has %d conductors on one signal pin: %s"
             % (key + (len(who), "; ".join(who))))
 
+
+# ---------------------------------------------------------------- pass 3
+# H1 (added 2026-09-25 after B12 drifted): XTREMEX-IO-TABLE.html is the human
+# view of this CSV. It may never call a pin "Available" / "spare" that the SoT
+# has in use.
+import html as _html, re as _re
+IO = ROOT / "XTREMEX-IO-TABLE.html"
+_ecu = {(r["conn"], r["pin"]): r for r in rows if r["conn"] in ("ecu_a", "ecu_b")}
+
+
+def _pins(cell):
+    out = []
+    for a, lo, _b, hi in _re.findall(r"([AB])(\d+)(?:\s*[\u2013-]\s*([AB])?(\d+))?", cell):
+        lo, hi = int(lo), int(hi or lo)
+        for n in range(min(lo, hi), max(lo, hi) + 1):
+            out.append(("ecu_" + a.lower(), a.lower() + str(n)))
+    return out
+
+
+for tr in _re.findall(r"<tr[^>]*>(.*?)</tr>", IO.read_text(encoding="utf-8"), _re.S):
+    cells = [_html.unescape(_re.sub(r"<[^>]+>", "", c)).strip()
+             for c in _re.findall(r"<td[^>]*>(.*?)</td>", tr, _re.S)]
+    if len(cells) < 4 or not _re.fullmatch(r"[AB0-9\s\u2013\u00b7-]+", cells[1]):
+        continue
+    if not any(w in cells[3].lower() for w in ("available", "spare")):
+        continue
+    for key in _pins(cells[1]):
+        r = _ecu.get(key)
+        if r and r["status"] not in ("spare", "nc"):
+            bad("H1", "IO table calls %s.%s free (%r) but the SoT has it %s as %s"
+                % (key + (cells[3], r["status"], r["label"])))
+
 # ---------------------------------------------------------------- report
 if findings:
     print()

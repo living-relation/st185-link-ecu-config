@@ -3,7 +3,7 @@
 Long form: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.27, §6.30, §6.31, §6.32.
 This is the short version so it stops getting re-litigated.
 
-**`docs/harness/audit_shields.py` enforces R1, R2, R3 and R5 mechanically, and
+**`docs/harness/audit_shields.py` enforces R1, R2, R3, R5 and R6 mechanically, and
 `check_all.py` runs it.** If a change breaks one of these rules the build fails.
 That is deliberate: these were settled once and kept getting re-opened because
 nothing checked them.
@@ -14,12 +14,21 @@ nothing checked them.
 2. **It terminates at the ECU end only.** That is its single ground reference.
 3. **No connector in this build has a shell for a shield.** Do not model one, do
    not spec a connector that needs one, do not wire a drain to a connector body.
-   *One documented exception: the VR conditioner enclosures (§6.30 / §6.35) - the
-   OUT screen lands on the shielding plate, the IN screens ride pin 3 to the case.*
+   *Exception: see "Powered device inline" below.*
 4. **A shield is cable only until it terminates at the ECU** — a core inside the
    cable, not a wire in its own right, right up to the ECU end.
 5. **Shields pass THROUGH the bulkhead on their own pin, not on the bulkhead
    shell,** and that pin is wired on **both halves**.
+
+## Powered device inline — the one exception (Daniel, 2026-09-25)
+
+Rules 1–3 describe a passive run, sensor to ECU. **When a powered device sits in
+the middle of a cable, that cable's shielding is decided case by case and written
+in this file.** Nothing is an exception unless it is listed here. R6 in the audit
+fails any screen bonded at both ends that is not listed.
+
+Listed today: the two VR conditioner boxes (§6.30 below). Both-end-bonded
+screens allowed: `cab_fout_sh`, `cab_rout_sh`.
 
 Also settled: the ABS wheel-speed sensors have **two wires**. No third conductor,
 no shield connection at the sensor.
@@ -59,7 +68,10 @@ reaches A7, or the two pins are ever connected.
 ## §6.30 — VR conditioner enclosures (the rule 3 exception, powered-device form)
 
 The conditioner is a powered device, so its case is the screen junction. Two
-segments meet there and each is still grounded at the ECU end only. Plan §6.42
+segments meet there. The sensor drop floats at the sensor and lands on the case;
+the output screen is bonded at **both** ends — case and ECU. The case is isolated
+from chassis, so both-end bonding makes no ground loop. Bond the case to chassis
+and it becomes one. Plan §6.42
 (wheel speed shielding, segmented) describes the same arrangement; this section
 is the governing wording (the §6.42 table was corrected to match on 2026-09-25):
 
