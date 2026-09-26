@@ -6,12 +6,21 @@ name: Regenerate research hub
 #   2. the bot's commit carries [skip ci] so it never re-triggers CI,
 #   3. the job skips runs actored by the bot,
 # and the generator is idempotent, so a redundant run produces no diff.
+#
+# PRs that touch docs/ or this workflow run the same generator as a check
+# and attach the HTML as an artifact. They do not commit it — only main does.
 on:
   push:
     branches: [main]
     paths:
       - 'docs/**'
       - '!docs/research-hub.html'
+      - '.github/workflows/research-hub.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - '!docs/research-hub.html'
+      - '.github/workflows/research-hub.yml'
   workflow_dispatch:
 
 concurrency:
@@ -34,7 +43,27 @@ jobs:
           python-version: '3.12'
       - name: Regenerate research hub
         run: python3 docs/build-research-hub.py
+      - name: Check hub built
+        run: |
+          test -s docs/research-hub.html
+          python3 -c "
+          from pathlib import Path
+          import json
+          html = Path('docs/research-hub.html').read_text(encoding='utf-8')
+          start = html.index('const DATA = ') + len('const DATA = ')
+          data, _ = json.JSONDecoder().raw_decode(html[start:])
+          assert data.get('topics'), 'hub has no topics'
+          assert data.get('parts', {}).get('tables'), 'hub has no parts tables'
+          print('topics', len(data['topics']), 'tables', sorted(data['parts']['tables']))
+          "
+      - name: Upload preview HTML
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-hub.html
+          path: docs/research-hub.html
       - name: Commit regenerated hub if it changed
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         run: |
           if [ -n "$(git status --porcelain docs/research-hub.html)" ]; then
             git config user.name "github-actions[bot]"

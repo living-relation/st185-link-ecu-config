@@ -48,7 +48,7 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `FUEL-SYSTEM.md` | Fuel system reference — AN hose sizing and pump capacity notes. Not part of the CAN bus contract. |
 | `archive/` | Retired material — kept for history, **never authoritative**, excluded from agent context. Not for normal work; open `archive/README.md` only when tracing why a past decision was made. |
 | `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` | Harness decision log. Section 6 holds the binding build rules; sections 1-5 describe a retired Power/Signal layout. |
-| `docs/research-hub.html` | Index of everything under `docs/` plus interactive parts tables (on-hand BOM, harness buy list, enclosure BOMs). Open in any browser. Regenerate with `python docs/build-research-hub.py` — do not commit the HTML. |
+| `docs/research-hub.html` | Index of everything under `docs/` plus interactive parts tables (on-hand BOM, harness buy list, enclosure BOMs). Open in any browser. The "Regenerate research hub" Action runs `python docs/build-research-hub.py` on PRs that touch `docs/**` and commits the HTML on `main` only — do not commit the HTML yourself. |
 
 ## Import Checklist (PCLink, when ECU is available)
 
