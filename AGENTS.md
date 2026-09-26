@@ -131,7 +131,7 @@ work order around it.
 
 | File | Owner | Rule |
 |---|---|---|
-| `docs/research-hub.html` | **The "Regenerate research hub" Action** | **Never commit it.** Run `docs/build-research-hub.py` locally to preview, then `git checkout -- docs/research-hub.html` before you commit. The bot regenerates and commits it to the same path on `main` after every push that touches `docs/**`. Committing it locally is what causes the rebase conflicts. |
+| `docs/research-hub.html` | **The "Regenerate research hub" Action** | **Never commit it.** Run `docs/build-research-hub.py` locally to preview, then `git checkout -- docs/research-hub.html` before you commit. PRs that touch `docs/**` (or the workflow) run the generator as a check and attach the HTML artifact. The bot commits the file to `main` only, after those changes merge. Committing it locally is what causes the rebase conflicts. |
 | `docs/harness/HARNESS-BUILD-LIST.csv` | `docs/harness/buildlist.py` | Commit it, but always regenerate - never hand-edit, never hand-merge. |
 | `docs/harness/NEED-TO-BUY.md` | `docs/harness/buylist.py` | Same. |
 
