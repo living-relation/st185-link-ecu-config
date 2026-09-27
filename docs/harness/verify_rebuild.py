@@ -25,6 +25,15 @@ LIVE = ["ST185-Signal.harness", "ST185-Power.harness",
 SKIP = ("ClusterLED", "AntiTheft")
 
 
+# Node ids renamed after the baseline was frozen. Applied to both sides, so a
+# rename alone never shows up as a moved wire. Every connection must still match.
+RENAMED_NODES = {
+    # 2026-09-26: loom C's glove-box body block (2nd fuse block + relays,
+    # ex-J/B2) kept the dropped PMU's id until now.
+    "pmu": "gbx_body",
+}
+
+
 def rebuilt_files():
     return sorted(f for f in os.listdir(OUT) if not any(s in f for s in SKIP))
 
@@ -303,6 +312,7 @@ def endpoints(doc, resolve=None):
                 continue          # a screen may legitimately land at one end
             if resolve and nid in resolve:
                 nid, pin = resolve[nid]
+            nid = RENAMED_NODES.get(nid, nid)
             pair.append("%s.%s" % (nid, pin))
         out[cond.get("id")] = frozenset(pair)
 
@@ -347,7 +357,8 @@ def main():
         before.update(endpoints(d))
         for key in ("connectors", "splices", "terminals", "resistors",
                     "diodes", "branchPoints", "groups"):
-            node_ids |= {e.get("id") for e in d.get(key, [])}
+            node_ids |= {RENAMED_NODES.get(e.get("id"), e.get("id"))
+                         for e in d.get(key, [])}
 
     # Map every dummy block back to the real node and pin it represents.
     resolve = {}

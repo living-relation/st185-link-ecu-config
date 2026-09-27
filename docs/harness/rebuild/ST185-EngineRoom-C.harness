@@ -61,7 +61,7 @@
       "partId": "cp_pdb"
     },
     {
-      "id": "pmu",
+      "id": "gbx_body",
       "label": "Glove-box body block (fuses + relays, ex-J/B2)",
       "width": 390,
       "schematicPosition": {
@@ -134,7 +134,7 @@
           "signal": "A/C pressure switch +12V, 5 A fuse *"
         }
       ],
-      "partId": "cp_pmu"
+      "partId": "cp_gbx_body"
     },
     {
       "id": "k_eps",
@@ -1306,7 +1306,7 @@
         "handle": "c4"
       },
       "target": {
-        "id": "pmu",
+        "id": "gbx_body",
         "handle": "c1"
       },
       "partId": "wp_4_red"
@@ -1315,7 +1315,7 @@
       "id": "w_pmu_gnd",
       "color": "Black",
       "source": {
-        "id": "pmu",
+        "id": "gbx_body",
         "handle": "c2"
       },
       "target": {
@@ -1367,7 +1367,7 @@
       "id": "w_pmu_hl",
       "color": "Red",
       "source": {
-        "id": "pmu",
+        "id": "gbx_body",
         "handle": "c4"
       },
       "target": {
@@ -1380,7 +1380,7 @@
       "id": "w_pmu_hr",
       "color": "Red",
       "source": {
-        "id": "pmu",
+        "id": "gbx_body",
         "handle": "c5"
       },
       "target": {
@@ -1419,7 +1419,7 @@
       "id": "w_pmu_dome",
       "color": "Red",
       "source": {
-        "id": "pmu",
+        "id": "gbx_body",
         "handle": "c7"
       },
       "target": {
@@ -1432,7 +1432,7 @@
       "id": "w_pmu_horn",
       "color": "Red",
       "source": {
-        "id": "pmu",
+        "id": "gbx_body",
         "handle": "c6"
       },
       "target": {
@@ -1445,7 +1445,7 @@
       "id": "w_pmu_rtr",
       "color": "Red",
       "source": {
-        "id": "pmu",
+        "id": "gbx_body",
         "handle": "c8"
       },
       "target": {
@@ -1692,7 +1692,7 @@
       "id": "w_acp_1",
       "color": "Violet",
       "source": {
-        "id": "pmu",
+        "id": "gbx_body",
         "handle": "c12"
       },
       "target": {
@@ -2356,9 +2356,9 @@
       }
     },
     {
-      "id": "bn_bp_990__pmu",
+      "id": "bn_bp_990__gbx_body",
       "sourceId": "bp_990",
-      "targetId": "pmu",
+      "targetId": "gbx_body",
       "length": {
         "value": 250,
         "unit": "mm"
@@ -3192,7 +3192,7 @@
           "contactPartId": "ct_lug_stud"
         }
       ],
-      "id": "cp_pmu",
+      "id": "cp_gbx_body",
       "image": {
         "source": "url",
         "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/glovebox-fuse-relay-block.png"

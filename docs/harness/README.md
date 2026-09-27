@@ -37,11 +37,12 @@ What must hold is per bulkhead - A cabin cN mates A engine cN, B cabin cN mates
 B engine cN, and a circuit crosses on the bulkhead of its ECU pin's loom.
 `audit_mating.py` checks that. CAN H/L is drawn only in `ST185-CAN`.
 
-Loom C's `pmu` node was **repurposed on 2026-09-22**, not deleted. The PMU-16 was
-dropped (plan 6.46–6.48) and the node is now the glove-box body block — a second
-fuse block plus micro ISO relays — carrying the same ex-J/B2 circuits on the same
-wires, plus the CSB3 and device feeds. The element id stays `pmu` for wire
-continuity; the label and cavities tell the truth.
+Loom C's `gbx_body` node (part `cp_gbx_body`) is the glove-box body block — a
+second fuse block plus micro ISO relays — carrying the ex-J/B2 circuits plus the
+CSB3 and device feeds. It was the PMU-16 node until that was dropped (plan
+6.46–6.48) and kept the id `pmu` until 2026-09-26. Same wires, same cavities;
+`verify_rebuild.py` maps the old id (`RENAMED_NODES`). Some wire ids still carry
+`pmu` (`w_pmu_hl`, `w_pdb_pmu` ...) - names only, not a PMU.
 
 The last two are **in transition**. Plan 6.41 dissolves them: ClusterLED joins the
 new cabin accessory loom, and WheelSpeed splits - front half into loom C, rear half

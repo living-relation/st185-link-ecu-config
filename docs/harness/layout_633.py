@@ -64,7 +64,7 @@ ZONE = {
     "ecu_com":      (1, C),
     "oem_rb4":      (1, P),        # right kick, by glove box
     "pdb":          (1, P),        # glove box
-    "pmu":          (1, P),
+    "gbx_body":     (1, P),        # glove-box body block (was pmu)
 
     # ---- cabin, near ECU (relays, fuse block, splices) ---------------
     "csb3io":   (2, C),

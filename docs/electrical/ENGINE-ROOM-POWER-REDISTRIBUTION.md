@@ -325,7 +325,7 @@ see `docs/harness/README.md` for the current file map.
 | `docs/harness/rebuild/ST185-B-ECU.harness` | Cabin fuse block, EFI / ETB / FP / start relays, ECU 12 V, RADLOK cabin side, injector / coil 12 V |
 | `docs/harness/rebuild/ST185-A-ECU.harness` | ECU-A sensors and switch inputs |
 | `docs/harness/rebuild/ST185-B-engine.harness` | EPS speed, ETB, injector / coil 12 V on the engine side |
-| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB → fuse blocks + relays, RADLOK, OEM injection blocks, EPS power, uprated fans. **Still contains an obsolete `pmu` node — remove in the 6.41 restructure** |
+| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB → fuse blocks + relays, RADLOK, OEM injection blocks, EPS power, uprated fans. Glove-box body block is node `gbx_body` (was `pmu` until 2026-09-26; no PMU fitted) |
 | `docs/harness/legacy-prebuild/ST185-{Power,Signal}.harness` | Frozen pre-split baseline. Read-only, kept only for `verify_rebuild.py` |
 | This document | Splice table and factory citations. No second current-flow diagram of the OEM loom |
 
