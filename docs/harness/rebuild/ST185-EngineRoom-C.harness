@@ -2819,7 +2819,7 @@
     },
     {
       "id": "n_probe",
-      "text": "PROBE BEFORE CRIMPING 2E-2 / 2E-3. Starting + ignition (EWD p.48) puts AM1 on 2E-2/2E-5 and AM2 on 2E-3/2E-6, then IE1-10 / IE1-17. Inner circuit (p.21) puts 30A RTR on 2E-2 and 15A HAZ-HORN on 2E-3. If the unplugged 2E-2 shows continuity to IE1-10, that pin is AM1 - do not land PMU O5 there. Same for 2E-3 vs IE1-17 / AM2. HEAD 2A-3/2A-6 and DOME 2E-4 do not sit on that pass-through. Horn fallback is R/B5.",
+      "text": "PROBE BEFORE CRIMPING 2E-2 / 2E-3. Starting + ignition (EWD p.48) puts AM1 on 2E-2/2E-5 and AM2 on 2E-3/2E-6, then IE1-10 / IE1-17. Inner circuit (p.21) puts 30A RTR on 2E-2 and 15A HAZ-HORN on 2E-3. If the unplugged 2E-2 shows continuity to IE1-10, that pin is AM1 - do not land the RTR fuse (gbx_body c8) there. Same for 2E-3 vs IE1-17 / AM2. HEAD 2A-3/2A-6 and DOME 2E-4 do not sit on that pass-through. Horn fallback is R/B5.",
       "width": 390,
       "schematicPosition": {
         "x": 3180,
@@ -2861,6 +2861,25 @@
       "schematicPosition": {
         "x": 3180,
         "y": 1920
+      }
+    },
+    {
+      "id": "n_jb_disposition",
+      "text": "J/B AND RELAY BLOCK DISPOSITION - owned by docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md: §4 method, §5.2 J/B No.1 + R/B No.2 (left kick), §5.3 R/B No.3 / No.4 (right kick), §5.4 vacated J/B No.2 cavities, §5.6 deleted circuits, §8 glove-box fuse schedule. Read it there - this drawing does not repeat it.",
+      "width": 390,
+      "schematicPosition": {
+        "x": 3660,
+        "y": 0
+      },
+      "color": "Red"
+    },
+    {
+      "id": "n_rb2_rb3",
+      "text": "R/B No.2 (LEFT KICK) / R/B No.3 (RIGHT KICK) - EWD p.23, docs/electrical/ewd-snips/1990-st185-rb2-left-rb3-right.png (1990 book - confirm on the 1993 car). R/B No.2: Power Main Relay (4-pin) + 30A POWER fuse (housing pins 1-2). Loom C feeds the fuse input from the PDB (w_rb2 -> oem_rb2 c1); the relay stays in circuit (oem_rb2 c2). R/B No.3: Fog Light Relay (4-pin) only; not drawn here - keep only if fog lights stay. Actions: power doc §5.2 L9, §5.3 R4.",
+      "width": 390,
+      "schematicPosition": {
+        "x": 3660,
+        "y": 240
       }
     }
   ],
