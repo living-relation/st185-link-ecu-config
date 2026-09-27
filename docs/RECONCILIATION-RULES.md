@@ -62,6 +62,43 @@ What must hold is per **bulkhead**: every cavity on the bulkhead A cabin half ma
 same cavity on the bulkhead A engine half, same for B, and a circuit crosses on the
 bulkhead of its ECU pin's loom. `audit_mating.py` and `audit_pin_names.py` check that.
 
+**Every file is exactly one loom, and a connector belonging to a different loom never
+appears in it - full stop, regardless of how it would be related to the rest of the
+file.** A bulkhead's two halves genuinely **mate**: the connector faces are a compatible
+plug/socket pair per the manufacturer spec, and that is a real, correct fact about the
+car. The mistake is not the word "mate" and not the fact that they mate - it is letting
+that fact pull both halves, or any two connectors from different looms, into one file:
+
+- **One loom, one file, no exceptions.** `bh_a_fw` (ECU harness A, cabin) lives only in
+  `ST185-A-ECU.harness`; `bh_a_eng` (engine harness A) lives only in
+  `ST185-A-engine.harness`. Same for `bh_b_fw` / `bh_b_eng` and for `ecu_a` / `ecu_b`
+  themselves - `ST185-A-ECU` carries `ecu_a` and never `ecu_b`, `ST185-B-ECU` the
+  reverse. If two connectors belong to different looms, they never sit in the same file -
+  not wired together, not related by a `mates` entry, not one of them present as an
+  unrelated duplicate. Needing them in the same place to relate them is the sign to keep
+  them apart, not the justification for combining the files.
+- **No wire, no cable core, and no `mates` entry ever joins a `bh_*_fw` cavity to its
+  matching `bh_*_eng` cavity** - not because a mate would be the wrong word for what
+  happens at a firewall (it is exactly the right word), but because the two halves belong
+  to two different looms, and two different looms' connectors are never in one file
+  together for any reason. A wire that reaches a bulkhead cavity from the ECU side stops
+  there; a wire that reaches the same-numbered cavity from the engine side starts there.
+  The pairing is expressed only by both halves sharing the same cavity **number** (`c7`
+  cabin = `c7` engine) and the same real connector part pair - never by anything living in
+  the graph. `audit_bulkhead_pairs.py` (both sides wired or neither) and `audit_mating.py`
+  (continuity traced through the pairing back to the SoT) check the pairing by comparing
+  the separate files; they work precisely because there is nothing to follow inside one.
+- **A `mates` entry is for two connectors that are genuinely part of the same loom** (a
+  terminal plugged into a connector within one harness assembly) - never for two
+  connectors from different looms, and never as a reason to put them in one document.
+- If a **third** drawing needs to reference a cavity that physically lives on another
+  loom's connector (loom C's MRS pump splicing off bulkhead A's engine-side cavity 36 is
+  the working example), it draws a minimal `dm_bh_<bulkhead>_<cavity>` cross-reference
+  connector - no `partId`, no cavities beyond the one being referenced,
+  `excludeFromBom: true` in harness.design - and lands its wire on that. It never gets a
+  full duplicate of the real connector, real part number or not, and never a live edge to
+  the connector in the other file/document.
+
 `docs/harness/legacy-prebuild/` is the frozen baseline `verify_rebuild.py` diffs against.
 Read it, never edit it. Retired diagrams, dated audit notes and one-shot fix scripts live in
 `archive/2026-09-25-cleanup/` and are not authoritative.

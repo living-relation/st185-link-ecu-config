@@ -30,6 +30,19 @@ thing is wrong.
 - **Each bulkhead cavity mates its twin.** Bulkhead A cabin cN = bulkhead A engine cN, same
   for B, same name on both halves. The looms are separate drawings, so only the audits join
   them (`audit_mating.py`, `audit_pin_names.py`).
+- **Every file is exactly one loom - a connector belonging to a different loom never
+  appears in it, full stop.** `ST185-A-ECU` carries `ecu_a` and `bh_a_fw` only, never
+  `ecu_b` or `bh_b_fw`; `ST185-B-ECU` the reverse; same split on the engine side. The two
+  halves of a bulkhead genuinely **mate** - connector faces that are a compatible plug/
+  socket pair per the manufacturer spec, a real fact about the car - but that fact is never
+  recorded inside one file: not a wire, not a cable, not a `mates` entry (which in
+  harness.design is for two connectors genuinely part of the *same* loom), not a duplicate
+  of the other loom's connector even with a real part number. The pairing is expressed only
+  by matching cavity **numbers** across the two separate files; `audit_bulkhead_pairs.py`
+  and `audit_mating.py` check it by comparing files, not by following an edge. A wire that
+  must land on a cavity physically owned by another loom uses a minimal
+  `dm_<connectorId>_<cavityId>` stub - no `partId`, `excludeFromBom: true` - never a full
+  duplicate (see `docs/RECONCILIATION-RULES.md` for the full rule).
 - **The old Power / Signal file split is gone.** The looms are the nine files in
   `docs/harness/rebuild/`. File names do not follow the bulkhead letter.
 - **Harness C is the Engine Room Harness** — no bulkhead, exits the driver fender around the

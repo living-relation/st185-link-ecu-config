@@ -31,11 +31,32 @@ enforces that.
 | `ST185-WheelSpeed.harness` | front = loom C fender sub-loom (no bulkhead), rear = rear trunk | four ABS drops and both VR conditioners |
 | `ST185-AntiTheft.harness` | cabin | anti-theft |
 
-File names do not follow the bulkhead letter: `A-ECU` / `A-engine` carry the
-signal circuits over **both** bulkheads, `B-ECU` / `B-engine` the power circuits.
-What must hold is per bulkhead - A cabin cN mates A engine cN, B cabin cN mates
-B engine cN, and a circuit crosses on the bulkhead of its ECU pin's loom.
-`audit_mating.py` checks that. CAN H/L is drawn only in `ST185-CAN`.
+**Each file is exactly one loom: one ECU letter, one side (cabin or engine), one
+bulkhead.** `ST185-A-ECU` carries only ECU-A pins and only bulkhead A's firewall half
+(`bh_a_fw`) - it never contains `bh_b_fw` or `ecu_b`. `ST185-B-ECU` is the mirror: only
+ECU-B and `bh_b_fw`. Same split on the engine side (`bh_a_eng` only in the A-engine file,
+`bh_b_eng` only in the B-engine file). A file that contains a connector belonging to a
+different loom is wrong, even flagged `excludeFromBom`, even a full copy with a real
+`partId` - that is not a lighter-weight version of the cross-reference convention below,
+it is the bug the convention exists to avoid, and the fix is to remove it, not relabel it.
+CAN H/L is drawn only in `ST185-CAN`. `audit_mating.py` and `audit_bulkhead_pairs.py`
+check the per-bulkhead pairing across files.
+
+**A bulkhead connector's two halves genuinely mate** - the connector faces are a
+compatible plug/socket pair per the manufacturer spec, and that is a real, correct fact
+about the car, not a mistake to design around. What must never happen is recording that
+fact (or anything else) between two connectors that belong to different looms **inside one
+file**: not a wire, not a cable core, not a `mates` entry, not a duplicate of the other
+loom's connector. `bh_a_fw` (ECU harness A) and `bh_a_eng` (engine harness A) are two
+different looms' connectors; that they mate is expressed only by both sides using the same
+cavity **number** (`c7` cabin, `c7` engine) and the same real connector part pair - never
+by anything in one file that references, wires to, or copies the other file's connector.
+If a wire genuinely needs to land on a cavity that physically lives on another loom's
+connector (loom C's MRS pump splicing off bulkhead A's engine-side cavity 36 is the working
+example), use a minimal `dm_<connectorId>_<cavityId>` cross-reference stub: no `partId`,
+no cavities beyond the one being referenced, `excludeFromBom: true`. That is the only
+sanctioned way to point at another loom's cavity - never a full duplicate connector, real
+part number or not. Full rule: `docs/RECONCILIATION-RULES.md`.
 
 Loom C's `gbx_body` node (part `cp_gbx_body`) is the glove-box body block — a
 second fuse block plus micro ISO relays — carrying the ex-J/B2 circuits plus the
