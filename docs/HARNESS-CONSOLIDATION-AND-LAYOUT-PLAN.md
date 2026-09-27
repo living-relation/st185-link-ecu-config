@@ -2362,3 +2362,49 @@ cavity it affects.
 - EngineRoom-C carries one RADLOK part per colour (`RL00801-50BK`, `RL00801-50RE`), used on both sides of the feed-through. Qty 2 each.
 - Every connector part has an image. Manufacturer or distributor photos are linked by URL (TE, Mouser, Bosch and Toyota vendors). OEM, TBD and cross-reference parts, which have no catalogue photo, use representative drawings in `docs/harness/part-images/`. Those drawings are labelled as drawings, not photos.
 - Shared-family photos: the three F7 relays share TE's Power Relay F7 family photo. `4-1904124-2` uses the Micro ISO photo from `9-1904105-7`. `HD36-24-33SE` uses the `HD36-24-33SN` photo (same shell, N key). All four 8STA parts use Mouser's series photo.
+
+## 6.55 Relay datasheets, glove-box block id, loom C notes (2026-09-26)
+
+### Relay specs
+
+Every relay part (`cp_rly_nor`, `cp_rly_f7_a`, `cp_rly_f7_b`, `cp_rly_f7_d`,
+`cp_rly_hcr150`) now carries contact form, contact rating, coil voltage, coil
+resistance and suppression in its description, checked against TE datasheets
+V23074X0000A001, V23134X0000A002, V23132-X0000-A001 and the X439 customer
+drawing. The part description is the owner; this section does not repeat it.
+The HCR 150 parallel-resistor value is not on the datasheet, so it is TBD.
+
+### Coil polarity - 85 is coil-, 86 is coil+
+
+Every ECU-driven relay label now ends `ACTIVE-LOW - ECU sinks coil- (85); coil+
+(86) ...`. That matches the drawn cavities and `sot/channels.csv`. It matters
+for `k_fan2`: the X439 diode has its cathode on 86, so 86 must be the + side.
+Reversed, the diode conducts straight into the ECU output. `k_efi` coil+ is
+permanent 12 V (F12), not switched, and its label says so. The HCR 150 coil is a
+2-pole plug numbered 1/2 by TE, resistor-suppressed, so it has no polarity.
+
+### Glove-box body block is `gbx_body`
+
+Loom C's `pmu` / `cp_pmu` is now `gbx_body` / `cp_gbx_body`. Same wires,
+cavities and bundle. `verify_rebuild.py` maps the old id (`RENAMED_NODES`).
+Wire ids that contain `pmu` are unchanged. Earlier sections of this plan keep
+the old name as history.
+
+### Loom C notes
+
+`n_jb_disposition` points to the power doc for J/B and R/B disposition.
+`n_rb2_rb3` records what EWD p.23 shows in R/B No.2 and No.3. `n_probe` no
+longer says PMU O5.
+
+### Retired: rd-st185-link-ecu-config
+
+It is `research655/RD-st185-link-ecu-config`, a fork of this repo, already
+archived on GitHub, with no commits this repo lacks. Nothing live in this repo
+or the Cursor rules refers to it.
+
+### Open - Daniel decides
+
+- `sot/channels.csv` B12 (Ign 6) says the EPS relay must be diode-suppressed.
+  The fitted HCR 150 is resistor-suppressed.
+- `k_eps` sits in the engine bay (passenger fender). The standing rule is every
+  relay in the cabin.
