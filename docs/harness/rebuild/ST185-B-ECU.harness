@@ -100,7 +100,7 @@
     },
     {
       "id": "k_efi",
-      "label": "EFI Main Relay",
+      "label": "EFI Main Relay - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) permanent 12 V (F12 5 A)",
       "cavities": [
         {
           "id": "c1",
@@ -140,7 +140,7 @@
     },
     {
       "id": "k_etb",
-      "label": "ETB Power Relay",
+      "label": "ETB Power Relay - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
       "cavities": [
         {
           "id": "c1",
@@ -183,7 +183,7 @@
     },
     {
       "id": "k_fp",
-      "label": "Fuel Pump Relay",
+      "label": "Fuel Pump Relay - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
       "cavities": [
         {
           "id": "c1",
@@ -223,7 +223,7 @@
     },
     {
       "id": "k_fan",
-      "label": "Radiator Fan Relay (on/off)",
+      "label": "Radiator Fan Relay (on/off) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
       "cavities": [
         {
           "id": "c1",
@@ -263,7 +263,7 @@
     },
     {
       "id": "k_fan2",
-      "label": "Condenser Fan Relay (on/off, diode)",
+      "label": "Condenser Fan Relay (on/off, diode) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
       "cavities": [
         {
           "id": "c1",
@@ -303,7 +303,7 @@
     },
     {
       "id": "k_str",
-      "label": "Start Relay",
+      "label": "Start Relay - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
       "cavities": [
         {
           "id": "c1",
@@ -2560,7 +2560,7 @@
     {
       "partNumber": "4-1904124-2",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MICRO ISO V23074, 1 FORM A, 12 V COIL 119 OHM, 25 A - suppression UNVERIFIED; plugs into socket 1-1904045-6",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE Micro Relay A V23074-A1001-A402 - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 25 A (14 VDC resistive make/break) - COIL: 12 VDC, 119 OHM - SUPPRESSION: RESISTOR 680 OHM in parallel (101 OHM total) - Checked 2026-09-26 against TE datasheet V23074X0000A001 rev 1119 + te.com product page; plugs into socket 1-1904045-6",
       "numberOfCavities": 5,
       "configurations": [
         {
@@ -2589,7 +2589,7 @@
     {
       "partNumber": "1-1414147-0",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MAXI ISO F7 (V23134-J0052-X429), 1 FORM A, 12 V COIL, 680 OHM PARALLEL RESISTOR, 70 A AT 23 C / 50 A AT 85 C - OWNED (qty 3); plugs into socket 1393310-4",
+      "description": "RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J0052-X429 - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 70 A at 23 C / 50 A at 85 C / 30 A at 125 C (limiting continuous) - COIL: 12 VDC, 90 OHM - SUPPRESSION: RESISTOR 680 OHM in parallel (79 OHM total) - Checked 2026-09-26 against TE datasheet V23134X0000A002 rev 2607 + te.com product page - OWNED (qty 3); plugs into socket 1393310-4",
       "numberOfCavities": 4,
       "configurations": [
         {
@@ -2608,7 +2608,7 @@
     {
       "partNumber": "1-1393304-0",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MAXI ISO F7 (V23134-J1052-X281), 1 FORM A, 12 V COIL, 560 OHM PARALLEL RESISTOR, 70 A AT 23 C / 50 A AT 85 C, MOUNTING BRACKET - OWNED (qty 2); plugs into socket 1393310-4",
+      "description": "RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J1052-X281, MOUNTING BRACKET - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 70 A at 23 C / 50 A at 85 C / 30 A at 125 C (limiting continuous) - COIL: 12 VDC, 90 OHM - SUPPRESSION: RESISTOR 560 OHM in parallel (78 OHM total) - Checked 2026-09-26 against TE datasheet V23134X0000A002 rev 2607 + te.com product page - OWNED (qty 2); plugs into socket 1393310-4",
       "numberOfCavities": 4,
       "configurations": [
         {
@@ -2627,7 +2627,7 @@
     {
       "partNumber": "7-1904094-9",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MAXI ISO F7 (V23134-J0052-X439), 1 FORM A, 12 V COIL, DIODE SUPPRESSED (CATHODE ON 86), 70 A AT 23 C / 50 A AT 85 C - plugs into socket 1393310-4; required on Ign 5 / B13 (no flywheel diode in the ECU output)",
+      "description": "RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J0052-X439 - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 70 A at 23 C / 50 A at 85 C / 30 A at 125 C (limiting continuous, F7 family datasheet) - COIL: 12 VDC, 91 OHM +/-10% - SUPPRESSION: DIODE, cathode on 86 (86 MUST be coil +, 85 coil -; reversed polarity shorts the diode) - Checked 2026-09-26 against TE customer drawing C-V23134-J0052-X439 rev A2 + datasheet V23134X0000A002 rev 2607 + te.com product page; plugs into socket 1393310-4; required on Ign 5 / B13 (no flywheel diode in the ECU output)",
       "numberOfCavities": 4,
       "configurations": [
         {

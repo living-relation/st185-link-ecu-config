@@ -1,6 +1,6 @@
 # Harness — need to buy
 
-Generated on 2026-09-25 from the eight `.harness` files in `docs/harness/rebuild/`:
+Generated on 2026-09-26 from the eight `.harness` files in `docs/harness/rebuild/`:
 `A-ECU`, `A-engine`, `B-ECU`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed`, `AntiTheft`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
@@ -62,7 +62,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `15326427` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, GOLD, 0.75-1.0 MM2 (18-16 AWG) | 6 | 5 | **1** |
 | `470R 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W - fuel leve | 1 | 0 | **1** |
 | `56R 5W` | generic | RESISTOR, FIXED, WIREWOUND, 56 OHM, 5 W - alternator pre-excit | 1 | 0 | **1** |
-| `7-1904094-9` | TE Connectivity | RELAY, PLUG-IN, MAXI ISO F7 (V23134-J0052-X439), 1 FORM A, 12  | 1 | 0 | **1** |
+| `7-1904094-9` | TE Connectivity | RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J0052-X439  | 1 | 0 | **1** |
 | `DT04-3P` | TE DEUTSCH | CONN RECP DT 3-WAY PIN SEALED - shock sensor lead | 1 | 0 | **1** |
 | `GENERIC LUG M10 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE | 1 | 0 | **1** |
 | `GENERIC LUG M10 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE | 1 | 0 | **1** |
@@ -73,7 +73,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942` | Toyota / Sumitomo | CONNECTOR SET, TOYOTA, MR-S EHPS PUMP: A 90980-12068 2 POS POW | 1 | 0 | **1** |
 | `PDB-M8x8` | TBD | BLOCK, POWER DISTRIBUTION, 8 STUD M8, 150-250 A BUS - glove bo | 1 | 0 | **1** |
 | `Sumitomo TS 025 6-way` | Sumitomo / Subaru | CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS - Sub | 1 | 0 | **1** |
-| `V23132-A2001-B200` | TE Connectivity | RELAY, HIGH CURRENT, HCR 150, 12 V COIL 37 OHM 3.9 W, INTERNAL | 1 | 0 | **1** |
+| `V23132-A2001-B200` | TE Connectivity | RELAY, HIGH CURRENT, TE HCR 150 V23132-A2001-B200 (IP67) - CON | 1 | 0 | **1** |
 | `W3P` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY RECEPTACLE | 1 | 0 | **1** |
 | `WM-4S` | TE DEUTSCH | WEDGELOCK, DTM, 4-WAY PLUG | 1 | 0 | **1** |
 | `WM-6S` | TE DEUTSCH | WEDGELOCK, DTM, 6-WAY PLUG | 1 | 0 | **1** |
@@ -106,8 +106,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS -  | 1 | 1 |
-| `1-1393304-0` | RELAY, PLUG-IN, MAXI ISO F7 (V23134-J1052-X281), 1 FORM A, 12  | 2 | 2 |
-| `1-1414147-0` | RELAY, PLUG-IN, MAXI ISO F7 (V23134-J0052-X429), 1 FORM A, 12  | 2 | 3 |
+| `1-1393304-0` | RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J1052-X281, | 2 | 2 |
+| `1-1414147-0` | RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J0052-X429  | 2 | 3 |
 | `13519047` | CONNECTOR, PLUG, GT 150, 3 POS, SEALED, SOCKET CONTACTS - flex | 1 | 1 |
 | `2141029-1` | FUSE HOLDER, MODULE, MFINITY, 16 POS MINI FUSE, HARD WIRED | 1 | 1 |
 | `2411-001-2405` | Panel nut size 24 | 3 | 4 |
@@ -119,7 +119,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `3-1447221-4` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.5 MM2 (20 AWG), | 39 | 68 |
 | `4-1437290-0` | CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET C | 1 | 2 |
 | `4-1437290-1` | CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 2, SOCKET C | 1 | 2 |
-| `4-1904124-2` | RELAY, PLUG-IN, MICRO ISO V23074, 1 FORM A, 12 V COIL 119 OHM, | 1 | 2 |
+| `4-1904124-2` | RELAY, PLUG-IN, MICRO ISO, TE Micro Relay A V23074-A1001-A402  | 1 | 2 |
 | `42281-1` | CONTACT, RECEPTACLE, FASTIN-FASTON 250 (6.3 MM), TIN, 0.8-2.0  | 10 | 20 |
 | `D 261 205 358-01` | CONNECTOR, PLUG, BOSCH MOTORSPORT KIT, 6 POS, SOCKET CONTACTS  | 1 | 1 |
 | `DT04-12PA` | CONN RECP DT 12-WAY PIN SEALED A-KEY - alarm module lead, mate | 1 | 2 |

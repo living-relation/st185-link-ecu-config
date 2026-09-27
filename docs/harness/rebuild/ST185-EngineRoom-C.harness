@@ -138,7 +138,7 @@
     },
     {
       "id": "k_eps",
-      "label": "MR-S EHPS pump relay (HCR150, engine bay)",
+      "label": "MR-S EHPS pump relay (HCR150, engine bay) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V - HCR 150 coil is a 2-pole plug (TE terminals 1/2, not marked 85/86), resistor-suppressed so polarity-free",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -181,7 +181,7 @@
     },
     {
       "id": "k_fan",
-      "label": "Rad fan relay (uprated)",
+      "label": "Rad fan relay (uprated) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
       "width": 390,
       "schematicPosition": {
         "x": 0,
@@ -222,7 +222,7 @@
     },
     {
       "id": "k_fan2",
-      "label": "Condenser fan relay (uprated, diode)",
+      "label": "Condenser fan relay (uprated, diode) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
       "width": 390,
       "schematicPosition": {
         "x": 0,
@@ -3235,7 +3235,7 @@
     {
       "partNumber": "V23132-A2001-B200",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, HIGH CURRENT, HCR 150, 12 V COIL 37 OHM 3.9 W, INTERNAL SUPPRESSION, STUD LOAD TERMINALS - OWNED; coil mate Superseal 1.5 2-way plug 282080-1 with 282110-1 contacts and 281934-2 seals (all owned)",
+      "description": "RELAY, HIGH CURRENT, TE HCR 150 V23132-A2001-B200 (IP67) - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 130 A at 85 C (rated, 25 mm2 load cable) - COIL: 12 VDC, 37 OHM, 3.9 W - SUPPRESSION: RESISTOR in parallel, value TBD - need value (not on datasheet) - Checked 2026-09-26 against TE datasheet V23132-X0000-A001 rev 1403 + te.com product page 1416010-1; STUD LOAD TERMINALS - OWNED; coil mate Superseal 1.5 2-way plug 282080-1 with 282110-1 contacts and 281934-2 seals (all owned)",
       "numberOfCavities": 5,
       "configurations": [
         {
@@ -3263,7 +3263,7 @@
     {
       "partNumber": "1-1393304-0",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MAXI ISO F7 (V23134-J1052-X281), 1 FORM A, 12 V COIL, 560 OHM PARALLEL RESISTOR, 70 A AT 23 C / 50 A AT 85 C, MOUNTING BRACKET - OWNED (qty 2); plugs into socket 1393310-4",
+      "description": "RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J1052-X281, MOUNTING BRACKET - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 70 A at 23 C / 50 A at 85 C / 30 A at 125 C (limiting continuous) - COIL: 12 VDC, 90 OHM - SUPPRESSION: RESISTOR 560 OHM in parallel (78 OHM total) - Checked 2026-09-26 against TE datasheet V23134X0000A002 rev 2607 + te.com product page - OWNED (qty 2); plugs into socket 1393310-4",
       "numberOfCavities": 4,
       "configurations": [
         {
@@ -3282,7 +3282,7 @@
     {
       "partNumber": "7-1904094-9",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MAXI ISO F7 (V23134-J0052-X439), 1 FORM A, 12 V COIL, DIODE SUPPRESSED (CATHODE ON 86), 70 A AT 23 C / 50 A AT 85 C - plugs into socket 1393310-4; required on Ign 5 / B13 (no flywheel diode in the ECU output)",
+      "description": "RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J0052-X439 - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 70 A at 23 C / 50 A at 85 C / 30 A at 125 C (limiting continuous, F7 family datasheet) - COIL: 12 VDC, 91 OHM +/-10% - SUPPRESSION: DIODE, cathode on 86 (86 MUST be coil +, 85 coil -; reversed polarity shorts the diode) - Checked 2026-09-26 against TE customer drawing C-V23134-J0052-X439 rev A2 + datasheet V23134X0000A002 rev 2607 + te.com product page; plugs into socket 1393310-4; required on Ign 5 / B13 (no flywheel diode in the ECU output)",
       "numberOfCavities": 4,
       "configurations": [
         {
