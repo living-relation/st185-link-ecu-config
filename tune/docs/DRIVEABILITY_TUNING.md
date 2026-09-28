@@ -10,8 +10,9 @@ PCLink features to configure after triggers and base VE/ignition seeds. Conserva
 - **Fuel-temp vapor-lock trim:** `tables/warmup_fuel_temp_trim.csv` adds cranking/post-start
   enrichment on top of the ECT tables above once fuel temp (Continental sensor, DI 2) approaches
   the RealDash caution band (55°C) — return-style system + E85 vapor-locks hot, independent of
-  ECT *when the sensor reading is valid* (a hot rail can outlast a cooling engine). On a sensor
-  **fault**, the fallback is gated on ECT instead — see Sensor fault below.
+  ECT *when the sensor reading is valid* (a hot rail can outlast a cooling engine — this is why
+  the sensor-fault gate below uses a lower, separate ECT threshold than "Hot restart"). On a
+  sensor **fault**, the fallback is gated on ECT instead — see Sensor fault below.
 
 ## Warm-up
 
@@ -95,10 +96,20 @@ If vacuum-reference load is unstable at overlap (sub-30 kPa MAP flutter):
       plausible on a car that's never run today (cold) as one that just came off a hot drive —
       applying it unconditionally on fault would risk flooding / failure to start on an ordinary
       cold start. So the fault-substitute path (only the fault path — a valid sensor reading
-      still works as designed, independent of ECT) is additionally gated on ECT already being
-      in the hot-restart range (>160°F, the same condition already used for the separate hot
-      -restart cranking table above): faulted + ECT low → apply nothing; faulted + ECT high →
-      apply the full 90°C fallback. ECT is a separate sensor circuit with no shared fault path.
+      still works as designed, independent of ECT) is gated on ECT — but on **>100°F (~38°C),
+      not the 160°F "Hot restart" threshold** used elsewhere in this doc. 160°F answers a
+      different question ("is the engine still hot enough to need *less* cranking fuel than
+      cold") and is too strict here: the whole point of this table is that the rail can still be
+      dangerously hot after ECT has already cooled below 160°F, so gating the fault fallback at
+      160°F would lose protection for exactly that case. 100°F instead just asks "has this
+      engine run recently at all" — comfortably above this car's worst-case cold-soak ambient
+      (32°C/90°F design point, Weaverville NC) so a true dead-cold start reads below it, while
+      anything that ran in roughly the last hour reads above it. A false positive here (engine
+      ran recently, rail already actually cooled) only adds moderate fuel to a start where the
+      native ECT cranking table isn't at its coldest setting either — not a flooding risk,
+      consistent with this whole design's fail-rich bias. Faulted + ECT ≤100°F → apply nothing;
+      faulted + ECT >100°F → apply the full 90°C fallback. ECT is a separate sensor circuit with
+      no shared fault path with the flex sensor.
   Configure all of this in PCLink's Ethanol Sensor Fault / DI error handling — never silently
   hold the last-good value.
 

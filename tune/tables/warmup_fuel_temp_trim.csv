@@ -21,11 +21,22 @@
 # would also add that enrichment on a genuinely cold start (a flex-sensor fault is just as
 # plausible on an engine that has never run as on a hot one) - flooding / failure-to-start risk,
 # the opposite failure mode from vapor lock and arguably worse (near-certain on a cold-start
-# fault vs. a plausible-but-not-guaranteed hot-restart coincidence). Fix: when the sensor is
-# FAULTED, gate the substitute on ECT already being in the hot-restart range (>160F / ~71C,
-# matching the "Hot restart" ECT condition in DRIVEABILITY_TUNING.md's Cold start section) -
+# fault vs. a plausible-but-not-guaranteed hot-restart coincidence).
+#
+# GATE THRESHOLD: >100F (~38C) ECT, NOT the 160F "Hot restart" threshold used elsewhere in this
+# doc. 160F answers a different question - "is the engine still hot enough to need LESS cranking
+# fuel than cold" - and is too strict here: the whole reason this table exists is that the rail
+# can still be dangerously hot after ECT has already cooled below 160F (a first review pass used
+# 160F for this gate and got exactly that wrong - see PR #30 review history). 100F instead just
+# answers "has this engine run recently at all" - comfortably above this car's worst-case cold-
+# soak ambient at its design point (32C/90F, Weaverville NC per docs/intercooler-turbo-study),
+# so a true dead-cold start reads below it, while any engine that ran within roughly the last
+# hour reads above it - covering the cooled-engine-still-hot-rail case Greptile's follow-up
+# flagged. A false positive here (engine ran recently, rail actually already cooled) only adds
+# moderate extra fuel to a start where the native ECT cranking table is also not at its coldest,
+# richest setting - not a flooding risk, consistent with this whole design's "fail rich" bias.
 # ECT is an independent sensor circuit, no shared fault path with the flex sensor. Faulted +
-# ECT low -> apply 0, not 90C's row. Faulted + ECT high -> apply the full 90C/20%/14% fallback.
+# ECT <=100F -> apply 0, not 90C's row. Faulted + ECT >100F -> apply the full 90C/20%/14% fallback.
 # fuel_temp_density_comp.csv needs no such gate: its effect is small (max +7%), multiplicative
 # not additive, and self-corrects under closed-loop once running - not a flooding risk.
 fuel_temp_c,crank_enrich_trim_pct,post_start_enrich_trim_pct
