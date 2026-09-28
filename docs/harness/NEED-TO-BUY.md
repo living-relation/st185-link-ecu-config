@@ -9,21 +9,21 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 67 | 0 | **67** |
-| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 38 | 0 | **38** |
-| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 35 | 0 | **35** |
+| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 65 | 0 | **65** |
+| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 40 | 0 | **40** |
+| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 33 | 0 | **33** |
+| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 29 | 0 | **29** |
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 28 | 0 | **28** |
-| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 25 | 0 | **25** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
-| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 14 | 0 | **14** |
+| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 10 | 0 | **10** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 16 | 6 | **10** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 10 | 0 | **10** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 10 | 2 | **8** |
 | `Jump lugs 1/0` | generic | LUG, RING, COPPER, 1/0 AWG | 8 | 0 | **8** |
+| `1-1355877-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 1.0-2.5 MM2 (18-14 AWG) | 6 | 0 | **6** |
 | `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) | 6 | 0 | **6** |
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A | 17 | 12 | **5** |
-| `1-1355877-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 1.0-2.5 MM2 (18-14 AWG) | 5 | 0 | **5** |
 | `15326426` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM | 5 | 0 | **5** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
 | `GENERIC HEAVY FLYING LEAD 10-6` | generic | TERMINAL, FLYING LEAD, HEAVY | 5 | 0 | **5** |
@@ -63,7 +63,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `15326427` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, GOLD, 0.75-1.0 MM2 (18-16 AWG) | 6 | 5 | **1** |
 | `470R 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `7-1904094-9` | TE Connectivity | RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X439, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 91 OHM, DIODE SUPPRESSED, CATHODE ON 86 | 1 | 0 | **1** |
+| `90980-11143` | Toyota | CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS | 1 | 0 | **1** |
 | `DT04-3P` | TE DEUTSCH | CONN RECP DT 3-WAY PIN SEALED | 1 | 0 | **1** |
+| `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER | 1 | 0 | **1** |
 | `GENERIC LUG M10 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC LUG M10 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC LUG M8 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M8 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
@@ -81,7 +83,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `AMI-50` | Eaton Bussmann | FUSE, AMI, 50 A, M5 BOLT-DOWN | 1 | 0 | **1** |
 | `AMI-40` | Eaton Bussmann | FUSE, AMI, 40 A, M5 BOLT-DOWN | 1 | 0 | **1** |
 | `AMI-30` | Eaton Bussmann | FUSE, AMI, 30 A, M5 BOLT-DOWN | 1 | 0 | **1** |
-| `AMI-TBD` | Eaton Bussmann | FUSE, AMI, M5 BOLT-DOWN, RATING TBD - need MR-S EHPS pump current and Bussmann AMI datasheet | 1 | 0 | **1** |
+| `AMI-60` | Eaton Bussmann | FUSE, AMI, 60 A, M5 BOLT-DOWN | 1 | 0 | **1** |
 | `RL9080-301-F1RE` | Amphenol | RECEPTACLE, FEED-THROUGH, RADLOK 8.0, PANEL MOUNT, 200 A, 1 KV, RED, MATES RL00801-50RE | 1 | 0 | **1** |
 | `RL9080-301-F1` | Amphenol | RECEPTACLE, FEED-THROUGH, RADLOK 8.0, PANEL MOUNT, 200 A, 1 KV, BLACK, MATES RL00801-50BK | 1 | 0 | **1** |
 | `1/0 AWG welding cable red/black` | generic | CABLE, WELDING, 1/0 AWG, RED AND BLACK, APPROX 45 FT EACH COLOUR | 1 | 0 | **1** |
@@ -92,19 +94,18 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `2127` | Blue Sea Systems | BUSBAR, POWERBAR, 250 A, FOUR 5/16-18 STUDS | 1 | 0 | **1** |
 | `2719` | Blue Sea Systems | COVER, INSULATING, MAXIBUS, FITS 2127 | 1 | 0 | **1** |
 | `ANL/MEGA 300A + holder` | generic | FUSE, ANL OR MEGA, 300 A, WITH HOLDER | 1 | 0 | **1** |
-| `ANL 175A + holder` | generic | FUSE, ANL, 175 A, WITH HOLDER | 1 | 0 | **1** |
-| `Battery master cutoff` | generic | SWITCH, BATTERY MASTER CUTOFF | 1 | 0 | **1** |
+| `Alternator protection 175A` | generic | FUSIBLE LINK OR INLINE FUSE / CIRCUIT BREAKER, 175 A | 1 | 0 | **1** |
+| `Longacre 4-terminal kill switch` | Longacre | SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE | 1 | 0 | **1** |
 
 ## Covered by stock
 
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
-| `0413-214-1205` | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 4 | 10 |
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 64 | 130 |
-| `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 60 | 118 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 66 | 130 |
+| `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 62 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
-| `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
+| `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS | 1 | 1 |
 | `1-1393304-0` | RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J1052-X281, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 560 OHM PARALLEL RESISTOR, MOUNTING BRACKET | 2 | 2 |
 | `1-1414147-0` | RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 2 | 3 |
@@ -153,7 +154,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK | 2 |
 | `(ring lug, sized to cable)` | TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK | 17 |
 | `TBD - A/C coolant temperature switch connector` | CONNECTOR, 2 POS, TYPE TBD | 1 |
-| `TBD - generic oval 3-pin, socket contacts` | CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS | 1 |
 
 ## Counted once, drawn more than once
 

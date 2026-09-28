@@ -56,11 +56,11 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Power +12V ign, 10A fused *"
+          "signal": "Power +12V ign, cabin fuse F5 10A *"
         },
         {
           "id": "c2",
-          "signal": "GND - broken off, continues on ST185-A-engine"
+          "signal": "GND - broken off, continues on ST185-B-engine"
         },
         {
           "id": "c3",
@@ -144,7 +144,7 @@
     {
       "id": "br_w_lam12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-engine: CAN-Lambda +12V",
+      "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda +12V from cabin fuse F5, bulkhead B c3",
       "width": 390,
       "layoutPosition": {
         "x": 450,
@@ -158,7 +158,7 @@
     {
       "id": "br_w_lamg",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-engine: CAN-Lambda ground",
+      "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda ground to cabin chassis ground, bulkhead B c4",
       "width": 390,
       "layoutPosition": {
         "x": 450,
@@ -172,7 +172,7 @@
     {
       "id": "br_wc_h_bh",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: CAN H through bulkhead A c30",
+      "signal": "Broken off - continues on ST185-B-cabin: CAN H through bulkhead B c13",
       "width": 390,
       "layoutPosition": {
         "x": 960,
@@ -186,7 +186,7 @@
     {
       "id": "br_wc_l_bh",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: CAN L through bulkhead A c31",
+      "signal": "Broken off - continues on ST185-B-cabin: CAN L through bulkhead B c14",
       "width": 390,
       "layoutPosition": {
         "x": 960,
@@ -200,7 +200,7 @@
     {
       "id": "br_wc_h_lam",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-engine: CAN H from bulkhead A c30 to the Lambda",
+      "signal": "Broken off - continues on ST185-B-engine: CAN H from bulkhead B c13 to the Lambda",
       "width": 390,
       "layoutPosition": {
         "x": 840,
@@ -214,7 +214,7 @@
     {
       "id": "br_wc_l_lam",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-engine: CAN L from bulkhead A c31 to the Lambda",
+      "signal": "Broken off - continues on ST185-B-engine: CAN L from bulkhead B c14 to the Lambda",
       "width": 390,
       "layoutPosition": {
         "x": 840,
@@ -757,7 +757,7 @@
     {
       "id": "n_can",
       "width": 390,
-      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Only the CAN-Lambda crosses the firewall; the cluster and RealDash are CAN drops only - their devices and their power are not part of this harness. 120R termination at the ECU end and at the lambda end.",
+      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Only the CAN-Lambda crosses the firewall, on bulkhead B c13 / c14 (CAN) and c3 / c4 (+12V / GND); the cluster and RealDash are CAN drops only - their devices and their power are not part of this harness. 120R termination at the ECU end and at the lambda end.",
       "schematicPosition": {
         "x": 3180,
         "y": 0
@@ -765,7 +765,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, 10A fused - broken off here, the feed continues on ST185-A-engine\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, cabin fuse F5 10A - broken off here, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse F5\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)",
       "schematicPosition": {
         "x": 3180,
         "y": 150

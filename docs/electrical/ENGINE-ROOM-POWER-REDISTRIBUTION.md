@@ -83,16 +83,17 @@ Glove box is passenger side, so R/B No.3 and R/B No.4 are a short hop. J/B No.1 
 
 No PMU/PDM — dropped 2026-09-22 (plan 6.46 / 6.47 / 6.48). The 40 A blower exceeds
 every PDM channel on the market, so R/B No.4 survives regardless. Logic that was
-going to live in a PMU — device hold, kill relay, alternator excite — lives on the
-**CSB3's four low-side outputs** (plan 6.48). Every relay and fuse is in the cabin.
+going to live in a PMU — device hold, kill relay, alternator excite — is
+**withdrawn** (plan 6.48): the only logic is the ECU's own hold power. The RealDash Pi
+runs on a switched ignition fuse only, on and off with the car (2026-09-28). Every relay and fuse is in the cabin.
 
 Rule: **one source per load** — never two paths feeding the same circuit.
 
 | Load | Path | Why |
 |---|---|---|
 | Starter motor | Battery cable + RADLOK + existing `k_str` for solenoid | Cranking amps |
-| 160 A alternator B+ | 4 AWG (or 2 AWG) to starter B+, does not recross | Heavy cable, not a fused branch |
-| MRS EPS pump | `k_eps` HCR 150 in the glove box (moved from the engine bay 2026-09-28, `ST185-B-cabin`), HCFB H4 - fuse rating TBD, need the pump current and the Bussmann AMI datasheet (the 60 A was never sourced) | Too big for a micro relay |
+| 160 A alternator B+ | 4 AWG (or 2 AWG) to starter B+, does not recross | Heavy cable. Protected by a fusible link or inline fuse / breaker at the trunk battery or near the cabin fuse box, never at the starter (Daniel 2026-09-28) |
+| MRS EPS pump | `k_eps` HCR 150 in the glove box (moved from the engine bay 2026-09-28, `ST185-B-cabin`), HCFB H4 Bussmann AMI-60, 8 AWG feed (sized 2026-09-28, `sot/channels.csv` k_eps c1) | Too big for a micro relay |
 | Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Coils from Aux 5 / Ign 5 |
 | EFI main, ETB, fuel pump | Cabin relays in `ST185-A-cabin.harness` | Hold-power and Link's published ETB circuit |
 | HEAD LH / HEAD RH | Relay + fuse, second fuse block, into J/B2 2A-3 / 2A-6 | Replaces 15 A HEAD fuses in J/B2 |
@@ -300,7 +301,7 @@ Routed with the OEM engine-room main. Passenger fender / ABS trough for EPS; cor
 
 | # | Circuit | AWG | Path | Connector |
 |---|---|---|---|---|
-| C1 | EPS pump 12 V | TBD - need the pump current and a wire ampacity table (8 AWG never sourced) | `k_eps` 87 (glove box) → passenger kick / EA1 → ABS trough → pump | `90980-12068` pin 1 (OWNED) |
+| C1 | EPS pump 12 V | 8 AWG (sized 2026-09-28 against the AMI-60, `sot/channels.csv` k_eps c1) | `k_eps` 87 (glove box) → passenger kick / EA1 → ABS trough → pump | `90980-12068` pin 1 (OWNED) |
 | C2 | EPS pump GND | 8 AWG | Pump pin 2 → engine-block stud (not EA) | `90980-12068` pin 2 |
 | C3 | EPS enable | 18 AWG | F13 7.5 A IG-switched → same trough | `90980-10942` pin 1 (OWNED) |
 | C4 | EPS relay request | 18 AWG | Pump connector B pin 6 → `k_eps` 85 | Already in Signal as `w_mrs_relay_req` |

@@ -152,10 +152,7 @@ B12. The coil trigger, coil feed and HCFB H4 feed are cabin wires; the pump feed
 contact 87 runs point-to-point on loom C through the firewall (no bulkhead), like the fan
 feeds. This replaces the 2026-09-17 "engine bay, next to the pump" placement.
 
-Sizing is open: the "60-80 A peak" figure above is not from a datasheet, so the HCFB H4
-fuse rating and the feed wire gauge are **TBD - need the MR-S ZZW30 EHPS pump current
-(Toyota spec or a measured draw), the Bussmann AMI datasheet, and an ampacity table for
-the wire**. The only sourced rating in this circuit is the HCR 150's own: 130 A at 85 C
+**Sized 2026-09-28:** Bussmann AMI-60 (60 A) at HCFB H4 and 8 AWG feed. Pump draw: about 4 A idle and under 40 A at full load on a stock pump (honda-tech 'EHPS Redone' write-up; diyelectriccar MR2 EHPS wiki), 70-80 A at maximum load on raised-pressure pumps (Alaria Tech FAQ); factory MR-S EHPS fuse 50 A (2002 MR2 EWD element list). Bussmann AMI time-current (Cooper Bussmann AMI series data sheet): 100% >= 100 h, 110% >= 4 h, 150% 90-3600 s, 200% 5-100 s - an 80 A peak is 133% of 60 A, so it holds well over 90 s, longer than any full-lock burst. Wire: 8 AWG 150 C single wire in free air 76 A (Thermal Wire and Cable ampacity table, AS50881 method) >= 60 A, so the fuse protects the wire; 10 AWG (55 A) would not. The HCR 150's own rating:  130 A at 85 C
 with a 25 mm2 load cable (TE datasheet V23132-X0000-A001). The longer heavy run from the
 glove box to the pump also makes voltage drop a sizing input once the current is known.
 

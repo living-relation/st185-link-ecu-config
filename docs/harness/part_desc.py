@@ -50,7 +50,6 @@ OVERRIDES = {  # by part number: parts whose own spec text is more than the firs
     "MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942":
         "CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS",
     "TBD - A/C coolant temperature switch connector": "CONNECTOR, 2 POS, TYPE TBD",
-    "TBD - EPS pump feed wire": "WIRE, ELECTRICAL, GAUGE TBD, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
 }
 
 COLORS = {"Light Yellow": "LIGHT YELLOW", "Light Green": "LIGHT GREEN", "Light Blue": "LIGHT BLUE",

@@ -126,7 +126,7 @@
         {
           "id": "c11",
           "designation": "DEV",
-          "signal": "Cluster + RealDash Pi - device relay 87 *"
+          "signal": "Cluster + RealDash Pi - ignition-switched fuse, no hold *"
         },
         {
           "id": "c12",
@@ -1179,7 +1179,7 @@
         "id": "mrs_eps",
         "handle": "a1"
       },
-      "partId": "wp_tbd_eps"
+      "partId": "wp_8_red"
     },
     {
       "id": "w_eps_gnd",
@@ -2434,7 +2434,7 @@
     },
     {
       "id": "n_heavy",
-      "text": "HEAVY DC: trunk battery -> cabin PDB (glove box) -> RADLOK 5.7 mm through the firewall -> starter B+. 160 A alt B+ joins the starter post and does not recross. Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. 2 AWG is OK for cranking; 160 A continuous charge may need 1/0 + 8 mm RADLOK - see the table.",
+      "text": "HEAVY DC: trunk battery -> cabin PDB (glove box) -> RADLOK 5.7 mm through the firewall -> starter B+. 160 A alt B+ joins the starter post and does not recross; its protection is NOT at the starter (see n_alt_prot). Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. 2 AWG is OK for cranking; 160 A continuous charge may need 1/0 + 8 mm RADLOK - see the table.",
       "width": 390,
       "schematicPosition": {
         "x": 3180,
@@ -2512,7 +2512,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nGlove-box body block (fuses +  IGN: Ignition-switched relay coil feed (not yet wired)\nGlove-box body block (fuses +  HL: HEAD LH - relay 87, 15 A fuse -> J/B2 2A-3 / 2D-2\nGlove-box body block (fuses +  HR: HEAD RH - relay 87, 15 A fuse -> J/B2 2A-6 / 2D-6\nGlove-box body block (fuses +  WP: Wiper park - relay 87, 15 A fuse (optional, unused)\nGlove-box body block (fuses +  CSB: CSB3 permanent feed, 5 A - stays live for the kill sequence (plan 6.48)\nGlove-box body block (fuses +  DEV: Cluster + RealDash Pi - device relay 87, held by CSB3 low-side L1 (plan 6.48)\nGlove-box body block (fuses +  ACPS: A/C pressure switch +12V, 5 A fuse, ignition-switched (was wrongly on F7 60A, the EPS pump fuse)\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nOEM J/B2 2A (engine room main) 2: 30A CDS FAN out - DO NOT REFEED, fan moved to k_fan2\nOEM J/B2 2A (engine room main) 5: Engine main relay 87 - DO NOT REFEED, Link EFI in Power\nOEM J/B2 2D (engine room main) 3: Headlight relay coil - unused, PMU switches the lamps\nOEM J/B2 2E (engine room main) 2: PROBE: inner cct = 30A RTR; starting p.48 = AM1 with 2E-5\nOEM J/B2 2E (engine room main) 3: PROBE: inner cct = 15A HAZ-HORN; starting p.48 = AM2 with 2E-6\nOEM J/B2 2E (engine room main) 4: 20A DOME (inner circuit, not on AM1/AM2 path) - PMU O4\nOEM J/B2 2E (engine room main) 5: AM1 pass-through (starting p.48). Do not PMU-feed. Restored at IE1-10\nOEM J/B2 2E (engine room main) 6: AM2 / engine-main related. Do not PMU-feed. Restored at IE1-17\nOEM R/B4 (right kick, by glove STR: OEM starter relay - isolate, Link k_str replaces\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87 (glove box, ST185-B-cabin), passenger fender; wire gauge TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si B-6: [B 90980-10897 pin 6] relay request out - NOT WIRED. 6.16 moved the EPS relay trigger to the ECU (Ign 6 / ecu_b B12). Kept for reference.\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, F13 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box body block APS, 5 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nGlove-box body block (fuses +  IGN: Ignition-switched relay coil feed (not yet wired)\nGlove-box body block (fuses +  HL: HEAD LH - relay 87, 15 A fuse -> J/B2 2A-3 / 2D-2\nGlove-box body block (fuses +  HR: HEAD RH - relay 87, 15 A fuse -> J/B2 2A-6 / 2D-6\nGlove-box body block (fuses +  WP: Wiper park - relay 87, 15 A fuse (optional, unused)\nGlove-box body block (fuses +  CSB: CSB3 permanent feed, 5 A - stays live for the kill sequence (plan 6.48)\nGlove-box body block (fuses +  DEV: Cluster + RealDash Pi - ignition-switched fuse only, on and off with the car; no hold relay (Daniel 2026-09-28)\nGlove-box body block (fuses +  ACPS: A/C pressure switch +12V, 5 A fuse, ignition-switched (was wrongly on F7 60A, the EPS pump fuse)\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nOEM J/B2 2A (engine room main) 2: 30A CDS FAN out - DO NOT REFEED, fan moved to k_fan2\nOEM J/B2 2A (engine room main) 5: Engine main relay 87 - DO NOT REFEED, Link EFI in Power\nOEM J/B2 2D (engine room main) 3: Headlight relay coil - unused, PMU switches the lamps\nOEM J/B2 2E (engine room main) 2: PROBE: inner cct = 30A RTR; starting p.48 = AM1 with 2E-5\nOEM J/B2 2E (engine room main) 3: PROBE: inner cct = 15A HAZ-HORN; starting p.48 = AM2 with 2E-6\nOEM J/B2 2E (engine room main) 4: 20A DOME (inner circuit, not on AM1/AM2 path) - PMU O4\nOEM J/B2 2E (engine room main) 5: AM1 pass-through (starting p.48). Do not PMU-feed. Restored at IE1-10\nOEM J/B2 2E (engine room main) 6: AM2 / engine-main related. Do not PMU-feed. Restored at IE1-17\nOEM R/B4 (right kick, by glove STR: OEM starter relay - isolate, Link k_str replaces\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87 (glove box, ST185-B-cabin), passenger fender; 8 AWG (sized 2026-09-28 against the AMI-60 - sot/channels.csv k_eps c1)\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si B-6: [B 90980-10897 pin 6] relay request out - NOT WIRED. 6.16 moved the EPS relay trigger to the ECU (Ign 6 / ecu_b B12). Kept for reference.\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, F13 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box body block APS, 5 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.",
       "schematicPosition": {
         "x": 3180,
         "y": 1920
@@ -2535,6 +2535,16 @@
       "schematicPosition": {
         "x": 3660,
         "y": 240
+      }
+    },
+    {
+      "id": "n_alt_prot",
+      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. Size for the 160 A alternator (plan 6.20: 175 A). Battery is AGM. The trunk Longacre 4-terminal kill switch cuts the battery positive and, on its second pair, the alternator IG feed.",
+      "width": 390,
+      "color": "Orange",
+      "schematicPosition": {
+        "x": 1080,
+        "y": 690
       }
     }
   ],
@@ -2615,13 +2625,6 @@
         "value": 14,
         "unit": "AWG"
       }
-    },
-    {
-      "id": "wp_tbd_eps",
-      "partNumber": "TBD - EPS pump feed wire",
-      "manufacturer": "TBD",
-      "color": "Red",
-      "description": "WIRE, ELECTRICAL, GAUGE TBD, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV"
     },
     {
       "id": "wp_18_vio",

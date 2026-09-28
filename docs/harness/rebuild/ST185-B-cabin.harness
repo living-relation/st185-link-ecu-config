@@ -25,14 +25,14 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "signal": "CAN-Lambda +12V, cabin fuse F5 10A (14 AWG)",
+          "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
+          "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c5",
@@ -85,14 +85,14 @@
         {
           "id": "c13",
           "designation": "13",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c14",
           "designation": "14",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c15",
@@ -460,7 +460,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (HCFB H4, ST185-CabinPower; fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced) *"
+          "signal": "Fused +12V in (HCFB H4, ST185-CabinPower; Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)) *"
         },
         {
           "id": "c2",
@@ -767,6 +767,62 @@
       "schematicPosition": {
         "x": 3180,
         "y": -60
+      }
+    },
+    {
+      "id": "br_wc_h_bh",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN H from the CAN bus splice to bulkhead B c13",
+      "width": 390,
+      "layoutPosition": {
+        "x": 900,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1200
+      }
+    },
+    {
+      "id": "br_wc_l_bh",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN L from the CAN bus splice to bulkhead B c14",
+      "width": 390,
+      "layoutPosition": {
+        "x": 900,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1260
+      }
+    },
+    {
+      "id": "br_w_lam12_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from cabin fuse F5 to bulkhead B c3",
+      "width": 390,
+      "layoutPosition": {
+        "x": 900,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1320
+      }
+    },
+    {
+      "id": "br_w_lamg_b",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis",
+      "width": 390,
+      "layoutPosition": {
+        "x": 900,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1380
       }
     }
   ],
@@ -1285,7 +1341,7 @@
         "id": "k_eps",
         "handle": "c1"
       },
-      "partId": "wp_tbd_eps"
+      "partId": "wp_8_red"
     },
     {
       "id": "w_k_eps_86",
@@ -1337,7 +1393,7 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "partId": "wp_tbd_eps"
+      "partId": "wp_8_red"
     },
     {
       "id": "w_at_immob2_bc",
@@ -1393,6 +1449,58 @@
       "color": "Black",
       "stripeColor": "White",
       "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "wc_h_bh_bc",
+      "source": {
+        "id": "br_wc_h_bh",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c13"
+      },
+      "color": "White",
+      "partId": "wp_20_wht"
+    },
+    {
+      "id": "wc_l_bh_bc",
+      "source": {
+        "id": "br_wc_l_bh",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c14"
+      },
+      "color": "Green",
+      "partId": "wp_20_grn"
+    },
+    {
+      "id": "w_lam12_bc",
+      "source": {
+        "id": "br_w_lam12_c",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c3"
+      },
+      "color": "Red",
+      "partId": "wp_14_red"
+    },
+    {
+      "id": "w_lamg_bc",
+      "source": {
+        "id": "bh_b_fw",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "br_w_lamg_b",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "wp_14_blk"
     }
   ],
   "cables": [
@@ -1987,6 +2095,42 @@
         "value": 370,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_870__br_wc_h_bh",
+      "sourceId": "bp_870",
+      "targetId": "br_wc_h_bh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_870__br_wc_l_bh",
+      "sourceId": "bp_870",
+      "targetId": "br_wc_l_bh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_870__br_w_lam12_c",
+      "sourceId": "bp_870",
+      "targetId": "br_w_lam12_c",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_870__br_w_lamg_b",
+      "sourceId": "bp_870",
+      "targetId": "br_w_lamg_b",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -2204,7 +2348,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression needed (on/off relay, not PWM; G4X help Auxiliary Output Wiring) - fitted TE 7-1904094-9 has its own coil diode, keep 86 = coil +\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead B - firewall (HDP24-2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - firewall (HDP24-2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: HCFB H4 - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nHigh-current fuse block HCFB h4: fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression needed (on/off relay, not PWM; G4X help Auxiliary Output Wiring) - fitted TE 7-1904094-9 has its own coil diode, keep 86 = coil +\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead B - firewall (HDP24-2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - firewall (HDP24-2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: HCFB H4 - Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nHigh-current fuse block HCFB h4: Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)",
       "schematicPosition": {
         "x": 4200,
         "y": 0
@@ -2392,13 +2536,6 @@
       }
     },
     {
-      "id": "wp_tbd_eps",
-      "partNumber": "TBD - EPS pump feed wire",
-      "manufacturer": "TBD",
-      "color": "Red",
-      "description": "WIRE, ELECTRICAL, GAUGE TBD, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV"
-    },
-    {
       "id": "wp_20_gry",
       "partNumber": "EW-1C20-GRY",
       "manufacturer": "generic",
@@ -2429,6 +2566,17 @@
       "stripeColor": "White",
       "gauge": {
         "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_14_blk",
+      "partNumber": "EW-1C14-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 14,
         "unit": "AWG"
       }
     }

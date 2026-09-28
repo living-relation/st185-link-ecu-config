@@ -25,14 +25,14 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "signal": "CAN-Lambda +12V, cabin fuse F5 10A (14 AWG)",
+          "contactPartId": "ct_hdp12s"
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
+          "contactPartId": "ct_hdp12s"
         },
         {
           "id": "c5",
@@ -85,14 +85,14 @@
         {
           "id": "c13",
           "designation": "13",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c14",
           "designation": "14",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c15",
@@ -280,7 +280,7 @@
     },
     {
       "id": "vss",
-      "label": "Gearbox VSS (Toyota 83181-20040, 3-wire) - actual road speed",
+      "label": "Gearbox VSS (Toyota 83181-20040, 3-wire) - actual road speed, plug 90980-11143",
       "width": 390,
       "partId": "cp_vss3",
       "schematicPosition": {
@@ -295,17 +295,20 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+12V switched"
+          "signal": "IG +12V switched (pin 1)",
+          "contactPartId": "ct_toy_ts"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Ground"
+          "signal": "Ground (pin 2)",
+          "contactPartId": "ct_toy_ts"
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "Gearbox VSS signal -> bulkhead B c15 *"
+          "signal": "SP1 speed output (pin 3) -> bulkhead B c15 *",
+          "contactPartId": "ct_toy_ts"
         }
       ]
     },
@@ -450,6 +453,62 @@
         "x": 150,
         "y": 1380
       }
+    },
+    {
+      "id": "br_wc_h_lam",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN H from bulkhead B c13 to the Lambda",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2280,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 1980
+      }
+    },
+    {
+      "id": "br_wc_l_lam",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN L from bulkhead B c14 to the Lambda",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2280,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 2040
+      }
+    },
+    {
+      "id": "br_w_lam12",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda +12V from cabin fuse F5, bulkhead B c3",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2280,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 2100
+      }
+    },
+    {
+      "id": "br_w_lamg",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda ground to cabin chassis ground, bulkhead B c4",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2280,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 2160
+      }
     }
   ],
   "splices": [
@@ -490,6 +549,32 @@
       "schematicPosition": {
         "x": 1920,
         "y": 2280
+      }
+    },
+    {
+      "id": "sp_lam12_b",
+      "partId": "spp_solder_generic",
+      "locationId": "be_750",
+      "layoutPosition": {
+        "x": 2190,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 600,
+        "y": 2100
+      }
+    },
+    {
+      "id": "sp_lamg_b",
+      "partId": "spp_solder_generic",
+      "locationId": "be_750",
+      "layoutPosition": {
+        "x": 2190,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 600,
+        "y": 2220
       }
     }
   ],
@@ -813,6 +898,84 @@
       "color": "Black",
       "stripeColor": "White",
       "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "wc_h_lam_be",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c13"
+      },
+      "target": {
+        "id": "br_wc_h_lam",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "partId": "wp_20_wht"
+    },
+    {
+      "id": "wc_l_lam_be",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c14"
+      },
+      "target": {
+        "id": "br_wc_l_lam",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "partId": "wp_20_grn"
+    },
+    {
+      "id": "w_lam12_be14",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_lam12_b",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "partId": "wp_14_red"
+    },
+    {
+      "id": "w_lam12_be",
+      "source": {
+        "id": "sp_lam12_b",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_lam12",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_20_red"
+    },
+    {
+      "id": "w_lamg_be14",
+      "source": {
+        "id": "sp_lamg_b",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_eng",
+        "handle": "c4"
+      },
+      "color": "Black",
+      "partId": "wp_14_blk"
+    },
+    {
+      "id": "w_lamg_be",
+      "source": {
+        "id": "br_w_lamg",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_lamg_b",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "partId": "wp_20_blk"
     }
   ],
   "cables": [
@@ -1211,6 +1374,42 @@
         "value": 100,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_be_750__br_wc_h_lam",
+      "sourceId": "be_750",
+      "targetId": "br_wc_h_lam",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_be_750__br_wc_l_lam",
+      "sourceId": "be_750",
+      "targetId": "br_wc_l_lam",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_be_750__br_w_lam12",
+      "sourceId": "be_750",
+      "targetId": "br_w_lam12",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_be_750__br_w_lamg",
+      "sourceId": "be_750",
+      "targetId": "br_w_lamg",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -1400,7 +1599,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead B - engine plug (HDP2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - engine plug (HDP2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nGearbox VSS (Toyota 83181-20040) - 3: Gearbox VSS signal -> bulkhead B c15 -> ECU-B B29 (DI 8). Actual road speed. 12V direct, no divider - Link DI is +/-50V tolerant with a selectable 4k7 pull-up to 12V. PCLink DI 8 pull-up ON (sot/channels.csv B29).",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead B - engine plug (HDP2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - engine plug (HDP2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nGearbox VSS (Toyota 83181-20040) - 3: SP1 speed output (pin 3) -> bulkhead B c15 -> ECU-B B29 (DI 8). Actual road speed. 12V direct, no divider - Link DI is +/-50V tolerant with a selectable 4k7 pull-up to 12V. PCLink DI 8 pull-up ON (sot/channels.csv B29).",
       "schematicPosition": {
         "x": 4200,
         "y": 0
@@ -1503,6 +1702,17 @@
       "manufacturer": "generic",
       "description": "WIRE, ELECTRICAL, 14 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
       "color": "Red",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_14_blk",
+      "partNumber": "EW-1C14-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
       "gauge": {
         "value": 14,
         "unit": "AWG"
@@ -1732,7 +1942,7 @@
       }
     },
     {
-      "partNumber": "TBD - generic oval 3-pin, socket contacts",
+      "partNumber": "90980-11143",
       "manufacturer": "Toyota",
       "description": "CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS",
       "numberOfCavities": 3,

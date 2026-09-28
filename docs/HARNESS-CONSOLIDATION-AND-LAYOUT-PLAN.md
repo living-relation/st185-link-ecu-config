@@ -557,7 +557,8 @@ alternator B through a **100 A FL ALT** back to the link box - it does **not** j
 starter post. Section 6.1 has the 160 A alternator joining at the starter B+ post with no
 protection, which leaves an alternator-cable short unprotected all the way to the battery.
 Fuse the alternator lead at **150-175 A** (160 A alternator, so OEM's 100 A does not scale
-directly) close to where it joins.
+directly). **Placement (Daniel 2026-09-28):** a fusible link or an inline fuse / breaker on the
+positive cable at the trunk battery or near the cabin fuse box - never at the starter.
 
 **3. `w_strl` is not heavy DC.** Page 48 shows the starter relay driving starter terminal
 **1 / A** - the solenoid trigger, a thin wire. Terminal **B** is the heavy lead, and it
@@ -649,7 +650,8 @@ TRUNK BATTERY +
 
 Alternator B+ gets its own **175 A** fuse - the factory protects it at 100 A FL ALT for the
 stock unit, scaled here for the 160 A alternator. It is **never** joined unprotected at the
-starter post.
+starter post, and the protection itself sits at the trunk battery or near the cabin fuse box, not at
+the starter (fusible link or inline fuse / breaker; Daniel 2026-09-28).
 
 Standing rule, set by Daniel: **every large-gauge conductor is fused near the battery, and
 one battery kill switch sits at the main post.**
@@ -660,7 +662,7 @@ Mapping, factory to ours:
 |---|---|
 | `FL MAIN 2.0L` at the battery | Main ANL/MEGA/Class T + kill switch, trunk |
 | `F11` fusible link box | `PDB1` (Blue Sea 2127), glove box |
-| `100A FL ALT` | ANL 175 A on the alternator lead |
+| `100A FL ALT` | 175 A fusible link or inline fuse / breaker, at the trunk battery or near the cabin fuse box - not at the starter |
 | `40A FL AM1` / `30A FL AM2` | Cabin fuse block feeds off `PDB1` |
 | `60A FL ABS` | Deleted - no ABS in this build |
 | `30A FL RDI FAN` / `30A FL CDS FAN` off engine main relay | Loom C fan feeds, relay + fuse per 6.2 |
@@ -1165,27 +1167,14 @@ The Pi is the whole reason this is not a fuse-block job. It wants 25 W of clean
   6-16 V in. Not a cheap buck module - it has to ride out cranking
 - CSB3 takes 12 V directly, no converter. It is specified 6-22 V
 
-### The real reason for the PMU: clean shutdown
+### Clean shutdown
 
-A Pi is a Linux box. Cutting power at key-off corrupts SD cards, and it will do
-it slowly enough that it looks like bad luck rather than a design fault.
-
-1. PMU holds the Pi's output live for a set delay after ignition drops
-2. The Pi sees ignition go false - it is already on the CAN bus for RealDash, so
-   it can read that state rather than needing another wire
-3. A shutdown script runs
-4. The PMU output drops after the delay expires
-
-Set the delay from a measured shutdown, not a guess - time it on the bench and
-add margin. 45-60 s is the starting point.
+**Withdrawn 2026-09-28 (Daniel):** the RealDash Pi is powered from a switched ignition feed only - on with the car, off with the car. No hold relay, no timed hold, no shutdown sequencing, anywhere.
 
 ### Open
 
 - Pick the DC-DC converter. Needs 5 V 5 A continuous, wide input, automotive
-  transient rating
-- Confirm the PMU can hold an output after ignition drops on a timer in its
-  own config, rather than needing the ECU to command it
-- Measure the Pi's actual shutdown time before fixing the hold delay
+  transient rating (struck by 6.39: the converter is inside the sealed device)
 
 ---
 
@@ -1799,7 +1788,7 @@ included, USB-to-CAN programming cable extra).
 | HEAD LH, HEAD RH, RTR, horn | 4 micro ISO relays | 8 owned, 6 already assigned to k_efi/k_etb/k_fp/k_fan/k_fan2/k_str, so buy ~2-3 more |
 | DOME, AM1, AM2, 3 CAN device feeds | fuse ways only | AM1/AM2 were always plain fused feeds in 3.1 |
 | 10 new fuse ways | second fuse block | TE `2141029-1` is full at F1-F13 |
-| Pi hold after key-off | **CSB3 low-side** holding a relay coil | |
+| Pi power | switched ignition fuse only - no hold (2026-09-28) | |
 | Kill relay coil | **CSB3 low-side** | |
 | Alternator excite drop | **CSB3 low-side** | |
 
@@ -1815,7 +1804,7 @@ and the ECU is alive throughout key-off because of its own hold power.
 
 | L-channel | Job |
 |---|---|
-| L1 | Pi hold relay |
+| L1 | spare (the Pi hold is withdrawn 2026-09-28) |
 | L2 | Kill relay coil |
 | L3 | Alternator excite drop |
 | L4 | Oil pressure lamp (6.43 / ClusterLED) |

@@ -233,6 +233,24 @@ become flying leads.
 |---|---|---|---|
 | Q-RAIL | The injector rail (F11 15 A) and COP rail (F10 20 A) feed A devices but cross on bulkhead B c1/c2, on size-12 contacts (`0460-220-1231` / `0462-210-1231`, 25 A). Rule 3 wants them on bulkhead A, which (`HDP24-24-47`) has 5 size-16 and 42 size-20 cavities, no size-12; the size-16 contacts are 13 A and only c1 is spare. | (1) keep on B as a recorded exception; (2) run both rails through loom C point-to-point like the starter and fan feeds; (3) replace bulkhead A with an insert that has size-12 positions; (4) split each rail over two size-16 contacts on A | **Resolved 2026-09-28 (Daniel): option (1) as a spur** - the rails stay on bulkhead B and spur off B-engine right after the firewall into A-engine, like the ETB motor. Rule 3 crossover (d). |
 
+## Binding decisions (Daniel, 2026-09-28 audit) - final, do not re-ask
+
+| | Decision | Where it lives |
+|---|---|---|
+| B1 | **Link CAN-Lambda** runs its four wires through **bulkhead B**: c13 CAN H, c14 CAN L (size 16, 20 AWG), c3 +12V, c4 GND (size 12, 14 AWG, stepped to 20 AWG at `sp_lam12_b` / `sp_lamg_b` after the firewall for the DTM plug). +12V from cabin fuse **F5 10 A** (`ST185-CabinPower`); GND to the cabin chassis ground `sp_chassis`. Link pinout: pin 3 CAN L, pin 4 CAN H. Broken off CAN <-> B-cabin / B-engine. This uses bulkhead B's last four spares. | `ST185-CAN`, `-B-cabin`, `-B-engine`, `-CabinPower`, `-A-cabin`, `interfaces.json` |
+| B2 | **VSS (E154F)**: drawn as-is on the best reading - Toyota 83181-20040, plug **90980-11143**, pin 1 IG +12V, 2 ground, 3 SP1 out. No TBD. | `ST185-B-engine`, `sot/channels.csv` B29 |
+| B3 | **Charge-lamp resistor**: reference note on ClusterLED only, never a drawn part. | `ST185-ClusterLED` `n_chg_test` |
+| B4 | `sp_5v` is split into `sp_5v` + `sp_5v_2`; `sp_gndout_eng` is a `GENERIC CRIMP SPLICE 14-10` (four 20 AWG, about 4,100 cmil). | `ST185-A-cabin`, `-A-engine` |
+| B5 | **Alternator output protection**: fusible link or inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box - never at the starter. | `ST185-EngineRoom-C` `n_alt_prot`, plan 6.20 |
+| B6 | Battery is **AGM**. Main power parts: Eaton RFRM box plus a small GEP set, a **Longacre 4-terminal kill switch** in the trunk (second pair cuts the alternator IG), and the G4X Stop Switch input. Drawn only where a place already exists; the power layout is not redesigned. | AGM and kill switch: `n_alt_prot`, `buylist.py`. RFRM, GEP and the Stop Switch input have no place in the drawings yet, so they are recorded here only |
+| B7 | **RealDash Pi**: switched ignition feed only, on and off with the car. No Pi-hold relay or power-hold circuit anywhere. | EngineRoom-C `gbx_body` DEV, CSB3 L1 spare, plan 6.38 / 6.47 |
+| B8 | **k_eps** sized: HCFB H4 Bussmann **AMI-60**, **8 AWG** feed. Sources in `sot/channels.csv` k_eps c1. | `ST185-CabinPower`, `-B-cabin`, `-EngineRoom-C` |
+
+**Under audit, not yet confirmed by Daniel:** Q-RAIL option (1) as a spur (Rule 3 crossover (d),
+injector / COP rails on bulkhead B size-12 contacts) and the `IX_B_RAIL` +5V spur. The repo
+credits both to Daniel (commits `217d83a`, `f7ec418`) but records no quote. Do not build on
+either until he confirms.
+
 ## Current state
 
 Execution is in progress; see the adopted decisions above and the phase status in

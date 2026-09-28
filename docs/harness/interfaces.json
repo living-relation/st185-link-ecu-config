@@ -1228,10 +1228,10 @@
     {
       "id": "BR_W_LAM12",
       "type": "broken_off",
-      "what": "CAN-Lambda +12V",
+      "what": "CAN-Lambda +12V from cabin fuse F5, bulkhead B c3",
       "ends": [
         {
-          "harness": "A-engine",
+          "harness": "B-engine",
           "terminal": "br_w_lam12"
         },
         {
@@ -1243,10 +1243,10 @@
     {
       "id": "BR_W_LAMG",
       "type": "broken_off",
-      "what": "CAN-Lambda ground",
+      "what": "CAN-Lambda ground, bulkhead B c4",
       "ends": [
         {
-          "harness": "A-engine",
+          "harness": "B-engine",
           "terminal": "br_w_lamg"
         },
         {
@@ -1258,14 +1258,14 @@
     {
       "id": "BR_WC_H_BH",
       "type": "broken_off",
-      "what": "CAN H through bulkhead A c30",
+      "what": "CAN H through bulkhead B c13",
       "ends": [
         {
           "harness": "CAN",
           "terminal": "br_wc_h_bh"
         },
         {
-          "harness": "A-cabin",
+          "harness": "B-cabin",
           "terminal": "br_wc_h_bh"
         }
       ]
@@ -1273,14 +1273,14 @@
     {
       "id": "BR_WC_L_BH",
       "type": "broken_off",
-      "what": "CAN L through bulkhead A c31",
+      "what": "CAN L through bulkhead B c14",
       "ends": [
         {
           "harness": "CAN",
           "terminal": "br_wc_l_bh"
         },
         {
-          "harness": "A-cabin",
+          "harness": "B-cabin",
           "terminal": "br_wc_l_bh"
         }
       ]
@@ -1288,14 +1288,14 @@
     {
       "id": "BR_WC_H_LAM",
       "type": "broken_off",
-      "what": "CAN H from bulkhead A c30 to the Lambda",
+      "what": "CAN H from bulkhead B c13 to the Lambda",
       "ends": [
         {
           "harness": "CAN",
           "terminal": "br_wc_h_lam"
         },
         {
-          "harness": "A-engine",
+          "harness": "B-engine",
           "terminal": "br_wc_h_lam"
         }
       ]
@@ -1303,14 +1303,14 @@
     {
       "id": "BR_WC_L_LAM",
       "type": "broken_off",
-      "what": "CAN L from bulkhead A c31 to the Lambda",
+      "what": "CAN L from bulkhead B c14 to the Lambda",
       "ends": [
         {
           "harness": "CAN",
           "terminal": "br_wc_l_lam"
         },
         {
-          "harness": "A-engine",
+          "harness": "B-engine",
           "terminal": "br_wc_l_lam"
         }
       ]
@@ -1537,6 +1537,36 @@
         {
           "harness": "CabinPower",
           "terminal": "br_w_fb_mrs_en"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_LAM12_C",
+      "type": "broken_off",
+      "what": "CAN-Lambda +12V from cabin fuse F5 to bulkhead B c3",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_lam12_c"
+        },
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_lam12_c"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_LAMG_B",
+      "type": "broken_off",
+      "what": "CAN-Lambda ground from bulkhead B c4 to cabin chassis ground",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_lamg_b"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_lamg_b"
         }
       ]
     }

@@ -122,7 +122,7 @@
         },
         {
           "id": "c23",
-          "signal": "L1 low-side - reserved: Pi hold relay (plan 6.48), not wired yet",
+          "signal": "L1 low-side - spare",
           "contactPartId": "ct_hdp20s"
         },
         {

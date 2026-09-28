@@ -382,14 +382,14 @@
         {
           "id": "c30",
           "designation": "30",
-          "contactPartId": "ct_hdp20p",
-          "signal": "CAN H to Lambda"
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c31",
           "designation": "31",
-          "contactPartId": "ct_hdp20p",
-          "signal": "CAN L to Lambda"
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c32",
@@ -1070,34 +1070,6 @@
       }
     },
     {
-      "id": "br_wc_h_bh",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN H through bulkhead A c30",
-      "width": 390,
-      "layoutPosition": {
-        "x": 900,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 3720,
-        "y": -60
-      }
-    },
-    {
-      "id": "br_wc_l_bh",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN L through bulkhead A c31",
-      "width": 390,
-      "layoutPosition": {
-        "x": 900,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 3720,
-        "y": -60
-      }
-    },
-    {
       "id": "br_w77",
       "type": "Loose",
       "signal": "Broken off - continues on ST185-CabinPower: Cabin fuse block SW IN to EFI Main Relay 87",
@@ -1250,6 +1222,20 @@
         "x": 1200,
         "y": 2940
       }
+    },
+    {
+      "id": "br_w_lamg_b",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2400,
+        "y": 30
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2640
+      }
     }
   ],
   "splices": [
@@ -1380,6 +1366,19 @@
       },
       "schematicPosition": {
         "x": 2340,
+        "y": 2820
+      }
+    },
+    {
+      "id": "sp_5v_2",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_900",
+      "layoutPosition": {
+        "x": 1200,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 1710,
         "y": 2820
       }
     }
@@ -1904,7 +1903,7 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "sp_5v",
+        "id": "sp_5v_2",
         "handle": "Splice"
       },
       "partId": "wp_20_org"
@@ -1998,7 +1997,7 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "sp_5v",
+        "id": "sp_5v_2",
         "handle": "Splice"
       },
       "partId": "wp_20_org"
@@ -2335,7 +2334,7 @@
     {
       "id": "w_cru_5v_ac",
       "source": {
-        "id": "sp_5v",
+        "id": "sp_5v_2",
         "handle": "Splice"
       },
       "target": {
@@ -2396,32 +2395,6 @@
       },
       "color": "Red",
       "partId": "wp_12_red"
-    },
-    {
-      "id": "wc_h_bh_ac",
-      "source": {
-        "id": "bh_a_fw",
-        "handle": "c30"
-      },
-      "target": {
-        "id": "br_wc_h_bh",
-        "handle": "Terminal"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_bh_ac",
-      "source": {
-        "id": "bh_a_fw",
-        "handle": "c31"
-      },
-      "target": {
-        "id": "br_wc_l_bh",
-        "handle": "Terminal"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
     },
     {
       "id": "w_5v_bha_trunk",
@@ -2570,6 +2543,32 @@
       },
       "color": "Orange",
       "partId": "wp_20_org"
+    },
+    {
+      "id": "w_lamg_ac",
+      "source": {
+        "id": "br_w_lamg_b",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "partId": "wp_14_blk"
+    },
+    {
+      "id": "w_5v_link",
+      "source": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_5v_2",
+        "handle": "Splice"
+      },
+      "color": "Orange",
+      "partId": "wp_18_org"
     }
   ],
   "cables": [
@@ -3136,24 +3135,6 @@
       }
     },
     {
-      "id": "bn_bp_840__br_wc_h_bh",
-      "sourceId": "bp_840",
-      "targetId": "br_wc_h_bh",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_840__br_wc_l_bh",
-      "sourceId": "bp_840",
-      "targetId": "br_wc_l_bh",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_b_bp_1050__br_w77",
       "sourceId": "b_bp_1050",
       "targetId": "br_w77",
@@ -3247,6 +3228,15 @@
       "id": "bn_b_bp_1050__br_w_fb_mrs_en",
       "sourceId": "b_bp_1050",
       "targetId": "br_w_fb_mrs_en",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1170__br_w_lamg_b",
+      "sourceId": "b_bp_1170",
+      "targetId": "br_w_lamg_b",
       "length": {
         "value": 50,
         "unit": "mm"
@@ -3419,7 +3409,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A (A32 lead 18 AWG) - feeds sp_5v_bha before bulkhead A (c2, c39, c40 at 20 AWG) and an 18 AWG trunk to sp_5v_b on ST185-B-cabin (broken off), crossover (a)\nsp_gndout (Splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds sp_gnd_bha before bulkhead A (c3, c41-c44 at 20 AWG) for the A loads only; loom B's sensors return to their own Gnd Out, ECU B22 (no A24-B22 tie in the harness)\nsp_sw12 (Splice): switched 12V bus - its B-side loads (condenser fan and EPS relay coils, VSS feed on bulkhead B c20) are drawn on ST185-B-cabin (broken off)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A (A32 lead 18 AWG) - feeds sp_5v_bha before bulkhead A (c2, c39, c40 at 20 AWG), an 18 AWG trunk to sp_5v_b on ST185-B-cabin (broken off), crossover (a), and an 18 AWG link to sp_5v_2\nsp_5v_2 (Splice): +5V cabin loads off sp_5v - APS, cruise ladder, w210 (20 AWG each)\nsp_gndout (Splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds sp_gnd_bha before bulkhead A (c3, c41-c44 at 20 AWG) for the A loads only; loom B's sensors return to their own Gnd Out, ECU B22 (no A24-B22 tie in the harness)\nsp_sw12 (Splice): switched 12V bus - its B-side loads (condenser fan and EPS relay coils, VSS feed on bulkhead B c20) are drawn on ST185-B-cabin (broken off)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)",
       "schematicPosition": {
         "x": 4200,
         "y": 0
@@ -3704,6 +3694,17 @@
       "stripeColor": "White",
       "gauge": {
         "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_14_blk",
+      "partNumber": "EW-1C14-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 14,
         "unit": "AWG"
       }
     }

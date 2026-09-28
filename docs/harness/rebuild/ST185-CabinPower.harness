@@ -42,6 +42,12 @@
           "contactPartId": "ct_fb_4"
         },
         {
+          "id": "c5",
+          "designation": "F5",
+          "signal": "10A - SW bus: Link CAN-Lambda +12V",
+          "contactPartId": "ct_fb_25"
+        },
+        {
           "id": "c8",
           "designation": "F8",
           "signal": "10A - ECU permanent +12V"
@@ -144,7 +150,7 @@
         {
           "id": "h4",
           "designation": "H4",
-          "signal": "EPS pump relay 30 (k_eps, ST185-B-cabin) - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced *",
+          "signal": "60A AMI - EPS pump relay 30 (k_eps, ST185-B-cabin) *",
           "contactPartId": "ct_ring_m5_10_8"
         }
       ],
@@ -398,6 +404,20 @@
         "x": 3660,
         "y": 0
       }
+    },
+    {
+      "id": "br_w_lam12_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: CAN-Lambda +12V from cabin fuse F5 to bulkhead B c3",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1680,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 1710,
+        "y": 3600
+      }
     }
   ],
   "wires": [
@@ -464,7 +484,7 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "partId": "wp_tbd_eps"
+      "partId": "wp_8_red"
     },
     {
       "id": "w_inj_pwr_c_ac",
@@ -634,6 +654,19 @@
         "handle": "Terminal"
       },
       "partId": "wp_20_red"
+    },
+    {
+      "id": "w_lam12_cp",
+      "source": {
+        "id": "fusebox",
+        "handle": "c5"
+      },
+      "target": {
+        "id": "br_w_lam12_c",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_14_red"
     }
   ],
   "bundles": [
@@ -861,6 +894,15 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_b_bp_1050__br_w_lam12_c",
+      "sourceId": "b_bp_1050",
+      "targetId": "br_w_lam12_c",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -1006,13 +1048,6 @@
         "value": 14,
         "unit": "AWG"
       }
-    },
-    {
-      "id": "wp_tbd_eps",
-      "partNumber": "TBD - EPS pump feed wire",
-      "manufacturer": "TBD",
-      "color": "Red",
-      "description": "WIRE, ELECTRICAL, GAUGE TBD, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV"
     }
   ],
   "connectorParts": [
@@ -1233,7 +1268,7 @@
         "x": 4200,
         "y": 0
       },
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCabin fuse block (passenger gl F12: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nCabin fuse block (passenger gl F13: 7.5A - MRS EPS pump logic enable (ignition-switched)\nHigh-current fuse block HCFB H4: EPS pump relay 30 (k_eps on ST185-B-cabin) - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced"
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCabin fuse block (passenger gl F12: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nCabin fuse block (passenger gl F13: 7.5A - MRS EPS pump logic enable (ignition-switched)\nHigh-current fuse block HCFB H4: 60A AMI - EPS pump relay 30 (k_eps on ST185-B-cabin), Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)"
     }
   ]
 }

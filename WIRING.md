@@ -137,6 +137,8 @@ into any Pi USB port.
   and CAN-Lambda). **Do NOT terminate here.** If using a PCAN USB, leave its onboard
   termination switch OFF. The Waveshare hat has no CAN connection either way — ignore it.
 - **Role:** passive listener — the Pi does not transmit any CAN frames.
+- **Power:** switched ignition feed only — on with the car, off with the car. No hold relay
+  or power-hold circuit (Daniel 2026-09-28).
 
 ---
 

@@ -187,14 +187,14 @@
         {
           "id": "c30",
           "designation": "30",
-          "contactPartId": "ct_hdp20s",
-          "signal": "CAN H to Lambda"
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c31",
           "designation": "31",
-          "contactPartId": "ct_hdp20s",
-          "signal": "CAN L to Lambda"
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c32",
@@ -925,62 +925,6 @@
       }
     },
     {
-      "id": "br_w_lam12",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda +12V",
-      "width": 390,
-      "layoutPosition": {
-        "x": 630,
-        "y": 150
-      },
-      "schematicPosition": {
-        "x": 2040,
-        "y": 840
-      }
-    },
-    {
-      "id": "br_w_lamg",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda ground",
-      "width": 390,
-      "layoutPosition": {
-        "x": 630,
-        "y": 150
-      },
-      "schematicPosition": {
-        "x": 2040,
-        "y": 840
-      }
-    },
-    {
-      "id": "br_wc_h_lam",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN H from bulkhead A c30 to the Lambda",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2070,
-        "y": 120
-      },
-      "schematicPosition": {
-        "x": 60,
-        "y": -60
-      }
-    },
-    {
-      "id": "br_wc_l_lam",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN L from bulkhead A c31 to the Lambda",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2070,
-        "y": 120
-      },
-      "schematicPosition": {
-        "x": 60,
-        "y": -60
-      }
-    },
-    {
       "id": "br_w124_e",
       "type": "Loose",
       "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor + (Aux 9, B18), bulkhead B c5",
@@ -1061,7 +1005,7 @@
         "x": 1830,
         "y": 690
       },
-      "partId": "spp_solder_generic",
+      "partId": "spp_crimp_14_10",
       "locationId": "be_660"
     },
     {
@@ -1377,19 +1321,6 @@
       "partId": "wp_20_red"
     },
     {
-      "id": "w_lam12",
-      "color": "Red",
-      "source": {
-        "id": "br_w_lam12",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_sw12_eng",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_red"
-    },
-    {
       "id": "w206",
       "color": "Orange",
       "source": {
@@ -1594,19 +1525,6 @@
       "partId": "wp_18_blk"
     },
     {
-      "id": "w_lamg",
-      "color": "Black",
-      "source": {
-        "id": "br_w_lamg",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_chassis_eng",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_blk"
-    },
-    {
       "id": "w_rail_sp_gndout_e",
       "source": {
         "id": "bh_a_eng",
@@ -1698,32 +1616,6 @@
       },
       "color": "Pink",
       "partId": "wp_20_pnk"
-    },
-    {
-      "id": "wc_h_lam_ae",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c30"
-      },
-      "target": {
-        "id": "br_wc_h_lam",
-        "handle": "Terminal"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_lam_ae",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c31"
-      },
-      "target": {
-        "id": "br_wc_l_lam",
-        "handle": "Terminal"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
     },
     {
       "id": "w124_e_ae",
@@ -2476,42 +2368,6 @@
       }
     },
     {
-      "id": "bn_bp_390__br_w_lam12",
-      "sourceId": "bp_390",
-      "targetId": "br_w_lam12",
-      "length": {
-        "value": 200,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_390__br_w_lamg",
-      "sourceId": "bp_390",
-      "targetId": "br_w_lamg",
-      "length": {
-        "value": 200,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_750__br_wc_h_lam",
-      "sourceId": "bp_750",
-      "targetId": "br_wc_h_lam",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_750__br_wc_l_lam",
-      "sourceId": "bp_750",
-      "targetId": "br_wc_l_lam",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_750__br_w124_e",
       "sourceId": "bp_750",
       "targetId": "br_w124_e",
@@ -3000,6 +2856,20 @@
       "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
       "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
+    },
+    {
+      "id": "spp_crimp_14_10",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "partNumber": "GENERIC CRIMP SPLICE 14-10",
+      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
     }
   ],
   "contactParts": [
