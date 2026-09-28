@@ -631,7 +631,7 @@
         "x": 1920,
         "y": 0
       },
-      "text": "REAR WHEEL SPEED - one Y harness. RL and RR ABS drops run to the rear VRC in the back-seat area (rear driver-side frame); one screened 4-core output cable runs forward to the 6-way inline DT04-6P near the ECU (IX_WS_REAR). The ECU side owns only the short spur and the DT06-6S mating half (ST185-A-ECU). No bulkhead."
+      "text": "REAR WHEEL SPEED - one Y harness. RL and RR ABS drops run to the rear VRC in the back-seat area (rear driver-side frame); one screened 4-core output cable runs forward to the 6-way inline DT04-6P near the ECU (IX_WS_REAR). The ECU side owns only the short spur and the DT06-6S mating half (ST185-ECU-Cabin). No bulkhead."
     },
     {
       "id": "n_vrc",
