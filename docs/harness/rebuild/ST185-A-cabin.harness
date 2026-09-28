@@ -496,39 +496,40 @@
       }
     },
     {
-      "id": "aps",
-      "label": "BRZ e-throttle pedal (APS)",
-      "partId": "cp_brz_aps6",
+      "id": "ix_aps_r",
+      "label": "APS pedal - 6-way inline to the pedal harness (IX_APS)",
+      "width": 270,
+      "partId": "cp_dt06_6s",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "VC2 +5V (sub)"
+          "signal": "APS VC2 +5V (sub) - pedal pin 1"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "GND2 (sub)"
+          "signal": "APS GND2 (sub) - pedal pin 2"
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "VPA2 APS-S"
+          "signal": "APS VPA2 sub signal -> ECU-B B33 - pedal pin 3"
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "VC1 +5V (main)"
+          "signal": "APS VC1 +5V (main) - pedal pin 4"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "GND1 (main)"
+          "signal": "APS GND1 (main) - pedal pin 5"
         },
         {
           "id": "c6",
           "designation": "6",
-          "signal": "VPA1 APS-M"
+          "signal": "APS VPA1 main signal -> ECU-A A14 - pedal pin 6"
         }
       ],
       "layoutPosition": {
@@ -538,8 +539,7 @@
       "schematicPosition": {
         "x": 660,
         "y": 0
-      },
-      "width": 270
+      }
     },
     {
       "id": "k_efi",
@@ -910,7 +910,7 @@
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> starter solenoid S",
+          "signal": "+12V out -> starter solenoid S - wire on ST185-A-engine (dm_k_str_c4)",
           "contactPartId": "ct_f7_load"
         }
       ],
@@ -1474,7 +1474,7 @@
       "id": "w38",
       "color": "White",
       "source": {
-        "id": "aps",
+        "id": "ix_aps_r",
         "handle": "c6"
       },
       "target": {
@@ -2074,7 +2074,7 @@
       "id": "w210",
       "color": "Orange",
       "source": {
-        "id": "aps",
+        "id": "ix_aps_r",
         "handle": "c1"
       },
       "target": {
@@ -2115,7 +2115,7 @@
       "id": "w40",
       "color": "Black",
       "source": {
-        "id": "aps",
+        "id": "ix_aps_r",
         "handle": "c5"
       },
       "target": {
@@ -2194,7 +2194,7 @@
       "id": "w_aps_vc1",
       "color": "Orange",
       "source": {
-        "id": "aps",
+        "id": "ix_aps_r",
         "handle": "c4"
       },
       "target": {
@@ -2208,7 +2208,7 @@
       "color": "Black",
       "stripeColor": "White",
       "source": {
-        "id": "aps",
+        "id": "ix_aps_r",
         "handle": "c2"
       },
       "target": {
@@ -2693,7 +2693,7 @@
     {
       "id": "bn_bp_960__aps",
       "sourceId": "bp_960",
-      "targetId": "aps",
+      "targetId": "ix_aps_r",
       "length": {
         "value": 860,
         "unit": "mm"
@@ -3580,26 +3580,6 @@
   ],
   "connectorParts": [
     {
-      "partNumber": "Sumitomo TS 025 6-way",
-      "manufacturer": "Sumitomo / Subaru",
-      "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS - Subaru BRZ e-throttle pedal. Face, tab up: 1 VC2, 2 GND2, 3 VPA2, 4 VC1, 5 GND1, 6 VPA1",
-      "numberOfCavities": 6,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "id": "cp_brz_aps6",
-      "image": {
-        "source": "url",
-        "url": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring.jpg",
-        "lowResUrl": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring_200x.jpg"
-      }
-    },
-    {
       "partNumber": "HD36-24-33SE",
       "manufacturer": "TE DEUTSCH",
       "description": "CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL - ECUMaster CSB3 enclosure mate (harness side); box side HD34-24-33PE not modelled. Map per plan 6.37/6.40",
@@ -4291,7 +4271,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (dm_csb3io_c26)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\ncsb3io (label): ECUMaster CSB3 (power feed — full I/O on ST185-A-cabin)\nCabin fuse block (passenger gl F12: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nCabin fuse block (passenger gl F13: 7.5A - MRS EPS pump logic enable (ignition-switched)\nHigh-current fuse block HCFB H4: EPS pump relay 30 (k_eps on ST185-B-cabin) - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (dm_csb3io_c26)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\ncsb3io (label): ECUMaster CSB3 (power feed — full I/O on ST185-A-cabin)\nCabin fuse block (passenger gl F12: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nCabin fuse block (passenger gl F13: 7.5A - MRS EPS pump logic enable (ignition-switched)\nHigh-current fuse block HCFB H4: EPS pump relay 30 (k_eps on ST185-B-cabin) - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A - its B leg (bulkhead B c13, rear WS spur, fuel level pull-up) is drawn on ST185-B-cabin (dm_sp_5v_Splice), crossover (a)\nsp_gndout (Splice): Gnd Out at ECU A - its B leg (B22, bulkhead B c17/c19, rear WS spur, fuel level) is drawn on ST185-B-cabin (dm_sp_gndout_Splice), crossover (a)\nsp_sw12 (Splice): switched 12V bus - its B-side loads (condenser fan and EPS relay coils, VSS feed on bulkhead B c20) are drawn on ST185-B-cabin (dm_sp_sw12_Splice)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (dm_sp_chassis_Splice)",
       "schematicPosition": {
         "x": 4200,
         "y": 0

@@ -44,6 +44,7 @@ whole chain and must pass before every commit.
 | `XTREMEX-IO-TABLE.html` | Visual face of the SoT, with a generated pin map |
 | `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: fuse block, HCFB, A-triggered relays, APS, CSB3 plug, front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
 | `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: condenser fan relay, fuel level branch, rear wheel-speed spur (Rule 3) |
+| `docs/harness/rebuild/ST185-APS-Pedal.harness` | APS pedal harness behind `IX_APS` (Rule 3 crossover c) |
 | `docs/harness/rebuild/ST185-A-engine.harness` | Bulkhead A engine half to every A-letter engine device (Rule 3) |
 | `docs/harness/rebuild/ST185-B-engine.harness` | Bulkhead B engine half to every B-letter engine device, ETB motor (Rule 3) |
 | `docs/harness/rebuild/ST185-CAN.harness` | CAN backbone - the only drawing with CAN H/L |
@@ -146,7 +147,15 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     sensors. ECU B has no +5V. B22 is a native Gnd Out on ECU B, drawn on the same net as
     A24 - **unverified**: Link's documentation says nothing about tying the two.
   - **(b)** ETB: relay trigger on A20, H-bridge supply on B5 (by ECU pin design).
-  - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design).
+  - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design). All pedal
+    wiring stays in the cabin: the A pedal wires break off `ST185-A-cabin` and the B33
+    wire breaks off `ST185-B-cabin`, both at the female DT 6-way of `IX_APS`, and
+    `ST185-APS-Pedal` runs from the male half to the pedal. The throttle **body** (A20
+    relay trigger, B5 supply, B18/B26 motor, A22/A33 sensors) is engine-bay wiring.
+- **Broken-off ends come in pairs.** A wire may leave one loom file for another only at an
+  inline connector pair or at a registered cross-reference stub, and a stub's other end
+  must exist on the owning file and name the stub's harness back
+  (`validate_bulkhead_letter.py` L6).
 - Every other loom stays as it is: `EngineRoom-C`, `CAN`, `ClusterLED`, `AntiTheft`,
   `WheelSpeed-Front` / `-Rear`, `RearFuel`, `ACAmp-Spur`.
 

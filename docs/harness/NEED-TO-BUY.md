@@ -1,7 +1,7 @@
 # Harness — need to buy
 
-Generated on 2026-09-28 from the 12 `.harness` files in `docs/harness/rebuild/`:
-`A-cabin`, `B-cabin`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`.
+Generated on 2026-09-28 from the 13 `.harness` files in `docs/harness/rebuild/`:
+`A-cabin`, `B-cabin`, `APS-Pedal`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
@@ -40,23 +40,23 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC RING M5 10-8` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M5 STUD, ADHESI | 4 | 0 | **4** |
 | `GENERIC RING M6 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG | 4 | 0 | **4** |
 | `1-1355880-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 2.5-4 MM2 (14-12 AWG | 3 | 0 | **3** |
+| `DT04-6P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY - | 3 | 0 | **3** |
+| `DT06-6S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY - wh | 3 | 0 | **3** |
 | `GENERIC LUG M8 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE  | 3 | 0 | **3** |
 | `GENERIC RING M6 12-10` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG | 3 | 0 | **3** |
+| `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 3 | 0 | **3** |
+| `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 3 | 0 | **3** |
 | `1-1355833-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 0.5-1.0 MM2 (20-18 A | 2 | 0 | **2** |
 | `1-1355844-1` | TE Connectivity | CONTACT, BUSBAR FEED, CUNISI PRE-TINNED, 4.0-6.0 MM2 (10 AWG)  | 2 | 0 | **2** |
 | `120R 1/4W` | Generic | RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W - CAN bus t | 2 | 0 | **2** |
 | `160927-4` | TE Connectivity | CONTACT, RECEPTACLE, 6.3 X 0.8, TIN, 1.0-2.5 MM2 (18-14 AWG) - | 2 | 0 | **2** |
 | `280919-4` | TE Connectivity | CONTACT, RECEPTACLE, 4.8 X 0.8, TIN, 0.5-1.5 MM2 (20-16 AWG) - | 2 | 0 | **2** |
 | `BDK 2.8` | Bosch | CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG) | 2 | 0 | **2** |
-| `DT04-6P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY - | 2 | 0 | **2** |
-| `DT06-6S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY - wh | 2 | 0 | **2** |
 | `GENERIC LUG M10 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE | 2 | 0 | **2** |
 | `GENERIC LUG M8 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE  | 2 | 0 | **2** |
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLA | 2 | 0 | **2** |
 | `RL00801-50RE` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED | 2 | 0 | **2** |
 | `W3S` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY PLUG | 2 | 0 | **2** |
-| `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 2 | 0 | **2** |
-| `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 2 | 0 | **2** |
 | `16-04477` | TE DEUTSCH | Gasket 24SZ | 6 | 4 | **2** |
 | `1-1904045-6` | TE Connectivity | SOCKET, RELAY, MICRO ISO, 5 POS, WITH MOUNTING FLAP (V23333-Z0 | 1 | 0 | **1** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W - cam Hall | 1 | 0 | **1** |
@@ -103,9 +103,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
 | `0413-214-1205` | PLUG, SEALING, CAVITY, SIZE 12, YELLOW - unused size 12 cavity | 4 | 10 |
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT recep | 55 | 130 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT recep | 61 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 51 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 57 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS -  | 1 | 1 |
@@ -167,7 +167,6 @@ will over-order these; use this list, not the drawings.
 
 | Connector | One part, drawn on | Counted in |
 |---|---|---|
-| `aps` | A-cabin, B-cabin | A-cabin |
 | `bh_a_eng` | A-engine, CAN | A-engine |
 | `bh_a_fw` | A-cabin, CAN | A-cabin |
 | `cop1` | A-engine, B-engine | A-engine |
@@ -182,6 +181,7 @@ will over-order these; use this list, not the drawings.
 | `inj2` | A-engine, B-engine | A-engine |
 | `inj3` | A-engine, B-engine | A-engine |
 | `inj4` | A-engine, B-engine | A-engine |
+| `ix_aps_r` | A-cabin, B-cabin | A-cabin |
 | `ix_ws_front_p` | A-cabin, B-cabin | A-cabin |
 | `k_etb` | A-cabin, B-cabin | A-cabin |
 | `k_fan` | A-cabin, EngineRoom-C | A-cabin |
@@ -199,6 +199,7 @@ mating half). Contacts and wedgelocks come from each half's part configuration a
 | `IX_WS_FRONT` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_front_r` on WheelSpeed-Front | `ix_ws_front_p` on A-cabin |
 | `IX_AC_CTS` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_accts_r` on A-cabin | `ix_accts_p` on ACAmp-Spur |
 | `IX_FUEL_LVL` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_fuel_r` on B-cabin | `ix_fuel_p` on RearFuel |
+| `IX_APS` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_aps_p` on APS-Pedal | `ix_aps_r` on A-cabin |
 
 ## OEM flying leads - splice material only, no OEM housing
 

@@ -1,0 +1,322 @@
+{
+  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
+  "version": 0.9,
+  "lengthUnit": "mm",
+  "connectors": [
+    {
+      "id": "ix_aps_p",
+      "label": "APS pedal harness - 6-way inline mate (IX_APS)",
+      "width": 270,
+      "partId": "cp_dt04_6p",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "APS VC2 +5V (sub) - pedal pin 1"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "APS GND2 (sub) - pedal pin 2"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "APS VPA2 sub signal -> ECU-B B33 - pedal pin 3"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "APS VC1 +5V (main) - pedal pin 4"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "APS GND1 (main) - pedal pin 5"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "APS VPA1 main signal -> ECU-A A14 - pedal pin 6"
+        }
+      ],
+      "layoutPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "aps",
+      "label": "BRZ e-throttle pedal (APS)",
+      "partId": "cp_brz_aps6",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "VC2 +5V (sub)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "GND2 (sub)"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "VPA2 APS-S"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "VC1 +5V (main)"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "GND1 (main)"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "VPA1 APS-M"
+        }
+      ],
+      "layoutPosition": {
+        "x": 600,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 0
+      },
+      "width": 270
+    }
+  ],
+  "wires": [
+    {
+      "id": "w_aps_ped_c1",
+      "source": {
+        "id": "ix_aps_p",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "aps",
+        "handle": "c1"
+      },
+      "color": "Orange",
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w_aps_ped_c2",
+      "source": {
+        "id": "ix_aps_p",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "aps",
+        "handle": "c2"
+      },
+      "color": "Black",
+      "partId": "wp_20_blk_wht",
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_aps_ped_c3",
+      "source": {
+        "id": "ix_aps_p",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "aps",
+        "handle": "c3"
+      },
+      "color": "White",
+      "partId": "wp_20_wht"
+    },
+    {
+      "id": "w_aps_ped_c4",
+      "source": {
+        "id": "ix_aps_p",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "aps",
+        "handle": "c4"
+      },
+      "color": "Orange",
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w_aps_ped_c5",
+      "source": {
+        "id": "ix_aps_p",
+        "handle": "c5"
+      },
+      "target": {
+        "id": "aps",
+        "handle": "c5"
+      },
+      "color": "Black",
+      "partId": "wp_20_blk_wht",
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_aps_ped_c6",
+      "source": {
+        "id": "ix_aps_p",
+        "handle": "c6"
+      },
+      "target": {
+        "id": "aps",
+        "handle": "c6"
+      },
+      "color": "White",
+      "partId": "wp_20_wht"
+    }
+  ],
+  "bundles": [
+    {
+      "id": "bn_ix_aps_p__aps",
+      "sourceId": "ix_aps_p",
+      "targetId": "aps",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_aps",
+      "schematicPosition": {
+        "x": 0,
+        "y": 300
+      },
+      "text": "APS PEDAL HARNESS - the BRZ e-throttle pedal plug to the male half of IX_APS. The A pedal wires (A14 main signal, both +5V, both grounds) break off ST185-A-cabin and the B33 sub signal breaks off ST185-B-cabin; they converge on the cabin's DT06-6S. All pedal wiring is in the cabin. Pin n of the inline carries pedal pin n. Colours follow the cabin wires. The 150 mm run length is a placeholder - TBD - need the pedal-to-inline distance measured at the car."
+    }
+  ],
+  "wireParts": [
+    {
+      "id": "wp_20_org",
+      "partNumber": "EW-1C20-ORG",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Orange",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_blk_wht",
+      "partNumber": "EW-1C20-BLK-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_wht",
+      "partNumber": "EW-1C20-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    }
+  ],
+  "connectorParts": [
+    {
+      "id": "cp_dt04_6p",
+      "partNumber": "DT04-6P",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY - wheel-speed VRC output inline interface, wheel-speed harness side (receiving half DT06-6S is on the ECU spur)",
+      "numberOfCavities": 6,
+      "gender": "Male",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_dt16p",
+          "cavityPlugPartId": "pl_sz16",
+          "lockPartId": "lp_w6p"
+        }
+      ],
+      "url": "https://www.te.com/usa-en/product-DT04-6P.html"
+    },
+    {
+      "partNumber": "Sumitomo TS 025 6-way",
+      "manufacturer": "Sumitomo / Subaru",
+      "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS - Subaru BRZ e-throttle pedal. Face, tab up: 1 VC2, 2 GND2, 3 VPA2, 4 VC1, 5 GND1, 6 VPA1",
+      "numberOfCavities": 6,
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_generic_skt"
+        }
+      ],
+      "id": "cp_brz_aps6",
+      "image": {
+        "source": "url",
+        "url": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring.jpg",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring_200x.jpg"
+      }
+    }
+  ],
+  "contactParts": [
+    {
+      "id": "ct_dt16p",
+      "partNumber": "0460-202-1631",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT receptacle; OWNED",
+      "type": "Crimp",
+      "gender": "Pin",
+      "minGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "contactColor": "Gold"
+    },
+    {
+      "partNumber": "(generic)",
+      "manufacturer": "Generic",
+      "type": "Crimp",
+      "gender": "Socket",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, confirm before ordering",
+      "id": "ct_generic_skt"
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "partNumber": "114017",
+      "manufacturer": "TE DEUTSCH",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
+      "id": "pl_sz16"
+    }
+  ],
+  "lockParts": [
+    {
+      "id": "lp_w6p",
+      "partNumber": "W6P",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE"
+    }
+  ]
+}

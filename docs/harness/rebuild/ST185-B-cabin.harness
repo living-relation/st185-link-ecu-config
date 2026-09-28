@@ -331,9 +331,10 @@
       }
     },
     {
-      "id": "aps",
-      "label": "BRZ e-throttle pedal (APS)",
-      "partId": "cp_brz_aps6",
+      "id": "ix_aps_r",
+      "label": "APS pedal - 6-way inline to the pedal harness (IX_APS)",
+      "width": 270,
+      "partId": "cp_dt06_6s",
       "cavities": [
         {
           "id": "c1",
@@ -348,7 +349,7 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "VPA2 APS-S"
+          "signal": "APS VPA2 sub signal -> ECU-B B33 - pedal pin 3"
         },
         {
           "id": "c4",
@@ -374,7 +375,6 @@
         "x": 660,
         "y": 0
       },
-      "width": 270,
       "excludeFromBom": true
     },
     {
@@ -1112,7 +1112,7 @@
       "id": "w39",
       "color": "White",
       "source": {
-        "id": "aps",
+        "id": "ix_aps_r",
         "handle": "c3"
       },
       "target": {
@@ -1928,7 +1928,7 @@
     {
       "id": "b_bn_bp_900__aps",
       "sourceId": "b_bp_900",
-      "targetId": "aps",
+      "targetId": "ix_aps_r",
       "length": {
         "value": 860,
         "unit": "mm"
@@ -2448,26 +2448,6 @@
     }
   ],
   "connectorParts": [
-    {
-      "partNumber": "Sumitomo TS 025 6-way",
-      "manufacturer": "Sumitomo / Subaru",
-      "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS - Subaru BRZ e-throttle pedal. Face, tab up: 1 VC2, 2 GND2, 3 VPA2, 4 VC1, 5 GND1, 6 VPA1",
-      "numberOfCavities": 6,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "id": "cp_brz_aps6",
-      "image": {
-        "source": "url",
-        "url": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring.jpg",
-        "lowResUrl": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring_200x.jpg"
-      }
-    },
     {
       "partNumber": "HD36-24-33SE",
       "manufacturer": "TE DEUTSCH",
@@ -3062,7 +3042,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, NO internal flywheel diode - diode-suppressed relay fitted (TE 7-1904094-9)\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead B - firewall (HDP24-2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - firewall (HDP24-2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nsp_gndout-Splice 1: crossover (a): B leg of sensor Gnd Out from the splice at ECU A (B22 joins it) - splice drawn on ST185-A-cabin\nsp_5v-Splice 1: crossover (a): B leg of the +5V sensor supply from the splice at ECU A - splice drawn on ST185-A-cabin\nsp_chassis-Splice 1: ECU-B power grounds B25/B34 join the cabin chassis ground splice - splice drawn on ST185-A-cabin\nsp_sw12-Splice 1: switched 12V bus splice at ECU A feeding a B-side load - splice drawn on ST185-A-cabin\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: HCFB H4 - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nHigh-current fuse block HCFB h4: fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, NO internal flywheel diode - diode-suppressed relay fitted (TE 7-1904094-9)\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead B - firewall (HDP24-2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - firewall (HDP24-2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nsp_gndout-Splice 1: crossover (a): B leg of sensor Gnd Out from the splice at ECU A (B22 joins it) - splice drawn on ST185-A-cabin\nsp_5v-Splice 1: crossover (a): B leg of the +5V sensor supply from the splice at ECU A - splice drawn on ST185-A-cabin\nsp_chassis-Splice 1: ECU-B power grounds B25/B34 join the cabin chassis ground splice - splice drawn on ST185-A-cabin\nsp_sw12-Splice 1: switched 12V bus splice at ECU A feeding a B-side load - splice drawn on ST185-A-cabin\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: HCFB H4 - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nHigh-current fuse block HCFB h4: fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (dm_ecu_b_b27)",
       "schematicPosition": {
         "x": 4200,
         "y": 0

@@ -13,21 +13,22 @@ enforces that.
 
 | Folder / file | What it is | Edit it? |
 |---|---|---|
-| **`rebuild/`** | The 12 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
+| **`rebuild/`** | The 13 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
 | **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, registered cross-references. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
 | `min/` | Same documents, whitespace stripped, for upload to the harness.design project "ST185 harness design". The Free plan caps a harness at 100 connections, so every file must stay under 100 | No - `make_min.py` regenerates it |
 | `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |
 | `../../archive/2026-09-27-harness-redesign/` | The retired frozen baseline and legacy tools | No - history only |
 
-## The 12 harnesses
+## The 13 harnesses
 
 Each file is one physical harness that gets built. Shared nets may cross a boundary; a
 physical section of copper, a connector or a BOM line has one owner.
 
 | File | Harness | Scope |
 |---|---|---|
-| `ST185-A-cabin.harness` | ECU connector A, cabin | ECU-A, cabin half of bulkhead A, fuse block, HCFB, A-triggered relays, APS, CSB3 plug, front wheel-speed spur, A/C coolant switch branch, fuel pump run, the +5V / Gnd Out / +8V / switched-12V splices |
+| `ST185-A-cabin.harness` | ECU connector A, cabin | ECU-A, cabin half of bulkhead A, fuse block, HCFB, A-triggered relays, female half of `IX_APS` (APS pedal), CSB3 plug, front wheel-speed spur, A/C coolant switch branch, fuel pump run, the +5V / Gnd Out / +8V / switched-12V splices |
 | `ST185-B-cabin.harness` | ECU connector B, cabin | ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, the front spur's FR core, the B legs of +5V / Gnd Out |
+| `ST185-APS-Pedal.harness` | APS pedal | male half of `IX_APS` to the BRZ e-throttle pedal plug; the A and B pedal wires break off the two cabin looms at `IX_APS` |
 | `ST185-A-engine.harness` | ECU connector A, engine | bulkhead A engine half to every A-letter engine device |
 | `ST185-B-engine.harness` | ECU connector B, engine | bulkhead B engine half to every B-letter engine device and the ETB motor |
 | `ST185-CAN.harness` | CAN backbone | the only drawing with CAN H/L |
@@ -57,7 +58,7 @@ from its PMU-16 days - names only, not a PMU.
 How each kind of boundary is drawn is in `redesign/INTERFACES.md`. In short:
 
 - **Inline interface** - a real connector pair, one half per harness, same cavity text
-  on both. The four today: `IX_WS_FRONT`, `IX_WS_REAR` (DT 6-way), `IX_AC_CTS`,
+  on both. The five today: `IX_WS_FRONT`, `IX_WS_REAR`, `IX_APS` (DT 6-way), `IX_AC_CTS`,
   `IX_FUEL_LVL` (DT 2-way).
 - **Bulkhead** - HDP20 A and B, each half drawn on the harnesses that populate it.
 - **OEM flying lead** - a `Loose` terminal whose text is the EWD locator. No OEM housing

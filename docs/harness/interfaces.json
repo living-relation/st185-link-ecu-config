@@ -10,6 +10,10 @@
       "file": "ST185-B-cabin.harness",
       "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
     },
+    "APS-Pedal": {
+      "file": "ST185-APS-Pedal.harness",
+      "physical": "APS pedal harness - male half of IX_APS to the BRZ e-throttle pedal plug (cabin)"
+    },
     "A-engine": {
       "file": "ST185-A-engine.harness",
       "physical": "Engine harness behind bulkhead A - every engine device whose ECU signal is on connector A"
@@ -144,6 +148,34 @@
           "harness": "RearFuel",
           "connector": "ix_fuel_p",
           "role": "receiving"
+        }
+      ]
+    },
+    {
+      "id": "IX_APS",
+      "type": "inline_interface",
+      "family": "Deutsch DT 6-way (DT04-6P / DT06-6S)",
+      "pins": {
+        "c1": "VC2 +5V (sub)",
+        "c2": "GND2 (sub)",
+        "c3": "VPA2 -> B33",
+        "c4": "VC1 +5V (main)",
+        "c5": "GND1 (main)",
+        "c6": "VPA1 -> A14"
+      },
+      "halves": [
+        {
+          "harness": "APS-Pedal",
+          "connector": "ix_aps_p",
+          "role": "source"
+        },
+        {
+          "harness": "A-cabin",
+          "connector": "ix_aps_r",
+          "role": "receiving",
+          "alsoDrawnOn": [
+            "B-cabin"
+          ]
         }
       ]
     }
