@@ -218,7 +218,7 @@ recommended option for each. Every one can be reversed; the drawings and the reg
 |---|---|---|
 | D1 | **Front interface is 6-way with two drains.** Pin 5 = drain of the front output cable (5V / Gnd / FL, screen → SHIELD_A, A7). Pin 6 = drain of FR's own 1-core screened cable (→ SHIELD_B, B17, floats at the VRC). | A7 and B17 stay apart; `SHIELD-RULES.md` §6.30 unchanged. The front output is a 3-core + 1-core pair rather than one 4-core. Rear keeps one 4-core + drain (both rear signals are loom B). |
 | D2 | **Deutsch DT 6-way:** `DT04-6P` receptacle + `W6P` on the wheel-speed harness side, `DT06-6S` plug + `W6S` on the ECU spur (the receiving harness; it supplies +5V, so it gets the sockets). Contacts `0460-202-1631` / `0462-201-1631` (size 16, owned). Rear pin 6 is plugged (`114017`). | Two new connector pairs to buy. The owned `DT04-12PA` / `DT06-12SA` sets stay available. |
-| D3 | **`ST185-CAN`, `ST185-AntiTheft`, `ST185-ClusterLED` stay as they are.** The ECU/cabin merge and the engine re-split by bulkhead letter are Phase 7. | — |
+| D3 | ~~`ST185-CAN`, `ST185-AntiTheft`, `ST185-ClusterLED` stay as they are. The ECU/cabin merge and the engine re-split by bulkhead letter are Phase 7.~~ **Superseded 2026-09-28** by `docs/RECONCILIATION-RULES.md` Rule 3 (Daniel): four ECU looms by connector letter, `ST185-A-cabin` / `-B-cabin` / `-A-engine` / `-B-engine`; the merged ECU/cabin drawing is retired. CAN, AntiTheft and ClusterLED still stay as they are. | — |
 | D4 | **Rear Fuel is its own harness** with a `DT04-2P` / `DT06-2S` inline pair for fuel level (signal + ground). The pump keeps its own connector per 6.41. | — |
 | D5 | **A/C coolant switch** crosses on **bulkhead A c37 (signal) / c38 (return)**, then a `DT04-2P` / `DT06-2S` inline to a short A/C amplifier spur. Amplifier end: flying lead to TW, conn C (A34) pin 20, R-G, EWD p.150. Return pin and the switch part number are `TBD` (never invent a part number). | — |
 | D6 | **CSB3 0x640/0x642 A/C bits are unassigned in the docs only.** No frame, `frames.py` or RealDash change. | — |
@@ -226,6 +226,12 @@ recommended option for each. Every one can be reversed; the drawings and the reg
 J/B2 2A / 2D / 2E stay real connectors: the build crimps a dummy header that plugs into
 them (rule 8 exception). J/B1, IE1, R/B2, R/B4, the OEM switches and both A/C amplifiers
 become flying leads.
+
+## Open questions
+
+| | Question | Options | State |
+|---|---|---|---|
+| Q-RAIL | The injector rail (F11 15 A) and COP rail (F10 20 A) feed A devices but cross on bulkhead B c1/c2, on size-12 contacts (`0460-220-1231` / `0462-210-1231`, 25 A). Rule 3 wants them on bulkhead A, which (`HDP24-24-47`) has 5 size-16 and 42 size-20 cavities, no size-12; the size-16 contacts are 13 A and only c1 is spare. | (1) keep on B as a recorded exception; (2) run both rails through loom C point-to-point like the starter and fan feeds; (3) replace bulkhead A with an insert that has size-12 positions; (4) split each rail over two size-16 contacts on A | Waiting on Daniel. `validate_bulkhead_letter.py` lists it as PENDING. |
 
 ## Current state
 

@@ -13,22 +13,23 @@ enforces that.
 
 | Folder / file | What it is | Edit it? |
 |---|---|---|
-| **`rebuild/`** | The 11 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
+| **`rebuild/`** | The 12 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
 | **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, registered cross-references. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
-| `min/` | Same documents, whitespace stripped, for upload to the harness.design project "ST185 harness design". The Free plan caps a harness at 100 connections, so the cloud copy of `ST185-ECU-Cabin` (119) is partial and carries a warning note | No - `make_min.py` regenerates it |
+| `min/` | Same documents, whitespace stripped, for upload to the harness.design project "ST185 harness design". The Free plan caps a harness at 100 connections, so every file must stay under 100 | No - `make_min.py` regenerates it |
 | `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |
 | `../../archive/2026-09-27-harness-redesign/` | The retired frozen baseline and legacy tools | No - history only |
 
-## The 11 harnesses
+## The 12 harnesses
 
 Each file is one physical harness that gets built. Shared nets may cross a boundary; a
 physical section of copper, a connector or a BOM line has one owner.
 
 | File | Harness | Scope |
 |---|---|---|
-| `ST185-ECU-Cabin.harness` | ECU-to-firewall cabin harness | ECU-A, ECU-B, cabin halves of bulkheads A and B, relays and fuse box, CSB3 plug, both wheel-speed spurs, A/C coolant switch branch, fuel pump run |
-| `ST185-A-engine.harness` | Engine, signal side | bulkheads A/B engine halves to the engine-bay signal circuits |
-| `ST185-B-engine.harness` | Engine, power side | bulkheads A/B engine halves to the engine-bay power circuits |
+| `ST185-A-cabin.harness` | ECU connector A, cabin | ECU-A, cabin half of bulkhead A, fuse block, HCFB, A-triggered relays, APS, CSB3 plug, front wheel-speed spur, A/C coolant switch branch, fuel pump run, the +5V / Gnd Out / +8V / switched-12V splices |
+| `ST185-B-cabin.harness` | ECU connector B, cabin | ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, the front spur's FR core, the B legs of +5V / Gnd Out |
+| `ST185-A-engine.harness` | ECU connector A, engine | bulkhead A engine half to every A-letter engine device |
+| `ST185-B-engine.harness` | ECU connector B, engine | bulkhead B engine half to every B-letter engine device and the ETB motor |
 | `ST185-CAN.harness` | CAN backbone | the only drawing with CAN H/L |
 | `ST185-EngineRoom-C.harness` | Loom C | engine room, PDB, fuse blocks + relays, EPS, OEM J/B feeds (J/B2 dummy headers; the rest are flying leads) |
 | `ST185-WheelSpeed-Front.harness` | Front wheel speed | one Y harness: FL/FR drops to the front VRC endpoints, output to `IX_WS_FRONT` |
@@ -38,12 +39,10 @@ physical section of copper, a connector or a BOM line has one owner.
 | `ST185-ClusterLED.harness` | Cluster warning LEDs | LED loom; C11/C12 taps are flying leads |
 | `ST185-AntiTheft.harness` | Anti-theft | cabin |
 
-The two engine files still split by signal / power rather than by bulkhead letter:
-15 engine devices take their signal through one bulkhead and their rail through the
-other, so a split by bulkhead needs a rail re-route decision first
-(`redesign/IMPLEMENTATION-PLAN.md`, phase 7). What must hold is per bulkhead - A cabin
-cN mates A engine cN, B cabin cN mates B engine cN, and a circuit crosses on the
-bulkhead of its ECU pin's loom. `audit_mating.py` checks that.
+The four ECU loom files follow the ECU connector letter - the rule, its three allowed
+crossovers and the one open deviation (Q-RAIL) are in `../RECONCILIATION-RULES.md`
+Rule 3. `validate_bulkhead_letter.py` enforces it; `audit_mating.py` checks A cabin cN
+mates A engine cN and B mates B.
 
 The center cluster's own assembly harness lives in `center-cluster-esp32-p4`;
 `ST185-CAN` ends at its CAN-drop terminal.
@@ -88,6 +87,7 @@ interfaces.json              <- and the ownership facts with them
         audit_shields.py           docs/SHIELD-RULES.md
         audit_pin_names.py         drains only on A7/B17; one name per mating cavity
         audit_mating.py            A mates A, B mates B; A7 and B17 never joined
+        validate_bulkhead_letter.py ECU looms follow the connector letter (Rule 3)
         audit_bulkhead_pairs.py    no one-sided bulkhead cavity
         audit_bh_collisions.py     no two circuits on one cavity half
         buylist.py                 writes NEED-TO-BUY.md

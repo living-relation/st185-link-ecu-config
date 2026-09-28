@@ -39,9 +39,12 @@ thing is wrong.
 - **Two bulkheads only**, A and B, HDP20 from owned stock: A is `HDP24-24-47PE-L017` /
   `HDP26-24-47SE-L015`, B is `HDP24-24-21PN` / `HDP26-24-21SN`. Bulkhead C is deleted. The
   Souriau 8STA 37-way design is superseded — do not reintroduce it.
-- **The ECU pin decides the loom.** An ECU-A pin crosses on bulkhead A, an ECU-B pin on
-  bulkhead B (the `loom` column in `sot/channels.csv`). Shared rails (+5V, +8V, Gnd Out) are
-  the exception: loom B has no +5V pin and borrows A32.
+- **ECU looms follow the ECU connector letter** - canonical text `docs/RECONCILIATION-RULES.md`
+  Rule 3 (Daniel, 2026-09-28; overrides "A = signal / B = power" and the merged ECU-Cabin).
+  Four ECU files: `ST185-A-cabin`, `-B-cabin`, `-A-engine`, `-B-engine`; the letter is the
+  pin's `conn` column in `sot/channels.csv`; non-ECU wires follow their device's ECU signal.
+  Only crossovers: (a) +5V / Gnd Out splice at ECU A with a leg to each bulkhead, (b) ETB
+  A20 / B5, (c) APS A14 / B33. Gate: `validate_bulkhead_letter.py`.
 - **Each bulkhead cavity mates its twin.** Bulkhead A cabin cN = bulkhead A engine cN, same
   for B, same name on both halves. The looms are separate drawings, so only the audits join
   them (`audit_mating.py`, `audit_pin_names.py`).

@@ -14,7 +14,7 @@
 | 3 New gates | Done - all HARD |
 | 4-5 Rear / front wheel speed | Done (D1 = two-drain 6-way front, D2 = DT 6-way) |
 | 6 CSB3, OEM flying leads, A/C coolant switch | Done (22 + 2 flying leads; ambient and pressure-switch circuits stay factory wiring) |
-| 7 Inventory restructure | ECU/cabin merge and Rear Fuel done. **Engine re-split by bulkhead letter not done**: 15 devices (injectors, coils, and the oil/fuel/coolant pressure, oil temp, charge-pipe IAT, ETB and VSS sensors) take signal through one bulkhead and rail through the other; splitting needs a rail re-route decision |
+| 7 Inventory restructure | **Superseded 2026-09-28** by `docs/RECONCILIATION-RULES.md` Rule 3. Done: ECU looms split by connector letter into `ST185-A-cabin` / `-B-cabin` / `-A-engine` / `-B-engine` (B sensors take +5V / Gnd Out / VSS 12V through new bulkhead B c13 / c19 / c20; MRS enable moved B c14 to A c35); Rear Fuel done. Open: Q-RAIL (`DECISIONS.md`) - injector and COP rails still cross on bulkhead B |
 | 8 Generators + legacy retirement | Done (owner/interface-aware lists; legacy tools archived) |
 | 9 Propagation | Done |
 
@@ -223,6 +223,10 @@ Retire `ST185-WheelSpeed.harness` when it is empty. Front gates go HARD.
 - `validate_oem_endpoints.py` goes HARD.
 
 ### Phase 7 — Harness inventory restructure (after D3)
+
+> **Superseded 2026-09-28.** The merge below was done and then replaced by
+> `docs/RECONCILIATION-RULES.md` Rule 3: four ECU looms by connector letter. Kept as
+> history; the status table above is current.
 
 - Merge A-ECU + B-ECU into the ECU/cabin drawing; the only A↔B crossover is shared ECU
   power/ground.

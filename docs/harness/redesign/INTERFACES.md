@@ -26,7 +26,9 @@ harness.design JSON.
   `validate_ownership.py`.
 - `interfaces` — `id`, `type: inline_interface`, `pins` (cavity → function), and two `halves`, each
   `{harness, connector, role}` where `role` is `source` or `receiving`. The receiving harness owns
-  the mating half.
+  the mating half. Optional `alsoDrawnOn` lists other harnesses that draw an excluded copy of the
+  same half and wire some of its pins - used when one half's pins belong to both ECU letter looms
+  (the front wheel-speed spur: FL on A23, FR on B21). Its wiring counts toward the half.
 - `endpoints` — `device_endpoint` groups: `id` (`VRC_REAR_IN_L`), `harness`, `device`, `terminals`.
 - `enclosures` — screen landings a device case joins internally (the VRC powered-device exception,
   `SHIELD-RULES.md` §6.30). The graph treats them as one node.

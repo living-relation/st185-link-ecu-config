@@ -4,8 +4,9 @@ Agent-agnostic. Claude Code, Cursor, Codex, or any other tool: these apply. The
 per-agent rule files (`.cursor/rules/`, `.claude/rules/`, `AGENTS.md`) all point here,
 and this file is the wording they defer to.
 
-Two rules. Both exist because this project has repeatedly drifted: a change landed in one
-document and its siblings silently disagreed for weeks.
+Three rules. Rules 1 and 2 exist because this project has repeatedly drifted: a change
+landed in one document and its siblings silently disagreed for weeks. Rule 3 is how the
+ECU looms are divided, and this file owns its wording.
 
 ---
 
@@ -41,9 +42,10 @@ whole chain and must pass before every commit.
 |---|---|
 | `sot/channels.csv` | Pin/channel SoT |
 | `XTREMEX-IO-TABLE.html` | Visual face of the SoT, with a generated pin map |
-| `docs/harness/rebuild/ST185-ECU-Cabin.harness` | ECU-to-firewall cabin harness: both ECU connectors, cabin halves of bulkheads A and B, relays, fuse box, CSB3 plug, wheel-speed spurs |
-| `docs/harness/rebuild/ST185-A-engine.harness` | Engine side, signal circuits |
-| `docs/harness/rebuild/ST185-B-engine.harness` | Engine side, power circuits |
+| `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: fuse block, HCFB, A-triggered relays, APS, CSB3 plug, front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
+| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: condenser fan relay, fuel level branch, rear wheel-speed spur (Rule 3) |
+| `docs/harness/rebuild/ST185-A-engine.harness` | Bulkhead A engine half to every A-letter engine device (Rule 3) |
+| `docs/harness/rebuild/ST185-B-engine.harness` | Bulkhead B engine half to every B-letter engine device, ETB motor (Rule 3) |
 | `docs/harness/rebuild/ST185-CAN.harness` | CAN backbone - the only drawing with CAN H/L |
 | `docs/harness/rebuild/ST185-EngineRoom-C.harness` | Loom C engine room, no bulkhead |
 | `docs/harness/rebuild/ST185-WheelSpeed-Front.harness` / `-Rear.harness` | Wheel-speed Y harnesses to VRC endpoints and `IX_WS_FRONT` / `IX_WS_REAR` |
@@ -59,10 +61,10 @@ whole chain and must pass before every commit.
 | `docs/SHIELD-RULES.md` | Shield rules, enforced by the audits |
 | `docs/sourcing/te-on-hand-bom.csv` | Parts already owned - check before speccing anything new |
 
-The file names do not follow the bulkhead letter - a file can carry both bulkheads.
-What must hold is per **bulkhead**: every cavity on the bulkhead A cabin half mates the
-same cavity on the bulkhead A engine half, same for B, and a circuit crosses on the
-bulkhead of its ECU pin's loom. `audit_mating.py` and `audit_pin_names.py` check that.
+The four ECU loom files follow the ECU connector letter (Rule 3). Per **bulkhead**, every
+cavity on the bulkhead A cabin half mates the same cavity on the bulkhead A engine half,
+same for B. `audit_mating.py`, `audit_pin_names.py` and `validate_bulkhead_letter.py`
+check that.
 
 The frozen pre-split baseline and `verify_rebuild.py` were retired on 2026-09-27 to
 `archive/2026-09-27-harness-redesign/`; `verify_connectivity.py` replaced them. Retired diagrams, dated audit notes and one-shot fix scripts live in
@@ -123,6 +125,39 @@ For every frame the change touches, confirm across all participants:
 
 Record the outcome. If a mismatch is found and not fixed in the same pass, it gets written
 down as an open item — never left silent.
+
+---
+
+## Rule 3 — ECU looms follow the ECU connector letter
+
+**Daniel, 2026-09-28.** Binding; it overrides the handoff's "Rule 10 A = signal / B =
+power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the merged
+`ST185-ECU-Cabin` drawing (retired to `archive/zz-old/`).
+
+- **ECU connector A → cabin firewall A → engine firewall A → engine bay.** Connector B the
+  same, on bulkhead B.
+- **Exactly four ECU harness files:** `ST185-A-cabin`, `ST185-B-cabin`, `ST185-A-engine`,
+  `ST185-B-engine`. A wire's letter is the ECU pin's `conn` column in `sot/channels.csv`.
+- **Non-ECU wires** (fused 12V, relay outputs, grounds) follow the bulkhead of the ECU
+  signal of the device they serve.
+- **The only crossovers:**
+  - **(a)** +5V sensor supply (A32) and sensor Gnd Out splice in the **cabin** at ECU A:
+    one leg to cabin bulkhead A for the A sensors, one to cabin bulkhead B for the B
+    sensors. ECU B has no +5V. B22 is a native Gnd Out on ECU B, drawn on the same net as
+    A24 - **unverified**: Link's documentation says nothing about tying the two.
+  - **(b)** ETB: relay trigger on A20, H-bridge supply on B5 (by ECU pin design).
+  - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design).
+- Every other loom stays as it is: `EngineRoom-C`, `CAN`, `ClusterLED`, `AntiTheft`,
+  `WheelSpeed-Front` / `-Rear`, `RearFuel`, `ACAmp-Spur`.
+
+**Enforced by** `docs/harness/validate_bulkhead_letter.py`, a hard gate in `check_all.py`.
+Its allow-list is (a)/(b)/(c) and nothing else. Its `PENDING` list holds deviations that
+are waiting on a ruling and are printed on every run - today only Q-RAIL, below.
+
+**Open (Q-RAIL):** the injector rail (F11 15 A) and COP rail (F10 20 A) feed A devices but
+still cross on bulkhead B, on size-12 contacts. Bulkhead A (`HDP24-24-47`, 5 size-16 plus
+42 size-20) has no size-12 cavity, and its size-16 contacts are rated 13 A. They move when
+Daniel picks a route (`docs/harness/redesign/DECISIONS.md`, Q-RAIL).
 
 ---
 
