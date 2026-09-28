@@ -26,11 +26,11 @@ and broken-off pairs (rails, grounds and screens do not give a device a letter).
       drawn on two files (broken-off ends excepted - they are the pair)
 
 The allow-list is the rule's crossovers and nothing else:
-  (a) +5V (A32) and sensor Gnd Out (A24, B22) splice at ECU A in the cabin; their B
-      legs leave A-cabin broken off and run on B-cabin to the B cabin loads, and the
-      B-engine sensor feeds cross on bulkhead A rail pins and spur into B-engine through
-      the IX_B_RAIL inline pair (Daniel, 2026-09-28). A bulkhead cavity on those rails
-      may feed the other letter's devices (L4).
+  (a) +5V (A32) splices at ECU A in the cabin; its B leg leaves A-cabin broken off and
+      runs on B-cabin to the B cabin loads, and the B-engine sensor +5V crosses on
+      bulkhead A rail pins and spurs into B-engine through IX_B_RAIL (Daniel,
+      2026-09-28). A bulkhead cavity on that rail may feed the other letter's devices
+      (L4). Sensor ground stays per letter (A24 / B22, no harness tie).
   (b) ETB: relay trigger A20, H-bridge supply B5 from that relay's output; the B18 / B26
       motor wires leave B-engine as a short broken-off spur after bulkhead B and come
       into A-engine just after bulkhead A, to the throttle body drawn there

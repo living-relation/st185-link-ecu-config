@@ -144,21 +144,23 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
 - **Non-ECU wires** (fused 12V, relay outputs, grounds) follow the bulkhead of the ECU
   signal of the device they serve.
 - **The only crossovers:**
-  - **(a)** +5V sensor supply (A32) and sensor Gnd Out splice in the **cabin** at ECU A:
-    one leg to cabin bulkhead A for the A sensors, one to cabin bulkhead B for the B
-    sensors. ECU B has no +5V. B22 is a native Gnd Out on ECU B, drawn on the same net as
-    A24 - **unverified**: Link's documentation says nothing about tying the two.
+  - **(a)** +5V sensor supply (A32) splices in the **cabin** at ECU A and feeds both
+    letters (ECU B has no +5V). Sensor ground is **not** shared across letters: loom A's
+    sensors return to Gnd Out A24, loom B's to its own Gnd Out B22, with no A24-B22 tie in
+    the harness (Daniel, 2026-09-28: never splice A-owned sensor ground into the B looms
+    while ECU B has its own).
     **Tapered distribution (Daniel, 2026-09-28):** the ECU pin leads (A32, A24, B22) are
     18 AWG (the largest the Superseal 1.0 contact takes); 18 AWG trunks run from the ECU
     splices to a splice just before cabin bulkhead A (`sp_5v_bha` / `sp_gnd_bha`) and to the
-    loom B splices `sp_5v_b` / `sp_gndout_b` (B cabin loads; B22 lands on `sp_gndout_b`);
-    each rail then crosses on several 20 AWG bulkhead pins (A: c2, c39, c40 +5V; c3,
-    c41-c44 Gnd. B: c17 knock return only) that run
+    loom B splices `sp_5v_b` (+5V trunk from A) and `sp_gndout_b` (B22 lead) with
+    `sp_gnd_bhb` before bulkhead B; each rail then crosses on several 20 AWG bulkhead
+    pins (A: c2, c39, c40 +5V; c3, c41-c44 Gnd. B: c17 knock return, c19, c21 Gnd) that run
     straight to one device or to a small engine-side branch splice. Every splice is a
-    generic soldered splice point. The B-engine sensors do not use bulkhead B for their
-    rails: bulkhead A c45-c47 (+5V) and c10-c12 (Gnd) run as a short A-engine spur to the
-    DT 6-way inline pair `IX_B_RAIL` (DT06-6S on A-engine, DT04-6P on B-engine), one +5V
-    pin per pressure sensor and one ground pin per branch (Daniel, 2026-09-28).
+    generic soldered splice point. The B-engine sensors' +5V crosses on bulkhead A
+    c45-c47 and runs as a short A-engine spur to the DT 6-way inline pair `IX_B_RAIL`
+    (DT06-6S on A-engine, DT04-6P on B-engine, c4-c6 spare), one +5V pin per pressure
+    sensor (Daniel, 2026-09-28). Keep spare bulkhead cavities for cable screens: A c1,
+    c6, c10-c12, c27, c28, c32; B c13, c14 (size 16) and c3, c4 (size 12).
   - **(b)** ETB: relay trigger on A20, H-bridge supply on B5 (by ECU pin design).
   - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design). All pedal
     wiring stays in the cabin: the A pedal wires break off `ST185-A-cabin` and the B33

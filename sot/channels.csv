@@ -22,7 +22,7 @@ ECU,Aux 2,ecu_a,a20,AUX2_ETB_RLY,ETB power relay coil,signal,out,lowside-2a,none
 ECU,Aux 1,ecu_a,a21,AUX1_BOOST,Boost solenoid,signal,out,lowside-2a,none,,A,set,QSG-IO,Active-low
 ECU,An Volt 2,ecu_a,a22,AV2_TPS_MAIN,ETB TPS main,signal,in,0-5v,none,,A,set,QSG-IO,Bosch 74.5mm ETB
 ECU,DI 3,ecu_a,a23,DI3_WSS_FL,Wheel speed front left,signal,in,freq-di,none,,A,set,QSG-IO,Square wave from front VRC out c3; raw VR never reaches the ECU
-ECU,Gnd Out,ecu_a,a24,GNDOUT,Sensor return rail,rail,out,gnd,none,,A,set,QSG-IO,All sensor returns; never chassis; never SHIELD; 18 AWG lead (ct_ss10_075) to sp_gndout, tapered to 20 AWG bulkhead pins (Rule 3a)
+ECU,Gnd Out,ecu_a,a24,GNDOUT,Sensor return rail,rail,out,gnd,none,,A,set,QSG-IO,Loom A sensor returns; never chassis; never SHIELD; 18 AWG lead (ct_ss10_075) to sp_gndout, tapered to 20 AWG bulkhead pins (Rule 3a)
 ECU,Ground,ecu_a,a25,GND_ECU,ECU reference ground,ground,na,gnd,none,,A,set,QSG-IO,ECU reference only - not a sensor return
 ECU,Aux 8,ecu_a,a26,AUX8_START_RLY,Start relay coil,signal,out,hilo-2a,int-1k5,,A,set,QSG-IO,ECU inhibits in software; no separate cut relay
 ECU,Aux 7,ecu_a,a27,AUX7_MRS_SPD,Speed out to MRS pump,signal,out,hilo-2a,int-1k5,,A,set,QSG-IO,MRS wants ~4 pulses/rev 0-5V; scope the high level before adding a 5V pull-up
@@ -54,7 +54,7 @@ ECU,Aux 9,ecu_b,b18,AUX9_ETB_MP,ETB motor +,signal,out,hbridge-4a,none,,B,set,QS
 ECU,DI 6,ecu_b,b19,DI6_WSS_RR,Wheel speed rear right,signal,in,freq-di,none,,B,set,QSG-IO,Square wave from rear VRC out c4
 ECU,DI 5,ecu_b,b20,DI5_WSS_RL,Wheel speed rear left,signal,in,freq-di,none,,B,set,QSG-IO,Square wave from rear VRC out c3
 ECU,DI 4,ecu_b,b21,DI4_WSS_FR,Wheel speed front right,signal,in,freq-di,none,,B,set,QSG-IO,Square wave from front VRC out c4
-ECU,Gnd Out,ecu_b,b22,GNDOUT,Sensor return rail,rail,out,gnd,none,,B,set,QSG-IO,Same net as A24 (18 AWG tie sp_gndout - sp_gndout_b); all sensor returns; 18 AWG lead (ct_ss10_075) to sp_gndout_b
+ECU,Gnd Out,ecu_b,b22,GNDOUT,Sensor return rail,rail,out,gnd,none,,B,set,QSG-IO,Loom B's own sensor ground: every B sensor, fuel level, knock SIG- and the rear VRC return here; no harness tie to A24 (Daniel 2026-09-28); 18 AWG lead (ct_ss10_075) to sp_gndout_b
 ECU,An Volt 8,ecu_b,b23,AV8_CLNT_P,Coolant pressure,signal,in,0-5v,none,,B,set,QSG-IO,5V jumpered from A32
 ECU,An Volt 9,ecu_b,b24,AV9_FUEL_LVL,Fuel level sender,signal,in,0-5v,ext-div-to-5v,,B,set,QSG-IO,An Volt has no internal pull-up; 470R is the locked buy; the V-to-% cal table is still open
 ECU,Ground,ecu_b,b25,GND_ECU,ECU reference ground,ground,na,gnd,none,,B,set,QSG-IO,ECU reference only - not a sensor return
