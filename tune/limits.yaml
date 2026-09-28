@@ -37,6 +37,11 @@ ecu_limits:
   coolant_pressure:
     limit_kpa: null              # off for v1 — optional after validation
 
+  fuel_temp_c:
+    warn_c: 55                   # matches RealDash Fuel Temp caution threshold (REALDASH-LAYOUT.md tile 9)
+    limit_c: 70                  # matches RealDash Fuel Temp alarm threshold — enable PCLink limit/derate here
+    notes: "Continental flex sensor DI 2, same signal as ethanol%. Per PROTECTION_AND_WARNINGS.md two-system rule: this is an ECU limit (fuel cut/derate -> existing FUEL CUT red-box byte), not a new red-box label."
+
   rev_limit_rpm: 8000            # motorsport feature — not a cluster warning flag
   gp_soft_limit_rpm_first_start: 4000   # operator/PCLink soft cap until stable (see OPERATOR_FIRST_START)
 

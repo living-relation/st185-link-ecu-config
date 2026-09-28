@@ -1,0 +1,20 @@
+# Hot-restart enrichment trim vs fuel temp [C] - ADDITIVE on top of PCLink's native ECT-based
+# Cranking Enrichment / Post Start (Warm Up) Enrichment tables, via a second compensation input
+# on those functions. This repo does not seed the base ECT tables (PCLink template defaults
+# apply); this file only seeds the extra fuel-temp axis.
+#
+# Why: return-style fuel system + E85 is a vapor-lock risk on a hot restart - fuel sitting hot
+# in the rail after heat-soak partially flashes, so cranking/post-start delivery runs leaner
+# than the ECT-only tables assume. Trim stays at 0 through normal running fuel temps and only
+# engages approaching the RealDash Fuel Temp caution band (55C) and beyond (REALDASH-LAYOUT.md
+# tile 9), because that is where vapor lock actually starts to matter, not at ordinary heat.
+fuel_temp_c,crank_enrich_trim_pct,post_start_enrich_trim_pct
+0,0,0
+20,0,0
+40,0,0
+50,3,2
+55,5,3
+60,8,5
+70,12,8
+80,16,11
+90,20,14

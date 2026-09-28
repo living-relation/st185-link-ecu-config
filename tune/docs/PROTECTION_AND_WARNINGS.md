@@ -56,7 +56,7 @@ TC engaging → **orange** indication when implemented (TC strategy working). TC
 
 ## ECU limits for base tune
 
-**v1 = loose / high** — tolerate tuning error while getting the engine running. See `LIMITS_STARTUP_VS_TUNED.md` and `config/limits.yaml` → `ecu_limits`.
+**v1 = loose / high** — tolerate tuning error while getting the engine running. See `LIMITS_STARTUP_VS_TUNED.md` and `tune/limits.yaml` → `ecu_limits`.
 
 Tighten knock, boost, oil, ECT, and fuel-pressure limits in a **later map** after street stability and dyno. Outcomes surface only through bytes 0–5 above.
 
@@ -64,4 +64,8 @@ Tighten knock, boost, oil, ECT, and fuel-pressure limits in a **later map** afte
 
 ## CAN contract
 
-`config/can/link_g4x_can_setup.json` — **no 0x3EF, no 0x3EE bytes 6–7.**
+`link_g4x_can_setup.json` — the red-box protection contract above is **0x3EE bytes 0–5 only**.
+Bytes 6–7 of 0x3EE remain unassigned (see `CAN-BUS-ID-ALLOCATION-TABLE.md`'s free-byte note).
+**0x3EF exists** as of the RealDash 0x3EF–0x3F1 allocation (ECU → RealDash **Drive Assist &
+Status**, 50 ms) — it is a separate frame for RealDash display, not part of this red-box
+contract, and does not add a seventh outcome byte.

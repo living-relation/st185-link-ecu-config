@@ -446,7 +446,7 @@ def build() -> None:
         ["Once tuning in PCLink, use PCLink for all limits/tables. This workbook is optional"],
         ["reference while applying the first map. You do not need to keep it updated."],
         [""],
-        ["Source: config/limits.yaml + protection docs"],
+        ["Source: tune/limits.yaml + protection docs"],
         [""],
         ["Sheets: ECU Protection | Cluster Cosmetic | Street caps | Changelog (optional)"],
         [""],

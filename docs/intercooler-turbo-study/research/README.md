@@ -33,7 +33,7 @@ here was removed so it cannot drift.
 | 1 | 420–480 whp street/track, ~540 race (this report) and 466–517 whp (prior research) | **404 whp** at 7,500 rpm / 30 psi. Band 384–424. | Charge temperature is now solved simultaneously with airflow, and the conversion constants are corrected. §21.1 |
 | 2 | Buy a Garrett G25-770, ~$1,850 | **Keep the EFR 7163 you own** | The G25-770 is not in Garrett's catalogue, and at 30 psi every candidate makes 401–406 whp anyway. §21.7 |
 | 3 | Core 610 × 305 × **76** mm | Core 610 × 305 × **102** mm | Worth 9.2 °C and 7 whp, and you have the clearance. Reject the prior research's 711 mm *width* — the radiator behind it is only 712 mm. §21.8 |
-| 4 | Manifold not examined | **Twin-scroll manifold is paired wrong** (1+2 / 3+4, should be 1+4 / 2+3) | Independently verified. Costs ~7 whp and 300–500 rpm of spool. §22 |
+| 4 | Manifold not examined | **Twin-scroll manifold pairing verified correct** (1+4 / 2+3) — no penalty | Confirmed by Daniel's physical inspection of the part, 2026-09-27. §22 |
 | 5 | Boost control not covered | **Feed the wastegate solenoid pre-throttle**, not from the manifold distribution block | Otherwise boost spikes on re-application after a lift or shift. §21.11 |
 
 ### The single error behind most of the gap
@@ -71,7 +71,7 @@ be nearly a non-issue (the r2 and r3 VE curves agree to 0.006 everywhere).
 | Power | **404 whp / 505 crank** at 7,500 rpm |
 | Core | **610 × 305 × 102 mm** bar & plate, single pass. Needs 137 mm clear front-to-back. |
 | Predicted IAT | 70 °C (157 °F) at 30 psi, 32 °C ambient, 100 km/h ducted |
-| Manifold | **Re-pair to 1+4 / 2+3 before any dyno tuning** |
+| Manifold | **1+4 / 2+3 — verified correct by physical inspection (2026-09-27), no re-pairing needed** |
 | Boost control | Solenoid supply from a 1/8 NPT bung in the **cold-side charge pipe** |
 | Machine billet end tanks? | Still a no-go. §18 unchanged. |
 
@@ -150,7 +150,10 @@ the implied VE inside each supplied CSV, and the itemised walk from 511 whp to 4
   the official BorgWarner maps (RMS 0.010–0.048 efficiency points). **The Garrett figures are
   modelled and are flagged as such in §21.6** — no official Garrett map was digitized anywhere.
 - **Manifold pairing** — reconstructed from firing order (1-3-4-2) and cam duration (264°) alone,
-  independently of the prior research, which it confirms exactly.
+  independently of the prior research, which it confirms exactly. **Since confirmed by physical
+  inspection of the manifold (2026-09-27):** pairing is 1+4 / 2+3, matching the 5S-GTE/3S-GTE
+  firing order 1-3-4-2 verified against the Toyota FSM. Each pair fires 360° apart — zero
+  exhaust-pulse overlap in either scroll.
 - **Verification** — the report's JavaScript run headless and cross-checked against the Python
   model. 27/27 charts render, both calculators compute, zero console errors, no external
   resources. Two deliberate model differences are documented in §21.13 rather than hidden.
@@ -158,20 +161,23 @@ the implied VE inside each supplied CSV, and the itemised walk from 511 whp to 4
 ## Error bands
 
 Predicted temperatures ±5 °C. ΔP ±30%. **Power ±20 whp on the drivetrain factor alone.** The
-manifold pairing *geometry* is exact; its *consequences* are worth ±50%. Bumper aperture
-dimensions are estimated from adjacent known parts — **measure M1–M5 in §13 and §24 before
-ordering anything.**
+manifold pairing is confirmed correct by physical inspection (2026-09-27) — no consequence to
+model. Bumper aperture dimensions are estimated from adjacent known parts — **measure M1–M5 in
+§13 and §24 before ordering anything.**
 
 ## Domain unknowns (measurements — not agent asks)
 
-Sixteen, listed in §24 of the report. The three that block everything else:
+Was sixteen, listed in §24 of the report; two resolved 2026-09-27 (below). The one that still
+blocks everything else:
 
 1. **Measure the bumper aperture — now including 137 mm of depth** for the thicker core.
-2. **Confirm the manifold pairing on the physical part.** §22's arithmetic is verified, but the
-   claim that your manifold is 1+2 / 3+4 comes from the prior research and has not been checked
-   by looking at it. Trace which two runners enter each scroll at the turbine flange.
-3. **Re-make the manifold, fit an undivided housing, or leave it?** It should happen before any
-   dyno tuning, and before judging the turbo.
+
+Resolved:
+
+- ~~Confirm the manifold pairing on the physical part~~ — **done 2026-09-27.** Physically
+  traced: 1+4 / 2+3, matching the prior research and the firing-order arithmetic exactly.
+- ~~Re-make the manifold, fit an undivided housing, or leave it?~~ — **leave it.** Pairing is
+  correct as built; no rework needed.
 
 **The cheapest way to check most of this report at once** is still one logged 3rd-gear pull with
 MAP, rpm, charge IAT (An Volt 6 — planned, not yet wired) and ethanol content. Back-calculating

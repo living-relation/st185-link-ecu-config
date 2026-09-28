@@ -1,0 +1,20 @@
+# Fuel density compensation vs fuel temp [C] - multiplies base VE fuel delivery
+# Continental flex sensor (DI 2) supplies fuel temp on the same PWM signal as ethanol% -
+# no separate sensor. Injectors meter by volume; fuel mass per pulse falls as fuel gets
+# hotter and less dense, so pulse width must scale UP with fuel temp to hold AFR.
+# Coefficient: ~0.1%/degC (E85 density-vs-temp slope; gasoline is close enough at this
+# resolution). Reference 20C = 1.000, linear: mult = 1 + 0.001 * (fuel_temp_c - 20).
+# 55C and 70C rows line up with the RealDash Fuel Temp caution/alarm thresholds
+# (REALDASH-LAYOUT.md tile 9: OK <55, caution 55-70, alarm >70).
+fuel_temp_c,fuel_mult
+0,0.980
+10,0.990
+20,1.000
+30,1.010
+40,1.020
+50,1.030
+55,1.035
+60,1.040
+70,1.050
+80,1.060
+90,1.070

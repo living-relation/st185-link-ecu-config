@@ -10,12 +10,13 @@ Safe startup tune — starts, idles, drives gently. Not optimized for peak perfo
 
 1. Load a conservative Link G4X **startup map** (Toyota / 4-cyl turbo class if available).
 2. Engine constants: 2189 cc, 8.5 CR, firing order, high-impedance (saturated) injectors.
-3. Import `config/can/link_g4x_can_setup.lcs`.
-4. Pins per `config/io_assignments.yaml` / `SENSOR_WIRING.md`.
+3. Import `link_g4x_can_setup.lcs`.
+4. Pins per `XTREMEX-IO-TABLE.html` — the authoritative I/O source (`io_assignments.yaml` and
+   `SENSOR_WIRING.md` were excluded on import; see `tune/README.md` Provenance).
 5. Triggers per `TRIGGER_COP_SETUP.md` (36-2 + cam sync).
-6. **Loose** protection limits from `config/limits.yaml` → `ecu_limits` (startup only).
+6. **Loose** protection limits from `tune/limits.yaml` → `ecu_limits` (startup only).
 7. Features as needed for operation: gear on CAN, A/C shed, basic idle — not full race TC/blip polish unless time allows.
-8. Table seeds from `config/tables/` as **starting points** — smooth in PCLink until idle is stable.
+8. Table seeds from `tune/tables/` as **starting points** — smooth in PCLink until idle is stable.
 9. First fire: `OPERATOR_FIRST_START.md`.
 10. Short shakedown only — see `STREET_DRIVE_LIMITS.md`.
 11. **Save** `st185-furyx-base-v1.pclx`.

@@ -6,7 +6,7 @@ This note applies **only while building `st185-furyx-base-v1.pclx`**. After you 
 
 ## Startup map policy
 
-Limits in `config/limits.yaml` → `ecu_limits` are **loose / high** so bad VE/ign/lambda tables do not false-cut the engine during first fire and idle.
+Limits in `tune/limits.yaml` → `ecu_limits` are **loose / high** so bad VE/ign/lambda tables do not false-cut the engine during first fire and idle.
 
 | Limit | Startup value (v1) |
 |-------|-------------------|
@@ -15,6 +15,7 @@ Limits in `config/limits.yaml` → `ecu_limits` are **loose / high** so bad VE/i
 | Oil pressure cut | 5 psi @ RPM >4500 & MAP >120 kPa |
 | Fuel / coolant pressure cut | Off |
 | Knock cut | High threshold — severe only |
+| Fuel temp warn / limit | 55°C / 70°C — **not loosened for v1**, matches the RealDash alarm thresholds (vapor-lock/safety, not tuning noise) |
 
 Cluster gauge colors are cosmetic and unchanged.
 

@@ -22,7 +22,10 @@ This directory covers **engine calibration only**. It is not an I/O or wiring so
 | `tables/boost_duty_base_pct.csv` | Boost-control **wastegate duty** base table, open-loop starting values. MAC 4-port + Turbosmart GenV IWG 14 psi spring. |
 | `tables/boost_shakedown_stages.csv` | **Staged shakedown** boost/duty tables, Stage 0-3. Load one stage at a time; set the overboost cut for that stage before the first pull. |
 | `tables/multi_fuel_blend.csv` | Ethanol % vs fuel/ignition trim multiplier — the blend axis `ve_e85_pct.csv` pairs with. |
-| `limits.yaml` | ECU protection limits + cluster cosmetic thresholds. Intentionally loose for the startup map. |
+| `tables/boost_target_ethanol_mult.csv` | Ethanol % vs boost multiplier — Math Block scales `boost_target_full_psi.csv` by this. **Sensor-fault default must fall back to the ethanol_pct=0 row.** |
+| `tables/fuel_temp_density_comp.csv` | Fuel temp vs fuel delivery multiplier — density compensation, same Continental sensor (DI 2) as ethanol%. |
+| `tables/warmup_fuel_temp_trim.csv` | Fuel temp vs additive cranking/post-start enrichment trim — hot-restart vapor-lock compensation, on top of PCLink's native ECT-based warm-up enrichment. |
+| `limits.yaml` | ECU protection limits + cluster cosmetic thresholds. Intentionally loose for the startup map. Fuel temp warn/limit (55/70°C) is an exception — matches the already-considered RealDash alarm thresholds, not tuning noise. |
 | `docs/` | Engine-side guides: spec, trigger/COP, driveability, limits, first-start, protection, research. |
 | `scripts/` | `calc_engine.py`, `build_limits_tracker.py` (generates `docs/LIMITS_PROTECTION_TRACKER.xlsx`). |
 
