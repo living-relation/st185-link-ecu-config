@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ST185 charge lamp LED test - can the LED alone run the alternator?</title>
+<style>
+  :root {
+    --ink: #1b1f24; --muted: #5b6470; --line: #d7dce2; --bg: #f6f7f9; --card: #fff;
+    --accent: #0b6bcb; --pass: #1a7f37; --fail: #c62828; --warn: #9a6700;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
+  main { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  h2 { font-size: 1.15rem; margin: 28px 0 10px; padding-bottom: 4px; border-bottom: 2px solid var(--line); }
+  .sub { color: var(--muted); margin: 0 0 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin: 12px 0; }
+  .answer { border-left: 5px solid var(--accent); }
+  .warn { border-left: 5px solid var(--warn); }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+  th, td { text-align: left; padding: 7px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: #eef1f4; font-weight: 600; }
+  code { background: #eef1f4; padding: 1px 5px; border-radius: 4px; font-size: .92em; }
+  .step { display: grid; grid-template-columns: 38px 1fr; gap: 12px; }
+  .num { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .step h3 { margin: 2px 0 6px; font-size: 1.02rem; }
+  .spec { font-weight: 600; }
+  .rec { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+  .rec label { display: flex; gap: 6px; align-items: center; }
+  .rec input[type=text] { width: 110px; padding: 4px 6px; border: 1px solid #b8c0ca; border-radius: 5px; font: inherit; }
+  .result { font-weight: 700; min-width: 60px; }
+  .result.pass { color: var(--pass); } .result.fail { color: var(--fail); }
+  .verdict { font-size: 1.1rem; font-weight: 700; padding: 12px 14px; border-radius: 8px; background: #eef1f4; }
+  .verdict.pass { background: #e6f4ea; color: var(--pass); } .verdict.fail { background: #fdecea; color: var(--fail); }
+  .toolbar { display: flex; gap: 10px; margin: 14px 0; }
+  button { font: inherit; padding: 7px 14px; border-radius: 7px; border: 1px solid #b8c0ca; background: #fff; cursor: pointer; }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  ul { margin: 6px 0; padding-left: 20px; }
+  .small { font-size: .88rem; color: var(--muted); }
+  @media print {
+    body { background: #fff; font-size: 12px; }
+    .toolbar { display: none; }
+    .card { break-inside: avoid; border-color: #999; }
+    .rec input[type=text] { border: none; border-bottom: 1px solid #000; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Charge lamp LED test</h1>
+  <p class="sub">Toyota Celica ST185 (3S-GTE, 4WD) - OEM IC-regulator alternator, 12 V plug-in LED in place of the charge warning bulb.
+  Question: can the LED alone do the bulb's job, so the 56 &Omega; resistor <code>r_chg_excite</code> on ST185-ClusterLED can be removed?</p>
+
+  <div class="toolbar">
+    <button class="primary" onclick="window.print()">Print / save as PDF</button>
+    <button onclick="resetForm()">Clear readings</button>
+  </div>
+
+  <div class="card answer">
+    <strong>Expected answer: yes, the LED alone should work.</strong>
+    Both the 1990 ST185 EWD (Charging, p.52) and the 1993 Celica wiring diagrams (Fig. 1 and Fig. 15) show the IC regulator
+    powered from its own ignition lead (IG, BLK-RED). The charge lamp sits between the IGN fuse (cluster C12 pin 9) and the
+    alternator L terminal (C12 pin 8, YEL) with a diode in series inside the cluster. The regulator only pulls L to ground to light the lamp,
+    so the lamp current is not what excites the field. This test confirms that on the car before the resistor comes out.
+  </div>
+
+  <h2>Before you start</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Tools:</strong> digital multimeter (DC volts), back-probe pins, a helper to hold 2000 rpm, a thermometer or a warm engine.</li>
+      <li><strong>Battery:</strong> charged, resting voltage 12.4 V or more. Record it in step 0.</li>
+      <li><strong>Resistor out:</strong> disconnect <code>r_chg_excite</code> (the 56 &Omega; 5 W resistor across the LED). Only the LED stays in the lamp position.</li>
+      <li><strong>Measure to a clean engine or battery ground.</strong> Back-probe connectors. Don't pierce insulation.</li>
+    </ul>
+  </div>
+
+  <h2>Wire identification</h2>
+  <div class="card">
+    <table>
+      <tr><th>Point</th><th>Wire colour</th><th>What it is</th><th>Source</th></tr>
+      <tr><td>Alternator small plug - IG</td><td>BLK-RED (B-R)</td><td>Ignition feed to the IC regulator (via J3 junction)</td><td>1990 p.52; 1993 Fig. 1</td></tr>
+      <tr><td>Alternator small plug - L</td><td>YEL (Y)</td><td>Lamp terminal, to cluster C12 pin 8</td><td>1990 p.52; 1993 Fig. 1 / 15</td></tr>
+      <tr><td>Alternator small plug - S</td><td>WHT (W)</td><td>Battery sense, from AM1 fusible link</td><td>1993 Fig. 1</td></tr>
+      <tr><td>Cluster C12 pin 9</td><td>BLK-ORG (B-O)</td><td>IGN fuse feed to the lamp: LED anode side</td><td>1990 p.52; 1993 Fig. 15</td></tr>
+      <tr><td>Cluster C12 pin 8</td><td>YEL (Y)</td><td>Lamp return to alternator L: LED cathode side</td><td>1990 p.52; 1993 Fig. 15</td></tr>
+    </table>
+    <p class="small">Identify the alternator wires by colour. The two books number the small-plug pins differently (the 1993 book gives separate 2WD and 4WD numbering).</p>
+  </div>
+
+  <h2>Procedure</h2>
+
+  <div class="card"><div class="step"><div class="num">0</div><div>
+    <h3>Battery resting voltage</h3>
+    <p>Engine off, key off, lights off for a few minutes. Measure across the battery posts.</p>
+    <p class="spec">Record it. 12.4 V or more to continue.</p>
+    <div class="rec"><label>Battery: <input type="text" id="v0" data-min="12.4" data-max="13.2"> V</label><span class="result" id="r0"></span></div>
+  </div></div></div>
+
+  <div class="card"><div class="step"><div class="num">1</div><div>
+    <h3>LED polarity</h3>
+    <p>LED anode (+) on the C12 pin 9 side (BLK-ORG, IGN feed). Cathode (&minus;) towards C12 pin 8 (YEL, alternator L). The cluster's own series diode stays in place.</p>
+    <div class="rec"><label><input type="checkbox" class="chk" id="c1"> Polarity correct</label></div>
+  </div></div></div>
+
+  <div class="card"><div class="step"><div class="num">2</div><div>
+    <h3>IG feed - ignition ON, engine off</h3>
+    <p>BLK-RED at the alternator plug to ground.</p>
+    <p class="spec">Spec: about battery voltage (within 0.5 V of the step 0 reading).</p>
+    <div class="rec"><label>IG: <input type="text" id="v2" data-rel="0.5"> V</label><span class="result" id="r2"></span></div>
+  </div></div></div>
+
+  <div class="card"><div class="step"><div class="num">3</div><div>
+    <h3>L terminal - ignition ON, engine off</h3>
+    <p>YEL at the alternator plug to ground, and look at the LED.</p>
+    <p class="spec">Spec: 0-4 V and the LED is lit (1990 ST185 EWD service hint).</p>
+    <div class="rec">
+      <label>L: <input type="text" id="v3" data-min="0" data-max="4"> V</label><span class="result" id="r3"></span>
+      <label><input type="checkbox" class="chk" id="c3"> LED lit</label>
+    </div>
+    <p class="small">If L is near battery voltage and the LED is dark, the regulator is not pulling L low, or the LED is reversed or open. Stop and refit the resistor.</p>
+  </div></div></div>
+
+  <div class="card"><div class="step"><div class="num">4</div><div>
+    <h3>Start and idle - no revving</h3>
+    <p>Start the engine and leave it at idle. Watch the LED, then measure the battery after about 30 s.</p>
+    <p class="spec">Spec: LED goes out, and the battery reads higher than the step 0 resting voltage (charging at idle, without a rev to self-excite).</p>
+    <div class="rec">
+      <label><input type="checkbox" class="chk" id="c4"> LED out at idle</label>
+      <label>Battery at idle: <input type="text" id="v4" data-above="0"> V</label><span class="result" id="r4"></span>
+    </div>
+  </div></div></div>
+
+  <div class="card"><div class="step"><div class="num">5</div><div>
+    <h3>Regulated voltage - 2000 rpm, warm</h3>
+    <p>Hold 2000 rpm, electrical loads off. WHT (S) at the alternator plug to ground.</p>
+    <p class="spec">Spec: 13.9-15.1 V at 25 &deg;C (13.5-14.3 V at 115 &deg;C). LED stays off.</p>
+    <div class="rec">
+      <label>S: <input type="text" id="v5" data-min="13.5" data-max="15.1"> V</label><span class="result" id="r5"></span>
+      <label><input type="checkbox" class="chk" id="c5"> LED off</label>
+    </div>
+  </div></div></div>
+
+  <div class="card"><div class="step"><div class="num">6</div><div>
+    <h3>Key off</h3>
+    <p>Switch off. The LED must go dark (no faint glow).</p>
+    <div class="rec"><label><input type="checkbox" class="chk" id="c6"> LED dark with key off</label></div>
+  </div></div></div>
+
+  <h2>Result</h2>
+  <div class="verdict" id="verdict">Fill in the readings above.</div>
+  <div class="card">
+    <ul>
+      <li><strong>All pass:</strong> the LED alone is enough. Tell Claude "LED test passed" and <code>r_chg_excite</code> comes out of ST185-ClusterLED in the repo and on harness.design.</li>
+      <li><strong>Any fail:</strong> refit the resistor, keep the readings, and send them over. Note which step failed.</li>
+    </ul>
+    <p><label>Date / notes: <input type="text" id="notes" style="width:100%;margin-top:6px;padding:5px;border:1px solid #b8c0ca;border-radius:5px;font:inherit"></label></p>
+  </div>
+
+  <h2>Sources</h2>
+  <div class="card small">
+    <ul>
+      <li>Toyota 1990 Celica ST185 Electrical Wiring Diagram, Charging, p.52-53: alternator IG / L / S, cluster C12 pins 8 and 9, service hints (L 0-4 V ign ON; S 13.9-15.1 V at 2000 rpm, 25 &deg;C).</li>
+      <li>1993 Toyota Celica wiring diagrams, Fig. 1 (alternator plug colours, 2WD / 4WD pin columns) and Fig. 15 (instrument cluster, charge warning lamp and series diode, CONN C pins 8 / 9).</li>
+      <li>Repo: <code>docs/harness/rebuild/ST185-ClusterLED.harness</code>, note "OEM FILTER PARTS CARRIED OVER".</li>
+    </ul>
+  </div>
+</main>
+<script>
+  const num = id => { const v = parseFloat(document.getElementById(id).value); return isNaN(v) ? null : v; };
+  function judge() {
+    const res = {};
+    const base = num("v0");
+    document.querySelectorAll("input[type=text][id^=v]").forEach(inp => {
+      const v = num(inp.id), out = document.getElementById("r" + inp.id.slice(1));
+      let ok = null;
+      if (v !== null) {
+        if (inp.dataset.min !== undefined) ok = v >= +inp.dataset.min && v <= +inp.dataset.max;
+        if (inp.dataset.rel !== undefined) ok = base !== null ? Math.abs(v - base) <= +inp.dataset.rel : null;
+        if (inp.dataset.above !== undefined) ok = base !== null ? v > base : null;
+      }
+      res[inp.id] = ok;
+      if (out) { out.textContent = ok === null ? "" : ok ? "PASS" : "FAIL"; out.className = "result" + (ok === null ? "" : ok ? " pass" : " fail"); }
+    });
+    document.querySelectorAll(".chk").forEach(c => res[c.id] = c.checked);
+    const vals = Object.values(res), el = document.getElementById("verdict");
+    const done = vals.every(x => x !== null) && document.querySelectorAll("input[type=text][id^=v]").length === Object.keys(res).filter(k => k[0] === "v").length;
+    if (vals.some(x => x === false) && done) { el.textContent = "FAIL - refit r_chg_excite and send the readings."; el.className = "verdict fail"; }
+    else if (done && vals.every(x => x === true)) { el.textContent = "PASS - the LED alone runs the alternator; r_chg_excite can be removed."; el.className = "verdict pass"; }
+    else { el.textContent = "Fill in the readings above."; el.className = "verdict"; }
+    const save = {}; document.querySelectorAll("input").forEach(i => save[i.id] = i.type === "checkbox" ? i.checked : i.value);
+    try { localStorage.setItem("st185-charge-led-test", JSON.stringify(save)); } catch (e) {}
+  }
+  function resetForm() {
+    document.querySelectorAll("input").forEach(i => i.type === "checkbox" ? i.checked = false : i.value = "");
+    judge();
+  }
+  try {
+    const s = JSON.parse(localStorage.getItem("st185-charge-led-test") || "{}");
+    Object.entries(s).forEach(([k, v]) => { const i = document.getElementById(k); if (i) i.type === "checkbox" ? i.checked = v : i.value = v; });
+  } catch (e) {}
+  document.querySelectorAll("input").forEach(i => i.addEventListener("input", judge));
+  judge();
+</script>
+</body>
+</html>
