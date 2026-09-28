@@ -127,7 +127,7 @@
         "x": 1140,
         "y": -330
       },
-      "partId": "spp_solder_26_14",
+      "partId": "spp_solder_generic",
       "locationId": "bp_990"
     },
     {
@@ -140,7 +140,7 @@
         "x": 1140,
         "y": -390
       },
-      "partId": "spp_crimp_14_10",
+      "partId": "spp_solder_generic",
       "locationId": "bp_990"
     }
   ],
@@ -751,32 +751,10 @@
   ],
   "spliceParts": [
     {
-      "partNumber": "GENERIC SOLDER SLEEVE 26-14",
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "minGauge": {
-        "value": 26,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, SOLDER SLEEVE, WITH ADHESIVE HEATSHRINK, COMBINED 26-14 AWG (Raychem D-406 class)",
-      "id": "spp_solder_26_14"
-    },
-    {
-      "partNumber": "GENERIC CRIMP SPLICE 14-10",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
-      "id": "spp_crimp_14_10"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
     }
   ],
   "terminalParts": [

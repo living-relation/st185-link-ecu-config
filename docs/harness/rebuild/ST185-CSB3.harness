@@ -381,7 +381,7 @@
         "x": 1170,
         "y": 300
       },
-      "partId": "spp_solder_26_14",
+      "partId": "spp_solder_generic",
       "locationId": "bp_1170"
     }
   ],
@@ -1017,18 +1017,10 @@
   ],
   "spliceParts": [
     {
-      "partNumber": "GENERIC SOLDER SLEEVE 26-14",
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "minGauge": {
-        "value": 26,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, SOLDER SLEEVE, WITH ADHESIVE HEATSHRINK, COMBINED 26-14 AWG (Raychem D-406 class)",
-      "id": "spp_solder_26_14"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
     }
   ],
   "cavityPlugParts": [
