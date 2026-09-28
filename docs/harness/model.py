@@ -7,6 +7,7 @@ interfaces.json next to this file. See redesign/INTERFACES.md.
 
 The graph built here is electrical: one node per physical point, whichever
 drawing names it. Mated bulkhead halves, the two halves of an inline interface,
+connector pairs mated inside one drawing, the two ends of a broken-off wire,
 cross-reference dummies and the inside of a VRC enclosure all collapse onto one
 node, so a net can be walked across every loom at once.
 """
@@ -84,6 +85,29 @@ def interface_halves(reg):
     return out
 
 
+def break_ends(reg):
+    """(harness, terminal id) -> break id for both ends of every broken-off pair: one
+    physical wire drawn in two sections, each ending at a noted Loose terminal."""
+    out = {}
+    for br in reg.get("breaks", []):
+        for e in br["ends"]:
+            out[(e["harness"], e["terminal"])] = br["id"]
+    return out
+
+
+def mate_halves(reg, ds):
+    """(harness, connector id) -> mate key for connector pairs mated inside one drawing
+    (interfaces.json inFileMates); both halves collapse to one node per cavity."""
+    out = {}
+    for m in reg.get("inFileMates", []):
+        d = ds.get(m["harness"]) or {}
+        mate = next((x for x in d.get("mates", []) if x["id"] == m["mate"]), None)
+        if mate:
+            for cid in (mate["sourceId"], mate["targetId"]):
+                out[(m["harness"], cid)] = "%s:%s" % (m["harness"], m["mate"])
+    return out
+
+
 def enclosure_nodes(reg):
     """(harness, terminal id) -> enclosure id for every screen landing that a
     device enclosure joins internally (SHIELD-RULES 6.30)."""
@@ -102,6 +126,8 @@ class Graph:
         self.docs = ds or docs(self.reg)
         self.ix = interface_halves(self.reg)
         self.enc = enclosure_nodes(self.reg)
+        self.brk = break_ends(self.reg)
+        self.mates = mate_halves(self.reg, self.docs)
         self.components = set()
         for d in self.docs.values():
             for k in ("connectors", "terminals", "resistors", "diodes", "splices"):
@@ -129,6 +155,10 @@ class Graph:
             return ("ECU", "ecu_" + p[2], p[3])
         if (loom, nid) in self.ix:
             return ("IX", self.ix[(loom, nid)][0], h)
+        if (loom, nid) in self.mates:
+            return ("IX", self.mates[(loom, nid)], h)
+        if (loom, nid) in self.brk:
+            return ("BRK", self.brk[(loom, nid)])
         if (loom, nid) in self.enc:
             return ("ENC", self.enc[(loom, nid)])
         if nid.startswith("dm_"):

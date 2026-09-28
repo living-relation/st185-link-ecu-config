@@ -13,22 +13,23 @@ enforces that.
 
 | Folder / file | What it is | Edit it? |
 |---|---|---|
-| **`rebuild/`** | The 13 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
-| **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, registered cross-references. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
+| **`rebuild/`** | The 14 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
+| **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, broken-off pairs. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
 | `min/` | Same documents, whitespace stripped, for upload to the harness.design project "ST185 harness design". The Free plan caps a harness at 100 connections, so every file must stay under 100 | No - `make_min.py` regenerates it |
 | `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |
 | `../../archive/2026-09-27-harness-redesign/` | The retired frozen baseline and legacy tools | No - history only |
 
-## The 13 harnesses
+## The 14 harnesses
 
 Each file is one physical harness that gets built. Shared nets may cross a boundary; a
 physical section of copper, a connector or a BOM line has one owner.
 
 | File | Harness | Scope |
 |---|---|---|
-| `ST185-A-cabin.harness` | ECU connector A, cabin | ECU-A, cabin half of bulkhead A, fuse block, HCFB, A-triggered relays, female half of `IX_APS` (APS pedal), CSB3 plug, front wheel-speed spur, A/C coolant switch branch, fuel pump run, the +5V / Gnd Out / +8V / switched-12V splices |
+| `ST185-A-cabin.harness` | ECU connector A, cabin | ECU-A, cabin half of bulkhead A, fuse block, HCFB, A-triggered relays, front wheel-speed spur, A/C coolant switch branch, fuel pump run, the +5V / Gnd Out / +8V / switched-12V splices |
 | `ST185-B-cabin.harness` | ECU connector B, cabin | ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, the front spur's FR core, the B legs of +5V / Gnd Out |
-| `ST185-APS-Pedal.harness` | APS pedal | male half of `IX_APS` to the BRZ e-throttle pedal plug; the A and B pedal wires break off the two cabin looms at `IX_APS` |
+| `ST185-APS-Pedal.harness` | APS pedal | the A and B pedal wires come in broken off from the two cabin looms, converge on a female DT06-6S, mate a male DT04-6P, and run to the BRZ pedal plug |
+| `ST185-CSB3.harness` | ECUMaster CSB3 | CSB3 plug, cruise stalk, clutch and brake switches, cruise ladder; power, ground, reverse, LED and CAN wires arrive broken off |
 | `ST185-A-engine.harness` | ECU connector A, engine | bulkhead A engine half to every A-letter engine device |
 | `ST185-B-engine.harness` | ECU connector B, engine | bulkhead B engine half to every B-letter engine device and the ETB motor |
 | `ST185-CAN.harness` | CAN backbone | the only drawing with CAN H/L |
@@ -58,15 +59,18 @@ from its PMU-16 days - names only, not a PMU.
 How each kind of boundary is drawn is in `redesign/INTERFACES.md`. In short:
 
 - **Inline interface** - a real connector pair, one half per harness, same cavity text
-  on both. The five today: `IX_WS_FRONT`, `IX_WS_REAR`, `IX_APS` (DT 6-way), `IX_AC_CTS`,
-  `IX_FUEL_LVL` (DT 2-way).
+  on both. The four today: `IX_WS_FRONT`, `IX_WS_REAR` (DT 6-way), `IX_AC_CTS`,
+  `IX_FUEL_LVL` (DT 2-way). The pedal's DT 6-way pair is mated inside one drawing
+  (`inFileMates`).
+- **Broken-off wire** - a wire that runs between two harness files is drawn in both, each
+  section ending at a `Loose` terminal (`br_<wire>`) whose note names the other file. The
+  pairs are `interfaces.json` "breaks"; no device is drawn on two files and there are no
+  cross-reference dummies (Rule 3, `validate_bulkhead_letter.py` L6 / L7).
 - **Bulkhead** - HDP20 A and B, each half drawn on the harnesses that populate it.
 - **OEM flying lead** - a `Loose` terminal whose text is the EWD locator. No OEM housing
   is ever modelled or bought.
 - **Device endpoint** - the VRCs are not drawn; each lead ends at a labelled `Loose`
   terminal (`VRC_REAR_IN_L +`).
-- **Registered reference** - a harness populating one cavity of a connector another
-  harness owns (ECU pins, CSB3 cavities); listed in `interfaces.json` with the reason.
 
 ## The pipeline
 
@@ -117,8 +121,8 @@ to one node).
 2. **One physical connector, one part number, one counted copy.** A connector drawn
    on more than one harness (the bulkheads, shared engine devices) carries the same
    part everywhere and is counted on exactly one copy (`validate_ownership.py` O3).
-3. **Cross-references claim nothing.** A `cp_xref` dummy has no part and no contact
-   stamps, and every one is registered with its owner and reason.
+3. **Broken-off ends claim nothing.** A `br_` terminal has no part; the wire section on each
+   side is counted on its own harness.
 4. **Never invent a part number.** A part not checked against the manufacturer gets
    `TBD ...` and the reason. Current examples: the RADLOK pass-through, the A/C
    coolant switch.

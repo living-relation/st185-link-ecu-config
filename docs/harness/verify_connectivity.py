@@ -23,7 +23,7 @@ import model
 
 g = model.Graph()
 bad = []
-THROUGH = ("SP", "BH", "IX", "ECU")
+THROUGH = ("SP", "BH", "IX", "BRK", "ECU")
 
 rows = [r for r in model.sot_rows()
         if r["owner"] == "ECU" and r["class"] == "signal" and r["status"] == "set"]

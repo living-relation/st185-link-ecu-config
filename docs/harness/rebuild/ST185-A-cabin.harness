@@ -496,52 +496,6 @@
       }
     },
     {
-      "id": "ix_aps_r",
-      "label": "APS pedal - 6-way inline to the pedal harness (IX_APS)",
-      "width": 270,
-      "partId": "cp_dt06_6s",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "APS VC2 +5V (sub) - pedal pin 1"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "APS GND2 (sub) - pedal pin 2"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "APS VPA2 sub signal -> ECU-B B33 - pedal pin 3"
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "APS VC1 +5V (main) - pedal pin 4"
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "signal": "APS GND1 (main) - pedal pin 5"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "signal": "APS VPA1 main signal -> ECU-A A14 - pedal pin 6"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1320,
-        "y": -240
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 0
-      }
-    },
-    {
       "id": "k_efi",
       "label": "EFI Main Relay - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) permanent 12 V (F12 5 A)",
       "cavities": [
@@ -623,187 +577,6 @@
       },
       "partId": "cp_rly_nor",
       "width": 390
-    },
-    {
-      "id": "csb3io",
-      "label": "ECUMaster CSB3 - Power/CAN/Switch I/O",
-      "width": 390,
-      "partId": "cp_csb3_plug",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+12V (ignition switched)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c2",
-          "signal": "GND",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c3",
-          "signal": "+5V sensor supply (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c4",
-          "signal": "SGND sensor ground (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c5",
-          "signal": "CAN H — wired on ST185-CAN",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c6",
-          "signal": "CAN L — wired on ST185-CAN",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c7",
-          "signal": "A1 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c8",
-          "signal": "A2 - Cruise Ladder",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c9",
-          "signal": "A3 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c10",
-          "signal": "A4 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c11",
-          "signal": "A5 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c12",
-          "signal": "A6 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c13",
-          "signal": "A7 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c14",
-          "signal": "A8 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c15",
-          "signal": "S1 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c16",
-          "signal": "S2 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c17",
-          "signal": "S3 - Cruise Main On",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c18",
-          "signal": "S4 - Cruise Set/Accel",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c19",
-          "signal": "S5 - Cruise Resume/Decel",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c20",
-          "signal": "S6 - Clutch Switch",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c21",
-          "signal": "S7 - Brake Switch",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c22",
-          "signal": "S8 - Reverse (via Bulkhead B c12)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c23",
-          "signal": "L1 low-side - reserved: Pi hold relay (plan 6.48), not wired yet",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c24",
-          "signal": "L2 low-side - reserved: kill relay coil (plan 6.48), not wired yet",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c25",
-          "signal": "L3 low-side - reserved: alternator excite drop (plan 6.48), not wired yet",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c26",
-          "signal": "L4 low-side - oil pressure LED sink, wire on ST185-ClusterLED *",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c27",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c28",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c29",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c30",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c31",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c32",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c33",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2400,
-        "y": 150
-      },
-      "schematicPosition": {
-        "x": 1320,
-        "y": 0
-      }
     },
     {
       "id": "k_fp",
@@ -910,7 +683,7 @@
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> starter solenoid S - wire on ST185-A-engine (dm_k_str_c4)",
+          "signal": "+12V out -> starter solenoid S - broken off, continues on ST185-A-engine",
           "contactPartId": "ct_f7_load"
         }
       ],
@@ -1153,90 +926,6 @@
   ],
   "terminals": [
     {
-      "id": "fl_cruise_stalk_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD TBD Cruise control switch-TBD TBD cruise ladder signal -> sp_cruise_ladder -> CSB3 A2 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 570
-      },
-      "layoutPosition": {
-        "x": 1800,
-        "y": -270
-      }
-    },
-    {
-      "id": "fl_cruise_stalk_c3",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD TBD Cruise control switch-TBD TBD cruise MAIN ON -> CSB3 S3 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 630
-      },
-      "layoutPosition": {
-        "x": 1800,
-        "y": -210
-      }
-    },
-    {
-      "id": "fl_cruise_stalk_c4",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD TBD Cruise control switch-TBD TBD cruise SET/ACCEL -> CSB3 S4 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 690
-      },
-      "layoutPosition": {
-        "x": 1800,
-        "y": -150
-      }
-    },
-    {
-      "id": "fl_cruise_stalk_c5",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD TBD Cruise control switch-TBD TBD cruise RESUME/DECEL -> CSB3 S5 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 750
-      },
-      "layoutPosition": {
-        "x": 1800,
-        "y": -90
-      }
-    },
-    {
-      "id": "fl_clutch_sw_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD TBD Clutch switch-TBD TBD clutch switch signal -> CSB3 S6 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 420
-      },
-      "layoutPosition": {
-        "x": 1200,
-        "y": -180
-      }
-    },
-    {
-      "id": "fl_brake_sw_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD TBD Stop lamp switch-TBD TBD brake switch signal -> CSB3 S7 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 270
-      },
-      "layoutPosition": {
-        "x": 1080,
-        "y": -270
-      }
-    },
-    {
       "id": "fl_acamp_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
@@ -1294,22 +983,457 @@
       },
       "partId": "tp_lug_m8_4",
       "width": 270
+    },
+    {
+      "id": "br_w12_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: Gnd Out from sp_gndout at ECU A (crossover a)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2280,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1110,
+        "y": 2670
+      }
+    },
+    {
+      "id": "br_w44",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: +5V from sp_5v at ECU A (crossover a)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1200,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2640
+      }
+    },
+    {
+      "id": "br_w69",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: Gnd Out from sp_gndout at ECU A (crossover a)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2280,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1110,
+        "y": 2670
+      }
+    },
+    {
+      "id": "br_w45",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: Gnd Out from sp_gndout at ECU A (crossover a)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2280,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1110,
+        "y": 2670
+      }
+    },
+    {
+      "id": "br_w_b25",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: cabin chassis ground splice sp_chassis",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2400,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2700
+      }
+    },
+    {
+      "id": "br_w_b34",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: cabin chassis ground splice sp_chassis",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2400,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2700
+      }
+    },
+    {
+      "id": "br_w_k_fan2_86",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: switched 12V from sp_sw12 (cabin)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2040,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 3660
+      }
+    },
+    {
+      "id": "br_w_rail_5v_b_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: +5V from sp_5v at ECU A (crossover a)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1200,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2640
+      }
+    },
+    {
+      "id": "br_w_rail_gnd_b_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: Gnd Out from sp_gndout at ECU A (crossover a)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2280,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1110,
+        "y": 2670
+      }
+    },
+    {
+      "id": "br_w_rail_sw12_b_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: switched 12V from sp_sw12 (cabin)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2040,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 3660
+      }
+    },
+    {
+      "id": "br_w_k_eps_86",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: switched 12V from sp_sw12 (cabin)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2040,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 3660
+      }
+    },
+    {
+      "id": "br_cab_rspur_5v",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: +5V from sp_5v at ECU A (crossover a)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1200,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2640
+      }
+    },
+    {
+      "id": "br_cab_rspur_gnd",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: Gnd Out from sp_gndout at ECU A (crossover a)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2280,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1110,
+        "y": 2670
+      }
+    },
+    {
+      "id": "br_w_fb_k_fan2_30",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: HCFB H3 30A feed to the condenser fan relay 30",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1860,
+        "y": 390
+      },
+      "schematicPosition": {
+        "x": 540,
+        "y": 2640
+      }
+    },
+    {
+      "id": "br_w_fb_k_eps_30",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: HCFB H4 feed to the EPS relay 30",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1860,
+        "y": 390
+      },
+      "schematicPosition": {
+        "x": 540,
+        "y": 2640
+      }
+    },
+    {
+      "id": "br_w82",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: ETB relay 87 to ECU-B B5 (crossover b)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2220,
+        "y": 420
+      },
+      "schematicPosition": {
+        "x": 1260,
+        "y": 3630
+      }
+    },
+    {
+      "id": "br_w_inj_pwr_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: F11 15A injector rail to bulkhead B c1",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1740,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 1260,
+        "y": 2880
+      }
+    },
+    {
+      "id": "br_w_cop_pwr_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: F10 20A COP rail to bulkhead B c2",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1740,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 1260,
+        "y": 2880
+      }
+    },
+    {
+      "id": "br_cab_fspur_r",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: front wheel-speed FR core to ECU-B B21",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1500,
+        "y": 420
+      },
+      "schematicPosition": {
+        "x": 4140,
+        "y": 1500
+      }
+    },
+    {
+      "id": "br_cab_fspur_fr_sh",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: front wheel-speed FR shield to sp_shield_b (B17)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1500,
+        "y": 420
+      },
+      "schematicPosition": {
+        "x": 4140,
+        "y": 1500
+      }
+    },
+    {
+      "id": "br_w_cru_5v",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CSB3: +5V to the cruise ladder pull-up",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1200,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2640
+      }
+    },
+    {
+      "id": "br_w_csb12",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CSB3: CSB3 +12V from sp_12v",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1680,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1110,
+        "y": 2790
+      }
+    },
+    {
+      "id": "br_w_csbg",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CSB3: CSB3 ground to sp_chassis",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2400,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2700
+      }
+    },
+    {
+      "id": "br_w38",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 6",
+      "width": 390,
+      "layoutPosition": {
+        "x": 60,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_w210",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 1",
+      "width": 390,
+      "layoutPosition": {
+        "x": 60,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_w40",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 5",
+      "width": 390,
+      "layoutPosition": {
+        "x": 60,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_w_aps_vc1",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 4",
+      "width": 390,
+      "layoutPosition": {
+        "x": 60,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_w_aps_gnd2",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 2",
+      "width": 390,
+      "layoutPosition": {
+        "x": 60,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_w_fan_pwr",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: radiator fan relay 87 feed",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2580,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 1260,
+        "y": 3870
+      }
+    },
+    {
+      "id": "br_w_strl",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-engine: start relay 87 to the starter S terminal",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2460,
+        "y": 390
+      },
+      "schematicPosition": {
+        "x": 1260,
+        "y": 4590
+      }
+    },
+    {
+      "id": "br_wc_h_bh",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN H through bulkhead A c30",
+      "width": 390,
+      "layoutPosition": {
+        "x": 900,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 3720,
+        "y": -60
+      }
+    },
+    {
+      "id": "br_wc_l_bh",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN L through bulkhead A c31",
+      "width": 390,
+      "layoutPosition": {
+        "x": 900,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 3720,
+        "y": -60
+      }
     }
   ],
   "splices": [
-    {
-      "id": "sp_cruise_ladder",
-      "layoutPosition": {
-        "x": 2220,
-        "y": 150
-      },
-      "schematicPosition": {
-        "x": 1170,
-        "y": 300
-      },
-      "partId": "spp_solder_26_14",
-      "locationId": "bp_1170"
-    },
     {
       "id": "sp_trig2",
       "schematicPosition": {
@@ -1417,19 +1541,6 @@
   ],
   "resistors": [
     {
-      "id": "r_cruise",
-      "partId": "rp_10k",
-      "locationId": "bp_1140",
-      "layoutPosition": {
-        "x": 2100,
-        "y": 150
-      },
-      "schematicPosition": {
-        "x": 450,
-        "y": 150
-      }
-    },
-    {
       "id": "cam_pullup",
       "partId": "rp_1k8",
       "locationId": "bp_1050",
@@ -1474,8 +1585,8 @@
       "id": "w38",
       "color": "White",
       "source": {
-        "id": "ix_aps_r",
-        "handle": "c6"
+        "id": "br_w38",
+        "handle": "Terminal"
       },
       "target": {
         "id": "ecu_a",
@@ -1705,84 +1816,6 @@
       "partId": "wp_20_yel"
     },
     {
-      "id": "w_an2",
-      "color": "White",
-      "source": {
-        "id": "fl_cruise_stalk_c1",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_cruise_ladder",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "w_sw2",
-      "color": "Green",
-      "source": {
-        "id": "fl_cruise_stalk_c3",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "csb3io",
-        "handle": "c17"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "w_sw3",
-      "color": "Green",
-      "source": {
-        "id": "fl_cruise_stalk_c4",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "csb3io",
-        "handle": "c18"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "w_sw4",
-      "color": "Green",
-      "source": {
-        "id": "fl_cruise_stalk_c5",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "csb3io",
-        "handle": "c19"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "w_sw5",
-      "color": "Green",
-      "source": {
-        "id": "fl_clutch_sw_c1",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "csb3io",
-        "handle": "c20"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "w_sw6",
-      "color": "Green",
-      "source": {
-        "id": "fl_brake_sw_c1",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "csb3io",
-        "handle": "c21"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
       "id": "w_mrs_c",
       "source": {
         "id": "ecu_a",
@@ -1848,32 +1881,6 @@
       "partId": "wp_20_blu"
     },
     {
-      "id": "w_cru_sig",
-      "color": "White",
-      "source": {
-        "id": "r_cruise",
-        "handle": "Left"
-      },
-      "target": {
-        "id": "sp_cruise_ladder",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "w_cru_5v",
-      "color": "Orange",
-      "source": {
-        "id": "r_cruise",
-        "handle": "Right"
-      },
-      "target": {
-        "id": "sp_5v",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_org"
-    },
-    {
       "id": "w_ac_kill",
       "color": "Pink",
       "source": {
@@ -1926,19 +1933,6 @@
         "handle": "Splice"
       },
       "partId": "wp_20_blu"
-    },
-    {
-      "id": "w_cru_ladder_out",
-      "color": "White",
-      "source": {
-        "id": "sp_cruise_ladder",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "csb3io",
-        "handle": "c8"
-      },
-      "partId": "wp_20_wht"
     },
     {
       "id": "w_shc_crank",
@@ -2045,19 +2039,6 @@
       "partId": "wp_12_red"
     },
     {
-      "id": "w_csb12",
-      "color": "Red",
-      "source": {
-        "id": "csb3io",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "sp_12v",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_red"
-    },
-    {
       "id": "w67",
       "color": "Orange",
       "source": {
@@ -2074,8 +2055,8 @@
       "id": "w210",
       "color": "Orange",
       "source": {
-        "id": "ix_aps_r",
-        "handle": "c1"
+        "id": "br_w210",
+        "handle": "Terminal"
       },
       "target": {
         "id": "sp_5v",
@@ -2115,8 +2096,8 @@
       "id": "w40",
       "color": "Black",
       "source": {
-        "id": "ix_aps_r",
-        "handle": "c5"
+        "id": "br_w40",
+        "handle": "Terminal"
       },
       "target": {
         "id": "sp_gndout",
@@ -2178,24 +2159,11 @@
       "partId": "wp_12_blk"
     },
     {
-      "id": "w_csbg",
-      "color": "Black",
-      "source": {
-        "id": "csb3io",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "sp_chassis",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_blk"
-    },
-    {
       "id": "w_aps_vc1",
       "color": "Orange",
       "source": {
-        "id": "ix_aps_r",
-        "handle": "c4"
+        "id": "br_w_aps_vc1",
+        "handle": "Terminal"
       },
       "target": {
         "id": "sp_5v",
@@ -2208,8 +2176,8 @@
       "color": "Black",
       "stripeColor": "White",
       "source": {
-        "id": "ix_aps_r",
-        "handle": "c2"
+        "id": "br_w_aps_gnd2",
+        "handle": "Terminal"
       },
       "target": {
         "id": "sp_gndout",
@@ -2465,6 +2433,335 @@
         "handle": "c13"
       },
       "partId": "wp_10_red"
+    },
+    {
+      "id": "w12_c_ac",
+      "source": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w12_c",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "wp_20_blk"
+    },
+    {
+      "id": "w44_ac",
+      "source": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w44",
+        "handle": "Terminal"
+      },
+      "color": "Orange",
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w69_ac",
+      "source": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w69",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "wp_20_blk_wht",
+      "stripeColor": "White"
+    },
+    {
+      "id": "w45_ac",
+      "source": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w45",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "wp_20_blk_wht",
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_b25_ac",
+      "source": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_b25",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "wp_18_blk"
+    },
+    {
+      "id": "w_b34_ac",
+      "source": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_b34",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "wp_18_blk"
+    },
+    {
+      "id": "w_k_fan2_86_ac",
+      "source": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_k_fan2_86",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "w_rail_5v_b_c_ac",
+      "source": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_rail_5v_b_c",
+        "handle": "Terminal"
+      },
+      "color": "Orange",
+      "partId": "wp_18_org"
+    },
+    {
+      "id": "w_rail_gnd_b_c_ac",
+      "source": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_rail_gnd_b_c",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "wp_20_blk_wht",
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_rail_sw12_b_c_ac",
+      "source": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_rail_sw12_b_c",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_20_red"
+    },
+    {
+      "id": "w_k_eps_86_ac",
+      "source": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_k_eps_86",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "cab_rspur_5v_ac",
+      "source": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_cab_rspur_5v",
+        "handle": "Terminal"
+      },
+      "color": "Orange",
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "cab_rspur_gnd_ac",
+      "source": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_cab_rspur_gnd",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "wp_20_blk"
+    },
+    {
+      "id": "w_fb_k_fan2_30_ac",
+      "source": {
+        "id": "hcfb",
+        "handle": "h3"
+      },
+      "target": {
+        "id": "br_w_fb_k_fan2_30",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_8_red"
+    },
+    {
+      "id": "w_fb_k_eps_30_ac",
+      "source": {
+        "id": "hcfb",
+        "handle": "h4"
+      },
+      "target": {
+        "id": "br_w_fb_k_eps_30",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_tbd_eps"
+    },
+    {
+      "id": "w82_ac",
+      "source": {
+        "id": "k_etb",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "br_w82",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_18_red_wht",
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_inj_pwr_c_ac",
+      "source": {
+        "id": "fusebox",
+        "handle": "c11"
+      },
+      "target": {
+        "id": "br_w_inj_pwr_c",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_14_red"
+    },
+    {
+      "id": "w_cop_pwr_c_ac",
+      "source": {
+        "id": "fusebox",
+        "handle": "c10"
+      },
+      "target": {
+        "id": "br_w_cop_pwr_c",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_14_red"
+    },
+    {
+      "id": "w_cru_5v_ac",
+      "source": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_cru_5v",
+        "handle": "Terminal"
+      },
+      "color": "Orange",
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w_csb12_ac",
+      "source": {
+        "id": "sp_12v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_csb12",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_20_red"
+    },
+    {
+      "id": "w_csbg_ac",
+      "source": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_csbg",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "wp_20_blk"
+    },
+    {
+      "id": "w_fan_pwr_ac",
+      "source": {
+        "id": "k_fan",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "br_w_fan_pwr",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_8_red"
+    },
+    {
+      "id": "w_strl_ac",
+      "source": {
+        "id": "k_str",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "br_w_strl",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_12_red"
+    },
+    {
+      "id": "wc_h_bh_ac",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c30"
+      },
+      "target": {
+        "id": "br_wc_h_bh",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "partId": "wp_20_wht"
+    },
+    {
+      "id": "wc_l_bh_ac",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c31"
+      },
+      "target": {
+        "id": "br_wc_l_bh",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "partId": "wp_20_grn"
     }
   ],
   "cables": [
@@ -2523,6 +2820,40 @@
         "target": {
           "id": "sp_shield_a",
           "handle": "Splice"
+        }
+      }
+    },
+    {
+      "id": "cab_fspur_fr_ac",
+      "partId": "cab_sh_1c_vio",
+      "schematicPosition": {
+        "x": 4140,
+        "y": 1500
+      },
+      "cores": [
+        {
+          "id": "cab_fspur_r_ac",
+          "color": "Violet",
+          "source": {
+            "id": "ix_ws_front_p",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "br_cab_fspur_r",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_fspur_fr_sh_ac",
+        "color": "Shield",
+        "source": {
+          "id": "ix_ws_front_p",
+          "handle": "c6"
+        },
+        "target": {
+          "id": "br_cab_fspur_fr_sh",
+          "handle": "Terminal"
         }
       }
     }
@@ -2673,47 +3004,11 @@
       }
     },
     {
-      "id": "bn_bp_900__bp_fl_brake_sw",
-      "sourceId": "bp_900",
-      "targetId": "bp_fl_brake_sw",
-      "length": {
-        "value": 920,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_930__bp_fl_clutch_sw",
-      "sourceId": "bp_930",
-      "targetId": "bp_fl_clutch_sw",
-      "length": {
-        "value": 770,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_960__aps",
-      "sourceId": "bp_960",
-      "targetId": "ix_aps_r",
-      "length": {
-        "value": 860,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_1050__bp_fl_acamp",
       "sourceId": "bp_1050",
       "targetId": "bp_fl_acamp",
       "length": {
         "value": 480,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1080__bp_fl_cruise_stalk",
-      "sourceId": "bp_1080",
-      "targetId": "bp_fl_cruise_stalk",
-      "length": {
-        "value": 960,
         "unit": "mm"
       }
     },
@@ -2772,15 +3067,6 @@
       }
     },
     {
-      "id": "bn_bp_1230__csb3io",
-      "sourceId": "bp_1230",
-      "targetId": "csb3io",
-      "length": {
-        "value": 100,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_2100__ix_fuel_r",
       "sourceId": "bp_2100",
       "targetId": "bp_at_ix_fuel_r",
@@ -2802,60 +3088,6 @@
       "id": "bn_bp_fl_acamp__fl_acamp_c1",
       "sourceId": "bp_fl_acamp",
       "targetId": "fl_acamp_c1",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_brake_sw__fl_brake_sw_c1",
-      "sourceId": "bp_fl_brake_sw",
-      "targetId": "fl_brake_sw_c1",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_clutch_sw__fl_clutch_sw_c1",
-      "sourceId": "bp_fl_clutch_sw",
-      "targetId": "fl_clutch_sw_c1",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_cruise_stalk__fl_cruise_stalk_c1",
-      "sourceId": "bp_fl_cruise_stalk",
-      "targetId": "fl_cruise_stalk_c1",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_cruise_stalk__fl_cruise_stalk_c3",
-      "sourceId": "bp_fl_cruise_stalk",
-      "targetId": "fl_cruise_stalk_c3",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_cruise_stalk__fl_cruise_stalk_c4",
-      "sourceId": "bp_fl_cruise_stalk",
-      "targetId": "fl_cruise_stalk_c4",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_cruise_stalk__fl_cruise_stalk_c5",
-      "sourceId": "bp_fl_cruise_stalk",
-      "targetId": "fl_cruise_stalk_c5",
       "length": {
         "value": 50,
         "unit": "mm"
@@ -3049,6 +3281,294 @@
         "value": 250,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_b_bp_1140__br_w12_c",
+      "sourceId": "b_bp_1140",
+      "targetId": "br_w12_c",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_900__br_w44",
+      "sourceId": "b_bp_900",
+      "targetId": "br_w44",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1140__br_w69",
+      "sourceId": "b_bp_1140",
+      "targetId": "br_w69",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1140__br_w45",
+      "sourceId": "b_bp_1140",
+      "targetId": "br_w45",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1170__br_w_b25",
+      "sourceId": "b_bp_1170",
+      "targetId": "br_w_b25",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1170__br_w_b34",
+      "sourceId": "b_bp_1170",
+      "targetId": "br_w_b34",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1080__br_w_k_fan2_86",
+      "sourceId": "b_bp_1080",
+      "targetId": "br_w_k_fan2_86",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_900__br_w_rail_5v_b_c",
+      "sourceId": "b_bp_900",
+      "targetId": "br_w_rail_5v_b_c",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1140__br_w_rail_gnd_b_c",
+      "sourceId": "b_bp_1140",
+      "targetId": "br_w_rail_gnd_b_c",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1080__br_w_rail_sw12_b_c",
+      "sourceId": "b_bp_1080",
+      "targetId": "br_w_rail_sw12_b_c",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1080__br_w_k_eps_86",
+      "sourceId": "b_bp_1080",
+      "targetId": "br_w_k_eps_86",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_900__br_cab_rspur_5v",
+      "sourceId": "b_bp_900",
+      "targetId": "br_cab_rspur_5v",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1140__br_cab_rspur_gnd",
+      "sourceId": "b_bp_1140",
+      "targetId": "br_cab_rspur_gnd",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1065__br_w_fb_k_fan2_30",
+      "sourceId": "b_bp_1065",
+      "targetId": "br_w_fb_k_fan2_30",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1065__br_w_fb_k_eps_30",
+      "sourceId": "b_bp_1065",
+      "targetId": "br_w_fb_k_eps_30",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1080__br_w82",
+      "sourceId": "bp_1080",
+      "targetId": "br_w82",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1050__br_w_inj_pwr_c",
+      "sourceId": "b_bp_1050",
+      "targetId": "br_w_inj_pwr_c",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1050__br_w_cop_pwr_c",
+      "sourceId": "b_bp_1050",
+      "targetId": "br_w_cop_pwr_c",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1020__br_cab_fspur_r",
+      "sourceId": "bp_1020",
+      "targetId": "br_cab_fspur_r",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1020__br_cab_fspur_fr_sh",
+      "sourceId": "bp_1020",
+      "targetId": "br_cab_fspur_fr_sh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_900__br_w_cru_5v",
+      "sourceId": "b_bp_900",
+      "targetId": "br_w_cru_5v",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1020__br_w_csb12",
+      "sourceId": "b_bp_1020",
+      "targetId": "br_w_csb12",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1170__br_w_csbg",
+      "sourceId": "b_bp_1170",
+      "targetId": "br_w_csbg",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_960__br_w38",
+      "sourceId": "bp_960",
+      "targetId": "br_w38",
+      "length": {
+        "value": 860,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_960__br_w210",
+      "sourceId": "bp_960",
+      "targetId": "br_w210",
+      "length": {
+        "value": 860,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_960__br_w40",
+      "sourceId": "bp_960",
+      "targetId": "br_w40",
+      "length": {
+        "value": 860,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_960__br_w_aps_vc1",
+      "sourceId": "bp_960",
+      "targetId": "br_w_aps_vc1",
+      "length": {
+        "value": 860,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_960__br_w_aps_gnd2",
+      "sourceId": "bp_960",
+      "targetId": "br_w_aps_gnd2",
+      "length": {
+        "value": 860,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1170__br_w_fan_pwr",
+      "sourceId": "bp_1170",
+      "targetId": "br_w_fan_pwr",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1140__br_w_strl",
+      "sourceId": "bp_1140",
+      "targetId": "br_w_strl",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__br_wc_h_bh",
+      "sourceId": "bp_840",
+      "targetId": "br_wc_h_bh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__br_wc_l_bh",
+      "sourceId": "bp_840",
+      "targetId": "br_wc_l_bh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -3155,27 +3675,6 @@
       "layoutPosition": {
         "x": 1680,
         "y": 0
-      }
-    },
-    {
-      "id": "bp_fl_brake_sw",
-      "layoutPosition": {
-        "x": 1080,
-        "y": -270
-      }
-    },
-    {
-      "id": "bp_fl_clutch_sw",
-      "layoutPosition": {
-        "x": 1200,
-        "y": -180
-      }
-    },
-    {
-      "id": "bp_fl_cruise_stalk",
-      "layoutPosition": {
-        "x": 1800,
-        "y": -270
       }
     },
     {
@@ -3295,6 +3794,16 @@
       "layoutPosition": {
         "x": 3270,
         "y": 90
+      }
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_cavity_notes",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nCabin fuse block (passenger gl F12: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nCabin fuse block (passenger gl F13: 7.5A - MRS EPS pump logic enable (ignition-switched)\nHigh-current fuse block HCFB H4: EPS pump relay 30 (k_eps on ST185-B-cabin) - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A - its B leg (bulkhead B c13, rear WS spur, fuel level pull-up) is drawn on ST185-B-cabin (broken off), crossover (a)\nsp_gndout (Splice): Gnd Out at ECU A - its B leg (B22, bulkhead B c17/c19, rear WS spur, fuel level) is drawn on ST185-B-cabin (broken off), crossover (a)\nsp_sw12 (Splice): switched 12V bus - its B-side loads (condenser fan and EPS relay coils, VSS feed on bulkhead B c20) are drawn on ST185-B-cabin (broken off)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)",
+      "schematicPosition": {
+        "x": 4200,
+        "y": 0
       }
     }
   ],
@@ -3576,30 +4085,39 @@
         "value": 18,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "wp_14_red",
+      "partNumber": "EW-1C14-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 14 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_18_red_wht",
+      "partNumber": "EW-1C18-RED-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_tbd_eps",
+      "partNumber": "TBD - EPS pump feed wire",
+      "manufacturer": "TBD",
+      "color": "Red",
+      "description": "WIRE, EPS PUMP FEED, GAUGE TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced"
     }
   ],
   "connectorParts": [
-    {
-      "partNumber": "HD36-24-33SE",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL - ECUMaster CSB3 enclosure mate (harness side); box side HD34-24-33PE not modelled. Map per plan 6.37/6.40",
-      "numberOfCavities": 33,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_hdp20s",
-          "cavityPlugPartId": "pl_sz20"
-        }
-      ],
-      "id": "cp_csb3_plug",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/catalog/common/images/PartImages/prhd36-24-33sn.jpg",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhd36-24-33sn.jpg"
-      }
-    },
     {
       "partNumber": "HDP24-24-47PE-L017",
       "manufacturer": "TE DEUTSCH",
@@ -3876,22 +4394,6 @@
       "id": "ct_hdp20p"
     },
     {
-      "partNumber": "0462-201-2031",
-      "manufacturer": "TE DEUTSCH",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD30 / DTM",
-      "id": "ct_hdp20s"
-    },
-    {
       "partNumber": "160927-4",
       "manufacturer": "TE Connectivity",
       "type": "Crimp",
@@ -4130,12 +4632,6 @@
   ],
   "resistorParts": [
     {
-      "id": "rp_10k",
-      "partNumber": "10k 1/4W",
-      "manufacturer": "generic",
-      "description": "RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W - cruise ladder pull-up to +5V (A32)"
-    },
-    {
       "id": "rp_1k8",
       "partNumber": "1.8k 1/4W",
       "manufacturer": "generic",
@@ -4217,6 +4713,23 @@
         }
       ],
       "shielded": true
+    },
+    {
+      "id": "cab_sh_1c_vio",
+      "partNumber": "GENERIC SHLD CABLE 1C 20AWG VIO",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, VIOLET, FOIL + TINNED COPPER BRAID, JACKETED - front VRC FR pulse to ECU B21. Screen to B17 only, floats at the VRC (generic per 6.24)",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Violet",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
     }
   ],
   "terminalParts": [
@@ -4266,16 +4779,6 @@
       },
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
       "id": "tp_ring_m6_12_10"
-    }
-  ],
-  "schematicNotes": [
-    {
-      "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (dm_csb3io_c26)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\ncsb3io (label): ECUMaster CSB3 (power feed — full I/O on ST185-A-cabin)\nCabin fuse block (passenger gl F12: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nCabin fuse block (passenger gl F13: 7.5A - MRS EPS pump logic enable (ignition-switched)\nHigh-current fuse block HCFB H4: EPS pump relay 30 (k_eps on ST185-B-cabin) - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A - its B leg (bulkhead B c13, rear WS spur, fuel level pull-up) is drawn on ST185-B-cabin (dm_sp_5v_Splice), crossover (a)\nsp_gndout (Splice): Gnd Out at ECU A - its B leg (B22, bulkhead B c17/c19, rear WS spur, fuel level) is drawn on ST185-B-cabin (dm_sp_gndout_Splice), crossover (a)\nsp_sw12 (Splice): switched 12V bus - its B-side loads (condenser fan and EPS relay coils, VSS feed on bulkhead B c20) are drawn on ST185-B-cabin (dm_sp_sw12_Splice)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (dm_sp_chassis_Splice)",
-      "schematicPosition": {
-        "x": 4200,
-        "y": 0
-      }
     }
   ]
 }

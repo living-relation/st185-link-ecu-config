@@ -118,12 +118,32 @@ for side, s in sorted(spec.items()):
             bad.append("W5 %s: %s/%s is %r, want a DT 6-way half" % (side, h["harness"], h["connector"], pn))
     spur_conds = [c for loom in [s["spurHarness"]] + rcv.get("alsoDrawnOn", [])
                   for c in model.conductors(ds.get(loom) or {})]
+    brk = model.break_ends(reg)
+    pair = {}
+    for (loom, tid), bid in brk.items():
+        pair.setdefault(bid, []).append((loom, tid))
+
+    def follow(loom, far):
+        """Across a broken-off pair: the far end of the other section."""
+        if far[1] != "Terminal" or (loom, far[0]) not in brk:
+            return far
+        for oloom, tid in pair[brk[(loom, far[0])]]:
+            if oloom == loom:
+                continue
+            for cond, cable, screen in model.conductors(ds.get(oloom) or {}):
+                ends = [end(cond.get("source")), end(cond.get("target"))]
+                if (tid, "Terminal") in ends:
+                    ends.remove((tid, "Terminal"))
+                    return ends[0]
+        return far
+
     for pin, target in sorted(s["spur"].items()):
         hits = []
         for cond, cable, screen in spur_conds:
             ends = {end(cond.get("source")), end(cond.get("target"))}
             if (rcv["connector"], pin) in ends:
-                hits.append(ends - {(rcv["connector"], pin)})
+                far = ends - {(rcv["connector"], pin)}
+                hits.append({follow(s["spurHarness"], x) for x in far})
         tid, _, th = target.partition(".")
         ok = [x for x in hits if x and next(iter(x))[0] in (tid, "dm_%s_Splice" % tid)
               and (not th or next(iter(x))[1] == th)]

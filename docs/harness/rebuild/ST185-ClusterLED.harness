@@ -1,29 +1,6 @@
 {
   "version": 0.9,
-  "connectors": [
-    {
-      "id": "dm_csb3io_c26",
-      "label": "CSB3-c26 (L4)",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "ECUMaster CSB3 L4 low-side - oil pressure LED sink, CAN 0x643 *"
-        }
-      ],
-      "schematicPosition": {
-        "x": 660,
-        "y": 90
-      },
-      "layoutPosition": {
-        "x": 1200,
-        "y": 180
-      },
-      "partId": "cp_xref",
-      "excludeFromBom": true
-    }
-  ],
+  "connectors": [],
   "terminals": [
     {
       "id": "t_led_gnd",
@@ -122,6 +99,20 @@
       "layoutPosition": {
         "x": 960,
         "y": -210
+      }
+    },
+    {
+      "id": "br_w_oil_k",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CSB3: oil pressure LED sink on CSB3 L4",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1260,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 720,
+        "y": 150
       }
     }
   ],
@@ -421,8 +412,8 @@
         "handle": "Right"
       },
       "target": {
-        "id": "dm_csb3io_c26",
-        "handle": "c1"
+        "id": "br_w_oil_k",
+        "handle": "Terminal"
       },
       "partId": "wp_20_wht"
     },
@@ -514,15 +505,6 @@
       }
     },
     {
-      "id": "bn_bp_1020__dm_csb3io_c26",
-      "sourceId": "bp_1020",
-      "targetId": "dm_csb3io_c26",
-      "length": {
-        "value": 780,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_fl_cl_c11__fl_cl_c11_c2",
       "sourceId": "bp_fl_cl_c11",
       "targetId": "fl_cl_c11_c2",
@@ -573,6 +555,15 @@
       "targetId": "fl_cl_c12_c9",
       "length": {
         "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1020__br_w_oil_k",
+      "sourceId": "bp_1020",
+      "targetId": "br_w_oil_k",
+      "length": {
+        "value": 780,
         "unit": "mm"
       }
     }
@@ -670,7 +661,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCSB3-c26 (L4) 1: ECUMaster CSB3 L4 low-side - oil pressure LED sink, commanded on CAN 0x643; the CSB3 plug is on ST185-A-cabin (csb3io c26)\nt_led_gnd: LED common return - OEM ground point ID, left kick panel (assumed)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nt_led_gnd: LED common return - OEM ground point ID, left kick panel (assumed)",
       "schematicPosition": {
         "x": 1200,
         "y": 1380
@@ -690,46 +681,11 @@
       }
     },
     {
-      "id": "wp_20_blk_org",
-      "partNumber": "EW-1C20-BLK-ORG",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
-      "stripeColor": "Orange",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "wp_20_grn",
       "partNumber": "EW-1C20-GRN",
       "manufacturer": "generic",
       "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
       "color": "Green",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_red",
-      "partNumber": "EW-1C20-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_red_grn",
-      "partNumber": "EW-1C20-RED-GRN",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED/GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "stripeColor": "Green",
       "gauge": {
         "value": 20,
         "unit": "AWG"
@@ -756,51 +712,41 @@
         "value": 20,
         "unit": "AWG"
       }
-    }
-  ],
-  "connectorParts": [
-    {
-      "partNumber": "(cross-reference - no part)",
-      "manufacturer": "n/a",
-      "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
-      "id": "cp_xref",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png"
-      }
-    }
-  ],
-  "terminalParts": [
-    {
-      "type": "Ring",
-      "size": "M6",
-      "partNumber": "GENERIC RING M6 22-16",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
-      "id": "tp_ring_m6_22_16"
     },
     {
-      "type": "Loose",
-      "partNumber": "GENERIC FLYING LEAD",
+      "id": "wp_20_red",
+      "partNumber": "EW-1C20-RED",
       "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 20,
         "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
+      }
+    },
+    {
+      "id": "wp_20_blk_org",
+      "partNumber": "EW-1C20-BLK-ORG",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "stripeColor": "Orange",
+      "gauge": {
+        "value": 20,
         "unit": "AWG"
-      },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
-      "id": "tp_flying_lead"
+      }
+    },
+    {
+      "id": "wp_20_red_grn",
+      "partNumber": "EW-1C20-RED-GRN",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED/GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "stripeColor": "Green",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
     }
   ],
   "spliceParts": [
@@ -833,14 +779,37 @@
       "id": "spp_crimp_14_10"
     }
   ],
-  "contactParts": [
+  "terminalParts": [
     {
-      "partNumber": "(generic)",
-      "manufacturer": "Generic",
-      "type": "Crimp",
-      "gender": "Socket",
-      "description": "CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, confirm before ordering",
-      "id": "ct_generic_skt"
+      "type": "Loose",
+      "partNumber": "GENERIC FLYING LEAD",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "id": "tp_flying_lead"
+    },
+    {
+      "type": "Ring",
+      "size": "M6",
+      "partNumber": "GENERIC RING M6 22-16",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
+      "id": "tp_ring_m6_22_16"
     }
   ],
   "diodeParts": [
@@ -858,6 +827,5 @@
       "manufacturer": "generic",
       "description": "RESISTOR, FIXED, WIREWOUND, 56 OHM, 5 W - alternator pre-excitation, parallel to the charge LED"
     }
-  ],
-  "mates": []
+  ]
 }

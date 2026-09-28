@@ -1,7 +1,7 @@
 # Harness — need to buy
 
-Generated on 2026-09-28 from the 13 `.harness` files in `docs/harness/rebuild/`:
-`A-cabin`, `B-cabin`, `APS-Pedal`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`.
+Generated on 2026-09-28 from the 14 `.harness` files in `docs/harness/rebuild/`:
+`A-cabin`, `B-cabin`, `APS-Pedal`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`, `CSB3`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
@@ -105,7 +105,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `0413-214-1205` | PLUG, SEALING, CAVITY, SIZE 12, YELLOW - unused size 12 cavity | 4 | 10 |
 | `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT recep | 61 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 57 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT pl | 57 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS -  | 1 | 1 |
@@ -119,7 +119,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `282080-1` | Superseal 1.5 2-way plug housing - HCR 150 (k_eps) coil mate; contacts 282110-1 are on the drawing | 1 | 2 |
 | `282110-1` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-1 | 2 | 10 |
 | `3-1447221-3` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.75-0.85 MM2 (18 | 14 | 68 |
-| `3-1447221-4` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.5 MM2 (20 AWG), | 43 | 68 |
+| `3-1447221-4` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.5 MM2 (20 AWG), | 44 | 68 |
 | `4-1437290-0` | CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET C | 1 | 2 |
 | `4-1437290-1` | CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 2, SOCKET C | 1 | 2 |
 | `4-1904124-2` | RELAY, PLUG-IN, MICRO ISO, TE Micro Relay A V23074-A1001-A402  | 1 | 2 |
@@ -153,7 +153,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(kit socket, D 261 205 358-01)` | CONTACT, SOCKET, CRIMP, GOLD - supplied in the Bosch D 261 205 | 6 |
 | `(kit-supplied pigtail)` | CONNECTOR, PIGTAIL, 3 POS - supplied with the RacerX Cherry Ha | 1 |
 | `(pump pigtail - Walbro F90000295)` | CONNECTOR, PIGTAIL, 2 POS - supplied on the Walbro F90000295 p | 1 |
-| `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE  | 1 |
+| `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE  | 2 |
 | `(ring lug, sized to cable)` | TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE  | 17 |
 | `TBD - A/C coolant temperature switch connector` | CONNECTOR, A/C COOLANT TEMPERATURE SWITCH, 2 POS - switch not  | 1 |
 | `TBD - generic oval 3-pin, socket contacts` | CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS - 3-wire  | 1 |
@@ -167,26 +167,6 @@ will over-order these; use this list, not the drawings.
 
 | Connector | One part, drawn on | Counted in |
 |---|---|---|
-| `bh_a_eng` | A-engine, CAN | A-engine |
-| `bh_a_fw` | A-cabin, CAN | A-cabin |
-| `cop1` | A-engine, B-engine | A-engine |
-| `cop2` | A-engine, B-engine | A-engine |
-| `cop3` | A-engine, B-engine | A-engine |
-| `cop4` | A-engine, B-engine | A-engine |
-| `csb3io` | A-cabin, B-cabin, CAN | A-cabin |
-| `etb` | A-engine, B-engine | A-engine |
-| `fusebox` | A-cabin, B-cabin | A-cabin |
-| `hcfb` | A-cabin, B-cabin | A-cabin |
-| `inj1` | A-engine, B-engine | A-engine |
-| `inj2` | A-engine, B-engine | A-engine |
-| `inj3` | A-engine, B-engine | A-engine |
-| `inj4` | A-engine, B-engine | A-engine |
-| `ix_aps_r` | A-cabin, B-cabin | A-cabin |
-| `ix_ws_front_p` | A-cabin, B-cabin | A-cabin |
-| `k_etb` | A-cabin, B-cabin | A-cabin |
-| `k_fan` | A-cabin, EngineRoom-C | A-cabin |
-| `k_fan2` | B-cabin, EngineRoom-C | B-cabin |
-| `lambda` | A-engine, CAN | CAN |
 
 ## Inline interfaces - one connector pair per harness boundary
 
@@ -199,7 +179,6 @@ mating half). Contacts and wedgelocks come from each half's part configuration a
 | `IX_WS_FRONT` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_front_r` on WheelSpeed-Front | `ix_ws_front_p` on A-cabin |
 | `IX_AC_CTS` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_accts_r` on A-cabin | `ix_accts_p` on ACAmp-Spur |
 | `IX_FUEL_LVL` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_fuel_r` on B-cabin | `ix_fuel_p` on RearFuel |
-| `IX_APS` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_aps_p` on APS-Pedal | `ix_aps_r` on A-cabin |
 
 ## OEM flying leads - splice material only, no OEM housing
 
@@ -208,10 +187,11 @@ is in `interfaces.json` and in the build list's EWD column.
 
 | Harness | Flying leads |
 |---|---:|
-| A-cabin | 7 |
+| A-cabin | 1 |
 | ACAmp-Spur | 2 |
 | B-cabin | 2 |
 | B-engine | 1 |
+| CSB3 | 6 |
 | ClusterLED | 6 |
 | EngineRoom-C | 6 |
 
@@ -221,6 +201,7 @@ Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no co
 
 | Harness | Cable | Pieces |
 |---|---|---:|
+| A-cabin | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
 | A-cabin | `GENERIC SHLD CABLE 3C 20AWG` | 1 |
 | A-engine | `GENERIC SHLD CABLE 1C 20AWG BLU` | 2 |
 | B-cabin | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |

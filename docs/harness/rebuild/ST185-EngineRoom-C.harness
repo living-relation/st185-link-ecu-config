@@ -137,88 +137,6 @@
       "partId": "cp_gbx_body"
     },
     {
-      "id": "k_fan",
-      "label": "Rad fan relay (uprated) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
-      "width": 390,
-      "schematicPosition": {
-        "x": 0,
-        "y": 960
-      },
-      "layoutPosition": {
-        "x": 3390,
-        "y": 480
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "30",
-          "signal": "Fused +12V in (HCFB H2 40A, ST185-A-cabin)",
-          "contactPartId": "ct_f7_load8"
-        },
-        {
-          "id": "c2",
-          "designation": "85",
-          "signal": "ACTIVE-LOW Coil - Aux 5 / A29",
-          "contactPartId": "ct_f7_coil"
-        },
-        {
-          "id": "c3",
-          "designation": "86",
-          "signal": "Coil + IG-switched 12V",
-          "contactPartId": "ct_f7_coil"
-        },
-        {
-          "id": "c4",
-          "designation": "87",
-          "signal": "+12V out to rad fan, engine-room C add-on",
-          "contactPartId": "ct_f7_load8"
-        }
-      ],
-      "partId": "cp_rly_f7_a",
-      "excludeFromBom": true
-    },
-    {
-      "id": "k_fan2",
-      "label": "Condenser fan relay (uprated, diode) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
-      "width": 390,
-      "schematicPosition": {
-        "x": 0,
-        "y": 1200
-      },
-      "layoutPosition": {
-        "x": 3510,
-        "y": 540
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "30",
-          "signal": "Fused +12V in (HCFB H3 30A, ST185-A-cabin)",
-          "contactPartId": "ct_f7_load8"
-        },
-        {
-          "id": "c2",
-          "designation": "85",
-          "signal": "ACTIVE-LOW Coil - Ign 5 / B13 *",
-          "contactPartId": "ct_f7_coil"
-        },
-        {
-          "id": "c3",
-          "designation": "86",
-          "signal": "Coil + IG-switched 12V",
-          "contactPartId": "ct_f7_coil"
-        },
-        {
-          "id": "c4",
-          "designation": "87",
-          "signal": "+12V out to condenser fan",
-          "contactPartId": "ct_f7_load8"
-        }
-      ],
-      "partId": "cp_rly_f7_d",
-      "excludeFromBom": true
-    },
-    {
       "id": "rl_pos_fw",
       "label": "RADLOK + firewall",
       "width": 150,
@@ -489,50 +407,6 @@
       "partId": "cp_jump"
     },
     {
-      "id": "dm_bh_a_eng_c36",
-      "label": "BH-A-c36",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Bulkhead A cavity 36 → ECU-A A27 *"
-        }
-      ],
-      "schematicPosition": {
-        "x": 2640,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 2910,
-        "y": 180
-      },
-      "partId": "cp_xref",
-      "excludeFromBom": true
-    },
-    {
-      "id": "dm_bh_a_eng_c35",
-      "label": "BH-A-c35",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Bulkhead A cavity 35 → MRS EPS pump logic enable *"
-        }
-      ],
-      "schematicPosition": {
-        "x": 2640,
-        "y": 120
-      },
-      "layoutPosition": {
-        "x": 3150,
-        "y": 210
-      },
-      "partId": "cp_xref",
-      "excludeFromBom": true
-    },
-    {
       "id": "mrs_eps",
       "label": "MR-S EHPS pump (A power / B signal / C ignition)",
       "width": 390,
@@ -639,28 +513,6 @@
         }
       ],
       "partId": "cp_dthd_1_8s"
-    },
-    {
-      "id": "dm_k_eps_c4",
-      "label": "K-EPS-87",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "EPS relay k_eps 87 (HCR150, glove box, ST185-B-cabin) → pump feed *"
-        }
-      ],
-      "schematicPosition": {
-        "x": 1980,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 1740,
-        "y": 300
-      },
-      "partId": "cp_xref",
-      "excludeFromBom": true
     }
   ],
   "terminals": [
@@ -957,6 +809,76 @@
         "x": 2910,
         "y": 480
       }
+    },
+    {
+      "id": "br_w_fan_pwr",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: radiator fan relay 87 feed",
+      "width": 390,
+      "layoutPosition": {
+        "x": 3450,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 1020
+      }
+    },
+    {
+      "id": "br_w_fan2_pwr",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: condenser fan relay 87 feed",
+      "width": 390,
+      "layoutPosition": {
+        "x": 3570,
+        "y": 600
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 1260
+      }
+    },
+    {
+      "id": "br_w_eps_pwr",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: EPS relay 87 feed to the pump",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1800,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 2040,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_w_hv_mrs_en_e",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-engine: MRS enable, bulkhead A c35",
+      "width": 390,
+      "layoutPosition": {
+        "x": 3210,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 2700,
+        "y": 180
+      }
+    },
+    {
+      "id": "br_w_mrs_e",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-engine: MRS speed (ECU A27), bulkhead A c36",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2970,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 2700,
+        "y": 60
+      }
     }
   ],
   "wires": [
@@ -1250,8 +1172,8 @@
       "id": "w_eps_pwr",
       "color": "Red",
       "source": {
-        "id": "dm_k_eps_c4",
-        "handle": "c1"
+        "id": "br_w_eps_pwr",
+        "handle": "Terminal"
       },
       "target": {
         "id": "mrs_eps",
@@ -1276,8 +1198,8 @@
       "id": "w_fan_pwr",
       "color": "Red",
       "source": {
-        "id": "k_fan",
-        "handle": "c4"
+        "id": "br_w_fan_pwr",
+        "handle": "Terminal"
       },
       "target": {
         "id": "rad_fan",
@@ -1302,8 +1224,8 @@
       "id": "w_fan2_pwr",
       "color": "Red",
       "source": {
-        "id": "k_fan2",
-        "handle": "c4"
+        "id": "br_w_fan2_pwr",
+        "handle": "Terminal"
       },
       "target": {
         "id": "fan2",
@@ -1392,8 +1314,8 @@
     {
       "id": "w_mrs_e",
       "source": {
-        "id": "dm_bh_a_eng_c36",
-        "handle": "c1"
+        "id": "br_w_mrs_e",
+        "handle": "Terminal"
       },
       "target": {
         "id": "mrs_eps",
@@ -1406,8 +1328,8 @@
       "id": "w_hv_mrs_en_e",
       "color": "Red",
       "source": {
-        "id": "dm_bh_a_eng_c35",
-        "handle": "c1"
+        "id": "br_w_hv_mrs_en_e",
+        "handle": "Terminal"
       },
       "target": {
         "id": "mrs_eps",
@@ -1430,15 +1352,6 @@
     }
   ],
   "bundles": [
-    {
-      "id": "bn_bp_60__bp_120",
-      "sourceId": "bp_60",
-      "targetId": "bp_120",
-      "length": {
-        "value": 120,
-        "unit": "mm"
-      }
-    },
     {
       "id": "bn_bp_150__bp_180",
       "sourceId": "bp_150",
@@ -1854,15 +1767,6 @@
       }
     },
     {
-      "id": "bn_bp_450__k_eps",
-      "sourceId": "bp_450",
-      "targetId": "dm_k_eps_c4",
-      "length": {
-        "value": 70,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_690__t_eng_block",
       "sourceId": "bp_690",
       "targetId": "t_eng_block",
@@ -1922,24 +1826,6 @@
       "targetId": "jump_pos",
       "length": {
         "value": 1340,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_900__dm_bh_a_eng_c36",
-      "sourceId": "bp_900",
-      "targetId": "dm_bh_a_eng_c36",
-      "length": {
-        "value": 500,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_960__dm_bh_b_eng_c14",
-      "sourceId": "bp_960",
-      "targetId": "dm_bh_b_eng_c14",
-      "length": {
-        "value": 430,
         "unit": "mm"
       }
     },
@@ -2039,24 +1925,6 @@
       "targetId": "gbx_body",
       "length": {
         "value": 250,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1020__k_fan",
-      "sourceId": "bp_1020",
-      "targetId": "k_fan",
-      "length": {
-        "value": 290,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1050__k_fan2",
-      "sourceId": "bp_1050",
-      "targetId": "k_fan2",
-      "length": {
-        "value": 270,
         "unit": "mm"
       }
     },
@@ -2185,16 +2053,54 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_1020__br_w_fan_pwr",
+      "sourceId": "bp_1020",
+      "targetId": "br_w_fan_pwr",
+      "length": {
+        "value": 290,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1050__br_w_fan2_pwr",
+      "sourceId": "bp_1050",
+      "targetId": "br_w_fan2_pwr",
+      "length": {
+        "value": 270,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_450__br_w_eps_pwr",
+      "sourceId": "bp_450",
+      "targetId": "br_w_eps_pwr",
+      "length": {
+        "value": 70,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_900__br_w_mrs_e",
+      "sourceId": "bp_900",
+      "targetId": "br_w_mrs_e",
+      "length": {
+        "value": 500,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_900__br_w_hv_mrs_en_e",
+      "sourceId": "bp_900",
+      "targetId": "br_w_hv_mrs_en_e",
+      "length": {
+        "value": 500,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
-    {
-      "id": "bp_60",
-      "layoutPosition": {
-        "x": 60,
-        "y": 390
-      }
-    },
     {
       "id": "bp_120",
       "layoutPosition": {
@@ -2606,7 +2512,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nGlove-box body block (fuses +  IGN: Ignition-switched relay coil feed (not yet wired)\nGlove-box body block (fuses +  HL: HEAD LH - relay 87, 15 A fuse -> J/B2 2A-3 / 2D-2\nGlove-box body block (fuses +  HR: HEAD RH - relay 87, 15 A fuse -> J/B2 2A-6 / 2D-6\nGlove-box body block (fuses +  WP: Wiper park - relay 87, 15 A fuse (optional, unused)\nGlove-box body block (fuses +  CSB: CSB3 permanent feed, 5 A - stays live for the kill sequence (plan 6.48)\nGlove-box body block (fuses +  DEV: Cluster + RealDash Pi - device relay 87, held by CSB3 low-side L1 (plan 6.48)\nGlove-box body block (fuses +  ACPS: A/C pressure switch +12V, 5 A fuse, ignition-switched (was wrongly on F7 60A, the EPS pump fuse)\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nOEM J/B2 2A (engine room main) 2: 30A CDS FAN out - DO NOT REFEED, fan moved to k_fan2\nOEM J/B2 2A (engine room main) 5: Engine main relay 87 - DO NOT REFEED, Link EFI in Power\nOEM J/B2 2D (engine room main) 3: Headlight relay coil - unused, PMU switches the lamps\nOEM J/B2 2E (engine room main) 2: PROBE: inner cct = 30A RTR; starting p.48 = AM1 with 2E-5\nOEM J/B2 2E (engine room main) 3: PROBE: inner cct = 15A HAZ-HORN; starting p.48 = AM2 with 2E-6\nOEM J/B2 2E (engine room main) 4: 20A DOME (inner circuit, not on AM1/AM2 path) - PMU O4\nOEM J/B2 2E (engine room main) 5: AM1 pass-through (starting p.48). Do not PMU-feed. Restored at IE1-10\nOEM J/B2 2E (engine room main) 6: AM2 / engine-main related. Do not PMU-feed. Restored at IE1-17\nOEM R/B4 (right kick, by glove STR: OEM starter relay - isolate, Link k_str replaces\nBH-A-c36 1: Bulkhead A cavity 36 → ECU-A A27 (Aux 7, MRS SPD) — wired on ST185-A-cabin\nBH-A-c35 1: Bulkhead A cavity 35 → MRS EPS pump logic enable (cabin fuse block c14, 7.5A, ignition-switched) — wired on ST185-A-cabin; moved from bulkhead B c14 2026-09-28\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87 (glove box, ST185-B-cabin), passenger fender; wire gauge TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si B-6: [B 90980-10897 pin 6] relay request out - NOT WIRED. 6.16 moved the EPS relay trigger to the ECU (Ign 6 / ecu_b B12). Kept for reference.\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, F13 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box body block APS, 5 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.\nK-EPS-87 1: EPS relay k_eps contact 87 - the HCR150 moved from the engine bay to the glove box 2026-09-28 (Daniel: every relay in the cabin); it is drawn on ST185-B-cabin because its trigger is ECU-B B12. The feed runs point-to-point through the firewall on loom C, no bulkhead",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nGlove-box body block (fuses +  IGN: Ignition-switched relay coil feed (not yet wired)\nGlove-box body block (fuses +  HL: HEAD LH - relay 87, 15 A fuse -> J/B2 2A-3 / 2D-2\nGlove-box body block (fuses +  HR: HEAD RH - relay 87, 15 A fuse -> J/B2 2A-6 / 2D-6\nGlove-box body block (fuses +  WP: Wiper park - relay 87, 15 A fuse (optional, unused)\nGlove-box body block (fuses +  CSB: CSB3 permanent feed, 5 A - stays live for the kill sequence (plan 6.48)\nGlove-box body block (fuses +  DEV: Cluster + RealDash Pi - device relay 87, held by CSB3 low-side L1 (plan 6.48)\nGlove-box body block (fuses +  ACPS: A/C pressure switch +12V, 5 A fuse, ignition-switched (was wrongly on F7 60A, the EPS pump fuse)\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nOEM J/B2 2A (engine room main) 2: 30A CDS FAN out - DO NOT REFEED, fan moved to k_fan2\nOEM J/B2 2A (engine room main) 5: Engine main relay 87 - DO NOT REFEED, Link EFI in Power\nOEM J/B2 2D (engine room main) 3: Headlight relay coil - unused, PMU switches the lamps\nOEM J/B2 2E (engine room main) 2: PROBE: inner cct = 30A RTR; starting p.48 = AM1 with 2E-5\nOEM J/B2 2E (engine room main) 3: PROBE: inner cct = 15A HAZ-HORN; starting p.48 = AM2 with 2E-6\nOEM J/B2 2E (engine room main) 4: 20A DOME (inner circuit, not on AM1/AM2 path) - PMU O4\nOEM J/B2 2E (engine room main) 5: AM1 pass-through (starting p.48). Do not PMU-feed. Restored at IE1-10\nOEM J/B2 2E (engine room main) 6: AM2 / engine-main related. Do not PMU-feed. Restored at IE1-17\nOEM R/B4 (right kick, by glove STR: OEM starter relay - isolate, Link k_str replaces\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87 (glove box, ST185-B-cabin), passenger fender; wire gauge TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si B-6: [B 90980-10897 pin 6] relay request out - NOT WIRED. 6.16 moved the EPS relay trigger to the ECU (Ign 6 / ecu_b B12). Kept for reference.\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, F13 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box body block APS, 5 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.",
       "schematicPosition": {
         "x": 3180,
         "y": 1920
@@ -2634,24 +2540,13 @@
   ],
   "wireParts": [
     {
-      "id": "wp_10_brn",
-      "partNumber": "EW-1C10-BRN",
+      "id": "wp_20_pnk",
+      "partNumber": "EW-1C20-PNK",
       "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 10 AWG, BROWN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Brown",
+      "description": "WIRE, ELECTRICAL, 20 AWG, PINK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Pink",
       "gauge": {
-        "value": 10,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_10_red",
-      "partNumber": "EW-1C10-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 10 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 10,
+        "value": 20,
         "unit": "AWG"
       }
     },
@@ -2667,6 +2562,50 @@
       }
     },
     {
+      "id": "wp_20_red",
+      "partNumber": "EW-1C20-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_4_red",
+      "partNumber": "BC-4-RED",
+      "manufacturer": "generic",
+      "description": "CABLE, BATTERY, 4 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 4,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_8_red",
+      "partNumber": "EW-1C8-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 8 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 8,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_10_red",
+      "partNumber": "EW-1C10-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 10 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
+    },
+    {
       "id": "wp_14_red",
       "partNumber": "EW-1C14-RED",
       "manufacturer": "generic",
@@ -2676,6 +2615,13 @@
         "value": 14,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "wp_tbd_eps",
+      "partNumber": "TBD - EPS pump feed wire",
+      "manufacturer": "TBD",
+      "color": "Red",
+      "description": "WIRE, EPS PUMP FEED, GAUGE TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced"
     },
     {
       "id": "wp_18_vio",
@@ -2689,13 +2635,13 @@
       }
     },
     {
-      "id": "wp_18_yel",
-      "partNumber": "EW-1C18-YEL",
+      "id": "wp_10_brn",
+      "partNumber": "EW-1C10-BRN",
       "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, YELLOW, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Yellow",
+      "description": "WIRE, ELECTRICAL, 10 AWG, BROWN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Brown",
       "gauge": {
-        "value": 18,
+        "value": 10,
         "unit": "AWG"
       }
     },
@@ -2722,39 +2668,6 @@
       }
     },
     {
-      "id": "wp_20_pnk",
-      "partNumber": "EW-1C20-PNK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, PINK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Pink",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_red",
-      "partNumber": "EW-1C20-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_yel",
-      "partNumber": "EW-1C20-YEL",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Yellow",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "wp_2_red",
       "partNumber": "BC-2-RED",
       "manufacturer": "generic",
@@ -2771,17 +2684,6 @@
       "manufacturer": "generic",
       "description": "CABLE, BATTERY, 4 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
       "color": "Black",
-      "gauge": {
-        "value": 4,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_4_red",
-      "partNumber": "BC-4-RED",
-      "manufacturer": "generic",
-      "description": "CABLE, BATTERY, 4 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
-      "color": "Red",
       "gauge": {
         "value": 4,
         "unit": "AWG"
@@ -2810,17 +2712,6 @@
       }
     },
     {
-      "id": "wp_8_red",
-      "partNumber": "EW-1C8-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 8 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 8,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "wp_8_wht",
       "partNumber": "EW-1C8-WHT",
       "manufacturer": "generic",
@@ -2830,13 +2721,150 @@
         "value": 8,
         "unit": "AWG"
       }
+    }
+  ],
+  "terminalParts": [
+    {
+      "type": "Loose",
+      "partNumber": "GENERIC FLYING LEAD",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "id": "tp_flying_lead"
     },
     {
-      "id": "wp_tbd_eps",
-      "partNumber": "TBD - EPS pump feed wire",
-      "manufacturer": "TBD",
-      "color": "Red",
-      "description": "WIRE, EPS PUMP FEED, GAUGE TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced"
+      "type": "Ring",
+      "size": "M8",
+      "partNumber": "GENERIC LUG M8 4AWG",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 6,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 4,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK",
+      "id": "tp_lug_m8_4"
+    },
+    {
+      "type": "Ring",
+      "size": "M10",
+      "partNumber": "GENERIC LUG M10 2AWG",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 3,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 2,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK - own lug on a shared stud",
+      "id": "tp_lug_m10_2"
+    },
+    {
+      "type": "Ring",
+      "size": "M10",
+      "partNumber": "GENERIC LUG M10 4AWG",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 6,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 4,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE HEATSHRINK - own lug on a shared stud",
+      "id": "tp_lug_m10_4"
+    },
+    {
+      "type": "Ring",
+      "size": "M10",
+      "partNumber": "GENERIC LUG M10 50MM2",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 35,
+        "unit": "Metric"
+      },
+      "maxGauge": {
+        "value": 110,
+        "unit": "Metric"
+      },
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK - one cable per lug",
+      "id": "tp_lug_m10_50"
+    },
+    {
+      "type": "Ring",
+      "size": "M10",
+      "partNumber": "GENERIC LUG M10 8AWG",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 8,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK - own lug on a shared stud",
+      "id": "tp_lug_m10_8"
+    },
+    {
+      "type": "Ring",
+      "size": "M8",
+      "partNumber": "GENERIC LUG M8 2AWG",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 3,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 2,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M8 STUD, ADHESIVE HEATSHRINK",
+      "id": "tp_lug_m8_2"
+    },
+    {
+      "type": "Ring",
+      "size": "M8",
+      "partNumber": "GENERIC LUG M8 8AWG",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 8,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK",
+      "id": "tp_lug_m8_8"
+    },
+    {
+      "id": "tp_flying_lead_heavy",
+      "type": "Loose",
+      "partNumber": "GENERIC HEAVY FLYING LEAD 10-6",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 6,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, FLYING LEAD, HEAVY - joined to the factory lead with a crimp butt splice, 10-6 AWG, adhesive heatshrink over (solder sleeves stop at 16 AWG)"
     }
   ],
   "connectorParts": [
@@ -2959,54 +2987,6 @@
       }
     },
     {
-      "partNumber": "(cross-reference - no part)",
-      "manufacturer": "n/a",
-      "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
-      "id": "cp_xref",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png"
-      }
-    },
-    {
-      "partNumber": "1-1393304-0",
-      "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J1052-X281, MOUNTING BRACKET - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 70 A at 23 C / 50 A at 85 C / 30 A at 125 C (limiting continuous) - COIL: 12 VDC, 90 OHM - SUPPRESSION: RESISTOR 560 OHM in parallel (78 OHM total) - Checked 2026-09-26 against TE datasheet V23134X0000A002 rev 2607 + te.com product page - OWNED (qty 2); plugs into socket 1393310-4",
-      "numberOfCavities": 4,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_f7_load",
-          "mountPartId": "mt_vcf7"
-        }
-      ],
-      "id": "cp_rly_f7_a",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
-      }
-    },
-    {
-      "partNumber": "7-1904094-9",
-      "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J0052-X439 - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 70 A at 23 C / 50 A at 85 C / 30 A at 125 C (limiting continuous, F7 family datasheet) - COIL: 12 VDC, 91 OHM +/-10% - SUPPRESSION: DIODE, cathode on 86 (86 MUST be coil +, 85 coil -; reversed polarity shorts the diode) - Checked 2026-09-26 against TE customer drawing C-V23134-J0052-X439 rev A2 + datasheet V23134X0000A002 rev 2607 + te.com product page; plugs into socket 1393310-4; on Ign 5 / B13 its own diode is the only suppression - no external flywheel diode (G4X help: external diode only for PWM solenoids on ignition outputs)",
-      "numberOfCavities": 4,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_f7_load",
-          "mountPartId": "mt_vcf7"
-        }
-      ],
-      "id": "cp_rly_f7_d",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
-      }
-    },
-    {
       "partNumber": "DTHD06-1-8S",
       "manufacturer": "TE DEUTSCH",
       "description": "CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A - uprated fan power or ground, one plug per pole; fan lead mates DTHD04-1-8P with 0460-204-08141",
@@ -3027,159 +3007,7 @@
       }
     }
   ],
-  "terminalParts": [
-    {
-      "type": "Ring",
-      "size": "M10",
-      "partNumber": "GENERIC LUG M10 2AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 3,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 2,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK - own lug on a shared stud",
-      "id": "tp_lug_m10_2"
-    },
-    {
-      "type": "Ring",
-      "size": "M10",
-      "partNumber": "GENERIC LUG M10 4AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 4,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE HEATSHRINK - own lug on a shared stud",
-      "id": "tp_lug_m10_4"
-    },
-    {
-      "type": "Ring",
-      "size": "M10",
-      "partNumber": "GENERIC LUG M10 50MM2",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 35,
-        "unit": "Metric"
-      },
-      "maxGauge": {
-        "value": 110,
-        "unit": "Metric"
-      },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK - one cable per lug",
-      "id": "tp_lug_m10_50"
-    },
-    {
-      "type": "Ring",
-      "size": "M10",
-      "partNumber": "GENERIC LUG M10 8AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 8,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK - own lug on a shared stud",
-      "id": "tp_lug_m10_8"
-    },
-    {
-      "type": "Ring",
-      "size": "M8",
-      "partNumber": "GENERIC LUG M8 2AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 3,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 2,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M8 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m8_2"
-    },
-    {
-      "type": "Ring",
-      "size": "M8",
-      "partNumber": "GENERIC LUG M8 4AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 4,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m8_4"
-    },
-    {
-      "type": "Ring",
-      "size": "M8",
-      "partNumber": "GENERIC LUG M8 8AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 8,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m8_8"
-    },
-    {
-      "type": "Loose",
-      "partNumber": "GENERIC FLYING LEAD",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
-      "id": "tp_flying_lead"
-    },
-    {
-      "id": "tp_flying_lead_heavy",
-      "type": "Loose",
-      "partNumber": "GENERIC HEAVY FLYING LEAD 10-6",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, FLYING LEAD, HEAVY - joined to the factory lead with a crimp butt splice, 10-6 AWG, adhesive heatshrink over (solder sleeves stop at 16 AWG)"
-    }
-  ],
   "contactParts": [
-    {
-      "partNumber": "(generic)",
-      "manufacturer": "Generic",
-      "type": "Crimp",
-      "gender": "Socket",
-      "description": "CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, confirm before ordering",
-      "id": "ct_generic_skt"
-    },
     {
       "partNumber": "(ring lug, sized to cable)",
       "manufacturer": "generic",
@@ -3208,74 +3036,6 @@
       "id": "ct_radlok8"
     },
     {
-      "partNumber": "280755-4",
-      "manufacturer": "TE Connectivity",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 8,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
-      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 6-10 MM2 (10-8 AWG) - VCF7 socket 1393310-4, 8 AWG fan load cavities 30/87",
-      "id": "ct_f7_load8"
-    },
-    {
-      "partNumber": "8100-0461",
-      "manufacturer": "Sumitomo",
-      "type": "Crimp",
-      "gender": "Socket",
-      "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) - Toyota sensor/coil terminal (8100-0460 is the 0.3-0.5 mm2 size). Family match to each OEM housing assumed 2026-09-25",
-      "id": "ct_toy_ts",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
-    },
-    {
-      "partNumber": "42281-1",
-      "manufacturer": "TE Connectivity",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 18,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
-      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 250 (6.3 MM), TIN, 0.8-2.0 MM2 (18-14 AWG) - VCF7 socket 1393310-4, coil cavities 85/86 - OWNED (qty 20)",
-      "id": "ct_f7_coil"
-    },
-    {
-      "partNumber": "280756-4",
-      "manufacturer": "TE Connectivity",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 12,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
-      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) - VCF7 socket 1393310-4, load cavities 30/87",
-      "id": "ct_f7_load"
-    },
-    {
       "partNumber": "0462-203-08141",
       "manufacturer": "TE DEUTSCH",
       "type": "Crimp",
@@ -3290,16 +3050,14 @@
       },
       "description": "CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A - OWNED (qty 9)",
       "id": "ct_hd8s"
-    }
-  ],
-  "lockParts": [],
-  "cavityPlugParts": [],
-  "mountParts": [
+    },
     {
-      "partNumber": "1393310-4",
-      "manufacturer": "TE Connectivity",
-      "description": "SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS - harness side of the plug-in F7 relay; load terminals 280756-4 (12-10 AWG) or 280755-4 (10-8 AWG), coil terminals 42281-1 (18-14 AWG)",
-      "id": "mt_vcf7"
+      "partNumber": "(generic)",
+      "manufacturer": "Generic",
+      "type": "Crimp",
+      "gender": "Socket",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, confirm before ordering",
+      "id": "ct_generic_skt"
     }
   ]
 }

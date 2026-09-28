@@ -497,7 +497,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+B 12V - wired on ST185-B-engine"
+          "signal": "+B 12V (COP rail, spur from ST185-B-engine)"
         },
         {
           "id": "c2"
@@ -528,7 +528,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+B 12V - wired on ST185-B-engine"
+          "signal": "+B 12V (COP rail, spur from ST185-B-engine)"
         },
         {
           "id": "c2"
@@ -559,7 +559,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+B 12V - wired on ST185-B-engine"
+          "signal": "+B 12V (COP rail, spur from ST185-B-engine)"
         },
         {
           "id": "c2"
@@ -590,7 +590,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+B 12V - wired on ST185-B-engine"
+          "signal": "+B 12V (COP rail, spur from ST185-B-engine)"
         },
         {
           "id": "c2"
@@ -753,39 +753,6 @@
       }
     },
     {
-      "id": "lambda",
-      "label": "Link CAN-Lambda",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "Power +12V (10A fused per Link QSG)"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        },
-        {
-          "id": "c3",
-          "notConnected": true
-        },
-        {
-          "id": "c4",
-          "notConnected": true
-        }
-      ],
-      "layoutPosition": {
-        "x": 570,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 1980,
-        "y": 780
-      },
-      "partId": "cp_dtm4s",
-      "excludeFromBom": true,
-      "width": 390
-    },
-    {
       "id": "crank",
       "label": "Crank VR Sensor (36-2)",
       "partId": "cp_dt2s",
@@ -836,28 +803,6 @@
         "y": 0
       },
       "width": 210
-    },
-    {
-      "id": "dm_k_str_c4",
-      "label": "K6-c4",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Dummy - real part on the owning drawing, 6.15"
-        }
-      ],
-      "schematicPosition": {
-        "x": 660,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 3090,
-        "y": 390
-      },
-      "partId": "cp_xref",
-      "excludeFromBom": true
     }
   ],
   "terminals": [
@@ -890,6 +835,160 @@
       },
       "partId": "tp_spade_str",
       "width": 270
+    },
+    {
+      "id": "br_w_hv_mrs_en_e",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: MRS enable, bulkhead A c35",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2070,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": -60
+      }
+    },
+    {
+      "id": "br_w_mrs_e",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: MRS speed (ECU A27), bulkhead A c36",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2070,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": -60
+      }
+    },
+    {
+      "id": "br_w_strl",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: start relay 87 to the starter S terminal",
+      "width": 390,
+      "layoutPosition": {
+        "x": 3150,
+        "y": 450
+      },
+      "schematicPosition": {
+        "x": 720,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_w_lam12",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda +12V",
+      "width": 390,
+      "layoutPosition": {
+        "x": 630,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 2040,
+        "y": 840
+      }
+    },
+    {
+      "id": "br_w_lamg",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda ground",
+      "width": 390,
+      "layoutPosition": {
+        "x": 630,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 2040,
+        "y": 840
+      }
+    },
+    {
+      "id": "br_wc_h_lam",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN H from bulkhead A c30 to the Lambda",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2070,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": -60
+      }
+    },
+    {
+      "id": "br_wc_l_lam",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN L from bulkhead A c31 to the Lambda",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2070,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": -60
+      }
+    },
+    {
+      "id": "br_w124_e",
+      "type": "Loose",
+      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor + (Aux 9, B18), bulkhead B c5",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2160,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": -120
+      }
+    },
+    {
+      "id": "br_w215_e",
+      "type": "Loose",
+      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor - (Aux 10, B26), bulkhead B c6",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2160,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": -120
+      }
+    },
+    {
+      "id": "br_w_inj_pwr_e",
+      "type": "Loose",
+      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): F11 injector rail, bulkhead B c1",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2160,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": -120
+      }
+    },
+    {
+      "id": "br_w_cop_pwr_e",
+      "type": "Loose",
+      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): F10 COP rail, bulkhead B c2",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2160,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": -120
+      }
     }
   ],
   "splices": [
@@ -944,6 +1043,30 @@
       },
       "partId": "spp_crimp_10_6",
       "locationId": "be_750"
+    },
+    {
+      "id": "sp_inj_eng",
+      "layoutPosition": {
+        "x": 2250,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 2490,
+        "y": 1530
+      },
+      "partId": "spp_crimp_10_6"
+    },
+    {
+      "id": "sp_cop_eng",
+      "layoutPosition": {
+        "x": 2250,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 2490,
+        "y": 930
+      },
+      "partId": "spp_crimp_10_6"
     }
   ],
   "wires": [
@@ -1211,8 +1334,8 @@
       "id": "w_lam12",
       "color": "Red",
       "source": {
-        "id": "lambda",
-        "handle": "c1"
+        "id": "br_w_lam12",
+        "handle": "Terminal"
       },
       "target": {
         "id": "sp_sw12_eng",
@@ -1428,8 +1551,8 @@
       "id": "w_lamg",
       "color": "Black",
       "source": {
-        "id": "lambda",
-        "handle": "c2"
+        "id": "br_w_lamg",
+        "handle": "Terminal"
       },
       "target": {
         "id": "sp_chassis_eng",
@@ -1508,14 +1631,222 @@
       "id": "w_strl",
       "color": "Red",
       "source": {
-        "id": "dm_k_str_c4",
-        "handle": "c1"
+        "id": "br_w_strl",
+        "handle": "Terminal"
       },
       "target": {
         "id": "starter_trigger",
         "handle": "Terminal"
       },
       "partId": "wp_12_red"
+    },
+    {
+      "id": "w_hv_mrs_en_e_ae",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c35"
+      },
+      "target": {
+        "id": "br_w_hv_mrs_en_e",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "wp_20_red"
+    },
+    {
+      "id": "w_mrs_e_ae",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c36"
+      },
+      "target": {
+        "id": "br_w_mrs_e",
+        "handle": "Terminal"
+      },
+      "color": "Pink",
+      "partId": "wp_20_pnk"
+    },
+    {
+      "id": "wc_h_lam_ae",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c30"
+      },
+      "target": {
+        "id": "br_wc_h_lam",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "partId": "wp_20_wht"
+    },
+    {
+      "id": "wc_l_lam_ae",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c31"
+      },
+      "target": {
+        "id": "br_wc_l_lam",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "partId": "wp_20_grn"
+    },
+    {
+      "id": "w124_e_ae",
+      "source": {
+        "id": "br_w124_e",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "etb",
+        "handle": "c4"
+      },
+      "color": "Pink",
+      "partId": "wp_18_pnk"
+    },
+    {
+      "id": "w215_e_ae",
+      "source": {
+        "id": "br_w215_e",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "etb",
+        "handle": "c1"
+      },
+      "color": "Pink",
+      "partId": "wp_18_pnk"
+    },
+    {
+      "id": "w211",
+      "color": "Red",
+      "source": {
+        "id": "inj1",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_inj_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "w212",
+      "color": "Red",
+      "source": {
+        "id": "inj2",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_inj_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "w213",
+      "color": "Red",
+      "source": {
+        "id": "inj3",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_inj_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "w214",
+      "color": "Red",
+      "source": {
+        "id": "inj4",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_inj_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "w112",
+      "color": "Red",
+      "source": {
+        "id": "cop1",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_cop_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "w113",
+      "color": "Red",
+      "source": {
+        "id": "cop2",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_cop_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "w114",
+      "color": "Red",
+      "source": {
+        "id": "cop3",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_cop_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "w115",
+      "color": "Red",
+      "source": {
+        "id": "cop4",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_cop_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "w_inj_pwr_e_ae",
+      "source": {
+        "id": "br_w_inj_pwr_e",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_inj_eng",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "partId": "wp_14_red"
+    },
+    {
+      "id": "w_cop_pwr_e_ae",
+      "source": {
+        "id": "br_w_cop_pwr_e",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_cop_eng",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "partId": "wp_14_red"
     }
   ],
   "cables": [
@@ -1987,15 +2318,6 @@
       }
     },
     {
-      "id": "bn_bp_390__lambda",
-      "sourceId": "bp_390",
-      "targetId": "lambda",
-      "length": {
-        "value": 200,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_870__fuelp",
       "sourceId": "be_870",
       "targetId": "bp_at_fuelp",
@@ -2041,11 +2363,101 @@
       }
     },
     {
-      "id": "bn_bp_1020__dm_k_str_c4",
+      "id": "bn_bp_750__br_w_hv_mrs_en_e",
+      "sourceId": "bp_750",
+      "targetId": "br_w_hv_mrs_en_e",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_750__br_w_mrs_e",
+      "sourceId": "bp_750",
+      "targetId": "br_w_mrs_e",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1020__br_w_strl",
       "sourceId": "bp_1020",
-      "targetId": "dm_k_str_c4",
+      "targetId": "br_w_strl",
       "length": {
         "value": 640,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_390__br_w_lam12",
+      "sourceId": "bp_390",
+      "targetId": "br_w_lam12",
+      "length": {
+        "value": 200,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_390__br_w_lamg",
+      "sourceId": "bp_390",
+      "targetId": "br_w_lamg",
+      "length": {
+        "value": 200,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_750__br_wc_h_lam",
+      "sourceId": "bp_750",
+      "targetId": "br_wc_h_lam",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_750__br_wc_l_lam",
+      "sourceId": "bp_750",
+      "targetId": "br_wc_l_lam",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_750__br_w124_e",
+      "sourceId": "bp_750",
+      "targetId": "br_w124_e",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_750__br_w215_e",
+      "sourceId": "bp_750",
+      "targetId": "br_w215_e",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_750__br_w_inj_pwr_e",
+      "sourceId": "bp_750",
+      "targetId": "br_w_inj_pwr_e",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_750__br_w_cop_pwr_e",
+      "sourceId": "bp_750",
+      "targetId": "br_w_cop_pwr_e",
+      "length": {
+        "value": 50,
         "unit": "mm"
       }
     }
@@ -2262,7 +2674,28 @@
       }
     }
   ],
+  "schematicNotes": [
+    {
+      "id": "n_cavity_notes",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead A - engine plug (HDP2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - engine plug (HDP2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27); engine-side wire on ST185-EngineRoom-C (broken off)\nBulkhead A - engine plug (HDP2 36: Aux 7 MRS speed-out (ECU A27) - engine-side wire on ST185-EngineRoom-C (broken off)",
+      "schematicPosition": {
+        "x": 4200,
+        "y": 0
+      }
+    }
+  ],
   "wireParts": [
+    {
+      "id": "wp_20_blk",
+      "partNumber": "EW-1C20-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
     {
       "id": "wp_20_brn",
       "partNumber": "EW-1C20-BRN",
@@ -2280,6 +2713,17 @@
       "manufacturer": "generic",
       "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
       "color": "Green",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_org",
+      "partNumber": "EW-1C20-ORG",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Orange",
       "gauge": {
         "value": 20,
         "unit": "AWG"
@@ -2330,6 +2774,40 @@
       }
     },
     {
+      "id": "wp_18_pnk",
+      "partNumber": "EW-1C18-PNK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, PINK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Pink",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_org_wht",
+      "partNumber": "EW-1C20-ORG-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Orange",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_10_blk",
+      "partNumber": "EW-1C10-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 10 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
+    },
+    {
       "id": "wp_12_red",
       "partNumber": "EW-1C12-RED",
       "manufacturer": "generic",
@@ -2352,18 +2830,6 @@
       }
     },
     {
-      "id": "wp_18_blk_wht",
-      "partNumber": "EW-1C18-BLK-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "wp_18_red",
       "partNumber": "EW-1C18-RED",
       "manufacturer": "generic",
@@ -2375,57 +2841,11 @@
       }
     },
     {
-      "id": "wp_18_red_wht",
-      "partNumber": "EW-1C18-RED-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_blk",
-      "partNumber": "EW-1C20-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "wp_20_blk_wht",
       "partNumber": "EW-1C20-BLK-WHT",
       "manufacturer": "generic",
       "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
       "color": "Black",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_org",
-      "partNumber": "EW-1C20-ORG",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Orange",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_org_wht",
-      "partNumber": "EW-1C20-ORG-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Orange",
       "stripeColor": "White",
       "gauge": {
         "value": 20,
@@ -2455,15 +2875,250 @@
       }
     },
     {
-      "id": "wp_10_blk",
-      "partNumber": "EW-1C10-BLK",
+      "id": "wp_14_red",
+      "partNumber": "EW-1C14-RED",
       "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 10 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
+      "description": "WIRE, ELECTRICAL, 14 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
       "gauge": {
-        "value": 10,
+        "value": 14,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "wp_18_red_wht",
+      "partNumber": "EW-1C18-RED-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_18_blk_wht",
+      "partNumber": "EW-1C18-BLK-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    }
+  ],
+  "spliceParts": [
+    {
+      "partNumber": "GENERIC CRIMP SPLICE 10-6",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 6,
+        "unit": "AWG"
+      },
+      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, ADHESIVE HEATSHRINK OVER",
+      "id": "spp_crimp_10_6"
+    },
+    {
+      "partNumber": "GENERIC CRIMP SPLICE 14-10",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 14,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
+      "id": "spp_crimp_14_10"
+    }
+  ],
+  "contactParts": [
+    {
+      "id": "ct_hdp16s",
+      "partNumber": "0462-201-1631",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT plug; OWNED",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "contactColor": "Gold"
+    },
+    {
+      "partNumber": "0462-201-16141",
+      "manufacturer": "TE DEUTSCH",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "contactColor": "Silver",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT",
+      "id": "ct_dt16s_ni"
+    },
+    {
+      "partNumber": "15326427",
+      "manufacturer": "Aptiv",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 18,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "CONTACT, SOCKET, CRIMP, GT 150, GOLD, 0.75-1.0 MM2 (18-16 AWG)",
+      "id": "ct_gt150_skt"
+    },
+    {
+      "partNumber": "15326426",
+      "manufacturer": "Aptiv",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "description": "CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM - Aptiv catalog",
+      "id": "ct_gt150_skt_05"
+    },
+    {
+      "partNumber": "0462-201-2031",
+      "manufacturer": "TE DEUTSCH",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD30 / DTM",
+      "id": "ct_hdp20s"
+    },
+    {
+      "partNumber": "12084200",
+      "manufacturer": "Aptiv",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "contactColor": "Silver",
+      "description": "CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG)",
+      "id": "ct_mp150_skt"
+    },
+    {
+      "partNumber": "8100-0461",
+      "manufacturer": "Sumitomo",
+      "type": "Crimp",
+      "gender": "Socket",
+      "contactColor": "Silver",
+      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) - Toyota sensor/coil terminal (8100-0460 is the 0.3-0.5 mm2 size). Family match to each OEM housing assumed 2026-09-25",
+      "id": "ct_toy_ts",
+      "minGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "partNumber": "(kit socket, D 261 205 358-01)",
+      "manufacturer": "Bosch / AMP",
+      "type": "Crimp",
+      "gender": "Socket",
+      "description": "CONTACT, SOCKET, CRIMP, GOLD - supplied in the Bosch D 261 205 358-01 ETB connector kit. Wire range per kit sheet, NOT CONFIRMED",
+      "id": "wbsN09tiboovqanDL_xZA"
+    },
+    {
+      "partNumber": "(generic)",
+      "manufacturer": "Generic",
+      "type": "Crimp",
+      "gender": "Socket",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, confirm before ordering",
+      "id": "ct_generic_skt"
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "partNumber": "114017",
+      "manufacturer": "TE DEUTSCH",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
+      "id": "pl_sz16"
+    },
+    {
+      "partNumber": "0413-204-2005",
+      "manufacturer": "TE DEUTSCH",
+      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity",
+      "id": "pl_sz20"
+    }
+  ],
+  "terminalParts": [
+    {
+      "type": "Ring",
+      "size": "M6",
+      "partNumber": "GENERIC RING M6 12-10",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 12,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
+      "id": "tp_ring_m6_12_10"
+    },
+    {
+      "type": "Spade",
+      "partNumber": "GENERIC SPADE RECEPTACLE 12-10",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 12,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 6.3 MM (250) TAB, 12-10 AWG - starter S terminal (6.3 mm single-pole spade assumed 2026-09-25)",
+      "id": "tp_spade_str"
     }
   ],
   "connectorParts": [
@@ -2788,171 +3443,6 @@
       "manufacturer": "TBD",
       "description": "CONNECTOR, A/C COOLANT TEMPERATURE SWITCH, 2 POS - switch not yet chosen; never invent a part number (redesign D5)",
       "numberOfCavities": 2
-    },
-    {
-      "partNumber": "DTM06-4S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY - Link CAN-Lambda, harness side",
-      "numberOfCavities": 4,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_hdp20s",
-          "cavityPlugPartId": "pl_sz20",
-          "lockPartId": "lp_wm4s"
-        }
-      ],
-      "id": "cp_dtm4s",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-details.png"
-      }
-    },
-    {
-      "partNumber": "(cross-reference - no part)",
-      "manufacturer": "n/a",
-      "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
-      "id": "cp_xref",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png"
-      }
-    }
-  ],
-  "contactParts": [
-    {
-      "partNumber": "0462-201-16141",
-      "manufacturer": "TE DEUTSCH",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT",
-      "id": "ct_dt16s_ni"
-    },
-    {
-      "partNumber": "(generic)",
-      "manufacturer": "Generic",
-      "type": "Crimp",
-      "gender": "Socket",
-      "description": "CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, confirm before ordering",
-      "id": "ct_generic_skt"
-    },
-    {
-      "partNumber": "15326427",
-      "manufacturer": "Aptiv",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 18,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "description": "CONTACT, SOCKET, CRIMP, GT 150, GOLD, 0.75-1.0 MM2 (18-16 AWG)",
-      "id": "ct_gt150_skt"
-    },
-    {
-      "partNumber": "15326426",
-      "manufacturer": "Aptiv",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "description": "CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM - Aptiv catalog",
-      "id": "ct_gt150_skt_05"
-    },
-    {
-      "partNumber": "0462-201-1631",
-      "manufacturer": "TE DEUTSCH",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - OWNED (qty 118)",
-      "id": "ct_hdp16s"
-    },
-    {
-      "partNumber": "0462-201-2031",
-      "manufacturer": "TE DEUTSCH",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD30 / DTM",
-      "id": "ct_hdp20s"
-    },
-    {
-      "partNumber": "12084200",
-      "manufacturer": "Aptiv",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG)",
-      "id": "ct_mp150_skt"
-    },
-    {
-      "partNumber": "8100-0461",
-      "manufacturer": "Sumitomo",
-      "type": "Crimp",
-      "gender": "Socket",
-      "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) - Toyota sensor/coil terminal (8100-0460 is the 0.3-0.5 mm2 size). Family match to each OEM housing assumed 2026-09-25",
-      "id": "ct_toy_ts",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
-    },
-    {
-      "partNumber": "(kit socket, D 261 205 358-01)",
-      "manufacturer": "Bosch / AMP",
-      "type": "Crimp",
-      "gender": "Socket",
-      "description": "CONTACT, SOCKET, CRIMP, GOLD - supplied in the Bosch D 261 205 358-01 ETB connector kit. Wire range per kit sheet, NOT CONFIRMED",
-      "id": "wbsN09tiboovqanDL_xZA"
     }
   ],
   "cableParts": [
@@ -2986,99 +3476,6 @@
       "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 3-WAY PLUG",
       "id": "lp_w3s"
-    },
-    {
-      "partNumber": "WM-4S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DTM, 4-WAY PLUG",
-      "id": "lp_wm4s"
-    }
-  ],
-  "cavityPlugParts": [
-    {
-      "partNumber": "114017",
-      "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
-      "id": "pl_sz16"
-    },
-    {
-      "partNumber": "0413-204-2005",
-      "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity",
-      "id": "pl_sz20"
-    }
-  ],
-  "terminalParts": [
-    {
-      "type": "Spade",
-      "partNumber": "GENERIC SPADE RECEPTACLE 12-10",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 12,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 6.3 MM (250) TAB, 12-10 AWG - starter S terminal (6.3 mm single-pole spade assumed 2026-09-25)",
-      "id": "tp_spade_str"
-    },
-    {
-      "type": "Ring",
-      "size": "M6",
-      "partNumber": "GENERIC RING M6 12-10",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 12,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
-      "id": "tp_ring_m6_12_10"
-    }
-  ],
-  "spliceParts": [
-    {
-      "partNumber": "GENERIC CRIMP SPLICE 10-6",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, ADHESIVE HEATSHRINK OVER",
-      "id": "spp_crimp_10_6"
-    },
-    {
-      "partNumber": "GENERIC CRIMP SPLICE 14-10",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
-      "id": "spp_crimp_14_10"
-    }
-  ],
-  "schematicNotes": [
-    {
-      "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead A - engine plug (HDP2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - engine plug (HDP2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27); engine-side wire on ST185-EngineRoom-C (dm_bh_a_eng_c35)\nBulkhead A - engine plug (HDP2 36: Aux 7 MRS speed-out (ECU A27) - engine-side wire on ST185-EngineRoom-C (dm_bh_a_eng_c36)",
-      "schematicPosition": {
-        "x": 4200,
-        "y": 0
-      }
     }
   ]
 }

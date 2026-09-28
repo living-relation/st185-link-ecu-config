@@ -44,7 +44,8 @@ whole chain and must pass before every commit.
 | `XTREMEX-IO-TABLE.html` | Visual face of the SoT, with a generated pin map |
 | `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: fuse block, HCFB, A-triggered relays, APS, CSB3 plug, front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
 | `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: condenser fan relay, fuel level branch, rear wheel-speed spur (Rule 3) |
-| `docs/harness/rebuild/ST185-APS-Pedal.harness` | APS pedal harness behind `IX_APS` (Rule 3 crossover c) |
+| `docs/harness/rebuild/ST185-APS-Pedal.harness` | APS pedal harness: A/B pedal wires broken off the cabin looms, female/male DT 6-way pair, run to the pedal (Rule 3 crossover c) |
+| `docs/harness/rebuild/ST185-CSB3.harness` | ECUMaster CSB3 plug and switch inputs (non-ECU) |
 | `docs/harness/rebuild/ST185-A-engine.harness` | Bulkhead A engine half to every A-letter engine device (Rule 3) |
 | `docs/harness/rebuild/ST185-B-engine.harness` | Bulkhead B engine half to every B-letter engine device, ETB motor (Rule 3) |
 | `docs/harness/rebuild/ST185-CAN.harness` | CAN backbone - the only drawing with CAN H/L |
@@ -152,21 +153,28 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     wire breaks off `ST185-B-cabin`, both at the female DT 6-way of `IX_APS`, and
     `ST185-APS-Pedal` runs from the male half to the pedal. The throttle **body** (A20
     relay trigger, B5 supply, B18/B26 motor, A22/A33 sensors) is engine-bay wiring.
-- **Broken-off ends come in pairs.** A wire may leave one loom file for another only at an
-  inline connector pair or at a registered cross-reference stub, and a stub's other end
-  must exist on the owning file and name the stub's harness back
-  (`validate_bulkhead_letter.py` L6).
+  - **(d)** Injector rail (F11) and COP rail (F10) cross on bulkhead B c1 / c2 (size-12
+    contacts; bulkhead A has none) and spur into A-engine the same way as the ETB motor
+    (Daniel, 2026-09-28).
+- **ETB body (engine bay):** the B18 / B26 motor wires leave `ST185-B-engine` as a short spur
+  right after bulkhead B, drawn broken off with a note; `ST185-A-engine` shows them broken
+  off coming in from B-engine and takes them into the A trunk, under the sheathing, right
+  after bulkhead A, to the throttle body drawn there.
+- **No harness is drawn inside another** (all power and ECU harnesses). A wire that runs
+  between two harness files is drawn **broken off in both**, each section ending at a noted
+  terminal that names the other file; a device is drawn once. Where that will not resolve,
+  put a connector pair where the wire leaves one harness and enters the other, with a note
+  in both files naming the other. Non-ECU wires that follow a device's bulkhead obey the
+  same rule. No cross-reference dummies. The pairs are registered in
+  `docs/harness/interfaces.json` "breaks"; `validate_bulkhead_letter.py` L6 / L7 enforce
+  them.
+- The ECUMaster CSB3 plug and its switch inputs are their own non-ECU harness,
+  `ST185-CSB3` (keeps `ST185-A-cabin` under the harness.design 100-connection limit).
 - Every other loom stays as it is: `EngineRoom-C`, `CAN`, `ClusterLED`, `AntiTheft`,
   `WheelSpeed-Front` / `-Rear`, `RearFuel`, `ACAmp-Spur`.
 
 **Enforced by** `docs/harness/validate_bulkhead_letter.py`, a hard gate in `check_all.py`.
-Its allow-list is (a)/(b)/(c) and nothing else. Its `PENDING` list holds deviations that
-are waiting on a ruling and are printed on every run - today only Q-RAIL, below.
-
-**Open (Q-RAIL):** the injector rail (F11 15 A) and COP rail (F10 20 A) feed A devices but
-still cross on bulkhead B, on size-12 contacts. Bulkhead A (`HDP24-24-47`, 5 size-16 plus
-42 size-20) has no size-12 cavity, and its size-16 contacts are rated 13 A. They move when
-Daniel picks a route (`docs/harness/redesign/DECISIONS.md`, Q-RAIL).
+Its allow-list is (a)-(d) and nothing else.
 
 ---
 
