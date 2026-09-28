@@ -41,7 +41,7 @@ Machine-readable: `tune/engine_constants.yaml`
 - [ ] **Trigger Scope** — 36-2 pattern and VR polarity
 - [ ] **E150F VSS** pulses/mile — calibrate road speed in PCLink after first drive
 - [ ] **Reverse** via switchboard → CAN, verified on cluster gear display
-- [ ] **MAC 3-port** plumbing to EFR IWG verified
+- [ ] **MAC 4-port** plumbing to EFR IWG verified
 
 ## Optional / later (not startup map)
 
