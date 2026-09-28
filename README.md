@@ -54,7 +54,7 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 
 1. Set CAN Module 1 (CAN1) → **1 000 000 bps**, Custom stream type, BigEndian.
 2. File → Open → `link_g4x_can_setup.lcs` — verify all 8 TX channels appear.
-3. Add User Streams: 0x640 bytes0-1 → GP Temp1; 0x642 byte4 bits0-4 → VDI1-5.
+3. Add User Stream: 0x642 byte4 bits0-4 → VDI1-5 (VDI1/2 unassigned; the 0x640 cabin-temp stream is retired).
 4. Set CAN Receive Timeout: 200 ms on frames 0x640 / 0x641 / 0x642.
 5. Confirm ECU echoes TC Setting (0x3EF byte3) and Boost Map Index (0x3EF byte5) back to 0x3ED / 0x3EC.
 
