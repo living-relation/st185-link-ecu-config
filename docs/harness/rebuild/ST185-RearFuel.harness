@@ -134,7 +134,7 @@
     {
       "partNumber": "DT06-2S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY - harness side",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -193,7 +193,7 @@
     {
       "partNumber": "12052641",
       "manufacturer": "Aptiv",
-      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 2 POS, SEALED, SOCKET CONTACTS - fuel level sender / boost solenoid",
+      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 2 POS, SEALED, SOCKET CONTACTS",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -226,7 +226,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
       "id": "ct_dt16s_ni"
     },
     {
@@ -259,7 +259,7 @@
     {
       "partNumber": "114017",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
     }
   ]

@@ -678,7 +678,7 @@
     {
       "partNumber": "DT06-2S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY - ABS wheel speed sensor, harness side; mates DT04-2P on the re-terminated pigtail",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -738,7 +738,7 @@
       "id": "cp_dt04_6p",
       "partNumber": "DT04-6P",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY - wheel-speed VRC output inline interface, wheel-speed harness side (receiving half DT06-6S is on the ECU spur)",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 6,
       "gender": "Male",
       "hasShell": false,
@@ -768,14 +768,14 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
       "id": "ct_dt16s_ni"
     },
     {
       "id": "ct_dt16p",
       "partNumber": "0460-202-1631",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT receptacle; OWNED",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "type": "Crimp",
       "gender": "Pin",
       "minGauge": {
@@ -794,7 +794,7 @@
       "id": "cab_sh_2c",
       "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
       "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - sensor pair (generic per 6.24)",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "cores": [
         {
           "id": "k1",
@@ -820,7 +820,7 @@
       "id": "cab_sh_4c",
       "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
       "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - rear VRC to ECU (generic per 6.24)",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "cores": [
         {
           "id": "k1",
@@ -876,7 +876,7 @@
     {
       "partNumber": "114017",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
     }
   ]

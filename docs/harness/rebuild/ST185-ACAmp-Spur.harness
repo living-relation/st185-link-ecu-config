@@ -165,7 +165,7 @@
     {
       "partNumber": "DT06-2S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY - harness side",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -237,7 +237,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
       "id": "ct_dt16s_ni"
     }
   ],
@@ -254,7 +254,7 @@
         "value": 16,
         "unit": "AWG"
       },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "description": "TERMINAL, FLYING LEAD",
       "id": "tp_flying_lead"
     }
   ],
@@ -270,7 +270,7 @@
     {
       "partNumber": "114017",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
     }
   ]

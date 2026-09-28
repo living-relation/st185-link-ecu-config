@@ -43,8 +43,13 @@ thing is wrong.
   Rule 3 (Daniel, 2026-09-28; overrides "A = signal / B = power" and the merged ECU-Cabin).
   Four ECU files: `ST185-A-cabin`, `-B-cabin`, `-A-engine`, `-B-engine`; the letter is the
   pin's `conn` column in `sot/channels.csv`; non-ECU wires follow their device's ECU signal.
-  Only crossovers: (a) +5V / Gnd Out splice at ECU A with a leg to each bulkhead, (b) ETB
-  A20 / B5, (c) APS A14 / B33. Gate: `validate_bulkhead_letter.py`.
+  Only crossovers: (a) +5V (A32) spliced to both bulkheads - sensor ground stays per letter
+  (A24 on A, B22 on B, never tied), (b) ETB A20 / B5, (c) APS A14 / B33. Gate:
+  `validate_bulkhead_letter.py`.
+- **Part descriptions describe the part, never its use.** One format: `TYPE, SUBTYPE, key
+  ratings`, uppercase, no nets, circuits, devices, groups, layers, sensors, signals, stock
+  counts or plan references. Wires are generated from gauge/colour. Gate: `part_desc.py`
+  (`--fix` rewrites to the standard text).
 - **Each bulkhead cavity mates its twin.** Bulkhead A cabin cN = bulkhead A engine cN, same
   for B, same name on both halves. The looms are separate drawings, so only the audits join
   them (`audit_mating.py`, `audit_pin_names.py`).

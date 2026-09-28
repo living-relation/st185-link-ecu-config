@@ -1012,14 +1012,14 @@
       "partNumber": "TBD - EPS pump feed wire",
       "manufacturer": "TBD",
       "color": "Red",
-      "description": "WIRE, EPS PUMP FEED, GAUGE TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced"
+      "description": "WIRE, ELECTRICAL, GAUGE TBD, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV"
     }
   ],
   "connectorParts": [
     {
       "partNumber": "(pump pigtail - Walbro F90000295)",
       "manufacturer": "Walbro",
-      "description": "CONNECTOR, PIGTAIL, 2 POS - supplied on the Walbro F90000295 pump, 12 in from the pump; the only break in the 20 A circuit (plan 6.41)",
+      "description": "CONNECTOR, PIGTAIL, 2 POS",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -1039,7 +1039,7 @@
     {
       "partNumber": "2141029-1",
       "manufacturer": "TE Connectivity",
-      "description": "FUSE HOLDER, MODULE, MFINITY, 16 POS MINI FUSE, HARD WIRED - OWNED (qty 1), cover 2141033. Mini fuses max 30 A per position. Fed 50 A from HCFB H1; bus split: IN feeds F1-F4, F8, F12, F13 (permanent), SW IN feeds F9-F11 (EFI main relay 87)",
+      "description": "FUSE HOLDER, MODULE, MFINITY, 16 POS MINI FUSE, HARD WIRED",
       "configurations": [
         {
           "id": "cfg",
@@ -1056,7 +1056,7 @@
     {
       "partNumber": "LMI5-M-2-CB1AD",
       "manufacturer": "Eaton Bussmann",
-      "description": "FUSE BLOCK, MODULAR, LMI, METRIC, 1 INPUT MODULE (M8 STUD) + 4 AMI FUSE MODULES (M5 STUDS), 400 A MAX COMBINED - glove box beside FB1. Order as components (assembled code has a 100 MOQ): 1x LMI1-M-1-1 input, 4x LMI1-M-1-0 fuse modules, 1x B109-7046-5 busbar, AMI fuses 50/40/30/60 A",
+      "description": "FUSE BLOCK, MODULAR, LMI, METRIC, 1 INPUT MODULE (M8 STUD) + 4 AMI FUSE MODULES (M5 STUDS), 400 A MAX COMBINED",
       "numberOfCavities": 5,
       "configurations": [
         {
@@ -1078,7 +1078,7 @@
       "manufacturer": "Generic",
       "type": "Crimp",
       "gender": "Socket",
-      "description": "CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, confirm before ordering",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
       "id": "ct_generic_skt"
     },
     {
@@ -1095,7 +1095,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 0.5-1.0 MM2 (20-18 AWG) - MFINITY mini fuse module 2141029-1",
+      "description": "CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 0.5-1.0 MM2 (20-18 AWG)",
       "id": "ct_fb_05"
     },
     {
@@ -1112,7 +1112,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 1.0-2.5 MM2 (18-14 AWG) - MFINITY mini fuse module 2141029-1",
+      "description": "CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 1.0-2.5 MM2 (18-14 AWG)",
       "id": "ct_fb_25"
     },
     {
@@ -1129,7 +1129,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 2.5-4 MM2 (14-12 AWG) - MFINITY mini fuse module 2141029-1",
+      "description": "CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 2.5-4 MM2 (14-12 AWG)",
       "id": "ct_fb_4"
     },
     {
@@ -1146,7 +1146,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M5 STUD, ADHESIVE HEATSHRINK - LMI fuse module output studs",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M5 STUD, ADHESIVE HEATSHRINK",
       "id": "ct_ring_m5_10_8"
     },
     {
@@ -1163,7 +1163,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK - LMI input module stud",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK",
       "id": "ct_ring_m8_4"
     },
     {
@@ -1180,7 +1180,7 @@
         "unit": "Metric"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, BUSBAR FEED, CUNISI PRE-TINNED, 4.0-6.0 MM2 (10 AWG) - MFINITY mini fuse module 2141029-1 bus inputs IN / SW IN",
+      "description": "CONTACT, BUSBAR, CUNISI PRE-TINNED, 4.0-6.0 MM2 (10 AWG)",
       "id": "ct_fb_bus"
     }
   ],

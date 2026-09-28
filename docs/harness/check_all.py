@@ -19,6 +19,7 @@ What it runs, in order - every one in HARD is a hard gate:
   validate_bulkhead_letter.py ECU looms follow the ECU connector letter; crossovers a/b/c only
   audit_bulkhead_pairs.py  no bulkhead cavity wired on one side only
   audit_bh_collisions.py   no two circuits on one half of a bulkhead cavity
+  part_desc.py             part descriptions describe the part only (standard format)
   buylist.py               buy list, and the shared-connector consistency check
   buildlist.py             per-wire build list
   make_min.py              the upload copies in min/
@@ -35,7 +36,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_shields.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
-        ["audit_bh_collisions.py"], ["buylist.py"], ["buildlist.py"], ["make_min.py"]]
+        ["audit_bh_collisions.py"], ["part_desc.py"], ["buylist.py"], ["buildlist.py"], ["make_min.py"]]
 SOFT = []
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy
 # baseline cannot follow the redesign's intentional ownership and boundary moves.
@@ -47,6 +48,9 @@ SOFT = []
 #
 # 2026-09-28: validate_bulkhead_letter started HARD - Daniel's ECU loom rule. Its
 # PENDING list (injector/COP rails on bulkhead B) prints on every run until ruled on.
+#
+# 2026-09-28: part_desc started HARD - Daniel's rule that a part description names
+# the part itself, never the net, device or circuit it is used on.
 #
 # 2026-09-25: the pair and collision audits went HARD. The last one-sided
 # cavities were EngineRoom-C cross-reference dummies the audit could not read,

@@ -514,7 +514,7 @@
       "id": "cp_dt06_6s",
       "partNumber": "DT06-6S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY - wheel-speed inline interface, ECU spur side (receiving half; supplies +5V, so it carries the sockets)",
+      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 6,
       "gender": "Female",
       "hasShell": false,
@@ -532,7 +532,7 @@
       "id": "cp_dt04_6p",
       "partNumber": "DT04-6P",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY - wheel-speed VRC output inline interface, wheel-speed harness side (receiving half DT06-6S is on the ECU spur)",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 6,
       "gender": "Male",
       "hasShell": false,
@@ -549,7 +549,7 @@
     {
       "partNumber": "Sumitomo TS 025 6-way",
       "manufacturer": "Sumitomo / Subaru",
-      "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS - Subaru BRZ e-throttle pedal. Face, tab up: 1 VC2, 2 GND2, 3 VPA2, 4 VC1, 5 GND1, 6 VPA1",
+      "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS",
       "numberOfCavities": 6,
       "gender": "Female",
       "hasShell": false,
@@ -572,7 +572,7 @@
       "id": "ct_hdp16s",
       "partNumber": "0462-201-1631",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT plug; OWNED",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "type": "Crimp",
       "gender": "Socket",
       "minGauge": {
@@ -589,7 +589,7 @@
       "id": "ct_dt16p",
       "partNumber": "0460-202-1631",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT receptacle; OWNED",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "type": "Crimp",
       "gender": "Pin",
       "minGauge": {
@@ -607,7 +607,7 @@
       "manufacturer": "Generic",
       "type": "Crimp",
       "gender": "Socket",
-      "description": "CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, confirm before ordering",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
       "id": "ct_generic_skt"
     }
   ],
@@ -615,7 +615,7 @@
     {
       "partNumber": "114017",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
     }
   ],

@@ -2621,7 +2621,7 @@
       "partNumber": "TBD - EPS pump feed wire",
       "manufacturer": "TBD",
       "color": "Red",
-      "description": "WIRE, EPS PUMP FEED, GAUGE TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced"
+      "description": "WIRE, ELECTRICAL, GAUGE TBD, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV"
     },
     {
       "id": "wp_18_vio",
@@ -2736,7 +2736,7 @@
         "value": 16,
         "unit": "AWG"
       },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "description": "TERMINAL, FLYING LEAD",
       "id": "tp_flying_lead"
     },
     {
@@ -2768,7 +2768,7 @@
         "value": 2,
         "unit": "AWG"
       },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK - own lug on a shared stud",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK",
       "id": "tp_lug_m10_2"
     },
     {
@@ -2784,7 +2784,7 @@
         "value": 4,
         "unit": "AWG"
       },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE HEATSHRINK - own lug on a shared stud",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE HEATSHRINK",
       "id": "tp_lug_m10_4"
     },
     {
@@ -2800,7 +2800,7 @@
         "value": 110,
         "unit": "Metric"
       },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK - one cable per lug",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK",
       "id": "tp_lug_m10_50"
     },
     {
@@ -2816,7 +2816,7 @@
         "value": 8,
         "unit": "AWG"
       },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK - own lug on a shared stud",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK",
       "id": "tp_lug_m10_8"
     },
     {
@@ -2864,14 +2864,14 @@
         "value": 6,
         "unit": "AWG"
       },
-      "description": "TERMINAL, FLYING LEAD, HEAVY - joined to the factory lead with a crimp butt splice, 10-6 AWG, adhesive heatshrink over (solder sleeves stop at 16 AWG)"
+      "description": "TERMINAL, FLYING LEAD, HEAVY"
     }
   ],
   "connectorParts": [
     {
       "partNumber": "jump-post-M8",
       "manufacturer": "TBD",
-      "description": "POST, JUMP START, M8, INSULATED - engine-bay jump post on the starter B+ net",
+      "description": "POST, JUMP START, M8, INSULATED",
       "configurations": [
         {
           "id": "cfg",
@@ -2887,7 +2887,7 @@
     {
       "partNumber": "MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942",
       "manufacturer": "Toyota / Sumitomo",
-      "description": "CONNECTOR SET, TOYOTA, MR-S EHPS PUMP: A 90980-12068 2 POS POWER, B 90980-10897 6 POS SIGNAL, C 90980-10942 2 POS IGNITION - all three owned; drawn as one 10-pin part",
+      "description": "CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS",
       "numberOfCavities": 10,
       "gender": "Female",
       "hasShell": false,
@@ -2907,7 +2907,7 @@
     {
       "partNumber": "(OEM block)",
       "manufacturer": "Toyota",
-      "description": "CONNECTOR, OEM, JUNCTION OR RELAY BLOCK - only the pins this harness lands. No invented J/B internals",
+      "description": "CONNECTOR, OEM, JUNCTION OR RELAY BLOCK",
       "configurations": [
         {
           "id": "cfg",
@@ -2923,7 +2923,7 @@
     {
       "partNumber": "PDB-M8x8",
       "manufacturer": "TBD",
-      "description": "BLOCK, POWER DISTRIBUTION, 8 STUD M8, 150-250 A BUS - glove box. PN TBD",
+      "description": "BLOCK, POWER DISTRIBUTION, 8 STUD M8, 150-250 A BUS",
       "configurations": [
         {
           "id": "cfg",
@@ -2939,7 +2939,7 @@
     {
       "partNumber": "(glove-box body block - 2nd fuse block + relays)",
       "manufacturer": "assembly",
-      "description": "ASSEMBLY, FUSE AND RELAY BLOCK, 12-16 WAY, GLOVE BOX - ex-J/B2 body circuits and CAN device feeds; replaces the dropped PMU-16 (plan 6.46-6.48). Built up - see NEED-TO-BUY",
+      "description": "ASSEMBLY, FUSE AND RELAY BLOCK, 12-16 WAY, GLOVE BOX",
       "configurations": [
         {
           "id": "cfg",
@@ -2955,7 +2955,7 @@
     {
       "partNumber": "RL00801-50BK",
       "manufacturer": "Amphenol",
-      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK - battery -, one each side of the RL9080-301-F1 firewall feed-through (engine and cabin), qty 2",
+      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK",
       "configurations": [
         {
           "id": "cfg",
@@ -2972,7 +2972,7 @@
     {
       "partNumber": "RL00801-50RE",
       "manufacturer": "Amphenol",
-      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED - battery +, one each side of the RL9080-301-F1RE firewall feed-through (engine and cabin), qty 2",
+      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED",
       "configurations": [
         {
           "id": "cfg",
@@ -2989,7 +2989,7 @@
     {
       "partNumber": "DTHD06-1-8S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A - uprated fan power or ground, one plug per pole; fan lead mates DTHD04-1-8P with 0460-204-08141",
+      "description": "CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A",
       "numberOfCavities": 1,
       "gender": "Female",
       "hasShell": false,
@@ -3014,7 +3014,7 @@
       "type": "Other",
       "gender": "Socket",
       "contactColor": "Silver",
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK - stud-type device, no connector housing",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK",
       "id": "ct_lug_stud"
     },
     {
@@ -3023,7 +3023,7 @@
       "type": "Crimp",
       "gender": "Socket",
       "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, TOYOTA - supplied with the owned MR-S pump housings. Size for housing A (8 AWG) NOT CONFIRMED",
+      "description": "CONTACT, SOCKET, CRIMP, TOYOTA",
       "id": "ct_mrs_ts"
     },
     {
@@ -3048,7 +3048,7 @@
         "value": 8,
         "unit": "AWG"
       },
-      "description": "CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A - OWNED (qty 9)",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A",
       "id": "ct_hd8s"
     },
     {
@@ -3056,7 +3056,7 @@
       "manufacturer": "Generic",
       "type": "Crimp",
       "gender": "Socket",
-      "description": "CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, confirm before ordering",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
       "id": "ct_generic_skt"
     }
   ]

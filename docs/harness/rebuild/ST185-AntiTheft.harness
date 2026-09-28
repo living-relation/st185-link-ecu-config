@@ -1246,7 +1246,7 @@
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
     }
   ],
   "contactParts": [
@@ -1254,7 +1254,7 @@
       "id": "ct_hdp16s",
       "partNumber": "0462-201-1631",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT plug; OWNED",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "type": "Crimp",
       "gender": "Socket",
       "minGauge": {
@@ -1281,7 +1281,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
       "id": "ct_dt16s_ni"
     }
   ],
@@ -1298,7 +1298,7 @@
         "value": 16,
         "unit": "AWG"
       },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "description": "TERMINAL, FLYING LEAD",
       "id": "tp_flying_lead"
     },
     {
@@ -1322,7 +1322,7 @@
     {
       "partNumber": "DT06-3S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, N SEAL, GRAY - harness side",
+      "description": "CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 3,
       "gender": "Female",
       "hasShell": false,
@@ -1399,7 +1399,7 @@
     {
       "partNumber": "DT06-12SA",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 12 POS, SOCKET CONTACTS, N SEAL, KEY A, GRAY - alarm module harness side, mates DT04-12PA",
+      "description": "CONNECTOR, PLUG, DT, 12 POS, SOCKET CONTACTS, N SEAL, KEY A, GRAY",
       "numberOfCavities": 12,
       "gender": "Female",
       "hasShell": false,
@@ -1422,7 +1422,7 @@
     {
       "partNumber": "DT06-2S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY - harness side (Daniel's library part)",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -1503,7 +1503,7 @@
     {
       "partNumber": "114017",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
     }
   ]

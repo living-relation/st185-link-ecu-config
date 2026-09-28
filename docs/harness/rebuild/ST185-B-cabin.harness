@@ -2250,7 +2250,7 @@
       "id": "wp_20_shd",
       "partNumber": "EW-1C20-DRAIN",
       "manufacturer": "generic",
-      "description": "WIRE, DRAIN, 20 AWG, TINNED COPPER, CLEAR ETFE SLEEVE - screen continuation to the ECU shield splice",
+      "description": "WIRE, DRAIN, 20 AWG, TINNED COPPER, CLEAR ETFE SLEEVE",
       "color": "Shield",
       "gauge": {
         "value": 20,
@@ -2396,7 +2396,7 @@
       "partNumber": "TBD - EPS pump feed wire",
       "manufacturer": "TBD",
       "color": "Red",
-      "description": "WIRE, EPS PUMP FEED, GAUGE TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced"
+      "description": "WIRE, ELECTRICAL, GAUGE TBD, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV"
     },
     {
       "id": "wp_20_gry",
@@ -2438,7 +2438,7 @@
       "id": "cp_dt06_6s",
       "partNumber": "DT06-6S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY - wheel-speed inline interface, ECU spur side (receiving half; supplies +5V, so it carries the sockets)",
+      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 6,
       "gender": "Female",
       "hasShell": false,
@@ -2456,7 +2456,7 @@
       "id": "cp_dt04_2p",
       "partNumber": "DT04-2P",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY - 2-way inline interface, source half",
+      "description": "CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 2,
       "gender": "Male",
       "hasShell": false,
@@ -2473,7 +2473,7 @@
     {
       "partNumber": "HDP24-24-21PN",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, RECEPTACLE, HDP20, SHELL 24, 21 POS, PIN CONTACTS, N SEAL - bulkhead B, cabin side",
+      "description": "CONNECTOR, RECEPTACLE, HDP20, SHELL 24, 21 POS, PIN CONTACTS, N SEAL",
       "numberOfCavities": 21,
       "gender": "Male",
       "hasShell": false,
@@ -2493,7 +2493,7 @@
     {
       "partNumber": "4-1437290-0",
       "manufacturer": "TE Connectivity",
-      "description": "CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET CONTACTS, BLUE - Link G4X XtremeX connector B (loom B)",
+      "description": "CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET CONTACTS, BLUE",
       "numberOfCavities": 34,
       "gender": "Female",
       "hasShell": false,
@@ -2513,7 +2513,7 @@
     {
       "partNumber": "7-1904094-9",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J0052-X439 - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 70 A at 23 C / 50 A at 85 C / 30 A at 125 C (limiting continuous, F7 family datasheet) - COIL: 12 VDC, 91 OHM +/-10% - SUPPRESSION: DIODE, cathode on 86 (86 MUST be coil +, 85 coil -; reversed polarity shorts the diode) - Checked 2026-09-26 against TE customer drawing C-V23134-J0052-X439 rev A2 + datasheet V23134X0000A002 rev 2607 + te.com product page; plugs into socket 1393310-4; on Ign 5 / B13 its own diode is the only suppression - no external flywheel diode (G4X help: external diode only for PWM solenoids on ignition outputs)",
+      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X439, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 91 OHM, DIODE SUPPRESSED, CATHODE ON 86",
       "numberOfCavities": 4,
       "configurations": [
         {
@@ -2532,7 +2532,7 @@
     {
       "partNumber": "V23132-A2001-B200",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, HIGH CURRENT, TE HCR 150 V23132-A2001-B200 (IP67) - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 130 A at 85 C (rated, 25 mm2 load cable) - COIL: 12 VDC, 37 OHM, 3.9 W - SUPPRESSION: RESISTOR in parallel, value TBD - need value (not on datasheet) - Checked 2026-09-26 against TE datasheet V23132-X0000-A001 rev 1403 + te.com product page 1416010-1; STUD LOAD TERMINALS - OWNED; coil mate Superseal 1.5 2-way plug 282080-1 with 282110-1 contacts and 281934-2 seals (all owned)",
+      "description": "RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS",
       "numberOfCavities": 5,
       "configurations": [
         {
@@ -2553,7 +2553,7 @@
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
     }
   ],
   "contactParts": [
@@ -2570,7 +2570,7 @@
         "value": 16,
         "unit": "AWG"
       },
-      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - OWNED (qty 130)",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "id": "ct_hdp16p"
     },
     {
@@ -2586,7 +2586,7 @@
         "value": 18,
         "unit": "AWG"
       },
-      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.75-0.85 MM2 (18 AWG) - ECU power, ground and ETB pins",
+      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.75-0.85 MM2 (18 AWG)",
       "id": "ct_ss10_075"
     },
     {
@@ -2603,7 +2603,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 250 (6.3 MM), TIN, 0.8-2.0 MM2 (18-14 AWG) - VCF7 socket 1393310-4, coil cavities 85/86 - OWNED (qty 20)",
+      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 250 (6.3 MM), TIN, 0.8-2.0 MM2 (18-14 AWG)",
       "id": "ct_f7_coil"
     },
     {
@@ -2620,14 +2620,14 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 6-10 MM2 (10-8 AWG) - VCF7 socket 1393310-4, 8 AWG fan load cavities 30/87",
+      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 6-10 MM2 (10-8 AWG)",
       "id": "ct_f7_load8"
     },
     {
       "id": "ct_hdp16s",
       "partNumber": "0462-201-1631",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT plug; OWNED",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "type": "Crimp",
       "gender": "Socket",
       "minGauge": {
@@ -2653,7 +2653,7 @@
         "value": 12,
         "unit": "AWG"
       },
-      "description": "CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A - OWNED (qty 20)",
+      "description": "CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A",
       "id": "ct_hdp12p"
     },
     {
@@ -2670,7 +2670,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2 - HCR 150 coil plug 282080-1 - OWNED (qty 10)",
+      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2",
       "id": "ct_ss15"
     },
     {
@@ -2687,7 +2687,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK - HCR 150 load studs (M6 per TE HCR 150 datasheet)",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK",
       "id": "ct_ring_m6_8"
     },
     {
@@ -2703,7 +2703,7 @@
         "value": 20,
         "unit": "AWG"
       },
-      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.5 MM2 (20 AWG), INSUL 1.6-2.2 MM - ECU signal pins (TE 3-1447221-4 datasheet: 0.5 mm2 only)",
+      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.5 MM2 (20 AWG), INSUL 1.6-2.2 MM",
       "id": "ct_ss10"
     },
     {
@@ -2720,7 +2720,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) - VCF7 socket 1393310-4, load cavities 30/87",
+      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG)",
       "id": "ct_f7_load"
     }
   ],
@@ -2728,13 +2728,13 @@
     {
       "partNumber": "114017",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
     },
     {
       "partNumber": "0413-214-1205",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW - unused size 12 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW",
       "id": "pl_sz12"
     }
   ],
@@ -2757,7 +2757,7 @@
       "id": "cab_sh_1c_vio",
       "partNumber": "GENERIC SHLD CABLE 1C 20AWG VIO",
       "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, VIOLET, FOIL + TINNED COPPER BRAID, JACKETED - front VRC FR pulse to ECU B21. Screen to B17 only, floats at the VRC (generic per 6.24)",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, VIOLET, FOIL + TINNED COPPER BRAID, JACKETED",
       "cores": [
         {
           "id": "k1",
@@ -2774,7 +2774,7 @@
       "id": "cab_sh_4c",
       "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
       "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - rear VRC to ECU (generic per 6.24)",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "cores": [
         {
           "id": "k1",
@@ -2825,7 +2825,7 @@
         "value": 16,
         "unit": "AWG"
       },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "description": "TERMINAL, FLYING LEAD",
       "id": "tp_flying_lead"
     }
   ],
@@ -2834,14 +2834,14 @@
       "id": "rp_470",
       "partNumber": "470R 1/4W",
       "manufacturer": "generic",
-      "description": "RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W - fuel level sender pull-up to +5V (A32)"
+      "description": "RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W"
     }
   ],
   "mountParts": [
     {
       "partNumber": "1393310-4",
       "manufacturer": "TE Connectivity",
-      "description": "SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS - harness side of the plug-in F7 relay; load terminals 280756-4 (12-10 AWG) or 280755-4 (10-8 AWG), coil terminals 42281-1 (18-14 AWG)",
+      "description": "SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS",
       "id": "mt_vcf7"
     }
   ]

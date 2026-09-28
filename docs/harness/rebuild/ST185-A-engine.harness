@@ -2999,7 +2999,7 @@
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
     }
   ],
   "contactParts": [
@@ -3007,7 +3007,7 @@
       "id": "ct_hdp16s",
       "partNumber": "0462-201-1631",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT plug; OWNED",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "type": "Crimp",
       "gender": "Socket",
       "minGauge": {
@@ -3034,7 +3034,7 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
       "id": "ct_dt16s_ni"
     },
     {
@@ -3066,7 +3066,7 @@
         "value": 20,
         "unit": "AWG"
       },
-      "description": "CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM - Aptiv catalog",
+      "description": "CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM",
       "id": "ct_gt150_skt_05"
     },
     {
@@ -3082,7 +3082,7 @@
         "value": 20,
         "unit": "AWG"
       },
-      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD30 / DTM",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
       "id": "ct_hdp20s"
     },
     {
@@ -3108,7 +3108,7 @@
       "type": "Crimp",
       "gender": "Socket",
       "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) - Toyota sensor/coil terminal (8100-0460 is the 0.3-0.5 mm2 size). Family match to each OEM housing assumed 2026-09-25",
+      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG)",
       "id": "ct_toy_ts",
       "minGauge": {
         "value": 20,
@@ -3124,7 +3124,7 @@
       "manufacturer": "Bosch / AMP",
       "type": "Crimp",
       "gender": "Socket",
-      "description": "CONTACT, SOCKET, CRIMP, GOLD - supplied in the Bosch D 261 205 358-01 ETB connector kit. Wire range per kit sheet, NOT CONFIRMED",
+      "description": "CONTACT, SOCKET, CRIMP, GOLD",
       "id": "wbsN09tiboovqanDL_xZA"
     },
     {
@@ -3132,7 +3132,7 @@
       "manufacturer": "Generic",
       "type": "Crimp",
       "gender": "Socket",
-      "description": "CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, confirm before ordering",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
       "id": "ct_generic_skt"
     }
   ],
@@ -3140,13 +3140,13 @@
     {
       "partNumber": "114017",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
     },
     {
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
       "id": "pl_sz20"
     }
   ],
@@ -3179,7 +3179,7 @@
         "value": 10,
         "unit": "AWG"
       },
-      "description": "TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 6.3 MM (250) TAB, 12-10 AWG - starter S terminal (6.3 mm single-pole spade assumed 2026-09-25)",
+      "description": "TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 6.3 MM (250) TAB, 12-10 AWG",
       "id": "tp_spade_str"
     }
   ],
@@ -3187,7 +3187,7 @@
     {
       "partNumber": "(kit-supplied pigtail)",
       "manufacturer": "RacerX",
-      "description": "CONNECTOR, PIGTAIL, 3 POS - supplied with the RacerX Cherry Hall cam sensor kit",
+      "description": "CONNECTOR, PIGTAIL, 3 POS",
       "numberOfCavities": 3,
       "gender": "Female",
       "hasShell": false,
@@ -3206,7 +3206,7 @@
     {
       "partNumber": "90980-11885",
       "manufacturer": "Toyota",
-      "description": "CONNECTOR, PLUG, TOYOTA, 4 POS, SOCKET CONTACTS - 1ZZ-FE coil-on-plug",
+      "description": "CONNECTOR, PLUG, TOYOTA, 4 POS, SOCKET CONTACTS",
       "numberOfCavities": 4,
       "gender": "Female",
       "hasShell": false,
@@ -3226,7 +3226,7 @@
     {
       "partNumber": "DT06-2S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY - harness side",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -3285,7 +3285,7 @@
     {
       "partNumber": "DT06-3S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, N SEAL, GRAY - harness side",
+      "description": "CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 3,
       "gender": "Female",
       "hasShell": false,
@@ -3362,7 +3362,7 @@
     {
       "partNumber": "D 261 205 358-01",
       "manufacturer": "Bosch",
-      "description": "CONNECTOR, PLUG, BOSCH MOTORSPORT KIT, 6 POS, SOCKET CONTACTS - 74.5 mm electronic throttle body mate",
+      "description": "CONNECTOR, PLUG, BOSCH MOTORSPORT KIT, 6 POS, SOCKET CONTACTS",
       "numberOfCavities": 6,
       "gender": "Female",
       "hasShell": false,
@@ -3382,7 +3382,7 @@
     {
       "partNumber": "13519047",
       "manufacturer": "Aptiv",
-      "description": "CONNECTOR, PLUG, GT 150, 3 POS, SEALED, SOCKET CONTACTS - flex-fuel sensor",
+      "description": "CONNECTOR, PLUG, GT 150, 3 POS, SEALED, SOCKET CONTACTS",
       "numberOfCavities": 3,
       "gender": "Female",
       "hasShell": false,
@@ -3402,7 +3402,7 @@
     {
       "partNumber": "HDP26-24-47SE-L015",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 47 POS, SOCKET CONTACTS, E SEAL, THREADED COUPLING - bulkhead A, engine side",
+      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 47 POS, SOCKET CONTACTS, E SEAL, THREADED COUPLING",
       "numberOfCavities": 47,
       "gender": "Female",
       "hasShell": false,
@@ -3422,7 +3422,7 @@
     {
       "partNumber": "15419715",
       "manufacturer": "Aptiv",
-      "description": "CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6 - fuel injector",
+      "description": "CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -3442,7 +3442,7 @@
     {
       "partNumber": "12052641",
       "manufacturer": "Aptiv",
-      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 2 POS, SEALED, SOCKET CONTACTS - fuel level sender / boost solenoid",
+      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 2 POS, SEALED, SOCKET CONTACTS",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -3462,7 +3462,7 @@
     {
       "partNumber": "12110293",
       "manufacturer": "Aptiv",
-      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS - pressure / MAP sensor",
+      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS",
       "numberOfCavities": 3,
       "gender": "Female",
       "hasShell": false,
@@ -3482,7 +3482,7 @@
     {
       "partNumber": "90980-11062",
       "manufacturer": "Toyota",
-      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS - thermistor sensor pigtail",
+      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -3503,14 +3503,14 @@
       "id": "cp_ac_cts",
       "partNumber": "TBD - A/C coolant temperature switch connector",
       "manufacturer": "TBD",
-      "description": "CONNECTOR, A/C COOLANT TEMPERATURE SWITCH, 2 POS - switch not yet chosen; never invent a part number (redesign D5)",
+      "description": "CONNECTOR, 2 POS, TYPE TBD",
       "numberOfCavities": 2
     },
     {
       "id": "cp_dt06_6s",
       "partNumber": "DT06-6S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY - wheel-speed inline interface, ECU spur side (receiving half; supplies +5V, so it carries the sockets)",
+      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 6,
       "gender": "Female",
       "hasShell": false,
@@ -3530,7 +3530,7 @@
       "id": "cab_sh_1c",
       "partNumber": "GENERIC SHLD CABLE 1C 20AWG BLU",
       "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - VR / Hall sensor signal (generic per 6.24)",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, BLUE, FOIL + TINNED COPPER BRAID, JACKETED",
       "cores": [
         {
           "id": "k1",

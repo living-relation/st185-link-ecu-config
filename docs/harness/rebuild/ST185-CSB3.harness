@@ -1020,14 +1020,14 @@
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
     }
   ],
   "cavityPlugParts": [
     {
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
       "id": "pl_sz20"
     }
   ],
@@ -1044,7 +1044,7 @@
         "value": 16,
         "unit": "AWG"
       },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "description": "TERMINAL, FLYING LEAD",
       "id": "tp_flying_lead"
     }
   ],
@@ -1062,7 +1062,7 @@
         "value": 20,
         "unit": "AWG"
       },
-      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD30 / DTM",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
       "id": "ct_hdp20s"
     }
   ],
@@ -1088,7 +1088,7 @@
     {
       "partNumber": "HD36-24-33SE",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL - ECUMaster CSB3 enclosure mate (harness side); box side HD34-24-33PE not modelled. Map per plan 6.37/6.40",
+      "description": "CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL",
       "numberOfCavities": 33,
       "gender": "Female",
       "hasShell": false,
@@ -1112,7 +1112,7 @@
       "id": "rp_10k",
       "partNumber": "10k 1/4W",
       "manufacturer": "generic",
-      "description": "RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W - cruise ladder pull-up to +5V (A32)"
+      "description": "RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W"
     }
   ]
 }

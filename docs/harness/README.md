@@ -127,6 +127,12 @@ to one node).
 4. **Never invent a part number.** A part not checked against the manufacturer gets
    `TBD ...` and the reason. Current examples: the RADLOK pass-through, the A/C
    coolant switch.
+5. **A description names the part, never its use.** `TYPE, SUBTYPE, key ratings`,
+   uppercase, at most 170 characters. Never a net, circuit, device, group, layer, sensor,
+   signal, harness, stock count, date or plan reference. Every wire of one part number
+   gets the same generated text (`WIRE, ELECTRICAL, 20 AWG, ORANGE, ...`). The same
+   rule applies to the cloud part library. `part_desc.py` is the gate, and
+   `part_desc.py --fix` rewrites to the standard text.
 
 Adding up the parts lists off the individual drawings by hand will over-order.
 `NEED-TO-BUY.md` is the only correct total.

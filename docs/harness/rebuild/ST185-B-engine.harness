@@ -1514,7 +1514,7 @@
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
     }
   ],
   "contactParts": [
@@ -1522,7 +1522,7 @@
       "id": "ct_hdp16s",
       "partNumber": "0462-201-1631",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT plug; OWNED",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "type": "Crimp",
       "gender": "Socket",
       "minGauge": {
@@ -1548,7 +1548,7 @@
         "value": 18,
         "unit": "AWG"
       },
-      "description": "CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG) - knock sensor",
+      "description": "CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG)",
       "id": "ct_bdk28"
     },
     {
@@ -1564,7 +1564,7 @@
         "value": 12,
         "unit": "AWG"
       },
-      "description": "CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A - OWNED (qty 20)",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A",
       "id": "ct_hdp12s"
     },
     {
@@ -1590,7 +1590,7 @@
       "type": "Crimp",
       "gender": "Socket",
       "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) - Toyota sensor/coil terminal (8100-0460 is the 0.3-0.5 mm2 size). Family match to each OEM housing assumed 2026-09-25",
+      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG)",
       "id": "ct_toy_ts",
       "minGauge": {
         "value": 20,
@@ -1605,7 +1605,7 @@
       "id": "ct_dt16p",
       "partNumber": "0460-202-1631",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT receptacle; OWNED",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "type": "Crimp",
       "gender": "Pin",
       "minGauge": {
@@ -1623,13 +1623,13 @@
     {
       "partNumber": "114017",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
     },
     {
       "partNumber": "0413-214-1205",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW - unused size 12 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW",
       "id": "pl_sz12"
     }
   ],
@@ -1646,7 +1646,7 @@
         "value": 16,
         "unit": "AWG"
       },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "description": "TERMINAL, FLYING LEAD",
       "id": "tp_flying_lead"
     }
   ],
@@ -1654,7 +1654,7 @@
     {
       "partNumber": "12110293",
       "manufacturer": "Aptiv",
-      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS - pressure / MAP sensor",
+      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS",
       "numberOfCavities": 3,
       "gender": "Female",
       "hasShell": false,
@@ -1674,7 +1674,7 @@
     {
       "partNumber": "90980-11062",
       "manufacturer": "Toyota",
-      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS - thermistor sensor pigtail",
+      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -1694,7 +1694,7 @@
     {
       "partNumber": "HDP26-24-21SN",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 21 POS, SOCKET CONTACTS, N SEAL - bulkhead B, engine side",
+      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 21 POS, SOCKET CONTACTS, N SEAL",
       "numberOfCavities": 21,
       "gender": "Female",
       "hasShell": false,
@@ -1714,7 +1714,7 @@
     {
       "partNumber": "1 928 403 874",
       "manufacturer": "Bosch",
-      "description": "CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS - knock sensor",
+      "description": "CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS",
       "numberOfCavities": 2,
       "gender": "Female",
       "hasShell": false,
@@ -1734,7 +1734,7 @@
     {
       "partNumber": "TBD - generic oval 3-pin, socket contacts",
       "manufacturer": "Toyota",
-      "description": "CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS - 3-wire 12 V gearbox VSS Toyota 83181-20040 (not the 4-wire type). PN TBD - need a Toyota source; 90980-11143 is the usual Toyota 3-wire speed-sensor plug (wilbo666 wiki), unconfirmed for this sensor",
+      "description": "CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS",
       "numberOfCavities": 3,
       "gender": "Female",
       "hasShell": false,
@@ -1754,7 +1754,7 @@
       "id": "cp_dt04_6p",
       "partNumber": "DT04-6P",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY - wheel-speed VRC output inline interface, wheel-speed harness side (receiving half DT06-6S is on the ECU spur)",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 6,
       "gender": "Male",
       "hasShell": false,
@@ -1774,7 +1774,7 @@
       "id": "cab_sh_2c",
       "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
       "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - sensor pair (generic per 6.24)",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "cores": [
         {
           "id": "k1",

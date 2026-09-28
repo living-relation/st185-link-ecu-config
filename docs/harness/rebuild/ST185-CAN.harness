@@ -823,7 +823,7 @@
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
     }
   ],
   "terminalParts": [
@@ -839,7 +839,7 @@
         "value": 16,
         "unit": "AWG"
       },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "description": "TERMINAL, FLYING LEAD",
       "id": "tp_flying_lead"
     }
   ],
@@ -847,7 +847,7 @@
     {
       "partNumber": "DTM06-4S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY - Link CAN-Lambda, harness side",
+      "description": "CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY",
       "numberOfCavities": 4,
       "gender": "Female",
       "hasShell": false,
@@ -869,7 +869,7 @@
     {
       "partNumber": "DTM06-6S",
       "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY - Link ECU comms / tuning port, harness side",
+      "description": "CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY",
       "numberOfCavities": 6,
       "gender": "Female",
       "hasShell": false,
@@ -894,7 +894,7 @@
       "id": "rp_120",
       "partNumber": "120R 1/4W",
       "manufacturer": "Generic",
-      "description": "RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W - CAN bus termination",
+      "description": "RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W",
       "resistance": 120
     }
   ],
@@ -916,7 +916,7 @@
     {
       "partNumber": "0413-204-2005",
       "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity",
+      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
       "id": "pl_sz20"
     }
   ],
@@ -934,7 +934,7 @@
         "value": 20,
         "unit": "AWG"
       },
-      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD30 / DTM",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
       "id": "ct_hdp20s"
     }
   ]

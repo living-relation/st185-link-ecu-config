@@ -722,7 +722,7 @@
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
     }
   ],
   "terminalParts": [
@@ -738,7 +738,7 @@
         "value": 16,
         "unit": "AWG"
       },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "description": "TERMINAL, FLYING LEAD",
       "id": "tp_flying_lead"
     },
     {
@@ -763,7 +763,7 @@
       "id": "dp_led",
       "partNumber": "(LED board indicator - 12 V, resistor on board)",
       "manufacturer": "LED board",
-      "description": "DIODE, LIGHT EMITTING, INDICATOR, 12 V - cluster warning indicator on the LED board; current-limit resistor is on the board, the loom carries none (assumption 2026-09-25)"
+      "description": "DIODE, LIGHT EMITTING, INDICATOR, 12 V"
     }
   ]
 }
