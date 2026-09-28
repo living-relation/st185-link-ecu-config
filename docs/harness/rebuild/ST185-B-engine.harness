@@ -1315,7 +1315,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead B - engine plug (HDP2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - engine plug (HDP2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nGearbox VSS (3-wire, Toyota) - 3: Gearbox VSS signal -> bulkhead B c15 -> ECU-B B29 (DI 8). Actual road speed. 12V direct, no divider - Link DI is +/-50V tolerant with a selectable 4k7 pull-up to 12V.",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead B - engine plug (HDP2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - engine plug (HDP2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nGearbox VSS (3-wire, Toyota) - 3: Gearbox VSS signal -> bulkhead B c15 -> ECU-B B29 (DI 8). Actual road speed. 12V direct, no divider - Link DI is +/-50V tolerant with a selectable 4k7 pull-up to 12V. PCLink DI 8 pull-up ON (sot/channels.csv B29).",
       "schematicPosition": {
         "x": 4200,
         "y": 0
