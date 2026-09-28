@@ -978,8 +978,8 @@
     {
       "id": "fl_oem_ie1_c10",
       "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD p.31 IE1-10 W AM1 to ignition switch I9-4 - solder sleeve into the factory lead",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD p.31 IE1-10 W AM1 to ignition switch I9-4 - heavy crimp butt splice into the factory lead",
       "schematicPosition": {
         "x": 1320,
         "y": 0
@@ -992,8 +992,8 @@
     {
       "id": "fl_oem_ie1_c17",
       "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD p.31 IE1-17 B-R AM2 to ignition switch I9-10 - solder sleeve into the factory lead",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD p.31 IE1-17 B-R AM2 to ignition switch I9-10 - heavy crimp butt splice into the factory lead",
       "schematicPosition": {
         "x": 1320,
         "y": 60
@@ -1006,8 +1006,8 @@
     {
       "id": "fl_oem_jb1_1i_c1",
       "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD p.18-19 J/B1 1I-1 TBD J/B1 primary B+ (always hot; was FL ALT) - solder sleeve into the factory 1I-1 lead",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD p.18-19 J/B1 1I-1 TBD J/B1 primary B+ (always hot; was FL ALT) - heavy crimp butt splice into the factory 1I-1 lead",
       "schematicPosition": {
         "x": 1320,
         "y": 150
@@ -1020,8 +1020,8 @@
     {
       "id": "fl_oem_rb2_c1",
       "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD p.23 R/B2-1 W 30A POWER fuse input (windows / locks) - feed the fuse input only - solder sleeve into the factory lead",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD p.23 R/B2-1 W 30A POWER fuse input (windows / locks) - feed the fuse input only - heavy crimp butt splice into the factory lead",
       "schematicPosition": {
         "x": 1320,
         "y": 270
@@ -1034,8 +1034,8 @@
     {
       "id": "fl_oem_rb4_c1",
       "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD p.24 R/B4-1 TBD 40A HEATER fuse input - feed the fuse input only - solder sleeve into the factory lead",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD p.24 R/B4-1 TBD 40A HEATER fuse input - feed the fuse input only - heavy crimp butt splice into the factory lead",
       "schematicPosition": {
         "x": 1320,
         "y": 420
@@ -3329,6 +3329,21 @@
       },
       "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
       "id": "tp_flying_lead"
+    },
+    {
+      "id": "tp_flying_lead_heavy",
+      "type": "Loose",
+      "partNumber": "GENERIC HEAVY FLYING LEAD 10-6",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 6,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, FLYING LEAD, HEAVY - joined to the factory lead with a crimp butt splice, 10-6 AWG, adhesive heatshrink over (solder sleeves stop at 16 AWG)"
     }
   ],
   "contactParts": [

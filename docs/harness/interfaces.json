@@ -401,7 +401,7 @@
         "pin": "10",
         "color": "W",
         "function": "AM1 to ignition switch I9-4",
-        "method": "solder sleeve into the factory lead"
+        "method": "heavy crimp butt splice into the factory lead"
       }
     },
     {
@@ -415,7 +415,7 @@
         "pin": "17",
         "color": "B-R",
         "function": "AM2 to ignition switch I9-10",
-        "method": "solder sleeve into the factory lead"
+        "method": "heavy crimp butt splice into the factory lead"
       }
     },
     {
@@ -429,7 +429,7 @@
         "pin": "1",
         "color": "TBD",
         "function": "J/B1 primary B+ (always hot; was FL ALT)",
-        "method": "solder sleeve into the factory 1I-1 lead"
+        "method": "heavy crimp butt splice into the factory 1I-1 lead"
       }
     },
     {
@@ -443,7 +443,7 @@
         "pin": "1",
         "color": "W",
         "function": "30A POWER fuse input (windows / locks)",
-        "method": "feed the fuse input only - solder sleeve into the factory lead"
+        "method": "feed the fuse input only - heavy crimp butt splice into the factory lead"
       }
     },
     {
@@ -457,7 +457,7 @@
         "pin": "1",
         "color": "TBD",
         "function": "40A HEATER fuse input",
-        "method": "feed the fuse input only - solder sleeve into the factory lead"
+        "method": "feed the fuse input only - heavy crimp butt splice into the factory lead"
       }
     },
     {
