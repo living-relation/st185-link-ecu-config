@@ -920,7 +920,7 @@
       "id": "fl_oem_jb1_1i_c1",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.18-19 J/B1 1I-1 TBD J/B1 primary B+ (always hot; was FL ALT) - heavy crimp butt splice into the factory 1I-1 lead",
+      "signal": "EWD p.18-19 / p.46 J/B1 1I-1 B J/B1 primary B+ (always hot; was FL ALT) - heavy crimp butt splice into the factory 1I-1 lead",
       "schematicPosition": {
         "x": 1320,
         "y": 150
@@ -948,7 +948,7 @@
       "id": "fl_oem_rb4_c1",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.24 R/B4-1 TBD 40A HEATER fuse input - feed the fuse input only - heavy crimp butt splice into the factory lead",
+      "signal": "EWD p.24 / p.46 R/B4-1 W 40A HEATER fuse input - feed the fuse input only - heavy crimp butt splice into the factory lead",
       "schematicPosition": {
         "x": 1320,
         "y": 420

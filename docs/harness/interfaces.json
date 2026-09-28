@@ -431,10 +431,10 @@
       "harness": "EngineRoom-C",
       "terminal": "fl_oem_jb1_1i_c1",
       "ewd": {
-        "page": "p.18-19",
+        "page": "p.18-19 / p.46",
         "connector": "J/B1 1I",
         "pin": "1",
-        "color": "TBD",
+        "color": "B",
         "function": "J/B1 primary B+ (always hot; was FL ALT)",
         "method": "heavy crimp butt splice into the factory 1I-1 lead"
       }
@@ -459,10 +459,10 @@
       "harness": "EngineRoom-C",
       "terminal": "fl_oem_rb4_c1",
       "ewd": {
-        "page": "p.24",
+        "page": "p.24 / p.46",
         "connector": "R/B4",
         "pin": "1",
-        "color": "TBD",
+        "color": "W",
         "function": "40A HEATER fuse input",
         "method": "feed the fuse input only - heavy crimp butt splice into the factory lead"
       }
