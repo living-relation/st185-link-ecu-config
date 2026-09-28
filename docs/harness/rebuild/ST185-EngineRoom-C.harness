@@ -2990,7 +2990,7 @@
     {
       "partNumber": "7-1904094-9",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J0052-X439 - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 70 A at 23 C / 50 A at 85 C / 30 A at 125 C (limiting continuous, F7 family datasheet) - COIL: 12 VDC, 91 OHM +/-10% - SUPPRESSION: DIODE, cathode on 86 (86 MUST be coil +, 85 coil -; reversed polarity shorts the diode) - Checked 2026-09-26 against TE customer drawing C-V23134-J0052-X439 rev A2 + datasheet V23134X0000A002 rev 2607 + te.com product page; plugs into socket 1393310-4; required on Ign 5 / B13 (no flywheel diode in the ECU output)",
+      "description": "RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J0052-X439 - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 70 A at 23 C / 50 A at 85 C / 30 A at 125 C (limiting continuous, F7 family datasheet) - COIL: 12 VDC, 91 OHM +/-10% - SUPPRESSION: DIODE, cathode on 86 (86 MUST be coil +, 85 coil -; reversed polarity shorts the diode) - Checked 2026-09-26 against TE customer drawing C-V23134-J0052-X439 rev A2 + datasheet V23134X0000A002 rev 2607 + te.com product page; plugs into socket 1393310-4; on Ign 5 / B13 its own diode is the only suppression - no external flywheel diode (G4X help: external diode only for PWM solenoids on ignition outputs)",
       "numberOfCavities": 4,
       "configurations": [
         {
