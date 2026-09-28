@@ -16,6 +16,7 @@ What it runs, in order - every one in HARD is a hard gate:
   audit_shields.py         docs/SHIELD-RULES.md, enforced
   audit_pin_names.py       shield grounds carry drains only; one name per mating cavity
   audit_mating.py          A cabin mates A engine, B mates B; screens stay in their loom
+  validate_bulkhead_letter.py ECU looms follow the ECU connector letter; crossovers a/b/c only
   audit_bulkhead_pairs.py  no bulkhead cavity wired on one side only
   audit_bh_collisions.py   no two circuits on one half of a bulkhead cavity
   buylist.py               buy list, and the shared-connector consistency check
@@ -32,7 +33,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["validate_ownership.py"], ["validate_interfaces.py"], ["validate_wheel_speed.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_shields.py"],
-        ["audit_pin_names.py"], ["audit_mating.py"], ["audit_bulkhead_pairs.py"],
+        ["audit_pin_names.py"], ["audit_mating.py"], ["validate_bulkhead_letter.py"],
+        ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["buylist.py"], ["buildlist.py"], ["make_min.py"]]
 SOFT = []
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy
@@ -42,6 +44,9 @@ SOFT = []
 # it stays there. Both of Daniel's absolute rules live in it: nothing but a
 # drain on a shield ground, and one name per bulkhead cavity across a mating
 # pair. Neither may ever go back above zero.
+#
+# 2026-09-28: validate_bulkhead_letter started HARD - Daniel's ECU loom rule. Its
+# PENDING list (injector/COP rails on bulkhead B) prints on every run until ruled on.
 #
 # 2026-09-25: the pair and collision audits went HARD. The last one-sided
 # cavities were EngineRoom-C cross-reference dummies the audit could not read,
