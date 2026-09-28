@@ -625,6 +625,15 @@
         "x": 1200,
         "y": 1380
       }
+    },
+    {
+      "id": "n_chg_test",
+      "width": 390,
+      "schematicPosition": {
+        "x": 660,
+        "y": 240
+      },
+      "text": "CHARGE LED (d_chg) - FIRST-START CHECK: run the LED test in docs/procedures/charge-led-test.html (st185-link-ecu-config repo). IF ANY STEP FAILS, fit the fallback resistor in parallel with this LED: 56 ohm, 5 W, wirewound, one end to C12 pin 9 (IG +12, BLK-ORG), the other to C12 pin 8 (alternator L, YEL). With the key on and the engine stopped it carries about 0.25 A and dissipates up to about 3.5 W, so mount it clear of the loom on a heat-safe surface. With the alternator charging it carries almost nothing."
     }
   ],
   "wireParts": [
