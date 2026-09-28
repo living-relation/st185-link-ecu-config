@@ -134,7 +134,7 @@
         "x": 1020,
         "y": 0
       },
-      "text": "A/C AMPLIFIER SPUR - receiving side of IX_AC_CTS. The dedicated A/C coolant switch (Engine-A) crosses bulkhead A c37/c38, runs a short cabin branch on ST185-ECU-Cabin to the DT04-2P, and this spur carries it on to the auto A/C amplifier (A34 conn C) as flying leads. The amplifier is not drawn. The ECU ECT sensor is a separate circuit; this switch never reaches the ECU."
+      "text": "A/C AMPLIFIER SPUR - receiving side of IX_AC_CTS. The dedicated A/C coolant switch (Engine-A) crosses bulkhead A c37/c38, runs a short cabin branch on ST185-A-cabin to the DT04-2P, and this spur carries it on to the auto A/C amplifier (A34 conn C) as flying leads. The amplifier is not drawn. The ECU ECT sensor is a separate circuit; this switch never reaches the ECU."
     }
   ],
   "wireParts": [

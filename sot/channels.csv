@@ -102,4 +102,4 @@ PWR,Contact 87,k_eps,c4,EPS_PWR,EPS pump feed,power,out,rail-12v,none,,C,set,har
 MRS,Power,mrs_eps,a1,EPS_PWR,Pump battery feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,
 MRS,Ground,mrs_eps,a2,CHASSIS_ENG,Pump ground,ground,na,gnd,none,,C,set,harness-EngineRoom-C,To engine block terminal
 MRS,SPD,mrs_eps,b2,AUX7_MRS_SPD,Speed input,signal,in,freq-di,none,,C,set,harness-EngineRoom-C,Yel/Wht; crosses at bh_a_eng c36 (ECU-A A27)
-MRS,Enable,mrs_eps,c1,MRS_EN,Pump enable,signal,in,switch-12v,none,,C,set,harness-EngineRoom-C,Crosses at bh_b_eng c14
+MRS,Enable,mrs_eps,c1,MRS_EN,Pump enable,signal,in,switch-12v,none,,C,set,harness-EngineRoom-C,"Crosses at bh_a_eng c35 (moved from bh_b_eng c14 2026-09-28: fused 12V follows the pump's ECU signal A27, bulkhead A)"

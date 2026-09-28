@@ -27,12 +27,15 @@ for k, n in seen.items():
         bad.append("I1 interface %s is declared %d times" % (k, n))
 
 
-def wired(d, cid):
+def wired(h, cid):
+    """Cavities wired on this half, on its harness and on every harness listed in
+    alsoDrawnOn (a receiving half whose pins belong to both ECU letter looms)."""
     out = set()
-    for cond, cable, screen in model.conductors(d):
-        for e in (cond.get("source") or {}, cond.get("target") or {}):
-            if e.get("id") == cid:
-                out.add(e.get("handle"))
+    for loom in [h["harness"]] + h.get("alsoDrawnOn", []):
+        for cond, cable, screen in model.conductors(ds.get(loom) or {}):
+            for e in (cond.get("source") or {}, cond.get("target") or {}):
+                if e.get("id") == cid:
+                    out.add(e.get("handle"))
     return out
 
 
@@ -70,7 +73,7 @@ for ix in reg.get("interfaces", []):
     for pin in ix.get("pins", {}):
         if pin not in sa:
             bad.append("I6 %s declares pin %s, which %s does not have" % (ix["id"], pin, ca["id"]))
-    wa, wb = wired(da, ca["id"]), wired(db, cb["id"])
+    wa, wb = wired(ha, ca["id"]), wired(hb, cb["id"])
     for cav in sorted(wa ^ wb):
         side = ha["harness"] if cav in wa else hb["harness"]
         bad.append("I7 %s %s is wired on %s only" % (ix["id"], cav, side))

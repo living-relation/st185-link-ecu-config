@@ -79,7 +79,8 @@ def interface_halves(reg):
     out = {}
     for ix in reg.get("interfaces", []):
         for h in ix["halves"]:
-            out[(h["harness"], h["connector"])] = (ix["id"], h["role"])
+            for loom in [h["harness"]] + h.get("alsoDrawnOn", []):
+                out[(loom, h["connector"])] = (ix["id"], h["role"])
     return out
 
 

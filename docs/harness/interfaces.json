@@ -2,17 +2,21 @@
   "_doc": "Interface and ownership registry for docs/harness/rebuild/. Convention: redesign/INTERFACES.md. harness.design rejects unknown keys, so this metadata cannot live in the .harness files.",
   "_scope": "The center cluster's own assembly harness is owned by center-cluster-esp32-p4 and is not drawn here; ST185-CAN ends at its CAN-drop terminal t_cluster_can. The cluster warning-LED loom (ST185-ClusterLED) is owned here.",
   "harnesses": {
-    "ECU-Cabin": {
-      "file": "ST185-ECU-Cabin.harness",
-      "physical": "ECU-to-firewall cabin harness - ECU-A, ECU-B, cabin halves of bulkheads A and B, relays and fuse box, CSB3 plug, wheel-speed spurs, A/C coolant switch branch, fuel pump run (merged from A-ECU + B-ECU 2026-09-27)"
+    "A-cabin": {
+      "file": "ST185-A-cabin.harness",
+      "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the fuse block, HCFB and the A-triggered relays, APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, fuel pump run, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
+    },
+    "B-cabin": {
+      "file": "ST185-B-cabin.harness",
+      "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
     },
     "A-engine": {
       "file": "ST185-A-engine.harness",
-      "physical": "Engine harness - signal circuits behind bulkheads A and B"
+      "physical": "Engine harness behind bulkhead A - every engine device whose ECU signal is on connector A"
     },
     "B-engine": {
       "file": "ST185-B-engine.harness",
-      "physical": "Engine harness - power circuits behind bulkheads A and B"
+      "physical": "Engine harness behind bulkhead B - every engine device whose ECU signal is on connector B, and the ETB motor"
     },
     "CAN": {
       "file": "ST185-CAN.harness",
@@ -40,7 +44,7 @@
     },
     "RearFuel": {
       "file": "ST185-RearFuel.harness",
-      "physical": "Rear Fuel - fuel level sender behind IX_FUEL_LVL (the pump run stays on the ECU/cabin harness, plan 6.41)"
+      "physical": "Rear Fuel - fuel level sender behind IX_FUEL_LVL (the pump run stays on ST185-A-cabin, plan 6.41)"
     },
     "AntiTheft": {
       "file": "ST185-AntiTheft.harness",
@@ -67,7 +71,7 @@
           "role": "source"
         },
         {
-          "harness": "ECU-Cabin",
+          "harness": "B-cabin",
           "connector": "ix_ws_rear_p",
           "role": "receiving"
         }
@@ -92,9 +96,12 @@
           "role": "source"
         },
         {
-          "harness": "ECU-Cabin",
+          "harness": "A-cabin",
           "connector": "ix_ws_front_p",
-          "role": "receiving"
+          "role": "receiving",
+          "alsoDrawnOn": [
+            "B-cabin"
+          ]
         }
       ]
     },
@@ -108,7 +115,7 @@
       },
       "halves": [
         {
-          "harness": "ECU-Cabin",
+          "harness": "A-cabin",
           "connector": "ix_accts_r",
           "role": "source"
         },
@@ -129,7 +136,7 @@
       },
       "halves": [
         {
-          "harness": "ECU-Cabin",
+          "harness": "B-cabin",
           "connector": "ix_fuel_r",
           "role": "source"
         },
@@ -239,7 +246,7 @@
     {
       "id": "FL_ACAMP_C1",
       "type": "oem_flying_lead",
-      "harness": "ECU-Cabin",
+      "harness": "A-cabin",
       "terminal": "fl_acamp_c1",
       "ewd": {
         "page": "p.150 / p.152",
@@ -253,7 +260,7 @@
     {
       "id": "FL_BRAKE_SW_C1",
       "type": "oem_flying_lead",
-      "harness": "ECU-Cabin",
+      "harness": "A-cabin",
       "terminal": "fl_brake_sw_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -267,7 +274,7 @@
     {
       "id": "FL_CLUTCH_SW_C1",
       "type": "oem_flying_lead",
-      "harness": "ECU-Cabin",
+      "harness": "A-cabin",
       "terminal": "fl_clutch_sw_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -281,7 +288,7 @@
     {
       "id": "FL_CRUISE_STALK_C1",
       "type": "oem_flying_lead",
-      "harness": "ECU-Cabin",
+      "harness": "A-cabin",
       "terminal": "fl_cruise_stalk_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -295,7 +302,7 @@
     {
       "id": "FL_CRUISE_STALK_C3",
       "type": "oem_flying_lead",
-      "harness": "ECU-Cabin",
+      "harness": "A-cabin",
       "terminal": "fl_cruise_stalk_c3",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -309,7 +316,7 @@
     {
       "id": "FL_CRUISE_STALK_C4",
       "type": "oem_flying_lead",
-      "harness": "ECU-Cabin",
+      "harness": "A-cabin",
       "terminal": "fl_cruise_stalk_c4",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -323,7 +330,7 @@
     {
       "id": "FL_CRUISE_STALK_C5",
       "type": "oem_flying_lead",
-      "harness": "ECU-Cabin",
+      "harness": "A-cabin",
       "terminal": "fl_cruise_stalk_c5",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -337,7 +344,7 @@
     {
       "id": "FL_IGN_SW_C1",
       "type": "oem_flying_lead",
-      "harness": "ECU-Cabin",
+      "harness": "B-cabin",
       "terminal": "fl_ign_sw_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -351,7 +358,7 @@
     {
       "id": "FL_START_REQ_C1",
       "type": "oem_flying_lead",
-      "harness": "ECU-Cabin",
+      "harness": "B-cabin",
       "terminal": "fl_start_req_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -365,7 +372,7 @@
     {
       "id": "FL_REVERSE_SW_C1",
       "type": "oem_flying_lead",
-      "harness": "A-engine",
+      "harness": "B-engine",
       "terminal": "fl_reverse_sw_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -575,7 +582,7 @@
   ],
   "realConnectors": [
     {
-      "harness": "ECU-Cabin",
+      "harness": "A-cabin",
       "connector": "csb3io",
       "note": "HD36-24-33SE plug mating the CSB3 enclosure's HD34-24-33PE. The harness stops here; CSB3 itself is not drawn."
     },
@@ -635,7 +642,7 @@
           "screenFromEnclosure": true
         }
       ],
-      "spurHarness": "ECU-Cabin",
+      "spurHarness": "B-cabin",
       "spur": {
         "c1": "sp_5v",
         "c2": "sp_gndout",
@@ -667,7 +674,7 @@
           "screenFromEnclosure": false
         }
       ],
-      "spurHarness": "ECU-Cabin",
+      "spurHarness": "A-cabin",
       "spur": {
         "c1": "sp_5v",
         "c2": "sp_gndout",
@@ -683,28 +690,28 @@
       "harness": "AntiTheft",
       "connector": "dm_ecu_b_b27",
       "type": "reference_only",
-      "realOn": "ECU-Cabin",
+      "realOn": "B-cabin",
       "reason": "immobiliser input lands in ECU-B B27; the anti-theft branch populates that one ECU cavity"
     },
     {
-      "harness": "B-engine",
+      "harness": "A-engine",
       "connector": "dm_k_str_c4",
       "type": "reference_only",
-      "realOn": "ECU-Cabin",
+      "realOn": "A-cabin",
       "reason": "starter relay K6 output (cabin) to the starter trigger; the engine harness populates the relay-socket cavity"
     },
     {
       "harness": "CAN",
       "connector": "csb3io",
       "type": "reference_only",
-      "realOn": "ECU-Cabin",
-      "reason": "CAN H/L populate CSB3 plug cavities 5/6; the plug is owned once, on the ECU/cabin harness"
+      "realOn": "A-cabin",
+      "reason": "CAN H/L populate CSB3 plug cavities 5/6; the plug is owned once, on ST185-A-cabin"
     },
     {
       "harness": "ClusterLED",
       "connector": "dm_csb3io_c26",
       "type": "reference_only",
-      "realOn": "ECU-Cabin",
+      "realOn": "A-cabin",
       "reason": "oil LED sink populates CSB3 plug cavity 26 (L4)"
     },
     {
@@ -716,31 +723,59 @@
     },
     {
       "harness": "EngineRoom-C",
-      "connector": "dm_bh_b_eng_c14",
+      "connector": "dm_bh_a_eng_c35",
       "type": "reference_only",
       "realOn": "A-engine",
-      "reason": "MRS enable populates bulkhead B engine-plug cavity 14"
+      "reason": "MRS enable populates bulkhead A engine-plug cavity 35 (fused 12V, follows the pump's ECU signal A27)"
     },
     {
       "harness": "EngineRoom-C",
       "connector": "dm_ecu_b_b12",
       "type": "reference_only",
-      "realOn": "ECU-Cabin",
+      "realOn": "B-cabin",
       "reason": "EPS relay trigger (Ign 6) populates ECU-B B12"
     },
     {
       "harness": "EngineRoom-C",
       "connector": "dm_hcfb_h4",
       "type": "reference_only",
-      "realOn": "ECU-Cabin",
+      "realOn": "A-cabin",
       "reason": "k_eps 30 fed from high-current fuse block output H4 (60 A AMI)"
     },
     {
       "harness": "EngineRoom-C",
       "connector": "dm_sp_sw12_Splice",
       "type": "reference_only",
-      "realOn": "ECU-Cabin",
+      "realOn": "A-cabin",
       "reason": "k_eps coil 86 joins the switched-12V splice sp_sw12"
+    },
+    {
+      "harness": "B-cabin",
+      "connector": "dm_sp_gndout_Splice",
+      "type": "reference_only",
+      "realOn": "A-cabin",
+      "reason": "crossover (a): B leg of sensor Gnd Out from the splice at ECU A (B22 joins it)"
+    },
+    {
+      "harness": "B-cabin",
+      "connector": "dm_sp_5v_Splice",
+      "type": "reference_only",
+      "realOn": "A-cabin",
+      "reason": "crossover (a): B leg of the +5V sensor supply from the splice at ECU A"
+    },
+    {
+      "harness": "B-cabin",
+      "connector": "dm_sp_chassis_Splice",
+      "type": "reference_only",
+      "realOn": "A-cabin",
+      "reason": "ECU-B power grounds B25/B34 join the cabin chassis ground splice"
+    },
+    {
+      "harness": "B-cabin",
+      "connector": "dm_sp_sw12_Splice",
+      "type": "reference_only",
+      "realOn": "A-cabin",
+      "reason": "switched 12V bus splice at ECU A feeding a B-side load"
     }
   ]
 }

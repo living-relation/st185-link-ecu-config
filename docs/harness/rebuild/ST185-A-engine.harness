@@ -5,642 +5,6 @@
   "lengthUnit": "mm",
   "connectors": [
     {
-      "id": "crank",
-      "label": "Crank VR Sensor (36-2)",
-      "partId": "cp_dt2s",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG+"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG-"
-        }
-      ],
-      "layoutPosition": {
-        "x": 690,
-        "y": -210
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 1920
-      },
-      "width": 210
-    },
-    {
-      "id": "ect",
-      "label": "ECT Sensor",
-      "partId": "cp_toy2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1170,
-        "y": -240
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 180
-      },
-      "width": 150
-    },
-    {
-      "id": "iat",
-      "label": "IAT Sensor (Manifold)",
-      "partId": "cp_toy2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1530,
-        "y": 270
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 1470
-      },
-      "width": 210
-    },
-    {
-      "id": "oilt",
-      "label": "Oil Temp Sensor",
-      "partId": "cp_toy2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 810,
-        "y": 30
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 330
-      },
-      "width": 150
-    },
-    {
-      "id": "cpiat",
-      "label": "Charge-Pipe IAT Sensor",
-      "partId": "cp_toy2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 330,
-        "y": 270
-      },
-      "schematicPosition": {
-        "x": 1680,
-        "y": 0
-      },
-      "width": 210
-    },
-    {
-      "id": "knock1",
-      "label": "Knock Sensor 1",
-      "partId": "cp_knock",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG+"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG-"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1050,
-        "y": 0
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 1620
-      },
-      "width": 150
-    },
-    {
-      "id": "turbospd",
-      "label": "Turbo Speed Sensor",
-      "partId": "cp_dt3s",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+5V - wired on ST185-B-engine",
-          "designation": "A"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG",
-          "designation": "B"
-        },
-        {
-          "id": "c3",
-          "signal": "GND",
-          "designation": "C"
-        }
-      ],
-      "layoutPosition": {
-        "x": 570,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 1020
-      },
-      "width": 210
-    },
-    {
-      "id": "cam",
-      "label": "Cam Hall Sensor (RacerX)",
-      "partId": "cp_camkit",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+8V"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG"
-        },
-        {
-          "id": "c3",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2490,
-        "y": -240
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 0
-      },
-      "width": 210
-    },
-    {
-      "id": "map",
-      "label": "MAP Sensor",
-      "partId": "cp_mp150_3",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "5V"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG"
-        },
-        {
-          "id": "c3",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1770,
-        "y": 270
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 1770
-      },
-      "width": 150
-    },
-    {
-      "id": "oilp",
-      "label": "Oil Pressure Sensor",
-      "partId": "cp_mp150_3",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "5V"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG"
-        },
-        {
-          "id": "c3",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 930,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 690
-      },
-      "width": 210
-    },
-    {
-      "id": "fuelp",
-      "label": "Fuel Pressure Sensor",
-      "partId": "cp_mp150_3",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "5V"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG"
-        },
-        {
-          "id": "c3",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1290,
-        "y": 270
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 510
-      },
-      "width": 210
-    },
-    {
-      "id": "clntp",
-      "label": "Coolant Pressure Sensor",
-      "partId": "cp_mp150_3",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "5V"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG"
-        },
-        {
-          "id": "c3",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1290,
-        "y": -330
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 150
-      },
-      "width": 210
-    },
-    {
-      "id": "inj1",
-      "label": "Injector 1",
-      "partId": "cp_inj",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "INJ",
-          "contactPartId": "ct_gt150_skt_05"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1410,
-        "y": -150
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 1320
-      },
-      "width": 150
-    },
-    {
-      "id": "inj2",
-      "label": "Injector 2",
-      "partId": "cp_inj",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "INJ",
-          "contactPartId": "ct_gt150_skt_05"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1530,
-        "y": -60
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 1470
-      },
-      "width": 150
-    },
-    {
-      "id": "inj3",
-      "label": "Injector 3",
-      "partId": "cp_inj",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "INJ",
-          "contactPartId": "ct_gt150_skt_05"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1650,
-        "y": 60
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 1620
-      },
-      "width": 150
-    },
-    {
-      "id": "inj4",
-      "label": "Injector 4",
-      "partId": "cp_inj",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "INJ",
-          "contactPartId": "ct_gt150_skt_05"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1770,
-        "y": -30
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 1770
-      },
-      "width": 150
-    },
-    {
-      "id": "cop1",
-      "label": "COP 1 (1ZZ)",
-      "partId": "cp_cop",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+B 12V - wired on ST185-B-engine"
-        },
-        {
-          "id": "c2",
-          "notConnected": true
-        },
-        {
-          "id": "c3",
-          "signal": "IGT (TRIG)"
-        },
-        {
-          "id": "c4",
-          "signal": "GND - wired on ST185-B-engine"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1890,
-        "y": -150
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 480
-      },
-      "width": 150
-    },
-    {
-      "id": "cop2",
-      "label": "COP 2 (1ZZ)",
-      "partId": "cp_cop",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+B 12V - wired on ST185-B-engine"
-        },
-        {
-          "id": "c2",
-          "notConnected": true
-        },
-        {
-          "id": "c3",
-          "signal": "IGT (TRIG)"
-        },
-        {
-          "id": "c4",
-          "signal": "GND - wired on ST185-B-engine"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2130,
-        "y": -60
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 690
-      },
-      "width": 150
-    },
-    {
-      "id": "cop3",
-      "label": "COP 3 (1ZZ)",
-      "partId": "cp_cop",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+B 12V - wired on ST185-B-engine"
-        },
-        {
-          "id": "c2",
-          "notConnected": true
-        },
-        {
-          "id": "c3",
-          "signal": "IGT (TRIG)"
-        },
-        {
-          "id": "c4",
-          "signal": "GND - wired on ST185-B-engine"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2250,
-        "y": 60
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 900
-      },
-      "width": 150
-    },
-    {
-      "id": "cop4",
-      "label": "COP 4 (1ZZ)",
-      "partId": "cp_cop",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+B 12V - wired on ST185-B-engine"
-        },
-        {
-          "id": "c2",
-          "notConnected": true
-        },
-        {
-          "id": "c3",
-          "signal": "IGT (TRIG)"
-        },
-        {
-          "id": "c4",
-          "signal": "GND - wired on ST185-B-engine"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2370,
-        "y": -30
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 1110
-      },
-      "width": 150
-    },
-    {
-      "id": "boost",
-      "label": "Boost Control Solenoid",
-      "partId": "cp_mp150_2",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "LS"
-        }
-      ],
-      "layoutPosition": {
-        "x": 450,
-        "y": 330
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 0
-      },
-      "width": 210
-    },
-    {
-      "id": "etb",
-      "label": "Bosch 74.5mm ETB",
-      "width": 150,
-      "partId": "cp_etb",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "Motor-"
-        },
-        {
-          "id": "c2",
-          "signal": "Poti- (GND)"
-        },
-        {
-          "id": "c3",
-          "signal": "Poti+ (5V)"
-        },
-        {
-          "id": "c4",
-          "signal": "Motor+"
-        },
-        {
-          "id": "c5",
-          "signal": "Poti2 (TPS-S)"
-        },
-        {
-          "id": "c6",
-          "signal": "Poti1 (TPS-M)"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1410,
-        "y": 330
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 1200
-      }
-    },
-    {
-      "id": "flex",
-      "label": "Flex Fuel Sensor",
-      "partId": "cp_gt150",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V/8V"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        },
-        {
-          "id": "c3",
-          "signal": "FREQ OUT",
-          "contactPartId": "ct_gt150_skt_05"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1890,
-        "y": 360
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 330
-      },
-      "width": 150
-    },
-    {
       "id": "bh_a_eng",
       "label": "Bulkhead A - engine plug (HDP26-24-47SE-L015)",
       "width": 390,
@@ -853,8 +217,8 @@
         {
           "id": "c35",
           "designation": "35",
-          "signal": "spare",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "MRS EPS pump logic enable (cabin fuse block c14, 7.5A) *",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c36",
@@ -939,146 +303,428 @@
       }
     },
     {
-      "id": "bh_b_eng",
-      "label": "Bulkhead B - engine plug (HDP26-24-21SN)",
-      "width": 390,
-      "partId": "cp_hdp_b_eng",
+      "id": "turbospd",
+      "label": "Turbo Speed Sensor",
+      "partId": "cp_dt3s",
       "cavities": [
         {
           "id": "c1",
-          "designation": "1",
-          "signal": "Switched 12V - INJECTOR power feed *",
-          "contactPartId": "ct_hdp12s"
+          "signal": "+5V - wired on ST185-B-engine",
+          "designation": "A"
         },
         {
           "id": "c2",
-          "designation": "2",
-          "signal": "Switched 12V - COP / ignition coil power feed *",
-          "contactPartId": "ct_hdp12s"
+          "signal": "SIG",
+          "designation": "B"
         },
         {
           "id": "c3",
-          "designation": "3",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "signal": "GND",
+          "designation": "C"
+        }
+      ],
+      "layoutPosition": {
+        "x": 570,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 1020
+      },
+      "width": 210
+    },
+    {
+      "id": "map",
+      "label": "MAP Sensor",
+      "partId": "cp_mp150_3",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "5V"
+        },
+        {
+          "id": "c2",
+          "signal": "SIG"
+        },
+        {
+          "id": "c3",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1770,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 1770
+      },
+      "width": 150
+    },
+    {
+      "id": "flex",
+      "label": "Flex Fuel Sensor",
+      "partId": "cp_gt150",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V/8V"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        },
+        {
+          "id": "c3",
+          "signal": "FREQ OUT",
+          "contactPartId": "ct_gt150_skt_05"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1890,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 330
+      },
+      "width": 150
+    },
+    {
+      "id": "inj1",
+      "label": "Injector 1",
+      "partId": "cp_inj",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "INJ",
+          "contactPartId": "ct_gt150_skt_05"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1410,
+        "y": -150
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 1320
+      },
+      "width": 150
+    },
+    {
+      "id": "inj2",
+      "label": "Injector 2",
+      "partId": "cp_inj",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "INJ",
+          "contactPartId": "ct_gt150_skt_05"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1530,
+        "y": -60
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 1470
+      },
+      "width": 150
+    },
+    {
+      "id": "inj3",
+      "label": "Injector 3",
+      "partId": "cp_inj",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "INJ",
+          "contactPartId": "ct_gt150_skt_05"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1650,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 1620
+      },
+      "width": 150
+    },
+    {
+      "id": "inj4",
+      "label": "Injector 4",
+      "partId": "cp_inj",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "INJ",
+          "contactPartId": "ct_gt150_skt_05"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1770,
+        "y": -30
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 1770
+      },
+      "width": 150
+    },
+    {
+      "id": "cop1",
+      "label": "COP 1 (1ZZ)",
+      "partId": "cp_cop",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+B 12V - wired on ST185-B-engine"
+        },
+        {
+          "id": "c2"
+        },
+        {
+          "id": "c3",
+          "signal": "IGT (TRIG)"
         },
         {
           "id": "c4",
-          "designation": "4",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "signal": "GND - wired on ST185-B-engine"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1890,
+        "y": -150
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 480
+      },
+      "width": 150
+    },
+    {
+      "id": "cop2",
+      "label": "COP 2 (1ZZ)",
+      "partId": "cp_cop",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+B 12V - wired on ST185-B-engine"
         },
         {
-          "id": "c5",
-          "designation": "5",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ETB motor + (Aux 9, B18)"
+          "id": "c2"
         },
         {
-          "id": "c6",
-          "designation": "6",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ETB motor - (Aux 10, B26)"
+          "id": "c3",
+          "signal": "IGT (TRIG)"
         },
         {
-          "id": "c7",
-          "designation": "7",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B15"
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B16"
-        },
-        {
-          "id": "c9",
-          "designation": "9",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B23"
-        },
-        {
-          "id": "c10",
-          "designation": "10",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B6"
-        },
-        {
-          "id": "c11",
-          "designation": "11",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B7"
-        },
-        {
-          "id": "c12",
-          "designation": "12",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECUMaster CSB3 - Power/CAN/Switch I/O SW"
-        },
-        {
-          "id": "c13",
-          "designation": "13",
-          "signal": "spare",
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c14",
-          "designation": "14",
-          "signal": "MRS EPS pump logic enable *",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c15",
-          "designation": "15",
-          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c16",
-          "designation": "16",
-          "signal": "Knock 1 SIG+ (ECU B9)",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c17",
-          "designation": "17",
-          "signal": "Knock 1 SIG- (to Gnd Out B22)",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c18",
-          "designation": "18",
-          "signal": "Knock 1 screen",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c19",
-          "designation": "19",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c20",
-          "designation": "20",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c21",
-          "designation": "21",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "id": "c4",
+          "signal": "GND - wired on ST185-B-engine"
         }
       ],
       "layoutPosition": {
         "x": 2130,
+        "y": -60
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 690
+      },
+      "width": 150
+    },
+    {
+      "id": "cop3",
+      "label": "COP 3 (1ZZ)",
+      "partId": "cp_cop",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+B 12V - wired on ST185-B-engine"
+        },
+        {
+          "id": "c2"
+        },
+        {
+          "id": "c3",
+          "signal": "IGT (TRIG)"
+        },
+        {
+          "id": "c4",
+          "signal": "GND - wired on ST185-B-engine"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2250,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 900
+      },
+      "width": 150
+    },
+    {
+      "id": "cop4",
+      "label": "COP 4 (1ZZ)",
+      "partId": "cp_cop",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+B 12V - wired on ST185-B-engine"
+        },
+        {
+          "id": "c2"
+        },
+        {
+          "id": "c3",
+          "signal": "IGT (TRIG)"
+        },
+        {
+          "id": "c4",
+          "signal": "GND - wired on ST185-B-engine"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2370,
+        "y": -30
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 1110
+      },
+      "width": 150
+    },
+    {
+      "id": "etb",
+      "label": "Bosch 74.5mm ETB",
+      "width": 150,
+      "partId": "cp_etb",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Motor-"
+        },
+        {
+          "id": "c2",
+          "signal": "Poti- (GND)"
+        },
+        {
+          "id": "c3",
+          "signal": "Poti+ (5V)"
+        },
+        {
+          "id": "c4",
+          "signal": "Motor+"
+        },
+        {
+          "id": "c5",
+          "signal": "Poti2 (TPS-S)"
+        },
+        {
+          "id": "c6",
+          "signal": "Poti1 (TPS-M)"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1410,
+        "y": 330
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 1200
+      }
+    },
+    {
+      "id": "boost",
+      "label": "Boost Control Solenoid",
+      "partId": "cp_mp150_2",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "LS"
+        }
+      ],
+      "layoutPosition": {
+        "x": 450,
+        "y": 330
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 0
+      },
+      "width": 210
+    },
+    {
+      "id": "ect",
+      "label": "ECT Sensor",
+      "partId": "cp_toy2p",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "SIG"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1170,
+        "y": -240
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 180
+      },
+      "width": 150
+    },
+    {
+      "id": "iat",
+      "label": "IAT Sensor (Manifold)",
+      "partId": "cp_toy2p",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "SIG"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1530,
         "y": 270
       },
       "schematicPosition": {
-        "x": 0,
-        "y": 1500
-      }
+        "x": 660,
+        "y": 1470
+      },
+      "width": 210
     },
     {
       "id": "ac_cts",
@@ -1105,9 +751,201 @@
         "x": 1290,
         "y": -300
       }
+    },
+    {
+      "id": "lambda",
+      "label": "Link CAN-Lambda",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Power +12V (10A fused per Link QSG)"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        },
+        {
+          "id": "c3",
+          "notConnected": true
+        },
+        {
+          "id": "c4",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 570,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 780
+      },
+      "partId": "cp_dtm4s",
+      "excludeFromBom": true,
+      "width": 390
+    },
+    {
+      "id": "crank",
+      "label": "Crank VR Sensor (36-2)",
+      "partId": "cp_dt2s",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "SIG+"
+        },
+        {
+          "id": "c2",
+          "signal": "SIG-"
+        }
+      ],
+      "layoutPosition": {
+        "x": 690,
+        "y": -210
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 1920
+      },
+      "width": 210
+    },
+    {
+      "id": "cam",
+      "label": "Cam Hall Sensor (RacerX)",
+      "partId": "cp_camkit",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+8V"
+        },
+        {
+          "id": "c2",
+          "signal": "SIG"
+        },
+        {
+          "id": "c3",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2490,
+        "y": -240
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 0
+      },
+      "width": 210
+    },
+    {
+      "id": "dm_k_str_c4",
+      "label": "K6-c4",
+      "width": 390,
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Dummy - real part on the owning drawing, 6.15"
+        }
+      ],
+      "schematicPosition": {
+        "x": 660,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 3090,
+        "y": 390
+      },
+      "partId": "cp_xref",
+      "excludeFromBom": true
     }
   ],
-  "splices": [],
+  "terminals": [
+    {
+      "id": "eng_gnd_ring",
+      "type": "Ring",
+      "signal": "Engine block ground stud (power ground)",
+      "layoutPosition": {
+        "x": 2850,
+        "y": -90
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 330
+      },
+      "partId": "tp_ring_m6_12_10",
+      "width": 390
+    },
+    {
+      "id": "starter_trigger",
+      "type": "Spade",
+      "signal": "Starter Solenoid Trigger (S)",
+      "layoutPosition": {
+        "x": 2970,
+        "y": -180
+      },
+      "schematicPosition": {
+        "x": 3180,
+        "y": 150
+      },
+      "partId": "tp_spade_str",
+      "width": 270
+    }
+  ],
+  "splices": [
+    {
+      "id": "sp_5v_eng",
+      "layoutPosition": {
+        "x": 2070,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 1830,
+        "y": 810
+      },
+      "partId": "spp_crimp_14_10",
+      "locationId": "be_750"
+    },
+    {
+      "id": "sp_sw12_eng",
+      "layoutPosition": {
+        "x": 1710,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 1830,
+        "y": 390
+      },
+      "partId": "spp_crimp_14_10",
+      "locationId": "be_660"
+    },
+    {
+      "id": "sp_gndout_eng",
+      "layoutPosition": {
+        "x": 1710,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 1830,
+        "y": 690
+      },
+      "partId": "spp_crimp_10_6",
+      "locationId": "be_660"
+    },
+    {
+      "id": "sp_chassis_eng",
+      "layoutPosition": {
+        "x": 2070,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 2490,
+        "y": 720
+      },
+      "partId": "spp_crimp_10_6",
+      "locationId": "be_750"
+    }
+  ],
   "wires": [
     {
       "id": "w16_e",
@@ -1130,45 +968,6 @@
       },
       "target": {
         "id": "map",
-        "handle": "c2"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "w29_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c7"
-      },
-      "target": {
-        "id": "oilp",
-        "handle": "c2"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "w32_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c8"
-      },
-      "target": {
-        "id": "fuelp",
-        "handle": "c2"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "w35_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c9"
-      },
-      "target": {
-        "id": "clntp",
         "handle": "c2"
       },
       "color": "White",
@@ -1357,45 +1156,6 @@
       "partId": "wp_20_yel"
     },
     {
-      "id": "w203_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c10"
-      },
-      "target": {
-        "id": "oilt",
-        "handle": "c1"
-      },
-      "color": "Yellow",
-      "partId": "wp_20_yel"
-    },
-    {
-      "id": "w204_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c11"
-      },
-      "target": {
-        "id": "cpiat",
-        "handle": "c1"
-      },
-      "color": "Yellow",
-      "partId": "wp_20_yel"
-    },
-    {
-      "id": "w_sw7_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c12"
-      },
-      "target": {
-        "id": "fl_reverse_sw_c1",
-        "handle": "Terminal"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
-    },
-    {
       "id": "w_accts_sig_e",
       "source": {
         "id": "bh_a_eng",
@@ -1420,6 +1180,342 @@
       },
       "color": "Brown",
       "partId": "wp_20_brn"
+    },
+    {
+      "id": "w218",
+      "color": "Orange",
+      "source": {
+        "id": "turbospd",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_5v_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w219",
+      "color": "Red",
+      "source": {
+        "id": "boost",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_sw12_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_red"
+    },
+    {
+      "id": "w_lam12",
+      "color": "Red",
+      "source": {
+        "id": "lambda",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_sw12_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_red"
+    },
+    {
+      "id": "w206",
+      "color": "Orange",
+      "source": {
+        "id": "map",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_5v_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w126",
+      "color": "Orange",
+      "source": {
+        "id": "etb",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_5v_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w217",
+      "color": "Red",
+      "source": {
+        "id": "flex",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_sw12_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White",
+      "partId": "wp_18_red_wht"
+    },
+    {
+      "id": "w2",
+      "color": "Black",
+      "source": {
+        "id": "crank",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w4",
+      "color": "Black",
+      "source": {
+        "id": "ect",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w6",
+      "color": "Black",
+      "source": {
+        "id": "iat",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w24",
+      "color": "Black",
+      "source": {
+        "id": "cam",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w27",
+      "color": "Black",
+      "source": {
+        "id": "map",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w47",
+      "color": "Black",
+      "source": {
+        "id": "flex",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White",
+      "partId": "wp_18_blk_wht"
+    },
+    {
+      "id": "w17",
+      "color": "Black",
+      "source": {
+        "id": "turbospd",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w127",
+      "color": "Black",
+      "source": {
+        "id": "etb",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_cop1g",
+      "color": "Black",
+      "source": {
+        "id": "cop1",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_chassis_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_blk"
+    },
+    {
+      "id": "w_cop2g",
+      "color": "Black",
+      "source": {
+        "id": "cop2",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_chassis_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_blk"
+    },
+    {
+      "id": "w_cop3g",
+      "color": "Black",
+      "source": {
+        "id": "cop3",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_chassis_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_blk"
+    },
+    {
+      "id": "w_cop4g",
+      "color": "Black",
+      "source": {
+        "id": "cop4",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "sp_chassis_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_18_blk"
+    },
+    {
+      "id": "w_lamg",
+      "color": "Black",
+      "source": {
+        "id": "lambda",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_chassis_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_blk"
+    },
+    {
+      "id": "w_rail_sp_5v_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_5v_eng",
+        "handle": "Splice"
+      },
+      "color": "Orange",
+      "partId": "wp_18_org"
+    },
+    {
+      "id": "w_rail_sp_gndout_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout_eng",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_rail_sp_8v_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "cam",
+        "handle": "c1"
+      },
+      "color": "Orange",
+      "stripeColor": "White",
+      "partId": "wp_20_org_wht"
+    },
+    {
+      "id": "w_rail_sp_sw12_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c5"
+      },
+      "target": {
+        "id": "sp_sw12_eng",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "w_eng_gnd",
+      "color": "Black",
+      "source": {
+        "id": "eng_gnd_ring",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_chassis_eng",
+        "handle": "Splice"
+      },
+      "partId": "wp_10_blk"
+    },
+    {
+      "id": "w_strl",
+      "color": "Red",
+      "source": {
+        "id": "dm_k_str_c4",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "starter_trigger",
+        "handle": "Terminal"
+      },
+      "partId": "wp_12_red"
     }
   ],
   "cables": [
@@ -1482,61 +1578,9 @@
           "handle": "c34"
         }
       }
-    },
-    {
-      "id": "cab_knock1",
-      "partId": "cab_sh_2c",
-      "schematicPosition": {
-        "x": 480,
-        "y": 1560
-      },
-      "cores": [
-        {
-          "id": "cab_knock1_c1",
-          "color": "Gray",
-          "source": {
-            "id": "bh_b_eng",
-            "handle": "c16"
-          },
-          "target": {
-            "id": "knock1",
-            "handle": "c1"
-          },
-          "twistedWithNext": true
-        },
-        {
-          "id": "cab_knock1_c2",
-          "color": "Green",
-          "source": {
-            "id": "bh_b_eng",
-            "handle": "c17"
-          },
-          "target": {
-            "id": "knock1",
-            "handle": "c2"
-          }
-        }
-      ],
-      "shield": {
-        "id": "cab_knock1_sh",
-        "color": "Shield",
-        "source": {
-          "id": "bh_b_eng",
-          "handle": "c18"
-        }
-      }
     }
   ],
   "bundles": [
-    {
-      "id": "bn_bp_330__bp_360",
-      "sourceId": "bp_330",
-      "targetId": "bp_360",
-      "length": {
-        "value": 70,
-        "unit": "mm"
-      }
-    },
     {
       "id": "bn_bp_360__bp_420",
       "sourceId": "bp_360",
@@ -1691,24 +1735,6 @@
       }
     },
     {
-      "id": "bn_bp_900__bp_930",
-      "sourceId": "bp_900",
-      "targetId": "bp_930",
-      "length": {
-        "value": 40,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_330__cpiat",
-      "sourceId": "bp_330",
-      "targetId": "cpiat",
-      "length": {
-        "value": 130,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_360__boost",
       "sourceId": "bp_360",
       "targetId": "boost",
@@ -1736,47 +1762,11 @@
       }
     },
     {
-      "id": "bn_bp_480__oilt",
-      "sourceId": "bp_480",
-      "targetId": "oilt",
-      "length": {
-        "value": 260,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_510__oilp",
-      "sourceId": "bp_510",
-      "targetId": "oilp",
-      "length": {
-        "value": 150,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_540__knock1",
-      "sourceId": "bp_540",
-      "targetId": "knock1",
-      "length": {
-        "value": 330,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_570__ect",
       "sourceId": "bp_570",
       "targetId": "ect",
       "length": {
         "value": 790,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_600__clntp",
-      "sourceId": "bp_600",
-      "targetId": "clntp",
-      "length": {
-        "value": 780,
         "unit": "mm"
       }
     },
@@ -1855,7 +1845,7 @@
     {
       "id": "bn_bp_600__fuelp",
       "sourceId": "bp_600",
-      "targetId": "fuelp",
+      "targetId": "bp_at_fuelp",
       "length": {
         "value": 90,
         "unit": "mm"
@@ -1876,15 +1866,6 @@
       "targetId": "etb",
       "length": {
         "value": 200,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_930__bp_fl_reverse_sw",
-      "sourceId": "bp_930",
-      "targetId": "bp_fl_reverse_sw",
-      "length": {
-        "value": 920,
         "unit": "mm"
       }
     },
@@ -1918,18 +1899,9 @@
     {
       "id": "bn_bp_810__bh_b_eng",
       "sourceId": "bp_810",
-      "targetId": "bh_b_eng",
+      "targetId": "bp_at_bh_b_eng",
       "length": {
         "value": 230,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_reverse_sw__fl_reverse_sw_c1",
-      "sourceId": "bp_fl_reverse_sw",
-      "targetId": "fl_reverse_sw_c1",
-      "length": {
-        "value": 50,
         "unit": "mm"
       }
     },
@@ -1941,16 +1913,144 @@
         "value": 840,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_360__bp_390",
+      "sourceId": "be_360",
+      "targetId": "bp_390",
+      "length": {
+        "value": 40,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_750__bh_b_eng",
+      "sourceId": "be_750",
+      "targetId": "bp_at_bh_b_eng",
+      "length": {
+        "value": 190,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "be_bn_bp_870__bp_900",
+      "sourceId": "be_870",
+      "targetId": "be_900",
+      "length": {
+        "value": 20,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "be_bn_bp_900__bp_930",
+      "sourceId": "be_900",
+      "targetId": "be_930",
+      "length": {
+        "value": 90,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_930__bp_960",
+      "sourceId": "be_930",
+      "targetId": "bp_960",
+      "length": {
+        "value": 20,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_960__bp_990",
+      "sourceId": "bp_960",
+      "targetId": "bp_990",
+      "length": {
+        "value": 30,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1020__bp_1050",
+      "sourceId": "bp_1020",
+      "targetId": "bp_1050",
+      "length": {
+        "value": 160,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "be_bn_bp_360__boost",
+      "sourceId": "be_360",
+      "targetId": "boost",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_390__lambda",
+      "sourceId": "bp_390",
+      "targetId": "lambda",
+      "length": {
+        "value": 200,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_870__fuelp",
+      "sourceId": "be_870",
+      "targetId": "bp_at_fuelp",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "be_bn_bp_660__iat",
+      "sourceId": "be_660",
+      "targetId": "iat",
+      "length": {
+        "value": 130,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_960__eng_gnd_ring",
+      "sourceId": "bp_960",
+      "targetId": "eng_gnd_ring",
+      "length": {
+        "value": 560,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_990__starter_trigger",
+      "sourceId": "bp_990",
+      "targetId": "starter_trigger",
+      "length": {
+        "value": 730,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1050__bh_a_eng",
+      "sourceId": "bp_1050",
+      "targetId": "bh_a_eng",
+      "length": {
+        "value": 70,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1020__dm_k_str_c4",
+      "sourceId": "bp_1020",
+      "targetId": "dm_k_str_c4",
+      "length": {
+        "value": 640,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
-    {
-      "id": "bp_330",
-      "layoutPosition": {
-        "x": 330,
-        "y": 180
-      }
-    },
     {
       "id": "bp_360",
       "layoutPosition": {
@@ -2071,27 +2171,94 @@
       }
     },
     {
-      "id": "bp_930",
+      "id": "be_360",
       "layoutPosition": {
-        "x": 2610,
-        "y": 180
+        "x": 450,
+        "y": 210
       }
     },
     {
-      "id": "bp_fl_reverse_sw",
+      "id": "bp_390",
+      "layoutPosition": {
+        "x": 570,
+        "y": 210
+      }
+    },
+    {
+      "id": "be_660",
+      "layoutPosition": {
+        "x": 1650,
+        "y": 210
+      }
+    },
+    {
+      "id": "be_750",
+      "layoutPosition": {
+        "x": 2010,
+        "y": 210
+      }
+    },
+    {
+      "id": "be_870",
+      "layoutPosition": {
+        "x": 2490,
+        "y": 210
+      }
+    },
+    {
+      "id": "be_900",
       "layoutPosition": {
         "x": 2610,
-        "y": -330
+        "y": 210
       }
-    }
-  ],
-  "schematicNotes": [
+    },
     {
-      "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead A - engine plug (HDP2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead B - engine plug (HDP2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - engine plug (HDP2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nBulkhead B - engine plug (HDP2 14: MRS EPS pump logic enable (F13 7.5A, ignition-switched)",
-      "schematicPosition": {
-        "x": 2040,
-        "y": 0
+      "id": "be_930",
+      "layoutPosition": {
+        "x": 2730,
+        "y": 210
+      }
+    },
+    {
+      "id": "bp_960",
+      "layoutPosition": {
+        "x": 2850,
+        "y": 210
+      }
+    },
+    {
+      "id": "bp_990",
+      "layoutPosition": {
+        "x": 2970,
+        "y": 210
+      }
+    },
+    {
+      "id": "bp_1020",
+      "layoutPosition": {
+        "x": 3090,
+        "y": 210
+      }
+    },
+    {
+      "id": "bp_1050",
+      "layoutPosition": {
+        "x": 3210,
+        "y": 210
+      }
+    },
+    {
+      "id": "bp_at_fuelp",
+      "layoutPosition": {
+        "x": 2490,
+        "y": 60
+      }
+    },
+    {
+      "id": "bp_at_bh_b_eng",
+      "layoutPosition": {
+        "x": 2130,
+        "y": 210
       }
     }
   ],
@@ -2159,6 +2326,142 @@
       "color": "Yellow",
       "gauge": {
         "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_12_red",
+      "partNumber": "EW-1C12-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 12 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_18_blk",
+      "partNumber": "EW-1C18-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_18_blk_wht",
+      "partNumber": "EW-1C18-BLK-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_18_red",
+      "partNumber": "EW-1C18-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_18_red_wht",
+      "partNumber": "EW-1C18-RED-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_blk",
+      "partNumber": "EW-1C20-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_blk_wht",
+      "partNumber": "EW-1C20-BLK-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_org",
+      "partNumber": "EW-1C20-ORG",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Orange",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_org_wht",
+      "partNumber": "EW-1C20-ORG-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Orange",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_red",
+      "partNumber": "EW-1C20-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_18_org",
+      "partNumber": "EW-1C18-ORG",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Orange",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_10_blk",
+      "partNumber": "EW-1C10-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 10 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 10,
         "unit": "AWG"
       }
     }
@@ -2400,26 +2703,6 @@
       }
     },
     {
-      "partNumber": "HDP26-24-21SN",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 21 POS, SOCKET CONTACTS, N SEAL - bulkhead B, engine side",
-      "numberOfCavities": 21,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "cavityPlugPartId": "pl_sz16"
-        }
-      ],
-      "id": "cp_hdp_b_eng",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/catalog/common/images/PartImages/prhdp26-24-21sn.jpg",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp26-24-21sn.jpg"
-      }
-    },
-    {
       "partNumber": "15419715",
       "manufacturer": "Aptiv",
       "description": "CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6 - fuel injector",
@@ -2437,26 +2720,6 @@
         "source": "url",
         "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/15419715982_SPL.jpg",
         "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/15419715982_SPL.jpg"
-      }
-    },
-    {
-      "partNumber": "1 928 403 874",
-      "manufacturer": "Bosch",
-      "description": "CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS - knock sensor",
-      "numberOfCavities": 2,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_bdk28"
-        }
-      ],
-      "id": "cp_knock",
-      "image": {
-        "source": "url",
-        "url": "https://www.automotiveconnectors.com/user/products/large/DA61-1928403874-H.jpg",
-        "lowResUrl": "https://www.automotiveconnectors.com/user/products/thumbnails/DA61-1928403874-H.jpg"
       }
     },
     {
@@ -2525,25 +2788,41 @@
       "manufacturer": "TBD",
       "description": "CONNECTOR, A/C COOLANT TEMPERATURE SWITCH, 2 POS - switch not yet chosen; never invent a part number (redesign D5)",
       "numberOfCavities": 2
+    },
+    {
+      "partNumber": "DTM06-4S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY - Link CAN-Lambda, harness side",
+      "numberOfCavities": 4,
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_hdp20s",
+          "cavityPlugPartId": "pl_sz20",
+          "lockPartId": "lp_wm4s"
+        }
+      ],
+      "id": "cp_dtm4s",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-details.png"
+      }
+    },
+    {
+      "partNumber": "(cross-reference - no part)",
+      "manufacturer": "n/a",
+      "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
+      "id": "cp_xref",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png"
+      }
     }
   ],
   "contactParts": [
-    {
-      "partNumber": "BDK 2.8",
-      "manufacturer": "Bosch",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 18,
-        "unit": "AWG"
-      },
-      "description": "CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG) - knock sensor",
-      "id": "ct_bdk28"
-    },
     {
       "partNumber": "0462-201-16141",
       "manufacturer": "TE DEUTSCH",
@@ -2600,22 +2879,6 @@
       },
       "description": "CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM - Aptiv catalog",
       "id": "ct_gt150_skt_05"
-    },
-    {
-      "partNumber": "0462-210-1231",
-      "manufacturer": "TE DEUTSCH",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 12,
-        "unit": "AWG"
-      },
-      "description": "CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A - OWNED (qty 20)",
-      "id": "ct_hdp12s"
     },
     {
       "partNumber": "0462-201-1631",
@@ -2709,32 +2972,6 @@
         }
       ],
       "shielded": true
-    },
-    {
-      "id": "cab_sh_2c",
-      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - sensor pair (generic per 6.24)",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "White",
-          "twistedWithNext": true,
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Green",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
     }
   ],
   "lockParts": [
@@ -2749,15 +2986,15 @@
       "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 3-WAY PLUG",
       "id": "lp_w3s"
+    },
+    {
+      "partNumber": "WM-4S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DTM, 4-WAY PLUG",
+      "id": "lp_wm4s"
     }
   ],
   "cavityPlugParts": [
-    {
-      "partNumber": "0413-214-1205",
-      "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW - unused size 12 cavity",
-      "id": "pl_sz12"
-    },
     {
       "partNumber": "114017",
       "manufacturer": "TE DEUTSCH",
@@ -2771,37 +3008,77 @@
       "id": "pl_sz20"
     }
   ],
-  "terminals": [
-    {
-      "id": "fl_reverse_sw_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD TBD Back-up light switch-TBD TBD reverse signal -> bulkhead B c12 -> CSB3 S8 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 870
-      },
-      "layoutPosition": {
-        "x": 2610,
-        "y": -330
-      }
-    }
-  ],
   "terminalParts": [
     {
-      "type": "Loose",
-      "partNumber": "GENERIC FLYING LEAD",
+      "type": "Spade",
+      "partNumber": "GENERIC SPADE RECEPTACLE 12-10",
       "manufacturer": "generic",
       "minGauge": {
-        "value": 22,
+        "value": 12,
         "unit": "AWG"
       },
       "maxGauge": {
-        "value": 16,
+        "value": 10,
         "unit": "AWG"
       },
-      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
-      "id": "tp_flying_lead"
+      "description": "TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 6.3 MM (250) TAB, 12-10 AWG - starter S terminal (6.3 mm single-pole spade assumed 2026-09-25)",
+      "id": "tp_spade_str"
+    },
+    {
+      "type": "Ring",
+      "size": "M6",
+      "partNumber": "GENERIC RING M6 12-10",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 12,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
+      "id": "tp_ring_m6_12_10"
+    }
+  ],
+  "spliceParts": [
+    {
+      "partNumber": "GENERIC CRIMP SPLICE 10-6",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 6,
+        "unit": "AWG"
+      },
+      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, ADHESIVE HEATSHRINK OVER",
+      "id": "spp_crimp_10_6"
+    },
+    {
+      "partNumber": "GENERIC CRIMP SPLICE 14-10",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 14,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
+      "id": "spp_crimp_14_10"
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_cavity_notes",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead A - engine plug (HDP2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - engine plug (HDP2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)",
+      "schematicPosition": {
+        "x": 4200,
+        "y": 0
+      }
     }
   ]
 }

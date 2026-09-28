@@ -152,7 +152,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (HCFB H4 60A, ST185-ECU-Cabin)"
+          "signal": "Fused +12V in (HCFB H4 60A, ST185-A-cabin)"
         },
         {
           "id": "c2",
@@ -195,7 +195,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (HCFB H2 40A, ST185-ECU-Cabin)",
+          "signal": "Fused +12V in (HCFB H2 40A, ST185-A-cabin)",
           "contactPartId": "ct_f7_load8"
         },
         {
@@ -236,7 +236,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (HCFB H3 30A, ST185-ECU-Cabin)",
+          "signal": "Fused +12V in (HCFB H3 30A, ST185-A-cabin)",
           "contactPartId": "ct_f7_load8"
         },
         {
@@ -576,14 +576,14 @@
       "excludeFromBom": true
     },
     {
-      "id": "dm_bh_b_eng_c14",
-      "label": "BH-B-c14",
+      "id": "dm_bh_a_eng_c35",
+      "label": "BH-A-c35",
       "width": 390,
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Bulkhead B cavity 14 → MRS EPS pump logic *"
+          "signal": "Bulkhead A cavity 35 → MRS EPS pump logic enable *"
         }
       ],
       "schematicPosition": {
@@ -1519,7 +1519,7 @@
       "id": "w_hv_mrs_en_e",
       "color": "Red",
       "source": {
-        "id": "dm_bh_b_eng_c14",
+        "id": "dm_bh_a_eng_c35",
         "handle": "c1"
       },
       "target": {
@@ -2751,7 +2751,7 @@
     },
     {
       "id": "note_acamp",
-      "text": "A/C IS THE AMPLIFIERS' BUSINESS, NOT THE ECU'S OR THE CSB3'S - and there are TWO\nRead off the factory EWD automatic-A/C pages, saved in ewd-snips:\n  p150  AUTO A/C AMPLIFIER  A32=conn A, A33=conn B, A34=conn C\n        A1 Ambient Temp -> TAM, conn C pin 6, Y-B (via EA1 4, IQ1 1)\n        A27 Water Temp  -> TW,  conn C pin 20, R-G\n  p152  A/C AMPLIFIER A18 - a SEPARATE module\n        A5 Pressure SW  -> A18 pin 13, Y-R (via EB2 2, E10, IJ1 15)\nAmbient sensor -> amplifier and pressure switch -> A18 stay FACTORY wiring\n(harness redesign 2026-09-27); this loom does not redraw them.\nNew here: only the ACPS +12V feed, a flying lead into A5 pin 1 (V-R).\nThe amplifier's own coolant switch comes from Engine-A via bulkhead A\nc37/c38 and IX_AC_CTS (ST185-ACAmp-Spur). The ECU's only A/C tie is\nAux 4 / A18 ACT kill, a flying lead on ST185-ECU-Cabin.",
+      "text": "A/C IS THE AMPLIFIERS' BUSINESS, NOT THE ECU'S OR THE CSB3'S - and there are TWO\nRead off the factory EWD automatic-A/C pages, saved in ewd-snips:\n  p150  AUTO A/C AMPLIFIER  A32=conn A, A33=conn B, A34=conn C\n        A1 Ambient Temp -> TAM, conn C pin 6, Y-B (via EA1 4, IQ1 1)\n        A27 Water Temp  -> TW,  conn C pin 20, R-G\n  p152  A/C AMPLIFIER A18 - a SEPARATE module\n        A5 Pressure SW  -> A18 pin 13, Y-R (via EB2 2, E10, IJ1 15)\nAmbient sensor -> amplifier and pressure switch -> A18 stay FACTORY wiring\n(harness redesign 2026-09-27); this loom does not redraw them.\nNew here: only the ACPS +12V feed, a flying lead into A5 pin 1 (V-R).\nThe amplifier's own coolant switch comes from Engine-A via bulkhead A\nc37/c38 and IX_AC_CTS (ST185-ACAmp-Spur). The ECU's only A/C tie is\nAux 4 / A18 ACT kill, a flying lead on ST185-A-cabin.",
       "schematicPosition": {
         "x": 3180,
         "y": 1170

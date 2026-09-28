@@ -670,7 +670,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCSB3-c26 (L4) 1: ECUMaster CSB3 L4 low-side - oil pressure LED sink, commanded on CAN 0x643; the CSB3 plug is on ST185-ECU-Cabin (csb3io c26)\nt_led_gnd: LED common return - OEM ground point ID, left kick panel (assumed)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCSB3-c26 (L4) 1: ECUMaster CSB3 L4 low-side - oil pressure LED sink, commanded on CAN 0x643; the CSB3 plug is on ST185-A-cabin (csb3io c26)\nt_led_gnd: LED common return - OEM ground point ID, left kick panel (assumed)",
       "schematicPosition": {
         "x": 1200,
         "y": 1380

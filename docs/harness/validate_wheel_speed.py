@@ -13,7 +13,8 @@ Checked per side against interfaces.json "wheelSpeed":
       screen lands on its declared drain pin, starting at the enclosure or floating there
   W5  the interface is a Deutsch DT 6-way pair
   W6  the ECU spur: the receiving half is on the spur harness, and each of its pins has one
-      conductor to the declared ECU pin or splice
+      conductor to the declared ECU pin or splice (on the spur harness or a harness the
+      half is alsoDrawnOn - the front spur's FR core belongs to the B cabin loom)
   W7  once both sides are drawn, the old combined ST185-WheelSpeed drawing is gone
 
 Exit 1 on any finding.
@@ -115,10 +116,11 @@ for side, s in sorted(spec.items()):
         pn = (model.parts(hd).get((c or {}).get("partId")) or {}).get("partNumber", "")
         if not pn.startswith(("DT04-6P", "DT06-6S")) or len((c or {}).get("cavities", [])) != 6:
             bad.append("W5 %s: %s/%s is %r, want a DT 6-way half" % (side, h["harness"], h["connector"], pn))
-    sd = ds.get(s["spurHarness"]) or {}
+    spur_conds = [c for loom in [s["spurHarness"]] + rcv.get("alsoDrawnOn", [])
+                  for c in model.conductors(ds.get(loom) or {})]
     for pin, target in sorted(s["spur"].items()):
         hits = []
-        for cond, cable, screen in model.conductors(sd):
+        for cond, cable, screen in spur_conds:
             ends = {end(cond.get("source")), end(cond.get("target"))}
             if (rcv["connector"], pin) in ends:
                 hits.append(ends - {(rcv["connector"], pin)})
