@@ -26,12 +26,14 @@
 - RealDash channel definitions: `link_g4x_realdash.xml`.
 - Engine-room power splice table (kick-panel J/Bs, vacated J/B2): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - Wiring SoT (every ECU pin and channel): `sot/channels.csv`. Visual face: `XTREMEX-IO-TABLE.html` (gated by `docs/harness/sync_io_table.py --check`).
-- The looms: `docs/harness/rebuild/*.harness` (nine files; `docs/harness/README.md`). Gate: `python docs/harness/check_all.py`.
+- The harnesses: `docs/harness/rebuild/*.harness` (11 files, one physical harness per file since the 2026-09-27 redesign; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
 - Wiring reconciliation rules: `docs/RECONCILIATION-RULES.md` Rule 1.
 
 ## Board / progress snapshot
 - Claude progress board is a **stale artifact** (last updated 2026-09-01). Do not treat it as SoT.
-- Harness build rules: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.
+- Harness build rules: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6. The 2026-09-27
+  redesign (physical-harness-per-file, ownership/interface model) supersedes the file
+  inventory in §6.41; current decisions are `docs/harness/redesign/DECISIONS.md`.
 - Dated audit/verify notes and retired diagrams were moved to `archive/2026-09-25-cleanup/` — not authoritative.
 - Paste **CONFLICT rows only** into the ACTIVE `shipping\` trance; park husk-keyed chats.
 ## Related Repos (mandatory for CAN bus / wiring work)

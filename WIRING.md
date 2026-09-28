@@ -70,10 +70,10 @@ graph LR
     subgraph BUS["Shared CAN Bus — 1 Mbit/s, ISO 11898-2"]
         direction LR
         ECU["Link G4X XtremeX ECU<br/>120Ω term — END A"]
-        LAMBDA["Link CAN-Lambda<br/>0x3B6 / 0x3BE"]
-        CENTER["center-cluster-esp32-p4<br/>SN65HVD230 transceiver<br/>GPIO5 TX / GPIO4 RX"]
-        SWB["ECUMaster CAN Switch<br/>Board V3<br/>Base ID 0x640<br/>(set to 1 Mbit/s)"]
-        PI5["Pi4+/Pi5 + USB-CAN adapter<br/>(CANable or PCAN USB)<br/>RealDash 840x480 7in screen<br/>120Ω term — END B"]
+        LAMBDA["Link CAN-Lambda<br/>0x3B6 / 0x3BE<br/>120Ω term — END B"]
+        CENTER["center-cluster-esp32-p4<br/>SN65HVD230 transceiver<br/>GPIO5 TX / GPIO4 RX<br/>mid-bus stub"]
+        SWB["ECUMaster CAN Switch<br/>Board V3<br/>Base ID 0x640<br/>(set to 1 Mbit/s)<br/>mid-bus stub"]
+        PI5["Pi4+/Pi5 + USB-CAN adapter<br/>(CANable or PCAN USB)<br/>RealDash 840x480 7in screen<br/>mid-bus stub — no termination"]
 
         ECU -- "CANH / CANL" --> LAMBDA
         LAMBDA -- "CANH / CANL" --> CENTER
@@ -83,18 +83,19 @@ graph LR
 
     classDef term fill:#fde2e1,stroke:#c0392b,stroke-width:2px;
     classDef node fill:#eef3fb,stroke:#2a6fdb,stroke-width:1.5px;
-    class ECU,PI5 term;
-    class CENTER,SWB node;
+    class ECU,LAMBDA term;
+    class CENTER,SWB,PI5 node;
 ```
 
 - All five nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus (1 Mbit/s,
   ISO 11898-2) — per `CAN-BUS-MASTER-DESIGN.md` §2.
-- **120 Ω termination lives at the two physical ends of the harness ONLY** — shown above as
-  END A (ECU end) and END B (Pi end). **Do not add a third termination point.**
-  The diagram's linear left-to-right order (ECU → CAN-Lambda → Center → Switchboard → Pi5) is the
-  *logical* bus order for this drawing; the *physical* end nodes are whichever two devices sit
-  at the actual harness extremities — confirm against the installed harness, not this diagram's
-  layout.
+- **Settled 2026-09-27 (harness redesign; not an open item — do not re-raise it):**
+  **120 Ω termination lives at the ECU end and the CAN-Lambda end**, matching
+  `ST185-CAN.harness` as drawn (`r_term_ecu` at the ECU splice, `r_term_end` at the
+  CAN-Lambda splice). The center cluster, switchboard and Pi are **mid-bus stubs**, not
+  bus ends — **do not terminate at any of them.** The diagram's linear left-to-right
+  order is the logical bus order for this drawing, not a statement about which devices
+  are electrical ends.
 
 ---
 
@@ -110,9 +111,9 @@ graph LR
   only works if both run at the same bit rate (1 Mbit/s, matching `link_g4x_can_setup.lcs`
   CANModule Index="1").
 - **Onboard 120 Ω termination jumper:** the switchboard has its own termination jumper.
-  **Leave it OFF** unless the switchboard physically sits at one of the two bus ends (END A/B
-  in §7.1). Enabling it elsewhere creates a third termination point on the bus, which is
-  explicitly disallowed (master design §2).
+  **Leave it OFF.** The switchboard is a mid-bus stub, not one of the two bus ends (ECU and
+  CAN-Lambda, §7.1). Enabling it would add a third termination point, which is explicitly
+  disallowed (master design §2).
 
 ---
 
@@ -132,12 +133,9 @@ into any Pi USB port.
   chassis/bus GND.
 - **Bus speed:** configure the adapter to **1 Mbit/s** (1,000,000 bps) in RealDash connection
   settings — Settings → Connections → Add Connection → CAN Bus → [select adapter] → 1,000,000 bps.
-- **Termination:** the Pi is the physical END B of the bus. You MUST provide 120 Ω termination
-  here. Options:
-  - If using a PCAN USB: enable the onboard termination switch on the adapter body.
-  - If using a CANable (no onboard termination): solder a 120 Ω resistor across the CANH/CANL
-    terminals on the adapter, or splice it inline at the bus end of the harness.
-  - Do NOT use the Waveshare hat's termination for this — the hat is not in the CAN circuit.
+- **Termination:** the Pi is a mid-bus stub, not a bus end (§7.1 — the two ends are the ECU
+  and CAN-Lambda). **Do NOT terminate here.** If using a PCAN USB, leave its onboard
+  termination switch OFF. The Waveshare hat has no CAN connection either way — ignore it.
 - **Role:** passive listener — the Pi does not transmit any CAN frames.
 
 ---

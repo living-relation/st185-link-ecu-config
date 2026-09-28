@@ -24,14 +24,14 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 
 ## 2. Physical Layer
 
-- **Topology:** single linear bus segment, 1 Mbit/s, ISO 11898-2, 120Ω termination at both physical ends of the bus.
+- **Topology:** single linear bus segment, 1 Mbit/s, ISO 11898-2, 120Ω termination at both physical ends of the bus. **Settled 2026-09-27 (harness redesign; not an open item): the two ends are the ECU and the Link CAN-Lambda**, matching `ST185-CAN.harness` as drawn (`r_term_ecu`, `r_term_end`). The center cluster, switchboard, and Pi are mid-bus stubs — none of them are terminated.
 - **Transceivers:**
   - ECU: Link G4X XtremeX CANH/CANL.
   - Link CAN-Lambda: module CANH/CANL on the shared bus (0x3B6 / 0x3BE). This is the fifth node.
   - center-cluster-esp32-p4: SN65HVD230 (3.3V), TWAI GPIO5=TX / GPIO4=RX (per `sdkconfig`/`Kconfig.projbuild`).
   - ECUMaster CAN Switch Board V3: built-in CAN transceiver, CANH/CANL screw terminals.
   - Pi USB-CAN adapter (CANable or PCAN USB): plugs into a USB port on the Pi; the adapter's CANH/CANL terminals wire to the shared bus. The Waveshare dual-MCP2515 hat physically present on the Pi is **NOT a CAN node** — it is retained for its cooling fan only. Do not wire its CANH/CANL to the bus.
-- **Wiring rule:** all five nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus; termination resistors live at the two physical ends of the harness (commonly: ECU end and Pi end). Do not add a third termination point.
+- **Wiring rule:** all five nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus; termination resistors live at the ECU end and the CAN-Lambda end only. Do not add a third termination point, and do not terminate at the center cluster, switchboard, or Pi.
 
 ---
 
@@ -192,4 +192,4 @@ The docx does not address the ECUMaster switchboard's bus segment or speed at al
 | 5 | Cluster firmware: **no changes.** Cluster displays are unchanged — it keeps decoding 0x3E8–0x3EE and transmitting 0x3EC/0x3ED. The new 0x3EF/0x3F0/0x3F1 streams are ECU→RealDash only; switchboard comm-fault (§6) is ECU-detected and surfaced to RealDash via 0x3F1 byte6 bit5. | — (none) |
 | 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §9 — outputs unused/LED-only, low priority | PCLink config (deferred) |
 | 7 | RealDash XML frame/value definitions for 0x3EF-0x3F1 — **done** (`link_g4x_realdash.xml`). Build the dashboard per `REALDASH-LAYOUT.md`. 0x640-0x642 deliberately excluded (ECU echoes display-relevant values) | RealDash config |
-| 8 | Verify bus termination (120Ω × 2): ECU end + Pi end (USB-CAN adapter side). Waveshare hat is not on the bus. | Hardware |
+| 8 | Verify bus termination (120Ω × 2): ECU end + CAN-Lambda end only. Center cluster, switchboard, and Pi (USB-CAN adapter) are mid-bus stubs — confirm none of them are terminated. Waveshare hat is not on the bus. | Hardware |
