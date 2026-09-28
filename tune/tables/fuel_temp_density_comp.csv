@@ -6,16 +6,6 @@
 # resolution). Reference 20C = 1.000, linear: mult = 1 + 0.001 * (fuel_temp_c - 20).
 # 55C and 70C rows line up with the RealDash Fuel Temp caution/alarm thresholds
 # (REALDASH-LAYOUT.md tile 9: OK <55, caution 55-70, alarm >70).
-#
-# SENSOR FAULT DEFAULT: same Continental sensor/wire as ethanol% (fuel temp is pulse-width
-# decoded off the same signal, a separate decoded channel from Ethanol%). On signal loss,
-# PCLink falls back to the fuel_temp_c=90 row (mult 1.070, the richest defined). A sensor
-# fault is plausibly a THERMAL failure (heat-damaged wiring/connector), so it is disproportio-
-# nately likely to coincide with a genuinely hot fuel temp - defaulting to a mid value would
-# under-fuel exactly the hot-restart case this compensation exists for. Safe only because
-# tune/limits.yaml's ecu_limits.fuel_temp_c hard Fuel Cut (70C) is gated on sensor VALIDITY,
-# not just the threshold - see that file's fuel_temp_c.limit_condition and notes. This
-# substitute must not be lowered without re-adding that gate.
 fuel_temp_c,fuel_mult
 0,0.980
 10,0.990
