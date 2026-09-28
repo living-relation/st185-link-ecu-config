@@ -18,6 +18,8 @@ ecu_limits:
   boost:
     overboost_cut_psi: 32        # loose — street target ~18 psi; tighten to 29 post-dyno
     overboost_cut_psi_tuned_ref: 29
+    ethanol_sensor_fault_cap_psi: 18   # independent of boost_target_ethanol_mult.csv — see note below
+    ethanol_sensor_fault_cap_notes: "Gated directly on the PCLink Ethanol Sensor Fault flag, NOT on the (fault-substituted) ethanol% value. multi_fuel_blend.csv's fault-safe direction is ethanol%=100 (richest fuel trim) — since boost_target_ethanol_mult.csv reads the same single Ethanol% channel, a fault also makes IT read 100% -> its own 1.000 multiplier -> the full 30 psi curve, which is unsafe if the real fuel is actually low-octane. So boost safety on sensor fault cannot come from that table's axis; it must be an independent Min() clamp to this street-seed ceiling (matches boost_target_psi.csv's cap), active only while the fault flag is set."
 
   ect_f:
     limit_on: 265                # hard cut only — very unlikely during startup
@@ -41,6 +43,8 @@ ecu_limits:
     warn_c: 55                   # matches RealDash Fuel Temp caution threshold (REALDASH-LAYOUT.md tile 9) — log only, no cluster tier (PROTECTION_AND_WARNINGS.md forbids per-sensor warning tiers)
     limit_c: 70                  # matches RealDash Fuel Temp alarm threshold
     notes: "Continental flex sensor DI 2, same signal as ethanol%. MUST be configured in PCLink as an actual Fuel Cut (Fuel Cut % > 0), not a boost/timing derate — center-cluster-esp32-p4/main/canbus.c only sets DASH_WARN_FUEL_CUT when byte 2 (Fuel Cut %) of 0x3EE is nonzero, so a derate-only response leaves the red-box FUEL CUT byte at 0 and shows no warning. If a derate is used instead of a hard cut, document that explicitly here — do not assume the red-box asserts."
+    sensor_fault_substitute_c: 55   # deliberately the warn_c value, NOT a high value — see notes below
+    sensor_fault_substitute_notes: "This limit_c=70 cut must only trip on a genuinely VALID fuel-temp reading, never on the fault-substituted value used to bias fuel_temp_density_comp.csv / warmup_fuel_temp_trim.csv rich on sensor loss. If PCLink cannot gate the cut on sensor validity separately from the compensation tables' input, the fault substitute for ALL fuel-temp consumers must stay below limit_c (use 55, not the tables' 90C top row) so a sensor fault biases fueling rich without itself triggering a stall-inducing cut."
 
   rev_limit_rpm: 8000            # motorsport feature — not a cluster warning flag
   gp_soft_limit_rpm_first_start: 4000   # operator/PCLink soft cap until stable (see OPERATOR_FIRST_START)

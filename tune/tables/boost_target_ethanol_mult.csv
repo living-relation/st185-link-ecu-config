@@ -8,11 +8,13 @@
 # so mult * 30.0 psi (the curve's peak) reproduces the E0-E100 peak targets worked out in the
 # 2026-09-27 handoff (E0=17.0 ... E90=30.0 psi).
 #
-# CRITICAL - SENSOR FAULT DEFAULT: if the flex sensor signal is lost or reads invalid, PCLink
-# MUST fall back to the ethanol_pct=0 row (mult=0.567, the lowest/safest boost), never to a
-# high-ethanol multiplier. Implement as a PCLink condition (e.g. an Ethanol Sensor Fault /
-# Digital Input Error Handling flag forcing this table's input to 0), not just this comment -
-# see tune/docs/DRIVEABILITY_TUNING.md "Flex fuel blend" for the wiring note.
+# SENSOR FAULT: this table has NO fault behavior of its own. The Ethanol% channel it reads is
+# shared with multi_fuel_blend.csv, whose fault-safe direction is 100 (richest) - so on a
+# sensor fault this table also reads 100 -> mult 1.000 -> the full 30psi curve, which is NOT
+# safe if the real fuel is actually low-octane. Boost safety on fault is a SEPARATE mechanism:
+# tune/limits.yaml ecu_limits.boost.ethanol_sensor_fault_cap_psi (18psi), an independent Min()
+# clamp gated directly on the Ethanol Sensor Fault flag, not on this table's output. See
+# tune/docs/DRIVEABILITY_TUNING.md "Flex fuel blend" for the full reasoning.
 ethanol_pct,mult
 0,0.567
 10,0.600

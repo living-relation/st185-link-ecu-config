@@ -2,10 +2,16 @@
 # fuel_mult: multiply fuel delivery; ign_mult: degrees add (negative = retard on E85)
 #
 # SENSOR FAULT DEFAULT: on Continental flex sensor (DI 2) signal loss, PCLink MUST fall back
-# to the ethanol_pct=100 row (fuel_mult 1.40, ign_trim -4.5), NOT 0. This is the OPPOSITE
-# direction from boost_target_ethanol_mult.csv's fault default (0) - falling back to 0 here
+# to the ethanol_pct=100 row (fuel_mult 1.40, ign_trim -4.5), NOT 0 - falling back to 0 here
 # applies the leanest trim, which under-fuels by up to 40% if the tank is actually
 # high-ethanol. Rich + retarded on pump gas is a nuisance; lean on E85 is a detonation risk.
+#
+# This IS the universal fault substitute for the Ethanol% channel - boost_target_ethanol_mult.csv
+# reads the same channel and therefore also sees 100 on fault. That table's own boost-ceiling
+# safety does NOT come from this substitute; it's a separate clamp in tune/limits.yaml
+# (ecu_limits.boost.ethanol_sensor_fault_cap_psi) gated on the fault flag itself, because a
+# single channel value cannot simultaneously be "leanest-safe" for boost and "richest-safe"
+# for fuel trim - see tune/docs/DRIVEABILITY_TUNING.md "Flex fuel blend".
 ethanol_pct,fuel_mult,ign_trim_deg
 0,1.00,0.0
 10,1.04,0.0

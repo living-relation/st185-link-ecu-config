@@ -8,10 +8,12 @@
 # (REALDASH-LAYOUT.md tile 9: OK <55, caution 55-70, alarm >70).
 #
 # SENSOR FAULT DEFAULT: same Continental sensor/wire as ethanol% (fuel temp is pulse-width
-# decoded off the same signal). On signal loss, PCLink MUST fall back to the fuel_temp_c=90
-# row (mult 1.070, the highest defined), not a mid/low value - same "fail rich, not lean"
-# reasoning as multi_fuel_blend.csv's ethanol_pct=100 fault default, and the opposite
-# direction from boost_target_ethanol_mult.csv's fault default (0).
+# decoded off the same signal, a separate decoded channel from Ethanol%). On signal loss,
+# PCLink falls back to the fuel_temp_c=55 row (mult 1.035) - NOT the 90C top row. 55, not 90,
+# specifically because tune/limits.yaml's ecu_limits.fuel_temp_c.limit_c (70C) is a hard Fuel
+# Cut: if the fault substitute fed that limit too, defaulting to 90 would trip the cut and
+# stall the engine on every sensor fault - the opposite of the intended "fail rich, keep
+# running" outcome. 55 gives meaningful richness while staying below the cut with margin.
 fuel_temp_c,fuel_mult
 0,0.980
 10,0.990

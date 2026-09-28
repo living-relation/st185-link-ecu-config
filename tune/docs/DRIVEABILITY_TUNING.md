@@ -55,22 +55,34 @@ If vacuum-reference load is unstable at overlap (sub-30 kPa MAP flutter):
   fuel/ignition trim (`multi_fuel_blend.csv`), and the fuel-temp axis
   (`fuel_temp_density_comp.csv` + `warmup_fuel_temp_trim.csv`).
 - Use `multi_fuel_blend.csv` seed; verify ethanol reading vs known E85 sample at tune session.
-- **Sensor fault — two different fallback directions, not one.** "Safe" is not the same
-  direction for every consumer of this signal, so a single override value is wrong:
-  - **Boost trim** (`boost_target_ethanol_mult.csv`): force ethanol% to **0** on fault —
-    lowest boost, safe against an unknown fuel's actual octane/knock resistance.
-  - **Fuel/ignition trim** (`multi_fuel_blend.csv`): force ethanol% to **100** on fault —
-    richest fuel_mult (1.40) and most ignition retard (-4.5°). Falling back to 0 here would
-    apply the *leanest* trim (1.00, no retard); if the tank is actually high-ethanol, that
-    under-fuels by up to 40% — a real detonation risk. Running pump gas rich and retarded is
-    a driveability nuisance, not a hazard, so the failure direction must be rich, not lean.
-  - **Fuel-temp axis** (`fuel_temp_density_comp.csv`, `warmup_fuel_temp_trim.csv`): same wire,
-    same failure mode — force fuel_temp_c to **90°C** (the tables' top row: highest density
-    multiplier, highest hot-restart trim) on fault, for the same reason as the fuel/ignition
-    trim above. Do not conflate this with the boost fallback; it is a different axis on a
-    different pair of tables.
-  Configure each in PCLink's Ethanol Sensor Fault / DI error handling per-consumer — never
-  silently hold the last-good value, and never use one fault value for all four tables.
+- **Sensor fault.** DI 2 decodes to two *separate* channels — Ethanol% (PWM frequency) and
+  Fuel Temp (pulse width) — each with its own fault-substitute value. Neither can be "richest
+  for every consumer" because one physical channel value feeds multiple tables that don't all
+  want the same direction; where that happens, the fix is an independent mechanism, not a
+  second value for the same channel.
+  - **Ethanol% channel** — single substitute, **100** (not 0) — read by both
+    `multi_fuel_blend.csv` and `boost_target_ethanol_mult.csv`:
+    - `multi_fuel_blend.csv` at 100 → richest fuel_mult (1.40), most ignition retard (-4.5°).
+      Correct and safe: falling back to 0 would apply the *leanest* trim, under-fueling by up
+      to 40% if the tank is actually high-ethanol — a real detonation risk. Rich + retarded on
+      pump gas is a driveability nuisance, not a hazard.
+    - `boost_target_ethanol_mult.csv` **also** reads 100 on the same fault (it's the same
+      channel) → mult 1.000 → the full 30 psi curve. That is *not* safe on its own if the real
+      fuel is low-octane — but this table gets no separate fault value of its own (a channel
+      cannot hold two values at once). Instead, boost is protected by an **independent clamp**:
+      `tune/limits.yaml` → `ecu_limits.boost.ethanol_sensor_fault_cap_psi` (18 psi, matching
+      `boost_target_psi.csv`'s street-seed ceiling), gated directly on the PCLink Ethanol
+      Sensor Fault flag — not on the ethanol% value — so it still engages even though that
+      value now reads a "full boost is fine" 100%.
+  - **Fuel Temp channel** — single substitute, **55°C** (the warn threshold, not the tables'
+    90°C top row) — read by `fuel_temp_density_comp.csv` and `warmup_fuel_temp_trim.csv`, which
+    agree on direction (rich), so no clamp is needed there. But 90°C would cross
+    `tune/limits.yaml`'s `ecu_limits.fuel_temp_c.limit_c` (70°C hard Fuel Cut): if that cut
+    reads the same fault-substituted value, defaulting to 90 would trip it and stall the engine
+    on every sensor fault — exactly backwards from "fail rich, keep running." 55°C gives
+    meaningful richness while staying below the cut with margin.
+  Configure all of this in PCLink's Ethanol Sensor Fault / DI error handling — never silently
+  hold the last-good value.
 
 ## Validation drives
 
