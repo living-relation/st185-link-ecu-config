@@ -1,7 +1,7 @@
 # Harness — need to buy
 
-Generated on 2026-09-27 from the 11 `.harness` files in `docs/harness/rebuild/`:
-`A-ECU`, `B-ECU`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `AntiTheft`.
+Generated on 2026-09-27 from the 10 `.harness` files in `docs/harness/rebuild/`:
+`ECU-Cabin`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `AntiTheft`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
@@ -166,11 +166,9 @@ will over-order these; use this list, not the drawings.
 
 | Connector | One part, drawn on | Counted in |
 |---|---|---|
-| `aps` | A-ECU, B-ECU | A-ECU |
 | `bh_a_eng` | A-engine, B-engine, CAN | A-engine |
-| `bh_a_fw` | A-ECU, B-ECU, CAN | A-ECU |
+| `bh_a_fw` | ECU-Cabin, CAN | ECU-Cabin |
 | `bh_b_eng` | A-engine, B-engine | A-engine |
-| `bh_b_fw` | A-ECU, B-ECU | A-ECU |
 | `boost` | A-engine, B-engine | A-engine |
 | `cam` | A-engine, B-engine | A-engine |
 | `clntp` | A-engine, B-engine | A-engine |
@@ -180,25 +178,18 @@ will over-order these; use this list, not the drawings.
 | `cop4` | A-engine, B-engine | A-engine |
 | `cpiat` | A-engine, B-engine | A-engine |
 | `crank` | A-engine, B-engine | A-engine |
-| `csb3io` | A-ECU, B-ECU, CAN | A-ECU |
+| `csb3io` | ECU-Cabin, CAN | ECU-Cabin |
 | `ect` | A-engine, B-engine | A-engine |
-| `ecu_a` | A-ECU, B-ECU | A-ECU |
-| `ecu_b` | A-ECU, B-ECU | A-ECU |
 | `etb` | A-engine, B-engine | A-engine |
 | `flex` | A-engine, B-engine | A-engine |
-| `fuellvl` | A-ECU, B-ECU | A-ECU |
 | `fuelp` | A-engine, B-engine | A-engine |
 | `iat` | A-engine, B-engine | A-engine |
 | `inj1` | A-engine, B-engine | A-engine |
 | `inj2` | A-engine, B-engine | A-engine |
 | `inj3` | A-engine, B-engine | A-engine |
 | `inj4` | A-engine, B-engine | A-engine |
-| `k_efi` | A-ECU, B-ECU | B-ECU |
-| `k_etb` | A-ECU, B-ECU | B-ECU |
-| `k_fan` | A-ECU, B-ECU, EngineRoom-C | B-ECU |
-| `k_fan2` | A-ECU, B-ECU, EngineRoom-C | B-ECU |
-| `k_fp` | A-ECU, B-ECU | B-ECU |
-| `k_str` | A-ECU, B-ECU | B-ECU |
+| `k_fan` | ECU-Cabin, EngineRoom-C | ECU-Cabin |
+| `k_fan2` | ECU-Cabin, EngineRoom-C | ECU-Cabin |
 | `lambda` | B-engine, CAN | CAN |
 | `map` | A-engine, B-engine | A-engine |
 | `oilp` | A-engine, B-engine | A-engine |

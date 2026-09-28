@@ -2,15 +2,10 @@
   "_doc": "Interface and ownership registry for docs/harness/rebuild/. Convention: redesign/INTERFACES.md. harness.design rejects unknown keys, so this metadata cannot live in the .harness files.",
   "_scope": "The center cluster's own assembly harness is owned by center-cluster-esp32-p4 and is not drawn here; ST185-CAN ends at its CAN-drop terminal t_cluster_can. The cluster warning-LED loom (ST185-ClusterLED) is owned here.",
   "harnesses": {
-    "A-ECU": {
-      "file": "ST185-A-ECU.harness",
-      "physical": "ECU/cabin harness - ECU-A and ECU-B connectors, cabin halves of bulkheads A and B, CSB3 plug, wheel-speed spurs",
-      "legacyXref": true
-    },
-    "B-ECU": {
-      "file": "ST185-B-ECU.harness",
-      "physical": "ECU/cabin harness - power side: relays, fuse box, shared +5V / Gnd Out / chassis splices",
-      "legacyXref": true
+    "ECU-Cabin": {
+      "file": "ST185-ECU-Cabin.harness",
+      "physical": "ECU-to-firewall cabin harness - ECU-A, ECU-B, cabin halves of bulkheads A and B, relays and fuse box, CSB3 plug, wheel-speed spurs, A/C coolant switch branch, fuel pump run (merged from A-ECU + B-ECU 2026-09-27)",
+      "legacyXref": false
     },
     "A-engine": {
       "file": "ST185-A-engine.harness",
@@ -78,7 +73,7 @@
           "role": "source"
         },
         {
-          "harness": "A-ECU",
+          "harness": "ECU-Cabin",
           "connector": "ix_ws_rear_p",
           "role": "receiving"
         }
@@ -103,7 +98,7 @@
           "role": "source"
         },
         {
-          "harness": "A-ECU",
+          "harness": "ECU-Cabin",
           "connector": "ix_ws_front_p",
           "role": "receiving"
         }
@@ -119,7 +114,7 @@
       },
       "halves": [
         {
-          "harness": "A-ECU",
+          "harness": "ECU-Cabin",
           "connector": "ix_accts_r",
           "role": "source"
         },
@@ -229,7 +224,7 @@
     {
       "id": "FL_ACAMP_C1",
       "type": "oem_flying_lead",
-      "harness": "A-ECU",
+      "harness": "ECU-Cabin",
       "terminal": "fl_acamp_c1",
       "ewd": {
         "page": "p.150 / p.152",
@@ -243,7 +238,7 @@
     {
       "id": "FL_BRAKE_SW_C1",
       "type": "oem_flying_lead",
-      "harness": "A-ECU",
+      "harness": "ECU-Cabin",
       "terminal": "fl_brake_sw_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -257,7 +252,7 @@
     {
       "id": "FL_CLUTCH_SW_C1",
       "type": "oem_flying_lead",
-      "harness": "A-ECU",
+      "harness": "ECU-Cabin",
       "terminal": "fl_clutch_sw_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -271,7 +266,7 @@
     {
       "id": "FL_CRUISE_STALK_C1",
       "type": "oem_flying_lead",
-      "harness": "A-ECU",
+      "harness": "ECU-Cabin",
       "terminal": "fl_cruise_stalk_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -285,7 +280,7 @@
     {
       "id": "FL_CRUISE_STALK_C3",
       "type": "oem_flying_lead",
-      "harness": "A-ECU",
+      "harness": "ECU-Cabin",
       "terminal": "fl_cruise_stalk_c3",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -299,7 +294,7 @@
     {
       "id": "FL_CRUISE_STALK_C4",
       "type": "oem_flying_lead",
-      "harness": "A-ECU",
+      "harness": "ECU-Cabin",
       "terminal": "fl_cruise_stalk_c4",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -313,7 +308,7 @@
     {
       "id": "FL_CRUISE_STALK_C5",
       "type": "oem_flying_lead",
-      "harness": "A-ECU",
+      "harness": "ECU-Cabin",
       "terminal": "fl_cruise_stalk_c5",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -327,7 +322,7 @@
     {
       "id": "FL_IGN_SW_C1",
       "type": "oem_flying_lead",
-      "harness": "A-ECU",
+      "harness": "ECU-Cabin",
       "terminal": "fl_ign_sw_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -341,7 +336,7 @@
     {
       "id": "FL_START_REQ_C1",
       "type": "oem_flying_lead",
-      "harness": "A-ECU",
+      "harness": "ECU-Cabin",
       "terminal": "fl_start_req_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
@@ -565,7 +560,7 @@
   ],
   "realConnectors": [
     {
-      "harness": "A-ECU",
+      "harness": "ECU-Cabin",
       "connector": "csb3io",
       "note": "HD36-24-33SE plug mating the CSB3 enclosure's HD34-24-33PE. The harness stops here; CSB3 itself is not drawn."
     },
@@ -625,7 +620,7 @@
           "screenFromEnclosure": true
         }
       ],
-      "spurHarness": "A-ECU",
+      "spurHarness": "ECU-Cabin",
       "spur": {
         "c1": "sp_5v",
         "c2": "sp_gndout",
@@ -657,7 +652,7 @@
           "screenFromEnclosure": false
         }
       ],
-      "spurHarness": "A-ECU",
+      "spurHarness": "ECU-Cabin",
       "spur": {
         "c1": "sp_5v",
         "c2": "sp_gndout",
