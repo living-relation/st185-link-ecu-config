@@ -1244,7 +1244,7 @@
         {
           "id": "c32",
           "designation": "32",
-          "signal": "Trig 2 cam signal (after 1.8k pull-up)",
+          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
