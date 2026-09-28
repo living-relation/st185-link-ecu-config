@@ -1,7 +1,7 @@
 # Harness — need to buy
 
-Generated on 2026-09-27 from the 11 `.harness` files in `docs/harness/rebuild/`:
-`ECU-Cabin`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`.
+Generated on 2026-09-28 from the 12 `.harness` files in `docs/harness/rebuild/`:
+`A-cabin`, `B-cabin`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
@@ -9,20 +9,20 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / | 57 | 0 | **57** |
-| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity | 45 | 0 | **45** |
+| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / | 58 | 0 | **58** |
+| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity | 43 | 0 | **43** |
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD - joined to the vehicle circuit at insta | 28 | 0 | **28** |
-| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD | 25 | 0 | **25** |
+| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD | 26 | 0 | **26** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.2 | 23 | 0 | **23** |
 | `GENERIC SOLDER SLEEVE 26-14` | generic | SPLICE, SOLDER SLEEVE, WITH ADHESIVE HEATSHRINK, COMBINED 26-1 | 17 | 0 | **17** |
-| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity | 12 | 0 | **12** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0 | 16 | 6 | **10** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 10 | 0 | **10** |
+| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity | 8 | 0 | **8** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY - ha | 10 | 2 | **8** |
+| `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG | 8 | 0 | **8** |
 | `Jump lugs 1/0` | generic | Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post | 8 | 0 | **8** |
-| `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG | 7 | 0 | **7** |
+| `GENERIC CRIMP SPLICE 10-6` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, | 7 | 0 | **7** |
 | `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED,  | 6 | 0 | **6** |
-| `GENERIC CRIMP SPLICE 10-6` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, | 6 | 0 | **6** |
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10  | 6 | 0 | **6** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT | 17 | 12 | **5** |
 | `1-1355877-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 1.0-2.5 MM2 (18-14 A | 5 | 0 | **5** |
@@ -103,9 +103,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
 | `0413-214-1205` | PLUG, SEALING, CAVITY, SIZE 12, YELLOW - unused size 12 cavity | 4 | 10 |
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT recep | 53 | 130 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT recep | 55 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 49 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 51 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS -  | 1 | 1 |
@@ -167,35 +167,26 @@ will over-order these; use this list, not the drawings.
 
 | Connector | One part, drawn on | Counted in |
 |---|---|---|
-| `bh_a_eng` | A-engine, B-engine, CAN | A-engine |
-| `bh_a_fw` | ECU-Cabin, CAN | ECU-Cabin |
-| `bh_b_eng` | A-engine, B-engine | A-engine |
-| `boost` | A-engine, B-engine | A-engine |
-| `cam` | A-engine, B-engine | A-engine |
-| `clntp` | A-engine, B-engine | A-engine |
+| `aps` | A-cabin, B-cabin | A-cabin |
+| `bh_a_eng` | A-engine, CAN | A-engine |
+| `bh_a_fw` | A-cabin, CAN | A-cabin |
 | `cop1` | A-engine, B-engine | A-engine |
 | `cop2` | A-engine, B-engine | A-engine |
 | `cop3` | A-engine, B-engine | A-engine |
 | `cop4` | A-engine, B-engine | A-engine |
-| `cpiat` | A-engine, B-engine | A-engine |
-| `crank` | A-engine, B-engine | A-engine |
-| `csb3io` | ECU-Cabin, CAN | ECU-Cabin |
-| `ect` | A-engine, B-engine | A-engine |
+| `csb3io` | A-cabin, B-cabin, CAN | A-cabin |
 | `etb` | A-engine, B-engine | A-engine |
-| `flex` | A-engine, B-engine | A-engine |
-| `fuelp` | A-engine, B-engine | A-engine |
-| `iat` | A-engine, B-engine | A-engine |
+| `fusebox` | A-cabin, B-cabin | A-cabin |
+| `hcfb` | A-cabin, B-cabin | A-cabin |
 | `inj1` | A-engine, B-engine | A-engine |
 | `inj2` | A-engine, B-engine | A-engine |
 | `inj3` | A-engine, B-engine | A-engine |
 | `inj4` | A-engine, B-engine | A-engine |
-| `k_fan` | ECU-Cabin, EngineRoom-C | ECU-Cabin |
-| `k_fan2` | ECU-Cabin, EngineRoom-C | ECU-Cabin |
-| `lambda` | B-engine, CAN | CAN |
-| `map` | A-engine, B-engine | A-engine |
-| `oilp` | A-engine, B-engine | A-engine |
-| `oilt` | A-engine, B-engine | A-engine |
-| `turbospd` | A-engine, B-engine | A-engine |
+| `ix_ws_front_p` | A-cabin, B-cabin | A-cabin |
+| `k_etb` | A-cabin, B-cabin | A-cabin |
+| `k_fan` | A-cabin, EngineRoom-C | A-cabin |
+| `k_fan2` | B-cabin, EngineRoom-C | B-cabin |
+| `lambda` | A-engine, CAN | CAN |
 
 ## Inline interfaces - one connector pair per harness boundary
 
@@ -204,10 +195,10 @@ mating half). Contacts and wedgelocks come from each half's part configuration a
 
 | Interface | Family | Source half | Receiving half |
 |---|---|---|---|
-| `IX_WS_REAR` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_rear_r` on WheelSpeed-Rear | `ix_ws_rear_p` on ECU-Cabin |
-| `IX_WS_FRONT` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_front_r` on WheelSpeed-Front | `ix_ws_front_p` on ECU-Cabin |
-| `IX_AC_CTS` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_accts_r` on ECU-Cabin | `ix_accts_p` on ACAmp-Spur |
-| `IX_FUEL_LVL` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_fuel_r` on ECU-Cabin | `ix_fuel_p` on RearFuel |
+| `IX_WS_REAR` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_rear_r` on WheelSpeed-Rear | `ix_ws_rear_p` on B-cabin |
+| `IX_WS_FRONT` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_front_r` on WheelSpeed-Front | `ix_ws_front_p` on A-cabin |
+| `IX_AC_CTS` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_accts_r` on A-cabin | `ix_accts_p` on ACAmp-Spur |
+| `IX_FUEL_LVL` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_fuel_r` on B-cabin | `ix_fuel_p` on RearFuel |
 
 ## OEM flying leads - splice material only, no OEM housing
 
@@ -216,10 +207,11 @@ is in `interfaces.json` and in the build list's EWD column.
 
 | Harness | Flying leads |
 |---|---:|
-| A-engine | 1 |
+| A-cabin | 7 |
 | ACAmp-Spur | 2 |
+| B-cabin | 2 |
+| B-engine | 1 |
 | ClusterLED | 6 |
-| ECU-Cabin | 9 |
 | EngineRoom-C | 6 |
 
 ## Screened cable pieces by owning harness
@@ -228,11 +220,11 @@ Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no co
 
 | Harness | Cable | Pieces |
 |---|---|---:|
+| A-cabin | `GENERIC SHLD CABLE 3C 20AWG` | 1 |
 | A-engine | `GENERIC SHLD CABLE 1C 20AWG BLU` | 2 |
-| A-engine | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
-| ECU-Cabin | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
-| ECU-Cabin | `GENERIC SHLD CABLE 3C 20AWG` | 1 |
-| ECU-Cabin | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
+| B-cabin | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
+| B-cabin | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
+| B-engine | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
 | WheelSpeed-Front | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
 | WheelSpeed-Front | `GENERIC SHLD CABLE 2C TP 20AWG` | 2 |
 | WheelSpeed-Front | `GENERIC SHLD CABLE 3C 20AWG` | 1 |
