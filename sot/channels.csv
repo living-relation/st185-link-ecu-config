@@ -44,7 +44,7 @@ ECU,Knock 2,ecu_b,b8,,spare knock,spare,in,piezo-knock,none,,B,spare,QSG-IO,
 ECU,Knock 1,ecu_b,b9,KNOCK1_SIG,Knock sensor signal,signal,in,piezo-knock,none,b17,B,set,QSG-IO,SIG- returns to Gnd Out B22; the drain and only the drain lands on B17
 ECU,Ign 7,ecu_b,b11,,spare low-side,spare,out,lowside-2a,none,,B,spare,QSG-IO,No internal flywheel diode
 ECU,Ign 8,ecu_b,b10,,spare low-side,spare,out,lowside-2a,none,,B,spare,QSG-IO,No internal flywheel diode
-ECU,Ign 6,ecu_b,b12,IGN6_EPS_RLY,EPS pump relay coil,signal,out,lowside-2a,none,,B,set,harness-EngineRoom-C,Drives k_eps coil terminal 85; active-low; no internal flywheel diode so the relay must be diode-suppressed
+ECU,Ign 6,ecu_b,b12,IGN6_EPS_RLY,EPS pump relay coil,signal,out,lowside-2a,none,,B,set,harness-EngineRoom-C,"Drives k_eps coil terminal 85; active-low. ECU low-side output has no flywheel diode of its own, so the relay coil needs its own internal suppression - diode OR resistor both protect the output; fitted TE HCR150 (V23132-A2001-B200) is resistor-suppressed, which satisfies this (source: Link G4+ wiring guidance via HPAcademy EFI Wiring Fundamentals forum, tutor Caleb Fiebig, 2026: automotive relays with a built-in diode or resistor need nothing external unless the device maker says otherwise)"
 ECU,Ign 5,ecu_b,b13,IGN5_FAN2,Condenser fan relay coil,signal,out,lowside-2a,none,,B,set,QSG-IO,Active-low; diode-suppressed relay required - fitted TE 7-1904094-9 (Maxi F7 V23134-J0052-X439, diode cathode on 86)
 ECU,-,ecu_b,b14,,empty cavity,nc,na,none,none,,B,nc,QSG-loom,Official B-loom drawing shows no terminal and no wire
 ECU,An Volt 6,ecu_b,b15,AV6_OIL_P,Oil pressure,signal,in,0-5v,none,,B,set,QSG-IO,5V jumpered from A32
