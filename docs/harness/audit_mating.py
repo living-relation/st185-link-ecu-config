@@ -16,7 +16,7 @@ checks, against sot/channels.csv:
       all nine looms: mated bulkhead halves are one node per cavity, dm_
       cross-references (dm_sp_*_Splice, dm_ecu_*, dm_<component>_<cavity>)
       resolve to the node they name, and each VR conditioner box is one node
-      (its case joins the OUT shielding plate and the IN pin-3 screens, 6.30).
+      (interfaces.json enclosures: the case joins the IN and OUT screens, 6.30).
       Fails if A7 can reach B17 by any path.
   M5  one cavity, one ECU signal: a cavity never reaches two different
       signal-class ECU pins.
@@ -30,6 +30,8 @@ it borrows A32 by design. Pin *names* across each mating pair are checked by
 audit_pin_names.py (rule 2); this file checks what the pins are wired to.
 """
 import collections, csv, glob, json, os, sys
+
+import model
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REB = os.path.join(HERE, "rebuild")
@@ -157,7 +159,7 @@ for loom, g in graphs.items():
 
 # M6 - loom C has no bulkhead: the front wheel-speed drops (a fender sub-loom
 # of loom C, Daniel 2026-09-25) must never land on a bulkhead cavity.
-LOOM_C_ENDS = {"wss_fl", "wss_fr", "vrc_f_inl", "vrc_f_inr"}
+LOOM_C_ENDS = {"wss_fl", "wss_fr"}
 for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
     d = json.load(open(path, encoding="utf-8"))
     for c in conductors(d):
@@ -192,78 +194,14 @@ for (nid, cav), looms in sorted(cav_owner.items()):
         bad.append("M7 %s %s is wired on %d looms (%s) - one cavity, one circuit"
                    % (nid, cav, len(looms), ", ".join(sorted(looms))))
 
-# M4 - shields never bridged, checked on one graph across every loom.
-COMPONENTS = set()
-DOCS = {}
-for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
-    d = json.load(open(path, encoding="utf-8"))
-    DOCS[os.path.basename(path)[6:-8]] = d
-    for k in ("connectors", "terminals", "resistors", "diodes"):
-        for c in d.get(k, []):
-            if not c["id"].startswith("dm_"):
-                COMPONENTS.add(c["id"])
-MATE = dict(PAIRS)
-VRC_BOX = {("vrc_f_inl", "c3"): "F", ("vrc_f_inr", "c3"): "F", ("vrc_f_out", "shell"): "F",
-           ("vrc_f_inl", "shell"): "F", ("vrc_f_inr", "shell"): "F",
-           ("vrc_r_inl", "c3"): "R", ("vrc_r_inr", "c3"): "R", ("vrc_r_out", "shell"): "R",
-           ("vrc_r_inl", "shell"): "R", ("vrc_r_inr", "shell"): "R"}
-
-
-def gnode(e):
-    """One electrical node per physical point, whichever drawing names it."""
-    nid, h = e.get("id", ""), e.get("handle")
-    k = ecu_key(e)
-    if k:
-        return ("ECU",) + k
-    if nid.startswith("dm_"):
-        body = nid[3:]
-        if body.endswith("_Splice"):
-            return ("SP", body[:-7])
-        if body.startswith("bh_"):
-            bh, cav = body.rsplit("_", 1)
-            return ("C", MATE.get(bh, bh), cav)
-        comp, _, cav = body.rpartition("_")
-        if comp in COMPONENTS:
-            return gnode({"id": comp, "handle": cav})
-        return ("DM", nid)
-    if h == "Splice" or nid.startswith("sp_"):
-        return ("SP", nid)
-    if (nid, h) in VRC_BOX:
-        return ("BOX", VRC_BOX[(nid, h)])
-    return ("C", MATE.get(nid, nid), h)
-
-
-G = collections.defaultdict(set)
-for loom, d in DOCS.items():
-    for c in conductors(d):
-        s, t = c.get("source") or {}, c.get("target") or {}
-        if s.get("id") and t.get("id"):
-            a, b = gnode(s), gnode(t)
-            G[a].add(b)
-            G[b].add(a)
-
-
-def path_between(start, goal):
-    prev, todo = {start: None}, [start]
-    while todo:
-        n = todo.pop(0)
-        if n == goal:
-            out = []
-            while n is not None:
-                out.append(n)
-                n = prev[n]
-            return out[::-1]
-        for m in G.get(n, ()):
-            if m not in prev:
-                prev[m] = n
-                todo.append(m)
-    return None
-
-
-p = path_between(("ECU", "ecu_a", "a7"), ("ECU", "ecu_b", "b17"))
+# M4 - shields never bridged, checked on one graph across every loom. model.Graph
+# collapses mated bulkhead halves, inline-interface halves, dm_ cross-references
+# and each VRC enclosure (interfaces.json "enclosures") to one node each.
+G = model.Graph()
+p = G.path(("ECU", "ecu_a", "a7"), ("ECU", "ecu_b", "b17"))
 if p:
     bad.append("M4 SHIELD_A (A7) and SHIELD_B (B17) are joined - never bridge them. Path: "
-               + " -> ".join(":".join(str(x) for x in n) for n in p))
+               + " -> ".join(model.fmt(n) for n in p))
 
 for line in bad:
     print(line)

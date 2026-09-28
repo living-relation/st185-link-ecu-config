@@ -1577,6 +1577,99 @@
         "x": 2040,
         "y": 90
       }
+    },
+    {
+      "id": "ix_ws_rear_p",
+      "label": "WS REAR spur - 6-way inline mate (IX_WS_REAR)",
+      "width": 270,
+      "partId": "cp_dt06_6s",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+5V - VRC rear supply (ECU sensor +5V)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Gnd Out - VRC rear ground"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "RL conditioned out -> ECU-B B20 (DI 5)"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "RR conditioned out -> ECU-B B19 (DI 6)"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "Screen drain -> SHIELD_B (B17)"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "schematicPosition": {
+        "x": 4080,
+        "y": 1200
+      },
+      "layoutPosition": {
+        "x": 1560,
+        "y": 480
+      }
+    },
+    {
+      "id": "ix_ws_front_p",
+      "label": "WS FRONT spur - 6-way inline mate (IX_WS_FRONT)",
+      "width": 270,
+      "partId": "cp_dt06_6s",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+5V - VRC front supply (ECU sensor +5V)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Gnd Out - VRC front ground"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "FL conditioned out -> ECU-A A23 (DI 3)"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "FR conditioned out -> ECU-B B21 (DI 4)"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "Screen drain, FL/supply cable -> SHIELD_A (A7)"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "Screen drain, FR cable -> SHIELD_B (B17)"
+        }
+      ],
+      "schematicPosition": {
+        "x": 4080,
+        "y": 1560
+      },
+      "layoutPosition": {
+        "x": 1440,
+        "y": 480
+      }
     }
   ],
   "splices": [
@@ -2787,6 +2880,24 @@
         "value": 290,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_1020__ix_ws_rear_p",
+      "sourceId": "bp_1020",
+      "targetId": "ix_ws_rear_p",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1020__ix_ws_front_p",
+      "sourceId": "bp_1020",
+      "targetId": "ix_ws_front_p",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -3353,6 +3464,24 @@
         "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
         "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
       }
+    },
+    {
+      "id": "cp_dt06_6s",
+      "partNumber": "DT06-6S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY - wheel-speed inline interface, ECU spur side (receiving half; supplies +5V, so it carries the sockets)",
+      "numberOfCavities": 6,
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_hdp16s",
+          "cavityPlugPartId": "pl_sz16",
+          "lockPartId": "lp_w6s"
+        }
+      ],
+      "url": "https://www.te.com/usa-en/product-DT06-6S.html"
     }
   ],
   "spliceParts": [
@@ -3577,6 +3706,23 @@
       "contactColor": "Silver",
       "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 6-10 MM2 (10-8 AWG) - VCF7 socket 1393310-4, 8 AWG fan load cavities 30/87",
       "id": "ct_f7_load8"
+    },
+    {
+      "id": "ct_hdp16s",
+      "partNumber": "0462-201-1631",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT plug; OWNED",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "contactColor": "Gold"
     }
   ],
   "resistorParts": [
@@ -3633,5 +3779,270 @@
       "id": "mt_vcf7"
     }
   ],
-  "mates": []
+  "mates": [],
+  "lockParts": [
+    {
+      "id": "lp_w6s",
+      "partNumber": "W6S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DT, 6-WAY PLUG"
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_sh_4c",
+      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - rear VRC to ECU (generic per 6.24)",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Orange",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k4",
+          "color": "Violet",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_3c",
+      "partNumber": "GENERIC SHLD CABLE 3C 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED - front VRC to ECU: +5V, Gnd Out, FL pulse. Screen to A7 (generic per 6.24)",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Orange",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_1c_vio",
+      "partNumber": "GENERIC SHLD CABLE 1C 20AWG VIO",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, VIOLET, FOIL + TINNED COPPER BRAID, JACKETED - front VRC FR pulse to ECU B21. Screen to B17 only, floats at the VRC (generic per 6.24)",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Violet",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    }
+  ],
+  "cables": [
+    {
+      "id": "cab_rspur",
+      "partId": "cab_sh_4c",
+      "schematicPosition": {
+        "x": 3810,
+        "y": 1200
+      },
+      "cores": [
+        {
+          "id": "cab_rspur_5v",
+          "color": "Orange",
+          "source": {
+            "id": "ix_ws_rear_p",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "dm_sp_5v_Splice",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_rspur_gnd",
+          "color": "Black",
+          "source": {
+            "id": "ix_ws_rear_p",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "dm_sp_gndout_Splice",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_rspur_l",
+          "color": "Blue",
+          "source": {
+            "id": "ix_ws_rear_p",
+            "handle": "c3"
+          },
+          "target": {
+            "id": "ecu_b",
+            "handle": "b20"
+          }
+        },
+        {
+          "id": "cab_rspur_r",
+          "color": "Violet",
+          "source": {
+            "id": "ix_ws_rear_p",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "ecu_b",
+            "handle": "b19"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_rspur_sh",
+        "color": "Shield",
+        "source": {
+          "id": "ix_ws_rear_p",
+          "handle": "c5"
+        },
+        "target": {
+          "id": "sp_shield_b",
+          "handle": "Splice"
+        }
+      }
+    },
+    {
+      "id": "cab_fspur",
+      "partId": "cab_sh_3c",
+      "schematicPosition": {
+        "x": 3810,
+        "y": 1560
+      },
+      "cores": [
+        {
+          "id": "cab_fspur_5v",
+          "color": "Orange",
+          "source": {
+            "id": "ix_ws_front_p",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "dm_sp_5v_Splice",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_fspur_gnd",
+          "color": "Black",
+          "source": {
+            "id": "ix_ws_front_p",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "dm_sp_gndout_Splice",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_fspur_l",
+          "color": "Blue",
+          "source": {
+            "id": "ix_ws_front_p",
+            "handle": "c3"
+          },
+          "target": {
+            "id": "ecu_a",
+            "handle": "a23"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_fspur_sh",
+        "color": "Shield",
+        "source": {
+          "id": "ix_ws_front_p",
+          "handle": "c5"
+        },
+        "target": {
+          "id": "sp_shield_a",
+          "handle": "Splice"
+        }
+      }
+    },
+    {
+      "id": "cab_fspur_fr",
+      "partId": "cab_sh_1c_vio",
+      "schematicPosition": {
+        "x": 3810,
+        "y": 1800
+      },
+      "cores": [
+        {
+          "id": "cab_fspur_r",
+          "color": "Violet",
+          "source": {
+            "id": "ix_ws_front_p",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "ecu_b",
+            "handle": "b21"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_fspur_fr_sh",
+        "color": "Shield",
+        "source": {
+          "id": "ix_ws_front_p",
+          "handle": "c6"
+        },
+        "target": {
+          "id": "sp_shield_b",
+          "handle": "Splice"
+        }
+      }
+    }
+  ]
 }

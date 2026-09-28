@@ -37,10 +37,15 @@
       "physical": "Cluster warning LEDs",
       "legacyXref": true
     },
-    "WheelSpeed": {
-      "file": "ST185-WheelSpeed.harness",
-      "physical": "Wheel speed, front and rear (being split into WheelSpeed-Front / WheelSpeed-Rear)",
-      "legacyXref": true
+    "WheelSpeed-Rear": {
+      "file": "ST185-WheelSpeed-Rear.harness",
+      "physical": "Rear wheel-speed Y harness - RL/RR ABS drops to the rear VRC endpoints, one screened 4-core output to IX_WS_REAR",
+      "legacyXref": false
+    },
+    "WheelSpeed-Front": {
+      "file": "ST185-WheelSpeed-Front.harness",
+      "physical": "Front wheel-speed Y harness - FL/FR ABS drops (loom C fender route) to the front VRC endpoints, output pair to IX_WS_FRONT",
+      "legacyXref": false
     },
     "AntiTheft": {
       "file": "ST185-AntiTheft.harness",
@@ -48,9 +53,152 @@
       "legacyXref": true
     }
   },
-  "interfaces": [],
-  "endpoints": [],
-  "enclosures": [],
+  "interfaces": [
+    {
+      "id": "IX_WS_REAR",
+      "type": "inline_interface",
+      "family": "Deutsch DT 6-way (DT04-6P / DT06-6S)",
+      "pins": {
+        "c1": "+5V",
+        "c2": "Gnd Out",
+        "c3": "RL out -> B20",
+        "c4": "RR out -> B19",
+        "c5": "drain -> SHIELD_B B17",
+        "c6": "spare, plugged"
+      },
+      "halves": [
+        {
+          "harness": "WheelSpeed-Rear",
+          "connector": "ix_ws_rear_r",
+          "role": "source"
+        },
+        {
+          "harness": "A-ECU",
+          "connector": "ix_ws_rear_p",
+          "role": "receiving"
+        }
+      ]
+    },
+    {
+      "id": "IX_WS_FRONT",
+      "type": "inline_interface",
+      "family": "Deutsch DT 6-way (DT04-6P / DT06-6S)",
+      "pins": {
+        "c1": "+5V",
+        "c2": "Gnd Out",
+        "c3": "FL out -> A23",
+        "c4": "FR out -> B21",
+        "c5": "drain, FL/supply cable -> SHIELD_A A7",
+        "c6": "drain, FR cable -> SHIELD_B B17 (floats at VRC)"
+      },
+      "halves": [
+        {
+          "harness": "WheelSpeed-Front",
+          "connector": "ix_ws_front_r",
+          "role": "source"
+        },
+        {
+          "harness": "A-ECU",
+          "connector": "ix_ws_front_p",
+          "role": "receiving"
+        }
+      ]
+    }
+  ],
+  "endpoints": [
+    {
+      "id": "VRC_REAR_IN_L",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Rear",
+      "device": "rear VR conditioner, IN_L input (RL sensor)",
+      "terminals": {
+        "+": "ep_vrc_r_inl_p",
+        "-": "ep_vrc_r_inl_n",
+        "screen": "ep_vrc_r_inl_sh"
+      }
+    },
+    {
+      "id": "VRC_REAR_IN_R",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Rear",
+      "device": "rear VR conditioner, IN_R input (RR sensor)",
+      "terminals": {
+        "+": "ep_vrc_r_inr_p",
+        "-": "ep_vrc_r_inr_n",
+        "screen": "ep_vrc_r_inr_sh"
+      }
+    },
+    {
+      "id": "VRC_REAR_OUT",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Rear",
+      "device": "rear VR conditioner, output",
+      "terminals": {
+        "+5V": "ep_vrc_r_out_5v",
+        "Gnd": "ep_vrc_r_out_gnd",
+        "RL": "ep_vrc_r_out_l",
+        "RR": "ep_vrc_r_out_r",
+        "screen": "ep_vrc_r_out_sh"
+      }
+    },
+    {
+      "id": "VRC_FRONT_IN_L",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Front",
+      "device": "front VR conditioner, IN_L input (FL sensor)",
+      "terminals": {
+        "+": "ep_vrc_f_inl_p",
+        "-": "ep_vrc_f_inl_n",
+        "screen": "ep_vrc_f_inl_sh"
+      }
+    },
+    {
+      "id": "VRC_FRONT_IN_R",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Front",
+      "device": "front VR conditioner, IN_R input (FR sensor)",
+      "terminals": {
+        "+": "ep_vrc_f_inr_p",
+        "-": "ep_vrc_f_inr_n",
+        "screen": "ep_vrc_f_inr_sh"
+      }
+    },
+    {
+      "id": "VRC_FRONT_OUT",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Front",
+      "device": "front VR conditioner, output",
+      "terminals": {
+        "+5V": "ep_vrc_f_out_5v",
+        "Gnd": "ep_vrc_f_out_gnd",
+        "FL": "ep_vrc_f_out_l",
+        "FR": "ep_vrc_f_out_r",
+        "screen": "ep_vrc_f_out_sh"
+      }
+    }
+  ],
+  "enclosures": [
+    {
+      "id": "VRC_REAR",
+      "harness": "WheelSpeed-Rear",
+      "screen": [
+        "ep_vrc_r_inl_sh",
+        "ep_vrc_r_inr_sh",
+        "ep_vrc_r_out_sh"
+      ],
+      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded only at the ECU."
+    },
+    {
+      "id": "VRC_FRONT",
+      "harness": "WheelSpeed-Front",
+      "screen": [
+        "ep_vrc_f_inl_sh",
+        "ep_vrc_f_inr_sh",
+        "ep_vrc_f_out_sh"
+      ],
+      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded only at the ECU."
+    }
+  ],
   "flyingLeads": [],
   "realConnectors": [
     {
@@ -74,6 +222,87 @@
       "note": "Dummy header into J/B2 2E, same."
     }
   ],
-  "shieldBothEndsOk": [],
-  "wheelSpeed": {}
+  "shieldBothEndsOk": [
+    {
+      "id": "cab_rout_sh",
+      "reason": "VRC case (enclosure) to inline pin 5 - one screen node, grounded only at B17"
+    },
+    {
+      "id": "cab_rspur_sh",
+      "reason": "continuation of cab_rout_sh from inline pin 5 to sp_shield_b (B17)"
+    },
+    {
+      "id": "cab_fout_sh",
+      "reason": "VRC case (enclosure) to inline pin 5 - one screen node, grounded only at A7"
+    },
+    {
+      "id": "cab_fspur_sh",
+      "reason": "continuation of cab_fout_sh from inline pin 5 to sp_shield_a (A7)"
+    },
+    {
+      "id": "cab_fspur_fr_sh",
+      "reason": "continuation of cab_fout_fr_sh (floats at the VRC) from inline pin 6 to sp_shield_b (B17)"
+    }
+  ],
+  "wheelSpeed": {
+    "rear": {
+      "harness": "WheelSpeed-Rear",
+      "sensors": {
+        "wss_rl": "VRC_REAR_IN_L",
+        "wss_rr": "VRC_REAR_IN_R"
+      },
+      "output": "VRC_REAR_OUT",
+      "enclosure": "VRC_REAR",
+      "interface": "IX_WS_REAR",
+      "outputCables": [
+        {
+          "cable": "cab_rout",
+          "cores": 4,
+          "drainPin": "c5",
+          "screenFromEnclosure": true
+        }
+      ],
+      "spurHarness": "A-ECU",
+      "spur": {
+        "c1": "sp_5v",
+        "c2": "sp_gndout",
+        "c3": "ecu_b.b20",
+        "c4": "ecu_b.b19",
+        "c5": "sp_shield_b"
+      }
+    },
+    "front": {
+      "harness": "WheelSpeed-Front",
+      "sensors": {
+        "wss_fl": "VRC_FRONT_IN_L",
+        "wss_fr": "VRC_FRONT_IN_R"
+      },
+      "output": "VRC_FRONT_OUT",
+      "enclosure": "VRC_FRONT",
+      "interface": "IX_WS_FRONT",
+      "outputCables": [
+        {
+          "cable": "cab_fout",
+          "cores": 3,
+          "drainPin": "c5",
+          "screenFromEnclosure": true
+        },
+        {
+          "cable": "cab_fout_fr",
+          "cores": 1,
+          "drainPin": "c6",
+          "screenFromEnclosure": false
+        }
+      ],
+      "spurHarness": "A-ECU",
+      "spur": {
+        "c1": "sp_5v",
+        "c2": "sp_gndout",
+        "c3": "ecu_a.a23",
+        "c4": "ecu_b.b21",
+        "c5": "sp_shield_a",
+        "c6": "sp_shield_b"
+      }
+    }
+  }
 }

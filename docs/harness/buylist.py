@@ -1,14 +1,11 @@
 import json, os, re, collections, datetime
-R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
-# The eight current looms. Repointed 2026-09-22 - this used to read the
-# pre-split Signal/Power/CAN/EngineRoom-C files, so every buy list generated
-# before that date missed everything the rebuild added (the CSB3 HD30
-# connector and its size-20 contacts among them).
-F = ("ST185-A-ECU.harness", "ST185-A-engine.harness",
-     "ST185-B-ECU.harness", "ST185-B-engine.harness",
-     "ST185-CAN.harness", "ST185-EngineRoom-C.harness",
-     "ST185-ClusterLED.harness", "ST185-WheelSpeed.harness",
-     "ST185-AntiTheft.harness")
+
+import model
+
+R = model.REB
+# Every harness in interfaces.json - the registry is the list, so a new or
+# retired drawing can never silently drop off the buy list again.
+F = tuple(model.harness_files().values())
 
 ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "0460-202-1631":130,"0460-215-1631":60,"0462-201-1631":118,"0462-209-1631":51,
@@ -182,8 +179,8 @@ for pn, mf, desc, n, have in EXTRA:
 
 out = ["# Harness — need to buy",
  "",
- "Generated on %s from the eight `.harness` files in `docs/harness/rebuild/`:"
- % datetime.date.today().isoformat(),
+ "Generated on %s from the %d `.harness` files in `docs/harness/rebuild/`:"
+ % (datetime.date.today().isoformat(), len(F)),
  "`" + "`, `".join(x[6:-8] for x in F) + "`.",
  "On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.",
  "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",

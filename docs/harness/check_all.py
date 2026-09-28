@@ -9,6 +9,7 @@ What it runs, in order - every one in HARD is a hard gate:
   lint_v09.py              schema and reference check, every loom
   validate_ownership.py    every drawing registered, one owner per conductor and part
   validate_interfaces.py   inline interfaces are real, matched connector pairs
+  validate_wheel_speed.py  front/rear wheel-speed Y harnesses, interfaces and spurs
   verify_rebuild.py        no connection lost against the frozen legacy baseline
   audit_cavity_parts.py    no cavity claims both a contact and a sealing plug
   audit_shields.py         docs/SHIELD-RULES.md, enforced
@@ -28,11 +29,11 @@ import subprocess, sys, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
-        ["validate_ownership.py"], ["validate_interfaces.py"],
+        ["validate_ownership.py"], ["validate_interfaces.py"], ["validate_wheel_speed.py"],
         ["verify_rebuild.py"], ["audit_cavity_parts.py"], ["audit_shields.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["buylist.py"], ["buildlist.py"], ["make_min.py"]]
-SOFT = [["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["validate_wheel_speed.py"]]
+SOFT = [["verify_connectivity.py"], ["validate_oem_endpoints.py"]]
 # audit_pin_names went HARD on 2026-09-24, the day it first reported zero, and
 # it stays there. Both of Daniel's absolute rules live in it: nothing but a
 # drain on a shield ground, and one name per bulkhead cavity across a mating

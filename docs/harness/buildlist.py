@@ -1,14 +1,11 @@
 import json, os, csv, datetime, collections, heapq
 
-R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
-# The eight current looms. Repointed 2026-09-22 - this used to read the
-# pre-split Signal/Power/CAN/EngineRoom-C files, so every build list generated
-# before that date described the old two-loom structure, not the built one.
-F = (("A-ECU","ST185-A-ECU.harness"), ("A-engine","ST185-A-engine.harness"),
-     ("B-ECU","ST185-B-ECU.harness"), ("B-engine","ST185-B-engine.harness"),
-     ("CAN","ST185-CAN.harness"), ("EngineRoomC","ST185-EngineRoom-C.harness"),
-     ("ClusterLED","ST185-ClusterLED.harness"), ("WheelSpeed","ST185-WheelSpeed.harness"),
-     ("AntiTheft","ST185-AntiTheft.harness"))
+import model
+
+R = model.REB
+# Every harness in interfaces.json. Hardcoded file lists went stale twice (the
+# 2026-09-22 repoint, then the wheel-speed split), so the registry is the list.
+F = tuple(model.harness_files().items())
 
 def load(fn):
     return json.load(open(os.path.join(R, fn), encoding="utf-8"))

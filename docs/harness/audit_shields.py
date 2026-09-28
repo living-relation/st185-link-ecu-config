@@ -1,160 +1,72 @@
 """Enforce SHIELD-RULES.md mechanically, so the rules stop getting re-litigated.
 
 The rules live in docs/SHIELD-RULES.md (short form) and plan 6.27 / 6.30 / 6.31 /
-6.32 (long form).  This script checks the four that a script can check:
+6.32 (long form).  This script checks the ones a script can check:
 
-  R1  a screen never connects at the device end - it floats there
-  R3  no drain lands on a connector shell, except the VR conditioner enclosures
+  R1  a screen never lands at the device end: every screen end is an ECU shield
+      pin, a splice, a bulkhead or inline-interface cavity, a device-enclosure
+      screen lead (the VRC exception), or a legacy cross-reference - never a
+      sensor or device cavity
+  R3  no screen lands on a connector shell (no connector on this car has one;
+      the VRC case is reached through registered enclosure leads instead)
   R5  a screen crossing a bulkhead uses its own pin, wired on BOTH halves
-  R2  every screen reaches an ECU shield-ground pin, and only one of them
-  R6  a cable screen landed at BOTH ends is allowed only where SHIELD-RULES
-      lists it as a powered-device exception (today: the two VRC output cables)
+  R2  every screen reaches an ECU shield-ground pin
+  R6  a cable screen landed at BOTH ends is allowed only where interfaces.json
+      lists it in shieldBothEndsOk (screen continuations through an inline
+      interface or a VRC enclosure)
 
 R4 ("cable only until it terminates at the ECU") is a modelling convention the
-schema cannot express, so it is not checked here.
+schema cannot express, so it is not checked here. The A7 / B17 separation is
+audit_mating.py M4.
 
 Exit 1 on any violation.  Added 2026-09-22 after the crank / cam / knock screens
 were found dead-ending in bulkhead A because only the engine half was wired.
+2026-09-27: traces on model.Graph, so inline interfaces and VRC enclosures come
+from interfaces.json rather than hardcoded VRC connector ids.
 """
-import json, glob, os, sys, collections
+import collections
+import sys
 
-R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
+import model
 
-ECU_SHIELD_PINS = {("ecu_a", "a7"), ("ecu_b", "b17")}
-# Powered-device exception (SHIELD-RULES, 2026-09-25): only the VRC OUT
-# connectors land a screen on their shielding plate. The IN screens ride pin 3,
-# so an IN shell landing is a violation.
-SHELL_OK = {"vrc_f_out", "vrc_r_out"}
-# Screens allowed a landing at both ends - the listed exception, nothing else.
-BOTH_ENDS_OK = {"cab_fout_sh", "cab_rout_sh"}
-BULKHEAD_PAIRS = {"bh_a_fw": "bh_a_eng", "bh_a_eng": "bh_a_fw",
-                  "bh_b_fw": "bh_b_eng", "bh_b_eng": "bh_b_fw"}
-
-
-def screens():
-    """Every conductor that carries a screen, from any loom, wires or cables."""
-    for f in sorted(glob.glob(os.path.join(R, "*.harness"))):
-        d = json.load(open(f, encoding="utf-8"))
-        loom = os.path.basename(f)[6:-8]
-        for w in d.get("wires", []):
-            # Match the colour, or an id whose LAST segment marks it a screen.
-            # A plain "_sh" substring is too loose - it caught w_at_shk_sig, the
-            # anti-theft shock sensor, which is a signal wire and not a screen.
-            tail = w["id"].rsplit("_", 1)[-1]
-            if w.get("color") == "Shield" or tail in ("sh", "shield", "drain") \
-                    or w["id"].startswith("w_drain"):
-                yield loom, w, None
-        for cb in d.get("cables", []):
-            if cb.get("shield"):
-                yield loom, cb["shield"], cb["id"]
-
+reg = model.registry()
+g = model.Graph(reg)
+BOTH_ENDS_OK = {s["id"] for s in reg.get("shieldBothEndsOk", [])}
+ECU_SHIELD = {("ECU",) + k for k in model.SHIELD_PINS}
 
 bad = []
-lands = collections.defaultdict(set)     # screen id -> set of (component, handle)
-used_cav = collections.defaultdict(set)  # bulkhead -> cavities any conductor uses
-
-for f in sorted(glob.glob(os.path.join(R, "*.harness"))):
-    d = json.load(open(f, encoding="utf-8"))
-    conds = list(d.get("wires", []))
-    for cb in d.get("cables", []):
-        conds += cb.get("cores", [])
-        if cb.get("shield"):
-            conds.append(cb["shield"])
-    for w in conds:
-        for e in (w.get("source"), w.get("target")):
-            if e and e.get("id") in BULKHEAD_PAIRS:
+used_cav = collections.defaultdict(set)
+for loom, d in g.docs.items():
+    for cond, cable, screen in model.conductors(d):
+        for e in (cond.get("source"), cond.get("target")):
+            if e and e.get("id") in model.BULKHEAD_MATE:
                 used_cav[e["id"]].add(e.get("handle"))
 
-for loom, w, cable in screens():
-    ends = [e for e in (w.get("source"), w.get("target")) if e]
-    for e in ends:
-        lands[w["id"]].add((e["id"], e.get("handle")))
-        # R3 - no shell landings outside the VR enclosures
-        if e.get("handle") == "shell" and e["id"] not in SHELL_OK:
-            bad.append("R3 %s/%s lands on the shell of %s" % (loom, w["id"], e["id"]))
-    # R5 - a screen on a bulkhead pin must be wired on the mating half too
-    for e in ends:
-        other = BULKHEAD_PAIRS.get(e["id"])
-        if other and e.get("handle") not in used_cav[other]:
-            bad.append("R5 %s/%s uses %s %s but %s %s is not wired"
-                       % (loom, w["id"], e["id"], e["handle"], other, e["handle"]))
-
-# R2 - trace each screen net to an ECU shield pin.  Screens join at splices, so
-# walk the net rather than looking at one wire's two ends.
-net = collections.defaultdict(set)
-for f in sorted(glob.glob(os.path.join(R, "*.harness"))):
-    d = json.load(open(f, encoding="utf-8"))
-    conds = list(d.get("wires", []))
-    for cb in d.get("cables", []):
-        conds += cb.get("cores", [])
-        if cb.get("shield"):
-            conds.append(cb["shield"])
-    for w in conds:
-        s, t = w.get("source"), w.get("target")
-        if s and t:
-            a, b = (s["id"], s.get("handle")), (t["id"], t.get("handle"))
-            net[a].add(b)
-            net[b].add(a)
-
-BULKHEAD_THROUGH = {}   # (bh, cav) is electrically the same node as (mate, cav)
-for a, b in BULKHEAD_PAIRS.items():
-    for cav in used_cav[a]:
-        BULKHEAD_THROUGH[(a, cav)] = (b, cav)
-
-# A cross-reference dummy is the same electrical node as the real one it names.
-# The convention is dm_<componentId>_<handle>, landed on the dummy's own c1.
-for f in sorted(glob.glob(os.path.join(R, "*.harness"))):
-    d = json.load(open(f, encoding="utf-8"))
-    for c in d.get("connectors", []):
-        if not c["id"].startswith("dm_"):
+for loom, d in g.docs.items():
+    for w, cable, screen in model.conductors(d):
+        if not screen:
             continue
-        body = c["id"][3:]
-        for cv in c.get("cavities", []):
-            for comp, handle in ((body.rsplit("_", 1)[0], body.rsplit("_", 1)[-1]),):
-                net[(c["id"], cv["id"])].add((comp, handle))
-                net[(comp, handle)].add((c["id"], cv["id"]))
+        ends = [e for e in (w.get("source"), w.get("target")) if e]
+        nodes = [g.node(loom, e) for e in ends]
+        for e, n in zip(ends, nodes):
+            if e.get("handle") == "shell":
+                bad.append("R3 %s/%s lands on the shell of %s" % (loom, w["id"], e["id"]))
+            elif n[0] == "C" and not e["id"].startswith("dm_"):
+                bad.append("R1 %s/%s lands on %s %s - a screen floats at the device"
+                           % (loom, w["id"], e["id"], e.get("handle")))
+            other = model.BULKHEAD_MATE.get(e["id"])
+            if other and e.get("handle") not in used_cav[other]:
+                bad.append("R5 %s/%s uses %s %s but %s %s is not wired"
+                           % (loom, w["id"], e["id"], e["handle"], other, e["handle"]))
+        if cable and len(ends) == 2 and w["id"] not in BOTH_ENDS_OK:
+            bad.append("R6 %s/%s is bonded at both ends - not a listed screen continuation"
+                       % (loom, w["id"]))
+        if nodes and not any(ECU_SHIELD & g.reach(n) for n in nodes):
+            bad.append("R2 screen %s/%s never reaches an ECU shield ground" % (loom, w["id"]))
 
-# 6.30: inside a VR conditioner the case is the screen junction - every landing
-# on one box is one node, joined by the case, not by a drawn wire.  The OUT
-# connector's screen lands on its shielding plate ("shell"); each IN connector's
-# sensor-drop screen rides pin 3 and a wire inside the box takes it to a ring
-# terminal on the case (SHIELD-RULES 6.30, powered-device exception).
-VRC_BOXES = ((("vrc_f_inl", "c3"), ("vrc_f_inr", "c3"), ("vrc_f_out", "shell")),
-             (("vrc_r_inl", "c3"), ("vrc_r_inr", "c3"), ("vrc_r_out", "shell")))
-for box in VRC_BOXES:
-    nodes = list(box) + [(c, "shell") for c, _ in box]
-    for a in nodes:
-        for b in nodes:
-            if a != b:
-                net[a].add(b)
-
-
-def reaches_ecu(start):
-    seen, stack = set(), [start]
-    while stack:
-        n = stack.pop()
-        if n in seen:
-            continue
-        seen.add(n)
-        if n in ECU_SHIELD_PINS:
-            return True
-        for m in net.get(n, ()):
-            stack.append(m)
-        m = BULKHEAD_THROUGH.get(n)
-        if m:
-            stack.append(m)
-    return False
-
-
-# R6 - bonded at both ends only under a listed powered-device exception
-for loom, w, cable in screens():
-    if cable and w.get("source") and w.get("target") and w["id"] not in BOTH_ENDS_OK:
-        bad.append("R6 %s/%s is bonded at both ends - not a listed powered-device"
-                   " exception" % (loom, w["id"]))
-
-for sid, ends in sorted(lands.items()):
-    if not any(reaches_ecu(e) for e in ends):
-        bad.append("R2 screen %s never reaches an ECU shield ground" % sid)
+for sid in sorted(BOTH_ENDS_OK):
+    if not any(sid == w["id"] for d in g.docs.values() for w, c, s in model.conductors(d) if s):
+        bad.append("R6 shieldBothEndsOk lists %s, which is not a screen on any drawing" % sid)
 
 for line in bad:
     print(line)
