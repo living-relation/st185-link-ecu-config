@@ -581,7 +581,7 @@
         "connector": "C12",
         "pin": "9",
         "color": "B-O",
-        "function": "IG +12 - feeds every LED anode and the charge excite resistor",
+        "function": "IG +12 - feeds every LED anode",
         "method": "solder sleeve into the factory lead at the combination meter"
       }
     },

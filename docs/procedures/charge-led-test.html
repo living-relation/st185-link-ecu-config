@@ -50,7 +50,7 @@
 <main>
   <h1>Charge lamp LED test</h1>
   <p class="sub">Toyota Celica ST185 (3S-GTE, 4WD) - OEM IC-regulator alternator, 12 V plug-in LED in place of the charge warning bulb.
-  Question: can the LED alone do the bulb's job, so the 56 &Omega; resistor <code>r_chg_excite</code> on ST185-ClusterLED can be removed?</p>
+  Question: can the LED alone do the bulb's job? The 56 &Omega; resistor <code>r_chg_excite</code> was taken off ST185-ClusterLED on 2026-09-28 without waiting for this test, so run it at first start to confirm.</p>
 
   <div class="toolbar">
     <button class="primary" onclick="window.print()">Print / save as PDF</button>
@@ -62,7 +62,7 @@
     Both the 1990 ST185 EWD (Charging, p.52) and the 1993 Celica wiring diagrams (Fig. 1 and Fig. 15) show the IC regulator
     powered from its own ignition lead (IG, BLK-RED). The charge lamp sits between the IGN fuse (cluster C12 pin 9) and the
     alternator L terminal (C12 pin 8, YEL) with a diode in series inside the cluster. The regulator only pulls L to ground to light the lamp,
-    so the lamp current is not what excites the field. This test confirms that on the car before the resistor comes out.
+    so the lamp current is not what excites the field. This test confirms that on the car.
   </div>
 
   <h2>Before you start</h2>
@@ -70,7 +70,7 @@
     <ul>
       <li><strong>Tools:</strong> digital multimeter (DC volts), back-probe pins, a helper to hold 2000 rpm, a thermometer or a warm engine.</li>
       <li><strong>Battery:</strong> charged, resting voltage 12.4 V or more. Record it in step 0.</li>
-      <li><strong>Resistor out:</strong> disconnect <code>r_chg_excite</code> (the 56 &Omega; 5 W resistor across the LED). Only the LED stays in the lamp position.</li>
+      <li><strong>No resistor:</strong> the harness no longer has <code>r_chg_excite</code>. Only the LED sits in the lamp position.</li>
       <li><strong>Measure to a clean engine or battery ground.</strong> Back-probe connectors. Don't pierce insulation.</li>
     </ul>
   </div>
@@ -151,8 +151,8 @@
   <div class="verdict" id="verdict">Fill in the readings above.</div>
   <div class="card">
     <ul>
-      <li><strong>All pass:</strong> the LED alone is enough. Tell Claude "LED test passed" and <code>r_chg_excite</code> comes out of ST185-ClusterLED in the repo and on harness.design.</li>
-      <li><strong>Any fail:</strong> refit the resistor, keep the readings, and send them over. Note which step failed.</li>
+      <li><strong>All pass:</strong> the LED alone is enough. Nothing to change.</li>
+      <li><strong>Any fail:</strong> fit a 56 &Omega; 5 W resistor across the LED (C12 pin 9 to pin 8) as a temporary fix, keep the readings, and send them over. Note which step failed.</li>
     </ul>
     <p><label>Date / notes: <input type="text" id="notes" style="width:100%;margin-top:6px;padding:5px;border:1px solid #b8c0ca;border-radius:5px;font:inherit"></label></p>
   </div>
@@ -185,8 +185,8 @@
     document.querySelectorAll(".chk").forEach(c => res[c.id] = c.checked);
     const vals = Object.values(res), el = document.getElementById("verdict");
     const done = vals.every(x => x !== null) && document.querySelectorAll("input[type=text][id^=v]").length === Object.keys(res).filter(k => k[0] === "v").length;
-    if (vals.some(x => x === false) && done) { el.textContent = "FAIL - refit r_chg_excite and send the readings."; el.className = "verdict fail"; }
-    else if (done && vals.every(x => x === true)) { el.textContent = "PASS - the LED alone runs the alternator; r_chg_excite can be removed."; el.className = "verdict pass"; }
+    if (vals.some(x => x === false) && done) { el.textContent = "FAIL - fit a 56 ohm 5 W resistor across the LED and send the readings."; el.className = "verdict fail"; }
+    else if (done && vals.every(x => x === true)) { el.textContent = "PASS - the LED alone runs the alternator."; el.className = "verdict pass"; }
     else { el.textContent = "Fill in the readings above."; el.className = "verdict"; }
     const save = {}; document.querySelectorAll("input").forEach(i => save[i.id] = i.type === "checkbox" ? i.checked : i.value);
     try { localStorage.setItem("st185-charge-led-test", JSON.stringify(save)); } catch (e) {}

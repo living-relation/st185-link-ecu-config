@@ -62,7 +62,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `12052641` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 2 POS, SEALED, SOCKET CONTA | 2 | 1 | **1** |
 | `15326427` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, GOLD, 0.75-1.0 MM2 (18-16 AWG) | 6 | 5 | **1** |
 | `470R 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W - fuel leve | 1 | 0 | **1** |
-| `56R 5W` | generic | RESISTOR, FIXED, WIREWOUND, 56 OHM, 5 W - alternator pre-excit | 1 | 0 | **1** |
 | `7-1904094-9` | TE Connectivity | RELAY, PLUG-IN, MAXI ISO, TE Power Relay F7 V23134-J0052-X439  | 1 | 0 | **1** |
 | `DT04-3P` | TE DEUTSCH | CONN RECP DT 3-WAY PIN SEALED - shock sensor lead | 1 | 0 | **1** |
 | `GENERIC LUG M10 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE | 1 | 0 | **1** |
