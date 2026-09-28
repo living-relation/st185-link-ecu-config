@@ -3074,7 +3074,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead A - engine plug (HDP2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - engine plug (HDP2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead A - engine plug (HDP2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - engine plug (HDP2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27); engine-side wire on ST185-EngineRoom-C (dm_bh_a_eng_c35)\nBulkhead A - engine plug (HDP2 36: Aux 7 MRS speed-out (ECU A27) - engine-side wire on ST185-EngineRoom-C (dm_bh_a_eng_c36)",
       "schematicPosition": {
         "x": 4200,
         "y": 0
