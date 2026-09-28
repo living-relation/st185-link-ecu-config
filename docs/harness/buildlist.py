@@ -1,14 +1,11 @@
 import json, os, csv, datetime, collections, heapq
 
-R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
-# The eight current looms. Repointed 2026-09-22 - this used to read the
-# pre-split Signal/Power/CAN/EngineRoom-C files, so every build list generated
-# before that date described the old two-loom structure, not the built one.
-F = (("A-ECU","ST185-A-ECU.harness"), ("A-engine","ST185-A-engine.harness"),
-     ("B-ECU","ST185-B-ECU.harness"), ("B-engine","ST185-B-engine.harness"),
-     ("CAN","ST185-CAN.harness"), ("EngineRoomC","ST185-EngineRoom-C.harness"),
-     ("ClusterLED","ST185-ClusterLED.harness"), ("WheelSpeed","ST185-WheelSpeed.harness"),
-     ("AntiTheft","ST185-AntiTheft.harness"))
+import model
+
+R = model.REB
+# Every harness in interfaces.json. Hardcoded file lists went stale twice (the
+# 2026-09-22 repoint, then the wheel-speed split), so the registry is the list.
+F = tuple(model.harness_files().items())
 
 def load(fn):
     return json.load(open(os.path.join(R, fn), encoding="utf-8"))
@@ -100,6 +97,35 @@ def route(g, a, b):
         cur = p
     return (" > ".join(reversed(segs)), int(dist[b]))
 
+REG = model.registry()
+IX = {(h["harness"], h["connector"]): (ix["id"], [o["harness"] for o in ix["halves"] if o is not h][0])
+      for ix in REG.get("interfaces", []) for h in ix["halves"]}
+FL = {(f["harness"], f["terminal"]): f["ewd"] for f in REG.get("flyingLeads", [])}
+EP = {(e["harness"], t): e["id"] for e in REG.get("endpoints", []) for t in e["terminals"].values()}
+REF = {(x["harness"], x["connector"]): x["realOn"] for x in REG.get("references", [])}
+BH = {"bh_a_fw": "bulkhead A (mates engine half)", "bh_a_eng": "bulkhead A (mates cabin half)",
+      "bh_b_fw": "bulkhead B (mates engine half)", "bh_b_eng": "bulkhead B (mates cabin half)"}
+
+
+def classify(tag, nid, kind):
+    """(endpoint type, handoff text, EWD locator) for one conductor end."""
+    if (tag, nid) in IX:
+        i, other = IX[(tag, nid)]
+        return "inline_interface", "%s -> %s" % (i, other), ""
+    if (tag, nid) in FL:
+        e = FL[(tag, nid)]
+        return "oem_flying_lead", "", "EWD %s %s-%s %s" % (e["page"], e["connector"], e["pin"], e["color"])
+    if (tag, nid) in EP:
+        return "device_endpoint", EP[(tag, nid)], ""
+    if (tag, nid) in REF:
+        return "reference_only", "cavity on %s" % REF[(tag, nid)], ""
+    if nid in BH:
+        return "real_connector", BH[nid], ""
+    if kind == "connector":
+        return "real_connector", "", ""
+    return kind.split("(")[0], "", ""
+
+
 rows = []
 for tag, fn in F:
     d = load(fn)
@@ -127,6 +153,13 @@ for tag, fn in F:
             rec[end + " pin"] = (desig or h) if kind == "connector" else ""
             rec[end + " signal"] = sig
             rec[end + " kind"] = kind
+            rec[end + " type"], hand, ewd = classify(tag, nid, kind)
+            rec.setdefault("Handoff", [])
+            rec.setdefault("EWD", [])
+            if hand:
+                rec["Handoff"].append(hand)
+            if ewd:
+                rec["EWD"].append(ewd)
             if kind == "connector":
                 if (nid, h) not in ccache:
                     ccache[(nid, h)] = contact_for(d, nid, h)
@@ -150,12 +183,15 @@ for tag, fn in F:
         rec["Splice"] = "; ".join(sorted({
             n for n in [(w.get("source") or {}).get("id"), (w.get("target") or {}).get("id")]
             if ix.get(n, ("",""))[1] == "splice"}))
+        rec["Owner"] = tag
+        rec["Handoff"] = "; ".join(rec["Handoff"])
+        rec["EWD"] = "; ".join(rec["EWD"])
         rec["Done"] = ""
         rows.append(rec)
 
-COLS = ["File","Wire","Cable","From","From pin","From signal","From terminal",
-        "To","To pin","To signal","To terminal",
-        "Colour","AWG","Route","Est mm","Splice","Done"]
+COLS = ["File","Owner","Wire","Cable","From","From type","From pin","From signal","From terminal",
+        "To","To type","To pin","To signal","To terminal",
+        "Colour","AWG","Route","Est mm","Splice","Handoff","EWD","Done"]
 
 p = os.path.join(os.path.dirname(R), "HARNESS-BUILD-LIST.csv")
 with open(p, "w", newline="", encoding="utf-8") as fh:
@@ -166,7 +202,8 @@ with open(p, "w", newline="", encoding="utf-8") as fh:
 
 print("wrote", p)
 print("wires:", len(rows), collections.Counter(r["File"] for r in rows))
-print("no route found:", sum(1 for r in rows if r["Route"] == ""))
+print("no route found:", sum(1 for r in rows if r["Route"] == "" and not r["Handoff"]),
+      "(plus %d deliberate handoffs)" % sum(1 for r in rows if r["Route"] == "" and r["Handoff"]))
 print("splice ends:", sum(1 for r in rows if r["Splice"]))
 print("missing terminal PN (either end, connector ends only):",
       sum(1 for r in rows if (r["From kind"]=="connector" and not r["From terminal"])

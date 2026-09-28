@@ -24,14 +24,14 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 
 ## 2. Physical Layer
 
-- **Topology:** single linear bus segment, 1 Mbit/s, ISO 11898-2, 120Ω termination at both physical ends of the bus.
+- **Topology:** single linear bus segment, 1 Mbit/s, ISO 11898-2, 120Ω termination at both physical ends of the bus. **Settled 2026-09-27 (harness redesign; not an open item): the two ends are the ECU and the Link CAN-Lambda**, matching `ST185-CAN.harness` as drawn (`r_term_ecu`, `r_term_end`). The center cluster, switchboard, and Pi are mid-bus stubs — none of them are terminated.
 - **Transceivers:**
   - ECU: Link G4X XtremeX CANH/CANL.
   - Link CAN-Lambda: module CANH/CANL on the shared bus (0x3B6 / 0x3BE). This is the fifth node.
   - center-cluster-esp32-p4: SN65HVD230 (3.3V), TWAI GPIO5=TX / GPIO4=RX (per `sdkconfig`/`Kconfig.projbuild`).
   - ECUMaster CAN Switch Board V3: built-in CAN transceiver, CANH/CANL screw terminals.
   - Pi USB-CAN adapter (CANable or PCAN USB): plugs into a USB port on the Pi; the adapter's CANH/CANL terminals wire to the shared bus. The Waveshare dual-MCP2515 hat physically present on the Pi is **NOT a CAN node** — it is retained for its cooling fan only. Do not wire its CANH/CANL to the bus.
-- **Wiring rule:** all five nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus; termination resistors live at the two physical ends of the harness (commonly: ECU end and Pi end). Do not add a third termination point.
+- **Wiring rule:** all five nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus; termination resistors live at the ECU end and the CAN-Lambda end only. Do not add a third termination point, and do not terminate at the center cluster, switchboard, or Pi.
 
 ---
 
@@ -63,8 +63,8 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 
 | Bit | Switch | Function |
 |---|---|---|
-| 0 | Switch 1 | Evaporator Core State |
-| 1 | Switch 2 | AC Request |
+| 0 | Switch 1 | Unassigned (was Evaporator Core State; A/C is the OEM amplifier's, 2026-09-27) |
+| 1 | Switch 2 | Unassigned (was AC Request; same) |
 | 2 | Switch 3 | Cruise Control Active |
 | 3 | Switch 4 | Cruise Set / Accelerate |
 | 4 | Switch 5 | Cruise Resume / Decelerate |
@@ -79,10 +79,8 @@ Increments on every transmitted 0x642 frame (0-255, wraps). Nominal cycle: switc
 
 The Link G4X consumes two switchboard frames via PCLink "User Stream" inputs, converting raw CAN bytes into ECU-usable channels:
 
-### User Stream 1 — Cabin/Ambient Temperature
-- **Source:** 0x640, bytes 0-1 (Analog Input 1, raw 0-5000 mV from a thermistor wired to the switchboard's AIN1).
-- **PCLink target:** **GP Temp1**, using a PCLink thermistor calibration table to convert the raw millivolt reading to °C.
-- **Downstream use:** GP Temp1 is available to ECU logic (e.g., AC/evap control). It is **not** broadcast to RealDash — the Cabin Temp byte was dropped from 0x3F0 to make room for 2-byte Coolant Pressure, and RealDash does not read the switchboard 0x640 frame directly. To surface cabin temp on RealDash later, add a new ECU frame (e.g. 0x3F2) with a matching RealDash value.
+### User Stream 1 — retired 2026-09-27
+- Analog Input 1 (0x640 bytes 0-1) used to carry a cabin thermistor into **GP Temp1**. Cabin, evaporator and A/C request belong to the OEM A/C amplifier, so no CSB3 input is wired for them and Analog Input 1 is unassigned. The frame layout is unchanged.
 
 ### User Stream 2 — Accessory Switch States (VDI1-5)
 - **Source:** 0x642, byte 4 (SW_MASK), bits 0-4.
@@ -90,13 +88,13 @@ The Link G4X consumes two switchboard frames via PCLink "User Stream" inputs, co
 
 | SW_MASK bit | VDI | Meaning |
 |---|---|---|
-| 0 | VDI1 | Evaporator Core State |
-| 1 | VDI2 | AC Request |
+| 0 | VDI1 | Unassigned (was Evaporator Core State) |
+| 1 | VDI2 | Unassigned (was AC Request) |
 | 2 | VDI3 | Cruise Control Active |
 | 3 | VDI4 | Cruise Set / Accelerate |
 | 4 | VDI5 | Cruise Resume / Decelerate |
 
-- **Downstream use:** these VDIs feed the ECU's existing cruise-control and AC/evaporator logic (PCLink condition tables / virtual aux outputs) — e.g., VDI3=1 arms cruise, VDI4/VDI5 adjust the set speed, VDI2=1 requests the AC compressor clutch output, VDI1 controls the evaporator core relay logic.
+- **Downstream use:** these VDIs feed the ECU's cruise-control logic (PCLink condition tables / virtual aux outputs) — VDI3=1 arms cruise, VDI4/VDI5 adjust the set speed. VDI1/VDI2 are unassigned; A/C request and evaporator control are the OEM A/C amplifier's.
 
 Both User Streams require the ECU to be on the same physical bus as the switchboard (§3).
 
@@ -110,8 +108,7 @@ Two independent layers protect against switchboard communication loss:
 - Configure a receive timeout on each switchboard frame (0x640, 0x641, 0x642) in PCLink's CAN setup. If a configured frame isn't received within its expected window, PCLink applies a configured default/hold value to the associated channels.
 - **Recommended timeout:** 200 ms (4× the switchboard's nominal 50 ms / 20 Hz cycle) — tolerates occasional dropped frames without false trips.
 - **Recommended defaults on timeout:**
-  - VDI1-5 → 0 (Evap Core off, AC not requested, Cruise inactive/no set-resume) — this is the fail-safe state: cruise disengaged, AC compressor off, evaporator relaxed.
-  - GP Temp1 → hold last value (avoids a gauge jump from a transient dropout; a stale cabin temp reading is low-risk).
+  - VDI3-5 → 0 (Cruise inactive/no set-resume) — this is the fail-safe state: cruise disengaged.
 - This is the **primary safety net** and requires **no firmware changes** — pure PCLink configuration (Task #9).
 
 ### Layer 2 — heartbeat staleness check (secondary, ECU-side diagnostic)
@@ -123,8 +120,6 @@ Two independent layers protect against switchboard communication loss:
 | Function | Failsafe state | Mechanism |
 |---|---|---|
 | Cruise Control | Disengaged (VDI3→0) | Layer 1 PCLink timeout |
-| AC compressor | De-energized (VDI2→0) | Layer 1 PCLink timeout |
-| Evaporator core / blower | Relaxed/off (VDI1→0) | Layer 1 PCLink timeout |
 | Throttle | Returns to driver pedal authority | Consequence of cruise disengage above — no separate action needed |
 | Driver notification | "Switchboard/Accessory Bus Comm Fault" warning | ECU detects (only node seeing switchboard) → sets 0x3F1 byte6 bit5 → RealDash displays |
 
@@ -192,9 +187,9 @@ The docx does not address the ECUMaster switchboard's bus segment or speed at al
 |---|---|---|
 | 1 | Reconfigure ECUMaster CAN Switch Board V3: bit rate 500 kbps → 1000 kbps | Hardware/config |
 | 2 | Add 0x3EF (50ms), 0x3F0 (100ms), 0x3F1 (50ms) Custom/BigEndian streams to `link_g4x_can_setup.lcs`/`.json` | PCLink config |
-| 3 | Configure PCLink User Stream 1 (0x640 bytes0-1 → GP Temp1, thermistor table) and User Stream 2 (0x642 byte4 bits0-4 → VDI1-5) | PCLink config |
-| 4 | Configure PCLink receive timeouts (200ms) on 0x640/0x641/0x642 with fail-safe defaults (VDI1-5→0, GP Temp1→hold) | PCLink config |
+| 3 | Configure PCLink User Stream 2 (0x642 byte4 bits0-4 → VDI1-5). User Stream 1 (cabin temp → GP Temp1) is retired, see §5 | PCLink config |
+| 4 | Configure PCLink receive timeouts (200ms) on 0x640/0x641/0x642 with fail-safe defaults (VDI1-5→0) | PCLink config |
 | 5 | Cluster firmware: **no changes.** Cluster displays are unchanged — it keeps decoding 0x3E8–0x3EE and transmitting 0x3EC/0x3ED. The new 0x3EF/0x3F0/0x3F1 streams are ECU→RealDash only; switchboard comm-fault (§6) is ECU-detected and surfaced to RealDash via 0x3F1 byte6 bit5. | — (none) |
 | 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §9 — outputs unused/LED-only, low priority | PCLink config (deferred) |
 | 7 | RealDash XML frame/value definitions for 0x3EF-0x3F1 — **done** (`link_g4x_realdash.xml`). Build the dashboard per `REALDASH-LAYOUT.md`. 0x640-0x642 deliberately excluded (ECU echoes display-relevant values) | RealDash config |
-| 8 | Verify bus termination (120Ω × 2): ECU end + Pi end (USB-CAN adapter side). Waveshare hat is not on the bus. | Hardware |
+| 8 | Verify bus termination (120Ω × 2): ECU end + CAN-Lambda end only. Center cluster, switchboard, and Pi (USB-CAN adapter) are mid-bus stubs — confirm none of them are terminated. Waveshare hat is not on the bus. | Hardware |

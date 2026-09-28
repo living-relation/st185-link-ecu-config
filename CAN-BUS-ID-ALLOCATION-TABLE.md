@@ -141,12 +141,16 @@ Source: switchboard manual v2.1 (FW 3.0+). "CAN Switch Board uses Base ID + 0 to
 
 | Bit | Switch | Function |
 |---|---|---|
-| 0 | Switch 1 | Evaporator Core State |
-| 1 | Switch 2 | AC Request |
+| 0 | Switch 1 | **Unassigned** — was Evaporator Core State |
+| 1 | Switch 2 | **Unassigned** — was AC Request |
 | 2 | Switch 3 | Cruise Control Active |
 | 3 | Switch 4 | Cruise Set / Accelerate |
 | 4 | Switch 5 | Cruise Resume / Decelerate |
 | 5-7 | Switch 6-8 | **Unassigned — available** |
+
+> **2026-09-27:** A/C is the OEM A/C amplifier's job, not the CSB3's (harness redesign,
+> `docs/harness/redesign/DECISIONS.md`). Switch 1 / Switch 2 and Analog Input 1 (was cabin
+> temp) are unassigned. Frame layout unchanged; the cluster does not decode 0x640-0x642.
 
 ### 0x643 (Base+3) — Low-Side Output Control (INPUT, host → switchboard)
 

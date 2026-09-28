@@ -1,16 +1,6 @@
 @echo off
+rem Every harness gate, then the generated build list, buy list and min/ upload copies.
+rem The old mutating steps (fix_cable_parts, layout_633) and the frozen-baseline
+rem verify_rebuild were retired on 2026-09-27; see archive/2026-09-27-harness-redesign/.
 cd /d %~dp0
-echo === fix_cable_parts ===
-python fix_cable_parts.py || exit /b 1
-echo.
-echo === layout_633 ===
-python layout_633.py || exit /b 1
-echo.
-echo === lint_v09 ===
-python lint_v09.py || exit /b 1
-echo.
-echo === verify_rebuild ===
-python verify_rebuild.py || exit /b 1
-echo.
-echo === make_min ===
-python make_min.py || exit /b 1
+python check_all.py || exit /b 1

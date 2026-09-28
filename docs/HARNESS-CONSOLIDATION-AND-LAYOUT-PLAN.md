@@ -1320,6 +1320,13 @@ EPS lives in loom C. Only loom C. The pump power, the pump ground, the relay,
 the enable feed and the ECU trigger (Ign 6 / ECU-B B12, per 6.16) are all loom C.
 None of it belongs on bulkhead B.
 
+> **Superseded in part, 2026-09-27** (harness redesign, `docs/harness/redesign/DECISIONS.md`).
+> The cabin accessory loom, the wheel-speed split and the rear trunk loom below are replaced
+> by: one ECU/cabin harness (`ST185-ECU-Cabin`) that owns the CSB3 plug; front and rear
+> wheel-speed Y harnesses ending at DT 6-way inline interfaces with ECU-side spurs; a Rear
+> Fuel harness behind a DT 2-way (the 12-way trunk inline is not used; the pump run stays
+> unbroken as below). The loom-boundary rules above still stand.
+
 ### Cabin accessory loom - new drawing
 
 The CSB3, the cluster LED loom and the dash devices get their own drawing rather
@@ -2408,7 +2415,5 @@ or the Cursor rules refers to it.
   The fitted HCR 150 is resistor-suppressed.
 - `k_eps` sits in the engine bay (passenger fender). The standing rule is every
   relay in the cabin.
-- CAN termination: `ST185-CAN.harness` puts the two 120 ohm resistors at the
-  ECU end and the CAN-Lambda end (`r_term_ecu`, `r_term_end`). `WIRING.md` 7.3
-  and `CAN-BUS-MASTER-DESIGN.md` step 8 put END B at the RealDash Pi and say to
-  terminate there. Both followed = three terminators. Not fixed in this pass.
+- ~~CAN termination.~~ **Settled (Daniel, 2026-09-27) - not an open item.**
+  `ST185-CAN.harness` stands as drawn.

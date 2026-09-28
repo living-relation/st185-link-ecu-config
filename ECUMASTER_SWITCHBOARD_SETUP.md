@@ -56,7 +56,7 @@ Each analog channel outputs raw mV (0–5000), uint16, BigEndian, at ~20 Hz.
 
 | CSB3 Analog Input | CAN Frame | Byte Offset | Connected Signal | Notes |
 |---|---|---|---|---|
-| Analog 1 | 0x640 | bytes 0-1 | Cabin temp NTC thermistor | PCLink maps this to GP Temp1 via calibration table |
+| Analog 1 | 0x640 | bytes 0-1 | Unassigned (brought out, spare) | Was cabin temp; A/C is the OEM amplifier's (2026-09-27) |
 | Analog 2 | 0x640 | bytes 2-3 | OEM cruise control stalk (resistor ladder signal) | See Step 4.1 |
 | Analog 3 | 0x640 | bytes 4-5 | TBD | |
 | Analog 4 | 0x640 | bytes 6-7 | TBD | |
@@ -141,8 +141,7 @@ If supported:
 3. Assign each decoded state to an AS_MASK bit (bit0=SET, bit1=RESUME, bit2=CANCEL, etc.)
 4. In PCLink, extend the 0x642 CAN User Stream to include byte3:
    - AS_MASK bit0 → VDI1 (cruise SET)
-   - AS_MASK bit1 → VDI2 (cruise RESUME — this replaces the current AC assignment; shift AC
-     to a different VDI if needed)
+   - AS_MASK bit1 → VDI2 (cruise RESUME; VDI2 is unassigned since A/C left the CSB3)
    - AS_MASK bit2 → VDI3 (cruise CANCEL)
 5. In PCLink cruise control settings, map VDI1=SET, VDI2=RESUME, VDI3=CANCEL
 
@@ -181,20 +180,20 @@ PCLink reads this via a CAN User Stream: **0x642 byte4 bits0-4 → VDI1–VDI5**
 
 | SW_MASK Bit | Physical Signal | PCLink VDI | Function |
 |---|---|---|---|
-| bit0 (LSB) | Cruise MAIN switch (if discrete wire — see Step 4.1) | VDI1 | Cruise master on/off |
-| bit1 | AC request button | VDI2 | AC compressor request |
-| bit2 | Evap core over-temp switch | VDI3 | Evap over-temp protect |
-| bit3 | Spare | VDI4 | Assign as needed |
-| bit4 | Spare | VDI5 | Assign as needed |
+| bit0 (LSB) | Switch 1 — unassigned (was evap core) | VDI1 | — |
+| bit1 | Switch 2 — unassigned (was A/C request) | VDI2 | — |
+| bit2 | Switch 3 — cruise MAIN on (CSB3 c17) | VDI3 | Cruise master on/off |
+| bit3 | Switch 4 — cruise SET/ACCEL (c18) | VDI4 | Cruise set / accelerate |
+| bit4 | Switch 5 — cruise RESUME/DECEL (c19) | VDI5 | Cruise resume / decelerate |
 | bit5–7 | Unused | — | Not read by PCLink |
 
 **Note:** If the cruise stalk AS_MASK decoding path is used (Step 4.1 Option A), the cruise
-SET/RESUME/CANCEL functions arrive via AS_MASK bits, NOT SW_MASK bits. In that case bit0 here
+SET/RESUME/CANCEL functions arrive via AS_MASK bits, NOT SW_MASK bits. In that case bit2 here
 only handles the MAIN on/off switch. Reassign VDI mapping in PCLink accordingly.
 
 In the configurator, map physical wires to digital input channels and confirm the bit ordering matches the table above.
 
-**PCLink VDI failsafe:** If CSB3 comm is lost (PCLink timeout 200 ms), VDI1–VDI5 default to **0** (all off). This is safe — cruise cancels, AC off.
+**PCLink VDI failsafe:** If CSB3 comm is lost (PCLink timeout 200 ms), VDI1–VDI5 default to **0** (all off). This is safe — cruise cancels.
 
 ---
 
@@ -242,7 +241,7 @@ In PCLink, set up a **CAN Transmit** stream on ID 0x643 with a 50 ms cycle time.
 0x642 byte7 is a rolling counter (0→255→0) that increments with every CSB3 transmission. The ECU monitors this automatically via the PCLink receive timeout setting.
 
 - **PCLink timeout:** 200 ms on CAN User Streams 0x640 / 0x641 / 0x642
-- **Fault action (automatic):** VDI1–5 reset to 0; GP Temp1 holds last value
+- **Fault action (automatic):** VDI1–5 reset to 0
 - **Fault broadcast:** PCLink sets 0x3F1 byte6 bit5 ("Switchboard Comm Fault")
 
 The CSB3 needs no configuration for the heartbeat. PCLink side: see `CANBUS-LINK-G4X-CONFIG.md` for the receive timeout setting.
@@ -280,10 +279,8 @@ Before first power-on with ECU on the bus:
 - [ ] CSB3 CAN speed confirmed **1000 kbps** in configurator
 - [ ] Base ID confirmed **0x640**
 - [ ] CSB3 termination jumper confirmed **OPEN (OFF)**
-- [ ] Analog 1 wired to cabin temp thermistor (or test with known resistor)
-- [ ] SW_MASK bits 0–4 wired to correct switches/buttons
+- [ ] SW_MASK bits 2–4 wired to the cruise switches (bits 0–1 unassigned)
 - [ ] With CSB3 powered and isolated, 0x640 / 0x641 / 0x642 frames visible in CAN monitor at 1 Mbit/s
-- [ ] In PCLink — CAN User Stream 0x640 bytes 0-1 → GP Temp1 configured
 - [ ] In PCLink — CAN User Stream 0x642 byte4 bits 0-4 → VDI1-5 configured
 - [ ] In PCLink — receive timeout 200 ms set for 0x640 / 0x641 / 0x642
 - [ ] In PCLink — 0x643 TX stream configured for low-side outputs (fan / AC)

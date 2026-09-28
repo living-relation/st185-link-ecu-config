@@ -1,14 +1,11 @@
 import json, os, re, collections, datetime
-R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
-# The eight current looms. Repointed 2026-09-22 - this used to read the
-# pre-split Signal/Power/CAN/EngineRoom-C files, so every buy list generated
-# before that date missed everything the rebuild added (the CSB3 HD30
-# connector and its size-20 contacts among them).
-F = ("ST185-A-ECU.harness", "ST185-A-engine.harness",
-     "ST185-B-ECU.harness", "ST185-B-engine.harness",
-     "ST185-CAN.harness", "ST185-EngineRoom-C.harness",
-     "ST185-ClusterLED.harness", "ST185-WheelSpeed.harness",
-     "ST185-AntiTheft.harness")
+
+import model
+
+R = model.REB
+# Every harness in interfaces.json - the registry is the list, so a new or
+# retired drawing can never silently drop off the buy list again.
+F = tuple(model.harness_files().values())
 
 ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "0460-202-1631":130,"0460-215-1631":60,"0462-201-1631":118,"0462-209-1631":51,
@@ -32,44 +29,44 @@ ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
 EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  # 2026-09-25: the relays now sit in VCF7 sockets drawn as mount parts, so the
  # socket and its 280755-4 / 280756-4 / 42281-1 terminals come off the drawings.
- ("282080-1","TE Connectivity","Superseal 1.5 2-way plug housing - HCR 150 (k_eps) coil mate; contacts 282110-1 are on the drawing",1,2),
- ("281934-2","TE Connectivity","Superseal 1.5 wire seal - HCR 150 coil plug",2,10),
- ("AMI-50","Eaton Bussmann","AMI fuse 50 A, M5 bolt-down - HCFB H1, feeds FB1",1,0),
- ("AMI-40","Eaton Bussmann","AMI fuse 40 A, M5 bolt-down - HCFB H2, radiator fan relay",1,0),
- ("AMI-30","Eaton Bussmann","AMI fuse 30 A, M5 bolt-down - HCFB H3, condenser fan relay",1,0),
- ("AMI-60","Eaton Bussmann","AMI fuse 60 A, M5 bolt-down - HCFB H4, EPS pump relay",1,0),
- ("RL9080-301-F1RE","Amphenol","RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, RED - firewall POSITIVE. Mates RL00801-50RE each side.",1,0),
- ("RL9080-301-F1","Amphenol","RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, BLACK - firewall NEGATIVE. Mates RL00801-50BK each side.",1,0),
- ("1/0 AWG welding cable red/black","generic","Trunk battery +/−, firewall crossing, engine ground. Sized on voltage drop over a ~36 ft round trip: 1.06V cranking, 0.57V at 160A charge. 2 AWG was 13% cranking drop - too much. ~45 ft each colour.",1,0),
- ("2 AWG welding cable","generic","Alternator B+ to starter post only. Short engine-bay jumper, never crosses the firewall.",1,0),
- ("Jump lugs 1/0","generic","Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post",8,0),
- ("8 AWG TXL red/black","generic","EPS pump 12V/GND (passenger ABS trough) and uprated fan 12V/GND (core support)",1,0),
+ ("282080-1","TE Connectivity","HOUSING, PLUG, SUPERSEAL 1.5, 2 POS",1,2),
+ ("281934-2","TE Connectivity","SEAL, WIRE, SUPERSEAL 1.5",2,10),
+ ("AMI-50","Eaton Bussmann","FUSE, AMI, 50 A, M5 BOLT-DOWN",1,0),
+ ("AMI-40","Eaton Bussmann","FUSE, AMI, 40 A, M5 BOLT-DOWN",1,0),
+ ("AMI-30","Eaton Bussmann","FUSE, AMI, 30 A, M5 BOLT-DOWN",1,0),
+ ("AMI-TBD","Eaton Bussmann","FUSE, AMI, M5 BOLT-DOWN, RATING TBD - need MR-S EHPS pump current and Bussmann AMI datasheet",1,0),
+ ("RL9080-301-F1RE","Amphenol","RECEPTACLE, FEED-THROUGH, RADLOK 8.0, PANEL MOUNT, 200 A, 1 KV, RED, MATES RL00801-50RE",1,0),
+ ("RL9080-301-F1","Amphenol","RECEPTACLE, FEED-THROUGH, RADLOK 8.0, PANEL MOUNT, 200 A, 1 KV, BLACK, MATES RL00801-50BK",1,0),
+ ("1/0 AWG welding cable red/black","generic","CABLE, WELDING, 1/0 AWG, RED AND BLACK, APPROX 45 FT EACH COLOUR",1,0),
+ ("2 AWG welding cable","generic","CABLE, WELDING, 2 AWG",1,0),
+ ("Jump lugs 1/0","generic","LUG, RING, COPPER, 1/0 AWG",8,0),
+ ("8 AWG TXL red/black","generic","WIRE, ELECTRICAL, 8 AWG, RED AND BLACK, SAE J1128 TXL",1,0),
 
- ("Micro ISO relays x4","TE Connectivity","HEAD LH, HEAD RH, RTR, device-hold and alternator-excite relays replacing the PMU (plan 6.48). 8 owned; since 2026-09-25 only k_etb uses one (k_efi/k_fp/k_str/k_fan/k_fan2 moved to Maxi F7), so 7 are free.",4,4),
- ("2nd fuse block 12-16 way","generic","Glove box, for the ex-J/B2 body circuits: HEAD LH 15, HEAD RH 15, HAZ-HORN 15, DOME 20, RTR 30, CSB3 5, cluster 10, Pi 15, alt excite 5, ACPS (A/C pressure switch, IG) 5. TE 2141029-1 carries the engine circuits (F1-F4, F8-F13). Plan 6.48.",1,0),
- ("ANL 100A + holder","generic","Feed for the second fuse block off the PDB stud. Plan 6.48 / redistribution 8.",1,0),
- ("2127","Blue Sea Systems","PDB1 glove-box distribution block, 250A, four 5/16\"-18 studs. Starter is fed direct from the main cable per OEM (plan 6.20), so PDB1 carries accessories only.",1,0),
- ("2719","Blue Sea Systems","MaxiBus insulating cover for PDB1 / 2127. Not optional - PDB1 is inside the cabin.",1,0),
- ("ANL/MEGA 300A + holder","generic","MAIN battery fuse, within ~18in of the trunk battery positive. Protects the whole cabin run - OEM leaves the starter lead unfused but its battery is 2ft away, ours is 12ft. See plan 6.20.",1,0),
- ("ANL 175A + holder","generic","Alternator B+ protection. OEM uses 100A FL ALT for the stock alternator; scaled for the 160A unit. See plan 6.20.",1,0),
- ("Battery master cutoff","generic","Trunk, alongside the main fuse. Motorsport requirement and the sane place for it.",1,0),
- ("generic","generic","22 AWG WHITE TEFZEL, SINGLE CONDUCTOR, SHIELDED (tinned copper braid). EPS speed pulse Aux 7 -> pump conn B, and any other screened single signal. Shield grounded at the ECU end only. IN STOCK.",1,1),
- ("2428-011-2405","TE DEUTSCH","Backshell 24SZ right-angle L017",1,1),
- ("M902-2243","TE DEUTSCH","Backshell 24SZ straight L015",1,1),
- ("16-04477","TE DEUTSCH","Gasket 24SZ",6,4),
- ("2411-001-2405","TE DEUTSCH","Panel nut size 24",3,4),
+ ("Micro ISO relays x4","TE Connectivity","RELAY, PLUG-IN, MICRO ISO, 1 FORM A, 12 VDC COIL",4,4),
+ ("2nd fuse block 12-16 way","generic","FUSE BLOCK, BLADE, 12-16 WAY",1,0),
+ ("ANL 100A + holder","generic","FUSE, ANL, 100 A, WITH HOLDER",1,0),
+ ("2127","Blue Sea Systems","BUSBAR, POWERBAR, 250 A, FOUR 5/16-18 STUDS",1,0),
+ ("2719","Blue Sea Systems","COVER, INSULATING, MAXIBUS, FITS 2127",1,0),
+ ("ANL/MEGA 300A + holder","generic","FUSE, ANL OR MEGA, 300 A, WITH HOLDER",1,0),
+ ("ANL 175A + holder","generic","FUSE, ANL, 175 A, WITH HOLDER",1,0),
+ ("Battery master cutoff","generic","SWITCH, BATTERY MASTER CUTOFF",1,0),
+ ("generic","generic","CABLE, SHIELDED, 1 CONDUCTOR, 22 AWG, WHITE, ETFE (TEFZEL), TINNED COPPER BRAID",1,1),
+ ("2428-011-2405","TE DEUTSCH","BACKSHELL, 24SZ, RIGHT-ANGLE, L017",1,1),
+ ("M902-2243","TE DEUTSCH","BACKSHELL, 24SZ, STRAIGHT, L015",1,1),
+ ("16-04477","TE DEUTSCH","GASKET, 24SZ",6,4),
+ ("2411-001-2405","TE DEUTSCH","NUT, PANEL, SIZE 24",3,4),
 ]
 
 # Pin-side mates crimped onto device flying leads. Device side, so not drawn on
 # any loom (harness.design rule: the drawing ends at the harness connector).
 DEVICE_SIDE = [
- ("DT04-12PA","TE DEUTSCH","CONN RECP DT 12-WAY PIN SEALED A-KEY - alarm module lead, mates DT06-12SA",1),
+ ("DT04-12PA","TE DEUTSCH","CONN RECP DT 12-WAY PIN SEALED A-KEY",1),
  ("W12P","TE DEUTSCH","WEDGELOCK, DT, 12-WAY RECEPTACLE",1),
- ("DT04-2P","TE DEUTSCH","CONN RECP DT 2-WAY PIN SEALED - siren, status LED, valet switch leads",3),
+ ("DT04-2P","TE DEUTSCH","CONN RECP DT 2-WAY PIN SEALED",3),
  ("W2P","TE DEUTSCH","WEDGELOCK, DT, 2-WAY RECEPTACLE",3),
- ("DT04-3P","TE DEUTSCH","CONN RECP DT 3-WAY PIN SEALED - shock sensor lead",1),
+ ("DT04-3P","TE DEUTSCH","CONN RECP DT 3-WAY PIN SEALED",1),
  ("W3P","TE DEUTSCH","WEDGELOCK, DT, 3-WAY RECEPTACLE",1),
- ("0460-202-1631","TE DEUTSCH","CONTACT, PIN, SOLID, SIZE 16, 20-16 AWG, 13A, GOLD - device-lead mates",21),
+ ("0460-202-1631","TE DEUTSCH","CONTACT, PIN, SOLID, SIZE 16, 20-16 AWG, 13A, GOLD",21),
 ]
 
 req, meta = collections.Counter(), {}
@@ -173,7 +170,7 @@ rows_buy, rows_ok, rows_na = [], [], []
 for pn, n in sorted(req.items()):
     have = ONHAND.get(pn, 0); short = max(0, n - have)
     d_ = meta[pn]
-    r = (pn, d_.get("manufacturer",""), (d_.get("description") or "").split(" - OWNED")[0][:62], n, have, short)
+    r = (pn, d_.get("manufacturer",""), d_.get("description") or "", n, have, short)
     if NOT_A_PART.match(pn): rows_na.append(r)
     else: (rows_buy if short else rows_ok).append(r)
 for pn, mf, desc, n, have in EXTRA:
@@ -182,8 +179,8 @@ for pn, mf, desc, n, have in EXTRA:
 
 out = ["# Harness — need to buy",
  "",
- "Generated on %s from the eight `.harness` files in `docs/harness/rebuild/`:"
- % datetime.date.today().isoformat(),
+ "Generated on %s from the %d `.harness` files in `docs/harness/rebuild/`:"
+ % (datetime.date.today().isoformat(), len(F)),
  "`" + "`, `".join(x[6:-8] for x in F) + "`.",
  "On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.",
  "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",
@@ -207,6 +204,35 @@ out += ["", "## Counted once, drawn more than once", "",
  "| Connector | One part, drawn on | Counted in |", "|---|---|---|"]
 for cid, (looms, owner) in sorted(SHARED.items()):
     out.append("| `%s` | %s | %s |" % (cid, ", ".join(looms), owner))
+REG = model.registry()
+out += ["", "## Inline interfaces - one connector pair per harness boundary", "",
+ "Each half is counted once, on the harness that owns it (the receiving harness owns the",
+ "mating half). Contacts and wedgelocks come from each half's part configuration above.", "",
+ "| Interface | Family | Source half | Receiving half |", "|---|---|---|---|"]
+for ix in REG.get("interfaces", []):
+    s = next(h for h in ix["halves"] if h["role"] == "source")
+    r = next(h for h in ix["halves"] if h["role"] == "receiving")
+    out.append("| `%s` | %s | `%s` on %s | `%s` on %s |"
+               % (ix["id"], ix.get("family", ""), s["connector"], s["harness"], r["connector"], r["harness"]))
+fl_by = collections.Counter(f["harness"] for f in REG.get("flyingLeads", []))
+out += ["", "## OEM flying leads - splice material only, no OEM housing", "",
+ "Each lead is one solder sleeve (`GENERIC FLYING LEAD` above). The EWD locator for every lead",
+ "is in `interfaces.json` and in the build list's EWD column.", "",
+ "| Harness | Flying leads |", "|---|---:|"]
+for h, n in sorted(fl_by.items()):
+    out.append("| %s | %d |" % (h, n))
+cab = collections.Counter()
+for loom, fn in model.harness_files(REG).items():
+    d = model.load(fn)
+    cp = {p["id"]: p for p in d.get("cableParts", [])}
+    for cb in d.get("cables", []):
+        p = cp.get(cb.get("partId")) or {}
+        cab[(loom, p.get("partNumber", cb.get("partId")))] += 1
+out += ["", "## Screened cable pieces by owning harness", "",
+ "Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no connector.", "",
+ "| Harness | Cable | Pieces |", "|---|---|---:|"]
+for (loom, pn), n in sorted(cab.items()):
+    out.append("| %s | `%s` | %d |" % (loom, pn, n))
 out += ["", "## Still unspecified", "",
  "- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. "
  "Needs a real dash number per branch OD once the trunk diameters are known.",
