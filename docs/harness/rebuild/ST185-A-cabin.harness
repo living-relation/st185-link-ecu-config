@@ -130,7 +130,8 @@
         {
           "id": "a24",
           "signal": "Gnd Out",
-          "designation": "A24"
+          "designation": "A24",
+          "contactPartId": "ct_ss10_075"
         },
         {
           "id": "a25",
@@ -174,7 +175,8 @@
         {
           "id": "a32",
           "signal": "+5V Out",
-          "designation": "A32"
+          "designation": "A32",
+          "contactPartId": "ct_ss10_075"
         },
         {
           "id": "a33",
@@ -213,13 +215,13 @@
           "id": "c2",
           "designation": "2",
           "contactPartId": "ct_hdp16p",
-          "signal": "+5V Out to engine sensors"
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB"
         },
         {
           "id": "c3",
           "designation": "3",
           "contactPartId": "ct_hdp16p",
-          "signal": "Gnd Out to engine sensors"
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch"
         },
         {
           "id": "c4",
@@ -434,38 +436,38 @@
         {
           "id": "c39",
           "designation": "39",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP",
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c40",
           "designation": "40",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed",
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c41",
           "designation": "41",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank",
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c42",
           "designation": "42",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam",
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c43",
           "designation": "43",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed",
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c44",
           "designation": "44",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch",
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c45",
@@ -985,62 +987,6 @@
       "width": 270
     },
     {
-      "id": "br_w12_c",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: Gnd Out from sp_gndout at ECU A (crossover a)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 1110,
-        "y": 2670
-      }
-    },
-    {
-      "id": "br_w44",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: +5V from sp_5v at ECU A (crossover a)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1200,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 1770,
-        "y": 2640
-      }
-    },
-    {
-      "id": "br_w69",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: Gnd Out from sp_gndout at ECU A (crossover a)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 1110,
-        "y": 2670
-      }
-    },
-    {
-      "id": "br_w45",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: Gnd Out from sp_gndout at ECU A (crossover a)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 1110,
-        "y": 2670
-      }
-    },
-    {
       "id": "br_w_b25",
       "type": "Loose",
       "signal": "Broken off - continues on ST185-B-cabin: cabin chassis ground splice sp_chassis",
@@ -1136,34 +1082,6 @@
       "schematicPosition": {
         "x": 1770,
         "y": 3660
-      }
-    },
-    {
-      "id": "br_cab_rspur_5v",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: +5V from sp_5v at ECU A (crossover a)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1200,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 1770,
-        "y": 2640
-      }
-    },
-    {
-      "id": "br_cab_rspur_gnd",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: Gnd Out from sp_gndout at ECU A (crossover a)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 1110,
-        "y": 2670
       }
     },
     {
@@ -1440,7 +1358,7 @@
         "x": 2970,
         "y": 0
       },
-      "partId": "spp_solder_26_14",
+      "partId": "spp_solder_generic",
       "locationId": "bp_960",
       "layoutPosition": {
         "x": 1380,
@@ -1457,7 +1375,7 @@
         "x": 1710,
         "y": 2700
       },
-      "partId": "spp_crimp_14_10",
+      "partId": "spp_solder_generic",
       "locationId": "b_bp_900"
     },
     {
@@ -1470,7 +1388,7 @@
         "x": 1140,
         "y": 150
       },
-      "partId": "spp_solder_26_14",
+      "partId": "spp_solder_generic",
       "locationId": "bp_900"
     },
     {
@@ -1483,7 +1401,7 @@
         "x": 2190,
         "y": 2700
       },
-      "partId": "spp_solder_26_14",
+      "partId": "spp_solder_generic",
       "locationId": "b_bp_900"
     },
     {
@@ -1496,7 +1414,7 @@
         "x": 1710,
         "y": 3720
       },
-      "partId": "spp_crimp_10_6",
+      "partId": "spp_solder_generic",
       "locationId": "b_bp_1080"
     },
     {
@@ -1509,7 +1427,7 @@
         "x": 1050,
         "y": 2850
       },
-      "partId": "spp_solder_26_14",
+      "partId": "spp_solder_generic",
       "locationId": "b_bp_1020"
     },
     {
@@ -1522,7 +1440,7 @@
         "x": 1050,
         "y": 2730
       },
-      "partId": "spp_crimp_14_10",
+      "partId": "spp_solder_generic",
       "locationId": "b_bp_1140"
     },
     {
@@ -1535,8 +1453,34 @@
         "x": 1710,
         "y": 2760
       },
-      "partId": "spp_crimp_10_6",
+      "partId": "spp_solder_generic",
       "locationId": "b_bp_1170"
+    },
+    {
+      "id": "sp_5v_bha",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_840",
+      "layoutPosition": {
+        "x": 900,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 2340,
+        "y": 2700
+      }
+    },
+    {
+      "id": "sp_gnd_bha",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_840",
+      "layoutPosition": {
+        "x": 960,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 2340,
+        "y": 2820
+      }
     }
   ],
   "resistors": [
@@ -2049,7 +1993,7 @@
         "id": "sp_5v",
         "handle": "Splice"
       },
-      "partId": "wp_20_org"
+      "partId": "wp_18_org"
     },
     {
       "id": "w210",
@@ -2089,8 +2033,8 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
+      "partId": "wp_18_blk_wht",
+      "stripeColor": "White"
     },
     {
       "id": "w40",
@@ -2188,7 +2132,7 @@
     {
       "id": "w_rail_sp_5v_c",
       "source": {
-        "id": "sp_5v",
+        "id": "sp_5v_bha",
         "handle": "Splice"
       },
       "target": {
@@ -2196,12 +2140,12 @@
         "handle": "c2"
       },
       "color": "Orange",
-      "partId": "wp_18_org"
+      "partId": "wp_20_org"
     },
     {
       "id": "w_rail_sp_gndout_c",
       "source": {
-        "id": "sp_gndout",
+        "id": "sp_gnd_bha",
         "handle": "Splice"
       },
       "target": {
@@ -2209,8 +2153,8 @@
         "handle": "c3"
       },
       "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
+      "partId": "wp_20_blk_wht",
+      "stripeColor": "White"
     },
     {
       "id": "w_rail_sp_8v_c",
@@ -2435,60 +2379,6 @@
       "partId": "wp_10_red"
     },
     {
-      "id": "w12_c_ac",
-      "source": {
-        "id": "sp_gndout",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w12_c",
-        "handle": "Terminal"
-      },
-      "color": "Black",
-      "partId": "wp_20_blk"
-    },
-    {
-      "id": "w44_ac",
-      "source": {
-        "id": "sp_5v",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w44",
-        "handle": "Terminal"
-      },
-      "color": "Orange",
-      "partId": "wp_20_org"
-    },
-    {
-      "id": "w69_ac",
-      "source": {
-        "id": "sp_gndout",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w69",
-        "handle": "Terminal"
-      },
-      "color": "Black",
-      "partId": "wp_20_blk_wht",
-      "stripeColor": "White"
-    },
-    {
-      "id": "w45_ac",
-      "source": {
-        "id": "sp_gndout",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w45",
-        "handle": "Terminal"
-      },
-      "color": "Black",
-      "partId": "wp_20_blk_wht",
-      "stripeColor": "White"
-    },
-    {
       "id": "w_b25_ac",
       "source": {
         "id": "sp_chassis",
@@ -2551,7 +2441,7 @@
         "handle": "Terminal"
       },
       "color": "Black",
-      "partId": "wp_20_blk_wht",
+      "partId": "wp_18_blk_wht",
       "stripeColor": "White"
     },
     {
@@ -2579,32 +2469,6 @@
       },
       "color": "Red",
       "partId": "wp_18_red"
-    },
-    {
-      "id": "cab_rspur_5v_ac",
-      "source": {
-        "id": "sp_5v",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_cab_rspur_5v",
-        "handle": "Terminal"
-      },
-      "color": "Orange",
-      "partId": "wp_20_org"
-    },
-    {
-      "id": "cab_rspur_gnd_ac",
-      "source": {
-        "id": "sp_gndout",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_cab_rspur_gnd",
-        "handle": "Terminal"
-      },
-      "color": "Black",
-      "partId": "wp_20_blk"
     },
     {
       "id": "w_fb_k_fan2_30_ac",
@@ -2762,6 +2626,115 @@
       },
       "color": "Green",
       "partId": "wp_20_grn"
+    },
+    {
+      "id": "w_5v_bha_trunk",
+      "source": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_5v_bha",
+        "handle": "Splice"
+      },
+      "color": "Orange",
+      "partId": "wp_18_org"
+    },
+    {
+      "id": "w_gnd_bha_trunk",
+      "source": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_gnd_bha",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_18_blk_wht"
+    },
+    {
+      "id": "w_5v_a_c39",
+      "source": {
+        "id": "sp_5v_bha",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c39"
+      },
+      "color": "Orange",
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w_5v_a_c40",
+      "source": {
+        "id": "sp_5v_bha",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c40"
+      },
+      "color": "Orange",
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w_gnd_a_c41",
+      "source": {
+        "id": "sp_gnd_bha",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c41"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_gnd_a_c42",
+      "source": {
+        "id": "sp_gnd_bha",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c42"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_gnd_a_c43",
+      "source": {
+        "id": "sp_gnd_bha",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c43"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_gnd_a_c44",
+      "source": {
+        "id": "sp_gnd_bha",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c44"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
     }
   ],
   "cables": [
@@ -3283,42 +3256,6 @@
       }
     },
     {
-      "id": "bn_b_bp_1140__br_w12_c",
-      "sourceId": "b_bp_1140",
-      "targetId": "br_w12_c",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_b_bp_900__br_w44",
-      "sourceId": "b_bp_900",
-      "targetId": "br_w44",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_b_bp_1140__br_w69",
-      "sourceId": "b_bp_1140",
-      "targetId": "br_w69",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_b_bp_1140__br_w45",
-      "sourceId": "b_bp_1140",
-      "targetId": "br_w45",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_b_bp_1170__br_w_b25",
       "sourceId": "b_bp_1170",
       "targetId": "br_w_b25",
@@ -3376,24 +3313,6 @@
       "id": "bn_b_bp_1080__br_w_k_eps_86",
       "sourceId": "b_bp_1080",
       "targetId": "br_w_k_eps_86",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_b_bp_900__br_cab_rspur_5v",
-      "sourceId": "b_bp_900",
-      "targetId": "br_cab_rspur_5v",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_b_bp_1140__br_cab_rspur_gnd",
-      "sourceId": "b_bp_1140",
-      "targetId": "br_cab_rspur_gnd",
       "length": {
         "value": 50,
         "unit": "mm"
@@ -3800,7 +3719,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nCabin fuse block (passenger gl F12: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nCabin fuse block (passenger gl F13: 7.5A - MRS EPS pump logic enable (ignition-switched)\nHigh-current fuse block HCFB H4: EPS pump relay 30 (k_eps on ST185-B-cabin) - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A - its B leg (bulkhead B c13, rear WS spur, fuel level pull-up) is drawn on ST185-B-cabin (broken off), crossover (a)\nsp_gndout (Splice): Gnd Out at ECU A - its B leg (B22, bulkhead B c17/c19, rear WS spur, fuel level) is drawn on ST185-B-cabin (broken off), crossover (a)\nsp_sw12 (Splice): switched 12V bus - its B-side loads (condenser fan and EPS relay coils, VSS feed on bulkhead B c20) are drawn on ST185-B-cabin (broken off)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nCabin fuse block (passenger gl F12: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nCabin fuse block (passenger gl F13: 7.5A - MRS EPS pump logic enable (ignition-switched)\nHigh-current fuse block HCFB H4: EPS pump relay 30 (k_eps on ST185-B-cabin) - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A (A32 lead 18 AWG) - feeds sp_5v_bha before bulkhead A (c2, c39, c40 at 20 AWG) and an 18 AWG trunk to sp_5v_b on ST185-B-cabin (broken off), crossover (a)\nsp_gndout (Splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds sp_gnd_bha before bulkhead A (c3, c41-c44 at 20 AWG) and an 18 AWG tie to sp_gndout_b at ECU B22 on ST185-B-cabin (broken off), crossover (a)\nsp_sw12 (Splice): switched 12V bus - its B-side loads (condenser fan and EPS relay coils, VSS feed on bulkhead B c20) are drawn on ST185-B-cabin (broken off)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)",
       "schematicPosition": {
         "x": 4200,
         "y": 0
@@ -4115,6 +4034,18 @@
       "manufacturer": "TBD",
       "color": "Red",
       "description": "WIRE, EPS PUMP FEED, GAUGE TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced"
+    },
+    {
+      "id": "wp_18_blk_wht",
+      "partNumber": "EW-1C18-BLK-WHT",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 18 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
     }
   ],
   "connectorParts": [
@@ -4310,46 +4241,10 @@
   ],
   "spliceParts": [
     {
-      "partNumber": "GENERIC SOLDER SLEEVE 26-14",
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "minGauge": {
-        "value": 26,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, SOLDER SLEEVE, WITH ADHESIVE HEATSHRINK, COMBINED 26-14 AWG (Raychem D-406 class)",
-      "id": "spp_solder_26_14"
-    },
-    {
-      "partNumber": "GENERIC CRIMP SPLICE 10-6",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, ADHESIVE HEATSHRINK OVER",
-      "id": "spp_crimp_10_6"
-    },
-    {
-      "partNumber": "GENERIC CRIMP SPLICE 14-10",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
-      "id": "spp_crimp_14_10"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
     }
   ],
   "contactParts": [

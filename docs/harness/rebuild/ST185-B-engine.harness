@@ -85,14 +85,14 @@
         {
           "id": "c13",
           "designation": "13",
-          "signal": "+5V Out to B engine sensors (from sp_5v at ECU A)",
+          "signal": "+5V Out to B engine sensors (bulkhead splice sp_5v_b, 20 AWG) - oil / fuel / coolant pressure",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c14",
           "designation": "14",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gnd Out to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil / coolant pressure branch",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c15",
@@ -121,7 +121,7 @@
         {
           "id": "c19",
           "designation": "19",
-          "signal": "Gnd Out to B engine sensors (from sp_gndout at ECU A)",
+          "signal": "Gnd Out to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT branch",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -133,8 +133,8 @@
         {
           "id": "c21",
           "designation": "21",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gnd Out to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
+          "contactPartId": "ct_hdp16s"
         }
       ],
       "layoutPosition": {
@@ -409,7 +409,7 @@
   "splices": [
     {
       "id": "sp_5v_b_eng",
-      "partId": "spp_crimp_14_10",
+      "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": 1380,
         "y": 120
@@ -417,11 +417,12 @@
       "schematicPosition": {
         "x": 1920,
         "y": 1560
-      }
+      },
+      "locationId": "be_750"
     },
     {
       "id": "sp_gndout_b_eng",
-      "partId": "spp_crimp_14_10",
+      "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": 1440,
         "y": 120
@@ -429,6 +430,33 @@
       "schematicPosition": {
         "x": 1920,
         "y": 1800
+      },
+      "locationId": "be_480"
+    },
+    {
+      "id": "sp_gndout_b_eng2",
+      "partId": "spp_solder_generic",
+      "locationId": "be_570",
+      "layoutPosition": {
+        "x": 1290,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 1920,
+        "y": 2040
+      }
+    },
+    {
+      "id": "sp_gndout_b_eng3",
+      "partId": "spp_solder_generic",
+      "locationId": "be_870",
+      "layoutPosition": {
+        "x": 2490,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 1920,
+        "y": 2280
       }
     }
   ],
@@ -586,7 +614,7 @@
         "handle": "c3"
       },
       "target": {
-        "id": "sp_gndout_b_eng",
+        "id": "sp_gndout_b_eng2",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -600,7 +628,7 @@
         "handle": "c3"
       },
       "target": {
-        "id": "sp_gndout_b_eng",
+        "id": "sp_gndout_b_eng3",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -614,7 +642,7 @@
         "handle": "c3"
       },
       "target": {
-        "id": "sp_gndout_b_eng",
+        "id": "sp_gndout_b_eng2",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -693,7 +721,7 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_gndout_b_eng",
+        "id": "sp_gndout_b_eng3",
         "handle": "Splice"
       },
       "partId": "wp_20_blk"
@@ -722,7 +750,7 @@
         "handle": "Splice"
       },
       "color": "Orange",
-      "partId": "wp_18_org"
+      "partId": "wp_20_org"
     },
     {
       "id": "w_rail_gnd_b_e",
@@ -732,6 +760,34 @@
       },
       "target": {
         "id": "sp_gndout_b_eng",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_gnd_b_e_c14",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c14"
+      },
+      "target": {
+        "id": "sp_gndout_b_eng2",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_gnd_b_e_c21",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c21"
+      },
+      "target": {
+        "id": "sp_gndout_b_eng3",
         "handle": "Splice"
       },
       "color": "Black",
@@ -1437,18 +1493,10 @@
   ],
   "spliceParts": [
     {
-      "partNumber": "GENERIC CRIMP SPLICE 14-10",
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "minGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
-      "id": "spp_crimp_14_10"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
     }
   ],
   "contactParts": [

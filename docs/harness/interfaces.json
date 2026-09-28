@@ -653,8 +653,8 @@
       ],
       "spurHarness": "B-cabin",
       "spur": {
-        "c1": "sp_5v",
-        "c2": "sp_gndout",
+        "c1": "sp_5v_b",
+        "c2": "sp_gndout_b",
         "c3": "ecu_b.b20",
         "c4": "ecu_b.b19",
         "c5": "sp_shield_b"
@@ -705,66 +705,6 @@
   ],
   "breaks": [
     {
-      "id": "BR_W12_C",
-      "type": "broken_off",
-      "what": "Gnd Out from sp_gndout at ECU A (crossover a)",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w12_c"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w12_c"
-        }
-      ]
-    },
-    {
-      "id": "BR_W44",
-      "type": "broken_off",
-      "what": "+5V from sp_5v at ECU A (crossover a)",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w44"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w44"
-        }
-      ]
-    },
-    {
-      "id": "BR_W69",
-      "type": "broken_off",
-      "what": "Gnd Out from sp_gndout at ECU A (crossover a)",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w69"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w69"
-        }
-      ]
-    },
-    {
-      "id": "BR_W45",
-      "type": "broken_off",
-      "what": "Gnd Out from sp_gndout at ECU A (crossover a)",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w45"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w45"
-        }
-      ]
-    },
-    {
       "id": "BR_W_B25",
       "type": "broken_off",
       "what": "cabin chassis ground splice sp_chassis",
@@ -812,7 +752,7 @@
     {
       "id": "BR_W_RAIL_5V_B_C",
       "type": "broken_off",
-      "what": "+5V from sp_5v at ECU A (crossover a)",
+      "what": "+5V trunk (18 AWG) from sp_5v at ECU A to the loom B splice sp_5v_b (crossover a)",
       "ends": [
         {
           "harness": "B-cabin",
@@ -827,7 +767,7 @@
     {
       "id": "BR_W_RAIL_GND_B_C",
       "type": "broken_off",
-      "what": "Gnd Out from sp_gndout at ECU A (crossover a)",
+      "what": "Gnd Out tie (18 AWG) between sp_gndout at ECU A and sp_gndout_b at ECU B22 (crossover a)",
       "ends": [
         {
           "harness": "B-cabin",
@@ -866,36 +806,6 @@
         {
           "harness": "A-cabin",
           "terminal": "br_w_k_eps_86"
-        }
-      ]
-    },
-    {
-      "id": "BR_CAB_RSPUR_5V",
-      "type": "broken_off",
-      "what": "+5V from sp_5v at ECU A (crossover a)",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_cab_rspur_5v"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_cab_rspur_5v"
-        }
-      ]
-    },
-    {
-      "id": "BR_CAB_RSPUR_GND",
-      "type": "broken_off",
-      "what": "Gnd Out from sp_gndout at ECU A (crossover a)",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_cab_rspur_gnd"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_cab_rspur_gnd"
         }
       ]
     },

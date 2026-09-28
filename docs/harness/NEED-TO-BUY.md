@@ -9,20 +9,17 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / | 58 | 0 | **58** |
-| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity | 43 | 0 | **43** |
+| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / | 64 | 0 | **64** |
+| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice po | 39 | 0 | **39** |
+| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD | 32 | 0 | **32** |
+| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity | 31 | 0 | **31** |
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD - joined to the vehicle circuit at insta | 28 | 0 | **28** |
-| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD | 26 | 0 | **26** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.2 | 23 | 0 | **23** |
-| `GENERIC SOLDER SLEEVE 26-14` | generic | SPLICE, SOLDER SLEEVE, WITH ADHESIVE HEATSHRINK, COMBINED 26-1 | 17 | 0 | **17** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0 | 16 | 6 | **10** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 10 | 0 | **10** |
-| `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG | 9 | 0 | **9** |
-| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity | 8 | 0 | **8** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY - ha | 10 | 2 | **8** |
 | `Jump lugs 1/0` | generic | Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post | 8 | 0 | **8** |
 | `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED,  | 6 | 0 | **6** |
-| `GENERIC CRIMP SPLICE 10-6` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, | 6 | 0 | **6** |
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10  | 6 | 0 | **6** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT | 17 | 12 | **5** |
 | `1-1355877-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 1.0-2.5 MM2 (18-14 A | 5 | 0 | **5** |
@@ -30,6 +27,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY - | 5 | 0 | **5** |
 | `GENERIC HEAVY FLYING LEAD 10-6` | generic | TERMINAL, FLYING LEAD, HEAVY - joined to the factory lead with | 5 | 0 | **5** |
 | `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 5 | 0 | **5** |
+| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity | 4 | 0 | **4** |
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTA | 4 | 0 | **4** |
 | `1393310-4` | TE Connectivity | SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS - harness side of t | 5 | 1 | **4** |
 | `15419715` | Aptiv | CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6 - fu | 4 | 0 | **4** |
@@ -103,9 +101,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
 | `0413-214-1205` | PLUG, SEALING, CAVITY, SIZE 12, YELLOW - unused size 12 cavity | 4 | 10 |
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT recep | 61 | 130 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT recep | 63 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT pl | 57 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT pl | 59 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS -  | 1 | 1 |
@@ -118,8 +116,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `281934-2` | Superseal 1.5 wire seal - HCR 150 coil plug | 2 | 10 |
 | `282080-1` | Superseal 1.5 2-way plug housing - HCR 150 (k_eps) coil mate; contacts 282110-1 are on the drawing | 1 | 2 |
 | `282110-1` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-1 | 2 | 10 |
-| `3-1447221-3` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.75-0.85 MM2 (18 | 14 | 68 |
-| `3-1447221-4` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.5 MM2 (20 AWG), | 44 | 68 |
+| `3-1447221-3` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.75-0.85 MM2 (18 | 17 | 68 |
+| `3-1447221-4` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.5 MM2 (20 AWG), | 41 | 68 |
 | `4-1437290-0` | CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET C | 1 | 2 |
 | `4-1437290-1` | CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 2, SOCKET C | 1 | 2 |
 | `4-1904124-2` | RELAY, PLUG-IN, MICRO ISO, TE Micro Relay A V23074-A1001-A402  | 1 | 2 |

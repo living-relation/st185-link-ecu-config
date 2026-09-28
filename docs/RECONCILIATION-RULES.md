@@ -147,6 +147,13 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     one leg to cabin bulkhead A for the A sensors, one to cabin bulkhead B for the B
     sensors. ECU B has no +5V. B22 is a native Gnd Out on ECU B, drawn on the same net as
     A24 - **unverified**: Link's documentation says nothing about tying the two.
+    **Tapered distribution (Daniel, 2026-09-28):** the ECU pin leads (A32, A24, B22) are
+    18 AWG (the largest the Superseal 1.0 contact takes); 18 AWG trunks run from the ECU
+    splices to a splice just before each cabin bulkhead (`sp_5v_bha` / `sp_gnd_bha` on A,
+    `sp_5v_b` / `sp_gnd_bhb` on B); each rail then crosses on several 20 AWG bulkhead pins
+    (A: c2, c39, c40 +5V; c3, c41-c44 Gnd. B: c13 +5V; c14, c17, c19, c21 Gnd) that run
+    straight to one device or to a small engine-side branch splice. Every splice is a
+    generic soldered splice point.
   - **(b)** ETB: relay trigger on A20, H-bridge supply on B5 (by ECU pin design).
   - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design). All pedal
     wiring stays in the cabin: the A pedal wires break off `ST185-A-cabin` and the B33

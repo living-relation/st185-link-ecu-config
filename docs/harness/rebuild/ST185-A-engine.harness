@@ -20,13 +20,13 @@
           "id": "c2",
           "designation": "2",
           "contactPartId": "ct_hdp16s",
-          "signal": "+5V Out to engine sensors"
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB"
         },
         {
           "id": "c3",
           "designation": "3",
           "contactPartId": "ct_hdp16s",
-          "signal": "Gnd Out to engine sensors"
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch"
         },
         {
           "id": "c4",
@@ -241,38 +241,38 @@
         {
           "id": "c39",
           "designation": "39",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c40",
           "designation": "40",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c41",
           "designation": "41",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c42",
           "designation": "42",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c43",
           "designation": "43",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c44",
           "designation": "44",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c45",
@@ -993,19 +993,6 @@
   ],
   "splices": [
     {
-      "id": "sp_5v_eng",
-      "layoutPosition": {
-        "x": 2070,
-        "y": 120
-      },
-      "schematicPosition": {
-        "x": 1830,
-        "y": 810
-      },
-      "partId": "spp_crimp_14_10",
-      "locationId": "be_750"
-    },
-    {
       "id": "sp_sw12_eng",
       "layoutPosition": {
         "x": 1710,
@@ -1015,7 +1002,7 @@
         "x": 1830,
         "y": 390
       },
-      "partId": "spp_crimp_14_10",
+      "partId": "spp_solder_generic",
       "locationId": "be_660"
     },
     {
@@ -1028,7 +1015,7 @@
         "x": 1830,
         "y": 690
       },
-      "partId": "spp_crimp_10_6",
+      "partId": "spp_solder_generic",
       "locationId": "be_660"
     },
     {
@@ -1041,7 +1028,7 @@
         "x": 2490,
         "y": 720
       },
-      "partId": "spp_crimp_10_6",
+      "partId": "spp_solder_generic",
       "locationId": "be_750"
     },
     {
@@ -1054,7 +1041,7 @@
         "x": 2490,
         "y": 1530
       },
-      "partId": "spp_crimp_10_6"
+      "partId": "spp_solder_generic"
     },
     {
       "id": "sp_cop_eng",
@@ -1066,7 +1053,20 @@
         "x": 2490,
         "y": 930
       },
-      "partId": "spp_crimp_10_6"
+      "partId": "spp_solder_generic"
+    },
+    {
+      "id": "sp_gndout_eng2",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_750",
+      "layoutPosition": {
+        "x": 2130,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 2490,
+        "y": 2100
+      }
     }
   ],
   "wires": [
@@ -1308,12 +1308,12 @@
       "id": "w218",
       "color": "Orange",
       "source": {
-        "id": "turbospd",
-        "handle": "c1"
+        "id": "bh_a_eng",
+        "handle": "c40"
       },
       "target": {
-        "id": "sp_5v_eng",
-        "handle": "Splice"
+        "id": "turbospd",
+        "handle": "c1"
       },
       "partId": "wp_20_org"
     },
@@ -1347,12 +1347,12 @@
       "id": "w206",
       "color": "Orange",
       "source": {
-        "id": "map",
-        "handle": "c1"
+        "id": "bh_a_eng",
+        "handle": "c39"
       },
       "target": {
-        "id": "sp_5v_eng",
-        "handle": "Splice"
+        "id": "map",
+        "handle": "c1"
       },
       "partId": "wp_20_org"
     },
@@ -1360,12 +1360,12 @@
       "id": "w126",
       "color": "Orange",
       "source": {
-        "id": "etb",
-        "handle": "c3"
+        "id": "bh_a_eng",
+        "handle": "c2"
       },
       "target": {
-        "id": "sp_5v_eng",
-        "handle": "Splice"
+        "id": "etb",
+        "handle": "c3"
       },
       "partId": "wp_20_org"
     },
@@ -1387,12 +1387,12 @@
       "id": "w2",
       "color": "Black",
       "source": {
-        "id": "crank",
-        "handle": "c2"
+        "id": "bh_a_eng",
+        "handle": "c41"
       },
       "target": {
-        "id": "sp_gndout_eng",
-        "handle": "Splice"
+        "id": "crank",
+        "handle": "c2"
       },
       "stripeColor": "White",
       "partId": "wp_20_blk_wht"
@@ -1429,12 +1429,12 @@
       "id": "w24",
       "color": "Black",
       "source": {
-        "id": "cam",
-        "handle": "c3"
+        "id": "bh_a_eng",
+        "handle": "c42"
       },
       "target": {
-        "id": "sp_gndout_eng",
-        "handle": "Splice"
+        "id": "cam",
+        "handle": "c3"
       },
       "stripeColor": "White",
       "partId": "wp_20_blk_wht"
@@ -1447,7 +1447,7 @@
         "handle": "c3"
       },
       "target": {
-        "id": "sp_gndout_eng",
+        "id": "sp_gndout_eng2",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1461,7 +1461,7 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_gndout_eng",
+        "id": "sp_gndout_eng2",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1471,12 +1471,12 @@
       "id": "w17",
       "color": "Black",
       "source": {
-        "id": "turbospd",
-        "handle": "c3"
+        "id": "bh_a_eng",
+        "handle": "c43"
       },
       "target": {
-        "id": "sp_gndout_eng",
-        "handle": "Splice"
+        "id": "turbospd",
+        "handle": "c3"
       },
       "stripeColor": "White",
       "partId": "wp_20_blk_wht"
@@ -1559,19 +1559,6 @@
         "handle": "Splice"
       },
       "partId": "wp_20_blk"
-    },
-    {
-      "id": "w_rail_sp_5v_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "sp_5v_eng",
-        "handle": "Splice"
-      },
-      "color": "Orange",
-      "partId": "wp_18_org"
     },
     {
       "id": "w_rail_sp_gndout_e",
@@ -1847,6 +1834,20 @@
       },
       "color": "Red",
       "partId": "wp_14_red"
+    },
+    {
+      "id": "w_gnd_a_e_c44",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c44"
+      },
+      "target": {
+        "id": "sp_gndout_eng2",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
     }
   ],
   "cables": [
@@ -2912,32 +2913,10 @@
   ],
   "spliceParts": [
     {
-      "partNumber": "GENERIC CRIMP SPLICE 10-6",
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, ADHESIVE HEATSHRINK OVER",
-      "id": "spp_crimp_10_6"
-    },
-    {
-      "partNumber": "GENERIC CRIMP SPLICE 14-10",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
-      "id": "spp_crimp_14_10"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
     }
   ],
   "contactParts": [
