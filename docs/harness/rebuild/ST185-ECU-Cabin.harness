@@ -437,30 +437,6 @@
       }
     },
     {
-      "id": "fuellvl",
-      "label": "Fuel Level Sender",
-      "partId": "cp_mp150_2",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 3270,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "width": 150
-    },
-    {
       "id": "csb3io",
       "label": "ECUMaster CSB3 - Power/CAN/Switch I/O",
       "width": 390,
@@ -1595,6 +1571,32 @@
         "x": 1800,
         "y": 450
       }
+    },
+    {
+      "id": "ix_fuel_r",
+      "label": "Fuel level - 2-way inline to Rear Fuel harness (IX_FUEL_LVL)",
+      "width": 270,
+      "partId": "cp_dt04_2p",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Fuel level ground -> Gnd Out"
+        }
+      ],
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 3270,
+        "y": 90
+      }
     }
   ],
   "splices": [
@@ -2360,7 +2362,7 @@
       "id": "w_fl_sig",
       "color": "White",
       "source": {
-        "id": "fuellvl",
+        "id": "ix_fuel_r",
         "handle": "c1"
       },
       "target": {
@@ -2745,7 +2747,7 @@
       "id": "w45",
       "color": "Black",
       "source": {
-        "id": "fuellvl",
+        "id": "ix_fuel_r",
         "handle": "c2"
       },
       "target": {
@@ -3482,9 +3484,9 @@
       }
     },
     {
-      "id": "bn_bp_2100__fuellvl",
+      "id": "bn_bp_2100__ix_fuel_r",
       "sourceId": "bp_2100",
-      "targetId": "fuellvl",
+      "targetId": "ix_fuel_r",
       "length": {
         "value": 290,
         "unit": "mm"
@@ -3869,9 +3871,9 @@
       }
     },
     {
-      "id": "b_bn_bp_2130__fuellvl",
+      "id": "b_bn_bp_2130__ix_fuel_r",
       "sourceId": "b_bp_2130",
-      "targetId": "fuellvl",
+      "targetId": "ix_fuel_r",
       "length": {
         "value": 290,
         "unit": "mm"
@@ -4606,26 +4608,6 @@
         "source": "url",
         "url": "https://www.te.com/catalog/common/images/PartImages/prhdp24-24-21pn.jpg",
         "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp24-24-21pn.jpg"
-      }
-    },
-    {
-      "partNumber": "12052641",
-      "manufacturer": "Aptiv",
-      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 2 POS, SEALED, SOCKET CONTACTS - fuel level sender / boost solenoid",
-      "numberOfCavities": 2,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_mp150_skt"
-        }
-      ],
-      "id": "cp_mp150_2",
-      "image": {
-        "source": "url",
-        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/12052641982_SPL.jpg",
-        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/12052641982_SPL.jpg"
       }
     },
     {

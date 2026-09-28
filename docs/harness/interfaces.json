@@ -47,6 +47,11 @@
       "physical": "A/C amplifier spur - receiving half of IX_AC_CTS to flying leads at the auto A/C amplifier",
       "legacyXref": false
     },
+    "RearFuel": {
+      "file": "ST185-RearFuel.harness",
+      "physical": "Rear Fuel - fuel level sender behind IX_FUEL_LVL (the pump run stays on the ECU/cabin harness, plan 6.41)",
+      "legacyXref": false
+    },
     "AntiTheft": {
       "file": "ST185-AntiTheft.harness",
       "physical": "Anti-theft",
@@ -121,6 +126,27 @@
         {
           "harness": "ACAmp-Spur",
           "connector": "ix_accts_p",
+          "role": "receiving"
+        }
+      ]
+    },
+    {
+      "id": "IX_FUEL_LVL",
+      "type": "inline_interface",
+      "family": "Deutsch DT 2-way (DT04-2P / DT06-2S)",
+      "pins": {
+        "c1": "fuel level signal -> B24",
+        "c2": "fuel level ground -> Gnd Out"
+      },
+      "halves": [
+        {
+          "harness": "ECU-Cabin",
+          "connector": "ix_fuel_r",
+          "role": "source"
+        },
+        {
+          "harness": "RearFuel",
+          "connector": "ix_fuel_p",
           "role": "receiving"
         }
       ]
