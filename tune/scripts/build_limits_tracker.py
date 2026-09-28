@@ -209,13 +209,13 @@ ECU_ROWS = [
         "°C",
         "—",
         "—",
-        "Continental flex sensor DI 2 — same signal as ethanol%",
+        "Continental flex sensor DI 2 — same signal as ethanol%. Gated on sensor validity: AND Ethanol Sensor Fault = false",
         "Fuel Cut — must be configured as an actual cut, not a derate",
         "FUEL CUT (byte 2) — only asserts if Fuel Cut % is actually nonzero",
         "N",
         "Active — NOT loosened for v1 (vapor-lock/safety, matches RealDash alarm)",
         str(date.today()),
-        "See tune/limits.yaml fuel_temp_c; canbus.c only raises FUEL CUT when byte 2 > 0",
+        "See tune/limits.yaml fuel_temp_c.limit_condition; canbus.c only raises FUEL CUT when byte 2 > 0. Validity gate lets fault-substitute default to 90C (richest) for hot-restart protection without self-triggering this cut.",
     ],
     # Oil temp
     [

@@ -74,13 +74,17 @@ If vacuum-reference load is unstable at overlap (sub-30 kPa MAP flutter):
       `boost_target_psi.csv`'s street-seed ceiling), gated directly on the PCLink Ethanol
       Sensor Fault flag — not on the ethanol% value — so it still engages even though that
       value now reads a "full boost is fine" 100%.
-  - **Fuel Temp channel** — single substitute, **55°C** (the warn threshold, not the tables'
-    90°C top row) — read by `fuel_temp_density_comp.csv` and `warmup_fuel_temp_trim.csv`, which
-    agree on direction (rich), so no clamp is needed there. But 90°C would cross
-    `tune/limits.yaml`'s `ecu_limits.fuel_temp_c.limit_c` (70°C hard Fuel Cut): if that cut
-    reads the same fault-substituted value, defaulting to 90 would trip it and stall the engine
-    on every sensor fault — exactly backwards from "fail rich, keep running." 55°C gives
-    meaningful richness while staying below the cut with margin.
+  - **Fuel Temp channel** — single substitute, **90°C** (the tables' richest row) — read by
+    `fuel_temp_density_comp.csv` and `warmup_fuel_temp_trim.csv`, which agree on direction
+    (rich), so no clamp is needed between them. The real risk is the hard Fuel Cut in
+    `tune/limits.yaml` (`ecu_limits.fuel_temp_c.limit_c`, 70°C): a sensor fault is plausibly a
+    *thermal* failure (heat-damaged wiring/connector), so it's disproportionately likely to
+    coincide with a genuinely hot-soak restart — exactly the case these tables exist to protect.
+    A weaker substitute (e.g. staying below 70°C to dodge the cut) would under-fuel that exact
+    scenario. Instead the cut itself is gated on sensor **validity**
+    (`fuel_temp_c.limit_condition`: `fuel_temp_c > 70 AND Ethanol Sensor Fault = false`, the
+    same multi-condition pattern `oil_press` already uses), so the fault-substituted 90°C
+    cannot self-trigger the cut, while a genuinely valid >70°C reading still can.
   Configure all of this in PCLink's Ethanol Sensor Fault / DI error handling — never silently
   hold the last-good value.
 
