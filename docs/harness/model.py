@@ -121,7 +121,7 @@ class Graph:
 
     def node(self, loom, e):
         nid, h = e.get("id", ""), e.get("handle")
-        if nid in ("ecu_a", "ecu_b"):
+        if nid in ("ecu_a", "ecu_b", "ecu_com"):
             return ("ECU", nid, h)
         if nid.startswith(("dm_ecu_a_", "dm_ecu_b_")):
             p = nid.split("_")

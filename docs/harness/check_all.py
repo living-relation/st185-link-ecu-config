@@ -2,11 +2,13 @@
 
     python docs/harness/check_all.py
 
-What it runs, in order - every one is a hard gate:
+What it runs, in order - every one in HARD is a hard gate:
 
   validate_sot.py          sot/channels.csv, and every drawing against it
   sync_io_table.py --check XTREMEX-IO-TABLE.html agrees with sot/channels.csv
-  lint_v09.py              schema and reference check, all nine looms
+  lint_v09.py              schema and reference check, every loom
+  validate_ownership.py    every drawing registered, one owner per conductor and part
+  validate_interfaces.py   inline interfaces are real, matched connector pairs
   verify_rebuild.py        no connection lost against the frozen legacy baseline
   audit_cavity_parts.py    no cavity claims both a contact and a sealing plug
   audit_shields.py         docs/SHIELD-RULES.md, enforced
@@ -17,14 +19,20 @@ What it runs, in order - every one is a hard gate:
   buylist.py               buy list, and the shared-connector consistency check
   buildlist.py             per-wire build list
   make_min.py              the upload copies in min/
+
+SOFT gates report but do not fail the run. A gate starts SOFT only while the
+drawings it checks are still being migrated (redesign/IMPLEMENTATION-PLAN.md);
+it moves to HARD the day it first reports zero, and a HARD gate never goes back.
 """
 import subprocess, sys, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
+        ["validate_ownership.py"], ["validate_interfaces.py"],
         ["verify_rebuild.py"], ["audit_cavity_parts.py"], ["audit_shields.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["buylist.py"], ["buildlist.py"], ["make_min.py"]]
+SOFT = [["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["validate_wheel_speed.py"]]
 # audit_pin_names went HARD on 2026-09-24, the day it first reported zero, and
 # it stays there. Both of Daniel's absolute rules live in it: nothing but a
 # drain on a shield ground, and one name per bulkhead cavity across a mating
@@ -34,18 +42,22 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
 # cavities were EngineRoom-C cross-reference dummies the audit could not read,
 # and the CAN pair is now drawn once, in ST185-CAN only.
 
-fails = []
-for cmd in HARD:
-    name = cmd[0]
+
+def run(cmd):
     print("=" * 70)
     print(" ".join(cmd))
     print("=" * 70)
     sys.stdout.flush()
-    r = subprocess.run([sys.executable, os.path.join(HERE, name)] + cmd[1:])
-    if r.returncode:
-        fails.append(name)
+    r = subprocess.run([sys.executable, os.path.join(HERE, cmd[0])] + cmd[1:])
     print()
+    return r.returncode
 
+
+fails = [c[0] for c in HARD if run(c)]
+soft = [c[0] for c in SOFT if run(c)]
+
+if soft:
+    print("SOFT (reported, not failing): " + ", ".join(soft))
 if fails:
     print("FAILED: " + ", ".join(fails))
     sys.exit(1)
