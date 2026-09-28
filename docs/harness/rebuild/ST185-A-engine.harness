@@ -1013,7 +1013,7 @@
         "x": 1830,
         "y": 690
       },
-      "partId": "spp_crimp_14_10",
+      "partId": "spp_sgrs_2_58",
       "locationId": "be_660"
     },
     {
@@ -2632,6 +2632,15 @@
         "x": 4200,
         "y": 0
       }
+    },
+    {
+      "id": "n_sp_gndout_fit",
+      "text": "sp_gndout_eng SPLICE FIT: TE Raychem SolderGrip SGRS-2-58 (sealed closed-end solder splice). TE datasheet ENG_DS_2347480-1 'Raychem devices' (02/2019), SolderGrip Closed End Connector Splices, Table C 'SolderGrip Wire Combinations' lists '4 # 20 - SGRP-2 / SGRS-2-58'; Table A: SGRS-2-58 red, 4000-8000 CMA (2.0-4.0 mm2), sealed for immersion. The splice joins exactly four 20 AWG wires, all entering from one end.",
+      "width": 390,
+      "schematicPosition": {
+        "x": 1980,
+        "y": 780
+      }
     }
   ],
   "wireParts": [
@@ -2857,18 +2866,11 @@
       "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
     },
     {
-      "id": "spp_crimp_14_10",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 10
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 14
-      },
-      "partNumber": "GENERIC CRIMP SPLICE 14-10",
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "generic"
+      "id": "spp_sgrs_2_58",
+      "partNumber": "SGRS-2-58",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "SPLICE, CLOSED END, SOLDER, HEAT-SHRINK, SEALED, RED, 4000-8000 CMA (2.0-4.0 MM2)",
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocFilename=ENG_DS_2347480-1_raychem-devices_0219.pdf&DocLang=English&DocNm=2347480-1_raychem-devices&DocType=DS"
     }
   ],
   "contactParts": [
