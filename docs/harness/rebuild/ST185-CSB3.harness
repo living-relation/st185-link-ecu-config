@@ -1089,7 +1089,7 @@
         "x": 4200,
         "y": 0
       },
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (broken off)\ncsb3io (label): ECUMaster CSB3 (power feed — full I/O on ST185-CSB3)"
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (broken off)"
     }
   ],
   "connectorParts": [
