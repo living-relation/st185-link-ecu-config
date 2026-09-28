@@ -32,12 +32,12 @@
         },
         {
           "id": "c5",
-          "signal": "CAN H — wired on ST185-CAN",
+          "signal": "CAN H - broken off, continues on ST185-CAN",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c6",
-          "signal": "CAN L — wired on ST185-CAN",
+          "signal": "CAN L - broken off, continues on ST185-CAN",
           "contactPartId": "ct_hdp20s"
         },
         {

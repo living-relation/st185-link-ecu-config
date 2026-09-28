@@ -60,7 +60,7 @@
         },
         {
           "id": "c2",
-          "signal": "GND - wired on ST185-A-engine"
+          "signal": "GND - broken off, continues on ST185-A-engine"
         },
         {
           "id": "c3",
@@ -753,13 +753,6 @@
       }
     }
   ],
-  "mates": [
-    {
-      "id": "mate_bh_a_can",
-      "sourceId": "bh_a_fw",
-      "targetId": "bh_a_eng"
-    }
-  ],
   "schematicNotes": [
     {
       "id": "n_can",
@@ -772,7 +765,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\ncsb3io (label): ECUMaster CSB3 (CAN feed — full I/O on ST185-A-cabin)\nLink CAN-Lambda c1: Power +12V ign, 10A fused - wired on ST185-A-engine\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - engine plug (HDP2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, 10A fused - broken off here, the feed continues on ST185-A-engine\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)",
       "schematicPosition": {
         "x": 3180,
         "y": 150

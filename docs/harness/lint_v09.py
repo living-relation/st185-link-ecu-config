@@ -201,6 +201,16 @@ def check(fn):
             if x.get("notConnected") and (c["id"], x.get("id")) in wired:
                 bad.append("cavity %s/%s is notConnected but has a conductor on it"
                            % (c["id"], x.get("id")))
+
+    # The app's cleaner silently drops a mate or bundle whose end is gone, so
+    # the uploaded drawing loses it while the repo file keeps it.
+    nodes = set(cav) | {b["id"] for b in d.get("branchPoints", [])}
+    for key in ("mates", "bundles"):
+        for m in d.get(key, []):
+            for e in ("sourceId", "targetId"):
+                if m.get(e) not in nodes:
+                    bad.append("%s %s %s -> unknown node %s"
+                               % (key[:-1], m.get("id"), e, m.get(e)))
     return bad
 
 
