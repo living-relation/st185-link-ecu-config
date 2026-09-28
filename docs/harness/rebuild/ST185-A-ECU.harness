@@ -437,57 +437,6 @@
       }
     },
     {
-      "id": "acamp",
-      "label": "A/C Amplifier - ECU kill input only",
-      "width": 390,
-      "partId": "cp_acamp",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "A/C kill (ground = kill)"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "notConnected": true
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "notConnected": true
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "notConnected": true
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "notConnected": true
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "notConnected": true
-        },
-        {
-          "id": "c7",
-          "designation": "7",
-          "notConnected": true
-        }
-      ],
-      "layoutPosition": {
-        "x": 1680,
-        "y": 0
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 1110
-      }
-    },
-    {
       "id": "k_efi",
       "label": "EFI Main Relay - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) permanent 12 V (F12 5 A)",
       "partId": "cp_rly_f7_b",
@@ -942,114 +891,6 @@
       }
     },
     {
-      "id": "clutch_sw",
-      "label": "OEM block - Clutch Switch",
-      "partId": "cp_oem_block_2",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SW"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1200,
-        "y": -180
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 420
-      },
-      "width": 210
-    },
-    {
-      "id": "brake_sw",
-      "label": "OEM block - Brake Switch",
-      "partId": "cp_oem_block_2",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SW"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1080,
-        "y": -270
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 270
-      },
-      "width": 210
-    },
-    {
-      "id": "start_req",
-      "label": "OEM block - Start Request",
-      "width": 210,
-      "partId": "cp_oem_block_2",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SW"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2280,
-        "y": -90
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 960
-      }
-    },
-    {
-      "id": "cruise_stalk",
-      "label": "OEM block - Cruise Control Stalk",
-      "width": 270,
-      "partId": "cp_oem_block_5",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "LADDER SIG"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        },
-        {
-          "id": "c3",
-          "signal": "MAIN ON"
-        },
-        {
-          "id": "c4",
-          "signal": "SET/ACCEL"
-        },
-        {
-          "id": "c5",
-          "signal": "RESUME/DECEL"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1800,
-        "y": -270
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 570
-      }
-    },
-    {
       "id": "bh_a_fw",
       "label": "Bulkhead A - firewall (HDP24-24-47PE-L017)",
       "width": 390,
@@ -1274,14 +1115,14 @@
         {
           "id": "c37",
           "designation": "37",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)",
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c38",
           "designation": "38",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "A/C coolant switch return -> A/C amplifier",
+          "contactPartId": "ct_hdp20p"
         },
         {
           "id": "c39",
@@ -1490,30 +1331,6 @@
       }
     },
     {
-      "id": "ign_sw",
-      "label": "OEM block - Ignition Switch",
-      "partId": "cp_oem_block_2",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "IGN ON"
-        },
-        {
-          "id": "c2",
-          "notConnected": true
-        }
-      ],
-      "layoutPosition": {
-        "x": 1560,
-        "y": -180
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 810
-      },
-      "width": 270
-    },
-    {
       "id": "dm_sp_gndout_Splice",
       "label": "Sensor Gnd Out splice (wired on B-ECU)",
       "width": 390,
@@ -1669,6 +1486,32 @@
       "layoutPosition": {
         "x": 1440,
         "y": 480
+      }
+    },
+    {
+      "id": "ix_accts_r",
+      "label": "A/C coolant switch - 2-way inline to A/C amplifier spur (IX_AC_CTS)",
+      "width": 270,
+      "partId": "cp_dt04_2p",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "A/C coolant switch return -> A/C amplifier"
+        }
+      ],
+      "schematicPosition": {
+        "x": 4080,
+        "y": 2040
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": 120
       }
     }
   ],
@@ -2175,8 +2018,8 @@
       "id": "w_an2",
       "color": "White",
       "source": {
-        "id": "cruise_stalk",
-        "handle": "c1"
+        "id": "fl_cruise_stalk_c1",
+        "handle": "Terminal"
       },
       "target": {
         "id": "sp_cruise_ladder",
@@ -2188,8 +2031,8 @@
       "id": "w_sw2",
       "color": "Green",
       "source": {
-        "id": "cruise_stalk",
-        "handle": "c3"
+        "id": "fl_cruise_stalk_c3",
+        "handle": "Terminal"
       },
       "target": {
         "id": "csb3io",
@@ -2201,8 +2044,8 @@
       "id": "w_sw3",
       "color": "Green",
       "source": {
-        "id": "cruise_stalk",
-        "handle": "c4"
+        "id": "fl_cruise_stalk_c4",
+        "handle": "Terminal"
       },
       "target": {
         "id": "csb3io",
@@ -2214,8 +2057,8 @@
       "id": "w_sw4",
       "color": "Green",
       "source": {
-        "id": "cruise_stalk",
-        "handle": "c5"
+        "id": "fl_cruise_stalk_c5",
+        "handle": "Terminal"
       },
       "target": {
         "id": "csb3io",
@@ -2227,8 +2070,8 @@
       "id": "w_sw5",
       "color": "Green",
       "source": {
-        "id": "clutch_sw",
-        "handle": "c1"
+        "id": "fl_clutch_sw_c1",
+        "handle": "Terminal"
       },
       "target": {
         "id": "csb3io",
@@ -2240,8 +2083,8 @@
       "id": "w_sw6",
       "color": "Green",
       "source": {
-        "id": "brake_sw",
-        "handle": "c1"
+        "id": "fl_brake_sw_c1",
+        "handle": "Terminal"
       },
       "target": {
         "id": "csb3io",
@@ -2266,8 +2109,8 @@
       "id": "w_start",
       "color": "Green",
       "source": {
-        "id": "start_req",
-        "handle": "c1"
+        "id": "fl_start_req_c1",
+        "handle": "Terminal"
       },
       "target": {
         "id": "ecu_b",
@@ -2396,8 +2239,8 @@
       "id": "w_ign",
       "color": "Green",
       "source": {
-        "id": "ign_sw",
-        "handle": "c1"
+        "id": "fl_ign_sw_c1",
+        "handle": "Terminal"
       },
       "target": {
         "id": "ecu_b",
@@ -2413,8 +2256,8 @@
         "handle": "a18"
       },
       "target": {
-        "id": "acamp",
-        "handle": "c1"
+        "id": "fl_acamp_c1",
+        "handle": "Terminal"
       },
       "partId": "wp_20_pnk"
     },
@@ -2563,6 +2406,32 @@
         "handle": "b24"
       },
       "partId": "wp_20_wht"
+    },
+    {
+      "id": "w_accts_sig_c",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c37"
+      },
+      "target": {
+        "id": "ix_accts_r",
+        "handle": "c1"
+      },
+      "color": "Yellow",
+      "partId": "wp_20_yel"
+    },
+    {
+      "id": "w_accts_rtn_c",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c38"
+      },
+      "target": {
+        "id": "ix_accts_r",
+        "handle": "c2"
+      },
+      "color": "Brown",
+      "partId": "wp_20_brn"
     }
   ],
   "bundles": [
@@ -2711,18 +2580,18 @@
       }
     },
     {
-      "id": "bn_bp_900__brake_sw",
+      "id": "bn_bp_900__bp_fl_brake_sw",
       "sourceId": "bp_900",
-      "targetId": "brake_sw",
+      "targetId": "bp_fl_brake_sw",
       "length": {
         "value": 920,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_bp_930__clutch_sw",
+      "id": "bn_bp_930__bp_fl_clutch_sw",
       "sourceId": "bp_930",
-      "targetId": "clutch_sw",
+      "targetId": "bp_fl_clutch_sw",
       "length": {
         "value": 770,
         "unit": "mm"
@@ -2738,27 +2607,27 @@
       }
     },
     {
-      "id": "bn_bp_1020__ign_sw",
+      "id": "bn_bp_1020__bp_fl_ign_sw",
       "sourceId": "bp_1020",
-      "targetId": "ign_sw",
+      "targetId": "bp_fl_ign_sw",
       "length": {
         "value": 820,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_bp_1050__acamp",
+      "id": "bn_bp_1050__bp_fl_acamp",
       "sourceId": "bp_1050",
-      "targetId": "acamp",
+      "targetId": "bp_fl_acamp",
       "length": {
         "value": 480,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_bp_1080__cruise_stalk",
+      "id": "bn_bp_1080__bp_fl_cruise_stalk",
       "sourceId": "bp_1080",
-      "targetId": "cruise_stalk",
+      "targetId": "bp_fl_cruise_stalk",
       "length": {
         "value": 960,
         "unit": "mm"
@@ -2801,9 +2670,9 @@
       }
     },
     {
-      "id": "bn_bp_1200__start_req",
+      "id": "bn_bp_1200__bp_fl_start_req",
       "sourceId": "bp_1200",
-      "targetId": "start_req",
+      "targetId": "bp_fl_start_req",
       "length": {
         "value": 600,
         "unit": "mm"
@@ -2896,6 +2765,96 @@
       "targetId": "ix_ws_front_p",
       "length": {
         "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_acamp__fl_acamp_c1",
+      "sourceId": "bp_fl_acamp",
+      "targetId": "fl_acamp_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_brake_sw__fl_brake_sw_c1",
+      "sourceId": "bp_fl_brake_sw",
+      "targetId": "fl_brake_sw_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_clutch_sw__fl_clutch_sw_c1",
+      "sourceId": "bp_fl_clutch_sw",
+      "targetId": "fl_clutch_sw_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cruise_stalk__fl_cruise_stalk_c1",
+      "sourceId": "bp_fl_cruise_stalk",
+      "targetId": "fl_cruise_stalk_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cruise_stalk__fl_cruise_stalk_c3",
+      "sourceId": "bp_fl_cruise_stalk",
+      "targetId": "fl_cruise_stalk_c3",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cruise_stalk__fl_cruise_stalk_c4",
+      "sourceId": "bp_fl_cruise_stalk",
+      "targetId": "fl_cruise_stalk_c4",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cruise_stalk__fl_cruise_stalk_c5",
+      "sourceId": "bp_fl_cruise_stalk",
+      "targetId": "fl_cruise_stalk_c5",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_ign_sw__fl_ign_sw_c1",
+      "sourceId": "bp_fl_ign_sw",
+      "targetId": "fl_ign_sw_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_start_req__fl_start_req_c1",
+      "sourceId": "bp_fl_start_req",
+      "targetId": "fl_start_req_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_acamp__ix_accts_r",
+      "sourceId": "bp_fl_acamp",
+      "targetId": "ix_accts_r",
+      "length": {
+        "value": 150,
         "unit": "mm"
       }
     }
@@ -2997,6 +2956,48 @@
       "layoutPosition": {
         "x": 3270,
         "y": 240
+      }
+    },
+    {
+      "id": "bp_fl_acamp",
+      "layoutPosition": {
+        "x": 1680,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_fl_brake_sw",
+      "layoutPosition": {
+        "x": 1080,
+        "y": -270
+      }
+    },
+    {
+      "id": "bp_fl_clutch_sw",
+      "layoutPosition": {
+        "x": 1200,
+        "y": -180
+      }
+    },
+    {
+      "id": "bp_fl_cruise_stalk",
+      "layoutPosition": {
+        "x": 1800,
+        "y": -270
+      }
+    },
+    {
+      "id": "bp_fl_ign_sw",
+      "layoutPosition": {
+        "x": 1560,
+        "y": -180
+      }
+    },
+    {
+      "id": "bp_fl_start_req",
+      "layoutPosition": {
+        "x": 2280,
+        "y": -90
       }
     }
   ],
@@ -3181,25 +3182,6 @@
   ],
   "connectorParts": [
     {
-      "partNumber": "(unspecified - OEM ST185 AC amplifier)",
-      "manufacturer": "Toyota",
-      "description": "CONNECTOR, OEM, A/C AMPLIFIER, 7 POS - lands only the ECU kill wire. Face, family and ACT pin TBD (EWD p.150 / p.152); do not crimp to a guessed pin",
-      "numberOfCavities": 7,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "id": "cp_acamp",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-ac-amplifier.png"
-      }
-    },
-    {
       "partNumber": "Sumitomo TS 025 6-way",
       "manufacturer": "Sumitomo / Subaru",
       "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS - Subaru BRZ e-throttle pedal. Face, tab up: 1 VC2, 2 GND2, 3 VPA2, 4 VC1, 5 GND1, 6 VPA1",
@@ -3298,44 +3280,6 @@
         "source": "url",
         "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/12052641982_SPL.jpg",
         "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/12052641982_SPL.jpg"
-      }
-    },
-    {
-      "partNumber": "(OEM block, 2-way)",
-      "manufacturer": "Toyota",
-      "description": "CONNECTOR, OEM, 2 POS - existing vehicle connector, only the pins this harness lands. No invented OEM pinout",
-      "numberOfCavities": 2,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "id": "cp_oem_block_2",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-block-2way.png"
-      }
-    },
-    {
-      "partNumber": "(OEM block, 5-way)",
-      "manufacturer": "Toyota",
-      "description": "CONNECTOR, OEM, 5 POS - existing vehicle connector (cruise stalk), only the pins this harness lands",
-      "numberOfCavities": 5,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "id": "cp_oem_block_5",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-block-5way.png"
       }
     },
     {
@@ -3482,6 +3426,24 @@
         }
       ],
       "url": "https://www.te.com/usa-en/product-DT06-6S.html"
+    },
+    {
+      "id": "cp_dt04_2p",
+      "partNumber": "DT04-2P",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY - 2-way inline interface, source half",
+      "numberOfCavities": 2,
+      "gender": "Male",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_hdp16p",
+          "cavityPlugPartId": "pl_sz16",
+          "lockPartId": "lp_w2p"
+        }
+      ],
+      "url": "https://www.te.com/usa-en/product-DT04-2P.html"
     }
   ],
   "spliceParts": [
@@ -3786,6 +3748,12 @@
       "partNumber": "W6S",
       "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 6-WAY PLUG"
+    },
+    {
+      "id": "lp_w2p",
+      "partNumber": "W2P",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DT, 2-WAY RECEPTACLE"
     }
   ],
   "cableParts": [
@@ -4043,6 +4011,151 @@
           "handle": "Splice"
         }
       }
+    }
+  ],
+  "terminals": [
+    {
+      "id": "fl_acamp_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.150 / p.152 A/C amplifier-TBD TBD ACT compressor cancel, ground = kill (ECU A18, Aux 4) - solder sleeve into the factory ACT lead at the amplifier",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1110
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": 0
+      }
+    },
+    {
+      "id": "fl_brake_sw_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Stop lamp switch-TBD TBD brake switch signal -> CSB3 S7 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 270
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": -270
+      }
+    },
+    {
+      "id": "fl_clutch_sw_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Clutch switch-TBD TBD clutch switch signal -> CSB3 S6 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": 1200,
+        "y": -180
+      }
+    },
+    {
+      "id": "fl_cruise_stalk_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Cruise control switch-TBD TBD cruise ladder signal -> sp_cruise_ladder -> CSB3 A2 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 570
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": -270
+      }
+    },
+    {
+      "id": "fl_cruise_stalk_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Cruise control switch-TBD TBD cruise MAIN ON -> CSB3 S3 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 630
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": -210
+      }
+    },
+    {
+      "id": "fl_cruise_stalk_c4",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Cruise control switch-TBD TBD cruise SET/ACCEL -> CSB3 S4 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 690
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": -150
+      }
+    },
+    {
+      "id": "fl_cruise_stalk_c5",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Cruise control switch-TBD TBD cruise RESUME/DECEL -> CSB3 S5 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 750
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": -90
+      }
+    },
+    {
+      "id": "fl_ign_sw_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Ignition switch I9-TBD TBD IGN ON -> ECU-B B28 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 810
+      },
+      "layoutPosition": {
+        "x": 1560,
+        "y": -180
+      }
+    },
+    {
+      "id": "fl_start_req_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Ignition switch (ST)-TBD TBD start request -> ECU-B B30 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 960
+      },
+      "layoutPosition": {
+        "x": 2280,
+        "y": -90
+      }
+    }
+  ],
+  "terminalParts": [
+    {
+      "type": "Loose",
+      "partNumber": "GENERIC FLYING LEAD",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "id": "tp_flying_lead"
     }
   ]
 }

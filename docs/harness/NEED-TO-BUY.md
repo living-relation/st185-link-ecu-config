@@ -1,7 +1,7 @@
 # Harness — need to buy
 
-Generated on 2026-09-27 from the 10 `.harness` files in `docs/harness/rebuild/`:
-`A-ECU`, `B-ECU`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `AntiTheft`.
+Generated on 2026-09-27 from the 11 `.harness` files in `docs/harness/rebuild/`:
+`A-ECU`, `B-ECU`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `AntiTheft`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
@@ -9,19 +9,19 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / | 55 | 0 | **55** |
-| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity | 49 | 0 | **49** |
-| `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.2 | 27 | 0 | **27** |
-| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD | 23 | 0 | **23** |
+| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / | 57 | 0 | **57** |
+| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity | 45 | 0 | **45** |
+| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD - joined to the vehicle circuit at insta | 33 | 0 | **33** |
+| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD | 25 | 0 | **25** |
+| `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.2 | 23 | 0 | **23** |
 | `GENERIC SOLDER SLEEVE 26-14` | generic | SPLICE, SOLDER SLEEVE, WITH ADHESIVE HEATSHRINK, COMBINED 26-1 | 17 | 0 | **17** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity | 12 | 0 | **12** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0 | 16 | 6 | **10** |
-| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD - joined to the vehicle circuit at insta | 9 | 0 | **9** |
-| `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 8 | 0 | **8** |
+| `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 9 | 0 | **9** |
 | `Jump lugs 1/0` | generic | Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post | 8 | 0 | **8** |
+| `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY - ha | 9 | 2 | **7** |
 | `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG | 7 | 0 | **7** |
 | `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED,  | 6 | 0 | **6** |
-| `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY - ha | 8 | 2 | **6** |
 | `GENERIC CRIMP SPLICE 10-6` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, | 6 | 0 | **6** |
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10  | 6 | 0 | **6** |
 | `1-1355877-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 1.0-2.5 MM2 (18-14 A | 5 | 0 | **5** |
@@ -32,14 +32,15 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `280755-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED,  | 4 | 0 | **4** |
 | `90980-11062` | Toyota | CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS - thermistor s | 4 | 0 | **4** |
 | `90980-11885` | Toyota | CONNECTOR, PLUG, TOYOTA, 4 POS, SOCKET CONTACTS - 1ZZ-FE coil- | 4 | 0 | **4** |
+| `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY - | 4 | 0 | **4** |
 | `DTHD06-1-8S` | TE DEUTSCH | CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, | 4 | 0 | **4** |
 | `GENERIC RING M5 10-8` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M5 STUD, ADHESI | 4 | 0 | **4** |
 | `GENERIC RING M6 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG | 4 | 0 | **4** |
+| `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 4 | 0 | **4** |
+| `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT | 15 | 12 | **3** |
 | `1-1355880-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 2.5-4 MM2 (14-12 AWG | 3 | 0 | **3** |
-| `DT04-2P` | TE DEUTSCH | CONN RECP DT 2-WAY PIN SEALED - siren, status LED, valet switc | 3 | 0 | **3** |
 | `GENERIC LUG M8 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE  | 3 | 0 | **3** |
 | `GENERIC RING M6 12-10` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG | 3 | 0 | **3** |
-| `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 3 | 0 | **3** |
 | `1-1355833-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 0.5-1.0 MM2 (20-18 A | 2 | 0 | **2** |
 | `1-1355844-1` | TE Connectivity | CONTACT, BUSBAR FEED, CUNISI PRE-TINNED, 4.0-6.0 MM2 (10 AWG)  | 2 | 0 | **2** |
 | `120R 1/4W` | Generic | RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W - CAN bus t | 2 | 0 | **2** |
@@ -56,7 +57,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 2 | 0 | **2** |
 | `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 2 | 0 | **2** |
 | `16-04477` | TE DEUTSCH | Gasket 24SZ | 6 | 4 | **2** |
-| `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT | 13 | 12 | **1** |
 | `1-1904045-6` | TE Connectivity | SOCKET, RELAY, MICRO ISO, 5 POS, WITH MOUNTING FLAP (V23333-Z0 | 1 | 0 | **1** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W - cam Hall | 1 | 0 | **1** |
 | `10k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W - cruise la | 1 | 0 | **1** |
@@ -102,7 +102,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
 | `0413-214-1205` | PLUG, SEALING, CAVITY, SIZE 12, YELLOW - unused size 12 cavity | 4 | 10 |
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT recep | 49 | 130 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT recep | 51 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
 | `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 49 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
@@ -144,12 +144,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Modelled as | What it really is | Qty |
 |---|---|---:|
 | `(LED board indicator - 12 V, resistor on board)` | DIODE, LIGHT EMITTING, INDICATOR, 12 V - cluster warning indic | 6 |
-| `(OEM ST185 combination meter connector)` | CONNECTOR, OEM, COMBINATION METER - existing cluster connector | 2 |
-| `(OEM block)` | CONNECTOR, OEM, JUNCTION OR RELAY BLOCK - only the pins this h | 7 |
-| `(OEM block, 2-way)` | CONNECTOR, OEM, 2 POS - existing vehicle connector, only the p | 5 |
-| `(OEM block, 5-way)` | CONNECTOR, OEM, 5 POS - existing vehicle connector (cruise sta | 1 |
+| `(OEM block)` | CONNECTOR, OEM, JUNCTION OR RELAY BLOCK - only the pins this h | 3 |
 | `(Toyota TS terminals, supplied with owned housings)` | CONTACT, SOCKET, CRIMP, TOYOTA - supplied with the owned MR-S  | 4 |
-| `(generic)` | CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, | 39 |
+| `(generic)` | CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, | 18 |
 | `(glove-box body block - 2nd fuse block + relays)` | ASSEMBLY, FUSE AND RELAY BLOCK, 12-16 WAY, GLOVE BOX - ex-J/B2 | 1 |
 | `(integral - RL00801-50)` | CONTACT, RADSOK 8.0, INTEGRAL TO RL00801-50 CABLE CONNECTOR, 5 | 4 |
 | `(kit socket, D 261 205 358-01)` | CONTACT, SOCKET, CRIMP, GOLD - supplied in the Bosch D 261 205 | 6 |
@@ -157,9 +154,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(pump pigtail - Walbro F90000295)` | CONNECTOR, PIGTAIL, 2 POS - supplied on the Walbro F90000295 p | 1 |
 | `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE  | 2 |
 | `(ring lug, sized to cable)` | TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE  | 17 |
-| `(unspecified - OEM ST185 AC amplifier)` | CONNECTOR, OEM, A/C AMPLIFIER, 7 POS - lands only the ECU kill | 1 |
-| `TBD - A/C pressure switch connector, 2-way` | CONNECTOR, PLUG, TOYOTA, 2 POS - A/C dual pressure switch, EWD | 1 |
-| `TBD - ambient temp sensor connector` | CONNECTOR, PLUG, TOYOTA, 2 POS - A/C ambient temp thermistor,  | 1 |
+| `TBD - A/C coolant temperature switch connector` | CONNECTOR, A/C COOLANT TEMPERATURE SWITCH, 2 POS - switch not  | 1 |
 | `TBD - generic oval 3-pin, socket contacts` | CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS - 3-wire  | 1 |
 
 ## Counted once, drawn more than once

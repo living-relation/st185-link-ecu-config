@@ -47,6 +47,11 @@
       "physical": "Front wheel-speed Y harness - FL/FR ABS drops (loom C fender route) to the front VRC endpoints, output pair to IX_WS_FRONT",
       "legacyXref": false
     },
+    "ACAmp-Spur": {
+      "file": "ST185-ACAmp-Spur.harness",
+      "physical": "A/C amplifier spur - receiving half of IX_AC_CTS to flying leads at the auto A/C amplifier",
+      "legacyXref": false
+    },
     "AntiTheft": {
       "file": "ST185-AntiTheft.harness",
       "physical": "Anti-theft",
@@ -100,6 +105,27 @@
         {
           "harness": "A-ECU",
           "connector": "ix_ws_front_p",
+          "role": "receiving"
+        }
+      ]
+    },
+    {
+      "id": "IX_AC_CTS",
+      "type": "inline_interface",
+      "family": "Deutsch DT 2-way (DT04-2P / DT06-2S)",
+      "pins": {
+        "c1": "A/C coolant switch signal",
+        "c2": "A/C coolant switch return"
+      },
+      "halves": [
+        {
+          "harness": "A-ECU",
+          "connector": "ix_accts_r",
+          "role": "source"
+        },
+        {
+          "harness": "ACAmp-Spur",
+          "connector": "ix_accts_p",
           "role": "receiving"
         }
       ]
@@ -199,7 +225,344 @@
       "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded only at the ECU."
     }
   ],
-  "flyingLeads": [],
+  "flyingLeads": [
+    {
+      "id": "FL_ACAMP_C1",
+      "type": "oem_flying_lead",
+      "harness": "A-ECU",
+      "terminal": "fl_acamp_c1",
+      "ewd": {
+        "page": "p.150 / p.152",
+        "connector": "A/C amplifier",
+        "pin": "TBD - ACT terminal is not on p.150 or p.152",
+        "color": "TBD",
+        "function": "ACT compressor cancel, ground = kill (ECU A18, Aux 4)",
+        "method": "solder sleeve into the factory ACT lead at the amplifier"
+      }
+    },
+    {
+      "id": "FL_BRAKE_SW_C1",
+      "type": "oem_flying_lead",
+      "harness": "A-ECU",
+      "terminal": "fl_brake_sw_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Stop lamp switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "brake switch signal -> CSB3 S7",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CLUTCH_SW_C1",
+      "type": "oem_flying_lead",
+      "harness": "A-ECU",
+      "terminal": "fl_clutch_sw_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Clutch switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "clutch switch signal -> CSB3 S6",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CRUISE_STALK_C1",
+      "type": "oem_flying_lead",
+      "harness": "A-ECU",
+      "terminal": "fl_cruise_stalk_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Cruise control switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "cruise ladder signal -> sp_cruise_ladder -> CSB3 A2",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CRUISE_STALK_C3",
+      "type": "oem_flying_lead",
+      "harness": "A-ECU",
+      "terminal": "fl_cruise_stalk_c3",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Cruise control switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "cruise MAIN ON -> CSB3 S3",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CRUISE_STALK_C4",
+      "type": "oem_flying_lead",
+      "harness": "A-ECU",
+      "terminal": "fl_cruise_stalk_c4",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Cruise control switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "cruise SET/ACCEL -> CSB3 S4",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CRUISE_STALK_C5",
+      "type": "oem_flying_lead",
+      "harness": "A-ECU",
+      "terminal": "fl_cruise_stalk_c5",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Cruise control switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "cruise RESUME/DECEL -> CSB3 S5",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_IGN_SW_C1",
+      "type": "oem_flying_lead",
+      "harness": "A-ECU",
+      "terminal": "fl_ign_sw_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Ignition switch I9",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "IGN ON -> ECU-B B28",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_START_REQ_C1",
+      "type": "oem_flying_lead",
+      "harness": "A-ECU",
+      "terminal": "fl_start_req_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Ignition switch (ST)",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "start request -> ECU-B B30",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_REVERSE_SW_C1",
+      "type": "oem_flying_lead",
+      "harness": "A-engine",
+      "terminal": "fl_reverse_sw_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Back-up light switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "reverse signal -> bulkhead B c12 -> CSB3 S8",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_AC_PRESS_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_ac_press_c1",
+      "ewd": {
+        "page": "p.152",
+        "connector": "A5",
+        "pin": "1",
+        "color": "V-R",
+        "function": "A/C pressure switch +12V (ACPS 5 A, IG)",
+        "method": "solder sleeve into the factory V-R lead at the switch"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C10",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c10",
+      "ewd": {
+        "page": "p.31",
+        "connector": "IE1",
+        "pin": "10",
+        "color": "W",
+        "function": "AM1 to ignition switch I9-4",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C17",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c17",
+      "ewd": {
+        "page": "p.31",
+        "connector": "IE1",
+        "pin": "17",
+        "color": "B-R",
+        "function": "AM2 to ignition switch I9-10",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_OEM_JB1_1I_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_jb1_1i_c1",
+      "ewd": {
+        "page": "p.18-19",
+        "connector": "J/B1 1I",
+        "pin": "1",
+        "color": "TBD",
+        "function": "J/B1 primary B+ (always hot; was FL ALT)",
+        "method": "solder sleeve into the factory 1I-1 lead"
+      }
+    },
+    {
+      "id": "FL_OEM_RB2_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_rb2_c1",
+      "ewd": {
+        "page": "p.23",
+        "connector": "R/B2",
+        "pin": "1",
+        "color": "W",
+        "function": "30A POWER fuse input (windows / locks)",
+        "method": "feed the fuse input only - solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_OEM_RB4_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_rb4_c1",
+      "ewd": {
+        "page": "p.24",
+        "connector": "R/B4",
+        "pin": "1",
+        "color": "TBD",
+        "function": "40A HEATER fuse input",
+        "method": "feed the fuse input only - solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CL_C11_C2",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c11_c2",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "C11",
+        "pin": "2",
+        "color": "G-B",
+        "function": "Turn L - flasher LH stub",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_CL_C11_C11",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c11_c11",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "C11",
+        "pin": "11",
+        "color": "G-Y",
+        "function": "Turn R - flasher RH stub",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_CL_C11_C12",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c11_c12",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "C11",
+        "pin": "12",
+        "color": "R-L",
+        "function": "High beam - body residual feed",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_CL_C12_C1",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c12_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "C12",
+        "pin": "1",
+        "color": "R-G",
+        "function": "Park brake - grounds via OEM P1 / B2",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_CL_C12_C8",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c12_c8",
+      "ewd": {
+        "page": "p.52",
+        "connector": "C12",
+        "pin": "8",
+        "color": "Y",
+        "function": "Alt L - charge-lamp drive",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_CL_C12_C9",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c12_c9",
+      "ewd": {
+        "page": "p.52",
+        "connector": "C12",
+        "pin": "9",
+        "color": "B-O",
+        "function": "IG +12 - feeds every LED anode and the charge excite resistor",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_ACAMP_TW",
+      "type": "oem_flying_lead",
+      "harness": "ACAmp-Spur",
+      "terminal": "fl_acamp_tw",
+      "ewd": {
+        "page": "p.150",
+        "connector": "A34 (auto A/C amplifier conn C)",
+        "pin": "20",
+        "color": "R-G",
+        "function": "TW water temp input <- A/C coolant switch",
+        "method": "solder sleeve into the factory R-G lead at the amplifier"
+      }
+    },
+    {
+      "id": "FL_ACAMP_SG",
+      "type": "oem_flying_lead",
+      "harness": "ACAmp-Spur",
+      "terminal": "fl_acamp_sg",
+      "ewd": {
+        "page": "p.150",
+        "connector": "A34 (auto A/C amplifier conn C)",
+        "pin": "TBD - sensor-return pin is not on p.150",
+        "color": "TBD",
+        "function": "A/C coolant switch return",
+        "method": "solder sleeve into the factory sensor-return lead at the amplifier"
+      }
+    }
+  ],
   "realConnectors": [
     {
       "harness": "A-ECU",

@@ -2,68 +2,6 @@
   "version": 0.9,
   "connectors": [
     {
-      "id": "cl_c11",
-      "label": "OEM cluster connector C11",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "Turn L (G-B) - flasher LH stub"
-        },
-        {
-          "id": "c11",
-          "designation": "11",
-          "signal": "Turn R (G-Y) - flasher RH stub"
-        },
-        {
-          "id": "c12",
-          "designation": "12",
-          "signal": "High beam (R-L) - body residual feed"
-        }
-      ],
-      "schematicPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 960,
-        "y": -150
-      },
-      "partId": "cp_cluster"
-    },
-    {
-      "id": "cl_c12",
-      "label": "OEM cluster connector C12",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Park brake (R-G) - grounds via OEM P1 / B2"
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "signal": "Alt L (Y) - charge-lamp drive"
-        },
-        {
-          "id": "c9",
-          "designation": "9",
-          "signal": "IG +12 (B-O) - one tap feeds every LED anode and the charge excite resistor"
-        }
-      ],
-      "schematicPosition": {
-        "x": 0,
-        "y": 180
-      },
-      "layoutPosition": {
-        "x": 960,
-        "y": -330
-      },
-      "partId": "cp_cluster"
-    },
-    {
       "id": "dm_csb3io_c26",
       "label": "CSB3-c26 (L4)",
       "width": 390,
@@ -101,6 +39,90 @@
         "y": -390
       },
       "partId": "tp_ring_m6_22_16"
+    },
+    {
+      "id": "fl_cl_c11_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD C11-2 G-B Turn L - flasher LH stub - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -150
+      }
+    },
+    {
+      "id": "fl_cl_c11_c11",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD C11-11 G-Y Turn R - flasher RH stub - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 60
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -90
+      }
+    },
+    {
+      "id": "fl_cl_c11_c12",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD C11-12 R-L High beam - body residual feed - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -30
+      }
+    },
+    {
+      "id": "fl_cl_c12_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -330
+      }
+    },
+    {
+      "id": "fl_cl_c12_c8",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.52 C12-8 Y Alt L - charge-lamp drive - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -270
+      }
+    },
+    {
+      "id": "fl_cl_c12_c9",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.52 C12-9 B-O IG +12 - feeds every LED anode and the charge excite resistor - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 300
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -210
+      }
     }
   ],
   "splices": [
@@ -237,8 +259,8 @@
       "id": "w_hb_a",
       "color": "Red",
       "source": {
-        "id": "cl_c11",
-        "handle": "c12"
+        "id": "fl_cl_c11_c12",
+        "handle": "Terminal"
       },
       "target": {
         "id": "d_hb",
@@ -263,8 +285,8 @@
       "id": "w_tl_a",
       "color": "Green",
       "source": {
-        "id": "cl_c11",
-        "handle": "c2"
+        "id": "fl_cl_c11_c2",
+        "handle": "Terminal"
       },
       "target": {
         "id": "d_tl",
@@ -289,8 +311,8 @@
       "id": "w_tr_a",
       "color": "Green",
       "source": {
-        "id": "cl_c11",
-        "handle": "c11"
+        "id": "fl_cl_c11_c11",
+        "handle": "Terminal"
       },
       "target": {
         "id": "d_tr",
@@ -345,8 +367,8 @@
         "handle": "Right"
       },
       "target": {
-        "id": "cl_c12",
-        "handle": "c1"
+        "id": "fl_cl_c12_c1",
+        "handle": "Terminal"
       },
       "stripeColor": "Green",
       "partId": "wp_20_red_grn"
@@ -373,8 +395,8 @@
         "handle": "Right"
       },
       "target": {
-        "id": "cl_c12",
-        "handle": "c8"
+        "id": "fl_cl_c12_c8",
+        "handle": "Terminal"
       },
       "partId": "wp_20_yel"
     },
@@ -425,8 +447,8 @@
         "handle": "Right"
       },
       "target": {
-        "id": "cl_c12",
-        "handle": "c8"
+        "id": "fl_cl_c12_c8",
+        "handle": "Terminal"
       },
       "partId": "wp_20_yel"
     },
@@ -435,8 +457,8 @@
       "color": "Black",
       "stripeColor": "Orange",
       "source": {
-        "id": "cl_c12",
-        "handle": "c9"
+        "id": "fl_cl_c12_c9",
+        "handle": "Terminal"
       },
       "target": {
         "id": "sp_led_12v",
@@ -447,8 +469,8 @@
   ],
   "bundles": [
     {
-      "id": "bn_cl_c11__bp_960",
-      "sourceId": "cl_c11",
+      "id": "bn_bp_fl_cl_c11__bp_960",
+      "sourceId": "bp_fl_cl_c11",
       "targetId": "bp_960",
       "length": {
         "value": 20,
@@ -474,9 +496,9 @@
       }
     },
     {
-      "id": "bn_bp_960__cl_c12",
+      "id": "bn_bp_960__bp_fl_cl_c12",
       "sourceId": "bp_960",
-      "targetId": "cl_c12",
+      "targetId": "bp_fl_cl_c12",
       "length": {
         "value": 90,
         "unit": "mm"
@@ -497,6 +519,60 @@
       "targetId": "dm_csb3io_c26",
       "length": {
         "value": 780,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cl_c11__fl_cl_c11_c2",
+      "sourceId": "bp_fl_cl_c11",
+      "targetId": "fl_cl_c11_c2",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cl_c11__fl_cl_c11_c11",
+      "sourceId": "bp_fl_cl_c11",
+      "targetId": "fl_cl_c11_c11",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cl_c11__fl_cl_c11_c12",
+      "sourceId": "bp_fl_cl_c11",
+      "targetId": "fl_cl_c11_c12",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cl_c12__fl_cl_c12_c1",
+      "sourceId": "bp_fl_cl_c12",
+      "targetId": "fl_cl_c12_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cl_c12__fl_cl_c12_c8",
+      "sourceId": "bp_fl_cl_c12",
+      "targetId": "fl_cl_c12_c8",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cl_c12__fl_cl_c12_c9",
+      "sourceId": "bp_fl_cl_c12",
+      "targetId": "fl_cl_c12_c9",
+      "length": {
+        "value": 50,
         "unit": "mm"
       }
     }
@@ -521,6 +597,20 @@
       "layoutPosition": {
         "x": 1200,
         "y": -240
+      }
+    },
+    {
+      "id": "bp_fl_cl_c11",
+      "layoutPosition": {
+        "x": 960,
+        "y": -150
+      }
+    },
+    {
+      "id": "bp_fl_cl_c12",
+      "layoutPosition": {
+        "x": 960,
+        "y": -330
       }
     }
   ],
@@ -670,22 +760,6 @@
   ],
   "connectorParts": [
     {
-      "partNumber": "(OEM ST185 combination meter connector)",
-      "manufacturer": "Toyota",
-      "description": "CONNECTOR, OEM, COMBINATION METER - existing cluster connector; this loom lands only the drawn pins. No invented OEM pinout",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "id": "cp_cluster",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-combination-meter.png"
-      }
-    },
-    {
       "partNumber": "(cross-reference - no part)",
       "manufacturer": "n/a",
       "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
@@ -712,6 +786,21 @@
       },
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
       "id": "tp_ring_m6_22_16"
+    },
+    {
+      "type": "Loose",
+      "partNumber": "GENERIC FLYING LEAD",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "id": "tp_flying_lead"
     }
   ],
   "spliceParts": [

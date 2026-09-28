@@ -641,30 +641,6 @@
       "width": 150
     },
     {
-      "id": "reverse_sw",
-      "label": "OEM block - Reverse Switch",
-      "partId": "cp_oem_block_2",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SW"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2610,
-        "y": -330
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 870
-      },
-      "width": 270
-    },
-    {
       "id": "bh_a_eng",
       "label": "Bulkhead A - engine plug (HDP26-24-47SE-L015)",
       "width": 390,
@@ -889,14 +865,14 @@
         {
           "id": "c37",
           "designation": "37",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c38",
           "designation": "38",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "A/C coolant switch return -> A/C amplifier",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c39",
@@ -1102,6 +1078,32 @@
       "schematicPosition": {
         "x": 0,
         "y": 1500
+      }
+    },
+    {
+      "id": "ac_cts",
+      "label": "A/C coolant temp switch (A/C amplifier's own; not the ECU ECT)",
+      "width": 270,
+      "partId": "cp_ac_cts",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "A/C coolant switch return -> A/C amplifier"
+        }
+      ],
+      "schematicPosition": {
+        "x": 1200,
+        "y": 2400
+      },
+      "layoutPosition": {
+        "x": 1290,
+        "y": -300
       }
     }
   ],
@@ -1387,11 +1389,37 @@
         "handle": "c12"
       },
       "target": {
-        "id": "reverse_sw",
-        "handle": "c1"
+        "id": "fl_reverse_sw_c1",
+        "handle": "Terminal"
       },
       "color": "Green",
       "partId": "wp_20_grn"
+    },
+    {
+      "id": "w_accts_sig_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c37"
+      },
+      "target": {
+        "id": "ac_cts",
+        "handle": "c1"
+      },
+      "color": "Yellow",
+      "partId": "wp_20_yel"
+    },
+    {
+      "id": "w_accts_rtn_e",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c38"
+      },
+      "target": {
+        "id": "ac_cts",
+        "handle": "c2"
+      },
+      "color": "Brown",
+      "partId": "wp_20_brn"
     }
   ],
   "cables": [
@@ -1852,9 +1880,9 @@
       }
     },
     {
-      "id": "bn_bp_930__reverse_sw",
+      "id": "bn_bp_930__bp_fl_reverse_sw",
       "sourceId": "bp_930",
-      "targetId": "reverse_sw",
+      "targetId": "bp_fl_reverse_sw",
       "length": {
         "value": 920,
         "unit": "mm"
@@ -1893,6 +1921,24 @@
       "targetId": "bh_b_eng",
       "length": {
         "value": 230,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_reverse_sw__fl_reverse_sw_c1",
+      "sourceId": "bp_fl_reverse_sw",
+      "targetId": "fl_reverse_sw_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_570__ac_cts",
+      "sourceId": "bp_570",
+      "targetId": "ac_cts",
+      "length": {
+        "value": 840,
         "unit": "mm"
       }
     }
@@ -2029,6 +2075,13 @@
       "layoutPosition": {
         "x": 2610,
         "y": 180
+      }
+    },
+    {
+      "id": "bp_fl_reverse_sw",
+      "layoutPosition": {
+        "x": 2610,
+        "y": -330
       }
     }
   ],
@@ -2447,25 +2500,6 @@
       }
     },
     {
-      "partNumber": "(OEM block, 2-way)",
-      "manufacturer": "Toyota",
-      "description": "CONNECTOR, OEM, 2 POS - existing vehicle connector, only the pins this harness lands. No invented OEM pinout",
-      "numberOfCavities": 2,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "id": "cp_oem_block_2",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-block-2way.png"
-      }
-    },
-    {
       "partNumber": "90980-11062",
       "manufacturer": "Toyota",
       "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS - thermistor sensor pigtail",
@@ -2484,6 +2518,13 @@
         "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399.webp",
         "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399_200x.webp"
       }
+    },
+    {
+      "id": "cp_ac_cts",
+      "partNumber": "TBD - A/C coolant temperature switch connector",
+      "manufacturer": "TBD",
+      "description": "CONNECTOR, A/C COOLANT TEMPERATURE SWITCH, 2 POS - switch not yet chosen; never invent a part number (redesign D5)",
+      "numberOfCavities": 2
     }
   ],
   "contactParts": [
@@ -2728,6 +2769,39 @@
       "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity",
       "id": "pl_sz20"
+    }
+  ],
+  "terminals": [
+    {
+      "id": "fl_reverse_sw_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Back-up light switch-TBD TBD reverse signal -> bulkhead B c12 -> CSB3 S8 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 870
+      },
+      "layoutPosition": {
+        "x": 2610,
+        "y": -330
+      }
+    }
+  ],
+  "terminalParts": [
+    {
+      "type": "Loose",
+      "partNumber": "GENERIC FLYING LEAD",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "id": "tp_flying_lead"
     }
   ]
 }

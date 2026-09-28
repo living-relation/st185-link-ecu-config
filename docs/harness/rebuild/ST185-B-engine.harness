@@ -891,14 +891,14 @@
         {
           "id": "c37",
           "designation": "37",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c38",
           "designation": "38",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "A/C coolant switch return -> A/C amplifier",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c39",

@@ -469,110 +469,6 @@
       "partId": "cp_oem"
     },
     {
-      "id": "oem_jb1_1i",
-      "label": "OEM J/B1 1I (left kick, ER main)",
-      "width": 390,
-      "schematicPosition": {
-        "x": 1320,
-        "y": 150
-      },
-      "layoutPosition": {
-        "x": 3990,
-        "y": -420
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Always-hot B from FL ALT - PRIMARY J/B1 B+"
-        }
-      ],
-      "partId": "cp_oem"
-    },
-    {
-      "id": "oem_ie1",
-      "label": "OEM IE1 (left kick, ER main <-> cowl)",
-      "width": 390,
-      "schematicPosition": {
-        "x": 1320,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 3870,
-        "y": -570
-      },
-      "cavities": [
-        {
-          "id": "c10",
-          "designation": "10",
-          "signal": "W  AM1 to ignition I9-4"
-        },
-        {
-          "id": "c17",
-          "designation": "17",
-          "signal": "B-R AM2 to ignition I9-10"
-        }
-      ],
-      "partId": "cp_oem"
-    },
-    {
-      "id": "oem_rb4",
-      "label": "OEM R/B4 (right kick, by glove box)",
-      "width": 390,
-      "schematicPosition": {
-        "x": 1320,
-        "y": 420
-      },
-      "layoutPosition": {
-        "x": 2910,
-        "y": 480
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "HTR1",
-          "signal": "40A HEATER fuse input"
-        },
-        {
-          "id": "c2",
-          "designation": "HTR2",
-          "signal": "Heater fuse output / heater relay 30"
-        },
-        {
-          "id": "c3",
-          "designation": "STR",
-          "signal": "OEM starter relay - isolate *"
-        }
-      ],
-      "partId": "cp_oem"
-    },
-    {
-      "id": "oem_rb2",
-      "label": "OEM R/B2 (left kick)",
-      "width": 390,
-      "schematicPosition": {
-        "x": 1320,
-        "y": 270
-      },
-      "layoutPosition": {
-        "x": 4110,
-        "y": -510
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "PWR1",
-          "signal": "30A POWER fuse input"
-        },
-        {
-          "id": "c2",
-          "designation": "PWR2",
-          "signal": "Power fuse output / power main relay 30"
-        }
-      ],
-      "partId": "cp_oem"
-    },
-    {
       "id": "rad_fan",
       "label": "Uprated radiator fan (+)",
       "width": 390,
@@ -788,107 +684,6 @@
         "x": 1980,
         "y": 240
       }
-    },
-    {
-      "id": "amb_temp",
-      "label": "A/C Ambient Temp Sensor *",
-      "width": 390,
-      "partId": "cp_amb_temp",
-      "schematicPosition": {
-        "x": 0,
-        "y": 1440
-      },
-      "layoutPosition": {
-        "x": 60,
-        "y": 180
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Ambient temp signal -> A/C amplifier *"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "Ambient temp sensor return -> A/C amplifier *"
-        }
-      ]
-    },
-    {
-      "id": "ac_press",
-      "label": "A/C Pressure Switch (EWD A5) - 2-wire dual switch",
-      "width": 390,
-      "partId": "cp_ac_press",
-      "schematicPosition": {
-        "x": 0,
-        "y": 1590
-      },
-      "layoutPosition": {
-        "x": 420,
-        "y": -270
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "+12V in, wire V-R. EWD p152 *"
-        },
-        {
-          "id": "c2",
-          "designation": "4",
-          "signal": "Switched out -> A/C AMPLIFIER A18 pin 13 *"
-        }
-      ]
-    },
-    {
-      "id": "dm_acamp",
-      "label": "AUTO A/C AMPLIFIER A34 = conn C (dash module)",
-      "width": 390,
-      "schematicPosition": {
-        "x": 660,
-        "y": 1230
-      },
-      "layoutPosition": {
-        "x": 4470,
-        "y": 0
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "C-6",
-          "signal": "TAM - ambient temp in. EWD p150: A1 pin 2 *"
-        },
-        {
-          "id": "c2",
-          "designation": "Y bus",
-          "signal": "Ambient temp sensor return, wire Y. EWD p150."
-        }
-      ],
-      "partId": "cp_xref",
-      "excludeFromBom": true
-    },
-    {
-      "id": "dm_acamp18",
-      "label": "A/C AMPLIFIER A18 (separate module, dash)",
-      "width": 390,
-      "schematicPosition": {
-        "x": 660,
-        "y": 1380
-      },
-      "layoutPosition": {
-        "x": 4590,
-        "y": -60
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "13",
-          "signal": "A/C pressure switch in. EWD p152: A5 pin 4 *"
-        }
-      ],
-      "partId": "cp_xref",
-      "excludeFromBom": true
     },
     {
       "id": "dm_hcfb_h4",
@@ -1165,6 +960,90 @@
         "y": 480
       },
       "partId": "tp_lug_m10_50"
+    },
+    {
+      "id": "fl_ac_press_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.152 A5-1 V-R A/C pressure switch +12V (ACPS 5 A, IG) - solder sleeve into the factory V-R lead at the switch",
+      "schematicPosition": {
+        "x": 0,
+        "y": 1590
+      },
+      "layoutPosition": {
+        "x": 420,
+        "y": -270
+      }
+    },
+    {
+      "id": "fl_oem_ie1_c10",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.31 IE1-10 W AM1 to ignition switch I9-4 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 3870,
+        "y": -570
+      }
+    },
+    {
+      "id": "fl_oem_ie1_c17",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.31 IE1-17 B-R AM2 to ignition switch I9-10 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 60
+      },
+      "layoutPosition": {
+        "x": 3870,
+        "y": -510
+      }
+    },
+    {
+      "id": "fl_oem_jb1_1i_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.18-19 J/B1 1I-1 TBD J/B1 primary B+ (always hot; was FL ALT) - solder sleeve into the factory 1I-1 lead",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 150
+      },
+      "layoutPosition": {
+        "x": 3990,
+        "y": -420
+      }
+    },
+    {
+      "id": "fl_oem_rb2_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.23 R/B2-1 W 30A POWER fuse input (windows / locks) - feed the fuse input only - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 270
+      },
+      "layoutPosition": {
+        "x": 4110,
+        "y": -510
+      }
+    },
+    {
+      "id": "fl_oem_rb4_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.24 R/B4-1 TBD 40A HEATER fuse input - feed the fuse input only - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": 2910,
+        "y": 480
+      }
     }
   ],
   "wires": [
@@ -1332,8 +1211,8 @@
         "handle": "c5"
       },
       "target": {
-        "id": "oem_jb1_1i",
-        "handle": "c1"
+        "id": "fl_oem_jb1_1i_c1",
+        "handle": "Terminal"
       },
       "partId": "wp_6_wht"
     },
@@ -1345,8 +1224,8 @@
         "handle": "c6"
       },
       "target": {
-        "id": "oem_ie1",
-        "handle": "c10"
+        "id": "fl_oem_ie1_c10",
+        "handle": "Terminal"
       },
       "partId": "wp_8_wht"
     },
@@ -1358,8 +1237,8 @@
         "handle": "c7"
       },
       "target": {
-        "id": "oem_ie1",
-        "handle": "c17"
+        "id": "fl_oem_ie1_c17",
+        "handle": "Terminal"
       },
       "partId": "wp_10_brn"
     },
@@ -1540,8 +1419,8 @@
         "handle": "c3"
       },
       "target": {
-        "id": "oem_rb4",
-        "handle": "c1"
+        "id": "fl_oem_rb4_c1",
+        "handle": "Terminal"
       },
       "partId": "wp_8_red"
     },
@@ -1553,8 +1432,8 @@
         "handle": "c3"
       },
       "target": {
-        "id": "oem_rb2",
-        "handle": "c1"
+        "id": "fl_oem_rb2_c1",
+        "handle": "Terminal"
       },
       "partId": "wp_10_red"
     },
@@ -1663,32 +1542,6 @@
       "partId": "wp_18_vio"
     },
     {
-      "id": "w_amb_sig",
-      "color": "Yellow",
-      "source": {
-        "id": "amb_temp",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "dm_acamp",
-        "handle": "c1"
-      },
-      "partId": "wp_20_yel"
-    },
-    {
-      "id": "w_amb_rtn",
-      "color": "Yellow",
-      "source": {
-        "id": "amb_temp",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "dm_acamp",
-        "handle": "c2"
-      },
-      "partId": "wp_20_yel"
-    },
-    {
       "id": "w_acp_1",
       "color": "Violet",
       "source": {
@@ -1696,23 +1549,10 @@
         "handle": "c12"
       },
       "target": {
-        "id": "ac_press",
-        "handle": "c1"
+        "id": "fl_ac_press_c1",
+        "handle": "Terminal"
       },
       "partId": "wp_18_vio"
-    },
-    {
-      "id": "w_acp_2",
-      "color": "Yellow",
-      "source": {
-        "id": "ac_press",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "dm_acamp18",
-        "handle": "c1"
-      },
-      "partId": "wp_18_yel"
     }
   ],
   "bundles": [
@@ -2041,15 +1881,6 @@
       }
     },
     {
-      "id": "bn_bp_60__amb_temp",
-      "sourceId": "bp_60",
-      "targetId": "amb_temp",
-      "length": {
-        "value": 400,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_120__fan2",
       "sourceId": "bp_120",
       "targetId": "fan2",
@@ -2059,9 +1890,9 @@
       }
     },
     {
-      "id": "bn_bp_150__ac_press",
+      "id": "bn_bp_150__bp_fl_ac_press",
       "sourceId": "bp_150",
-      "targetId": "ac_press",
+      "targetId": "bp_fl_ac_press",
       "length": {
         "value": 1190,
         "unit": "mm"
@@ -2284,36 +2115,36 @@
       }
     },
     {
-      "id": "bn_bp_1140__oem_ie1",
+      "id": "bn_bp_1140__bp_fl_oem_ie1",
       "sourceId": "bp_1140",
-      "targetId": "oem_ie1",
+      "targetId": "bp_fl_oem_ie1",
       "length": {
         "value": 1560,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_bp_1170__oem_jb1_1i",
+      "id": "bn_bp_1170__bp_fl_oem_jb1_1i",
       "sourceId": "bp_1170",
-      "targetId": "oem_jb1_1i",
+      "targetId": "bp_fl_oem_jb1_1i",
       "length": {
         "value": 1500,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_bp_1200__oem_rb2",
+      "id": "bn_bp_1200__bp_fl_oem_rb2",
       "sourceId": "bp_1200",
-      "targetId": "oem_rb2",
+      "targetId": "bp_fl_oem_rb2",
       "length": {
         "value": 1450,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_bp_900__oem_rb4",
+      "id": "bn_bp_900__bp_fl_oem_rb4",
       "sourceId": "bp_900",
-      "targetId": "oem_rb4",
+      "targetId": "bp_fl_oem_rb4",
       "length": {
         "value": 170,
         "unit": "mm"
@@ -2334,24 +2165,6 @@
       "targetId": "dm_sp_sw12_Splice",
       "length": {
         "value": 70,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1290__dm_acamp",
-      "sourceId": "bp_1290",
-      "targetId": "dm_acamp",
-      "length": {
-        "value": 700,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1320__dm_acamp18",
-      "sourceId": "bp_1320",
-      "targetId": "dm_acamp18",
-      "length": {
-        "value": 700,
         "unit": "mm"
       }
     },
@@ -2469,6 +2282,60 @@
       "targetId": "fan2_g",
       "length": {
         "value": 590,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_ac_press__fl_ac_press_c1",
+      "sourceId": "bp_fl_ac_press",
+      "targetId": "fl_ac_press_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c10",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c10",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c17",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c17",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_jb1_1i__fl_oem_jb1_1i_c1",
+      "sourceId": "bp_fl_oem_jb1_1i",
+      "targetId": "fl_oem_jb1_1i_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_rb2__fl_oem_rb2_c1",
+      "sourceId": "bp_fl_oem_rb2",
+      "targetId": "fl_oem_rb2_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_rb4__fl_oem_rb4_c1",
+      "sourceId": "bp_fl_oem_rb4",
+      "targetId": "fl_oem_rb4_c1",
+      "length": {
+        "value": 50,
         "unit": "mm"
       }
     }
@@ -2753,6 +2620,41 @@
         "x": 300,
         "y": 390
       }
+    },
+    {
+      "id": "bp_fl_ac_press",
+      "layoutPosition": {
+        "x": 420,
+        "y": -270
+      }
+    },
+    {
+      "id": "bp_fl_oem_ie1",
+      "layoutPosition": {
+        "x": 3870,
+        "y": -570
+      }
+    },
+    {
+      "id": "bp_fl_oem_jb1_1i",
+      "layoutPosition": {
+        "x": 3990,
+        "y": -420
+      }
+    },
+    {
+      "id": "bp_fl_oem_rb2",
+      "layoutPosition": {
+        "x": 4110,
+        "y": -510
+      }
+    },
+    {
+      "id": "bp_fl_oem_rb4",
+      "layoutPosition": {
+        "x": 2910,
+        "y": 480
+      }
     }
   ],
   "mates": [
@@ -2849,7 +2751,7 @@
     },
     {
       "id": "note_acamp",
-      "text": "A/C IS THE AMPLIFIERS' BUSINESS, NOT THE ECU'S - and there are TWO\nRead off the factory EWD automatic-A/C pages, saved in ewd-snips:\n  p150  AUTO A/C AMPLIFIER  A32=conn A, A33=conn B, A34=conn C\n        A1 Ambient Temp -> TAM, conn C pin 6, Y-B (via EA1 4, IQ1 1)\n        A27 Water Temp  -> TW,  conn C pin 20, R-G\n  p152  A/C AMPLIFIER A18 - a SEPARATE module\n        A5 Pressure SW  -> A18 pin 13, Y-R (via EB2 2, E10, IJ1 15)\n        TWO WIRES: pin 1 in on V-R, pin 4 out on Y-R. Dual switch,\n        not a trinary. Same Y-R net also feeds the A3 idle-up VSV.\nEngine-bay parts are loom C's: A1 ambient, A5 pressure switch.\nCabin: A23 room temp, A24 solar, A26 evaporator thermistor, A27 water.\nThe ECU sees NONE of them. Its only A/C tie is Aux 4 / A18 kill.\nSTILL OPEN: both connector part numbers, and the A/C amp pin for the\nambient sensor's Y return leg.",
+      "text": "A/C IS THE AMPLIFIERS' BUSINESS, NOT THE ECU'S OR THE CSB3'S - and there are TWO\nRead off the factory EWD automatic-A/C pages, saved in ewd-snips:\n  p150  AUTO A/C AMPLIFIER  A32=conn A, A33=conn B, A34=conn C\n        A1 Ambient Temp -> TAM, conn C pin 6, Y-B (via EA1 4, IQ1 1)\n        A27 Water Temp  -> TW,  conn C pin 20, R-G\n  p152  A/C AMPLIFIER A18 - a SEPARATE module\n        A5 Pressure SW  -> A18 pin 13, Y-R (via EB2 2, E10, IJ1 15)\nAmbient sensor -> amplifier and pressure switch -> A18 stay FACTORY wiring\n(harness redesign 2026-09-27); this loom does not redraw them.\nNew here: only the ACPS +12V feed, a flying lead into A5 pin 1 (V-R).\nThe amplifier's own coolant switch comes from Engine-A via bulkhead A\nc37/c38 and IX_AC_CTS (ST185-ACAmp-Spur). The ECU's only A/C tie is\nAux 4 / A18 ACT kill, a flying lead on ST185-A-ECU.",
       "schematicPosition": {
         "x": 3180,
         "y": 1170
@@ -3095,44 +2997,6 @@
     }
   ],
   "connectorParts": [
-    {
-      "partNumber": "TBD - A/C pressure switch connector, 2-way",
-      "manufacturer": "Toyota",
-      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS - A/C dual pressure switch, EWD A5 (pin 1 V-R in, pin 4 Y-R out). PN TBD",
-      "numberOfCavities": 2,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "id": "cp_ac_press",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/toyota-ac-pressure-sw-2pos.png"
-      }
-    },
-    {
-      "partNumber": "TBD - ambient temp sensor connector",
-      "manufacturer": "Toyota",
-      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS - A/C ambient temp thermistor, EWD A1, behind front bumper. PN TBD",
-      "numberOfCavities": 2,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "id": "cp_amb_temp",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/toyota-ambient-temp-2pos.png"
-      }
-    },
     {
       "partNumber": "jump-post-M8",
       "manufacturer": "TBD",
@@ -3450,6 +3314,21 @@
       },
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK",
       "id": "tp_lug_m8_8"
+    },
+    {
+      "type": "Loose",
+      "partNumber": "GENERIC FLYING LEAD",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "id": "tp_flying_lead"
     }
   ],
   "contactParts": [
