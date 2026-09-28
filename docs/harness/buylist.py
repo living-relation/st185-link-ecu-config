@@ -34,7 +34,7 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("AMI-50","Eaton Bussmann","AMI fuse 50 A, M5 bolt-down - HCFB H1, feeds FB1",1,0),
  ("AMI-40","Eaton Bussmann","AMI fuse 40 A, M5 bolt-down - HCFB H2, radiator fan relay",1,0),
  ("AMI-30","Eaton Bussmann","AMI fuse 30 A, M5 bolt-down - HCFB H3, condenser fan relay",1,0),
- ("AMI-60","Eaton Bussmann","AMI fuse 60 A, M5 bolt-down - HCFB H4, EPS pump relay",1,0),
+ ("AMI-TBD","Eaton Bussmann","AMI fuse, M5 bolt-down - HCFB H4, EPS pump relay - RATING TBD: need the MR-S EHPS pump current and the Bussmann AMI datasheet (60 A was never sourced)",1,0),
  ("RL9080-301-F1RE","Amphenol","RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, RED - firewall POSITIVE. Mates RL00801-50RE each side.",1,0),
  ("RL9080-301-F1","Amphenol","RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, BLACK - firewall NEGATIVE. Mates RL00801-50BK each side.",1,0),
  ("1/0 AWG welding cable red/black","generic","Trunk battery +/−, firewall crossing, engine ground. Sized on voltage drop over a ~36 ft round trip: 1.06V cranking, 0.57V at 160A charge. 2 AWG was 13% cranking drop - too much. ~45 ft each colour.",1,0),

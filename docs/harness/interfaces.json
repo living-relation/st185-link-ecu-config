@@ -729,27 +729,6 @@
       "reason": "MRS enable populates bulkhead A engine-plug cavity 35 (fused 12V, follows the pump's ECU signal A27)"
     },
     {
-      "harness": "EngineRoom-C",
-      "connector": "dm_ecu_b_b12",
-      "type": "reference_only",
-      "realOn": "B-cabin",
-      "reason": "EPS relay trigger (Ign 6) populates ECU-B B12"
-    },
-    {
-      "harness": "EngineRoom-C",
-      "connector": "dm_hcfb_h4",
-      "type": "reference_only",
-      "realOn": "A-cabin",
-      "reason": "k_eps 30 fed from high-current fuse block output H4 (60 A AMI)"
-    },
-    {
-      "harness": "EngineRoom-C",
-      "connector": "dm_sp_sw12_Splice",
-      "type": "reference_only",
-      "realOn": "A-cabin",
-      "reason": "k_eps coil 86 joins the switched-12V splice sp_sw12"
-    },
-    {
       "harness": "B-cabin",
       "connector": "dm_sp_gndout_Splice",
       "type": "reference_only",
@@ -776,6 +755,13 @@
       "type": "reference_only",
       "realOn": "A-cabin",
       "reason": "switched 12V bus splice at ECU A feeding a B-side load"
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "dm_k_eps_c4",
+      "type": "reference_only",
+      "realOn": "B-cabin",
+      "reason": "EPS pump feed leaves the relay k_eps 87 (glove box, B-cabin) and runs on loom C to the pump"
     }
   ]
 }

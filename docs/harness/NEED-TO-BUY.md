@@ -84,7 +84,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `AMI-50` | Eaton Bussmann | AMI fuse 50 A, M5 bolt-down - HCFB H1, feeds FB1 | 1 | 0 | **1** |
 | `AMI-40` | Eaton Bussmann | AMI fuse 40 A, M5 bolt-down - HCFB H2, radiator fan relay | 1 | 0 | **1** |
 | `AMI-30` | Eaton Bussmann | AMI fuse 30 A, M5 bolt-down - HCFB H3, condenser fan relay | 1 | 0 | **1** |
-| `AMI-60` | Eaton Bussmann | AMI fuse 60 A, M5 bolt-down - HCFB H4, EPS pump relay | 1 | 0 | **1** |
+| `AMI-TBD` | Eaton Bussmann | AMI fuse, M5 bolt-down - HCFB H4, EPS pump relay - RATING TBD: need the MR-S EHPS pump current and the Bussmann AMI datasheet (60 A was never sourced) | 1 | 0 | **1** |
 | `RL9080-301-F1RE` | Amphenol | RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, RED - firewall POSITIVE. Mates RL00801-50RE each side. | 1 | 0 | **1** |
 | `RL9080-301-F1` | Amphenol | RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, BLACK - firewall NEGATIVE. Mates RL00801-50BK each side. | 1 | 0 | **1** |
 | `1/0 AWG welding cable red/black` | generic | Trunk battery +/−, firewall crossing, engine ground. Sized on voltage drop over a ~36 ft round trip: 1.06V cranking, 0.57V at 160A charge. 2 AWG was 13% cranking drop - too much. ~45 ft each colour. | 1 | 0 | **1** |
@@ -153,7 +153,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(kit socket, D 261 205 358-01)` | CONTACT, SOCKET, CRIMP, GOLD - supplied in the Bosch D 261 205 | 6 |
 | `(kit-supplied pigtail)` | CONNECTOR, PIGTAIL, 3 POS - supplied with the RacerX Cherry Ha | 1 |
 | `(pump pigtail - Walbro F90000295)` | CONNECTOR, PIGTAIL, 2 POS - supplied on the Walbro F90000295 p | 1 |
-| `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE  | 2 |
+| `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE  | 1 |
 | `(ring lug, sized to cable)` | TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE  | 17 |
 | `TBD - A/C coolant temperature switch connector` | CONNECTOR, A/C COOLANT TEMPERATURE SWITCH, 2 POS - switch not  | 1 |
 | `TBD - generic oval 3-pin, socket contacts` | CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS - 3-wire  | 1 |

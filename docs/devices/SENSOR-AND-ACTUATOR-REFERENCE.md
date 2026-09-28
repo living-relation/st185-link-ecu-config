@@ -146,9 +146,18 @@ number is still unidentified; `90980-*` family, to confirm.
 
 ### Relay placement
 
-`k_eps` (HCR 150) lives in the **engine bay, next to the pump** - not the cabin. The pump
-draws 60-80 A peak, so the short heavy run wins and only the thin coil trigger crosses the
-firewall. Any drawing that puts `k_eps` on the cabin side is wrong.
+**Changed 2026-09-28 (Daniel): every relay is in the cabin.** `k_eps` (HCR 150) now sits
+in the glove box beside the HCFB, drawn on `ST185-B-cabin` because its trigger is ECU-B
+B12. The coil trigger, coil feed and HCFB H4 feed are cabin wires; the pump feed from
+contact 87 runs point-to-point on loom C through the firewall (no bulkhead), like the fan
+feeds. This replaces the 2026-09-17 "engine bay, next to the pump" placement.
+
+Sizing is open: the "60-80 A peak" figure above is not from a datasheet, so the HCFB H4
+fuse rating and the feed wire gauge are **TBD - need the MR-S ZZW30 EHPS pump current
+(Toyota spec or a measured draw), the Bussmann AMI datasheet, and an ampacity table for
+the wire**. The only sourced rating in this circuit is the HCR 150's own: 130 A at 85 C
+with a 25 mm2 load cable (TE datasheet V23132-X0000-A001). The longer heavy run from the
+glove box to the pump also makes voltage drop a sizing input once the current is known.
 
 The reference wiring feeds the relay coil straight from ignition-switched 12 V. Our
 diagrams currently run `w_mrs_relay_req` from `mrs_ctrl.c3` to `k_eps.c2`, i.e. the pump

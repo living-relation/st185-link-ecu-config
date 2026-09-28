@@ -137,49 +137,6 @@
       "partId": "cp_gbx_body"
     },
     {
-      "id": "k_eps",
-      "label": "MR-S EHPS pump relay (HCR150, engine bay) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V - HCR 150 coil is a 2-pole plug (TE terminals 1/2, not marked 85/86), resistor-suppressed so polarity-free",
-      "width": 390,
-      "schematicPosition": {
-        "x": 1980,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 1740,
-        "y": 300
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "30",
-          "signal": "Fused +12V in (HCFB H4 60A, ST185-A-cabin)"
-        },
-        {
-          "id": "c2",
-          "designation": "85",
-          "signal": "ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) *",
-          "contactPartId": "ct_ss15"
-        },
-        {
-          "id": "c3",
-          "designation": "86",
-          "signal": "Coil + IG-switched 12V",
-          "contactPartId": "ct_ss15"
-        },
-        {
-          "id": "c4",
-          "designation": "87",
-          "signal": "+12V out, passenger fender to pump"
-        },
-        {
-          "id": "c5",
-          "designation": "87a",
-          "signal": "not used"
-        }
-      ],
-      "partId": "cp_rly_hcr150"
-    },
-    {
       "id": "k_fan",
       "label": "Rad fan relay (uprated) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
       "width": 390,
@@ -554,28 +511,6 @@
       "excludeFromBom": true
     },
     {
-      "id": "dm_sp_sw12_Splice",
-      "label": "sp_sw12-Splice",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Ignition-switched +12V splice (sp_sw12) *"
-        }
-      ],
-      "schematicPosition": {
-        "x": 2640,
-        "y": 600
-      },
-      "layoutPosition": {
-        "x": 4350,
-        "y": 240
-      },
-      "partId": "cp_xref",
-      "excludeFromBom": true
-    },
-    {
       "id": "dm_bh_a_eng_c35",
       "label": "BH-A-c35",
       "width": 390,
@@ -593,28 +528,6 @@
       "layoutPosition": {
         "x": 3150,
         "y": 210
-      },
-      "partId": "cp_xref",
-      "excludeFromBom": true
-    },
-    {
-      "id": "dm_ecu_b_b12",
-      "label": "ECU-B-b12",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "ECU-B pin B12 (Ign 6) — EPS relay trigger per *"
-        }
-      ],
-      "schematicPosition": {
-        "x": 2640,
-        "y": 240
-      },
-      "layoutPosition": {
-        "x": 4710,
-        "y": 270
       },
       "partId": "cp_xref",
       "excludeFromBom": true
@@ -686,28 +599,6 @@
       }
     },
     {
-      "id": "dm_hcfb_h4",
-      "label": "HCFB-H4",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "HCFB H4, 60A AMI - EPS pump relay 30 ONLY *"
-        }
-      ],
-      "schematicPosition": {
-        "x": 2640,
-        "y": 360
-      },
-      "layoutPosition": {
-        "x": 4230,
-        "y": 300
-      },
-      "partId": "cp_xref",
-      "excludeFromBom": true
-    },
-    {
       "id": "rad_fan_g",
       "label": "Uprated radiator fan (GND)",
       "width": 390,
@@ -748,6 +639,28 @@
         }
       ],
       "partId": "cp_dthd_1_8s"
+    },
+    {
+      "id": "dm_k_eps_c4",
+      "label": "K-EPS-87",
+      "width": 390,
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "EPS relay k_eps 87 (HCR150, glove box, ST185-B-cabin) → pump feed *"
+        }
+      ],
+      "schematicPosition": {
+        "x": 1980,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 1740,
+        "y": 300
+      },
+      "partId": "cp_xref",
+      "excludeFromBom": true
     }
   ],
   "terminals": [
@@ -1337,14 +1250,14 @@
       "id": "w_eps_pwr",
       "color": "Red",
       "source": {
-        "id": "k_eps",
-        "handle": "c4"
+        "id": "dm_k_eps_c4",
+        "handle": "c1"
       },
       "target": {
         "id": "mrs_eps",
         "handle": "a1"
       },
-      "partId": "wp_8_red"
+      "partId": "wp_tbd_eps"
     },
     {
       "id": "w_eps_gnd",
@@ -1490,32 +1403,6 @@
       "partId": "wp_20_pnk"
     },
     {
-      "id": "w_fb_k_eps_30",
-      "color": "Red",
-      "source": {
-        "id": "dm_hcfb_h4",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "k_eps",
-        "handle": "c1"
-      },
-      "partId": "wp_8_red"
-    },
-    {
-      "id": "w_k_eps_86",
-      "color": "Red",
-      "source": {
-        "id": "dm_sp_sw12_Splice",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "k_eps",
-        "handle": "c3"
-      },
-      "partId": "wp_18_red"
-    },
-    {
       "id": "w_hv_mrs_en_e",
       "color": "Red",
       "source": {
@@ -1527,19 +1414,6 @@
         "handle": "c1"
       },
       "partId": "wp_20_red"
-    },
-    {
-      "id": "w_eps_trig",
-      "color": "Violet",
-      "source": {
-        "id": "dm_ecu_b_b12",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "k_eps",
-        "handle": "c2"
-      },
-      "partId": "wp_18_vio"
     },
     {
       "id": "w_acp_1",
@@ -1982,7 +1856,7 @@
     {
       "id": "bn_bp_450__k_eps",
       "sourceId": "bp_450",
-      "targetId": "k_eps",
+      "targetId": "dm_k_eps_c4",
       "length": {
         "value": 70,
         "unit": "mm"
@@ -2160,29 +2034,11 @@
       }
     },
     {
-      "id": "bn_bp_1260__dm_sp_sw12_Splice",
-      "sourceId": "bp_1260",
-      "targetId": "dm_sp_sw12_Splice",
-      "length": {
-        "value": 70,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_990__gbx_body",
       "sourceId": "bp_990",
       "targetId": "gbx_body",
       "length": {
         "value": 250,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1350__dm_ecu_b_b12",
-      "sourceId": "bp_1350",
-      "targetId": "dm_ecu_b_b12",
-      "length": {
-        "value": 200,
         "unit": "mm"
       }
     },
@@ -2219,15 +2075,6 @@
       "targetId": "t_trunk_neg",
       "length": {
         "value": 200,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1230__dm_hcfb_h4",
-      "sourceId": "bp_1230",
-      "targetId": "dm_hcfb_h4",
-      "length": {
-        "value": 70,
         "unit": "mm"
       }
     },
@@ -2759,7 +2606,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nGlove-box body block (fuses +  IGN: Ignition-switched relay coil feed (not yet wired)\nGlove-box body block (fuses +  HL: HEAD LH - relay 87, 15 A fuse -> J/B2 2A-3 / 2D-2\nGlove-box body block (fuses +  HR: HEAD RH - relay 87, 15 A fuse -> J/B2 2A-6 / 2D-6\nGlove-box body block (fuses +  WP: Wiper park - relay 87, 15 A fuse (optional, unused)\nGlove-box body block (fuses +  CSB: CSB3 permanent feed, 5 A - stays live for the kill sequence (plan 6.48)\nGlove-box body block (fuses +  DEV: Cluster + RealDash Pi - device relay 87, held by CSB3 low-side L1 (plan 6.48)\nGlove-box body block (fuses +  ACPS: A/C pressure switch +12V, 5 A fuse, ignition-switched (was wrongly on F7 60A, the EPS pump fuse)\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nOEM J/B2 2A (engine room main) 2: 30A CDS FAN out - DO NOT REFEED, fan moved to k_fan2\nOEM J/B2 2A (engine room main) 5: Engine main relay 87 - DO NOT REFEED, Link EFI in Power\nOEM J/B2 2D (engine room main) 3: Headlight relay coil - unused, PMU switches the lamps\nOEM J/B2 2E (engine room main) 2: PROBE: inner cct = 30A RTR; starting p.48 = AM1 with 2E-5\nOEM J/B2 2E (engine room main) 3: PROBE: inner cct = 15A HAZ-HORN; starting p.48 = AM2 with 2E-6\nOEM J/B2 2E (engine room main) 4: 20A DOME (inner circuit, not on AM1/AM2 path) - PMU O4\nOEM J/B2 2E (engine room main) 5: AM1 pass-through (starting p.48). Do not PMU-feed. Restored at IE1-10\nOEM J/B2 2E (engine room main) 6: AM2 / engine-main related. Do not PMU-feed. Restored at IE1-17\nOEM R/B4 (right kick, by glove STR: OEM starter relay - isolate, Link k_str replaces\nBH-A-c36 1: Bulkhead A cavity 36 → ECU-A A27 (Aux 7, MRS SPD) — wired on ST185-A-cabin\nHCFB-H4 1: HCFB H4, 60A AMI — EPS pump relay 30 ONLY, fuse block on ST185-A-cabin\nsp_sw12-Splice 1: Ignition-switched +12V splice (sp_sw12) — feeds EFI/ETB/fuel/fan relay coils, wired on ST185-A-cabin\nBH-A-c35 1: Bulkhead A cavity 35 → MRS EPS pump logic enable (cabin fuse block c14, 7.5A, ignition-switched) — wired on ST185-A-cabin; moved from bulkhead B c14 2026-09-28\nECU-B-b12 1: ECU-B pin B12 (Ign 6) — EPS relay trigger per 6.16, branches off at the ECU into loom C.\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87, 8 AWG, passenger fender\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si B-6: [B 90980-10897 pin 6] relay request out - NOT WIRED. 6.16 moved the EPS relay trigger to the ECU (Ign 6 / ecu_b B12). Kept for reference.\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, F13 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box body block APS, 5 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nGlove-box body block (fuses +  IGN: Ignition-switched relay coil feed (not yet wired)\nGlove-box body block (fuses +  HL: HEAD LH - relay 87, 15 A fuse -> J/B2 2A-3 / 2D-2\nGlove-box body block (fuses +  HR: HEAD RH - relay 87, 15 A fuse -> J/B2 2A-6 / 2D-6\nGlove-box body block (fuses +  WP: Wiper park - relay 87, 15 A fuse (optional, unused)\nGlove-box body block (fuses +  CSB: CSB3 permanent feed, 5 A - stays live for the kill sequence (plan 6.48)\nGlove-box body block (fuses +  DEV: Cluster + RealDash Pi - device relay 87, held by CSB3 low-side L1 (plan 6.48)\nGlove-box body block (fuses +  ACPS: A/C pressure switch +12V, 5 A fuse, ignition-switched (was wrongly on F7 60A, the EPS pump fuse)\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nOEM J/B2 2A (engine room main) 2: 30A CDS FAN out - DO NOT REFEED, fan moved to k_fan2\nOEM J/B2 2A (engine room main) 5: Engine main relay 87 - DO NOT REFEED, Link EFI in Power\nOEM J/B2 2D (engine room main) 3: Headlight relay coil - unused, PMU switches the lamps\nOEM J/B2 2E (engine room main) 2: PROBE: inner cct = 30A RTR; starting p.48 = AM1 with 2E-5\nOEM J/B2 2E (engine room main) 3: PROBE: inner cct = 15A HAZ-HORN; starting p.48 = AM2 with 2E-6\nOEM J/B2 2E (engine room main) 4: 20A DOME (inner circuit, not on AM1/AM2 path) - PMU O4\nOEM J/B2 2E (engine room main) 5: AM1 pass-through (starting p.48). Do not PMU-feed. Restored at IE1-10\nOEM J/B2 2E (engine room main) 6: AM2 / engine-main related. Do not PMU-feed. Restored at IE1-17\nOEM R/B4 (right kick, by glove STR: OEM starter relay - isolate, Link k_str replaces\nBH-A-c36 1: Bulkhead A cavity 36 → ECU-A A27 (Aux 7, MRS SPD) — wired on ST185-A-cabin\nBH-A-c35 1: Bulkhead A cavity 35 → MRS EPS pump logic enable (cabin fuse block c14, 7.5A, ignition-switched) — wired on ST185-A-cabin; moved from bulkhead B c14 2026-09-28\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87 (glove box, ST185-B-cabin), passenger fender; wire gauge TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si B-6: [B 90980-10897 pin 6] relay request out - NOT WIRED. 6.16 moved the EPS relay trigger to the ECU (Ign 6 / ecu_b B12). Kept for reference.\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, F13 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box body block APS, 5 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.\nK-EPS-87 1: EPS relay k_eps contact 87 - the HCR150 moved from the engine bay to the glove box 2026-09-28 (Daniel: every relay in the cabin); it is drawn on ST185-B-cabin because its trigger is ECU-B B12. The feed runs point-to-point through the firewall on loom C, no bulkhead",
       "schematicPosition": {
         "x": 3180,
         "y": 1920
@@ -2985,15 +2832,11 @@
       }
     },
     {
-      "id": "wp_18_red",
-      "partNumber": "EW-1C18-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "wp_tbd_eps",
+      "partNumber": "TBD - EPS pump feed wire",
+      "manufacturer": "TBD",
       "color": "Red",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
+      "description": "WIRE, EPS PUMP FEED, GAUGE TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced"
     }
   ],
   "connectorParts": [
@@ -3113,24 +2956,6 @@
         "source": "url",
         "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Red_SPL.jpg",
         "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Red_SPL.jpg"
-      }
-    },
-    {
-      "partNumber": "V23132-A2001-B200",
-      "manufacturer": "TE Connectivity",
-      "description": "RELAY, HIGH CURRENT, TE HCR 150 V23132-A2001-B200 (IP67) - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 130 A at 85 C (rated, 25 mm2 load cable) - COIL: 12 VDC, 37 OHM, 3.9 W - SUPPRESSION: RESISTOR in parallel, value TBD - need value (not on datasheet) - Checked 2026-09-26 against TE datasheet V23132-X0000-A001 rev 1403 + te.com product page 1416010-1; STUD LOAD TERMINALS - OWNED; coil mate Superseal 1.5 2-way plug 282080-1 with 282110-1 contacts and 281934-2 seals (all owned)",
-      "numberOfCavities": 5,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_ring_m6_8"
-        }
-      ],
-      "id": "cp_rly_hcr150",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_high_current_150.jpg",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_high_current_150.jpg"
       }
     },
     {
@@ -3383,9 +3208,9 @@
       "id": "ct_radlok8"
     },
     {
-      "partNumber": "(ring lug, 8 AWG, M6)",
-      "manufacturer": "generic",
-      "type": "Other",
+      "partNumber": "280755-4",
+      "manufacturer": "TE Connectivity",
+      "type": "Crimp",
       "gender": "Socket",
       "minGauge": {
         "value": 10,
@@ -3396,8 +3221,8 @@
         "unit": "AWG"
       },
       "contactColor": "Silver",
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK - HCR 150 load studs (M6 per TE HCR 150 datasheet)",
-      "id": "ct_ring_m6_8"
+      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 6-10 MM2 (10-8 AWG) - VCF7 socket 1393310-4, 8 AWG fan load cavities 30/87",
+      "id": "ct_f7_load8"
     },
     {
       "partNumber": "8100-0461",
@@ -3415,23 +3240,6 @@
         "value": 16,
         "unit": "AWG"
       }
-    },
-    {
-      "partNumber": "280755-4",
-      "manufacturer": "TE Connectivity",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 8,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
-      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 6-10 MM2 (10-8 AWG) - VCF7 socket 1393310-4, 8 AWG fan load cavities 30/87",
-      "id": "ct_f7_load8"
     },
     {
       "partNumber": "42281-1",
@@ -3466,23 +3274,6 @@
       "contactColor": "Silver",
       "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) - VCF7 socket 1393310-4, load cavities 30/87",
       "id": "ct_f7_load"
-    },
-    {
-      "partNumber": "282110-1",
-      "manufacturer": "TE Connectivity",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 18,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2 - HCR 150 coil plug 282080-1 - OWNED (qty 10)",
-      "id": "ct_ss15"
     },
     {
       "partNumber": "0462-203-08141",

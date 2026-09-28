@@ -742,7 +742,8 @@
         {
           "id": "h4",
           "designation": "H4",
-          "notConnected": true
+          "signal": "EPS pump relay 30 (k_eps, ST185-B-cabin) - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced *",
+          "contactPartId": "ct_ring_m5_10_8"
         }
       ],
       "schematicPosition": {
@@ -936,6 +937,49 @@
       },
       "partId": "cp_xref",
       "excludeFromBom": true
+    },
+    {
+      "id": "k_eps",
+      "label": "MR-S EHPS pump relay (HCR150, glove box) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V - HCR 150 coil is a 2-pole plug (TE terminals 1/2, not marked 85/86), resistor-suppressed so polarity-free",
+      "width": 390,
+      "schematicPosition": {
+        "x": 1200,
+        "y": 4470
+      },
+      "layoutPosition": {
+        "x": 2760,
+        "y": 510
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "30",
+          "signal": "Fused +12V in (HCFB H4, ST185-A-cabin; fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced) *"
+        },
+        {
+          "id": "c2",
+          "designation": "85",
+          "signal": "ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) *",
+          "contactPartId": "ct_ss15"
+        },
+        {
+          "id": "c3",
+          "designation": "86",
+          "signal": "Coil + IG-switched 12V",
+          "contactPartId": "ct_ss15"
+        },
+        {
+          "id": "c4",
+          "designation": "87",
+          "signal": "+12V out to the pump - wire on ST185-EngineRoom-C, loom C through the firewall"
+        },
+        {
+          "id": "c5",
+          "designation": "87a",
+          "signal": "not used"
+        }
+      ],
+      "partId": "cp_rly_hcr150"
     }
   ],
   "terminals": [
@@ -1445,6 +1489,45 @@
       },
       "color": "Red",
       "partId": "wp_20_red"
+    },
+    {
+      "id": "w_fb_k_eps_30",
+      "color": "Red",
+      "source": {
+        "id": "hcfb",
+        "handle": "h4"
+      },
+      "target": {
+        "id": "k_eps",
+        "handle": "c1"
+      },
+      "partId": "wp_tbd_eps"
+    },
+    {
+      "id": "w_k_eps_86",
+      "color": "Red",
+      "source": {
+        "id": "dm_sp_sw12_Splice",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "k_eps",
+        "handle": "c3"
+      },
+      "partId": "wp_18_red"
+    },
+    {
+      "id": "w_eps_trig",
+      "color": "Violet",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b12"
+      },
+      "target": {
+        "id": "k_eps",
+        "handle": "c2"
+      },
+      "partId": "wp_18_vio"
     }
   ],
   "cables": [
@@ -1931,6 +2014,15 @@
         "value": 250,
         "unit": "mm"
       }
+    },
+    {
+      "id": "b_bn_bp_1260__k_eps",
+      "sourceId": "b_bp_1260",
+      "targetId": "k_eps",
+      "length": {
+        "value": 370,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -2346,6 +2438,13 @@
         "value": 18,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "wp_tbd_eps",
+      "partNumber": "TBD - EPS pump feed wire",
+      "manufacturer": "TBD",
+      "color": "Red",
+      "description": "WIRE, EPS PUMP FEED, GAUGE TBD - need the MR-S ZZW30 EHPS pump current and an ampacity table for the wire (M22759/16 / AS50881) before this gauge is set; 8 AWG was never sourced"
     }
   ],
   "connectorParts": [
@@ -2547,6 +2646,24 @@
       "image": {
         "source": "url",
         "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png"
+      }
+    },
+    {
+      "partNumber": "V23132-A2001-B200",
+      "manufacturer": "TE Connectivity",
+      "description": "RELAY, HIGH CURRENT, TE HCR 150 V23132-A2001-B200 (IP67) - CONTACT FORM: 1 form A (N/O) - CONTACT RATING: 130 A at 85 C (rated, 25 mm2 load cable) - COIL: 12 VDC, 37 OHM, 3.9 W - SUPPRESSION: RESISTOR in parallel, value TBD - need value (not on datasheet) - Checked 2026-09-26 against TE datasheet V23132-X0000-A001 rev 1403 + te.com product page 1416010-1; STUD LOAD TERMINALS - OWNED; coil mate Superseal 1.5 2-way plug 282080-1 with 282110-1 contacts and 281934-2 seals (all owned)",
+      "numberOfCavities": 5,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_ring_m6_8"
+        }
+      ],
+      "id": "cp_rly_hcr150",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_high_current_150.jpg",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_high_current_150.jpg"
       }
     }
   ],
@@ -2773,6 +2890,40 @@
       "contactColor": "Silver",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M5 STUD, ADHESIVE HEATSHRINK - LMI fuse module output studs",
       "id": "ct_ring_m5_10_8"
+    },
+    {
+      "partNumber": "282110-1",
+      "manufacturer": "TE Connectivity",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 18,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "contactColor": "Silver",
+      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2 - HCR 150 coil plug 282080-1 - OWNED (qty 10)",
+      "id": "ct_ss15"
+    },
+    {
+      "partNumber": "(ring lug, 8 AWG, M6)",
+      "manufacturer": "generic",
+      "type": "Other",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 10,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 8,
+        "unit": "AWG"
+      },
+      "contactColor": "Silver",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK - HCR 150 load studs (M6 per TE HCR 150 datasheet)",
+      "id": "ct_ring_m6_8"
     }
   ],
   "resistorParts": [
@@ -2911,7 +3062,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, NO internal flywheel diode - diode-suppressed relay fitted (TE 7-1904094-9)\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead B - firewall (HDP24-2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - firewall (HDP24-2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nsp_gndout-Splice 1: crossover (a): B leg of sensor Gnd Out from the splice at ECU A (B22 joins it) - splice drawn on ST185-A-cabin\nsp_5v-Splice 1: crossover (a): B leg of the +5V sensor supply from the splice at ECU A - splice drawn on ST185-A-cabin\nsp_chassis-Splice 1: ECU-B power grounds B25/B34 join the cabin chassis ground splice - splice drawn on ST185-A-cabin\nsp_sw12-Splice 1: switched 12V bus splice at ECU A feeding a B-side load - splice drawn on ST185-A-cabin",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, NO internal flywheel diode - diode-suppressed relay fitted (TE 7-1904094-9)\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead B - firewall (HDP24-2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - firewall (HDP24-2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nsp_gndout-Splice 1: crossover (a): B leg of sensor Gnd Out from the splice at ECU A (B22 joins it) - splice drawn on ST185-A-cabin\nsp_5v-Splice 1: crossover (a): B leg of the +5V sensor supply from the splice at ECU A - splice drawn on ST185-A-cabin\nsp_chassis-Splice 1: ECU-B power grounds B25/B34 join the cabin chassis ground splice - splice drawn on ST185-A-cabin\nsp_sw12-Splice 1: switched 12V bus splice at ECU A feeding a B-side load - splice drawn on ST185-A-cabin\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: HCFB H4 - fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced\nHigh-current fuse block HCFB h4: fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced",
       "schematicPosition": {
         "x": 4200,
         "y": 0
