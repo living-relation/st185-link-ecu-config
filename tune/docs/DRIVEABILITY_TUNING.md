@@ -9,7 +9,9 @@ PCLink features to configure after triggers and base VE/ignition seeds. Conserva
 - **Hot restart** table separate (ECT >160°F soak) — reduce cranking fuel vs cold.
 - **Fuel-temp vapor-lock trim:** `tables/warmup_fuel_temp_trim.csv` adds cranking/post-start
   enrichment on top of the ECT tables above once fuel temp (Continental sensor, DI 2) approaches
-  the RealDash caution band (55°C) — return-style system + E85 vapor-locks hot, independent of ECT.
+  the RealDash caution band (55°C) — return-style system + E85 vapor-locks hot, independent of
+  ECT *when the sensor reading is valid* (a hot rail can outlast a cooling engine). On a sensor
+  **fault**, the fallback is gated on ECT instead — see Sensor fault below.
 
 ## Warm-up
 
@@ -85,6 +87,18 @@ If vacuum-reference load is unstable at overlap (sub-30 kPa MAP flutter):
     (`fuel_temp_c.limit_condition`: `fuel_temp_c > 70 AND Ethanol Sensor Fault = false`, the
     same multi-condition pattern `oil_press` already uses), so the fault-substituted 90°C
     cannot self-trigger the cut, while a genuinely valid >70°C reading still can.
+    - `fuel_temp_density_comp.csv` uses the 90°C substitute unconditionally on fault — its
+      effect is small (max +7%, multiplicative), self-corrects under closed-loop once running,
+      and is not a flooding risk even applied to a cold engine.
+    - `warmup_fuel_temp_trim.csv` **cannot** use it unconditionally: it's an *additive*
+      cranking/post-start enrichment (+20%/+14% at 90°C), and a flex-sensor fault is exactly as
+      plausible on a car that's never run today (cold) as one that just came off a hot drive —
+      applying it unconditionally on fault would risk flooding / failure to start on an ordinary
+      cold start. So the fault-substitute path (only the fault path — a valid sensor reading
+      still works as designed, independent of ECT) is additionally gated on ECT already being
+      in the hot-restart range (>160°F, the same condition already used for the separate hot
+      -restart cranking table above): faulted + ECT low → apply nothing; faulted + ECT high →
+      apply the full 90°C fallback. ECT is a separate sensor circuit with no shared fault path.
   Configure all of this in PCLink's Ethanol Sensor Fault / DI error handling — never silently
   hold the last-good value.
 

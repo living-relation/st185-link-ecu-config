@@ -11,11 +11,23 @@
 #
 # SENSOR FAULT DEFAULT: same Continental sensor/wire as ethanol%. On signal loss, PCLink falls
 # back to the fuel_temp_c=90 row (20% / 14%, the richest defined trim) - matches
-# fuel_temp_density_comp.csv's fault value exactly. A sensor fault is plausibly a THERMAL
-# failure, disproportionately likely to coincide with a genuine hot-soak restart, which is
-# exactly what this table exists to protect - a weaker fallback would under-fuel that case.
-# Safe only because tune/limits.yaml's fuel_temp_c hard Fuel Cut (70C) is gated on sensor
-# VALIDITY, not just the threshold. See that file's fuel_temp_c.limit_condition and notes.
+# fuel_temp_density_comp.csv's fault value exactly, for the same reasoning (a sensor fault is
+# plausibly thermal, so disproportionately likely to coincide with a genuine hot-soak restart).
+#
+# CRITICAL - THE 90C FAULT SUBSTITUTE MUST BE GATED ON ECT, FAULT CASE ONLY: with a VALID
+# sensor reading, this table works as designed - no change, use the real fuel_temp_c value
+# regardless of ECT (a hot rail can outlast a cooling engine). The problem is specifically the
+# FAULT-SUBSTITUTE path: applying 90C (20%/14%) unconditionally whenever the sensor is faulted
+# would also add that enrichment on a genuinely cold start (a flex-sensor fault is just as
+# plausible on an engine that has never run as on a hot one) - flooding / failure-to-start risk,
+# the opposite failure mode from vapor lock and arguably worse (near-certain on a cold-start
+# fault vs. a plausible-but-not-guaranteed hot-restart coincidence). Fix: when the sensor is
+# FAULTED, gate the substitute on ECT already being in the hot-restart range (>160F / ~71C,
+# matching the "Hot restart" ECT condition in DRIVEABILITY_TUNING.md's Cold start section) -
+# ECT is an independent sensor circuit, no shared fault path with the flex sensor. Faulted +
+# ECT low -> apply 0, not 90C's row. Faulted + ECT high -> apply the full 90C/20%/14% fallback.
+# fuel_temp_density_comp.csv needs no such gate: its effect is small (max +7%), multiplicative
+# not additive, and self-corrects under closed-loop once running - not a flooding risk.
 fuel_temp_c,crank_enrich_trim_pct,post_start_enrich_trim_pct
 0,0,0
 20,0,0
