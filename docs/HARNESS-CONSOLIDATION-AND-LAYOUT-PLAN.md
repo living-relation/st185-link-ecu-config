@@ -2408,7 +2408,5 @@ or the Cursor rules refers to it.
   The fitted HCR 150 is resistor-suppressed.
 - `k_eps` sits in the engine bay (passenger fender). The standing rule is every
   relay in the cabin.
-- CAN termination: `ST185-CAN.harness` puts the two 120 ohm resistors at the
-  ECU end and the CAN-Lambda end (`r_term_ecu`, `r_term_end`). `WIRING.md` 7.3
-  and `CAN-BUS-MASTER-DESIGN.md` step 8 put END B at the RealDash Pi and say to
-  terminate there. Both followed = three terminators. Not fixed in this pass.
+- ~~CAN termination.~~ **Settled (Daniel, 2026-09-27) - not an open item.**
+  `ST185-CAN.harness` stands as drawn.
