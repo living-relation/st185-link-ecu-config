@@ -2,7 +2,7 @@
 
 > ## Before any wiring or CAN change — binding on every agent
 >
-> Read **`docs/RECONCILIATION-RULES.md`**. Two rules, both non-optional:
+> Read **`docs/RECONCILIATION-RULES.md`**. Three rules, all non-optional:
 >
 > 1. **Wiring** — a change to one wiring document is not done until it is checked against
 >    the source-of-truth chain and **every other wiring surface**, including ones you did
@@ -11,6 +11,9 @@
 > 2. **CAN** — a change on any device must be reconciled against **all** of them: Link ECU,
 >    center cluster, RealDash, ECUMaster CSB3. This crosses repo boundaries. The cluster
 >    firmware is frozen and outranks everything; on conflict, the other device changes.
+> 3. **ECU looms** — follow the ECU connector letter: A pins → `ST185-A-cabin` → bulkhead A
+>    → `ST185-A-engine`, B the same. Crossovers (a) +5V / Gnd Out, (b) ETB A20 / B5,
+>    (c) APS A14 / B33 only. Gate: `docs/harness/validate_bulkhead_letter.py`.
 >
 > Link CAN-Lambda is on CAN bus 1. CAN bus 2 is unused and its ECU pins are free.
 
@@ -26,12 +29,14 @@
 - RealDash channel definitions: `link_g4x_realdash.xml`.
 - Engine-room power splice table (kick-panel J/Bs, vacated J/B2): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - Wiring SoT (every ECU pin and channel): `sot/channels.csv`. Visual face: `XTREMEX-IO-TABLE.html` (gated by `docs/harness/sync_io_table.py --check`).
-- The looms: `docs/harness/rebuild/*.harness` (nine files; `docs/harness/README.md`). Gate: `python docs/harness/check_all.py`.
-- Wiring reconciliation rules: `docs/RECONCILIATION-RULES.md` Rule 1.
+- The harnesses: `docs/harness/rebuild/*.harness` (14 files, one physical harness per file; wires between files are drawn broken off in both; the four ECU looms split by connector letter 2026-09-28; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
+- Wiring reconciliation rules: `docs/RECONCILIATION-RULES.md` Rule 1; ECU loom letter rule: Rule 3.
 
 ## Board / progress snapshot
 - Claude progress board is a **stale artifact** (last updated 2026-09-01). Do not treat it as SoT.
-- Harness build rules: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.
+- Harness build rules: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6. The 2026-09-27
+  redesign (physical-harness-per-file, ownership/interface model) supersedes the file
+  inventory in §6.41; current decisions are `docs/harness/redesign/DECISIONS.md`.
 - Dated audit/verify notes and retired diagrams were moved to `archive/2026-09-25-cleanup/` — not authoritative.
 - Paste **CONFLICT rows only** into the ACTIVE `shipping\` trance; park husk-keyed chats.
 ## Related Repos (mandatory for CAN bus / wiring work)

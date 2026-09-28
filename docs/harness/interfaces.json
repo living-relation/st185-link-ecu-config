@@ -1,0 +1,1562 @@
+{
+  "_doc": "Interface and ownership registry for docs/harness/rebuild/. Convention: redesign/INTERFACES.md. harness.design rejects unknown keys, so this metadata cannot live in the .harness files.",
+  "_scope": "The center cluster's own assembly harness is owned by center-cluster-esp32-p4 and is not drawn here; ST185-CAN ends at its CAN-drop terminal t_cluster_can. The cluster warning-LED loom (ST185-ClusterLED) is owned here.",
+  "harnesses": {
+    "A-cabin": {
+      "file": "ST185-A-cabin.harness",
+      "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the A-triggered relays (fuse block and HCFB on ST185-CabinPower), APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
+    },
+    "B-cabin": {
+      "file": "ST185-B-cabin.harness",
+      "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
+    },
+    "CabinPower": {
+      "file": "ST185-CabinPower.harness",
+      "physical": "Cabin power (non-ECU): cabin fuse block, high-current fuse block, battery feed ring, fuel pump run to the trunk; feeds to the A-cabin relays and splices and to B-cabin arrive broken off"
+    },
+    "APS-Pedal": {
+      "file": "ST185-APS-Pedal.harness",
+      "physical": "APS pedal harness - male half of IX_APS to the BRZ e-throttle pedal plug (cabin)"
+    },
+    "A-engine": {
+      "file": "ST185-A-engine.harness",
+      "physical": "Engine harness behind bulkhead A - every engine device whose ECU signal is on connector A"
+    },
+    "B-engine": {
+      "file": "ST185-B-engine.harness",
+      "physical": "Engine harness behind bulkhead B - every engine device whose ECU signal is on connector B, and the ETB motor"
+    },
+    "CAN": {
+      "file": "ST185-CAN.harness",
+      "physical": "CAN backbone"
+    },
+    "EngineRoom-C": {
+      "file": "ST185-EngineRoom-C.harness",
+      "physical": "Loom C - engine-room / high-current harness"
+    },
+    "ClusterLED": {
+      "file": "ST185-ClusterLED.harness",
+      "physical": "Cluster warning LEDs"
+    },
+    "WheelSpeed-Rear": {
+      "file": "ST185-WheelSpeed-Rear.harness",
+      "physical": "Rear wheel-speed Y harness - RL/RR ABS drops to the rear VRC endpoints, one screened 4-core output to IX_WS_REAR"
+    },
+    "WheelSpeed-Front": {
+      "file": "ST185-WheelSpeed-Front.harness",
+      "physical": "Front wheel-speed Y harness - FL/FR ABS drops (loom C fender route) to the front VRC endpoints, output pair to IX_WS_FRONT"
+    },
+    "ACAmp-Spur": {
+      "file": "ST185-ACAmp-Spur.harness",
+      "physical": "A/C amplifier spur - receiving half of IX_AC_CTS to flying leads at the auto A/C amplifier"
+    },
+    "RearFuel": {
+      "file": "ST185-RearFuel.harness",
+      "physical": "Rear Fuel - fuel level sender behind IX_FUEL_LVL (the pump run stays on ST185-A-cabin, plan 6.41)"
+    },
+    "AntiTheft": {
+      "file": "ST185-AntiTheft.harness",
+      "physical": "Anti-theft"
+    },
+    "CSB3": {
+      "file": "ST185-CSB3.harness",
+      "physical": "ECUMaster CSB3 plug and switch inputs (cruise stalk, clutch, brake, cruise ladder); power, ground, reverse, LED and CAN wires arrive broken off"
+    }
+  },
+  "interfaces": [
+    {
+      "id": "IX_WS_REAR",
+      "type": "inline_interface",
+      "family": "Deutsch DT 6-way (DT04-6P / DT06-6S)",
+      "pins": {
+        "c1": "+5V",
+        "c2": "Gnd Out",
+        "c3": "RL out -> B20",
+        "c4": "RR out -> B19",
+        "c5": "drain -> SHIELD_B B17",
+        "c6": "spare, plugged"
+      },
+      "halves": [
+        {
+          "harness": "WheelSpeed-Rear",
+          "connector": "ix_ws_rear_r",
+          "role": "source"
+        },
+        {
+          "harness": "B-cabin",
+          "connector": "ix_ws_rear_p",
+          "role": "receiving"
+        }
+      ]
+    },
+    {
+      "id": "IX_WS_FRONT",
+      "type": "inline_interface",
+      "family": "Deutsch DT 6-way (DT04-6P / DT06-6S)",
+      "pins": {
+        "c1": "+5V",
+        "c2": "Gnd Out",
+        "c3": "FL out -> A23",
+        "c4": "FR out -> B21",
+        "c5": "drain, FL/supply cable -> SHIELD_A A7",
+        "c6": "drain, FR cable -> SHIELD_B B17 (floats at VRC)"
+      },
+      "halves": [
+        {
+          "harness": "WheelSpeed-Front",
+          "connector": "ix_ws_front_r",
+          "role": "source"
+        },
+        {
+          "harness": "A-cabin",
+          "connector": "ix_ws_front_p",
+          "role": "receiving"
+        }
+      ]
+    },
+    {
+      "id": "IX_AC_CTS",
+      "type": "inline_interface",
+      "family": "Deutsch DT 2-way (DT04-2P / DT06-2S)",
+      "pins": {
+        "c1": "A/C coolant switch signal",
+        "c2": "A/C coolant switch return"
+      },
+      "halves": [
+        {
+          "harness": "A-cabin",
+          "connector": "ix_accts_r",
+          "role": "source"
+        },
+        {
+          "harness": "ACAmp-Spur",
+          "connector": "ix_accts_p",
+          "role": "receiving"
+        }
+      ]
+    },
+    {
+      "id": "IX_FUEL_LVL",
+      "type": "inline_interface",
+      "family": "Deutsch DT 2-way (DT04-2P / DT06-2S)",
+      "pins": {
+        "c1": "fuel level signal -> B24",
+        "c2": "fuel level ground -> Gnd Out"
+      },
+      "halves": [
+        {
+          "harness": "B-cabin",
+          "connector": "ix_fuel_r",
+          "role": "source"
+        },
+        {
+          "harness": "RearFuel",
+          "connector": "ix_fuel_p",
+          "role": "receiving"
+        }
+      ]
+    },
+    {
+      "id": "IX_B_RAIL",
+      "type": "inline_interface",
+      "family": "Deutsch DT 6-way (DT06-6S / DT04-6P)",
+      "pins": {
+        "c1": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
+        "c2": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
+        "c3": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
+        "c4": "Gnd Out to B engine sensors via IX_B_RAIL - oil temp / charge-pipe IAT branch",
+        "c5": "Gnd Out to B engine sensors via IX_B_RAIL - oil / coolant pressure branch",
+        "c6": "Gnd Out to B engine sensors via IX_B_RAIL - fuel pressure / VSS branch"
+      },
+      "halves": [
+        {
+          "harness": "A-engine",
+          "connector": "ix_brail_s",
+          "role": "source"
+        },
+        {
+          "harness": "B-engine",
+          "connector": "ix_brail_p",
+          "role": "receiving"
+        }
+      ]
+    }
+  ],
+  "endpoints": [
+    {
+      "id": "VRC_REAR_IN_L",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Rear",
+      "device": "rear VR conditioner, IN_L input (RL sensor)",
+      "terminals": {
+        "+": "ep_vrc_r_inl_p",
+        "-": "ep_vrc_r_inl_n",
+        "screen": "ep_vrc_r_inl_sh"
+      }
+    },
+    {
+      "id": "VRC_REAR_IN_R",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Rear",
+      "device": "rear VR conditioner, IN_R input (RR sensor)",
+      "terminals": {
+        "+": "ep_vrc_r_inr_p",
+        "-": "ep_vrc_r_inr_n",
+        "screen": "ep_vrc_r_inr_sh"
+      }
+    },
+    {
+      "id": "VRC_REAR_OUT",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Rear",
+      "device": "rear VR conditioner, output",
+      "terminals": {
+        "+5V": "ep_vrc_r_out_5v",
+        "Gnd": "ep_vrc_r_out_gnd",
+        "RL": "ep_vrc_r_out_l",
+        "RR": "ep_vrc_r_out_r",
+        "screen": "ep_vrc_r_out_sh"
+      }
+    },
+    {
+      "id": "VRC_FRONT_IN_L",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Front",
+      "device": "front VR conditioner, IN_L input (FL sensor)",
+      "terminals": {
+        "+": "ep_vrc_f_inl_p",
+        "-": "ep_vrc_f_inl_n",
+        "screen": "ep_vrc_f_inl_sh"
+      }
+    },
+    {
+      "id": "VRC_FRONT_IN_R",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Front",
+      "device": "front VR conditioner, IN_R input (FR sensor)",
+      "terminals": {
+        "+": "ep_vrc_f_inr_p",
+        "-": "ep_vrc_f_inr_n",
+        "screen": "ep_vrc_f_inr_sh"
+      }
+    },
+    {
+      "id": "VRC_FRONT_OUT",
+      "type": "device_endpoint",
+      "harness": "WheelSpeed-Front",
+      "device": "front VR conditioner, output",
+      "terminals": {
+        "+5V": "ep_vrc_f_out_5v",
+        "Gnd": "ep_vrc_f_out_gnd",
+        "FL": "ep_vrc_f_out_l",
+        "FR": "ep_vrc_f_out_r",
+        "screen": "ep_vrc_f_out_sh"
+      }
+    }
+  ],
+  "enclosures": [
+    {
+      "id": "VRC_REAR",
+      "harness": "WheelSpeed-Rear",
+      "screen": [
+        "ep_vrc_r_inl_sh",
+        "ep_vrc_r_inr_sh",
+        "ep_vrc_r_out_sh"
+      ],
+      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded only at the ECU."
+    },
+    {
+      "id": "VRC_FRONT",
+      "harness": "WheelSpeed-Front",
+      "screen": [
+        "ep_vrc_f_inl_sh",
+        "ep_vrc_f_inr_sh",
+        "ep_vrc_f_out_sh"
+      ],
+      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded only at the ECU."
+    }
+  ],
+  "flyingLeads": [
+    {
+      "id": "FL_ACAMP_C1",
+      "type": "oem_flying_lead",
+      "harness": "A-cabin",
+      "terminal": "fl_acamp_c1",
+      "ewd": {
+        "page": "p.150 / p.152",
+        "connector": "A/C amplifier",
+        "pin": "TBD - ACT terminal is not on p.150 or p.152",
+        "color": "TBD",
+        "function": "ACT compressor cancel, ground = kill (ECU A18, Aux 4)",
+        "method": "solder sleeve into the factory ACT lead at the amplifier"
+      }
+    },
+    {
+      "id": "FL_BRAKE_SW_C1",
+      "type": "oem_flying_lead",
+      "harness": "CSB3",
+      "terminal": "fl_brake_sw_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Stop lamp switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "brake switch signal -> CSB3 S7",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CLUTCH_SW_C1",
+      "type": "oem_flying_lead",
+      "harness": "CSB3",
+      "terminal": "fl_clutch_sw_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Clutch switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "clutch switch signal -> CSB3 S6",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CRUISE_STALK_C1",
+      "type": "oem_flying_lead",
+      "harness": "CSB3",
+      "terminal": "fl_cruise_stalk_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Cruise control switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "cruise ladder signal -> sp_cruise_ladder -> CSB3 A2",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CRUISE_STALK_C3",
+      "type": "oem_flying_lead",
+      "harness": "CSB3",
+      "terminal": "fl_cruise_stalk_c3",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Cruise control switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "cruise MAIN ON -> CSB3 S3",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CRUISE_STALK_C4",
+      "type": "oem_flying_lead",
+      "harness": "CSB3",
+      "terminal": "fl_cruise_stalk_c4",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Cruise control switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "cruise SET/ACCEL -> CSB3 S4",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CRUISE_STALK_C5",
+      "type": "oem_flying_lead",
+      "harness": "CSB3",
+      "terminal": "fl_cruise_stalk_c5",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Cruise control switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "cruise RESUME/DECEL -> CSB3 S5",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_IGN_SW_C1",
+      "type": "oem_flying_lead",
+      "harness": "B-cabin",
+      "terminal": "fl_ign_sw_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Ignition switch I9",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "IGN ON -> ECU-B B28",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_START_REQ_C1",
+      "type": "oem_flying_lead",
+      "harness": "B-cabin",
+      "terminal": "fl_start_req_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Ignition switch (ST)",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "start request -> ECU-B B30",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_REVERSE_SW_C1",
+      "type": "oem_flying_lead",
+      "harness": "B-engine",
+      "terminal": "fl_reverse_sw_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "Back-up light switch",
+        "pin": "TBD",
+        "color": "TBD",
+        "function": "reverse signal -> bulkhead B c12 -> CSB3 S8",
+        "method": "solder sleeve into the factory lead"
+      }
+    },
+    {
+      "id": "FL_AC_PRESS_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_ac_press_c1",
+      "ewd": {
+        "page": "p.152",
+        "connector": "A5",
+        "pin": "1",
+        "color": "V-R",
+        "function": "A/C pressure switch +12V (ACPS 5 A, IG)",
+        "method": "solder sleeve into the factory V-R lead at the switch"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C10",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c10",
+      "ewd": {
+        "page": "p.31",
+        "connector": "IE1",
+        "pin": "10",
+        "color": "W",
+        "function": "AM1 to ignition switch I9-4",
+        "method": "heavy crimp butt splice into the factory lead"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C17",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c17",
+      "ewd": {
+        "page": "p.31",
+        "connector": "IE1",
+        "pin": "17",
+        "color": "B-R",
+        "function": "AM2 to ignition switch I9-10",
+        "method": "heavy crimp butt splice into the factory lead"
+      }
+    },
+    {
+      "id": "FL_OEM_JB1_1I_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_jb1_1i_c1",
+      "ewd": {
+        "page": "p.18-19 / p.46",
+        "connector": "J/B1 1I",
+        "pin": "1",
+        "color": "B",
+        "function": "J/B1 primary B+ (always hot; was FL ALT)",
+        "method": "heavy crimp butt splice into the factory 1I-1 lead"
+      }
+    },
+    {
+      "id": "FL_OEM_RB2_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_rb2_c1",
+      "ewd": {
+        "page": "p.23",
+        "connector": "R/B2",
+        "pin": "1",
+        "color": "W",
+        "function": "30A POWER fuse input (windows / locks)",
+        "method": "feed the fuse input only - heavy crimp butt splice into the factory lead"
+      }
+    },
+    {
+      "id": "FL_OEM_RB4_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_rb4_c1",
+      "ewd": {
+        "page": "p.24 / p.46",
+        "connector": "R/B4",
+        "pin": "1",
+        "color": "W",
+        "function": "40A HEATER fuse input",
+        "method": "feed the fuse input only - heavy crimp butt splice into the factory lead"
+      }
+    },
+    {
+      "id": "FL_CL_C11_C2",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c11_c2",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "C11",
+        "pin": "2",
+        "color": "G-B",
+        "function": "Turn L - flasher LH stub",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_CL_C11_C11",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c11_c11",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "C11",
+        "pin": "11",
+        "color": "G-Y",
+        "function": "Turn R - flasher RH stub",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_CL_C11_C12",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c11_c12",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "C11",
+        "pin": "12",
+        "color": "R-L",
+        "function": "High beam - body residual feed",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_CL_C12_C1",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c12_c1",
+      "ewd": {
+        "page": "TBD - page not recorded in this repo yet",
+        "connector": "C12",
+        "pin": "1",
+        "color": "R-G",
+        "function": "Park brake - grounds via OEM P1 / B2",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_CL_C12_C8",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c12_c8",
+      "ewd": {
+        "page": "p.52",
+        "connector": "C12",
+        "pin": "8",
+        "color": "Y",
+        "function": "Alt L - charge-lamp drive",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_CL_C12_C9",
+      "type": "oem_flying_lead",
+      "harness": "ClusterLED",
+      "terminal": "fl_cl_c12_c9",
+      "ewd": {
+        "page": "p.52",
+        "connector": "C12",
+        "pin": "9",
+        "color": "B-O",
+        "function": "IG +12 - feeds every LED anode",
+        "method": "solder sleeve into the factory lead at the combination meter"
+      }
+    },
+    {
+      "id": "FL_ACAMP_TW",
+      "type": "oem_flying_lead",
+      "harness": "ACAmp-Spur",
+      "terminal": "fl_acamp_tw",
+      "ewd": {
+        "page": "p.150",
+        "connector": "A34 (auto A/C amplifier conn C)",
+        "pin": "20",
+        "color": "R-G",
+        "function": "TW water temp input <- A/C coolant switch",
+        "method": "solder sleeve into the factory R-G lead at the amplifier"
+      }
+    },
+    {
+      "id": "FL_ACAMP_SG",
+      "type": "oem_flying_lead",
+      "harness": "ACAmp-Spur",
+      "terminal": "fl_acamp_sg",
+      "ewd": {
+        "page": "p.150",
+        "connector": "A34 (auto A/C amplifier conn C)",
+        "pin": "TBD - sensor-return pin is not on p.150",
+        "color": "TBD",
+        "function": "A/C coolant switch return",
+        "method": "solder sleeve into the factory sensor-return lead at the amplifier"
+      }
+    }
+  ],
+  "realConnectors": [
+    {
+      "harness": "CSB3",
+      "connector": "csb3io",
+      "note": "HD36-24-33SE plug mating the CSB3 enclosure's HD34-24-33PE. The harness stops here; CSB3 itself is not drawn."
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "oem_jb2_2a",
+      "note": "Dummy header crimped and plugged into J/B2 2A (ENGINE-ROOM-POWER-REDISTRIBUTION.md section 5.4). Plugs in, so it is a connector, not a flying lead."
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "oem_jb2_2d",
+      "note": "Dummy header into J/B2 2D, same."
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "oem_jb2_2e",
+      "note": "Dummy header into J/B2 2E, same."
+    }
+  ],
+  "shieldBothEndsOk": [
+    {
+      "id": "cab_rout_sh",
+      "reason": "VRC case (enclosure) to inline pin 5 - one screen node, grounded only at B17"
+    },
+    {
+      "id": "cab_rspur_sh",
+      "reason": "continuation of cab_rout_sh from inline pin 5 to sp_shield_b (B17)"
+    },
+    {
+      "id": "cab_fout_sh",
+      "reason": "VRC case (enclosure) to inline pin 5 - one screen node, grounded only at A7"
+    },
+    {
+      "id": "cab_fspur_sh",
+      "reason": "continuation of cab_fout_sh from inline pin 5 to sp_shield_a (A7)"
+    },
+    {
+      "id": "cab_fspur_fr_sh",
+      "reason": "continuation of cab_fout_fr_sh (floats at the VRC) from inline pin 6 to sp_shield_b (B17)"
+    },
+    {
+      "id": "cab_fspur_fr_sh_ac",
+      "reason": "A-cabin section of the FR screen: inline pin 6 to the broken-off end; continues on B-cabin as cab_fspur_fr_sh to sp_shield_b (B17), floats at the VRC"
+    }
+  ],
+  "wheelSpeed": {
+    "rear": {
+      "harness": "WheelSpeed-Rear",
+      "sensors": {
+        "wss_rl": "VRC_REAR_IN_L",
+        "wss_rr": "VRC_REAR_IN_R"
+      },
+      "output": "VRC_REAR_OUT",
+      "enclosure": "VRC_REAR",
+      "interface": "IX_WS_REAR",
+      "outputCables": [
+        {
+          "cable": "cab_rout",
+          "cores": 4,
+          "drainPin": "c5",
+          "screenFromEnclosure": true
+        }
+      ],
+      "spurHarness": "B-cabin",
+      "spur": {
+        "c1": "sp_5v_b",
+        "c2": "sp_gndout_b",
+        "c3": "ecu_b.b20",
+        "c4": "ecu_b.b19",
+        "c5": "sp_shield_b"
+      }
+    },
+    "front": {
+      "harness": "WheelSpeed-Front",
+      "sensors": {
+        "wss_fl": "VRC_FRONT_IN_L",
+        "wss_fr": "VRC_FRONT_IN_R"
+      },
+      "output": "VRC_FRONT_OUT",
+      "enclosure": "VRC_FRONT",
+      "interface": "IX_WS_FRONT",
+      "outputCables": [
+        {
+          "cable": "cab_fout",
+          "cores": 3,
+          "drainPin": "c5",
+          "screenFromEnclosure": true
+        },
+        {
+          "cable": "cab_fout_fr",
+          "cores": 1,
+          "drainPin": "c6",
+          "screenFromEnclosure": false
+        }
+      ],
+      "spurHarness": "A-cabin",
+      "spur": {
+        "c1": "sp_5v",
+        "c2": "sp_gndout",
+        "c3": "ecu_a.a23",
+        "c4": "ecu_b.b21",
+        "c5": "sp_shield_a",
+        "c6": "sp_shield_b"
+      }
+    }
+  },
+  "references": [],
+  "inFileMates": [
+    {
+      "harness": "APS-Pedal",
+      "mate": "m_aps",
+      "family": "Deutsch DT 6-way (DT06-6S female, DT04-6P male)",
+      "note": "the A and B pedal wires converge on the female half; one harness runs from the male half to the pedal"
+    }
+  ],
+  "breaks": [
+    {
+      "id": "BR_W_B25",
+      "type": "broken_off",
+      "what": "cabin chassis ground splice sp_chassis",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_b25"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_b25"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_B34",
+      "type": "broken_off",
+      "what": "cabin chassis ground splice sp_chassis",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_b34"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_b34"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_K_FAN2_86",
+      "type": "broken_off",
+      "what": "switched 12V from sp_sw12 (cabin)",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_k_fan2_86"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_k_fan2_86"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_RAIL_5V_B_C",
+      "type": "broken_off",
+      "what": "+5V trunk (18 AWG) from sp_5v at ECU A to the loom B splice sp_5v_b (crossover a)",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_rail_5v_b_c"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_rail_5v_b_c"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_RAIL_GND_B_C",
+      "type": "broken_off",
+      "what": "Gnd Out tie (18 AWG) between sp_gndout at ECU A and sp_gndout_b at ECU B22 (crossover a)",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_rail_gnd_b_c"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_rail_gnd_b_c"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_RAIL_SW12_B_C",
+      "type": "broken_off",
+      "what": "switched 12V from sp_sw12 (cabin)",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_rail_sw12_b_c"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_rail_sw12_b_c"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_K_EPS_86",
+      "type": "broken_off",
+      "what": "switched 12V from sp_sw12 (cabin)",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_k_eps_86"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_k_eps_86"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_FAN2_30",
+      "type": "broken_off",
+      "what": "HCFB H3 30A feed to the condenser fan relay 30",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_fb_k_fan2_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_fan2_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_EPS_30",
+      "type": "broken_off",
+      "what": "HCFB H4 feed to the EPS relay 30",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_fb_k_eps_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_eps_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W82",
+      "type": "broken_off",
+      "what": "ETB relay 87 to ECU-B B5 (crossover b)",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w82"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w82"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_INJ_PWR_C",
+      "type": "broken_off",
+      "what": "F11 15A injector rail to bulkhead B c1",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_inj_pwr_c"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_inj_pwr_c"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_COP_PWR_C",
+      "type": "broken_off",
+      "what": "F10 20A COP rail to bulkhead B c2",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_cop_pwr_c"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_cop_pwr_c"
+        }
+      ]
+    },
+    {
+      "id": "BR_CAB_FSPUR_R",
+      "type": "broken_off",
+      "what": "front wheel-speed FR core",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_cab_fspur_r"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_cab_fspur_r"
+        }
+      ]
+    },
+    {
+      "id": "BR_CAB_FSPUR_FR_SH",
+      "type": "broken_off",
+      "what": "front wheel-speed FR shield",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_cab_fspur_fr_sh"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_cab_fspur_fr_sh"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_CRU_5V",
+      "type": "broken_off",
+      "what": "+5V to the cruise ladder pull-up",
+      "ends": [
+        {
+          "harness": "CSB3",
+          "terminal": "br_w_cru_5v"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_cru_5v"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_CSB12",
+      "type": "broken_off",
+      "what": "CSB3 +12V from sp_12v",
+      "ends": [
+        {
+          "harness": "CSB3",
+          "terminal": "br_w_csb12"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_csb12"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_CSBG",
+      "type": "broken_off",
+      "what": "CSB3 ground to sp_chassis",
+      "ends": [
+        {
+          "harness": "CSB3",
+          "terminal": "br_w_csbg"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_csbg"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_SW7_C",
+      "type": "broken_off",
+      "what": "reverse switch (bulkhead B c12) to CSB3 S8",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_sw7_c"
+        },
+        {
+          "harness": "CSB3",
+          "terminal": "br_w_sw7_c"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_OIL_K",
+      "type": "broken_off",
+      "what": "oil pressure LED sink on CSB3 L4",
+      "ends": [
+        {
+          "harness": "ClusterLED",
+          "terminal": "br_w_oil_k"
+        },
+        {
+          "harness": "CSB3",
+          "terminal": "br_w_oil_k"
+        }
+      ]
+    },
+    {
+      "id": "BR_WC_H_CSB",
+      "type": "broken_off",
+      "what": "CAN H into the CSB3 plug",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_wc_h_csb"
+        },
+        {
+          "harness": "CSB3",
+          "terminal": "br_wc_h_csb"
+        }
+      ]
+    },
+    {
+      "id": "BR_WC_L_CSB",
+      "type": "broken_off",
+      "what": "CAN L into the CSB3 plug",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_wc_l_csb"
+        },
+        {
+          "harness": "CSB3",
+          "terminal": "br_wc_l_csb"
+        }
+      ]
+    },
+    {
+      "id": "BR_W38",
+      "type": "broken_off",
+      "what": "e-throttle pedal pin 6",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w38"
+        },
+        {
+          "harness": "APS-Pedal",
+          "terminal": "br_w38"
+        }
+      ]
+    },
+    {
+      "id": "BR_W210",
+      "type": "broken_off",
+      "what": "e-throttle pedal pin 1",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w210"
+        },
+        {
+          "harness": "APS-Pedal",
+          "terminal": "br_w210"
+        }
+      ]
+    },
+    {
+      "id": "BR_W40",
+      "type": "broken_off",
+      "what": "e-throttle pedal pin 5",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w40"
+        },
+        {
+          "harness": "APS-Pedal",
+          "terminal": "br_w40"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_APS_VC1",
+      "type": "broken_off",
+      "what": "e-throttle pedal pin 4",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_aps_vc1"
+        },
+        {
+          "harness": "APS-Pedal",
+          "terminal": "br_w_aps_vc1"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_APS_GND2",
+      "type": "broken_off",
+      "what": "e-throttle pedal pin 2",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_aps_gnd2"
+        },
+        {
+          "harness": "APS-Pedal",
+          "terminal": "br_w_aps_gnd2"
+        }
+      ]
+    },
+    {
+      "id": "BR_W39",
+      "type": "broken_off",
+      "what": "e-throttle pedal pin 3",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w39"
+        },
+        {
+          "harness": "APS-Pedal",
+          "terminal": "br_w39"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FAN_PWR",
+      "type": "broken_off",
+      "what": "radiator fan relay 87 feed",
+      "ends": [
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_fan_pwr"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fan_pwr"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FAN2_PWR",
+      "type": "broken_off",
+      "what": "condenser fan relay 87 feed",
+      "ends": [
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_fan2_pwr"
+        },
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_fan2_pwr"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_EPS_PWR",
+      "type": "broken_off",
+      "what": "EPS relay 87 feed to the pump",
+      "ends": [
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_eps_pwr"
+        },
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_eps_pwr"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_HV_MRS_EN_E",
+      "type": "broken_off",
+      "what": "MRS enable, bulkhead A c35",
+      "ends": [
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_hv_mrs_en_e"
+        },
+        {
+          "harness": "A-engine",
+          "terminal": "br_w_hv_mrs_en_e"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_MRS_E",
+      "type": "broken_off",
+      "what": "MRS speed (ECU A27), bulkhead A c36",
+      "ends": [
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_mrs_e"
+        },
+        {
+          "harness": "A-engine",
+          "terminal": "br_w_mrs_e"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_AT_IMMOB2",
+      "type": "broken_off",
+      "what": "immobiliser output to ECU-B B27 (DI 10)",
+      "ends": [
+        {
+          "harness": "AntiTheft",
+          "terminal": "br_w_at_immob2"
+        },
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_at_immob2"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_STRL",
+      "type": "broken_off",
+      "what": "start relay 87 to the starter S terminal",
+      "ends": [
+        {
+          "harness": "A-engine",
+          "terminal": "br_w_strl"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_strl"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_LAM12",
+      "type": "broken_off",
+      "what": "CAN-Lambda +12V",
+      "ends": [
+        {
+          "harness": "A-engine",
+          "terminal": "br_w_lam12"
+        },
+        {
+          "harness": "CAN",
+          "terminal": "br_w_lam12"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_LAMG",
+      "type": "broken_off",
+      "what": "CAN-Lambda ground",
+      "ends": [
+        {
+          "harness": "A-engine",
+          "terminal": "br_w_lamg"
+        },
+        {
+          "harness": "CAN",
+          "terminal": "br_w_lamg"
+        }
+      ]
+    },
+    {
+      "id": "BR_WC_H_BH",
+      "type": "broken_off",
+      "what": "CAN H through bulkhead A c30",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_wc_h_bh"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_wc_h_bh"
+        }
+      ]
+    },
+    {
+      "id": "BR_WC_L_BH",
+      "type": "broken_off",
+      "what": "CAN L through bulkhead A c31",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_wc_l_bh"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_wc_l_bh"
+        }
+      ]
+    },
+    {
+      "id": "BR_WC_H_LAM",
+      "type": "broken_off",
+      "what": "CAN H from bulkhead A c30 to the Lambda",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_wc_h_lam"
+        },
+        {
+          "harness": "A-engine",
+          "terminal": "br_wc_h_lam"
+        }
+      ]
+    },
+    {
+      "id": "BR_WC_L_LAM",
+      "type": "broken_off",
+      "what": "CAN L from bulkhead A c31 to the Lambda",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_wc_l_lam"
+        },
+        {
+          "harness": "A-engine",
+          "terminal": "br_wc_l_lam"
+        }
+      ]
+    },
+    {
+      "id": "BR_W124_E",
+      "type": "broken_off",
+      "what": "ETB motor + (Aux 9, B18), bulkhead B c5",
+      "ends": [
+        {
+          "harness": "B-engine",
+          "terminal": "br_w124_e"
+        },
+        {
+          "harness": "A-engine",
+          "terminal": "br_w124_e"
+        }
+      ]
+    },
+    {
+      "id": "BR_W215_E",
+      "type": "broken_off",
+      "what": "ETB motor - (Aux 10, B26), bulkhead B c6",
+      "ends": [
+        {
+          "harness": "B-engine",
+          "terminal": "br_w215_e"
+        },
+        {
+          "harness": "A-engine",
+          "terminal": "br_w215_e"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_INJ_PWR_E",
+      "type": "broken_off",
+      "what": "F11 injector rail, bulkhead B c1",
+      "ends": [
+        {
+          "harness": "B-engine",
+          "terminal": "br_w_inj_pwr_e"
+        },
+        {
+          "harness": "A-engine",
+          "terminal": "br_w_inj_pwr_e"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_COP_PWR_E",
+      "type": "broken_off",
+      "what": "F10 COP rail, bulkhead B c2",
+      "ends": [
+        {
+          "harness": "B-engine",
+          "terminal": "br_w_cop_pwr_e"
+        },
+        {
+          "harness": "A-engine",
+          "terminal": "br_w_cop_pwr_e"
+        }
+      ]
+    },
+    {
+      "id": "BR_W77",
+      "type": "broken_off",
+      "what": "Cabin fuse block SW IN to EFI Main Relay 87",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w77"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w77"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FPUMP",
+      "type": "broken_off",
+      "what": "Fuel Pump c1 to Fuel Pump Relay 87",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fpump"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fpump"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_SW12",
+      "type": "broken_off",
+      "what": "Cabin fuse block F9 to sp_sw12",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_sw12"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_sw12"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_ECU",
+      "type": "broken_off",
+      "what": "Cabin fuse block F8 to sp_12v",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_ecu"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_ecu"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_EFI_30",
+      "type": "broken_off",
+      "what": "Cabin fuse block F1 to EFI Main Relay 30",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_k_efi_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_efi_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_K_EFI_86",
+      "type": "broken_off",
+      "what": "Cabin fuse block F12 to EFI Main Relay 86",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_k_efi_86"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_k_efi_86"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_FP_30",
+      "type": "broken_off",
+      "what": "Cabin fuse block F2 to Fuel Pump Relay 30",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_k_fp_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_fp_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_ETB_30",
+      "type": "broken_off",
+      "what": "Cabin fuse block F3 to ETB Power Relay 30",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_k_etb_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_etb_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_STR_30",
+      "type": "broken_off",
+      "what": "Cabin fuse block F4 to Start Relay 30",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_k_str_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_str_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_FAN_30",
+      "type": "broken_off",
+      "what": "High-current fuse block HCFB H2 to Radiator Fan Relay 30",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_k_fan_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_fan_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_MRS_EN",
+      "type": "broken_off",
+      "what": "Cabin fuse block F13 to Bulkhead A 35",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_mrs_en"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_mrs_en"
+        }
+      ]
+    }
+  ]
+}

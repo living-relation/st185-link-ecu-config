@@ -28,7 +28,7 @@ print("%d cavities double-booked." % tot)
 # ---- 2026-09-25: parts rule 1, second half ---------------------------------
 # A bulkhead cavity wired in ANY loom gets a contact, in every copy of that
 # half; a cavity wired in NO loom gets a sealing plug. Found 11 wired cavities
-# (knock c16-c18, VSS c15, screens c33/c34, MRS c36, EPS enable c14) carrying
+# (knock c16-c18, VSS c15, screens c33/c34, MRS c36, MRS enable A c35) carrying
 # plugs and 10 spares carrying contacts - the buy list was counting both wrong.
 BH = ("bh_a_fw", "bh_a_eng", "bh_b_fw", "bh_b_eng")
 used = collections.defaultdict(set)

@@ -1,91 +1,6 @@
 {
   "version": 0.9,
-  "connectors": [
-    {
-      "id": "cl_c11",
-      "label": "OEM cluster connector C11",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "Turn L (G-B) - flasher LH stub"
-        },
-        {
-          "id": "c11",
-          "designation": "11",
-          "signal": "Turn R (G-Y) - flasher RH stub"
-        },
-        {
-          "id": "c12",
-          "designation": "12",
-          "signal": "High beam (R-L) - body residual feed"
-        }
-      ],
-      "schematicPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 960,
-        "y": -150
-      },
-      "partId": "cp_cluster"
-    },
-    {
-      "id": "cl_c12",
-      "label": "OEM cluster connector C12",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Park brake (R-G) - grounds via OEM P1 / B2"
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "signal": "Alt L (Y) - charge-lamp drive"
-        },
-        {
-          "id": "c9",
-          "designation": "9",
-          "signal": "IG +12 (B-O) - one tap feeds every LED anode and the charge excite resistor"
-        }
-      ],
-      "schematicPosition": {
-        "x": 0,
-        "y": 180
-      },
-      "layoutPosition": {
-        "x": 960,
-        "y": -330
-      },
-      "partId": "cp_cluster"
-    },
-    {
-      "id": "dm_csb3io_c26",
-      "label": "CSB3-c26 (L4)",
-      "width": 390,
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "ECUMaster CSB3 L4 low-side - oil pressure LED sink, CAN 0x643 *"
-        }
-      ],
-      "schematicPosition": {
-        "x": 660,
-        "y": 90
-      },
-      "layoutPosition": {
-        "x": 1200,
-        "y": 180
-      },
-      "partId": "cp_xref",
-      "excludeFromBom": true
-    }
-  ],
+  "connectors": [],
   "terminals": [
     {
       "id": "t_led_gnd",
@@ -101,6 +16,104 @@
         "y": -390
       },
       "partId": "tp_ring_m6_22_16"
+    },
+    {
+      "id": "fl_cl_c11_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD C11-2 G-B Turn L - flasher LH stub - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -150
+      }
+    },
+    {
+      "id": "fl_cl_c11_c11",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD C11-11 G-Y Turn R - flasher RH stub - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 60
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -90
+      }
+    },
+    {
+      "id": "fl_cl_c11_c12",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD C11-12 R-L High beam - body residual feed - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -30
+      }
+    },
+    {
+      "id": "fl_cl_c12_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -330
+      }
+    },
+    {
+      "id": "fl_cl_c12_c8",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.52 C12-8 Y Alt L - charge-lamp drive - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -270
+      }
+    },
+    {
+      "id": "fl_cl_c12_c9",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.52 C12-9 B-O IG +12 - feeds every LED anode - solder sleeve into the factory lead at the combination meter",
+      "schematicPosition": {
+        "x": 0,
+        "y": 300
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -210
+      }
+    },
+    {
+      "id": "br_w_oil_k",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CSB3: oil pressure LED sink on CSB3 L4",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1260,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 720,
+        "y": 150
+      }
     }
   ],
   "splices": [
@@ -114,7 +127,7 @@
         "x": 1140,
         "y": -330
       },
-      "partId": "spp_solder_26_14",
+      "partId": "spp_solder_generic",
       "locationId": "bp_990"
     },
     {
@@ -127,23 +140,8 @@
         "x": 1140,
         "y": -390
       },
-      "partId": "spp_crimp_14_10",
+      "partId": "spp_solder_generic",
       "locationId": "bp_990"
-    }
-  ],
-  "resistors": [
-    {
-      "id": "r_chg_excite",
-      "partId": "rp_chg_excite",
-      "locationId": "bp_960",
-      "schematicPosition": {
-        "x": 510,
-        "y": 180
-      },
-      "layoutPosition": {
-        "x": 1020,
-        "y": -330
-      }
     }
   ],
   "diodes": [
@@ -237,8 +235,8 @@
       "id": "w_hb_a",
       "color": "Red",
       "source": {
-        "id": "cl_c11",
-        "handle": "c12"
+        "id": "fl_cl_c11_c12",
+        "handle": "Terminal"
       },
       "target": {
         "id": "d_hb",
@@ -263,8 +261,8 @@
       "id": "w_tl_a",
       "color": "Green",
       "source": {
-        "id": "cl_c11",
-        "handle": "c2"
+        "id": "fl_cl_c11_c2",
+        "handle": "Terminal"
       },
       "target": {
         "id": "d_tl",
@@ -289,8 +287,8 @@
       "id": "w_tr_a",
       "color": "Green",
       "source": {
-        "id": "cl_c11",
-        "handle": "c11"
+        "id": "fl_cl_c11_c11",
+        "handle": "Terminal"
       },
       "target": {
         "id": "d_tr",
@@ -345,8 +343,8 @@
         "handle": "Right"
       },
       "target": {
-        "id": "cl_c12",
-        "handle": "c1"
+        "id": "fl_cl_c12_c1",
+        "handle": "Terminal"
       },
       "stripeColor": "Green",
       "partId": "wp_20_red_grn"
@@ -373,8 +371,8 @@
         "handle": "Right"
       },
       "target": {
-        "id": "cl_c12",
-        "handle": "c8"
+        "id": "fl_cl_c12_c8",
+        "handle": "Terminal"
       },
       "partId": "wp_20_yel"
     },
@@ -399,44 +397,18 @@
         "handle": "Right"
       },
       "target": {
-        "id": "dm_csb3io_c26",
-        "handle": "c1"
+        "id": "br_w_oil_k",
+        "handle": "Terminal"
       },
       "partId": "wp_20_wht"
-    },
-    {
-      "id": "w_chg_ex_a",
-      "color": "Black",
-      "source": {
-        "id": "sp_led_12v",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "r_chg_excite",
-        "handle": "Left"
-      },
-      "partId": "wp_20_blk"
-    },
-    {
-      "id": "w_chg_ex_k",
-      "color": "Yellow",
-      "source": {
-        "id": "r_chg_excite",
-        "handle": "Right"
-      },
-      "target": {
-        "id": "cl_c12",
-        "handle": "c8"
-      },
-      "partId": "wp_20_yel"
     },
     {
       "id": "w_ig_tap",
       "color": "Black",
       "stripeColor": "Orange",
       "source": {
-        "id": "cl_c12",
-        "handle": "c9"
+        "id": "fl_cl_c12_c9",
+        "handle": "Terminal"
       },
       "target": {
         "id": "sp_led_12v",
@@ -447,8 +419,8 @@
   ],
   "bundles": [
     {
-      "id": "bn_cl_c11__bp_960",
-      "sourceId": "cl_c11",
+      "id": "bn_bp_fl_cl_c11__bp_960",
+      "sourceId": "bp_fl_cl_c11",
       "targetId": "bp_960",
       "length": {
         "value": 20,
@@ -474,9 +446,9 @@
       }
     },
     {
-      "id": "bn_bp_960__cl_c12",
+      "id": "bn_bp_960__bp_fl_cl_c12",
       "sourceId": "bp_960",
-      "targetId": "cl_c12",
+      "targetId": "bp_fl_cl_c12",
       "length": {
         "value": 90,
         "unit": "mm"
@@ -492,9 +464,63 @@
       }
     },
     {
-      "id": "bn_bp_1020__dm_csb3io_c26",
+      "id": "bn_bp_fl_cl_c11__fl_cl_c11_c2",
+      "sourceId": "bp_fl_cl_c11",
+      "targetId": "fl_cl_c11_c2",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cl_c11__fl_cl_c11_c11",
+      "sourceId": "bp_fl_cl_c11",
+      "targetId": "fl_cl_c11_c11",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cl_c11__fl_cl_c11_c12",
+      "sourceId": "bp_fl_cl_c11",
+      "targetId": "fl_cl_c11_c12",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cl_c12__fl_cl_c12_c1",
+      "sourceId": "bp_fl_cl_c12",
+      "targetId": "fl_cl_c12_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cl_c12__fl_cl_c12_c8",
+      "sourceId": "bp_fl_cl_c12",
+      "targetId": "fl_cl_c12_c8",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_cl_c12__fl_cl_c12_c9",
+      "sourceId": "bp_fl_cl_c12",
+      "targetId": "fl_cl_c12_c9",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1020__br_w_oil_k",
       "sourceId": "bp_1020",
-      "targetId": "dm_csb3io_c26",
+      "targetId": "br_w_oil_k",
       "length": {
         "value": 780,
         "unit": "mm"
@@ -521,6 +547,20 @@
       "layoutPosition": {
         "x": 1200,
         "y": -240
+      }
+    },
+    {
+      "id": "bp_fl_cl_c11",
+      "layoutPosition": {
+        "x": 960,
+        "y": -150
+      }
+    },
+    {
+      "id": "bp_fl_cl_c12",
+      "layoutPosition": {
+        "x": 960,
+        "y": -330
       }
     }
   ],
@@ -563,7 +603,7 @@
     },
     {
       "id": "n_open",
-      "text": "ASSUMPTIONS (2026-09-25, closes the old open items) 1) LED common return: sp_led_gnd -> t_led_gnd on OEM ground point ID, left kick panel (M6 stud assumed). 2) +12V IG for the LED anodes: one tap off C12-9 (IG +12, B-O) to sp_led_12v, which feeds the charge, park-brake and oil LEDs and the 56R excite resistor. 3) Current limiting is on the LED board; the loom carries no resistors. Oil LED sinks on CSB3 L4 (plan 6.48 L-channel table). Park brake grounds through the OEM P1 / B2 path, which is why its cathode goes to C12-1 and not to the common return.",
+      "text": "ASSUMPTIONS (2026-09-25, closes the old open items) 1) LED common return: sp_led_gnd -> t_led_gnd on OEM ground point ID, left kick panel (M6 stud assumed). 2) +12V IG for the LED anodes: one tap off C12-9 (IG +12, B-O) to sp_led_12v, which feeds the charge, park-brake and oil LEDs. 3) Current limiting is on the LED board; the loom carries no resistors. Oil LED sinks on CSB3 L4 (plan 6.48 L-channel table). Park brake grounds through the OEM P1 / B2 path, which is why its cathode goes to C12-1 and not to the common return.",
       "width": 390,
       "schematicPosition": {
         "x": 1200,
@@ -572,7 +612,7 @@
     },
     {
       "id": "note_oem_filters",
-      "text": "OEM FILTER PARTS CARRIED OVER (EWD 1990 ST185)\n- Charging p.52: the C12 charge lamp sits between pin 9 (IG, B-O) and\n  pin 8 (alt L, Y) and is the alternator's pre-excitation path, not just\n  an indicator. r_chg_excite replaces the bulb's ~250 mA. Do not delete it.\n- J/B No.1 p.19 holds a 3-terminal diode (common cathode on pin 2). It stays\n  inside the block we keep - do not inject power in a way that bypasses it.\n- J/B No.2 p.21, J/B No.3 p.22, Power source p.46: no diodes, no capacitors.\n- Starting p.48: the diode in the S2 start injector time switch is deleted\n  with the cold-start injector.",
+      "text": "OEM FILTER PARTS CARRIED OVER (EWD 1990 ST185)\n- Charging p.52 (1993 Celica EWD Fig. 1/15 agrees): the C12 charge lamp sits\n  between pin 9 (IG, B-O) and pin 8 (alt L, Y) with a diode in series. The\n  IC regulator is powered from its own IG lead (B-R via J3), so the lamp is an\n  indicator the regulator sinks through L, not the excitation feed.\n  The LED alone drives it; no excite resistor (removed 2026-09-28, Daniel).\n  First-start check: docs/procedures/charge-led-test.html.\n- J/B No.1 p.19 holds a 3-terminal diode (common cathode on pin 2). It stays\n  inside the block we keep - do not inject power in a way that bypasses it.\n- J/B No.2 p.21, J/B No.3 p.22, Power source p.46: no diodes, no capacitors.\n- Starting p.48: the diode in the S2 start injector time switch is deleted\n  with the cold-start injector.",
       "schematicPosition": {
         "x": 1200,
         "y": 870
@@ -580,7 +620,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCSB3-c26 (L4) 1: ECUMaster CSB3 L4 low-side - oil pressure LED sink, commanded on CAN 0x643; the CSB3 plug is on ST185-A-ECU (csb3io c26)\nt_led_gnd: LED common return - OEM ground point ID, left kick panel (assumed)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nt_led_gnd: LED common return - OEM ground point ID, left kick panel (assumed)",
       "schematicPosition": {
         "x": 1200,
         "y": 1380
@@ -600,46 +640,11 @@
       }
     },
     {
-      "id": "wp_20_blk_org",
-      "partNumber": "EW-1C20-BLK-ORG",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
-      "stripeColor": "Orange",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "wp_20_grn",
       "partNumber": "EW-1C20-GRN",
       "manufacturer": "generic",
       "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
       "color": "Green",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_red",
-      "partNumber": "EW-1C20-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_red_grn",
-      "partNumber": "EW-1C20-RED-GRN",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED/GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "stripeColor": "Green",
       "gauge": {
         "value": 20,
         "unit": "AWG"
@@ -666,37 +671,67 @@
         "value": 20,
         "unit": "AWG"
       }
-    }
-  ],
-  "connectorParts": [
+    },
     {
-      "partNumber": "(OEM ST185 combination meter connector)",
-      "manufacturer": "Toyota",
-      "description": "CONNECTOR, OEM, COMBINATION METER - existing cluster connector; this loom lands only the drawn pins. No invented OEM pinout",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "id": "cp_cluster",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-combination-meter.png"
+      "id": "wp_20_red",
+      "partNumber": "EW-1C20-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
       }
     },
     {
-      "partNumber": "(cross-reference - no part)",
-      "manufacturer": "n/a",
-      "description": "REFERENCE, CROSS-DRAWING, NO PART - the real connector, pin or splice is owned by another drawing (plan 6.15). Excluded from the BOM.",
-      "id": "cp_xref",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png"
+      "id": "wp_20_blk_org",
+      "partNumber": "EW-1C20-BLK-ORG",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "stripeColor": "Orange",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_red_grn",
+      "partNumber": "EW-1C20-RED-GRN",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED/GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "stripeColor": "Green",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
       }
     }
   ],
+  "spliceParts": [
+    {
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
+      "manufacturer": "generic",
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice point; a Raychem solder sleeve where one fits the combined gauge, otherwise solder and heatshrink (Daniel 2026-09-28)"
+    }
+  ],
   "terminalParts": [
+    {
+      "type": "Loose",
+      "partNumber": "GENERIC FLYING LEAD",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, FLYING LEAD - joined to the vehicle circuit at install with a solder sleeve (Raychem D-406 class)",
+      "id": "tp_flying_lead"
+    },
     {
       "type": "Ring",
       "size": "M6",
@@ -714,46 +749,6 @@
       "id": "tp_ring_m6_22_16"
     }
   ],
-  "spliceParts": [
-    {
-      "partNumber": "GENERIC SOLDER SLEEVE 26-14",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 26,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, SOLDER SLEEVE, WITH ADHESIVE HEATSHRINK, COMBINED 26-14 AWG (Raychem D-406 class)",
-      "id": "spp_solder_26_14"
-    },
-    {
-      "partNumber": "GENERIC CRIMP SPLICE 14-10",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
-      "id": "spp_crimp_14_10"
-    }
-  ],
-  "contactParts": [
-    {
-      "partNumber": "(generic)",
-      "manufacturer": "Generic",
-      "type": "Crimp",
-      "gender": "Socket",
-      "description": "CONTACT, SOCKET, CRIMP, GENERIC - kit-supplied or OEM pigtail, confirm before ordering",
-      "id": "ct_generic_skt"
-    }
-  ],
   "diodeParts": [
     {
       "id": "dp_led",
@@ -761,14 +756,5 @@
       "manufacturer": "LED board",
       "description": "DIODE, LIGHT EMITTING, INDICATOR, 12 V - cluster warning indicator on the LED board; current-limit resistor is on the board, the loom carries none (assumption 2026-09-25)"
     }
-  ],
-  "resistorParts": [
-    {
-      "id": "rp_chg_excite",
-      "partNumber": "56R 5W",
-      "manufacturer": "generic",
-      "description": "RESISTOR, FIXED, WIREWOUND, 56 OHM, 5 W - alternator pre-excitation, parallel to the charge LED"
-    }
-  ],
-  "mates": []
+  ]
 }

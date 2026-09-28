@@ -74,11 +74,9 @@ def check(fn):
         if c.get("width") is not None and c["width"] not in WIDTHS:
             bad.append("connector %s width %s" % (c["id"], c["width"]))
         if "shell" in c:
-            # 6.27: no connector on this car has a shield shell - except the VR
-            # conditioner enclosures, where 6.35 says the shell IS the screen path.
-            if not c["id"].startswith("vrc_"):
-                bad.append("connector %s has a shell (6.27 says none do "
-                           "except vrc_*)" % c["id"])
+            # 6.27: no connector on this car has a shield shell. The VRC case is
+            # reached through registered enclosure leads (redesign 2026-09-27).
+            bad.append("connector %s has a shell (6.27 says none do)" % c["id"])
             cav[c["id"]].add(c["shell"].get("id"))
         if "notes" in c:
             bad.append("connector %s has a notes key" % c["id"])
@@ -203,6 +201,16 @@ def check(fn):
             if x.get("notConnected") and (c["id"], x.get("id")) in wired:
                 bad.append("cavity %s/%s is notConnected but has a conductor on it"
                            % (c["id"], x.get("id")))
+
+    # The app's cleaner silently drops a mate or bundle whose end is gone, so
+    # the uploaded drawing loses it while the repo file keeps it.
+    nodes = set(cav) | {b["id"] for b in d.get("branchPoints", [])}
+    for key in ("mates", "bundles"):
+        for m in d.get(key, []):
+            for e in ("sourceId", "targetId"):
+                if m.get(e) not in nodes:
+                    bad.append("%s %s %s -> unknown node %s"
+                               % (key[:-1], m.get("id"), e, m.get(e)))
     return bad
 
 

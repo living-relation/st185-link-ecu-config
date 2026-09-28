@@ -128,6 +128,19 @@ EXPECT_GONE = {
     "w_mrsg": "deleted - duplicate of w_eps_gnd (EPS pump ground drawn twice)",
 }
 EXPECT_NEW = {
+    # 2026-09-27 harness redesign: each wheel-speed Y harness ends at a 6-way
+    # inline interface; the ECU side owns only these spurs from the mating half.
+    "cab_rspur_5v": "rear spur, IX_WS_REAR c1 -> sp_5v",
+    "cab_rspur_gnd": "rear spur, IX_WS_REAR c2 -> sp_gndout",
+    "cab_rspur_l": "rear spur, IX_WS_REAR c3 -> ECU-B B20 (RL)",
+    "cab_rspur_r": "rear spur, IX_WS_REAR c4 -> ECU-B B19 (RR)",
+    "cab_rspur_sh": "rear spur screen, IX_WS_REAR c5 -> sp_shield_b (B17)",
+    "cab_fspur_5v": "front spur, IX_WS_FRONT c1 -> sp_5v",
+    "cab_fspur_gnd": "front spur, IX_WS_FRONT c2 -> sp_gndout",
+    "cab_fspur_l": "front spur, IX_WS_FRONT c3 -> ECU-A A23 (FL)",
+    "cab_fspur_r": "front spur, IX_WS_FRONT c4 -> ECU-B B21 (FR)",
+    "cab_fspur_sh": "front spur screen, IX_WS_FRONT c5 -> sp_shield_a (A7)",
+    "cab_fspur_fr_sh": "front FR spur screen, IX_WS_FRONT c6 -> sp_shield_b (B17)",
     "w_hc_fb": "2026-09-25: 50 A feed HCFB H1 -> FB1 IN; the mini fuse module is now fed from the high-current fuse block",
     "cab_fout_fr_sh": "FR conditioned output screen on its own cable, to sp_shield_b / B17; floats at the VRC (Daniel 2026-09-25)",
     "w_eps_trig": "6.16 ECU-driven EPS relay trigger, Ign 6 / ecu_b.b12",

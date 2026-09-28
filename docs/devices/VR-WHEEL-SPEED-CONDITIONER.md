@@ -48,6 +48,7 @@ speed a fixed low threshold is the simpler and more predictable answer.
 - **Hold the `DIAG` pin low** for normal running. Pulling it high moves the negative
   threshold positive — that is the open-sensor diagnostic mode, not a run mode.
 - Sensor pairs run as **shielded twisted pair**, shield terminated at the ECU end only.
+- Screen path: see docs/SHIELD-RULES.md (powered-device exception)
 
 ## Wiring into the car
 

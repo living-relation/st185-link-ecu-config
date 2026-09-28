@@ -1,14 +1,11 @@
 import json, os, re, collections, datetime
-R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
-# The eight current looms. Repointed 2026-09-22 - this used to read the
-# pre-split Signal/Power/CAN/EngineRoom-C files, so every buy list generated
-# before that date missed everything the rebuild added (the CSB3 HD30
-# connector and its size-20 contacts among them).
-F = ("ST185-A-ECU.harness", "ST185-A-engine.harness",
-     "ST185-B-ECU.harness", "ST185-B-engine.harness",
-     "ST185-CAN.harness", "ST185-EngineRoom-C.harness",
-     "ST185-ClusterLED.harness", "ST185-WheelSpeed.harness",
-     "ST185-AntiTheft.harness")
+
+import model
+
+R = model.REB
+# Every harness in interfaces.json - the registry is the list, so a new or
+# retired drawing can never silently drop off the buy list again.
+F = tuple(model.harness_files().values())
 
 ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "0460-202-1631":130,"0460-215-1631":60,"0462-201-1631":118,"0462-209-1631":51,
@@ -37,7 +34,7 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("AMI-50","Eaton Bussmann","AMI fuse 50 A, M5 bolt-down - HCFB H1, feeds FB1",1,0),
  ("AMI-40","Eaton Bussmann","AMI fuse 40 A, M5 bolt-down - HCFB H2, radiator fan relay",1,0),
  ("AMI-30","Eaton Bussmann","AMI fuse 30 A, M5 bolt-down - HCFB H3, condenser fan relay",1,0),
- ("AMI-60","Eaton Bussmann","AMI fuse 60 A, M5 bolt-down - HCFB H4, EPS pump relay",1,0),
+ ("AMI-TBD","Eaton Bussmann","AMI fuse, M5 bolt-down - HCFB H4, EPS pump relay - RATING TBD: need the MR-S EHPS pump current and the Bussmann AMI datasheet (60 A was never sourced)",1,0),
  ("RL9080-301-F1RE","Amphenol","RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, RED - firewall POSITIVE. Mates RL00801-50RE each side.",1,0),
  ("RL9080-301-F1","Amphenol","RADLOK 8.0 feed-through receptacle, panel mount, 200A/1kV, BLACK - firewall NEGATIVE. Mates RL00801-50BK each side.",1,0),
  ("1/0 AWG welding cable red/black","generic","Trunk battery +/−, firewall crossing, engine ground. Sized on voltage drop over a ~36 ft round trip: 1.06V cranking, 0.57V at 160A charge. 2 AWG was 13% cranking drop - too much. ~45 ft each colour.",1,0),
@@ -182,8 +179,8 @@ for pn, mf, desc, n, have in EXTRA:
 
 out = ["# Harness — need to buy",
  "",
- "Generated on %s from the eight `.harness` files in `docs/harness/rebuild/`:"
- % datetime.date.today().isoformat(),
+ "Generated on %s from the %d `.harness` files in `docs/harness/rebuild/`:"
+ % (datetime.date.today().isoformat(), len(F)),
  "`" + "`, `".join(x[6:-8] for x in F) + "`.",
  "On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.",
  "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",
@@ -207,6 +204,35 @@ out += ["", "## Counted once, drawn more than once", "",
  "| Connector | One part, drawn on | Counted in |", "|---|---|---|"]
 for cid, (looms, owner) in sorted(SHARED.items()):
     out.append("| `%s` | %s | %s |" % (cid, ", ".join(looms), owner))
+REG = model.registry()
+out += ["", "## Inline interfaces - one connector pair per harness boundary", "",
+ "Each half is counted once, on the harness that owns it (the receiving harness owns the",
+ "mating half). Contacts and wedgelocks come from each half's part configuration above.", "",
+ "| Interface | Family | Source half | Receiving half |", "|---|---|---|---|"]
+for ix in REG.get("interfaces", []):
+    s = next(h for h in ix["halves"] if h["role"] == "source")
+    r = next(h for h in ix["halves"] if h["role"] == "receiving")
+    out.append("| `%s` | %s | `%s` on %s | `%s` on %s |"
+               % (ix["id"], ix.get("family", ""), s["connector"], s["harness"], r["connector"], r["harness"]))
+fl_by = collections.Counter(f["harness"] for f in REG.get("flyingLeads", []))
+out += ["", "## OEM flying leads - splice material only, no OEM housing", "",
+ "Each lead is one solder sleeve (`GENERIC FLYING LEAD` above). The EWD locator for every lead",
+ "is in `interfaces.json` and in the build list's EWD column.", "",
+ "| Harness | Flying leads |", "|---|---:|"]
+for h, n in sorted(fl_by.items()):
+    out.append("| %s | %d |" % (h, n))
+cab = collections.Counter()
+for loom, fn in model.harness_files(REG).items():
+    d = model.load(fn)
+    cp = {p["id"]: p for p in d.get("cableParts", [])}
+    for cb in d.get("cables", []):
+        p = cp.get(cb.get("partId")) or {}
+        cab[(loom, p.get("partNumber", cb.get("partId")))] += 1
+out += ["", "## Screened cable pieces by owning harness", "",
+ "Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no connector.", "",
+ "| Harness | Cable | Pieces |", "|---|---|---:|"]
+for (loom, pn), n in sorted(cab.items()):
+    out.append("| %s | `%s` | %d |" % (loom, pn, n))
 out += ["", "## Still unspecified", "",
  "- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. "
  "Needs a real dash number per branch OD once the trunk diameters are known.",

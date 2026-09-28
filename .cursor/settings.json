@@ -2,6 +2,27 @@
   "plugins": {
     "github": {
       "enabled": true
+    },
+    "apify": {
+      "enabled": true
+    },
+    "supabase": {
+      "enabled": true
+    },
+    "cursor-team-kit": {
+      "enabled": true
+    },
+    "docs-canvas": {
+      "enabled": true
+    },
+    "google-drive": {
+      "enabled": true
+    },
+    "pr-review-canvas": {
+      "enabled": true
+    },
+    "atlassian": {
+      "enabled": true
     }
   }
 }
