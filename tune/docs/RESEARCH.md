@@ -14,7 +14,7 @@ Private tune-project research. Not dyno data — conservative starting points wi
 ## Turbo — EFR 7163
 
 - BorgWarner EFR 7163-G, 0.80 A/R twin-scroll, internal WG + speed sensor.
-- Street base map targets **12–18 psi**; ECU protection + red overlay at **29 psi** (`config/limits.yaml`).
+- Street base map targets **12–18 psi**; ECU protection + red overlay at **29 psi** (`tune/limits.yaml`).
 - Dyno goal ≤30 psi / ~600 bhp documented separately — do not use as first-start boost target.
 
 ## Link G4X FuryX (SUPERSEDED — ECU is an XtremeX)
@@ -51,15 +51,15 @@ Install: gears set **slightly retarded** vs factory marks (document final ° in 
 ## Injectors — ATS 1400 cc
 
 - Peak-and-hold on FuryX — configure per ATS sheet.
-- Dead time table: `config/tables/injector_dead_time_ms.csv` (ΔkPa vs battery voltage).
+- Dead time table: `tune/tables/injector_dead_time_ms.csv` (ΔkPa vs battery voltage).
 - Confirm **Chase Bays rail pressure** so ΔkPa axis matches PCLink.
 
 ## Multi-fuel (93 / E85 / blend)
 
-- Continental flex sensor on DI — PWM frequency = ethanol %, pulse width = fuel temp; **2.4 kΩ pull-up** on signal (open-collector output).
+- Continental flex sensor on DI 2 — PWM frequency = ethanol %, pulse width = fuel temp (open-collector output). PCLink Ethanol Sensor function, **DI pull-up ON**; do not add an external 2.4 kΩ unless a scope shows a weak edge (per `XTREMEX-IO-TABLE.html`, confirmed against the XtremeX Quick Start Guide and PCLink-family wiring manual).
 - Chase Bays FPR: **43.5 psi (3 bar) base**, **1:1 boost-referenced**, return system — starting point for startup map; confirm on gauge at key-on.
 - Modelled Multi-Fuel in PCLink; E85 needs ~35–40% more fuel vs stoich on 93.
-- Blend table seed: `config/tables/multi_fuel_blend.csv`.
+- Blend table seed: `tune/tables/multi_fuel_blend.csv`.
 
 ## Oil pressure — hot idle research
 
@@ -99,4 +99,4 @@ Problem example: hot idle **7 PSI** with long turbo feed lines reported on MR2 b
 
 - ~~`docs/references/FuryXQuickstartGuide.pdf`~~ — FuryX-specific, not imported (ECU is an XtremeX)
 - `docs/references/linkecu-furyx-dealer.html`
-- Center cluster CAN: `config/can/link_g4x_can_setup.*`
+- Center cluster CAN: `link_g4x_can_setup.*` (repo root)

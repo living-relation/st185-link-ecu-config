@@ -1,0 +1,30 @@
+# Boost target multiplier vs ethanol % - scales tables/boost_target_full_psi.csv (the RPM-only
+# full-power curve, already E85-tuned) via a PCLink Math Block: final psi = full_psi * mult.
+# Do NOT apply to boost_target_psi.csv (street seed) or boost_shakedown_stages.csv - those are
+# for a different build phase (see tune/README.md precedence note).
+#
+# mult = 1.000 at E85 - the full curve's own design fuel, so E85/E100 pass through unscaled.
+# Lower ethanol% scales the whole RPM curve down toward the E0 (pump-gas-safe) target, derived
+# so mult * 30.0 psi (the curve's peak) reproduces the E0-E100 peak targets worked out in the
+# 2026-09-27 handoff (E0=17.0 ... E90=30.0 psi).
+#
+# SENSOR FAULT: this table has NO fault behavior of its own. The Ethanol% channel it reads is
+# shared with multi_fuel_blend.csv, whose fault-safe direction is 100 (richest) - so on a
+# sensor fault this table also reads 100 -> mult 1.000 -> the full 30psi curve, which is NOT
+# safe if the real fuel is actually low-octane. Boost safety on fault is a SEPARATE mechanism:
+# tune/limits.yaml ecu_limits.boost.ethanol_sensor_fault_cap_psi (18psi), an independent Min()
+# clamp gated directly on the Ethanol Sensor Fault flag, not on this table's output. See
+# tune/docs/DRIVEABILITY_TUNING.md "Flex fuel blend" for the full reasoning.
+ethanol_pct,mult
+0,0.567
+10,0.600
+20,0.650
+30,0.700
+40,0.767
+50,0.817
+60,0.867
+70,0.917
+80,0.967
+85,1.000
+90,1.000
+100,1.000

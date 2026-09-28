@@ -16,11 +16,11 @@
 | Coils | Toyota 1ZZ COP ×4 sequential |
 | Turbo | BorgWarner EFR 7163-G, 0.80 A/R, internal WG |
 | WG actuator | Turbosmart **TS-0620-4012** GenV IWG, **14 psi** spring |
-| Boost control | MAC 3-port solenoid — Aux 1 (see `XTREMEX-IO-TABLE.html`) |
+| Boost control | MAC 46A-AA1-JDBA-1BA **4-port** solenoid (required — the GenV IWG is a twin-port actuator) — Aux 1 (see `XTREMEX-IO-TABLE.html`) |
 | FMIC | Bar-plate **4 × 14 × 28 in**, **3 in** in/out |
 | Fuel pump | Walbro F90000295, full-on via SSR — channel per `XTREMEX-IO-TABLE.html` |
 | FPR | Chase Bays, **43.5 psi (3 bar) base**, **1:1 boost-referenced**, return system, 8AN rail |
-| Flex fuel | Continental-style PWM sensor (AEM/Innovate rebrand OK), DI2, **2.4 kΩ pull-up** on signal |
+| Flex fuel | Continental-style PWM sensor (AEM/Innovate rebrand OK), DI2, PCLink Ethanol Sensor + **DI pull-up ON** (no extra 2.4 kΩ unless a scope shows a weak edge) |
 | Oil | 10W-50 high-zinc, pump 15100-74030, **6 mm** total relief shim, external cooler, Moroso pan |
 | Bearings | ~2.5 mil mains, ~2.0–2.15 mil rods (ATS blueprint) |
 | Transmission | Toyota **E150F**, OEM VSS, reverse via ECUMaster switchboard → CAN → ECU (Gear=7 on 0x3EB) |
@@ -31,7 +31,7 @@
 | Rev limit (config) | 8000 RPM eventual; use **4000** GP soft limit for first idle |
 | Aux (spare) | Reserved for auxiliary ethanol injection later — **not used** on startup map; channel per `XTREMEX-IO-TABLE.html` |
 
-Machine-readable: `config/engine_constants.yaml`
+Machine-readable: `tune/engine_constants.yaml`
 
 ## Before first crank (harness / PCLink)
 
@@ -41,7 +41,7 @@ Machine-readable: `config/engine_constants.yaml`
 - [ ] **Trigger Scope** — 36-2 pattern and VR polarity
 - [ ] **E150F VSS** pulses/mile — calibrate road speed in PCLink after first drive
 - [ ] **Reverse** via switchboard → CAN, verified on cluster gear display
-- [ ] **MAC 3-port** plumbing to EFR IWG verified
+- [ ] **MAC 4-port** plumbing to EFR IWG verified
 
 ## Optional / later (not startup map)
 
