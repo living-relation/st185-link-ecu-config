@@ -309,7 +309,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+5V - wired on ST185-B-engine",
+          "signal": "+5V",
           "designation": "A"
         },
         {
@@ -508,7 +508,7 @@
         },
         {
           "id": "c4",
-          "signal": "GND - wired on ST185-B-engine"
+          "signal": "GND"
         }
       ],
       "layoutPosition": {
@@ -539,7 +539,7 @@
         },
         {
           "id": "c4",
-          "signal": "GND - wired on ST185-B-engine"
+          "signal": "GND"
         }
       ],
       "layoutPosition": {
@@ -570,7 +570,7 @@
         },
         {
           "id": "c4",
-          "signal": "GND - wired on ST185-B-engine"
+          "signal": "GND"
         }
       ],
       "layoutPosition": {
@@ -601,7 +601,7 @@
         },
         {
           "id": "c4",
-          "signal": "GND - wired on ST185-B-engine"
+          "signal": "GND"
         }
       ],
       "layoutPosition": {
