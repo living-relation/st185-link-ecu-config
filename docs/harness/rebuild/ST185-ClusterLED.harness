@@ -653,7 +653,7 @@
     },
     {
       "id": "note_oem_filters",
-      "text": "OEM FILTER PARTS CARRIED OVER (EWD 1990 ST185)\n- Charging p.52: the C12 charge lamp sits between pin 9 (IG, B-O) and\n  pin 8 (alt L, Y) and is the alternator's pre-excitation path, not just\n  an indicator. r_chg_excite replaces the bulb's ~250 mA. Do not delete it.\n- J/B No.1 p.19 holds a 3-terminal diode (common cathode on pin 2). It stays\n  inside the block we keep - do not inject power in a way that bypasses it.\n- J/B No.2 p.21, J/B No.3 p.22, Power source p.46: no diodes, no capacitors.\n- Starting p.48: the diode in the S2 start injector time switch is deleted\n  with the cold-start injector.",
+      "text": "OEM FILTER PARTS CARRIED OVER (EWD 1990 ST185)\n- Charging p.52 (1993 Celica EWD Fig. 1/15 agrees): the C12 charge lamp sits\n  between pin 9 (IG, B-O) and pin 8 (alt L, Y) with a diode in series. The\n  IC regulator is powered from its own IG lead (B-R via J3), so the lamp is an\n  indicator the regulator sinks through L, not the excitation feed.\n  r_chg_excite stays fitted until Daniel's LED-only test passes (L-ground\n  0-4 V ign ON engine off, LED lit; charging at idle); then remove it.\n- J/B No.1 p.19 holds a 3-terminal diode (common cathode on pin 2). It stays\n  inside the block we keep - do not inject power in a way that bypasses it.\n- J/B No.2 p.21, J/B No.3 p.22, Power source p.46: no diodes, no capacitors.\n- Starting p.48: the diode in the S2 start injector time switch is deleted\n  with the cold-start injector.",
       "schematicPosition": {
         "x": 1200,
         "y": 870
