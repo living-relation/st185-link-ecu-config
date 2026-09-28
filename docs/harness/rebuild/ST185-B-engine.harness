@@ -85,14 +85,14 @@
         {
           "id": "c13",
           "designation": "13",
-          "signal": "+5V Out to B engine sensors (bulkhead splice sp_5v_b, 20 AWG) - oil / fuel / coolant pressure",
-          "contactPartId": "ct_hdp16s"
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c14",
           "designation": "14",
-          "signal": "Gnd Out to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil / coolant pressure branch",
-          "contactPartId": "ct_hdp16s"
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c15",
@@ -121,8 +121,8 @@
         {
           "id": "c19",
           "designation": "19",
-          "signal": "Gnd Out to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT branch",
-          "contactPartId": "ct_hdp16s"
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c20",
@@ -133,8 +133,8 @@
         {
           "id": "c21",
           "designation": "21",
-          "signal": "Gnd Out to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
-          "contactPartId": "ct_hdp16s"
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
         }
       ],
       "layoutPosition": {
@@ -332,6 +332,52 @@
         "y": 1620
       },
       "width": 150
+    },
+    {
+      "id": "ix_brail_p",
+      "label": "B sensor rails - 6-way inline mate from ST185-A-engine (IX_B_RAIL)",
+      "width": 270,
+      "partId": "cp_dt04_6p",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil temp / charge-pipe IAT branch"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil / coolant pressure branch"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - fuel pressure / VSS branch"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2010,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 1500
+      }
     }
   ],
   "terminals": [
@@ -407,19 +453,6 @@
     }
   ],
   "splices": [
-    {
-      "id": "sp_5v_b_eng",
-      "partId": "spp_solder_generic",
-      "layoutPosition": {
-        "x": 1380,
-        "y": 120
-      },
-      "schematicPosition": {
-        "x": 1920,
-        "y": 1560
-      },
-      "locationId": "be_750"
-    },
     {
       "id": "sp_gndout_b_eng",
       "partId": "spp_solder_generic",
@@ -543,12 +576,12 @@
       "id": "w207",
       "color": "Orange",
       "source": {
-        "id": "oilp",
+        "id": "ix_brail_p",
         "handle": "c1"
       },
       "target": {
-        "id": "sp_5v_b_eng",
-        "handle": "Splice"
+        "id": "oilp",
+        "handle": "c1"
       },
       "partId": "wp_20_org"
     },
@@ -556,12 +589,12 @@
       "id": "w208",
       "color": "Orange",
       "source": {
-        "id": "fuelp",
-        "handle": "c1"
+        "id": "ix_brail_p",
+        "handle": "c2"
       },
       "target": {
-        "id": "sp_5v_b_eng",
-        "handle": "Splice"
+        "id": "fuelp",
+        "handle": "c1"
       },
       "partId": "wp_20_org"
     },
@@ -569,12 +602,12 @@
       "id": "w209",
       "color": "Orange",
       "source": {
-        "id": "clntp",
-        "handle": "c1"
+        "id": "ix_brail_p",
+        "handle": "c3"
       },
       "target": {
-        "id": "sp_5v_b_eng",
-        "handle": "Splice"
+        "id": "clntp",
+        "handle": "c1"
       },
       "partId": "wp_20_org"
     },
@@ -740,23 +773,10 @@
       "partId": "wp_20_grn"
     },
     {
-      "id": "w_rail_5v_b_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c13"
-      },
-      "target": {
-        "id": "sp_5v_b_eng",
-        "handle": "Splice"
-      },
-      "color": "Orange",
-      "partId": "wp_20_org"
-    },
-    {
       "id": "w_rail_gnd_b_e",
       "source": {
-        "id": "bh_b_eng",
-        "handle": "c19"
+        "id": "ix_brail_p",
+        "handle": "c4"
       },
       "target": {
         "id": "sp_gndout_b_eng",
@@ -769,8 +789,8 @@
     {
       "id": "w_gnd_b_e_c14",
       "source": {
-        "id": "bh_b_eng",
-        "handle": "c14"
+        "id": "ix_brail_p",
+        "handle": "c5"
       },
       "target": {
         "id": "sp_gndout_b_eng2",
@@ -783,8 +803,8 @@
     {
       "id": "w_gnd_b_e_c21",
       "source": {
-        "id": "bh_b_eng",
-        "handle": "c21"
+        "id": "ix_brail_p",
+        "handle": "c6"
       },
       "target": {
         "id": "sp_gndout_b_eng3",
@@ -1182,6 +1202,15 @@
         "value": 1580,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_be_750__ix_brail_p",
+      "sourceId": "be_750",
+      "targetId": "ix_brail_p",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -1469,17 +1498,6 @@
       }
     },
     {
-      "id": "wp_18_org",
-      "partNumber": "EW-1C18-ORG",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Orange",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "wp_14_red",
       "partNumber": "EW-1C14-RED",
       "manufacturer": "generic",
@@ -1582,6 +1600,23 @@
         "value": 16,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "ct_dt16p",
+      "partNumber": "0460-202-1631",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT receptacle; OWNED",
+      "type": "Crimp",
+      "gender": "Pin",
+      "minGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "contactColor": "Gold"
     }
   ],
   "cavityPlugParts": [
@@ -1714,6 +1749,24 @@
         "source": "url",
         "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/toyota-oval-3pos.png"
       }
+    },
+    {
+      "id": "cp_dt04_6p",
+      "partNumber": "DT04-6P",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY - wheel-speed VRC output inline interface, wheel-speed harness side (receiving half DT06-6S is on the ECU spur)",
+      "numberOfCavities": 6,
+      "gender": "Male",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_dt16p",
+          "cavityPlugPartId": "pl_sz16",
+          "lockPartId": "lp_w6p"
+        }
+      ],
+      "url": "https://www.te.com/usa-en/product-DT04-6P.html"
     }
   ],
   "cableParts": [
@@ -1742,6 +1795,14 @@
         }
       ],
       "shielded": true
+    }
+  ],
+  "lockParts": [
+    {
+      "id": "lp_w6p",
+      "partNumber": "W6P",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE"
     }
   ]
 }

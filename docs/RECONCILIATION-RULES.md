@@ -42,9 +42,10 @@ whole chain and must pass before every commit.
 |---|---|
 | `sot/channels.csv` | Pin/channel SoT |
 | `XTREMEX-IO-TABLE.html` | Visual face of the SoT, with a generated pin map |
-| `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: fuse block, HCFB, A-triggered relays, APS, CSB3 plug, front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
+| `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: A-triggered relays, APS, front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
 | `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: condenser fan relay, fuel level branch, rear wheel-speed spur (Rule 3) |
 | `docs/harness/rebuild/ST185-APS-Pedal.harness` | APS pedal harness: A/B pedal wires broken off the cabin looms, female/male DT 6-way pair, run to the pedal (Rule 3 crossover c) |
+| `docs/harness/rebuild/ST185-CabinPower.harness` | Cabin fuse block, HCFB, battery feed, fuel pump run (non-ECU) |
 | `docs/harness/rebuild/ST185-CSB3.harness` | ECUMaster CSB3 plug and switch inputs (non-ECU) |
 | `docs/harness/rebuild/ST185-A-engine.harness` | Bulkhead A engine half to every A-letter engine device (Rule 3) |
 | `docs/harness/rebuild/ST185-B-engine.harness` | Bulkhead B engine half to every B-letter engine device, ETB motor (Rule 3) |
@@ -149,11 +150,15 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     A24 - **unverified**: Link's documentation says nothing about tying the two.
     **Tapered distribution (Daniel, 2026-09-28):** the ECU pin leads (A32, A24, B22) are
     18 AWG (the largest the Superseal 1.0 contact takes); 18 AWG trunks run from the ECU
-    splices to a splice just before each cabin bulkhead (`sp_5v_bha` / `sp_gnd_bha` on A,
-    `sp_5v_b` / `sp_gnd_bhb` on B); each rail then crosses on several 20 AWG bulkhead pins
-    (A: c2, c39, c40 +5V; c3, c41-c44 Gnd. B: c13 +5V; c14, c17, c19, c21 Gnd) that run
+    splices to a splice just before cabin bulkhead A (`sp_5v_bha` / `sp_gnd_bha`) and to the
+    loom B splices `sp_5v_b` / `sp_gndout_b` (B cabin loads; B22 lands on `sp_gndout_b`);
+    each rail then crosses on several 20 AWG bulkhead pins (A: c2, c39, c40 +5V; c3,
+    c41-c44 Gnd. B: c17 knock return only) that run
     straight to one device or to a small engine-side branch splice. Every splice is a
-    generic soldered splice point.
+    generic soldered splice point. The B-engine sensors do not use bulkhead B for their
+    rails: bulkhead A c45-c47 (+5V) and c10-c12 (Gnd) run as a short A-engine spur to the
+    DT 6-way inline pair `IX_B_RAIL` (DT06-6S on A-engine, DT04-6P on B-engine), one +5V
+    pin per pressure sensor and one ground pin per branch (Daniel, 2026-09-28).
   - **(b)** ETB: relay trigger on A20, H-bridge supply on B5 (by ECU pin design).
   - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design). All pedal
     wiring stays in the cabin: the A pedal wires break off `ST185-A-cabin` and the B33
@@ -177,6 +182,9 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
   them.
 - The ECUMaster CSB3 plug and its switch inputs are their own non-ECU harness,
   `ST185-CSB3` (keeps `ST185-A-cabin` under the harness.design 100-connection limit).
+- The cabin fuse block, HCFB, battery feed ring and fuel pump run are the non-ECU harness
+  `ST185-CabinPower` (Daniel, 2026-09-28, same reason). The relays stay on `ST185-A-cabin`:
+  their ECU-A trigger gives them letter A.
 - Every other loom stays as it is: `EngineRoom-C`, `CAN`, `ClusterLED`, `AntiTheft`,
   `WheelSpeed-Front` / `-Rear`, `RearFuel`, `ACAmp-Spur`.
 

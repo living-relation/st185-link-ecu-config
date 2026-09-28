@@ -67,20 +67,20 @@
         {
           "id": "c10",
           "designation": "10",
-          "signal": "spare",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil temp / charge-pipe IAT branch",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c11",
           "designation": "11",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil / coolant pressure branch",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c12",
           "designation": "12",
-          "signal": "spare",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - fuel pressure / VSS branch",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c13",
@@ -277,20 +277,20 @@
         {
           "id": "c45",
           "designation": "45",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c46",
           "designation": "46",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
+          "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c47",
           "designation": "47",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
+          "contactPartId": "ct_hdp20s"
         }
       ],
       "layoutPosition": {
@@ -803,6 +803,52 @@
         "y": 0
       },
       "width": 210
+    },
+    {
+      "id": "ix_brail_s",
+      "label": "B sensor rails - 6-way inline to ST185-B-engine (IX_B_RAIL)",
+      "width": 270,
+      "partId": "cp_dt06_6s",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil temp / charge-pipe IAT branch"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil / coolant pressure branch"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - fuel pressure / VSS branch"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2250,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 2400
+      }
     }
   ],
   "terminals": [
@@ -1848,6 +1894,87 @@
       "color": "Black",
       "stripeColor": "White",
       "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_5v_brail_e_c45",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c45"
+      },
+      "target": {
+        "id": "ix_brail_s",
+        "handle": "c1"
+      },
+      "color": "Orange",
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w_5v_brail_e_c46",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c46"
+      },
+      "target": {
+        "id": "ix_brail_s",
+        "handle": "c2"
+      },
+      "color": "Orange",
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w_5v_brail_e_c47",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c47"
+      },
+      "target": {
+        "id": "ix_brail_s",
+        "handle": "c3"
+      },
+      "color": "Orange",
+      "partId": "wp_20_org"
+    },
+    {
+      "id": "w_gnd_brail_e_c10",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c10"
+      },
+      "target": {
+        "id": "ix_brail_s",
+        "handle": "c4"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_gnd_brail_e_c11",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c11"
+      },
+      "target": {
+        "id": "ix_brail_s",
+        "handle": "c5"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_gnd_brail_e_c12",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c12"
+      },
+      "target": {
+        "id": "ix_brail_s",
+        "handle": "c6"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
     }
   ],
   "cables": [
@@ -2461,6 +2588,15 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_at_bh_b_eng__ix_brail_s",
+      "sourceId": "bp_at_bh_b_eng",
+      "targetId": "ix_brail_s",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -2861,17 +2997,6 @@
       "color": "Red",
       "gauge": {
         "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_18_org",
-      "partNumber": "EW-1C18-ORG",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Orange",
-      "gauge": {
-        "value": 18,
         "unit": "AWG"
       }
     },
@@ -3422,6 +3547,24 @@
       "manufacturer": "TBD",
       "description": "CONNECTOR, A/C COOLANT TEMPERATURE SWITCH, 2 POS - switch not yet chosen; never invent a part number (redesign D5)",
       "numberOfCavities": 2
+    },
+    {
+      "id": "cp_dt06_6s",
+      "partNumber": "DT06-6S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY - wheel-speed inline interface, ECU spur side (receiving half; supplies +5V, so it carries the sockets)",
+      "numberOfCavities": 6,
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_hdp16s",
+          "cavityPlugPartId": "pl_sz16",
+          "lockPartId": "lp_w6s"
+        }
+      ],
+      "url": "https://www.te.com/usa-en/product-DT06-6S.html"
     }
   ],
   "cableParts": [
@@ -3455,6 +3598,12 @@
       "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 3-WAY PLUG",
       "id": "lp_w3s"
+    },
+    {
+      "id": "lp_w6s",
+      "partNumber": "W6S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DT, 6-WAY PLUG"
     }
   ]
 }

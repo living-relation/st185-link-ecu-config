@@ -27,7 +27,10 @@ and broken-off pairs (rails, grounds and screens do not give a device a letter).
 
 The allow-list is the rule's crossovers and nothing else:
   (a) +5V (A32) and sensor Gnd Out (A24, B22) splice at ECU A in the cabin; their B
-      legs leave A-cabin broken off and run on B-cabin to cabin bulkhead B and the B loads
+      legs leave A-cabin broken off and run on B-cabin to the B cabin loads, and the
+      B-engine sensor feeds cross on bulkhead A rail pins and spur into B-engine through
+      the IX_B_RAIL inline pair (Daniel, 2026-09-28). A bulkhead cavity on those rails
+      may feed the other letter's devices (L4).
   (b) ETB: relay trigger A20, H-bridge supply B5 from that relay's output; the B18 / B26
       motor wires leave B-engine as a short broken-off spur after bulkhead B and come
       into A-engine just after bulkhead A, to the throttle body drawn there
@@ -133,6 +136,14 @@ for (bh, cav), fars in sorted(land.items()):
     L = BH_LETTER[bh]
     if (bh, cav) in ALLOW["d"]["cavities"]:
         continue
+    rail_cav = False
+    if bh.endswith("_eng"):
+        for loom0, _ in fars[:1]:
+            bnode = g.node(loom0, {"id": bh, "handle": cav})
+            for m in g.reach(bnode, stop=lambda x: x[0] not in ("SP", "BH", "BRK")):
+                r = sot.get((m[1], m[2])) if m[0] == "ECU" else None
+                if r and r["class"] == "rail" and r["net"] in ALLOW["a"]["nets"]:
+                    rail_cav = True
     for loom, far in fars:
         start = g.node(loom, far)
         net = {start} | g.reach(start, stop=lambda x: x[0] not in ("SP", "BRK"))
@@ -142,7 +153,7 @@ for (bh, cav), fars in sorted(land.items()):
                 if r and r["class"] == "signal" and m[1][-1].upper() != L:
                     bad.append("L4 %s %s reaches %s.%s %s - bulkhead %s carries connector %s only"
                                % (bh, cav, m[1], m[2], r["net"], L, L))
-            if bh.endswith("_eng") and m[0] == "C":
+            if bh.endswith("_eng") and m[0] == "C" and not rail_cav:
                 S = cav_letter.get((m[1], m[2])) or dev_letter.get(m[1]) or set()
                 if S and L not in S:
                     bad.append("L4 %s %s feeds %s.%s (letter %s) - it must cross on bulkhead %s"

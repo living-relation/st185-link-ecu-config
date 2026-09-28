@@ -4,11 +4,15 @@
   "harnesses": {
     "A-cabin": {
       "file": "ST185-A-cabin.harness",
-      "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the fuse block, HCFB and the A-triggered relays, APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, fuel pump run, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
+      "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the A-triggered relays (fuse block and HCFB on ST185-CabinPower), APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
     },
     "B-cabin": {
       "file": "ST185-B-cabin.harness",
       "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
+    },
+    "CabinPower": {
+      "file": "ST185-CabinPower.harness",
+      "physical": "Cabin power (non-ECU): cabin fuse block, high-current fuse block, battery feed ring, fuel pump run to the trunk; feeds to the A-cabin relays and splices and to B-cabin arrive broken off"
     },
     "APS-Pedal": {
       "file": "ST185-APS-Pedal.harness",
@@ -148,6 +152,31 @@
         {
           "harness": "RearFuel",
           "connector": "ix_fuel_p",
+          "role": "receiving"
+        }
+      ]
+    },
+    {
+      "id": "IX_B_RAIL",
+      "type": "inline_interface",
+      "family": "Deutsch DT 6-way (DT06-6S / DT04-6P)",
+      "pins": {
+        "c1": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
+        "c2": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
+        "c3": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
+        "c4": "Gnd Out to B engine sensors via IX_B_RAIL - oil temp / charge-pipe IAT branch",
+        "c5": "Gnd Out to B engine sensors via IX_B_RAIL - oil / coolant pressure branch",
+        "c6": "Gnd Out to B engine sensors via IX_B_RAIL - fuel pressure / VSS branch"
+      },
+      "halves": [
+        {
+          "harness": "A-engine",
+          "connector": "ix_brail_s",
+          "role": "source"
+        },
+        {
+          "harness": "B-engine",
+          "connector": "ix_brail_p",
           "role": "receiving"
         }
       ]
@@ -819,7 +848,7 @@
           "terminal": "br_w_fb_k_fan2_30"
         },
         {
-          "harness": "A-cabin",
+          "harness": "CabinPower",
           "terminal": "br_w_fb_k_fan2_30"
         }
       ]
@@ -834,7 +863,7 @@
           "terminal": "br_w_fb_k_eps_30"
         },
         {
-          "harness": "A-cabin",
+          "harness": "CabinPower",
           "terminal": "br_w_fb_k_eps_30"
         }
       ]
@@ -864,7 +893,7 @@
           "terminal": "br_w_inj_pwr_c"
         },
         {
-          "harness": "A-cabin",
+          "harness": "CabinPower",
           "terminal": "br_w_inj_pwr_c"
         }
       ]
@@ -879,7 +908,7 @@
           "terminal": "br_w_cop_pwr_c"
         },
         {
-          "harness": "A-cabin",
+          "harness": "CabinPower",
           "terminal": "br_w_cop_pwr_c"
         }
       ]
@@ -1361,6 +1390,171 @@
         {
           "harness": "A-engine",
           "terminal": "br_w_cop_pwr_e"
+        }
+      ]
+    },
+    {
+      "id": "BR_W77",
+      "type": "broken_off",
+      "what": "Cabin fuse block SW IN to EFI Main Relay 87",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w77"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w77"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FPUMP",
+      "type": "broken_off",
+      "what": "Fuel Pump c1 to Fuel Pump Relay 87",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fpump"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fpump"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_SW12",
+      "type": "broken_off",
+      "what": "Cabin fuse block F9 to sp_sw12",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_sw12"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_sw12"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_ECU",
+      "type": "broken_off",
+      "what": "Cabin fuse block F8 to sp_12v",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_ecu"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_ecu"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_EFI_30",
+      "type": "broken_off",
+      "what": "Cabin fuse block F1 to EFI Main Relay 30",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_k_efi_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_efi_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_K_EFI_86",
+      "type": "broken_off",
+      "what": "Cabin fuse block F12 to EFI Main Relay 86",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_k_efi_86"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_k_efi_86"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_FP_30",
+      "type": "broken_off",
+      "what": "Cabin fuse block F2 to Fuel Pump Relay 30",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_k_fp_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_fp_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_ETB_30",
+      "type": "broken_off",
+      "what": "Cabin fuse block F3 to ETB Power Relay 30",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_k_etb_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_etb_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_STR_30",
+      "type": "broken_off",
+      "what": "Cabin fuse block F4 to Start Relay 30",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_k_str_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_str_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_FAN_30",
+      "type": "broken_off",
+      "what": "High-current fuse block HCFB H2 to Radiator Fan Relay 30",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_k_fan_30"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_fan_30"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_MRS_EN",
+      "type": "broken_off",
+      "what": "Cabin fuse block F13 to Bulkhead A 35",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fb_mrs_en"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_mrs_en"
         }
       ]
     }

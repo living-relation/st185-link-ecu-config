@@ -85,14 +85,14 @@
         {
           "id": "c13",
           "designation": "13",
-          "signal": "+5V Out to B engine sensors (bulkhead splice sp_5v_b, 20 AWG) - oil / fuel / coolant pressure",
-          "contactPartId": "ct_hdp16p"
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c14",
           "designation": "14",
-          "signal": "Gnd Out to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil / coolant pressure branch",
-          "contactPartId": "ct_hdp16p"
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c15",
@@ -121,8 +121,8 @@
         {
           "id": "c19",
           "designation": "19",
-          "signal": "Gnd Out to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT branch",
-          "contactPartId": "ct_hdp16p"
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c20",
@@ -133,8 +133,8 @@
         {
           "id": "c21",
           "designation": "21",
-          "signal": "Gnd Out to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
-          "contactPartId": "ct_hdp16p"
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
         }
       ],
       "layoutPosition": {
@@ -460,7 +460,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (HCFB H4, ST185-A-cabin; fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced) *"
+          "signal": "Fused +12V in (HCFB H4, ST185-CabinPower; fuse rating TBD - need the MR-S ZZW30 EHPS pump current (Toyota spec or a measured draw) and the Bussmann AMI datasheet; the 60 A AMI was never sourced) *"
         },
         {
           "id": "c2",
@@ -618,7 +618,7 @@
     {
       "id": "br_w_fb_k_fan2_30",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: HCFB H3 30A feed to the condenser fan relay 30",
+      "signal": "Broken off - continues on ST185-CabinPower: HCFB H3 30A feed to the condenser fan relay 30",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -632,7 +632,7 @@
     {
       "id": "br_w_fb_k_eps_30",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: HCFB H4 feed to the EPS relay 30",
+      "signal": "Broken off - continues on ST185-CabinPower: HCFB H4 feed to the EPS relay 30",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -660,7 +660,7 @@
     {
       "id": "br_w_inj_pwr_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: F11 15A injector rail to bulkhead B c1",
+      "signal": "Broken off - continues on ST185-CabinPower: F11 15A injector rail to bulkhead B c1",
       "width": 390,
       "layoutPosition": {
         "x": 1740,
@@ -674,7 +674,7 @@
     {
       "id": "br_w_cop_pwr_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: F10 20A COP rail to bulkhead B c2",
+      "signal": "Broken off - continues on ST185-CabinPower: F10 20A COP rail to bulkhead B c2",
       "width": 390,
       "layoutPosition": {
         "x": 1740,
@@ -814,7 +814,7 @@
     {
       "id": "sp_5v_b",
       "partId": "spp_solder_generic",
-      "locationId": "b_bp_870",
+      "locationId": "b_bp_1080",
       "layoutPosition": {
         "x": 1020,
         "y": 150
@@ -834,19 +834,6 @@
       },
       "schematicPosition": {
         "x": 2400,
-        "y": 2880
-      }
-    },
-    {
-      "id": "sp_gnd_bhb",
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_870",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 150
-      },
-      "schematicPosition": {
-        "x": 3000,
         "y": 2880
       }
     }
@@ -874,7 +861,7 @@
         "handle": "c17"
       },
       "target": {
-        "id": "sp_gnd_bhb",
+        "id": "sp_gndout_b",
         "handle": "Splice"
       },
       "color": "Black",
@@ -1379,75 +1366,6 @@
       },
       "color": "Violet",
       "partId": "wp_20_vio"
-    },
-    {
-      "id": "w_5v_b_c13",
-      "source": {
-        "id": "sp_5v_b",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c13"
-      },
-      "color": "Orange",
-      "partId": "wp_20_org"
-    },
-    {
-      "id": "w_gnd_bhb_trunk",
-      "source": {
-        "id": "sp_gndout_b",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "sp_gnd_bhb",
-        "handle": "Splice"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_18_blk_wht"
-    },
-    {
-      "id": "w_gnd_b_c19",
-      "source": {
-        "id": "sp_gnd_bhb",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c19"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w_gnd_b_c14",
-      "source": {
-        "id": "sp_gnd_bhb",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c14"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w_gnd_b_c21",
-      "source": {
-        "id": "sp_gnd_bhb",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c21"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
     }
   ],
   "cables": [
@@ -2276,17 +2194,6 @@
     }
   ],
   "wireParts": [
-    {
-      "id": "wp_20_blk",
-      "partNumber": "EW-1C20-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
     {
       "id": "wp_20_grn",
       "partNumber": "EW-1C20-GRN",

@@ -1,7 +1,7 @@
 # Harness — need to buy
 
-Generated on 2026-09-28 from the 14 `.harness` files in `docs/harness/rebuild/`:
-`A-cabin`, `B-cabin`, `APS-Pedal`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`, `CSB3`.
+Generated on 2026-09-28 from the 15 `.harness` files in `docs/harness/rebuild/`:
+`A-cabin`, `B-cabin`, `CabinPower`, `APS-Pedal`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`, `CSB3`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
@@ -9,12 +9,13 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / | 64 | 0 | **64** |
-| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice po | 39 | 0 | **39** |
-| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD | 32 | 0 | **32** |
-| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity | 31 | 0 | **31** |
+| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / | 70 | 0 | **70** |
+| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A - HDP20 / HD | 38 | 0 | **38** |
+| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER - generic splice po | 37 | 0 | **37** |
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD - joined to the vehicle circuit at insta | 28 | 0 | **28** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.2 | 23 | 0 | **23** |
+| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED - unused size 20 cavity | 19 | 0 | **19** |
+| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity | 12 | 0 | **12** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0 | 16 | 6 | **10** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 10 | 0 | **10** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY - ha | 10 | 2 | **8** |
@@ -27,23 +28,22 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY - | 5 | 0 | **5** |
 | `GENERIC HEAVY FLYING LEAD 10-6` | generic | TERMINAL, FLYING LEAD, HEAVY - joined to the factory lead with | 5 | 0 | **5** |
 | `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 5 | 0 | **5** |
-| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity | 4 | 0 | **4** |
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTA | 4 | 0 | **4** |
 | `1393310-4` | TE Connectivity | SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS - harness side of t | 5 | 1 | **4** |
 | `15419715` | Aptiv | CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6 - fu | 4 | 0 | **4** |
 | `280755-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED,  | 4 | 0 | **4** |
 | `90980-11062` | Toyota | CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS - thermistor s | 4 | 0 | **4** |
 | `90980-11885` | Toyota | CONNECTOR, PLUG, TOYOTA, 4 POS, SOCKET CONTACTS - 1ZZ-FE coil- | 4 | 0 | **4** |
+| `DT04-6P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY - | 4 | 0 | **4** |
+| `DT06-6S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY - wh | 4 | 0 | **4** |
 | `DTHD06-1-8S` | TE DEUTSCH | CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, | 4 | 0 | **4** |
 | `GENERIC RING M5 10-8` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M5 STUD, ADHESI | 4 | 0 | **4** |
 | `GENERIC RING M6 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG | 4 | 0 | **4** |
+| `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 4 | 0 | **4** |
+| `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 4 | 0 | **4** |
 | `1-1355880-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 2.5-4 MM2 (14-12 AWG | 3 | 0 | **3** |
-| `DT04-6P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY - | 3 | 0 | **3** |
-| `DT06-6S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY - wh | 3 | 0 | **3** |
 | `GENERIC LUG M8 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE  | 3 | 0 | **3** |
 | `GENERIC RING M6 12-10` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG | 3 | 0 | **3** |
-| `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 3 | 0 | **3** |
-| `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 3 | 0 | **3** |
 | `1-1355833-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 0.5-1.0 MM2 (20-18 A | 2 | 0 | **2** |
 | `1-1355844-1` | TE Connectivity | CONTACT, BUSBAR FEED, CUNISI PRE-TINNED, 4.0-6.0 MM2 (10 AWG)  | 2 | 0 | **2** |
 | `120R 1/4W` | Generic | RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W - CAN bus t | 2 | 0 | **2** |
@@ -101,9 +101,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
 | `0413-214-1205` | PLUG, SEALING, CAVITY, SIZE 12, YELLOW - unused size 12 cavity | 4 | 10 |
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT recep | 63 | 130 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT recep | 65 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT pl | 59 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A - DT pl | 61 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 2 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS -  | 1 | 1 |
@@ -177,6 +177,7 @@ mating half). Contacts and wedgelocks come from each half's part configuration a
 | `IX_WS_FRONT` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_front_r` on WheelSpeed-Front | `ix_ws_front_p` on A-cabin |
 | `IX_AC_CTS` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_accts_r` on A-cabin | `ix_accts_p` on ACAmp-Spur |
 | `IX_FUEL_LVL` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_fuel_r` on B-cabin | `ix_fuel_p` on RearFuel |
+| `IX_B_RAIL` | Deutsch DT 6-way (DT06-6S / DT04-6P) | `ix_brail_s` on A-engine | `ix_brail_p` on B-engine |
 
 ## OEM flying leads - splice material only, no OEM housing
 
