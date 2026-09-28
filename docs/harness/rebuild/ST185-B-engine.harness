@@ -280,7 +280,7 @@
     },
     {
       "id": "vss",
-      "label": "Gearbox VSS (3-wire, Toyota) - actual road speed",
+      "label": "Gearbox VSS (Toyota 83181-20040, 3-wire) - actual road speed",
       "width": 390,
       "partId": "cp_vss3",
       "schematicPosition": {
@@ -1315,7 +1315,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead B - engine plug (HDP2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - engine plug (HDP2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nGearbox VSS (3-wire, Toyota) - 3: Gearbox VSS signal -> bulkhead B c15 -> ECU-B B29 (DI 8). Actual road speed. 12V direct, no divider - Link DI is +/-50V tolerant with a selectable 4k7 pull-up to 12V. PCLink DI 8 pull-up ON (sot/channels.csv B29).",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead B - engine plug (HDP2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - engine plug (HDP2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nGearbox VSS (Toyota 83181-20040) - 3: Gearbox VSS signal -> bulkhead B c15 -> ECU-B B29 (DI 8). Actual road speed. 12V direct, no divider - Link DI is +/-50V tolerant with a selectable 4k7 pull-up to 12V. PCLink DI 8 pull-up ON (sot/channels.csv B29).",
       "schematicPosition": {
         "x": 4200,
         "y": 0
@@ -1651,7 +1651,7 @@
     {
       "partNumber": "TBD - generic oval 3-pin, socket contacts",
       "manufacturer": "Toyota",
-      "description": "CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS - 3-wire 12 V gearbox VSS (not the 4-wire type). PN TBD",
+      "description": "CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS - 3-wire 12 V gearbox VSS Toyota 83181-20040 (not the 4-wire type). PN TBD - need a Toyota source; 90980-11143 is the usual Toyota 3-wire speed-sensor plug (wilbo666 wiki), unconfirmed for this sensor",
       "numberOfCavities": 3,
       "gender": "Female",
       "hasShell": false,
