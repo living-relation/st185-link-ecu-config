@@ -324,7 +324,7 @@ see `docs/harness/README.md` for the current file map.
 | File | Owns |
 |---|---|
 | `docs/harness/rebuild/ST185-A-cabin.harness` | Cabin fuse block, HCFB, EFI / ETB / FP / start / rad fan relays, ECU 12 V, ECU-A pins, CSB3 plug and switch inputs (ECU loom letter rule, 2026-09-28) |
-| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU-B pins, condenser fan relay, injector / coil 12 V cabin leg (bulkhead B c1/c2, Q-RAIL open) |
+| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU-B pins, condenser fan relay, CAN-Lambda cabin leg (bulkhead B c3/c4, c13/c14) |
 | `docs/harness/rebuild/ST185-A-engine.harness` | A-letter engine devices: MRS speed / enable cavities (bulkhead A c36 / c35), ETB sensors, injectors, coils |
 | `docs/harness/rebuild/ST185-B-engine.harness` | B-letter engine devices, ETB motor, injector / coil 12 V engine leg (Q-RAIL open) |
 | `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB → fuse blocks + relays, RADLOK, OEM injection blocks, EPS power, uprated fans. Glove-box body block is node `gbx_body` (was `pmu` until 2026-09-26; no PMU fitted) |

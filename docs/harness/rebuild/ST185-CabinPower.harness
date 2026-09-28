@@ -226,7 +226,7 @@
     {
       "id": "br_w_inj_pwr_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: F11 15A injector rail to bulkhead B c1",
+      "signal": "Broken off - continues on ST185-A-cabin: F11 15A injector rail to IX_RAIL_A c1 (beside bulkhead A)",
       "width": 390,
       "layoutPosition": {
         "x": 1740,
@@ -240,7 +240,7 @@
     {
       "id": "br_w_cop_pwr_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: F10 20A COP rail to bulkhead B c2",
+      "signal": "Broken off - continues on ST185-A-cabin: F10 20A COP rail to IX_RAIL_A c2 (beside bulkhead A)",
       "width": 390,
       "layoutPosition": {
         "x": 1740,

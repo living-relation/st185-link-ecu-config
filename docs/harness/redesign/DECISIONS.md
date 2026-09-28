@@ -231,7 +231,7 @@ become flying leads.
 
 | | Question | Options | State |
 |---|---|---|---|
-| Q-RAIL | The injector rail (F11 15 A) and COP rail (F10 20 A) feed A devices but cross on bulkhead B c1/c2, on size-12 contacts (`0460-220-1231` / `0462-210-1231`, 25 A). Rule 3 wants them on bulkhead A, which (`HDP24-24-47`) has 5 size-16 and 42 size-20 cavities, no size-12; the size-16 contacts are 13 A and only c1 is spare. | (1) keep on B as a recorded exception; (2) run both rails through loom C point-to-point like the starter and fan feeds; (3) replace bulkhead A with an insert that has size-12 positions; (4) split each rail over two size-16 contacts on A | **Resolved 2026-09-28 (Daniel): option (1) as a spur** - the rails stay on bulkhead B and spur off B-engine right after the firewall into A-engine, like the ETB motor. Rule 3 crossover (d). |
+| Q-RAIL | The injector rail (F11 15 A) and COP rail (F10 20 A) feed A devices but cross on bulkhead B c1/c2, on size-12 contacts (`0460-220-1231` / `0462-210-1231`, 25 A). Rule 3 wants them on bulkhead A, which (`HDP24-24-47`) has 5 size-16 and 42 size-20 cavities, no size-12; the size-16 contacts are 13 A and only c1 is spare. | (1) keep on B as a recorded exception; (2) run both rails through loom C point-to-point like the starter and fan feeds; (3) replace bulkhead A with an insert that has size-12 positions; (4) split each rail over two size-16 contacts on A | ~~Resolved 2026-09-28 (Daniel): option (1) as a spur~~ **Final 2026-09-28 (Daniel): A side, through the DTP 4-way pass-through `IX_RAIL_A`** - see "Audit closed" below. Crossover (d) retired. |
 
 ## Binding decisions (Daniel, 2026-09-28 audit) - final, do not re-ask
 
@@ -257,8 +257,39 @@ become flying leads.
   `0462-210-1231`, 12-14 AWG, 25 A) has nowhere to go. The fallback does not fit either: the
   rails are 14 AWG on 15 A (F11) and 20 A (F10) fuses, a size-16 contact is 13 A and takes 16-20
   AWG, a size-20 is 7.5 A, and only one size-16 cavity (c1) is spare - splitting each rail over
-  two size-16 contacts would need four. The rails stay on bulkhead B c1 / c2 with the spur into
-  A-engine, Rule 3 crossover (d).
+  two size-16 contacts would need four. *(Superseded the same day - see Q-RAIL final below.)*
+- **Connector substitution - standing rule (Daniel, 2026-09-28):** if bulkhead A or B runs out
+  of pins or needs higher-capacity contacts, spec a different connector or add a second one,
+  with a complete compatible matching set for both sides (housings, inserts, contacts per wire
+  gauge, seals / cavity plugs, wedgelocks, gasket or backshell), every part number from the
+  maker's datasheet. Owner text: `docs/RECONCILIATION-RULES.md` Rule 3.
+- **Q-RAIL - final (Daniel, 2026-09-28): the rails cross on the A side.** Daniel: "Apply it now
+  to Q-RAIL: the injector (F11, 15A) and COP (F10, 20A) feeds belong on the A side per the
+  ECU-letter rule. Find the simplest complete matching set that carries both 14 AWG feeds
+  across the firewall on the A side." Chosen: a Deutsch DTP 4-way flange pass-through beside
+  bulkhead A, `IX_RAIL_A` - it changes nothing on bulkhead A. A new HDP20 insert was ruled
+  out: every shell-24 arrangement with size-12 positions has at most 6 size-20 cavities
+  (24-29: 4 x 12, 19 x 16, 6 x 20), and bulkhead A uses 33 size-20 and 4 size-16 today (TE
+  HDP20 configuration sheet). DTP is the only Deutsch size-12 family with a flange-mount
+  receptacle in TE's catalog, and only in 4-way (`DTP04-4P-L012`). c1 injector, c2 COP, c3 /
+  c4 plugged. The B spur and crossover (d) are removed; bulkhead B c1 / c2 are spare.
+
+  | Side | Part | PN (TE Deutsch) |
+  |---|---|---|
+  | Cabin (`ST185-A-cabin`, firewall) | Flange receptacle, 4 pos, pins | `DTP04-4P-L012` |
+  | | Mounting gasket | `DTP4P-L012-GKT` |
+  | | Wedgelock | `WP-4P` |
+  | | Pin contact, size 12, solid, gold, 12-14 AWG, 25 A (x2, owned) | `0460-220-1231` |
+  | | Cavity sealing plug (x2) | `114017` |
+  | Engine (`ST185-A-engine`) | Plug, 4 pos, sockets | `DTP06-4S` |
+  | | Wedgelock | `WP-4S` |
+  | | Socket contact, size 12, solid, gold, 12-14 AWG, 25 A (x2, owned) | `0462-210-1231` |
+
+  TE's DTP standard contacts are the nickel `0460-204-12141` / `0462-203-12141`; the catalog
+  also lists gold size-12 solid contacts for DTP (kits DTP2-4 / DTP4-4), and Deutsch solid
+  contacts are intermateable across the DT / DTP / HD / HDP families, so the owned gold
+  `0460-220-1231` / `0462-210-1231` are used.
+  | | Cavity sealing plug (x2) | `114017` |
 - **`IX_B_RAIL` - resolved as-is:** +5V only, from Daniel's own words ("use the extra A connector
   pins to carry power and ground over to the B engine harness, as a short spur with inline
   connector"; ground later ruled back onto B22).

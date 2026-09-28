@@ -849,6 +849,42 @@
         "x": 660,
         "y": 2400
       }
+    },
+    {
+      "id": "ix_rail_a_p",
+      "label": "Injector / COP rail plug, mates IX_RAIL_A beside bulkhead A (ST185-A-cabin)",
+      "partId": "cp_dtp06_4s",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Switched 12V - INJECTOR power feed, fuse F11 15A (14 AWG)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Switched 12V - COP / ignition coil power feed, fuse F10 20A (14 AWG)"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "spare"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "spare"
+        }
+      ],
+      "width": 270,
+      "layoutPosition": {
+        "x": 2160,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": -120
+      }
     }
   ],
   "terminals": [
@@ -942,34 +978,6 @@
       "id": "br_w215_e",
       "type": "Loose",
       "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor - (Aux 10, B26), bulkhead B c6",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2160,
-        "y": 60
-      },
-      "schematicPosition": {
-        "x": 150,
-        "y": -120
-      }
-    },
-    {
-      "id": "br_w_inj_pwr_e",
-      "type": "Loose",
-      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): F11 injector rail, bulkhead B c1",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2160,
-        "y": 60
-      },
-      "schematicPosition": {
-        "x": 150,
-        "y": -120
-      }
-    },
-    {
-      "id": "br_w_cop_pwr_e",
-      "type": "Loose",
-      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): F10 COP rail, bulkhead B c2",
       "width": 390,
       "layoutPosition": {
         "x": 2160,
@@ -1750,8 +1758,8 @@
     {
       "id": "w_inj_pwr_e_ae",
       "source": {
-        "id": "br_w_inj_pwr_e",
-        "handle": "Terminal"
+        "id": "ix_rail_a_p",
+        "handle": "c1"
       },
       "target": {
         "id": "sp_inj_eng",
@@ -1763,8 +1771,8 @@
     {
       "id": "w_cop_pwr_e_ae",
       "source": {
-        "id": "br_w_cop_pwr_e",
-        "handle": "Terminal"
+        "id": "ix_rail_a_p",
+        "handle": "c2"
       },
       "target": {
         "id": "sp_cop_eng",
@@ -2386,29 +2394,20 @@
       }
     },
     {
-      "id": "bn_bp_750__br_w_inj_pwr_e",
-      "sourceId": "bp_750",
-      "targetId": "br_w_inj_pwr_e",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_750__br_w_cop_pwr_e",
-      "sourceId": "bp_750",
-      "targetId": "br_w_cop_pwr_e",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_at_bh_b_eng__ix_brail_s",
       "sourceId": "bp_at_bh_b_eng",
       "targetId": "ix_brail_s",
       "length": {
         "value": 100,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_750__ix_rail_a_p",
+      "sourceId": "bp_750",
+      "targetId": "ix_rail_a_p",
+      "length": {
+        "value": 190,
         "unit": "mm"
       }
     }
@@ -3004,6 +3003,22 @@
       "gender": "Socket",
       "description": "CONTACT, SOCKET, CRIMP, GENERIC",
       "id": "ct_generic_skt"
+    },
+    {
+      "partNumber": "0462-210-1231",
+      "manufacturer": "TE DEUTSCH",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 14,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 12,
+        "unit": "AWG"
+      },
+      "description": "CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A",
+      "id": "ct_hdp12s"
     }
   ],
   "cavityPlugParts": [
@@ -3018,6 +3033,13 @@
       "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
       "id": "pl_sz20"
+    },
+    {
+      "id": "pl_114017",
+      "partNumber": "114017",
+      "manufacturer": "TE DEUTSCH",
+      "description": "PLUG, SEALING, CAVITY, SIZE 12 / 16, WHITE",
+      "url": "https://www.te.com/usa-en/product-114017.html"
     }
   ],
   "terminalParts": [
@@ -3393,6 +3415,24 @@
         }
       ],
       "url": "https://www.te.com/usa-en/product-DT06-6S.html"
+    },
+    {
+      "id": "cp_dtp06_4s",
+      "partNumber": "DTP06-4S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, PLUG, DTP, 4 POS, SOCKET CONTACTS",
+      "numberOfCavities": 4,
+      "gender": "Female",
+      "hasShell": false,
+      "url": "https://www.te.com/usa-en/product-DTP06-4S.html",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_hdp12s",
+          "cavityPlugPartId": "pl_114017",
+          "lockPartId": "lp_wp4s"
+        }
+      ]
     }
   ],
   "cableParts": [
@@ -3432,6 +3472,13 @@
       "partNumber": "W6S",
       "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 6-WAY PLUG"
+    },
+    {
+      "id": "lp_wp4s",
+      "partNumber": "WP-4S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DTP, 4 POS, PLUG",
+      "url": "https://www.te.com/usa-en/product-WP-4S.html"
     }
   ]
 }

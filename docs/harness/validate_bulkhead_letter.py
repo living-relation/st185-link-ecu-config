@@ -36,9 +36,9 @@ The allow-list is the rule's crossovers and nothing else:
       into A-engine just after bulkhead A, to the throttle body drawn there
   (c) APS pedal: A14 / B33; all pedal wiring is in the cabin and breaks off A-cabin and
       B-cabin into ST185-APS-Pedal
-  (d) injector rail (F11) and COP rail (F10) cross on bulkhead B c1 / c2 (size-12
-      contacts; bulkhead A has none) and spur into A-engine the same way as (b)
-      (Daniel, 2026-09-28)
+The injector (F11) and COP (F10) rails are not a crossover: they cross on the A side
+through IX_RAIL_A, a DTP 4-way flange pass-through beside bulkhead A (Daniel,
+2026-09-28; crossover (d) retired).
 
 Exit 1 on any finding.
 """
@@ -55,7 +55,6 @@ ALLOW = {
     "a": {"nets": {"P5V", "GNDOUT"}},
     "b": {"conductors": {"w124_e_ae", "w215_e_ae"}},
     "c": {"harness": "APS-Pedal"},
-    "d": {"cavities": {("bh_b_eng", "c1"), ("bh_b_eng", "c2")}},
 }
 
 reg = model.registry()
@@ -134,8 +133,6 @@ for loom, d in g.docs.items():
                 land[k].append((loom, b))
 for (bh, cav), fars in sorted(land.items()):
     L = BH_LETTER[bh]
-    if (bh, cav) in ALLOW["d"]["cavities"]:
-        continue
     rail_cav = False
     if bh.endswith("_eng"):
         for loom0, _ in fars[:1]:

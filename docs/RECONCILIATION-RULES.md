@@ -159,18 +159,27 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     generic soldered splice point. The B-engine sensors' +5V crosses on bulkhead A
     c45-c47 and runs as a short A-engine spur to the DT 6-way inline pair `IX_B_RAIL`
     (DT06-6S on A-engine, DT04-6P on B-engine, c4-c6 spare), one +5V pin per pressure
-    sensor (Daniel, 2026-09-28). Keep spare bulkhead cavities for cable screens: A c1,
-    c6, c10-c12, c27, c28, c32; B c13, c14 (size 16) and c3, c4 (size 12).
+    sensor (Daniel, 2026-09-28). Spare bulkhead cavities: A c1 (size 16), c6, c10-c12,
+    c27, c28, c30-c32 (size 20); B c1, c2 (size 12). Bulkhead B has no size-16 or size-20
+    spare for a screen drain (Daniel, 2026-09-28: accepted).
   - **(b)** ETB: relay trigger on A20, H-bridge supply on B5 (by ECU pin design).
   - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design). All pedal
     wiring stays in the cabin: the A pedal wires break off `ST185-A-cabin` and the B33
     wire breaks off `ST185-B-cabin`, both at the female DT 6-way of `IX_APS`, and
     `ST185-APS-Pedal` runs from the male half to the pedal. The throttle **body** (A20
     relay trigger, B5 supply, B18/B26 motor, A22/A33 sensors) is engine-bay wiring.
-  - **(d)** Injector rail (F11) and COP rail (F10) cross on bulkhead B c1 / c2 (size-12
-    contacts; bulkhead A has none) and spur into A-engine the same way as the ETB motor
-    (Daniel, 2026-09-28; re-confirmed after his audit the same day - bulkhead A has no size-12
-    position and too few size-16 spares, see `docs/harness/redesign/DECISIONS.md` Q-RAIL).
+  - The injector rail (F11 15 A) and COP rail (F10 20 A) are **not** a crossover: non-ECU
+    power follows its device's ECU signal letter, so they cross on the A side through
+    `IX_RAIL_A`, a Deutsch DTP 4-way flange pass-through beside bulkhead A (`ST185-A-cabin`
+    receptacle, `ST185-A-engine` plug). Crossover (d) is retired (Daniel, 2026-09-28;
+    `docs/harness/redesign/DECISIONS.md` Q-RAIL).
+- **Connector substitution (Daniel, 2026-09-28, standing):** if bulkhead A or B runs out of
+  pins or needs higher-capacity contacts, a different connector may replace it or a second
+  one may be added beside it - but only with a **complete, compatible matching set for both
+  sides**: housings, inserts, contacts for each wire gauge, seals and cavity plugs,
+  wedgelocks, mounting gasket or backshell where the family has one. Every part number comes
+  from the maker's datasheet or catalog; nothing is guessed. The pair is registered as an
+  inline interface in `docs/harness/interfaces.json` and counted on the buy list.
 - **ETB body (engine bay):** the B18 / B26 motor wires leave `ST185-B-engine` as a short spur
   right after bulkhead B, drawn broken off with a note; `ST185-A-engine` shows them broken
   off coming in from B-engine and takes them into the A trunk, under the sheathing, right
@@ -192,7 +201,7 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
   `WheelSpeed-Front` / `-Rear`, `RearFuel`, `ACAmp-Spur`.
 
 **Enforced by** `docs/harness/validate_bulkhead_letter.py`, a hard gate in `check_all.py`.
-Its allow-list is (a)-(d) and nothing else.
+Its allow-list is (a)-(c) and nothing else.
 
 ---
 

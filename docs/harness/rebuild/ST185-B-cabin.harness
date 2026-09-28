@@ -13,14 +13,14 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Switched 12V - INJECTOR power feed *",
-          "contactPartId": "ct_hdp12p"
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Switched 12V - COP / ignition coil power feed *",
-          "contactPartId": "ct_hdp12p"
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c3",
@@ -644,34 +644,6 @@
       }
     },
     {
-      "id": "br_w_inj_pwr_c",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: F11 15A injector rail to bulkhead B c1",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1740,
-        "y": 420
-      },
-      "schematicPosition": {
-        "x": 1260,
-        "y": 3000
-      }
-    },
-    {
-      "id": "br_w_cop_pwr_c",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: F10 20A COP rail to bulkhead B c2",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1740,
-        "y": 420
-      },
-      "schematicPosition": {
-        "x": 1260,
-        "y": 3000
-      }
-    },
-    {
       "id": "br_cab_fspur_r",
       "type": "Loose",
       "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR core from IX_WS_FRONT pin 4",
@@ -1225,32 +1197,6 @@
         "handle": "Terminal"
       },
       "partId": "wp_18_blk"
-    },
-    {
-      "id": "w_inj_pwr_c",
-      "color": "Red",
-      "source": {
-        "id": "br_w_inj_pwr_c",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c1"
-      },
-      "partId": "wp_14_red"
-    },
-    {
-      "id": "w_cop_pwr_c",
-      "color": "Red",
-      "source": {
-        "id": "br_w_cop_pwr_c",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c2"
-      },
-      "partId": "wp_14_red"
     },
     {
       "id": "w124_c",
@@ -1962,24 +1908,6 @@
       }
     },
     {
-      "id": "bn_b_bp_1050__br_w_inj_pwr_c",
-      "sourceId": "b_bp_1050",
-      "targetId": "br_w_inj_pwr_c",
-      "length": {
-        "value": 200,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_b_bp_1050__br_w_cop_pwr_c",
-      "sourceId": "b_bp_1050",
-      "targetId": "br_w_cop_pwr_c",
-      "length": {
-        "value": 200,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_1020__br_cab_fspur_r",
       "sourceId": "bp_1020",
       "targetId": "br_cab_fspur_r",
@@ -2348,7 +2276,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression (on/off relay; INFERENCE from the G4X help Auxiliary Output Wiring PWM-only diode advice, not a Link statement) - fitted TE 7-1904094-9 has its own coil diode, keep 86 = coil +\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead B - firewall (HDP24-2 1: Switched 12V - INJECTOR power feed (size 12, 25A)\nBulkhead B - firewall (HDP24-2 2: Switched 12V - COP / ignition coil power feed (size 12, 25A)\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: HCFB H4 - Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nHigh-current fuse block HCFB h4: Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression (on/off relay; INFERENCE from the G4X help Auxiliary Output Wiring PWM-only diode advice, not a Link statement) - fitted TE 7-1904094-9 has its own coil diode, keep 86 = coil +\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: HCFB H4 - Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nHigh-current fuse block HCFB h4: Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)",
       "schematicPosition": {
         "x": 4200,
         "y": 0

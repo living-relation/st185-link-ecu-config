@@ -47,7 +47,7 @@ SOFT = []
 # pair. Neither may ever go back above zero.
 #
 # 2026-09-28: validate_bulkhead_letter started HARD - Daniel's ECU loom rule. Its
-# PENDING list (injector/COP rails on bulkhead B) prints on every run until ruled on.
+# Its PENDING list is empty since Q-RAIL was ruled on (rails cross on the A side, IX_RAIL_A).
 #
 # 2026-09-28: part_desc started HARD - Daniel's rule that a part description names
 # the part itself, never the net, device or circuit it is used on.

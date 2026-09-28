@@ -771,6 +771,42 @@
         "x": 1440,
         "y": 480
       }
+    },
+    {
+      "id": "ix_rail_a_s",
+      "label": "Injector / COP rail pass-through beside bulkhead A (IX_RAIL_A), firewall flange",
+      "partId": "cp_dtp04_4p_l012",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Switched 12V - INJECTOR power feed, fuse F11 15A (14 AWG)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Switched 12V - COP / ignition coil power feed, fuse F10 20A (14 AWG)"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "spare"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "spare"
+        }
+      ],
+      "width": 270,
+      "layoutPosition": {
+        "x": 840,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 3660,
+        "y": 1500
+      }
     }
   ],
   "terminals": [
@@ -1235,6 +1271,34 @@
       "schematicPosition": {
         "x": 1770,
         "y": 2640
+      }
+    },
+    {
+      "id": "br_w_inj_pwr_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: F11 15A injector rail from the cabin fuse block to IX_RAIL_A c1",
+      "width": 390,
+      "layoutPosition": {
+        "x": 780,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1500
+      }
+    },
+    {
+      "id": "br_w_cop_pwr_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: F10 20A COP rail from the cabin fuse block to IX_RAIL_A c2",
+      "width": 390,
+      "layoutPosition": {
+        "x": 780,
+        "y": 330
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1560
       }
     }
   ],
@@ -2569,6 +2633,32 @@
       },
       "color": "Orange",
       "partId": "wp_18_org"
+    },
+    {
+      "id": "w_inj_pwr_ac",
+      "source": {
+        "id": "br_w_inj_pwr_c",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "ix_rail_a_s",
+        "handle": "c1"
+      },
+      "color": "Red",
+      "partId": "wp_14_red"
+    },
+    {
+      "id": "w_cop_pwr_ac",
+      "source": {
+        "id": "br_w_cop_pwr_c",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "ix_rail_a_s",
+        "handle": "c2"
+      },
+      "color": "Red",
+      "partId": "wp_14_red"
     }
   ],
   "cables": [
@@ -3241,6 +3331,33 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_840__ix_rail_a_s",
+      "sourceId": "bp_840",
+      "targetId": "ix_rail_a_s",
+      "length": {
+        "value": 130,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__br_w_inj_pwr_c",
+      "sourceId": "bp_840",
+      "targetId": "br_w_inj_pwr_c",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__br_w_cop_pwr_c",
+      "sourceId": "bp_840",
+      "targetId": "br_w_cop_pwr_c",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -3707,6 +3824,17 @@
         "value": 14,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "wp_14_red",
+      "partNumber": "EW-1C14-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 14 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
     }
   ],
   "connectorParts": [
@@ -3843,6 +3971,25 @@
         }
       ],
       "url": "https://www.te.com/usa-en/product-DT04-2P.html"
+    },
+    {
+      "id": "cp_dtp04_4p_l012",
+      "partNumber": "DTP04-4P-L012",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, RECEPTACLE, DTP, 4 POS, PIN CONTACTS, FLANGE MOUNT",
+      "numberOfCavities": 4,
+      "gender": "Male",
+      "hasShell": false,
+      "url": "https://www.te.com/usa-en/product-DTP04-4P-L012.html",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_hdp12p",
+          "cavityPlugPartId": "pl_114017",
+          "lockPartId": "lp_wp4p",
+          "mountPartId": "mt_dtp4p_gkt"
+        }
+      ]
     }
   ],
   "spliceParts": [
@@ -4019,6 +4166,22 @@
         "unit": "AWG"
       },
       "contactColor": "Gold"
+    },
+    {
+      "partNumber": "0460-220-1231",
+      "manufacturer": "TE DEUTSCH",
+      "type": "Crimp",
+      "gender": "Pin",
+      "minGauge": {
+        "value": 14,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 12,
+        "unit": "AWG"
+      },
+      "description": "CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A",
+      "id": "ct_hdp12p"
     }
   ],
   "resistorParts": [
@@ -4041,6 +4204,13 @@
       "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
       "id": "pl_sz20"
+    },
+    {
+      "id": "pl_114017",
+      "partNumber": "114017",
+      "manufacturer": "TE DEUTSCH",
+      "description": "PLUG, SEALING, CAVITY, SIZE 12 / 16, WHITE",
+      "url": "https://www.te.com/usa-en/product-114017.html"
     }
   ],
   "mountParts": [
@@ -4055,6 +4225,12 @@
       "manufacturer": "TE Connectivity",
       "description": "SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS",
       "id": "mt_vcf7"
+    },
+    {
+      "id": "mt_dtp4p_gkt",
+      "partNumber": "DTP4P-L012-GKT",
+      "manufacturer": "TE DEUTSCH",
+      "description": "GASKET, MOUNTING, DTP 4 POS FLANGE RECEPTACLE L012"
     }
   ],
   "lockParts": [
@@ -4069,6 +4245,13 @@
       "partNumber": "W2P",
       "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 2-WAY RECEPTACLE"
+    },
+    {
+      "id": "lp_wp4p",
+      "partNumber": "WP-4P",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DTP, 4 POS, RECEPTACLE",
+      "url": "https://www.te.com/usa-en/product-WP-4P.html"
     }
   ],
   "cableParts": [
