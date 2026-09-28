@@ -173,6 +173,12 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     `IX_RAIL_A`, a Deutsch DTP 4-way flange pass-through beside bulkhead A (`ST185-A-cabin`
     receptacle, `ST185-A-engine` plug). Crossover (d) is retired (Daniel, 2026-09-28;
     `docs/harness/redesign/DECISIONS.md` Q-RAIL).
+- **Splice sizing (Daniel, 2026-09-28, standing):** a splice is sized by the **combined** gauge
+  of the wires it joins, from the Wire Barn Combined Wire Gauge Calculator
+  (https://www.wirebarn.com/Combined-Wire-Gauge-Calculator_ep_42.html). The splice part's range
+  must cover the combined gauge, not each wire (4 x 20 AWG = 1 x 14 AWG, fits a 14-10 splice).
+  harness.design flags splices whose individual wires are below the part's minimum gauge
+  ("wires are too thin"); that per-wire warning is a known false alarm and is not chased.
 - **Connector substitution (Daniel, 2026-09-28, standing):** if bulkhead A or B runs out of
   pins or needs higher-capacity contacts, a different connector may replace it or a second
   one may be added beside it - but only with a **complete, compatible matching set for both
