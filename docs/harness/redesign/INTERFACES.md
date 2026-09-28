@@ -18,7 +18,7 @@ harness.design JSON.
 | `inline_interface` | Two real connectors of opposite gender, one on each harness, same cavity ids and the same signal text per cavity. No mate (mates stay inside one document). | Each half counted once, on its own harness. |
 | `oem_flying_lead` | A `Loose` terminal, no part, whose `signal` reads `EWD <page> <connector>-<pin> <colour> <function> - <method>`. | Nothing. |
 | `device_endpoint` | One `Loose` terminal per conductor, no part, `signal` naming the device and pin (`VRC_REAR_IN_L +`). The device is not drawn (harness.design "devices" rule). | Nothing. |
-| `reference_only` | A `cp_xref` dummy. Allowed only in harnesses the registry marks `legacyXref: true`; new harnesses carry none. | Nothing. |
+| `reference_only` | A `cp_xref` dummy: this harness populates one cavity of a connector another harness owns (an ECU pin, a CSB3 cavity, a bulkhead engine-plug cavity). Every one is listed in the registry's `references` with the owning harness and the reason. | Nothing. |
 
 ## Registry sections
 
@@ -33,6 +33,8 @@ harness.design JSON.
 - `flyingLeads` — one per `Loose` terminal: `harness`, `terminal`, and `ewd`
   `{page, connector, pin, color, function, method}`. An unknown field is written `TBD` with the
   reason; `validate_oem_endpoints.py` lists every `TBD`.
+- `references` — every `cp_xref` dummy: `harness`, `connector`, `realOn` (the harness that owns the
+  real connector) and `reason`. An unlisted dummy fails `validate_ownership.py` (O4).
 - `realConnectors` — connectors on OEM parts that the build physically plugs into (J/B2 dummy
   headers) and the CSB3 plug, so they are not mistaken for flying-lead candidates.
 - `shieldBothEndsOk` — screens allowed a landing at both ends, each with its reason. Only screen
@@ -47,5 +49,5 @@ harness.design JSON.
 - Every inline interface has two halves on two different harnesses, the same cavity set, the
   same signal text per cavity, and every pin either wired on both halves or plugged on both.
 - A conductor never crosses from one harness to another except through a declared interface,
-  a bulkhead pair, or (legacy harnesses only) a `cp_xref` dummy.
+  a bulkhead pair, or a registered `reference_only` cavity population.
 - No device is drawn: no `cp_m8_*` VRC connectors, no CSB3 body, no OEM housing on a flying lead.

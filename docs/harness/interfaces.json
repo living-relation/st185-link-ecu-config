@@ -4,58 +4,47 @@
   "harnesses": {
     "ECU-Cabin": {
       "file": "ST185-ECU-Cabin.harness",
-      "physical": "ECU-to-firewall cabin harness - ECU-A, ECU-B, cabin halves of bulkheads A and B, relays and fuse box, CSB3 plug, wheel-speed spurs, A/C coolant switch branch, fuel pump run (merged from A-ECU + B-ECU 2026-09-27)",
-      "legacyXref": false
+      "physical": "ECU-to-firewall cabin harness - ECU-A, ECU-B, cabin halves of bulkheads A and B, relays and fuse box, CSB3 plug, wheel-speed spurs, A/C coolant switch branch, fuel pump run (merged from A-ECU + B-ECU 2026-09-27)"
     },
     "A-engine": {
       "file": "ST185-A-engine.harness",
-      "physical": "Engine harness - signal circuits behind bulkheads A and B",
-      "legacyXref": true
+      "physical": "Engine harness - signal circuits behind bulkheads A and B"
     },
     "B-engine": {
       "file": "ST185-B-engine.harness",
-      "physical": "Engine harness - power circuits behind bulkheads A and B",
-      "legacyXref": true
+      "physical": "Engine harness - power circuits behind bulkheads A and B"
     },
     "CAN": {
       "file": "ST185-CAN.harness",
-      "physical": "CAN backbone",
-      "legacyXref": true
+      "physical": "CAN backbone"
     },
     "EngineRoom-C": {
       "file": "ST185-EngineRoom-C.harness",
-      "physical": "Loom C - engine-room / high-current harness",
-      "legacyXref": true
+      "physical": "Loom C - engine-room / high-current harness"
     },
     "ClusterLED": {
       "file": "ST185-ClusterLED.harness",
-      "physical": "Cluster warning LEDs",
-      "legacyXref": true
+      "physical": "Cluster warning LEDs"
     },
     "WheelSpeed-Rear": {
       "file": "ST185-WheelSpeed-Rear.harness",
-      "physical": "Rear wheel-speed Y harness - RL/RR ABS drops to the rear VRC endpoints, one screened 4-core output to IX_WS_REAR",
-      "legacyXref": false
+      "physical": "Rear wheel-speed Y harness - RL/RR ABS drops to the rear VRC endpoints, one screened 4-core output to IX_WS_REAR"
     },
     "WheelSpeed-Front": {
       "file": "ST185-WheelSpeed-Front.harness",
-      "physical": "Front wheel-speed Y harness - FL/FR ABS drops (loom C fender route) to the front VRC endpoints, output pair to IX_WS_FRONT",
-      "legacyXref": false
+      "physical": "Front wheel-speed Y harness - FL/FR ABS drops (loom C fender route) to the front VRC endpoints, output pair to IX_WS_FRONT"
     },
     "ACAmp-Spur": {
       "file": "ST185-ACAmp-Spur.harness",
-      "physical": "A/C amplifier spur - receiving half of IX_AC_CTS to flying leads at the auto A/C amplifier",
-      "legacyXref": false
+      "physical": "A/C amplifier spur - receiving half of IX_AC_CTS to flying leads at the auto A/C amplifier"
     },
     "RearFuel": {
       "file": "ST185-RearFuel.harness",
-      "physical": "Rear Fuel - fuel level sender behind IX_FUEL_LVL (the pump run stays on the ECU/cabin harness, plan 6.41)",
-      "legacyXref": false
+      "physical": "Rear Fuel - fuel level sender behind IX_FUEL_LVL (the pump run stays on the ECU/cabin harness, plan 6.41)"
     },
     "AntiTheft": {
       "file": "ST185-AntiTheft.harness",
-      "physical": "Anti-theft",
-      "legacyXref": true
+      "physical": "Anti-theft"
     }
   },
   "interfaces": [
@@ -688,5 +677,70 @@
         "c6": "sp_shield_b"
       }
     }
-  }
+  },
+  "references": [
+    {
+      "harness": "AntiTheft",
+      "connector": "dm_ecu_b_b27",
+      "type": "reference_only",
+      "realOn": "ECU-Cabin",
+      "reason": "immobiliser input lands in ECU-B B27; the anti-theft branch populates that one ECU cavity"
+    },
+    {
+      "harness": "B-engine",
+      "connector": "dm_k_str_c4",
+      "type": "reference_only",
+      "realOn": "ECU-Cabin",
+      "reason": "starter relay K6 output (cabin) to the starter trigger; the engine harness populates the relay-socket cavity"
+    },
+    {
+      "harness": "CAN",
+      "connector": "csb3io",
+      "type": "reference_only",
+      "realOn": "ECU-Cabin",
+      "reason": "CAN H/L populate CSB3 plug cavities 5/6; the plug is owned once, on the ECU/cabin harness"
+    },
+    {
+      "harness": "ClusterLED",
+      "connector": "dm_csb3io_c26",
+      "type": "reference_only",
+      "realOn": "ECU-Cabin",
+      "reason": "oil LED sink populates CSB3 plug cavity 26 (L4)"
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "dm_bh_a_eng_c36",
+      "type": "reference_only",
+      "realOn": "A-engine",
+      "reason": "MRS speed-in populates bulkhead A engine-plug cavity 36 (Aux 7, ECU A27)"
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "dm_bh_b_eng_c14",
+      "type": "reference_only",
+      "realOn": "A-engine",
+      "reason": "MRS enable populates bulkhead B engine-plug cavity 14"
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "dm_ecu_b_b12",
+      "type": "reference_only",
+      "realOn": "ECU-Cabin",
+      "reason": "EPS relay trigger (Ign 6) populates ECU-B B12"
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "dm_hcfb_h4",
+      "type": "reference_only",
+      "realOn": "ECU-Cabin",
+      "reason": "k_eps 30 fed from high-current fuse block output H4 (60 A AMI)"
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "dm_sp_sw12_Splice",
+      "type": "reference_only",
+      "realOn": "ECU-Cabin",
+      "reason": "k_eps coil 86 joins the switched-12V splice sp_sw12"
+    }
+  ]
 }

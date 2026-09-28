@@ -5,7 +5,8 @@
       copper is drawn and built once, by one harness
   O3  a connector drawn with a real part on more than one drawing has exactly one copy that
       is not excludeFromBom, and every copy names the same part
-  O4  a harness the registry does not mark legacyXref carries no cp_xref dummy
+  O4  every cp_xref dummy is listed in interfaces.json "references" with the harness that
+      really owns the connector and the reason - no unexplained cross-harness conductor
   O5  every registered real connector exists with a real part
   O6  a device endpoint terminal is Loose and claims no part
 
@@ -28,6 +29,7 @@ for f in sorted(listed - files):
     bad.append("O1 interfaces.json lists %s, which does not exist" % f)
 
 ds = model.docs(reg)
+refs = {(x["harness"], x["connector"]): x for x in reg.get("references", [])}
 owner = collections.defaultdict(list)
 copies = collections.defaultdict(list)
 for loom, d in ds.items():
@@ -36,8 +38,9 @@ for loom, d in ds.items():
         owner[cond["id"]].append(loom)
     for c in d.get("connectors", []):
         if model.is_xref(c):
-            if not reg["harnesses"][loom].get("legacyXref"):
-                bad.append("O4 %s draws cross-reference %s - new harnesses use interfaces"
+            ref = refs.pop((loom, c["id"]), None)
+            if not ref or not ref.get("reason") or ref.get("realOn") not in ds:
+                bad.append("O4 %s draws cross-reference %s with no registered owner and reason"
                            % (loom, c["id"]))
             continue
         if c.get("partId"):
@@ -75,9 +78,10 @@ for ep in reg.get("endpoints", []):
         elif t.get("type") != "Loose" or t.get("partId"):
             bad.append("O6 endpoint %s terminal %s must be Loose with no part" % (ep["id"], tid))
 
-debt = {loom: sum(1 for c in d.get("connectors", []) if model.is_xref(c)) for loom, d in ds.items()}
-print("cross-reference dummies still in use (migration debt): "
-      + ", ".join("%s=%d" % kv for kv in debt.items() if kv[1]))
+for (loom, cid) in sorted(refs):
+    bad.append("O4 interfaces.json lists reference %s/%s, which is not drawn" % (loom, cid))
+
+print("registered cross-references: %d" % len(reg.get("references", [])))
 for line in bad:
     print(line)
 print("\n%d ownership finding(s)." % len(bad))
