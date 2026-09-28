@@ -24,7 +24,7 @@ SRC = os.path.join(HERE, "rebuild")
 MAX_LEN = 170
 
 BANNED = [
-    (r" - ", "a ' - ' clause (usage note)"),
+    (r" - |\s[\u2013\u2014]\s?", "a dash clause (usage note)"),
     (r"->|<-", "an arrow (circuit path)"),
     (r";", "a ';' clause"),
     (r"\bOWNED\b|\bQTY\b|\bIN STOCK\b", "stock / quantity"),
@@ -55,6 +55,8 @@ OVERRIDES = {  # by part number: parts whose own spec text is more than the firs
 
 COLORS = {"Light Yellow": "LIGHT YELLOW", "Light Green": "LIGHT GREEN", "Light Blue": "LIGHT BLUE",
           "Light Gray": "LIGHT GRAY", "Gray": "GRAY"}
+CODES = {"BLK": "BLACK", "WHT": "WHITE", "RED": "RED", "ORG": "ORANGE", "YEL": "YELLOW", "GRN": "GREEN",
+         "BLU": "BLUE", "VIO": "VIOLET", "BRN": "BROWN", "PNK": "PINK", "GRY": "GRAY"}
 
 
 def colour(p):
@@ -83,13 +85,20 @@ def wire_desc(p):
             gauge_txt(p.get("gauge"), pn), colour(p))
     if not pn.startswith("EW-"):
         return None
+    c = colour(p)
+    m = re.match(r"EW-1C\d+-([A-Z]+)-([A-Z]+)$", pn)
+    if not p.get("stripeColor") and m and m.group(1) in CODES and m.group(2) in CODES:
+        c = "%s/%s" % (CODES[m.group(1)], CODES[m.group(2)])
     return "WIRE, ELECTRICAL, %s, %s, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV" % (
-        gauge_txt(p.get("gauge"), pn), colour(p))
+        gauge_txt(p.get("gauge"), pn), c)
 
 
 def cable_desc(p):
     cores = p.get("cores") or []
     gs = {gauge_txt(c.get("gauge")) for c in cores}
+    m = re.search(r"\dC-?(\d\d)\b", p.get("partNumber") or "")
+    if gs == {"GAUGE TBD"} and m:
+        gs = {"%s AWG" % m.group(1)}
     tp = any(c.get("twistedWithNext") for c in cores)
     kind = "SHIELDED" if p.get("shielded") else "UNSHIELDED"
     if not cores:
@@ -124,7 +133,7 @@ GENERATED = {"wireParts": wire_desc, "cableParts": cable_desc, "resistorParts": 
 def trim(desc):
     """Keep the part's own spec text: cut usage clauses and stock notes."""
     d = desc or ""
-    d = re.split(r" - |;|\s->|\s<-", d)[0]
+    d = re.split(r" - |\s[\u2013\u2014]\s?|;|\s->|\s<-", d)[0]
     d = re.sub(r"\s*\((?:[^)]*\b(?:OWNED|qty|assumed|plan|see)\b[^)]*)\)", "", d, flags=re.I)
     d = re.sub(r"\s*,\s*OWNED\b.*$", "", d, flags=re.I)
     return re.sub(r"\s+", " ", d).strip(" ,.").upper()
