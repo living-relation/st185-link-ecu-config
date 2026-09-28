@@ -17,12 +17,12 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC SOLDER SLEEVE 26-14` | generic | SPLICE, SOLDER SLEEVE, WITH ADHESIVE HEATSHRINK, COMBINED 26-1 | 17 | 0 | **17** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0 | 16 | 6 | **10** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 10 | 0 | **10** |
+| `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG | 9 | 0 | **9** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE - unused size 16 cavity | 8 | 0 | **8** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY - ha | 10 | 2 | **8** |
-| `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG | 8 | 0 | **8** |
 | `Jump lugs 1/0` | generic | Trunk +, trunk −, PDB, starter B+, engine block, engine-bay jump post | 8 | 0 | **8** |
-| `GENERIC CRIMP SPLICE 10-6` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, | 7 | 0 | **7** |
 | `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED,  | 6 | 0 | **6** |
+| `GENERIC CRIMP SPLICE 10-6` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, | 6 | 0 | **6** |
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10  | 6 | 0 | **6** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A - DT | 17 | 12 | **5** |
 | `1-1355877-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 1.0-2.5 MM2 (18-14 A | 5 | 0 | **5** |

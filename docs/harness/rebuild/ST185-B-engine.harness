@@ -664,7 +664,7 @@
     },
     {
       "id": "sp_gndout_b_eng",
-      "partId": "spp_crimp_10_6",
+      "partId": "spp_crimp_14_10",
       "layoutPosition": {
         "x": 1440,
         "y": 120
