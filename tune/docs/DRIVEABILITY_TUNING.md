@@ -11,8 +11,9 @@ PCLink features to configure after triggers and base VE/ignition seeds. Conserva
   enrichment on top of the ECT tables above once fuel temp (Continental sensor, DI 2) approaches
   the RealDash caution band (55°C) — return-style system + E85 vapor-locks hot, independent of
   ECT *when the sensor reading is valid* (a hot rail can outlast a cooling engine). On a sensor
-  **fault**, the fallback is gated on ECT **minus manifold IAT**, not ECT alone — see Sensor
-  fault below for why no fixed ECT number works.
+  **fault**, this table intentionally does NOT try to auto-detect hot-vs-cold from other
+  sensors — see Sensor fault below for why that turned out to be unreliable, and what it does
+  instead.
 
 ## Warm-up
 
@@ -77,42 +78,40 @@ If vacuum-reference load is unstable at overlap (sub-30 kPa MAP flutter):
       `boost_target_psi.csv`'s street-seed ceiling), gated directly on the PCLink Ethanol
       Sensor Fault flag — not on the ethanol% value — so it still engages even though that
       value now reads a "full boost is fine" 100%.
-  - **Fuel Temp channel** — single substitute, **90°C** (the tables' richest row) — read by
-    `fuel_temp_density_comp.csv` and `warmup_fuel_temp_trim.csv`, which agree on direction
-    (rich), so no clamp is needed between them. The real risk is the hard Fuel Cut in
-    `tune/limits.yaml` (`ecu_limits.fuel_temp_c.limit_c`, 70°C): a sensor fault is plausibly a
-    *thermal* failure (heat-damaged wiring/connector), so it's disproportionately likely to
-    coincide with a genuinely hot-soak restart — exactly the case these tables exist to protect.
-    A weaker substitute (e.g. staying below 70°C to dodge the cut) would under-fuel that exact
-    scenario. Instead the cut itself is gated on sensor **validity**
-    (`fuel_temp_c.limit_condition`: `fuel_temp_c > 70 AND Ethanol Sensor Fault = false`, the
-    same multi-condition pattern `oil_press` already uses), so the fault-substituted 90°C
-    cannot self-trigger the cut, while a genuinely valid >70°C reading still can.
-    - `fuel_temp_density_comp.csv` uses the 90°C substitute unconditionally on fault — its
-      effect is small (max +7%, multiplicative), self-corrects under closed-loop once running,
-      and is not a flooding risk even applied to a cold engine.
-    - `warmup_fuel_temp_trim.csv` **cannot** use it unconditionally: it's an *additive*
+  - **Fuel Temp channel** — read by `fuel_temp_density_comp.csv` and `warmup_fuel_temp_trim.csv`,
+    which agree on *direction* (rich) but need different fault handling because of how each one
+    applies that richness:
+    - `fuel_temp_density_comp.csv`: single substitute, **90°C** (the richest row), applied
+      unconditionally on fault. Safe unconditionally because its effect is small (max +7%,
+      multiplicative), self-corrects under closed-loop once running, and is not a flooding risk
+      even applied to a cold engine.
+    - `warmup_fuel_temp_trim.csv`: **cannot** use 90°C unconditionally — it's an *additive*
       cranking/post-start enrichment (+20%/+14% at 90°C), and a flex-sensor fault is exactly as
-      plausible on a car that's never run today (cold) as one that just came off a hot drive —
-      applying it unconditionally on fault would risk flooding / failure to start on an ordinary
-      cold start. **No fixed ECT threshold can gate this correctly, at any value.** Two review
-      passes each broke one: 160°F ("Hot restart"'s own threshold) loses the case where the rail
-      is still dangerously hot after ECT has already cooled below it; a lower 100°F replacement
-      is then defeated by a hot-ambient cold-soak — an engine that never ran can sit at or above
-      *any* fixed ECT number just from sitting in hot weather, with the rail no hotter than
-      ambient either. ECT alone cannot tell "hot from running" apart from "hot from ambient,"
-      for any climate this car might see — it needs a second, independent reference.
-      **Fix: gate on ECT − manifold IAT, not ECT alone** (manifold IAT is already a channel —
-      see Dual IAT above, CAN 0x3E8): `(ECT − IAT) > 20°F (~11°C)`. A recently-run engine's
-      coolant/block thermal mass stays well above the surrounding air temp for a long time after
-      shutdown, while IAT tracks ambient much faster; a genuinely cold-soaked car — at *any*
-      ambient temperature — has ECT and IAT converged close together, near-zero delta, because
-      both are just sitting at whatever that ambient is. This is robust to ambient entirely,
-      unlike any single ECT number. Faulted + delta ≤20°F → apply nothing (covers both a true
-      cold start and a hot-ambient soak); faulted + delta >20°F → apply the full 90°C fallback
-      (covers a genuine recent run, cooled-rail-still-hot included, regardless of ECT's absolute
-      value). ECT and IAT are independent sensor circuits, neither shares a fault path with the
-      flex sensor.
+      plausible on a car that's never run today as one that just came off a hot drive, so
+      unconditional max enrichment risks flooding an ordinary cold start.
+      **No proxy signal on this car can safely gate it either.** Four review rounds on this PR
+      each found a real scenario that broke the previous attempt: unconditional 90°C floods a
+      cold start; gating on ECT >160°F loses protection once ECT has cooled below that while the
+      rail is still hot (the table's own reason for existing); gating on ECT >100°F is defeated
+      by a hot-ambient cold-soak (an engine that never ran can sit above any fixed ECT number
+      purely from hot weather); gating on `(ECT − manifold IAT) >20°F` is defeated by underhood
+      heat-soak — right after a hot shutdown the intake sits inches from the hot engine with no
+      airflow and can heat-soak toward ECT within minutes, collapsing the delta exactly when the
+      gate most needs to stay open. The common failure: every available signal can be pushed
+      toward "looks hot" or "looks cold" by ambient heat or heat-soak, independent of whether the
+      rail is actually hot — because the one measurement that would settle it, fuel_temp_c
+      itself, is the one that failed. That's a missing-sensor problem, not a threshold-tuning one.
+      **Resolution:** a single moderate, unconditional substitute — **fuel_temp_c=60°C** (8%
+      crank / 5% post-start) — sized to bound the worst case in both directions rather than
+      optimize one at the other's expense: comparable to `fuel_temp_density_comp.csv`'s own full
+      swing (+7%, already accepted as safe cold), so it won't meaningfully flood a cold start;
+      meaningfully rich, so it gives partial vapor-lock mitigation on a genuine hot restart —
+      while explicitly **not** the full protection a working sensor gives. A fault always shows
+      **SENSOR ERR** on the red box (`PROTECTION_AND_WARNINGS.md` byte 4); treat that as a signal
+      that automatic hot-restart protection is running at reduced strength, and hold the throttle
+      through an immediate post-track restart per normal hot-flood technique if in doubt. If full
+      automatic protection through a sensor fault matters, the real fix is a dedicated fuel-rail
+      temperature sensor — not a cleverer proxy for the one that failed.
   Configure all of this in PCLink's Ethanol Sensor Fault / DI error handling — never silently
   hold the last-good value.
 
