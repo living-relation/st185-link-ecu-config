@@ -169,7 +169,8 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     relay trigger, B5 supply, B18/B26 motor, A22/A33 sensors) is engine-bay wiring.
   - **(d)** Injector rail (F11) and COP rail (F10) cross on bulkhead B c1 / c2 (size-12
     contacts; bulkhead A has none) and spur into A-engine the same way as the ETB motor
-    (Daniel, 2026-09-28).
+    (Daniel, 2026-09-28; re-confirmed after his audit the same day - bulkhead A has no size-12
+    position and too few size-16 spares, see `docs/harness/redesign/DECISIONS.md` Q-RAIL).
 - **ETB body (engine bay):** the B18 / B26 motor wires leave `ST185-B-engine` as a short spur
   right after bulkhead B, drawn broken off with a note; `ST185-A-engine` shows them broken
   off coming in from B-engine and takes them into the A trunk, under the sheathing, right

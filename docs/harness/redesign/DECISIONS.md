@@ -246,10 +246,25 @@ become flying leads.
 | B7 | **RealDash Pi**: switched ignition feed only, on and off with the car. No Pi-hold relay or power-hold circuit anywhere. | EngineRoom-C `gbx_body` DEV, CSB3 L1 spare, plan 6.38 / 6.47 |
 | B8 | **k_eps** sized: HCFB H4 Bussmann **AMI-60**, **8 AWG** feed. Sources in `sot/channels.csv` k_eps c1. | `ST185-CabinPower`, `-B-cabin`, `-EngineRoom-C` |
 
-**Under audit, not yet confirmed by Daniel:** Q-RAIL option (1) as a spur (Rule 3 crossover (d),
-injector / COP rails on bulkhead B size-12 contacts) and the `IX_B_RAIL` +5V spur. The repo
-credits both to Daniel (commits `217d83a`, `f7ec418`) but records no quote. Do not build on
-either until he confirms.
+**Audit closed (Daniel, 2026-09-28, final):**
+
+- **Q-RAIL - resolved, B spur kept.** Daniel: "move the injector (F10) and COP (F11) power feeds
+  to bulkhead A (A-cabin -> bulkhead A -> A-engine), per Rule: non-ECU power follows its
+  device's ECU signal bulkhead. Remove the B spur and crossover (d). If bulkhead A's spare
+  cavities can't take the size-12 contacts, keep the current B spur instead and tell me exactly
+  why." They can't: bulkhead A (`HDP24-24-47PE-L017` / `HDP26-24-47SE-L015`) has 42 size-20 and
+  5 size-16 cavities and no size-12 position, so a size-12 contact (`0460-220-1231` /
+  `0462-210-1231`, 12-14 AWG, 25 A) has nowhere to go. The fallback does not fit either: the
+  rails are 14 AWG on 15 A (F11) and 20 A (F10) fuses, a size-16 contact is 13 A and takes 16-20
+  AWG, a size-20 is 7.5 A, and only one size-16 cavity (c1) is spare - splitting each rail over
+  two size-16 contacts would need four. The rails stay on bulkhead B c1 / c2 with the spur into
+  A-engine, Rule 3 crossover (d).
+- **`IX_B_RAIL` - resolved as-is:** +5V only, from Daniel's own words ("use the extra A connector
+  pins to carry power and ground over to the B engine harness, as a short spur with inline
+  connector"; ground later ruled back onto B22).
+- **Bulkhead B shield spare:** none kept; the CAN-Lambda stays as drawn (B1).
+- **Charge-lamp resistor:** the removal (`fe99eea`) is correct; only the ClusterLED reference
+  note remains (B3).
 
 ## Current state
 
