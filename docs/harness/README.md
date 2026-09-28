@@ -15,7 +15,7 @@ enforces that.
 |---|---|---|
 | **`rebuild/`** | The 11 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
 | **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, registered cross-references. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
-| `min/` | Same documents, whitespace stripped, for upload | No - `make_min.py` regenerates it |
+| `min/` | Same documents, whitespace stripped, for upload to the harness.design project "ST185 harness design". The Free plan caps a harness at 100 connections, so the cloud copy of `ST185-ECU-Cabin` (119) is partial and carries a warning note | No - `make_min.py` regenerates it |
 | `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |
 | `../../archive/2026-09-27-harness-redesign/` | The retired frozen baseline and legacy tools | No - history only |
 
