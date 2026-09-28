@@ -121,8 +121,8 @@
         {
           "id": "c19",
           "designation": "19",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c20",
@@ -133,8 +133,8 @@
         {
           "id": "c21",
           "designation": "21",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
+          "contactPartId": "ct_hdp16p"
         }
       ],
       "layoutPosition": {
@@ -574,20 +574,6 @@
       }
     },
     {
-      "id": "br_w_rail_gnd_b_c",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: Gnd Out from sp_gndout at ECU A (crossover a)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 210
-      },
-      "schematicPosition": {
-        "x": 1110,
-        "y": 2790
-      }
-    },
-    {
       "id": "br_w_rail_sw12_b_c",
       "type": "Loose",
       "signal": "Broken off - continues on ST185-A-cabin: switched 12V from sp_sw12 (cabin)",
@@ -836,6 +822,19 @@
         "x": 2400,
         "y": 2880
       }
+    },
+    {
+      "id": "sp_gnd_bhb",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_870",
+      "layoutPosition": {
+        "x": 1080,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 3000,
+        "y": 2880
+      }
     }
   ],
   "resistors": [
@@ -861,7 +860,7 @@
         "handle": "c17"
       },
       "target": {
-        "id": "sp_gndout_b",
+        "id": "sp_gnd_bhb",
         "handle": "Splice"
       },
       "color": "Black",
@@ -1263,20 +1262,6 @@
       "partId": "wp_18_org"
     },
     {
-      "id": "w_rail_gnd_b_c",
-      "source": {
-        "id": "br_w_rail_gnd_b_c",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_gndout_b",
-        "handle": "Splice"
-      },
-      "color": "Black",
-      "partId": "wp_18_blk_wht",
-      "stripeColor": "White"
-    },
-    {
       "id": "w_rail_sw12_b_c",
       "source": {
         "id": "br_w_rail_sw12_b_c",
@@ -1366,6 +1351,48 @@
       },
       "color": "Violet",
       "partId": "wp_20_vio"
+    },
+    {
+      "id": "w_gnd_bhb_trunk",
+      "source": {
+        "id": "sp_gndout_b",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_gnd_bhb",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_18_blk_wht"
+    },
+    {
+      "id": "w_gnd_b_c19",
+      "source": {
+        "id": "sp_gnd_bhb",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c19"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_gnd_b_c21",
+      "source": {
+        "id": "sp_gnd_bhb",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c21"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "partId": "wp_20_blk_wht"
     }
   ],
   "cables": [
@@ -1929,15 +1956,6 @@
       "id": "bn_b_bp_1080__br_w_rail_5v_b_c",
       "sourceId": "b_bp_1080",
       "targetId": "br_w_rail_5v_b_c",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_b_bp_1080__br_w_rail_gnd_b_c",
-      "sourceId": "b_bp_1080",
-      "targetId": "br_w_rail_gnd_b_c",
       "length": {
         "value": 50,
         "unit": "mm"

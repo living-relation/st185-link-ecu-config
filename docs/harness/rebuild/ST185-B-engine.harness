@@ -121,8 +121,8 @@
         {
           "id": "c19",
           "designation": "19",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c20",
@@ -133,8 +133,8 @@
         {
           "id": "c21",
           "designation": "21",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
+          "contactPartId": "ct_hdp16s"
         }
       ],
       "layoutPosition": {
@@ -335,7 +335,7 @@
     },
     {
       "id": "ix_brail_p",
-      "label": "B sensor rails - 6-way inline mate from ST185-A-engine (IX_B_RAIL)",
+      "label": "B sensor +5V - 6-way inline mate from ST185-A-engine (IX_B_RAIL)",
       "width": 270,
       "partId": "cp_dt04_6p",
       "cavities": [
@@ -357,17 +357,17 @@
         {
           "id": "c4",
           "designation": "4",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil temp / charge-pipe IAT branch"
+          "signal": "spare"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil / coolant pressure branch"
+          "signal": "spare"
         },
         {
           "id": "c6",
           "designation": "6",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - fuel pressure / VSS branch"
+          "signal": "spare"
         }
       ],
       "layoutPosition": {
@@ -775,8 +775,8 @@
     {
       "id": "w_rail_gnd_b_e",
       "source": {
-        "id": "ix_brail_p",
-        "handle": "c4"
+        "id": "sp_gndout_b_eng2",
+        "handle": "Splice"
       },
       "target": {
         "id": "sp_gndout_b_eng",
@@ -787,13 +787,13 @@
       "partId": "wp_20_blk_wht"
     },
     {
-      "id": "w_gnd_b_e_c14",
+      "id": "w_gnd_b_e_c21",
       "source": {
-        "id": "ix_brail_p",
-        "handle": "c5"
+        "id": "bh_b_eng",
+        "handle": "c21"
       },
       "target": {
-        "id": "sp_gndout_b_eng2",
+        "id": "sp_gndout_b_eng3",
         "handle": "Splice"
       },
       "color": "Black",
@@ -801,13 +801,13 @@
       "partId": "wp_20_blk_wht"
     },
     {
-      "id": "w_gnd_b_e_c21",
+      "id": "w_gnd_b_e_c19",
       "source": {
-        "id": "ix_brail_p",
-        "handle": "c6"
+        "id": "bh_b_eng",
+        "handle": "c19"
       },
       "target": {
-        "id": "sp_gndout_b_eng3",
+        "id": "sp_gndout_b_eng2",
         "handle": "Splice"
       },
       "color": "Black",

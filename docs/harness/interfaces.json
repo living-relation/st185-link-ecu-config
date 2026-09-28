@@ -163,10 +163,7 @@
       "pins": {
         "c1": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
         "c2": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
-        "c3": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
-        "c4": "Gnd Out to B engine sensors via IX_B_RAIL - oil temp / charge-pipe IAT branch",
-        "c5": "Gnd Out to B engine sensors via IX_B_RAIL - oil / coolant pressure branch",
-        "c6": "Gnd Out to B engine sensors via IX_B_RAIL - fuel pressure / VSS branch"
+        "c3": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
       },
       "halves": [
         {
@@ -790,21 +787,6 @@
         {
           "harness": "A-cabin",
           "terminal": "br_w_rail_5v_b_c"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_RAIL_GND_B_C",
-      "type": "broken_off",
-      "what": "Gnd Out tie (18 AWG) between sp_gndout at ECU A and sp_gndout_b at ECU B22 (crossover a)",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w_rail_gnd_b_c"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_rail_gnd_b_c"
         }
       ]
     },

@@ -262,20 +262,20 @@
         {
           "id": "c10",
           "designation": "10",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil temp / charge-pipe IAT branch",
-          "contactPartId": "ct_hdp20p"
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c11",
           "designation": "11",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil / coolant pressure branch",
-          "contactPartId": "ct_hdp20p"
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c12",
           "designation": "12",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - fuel pressure / VSS branch",
-          "contactPartId": "ct_hdp20p"
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c13",
@@ -857,20 +857,6 @@
       "schematicPosition": {
         "x": 1770,
         "y": 2640
-      }
-    },
-    {
-      "id": "br_w_rail_gnd_b_c",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: Gnd Out from sp_gndout at ECU A (crossover a)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 1110,
-        "y": 2670
       }
     },
     {
@@ -2307,20 +2293,6 @@
       "partId": "wp_18_org"
     },
     {
-      "id": "w_rail_gnd_b_c_ac",
-      "source": {
-        "id": "sp_gndout",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_rail_gnd_b_c",
-        "handle": "Terminal"
-      },
-      "color": "Black",
-      "partId": "wp_18_blk_wht",
-      "stripeColor": "White"
-    },
-    {
       "id": "w_rail_sw12_b_c_ac",
       "source": {
         "id": "sp_sw12",
@@ -2598,48 +2570,6 @@
       },
       "color": "Orange",
       "partId": "wp_20_org"
-    },
-    {
-      "id": "w_gnd_brail_c10",
-      "source": {
-        "id": "sp_gnd_bha",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c10"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w_gnd_brail_c11",
-      "source": {
-        "id": "sp_gnd_bha",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c11"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w_gnd_brail_c12",
-      "source": {
-        "id": "sp_gnd_bha",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c12"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
     }
   ],
   "cables": [
@@ -3071,15 +3001,6 @@
       }
     },
     {
-      "id": "bn_b_bp_1140__br_w_rail_gnd_b_c",
-      "sourceId": "b_bp_1140",
-      "targetId": "br_w_rail_gnd_b_c",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_b_bp_1080__br_w_rail_sw12_b_c",
       "sourceId": "b_bp_1080",
       "targetId": "br_w_rail_sw12_b_c",
@@ -3498,7 +3419,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A (A32 lead 18 AWG) - feeds sp_5v_bha before bulkhead A (c2, c39, c40 at 20 AWG) and an 18 AWG trunk to sp_5v_b on ST185-B-cabin (broken off), crossover (a)\nsp_gndout (Splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds sp_gnd_bha before bulkhead A (c3, c41-c44 at 20 AWG) and an 18 AWG tie to sp_gndout_b at ECU B22 on ST185-B-cabin (broken off), crossover (a)\nsp_sw12 (Splice): switched 12V bus - its B-side loads (condenser fan and EPS relay coils, VSS feed on bulkhead B c20) are drawn on ST185-B-cabin (broken off)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A (A32 lead 18 AWG) - feeds sp_5v_bha before bulkhead A (c2, c39, c40 at 20 AWG) and an 18 AWG trunk to sp_5v_b on ST185-B-cabin (broken off), crossover (a)\nsp_gndout (Splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds sp_gnd_bha before bulkhead A (c3, c41-c44 at 20 AWG) for the A loads only; loom B's sensors return to their own Gnd Out, ECU B22 (no A24-B22 tie in the harness)\nsp_sw12 (Splice): switched 12V bus - its B-side loads (condenser fan and EPS relay coils, VSS feed on bulkhead B c20) are drawn on ST185-B-cabin (broken off)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)",
       "schematicPosition": {
         "x": 4200,
         "y": 0

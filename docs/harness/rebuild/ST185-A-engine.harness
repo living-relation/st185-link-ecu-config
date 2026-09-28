@@ -67,20 +67,20 @@
         {
           "id": "c10",
           "designation": "10",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil temp / charge-pipe IAT branch",
-          "contactPartId": "ct_hdp20s"
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c11",
           "designation": "11",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil / coolant pressure branch",
-          "contactPartId": "ct_hdp20s"
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c12",
           "designation": "12",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - fuel pressure / VSS branch",
-          "contactPartId": "ct_hdp20s"
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c13",
@@ -806,7 +806,7 @@
     },
     {
       "id": "ix_brail_s",
-      "label": "B sensor rails - 6-way inline to ST185-B-engine (IX_B_RAIL)",
+      "label": "B sensor +5V - 6-way inline to ST185-B-engine (IX_B_RAIL)",
       "width": 270,
       "partId": "cp_dt06_6s",
       "cavities": [
@@ -828,17 +828,17 @@
         {
           "id": "c4",
           "designation": "4",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil temp / charge-pipe IAT branch"
+          "signal": "spare"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - oil / coolant pressure branch"
+          "signal": "spare"
         },
         {
           "id": "c6",
           "designation": "6",
-          "signal": "Gnd Out to B engine sensors via IX_B_RAIL - fuel pressure / VSS branch"
+          "signal": "spare"
         }
       ],
       "layoutPosition": {
@@ -1933,48 +1933,6 @@
       },
       "color": "Orange",
       "partId": "wp_20_org"
-    },
-    {
-      "id": "w_gnd_brail_e_c10",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c10"
-      },
-      "target": {
-        "id": "ix_brail_s",
-        "handle": "c4"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w_gnd_brail_e_c11",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c11"
-      },
-      "target": {
-        "id": "ix_brail_s",
-        "handle": "c5"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w_gnd_brail_e_c12",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c12"
-      },
-      "target": {
-        "id": "ix_brail_s",
-        "handle": "c6"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
     }
   ],
   "cables": [
