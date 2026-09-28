@@ -204,6 +204,35 @@ out += ["", "## Counted once, drawn more than once", "",
  "| Connector | One part, drawn on | Counted in |", "|---|---|---|"]
 for cid, (looms, owner) in sorted(SHARED.items()):
     out.append("| `%s` | %s | %s |" % (cid, ", ".join(looms), owner))
+REG = model.registry()
+out += ["", "## Inline interfaces - one connector pair per harness boundary", "",
+ "Each half is counted once, on the harness that owns it (the receiving harness owns the",
+ "mating half). Contacts and wedgelocks come from each half's part configuration above.", "",
+ "| Interface | Family | Source half | Receiving half |", "|---|---|---|---|"]
+for ix in REG.get("interfaces", []):
+    s = next(h for h in ix["halves"] if h["role"] == "source")
+    r = next(h for h in ix["halves"] if h["role"] == "receiving")
+    out.append("| `%s` | %s | `%s` on %s | `%s` on %s |"
+               % (ix["id"], ix.get("family", ""), s["connector"], s["harness"], r["connector"], r["harness"]))
+fl_by = collections.Counter(f["harness"] for f in REG.get("flyingLeads", []))
+out += ["", "## OEM flying leads - splice material only, no OEM housing", "",
+ "Each lead is one solder sleeve (`GENERIC FLYING LEAD` above). The EWD locator for every lead",
+ "is in `interfaces.json` and in the build list's EWD column.", "",
+ "| Harness | Flying leads |", "|---|---:|"]
+for h, n in sorted(fl_by.items()):
+    out.append("| %s | %d |" % (h, n))
+cab = collections.Counter()
+for loom, fn in model.harness_files(REG).items():
+    d = model.load(fn)
+    cp = {p["id"]: p for p in d.get("cableParts", [])}
+    for cb in d.get("cables", []):
+        p = cp.get(cb.get("partId")) or {}
+        cab[(loom, p.get("partNumber", cb.get("partId")))] += 1
+out += ["", "## Screened cable pieces by owning harness", "",
+ "Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no connector.", "",
+ "| Harness | Cable | Pieces |", "|---|---|---:|"]
+for (loom, pn), n in sorted(cab.items()):
+    out.append("| %s | `%s` | %d |" % (loom, pn, n))
 out += ["", "## Still unspecified", "",
  "- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. "
  "Needs a real dash number per branch OD once the trunk diameters are known.",

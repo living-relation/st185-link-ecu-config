@@ -196,6 +196,48 @@ will over-order these; use this list, not the drawings.
 | `oilt` | A-engine, B-engine | A-engine |
 | `turbospd` | A-engine, B-engine | A-engine |
 
+## Inline interfaces - one connector pair per harness boundary
+
+Each half is counted once, on the harness that owns it (the receiving harness owns the
+mating half). Contacts and wedgelocks come from each half's part configuration above.
+
+| Interface | Family | Source half | Receiving half |
+|---|---|---|---|
+| `IX_WS_REAR` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_rear_r` on WheelSpeed-Rear | `ix_ws_rear_p` on ECU-Cabin |
+| `IX_WS_FRONT` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_front_r` on WheelSpeed-Front | `ix_ws_front_p` on ECU-Cabin |
+| `IX_AC_CTS` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_accts_r` on ECU-Cabin | `ix_accts_p` on ACAmp-Spur |
+| `IX_FUEL_LVL` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_fuel_r` on ECU-Cabin | `ix_fuel_p` on RearFuel |
+
+## OEM flying leads - splice material only, no OEM housing
+
+Each lead is one solder sleeve (`GENERIC FLYING LEAD` above). The EWD locator for every lead
+is in `interfaces.json` and in the build list's EWD column.
+
+| Harness | Flying leads |
+|---|---:|
+| A-engine | 1 |
+| ACAmp-Spur | 2 |
+| ClusterLED | 6 |
+| ECU-Cabin | 9 |
+| EngineRoom-C | 6 |
+
+## Screened cable pieces by owning harness
+
+Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no connector.
+
+| Harness | Cable | Pieces |
+|---|---|---:|
+| A-engine | `GENERIC SHLD CABLE 1C 20AWG BLU` | 2 |
+| A-engine | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
+| ECU-Cabin | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
+| ECU-Cabin | `GENERIC SHLD CABLE 3C 20AWG` | 1 |
+| ECU-Cabin | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
+| WheelSpeed-Front | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
+| WheelSpeed-Front | `GENERIC SHLD CABLE 2C TP 20AWG` | 2 |
+| WheelSpeed-Front | `GENERIC SHLD CABLE 3C 20AWG` | 1 |
+| WheelSpeed-Rear | `GENERIC SHLD CABLE 2C TP 20AWG` | 2 |
+| WheelSpeed-Rear | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
+
 ## Still unspecified
 
 - **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. Needs a real dash number per branch OD once the trunk diameters are known.
