@@ -208,6 +208,26 @@ Before restructuring every loom, complete one vertical slice:
 
 Then mirror it for the front wheel-speed harness, and apply the same conventions to CSB3, OEM A/C, OEM junction blocks, and remaining harnesses.
 
+## Adopted for execution (2026-09-27)
+
+The implementation plan listed six open points (D1-D6). Execution went ahead on the
+recommended option for each. Every one can be reversed; the drawings and the registry
+(`docs/harness/interfaces.json`) are the only places that carry them.
+
+| | Decision | Consequence |
+|---|---|---|
+| D1 | **Front interface is 6-way with two drains.** Pin 5 = drain of the front output cable (5V / Gnd / FL, screen → SHIELD_A, A7). Pin 6 = drain of FR's own 1-core screened cable (→ SHIELD_B, B17, floats at the VRC). | A7 and B17 stay apart; `SHIELD-RULES.md` §6.30 unchanged. The front output is a 3-core + 1-core pair rather than one 4-core. Rear keeps one 4-core + drain (both rear signals are loom B). |
+| D2 | **Deutsch DT 6-way:** `DT04-6P` receptacle + `W6P` on the wheel-speed harness side, `DT06-6S` plug + `W6S` on the ECU spur (the receiving harness; it supplies +5V, so it gets the sockets). Contacts `0460-202-1631` / `0462-201-1631` (size 16, owned). Rear pin 6 is plugged (`114017`). | Two new connector pairs to buy. The owned `DT04-12PA` / `DT06-12SA` sets stay available. |
+| D3 | **`ST185-CAN`, `ST185-AntiTheft`, `ST185-ClusterLED` stay as they are.** The ECU/cabin merge and the engine re-split by bulkhead letter are Phase 7. | — |
+| D4 | **Rear Fuel is its own harness** with a `DT04-2P` / `DT06-2S` inline pair for fuel level (signal + ground). The pump keeps its own connector per 6.41. | — |
+| D5 | **A/C coolant switch** crosses on **bulkhead A c37 (signal) / c38 (return)**, then a `DT04-2P` / `DT06-2S` inline to a short A/C amplifier spur. Amplifier end: flying lead to TW, conn C (A34) pin 20, R-G, EWD p.150. Return pin and the switch part number are `TBD` (never invent a part number). | — |
+| D6 | **CSB3 0x640/0x642 A/C bits are unassigned in the docs only.** No frame, `frames.py` or RealDash change. | — |
+
+J/B2 2A / 2D / 2E stay real connectors: the build crimps a dummy header that plugs into
+them (rule 8 exception). J/B1, IE1, R/B2, R/B4, the OEM switches and both A/C amplifiers
+become flying leads.
+
 ## Current state
 
-No harness drawings or checker scripts have been modified or deleted yet. Deleting legacy checker scripts requires replacement validation first.
+Execution is in progress; see the adopted decisions above and the phase status in
+`IMPLEMENTATION-PLAN.md`. Deleting legacy checker scripts requires replacement validation first.
