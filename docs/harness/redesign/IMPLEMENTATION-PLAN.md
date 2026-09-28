@@ -4,6 +4,23 @@
 **Works from:** [`DECISIONS.md`](DECISIONS.md) (frozen decision record: redesign plan + checker audit)
 **Baseline:** `main` at `4e782d9`; `python docs/harness/check_all.py` passes on it.
 
+## Status (2026-09-27)
+
+| Phase | State |
+|---|---|
+| 0 Freeze the record | Done |
+| 1 Independent fixes | Done |
+| 2 Convention + registry | Done (`interfaces.json`, `model.py`, `INTERFACES.md`) |
+| 3 New gates | Done - all HARD |
+| 4-5 Rear / front wheel speed | Done (D1 = two-drain 6-way front, D2 = DT 6-way) |
+| 6 CSB3, OEM flying leads, A/C coolant switch | Done (22 + 2 flying leads; ambient and pressure-switch circuits stay factory wiring) |
+| 7 Inventory restructure | ECU/cabin merge and Rear Fuel done. **Engine re-split by bulkhead letter not done**: 15 devices (injectors, coils, and the oil/fuel/coolant pressure, oil temp, charge-pipe IAT, ETB and VSS sensors) take signal through one bulkhead and rail through the other; splitting needs a rail re-route decision |
+| 8 Generators + legacy retirement | Done (owner/interface-aware lists; legacy tools archived) |
+| 9 Propagation | Done |
+
+The remaining 9 `cp_xref` dummies are registered references (one harness populating a
+cavity another owns); turning any into an inline connector is a per-circuit part choice.
+
 Every phase below ends with `check_all.py` green, one commit per logical change, and a push.
 Nothing in `archive/`, `legacy-prebuild/` or a checker script is deleted until the phase that
 says so.

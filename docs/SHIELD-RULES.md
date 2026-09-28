@@ -28,7 +28,10 @@ in this file.** Nothing is an exception unless it is listed here. R6 in the audi
 fails any screen bonded at both ends that is not listed.
 
 Listed today: the two VR conditioner boxes (§6.30 below). Both-end-bonded
-screens allowed: `cab_fout_sh`, `cab_rout_sh`.
+screens allowed: `cab_fout_sh`, `cab_rout_sh` (VRC case to inline pin 5) and their
+continuations through the inline interfaces, `cab_fspur_sh`, `cab_rspur_sh`,
+`cab_fspur_fr_sh`. The list the audit reads is `shieldBothEndsOk` in
+`docs/harness/interfaces.json`.
 
 Also settled: the ABS wheel-speed sensors have **two wires**. No third conductor,
 no shield connection at the sensor.
@@ -52,9 +55,9 @@ Fallback, if that ever stops being true:
 | crank | cable floats at the sensor → `bh_a_eng` c33 → `bh_a_fw` c33 → `sp_shield_a` → **ECU-A A7** | own pin, bulkhead A |
 | cam | same, c34 → `sp_shield_a` → **A7** | own pin, bulkhead A |
 | knock 1 | cable floats at the sensor → `bh_b_eng` c18 → `bh_b_fw` c18 → `sp_shield_b` → **ECU-B B17** (knock is pin B9, loom B) | own pin, bulkhead B |
-| wss FL, FR (raw) | continuous through the **front** VRC enclosure, loom C fender sub-loom, no bulkhead; FL output cable screen → `sp_shield_a` → A7 | none — fender |
-| wss FR (conditioned) | own 1-core screened cable, VRC OUT c4 → ECU-B B21; screen → `sp_shield_b` → **B17**, floats at the VRC so it never touches the enclosure (Daniel, 2026-09-25) | none |
-| wss RL, RR | continuous through the **rear** VRC enclosure, no bulkhead; output screen → `sp_shield_b` → B17 | none — grommet |
+| wss FL, FR (raw) | continuous through the **front** VRC enclosure, fender route, no bulkhead; FL/supply output screen → `IX_WS_FRONT` pin 5 → `sp_shield_a` → A7 | none — fender; inline pin 5 |
+| wss FR (conditioned) | own 1-core screened cable, VRC OUT → `IX_WS_FRONT` pin 4 → ECU-B B21; screen → pin 6 → `sp_shield_b` → **B17**, floats at the VRC so it never touches the enclosure (Daniel, 2026-09-25) | none; inline pin 6 |
+| wss RL, RR | continuous through the **rear** VRC enclosure, no bulkhead; output screen → `IX_WS_REAR` pin 5 → `sp_shield_b` → B17 | none — grommet; inline pin 5 |
 
 **The two shield grounds are never joined.** Loom A screens land on A7 through
 `sp_shield_a`, loom B screens on B17 through `sp_shield_b`. The old shared
@@ -92,8 +95,11 @@ is the governing wording (the §6.42 table was corrected to match on 2026-09-25)
   to ECU-B B21, so its screen belongs to B17. It rides its own 1-core screened cable
   whose screen lands on `sp_shield_b` only and **floats at the VRC** — it never
   touches the front case, which is on A7. That keeps A7 and B17 apart.
-- `audit_shields.py` treats each box's IN pin 3 landings and OUT shell as one case
-  node; `audit_mating.py` M4 fails the build if A7 can reach B17 through any box.
+- The VRC and its M8 connectors are not drawn (harness redesign, 2026-09-27). Each lead
+  ends at a registered VRC endpoint; `interfaces.json` "enclosures" names the IN and OUT
+  screen leads each case joins. `audit_shields.py` and `audit_mating.py` M4 trace on that
+  one graph, through the inline interfaces, and M4 fails the build if A7 can reach B17
+  through any box.
 
 Two isolation rules, both of which fail silently and read as a flaky sensor:
 

@@ -1,6 +1,7 @@
 # Harness files - which one is current
 
-Written 2026-09-22, updated 2026-09-25. Read this before opening any loom.
+Written 2026-09-22, rewritten 2026-09-27 for the harness redesign. Read this before
+opening any loom.
 
 **The wiring source of truth is `sot/channels.csv`** (every ECU pin and channel).
 The looms below are the physical build and must agree with it; `check_all.py`
@@ -10,78 +11,88 @@ enforces that.
 
 **`rebuild/` is the truth. Everything else is a copy, a build product, or history.**
 
-| Folder | What it is | Edit it? |
+| Folder / file | What it is | Edit it? |
 |---|---|---|
-| **`rebuild/`** | The 9 current looms. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
-| `min/` | Same 9 documents, whitespace stripped, for upload | No - `make_min.py` regenerates it |
-| `legacy-prebuild/` | The 4 pre-split looms the rebuild came from | No - frozen baseline, see below |
-| `../../archive/2026-09-25-cleanup/docs/harness/` | One-shot fix/gen scripts, old screenshots, the retired diagram stub | No - history only |
+| **`rebuild/`** | The 11 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
+| **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, registered cross-references. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
+| `min/` | Same documents, whitespace stripped, for upload | No - `make_min.py` regenerates it |
+| `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |
+| `../../archive/2026-09-27-harness-redesign/` | The retired frozen baseline and legacy tools | No - history only |
 
-## The 9 current looms
+## The 11 harnesses
 
-| File | Loom | Scope |
+Each file is one physical harness that gets built. Shared nets may cross a boundary; a
+physical section of copper, a connector or a BOM line has one owner.
+
+| File | Harness | Scope |
 |---|---|---|
-| `ST185-A-ECU.harness` | A, cabin | ECU-A pins to bulkhead A |
-| `ST185-A-engine.harness` | A, engine | bulkhead A to the engine bay |
-| `ST185-B-ECU.harness` | B, cabin | ECU-B pins to bulkhead B |
-| `ST185-B-engine.harness` | B, engine | bulkhead B to the engine bay |
-| `ST185-CAN.harness` | CAN | the CAN backbone |
-| `ST185-EngineRoom-C.harness` | C | engine room, PDB, fuse blocks + relays, EPS, OEM J/B injection |
-| `ST185-ClusterLED.harness` | (folding into the cabin accessory loom) | cluster warning LEDs |
-| `ST185-WheelSpeed.harness` | front = loom C fender sub-loom (no bulkhead), rear = rear trunk | four ABS drops and both VR conditioners |
-| `ST185-AntiTheft.harness` | cabin | anti-theft |
+| `ST185-ECU-Cabin.harness` | ECU-to-firewall cabin harness | ECU-A, ECU-B, cabin halves of bulkheads A and B, relays and fuse box, CSB3 plug, both wheel-speed spurs, A/C coolant switch branch, fuel pump run |
+| `ST185-A-engine.harness` | Engine, signal side | bulkheads A/B engine halves to the engine-bay signal circuits |
+| `ST185-B-engine.harness` | Engine, power side | bulkheads A/B engine halves to the engine-bay power circuits |
+| `ST185-CAN.harness` | CAN backbone | the only drawing with CAN H/L |
+| `ST185-EngineRoom-C.harness` | Loom C | engine room, PDB, fuse blocks + relays, EPS, OEM J/B feeds (J/B2 dummy headers; the rest are flying leads) |
+| `ST185-WheelSpeed-Front.harness` | Front wheel speed | one Y harness: FL/FR drops to the front VRC endpoints, output to `IX_WS_FRONT` |
+| `ST185-WheelSpeed-Rear.harness` | Rear wheel speed | one Y harness: RL/RR drops to the rear VRC endpoints, output to `IX_WS_REAR` |
+| `ST185-RearFuel.harness` | Rear Fuel | fuel level sender behind `IX_FUEL_LVL` |
+| `ST185-ACAmp-Spur.harness` | A/C amplifier spur | receiving side of `IX_AC_CTS` to flying leads at the auto A/C amplifier |
+| `ST185-ClusterLED.harness` | Cluster warning LEDs | LED loom; C11/C12 taps are flying leads |
+| `ST185-AntiTheft.harness` | Anti-theft | cabin |
 
-File names do not follow the bulkhead letter: `A-ECU` / `A-engine` carry the
-signal circuits over **both** bulkheads, `B-ECU` / `B-engine` the power circuits.
-What must hold is per bulkhead - A cabin cN mates A engine cN, B cabin cN mates
-B engine cN, and a circuit crosses on the bulkhead of its ECU pin's loom.
-`audit_mating.py` checks that. CAN H/L is drawn only in `ST185-CAN`.
+The two engine files still split by signal / power rather than by bulkhead letter:
+15 engine devices take their signal through one bulkhead and their rail through the
+other, so a split by bulkhead needs a rail re-route decision first
+(`redesign/IMPLEMENTATION-PLAN.md`, phase 7). What must hold is per bulkhead - A cabin
+cN mates A engine cN, B cabin cN mates B engine cN, and a circuit crosses on the
+bulkhead of its ECU pin's loom. `audit_mating.py` checks that.
 
-Loom C's `gbx_body` node (part `cp_gbx_body`) is the glove-box body block — a
-second fuse block plus micro ISO relays — carrying the ex-J/B2 circuits plus the
-CSB3 and device feeds. It was the PMU-16 node until that was dropped (plan
-6.46–6.48) and kept the id `pmu` until 2026-09-26. Same wires, same cavities;
-`verify_rebuild.py` maps the old id (`RENAMED_NODES`). Some wire ids still carry
-`pmu` (`w_pmu_hl`, `w_pdb_pmu` ...) - names only, not a PMU.
+The center cluster's own assembly harness lives in `center-cluster-esp32-p4`;
+`ST185-CAN` ends at its CAN-drop terminal.
 
-The last two are **in transition**. Plan 6.41 dissolves them: ClusterLED joins the
-new cabin accessory loom, and WheelSpeed splits - front half into loom C, rear half
-into the new rear trunk loom. Until that pass runs they are still the only place
-those circuits are drawn, so they stay.
+Loom C's `gbx_body` node (part `cp_gbx_body`) is the glove-box body block - a
+second fuse block plus micro ISO relays - carrying the ex-J/B2 circuits plus the
+CSB3 and device feeds. Some wire ids still carry `pmu` (`w_pmu_hl`, `w_pdb_pmu` ...)
+from its PMU-16 days - names only, not a PMU.
 
-## Why `legacy-prebuild/` still exists
+## Boundaries
 
-`ST185-Signal.harness` and `ST185-Power.harness` were the two monolithic looms
-before the A/B/engine split. They are **not** maintained any more, but they cannot
-be deleted yet:
+How each kind of boundary is drawn is in `redesign/INTERFACES.md`. In short:
 
-`verify_rebuild.py` diffs every conductor in `rebuild/` against them. That diff is
-the safety net that catches an accidentally dropped wire, and it is the reason the
-rebuild can be trusted. Delete the baseline and the net goes with it.
-
-They stop being needed once the 6.41 restructure lands and a new baseline is taken.
-Until then: read them for history, never edit them.
+- **Inline interface** - a real connector pair, one half per harness, same cavity text
+  on both. The four today: `IX_WS_FRONT`, `IX_WS_REAR` (DT 6-way), `IX_AC_CTS`,
+  `IX_FUEL_LVL` (DT 2-way).
+- **Bulkhead** - HDP20 A and B, each half drawn on the harnesses that populate it.
+- **OEM flying lead** - a `Loose` terminal whose text is the EWD locator. No OEM housing
+  is ever modelled or bought.
+- **Device endpoint** - the VRCs are not drawn; each lead ends at a labelled `Loose`
+  terminal (`VRC_REAR_IN_L +`).
+- **Registered reference** - a harness populating one cavity of a connector another
+  harness owns (ECU pins, CSB3 cavities); listed in `interfaces.json` with the reason.
 
 ## The pipeline
 
 ```
 sot/channels.csv             <- pin SoT; new pin facts go here first
-rebuild/*.harness            <- edit the looms here
+rebuild/*.harness            <- edit the harnesses here
+interfaces.json              <- and the ownership facts with them
   |
-  +-- check_all.py           runs every gate below, in order, all hard
-        validate_sot.py          drawings vs the SoT
-        sync_io_table.py --check XTREMEX-IO-TABLE.html vs the SoT
-        lint_v09.py              schema and references
-        verify_rebuild.py        no conductor lost vs legacy-prebuild/
-        audit_cavity_parts.py    contact or plug, never both
-        audit_shields.py         docs/SHIELD-RULES.md
-        audit_pin_names.py       drains only on A7/B17; one name per mating cavity
-        audit_mating.py          A mates A, B mates B; screens stay in their loom
-        audit_bulkhead_pairs.py  no one-sided bulkhead cavity
-        audit_bh_collisions.py   no two circuits on one cavity half
-        buylist.py               writes ../NEED-TO-BUY.md
-        buildlist.py             writes ../HARNESS-BUILD-LIST.csv
-        make_min.py              writes min/  -> uploaded to harness.design
+  +-- check_all.py             runs every gate below, in order, all hard
+        validate_sot.py            drawings vs the SoT
+        sync_io_table.py --check   XTREMEX-IO-TABLE.html vs the SoT
+        lint_v09.py                schema and references
+        validate_ownership.py      every file registered; one owner per conductor and part
+        validate_interfaces.py     inline interfaces are matched real pairs
+        validate_wheel_speed.py    front/rear Y harnesses, interfaces, spurs
+        verify_connectivity.py     every SoT signal pin reaches a device across boundaries
+        validate_oem_endpoints.py  OEM points are flying leads with EWD locators
+        audit_cavity_parts.py      contact or plug, never both
+        audit_shields.py           docs/SHIELD-RULES.md
+        audit_pin_names.py         drains only on A7/B17; one name per mating cavity
+        audit_mating.py            A mates A, B mates B; A7 and B17 never joined
+        audit_bulkhead_pairs.py    no one-sided bulkhead cavity
+        audit_bh_collisions.py     no two circuits on one cavity half
+        buylist.py                 writes NEED-TO-BUY.md
+        buildlist.py               writes HARNESS-BUILD-LIST.csv
+        make_min.py                writes min/  -> uploaded to harness.design
 ```
 
 Use it before every commit:
@@ -90,48 +101,35 @@ Use it before every commit:
 python docs/harness/check_all.py
 ```
 
-`run_pipeline.bat` runs the layout steps (`fix_cable_parts.py`, `layout_633.py`)
-plus lint, verify and make_min. `sync_io_table.py` without `--check` rewrites the
-generated pin map in the IO table after a CSV change.
+`run_pipeline.bat` runs the same thing. `sync_io_table.py` without `--check` rewrites
+the generated pin map in the IO table after a CSV change. `model.py` is the shared
+reader: it loads the registry and builds one electrical graph across every harness
+(bulkhead halves, interface halves, cross-references and VRC enclosures each collapse
+to one node).
 
 ## Parts rules
 
-Four rules the checks enforce, all added 2026-09-22 after the buy list was found
-to be double-counting:
-
 1. **One cavity, one part.** A cavity holds a contact or a sealing plug, never
-   both. A cavity wired in *any* loom gets a contact; a cavity wired in *no* loom
-   gets a plug, in its own size. `audit_cavity_parts.py` fails the build otherwise.
-2. **One physical connector, one part number, everywhere it is drawn.** Bulkhead A
-   is on three drawings and bulkhead B on two. Every copy must carry the same part
-   and the same contact stamps; `buylist.py` aborts if two looms disagree. It then
-   counts the copy that carries the parts - not whichever file is read first - and
-   prints a *Counted once, drawn more than once* table in `NEED-TO-BUY.md`.
-3. **Cross-reference dummies claim nothing.** A connector drawn on a second loom
-   only so the wire has somewhere to land has no `partId` and no contact stamps.
-   That is how the tools tell a dummy from the real thing.
-4. **Never invent a part number.** A part that has not been checked against the
-   manufacturer gets `TBD ...` and the reason in its description. The RADLOK
-   firewall pass-through is the current example.
+   both. A cavity wired in *any* harness gets a contact; a cavity wired in *no*
+   harness gets a plug, in its own size. `audit_cavity_parts.py` and
+   `validate_interfaces.py` fail the build otherwise.
+2. **One physical connector, one part number, one counted copy.** A connector drawn
+   on more than one harness (the bulkheads, shared engine devices) carries the same
+   part everywhere and is counted on exactly one copy (`validate_ownership.py` O3).
+3. **Cross-references claim nothing.** A `cp_xref` dummy has no part and no contact
+   stamps, and every one is registered with its owner and reason.
+4. **Never invent a part number.** A part not checked against the manufacturer gets
+   `TBD ...` and the reason. Current examples: the RADLOK pass-through, the A/C
+   coolant switch.
 
 Adding up the parts lists off the individual drawings by hand will over-order.
 `NEED-TO-BUY.md` is the only correct total.
-
-**Both generators were repointed on 2026-09-22.** They used to read the pre-split
-files, so every buy list before that date was generated from the wrong harnesses -
-which is why the CSB3 HD30 connector and 68 size-20 sockets never appeared on it.
 
 ## Versioning
 
 Files are not version-numbered. Git is the version history, and one folder means
 one generation:
 
-- a new generation gets a new folder, and the old one moves to `legacy-*` or
-  `archive/`
+- a new generation gets a new folder, and the old one moves to `archive/`
 - nothing is ever copied sideways into the same folder with a suffix
 - `-v2`, `-new`, `-final`, `-copy` in a filename is a bug, not a version
-
-## Audit
-
-`check_all.py` is the audit. The old `audit_repo.py` doc-staleness reporter was
-archived on 2026-09-25 with the documents it tracked.

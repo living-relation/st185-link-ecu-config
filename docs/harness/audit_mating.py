@@ -13,7 +13,7 @@ checks, against sot/channels.csv:
   M3  screens stay in their own loom: a drain on bulkhead A reaches SHIELD_A
       (A7) only, a drain on bulkhead B reaches SHIELD_B (B17) only.
   M4  SHIELD_A and SHIELD_B are never joined anywhere. Checked on ONE graph of
-      all nine looms: mated bulkhead halves are one node per cavity, dm_
+      every harness: mated bulkhead halves are one node per cavity, dm_
       cross-references (dm_sp_*_Splice, dm_ecu_*, dm_<component>_<cavity>)
       resolve to the node they name, and each VR conditioner box is one node
       (interfaces.json enclosures: the case joins the IN and OUT screens, 6.30).

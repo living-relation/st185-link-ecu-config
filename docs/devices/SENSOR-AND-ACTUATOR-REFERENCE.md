@@ -229,7 +229,7 @@ not need this change - only the cam one is wrong.
 ## Wheel-speed sensors - their own loom, settled 2026-09-17
 
 All four VR wheel-speed sensors and both dual-channel conditioner boards come out of looms
-A and B into `ST185-WheelSpeed.harness`. **No bulkhead connector** - this loom does not
+A and B into `ST185-WheelSpeed-Front.harness`. **No bulkhead connector** - this loom does not
 cross bulkhead A or B, so the front sensors stop being firewall crossings with nowhere to
 cross. Its only ties to the rest of the car are the conditioner outputs to the ECU and the
 conditioner power and ground, which follow the shared-part rule in plan doc 6.15.

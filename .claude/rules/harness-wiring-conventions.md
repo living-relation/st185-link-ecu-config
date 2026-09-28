@@ -30,18 +30,22 @@ thing is wrong.
 - **Each bulkhead cavity mates its twin.** Bulkhead A cabin cN = bulkhead A engine cN, same
   for B, same name on both halves. The looms are separate drawings, so only the audits join
   them (`audit_mating.py`, `audit_pin_names.py`).
-- **The old Power / Signal file split is gone.** The looms are the nine files in
-  `docs/harness/rebuild/`. File names do not follow the bulkhead letter.
+- **One file, one physical harness** (redesign 2026-09-27). The harnesses are the files in
+  `docs/harness/rebuild/`; who owns what, and every boundary, is in `docs/harness/interfaces.json`
+  (`docs/harness/redesign/INTERFACES.md`). Crossings are inline connector pairs, bulkheads,
+  OEM flying leads with EWD locators, or registered references. Devices (VRC, CSB3, OEM
+  modules) are never drawn.
 - **Harness C is the Engine Room Harness** — no bulkhead, exits the driver fender around the
-  front of the bay. The front wheel-speed drops are a fender sub-loom of it (drawn in
-  `ST185-WheelSpeed.harness`) and never touch a bulkhead.
+  front of the bay. The front wheel-speed drops follow its fender route (drawn in
+  `ST185-WheelSpeed-Front.harness`) and never touch a bulkhead.
 - **CAN H/L is drawn once**, in `ST185-CAN.harness`. No other loom draws it.
 - **Shields** float at the device and terminate at the ECU only: loom A screens on A7
   (SHIELD_A), loom B screens on B17 (SHIELD_B). **A7 and B17 are never joined.** Nothing but a
   drain ever lands on either. One exception, the VR conditioner boxes (§6.30): the case is
-  the screen junction (IN screens ride pin 3 to a case ring terminal, OUT screen on the
-  shielding plate), and the front box's FR output screen goes to B17 on its own cable and
-  floats at the VRC so A7 and B17 never meet through the case. Full rules:
+  the screen junction (IN screens ride pin 3 to the case, OUT screen bonded to it), drawn as
+  registered VRC endpoint leads. Rear: one screen, case → `IX_WS_REAR` pin 5 → B17. Front:
+  FL/supply screen case → `IX_WS_FRONT` pin 5 → A7; FR has its own screen, floating at the
+  VRC, pin 6 → B17, so A7 and B17 never meet through the case. Full rules:
   `docs/SHIELD-RULES.md`.
 
 Full build rules: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.

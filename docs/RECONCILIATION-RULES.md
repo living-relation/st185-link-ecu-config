@@ -41,13 +41,15 @@ whole chain and must pass before every commit.
 |---|---|
 | `sot/channels.csv` | Pin/channel SoT |
 | `XTREMEX-IO-TABLE.html` | Visual face of the SoT, with a generated pin map |
-| `docs/harness/rebuild/ST185-A-ECU.harness` | Cabin side, signal circuits from both ECU connectors to the bulkhead A and B cabin halves |
-| `docs/harness/rebuild/ST185-A-engine.harness` | Engine side of those signal circuits |
-| `docs/harness/rebuild/ST185-B-ECU.harness` | Cabin side, power: ECU power pins, relays, cabin fuse block |
-| `docs/harness/rebuild/ST185-B-engine.harness` | Engine side of those power circuits |
+| `docs/harness/rebuild/ST185-ECU-Cabin.harness` | ECU-to-firewall cabin harness: both ECU connectors, cabin halves of bulkheads A and B, relays, fuse box, CSB3 plug, wheel-speed spurs |
+| `docs/harness/rebuild/ST185-A-engine.harness` | Engine side, signal circuits |
+| `docs/harness/rebuild/ST185-B-engine.harness` | Engine side, power circuits |
 | `docs/harness/rebuild/ST185-CAN.harness` | CAN backbone - the only drawing with CAN H/L |
 | `docs/harness/rebuild/ST185-EngineRoom-C.harness` | Loom C engine room, no bulkhead |
-| `docs/harness/rebuild/ST185-WheelSpeed.harness` | Wheel speed drops + VR conditioners (front = loom C fender sub-loom) |
+| `docs/harness/rebuild/ST185-WheelSpeed-Front.harness` / `-Rear.harness` | Wheel-speed Y harnesses to VRC endpoints and `IX_WS_FRONT` / `IX_WS_REAR` |
+| `docs/harness/rebuild/ST185-RearFuel.harness` | Fuel level sender behind `IX_FUEL_LVL` |
+| `docs/harness/rebuild/ST185-ACAmp-Spur.harness` | A/C amplifier spur behind `IX_AC_CTS` |
+| `docs/harness/interfaces.json` | Ownership registry: interfaces, endpoints, flying leads, references |
 | `docs/harness/rebuild/ST185-ClusterLED.harness` | Cluster warning LEDs |
 | `docs/harness/rebuild/ST185-AntiTheft.harness` | Anti-theft |
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table |
@@ -62,8 +64,8 @@ What must hold is per **bulkhead**: every cavity on the bulkhead A cabin half ma
 same cavity on the bulkhead A engine half, same for B, and a circuit crosses on the
 bulkhead of its ECU pin's loom. `audit_mating.py` and `audit_pin_names.py` check that.
 
-`docs/harness/legacy-prebuild/` is the frozen baseline `verify_rebuild.py` diffs against.
-Read it, never edit it. Retired diagrams, dated audit notes and one-shot fix scripts live in
+The frozen pre-split baseline and `verify_rebuild.py` were retired on 2026-09-27 to
+`archive/2026-09-27-harness-redesign/`; `verify_connectivity.py` replaced them. Retired diagrams, dated audit notes and one-shot fix scripts live in
 `archive/2026-09-25-cleanup/` and are not authoritative.
 
 Generated files are never hand-edited — re-run their script.

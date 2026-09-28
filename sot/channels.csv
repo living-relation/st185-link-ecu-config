@@ -95,7 +95,7 @@ ACAMP,Pressure SW,acamp_18,13,ACP_SIG,A/C pressure switch signal,signal,in,switc
 ACAMP,TW,acamp_c,20,ACCTS_SIG,A/C coolant switch signal,signal,in,switch,none,,A,set,EWD-1990-p150,Dedicated A/C coolant switch on Engine-A; bulkhead A c37 -> IX_AC_CTS -> flying lead A34-20 R-G. Not an ECU input (redesign 2026-09-27)
 ACAMP,TW return,acamp_c,TBD,ACCTS_RTN,A/C coolant switch return,signal,in,switch,none,,A,tbd,EWD-1990-p150,Bulkhead A c38 -> IX_AC_CTS; the amp return pin is not on p150 - do not invent
 ACAMP,ACT,acamp_18,TBD,AUX4_AC_KILL,Compressor cancel input,signal,in,switch-gnd,none,,C,tbd,Daniel-lock,Ground = kill and floating = normal; the amp terminal number is not on p150 or p152 - do not invent
-PWR,Coil 30,k_eps,c1,HCFB_H4,EPS relay battery feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,"From high-current fuse block HCFB H4 (60 A AMI, ST185-B-ECU, glove box; 2026-09-25 - F7 60 A could not live on the mini fuse module); HCR 150 relay lives in the engine bay, passenger fender"
+PWR,Coil 30,k_eps,c1,HCFB_H4,EPS relay battery feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,"From high-current fuse block HCFB H4 (60 A AMI, ST185-ECU-Cabin, glove box; 2026-09-25 - F7 60 A could not live on the mini fuse module); HCR 150 relay lives in the engine bay, passenger fender"
 PWR,Coil 85,k_eps,c2,IGN6_EPS_RLY,EPS relay trigger,signal,in,lowside-2a,none,,C,set,harness-EngineRoom-C,From ECU B12
 PWR,Coil 86,k_eps,c3,SW12,EPS relay coil feed,power,in,rail-12v,none,,C,set,harness-EngineRoom-C,From sp_sw12
 PWR,Contact 87,k_eps,c4,EPS_PWR,EPS pump feed,power,out,rail-12v,none,,C,set,harness-EngineRoom-C,To mrs_eps a1
