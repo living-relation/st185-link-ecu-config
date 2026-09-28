@@ -1,0 +1,78 @@
+{
+  "_doc": "Interface and ownership registry for docs/harness/rebuild/. Convention: redesign/INTERFACES.md. harness.design rejects unknown keys, so this metadata cannot live in the .harness files.",
+  "harnesses": {
+    "A-ECU": {
+      "file": "ST185-A-ECU.harness",
+      "physical": "ECU/cabin harness - ECU-A and ECU-B connectors, cabin halves of bulkheads A and B, CSB3 plug, wheel-speed spurs",
+      "legacyXref": true
+    },
+    "B-ECU": {
+      "file": "ST185-B-ECU.harness",
+      "physical": "ECU/cabin harness - power side: relays, fuse box, shared +5V / Gnd Out / chassis splices",
+      "legacyXref": true
+    },
+    "A-engine": {
+      "file": "ST185-A-engine.harness",
+      "physical": "Engine harness - signal circuits behind bulkheads A and B",
+      "legacyXref": true
+    },
+    "B-engine": {
+      "file": "ST185-B-engine.harness",
+      "physical": "Engine harness - power circuits behind bulkheads A and B",
+      "legacyXref": true
+    },
+    "CAN": {
+      "file": "ST185-CAN.harness",
+      "physical": "CAN backbone",
+      "legacyXref": true
+    },
+    "EngineRoom-C": {
+      "file": "ST185-EngineRoom-C.harness",
+      "physical": "Loom C - engine-room / high-current harness",
+      "legacyXref": true
+    },
+    "ClusterLED": {
+      "file": "ST185-ClusterLED.harness",
+      "physical": "Cluster warning LEDs",
+      "legacyXref": true
+    },
+    "WheelSpeed": {
+      "file": "ST185-WheelSpeed.harness",
+      "physical": "Wheel speed, front and rear (being split into WheelSpeed-Front / WheelSpeed-Rear)",
+      "legacyXref": true
+    },
+    "AntiTheft": {
+      "file": "ST185-AntiTheft.harness",
+      "physical": "Anti-theft",
+      "legacyXref": true
+    }
+  },
+  "interfaces": [],
+  "endpoints": [],
+  "enclosures": [],
+  "flyingLeads": [],
+  "realConnectors": [
+    {
+      "harness": "A-ECU",
+      "connector": "csb3io",
+      "note": "HD36-24-33SE plug mating the CSB3 enclosure's HD34-24-33PE. The harness stops here; CSB3 itself is not drawn."
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "oem_jb2_2a",
+      "note": "Dummy header crimped and plugged into J/B2 2A (ENGINE-ROOM-POWER-REDISTRIBUTION.md section 5.4). Plugs in, so it is a connector, not a flying lead."
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "oem_jb2_2d",
+      "note": "Dummy header into J/B2 2D, same."
+    },
+    {
+      "harness": "EngineRoom-C",
+      "connector": "oem_jb2_2e",
+      "note": "Dummy header into J/B2 2E, same."
+    }
+  ],
+  "shieldBothEndsOk": [],
+  "wheelSpeed": {}
+}
