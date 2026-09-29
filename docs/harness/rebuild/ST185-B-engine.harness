@@ -6,9 +6,10 @@
   "connectors": [
     {
       "id": "bh_b_eng",
-      "label": "Bulkhead B - engine plug (HDP26-24-21SN)",
+      "label": "Bulkhead B - engine plug, B-half of shared DRB102 (DRB16-102SAE-L018)",
       "width": 390,
-      "partId": "cp_hdp_b_eng",
+      "partId": "cp_drb_plug",
+      "physicalPartGroup": "drb102_plug",
       "cavities": [
         {
           "id": "c1",
@@ -1790,6 +1791,25 @@
   ],
   "connectorParts": [
     {
+      "partNumber": "DRB16-102SAE-L018",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, PLUG, DRB, 102 POS, SOCKET CONTACTS, E SEAL, A KEY, WIRE ROUTER",
+      "numberOfCavities": 21,
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "id": "cp_drb_plug",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/161/02S/DRB16-102SAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
+      }
+    },
+    {
       "partNumber": "12110293",
       "manufacturer": "Aptiv",
       "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS",
@@ -1936,6 +1956,18 @@
     }
   ],
   "lockParts": [
+    {
+      "id": "lp_wb51sal",
+      "partNumber": "WB-51SAL",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DRB 102/128, PLUG, LEFT"
+    },
+    {
+      "id": "lp_wb51sar",
+      "partNumber": "WB-51SAR",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DRB 102/128, PLUG, RIGHT"
+    },
     {
       "id": "lp_w6p",
       "partNumber": "W6P",

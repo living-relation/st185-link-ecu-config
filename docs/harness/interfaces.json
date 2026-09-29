@@ -177,27 +177,6 @@
           "role": "receiving"
         }
       ]
-    },
-    {
-      "id": "IX_RAIL_A",
-      "type": "inline_interface",
-      "family": "Deutsch DTP 4-way flange pass-through (DTP04-4P-L012 / DTP06-4S), size 12",
-      "pins": {
-        "c1": "Switched 12V - INJECTOR power feed, fuse F11 15A (14 AWG)",
-        "c2": "Switched 12V - COP / ignition coil power feed, fuse F10 20A (14 AWG)"
-      },
-      "halves": [
-        {
-          "harness": "A-cabin",
-          "connector": "ix_rail_a_s",
-          "role": "source"
-        },
-        {
-          "harness": "A-engine",
-          "connector": "ix_rail_a_p",
-          "role": "receiving"
-        }
-      ]
     }
   ],
   "endpoints": [
@@ -889,7 +868,7 @@
     {
       "id": "BR_W_INJ_PWR_C",
       "type": "broken_off",
-      "what": "F11 15A injector rail to IX_RAIL_A c1",
+      "what": "F11 15A injector rail to bulkhead A firewall (bh_a_fw c48, shared DRB102)",
       "ends": [
         {
           "harness": "A-cabin",
@@ -904,7 +883,7 @@
     {
       "id": "BR_W_COP_PWR_C",
       "type": "broken_off",
-      "what": "F10 20A COP rail to IX_RAIL_A c2",
+      "what": "F10 20A COP rail to bulkhead A firewall (bh_a_fw c49, shared DRB102)",
       "ends": [
         {
           "harness": "A-cabin",

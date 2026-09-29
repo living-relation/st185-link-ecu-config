@@ -303,6 +303,70 @@ become flying leads.
 - **Charge-lamp resistor:** the removal (`fe99eea`) is correct; only the ClusterLED reference
   note remains (B3).
 
+## Bulkhead A/B + DTP replaced by a shared DRB102 (Daniel, 2026-09-29)
+
+**Decision:** Bulkhead A (`HDP24-24-47PE-L017` / `HDP26-24-47SE-L015`), bulkhead B
+(`HDP24-24-21PN` / `HDP26-24-21SN`), and the `IX_RAIL_A` DTP 4-way pass-through (Q-RAIL
+final, above) are retired and replaced by **one** Deutsch DRB 102-way bulkhead —
+`DRB12-102PAE-L018` (firewall receptacle) + `DRB16-102SAE-L018` (engine plug) +
+`DRBF-1A` (mounting flange for the mated pair), one firewall hole in place of three.
+Full options and ratings are in `C:\projects\inbox\st185-research\BULKHEAD-OPTIONS-2026-09-29.html`
+and `DRB102-RATINGS.html`.
+
+Ratings: 6 of 9 checked items pass with margin against a firewall location (-55 to
+125°C operating range, IP68 | IP6K9K mated sealing, vibration, mechanical shock,
+thermal cycling, and per-size contact current) plus SAE J2030 automotive-connector
+compliance. Three items (unmated sealing, an itemized fluid-resistance list, and salt-
+spray duration) were not found on TE's reachable consumer pages; chasing the actual TE
+spec/qualification PDFs for those is open item #40. Daniel, 2026-09-29: "PROCEED with
+step 3 (implement), taking SAE J2030 compliance plus the strong pass on everything else
+as good enough" — implementation went ahead on that basis; if a qualification PDF later
+surfaces a real failure for a firewall spot, this decision is reopened.
+
+The physical DRB102 is drawn as two logical halves so the A/B ECU-letter gate (Rule 3)
+still applies to each side's own signals — `bh_a_fw` / `bh_a_eng` (49 cavities: the
+former bulkhead A's 37 real circuits, unchanged size-16/size-20 upsized to size-16, plus
+the two `IX_RAIL_A` power feeds folded in on size-12) and `bh_b_fw` / `bh_b_eng` (21
+cavities: bulkhead B's existing 19 real circuits, already size-12/size-16, unchanged).
+Every existing contact part number is reused unchanged (`0460/0462-202/201-1631` size-16
+gold 13 A, `0460/0462-220/210-1231` size-12 gold 25 A already in the owned-stock and
+contact library) — the DRB102 needed zero new contact parts, only new housings.
+
+Each half's `.harness` file carries its own local `connectorParts` copy of the DRB102
+housing (`cp_drb_recept` / `cp_drb_plug`), with `numberOfCavities` set to that file's own
+cavity count (49 or 21) so `lint_v09.py`'s per-file cavity-count check still holds —
+this is a per-file documentation choice, not a claim that the physical housing itself
+has only 49 or 21 positions. The two halves are tied together with a new
+`"physicalPartGroup"` field (`"drb102_recept"` on `bh_a_fw`/`bh_b_fw`,
+`"drb102_plug"` on `bh_a_eng`/`bh_b_eng`) so `buylist.py` counts the housing and its
+flange once, not once per half — see the "shared physical part" gap this closes,
+below. The flange is wired through `cp_drb_recept`'s `mountPartId` (owned by the
+alphabetically-first half, `bh_a_fw`) so it is bought exactly once. The DRB102 needs
+**two** wedgelocks per shell (left + right, different part numbers:
+`WB-51PAL`/`WB-51PAR` receptacle side, `WB-51SAL`/`WB-51SAR` plug side) and the
+`.harness` schema only holds one `lockPartId` per connector configuration, so all four
+are tracked as `buylist.py` `EXTRA` line items instead (documented in each half's
+`lockParts` library for reference) rather than forced into that single field.
+
+`buylist.py` gained the `physicalPartGroup` mechanism described above: distinct
+connector ids that are documentation halves of one physical part (not copies of the
+same id in different looms — that's the pre-existing `SHARED` handling) now dedupe the
+housing part number and its configuration hardware (lock/boot/backshell/mount/
+dustCover) to the alphabetically-first half, while every cavity's own contacts and
+plugs still count on both halves since those are real and separate. This closes the
+exact gap flagged in `BULKHEAD-OPTIONS-2026-09-29.html`: "buylist.py / NEED-TO-BUY.md —
+needs a 'shared physical part' flag... today's 'counted once' handling only dedupes the
+same id across files." The old HDP24-specific backshell/gasket/panel-nut `EXTRA`
+entries (`2428-011-2405`, `M902-2243`, `16-04477`, `2411-001-2405`) are removed — there
+is no more shell-24 HDP housing to backshell, gasket, or panel-nut.
+
+**Files touched:** `ST185-A-cabin.harness`, `ST185-A-engine.harness`,
+`ST185-B-cabin.harness`, `ST185-B-engine.harness`, `docs/harness/interfaces.json`
+(`IX_RAIL_A` inline_interface removed, its broken-off `"what"` text repointed to
+`bh_a_fw` c48/c49), `docs/harness/buylist.py`. No `sot/channels.csv` change was needed —
+it tracks ECU signal channels, and the injector/COP power feeds were never recorded
+there as rows.
+
 ## Current state
 
 Execution is in progress; see the adopted decisions above and the phase status in

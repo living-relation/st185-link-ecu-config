@@ -6,9 +6,10 @@
   "connectors": [
     {
       "id": "bh_b_fw",
-      "label": "Bulkhead B - firewall (HDP24-24-21PN)",
+      "label": "Bulkhead B - firewall, B-half of shared DRB102 (DRB12-102PAE-L018 + DRBF-1A)",
       "width": 390,
-      "partId": "cp_hdp_b_fw",
+      "partId": "cp_drb_recept",
+      "physicalPartGroup": "drb102_recept",
       "cavities": [
         {
           "id": "c1",
@@ -2511,6 +2512,25 @@
   ],
   "connectorParts": [
     {
+      "partNumber": "DRB12-102PAE-L018",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT",
+      "numberOfCavities": 21,
+      "gender": "Male",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "id": "cp_drb_recept",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
+      }
+    },
+    {
       "id": "cp_dt06_6s",
       "partNumber": "DT06-6S",
       "manufacturer": "TE DEUTSCH",
@@ -2815,6 +2835,18 @@
     }
   ],
   "lockParts": [
+    {
+      "id": "lp_wb51pal",
+      "partNumber": "WB-51PAL",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DRB 102/128, RECEPTACLE, LEFT"
+    },
+    {
+      "id": "lp_wb51par",
+      "partNumber": "WB-51PAR",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DRB 102/128, RECEPTACLE, RIGHT"
+    },
     {
       "id": "lp_w6s",
       "partNumber": "W6S",

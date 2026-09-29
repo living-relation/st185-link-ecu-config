@@ -51,10 +51,15 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("Alternator protection 175A","generic","FUSIBLE LINK OR INLINE FUSE / CIRCUIT BREAKER, 175 A",1,0),
  ("Longacre 4-terminal kill switch","Longacre","SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE",1,0),
  ("generic","generic","CABLE, SHIELDED, 1 CONDUCTOR, 22 AWG, WHITE, ETFE (TEFZEL), TINNED COPPER BRAID",1,1),
- ("2428-011-2405","TE DEUTSCH","BACKSHELL, 24SZ, RIGHT-ANGLE, L017",1,1),
- ("M902-2243","TE DEUTSCH","BACKSHELL, 24SZ, STRAIGHT, L015",1,1),
- ("16-04477","TE DEUTSCH","GASKET, 24SZ",6,4),
- ("2411-001-2405","TE DEUTSCH","NUT, PANEL, SIZE 24",3,4),
+ # 2026-09-29: HDP24 shell A/B bulkheads and their backshells/gasket/panel nuts
+ # are retired - replaced by the shared DRB102 (see docs/harness/redesign/DECISIONS.md).
+ # The DRB's own wedgelocks take their place; the .harness schema only holds one
+ # lockPartId per connector configuration, but the DRB102 needs two per shell
+ # (left + right), so all four are tracked here instead of in a lockParts config.
+ ("WB-51PAL","TE DEUTSCH","WEDGELOCK, DRB 102/128, RECEPTACLE, LEFT",1,0),
+ ("WB-51PAR","TE DEUTSCH","WEDGELOCK, DRB 102/128, RECEPTACLE, RIGHT",1,0),
+ ("WB-51SAL","TE DEUTSCH","WEDGELOCK, DRB 102/128, PLUG, LEFT",1,0),
+ ("WB-51SAR","TE DEUTSCH","WEDGELOCK, DRB 102/128, PLUG, RIGHT",1,0),
 ]
 
 # Pin-side mates crimped onto device flying leads. Device side, so not drawn on
@@ -116,6 +121,24 @@ def stamp(c, parts):
     return pn, ct
 
 SHARED, clash = {}, []
+# physicalPartGroup: two or more DIFFERENT connector ids that are documentation
+# halves of ONE physical part - e.g. the DRB102 bulkhead's A-half and B-half,
+# split so the A/B ECU-letter gate still works (docs/harness/redesign/DECISIONS.md,
+# 2026-09-29). This is a different problem from SHARED above: SHARED is the SAME
+# id copied into more than one loom (always identical cavities, asserted by the
+# clash check); a physicalPartGroup is different ids with different, non-overlapping
+# cavities that nonetheless share one housing. So only the housing part number and
+# its configuration hardware (lock/boot/backshell/mount/dustCover) are counted once
+# per group below - each half's own cavities are real and stay per-id, uncoditionally.
+# Owner = alphabetically-first id in the group, so it never depends on the order
+# harness_files() happens to return.
+group_members = collections.OrderedDict()
+for cid, cc in copies.items():
+    pg = cc[0][1].get("physicalPartGroup")
+    if pg:
+        group_members.setdefault(pg, []).append(cid)
+group_owner = {pg: min(ids) for pg, ids in group_members.items()}
+
 for cid, cc in copies.items():
     stamps = [(loom, stamp(c, p)) for loom, c, p in cc]
     real = [s for s in stamps if s[1][0] or s[1][1]]   # copies that claim a part
@@ -131,7 +154,9 @@ for cid, cc in copies.items():
     # count the copy that actually carries the parts, not whichever file came first
     loom0 = real[0][0]
     c, parts = next((c, p) for l, c, p in cc if l == loom0)
-    if c.get("partId") and c["partId"] in parts:
+    pg = c.get("physicalPartGroup")
+    is_owner = (group_owner.get(pg) == cid) if pg else True
+    if is_owner and c.get("partId") and c["partId"] in parts:
         q = parts[c["partId"]]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
     # The part's configuration supplies the lock/boot/backshell and the DEFAULT
     # contact (wired cavity) or plug (unwired cavity). Before 2026-09-24 only
@@ -139,10 +164,11 @@ for cid, cc in copies.items():
     # and every wedgelock was missing from the buy list.
     cfgs = (parts.get(c.get("partId")) or {}).get("configurations") or []
     cfg = next((x for x in cfgs if x.get("id") == c.get("configurationId")), cfgs[0] if cfgs else {})
-    for key in ("lockPartId","bootPartId","backshellPartId","mountPartId","dustCoverPartId"):
-        pid = cfg.get(key)
-        if pid and pid in parts:
-            q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+    if is_owner:
+        for key in ("lockPartId","bootPartId","backshellPartId","mountPartId","dustCoverPartId"):
+            pid = cfg.get(key)
+            if pid and pid in parts:
+                q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
     for cv in c.get("cavities", []):
         if cv.get("notConnected"):
             continue
@@ -204,6 +230,16 @@ out += ["", "## Counted once, drawn more than once", "",
  "| Connector | One part, drawn on | Counted in |", "|---|---|---|"]
 for cid, (looms, owner) in sorted(SHARED.items()):
     out.append("| `%s` | %s | %s |" % (cid, ", ".join(looms), owner))
+out += ["", "## One housing, drawn as two logical halves", "",
+ "These connector ids are DIFFERENT nodes with different, non-overlapping cavities, not",
+ "copies of the same node - but they are still one physical housing, split across an",
+ "A-half and a B-half so the A/B ECU-letter gate applies to each side's own signals.",
+ "The housing part number and its wedgelock/mount/backshell hardware are counted once,",
+ "on the alphabetically-first half; every cavity's own contacts and plugs are still",
+ "counted on both halves, since those are real and separate.", "",
+ "| Group | Halves | Counted in |", "|---|---|---|"]
+for pg, ids in sorted(group_members.items()):
+    out.append("| `%s` | %s | `%s` |" % (pg, ", ".join(sorted(ids)), group_owner[pg]))
 REG = model.registry()
 out += ["", "## Inline interfaces - one connector pair per harness boundary", "",
  "Each half is counted once, on the harness that owns it (the receiving harness owns the",

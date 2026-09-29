@@ -9,13 +9,12 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 65 | 0 | **65** |
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 40 | 0 | **40** |
-| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 33 | 0 | **33** |
-| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 29 | 0 | **29** |
+| `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
+| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 28 | 0 | **28** |
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 28 | 0 | **28** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
-| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 14 | 0 | **14** |
+| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 16 | 6 | **10** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 10 | 0 | **10** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 10 | 2 | **8** |
@@ -55,7 +54,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK | 2 | 0 | **2** |
 | `RL00801-50RE` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED | 2 | 0 | **2** |
 | `W3S` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY PLUG | 2 | 0 | **2** |
-| `16-04477` | TE DEUTSCH | GASKET, 24SZ | 6 | 4 | **2** |
 | `1-1904045-6` | TE Connectivity | SOCKET, RELAY, MICRO ISO, 5 POS, WITH MOUNTING FLAP (V23333-Z0001-B046) | 1 | 0 | **1** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `10k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
@@ -64,10 +62,10 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `470R 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `7-1904094-9` | TE Connectivity | RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X439, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 91 OHM, DIODE SUPPRESSED, CATHODE ON 86 | 1 | 0 | **1** |
 | `90980-11143` | Toyota | CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS | 1 | 0 | **1** |
+| `DRB12-102PAE-L018` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT | 1 | 0 | **1** |
+| `DRB16-102SAE-L018` | TE DEUTSCH | CONNECTOR, PLUG, DRB, 102 POS, SOCKET CONTACTS, E SEAL, A KEY, WIRE ROUTER | 1 | 0 | **1** |
+| `DRBF-1A` | TE DEUTSCH | FLANGE, MOUNTING, DRB 102/128 SERIES | 1 | 0 | **1** |
 | `DT04-3P` | TE DEUTSCH | CONN RECP DT 3-WAY PIN SEALED | 1 | 0 | **1** |
-| `DTP04-4P-L012` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DTP, 4 POS, PIN CONTACTS, FLANGE MOUNT | 1 | 0 | **1** |
-| `DTP06-4S` | TE DEUTSCH | CONNECTOR, PLUG, DTP, 4 POS, SOCKET CONTACTS | 1 | 0 | **1** |
-| `DTP4P-L012-GKT` | TE DEUTSCH | GASKET, MOUNTING, DTP 4 POS FLANGE RECEPTACLE L012 | 1 | 0 | **1** |
 | `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER | 1 | 0 | **1** |
 | `GENERIC LUG M10 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC LUG M10 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
@@ -82,8 +80,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `W3P` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY RECEPTACLE | 1 | 0 | **1** |
 | `WM-4S` | TE DEUTSCH | WEDGELOCK, DTM, 4-WAY PLUG | 1 | 0 | **1** |
 | `WM-6S` | TE DEUTSCH | WEDGELOCK, DTM, 6-WAY PLUG | 1 | 0 | **1** |
-| `WP-4P` | TE DEUTSCH | WEDGELOCK, DTP, 4 POS, RECEPTACLE | 1 | 0 | **1** |
-| `WP-4S` | TE DEUTSCH | WEDGELOCK, DTP, 4 POS, PLUG | 1 | 0 | **1** |
 | `jump-post-M8` | TBD | POST, JUMP START, M8, INSULATED | 1 | 0 | **1** |
 | `AMI-50` | Eaton Bussmann | FUSE, AMI, 50 A, M5 BOLT-DOWN | 1 | 0 | **1** |
 | `AMI-40` | Eaton Bussmann | FUSE, AMI, 40 A, M5 BOLT-DOWN | 1 | 0 | **1** |
@@ -101,15 +97,19 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `ANL/MEGA 300A + holder` | generic | FUSE, ANL OR MEGA, 300 A, WITH HOLDER | 1 | 0 | **1** |
 | `Alternator protection 175A` | generic | FUSIBLE LINK OR INLINE FUSE / CIRCUIT BREAKER, 175 A | 1 | 0 | **1** |
 | `Longacre 4-terminal kill switch` | Longacre | SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE | 1 | 0 | **1** |
+| `WB-51PAL` | TE DEUTSCH | WEDGELOCK, DRB 102/128, RECEPTACLE, LEFT | 1 | 0 | **1** |
+| `WB-51PAR` | TE DEUTSCH | WEDGELOCK, DRB 102/128, RECEPTACLE, RIGHT | 1 | 0 | **1** |
+| `WB-51SAL` | TE DEUTSCH | WEDGELOCK, DRB 102/128, PLUG, LEFT | 1 | 0 | **1** |
+| `WB-51SAR` | TE DEUTSCH | WEDGELOCK, DRB 102/128, PLUG, RIGHT | 1 | 0 | **1** |
 
 ## Covered by stock
 
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
 | `0413-214-1205` | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 4 | 10 |
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 66 | 130 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 99 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 62 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 95 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS | 1 | 1 |
@@ -117,8 +117,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `1-1414147-0` | RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 2 | 3 |
 | `13519047` | CONNECTOR, PLUG, GT 150, 3 POS, SEALED, SOCKET CONTACTS | 1 | 1 |
 | `2141029-1` | FUSE HOLDER, MODULE, MFINITY, 16 POS MINI FUSE, HARD WIRED | 1 | 1 |
-| `2411-001-2405` | NUT, PANEL, SIZE 24 | 3 | 4 |
-| `2428-011-2405` | BACKSHELL, 24SZ, RIGHT-ANGLE, L017 | 1 | 1 |
 | `281934-2` | SEAL, WIRE, SUPERSEAL 1.5 | 2 | 10 |
 | `282080-1` | HOUSING, PLUG, SUPERSEAL 1.5, 2 POS | 1 | 2 |
 | `282110-1` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2 | 2 | 10 |
@@ -134,11 +132,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `DT06-3S` | CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, N SEAL, GRAY | 2 | 2 |
 | `DTM06-4S` | CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY | 1 | 1 |
 | `DTM06-6S` | CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY | 1 | 1 |
-| `HDP24-24-21PN` | CONNECTOR, RECEPTACLE, HDP20, SHELL 24, 21 POS, PIN CONTACTS, N SEAL | 1 | 1 |
-| `HDP24-24-47PE-L017` | CONNECTOR, RECEPTACLE, HDP20, SHELL 24, 47 POS, PIN CONTACTS, E SEAL, REVERSE RING FLANGE | 1 | 1 |
-| `HDP26-24-21SN` | CONNECTOR, PLUG, HDP20, SHELL 24, 21 POS, SOCKET CONTACTS, N SEAL | 1 | 1 |
-| `HDP26-24-47SE-L015` | CONNECTOR, PLUG, HDP20, SHELL 24, 47 POS, SOCKET CONTACTS, E SEAL, THREADED COUPLING | 1 | 1 |
-| `M902-2243` | BACKSHELL, 24SZ, STRAIGHT, L015 | 1 | 1 |
 | `Micro ISO relays x4` | RELAY, PLUG-IN, MICRO ISO, 1 FORM A, 12 VDC COIL | 4 | 4 |
 | `W12P` | WEDGELOCK, DT, 12-WAY RECEPTACLE | 1 | 2 |
 | `W12S` | WEDGELOCK, DT, 12-WAY PLUG | 1 | 2 |
@@ -171,6 +164,20 @@ will over-order these; use this list, not the drawings.
 | Connector | One part, drawn on | Counted in |
 |---|---|---|
 
+## One housing, drawn as two logical halves
+
+These connector ids are DIFFERENT nodes with different, non-overlapping cavities, not
+copies of the same node - but they are still one physical housing, split across an
+A-half and a B-half so the A/B ECU-letter gate applies to each side's own signals.
+The housing part number and its wedgelock/mount/backshell hardware are counted once,
+on the alphabetically-first half; every cavity's own contacts and plugs are still
+counted on both halves, since those are real and separate.
+
+| Group | Halves | Counted in |
+|---|---|---|
+| `drb102_plug` | bh_a_eng, bh_b_eng | `bh_a_eng` |
+| `drb102_recept` | bh_a_fw, bh_b_fw | `bh_a_fw` |
+
 ## Inline interfaces - one connector pair per harness boundary
 
 Each half is counted once, on the harness that owns it (the receiving harness owns the
@@ -183,7 +190,6 @@ mating half). Contacts and wedgelocks come from each half's part configuration a
 | `IX_AC_CTS` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_accts_r` on A-cabin | `ix_accts_p` on ACAmp-Spur |
 | `IX_FUEL_LVL` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_fuel_r` on B-cabin | `ix_fuel_p` on RearFuel |
 | `IX_B_RAIL` | Deutsch DT 6-way (DT06-6S / DT04-6P) | `ix_brail_s` on A-engine | `ix_brail_p` on B-engine |
-| `IX_RAIL_A` | Deutsch DTP 4-way flange pass-through (DTP04-4P-L012 / DTP06-4S), size 12 | `ix_rail_a_s` on A-cabin | `ix_rail_a_p` on A-engine |
 
 ## OEM flying leads - splice material only, no OEM housing
 

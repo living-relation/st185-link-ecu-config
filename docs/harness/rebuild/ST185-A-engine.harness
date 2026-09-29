@@ -6,9 +6,10 @@
   "connectors": [
     {
       "id": "bh_a_eng",
-      "label": "Bulkhead A - engine plug (HDP26-24-47SE-L015)",
+      "label": "Bulkhead A - engine plug, A-half of shared DRB102 (DRB16-102SAE-L018)",
       "width": 390,
-      "partId": "cp_hdp_a_eng",
+      "partId": "cp_drb_plug",
+      "physicalPartGroup": "drb102_plug",
       "cavities": [
         {
           "id": "c1",
@@ -44,253 +45,265 @@
           "id": "c6",
           "designation": "6",
           "signal": "spare",
-          "cavityPlugPartId": "pl_sz20"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c7",
           "designation": "7",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A30"
         },
         {
           "id": "c8",
           "designation": "8",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A17"
         },
         {
           "id": "c9",
           "designation": "9",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A31"
         },
         {
           "id": "c10",
           "designation": "10",
           "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c11",
           "designation": "11",
           "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c12",
           "designation": "12",
           "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c13",
           "designation": "13",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A4"
         },
         {
           "id": "c14",
           "designation": "14",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A3"
         },
         {
           "id": "c15",
           "designation": "15",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A2"
         },
         {
           "id": "c16",
           "designation": "16",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A1"
         },
         {
           "id": "c17",
           "designation": "17",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A13"
         },
         {
           "id": "c18",
           "designation": "18",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A12"
         },
         {
           "id": "c19",
           "designation": "19",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A11"
         },
         {
           "id": "c20",
           "designation": "20",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A10"
         },
         {
           "id": "c21",
           "designation": "21",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A22"
         },
         {
           "id": "c22",
           "designation": "22",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A33"
         },
         {
           "id": "c23",
           "designation": "23",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A21"
         },
         {
           "id": "c24",
           "designation": "24",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A8"
         },
         {
           "id": "c25",
           "designation": "25",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A15"
         },
         {
           "id": "c26",
           "designation": "26",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A16"
         },
         {
           "id": "c27",
           "designation": "27",
           "signal": "spare",
-          "cavityPlugPartId": "pl_sz20"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c28",
           "designation": "28",
           "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c29",
           "designation": "29",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "ECU-A A9"
         },
         {
           "id": "c30",
           "designation": "30",
           "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c31",
           "designation": "31",
           "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c32",
           "designation": "32",
           "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c33",
           "designation": "33",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "Crank VR screen"
         },
         {
           "id": "c34",
           "designation": "34",
-          "contactPartId": "ct_hdp20s",
+          "contactPartId": "ct_hdp16s",
           "signal": "Cam Hall screen"
         },
         {
           "id": "c35",
           "designation": "35",
           "signal": "MRS EPS pump logic enable (cabin fuse block c14, 7.5A) *",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c36",
           "designation": "36",
           "signal": "Aux 7 MRS speed-out (ECU A27)",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c37",
           "designation": "37",
           "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c38",
           "designation": "38",
           "signal": "A/C coolant switch return -> A/C amplifier",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c39",
           "designation": "39",
           "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c40",
           "designation": "40",
           "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c41",
           "designation": "41",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c42",
           "designation": "42",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c43",
           "designation": "43",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c44",
           "designation": "44",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c45",
           "designation": "45",
           "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c46",
           "designation": "46",
           "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c47",
           "designation": "47",
           "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
-          "contactPartId": "ct_hdp20s"
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c48",
+          "designation": "48",
+          "signal": "Switched 12V - INJECTOR power feed, fuse F11 15A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
+          "contactPartId": "ct_hdp12s"
+        },
+        {
+          "id": "c49",
+          "designation": "49",
+          "signal": "Switched 12V - COP / ignition coil power feed, fuse F10 20A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
+          "contactPartId": "ct_hdp12s"
         }
       ],
       "layoutPosition": {
@@ -848,42 +861,6 @@
       "schematicPosition": {
         "x": 660,
         "y": 2400
-      }
-    },
-    {
-      "id": "ix_rail_a_p",
-      "label": "Injector / COP rail plug, mates IX_RAIL_A beside bulkhead A (ST185-A-cabin)",
-      "partId": "cp_dtp06_4s",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Switched 12V - INJECTOR power feed, fuse F11 15A (14 AWG)"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "Switched 12V - COP / ignition coil power feed, fuse F10 20A (14 AWG)"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "spare"
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "spare"
-        }
-      ],
-      "width": 270,
-      "layoutPosition": {
-        "x": 2160,
-        "y": 60
-      },
-      "schematicPosition": {
-        "x": 150,
-        "y": -120
       }
     }
   ],
@@ -1758,8 +1735,8 @@
     {
       "id": "w_inj_pwr_e_ae",
       "source": {
-        "id": "ix_rail_a_p",
-        "handle": "c1"
+        "id": "bh_a_eng",
+        "handle": "c48"
       },
       "target": {
         "id": "sp_inj_eng",
@@ -1771,8 +1748,8 @@
     {
       "id": "w_cop_pwr_e_ae",
       "source": {
-        "id": "ix_rail_a_p",
-        "handle": "c2"
+        "id": "bh_a_eng",
+        "handle": "c49"
       },
       "target": {
         "id": "sp_cop_eng",
@@ -2403,9 +2380,9 @@
       }
     },
     {
-      "id": "bn_bp_750__ix_rail_a_p",
+      "id": "bn_bp_750__bh_a_eng_inj_cop",
       "sourceId": "bp_750",
-      "targetId": "ix_rail_a_p",
+      "targetId": "bh_a_eng",
       "length": {
         "value": 190,
         "unit": "mm"
@@ -3086,6 +3063,25 @@
   ],
   "connectorParts": [
     {
+      "partNumber": "DRB16-102SAE-L018",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, PLUG, DRB, 102 POS, SOCKET CONTACTS, E SEAL, A KEY, WIRE ROUTER",
+      "numberOfCavities": 49,
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "cavityPlugPartId": "pl_114017"
+        }
+      ],
+      "id": "cp_drb_plug",
+      "image": {
+        "source": "url",
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/161/02S/DRB16-102SAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
+      }
+    },
+    {
       "partNumber": "(kit-supplied pigtail)",
       "manufacturer": "RacerX",
       "description": "CONNECTOR, PIGTAIL, 3 POS",
@@ -3310,7 +3306,7 @@
       "configurations": [
         {
           "id": "cfg",
-          "cavityPlugPartId": "pl_sz20"
+          "cavityPlugPartId": "pl_sz16"
         }
       ],
       "id": "cp_hdp_a_eng",
@@ -3464,6 +3460,18 @@
     }
   ],
   "lockParts": [
+    {
+      "id": "lp_wb51sal",
+      "partNumber": "WB-51SAL",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DRB 102/128, PLUG, LEFT"
+    },
+    {
+      "id": "lp_wb51sar",
+      "partNumber": "WB-51SAR",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DRB 102/128, PLUG, RIGHT"
+    },
     {
       "partNumber": "W2S",
       "manufacturer": "TE DEUTSCH",
