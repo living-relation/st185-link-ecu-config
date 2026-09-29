@@ -1,6 +1,6 @@
 # Harness — need to buy
 
-Generated on 2026-09-28 from the 15 `.harness` files in `docs/harness/rebuild/`:
+Generated on 2026-09-29 from the 15 `.harness` files in `docs/harness/rebuild/`:
 `A-cabin`, `B-cabin`, `CabinPower`, `APS-Pedal`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`, `CSB3`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.

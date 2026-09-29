@@ -1336,8 +1336,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 1140,
-        "y": 150
+        "x": 1080,
+        "y": 210
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_900"
