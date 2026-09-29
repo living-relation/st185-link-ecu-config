@@ -35,7 +35,11 @@ That also matches the already-written split in `docs/HARNESS-CONSOLIDATION-AND-L
 
 ![Power-source circuit, EWD p.46](ewd-snips/1990-st185-power-source-circuit.png)
 
-Battery (engine bay, near J/B No.2) → fusible-link box **F11** → J/B No.2 (engine bay, passenger side near the battery) → engine-room main wire, out both fenders:
+Battery (engine bay, near J/B No.2) → fusible-link box **F11** → J/B No.2 (engine bay, **driver side** — corrected 2026-09-29, see cross-check below) → engine-room main wire, out both fenders:
+
+**J/B No.2 side, corrected 2026-09-29.** This section previously said J/B No.2 was on the passenger side; that was backwards. Cross-check: EWD p.16 (`ewd-snips/1990-st185-locations-engine-bay.png`, reproduced below at §3) draws R/B No.5 and the ABS relays on one side of the bay and J/B No.2 on the other. EWD p.24 (`ewd-snips/1990-st185-rb4-right-rb5-bay.png`) independently captions R/B No.5 as **"Engine Compartment Front Right"** — a plain-text location, not an inference from the drawing. Since R/B No.5 sits on the side of the p.16 drawing opposite J/B No.2, and R/B No.5 is confirmed front-right (passenger, LHD) by its own page, J/B No.2 is on the **driver side**. This also lines up with the ABS actuator already being called out passenger-side elsewhere in this doc (§1) — the ABS relays are drawn on the same side as R/B No.5 in the p.16 image, so that claim stands unchanged.
+
+This flips which fender the ex-J/B2 jumper harness (§4, step 5) and the EngineRoom-C loom actually need to reach — see the EngineRoom-C restructure notes for the routing consequence; it is not re-derived here.
 
 | Code | What it joins | Where |
 |---|---|---|
@@ -119,7 +123,7 @@ ratings not written above are `TBD` until sized against the load.
 2. Build the glove-box PDB, the second fuse block and the relays.
 3. Restore **always-hot** into J/B No.1 at **1I pin 1** (left kick). That is the bus behind 15A STOP, 15A ECU-B, 30A DEFOGGER and the taillight-relay battery side.
 4. Restore **AM1** and **AM2** at **IE1 pins 10 and 17** (left kick, engine-room main ↔ cowl). Those two wires are the ignition-switch supply. From the starting diagram they already pass IE1 on the way from F11 to I9.
-5. Restore lighting / horn / dome / retract at the **vacated 2A / 2D / 2E cavities** with a short jumper harness from the glove box, routed with the passenger-side engine-room main (EA1 / ABS trough).
+5. Restore lighting / horn / dome / retract at the **vacated 2A / 2D / 2E cavities** with a short jumper harness from the glove box. **Open item (2026-09-29):** this step was written when J/B No.2 was still believed to be passenger-side, routed with the passenger-side engine-room main (EA1 / ABS trough); §2's correction puts J/B No.2 on the driver side, so this jumper's actual route is superseded — resolved as part of the EngineRoom-C restructure, not re-derived here.
 6. Feed R/B No.4 heater fuse (right kick, next to the glove box) and R/B No.2 POWER fuse (left kick) with always-hot from the PDB.
 7. Do **not** refeed 2B / 2C EFI, engine-main-relay-to-OEM-ECU, or circuit-opening-relay pins. Link owns those circuits in the Power file.
 8. Continuity-check every row in §5 on the car before first power-up. Toyota pin numbering is wire-side vs device-side in places; the cavity drawings below win over this table if they disagree on the car.

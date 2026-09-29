@@ -2444,13 +2444,23 @@
     },
     {
       "id": "n_split",
-      "text": "EPS 12 V / GND ride the passenger fender in the vacated ABS actuator space. Fans ride the core-support run of the OEM engine-room main. A/C compressor clutch stays on engine harness A/B (Power/Signal files). Crash sensors and ABS solenoid are deleted - do not refeed 60A FL ABS, A7/A8, A11/A12, A37.",
+      "text": "RED / BLUE PHYSICAL ROUTE (Daniel's marked-up path, 2026-09-29; corrected for J/B No.2's real side - see n_jb2_side below). RED (heavy DC): trunk battery -> up the passenger side of the cabin -> glove-box PDB -> through the passenger side into the engine bay -> RADLOK firewall pair -> alternator and starter. BLUE (normal power): from the passenger-side glove-box PDB / gbx_body, out through the passenger fender (the OEM engine-room main's only bay crossing - EA1/EB1/EB2) to the MR-S EHPS pump (vacated ABS actuator space), the alternator, and the passenger headlight; A/C compressor clutch stays on engine harness A/B, not drawn here. Then across the front of the bay: horn (R/B5 fallback, see n_probe), both uprated fans (core-support run). Then down the driver side - where J/B No.2 actually sits - to the driver headlight and the J/B No.2 dummy header (oem_jb2_2a/2d/2e: HL/HR/HZ/DOME/RTR) and wiper-park feed (gbx_body c9, not yet wired - no sourced wiper-motor circuit to draw against). Ends at driver J/B No.1 and R/B No.2, left kick (IE1 AM1/AM2, J/B1 primary B+, R/B2 POWER fuse in). A BLUE cabin run also crosses from the driver kick back to the passenger PDB, and a BLUE run rides alongside RED out to the trunk. Crash sensors and ABS solenoid are deleted - do not refeed 60A FL ABS, A7/A8, A11/A12, A37.",
       "width": 390,
       "schematicPosition": {
         "x": 3180,
         "y": 390
       },
       "color": "Green"
+    },
+    {
+      "id": "n_jb2_side",
+      "text": "J/B No.2 SIDE + FENDER ROUTING DECISION (2026-09-29). ENGINE-ROOM-POWER-REDISTRIBUTION.md previously said J/B No.2 was passenger-side; that was backwards (corrected the same day - see that doc's own cross-check, EWD p.16 vs p.24). J/B No.2 is on the DRIVER side. This drawing's dummy-header wires (w_pmu_hl/hr/horn/dome/rtr, feeding oem_jb2_2a/2d/2e) were themselves modelled assuming the old passenger-side location; they do NOT actually ride the passenger ABS trough alongside the EPS pump - only the EPS pump, alternator and passenger headlight stay on that passenger run. Fender routing (Daniel gave a preferred path, flexible if a shorter run existed): starting passenger (matching the PDB and the OEM's own only fender crossing) and finishing driver-side at J/B No.2 and J/B No.1 is shorter than the reverse, which would need a crossing before AND after the passenger-side loads. Kept as given. Exact bundle lengths on the oem_jb2_2a/2d/2e branches (currently 1.3-1.4 m) are pre-existing estimates, not re-measured against this correction - verify on the car before cutting cable.",
+      "width": 390,
+      "schematicPosition": {
+        "x": 3180,
+        "y": 450
+      },
+      "color": "Red"
     },
     {
       "id": "shdr_0",
