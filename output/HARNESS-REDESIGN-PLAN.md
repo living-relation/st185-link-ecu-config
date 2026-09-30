@@ -109,8 +109,9 @@ No ABS sensor wiring or VRC input wiring is owned by the ECU harness.
 
 ### CSB3
 
-The enclosure BOM defines Hammond 1590Y with TE Deutsch HD34-24-33PE as the
-box receptacle. The harness shows the mating TE Deutsch HD36-24-33SE plug with
+The enclosure BOM defines Hammond 1590WYFL (liquid resistant, flanged) with
+TE Deutsch HD34-24-33PE as the box receptacle. The harness shows the mating
+TE Deutsch HD36-24-33SE plug with
 size-20 socket contacts 0462-201-2031, then stops. Do not draw CSB3 or its
 Hammond enclosure in the harness file.
 

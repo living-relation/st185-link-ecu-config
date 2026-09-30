@@ -84,7 +84,7 @@ Each carries +5V, Gnd Out, two conditioned outputs, and the shield/drain. No ABS
 
 ### CSB3
 
-The enclosure BOM defines Hammond 1590Y with TE Deutsch `HD34-24-33PE` as the enclosure receptacle. The harness shows the compatible mating plug `HD36-24-33SE` with size-20 socket contacts `0462-201-2031`, then stops. Do not draw CSB3 or the Hammond enclosure.
+The enclosure BOM defines Hammond 1590WYFL (liquid resistant, flanged) with TE Deutsch `HD34-24-33PE` as the enclosure receptacle. The harness shows the compatible mating plug `HD36-24-33SE` with size-20 socket contacts `0462-201-2031`, then stops. Do not draw CSB3 or the Hammond enclosure.
 
 ### VRC
 
