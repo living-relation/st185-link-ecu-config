@@ -486,8 +486,8 @@
     },
     {
       "id": "w_at_ig",
-      "color": "Pink",
-      "partId": "wp_20_pnk",
+      "color": "Gray",
+      "partId": "wp_20_gry",
       "source": {
         "id": "sp_ig",
         "handle": "Splice"
@@ -708,8 +708,8 @@
     },
     {
       "id": "w_at_ig_tie",
-      "color": "Pink",
-      "partId": "wp_20_pnk",
+      "color": "Gray",
+      "partId": "wp_20_gry",
       "source": {
         "id": "t_at_ig",
         "handle": "Terminal"
@@ -1197,11 +1197,11 @@
       }
     },
     {
-      "id": "wp_20_pnk",
-      "partNumber": "EW-1C20-PNK",
+      "id": "wp_20_gry",
+      "partNumber": "EW-1C20-GRY",
       "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, PINK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Pink",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GRAY, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Gray",
       "gauge": {
         "value": 20,
         "unit": "AWG"

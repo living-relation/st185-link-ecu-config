@@ -1494,7 +1494,7 @@
     },
     {
       "id": "w76",
-      "color": "Pink",
+      "color": "White",
       "source": {
         "id": "k_efi",
         "handle": "c2"
@@ -1503,11 +1503,11 @@
         "id": "ecu_a",
         "handle": "a28"
       },
-      "partId": "wp_18_pnk"
+      "partId": "wp_18_wht"
     },
     {
       "id": "w81",
-      "color": "Pink",
+      "color": "Gray",
       "source": {
         "id": "k_etb",
         "handle": "c2"
@@ -1516,7 +1516,7 @@
         "id": "ecu_a",
         "handle": "a20"
       },
-      "partId": "wp_20_pnk"
+      "partId": "wp_20_gry"
     },
     {
       "id": "w108_c",
@@ -1658,8 +1658,8 @@
         "id": "bh_a_fw",
         "handle": "c23"
       },
-      "color": "Pink",
-      "partId": "wp_20_pnk"
+      "color": "Gray",
+      "partId": "wp_20_gry"
     },
     {
       "id": "w200_c",
@@ -1710,12 +1710,12 @@
         "id": "bh_a_fw",
         "handle": "c36"
       },
-      "color": "Pink",
-      "partId": "wp_20_pnk"
+      "color": "Gray",
+      "partId": "wp_20_gry"
     },
     {
       "id": "w_fp85",
-      "color": "Pink",
+      "color": "White",
       "source": {
         "id": "k_fp",
         "handle": "c2"
@@ -1724,11 +1724,11 @@
         "id": "ecu_a",
         "handle": "a19"
       },
-      "partId": "wp_18_pnk"
+      "partId": "wp_18_wht"
     },
     {
       "id": "w_fan85",
-      "color": "Pink",
+      "color": "White",
       "source": {
         "id": "k_fan",
         "handle": "c2"
@@ -1737,11 +1737,11 @@
         "id": "ecu_a",
         "handle": "a29"
       },
-      "partId": "wp_18_pnk"
+      "partId": "wp_18_wht"
     },
     {
       "id": "w_str85",
-      "color": "Pink",
+      "color": "White",
       "source": {
         "id": "k_str",
         "handle": "c2"
@@ -1750,7 +1750,7 @@
         "id": "ecu_a",
         "handle": "a26"
       },
-      "partId": "wp_18_pnk"
+      "partId": "wp_18_wht"
     },
     {
       "id": "w_cam_sig_c",
@@ -1767,7 +1767,7 @@
     },
     {
       "id": "w_ac_kill",
-      "color": "Pink",
+      "color": "Gray",
       "source": {
         "id": "ecu_a",
         "handle": "a18"
@@ -1776,7 +1776,7 @@
         "id": "br_w_ac_kill",
         "handle": "Terminal"
       },
-      "partId": "wp_20_pnk"
+      "partId": "wp_20_gry"
     },
     {
       "id": "w_drain_ecu_a",
@@ -3579,11 +3579,11 @@
       }
     },
     {
-      "id": "wp_20_pnk",
-      "partNumber": "EW-1C20-PNK",
+      "id": "wp_20_gry",
+      "partNumber": "EW-1C20-GRY",
       "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, PINK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Pink",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GRAY, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Gray",
       "gauge": {
         "value": 20,
         "unit": "AWG"
@@ -3634,11 +3634,11 @@
       }
     },
     {
-      "id": "wp_18_pnk",
-      "partNumber": "EW-1C18-PNK",
+      "id": "wp_18_wht",
+      "partNumber": "EW-1C18-WHT",
       "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, PINK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Pink",
+      "description": "WIRE, ELECTRICAL, 18 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "White",
       "gauge": {
         "value": 18,
         "unit": "AWG"

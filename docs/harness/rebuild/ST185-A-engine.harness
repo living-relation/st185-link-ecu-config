@@ -1224,8 +1224,8 @@
         "id": "boost",
         "handle": "c2"
       },
-      "color": "Pink",
-      "partId": "wp_20_pnk"
+      "color": "Gray",
+      "partId": "wp_20_gry"
     },
     {
       "id": "w201_e",
@@ -1599,8 +1599,8 @@
         "id": "br_w_mrs_e",
         "handle": "Terminal"
       },
-      "color": "Pink",
-      "partId": "wp_20_pnk"
+      "color": "Gray",
+      "partId": "wp_20_gry"
     },
     {
       "id": "w124_e_ae",
@@ -1612,8 +1612,8 @@
         "id": "etb",
         "handle": "c4"
       },
-      "color": "Pink",
-      "partId": "wp_18_pnk"
+      "color": "White",
+      "partId": "wp_18_wht"
     },
     {
       "id": "w215_e_ae",
@@ -1625,8 +1625,8 @@
         "id": "etb",
         "handle": "c1"
       },
-      "color": "Pink",
-      "partId": "wp_18_pnk"
+      "color": "White",
+      "partId": "wp_18_wht"
     },
     {
       "id": "w211",
@@ -2666,11 +2666,11 @@
       }
     },
     {
-      "id": "wp_20_pnk",
-      "partNumber": "EW-1C20-PNK",
+      "id": "wp_20_gry",
+      "partNumber": "EW-1C20-GRY",
       "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, PINK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Pink",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GRAY, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Gray",
       "gauge": {
         "value": 20,
         "unit": "AWG"
@@ -2710,11 +2710,11 @@
       }
     },
     {
-      "id": "wp_18_pnk",
-      "partNumber": "EW-1C18-PNK",
+      "id": "wp_18_wht",
+      "partNumber": "EW-1C18-WHT",
       "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, PINK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Pink",
+      "description": "WIRE, ELECTRICAL, 18 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "White",
       "gauge": {
         "value": 18,
         "unit": "AWG"
