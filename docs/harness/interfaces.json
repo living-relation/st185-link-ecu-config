@@ -616,26 +616,26 @@
       "harness": "ACAmp-Spur",
       "terminal": "fl_acamp_mg",
       "ewd": {
-        "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png); 1992 EWD132U p.218 A17-9 (ewd-snips/1992-celica-ewd132u-a17-clutch-p218.png)",
+        "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png); 1992 EWD132U p.218 A17-5 (ewd-snips/1992-celica-ewd132u-a17-clutch-p218.png)",
         "connector": "A18",
-        "pin": "9",
-        "color": "W-L",
-        "function": "MG magnetic clutch lock sensor -> A4-2",
-        "method": "solder sleeve into the factory W-L lead at the A/C amplifier"
+        "pin": "5",
+        "color": "Y-B",
+        "function": "magnetic clutch coil drive -> A4-3",
+        "method": "solder sleeve into the factory Y-B lead at the A/C amplifier"
       }
     },
     {
-      "id": "FL_A4_2",
+      "id": "FL_A4_3",
       "type": "oem_flying_lead",
       "harness": "ACAmp-Spur",
-      "terminal": "fl_a4_2",
+      "terminal": "fl_a4_3",
       "ewd": {
-        "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png); 1992 EWD132U p.28 locator A4",
+        "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png); 1992 EWD132U locator A4",
         "connector": "A4",
-        "pin": "2",
-        "color": "W-L",
-        "function": "A/C magnetic clutch and compressor sensor <- A18-9",
-        "method": "solder sleeve into the factory W-L lead at the clutch"
+        "pin": "3",
+        "color": "Y-B",
+        "function": "A/C magnetic clutch coil <- A18-5",
+        "method": "solder sleeve into the factory Y-B lead at the clutch"
       }
     },
     {
