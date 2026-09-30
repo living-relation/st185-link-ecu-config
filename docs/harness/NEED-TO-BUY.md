@@ -1,6 +1,6 @@
 # Harness — need to buy
 
-Generated on 2026-09-29 from the 15 `.harness` files in `docs/harness/rebuild/`:
+Generated on 2026-09-30 from the 15 `.harness` files in `docs/harness/rebuild/`:
 `A-cabin`, `B-cabin`, `CabinPower`, `APS-Pedal`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`, `CSB3`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
@@ -11,8 +11,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 |---|---|---|---:|---:|---:|
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 40 | 0 | **40** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
+| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 32 | 0 | **32** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 28 | 0 | **28** |
-| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 28 | 0 | **28** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 16 | 6 | **10** |
@@ -198,8 +198,7 @@ is in `interfaces.json` and in the build list's EWD column.
 
 | Harness | Flying leads |
 |---|---:|
-| A-cabin | 1 |
-| ACAmp-Spur | 2 |
+| ACAmp-Spur | 7 |
 | B-cabin | 2 |
 | B-engine | 1 |
 | CSB3 | 6 |

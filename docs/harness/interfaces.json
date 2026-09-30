@@ -48,7 +48,7 @@
     },
     "ACAmp-Spur": {
       "file": "ST185-ACAmp-Spur.harness",
-      "physical": "A/C amplifier spur - receiving half of IX_AC_CTS to flying leads at the auto A/C amplifier"
+      "physical": "A/C amplifier spur - receiving half of IX_AC_CTS (TW to auto amp A34) plus flying leads at compressor A/C AMPLIFIER A18 (kill / clutch / pressure); no OEM A/C housings"
     },
     "RearFuel": {
       "file": "ST185-RearFuel.harness",
@@ -275,17 +275,17 @@
   ],
   "flyingLeads": [
     {
-      "id": "FL_ACAMP_C1",
+      "id": "FL_ACAMP_ACT",
       "type": "oem_flying_lead",
-      "harness": "A-cabin",
-      "terminal": "fl_acamp_c1",
+      "harness": "ACAmp-Spur",
+      "terminal": "fl_acamp_act",
       "ewd": {
-        "page": "p.150 / p.152",
-        "connector": "A/C amplifier",
-        "pin": "TBD - ACT terminal is not on p.150 or p.152",
-        "color": "TBD",
-        "function": "ACT compressor cancel, ground = kill (ECU A18, Aux 4)",
-        "method": "solder sleeve into the factory ACT lead at the amplifier"
+        "page": "1992 Celica EWD132U p.93 and p.218 (docs/electrical/ewd-snips/1992-celica-ewd132u-a17-act-p093.png, 1992-celica-ewd132u-a17-clutch-p218.png); 1990 ST185 book locator A18",
+        "connector": "A18",
+        "pin": "11",
+        "color": "G-Y",
+        "function": "ACT compressor cancel from ECU Aux 4, ground = kill",
+        "method": "solder sleeve into the factory G-Y ACT lead at the A/C amplifier"
       }
     },
     {
@@ -608,6 +608,62 @@
         "color": "TBD",
         "function": "A/C coolant switch return",
         "method": "solder sleeve into the factory sensor-return lead at the amplifier"
+      }
+    },
+    {
+      "id": "FL_ACAMP_MG",
+      "type": "oem_flying_lead",
+      "harness": "ACAmp-Spur",
+      "terminal": "fl_acamp_mg",
+      "ewd": {
+        "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png); 1992 EWD132U p.218 A17-9 (ewd-snips/1992-celica-ewd132u-a17-clutch-p218.png)",
+        "connector": "A18",
+        "pin": "9",
+        "color": "W-L",
+        "function": "MG magnetic clutch lock sensor -> A4-2",
+        "method": "solder sleeve into the factory W-L lead at the A/C amplifier"
+      }
+    },
+    {
+      "id": "FL_A4_2",
+      "type": "oem_flying_lead",
+      "harness": "ACAmp-Spur",
+      "terminal": "fl_a4_2",
+      "ewd": {
+        "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png); 1992 EWD132U p.28 locator A4",
+        "connector": "A4",
+        "pin": "2",
+        "color": "W-L",
+        "function": "A/C magnetic clutch and compressor sensor <- A18-9",
+        "method": "solder sleeve into the factory W-L lead at the clutch"
+      }
+    },
+    {
+      "id": "FL_ACAMP_PSW",
+      "type": "oem_flying_lead",
+      "harness": "ACAmp-Spur",
+      "terminal": "fl_acamp_psw",
+      "ewd": {
+        "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png); 1992 EWD132U p.219 A17-13 (ewd-snips/1992-celica-ewd132u-a17-pressure-p219.png)",
+        "connector": "A18",
+        "pin": "13",
+        "color": "Y-R",
+        "function": "A/C pressure switch in <- A5-4",
+        "method": "solder sleeve into the factory Y-R lead at the A/C amplifier"
+      }
+    },
+    {
+      "id": "FL_A5_4",
+      "type": "oem_flying_lead",
+      "harness": "ACAmp-Spur",
+      "terminal": "fl_a5_4",
+      "ewd": {
+        "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png)",
+        "connector": "A5",
+        "pin": "4",
+        "color": "Y-R",
+        "function": "A/C pressure switch switched return -> A18-13",
+        "method": "solder sleeve into the factory Y-R lead at the pressure switch"
       }
     }
   ],
@@ -1537,6 +1593,21 @@
         {
           "harness": "A-cabin",
           "terminal": "br_w_lamg_b"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_AC_KILL",
+      "type": "broken_off",
+      "what": "ECU-A A18 Aux 4 AC kill to A/C AMPLIFIER A18-11 ACT on ST185-ACAmp-Spur",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_ac_kill"
+        },
+        {
+          "harness": "ACAmp-Spur",
+          "terminal": "br_w_ac_kill"
         }
       ]
     }

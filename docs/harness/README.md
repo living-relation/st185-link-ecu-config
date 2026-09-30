@@ -38,7 +38,7 @@ physical section of copper, a connector or a BOM line has one owner.
 | `ST185-WheelSpeed-Front.harness` | Front wheel speed | one Y harness: FL/FR drops to the front VRC endpoints, output to `IX_WS_FRONT` |
 | `ST185-WheelSpeed-Rear.harness` | Rear wheel speed | one Y harness: RL/RR drops to the rear VRC endpoints, output to `IX_WS_REAR` |
 | `ST185-RearFuel.harness` | Rear Fuel | fuel level sender behind `IX_FUEL_LVL` |
-| `ST185-ACAmp-Spur.harness` | A/C amplifier spur | receiving side of `IX_AC_CTS` to flying leads at the auto A/C amplifier |
+| `ST185-ACAmp-Spur.harness` | A/C amplifier spur | receiving side of `IX_AC_CTS` (TW to auto amp A34) plus flying leads at compressor A/C AMPLIFIER A18 (kill / clutch / pressure); no OEM A/C housings. Labels: `docs/harness/ACAMP-SPUR-LABELS.md` |
 | `ST185-ClusterLED.harness` | Cluster warning LEDs | LED loom; C11/C12 taps are flying leads |
 | `ST185-AntiTheft.harness` | Anti-theft | cabin |
 
