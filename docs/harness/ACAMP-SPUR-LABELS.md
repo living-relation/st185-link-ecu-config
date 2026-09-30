@@ -26,7 +26,7 @@ Existing coolant-switch leads (not this pass, already on the spur):
 | `fl_acamp_tw` | AUTO A/C AMPLIFIER **A34 pin 20** | R-G | TW | 1990 p.150 (`1990-st185-autoac-amplifier-p150.png`) |
 | `fl_acamp_sg` | A34 return **TBD** | TBD | Coolant-switch return | 1990 p.150 does not show the return pin — do not invent |
 
-Kill copper: ECU-A A18 Aux 4 (Pink, this harness) on `ST185-A-cabin` → broken-off `br_w_ac_kill` → `fl_acamp_act` on this spur. Factory ACT colour is G-Y; splice the Pink lead into that G-Y at A18-11.
+Kill copper: ECU-A A18 Aux 4 (Gray 20 AWG, this harness) on `ST185-A-cabin` → broken-off `br_w_ac_kill` → `fl_acamp_act` on this spur. Factory ACT colour is G-Y; splice the Gray lead into that G-Y at A18-11.
 
 ## Assumptions
 
