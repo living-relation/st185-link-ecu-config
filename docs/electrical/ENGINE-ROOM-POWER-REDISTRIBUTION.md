@@ -314,7 +314,7 @@ Routed with the OEM engine-room main. Passenger fender / ABS trough for EPS; cor
 | C7 | Rad fan GND | 8 AWG | Fan → EA | |
 | C8 | Condenser fan 12 V | 8 AWG | `k_fan2` 87 → core support | New DT 2-way |
 | C9 | Condenser fan GND | 8 AWG | Fan → EA | |
-| C10 | A/C compressor clutch | — | **ST185-ACAmp-Spur** flying leads (A18-9 / A4-2), not C | Not on A/B; `docs/harness/ACAMP-SPUR-LABELS.md` |
+| C10 | A/C compressor clutch | — | **ST185-ACAmp-Spur** flying leads (A18-5 / A4-3 clutch coil), not C | Not on A/B; `docs/harness/ACAMP-SPUR-LABELS.md` |
 
 Wiper, washer, headlights, turn, park, horn motors **stay on the OEM engine-room loom**. We only restore their power at J1–J5.
 

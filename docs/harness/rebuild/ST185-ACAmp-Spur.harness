@@ -88,10 +88,10 @@
       }
     },
     {
-      "id": "fl_a4_2",
+      "id": "fl_a4_3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.152 A4-2 W-L A/C magnetic clutch and compressor sensor <- A18-9 - solder sleeve into the factory W-L lead at the clutch",
+      "signal": "EWD 1990 p.152 A4-3 Y-B A/C magnetic clutch coil <- A18-5 - solder sleeve into the factory Y-B lead at the clutch",
       "schematicPosition": {
         "x": 0,
         "y": 360
@@ -105,7 +105,7 @@
       "id": "fl_acamp_mg",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.152 A18-9 W-L MG magnetic clutch lock sensor -> A4-2 - solder sleeve into the factory W-L lead at the A/C amplifier",
+      "signal": "EWD 1990 p.152 A18-5 Y-B magnetic clutch coil drive -> A4-3 - solder sleeve into the factory Y-B lead at the A/C amplifier",
       "schematicPosition": {
         "x": 600,
         "y": 360
@@ -187,16 +187,16 @@
     {
       "id": "w_ac_clutch",
       "source": {
-        "id": "fl_a4_2",
+        "id": "fl_a4_3",
         "handle": "Terminal"
       },
       "target": {
         "id": "fl_acamp_mg",
         "handle": "Terminal"
       },
-      "color": "White",
-      "stripeColor": "Blue",
-      "partId": "wp_20_wht_blu"
+      "color": "Yellow",
+      "stripeColor": "Black",
+      "partId": "wp_20_yel_blk"
     },
     {
       "id": "w_ac_psw",
@@ -260,8 +260,8 @@
       }
     },
     {
-      "id": "bn_fl_a4_2__bp_amp",
-      "sourceId": "fl_a4_2",
+      "id": "bn_fl_a4_3__bp_amp",
+      "sourceId": "fl_a4_3",
       "targetId": "bp_amp",
       "length": {
         "value": 50,
@@ -313,7 +313,7 @@
         "x": 1020,
         "y": 0
       },
-      "text": "A/C AMPLIFIER SPUR. Receiving side of IX_AC_CTS (TW/return to auto amp A34). Three 2026-09-30 circuits as labeled flying leads, no OEM A/C housings: Aux 4 kill -> A18-11 ACT; clutch A4-2 <-> A18-9 MG; pressure A5-4 <-> A18-13. Sources and the A18-11 assumption: docs/harness/ACAMP-SPUR-LABELS.md. Solar and TAM not this pass. Amplifier not drawn."
+      "text": "A/C AMPLIFIER SPUR. Receiving side of IX_AC_CTS (TW/return to auto amp A34). Three 2026-09-30 circuits as labeled flying leads, no OEM A/C housings: Aux 4 kill -> A18-11 ACT; clutch coil A4-3 <-> A18-5; pressure A5-4 <-> A18-13. A4-2 / A18-9 is the lock-sensor switch, not drawn. Sources and the A18-11 assumption: docs/harness/ACAMP-SPUR-LABELS.md. Solar and TAM not this pass. Amplifier not drawn."
     }
   ],
   "wireParts": [
@@ -351,12 +351,12 @@
       }
     },
     {
-      "id": "wp_20_wht_blu",
-      "partNumber": "EW-1C20-WHT-BLU",
+      "id": "wp_20_yel_blk",
+      "partNumber": "EW-1C20-YEL-BLK",
       "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE/BLUE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "White",
-      "stripeColor": "Blue",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Yellow",
+      "stripeColor": "Black",
       "gauge": {
         "value": 20,
         "unit": "AWG"
