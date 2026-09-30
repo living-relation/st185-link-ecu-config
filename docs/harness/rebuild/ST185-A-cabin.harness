@@ -788,10 +788,10 @@
   ],
   "terminals": [
     {
-      "id": "fl_acamp_c1",
+      "id": "br_w_ac_kill",
       "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD p.150 / p.152 A/C amplifier-TBD TBD ACT compressor cancel, ground = kill (ECU A18, Aux 4) - solder sleeve into the factory ACT lead at the amplifier",
+      "signal": "Broken off - continues on ST185-ACAmp-Spur: Aux 4 AC kill to A/C amplifier A18-11",
+      "width": 390,
       "schematicPosition": {
         "x": 660,
         "y": 1110
@@ -1773,7 +1773,7 @@
         "handle": "a18"
       },
       "target": {
-        "id": "fl_acamp_c1",
+        "id": "br_w_ac_kill",
         "handle": "Terminal"
       },
       "partId": "wp_20_pnk"
@@ -2923,9 +2923,9 @@
       }
     },
     {
-      "id": "bn_bp_fl_acamp__fl_acamp_c1",
+      "id": "bn_bp_fl_acamp__br_w_ac_kill",
       "sourceId": "bp_fl_acamp",
-      "targetId": "fl_acamp_c1",
+      "targetId": "br_w_ac_kill",
       "length": {
         "value": 50,
         "unit": "mm"
