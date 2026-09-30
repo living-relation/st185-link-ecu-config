@@ -99,9 +99,8 @@ interfaces.json              <- and the ownership facts with them
         validate_bulkhead_letter.py ECU looms follow the connector letter (Rule 3)
         audit_bulkhead_pairs.py    no one-sided bulkhead cavity
         audit_bh_collisions.py     no two circuits on one cavity half
-        buylist.py                 shared-connector consistency check (does not write NEED-TO-BUY.md)
-        from_live_boms.py --check-committed  shopping lists stamped from the live harness.design export
-        buildlist.py               writes HARNESS-BUILD-LIST.csv (wire routes from the repo drawings)
+        buylist.py                 writes NEED-TO-BUY.md, PARTS-LISTS.md, HARNESS-BOM.csv from the repo drawings
+        buildlist.py               writes HARNESS-BUILD-LIST.csv
         make_min.py                writes min/  -> uploaded to harness.design
 ```
 
@@ -138,10 +137,10 @@ to one node).
    rule applies to the cloud part library. `part_desc.py` is the gate, and
    `part_desc.py --fix` rewrites to the standard text.
 
-Adding up the parts lists off the individual *repo* drawings by hand will over-order
-and will also be behind the live looms. Shop from `NEED-TO-BUY.md` / `PARTS-LISTS.md` /
-`HARNESS-BOM.csv`, which are generated from a live harness.design BOM export
-(`from_live_boms.py`), not from `rebuild/`.
+Adding up the parts lists off the individual drawings by hand will over-order.
+`NEED-TO-BUY.md` is the only correct total. `PARTS-LISTS.md` and `HARNESS-BOM.csv`
+are the same walk, split per loom. All three are generated from
+`docs/harness/rebuild/*.harness` and stamped with the git branch and commit.
 
 ## Versioning
 

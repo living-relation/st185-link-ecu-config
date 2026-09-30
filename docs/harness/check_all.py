@@ -20,8 +20,7 @@ What it runs, in order - every one in HARD is a hard gate:
   audit_bulkhead_pairs.py  no bulkhead cavity wired on one side only
   audit_bh_collisions.py   no two circuits on one half of a bulkhead cavity
   part_desc.py             part descriptions describe the part only (standard format)
-  buylist.py               shared-connector consistency check (does not write NEED-TO-BUY.md)
-  from_live_boms.py        shopping lists stamped from the live harness.design BOM export
+  buylist.py               buy list, per-loom parts lists and BOM from the repo drawings
   buildlist.py             per-wire build list
   make_min.py              the upload copies in min/
 
@@ -37,8 +36,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_shields.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
-        ["audit_bh_collisions.py"], ["part_desc.py"], ["buylist.py"],
-        ["from_live_boms.py", "--check-committed"], ["buildlist.py"], ["make_min.py"]]
+        ["audit_bh_collisions.py"], ["part_desc.py"], ["buylist.py"], ["buildlist.py"], ["make_min.py"]]
 SOFT = []
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy
 # baseline cannot follow the redesign's intentional ownership and boundary moves.
