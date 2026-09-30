@@ -620,7 +620,7 @@
         "connector": "A18",
         "pin": "5",
         "color": "Y-B",
-        "function": "magnetic clutch coil drive -> A4-3",
+        "function": "magnetic clutch -> A4-3",
         "method": "solder sleeve into the factory Y-B lead at the A/C amplifier"
       }
     },
@@ -634,7 +634,7 @@
         "connector": "A4",
         "pin": "3",
         "color": "Y-B",
-        "function": "A/C magnetic clutch coil <- A18-5",
+        "function": "A/C magnetic clutch <- A18-5",
         "method": "solder sleeve into the factory Y-B lead at the clutch"
       }
     },
