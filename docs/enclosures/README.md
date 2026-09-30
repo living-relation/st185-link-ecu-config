@@ -8,6 +8,8 @@ CSV sources of truth for the two enclosure families sealed in
 | VR conditioner (x2 identical) | 6.30 / 6.35 | [vr-conditioner-bom.csv](vr-conditioner-bom.csv) |
 | CSB3 | 6.37 pin map + 6.40 HD30 | [csb3-bom.csv](csb3-bom.csv) |
 
+Both boxes are Hammond 1590YFL (natural diecast Al, 92x92x42 mm, outside mounting flange). Drawing: [hammond-1590YFL.pdf](hammond-1590YFL.pdf).
+
 ## Rules
 
 - Edit the CSV only. Pretty tables are regenerated from it.
@@ -24,4 +26,4 @@ CSV sources of truth for the two enclosure families sealed in
 
 ## Shelf
 - Map: `C:\projects\docs\project-structure.md` (Enclosure BOMs 2026-09-21).
-- Branch: `docs/enclosure-bom-vr-csb3`. Do not hand-edit two HTML faces — regenerate from these CSVs.
+- Branch `docs/enclosure-bom-vr-csb3` merged to main via PR #23 (25c25b6); CSVs live here: [vr-conditioner-bom.csv](vr-conditioner-bom.csv), [csb3-bom.csv](csb3-bom.csv). Do not hand-edit two HTML faces — regenerate from these CSVs.
