@@ -36,7 +36,8 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `XTREMEX-IO-TABLE.html` | Visual face of `sot/channels.csv`: channel plan, pin budget, and a generated pin map of every ECU pin. `docs/harness/sync_io_table.py --check` fails if it disagrees with the CSV. Open in a browser. |
 | `docs/harness/rebuild/*.harness` | **The physical harnesses, one per file** (harness.design v0.9; ownership in docs/harness/interfaces.json) — what gets built. Upload copies in `docs/harness/min/`. See `docs/harness/README.md`. |
 | `docs/harness/check_all.py` | Runs every harness gate (SoT, IO table, lint, mating, shields, pin names, buy/build lists). Must pass before every commit. |
-| `docs/harness/HARNESS-BUILD-LIST.csv` / `NEED-TO-BUY.md` | Generated per-wire build list and buy list. Never hand-edit — `check_all.py` regenerates them. |
+| `docs/harness/HARNESS-BUILD-LIST.csv` | Generated per-wire build list from the repo drawings (`buildlist.py`). Never hand-edit. |
+| `docs/harness/PARTS-LISTS.md` / `HARNESS-BOM.csv` / `NEED-TO-BUY.md` | Live harness.design BOM export (`from_live_boms.py`). Shop from these. Never hand-edit, and never re-count from `rebuild/*.harness`. |
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table with factory EWD snips. How power and ground re-enter the OEM engine-room, cowl and dash looms after the battery and fuse box leave the bay. |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |
 | `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 5-node topology. |

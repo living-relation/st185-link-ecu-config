@@ -119,10 +119,10 @@ silently alter how this project is worked on.
 | File | Owner | Rule |
 |---|---|---|
 | `docs/research-hub.html` | **The "Regenerate research hub" Action** | **Never commit it.** Run `docs/build-research-hub.py` locally to preview, then `git checkout -- docs/research-hub.html` before you commit. PRs that touch `docs/**` (or the workflow) run the generator as a check and attach the HTML artifact. The bot commits the file to `main` only, after those changes merge. Committing it locally is what causes the rebase conflicts. |
-| `docs/harness/HARNESS-BUILD-LIST.csv` | `docs/harness/buildlist.py` | Commit it, but always regenerate - never hand-edit, never hand-merge. |
-| `docs/harness/NEED-TO-BUY.md` | `docs/harness/buylist.py` | Same. |
+| `docs/harness/HARNESS-BOM.csv` / `PARTS-LISTS.md` / `NEED-TO-BUY.md` | `docs/harness/from_live_boms.py` | Commit them, but always regenerate from a live harness.design BOM export — never hand-edit, never hand-merge, never re-count from `rebuild/*.harness`. |
+| `docs/harness/HARNESS-BUILD-LIST.csv` | `docs/harness/buildlist.py` | Per-wire build sheet from the repo drawings (routes are not in the BOM export). Commit it, but always regenerate - never hand-edit, never hand-merge. |
 
-`.gitattributes` marks all three `linguist-generated` and gives `research-hub.html`
+`.gitattributes` marks these generated reports `linguist-generated` and gives `research-hub.html`
 `merge=ours`. Enable the driver once per clone:
 
 ```

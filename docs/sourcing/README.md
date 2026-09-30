@@ -82,7 +82,7 @@ Daniel's call. Flagged, not decided.
 
 ## Rules
 
-- Edit the CSV only. Do not hand-edit generated buy lists - re-run `buylist.py`.
+- Edit the CSV only. Do not hand-edit generated buy lists - re-run `from_live_boms.py` against a live harness.design BOM export.
 - A part number in a `.harness` file must exist here, or the BOM row must say why
   it is being bought new.
 - When a part is consumed by a build, note it - do not silently decrement.

@@ -58,8 +58,8 @@ whole chain and must pass before every commit.
 | `docs/harness/rebuild/ST185-ClusterLED.harness` | Cluster warning LEDs |
 | `docs/harness/rebuild/ST185-AntiTheft.harness` | Anti-theft |
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table |
-| `docs/harness/HARNESS-BUILD-LIST.csv` | Generated - re-run `buildlist.py` |
-| `docs/harness/NEED-TO-BUY.md` | Generated - re-run `buylist.py` |
+| `docs/harness/HARNESS-BUILD-LIST.csv` | Generated from the repo drawings - re-run `buildlist.py` |
+| `docs/harness/HARNESS-BOM.csv` / `PARTS-LISTS.md` / `NEED-TO-BUY.md` | Generated from a live harness.design BOM export - re-run `from_live_boms.py --from-export` |
 | `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` | Build rules (section 6) |
 | `docs/SHIELD-RULES.md` | Shield rules, enforced by the audits |
 | `docs/sourcing/te-on-hand-bom.csv` | Parts already owned - check before speccing anything new |

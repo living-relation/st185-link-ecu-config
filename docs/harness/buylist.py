@@ -1,4 +1,4 @@
-import json, os, re, collections, datetime
+import json, os, collections
 
 import model
 
@@ -26,6 +26,8 @@ ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  # 2026-09-25 from docs/sourcing/te-on-hand-bom.csv (not in the older xlsx pull)
  "1393310-4":1,"282080-1":2,"282110-1":10,"281934-2":10,
 }
+# Not consumed by the shopping lists. Live harness.design BOM quantities win.
+# Kept here as the list of hardware the .harness schema cannot attach.
 EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  # 2026-09-25: the relays now sit in VCF7 sockets drawn as mount parts, so the
  # socket and its 280755-4 / 280756-4 / 42281-1 terminals come off the drawings.
@@ -74,208 +76,121 @@ DEVICE_SIDE = [
  ("0460-202-1631","TE DEUTSCH","CONTACT, PIN, SOLID, SIZE 16, 20-16 AWG, 13A, GOLD",21),
 ]
 
-req, meta = collections.Counter(), {}
-WIRED = {}   # loom -> {(node id, handle)} every conductor end, to resolve default contacts
-# A connector that appears in more than one loom is ONE physical part - bulkhead A
-# lives in three files, bulkhead B in two.  Count the first copy and skip the rest.
-# The dedupe keys on the component id, so it is only safe while the same id always
-# means the same item: SHARED below records what got skipped, and the run aborts if
-# two files disagree about a shared connector's part or contact stamps.
-copies = collections.OrderedDict()   # connector id -> [(loom, connector, parts), ...]
-for f in F:
-    loom = f[6:-8]
-    d = json.load(open(os.path.join(R,f), encoding="utf-8"))
-    parts = {}
-    for k in [x for x in d if x.endswith("Parts")]:
-        for q in d[k]: parts[q["id"]] = q
-    w = set()
-    for x in d.get("wires", []):
-        for e in (x.get("source"), x.get("target")):
-            if e: w.add((e.get("id"), e.get("handle")))
-    for cb in d.get("cables", []) + d.get("twistedWires", []):
-        for x in cb.get("cores", []) + cb.get("wires", []) + ([cb["shield"]] if cb.get("shield") else []):
+def check_shared_connectors():
+    """Walk rebuild/ only to assert shared connectors agree. Does not write NEED-TO-BUY.md."""
+    req, meta = collections.Counter(), {}
+    WIRED = {}   # loom -> {(node id, handle)} every conductor end, to resolve default contacts
+    # A connector that appears in more than one loom is ONE physical part - bulkhead A
+    # lives in three files, bulkhead B in two.  Count the first copy and skip the rest.
+    # The dedupe keys on the component id, so it is only safe while the same id always
+    # means the same item: SHARED below records what got skipped, and the run aborts if
+    # two files disagree about a shared connector's part or contact stamps.
+    copies = collections.OrderedDict()   # connector id -> [(loom, connector, parts), ...]
+    for f in F:
+        loom = f[6:-8]
+        d = json.load(open(os.path.join(R,f), encoding="utf-8"))
+        parts = {}
+        for k in [x for x in d if x.endswith("Parts")]:
+            for q in d[k]: parts[q["id"]] = q
+        w = set()
+        for x in d.get("wires", []):
             for e in (x.get("source"), x.get("target")):
                 if e: w.add((e.get("id"), e.get("handle")))
-    WIRED[loom] = w
-    for c in d.get("connectors", []):
-        copies.setdefault(c["id"], []).append((loom, c, parts))
-    for coll in ("resistors", "diodes", "terminals", "splices", "branchPoints"):
-        for n in d.get(coll, []):
-            if n.get("excludeFromBom"):
+        for cb in d.get("cables", []) + d.get("twistedWires", []):
+            for x in cb.get("cores", []) + cb.get("wires", []) + ([cb["shield"]] if cb.get("shield") else []):
+                for e in (x.get("source"), x.get("target")):
+                    if e: w.add((e.get("id"), e.get("handle")))
+        WIRED[loom] = w
+        for c in d.get("connectors", []):
+            copies.setdefault(c["id"], []).append((loom, c, parts))
+        for coll in ("resistors", "diodes", "terminals", "splices", "branchPoints"):
+            for n in d.get(coll, []):
+                if n.get("excludeFromBom"):
+                    continue
+                pid = n.get("partId") or n.get("bootPartId")
+                if pid and pid in parts:
+                    q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+
+    def stamp(c, parts):
+        """What this copy claims: its part number and every contact/plug it names.
+        A cross-reference dummy claims nothing, so it stamps empty and never wins.
+        2026-09-25: neither does a copy marked excludeFromBom - every non-owner copy
+        of a shared connector is excluded, so it is counted once, on its owner loom."""
+        if c.get("excludeFromBom"):
+            return None, ()
+        pn = (parts.get(c.get("partId")) or {}).get("partNumber")
+        ct = tuple(sorted((cv["id"], cv.get("contactPartId"), cv.get("cavityPlugPartId"))
+                          for cv in c.get("cavities", []) if cv.get("contactPartId")
+                          or cv.get("cavityPlugPartId")))
+        return pn, ct
+
+    SHARED, clash = {}, []
+    # physicalPartGroup: two or more DIFFERENT connector ids that are documentation
+    # halves of ONE physical part - e.g. the DRB102 bulkhead's A-half and B-half,
+    # split so the A/B ECU-letter gate still works (docs/harness/redesign/DECISIONS.md,
+    # 2026-09-29). This is a different problem from SHARED above: SHARED is the SAME
+    # id copied into more than one loom (always identical cavities, asserted by the
+    # clash check); a physicalPartGroup is different ids with different, non-overlapping
+    # cavities that nonetheless share one housing. So only the housing part number and
+    # its configuration hardware (lock/boot/backshell/mount/dustCover) are counted once
+    # per group below - each half's own cavities are real and stay per-id, uncoditionally.
+    # Owner = alphabetically-first id in the group, so it never depends on the order
+    # harness_files() happens to return.
+    group_members = collections.OrderedDict()
+    for cid, cc in copies.items():
+        pg = cc[0][1].get("physicalPartGroup")
+        if pg:
+            group_members.setdefault(pg, []).append(cid)
+    group_owner = {pg: min(ids) for pg, ids in group_members.items()}
+
+    for cid, cc in copies.items():
+        stamps = [(loom, stamp(c, p)) for loom, c, p in cc]
+        real = [s for s in stamps if s[1][0] or s[1][1]]   # copies that claim a part
+        if not real:
+            continue                                        # partless everywhere - nothing to buy
+        # every copy that claims anything must claim the SAME thing, or the dedupe
+        # below would silently pick one of two different items.
+        for loom, s in real[1:]:
+            if s != real[0][1]:
+                clash.append("%s: %s disagrees with %s" % (cid, loom, real[0][0]))
+        if len(cc) > 1:
+            SHARED[cid] = ([loom for loom, _, _ in cc], real[0][0])
+        # count the copy that actually carries the parts, not whichever file came first
+        loom0 = real[0][0]
+        c, parts = next((c, p) for l, c, p in cc if l == loom0)
+        pg = c.get("physicalPartGroup")
+        is_owner = (group_owner.get(pg) == cid) if pg else True
+        if is_owner and c.get("partId") and c["partId"] in parts:
+            q = parts[c["partId"]]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+        # The part's configuration supplies the lock/boot/backshell and the DEFAULT
+        # contact (wired cavity) or plug (unwired cavity). Before 2026-09-24 only
+        # explicitly stamped cavities were counted, so every config-default contact
+        # and every wedgelock was missing from the buy list.
+        cfgs = (parts.get(c.get("partId")) or {}).get("configurations") or []
+        cfg = next((x for x in cfgs if x.get("id") == c.get("configurationId")), cfgs[0] if cfgs else {})
+        if is_owner:
+            for key in ("lockPartId","bootPartId","backshellPartId","mountPartId","dustCoverPartId"):
+                pid = cfg.get(key)
+                if pid and pid in parts:
+                    q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+        for cv in c.get("cavities", []):
+            if cv.get("notConnected"):
                 continue
-            pid = n.get("partId") or n.get("bootPartId")
-            if pid and pid in parts:
-                q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+            if "contactPartId" in cv or "cavityPlugPartId" in cv:
+                pids = [cv.get("contactPartId"), cv.get("cavityPlugPartId")]
+            elif any((cid, cv["id"]) in WIRED[l] for l, _, _ in cc):
+                pids = [cfg.get("contactPartId")]
+            else:
+                pids = [cfg.get("cavityPlugPartId")]
+            for pid in pids:
+                if pid and pid in parts:
+                    q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+    if clash:
+        raise SystemExit("Shared connectors are inconsistent between looms:\n  "
+                         + "\n  ".join(clash))
 
-def stamp(c, parts):
-    """What this copy claims: its part number and every contact/plug it names.
-    A cross-reference dummy claims nothing, so it stamps empty and never wins.
-    2026-09-25: neither does a copy marked excludeFromBom - every non-owner copy
-    of a shared connector is excluded, so it is counted once, on its owner loom."""
-    if c.get("excludeFromBom"):
-        return None, ()
-    pn = (parts.get(c.get("partId")) or {}).get("partNumber")
-    ct = tuple(sorted((cv["id"], cv.get("contactPartId"), cv.get("cavityPlugPartId"))
-                      for cv in c.get("cavities", []) if cv.get("contactPartId")
-                      or cv.get("cavityPlugPartId")))
-    return pn, ct
+    print("shared connectors consistent; shopping lists come from from_live_boms.py (live export)")
 
-SHARED, clash = {}, []
-# physicalPartGroup: two or more DIFFERENT connector ids that are documentation
-# halves of ONE physical part - e.g. the DRB102 bulkhead's A-half and B-half,
-# split so the A/B ECU-letter gate still works (docs/harness/redesign/DECISIONS.md,
-# 2026-09-29). This is a different problem from SHARED above: SHARED is the SAME
-# id copied into more than one loom (always identical cavities, asserted by the
-# clash check); a physicalPartGroup is different ids with different, non-overlapping
-# cavities that nonetheless share one housing. So only the housing part number and
-# its configuration hardware (lock/boot/backshell/mount/dustCover) are counted once
-# per group below - each half's own cavities are real and stay per-id, uncoditionally.
-# Owner = alphabetically-first id in the group, so it never depends on the order
-# harness_files() happens to return.
-group_members = collections.OrderedDict()
-for cid, cc in copies.items():
-    pg = cc[0][1].get("physicalPartGroup")
-    if pg:
-        group_members.setdefault(pg, []).append(cid)
-group_owner = {pg: min(ids) for pg, ids in group_members.items()}
 
-for cid, cc in copies.items():
-    stamps = [(loom, stamp(c, p)) for loom, c, p in cc]
-    real = [s for s in stamps if s[1][0] or s[1][1]]   # copies that claim a part
-    if not real:
-        continue                                        # partless everywhere - nothing to buy
-    # every copy that claims anything must claim the SAME thing, or the dedupe
-    # below would silently pick one of two different items.
-    for loom, s in real[1:]:
-        if s != real[0][1]:
-            clash.append("%s: %s disagrees with %s" % (cid, loom, real[0][0]))
-    if len(cc) > 1:
-        SHARED[cid] = ([loom for loom, _, _ in cc], real[0][0])
-    # count the copy that actually carries the parts, not whichever file came first
-    loom0 = real[0][0]
-    c, parts = next((c, p) for l, c, p in cc if l == loom0)
-    pg = c.get("physicalPartGroup")
-    is_owner = (group_owner.get(pg) == cid) if pg else True
-    if is_owner and c.get("partId") and c["partId"] in parts:
-        q = parts[c["partId"]]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
-    # The part's configuration supplies the lock/boot/backshell and the DEFAULT
-    # contact (wired cavity) or plug (unwired cavity). Before 2026-09-24 only
-    # explicitly stamped cavities were counted, so every config-default contact
-    # and every wedgelock was missing from the buy list.
-    cfgs = (parts.get(c.get("partId")) or {}).get("configurations") or []
-    cfg = next((x for x in cfgs if x.get("id") == c.get("configurationId")), cfgs[0] if cfgs else {})
-    if is_owner:
-        for key in ("lockPartId","bootPartId","backshellPartId","mountPartId","dustCoverPartId"):
-            pid = cfg.get(key)
-            if pid and pid in parts:
-                q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
-    for cv in c.get("cavities", []):
-        if cv.get("notConnected"):
-            continue
-        if "contactPartId" in cv or "cavityPlugPartId" in cv:
-            pids = [cv.get("contactPartId"), cv.get("cavityPlugPartId")]
-        elif any((cid, cv["id"]) in WIRED[l] for l, _, _ in cc):
-            pids = [cfg.get("contactPartId")]
-        else:
-            pids = [cfg.get("cavityPlugPartId")]
-        for pid in pids:
-            if pid and pid in parts:
-                q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
-if clash:
-    raise SystemExit("Shared connectors are inconsistent between looms:\n  "
-                     + "\n  ".join(clash))
-
-for pn, mf, desc, n in DEVICE_SIDE:
-    req[pn] += n
-    meta.setdefault(pn, {"partNumber": pn, "manufacturer": mf, "description": desc})
-
-# things that are modelled as blocks but are not parts anyone buys for this harness:
-# OEM items already on the car, or device-side terminals that come with the device.
-NOT_A_PART = re.compile(r"^\(|^TBD\b")
-rows_buy, rows_ok, rows_na = [], [], []
-for pn, n in sorted(req.items()):
-    have = ONHAND.get(pn, 0); short = max(0, n - have)
-    d_ = meta[pn]
-    r = (pn, d_.get("manufacturer",""), d_.get("description") or "", n, have, short)
-    if NOT_A_PART.match(pn): rows_na.append(r)
-    else: (rows_buy if short else rows_ok).append(r)
-for pn, mf, desc, n, have in EXTRA:
-    short = max(0, n - have)
-    (rows_buy if short else rows_ok).append((pn, mf, desc, n, have, short))
-
-out = ["# Harness — need to buy",
- "",
- "Generated on %s from the %d `.harness` files in `docs/harness/rebuild/`:"
- % (datetime.date.today().isoformat(), len(F)),
- "`" + "`, `".join(x[6:-8] for x in F) + "`.",
- "On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.",
- "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",
- "", "## Short — order these", "",
- "| Part number | Mfr | Description | Need | Have | **Buy** |", "|---|---|---|---:|---:|---:|"]
-for r in sorted(rows_buy, key=lambda x: -x[5]):
-    out.append("| `%s` | %s | %s | %d | %d | **%d** |" % r)
-out += ["", "## Covered by stock", "",
-        "| Part number | Description | Need | Have |", "|---|---|---:|---:|"]
-for r in sorted(rows_ok):
-    out.append("| `%s` | %s | %d | %d |" % (r[0], r[2], r[3], r[4]))
-out += ["", "## Not purchased — already on the car, or supplied with the device", "",
-        "| Modelled as | What it really is | Qty |", "|---|---|---:|"]
-for r in sorted(rows_na):
-    out.append("| `%s` | %s | %d |" % (r[0], r[2], r[3]))
-out += ["", "## Counted once, drawn more than once", "",
- "These connectors are one physical part that appears on several drawings — a bulkhead",
- "has to be on both looms that pass through it. The buy list counts the first copy and",
- "skips the rest. If you add up the parts lists off the individual drawings by hand you",
- "will over-order these; use this list, not the drawings.", "",
- "| Connector | One part, drawn on | Counted in |", "|---|---|---|"]
-for cid, (looms, owner) in sorted(SHARED.items()):
-    out.append("| `%s` | %s | %s |" % (cid, ", ".join(looms), owner))
-out += ["", "## One housing, drawn as two logical halves", "",
- "These connector ids are DIFFERENT nodes with different, non-overlapping cavities, not",
- "copies of the same node - but they are still one physical housing, split across an",
- "A-half and a B-half so the A/B ECU-letter gate applies to each side's own signals.",
- "The housing part number and its wedgelock/mount/backshell hardware are counted once,",
- "on the alphabetically-first half; every cavity's own contacts and plugs are still",
- "counted on both halves, since those are real and separate.", "",
- "| Group | Halves | Counted in |", "|---|---|---|"]
-for pg, ids in sorted(group_members.items()):
-    out.append("| `%s` | %s | `%s` |" % (pg, ", ".join(sorted(ids)), group_owner[pg]))
-REG = model.registry()
-out += ["", "## Inline interfaces - one connector pair per harness boundary", "",
- "Each half is counted once, on the harness that owns it (the receiving harness owns the",
- "mating half). Contacts and wedgelocks come from each half's part configuration above.", "",
- "| Interface | Family | Source half | Receiving half |", "|---|---|---|---|"]
-for ix in REG.get("interfaces", []):
-    s = next(h for h in ix["halves"] if h["role"] == "source")
-    r = next(h for h in ix["halves"] if h["role"] == "receiving")
-    out.append("| `%s` | %s | `%s` on %s | `%s` on %s |"
-               % (ix["id"], ix.get("family", ""), s["connector"], s["harness"], r["connector"], r["harness"]))
-fl_by = collections.Counter(f["harness"] for f in REG.get("flyingLeads", []))
-out += ["", "## OEM flying leads - splice material only, no OEM housing", "",
- "Each lead is one solder sleeve (`GENERIC FLYING LEAD` above). The EWD locator for every lead",
- "is in `interfaces.json` and in the build list's EWD column.", "",
- "| Harness | Flying leads |", "|---|---:|"]
-for h, n in sorted(fl_by.items()):
-    out.append("| %s | %d |" % (h, n))
-cab = collections.Counter()
-for loom, fn in model.harness_files(REG).items():
-    d = model.load(fn)
-    cp = {p["id"]: p for p in d.get("cableParts", [])}
-    for cb in d.get("cables", []):
-        p = cp.get(cb.get("partId")) or {}
-        cab[(loom, p.get("partNumber", cb.get("partId")))] += 1
-out += ["", "## Screened cable pieces by owning harness", "",
- "Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no connector.", "",
- "| Harness | Cable | Pieces |", "|---|---|---:|"]
-for (loom, pn), n in sorted(cab.items()):
-    out.append("| %s | `%s` | %d |" % (loom, pn, n))
-out += ["", "## Still unspecified", "",
- "- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. "
- "Needs a real dash number per branch OD once the trunk diameters are known.",
- ""]
-p = os.path.join(os.path.dirname(R), "NEED-TO-BUY.md")
-open(p, "w", encoding="utf-8").write("\n".join(out))
-print("wrote", p)
-print("to buy: %d lines, covered: %d lines" % (len(rows_buy), len(rows_ok)))
-for r in sorted(rows_buy, key=lambda x: -x[5]):
-    print("   BUY %-32s need %-4d have %-4d short %d" % (r[0], r[3], r[4], r[5]))
+if __name__ == "__main__":
+    check_shared_connectors()

@@ -14,3 +14,5 @@ docs/research-hub.html merge=ours linguist-generated=true
 # Generated harness reports. Same idea: rebuild, never hand-merge.
 docs/harness/HARNESS-BUILD-LIST.csv linguist-generated=true
 docs/harness/NEED-TO-BUY.md         linguist-generated=true
+docs/harness/HARNESS-BOM.csv        linguist-generated=true
+docs/harness/PARTS-LISTS.md         linguist-generated=true
