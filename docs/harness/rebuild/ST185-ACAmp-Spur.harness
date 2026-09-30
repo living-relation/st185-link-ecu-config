@@ -52,11 +52,95 @@
       "signal": "EWD p.150 A34-TBD TBD A/C coolant switch return - solder sleeve into the factory sensor-return lead at the amplifier",
       "schematicPosition": {
         "x": 600,
-        "y": 120
+        "y": 80
       },
       "layoutPosition": {
         "x": 600,
-        "y": 120
+        "y": 80
+      }
+    },
+    {
+      "id": "br_w_ac_kill",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: ECU-A A18 Aux 4 AC kill",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": 240
+      }
+    },
+    {
+      "id": "fl_acamp_act",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder sleeve into the factory G-Y lead at the A/C amplifier",
+      "schematicPosition": {
+        "x": 600,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 600,
+        "y": 240
+      }
+    },
+    {
+      "id": "fl_a4_3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1990 p.152 A4-3 Y-B A/C magnetic clutch <- A18-5 - solder sleeve into the factory Y-B lead at the clutch",
+      "schematicPosition": {
+        "x": 0,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": 360
+      }
+    },
+    {
+      "id": "fl_acamp_mg",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1990 p.152 A18-5 Y-B magnetic clutch -> A4-3 - solder sleeve into the factory Y-B lead at the A/C amplifier",
+      "schematicPosition": {
+        "x": 600,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": 600,
+        "y": 360
+      }
+    },
+    {
+      "id": "fl_a5_4",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1990 p.152 A5-4 Y-R A/C pressure switch switched return -> A18-13 - solder sleeve into the factory Y-R lead at the pressure switch",
+      "schematicPosition": {
+        "x": 0,
+        "y": 480
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": 480
+      }
+    },
+    {
+      "id": "fl_acamp_psw",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder sleeve into the factory Y-R lead at the A/C amplifier",
+      "schematicPosition": {
+        "x": 600,
+        "y": 480
+      },
+      "layoutPosition": {
+        "x": 600,
+        "y": 480
       }
     }
   ],
@@ -86,6 +170,47 @@
       },
       "color": "Brown",
       "partId": "wp_20_brn"
+    },
+    {
+      "id": "w_ac_kill_sp",
+      "source": {
+        "id": "br_w_ac_kill",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_acamp_act",
+        "handle": "Terminal"
+      },
+      "color": "Gray",
+      "partId": "wp_20_gry"
+    },
+    {
+      "id": "w_ac_clutch",
+      "source": {
+        "id": "fl_a4_3",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_acamp_mg",
+        "handle": "Terminal"
+      },
+      "color": "Yellow",
+      "stripeColor": "Black",
+      "partId": "wp_20_yel_blk"
+    },
+    {
+      "id": "w_ac_psw",
+      "source": {
+        "id": "fl_a5_4",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_acamp_psw",
+        "handle": "Terminal"
+      },
+      "color": "Yellow",
+      "stripeColor": "Red",
+      "partId": "wp_20_yel_red"
     }
   ],
   "bundles": [
@@ -115,6 +240,60 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_br_w_ac_kill__bp_amp",
+      "sourceId": "br_w_ac_kill",
+      "targetId": "bp_amp",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_amp__fl_acamp_act",
+      "sourceId": "bp_amp",
+      "targetId": "fl_acamp_act",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_fl_a4_3__bp_amp",
+      "sourceId": "fl_a4_3",
+      "targetId": "bp_amp",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_amp__fl_acamp_mg",
+      "sourceId": "bp_amp",
+      "targetId": "fl_acamp_mg",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_fl_a5_4__bp_amp",
+      "sourceId": "fl_a5_4",
+      "targetId": "bp_amp",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_amp__fl_acamp_psw",
+      "sourceId": "bp_amp",
+      "targetId": "fl_acamp_psw",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -122,7 +301,7 @@
       "id": "bp_amp",
       "layoutPosition": {
         "x": 300,
-        "y": 60
+        "y": 240
       }
     }
   ],
@@ -134,7 +313,7 @@
         "x": 1020,
         "y": 0
       },
-      "text": "A/C AMPLIFIER SPUR - receiving side of IX_AC_CTS. The dedicated A/C coolant switch (Engine-A) crosses bulkhead A c37/c38, runs a short cabin branch on ST185-A-cabin to the DT04-2P, and this spur carries it on to the auto A/C amplifier (A34 conn C) as flying leads. The amplifier is not drawn. The ECU ECT sensor is a separate circuit; this switch never reaches the ECU."
+      "text": "A/C AMPLIFIER SPUR. Receiving side of IX_AC_CTS (TW/return to auto amp A34). Three 2026-09-30 circuits as labeled flying leads, no OEM A/C housings: Aux 4 kill -> A18-11 ACT; clutch A4-3 <-> A18-5; pressure A5-4 <-> A18-13. Sources and the A18-11 assumption: docs/harness/ACAMP-SPUR-LABELS.md. Solar and TAM not this pass. Amplifier not drawn."
     }
   ],
   "wireParts": [
@@ -155,6 +334,41 @@
       "manufacturer": "generic",
       "description": "WIRE, ELECTRICAL, 20 AWG, BROWN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
       "color": "Brown",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_gry",
+      "partNumber": "EW-1C20-GRY",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GRAY, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Gray",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_yel_blk",
+      "partNumber": "EW-1C20-YEL-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Yellow",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_yel_red",
+      "partNumber": "EW-1C20-YEL-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Yellow",
+      "stripeColor": "Red",
       "gauge": {
         "value": 20,
         "unit": "AWG"

@@ -314,7 +314,7 @@ Routed with the OEM engine-room main. Passenger fender / ABS trough for EPS; cor
 | C7 | Rad fan GND | 8 AWG | Fan → EA | |
 | C8 | Condenser fan 12 V | 8 AWG | `k_fan2` 87 → core support | New DT 2-way |
 | C9 | Condenser fan GND | 8 AWG | Fan → EA | |
-| C10 | A/C compressor clutch | — | **Engine harness A/B**, not C | Already drawn |
+| C10 | A/C compressor clutch | — | **ST185-ACAmp-Spur** flying leads (A18-5 / A4-3 clutch), not C | Not on A/B; `docs/harness/ACAMP-SPUR-LABELS.md` |
 
 Wiper, washer, headlights, turn, park, horn motors **stay on the OEM engine-room loom**. We only restore their power at J1–J5.
 
@@ -364,7 +364,7 @@ TE `2141029-1` already owns F1–F13 in `ST185-A-cabin.harness` (EFI, pump, ETB,
 | HEATER feed | unfused stub; 40 A lives in R/B4 | FL ALT → E13 → R/B4 | R/B4 fuse pins 1–2 (R1) |
 | POWER feed | unfused stub; 30 A lives in R/B2 | FL ALT → I2 → R/B2 | R/B2 fuse pins 1–2 (L9) |
 | 2nd fuse block feed | ANL / mega 100 A | J/B2 HEAD/HAZ/DOME/RTR fuses | PDB stud → second block |
-| ACPS (A/C pressure switch +12V) | 5 A, ignition-switched, in the second fuse block | OEM A/C circuit feed to A5 pin 1 (V-R), EWD p.152 | second block → `ac_press` c1 (`w_acp_1`, 18 AWG); switched return A5 pin 4 → A/C amplifier A18 pin 13 (`w_acp_2`) |
+| ACPS (A/C pressure switch +12V) | 5 A, ignition-switched, in the second fuse block | OEM A/C circuit feed to A5 pin 1 (V-R), EWD p.152 | second block → flying lead A5 pin 1 (V-R, `w_acp_1`); switched return A5 pin 4 → A/C amplifier A18 pin 13 is on `ST185-ACAmp-Spur` (`w_ac_psw`), not this loom |
 | Charge / start | none at PDB, or ANL 200 A | F11 100A FL ALT | RADLOK + → starter B+ |
 | ABS | **omit** | F11 60A FL ABS | deleted |
 
@@ -380,7 +380,7 @@ Heater and POWER keep their OEM fuses in the kick-panel R/Bs. We only restore th
 4. Trunk battery, cabin-floor 2 AWG / 1/0, glove-box PDB, TE fuse block, second fuse block, relays. RADLOK through the firewall. Jump lugs at trunk, PDB, starter, block, bay post.
 5. Inject L1, L6, L7, L8, L9, R1, R5. Isolate R2 (OEM starter relay). Do not land J3/J4 until the probe in step 2 says so.
 6. Dummy-header J1 / J2 / J5 (HEAD LH/RH + DOME) along the passenger fender / ABS trough / EA1. Jumper 2A-3↔2D-2 and 2A-6↔2D-6.
-7. Engine Room C add-ons: EPS 8 AWG in the vacated ABS trough; uprated fans 8 AWG on the core support. A/C clutch stays on A/B.
+7. Engine Room C add-ons: EPS 8 AWG in the vacated ABS trough; uprated fans 8 AWG on the core support. A/C clutch and pressure-switch signal are flying leads on `ST185-ACAmp-Spur`.
 8. Power-up: PDB only → 1I-1 lights J/B1 STOP/ECU-B/DEFOGGER → AM1/AM2 crank the ignition switch → second fuse block live → headlights / dome. Starter last.
 
 Loom C is `docs/harness/rebuild/ST185-EngineRoom-C.harness`, live on harness.design.

@@ -52,7 +52,9 @@ feeds the ECU's V-Ethrottle pin; the ECU's internal H-bridge drives the motor vi
 
 - The ECU does **not** need an "AC on" status input to kill the compressor. A status input
   only enables proactive idle-up, which this build accepts going without.
-- The kill signal goes to the amplifier's **ACT** terminal. **Ground = kill, floating = AC
+- The kill signal goes to the amplifier's **ACT** terminal, **A18 pin 11**
+  (1992 Celica EWD132U A17-11 applied to the 1990 book locator A18 — see
+  `docs/harness/ACAMP-SPUR-LABELS.md`). **Ground = kill, floating = AC
   runs normally** (~9-14V passive pull-up). Confirmed by two independent hands-on 3S-GTE
   installers and cross-checked against a same-generation Toyota factory voltage table.
 - **AC1 is a separate, input-only terminal** — it reads clutch operating voltage for

@@ -741,7 +741,7 @@
     },
     {
       "id": "w124_e",
-      "color": "Pink",
+      "color": "White",
       "source": {
         "id": "bh_b_eng",
         "handle": "c5"
@@ -750,11 +750,11 @@
         "id": "br_w124_e",
         "handle": "Terminal"
       },
-      "partId": "wp_18_pnk"
+      "partId": "wp_18_wht"
     },
     {
       "id": "w215_e",
-      "color": "Pink",
+      "color": "White",
       "source": {
         "id": "bh_b_eng",
         "handle": "c6"
@@ -763,7 +763,7 @@
         "id": "br_w215_e",
         "handle": "Terminal"
       },
-      "partId": "wp_18_pnk"
+      "partId": "wp_18_wht"
     },
     {
       "id": "w_vss_12v",
@@ -1592,11 +1592,11 @@
       }
     },
     {
-      "id": "wp_18_pnk",
-      "partNumber": "EW-1C18-PNK",
+      "id": "wp_18_wht",
+      "partNumber": "EW-1C18-WHT",
       "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, PINK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Pink",
+      "description": "WIRE, ELECTRICAL, 18 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "White",
       "gauge": {
         "value": 18,
         "unit": "AWG"
