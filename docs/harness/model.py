@@ -13,6 +13,7 @@ node, so a net can be walked across every loom at once.
 """
 import collections
 import csv
+import hashlib
 import json
 import os
 
@@ -42,6 +43,25 @@ def harness_files(reg=None):
 def load(fn):
     with open(os.path.join(REB, fn), encoding="utf-8") as f:
         return json.load(f)
+
+
+def files_sha256(paths):
+    """SHA-256 of the named files in first-seen order. List stamps use this,
+    not git log or a calendar date, so the digest matches the bytes opened."""
+    seen = []
+    for p in paths:
+        ap = os.path.abspath(p)
+        if ap not in seen:
+            seen.append(ap)
+    h = hashlib.sha256()
+    for p in seen:
+        rel = os.path.relpath(p, HERE).replace("\\", "/")
+        h.update(rel.encode("utf-8"))
+        h.update(b"\0")
+        with open(p, "rb") as f:
+            h.update(f.read())
+        h.update(b"\0")
+    return h.hexdigest()
 
 
 def docs(reg=None):

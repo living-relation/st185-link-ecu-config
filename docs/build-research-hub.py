@@ -319,7 +319,9 @@ def human_size(n: int) -> str:
 
 def _csv_rows(path: Path) -> list[dict]:
     text = path.read_text(encoding="utf-8-sig")
-    return list(csv.DictReader(text.splitlines()))
+    lines = [ln for ln in text.splitlines()
+             if ln.strip() and not ln.lstrip().startswith("#")]
+    return list(csv.DictReader(lines))
 
 
 def _intish(value) -> int:
