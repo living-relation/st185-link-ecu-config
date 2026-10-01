@@ -5,21 +5,18 @@
 
 const { spawnSync } = require("child_process");
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 const { JSDOM } = require("jsdom");
 
-const HTML = path.join(__dirname, "research-hub.html");
-
 function loadHtml() {
-  let html = fs.existsSync(HTML) ? fs.readFileSync(HTML, "utf8") : "";
-  if (!html.includes("function applyFilters")) {
-    const built = spawnSync("python3", [path.join(__dirname, "build-research-hub.py")], {
-      stdio: "inherit",
-    });
-    if (built.status !== 0) process.exit(built.status || 1);
-    html = fs.readFileSync(HTML, "utf8");
-  }
-  return html;
+  const htmlPath = path.join(os.tmpdir(), `research-hub-filter-test-${process.pid}.html`);
+  const built = spawnSync("python3", [path.join(__dirname, "build-research-hub.py")], {
+    stdio: "inherit",
+    env: { ...process.env, RESEARCH_HUB_OUT: htmlPath },
+  });
+  if (built.status !== 0) process.exit(built.status || 1);
+  return { html: fs.readFileSync(htmlPath, "utf8"), htmlPath };
 }
 
 function visible(document, sel) {
@@ -37,9 +34,10 @@ function search(window, document, q) {
 }
 
 function main() {
-  const dom = new JSDOM(loadHtml(), {
+  const { html, htmlPath } = loadHtml();
+  const dom = new JSDOM(html, {
     runScripts: "dangerously",
-    url: "file://" + HTML,
+    url: "file://" + htmlPath,
   });
   const { window } = dom;
   const { document } = window;
@@ -97,6 +95,22 @@ function main() {
   if (!notesSec.classList.contains("hidden")) {
     throw new Error("notes section stayed visible with no matching documents");
   }
+
+  search(window, document, "Walbro F90000295");
+  const skipTab = document.querySelector('#parts [data-tab="not_purchased"]');
+  if (!skipTab || skipTab.getAttribute("aria-selected") !== "true") {
+    throw new Error("not-purchased search did not select that tab");
+  }
+  const skipRows = [...document.querySelectorAll("#parts tbody tr:not(.hidden)")];
+  if (!skipRows.length) throw new Error("not-purchased row search showed no rows");
+
+  search(window, document, "not purchased");
+  const titleTab = document.querySelector('#parts [data-tab="not_purchased"]');
+  if (!titleTab || titleTab.getAttribute("aria-selected") !== "true") {
+    throw new Error("title search did not select the not-purchased tab");
+  }
+  const titleRows = [...document.querySelectorAll("#parts tbody tr:not(.hidden)")];
+  if (!titleRows.length) throw new Error("title-only table search showed 0 rows");
 
   search(window, document, "");
   if (!visible(document, "#out .card[data-filter-item]").length) {

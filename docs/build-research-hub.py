@@ -17,12 +17,13 @@ from collections import Counter
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from hashlib import md5
+import os
 from pathlib import Path
 import subprocess
 
 DOCS = Path(__file__).resolve().parent
 REPO = DOCS.parent
-OUT = DOCS / "research-hub.html"
+OUT = Path(os.environ["RESEARCH_HUB_OUT"]) if os.environ.get("RESEARCH_HUB_OUT") else DOCS / "research-hub.html"
 
 # Topic order and framing. Directories not listed here are still picked up,
 # appended in sorted order with a generic blurb.
@@ -888,9 +889,12 @@ function renderOneTable(spec, inst) {
   const st = tableState[key] || (tableState[key] = {q: "", sort: "", dir: 1});
   const q = (st.q || "").toLowerCase();
   const globalQ = ((document.getElementById("q") || {}).value || "").trim().toLowerCase();
+  const specHay = `${spec.title || ""} ${spec.source || ""}`.toLowerCase();
   let rows = spec.rows.slice();
   if (q) rows = rows.filter(r => hayOf(r).includes(q));
-  if (globalQ) rows = rows.filter(r => hayOf(r).includes(globalQ));
+  if (globalQ && !specHay.includes(globalQ)) {
+    rows = rows.filter(r => hayOf(r).includes(globalQ));
+  }
   if (st.sort) {
     const col = spec.columns.find(c => c.key === st.sort);
     rows.sort((a, b) => {
@@ -912,7 +916,8 @@ function renderOneTable(spec, inst) {
   }).join("");
   return `
     <section class="tbl" data-tid="${esc(spec.id)}" data-inst="${esc(key)}"
-             data-hay="${esc((spec.title + " " + spec.source + " " + spec.rows.map(hayOf).join(" ")).toLowerCase())}">
+             data-meta="${esc(specHay)}"
+             data-hay="${esc((specHay + " " + spec.rows.map(hayOf).join(" ")).toLowerCase())}">
       <div class="tmeta">
         <div>
           <strong>${esc(spec.title)}</strong>
@@ -1040,7 +1045,7 @@ function partsHtml() {
     ["onhand", "On hand", P.tables.onhand],
     ["covered", "Covered", P.tables.covered],
     ["enclosures", "Enclosure BOMs", null],
-    ["skip", "Not purchased", P.tables.not_purchased],
+    ["not_purchased", "Not purchased", P.tables.not_purchased],
   ].filter(t => t[2] || t[0] === "enclosures");
   const active = activePartsTab;
   const tabBtns = tabs.map(([id, label]) =>
@@ -1312,9 +1317,12 @@ function applyFiltersInner() {
 
   document.querySelectorAll("table.data tbody tr[data-hay]").forEach(tr => {
     const hay = tr.dataset.hay || "";
-    const local = (tr.closest(".tbl") && tr.closest(".tbl").querySelector(".tfilter")
-      ? tr.closest(".tbl").querySelector(".tfilter").value : "").toLowerCase();
-    tr.classList.toggle("hidden", !((!q || hay.includes(q)) && (!local || hay.includes(local))));
+    const tbl = tr.closest(".tbl");
+    const meta = tbl ? (tbl.dataset.meta || "") : "";
+    const local = (tbl && tbl.querySelector(".tfilter")
+      ? tbl.querySelector(".tfilter").value : "").toLowerCase();
+    const globalOk = !q || hay.includes(q) || meta.includes(q);
+    tr.classList.toggle("hidden", !(globalOk && (!local || hay.includes(local))));
   });
   document.querySelectorAll(".tbl").forEach(tbl => {
     const any = tbl.querySelector("tbody tr:not(.hidden)");
@@ -1493,7 +1501,8 @@ def main() -> None:
     research = sum(t["counts"]["research"] for t in data["topics"])
     total = sum(len(t["docs"]) for t in data["topics"])
     stats = data["parts"]["stats"]
-    print(f"wrote {OUT.relative_to(REPO)}  "
+    printed = OUT if not OUT.is_relative_to(REPO) else OUT.relative_to(REPO)
+    print(f"wrote {printed}  "
           f"({len(data['topics'])} topics, {deliv} deliverables, "
           f"{research} research notes, {total} files, "
           f"{len(data['dupes'])} duplicate groups, "
