@@ -99,7 +99,7 @@ interfaces.json              <- and the ownership facts with them
         validate_bulkhead_letter.py ECU looms follow the connector letter (Rule 3)
         audit_bulkhead_pairs.py    no one-sided bulkhead cavity
         audit_bh_collisions.py     no two circuits on one cavity half
-        buylist.py                 writes NEED-TO-BUY.md
+        buylist.py                 writes NEED-TO-BUY.md, PARTS-LISTS.md, HARNESS-BOM.csv from the repo drawings
         buildlist.py               writes HARNESS-BUILD-LIST.csv
         make_min.py                writes min/  -> uploaded to harness.design
 ```
@@ -138,7 +138,10 @@ to one node).
    `part_desc.py --fix` rewrites to the standard text.
 
 Adding up the parts lists off the individual drawings by hand will over-order.
-`NEED-TO-BUY.md` is the only correct total.
+`NEED-TO-BUY.md` is the only correct total. `PARTS-LISTS.md` and `HARNESS-BOM.csv`
+are the same walk, split per loom. All three are generated from
+`docs/harness/rebuild/*.harness` and stamped with the drawings revision only —
+not the checkout branch or HEAD.
 
 ## Versioning
 
