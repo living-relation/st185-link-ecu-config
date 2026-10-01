@@ -114,10 +114,21 @@ splice those drop screens to each other at the existing branch point
 
 Power and ground splice into the trunk at the same location as the CAN
 pairs (`sp_can12` / `sp_cang` with `sp_canh` / `sp_canl`). At the ECU they
-split off to the switched supply that turns the ECU on (`sp_sw12`, F9,
-`ecu_a` a5) and the ECU ground (`sp_chassis`, a25 / a34), not onto the
-LTW. CAN H and CAN L continue as labeled wires that mate to the Link
-CANLTW round plug. That plug is **not drawn**. Do not invent it.
+splice from the switched supply that turns the ECU on (`sp_sw12`, F9,
+`ecu_a` a5, `w78`) and the ECU ground (`sp_chassis`, a25 / a34, `w70` /
+`w_a34`) into the **pin half** of the DTM-6, not onto the LTW.
+
+The six inches from the Link CANLTW to the **socket** half of that DTM-6
+(`dtm_can_s`, DTM06-6S) is `55PC1122-20-2/6-9` / `cab_sh_2c`: CAN H and
+CAN L only. No power, no ground, no other conductors leave the LTW. The
+stub braid is **not terminated** at either end — not on the LTW, not on
+the DTM, not on pin 5, not on A7 / B17 / `ecu_com`, and not on the ground
+symbol. Do not draw a shield pin for it. The CANLTW round plug itself is
+**not drawn**. Do not invent it.
+
+The **pin** half (`dtm_can_p`, DTM04-6P) is the start of the 4-core trunk.
+House pinout: 1=+12V, 2=GND, 3=CAN L, 4=CAN H, 5=trunk shield, 6 unused.
+The trunk braid passes pin 5 to the ground symbol `t_can_sh_gnd`.
 
 The Link lambda power, ground and CAN H/L pair pass through the bulkhead, so
 its shield must pass through both halves too. Inside the cabin those four
@@ -133,10 +144,13 @@ terminated shield has no drain of its own, and only on the terminated end
 `ST185-CAN` is the six-pin comms / tuning port (DTM06-6S). It is not the ECU
 CAN connector. Do not land the CAN braid on any of its cavities. Pin 5 is
 RS232 TX, even when this build marks it unused. Daniel's pin-5 shield
-pass-through is on a **different** 6-pin DTM, and that connector is not
-drawn. Do not invent it, a part number, or a cavity. Do not add a 12V wire
-to `ecu_com`. Do not put any shield braid in `ecu_com` c1. End the CAN braid
-at a ground symbol with **no pin number** (`t_can_sh_gnd` on `ST185-CAN`).
+pass-through is on the **other** 6-pin DTM drawn on this harness:
+`dtm_can_s` (DTM06-6S, socket, LTW stub) mated to `dtm_can_p` (DTM04-6P,
+pin, trunk). Trunk shield lands on `dtm_can_p` pin 5 and ends at a ground
+symbol with **no pin number** (`t_can_sh_gnd` on `ST185-CAN`), a Ring with
+no part. Do not add a 12V wire to `ecu_com`. Do not put any shield braid
+in `ecu_com` c1. The LTW stub braid (`cab_ltw` / `55PC1122-20-2/6-9`) stays
+open at both ends.
 
 If both bulkhead halves already have a shield pin for the lambda pair,
 continue the screen through them and splice it with the other CAN-node

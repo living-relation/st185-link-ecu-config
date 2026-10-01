@@ -771,6 +771,12 @@
       "mate": "m_aps",
       "family": "Deutsch DT 6-way (DT06-6S female, DT04-6P male)",
       "note": "the A and B pedal wires converge on the female half; one harness runs from the male half to the pedal"
+    },
+    {
+      "harness": "CAN",
+      "mate": "m_can_dtm",
+      "family": "Deutsch DTM 6-way (DTM06-6S socket, DTM04-6P pin)",
+      "note": "socket faces the LTW stub (CAN H/L only); pin half is the start of the 4-core trunk, shield on pin 5"
     }
   ],
   "breaks": [
@@ -987,7 +993,7 @@
     {
       "id": "BR_W_CSB12",
       "type": "broken_off",
-      "what": "ECU switched +12V from sp_sw12 (F9 / a5) to the CAN trunk; nodes powered when the ECU is. Link CANLTW pigtail red lands on this rail",
+      "what": "ECU switched +12V from sp_sw12 (F9 / a5) spliced into the CAN DTM-6 pin half; nodes powered when the ECU is",
       "ends": [
         {
           "harness": "CAN",
@@ -1002,7 +1008,7 @@
     {
       "id": "BR_W_CSBG",
       "type": "broken_off",
-      "what": "ECU ground at sp_chassis (a25 / a34) to the CAN trunk. Link CANLTW pigtail black lands on this rail",
+      "what": "ECU ground at sp_chassis (a25 / a34) spliced into the CAN DTM-6 pin half",
       "ends": [
         {
           "harness": "CAN",

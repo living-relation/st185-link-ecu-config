@@ -39,13 +39,17 @@ trunk) and the Link lambda 4-core (cab_lam_can_*). They splice only to
 each other and end at the CAN ground symbol (t_can_sh_gnd, no pin
 number). They must not reach A7, B17, any ecu_com cavity, or
 sp_shield_a / sp_shield_b, and the build fails if one of them does.
-ecu_com is the comms / tuning port; Daniel's pin-5 pass-through is on a
-different undrawn 6-pin DTM. Every node uses the existing 4-core
-55PC1243-20-2/6/4/5-9 (cab_sh_4c). The lambda power / ground / CAN H/L
-signal already crosses bulkhead B, so its shield must pass through both
-halves on a matching pin if one is drawn, then join the other CAN-node
-screens. No matching shield pin is drawn; the audit reports that as
-BLOCKED and does not invent a cavity or land the drain on A7 / B17.
+ecu_com is the comms / tuning port. Daniel's pin-5 pass-through is on
+dtm_can_p (DTM04-6P), the pin half of the DTM-6 that starts the trunk;
+R1 allows a CAN-connector screen on that connector only. The six-inch
+LTW stub (cab_ltw / 55PC1122-20-2/6-9) is a CAN pair whose braid is not
+terminated at either end - the audit fails if that screen lands anywhere.
+Every node uses the existing 4-core 55PC1243-20-2/6/4/5-9 (cab_sh_4c).
+The lambda power / ground / CAN H/L signal already crosses bulkhead B, so
+its shield must pass through both halves on a matching pin if one is
+drawn, then join the other CAN-node screens. No matching shield pin is
+drawn; the audit reports that as BLOCKED and does not invent a cavity or
+land the drain on A7 / B17.
 
 R4 ("cable only until it terminates at the ECU") is a modelling convention the
 schema cannot express, so it is not checked here. The A7 / B17 separation is
@@ -85,14 +89,21 @@ CAN_FORBIDDEN.add(("SP", "sp_shield_b"))
 for cav in ("c1", "c2", "c3", "c4", "c5", "c6"):
     CAN_FORBIDDEN.add(("ECU", "ecu_com", cav))
 CAN_GROUND = ("T", "CAN", "t_can_sh_gnd")
+CAN_DTM_PIN = "dtm_can_p"
+
+
+def can_stub_screen(wid, cable):
+    """LTW stub braid: 55PC1122, unterminated at both ends."""
+    name = cable or wid or ""
+    return name.startswith("cab_ltw")
 
 
 def can_connector_screen(wid, cable):
     """Screen that ends at the CAN ground symbol, not ecu_com.
 
     Cluster, RealDash, CSB3 and trunk (cab_can_*) and the Link lambda
-    4-core (cab_lam_can_*). Not crank / cam / knock, and not a VRC
-    or CSB3 enclosure screen.
+    4-core (cab_lam_can_*). Not the LTW stub (cab_ltw), not crank / cam /
+    knock, and not a VRC or CSB3 enclosure screen.
     """
     name = cable or wid or ""
     return name.startswith(("cab_can_", "cab_lam_can"))
@@ -149,12 +160,22 @@ for loom, d in g.docs.items():
         nodes = [g.node(loom, e) for e in ends]
         skip_single = active_inline_screen(loom, w["id"], cable, ends)
         can_conn = can_connector_screen(w["id"], cable)
+        stub = can_stub_screen(w["id"], cable)
+        if stub:
+            if ends:
+                landed = ", ".join("%s %s" % (e.get("id"), e.get("handle")) for e in ends)
+                bad.append("LTW stub screen %s/%s must float at both ends - landed on %s"
+                           % (loom, w["id"], landed))
+            continue
         for e, n in zip(ends, nodes):
             if e.get("handle") == "shell":
                 bad.append("R3 %s/%s lands on the shell of %s" % (loom, w["id"], e["id"]))
             elif (not skip_single) and n[0] == "C" and not e["id"].startswith("dm_"):
-                bad.append("R1 %s/%s lands on %s %s - a screen floats at the device"
-                           % (loom, w["id"], e["id"], e.get("handle")))
+                if can_conn and e.get("id") == CAN_DTM_PIN:
+                    pass
+                else:
+                    bad.append("R1 %s/%s lands on %s %s - a screen floats at the device"
+                               % (loom, w["id"], e["id"], e.get("handle")))
             other = model.BULKHEAD_MATE.get(e["id"])
             if other and e.get("handle") not in used_cav[other]:
                 bad.append("R5 %s/%s uses %s %s but %s %s is not wired"
