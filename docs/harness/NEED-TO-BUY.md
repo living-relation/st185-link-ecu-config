@@ -1,6 +1,6 @@
 # Harness — need to buy
 
-Generated from SHA-256 `ec872806f42a89b93122664abcbbbc5c51e7d6c60113a5341ae93014c1d4c214` of the 15 `.harness` files actually read in `docs/harness/rebuild/` plus `interfaces.json`:
+Generated from SHA-256 `e2e67a1cd83844bb49011d1ae9d3858535c4524886e19623bfaacc6a337fbb82` of the 15 `.harness` files actually read in `docs/harness/rebuild/` plus `interfaces.json`:
 `A-cabin`, `B-cabin`, `CabinPower`, `APS-Pedal`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`, `CSB3`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
@@ -330,9 +330,9 @@ A drawing that now uses an M22759/16 part is listed under that part, not under E
 | CAN | `M22759/16-20-2` | WIRE, M22759/16, 20 AWG RED | 1 |
 | CAN | `M22759/16-20-5` | WIRE, M22759/16, 20 AWG GREEN | 4 |
 | CAN | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 4 |
-| CSB3 | `EW-1C20-GRN` | WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV | 6 |
-| CSB3 | `EW-1C20-ORG` | WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV | 1 |
-| CSB3 | `EW-1C20-WHT` | WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV | 4 |
+| CSB3 | `M22759/16-20-3` | WIRE, M22759/16, 20 AWG ORANGE | 1 |
+| CSB3 | `M22759/16-20-5` | WIRE, M22759/16, 20 AWG GREEN | 6 |
+| CSB3 | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 4 |
 | CabinPower | `BC-4-RED` | CABLE, BATTERY, 4 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV | 1 |
 | CabinPower | `EW-1C12-BLK` | WIRE, ELECTRICAL, 12 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV | 1 |
 | CabinPower | `M22759/16-10-2` | WIRE, M22759/16, 10 AWG RED | 2 |
