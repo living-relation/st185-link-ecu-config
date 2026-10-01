@@ -15,8 +15,8 @@ The rules live in docs/SHIELD-RULES.md (short form) and plan 6.27 / 6.30 / 6.31 
       its shield through both halves on matching pins. A sensor through-screen
       must not stop on either half: it reaches A7 or B17. A CAN-connector
       through-screen (the Link lambda pair) must not stop on either half
-      either, but it joins the other CAN-node screens and waits on the
-      undrawn four-wire ECU CAN-connector ground - not A7 or B17. A cabin-
+      either, but it joins the other CAN-node screens and ends at the
+      CAN ground symbol (no pin number) - not A7, B17, or ecu_com. A cabin-
       only screen, or a screened cable whose signal does not cross the
       bulkhead, is not required to land on the bulkhead.
   R2  every screen that is not a CAN-connector screen and that has an end
@@ -36,15 +36,16 @@ and still end on sp_shield_a / sp_shield_b.
 
 CAN-connector screens are the cab_can_* runs (cluster, RealDash, CSB3,
 trunk) and the Link lambda 4-core (cab_lam_can_*). They splice only to
-each other and wait on the undrawn four-wire ECU CAN-connector ground.
-They are not required to reach A7, B17, or ecu_com, and the build fails
-if one of them does. ecu_com is the comms / tuning port, not that
-connector. Every node uses the existing 4-core 55PC1243-20-2/6/4/5-9
-(cab_sh_4c). The lambda power / ground / CAN H/L signal already crosses
-bulkhead B, so its shield must pass through both halves on a matching pin
-if one is drawn, then join the other CAN-node screens. No matching shield
-pin is drawn; the audit reports that as BLOCKED and does not invent a
-cavity or land the drain on A7 / B17.
+each other and end at the CAN ground symbol (t_can_sh_gnd, no pin
+number). They must not reach A7, B17, any ecu_com cavity, or
+sp_shield_a / sp_shield_b, and the build fails if one of them does.
+ecu_com is the comms / tuning port; Daniel's pin-5 pass-through is on a
+different undrawn 6-pin DTM. Every node uses the existing 4-core
+55PC1243-20-2/6/4/5-9 (cab_sh_4c). The lambda power / ground / CAN H/L
+signal already crosses bulkhead B, so its shield must pass through both
+halves on a matching pin if one is drawn, then join the other CAN-node
+screens. No matching shield pin is drawn; the audit reports that as
+BLOCKED and does not invent a cavity or land the drain on A7 / B17.
 
 R4 ("cable only until it terminates at the ECU") is a modelling convention the
 schema cannot express, so it is not checked here. The A7 / B17 separation is
@@ -83,10 +84,11 @@ CAN_FORBIDDEN.add(("SP", "sp_shield_a"))
 CAN_FORBIDDEN.add(("SP", "sp_shield_b"))
 for cav in ("c1", "c2", "c3", "c4", "c5", "c6"):
     CAN_FORBIDDEN.add(("ECU", "ecu_com", cav))
+CAN_GROUND = ("T", "CAN", "t_can_sh_gnd")
 
 
 def can_connector_screen(wid, cable):
-    """Screen that waits on the undrawn four-wire ECU CAN-connector ground.
+    """Screen that ends at the CAN ground symbol, not ecu_com.
 
     Cluster, RealDash, CSB3 and trunk (cab_can_*) and the Link lambda
     4-core (cab_lam_can_*). Not crank / cam / knock, and not a VRC
@@ -169,6 +171,9 @@ for loom, d in g.docs.items():
                 bad.append("CAN screen %s/%s reaches %s - CAN-connector screens "
                            "stay off A7, B17, ecu_com and the ECU shield splices"
                            % (loom, w["id"], ", ".join(sorted(model.fmt(h) for h in hits))))
+            elif nodes and CAN_GROUND not in set().union(*(g.reach(n) for n in nodes)):
+                bad.append("CAN screen %s/%s never reaches the CAN ground symbol"
+                           % (loom, w["id"]))
         elif nodes and not any(ECU_SHIELD & g.reach(n) for n in nodes):
             bad.append("R2 screen %s/%s never reaches an ECU shield ground" % (loom, w["id"]))
 
@@ -199,9 +204,8 @@ for loom, d in g.docs.items():
                 blocked.append("BLOCKED %s/%s signal crosses %s; no matching "
                                "shield pin is drawn. CAN-connector screen: "
                                "not inventing a cavity, and not landing on "
-                               "A7 or B17. It waits with the other CAN-node "
-                               "screens on the undrawn four-wire CAN "
-                               "connector ground"
+                               "A7 or B17. It joins the other CAN-node "
+                               "screens at the ground symbol"
                                % (loom, sh.get("id"), cavs))
             else:
                 blocked.append("BLOCKED %s/%s signal crosses %s; no matching "
@@ -223,6 +227,9 @@ for loom, d in g.docs.items():
                            "shield splices"
                            % (loom, sh.get("id"),
                               ", ".join(sorted(model.fmt(h) for h in hits))))
+            elif nodes and CAN_GROUND not in set().union(*(g.reach(n) for n in nodes)):
+                bad.append("CAN screen %s/%s never reaches the CAN ground symbol"
+                           % (loom, sh.get("id")))
         elif nodes and not any(ECU_SHIELD & g.reach(n) for n in nodes):
             bad.append("R7 %s/%s crosses the bulkhead but never reaches A7 or B17"
                        % (loom, sh.get("id")))

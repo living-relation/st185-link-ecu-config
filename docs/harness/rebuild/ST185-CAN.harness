@@ -263,8 +263,8 @@
           "id": "w_csb12_can",
           "color": "Red",
           "source": {
-            "id": "br_w_csb12",
-            "handle": "Terminal"
+            "id": "sp_can12",
+            "handle": "Splice"
           },
           "target": {
             "id": "br_w_csb12_csb",
@@ -276,8 +276,8 @@
           "id": "w_csbg_can",
           "color": "Blue",
           "source": {
-            "id": "br_w_csbg",
-            "handle": "Terminal"
+            "id": "sp_cang",
+            "handle": "Splice"
           },
           "target": {
             "id": "br_w_csbg_csb",
@@ -332,7 +332,7 @@
           "id": "w_ecu_can12",
           "color": "Red",
           "source": {
-            "id": "t_ecu_can_12v",
+            "id": "br_w_csb12",
             "handle": "Terminal"
           },
           "target": {
@@ -345,7 +345,7 @@
           "id": "w_ecu_cang",
           "color": "Blue",
           "source": {
-            "id": "t_ecu_can_gnd",
+            "id": "br_w_csbg",
             "handle": "Terminal"
           },
           "target": {
@@ -358,8 +358,8 @@
           "id": "wc_h_ecu",
           "color": "Yellow",
           "source": {
-            "id": "ecu_com",
-            "handle": "c3"
+            "id": "t_ltw_h",
+            "handle": "Terminal"
           },
           "target": {
             "id": "sp_canh",
@@ -371,8 +371,8 @@
           "id": "wc_l_ecu",
           "color": "Green",
           "source": {
-            "id": "ecu_com",
-            "handle": "c4"
+            "id": "t_ltw_l",
+            "handle": "Terminal"
           },
           "target": {
             "id": "sp_canl",
@@ -384,6 +384,10 @@
       "shield": {
         "id": "cab_can_ecu_sh",
         "color": "Shield",
+        "source": {
+          "id": "t_can_sh_gnd",
+          "handle": "Terminal"
+        },
         "target": {
           "id": "sp_can_sh",
           "handle": "Splice"
@@ -642,22 +646,31 @@
       "targetId": "t_realdash_gnd"
     },
     {
-      "id": "bn_bp_930__t_ecu_can_12v",
+      "id": "bn_bp_930__t_ltw_h",
       "length": {
         "unit": "mm",
-        "value": 50
+        "value": 180
       },
       "sourceId": "bp_930",
-      "targetId": "t_ecu_can_12v"
+      "targetId": "t_ltw_h"
     },
     {
-      "id": "bn_bp_930__t_ecu_can_gnd",
+      "id": "bn_bp_930__t_ltw_l",
+      "length": {
+        "unit": "mm",
+        "value": 180
+      },
+      "sourceId": "bp_930",
+      "targetId": "t_ltw_l"
+    },
+    {
+      "id": "bn_bp_930__t_can_sh_gnd",
       "length": {
         "unit": "mm",
         "value": 50
       },
       "sourceId": "bp_930",
-      "targetId": "t_ecu_can_gnd"
+      "targetId": "t_can_sh_gnd"
     },
     {
       "id": "bn_bp_1050__br_w_csb12",
@@ -1048,11 +1061,11 @@
       }
     },
     {
-      "id": "t_ecu_can_12v",
+      "id": "t_ltw_h",
       "type": "Loose",
       "width": 390,
       "partId": "tp_flying_lead",
-      "signal": "ECU CAN connector +12V - four-wire plug not drawn *",
+      "signal": "Link CANLTW - CAN H (round plug not drawn) *",
       "layoutPosition": {
         "x": 1140,
         "y": 210
@@ -1063,11 +1076,11 @@
       }
     },
     {
-      "id": "t_ecu_can_gnd",
+      "id": "t_ltw_l",
       "type": "Loose",
       "width": 390,
       "partId": "tp_flying_lead",
-      "signal": "ECU CAN connector ground - four-wire plug not drawn *",
+      "signal": "Link CANLTW - CAN L (round plug not drawn) *",
       "layoutPosition": {
         "x": 1140,
         "y": 270
@@ -1078,10 +1091,25 @@
       }
     },
     {
+      "id": "t_can_sh_gnd",
+      "type": "Ring",
+      "width": 210,
+      "partId": "tp_ring_m6_22_16",
+      "signal": "CAN screen ground",
+      "layoutPosition": {
+        "x": 1080,
+        "y": -240
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
       "id": "br_w_csb12",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-A-cabin: CSB3 +12V from sp_12v",
+      "signal": "Broken off - continues on ST185-A-cabin: ECU switched +12V from sp_sw12",
       "layoutPosition": {
         "x": 1320,
         "y": 360
@@ -1095,7 +1123,7 @@
       "id": "br_w_csbg",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-A-cabin: CSB3 ground to sp_chassis",
+      "signal": "Broken off - continues on ST185-A-cabin: ECU ground at sp_chassis",
       "layoutPosition": {
         "x": 1320,
         "y": 420
@@ -1289,12 +1317,12 @@
         },
         {
           "id": "c3",
-          "signal": "CAN 1 High (White)",
+          "signal": "CAN 1 High (White) - unused this build; vehicle CAN is CANLTW",
           "designation": "C3"
         },
         {
           "id": "c4",
-          "signal": "CAN 1 Low (Green)",
+          "signal": "CAN 1 Low (Green) - unused this build; vehicle CAN is CANLTW",
           "designation": "C4"
         },
         {
@@ -1438,6 +1466,22 @@
       "partNumber": "GENERIC FLYING LEAD",
       "description": "TERMINAL, FLYING LEAD",
       "manufacturer": "generic"
+    },
+    {
+      "id": "tp_ring_m6_22_16",
+      "size": "M6",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC RING M6 22-16",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
+      "manufacturer": "generic"
     }
   ],
   "connectorParts": [
@@ -1489,7 +1533,7 @@
   "schematicNotes": [
     {
       "id": "n_can",
-      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Every CAN node uses the existing 4-core shielded Tefzel 55PC1243-20-2/6/4/5-9 (cab_sh_4c): no two-pair individually shielded Tefzel exists in the harness *Parts arrays or the parts library, so this common-braid twisted quad is the closest existing 4-core. Cluster, RealDash, CSB3, lambda and the trunk run carry +12V, ground, CAN H and CAN L on that cable. Screens float at the device and join at sp_can_sh, waiting on the undrawn four-wire ECU CAN-connector ground. Do not land a CAN screen on ecu_com, A7, B17, sp_shield_a or sp_shield_b. ecu_com is the six-pin comms / tuning port; its unused c1 / c2 are not the ECU CAN 12V / ground. The four-wire ECU CAN plug is not drawn. Cluster and RealDash have no node connector on this drawing; their 12V / ground are flying-lead terminals, not invented cavities. Lambda shield has no bulkhead pin. 120R termination at the ECU-end splices and at the lambda end. Raychem S200-3-WI-22-9 only on the terminated screen join at sp_can_sh.",
+      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Every CAN node uses 55PC1243-20-2/6/4/5-9 (cab_sh_4c), one common braid around all four wires (Daniel 2026-10-01: the single-shield cable is fine). Cluster, RealDash, CSB3, lambda and the trunk carry +12V, ground, CAN H and CAN L on that cable. Power and ground splice with the CAN pairs at sp_can12 / sp_cang / sp_canh / sp_canl. At the ECU they split: +12V and ground break off to ST185-A-cabin sp_sw12 (F9 / a5) and sp_chassis (a25 / a34) so CAN nodes are powered when the ECU is; the Link CANLTW pigtail red and black land on those same rails. CAN H and CAN L continue as labeled wires that mate to the Link CANLTW round plug (not drawn; do not invent it). Daniel's pin-5 shield pass-through is on a different 6-pin DTM that is also not drawn; do not invent that connector. ecu_com is the six-pin comms / tuning port. Do not land the CAN braid on any of its cavities (c5 is RS232 TX even when unused). The braid joins at sp_can_sh and ends at the ground symbol t_can_sh_gnd with no pin number. Do not land a CAN screen on ecu_com, A7, B17, sp_shield_a or sp_shield_b. Device ends of the screens stay floating, including the lambda controller. Lambda shield has no bulkhead pin. Cluster and RealDash have no node connector on this drawing; their 12V / ground are flying-lead terminals, not invented cavities. 120R termination at the ECU-end splices and at the lambda end. Raychem S200-3-WI-22-9 only on the terminated screen join at sp_can_sh.",
       "width": 390,
       "schematicPosition": {
         "x": 3180,
@@ -1498,7 +1542,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, cabin fuse F5 10A - on the 4-core with CAN H/L, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse F5\nt_cluster_can / t_cluster_12v / t_cluster_gnd: TrackCluster ESP32-P4 - CAN drop (device not in this harness; no connector cavities here)\nt_realdash_can / t_realdash_12v / t_realdash_gnd: RealDash Pi 5 - CAN drop (device not in this harness; no connector cavities here)\nt_ecu_can_12v / t_ecu_can_gnd: wait on the undrawn four-wire ECU CAN connector; not ecu_com c1 / c2",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, cabin fuse F5 10A - on the 4-core with CAN H/L, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse F5\nt_cluster_can / t_cluster_12v / t_cluster_gnd: TrackCluster ESP32-P4 - CAN drop (device not in this harness; no connector cavities here)\nt_realdash_can / t_realdash_12v / t_realdash_gnd: RealDash Pi 5 - CAN drop (device not in this harness; no connector cavities here)\nt_ltw_h / t_ltw_l: Link CANLTW round plug not drawn; labeled wires that mate to it. Do not invent the plug.\nbr_w_csb12 / br_w_csbg: ECU switched +12V (sp_sw12) and ECU ground (sp_chassis) on ST185-A-cabin; Link CANLTW pigtail red/black land on the same rails. Not ecu_com.\nt_can_sh_gnd: CAN braid ground symbol, no pin number. Not ecu_com, not A7, not B17.",
       "schematicPosition": {
         "x": 3180,
         "y": 150

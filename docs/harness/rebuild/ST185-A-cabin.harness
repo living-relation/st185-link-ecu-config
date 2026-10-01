@@ -898,7 +898,7 @@
       "color": "Red",
       "partId": "m16_20_2",
       "source": {
-        "id": "sp_12v",
+        "id": "sp_sw12",
         "handle": "Splice"
       },
       "target": {
@@ -2281,7 +2281,7 @@
       "id": "br_w_csb12",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CAN: CSB3 +12V from sp_12v",
+      "signal": "Broken off - continues on ST185-CAN: ECU switched +12V from sp_sw12 to the CAN trunk",
       "layoutPosition": {
         "x": 1680,
         "y": 90
@@ -2295,7 +2295,7 @@
       "id": "br_w_csbg",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CAN: CSB3 ground to sp_chassis",
+      "signal": "Broken off - continues on ST185-CAN: ECU ground at sp_chassis to the CAN trunk",
       "layoutPosition": {
         "x": 2400,
         "y": 90

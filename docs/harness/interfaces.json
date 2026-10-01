@@ -987,7 +987,7 @@
     {
       "id": "BR_W_CSB12",
       "type": "broken_off",
-      "what": "CSB3 +12V from sp_12v, via the CAN 4-core",
+      "what": "ECU switched +12V from sp_sw12 (F9 / a5) to the CAN trunk; nodes powered when the ECU is. Link CANLTW pigtail red lands on this rail",
       "ends": [
         {
           "harness": "CAN",
@@ -1002,7 +1002,7 @@
     {
       "id": "BR_W_CSBG",
       "type": "broken_off",
-      "what": "CSB3 ground to sp_chassis, via the CAN 4-core",
+      "what": "ECU ground at sp_chassis (a25 / a34) to the CAN trunk. Link CANLTW pigtail black lands on this rail",
       "ends": [
         {
           "harness": "CAN",
