@@ -1,0 +1,3074 @@
+{
+  "mates": [
+    {
+      "id": "m_rlp",
+      "sourceId": "rl_pos_fw",
+      "targetId": "rl_pos_eng"
+    },
+    {
+      "id": "m_rln",
+      "sourceId": "rl_neg_fw",
+      "targetId": "rl_neg_eng"
+    }
+  ],
+  "wires": [
+    {
+      "id": "w_trunk_pos",
+      "color": "Red",
+      "partId": "wp_1_0_red",
+      "source": {
+        "id": "t_trunk_pos",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "pdb",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_trunk_neg",
+      "color": "Black",
+      "partId": "wp_1_0_blk",
+      "source": {
+        "id": "t_trunk_neg",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "pdb",
+        "handle": "c8"
+      }
+    },
+    {
+      "id": "w_pdb_rlp",
+      "color": "Red",
+      "partId": "wp_1_0_red",
+      "source": {
+        "id": "pdb",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "rl_pos_fw",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_rl_pos",
+      "color": "Red",
+      "partId": "wp_1_0_red",
+      "source": {
+        "id": "rl_pos_fw",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "rl_pos_eng",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_rlp_str",
+      "color": "Red",
+      "partId": "wp_1_0_red",
+      "source": {
+        "id": "rl_pos_eng",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "t_starter_b",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_alt",
+      "color": "Red",
+      "partId": "wp_2_red",
+      "source": {
+        "id": "t_alt_b",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "t_starter_b_2",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_jump",
+      "color": "Red",
+      "partId": "wp_2_red",
+      "source": {
+        "id": "t_starter_b_3",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "jump_pos",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_pdb_rln",
+      "color": "Black",
+      "partId": "wp_1_0_blk",
+      "source": {
+        "id": "pdb",
+        "handle": "c8"
+      },
+      "target": {
+        "id": "rl_neg_fw",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_rln",
+      "color": "Black",
+      "partId": "wp_1_0_blk",
+      "source": {
+        "id": "rl_neg_fw",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "rl_neg_eng",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_rln_blk",
+      "color": "Black",
+      "partId": "wp_1_0_blk",
+      "source": {
+        "id": "rl_neg_eng",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "t_eng_block",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_pdb_pmu",
+      "color": "Red",
+      "partId": "wp_4_red",
+      "source": {
+        "id": "pdb",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "gbx_body",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_pmu_gnd",
+      "color": "Black",
+      "partId": "wp_4_blk",
+      "source": {
+        "id": "gbx_body",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "pdb",
+        "handle": "c8"
+      }
+    },
+    {
+      "id": "w_pdb_jb1",
+      "color": "White",
+      "partId": "m16_6_9",
+      "source": {
+        "id": "pdb",
+        "handle": "c5"
+      },
+      "target": {
+        "id": "fl_oem_jb1_1i_c1",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_pdb_am1",
+      "color": "White",
+      "partId": "m16_8_9",
+      "source": {
+        "id": "pdb",
+        "handle": "c6"
+      },
+      "target": {
+        "id": "fl_oem_ie1_c10",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_pdb_am2",
+      "color": "Brown",
+      "partId": "m16_10_1",
+      "source": {
+        "id": "pdb",
+        "handle": "c7"
+      },
+      "target": {
+        "id": "fl_oem_ie1_c17",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_pmu_hl",
+      "color": "Red",
+      "partId": "m16_14_2",
+      "source": {
+        "id": "gbx_body",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "oem_jb2_2a",
+        "handle": "c3"
+      }
+    },
+    {
+      "id": "w_pmu_hr",
+      "color": "Red",
+      "partId": "m16_14_2",
+      "source": {
+        "id": "gbx_body",
+        "handle": "c5"
+      },
+      "target": {
+        "id": "oem_jb2_2a",
+        "handle": "c6"
+      }
+    },
+    {
+      "id": "w_hl_twin",
+      "color": "Red",
+      "partId": "m16_14_2",
+      "source": {
+        "id": "oem_jb2_2a",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "oem_jb2_2d",
+        "handle": "c2"
+      }
+    },
+    {
+      "id": "w_hr_twin",
+      "color": "Red",
+      "partId": "m16_14_2",
+      "source": {
+        "id": "oem_jb2_2a",
+        "handle": "c6"
+      },
+      "target": {
+        "id": "oem_jb2_2d",
+        "handle": "c6"
+      }
+    },
+    {
+      "id": "w_pmu_dome",
+      "color": "Red",
+      "partId": "m16_12_2",
+      "source": {
+        "id": "gbx_body",
+        "handle": "c7"
+      },
+      "target": {
+        "id": "oem_jb2_2e",
+        "handle": "c4"
+      }
+    },
+    {
+      "id": "w_pmu_horn",
+      "color": "Red",
+      "partId": "m16_14_2",
+      "source": {
+        "id": "gbx_body",
+        "handle": "c6"
+      },
+      "target": {
+        "id": "oem_jb2_2e",
+        "handle": "c3"
+      }
+    },
+    {
+      "id": "w_pmu_rtr",
+      "color": "Red",
+      "partId": "m16_10_2",
+      "source": {
+        "id": "gbx_body",
+        "handle": "c8"
+      },
+      "target": {
+        "id": "oem_jb2_2e",
+        "handle": "c2"
+      }
+    },
+    {
+      "id": "w_eps_pwr",
+      "color": "Red",
+      "partId": "m16_8_2",
+      "source": {
+        "id": "br_w_eps_pwr",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "mrs_eps",
+        "handle": "a1"
+      }
+    },
+    {
+      "id": "w_eps_gnd",
+      "color": "Black",
+      "partId": "m16_8_0",
+      "source": {
+        "id": "mrs_eps",
+        "handle": "a2"
+      },
+      "target": {
+        "id": "t_eng_block_3",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_fan_pwr",
+      "color": "Red",
+      "partId": "m16_8_2",
+      "source": {
+        "id": "br_w_fan_pwr",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "rad_fan",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_fan_gnd",
+      "color": "Black",
+      "partId": "m16_8_0",
+      "source": {
+        "id": "rad_fan_g",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "t_gnd_ea",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_fan2_pwr",
+      "color": "Red",
+      "partId": "m16_8_2",
+      "source": {
+        "id": "br_w_fan2_pwr",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fan2",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_fan2_gnd",
+      "color": "Black",
+      "partId": "m16_8_0",
+      "source": {
+        "id": "fan2_g",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "t_gnd_ea_2",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_rb4",
+      "color": "Red",
+      "partId": "m16_8_2",
+      "source": {
+        "id": "pdb",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "fl_oem_rb4_c1",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_rb2",
+      "color": "Red",
+      "partId": "m16_10_2",
+      "source": {
+        "id": "pdb",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "fl_oem_rb2_c1",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_gnd_id",
+      "color": "Black",
+      "partId": "wp_1_0_blk",
+      "source": {
+        "id": "pdb",
+        "handle": "c8"
+      },
+      "target": {
+        "id": "t_gnd_id",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_gnd_ig",
+      "color": "Black",
+      "partId": "wp_1_0_blk",
+      "source": {
+        "id": "pdb",
+        "handle": "c8"
+      },
+      "target": {
+        "id": "t_gnd_ig",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_gnd_eb",
+      "color": "Black",
+      "partId": "wp_4_blk",
+      "source": {
+        "id": "t_eng_block_2",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "t_gnd_eb",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_mrs_e",
+      "color": "Gray",
+      "partId": "m16_20_8",
+      "source": {
+        "id": "br_w_mrs_e",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "mrs_eps",
+        "handle": "b2"
+      }
+    },
+    {
+      "id": "w_hv_mrs_en_e",
+      "color": "Red",
+      "partId": "m16_20_2",
+      "source": {
+        "id": "br_w_hv_mrs_en_e",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "mrs_eps",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_acp_1",
+      "color": "Violet",
+      "partId": "m16_18_7",
+      "source": {
+        "id": "gbx_body",
+        "handle": "c12"
+      },
+      "target": {
+        "id": "fl_ac_press_c1",
+        "handle": "Terminal"
+      }
+    }
+  ],
+  "bundles": [
+    {
+      "id": "bn_bp_150__bp_180",
+      "length": {
+        "unit": "mm",
+        "value": 40
+      },
+      "sourceId": "bp_150",
+      "targetId": "bp_180"
+    },
+    {
+      "id": "bn_bp_210__bp_240",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_210",
+      "targetId": "bp_240"
+    },
+    {
+      "id": "bn_bp_240__bp_270",
+      "length": {
+        "unit": "mm",
+        "value": 20
+      },
+      "sourceId": "bp_240",
+      "targetId": "bp_270"
+    },
+    {
+      "id": "bn_bp_270__bp_300",
+      "length": {
+        "unit": "mm",
+        "value": 80
+      },
+      "sourceId": "bp_270",
+      "targetId": "bp_300"
+    },
+    {
+      "id": "bn_bp_300__bp_330",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_300",
+      "targetId": "bp_330"
+    },
+    {
+      "id": "bn_bp_330__bp_360",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_330",
+      "targetId": "bp_360"
+    },
+    {
+      "id": "bn_bp_360__bp_390",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "sourceId": "bp_360",
+      "targetId": "bp_390"
+    },
+    {
+      "id": "bn_bp_390__bp_420",
+      "length": {
+        "unit": "mm",
+        "value": 90
+      },
+      "sourceId": "bp_390",
+      "targetId": "bp_420"
+    },
+    {
+      "id": "bn_bp_420__bp_450",
+      "length": {
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "bp_420",
+      "targetId": "bp_450"
+    },
+    {
+      "id": "bn_bp_450__bp_660",
+      "length": {
+        "unit": "mm",
+        "value": 460
+      },
+      "sourceId": "bp_450",
+      "targetId": "bp_660"
+    },
+    {
+      "id": "bn_bp_660__bp_690",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_660",
+      "targetId": "bp_690"
+    },
+    {
+      "id": "bn_bp_690__bp_720",
+      "length": {
+        "unit": "mm",
+        "value": 20
+      },
+      "sourceId": "bp_690",
+      "targetId": "bp_720"
+    },
+    {
+      "id": "bn_bp_720__bp_750",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_720",
+      "targetId": "bp_750"
+    },
+    {
+      "id": "bn_bp_750__bp_780",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_750",
+      "targetId": "bp_780"
+    },
+    {
+      "id": "bn_bp_780__bp_810",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_780",
+      "targetId": "bp_810"
+    },
+    {
+      "id": "bn_bp_810__bp_840",
+      "length": {
+        "unit": "mm",
+        "value": 20
+      },
+      "sourceId": "bp_810",
+      "targetId": "bp_840"
+    },
+    {
+      "id": "bn_bp_840__bp_870",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_840",
+      "targetId": "bp_870"
+    },
+    {
+      "id": "bn_bp_870__bp_900",
+      "length": {
+        "unit": "mm",
+        "value": 200
+      },
+      "sourceId": "bp_870",
+      "targetId": "bp_900"
+    },
+    {
+      "id": "bn_bp_900__pdb",
+      "length": {
+        "unit": "mm",
+        "value": 190
+      },
+      "sourceId": "bp_900",
+      "targetId": "pdb"
+    },
+    {
+      "id": "bn_pdb__bp_960",
+      "length": {
+        "unit": "mm",
+        "value": 190
+      },
+      "sourceId": "pdb",
+      "targetId": "bp_960"
+    },
+    {
+      "id": "bn_bp_960__bp_990",
+      "length": {
+        "unit": "mm",
+        "value": 80
+      },
+      "sourceId": "bp_960",
+      "targetId": "bp_990"
+    },
+    {
+      "id": "bn_bp_990__bp_1020",
+      "length": {
+        "unit": "mm",
+        "value": 40
+      },
+      "sourceId": "bp_990",
+      "targetId": "bp_1020"
+    },
+    {
+      "id": "bn_bp_1020__bp_1050",
+      "length": {
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "bp_1020",
+      "targetId": "bp_1050"
+    },
+    {
+      "id": "bn_bp_1050__bp_1080",
+      "length": {
+        "unit": "mm",
+        "value": 160
+      },
+      "sourceId": "bp_1050",
+      "targetId": "bp_1080"
+    },
+    {
+      "id": "bn_bp_1080__bp_1110",
+      "length": {
+        "unit": "mm",
+        "value": 80
+      },
+      "sourceId": "bp_1080",
+      "targetId": "bp_1110"
+    },
+    {
+      "id": "bn_bp_1110__bp_1140",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_1110",
+      "targetId": "bp_1140"
+    },
+    {
+      "id": "bn_bp_1140__bp_1170",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_1140",
+      "targetId": "bp_1170"
+    },
+    {
+      "id": "bn_bp_1170__bp_1200",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_1170",
+      "targetId": "bp_1200"
+    },
+    {
+      "id": "bn_bp_1200__bp_1230",
+      "length": {
+        "unit": "mm",
+        "value": 130
+      },
+      "sourceId": "bp_1200",
+      "targetId": "bp_1230"
+    },
+    {
+      "id": "bn_bp_1230__bp_1260",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_1230",
+      "targetId": "bp_1260"
+    },
+    {
+      "id": "bn_bp_1260__bp_1290",
+      "length": {
+        "unit": "mm",
+        "value": 20
+      },
+      "sourceId": "bp_1260",
+      "targetId": "bp_1290"
+    },
+    {
+      "id": "bn_bp_1290__bp_1320",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_1290",
+      "targetId": "bp_1320"
+    },
+    {
+      "id": "bn_bp_1320__bp_1350",
+      "length": {
+        "unit": "mm",
+        "value": 30
+      },
+      "sourceId": "bp_1320",
+      "targetId": "bp_1350"
+    },
+    {
+      "id": "bn_bp_1350__bp_2430",
+      "length": {
+        "unit": "mm",
+        "value": 2640
+      },
+      "sourceId": "bp_1350",
+      "targetId": "bp_2430"
+    },
+    {
+      "id": "bn_bp_2430__bp_2460",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_2430",
+      "targetId": "bp_2460"
+    },
+    {
+      "id": "bn_bp_120__fan2",
+      "length": {
+        "unit": "mm",
+        "value": 590
+      },
+      "sourceId": "bp_120",
+      "targetId": "fan2"
+    },
+    {
+      "id": "bn_bp_150__bp_fl_ac_press",
+      "length": {
+        "unit": "mm",
+        "value": 1190
+      },
+      "sourceId": "bp_150",
+      "targetId": "bp_fl_ac_press"
+    },
+    {
+      "id": "bn_bp_180__rad_fan",
+      "length": {
+        "unit": "mm",
+        "value": 790
+      },
+      "sourceId": "bp_180",
+      "targetId": "rad_fan"
+    },
+    {
+      "id": "bn_bp_210__t_gnd_eb",
+      "length": {
+        "unit": "mm",
+        "value": 1430
+      },
+      "sourceId": "bp_210",
+      "targetId": "t_gnd_eb"
+    },
+    {
+      "id": "bn_bp_240__t_gnd_ea",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_240",
+      "targetId": "t_gnd_ea"
+    },
+    {
+      "id": "bn_bp_270__t_gnd_ea_2",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_270",
+      "targetId": "t_gnd_ea_2"
+    },
+    {
+      "id": "bn_bp_300__oem_jb2_2e",
+      "length": {
+        "unit": "mm",
+        "value": 1410
+      },
+      "sourceId": "bp_300",
+      "targetId": "oem_jb2_2e"
+    },
+    {
+      "id": "bn_bp_330__oem_jb2_2d",
+      "length": {
+        "unit": "mm",
+        "value": 1380
+      },
+      "sourceId": "bp_330",
+      "targetId": "oem_jb2_2d"
+    },
+    {
+      "id": "bn_bp_360__oem_jb2_2a",
+      "length": {
+        "unit": "mm",
+        "value": 1340
+      },
+      "sourceId": "bp_360",
+      "targetId": "oem_jb2_2a"
+    },
+    {
+      "id": "bn_bp_390__mrs_eps",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_390",
+      "targetId": "mrs_eps"
+    },
+    {
+      "id": "bn_bp_420__t_alt_b",
+      "length": {
+        "unit": "mm",
+        "value": 990
+      },
+      "sourceId": "bp_420",
+      "targetId": "t_alt_b"
+    },
+    {
+      "id": "bn_bp_690__t_eng_block",
+      "length": {
+        "unit": "mm",
+        "value": 890
+      },
+      "sourceId": "bp_690",
+      "targetId": "t_eng_block"
+    },
+    {
+      "id": "bn_bp_720__t_eng_block_2",
+      "length": {
+        "unit": "mm",
+        "value": 890
+      },
+      "sourceId": "bp_720",
+      "targetId": "t_eng_block_2"
+    },
+    {
+      "id": "bn_bp_750__t_starter_b",
+      "length": {
+        "unit": "mm",
+        "value": 1060
+      },
+      "sourceId": "bp_750",
+      "targetId": "t_starter_b"
+    },
+    {
+      "id": "bn_bp_780__t_eng_block_3",
+      "length": {
+        "unit": "mm",
+        "value": 890
+      },
+      "sourceId": "bp_780",
+      "targetId": "t_eng_block_3"
+    },
+    {
+      "id": "bn_bp_810__t_starter_b_2",
+      "length": {
+        "unit": "mm",
+        "value": 1060
+      },
+      "sourceId": "bp_810",
+      "targetId": "t_starter_b_2"
+    },
+    {
+      "id": "bn_bp_840__t_starter_b_3",
+      "length": {
+        "unit": "mm",
+        "value": 1060
+      },
+      "sourceId": "bp_840",
+      "targetId": "t_starter_b_3"
+    },
+    {
+      "id": "bn_bp_870__jump_pos",
+      "length": {
+        "unit": "mm",
+        "value": 1340
+      },
+      "sourceId": "bp_870",
+      "targetId": "jump_pos"
+    },
+    {
+      "id": "bn_bp_990__rl_pos_eng",
+      "length": {
+        "unit": "mm",
+        "value": 410
+      },
+      "sourceId": "bp_990",
+      "targetId": "rl_pos_eng"
+    },
+    {
+      "id": "bn_bp_1020__rl_neg_eng",
+      "length": {
+        "unit": "mm",
+        "value": 400
+      },
+      "sourceId": "bp_1020",
+      "targetId": "rl_neg_eng"
+    },
+    {
+      "id": "bn_bp_1050__rl_pos_fw",
+      "length": {
+        "unit": "mm",
+        "value": 390
+      },
+      "sourceId": "bp_1050",
+      "targetId": "rl_pos_fw"
+    },
+    {
+      "id": "bn_bp_1080__rl_neg_fw",
+      "length": {
+        "unit": "mm",
+        "value": 180
+      },
+      "sourceId": "bp_1080",
+      "targetId": "rl_neg_fw"
+    },
+    {
+      "id": "bn_bp_1110__t_gnd_id",
+      "length": {
+        "unit": "mm",
+        "value": 1600
+      },
+      "sourceId": "bp_1110",
+      "targetId": "t_gnd_id"
+    },
+    {
+      "id": "bn_bp_1140__bp_fl_oem_ie1",
+      "length": {
+        "unit": "mm",
+        "value": 1560
+      },
+      "sourceId": "bp_1140",
+      "targetId": "bp_fl_oem_ie1"
+    },
+    {
+      "id": "bn_bp_1170__bp_fl_oem_jb1_1i",
+      "length": {
+        "unit": "mm",
+        "value": 1500
+      },
+      "sourceId": "bp_1170",
+      "targetId": "bp_fl_oem_jb1_1i"
+    },
+    {
+      "id": "bn_bp_1200__bp_fl_oem_rb2",
+      "length": {
+        "unit": "mm",
+        "value": 1450
+      },
+      "sourceId": "bp_1200",
+      "targetId": "bp_fl_oem_rb2"
+    },
+    {
+      "id": "bn_bp_900__bp_fl_oem_rb4",
+      "length": {
+        "unit": "mm",
+        "value": 170
+      },
+      "sourceId": "bp_900",
+      "targetId": "bp_fl_oem_rb4"
+    },
+    {
+      "id": "bn_bp_960__t_gnd_ig",
+      "length": {
+        "unit": "mm",
+        "value": 210
+      },
+      "sourceId": "bp_960",
+      "targetId": "t_gnd_ig"
+    },
+    {
+      "id": "bn_bp_990__gbx_body",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "bp_990",
+      "targetId": "gbx_body"
+    },
+    {
+      "id": "bn_bp_2430__t_trunk_pos",
+      "length": {
+        "unit": "mm",
+        "value": 260
+      },
+      "sourceId": "bp_2430",
+      "targetId": "t_trunk_pos"
+    },
+    {
+      "id": "bn_bp_2460__t_trunk_neg",
+      "length": {
+        "unit": "mm",
+        "value": 200
+      },
+      "sourceId": "bp_2460",
+      "targetId": "t_trunk_neg"
+    },
+    {
+      "id": "bn_bp_180__bp_185",
+      "length": {
+        "unit": "mm",
+        "value": 15
+      },
+      "sourceId": "bp_180",
+      "targetId": "bp_185"
+    },
+    {
+      "id": "bn_bp_185__bp_210",
+      "length": {
+        "unit": "mm",
+        "value": 15
+      },
+      "sourceId": "bp_185",
+      "targetId": "bp_210"
+    },
+    {
+      "id": "bn_bp_185__rad_fan_g",
+      "length": {
+        "unit": "mm",
+        "value": 790
+      },
+      "sourceId": "bp_185",
+      "targetId": "rad_fan_g"
+    },
+    {
+      "id": "bn_bp_120__bp_125",
+      "length": {
+        "unit": "mm",
+        "value": 35
+      },
+      "sourceId": "bp_120",
+      "targetId": "bp_125"
+    },
+    {
+      "id": "bn_bp_125__bp_150",
+      "length": {
+        "unit": "mm",
+        "value": 35
+      },
+      "sourceId": "bp_125",
+      "targetId": "bp_150"
+    },
+    {
+      "id": "bn_bp_125__fan2_g",
+      "length": {
+        "unit": "mm",
+        "value": 590
+      },
+      "sourceId": "bp_125",
+      "targetId": "fan2_g"
+    },
+    {
+      "id": "bn_bp_fl_ac_press__fl_ac_press_c1",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_fl_ac_press",
+      "targetId": "fl_ac_press_c1"
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c10",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c10"
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c17",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c17"
+    },
+    {
+      "id": "bn_bp_fl_oem_jb1_1i__fl_oem_jb1_1i_c1",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_fl_oem_jb1_1i",
+      "targetId": "fl_oem_jb1_1i_c1"
+    },
+    {
+      "id": "bn_bp_fl_oem_rb2__fl_oem_rb2_c1",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_fl_oem_rb2",
+      "targetId": "fl_oem_rb2_c1"
+    },
+    {
+      "id": "bn_bp_fl_oem_rb4__fl_oem_rb4_c1",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_fl_oem_rb4",
+      "targetId": "fl_oem_rb4_c1"
+    },
+    {
+      "id": "bn_bp_1020__br_w_fan_pwr",
+      "length": {
+        "unit": "mm",
+        "value": 290
+      },
+      "sourceId": "bp_1020",
+      "targetId": "br_w_fan_pwr"
+    },
+    {
+      "id": "bn_bp_1050__br_w_fan2_pwr",
+      "length": {
+        "unit": "mm",
+        "value": 270
+      },
+      "sourceId": "bp_1050",
+      "targetId": "br_w_fan2_pwr"
+    },
+    {
+      "id": "bn_bp_450__br_w_eps_pwr",
+      "length": {
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "bp_450",
+      "targetId": "br_w_eps_pwr"
+    },
+    {
+      "id": "bn_bp_900__br_w_mrs_e",
+      "length": {
+        "unit": "mm",
+        "value": 500
+      },
+      "sourceId": "bp_900",
+      "targetId": "br_w_mrs_e"
+    },
+    {
+      "id": "bn_bp_900__br_w_hv_mrs_en_e",
+      "length": {
+        "unit": "mm",
+        "value": 500
+      },
+      "sourceId": "bp_900",
+      "targetId": "br_w_hv_mrs_en_e"
+    }
+  ],
+  "version": 0.9,
+  "terminals": [
+    {
+      "id": "t_trunk_pos",
+      "type": "Ring",
+      "width": 270,
+      "partId": "tp_lug_m10_50",
+      "signal": "Trunk battery +  (1/0, jump lug)",
+      "layoutPosition": {
+        "x": 5790,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "t_trunk_neg",
+      "type": "Ring",
+      "width": 270,
+      "partId": "tp_lug_m10_50",
+      "signal": "Trunk battery -  (1/0, jump lug)",
+      "layoutPosition": {
+        "x": 5910,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 90
+      }
+    },
+    {
+      "id": "t_starter_b",
+      "type": "Ring",
+      "width": 270,
+      "partId": "tp_lug_m10_50",
+      "signal": "Starter B+ post, jump lug, 1/0",
+      "layoutPosition": {
+        "x": 2310,
+        "y": -240
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 480
+      }
+    },
+    {
+      "id": "t_starter_b_2",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_lug_m10_2",
+      "signal": "Starter B+ post - lug 2, 2 AWG from alt",
+      "layoutPosition": {
+        "x": 2550,
+        "y": -180
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 570
+      }
+    },
+    {
+      "id": "t_starter_b_3",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_lug_m10_2",
+      "signal": "Starter B+ post - lug 3, 2 AWG to jump post",
+      "layoutPosition": {
+        "x": 2670,
+        "y": -240
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 660
+      }
+    },
+    {
+      "id": "t_alt_b",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_lug_m8_2",
+      "signal": "160 A alternator B+, 2 AWG to starter B+",
+      "layoutPosition": {
+        "x": 1620,
+        "y": -150
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 750
+      }
+    },
+    {
+      "id": "t_eng_block",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_lug_m10_50",
+      "signal": "Engine block ground stud, 1/0, jump lug",
+      "layoutPosition": {
+        "x": 2070,
+        "y": -90
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 960
+      }
+    },
+    {
+      "id": "t_eng_block_2",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_lug_m10_4",
+      "signal": "Engine block stud - lug 2, 4 AWG to EB",
+      "layoutPosition": {
+        "x": 2190,
+        "y": -150
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 1050
+      }
+    },
+    {
+      "id": "t_eng_block_3",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_lug_m10_8",
+      "signal": "Engine block stud - lug 3, 8 AWG EPS gnd",
+      "layoutPosition": {
+        "x": 2430,
+        "y": -90
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 1140
+      }
+    },
+    {
+      "id": "t_gnd_ea",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_lug_m8_8",
+      "signal": "OEM ground EA - right front fender",
+      "layoutPosition": {
+        "x": 900,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 990
+      }
+    },
+    {
+      "id": "t_gnd_ea_2",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_lug_m8_8",
+      "signal": "OEM ground EA - lug 2, cond. fan 8 AWG",
+      "layoutPosition": {
+        "x": 1020,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 1080
+      }
+    },
+    {
+      "id": "t_gnd_eb",
+      "type": "Ring",
+      "width": 270,
+      "partId": "tp_lug_m8_4",
+      "signal": "OEM ground EB - left front fender",
+      "layoutPosition": {
+        "x": 780,
+        "y": -390
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 1170
+      }
+    },
+    {
+      "id": "t_gnd_id",
+      "type": "Ring",
+      "width": 270,
+      "partId": "tp_lug_m10_50",
+      "signal": "OEM ground ID - left kick panel",
+      "layoutPosition": {
+        "x": 3750,
+        "y": -480
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 1320
+      }
+    },
+    {
+      "id": "t_gnd_ig",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_lug_m10_50",
+      "signal": "OEM ground IG - R/B4 set bolt, right kick",
+      "layoutPosition": {
+        "x": 3150,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 1410
+      }
+    },
+    {
+      "id": "fl_ac_press_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.152 A5-1 V-R A/C pressure switch +12V (ACPS 5 A, IG) - solder sleeve into the factory V-R lead at the switch",
+      "layoutPosition": {
+        "x": 420,
+        "y": -270
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 1590
+      }
+    },
+    {
+      "id": "fl_oem_ie1_c10",
+      "type": "Loose",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD p.31 IE1-10 W AM1 to ignition switch I9-4 - heavy crimp butt splice into the factory lead",
+      "layoutPosition": {
+        "x": 3870,
+        "y": -570
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 0
+      }
+    },
+    {
+      "id": "fl_oem_ie1_c17",
+      "type": "Loose",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD p.31 IE1-17 B-R AM2 to ignition switch I9-10 - heavy crimp butt splice into the factory lead",
+      "layoutPosition": {
+        "x": 3870,
+        "y": -510
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 60
+      }
+    },
+    {
+      "id": "fl_oem_jb1_1i_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD p.18-19 / p.46 J/B1 1I-1 B J/B1 primary B+ (always hot; was FL ALT) - heavy crimp butt splice into the factory 1I-1 lead",
+      "layoutPosition": {
+        "x": 3990,
+        "y": -420
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 150
+      }
+    },
+    {
+      "id": "fl_oem_rb2_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD p.23 R/B2-1 W 30A POWER fuse input (windows / locks) - feed the fuse input only - heavy crimp butt splice into the factory lead",
+      "layoutPosition": {
+        "x": 4110,
+        "y": -510
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 270
+      }
+    },
+    {
+      "id": "fl_oem_rb4_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD p.24 / p.46 R/B4-1 W 40A HEATER fuse input - feed the fuse input only - heavy crimp butt splice into the factory lead",
+      "layoutPosition": {
+        "x": 2910,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 420
+      }
+    },
+    {
+      "id": "br_w_fan_pwr",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: radiator fan relay 87 feed",
+      "layoutPosition": {
+        "x": 3450,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 1020
+      }
+    },
+    {
+      "id": "br_w_fan2_pwr",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-B-cabin: condenser fan relay 87 feed",
+      "layoutPosition": {
+        "x": 3570,
+        "y": 600
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 1260
+      }
+    },
+    {
+      "id": "br_w_eps_pwr",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-B-cabin: EPS relay 87 feed to the pump",
+      "layoutPosition": {
+        "x": 1800,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 2040,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_w_hv_mrs_en_e",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-engine: MRS enable, bulkhead A c35",
+      "layoutPosition": {
+        "x": 3210,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 2700,
+        "y": 180
+      }
+    },
+    {
+      "id": "br_w_mrs_e",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-engine: MRS speed (ECU A27), bulkhead A c36",
+      "layoutPosition": {
+        "x": 2970,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 2700,
+        "y": 60
+      }
+    }
+  ],
+  "wireParts": [
+    {
+      "id": "wp_1_0_blk",
+      "color": "Black",
+      "gauge": {
+        "unit": "Metric",
+        "value": 53.5
+      },
+      "partNumber": "BC-1/0-BLK",
+      "description": "CABLE, BATTERY, 1/0 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "wp_1_0_red",
+      "color": "Red",
+      "gauge": {
+        "unit": "Metric",
+        "value": 53.5
+      },
+      "partNumber": "BC-1/0-RED",
+      "description": "CABLE, BATTERY, 1/0 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "wp_2_red",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 2
+      },
+      "partNumber": "BC-2-RED",
+      "description": "CABLE, BATTERY, 2 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "wp_4_blk",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 4
+      },
+      "partNumber": "BC-4-BLK",
+      "description": "CABLE, BATTERY, 4 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "wp_4_red",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 4
+      },
+      "partNumber": "BC-4-RED",
+      "description": "CABLE, BATTERY, 4 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "m16_6_9",
+      "color": "White",
+      "gauge": {
+        "unit": "AWG",
+        "value": 6
+      },
+      "partNumber": "M22759/16-6-9",
+      "description": "WIRE, M22759/16, 6 AWG WHITE",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_8_0",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "partNumber": "M22759/16-8-0",
+      "description": "WIRE, M22759/16, 8 AWG BLACK",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_8_2",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "partNumber": "M22759/16-8-2",
+      "description": "WIRE, M22759/16, 8 AWG RED",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_8_9",
+      "color": "White",
+      "gauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "partNumber": "M22759/16-8-9",
+      "description": "WIRE, M22759/16, 8 AWG WHITE",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_10_1",
+      "color": "Brown",
+      "gauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "M22759/16-10-1",
+      "description": "WIRE, M22759/16, 10 AWG BROWN",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_10_2",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "M22759/16-10-2",
+      "description": "WIRE, M22759/16, 10 AWG RED",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_12_2",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "partNumber": "M22759/16-12-2",
+      "description": "WIRE, M22759/16, 12 AWG RED",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_14_2",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "partNumber": "M22759/16-14-2",
+      "description": "WIRE, M22759/16, 14 AWG RED",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_18_7",
+      "color": "Violet",
+      "gauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "M22759/16-18-7",
+      "description": "WIRE, M22759/16, 18 AWG VIOLET",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_2",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-2",
+      "description": "WIRE, M22759/16, 20 AWG RED",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_8",
+      "color": "Gray",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-8",
+      "description": "WIRE, M22759/16, 20 AWG GRAY",
+      "manufacturer": "M22759"
+    }
+  ],
+  "connectors": [
+    {
+      "id": "pdb",
+      "label": "Cabin PDB (glove box)",
+      "width": 390,
+      "partId": "cp_pdb",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Trunk battery + 1/0",
+          "designation": "BAT+"
+        },
+        {
+          "id": "c2",
+          "signal": "To RADLOK +  (starter / 160 A alt)",
+          "designation": "ALT/STR"
+        },
+        {
+          "id": "c3",
+          "signal": "Cabin fuse block IN",
+          "designation": "FUSE IN"
+        },
+        {
+          "id": "c4",
+          "signal": "Glove-box body block feed stud (ex-PMU)",
+          "designation": "PMU M6"
+        },
+        {
+          "id": "c5",
+          "signal": "60A fused OEM HOT - always-hot feed to J/B No.1 1I-1 (6 AWG)",
+          "designation": "OEM HOT"
+        },
+        {
+          "id": "c6",
+          "signal": "40A fused AM1 to IE1-10 / I9-4",
+          "designation": "AM1"
+        },
+        {
+          "id": "c7",
+          "signal": "30A fused AM2 to IE1-17 / I9-10",
+          "designation": "AM2"
+        },
+        {
+          "id": "c8",
+          "signal": "Cabin ground bus",
+          "designation": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3030,
+        "y": 390
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 180
+      }
+    },
+    {
+      "id": "gbx_body",
+      "label": "Glove-box body block (fuses + relays, ex-J/B2)",
+      "width": 390,
+      "partId": "cp_gbx_body",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Feed from PDB stud, ANL 100 A",
+          "designation": "IN"
+        },
+        {
+          "id": "c2",
+          "signal": "Chassis / PDB ground",
+          "designation": "GND"
+        },
+        {
+          "id": "c3",
+          "signal": "Ignition-switched relay coil feed *",
+          "designation": "IGN"
+        },
+        {
+          "id": "c4",
+          "signal": "HEAD LH - relay 87, 15 A fuse -> J/B2 2A-3 *",
+          "designation": "HL"
+        },
+        {
+          "id": "c5",
+          "signal": "HEAD RH - relay 87, 15 A fuse -> J/B2 2A-6 *",
+          "designation": "HR"
+        },
+        {
+          "id": "c6",
+          "signal": "HAZ-HORN - 15 A fuse -> J/B2 2E-3",
+          "designation": "HZ"
+        },
+        {
+          "id": "c7",
+          "signal": "DOME - 20 A fuse, always-hot -> J/B2 2E-4",
+          "designation": "DM"
+        },
+        {
+          "id": "c8",
+          "signal": "RTR - relay 87, 30 A fuse -> J/B2 2E-2",
+          "designation": "RT"
+        },
+        {
+          "id": "c9",
+          "signal": "Wiper park - relay 87, 15 A fuse *",
+          "designation": "WP"
+        },
+        {
+          "id": "c10",
+          "signal": "CSB3 permanent feed, 5 A *",
+          "designation": "CSB"
+        },
+        {
+          "id": "c11",
+          "signal": "Cluster + RealDash Pi - ignition-switched fuse, no hold *",
+          "designation": "DEV"
+        },
+        {
+          "id": "c12",
+          "signal": "A/C pressure switch +12V, 5 A fuse *",
+          "designation": "ACPS"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3270,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 510
+      }
+    },
+    {
+      "id": "rl_pos_fw",
+      "label": "RADLOK + firewall",
+      "width": 150,
+      "partId": "cp_rl_red_eng",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "heavy DC +",
+          "designation": "1"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3510,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 0
+      }
+    },
+    {
+      "id": "rl_pos_eng",
+      "label": "RADLOK + engine",
+      "width": 150,
+      "partId": "cp_rl_red_eng",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "heavy DC +",
+          "designation": "1"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3270,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 120
+      }
+    },
+    {
+      "id": "rl_neg_fw",
+      "label": "RADLOK - firewall",
+      "width": 150,
+      "partId": "cp_rl_blk_eng",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "heavy DC -",
+          "designation": "1"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3630,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 240
+      }
+    },
+    {
+      "id": "rl_neg_eng",
+      "label": "RADLOK - engine",
+      "width": 150,
+      "partId": "cp_rl_blk_eng",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "heavy DC -",
+          "designation": "1"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3390,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 360
+      }
+    },
+    {
+      "id": "oem_jb2_2a",
+      "label": "OEM J/B2 2A (engine room main)",
+      "width": 390,
+      "partId": "cp_oem",
+      "cavities": [
+        {
+          "id": "c2",
+          "signal": "30A CDS FAN out - DO NOT REFEED *",
+          "designation": "2"
+        },
+        {
+          "id": "c3",
+          "signal": "15A HEAD LH (inner circuit) - PMU O1",
+          "designation": "3"
+        },
+        {
+          "id": "c4",
+          "signal": "RDI FAN out - DO NOT REFEED, fan moved to k_fan",
+          "designation": "4"
+        },
+        {
+          "id": "c5",
+          "signal": "Engine main relay 87 - DO NOT REFEED *",
+          "designation": "5"
+        },
+        {
+          "id": "c6",
+          "signal": "15A HEAD RH (inner circuit) - PMU O2",
+          "designation": "6"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1380,
+        "y": -330
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 600
+      }
+    },
+    {
+      "id": "oem_jb2_2d",
+      "label": "OEM J/B2 2D (engine room main)",
+      "width": 390,
+      "partId": "cp_oem",
+      "cavities": [
+        {
+          "id": "c2",
+          "signal": "15A HEAD LH twin of 2A-3 - dummy-header jumper",
+          "designation": "2"
+        },
+        {
+          "id": "c3",
+          "signal": "Headlight relay coil - unused *",
+          "designation": "3"
+        },
+        {
+          "id": "c5",
+          "signal": "Rad fan relay coil - unused after fan move",
+          "designation": "5"
+        },
+        {
+          "id": "c6",
+          "signal": "15A HEAD RH twin of 2A-6 - dummy-header jumper",
+          "designation": "6"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1260,
+        "y": -480
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 840
+      }
+    },
+    {
+      "id": "oem_jb2_2e",
+      "label": "OEM J/B2 2E (engine room main)",
+      "width": 390,
+      "partId": "cp_oem",
+      "cavities": [
+        {
+          "id": "c2",
+          "signal": "PROBE: inner cct = 30A RTR *",
+          "designation": "2"
+        },
+        {
+          "id": "c3",
+          "signal": "PROBE: inner cct = 15A HAZ-HORN *",
+          "designation": "3"
+        },
+        {
+          "id": "c4",
+          "signal": "20A DOME *",
+          "designation": "4"
+        },
+        {
+          "id": "c5",
+          "signal": "AM1 pass-through (starting p.48) *",
+          "designation": "5"
+        },
+        {
+          "id": "c6",
+          "signal": "AM2 / engine-main related. Do not PMU-feed *",
+          "designation": "6"
+        },
+        {
+          "id": "c8",
+          "signal": "15A EFI - unused, Link EFI relay in cabin",
+          "designation": "8"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1140,
+        "y": -390
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 1050
+      }
+    },
+    {
+      "id": "rad_fan",
+      "label": "Uprated radiator fan (+)",
+      "width": 390,
+      "partId": "cp_dthd_1_8s",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "From k_fan 87, 8 AWG",
+          "designation": "+"
+        }
+      ],
+      "layoutPosition": {
+        "x": 540,
+        "y": -30
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 630
+      }
+    },
+    {
+      "id": "fan2",
+      "label": "Uprated condenser fan (+)",
+      "width": 390,
+      "partId": "cp_dthd_1_8s",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "From k_fan2 87, 8 AWG",
+          "designation": "+"
+        }
+      ],
+      "layoutPosition": {
+        "x": 180,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 810
+      }
+    },
+    {
+      "id": "jump_pos",
+      "label": "Engine-bay jump post",
+      "width": 270,
+      "partId": "cp_jump",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Tied to starter B+ / RADLOK +",
+          "designation": "1"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2790,
+        "y": -330
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 840
+      }
+    },
+    {
+      "id": "mrs_eps",
+      "label": "MR-S EHPS pump (A power / B signal / C ignition)",
+      "width": 390,
+      "partId": "cp_mrs_eps",
+      "cavities": [
+        {
+          "id": "a1",
+          "signal": "[A 90980-12068 pin 1] +12V from k_eps 87 *",
+          "designation": "A-1"
+        },
+        {
+          "id": "a2",
+          "signal": "[A 90980-12068 pin 2] GND *",
+          "designation": "A-2"
+        },
+        {
+          "id": "b1",
+          "signal": "[B 90980-10897 pin 1] not used",
+          "designation": "B-1"
+        },
+        {
+          "id": "b2",
+          "signal": "[B 90980-10897 pin 2] SPD Out *",
+          "designation": "B-2"
+        },
+        {
+          "id": "b3",
+          "signal": "[B 90980-10897 pin 3] not used",
+          "designation": "B-3"
+        },
+        {
+          "id": "b4",
+          "signal": "[B 90980-10897 pin 4] not used",
+          "designation": "B-4"
+        },
+        {
+          "id": "b5",
+          "signal": "[B 90980-10897 pin 5] not used",
+          "designation": "B-5"
+        },
+        {
+          "id": "b6",
+          "signal": "[B 90980-10897 pin 6] relay request out *",
+          "designation": "B-6"
+        },
+        {
+          "id": "c1",
+          "signal": "[C 90980-10942 pin 1] IG-switched, F13 7.5A *",
+          "designation": "C-1"
+        },
+        {
+          "id": "c2",
+          "signal": "[C 90980-10942 pin 2] not used",
+          "designation": "C-2"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1500,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 240
+      }
+    },
+    {
+      "id": "rad_fan_g",
+      "label": "Uprated radiator fan (GND)",
+      "width": 390,
+      "partId": "cp_dthd_1_8s",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "To EA / engine-room ground stud, 8 AWG",
+          "designation": "-"
+        }
+      ],
+      "layoutPosition": {
+        "x": 660,
+        "y": -90
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 720
+      }
+    },
+    {
+      "id": "fan2_g",
+      "label": "Uprated condenser fan (GND)",
+      "width": 390,
+      "partId": "cp_dthd_1_8s",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "To EA / engine-room ground stud, 8 AWG",
+          "designation": "-"
+        }
+      ],
+      "layoutPosition": {
+        "x": 300,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 900
+      }
+    }
+  ],
+  "lengthUnit": "mm",
+  "branchPoints": [
+    {
+      "id": "bp_120",
+      "layoutPosition": {
+        "x": 180,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_150",
+      "layoutPosition": {
+        "x": 420,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_180",
+      "layoutPosition": {
+        "x": 540,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_210",
+      "layoutPosition": {
+        "x": 780,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_240",
+      "layoutPosition": {
+        "x": 900,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_270",
+      "layoutPosition": {
+        "x": 1020,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_300",
+      "layoutPosition": {
+        "x": 1140,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_330",
+      "layoutPosition": {
+        "x": 1260,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_360",
+      "layoutPosition": {
+        "x": 1380,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_390",
+      "layoutPosition": {
+        "x": 1500,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_420",
+      "layoutPosition": {
+        "x": 1620,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_450",
+      "layoutPosition": {
+        "x": 1740,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_660",
+      "layoutPosition": {
+        "x": 1950,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_690",
+      "layoutPosition": {
+        "x": 2070,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_720",
+      "layoutPosition": {
+        "x": 2190,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_750",
+      "layoutPosition": {
+        "x": 2310,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_780",
+      "layoutPosition": {
+        "x": 2430,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_810",
+      "layoutPosition": {
+        "x": 2550,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_840",
+      "layoutPosition": {
+        "x": 2670,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_870",
+      "layoutPosition": {
+        "x": 2790,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_900",
+      "layoutPosition": {
+        "x": 2910,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_960",
+      "layoutPosition": {
+        "x": 3150,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_990",
+      "layoutPosition": {
+        "x": 3270,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1020",
+      "layoutPosition": {
+        "x": 3390,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1050",
+      "layoutPosition": {
+        "x": 3510,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1080",
+      "layoutPosition": {
+        "x": 3630,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1110",
+      "layoutPosition": {
+        "x": 3750,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1140",
+      "layoutPosition": {
+        "x": 3870,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1170",
+      "layoutPosition": {
+        "x": 3990,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1200",
+      "layoutPosition": {
+        "x": 4110,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1230",
+      "layoutPosition": {
+        "x": 4230,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1260",
+      "layoutPosition": {
+        "x": 4350,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1290",
+      "layoutPosition": {
+        "x": 4470,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1320",
+      "layoutPosition": {
+        "x": 4590,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_1350",
+      "layoutPosition": {
+        "x": 4710,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_2430",
+      "layoutPosition": {
+        "x": 5790,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_2460",
+      "layoutPosition": {
+        "x": 5910,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_185",
+      "layoutPosition": {
+        "x": 660,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_125",
+      "layoutPosition": {
+        "x": 300,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_fl_ac_press",
+      "layoutPosition": {
+        "x": 420,
+        "y": -270
+      }
+    },
+    {
+      "id": "bp_fl_oem_ie1",
+      "layoutPosition": {
+        "x": 3870,
+        "y": -570
+      }
+    },
+    {
+      "id": "bp_fl_oem_jb1_1i",
+      "layoutPosition": {
+        "x": 3990,
+        "y": -420
+      }
+    },
+    {
+      "id": "bp_fl_oem_rb2",
+      "layoutPosition": {
+        "x": 4110,
+        "y": -510
+      }
+    },
+    {
+      "id": "bp_fl_oem_rb4",
+      "layoutPosition": {
+        "x": 2910,
+        "y": 480
+      }
+    }
+  ],
+  "contactParts": [
+    {
+      "id": "ct_generic_skt",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "(generic)",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
+      "manufacturer": "Generic"
+    },
+    {
+      "id": "ct_lug_stud",
+      "type": "Other",
+      "gender": "Socket",
+      "partNumber": "(ring lug, sized to cable)",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK",
+      "contactColor": "Silver",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "ct_mrs_ts",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "(Toyota TS terminals, supplied with owned housings)",
+      "description": "CONTACT, SOCKET, CRIMP, TOYOTA",
+      "contactColor": "Silver",
+      "manufacturer": "Toyota / Sumitomo"
+    },
+    {
+      "id": "ct_radlok8",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "(integral - RL00801-50)",
+      "description": "CONTACT, RADSOK 8.0, INTEGRAL TO RL00801-50 CABLE CONNECTOR, 50 MM2 (1/0) CRIMP BARREL",
+      "contactColor": "Silver",
+      "manufacturer": "Amphenol"
+    },
+    {
+      "id": "ct_hd8s",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "0462-203-08141",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "terminalParts": [
+    {
+      "id": "tp_lug_m10_2",
+      "size": "M10",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 2
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 3
+      },
+      "partNumber": "GENERIC LUG M10 2AWG",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_lug_m10_4",
+      "size": "M10",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 4
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 6
+      },
+      "partNumber": "GENERIC LUG M10 4AWG",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE HEATSHRINK",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_lug_m10_50",
+      "size": "M10",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "Metric",
+        "value": 110
+      },
+      "minGauge": {
+        "unit": "Metric",
+        "value": 35
+      },
+      "partNumber": "GENERIC LUG M10 50MM2",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_lug_m10_8",
+      "size": "M10",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "GENERIC LUG M10 8AWG",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_lug_m8_2",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 2
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 3
+      },
+      "partNumber": "GENERIC LUG M8 2AWG",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M8 STUD, ADHESIVE HEATSHRINK",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_lug_m8_4",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 4
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 6
+      },
+      "partNumber": "GENERIC LUG M8 4AWG",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_lug_m8_8",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "GENERIC LUG M8 8AWG",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_flying_lead",
+      "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC FLYING LEAD",
+      "description": "TERMINAL, FLYING LEAD",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_flying_lead_heavy",
+      "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 6
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "GENERIC HEAVY FLYING LEAD 10-6",
+      "description": "TERMINAL, FLYING LEAD, HEAVY",
+      "manufacturer": "generic"
+    }
+  ],
+  "connectorParts": [
+    {
+      "id": "cp_jump",
+      "image": {
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/jump-post-m8.png",
+        "source": "url"
+      },
+      "partNumber": "jump-post-M8",
+      "description": "POST, JUMP START, M8, INSULATED",
+      "manufacturer": "TBD",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_lug_stud"
+        }
+      ]
+    },
+    {
+      "id": "cp_mrs_eps",
+      "image": {
+        "url": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/large/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/small/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942",
+      "description": "CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS",
+      "manufacturer": "Toyota / Sumitomo",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_mrs_ts"
+        }
+      ],
+      "numberOfCavities": 10
+    },
+    {
+      "id": "cp_oem",
+      "image": {
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-junction-block.png",
+        "source": "url"
+      },
+      "partNumber": "(OEM block)",
+      "description": "CONNECTOR, OEM, JUNCTION OR RELAY BLOCK",
+      "manufacturer": "Toyota",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_generic_skt"
+        }
+      ]
+    },
+    {
+      "id": "cp_pdb",
+      "image": {
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/pdb-m8x8.png",
+        "source": "url"
+      },
+      "partNumber": "PDB-M8x8",
+      "description": "BLOCK, POWER DISTRIBUTION, 8 STUD M8, 150-250 A BUS",
+      "manufacturer": "TBD",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_lug_stud"
+        }
+      ]
+    },
+    {
+      "id": "cp_gbx_body",
+      "image": {
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/glovebox-fuse-relay-block.png",
+        "source": "url"
+      },
+      "partNumber": "(glove-box body block - 2nd fuse block + relays)",
+      "description": "ASSEMBLY, FUSE AND RELAY BLOCK, 12-16 WAY, GLOVE BOX",
+      "manufacturer": "assembly",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_lug_stud"
+        }
+      ]
+    },
+    {
+      "id": "cp_rl_blk_eng",
+      "image": {
+        "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Black_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Black_SPL.jpg"
+      },
+      "partNumber": "RL00801-50BK",
+      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK",
+      "manufacturer": "Amphenol",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_radlok8"
+        }
+      ]
+    },
+    {
+      "id": "cp_rl_red_eng",
+      "image": {
+        "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Red_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Red_SPL.jpg"
+      },
+      "partNumber": "RL00801-50RE",
+      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED",
+      "manufacturer": "Amphenol",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_radlok8"
+        }
+      ]
+    },
+    {
+      "id": "cp_dthd_1_8s",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DTH/D06/18S/DTHD06-1-8S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DTH/D06/18S/DTHD06-1-8S-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DTHD06-1-8S",
+      "description": "CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_hd8s"
+        }
+      ],
+      "numberOfCavities": 1
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_intro",
+      "text": "ENGINE ROOM HARNESS C - PARTIAL. Only new / upgraded / relocated feeds. Do not redraw the OEM engine-room, cowl or dash looms. Kick-panel J/B No.1, R/B No.2 / No.3 / No.4 stay. Unplug engine-bay J/B No.2 and F11; inject at the pins in the splice table (docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md). J/B1 1H is not touched: 1H-7 IG2 (B-O from the ignition switch) stays, do not overlay; 1H-8 is on the always-hot bus.",
+      "width": 390,
+      "schematicPosition": {
+        "x": 3180,
+        "y": 0
+      }
+    },
+    {
+      "id": "n_heavy",
+      "text": "HEAVY DC: trunk battery -> cabin PDB (glove box) -> RADLOK 5.7 mm through the firewall -> starter B+. 160 A alt B+ joins the starter post and does not recross; its protection is NOT at the starter (see n_alt_prot). Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. 2 AWG is OK for cranking; 160 A continuous charge may need 1/0 + 8 mm RADLOK - see the table.",
+      "color": "Orange",
+      "width": 390,
+      "schematicPosition": {
+        "x": 3180,
+        "y": 210
+      }
+    },
+    {
+      "id": "n_split",
+      "text": "RED / BLUE PHYSICAL ROUTE (Daniel's marked-up path, 2026-09-29; corrected for J/B No.2's real side - see n_jb2_side below). RED (heavy DC): trunk battery -> up the passenger side of the cabin -> glove-box PDB -> through the passenger side into the engine bay -> RADLOK firewall pair -> alternator and starter. BLUE (normal power): from the passenger-side glove-box PDB / gbx_body, out through the passenger fender (the OEM engine-room main's only bay crossing - EA1/EB1/EB2) to the MR-S EHPS pump (vacated ABS actuator space), the alternator, and the passenger headlight; A/C compressor clutch stays on engine harness A/B, not drawn here. Then across the front of the bay: horn (R/B5 fallback, see n_probe), both uprated fans (core-support run). Then down the driver side - where J/B No.2 actually sits - to the driver headlight and the J/B No.2 dummy header (oem_jb2_2a/2d/2e: HL/HR/HZ/DOME/RTR) and wiper-park feed (gbx_body c9, not yet wired - no sourced wiper-motor circuit to draw against). Ends at driver J/B No.1 and R/B No.2, left kick (IE1 AM1/AM2, J/B1 primary B+, R/B2 POWER fuse in). A BLUE cabin run also crosses from the driver kick back to the passenger PDB, and a BLUE run rides alongside RED out to the trunk. Crash sensors and ABS solenoid are deleted - do not refeed 60A FL ABS, A7/A8, A11/A12, A37.",
+      "color": "Green",
+      "width": 390,
+      "schematicPosition": {
+        "x": 3180,
+        "y": 390
+      }
+    },
+    {
+      "id": "shdr_0",
+      "text": "TRUNK + GLOVE BOX",
+      "color": "Green",
+      "width": 270,
+      "schematicPosition": {
+        "x": 3180,
+        "y": 570
+      }
+    },
+    {
+      "id": "shdr_1",
+      "text": "FIREWALL RADLOK",
+      "color": "Orange",
+      "width": 270,
+      "schematicPosition": {
+        "x": 3180,
+        "y": 660
+      }
+    },
+    {
+      "id": "n_probe",
+      "text": "PROBE BEFORE CRIMPING 2E-2 / 2E-3. Starting + ignition (EWD p.48) puts AM1 on 2E-2/2E-5 and AM2 on 2E-3/2E-6, then IE1-10 / IE1-17. Inner circuit (p.21) puts 30A RTR on 2E-2 and 15A HAZ-HORN on 2E-3. If the unplugged 2E-2 shows continuity to IE1-10, that pin is AM1 - do not land the RTR fuse (gbx_body c8) there. Same for 2E-3 vs IE1-17 / AM2. HEAD 2A-3/2A-6 and DOME 2E-4 do not sit on that pass-through. Horn fallback is R/B5.",
+      "color": "Red",
+      "width": 390,
+      "schematicPosition": {
+        "x": 3180,
+        "y": 750
+      }
+    },
+    {
+      "id": "shdr_2",
+      "text": "OEM INJECTION (keep J/Bs)",
+      "color": "Red",
+      "width": 390,
+      "schematicPosition": {
+        "x": 3180,
+        "y": 960
+      }
+    },
+    {
+      "id": "shdr_3",
+      "text": "NEW ENGINE-ROOM LOADS - MR-S EHPS pump (one device: relay + 3 connectors) and both uprated fans",
+      "color": "Blue",
+      "width": 270,
+      "schematicPosition": {
+        "x": 3180,
+        "y": 1050
+      }
+    },
+    {
+      "id": "note_acamp",
+      "text": "A/C IS THE AMPLIFIERS' BUSINESS, NOT THE ECU'S OR THE CSB3'S - and there are TWO\nRead off the factory EWD automatic-A/C pages, saved in ewd-snips:\n  p150  AUTO A/C AMPLIFIER  A32=conn A, A33=conn B, A34=conn C\n        A1 Ambient Temp -> TAM, conn C pin 6, Y-B (via EA1 4, IQ1 1)\n        A27 Water Temp  -> TW,  conn C pin 20, R-G\n  p152  A/C AMPLIFIER A18 - a SEPARATE module\n        A5 Pressure SW  -> A18 pin 13, Y-R (via EB2 2, E10, IJ1 15)\nAmbient sensor -> amplifier and pressure switch -> A18 stay FACTORY wiring\n(harness redesign 2026-09-27); this loom does not redraw them.\nNew here: only the ACPS +12V feed, a flying lead into A5 pin 1 (V-R).\nThe amplifier's own coolant switch comes from Engine-A via bulkhead A\nc37/c38 and IX_AC_CTS (ST185-ACAmp-Spur). The ECU's only A/C tie is\nAux 4 / A18 ACT kill, a flying lead on ST185-A-cabin.",
+      "schematicPosition": {
+        "x": 3180,
+        "y": 1170
+      }
+    },
+    {
+      "id": "n_cavity_notes",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nGlove-box body block (fuses +  IGN: Ignition-switched relay coil feed (not yet wired)\nGlove-box body block (fuses +  HL: HEAD LH - relay 87, 15 A fuse -> J/B2 2A-3 / 2D-2\nGlove-box body block (fuses +  HR: HEAD RH - relay 87, 15 A fuse -> J/B2 2A-6 / 2D-6\nGlove-box body block (fuses +  WP: Wiper park - relay 87, 15 A fuse (optional, unused)\nGlove-box body block (fuses +  CSB: CSB3 permanent feed, 5 A - stays live for the kill sequence (plan 6.48)\nGlove-box body block (fuses +  DEV: Cluster + RealDash Pi - ignition-switched fuse only, on and off with the car; no hold relay (Daniel 2026-09-28)\nGlove-box body block (fuses +  ACPS: A/C pressure switch +12V, 5 A fuse, ignition-switched (was wrongly on F7 60A, the EPS pump fuse)\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nOEM J/B2 2A (engine room main) 2: 30A CDS FAN out - DO NOT REFEED, fan moved to k_fan2\nOEM J/B2 2A (engine room main) 5: Engine main relay 87 - DO NOT REFEED, Link EFI in Power\nOEM J/B2 2D (engine room main) 3: Headlight relay coil - unused, PMU switches the lamps\nOEM J/B2 2E (engine room main) 2: PROBE: inner cct = 30A RTR; starting p.48 = AM1 with 2E-5\nOEM J/B2 2E (engine room main) 3: PROBE: inner cct = 15A HAZ-HORN; starting p.48 = AM2 with 2E-6\nOEM J/B2 2E (engine room main) 4: 20A DOME (inner circuit, not on AM1/AM2 path) - PMU O4\nOEM J/B2 2E (engine room main) 5: AM1 pass-through (starting p.48). Do not PMU-feed. Restored at IE1-10\nOEM J/B2 2E (engine room main) 6: AM2 / engine-main related. Do not PMU-feed. Restored at IE1-17\nOEM R/B4 (right kick, by glove STR: OEM starter relay - isolate, Link k_str replaces\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87 (glove box, ST185-B-cabin), passenger fender; 8 AWG (sized 2026-09-28 against the AMI-60 - sot/channels.csv k_eps c1)\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si B-6: [B 90980-10897 pin 6] relay request out - NOT WIRED. 6.16 moved the EPS relay trigger to the ECU (Ign 6 / ecu_b B12). Kept for reference.\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, F13 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box body block APS, 5 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.",
+      "schematicPosition": {
+        "x": 3180,
+        "y": 1920
+      }
+    },
+    {
+      "id": "n_jb_disposition",
+      "text": "J/B AND RELAY BLOCK DISPOSITION - owned by docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md: §4 method, §5.2 J/B No.1 + R/B No.2 (left kick), §5.3 R/B No.3 / No.4 (right kick), §5.4 vacated J/B No.2 cavities, §5.6 deleted circuits, §8 glove-box fuse schedule. Read it there - this drawing does not repeat it.",
+      "color": "Red",
+      "width": 390,
+      "schematicPosition": {
+        "x": 3660,
+        "y": 0
+      }
+    },
+    {
+      "id": "n_rb2_rb3",
+      "text": "R/B No.2 (LEFT KICK) / R/B No.3 (RIGHT KICK) - EWD p.23, docs/electrical/ewd-snips/1990-st185-rb2-left-rb3-right.png (1990 book - confirm on the 1993 car). R/B No.2: Power Main Relay (4-pin) + 30A POWER fuse (housing pins 1-2). Loom C feeds the fuse input from the PDB (w_rb2 -> oem_rb2 c1); the relay stays in circuit (oem_rb2 c2). R/B No.3: Fog Light Relay (4-pin) only; not drawn here - keep only if fog lights stay. Actions: power doc §5.2 L9, §5.3 R4.",
+      "width": 390,
+      "schematicPosition": {
+        "x": 3660,
+        "y": 240
+      }
+    },
+    {
+      "id": "n_alt_prot",
+      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. Size for the 160 A alternator (plan 6.20: 175 A). Battery is AGM. The trunk Longacre 4-terminal kill switch cuts the battery positive and, on its second pair, the alternator IG feed.",
+      "color": "Orange",
+      "width": 390,
+      "schematicPosition": {
+        "x": 1080,
+        "y": 690
+      }
+    },
+    {
+      "id": "n_jb2_side",
+      "text": "J/B No.2 SIDE + FENDER ROUTING DECISION (2026-09-29). ENGINE-ROOM-POWER-REDISTRIBUTION.md previously said J/B No.2 was passenger-side; that was backwards (corrected the same day - see that doc's own cross-check, EWD p.16 vs p.24). J/B No.2 is on the DRIVER side. This drawing's dummy-header wires (w_pmu_hl/hr/horn/dome/rtr, feeding oem_jb2_2a/2d/2e) were themselves modelled assuming the old passenger-side location; they do NOT actually ride the passenger ABS trough alongside the EPS pump - only the EPS pump, alternator and passenger headlight stay on that passenger run. Fender routing (Daniel gave a preferred path, flexible if a shorter run existed): starting passenger (matching the PDB and the OEM's own only fender crossing) and finishing driver-side at J/B No.2 and J/B No.1 is shorter than the reverse, which would need a crossing before AND after the passenger-side loads. Kept as given. Exact bundle lengths on the oem_jb2_2a/2d/2e branches (currently 1.3-1.4 m) are pre-existing estimates, not re-measured against this correction - verify on the car before cutting cable.",
+      "color": "Red",
+      "width": 390,
+      "schematicPosition": {
+        "x": 3180,
+        "y": 450
+      }
+    }
+  ]
+}

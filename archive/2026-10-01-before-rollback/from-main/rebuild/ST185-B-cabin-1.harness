@@ -1,0 +1,3126 @@
+{
+  "wires": [
+    {
+      "id": "w29_c",
+      "color": "White",
+      "partId": "m16_20_9",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b15"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c7"
+      }
+    },
+    {
+      "id": "w32_c",
+      "color": "White",
+      "partId": "m16_20_9",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b16"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c8"
+      }
+    },
+    {
+      "id": "w35_c",
+      "color": "White",
+      "partId": "m16_20_9",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b23"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c9"
+      }
+    },
+    {
+      "id": "w39",
+      "color": "White",
+      "partId": "m16_20_9",
+      "source": {
+        "id": "br_w39",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b33"
+      }
+    },
+    {
+      "id": "w43",
+      "color": "White",
+      "partId": "m16_20_9",
+      "source": {
+        "id": "sp_fl_sig",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "r_fuellvl",
+        "handle": "Left"
+      }
+    },
+    {
+      "id": "w44",
+      "color": "Orange",
+      "partId": "m16_20_3",
+      "source": {
+        "id": "r_fuellvl",
+        "handle": "Right"
+      },
+      "target": {
+        "id": "sp_5v_b",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w203_c",
+      "color": "Yellow",
+      "partId": "m16_20_4",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b6"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c10"
+      }
+    },
+    {
+      "id": "w204_c",
+      "color": "Yellow",
+      "partId": "m16_20_4",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b7"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c11"
+      }
+    },
+    {
+      "id": "w_sw7_c",
+      "color": "Green",
+      "partId": "m16_20_5",
+      "source": {
+        "id": "br_w_sw7_c",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c12"
+      }
+    },
+    {
+      "id": "w_start",
+      "color": "Green",
+      "partId": "m16_20_5",
+      "source": {
+        "id": "fl_start_req_c1",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b30"
+      }
+    },
+    {
+      "id": "w_fan285",
+      "color": "Violet",
+      "partId": "m16_18_7",
+      "source": {
+        "id": "k_fan2",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b13"
+      }
+    },
+    {
+      "id": "w_fl_sig",
+      "color": "White",
+      "partId": "m16_20_9",
+      "source": {
+        "id": "ix_fuel_r",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_fl_sig",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_ign",
+      "color": "Green",
+      "partId": "m16_20_5",
+      "source": {
+        "id": "fl_ign_sw_c1",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b28"
+      }
+    },
+    {
+      "id": "w_drain_ecu_b",
+      "color": "Green",
+      "partId": "m16_20_54",
+      "source": {
+        "id": "sp_shield_b",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b17"
+      },
+      "stripeColor": "Yellow"
+    },
+    {
+      "id": "w_vss_sig_c",
+      "color": "Green",
+      "partId": "m16_20_5",
+      "source": {
+        "id": "bh_b_fw",
+        "handle": "c15"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b29"
+      }
+    },
+    {
+      "id": "w_fl_sig_pin",
+      "color": "White",
+      "partId": "m16_20_9",
+      "source": {
+        "id": "sp_fl_sig",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b24"
+      }
+    },
+    {
+      "id": "w82",
+      "color": "Red",
+      "partId": "m16_18_29",
+      "source": {
+        "id": "br_w82",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "ecu_b",
+        "handle": "b5"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w69",
+      "color": "Black",
+      "partId": "m16_18_09",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b22"
+      },
+      "target": {
+        "id": "sp_gndout_b",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w45",
+      "color": "Black",
+      "partId": "m16_20_09",
+      "source": {
+        "id": "ix_fuel_r",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout_b",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_b25",
+      "color": "Black",
+      "partId": "m16_18_0",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b25"
+      },
+      "target": {
+        "id": "br_w_b25",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_b34",
+      "color": "Black",
+      "partId": "m16_18_0",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b34"
+      },
+      "target": {
+        "id": "br_w_b34",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w124_c",
+      "color": "White",
+      "partId": "m16_18_9",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b18"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c5"
+      }
+    },
+    {
+      "id": "w215_c",
+      "color": "White",
+      "partId": "m16_18_9",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b26"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c6"
+      }
+    },
+    {
+      "id": "w_fb_k_fan2_30",
+      "color": "Red",
+      "partId": "m16_8_2",
+      "source": {
+        "id": "br_w_fb_k_fan2_30",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_fan2",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_k_fan2_86",
+      "color": "Red",
+      "partId": "m16_18_2",
+      "source": {
+        "id": "br_w_k_fan2_86",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_fan2",
+        "handle": "c3"
+      }
+    },
+    {
+      "id": "w_rail_5v_b_c",
+      "color": "Orange",
+      "partId": "m16_18_3",
+      "source": {
+        "id": "br_w_rail_5v_b_c",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_5v_b",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_rail_sw12_b_c",
+      "color": "Red",
+      "partId": "m16_20_2",
+      "source": {
+        "id": "br_w_rail_sw12_b_c",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c20"
+      }
+    },
+    {
+      "id": "w_fb_k_eps_30",
+      "color": "Red",
+      "partId": "m16_8_2",
+      "source": {
+        "id": "br_w_fb_k_eps_30",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_eps",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_k_eps_86",
+      "color": "Red",
+      "partId": "m16_18_2",
+      "source": {
+        "id": "br_w_k_eps_86",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_eps",
+        "handle": "c3"
+      }
+    },
+    {
+      "id": "w_eps_trig",
+      "color": "Violet",
+      "partId": "m16_18_7",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b12"
+      },
+      "target": {
+        "id": "k_eps",
+        "handle": "c2"
+      }
+    },
+    {
+      "id": "w_fan2_pwr_bc",
+      "color": "Red",
+      "partId": "m16_8_2",
+      "source": {
+        "id": "k_fan2",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "br_w_fan2_pwr",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_eps_pwr_bc",
+      "color": "Red",
+      "partId": "m16_8_2",
+      "source": {
+        "id": "k_eps",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "br_w_eps_pwr",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_at_immob2_bc",
+      "color": "Violet",
+      "partId": "m16_20_7",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b27"
+      },
+      "target": {
+        "id": "br_w_at_immob2",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_gnd_bhb_trunk",
+      "color": "Black",
+      "partId": "m16_18_09",
+      "source": {
+        "id": "sp_gndout_b",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_gnd_bhb",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_gnd_b_c19",
+      "color": "Black",
+      "partId": "m16_20_09",
+      "source": {
+        "id": "sp_gnd_bhb",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c19"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_gnd_b_c21",
+      "color": "Black",
+      "partId": "m16_20_09",
+      "source": {
+        "id": "sp_gnd_bhb",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c21"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_drain_lam12_c",
+      "color": "Black",
+      "partId": "m16_14_0",
+      "source": {
+        "id": "sp_lam_stub_c",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c2"
+      }
+    }
+  ],
+  "cables": [
+    {
+      "id": "cab_rspur",
+      "cores": [
+        {
+          "id": "cab_rspur_5v",
+          "color": "Red",
+          "source": {
+            "id": "ix_ws_rear_p",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "sp_5v_b",
+            "handle": "Splice"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "cab_rspur_gnd",
+          "color": "Blue",
+          "source": {
+            "id": "ix_ws_rear_p",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "sp_gndout_b",
+            "handle": "Splice"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "cab_rspur_l",
+          "color": "Yellow",
+          "source": {
+            "id": "ix_ws_rear_p",
+            "handle": "c3"
+          },
+          "target": {
+            "id": "ecu_b",
+            "handle": "b20"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "cab_rspur_r",
+          "color": "Green",
+          "source": {
+            "id": "ix_ws_rear_p",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "ecu_b",
+            "handle": "b19"
+          }
+        }
+      ],
+      "partId": "cab_sh_4c",
+      "shield": {
+        "id": "cab_rspur_sh",
+        "color": "Shield",
+        "source": {
+          "id": "ix_ws_rear_p",
+          "handle": "c5"
+        },
+        "target": {
+          "id": "sp_shield_b",
+          "handle": "Splice"
+        }
+      },
+      "schematicPosition": {
+        "x": 3810,
+        "y": 1200
+      }
+    },
+    {
+      "id": "cab_fspur_fr",
+      "cores": [
+        {
+          "id": "cab_fspur_r",
+          "color": "White",
+          "source": {
+            "id": "br_cab_fspur_r",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "ecu_b",
+            "handle": "b21"
+          }
+        }
+      ],
+      "partId": "cab_sh_1c_vio",
+      "shield": {
+        "id": "cab_fspur_fr_sh",
+        "color": "Shield",
+        "source": {
+          "id": "br_cab_fspur_fr_sh",
+          "handle": "Terminal"
+        },
+        "target": {
+          "id": "sp_shield_a",
+          "handle": "Splice"
+        }
+      },
+      "schematicPosition": {
+        "x": 3810,
+        "y": 1800
+      }
+    },
+    {
+      "id": "cab_knock_c",
+      "cores": [
+        {
+          "id": "cab_knock_c_sig",
+          "color": "Red",
+          "source": {
+            "id": "ecu_b",
+            "handle": "b9"
+          },
+          "target": {
+            "id": "bh_b_fw",
+            "handle": "c16"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "cab_knock_c_rtn",
+          "color": "Blue",
+          "source": {
+            "id": "bh_b_fw",
+            "handle": "c17"
+          },
+          "target": {
+            "id": "sp_gnd_bhb",
+            "handle": "Splice"
+          }
+        }
+      ],
+      "partId": "cab_sh_2c",
+      "shield": {
+        "id": "cab_knock_c_sh",
+        "color": "Shield",
+        "source": {
+          "id": "bh_b_fw",
+          "handle": "c18"
+        },
+        "target": {
+          "id": "sp_shield_b",
+          "handle": "Splice"
+        }
+      },
+      "schematicPosition": {
+        "x": 4500,
+        "y": 900
+      }
+    },
+    {
+      "id": "cab_lam_can_c",
+      "cores": [
+        {
+          "id": "w_lam12_bc",
+          "color": "Red",
+          "source": {
+            "id": "br_w_lam12_c",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "bh_b_fw",
+            "handle": "c3"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "w_lamg_bc",
+          "color": "Blue",
+          "source": {
+            "id": "bh_b_fw",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "br_w_lamg_b",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_h_bh_bc",
+          "color": "Yellow",
+          "source": {
+            "id": "br_wc_h_bh",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "bh_b_fw",
+            "handle": "c13"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_bh_bc",
+          "color": "Green",
+          "source": {
+            "id": "br_wc_l_bh",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "bh_b_fw",
+            "handle": "c14"
+          }
+        }
+      ],
+      "partId": "cab_sh_4c",
+      "shield": {
+        "id": "cab_lam_can_c_sh",
+        "color": "Shield",
+        "source": {
+          "id": "sp_lam_stub_c",
+          "handle": "Splice"
+        },
+        "target": {
+          "id": "ecu_b",
+          "handle": "b17"
+        }
+      },
+      "schematicPosition": {
+        "x": 4500,
+        "y": 1500
+      }
+    }
+  ],
+  "bundles": [
+    {
+      "id": "bn_bp_870__bp_900",
+      "length": {
+        "unit": "mm",
+        "value": 40
+      },
+      "sourceId": "bp_870",
+      "targetId": "bp_900"
+    },
+    {
+      "id": "bn_bp_900__bp_930",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_900",
+      "targetId": "bp_930"
+    },
+    {
+      "id": "bn_ecu_a__bp_1020",
+      "length": {
+        "unit": "mm",
+        "value": 30
+      },
+      "sourceId": "bp_at_ecu_a",
+      "targetId": "bp_1020"
+    },
+    {
+      "id": "bn_bp_1020__bp_1050",
+      "length": {
+        "unit": "mm",
+        "value": 40
+      },
+      "sourceId": "bp_1020",
+      "targetId": "bp_1050"
+    },
+    {
+      "id": "bn_bp_1050__bp_1080",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_1050",
+      "targetId": "bp_1080"
+    },
+    {
+      "id": "bn_bp_1080__bp_1110",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_1080",
+      "targetId": "bp_1110"
+    },
+    {
+      "id": "bn_bp_1110__bp_1140",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_1110",
+      "targetId": "bp_1140"
+    },
+    {
+      "id": "bn_bp_1140__bp_1170",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_1140",
+      "targetId": "bp_1170"
+    },
+    {
+      "id": "bn_bp_1170__bp_1200",
+      "length": {
+        "unit": "mm",
+        "value": 20
+      },
+      "sourceId": "bp_1170",
+      "targetId": "bp_1200"
+    },
+    {
+      "id": "bn_bp_870__bh_b_fw",
+      "length": {
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "bp_870",
+      "targetId": "bh_b_fw"
+    },
+    {
+      "id": "bn_bp_1020__bp_fl_ign_sw",
+      "length": {
+        "unit": "mm",
+        "value": 820
+      },
+      "sourceId": "bp_1020",
+      "targetId": "bp_fl_ign_sw"
+    },
+    {
+      "id": "bn_bp_1200__bp_fl_start_req",
+      "length": {
+        "unit": "mm",
+        "value": 600
+      },
+      "sourceId": "bp_1200",
+      "targetId": "bp_fl_start_req"
+    },
+    {
+      "id": "bn_bp_1020__ix_ws_rear_p",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_1020",
+      "targetId": "ix_ws_rear_p"
+    },
+    {
+      "id": "bn_bp_fl_ign_sw__fl_ign_sw_c1",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_fl_ign_sw",
+      "targetId": "fl_ign_sw_c1"
+    },
+    {
+      "id": "bn_bp_fl_start_req__fl_start_req_c1",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_fl_start_req",
+      "targetId": "fl_start_req_c1"
+    },
+    {
+      "id": "b_bn_bp_870__bp_900",
+      "length": {
+        "unit": "mm",
+        "value": 80
+      },
+      "sourceId": "b_bp_870",
+      "targetId": "b_bp_900"
+    },
+    {
+      "id": "b_bn_bp_900__bp_930",
+      "length": {
+        "unit": "mm",
+        "value": 90
+      },
+      "sourceId": "b_bp_900",
+      "targetId": "b_bp_930"
+    },
+    {
+      "id": "b_bn_bp_930__bp_960",
+      "length": {
+        "unit": "mm",
+        "value": 20
+      },
+      "sourceId": "b_bp_930",
+      "targetId": "b_bp_960"
+    },
+    {
+      "id": "b_bn_bp_960__ecu_a",
+      "length": {
+        "unit": "mm",
+        "value": 80
+      },
+      "sourceId": "b_bp_960",
+      "targetId": "bp_at_ecu_a"
+    },
+    {
+      "id": "b_bn_ecu_a__bp_1020",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_at_ecu_a",
+      "targetId": "b_bp_1020"
+    },
+    {
+      "id": "b_bn_bp_1020__bp_1050",
+      "length": {
+        "unit": "mm",
+        "value": 60
+      },
+      "sourceId": "b_bp_1020",
+      "targetId": "b_bp_1050"
+    },
+    {
+      "id": "b_bn_bp_1080__bp_1110",
+      "length": {
+        "unit": "mm",
+        "value": 60
+      },
+      "sourceId": "b_bp_1080",
+      "targetId": "b_bp_1110"
+    },
+    {
+      "id": "b_bn_bp_1110__bp_1140",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "b_bp_1110",
+      "targetId": "b_bp_1140"
+    },
+    {
+      "id": "b_bn_bp_1140__bp_1170",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "b_bp_1140",
+      "targetId": "b_bp_1170"
+    },
+    {
+      "id": "b_bn_bp_1170__bp_1200",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "b_bp_1170",
+      "targetId": "b_bp_1200"
+    },
+    {
+      "id": "b_bn_bp_1200__bp_1230",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "b_bp_1200",
+      "targetId": "b_bp_1230"
+    },
+    {
+      "id": "b_bn_bp_1230__bp_1260",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "b_bp_1230",
+      "targetId": "b_bp_1260"
+    },
+    {
+      "id": "b_bn_bp_1260__bp_2100",
+      "length": {
+        "unit": "mm",
+        "value": 1980
+      },
+      "sourceId": "b_bp_1260",
+      "targetId": "b_bp_2100"
+    },
+    {
+      "id": "b_bn_bp_2100__bp_2130",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "b_bp_2100",
+      "targetId": "b_bp_2130"
+    },
+    {
+      "id": "b_bn_bp_870__bh_b_fw",
+      "length": {
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "b_bp_870",
+      "targetId": "bh_b_fw"
+    },
+    {
+      "id": "b_bn_bp_1080__ecu_b",
+      "length": {
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "b_bp_1080",
+      "targetId": "ecu_b"
+    },
+    {
+      "id": "b_bn_bp_1260__k_fan2",
+      "length": {
+        "unit": "mm",
+        "value": 370
+      },
+      "sourceId": "b_bp_1260",
+      "targetId": "k_fan2"
+    },
+    {
+      "id": "b_bn_bp_2130__ix_fuel_r",
+      "length": {
+        "unit": "mm",
+        "value": 290
+      },
+      "sourceId": "b_bp_2130",
+      "targetId": "ix_fuel_r"
+    },
+    {
+      "id": "b_bn_bp_1050__bp_1065",
+      "length": {
+        "unit": "mm",
+        "value": 30
+      },
+      "sourceId": "b_bp_1050",
+      "targetId": "b_bp_1065"
+    },
+    {
+      "id": "b_bn_bp_1065__bp_1080",
+      "length": {
+        "unit": "mm",
+        "value": 30
+      },
+      "sourceId": "b_bp_1065",
+      "targetId": "b_bp_1080"
+    },
+    {
+      "id": "b_bn_bp_1260__k_eps",
+      "length": {
+        "unit": "mm",
+        "value": 370
+      },
+      "sourceId": "b_bp_1260",
+      "targetId": "k_eps"
+    },
+    {
+      "id": "bn_b_bp_1065__br_w_fb_k_fan2_30",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "b_bp_1065",
+      "targetId": "br_w_fb_k_fan2_30"
+    },
+    {
+      "id": "bn_b_bp_1065__br_w_fb_k_eps_30",
+      "length": {
+        "unit": "mm",
+        "value": 250
+      },
+      "sourceId": "b_bp_1065",
+      "targetId": "br_w_fb_k_eps_30"
+    },
+    {
+      "id": "bn_b_bp_1140__br_w82",
+      "length": {
+        "unit": "mm",
+        "value": 200
+      },
+      "sourceId": "b_bp_1140",
+      "targetId": "br_w82"
+    },
+    {
+      "id": "bn_bp_1020__br_cab_fspur_r",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_1020",
+      "targetId": "br_cab_fspur_r"
+    },
+    {
+      "id": "bn_bp_1020__br_cab_fspur_fr_sh",
+      "length": {
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_1020",
+      "targetId": "br_cab_fspur_fr_sh"
+    },
+    {
+      "id": "bn_b_bp_900__br_w39",
+      "length": {
+        "unit": "mm",
+        "value": 860
+      },
+      "sourceId": "b_bp_900",
+      "targetId": "br_w39"
+    },
+    {
+      "id": "bn_b_bp_1260__br_w_fan2_pwr",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "b_bp_1260",
+      "targetId": "br_w_fan2_pwr"
+    },
+    {
+      "id": "bn_b_bp_1260__br_w_eps_pwr",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "b_bp_1260",
+      "targetId": "br_w_eps_pwr"
+    },
+    {
+      "id": "bn_b_bp_1080__br_w_at_immob2",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "b_bp_1080",
+      "targetId": "br_w_at_immob2"
+    },
+    {
+      "id": "bn_b_bp_1080__br_w_b25",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "b_bp_1080",
+      "targetId": "br_w_b25"
+    },
+    {
+      "id": "bn_b_bp_1080__br_w_b34",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "b_bp_1080",
+      "targetId": "br_w_b34"
+    },
+    {
+      "id": "bn_b_bp_1080__br_w_k_fan2_86",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "b_bp_1080",
+      "targetId": "br_w_k_fan2_86"
+    },
+    {
+      "id": "bn_b_bp_1080__br_w_rail_5v_b_c",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "b_bp_1080",
+      "targetId": "br_w_rail_5v_b_c"
+    },
+    {
+      "id": "bn_b_bp_1080__br_w_rail_sw12_b_c",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "b_bp_1080",
+      "targetId": "br_w_rail_sw12_b_c"
+    },
+    {
+      "id": "bn_b_bp_1080__br_w_k_eps_86",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "b_bp_1080",
+      "targetId": "br_w_k_eps_86"
+    },
+    {
+      "id": "bn_b_bp_1080__br_w_sw7_c",
+      "length": {
+        "unit": "mm",
+        "value": 370
+      },
+      "sourceId": "b_bp_1080",
+      "targetId": "br_w_sw7_c"
+    },
+    {
+      "id": "bn_bp_870__br_wc_h_bh",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_870",
+      "targetId": "br_wc_h_bh"
+    },
+    {
+      "id": "bn_bp_870__br_wc_l_bh",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_870",
+      "targetId": "br_wc_l_bh"
+    },
+    {
+      "id": "bn_bp_870__br_w_lam12_c",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_870",
+      "targetId": "br_w_lam12_c"
+    },
+    {
+      "id": "bn_bp_870__br_w_lamg_b",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_870",
+      "targetId": "br_w_lamg_b"
+    }
+  ],
+  "splices": [
+    {
+      "id": "sp_fl_sig",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_1200",
+      "layoutPosition": {
+        "x": 2340,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 1830,
+        "y": 0
+      }
+    },
+    {
+      "id": "sp_shield_a",
+      "partId": "spp_solder_generic",
+      "excludeFromBom": true,
+      "layoutPosition": {
+        "x": 1500,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 3810,
+        "y": 1800
+      }
+    },
+    {
+      "id": "sp_shield_b",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_930",
+      "coveringIds": [
+        "cov_s200_4",
+        "cov_s200_2",
+        "cov_s200_3"
+      ],
+      "layoutPosition": {
+        "x": 1260,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 3510,
+        "y": 750
+      }
+    },
+    {
+      "id": "sp_5v_b",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_1080",
+      "layoutPosition": {
+        "x": 1020,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 2400,
+        "y": 2760
+      }
+    },
+    {
+      "id": "sp_gndout_b",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_1080",
+      "layoutPosition": {
+        "x": 1980,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 2400,
+        "y": 2880
+      }
+    },
+    {
+      "id": "sp_gnd_bhb",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_870",
+      "layoutPosition": {
+        "x": 1080,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 3000,
+        "y": 2880
+      }
+    },
+    {
+      "id": "sp_lam_stub_c",
+      "partId": "spp_solder_generic",
+      "layoutPosition": {
+        "x": 1140,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 4080,
+        "y": 1500
+      }
+    }
+  ],
+  "version": 0.9,
+  "lockParts": [
+    {
+      "id": "lp_w6s",
+      "partNumber": "W6S",
+      "description": "WEDGELOCK, DT, 6-WAY PLUG",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "lp_w2p",
+      "partNumber": "W2P",
+      "description": "WEDGELOCK, DT, 2-WAY RECEPTACLE",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "lp_wb51pal",
+      "partNumber": "WB-51PAL",
+      "description": "WEDGELOCK, DRB 102/128, RECEPTACLE, LEFT",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "lp_wb51par",
+      "partNumber": "WB-51PAR",
+      "description": "WEDGELOCK, DRB 102/128, RECEPTACLE, RIGHT",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "resistors": [
+    {
+      "id": "r_fuellvl",
+      "partId": "rp_470",
+      "locationId": "bp_1230",
+      "layoutPosition": {
+        "x": 2460,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 510,
+        "y": 150
+      }
+    }
+  ],
+  "terminals": [
+    {
+      "id": "fl_start_req_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Ignition switch (ST)-TBD TBD start request -> ECU-B B30 - solder sleeve into the factory lead",
+      "layoutPosition": {
+        "x": 2280,
+        "y": -90
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 960
+      }
+    },
+    {
+      "id": "fl_ign_sw_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Ignition switch I9-TBD TBD IGN ON -> ECU-B B28 - solder sleeve into the factory lead",
+      "layoutPosition": {
+        "x": 1560,
+        "y": -180
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 810
+      }
+    },
+    {
+      "id": "br_w_b25",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis",
+      "layoutPosition": {
+        "x": 2400,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2820
+      }
+    },
+    {
+      "id": "br_w_b34",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis",
+      "layoutPosition": {
+        "x": 2400,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2820
+      }
+    },
+    {
+      "id": "br_w_k_fan2_86",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: switched 12V from sp_sw12 (cabin)",
+      "layoutPosition": {
+        "x": 2040,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 3780
+      }
+    },
+    {
+      "id": "br_w_rail_5v_b_c",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: +5V from sp_5v at ECU A (crossover a)",
+      "layoutPosition": {
+        "x": 1200,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2760
+      }
+    },
+    {
+      "id": "br_w_rail_sw12_b_c",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: switched 12V from sp_sw12 (cabin)",
+      "layoutPosition": {
+        "x": 2040,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 3780
+      }
+    },
+    {
+      "id": "br_w_k_eps_86",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: switched 12V from sp_sw12 (cabin)",
+      "layoutPosition": {
+        "x": 2040,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 3780
+      }
+    },
+    {
+      "id": "br_w_fb_k_fan2_30",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: HCFB H3 30A feed to the condenser fan relay 30",
+      "layoutPosition": {
+        "x": 1860,
+        "y": 510
+      },
+      "schematicPosition": {
+        "x": 540,
+        "y": 2760
+      }
+    },
+    {
+      "id": "br_w_fb_k_eps_30",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: HCFB H4 feed to the EPS relay 30",
+      "layoutPosition": {
+        "x": 1860,
+        "y": 510
+      },
+      "schematicPosition": {
+        "x": 540,
+        "y": 2760
+      }
+    },
+    {
+      "id": "br_w82",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: ETB relay 87 to ECU-B B5 (crossover b)",
+      "layoutPosition": {
+        "x": 2220,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 1260,
+        "y": 3750
+      }
+    },
+    {
+      "id": "br_cab_fspur_r",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR core from IX_WS_FRONT pin 4",
+      "layoutPosition": {
+        "x": 1500,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 4140,
+        "y": 1620
+      }
+    },
+    {
+      "id": "br_cab_fspur_fr_sh",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR shield from IX_WS_FRONT pin 6 to sp_shield_a (A7)",
+      "coveringIds": [
+        "cov_s200_2"
+      ],
+      "layoutPosition": {
+        "x": 1500,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 4140,
+        "y": 1620
+      }
+    },
+    {
+      "id": "br_w_sw7_c",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CSB3: reverse switch (bulkhead B c12) to CSB3 S8",
+      "layoutPosition": {
+        "x": 2460,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_w39",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 3",
+      "layoutPosition": {
+        "x": 1380,
+        "y": -180
+      },
+      "schematicPosition": {
+        "x": 720,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_w_fan2_pwr",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-EngineRoom-C: condenser fan relay 87 feed",
+      "layoutPosition": {
+        "x": 2700,
+        "y": 390
+      },
+      "schematicPosition": {
+        "x": 1260,
+        "y": 4110
+      }
+    },
+    {
+      "id": "br_w_eps_pwr",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-EngineRoom-C: EPS relay 87 feed to the pump",
+      "layoutPosition": {
+        "x": 2820,
+        "y": 450
+      },
+      "schematicPosition": {
+        "x": 1260,
+        "y": 4410
+      }
+    },
+    {
+      "id": "br_w_at_immob2",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-AntiTheft: immobiliser output to ECU-B B27 (DI 10)",
+      "layoutPosition": {
+        "x": 1620,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 3180,
+        "y": -60
+      }
+    },
+    {
+      "id": "br_wc_h_bh",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CAN: CAN H from the CAN bus splice to bulkhead B c13",
+      "layoutPosition": {
+        "x": 900,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1200
+      }
+    },
+    {
+      "id": "br_wc_l_bh",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CAN: CAN L from the CAN bus splice to bulkhead B c14",
+      "layoutPosition": {
+        "x": 900,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1260
+      }
+    },
+    {
+      "id": "br_w_lam12_c",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from cabin fuse F5 to bulkhead B c3",
+      "layoutPosition": {
+        "x": 900,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1320
+      }
+    },
+    {
+      "id": "br_w_lamg_b",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis",
+      "layoutPosition": {
+        "x": 900,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1380
+      }
+    }
+  ],
+  "wireParts": [
+    {
+      "id": "m16_8_2",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "partNumber": "M22759/16-8-2",
+      "description": "WIRE, M22759/16, 8 AWG RED",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_14_0",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "partNumber": "M22759/16-14-0",
+      "description": "WIRE, M22759/16, 14 AWG BLACK",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_14_2",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "partNumber": "M22759/16-14-2",
+      "description": "WIRE, M22759/16, 14 AWG RED",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_18_0",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "M22759/16-18-0",
+      "description": "WIRE, M22759/16, 18 AWG BLACK",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_18_09",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "M22759/16-18-09",
+      "description": "WIRE, M22759/16, 18 AWG BLACK/WHITE",
+      "stripeColor": "White",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_18_2",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "M22759/16-18-2",
+      "description": "WIRE, M22759/16, 18 AWG RED",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_18_29",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "M22759/16-18-29",
+      "description": "WIRE, M22759/16, 18 AWG RED/WHITE",
+      "stripeColor": "White",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_18_3",
+      "color": "Orange",
+      "gauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "M22759/16-18-3",
+      "description": "WIRE, M22759/16, 18 AWG ORANGE",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_18_7",
+      "color": "Violet",
+      "gauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "M22759/16-18-7",
+      "description": "WIRE, M22759/16, 18 AWG VIOLET",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_09",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-09",
+      "description": "WIRE, M22759/16, 20 AWG BLACK/WHITE",
+      "stripeColor": "White",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_2",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-2",
+      "description": "WIRE, M22759/16, 20 AWG RED",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_3",
+      "color": "Orange",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-3",
+      "description": "WIRE, M22759/16, 20 AWG ORANGE",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_4",
+      "color": "Yellow",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-4",
+      "description": "WIRE, M22759/16, 20 AWG YELLOW",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_5",
+      "color": "Green",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-5",
+      "description": "WIRE, M22759/16, 20 AWG GREEN",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_54",
+      "color": "Green",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-54",
+      "description": "WIRE, M22759/16, 20 AWG GREEN/YELLOW",
+      "stripeColor": "Yellow",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_7",
+      "color": "Violet",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-7",
+      "description": "WIRE, M22759/16, 20 AWG VIOLET",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_8",
+      "color": "Gray",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-8",
+      "description": "WIRE, M22759/16, 20 AWG GRAY",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_9",
+      "color": "White",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-9",
+      "description": "WIRE, M22759/16, 20 AWG WHITE",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_18_9",
+      "color": "White",
+      "gauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "M22759/16-18-9",
+      "description": "WIRE, M22759/16, 18 AWG WHITE",
+      "manufacturer": "M22759"
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_sh_1c_vio",
+      "url": "https://www.vniva.com/pdf-f1/55PC1213-18-9-9CS2927.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1213-20-9-9",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, WHITE, FOIL + TINNED COPPER BRAID, JACKETED",
+      "manufacturer": "TE Connectivity (Raychem)"
+    },
+    {
+      "id": "cab_sh_4c",
+      "url": "https://xonstorage.z8.web.core.windows.net/pdf/teconnectivity_55pc124322mst49cs2861_xonjuly20_20_link.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k2",
+          "color": "Blue",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k3",
+          "color": "Yellow",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k4",
+          "color": "Green",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1243-20-2/6/4/5-9",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "manufacturer": "TE Connectivity (Raychem)"
+    },
+    {
+      "id": "cab_sh_2c",
+      "url": "https://xonstorage.z8.web.core.windows.net/pdf/teconnectivity_55pc112220593cs3326_xonjuly20_20_nocatlink.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k2",
+          "color": "Blue",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1122-20-2/6-9",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "manufacturer": "TE Connectivity (Raychem)"
+    }
+  ],
+  "connectors": [
+    {
+      "id": "bh_b_fw",
+      "label": "Bulkhead B - firewall, B-half of shared DRB102 (DRB12-102PAE-L018 + DRBF-1A)",
+      "width": 390,
+      "partId": "cp_drb_recept",
+      "physicalPartGroup": "drb102_recept",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "spare (size 12)",
+          "designation": "1",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c2",
+          "signal": "CAN-Lambda 4-core screen",
+          "designation": "2",
+          "contactPartId": "ct_hdp12p"
+        },
+        {
+          "id": "c3",
+          "signal": "CAN-Lambda +12V, cabin fuse F5 10A (4-core 20 AWG)",
+          "designation": "3",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c4",
+          "signal": "CAN-Lambda ground to cabin chassis ground (4-core 20 AWG)",
+          "designation": "4",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c5",
+          "signal": "ETB motor + (Aux 9, B18)",
+          "designation": "5",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c6",
+          "signal": "ETB motor - (Aux 10, B26)",
+          "designation": "6",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c7",
+          "signal": "ECU-B B15",
+          "designation": "7",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c8",
+          "signal": "ECU-B B16",
+          "designation": "8",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c9",
+          "signal": "ECU-B B23",
+          "designation": "9",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c10",
+          "signal": "ECU-B B6",
+          "designation": "10",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c11",
+          "signal": "ECU-B B7",
+          "designation": "11",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c12",
+          "signal": "ECUMaster CSB3 - Power/CAN/Switch I/O SW",
+          "designation": "12",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c13",
+          "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
+          "designation": "13",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c14",
+          "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
+          "designation": "14",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c15",
+          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
+          "designation": "15",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c16",
+          "signal": "Knock 1 SIG+ (ECU B9)",
+          "designation": "16",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c17",
+          "signal": "Knock 1 SIG- (to Gnd Out B22)",
+          "designation": "17",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c18",
+          "signal": "Knock 1 screen",
+          "designation": "18",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c19",
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
+          "designation": "19",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c20",
+          "signal": "Switched 12V to gearbox VSS (from sp_sw12)",
+          "designation": "20",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c21",
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
+          "designation": "21",
+          "contactPartId": "ct_hdp16p"
+        }
+      ],
+      "coveringIds": [
+        "cov_s200_3"
+      ],
+      "layoutPosition": {
+        "x": 960,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 3660,
+        "y": 1500
+      }
+    },
+    {
+      "id": "ecu_b",
+      "label": "ECU-B",
+      "width": 270,
+      "partId": "cp_ss34b",
+      "cavities": [
+        {
+          "id": "b1",
+          "designation": "B1"
+        },
+        {
+          "id": "b2",
+          "designation": "B2"
+        },
+        {
+          "id": "b3",
+          "designation": "B3"
+        },
+        {
+          "id": "b4",
+          "designation": "B4"
+        },
+        {
+          "id": "b5",
+          "signal": "V-Ethrottle In",
+          "designation": "B5",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b6",
+          "signal": "Temp 3 (Oil T)",
+          "designation": "B6"
+        },
+        {
+          "id": "b7",
+          "signal": "Temp 4 (Chg IAT)",
+          "designation": "B7"
+        },
+        {
+          "id": "b8",
+          "signal": "Knock 2 (spare)",
+          "designation": "B8"
+        },
+        {
+          "id": "b9",
+          "signal": "Knock 1",
+          "designation": "B9"
+        },
+        {
+          "id": "b10",
+          "designation": "B10"
+        },
+        {
+          "id": "b11",
+          "designation": "B11"
+        },
+        {
+          "id": "b12",
+          "signal": "Ign 6 (EPS Rly)",
+          "designation": "B12",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b13",
+          "signal": "Ign 5 (2nd Fan)",
+          "designation": "B13",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b14",
+          "designation": "B14"
+        },
+        {
+          "id": "b15",
+          "signal": "An Volt 6 (Oil P)",
+          "designation": "B15"
+        },
+        {
+          "id": "b16",
+          "signal": "An Volt 7 (Fuel P)",
+          "designation": "B16"
+        },
+        {
+          "id": "b17",
+          "signal": "Shield/Gnd",
+          "designation": "B17"
+        },
+        {
+          "id": "b18",
+          "signal": "Aux 9 (ETB M+)",
+          "designation": "B18",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b19",
+          "signal": "DI 6 (WSS RR)",
+          "designation": "B19"
+        },
+        {
+          "id": "b20",
+          "signal": "DI 5 (WSS RL)",
+          "designation": "B20"
+        },
+        {
+          "id": "b21",
+          "signal": "DI 4 (WSS FR)",
+          "designation": "B21"
+        },
+        {
+          "id": "b22",
+          "signal": "Gnd Out",
+          "designation": "B22",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b23",
+          "signal": "An Volt 8 (Clnt P)",
+          "designation": "B23"
+        },
+        {
+          "id": "b24",
+          "signal": "An Volt 9 (Fuel Lvl)",
+          "designation": "B24"
+        },
+        {
+          "id": "b25",
+          "signal": "Ground",
+          "designation": "B25",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b26",
+          "signal": "Aux 10 (ETB M-)",
+          "designation": "B26",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b27",
+          "signal": "DI 10 (Anti-Theft)",
+          "designation": "B27"
+        },
+        {
+          "id": "b28",
+          "signal": "DI 9 (Ignition Switch)",
+          "designation": "B28"
+        },
+        {
+          "id": "b29",
+          "signal": "DI 8 (VSS - actual road speed)",
+          "designation": "B29"
+        },
+        {
+          "id": "b30",
+          "signal": "DI 7 (Start Req)",
+          "designation": "B30"
+        },
+        {
+          "id": "b31",
+          "designation": "B31"
+        },
+        {
+          "id": "b32",
+          "designation": "B32"
+        },
+        {
+          "id": "b33",
+          "signal": "An Volt 5 (APS-S)",
+          "designation": "B33"
+        },
+        {
+          "id": "b34",
+          "signal": "Ground",
+          "designation": "B34",
+          "contactPartId": "ct_ss10_075"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1560,
+        "y": 330
+      },
+      "schematicPosition": {
+        "x": 3120,
+        "y": 0
+      }
+    },
+    {
+      "id": "k_fan2",
+      "label": "Condenser Fan Relay (on/off, diode) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
+      "width": 390,
+      "partId": "cp_rly_f7_d",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Fused +12V in (HCFB H3 30A)",
+          "designation": "30",
+          "contactPartId": "ct_f7_load8"
+        },
+        {
+          "id": "c2",
+          "signal": "ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side *",
+          "designation": "85",
+          "contactPartId": "ct_f7_coil"
+        },
+        {
+          "id": "c3",
+          "signal": "Coil + - ignition-switched 12V *",
+          "designation": "86",
+          "contactPartId": "ct_f7_coil"
+        },
+        {
+          "id": "c4",
+          "signal": "+12V out -> condenser fan motor",
+          "designation": "87",
+          "contactPartId": "ct_f7_load8"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2640,
+        "y": 450
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 4170
+      }
+    },
+    {
+      "id": "ix_fuel_r",
+      "label": "Fuel level - 2-way inline to Rear Fuel harness (IX_FUEL_LVL)",
+      "width": 270,
+      "partId": "cp_dt04_2p",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)",
+          "designation": "1"
+        },
+        {
+          "id": "c2",
+          "signal": "Fuel level ground -> Gnd Out",
+          "designation": "2"
+        }
+      ],
+      "layoutPosition": {
+        "x": 3270,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "ix_ws_rear_p",
+      "label": "WS REAR spur - 6-way inline mate (IX_WS_REAR)",
+      "width": 270,
+      "partId": "cp_dt06_6s",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+5V - VRC rear supply (ECU sensor +5V)",
+          "designation": "1"
+        },
+        {
+          "id": "c2",
+          "signal": "Gnd Out - VRC rear ground",
+          "designation": "2"
+        },
+        {
+          "id": "c3",
+          "signal": "RL conditioned out -> ECU-B B20 (DI 5)",
+          "designation": "3"
+        },
+        {
+          "id": "c4",
+          "signal": "RR conditioned out -> ECU-B B19 (DI 6)",
+          "designation": "4"
+        },
+        {
+          "id": "c5",
+          "signal": "Screen drain -> SHIELD_B (B17)",
+          "designation": "5"
+        },
+        {
+          "id": "c6",
+          "signal": "spare (size 16)",
+          "designation": "6",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "coveringIds": [
+        "cov_s200_4"
+      ],
+      "layoutPosition": {
+        "x": 1560,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 4080,
+        "y": 1200
+      }
+    },
+    {
+      "id": "k_eps",
+      "label": "MR-S EHPS pump relay (HCR150, glove box) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V - HCR 150 coil is a 2-pole plug (TE terminals 1/2, not marked 85/86), resistor-suppressed so polarity-free",
+      "width": 390,
+      "partId": "cp_rly_hcr150",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Fused +12V in (HCFB H4, ST185-CabinPower; Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)) *",
+          "designation": "30"
+        },
+        {
+          "id": "c2",
+          "signal": "ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) *",
+          "designation": "85",
+          "contactPartId": "ct_ss15"
+        },
+        {
+          "id": "c3",
+          "signal": "Coil + IG-switched 12V",
+          "designation": "86",
+          "contactPartId": "ct_ss15"
+        },
+        {
+          "id": "c4",
+          "signal": "+12V out to the pump - wire on ST185-EngineRoom-C, loom C through the firewall",
+          "designation": "87"
+        },
+        {
+          "id": "c5",
+          "signal": "not used",
+          "designation": "87a"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2760,
+        "y": 510
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 4470
+      }
+    }
+  ],
+  "lengthUnit": "mm",
+  "mountParts": [
+    {
+      "id": "mt_vcf7",
+      "partNumber": "1393310-4",
+      "description": "SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS",
+      "manufacturer": "TE Connectivity"
+    }
+  ],
+  "spliceParts": [
+    {
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
+    }
+  ],
+  "branchPoints": [
+    {
+      "id": "bp_870",
+      "layoutPosition": {
+        "x": 960,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_900",
+      "layoutPosition": {
+        "x": 1080,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_930",
+      "layoutPosition": {
+        "x": 1200,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_1020",
+      "layoutPosition": {
+        "x": 1560,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_1050",
+      "layoutPosition": {
+        "x": 1680,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_1080",
+      "layoutPosition": {
+        "x": 1800,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_1110",
+      "layoutPosition": {
+        "x": 1920,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_1140",
+      "layoutPosition": {
+        "x": 2040,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_1170",
+      "layoutPosition": {
+        "x": 2160,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_1200",
+      "layoutPosition": {
+        "x": 2280,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_1230",
+      "layoutPosition": {
+        "x": 2400,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_fl_ign_sw",
+      "layoutPosition": {
+        "x": 1560,
+        "y": -180
+      }
+    },
+    {
+      "id": "bp_fl_start_req",
+      "layoutPosition": {
+        "x": 2280,
+        "y": -90
+      }
+    },
+    {
+      "id": "b_bp_870",
+      "layoutPosition": {
+        "x": 960,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_900",
+      "layoutPosition": {
+        "x": 1080,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_930",
+      "layoutPosition": {
+        "x": 1200,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_960",
+      "layoutPosition": {
+        "x": 1320,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_1020",
+      "layoutPosition": {
+        "x": 1560,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_1050",
+      "layoutPosition": {
+        "x": 1680,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_1080",
+      "layoutPosition": {
+        "x": 1920,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_1110",
+      "layoutPosition": {
+        "x": 2040,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_1140",
+      "layoutPosition": {
+        "x": 2160,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_1170",
+      "layoutPosition": {
+        "x": 2280,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_1200",
+      "layoutPosition": {
+        "x": 2400,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_1230",
+      "layoutPosition": {
+        "x": 2520,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_1260",
+      "layoutPosition": {
+        "x": 2640,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_2100",
+      "layoutPosition": {
+        "x": 3480,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_2130",
+      "layoutPosition": {
+        "x": 3600,
+        "y": 240
+      }
+    },
+    {
+      "id": "b_bp_1065",
+      "layoutPosition": {
+        "x": 1800,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_at_ecu_a",
+      "layoutPosition": {
+        "x": 1440,
+        "y": 240
+      }
+    }
+  ],
+  "contactParts": [
+    {
+      "id": "ct_hdp16p",
+      "type": "Crimp",
+      "gender": "Pin",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0460-202-1631",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "ct_ss10_075",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "3-1447221-3",
+      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.75-0.85 MM2 (18 AWG)",
+      "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "ct_f7_coil",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "42281-1",
+      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 250 (6.3 MM), TIN, 0.8-2.0 MM2 (18-14 AWG)",
+      "contactColor": "Silver",
+      "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "ct_f7_load8",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "280755-4",
+      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 6-10 MM2 (10-8 AWG)",
+      "contactColor": "Silver",
+      "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "ct_hdp16s",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-1631",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "contactColor": "Gold",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "ct_hdp12p",
+      "type": "Crimp",
+      "gender": "Pin",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "partNumber": "0460-220-1231",
+      "description": "CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "ct_ss15",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "282110-1",
+      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2",
+      "contactColor": "Silver",
+      "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "ct_ring_m6_8",
+      "type": "Other",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "(ring lug, 8 AWG, M6)",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK",
+      "contactColor": "Silver",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "ct_ss10",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "3-1447221-4",
+      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.5 MM2 (20 AWG), INSUL 1.6-2.2 MM",
+      "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "ct_f7_load",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "partNumber": "280756-4",
+      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG)",
+      "contactColor": "Silver",
+      "manufacturer": "TE Connectivity"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_s200_2",
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS",
+      "type": "HeatShrink",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "partNumber": "S200-2-WI-22-9",
+      "description": "SLEEVE, SOLDERSLEEVE SHIELD DRAIN 22AWG",
+      "maxDiameter": {
+        "unit": "mm",
+        "value": 2.7
+      },
+      "minDiameter": {
+        "unit": "mm",
+        "value": 1.95
+      },
+      "manufacturer": "TE Connectivity (Raychem)",
+      "isFixedLength": true
+    },
+    {
+      "id": "cov_s200_3",
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS",
+      "type": "HeatShrink",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "partNumber": "S200-3-WI-22-9",
+      "description": "SLEEVE, SOLDERSLEEVE SHIELD DRAIN 22AWG",
+      "maxDiameter": {
+        "unit": "mm",
+        "value": 4.3
+      },
+      "minDiameter": {
+        "unit": "mm",
+        "value": 2.7
+      },
+      "manufacturer": "TE Connectivity (Raychem)",
+      "isFixedLength": true
+    },
+    {
+      "id": "cov_s200_4",
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS",
+      "type": "HeatShrink",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "partNumber": "S200-4-WI-22-9",
+      "description": "SLEEVE, SOLDERSLEEVE SHIELD DRAIN 22AWG",
+      "maxDiameter": {
+        "unit": "mm",
+        "value": 6
+      },
+      "minDiameter": {
+        "unit": "mm",
+        "value": 4.3
+      },
+      "manufacturer": "TE Connectivity (Raychem)",
+      "isFixedLength": true
+    }
+  ],
+  "resistorParts": [
+    {
+      "id": "rp_470",
+      "partNumber": "470R 1/4W",
+      "description": "RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W",
+      "manufacturer": "generic"
+    }
+  ],
+  "terminalParts": [
+    {
+      "id": "tp_flying_lead",
+      "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC FLYING LEAD",
+      "description": "TERMINAL, FLYING LEAD",
+      "manufacturer": "generic"
+    }
+  ],
+  "connectorParts": [
+    {
+      "id": "cp_dt06_6s",
+      "url": "https://www.te.com/usa-en/product-DT06-6S.html",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DT06-6S",
+      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "lockPartId": "lp_w6s",
+          "contactPartId": "ct_hdp16s",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "numberOfCavities": 6
+    },
+    {
+      "id": "cp_dt04_2p",
+      "url": "https://www.te.com/usa-en/product-DT04-2P.html",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-2P",
+      "description": "CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "lockPartId": "lp_w2p",
+          "contactPartId": "ct_hdp16p",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_hdp_b_fw",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/prhdp24-24-21pn.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp24-24-21pn.jpg"
+      },
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "HDP24-24-21PN",
+      "description": "CONNECTOR, RECEPTACLE, HDP20, SHELL 24, 21 POS, PIN CONTACTS, N SEAL",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "numberOfCavities": 21
+    },
+    {
+      "id": "cp_ss34b",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/414/372/900/4-1437290-0-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/414/372/900/4-1437290-0-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "4-1437290-0",
+      "description": "CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET CONTACTS, BLUE",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_ss10"
+        }
+      ],
+      "numberOfCavities": 34
+    },
+    {
+      "id": "cp_rly_f7_d",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
+      },
+      "partNumber": "7-1904094-9",
+      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X439, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 91 OHM, DIODE SUPPRESSED, CATHODE ON 86",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "mountPartId": "mt_vcf7",
+          "contactPartId": "ct_f7_load"
+        }
+      ],
+      "numberOfCavities": 4
+    },
+    {
+      "id": "cp_rly_hcr150",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_high_current_150.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_high_current_150.jpg"
+      },
+      "partNumber": "V23132-A2001-B200",
+      "description": "RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_ring_m6_8"
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_drb_recept",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url"
+      },
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DRB12-102PAE-L018",
+      "description": "CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "numberOfCavities": 21
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_cavity_notes",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression (on/off relay; INFERENCE from the G4X help Auxiliary Output Wiring PWM-only diode advice, not a Link statement) - fitted TE 7-1904094-9 has its own coil diode, keep 86 = coil +\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: HCFB H4 - Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nHigh-current fuse block HCFB h4: Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)",
+      "schematicPosition": {
+        "x": 4200,
+        "y": 0
+      }
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "id": "pl_sz16",
+      "partNumber": "114017",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "pl_sz12",
+      "partNumber": "0413-214-1205",
+      "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ]
+}
