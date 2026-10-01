@@ -421,6 +421,10 @@
         }
       ],
       "partId": "cab_sh_2c",
+      "shield": {
+        "id": "cab_lam_can_e_sh",
+        "color": "Shield"
+      },
       "schematicPosition": {
         "x": 480,
         "y": 1800

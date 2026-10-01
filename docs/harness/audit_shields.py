@@ -23,6 +23,12 @@ continuations are excluded with the other VRC screens. They are not added to
 the VRC_FRONT enclosure list (that would join A7 to B17). Crank, cam and knock
 stay on R1/R6.
 
+Unfinished CAN screens (Daniel, 2026-10-01, corrected the same day) are not
+required to reach A7, B17, or ecu_com c1. The ECU CAN connector (12V, ground,
+CAN H, CAN L) is not drawn. ecu_com is the six-pin comms / tuning port, not
+that connector. Those screens must not land on ecu_com, A7, B17, sp_shield_a
+or sp_shield_b. audit_mating M4 still fails a join from A7 to B17.
+
 R4 ("cable only until it terminates at the ECU") is a modelling convention the
 schema cannot express, so it is not checked here. The A7 / B17 separation is
 audit_mating.py M4.
@@ -32,6 +38,8 @@ were found dead-ending in bulkhead A because only the engine half was wired.
 2026-09-27: traces on model.Graph, so inline interfaces and VRC enclosures come
 from interfaces.json rather than hardcoded VRC connector ids.
 2026-10-01: VRC and CSB3 screens excluded from the single-device check.
+2026-10-01: unfinished CAN screens excluded from R2; forbidden to reach A7 / B17
+/ ecu_com.
 """
 import collections
 import sys
@@ -53,20 +61,47 @@ for enc in reg.get("enclosures") or []:
     if hid.startswith("VRC") or "CSB" in hid:
         ENC_SCREEN_TERMS.update(enc.get("screen") or [])
 
+# A7 / B17 via the ECU pins or the cabin splices that feed them, plus every
+# ecu_com cavity. Unfinished CAN screens must not reach any of these.
+CAN_FORBIDDEN = set(ECU_SHIELD)
+CAN_FORBIDDEN.add(("SP", "sp_shield_a"))
+CAN_FORBIDDEN.add(("SP", "sp_shield_b"))
+for cav in ("c1", "c2", "c3", "c4", "c5", "c6"):
+    CAN_FORBIDDEN.add(("ECU", "ecu_com", cav))
+
+
+def unfinished_can_screen(wid, cable):
+    """CAN drop / lambda-firewall screen whose ECU CAN connector is not drawn.
+
+    Named cab_can_* (trunk drops) or cab_lam_can_* (firewall pair). Not a VRC
+    or CSB3 enclosure screen, and not crank / cam / knock.
+    """
+    name = cable or wid or ""
+    return name.startswith(("cab_can_", "cab_lam_can"))
+
 
 def active_inline_screen(loom, wid, cable, ends):
     """VRC or CSB3 enclosure screen: excluded from the single-device check.
 
     Daniel, 2026-10-01. Includes cab_fout_fr_sh and its cabin continuations.
     Does not treat crank / cam / knock as active-inline.
+    Does not treat a CSB3 CAN drop screen as an enclosure screen: only a
+    screen that lands on a registered CSB3 / VRC enclosure lead counts.
     """
-    if loom == "CSB3" or loom in ("WheelSpeed-Front", "WheelSpeed-Rear"):
+    if loom in ("WheelSpeed-Front", "WheelSpeed-Rear"):
         return True
     if cable in WS_OUTPUT_CABLES:
         return True
     if (cable or wid).startswith(("cab_fspur", "cab_rspur", "cab_fout", "cab_rout")):
         return True
     return any((e or {}).get("id") in ENC_SCREEN_TERMS for e in ends)
+
+
+def can_forbidden_hits(nodes):
+    hits = set()
+    for n in nodes:
+        hits |= CAN_FORBIDDEN & g.reach(n)
+    return hits
 
 
 bad = []
@@ -84,6 +119,7 @@ for loom, d in g.docs.items():
         ends = [e for e in (w.get("source"), w.get("target")) if e]
         nodes = [g.node(loom, e) for e in ends]
         skip_single = active_inline_screen(loom, w["id"], cable, ends)
+        can_unfinished = unfinished_can_screen(w["id"], cable)
         for e, n in zip(ends, nodes):
             if e.get("handle") == "shell":
                 bad.append("R3 %s/%s lands on the shell of %s" % (loom, w["id"], e["id"]))
@@ -97,7 +133,13 @@ for loom, d in g.docs.items():
         if (not skip_single) and cable and len(ends) == 2 and w["id"] not in BOTH_ENDS_OK:
             bad.append("R6 %s/%s is bonded at both ends - not a listed screen continuation"
                        % (loom, w["id"]))
-        if nodes and not any(ECU_SHIELD & g.reach(n) for n in nodes):
+        if can_unfinished:
+            hits = can_forbidden_hits(nodes)
+            if hits:
+                bad.append("CAN screen %s/%s reaches %s - unfinished CAN screens "
+                           "stay off A7, B17, ecu_com and the ECU shield splices"
+                           % (loom, w["id"], ", ".join(sorted(model.fmt(h) for h in hits))))
+        elif nodes and not any(ECU_SHIELD & g.reach(n) for n in nodes):
             bad.append("R2 screen %s/%s never reaches an ECU shield ground" % (loom, w["id"]))
 
 for sid in sorted(BOTH_ENDS_OK):

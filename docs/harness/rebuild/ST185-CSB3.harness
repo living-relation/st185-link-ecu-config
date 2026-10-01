@@ -569,32 +569,47 @@
       },
       "color": "White",
       "partId": "wp_20_wht"
-    },
+    }
+  ],
+  "cables": [
     {
-      "id": "wc_h_csb_csb",
-      "source": {
-        "id": "csb3io",
-        "handle": "c5"
+      "id": "cab_can_csb3",
+      "cores": [
+        {
+          "id": "wc_h_csb_csb",
+          "color": "White",
+          "source": {
+            "id": "csb3io",
+            "handle": "c5"
+          },
+          "target": {
+            "id": "br_wc_h_csb",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_csb_csb",
+          "color": "Green",
+          "source": {
+            "id": "csb3io",
+            "handle": "c6"
+          },
+          "target": {
+            "id": "br_wc_l_csb",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "partId": "cab_sh_2c",
+      "shield": {
+        "id": "cab_can_csb3_sh",
+        "color": "Shield"
       },
-      "target": {
-        "id": "br_wc_h_csb",
-        "handle": "Terminal"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_csb_csb",
-      "source": {
-        "id": "csb3io",
-        "handle": "c6"
-      },
-      "target": {
-        "id": "br_wc_l_csb",
-        "handle": "Terminal"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
+      "schematicPosition": {
+        "x": 1380,
+        "y": 0
+      }
     }
   ],
   "bundles": [
@@ -1013,6 +1028,36 @@
         "value": 20,
         "unit": "AWG"
       }
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_sh_2c",
+      "url": "https://xonstorage.z8.web.core.windows.net/pdf/teconnectivity_55pc112220593cs3326_xonjuly20_20_nocatlink.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k2",
+          "color": "Blue",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1122-20-2/6-9",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "manufacturer": "TE Connectivity (Raychem)"
     }
   ],
   "spliceParts": [

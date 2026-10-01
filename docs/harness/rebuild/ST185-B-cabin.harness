@@ -689,11 +689,7 @@
       "partId": "cab_sh_2c",
       "shield": {
         "id": "cab_lam_can_c_sh",
-        "color": "Shield",
-        "target": {
-          "id": "sp_shield_b",
-          "handle": "Splice"
-        }
+        "color": "Shield"
       },
       "schematicPosition": {
         "x": 4500,

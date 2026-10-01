@@ -58,6 +58,40 @@ terminal for the FR screen.
 Also settled: the ABS wheel-speed sensors have **two wires**. No third conductor,
 no shield connection at the sensor.
 
+## CAN screens — unterminated until the ECU CAN connector is drawn (Daniel, 2026-10-01)
+
+**This is the governing wording for CAN screens.** It is not the VRC / CSB3
+enclosure exception, and it does not change crank, cam or knock.
+
+Every CAN node run that is drawn as a drop (CSB3, cluster `t_cluster_can`,
+RealDash `t_realdash_can`) may be a shielded twisted pair using the shielded-cable
+part already in the repo (`55PC1122-20-2/6-9` / `cab_sh_2c`). One core is the
+existing CAN H conductor, one is CAN L. Where a drop branches off the trunk,
+splice those drop screens to each other at the existing branch point.
+
+**Do not terminate that shield network on `ecu_com`, A7 or B17.** `ecu_com` on
+`ST185-CAN` is the six-pin comms / tuning port (DTM06-6S). It is not the ECU
+CAN connector. The ECU CAN connector has 12V, ground, CAN H and CAN L, and it
+is **not drawn**. Do not invent it, a part number, a cavity or a pin. Do not add
+a 12V wire to `ecu_com`. Do not put any shield braid in `ecu_com` c1. c1 is the
+comms-port ground; it is empty and stays empty.
+
+Until that real CAN-connector ground wire exists, leave the drop-screen network
+unterminated and say so. Do not fake the termination.
+
+The CAN-Lambda firewall run (bulkhead B c13 / c14, `cab_lam_can_c` / `cab_lam_can_e`)
+is a screened pair, not a trunk-node shield. Take its drain off `sp_shield_b`.
+Do not move that drain onto a CAN ground, and do not land it on `ecu_com`.
+Leave it unterminated at the ECU end. Do not invent an ECU shield splice on
+B-engine. Lambda +12V and ground (bulkhead B c3 / c4) stay ordinary wires; they
+are not the CAN pair. Do not ground a CAN screen at the cluster, RealDash, CSB3
+or the lambda.
+
+`audit_shields.py` therefore **does not require** these unfinished CAN screens
+to reach A7, B17 or `ecu_com` c1, and it **fails** the build if one of them
+does. `audit_mating.py` M4 is unchanged: CAN screens must not join A7 to B17.
+Center stays a CAN drop on `t_cluster_can`. Do not add a Center Cluster loom.
+
 ## §6.32 — bulkhead pin allocation, in priority order
 
 **First choice: every shield gets its own bulkhead passthrough pin.** Allocate

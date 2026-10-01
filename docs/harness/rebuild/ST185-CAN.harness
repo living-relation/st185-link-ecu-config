@@ -27,84 +27,6 @@
       }
     },
     {
-      "id": "wc_h_csb",
-      "color": "White",
-      "partId": "m16_20_9",
-      "source": {
-        "id": "sp_canh",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_wc_h_csb",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "wc_l_csb",
-      "color": "Green",
-      "partId": "m16_20_5",
-      "source": {
-        "id": "sp_canl",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_wc_l_csb",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "wc_h_clu",
-      "color": "White",
-      "partId": "m16_20_9",
-      "source": {
-        "id": "sp_canh",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "t_cluster_can",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "wc_l_clu",
-      "color": "Green",
-      "partId": "m16_20_5",
-      "source": {
-        "id": "sp_canl",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "t_cluster_can",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "wc_h_rd",
-      "color": "White",
-      "partId": "m16_20_9",
-      "source": {
-        "id": "sp_canh",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "t_realdash_can",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "wc_l_rd",
-      "color": "Green",
-      "partId": "m16_20_5",
-      "source": {
-        "id": "sp_canl",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "t_realdash_can",
-        "handle": "Terminal"
-      }
-    },
-    {
       "id": "wc_h_bh",
       "color": "White",
       "partId": "m16_20_9",
@@ -258,6 +180,137 @@
       "target": {
         "id": "br_w_lamg",
         "handle": "Terminal"
+      }
+    }
+  ],
+  "cables": [
+    {
+      "id": "cab_can_clu",
+      "cores": [
+        {
+          "id": "wc_h_clu",
+          "color": "White",
+          "source": {
+            "id": "sp_canh",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "t_cluster_can",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_clu",
+          "color": "Green",
+          "source": {
+            "id": "sp_canl",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "t_cluster_can",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "partId": "cab_sh_2c",
+      "shield": {
+        "id": "cab_can_clu_sh",
+        "color": "Shield",
+        "target": {
+          "id": "sp_can_sh",
+          "handle": "Splice"
+        }
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 270
+      }
+    },
+    {
+      "id": "cab_can_rd",
+      "cores": [
+        {
+          "id": "wc_h_rd",
+          "color": "White",
+          "source": {
+            "id": "sp_canh",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "t_realdash_can",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_rd",
+          "color": "Green",
+          "source": {
+            "id": "sp_canl",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "t_realdash_can",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "partId": "cab_sh_2c",
+      "shield": {
+        "id": "cab_can_rd_sh",
+        "color": "Shield",
+        "target": {
+          "id": "sp_can_sh",
+          "handle": "Splice"
+        }
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 360
+      }
+    },
+    {
+      "id": "cab_can_csb",
+      "cores": [
+        {
+          "id": "wc_h_csb",
+          "color": "White",
+          "source": {
+            "id": "sp_canh",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "br_wc_h_csb",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_csb",
+          "color": "Green",
+          "source": {
+            "id": "sp_canl",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "br_wc_l_csb",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "partId": "cab_sh_2c",
+      "shield": {
+        "id": "cab_can_csb_sh",
+        "color": "Shield",
+        "target": {
+          "id": "sp_can_sh",
+          "handle": "Splice"
+        }
+      },
+      "schematicPosition": {
+        "x": 720,
+        "y": 60
       }
     }
   ],
@@ -458,6 +511,19 @@
       "schematicPosition": {
         "x": 2430,
         "y": 0
+      }
+    },
+    {
+      "id": "sp_can_sh",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_930",
+      "layoutPosition": {
+        "x": 1080,
+        "y": -60
+      },
+      "schematicPosition": {
+        "x": 570,
+        "y": 120
       }
     }
   ],
@@ -694,6 +760,36 @@
       "manufacturer": "M22759"
     }
   ],
+  "cableParts": [
+    {
+      "id": "cab_sh_2c",
+      "url": "https://xonstorage.z8.web.core.windows.net/pdf/teconnectivity_55pc112220593cs3326_xonjuly20_20_nocatlink.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k2",
+          "color": "Blue",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1122-20-2/6-9",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "manufacturer": "TE Connectivity (Raychem)"
+    }
+  ],
   "connectors": [
     {
       "id": "ecu_com",
@@ -913,7 +1009,7 @@
   "schematicNotes": [
     {
       "id": "n_can",
-      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Only the CAN-Lambda crosses the firewall, on bulkhead B c13 / c14 (CAN) and c3 / c4 (+12V / GND); the cluster and RealDash are CAN drops only - their devices and their power are not part of this harness. 120R termination at the ECU end and at the lambda end.",
+      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Only the CAN-Lambda crosses the firewall, on bulkhead B c13 / c14 (CAN) and c3 / c4 (+12V / GND); the cluster and RealDash are CAN drops only - their devices and their power are not part of this harness. 120R termination at the ECU end and at the lambda end. CSB3, cluster and RealDash drops are screened twisted pair (55PC1122-20-2/6-9); those screens splice to each other at bp_930 and are left unterminated. ecu_com is the six-pin comms / tuning port, not the ECU CAN connector (12V, ground, CAN H, CAN L), which is not drawn. Do not land a CAN screen on ecu_com c1, A7 or B17.",
       "width": 390,
       "schematicPosition": {
         "x": 3180,
