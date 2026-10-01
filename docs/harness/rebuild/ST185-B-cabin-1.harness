@@ -695,8 +695,8 @@
           "handle": "c2"
         },
         "target": {
-          "id": "sp_shield_b",
-          "handle": "Splice"
+          "id": "ecu_b",
+          "handle": "b17"
         }
       },
       "schematicPosition": {
