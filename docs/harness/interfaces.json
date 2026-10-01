@@ -692,15 +692,15 @@
   "shieldBothEndsOk": [
     {
       "id": "cab_crank_c_sh",
-      "reason": "cabin crank screen continuation: bulkhead A c33 to existing splice sp_shield_a (A7), shared with the front spur shield. Stays on the single-device check (Daniel, 2026-10-01)"
+      "reason": "cabin crank pass-through: bulkhead A c33 to existing splice sp_shield_a (A7). Documentation of a through-bulkhead screen, not an exclusive permit (Daniel, 2026-10-01, narrowed)"
     },
     {
       "id": "cab_cam_c_sh",
-      "reason": "cabin cam screen continuation: bulkhead A c34 to existing splice sp_shield_a (A7), shared with the front spur shield. Stays on the single-device check (Daniel, 2026-10-01)"
+      "reason": "cabin cam pass-through: bulkhead A c34 to existing splice sp_shield_a (A7). Documentation of a through-bulkhead screen, not an exclusive permit (Daniel, 2026-10-01, narrowed)"
     },
     {
       "id": "cab_knock_c_sh",
-      "reason": "cabin knock screen continuation: bulkhead B c18 to existing splice sp_shield_b (B17), shared with the rear spur shield. Stays on the single-device check (Daniel, 2026-10-01)"
+      "reason": "cabin knock pass-through: bulkhead B c18 to existing splice sp_shield_b (B17). Documentation of a through-bulkhead screen, not an exclusive permit (Daniel, 2026-10-01, narrowed)"
     }
   ],
   "wheelSpeed": {

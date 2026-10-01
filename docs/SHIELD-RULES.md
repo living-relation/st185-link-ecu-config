@@ -3,14 +3,15 @@
 Long form: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.27, §6.30, §6.31, §6.32.
 This is the short version so it stops getting re-litigated.
 
-**`docs/harness/audit_shields.py` enforces R1, R2, R3, R5 and R6 mechanically, and
+**`docs/harness/audit_shields.py` enforces R1, R2, R3, R5 and R7 mechanically, and
 `check_all.py` runs it.** If a change breaks one of these rules the build fails.
 That is deliberate: these were settled once and kept getting re-opened because
 nothing checked them.
 
-R1 and R6 are the **single-device shield check**: a passive sensor screen floats
-at the device, and a both-ended screen that is not a listed sensor continuation
-fails. What that check covers, and what it excludes, is this file.
+R1 is the **single-device shield check** for a passive sensor screen: it floats
+at the device. The old exclusive R6 (only listed screens may be both-ended, and
+only crank, cam and knock may pass the firewall) is **withdrawn**. What the
+checks cover, and what they exclude, is this file.
 
 ## The five absolute rules
 
@@ -24,8 +25,13 @@ fails. What that check covers, and what it excludes, is this file.
    *Exception: see the inline-active wording below.*
 4. **A shield is cable only until it terminates at the ECU** — a core inside the
    cable, not a wire in its own right, right up to the ECU end.
-5. **Shields pass THROUGH the bulkhead on their own pin, not on the bulkhead
-   shell,** and that pin is wired on **both halves**.
+5. **Only a signal that already passes through both firewall bulkhead halves
+   must carry its shield through both halves,** on matching pins, not on the
+   bulkhead shell. That shield floats at the sensor, must not stop on either
+   half, and terminates at an ECU shield ground (A7 or B17). A screen that
+   runs only in the cabin does not terminate at the bulkhead. A screened cable
+   that is not broken by an inline connector and does not pass its signal
+   through the bulkhead also does not terminate at the bulkhead.
 
 ## Inline active devices — exception (Daniel, 2026-10-01)
 
@@ -35,12 +41,11 @@ circuits include inline active parts. Their screens must be terminated at the
 enclosure and at the ECU.
 
 `audit_shields.py` therefore **excludes** VRC screens and CSB3 enclosure screens
-from the single-device check (R1 float-at-device, and R6 fail a both-ended
-screen that is not a listed sensor continuation). Crank, cam and knock stay on
-that check and still end on `sp_shield_a` / `sp_shield_b`. The listed sensor
-continuations the audit reads are `shieldBothEndsOk` in
-`docs/harness/interfaces.json`: `cab_crank_c_sh`, `cab_cam_c_sh`,
-`cab_knock_c_sh`.
+from the single-device check (R1 float-at-device). They are not folded into the
+bulkhead pass-through check. Crank, cam and knock stay on R1 and still end on
+`sp_shield_a` / `sp_shield_b`. `interfaces.json` `shieldBothEndsOk` names the
+cabin continuations of those three (`cab_crank_c_sh`, `cab_cam_c_sh`,
+`cab_knock_c_sh`) as documentation, not as an exclusive permit.
 
 CSB3 gets the same exception as the VRC. No CSB3 screen is drawn today; the
 rule and the audit exclusion are in place so one can be added later. Do not
@@ -58,10 +63,43 @@ terminal for the FR screen.
 Also settled: the ABS wheel-speed sensors have **two wires**. No third conductor,
 no shield connection at the sensor.
 
+## Bulkhead pass-through (Daniel, 2026-10-01, narrowed)
+
+**This is the governing wording for firewall screens.** It is not the VRC / CSB3
+enclosure exception, and it is not the CAN-node exception.
+
+Only a signal that already passes through both firewall bulkhead halves must
+carry its shield through both halves on matching pins. That shield floats at
+the sensor, must not stop on either half, and terminates at A7 or B17. Once
+the bulkhead connectors are installed they are straight-through, so a shield
+is not required to float at the bulkhead.
+
+A screen that runs only in the cabin does not terminate at the bulkhead. A
+screened cable that is not broken by an inline connector and does not pass
+its signal through the bulkhead also does not terminate at the bulkhead.
+
+`audit_shields.py` R5 / R7 fail the build if a shield lands on one half and
+does not continue as a screen on the matching pin of the other half, or if a
+through-bulkhead screen stops on the bulkhead instead of reaching A7 or B17.
+Where both halves already have the matching shield pin, the screen continues
+through. Where a matching shield pin is not already drawn, leave the drawing
+and report the miss. Do not invent a pin, cavity, connector or part number,
+and do not pick A7 or B17 when the drawing does not already show which one.
+
+Crank, cam and knock already pass through (A c33, A c34, B c18) and still
+end on `sp_shield_a` / `sp_shield_b`. The older exclusive rule that only those
+three may pass the firewall is withdrawn.
+
+The Link CAN-Lambda H/L pair (`cab_lam_can_c` / `cab_lam_can_e`) is a
+through-bulkhead signal on B c13 / c14, so R7 applies. It is not a CAN trunk
+drop. No matching shield pin is drawn on either half. Do not invent one, do
+not land that drain on the CAN-drop splice, on `ecu_com`, or on a guessed
+A7 / B17. Lambda +12V and ground (B c3 / c4) stay ordinary wires.
+
 ## CAN screens — unterminated until the ECU CAN connector is drawn (Daniel, 2026-10-01)
 
-**This is the governing wording for CAN screens.** It is not the VRC / CSB3
-enclosure exception, and it does not change crank, cam or knock.
+**This is the governing wording for CAN node screens.** It is not the VRC / CSB3
+enclosure exception, and it is not the bulkhead pass-through rule.
 
 Every CAN node run that is drawn as a drop (CSB3, cluster `t_cluster_can`,
 RealDash `t_realdash_can`) may be a shielded twisted pair using the shielded-cable
@@ -77,20 +115,13 @@ a 12V wire to `ecu_com`. Do not put any shield braid in `ecu_com` c1. c1 is the
 comms-port ground; it is empty and stays empty.
 
 Until that real CAN-connector ground wire exists, leave the drop-screen network
-unterminated and say so. Do not fake the termination.
+unterminated and say so. Do not fake the termination. Those screens must not
+reach `sp_shield_a` or `sp_shield_b` either.
 
-The CAN-Lambda firewall run (bulkhead B c13 / c14, `cab_lam_can_c` / `cab_lam_can_e`)
-is a screened pair, not a trunk-node shield. Take its drain off `sp_shield_b`.
-Do not move that drain onto a CAN ground, and do not land it on `ecu_com`.
-Leave it unterminated at the ECU end. Do not invent an ECU shield splice on
-B-engine. Lambda +12V and ground (bulkhead B c3 / c4) stay ordinary wires; they
-are not the CAN pair. Do not ground a CAN screen at the cluster, RealDash, CSB3
-or the lambda.
-
-`audit_shields.py` therefore **does not require** these unfinished CAN screens
-to reach A7, B17 or `ecu_com` c1, and it **fails** the build if one of them
-does. `audit_mating.py` M4 is unchanged: CAN screens must not join A7 to B17.
-Center stays a CAN drop on `t_cluster_can`. Do not add a Center Cluster loom.
+`audit_shields.py` therefore **does not require** CAN node screens to reach
+A7, B17 or `ecu_com` c1, and it **fails** the build if one of them does.
+`audit_mating.py` M4 is unchanged: screens must not join A7 to B17. Center
+stays a CAN drop on `t_cluster_can`. Do not add a Center Cluster loom.
 
 ## §6.32 — bulkhead pin allocation, in priority order
 
@@ -111,6 +142,7 @@ Fallback, if that ever stops being true:
 | crank | cable floats at the sensor → `bh_a_eng` c33 → `bh_a_fw` c33 → `sp_shield_a` → **ECU-A A7** | own pin, bulkhead A |
 | cam | same, c34 → `sp_shield_a` → **A7** | own pin, bulkhead A |
 | knock 1 | cable floats at the sensor → `bh_b_eng` c18 → `bh_b_fw` c18 → `sp_shield_b` → **ECU-B B17** (knock is pin B9, loom B) | own pin, bulkhead B |
+| CAN-Lambda H/L | cores through bulkhead B c13 / c14 (`cab_lam_can_c` / `cab_lam_can_e`); R7 applies. **No matching shield pin is drawn.** Drain stays off `sp_shield_b`, off the CAN-drop splice, and off `ecu_com`. Not inventing a cavity or picking A7 / B17 | none drawn — BLOCKED |
 | wss FL, FR (raw) | continuous through the **front** VRC enclosure, fender route, no bulkhead; FL/supply output screen → `IX_WS_FRONT` pin 5 → `sp_shield_a` → A7 | none — fender; inline pin 5 |
 | wss FR (conditioned) | own 1-core screened cable, VRC OUT → `IX_WS_FRONT` pin 4 → ECU-B B21; screen → pin 6 → `sp_shield_b` → **B17**. Excluded from the single-device check with the other VRC screens (Daniel, 2026-10-01). Must **not** land on the front case or join `VRC_FRONT` enclosure screens — that would tie A7 to B17 | none; inline pin 6 |
 | wss RL, RR | continuous through the **rear** VRC enclosure, no bulkhead; output screen → `IX_WS_REAR` pin 5 → `sp_shield_b` → B17 | none — grommet; inline pin 5 |

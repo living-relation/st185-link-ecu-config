@@ -43,8 +43,9 @@ harness.design JSON.
 - `references` — retired (empty); kept for `validate_ownership.py` O4.
 - `realConnectors` — connectors on OEM parts that the build physically plugs into (J/B2 dummy
   headers) and the CSB3 plug, so they are not mistaken for flying-lead candidates.
-- `shieldBothEndsOk` — screens allowed a landing at both ends, each with its reason. Only screen
-  continuations through an inline interface or a VRC enclosure belong here.
+- `shieldBothEndsOk` — names the cabin continuations of through-bulkhead screens (crank, cam,
+  knock), each with its reason. Documentation, not an exclusive permit. The exclusive
+  “only these screens may be both-ended / may pass the firewall” rule is withdrawn.
 - `wheelSpeed` — the front/rear specification `validate_wheel_speed.py` checks.
 
 ## Rules the gates enforce
