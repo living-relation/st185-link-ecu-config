@@ -602,10 +602,6 @@
         }
       ],
       "partId": "cab_sh_4c",
-      "shield": {
-        "id": "cab_can_csb3_sh",
-        "color": "Shield"
-      },
       "schematicPosition": {
         "x": 1380,
         "y": 0
