@@ -192,8 +192,8 @@
 <div class="pm">
   <div class="pmc pm-gnd" title="Comms port ground · loom CAN · set"><b>C1</b><span class="pmch">Comms 1</span><span class="pmnet">COMMS_GND</span><span class="pmlb">Comms port ground</span></div>
   <div class="pmc pm-tbd" title="unused · loom CAN · nc"><b>C2</b><span class="pmch">Comms 2</span><span class="pmnet">—</span><span class="pmlb">unused</span></div>
-  <div class="pmc pm-can" title="CAN 1 high · loom CAN · set"><b>C3</b><span class="pmch">CAN 1 High</span><span class="pmnet">CAN1H</span><span class="pmlb">CAN 1 high</span></div>
-  <div class="pmc pm-can" title="CAN 1 low · loom CAN · set"><b>C4</b><span class="pmch">CAN 1 Low</span><span class="pmnet">CAN1L</span><span class="pmlb">CAN 1 low</span></div>
+  <div class="pmc pm-tbd" title="CAN 1 high · loom CAN · nc"><b>C3</b><span class="pmch">CAN 1 High</span><span class="pmnet">—</span><span class="pmlb">CAN 1 high</span></div>
+  <div class="pmc pm-tbd" title="CAN 1 low · loom CAN · nc"><b>C4</b><span class="pmch">CAN 1 Low</span><span class="pmnet">—</span><span class="pmlb">CAN 1 low</span></div>
   <div class="pmc pm-tbd" title="RS232 TX · loom CAN · nc"><b>C5</b><span class="pmch">RS232 TX</span><span class="pmnet">—</span><span class="pmlb">RS232 TX</span></div>
   <div class="pmc pm-tbd" title="RS232 RX · loom CAN · nc"><b>C6</b><span class="pmch">RS232 RX</span><span class="pmnet">—</span><span class="pmlb">RS232 RX</span></div>
 </div>
@@ -356,7 +356,7 @@
   <tr><td>+5 V Out</td><td>A32</td><td>Red/Blue</td><td>Orange</td></tr>
   <tr><td>Ground</td><td>A25 A34 B25 B34</td><td>Black</td><td>Black</td></tr>
   <tr><td>Gnd Out</td><td>A24 · B22</td><td>Green</td><td>Black/White</td></tr>
-  <tr><td>CAN 1 H / L (comms)</td><td>C3 / C4</td><td>White / Green</td><td>White / Green</td></tr>
+  <tr><td>CAN 1 H / L (comms)</td><td>C3 / C4</td><td>White / Green</td><td>White / Green — unused this build; vehicle CAN is CANLTW</td></tr>
 </table>
 
 <h2>Comms port (6-pin) — USER CAN 1</h2>
@@ -364,8 +364,8 @@
   <tr><th>Pin</th><th>Wire</th><th>Function</th></tr>
   <tr class="g-can"><td class="chan">1</td><td>Brown</td><td>Ground</td></tr>
   <tr class="g-can"><td class="chan">2</td><td>Blue</td><td>Unused</td></tr>
-  <tr class="g-can"><td class="chan">3</td><td>White</td><td><strong>CAN 1 High</strong></td></tr>
-  <tr class="g-can"><td class="chan">4</td><td>Green</td><td><strong>CAN 1 Low</strong></td></tr>
+  <tr class="g-can"><td class="chan">3</td><td>White</td><td><strong>CAN 1 High</strong> — unused this build; vehicle CAN is CANLTW</td></tr>
+  <tr class="g-can"><td class="chan">4</td><td>Green</td><td><strong>CAN 1 Low</strong> — unused this build; vehicle CAN is CANLTW</td></tr>
   <tr class="g-can"><td class="chan">5</td><td>Yellow</td><td>RS232 TX</td></tr>
   <tr class="g-can"><td class="chan">6</td><td>Grey</td><td>RS232 RX</td></tr>
 </table>

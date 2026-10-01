@@ -1,6 +1,6 @@
 # Harness — need to buy
 
-Generated on 2026-09-30 from the 15 `.harness` files in `docs/harness/rebuild/`:
+Generated from SHA-256 `e2e67a1cd83844bb49011d1ae9d3858535c4524886e19623bfaacc6a337fbb82` of the 15 `.harness` files actually read in `docs/harness/rebuild/` plus `interfaces.json`:
 `A-cabin`, `B-cabin`, `CabinPower`, `APS-Pedal`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`, `CSB3`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
@@ -9,12 +9,12 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 40 | 0 | **40** |
+| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 43 | 0 | **43** |
+| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 38 | 0 | **38** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
-| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 32 | 0 | **32** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 28 | 0 | **28** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
-| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
+| `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 18 | 0 | **18** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 16 | 6 | **10** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 10 | 0 | **10** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 10 | 2 | **8** |
@@ -22,6 +22,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `1-1355877-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 1.0-2.5 MM2 (18-14 AWG) | 6 | 0 | **6** |
 | `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) | 6 | 0 | **6** |
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
+| `0460-202-2031` | TE DEUTSCH | CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 5 | 0 | **5** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A | 17 | 12 | **5** |
 | `15326426` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM | 5 | 0 | **5** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
@@ -49,11 +50,13 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `160927-4` | TE Connectivity | CONTACT, RECEPTACLE, 6.3 X 0.8, TIN, 1.0-2.5 MM2 (18-14 AWG) | 2 | 0 | **2** |
 | `280919-4` | TE Connectivity | CONTACT, RECEPTACLE, 4.8 X 0.8, TIN, 0.5-1.5 MM2 (20-16 AWG) | 2 | 0 | **2** |
 | `BDK 2.8` | Bosch | CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG) | 2 | 0 | **2** |
+| `GENERIC BUTT SPLICE 22-16` | generic | SPLICE, BUTT, INSULATED, 22-16 AWG | 2 | 0 | **2** |
 | `GENERIC LUG M10 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK | 2 | 0 | **2** |
 | `GENERIC LUG M8 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK | 2 | 0 | **2** |
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK | 2 | 0 | **2** |
 | `RL00801-50RE` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED | 2 | 0 | **2** |
 | `W3S` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY PLUG | 2 | 0 | **2** |
+| `WM-6S` | TE DEUTSCH | WEDGELOCK, DTM, 6-WAY PLUG | 2 | 0 | **2** |
 | `1-1904045-6` | TE Connectivity | SOCKET, RELAY, MICRO ISO, 5 POS, WITH MOUNTING FLAP (V23333-Z0001-B046) | 1 | 0 | **1** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `10k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
@@ -66,6 +69,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `DRB16-102SAE-L018` | TE DEUTSCH | CONNECTOR, PLUG, DRB, 102 POS, SOCKET CONTACTS, E SEAL, A KEY, WIRE ROUTER | 1 | 0 | **1** |
 | `DRBF-1A` | TE DEUTSCH | FLANGE, MOUNTING, DRB 102/128 SERIES | 1 | 0 | **1** |
 | `DT04-3P` | TE DEUTSCH | CONN RECP DT 3-WAY PIN SEALED | 1 | 0 | **1** |
+| `DTM04-6P` | Deutsch | CONNECTOR, RECEPTACLE, DTM, 6 POS, PIN CONTACTS | 1 | 0 | **1** |
+| `DTM06-6S` | TE DEUTSCH | CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY | 2 | 1 | **1** |
 | `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER | 1 | 0 | **1** |
 | `GENERIC LUG M10 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC LUG M10 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
@@ -79,7 +84,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `V23132-A2001-B200` | TE Connectivity | RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS | 1 | 0 | **1** |
 | `W3P` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY RECEPTACLE | 1 | 0 | **1** |
 | `WM-4S` | TE DEUTSCH | WEDGELOCK, DTM, 4-WAY PLUG | 1 | 0 | **1** |
-| `WM-6S` | TE DEUTSCH | WEDGELOCK, DTM, 6-WAY PLUG | 1 | 0 | **1** |
+| `WM-6P` | Deutsch | WEDGELOCK, DTM, 6 POS, RECEPTACLE | 1 | 0 | **1** |
 | `jump-post-M8` | TBD | POST, JUMP START, M8, INSULATED | 1 | 0 | **1** |
 | `AMI-50` | Eaton Bussmann | FUSE, AMI, 50 A, M5 BOLT-DOWN | 1 | 0 | **1** |
 | `AMI-40` | Eaton Bussmann | FUSE, AMI, 40 A, M5 BOLT-DOWN | 1 | 0 | **1** |
@@ -106,12 +111,12 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
-| `0413-214-1205` | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 4 | 10 |
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 99 | 130 |
-| `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 95 | 118 |
+| `0413-214-1205` | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 2 | 10 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 101 | 130 |
+| `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 3 | 20 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 97 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
-| `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
+| `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 3 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS | 1 | 1 |
 | `1-1393304-0` | RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J1052-X281, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 560 OHM PARALLEL RESISTOR, MOUNTING BRACKET | 2 | 2 |
 | `1-1414147-0` | RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 2 | 3 |
@@ -131,7 +136,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `DT06-12SA` | CONNECTOR, PLUG, DT, 12 POS, SOCKET CONTACTS, N SEAL, KEY A, GRAY | 1 | 2 |
 | `DT06-3S` | CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, N SEAL, GRAY | 2 | 2 |
 | `DTM06-4S` | CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY | 1 | 1 |
-| `DTM06-6S` | CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY | 1 | 1 |
 | `Micro ISO relays x4` | RELAY, PLUG-IN, MICRO ISO, 1 FORM A, 12 VDC COIL | 4 | 4 |
 | `W12P` | WEDGELOCK, DT, 12-WAY RECEPTACLE | 1 | 2 |
 | `W12S` | WEDGELOCK, DT, 12-WAY PLUG | 1 | 2 |
@@ -211,17 +215,158 @@ Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no co
 
 | Harness | Cable | Pieces |
 |---|---|---:|
-| A-cabin | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
-| A-cabin | `GENERIC SHLD CABLE 3C 20AWG` | 1 |
-| A-engine | `GENERIC SHLD CABLE 1C 20AWG BLU` | 2 |
-| B-cabin | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
-| B-cabin | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
-| B-engine | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
-| WheelSpeed-Front | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
-| WheelSpeed-Front | `GENERIC SHLD CABLE 2C TP 20AWG` | 2 |
-| WheelSpeed-Front | `GENERIC SHLD CABLE 3C 20AWG` | 1 |
-| WheelSpeed-Rear | `GENERIC SHLD CABLE 2C TP 20AWG` | 2 |
-| WheelSpeed-Rear | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
+| A-cabin | `55PC1133-20-2/6/4-9` | 1 |
+| A-cabin | `55PC1213-20-9-9` | 3 |
+| A-engine | `55PC1213-20-9-9` | 2 |
+| B-cabin | `55PC1122-20-2/6-9` | 1 |
+| B-cabin | `55PC1213-20-9-9` | 1 |
+| B-cabin | `55PC1243-20-2/6/4/5-9` | 2 |
+| B-engine | `55PC1122-20-2/6-9` | 1 |
+| B-engine | `55PC1243-20-2/6/4/5-9` | 1 |
+| CAN | `55PC1122-20-2/6-9` | 1 |
+| CAN | `55PC1243-20-2/6/4/5-9` | 5 |
+| CSB3 | `55PC1243-20-2/6/4/5-9` | 1 |
+| WheelSpeed-Front | `55PC1122-20-2/6-9` | 2 |
+| WheelSpeed-Front | `55PC1133-20-2/6/4-9` | 1 |
+| WheelSpeed-Front | `55PC1213-20-9-9` | 1 |
+| WheelSpeed-Rear | `55PC1122-20-2/6-9` | 2 |
+| WheelSpeed-Rear | `55PC1243-20-2/6/4/5-9` | 1 |
+
+## Wire part numbers on numbered drawings
+
+Taken from each conductor's wire part on the numbered `.harness` files actually read.
+A drawing that now uses an M22759/16 part is listed under that part, not under EW-1C.
+
+| Harness | Part number | Description | Conductors |
+|---|---|---|---:|
+| A-cabin | `M22759/16-10-0` | WIRE, M22759/16, 10 AWG BLACK | 1 |
+| A-cabin | `M22759/16-10-2` | WIRE, M22759/16, 10 AWG RED | 1 |
+| A-cabin | `M22759/16-12-2` | WIRE, M22759/16, 12 AWG RED | 5 |
+| A-cabin | `M22759/16-14-0` | WIRE, M22759/16, 14 AWG BLACK | 1 |
+| A-cabin | `M22759/16-14-2` | WIRE, M22759/16, 14 AWG RED | 2 |
+| A-cabin | `M22759/16-16-2` | WIRE, M22759/16, 16 AWG RED | 1 |
+| A-cabin | `M22759/16-18-0` | WIRE, M22759/16, 18 AWG BLACK | 4 |
+| A-cabin | `M22759/16-18-09` | WIRE, M22759/16, 18 AWG BLACK/WHITE | 2 |
+| A-cabin | `M22759/16-18-2` | WIRE, M22759/16, 18 AWG RED | 10 |
+| A-cabin | `M22759/16-18-29` | WIRE, M22759/16, 18 AWG RED/WHITE | 1 |
+| A-cabin | `M22759/16-18-3` | WIRE, M22759/16, 18 AWG ORANGE | 4 |
+| A-cabin | `M22759/16-18-9` | WIRE, M22759/16, 18 AWG WHITE | 4 |
+| A-cabin | `M22759/16-20-0` | WIRE, M22759/16, 20 AWG BLACK | 2 |
+| A-cabin | `M22759/16-20-09` | WIRE, M22759/16, 20 AWG BLACK/WHITE | 7 |
+| A-cabin | `M22759/16-20-1` | WIRE, M22759/16, 20 AWG BROWN | 5 |
+| A-cabin | `M22759/16-20-2` | WIRE, M22759/16, 20 AWG RED | 4 |
+| A-cabin | `M22759/16-20-3` | WIRE, M22759/16, 20 AWG ORANGE | 9 |
+| A-cabin | `M22759/16-20-39` | WIRE, M22759/16, 20 AWG ORANGE/WHITE | 3 |
+| A-cabin | `M22759/16-20-4` | WIRE, M22759/16, 20 AWG YELLOW | 3 |
+| A-cabin | `M22759/16-20-5` | WIRE, M22759/16, 20 AWG GREEN | 2 |
+| A-cabin | `M22759/16-20-54` | WIRE, M22759/16, 20 AWG GREEN/YELLOW | 1 |
+| A-cabin | `M22759/16-20-6` | WIRE, M22759/16, 20 AWG BLUE | 2 |
+| A-cabin | `M22759/16-20-7` | WIRE, M22759/16, 20 AWG VIOLET | 4 |
+| A-cabin | `M22759/16-20-8` | WIRE, M22759/16, 20 AWG GRAY | 4 |
+| A-cabin | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 4 |
+| A-cabin | `M22759/16-8-2` | WIRE, M22759/16, 8 AWG RED | 2 |
+| A-engine | `M22759/16-10-0` | WIRE, M22759/16, 10 AWG BLACK | 1 |
+| A-engine | `M22759/16-12-2` | WIRE, M22759/16, 12 AWG RED | 1 |
+| A-engine | `M22759/16-14-2` | WIRE, M22759/16, 14 AWG RED | 2 |
+| A-engine | `M22759/16-18-0` | WIRE, M22759/16, 18 AWG BLACK | 4 |
+| A-engine | `M22759/16-18-09` | WIRE, M22759/16, 18 AWG BLACK/WHITE | 1 |
+| A-engine | `M22759/16-18-2` | WIRE, M22759/16, 18 AWG RED | 9 |
+| A-engine | `M22759/16-18-29` | WIRE, M22759/16, 18 AWG RED/WHITE | 1 |
+| A-engine | `M22759/16-18-9` | WIRE, M22759/16, 18 AWG WHITE | 2 |
+| A-engine | `M22759/16-20-09` | WIRE, M22759/16, 20 AWG BLACK/WHITE | 9 |
+| A-engine | `M22759/16-20-1` | WIRE, M22759/16, 20 AWG BROWN | 5 |
+| A-engine | `M22759/16-20-2` | WIRE, M22759/16, 20 AWG RED | 2 |
+| A-engine | `M22759/16-20-3` | WIRE, M22759/16, 20 AWG ORANGE | 6 |
+| A-engine | `M22759/16-20-39` | WIRE, M22759/16, 20 AWG ORANGE/WHITE | 1 |
+| A-engine | `M22759/16-20-4` | WIRE, M22759/16, 20 AWG YELLOW | 3 |
+| A-engine | `M22759/16-20-5` | WIRE, M22759/16, 20 AWG GREEN | 2 |
+| A-engine | `M22759/16-20-7` | WIRE, M22759/16, 20 AWG VIOLET | 4 |
+| A-engine | `M22759/16-20-8` | WIRE, M22759/16, 20 AWG GRAY | 2 |
+| A-engine | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 3 |
+| ACAmp-Spur | `EW-1C20-YEL-BLK` | WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV | 1 |
+| ACAmp-Spur | `EW-1C20-YEL-RED` | WIRE, ELECTRICAL, 20 AWG, YELLOW/RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV | 1 |
+| ACAmp-Spur | `M22759/16-20-1` | WIRE, M22759/16, 20 AWG BROWN | 1 |
+| ACAmp-Spur | `M22759/16-20-4` | WIRE, M22759/16, 20 AWG YELLOW | 1 |
+| ACAmp-Spur | `M22759/16-20-8` | WIRE, M22759/16, 20 AWG GRAY | 1 |
+| APS-Pedal | `M22759/16-20-09` | WIRE, M22759/16, 20 AWG BLACK/WHITE | 4 |
+| APS-Pedal | `M22759/16-20-3` | WIRE, M22759/16, 20 AWG ORANGE | 4 |
+| APS-Pedal | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 4 |
+| AntiTheft | `M22759/16-20-0` | WIRE, M22759/16, 20 AWG BLACK | 5 |
+| AntiTheft | `M22759/16-20-1` | WIRE, M22759/16, 20 AWG BROWN | 1 |
+| AntiTheft | `M22759/16-20-2` | WIRE, M22759/16, 20 AWG RED | 4 |
+| AntiTheft | `M22759/16-20-3` | WIRE, M22759/16, 20 AWG ORANGE | 1 |
+| AntiTheft | `M22759/16-20-5` | WIRE, M22759/16, 20 AWG GREEN | 6 |
+| AntiTheft | `M22759/16-20-6` | WIRE, M22759/16, 20 AWG BLUE | 1 |
+| AntiTheft | `M22759/16-20-7` | WIRE, M22759/16, 20 AWG VIOLET | 1 |
+| AntiTheft | `M22759/16-20-8` | WIRE, M22759/16, 20 AWG GRAY | 2 |
+| AntiTheft | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 3 |
+| B-cabin | `M22759/16-14-0` | WIRE, M22759/16, 14 AWG BLACK | 1 |
+| B-cabin | `M22759/16-18-0` | WIRE, M22759/16, 18 AWG BLACK | 2 |
+| B-cabin | `M22759/16-18-09` | WIRE, M22759/16, 18 AWG BLACK/WHITE | 2 |
+| B-cabin | `M22759/16-18-2` | WIRE, M22759/16, 18 AWG RED | 2 |
+| B-cabin | `M22759/16-18-29` | WIRE, M22759/16, 18 AWG RED/WHITE | 1 |
+| B-cabin | `M22759/16-18-3` | WIRE, M22759/16, 18 AWG ORANGE | 1 |
+| B-cabin | `M22759/16-18-7` | WIRE, M22759/16, 18 AWG VIOLET | 2 |
+| B-cabin | `M22759/16-18-9` | WIRE, M22759/16, 18 AWG WHITE | 2 |
+| B-cabin | `M22759/16-20-09` | WIRE, M22759/16, 20 AWG BLACK/WHITE | 3 |
+| B-cabin | `M22759/16-20-2` | WIRE, M22759/16, 20 AWG RED | 1 |
+| B-cabin | `M22759/16-20-3` | WIRE, M22759/16, 20 AWG ORANGE | 1 |
+| B-cabin | `M22759/16-20-4` | WIRE, M22759/16, 20 AWG YELLOW | 2 |
+| B-cabin | `M22759/16-20-5` | WIRE, M22759/16, 20 AWG GREEN | 4 |
+| B-cabin | `M22759/16-20-54` | WIRE, M22759/16, 20 AWG GREEN/YELLOW | 1 |
+| B-cabin | `M22759/16-20-7` | WIRE, M22759/16, 20 AWG VIOLET | 1 |
+| B-cabin | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 7 |
+| B-cabin | `M22759/16-8-2` | WIRE, M22759/16, 8 AWG RED | 4 |
+| B-engine | `M22759/16-14-0` | WIRE, M22759/16, 14 AWG BLACK | 1 |
+| B-engine | `M22759/16-18-9` | WIRE, M22759/16, 18 AWG WHITE | 2 |
+| B-engine | `M22759/16-20-0` | WIRE, M22759/16, 20 AWG BLACK | 1 |
+| B-engine | `M22759/16-20-09` | WIRE, M22759/16, 20 AWG BLACK/WHITE | 8 |
+| B-engine | `M22759/16-20-2` | WIRE, M22759/16, 20 AWG RED | 1 |
+| B-engine | `M22759/16-20-3` | WIRE, M22759/16, 20 AWG ORANGE | 3 |
+| B-engine | `M22759/16-20-4` | WIRE, M22759/16, 20 AWG YELLOW | 2 |
+| B-engine | `M22759/16-20-5` | WIRE, M22759/16, 20 AWG GREEN | 2 |
+| B-engine | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 3 |
+| CAN | `M22759/16-20-0` | WIRE, M22759/16, 20 AWG BLACK | 2 |
+| CAN | `M22759/16-20-2` | WIRE, M22759/16, 20 AWG RED | 1 |
+| CAN | `M22759/16-20-5` | WIRE, M22759/16, 20 AWG GREEN | 4 |
+| CAN | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 4 |
+| CSB3 | `M22759/16-20-3` | WIRE, M22759/16, 20 AWG ORANGE | 1 |
+| CSB3 | `M22759/16-20-5` | WIRE, M22759/16, 20 AWG GREEN | 6 |
+| CSB3 | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 4 |
+| CabinPower | `BC-4-RED` | CABLE, BATTERY, 4 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV | 1 |
+| CabinPower | `EW-1C12-BLK` | WIRE, ELECTRICAL, 12 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV | 1 |
+| CabinPower | `M22759/16-10-2` | WIRE, M22759/16, 10 AWG RED | 2 |
+| CabinPower | `M22759/16-12-2` | WIRE, M22759/16, 12 AWG RED | 4 |
+| CabinPower | `M22759/16-14-2` | WIRE, M22759/16, 14 AWG RED | 3 |
+| CabinPower | `M22759/16-16-2` | WIRE, M22759/16, 16 AWG RED | 1 |
+| CabinPower | `M22759/16-18-2` | WIRE, M22759/16, 18 AWG RED | 3 |
+| CabinPower | `M22759/16-20-2` | WIRE, M22759/16, 20 AWG RED | 1 |
+| CabinPower | `M22759/16-8-2` | WIRE, M22759/16, 8 AWG RED | 3 |
+| ClusterLED | `M22759/16-20-0` | WIRE, M22759/16, 20 AWG BLACK | 4 |
+| ClusterLED | `M22759/16-20-03` | WIRE, M22759/16, 20 AWG BLACK/ORANGE | 2 |
+| ClusterLED | `M22759/16-20-2` | WIRE, M22759/16, 20 AWG RED | 3 |
+| ClusterLED | `M22759/16-20-25` | WIRE, M22759/16, 20 AWG RED/GREEN | 1 |
+| ClusterLED | `M22759/16-20-4` | WIRE, M22759/16, 20 AWG YELLOW | 1 |
+| ClusterLED | `M22759/16-20-5` | WIRE, M22759/16, 20 AWG GREEN | 2 |
+| ClusterLED | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 1 |
+| EngineRoom-C | `BC-1/0-BLK` | CABLE, BATTERY, 1/0 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV | 6 |
+| EngineRoom-C | `BC-1/0-RED` | CABLE, BATTERY, 1/0 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV | 4 |
+| EngineRoom-C | `BC-2-RED` | CABLE, BATTERY, 2 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV | 2 |
+| EngineRoom-C | `BC-4-BLK` | CABLE, BATTERY, 4 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV | 2 |
+| EngineRoom-C | `BC-4-RED` | CABLE, BATTERY, 4 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV | 1 |
+| EngineRoom-C | `M22759/16-10-1` | WIRE, M22759/16, 10 AWG BROWN | 1 |
+| EngineRoom-C | `M22759/16-10-2` | WIRE, M22759/16, 10 AWG RED | 2 |
+| EngineRoom-C | `M22759/16-12-2` | WIRE, M22759/16, 12 AWG RED | 1 |
+| EngineRoom-C | `M22759/16-14-2` | WIRE, M22759/16, 14 AWG RED | 5 |
+| EngineRoom-C | `M22759/16-18-7` | WIRE, M22759/16, 18 AWG VIOLET | 1 |
+| EngineRoom-C | `M22759/16-20-2` | WIRE, M22759/16, 20 AWG RED | 1 |
+| EngineRoom-C | `M22759/16-20-8` | WIRE, M22759/16, 20 AWG GRAY | 1 |
+| EngineRoom-C | `M22759/16-6-9` | WIRE, M22759/16, 6 AWG WHITE | 1 |
+| EngineRoom-C | `M22759/16-8-0` | WIRE, M22759/16, 8 AWG BLACK | 3 |
+| EngineRoom-C | `M22759/16-8-2` | WIRE, M22759/16, 8 AWG RED | 4 |
+| EngineRoom-C | `M22759/16-8-9` | WIRE, M22759/16, 8 AWG WHITE | 1 |
+| RearFuel | `M22759/16-20-09` | WIRE, M22759/16, 20 AWG BLACK/WHITE | 1 |
+| RearFuel | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 1 |
 
 ## Still unspecified
 

@@ -26,21 +26,21 @@ physical section of copper, a connector or a BOM line has one owner.
 
 | File | Harness | Scope |
 |---|---|---|
-| `ST185-A-cabin.harness` | ECU connector A, cabin | ECU-A, cabin half of bulkhead A, A-triggered relays, front wheel-speed spur, A/C coolant switch branch, the +5V / Gnd Out / +8V / switched-12V splices |
-| `ST185-B-cabin.harness` | ECU connector B, cabin | ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, the front spur's FR core, the B legs of +5V / Gnd Out |
-| `ST185-APS-Pedal.harness` | APS pedal | the A and B pedal wires come in broken off from the two cabin looms, converge on a female DT06-6S, mate a male DT04-6P, and run to the BRZ pedal plug |
-| `ST185-CabinPower.harness` | Cabin power (non-ECU) | cabin fuse block, HCFB, battery feed ring, fuel pump run to the trunk; feeds to the A-cabin relays and splices and to B-cabin arrive broken off |
-| `ST185-CSB3.harness` | ECUMaster CSB3 | CSB3 plug, cruise stalk, clutch and brake switches, cruise ladder; power, ground, reverse, LED and CAN wires arrive broken off |
-| `ST185-A-engine.harness` | ECU connector A, engine | bulkhead A engine half to every A-letter engine device, plus the `IX_B_RAIL` spur (B-engine sensor +5V / Gnd Out) |
-| `ST185-B-engine.harness` | ECU connector B, engine | bulkhead B engine half to every B-letter engine device and the ETB motor; the B sensors' +5V / Gnd Out come in on `IX_B_RAIL` |
-| `ST185-CAN.harness` | CAN backbone | the only drawing with CAN H/L |
-| `ST185-EngineRoom-C.harness` | Loom C | engine room, PDB, fuse blocks + relays, EPS, OEM J/B feeds (J/B2 dummy headers; the rest are flying leads) |
-| `ST185-WheelSpeed-Front.harness` | Front wheel speed | one Y harness: FL/FR drops to the front VRC endpoints, output to `IX_WS_FRONT` |
-| `ST185-WheelSpeed-Rear.harness` | Rear wheel speed | one Y harness: RL/RR drops to the rear VRC endpoints, output to `IX_WS_REAR` |
-| `ST185-RearFuel.harness` | Rear Fuel | fuel level sender behind `IX_FUEL_LVL` |
-| `ST185-ACAmp-Spur.harness` | A/C amplifier spur | receiving side of `IX_AC_CTS` (TW to auto amp A34) plus flying leads at compressor A/C AMPLIFIER A18 (kill / clutch / pressure); no OEM A/C housings. Labels: `docs/harness/ACAMP-SPUR-LABELS.md` |
-| `ST185-ClusterLED.harness` | Cluster warning LEDs | LED loom; C11/C12 taps are flying leads |
-| `ST185-AntiTheft.harness` | Anti-theft | cabin |
+| `ST185-A-cabin-1.harness` | ECU connector A, cabin | ECU-A, cabin half of bulkhead A, A-triggered relays, front wheel-speed spur, A/C coolant switch branch, the +5V / Gnd Out / +8V / switched-12V splices |
+| `ST185-B-cabin-1.harness` | ECU connector B, cabin | ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, the front spur's FR core, the B legs of +5V / Gnd Out |
+| `ST185-APS-Pedal-1.harness` | APS pedal | the A and B pedal wires come in broken off from the two cabin looms, converge on a female DT06-6S, mate a male DT04-6P, and run to the BRZ pedal plug |
+| `ST185-CabinPower-1.harness` | Cabin power (non-ECU) | cabin fuse block, HCFB, battery feed ring, fuel pump run to the trunk; feeds to the A-cabin relays and splices and to B-cabin arrive broken off |
+| `ST185-CSB3-1.harness` | ECUMaster CSB3 | CSB3 plug, cruise stalk, clutch and brake switches, cruise ladder; power, ground, reverse, LED and CAN wires arrive broken off |
+| `ST185-A-engine-1.harness` | ECU connector A, engine | bulkhead A engine half to every A-letter engine device, plus the `IX_B_RAIL` spur (B-engine sensor +5V / Gnd Out) |
+| `ST185-B-engine-1.harness` | ECU connector B, engine | bulkhead B engine half to every B-letter engine device and the ETB motor; the B sensors' +5V / Gnd Out come in on `IX_B_RAIL` |
+| `ST185-CAN-1.harness` | CAN backbone | the only drawing with CAN H/L |
+| `ST185-EngineRoom-C-1.harness` | Loom C | engine room, PDB, fuse blocks + relays, EPS, OEM J/B feeds (J/B2 dummy headers; the rest are flying leads) |
+| `ST185-WheelSpeed-Front-1.harness` | Front wheel speed | one Y harness: FL/FR drops to the front VRC endpoints, output to `IX_WS_FRONT` |
+| `ST185-WheelSpeed-Rear-1.harness` | Rear wheel speed | one Y harness: RL/RR drops to the rear VRC endpoints, output to `IX_WS_REAR` |
+| `ST185-RearFuel-1.harness` | Rear Fuel | fuel level sender behind `IX_FUEL_LVL` |
+| `ST185-ACAmp-Spur-1.harness` | A/C amplifier spur | receiving side of `IX_AC_CTS` (TW to auto amp A34) plus flying leads at compressor A/C AMPLIFIER A18 (kill / clutch / pressure); no OEM A/C housings. Labels: `docs/harness/ACAMP-SPUR-LABELS.md` |
+| `ST185-ClusterLED-1.harness` | Cluster warning LEDs | LED loom; C11/C12 taps are flying leads |
+| `ST185-AntiTheft-1.harness` | Anti-theft | cabin |
 
 The four ECU loom files follow the ECU connector letter - the rule, its three allowed
 crossovers and the one open deviation (Q-RAIL) are in `../RECONCILIATION-RULES.md`

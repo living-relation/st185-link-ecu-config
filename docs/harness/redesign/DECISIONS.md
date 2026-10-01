@@ -360,8 +360,8 @@ same id across files." The old HDP24-specific backshell/gasket/panel-nut `EXTRA`
 entries (`2428-011-2405`, `M902-2243`, `16-04477`, `2411-001-2405`) are removed — there
 is no more shell-24 HDP housing to backshell, gasket, or panel-nut.
 
-**Files touched:** `ST185-A-cabin.harness`, `ST185-A-engine.harness`,
-`ST185-B-cabin.harness`, `ST185-B-engine.harness`, `docs/harness/interfaces.json`
+**Files touched:** `ST185-A-cabin-1.harness`, `ST185-A-engine-1.harness`,
+`ST185-B-cabin-1.harness`, `ST185-B-engine-1.harness`, `docs/harness/interfaces.json`
 (`IX_RAIL_A` inline_interface removed, its broken-off `"what"` text repointed to
 `bh_a_fw` c48/c49), `docs/harness/buylist.py`. No `sot/channels.csv` change was needed —
 it tracks ECU signal channels, and the injector/COP power feeds were never recorded

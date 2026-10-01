@@ -42,7 +42,7 @@ Several surfaces describe the same ECU pin story. They drifted before; they will
 | `docs/harness/HARNESS_WIRING_DIAGRAM.html` | Redirect stub | None | Keep as pointer |
 | `docs/harness/ST185-Power.harness` | Power BOM, splices, layout | Duplicates sensors that belong in Signal; leftover `bh_c` still drawn | **Living power SoT** (ECU 12 V / relays). Do not build `bh_c` |
 | `docs/harness/ST185-Signal.harness` | Signal BOM, ECU A/B/C, layout | Duplicates power-only parts (`rad_fan`, `fan2`, `buck`, `fuelpump`, `mrs_pwr`) | **Living signal SoT** |
-| `docs/harness/ST185-EngineRoom-C.harness` | Partial engine-room add-on + OEM J/B injection | Overlaps Power leftover `bh_c` fan/EPS 87 wires | **Living engine-room C SoT** |
+| `docs/harness/rebuild/ST185-EngineRoom-C-1.harness` | Partial engine-room add-on + OEM J/B injection | Overlaps Power leftover `bh_c` fan/EPS 87 wires | **Living engine-room C SoT** |
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table + EWD snips | None as a table | **Living splice table** |
 | Desktop `Documents\Wire Harnesses\…ECU Harness.harness` | Local harness.design copy | Third copy of the same looms | **Mirror** — pull from repo, do not edit as SoT |
 | `DOCS-CLEANUP-PLAN.md` **and** `.html` | 2026-08-31 inventory (same content, two formats) | Each other; also stale (claims IO table unpushed, 3S-GTE, FuryX) | **Done 2026-09-16** - both now in `archive/`; the MD carries a superseded banner |
@@ -142,7 +142,7 @@ Main = full-range track. After probing, set PCLink `APS (Sub) 100%` if the sub t
 - Land bulkhead cavities only when a wire actually crosses the firewall — then the block gains real designations, still without claiming an 8STA PN until that connector is bought.
 - ~~Generate a `HARNESS-BUILD-LIST` from the schematic graph.~~ **Done 2026-09-16.** `docs/harness/buildlist.py` generates `docs/harness/HARNESS-BUILD-LIST.csv` from Signal, Power, CAN and EngineRoom-C. From / To / pin / signal / crimp terminal / colour / AWG / trunk route / est mm / splice / done. Regenerate after any harness change - do not hand-edit the CSV.
 - Two gaps the build list exposes, both real data gaps and neither guessed at: **no wire gauge exists anywhere in the `.harness` files**, so the AWG column ships blank and needs a sizing pass; and **57 connectors have no contact part linked** to their `connectorPart`, so their crimp terminal PN is blank (the DEUTSCH bulkheads and both ECU shells are the biggest offenders).
-- ~~**Bulkhead C is not attached to the bundle/trunk graph.**~~ **Superseded 2026-09-17.** `bh_c` is deleted. Engine-room add-on wiring is `docs/harness/ST185-EngineRoom-C.harness`; OEM power restoration is the splice table in `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
+- ~~**Bulkhead C is not attached to the bundle/trunk graph.**~~ **Superseded 2026-09-17.** `bh_c` is deleted. Engine-room add-on wiring is `docs/harness/rebuild/ST185-EngineRoom-C-1.harness`; OEM power restoration is the splice table in `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 
 ## 5. Already applied in this pass
 
@@ -172,7 +172,7 @@ Battery is in the **trunk**. Fuse block, PDB, PMU-16 and the relays the PMU cann
 
 Acceptance test for the engine split: pull the engine, unplug bulkheads A and B, the engine loom comes with it. Engine-room C and the OEM body loom stay in the car.
 
-Splice table, factory citations and the C drawing: `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`, `docs/harness/ST185-EngineRoom-C.harness`.
+Splice table, factory citations and the C drawing: `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`, `docs/harness/rebuild/ST185-EngineRoom-C-1.harness`.
 
 ### 6.2 Power distribution — per load, PDM or relay+fuse, never both
 
@@ -369,8 +369,8 @@ bulkhead:
 |---|---|---|
 | **A - sensor / signal** | `ST185-Signal-cabin.harness`<br>`ST185-Signal-engine.harness` | cut at bulkheads A and B |
 | **B - power** | `ST185-Power-cabin.harness`<br>`ST185-Power-engine.harness` | cut at bulkheads A and B. **The MR-S EPS pump belongs to this loom.** |
-| CAN | `ST185-CAN.harness` | 16 wires, unchanged |
-| Engine room C | `ST185-EngineRoom-C.harness` | 33 wires, unchanged |
+| CAN | `ST185-CAN-1.harness` | 16 wires, unchanged |
+| Engine room C | `ST185-EngineRoom-C-1.harness` | 33 wires, unchanged |
 
 Each new file lands near 56 connections, leaving room for shields, the spare breakout and
 new connectors before the cap bites again.
@@ -387,7 +387,7 @@ duplicate shared nodes across files, which is how copies drift apart.
 
 **One wire currently skips the firewall entirely:** `w_mrs_relay_req` runs from
 `mrs_ctrl` (engine bay) straight to `k_eps`, which the Power and Signal files draw on the
-cabin side while `ST185-EngineRoom-C.harness` draws it in the engine bay. With `k_eps`
+cabin side while `ST185-EngineRoom-C-1.harness` draws it in the engine bay. With `k_eps`
 settled as **engine bay** (see the EPS section of `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`)
 that wire becomes engine-to-engine, and the relay's coil feed from `sp_sw12` becomes the
 crossing that needs a bulkhead B pin.
@@ -402,12 +402,12 @@ both into a loom of their own.
 | File | Holds |
 |---|---|
 | `ST185-A-ECU.harness` | Loom A, ECU side of bulkheads A and B |
-| `ST185-A-engine.harness` | Loom A, engine side |
+| `ST185-A-engine-1.harness` | Loom A, engine side |
 | `ST185-B-ECU.harness` | Loom B, ECU side. **All relays live here.** MR-S EPS pump is loom B |
-| `ST185-B-engine.harness` | Loom B, engine side |
+| `ST185-B-engine-1.harness` | Loom B, engine side |
 | `ST185-WheelSpeed.harness` | **New.** All four VR wheel-speed sensors and both conditioner boards. **No bulkhead connector** - this loom does not cross A or B |
-| `ST185-EngineRoom-C.harness` | Loom C. 33 wires, fits one file; split it only if it outgrows the cap |
-| `ST185-CAN.harness` | 16 wires, unchanged |
+| `ST185-EngineRoom-C-1.harness` | Loom C. 33 wires, fits one file; split it only if it outgrows the cap |
+| `ST185-CAN-1.harness` | 16 wires, unchanged |
 
 Do not split by "cabin vs engine" as a two-file scheme - that was the 6.13 proposal and it
 is replaced by the four files above.
@@ -1681,7 +1681,7 @@ value on a 15 A gauge-cluster fuse is close to zero anyway.
 ### Files affected
 
 **None new.** The injection loom Daniel expected to need already exists - loom C
-(`rebuild/ST185-EngineRoom-C.harness`) already carries `oem_jb1_1i`, `oem_jb1_1h`,
+(`rebuild/ST185-EngineRoom-C-1.harness`) already carries `oem_jb1_1i`, `oem_jb1_1h`,
 `oem_ie1`, `oem_rb2`, `oem_rb4` and the three J/B2 blocks. AM1 and AM2 become two
 more wires from `pmu` to `oem_ie1` in that same file.
 
@@ -2405,4 +2405,4 @@ or the Cursor rules refers to it.
 - `k_eps` sits in the engine bay (passenger fender). The standing rule is every
   relay in the cabin.
 - ~~CAN termination.~~ **Settled (Daniel, 2026-09-27) - not an open item.**
-  `ST185-CAN.harness` stands as drawn.
+  `ST185-CAN-1.harness` stands as drawn.

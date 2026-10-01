@@ -91,7 +91,7 @@ graph LR
   ISO 11898-2) — per `CAN-BUS-MASTER-DESIGN.md` §2.
 - **Settled 2026-09-27 (harness redesign; not an open item — do not re-raise it):**
   **120 Ω termination lives at the ECU end and the CAN-Lambda end**, matching
-  `ST185-CAN.harness` as drawn (`r_term_ecu` at the ECU splice, `r_term_end` at the
+  `ST185-CAN-1.harness` as drawn (`r_term_ecu` at the ECU splice, `r_term_end` at the
   CAN-Lambda splice). The center cluster, switchboard and Pi are **mid-bus stubs**, not
   bus ends — **do not terminate at any of them.** The diagram's linear left-to-right
   order is the logical bus order for this drawing, not a statement about which devices

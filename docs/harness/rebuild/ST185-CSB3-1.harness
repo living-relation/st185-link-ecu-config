@@ -288,7 +288,7 @@
     {
       "id": "br_w_csb12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: CSB3 +12V from sp_12v",
+      "signal": "Broken off - continues on ST185-CAN: CSB3 +12V on the CAN 4-core",
       "width": 390,
       "layoutPosition": {
         "x": 60,
@@ -302,7 +302,7 @@
     {
       "id": "br_w_csbg",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: CSB3 ground to sp_chassis",
+      "signal": "Broken off - continues on ST185-CAN: CSB3 ground on the CAN 4-core",
       "width": 390,
       "layoutPosition": {
         "x": 60,
@@ -367,6 +367,19 @@
       "schematicPosition": {
         "x": 1380,
         "y": -60
+      }
+    },
+    {
+      "id": "ep_csb3_sh",
+      "type": "Loose",
+      "signal": "CSB3 enclosure screen - grounded at the CSB3 box (VRC case-ground pattern; no connector, no cavity, no part)",
+      "layoutPosition": {
+        "x": 2460,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 180
       }
     }
   ],
@@ -519,32 +532,6 @@
       "partId": "wp_20_wht"
     },
     {
-      "id": "w_csb12",
-      "color": "Red",
-      "source": {
-        "id": "csb3io",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "br_w_csb12",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_red"
-    },
-    {
-      "id": "w_csbg",
-      "color": "Black",
-      "source": {
-        "id": "csb3io",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "br_w_csbg",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_blk"
-    },
-    {
       "id": "w_sw7_c_csb",
       "source": {
         "id": "csb3io",
@@ -569,32 +556,77 @@
       },
       "color": "White",
       "partId": "wp_20_wht"
-    },
+    }
+  ],
+  "cables": [
     {
-      "id": "wc_h_csb_csb",
-      "source": {
-        "id": "csb3io",
-        "handle": "c5"
+      "id": "cab_can_csb3",
+      "cores": [
+        {
+          "id": "w_csb12",
+          "color": "Red",
+          "source": {
+            "id": "csb3io",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "br_w_csb12",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "w_csbg",
+          "color": "Blue",
+          "source": {
+            "id": "csb3io",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "br_w_csbg",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_h_csb_csb",
+          "color": "Yellow",
+          "source": {
+            "id": "csb3io",
+            "handle": "c5"
+          },
+          "target": {
+            "id": "br_wc_h_csb",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_csb_csb",
+          "color": "Green",
+          "source": {
+            "id": "csb3io",
+            "handle": "c6"
+          },
+          "target": {
+            "id": "br_wc_l_csb",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "partId": "cab_sh_4c",
+      "shield": {
+        "id": "cab_can_csb3_sh",
+        "color": "Shield",
+        "source": {
+          "id": "ep_csb3_sh",
+          "handle": "Terminal"
+        }
       },
-      "target": {
-        "id": "br_wc_h_csb",
-        "handle": "Terminal"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_csb_csb",
-      "source": {
-        "id": "csb3io",
-        "handle": "c6"
-      },
-      "target": {
-        "id": "br_wc_l_csb",
-        "handle": "Terminal"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
+      "schematicPosition": {
+        "x": 1380,
+        "y": 0
+      }
     }
   ],
   "bundles": [
@@ -849,6 +881,15 @@
         "value": 470,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_1230__ep_csb3_sh",
+      "sourceId": "bp_1230",
+      "targetId": "ep_csb3_sh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -972,9 +1013,9 @@
     },
     {
       "id": "wp_20_grn",
-      "partNumber": "EW-1C20-GRN",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-20-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 20 AWG GREEN",
       "color": "Green",
       "gauge": {
         "value": 20,
@@ -983,9 +1024,9 @@
     },
     {
       "id": "wp_20_org",
-      "partNumber": "EW-1C20-ORG",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-20-3",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 20 AWG ORANGE",
       "color": "Orange",
       "gauge": {
         "value": 20,
@@ -994,9 +1035,9 @@
     },
     {
       "id": "wp_20_wht",
-      "partNumber": "EW-1C20-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 20 AWG WHITE",
       "color": "White",
       "gauge": {
         "value": 20,
@@ -1013,6 +1054,82 @@
         "value": 20,
         "unit": "AWG"
       }
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_sh_2c",
+      "url": "https://xonstorage.z8.web.core.windows.net/pdf/teconnectivity_55pc112220593cs3326_xonjuly20_20_nocatlink.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k2",
+          "color": "Blue",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1122-20-2/6-9",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "manufacturer": "TE Connectivity (Raychem)"
+    },
+    {
+      "id": "cab_sh_4c",
+      "url": "https://xonstorage.z8.web.core.windows.net/pdf/teconnectivity_55pc124322mst49cs2861_xonjuly20_20_link.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k2",
+          "color": "Blue",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k3",
+          "color": "Yellow",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k4",
+          "color": "Green",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1243-20-2/6/4/5-9",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "manufacturer": "TE Connectivity (Raychem)"
     }
   ],
   "spliceParts": [
@@ -1073,7 +1190,7 @@
         "x": 0,
         "y": -300
       },
-      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse input from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
+      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up. +12V, ground, CAN H and CAN L leave on one 55PC1243-20-2/6/4/5-9 4-core (cab_sh_4c) broken off to ST185-CAN. Two CSB3 shields: the enclosure screen (cab_can_csb3_sh) is grounded at the CSB3 box on Loose ep_csb3_sh (VRC case-ground pattern, no part). The CANbus drop screen (cab_can_csb_sh on ST185-CAN) splices onto the trunk at sp_can_sh and does not land on the box. The reverse input from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and +5V from ST185-A-cabin still arrive broken off. Non-ECU harness."
     },
     {
       "id": "n_cavity_notes",

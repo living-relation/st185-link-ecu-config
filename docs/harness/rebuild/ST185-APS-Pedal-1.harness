@@ -476,9 +476,9 @@
   "wireParts": [
     {
       "id": "wp_20_org",
-      "partNumber": "EW-1C20-ORG",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-20-3",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 20 AWG ORANGE",
       "color": "Orange",
       "gauge": {
         "value": 20,
@@ -487,9 +487,9 @@
     },
     {
       "id": "wp_20_wht",
-      "partNumber": "EW-1C20-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 20 AWG WHITE",
       "color": "White",
       "gauge": {
         "value": 20,
@@ -498,9 +498,9 @@
     },
     {
       "id": "wp_20_blk_wht",
-      "partNumber": "EW-1C20-BLK-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-20-09",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 20 AWG BLACK/WHITE",
       "color": "Black",
       "stripeColor": "White",
       "gauge": {

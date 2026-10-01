@@ -1,11 +1,12 @@
-import json, os, re, collections, datetime
+import json, os, re, collections
 
 import model
 
 R = model.REB
 # Every harness in interfaces.json - the registry is the list, so a new or
 # retired drawing can never silently drop off the buy list again.
-F = tuple(model.harness_files().values())
+FILES = model.harness_files()
+F = tuple(FILES.values())
 
 ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "0460-202-1631":130,"0460-215-1631":60,"0462-201-1631":118,"0462-209-1631":51,
@@ -76,15 +77,18 @@ DEVICE_SIDE = [
 
 req, meta = collections.Counter(), {}
 WIRED = {}   # loom -> {(node id, handle)} every conductor end, to resolve default contacts
+READ = [model.REGISTRY]
+wire_used = collections.Counter()   # (loom, part number) -> conductor count
 # A connector that appears in more than one loom is ONE physical part - bulkhead A
 # lives in three files, bulkhead B in two.  Count the first copy and skip the rest.
 # The dedupe keys on the component id, so it is only safe while the same id always
 # means the same item: SHARED below records what got skipped, and the run aborts if
 # two files disagree about a shared connector's part or contact stamps.
 copies = collections.OrderedDict()   # connector id -> [(loom, connector, parts), ...]
-for f in F:
-    loom = f[6:-8]
-    d = json.load(open(os.path.join(R,f), encoding="utf-8"))
+for loom, f in FILES.items():
+    path = os.path.join(R, f)
+    READ.append(path)
+    d = json.load(open(path, encoding="utf-8"))
     parts = {}
     for k in [x for x in d if x.endswith("Parts")]:
         for q in d[k]: parts[q["id"]] = q
@@ -97,6 +101,12 @@ for f in F:
             for e in (x.get("source"), x.get("target")):
                 if e: w.add((e.get("id"), e.get("handle")))
     WIRED[loom] = w
+    for cond, _cable, _screen in model.conductors(d):
+        q = parts.get(cond.get("partId")) or {}
+        pn = q.get("partNumber")
+        if pn:
+            wire_used[(loom, pn)] += 1
+            meta.setdefault(pn, q)
     for c in d.get("connectors", []):
         copies.setdefault(c["id"], []).append((loom, c, parts))
     for coll in ("resistors", "diodes", "terminals", "splices", "branchPoints"):
@@ -203,11 +213,12 @@ for pn, mf, desc, n, have in EXTRA:
     short = max(0, n - have)
     (rows_buy if short else rows_ok).append((pn, mf, desc, n, have, short))
 
+DIGEST = model.files_sha256(READ)
 out = ["# Harness — need to buy",
  "",
- "Generated on %s from the %d `.harness` files in `docs/harness/rebuild/`:"
- % (datetime.date.today().isoformat(), len(F)),
- "`" + "`, `".join(x[6:-8] for x in F) + "`.",
+ "Generated from SHA-256 `%s` of the %d `.harness` files actually read in `docs/harness/rebuild/` plus `interfaces.json`:"
+ % (DIGEST, len(F)),
+ "`" + "`, `".join(FILES) + "`.",
  "On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.",
  "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",
  "", "## Short — order these", "",
@@ -269,6 +280,14 @@ out += ["", "## Screened cable pieces by owning harness", "",
  "| Harness | Cable | Pieces |", "|---|---|---:|"]
 for (loom, pn), n in sorted(cab.items()):
     out.append("| %s | `%s` | %d |" % (loom, pn, n))
+out += ["", "## Wire part numbers on numbered drawings", "",
+ "Taken from each conductor's wire part on the numbered `.harness` files actually read.",
+ "A drawing that now uses an M22759/16 part is listed under that part, not under EW-1C.",
+ "",
+ "| Harness | Part number | Description | Conductors |", "|---|---|---|---:|"]
+for (loom, pn), n in sorted(wire_used.items()):
+    q = meta.get(pn) or {}
+    out.append("| %s | `%s` | %s | %d |" % (loom, pn, q.get("description") or "", n))
 out += ["", "## Still unspecified", "",
  "- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. "
  "Needs a real dash number per branch OD once the trunk diameters are known.",

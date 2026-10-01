@@ -3,64 +3,64 @@
   "_scope": "The center cluster's own assembly harness is owned by center-cluster-esp32-p4 and is not drawn here; ST185-CAN ends at its CAN-drop terminal t_cluster_can. The cluster warning-LED loom (ST185-ClusterLED) is owned here.",
   "harnesses": {
     "A-cabin": {
-      "file": "ST185-A-cabin.harness",
+      "file": "ST185-A-cabin-1.harness",
       "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the A-triggered relays (fuse block and HCFB on ST185-CabinPower), APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
     },
     "B-cabin": {
-      "file": "ST185-B-cabin.harness",
+      "file": "ST185-B-cabin-1.harness",
       "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
     },
     "CabinPower": {
-      "file": "ST185-CabinPower.harness",
+      "file": "ST185-CabinPower-1.harness",
       "physical": "Cabin power (non-ECU): cabin fuse block, high-current fuse block, battery feed ring, fuel pump run to the trunk; feeds to the A-cabin relays and splices and to B-cabin arrive broken off"
     },
     "APS-Pedal": {
-      "file": "ST185-APS-Pedal.harness",
+      "file": "ST185-APS-Pedal-1.harness",
       "physical": "APS pedal harness - male half of IX_APS to the BRZ e-throttle pedal plug (cabin)"
     },
     "A-engine": {
-      "file": "ST185-A-engine.harness",
+      "file": "ST185-A-engine-1.harness",
       "physical": "Engine harness behind bulkhead A - every engine device whose ECU signal is on connector A"
     },
     "B-engine": {
-      "file": "ST185-B-engine.harness",
+      "file": "ST185-B-engine-1.harness",
       "physical": "Engine harness behind bulkhead B - every engine device whose ECU signal is on connector B, and the ETB motor"
     },
     "CAN": {
-      "file": "ST185-CAN.harness",
+      "file": "ST185-CAN-1.harness",
       "physical": "CAN backbone"
     },
     "EngineRoom-C": {
-      "file": "ST185-EngineRoom-C.harness",
+      "file": "ST185-EngineRoom-C-1.harness",
       "physical": "Loom C - engine-room / high-current harness"
     },
     "ClusterLED": {
-      "file": "ST185-ClusterLED.harness",
+      "file": "ST185-ClusterLED-1.harness",
       "physical": "Cluster warning LEDs"
     },
     "WheelSpeed-Rear": {
-      "file": "ST185-WheelSpeed-Rear.harness",
+      "file": "ST185-WheelSpeed-Rear-1.harness",
       "physical": "Rear wheel-speed Y harness - RL/RR ABS drops to the rear VRC endpoints, one screened 4-core output to IX_WS_REAR"
     },
     "WheelSpeed-Front": {
-      "file": "ST185-WheelSpeed-Front.harness",
+      "file": "ST185-WheelSpeed-Front-1.harness",
       "physical": "Front wheel-speed Y harness - FL/FR ABS drops (loom C fender route) to the front VRC endpoints, output pair to IX_WS_FRONT"
     },
     "ACAmp-Spur": {
-      "file": "ST185-ACAmp-Spur.harness",
+      "file": "ST185-ACAmp-Spur-1.harness",
       "physical": "A/C amplifier spur - receiving half of IX_AC_CTS (TW to auto amp A34) plus flying leads at compressor A/C AMPLIFIER A18 (kill / clutch / pressure); no OEM A/C housings"
     },
     "RearFuel": {
-      "file": "ST185-RearFuel.harness",
+      "file": "ST185-RearFuel-1.harness",
       "physical": "Rear Fuel - fuel level sender behind IX_FUEL_LVL (the pump run stays on ST185-A-cabin, plan 6.41)"
     },
     "AntiTheft": {
-      "file": "ST185-AntiTheft.harness",
+      "file": "ST185-AntiTheft-1.harness",
       "physical": "Anti-theft"
     },
     "CSB3": {
-      "file": "ST185-CSB3.harness",
-      "physical": "ECUMaster CSB3 plug and switch inputs (cruise stalk, clutch, brake, cruise ladder); power, ground, reverse, LED and CAN wires arrive broken off"
+      "file": "ST185-CSB3-1.harness",
+      "physical": "ECUMaster CSB3 plug and switch inputs (cruise stalk, clutch, brake, cruise ladder); power, ground, reverse, LED and CAN wires arrive broken off. Enclosure screen grounded at the box; CANbus drop screen continues on ST185-CAN."
     }
   },
   "interfaces": [
@@ -99,7 +99,7 @@
         "c3": "FL out -> A23",
         "c4": "FR out -> B21",
         "c5": "drain, FL/supply cable -> SHIELD_A A7",
-        "c6": "drain, FR cable -> SHIELD_B B17 (floats at VRC)"
+        "c6": "drain, FR cable -> SHIELD_A A7 (grounded at VRC)"
       },
       "halves": [
         {
@@ -260,7 +260,7 @@
         "ep_vrc_r_inr_sh",
         "ep_vrc_r_out_sh"
       ],
-      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded only at the ECU."
+      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded at B17."
     },
     {
       "id": "VRC_FRONT",
@@ -270,7 +270,15 @@
         "ep_vrc_f_inr_sh",
         "ep_vrc_f_out_sh"
       ],
-      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded only at the ECU."
+      "note": "The VRC case joins the two IN screens, the OUT screen, and the FR OUT screen on the shared OUT case pin (SHIELD-RULES 6.30). Isolated from chassis; grounded at A7. FR stays on inline pin 6 and continues to sp_shield_a, not B17."
+    },
+    {
+      "id": "CSB3",
+      "harness": "CSB3",
+      "screen": [
+        "ep_csb3_sh"
+      ],
+      "note": "The CSB3 enclosure screen is grounded at the box (Daniel 2026-10-01). The CANbus drop screen cab_can_csb_sh splices onto the trunk at sp_can_sh and does not land on the box."
     }
   ],
   "flyingLeads": [
@@ -691,28 +699,16 @@
   ],
   "shieldBothEndsOk": [
     {
-      "id": "cab_rout_sh",
-      "reason": "VRC case (enclosure) to inline pin 5 - one screen node, grounded only at B17"
+      "id": "cab_crank_c_sh",
+      "reason": "cabin crank pass-through: bulkhead A c33 to existing splice sp_shield_a (A7). Documentation of a through-bulkhead screen, not an exclusive permit (Daniel, 2026-10-01, narrowed)"
     },
     {
-      "id": "cab_rspur_sh",
-      "reason": "continuation of cab_rout_sh from inline pin 5 to sp_shield_b (B17)"
+      "id": "cab_cam_c_sh",
+      "reason": "cabin cam pass-through: bulkhead A c34 to existing splice sp_shield_a (A7). Documentation of a through-bulkhead screen, not an exclusive permit (Daniel, 2026-10-01, narrowed)"
     },
     {
-      "id": "cab_fout_sh",
-      "reason": "VRC case (enclosure) to inline pin 5 - one screen node, grounded only at A7"
-    },
-    {
-      "id": "cab_fspur_sh",
-      "reason": "continuation of cab_fout_sh from inline pin 5 to sp_shield_a (A7)"
-    },
-    {
-      "id": "cab_fspur_fr_sh",
-      "reason": "continuation of cab_fout_fr_sh (floats at the VRC) from inline pin 6 to sp_shield_b (B17)"
-    },
-    {
-      "id": "cab_fspur_fr_sh_ac",
-      "reason": "A-cabin section of the FR screen: inline pin 6 to the broken-off end; continues on B-cabin as cab_fspur_fr_sh to sp_shield_b (B17), floats at the VRC"
+      "id": "cab_knock_c_sh",
+      "reason": "cabin knock pass-through: bulkhead B c18 to existing splice sp_shield_b (B17). Documentation of a through-bulkhead screen, not an exclusive permit (Daniel, 2026-10-01, narrowed)"
     }
   ],
   "wheelSpeed": {
@@ -762,7 +758,7 @@
           "cable": "cab_fout_fr",
           "cores": 1,
           "drainPin": "c6",
-          "screenFromEnclosure": false
+          "screenFromEnclosure": true
         }
       ],
       "spurHarness": "A-cabin",
@@ -772,7 +768,7 @@
         "c3": "ecu_a.a23",
         "c4": "ecu_b.b21",
         "c5": "sp_shield_a",
-        "c6": "sp_shield_b"
+        "c6": "sp_shield_a"
       }
     }
   },
@@ -783,6 +779,12 @@
       "mate": "m_aps",
       "family": "Deutsch DT 6-way (DT06-6S female, DT04-6P male)",
       "note": "the A and B pedal wires converge on the female half; one harness runs from the male half to the pedal"
+    },
+    {
+      "harness": "CAN",
+      "mate": "m_can_dtm",
+      "family": "Deutsch DTM 6-way (DTM06-6S socket, DTM04-6P pin)",
+      "note": "socket faces the LTW stub (CAN H/L only); pin half is the start of the 4-core trunk, shield on pin 5"
     }
   ],
   "breaks": [
@@ -969,7 +971,7 @@
     {
       "id": "BR_CAB_FSPUR_FR_SH",
       "type": "broken_off",
-      "what": "front wheel-speed FR shield",
+      "what": "front wheel-speed FR shield to sp_shield_a (A7)",
       "ends": [
         {
           "harness": "B-cabin",
@@ -997,12 +999,27 @@
       ]
     },
     {
-      "id": "BR_W_CSB12",
+      "id": "BR_CAN_SH",
       "type": "broken_off",
-      "what": "CSB3 +12V from sp_12v",
+      "what": "CAN trunk shield into sp_shield_a (A7); not a second wire in the A7 pin",
       "ends": [
         {
-          "harness": "CSB3",
+          "harness": "CAN",
+          "terminal": "br_can_sh"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_can_sh"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_CSB12",
+      "type": "broken_off",
+      "what": "ECU switched +12V from sp_sw12 (F9 / a5) spliced into the CAN DTM-6 pin half; nodes powered when the ECU is",
+      "ends": [
+        {
+          "harness": "CAN",
           "terminal": "br_w_csb12"
         },
         {
@@ -1014,10 +1031,10 @@
     {
       "id": "BR_W_CSBG",
       "type": "broken_off",
-      "what": "CSB3 ground to sp_chassis",
+      "what": "ECU ground at sp_chassis (a25 / a34) spliced into the CAN DTM-6 pin half",
       "ends": [
         {
-          "harness": "CSB3",
+          "harness": "CAN",
           "terminal": "br_w_csbg"
         },
         {
@@ -1608,6 +1625,36 @@
         {
           "harness": "ACAmp-Spur",
           "terminal": "br_w_ac_kill"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_CSB12_CAN",
+      "type": "broken_off",
+      "what": "CSB3 +12V on the CAN 4-core into the CSB3 plug",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_w_csb12_csb"
+        },
+        {
+          "harness": "CSB3",
+          "terminal": "br_w_csb12"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_CSBG_CAN",
+      "type": "broken_off",
+      "what": "CSB3 ground on the CAN 4-core into the CSB3 plug",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_w_csbg_csb"
+        },
+        {
+          "harness": "CSB3",
+          "terminal": "br_w_csbg"
         }
       ]
     }

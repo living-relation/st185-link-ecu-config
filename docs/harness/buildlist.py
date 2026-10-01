@@ -1,14 +1,17 @@
-import json, os, csv, datetime, collections, heapq
+import json, os, csv, collections, heapq
 
 import model
 
 R = model.REB
+READ = [model.REGISTRY]
 # Every harness in interfaces.json. Hardcoded file lists went stale twice (the
 # 2026-09-22 repoint, then the wheel-speed split), so the registry is the list.
 F = tuple(model.harness_files().items())
 
 def load(fn):
-    return json.load(open(os.path.join(R, fn), encoding="utf-8"))
+    path = os.path.join(R, fn)
+    READ.append(path)
+    return json.load(open(path, encoding="utf-8"))
 
 def node_index(d):
     """id -> (display label, kind)"""
@@ -172,10 +175,13 @@ for tag, fn in F:
         rec["Colour"] = col
         # gauge comes from the wire's part (cable cores from the cable part)
         gp = wparts.get(w.get("partId")) or {}
+        rec["Part"] = gp.get("partNumber") or ""
         gg = (gp.get("gauge") or {})
         if not gg and cable:
             cp = wparts.get(cable_part.get(cable)) or {}
             gg = next(((k.get("gauge") or {}) for k in cp.get("cores", []) if k.get("gauge")), {})
+            if not rec["Part"]:
+                rec["Part"] = cp.get("partNumber") or ""
         rec["AWG"] = ("%s" % gg.get("value", "")) + ("" if gg.get("unit", "AWG") == "AWG" else " mm2")
         segs, mm = route(g, (w.get("source") or {}).get("id"), (w.get("target") or {}).get("id"))
         rec["Route"] = segs
@@ -191,10 +197,12 @@ for tag, fn in F:
 
 COLS = ["File","Owner","Wire","Cable","From","From type","From pin","From signal","From terminal",
         "To","To type","To pin","To signal","To terminal",
-        "Colour","AWG","Route","Est mm","Splice","Handoff","EWD","Done"]
+        "Colour","AWG","Part","Route","Est mm","Splice","Handoff","EWD","Done"]
 
+DIGEST = model.files_sha256(READ)
 p = os.path.join(os.path.dirname(R), "HARNESS-BUILD-LIST.csv")
 with open(p, "w", newline="", encoding="utf-8") as fh:
+    fh.write("# Generated from SHA-256 %s of the files actually read\n" % DIGEST)
     wr = csv.DictWriter(fh, fieldnames=COLS, extrasaction="ignore")
     wr.writeheader()
     for r in sorted(rows, key=lambda x: (x["File"], x["Wire"])):
