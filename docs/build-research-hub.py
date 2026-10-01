@@ -17,12 +17,13 @@ from collections import Counter
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from hashlib import md5
+import os
 from pathlib import Path
 import subprocess
 
 DOCS = Path(__file__).resolve().parent
 REPO = DOCS.parent
-OUT = DOCS / "research-hub.html"
+OUT = Path(os.environ["RESEARCH_HUB_OUT"]) if os.environ.get("RESEARCH_HUB_OUT") else DOCS / "research-hub.html"
 
 # Topic order and framing. Directories not listed here are still picked up,
 # appended in sorted order with a generic blurb.
@@ -317,6 +318,19 @@ def human_size(n: int) -> str:
     return f"{n:.1f} MB"
 
 
+def first_sentence(text: str, limit: int = 110) -> str:
+    """Short caption for a graphic. Does not invent content — it only trims."""
+    text = " ".join((text or "").split())
+    if not text:
+        return ""
+    m = re.search(r"(?<=[.!?])\s", text)
+    cut = text[: m.start()].strip() if m else text
+    if len(cut) > limit:
+        head = cut[:limit].rsplit(" ", 1)[0]
+        cut = (head or cut[:limit]) + "…"
+    return cut
+
+
 def _csv_rows(path: Path) -> list[dict]:
     text = path.read_text(encoding="utf-8-sig")
     lines = [ln for ln in text.splitlines()
@@ -608,7 +622,9 @@ def build() -> dict:
                 digests.setdefault(d.digest, []).append(d.rel)
         rows = _topic_rows(docs)
         topics.append({
-            "dir": t["dir"], "title": t["title"], "blurb": t["blurb"], "docs": rows,
+            "dir": t["dir"], "title": t["title"], "blurb": t["blurb"],
+            "caption": t.get("caption") or first_sentence(t.get("blurb", "")),
+            "docs": rows,
             "counts": {
                 k: sum(1 for r in rows if r["kind"] == k and not r["mirror_of"])
                 for k in ("deliverable", "research", "support", "asset")
@@ -621,11 +637,15 @@ def build() -> dict:
             if d.digest:
                 digests.setdefault(d.digest, []).append(d.rel)
         rows = _topic_rows(notes)
+        notes_blurb = (
+            "Living repo-root notes. Dated VERIFY / AUDIT / FACES sheets stay "
+            "frozen records and are not indexed here."
+        )
         topics.append({
             "dir": "notes",
             "title": "Project rules & architecture",
-            "blurb": "Living repo-root notes. Dated VERIFY / AUDIT / FACES sheets stay "
-                     "frozen records and are not indexed here.",
+            "blurb": notes_blurb,
+            "caption": first_sentence(notes_blurb),
             "docs": rows,
             "counts": {
                 k: sum(1 for r in rows if r["kind"] == k)
@@ -643,6 +663,7 @@ HUB_CSS = """
     --accent:#b4451f; --accent-soft:#fbeee8; --chip:#eeeeeb;
     --ok:#2f6f4e; --ok-soft:#e6f4ec; --warn:#8a5a12; --warn-soft:#fff4dc;
     --info:#355a8a; --info-soft:#e8f0fa;
+    --deliv:var(--accent); --research:var(--info); --working:#7a7d86;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -650,6 +671,7 @@ HUB_CSS = """
       --accent:#e8825a; --accent-soft:#2a1c16; --chip:#26282e;
       --ok:#7dcea0; --ok-soft:#1c2a22; --warn:#e8c07a; --warn-soft:#2a2316;
       --info:#8bb4e0; --info-soft:#1b2430;
+      --working:#8b8e97;
     }
   }
   :root[data-theme="dark"] {
@@ -657,16 +679,21 @@ HUB_CSS = """
     --accent:#e8825a; --accent-soft:#2a1c16; --chip:#26282e;
     --ok:#7dcea0; --ok-soft:#1c2a22; --warn:#e8c07a; --warn-soft:#2a2316;
     --info:#8bb4e0; --info-soft:#1b2430;
+    --working:#8b8e97;
   }
   * { box-sizing:border-box; }
   body { background:var(--bg); color:var(--ink); margin:0;
-    font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
-  .wrap { max-width:1180px; margin:0 auto; padding:28px 20px 80px; }
-  header h1 { font-size:26px; margin:0 0 6px; letter-spacing:-.02em; }
-  .sub { color:var(--muted); font-size:14px; margin:0 0 18px; }
+    font:15px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width:1180px; margin:0 auto; padding:22px 20px 80px; }
+  .hero { display:flex; justify-content:space-between; gap:16px; align-items:flex-start;
+    margin-bottom:10px; }
+  header h1 { font-size:26px; margin:0 0 4px; letter-spacing:-.02em; }
+  .sub { color:var(--muted); font-size:13px; margin:0; max-width:70ch; }
+  #t-theme { padding:8px 11px; border:1px solid var(--line); background:var(--panel);
+    color:var(--muted); border-radius:7px; cursor:pointer; font-size:13px; flex:none; }
   .bar { display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-    position:sticky; top:0; background:var(--bg); padding:12px 0; z-index:5;
-    border-bottom:1px solid var(--line); margin-bottom:16px; }
+    position:sticky; top:0; background:var(--bg); padding:10px 0; z-index:5;
+    border-bottom:1px solid var(--line); margin-bottom:14px; }
   #q { flex:1; min-width:220px; padding:9px 12px; border:1px solid var(--line);
     border-radius:8px; background:var(--panel); color:var(--ink); font-size:14px; }
   #q:focus { outline:2px solid var(--accent); outline-offset:-1px; }
@@ -675,12 +702,20 @@ HUB_CSS = """
     color:var(--muted); border-radius:7px; cursor:pointer; font-size:13px; }
   .toggle button[aria-pressed="true"] { background:var(--accent-soft);
     border-color:var(--accent); color:var(--accent); font-weight:600; }
-  .topic-nav { display:flex; gap:6px; flex-wrap:wrap; margin:0 0 18px; }
+  .filter-status { font-size:12px; color:var(--muted); white-space:nowrap; }
+  .topic-nav { display:flex; gap:6px; flex-wrap:wrap; margin:0 0 16px; }
+  .topic-nav button { font-size:12.5px; color:var(--muted);
+    border:1px solid var(--line); background:var(--panel); padding:5px 9px; border-radius:999px;
+    cursor:pointer; }
+  .topic-nav button:hover, .topic-nav button:focus { color:var(--accent); border-color:var(--accent); }
+  .topic-nav button[aria-pressed="true"] { background:var(--accent-soft);
+    border-color:var(--accent); color:var(--accent); font-weight:600; }
   .topic-nav a { font-size:12.5px; color:var(--muted); text-decoration:none;
     border:1px solid var(--line); background:var(--panel); padding:5px 9px; border-radius:999px; }
-  .topic-nav a:hover, .topic-nav a:focus { color:var(--accent); border-color:var(--accent); }
-  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  .topic-nav a:hover { color:var(--accent); border-color:var(--accent); }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
     gap:8px; margin:0 0 14px; }
+  @media (max-width:720px) { .stats { grid-template-columns:repeat(2,minmax(0,1fr)); } }
   .stat { background:var(--panel); border:1px solid var(--line); border-radius:10px;
     padding:10px 12px; }
   .stat b { display:block; font-size:22px; letter-spacing:-.03em; line-height:1.1; }
@@ -691,6 +726,49 @@ HUB_CSS = """
   .bars .b-buy { background:var(--accent); }
   .bars .b-ok { background:var(--ok); }
   .bars .b-own { background:var(--info); }
+  .overview { margin:0 0 18px; }
+  .overview-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:12px; margin:0 0 12px; }
+  @media (max-width:860px) { .overview-grid { grid-template-columns:1fr; } }
+  .chart { background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:14px 16px 12px; }
+  .chart h2 { font-size:15px; margin:0 0 2px; }
+  .chart .caption, .topic-head .caption, .topic-tile .caption { color:var(--muted);
+    font-size:12px; margin:0 0 10px; max-width:72ch; }
+  .legend { display:flex; gap:10px; flex-wrap:wrap; font-size:11.5px; color:var(--muted);
+    margin:0 0 8px; }
+  .legend i { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:4px; }
+  .legend .k-deliv { background:var(--deliv); }
+  .legend .k-research { background:var(--research); }
+  .legend .k-support { background:var(--working); }
+  .hbar-row, .chart-row { display:grid; grid-template-columns:minmax(88px,28%) 1fr auto;
+    gap:8px; align-items:center; margin:0 0 6px; }
+  .hbar-lab, .chart-lab { font-size:12px; color:var(--ink); overflow:hidden;
+    text-overflow:ellipsis; white-space:nowrap; }
+  .hbar-track, .chart-track { height:12px; background:var(--chip); border-radius:99px; overflow:hidden;
+    display:flex; }
+  .hbar-track i, .chart-track i { display:block; height:100%; min-width:0; }
+  .hbar-n, .chart-n { font-size:12px; font-variant-numeric:tabular-nums; color:var(--muted);
+    min-width:3.2ch; text-align:right; }
+  .k-deliv { background:var(--deliv); }
+  .k-research { background:var(--research); }
+  .k-support { background:var(--working); }
+  .b-enc { background:var(--warn); }
+  .loom-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 18px; }
+  @media (max-width:720px) { .loom-grid { grid-template-columns:1fr; } }
+  .topic-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+    gap:8px; margin:0 0 22px; }
+  .topic-tile { text-align:left; background:var(--panel); border:1px solid var(--line);
+    border-radius:12px; padding:12px 13px 10px; cursor:pointer; color:inherit; }
+  .topic-tile:hover { border-color:var(--accent); }
+  .topic-tile[aria-pressed="true"] { border-color:var(--accent); background:var(--accent-soft); }
+  .topic-tile h3 { margin:0 0 8px; font-size:14px; }
+  .topic-tile .stack, .topic-head .stack { display:flex; height:8px; border-radius:99px;
+    overflow:hidden; background:var(--chip); margin:0 0 8px; }
+  .topic-tile .stack i, .topic-head .stack i { display:block; height:100%; }
+  .tile-counts { font-size:11.5px; color:var(--muted); }
+  .tile-counts b { color:var(--ink); font-weight:600; }
+  .empty { background:var(--panel); border:1px dashed var(--line); border-radius:10px;
+    padding:16px; color:var(--muted); text-align:center; margin:0 0 18px; }
   .board { background:var(--panel); border:1px solid var(--line); border-radius:12px;
     padding:14px 16px 16px; margin:0 0 28px; }
   .board h2 { font-size:18px; margin:0 0 4px; }
@@ -720,10 +798,10 @@ HUB_CSS = """
     font-size:12px; color:var(--muted); margin:0 0 8px; }
   .tmeta input { padding:5px 8px; border:1px solid var(--line); border-radius:6px;
     background:var(--bg); color:var(--ink); font-size:12.5px; min-width:180px; }
-  .topic { margin:0 0 30px; }
-  .topic > h2 { font-size:19px; margin:0 0 4px; letter-spacing:-.01em; }
+  .topic { margin:0 0 28px; }
+  .topic-head h2 { font-size:19px; margin:0 0 8px; letter-spacing:-.01em; }
   .blurb { color:var(--muted); font-size:13.5px; margin:0 0 12px; max-width:78ch; }
-  .counts { font-size:12px; color:var(--muted); margin-bottom:12px; }
+  .counts { font-size:12px; color:var(--muted); margin:0 0 8px; }
   .counts b { color:var(--ink); font-weight:600; }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:10px;
     padding:14px 16px; margin-bottom:9px; }
@@ -734,7 +812,8 @@ HUB_CSS = """
     flex-wrap:wrap; margin-bottom:6px; align-items:center; }
   .chip { background:var(--chip); padding:1.5px 7px; border-radius:20px;
     font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; }
-  .summary { font-size:13.5px; color:var(--muted); margin:0; max-width:78ch; }
+  .summary { font-size:13.5px; color:var(--muted); margin:0; max-width:78ch;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
   details.secs { margin-top:9px; }
   details.secs summary { cursor:pointer; font-size:12.5px; color:var(--accent);
     font-weight:600; user-select:none; }
@@ -769,6 +848,27 @@ const on = id => document.getElementById(id).getAttribute("aria-pressed") === "t
 
 const tableState = {};
 let activePartsTab = "buy";
+const selectedTopics = new Set();
+
+function kindOf(d) {
+  return d.kind === "asset" ? "support" : d.kind;
+}
+
+function topicCounts(t) {
+  const d = t.counts.deliverable || 0;
+  const r = t.counts.research || 0;
+  const w = (t.counts.support || 0) + (t.counts.asset || 0);
+  return {d, r, w, tot: d + r + w};
+}
+
+function stackHtml(d, r, w, max, cls) {
+  const scale = max || (d + r + w) || 1;
+  return `<div class="${cls || "stack"}" aria-hidden="true">
+    ${d ? `<i class="k-deliv" style="width:${(d / scale * 100).toFixed(2)}%"></i>` : ""}
+    ${r ? `<i class="k-research" style="width:${(r / scale * 100).toFixed(2)}%"></i>` : ""}
+    ${w ? `<i class="k-support" style="width:${(w / scale * 100).toFixed(2)}%"></i>` : ""}
+  </div>`;
+}
 
 function hayOf(obj) {
   return Object.values(obj || {}).join(" ").toLowerCase();
@@ -790,8 +890,13 @@ function renderOneTable(spec, inst) {
   const key = inst || spec.id;
   const st = tableState[key] || (tableState[key] = {q: "", sort: "", dir: 1});
   const q = (st.q || "").toLowerCase();
+  const globalQ = ((document.getElementById("q") || {}).value || "").trim().toLowerCase();
+  const specHay = `${spec.title || ""} ${spec.source || ""}`.toLowerCase();
   let rows = spec.rows.slice();
   if (q) rows = rows.filter(r => hayOf(r).includes(q));
+  if (globalQ && !specHay.includes(globalQ)) {
+    rows = rows.filter(r => hayOf(r).includes(globalQ));
+  }
   if (st.sort) {
     const col = spec.columns.find(c => c.key === st.sort);
     rows.sort((a, b) => {
@@ -813,7 +918,8 @@ function renderOneTable(spec, inst) {
   }).join("");
   return `
     <section class="tbl" data-tid="${esc(spec.id)}" data-inst="${esc(key)}"
-             data-hay="${esc((spec.title + " " + spec.source).toLowerCase())}">
+             data-meta="${esc(specHay)}"
+             data-hay="${esc((specHay + " " + spec.rows.map(hayOf).join(" ")).toLowerCase())}">
       <div class="tmeta">
         <div>
           <strong>${esc(spec.title)}</strong>
@@ -864,6 +970,7 @@ function replaceTable(mount) {
     const inp = next.querySelector(".tfilter");
     if (inp) { inp.focus(); if (start != null) inp.setSelectionRange(start, start); }
   }
+  applyFilters();
 }
 
 function bindTables(root) {
@@ -893,20 +1000,28 @@ function bindTables(root) {
   });
 }
 
-function docCard(d) {
+function docCard(d, topicDir) {
   const secs = (d.sections || []).filter(s => s && s.label);
   const target = s => s.id
     ? `#${encodeURIComponent(s.id)}`
     : `#:~:text=${encodeURIComponent(s.label.replace(/^\d+\s+/, ""))}`;
   const tables = (d.tables || []).map((t, i) => {
     const spec = {...t, id: `${d.rel}-${i}`};
-    return `<details class="secs" open><summary>${esc(t.title || "Table")}${
+    return `<details class="secs"><summary>${esc(t.title || "Table")}${
       t.truncated ? " (first rows)" : ""}</summary>${renderOneTable(spec, spec.id)}</details>`;
   }).join("");
+  const kind = kindOf(d);
+  const hay = [
+    d.title, d.rel, d.summary || "", kind, d.kind,
+    secs.map(s => s.label).join(" "),
+    (d.tables || []).flatMap(t => [
+      t.title,
+      ...((t.rows || []).flatMap(r => Object.values(r || {}))),
+    ]).join(" "),
+  ].join(" ").toLowerCase();
   return `
-  <article class="card" data-hay="${esc(
-      (d.title + " " + d.rel + " " + secs.map(s => s.label).join(" ")
-       + " " + (d.tables || []).map(t => t.title).join(" ")).toLowerCase())}">
+  <article class="card" data-filter-item data-kind="${esc(kind)}" data-topic="${esc(topicDir)}"
+           data-hay="${esc(hay)}">
     <h3><a href="../${esc(d.rel)}">${esc(d.title)}</a></h3>
     <div class="meta">
       <span class="chip">${esc(d.rel.replace(/^docs\//, ""))}</span>
@@ -927,13 +1042,12 @@ function docCard(d) {
 
 function partsHtml() {
   const P = DATA.parts || {};
-  const S = P.stats || {};
   const tabs = [
     ["buy", "Buy list", P.tables.buy],
     ["onhand", "On hand", P.tables.onhand],
     ["covered", "Covered", P.tables.covered],
     ["enclosures", "Enclosure BOMs", null],
-    ["skip", "Not purchased", P.tables.not_purchased],
+    ["not_purchased", "Not purchased", P.tables.not_purchased],
   ].filter(t => t[2] || t[0] === "enclosures");
   const active = activePartsTab;
   const tabBtns = tabs.map(([id, label]) =>
@@ -948,124 +1062,301 @@ function partsHtml() {
     body = renderOneTable(P.tables[active], "board-" + active);
   }
 
-  const buy = S.buy_lines || 0, cov = S.covered_lines || 0, own = S.onhand_skus || 0;
-  const tot = buy + cov + own || 1;
   return `
-    <section class="board" id="parts" data-hay="buy list on hand bom enclosure stock parts">
-      <h2>Parts board</h2>
-      <p class="blurb">Live tables from the CSV / generated buy-list sources of truth.
-         Click a column to sort. Filter boxes search inside the open table.</p>
-      <div class="stats">
-        <div class="stat"><b>${S.buy_lines || 0}</b><span>buy lines · ${S.buy_qty || 0} pcs</span></div>
-        <div class="stat"><b>${S.covered_lines || 0}</b><span>covered by stock</span></div>
-        <div class="stat"><b>${S.onhand_skus || 0}</b><span>on-hand SKUs · ${S.onhand_qty || 0} ordered</span></div>
-        <div class="stat"><b>${S.enclosure_lines || 0}</b><span>enclosure BOM lines</span></div>
-        <div class="stat"><b>${S.wire_count || 0}</b><span>wires on the build list</span></div>
-      </div>
-      <div class="bars" title="buy / covered / on-hand SKUs">
-        <i class="b-buy" style="width:${(buy / tot * 100).toFixed(1)}%"></i>
-        <i class="b-ok" style="width:${(cov / tot * 100).toFixed(1)}%"></i>
-        <i class="b-own" style="width:${(own / tot * 100).toFixed(1)}%"></i>
-      </div>
+    <section class="board" id="parts"
+             data-hay="buy list on hand bom enclosure stock parts need-to-buy">
+      <h2>Parts tables</h2>
+      <p class="caption">Same counts as the charts above. Sort a column or type in a table filter.</p>
       <div class="tabs">${tabBtns}</div>
       <div id="parts-body">${body}</div>
     </section>`;
 }
 
-function refreshParts() {
+function tableMatchesQuery(spec, q) {
+  if (!spec) return false;
+  if (!q) return true;
+  if (`${spec.title || ""} ${spec.source || ""}`.toLowerCase().includes(q)) return true;
+  return (spec.rows || []).some(r => hayOf(r).includes(q));
+}
+
+function partsTabIds() {
+  return ["buy", "onhand", "covered", "enclosures", "not_purchased"];
+}
+
+function partsTabMatches(id, q) {
+  const tables = ((DATA.parts || {}).tables) || {};
+  if (id === "enclosures") {
+    return tableMatchesQuery(tables.csb3, q) || tableMatchesQuery(tables.vr, q);
+  }
+  return tableMatchesQuery(tables[id], q);
+}
+
+function anyPartsMatch(q) {
+  return partsTabIds().some(id => partsTabMatches(id, q));
+}
+
+function refreshParts(runFilter) {
   const el = document.getElementById("parts-root");
   if (!el) return;
   el.innerHTML = partsHtml();
   el.querySelectorAll(".tabs button").forEach(b => {
     b.addEventListener("click", () => {
-      el.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-selected", "false"));
-      b.setAttribute("aria-selected", "true");
-      const tab = b.dataset.tab;
-      activePartsTab = tab;
-      const body = document.getElementById("parts-body");
-      body.innerHTML = tab === "enclosures"
-        ? [DATA.parts.tables.csb3, DATA.parts.tables.vr].filter(Boolean)
-            .map(t => renderOneTable(t, "board-" + t.id)).join("")
-        : renderOneTable(DATA.parts.tables[tab] || null, "board-" + tab);
-      bindTables(body);
+      activePartsTab = b.dataset.tab;
+      refreshParts(false);
+      applyFilters();
     });
   });
   bindTables(el);
+  if (runFilter !== false) applyFilters();
 }
 
-function topicTables(dir) {
-  const ids = (DATA.parts.topic_tables || {})[dir] || [];
-  if (!ids.length) return "";
-  return `<div class="topic-tables">${ids.map(id =>
-    renderOneTable(DATA.parts.tables[id], `topic-${dir}-${id}`)).join("")}</div>`;
+function overviewHtml() {
+  const S = (DATA.parts && DATA.parts.stats) || {};
+  const topics = DATA.topics || [];
+  const deliv = topics.reduce((n, t) => n + (t.counts.deliverable || 0), 0);
+  const research = topics.reduce((n, t) => n + (t.counts.research || 0), 0);
+  const working = topics.reduce((n, t) => n + (t.counts.support || 0) + (t.counts.asset || 0), 0);
+  const kpis = [
+    [S.buy_lines || 0, `buy lines · ${S.buy_qty || 0} pcs`],
+    [S.covered_lines || 0, "covered by stock"],
+    [S.onhand_skus || 0, `on-hand SKUs · ${S.onhand_qty || 0} ordered`],
+    [S.wire_count || 0, "wires on the build list"],
+    [deliv, "deliverables"],
+    [research, "research notes"],
+    [working, "working files"],
+    [topics.length, "topics"],
+  ];
+  const topicRows = topics.map(t => ({dir: t.dir, title: t.title, ...topicCounts(t)}));
+  const topicMax = Math.max(1, ...topicRows.map(x => x.tot));
+  const partRows = [
+    {label: "Buy lines", n: S.buy_lines || 0, extra: ` · ${S.buy_qty || 0} pcs`, cls: "b-buy"},
+    {label: "Covered lines", n: S.covered_lines || 0, extra: "", cls: "b-ok"},
+    {label: "On-hand SKUs", n: S.onhand_skus || 0, extra: ` · ${S.onhand_qty || 0} ordered`, cls: "b-own"},
+    {label: "Enclosure lines", n: S.enclosure_lines || 0, extra: "", cls: "b-enc"},
+  ];
+  const partMax = Math.max(1, ...partRows.map(x => x.n));
+  const loomRows = ((DATA.parts.tables || {}).buildlist || {}).rows || [];
+  const looms = loomRows.filter(r => r.loom && r.loom !== "Total");
+  const loomMax = Math.max(1, ...looms.map(r => Number(r.wires) || 0));
+  const topicBars = topicRows.map(x => `
+    <div class="chart-row" data-chart-topic="${esc(x.dir)}">
+      <span class="chart-lab">${esc(x.title)}</span>
+      ${stackHtml(x.d, x.r, x.w, topicMax, "chart-track")}
+      <span class="chart-n">${x.tot}</span>
+    </div>`).join("");
+  return `
+    <div class="stats">
+      ${kpis.map(([n, label]) => `<div class="stat"><b>${n}</b><span>${esc(label)}</span></div>`).join("")}
+    </div>
+    <div class="overview-grid">
+      <section class="chart" id="chart-topics">
+        <h2>Documents by topic</h2>
+        <p class="caption">File counts the hub indexed under docs/. Bar length is the topic total.</p>
+        <div class="legend">
+          <span><i class="k-deliv"></i>deliverable</span>
+          <span><i class="k-research"></i>research</span>
+          <span><i class="k-support"></i>working</span>
+        </div>
+        ${topicBars}
+      </section>
+      <section class="chart" id="chart-parts">
+        <h2>Parts mix</h2>
+        <p class="caption">From NEED-TO-BUY.md, te-on-hand-bom.csv, and the enclosure CSVs.</p>
+        ${partRows.map(r => `
+          <div class="hbar-row">
+            <span class="hbar-lab">${esc(r.label)}</span>
+            <div class="hbar-track"><i class="${r.cls}" style="width:${(r.n / partMax * 100).toFixed(1)}%"></i></div>
+            <span class="hbar-n">${r.n}${esc(r.extra)}</span>
+          </div>`).join("")}
+      </section>
+    </div>
+    <section class="chart" id="chart-looms">
+      <h2>Wires by loom</h2>
+      <p class="caption">From HARNESS-BUILD-LIST.csv. The Total row is omitted; the KPI holds ${S.wire_count || 0}.</p>
+      <div class="loom-grid">${looms.map(r => `
+        <div class="hbar-row">
+          <span class="hbar-lab">${esc(r.loom)}</span>
+          <div class="hbar-track"><i class="k-research" style="width:${((Number(r.wires) || 0) / loomMax * 100).toFixed(1)}%"></i></div>
+          <span class="hbar-n">${Number(r.wires) || 0}</span>
+        </div>`).join("")}</div>
+    </section>`;
+}
+
+function topicTilesHtml() {
+  return DATA.topics.map(t => {
+    const c = topicCounts(t);
+    const hay = [t.title, t.dir, t.blurb || "", t.caption || ""].join(" ").toLowerCase();
+    return `
+    <button type="button" class="topic-tile" data-topic-btn data-topic="${esc(t.dir)}"
+            data-hay="${esc(hay)}" aria-pressed="false">
+      <h3>${esc(t.title)}</h3>
+      ${stackHtml(c.d, c.r, c.w)}
+      <div class="tile-counts"><b>${c.d}</b> deliv · <b>${c.r}</b> research · <b>${c.w}</b> working</div>
+      ${t.caption ? `<p class="caption">${esc(t.caption)}</p>` : ""}
+    </button>`;
+  }).join("");
 }
 
 function renderNav() {
   document.getElementById("topic-nav").innerHTML = DATA.topics.map(t =>
-    `<a href="#topic-${esc(t.dir)}">${esc(t.title)}</a>`
-  ).join("") + `<a href="#parts">Parts board</a>`;
+    `<button type="button" data-topic-btn data-topic="${esc(t.dir)}" aria-pressed="false">${esc(t.title)}</button>`
+  ).join("") + `<a class="chip" href="#parts" id="parts-jump">Parts tables</a>`;
 }
 
-function render() {
-  const show = {
-    deliverable: on("t-deliverable"),
-    research: on("t-research"),
-    support: on("t-support"),
-  };
+function renderTopics() {
   document.getElementById("out").innerHTML = DATA.topics.map(t => {
     const live = t.docs.filter(d => !d.mirror_of);
     const deliverables = live.filter(d => d.kind === "deliverable");
     const research = live.filter(d => d.kind === "research");
     const support = t.docs.filter(d => d.kind === "support" || d.kind === "asset");
-    const mirrors = t.docs.filter(d => d.mirror_of);
+    const c = topicCounts(t);
+    const hay = [t.title, t.dir, t.blurb || "", t.caption || ""].join(" ").toLowerCase();
     return `
-    <section class="topic" id="topic-${esc(t.dir)}" data-topic="${esc(t.dir)}">
-      <h2>${esc(t.title)}</h2>
-      ${t.blurb ? `<p class="blurb">${esc(t.blurb)}</p>` : ""}
-      <p class="counts"><b>${t.counts.deliverable}</b> deliverables &middot;
-         <b>${t.counts.research}</b> research notes &middot;
-         <b>${t.counts.support + t.counts.asset}</b> scripts &amp; assets${
-         mirrors.length ? ` &middot; <b>${mirrors.length}</b> mirrored` : ""}</p>
-      ${topicTables(t.dir)}
-      ${show.deliverable ? deliverables.map(docCard).join("") : ""}
-      ${show.research && research.length ? `
-        <details class="support-wrap" open>
+    <section class="topic" id="topic-${esc(t.dir)}" data-topic="${esc(t.dir)}" data-hay="${esc(hay)}">
+      <div class="topic-head">
+        <h2>${esc(t.title)}</h2>
+        ${stackHtml(c.d, c.r, c.w)}
+        <p class="counts"><b>${c.d}</b> deliverables · <b>${c.r}</b> research · <b>${c.w}</b> working</p>
+        ${t.caption ? `<p class="caption">${esc(t.caption)}</p>` : ""}
+      </div>
+      ${deliverables.map(d => docCard(d, t.dir)).join("")}
+      ${research.length ? `
+        <details class="support-wrap" data-filter-item data-kind="research" data-topic="${esc(t.dir)}"
+                 data-hay="${esc(("research " + research.map(d => d.title + " " + d.rel).join(" ")).toLowerCase())}">
           <summary>${research.length} research notes</summary>
-          <div>${research.map(docCard).join("")}</div>
+          <div>${research.map(d => docCard(d, t.dir)).join("")}</div>
         </details>` : ""}
-      ${show.support && support.length ? `
-        <details class="support-wrap" open>
+      ${support.length ? `
+        <details class="support-wrap" data-filter-item data-kind="support" data-topic="${esc(t.dir)}"
+                 data-hay="${esc(("working files " + support.map(d => d.rel).join(" ")).toLowerCase())}">
           <summary>${support.length} working files</summary>
           <ul class="support-list">${support.map(d =>
-            `<li data-hay="${esc(d.rel.toLowerCase())}"><a href="../${esc(d.rel)}">${
+            `<li data-filter-item data-kind="support" data-topic="${esc(t.dir)}"
+                 data-hay="${esc(d.rel.toLowerCase())}"><a href="../${esc(d.rel)}">${
               esc(d.rel.split("/").slice(2).join("/") || d.rel)}</a></li>`
           ).join("")}</ul>
         </details>` : ""}
     </section>`;
   }).join("");
-  document.querySelectorAll(".topic-tables").forEach(bindTables);
   document.querySelectorAll(".card .tbl").forEach(el => bindTables(el.parentElement));
-  filter();
 }
 
-function filter() {
-  const q = document.getElementById("q").value.trim().toLowerCase();
-  document.querySelectorAll("[data-hay]").forEach(el => {
-    el.classList.toggle("hidden", q && !el.dataset.hay.includes(q));
+function passesKindTopic(el, kinds) {
+  const kind = el.dataset.kind || "";
+  const topic = el.dataset.topic || "";
+  const kindOk = !kind || kinds[kind];
+  const topicOk = !selectedTopics.size || !topic || selectedTopics.has(topic);
+  return kindOk && topicOk;
+}
+
+let filtering = false;
+
+function applyFilters() {
+  if (filtering) return;
+  filtering = true;
+  try {
+    applyFiltersInner();
+  } finally {
+    filtering = false;
+  }
+}
+
+function applyFiltersInner() {
+  const qEl = document.getElementById("q");
+  const q = qEl ? qEl.value.trim().toLowerCase() : "";
+  const kinds = {
+    deliverable: on("t-deliverable"),
+    research: on("t-research"),
+    support: on("t-support"),
+  };
+
+  if (q && anyPartsMatch(q) && !partsTabMatches(activePartsTab, q)) {
+    const next = partsTabIds().find(id => partsTabMatches(id, q));
+    if (next) {
+      activePartsTab = next;
+      refreshParts(false);
+    }
+  }
+
+  document.querySelectorAll("[data-filter-item]").forEach(el => {
+    const hay = el.dataset.hay || "";
+    const qOk = !q || hay.includes(q);
+    el.classList.toggle("hidden", !(passesKindTopic(el, kinds) && qOk));
   });
   if (q) {
-    document.querySelectorAll("[data-hay]:not(.hidden)").forEach(el => {
+    document.querySelectorAll("[data-filter-item]:not(.hidden)").forEach(el => {
       let p = el.parentElement;
       while (p) {
-        if (p.hasAttribute && p.hasAttribute("data-hay")) p.classList.remove("hidden");
+        if (p.hasAttribute("data-filter-item") && passesKindTopic(p, kinds)) {
+          p.classList.remove("hidden");
+        }
+        if (p.tagName === "DETAILS") p.open = true;
         p = p.parentElement;
       }
     });
   }
+
   document.querySelectorAll(".topic").forEach(sec => {
-    const anyVisible = sec.querySelector("[data-hay]:not(.hidden)");
-    sec.classList.toggle("hidden", !!q && !anyVisible);
+    const topicOk = !selectedTopics.size || selectedTopics.has(sec.dataset.topic);
+    const any = [...sec.querySelectorAll("[data-filter-item]")].some(el =>
+      !el.classList.contains("hidden"));
+    sec.classList.toggle("hidden", !topicOk || !any);
   });
+
+  document.querySelectorAll("[data-topic-btn]").forEach(b => {
+    const dir = b.dataset.topic;
+    b.setAttribute("aria-pressed", selectedTopics.has(dir) ? "true" : "false");
+    if (b.classList.contains("topic-tile")) {
+      const sec = document.getElementById("topic-" + dir);
+      b.classList.toggle("hidden", !sec || sec.classList.contains("hidden"));
+    }
+  });
+
+  document.querySelectorAll("[data-chart-topic]").forEach(row => {
+    const dir = row.dataset.chartTopic;
+    row.classList.toggle("hidden", !!(selectedTopics.size && !selectedTopics.has(dir)));
+  });
+
+  document.querySelectorAll("table.data tbody tr[data-hay]").forEach(tr => {
+    const hay = tr.dataset.hay || "";
+    const tbl = tr.closest(".tbl");
+    const meta = tbl ? (tbl.dataset.meta || "") : "";
+    const local = (tbl && tbl.querySelector(".tfilter")
+      ? tbl.querySelector(".tfilter").value : "").toLowerCase();
+    const globalOk = !q || hay.includes(q) || meta.includes(q);
+    tr.classList.toggle("hidden", !(globalOk && (!local || hay.includes(local))));
+  });
+  document.querySelectorAll(".tbl").forEach(tbl => {
+    const any = tbl.querySelector("tbody tr:not(.hidden)");
+    const hay = tbl.dataset.hay || "";
+    tbl.classList.toggle("hidden", !any && !(!q || hay.includes(q)));
+  });
+  const parts = document.getElementById("parts");
+  if (parts) {
+    const keep = !q || anyPartsMatch(q) || (parts.dataset.hay || "").includes(q);
+    parts.classList.toggle("hidden", !keep);
+  }
+
+  const cards = document.querySelectorAll("#out .card[data-filter-item]:not(.hidden)").length;
+  const files = document.querySelectorAll("#out .support-list li[data-filter-item]:not(.hidden)").length;
+  const status = document.getElementById("filter-status");
+  if (status) {
+    status.textContent = `${cards} document${cards === 1 ? "" : "s"}`
+      + (files ? ` · ${files} working files` : "");
+  }
+  const empty = document.getElementById("empty");
+  if (empty) empty.classList.toggle("hidden", cards + files > 0);
+}
+
+function toggleTopic(dir) {
+  if (selectedTopics.has(dir)) selectedTopics.delete(dir);
+  else selectedTopics.add(dir);
+  applyFilters();
+  const sec = document.getElementById("topic-" + dir);
+  if (selectedTopics.has(dir) && sec && !sec.classList.contains("hidden")
+      && typeof sec.scrollIntoView === "function") {
+    sec.scrollIntoView({block: "start"});
+  }
 }
 
 function renderDupes() {
@@ -1086,13 +1377,17 @@ function applyTheme(theme) {
   document.getElementById("t-theme").textContent = cur === "dark" ? "Light" : cur === "light" ? "Auto" : "Dark";
 }
 
-document.getElementById("q").addEventListener("input", filter);
+document.getElementById("q").addEventListener("input", applyFilters);
 ["t-deliverable", "t-research", "t-support"].forEach(id => {
   document.getElementById(id).addEventListener("click", e => {
     const b = e.currentTarget;
     b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
-    render();
+    applyFilters();
   });
+});
+document.addEventListener("click", e => {
+  const btn = e.target.closest("[data-topic-btn]");
+  if (btn && btn.dataset.topic) toggleTopic(btn.dataset.topic);
 });
 function readTheme() {
   try { return localStorage.getItem("hub-theme") || ""; }
@@ -1113,10 +1408,13 @@ document.getElementById("t-theme").addEventListener("click", () => {
 });
 
 applyTheme(readTheme());
+document.getElementById("overview").innerHTML = overviewHtml();
+document.getElementById("tiles").innerHTML = topicTilesHtml();
 renderNav();
 renderDupes();
 refreshParts();
-render();
+renderTopics();
+applyFilters();
 """
 
 
@@ -1139,13 +1437,15 @@ def require_parts_tables(data: dict) -> None:
 
 
 def render(data: dict) -> str:
+    for t in data["topics"]:
+        for d in t["docs"]:
+            d["human_size"] = d.get("human_size") or human_size(d["size"])
     dates = [d["modified"] for t in data["topics"] for d in t["docs"] if d.get("modified")]
     latest = max(dates) if dates else "unknown"
     payload = embed_js_json(data)
-    total_read = sum(t["counts"]["deliverable"] + t["counts"]["research"]
-                     for t in data["topics"])
-    total_all = sum(len(t["docs"]) for t in data["topics"])
-    stats = data.get("parts", {}).get("stats", {})
+    deliv = sum(t["counts"]["deliverable"] for t in data["topics"])
+    research = sum(t["counts"]["research"] for t in data["topics"])
+    working = sum(t["counts"]["support"] + t["counts"]["asset"] for t in data["topics"])
 
     return (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n"
@@ -1153,29 +1453,32 @@ def render(data: dict) -> str:
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
         "<title>ST185 Research Hub</title>\n<style>\n"
         + HUB_CSS
-        + "</style>\n</head>\n<body>\n<div class=\"wrap\">\n<header>\n"
+        + "</style>\n</head>\n<body>\n<div class=\"wrap\">\n"
+        "<header class=\"hero\">\n"
+        "<div>\n"
         f"<h1>ST185 Research Hub</h1>\n"
-        f"<p class=\"sub\">Sources last updated {html.escape(latest)} &middot; "
-        f"{total_read} readable documents of {total_all} files across "
-        f"{len(data['topics'])} topics &middot; "
-        f"{stats.get('buy_lines', 0)} buy lines / "
-        f"{stats.get('onhand_skus', 0)} on-hand SKUs &middot; regenerate with "
-        f"<code>python docs/build-research-hub.py</code></p>\n"
+        f"<p class=\"sub\">Counted from docs/ sources, last updated {html.escape(latest)}. "
+        f"Regenerate with <code>python docs/build-research-hub.py</code>.</p>\n"
+        "</div>\n"
+        "<button type=\"button\" id=\"t-theme\">Dark</button>\n"
         "</header>\n\n"
         "<div class=\"bar\">\n"
         "  <input id=\"q\" type=\"search\" placeholder=\"Filter titles, sections, tables, or filenames&hellip;\"\n"
         "         autocomplete=\"off\">\n"
         "  <div class=\"toggle\">\n"
-        "    <button id=\"t-deliverable\" aria-pressed=\"true\">Deliverables</button>\n"
-        "    <button id=\"t-research\" aria-pressed=\"false\">Research trail</button>\n"
-        "    <button id=\"t-support\" aria-pressed=\"false\">Working files</button>\n"
-        "    <button id=\"t-theme\" type=\"button\">Dark</button>\n"
+        f"    <button type=\"button\" id=\"t-deliverable\" aria-pressed=\"true\">Deliverables ({deliv})</button>\n"
+        f"    <button type=\"button\" id=\"t-research\" aria-pressed=\"true\">Research ({research})</button>\n"
+        f"    <button type=\"button\" id=\"t-support\" aria-pressed=\"true\">Working files ({working})</button>\n"
         "  </div>\n"
+        "  <span class=\"filter-status\" id=\"filter-status\"></span>\n"
         "</div>\n\n"
         "<nav class=\"topic-nav\" id=\"topic-nav\"></nav>\n"
         "<div id=\"dupes\"></div>\n"
-        "<div id=\"parts-root\"></div>\n"
-        "<main id=\"out\"></main>\n\n"
+        "<div class=\"overview\" id=\"overview\"></div>\n"
+        "<div class=\"topic-grid\" id=\"tiles\"></div>\n"
+        "<p id=\"empty\" class=\"empty hidden\">No documents match those filters.</p>\n"
+        "<main id=\"out\"></main>\n"
+        "<div id=\"parts-root\"></div>\n\n"
         "<footer>\n"
         "  Built from <code>docs/</code> by <code>build-research-hub.py</code>.\n"
         "  Parts tables read <code>NEED-TO-BUY.md</code>, "
@@ -1200,7 +1503,8 @@ def main() -> None:
     research = sum(t["counts"]["research"] for t in data["topics"])
     total = sum(len(t["docs"]) for t in data["topics"])
     stats = data["parts"]["stats"]
-    print(f"wrote {OUT.relative_to(REPO)}  "
+    printed = OUT if not OUT.is_relative_to(REPO) else OUT.relative_to(REPO)
+    print(f"wrote {printed}  "
           f"({len(data['topics'])} topics, {deliv} deliverables, "
           f"{research} research notes, {total} files, "
           f"{len(data['dupes'])} duplicate groups, "
