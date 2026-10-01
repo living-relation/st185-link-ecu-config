@@ -12,12 +12,15 @@ The rules live in docs/SHIELD-RULES.md (short form) and plan 6.27 / 6.30 / 6.31 
   R5  a screen that lands on a bulkhead half continues on the matching pin of
       the other half (that pin carries a screen, not only a core)
   R7  only a signal that already passes through both bulkhead halves must carry
-      its shield through both halves on matching pins. That shield must not
-      stop on either half: from the bulkhead pin it reaches A7 or B17. A cabin-
+      its shield through both halves on matching pins. A sensor through-screen
+      must not stop on either half: it reaches A7 or B17. A CAN-connector
+      through-screen (the Link lambda pair) must not stop on either half
+      either, but it joins the other CAN-node screens and waits on the
+      undrawn four-wire ECU CAN-connector ground - not A7 or B17. A cabin-
       only screen, or a screened cable whose signal does not cross the
       bulkhead, is not required to land on the bulkhead.
-  R2  every screen that is not a CAN node screen and that has an end reaches
-      an ECU shield-ground pin
+  R2  every screen that is not a CAN-connector screen and that has an end
+      reaches an ECU shield-ground pin
   R6  withdrawn as an exclusive allowlist. Both-ended cabin continuations of
       through-bulkhead screens are the normal pass-through case, not a special
       permit. interfaces.json shieldBothEndsOk now names those continuations
@@ -31,13 +34,16 @@ excluded with the other VRC screens. They are not added to the VRC_FRONT
 enclosure list (that would join A7 to B17). Crank, cam and knock stay on R1
 and still end on sp_shield_a / sp_shield_b.
 
-CAN node screens (cab_can_* drops: cluster, RealDash, CSB3) splice only to
-each other. They are not required to reach A7, B17, or ecu_com, and the
-build fails if one of them does. The four-wire ECU CAN connector is not
-drawn. ecu_com is the comms / tuning port. The lambda firewall pair is not a
-CAN node screen: its CAN H/L signal crosses bulkhead B, so R7 applies. No
-matching shield pin is drawn; the audit reports that as BLOCKED and does not
-invent a cavity or pick A7 / B17.
+CAN-connector screens are the cab_can_* drops (cluster, RealDash, CSB3) and
+the Link lambda firewall pair (cab_lam_can_*). They splice only to each
+other and wait on the undrawn four-wire ECU CAN-connector ground. They are
+not required to reach A7, B17, or ecu_com, and the build fails if one of
+them does. ecu_com is the comms / tuning port, not that connector. The
+lambda power / ground / CAN H/L signal already crosses bulkhead B, so its
+shield must pass through both halves on a matching pin if one is drawn,
+then join the other CAN-node screens. No matching shield pin is drawn; the
+audit reports that as BLOCKED and does not invent a cavity or land the
+drain on A7 / B17.
 
 R4 ("cable only until it terminates at the ECU") is a modelling convention the
 schema cannot express, so it is not checked here. The A7 / B17 separation is
@@ -47,8 +53,9 @@ Exit 1 on any violation. BLOCKED lines are misses the drawing cannot finish
 without inventing a pin; they are reported and do not fail the build.
 2026-09-22: added after crank / cam / knock screens dead-ended in bulkhead A.
 2026-09-27: traces on model.Graph.
-2026-10-01: VRC / CSB3 enclosure exception; CAN node screens off A7 / B17 /
-ecu_com; R7 narrowed to through-bulkhead signals only; exclusive R6 withdrawn.
+2026-10-01: VRC / CSB3 enclosure exception; CAN-connector screens (drops +
+lambda firewall) off A7 / B17 / ecu_com; R7 narrowed to through-bulkhead
+signals only; exclusive R6 withdrawn.
 """
 import collections
 import sys
@@ -77,10 +84,15 @@ for cav in ("c1", "c2", "c3", "c4", "c5", "c6"):
     CAN_FORBIDDEN.add(("ECU", "ecu_com", cav))
 
 
-def can_node_screen(wid, cable):
-    """CAN drop screen (cluster, RealDash, CSB3). Not the lambda firewall pair."""
+def can_connector_screen(wid, cable):
+    """Screen that waits on the undrawn four-wire ECU CAN-connector ground.
+
+    Cluster, RealDash and CSB3 drops (cab_can_*) and the Link lambda
+    firewall pair (cab_lam_can_*). Not crank / cam / knock, and not a VRC
+    or CSB3 enclosure screen.
+    """
     name = cable or wid or ""
-    return name.startswith("cab_can_")
+    return name.startswith(("cab_can_", "cab_lam_can"))
 
 
 def active_inline_screen(loom, wid, cable, ends):
@@ -133,7 +145,7 @@ for loom, d in g.docs.items():
         ends = ends_of(w)
         nodes = [g.node(loom, e) for e in ends]
         skip_single = active_inline_screen(loom, w["id"], cable, ends)
-        can_node = can_node_screen(w["id"], cable)
+        can_conn = can_connector_screen(w["id"], cable)
         for e, n in zip(ends, nodes):
             if e.get("handle") == "shell":
                 bad.append("R3 %s/%s lands on the shell of %s" % (loom, w["id"], e["id"]))
@@ -147,13 +159,13 @@ for loom, d in g.docs.items():
             elif other and (other, e.get("handle")) not in screen_cav:
                 bad.append("R5 %s/%s uses %s %s but %s %s is not a screen"
                            % (loom, w["id"], e["id"], e["handle"], other, e["handle"]))
-            if other and nodes and not any(ECU_SHIELD & g.reach(x) for x in nodes):
+            if other and (not can_conn) and nodes and not any(ECU_SHIELD & g.reach(x) for x in nodes):
                 bad.append("R7 %s/%s stops on the bulkhead - does not reach A7 or B17"
                            % (loom, w["id"]))
-        if can_node:
+        if can_conn:
             hits = can_forbidden_hits(nodes)
             if hits:
-                bad.append("CAN screen %s/%s reaches %s - CAN node screens "
+                bad.append("CAN screen %s/%s reaches %s - CAN-connector screens "
                            "stay off A7, B17, ecu_com and the ECU shield splices"
                            % (loom, w["id"], ", ".join(sorted(model.fmt(h) for h in hits))))
         elif nodes and not any(ECU_SHIELD & g.reach(n) for n in nodes):
@@ -165,8 +177,6 @@ for loom, d in g.docs.items():
     for cb in d.get("cables") or []:
         sh = cb.get("shield")
         if not sh:
-            continue
-        if can_node_screen(sh.get("id"), cb["id"]):
             continue
         through = []
         for co in cb.get("cores") or []:
@@ -182,11 +192,21 @@ for loom, d in g.docs.items():
         sh_bh = [(e["id"], e.get("handle")) for e in ends_of(sh)
                  if e.get("id") in model.BULKHEAD_MATE]
         cavs = ", ".join(sorted("%s %s" % (bh, h) for bh, h, _ in through))
+        can_conn = can_connector_screen(sh.get("id"), cb["id"])
         if not sh_bh:
-            blocked.append("BLOCKED %s/%s signal crosses %s; no matching "
-                           "shield pin is drawn. Not inventing a cavity or "
-                           "picking A7 or B17"
-                           % (loom, sh.get("id"), cavs))
+            if can_conn:
+                blocked.append("BLOCKED %s/%s signal crosses %s; no matching "
+                               "shield pin is drawn. CAN-connector screen: "
+                               "not inventing a cavity, and not landing on "
+                               "A7 or B17. It waits with the other CAN-node "
+                               "screens on the undrawn four-wire CAN "
+                               "connector ground"
+                               % (loom, sh.get("id"), cavs))
+            else:
+                blocked.append("BLOCKED %s/%s signal crosses %s; no matching "
+                               "shield pin is drawn. Not inventing a cavity "
+                               "or picking A7 or B17"
+                               % (loom, sh.get("id"), cavs))
             continue
         for bh, h in sh_bh:
             other = model.BULKHEAD_MATE[bh]
@@ -194,7 +214,15 @@ for loom, d in g.docs.items():
                 bad.append("R7 %s/%s lands on %s %s but %s %s is not a screen"
                            % (loom, sh.get("id"), bh, h, other, h))
         nodes = [g.node(loom, e) for e in ends_of(sh)]
-        if nodes and not any(ECU_SHIELD & g.reach(n) for n in nodes):
+        if can_conn:
+            hits = can_forbidden_hits(nodes)
+            if hits:
+                bad.append("CAN screen %s/%s reaches %s - CAN-connector "
+                           "screens stay off A7, B17, ecu_com and the ECU "
+                           "shield splices"
+                           % (loom, sh.get("id"),
+                              ", ".join(sorted(model.fmt(h) for h in hits))))
+        elif nodes and not any(ECU_SHIELD & g.reach(n) for n in nodes):
             bad.append("R7 %s/%s crosses the bulkhead but never reaches A7 or B17"
                        % (loom, sh.get("id")))
 
