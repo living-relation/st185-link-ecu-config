@@ -952,9 +952,9 @@
   "wireParts": [
     {
       "id": "wp_12_blk",
-      "partNumber": "EW-1C12-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 12 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-12-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 12 AWG BLACK",
       "color": "Black",
       "gauge": {
         "value": 12,

@@ -352,9 +352,9 @@
     },
     {
       "id": "wp_20_yel_blk",
-      "partNumber": "EW-1C20-YEL-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-20-40",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 20 AWG YELLOW/BLACK",
       "color": "Yellow",
       "stripeColor": "Black",
       "gauge": {
@@ -364,9 +364,9 @@
     },
     {
       "id": "wp_20_yel_red",
-      "partNumber": "EW-1C20-YEL-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-20-42",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 20 AWG YELLOW/RED",
       "color": "Yellow",
       "stripeColor": "Red",
       "gauge": {
