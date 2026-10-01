@@ -115,6 +115,45 @@
         "id": "sp_can_sh",
         "handle": "Splice"
       }
+    },
+    {
+      "id": "w_sw12_trunk",
+      "color": "Red",
+      "partId": "m16_20_2",
+      "source": {
+        "id": "br_w_csb12",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_can12",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_gnd_trunk",
+      "color": "Black",
+      "partId": "m16_20_0",
+      "source": {
+        "id": "br_w_csbg",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_cang",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_can_sh_gnd",
+      "color": "Black",
+      "partId": "m16_20_0",
+      "source": {
+        "id": "sp_can_sh",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "t_can_sh_gnd",
+        "handle": "Terminal"
+      }
     }
   ],
   "cables": [
@@ -332,8 +371,8 @@
           "id": "w_ecu_can12",
           "color": "Red",
           "source": {
-            "id": "br_w_csb12",
-            "handle": "Terminal"
+            "id": "dtm_can_p",
+            "handle": "c1"
           },
           "target": {
             "id": "sp_can12",
@@ -345,8 +384,8 @@
           "id": "w_ecu_cang",
           "color": "Blue",
           "source": {
-            "id": "br_w_csbg",
-            "handle": "Terminal"
+            "id": "dtm_can_p",
+            "handle": "c2"
           },
           "target": {
             "id": "sp_cang",
@@ -358,8 +397,8 @@
           "id": "wc_h_ecu",
           "color": "Yellow",
           "source": {
-            "id": "t_ltw_h",
-            "handle": "Terminal"
+            "id": "dtm_can_p",
+            "handle": "c4"
           },
           "target": {
             "id": "sp_canh",
@@ -371,8 +410,8 @@
           "id": "wc_l_ecu",
           "color": "Green",
           "source": {
-            "id": "t_ltw_l",
-            "handle": "Terminal"
+            "id": "dtm_can_p",
+            "handle": "c3"
           },
           "target": {
             "id": "sp_canl",
@@ -385,8 +424,8 @@
         "id": "cab_can_ecu_sh",
         "color": "Shield",
         "source": {
-          "id": "t_can_sh_gnd",
-          "handle": "Terminal"
+          "id": "dtm_can_p",
+          "handle": "c5"
         },
         "target": {
           "id": "sp_can_sh",
@@ -461,6 +500,45 @@
       "schematicPosition": {
         "x": 2640,
         "y": -90
+      }
+    },
+    {
+      "id": "cab_ltw",
+      "cores": [
+        {
+          "id": "wc_h_ltw",
+          "color": "Red",
+          "source": {
+            "id": "t_ltw_h",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "dtm_can_s",
+            "handle": "c4"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_ltw",
+          "color": "Blue",
+          "source": {
+            "id": "t_ltw_l",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "dtm_can_s",
+            "handle": "c3"
+          }
+        }
+      ],
+      "partId": "cab_sh_2c",
+      "shield": {
+        "id": "cab_ltw_sh",
+        "color": "Shield"
+      },
+      "schematicPosition": {
+        "x": -180,
+        "y": 90
       }
     }
   ],
@@ -646,21 +724,21 @@
       "targetId": "t_realdash_gnd"
     },
     {
-      "id": "bn_bp_930__t_ltw_h",
+      "id": "bn_dtm_can_s__t_ltw_h",
       "length": {
         "unit": "mm",
-        "value": 180
+        "value": 152
       },
-      "sourceId": "bp_930",
+      "sourceId": "dtm_can_s",
       "targetId": "t_ltw_h"
     },
     {
-      "id": "bn_bp_930__t_ltw_l",
+      "id": "bn_dtm_can_s__t_ltw_l",
       "length": {
         "unit": "mm",
-        "value": 180
+        "value": 152
       },
-      "sourceId": "bp_930",
+      "sourceId": "dtm_can_s",
       "targetId": "t_ltw_l"
     },
     {
@@ -716,6 +794,15 @@
       },
       "sourceId": "bp_840",
       "targetId": "br_cab_lam_can_c_sh"
+    },
+    {
+      "id": "bn_bp_930__dtm_can_p",
+      "length": {
+        "unit": "mm",
+        "value": 180
+      },
+      "sourceId": "bp_930",
+      "targetId": "dtm_can_p"
     }
   ],
   "splices": [
@@ -827,6 +914,12 @@
       "partNumber": "WM-6S",
       "description": "WEDGELOCK, DTM, 6-WAY PLUG",
       "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "lp_dtm6wp",
+      "partNumber": "WM-6P",
+      "description": "WEDGELOCK, DTM, 6 POS, RECEPTACLE",
+      "manufacturer": "Deutsch"
     }
   ],
   "resistors": [
@@ -1094,8 +1187,7 @@
       "id": "t_can_sh_gnd",
       "type": "Ring",
       "width": 210,
-      "partId": "tp_ring_m6_22_16",
-      "signal": "CAN screen ground",
+      "signal": "CAN screen ground (no pin number)",
       "layoutPosition": {
         "x": 1080,
         "y": -240
@@ -1376,6 +1468,110 @@
         "x": 2640,
         "y": 0
       }
+    },
+    {
+      "id": "dtm_can_s",
+      "label": "CAN trunk DTM-6 socket (LTW stub)",
+      "width": 390,
+      "partId": "cp_dtm6s",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "unused on LTW stub (12V is on pin half)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "unused on LTW stub (ground is on pin half)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "CAN L - LTW stub only",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "CAN H - LTW stub only",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "unused on LTW stub (stub braid unterminated)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "unused",
+          "cavityPlugPartId": "pl_sz20"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1140,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": -180,
+        "y": 60
+      }
+    },
+    {
+      "id": "dtm_can_p",
+      "label": "CAN trunk DTM-6 pin (4-core start)",
+      "width": 390,
+      "partId": "cp_dtm04_6p",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+12V - ECU switched (sp_sw12 / a5)",
+          "contactPartId": "ct_hdp20p"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "GND - ECU chassis (sp_chassis / a25 a34)",
+          "contactPartId": "ct_hdp20p"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "CAN L - trunk 4-core",
+          "contactPartId": "ct_hdp20p"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "CAN H - trunk 4-core",
+          "contactPartId": "ct_hdp20p"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "CAN 4-core shield to ground symbol",
+          "contactPartId": "ct_hdp20p"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "unused",
+          "cavityPlugPartId": "pl_sz20"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1020,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": -90,
+        "y": 0
+      }
     }
   ],
   "lengthUnit": "mm",
@@ -1440,6 +1636,22 @@
       "partNumber": "0462-201-2031",
       "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
       "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "ct_hdp20p",
+      "type": "Crimp",
+      "gender": "Pin",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0460-202-2031",
+      "description": "CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "resistorParts": [
@@ -1465,22 +1677,6 @@
       },
       "partNumber": "GENERIC FLYING LEAD",
       "description": "TERMINAL, FLYING LEAD",
-      "manufacturer": "generic"
-    },
-    {
-      "id": "tp_ring_m6_22_16",
-      "size": "M6",
-      "type": "Ring",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 22
-      },
-      "partNumber": "GENERIC RING M6 22-16",
-      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
       "manufacturer": "generic"
     }
   ],
@@ -1528,12 +1724,34 @@
         }
       ],
       "numberOfCavities": 6
+    },
+    {
+      "id": "cp_dtm04_6p",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/46P/DTM04-6P-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/46P/DTM04-6P-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DTM04-6P",
+      "description": "CONNECTOR, RECEPTACLE, DTM, 6 POS, PIN CONTACTS",
+      "manufacturer": "Deutsch",
+      "configurations": [
+        {
+          "id": "cfg",
+          "lockPartId": "lp_dtm6wp",
+          "contactPartId": "ct_hdp20p",
+          "cavityPlugPartId": "pl_sz20"
+        }
+      ],
+      "numberOfCavities": 6
     }
   ],
   "schematicNotes": [
     {
       "id": "n_can",
-      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Every CAN node uses 55PC1243-20-2/6/4/5-9 (cab_sh_4c), one common braid around all four wires (Daniel 2026-10-01: the single-shield cable is fine). Cluster, RealDash, CSB3, lambda and the trunk carry +12V, ground, CAN H and CAN L on that cable. Power and ground splice with the CAN pairs at sp_can12 / sp_cang / sp_canh / sp_canl. At the ECU they split: +12V and ground break off to ST185-A-cabin sp_sw12 (F9 / a5) and sp_chassis (a25 / a34) so CAN nodes are powered when the ECU is; the Link CANLTW pigtail red and black land on those same rails. CAN H and CAN L continue as labeled wires that mate to the Link CANLTW round plug (not drawn; do not invent it). Daniel's pin-5 shield pass-through is on a different 6-pin DTM that is also not drawn; do not invent that connector. ecu_com is the six-pin comms / tuning port. Do not land the CAN braid on any of its cavities (c5 is RS232 TX even when unused). The braid joins at sp_can_sh and ends at the ground symbol t_can_sh_gnd with no pin number. Do not land a CAN screen on ecu_com, A7, B17, sp_shield_a or sp_shield_b. Device ends of the screens stay floating, including the lambda controller. Lambda shield has no bulkhead pin. Cluster and RealDash have no node connector on this drawing; their 12V / ground are flying-lead terminals, not invented cavities. 120R termination at the ECU-end splices and at the lambda end. Raychem S200-3-WI-22-9 only on the terminated screen join at sp_can_sh.",
+      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Every CAN node uses 55PC1243-20-2/6/4/5-9 (cab_sh_4c), one common braid around all four wires (Daniel 2026-10-01: the single-shield cable is fine). Cluster, RealDash, CSB3, lambda and the trunk carry +12V, ground, CAN H and CAN L on that cable. Power and ground splice with the CAN pairs at sp_can12 / sp_cang / sp_canh / sp_canl. At the ECU they splice from ST185-A-cabin sp_sw12 (F9 / a5, w78) and sp_chassis (a25 / a34, w70 / w_a34) into the pin half of the DTM-6 (DTM04-6P), not onto the LTW. The six-inch LTW stub is 55PC1122-20-2/6-9 (cab_sh_2c): CAN H and CAN L only, socket half DTM06-6S. That stub braid is not terminated at either end. The trunk 4-core starts on the pin half; its shield passes DTM pin 5 to the ground symbol t_can_sh_gnd (Ring, no part, no pin number). ecu_com is the six-pin comms / tuning port. Do not land the CAN braid on any of its cavities (c5 is RS232 TX even when unused). Node screens join at sp_can_sh. Do not land a CAN screen on ecu_com, A7, B17, sp_shield_a or sp_shield_b. Device ends of the screens stay floating, including the lambda controller. Lambda shield has no bulkhead pin. Cluster and RealDash have no node connector on this drawing; their 12V / ground are flying-lead terminals, not invented cavities. 120R termination at the ECU-end splices and at the lambda end. Raychem S200-3-WI-22-9 only on the terminated screen join at sp_can_sh.",
       "width": 390,
       "schematicPosition": {
         "x": 3180,
@@ -1542,7 +1760,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, cabin fuse F5 10A - on the 4-core with CAN H/L, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse F5\nt_cluster_can / t_cluster_12v / t_cluster_gnd: TrackCluster ESP32-P4 - CAN drop (device not in this harness; no connector cavities here)\nt_realdash_can / t_realdash_12v / t_realdash_gnd: RealDash Pi 5 - CAN drop (device not in this harness; no connector cavities here)\nt_ltw_h / t_ltw_l: Link CANLTW round plug not drawn; labeled wires that mate to it. Do not invent the plug.\nbr_w_csb12 / br_w_csbg: ECU switched +12V (sp_sw12) and ECU ground (sp_chassis) on ST185-A-cabin; Link CANLTW pigtail red/black land on the same rails. Not ecu_com.\nt_can_sh_gnd: CAN braid ground symbol, no pin number. Not ecu_com, not A7, not B17.",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, cabin fuse F5 10A - on the 4-core with CAN H/L, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse F5\nt_cluster_can / t_cluster_12v / t_cluster_gnd: TrackCluster ESP32-P4 - CAN drop (device not in this harness; no connector cavities here)\nt_realdash_can / t_realdash_12v / t_realdash_gnd: RealDash Pi 5 - CAN drop (device not in this harness; no connector cavities here)\nt_ltw_h / t_ltw_l: Link CANLTW round plug not drawn; labeled wires that mate to it. Do not invent the plug. Only CAN H and CAN L leave the LTW, on 55PC1122-20-2/6-9, six inches to DTM06-6S.\ndtm_can_s / dtm_can_p: house DTM-6 (DTM06-6S socket to LTW, DTM04-6P pin to trunk). 1=+12V 2=GND 3=CAN L 4=CAN H 5=trunk shield 6=unused. Socket wires 3 and 4 only.\nbr_w_csb12 / br_w_csbg: ECU switched +12V (sp_sw12) and ECU ground (sp_chassis) on ST185-A-cabin; they splice into the DTM pin half. Not ecu_com, not the LTW stub.\nt_can_sh_gnd: CAN braid ground symbol, no pin number, no part. Not ecu_com, not A7, not B17.",
       "schematicPosition": {
         "x": 3180,
         "y": 150
@@ -1578,6 +1796,13 @@
       },
       "manufacturer": "TE Connectivity (Raychem)",
       "isFixedLength": true
+    }
+  ],
+  "mates": [
+    {
+      "id": "m_can_dtm",
+      "sourceId": "dtm_can_s",
+      "targetId": "dtm_can_p"
     }
   ]
 }
