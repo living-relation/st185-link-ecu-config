@@ -1,264 +1,52 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
-  "version": 0.9,
-  "lengthUnit": "mm",
-  "connectors": [
+  "wires": [
     {
-      "id": "wss_fl",
-      "label": "ABS Wheel Speed FL",
-      "width": 210,
-      "partId": "cp_dt2s_ni",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "VR+ (front left)"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "VR- (front left)"
-        }
-      ],
-      "schematicPosition": {
-        "x": 0,
-        "y": 0
+      "id": "w_vrc_f_inl_drain",
+      "color": "White",
+      "source": {
+        "id": "sp_vrc_f_in_sh",
+        "handle": "Splice"
       },
-      "layoutPosition": {
-        "x": 0,
-        "y": -300
-      }
+      "target": {
+        "id": "ep_vrc_f_inl_sh",
+        "handle": "Terminal"
+      },
+      "identLabel": "IN-L drain to pin 3"
     },
     {
-      "id": "wss_fr",
-      "label": "ABS Wheel Speed FR",
-      "width": 210,
-      "partId": "cp_dt2s_ni",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "VR+ (front right)"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "VR- (front right)"
-        }
-      ],
-      "schematicPosition": {
-        "x": 0,
-        "y": 270
+      "id": "w_vrc_f_inr_drain",
+      "color": "White",
+      "source": {
+        "id": "sp_vrc_f_in_sh",
+        "handle": "Splice"
       },
-      "layoutPosition": {
-        "x": 0,
-        "y": 300
-      }
+      "target": {
+        "id": "ep_vrc_f_inr_sh",
+        "handle": "Terminal"
+      },
+      "identLabel": "IN-R drain to pin 3"
     },
     {
-      "id": "ix_ws_front_r",
-      "label": "WS FRONT OUT - 6-way inline to ECU spur (IX_WS_FRONT)",
-      "width": 270,
-      "partId": "cp_dt04_6p",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "+5V - VRC front supply (ECU sensor +5V)"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "Gnd Out - VRC front ground"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "FL conditioned out -> ECU-A A23 (DI 3)"
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "FR conditioned out -> ECU-B B21 (DI 4)"
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "signal": "Screen drain, FL/supply cable -> SHIELD_A (A7)"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "signal": "Screen drain, FR cable -> SHIELD_B (B17)"
-        }
-      ],
-      "schematicPosition": {
-        "x": 1500,
-        "y": 540
+      "id": "w_vrc_f_in_comb",
+      "color": "White",
+      "source": {
+        "id": "sp_vrc_f_in_sh",
+        "handle": "Splice"
       },
-      "layoutPosition": {
-        "x": 3300,
-        "y": 90
-      }
-    }
-  ],
-  "terminals": [
-    {
-      "id": "ep_vrc_f_inl_p",
-      "type": "Loose",
-      "signal": "VRC_FRONT_IN_L + (FL VR+) - device endpoint, VRC not drawn",
-      "schematicPosition": {
-        "x": 660,
-        "y": 0
+      "target": {
+        "id": "ep_vrc_f_out_sh",
+        "handle": "Terminal"
       },
-      "layoutPosition": {
-        "x": 900,
-        "y": -210
-      }
-    },
-    {
-      "id": "ep_vrc_f_inl_n",
-      "type": "Loose",
-      "signal": "VRC_FRONT_IN_L - (FL VR-)",
-      "schematicPosition": {
-        "x": 660,
-        "y": 60
-      },
-      "layoutPosition": {
-        "x": 900,
-        "y": -150
-      }
-    },
-    {
-      "id": "ep_vrc_f_inl_sh",
-      "type": "Loose",
-      "signal": "VRC_FRONT_IN_L screen - rides IN pin 3 to the VRC case (enclosure joins it)",
-      "schematicPosition": {
-        "x": 660,
-        "y": 120
-      },
-      "layoutPosition": {
-        "x": 900,
-        "y": -90
-      }
-    },
-    {
-      "id": "ep_vrc_f_inr_p",
-      "type": "Loose",
-      "signal": "VRC_FRONT_IN_R + (FR VR+) - device endpoint, VRC not drawn",
-      "schematicPosition": {
-        "x": 660,
-        "y": 270
-      },
-      "layoutPosition": {
-        "x": 900,
-        "y": 90
-      }
-    },
-    {
-      "id": "ep_vrc_f_inr_n",
-      "type": "Loose",
-      "signal": "VRC_FRONT_IN_R - (FR VR-)",
-      "schematicPosition": {
-        "x": 660,
-        "y": 330
-      },
-      "layoutPosition": {
-        "x": 900,
-        "y": 150
-      }
-    },
-    {
-      "id": "ep_vrc_f_inr_sh",
-      "type": "Loose",
-      "signal": "VRC_FRONT_IN_R screen - rides IN pin 3 to the VRC case (enclosure joins it)",
-      "schematicPosition": {
-        "x": 660,
-        "y": 390
-      },
-      "layoutPosition": {
-        "x": 900,
-        "y": 210
-      }
-    },
-    {
-      "id": "ep_vrc_f_out_5v",
-      "type": "Loose",
-      "signal": "VRC_FRONT_OUT +5V",
-      "schematicPosition": {
-        "x": 660,
-        "y": 540
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": -120
-      }
-    },
-    {
-      "id": "ep_vrc_f_out_gnd",
-      "type": "Loose",
-      "signal": "VRC_FRONT_OUT Gnd Out",
-      "schematicPosition": {
-        "x": 660,
-        "y": 600
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": -60
-      }
-    },
-    {
-      "id": "ep_vrc_f_out_l",
-      "type": "Loose",
-      "signal": "VRC_FRONT_OUT FL out",
-      "schematicPosition": {
-        "x": 660,
-        "y": 660
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": 0
-      }
-    },
-    {
-      "id": "ep_vrc_f_out_r",
-      "type": "Loose",
-      "signal": "VRC_FRONT_OUT FR out",
-      "schematicPosition": {
-        "x": 660,
-        "y": 720
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": 60
-      }
-    },
-    {
-      "id": "ep_vrc_f_out_sh",
-      "type": "Loose",
-      "signal": "VRC_FRONT_OUT screen - bonded to the VRC case",
-      "schematicPosition": {
-        "x": 660,
-        "y": 780
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": 120
-      }
+      "identLabel": "Combined input drain to OUT screen, continues to A7"
     }
   ],
   "cables": [
     {
       "id": "cab_fl",
-      "partId": "cab_sh_2c",
-      "schematicPosition": {
-        "x": 330,
-        "y": 0
-      },
       "cores": [
         {
           "id": "cab_fl_p",
-          "color": "White",
+          "color": "Red",
           "source": {
             "id": "wss_fl",
             "handle": "c1"
@@ -271,7 +59,7 @@
         },
         {
           "id": "cab_fl_n",
-          "color": "Green",
+          "color": "Blue",
           "source": {
             "id": "wss_fl",
             "handle": "c2"
@@ -282,26 +70,26 @@
           }
         }
       ],
+      "partId": "cab_sh_2c",
       "shield": {
         "id": "cab_fl_sh",
         "color": "Shield",
         "source": {
-          "id": "ep_vrc_f_inl_sh",
-          "handle": "Terminal"
+          "id": "sp_vrc_f_in_sh",
+          "handle": "Splice"
         }
+      },
+      "schematicPosition": {
+        "x": 330,
+        "y": 0
       }
     },
     {
       "id": "cab_fr",
-      "partId": "cab_sh_2c",
-      "schematicPosition": {
-        "x": 330,
-        "y": 270
-      },
       "cores": [
         {
           "id": "cab_fr_p",
-          "color": "White",
+          "color": "Red",
           "source": {
             "id": "wss_fr",
             "handle": "c1"
@@ -314,7 +102,7 @@
         },
         {
           "id": "cab_fr_n",
-          "color": "Green",
+          "color": "Blue",
           "source": {
             "id": "wss_fr",
             "handle": "c2"
@@ -325,26 +113,26 @@
           }
         }
       ],
+      "partId": "cab_sh_2c",
       "shield": {
         "id": "cab_fr_sh",
         "color": "Shield",
         "source": {
-          "id": "ep_vrc_f_inr_sh",
-          "handle": "Terminal"
+          "id": "sp_vrc_f_in_sh",
+          "handle": "Splice"
         }
+      },
+      "schematicPosition": {
+        "x": 330,
+        "y": 270
       }
     },
     {
       "id": "cab_fout",
-      "partId": "cab_sh_3c",
-      "schematicPosition": {
-        "x": 1080,
-        "y": 480
-      },
       "cores": [
         {
           "id": "cab_fout_5v",
-          "color": "Orange",
+          "color": "Red",
           "source": {
             "id": "ep_vrc_f_out_5v",
             "handle": "Terminal"
@@ -352,11 +140,12 @@
           "target": {
             "id": "ix_ws_front_r",
             "handle": "c1"
-          }
+          },
+          "twistedWithNext": true
         },
         {
           "id": "cab_fout_gnd",
-          "color": "Black",
+          "color": "Blue",
           "source": {
             "id": "ep_vrc_f_out_gnd",
             "handle": "Terminal"
@@ -364,11 +153,12 @@
           "target": {
             "id": "ix_ws_front_r",
             "handle": "c2"
-          }
+          },
+          "twistedWithNext": true
         },
         {
           "id": "cab_fout_l",
-          "color": "Blue",
+          "color": "Yellow",
           "source": {
             "id": "ep_vrc_f_out_l",
             "handle": "Terminal"
@@ -379,6 +169,7 @@
           }
         }
       ],
+      "partId": "cab_sh_3c",
       "shield": {
         "id": "cab_fout_sh",
         "color": "Shield",
@@ -390,19 +181,18 @@
           "id": "ix_ws_front_r",
           "handle": "c5"
         }
+      },
+      "schematicPosition": {
+        "x": 1080,
+        "y": 480
       }
     },
     {
       "id": "cab_fout_fr",
-      "partId": "cab_sh_1c_vio",
-      "schematicPosition": {
-        "x": 1080,
-        "y": 720
-      },
       "cores": [
         {
           "id": "cab_fout_r",
-          "color": "Violet",
+          "color": "White",
           "source": {
             "id": "ep_vrc_f_out_r",
             "handle": "Terminal"
@@ -413,187 +203,607 @@
           }
         }
       ],
+      "partId": "cab_sh_1c_vio",
       "shield": {
         "id": "cab_fout_fr_sh",
         "color": "Shield",
+        "source": {
+          "id": "ep_vrc_f_out_fr_sh",
+          "handle": "Terminal"
+        },
         "target": {
           "id": "ix_ws_front_r",
           "handle": "c6"
         }
+      },
+      "schematicPosition": {
+        "x": 1080,
+        "y": 720
       }
     }
   ],
   "bundles": [
     {
       "id": "bn_wss_fl__bp_f_y",
-      "sourceId": "wss_fl",
-      "targetId": "bp_f_y",
       "length": {
-        "value": 940,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 940
+      },
+      "sourceId": "wss_fl",
+      "targetId": "bp_f_y"
     },
     {
       "id": "bn_wss_fr__bp_f_y",
-      "sourceId": "wss_fr",
-      "targetId": "bp_f_y",
       "length": {
-        "value": 600,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 600
+      },
+      "sourceId": "wss_fr",
+      "targetId": "bp_f_y"
     },
     {
       "id": "bn_bp_f_y__bp_f_vrc",
-      "sourceId": "bp_f_y",
-      "targetId": "bp_f_vrc",
       "length": {
-        "value": 300,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_f_y",
+      "targetId": "bp_f_vrc"
     },
     {
       "id": "bn_bp_f_vrc__bp_f_inl",
-      "sourceId": "bp_f_vrc",
-      "targetId": "bp_f_inl",
       "length": {
-        "value": 70,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "bp_f_vrc",
+      "targetId": "bp_f_inl"
     },
     {
       "id": "bn_bp_f_vrc__bp_f_inr",
-      "sourceId": "bp_f_vrc",
-      "targetId": "bp_f_inr",
       "length": {
-        "value": 70,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "bp_f_vrc",
+      "targetId": "bp_f_inr"
     },
     {
       "id": "bn_bp_f_inl__ep_vrc_f_inl_p",
-      "sourceId": "bp_f_inl",
-      "targetId": "ep_vrc_f_inl_p",
       "length": {
-        "value": 10,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_f_inl",
+      "targetId": "ep_vrc_f_inl_p"
     },
     {
       "id": "bn_bp_f_inl__ep_vrc_f_inl_n",
-      "sourceId": "bp_f_inl",
-      "targetId": "ep_vrc_f_inl_n",
       "length": {
-        "value": 10,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_f_inl",
+      "targetId": "ep_vrc_f_inl_n"
     },
     {
       "id": "bn_bp_f_inl__ep_vrc_f_inl_sh",
-      "sourceId": "bp_f_inl",
-      "targetId": "ep_vrc_f_inl_sh",
       "length": {
-        "value": 10,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_f_inl",
+      "targetId": "ep_vrc_f_inl_sh"
     },
     {
       "id": "bn_bp_f_inr__ep_vrc_f_inr_p",
-      "sourceId": "bp_f_inr",
-      "targetId": "ep_vrc_f_inr_p",
       "length": {
-        "value": 10,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_f_inr",
+      "targetId": "ep_vrc_f_inr_p"
     },
     {
       "id": "bn_bp_f_inr__ep_vrc_f_inr_n",
-      "sourceId": "bp_f_inr",
-      "targetId": "ep_vrc_f_inr_n",
       "length": {
-        "value": 10,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_f_inr",
+      "targetId": "ep_vrc_f_inr_n"
     },
     {
       "id": "bn_bp_f_inr__ep_vrc_f_inr_sh",
-      "sourceId": "bp_f_inr",
-      "targetId": "ep_vrc_f_inr_sh",
       "length": {
-        "value": 10,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_f_inr",
+      "targetId": "ep_vrc_f_inr_sh"
     },
     {
       "id": "bn_bp_f_vrc__bp_f_out",
-      "sourceId": "bp_f_vrc",
-      "targetId": "bp_f_out",
       "length": {
-        "value": 20,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 20
+      },
+      "sourceId": "bp_f_vrc",
+      "targetId": "bp_f_out"
     },
     {
       "id": "bn_bp_f_out__ep_vrc_f_out_5v",
-      "sourceId": "bp_f_out",
-      "targetId": "ep_vrc_f_out_5v",
       "length": {
-        "value": 10,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_f_out",
+      "targetId": "ep_vrc_f_out_5v"
     },
     {
       "id": "bn_bp_f_out__ep_vrc_f_out_gnd",
-      "sourceId": "bp_f_out",
-      "targetId": "ep_vrc_f_out_gnd",
       "length": {
-        "value": 10,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_f_out",
+      "targetId": "ep_vrc_f_out_gnd"
     },
     {
       "id": "bn_bp_f_out__ep_vrc_f_out_l",
-      "sourceId": "bp_f_out",
-      "targetId": "ep_vrc_f_out_l",
       "length": {
-        "value": 10,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_f_out",
+      "targetId": "ep_vrc_f_out_l"
     },
     {
       "id": "bn_bp_f_out__ep_vrc_f_out_r",
-      "sourceId": "bp_f_out",
-      "targetId": "ep_vrc_f_out_r",
       "length": {
-        "value": 10,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_f_out",
+      "targetId": "ep_vrc_f_out_r"
     },
     {
       "id": "bn_bp_f_out__ep_vrc_f_out_sh",
-      "sourceId": "bp_f_out",
-      "targetId": "ep_vrc_f_out_sh",
       "length": {
-        "value": 10,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "bp_f_out",
+      "targetId": "ep_vrc_f_out_sh"
     },
     {
       "id": "bn_bp_f_out__bp_f_fwd",
-      "sourceId": "bp_f_out",
-      "targetId": "bp_f_fwd",
       "length": {
-        "value": 1100,
-        "unit": "mm"
-      }
+        "unit": "mm",
+        "value": 1100
+      },
+      "sourceId": "bp_f_out",
+      "targetId": "bp_f_fwd"
     },
     {
       "id": "bn_bp_f_fwd__ix_ws_front_r",
-      "sourceId": "bp_f_fwd",
-      "targetId": "ix_ws_front_r",
       "length": {
-        "value": 300,
-        "unit": "mm"
+        "unit": "mm",
+        "value": 300
+      },
+      "sourceId": "bp_f_fwd",
+      "targetId": "ix_ws_front_r"
+    },
+    {
+      "id": "bn_bp_f_out__ep_vrc_f_out_fr_sh",
+      "sourceId": "bp_f_out",
+      "targetId": "ep_vrc_f_out_fr_sh"
+    }
+  ],
+  "splices": [
+    {
+      "id": "sp_vrc_f_in_sh",
+      "partId": "spp_butt_22_16",
+      "layoutPosition": {
+        "x": 780,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 480,
+        "y": 240
       }
+    }
+  ],
+  "version": 0.9,
+  "lockParts": [
+    {
+      "id": "lp_w2s",
+      "partNumber": "W2S",
+      "description": "WEDGELOCK, DT, 2-WAY PLUG",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "lp_w6p",
+      "partNumber": "W6P",
+      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "terminals": [
+    {
+      "id": "ep_vrc_f_inl_p",
+      "type": "Loose",
+      "signal": "VRC_FRONT_IN_L + (FL VR+) - device endpoint, VRC not drawn",
+      "layoutPosition": {
+        "x": 900,
+        "y": -210
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 0
+      }
+    },
+    {
+      "id": "ep_vrc_f_inl_n",
+      "type": "Loose",
+      "signal": "VRC_FRONT_IN_L - (FL VR-)",
+      "layoutPosition": {
+        "x": 900,
+        "y": -150
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 60
+      }
+    },
+    {
+      "id": "ep_vrc_f_inl_sh",
+      "type": "Loose",
+      "signal": "VRC_FRONT_IN_L screen - IN pin 3, this input drain from the splice",
+      "coveringIds": [
+        "cov_s200_3"
+      ],
+      "layoutPosition": {
+        "x": 900,
+        "y": -90
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 120
+      }
+    },
+    {
+      "id": "ep_vrc_f_inr_p",
+      "type": "Loose",
+      "signal": "VRC_FRONT_IN_R + (FR VR+) - device endpoint, VRC not drawn",
+      "layoutPosition": {
+        "x": 900,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 270
+      }
+    },
+    {
+      "id": "ep_vrc_f_inr_n",
+      "type": "Loose",
+      "signal": "VRC_FRONT_IN_R - (FR VR-)",
+      "layoutPosition": {
+        "x": 900,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 330
+      }
+    },
+    {
+      "id": "ep_vrc_f_inr_sh",
+      "type": "Loose",
+      "signal": "VRC_FRONT_IN_R screen - IN pin 3, this input drain from the splice",
+      "coveringIds": [
+        "cov_s200_3"
+      ],
+      "layoutPosition": {
+        "x": 900,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 390
+      }
+    },
+    {
+      "id": "ep_vrc_f_out_5v",
+      "type": "Loose",
+      "signal": "VRC_FRONT_OUT +5V",
+      "layoutPosition": {
+        "x": 1140,
+        "y": -120
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 540
+      }
+    },
+    {
+      "id": "ep_vrc_f_out_gnd",
+      "type": "Loose",
+      "signal": "VRC_FRONT_OUT Gnd Out",
+      "layoutPosition": {
+        "x": 1140,
+        "y": -60
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 600
+      }
+    },
+    {
+      "id": "ep_vrc_f_out_l",
+      "type": "Loose",
+      "signal": "VRC_FRONT_OUT FL out",
+      "layoutPosition": {
+        "x": 1140,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 660
+      }
+    },
+    {
+      "id": "ep_vrc_f_out_r",
+      "type": "Loose",
+      "signal": "VRC_FRONT_OUT FR out",
+      "layoutPosition": {
+        "x": 1140,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 720
+      }
+    },
+    {
+      "id": "ep_vrc_f_out_sh",
+      "type": "Loose",
+      "signal": "VRC_FRONT_OUT screen - OUT drain and combined input drain; continues on inline pin 5 to SHIELD_A (A7)",
+      "coveringIds": [
+        "cov_s200_3"
+      ],
+      "layoutPosition": {
+        "x": 1140,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 780
+      }
+    },
+    {
+      "id": "ep_vrc_f_out_fr_sh",
+      "type": "Loose",
+      "signal": "VRC_FRONT_OUT FR screen - drain terminated on this pin; continues on inline pin 6 to SHIELD_B (B17)",
+      "coveringIds": [
+        "cov_s200_2"
+      ],
+      "layoutPosition": {
+        "x": 1140,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 870
+      }
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_sh_2c",
+      "url": "https://xonstorage.z8.web.core.windows.net/pdf/teconnectivity_55pc112220593cs3326_xonjuly20_20_nocatlink.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k2",
+          "color": "Blue",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1122-20-2/6-9",
+      "description": "CABLE, SHIELDED TWISTED PAIR 20AWG",
+      "manufacturer": "TE Connectivity (Raychem)"
+    },
+    {
+      "id": "cab_sh_3c",
+      "url": "https://xonstorage.z8.web.core.windows.net/pdf/3802557_link.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k2",
+          "color": "Blue",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k3",
+          "color": "Yellow",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1133-20-2/6/4-9",
+      "description": "CABLE, SHIELDED TWISTED TRIPLE 20AWG",
+      "manufacturer": "TE Connectivity (Raychem)"
+    },
+    {
+      "id": "cab_sh_1c_vio",
+      "url": "https://www.vniva.com/pdf-f1/55PC1213-18-9-9CS2927.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1213-20-9-9",
+      "description": "CABLE, SHIELDED SINGLE CONDUCTOR 20AWG",
+      "manufacturer": "TE Connectivity (Raychem)"
+    }
+  ],
+  "connectors": [
+    {
+      "id": "wss_fl",
+      "label": "ABS Wheel Speed FL",
+      "width": 210,
+      "partId": "cp_dt2s_ni",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "VR+ (front left)",
+          "designation": "1"
+        },
+        {
+          "id": "c2",
+          "signal": "VR- (front left)",
+          "designation": "2"
+        }
+      ],
+      "layoutPosition": {
+        "x": 0,
+        "y": -300
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "wss_fr",
+      "label": "ABS Wheel Speed FR",
+      "width": 210,
+      "partId": "cp_dt2s_ni",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "VR+ (front right)",
+          "designation": "1"
+        },
+        {
+          "id": "c2",
+          "signal": "VR- (front right)",
+          "designation": "2"
+        }
+      ],
+      "layoutPosition": {
+        "x": 0,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 270
+      }
+    },
+    {
+      "id": "ix_ws_front_r",
+      "label": "WS FRONT OUT - 6-way inline to ECU spur (IX_WS_FRONT)",
+      "width": 270,
+      "partId": "cp_dt04_6p",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+5V - VRC front supply (ECU sensor +5V)",
+          "designation": "1"
+        },
+        {
+          "id": "c2",
+          "signal": "Gnd Out - VRC front ground",
+          "designation": "2"
+        },
+        {
+          "id": "c3",
+          "signal": "FL conditioned out -> ECU-A A23 (DI 3)",
+          "designation": "3"
+        },
+        {
+          "id": "c4",
+          "signal": "FR conditioned out -> ECU-B B21 (DI 4)",
+          "designation": "4"
+        },
+        {
+          "id": "c5",
+          "signal": "Screen drain, FL/supply cable -> SHIELD_A (A7)",
+          "designation": "5"
+        },
+        {
+          "id": "c6",
+          "signal": "Screen drain, FR cable -> SHIELD_B (B17)",
+          "designation": "6"
+        }
+      ],
+      "coveringIds": [
+        "cov_s200_3",
+        "cov_s200_2"
+      ],
+      "layoutPosition": {
+        "x": 3300,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1500,
+        "y": 540
+      }
+    }
+  ],
+  "lengthUnit": "mm",
+  "spliceParts": [
+    {
+      "id": "spp_butt_22_16",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC BUTT SPLICE 22-16",
+      "description": "SPLICE, BUTT, INSULATED, 22-16 AWG",
+      "manufacturer": "generic"
     }
   ],
   "branchPoints": [
@@ -640,78 +850,95 @@
       }
     }
   ],
-  "schematicNotes": [
+  "contactParts": [
     {
-      "id": "n_scope",
-      "width": 390,
-      "schematicPosition": {
-        "x": 1920,
-        "y": 0
+      "id": "ct_dt16s_ni",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
       },
-      "text": "FRONT WHEEL SPEED - one Y harness. FL and FR ABS drops (loom C fender route, no bulkhead) run to the front VRC; the output runs through a grommet to the 6-way inline DT04-6P near the ECU (IX_WS_FRONT). The ECU side owns only the short spur and the DT06-6S mating half (ST185-A-cabin; the FR core and its c6 drain belong to ST185-B-cabin)."
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-16141",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
+      "contactColor": "Silver",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "n_vrc",
-      "width": 390,
-      "color": "Orange",
-      "schematicPosition": {
-        "x": 1920,
-        "y": 210
+      "id": "ct_dt16p",
+      "type": "Crimp",
+      "gender": "Pin",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
       },
-      "text": "VRC NOT DRAWN. The VR conditioner, its enclosure and its M8 panel connectors belong to the enclosure build, not this harness. Loose ends VRC_FRONT_IN_L / IN_R / OUT are device endpoints: each lead lands on the matching M8 cable-plug pin when the box is built."
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0460-202-1631",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "contactColor": "Gold",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_s200_2",
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS",
+      "type": "HeatShrink",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "partNumber": "S200-2-WI-22-9",
+      "description": "SLEEVE, SOLDERSLEEVE SHIELD DRAIN 22AWG",
+      "maxDiameter": {
+        "unit": "mm",
+        "value": 2.7
+      },
+      "minDiameter": {
+        "unit": "mm",
+        "value": 1.95
+      },
+      "manufacturer": "TE Connectivity (Raychem)",
+      "isFixedLength": true
     },
     {
-      "id": "n_shield",
-      "width": 390,
-      "color": "Orange",
-      "schematicPosition": {
-        "x": 1920,
-        "y": 420
+      "id": "cov_s200_3",
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS",
+      "type": "HeatShrink",
+      "length": {
+        "unit": "mm",
+        "value": 150
       },
-      "text": "SHIELDS - VRC powered-device exception (docs/SHIELD-RULES.md 6.30). Each sensor screen floats at the sensor and lands on the IN endpoint screen lead (IN pin 3, wire inside the box to the case). The FL/supply cable screen is bonded to the case and runs to inline pin 5, then to SHIELD_A (A7). The FR output has its own 1-core screened cable: it FLOATS at the VRC and runs to pin 6, then to SHIELD_B (B17). A7 and B17 never meet."
-    },
-    {
-      "id": "n_iso",
-      "width": 390,
-      "color": "Red",
-      "schematicPosition": {
-        "x": 1920,
-        "y": 630
+      "partNumber": "S200-3-WI-22-9",
+      "description": "SLEEVE, SOLDERSLEEVE SHIELD DRAIN 22AWG",
+      "maxDiameter": {
+        "unit": "mm",
+        "value": 4.3
       },
-      "text": "TWO ISOLATION RULES. 1. The enclosure must not touch chassis - it is part of the screen, not a ground. Nylon mounting hardware. 2. The PCB must not touch the enclosure - nylon standoffs. The board grounds through the output cable only. If either is bonded, the screen picks up supply-ground noise and it will read as a flaky sensor."
-    },
-    {
-      "id": "n_coat",
-      "width": 390,
-      "color": "Red",
-      "schematicPosition": {
-        "x": 1920,
-        "y": 810
+      "minDiameter": {
+        "unit": "mm",
+        "value": 2.7
       },
-      "text": "MASK THE THREE CONNECTOR LANDINGS AND THE CASE RING-TERMINAL SPOT BEFORE POWDER COAT. The OUT shielding plate and the input screen ring terminals need bare metal. A coated landing silently breaks the screen."
+      "manufacturer": "TE Connectivity (Raychem)",
+      "isFixedLength": true
     }
   ],
   "connectorParts": [
     {
-      "partNumber": "DT06-2S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "numberOfCavities": 2,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_dt16s_ni",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w2s"
-        }
-      ],
+      "id": "cp_dt2s_ni",
       "url": "https://www.te.com/usa-en/product-DT06-2S.html",
       "image": {
         "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014830313.png",
         "source": "cloud"
       },
+      "gender": "Female",
       "pinout": {
         "id": "te-deutsch-dt-2",
         "name": "DT 2-way",
@@ -746,164 +973,99 @@
         ],
         "mirrored": true
       },
-      "designationStrategy": {
-        "type": "sequential"
-      },
-      "id": "cp_dt2s_ni"
-    },
-    {
-      "id": "cp_dt04_6p",
-      "partNumber": "DT04-6P",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
-      "numberOfCavities": 6,
-      "gender": "Male",
       "hasShell": false,
+      "partNumber": "DT06-2S",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
       "configurations": [
         {
           "id": "cfg",
+          "lockPartId": "lp_w2s",
+          "contactPartId": "ct_dt16s_ni",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "numberOfCavities": 2,
+      "designationStrategy": {
+        "type": "sequential"
+      }
+    },
+    {
+      "id": "cp_dt04_6p",
+      "url": "https://www.te.com/usa-en/product-DT04-6P.html",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-6P",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "lockPartId": "lp_w6p",
           "contactPartId": "ct_dt16p",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w6p"
+          "cavityPlugPartId": "pl_sz16"
         }
       ],
-      "url": "https://www.te.com/usa-en/product-DT04-6P.html"
+      "numberOfCavities": 6
     }
   ],
-  "contactParts": [
+  "schematicNotes": [
     {
-      "partNumber": "0462-201-16141",
-      "manufacturer": "TE DEUTSCH",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
-      "id": "ct_dt16s_ni"
+      "id": "n_scope",
+      "text": "FRONT WHEEL SPEED - one Y harness. FL and FR ABS drops (loom C fender route, no bulkhead) run to the front VRC; the output runs through a grommet to the 6-way inline DT04-6P near the ECU (IX_WS_FRONT). The ECU side owns only the short spur and the DT06-6S mating half (ST185-A-cabin; the FR core and its c6 drain belong to ST185-B-cabin).",
+      "width": 390,
+      "schematicPosition": {
+        "x": 1920,
+        "y": 0
+      }
     },
     {
-      "id": "ct_dt16p",
-      "partNumber": "0460-202-1631",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
-      "type": "Crimp",
-      "gender": "Pin",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "contactColor": "Gold"
-    }
-  ],
-  "cableParts": [
-    {
-      "id": "cab_sh_2c",
-      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "White",
-          "twistedWithNext": true,
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Green",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
+      "id": "n_vrc",
+      "text": "VRC NOT DRAWN. The VR conditioner, its enclosure and its M8 panel connectors belong to the enclosure build, not this harness. Loose ends VRC_FRONT_IN_L / IN_R / OUT are device endpoints: each lead lands on the matching M8 cable-plug pin when the box is built.",
+      "color": "Orange",
+      "width": 390,
+      "schematicPosition": {
+        "x": 1920,
+        "y": 210
+      }
     },
     {
-      "id": "cab_sh_3c",
-      "partNumber": "GENERIC SHLD CABLE 3C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
+      "id": "n_shield",
+      "text": "SHIELDS. Sensor ends float (no S200). At the VRC both input drains are S200-3 and spliced before the plugs: each drain lands on its own IN pin 3, and the combined drain also lands on the OUT screen pin, which already continues on inline pin 5 to SHIELD_A (ECU-A A7). The FL/supply OUT drain (S200-3) lands on that same OUT screen pin. The FR OUT drain (S200-2) lands on its own pin and continues on inline pin 6 to SHIELD_B (ECU-B B17). No shield stops at the sensor, the VRC, or the inline. S200 only on terminated ends. A7 and B17 stay separate.",
+      "color": "Orange",
+      "width": 390,
+      "schematicPosition": {
+        "x": 1920,
+        "y": 420
+      }
     },
     {
-      "id": "cab_sh_1c_vio",
-      "partNumber": "GENERIC SHLD CABLE 1C 20AWG VIO",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, VIOLET, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Violet",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    }
-  ],
-  "lockParts": [
-    {
-      "partNumber": "W2S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DT, 2-WAY PLUG",
-      "id": "lp_w2s"
+      "id": "n_iso",
+      "text": "TWO ISOLATION RULES. 1. The enclosure must not touch chassis - it is part of the screen, not a ground. Nylon mounting hardware. 2. The PCB must not touch the enclosure - nylon standoffs. The board grounds through the output cable only. If either is bonded, the screen picks up supply-ground noise and it will read as a flaky sensor.",
+      "color": "Red",
+      "width": 390,
+      "schematicPosition": {
+        "x": 1920,
+        "y": 630
+      }
     },
     {
-      "id": "lp_w6p",
-      "partNumber": "W6P",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE"
+      "id": "n_coat",
+      "text": "MASK THE THREE CONNECTOR LANDINGS AND THE CASE RING-TERMINAL SPOT BEFORE POWDER COAT. The OUT shielding plate and the input screen ring terminals need bare metal. A coated landing silently breaks the screen.",
+      "color": "Red",
+      "width": 390,
+      "schematicPosition": {
+        "x": 1920,
+        "y": 810
+      }
     }
   ],
   "cavityPlugParts": [
     {
+      "id": "pl_sz16",
       "partNumber": "114017",
-      "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
-      "id": "pl_sz16"
+      "manufacturer": "TE DEUTSCH"
     }
   ]
 }

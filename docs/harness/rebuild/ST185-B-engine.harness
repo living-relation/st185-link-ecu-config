@@ -1,493 +1,799 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
-  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
-  "version": 0.9,
-  "lengthUnit": "mm",
-  "connectors": [
+  "wires": [
     {
-      "id": "bh_b_eng",
-      "label": "Bulkhead B - engine plug, B-half of shared DRB102 (DRB16-102SAE-L018)",
-      "width": 390,
-      "partId": "cp_drb_plug",
-      "physicalPartGroup": "drb102_plug",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "CAN-Lambda +12V, cabin fuse F5 10A (14 AWG)",
-          "contactPartId": "ct_hdp12s"
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
-          "contactPartId": "ct_hdp12s"
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ETB motor + (Aux 9, B18)"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ETB motor - (Aux 10, B26)"
-        },
-        {
-          "id": "c7",
-          "designation": "7",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B15"
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B16"
-        },
-        {
-          "id": "c9",
-          "designation": "9",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B23"
-        },
-        {
-          "id": "c10",
-          "designation": "10",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B6"
-        },
-        {
-          "id": "c11",
-          "designation": "11",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B7"
-        },
-        {
-          "id": "c12",
-          "designation": "12",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECUMaster CSB3 - Power/CAN/Switch I/O SW"
-        },
-        {
-          "id": "c13",
-          "designation": "13",
-          "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c14",
-          "designation": "14",
-          "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c15",
-          "designation": "15",
-          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c16",
-          "designation": "16",
-          "signal": "Knock 1 SIG+ (ECU B9)",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c17",
-          "designation": "17",
-          "signal": "Knock 1 SIG- (to Gnd Out B22)",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c18",
-          "designation": "18",
-          "signal": "Knock 1 screen",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c19",
-          "designation": "19",
-          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c20",
-          "designation": "20",
-          "signal": "Switched 12V to gearbox VSS (from sp_sw12)",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c21",
-          "designation": "21",
-          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
-          "contactPartId": "ct_hdp16s"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2130,
-        "y": 270
+      "id": "w124_e",
+      "color": "White",
+      "partId": "m16_18_9",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c5"
       },
-      "schematicPosition": {
-        "x": 0,
-        "y": 1500
+      "target": {
+        "id": "br_w124_e",
+        "handle": "Terminal"
       }
     },
     {
-      "id": "oilp",
-      "label": "Oil Pressure Sensor",
-      "partId": "cp_mp150_3",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "5V"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG"
-        },
-        {
-          "id": "c3",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 930,
-        "y": 90
+      "id": "w215_e",
+      "color": "White",
+      "partId": "m16_18_9",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c6"
       },
-      "schematicPosition": {
-        "x": 660,
-        "y": 690
-      },
-      "width": 210
+      "target": {
+        "id": "br_w215_e",
+        "handle": "Terminal"
+      }
     },
     {
-      "id": "fuelp",
-      "label": "Fuel Pressure Sensor",
-      "partId": "cp_mp150_3",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "5V"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG"
-        },
-        {
-          "id": "c3",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1290,
-        "y": 270
+      "id": "w_vss_sig_e",
+      "color": "Green",
+      "partId": "m16_20_5",
+      "source": {
+        "id": "vss",
+        "handle": "c3"
       },
-      "schematicPosition": {
-        "x": 660,
-        "y": 510
-      },
-      "width": 210
+      "target": {
+        "id": "bh_b_eng",
+        "handle": "c15"
+      }
     },
     {
-      "id": "clntp",
-      "label": "Coolant Pressure Sensor",
-      "partId": "cp_mp150_3",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "5V"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG"
-        },
-        {
-          "id": "c3",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1290,
-        "y": -330
+      "id": "w29_e",
+      "color": "White",
+      "partId": "m16_20_9",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c7"
       },
-      "schematicPosition": {
-        "x": 660,
-        "y": 150
-      },
-      "width": 210
+      "target": {
+        "id": "oilp",
+        "handle": "c2"
+      }
     },
     {
-      "id": "oilt",
-      "label": "Oil Temp Sensor",
-      "partId": "cp_toy2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 810,
-        "y": 30
+      "id": "w32_e",
+      "color": "White",
+      "partId": "m16_20_9",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c8"
       },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 330
-      },
-      "width": 150
+      "target": {
+        "id": "fuelp",
+        "handle": "c2"
+      }
     },
     {
-      "id": "cpiat",
-      "label": "Charge-Pipe IAT Sensor",
-      "partId": "cp_toy2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 330,
-        "y": 270
+      "id": "w35_e",
+      "color": "White",
+      "partId": "m16_20_9",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c9"
       },
-      "schematicPosition": {
-        "x": 1680,
-        "y": 0
-      },
-      "width": 210
+      "target": {
+        "id": "clntp",
+        "handle": "c2"
+      }
     },
     {
-      "id": "vss",
-      "label": "Gearbox VSS (Toyota 83181-20040, 3-wire) - actual road speed, plug 90980-11143",
-      "width": 390,
-      "partId": "cp_vss3",
-      "schematicPosition": {
-        "x": 0,
-        "y": 0
+      "id": "w203_e",
+      "color": "Yellow",
+      "partId": "m16_20_4",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c10"
       },
-      "layoutPosition": {
-        "x": 2730,
-        "y": -360
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "IG +12V switched (pin 1)",
-          "contactPartId": "ct_toy_ts"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "Ground (pin 2)",
-          "contactPartId": "ct_toy_ts"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "SP1 speed output (pin 3) -> bulkhead B c15 *",
-          "contactPartId": "ct_toy_ts"
-        }
-      ]
+      "target": {
+        "id": "oilt",
+        "handle": "c1"
+      }
     },
     {
-      "id": "knock1",
-      "label": "Knock Sensor 1",
-      "partId": "cp_knock",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG+"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG-"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1050,
-        "y": 0
+      "id": "w204_e",
+      "color": "Yellow",
+      "partId": "m16_20_4",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c11"
       },
-      "schematicPosition": {
-        "x": 660,
-        "y": 1620
-      },
-      "width": 150
+      "target": {
+        "id": "cpiat",
+        "handle": "c1"
+      }
     },
     {
-      "id": "ix_brail_p",
-      "label": "B sensor +5V - 6-way inline mate from ST185-A-engine (IX_B_RAIL)",
-      "width": 270,
-      "partId": "cp_dt04_6p",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "spare"
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "signal": "spare"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "signal": "spare"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2010,
-        "y": 360
+      "id": "w_sw7_e",
+      "color": "Green",
+      "partId": "m16_20_5",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c12"
       },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 1500
+      "target": {
+        "id": "fl_reverse_sw_c1",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_rail_gnd_b_e",
+      "color": "Black",
+      "partId": "m16_20_09",
+      "source": {
+        "id": "sp_gndout_b_eng2",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_gndout_b_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w207",
+      "color": "Orange",
+      "partId": "m16_20_3",
+      "source": {
+        "id": "ix_brail_p",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "oilp",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w208",
+      "color": "Orange",
+      "partId": "m16_20_3",
+      "source": {
+        "id": "ix_brail_p",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "fuelp",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w209",
+      "color": "Orange",
+      "partId": "m16_20_3",
+      "source": {
+        "id": "ix_brail_p",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "clntp",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w8",
+      "color": "Black",
+      "partId": "m16_20_09",
+      "source": {
+        "id": "oilt",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout_b_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w10",
+      "color": "Black",
+      "partId": "m16_20_09",
+      "source": {
+        "id": "cpiat",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout_b_eng",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w30",
+      "color": "Black",
+      "partId": "m16_20_09",
+      "source": {
+        "id": "oilp",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout_b_eng2",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w33",
+      "color": "Black",
+      "partId": "m16_20_09",
+      "source": {
+        "id": "fuelp",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout_b_eng3",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w36",
+      "color": "Black",
+      "partId": "m16_20_09",
+      "source": {
+        "id": "clntp",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_gndout_b_eng2",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_vss_12v",
+      "color": "Red",
+      "partId": "m16_20_2",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c20"
+      },
+      "target": {
+        "id": "vss",
+        "handle": "c1"
+      }
+    },
+    {
+      "id": "w_vss_gnd",
+      "color": "Black",
+      "partId": "m16_20_0",
+      "source": {
+        "id": "vss",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_gndout_b_eng3",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_gnd_b_e_c21",
+      "color": "Black",
+      "partId": "m16_20_09",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c21"
+      },
+      "target": {
+        "id": "sp_gndout_b_eng3",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_gnd_b_e_c19",
+      "color": "Black",
+      "partId": "m16_20_09",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c19"
+      },
+      "target": {
+        "id": "sp_gndout_b_eng2",
+        "handle": "Splice"
+      },
+      "stripeColor": "White"
+    },
+    {
+      "id": "wc_h_lam_be",
+      "color": "White",
+      "partId": "m16_20_9",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c13"
+      },
+      "target": {
+        "id": "br_wc_h_lam",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "wc_l_lam_be",
+      "color": "Green",
+      "partId": "m16_20_5",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c14"
+      },
+      "target": {
+        "id": "br_wc_l_lam",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_lam12_be14",
+      "color": "Red",
+      "partId": "m16_14_2",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "sp_lam12_b",
+        "handle": "Splice"
+      }
+    },
+    {
+      "id": "w_lam12_be",
+      "color": "Red",
+      "partId": "m16_20_2",
+      "source": {
+        "id": "sp_lam12_b",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_lam12",
+        "handle": "Terminal"
+      }
+    },
+    {
+      "id": "w_lamg_be14",
+      "color": "Black",
+      "partId": "m16_14_0",
+      "source": {
+        "id": "sp_lamg_b",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_eng",
+        "handle": "c4"
+      }
+    },
+    {
+      "id": "w_lamg_be",
+      "color": "Black",
+      "partId": "m16_20_0",
+      "source": {
+        "id": "br_w_lamg",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_lamg_b",
+        "handle": "Splice"
       }
     }
   ],
-  "terminals": [
+  "cables": [
     {
-      "id": "fl_reverse_sw_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD TBD Back-up light switch-TBD TBD reverse signal -> bulkhead B c12 -> CSB3 S8 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 870
+      "id": "cab_knock1",
+      "cores": [
+        {
+          "id": "cab_knock1_c1",
+          "color": "Red",
+          "source": {
+            "id": "bh_b_eng",
+            "handle": "c16"
+          },
+          "target": {
+            "id": "knock1",
+            "handle": "c1"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "cab_knock1_c2",
+          "color": "Blue",
+          "source": {
+            "id": "bh_b_eng",
+            "handle": "c17"
+          },
+          "target": {
+            "id": "knock1",
+            "handle": "c2"
+          }
+        }
+      ],
+      "partId": "cab_sh_2c",
+      "shield": {
+        "id": "cab_knock1_sh",
+        "color": "Shield",
+        "source": {
+          "id": "bh_b_eng",
+          "handle": "c18"
+        }
       },
-      "layoutPosition": {
-        "x": 2610,
-        "y": -330
+      "schematicPosition": {
+        "x": 480,
+        "y": 1560
       }
+    }
+  ],
+  "bundles": [
+    {
+      "id": "bn_bp_390__bp_420",
+      "length": {
+        "unit": "mm",
+        "value": 30
+      },
+      "sourceId": "bp_390",
+      "targetId": "be_420"
     },
     {
-      "id": "br_w124_e",
-      "type": "Loose",
-      "signal": "Broken off - spur continues on ST185-A-engine: ETB motor + (Aux 9, B18), bulkhead B c5",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 150
+      "id": "bn_bp_420__bp_450",
+      "length": {
+        "unit": "mm",
+        "value": 30
       },
-      "schematicPosition": {
-        "x": 150,
-        "y": 1380
-      }
+      "sourceId": "bp_420",
+      "targetId": "bp_450"
     },
     {
-      "id": "br_w215_e",
-      "type": "Loose",
-      "signal": "Broken off - spur continues on ST185-A-engine: ETB motor - (Aux 10, B26), bulkhead B c6",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 150
+      "id": "bn_bp_450__bp_480",
+      "length": {
+        "unit": "mm",
+        "value": 40
       },
-      "schematicPosition": {
-        "x": 150,
-        "y": 1380
-      }
+      "sourceId": "bp_450",
+      "targetId": "bp_480"
     },
     {
-      "id": "br_wc_h_lam",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN H from bulkhead B c13 to the Lambda",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 210
+      "id": "bn_bp_480__bp_510",
+      "length": {
+        "unit": "mm",
+        "value": 20
       },
-      "schematicPosition": {
-        "x": 150,
-        "y": 1980
-      }
+      "sourceId": "bp_480",
+      "targetId": "bp_510"
     },
     {
-      "id": "br_wc_l_lam",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN L from bulkhead B c14 to the Lambda",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 240
+      "id": "bn_bp_510__bp_540",
+      "length": {
+        "unit": "mm",
+        "value": 40
       },
-      "schematicPosition": {
-        "x": 150,
-        "y": 2040
-      }
+      "sourceId": "bp_510",
+      "targetId": "bp_540"
     },
     {
-      "id": "br_w_lam12",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda +12V from cabin fuse F5, bulkhead B c3",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 270
+      "id": "bn_bp_870__fuelp",
+      "length": {
+        "unit": "mm",
+        "value": 50
       },
-      "schematicPosition": {
-        "x": 150,
-        "y": 2100
-      }
+      "sourceId": "be_870",
+      "targetId": "fuelp"
     },
     {
-      "id": "br_w_lamg",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda ground to cabin chassis ground, bulkhead B c4",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2280,
-        "y": 300
+      "id": "bn_bp_930__vss",
+      "length": {
+        "unit": "mm",
+        "value": 920
       },
-      "schematicPosition": {
-        "x": 150,
-        "y": 2160
-      }
+      "sourceId": "be_930",
+      "targetId": "vss"
+    },
+    {
+      "id": "bn_bp_540__knock1",
+      "length": {
+        "unit": "mm",
+        "value": 330
+      },
+      "sourceId": "bp_540",
+      "targetId": "knock1"
+    },
+    {
+      "id": "be_bn_bp_330__bp_360",
+      "length": {
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "be_330",
+      "targetId": "be_360"
+    },
+    {
+      "id": "be_bn_bp_420__bp_450",
+      "length": {
+        "unit": "mm",
+        "value": 30
+      },
+      "sourceId": "be_420",
+      "targetId": "be_450"
+    },
+    {
+      "id": "be_bn_bp_450__bp_480",
+      "length": {
+        "unit": "mm",
+        "value": 40
+      },
+      "sourceId": "be_450",
+      "targetId": "be_480"
+    },
+    {
+      "id": "be_bn_bp_480__bp_510",
+      "length": {
+        "unit": "mm",
+        "value": 20
+      },
+      "sourceId": "be_480",
+      "targetId": "be_510"
+    },
+    {
+      "id": "be_bn_bp_510__bp_540",
+      "length": {
+        "unit": "mm",
+        "value": 100
+      },
+      "sourceId": "be_510",
+      "targetId": "be_540"
+    },
+    {
+      "id": "be_bn_bp_540__bp_570",
+      "length": {
+        "unit": "mm",
+        "value": 30
+      },
+      "sourceId": "be_540",
+      "targetId": "be_570"
+    },
+    {
+      "id": "be_bn_bp_570__bp_600",
+      "length": {
+        "unit": "mm",
+        "value": 30
+      },
+      "sourceId": "be_570",
+      "targetId": "be_600"
+    },
+    {
+      "id": "be_bn_bp_600__bp_630",
+      "length": {
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "be_600",
+      "targetId": "be_630"
+    },
+    {
+      "id": "be_bn_bp_630__bp_660",
+      "length": {
+        "unit": "mm",
+        "value": 30
+      },
+      "sourceId": "be_630",
+      "targetId": "be_660"
+    },
+    {
+      "id": "be_bn_bp_660__bp_690",
+      "length": {
+        "unit": "mm",
+        "value": 100
+      },
+      "sourceId": "be_660",
+      "targetId": "be_690"
+    },
+    {
+      "id": "be_bn_bp_690__bp_720",
+      "length": {
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "be_690",
+      "targetId": "be_720"
+    },
+    {
+      "id": "be_bn_bp_720__bp_750",
+      "length": {
+        "unit": "mm",
+        "value": 140
+      },
+      "sourceId": "be_720",
+      "targetId": "be_750"
+    },
+    {
+      "id": "be_bn_bp_810__bp_840",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "be_810",
+      "targetId": "be_840"
+    },
+    {
+      "id": "be_bn_bp_840__bp_870",
+      "length": {
+        "unit": "mm",
+        "value": 10
+      },
+      "sourceId": "be_840",
+      "targetId": "be_870"
+    },
+    {
+      "id": "be_bn_bp_870__bp_900",
+      "length": {
+        "unit": "mm",
+        "value": 20
+      },
+      "sourceId": "be_870",
+      "targetId": "be_900"
+    },
+    {
+      "id": "be_bn_bp_900__bp_930",
+      "length": {
+        "unit": "mm",
+        "value": 90
+      },
+      "sourceId": "be_900",
+      "targetId": "be_930"
+    },
+    {
+      "id": "be_bn_bp_330__cpiat",
+      "length": {
+        "unit": "mm",
+        "value": 70
+      },
+      "sourceId": "be_330",
+      "targetId": "cpiat"
+    },
+    {
+      "id": "be_bn_bp_420__turbospd",
+      "length": {
+        "unit": "mm",
+        "value": 100
+      },
+      "sourceId": "be_420",
+      "targetId": "bp_at_turbospd"
+    },
+    {
+      "id": "be_bn_bp_480__oilt",
+      "length": {
+        "unit": "mm",
+        "value": 330
+      },
+      "sourceId": "be_480",
+      "targetId": "oilt"
+    },
+    {
+      "id": "be_bn_bp_510__oilp",
+      "length": {
+        "unit": "mm",
+        "value": 220
+      },
+      "sourceId": "be_510",
+      "targetId": "oilp"
+    },
+    {
+      "id": "bn_bp_360__bp_390",
+      "length": {
+        "unit": "mm",
+        "value": 40
+      },
+      "sourceId": "be_360",
+      "targetId": "bp_390"
+    },
+    {
+      "id": "bn_bp_750__bh_b_eng",
+      "length": {
+        "unit": "mm",
+        "value": 190
+      },
+      "sourceId": "be_750",
+      "targetId": "bh_b_eng"
+    },
+    {
+      "id": "bn_bh_b_eng__bp_810",
+      "length": {
+        "unit": "mm",
+        "value": 330
+      },
+      "sourceId": "bh_b_eng",
+      "targetId": "be_810"
+    },
+    {
+      "id": "bn_bp_420__turbospd",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_420",
+      "targetId": "bp_at_turbospd"
+    },
+    {
+      "id": "bn_bp_570__clntp",
+      "length": {
+        "unit": "mm",
+        "value": 790
+      },
+      "sourceId": "be_570",
+      "targetId": "clntp"
+    },
+    {
+      "id": "bn_be_750__br_w124_e",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "sourceId": "be_750",
+      "targetId": "br_w124_e"
+    },
+    {
+      "id": "bn_be_750__br_w215_e",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "sourceId": "be_750",
+      "targetId": "br_w215_e"
+    },
+    {
+      "id": "bn_bh_b_eng__fl_reverse_sw_c1",
+      "length": {
+        "unit": "mm",
+        "value": 1580
+      },
+      "sourceId": "bh_b_eng",
+      "targetId": "fl_reverse_sw_c1"
+    },
+    {
+      "id": "bn_be_750__ix_brail_p",
+      "length": {
+        "unit": "mm",
+        "value": 100
+      },
+      "sourceId": "be_750",
+      "targetId": "ix_brail_p"
+    },
+    {
+      "id": "bn_be_750__br_wc_h_lam",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "be_750",
+      "targetId": "br_wc_h_lam"
+    },
+    {
+      "id": "bn_be_750__br_wc_l_lam",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "be_750",
+      "targetId": "br_wc_l_lam"
+    },
+    {
+      "id": "bn_be_750__br_w_lam12",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "be_750",
+      "targetId": "br_w_lam12"
+    },
+    {
+      "id": "bn_be_750__br_w_lamg",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "be_750",
+      "targetId": "br_w_lamg"
     }
   ],
   "splices": [
     {
       "id": "sp_gndout_b_eng",
       "partId": "spp_solder_generic",
+      "locationId": "be_480",
       "layoutPosition": {
         "x": 1440,
         "y": 120
@@ -495,8 +801,7 @@
       "schematicPosition": {
         "x": 1920,
         "y": 1800
-      },
-      "locationId": "be_480"
+      }
     },
     {
       "id": "sp_gndout_b_eng2",
@@ -551,797 +856,670 @@
       }
     }
   ],
-  "wires": [
+  "version": 0.9,
+  "lockParts": [
     {
-      "id": "w29_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c7"
-      },
-      "target": {
-        "id": "oilp",
-        "handle": "c2"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
+      "id": "lp_w6p",
+      "partNumber": "W6P",
+      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "w32_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c8"
-      },
-      "target": {
-        "id": "fuelp",
-        "handle": "c2"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
+      "id": "lp_wb51sal",
+      "partNumber": "WB-51SAL",
+      "description": "WEDGELOCK, DRB 102/128, PLUG, LEFT",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "w35_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c9"
-      },
-      "target": {
-        "id": "clntp",
-        "handle": "c2"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "w203_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c10"
-      },
-      "target": {
-        "id": "oilt",
-        "handle": "c1"
-      },
-      "color": "Yellow",
-      "partId": "wp_20_yel"
-    },
-    {
-      "id": "w204_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c11"
-      },
-      "target": {
-        "id": "cpiat",
-        "handle": "c1"
-      },
-      "color": "Yellow",
-      "partId": "wp_20_yel"
-    },
-    {
-      "id": "w_sw7_e",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c12"
-      },
-      "target": {
-        "id": "fl_reverse_sw_c1",
-        "handle": "Terminal"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "w207",
-      "color": "Orange",
-      "source": {
-        "id": "ix_brail_p",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "oilp",
-        "handle": "c1"
-      },
-      "partId": "wp_20_org"
-    },
-    {
-      "id": "w208",
-      "color": "Orange",
-      "source": {
-        "id": "ix_brail_p",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "fuelp",
-        "handle": "c1"
-      },
-      "partId": "wp_20_org"
-    },
-    {
-      "id": "w209",
-      "color": "Orange",
-      "source": {
-        "id": "ix_brail_p",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "clntp",
-        "handle": "c1"
-      },
-      "partId": "wp_20_org"
-    },
-    {
-      "id": "w8",
-      "color": "Black",
-      "source": {
-        "id": "oilt",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "sp_gndout_b_eng",
-        "handle": "Splice"
-      },
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w10",
-      "color": "Black",
-      "source": {
-        "id": "cpiat",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "sp_gndout_b_eng",
-        "handle": "Splice"
-      },
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w30",
-      "color": "Black",
-      "source": {
-        "id": "oilp",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "sp_gndout_b_eng2",
-        "handle": "Splice"
-      },
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w33",
-      "color": "Black",
-      "source": {
-        "id": "fuelp",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "sp_gndout_b_eng3",
-        "handle": "Splice"
-      },
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w36",
-      "color": "Black",
-      "source": {
-        "id": "clntp",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "sp_gndout_b_eng2",
-        "handle": "Splice"
-      },
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w124_e",
-      "color": "White",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c5"
-      },
-      "target": {
-        "id": "br_w124_e",
-        "handle": "Terminal"
-      },
-      "partId": "wp_18_wht"
-    },
-    {
-      "id": "w215_e",
-      "color": "White",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c6"
-      },
-      "target": {
-        "id": "br_w215_e",
-        "handle": "Terminal"
-      },
-      "partId": "wp_18_wht"
-    },
-    {
-      "id": "w_vss_12v",
-      "color": "Red",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c20"
-      },
-      "target": {
-        "id": "vss",
-        "handle": "c1"
-      },
-      "partId": "wp_20_red"
-    },
-    {
-      "id": "w_vss_gnd",
-      "color": "Black",
-      "source": {
-        "id": "vss",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "sp_gndout_b_eng3",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_blk"
-    },
-    {
-      "id": "w_vss_sig_e",
-      "color": "Green",
-      "source": {
-        "id": "vss",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "bh_b_eng",
-        "handle": "c15"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "w_rail_gnd_b_e",
-      "source": {
-        "id": "sp_gndout_b_eng2",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "sp_gndout_b_eng",
-        "handle": "Splice"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w_gnd_b_e_c21",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c21"
-      },
-      "target": {
-        "id": "sp_gndout_b_eng3",
-        "handle": "Splice"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w_gnd_b_e_c19",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c19"
-      },
-      "target": {
-        "id": "sp_gndout_b_eng2",
-        "handle": "Splice"
-      },
-      "color": "Black",
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "wc_h_lam_be",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c13"
-      },
-      "target": {
-        "id": "br_wc_h_lam",
-        "handle": "Terminal"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_lam_be",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c14"
-      },
-      "target": {
-        "id": "br_wc_l_lam",
-        "handle": "Terminal"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "w_lam12_be14",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "sp_lam12_b",
-        "handle": "Splice"
-      },
-      "color": "Red",
-      "partId": "wp_14_red"
-    },
-    {
-      "id": "w_lam12_be",
-      "source": {
-        "id": "sp_lam12_b",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_lam12",
-        "handle": "Terminal"
-      },
-      "color": "Red",
-      "partId": "wp_20_red"
-    },
-    {
-      "id": "w_lamg_be14",
-      "source": {
-        "id": "sp_lamg_b",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_b_eng",
-        "handle": "c4"
-      },
-      "color": "Black",
-      "partId": "wp_14_blk"
-    },
-    {
-      "id": "w_lamg_be",
-      "source": {
-        "id": "br_w_lamg",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_lamg_b",
-        "handle": "Splice"
-      },
-      "color": "Black",
-      "partId": "wp_20_blk"
+      "id": "lp_wb51sar",
+      "partNumber": "WB-51SAR",
+      "description": "WEDGELOCK, DRB 102/128, PLUG, RIGHT",
+      "manufacturer": "TE DEUTSCH"
     }
   ],
-  "cables": [
+  "terminals": [
     {
-      "id": "cab_knock1",
-      "partId": "cab_sh_2c",
-      "schematicPosition": {
-        "x": 480,
-        "y": 1560
+      "id": "fl_reverse_sw_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD TBD Back-up light switch-TBD TBD reverse signal -> bulkhead B c12 -> CSB3 S8 - solder sleeve into the factory lead",
+      "layoutPosition": {
+        "x": 2610,
+        "y": -330
       },
+      "schematicPosition": {
+        "x": 660,
+        "y": 870
+      }
+    },
+    {
+      "id": "br_w124_e",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - spur continues on ST185-A-engine: ETB motor + (Aux 9, B18), bulkhead B c5",
+      "layoutPosition": {
+        "x": 2280,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 1380
+      }
+    },
+    {
+      "id": "br_w215_e",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - spur continues on ST185-A-engine: ETB motor - (Aux 10, B26), bulkhead B c6",
+      "layoutPosition": {
+        "x": 2280,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 1380
+      }
+    },
+    {
+      "id": "br_wc_h_lam",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CAN: CAN H from bulkhead B c13 to the Lambda",
+      "layoutPosition": {
+        "x": 2280,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 1980
+      }
+    },
+    {
+      "id": "br_wc_l_lam",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CAN: CAN L from bulkhead B c14 to the Lambda",
+      "layoutPosition": {
+        "x": 2280,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 2040
+      }
+    },
+    {
+      "id": "br_w_lam12",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda +12V from cabin fuse F5, bulkhead B c3",
+      "layoutPosition": {
+        "x": 2280,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 2100
+      }
+    },
+    {
+      "id": "br_w_lamg",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda ground to cabin chassis ground, bulkhead B c4",
+      "layoutPosition": {
+        "x": 2280,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 2160
+      }
+    }
+  ],
+  "wireParts": [
+    {
+      "id": "m16_14_0",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "partNumber": "M22759/16-14-0",
+      "description": "WIRE, M22759/16, 14 AWG BLACK",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_14_2",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "partNumber": "M22759/16-14-2",
+      "description": "WIRE, M22759/16, 14 AWG RED",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_0",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-0",
+      "description": "WIRE, M22759/16, 20 AWG BLACK",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_09",
+      "color": "Black",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-09",
+      "description": "WIRE, M22759/16, 20 AWG BLACK/WHITE",
+      "stripeColor": "White",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_2",
+      "color": "Red",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-2",
+      "description": "WIRE, M22759/16, 20 AWG RED",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_3",
+      "color": "Orange",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-3",
+      "description": "WIRE, M22759/16, 20 AWG ORANGE",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_4",
+      "color": "Yellow",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-4",
+      "description": "WIRE, M22759/16, 20 AWG YELLOW",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_5",
+      "color": "Green",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-5",
+      "description": "WIRE, M22759/16, 20 AWG GREEN",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_20_9",
+      "color": "White",
+      "gauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "M22759/16-20-9",
+      "description": "WIRE, M22759/16, 20 AWG WHITE",
+      "manufacturer": "M22759"
+    },
+    {
+      "id": "m16_18_9",
+      "color": "White",
+      "gauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "M22759/16-18-9",
+      "description": "WIRE, M22759/16, 18 AWG WHITE",
+      "manufacturer": "M22759"
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_sh_2c",
+      "url": "https://xonstorage.z8.web.core.windows.net/pdf/teconnectivity_55pc112220593cs3326_xonjuly20_20_nocatlink.pdf",
+      "color": "White",
       "cores": [
         {
-          "id": "cab_knock1_c1",
-          "color": "Gray",
-          "source": {
-            "id": "bh_b_eng",
-            "handle": "c16"
-          },
-          "target": {
-            "id": "knock1",
-            "handle": "c1"
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
           },
           "twistedWithNext": true
         },
         {
-          "id": "cab_knock1_c2",
-          "color": "Green",
-          "source": {
-            "id": "bh_b_eng",
-            "handle": "c17"
-          },
-          "target": {
-            "id": "knock1",
-            "handle": "c2"
+          "id": "k2",
+          "color": "Blue",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
           }
         }
       ],
-      "shield": {
-        "id": "cab_knock1_sh",
-        "color": "Shield",
-        "source": {
-          "id": "bh_b_eng",
-          "handle": "c18"
+      "shielded": true,
+      "partNumber": "55PC1122-20-2/6-9",
+      "description": "CABLE, SHIELDED TWISTED PAIR 20AWG",
+      "manufacturer": "TE Connectivity (Raychem)"
+    }
+  ],
+  "connectors": [
+    {
+      "id": "oilt",
+      "label": "Oil Temp Sensor",
+      "width": 150,
+      "partId": "cp_toy2p",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "SIG"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
         }
+      ],
+      "layoutPosition": {
+        "x": 810,
+        "y": 30
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 330
+      }
+    },
+    {
+      "id": "cpiat",
+      "label": "Charge-Pipe IAT Sensor",
+      "width": 210,
+      "partId": "cp_toy2p",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "SIG"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 330,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 1680,
+        "y": 0
+      }
+    },
+    {
+      "id": "oilp",
+      "label": "Oil Pressure Sensor",
+      "width": 210,
+      "partId": "cp_mp150_3",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "5V"
+        },
+        {
+          "id": "c2",
+          "signal": "SIG"
+        },
+        {
+          "id": "c3",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 930,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 690
+      }
+    },
+    {
+      "id": "fuelp",
+      "label": "Fuel Pressure Sensor",
+      "width": 210,
+      "partId": "cp_mp150_3",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "5V"
+        },
+        {
+          "id": "c2",
+          "signal": "SIG"
+        },
+        {
+          "id": "c3",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1290,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 510
+      }
+    },
+    {
+      "id": "clntp",
+      "label": "Coolant Pressure Sensor",
+      "width": 210,
+      "partId": "cp_mp150_3",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "5V"
+        },
+        {
+          "id": "c2",
+          "signal": "SIG"
+        },
+        {
+          "id": "c3",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1290,
+        "y": -330
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 150
+      }
+    },
+    {
+      "id": "bh_b_eng",
+      "label": "Bulkhead B - engine plug, B-half of shared DRB102 (DRB16-102SAE-L018)",
+      "width": 390,
+      "partId": "cp_drb_plug",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "spare (size 12)",
+          "designation": "1",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c2",
+          "signal": "spare (size 12)",
+          "designation": "2",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c3",
+          "signal": "CAN-Lambda +12V, cabin fuse F5 10A (14 AWG)",
+          "designation": "3",
+          "contactPartId": "ct_hdp12s"
+        },
+        {
+          "id": "c4",
+          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
+          "designation": "4",
+          "contactPartId": "ct_hdp12s"
+        },
+        {
+          "id": "c5",
+          "signal": "ETB motor + (Aux 9, B18)",
+          "designation": "5",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c6",
+          "signal": "ETB motor - (Aux 10, B26)",
+          "designation": "6",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c7",
+          "signal": "ECU-B B15",
+          "designation": "7",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c8",
+          "signal": "ECU-B B16",
+          "designation": "8",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c9",
+          "signal": "ECU-B B23",
+          "designation": "9",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c10",
+          "signal": "ECU-B B6",
+          "designation": "10",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c11",
+          "signal": "ECU-B B7",
+          "designation": "11",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c12",
+          "signal": "ECUMaster CSB3 - Power/CAN/Switch I/O SW",
+          "designation": "12",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c13",
+          "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
+          "designation": "13",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c14",
+          "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
+          "designation": "14",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c15",
+          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
+          "designation": "15",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c16",
+          "signal": "Knock 1 SIG+ (ECU B9)",
+          "designation": "16",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c17",
+          "signal": "Knock 1 SIG- (to Gnd Out B22)",
+          "designation": "17",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c18",
+          "signal": "Knock 1 screen",
+          "designation": "18",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c19",
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
+          "designation": "19",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c20",
+          "signal": "Switched 12V to gearbox VSS (from sp_sw12)",
+          "designation": "20",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c21",
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
+          "designation": "21",
+          "contactPartId": "ct_hdp16s"
+        }
+      ],
+      "coveringIds": [
+        "cov_s200_3"
+      ],
+      "layoutPosition": {
+        "x": 2130,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 1500
+      }
+    },
+    {
+      "id": "vss",
+      "label": "Gearbox VSS (Toyota 83181-20040, 3-wire) - actual road speed, plug 90980-11143",
+      "width": 390,
+      "partId": "cp_vss3",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "IG +12V switched (pin 1)",
+          "designation": "1",
+          "contactPartId": "ct_toy_ts"
+        },
+        {
+          "id": "c2",
+          "signal": "Ground (pin 2)",
+          "designation": "2",
+          "contactPartId": "ct_toy_ts"
+        },
+        {
+          "id": "c3",
+          "signal": "SP1 speed output (pin 3) -> bulkhead B c15 *",
+          "designation": "3",
+          "contactPartId": "ct_toy_ts"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2730,
+        "y": -360
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "knock1",
+      "label": "Knock Sensor 1",
+      "width": 150,
+      "partId": "cp_knock",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "SIG+"
+        },
+        {
+          "id": "c2",
+          "signal": "SIG-"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1050,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 1620
+      }
+    },
+    {
+      "id": "ix_brail_p",
+      "label": "B sensor +5V - 6-way inline mate from ST185-A-engine (IX_B_RAIL)",
+      "width": 270,
+      "partId": "cp_dt04_6p",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
+          "designation": "1"
+        },
+        {
+          "id": "c2",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
+          "designation": "2"
+        },
+        {
+          "id": "c3",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
+          "designation": "3"
+        },
+        {
+          "id": "c4",
+          "signal": "spare",
+          "designation": "4"
+        },
+        {
+          "id": "c5",
+          "signal": "spare",
+          "designation": "5"
+        },
+        {
+          "id": "c6",
+          "signal": "spare",
+          "designation": "6"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2010,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 1500
       }
     }
   ],
-  "bundles": [
+  "lengthUnit": "mm",
+  "spliceParts": [
     {
-      "id": "bn_bp_420__bp_450",
-      "sourceId": "bp_420",
-      "targetId": "bp_450",
-      "length": {
-        "value": 30,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_450__bp_480",
-      "sourceId": "bp_450",
-      "targetId": "bp_480",
-      "length": {
-        "value": 40,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_480__bp_510",
-      "sourceId": "bp_480",
-      "targetId": "bp_510",
-      "length": {
-        "value": 20,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_510__bp_540",
-      "sourceId": "bp_510",
-      "targetId": "bp_540",
-      "length": {
-        "value": 40,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_420__turbospd",
-      "sourceId": "bp_420",
-      "targetId": "bp_at_turbospd",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_540__knock1",
-      "sourceId": "bp_540",
-      "targetId": "knock1",
-      "length": {
-        "value": 330,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_330__bp_360",
-      "sourceId": "be_330",
-      "targetId": "be_360",
-      "length": {
-        "value": 70,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_360__bp_390",
-      "sourceId": "be_360",
-      "targetId": "bp_390",
-      "length": {
-        "value": 40,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_390__bp_420",
-      "sourceId": "bp_390",
-      "targetId": "be_420",
-      "length": {
-        "value": 30,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_420__bp_450",
-      "sourceId": "be_420",
-      "targetId": "be_450",
-      "length": {
-        "value": 30,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_450__bp_480",
-      "sourceId": "be_450",
-      "targetId": "be_480",
-      "length": {
-        "value": 40,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_480__bp_510",
-      "sourceId": "be_480",
-      "targetId": "be_510",
-      "length": {
-        "value": 20,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_510__bp_540",
-      "sourceId": "be_510",
-      "targetId": "be_540",
-      "length": {
-        "value": 100,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_540__bp_570",
-      "sourceId": "be_540",
-      "targetId": "be_570",
-      "length": {
-        "value": 30,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_570__bp_600",
-      "sourceId": "be_570",
-      "targetId": "be_600",
-      "length": {
-        "value": 30,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_600__bp_630",
-      "sourceId": "be_600",
-      "targetId": "be_630",
-      "length": {
-        "value": 70,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_630__bp_660",
-      "sourceId": "be_630",
-      "targetId": "be_660",
-      "length": {
-        "value": 30,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_660__bp_690",
-      "sourceId": "be_660",
-      "targetId": "be_690",
-      "length": {
-        "value": 100,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_690__bp_720",
-      "sourceId": "be_690",
-      "targetId": "be_720",
-      "length": {
-        "value": 70,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_720__bp_750",
-      "sourceId": "be_720",
-      "targetId": "be_750",
-      "length": {
-        "value": 140,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_750__bh_b_eng",
-      "sourceId": "be_750",
-      "targetId": "bh_b_eng",
-      "length": {
-        "value": 190,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bh_b_eng__bp_810",
-      "sourceId": "bh_b_eng",
-      "targetId": "be_810",
-      "length": {
-        "value": 330,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_810__bp_840",
-      "sourceId": "be_810",
-      "targetId": "be_840",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_840__bp_870",
-      "sourceId": "be_840",
-      "targetId": "be_870",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_870__bp_900",
-      "sourceId": "be_870",
-      "targetId": "be_900",
-      "length": {
-        "value": 20,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_900__bp_930",
-      "sourceId": "be_900",
-      "targetId": "be_930",
-      "length": {
-        "value": 90,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_330__cpiat",
-      "sourceId": "be_330",
-      "targetId": "cpiat",
-      "length": {
-        "value": 70,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_420__turbospd",
-      "sourceId": "be_420",
-      "targetId": "bp_at_turbospd",
-      "length": {
-        "value": 100,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_480__oilt",
-      "sourceId": "be_480",
-      "targetId": "oilt",
-      "length": {
-        "value": 330,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_510__oilp",
-      "sourceId": "be_510",
-      "targetId": "oilp",
-      "length": {
-        "value": 220,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_570__clntp",
-      "sourceId": "be_570",
-      "targetId": "clntp",
-      "length": {
-        "value": 790,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_870__fuelp",
-      "sourceId": "be_870",
-      "targetId": "fuelp",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_930__vss",
-      "sourceId": "be_930",
-      "targetId": "vss",
-      "length": {
-        "value": 920,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_be_750__br_w124_e",
-      "sourceId": "be_750",
-      "targetId": "br_w124_e",
-      "length": {
-        "value": 150,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_be_750__br_w215_e",
-      "sourceId": "be_750",
-      "targetId": "br_w215_e",
-      "length": {
-        "value": 150,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bh_b_eng__fl_reverse_sw_c1",
-      "sourceId": "bh_b_eng",
-      "targetId": "fl_reverse_sw_c1",
-      "length": {
-        "value": 1580,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_be_750__ix_brail_p",
-      "sourceId": "be_750",
-      "targetId": "ix_brail_p",
-      "length": {
-        "value": 100,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_be_750__br_wc_h_lam",
-      "sourceId": "be_750",
-      "targetId": "br_wc_h_lam",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_be_750__br_wc_l_lam",
-      "sourceId": "be_750",
-      "targetId": "br_wc_l_lam",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_be_750__br_w_lam12",
-      "sourceId": "be_750",
-      "targetId": "br_w_lam12",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_be_750__br_w_lamg",
-      "sourceId": "be_750",
-      "targetId": "br_w_lamg",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
     }
   ],
   "branchPoints": [
+    {
+      "id": "bp_390",
+      "layoutPosition": {
+        "x": 570,
+        "y": 210
+      }
+    },
     {
       "id": "bp_420",
       "layoutPosition": {
@@ -1388,13 +1566,6 @@
       "id": "be_360",
       "layoutPosition": {
         "x": 450,
-        "y": 210
-      }
-    },
-    {
-      "id": "bp_390",
-      "layoutPosition": {
-        "x": 570,
         "y": 210
       }
     },
@@ -1525,6 +1696,286 @@
       }
     }
   ],
+  "contactParts": [
+    {
+      "id": "ct_hdp12s",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "partNumber": "0462-210-1231",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "ct_hdp16s",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-1631",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "contactColor": "Gold",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "ct_mp150_skt",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "12084200",
+      "description": "CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG)",
+      "contactColor": "Silver",
+      "manufacturer": "Aptiv"
+    },
+    {
+      "id": "ct_toy_ts",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "8100-0461",
+      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG)",
+      "contactColor": "Silver",
+      "manufacturer": "Sumitomo"
+    },
+    {
+      "id": "ct_bdk28",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "BDK 2.8",
+      "description": "CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG)",
+      "manufacturer": "Bosch"
+    },
+    {
+      "id": "ct_dt16p",
+      "type": "Crimp",
+      "gender": "Pin",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0460-202-1631",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "contactColor": "Gold",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_s200_3",
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS",
+      "type": "HeatShrink",
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "partNumber": "S200-3-WI-22-9",
+      "description": "SLEEVE, SOLDERSLEEVE SHIELD DRAIN 22AWG",
+      "maxDiameter": {
+        "unit": "mm",
+        "value": 4.3
+      },
+      "minDiameter": {
+        "unit": "mm",
+        "value": 2.7
+      },
+      "manufacturer": "TE Connectivity (Raychem)",
+      "isFixedLength": true
+    }
+  ],
+  "terminalParts": [
+    {
+      "id": "tp_flying_lead",
+      "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC FLYING LEAD",
+      "description": "TERMINAL, FLYING LEAD",
+      "manufacturer": "generic"
+    }
+  ],
+  "connectorParts": [
+    {
+      "id": "cp_hdp_b_eng",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/prhdp26-24-21sn.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp26-24-21sn.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "HDP26-24-21SN",
+      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 21 POS, SOCKET CONTACTS, N SEAL",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "numberOfCavities": 21
+    },
+    {
+      "id": "cp_mp150_3",
+      "image": {
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/121102-93982_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/121102-93982_SPL.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "12110293",
+      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS",
+      "manufacturer": "Aptiv",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_mp150_skt"
+        }
+      ],
+      "numberOfCavities": 3
+    },
+    {
+      "id": "cp_toy2p",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399.webp",
+        "source": "url",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399_200x.webp"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "90980-11062",
+      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS",
+      "manufacturer": "Toyota",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_toy_ts"
+        }
+      ],
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_vss3",
+      "image": {
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/toyota-oval-3pos.png",
+        "source": "url"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "90980-11143",
+      "description": "CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS",
+      "manufacturer": "Toyota",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_toy_ts"
+        }
+      ],
+      "numberOfCavities": 3
+    },
+    {
+      "id": "cp_knock",
+      "image": {
+        "url": "https://www.automotiveconnectors.com/user/products/large/DA61-1928403874-H.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.automotiveconnectors.com/user/products/thumbnails/DA61-1928403874-H.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "1 928 403 874",
+      "description": "CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS",
+      "manufacturer": "Bosch",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_bdk28"
+        }
+      ],
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_dt04_6p",
+      "url": "https://www.te.com/usa-en/product-DT04-6P.html",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-6P",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "lockPartId": "lp_w6p",
+          "contactPartId": "ct_dt16p",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "numberOfCavities": 6
+    },
+    {
+      "id": "cp_drb_plug",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/161/02S/DRB16-102SAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DRB16-102SAE-L018",
+      "description": "CONNECTOR, PLUG, DRB, 102 POS, SOCKET CONTACTS, E SEAL, A KEY, WIRE ROUTER",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "numberOfCavities": 21
+    }
+  ],
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
@@ -1535,444 +1986,18 @@
       }
     }
   ],
-  "wireParts": [
-    {
-      "id": "wp_20_blk",
-      "partNumber": "EW-1C20-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_grn",
-      "partNumber": "EW-1C20-GRN",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Green",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_org",
-      "partNumber": "EW-1C20-ORG",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Orange",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_wht",
-      "partNumber": "EW-1C20-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "White",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_yel",
-      "partNumber": "EW-1C20-YEL",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Yellow",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_18_wht",
-      "partNumber": "EW-1C18-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "White",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_blk_wht",
-      "partNumber": "EW-1C20-BLK-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_red",
-      "partNumber": "EW-1C20-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_14_red",
-      "partNumber": "EW-1C14-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 14 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_14_blk",
-      "partNumber": "EW-1C14-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 14 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
-    }
-  ],
-  "spliceParts": [
-    {
-      "id": "spp_solder_generic",
-      "partNumber": "GENERIC SOLDER SPLICE",
-      "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
-    }
-  ],
-  "contactParts": [
-    {
-      "id": "ct_hdp16s",
-      "partNumber": "0462-201-1631",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "contactColor": "Gold"
-    },
-    {
-      "partNumber": "BDK 2.8",
-      "manufacturer": "Bosch",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 18,
-        "unit": "AWG"
-      },
-      "description": "CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG)",
-      "id": "ct_bdk28"
-    },
-    {
-      "partNumber": "0462-210-1231",
-      "manufacturer": "TE DEUTSCH",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 12,
-        "unit": "AWG"
-      },
-      "description": "CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A",
-      "id": "ct_hdp12s"
-    },
-    {
-      "partNumber": "12084200",
-      "manufacturer": "Aptiv",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG)",
-      "id": "ct_mp150_skt"
-    },
-    {
-      "partNumber": "8100-0461",
-      "manufacturer": "Sumitomo",
-      "type": "Crimp",
-      "gender": "Socket",
-      "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG)",
-      "id": "ct_toy_ts",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "ct_dt16p",
-      "partNumber": "0460-202-1631",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
-      "type": "Crimp",
-      "gender": "Pin",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "contactColor": "Gold"
-    }
-  ],
   "cavityPlugParts": [
     {
-      "partNumber": "114017",
-      "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
-      "id": "pl_sz16"
-    },
-    {
+      "id": "pl_sz12",
       "partNumber": "0413-214-1205",
-      "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW",
-      "id": "pl_sz12"
-    }
-  ],
-  "terminalParts": [
-    {
-      "type": "Loose",
-      "partNumber": "GENERIC FLYING LEAD",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, FLYING LEAD",
-      "id": "tp_flying_lead"
-    }
-  ],
-  "connectorParts": [
-    {
-      "partNumber": "DRB16-102SAE-L018",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DRB, 102 POS, SOCKET CONTACTS, E SEAL, A KEY, WIRE ROUTER",
-      "numberOfCavities": 21,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "cavityPlugPartId": "pl_sz16"
-        }
-      ],
-      "id": "cp_drb_plug",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/161/02S/DRB16-102SAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
-      }
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "partNumber": "12110293",
-      "manufacturer": "Aptiv",
-      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS",
-      "numberOfCavities": 3,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_mp150_skt"
-        }
-      ],
-      "id": "cp_mp150_3",
-      "image": {
-        "source": "url",
-        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/121102-93982_SPL.jpg",
-        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/121102-93982_SPL.jpg"
-      }
-    },
-    {
-      "partNumber": "90980-11062",
-      "manufacturer": "Toyota",
-      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS",
-      "numberOfCavities": 2,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "id": "cp_toy2p",
-      "image": {
-        "source": "url",
-        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399.webp",
-        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399_200x.webp"
-      }
-    },
-    {
-      "partNumber": "HDP26-24-21SN",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 21 POS, SOCKET CONTACTS, N SEAL",
-      "numberOfCavities": 21,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "cavityPlugPartId": "pl_sz16"
-        }
-      ],
-      "id": "cp_hdp_b_eng",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/catalog/common/images/PartImages/prhdp26-24-21sn.jpg",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp26-24-21sn.jpg"
-      }
-    },
-    {
-      "partNumber": "1 928 403 874",
-      "manufacturer": "Bosch",
-      "description": "CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS",
-      "numberOfCavities": 2,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_bdk28"
-        }
-      ],
-      "id": "cp_knock",
-      "image": {
-        "source": "url",
-        "url": "https://www.automotiveconnectors.com/user/products/large/DA61-1928403874-H.jpg",
-        "lowResUrl": "https://www.automotiveconnectors.com/user/products/thumbnails/DA61-1928403874-H.jpg"
-      }
-    },
-    {
-      "partNumber": "90980-11143",
-      "manufacturer": "Toyota",
-      "description": "CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS",
-      "numberOfCavities": 3,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "id": "cp_vss3",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/toyota-oval-3pos.png"
-      }
-    },
-    {
-      "id": "cp_dt04_6p",
-      "partNumber": "DT04-6P",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
-      "numberOfCavities": 6,
-      "gender": "Male",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_dt16p",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w6p"
-        }
-      ],
-      "url": "https://www.te.com/usa-en/product-DT04-6P.html"
-    }
-  ],
-  "cableParts": [
-    {
-      "id": "cab_sh_2c",
-      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "White",
-          "twistedWithNext": true,
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Green",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    }
-  ],
-  "lockParts": [
-    {
-      "id": "lp_wb51sal",
-      "partNumber": "WB-51SAL",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DRB 102/128, PLUG, LEFT"
-    },
-    {
-      "id": "lp_wb51sar",
-      "partNumber": "WB-51SAR",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DRB 102/128, PLUG, RIGHT"
-    },
-    {
-      "id": "lp_w6p",
-      "partNumber": "W6P",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE"
+      "id": "pl_sz16",
+      "partNumber": "114017",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
+      "manufacturer": "TE DEUTSCH"
     }
   ]
 }
