@@ -691,40 +691,16 @@
   ],
   "shieldBothEndsOk": [
     {
-      "id": "cab_rout_sh",
-      "reason": "VRC case (enclosure) to inline pin 5 - one screen node, grounded only at B17"
-    },
-    {
-      "id": "cab_rspur_sh",
-      "reason": "continuation of cab_rout_sh from inline pin 5 to sp_shield_b (B17)"
-    },
-    {
-      "id": "cab_fout_sh",
-      "reason": "VRC case (enclosure) to inline pin 5 - one screen node, grounded only at A7"
-    },
-    {
-      "id": "cab_fspur_sh",
-      "reason": "continuation of cab_fout_sh from inline pin 5 to sp_shield_a (A7)"
-    },
-    {
-      "id": "cab_fspur_fr_sh",
-      "reason": "continuation of cab_fout_fr_sh (floats at the VRC) from inline pin 6 to sp_shield_b (B17)"
-    },
-    {
-      "id": "cab_fspur_fr_sh_ac",
-      "reason": "A-cabin section of the FR screen: inline pin 6 to the broken-off end; continues on B-cabin as cab_fspur_fr_sh to sp_shield_b (B17), floats at the VRC"
-    },
-    {
       "id": "cab_crank_c_sh",
-      "reason": "cabin crank screen continuation: bulkhead A c33 to existing splice sp_shield_a (A7), shared with the front spur shield"
+      "reason": "cabin crank screen continuation: bulkhead A c33 to existing splice sp_shield_a (A7), shared with the front spur shield. Stays on the single-device check (Daniel, 2026-10-01)"
     },
     {
       "id": "cab_cam_c_sh",
-      "reason": "cabin cam screen continuation: bulkhead A c34 to existing splice sp_shield_a (A7), shared with the front spur shield"
+      "reason": "cabin cam screen continuation: bulkhead A c34 to existing splice sp_shield_a (A7), shared with the front spur shield. Stays on the single-device check (Daniel, 2026-10-01)"
     },
     {
       "id": "cab_knock_c_sh",
-      "reason": "cabin knock screen continuation: bulkhead B c18 to existing splice sp_shield_b (B17), shared with the rear spur shield"
+      "reason": "cabin knock screen continuation: bulkhead B c18 to existing splice sp_shield_b (B17), shared with the rear spur shield. Stays on the single-device check (Daniel, 2026-10-01)"
     }
   ],
   "wheelSpeed": {

@@ -476,32 +476,6 @@
       "stripeColor": "White"
     },
     {
-      "id": "wc_h_bh_bc",
-      "color": "White",
-      "partId": "m16_20_9",
-      "source": {
-        "id": "br_wc_h_bh",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c13"
-      }
-    },
-    {
-      "id": "wc_l_bh_bc",
-      "color": "Green",
-      "partId": "m16_20_5",
-      "source": {
-        "id": "br_wc_l_bh",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c14"
-      }
-    },
-    {
       "id": "w_lam12_bc",
       "color": "Red",
       "partId": "m16_14_2",
@@ -681,6 +655,49 @@
       "schematicPosition": {
         "x": 4500,
         "y": 900
+      }
+    },
+    {
+      "id": "cab_lam_can_c",
+      "cores": [
+        {
+          "id": "wc_h_bh_bc",
+          "color": "White",
+          "source": {
+            "id": "br_wc_h_bh",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "bh_b_fw",
+            "handle": "c13"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_bh_bc",
+          "color": "Green",
+          "source": {
+            "id": "br_wc_l_bh",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "bh_b_fw",
+            "handle": "c14"
+          }
+        }
+      ],
+      "partId": "cab_sh_2c",
+      "shield": {
+        "id": "cab_lam_can_c_sh",
+        "color": "Shield",
+        "target": {
+          "id": "sp_shield_b",
+          "handle": "Splice"
+        }
+      },
+      "schematicPosition": {
+        "x": 4500,
+        "y": 1500
       }
     }
   ],
