@@ -1,7 +1,9 @@
 # Harness — need to buy
 
-Generated on 2026-09-30 from the 15 `.harness` files in `docs/harness/rebuild/`:
-`A-cabin`, `B-cabin`, `CabinPower`, `APS-Pedal`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`, `CSB3`.
+Generated from the 15 `.harness` files in `docs/harness/rebuild/` at drawings revision `5c467c6bf172dee48044760a60bb7dda119727f9`.
+Looms (registry name / file): `A-cabin` (`ST185-A-cabin.harness`), `B-cabin` (`ST185-B-cabin.harness`), `CabinPower` (`ST185-CabinPower.harness`), `APS-Pedal` (`ST185-APS-Pedal.harness`), `A-engine` (`ST185-A-engine.harness`), `B-engine` (`ST185-B-engine.harness`), `CAN` (`ST185-CAN.harness`), `EngineRoom-C` (`ST185-EngineRoom-C.harness`), `ClusterLED` (`ST185-ClusterLED.harness`), `WheelSpeed-Rear` (`ST185-WheelSpeed-Rear.harness`), `WheelSpeed-Front` (`ST185-WheelSpeed-Front.harness`), `ACAmp-Spur` (`ST185-ACAmp-Spur.harness`), `RearFuel` (`ST185-RearFuel.harness`), `AntiTheft` (`ST185-AntiTheft.harness`), `CSB3` (`ST185-CSB3.harness`).
+Part numbers and descriptions come from the `*Parts` arrays in those files (each drawing's copy of the shared parts library).
+The git repo is the drawing source of truth. This is not a harness.design app export.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
@@ -226,3 +228,4 @@ Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no co
 ## Still unspecified
 
 - **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. Needs a real dash number per branch OD once the trunk diameters are known.
+
