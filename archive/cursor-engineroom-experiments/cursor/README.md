@@ -7,11 +7,11 @@ script-generated sub-versions of our diagrams. They do not replace anything in
 
 | File | Sub-version of |
 |---|---|
-| `ST185-cursor-Power.harness` | `../ST185-Power.harness` — **ours wins** |
-| `ST185-cursor-EngineRoom-C-heavy-dc.harness` | split experiment against `../ST185-EngineRoom-C.harness` |
-| `ST185-cursor-EngineRoom-C-loads.harness` | same |
-| `ST185-cursor-EngineRoom-C-oem-inject.harness` | same |
-| `gen_cursor_engine_room_c.py` | generator for the three above; writes into this folder |
+| `archive/zz-old/ST185-cursor-Power.harness` | `archive/zz-old/ST185-Power.harness` — **ours wins** |
+| `archive/zz-old/ST185-cursor-EngineRoom-C-heavy-dc.harness` | split experiment against `archive/zz-old/ST185-EngineRoom-C.harness` |
+| `archive/zz-old/ST185-cursor-EngineRoom-C-loads.harness` | same |
+| `archive/zz-old/ST185-cursor-EngineRoom-C-oem-inject.harness` | same |
+| `gen_cursor_engine_room_c.py` | generator for the three above; stayed in this folder. The `.harness` outputs were moved to `archive/zz-old/` |
 
 ## Rules for agents
 
