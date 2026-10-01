@@ -14,9 +14,10 @@ The rules live in docs/SHIELD-RULES.md (short form) and plan 6.27 / 6.30 / 6.31 
   R7  only a signal that already passes through both bulkhead halves must carry
       its shield through both halves on matching pins. A sensor through-screen
       must not stop on either half: it reaches A7 or B17. A CAN-connector
-      through-screen (the Link lambda pair) must not stop on either half
-      either, but it joins the other CAN-node screens and ends at the
-      CAN ground symbol (no pin number) - not A7, B17, or ecu_com. A cabin-
+      through-screen ends at the CAN ground ring (no pin number) - not
+      A7, B17, or ecu_com. The Link lambda 4-core screen is a loom-B
+      through-screen: it floats at the controller, passes bulkhead B c2,
+      and lands on B17. A cabin-
       only screen, or a screened cable whose signal does not cross the
       bulkhead, is not required to land on the bulkhead.
   R2  every screen that is not a CAN-connector screen and that has an end
@@ -35,21 +36,19 @@ enclosure list (that would join A7 to B17). Crank, cam and knock stay on R1
 and still end on sp_shield_a / sp_shield_b.
 
 CAN-connector screens are the cab_can_* runs (cluster, RealDash, CSB3,
-trunk) and the Link lambda 4-core (cab_lam_can_*). They splice only to
-each other and end at the CAN ground symbol (t_can_sh_gnd, no pin
-number). They must not reach A7, B17, any ecu_com cavity, or
-sp_shield_a / sp_shield_b, and the build fails if one of them does.
-ecu_com is the comms / tuning port. Daniel's pin-5 pass-through is on
-dtm_can_p (DTM04-6P), the pin half of the DTM-6 that starts the trunk;
-R1 allows a CAN-connector screen on that connector only. The six-inch
-LTW stub (cab_ltw / 55PC1122-20-2/6-9) is a CAN pair whose braid is not
-terminated at either end - the audit fails if that screen lands anywhere.
-Every node uses the existing 4-core 55PC1243-20-2/6/4/5-9 (cab_sh_4c).
-The lambda power / ground / CAN H/L signal already crosses bulkhead B, so
-its shield must pass through both halves on a matching pin if one is
-drawn, then join the other CAN-node screens. No matching shield pin is
-drawn; the audit reports that as BLOCKED and does not invent a cavity or
-land the drain on A7 / B17.
+trunk). They splice only to each other and end at the CAN ground ring
+(t_can_sh_gnd, no pin number, no part). They must not reach A7, B17, any
+ecu_com cavity, or sp_shield_a / sp_shield_b, and the build fails if one
+of them does. ecu_com is the comms / tuning port. Daniel's pin-5
+pass-through is on dtm_can_p (DTM04-6P), the pin half of the DTM-6 that
+starts the trunk; R1 allows a CAN-connector screen on that connector
+only. The six-inch LTW stub (cab_ltw / 55PC1122-20-2/6-9) is a CAN pair
+whose braid is not terminated at either end - the audit fails if that
+screen lands anywhere. Every node uses the existing 4-core
+55PC1243-20-2/6/4/5-9 (cab_sh_4c). The Link lambda 4-core screen
+(cab_lam_can_*) is not a CAN-connector screen: it floats at the
+controller, passes bulkhead B c2 on both halves, and lands on B17
+through sp_shield_b. It must not reach A7 or the CAN ring.
 
 R4 ("cable only until it terminates at the ECU") is a modelling convention the
 schema cannot express, so it is not checked here. The A7 / B17 separation is
@@ -101,12 +100,13 @@ def can_stub_screen(wid, cable):
 def can_connector_screen(wid, cable):
     """Screen that ends at the CAN ground symbol, not ecu_com.
 
-    Cluster, RealDash, CSB3 and trunk (cab_can_*) and the Link lambda
-    4-core (cab_lam_can_*). Not the LTW stub (cab_ltw), not crank / cam /
-    knock, and not a VRC or CSB3 enclosure screen.
+    Cluster, RealDash, CSB3 and trunk (cab_can_*). Not the Link lambda
+    4-core (cab_lam_can_*, B17 via bulkhead B c2), not the LTW stub
+    (cab_ltw), not crank / cam / knock, and not a VRC or CSB3 enclosure
+    screen.
     """
     name = cable or wid or ""
-    return name.startswith(("cab_can_", "cab_lam_can"))
+    return name.startswith("cab_can_")
 
 
 def active_inline_screen(loom, wid, cable, ends):

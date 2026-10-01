@@ -397,7 +397,11 @@
       "partId": "cab_sh_4c",
       "shield": {
         "id": "cab_lam_can_e_sh",
-        "color": "Shield"
+        "color": "Shield",
+        "source": {
+          "id": "bh_b_eng",
+          "handle": "c2"
+        }
       },
       "schematicPosition": {
         "x": 480,
@@ -1275,9 +1279,9 @@
         },
         {
           "id": "c2",
-          "signal": "spare (size 12)",
+          "signal": "CAN-Lambda 4-core screen",
           "designation": "2",
-          "cavityPlugPartId": "pl_sz12"
+          "contactPartId": "ct_hdp12s"
         },
         {
           "id": "c3",

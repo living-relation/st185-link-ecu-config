@@ -690,9 +690,13 @@
       "shield": {
         "id": "cab_lam_can_c_sh",
         "color": "Shield",
+        "source": {
+          "id": "bh_b_fw",
+          "handle": "c2"
+        },
         "target": {
-          "id": "br_cab_lam_can_c_sh",
-          "handle": "Terminal"
+          "id": "sp_shield_b",
+          "handle": "Splice"
         }
       },
       "schematicPosition": {
@@ -1205,15 +1209,6 @@
       },
       "sourceId": "bp_870",
       "targetId": "br_w_lamg_b"
-    },
-    {
-      "id": "bn_bp_870__br_cab_lam_can_c_sh",
-      "length": {
-        "unit": "mm",
-        "value": 50
-      },
-      "sourceId": "bp_870",
-      "targetId": "br_cab_lam_can_c_sh"
     }
   ],
   "splices": [
@@ -1641,20 +1636,6 @@
         "x": 3300,
         "y": 1380
       }
-    },
-    {
-      "id": "br_cab_lam_can_c_sh",
-      "type": "Loose",
-      "width": 390,
-      "signal": "Broken off - continues on ST185-CAN: lambda CAN-connector screen",
-      "layoutPosition": {
-        "x": 960,
-        "y": 420
-      },
-      "schematicPosition": {
-        "x": 4500,
-        "y": 1560
-      }
     }
   ],
   "wireParts": [
@@ -1983,9 +1964,9 @@
         },
         {
           "id": "c2",
-          "signal": "spare (size 12)",
+          "signal": "CAN-Lambda 4-core screen",
           "designation": "2",
-          "cavityPlugPartId": "pl_sz12"
+          "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c3",

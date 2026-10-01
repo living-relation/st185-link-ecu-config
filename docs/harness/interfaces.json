@@ -1634,21 +1634,6 @@
           "terminal": "br_w_csbg"
         }
       ]
-    },
-    {
-      "id": "BR_CAB_LAM_CAN_C_SH",
-      "type": "broken_off",
-      "what": "lambda CAN-connector screen, cabin end to the CAN-node screen splice",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_cab_lam_can_c_sh"
-        },
-        {
-          "harness": "CAN",
-          "terminal": "br_cab_lam_can_c_sh"
-        }
-      ]
     }
   ]
 }

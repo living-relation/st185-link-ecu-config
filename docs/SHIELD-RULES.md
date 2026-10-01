@@ -28,10 +28,12 @@ checks cover, and what they exclude, is this file.
 5. **Only a signal that already passes through both firewall bulkhead halves
    must carry its shield through both halves,** on matching pins, not on the
    bulkhead shell. A sensor screen floats at the sensor, must not stop on
-   either half, and terminates at A7 or B17. A CAN-connector screen (the Link
-   lambda pair, with the other CAN-node screens) must also pass through if
-   its signal does, then ends at the CAN ground symbol — not A7, B17,
-   `ecu_com`, `sp_shield_a` or `sp_shield_b`. A screen that runs only in the
+   either half, and terminates at A7 or B17. A CAN-connector screen (cluster,
+   RealDash, CSB3, trunk) must also pass through if its signal does, then
+   ends at the CAN ground ring — not A7, B17, `ecu_com`, `sp_shield_a` or
+   `sp_shield_b`. The Link lambda 4-core screen is a loom-B through-screen:
+   it floats at the controller, passes bulkhead B c2, and lands on B17.
+   A screen that runs only in the
    cabin does not terminate at the bulkhead. A screened cable that is not
    broken by an inline connector and does not pass its signal through the
    bulkhead also does not terminate at the bulkhead.
@@ -94,8 +96,10 @@ end on `sp_shield_a` / `sp_shield_b`. The older exclusive rule that only those
 three may pass the firewall is withdrawn.
 
 The Link lambda power, ground and CAN H/L pair all pass through bulkhead B
-(c3 / c4 / c13 / c14). That screen is a **CAN-connector screen**, not an
-A7 / B17 sensor screen. See the CAN section.
+(c3 / c4 / c13 / c14). That screen is a **loom-B through-screen**: it
+floats at the controller, passes both halves on **c2** (the unused size-12
+cavity next to c3 / c4; contact stays size 12), and lands on **B17**
+through `sp_shield_b`. It does not join the CAN ring or A7.
 
 ## CAN screens — ground symbol, not ecu_com (Daniel, 2026-10-01)
 
@@ -103,7 +107,7 @@ A7 / B17 sensor screen. See the CAN section.
 VRC / CSB3 enclosure exception. It is not an A7 / B17 sensor screen.
 
 Every CAN node run (CSB3, cluster `t_cluster_can`, RealDash
-`t_realdash_can`, the Link lambda, and the trunk toward the ECU) uses the
+`t_realdash_can`, and the trunk toward the ECU) uses the
 same 4-core shielded Tefzel already in the harness `*Parts` arrays:
 `55PC1243-20-2/6/4/5-9` / `cab_sh_4c`. One common braid around all four
 wires. Daniel 2026-10-01: the single-shield cable is fine. Do not hunt for
@@ -130,15 +134,14 @@ The **pin** half (`dtm_can_p`, DTM04-6P) is the start of the 4-core trunk.
 House pinout: 1=+12V, 2=GND, 3=CAN L, 4=CAN H, 5=trunk shield, 6 unused.
 The trunk braid passes pin 5 to the ground symbol `t_can_sh_gnd`.
 
-The Link lambda power, ground and CAN H/L pair pass through the bulkhead, so
-its shield must pass through both halves too. Inside the cabin those four
-wires join the other CAN nodes. The lambda shield splices with the cluster,
-RealDash and CSB3 screens at `sp_can_sh` and ends with them at the CAN
-ground symbol. It does **not** go to A7, B17, `ecu_com`, `sp_shield_a` or
-`sp_shield_b`. A Raychem solder sleeve with an integrated drain
-(`S200-3-WI-22-9`, already in the covering parts) is used only where a
-terminated shield has no drain of its own, and only on the terminated end
-(`sp_can_sh`). Device ends float, including the lambda controller.
+The Link lambda power, ground and CAN H/L cores still ride `cab_sh_4c`
+through the bulkhead. That screen is **not** a CAN-connector screen. It
+floats at the lambda controller, passes both halves of bulkhead B on c2,
+and lands on B17 through `sp_shield_b`. It does **not** go to A7, `ecu_com`,
+or the CAN ring `t_can_sh_gnd`. A Raychem solder sleeve with an integrated
+drain (`S200-3-WI-22-9`, already in the covering parts) is used only where
+a terminated CAN-node shield has no drain of its own, and only on the
+terminated end (`sp_can_sh`). Device ends of the CAN-node screens float.
 
 **Do not terminate that shield network on `ecu_com`, A7 or B17.** `ecu_com` on
 `ST185-CAN` is the six-pin comms / tuning port (DTM06-6S). It is not the ECU
@@ -152,15 +155,11 @@ no part. Do not add a 12V wire to `ecu_com`. Do not put any shield braid
 in `ecu_com` c1. The LTW stub braid (`cab_ltw` / `55PC1122-20-2/6-9`) stays
 open at both ends.
 
-If both bulkhead halves already have a shield pin for the lambda pair,
-continue the screen through them and splice it with the other CAN-node
-screens so they all end at that ground symbol. **No matching shield pin is
-drawn today** on either half of bulkhead B (c3 / c4 / c13 / c14 carry the
-four cores; none is a drain). The cabin screen joins the other CAN-node
-screens at `sp_can_sh` via the existing-style broken-off pair
-`BR_CAB_LAM_CAN_C_SH`. Report the missing bulkhead shield pin. Do not
-invent a cavity, and do not land the drain on A7 or B17 to make the check
-pass. Lambda +12V and ground ride the same 4-core as CAN H/L.
+Lambda +12V and ground ride the same 4-core as CAN H/L. The screen uses
+the existing unused bulkhead B cavity **c2** on both halves (size-12
+contacts already on this connector: pin `0460-220-1231`, socket
+`0462-210-1231`; 20 AWG drain in a 12–14 AWG contact, contact left as
+drawn). It does not join the CAN-node screens.
 
 `audit_shields.py` **requires** CAN-connector screens that have an end to
 reach the CAN ground symbol, and it **fails** the build if one of them
@@ -187,7 +186,7 @@ Fallback, if that ever stops being true:
 | crank | cable floats at the sensor → `bh_a_eng` c33 → `bh_a_fw` c33 → `sp_shield_a` → **ECU-A A7** | own pin, bulkhead A |
 | cam | same, c34 → `sp_shield_a` → **A7** | own pin, bulkhead A |
 | knock 1 | cable floats at the sensor → `bh_b_eng` c18 → `bh_b_fw` c18 → `sp_shield_b` → **ECU-B B17** (knock is pin B9, loom B) | own pin, bulkhead B |
-| CAN-Lambda 4-core | power / ground / CAN H/L through bulkhead B c3 / c4 / c13 / c14 on `55PC1243-20-2/6/4/5-9`. Screen is a **CAN-connector** drain: it must pass both halves, then join the other CAN-node screens at `sp_can_sh` and end at the ground symbol `t_can_sh_gnd` (no pin number). **No matching shield pin is drawn.** Must not land on A7, B17, `ecu_com`, `sp_shield_a` or `sp_shield_b` | none drawn — BLOCKED |
+| CAN-Lambda 4-core | power / ground / CAN H/L through bulkhead B c3 / c4 / c13 / c14 on `55PC1243-20-2/6/4/5-9`. Screen floats at the controller → `bh_b_eng` c2 → `bh_b_fw` c2 → `sp_shield_b` → **ECU-B B17**. Not A7, not the CAN ring. Size-12 contact left as drawn | own pin, bulkhead B c2 |
 | wss FL, FR (raw) | continuous through the **front** VRC enclosure, fender route, no bulkhead; FL/supply output screen → `IX_WS_FRONT` pin 5 → `sp_shield_a` → A7 | none — fender; inline pin 5 |
 | wss FR (conditioned) | own 1-core screened cable, VRC OUT → `IX_WS_FRONT` pin 4 → ECU-B B21; screen → pin 6 → `sp_shield_b` → **B17**. Excluded from the single-device check with the other VRC screens (Daniel, 2026-10-01). Must **not** land on the front case or join `VRC_FRONT` enclosure screens — that would tie A7 to B17 | none; inline pin 6 |
 | wss RL, RR | continuous through the **rear** VRC enclosure, no bulkhead; output screen → `IX_WS_REAR` pin 5 → `sp_shield_b` → B17 | none — grommet; inline pin 5 |
