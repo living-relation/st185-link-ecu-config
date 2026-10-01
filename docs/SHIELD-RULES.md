@@ -98,9 +98,11 @@ three may pass the firewall is withdrawn.
 The Link lambda power, ground and CAN H/L pair all pass through bulkhead B
 (c3 / c4 / c13 / c14). That screen is a **loom-B through-screen**: it
 floats at the controller, passes both halves on **c2** (the unused size-12
-cavity next to c3 / c4; contact stays size 12), and lands on **B17**
-on its own conductor (`cab_lam_can_c_sh`). It does not join `sp_shield_b`,
-the CAN ring, or A7.
+cavity next to c3 / c4; contact stays size 12). A 14 AWG stub already in
+the document (`M22759/16-14-0`) is what enters that contact; the 20 AWG
+drain solders to it at `sp_lam_stub_e` / `sp_lam_stub_c`. The cabin drain
+then lands on **B17** on its own conductor (`cab_lam_can_c_sh`). It does
+not join `sp_shield_b`, the CAN ring, or A7.
 
 ## CAN screens — ground symbol, not ecu_com (Daniel, 2026-10-01)
 
@@ -188,7 +190,7 @@ Fallback, if that ever stops being true:
 | crank | cable floats at the sensor → `bh_a_eng` c33 → `bh_a_fw` c33 → `sp_shield_a` → **ECU-A A7** | own pin, bulkhead A |
 | cam | same, c34 → `sp_shield_a` → **A7** | own pin, bulkhead A |
 | knock 1 | cable floats at the sensor → `bh_b_eng` c18 → `bh_b_fw` c18 → `sp_shield_b` → **ECU-B B17** (knock is pin B9, loom B) | own pin, bulkhead B |
-| CAN-Lambda 4-core | power / ground / CAN H/L through bulkhead B c3 / c4 / c13 / c14 on `55PC1243-20-2/6/4/5-9`. Screen floats at the controller → `bh_b_eng` c2 → `bh_b_fw` c2 → `cab_lam_can_c_sh` → **ECU-B B17**. Not `sp_shield_b`, not A7, not the CAN ring. Size-12 contact left as drawn | own pin, bulkhead B c2 |
+| CAN-Lambda 4-core | power / ground / CAN H/L through bulkhead B c3 / c4 / c13 / c14 on `55PC1243-20-2/6/4/5-9`. Screen floats at the controller → solder to 14 AWG stub `w_drain_lam12_e` → `bh_b_eng` c2 → `bh_b_fw` c2 via stub `w_drain_lam12_c` → `cab_lam_can_c_sh` → **ECU-B B17**. Not `sp_shield_b`, not A7, not the CAN ring. Size-12 contact left as drawn (`0460-220-1231` / `0462-210-1231`) | own pin, bulkhead B c2 |
 | wss FL, FR (raw) | continuous through the **front** VRC enclosure, fender route, no bulkhead; FL/supply output screen → `IX_WS_FRONT` pin 5 → `sp_shield_a` → A7 | none — fender; inline pin 5 |
 | wss FR (conditioned) | own 1-core screened cable, VRC OUT → `IX_WS_FRONT` pin 4 → ECU-B B21; screen → pin 6 → `sp_shield_b` → **B17**. Excluded from the single-device check with the other VRC screens (Daniel, 2026-10-01). Must **not** land on the front case or join `VRC_FRONT` enclosure screens — that would tie A7 to B17 | none; inline pin 6 |
 | wss RL, RR | continuous through the **rear** VRC enclosure, no bulkhead; output screen → `IX_WS_REAR` pin 5 → `sp_shield_b` → B17 | none — grommet; inline pin 5 |

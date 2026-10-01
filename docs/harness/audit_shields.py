@@ -47,9 +47,9 @@ whose braid is not terminated at either end - the audit fails if that
 screen lands anywhere. Every node uses the existing 4-core
 55PC1243-20-2/6/4/5-9 (cab_sh_4c). The Link lambda 4-core screen
 (cab_lam_can_*) is not a CAN-connector screen: it floats at the
-controller, passes bulkhead B c2 on both halves, and lands on B17
-on cab_lam_can_c_sh. It must not reach A7, the CAN ring, or
-sp_shield_b.
+controller, soldered to a 14 AWG stub into bulkhead B c2 on both
+halves, and lands on B17 on cab_lam_can_c_sh. It must not reach A7,
+the CAN ring, or sp_shield_b.
 
 R4 ("cable only until it terminates at the ECU") is a modelling convention the
 schema cannot express, so it is not checked here. The A7 / B17 separation is

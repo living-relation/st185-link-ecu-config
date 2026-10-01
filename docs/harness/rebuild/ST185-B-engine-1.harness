@@ -293,6 +293,19 @@
         "handle": "Splice"
       },
       "stripeColor": "White"
+    },
+    {
+      "id": "w_drain_lam12_e",
+      "color": "Black",
+      "partId": "m16_14_0",
+      "source": {
+        "id": "sp_lam_stub_e",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_eng",
+        "handle": "c2"
+      }
     }
   ],
   "cables": [
@@ -399,8 +412,8 @@
         "id": "cab_lam_can_e_sh",
         "color": "Shield",
         "source": {
-          "id": "bh_b_eng",
-          "handle": "c2"
+          "id": "sp_lam_stub_e",
+          "handle": "Splice"
         }
       },
       "schematicPosition": {
@@ -818,6 +831,18 @@
       "schematicPosition": {
         "x": 1920,
         "y": 2280
+      }
+    },
+    {
+      "id": "sp_lam_stub_e",
+      "partId": "spp_solder_generic",
+      "layoutPosition": {
+        "x": 2220,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 240,
+        "y": 1800
       }
     }
   ],
