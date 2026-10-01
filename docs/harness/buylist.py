@@ -1,11 +1,46 @@
-import json, os, re, collections, datetime
+import json, os, re, collections, subprocess, csv
 
 import model
 
 R = model.REB
+ROOT = os.path.abspath(os.path.join(os.path.dirname(R), "..", ".."))
 # Every harness in interfaces.json - the registry is the list, so a new or
 # retired drawing can never silently drop off the buy list again.
-F = tuple(model.harness_files().values())
+LOOMS = model.harness_files()
+F = tuple(LOOMS.values())
+FORBIDDEN_PINS = ("AUX4_AC_KILL", "TAM_RTN")
+
+
+def drawings_revision():
+    """Last commit that touched docs/harness/rebuild/. Stable across
+    list-only commits and branch switches."""
+    return subprocess.check_output(
+        ["git", "log", "-1", "--format=%H", "--", "docs/harness/rebuild"],
+        cwd=ROOT, text=True).strip()
+
+
+DRAWINGS = drawings_revision()
+
+
+def stamp_line():
+    """Exact provenance line written into the markdown reports."""
+    return (
+        "Generated from the %d `.harness` files in `docs/harness/rebuild/` "
+        "at drawings revision `%s`."
+        % (len(F), DRAWINGS)
+    )
+
+
+def source_lines():
+    """Stamp every generated list with the drawings revision only."""
+    looms = ", ".join("`%s` (`%s`)" % (name, fn) for name, fn in LOOMS.items())
+    return [
+        stamp_line(),
+        "Looms (registry name / file): %s." % looms,
+        "Part numbers and descriptions come from the `*Parts` arrays in those files "
+        "(each drawing's copy of the shared parts library).",
+        "The git repo is the drawing source of truth. This is not a harness.design app export.",
+    ]
 
 ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "0460-202-1631":130,"0460-215-1631":60,"0462-201-1631":118,"0462-209-1631":51,
@@ -62,6 +97,12 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("WB-51SAR","TE DEUTSCH","WEDGELOCK, DRB 102/128, PLUG, RIGHT",1,0),
 ]
 
+# The four DRB102 wedgelocks from EXTRA. The schema holds one lock per shell,
+# so these are shared hardware for the one housing — listed separately, not
+# assigned to a single loom. The rest of EXTRA stays on the buy list only.
+SHARED_HARDWARE_PNS = ("WB-51PAL", "WB-51PAR", "WB-51SAL", "WB-51SAR")
+SHARED_HARDWARE = [row for row in EXTRA if row[0] in SHARED_HARDWARE_PNS]
+
 # Pin-side mates crimped onto device flying leads. Device side, so not drawn on
 # any loom (harness.design rule: the drawing ends at the harness connector).
 DEVICE_SIDE = [
@@ -75,7 +116,17 @@ DEVICE_SIDE = [
 ]
 
 req, meta = collections.Counter(), {}
+loom_req = collections.defaultdict(collections.Counter)
 WIRED = {}   # loom -> {(node id, handle)} every conductor end, to resolve default contacts
+
+
+def add(q, loom, n=1):
+    pn = q["partNumber"]
+    req[pn] += n
+    meta[pn] = q
+    if loom:
+        loom_req[loom][pn] += n
+
 # A connector that appears in more than one loom is ONE physical part - bulkhead A
 # lives in three files, bulkhead B in two.  Count the first copy and skip the rest.
 # The dedupe keys on the component id, so it is only safe while the same id always
@@ -105,7 +156,7 @@ for f in F:
                 continue
             pid = n.get("partId") or n.get("bootPartId")
             if pid and pid in parts:
-                q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+                q = parts[pid]; add(q, loom)
 
 def stamp(c, parts):
     """What this copy claims: its part number and every contact/plug it names.
@@ -157,7 +208,7 @@ for cid, cc in copies.items():
     pg = c.get("physicalPartGroup")
     is_owner = (group_owner.get(pg) == cid) if pg else True
     if is_owner and c.get("partId") and c["partId"] in parts:
-        q = parts[c["partId"]]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+        q = parts[c["partId"]]; add(q, loom0)
     # The part's configuration supplies the lock/boot/backshell and the DEFAULT
     # contact (wired cavity) or plug (unwired cavity). Before 2026-09-24 only
     # explicitly stamped cavities were counted, so every config-default contact
@@ -168,7 +219,7 @@ for cid, cc in copies.items():
         for key in ("lockPartId","bootPartId","backshellPartId","mountPartId","dustCoverPartId"):
             pid = cfg.get(key)
             if pid and pid in parts:
-                q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+                q = parts[pid]; add(q, loom0)
     for cv in c.get("cavities", []):
         if cv.get("notConnected"):
             continue
@@ -180,7 +231,7 @@ for cid, cc in copies.items():
             pids = [cfg.get("cavityPlugPartId")]
         for pid in pids:
             if pid and pid in parts:
-                q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+                q = parts[pid]; add(q, loom0)
 if clash:
     raise SystemExit("Shared connectors are inconsistent between looms:\n  "
                      + "\n  ".join(clash))
@@ -203,11 +254,9 @@ for pn, mf, desc, n, have in EXTRA:
     short = max(0, n - have)
     (rows_buy if short else rows_ok).append((pn, mf, desc, n, have, short))
 
-out = ["# Harness — need to buy",
- "",
- "Generated on %s from the %d `.harness` files in `docs/harness/rebuild/`:"
- % (datetime.date.today().isoformat(), len(F)),
- "`" + "`, `".join(x[6:-8] for x in F) + "`.",
+out = ["# Harness — need to buy", ""]
+out += source_lines()
+out += [
  "On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.",
  "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",
  "", "## Short — order these", "",
@@ -263,7 +312,10 @@ for loom, fn in model.harness_files(REG).items():
     cp = {p["id"]: p for p in d.get("cableParts", [])}
     for cb in d.get("cables", []):
         p = cp.get(cb.get("partId")) or {}
-        cab[(loom, p.get("partNumber", cb.get("partId")))] += 1
+        pn = p.get("partNumber", cb.get("partId"))
+        cab[(loom, pn)] += 1
+        if p.get("partNumber"):
+            meta.setdefault(pn, p)
 out += ["", "## Screened cable pieces by owning harness", "",
  "Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no connector.", "",
  "| Harness | Cable | Pieces |", "|---|---|---:|"]
@@ -273,9 +325,113 @@ out += ["", "## Still unspecified", "",
  "- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. "
  "Needs a real dash number per branch OD once the trunk diameters are known.",
  ""]
-p = os.path.join(os.path.dirname(R), "NEED-TO-BUY.md")
-open(p, "w", encoding="utf-8").write("\n".join(out))
+HERE = os.path.dirname(R)
+p = os.path.join(HERE, "NEED-TO-BUY.md")
+open(p, "w", encoding="utf-8").write("\n".join(out) + "\n")
 print("wrote", p)
+
+# Per-loom parts lists and BOM from the same walk of the repo files. Cable
+# pieces are listed per loom; cut lengths are not invented (the drawings
+# store no cable length, only a part id).
+parts_md = ["# Harness parts lists — repo drawings", ""]
+parts_md += source_lines()
+parts_md += [
+    "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",
+    "",
+    "## Looms",
+    "",
+    "| Registry name | File |",
+    "|---|---|",
+]
+for name, fn in LOOMS.items():
+    parts_md.append("| `%s` | `%s` |" % (name, fn))
+parts_md += [
+    "",
+    "## Shared hardware — one DRB102 housing",
+    "",
+    "The drawing schema holds one lock per shell. These four wedgelocks are required",
+    "for the one physical DRB102 (left + right on the receptacle and the plug).",
+    "They are not assigned to a single loom. Other unmodeled extras stay on the buy list only.",
+    "",
+    "| Part number | Mfr | Description | Qty |",
+    "|---|---|---|---:|",
+]
+for pn, mf, desc, n, _have in SHARED_HARDWARE:
+    parts_md.append("| `%s` | %s | %s | %d |" % (pn, mf, desc, n))
+
+def loom_counts(name):
+    counts = collections.Counter(loom_req.get(name, {}))
+    for (loom, pn), n in cab.items():
+        if loom == name:
+            counts[pn] += n
+    return counts
+
+
+for name, fn in LOOMS.items():
+    parts_md += ["", "## `%s` — `%s`" % (name, fn), "",
+                 "| Part number | Mfr | Description | Qty |",
+                 "|---|---|---|---:|"]
+    rows = []
+    for pn, n in sorted(loom_counts(name).items()):
+        d_ = meta.get(pn) or {}
+        rows.append((pn, d_.get("manufacturer", "") or "",
+                     d_.get("description") or pn, n))
+    if not rows:
+        parts_md.append("| *(none counted)* |  |  |  |")
+    else:
+        for pn, mf, desc, n in rows:
+            parts_md.append("| `%s` | %s | %s | %d |" % (pn, mf, desc, n))
+
+pp = os.path.join(HERE, "PARTS-LISTS.md")
+open(pp, "w", encoding="utf-8").write("\n".join(parts_md) + "\n")
+print("wrote", pp)
+
+bom_path = os.path.join(HERE, "HARNESS-BOM.csv")
+with open(bom_path, "w", newline="", encoding="utf-8") as fh:
+    wr = csv.writer(fh)
+    wr.writerow(["drawings_commit", "loom", "file", "part_number",
+                 "manufacturer", "description", "quantity"])
+    for name, fn in LOOMS.items():
+        for pn, n in sorted(loom_counts(name).items()):
+            d_ = meta.get(pn) or {}
+            wr.writerow([DRAWINGS, name, fn, pn,
+                         d_.get("manufacturer", "") or "",
+                         d_.get("description") or "", n])
+    for pn, mf, desc, n, _have in SHARED_HARDWARE:
+        wr.writerow([DRAWINGS, "shared", "", pn, mf, desc, n])
+print("wrote", bom_path)
+
+written = [p, pp, bom_path]
+expected_stamp = stamp_line()
+for path in written:
+    text = open(path, encoding="utf-8").read()
+    for pin in FORBIDDEN_PINS:
+        if pin in text:
+            raise SystemExit("%s contains forbidden climate pin %s" % (path, pin))
+    for needle in ("9:48", "live harness.design looms exported",
+                   "main is behind those drawings"):
+        if needle in text:
+            raise SystemExit("%s still claims an app export (%r)" % (path, needle))
+if expected_stamp not in open(p, encoding="utf-8").read():
+    raise SystemExit("NEED-TO-BUY.md is missing the drawings-revision stamp line")
+if expected_stamp not in open(pp, encoding="utf-8").read():
+    raise SystemExit("PARTS-LISTS.md is missing the drawings-revision stamp line")
+with open(bom_path, encoding="utf-8", newline="") as fh:
+    rows = list(csv.DictReader(fh))
+if not rows:
+    raise SystemExit("HARNESS-BOM.csv has no data rows")
+if any(row.get("drawings_commit") != DRAWINGS for row in rows):
+    raise SystemExit("HARNESS-BOM.csv drawings_commit is not the drawings revision")
+bom_first = open(bom_path, encoding="utf-8").readline()
+if not (bom_first.startswith("drawings_commit,") and "part_number" in bom_first
+        and "quantity" in bom_first):
+    raise SystemExit("HARNESS-BOM.csv must start with the header row")
+for pn, *_rest in SHARED_HARDWARE:
+    if pn not in open(pp, encoding="utf-8").read():
+        raise SystemExit("PARTS-LISTS.md is missing shared wedgelock %s" % pn)
+    if pn not in open(bom_path, encoding="utf-8").read():
+        raise SystemExit("HARNESS-BOM.csv is missing shared wedgelock %s" % pn)
+
 print("to buy: %d lines, covered: %d lines" % (len(rows_buy), len(rows_ok)))
 for r in sorted(rows_buy, key=lambda x: -x[5]):
     print("   BUY %-32s need %-4d have %-4d short %d" % (r[0], r[3], r[4], r[5]))
