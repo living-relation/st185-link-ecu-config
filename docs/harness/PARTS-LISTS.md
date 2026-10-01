@@ -1,13 +1,12 @@
 # Harness parts lists — repo drawings
 
-Generated from the 15 `.harness` files in `docs/harness/rebuild/` on branch `cursor/live-loom-boms-6d03` at commit `7ad7c26b28505718e0cbfda69e141aaf13c32251`.
-The drawings last changed in `f991c33921a86f14d3fd06f5c66b596edfba8db4`.
+Generated from the 15 `.harness` files in `docs/harness/rebuild/` at drawings revision `f991c33921a86f14d3fd06f5c66b596edfba8db4`.
 Looms (registry name / file): `A-cabin` (`ST185-A-cabin.harness`), `B-cabin` (`ST185-B-cabin.harness`), `CabinPower` (`ST185-CabinPower.harness`), `APS-Pedal` (`ST185-APS-Pedal.harness`), `A-engine` (`ST185-A-engine.harness`), `B-engine` (`ST185-B-engine.harness`), `CAN` (`ST185-CAN.harness`), `EngineRoom-C` (`ST185-EngineRoom-C.harness`), `ClusterLED` (`ST185-ClusterLED.harness`), `WheelSpeed-Rear` (`ST185-WheelSpeed-Rear.harness`), `WheelSpeed-Front` (`ST185-WheelSpeed-Front.harness`), `ACAmp-Spur` (`ST185-ACAmp-Spur.harness`), `RearFuel` (`ST185-RearFuel.harness`), `AntiTheft` (`ST185-AntiTheft.harness`), `CSB3` (`ST185-CSB3.harness`).
 Part numbers and descriptions come from the `*Parts` arrays in those files (the repo copy of the shared parts library; git has no separate library file).
 The git repo is the drawing source of truth. This is not a harness.design app export.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 
-## Looms in this checkout
+## Looms
 
 | Registry name | File |
 |---|---|
@@ -26,6 +25,19 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RearFuel` | `ST185-RearFuel.harness` |
 | `AntiTheft` | `ST185-AntiTheft.harness` |
 | `CSB3` | `ST185-CSB3.harness` |
+
+## Shared hardware — one DRB102 housing
+
+The drawing schema holds one lock per shell. These four wedgelocks are required
+for the one physical DRB102 (left + right on the receptacle and the plug).
+They are not assigned to a single loom. Other unmodeled extras stay on the buy list only.
+
+| Part number | Mfr | Description | Qty |
+|---|---|---|---:|
+| `WB-51PAL` | TE DEUTSCH | WEDGELOCK, DRB 102/128, RECEPTACLE, LEFT | 1 |
+| `WB-51PAR` | TE DEUTSCH | WEDGELOCK, DRB 102/128, RECEPTACLE, RIGHT | 1 |
+| `WB-51SAL` | TE DEUTSCH | WEDGELOCK, DRB 102/128, PLUG, LEFT | 1 |
+| `WB-51SAR` | TE DEUTSCH | WEDGELOCK, DRB 102/128, PLUG, RIGHT | 1 |
 
 ## `A-cabin` — `ST185-A-cabin.harness`
 

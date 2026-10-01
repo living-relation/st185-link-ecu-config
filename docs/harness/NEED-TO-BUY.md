@@ -1,7 +1,6 @@
 # Harness — need to buy
 
-Generated from the 15 `.harness` files in `docs/harness/rebuild/` on branch `cursor/live-loom-boms-6d03` at commit `7ad7c26b28505718e0cbfda69e141aaf13c32251`.
-The drawings last changed in `f991c33921a86f14d3fd06f5c66b596edfba8db4`.
+Generated from the 15 `.harness` files in `docs/harness/rebuild/` at drawings revision `f991c33921a86f14d3fd06f5c66b596edfba8db4`.
 Looms (registry name / file): `A-cabin` (`ST185-A-cabin.harness`), `B-cabin` (`ST185-B-cabin.harness`), `CabinPower` (`ST185-CabinPower.harness`), `APS-Pedal` (`ST185-APS-Pedal.harness`), `A-engine` (`ST185-A-engine.harness`), `B-engine` (`ST185-B-engine.harness`), `CAN` (`ST185-CAN.harness`), `EngineRoom-C` (`ST185-EngineRoom-C.harness`), `ClusterLED` (`ST185-ClusterLED.harness`), `WheelSpeed-Rear` (`ST185-WheelSpeed-Rear.harness`), `WheelSpeed-Front` (`ST185-WheelSpeed-Front.harness`), `ACAmp-Spur` (`ST185-ACAmp-Spur.harness`), `RearFuel` (`ST185-RearFuel.harness`), `AntiTheft` (`ST185-AntiTheft.harness`), `CSB3` (`ST185-CSB3.harness`).
 Part numbers and descriptions come from the `*Parts` arrays in those files (the repo copy of the shared parts library; git has no separate library file).
 The git repo is the drawing source of truth. This is not a harness.design app export.

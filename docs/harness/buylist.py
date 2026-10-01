@@ -11,34 +11,31 @@ F = tuple(LOOMS.values())
 FORBIDDEN_PINS = ("AUX4_AC_KILL", "TAM_RTN")
 
 
-def git_identity():
-    """Branch and commit of this checkout. Drawings commit is the last one
-    that touched docs/harness/rebuild/."""
+def drawings_revision():
+    """Last commit that touched docs/harness/rebuild/. Stable across
+    list-only commits and branch switches."""
+    return subprocess.check_output(
+        ["git", "log", "-1", "--format=%H", "--", "docs/harness/rebuild"],
+        cwd=ROOT, text=True).strip()
+
+
+def checkout_identity():
+    """Current branch and HEAD, used only to keep them out of the reports."""
     def git(*args):
         return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
-    return {
-        "branch": git("rev-parse", "--abbrev-ref", "HEAD"),
-        "head": git("rev-parse", "HEAD"),
-        "drawings": git("log", "-1", "--format=%H", "--", "docs/harness/rebuild"),
-    }
+    return git("rev-parse", "--abbrev-ref", "HEAD"), git("rev-parse", "HEAD")
 
 
-GIT = git_identity()
+DRAWINGS = drawings_revision()
 
 
 def source_lines():
-    """Stamp every generated list with the repo commit and branch, not an app export."""
+    """Stamp every generated list with the drawings revision only."""
     looms = ", ".join("`%s` (`%s`)" % (name, fn) for name, fn in LOOMS.items())
-    drawings_line = (
-        "The drawings are at that same commit."
-        if GIT["drawings"] == GIT["head"] else
-        "The drawings last changed in `%s`." % GIT["drawings"]
-    )
     return [
         "Generated from the %d `.harness` files in `docs/harness/rebuild/` "
-        "on branch `%s` at commit `%s`."
-        % (len(F), GIT["branch"], GIT["head"]),
-        drawings_line,
+        "at drawings revision `%s`."
+        % (len(F), DRAWINGS),
         "Looms (registry name / file): %s." % looms,
         "Part numbers and descriptions come from the `*Parts` arrays in those files "
         "(the repo copy of the shared parts library; git has no separate library file).",
@@ -99,6 +96,12 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("WB-51SAL","TE DEUTSCH","WEDGELOCK, DRB 102/128, PLUG, LEFT",1,0),
  ("WB-51SAR","TE DEUTSCH","WEDGELOCK, DRB 102/128, PLUG, RIGHT",1,0),
 ]
+
+# The four DRB102 wedgelocks from EXTRA. The schema holds one lock per shell,
+# so these are shared hardware for the one housing — listed separately, not
+# assigned to a single loom. The rest of EXTRA stays on the buy list only.
+SHARED_HARDWARE_PNS = ("WB-51PAL", "WB-51PAR", "WB-51SAL", "WB-51SAR")
+SHARED_HARDWARE = [row for row in EXTRA if row[0] in SHARED_HARDWARE_PNS]
 
 # Pin-side mates crimped onto device flying leads. Device side, so not drawn on
 # any loom (harness.design rule: the drawing ends at the harness connector).
@@ -335,13 +338,26 @@ parts_md += source_lines()
 parts_md += [
     "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",
     "",
-    "## Looms in this checkout",
+    "## Looms",
     "",
     "| Registry name | File |",
     "|---|---|",
 ]
 for name, fn in LOOMS.items():
     parts_md.append("| `%s` | `%s` |" % (name, fn))
+parts_md += [
+    "",
+    "## Shared hardware — one DRB102 housing",
+    "",
+    "The drawing schema holds one lock per shell. These four wedgelocks are required",
+    "for the one physical DRB102 (left + right on the receptacle and the plug).",
+    "They are not assigned to a single loom. Other unmodeled extras stay on the buy list only.",
+    "",
+    "| Part number | Mfr | Description | Qty |",
+    "|---|---|---|---:|",
+]
+for pn, mf, desc, n, _have in SHARED_HARDWARE:
+    parts_md.append("| `%s` | %s | %s | %d |" % (pn, mf, desc, n))
 
 def loom_counts(name):
     counts = collections.Counter(loom_req.get(name, {}))
@@ -372,21 +388,21 @@ print("wrote", pp)
 
 bom_path = os.path.join(HERE, "HARNESS-BOM.csv")
 with open(bom_path, "w", newline="", encoding="utf-8") as fh:
-    fh.write("# " + " ".join(source_lines()) + "\n")
     wr = csv.writer(fh)
-    wr.writerow(["git_branch", "git_commit", "drawings_commit",
-                 "loom", "file", "part_number", "manufacturer",
-                 "description", "quantity"])
+    wr.writerow(["drawings_commit", "loom", "file", "part_number",
+                 "manufacturer", "description", "quantity"])
     for name, fn in LOOMS.items():
         for pn, n in sorted(loom_counts(name).items()):
             d_ = meta.get(pn) or {}
-            wr.writerow([GIT["branch"], GIT["head"], GIT["drawings"],
-                         name, fn, pn,
+            wr.writerow([DRAWINGS, name, fn, pn,
                          d_.get("manufacturer", "") or "",
                          d_.get("description") or "", n])
+    for pn, mf, desc, n, _have in SHARED_HARDWARE:
+        wr.writerow([DRAWINGS, "shared", "", pn, mf, desc, n])
 print("wrote", bom_path)
 
 written = [p, pp, bom_path]
+branch, head = checkout_identity()
 for path in written:
     text = open(path, encoding="utf-8").read()
     for pin in FORBIDDEN_PINS:
@@ -396,6 +412,19 @@ for path in written:
                    "main is behind those drawings"):
         if needle in text:
             raise SystemExit("%s still claims an app export (%r)" % (path, needle))
+    if branch in text:
+        raise SystemExit("%s records the checkout branch %r" % (path, branch))
+    if head != DRAWINGS and head in text:
+        raise SystemExit("%s records checkout HEAD %s" % (path, head))
+bom_first = open(bom_path, encoding="utf-8").readline()
+if not (bom_first.startswith("drawings_commit,") and "part_number" in bom_first
+        and "quantity" in bom_first):
+    raise SystemExit("HARNESS-BOM.csv must start with the header row")
+for pn, *_rest in SHARED_HARDWARE:
+    if pn not in open(pp, encoding="utf-8").read():
+        raise SystemExit("PARTS-LISTS.md is missing shared wedgelock %s" % pn)
+    if pn not in open(bom_path, encoding="utf-8").read():
+        raise SystemExit("HARNESS-BOM.csv is missing shared wedgelock %s" % pn)
 
 print("to buy: %d lines, covered: %d lines" % (len(rows_buy), len(rows_ok)))
 for r in sorted(rows_buy, key=lambda x: -x[5]):
