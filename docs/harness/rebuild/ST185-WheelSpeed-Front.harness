@@ -75,8 +75,8 @@
         "id": "cab_fl_sh",
         "color": "Shield",
         "source": {
-          "id": "sp_vrc_f_in_sh",
-          "handle": "Splice"
+          "id": "ep_vrc_f_inl_sh",
+          "handle": "Terminal"
         }
       },
       "schematicPosition": {
@@ -118,8 +118,8 @@
         "id": "cab_fr_sh",
         "color": "Shield",
         "source": {
-          "id": "sp_vrc_f_in_sh",
-          "handle": "Splice"
+          "id": "ep_vrc_f_inr_sh",
+          "handle": "Terminal"
         }
       },
       "schematicPosition": {
@@ -207,10 +207,6 @@
       "shield": {
         "id": "cab_fout_fr_sh",
         "color": "Shield",
-        "source": {
-          "id": "ep_vrc_f_out_fr_sh",
-          "handle": "Terminal"
-        },
         "target": {
           "id": "ix_ws_front_r",
           "handle": "c6"
@@ -585,10 +581,7 @@
     {
       "id": "ep_vrc_f_out_fr_sh",
       "type": "Loose",
-      "signal": "VRC_FRONT_OUT FR screen - drain terminated on this pin; continues on inline pin 6 to SHIELD_B (B17)",
-      "coveringIds": [
-        "cov_s200_2"
-      ],
+      "signal": "VRC_FRONT_OUT FR screen - floats at the VRC; continues on inline pin 6 to SHIELD_B (B17)",
       "layoutPosition": {
         "x": 1140,
         "y": 210
@@ -625,7 +618,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1122-20-2/6-9",
-      "description": "CABLE, SHIELDED TWISTED PAIR 20AWG",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     },
     {
@@ -662,7 +655,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1133-20-2/6/4-9",
-      "description": "CABLE, SHIELDED TWISTED TRIPLE 20AWG",
+      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     },
     {
@@ -681,7 +674,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1213-20-9-9",
-      "description": "CABLE, SHIELDED SINGLE CONDUCTOR 20AWG",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, WHITE, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     }
   ],
@@ -1031,7 +1024,7 @@
     },
     {
       "id": "n_shield",
-      "text": "SHIELDS. Sensor ends float (no S200). At the VRC both input drains are S200-3 and spliced before the plugs: each drain lands on its own IN pin 3, and the combined drain also lands on the OUT screen pin, which already continues on inline pin 5 to SHIELD_A (ECU-A A7). The FL/supply OUT drain (S200-3) lands on that same OUT screen pin. The FR OUT drain (S200-2) lands on its own pin and continues on inline pin 6 to SHIELD_B (ECU-B B17). No shield stops at the sensor, the VRC, or the inline. S200 only on terminated ends. A7 and B17 stay separate.",
+      "text": "SHIELDS. Sensor ends float (no S200). At the VRC both input drains are S200-3 and spliced before the plugs: each drain lands on its own IN pin 3, and the combined drain also lands on the OUT screen pin, which already continues on inline pin 5 to SHIELD_A (ECU-A A7). The FL/supply OUT drain (S200-3) lands on that same OUT screen pin. The FR OUT screen floats at the VRC and continues on inline pin 6 to SHIELD_B (ECU-B B17). No shield stops at the sensor, the VRC, or the inline. S200 only on terminated ends. A7 and B17 stay separate.",
       "color": "Orange",
       "width": 390,
       "schematicPosition": {

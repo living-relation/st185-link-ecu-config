@@ -75,8 +75,8 @@
         "id": "cab_rl_sh",
         "color": "Shield",
         "source": {
-          "id": "sp_vrc_r_in_sh",
-          "handle": "Splice"
+          "id": "ep_vrc_r_inl_sh",
+          "handle": "Terminal"
         }
       },
       "schematicPosition": {
@@ -118,8 +118,8 @@
         "id": "cab_rr_sh",
         "color": "Shield",
         "source": {
-          "id": "sp_vrc_r_in_sh",
-          "handle": "Splice"
+          "id": "ep_vrc_r_inr_sh",
+          "handle": "Terminal"
         }
       },
       "schematicPosition": {
@@ -583,7 +583,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1122-20-2/6-9",
-      "description": "CABLE, SHIELDED TWISTED PAIR 20AWG",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     },
     {
@@ -629,7 +629,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1243-20-2/6/4/5-9",
-      "description": "CABLE, SHIELDED TWISTED QUAD 20AWG",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     }
   ],

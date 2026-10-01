@@ -308,7 +308,7 @@
         "handle": "a18"
       },
       "target": {
-        "id": "fl_acamp_c1",
+        "id": "br_w_ac_kill",
         "handle": "Terminal"
       }
     },
@@ -1501,13 +1501,13 @@
       "targetId": "ix_ws_front_p"
     },
     {
-      "id": "bn_bp_fl_acamp__fl_acamp_c1",
+      "id": "bn_bp_fl_acamp__br_w_ac_kill",
       "length": {
         "unit": "mm",
         "value": 50
       },
       "sourceId": "bp_fl_acamp",
-      "targetId": "fl_acamp_c1"
+      "targetId": "br_w_ac_kill"
     },
     {
       "id": "bn_bp_fl_acamp__ix_accts_r",
@@ -2107,10 +2107,9 @@
   ],
   "terminals": [
     {
-      "id": "fl_acamp_c1",
+      "id": "br_w_ac_kill",
       "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD p.150 / p.152 A/C amplifier-TBD TBD ACT compressor cancel, ground = kill (ECU A18, Aux 4) - solder sleeve into the factory ACT lead at the amplifier",
+      "signal": "Broken off - continues on ST185-ACAmp-Spur: Aux 4 AC kill to A/C amplifier A18-11",
       "layoutPosition": {
         "x": 1680,
         "y": 0
@@ -2929,7 +2928,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1133-20-2/6/4-9",
-      "description": "CABLE, SHIELDED TWISTED TRIPLE 20AWG",
+      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     },
     {
@@ -2948,7 +2947,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1213-20-9-9",
-      "description": "CABLE, SHIELDED SINGLE CONDUCTOR 20AWG",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, WHITE, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     }
   ],
@@ -3153,6 +3152,7 @@
       "label": "Bulkhead A - firewall, A-half of shared DRB102 (DRB12-102PAE-L018 + DRBF-1A)",
       "width": 390,
       "partId": "cp_drb_recept",
+      "physicalPartGroup": "drb102_recept",
       "cavities": [
         {
           "id": "c1",

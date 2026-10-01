@@ -1787,7 +1787,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1213-20-9-9",
-      "description": "CABLE, SHIELDED SINGLE CONDUCTOR 20AWG",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, WHITE, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     }
   ],
@@ -2273,6 +2273,7 @@
       "label": "Bulkhead A - engine plug, A-half of shared DRB102 (DRB16-102SAE-L018)",
       "width": 390,
       "partId": "cp_drb_plug",
+      "physicalPartGroup": "drb102_plug",
       "cavities": [
         {
           "id": "c1",

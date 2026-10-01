@@ -713,6 +713,18 @@
     {
       "id": "cab_fspur_fr_sh_ac",
       "reason": "A-cabin section of the FR screen: inline pin 6 to the broken-off end; continues on B-cabin as cab_fspur_fr_sh to sp_shield_b (B17), floats at the VRC"
+    },
+    {
+      "id": "cab_crank_c_sh",
+      "reason": "cabin crank screen continuation: bulkhead A c33 to existing splice sp_shield_a (A7), shared with the front spur shield"
+    },
+    {
+      "id": "cab_cam_c_sh",
+      "reason": "cabin cam screen continuation: bulkhead A c34 to existing splice sp_shield_a (A7), shared with the front spur shield"
+    },
+    {
+      "id": "cab_knock_c_sh",
+      "reason": "cabin knock screen continuation: bulkhead B c18 to existing splice sp_shield_b (B17), shared with the rear spur shield"
     }
   ],
   "wheelSpeed": {

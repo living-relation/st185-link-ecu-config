@@ -1116,7 +1116,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1122-20-2/6-9",
-      "description": "CABLE, SHIELDED TWISTED PAIR 20AWG",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     }
   ],
@@ -1258,6 +1258,7 @@
       "label": "Bulkhead B - engine plug, B-half of shared DRB102 (DRB16-102SAE-L018)",
       "width": 390,
       "partId": "cp_drb_plug",
+      "physicalPartGroup": "drb102_plug",
       "cavities": [
         {
           "id": "c1",

@@ -30,7 +30,9 @@ fails any screen bonded at both ends that is not listed.
 Listed today: the two VR conditioner boxes (§6.30 below). Both-end-bonded
 screens allowed: `cab_fout_sh`, `cab_rout_sh` (VRC case to inline pin 5) and their
 continuations through the inline interfaces, `cab_fspur_sh`, `cab_rspur_sh`,
-`cab_fspur_fr_sh`. The list the audit reads is `shieldBothEndsOk` in
+`cab_fspur_fr_sh`; and the cabin crank / cam / knock firewall continuations
+`cab_crank_c_sh`, `cab_cam_c_sh`, `cab_knock_c_sh` (bulkhead pin to the existing
+ECU shield splice). The list the audit reads is `shieldBothEndsOk` in
 `docs/harness/interfaces.json`.
 
 Also settled: the ABS wheel-speed sensors have **two wires**. No third conductor,

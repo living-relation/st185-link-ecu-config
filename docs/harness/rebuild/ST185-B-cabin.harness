@@ -1849,7 +1849,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1213-20-9-9",
-      "description": "CABLE, SHIELDED SINGLE CONDUCTOR 20AWG",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, WHITE, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     },
     {
@@ -1895,7 +1895,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1243-20-2/6/4/5-9",
-      "description": "CABLE, SHIELDED TWISTED QUAD 20AWG",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     },
     {
@@ -1923,7 +1923,7 @@
       ],
       "shielded": true,
       "partNumber": "55PC1122-20-2/6-9",
-      "description": "CABLE, SHIELDED TWISTED PAIR 20AWG",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
     }
   ],
@@ -1933,6 +1933,7 @@
       "label": "Bulkhead B - firewall, B-half of shared DRB102 (DRB12-102PAE-L018 + DRBF-1A)",
       "width": 390,
       "partId": "cp_drb_recept",
+      "physicalPartGroup": "drb102_recept",
       "cavities": [
         {
           "id": "c1",
