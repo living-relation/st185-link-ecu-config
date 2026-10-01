@@ -1,6 +1,6 @@
 # Harness — need to buy
 
-Generated from SHA-256 `e2e67a1cd83844bb49011d1ae9d3858535c4524886e19623bfaacc6a337fbb82` of the 15 `.harness` files actually read in `docs/harness/rebuild/` plus `interfaces.json`:
+Generated from SHA-256 `0fe665ba1241e6d6384f0816596702a6e6974a36f99bde62c6a3d7dcdf85a87f` of the 15 `.harness` files actually read in `docs/harness/rebuild/` plus `interfaces.json`:
 `A-cabin`, `B-cabin`, `CabinPower`, `APS-Pedal`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `ACAmp-Spur`, `RearFuel`, `AntiTheft`, `CSB3`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
@@ -283,10 +283,10 @@ A drawing that now uses an M22759/16 part is listed under that part, not under E
 | A-engine | `M22759/16-20-7` | WIRE, M22759/16, 20 AWG VIOLET | 4 |
 | A-engine | `M22759/16-20-8` | WIRE, M22759/16, 20 AWG GRAY | 2 |
 | A-engine | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 3 |
-| ACAmp-Spur | `EW-1C20-YEL-BLK` | WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV | 1 |
-| ACAmp-Spur | `EW-1C20-YEL-RED` | WIRE, ELECTRICAL, 20 AWG, YELLOW/RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV | 1 |
 | ACAmp-Spur | `M22759/16-20-1` | WIRE, M22759/16, 20 AWG BROWN | 1 |
 | ACAmp-Spur | `M22759/16-20-4` | WIRE, M22759/16, 20 AWG YELLOW | 1 |
+| ACAmp-Spur | `M22759/16-20-40` | WIRE, M22759/16, 20 AWG YELLOW/BLACK | 1 |
+| ACAmp-Spur | `M22759/16-20-42` | WIRE, M22759/16, 20 AWG YELLOW/RED | 1 |
 | ACAmp-Spur | `M22759/16-20-8` | WIRE, M22759/16, 20 AWG GRAY | 1 |
 | APS-Pedal | `M22759/16-20-09` | WIRE, M22759/16, 20 AWG BLACK/WHITE | 4 |
 | APS-Pedal | `M22759/16-20-3` | WIRE, M22759/16, 20 AWG ORANGE | 4 |
@@ -334,8 +334,8 @@ A drawing that now uses an M22759/16 part is listed under that part, not under E
 | CSB3 | `M22759/16-20-5` | WIRE, M22759/16, 20 AWG GREEN | 6 |
 | CSB3 | `M22759/16-20-9` | WIRE, M22759/16, 20 AWG WHITE | 4 |
 | CabinPower | `BC-4-RED` | CABLE, BATTERY, 4 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV | 1 |
-| CabinPower | `EW-1C12-BLK` | WIRE, ELECTRICAL, 12 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV | 1 |
 | CabinPower | `M22759/16-10-2` | WIRE, M22759/16, 10 AWG RED | 2 |
+| CabinPower | `M22759/16-12-0` | WIRE, M22759/16, 12 AWG BLACK | 1 |
 | CabinPower | `M22759/16-12-2` | WIRE, M22759/16, 12 AWG RED | 4 |
 | CabinPower | `M22759/16-14-2` | WIRE, M22759/16, 14 AWG RED | 3 |
 | CabinPower | `M22759/16-16-2` | WIRE, M22759/16, 16 AWG RED | 1 |
