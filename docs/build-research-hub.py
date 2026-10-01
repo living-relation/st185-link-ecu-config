@@ -887,8 +887,10 @@ function renderOneTable(spec, inst) {
   const key = inst || spec.id;
   const st = tableState[key] || (tableState[key] = {q: "", sort: "", dir: 1});
   const q = (st.q || "").toLowerCase();
+  const globalQ = ((document.getElementById("q") || {}).value || "").trim().toLowerCase();
   let rows = spec.rows.slice();
   if (q) rows = rows.filter(r => hayOf(r).includes(q));
+  if (globalQ) rows = rows.filter(r => hayOf(r).includes(globalQ));
   if (st.sort) {
     const col = spec.columns.find(c => c.key === st.sort);
     rows.sort((a, b) => {
@@ -961,6 +963,7 @@ function replaceTable(mount) {
     const inp = next.querySelector(".tfilter");
     if (inp) { inp.focus(); if (start != null) inp.setSelectionRange(start, start); }
   }
+  applyFilters();
 }
 
 function bindTables(root) {
@@ -1004,7 +1007,10 @@ function docCard(d, topicDir) {
   const hay = [
     d.title, d.rel, d.summary || "", kind, d.kind,
     secs.map(s => s.label).join(" "),
-    (d.tables || []).map(t => t.title).join(" "),
+    (d.tables || []).flatMap(t => [
+      t.title,
+      ...((t.rows || []).flatMap(r => Object.values(r || {}))),
+    ]).join(" "),
   ].join(" ").toLowerCase();
   return `
   <article class="card" data-filter-item data-kind="${esc(kind)}" data-topic="${esc(topicDir)}"
@@ -1059,26 +1065,42 @@ function partsHtml() {
     </section>`;
 }
 
-function refreshParts() {
+function tableMatchesQuery(spec, q) {
+  if (!spec) return false;
+  if (!q) return true;
+  if (`${spec.title || ""} ${spec.source || ""}`.toLowerCase().includes(q)) return true;
+  return (spec.rows || []).some(r => hayOf(r).includes(q));
+}
+
+function partsTabIds() {
+  return ["buy", "onhand", "covered", "enclosures", "not_purchased"];
+}
+
+function partsTabMatches(id, q) {
+  const tables = ((DATA.parts || {}).tables) || {};
+  if (id === "enclosures") {
+    return tableMatchesQuery(tables.csb3, q) || tableMatchesQuery(tables.vr, q);
+  }
+  return tableMatchesQuery(tables[id], q);
+}
+
+function anyPartsMatch(q) {
+  return partsTabIds().some(id => partsTabMatches(id, q));
+}
+
+function refreshParts(runFilter) {
   const el = document.getElementById("parts-root");
   if (!el) return;
   el.innerHTML = partsHtml();
   el.querySelectorAll(".tabs button").forEach(b => {
     b.addEventListener("click", () => {
-      el.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-selected", "false"));
-      b.setAttribute("aria-selected", "true");
-      const tab = b.dataset.tab;
-      activePartsTab = tab;
-      const body = document.getElementById("parts-body");
-      body.innerHTML = tab === "enclosures"
-        ? [DATA.parts.tables.csb3, DATA.parts.tables.vr].filter(Boolean)
-            .map(t => renderOneTable(t, "board-" + t.id)).join("")
-        : renderOneTable(DATA.parts.tables[tab] || null, "board-" + tab);
-      bindTables(body);
+      activePartsTab = b.dataset.tab;
+      refreshParts(false);
       applyFilters();
     });
   });
   bindTables(el);
+  if (runFilter !== false) applyFilters();
 }
 
 function overviewHtml() {
@@ -1220,13 +1242,34 @@ function passesKindTopic(el, kinds) {
   return kindOk && topicOk;
 }
 
+let filtering = false;
+
 function applyFilters() {
-  const q = document.getElementById("q").value.trim().toLowerCase();
+  if (filtering) return;
+  filtering = true;
+  try {
+    applyFiltersInner();
+  } finally {
+    filtering = false;
+  }
+}
+
+function applyFiltersInner() {
+  const qEl = document.getElementById("q");
+  const q = qEl ? qEl.value.trim().toLowerCase() : "";
   const kinds = {
     deliverable: on("t-deliverable"),
     research: on("t-research"),
     support: on("t-support"),
   };
+
+  if (q && anyPartsMatch(q) && !partsTabMatches(activePartsTab, q)) {
+    const next = partsTabIds().find(id => partsTabMatches(id, q));
+    if (next) {
+      activePartsTab = next;
+      refreshParts(false);
+    }
+  }
 
   document.querySelectorAll("[data-filter-item]").forEach(el => {
     const hay = el.dataset.hay || "";
@@ -1240,6 +1283,7 @@ function applyFilters() {
         if (p.hasAttribute("data-filter-item") && passesKindTopic(p, kinds)) {
           p.classList.remove("hidden");
         }
+        if (p.tagName === "DETAILS") p.open = true;
         p = p.parentElement;
       }
     });
@@ -1249,22 +1293,15 @@ function applyFilters() {
     const topicOk = !selectedTopics.size || selectedTopics.has(sec.dataset.topic);
     const any = [...sec.querySelectorAll("[data-filter-item]")].some(el =>
       !el.classList.contains("hidden"));
-    const hay = sec.dataset.hay || "";
-    const qOk = !q || hay.includes(q) || any;
-    sec.classList.toggle("hidden", !topicOk || !any || !qOk);
+    sec.classList.toggle("hidden", !topicOk || !any);
   });
 
   document.querySelectorAll("[data-topic-btn]").forEach(b => {
     const dir = b.dataset.topic;
-    const t = DATA.topics.find(x => x.dir === dir);
-    const c = t ? topicCounts(t) : {d: 0, r: 0, w: 0};
-    const has = (kinds.deliverable && c.d) || (kinds.research && c.r) || (kinds.support && c.w);
-    const topicOk = !selectedTopics.size || selectedTopics.has(dir);
-    const hay = b.dataset.hay || "";
-    const qOk = !q || hay.includes(q);
     b.setAttribute("aria-pressed", selectedTopics.has(dir) ? "true" : "false");
     if (b.classList.contains("topic-tile")) {
-      b.classList.toggle("hidden", !(has && topicOk && qOk));
+      const sec = document.getElementById("topic-" + dir);
+      b.classList.toggle("hidden", !sec || sec.classList.contains("hidden"));
     }
   });
 
@@ -1286,9 +1323,8 @@ function applyFilters() {
   });
   const parts = document.getElementById("parts");
   if (parts) {
-    const anyTbl = parts.querySelector(".tbl:not(.hidden)");
-    const hay = parts.dataset.hay || "";
-    parts.classList.toggle("hidden", !anyTbl && !(!q || hay.includes(q)));
+    const keep = !q || anyPartsMatch(q) || (parts.dataset.hay || "").includes(q);
+    parts.classList.toggle("hidden", !keep);
   }
 
   const cards = document.querySelectorAll("#out .card[data-filter-item]:not(.hidden)").length;

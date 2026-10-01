@@ -46,21 +46,11 @@ jobs:
       - name: Check hub built
         run: |
           test -s docs/research-hub.html
-          python3 -c "
-          from pathlib import Path
-          import json
-          html = Path('docs/research-hub.html').read_text(encoding='utf-8')
-          start = html.index('const DATA = ') + len('const DATA = ')
-          data, _ = json.JSONDecoder().raw_decode(html[start:])
-          tables = (data.get('parts') or {}).get('tables') or {}
-          assert data.get('topics'), 'hub has no topics'
-          assert 'buy' in tables, 'hub is missing the NEED-TO-BUY table'
-          assert 'id="overview"' in html, 'hub is missing the graphics overview'
-          assert 'data-filter-item' in html, 'hub cards are not filterable'
-          assert 'function applyFilters' in html, 'hub is missing applyFilters'
-          assert 'id="t-deliverable" type="button"' in html or 'type="button" id="t-deliverable"' in html
-          print('topics', len(data['topics']), 'tables', sorted(tables))
-          "
+          python3 docs/test_build_research_hub.py
+      - name: Check hub filters
+        run: |
+          npm install --no-save --prefix /tmp/hub-jsdom jsdom@26
+          NODE_PATH=/tmp/hub-jsdom/node_modules node docs/test_research_hub_filters.js
       - name: Upload preview HTML
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
