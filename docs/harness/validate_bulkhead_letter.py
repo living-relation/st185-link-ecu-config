@@ -23,7 +23,9 @@ and broken-off pairs (rails, grounds and screens do not give a device a letter).
       cross-reference dummy (cp_xref) left on any drawing, fails. Inline connector pairs
       are the other legal break; validate_interfaces I7 checks their pins pair up.
   L7  one element, one drawing: no connector, splice, resistor, diode or terminal id is
-      drawn on two files (broken-off ends excepted - they are the pair)
+      drawn on two files (broken-off ends excepted - they are the pair). A copy marked
+      excludeFromBom is a reference to the owning drawing, not a second element
+      (Daniel, 2026-10-01: cab_fspur_fr_sh lands on the existing A-cabin sp_shield_a).
 
 The allow-list is the rule's crossovers and nothing else:
   (a) +5V (A32) splices at ECU A in the cabin; its B leg leaves A-cabin broken off and
@@ -211,6 +213,8 @@ for loom, d in g.docs.items():
     for k in ("connectors", "splices", "resistors", "diodes", "terminals"):
         for x in d.get(k, []):
             if (loom, x["id"]) in registered:
+                continue
+            if x.get("excludeFromBom"):
                 continue
             seen[x["id"]].append(loom)
 for eid, looms in sorted(seen.items()):
