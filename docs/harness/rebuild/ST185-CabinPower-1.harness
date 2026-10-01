@@ -963,9 +963,9 @@
     },
     {
       "id": "wp_12_red",
-      "partNumber": "EW-1C12-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 12 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-12-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 12 AWG RED",
       "color": "Red",
       "gauge": {
         "value": 12,
@@ -974,9 +974,9 @@
     },
     {
       "id": "wp_16_red",
-      "partNumber": "EW-1C16-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-16-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 16 AWG RED",
       "color": "Red",
       "gauge": {
         "value": 16,
@@ -985,9 +985,9 @@
     },
     {
       "id": "wp_18_red",
-      "partNumber": "EW-1C18-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-18-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 18 AWG RED",
       "color": "Red",
       "gauge": {
         "value": 18,
@@ -996,9 +996,9 @@
     },
     {
       "id": "wp_20_red",
-      "partNumber": "EW-1C20-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-20-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 20 AWG RED",
       "color": "Red",
       "gauge": {
         "value": 20,
@@ -1018,9 +1018,9 @@
     },
     {
       "id": "wp_8_red",
-      "partNumber": "EW-1C8-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 8 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-8-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 8 AWG RED",
       "color": "Red",
       "gauge": {
         "value": 8,
@@ -1029,9 +1029,9 @@
     },
     {
       "id": "wp_10_red",
-      "partNumber": "EW-1C10-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 10 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-10-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 10 AWG RED",
       "color": "Red",
       "gauge": {
         "value": 10,
@@ -1040,9 +1040,9 @@
     },
     {
       "id": "wp_14_red",
-      "partNumber": "EW-1C14-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 14 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "partNumber": "M22759/16-14-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, M22759/16, 14 AWG RED",
       "color": "Red",
       "gauge": {
         "value": 14,

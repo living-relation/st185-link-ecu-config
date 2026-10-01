@@ -82,6 +82,8 @@ def wire_desc(p):
     if pn.startswith("BC-"):
         return "CABLE, BATTERY, %s, %s, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV" % (
             gauge_txt(p.get("gauge"), pn), colour(p))
+    if pn.startswith("M22759/16-"):
+        return "WIRE, M22759/16, %s %s" % (gauge_txt(p.get("gauge"), pn), colour(p))
     if not pn.startswith("EW-"):
         return None
     c = colour(p)
