@@ -207,6 +207,10 @@
       "shield": {
         "id": "cab_fout_fr_sh",
         "color": "Shield",
+        "source": {
+          "id": "ep_vrc_f_out_sh",
+          "handle": "Terminal"
+        },
         "target": {
           "id": "ix_ws_front_r",
           "handle": "c6"
@@ -389,11 +393,6 @@
       },
       "sourceId": "bp_f_fwd",
       "targetId": "ix_ws_front_r"
-    },
-    {
-      "id": "bn_bp_f_out__ep_vrc_f_out_fr_sh",
-      "sourceId": "bp_f_out",
-      "targetId": "ep_vrc_f_out_fr_sh"
     }
   ],
   "splices": [
@@ -565,7 +564,7 @@
     {
       "id": "ep_vrc_f_out_sh",
       "type": "Loose",
-      "signal": "VRC_FRONT_OUT screen - OUT drain and combined input drain; continues on inline pin 5 to SHIELD_A (A7)",
+      "signal": "VRC_FRONT_OUT screen - OUT drain, FR OUT drain, and combined input drain; continues on inline pin 5 to SHIELD_A (A7)",
       "coveringIds": [
         "cov_s200_3"
       ],
@@ -576,19 +575,6 @@
       "schematicPosition": {
         "x": 660,
         "y": 780
-      }
-    },
-    {
-      "id": "ep_vrc_f_out_fr_sh",
-      "type": "Loose",
-      "signal": "VRC_FRONT_OUT FR screen - floats at the VRC; continues on inline pin 6 to SHIELD_B (B17)",
-      "layoutPosition": {
-        "x": 1140,
-        "y": 210
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 870
       }
     }
   ],
@@ -764,7 +750,7 @@
         },
         {
           "id": "c6",
-          "signal": "Screen drain, FR cable -> SHIELD_B (B17)",
+          "signal": "Screen drain, FR cable -> SHIELD_A (A7); grounded at the VRC case",
           "designation": "6"
         }
       ],
@@ -1005,7 +991,7 @@
   "schematicNotes": [
     {
       "id": "n_scope",
-      "text": "FRONT WHEEL SPEED - one Y harness. FL and FR ABS drops (loom C fender route, no bulkhead) run to the front VRC; the output runs through a grommet to the 6-way inline DT04-6P near the ECU (IX_WS_FRONT). The ECU side owns only the short spur and the DT06-6S mating half (ST185-A-cabin; the FR core and its c6 drain belong to ST185-B-cabin).",
+      "text": "FRONT WHEEL SPEED - one Y harness. FL and FR ABS drops (loom C fender route, no bulkhead) run to the front VRC; the output runs through a grommet to the 6-way inline DT04-6P near the ECU (IX_WS_FRONT). The ECU side owns only the short spur and the DT06-6S mating half (ST185-A-cabin; the FR core belongs to ST185-B-cabin). FR screen stays on pin 6 and joins SHIELD_A (A7), not B17.",
       "width": 390,
       "schematicPosition": {
         "x": 1920,
@@ -1024,7 +1010,7 @@
     },
     {
       "id": "n_shield",
-      "text": "SHIELDS. Sensor ends float (no S200). At the VRC both input drains are S200-3 and spliced before the plugs: each drain lands on its own IN pin 3, and the combined drain also lands on the OUT screen pin, which already continues on inline pin 5 to SHIELD_A (ECU-A A7). The FL/supply OUT drain (S200-3) lands on that same OUT screen pin. The FR OUT screen floats at the VRC and continues on inline pin 6 to SHIELD_B (ECU-B B17). No shield stops at the sensor, the VRC, or the inline. S200 only on terminated ends. A7 and B17 stay separate.",
+      "text": "SHIELDS. Sensor ends float (no S200). At the VRC both input drains are S200-3 and spliced before the plugs: each drain lands on its own IN pin 3, and the combined drain also lands on the OUT screen pin, which already continues on inline pin 5 to SHIELD_A (ECU-A A7). The FL/supply OUT drain (S200-3) and the FR OUT drain land on that same OUT screen pin. The FR OUT screen stays on inline pin 6 and continues to SHIELD_A (A7), not B17. No shield stops at the sensor. S200 only on terminated ends. A7 and B17 stay separate.",
       "color": "Orange",
       "width": 390,
       "schematicPosition": {

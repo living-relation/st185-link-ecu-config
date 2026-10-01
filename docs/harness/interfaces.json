@@ -60,7 +60,7 @@
     },
     "CSB3": {
       "file": "ST185-CSB3-1.harness",
-      "physical": "ECUMaster CSB3 plug and switch inputs (cruise stalk, clutch, brake, cruise ladder); power, ground, reverse, LED and CAN wires arrive broken off"
+      "physical": "ECUMaster CSB3 plug and switch inputs (cruise stalk, clutch, brake, cruise ladder); power, ground, reverse, LED and CAN wires arrive broken off. Enclosure screen grounded at the box; CANbus drop screen continues on ST185-CAN."
     }
   },
   "interfaces": [
@@ -99,7 +99,7 @@
         "c3": "FL out -> A23",
         "c4": "FR out -> B21",
         "c5": "drain, FL/supply cable -> SHIELD_A A7",
-        "c6": "drain, FR cable -> SHIELD_B B17 (floats at VRC)"
+        "c6": "drain, FR cable -> SHIELD_A A7 (grounded at VRC)"
       },
       "halves": [
         {
@@ -260,7 +260,7 @@
         "ep_vrc_r_inr_sh",
         "ep_vrc_r_out_sh"
       ],
-      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded only at the ECU."
+      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded at B17."
     },
     {
       "id": "VRC_FRONT",
@@ -270,7 +270,15 @@
         "ep_vrc_f_inr_sh",
         "ep_vrc_f_out_sh"
       ],
-      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded only at the ECU."
+      "note": "The VRC case joins the two IN screens, the OUT screen, and the FR OUT screen on the shared OUT case pin (SHIELD-RULES 6.30). Isolated from chassis; grounded at A7. FR stays on inline pin 6 and continues to sp_shield_a, not B17."
+    },
+    {
+      "id": "CSB3",
+      "harness": "CSB3",
+      "screen": [
+        "ep_csb3_sh"
+      ],
+      "note": "The CSB3 enclosure screen is grounded at the box (Daniel 2026-10-01). The CANbus drop screen cab_can_csb_sh splices onto the trunk at sp_can_sh and does not land on the box."
     }
   ],
   "flyingLeads": [
@@ -750,7 +758,7 @@
           "cable": "cab_fout_fr",
           "cores": 1,
           "drainPin": "c6",
-          "screenFromEnclosure": false
+          "screenFromEnclosure": true
         }
       ],
       "spurHarness": "A-cabin",
@@ -760,7 +768,7 @@
         "c3": "ecu_a.a23",
         "c4": "ecu_b.b21",
         "c5": "sp_shield_a",
-        "c6": "sp_shield_b"
+        "c6": "sp_shield_a"
       }
     }
   },
@@ -963,7 +971,7 @@
     {
       "id": "BR_CAB_FSPUR_FR_SH",
       "type": "broken_off",
-      "what": "front wheel-speed FR shield",
+      "what": "front wheel-speed FR shield to sp_shield_a (A7)",
       "ends": [
         {
           "harness": "B-cabin",
@@ -987,6 +995,21 @@
         {
           "harness": "A-cabin",
           "terminal": "br_w_cru_5v"
+        }
+      ]
+    },
+    {
+      "id": "BR_CAN_SH",
+      "type": "broken_off",
+      "what": "CAN trunk shield into sp_shield_a (A7); not a second wire in the A7 pin",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_can_sh"
+        },
+        {
+          "harness": "A-cabin",
+          "terminal": "br_can_sh"
         }
       ]
     },

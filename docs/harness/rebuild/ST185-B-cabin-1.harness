@@ -588,7 +588,7 @@
           "handle": "Terminal"
         },
         "target": {
-          "id": "sp_shield_b",
+          "id": "sp_shield_a",
           "handle": "Splice"
         }
       },
@@ -1239,6 +1239,19 @@
       }
     },
     {
+      "id": "sp_shield_a",
+      "partId": "spp_solder_generic",
+      "excludeFromBom": true,
+      "layoutPosition": {
+        "x": 1500,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 3810,
+        "y": 1800
+      }
+    },
+    {
       "id": "sp_shield_b",
       "partId": "spp_solder_generic",
       "locationId": "bp_930",
@@ -1523,7 +1536,7 @@
       "id": "br_cab_fspur_fr_sh",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR shield from IX_WS_FRONT pin 6",
+      "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR shield from IX_WS_FRONT pin 6 to sp_shield_a (A7)",
       "coveringIds": [
         "cov_s200_2"
       ],

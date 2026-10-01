@@ -327,6 +327,19 @@
       "stripeColor": "Yellow"
     },
     {
+      "id": "w_can_sh_a",
+      "color": "Black",
+      "partId": "m16_20_0",
+      "source": {
+        "id": "br_can_sh",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_shield_a",
+        "handle": "Splice"
+      }
+    },
+    {
       "id": "w_cam_pullup_8v",
       "color": "Orange",
       "partId": "m16_20_39",
@@ -1708,6 +1721,15 @@
       "targetId": "br_w_csb12"
     },
     {
+      "id": "bn_b_bp_1020__br_can_sh",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "b_bp_1020",
+      "targetId": "br_can_sh"
+    },
+    {
       "id": "bn_b_bp_1170__br_w_csbg",
       "length": {
         "unit": "mm",
@@ -2250,7 +2272,7 @@
       "id": "br_cab_fspur_fr_sh",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-B-cabin: front wheel-speed FR shield to sp_shield_b (B17)",
+      "signal": "Broken off - continues on ST185-B-cabin: front wheel-speed FR shield to sp_shield_a (A7)",
       "coveringIds": [
         "cov_s200_2"
       ],
@@ -2275,6 +2297,20 @@
       "schematicPosition": {
         "x": 1770,
         "y": 2640
+      }
+    },
+    {
+      "id": "br_can_sh",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CAN: CAN trunk shield into sp_shield_a (A7)",
+      "layoutPosition": {
+        "x": 1680,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 1110,
+        "y": 2850
       }
     },
     {
@@ -3724,7 +3760,7 @@
         },
         {
           "id": "c6",
-          "signal": "Screen drain, FR cable -> SHIELD_B (B17)",
+          "signal": "Screen drain, FR cable -> SHIELD_A (A7); grounded at the VRC case",
           "designation": "6"
         }
       ],

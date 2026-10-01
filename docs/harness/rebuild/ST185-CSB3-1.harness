@@ -368,6 +368,19 @@
         "x": 1380,
         "y": -60
       }
+    },
+    {
+      "id": "ep_csb3_sh",
+      "type": "Loose",
+      "signal": "CSB3 enclosure screen - grounded at the CSB3 box (VRC case-ground pattern; no connector, no cavity, no part)",
+      "layoutPosition": {
+        "x": 2460,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 180
+      }
     }
   ],
   "splices": [
@@ -602,6 +615,14 @@
         }
       ],
       "partId": "cab_sh_4c",
+      "shield": {
+        "id": "cab_can_csb3_sh",
+        "color": "Shield",
+        "source": {
+          "id": "ep_csb3_sh",
+          "handle": "Terminal"
+        }
+      },
       "schematicPosition": {
         "x": 1380,
         "y": 0
@@ -858,6 +879,15 @@
       "targetId": "br_w_csbg",
       "length": {
         "value": 470,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1230__ep_csb3_sh",
+      "sourceId": "bp_1230",
+      "targetId": "ep_csb3_sh",
+      "length": {
+        "value": 50,
         "unit": "mm"
       }
     }
@@ -1160,7 +1190,7 @@
         "x": 0,
         "y": -300
       },
-      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up. +12V, ground, CAN H and CAN L leave on one 55PC1243-20-2/6/4/5-9 4-core (cab_sh_4c) broken off to ST185-CAN. The reverse input from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and +5V from ST185-A-cabin still arrive broken off. Screen floats at the CSB3 end. Non-ECU harness."
+      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up. +12V, ground, CAN H and CAN L leave on one 55PC1243-20-2/6/4/5-9 4-core (cab_sh_4c) broken off to ST185-CAN. Two CSB3 shields: the enclosure screen (cab_can_csb3_sh) is grounded at the CSB3 box on Loose ep_csb3_sh (VRC case-ground pattern, no part). The CANbus drop screen (cab_can_csb_sh on ST185-CAN) splices onto the trunk at sp_can_sh and does not land on the box. The reverse input from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and +5V from ST185-A-cabin still arrive broken off. Non-ECU harness."
     },
     {
       "id": "n_cavity_notes",

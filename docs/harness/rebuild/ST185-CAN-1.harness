@@ -139,7 +139,7 @@
         "handle": "Splice"
       },
       "target": {
-        "id": "t_can_sh_gnd",
+        "id": "br_can_sh",
         "handle": "Terminal"
       }
     }
@@ -730,13 +730,13 @@
       "targetId": "t_ltw_l"
     },
     {
-      "id": "bn_bp_930__t_can_sh_gnd",
+      "id": "bn_bp_930__br_can_sh",
       "length": {
         "unit": "mm",
         "value": 50
       },
       "sourceId": "bp_930",
-      "targetId": "t_can_sh_gnd"
+      "targetId": "br_can_sh"
     },
     {
       "id": "bn_bp_1050__br_w_csb12",
@@ -1163,10 +1163,10 @@
       }
     },
     {
-      "id": "t_can_sh_gnd",
-      "type": "Ring",
-      "width": 210,
-      "signal": "CAN screen ground (no pin number)",
+      "id": "br_can_sh",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-A-cabin: CAN trunk shield into sp_shield_a (A7)",
       "layoutPosition": {
         "x": 1080,
         "y": -240
@@ -1174,8 +1174,7 @@
       "schematicPosition": {
         "x": 0,
         "y": 120
-      },
-      "excludeFromBom": true
+      }
     },
     {
       "id": "br_w_csb12",
@@ -1520,7 +1519,7 @@
         {
           "id": "c5",
           "designation": "5",
-          "signal": "CAN 4-core shield to ground symbol",
+          "signal": "CAN 4-core shield through pin 5 to sp_shield_a (A7)",
           "contactPartId": "ct_hdp20p"
         },
         {
@@ -1717,7 +1716,7 @@
   "schematicNotes": [
     {
       "id": "n_can",
-      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Every CAN node uses 55PC1243-20-2/6/4/5-9 (cab_sh_4c), one common braid around all four wires (Daniel 2026-10-01: the single-shield cable is fine). Cluster, RealDash, CSB3, lambda and the trunk carry +12V, ground, CAN H and CAN L on that cable. Power and ground splice with the CAN pairs at sp_can12 / sp_cang / sp_canh / sp_canl. At the ECU they splice from ST185-A-cabin sp_sw12 (F9 / a5, w78) and sp_chassis (a25 / a34, w70 / w_a34) into the pin half of the DTM-6 (DTM04-6P), not onto the LTW. The six-inch LTW stub is 55PC1122-20-2/6-9 (cab_sh_2c): CAN H and CAN L only, socket half DTM06-6S. That stub braid is not terminated at either end. The trunk 4-core starts on the pin half; its shield passes DTM pin 5 to the ground symbol t_can_sh_gnd (Ring, no part, no pin number). ecu_com is the six-pin comms / tuning port. Do not land the CAN braid on any of its cavities (c5 is RS232 TX even when unused). Node screens join at sp_can_sh. Do not land a CAN screen on ecu_com, A7, B17, sp_shield_a or sp_shield_b. Device ends of the node screens stay floating. The lambda 4-core screen floats at the controller, passes bulkhead B c2, and lands on B17 through sp_shield_b, not on this CAN ring. Cluster and RealDash have no node connector on this drawing; their 12V / ground are flying-lead terminals, not invented cavities. 120R termination at the ECU-end splices and at the lambda end. Raychem S200-3-WI-22-9 only on the terminated screen join at sp_can_sh.",
+      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Every CAN node uses 55PC1243-20-2/6/4/5-9 (cab_sh_4c), one common braid around all four wires (Daniel 2026-10-01: the single-shield cable is fine). Cluster, RealDash, CSB3, lambda and the trunk carry +12V, ground, CAN H and CAN L on that cable. Power and ground splice with the CAN pairs at sp_can12 / sp_cang / sp_canh / sp_canl. At the ECU they splice from ST185-A-cabin sp_sw12 (F9 / a5, w78) and sp_chassis (a25 / a34, w70 / w_a34) into the pin half of the DTM-6 (DTM04-6P), not onto the LTW. The six-inch LTW stub is 55PC1122-20-2/6-9 (cab_sh_2c): CAN H and CAN L only, socket half DTM06-6S. That stub braid is not terminated at either end. The trunk 4-core starts on the pin half; its shield passes DTM pin 5, joins the node screens at sp_can_sh, and continues broken off (br_can_sh) into ST185-A-cabin sp_shield_a, the splice that already drains into A7. It is not a second wire in the A7 pin, and it does not join sp_shield_b. ecu_com is the six-pin comms / tuning port. Do not land the CAN braid on any of its cavities (c5 is RS232 TX even when unused). The CSB3 CANbus drop screen (cab_can_csb_sh) splices onto the trunk at sp_can_sh and does not land on the CSB3 box; the CSB3 enclosure screen is on ST185-CSB3. Device ends of the cluster and RealDash node screens stay floating. The lambda 4-core screen floats at the controller, passes bulkhead B c2, and lands on B17 on its own conductor (cab_lam_can_c_sh), not on this trunk and not on sp_shield_b. Cluster and RealDash have no node connector on this drawing; their 12V / ground are flying-lead terminals, not invented cavities. 120R termination at the ECU-end splices and at the lambda end. Raychem S200-3-WI-22-9 only on the terminated screen join at sp_can_sh.",
       "width": 390,
       "schematicPosition": {
         "x": 3180,
@@ -1726,7 +1725,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, cabin fuse F5 10A - on the 4-core with CAN H/L, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse F5\nt_cluster_can / t_cluster_12v / t_cluster_gnd: TrackCluster ESP32-P4 - CAN drop (device not in this harness; no connector cavities here)\nt_realdash_can / t_realdash_12v / t_realdash_gnd: RealDash Pi 5 - CAN drop (device not in this harness; no connector cavities here)\nt_ltw_h / t_ltw_l: Link CANLTW round plug not drawn; labeled wires that mate to it. Do not invent the plug. Only CAN H and CAN L leave the LTW, on 55PC1122-20-2/6-9, six inches to DTM06-6S.\ndtm_can_s / dtm_can_p: house DTM-6 (DTM06-6S socket to LTW, DTM04-6P pin to trunk). 1=+12V 2=GND 3=CAN L 4=CAN H 5=trunk shield 6=unused. Socket wires 3 and 4 only.\nbr_w_csb12 / br_w_csbg: ECU switched +12V (sp_sw12) and ECU ground (sp_chassis) on ST185-A-cabin; they splice into the DTM pin half. Not ecu_com, not the LTW stub.\nt_can_sh_gnd: CAN braid ground, partless Ring, no pin number, excludeFromBom. Not ecu_com, not A7, not B17. Lambda screen is not on this ring.",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, cabin fuse F5 10A - on the 4-core with CAN H/L, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse F5\nt_cluster_can / t_cluster_12v / t_cluster_gnd: TrackCluster ESP32-P4 - CAN drop (device not in this harness; no connector cavities here)\nt_realdash_can / t_realdash_12v / t_realdash_gnd: RealDash Pi 5 - CAN drop (device not in this harness; no connector cavities here)\nt_ltw_h / t_ltw_l: Link CANLTW round plug not drawn; labeled wires that mate to it. Do not invent the plug. Only CAN H and CAN L leave the LTW, on 55PC1122-20-2/6-9, six inches to DTM06-6S.\ndtm_can_s / dtm_can_p: house DTM-6 (DTM06-6S socket to LTW, DTM04-6P pin to trunk). 1=+12V 2=GND 3=CAN L 4=CAN H 5=trunk shield 6=unused. Socket wires 3 and 4 only. Socket cavities 1, 2 and 5 stay plugged.\nbr_w_csb12 / br_w_csbg: ECU switched +12V (sp_sw12) and ECU ground (sp_chassis) on ST185-A-cabin; they splice into the DTM pin half. Not ecu_com, not the LTW stub.\nbr_can_sh: CAN braid continues on ST185-A-cabin into sp_shield_a (A7). Not ecu_com, not B17, not a second wire in the A7 pin. Lambda screen is not on this trunk.",
       "schematicPosition": {
         "x": 3180,
         "y": 150
