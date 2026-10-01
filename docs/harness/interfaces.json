@@ -3,63 +3,63 @@
   "_scope": "The center cluster's own assembly harness is owned by center-cluster-esp32-p4 and is not drawn here; ST185-CAN ends at its CAN-drop terminal t_cluster_can. The cluster warning-LED loom (ST185-ClusterLED) is owned here.",
   "harnesses": {
     "A-cabin": {
-      "file": "ST185-A-cabin.harness",
+      "file": "ST185-A-cabin-1.harness",
       "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the A-triggered relays (fuse block and HCFB on ST185-CabinPower), APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
     },
     "B-cabin": {
-      "file": "ST185-B-cabin.harness",
+      "file": "ST185-B-cabin-1.harness",
       "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
     },
     "CabinPower": {
-      "file": "ST185-CabinPower.harness",
+      "file": "ST185-CabinPower-1.harness",
       "physical": "Cabin power (non-ECU): cabin fuse block, high-current fuse block, battery feed ring, fuel pump run to the trunk; feeds to the A-cabin relays and splices and to B-cabin arrive broken off"
     },
     "APS-Pedal": {
-      "file": "ST185-APS-Pedal.harness",
+      "file": "ST185-APS-Pedal-1.harness",
       "physical": "APS pedal harness - male half of IX_APS to the BRZ e-throttle pedal plug (cabin)"
     },
     "A-engine": {
-      "file": "ST185-A-engine.harness",
+      "file": "ST185-A-engine-1.harness",
       "physical": "Engine harness behind bulkhead A - every engine device whose ECU signal is on connector A"
     },
     "B-engine": {
-      "file": "ST185-B-engine.harness",
+      "file": "ST185-B-engine-1.harness",
       "physical": "Engine harness behind bulkhead B - every engine device whose ECU signal is on connector B, and the ETB motor"
     },
     "CAN": {
-      "file": "ST185-CAN.harness",
+      "file": "ST185-CAN-1.harness",
       "physical": "CAN backbone"
     },
     "EngineRoom-C": {
-      "file": "ST185-EngineRoom-C.harness",
+      "file": "ST185-EngineRoom-C-1.harness",
       "physical": "Loom C - engine-room / high-current harness"
     },
     "ClusterLED": {
-      "file": "ST185-ClusterLED.harness",
+      "file": "ST185-ClusterLED-1.harness",
       "physical": "Cluster warning LEDs"
     },
     "WheelSpeed-Rear": {
-      "file": "ST185-WheelSpeed-Rear.harness",
+      "file": "ST185-WheelSpeed-Rear-1.harness",
       "physical": "Rear wheel-speed Y harness - RL/RR ABS drops to the rear VRC endpoints, one screened 4-core output to IX_WS_REAR"
     },
     "WheelSpeed-Front": {
-      "file": "ST185-WheelSpeed-Front.harness",
+      "file": "ST185-WheelSpeed-Front-1.harness",
       "physical": "Front wheel-speed Y harness - FL/FR ABS drops (loom C fender route) to the front VRC endpoints, output pair to IX_WS_FRONT"
     },
     "ACAmp-Spur": {
-      "file": "ST185-ACAmp-Spur.harness",
+      "file": "ST185-ACAmp-Spur-1.harness",
       "physical": "A/C amplifier spur - receiving half of IX_AC_CTS (TW to auto amp A34) plus flying leads at compressor A/C AMPLIFIER A18 (kill / clutch / pressure); no OEM A/C housings"
     },
     "RearFuel": {
-      "file": "ST185-RearFuel.harness",
+      "file": "ST185-RearFuel-1.harness",
       "physical": "Rear Fuel - fuel level sender behind IX_FUEL_LVL (the pump run stays on ST185-A-cabin, plan 6.41)"
     },
     "AntiTheft": {
-      "file": "ST185-AntiTheft.harness",
+      "file": "ST185-AntiTheft-1.harness",
       "physical": "Anti-theft"
     },
     "CSB3": {
-      "file": "ST185-CSB3.harness",
+      "file": "ST185-CSB3-1.harness",
       "physical": "ECUMaster CSB3 plug and switch inputs (cruise stalk, clutch, brake, cruise ladder); power, ground, reverse, LED and CAN wires arrive broken off"
     }
   },

@@ -45,8 +45,8 @@ thing is wrong.
   modules) are never drawn.
 - **Harness C is the Engine Room Harness** — no bulkhead, exits the driver fender around the
   front of the bay. The front wheel-speed drops follow its fender route (drawn in
-  `ST185-WheelSpeed-Front.harness`) and never touch a bulkhead.
-- **CAN H/L is drawn once**, in `ST185-CAN.harness`. No other loom draws it.
+  `ST185-WheelSpeed-Front-1.harness`) and never touch a bulkhead.
+- **CAN H/L is drawn once**, in `ST185-CAN-1.harness`. No other loom draws it.
 - **Shields** float at the device and terminate at the ECU only: loom A screens on A7
   (SHIELD_A), loom B screens on B17 (SHIELD_B). **A7 and B17 are never joined.** Nothing but a
   drain ever lands on either. One exception, the VR conditioner boxes (§6.30): the case is

@@ -4,7 +4,7 @@
 
 This is the living splice table. Pin facts come from the 1990 ST185 All-Trac EWD (the All-Trac-specific book) cross-checked against the 1992 Celica EWD132U (covers ST185, year-adjacent to 1993). The 1993 bound book is EWD160U; the freely available PDF of that number is the FWD AT180/ST184 book, so it is **not** used as All-Trac pin authority.
 
-Factory snips live in `docs/electrical/ewd-snips/`. The drawing is `docs/harness/rebuild/ST185-EngineRoom-C.harness`. Cabin ECU power stays in `docs/harness/rebuild/ST185-A-cabin.harness` (fuse block, HCFB, A-triggered relays) and `ST185-B-cabin.harness` (condenser fan relay).
+Factory snips live in `docs/electrical/ewd-snips/`. The drawing is `docs/harness/rebuild/ST185-EngineRoom-C-1.harness`. Cabin ECU power stays in `docs/harness/rebuild/ST185-A-cabin-1.harness` (fuse block, HCFB, A-triggered relays) and `ST185-B-cabin-1.harness` (condenser fan relay).
 
 ---
 
@@ -99,7 +99,7 @@ Rule: **one source per load** — never two paths feeding the same circuit.
 | 160 A alternator B+ | 4 AWG (or 2 AWG) to starter B+, does not recross | Heavy cable. Protected by a fusible link or inline fuse / breaker at the trunk battery or near the cabin fuse box, never at the starter (Daniel 2026-09-28) |
 | MRS EPS pump | `k_eps` HCR 150 in the glove box (moved from the engine bay 2026-09-28, `ST185-B-cabin`), HCFB H4 Bussmann AMI-60, 8 AWG feed (sized 2026-09-28, `sot/channels.csv` k_eps c1) | Too big for a micro relay |
 | Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Coils from Aux 5 / Ign 5 |
-| EFI main, ETB, fuel pump | Cabin relays in `ST185-A-cabin.harness` | Hold-power and Link's published ETB circuit |
+| EFI main, ETB, fuel pump | Cabin relays in `ST185-A-cabin-1.harness` | Hold-power and Link's published ETB circuit |
 | HEAD LH / HEAD RH | Relay + fuse, second fuse block, into J/B2 2A-3 / 2A-6 | Replaces 15 A HEAD fuses in J/B2 |
 | HAZ-HORN | Fuse (+ horn relay if the car lacks one) into 2E-3 | Replaces 15 A HAZ-HORN |
 | DOME | Fuse only, always-hot, into 2E-4 | Replaces 20 A DOME |
@@ -327,11 +327,11 @@ see `docs/harness/README.md` for the current file map.
 
 | File | Owns |
 |---|---|
-| `docs/harness/rebuild/ST185-A-cabin.harness` | Cabin fuse block, HCFB, EFI / ETB / FP / start / rad fan relays, ECU 12 V, ECU-A pins, CSB3 plug and switch inputs (ECU loom letter rule, 2026-09-28) |
-| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU-B pins, condenser fan relay, CAN-Lambda cabin leg (bulkhead B c3/c4, c13/c14) |
-| `docs/harness/rebuild/ST185-A-engine.harness` | A-letter engine devices: MRS speed / enable cavities (bulkhead A c36 / c35), ETB sensors, injectors, coils |
-| `docs/harness/rebuild/ST185-B-engine.harness` | B-letter engine devices, ETB motor, injector / coil 12 V engine leg (Q-RAIL open) |
-| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB → fuse blocks + relays, RADLOK, OEM injection blocks, EPS power, uprated fans. Glove-box body block is node `gbx_body` (was `pmu` until 2026-09-26; no PMU fitted) |
+| `docs/harness/rebuild/ST185-A-cabin-1.harness` | Cabin fuse block, HCFB, EFI / ETB / FP / start / rad fan relays, ECU 12 V, ECU-A pins, CSB3 plug and switch inputs (ECU loom letter rule, 2026-09-28) |
+| `docs/harness/rebuild/ST185-B-cabin-1.harness` | ECU-B pins, condenser fan relay, CAN-Lambda cabin leg (bulkhead B c3/c4, c13/c14) |
+| `docs/harness/rebuild/ST185-A-engine-1.harness` | A-letter engine devices: MRS speed / enable cavities (bulkhead A c36 / c35), ETB sensors, injectors, coils |
+| `docs/harness/rebuild/ST185-B-engine-1.harness` | B-letter engine devices, ETB motor, injector / coil 12 V engine leg (Q-RAIL open) |
+| `docs/harness/rebuild/ST185-EngineRoom-C-1.harness` | **Loom C:** trunk → PDB → fuse blocks + relays, RADLOK, OEM injection blocks, EPS power, uprated fans. Glove-box body block is node `gbx_body` (was `pmu` until 2026-09-26; no PMU fitted) |
 | `archive/2026-09-27-harness-redesign/docs/harness/legacy-prebuild/` | Frozen pre-split baseline, retired 2026-09-27. History only |
 | This document | Splice table and factory citations. No second current-flow diagram of the OEM loom |
 
@@ -354,7 +354,7 @@ On-car check before first power-up: with J/B2 unplugged and the battery still is
 
 ## 8. Glove-box fuse / feed schedule (replaces F11 + J/B2 mains)
 
-TE `2141029-1` already owns F1–F13 in `ST185-A-cabin.harness` (EFI, pump, ETB, start, fans, EPS, ECU +12, coils, injectors, EPS enable). The PDB next to it adds the **body** feeds this document restores:
+TE `2141029-1` already owns F1–F13 in `ST185-A-cabin-1.harness` (EFI, pump, ETB, start, fans, EPS, ECU +12, coils, injectors, EPS enable). The PDB next to it adds the **body** feeds this document restores:
 
 | Fuse / device | Rating | Replaces | Lands on |
 |---|---|---|---|
@@ -383,8 +383,8 @@ Heater and POWER keep their OEM fuses in the kick-panel R/Bs. We only restore th
 7. Engine Room C add-ons: EPS 8 AWG in the vacated ABS trough; uprated fans 8 AWG on the core support. A/C clutch and pressure-switch signal are flying leads on `ST185-ACAmp-Spur`.
 8. Power-up: PDB only → 1I-1 lights J/B1 STOP/ECU-B/DEFOGGER → AM1/AM2 crank the ignition switch → second fuse block live → headlights / dome. Starter last.
 
-Loom C is `docs/harness/rebuild/ST185-EngineRoom-C.harness`, live on harness.design.
-Cabin ECU power is in `rebuild/ST185-A-cabin.harness` and `rebuild/ST185-B-cabin.harness`.
+Loom C is `docs/harness/rebuild/ST185-EngineRoom-C-1.harness`, live on harness.design.
+Cabin ECU power is in `rebuild/ST185-A-cabin-1.harness` and `rebuild/ST185-B-cabin-1.harness`.
 
 **Closed 2026-09-22:** the leftover `bh_c` bulkhead and the ETB / injector / coil
 12 V wires that were still drawn on it have been reassigned to A/B pins and `bh_c`

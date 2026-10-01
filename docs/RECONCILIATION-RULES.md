@@ -42,21 +42,21 @@ whole chain and must pass before every commit.
 |---|---|
 | `sot/channels.csv` | Pin/channel SoT |
 | `XTREMEX-IO-TABLE.html` | Visual face of the SoT, with a generated pin map |
-| `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: A-triggered relays, APS, front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
-| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: condenser fan relay, fuel level branch, rear wheel-speed spur (Rule 3) |
-| `docs/harness/rebuild/ST185-APS-Pedal.harness` | APS pedal harness: A/B pedal wires broken off the cabin looms, female/male DT 6-way pair, run to the pedal (Rule 3 crossover c) |
-| `docs/harness/rebuild/ST185-CabinPower.harness` | Cabin fuse block, HCFB, battery feed, fuel pump run (non-ECU) |
-| `docs/harness/rebuild/ST185-CSB3.harness` | ECUMaster CSB3 plug and switch inputs (non-ECU) |
-| `docs/harness/rebuild/ST185-A-engine.harness` | Bulkhead A engine half to every A-letter engine device (Rule 3) |
-| `docs/harness/rebuild/ST185-B-engine.harness` | Bulkhead B engine half to every B-letter engine device, ETB motor (Rule 3) |
-| `docs/harness/rebuild/ST185-CAN.harness` | CAN backbone - the only drawing with CAN H/L |
-| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | Loom C engine room, no bulkhead |
-| `docs/harness/rebuild/ST185-WheelSpeed-Front.harness` / `-Rear.harness` | Wheel-speed Y harnesses to VRC endpoints and `IX_WS_FRONT` / `IX_WS_REAR` |
-| `docs/harness/rebuild/ST185-RearFuel.harness` | Fuel level sender behind `IX_FUEL_LVL` |
-| `docs/harness/rebuild/ST185-ACAmp-Spur.harness` | A/C amplifier spur behind `IX_AC_CTS` |
+| `docs/harness/rebuild/ST185-A-cabin-1.harness` | ECU connector A to cabin bulkhead A: A-triggered relays, APS, front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
+| `docs/harness/rebuild/ST185-B-cabin-1.harness` | ECU connector B to cabin bulkhead B: condenser fan relay, fuel level branch, rear wheel-speed spur (Rule 3) |
+| `docs/harness/rebuild/ST185-APS-Pedal-1.harness` | APS pedal harness: A/B pedal wires broken off the cabin looms, female/male DT 6-way pair, run to the pedal (Rule 3 crossover c) |
+| `docs/harness/rebuild/ST185-CabinPower-1.harness` | Cabin fuse block, HCFB, battery feed, fuel pump run (non-ECU) |
+| `docs/harness/rebuild/ST185-CSB3-1.harness` | ECUMaster CSB3 plug and switch inputs (non-ECU) |
+| `docs/harness/rebuild/ST185-A-engine-1.harness` | Bulkhead A engine half to every A-letter engine device (Rule 3) |
+| `docs/harness/rebuild/ST185-B-engine-1.harness` | Bulkhead B engine half to every B-letter engine device, ETB motor (Rule 3) |
+| `docs/harness/rebuild/ST185-CAN-1.harness` | CAN backbone - the only drawing with CAN H/L |
+| `docs/harness/rebuild/ST185-EngineRoom-C-1.harness` | Loom C engine room, no bulkhead |
+| `docs/harness/rebuild/ST185-WheelSpeed-Front-1.harness` / `-Rear-1.harness` | Wheel-speed Y harnesses to VRC endpoints and `IX_WS_FRONT` / `IX_WS_REAR` |
+| `docs/harness/rebuild/ST185-RearFuel-1.harness` | Fuel level sender behind `IX_FUEL_LVL` |
+| `docs/harness/rebuild/ST185-ACAmp-Spur-1.harness` | A/C amplifier spur behind `IX_AC_CTS` |
 | `docs/harness/interfaces.json` | Ownership registry: interfaces, endpoints, flying leads, references |
-| `docs/harness/rebuild/ST185-ClusterLED.harness` | Cluster warning LEDs |
-| `docs/harness/rebuild/ST185-AntiTheft.harness` | Anti-theft |
+| `docs/harness/rebuild/ST185-ClusterLED-1.harness` | Cluster warning LEDs |
+| `docs/harness/rebuild/ST185-AntiTheft-1.harness` | Anti-theft |
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table |
 | `docs/harness/HARNESS-BUILD-LIST.csv` | Generated - re-run `buildlist.py` |
 | `docs/harness/NEED-TO-BUY.md` | Generated - re-run `buylist.py` |

@@ -1972,13 +1972,13 @@
           "id": "c3",
           "signal": "CAN-Lambda +12V, cabin fuse F5 10A (4-core 20 AWG)",
           "designation": "3",
-          "contactPartId": "ct_hdp12p"
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c4",
           "signal": "CAN-Lambda ground to cabin chassis ground (4-core 20 AWG)",
           "designation": "4",
-          "contactPartId": "ct_hdp12p"
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c5",
