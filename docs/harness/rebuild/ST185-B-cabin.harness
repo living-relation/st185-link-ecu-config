@@ -474,32 +474,6 @@
         "handle": "c21"
       },
       "stripeColor": "White"
-    },
-    {
-      "id": "w_lam12_bc",
-      "color": "Red",
-      "partId": "m16_14_2",
-      "source": {
-        "id": "br_w_lam12_c",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c3"
-      }
-    },
-    {
-      "id": "w_lamg_bc",
-      "color": "Black",
-      "partId": "m16_14_0",
-      "source": {
-        "id": "bh_b_fw",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "br_w_lamg_b",
-        "handle": "Terminal"
-      }
     }
   ],
   "cables": [
@@ -661,8 +635,34 @@
       "id": "cab_lam_can_c",
       "cores": [
         {
+          "id": "w_lam12_bc",
+          "color": "Red",
+          "source": {
+            "id": "br_w_lam12_c",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "bh_b_fw",
+            "handle": "c3"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "w_lamg_bc",
+          "color": "Blue",
+          "source": {
+            "id": "bh_b_fw",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "br_w_lamg_b",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
           "id": "wc_h_bh_bc",
-          "color": "White",
+          "color": "Yellow",
           "source": {
             "id": "br_wc_h_bh",
             "handle": "Terminal"
@@ -686,10 +686,14 @@
           }
         }
       ],
-      "partId": "cab_sh_2c",
+      "partId": "cab_sh_4c",
       "shield": {
         "id": "cab_lam_can_c_sh",
-        "color": "Shield"
+        "color": "Shield",
+        "target": {
+          "id": "br_cab_lam_can_c_sh",
+          "handle": "Terminal"
+        }
       },
       "schematicPosition": {
         "x": 4500,
@@ -1201,6 +1205,15 @@
       },
       "sourceId": "bp_870",
       "targetId": "br_w_lamg_b"
+    },
+    {
+      "id": "bn_bp_870__br_cab_lam_can_c_sh",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      },
+      "sourceId": "bp_870",
+      "targetId": "br_cab_lam_can_c_sh"
     }
   ],
   "splices": [
@@ -1628,6 +1641,20 @@
         "x": 3300,
         "y": 1380
       }
+    },
+    {
+      "id": "br_cab_lam_can_c_sh",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CAN: lambda CAN-connector screen",
+      "layoutPosition": {
+        "x": 960,
+        "y": 420
+      },
+      "schematicPosition": {
+        "x": 4500,
+        "y": 1560
+      }
     }
   ],
   "wireParts": [
@@ -1962,13 +1989,13 @@
         },
         {
           "id": "c3",
-          "signal": "CAN-Lambda +12V, cabin fuse F5 10A (14 AWG)",
+          "signal": "CAN-Lambda +12V, cabin fuse F5 10A (4-core 20 AWG)",
           "designation": "3",
           "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c4",
-          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
+          "signal": "CAN-Lambda ground to cabin chassis ground (4-core 20 AWG)",
           "designation": "4",
           "contactPartId": "ct_hdp12p"
         },

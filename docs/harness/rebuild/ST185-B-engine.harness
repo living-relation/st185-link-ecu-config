@@ -293,58 +293,6 @@
         "handle": "Splice"
       },
       "stripeColor": "White"
-    },
-    {
-      "id": "w_lam12_be14",
-      "color": "Red",
-      "partId": "m16_14_2",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "sp_lam12_b",
-        "handle": "Splice"
-      }
-    },
-    {
-      "id": "w_lam12_be",
-      "color": "Red",
-      "partId": "m16_20_2",
-      "source": {
-        "id": "sp_lam12_b",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_lam12",
-        "handle": "Terminal"
-      }
-    },
-    {
-      "id": "w_lamg_be14",
-      "color": "Black",
-      "partId": "m16_14_0",
-      "source": {
-        "id": "sp_lamg_b",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_b_eng",
-        "handle": "c4"
-      }
-    },
-    {
-      "id": "w_lamg_be",
-      "color": "Black",
-      "partId": "m16_20_0",
-      "source": {
-        "id": "br_w_lamg",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_lamg_b",
-        "handle": "Splice"
-      }
     }
   ],
   "cables": [
@@ -395,8 +343,34 @@
       "id": "cab_lam_can_e",
       "cores": [
         {
+          "id": "w_lam12_be",
+          "color": "Red",
+          "source": {
+            "id": "bh_b_eng",
+            "handle": "c3"
+          },
+          "target": {
+            "id": "br_w_lam12",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "w_lamg_be",
+          "color": "Blue",
+          "source": {
+            "id": "bh_b_eng",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "br_w_lamg",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
           "id": "wc_h_lam_be",
-          "color": "White",
+          "color": "Yellow",
           "source": {
             "id": "bh_b_eng",
             "handle": "c13"
@@ -420,7 +394,7 @@
           }
         }
       ],
-      "partId": "cab_sh_2c",
+      "partId": "cab_sh_4c",
       "shield": {
         "id": "cab_lam_can_e_sh",
         "color": "Shield"
@@ -841,32 +815,6 @@
         "x": 1920,
         "y": 2280
       }
-    },
-    {
-      "id": "sp_lam12_b",
-      "partId": "spp_solder_generic",
-      "locationId": "be_750",
-      "layoutPosition": {
-        "x": 2190,
-        "y": 180
-      },
-      "schematicPosition": {
-        "x": 600,
-        "y": 2100
-      }
-    },
-    {
-      "id": "sp_lamg_b",
-      "partId": "spp_solder_generic",
-      "locationId": "be_750",
-      "layoutPosition": {
-        "x": 2190,
-        "y": 240
-      },
-      "schematicPosition": {
-        "x": 600,
-        "y": 2220
-      }
     }
   ],
   "version": 0.9,
@@ -1131,6 +1079,52 @@
       "partNumber": "55PC1122-20-2/6-9",
       "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
+    },
+    {
+      "id": "cab_sh_4c",
+      "url": "https://xonstorage.z8.web.core.windows.net/pdf/teconnectivity_55pc124322mst49cs2861_xonjuly20_20_link.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k2",
+          "color": "Blue",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k3",
+          "color": "Yellow",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k4",
+          "color": "Green",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1243-20-2/6/4/5-9",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "manufacturer": "TE Connectivity (Raychem)"
     }
   ],
   "connectors": [
@@ -1287,13 +1281,13 @@
         },
         {
           "id": "c3",
-          "signal": "CAN-Lambda +12V, cabin fuse F5 10A (14 AWG)",
+          "signal": "CAN-Lambda +12V, cabin fuse F5 10A (4-core 20 AWG)",
           "designation": "3",
           "contactPartId": "ct_hdp12s"
         },
         {
           "id": "c4",
-          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
+          "signal": "CAN-Lambda ground to cabin chassis ground (4-core 20 AWG)",
           "designation": "4",
           "contactPartId": "ct_hdp12s"
         },

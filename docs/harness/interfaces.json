@@ -987,10 +987,10 @@
     {
       "id": "BR_W_CSB12",
       "type": "broken_off",
-      "what": "CSB3 +12V from sp_12v",
+      "what": "CSB3 +12V from sp_12v, via the CAN 4-core",
       "ends": [
         {
-          "harness": "CSB3",
+          "harness": "CAN",
           "terminal": "br_w_csb12"
         },
         {
@@ -1002,10 +1002,10 @@
     {
       "id": "BR_W_CSBG",
       "type": "broken_off",
-      "what": "CSB3 ground to sp_chassis",
+      "what": "CSB3 ground to sp_chassis, via the CAN 4-core",
       "ends": [
         {
-          "harness": "CSB3",
+          "harness": "CAN",
           "terminal": "br_w_csbg"
         },
         {
@@ -1596,6 +1596,51 @@
         {
           "harness": "ACAmp-Spur",
           "terminal": "br_w_ac_kill"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_CSB12_CAN",
+      "type": "broken_off",
+      "what": "CSB3 +12V on the CAN 4-core into the CSB3 plug",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_w_csb12_csb"
+        },
+        {
+          "harness": "CSB3",
+          "terminal": "br_w_csb12"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_CSBG_CAN",
+      "type": "broken_off",
+      "what": "CSB3 ground on the CAN 4-core into the CSB3 plug",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_w_csbg_csb"
+        },
+        {
+          "harness": "CSB3",
+          "terminal": "br_w_csbg"
+        }
+      ]
+    },
+    {
+      "id": "BR_CAB_LAM_CAN_C_SH",
+      "type": "broken_off",
+      "what": "lambda CAN-connector screen, cabin end to the CAN-node screen splice",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_cab_lam_can_c_sh"
+        },
+        {
+          "harness": "CAN",
+          "terminal": "br_cab_lam_can_c_sh"
         }
       ]
     }

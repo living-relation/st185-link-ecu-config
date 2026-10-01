@@ -2281,7 +2281,7 @@
       "id": "br_w_csb12",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CSB3: CSB3 +12V from sp_12v",
+      "signal": "Broken off - continues on ST185-CAN: CSB3 +12V from sp_12v",
       "layoutPosition": {
         "x": 1680,
         "y": 90
@@ -2295,7 +2295,7 @@
       "id": "br_w_csbg",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CSB3: CSB3 ground to sp_chassis",
+      "signal": "Broken off - continues on ST185-CAN: CSB3 ground to sp_chassis",
       "layoutPosition": {
         "x": 2400,
         "y": 90

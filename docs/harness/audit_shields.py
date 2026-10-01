@@ -34,16 +34,17 @@ excluded with the other VRC screens. They are not added to the VRC_FRONT
 enclosure list (that would join A7 to B17). Crank, cam and knock stay on R1
 and still end on sp_shield_a / sp_shield_b.
 
-CAN-connector screens are the cab_can_* drops (cluster, RealDash, CSB3) and
-the Link lambda firewall pair (cab_lam_can_*). They splice only to each
-other and wait on the undrawn four-wire ECU CAN-connector ground. They are
-not required to reach A7, B17, or ecu_com, and the build fails if one of
-them does. ecu_com is the comms / tuning port, not that connector. The
-lambda power / ground / CAN H/L signal already crosses bulkhead B, so its
-shield must pass through both halves on a matching pin if one is drawn,
-then join the other CAN-node screens. No matching shield pin is drawn; the
-audit reports that as BLOCKED and does not invent a cavity or land the
-drain on A7 / B17.
+CAN-connector screens are the cab_can_* runs (cluster, RealDash, CSB3,
+trunk) and the Link lambda 4-core (cab_lam_can_*). They splice only to
+each other and wait on the undrawn four-wire ECU CAN-connector ground.
+They are not required to reach A7, B17, or ecu_com, and the build fails
+if one of them does. ecu_com is the comms / tuning port, not that
+connector. Every node uses the existing 4-core 55PC1243-20-2/6/4/5-9
+(cab_sh_4c). The lambda power / ground / CAN H/L signal already crosses
+bulkhead B, so its shield must pass through both halves on a matching pin
+if one is drawn, then join the other CAN-node screens. No matching shield
+pin is drawn; the audit reports that as BLOCKED and does not invent a
+cavity or land the drain on A7 / B17.
 
 R4 ("cable only until it terminates at the ECU") is a modelling convention the
 schema cannot express, so it is not checked here. The A7 / B17 separation is
@@ -87,8 +88,8 @@ for cav in ("c1", "c2", "c3", "c4", "c5", "c6"):
 def can_connector_screen(wid, cable):
     """Screen that waits on the undrawn four-wire ECU CAN-connector ground.
 
-    Cluster, RealDash and CSB3 drops (cab_can_*) and the Link lambda
-    firewall pair (cab_lam_can_*). Not crank / cam / knock, and not a VRC
+    Cluster, RealDash, CSB3 and trunk (cab_can_*) and the Link lambda
+    4-core (cab_lam_can_*). Not crank / cam / knock, and not a VRC
     or CSB3 enclosure screen.
     """
     name = cable or wid or ""

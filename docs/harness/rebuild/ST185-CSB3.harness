@@ -288,7 +288,7 @@
     {
       "id": "br_w_csb12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: CSB3 +12V from sp_12v",
+      "signal": "Broken off - continues on ST185-CAN: CSB3 +12V on the CAN 4-core",
       "width": 390,
       "layoutPosition": {
         "x": 60,
@@ -302,7 +302,7 @@
     {
       "id": "br_w_csbg",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: CSB3 ground to sp_chassis",
+      "signal": "Broken off - continues on ST185-CAN: CSB3 ground on the CAN 4-core",
       "width": 390,
       "layoutPosition": {
         "x": 60,
@@ -519,32 +519,6 @@
       "partId": "wp_20_wht"
     },
     {
-      "id": "w_csb12",
-      "color": "Red",
-      "source": {
-        "id": "csb3io",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "br_w_csb12",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_red"
-    },
-    {
-      "id": "w_csbg",
-      "color": "Black",
-      "source": {
-        "id": "csb3io",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "br_w_csbg",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_blk"
-    },
-    {
       "id": "w_sw7_c_csb",
       "source": {
         "id": "csb3io",
@@ -576,8 +550,34 @@
       "id": "cab_can_csb3",
       "cores": [
         {
+          "id": "w_csb12",
+          "color": "Red",
+          "source": {
+            "id": "csb3io",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "br_w_csb12",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "w_csbg",
+          "color": "Blue",
+          "source": {
+            "id": "csb3io",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "br_w_csbg",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
           "id": "wc_h_csb_csb",
-          "color": "White",
+          "color": "Yellow",
           "source": {
             "id": "csb3io",
             "handle": "c5"
@@ -601,7 +601,7 @@
           }
         }
       ],
-      "partId": "cab_sh_2c",
+      "partId": "cab_sh_4c",
       "shield": {
         "id": "cab_can_csb3_sh",
         "color": "Shield"
@@ -1058,6 +1058,52 @@
       "partNumber": "55PC1122-20-2/6-9",
       "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
       "manufacturer": "TE Connectivity (Raychem)"
+    },
+    {
+      "id": "cab_sh_4c",
+      "url": "https://xonstorage.z8.web.core.windows.net/pdf/teconnectivity_55pc124322mst49cs2861_xonjuly20_20_link.pdf",
+      "color": "White",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k2",
+          "color": "Blue",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k3",
+          "color": "Yellow",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "k4",
+          "color": "Green",
+          "gauge": {
+            "unit": "AWG",
+            "value": 20
+          }
+        }
+      ],
+      "shielded": true,
+      "partNumber": "55PC1243-20-2/6/4/5-9",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "manufacturer": "TE Connectivity (Raychem)"
     }
   ],
   "spliceParts": [
@@ -1118,7 +1164,7 @@
         "x": 0,
         "y": -300
       },
-      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse input from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
+      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up. +12V, ground, CAN H and CAN L leave on one 55PC1243-20-2/6/4/5-9 4-core (cab_sh_4c) broken off to ST185-CAN. The reverse input from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and +5V from ST185-A-cabin still arrive broken off. Screen floats at the CSB3 end. Non-ECU harness."
     },
     {
       "id": "n_cavity_notes",
