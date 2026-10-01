@@ -189,7 +189,7 @@ assumptions).
 
 1. `sot/channels.csv` rows 84-91: VRC rear rows become endpoint rows; add the rear interface
    pin map (D2).
-2. New `ST185-WheelSpeed-Rear.harness`: RL/RR drops (`cp_dt2s_ni`, unchanged) as a Y into
+2. New `ST185-WheelSpeed-Rear-1.harness`: RL/RR drops (`cp_dt2s_ni`, unchanged) as a Y into
    `VRC_REAR_IN_L` / `VRC_REAR_IN_R` endpoints; `VRC_REAR_OUT` endpoint → 4-core + drain cable →
    rear inline half. No `cp_m8_*`, no `cp_xref`.
 3. ECU-side rear spur in the ECU/cabin drawing (today `ST185-B-ECU`, all rear pins are loom
@@ -207,7 +207,7 @@ assumptions).
 
 ### Phase 5 — Front wheel-speed
 
-Mirror Phase 4 for `ST185-WheelSpeed-Front.harness` using the D1 result. The front spur
+Mirror Phase 4 for `ST185-WheelSpeed-Front-1.harness` using the D1 result. The front spur
 splits under the dash: FL → A23 (loom A), FR → B21 (loom B). Its drain(s) go to A7 / B17 per D1.
 Retire `ST185-WheelSpeed.harness` when it is empty. Front gates go HARD.
 
