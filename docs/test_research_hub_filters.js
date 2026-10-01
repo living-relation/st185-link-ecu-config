@@ -15,7 +15,10 @@ function loadHtml() {
     stdio: "inherit",
     env: { ...process.env, RESEARCH_HUB_OUT: htmlPath },
   });
-  if (built.status !== 0) process.exit(built.status || 1);
+  if (built.status !== 0) {
+    fs.rmSync(htmlPath, { force: true });
+    process.exit(built.status || 1);
+  }
   return { html: fs.readFileSync(htmlPath, "utf8"), htmlPath };
 }
 
@@ -35,6 +38,14 @@ function search(window, document, q) {
 
 function main() {
   const { html, htmlPath } = loadHtml();
+  try {
+    runChecks(html, htmlPath);
+  } finally {
+    fs.rmSync(htmlPath, { force: true });
+  }
+}
+
+function runChecks(html, htmlPath) {
   const dom = new JSDOM(html, {
     runScripts: "dangerously",
     url: "file://" + htmlPath,
