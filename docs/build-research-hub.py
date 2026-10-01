@@ -710,8 +710,9 @@ HUB_CSS = """
   .topic-nav a { font-size:12.5px; color:var(--muted); text-decoration:none;
     border:1px solid var(--line); background:var(--panel); padding:5px 9px; border-radius:999px; }
   .topic-nav a:hover { color:var(--accent); border-color:var(--accent); }
-  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
     gap:8px; margin:0 0 14px; }
+  @media (max-width:720px) { .stats { grid-template-columns:repeat(2,minmax(0,1fr)); } }
   .stat { background:var(--panel); border:1px solid var(--line); border-radius:10px;
     padding:10px 12px; }
   .stat b { display:block; font-size:22px; letter-spacing:-.03em; line-height:1.1; }
@@ -749,6 +750,8 @@ HUB_CSS = """
   .k-research { background:var(--research); }
   .k-support { background:var(--working); }
   .b-enc { background:var(--warn); }
+  .loom-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 18px; }
+  @media (max-width:720px) { .loom-grid { grid-template-columns:1fr; } }
   .topic-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
     gap:8px; margin:0 0 22px; }
   .topic-tile { text-align:left; background:var(--panel); border:1px solid var(--line);
@@ -1141,12 +1144,12 @@ function overviewHtml() {
     <section class="chart" id="chart-looms">
       <h2>Wires by loom</h2>
       <p class="caption">From HARNESS-BUILD-LIST.csv. The Total row is omitted; the KPI holds ${S.wire_count || 0}.</p>
-      ${looms.map(r => `
+      <div class="loom-grid">${looms.map(r => `
         <div class="hbar-row">
           <span class="hbar-lab">${esc(r.loom)}</span>
           <div class="hbar-track"><i class="k-research" style="width:${((Number(r.wires) || 0) / loomMax * 100).toFixed(1)}%"></i></div>
           <span class="hbar-n">${Number(r.wires) || 0}</span>
-        </div>`).join("")}
+        </div>`).join("")}</div>
     </section>`;
 }
 
