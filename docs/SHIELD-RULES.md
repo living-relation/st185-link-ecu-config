@@ -52,9 +52,10 @@ bulkhead pass-through check. Crank, cam and knock stay on R1 and still end on
 cabin continuations of those three (`cab_crank_c_sh`, `cab_cam_c_sh`,
 `cab_knock_c_sh`) as documentation, not as an exclusive permit.
 
-CSB3 gets the same exception as the VRC. No CSB3 screen is drawn today; the
-rule and the audit exclusion are in place so one can be added later. Do not
-invent a CSB3 shield, connector or pin until one is actually drawn.
+CSB3 gets the same exception as the VRC. The CSB3 drop screen is drawn as
+`cab_can_csb_sh` on `ST185-CAN`. It is grounded at the CSB3 box and at the
+ECU (`sp_can_sh` / `t_can_sh_gnd`). Do not invent a CSB3 shield, connector
+or pin.
 
 `cab_fout_fr_sh` (and its cabin continuations) is excluded from the
 single-device check with the other VRC screens. It still lands on the existing
@@ -145,7 +146,8 @@ join `sp_shield_b`, and it does **not** go to A7, `ecu_com`, or the CAN
 ring `t_can_sh_gnd`. A Raychem solder sleeve with an integrated
 drain (`S200-3-WI-22-9`, already in the covering parts) is used only where
 a terminated CAN-node shield has no drain of its own, and only on the
-terminated end (`sp_can_sh`). Device ends of the CAN-node screens float.
+terminated end (`sp_can_sh`). Device ends of the CAN-node screens float,
+except CSB3, which is the exception that is grounded at the box.
 
 **Do not terminate that shield network on `ecu_com`, A7 or B17.** `ecu_com` on
 `ST185-CAN` is the six-pin comms / tuning port (DTM06-6S). It is not the ECU
