@@ -55,6 +55,10 @@ jobs:
           tables = (data.get('parts') or {}).get('tables') or {}
           assert data.get('topics'), 'hub has no topics'
           assert 'buy' in tables, 'hub is missing the NEED-TO-BUY table'
+          assert 'id="overview"' in html, 'hub is missing the graphics overview'
+          assert 'data-filter-item' in html, 'hub cards are not filterable'
+          assert 'function applyFilters' in html, 'hub is missing applyFilters'
+          assert 'id="t-deliverable" type="button"' in html or 'type="button" id="t-deliverable"' in html
           print('topics', len(data['topics']), 'tables', sorted(tables))
           "
       - name: Upload preview HTML
