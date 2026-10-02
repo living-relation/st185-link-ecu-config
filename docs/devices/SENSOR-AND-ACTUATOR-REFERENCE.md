@@ -320,10 +320,9 @@ Shield: yes
 
 **Knock**
 
-Two pins. Pin numbers are not in this repo. Daniel already routes this
-device as a shielded cable in `docs/SHIELD-RULES.md`.
+Two pins. Pin numbers are not in this repo.
 
-Shield: yes
+Shield: no
 
 | Pin | Name |
 |---|---|
