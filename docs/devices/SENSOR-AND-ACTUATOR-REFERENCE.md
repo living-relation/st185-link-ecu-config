@@ -140,14 +140,16 @@ Shield: yes
 
 **Wheel speed ×4**
 
-Shield: no
+Four ABS reluctors. Each is signal and ground. Each connector gets one
+shield. That shield terminates on the VRC connector. Pin numbers are not
+in this repo.
+
+Shield: yes
 
 | Pin | Name |
 |---|---|
-|  |  |
-|  |  |
-
-Two wires. No third conductor, no shield connection at the sensor.
+|  | signal |
+|  | ground |
 
 **Flex fuel — Continental generic 3-pin**
 
