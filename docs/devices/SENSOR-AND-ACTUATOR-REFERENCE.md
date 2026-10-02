@@ -10,6 +10,8 @@ XtremeX quick install manual (`sot/channels.csv`).
 Unknown device pins and unknown shield flags are left blank. Do not invent a
 pinout or a shield list.
 
+A connector gets one shield flag. Do not mark shield yes on every pin or wire.
+
 Anything in the source of truth that has a shield must not use individual
 wires. It must use a multi-conductor Tefzel Raychem cable.
 
@@ -26,27 +28,31 @@ source.
 6-pin TB connector. The two TPS tracks run in opposite directions and sum to ≈5V — that
 sum is the redundancy check.
 
-| Pin | Name | Shield |
-|---|---|---|
-| 1 | Motor (−) | yes |
-| 2 | TPS (−) | yes |
-| 3 | TPS (5V+) | yes |
-| 4 | Motor (+) | yes |
-| 5 | TPS 2 (out) | yes |
-| 6 | TPS 1 (out) | yes |
+Shield: yes
+
+| Pin | Name |
+|---|---|
+| 1 | Motor (−) |
+| 2 | TPS (−) |
+| 3 | TPS (5V+) |
+| 4 | Motor (+) |
+| 5 | TPS 2 (out) |
+| 6 | TPS 1 (out) |
 
 **BRZ pedal — Subaru 36010CA110, 6-pin Sumitomo TS025.** Each track has its **own** 5V and
 ground, the opposite of the throttle body, which shares. Looking into the 6-way with the
 locking tab up:
 
-| Pin | Name | Shield |
-|---|---|---|
-| 1 | VC2 +5V (sub) | yes |
-| 2 | GND2 | yes |
-| 3 | VPA2 APS-S | yes |
-| 4 | VC1 +5V (main) | yes |
-| 5 | GND1 | yes |
-| 6 | VPA1 APS-M | yes |
+Shield: yes
+
+| Pin | Name |
+|---|---|
+| 1 | VC2 +5V (sub) |
+| 2 | GND2 |
+| 3 | VPA2 APS-S |
+| 4 | VC1 +5V (main) |
+| 5 | GND1 |
+| 6 | VPA1 APS-M |
 
 All six pins live in the **Signal** file, supplies included, per
 `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.11. (An earlier revision put pins
@@ -62,12 +68,14 @@ tracks across full travel before final wiring.
 The V-throttle relay is allowed in the device source of truth. It feeds
 power into the ECU to power the e-throttle body circuit.
 
-| Pin | Name | Shield |
-|---|---|---|
-| 30 | fused battery | no |
-| 85 | coil trigger | no |
-| 86 | ignition-switched 12V | no |
-| 87 | load output | no |
+Shield: no
+
+| Pin | Name |
+|---|---|
+| 30 | fused battery |
+| 85 | coil trigger |
+| 86 | ignition-switched 12V |
+| 87 | load output |
 
 Matches Link's own published diagram (Adamw, Link forum moderator).
 
@@ -111,28 +119,33 @@ feeds the ECU's V-Ethrottle pin; the ECU's internal H-bridge drives the motor vi
 
 Connector face, left to right. Pin numbers are not on the photo.
 
-| Pin | Name | Shield |
-|---|---|---|
-|  | 0-5V Signal | yes |
-|  | Ground | yes |
-|  | +5V Supply | yes |
+Shield: yes
+
+| Pin | Name |
+|---|---|
+|  | 0-5V Signal |
+|  | Ground |
+|  | +5V Supply |
 
 **Crank — DNA Motoring OEM-SS-112**
 
-Two-wire passive reluctor. Shield: yes (see `docs/SHIELD-RULES.md`). Pin numbers and
-pin names are not in this repo.
+Two-wire passive reluctor. Pin numbers and pin names are not in this repo.
 
-| Pin | Name | Shield |
-|---|---|---|
-|  |  | yes |
-|  |  | yes |
+Shield: yes
+
+| Pin | Name |
+|---|---|
+|  |  |
+|  |  |
 
 **Wheel speed ×4**
 
-| Pin | Name | Shield |
-|---|---|---|
-|  |  | no |
-|  |  | no |
+Shield: no
+
+| Pin | Name |
+|---|---|
+|  |  |
+|  |  |
 
 Two wires. No third conductor, no shield connection at the sensor.
 
@@ -179,11 +192,13 @@ Racer X kit, Cherry/ZF GS1007 Hall, single tooth.
   nearest standard value. The 2.4 kΩ the kit ships is sized for 12V and is not used.
 - Needs a connector — the kit pigtail is a placeholder. Still to be chosen.
 
-| Pin | Name | Shield |
-|---|---|---|
-|  | VCC (+8V) | yes |
-|  | signal | yes |
-|  | ground (Gnd Out, not chassis) | yes |
+Shield: yes
+
+| Pin | Name |
+|---|---|
+|  | VCC (+8V) |
+|  | signal |
+|  | ground (Gnd Out, not chassis) |
 
 ## Fuel pump and radiator fan — governed by the power rule
 
