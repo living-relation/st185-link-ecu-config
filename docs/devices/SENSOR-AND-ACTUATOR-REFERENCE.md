@@ -342,9 +342,11 @@ the pump itself**, so everything below lives in the engine bay.
 
 | Ours | On the pump | Cavities | Part number | Used | Shield |
 |---|---|---:|---|---|---|
-| `mrs_pwr` | **A** - main power | 2 | `90980-12068` | 1 = +12 V from `k_eps`, 2 = GND to block |  |
-| `mrs_ctrl` | **B** - signal | **6** | *not yet identified* | speed pulse; the rest unused |  |
-| `mrs_en` | **C** - ignition | 2 | `90980-10942` | 1 = switched 12 V (7.5 A ign fuse), 2 unused |  |
+| `mrs_pwr` | **A** - main power | 2 | `90980-12068` | 1 = +12 V from `k_eps`, 2 = GND to block | no |
+| `mrs_ctrl` | **B** - signal | **6** | *not yet identified* | speed pulse; the rest unused | no |
+| `mrs_en` | **C** - ignition | 2 | `90980-10942` | 1 = switched 12 V (7.5 A ign fuse), 2 unused | no |
+
+No shields on the MRS.
 
 **`mrs_ctrl` is a 6-way, not a 3-way.** The diagrams draw only the wired pins. Draw all six
 and mark the spares unused - that is what the "3 vs 6 cavities" note was about. Its part
