@@ -537,8 +537,8 @@ Shield: no
 
 | Pin | Name |
 |---|---|
-|  | positive |
-|  | negative |
+|  | battery plus |
+|  | ECU active low |
 
 **Link CAN-Lambda**
 
