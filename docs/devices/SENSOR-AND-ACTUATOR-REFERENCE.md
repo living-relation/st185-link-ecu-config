@@ -337,7 +337,9 @@ Shield: yes
 
 **Fuel pump**
 
-Two pins. Pin numbers are not in this repo.
+Driven by the fuel pump relay. The ECU does not power this pump. It only
+pulls the fuel pump relay coil to ground. Two pins. Pin numbers are not
+in this repo. The 12V pin is from the relay, not from the ECU.
 
 Shield: no
 
@@ -349,19 +351,22 @@ Shield: no
 Not an open fork. Section 6.2 of `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` decides
 it: a load is fed **either** from a PDM output **or** from a relay and fuse, never both.
 Any load above the PDM's per-output capacity takes a relay and fuse instead, and where the
-PDM is still the right source for a large load, outputs are combined — the fuel pump being
-the likely case.
+PDM is still the right source for a large load, outputs are combined. High-current
+devices the ECU triggers — fuel pump, radiator fan, condenser fan, EPS, start,
+EFI main — are driven by a relay. The ECU does not power those loads. It only
+pulls the relay coil to ground.
 
 The lookup is done. ECUMaster **PMU-16**: 10 × 25 A and 6 × 15 A high-side, 150 A total;
 same-rating outputs may be paralleled (max three → 75 A). Connector terminals are the
 real limit. Applied in `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`:
 
-- Fuel pump stays on cabin relay `k_fp` (Power file).
+- Fuel pump stays on cabin relay `k_fp` (Power file). The ECU does not
+  power the pump. It only pulls that relay coil to ground.
 - The radiator fan stays on cabin relay `k_fan`. The condenser fan stays on
   cabin relay `k_fan2`. The ECU does not power either fan. It only pulls
   that fan's relay coil to ground. Peak current is above one 25 A pin. There
   is one radiator fan and one condenser fan.
-- EPS stays on `k_eps` HCR 150, fused 60 A AMI at HCFB H4 (was F7 on the mini fuse module, which cannot carry 60 A).
+- EPS stays on `k_eps` HCR 150, fused 60 A AMI at HCFB H4 (was F7 on the mini fuse module, which cannot carry 60 A). The ECU does not power the EPS pump. It only pulls that relay coil to ground.
 - PMU-16 takes HEAD LH/RH, HAZ-HORN, DOME and RTR at the vacated J/B No.2 cavities, plus
   the rest of body / lighting and the small engine accessories (ECU main, O2 heater,
   boost solenoid, purge). Scope settled 2026-09-17 — see
@@ -587,7 +592,8 @@ Shield: yes
 
 **Fuel pump relay**
 
-Same ISO coil and contact pins as the V-throttle relay.
+Same ISO coil and contact pins as the V-throttle relay. The ECU does not
+power the fuel pump. It only pulls terminal 85 to ground.
 
 Shield: no
 
@@ -600,7 +606,8 @@ Shield: no
 
 **Radiator fan relay**
 
-Same ISO coil and contact pins as the V-throttle relay.
+Same ISO coil and contact pins as the V-throttle relay. The ECU does not
+power the radiator fan. It only pulls terminal 85 to ground.
 
 Shield: no
 
@@ -621,7 +628,8 @@ Shield: no
 
 **Condenser fan relay**
 
-Same ISO coil and contact pins as the V-throttle relay.
+Same ISO coil and contact pins as the V-throttle relay. The ECU does not
+power the condenser fan. It only pulls terminal 85 to ground.
 
 Shield: no
 
@@ -642,7 +650,8 @@ Shield: no
 
 **Start relay**
 
-Same ISO coil and contact pins as the V-throttle relay.
+Same ISO coil and contact pins as the V-throttle relay. The ECU does not
+power the starter. It only pulls terminal 85 to ground.
 
 Shield: no
 
@@ -655,7 +664,8 @@ Shield: no
 
 **EFI main relay**
 
-Same ISO coil and contact pins as the V-throttle relay.
+Same ISO coil and contact pins as the V-throttle relay. The ECU does not
+power the EFI feed. It only pulls terminal 85 to ground.
 
 Shield: no
 
@@ -669,7 +679,8 @@ Shield: no
 **EPS relay**
 
 `k_eps`, TE HCR 150. Placement and sizing stay in the MRS section above.
-Same ISO coil and contact pins as the other cabin relays.
+Same ISO coil and contact pins as the other cabin relays. The ECU does
+not power the EPS pump. It only pulls terminal 85 to ground.
 
 Shield: no
 
