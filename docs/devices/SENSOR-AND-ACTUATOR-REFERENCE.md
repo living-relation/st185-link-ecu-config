@@ -7,8 +7,10 @@ to the device, and they are what the ECU end has to mate to. Which ECU pin a
 device wire lands on is owned by the ECU, from the Link ECU documentation and the
 XtremeX quick install manual (`sot/channels.csv`).
 
-Unknown device pins and unknown shield flags are left blank. Do not invent a
-pinout or a shield list.
+Unknown device pins are left blank. Do not invent a pinout or a part number.
+A new device is Shield: no unless Daniel has already said that device has a
+shield. Do not set a new device to yes or blank. Do not change a shield flag
+he already set.
 
 The only center-cluster portion in this repo is the CAN node, plus power and
 ground to the cluster. Interior cluster wiring lives only in the center
@@ -99,6 +101,13 @@ feeds the ECU's V-Ethrottle pin; the ECU's internal H-bridge drives the motor vi
 - **AC1 is a separate, input-only terminal** — it reads clutch operating voltage for
   idle-up, 8-14V when engaged, and cannot be used to kill. Confirmed against the 1990 ST185
   factory wiring manual. Deliberately excluded from this build; do not reintroduce it.
+
+**A/C amplifier**
+
+The ECU kill lands on ACT. The ACT terminal number is not on EWD p.150 or
+p.152. Do not invent it.
+
+Shield: no
 
 ---
 
@@ -309,7 +318,30 @@ Shield: yes
 |  | signal |
 |  | ground |
 
+**Knock**
+
+Two pins. Pin numbers are not in this repo. Daniel already routes this
+device as a shielded cable in `docs/SHIELD-RULES.md`.
+
+Shield: yes
+
+| Pin | Name |
+|---|---|
+|  | SIG+ |
+|  | SIG- |
+
 ## Fuel pump and radiator fan — governed by the power rule
+
+**Fuel pump**
+
+Two pins. Pin numbers are not in this repo.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+|  | 12V |
+|  | ground |
 
 Not an open fork. Section 6.2 of `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` decides
 it: a load is fed **either** from a PDM output **or** from a relay and fuse, never both.
@@ -486,3 +518,216 @@ A and B into `ST185-WheelSpeed-Front.harness`. **No bulkhead connector** - this 
 cross bulkhead A or B, so the front sensors stop being firewall crossings with nowhere to
 cross. Its only ties to the rest of the car are the conditioner outputs to the ECU and the
 conditioner power and ground, which follow the shared-part rule in plan doc 6.15.
+
+---
+
+## Other ECU-connected devices
+
+These connect to the ECU and were not already a device row. New devices are
+Shield: no unless Daniel already said that device has a shield. Pin numbers
+are omitted where this repo has no confirmed device pinout. ECU landings stay
+in `sot/channels.csv`.
+
+**Boost solenoid**
+
+Two pins. Pin numbers are not in this repo.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+|  | 12V |
+|  | LS |
+
+**Link CAN-Lambda**
+
+External wideband controller for a Bosch LSU 4.9. On CAN bus 1. Link pinout
+for the CAN pair is recorded in `docs/harness/redesign/DECISIONS.md` B1. The
+other two wires are +12V and ground; those pin numbers are not confirmed here.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+|  | +12V |
+|  | ground |
+| 3 | CAN L |
+| 4 | CAN H |
+
+**Injectors ×4**
+
+1400 cc high-Z sequential. Each injector is two pins. Pin numbers are not
+in this repo. No part number recorded.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+|  | 12V |
+|  | INJ |
+
+**1ZZ COP ×4**
+
+Smart coil-on-plug. The ECU drives the logic-level IGT input only. Pin
+numbers are not in this repo.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+|  | +B |
+|  | IGT |
+|  | ground |
+
+**Fuel pump relay**
+
+Same ISO coil and contact pins as the V-throttle relay.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+| 30 | fused battery |
+| 85 | coil trigger |
+| 86 | ignition-switched 12V |
+| 87 | load output |
+
+**Radiator fan relay**
+
+Same ISO coil and contact pins as the V-throttle relay.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+| 30 | fused battery |
+| 85 | coil trigger |
+| 86 | ignition-switched 12V |
+| 87 | load output |
+
+**Radiator fan**
+
+Pin numbers are not in this repo.
+
+Shield: no
+
+**Condenser fan relay**
+
+Same ISO coil and contact pins as the V-throttle relay.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+| 30 | fused battery |
+| 85 | coil trigger |
+| 86 | ignition-switched 12V |
+| 87 | load output |
+
+**Condenser fan**
+
+Pin numbers are not in this repo.
+
+Shield: no
+
+**Start relay**
+
+Same ISO coil and contact pins as the V-throttle relay.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+| 30 | fused battery |
+| 85 | coil trigger |
+| 86 | ignition-switched 12V |
+| 87 | load output |
+
+**EFI main relay**
+
+Same ISO coil and contact pins as the V-throttle relay.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+| 30 | fused battery |
+| 85 | coil trigger |
+| 86 | ignition-switched 12V |
+| 87 | load output |
+
+**EPS relay**
+
+`k_eps`, TE HCR 150. Placement and sizing stay in the MRS section above.
+Same ISO coil and contact pins as the other cabin relays.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+| 30 | fused battery |
+| 85 | coil trigger |
+| 86 | ignition-switched 12V |
+| 87 | load output |
+
+**Ignition switch**
+
+Dummy OEM ignition-switch block. Key-on sense only. OEM internals are not
+modelled. Do not invent a pinout.
+
+Shield: no
+
+**Start request**
+
+Switch to ground. Pin numbers are not in this repo.
+
+Shield: no
+
+**Anti-theft**
+
+Alarm immobiliser out grounds when armed. Pin numbers are not in this repo.
+
+Shield: no
+
+**Center cluster**
+
+The only center-cluster portion in this repo is the CAN node, plus power and
+ground to the cluster. Interior cluster wiring lives only in the center
+cluster repo. Do not add interior cluster circuits here.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+|  | CAN H |
+|  | CAN L |
+|  | power |
+|  | ground |
+
+**ECUMaster CSB3**
+
+CAN switchboard on CAN bus 1. Board and enclosure pin numbers are not
+copied here.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+|  | CAN H |
+|  | CAN L |
+|  | power |
+|  | ground |
+
+**RealDash**
+
+Pi with a USB-CAN adapter. Passive listener on CAN bus 1. Ignition-switched
+feed only. Do not add a hold circuit.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+|  | CAN H |
+|  | CAN L |
+|  | power |
+|  | ground |
