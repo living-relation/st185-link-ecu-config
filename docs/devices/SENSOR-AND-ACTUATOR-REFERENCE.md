@@ -546,7 +546,7 @@ External wideband controller for a Bosch LSU 4.9. On CAN bus 1. Link pinout
 for the CAN pair is recorded in `docs/harness/redesign/DECISIONS.md` B1. The
 other two wires are +12V and ground; those pin numbers are not confirmed here.
 
-Shield: no
+Shield: yes
 
 | Pin | Name |
 |---|---|
@@ -560,7 +560,7 @@ Shield: no
 1400 cc high-Z sequential. Each injector is two pins. Pin numbers are not
 in this repo. No part number recorded.
 
-Shield: yes
+Shield: no
 
 | Pin | Name |
 |---|---|
