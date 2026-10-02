@@ -322,7 +322,7 @@ Shield: yes
 
 Two pins. Pin numbers are not in this repo.
 
-Shield: no
+Shield: yes
 
 | Pin | Name |
 |---|---|
