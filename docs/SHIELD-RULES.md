@@ -39,6 +39,9 @@ sleeve is not for the sensor end when the sensor already has its own connector.
    bulkhead shell. That shield floats at the sensor, must not stop on either
    half, and terminates at the ECU or at the destination device.
 
+Anything in the source of truth that has a shield must not use individual
+wires. It must use a multi-conductor Tefzel Raychem cable.
+
 Also settled: the ABS wheel-speed sensors have **two wires**. No third conductor,
 no shield connection at the sensor.
 

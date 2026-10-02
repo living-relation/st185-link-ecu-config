@@ -10,6 +10,9 @@ XtremeX quick install manual (`sot/channels.csv`).
 Unknown device pins and unknown shield flags are left blank. Do not invent a
 pinout or a shield list.
 
+Anything in the source of truth that has a shield must not use individual
+wires. It must use a multi-conductor Tefzel Raychem cable.
+
 Confirmed part numbers, calibrations and supply requirements stay here as
 reference, each traced to a receipt, product page, factory manual or hands-on
 source.
@@ -25,12 +28,12 @@ sum is the redundancy check.
 
 | Pin | Name | Shield |
 |---|---|---|
-| 1 | Motor (−) |  |
-| 2 | TPS (−) |  |
-| 3 | TPS (5V+) |  |
-| 4 | Motor (+) |  |
-| 5 | TPS 2 (out) |  |
-| 6 | TPS 1 (out) |  |
+| 1 | Motor (−) | yes |
+| 2 | TPS (−) | yes |
+| 3 | TPS (5V+) | yes |
+| 4 | Motor (+) | yes |
+| 5 | TPS 2 (out) | yes |
+| 6 | TPS 1 (out) | yes |
 
 **BRZ pedal — Subaru 36010CA110, 6-pin Sumitomo TS025.** Each track has its **own** 5V and
 ground, the opposite of the throttle body, which shares. Looking into the 6-way with the
