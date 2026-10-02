@@ -446,6 +446,12 @@ not need this change - only the cam one is wrong.
 Write-up: `docs/devices/VR-WHEEL-SPEED-CONDITIONER.md`. Pins below are the
 conditioner's own cavities from `sot/channels.csv` and `docs/SHIELD-RULES.md` §6.30.
 
+Shield: yes
+
+The drain is connected on both the VRC input and the VRC output. The ABS
+input drains splice together and terminate on a single pin. Each ABS
+sensor shield terminates on the VRC connector.
+
 **Each IN connector (Front L, Front R, Rear L, Rear R)**
 
 | Pin | Name |

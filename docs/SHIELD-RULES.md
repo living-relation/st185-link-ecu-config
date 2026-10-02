@@ -94,8 +94,11 @@ Loom A screens land on A7 through `sp_shield_a`, loom B screens on B17 through
 
 ## §6.30 — VR conditioner enclosures
 
+The VRC device gets one shield. Do not mark a shield on each wire.
+
 The drain is connected on both the VRC input and the VRC output. The ABS input
-drains splice together and terminate on a single pin.
+drains splice together and terminate on a single pin. Each ABS sensor shield
+terminates on the VRC connector.
 
 ```
   ABS sensor           VR conditioner                               ECU

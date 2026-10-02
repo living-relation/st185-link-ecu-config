@@ -47,11 +47,11 @@ speed a fixed low threshold is the simpler and more predictable answer.
   gives the ±250 V clamp headroom. The Speeduino boards ship with these fitted.
 - **Hold the `DIAG` pin low** for normal running. Pulling it high moves the negative
   threshold positive — that is the open-sensor diagnostic mode, not a run mode.
-- Sensor pairs run as **shielded twisted pair**. The shield terminates at the ECU
-  or at the destination device.
+- Sensor pairs run as **shielded twisted pair**. The VRC device gets one
+  shield. Each ABS sensor shield terminates on the VRC connector.
 - Screen path: the drain is connected on both the VRC input and the VRC output.
   The ABS input drains splice together and terminate on a single pin. See
-  `docs/SHIELD-RULES.md` §6.30.
+  `docs/SHIELD-RULES.md` §6.30. Do not mark a shield on each wire.
 
 ## Wiring into the car
 
