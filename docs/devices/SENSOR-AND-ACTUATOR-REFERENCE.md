@@ -185,7 +185,19 @@ Shield:
 | 2 | 5V |
 | 3 | signal |
 
-Fuel pressure, oil pressure, coolant pressure, fluid/oil temp, fuel level, ECT and
+**Fuel pressure — Lowdoller 7990150**
+
+Same pinout as MAP.
+
+Shield:
+
+| Pin | Name |
+|---|---|
+| 1 | low reference/ground |
+| 2 | 5V |
+| 3 | signal |
+
+Oil pressure, coolant pressure, fluid/oil temp, fuel level, ECT and
 both IATs have no pinout in this repo or in the Link / XtremeX manuals used here. Pins
 and shield flags stay blank.
 
