@@ -109,11 +109,13 @@ feeds the ECU's V-Ethrottle pin; the ECU's internal H-bridge drives the motor vi
 
 **Turbo speed — BorgWarner 179430**
 
+Connector face, left to right. Pin numbers are not on the photo.
+
 | Pin | Name | Shield |
 |---|---|---|
-| 1 | signal 0-5V |  |
-| 2 | ground |  |
-| 3 | +5V |  |
+|  | 0-5V Signal | yes |
+|  | Ground | yes |
+|  | +5V Supply | yes |
 
 **Crank — DNA Motoring OEM-SS-112**
 
