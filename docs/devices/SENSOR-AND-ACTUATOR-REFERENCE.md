@@ -353,7 +353,9 @@ same-rating outputs may be paralleled (max three → 75 A). Connector terminals 
 real limit. Applied in `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`:
 
 - Fuel pump stays on cabin relay `k_fp` (Power file).
-- Both uprated fans stay on `k_fan` / `k_fan2` (peak current above one 25 A pin).
+- The radiator fan stays on cabin relay `k_fan`. The condenser fan stays on
+  cabin relay `k_fan2`. Peak current is above one 25 A pin. There is one
+  radiator fan and one condenser fan.
 - EPS stays on `k_eps` HCR 150, fused 60 A AMI at HCFB H4 (was F7 on the mini fuse module, which cannot carry 60 A).
 - PMU-16 takes HEAD LH/RH, HAZ-HORN, DOME and RTR at the vacated J/B No.2 cavities, plus
   the rest of body / lighting and the small engine accessories (ECU main, O2 heater,
