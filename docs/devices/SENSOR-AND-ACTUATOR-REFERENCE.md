@@ -167,11 +167,13 @@ Shield: yes
 sensor, 3 blade pins). Mate = Toyota 90980-11143 oval 3-pin socket plug, Sumitomo TS 090
 sockets.
 
-| Pin | Name | Shield |
-|---|---|---|
-| 1 | IG +12V switched |  |
-| 2 | ground |  |
-| 3 | SP1 speed output |  |
+Shield: yes
+
+| Pin | Name |
+|---|---|
+| 1 | IG +12V switched |
+| 2 | ground |
+| 3 | SP1 speed output |
 
 MAP, fuel pressure, oil pressure, coolant pressure, fluid/oil temp, fuel level, ECT and
 both IATs have no pinout in this repo or in the Link / XtremeX manuals used here. Pins
