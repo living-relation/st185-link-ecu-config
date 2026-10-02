@@ -80,7 +80,7 @@ Shield: no
 | Pin | Name |
 |---|---|
 | 30 | fused battery |
-| 85 | coil trigger |
+| 85 | ECU active low |
 | 86 | ignition-switched 12V |
 | 87 | load output |
 
@@ -108,6 +108,10 @@ The ECU kill lands on ACT. The ACT terminal number is not on EWD p.150 or
 p.152. Do not invent it.
 
 Shield: no
+
+| Pin | Name |
+|---|---|
+|  | ECU active low |
 
 ---
 
@@ -390,7 +394,7 @@ number is still unidentified; `90980-*` family, to confirm.
 
 **Changed 2026-09-28 (Daniel): every relay is in the cabin.** `k_eps` (HCR 150) now sits
 in the glove box beside the HCFB, drawn on `ST185-B-cabin` because its trigger is ECU-B
-B12. The coil trigger, coil feed and HCFB H4 feed are cabin wires; the pump feed from
+B12. The ECU active low, coil feed and HCFB H4 feed are cabin wires; the pump feed from
 contact 87 runs point-to-point on loom C through the firewall (no bulkhead), like the fan
 feeds. This replaces the 2026-09-17 "engine bay, next to the pump" placement.
 
@@ -565,7 +569,7 @@ Shield: no
 | Pin | Name |
 |---|---|
 |  | 12V |
-|  | INJ |
+|  | ECU active low |
 
 **1ZZ COP ×4**
 
@@ -589,7 +593,7 @@ Shield: no
 | Pin | Name |
 |---|---|
 | 30 | fused battery |
-| 85 | coil trigger |
+| 85 | ECU active low |
 | 86 | ignition-switched 12V |
 | 87 | load output |
 
@@ -602,7 +606,7 @@ Shield: no
 | Pin | Name |
 |---|---|
 | 30 | fused battery |
-| 85 | coil trigger |
+| 85 | ECU active low |
 | 86 | ignition-switched 12V |
 | 87 | load output |
 
@@ -621,7 +625,7 @@ Shield: no
 | Pin | Name |
 |---|---|
 | 30 | fused battery |
-| 85 | coil trigger |
+| 85 | ECU active low |
 | 86 | ignition-switched 12V |
 | 87 | load output |
 
@@ -640,7 +644,7 @@ Shield: no
 | Pin | Name |
 |---|---|
 | 30 | fused battery |
-| 85 | coil trigger |
+| 85 | ECU active low |
 | 86 | ignition-switched 12V |
 | 87 | load output |
 
@@ -653,7 +657,7 @@ Shield: no
 | Pin | Name |
 |---|---|
 | 30 | fused battery |
-| 85 | coil trigger |
+| 85 | ECU active low |
 | 86 | ignition-switched 12V |
 | 87 | load output |
 
@@ -667,7 +671,7 @@ Shield: no
 | Pin | Name |
 |---|---|
 | 30 | fused battery |
-| 85 | coil trigger |
+| 85 | ECU active low |
 | 86 | ignition-switched 12V |
 | 87 | load output |
 
