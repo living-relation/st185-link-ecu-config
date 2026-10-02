@@ -91,30 +91,6 @@ feeds the ECU's V-Ethrottle pin; the ECU's internal H-bridge drives the motor vi
 
 ---
 
-## A/C circuit
-
-- The ECU does **not** need an "AC on" status input to kill the compressor. A status input
-  only enables proactive idle-up, which this build accepts going without.
-- The kill signal goes to the amplifier's **ACT** terminal. **Ground = kill, floating = AC
-  runs normally** (~9-14V passive pull-up). Confirmed by two independent hands-on 3S-GTE
-  installers and cross-checked against a same-generation Toyota factory voltage table.
-- **AC1 is a separate, input-only terminal** — it reads clutch operating voltage for
-  idle-up, 8-14V when engaged, and cannot be used to kill. Confirmed against the 1990 ST185
-  factory wiring manual. Deliberately excluded from this build; do not reintroduce it.
-
-**A/C amplifier**
-
-The ECU kill lands on ACT. The ACT terminal number is not on EWD p.150 or
-p.152. Do not invent it.
-
-Shield: no
-
-| Pin | Name |
-|---|---|
-|  | ECU active low |
-
----
-
 ## Sensors — part numbers, calibration, and device pins
 
 | Device | Part | Calibration / notes |
@@ -333,50 +309,6 @@ Shield: yes
 |  | SIG+ |
 |  | SIG- |
 
-## Fuel pump and radiator fan — governed by the power rule
-
-**Fuel pump**
-
-Driven by the fuel pump relay. The ECU does not power this pump. It only
-pulls the fuel pump relay coil to ground. Two pins. Pin numbers are not
-in this repo. The 12V pin is from the relay, not from the ECU.
-
-Shield: no
-
-| Pin | Name |
-|---|---|
-|  | 12V |
-|  | ground |
-
-Not an open fork. Section 6.2 of `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` decides
-it: a load is fed **either** from a PDM output **or** from a relay and fuse, never both.
-Any load above the PDM's per-output capacity takes a relay and fuse instead, and where the
-PDM is still the right source for a large load, outputs are combined. High-current
-devices the ECU triggers — fuel pump, radiator fan, condenser fan, EPS, start,
-EFI main — are driven by a relay. The ECU does not power those loads. It only
-pulls the relay coil to ground.
-
-The lookup is done. ECUMaster **PMU-16**: 10 × 25 A and 6 × 15 A high-side, 150 A total;
-same-rating outputs may be paralleled (max three → 75 A). Connector terminals are the
-real limit. Applied in `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`:
-
-- Fuel pump stays on cabin relay `k_fp` (Power file). The ECU does not
-  power the pump. It only pulls that relay coil to ground.
-- The radiator fan stays on cabin relay `k_fan`. The condenser fan stays on
-  cabin relay `k_fan2`. The ECU does not power either fan. It only pulls
-  that fan's relay coil to ground. Peak current is above one 25 A pin. There
-  is one radiator fan and one condenser fan.
-- EPS stays on `k_eps` HCR 150, fused 60 A AMI at HCFB H4 (was F7 on the mini fuse module, which cannot carry 60 A). The ECU does not power the EPS pump. It only pulls that relay coil to ground.
-- PMU-16 takes HEAD LH/RH, HAZ-HORN, DOME and RTR at the vacated J/B No.2 cavities, plus
-  the rest of body / lighting and the small engine accessories (ECU main, O2 heater,
-  boost solenoid, purge). Scope settled 2026-09-17 — see
-  `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.2.1 for the full split and the
-  verified PMU-16 spec.
-
-When the PMU is fitted it is a CAN 1 node at 1 Mbit/s — add it to `WIRING.md` and
-`CAN-BUS-MASTER-DESIGN.md` in the same change that lands it on the car, and do
-**not** add a third 120 Ω terminator.
-
 ## MR-S (ZZW30) EHPS power steering pump - settled 2026-09-17
 
 Confirmed from Daniel's photos of the actual pump. The EPS control module is **bolted to
@@ -532,12 +464,11 @@ conditioner power and ground, which follow the shared-part rule in plan doc 6.15
 
 ---
 
-## Other ECU-connected devices
+## Engine actuators on the ECU
 
-These connect to the ECU and were not already a device row. New devices are
-Shield: no unless Daniel already said that device has a shield. Pin numbers
-are omitted where this repo has no confirmed device pinout. ECU landings stay
-in `sot/channels.csv`.
+Engine devices whose wires go directly to the ECU. Pin numbers are omitted
+where this repo has no confirmed device pinout. ECU landings stay in
+`sot/channels.csv`.
 
 **Boost solenoid**
 
@@ -588,167 +519,4 @@ Shield: no
 |---|---|
 |  | +B |
 |  | IGT |
-|  | ground |
-
-**Fuel pump relay**
-
-Same ISO coil and contact pins as the V-throttle relay. The ECU does not
-power the fuel pump. It only pulls terminal 85 to ground.
-
-Shield: no
-
-| Pin | Name |
-|---|---|
-| 30 | fused battery |
-| 85 | ECU active low |
-| 86 | ignition-switched 12V |
-| 87 | load output |
-
-**Radiator fan relay**
-
-Same ISO coil and contact pins as the V-throttle relay. The ECU does not
-power the radiator fan. It only pulls terminal 85 to ground.
-
-Shield: no
-
-| Pin | Name |
-|---|---|
-| 30 | fused battery |
-| 85 | ECU active low |
-| 86 | ignition-switched 12V |
-| 87 | load output |
-
-**Radiator fan**
-
-Powered by the radiator fan relay, the same way the condenser fan is
-powered by its relay. The ECU does not power this fan. It only pulls the
-radiator fan relay coil to ground. Pin numbers are not in this repo.
-
-Shield: no
-
-**Condenser fan relay**
-
-Same ISO coil and contact pins as the V-throttle relay. The ECU does not
-power the condenser fan. It only pulls terminal 85 to ground.
-
-Shield: no
-
-| Pin | Name |
-|---|---|
-| 30 | fused battery |
-| 85 | ECU active low |
-| 86 | ignition-switched 12V |
-| 87 | load output |
-
-**Condenser fan**
-
-Powered by the condenser fan relay. The ECU does not power this fan. It
-only pulls the condenser fan relay coil to ground. Pin numbers are not
-in this repo.
-
-Shield: no
-
-**Start relay**
-
-Same ISO coil and contact pins as the V-throttle relay. The ECU does not
-power the starter. It only pulls terminal 85 to ground.
-
-Shield: no
-
-| Pin | Name |
-|---|---|
-| 30 | fused battery |
-| 85 | ECU active low |
-| 86 | ignition-switched 12V |
-| 87 | load output |
-
-**EFI main relay**
-
-Same ISO coil and contact pins as the V-throttle relay. The ECU does not
-power the EFI feed. It only pulls terminal 85 to ground.
-
-Shield: no
-
-| Pin | Name |
-|---|---|
-| 30 | fused battery |
-| 85 | ECU active low |
-| 86 | ignition-switched 12V |
-| 87 | load output |
-
-**EPS relay**
-
-`k_eps`, TE HCR 150. Placement and sizing stay in the MRS section above.
-Same ISO coil and contact pins as the other cabin relays. The ECU does
-not power the EPS pump. It only pulls terminal 85 to ground.
-
-Shield: no
-
-| Pin | Name |
-|---|---|
-| 30 | fused battery |
-| 85 | ECU active low |
-| 86 | ignition-switched 12V |
-| 87 | load output |
-
-**Ignition switch**
-
-Dummy OEM ignition-switch block. Key-on sense only. OEM internals are not
-modelled. Do not invent a pinout.
-
-Shield: no
-
-**Start request**
-
-Switch to ground. Pin numbers are not in this repo.
-
-Shield: no
-
-**Anti-theft**
-
-Alarm immobiliser out grounds when armed. Pin numbers are not in this repo.
-
-Shield: no
-
-**Center cluster**
-
-The only center-cluster portion in this repo is the CAN node, plus power and
-ground to the cluster. Interior cluster wiring lives only in the center
-cluster repo. Do not add interior cluster circuits here.
-
-Shield: no
-
-| Pin | Name |
-|---|---|
-|  | CAN H |
-|  | CAN L |
-|  | power |
-|  | ground |
-
-**ECUMaster CSB3**
-
-CAN switchboard on CAN bus 1. Board and enclosure pin numbers are not
-copied here.
-
-Shield: no
-
-| Pin | Name |
-|---|---|
-|  | CAN H |
-|  | CAN L |
-|  | power |
-|  | ground |
-
-**RealDash**
-
-Pi with a USB-CAN adapter. Passive listener on CAN bus 1. Ignition-switched
-feed only. Do not add a hold circuit.
-
-Shield: no
-
-| Pin | Name |
-|---|---|
-|  | CAN H |
-|  | CAN L |
-|  | power |
 |  | ground |
