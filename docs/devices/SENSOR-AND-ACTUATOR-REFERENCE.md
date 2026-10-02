@@ -537,8 +537,8 @@ Shield: no
 
 | Pin | Name |
 |---|---|
-|  | 12V |
-|  | LS |
+|  | positive |
+|  | negative |
 
 **Link CAN-Lambda**
 
