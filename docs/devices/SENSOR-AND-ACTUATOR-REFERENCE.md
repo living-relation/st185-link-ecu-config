@@ -209,7 +209,17 @@ Shield:
 | 2 | 5V |
 | 3 | signal |
 
-Coolant pressure, fluid/oil temp, fuel level, ECT and
+**Coolant pressure — Ronybuy 150 psi**
+
+Shield:
+
+| Pin | Name |
+|---|---|
+| 1 | GND |
+| 2 | Supply + |
+| 3 | Output |
+
+Fluid/oil temp, fuel level, ECT and
 both IATs have no pinout in this repo or in the Link / XtremeX manuals used here. Pins
 and shield flags stay blank.
 
