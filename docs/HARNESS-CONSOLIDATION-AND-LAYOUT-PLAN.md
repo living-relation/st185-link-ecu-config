@@ -224,6 +224,11 @@ add a third 120 Ω terminator.
 Supersedes the earlier "power and ground take precedence over shields" rule.
 
 1. **Every shield gets its own bulkhead pin.** Shields are allocated first.
+   **Limited by** `docs/SHIELD-RULES.md` "Bulkhead pass-through (Daniel,
+   2026-10-01, narrowed)": only a signal that already passes through both
+   firewall bulkhead halves must carry its shield through both halves on
+   matching pins. A screen that runs only in the cabin does not terminate at
+   the bulkhead.
 2. **Sensor 5V and sensor ground are spliced at the bulkhead connector**, not at the ECU.
    Saves pins and keeps the ECU-side harness smaller.
 
@@ -733,7 +738,16 @@ Five rules. They are absolute; there are no per-device exceptions.
    one, do not spec a connector that needs one, do not wire a drain to a connector body.
 4. **A shield is cable only until it terminates at the ECU** - it is a core inside the
    cable, not a wire in its own right, right up to the ECU end.
-5. **Shields pass THROUGH the bulkhead on their own pin, not on the bulkhead shell.**
+5. **Only a signal that already passes through both firewall bulkhead halves
+   must carry its shield through both halves,** on matching pins, not on the
+   bulkhead shell. That shield floats at the sensor, must not stop on either
+   half, and terminates at an ECU shield ground (A7 or B17). A screen that
+   runs only in the cabin does not terminate at the bulkhead. A screened cable
+   that is not broken by an inline connector and does not pass its signal
+   through the bulkhead also does not terminate at the bulkhead.
+   Governing wording: `docs/SHIELD-RULES.md` "Bulkhead pass-through (Daniel,
+   2026-10-01, narrowed)". This limits the older "every shield gets its own
+   bulkhead pin" allocation in 6.3 / 6.32.
 
 Also settled: the ABS wheel-speed sensors have **two wires**. No third conductor, no
 shield connection at the sensor.
@@ -856,8 +870,18 @@ Neither pair gets its own firewall crossing - they ride looms that already cross
 
 ### 6.32 Shield bulkhead pins - the allocation rule
 
+**Limited by "Bulkhead pass-through (Daniel, 2026-10-01, narrowed)" in
+`docs/SHIELD-RULES.md` — that is the governing wording.** First choice is not
+every shield in the car. Only a signal that already passes through both
+firewall bulkhead halves must carry its shield through both halves on matching
+pins. A screen that runs only in the cabin does not terminate at the
+bulkhead. A screened cable that is not broken by an inline connector and does
+not pass its signal through the bulkhead also does not terminate at the
+bulkhead.
+
 **First choice: every shield gets its own bulkhead passthrough pin.** Allocate them that
-way whenever the pins exist.
+way whenever the pins exist. That first choice applies only to a through-bulkhead
+screen required by the 2026-10-01 narrowing.
 
 **When they do not:**
 

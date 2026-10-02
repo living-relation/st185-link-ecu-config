@@ -17,8 +17,13 @@ nothing checked them.
    *Exception: see "Powered device inline" below.*
 4. **A shield is cable only until it terminates at the ECU** — a core inside the
    cable, not a wire in its own right, right up to the ECU end.
-5. **Shields pass THROUGH the bulkhead on their own pin, not on the bulkhead
-   shell,** and that pin is wired on **both halves**.
+5. **Only a signal that already passes through both firewall bulkhead halves
+   must carry its shield through both halves,** on matching pins, not on the
+   bulkhead shell. That shield floats at the sensor, must not stop on either
+   half, and terminates at an ECU shield ground (A7 or B17). A screen that
+   runs only in the cabin does not terminate at the bulkhead. A screened cable
+   that is not broken by an inline connector and does not pass its signal
+   through the bulkhead also does not terminate at the bulkhead.
 
 ## Powered device inline — the one exception (Daniel, 2026-09-25)
 
@@ -36,11 +41,35 @@ continuations through the inline interfaces, `cab_fspur_sh`, `cab_rspur_sh`,
 Also settled: the ABS wheel-speed sensors have **two wires**. No third conductor,
 no shield connection at the sensor.
 
+## Bulkhead pass-through (Daniel, 2026-10-01, narrowed)
+
+**This is the governing wording for firewall screens.** It limits the older
+§6.32 "every shield gets its own bulkhead passthrough pin" wording: that
+allocation applies only where this rule requires a bulkhead pin.
+
+Only a signal that already passes through both firewall bulkhead halves must
+carry its shield through both halves on matching pins. That shield floats at
+the sensor, must not stop on either half, and terminates at A7 or B17. Once
+the bulkhead connectors are installed they are straight-through, so a shield
+is not required to float at the bulkhead.
+
+A screen that runs only in the cabin does not terminate at the bulkhead. A
+screened cable that is not broken by an inline connector and does not pass
+its signal through the bulkhead also does not terminate at the bulkhead.
+
 ## §6.32 — bulkhead pin allocation, in priority order
+
+**Limited by "Bulkhead pass-through (Daniel, 2026-10-01, narrowed)" above —
+that is the governing wording.** First choice is not every shield in the car.
 
 **First choice: every shield gets its own bulkhead passthrough pin.** Allocate
 that way whenever the pins exist. There are 16 free pairs on bulkhead A and 11 on
-B, so first choice applies — **there is no sharing in this build.**
+B, so first choice applies — **there is no sharing in this build.** Only a
+signal that already passes through both firewall bulkhead halves must carry
+its shield through both halves on matching pins. A screen that runs only in
+the cabin does not terminate at the bulkhead. A screened cable that is not
+broken by an inline connector and does not pass its signal through the
+bulkhead also does not terminate at the bulkhead.
 
 Fallback, if that ever stops being true:
 
