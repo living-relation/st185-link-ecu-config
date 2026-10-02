@@ -39,7 +39,7 @@ The engine data was verified accurate and carried over unchanged. Three ECU-spec
 
 | Field | Was (FuryX) | Now (XtremeX) | Reason |
 |---|---|---|---|
-| `ecu.model` | `Link G4X FuryX` | `Link G4X XtremeX` | `archive/DOCS-CLEANUP-PLAN.md` conflict C2 |
+| `ecu.model` | `Link G4X FuryX` | `Link G4X XtremeX` | ECU is XtremeX, not FuryX |
 | `driveline.reverse_switch` | `DI10` | switchboard → CAN → ECU | Conflict C16; DI 9/10 are spare, CAN2 unused |
 | `injectors.dead_time_table` | `config/tables/…` | `tune/tables/…` | Path follows the file |
 

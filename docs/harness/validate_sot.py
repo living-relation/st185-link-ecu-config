@@ -11,7 +11,8 @@ PASS 1 - is the SoT itself sane?
   S3  class / dir / status come from the allowed vocabularies.
   S4  a row with status=set has a net, unless its class is nc.
   S5  only a screen-class row may carry a SHIELD_* net.
-  S6  the shield column names a real screen pin (a7 / b17), "own", or nothing.
+  S6  the CSV must not carry a per-wire shield flag. Only a device or sensor
+      gets a shield, in docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md.
   S7  a signal row may not name a screen pin as its net.
 
 PASS 2 - do the drawings agree with the SoT?
@@ -42,8 +43,12 @@ def bad(code, msg):
     findings.append("%-4s %s" % (code, msg))
 
 
-rows = list(csv.DictReader(SOT.open(encoding="utf-8")))
+_sot = csv.DictReader(SOT.open(encoding="utf-8"))
+fieldnames = _sot.fieldnames or []
+rows = list(_sot)
 print("SoT: %d rows from %s" % (len(rows), SOT.relative_to(ROOT)))
+if "shield" in fieldnames:
+    bad("S6", "channels.csv has a per-wire shield column; only a device or sensor gets a shield")
 
 # ---------------------------------------------------------------- pass 1
 seen = {}
@@ -62,8 +67,8 @@ for i, r in enumerate(rows, 2):
         bad("S4", "line %d: status=set with no net (%s.%s)" % (i, r["conn"], r["pin"]))
     if r["net"].startswith("SHIELD_") and r["class"] != "screen":
         bad("S5", "line %d: %s on a %s row" % (i, r["net"], r["class"]))
-    if r["shield"] not in ("", "own", "a7", "b17"):
-        bad("S6", "line %d: shield %r" % (i, r["shield"]))
+    if r.get("shield"):
+        bad("S6", "line %d: per-wire shield flag %r - only a device or sensor gets a shield" % (i, r["shield"]))
 
 for conn in ("ecu_a", "ecu_b"):
     pins = [r["pin"] for r in rows if r["conn"] == conn]

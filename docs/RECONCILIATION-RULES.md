@@ -21,8 +21,10 @@ edit. They must all agree. A change that leaves two documents disagreeing is not
 ### Source-of-truth chain
 
 ```
-sot/channels.csv             every pin and channel    <- SoT, nothing outranks it
+sot/channels.csv             ECU pin and channel SoT
       |
+      +-- docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md
+      |     device pin, pin name, whether that device gets a shield
       +-- XTREMEX-IO-TABLE.html        visual face; sync_io_table.py --check gates it
       +-- docs/harness/rebuild/*.harness   the physical looms  <- what gets built
               |
@@ -31,17 +33,22 @@ sot/channels.csv             every pin and channel    <- SoT, nothing outranks i
                       +-- harness.design app copy   mirror - never edit as source
 ```
 
-New pin facts go into `sot/channels.csv` **first** (Daniel, 2026-09-25), then the IO
-table and the looms follow. If anything disagrees with the CSV, the other thing is wrong
-and gets corrected - never the reverse. `python docs/harness/check_all.py` enforces the
-whole chain and must pass before every commit.
+New ECU pin facts go into `sot/channels.csv` **first** (Daniel, 2026-09-25), then the IO
+table and the looms follow. Device pin, pin name, and whether that device gets a
+shield go into `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`. One shield flag
+per device or sensor, not per connector pin and not per wire. Which ECU pin a
+device wire lands on is owned by the ECU. If anything disagrees with the CSV on
+an ECU pin, the other thing is wrong and gets corrected - never the reverse.
+`python docs/harness/check_all.py` enforces the whole chain and must pass before
+every commit.
 
 ### Every wiring surface that must agree
 
 | Surface | Role |
 |---|---|
-| `sot/channels.csv` | Pin/channel SoT |
-| `XTREMEX-IO-TABLE.html` | Visual face of the SoT, with a generated pin map |
+| `sot/channels.csv` | ECU pin/channel SoT |
+| `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` | Device pin, pin name, whether that device gets a shield (one flag per device, never per pin or wire) |
+| `XTREMEX-IO-TABLE.html` | Visual face of the ECU SoT, with a generated pin map |
 | `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: A-triggered relays, APS, front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
 | `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: condenser fan relay, fuel level branch, rear wheel-speed spur (Rule 3) |
 | `docs/harness/rebuild/ST185-APS-Pedal.harness` | APS pedal harness: A/B pedal wires broken off the cabin looms, female/male DT 6-way pair, run to the pedal (Rule 3 crossover c) |
@@ -69,9 +76,9 @@ cavity on the bulkhead A cabin half mates the same cavity on the bulkhead A engi
 same for B. `audit_mating.py`, `audit_pin_names.py` and `validate_bulkhead_letter.py`
 check that.
 
-The frozen pre-split baseline and `verify_rebuild.py` were retired on 2026-09-27 to
-`archive/2026-09-27-harness-redesign/`; `verify_connectivity.py` replaced them. Retired diagrams, dated audit notes and one-shot fix scripts live in
-`archive/2026-09-25-cleanup/` and are not authoritative.
+The frozen pre-split baseline and `verify_rebuild.py` were retired on 2026-09-27;
+`verify_connectivity.py` replaced them. Dated audit notes and one-shot fix scripts
+are not authoritative.
 
 Generated files are never hand-edited — re-run their script.
 
@@ -135,7 +142,7 @@ down as an open item — never left silent.
 
 **Daniel, 2026-09-28.** Binding; it overrides the handoff's "Rule 10 A = signal / B =
 power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the merged
-`ST185-ECU-Cabin` drawing (retired to `archive/zz-old/`).
+`ST185-ECU-Cabin` drawing (retired).
 
 - **ECU connector A → cabin firewall A → engine firewall A → engine bay.** Connector B the
   same, on bulkhead B.
@@ -217,3 +224,7 @@ These rules cross repository boundaries. The cluster repo is checked out alongsi
 at `C:\projects\shipping\center-cluster-esp32-p4`, so references such as `main/canbus.c`
 resolve there, not here. A CAN change in this repo that affects the cluster is not complete
 until the cluster side is checked, even though it lives in a different repository.
+
+The only center-cluster portion in this repo is the CAN node, plus power and
+ground to the cluster. Interior cluster wiring lives only in the center
+cluster repo. Do not add interior cluster circuits here.

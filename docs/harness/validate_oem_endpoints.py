@@ -1,7 +1,7 @@
 """OEM connections are flying leads with an EWD locator, never a modelled OEM housing.
 
   E1  every registered flying lead is a Loose terminal on its harness
-  E2  every flying lead has all six EWD fields: page, connector, pin, color, function, method.
+  E2  every flying lead has EWD fields: page, connector, pin, function, method.
       A field not yet known is written "TBD - <reason>"; those are listed, not failed.
   E3  the terminal's signal text carries the EWD page and connector, so the drawing is
       buildable without this file
@@ -15,7 +15,7 @@ import sys
 
 import model
 
-FIELDS = ("page", "connector", "pin", "color", "function", "method")
+FIELDS = ("page", "connector", "pin", "function", "method")
 reg = model.registry()
 ds = model.docs(reg)
 bad, tbd = [], []

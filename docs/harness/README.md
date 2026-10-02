@@ -17,7 +17,6 @@ enforces that.
 | **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, broken-off pairs. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
 | `min/` | Same documents, whitespace stripped, for upload to the harness.design project "ST185 harness design". The Free plan caps a harness at 100 connections, so every file must stay under 100 | No - `make_min.py` regenerates it |
 | `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |
-| `../../archive/2026-09-27-harness-redesign/` | The retired frozen baseline and legacy tools | No - history only |
 
 ## The 15 harnesses
 
@@ -47,7 +46,9 @@ crossovers and the one open deviation (Q-RAIL) are in `../RECONCILIATION-RULES.m
 Rule 3. `validate_bulkhead_letter.py` enforces it; `audit_mating.py` checks A cabin cN
 mates A engine cN and B mates B.
 
-The center cluster's own assembly harness lives in `center-cluster-esp32-p4`;
+The only center-cluster portion in this repo is the CAN node, plus power and
+ground to the cluster. Interior cluster wiring lives only in
+`center-cluster-esp32-p4`. Do not add interior cluster circuits here.
 `ST185-CAN` ends at its CAN-drop terminal.
 
 Loom C's `gbx_body` node (part `cp_gbx_body`) is the glove-box body block - a
@@ -95,7 +96,7 @@ interfaces.json              <- and the ownership facts with them
         audit_cavity_parts.py      contact or plug, never both
         audit_shields.py           docs/SHIELD-RULES.md
         audit_pin_names.py         drains only on A7/B17; one name per mating cavity
-        audit_mating.py            A mates A, B mates B; A7 and B17 never joined
+        audit_mating.py            A mates A, B mates B
         validate_bulkhead_letter.py ECU looms follow the connector letter (Rule 3)
         audit_bulkhead_pairs.py    no one-sided bulkhead cavity
         audit_bh_collisions.py     no two circuits on one cavity half

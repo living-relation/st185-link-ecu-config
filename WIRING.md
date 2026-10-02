@@ -5,17 +5,14 @@
 visual face [`XTREMEX-IO-TABLE.html`](XTREMEX-IO-TABLE.html). This file covers only the **shared CAN bus**: the ECU's CAN
 interface and every node hanging off it.
 
-> **Cluster GPIO is NOT here any more.** The center cluster's J8 pinout,
-> encoders, buttons, inter-cluster UART and board power moved out on 2026-09-24
-> to where they belong: **`center-cluster-esp32-p4`** — `PINOUT.md` and
-> `main/Kconfig.projbuild` are authoritative for those, and this repo's copy had
-> gone stale (it still reserved GPIO18/19 as center UART RX and knew nothing of
-> Encoder 3 or the headlight sense input). See
-> `center-cluster-esp32-p4/archive/2026-09-25-wiring/RECONCILIATION-FROM-ST185-2026-09-24.md`
-> (resolved and archived 2026-09-25).
+> The only center-cluster portion in this repo is the CAN node, plus power and
+> ground to the cluster. Interior cluster wiring lives only in
+> **`center-cluster-esp32-p4`**. Do not add interior cluster circuits here.
 >
-> The center cluster is a **node on the CAN bus** described below. That
-> interface is this repo's; everything inside the cluster is not.
+> **Cluster GPIO is not here.** The center cluster's J8 pinout, encoders,
+> buttons and inter-cluster UART live in that repo (`PINOUT.md`,
+> `main/Kconfig.projbuild`). This repo's copy had gone stale and was removed
+> 2026-09-24.
 
 
 Pin numbers were confirmed 2026-09-11 against the official [XtremeX Quick Start Guide](https://linkecu.com/documentation/XtremeXQuickstartGuide.pdf). This file covers the shared CAN bus only — not ECU cavity numbers, and no longer cluster GPIO.

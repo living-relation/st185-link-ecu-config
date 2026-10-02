@@ -15,14 +15,14 @@
 | 4-5 Rear / front wheel speed | Done (D1 = two-drain 6-way front, D2 = DT 6-way) |
 | 6 CSB3, OEM flying leads, A/C coolant switch | Done (22 + 2 flying leads; ambient and pressure-switch circuits stay factory wiring) |
 | 7 Inventory restructure | **Superseded 2026-09-28** by `docs/RECONCILIATION-RULES.md` Rule 3. Done: ECU looms split by connector letter into `ST185-A-cabin` / `-B-cabin` / `-A-engine` / `-B-engine` (B sensors take +5V / Gnd Out / VSS 12V through new bulkhead B c13 / c19 / c20; MRS enable moved B c14 to A c35); Rear Fuel done. Open: Q-RAIL (`DECISIONS.md`) - injector and COP rails still cross on bulkhead B |
-| 8 Generators + legacy retirement | Done (owner/interface-aware lists; legacy tools archived) |
+| 8 Generators + legacy retirement | Done (owner/interface-aware lists; legacy tools retired) |
 | 9 Propagation | Done |
 
 The remaining 9 `cp_xref` dummies are registered references (one harness populating a
 cavity another owns); turning any into an inline connector is a per-circuit part choice.
 
 Every phase below ends with `check_all.py` green, one commit per logical change, and a push.
-Nothing in `archive/`, `legacy-prebuild/` or a checker script is deleted until the phase that
+Nothing in `legacy-prebuild/` or a checker script is deleted until the phase that
 says so.
 
 ---
@@ -33,25 +33,15 @@ Checking the decision record against the repo found six places where it collides
 that is binding today, or leaves a choice open. Phase 1 needs none of them; Phases 3+ need all
 of them.
 
-### D1 — Front wheel-speed drain vs. "A7 and B17 are never joined" (blocking)
+### D1 — Front wheel-speed drain (adopted: 6-way)
 
-`sot/channels.csv` puts front-left on **ECU-A A23** (screen A7) and front-right on
-**ECU-B B21** (screen B17). The record says the front output is one 4-core cable with one drain
-on pin 5. One drain can only reach one shield ground, so either the FR signal rides a loom-A
-screen or A7 and B17 meet through the cable. Today that is avoided on purpose: FR has its own
-1-core screened cable to B17, floating at the VRC (`SHIELD-RULES.md` §6.30, CSV row 83).
+`sot/channels.csv` puts front-left on **ECU-A A23** and front-right on **ECU-B B21**.
+The front interface is the 6-way already drawn: 5V, Gnd, FL, FR, pin 5 drain of the
+front output cable, pin 6 drain of FR's own 1-core screened cable
+(`SHIELD-RULES.md` §6.30). Rear has no split: RL B20 and RR B19 are both
+loom B.
 
-Rear has no conflict: RL B20 and RR B19 are both loom B → B17.
-
-Options:
-
-| | Change | Cost |
-|---|---|---|
-| **a** | 6-way front interface: 5V, Gnd, FL, FR, drain-A (main cable screen → A7), drain-B (FR's own screen → B17, floats at VRC). Keeps §6.30 exactly. | Front connector is 6-way, not 5; front cable is 4-core+drain plus a 1-core screened. |
-| b | Move FL to a loom-B frequency input (or FR to loom A) so both front signals share one screen. | Needs a free DI on the other ECU connector. The CSV shows no spare DI on either; only An Volt 10/11 are free, and they are not frequency inputs. Would mean moving another channel. |
-| c | Accept one screen for both, terminated at A7 or B17. | Breaks an absolute rule. Not recommended. |
-
-**Recommendation: (a).** No ECU pin moves, no SoT change, and the absolute shield rule stands.
+The 6-way drawing is unchanged.
 
 ### D2 — "5-pin Deutsch" connector part (blocking)
 
@@ -244,8 +234,7 @@ Only after every gate above is HARD and green:
 2. `check_all.py` rewritten to the new gate list; `run_pipeline.bat` calls it instead of the
    mutating scripts.
 3. Retire `verify_rebuild.py`, the mutating `fix_cable_parts.py` (or reduce it to a cable
-   validator), and `layout_633.py`, then `legacy-prebuild/`. Move them to `archive/` with a
-   one-line reason rather than deleting.
+   validator), and `layout_633.py`, then `legacy-prebuild/`.
 4. Remaining `cp_xref` dummies removed; `lint_v09.py` rejects new ones.
 
 ### Phase 9 — Propagate to every wiring surface

@@ -4,9 +4,9 @@ Proposal only for *where files should live* and *how the two `.harness` drawings
 
 > ## READ THIS FIRST — the document contradicts itself on purpose
 >
-> **2026-09-25:** the pin SoT is `sot/channels.csv`. The retired diagrams and
-> dated audit notes named in the section 1 table were moved to
-> `archive/2026-09-25-cleanup/`. The looms are `docs/harness/rebuild/*.harness`.
+> **2026-09-25:** the pin SoT is `sot/channels.csv`. The dated audit notes
+> named in the section 1 table are retired and are not authoritative. The looms
+> are `docs/harness/rebuild/*.harness`.
 >
 > This file grew by accretion. **Sections 1–5 describe the world of 2026-09-12**,
 > when there were two living harness files, `ST185-Power.harness` and
@@ -34,7 +34,7 @@ Several surfaces describe the same ECU pin story. They drifted before; they will
 
 | Surface | Job it is actually good at | Overlaps | Keep as |
 |---|---|---|---|
-| `XTREMEX-IO-TABLE.html` | Channel + Superseal pin + colour + function | Everything below copies it | **Living pin SoT** |
+| `XTREMEX-IO-TABLE.html` | Channel + Superseal pin + function | Everything below copies it | **Living pin SoT** |
 | `docs/XTREMEX-IO-VERIFY-2026-09-11.md` | Dated pin-vs-QSG record | Repeats the table | **Frozen record** — do not update except to close a listed gap |
 | `docs/ECU-IO-AUDIT-2026-09-12.md` | Dated cross-check of docs vs `.harness` | Repeats the table | **Frozen record** |
 | `SCHEMATIC-WIRING.html` | One-page print/SVG of ECU I/O | Same nets as the interactive app | **Print face** of the schematic app. No new pin inventions here |
@@ -45,7 +45,7 @@ Several surfaces describe the same ECU pin story. They drifted before; they will
 | `docs/harness/ST185-EngineRoom-C.harness` | Partial engine-room add-on + OEM J/B injection | Overlaps Power leftover `bh_c` fan/EPS 87 wires | **Living engine-room C SoT** |
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table + EWD snips | None as a table | **Living splice table** |
 | Desktop `Documents\Wire Harnesses\…ECU Harness.harness` | Local harness.design copy | Third copy of the same looms | **Mirror** — pull from repo, do not edit as SoT |
-| `DOCS-CLEANUP-PLAN.md` **and** `.html` | 2026-08-31 inventory (same content, two formats) | Each other; also stale (claims IO table unpushed, 3S-GTE, FuryX) | **Done 2026-09-16** - both now in `archive/`; the MD carries a superseded banner |
+| `DOCS-CLEANUP-PLAN.md` **and** `.html` | 2026-08-31 inventory (same content, two formats) | Each other; also stale (claims IO table unpushed, 3S-GTE, FuryX) | **Done 2026-09-16** — retired; this file is the living plan |
 | `CANBUS-ENCODE-DECODE-REFERENCE.html` (this repo) | Byte-identical copy of the cluster file | `center-cluster-esp32-p4` original | Keep a copy for offline reading; **do not edit** — cluster `canbus.c` wins |
 | `WIRING.md` | Cluster GPIO + 5-node CAN physical | `CAN-BUS-MASTER-DESIGN.md` topology paragraphs | Keep; strip any ECU-cavity claims (already defers) |
 | `docs/HARNESS-FACES-2026-09-11.md` | Why schematic ≠ `.harness` | This plan | Fold the “two faces” rule into this file, then leave the dated note frozen |
@@ -57,7 +57,7 @@ Several surfaces describe the same ECU pin story. They drifted before; they will
 
 1. **Crown one living pin map.** `XTREMEX-IO-TABLE.html` is it. Schematic app, SVG schematic, and `.harness` files are *faces* of that table, not peers.
 2. **Crown two living harness files.** Repo `docs/harness/ST185-Power.harness` and `ST185-Signal.harness`. The desktop copy is a checkout, not a third original.
-3. ~~**Stop dual-maintaining the cleanup plan.**~~ **Done 2026-09-16.** Both `DOCS-CLEANUP-PLAN.html` and `.md` now live in `archive/`; the markdown carries a superseded banner pointing here. Its section 12 open decisions were closed out at Daniel's direction, not carried forward.
+3. ~~**Stop dual-maintaining the cleanup plan.**~~ **Done 2026-09-16.** `DOCS-CLEANUP-PLAN.html` and `.md` are retired; this file is the living plan. Its section 12 open decisions were closed out at Daniel's direction, not carried forward.
 4. **Keep dated verify/audit notes frozen.** New pin facts go into the IO table first, then the two faces. Do not append living pin maps onto `VERIFY` / `AUDIT` / `FACES` notes.
 5. **Print schematic.** Either export from the interactive app when it can, or treat `SCHEMATIC-WIRING.html` as a hand-drawn one-pager that *only* changes when the IO table does. No connector PNs, no AWG, no bundle lengths there.
 6. **Cluster CAN HTML.** Leave the duplicate `CANBUS-ENCODE-DECODE-REFERENCE.html` until a dedicated CAN-docs pass; it is not a harness problem.
@@ -117,7 +117,7 @@ Vertical pitch = `60 + 30 × cavities`, 60 px between parts, 180 px between colu
 
 Dummy OEM block **Ignition Switch**:
 
-- Signal file: `IGN ON` → ECU **DI 9 / B28** (green). PCLink function: Ignition Switch, used with Aux 6 hold.
+- Signal file: `IGN ON` → ECU **DI 9 / B28**. PCLink function: Ignition Switch, used with Aux 6 hold.
 - Power file: same block present for layout/BOM; sense wire is not duplicated there.
 - Do not invent ACC / IG1 / ST internals. Start remains a separate OEM start-request block on DI 7.
 
@@ -224,6 +224,11 @@ add a third 120 Ω terminator.
 Supersedes the earlier "power and ground take precedence over shields" rule.
 
 1. **Every shield gets its own bulkhead pin.** Shields are allocated first.
+   **Limited by** `docs/SHIELD-RULES.md` "Bulkhead pass-through (Daniel,
+   2026-10-01, narrowed)": only a signal that already passes through both
+   firewall bulkhead halves must carry its shield through both halves on
+   matching pins. If the bulkhead runs out of pins, shields may be spliced
+   together.
 2. **Sensor 5V and sensor ground are spliced at the bulkhead connector**, not at the ECU.
    Saves pins and keeps the ECU-side harness smaller.
 
@@ -237,9 +242,10 @@ stay individually unspliced, or are grouped by signal type. Not yet decided.
 ### 6.4 Shields
 
 - Drawn as a dotted oblong at the connector/device end, described **"drain"**.
-- Terminated **only** at the ECU shield-ground end. Floating at the device end, always.
-- Carried through the bulkhead and continued to the ECU connector shield ground.
-- Kept separate rather than spliced, ideally until just before the ECU connector.
+- If a shield exists on a cable, or the device source of truth says that device
+  has a shield, it terminates at the ECU or at the destination device. Floating
+  at the sensor end, always.
+- Carried through the bulkhead when the pass-through rule requires it.
 
 ### 6.5 Grounds
 
@@ -726,14 +732,25 @@ in an invoice; describe the wire and move on.
 ### 6.27 Shields - the rules, set by Daniel 2026-09-19. Supersedes 6.12
 
 Five rules. They are absolute; there are no per-device exceptions.
+A device or sensor gets one shield. Do not mark a shield on a pin or a wire.
 
-1. **A shield is never connected at the device end.** It floats there. Always.
-2. **It terminates at the ECU end only.** That is its single ground reference.
+1. **A shield is never connected at the sensor end.** It floats there. Always.
+2. **If a shield exists on a cable, or the device source of truth says that
+   device has a shield, the shield terminates at the ECU or at the destination
+   device.** Shields stay continuous unless Daniel has named a specific break.
+   Do not invent break points. Vocabulary and the VRC drain facts live in
+   `docs/SHIELD-RULES.md`.
 3. **None of the connectors in this build have a shell for a shield.** Do not model
    one, do not spec a connector that needs one, do not wire a drain to a connector body.
-4. **A shield is cable only until it terminates at the ECU** - it is a core inside the
-   cable, not a wire in its own right, right up to the ECU end.
-5. **Shields pass THROUGH the bulkhead on their own pin, not on the bulkhead shell.**
+4. **A shield exists only on a cable** - a core inside the cable, not a wire in
+   its own right, until a drain takes it to a pin.
+5. **Only a signal that already passes through both firewall bulkhead halves
+   must carry its shield through both halves,** on matching pins, not on the
+   bulkhead shell. That shield floats at the sensor, must not stop on either
+   half, and terminates at the ECU or at the destination device.
+   Governing wording: `docs/SHIELD-RULES.md` "Bulkhead pass-through (Daniel,
+   2026-10-01, narrowed)". This limits the older "every shield gets its own
+   bulkhead pin" allocation in 6.3 / 6.32.
 
 Also settled: the ABS wheel-speed sensors have **two wires**. No third conductor, no
 shield connection at the sensor.
@@ -758,18 +775,10 @@ device. There are no cables in any file yet, so this is an all-new pass. Rule 5 
 pins** where today they share one after a splice. Count the headroom before drawing:
 bulkhead A is 47 cavities, bulkhead B is 21, and 6.17 just handed back B `c13` and `c14`.
 
-### 6.28 Superseded diagrams are archived, not deleted - Daniel 2026-09-19
+### 6.28 Cluster LED drawing - Daniel 2026-09-19
 
-An old diagram goes to `archive/superseded-diagrams/`. It is never deleted - the repo
-already had an `archive/` folder and that is where retired material lives.
-
-| Archived 2026-09-19 | Replaced by |
-|---|---|
-| `docs/electrical/CLUSTER-LED-DIAGRAM.html` | `ST185-ClusterLED` in harness.design (`wkRX`) |
-| `docs/harness/RESIDUAL-LED-FACE.md` | same - it was only a pointer to the HTML |
-
-Per `CLAUDE.md`, nothing in `archive/` is authoritative and it is excluded from normal
-agent context. It is there for "why did we do it that way", nothing else.
+`ST185-ClusterLED` in `docs/harness/rebuild/` is the current Cluster LED drawing.
+The old HTML diagram and residual LED face are not sources of truth.
 
 
 ### 6.29 Wheel-speed shield topology - set by Daniel 2026-09-20
@@ -837,10 +846,13 @@ Conditioner enclosure, per channel pair:
 | Input RIGHT | 3-pin | shielded sensor in |
 | Output | combined | conditioner power in, plus shielded left and right output signals |
 
-**The PCB is isolated from the enclosure shell.** That is the whole point - the shell
-carries the shield straight through, the PCB ground never touches it, and the only
-termination is at the ECU shield ground. 6.27 still holds: one shield, one termination,
-never at the device.
+**The PCB is isolated from the enclosure shell.** The VRC device gets one
+shield. Do not mark a shield on each wire. Do not record a separate shell
+flag. The VRC output cable is shielded, the same as the input. This is not
+a shell-only shield. The drain is connected on both the VRC input and the
+VRC output. The ABS input drains splice together and terminate on a single
+pin. Each ABS sensor shield terminates on the VRC connector. The only ECU
+termination is at the shield ground. 6.27 still holds.
 
 The four ABS shields therefore reach the ECU after all, so they are back in the bulkhead
 pin count - see 6.32.
@@ -856,20 +868,28 @@ Neither pair gets its own firewall crossing - they ride looms that already cross
 
 ### 6.32 Shield bulkhead pins - the allocation rule
 
+**Limited by "Bulkhead pass-through (Daniel, 2026-10-01, narrowed)" in
+`docs/SHIELD-RULES.md` — that is the governing wording.** Only a signal that
+already passes through both firewall bulkhead halves must carry its shield
+through both halves on matching pins.
+
 **First choice: every shield gets its own bulkhead passthrough pin.** Allocate them that
-way whenever the pins exist.
+way whenever the pins exist. That first choice applies only to a through-bulkhead
+screen required by the 2026-10-01 narrowing. If the bulkhead runs out of pins,
+shields may be spliced together.
 
 **When they do not:**
 
 1. **Critical sensors keep their own dedicated shield pin.** Crank and cam first - they are
    the trigger inputs, and a corrupted trigger is a dead or damaged engine. Knock next.
-2. **Everything else shares.** Non-critical shields combine onto a shared passthrough pin
-   to get into the cabin, then **split back out** to each device cable on the far side.
+2. **Everything else shares.** Non-critical shields combine onto a shared passthrough pin,
+   then **split back out** to each device cable on the far side. Shields may be spliced
+   together when the bulkhead runs out of pins.
 3. **They all terminate together at the ECU shield grounds** regardless of how they
    crossed.
 
 Sharing a passthrough is a packaging compromise, not a change to 6.27 - each shield still
-has exactly one termination, at the ECU.
+has exactly one termination, at the ECU or at the destination device.
 
 Current headroom says it does not come to that: 16 free pairs on bulkhead A, 11 on B, and
 the shield count is well under that.
@@ -1486,39 +1506,14 @@ stock on 2026-09-21.
 
 ---
 
-## 6.42 Wheel speed shielding - segmented, not continuous
+## 6.42 Wheel speed shielding
 
-Settled with Daniel 2026-09-22. Supersedes any earlier assumption that a screen
-runs unbroken from sensor to ECU.
+The drain is connected on both the VRC input and the VRC output. The ABS input
+drains splice together and terminate on a single pin. Governing wording:
+`docs/SHIELD-RULES.md` §6.30.
 
-**A continuous shield is not practical here and is not being built.** The screen
-is segmented at the VR conditioner box. The box case joins the two segments into
-one screen node, and that node is grounded at one point only: the ECU shield
-splice (`SHIELD-RULES.md` §6.30 is the governing wording; corrected 2026-09-25,
-the earlier text here said the output screen floats at the box, which contradicted
-§6.30). This is what makes the small enclosures buildable - a continuous screen
-would force a shielded connector and a 360 degree termination at every break.
-
-### The two segments
-
-| Segment | Screen terminates | Screen floats |
-|---|---|---|
-| Sensor drop: wheel to VRC box | **VRC case** (IN pin 3, ring terminal on the case) | at the sensor |
-| VRC output: box to ECU | **VRC case** at the OUT shielding plate **and** the ECU shield splice (front A7, rear B17) | nowhere - it is the one path to ground |
-| FR output (exception, §6.30) | ECU shield splice `sp_shield_b` / B17 only | at the VRC (never touches the front case, which is on A7) |
-
-Both VRC boxes follow this - front and rear, identically.
-
-Consequences that must show up in the drawings:
-
-- Each ABS sensor drop carries **its own screen**, terminated on the case of the
-  box it lands in. Not spliced to a neighbour, not carried through.
-- The VRC output cable screen is a conductor that runs the whole way forward and
-  lands at the ECU end. On the rear loom it crosses the inline connector as one of
-  the seven signal conductors.
-- The box case is a screen termination point. It is still isolated from chassis
-  per 6.35 - nylon hardware, board on nylon standoffs. Screen and chassis are not
-  the same thing.
+The box is still isolated from chassis per 6.35 - nylon hardware, board on nylon
+standoffs. Screen and chassis are not the same thing.
 
 ### Routing after the box
 
@@ -2328,8 +2323,7 @@ feed into `sp_sw12`. Bus feed contacts `1-1355844-1` (4-6 mm2). F2 (fuel pump) i
   chassis splice.
 - ClusterLED: one IG tap off C12-9 feeds `sp_led_12v`; the oil LED sinks on CSB3
   L4 (`csb3io` c26).
-- Cam pull-up colours: +8 V side Orange/White, signal side Blue (same as the cam
-  signal).
+- Cam pull-up: +8 V side to A6, signal side to Trigger 2.
 
 ### Working assumptions (best evidence, confirm at the car)
 
