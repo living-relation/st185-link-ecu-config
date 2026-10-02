@@ -732,6 +732,7 @@ in an invoice; describe the wire and move on.
 ### 6.27 Shields - the rules, set by Daniel 2026-09-19. Supersedes 6.12
 
 Five rules. They are absolute; there are no per-device exceptions.
+A device or sensor gets one shield. Do not mark a shield on a pin or a wire.
 
 1. **A shield is never connected at the sensor end.** It floats there. Always.
 2. **If a shield exists on a cable, or the device source of truth says that

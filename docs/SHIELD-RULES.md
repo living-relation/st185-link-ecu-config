@@ -39,7 +39,7 @@ sleeve is not for the sensor end when the sensor already has its own connector.
    bulkhead shell. That shield floats at the sensor, must not stop on either
    half, and terminates at the ECU or at the destination device.
 
-A connector gets one shield. Do not mark a shield on every pin or wire.
+A device or sensor gets one shield. Do not mark a shield on a pin or a wire.
 
 Anything in the source of truth that has a shield must not use individual
 wires. It must use a multi-conductor Tefzel Raychem cable.

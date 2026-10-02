@@ -14,7 +14,8 @@ The only center-cluster portion in this repo is the CAN node, plus power and
 ground to the cluster. Interior cluster wiring lives only in the center
 cluster repo. Do not add interior cluster circuits here.
 
-A connector gets one shield flag. Do not mark shield yes on every pin or wire.
+A device or sensor gets one shield flag. Do not mark a shield on a pin or a
+wire.
 
 Anything in the source of truth that has a shield must not use individual
 wires. It must use a multi-conductor Tefzel Raychem cable.
@@ -143,7 +144,7 @@ Shield: yes
 
 **Wheel speed ×4**
 
-Four ABS reluctors. Each is signal and ground. Each connector gets one
+Four ABS reluctors. Each is signal and ground. Each sensor gets one
 shield. That shield terminates on the VRC connector. Pin numbers are not
 in this repo.
 
@@ -340,11 +341,11 @@ the pump itself**, so everything below lives in the engine bay.
 
 ### Three connectors
 
-| Ours | On the pump | Cavities | Part number | Used | Shield |
-|---|---|---:|---|---|---|
-| `mrs_pwr` | **A** - main power | 2 | `90980-12068` | 1 = +12 V from `k_eps`, 2 = GND to block | no |
-| `mrs_ctrl` | **B** - signal | **6** | *not yet identified* | speed pulse; the rest unused | no |
-| `mrs_en` | **C** - ignition | 2 | `90980-10942` | 1 = switched 12 V (7.5 A ign fuse), 2 unused | no |
+| Ours | On the pump | Cavities | Part number | Used |
+|---|---|---:|---|---|
+| `mrs_pwr` | **A** - main power | 2 | `90980-12068` | 1 = +12 V from `k_eps`, 2 = GND to block |
+| `mrs_ctrl` | **B** - signal | **6** | *not yet identified* | speed pulse; the rest unused |
+| `mrs_en` | **C** - ignition | 2 | `90980-10942` | 1 = switched 12 V (7.5 A ign fuse), 2 unused |
 
 No shields on the MRS.
 
@@ -447,31 +448,31 @@ conditioner's own cavities from `sot/channels.csv` and `docs/SHIELD-RULES.md` §
 
 **Each IN connector (Front L, Front R, Rear L, Rear R)**
 
-| Pin | Name | Shield |
-|---|---|---|
-| + | sensor + |  |
-| − | sensor − |  |
-| 3 | screen | yes |
+| Pin | Name |
+|---|---|
+| + | sensor + |
+| − | sensor − |
+| 3 | screen |
 
 **Front OUT**
 
-| Pin | Name | Shield |
-|---|---|---|
-| +5V | conditioner supply |  |
-| Gnd | conditioner ground |  |
-| FL | conditioned FL |  |
-| FR | conditioned FR |  |
-| shell | front output cable screen | yes |
+| Pin | Name |
+|---|---|
+| +5V | conditioner supply |
+| Gnd | conditioner ground |
+| FL | conditioned FL |
+| FR | conditioned FR |
+| shell | front output cable screen |
 
 **Rear OUT**
 
-| Pin | Name | Shield |
-|---|---|---|
-| +5V | conditioner supply |  |
-| Gnd | conditioner ground |  |
-| RL | conditioned RL |  |
-| RR | conditioned RR |  |
-| shell | rear output cable screen | yes |
+| Pin | Name |
+|---|---|
+| +5V | conditioner supply |
+| Gnd | conditioner ground |
+| RL | conditioned RL |
+| RR | conditioned RR |
+| shell | rear output cable screen |
 
 ## Wheel-speed sensors - their own loom, settled 2026-09-17
 
