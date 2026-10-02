@@ -241,8 +241,19 @@ Shield: no
 |  | signal |
 |  | ground |
 
-ECT and both IATs have no pinout in this repo or in the Link / XtremeX
-manuals used here. Pins and shield flags stay blank.
+**ECT**
+
+Two pins. Pin numbers are not in this repo.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+|  | signal |
+|  | ground |
+
+Both IATs have no pinout in this repo or in the Link / XtremeX manuals used
+here. Pins and shield flags stay blank.
 
 **Remote sensor block.** MAP, fuel pressure and oil pressure sensor bodies all mount on a
 block on the **driver side** of the firewall. Pressure taps stay at the actual source —
