@@ -153,11 +153,15 @@ Shield: yes
 
 **Flex fuel — Continental generic 3-pin**
 
-| Pin | Name | Shield |
-|---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
+Syltech pinout.
+
+Shield: yes
+
+| Pin | Name |
+|---|---|
+| A | VCC 12VDC |
+| B | GND signal ground |
+| C | Vout sensor output |
 
 **Gearbox VSS — Toyota 83181-20040** (1991-97 Land Cruiser FZJ80 / Previa speedometer
 sensor, 3 blade pins). Mate = Toyota 90980-11143 oval 3-pin socket plug, Sumitomo TS 090
