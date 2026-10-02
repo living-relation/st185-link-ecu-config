@@ -219,9 +219,19 @@ Shield:
 | 2 | Supply + |
 | 3 | Output |
 
-Fluid/oil temp, fuel level, ECT and
-both IATs have no pinout in this repo or in the Link / XtremeX manuals used here. Pins
-and shield flags stay blank.
+**Oil temp — Lowdoller 153299**
+
+Two pins. Pin numbers are not in this repo.
+
+Shield: no
+
+| Pin | Name |
+|---|---|
+|  | signal |
+|  | ground |
+
+Fuel level, ECT and both IATs have no pinout in this repo or in the Link /
+XtremeX manuals used here. Pins and shield flags stay blank.
 
 **Remote sensor block.** MAP, fuel pressure and oil pressure sensor bodies all mount on a
 block on the **driver side** of the firewall. Pressure taps stay at the actual source —
