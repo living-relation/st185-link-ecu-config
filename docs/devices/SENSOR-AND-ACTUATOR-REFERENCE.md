@@ -61,10 +61,10 @@ tracks across full travel before final wiring.
 
 | Pin | Name | Shield |
 |---|---|---|
-| 30 | fused battery |  |
-| 85 | coil trigger |  |
-| 86 | ignition-switched 12V |  |
-| 87 | load output |  |
+| 30 | fused battery | no |
+| 85 | coil trigger | no |
+| 86 | ignition-switched 12V | no |
+| 87 | load output | no |
 
 Matches Link's own published diagram (Adamw, Link forum moderator).
 
