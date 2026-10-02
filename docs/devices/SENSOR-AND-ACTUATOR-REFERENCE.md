@@ -61,7 +61,7 @@ tracks across full travel before final wiring.
 | 30 | fused battery |  |
 | 85 | coil trigger |  |
 | 86 | ignition-switched 12V |  |
-| 87 | load out to the ECU V-Ethrottle pin |  |
+| 87 | load output |  |
 
 Matches Link's own published diagram (Adamw, Link forum moderator).
 
