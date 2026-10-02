@@ -113,7 +113,6 @@ feeds the ECU's V-Ethrottle pin; the ECU's internal H-bridge drives the motor vi
 | ECT | Single sensor, water neck outlet | Part number not confirmed |
 | Manifold IAT + charge-pipe IAT2 | Same GM-style NTC, bought as a pair | Both stay in the engine harness |
 | Bosch 0261230340 | Combo pressure + temp | **Spare only.** If used, its temp side goes on Temp 1 or 2, never Temp 3/4 — a real installer confirmed it misreads on the fixed 1k pull-up |
-| Headlight dim trigger | AGmi, to cluster GPIO | `CONFIG_TC_HEADLIGHT_GPIO`, direct wire — not CAN, not an ECU pin. Needs a relay or optocoupler; do **not** feed +12V straight to that pin |
 
 **Turbo speed — BorgWarner 179430**
 
