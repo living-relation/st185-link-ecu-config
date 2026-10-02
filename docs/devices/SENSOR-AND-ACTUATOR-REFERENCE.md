@@ -41,12 +41,12 @@ locking tab up:
 
 | Pin | Name | Shield |
 |---|---|---|
-| 1 | VC2 +5V (sub) |  |
-| 2 | GND2 |  |
-| 3 | VPA2 APS-S |  |
-| 4 | VC1 +5V (main) |  |
-| 5 | GND1 |  |
-| 6 | VPA1 APS-M |  |
+| 1 | VC2 +5V (sub) | yes |
+| 2 | GND2 | yes |
+| 3 | VPA2 APS-S | yes |
+| 4 | VC1 +5V (main) | yes |
+| 5 | GND1 | yes |
+| 6 | VPA1 APS-M | yes |
 
 All six pins live in the **Signal** file, supplies included, per
 `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.11. (An earlier revision put pins
