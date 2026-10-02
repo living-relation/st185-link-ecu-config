@@ -570,7 +570,7 @@ Shield: yes
 1400 cc high-Z sequential. Each injector is two pins. Pin numbers are not
 in this repo. No part number recorded.
 
-Shield: no
+Shield: yes
 
 | Pin | Name |
 |---|---|
@@ -582,7 +582,7 @@ Shield: no
 Smart coil-on-plug. The ECU drives the logic-level IGT input only. Pin
 numbers are not in this repo.
 
-Shield: yes
+Shield: no
 
 | Pin | Name |
 |---|---|
