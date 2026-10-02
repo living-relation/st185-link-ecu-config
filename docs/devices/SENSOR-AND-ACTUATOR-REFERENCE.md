@@ -59,6 +59,9 @@ tracks across full travel before final wiring.
 
 **V-Ethrottle relay:**
 
+The V-throttle relay is allowed in the device source of truth. It feeds
+power into the ECU to power the e-throttle body circuit.
+
 | Pin | Name | Shield |
 |---|---|---|
 | 30 | fused battery | no |
