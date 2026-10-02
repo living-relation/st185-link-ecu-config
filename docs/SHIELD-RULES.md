@@ -8,24 +8,41 @@ This is the short version so it stops getting re-litigated.
 That is deliberate: these were settled once and kept getting re-opened because
 nothing checked them.
 
+Device pin, pin name, and whether that device gets a shield:
+`docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`. Which ECU pin a device wire
+lands on is owned by the ECU (`sot/channels.csv`, Link documentation, XtremeX
+quick install manual).
+
+## Vocabulary (Daniel)
+
+**Screen means shield.** A **drain** is the wire that connects the shield to the
+pin. Shields exist only on cables. Some cables have a shield and some do not.
+Not every shielded cable has a drain wire. When a shielded cable has no drain
+wire and the shield has to land on a connector pin, the termination is a
+Raychem solder sleeve with a wire lead, and that lead is the drain. Do not
+solder a plain wire, a splice, a flying lead, or an unshielded part. A solder
+sleeve is not for the sensor end when the sensor already has its own connector.
+
 ## The five absolute rules
 
-1. **A shield is never connected at the device end.** It floats there. Always.
-2. **It terminates at the ECU end only.** That is its single ground reference.
+1. **A shield is never connected at the sensor end.** It floats there. Always.
+2. **If a shield exists on a cable, or the device source of truth says that
+   device has a shield, the shield terminates at the ECU or at the destination
+   device.** Shields stay continuous unless Daniel has named a specific break.
+   He has not named one in this request, so do not invent break points. The VR
+   conditioner case (Daniel, 2026-09-25, §6.30) is the named break already in
+   this file.
 3. **No connector in this build has a shell for a shield.** Do not model one, do
    not spec a connector that needs one, do not wire a drain to a connector body.
    *Exception: see "Powered device inline" below.*
-4. **A shield is cable only until it terminates at the ECU** — a core inside the
-   cable, not a wire in its own right, right up to the ECU end.
+4. **A shield exists only on a cable** — a core inside the cable, not a wire in
+   its own right, until a drain takes it to a pin.
 5. **Only a signal that already passes through both firewall bulkhead halves
    must carry its shield through both halves,** on matching pins, not on the
    bulkhead shell. That shield floats at the sensor, must not stop on either
-   half, and terminates at an ECU shield ground (A7 or B17). A screen that
-   runs only in the cabin does not terminate at the bulkhead. A screened cable
-   that is not broken by an inline connector and does not pass its signal
-   through the bulkhead also does not terminate at the bulkhead.
+   half, and terminates at the ECU or at the destination device.
 
-## Powered device inline — the one exception (Daniel, 2026-09-25)
+## Powered device inline — the one named break (Daniel, 2026-09-25)
 
 Rules 1–3 describe a passive run, sensor to ECU. **When a powered device sits in
 the middle of a cable, that cable's shielding is decided case by case and written
@@ -49,32 +66,25 @@ allocation applies only where this rule requires a bulkhead pin.
 
 Only a signal that already passes through both firewall bulkhead halves must
 carry its shield through both halves on matching pins. That shield floats at
-the sensor, must not stop on either half, and terminates at A7 or B17. Once
-the bulkhead connectors are installed they are straight-through, so a shield
-is not required to float at the bulkhead.
-
-A screen that runs only in the cabin does not terminate at the bulkhead. A
-screened cable that is not broken by an inline connector and does not pass
-its signal through the bulkhead also does not terminate at the bulkhead.
+the sensor, must not stop on either half, and terminates at the ECU or at the
+destination device. Once the bulkhead connectors are installed they are
+straight-through, so a shield is not required to float at the bulkhead.
 
 ## §6.32 — bulkhead pin allocation, in priority order
 
 **Limited by "Bulkhead pass-through (Daniel, 2026-10-01, narrowed)" above —
-that is the governing wording.** First choice is not every shield in the car.
+that is the governing wording.**
 
 **First choice: every shield gets its own bulkhead passthrough pin.** Allocate
 that way whenever the pins exist. There are 16 free pairs on bulkhead A and 11 on
-B, so first choice applies — **there is no sharing in this build.** Only a
-signal that already passes through both firewall bulkhead halves must carry
-its shield through both halves on matching pins. A screen that runs only in
-the cabin does not terminate at the bulkhead. A screened cable that is not
-broken by an inline connector and does not pass its signal through the
-bulkhead also does not terminate at the bulkhead.
+B, so first choice applies for through-bulkhead screens required by the
+narrowing.
 
 Fallback, if that ever stops being true:
 
 1. Critical sensors keep a dedicated shield pin — crank and cam first, then knock.
 2. Everything else shares one passthrough, then splits back out on the far side.
+   Shields may be spliced together when the bulkhead runs out of pins.
 3. All terminate together at the ECU shield grounds, however they crossed.
 
 ## Shield inventory
@@ -88,11 +98,8 @@ Fallback, if that ever stops being true:
 | wss FR (conditioned) | own 1-core screened cable, VRC OUT → `IX_WS_FRONT` pin 4 → ECU-B B21; screen → pin 6 → `sp_shield_b` → **B17**, floats at the VRC so it never touches the enclosure (Daniel, 2026-09-25) | none; inline pin 6 |
 | wss RL, RR | continuous through the **rear** VRC enclosure, no bulkhead; output screen → `IX_WS_REAR` pin 5 → `sp_shield_b` → B17 | none — grommet; inline pin 5 |
 
-**The two shield grounds are never joined.** Loom A screens land on A7 through
-`sp_shield_a`, loom B screens on B17 through `sp_shield_b`. The old shared
-`sp_shield_cab` that tied A7 to B17 was split on 2026-09-22. `audit_mating.py`
-(M3, M4) fails the build if a bulkhead-A screen reaches B17, a bulkhead-B screen
-reaches A7, or the two pins are ever connected.
+Loom A screens land on A7 through `sp_shield_a`, loom B screens on B17 through
+`sp_shield_b`. Nothing but a drain lands on A7 or B17.
 
 `bh_a_fw` c1 / `bh_a_eng` c1 used to be a single shared drain. **Retired
 2026-09-22** when §6.32 first choice was finally applied. Both are spare.
@@ -120,15 +127,14 @@ is the governing wording (the §6.42 table was corrected to match on 2026-09-25)
 - **VRC output cable:** screen bonded to the case at the OUT connector's shielding
   plate **and** to the ECU shield splice. Front box → `sp_shield_a` → **A7**; rear
   box → `sp_shield_b` → **B17**.
-- **FR exception (Daniel, 2026-09-25).** The front box's FR conditioned output goes
-  to ECU-B B21, so its screen belongs to B17. It rides its own 1-core screened cable
-  whose screen lands on `sp_shield_b` only and **floats at the VRC** — it never
-  touches the front case, which is on A7. That keeps A7 and B17 apart.
+- **FR output (Daniel, 2026-09-25).** The front box's FR conditioned output goes
+  to ECU-B B21. It rides its own 1-core screened cable whose screen lands on
+  `sp_shield_b` and **floats at the VRC** — it never touches the front case. Do
+  not invent a new enclosure terminal for the FR screen.
 - The VRC and its M8 connectors are not drawn (harness redesign, 2026-09-27). Each lead
   ends at a registered VRC endpoint; `interfaces.json` "enclosures" names the IN and OUT
-  screen leads each case joins. `audit_shields.py` and `audit_mating.py` M4 trace on that
-  one graph, through the inline interfaces, and M4 fails the build if A7 can reach B17
-  through any box.
+  screen leads each case joins. `audit_shields.py` traces on that one graph through
+  the inline interfaces.
 
 Two isolation rules, both of which fail silently and read as a flaky sensor:
 

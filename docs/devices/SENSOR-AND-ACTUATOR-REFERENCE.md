@@ -1,11 +1,18 @@
 # Sensor and actuator reference
 
-Confirmed device facts for this build — part numbers, calibrations, pinouts and supply
-requirements, each traced to a real receipt, product page, factory manual or hands-on
-source. Reference material, not a work order.
+This file is the source of truth for the devices and sensors Daniel owns. For each
+device it owns only that device's own pins: the pin, the pin's name, and whether
+that device gets a shield. Those device pin names are fixed because they belong
+to the device, and they are what the ECU end has to mate to. Which ECU pin a
+device wire lands on is owned by the ECU, from the Link ECU documentation and the
+XtremeX quick install manual (`sot/channels.csv`).
 
-Channel and pin assignments are **not** here: `XTREMEX-IO-TABLE.html` is the source of
-truth for those. This file covers what each device *is* and what it needs.
+Unknown device pins and unknown shield flags are left blank. Do not invent a
+pinout or a shield list.
+
+Confirmed part numbers, calibrations and supply requirements stay here as
+reference, each traced to a receipt, product page, factory manual or hands-on
+source.
 
 ---
 
@@ -13,22 +20,30 @@ truth for those. This file covers what each device *is* and what it needs.
 
 **Throttle body — Bosch, 74.5mm.** Anything in the repo saying 74mm or 3S-GTE is wrong.
 
-6-pin TB connector: Motor−, Pot− (shared ground), Pot+ (shared 5V), Motor+, Pot2 signal,
-Pot1 signal. The two TPS tracks run in opposite directions and sum to ≈5V — that sum is
-the redundancy check.
+6-pin TB connector. The two TPS tracks run in opposite directions and sum to ≈5V — that
+sum is the redundancy check.
+
+| Pin | Name | Shield |
+|---|---|---|
+|  | Motor− |  |
+|  | Pot− (shared ground) |  |
+|  | Pot+ (shared 5V) |  |
+|  | Motor+ |  |
+|  | Pot2 signal |  |
+|  | Pot1 signal |  |
 
 **BRZ pedal — Subaru 36010CA110, 6-pin Sumitomo TS025.** Each track has its **own** 5V and
 ground, the opposite of the throttle body, which shares. Looking into the 6-way with the
 locking tab up:
 
-| Pin | Name | Channel |
+| Pin | Name | Shield |
 |---|---|---|
-| 1 | VC2 +5V (sub) | — |
-| 2 | GND2 | — |
-| 3 | VPA2 APS-S | An Volt 5 **B33** |
-| 4 | VC1 +5V (main) | — |
-| 5 | GND1 | — |
-| 6 | VPA1 APS-M | An Volt 4 **A14** |
+| 1 | VC2 +5V (sub) |  |
+| 2 | GND2 |  |
+| 3 | VPA2 APS-S |  |
+| 4 | VC1 +5V (main) |  |
+| 5 | GND1 |  |
+| 6 | VPA1 APS-M |  |
 
 All six pins live in the **Signal** file, supplies included, per
 `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.11. (An earlier revision put pins
@@ -39,9 +54,16 @@ percentage must go into PCLink's `APS (Sub) 100%` — otherwise the ECU throws a
 fault and limits the engine to roughly 1800 rpm. Establish the figure by probing both
 tracks across full travel before final wiring.
 
-**V-Ethrottle relay:** pin 30 = fused battery, pin 85 = Aux 2 (the ECU grounds it to close
-the relay), pin 86 = ignition-switched 12V, pin 87 → the ECU's V-Ethrottle pin. Matches
-Link's own published diagram (Adamw, Link forum moderator).
+**V-Ethrottle relay:**
+
+| Pin | Name | Shield |
+|---|---|---|
+| 30 | fused battery |  |
+| 85 | coil trigger |  |
+| 86 | ignition-switched 12V |  |
+| 87 | load out to the ECU V-Ethrottle pin |  |
+
+Matches Link's own published diagram (Adamw, Link forum moderator).
 
 Note the throttle body itself has **no power input** — six pins, listed above. The relay
 feeds the ECU's V-Ethrottle pin; the ECU's internal H-bridge drives the motor via Aux 9/10.
@@ -61,7 +83,7 @@ feeds the ECU's V-Ethrottle pin; the ECU's internal H-bridge drives the motor vi
 
 ---
 
-## Sensors — part numbers and calibration
+## Sensors — part numbers, calibration, and device pins
 
 | Device | Part | Calibration / notes |
 |---|---|---|
@@ -70,7 +92,7 @@ feeds the ECU's V-Ethrottle pin; the ECU's internal H-bridge drives the motor vi
 | Coolant pressure | Ronybuy 150 psi | Same linear scaling, tolerates 5-16 VDC |
 | Fluid / oil temp | Lowdoller 153299 (Racepak 810-TR-300 equivalent) | 32°F = 1630Ω … 302°F = 4476Ω; PCLink likely has a matching preset |
 | Fuel level | OEM ST185 resistive float | 3Ω full / 110Ω empty — **needs an external pull-up**, on an An Volt channel, not a Temp channel |
-| Turbo speed | BorgWarner 179430 | Pin 1 = signal 0-5V, pin 2 = ground, pin 3 = +5V |
+| Turbo speed | BorgWarner 179430 | See pin table |
 | Crank | DNA Motoring OEM-SS-112 | The actual Toyota crank reluctor, 2-wire passive |
 | Wheel speed ×4 | Camry / RAV4 / Highlander-family reluctors | 2-wire, therefore passive — an active Hall needs three |
 | Flex fuel | Continental generic 3-pin | Ethanol % and fuel temp on one signal; there is no separate fuel temp sensor. Mounted on the fuel **return** line |
@@ -78,6 +100,55 @@ feeds the ECU's V-Ethrottle pin; the ECU's internal H-bridge drives the motor vi
 | Manifold IAT + charge-pipe IAT2 | Same GM-style NTC, bought as a pair | Both stay in the engine harness |
 | Bosch 0261230340 | Combo pressure + temp | **Spare only.** If used, its temp side goes on Temp 1 or 2, never Temp 3/4 — a real installer confirmed it misreads on the fixed 1k pull-up |
 | Headlight dim trigger | AGmi, to cluster GPIO | `CONFIG_TC_HEADLIGHT_GPIO`, direct wire — not CAN, not an ECU pin. Needs a relay or optocoupler; do **not** feed +12V straight to that pin |
+
+**Turbo speed — BorgWarner 179430**
+
+| Pin | Name | Shield |
+|---|---|---|
+| 1 | signal 0-5V |  |
+| 2 | ground |  |
+| 3 | +5V |  |
+
+**Crank — DNA Motoring OEM-SS-112**
+
+Two-wire passive reluctor. Shield: yes (see `docs/SHIELD-RULES.md`). Pin numbers and
+pin names are not in this repo.
+
+| Pin | Name | Shield |
+|---|---|---|
+|  |  | yes |
+|  |  | yes |
+
+**Wheel speed ×4**
+
+| Pin | Name | Shield |
+|---|---|---|
+|  |  | no |
+|  |  | no |
+
+Two wires. No third conductor, no shield connection at the sensor.
+
+**Flex fuel — Continental generic 3-pin**
+
+| Pin | Name | Shield |
+|---|---|---|
+|  |  |  |
+|  |  |  |
+|  |  |  |
+
+**Gearbox VSS — Toyota 83181-20040** (1991-97 Land Cruiser FZJ80 / Previa speedometer
+sensor, 3 blade pins). Mate = Toyota 90980-11143 oval 3-pin socket plug, Sumitomo TS 090
+sockets.
+
+| Pin | Name | Shield |
+|---|---|---|
+| 1 | IG +12V switched |  |
+| 2 | ground |  |
+| 3 | SP1 speed output |  |
+
+MAP, fuel pressure, oil pressure, coolant pressure, fluid/oil temp, fuel level, ECT and
+both IATs have no pinout in this repo or in the Link / XtremeX manuals used here. Pins
+and shield flags stay blank.
 
 **Remote sensor block.** MAP, fuel pressure and oil pressure sensor bodies all mount on a
 block on the **driver side** of the firewall. Pressure taps stay at the actual source —
@@ -98,9 +169,13 @@ Racer X kit, Cherry/ZF GS1007 Hall, single tooth.
 - **Pull-up: 1.8 kΩ**, bought separately. The ZF datasheet maps resistor to supply
   (1k @ 5V, 1.8k @ 9V, 2.4k @ 12V); 8V interpolates to about 1.6k, and 1.8k is the
   nearest standard value. The 2.4 kΩ the kit ships is sized for 12V and is not used.
-- Wiring: Brown = VCC (+8V), Black = signal to Trigger 2, Blue = ground (Gnd Out, not
-  chassis). Shielded, terminated at the ECU end only.
 - Needs a connector — the kit pigtail is a placeholder. Still to be chosen.
+
+| Pin | Name | Shield |
+|---|---|---|
+|  | VCC (+8V) | yes |
+|  | signal | yes |
+|  | ground (Gnd Out, not chassis) | yes |
 
 ## Fuel pump and radiator fan — governed by the power rule
 
@@ -134,11 +209,11 @@ the pump itself**, so everything below lives in the engine bay.
 
 ### Three connectors
 
-| Ours | On the pump | Cavities | Part number | Used |
-|---|---|---:|---|---|
-| `mrs_pwr` | **A** - main power | 2 | `90980-12068` | 1 = +12 V from `k_eps`, 2 = GND to block |
-| `mrs_ctrl` | **B** - signal | **6** | *not yet identified* | speed pulse; the rest unused |
-| `mrs_en` | **C** - ignition | 2 | `90980-10942` | 1 = switched 12 V (7.5 A ign fuse), 2 unused |
+| Ours | On the pump | Cavities | Part number | Used | Shield |
+|---|---|---:|---|---|---|
+| `mrs_pwr` | **A** - main power | 2 | `90980-12068` | 1 = +12 V from `k_eps`, 2 = GND to block |  |
+| `mrs_ctrl` | **B** - signal | **6** | *not yet identified* | speed pulse; the rest unused |  |
+| `mrs_en` | **C** - ignition | 2 | `90980-10942` | 1 = switched 12 V (7.5 A ign fuse), 2 unused |  |
 
 **`mrs_ctrl` is a 6-way, not a 3-way.** The diagrams draw only the wired pins. Draw all six
 and mark the spares unused - that is what the "3 vs 6 cavities" note was about. Its part
@@ -231,6 +306,39 @@ sensor's supply, and the cam signal already crosses on pin 32. Nothing new is ad
 
 `r_fuellvl` (470 Ohm) and `r_cruise` (10k) are wired correctly as pull-ups to A32 and do
 not need this change - only the cam one is wrong.
+
+## VR conditioner (NCV1124 dual boards)
+
+Write-up: `docs/devices/VR-WHEEL-SPEED-CONDITIONER.md`. Pins below are the
+conditioner's own cavities from `sot/channels.csv` and `docs/SHIELD-RULES.md` §6.30.
+
+**Each IN connector (Front L, Front R, Rear L, Rear R)**
+
+| Pin | Name | Shield |
+|---|---|---|
+| + | sensor + |  |
+| − | sensor − |  |
+| 3 | screen | yes |
+
+**Front OUT**
+
+| Pin | Name | Shield |
+|---|---|---|
+| +5V | conditioner supply |  |
+| Gnd | conditioner ground |  |
+| FL | conditioned FL |  |
+| FR | conditioned FR |  |
+| shell | front output cable screen | yes |
+
+**Rear OUT**
+
+| Pin | Name | Shield |
+|---|---|---|
+| +5V | conditioner supply |  |
+| Gnd | conditioner ground |  |
+| RL | conditioned RL |  |
+| RR | conditioned RR |  |
+| shell | rear output cable screen | yes |
 
 ## Wheel-speed sensors - their own loom, settled 2026-09-17
 

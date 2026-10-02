@@ -15,7 +15,7 @@ Two ways were on the table:
 | | Keep OEM looms + splice table | Fully redraw engine-room C |
 |---|---|---|
 | Kick-panel J/B No.1, R/B 2/3/4 | Stay. Their internal buses, fuses and relays are why we keep them. | Would have to clone those internals in the kick panels. There is not room. |
-| Engine-room main, cowl, dash | Intact except deleted ABS / crash-sensor wires and the new add-on runs. | Hundreds of OEM cavities, colours and splices to reverse-engineer. |
+| Engine-room main, cowl, dash | Intact except deleted ABS / crash-sensor wires and the new add-on runs. | Hundreds of OEM cavities and splices to reverse-engineer. |
 | New EPS, big fans, trunk battery, 160 A alt | Partial C drawing + heavy-DC RADLOK. | Same work, plus the OEM clone. |
 | Risk | Miss a J/B2 output pin — caught by the table and an on-car continuity check. | Silent omission of an OEM lighting / wiper / horn circuit. |
 
@@ -132,8 +132,6 @@ ratings not written above are `TBD` until sized against the load.
 
 ## 5. Splice / feed table
 
-Wire colours are Toyota EWD codes: **W** white, **B** black, **B–R** black with red stripe, **B–O** black with orange, **L–R** blue with red, **GR** grey, **W–B** white with black (ground).
-
 ### 5.1 Heavy DC (trunk → glove box → bay)
 
 | # | Net | AWG | From | To | Hardware | Notes |
@@ -142,7 +140,7 @@ Wire colours are Toyota EWD codes: **W** white, **B** black, **B–R** black wit
 | H2 | Battery − | **1/0** | Trunk battery − , jump lug | PDB ground + body | Bond to the cargo floor | Separate from sensor Gnd Out |
 | H3 | Charge / start + | **1/0** | PDB ALT/STR stud | RADLOK + firewall, cabin side (`RL00801-50RE`) | Feed-through is `RL9080-301-F1RE` | |
 | H4 | Charge / start + | **1/0** | RADLOK + firewall, engine side (`RL00801-50RE`) | Starter B+ post, jump lug | | |
-| H5 | Alternator B+ | 2 AWG | Alternator B+ (rear of block, under intake) | Starter B+ | Does **not** recross the firewall | Short bay jumper; factory A17 pin B is W, we replace that cable |
+| H5 | Alternator B+ | 2 AWG | Alternator B+ (rear of block, under intake) | Starter B+ | Does **not** recross the firewall | Short bay jumper; factory A17 pin B, we replace that cable |
 | H6 | Engine ground | **1/0** | RADLOK − firewall, engine side (`RL00801-50BK`) | Engine block stud, jump lug | Feed-through is `RL9080-301-F1` | OEM grounds EA / EB / EC stay |
 | H7 | Cabin ground | **1/0** | PDB ground | Kick-panel ground **ID** (left) and a new glove-box ground near R/B4 | | |
 | H8 | Jump post | 2 AWG | Starter B+ | Engine-bay jump post | So you can still jump-start from the bay | |
@@ -193,17 +191,17 @@ crossing.
 
 J/B No.1 already contains: 15A ECU-IG, 20A WIPER, 15A GAUGE, 10A TURN, 7.5A IGN, 15A CIG & RADIO, 15A STOP, 15A ECU-B, 15A TAIL, 30A DEFOGGER, taillight relay, defogger relay, turn flasher, integration relay.
 
-| # | Inject? | Connector | Pin | Colour (factory) | Signal | New source | Action |
-|---|---|---|---|---|---|---|---|
-| L1 | **YES** | **1I** (engine-room main) | **1** | B | Always-hot into J/B1 (STOP / ECU-B / DEFOGGER / tail-relay B+) | PDB OEM HOT, fused 40–60 A upstream of the J/B fuses | Primary left-kick B+. Probe 1I-1 to battery + on the stock car to confirm before cutting |
-| L2 | no | **1H** | **7** | B–O | IG2 from ignition switch I9-9 | I9 still feeds it via cowl | Do not overlay. Comes alive once AM2 is restored |
-| L3 | maybe | **1H** | **8** | (always-hot family) | Tied to 1I-1 / 1F-8 / 1I-3 on the inner circuit | Follows L1 if the inner bus is intact | Only add a second feed if L1 does not light 1H-8 |
-| L4 | no | **1A** | **7** | GR | ACC from I9-3 | Ignition switch | Restored by AM1 (L6) |
-| L5 | no | **1A** | **5** | L–R | IG1 from I9-2 | Ignition switch | Restored by AM1 (L6) |
-| L6 | **YES** | **IE1** (ER main ↔ cowl, left kick) | **10** | W | AM1 to ignition I9-4 | PDB AM1, **40 A** fuse (replaces F11 40A FL AM1) | Feeds the switch **and** backfeeds engine-room AM1 toward unplugged 2E-5 |
-| L7 | **YES** | **IE1** | **17** | B–R | AM2 to ignition I9-10 | PDB AM2, **30 A** fuse (replaces F11 30A FL AM2) | Same, toward 2E-3 |
-| L8 | **YES** | Ground **ID** | stud | W–B | Left kick body ground | PDB ground strap | See grounds, EWD p.169 |
-| L9 | **YES** | **R/B No.2** 30A POWER fuse | pins 1–2 (housing EWD p.23) | W | Power-window / lock battery | PDB, 30 A already in the R/B — feed the fuse **input** only | Left kick |
+| # | Inject? | Connector | Pin | Signal | New source | Action |
+|---|---|---|---|---|---|---|
+| L1 | **YES** | **1I** (engine-room main) | **1** | Always-hot into J/B1 (STOP / ECU-B / DEFOGGER / tail-relay B+) | PDB OEM HOT, fused 40–60 A upstream of the J/B fuses | Primary left-kick B+. Probe 1I-1 to battery + on the stock car to confirm before cutting |
+| L2 | no | **1H** | **7** | IG2 from ignition switch I9-9 | I9 still feeds it via cowl | Do not overlay. Comes alive once AM2 is restored |
+| L3 | maybe | **1H** | **8** | Tied to 1I-1 / 1F-8 / 1I-3 on the inner circuit | Follows L1 if the inner bus is intact | Only add a second feed if L1 does not light 1H-8 |
+| L4 | no | **1A** | **7** | ACC from I9-3 | Ignition switch | Restored by AM1 (L6) |
+| L5 | no | **1A** | **5** | IG1 from I9-2 | Ignition switch | Restored by AM1 (L6) |
+| L6 | **YES** | **IE1** (ER main ↔ cowl, left kick) | **10** | AM1 to ignition I9-4 | PDB AM1, **40 A** fuse (replaces F11 40A FL AM1) | Feeds the switch **and** backfeeds engine-room AM1 toward unplugged 2E-5 |
+| L7 | **YES** | **IE1** | **17** | AM2 to ignition I9-10 | PDB AM2, **30 A** fuse (replaces F11 30A FL AM2) | Same, toward 2E-3 |
+| L8 | **YES** | Ground **ID** | stud | Left kick body ground | PDB ground strap | See grounds, EWD p.169 |
+| L9 | **YES** | **R/B No.2** 30A POWER fuse | pins 1–2 (housing EWD p.23) | Power-window / lock battery | PDB, 30 A already in the R/B — feed the fuse **input** only | Left kick |
 
 Do not land new wires on 1A/1B/1C/1D/1E/1F/1G unless a circuit is dead after L1/L6/L7. Those cavities are cowl / floor / roof, still OEM.
 
@@ -219,9 +217,9 @@ Do not land new wires on 1A/1B/1C/1D/1E/1F/1G unless a circuit is dead after L1/
 | R2 | isolate | **R/B No.4** starter relay | 30 / 87 | OEM starter | Link `k_str` in the Power file | Unplug or tape the OEM relay. Do not parallel two starter relays |
 | R3 | keep | **R/B No.4** 10A A/C, 20A FR FOG | as-is | Fog / A/C amp | Follows R1 if they share the R/B hot bus; otherwise feed from the second fuse block | Fog is optional |
 | R4 | keep | **R/B No.3** fog-light relay | coil / 30 | Fog | Only if fog lights stay | |
-| R5 | **YES** | New ground near R/B4 set bolt (OEM **IG** is the R/B4 set bolt) | stud | W–B | PDB ground | EWD ground index p.171 |
+| R5 | **YES** | New ground near R/B4 set bolt (OEM **IG** is the R/B4 set bolt) | stud | Right kick body ground | PDB ground | EWD ground index p.171 |
 
-J/B No.3 (behind the combination meter) is a **cowl junction only** — GR, W–B, W–G, R–L, G, L–Y buses. It does not need a new battery feed. Do not splice it.
+J/B No.3 (behind the combination meter) is a **cowl junction only**. It does not need a new battery feed. Do not splice it.
 
 ![J/B No.3, EWD p.22](ewd-snips/1990-st185-jb3-behind-meter.png)
 
@@ -255,8 +253,8 @@ Two pages of the **same 1990 All-Trac EWD** disagree on what lives on 2E-2 and 2
 
 | Pin | Inner circuit p.21 | Starting + ignition p.48 |
 |---|---|---|
-| **2E-2** | 30A RTR fused output | AM1 (W) pass-through with **2E-5**, then **IE1-10** → I9-4 |
-| **2E-3** | 15A HAZ-HORN fused output | AM2 (B–R) pass-through with **2E-6**, then **IE1-17** → I9-10 |
+| **2E-2** | 30A RTR fused output | AM1 pass-through with **2E-5**, then **IE1-10** → I9-4 |
+| **2E-3** | 15A HAZ-HORN fused output | AM2 pass-through with **2E-6**, then **IE1-17** → I9-10 |
 | **2E-4** | 20A DOME | (not on that path) |
 | **2A-3 / 2D-2** | 15A HEAD LH | (not on that path) |
 | **2A-6 / 2D-6** | 15A HEAD RH | (not on that path) |
@@ -348,7 +346,7 @@ harness file. Fans and EPS do not cross a signal bulkhead.
 | 1992 Celica Electrical Wiring Diagram | EWD132U | Covers ST185; year-adjacent to 1993. Same J/B No.1 / No.2 / kick-panel layout with All-Trac callouts. |
 | 1993 Celica EWD160U | Dealer 265 p. book | The All-Trac pages of this book are the year-exact match. The public PDF labelled EWD160U is the **FWD** AT180/ST184 book — do not mix its J/B2 pin numbers into this table. |
 
-On-car check before first power-up: with J/B2 unplugged and the battery still isolated, ohmmeter from each row's cavity to the named load (headlight, dome, ignition I9-4 / I9-10, J/B1 1I-1). Write the measured colour next to the table if it differs.
+On-car check before first power-up: with J/B2 unplugged and the battery still isolated, ohmmeter from each row's cavity to the named load (headlight, dome, ignition I9-4 / I9-10, J/B1 1I-1).
 
 ---
 
@@ -364,7 +362,7 @@ TE `2141029-1` already owns F1–F13 in `ST185-A-cabin.harness` (EFI, pump, ETB,
 | HEATER feed | unfused stub; 40 A lives in R/B4 | FL ALT → E13 → R/B4 | R/B4 fuse pins 1–2 (R1) |
 | POWER feed | unfused stub; 30 A lives in R/B2 | FL ALT → I2 → R/B2 | R/B2 fuse pins 1–2 (L9) |
 | 2nd fuse block feed | ANL / mega 100 A | J/B2 HEAD/HAZ/DOME/RTR fuses | PDB stud → second block |
-| ACPS (A/C pressure switch +12V) | 5 A, ignition-switched, in the second fuse block | OEM A/C circuit feed to A5 pin 1 (V-R), EWD p.152 | second block → `ac_press` c1 (`w_acp_1`, 18 AWG); switched return A5 pin 4 → A/C amplifier A18 pin 13 (`w_acp_2`) |
+| ACPS (A/C pressure switch +12V) | 5 A, ignition-switched, in the second fuse block | OEM A/C circuit feed to A5 pin 1, EWD p.152 | second block → `ac_press` c1 (`w_acp_1`, 18 AWG); switched return A5 pin 4 → A/C amplifier A18 pin 13 (`w_acp_2`) |
 | Charge / start | none at PDB, or ANL 200 A | F11 100A FL ALT | RADLOK + → starter B+ |
 | ABS | **omit** | F11 60A FL ABS | deleted |
 
@@ -374,7 +372,7 @@ Heater and POWER keep their OEM fuses in the kick-panel R/Bs. We only restore th
 
 ## 9. Execution order
 
-1. Photograph and label every J/B2 / F11 / ABS / crash-sensor connector **before** unplugging. Pull the 2A / 2D / 2E plugs and write the wire colour of each cavity on the table.
+1. Photograph and label every J/B2 / F11 / ABS / crash-sensor connector **before** unplugging. Pull the 2A / 2D / 2E plugs and write the connector and pin of each cavity on the table.
 2. Continuity-map §5.4.1 (2E-2/3 vs IE1) and L1 (1I-1 → battery + on the stock car) while the factory battery is still in the bay, then disconnect it. **Also clamp-meter AM1 and AM2 draw with the ignition on and the dash loaded** — sizes the PDB fuse and the feed wire (§10).
 3. Unplug F11, 2A–2E, 2B, 2C. Remove ABS actuator, ABS relays, crash-sensor connectors. Do not cut the engine-room main, cowl or dash looms.
 4. Trunk battery, cabin-floor 2 AWG / 1/0, glove-box PDB, TE fuse block, second fuse block, relays. RADLOK through the firewall. Jump lugs at trunk, PDB, starter, block, bay post.

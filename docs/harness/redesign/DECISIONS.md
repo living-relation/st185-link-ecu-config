@@ -18,11 +18,11 @@ The drawings must remain useful for assembly: show real new connectors, exact OE
 2. ECU pins own ECU signals for assignment and source-of-truth purposes. After device-to-ECU assignments are settled, physical wiring is drawn.
 3. Every crossover between separate new harnesses ends at a real inline connector. The mating half belongs to the receiving harness.
 4. A shared physical route is not shared ownership. Every physical cable section is drawn and built once.
-5. Shields float at device ends and terminate only at the ECU end.
+5. Shields float at the sensor and terminate at the ECU or at the destination device.
 6. The only shield exception is an inline electrical device with an enclosure; its enclosure may be part of the shield path. This applies to VRC boxes.
 7. Do not raise the CAN termination issue again. It is settled and is not an open repair item.
 8. OEM factory connectors and junction blocks are not new harness connectors unless the new harness physically plugs into them.
-9. Connections to existing OEM wires or connector points are flying leads. Each flying lead must include the EWD connector ID, pin, page, wire color/function, and splice or attachment method.
+9. Connections to existing OEM wires or connector points are flying leads. Each flying lead must include the EWD connector ID, pin, page, function, and splice or attachment method.
 10. `cp_xref` is not sufficient as the long-term ownership model. New references need owner harness, interface ID, build-once status, and BOM ownership.
 
 ## Physical harness architecture
@@ -216,11 +216,11 @@ recommended option for each. Every one can be reversed; the drawings and the reg
 
 | | Decision | Consequence |
 |---|---|---|
-| D1 | **Front interface is 6-way with two drains.** Pin 5 = drain of the front output cable (5V / Gnd / FL, screen → SHIELD_A, A7). Pin 6 = drain of FR's own 1-core screened cable (→ SHIELD_B, B17, floats at the VRC). | A7 and B17 stay apart; `SHIELD-RULES.md` §6.30 unchanged. The front output is a 3-core + 1-core pair rather than one 4-core. Rear keeps one 4-core + drain (both rear signals are loom B). |
+| D1 | **Front interface is 6-way with two drains.** Pin 5 = drain of the front output cable (5V / Gnd / FL, screen → SHIELD_A, A7). Pin 6 = drain of FR's own 1-core screened cable (→ SHIELD_B, B17, floats at the VRC). | The 6-way drawing is unchanged. |
 | D2 | **Deutsch DT 6-way:** `DT04-6P` receptacle + `W6P` on the wheel-speed harness side, `DT06-6S` plug + `W6S` on the ECU spur (the receiving harness; it supplies +5V, so it gets the sockets). Contacts `0460-202-1631` / `0462-201-1631` (size 16, owned). Rear pin 6 is plugged (`114017`). | Two new connector pairs to buy. The owned `DT04-12PA` / `DT06-12SA` sets stay available. |
 | D3 | ~~`ST185-CAN`, `ST185-AntiTheft`, `ST185-ClusterLED` stay as they are. The ECU/cabin merge and the engine re-split by bulkhead letter are Phase 7.~~ **Superseded 2026-09-28** by `docs/RECONCILIATION-RULES.md` Rule 3 (Daniel): four ECU looms by connector letter, `ST185-A-cabin` / `-B-cabin` / `-A-engine` / `-B-engine`; the merged ECU/cabin drawing is retired. CAN, AntiTheft and ClusterLED still stay as they are. | — |
 | D4 | **Rear Fuel is its own harness** with a `DT04-2P` / `DT06-2S` inline pair for fuel level (signal + ground). The pump keeps its own connector per 6.41. | — |
-| D5 | **A/C coolant switch** crosses on **bulkhead A c37 (signal) / c38 (return)**, then a `DT04-2P` / `DT06-2S` inline to a short A/C amplifier spur. Amplifier end: flying lead to TW, conn C (A34) pin 20, R-G, EWD p.150. Return pin and the switch part number are `TBD` (never invent a part number). | — |
+| D5 | **A/C coolant switch** crosses on **bulkhead A c37 (signal) / c38 (return)**, then a `DT04-2P` / `DT06-2S` inline to a short A/C amplifier spur. Amplifier end: flying lead to TW, conn C (A34) pin 20, EWD p.150. Return pin and the switch part number are `TBD` (never invent a part number). | — |
 | D6 | **CSB3 0x640/0x642 A/C bits are unassigned in the docs only.** No frame, `frames.py` or RealDash change. | — |
 
 J/B2 2A / 2D / 2E stay real connectors: the build crimps a dummy header that plugs into

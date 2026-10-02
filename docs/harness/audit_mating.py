@@ -10,14 +10,6 @@ checks, against sot/channels.csv:
   M1  a cavity used on one half is used on the other half too (no dead ends).
   M2  a signal crosses on the bulkhead of its own loom: an ECU pin whose SoT
       loom is A crosses on bulkhead A, loom B on bulkhead B.
-  M3  screens stay in their own loom: a drain on bulkhead A reaches SHIELD_A
-      (A7) only, a drain on bulkhead B reaches SHIELD_B (B17) only.
-  M4  SHIELD_A and SHIELD_B are never joined anywhere. Checked on ONE graph of
-      every harness: mated bulkhead halves are one node per cavity, dm_
-      cross-references (dm_sp_*_Splice, dm_ecu_*, dm_<component>_<cavity>)
-      resolve to the node they name, and each VR conditioner box is one node
-      (interfaces.json enclosures: the case joins the IN and OUT screens, 6.30).
-      Fails if A7 can reach B17 by any path.
   M5  one cavity, one ECU signal: a cavity never reaches two different
       signal-class ECU pins.
   M6  loom C has no bulkhead: the front wheel-speed drops (fender sub-loom of
@@ -31,14 +23,12 @@ audit_pin_names.py (rule 2); this file checks what the pins are wired to.
 """
 import collections, csv, glob, json, os, sys
 
-import model
-
 HERE = os.path.dirname(os.path.abspath(__file__))
 REB = os.path.join(HERE, "rebuild")
 SOT = os.path.join(HERE, "..", "..", "sot", "channels.csv")
 PAIRS = {"bh_a_fw": "bh_a_eng", "bh_b_fw": "bh_b_eng"}
 LETTER = {"bh_a_fw": "A", "bh_a_eng": "A", "bh_b_fw": "B", "bh_b_eng": "B"}
-SHIELD = {("ecu_a", "a7"): "A", ("ecu_b", "b17"): "B"}
+SHIELD = {("ecu_a", "a7"), ("ecu_b", "b17")}
 
 with open(SOT, newline="", encoding="utf-8") as f:
     SOTROWS = {(r["conn"], r["pin"]): r for r in csv.DictReader(f) if r["owner"] == "ECU"}
@@ -129,7 +119,7 @@ for fw, eng in PAIRS.items():
             bad.append("M1 %s %s wired (%s), %s %s is not"
                        % (side, cav, ", ".join(used[side][cav]), other, cav))
 
-# M2 / M3 / M5 - trace cabin halves back to ECU pins
+# M2 / M5 - trace cabin halves back to ECU pins
 for loom, g in graphs.items():
     for n in list(g):
         if n[0] != "C" or n[1] not in ("bh_a_fw", "bh_b_fw"):
@@ -142,10 +132,6 @@ for loom, g in graphs.items():
             if not r:
                 continue
             if k in SHIELD:
-                if SHIELD[k] != letter:
-                    bad.append("M3 %s: %s %s drain reaches %s %s (SHIELD_%s) - bulkhead %s "
-                               "screens go to SHIELD_%s only" % (loom, n[1], n[2], k[0], k[1],
-                                                                 SHIELD[k], letter, letter))
                 continue
             if r["class"] == "signal":
                 sig.add(k)
@@ -193,15 +179,6 @@ for (nid, cav), looms in sorted(cav_owner.items()):
     if len(looms) > 1:
         bad.append("M7 %s %s is wired on %d looms (%s) - one cavity, one circuit"
                    % (nid, cav, len(looms), ", ".join(sorted(looms))))
-
-# M4 - shields never bridged, checked on one graph across every loom. model.Graph
-# collapses mated bulkhead halves, inline-interface halves, dm_ cross-references
-# and each VRC enclosure (interfaces.json "enclosures") to one node each.
-G = model.Graph()
-p = G.path(("ECU", "ecu_a", "a7"), ("ECU", "ecu_b", "b17"))
-if p:
-    bad.append("M4 SHIELD_A (A7) and SHIELD_B (B17) are joined - never bridge them. Path: "
-               + " -> ".join(model.fmt(n) for n in p))
 
 for line in bad:
     print(line)

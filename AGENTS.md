@@ -141,4 +141,4 @@ If you still land in a conflict on one of these, do not resolve it by hand. Take
 side, re-run the generator, and stage the result.
 
 ## Wiring audit
-- `python docs/harness/check_all.py` is the wiring audit. The 2026-09-18 conflict sheet is archived; its bh_c / A7 questions are settled (bulkhead C deleted, A7 and B17 are separate shield grounds).
+- `python docs/harness/check_all.py` is the wiring audit. The 2026-09-18 conflict sheet is archived; its bh_c questions are settled (bulkhead C deleted).

@@ -95,7 +95,7 @@ interfaces.json              <- and the ownership facts with them
         audit_cavity_parts.py      contact or plug, never both
         audit_shields.py           docs/SHIELD-RULES.md
         audit_pin_names.py         drains only on A7/B17; one name per mating cavity
-        audit_mating.py            A mates A, B mates B; A7 and B17 never joined
+        audit_mating.py            A mates A, B mates B
         validate_bulkhead_letter.py ECU looms follow the connector letter (Rule 3)
         audit_bulkhead_pairs.py    no one-sided bulkhead cavity
         audit_bh_collisions.py     no two circuits on one cavity half

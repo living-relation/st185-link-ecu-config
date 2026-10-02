@@ -33,25 +33,15 @@ Checking the decision record against the repo found six places where it collides
 that is binding today, or leaves a choice open. Phase 1 needs none of them; Phases 3+ need all
 of them.
 
-### D1 — Front wheel-speed drain vs. "A7 and B17 are never joined" (blocking)
+### D1 — Front wheel-speed drain (adopted: 6-way)
 
-`sot/channels.csv` puts front-left on **ECU-A A23** (screen A7) and front-right on
-**ECU-B B21** (screen B17). The record says the front output is one 4-core cable with one drain
-on pin 5. One drain can only reach one shield ground, so either the FR signal rides a loom-A
-screen or A7 and B17 meet through the cable. Today that is avoided on purpose: FR has its own
-1-core screened cable to B17, floating at the VRC (`SHIELD-RULES.md` §6.30, CSV row 83).
+`sot/channels.csv` puts front-left on **ECU-A A23** and front-right on **ECU-B B21**.
+The front interface is the 6-way already drawn: 5V, Gnd, FL, FR, pin 5 drain of the
+front output cable, pin 6 drain of FR's own 1-core screened cable which floats at
+the VRC (`SHIELD-RULES.md` §6.30). Rear has no split: RL B20 and RR B19 are both
+loom B.
 
-Rear has no conflict: RL B20 and RR B19 are both loom B → B17.
-
-Options:
-
-| | Change | Cost |
-|---|---|---|
-| **a** | 6-way front interface: 5V, Gnd, FL, FR, drain-A (main cable screen → A7), drain-B (FR's own screen → B17, floats at VRC). Keeps §6.30 exactly. | Front connector is 6-way, not 5; front cable is 4-core+drain plus a 1-core screened. |
-| b | Move FL to a loom-B frequency input (or FR to loom A) so both front signals share one screen. | Needs a free DI on the other ECU connector. The CSV shows no spare DI on either; only An Volt 10/11 are free, and they are not frequency inputs. Would mean moving another channel. |
-| c | Accept one screen for both, terminated at A7 or B17. | Breaks an absolute rule. Not recommended. |
-
-**Recommendation: (a).** No ECU pin moves, no SoT change, and the absolute shield rule stands.
+The 6-way drawing is unchanged.
 
 ### D2 — "5-pin Deutsch" connector part (blocking)
 

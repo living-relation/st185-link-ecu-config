@@ -15,9 +15,8 @@ The rules live in docs/SHIELD-RULES.md (short form) and plan 6.27 / 6.30 / 6.31 
       lists it in shieldBothEndsOk (screen continuations through an inline
       interface or a VRC enclosure)
 
-R4 ("cable only until it terminates at the ECU") is a modelling convention the
-schema cannot express, so it is not checked here. The A7 / B17 separation is
-audit_mating.py M4.
+R4 ("a shield exists only on a cable") is a modelling convention the
+schema cannot express, so it is not checked here.
 
 Exit 1 on any violation.  Added 2026-09-22 after the crank / cam / knock screens
 were found dead-ending in bulkhead A because only the engine half was wired.

@@ -20,9 +20,13 @@ A channel's identity comes from the pin that owns it. For anything on the ECU
 that is the Link G4X XtremeX pin, because the pin decides what the channel can
 physically do - its pull-up, its drive type, its voltage range. A sensor cannot
 be "moved to loom A" as a matter of taste; it lives on whichever loom carries
-its ECU pin. For everything else the owner is the device at the end that cannot
-move: the A/C amplifier owns the ambient sensor, the VR conditioner owns the
-raw wheel-speed pairs, the fuse box owns the OEM power splices.
+its ECU pin. Device-owned pins - the pin, the pin's name, and whether that
+device gets a shield - live in `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`.
+Which ECU pin a device wire lands on is owned by the ECU, from the Link
+documentation and the XtremeX quick install manual (this CSV). For everything
+else the owner is the device at the end that cannot move: the A/C amplifier owns
+the ambient sensor, the VR conditioner owns the raw wheel-speed pairs, the fuse
+box owns the OEM power splices.
 
 ## Columns
 
@@ -45,8 +49,7 @@ raw wheel-speed pairs, the fuse box owns the OEM power splices.
 - `rail` - `P5V`, `P8V`, `GNDOUT`, `GND_ECU`. Shared by many devices, so the
   same-name rule does not apply cavity by cavity.
 - `screen` - `SHIELD_A` (A7) and `SHIELD_B` (B17). **Drain current only.** No
-  signal, no 5V return, no power ground may ever land on these two pins, and
-  the two are never bridged to each other.
+  signal, no 5V return, no power ground may ever land on these two pins.
 - `spare` / `nc` - a drawing that wires one of these fails the gate.
 
 ## TBD means TBD

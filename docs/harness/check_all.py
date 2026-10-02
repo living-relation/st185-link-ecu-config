@@ -15,7 +15,7 @@ What it runs, in order - every one in HARD is a hard gate:
   audit_cavity_parts.py    no cavity claims both a contact and a sealing plug
   audit_shields.py         docs/SHIELD-RULES.md, enforced
   audit_pin_names.py       shield grounds carry drains only; one name per mating cavity
-  audit_mating.py          A cabin mates A engine, B mates B; screens stay in their loom
+  audit_mating.py          A cabin mates A engine, B mates B
   validate_bulkhead_letter.py ECU looms follow the ECU connector letter; crossovers a/b/c only
   audit_bulkhead_pairs.py  no bulkhead cavity wired on one side only
   audit_bh_collisions.py   no two circuits on one half of a bulkhead cavity

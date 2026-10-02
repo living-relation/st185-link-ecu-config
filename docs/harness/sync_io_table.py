@@ -56,7 +56,7 @@ def build_block(rs):
            '<h2>Pin map — every ECU pin, straight from <code>sot/channels.csv</code></h2>',
            '<p class="note">Generated. Numeric order, not the physical connector face. '
            'Grey = spare or not connected. <code>shield</code> = which screen pin the drain lands on '
-           '(A7 = SHIELD_A for loom A, B17 = SHIELD_B for loom B — never bridged).</p>']
+           '(A7 = SHIELD_A, B17 = SHIELD_B).</p>']
     for conn, title, letter in CONN:
         rr = sorted([r for r in rs if r["conn"] == conn], key=lambda r: int(re.sub(r"\D", "", r["pin"]) or 0))
         out.append(f'<h3 class="pmh">{html.escape(title)} <span class="note">({len(rr)} pins)</span></h3>')
@@ -117,7 +117,7 @@ def hand_rows(doc):
         if not (chan and pin):
             continue
         cells = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)
-        func = strip_tags(cells[3]) if len(cells) > 3 else ""
+        func = strip_tags(cells[2]) if len(cells) > 2 else ""
         yield strip_tags(chan.group(1)), strip_tags(pin.group(1)), func
 
 
