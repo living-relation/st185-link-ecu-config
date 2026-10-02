@@ -298,13 +298,15 @@ Racer X kit, Cherry/ZF GS1007 Hall, single tooth.
   nearest standard value. The 2.4 kΩ the kit ships is sized for 12V and is not used.
 - Needs a connector — the kit pigtail is a placeholder. Still to be chosen.
 
+Pin numbers are not in this repo.
+
 Shield: yes
 
 | Pin | Name |
 |---|---|
-|  | VCC (+8V) |
+|  | +8V |
 |  | signal |
-|  | ground (Gnd Out, not chassis) |
+|  | ground |
 
 ## Fuel pump and radiator fan — governed by the power rule
 
