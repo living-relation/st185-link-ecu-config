@@ -129,14 +129,14 @@ Shield: yes
 
 **Crank — DNA Motoring OEM-SS-112**
 
-Two-wire passive reluctor. Pin numbers and pin names are not in this repo.
+Two-wire passive reluctor. Pin numbers are not in this repo.
 
 Shield: yes
 
 | Pin | Name |
 |---|---|
-|  |  |
-|  |  |
+|  | signal |
+|  | ground |
 
 **Wheel speed ×4**
 
