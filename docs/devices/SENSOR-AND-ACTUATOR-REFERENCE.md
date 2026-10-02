@@ -358,8 +358,9 @@ real limit. Applied in `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`:
 
 - Fuel pump stays on cabin relay `k_fp` (Power file).
 - The radiator fan stays on cabin relay `k_fan`. The condenser fan stays on
-  cabin relay `k_fan2`. Peak current is above one 25 A pin. There is one
-  radiator fan and one condenser fan.
+  cabin relay `k_fan2`. The ECU does not power either fan. It only pulls
+  that fan's relay coil to ground. Peak current is above one 25 A pin. There
+  is one radiator fan and one condenser fan.
 - EPS stays on `k_eps` HCR 150, fused 60 A AMI at HCFB H4 (was F7 on the mini fuse module, which cannot carry 60 A).
 - PMU-16 takes HEAD LH/RH, HAZ-HORN, DOME and RTR at the vacated J/B No.2 cavities, plus
   the rest of body / lighting and the small engine accessories (ECU main, O2 heater,
@@ -612,7 +613,9 @@ Shield: no
 
 **Radiator fan**
 
-Pin numbers are not in this repo.
+Powered by the radiator fan relay, the same way the condenser fan is
+powered by its relay. The ECU does not power this fan. It only pulls the
+radiator fan relay coil to ground. Pin numbers are not in this repo.
 
 Shield: no
 
@@ -631,7 +634,9 @@ Shield: no
 
 **Condenser fan**
 
-Pin numbers are not in this repo.
+Powered by the condenser fan relay. The ECU does not power this fan. It
+only pulls the condenser fan relay coil to ground. Pin numbers are not
+in this repo.
 
 Shield: no
 
