@@ -37,8 +37,8 @@ of them.
 
 `sot/channels.csv` puts front-left on **ECU-A A23** and front-right on **ECU-B B21**.
 The front interface is the 6-way already drawn: 5V, Gnd, FL, FR, pin 5 drain of the
-front output cable, pin 6 drain of FR's own 1-core screened cable which floats at
-the VRC (`SHIELD-RULES.md` §6.30). Rear has no split: RL B20 and RR B19 are both
+front output cable, pin 6 drain of FR's own 1-core screened cable
+(`SHIELD-RULES.md` §6.30). Rear has no split: RL B20 and RR B19 are both
 loom B.
 
 The 6-way drawing is unchanged.

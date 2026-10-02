@@ -5,15 +5,15 @@ The rules live in docs/SHIELD-RULES.md (short form) and plan 6.27 / 6.30 / 6.31 
 
   R1  a screen never lands at the device end: every screen end is an ECU shield
       pin, a splice, a bulkhead or inline-interface cavity, a device-enclosure
-      screen lead (the VRC exception), or a legacy cross-reference - never a
+      screen lead (VRC enclosure leads), or a legacy cross-reference - never a
       sensor or device cavity
   R3  no screen lands on a connector shell (no connector on this car has one;
       the VRC case is reached through registered enclosure leads instead)
   R5  a screen crossing a bulkhead uses its own pin, wired on BOTH halves
   R2  every screen reaches an ECU shield-ground pin
   R6  a cable screen landed at BOTH ends is allowed only where interfaces.json
-      lists it in shieldBothEndsOk (screen continuations through an inline
-      interface or a VRC enclosure)
+      lists it in shieldBothEndsOk (drain connected on both the VRC input and
+      the VRC output, and screen continuations through an inline interface)
 
 R4 ("a shield exists only on a cable") is a modelling convention the
 schema cannot express, so it is not checked here.

@@ -737,7 +737,7 @@ Five rules. They are absolute; there are no per-device exceptions.
 2. **If a shield exists on a cable, or the device source of truth says that
    device has a shield, the shield terminates at the ECU or at the destination
    device.** Shields stay continuous unless Daniel has named a specific break.
-   Do not invent break points. Vocabulary and the named VRC break live in
+   Do not invent break points. Vocabulary and the VRC drain facts live in
    `docs/SHIELD-RULES.md`.
 3. **None of the connectors in this build have a shell for a shield.** Do not model
    one, do not spec a connector that needs one, do not wire a drain to a connector body.
@@ -853,10 +853,10 @@ Conditioner enclosure, per channel pair:
 | Input RIGHT | 3-pin | shielded sensor in |
 | Output | combined | conditioner power in, plus shielded left and right output signals |
 
-**The PCB is isolated from the enclosure shell.** That is the whole point - the shell
-carries the shield straight through, the PCB ground never touches it, and the only
-termination is at the ECU shield ground. 6.27 still holds: one shield, one termination,
-never at the device.
+**The PCB is isolated from the enclosure shell.** The drain is connected on both
+the VRC input and the VRC output. The ABS input drains splice together and
+terminate on a single pin. The only ECU termination is at the shield ground.
+6.27 still holds.
 
 The four ABS shields therefore reach the ECU after all, so they are back in the bulkhead
 pin count - see 6.32.
@@ -1510,39 +1510,14 @@ stock on 2026-09-21.
 
 ---
 
-## 6.42 Wheel speed shielding - segmented, not continuous
+## 6.42 Wheel speed shielding
 
-Settled with Daniel 2026-09-22. Supersedes any earlier assumption that a screen
-runs unbroken from sensor to ECU.
+The drain is connected on both the VRC input and the VRC output. The ABS input
+drains splice together and terminate on a single pin. Governing wording:
+`docs/SHIELD-RULES.md` §6.30.
 
-**A continuous shield is not practical here and is not being built.** The screen
-is segmented at the VR conditioner box. The box case joins the two segments into
-one screen node, and that node is grounded at one point only: the ECU shield
-splice (`SHIELD-RULES.md` §6.30 is the governing wording; corrected 2026-09-25,
-the earlier text here said the output screen floats at the box, which contradicted
-§6.30). This is what makes the small enclosures buildable - a continuous screen
-would force a shielded connector and a 360 degree termination at every break.
-
-### The two segments
-
-| Segment | Screen terminates | Screen floats |
-|---|---|---|
-| Sensor drop: wheel to VRC box | **VRC case** (IN pin 3, ring terminal on the case) | at the sensor |
-| VRC output: box to ECU | **VRC case** at the OUT shielding plate **and** the ECU shield splice (front A7, rear B17) | nowhere - it is the one path to ground |
-| FR output (exception, §6.30) | ECU shield splice `sp_shield_b` / B17 only | at the VRC (never touches the front case) |
-
-Both VRC boxes follow this - front and rear, identically.
-
-Consequences that must show up in the drawings:
-
-- Each ABS sensor drop carries **its own screen**, terminated on the case of the
-  box it lands in. Not spliced to a neighbour, not carried through.
-- The VRC output cable screen is a conductor that runs the whole way forward and
-  lands at the ECU end. On the rear loom it crosses the inline connector as one of
-  the seven signal conductors.
-- The box case is a screen termination point. It is still isolated from chassis
-  per 6.35 - nylon hardware, board on nylon standoffs. Screen and chassis are not
-  the same thing.
+The box is still isolated from chassis per 6.35 - nylon hardware, board on nylon
+standoffs. Screen and chassis are not the same thing.
 
 ### Routing after the box
 

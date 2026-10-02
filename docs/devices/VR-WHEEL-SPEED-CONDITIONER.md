@@ -49,7 +49,9 @@ speed a fixed low threshold is the simpler and more predictable answer.
   threshold positive — that is the open-sensor diagnostic mode, not a run mode.
 - Sensor pairs run as **shielded twisted pair**. The shield terminates at the ECU
   or at the destination device.
-- Screen path: see docs/SHIELD-RULES.md (powered-device exception)
+- Screen path: the drain is connected on both the VRC input and the VRC output.
+  The ABS input drains splice together and terminate on a single pin. See
+  `docs/SHIELD-RULES.md` §6.30.
 
 ## Wiring into the car
 

@@ -29,8 +29,10 @@ harness.design JSON.
   the mating half. (`alsoDrawnOn`, an excluded copy of a half on a second harness, is still read
   by the tools but no longer used: a pin that belongs to another loom breaks off instead.)
 - `endpoints` — `device_endpoint` groups: `id` (`VRC_REAR_IN_L`), `harness`, `device`, `terminals`.
-- `enclosures` — screen landings a device case joins internally (the VRC powered-device exception,
-  `SHIELD-RULES.md` §6.30). The graph treats them as one node.
+- `enclosures` — screen landings a device case joins internally
+  (`SHIELD-RULES.md` §6.30: drain connected on both the VRC input and the VRC
+  output; ABS input drains splice together and terminate on a single pin). The
+  graph treats them as one node.
 - `flyingLeads` — one per `Loose` terminal: `harness`, `terminal`, and `ewd`
   `{page, connector, pin, function, method}`. An unknown field is written `TBD` with the
   reason; `validate_oem_endpoints.py` lists every `TBD`.

@@ -260,7 +260,7 @@
         "ep_vrc_r_inr_sh",
         "ep_vrc_r_out_sh"
       ],
-      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded only at the ECU."
+      "note": "Drain connected on both the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (SHIELD-RULES 6.30). Isolated from chassis; grounded at the ECU."
     },
     {
       "id": "VRC_FRONT",
@@ -270,7 +270,7 @@
         "ep_vrc_f_inr_sh",
         "ep_vrc_f_out_sh"
       ],
-      "note": "The VRC case joins the two IN screens and the OUT screen (SHIELD-RULES 6.30). Isolated from chassis; grounded only at the ECU."
+      "note": "Drain connected on both the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (SHIELD-RULES 6.30). Isolated from chassis; grounded at the ECU."
     }
   ],
   "flyingLeads": [
@@ -652,11 +652,11 @@
     },
     {
       "id": "cab_fspur_fr_sh",
-      "reason": "continuation of cab_fout_fr_sh (floats at the VRC) from inline pin 6 to sp_shield_b (B17)"
+      "reason": "continuation of cab_fout_fr_sh from inline pin 6 to sp_shield_b (B17)"
     },
     {
       "id": "cab_fspur_fr_sh_ac",
-      "reason": "A-cabin section of the FR screen: inline pin 6 to the broken-off end; continues on B-cabin as cab_fspur_fr_sh to sp_shield_b (B17), floats at the VRC"
+      "reason": "A-cabin section of the FR screen: inline pin 6 to the broken-off end; continues on B-cabin as cab_fspur_fr_sh to sp_shield_b (B17)"
     }
   ],
   "wheelSpeed": {
