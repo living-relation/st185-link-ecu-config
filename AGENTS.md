@@ -37,7 +37,7 @@
 - Harness build rules: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6. The 2026-09-27
   redesign (physical-harness-per-file, ownership/interface model) supersedes the file
   inventory in §6.41; current decisions are `docs/harness/redesign/DECISIONS.md`.
-- Dated audit/verify notes and retired diagrams were moved to `archive/2026-09-25-cleanup/` — not authoritative.
+- `archive/` holds retired harness drawings only. They are not authoritative.
 - Paste **CONFLICT rows only** into the ACTIVE `shipping\` trance; park husk-keyed chats.
 ## Related Repos (mandatory for CAN bus / wiring work)
 This repo defines only one side of the CAN bus (ECU, RealDash, switchboard). The

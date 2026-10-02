@@ -17,7 +17,6 @@ enforces that.
 | **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, broken-off pairs. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
 | `min/` | Same documents, whitespace stripped, for upload to the harness.design project "ST185 harness design". The Free plan caps a harness at 100 connections, so every file must stay under 100 | No - `make_min.py` regenerates it |
 | `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |
-| `../../archive/2026-09-27-harness-redesign/` | The retired frozen baseline and legacy tools | No - history only |
 
 ## The 15 harnesses
 

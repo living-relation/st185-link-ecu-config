@@ -15,14 +15,14 @@
 | 4-5 Rear / front wheel speed | Done (D1 = two-drain 6-way front, D2 = DT 6-way) |
 | 6 CSB3, OEM flying leads, A/C coolant switch | Done (22 + 2 flying leads; ambient and pressure-switch circuits stay factory wiring) |
 | 7 Inventory restructure | **Superseded 2026-09-28** by `docs/RECONCILIATION-RULES.md` Rule 3. Done: ECU looms split by connector letter into `ST185-A-cabin` / `-B-cabin` / `-A-engine` / `-B-engine` (B sensors take +5V / Gnd Out / VSS 12V through new bulkhead B c13 / c19 / c20; MRS enable moved B c14 to A c35); Rear Fuel done. Open: Q-RAIL (`DECISIONS.md`) - injector and COP rails still cross on bulkhead B |
-| 8 Generators + legacy retirement | Done (owner/interface-aware lists; legacy tools archived) |
+| 8 Generators + legacy retirement | Done (owner/interface-aware lists; legacy tools retired) |
 | 9 Propagation | Done |
 
 The remaining 9 `cp_xref` dummies are registered references (one harness populating a
 cavity another owns); turning any into an inline connector is a per-circuit part choice.
 
 Every phase below ends with `check_all.py` green, one commit per logical change, and a push.
-Nothing in `archive/`, `legacy-prebuild/` or a checker script is deleted until the phase that
+Nothing in `legacy-prebuild/` or a checker script is deleted until the phase that
 says so.
 
 ---
@@ -234,8 +234,7 @@ Only after every gate above is HARD and green:
 2. `check_all.py` rewritten to the new gate list; `run_pipeline.bat` calls it instead of the
    mutating scripts.
 3. Retire `verify_rebuild.py`, the mutating `fix_cable_parts.py` (or reduce it to a cable
-   validator), and `layout_633.py`, then `legacy-prebuild/`. Move them to `archive/` with a
-   one-line reason rather than deleting.
+   validator), and `layout_633.py`, then `legacy-prebuild/`.
 4. Remaining `cp_xref` dummies removed; `lint_v09.py` rejects new ones.
 
 ### Phase 9 — Propagate to every wiring surface

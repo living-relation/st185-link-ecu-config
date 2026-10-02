@@ -4,9 +4,9 @@ Proposal only for *where files should live* and *how the two `.harness` drawings
 
 > ## READ THIS FIRST — the document contradicts itself on purpose
 >
-> **2026-09-25:** the pin SoT is `sot/channels.csv`. The retired diagrams and
-> dated audit notes named in the section 1 table were moved to
-> `archive/2026-09-25-cleanup/`. The looms are `docs/harness/rebuild/*.harness`.
+> **2026-09-25:** the pin SoT is `sot/channels.csv`. The dated audit notes
+> named in the section 1 table are retired and are not authoritative. The looms
+> are `docs/harness/rebuild/*.harness`.
 >
 > This file grew by accretion. **Sections 1–5 describe the world of 2026-09-12**,
 > when there were two living harness files, `ST185-Power.harness` and
@@ -45,7 +45,7 @@ Several surfaces describe the same ECU pin story. They drifted before; they will
 | `docs/harness/ST185-EngineRoom-C.harness` | Partial engine-room add-on + OEM J/B injection | Overlaps Power leftover `bh_c` fan/EPS 87 wires | **Living engine-room C SoT** |
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table + EWD snips | None as a table | **Living splice table** |
 | Desktop `Documents\Wire Harnesses\…ECU Harness.harness` | Local harness.design copy | Third copy of the same looms | **Mirror** — pull from repo, do not edit as SoT |
-| `DOCS-CLEANUP-PLAN.md` **and** `.html` | 2026-08-31 inventory (same content, two formats) | Each other; also stale (claims IO table unpushed, 3S-GTE, FuryX) | **Done 2026-09-16** - both now in `archive/`; the MD carries a superseded banner |
+| `DOCS-CLEANUP-PLAN.md` **and** `.html` | 2026-08-31 inventory (same content, two formats) | Each other; also stale (claims IO table unpushed, 3S-GTE, FuryX) | **Done 2026-09-16** — retired; this file is the living plan |
 | `CANBUS-ENCODE-DECODE-REFERENCE.html` (this repo) | Byte-identical copy of the cluster file | `center-cluster-esp32-p4` original | Keep a copy for offline reading; **do not edit** — cluster `canbus.c` wins |
 | `WIRING.md` | Cluster GPIO + 5-node CAN physical | `CAN-BUS-MASTER-DESIGN.md` topology paragraphs | Keep; strip any ECU-cavity claims (already defers) |
 | `docs/HARNESS-FACES-2026-09-11.md` | Why schematic ≠ `.harness` | This plan | Fold the “two faces” rule into this file, then leave the dated note frozen |
@@ -57,7 +57,7 @@ Several surfaces describe the same ECU pin story. They drifted before; they will
 
 1. **Crown one living pin map.** `XTREMEX-IO-TABLE.html` is it. Schematic app, SVG schematic, and `.harness` files are *faces* of that table, not peers.
 2. **Crown two living harness files.** Repo `docs/harness/ST185-Power.harness` and `ST185-Signal.harness`. The desktop copy is a checkout, not a third original.
-3. ~~**Stop dual-maintaining the cleanup plan.**~~ **Done 2026-09-16.** Both `DOCS-CLEANUP-PLAN.html` and `.md` now live in `archive/`; the markdown carries a superseded banner pointing here. Its section 12 open decisions were closed out at Daniel's direction, not carried forward.
+3. ~~**Stop dual-maintaining the cleanup plan.**~~ **Done 2026-09-16.** `DOCS-CLEANUP-PLAN.html` and `.md` are retired; this file is the living plan. Its section 12 open decisions were closed out at Daniel's direction, not carried forward.
 4. **Keep dated verify/audit notes frozen.** New pin facts go into the IO table first, then the two faces. Do not append living pin maps onto `VERIFY` / `AUDIT` / `FACES` notes.
 5. **Print schematic.** Either export from the interactive app when it can, or treat `SCHEMATIC-WIRING.html` as a hand-drawn one-pager that *only* changes when the IO table does. No connector PNs, no AWG, no bundle lengths there.
 6. **Cluster CAN HTML.** Leave the duplicate `CANBUS-ENCODE-DECODE-REFERENCE.html` until a dedicated CAN-docs pass; it is not a harness problem.
@@ -774,18 +774,10 @@ device. There are no cables in any file yet, so this is an all-new pass. Rule 5 
 pins** where today they share one after a splice. Count the headroom before drawing:
 bulkhead A is 47 cavities, bulkhead B is 21, and 6.17 just handed back B `c13` and `c14`.
 
-### 6.28 Superseded diagrams are archived, not deleted - Daniel 2026-09-19
+### 6.28 Cluster LED drawing - Daniel 2026-09-19
 
-An old diagram goes to `archive/superseded-diagrams/`. It is never deleted - the repo
-already had an `archive/` folder and that is where retired material lives.
-
-| Archived 2026-09-19 | Replaced by |
-|---|---|
-| `docs/electrical/CLUSTER-LED-DIAGRAM.html` | `ST185-ClusterLED` in harness.design (`wkRX`) |
-| `docs/harness/RESIDUAL-LED-FACE.md` | same - it was only a pointer to the HTML |
-
-Per `CLAUDE.md`, nothing in `archive/` is authoritative and it is excluded from normal
-agent context. It is there for "why did we do it that way", nothing else.
+`ST185-ClusterLED` in `docs/harness/rebuild/` is the current Cluster LED drawing.
+The old HTML diagram and residual LED face are not sources of truth.
 
 
 ### 6.29 Wheel-speed shield topology - set by Daniel 2026-09-20

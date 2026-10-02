@@ -38,8 +38,7 @@ TOPICS: list[dict] = [
         "dir": "5sgte-project-data",
         "title": "5S-GTE Build Data",
         "blurb": "Turbo-selection research and head airflow studies for the 5S-GTE hybrid "
-                 "build. ECU wiring docs that were also in this tree have been retired to "
-                 "archive/5sgte-project-data/ -- see archive/README.md for why.",
+                 "build. ECU wiring docs that were also in this tree have been retired.",
     },
     {
         "dir": "harness",

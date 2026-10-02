@@ -75,9 +75,9 @@ cavity on the bulkhead A cabin half mates the same cavity on the bulkhead A engi
 same for B. `audit_mating.py`, `audit_pin_names.py` and `validate_bulkhead_letter.py`
 check that.
 
-The frozen pre-split baseline and `verify_rebuild.py` were retired on 2026-09-27 to
-`archive/2026-09-27-harness-redesign/`; `verify_connectivity.py` replaced them. Retired diagrams, dated audit notes and one-shot fix scripts live in
-`archive/2026-09-25-cleanup/` and are not authoritative.
+The frozen pre-split baseline and `verify_rebuild.py` were retired on 2026-09-27;
+`verify_connectivity.py` replaced them. Dated audit notes and one-shot fix scripts
+are not authoritative.
 
 Generated files are never hand-edited — re-run their script.
 
@@ -141,7 +141,7 @@ down as an open item — never left silent.
 
 **Daniel, 2026-09-28.** Binding; it overrides the handoff's "Rule 10 A = signal / B =
 power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the merged
-`ST185-ECU-Cabin` drawing (retired to `archive/zz-old/`).
+`ST185-ECU-Cabin` drawing (retired).
 
 - **ECU connector A → cabin firewall A → engine firewall A → engine bay.** Connector B the
   same, on bulkhead B.

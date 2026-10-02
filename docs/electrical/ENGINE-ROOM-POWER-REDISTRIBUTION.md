@@ -330,7 +330,6 @@ see `docs/harness/README.md` for the current file map.
 | `docs/harness/rebuild/ST185-A-engine.harness` | A-letter engine devices: MRS speed / enable cavities (bulkhead A c36 / c35), ETB sensors, injectors, coils |
 | `docs/harness/rebuild/ST185-B-engine.harness` | B-letter engine devices, ETB motor, injector / coil 12 V engine leg (Q-RAIL open) |
 | `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB → fuse blocks + relays, RADLOK, OEM injection blocks, EPS power, uprated fans. Glove-box body block is node `gbx_body` (was `pmu` until 2026-09-26; no PMU fitted) |
-| `archive/2026-09-27-harness-redesign/docs/harness/legacy-prebuild/` | Frozen pre-split baseline, retired 2026-09-27. History only |
 | This document | Splice table and factory citations. No second current-flow diagram of the OEM loom |
 
 `bh_c` (HDP20 9-way) **is deleted** — confirmed 2026-09-22, zero references in any
