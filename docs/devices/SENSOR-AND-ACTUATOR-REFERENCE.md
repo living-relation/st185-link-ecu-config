@@ -181,7 +181,7 @@ Shield: yes
 
 **MAP — Lowdoller 899005**
 
-Shield:
+Shield: no
 
 | Pin | Name |
 |---|---|
@@ -193,7 +193,7 @@ Shield:
 
 Same pinout as MAP.
 
-Shield:
+Shield: no
 
 | Pin | Name |
 |---|---|
@@ -205,7 +205,7 @@ Shield:
 
 Same pinout as MAP and fuel pressure.
 
-Shield:
+Shield: no
 
 | Pin | Name |
 |---|---|
@@ -215,7 +215,7 @@ Shield:
 
 **Coolant pressure — Ronybuy 150 psi**
 
-Shield:
+Shield: no
 
 | Pin | Name |
 |---|---|
@@ -448,9 +448,10 @@ conditioner's own cavities from `sot/channels.csv` and `docs/SHIELD-RULES.md` §
 
 Shield: yes
 
-The drain is connected on both the VRC input and the VRC output. The ABS
-input drains splice together and terminate on a single pin. Each ABS
-sensor shield terminates on the VRC connector.
+The VRC output cable is shielded, the same as the input. This is not a
+shell-only shield. The drain is connected on both the VRC input and the
+VRC output. The ABS input drains splice together and terminate on a
+single pin. Each ABS sensor shield terminates on the VRC connector.
 
 **Each IN connector (Front L, Front R, Rear L, Rear R)**
 
@@ -468,7 +469,6 @@ sensor shield terminates on the VRC connector.
 | Gnd | conditioner ground |
 | FL | conditioned FL |
 | FR | conditioned FR |
-| shell | front output cable screen |
 
 **Rear OUT**
 
@@ -478,7 +478,6 @@ sensor shield terminates on the VRC connector.
 | Gnd | conditioner ground |
 | RL | conditioned RL |
 | RR | conditioned RR |
-| shell | rear output cable screen |
 
 ## Wheel-speed sensors - their own loom, settled 2026-09-17
 

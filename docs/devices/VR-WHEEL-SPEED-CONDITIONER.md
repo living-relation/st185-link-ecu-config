@@ -48,10 +48,13 @@ speed a fixed low threshold is the simpler and more predictable answer.
 - **Hold the `DIAG` pin low** for normal running. Pulling it high moves the negative
   threshold positive — that is the open-sensor diagnostic mode, not a run mode.
 - Sensor pairs run as **shielded twisted pair**. The VRC device gets one
-  shield. Each ABS sensor shield terminates on the VRC connector.
+  shield. The VRC output cable is shielded, the same as the input. This is
+  not a shell-only shield. Each ABS sensor shield terminates on the VRC
+  connector.
 - Screen path: the drain is connected on both the VRC input and the VRC output.
   The ABS input drains splice together and terminate on a single pin. See
-  `docs/SHIELD-RULES.md` §6.30. Do not mark a shield on each wire.
+  `docs/SHIELD-RULES.md` §6.30. Do not mark a shield on each wire. Do not
+  record a separate shell flag.
 
 ## Wiring into the car
 

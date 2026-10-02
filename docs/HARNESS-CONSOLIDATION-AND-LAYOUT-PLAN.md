@@ -847,10 +847,12 @@ Conditioner enclosure, per channel pair:
 | Output | combined | conditioner power in, plus shielded left and right output signals |
 
 **The PCB is isolated from the enclosure shell.** The VRC device gets one
-shield. Do not mark a shield on each wire. The drain is connected on both
-the VRC input and the VRC output. The ABS input drains splice together and
-terminate on a single pin. Each ABS sensor shield terminates on the VRC
-connector. The only ECU termination is at the shield ground. 6.27 still holds.
+shield. Do not mark a shield on each wire. Do not record a separate shell
+flag. The VRC output cable is shielded, the same as the input. This is not
+a shell-only shield. The drain is connected on both the VRC input and the
+VRC output. The ABS input drains splice together and terminate on a single
+pin. Each ABS sensor shield terminates on the VRC connector. The only ECU
+termination is at the shield ground. 6.27 still holds.
 
 The four ABS shields therefore reach the ECU after all, so they are back in the bulkhead
 pin count - see 6.32.
