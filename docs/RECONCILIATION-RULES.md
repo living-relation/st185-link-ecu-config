@@ -223,3 +223,7 @@ These rules cross repository boundaries. The cluster repo is checked out alongsi
 at `C:\projects\shipping\center-cluster-esp32-p4`, so references such as `main/canbus.c`
 resolve there, not here. A CAN change in this repo that affects the cluster is not complete
 until the cluster side is checked, even though it lives in a different repository.
+
+The only center-cluster portion in this repo is the CAN node, plus power and
+ground to the cluster. Interior cluster wiring lives only in the center
+cluster repo. Do not add interior cluster circuits here.

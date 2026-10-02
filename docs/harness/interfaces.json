@@ -1,6 +1,6 @@
 {
   "_doc": "Interface and ownership registry for docs/harness/rebuild/. Convention: redesign/INTERFACES.md. harness.design rejects unknown keys, so this metadata cannot live in the .harness files.",
-  "_scope": "The center cluster's own assembly harness is owned by center-cluster-esp32-p4 and is not drawn here; ST185-CAN ends at its CAN-drop terminal t_cluster_can. The cluster warning-LED loom (ST185-ClusterLED) is owned here.",
+  "_scope": "The only center-cluster portion in this repo is the CAN node, plus power and ground to the cluster. Interior cluster wiring lives only in center-cluster-esp32-p4. Do not add interior cluster circuits here. ST185-CAN ends at its CAN-drop terminal t_cluster_can.",
   "harnesses": {
     "A-cabin": {
       "file": "ST185-A-cabin.harness",

@@ -10,6 +10,10 @@ XtremeX quick install manual (`sot/channels.csv`).
 Unknown device pins and unknown shield flags are left blank. Do not invent a
 pinout or a shield list.
 
+The only center-cluster portion in this repo is the CAN node, plus power and
+ground to the cluster. Interior cluster wiring lives only in the center
+cluster repo. Do not add interior cluster circuits here.
+
 A connector gets one shield flag. Do not mark shield yes on every pin or wire.
 
 Anything in the source of truth that has a shield must not use individual

@@ -46,7 +46,9 @@ crossovers and the one open deviation (Q-RAIL) are in `../RECONCILIATION-RULES.m
 Rule 3. `validate_bulkhead_letter.py` enforces it; `audit_mating.py` checks A cabin cN
 mates A engine cN and B mates B.
 
-The center cluster's own assembly harness lives in `center-cluster-esp32-p4`;
+The only center-cluster portion in this repo is the CAN node, plus power and
+ground to the cluster. Interior cluster wiring lives only in
+`center-cluster-esp32-p4`. Do not add interior cluster circuits here.
 `ST185-CAN` ends at its CAN-drop terminal.
 
 Loom C's `gbx_body` node (part `cp_gbx_body`) is the glove-box body block - a
