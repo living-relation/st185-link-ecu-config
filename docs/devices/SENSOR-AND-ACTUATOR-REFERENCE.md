@@ -25,12 +25,12 @@ sum is the redundancy check.
 
 | Pin | Name | Shield |
 |---|---|---|
-|  | Motor− |  |
-|  | Pot− (shared ground) |  |
-|  | Pot+ (shared 5V) |  |
-|  | Motor+ |  |
-|  | Pot2 signal |  |
-|  | Pot1 signal |  |
+| 1 | Motor (−) |  |
+| 2 | TPS (−) |  |
+| 3 | TPS (5V+) |  |
+| 4 | Motor (+) |  |
+| 5 | TPS 2 (out) |  |
+| 6 | TPS 1 (out) |  |
 
 **BRZ pedal — Subaru 36010CA110, 6-pin Sumitomo TS025.** Each track has its **own** 5V and
 ground, the opposite of the throttle body, which shares. Looking into the 6-way with the
