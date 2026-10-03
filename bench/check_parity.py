@@ -14,6 +14,8 @@ Standard library only (runs in CI with no pip step). What it compares:
   apps/trackcluster-can-sender/ui/index.html   both device profiles: byte/len/signed/bit,
                             and the RealDash profile's toRaw() at the same test value
   switchboard_frames.json   0x640-0x643 vs frames.py and the ID table
+  ECU receive 0x3EC/0x3ED   JSON dashboard_to_ecu vs .lcs Direction="Receive" channels vs
+                            frames.py vs ID table section B (DLC 1, byte 0 = index)
 
 D2 (2026-10-02): the JSON stays in PCLink's encode form and everything else uses decode.
 The conversion is decode_scale = 1 / scale, decode_offset = -offset / scale; this script
@@ -157,6 +159,8 @@ def check_lcs(model):
     seen = set()
     for ch in root.iter("Channel"):
         fid = hexid(ch.get("ID"))
+        if (ch.get("Direction") or "").lower() == "receive":
+            continue                      # ECU receive channels: check_rx()
         seen.add(fid)
         where = ".lcs 0x%03X" % fid
         m = model.get(fid)
@@ -189,6 +193,54 @@ def check_lcs(model):
                     % (b, p.get("Name"), p.get("Scale"), p.get("Offset"), f["dec_scale"], f["dec_offset"]))
     if seen != set(model):
         err(".lcs", "channel set %s differs from json %s" % (sorted(map(hex, seen)), sorted(map(hex, model))))
+
+
+# --- 3b. ECU RECEIVE: cluster selections 0x3EC / 0x3ED ----------------------------------
+# Daniel 2026-10-03: the ECU listens for the cluster's encoder selections. The same two
+# frames must agree in the JSON (dashboard_to_ecu), the .lcs receive channels, frames.py
+# and the ID table section B. Cluster source: check_cluster_source().
+RX_ENC = {0x3EC: (F.encode_boost_map_selection, F.decode_boost_map_selection, "boost_map_index", "ID_BOOST_MAP_SEL"),
+          0x3ED: (F.encode_tc_selection, F.decode_tc_selection, "tc_setting_index", "ID_TC_SEL")}
+
+
+def load_rx():
+    j = json.loads(rd("link_g4x_can_setup.json")).get("dashboard_to_ecu") or {}
+    out = {}
+    if not j.get("ecu_receives"):
+        err("json dashboard_to_ecu", "ecu_receives is not true (Daniel 2026-10-03: the ECU receives them)")
+    for fr in j.get("frames", []):
+        out[hexid(fr["id"])] = fr
+    if set(out) != set(RX_ENC):
+        err("json dashboard_to_ecu", "frames %s, expected 0x3EC/0x3ED" % sorted(map(hex, out)))
+    return out
+
+
+def check_rx(rx, id_table_text):
+    root = ET.fromstring(rd("link_g4x_can_setup.lcs").encode("utf-8"))
+    lcs = {hexid(ch.get("ID")): ch for ch in root.iter("Channel")
+           if (ch.get("Direction") or "").lower() == "receive"}
+    if set(lcs) != set(RX_ENC):
+        err(".lcs receive", "receive channels %s, expected 0x3EC/0x3ED" % sorted(map(hex, lcs)))
+    for fid, (enc, dec, key, const) in RX_ENC.items():
+        where = "rx 0x%03X" % fid
+        if getattr(F, const, None) != fid:
+            err("frames.py", "%s should be 0x%03X" % (const, fid))
+        fr = rx.get(fid) or {}
+        chans = fr.get("channels") or []
+        if fr.get("dlc") != 1 or len(chans) != 1 or chans[0].get("byte") != 0 or chans[0].get("length") != 1:
+            err("json " + where, "must be DLC 1 with one 1-byte field at byte 0 (cluster canbus_tx_selection)")
+        pay = enc(3)
+        if len(pay) != 1 or pay[0] != 3 or dec(pay).get(key) != 3:
+            err("frames.py " + where, "encode/decode is not DLC 1, byte 0 = index")
+        ch = lcs.get(fid)
+        if ch is not None:
+            ps = list(ch.iter("Parameter"))
+            if ch.get("DLC") != "1" or len(ps) != 1 or ps[0].get("StartBit") != "0" or ps[0].get("Length") != "8" \
+                    or not close(ps[0].get("Scale"), 1) or not close(ps[0].get("Offset"), 0):
+                err(".lcs " + where, "receive channel must be DLC 1, one 8-bit field at bit 0, scale 1, offset 0")
+        row = re.search(r"^\|\s*0x%03X\s*\|[^|]*\|\s*1\s*\|\s*Byte0" % fid, id_table_text, re.M | re.I)
+        if not row:
+            err("ID table section B " + where, "row with DLC 1 / Byte0 not found")
 
 
 # --- 4. CAN-BUS-ID-ALLOCATION-TABLE.md -----------------------------------------------------
@@ -575,6 +627,8 @@ def main() -> int:
     xml_frames = check_xml(model, bits)
     check_ui(model, bits, xml_frames)
     check_switchboard(sb, text)
+    rx = load_rx()
+    check_rx(rx, text)
     cluster_seen = check_cluster_source()
     j3f1 = model.get(0x3F1, {}).get("fields", {}).get(6, {})
     check_warn_text("json 0x3F1 byte 6 note", j3f1.get("note", ""), bits)
@@ -585,7 +639,7 @@ def main() -> int:
         for e in ERR:
             print("  " + e)
         return 1
-    print("CAN parity OK: %d ECU frames, 4 switchboard frames, %d warning bits - "
+    print("CAN parity OK: %d ECU frames, 2 ECU receive frames, 4 switchboard frames, %d warning bits - "
           "json / .lcs / frames.py / ID table / RealDash XML / sender UI agree" % (len(model), len(bits)))
     print("cluster canbus.c: " + ("decoded frame set matches (%s)" % CLUSTER_SRC if cluster_seen
                                   else "not found next to this repo - reconcile by hand"))
