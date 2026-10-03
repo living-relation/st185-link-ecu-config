@@ -20,9 +20,19 @@ What it runs, in order - every one in HARD is a hard gate:
   audit_bulkhead_pairs.py  no bulkhead cavity wired on one side only
   audit_bh_collisions.py   no two circuits on one half of a bulkhead cavity
   part_desc.py             part descriptions describe the part only (standard format)
-  buylist.py               buy list, and the shared-connector consistency check
-  buildlist.py             per-wire build list
-  make_min.py              the upload copies in min/
+  buylist.py --check       buy list is current, and the shared-connector consistency check
+  buildlist.py --check     per-wire build list is current
+  make_min.py --check      the upload copies in min/ are current
+
+The three generators run in --check mode here: they rebuild in memory and fail
+if the committed file is stale, but never write. So check_all.py leaves the tree
+untouched and CI can trust it. After a harness change, regenerate locally:
+
+    python docs/harness/buylist.py
+    python docs/harness/buildlist.py
+    python docs/harness/make_min.py
+
+(no flag, or --write, writes the file) and commit the results with the drawing.
 
 SOFT gates report but do not fail the run. A gate starts SOFT only while the
 drawings it checks are still being migrated (redesign/IMPLEMENTATION-PLAN.md);
@@ -36,7 +46,8 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_shields.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
-        ["audit_bh_collisions.py"], ["part_desc.py"], ["buylist.py"], ["buildlist.py"], ["make_min.py"]]
+        ["audit_bh_collisions.py"], ["part_desc.py"], ["buylist.py", "--check"],
+        ["buildlist.py", "--check"], ["make_min.py", "--check"]]
 SOFT = []
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy
 # baseline cannot follow the redesign's intentional ownership and boundary moves.

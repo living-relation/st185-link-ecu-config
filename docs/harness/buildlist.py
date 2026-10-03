@@ -1,4 +1,4 @@
-import json, os, csv, datetime, collections, heapq
+import json, os, csv, collections, heapq, io, sys, difflib
 
 import model
 
@@ -194,13 +194,28 @@ COLS = ["File","Owner","Wire","Cable","From","From type","From pin","From signal
         "Colour","AWG","Route","Est mm","Splice","Handoff","EWD","Done"]
 
 p = os.path.join(os.path.dirname(R), "HARNESS-BUILD-LIST.csv")
-with open(p, "w", newline="", encoding="utf-8") as fh:
-    wr = csv.DictWriter(fh, fieldnames=COLS, extrasaction="ignore")
-    wr.writeheader()
-    for r in sorted(rows, key=lambda x: (x["File"], x["Wire"])):
-        wr.writerow(r)
+buf = io.StringIO(newline="")
+wr = csv.DictWriter(buf, fieldnames=COLS, extrasaction="ignore")
+wr.writeheader()
+for r in sorted(rows, key=lambda x: (x["File"], x["Wire"])):
+    wr.writerow(r)
 
-print("wrote", p)
+# --check (used by check_all.py and CI): rebuild in memory, compare, never write.
+# Default / --write: write the file (local use after a harness change).
+if "--check" in sys.argv[1:]:
+    old = open(p, encoding="utf-8", newline="").read() if os.path.exists(p) else ""
+    a, b = old.replace("\r\n", "\n"), buf.getvalue().replace("\r\n", "\n")
+    if a != b:
+        print("STALE: %s does not match the drawings." % p)
+        print("Fix: python docs/harness/buildlist.py, then commit the result.")
+        for ln in list(difflib.unified_diff(a.splitlines(), b.splitlines(), "committed", "regenerated", lineterm=""))[:20]:
+            print("   " + ln)
+        sys.exit(1)
+    print("up to date:", p)
+else:
+    with open(p, "w", newline="", encoding="utf-8") as fh:
+        fh.write(buf.getvalue())
+    print("wrote", p)
 print("wires:", len(rows), collections.Counter(r["File"] for r in rows))
 print("no route found:", sum(1 for r in rows if r["Route"] == "" and not r["Handoff"]),
       "(plus %d deliberate handoffs)" % sum(1 for r in rows if r["Route"] == "" and r["Handoff"]))

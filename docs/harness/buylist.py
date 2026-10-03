@@ -1,4 +1,4 @@
-import json, os, re, collections, datetime
+import json, os, re, collections, sys, difflib
 
 import model
 
@@ -205,8 +205,8 @@ for pn, mf, desc, n, have in EXTRA:
 
 out = ["# Harness — need to buy",
  "",
- "Generated on %s from the %d `.harness` files in `docs/harness/rebuild/`:"
- % (datetime.date.today().isoformat(), len(F)),
+ "Generated from the %d `.harness` files in `docs/harness/rebuild/`:"
+ % len(F),
  "`" + "`, `".join(x[6:-8] for x in F) + "`.",
  "On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.",
  "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",
@@ -274,8 +274,26 @@ out += ["", "## Still unspecified", "",
  "Needs a real dash number per branch OD once the trunk diameters are known.",
  ""]
 p = os.path.join(os.path.dirname(R), "NEED-TO-BUY.md")
-open(p, "w", encoding="utf-8").write("\n".join(out))
-print("wrote", p)
+new = "\n".join(out)
+# No date stamp in the file: the content alone decides whether it changed, so
+# regenerating an up-to-date list is a no-op and git status stays clean.
+# --check (check_all.py / CI): compare against the committed file, never write.
+# Default / --write: write it, always LF (git stores it LF; text mode on
+# Windows used to turn every line into a CRLF diff).
+if "--check" in sys.argv[1:]:
+    old = open(p, encoding="utf-8", newline="").read() if os.path.exists(p) else ""
+    if old.replace("\r\n", "\n") != new:
+        print("STALE: %s does not match the drawings." % p)
+        print("Fix: python docs/harness/buylist.py, then commit the result.")
+        for ln in list(difflib.unified_diff(old.replace("\r\n", "\n").splitlines(), new.splitlines(),
+                                            "committed", "regenerated", lineterm=""))[:20]:
+            print("   " + ln)
+        sys.exit(1)
+    print("up to date:", p)
+else:
+    with open(p, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(new)
+    print("wrote", p)
 print("to buy: %d lines, covered: %d lines" % (len(rows_buy), len(rows_ok)))
 for r in sorted(rows_buy, key=lambda x: -x[5]):
     print("   BUY %-32s need %-4d have %-4d short %d" % (r[0], r[3], r[4], r[5]))

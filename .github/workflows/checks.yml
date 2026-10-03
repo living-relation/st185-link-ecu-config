@@ -1,0 +1,60 @@
+name: Repo checks
+
+# Runs the harness gates (docs/harness/check_all.py), byte-compiles the CAN
+# bench/sender code, and runs the CAN parity check once bench/check_parity.py
+# exists. check_all.py runs its generators in --check mode, so a PR whose
+# NEED-TO-BUY.md / HARNESS-BUILD-LIST.csv / min/ copies are stale fails here.
+#
+# Python 3.14 matches the local dev machine (dansPC) and research-hub.yml.
+# Every script these steps run is standard-library only, so there is no pip step.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sot/**'
+      - 'docs/harness/**'
+      - 'XTREMEX-IO-TABLE.html'
+      - 'bench/**'
+      - 'apps/**'
+      - 'link_g4x_can_setup.json'
+      - 'link_g4x_can_setup.lcs'
+      - 'link_g4x_realdash.xml'
+      - 'switchboard_frames.json'
+      - 'CAN-BUS-ID-ALLOCATION-TABLE.md'
+      - '.github/workflows/checks.yml'
+  pull_request:
+    paths:
+      - 'sot/**'
+      - 'docs/harness/**'
+      - 'XTREMEX-IO-TABLE.html'
+      - 'bench/**'
+      - 'apps/**'
+      - 'link_g4x_can_setup.json'
+      - 'link_g4x_can_setup.lcs'
+      - 'link_g4x_realdash.xml'
+      - 'switchboard_frames.json'
+      - 'CAN-BUS-ID-ALLOCATION-TABLE.md'
+      - '.github/workflows/checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Harness gates (check_all.py)
+        run: python docs/harness/check_all.py
+      - name: Tree unchanged after check_all
+        run: git diff --exit-code
+      - name: Byte-compile CAN tooling
+        run: python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py
+      - name: CAN parity (JSON / .lcs / frames.py / ID table / RealDash XML / sender UI)
+        if: hashFiles('bench/check_parity.py') != ''
+        run: python bench/check_parity.py
