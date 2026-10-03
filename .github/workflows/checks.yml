@@ -1,40 +1,21 @@
 name: Repo checks
 
 # Runs the harness gates (docs/harness/check_all.py), byte-compiles the CAN
-# bench/sender code, and runs the CAN parity check once bench/check_parity.py
-# exists. check_all.py runs its generators in --check mode, so a PR whose
-# NEED-TO-BUY.md / HARNESS-BUILD-LIST.csv / min/ copies are stale fails here.
+# bench/sender code, and runs the CAN parity check.
+#
+# Runs on EVERY pull request and push to main so the "Repo checks" status always
+# reports (it is a required check - a path-filtered workflow that never starts
+# would leave unrelated PRs stuck at "Expected - waiting"). The path test now
+# happens inside the job: if no checked file changed, the heavy steps are
+# skipped and the check passes in seconds. check_all.py does NOT run for
+# unrelated changes.
 #
 # Python 3.14 matches the local dev machine (dansPC) and research-hub.yml.
 # Every script these steps run is standard-library only, so there is no pip step.
 on:
   push:
     branches: [main]
-    paths:
-      - 'sot/**'
-      - 'docs/harness/**'
-      - 'XTREMEX-IO-TABLE.html'
-      - 'bench/**'
-      - 'apps/**'
-      - 'link_g4x_can_setup.json'
-      - 'link_g4x_can_setup.lcs'
-      - 'link_g4x_realdash.xml'
-      - 'switchboard_frames.json'
-      - 'CAN-BUS-ID-ALLOCATION-TABLE.md'
-      - '.github/workflows/checks.yml'
   pull_request:
-    paths:
-      - 'sot/**'
-      - 'docs/harness/**'
-      - 'XTREMEX-IO-TABLE.html'
-      - 'bench/**'
-      - 'apps/**'
-      - 'link_g4x_can_setup.json'
-      - 'link_g4x_can_setup.lcs'
-      - 'link_g4x_realdash.xml'
-      - 'switchboard_frames.json'
-      - 'CAN-BUS-ID-ALLOCATION-TABLE.md'
-      - '.github/workflows/checks.yml'
   workflow_dispatch:
 
 permissions:
@@ -42,19 +23,51 @@ permissions:
 
 jobs:
   checks:
+    name: Repo checks
+    # The research-hub bot's own commits are skipped (a skipped job counts as passing).
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # need history to see which files this change touched
+      - name: Which files did this change touch?
+        id: scope
+        shell: bash
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          PUSH_AFTER: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT" = "workflow_dispatch" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ "$EVENT" = "pull_request" ]; then RANGE="$PR_BASE...$PR_HEAD"; FIRST="$PR_BASE"; else RANGE="$PUSH_BEFORE..$PUSH_AFTER"; FIRST="$PUSH_BEFORE"; fi
+          if [ -z "$FIRST" ] || [ "$FIRST" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$FIRST^{commit}" 2>/dev/null; then
+            echo "Cannot tell what changed - running everything."; echo "run=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          CHANGED="$(git diff --name-only "$RANGE")"
+          echo "Changed files:"; echo "$CHANGED"
+          if echo "$CHANGED" | grep -qE '^(sot/|docs/harness/|bench/|apps/|XTREMEX-IO-TABLE\.html$|link_g4x_can_setup\.(json|lcs)$|link_g4x_realdash\.xml$|switchboard_frames\.json$|CAN-BUS-ID-ALLOCATION-TABLE\.md$|\.github/workflows/checks\.yml$)'; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No checked files changed - skipping the checks (reported as passed)."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-python@v5
+        if: steps.scope.outputs.run == 'true'
         with:
           python-version: '3.14'
       - name: Harness gates (check_all.py)
+        if: steps.scope.outputs.run == 'true'
         run: python docs/harness/check_all.py
       - name: Tree unchanged after check_all
+        if: steps.scope.outputs.run == 'true'
         run: git diff --exit-code
       - name: Byte-compile CAN tooling
+        if: steps.scope.outputs.run == 'true'
         run: python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py
       - name: CAN parity (JSON / .lcs / frames.py / ID table / RealDash XML / sender UI)
-        if: hashFiles('bench/check_parity.py') != ''
+        if: steps.scope.outputs.run == 'true' && hashFiles('bench/check_parity.py') != ''
         run: python bench/check_parity.py
