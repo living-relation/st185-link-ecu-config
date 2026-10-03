@@ -1,5 +1,6 @@
 {
-  "_comment": "TrackCluster — Link G4X XtremeX CAN broadcast config. Apply in PCLink → CAN → Custom Setup. This JSON is the single source of truth; the firmware link_g4x.json must decode every channel listed here.",
+  "_comment": "TrackCluster — Link G4X XtremeX CAN broadcast config. Apply in PCLink → CAN → Custom Setup. This JSON is the canonical ECU wire contract for 0x3E8-0x3F1 (switchboard 0x640-0x643 live in switchboard_frames.json). Cluster decode truth is center-cluster-esp32-p4 main/canbus.c (frozen; it decodes 0x3E8-0x3EB and 0x3EE). SCALE CONVENTION: scale/offset in this file are PCLink ENCODE values, raw = value * scale + offset. The .lcs, CAN-BUS-ID-ALLOCATION-TABLE.md and bench/frames.py state the same fields in DECODE form, value = raw * (1/scale) - offset/scale. bench/check_parity.py checks that all of them agree.",
+  "scale_convention": "encode: raw = value * scale + offset",
   "name": "Link G4X XtremeX — TrackCluster Dashboard",
   "version": "1.0",
   "ecu": "Link G4X XtremeX",
@@ -102,7 +103,7 @@
         { "byte": 2, "length": 2, "name": "Coolant Pressure", "pclink_name": "Coolant Pressure",  "scale": 1,   "offset": 0,  "unit": "kPa", "note": "2 bytes (u16) for headroom. Cabin Temp dropped from this frame to make room; cabin temp is no longer sent to RealDash." },
         { "byte": 4, "length": 1, "name": "Ethanol %",        "pclink_name": "Ethanol %",         "scale": 1,   "offset": 0,  "unit": "%" },
         { "byte": 5, "length": 1, "name": "Charge-Pipe IAT",  "pclink_name": "IAT2 / Post-IC Temp","scale": 1,   "offset": 50, "unit": "°C+50", "note": "distinct from 0x3E8 manifold IAT" },
-        { "byte": 6, "length": 1, "name": "Turbo Speed x1000", "pclink_name": "Turbo Speed",      "scale": 1000, "offset": 0, "unit": "RPM",   "note": "raw x 1000 = RPM. 1k resolution; u8 range 0-255,000 (covers EFR spool). e.g. 150 = 150,000" },
+        { "byte": 6, "length": 1, "name": "Turbo Speed x1000", "pclink_name": "Turbo Speed",      "scale": 0.001, "offset": 0, "unit": "RPM",   "note": "Encode raw = RPM x 0.001 (scale fixed 2026-10-03: was 1000, the decode value). Decode raw x 1000 = RPM. 1k resolution; u8 range 0-255,000 (covers EFR spool). e.g. 150 = 150,000" },
         { "byte": 7, "length": 1, "name": "Trigger Error Count","pclink_name": "Trigger Error Counter","scale": 1,"offset": 0, "unit": "count" }
       ]
     },

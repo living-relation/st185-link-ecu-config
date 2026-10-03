@@ -12,7 +12,11 @@ paths:
 ---
 # maintain-realdash-xml-mapping
 
+## Where to run
+- Working location: the repo root, `C:\projects\shipping\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
+
 ## Critical
+- RealDash reads 0x3EB (gear byte only, reverse-camera switch) plus 0x3EF-0x3F1. `python bench/check_parity.py` checks every XML value's offset, length, signedness, conversion and warning bit against the contract.
 - Treat `link_g4x_can_setup.json` as the canonical contract for CAN IDs, scaling, and offsets before touching `link_g4x_realdash.xml`.
 - Keep `ST185:` input names in `link_g4x_realdash.xml` exactly stable unless the user explicitly asks for a rename; dashboard bindings depend on exact names.
 - Keep `0x3E8` through `0x3F1` semantics synchronized across:
@@ -60,6 +64,7 @@ paths:
    - Run:
      - `python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py`
      - `python -c "import xml.etree.ElementTree as ET; ET.parse('link_g4x_realdash.xml')"`
+     - `python bench/check_parity.py` (must print `CAN parity OK`)
    - Run at least one RealDash-facing bench check:
      - `python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 monitor --known-only`
      - `python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 full-realdash`
@@ -78,7 +83,7 @@ paths:
 7. Final regression check for sender app compatibility.
    - Run:
      - `python apps/trackcluster-can-sender/app.py`
-     - `set TC_DEVICE=realdash && python apps/trackcluster-can-sender/app.py`
+     - PowerShell: `$env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py`
    - Confirm no startup exceptions and that channel generation paths still run.
    - This step uses output from Step 6.
    - Verify app startup is clean and RealDash channel behavior matches expected mapping before marking complete.
@@ -138,7 +143,7 @@ paths:
   3. Then rerun XML parse and bench checks to ensure full pipeline integrity.
 
 - Runtime sender test does not reflect RealDash channel updates
-  1. Run `set TC_DEVICE=realdash && python apps/trackcluster-can-sender/app.py`.
+  1. Run (PowerShell) `$env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py`.
   2. Verify the XML input name still starts with `ST185:` and matches expected binding name exactly.
   3. Confirm no accidental rename of existing channel keys.
   4. Re-test with `full-realdash` bench command to validate end-to-end mapping.

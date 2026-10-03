@@ -5,8 +5,14 @@
      Import via : PCLink → CAN → Setup → File → Open (.lcs)
      Confirm against PCLink G4X firmware ≥ 6.20 .lcs schema before importing.
      v1.1 — Fixed Lambda Target Scale (0.001 not 1000); Accel X/Y/Z Scale (0.1 not 10).
-     PCLink TX encode rule: raw = channel_value / Scale
-     PCLink RX decode rule: value = raw × Scale + Offset -->
+     SCALE CONVENTION: Scale/Offset in this file are DECODE values,
+       value = raw × Scale + Offset   (so PCLink transmits raw = (value − Offset) / Scale).
+     link_g4x_can_setup.json states the same fields in PCLink ENCODE form
+       (raw = value × scale + offset). bench/check_parity.py checks the two agree.
+     Cluster decode truth: center-cluster-esp32-p4 main/canbus.c (frozen). -->
+<!-- The cluster TRANSMITS 0x3EC (boost map) / 0x3ED (TC) selections. Whether the ECU
+     receives them (for the 0x3EF bytes 3/5 echo) is NOT decided - no receive entries
+     here on purpose. See docs/OPEN-ITEMS.md. -->
 <LinkCANSetup Version="1">
   <CANModule Index="1">
     <!-- CAN1 — all nodes (ECU, cluster, CSB3, RealDash) share this bus -->
