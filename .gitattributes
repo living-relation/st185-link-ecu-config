@@ -14,3 +14,7 @@ docs/research-hub.html merge=ours linguist-generated=true
 # Generated harness reports. Same idea: rebuild, never hand-merge.
 docs/harness/HARNESS-BUILD-LIST.csv linguist-generated=true
 docs/harness/NEED-TO-BUY.md         linguist-generated=true
+docs/harness/min/*.harness          linguist-generated=true
+
+# Git hooks run under sh - a CRLF shebang line breaks them on every platform.
+.githooks/pre-commit                text eol=lf

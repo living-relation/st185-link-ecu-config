@@ -40,7 +40,7 @@ jobs:
           fetch-depth: 0  # generator reads git history for per-file "modified" dates
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.14'  # same as checks.yml and the local dev machine
       - name: Regenerate research hub
         run: python3 docs/build-research-hub.py
       - name: Check hub built
