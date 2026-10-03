@@ -1,0 +1,77 @@
+{
+  "_comment": "ECUMaster CAN Switch Board V3 (CSB3) frames on the shared 1 Mbit/s CAN1 bus. Split out of link_g4x_can_setup.json (decision D1, 2026-10-02): that file stays the ECU broadcast contract; this one holds the switchboard's own frames. Layout source: ECUMaster CAN Switch Board V3 manual v2.1 (FW 3.0+), sections 5-6; mirrored in CAN-BUS-ID-ALLOCATION-TABLE.md section 5 and bench/frames.py. Scale/offset here use the DECODE convention (value = raw * scale + offset), like the .lcs, the ID table and frames.py. The cluster does not decode any of these frames; RealDash does not read them. bench/check_parity.py checks this file against frames.py and the ID table.",
+  "device": "ECUMaster CAN Switch Board V3",
+  "manual": "CAN Switch Board V3 user manual, document v2.1, firmware 3.0 or later (03 Dec 2024)",
+  "base_id": "0x640",
+  "bit_rate_bps": 1000000,
+  "byte_order": "BigEndian",
+  "cycle_wording": "0x640-0x642: periodic, switchboard 'CAN send rate' (default 20 Hz = 50 ms). 0x643: periodic 50 ms PCLink CAN TX stream from the ECU; the bytes only change when the ECU changes an output. The manual sets no required rate for 0x643.",
+  "frames": [
+    {
+      "id": "0x640",
+      "name": "Analog Inputs 1-4",
+      "direction": "Switchboard -> ECU",
+      "cycle_ms": 50,
+      "dlc": 8,
+      "channels": [
+        { "byte": 0, "length": 2, "name": "Analog Input 1", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "Unassigned (was cabin temp; A/C belongs to the OEM amplifier, 2026-09-27)" },
+        { "byte": 2, "length": 2, "name": "Analog Input 2", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "OEM cruise stalk resistor ladder (ECUMASTER_SWITCHBOARD_SETUP.md Step 4.1)" },
+        { "byte": 4, "length": 2, "name": "Analog Input 3", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "TBD" },
+        { "byte": 6, "length": 2, "name": "Analog Input 4", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "TBD" }
+      ]
+    },
+    {
+      "id": "0x641",
+      "name": "Analog Inputs 5-8",
+      "direction": "Switchboard -> ECU",
+      "cycle_ms": 50,
+      "dlc": 8,
+      "channels": [
+        { "byte": 0, "length": 2, "name": "Analog Input 5", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "TBD" },
+        { "byte": 2, "length": 2, "name": "Analog Input 6", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "TBD" },
+        { "byte": 4, "length": 2, "name": "Analog Input 7", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "TBD" },
+        { "byte": 6, "length": 2, "name": "Analog Input 8", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "TBD" }
+      ]
+    },
+    {
+      "id": "0x642",
+      "name": "Rotary / Switch / Analog State / Low-Side State / Heartbeat",
+      "direction": "Switchboard -> ECU",
+      "cycle_ms": 50,
+      "dlc": 8,
+      "channels": [
+        { "byte": 0, "length": 1, "name": "Rotary 1 (bits 4-7) / Rotary 2 (bits 0-3)", "unit": "position 0-15", "assignment": "TBD" },
+        { "byte": 1, "length": 1, "name": "Rotary 3 (bits 4-7) / Rotary 4 (bits 0-3)", "unit": "position 0-15", "assignment": "TBD" },
+        { "byte": 2, "length": 1, "name": "Rotary 5 (bits 4-7) / Rotary 6 (bits 0-3)", "unit": "position 0-15", "assignment": "TBD" },
+        { "byte": 3, "length": 1, "name": "Rotary 7 (bits 4-7) / Rotary 8 (bits 0-3)", "unit": "position 0-15", "assignment": "TBD" },
+        { "byte": 4, "length": 1, "name": "SW_MASK", "unit": "bits", "bits": {
+            "0": "Switch 1 - unassigned (was evaporator core state)",
+            "1": "Switch 2 - unassigned (was A/C request)",
+            "2": "Switch 3 - cruise MAIN on",
+            "3": "Switch 4 - cruise SET / ACCEL",
+            "4": "Switch 5 - cruise RESUME / DECEL",
+            "5": "Switch 6 - unassigned",
+            "6": "Switch 7 - unassigned",
+            "7": "Switch 8 - unassigned" } },
+        { "byte": 5, "length": 1, "name": "AS_MASK", "unit": "bits", "note": "bit N = Analog State N+1 (per manual: 0 below 2 V, 1 above 3 V)" },
+        { "byte": 6, "length": 1, "name": "LS_MASK", "unit": "bits", "note": "bits 0-3 = state of low-side outputs L1-L4" },
+        { "byte": 7, "length": 1, "name": "Heartbeat", "unit": "count", "note": "increments every sent message, wraps 255 -> 0" }
+      ]
+    },
+    {
+      "id": "0x643",
+      "name": "Low-Side Output Control",
+      "direction": "ECU -> Switchboard",
+      "cycle_ms": 50,
+      "dlc": 8,
+      "_comment": "Source = ECU (PCLink CAN TX stream), decided 2026-06-14. The cluster never transmits 0x643. Outputs L1-L4 are currently unused (LED-only if ever used). Manual: DLC >= 4, byte N = L(N+1) ctrl, bytes 4-7 = 0.",
+      "channels": [
+        { "byte": 0, "length": 1, "name": "L1 ctrl", "scale": 1, "offset": 0, "assignment": "unused (LED-only if used)" },
+        { "byte": 1, "length": 1, "name": "L2 ctrl", "scale": 1, "offset": 0, "assignment": "unused (LED-only if used)" },
+        { "byte": 2, "length": 1, "name": "L3 ctrl", "scale": 1, "offset": 0, "assignment": "unused (LED-only if used)" },
+        { "byte": 3, "length": 1, "name": "L4 ctrl", "scale": 1, "offset": 0, "assignment": "unused (LED-only if used)" },
+        { "byte": 4, "length": 0, "name": "(reserved)", "note": "transmit 0x00 in bytes 4-7" }
+      ]
+    }
+  ]
+}

@@ -14,6 +14,9 @@ paths:
 ---
 # run-can-bench-scenarios
 
+## Where to run
+- Working location: the repo root, `C:\projects\shipping\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
+
 ## Critical
 - Treat `link_g4x_can_setup.json` as the canonical CAN contract before interpreting any bench output.
 - Keep `0x3E8` to `0x3F1` behavior aligned across `bench/frames.py`, `link_g4x_can_setup.json`, and CAN docs; do not accept a "pass" if these drift.
@@ -26,6 +29,7 @@ paths:
    - From project root, run:
      - `python -m pip install -r bench/requirements.txt`
      - `python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py`
+     - `python bench/check_parity.py` (contract parity, no hardware needed - must print `CAN parity OK`)
    - Confirm these files exist and are the ones used for bench validation:
      - `bench/can_bench.py`
      - `bench/frames.py`
@@ -78,8 +82,8 @@ paths:
    - Start sender app:
      - `python apps/trackcluster-can-sender/app.py`
    - Optional explicit device modes:
-     - `set TC_DEVICE=cluster && python apps/trackcluster-can-sender/app.py`
-     - `set TC_DEVICE=realdash && python apps/trackcluster-can-sender/app.py`
+     - PowerShell: `$env:TC_DEVICE='cluster'; python apps/trackcluster-can-sender/app.py`
+     - PowerShell: `$env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py`
    - While sender is active, re-run monitor command from Step 3 to confirm expected IDs/fields.
    - **Verify** injected traffic appears as expected and remains within known-frame contract before proceeding to the next step.
    - **Dependency:** This step uses scenario expectations from Steps 3-5.

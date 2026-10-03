@@ -36,6 +36,12 @@ needing explicit approval from Daniel — never to clear a mismatch.
 - BigEndian for multibyte fields unless a canonical doc says otherwise.
 - Warning bits stay in sync with `WARN_*` in `bench/frames.py`.
 - RealDash receives ECU-owned `0x3EF`-`0x3F1`; it does not read switchboard `0x640`-`0x642`.
+- `python bench/check_parity.py` is the parity gate (stdlib, also in CI): JSON, `.lcs`, `bench/frames.py`,
+  ID table, RealDash XML, sender UI profiles and `switchboard_frames.json` must all agree.
+- Scale convention: `link_g4x_can_setup.json` is PCLink ENCODE form (`raw = value*scale + offset`);
+  `.lcs`, ID table and `frames.py` are DECODE form. Switchboard `0x640`-`0x643` live in `switchboard_frames.json`.
+- RealDash also reads `0x3EB` (gear byte only). Cluster decode truth:
+  `C:\projects\shipping\center-cluster-esp32-p4\main\canbus.c` (decodes 0x3E8-0x3EB, 0x3EE).
 
 A mismatch found and not fixed in the same pass gets written down as an open item. Never
 leave it silent.

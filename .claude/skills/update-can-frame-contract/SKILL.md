@@ -4,6 +4,10 @@ description: Updates CAN frame definitions across `bench/frames.py` and `link_g4
 paths:
   - bench/frames.py
   - link_g4x_can_setup.json
+  - link_g4x_can_setup.lcs
+  - link_g4x_realdash.xml
+  - switchboard_frames.json
+  - bench/check_parity.py
   - CAN-BUS-ID-ALLOCATION-TABLE.md
   - CANBUS-LINK-G4X-CONFIG.md
   - bench/*.py
@@ -11,7 +15,14 @@ paths:
 ---
 # update-can-frame-contract
 
+## Where to run
+- Working location: the repo root, `C:\projects\shipping\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
+
 ## Critical
+- `python bench/check_parity.py` is the parity gate (also run in CI). It compares the JSON, `.lcs`, `bench/frames.py`, `CAN-BUS-ID-ALLOCATION-TABLE.md`, `link_g4x_realdash.xml`, the sender UI profiles and `switchboard_frames.json`. Exit 0 = all agree. A change is not done until it passes.
+- Scale convention: `link_g4x_can_setup.json` uses PCLink ENCODE form (`raw = value * scale + offset`); the `.lcs`, the ID table and `bench/frames.py` use DECODE form (`value = raw * (1/scale) - offset/scale`). Write each file in its own convention.
+- Switchboard frames `0x640`-`0x643` live in `switchboard_frames.json`, not in `link_g4x_can_setup.json`.
+- Reconcile against the frozen cluster decoder `C:\projects\shipping\center-cluster-esp32-p4\main\canbus.c` (decodes 0x3E8-0x3EB, 0x3EE). CI cannot see that repo.
 - Treat `link_g4x_can_setup.json` as the canonical CAN contract for IDs, scaling, offsets, and signal ranges. Do not change `bench/frames.py` first.
 - Keep `0x3E8`-`0x3F1` semantics aligned across `bench/frames.py`, `link_g4x_can_setup.json`, and docs.
 - Keep all multibyte CAN fields BigEndian unless an existing source file explicitly documents otherwise.
@@ -32,7 +43,7 @@ paths:
    - For multibyte signals, keep BigEndian ordering unless the file already documents an exception for that specific signal.
    - If changing scale/offset, update both values together as one atomic contract change.
    - **Dependency:** Uses the frame/signal plan from Step 1.
-   - **Validation gate:** Verify JSON is valid before proceeding: run `python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py` and confirm no JSON-related parse/runtime failure appears in downstream tooling.
+   - **Validation gate:** run `python bench/check_parity.py`. It parses the JSON (a syntax error fails it) and lists every file that still disagrees - expected at this point; those are your Step 3-5 edits.
 
 3. **Mirror payload packing/unpacking behavior in `bench/frames.py`**
    - Update constants, frame builders, and/or decode helpers in `bench/frames.py` so encoded bytes match the updated contract.
@@ -62,6 +73,7 @@ paths:
 
 6. **Run final parity and regression checks**
    - Re-run:
+     - `python bench/check_parity.py` (must print `CAN parity OK`)
      - `python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py`
      - `python rd-build/tools/automation_helper.py size`
    - If sender behavior is affected, run one app smoke start:

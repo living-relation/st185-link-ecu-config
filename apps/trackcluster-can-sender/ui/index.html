@@ -129,7 +129,7 @@
 <div class="device-bar">
   <label for="deviceSelect">Device:</label>
   <select id="deviceSelect">
-    <option value="realdash">RealDash — Link G4X stream (0x3EF–0x3F1)</option>
+    <option value="realdash">RealDash — Link G4X stream (0x3EB, 0x3EF–0x3F1)</option>
     <option value="cluster">Center Cluster — ESP32-P4 (0x3E8–0x3EE)</option>
   </select>
   <span class="device-badge">sending as: <b id="deviceBadge">RealDash</b></span>
@@ -207,13 +207,28 @@
 <script>
 /* ============================================================================
    DEVICE PROFILES
-   Each profile's `frames` array is a BYTE-FOR-BYTE copy of the original
-   per-device app (RealDash: apps/st185 canbus-live-sender; Cluster:
-   center-cluster-esp32-p4 canbus-live-sender). CAN IDs, byte offsets, lengths,
-   signed/bitmask handling, scale and offset are unchanged.
+   Each profile's `frames` array must match the wire contract byte for byte:
+   RealDash -> link_g4x_realdash.xml + link_g4x_can_setup.json; Cluster ->
+   center-cluster-esp32-p4 main/canbus.c (frozen). The two older per-device
+   "canbus-live-sender" apps these were merged from no longer exist.
+   bench/check_parity.py checks byte offsets, lengths, signed/bit handling,
+   periods and the RealDash toRaw() formulas against the contract.
    ============================================================================ */
 
 const FRAMES_REALDASH = [
+  {
+    id: '0x3EB', dec: 1003, period: 50,
+    note: 'Gear / Fuel — RealDash reads ONLY the gear byte (reverse-camera auto-switch on Gear = 7). This is the cluster\'s own frame: bytes 1-7 go out as 0 here, so if the center cluster is on the same bench bus its fuel gauge will read 0 % while this frame is sending.',
+    signals: [
+      { key:'gear', label:'Gear Position', gauge:'RealDash: reverse-camera switch (ST185: Gear)', byte:0, len:1,
+        unit:'N / 1–6 / R', wire:'u8, ×1, +0 — 7 = Reverse (RealDash reads the raw value, no remap)',
+        rangeNote:'discrete: N, 1–6, R',
+        isSelect:true,
+        options:[['N',0],['1',1],['2',2],['3',3],['4',4],['5',5],['6',6],['R',7]],
+        default:0,
+        toRaw:(v)=> Number(v) },
+    ]
+  },
   {
     id: '0x3EF', dec: 1007, period: 50,
     note: 'Drive Assist & Status — target lambda, throttle, TC setting/intervention, boost map, cruise, and A/C all live in this one frame. Bytes 3 (TC) and 5 (boost map) are ECU echoes of the cluster selections.',
@@ -431,8 +446,9 @@ const PROFILES = {
   realdash: {
     name: 'RealDash',
     title: 'TrackCluster RealDash — CAN Live Sender',
-    subtitle: 'RealDash device profile — transmits the Link G4X RealDash frames (0x3EF–0x3F1) to a connected CAN-USB adapter via python-can so the RealDash dashboard reacts live on the bench. Signal map matches link_g4x_realdash.xml exactly.',
+    subtitle: 'RealDash device profile — transmits the Link G4X frames RealDash reads (0x3EB gear + 0x3EF–0x3F1) to a connected CAN-USB adapter via python-can so the RealDash dashboard reacts live on the bench. Signal map matches link_g4x_realdash.xml exactly.',
     covers: [
+      ['0x3EB (50 ms)', 'Gear only (reverse-camera switch) — fuel byte sent as 0'],
       ['0x3EF (50 ms)', 'Target λ, Throttle, TC setting/intervention, Boost map, Cruise, A/C'],
       ['0x3F0 (100 ms)', 'Fuel/Charge-IAT temps, Engine load, Coolant P (u16), Ethanol, Turbo speed, Trigger errors'],
       ['0x3F1 (50 ms)', 'G-force X/Y/Z + 6 extended warning bits (packed in byte 6)'],

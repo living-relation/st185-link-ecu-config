@@ -2,14 +2,14 @@
 app.py -- TrackCluster CAN Live Sender (UNIFIED: RealDash + Center Cluster).
 
 One app, two device profiles selectable in the UI:
-  - RealDash      -> sends 0x3EF / 0x3F0 / 0x3F1  (Link G4X RealDash stream)
+  - RealDash      -> sends 0x3EB (gear only) / 0x3EF / 0x3F0 / 0x3F1  (frames RealDash reads)
   - Center Cluster-> sends 0x3E8 / 0x3E9 / 0x3EA / 0x3EB / 0x3EE (ESP32-P4 cluster)
 
 The Python side is catalog-agnostic: it transmits whatever (id, 8 bytes) the UI
-computes. The two device signal maps live in ui/index.html and are byte-for-byte
-copies of the two original per-device apps -- CAN IDs, byte layouts, scaling and
-endianness are unchanged. This app only merges the launcher/backend; it does not
-alter any channel or encoding.
+computes. The two device signal maps live in ui/index.html and must match the
+wire contract (link_g4x_can_setup.json, link_g4x_realdash.xml, and the frozen
+cluster decoder main/canbus.c); bench/check_parity.py checks them. This app only
+owns the launcher/backend; it does not define any channel or encoding.
 
 Back end features (shared by both profiles):
   - Auto-detects and hot-plug auto-connects the moment a supported adapter appears

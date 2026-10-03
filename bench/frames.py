@@ -1,9 +1,13 @@
 """CAN frame encode/decode for the Celica ST185 TrackCluster bus.
 
-Every layout here is derived directly from ``CAN-BUS-ID-ALLOCATION-TABLE.md``.
-All multi-byte fields are BigEndian (Link "Custom" stream convention).
+Every layout here is derived directly from ``CAN-BUS-ID-ALLOCATION-TABLE.md``
+(ECU frames: ``link_g4x_can_setup.json``; switchboard 0x640-0x643:
+``switchboard_frames.json``). ``bench/check_parity.py`` checks this module
+against all of them. All multi-byte fields are BigEndian (Link "Custom"
+stream convention).
 
-Scale/offset convention (matches the allocation table):
+Scale/offset convention (DECODE form - matches the allocation table and the
+.lcs; link_g4x_can_setup.json holds the same numbers in PCLink ENCODE form):
 
     physical_value = raw * scale + offset
     raw            = round((physical_value - offset) / scale)
@@ -44,7 +48,7 @@ ID_SB_ANALOG_5_8 = 0x641    # 20 Hz
 ID_SB_ROTARY_SW = 0x642     # 20 Hz
 
 # ECU -> Switchboard
-ID_SB_LS_CONTROL = 0x643    # event / 50 ms
+ID_SB_LS_CONTROL = 0x643    # 50 ms periodic PCLink TX; bytes change only on an output change
 
 
 # --- low-level helpers -----------------------------------------------------
@@ -77,10 +81,10 @@ def encode_engine_fast(rpm: int, map_kpa: int, ect_c: float,
     )
 
 def decode_engine_fast(data: bytes) -> Dict[str, float]:
-    rpm, mgp, ect, iat, oil, _ = struct.unpack(">HHBBBB", data[:8])
+    rpm, map_kpa, ect, iat, oil, _ = struct.unpack(">HHBBBB", data[:8])
     return {
         "rpm": rpm,
-        "map_kpa": mgp,
+        "map_kpa": map_kpa,
         "ect_c": _dec(ect, 1, -50),
         "iat_c": _dec(iat, 1, -50),
         "oil_temp_c": _dec(oil, 1, -50),
@@ -281,9 +285,10 @@ def decode_sb_analog(data: bytes, base_channel: int = 1) -> Dict[str, float]:
 
 # --- 0x642 Switchboard rotary / switch / heartbeat -------------------------
 
-# SW_MASK bit assignments (allocation table section 5)
-SW_EVAP_CORE = 1 << 0
-SW_AC_REQUEST = 1 << 1
+# SW_MASK bit assignments (allocation table section 5, switchboard_frames.json).
+# Bits 0 and 1 (was evaporator core / A/C request) are UNASSIGNED since
+# 2026-09-27 - A/C is the OEM amplifier's job, not the switchboard's. Only
+# assigned bits get a constant; check_parity.py compares this set to the JSON.
 SW_CRUISE_ACTIVE = 1 << 2
 SW_CRUISE_SET_ACCEL = 1 << 3
 SW_CRUISE_RESUME_DECEL = 1 << 4

@@ -21,9 +21,11 @@
      listener on the same frame the cluster already reads, added ONLY so RealDash can flip to a
      reverse-camera view when Gear=7(R) without the ECU needing a second CAN frame. Do not add any
      other byte from 0x3E8–0x3EE without updating this SCOPE note and CAN-CONFIG-STATUS.md.
-     Switchboard frames 0x640–0x642 are also excluded — the ECU reads them and echoes the few
-     display-relevant values (TC echo, boost echo, comm-fault bit) into the frames above. Cabin temp
-     is not echoed to RealDash (it was dropped from 0x3F0); RealDash does not read 0x640 directly.
+     Switchboard frames 0x640–0x642 are also excluded — the ECU reads them; the only
+     switchboard-derived value RealDash sees is the comm-fault bit (0x3F1 byte 6 bit 5). The TC
+     setting and boost map in 0x3EF bytes 3/5 are ECU echoes of the CLUSTER's 0x3ED/0x3EC, not
+     switchboard values. RealDash does not read 0x640 directly. bench/check_parity.py checks every
+     value below against link_g4x_can_setup.json.
 
      NOTES ON THIS FILE
        * All custom inputs are created with the "ST185:" prefix and appear under RealDash

@@ -635,8 +635,8 @@ def cmd_simulate_switchboard(args: argparse.Namespace) -> None:
 
     def analog_1_4(t: float) -> Tuple[int, bytes]:
         return f.ID_SB_ANALOG_1_4, f.encode_sb_analog(
-            int(sine(t, 30.0, 500, 4500)),       # cabin temp thermistor
-            int(triangle(t, 6.0, 0, 5000)),      # cruise stalk ladder sweep
+            int(sine(t, 30.0, 500, 4500)),       # analog 1: unassigned - test sweep only
+            int(triangle(t, 6.0, 0, 5000)),      # analog 2: cruise stalk ladder sweep
             int(sine(t, 10.0, 0, 5000)),
             int(triangle(t, 15.0, 0, 5000)),
         )
@@ -650,13 +650,14 @@ def cmd_simulate_switchboard(args: argparse.Namespace) -> None:
         )
 
     def rotary_sw(t: float) -> Tuple[int, bytes]:
-        # Cycle the assigned switch bits one at a time, sweep two rotaries.
+        # Cycle the ASSIGNED switch bits one at a time (cruise, bits 2-4; bits 0-1
+        # are unassigned since 2026-09-27), then one all-off step. Sweep two rotaries.
         rot = int(t) % 16
         rotaries = (rot, (rot + 4) % 16, 0, 0, 0, 0, 0, 0)
         sw_mask = 0
         if args.toggle_switches:
-            sw_slot = int(t // 2) % 6
-            sw_mask = (1 << sw_slot) if sw_slot < 5 else 0
+            steps = (f.SW_CRUISE_ACTIVE, f.SW_CRUISE_SET_ACCEL, f.SW_CRUISE_RESUME_DECEL, 0)
+            sw_mask = steps[int(t // 2) % len(steps)]
         hb = heartbeat["v"] & 0xFF
         heartbeat["v"] += 1
         return f.ID_SB_ROTARY_SW, f.encode_sb_rotary_sw(
@@ -774,7 +775,7 @@ def build_parser() -> argparse.ArgumentParser:
     ss.add_argument("--duration", type=float, default=None,
                     help="seconds to run, then stop (default: run until Ctrl-C)")
     ss.add_argument("--toggle-switches", action="store_true",
-                    help="cycle SW_MASK bits 0-4 one at a time")
+                    help="cycle the assigned SW_MASK bits (2-4, cruise) one at a time")
     ss.set_defaults(func=cmd_simulate_switchboard)
 
     il = sub.add_parser("inject-ls-command",
