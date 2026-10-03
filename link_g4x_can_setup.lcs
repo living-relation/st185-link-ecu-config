@@ -10,9 +10,12 @@
      link_g4x_can_setup.json states the same fields in PCLink ENCODE form
        (raw = value × scale + offset). bench/check_parity.py checks the two agree.
      Cluster decode truth: center-cluster-esp32-p4 main/canbus.c (frozen). -->
-<!-- The cluster TRANSMITS 0x3EC (boost map) / 0x3ED (TC) selections. Whether the ECU
-     receives them (for the 0x3EF bytes 3/5 echo) is NOT decided - no receive entries
-     here on purpose. See docs/OPEN-ITEMS.md. -->
+<!-- RECEIVE: the ECU listens for the cluster's encoder selections (Daniel, 2026-10-03).
+     0x3EC boost map / 0x3ED TC slip, sent by center-cluster-esp32-p4 canbus_tx_selection():
+     DLC 1, byte 0 = 0-based index, once per confirmed button press (event - no cycle time).
+     The ECU echoes them to RealDash in 0x3EF bytes 5 / 3. The Direction="Receive" channels
+     at the end of CANModule 1 describe them; if a PCLink import does not take receive
+     channels from this file, enter them by hand in PCLink CAN receive with these values. -->
 <LinkCANSetup Version="1">
   <CANModule Index="1">
     <!-- CAN1 — all nodes (ECU, cluster, CSB3, RealDash) share this bus -->
@@ -122,6 +125,19 @@
       <Parameter Name="Accel Y"       StartBit="16" Length="16" Scale="0.1" Offset="0" ByteOrder="BigEndian" Signed="true" />
       <Parameter Name="Accel Z"       StartBit="32" Length="16" Scale="0.1" Offset="0" ByteOrder="BigEndian" Signed="true" />
       <Parameter Name="Ext Warn Bits" StartBit="48" Length="8"  Scale="1"   Offset="0" ByteOrder="BigEndian" />
+    </Channel>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         RECEIVE 0x3EC / 0x3ED — cluster encoder selections (event, DLC 1)
+         Cluster TX (frozen firmware): canbus_tx_selection(id, index), byte 0 = index.
+         0x3EC boost map index 0-3 -> echoed in 0x3EF byte 5
+         0x3ED TC slip index 0-4   -> echoed in 0x3EF byte 3
+         ═══════════════════════════════════════════════════════════════════ -->
+    <Channel ID="0x3EC" Name="Boost Map Sel" Direction="Receive" Type="Custom" DLC="1">
+      <Parameter Name="Boost Map Index" StartBit="0"  Length="8"  Scale="1"    Offset="0"   ByteOrder="BigEndian" />
+    </Channel>
+    <Channel ID="0x3ED" Name="TC Slip Sel" Direction="Receive" Type="Custom" DLC="1">
+      <Parameter Name="TC Slip Index"   StartBit="0"  Length="8"  Scale="1"    Offset="0"   ByteOrder="BigEndian" />
     </Channel>
 
   </CANModule>

@@ -16,7 +16,7 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 
 | Node | ID Range | Role |
 |---|---|---|
-| Link G4X XtremeX ECU | 0x3E8–0x3EB, 0x3EE–0x3F1 TX, 0x643 TX (once an output is used); RX 0x3B6, 0x640–0x642 (0x3EC/0x3ED RX not decided — `docs/OPEN-ITEMS.md`) | Engine management — bus master |
+| Link G4X XtremeX ECU | 0x3E8–0x3EB, 0x3EE–0x3F1 TX, 0x643 TX (once an output is used); RX 0x3B6, 0x640–0x642, 0x3EC/0x3ED (cluster encoder selections) | Engine management — bus master |
 | Link CAN-Lambda | 0x3B6 TX (0x3BE RX) | External wideband module — physically on the bus |
 | [center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4) | 0x3EC/0x3ED TX, all others RX | Gauge cluster — listens + sends driver selections |
 | ECUMaster CAN Switch Board V3 | 0x640–0x642 TX, 0x643 RX | Analog/digital inputs, low-side outputs |
@@ -59,8 +59,8 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 3. Add User Stream: 0x642 byte4 bits0-4 → VDI1-5 (VDI1/2 unassigned; the 0x640 cabin-temp stream is retired).
 4. Set CAN Receive Timeout: 200 ms on frames 0x640 / 0x641 / 0x642.
 5. Echo target: 0x3EF byte 3 (TC Setting) and byte 5 (Boost Map Index) are meant to carry the cluster's
-   0x3ED / 0x3EC selections, re-broadcast by the ECU. **Not decided yet:** whether the ECU receives
-   0x3EC/0x3ED at all (`docs/OPEN-ITEMS.md`). Until then, bytes 3 and 5 have no source.
+   0x3ED / 0x3EC selections, re-broadcast by the ECU. The ECU **receives** 0x3EC/0x3ED (Daniel,
+   2026-10-03) - set up the two receive channels at the end of the `.lcs` (DLC 1, byte 0 = index).
 
 ## Known Fixes vs. Previous Version
 

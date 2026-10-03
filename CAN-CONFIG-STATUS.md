@@ -34,8 +34,8 @@ package, re-import the corrected channel file before trusting turbo-speed readin
 `ST185:` input names in `link_g4x_realdash.xml`. RealDash does **not** read `0x3E8–0x3EE` (the cluster
 shows those) and does **not** read the switchboard `0x640–0x642` frames directly. The only
 switchboard-derived value it sees is the comm-fault bit (`0x3F1` byte 6 bit 5). The TC / boost-map
-echoes in `0x3EF` bytes 3/5 come from the **cluster's** 0x3ED/0x3EC — and whether the ECU receives
-those is still an open item.
+echoes in `0x3EF` bytes 3/5 come from the **cluster's** 0x3ED/0x3EC, which the ECU receives
+(decided 2026-10-03; receive channels at the end of the `.lcs`).
 
 **One deliberate exception, added 2026-09-04:** RealDash also reads the Gear byte of `0x3EB`
 (`ST185: Gear`), as a passive second listener on the same frame the cluster already uses. This exists
@@ -62,6 +62,6 @@ matching RealDash frame/value; do not point RealDash at `0x640`.
 
 ## Open items
 All open items now live in one table: `docs/OPEN-ITEMS.md`. CAN-related ones include:
-- Whether the ECU receives cluster 0x3EC/0x3ED (needed for the 0x3EF bytes 3/5 echo) — not decided.
+- ~~Whether the ECU receives cluster 0x3EC/0x3ED~~ — **decided 2026-10-03: yes** (receive channels in the `.lcs`).
 - **ECU startup/base map:** not yet designed (Link G4X **XtremeX**, wire-in). Planned as a separate chat.
 - RealDash UI/dashboard layout still being built (`REALDASH-LAYOUT.md`).

@@ -187,8 +187,9 @@ All new streams follow the existing convention: **Custom type, BigEndian, non-mu
 
 > **Bytes 3 & 5 are ECU echoes.** RealDash and the cluster share no CAN traffic directly — everything RealDash sees comes from the ECU. The cluster transmits its boost-map and TC selections to the ECU on **0x3EC** (map index) and **0x3ED** (TC index); the ECU receives those into channels and re-broadcasts them to RealDash in 0x3EF bytes 5 and 3. PCLink config required: receive 0x3EC/0x3ED into channels, then place those channels in 0x3EF (Task #9).
 
-> **Open (2026-10-03):** whether the ECU is actually set up to receive 0x3EC/0x3ED has **not been decided**.
-> Until it is, 0x3EF bytes 3 and 5 have no source. Tracked in `docs/OPEN-ITEMS.md`.
+> **Decided (Daniel, 2026-10-03):** the ECU receives 0x3EC/0x3ED (DLC 1, byte 0 = index, event-driven,
+> exactly as the cluster's `canbus_tx_selection()` sends them). Receive channels: end of
+> `link_g4x_can_setup.lcs`; JSON: `dashboard_to_ecu`. `bench/check_parity.py` checks both.
 
 ### 0x3F0 — Extended Sensors (CycleTime 100ms)
 | Byte | Field | Type | Scale | Offset | Notes |

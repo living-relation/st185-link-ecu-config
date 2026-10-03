@@ -38,7 +38,7 @@ the center forwards in its UART bridge frames.
 | Stream type | **Custom** |
 | Byte order | **Big endian** |
 | Transmit | streams 0x3E8–0x3EB and 0x3EE (below) |
-| Receive (optional) | 0x3EC / 0x3ED — only if you want center encoder selections to change ECU boost-map / traction |
+| Receive | 0x3EC / 0x3ED — center encoder selections (DLC 1, byte 0 = index); the ECU echoes them in 0x3EF bytes 5 / 3 |
 
 ---
 
@@ -114,9 +114,8 @@ Receive `0x3EC` (boost-map index 0–3) and `0x3ED` (TC index 0–4) from the cl
 switch the ECU boost map / traction level. The ECU echoes those selections back to RealDash in 0x3EF
 bytes 5 / 3 (no direct cluster↔RealDash CAN traffic).
 
-> **Not decided yet (2026-10-03):** whether the ECU receives 0x3EC/0x3ED at all is an open item
-> (`docs/OPEN-ITEMS.md`). The module table above lists it as optional; `link_g4x_can_setup.lcs` has no
-> receive entries for it on purpose.
+> **Decided (Daniel, 2026-10-03):** the ECU receives both. Receive channels are at the end of
+> `link_g4x_can_setup.lcs` (0x3EC "Boost Map Index", 0x3ED "TC Slip Index", byte 0, 8 bit, scale 1).
 
 ---
 

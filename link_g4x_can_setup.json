@@ -122,10 +122,13 @@
     }
   ],
   "dashboard_to_ecu": {
-    "_comment": "The center ESP32-P4 TRANSMITS these frames to the ECU (TWAI_MODE_NORMAL). ECU must be configured to receive on these IDs.",
+    "_comment": "The center ESP32-P4 TRANSMITS these frames and the ECU RECEIVES them (Daniel, 2026-10-03: the ECU listens for the cluster's encoder selections). Source: center-cluster-esp32-p4 main/inputs.c canbus_tx_selection(CONFIG_TC_CAN_TX_BOOST_ID / _TC_ID, idx) -> main/canbus.c: DLC 1, byte 0 = 0-based index, sent once per confirmed button press (event, no cycle). IDs are the Kconfig.projbuild defaults 0x3EC / 0x3ED; index counts BOOST_MAP_COUNT 4 / TC_SLIP_COUNT 5 (menu_strings.h). The ECU echoes them to RealDash in 0x3EF bytes 5 / 3. Mirrored as receive channels in link_g4x_can_setup.lcs; bench/check_parity.py checks both against frames.py and the cluster source.",
+    "ecu_receives": true,
     "frames": [
-      { "id": "0x3EC", "purpose": "Boost map selection (1 byte: map index 0-3)" },
-      { "id": "0x3ED", "purpose": "TC slip-angle selection (1 byte: angle index 0-4)" }
+      { "id": "0x3EC", "purpose": "Boost map selection", "dlc": 1, "cycle": "event (confirmed button press)",
+        "channels": [ { "byte": 0, "length": 1, "name": "Boost Map Index", "scale": 1, "offset": 0, "range": [0, 3], "echo": "0x3EF byte 5" } ] },
+      { "id": "0x3ED", "purpose": "TC slip-angle selection", "dlc": 1, "cycle": "event (confirmed button press)",
+        "channels": [ { "byte": 0, "length": 1, "name": "TC Slip Index", "scale": 1, "offset": 0, "range": [0, 4], "echo": "0x3EF byte 3" } ] }
     ]
   }
 }
