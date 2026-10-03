@@ -232,7 +232,7 @@ resistor is needed.
 
 | Field type | Raw to physical | Example |
 |---|---|---|
-| Temperatures (ECT, IAT, oil, fuel, cabin, charge-pipe) | `°C = raw − 50` | raw 140 = 90 °C |
+| Temperatures (ECT, IAT, oil, fuel, charge-pipe) | `°C = raw − 50` | raw 140 = 90 °C |
 | Ignition angle (0x3E9) | `deg = raw × 0.1 − 100` | raw 1155 = 15.5° |
 | Lambda / target lambda | `λ = raw × 0.001` | raw 950 = 0.950 |
 | Accel X/Y/Z (0x3F1) | `g = raw × 0.1` (signed) | raw −12 = −1.2 g |

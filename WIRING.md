@@ -41,8 +41,9 @@ The ESP32-P4 TWAI controller is logic-level; it needs an **external CAN transcei
   hardware — **no firmware or programming**. Wire **VCC→3V3**, **GND→GND**, **CTX→GPIO5 (TWAI TX)**,
   **CRX→GPIO4 (TWAI RX)**, **CANH/CANL** to the ECU bus. Supports up to **1 Mbit/s** (matches Link G4X).
   Do not short CANH and CANL.
-- **Bus:** 1 Mbit/s, 120 Ω termination at both physical ends of the CAN backbone (one is usually in
-  the ECU; add one 120 Ω at the transceiver end if it's the far end).
+- **Bus:** 1 Mbit/s, 120 Ω termination at both physical ends of the CAN backbone — the **ECU end and
+  the Link CAN-Lambda end** (§7, `ST185-CAN.harness`). The cluster transceiver is a mid-bus stub:
+  do **not** add a resistor here.
 - ECU broadcast IDs 0x3E8–0x3EB + status 0x3EE; dash→ECU TX 0x3EC/0x3ED. See `link_g4x_can_setup.*`.
 
 ---

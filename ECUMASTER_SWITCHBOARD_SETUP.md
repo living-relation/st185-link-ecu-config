@@ -133,13 +133,15 @@ cruise stalk connector):
 
 **Option A — CSB3 AS_MASK threshold decoding (preferred, if supported):**
 
-The CSB3's AS_MASK field (0x642 byte3) suggests built-in support for analog switch decoding.
-Check the ECUMaster CAN Switch Board V3 manual for "Analog Switch" or "AS" configuration.
+The CSB3's AS_MASK field (0x642 **byte5**) suggests built-in support for analog switch decoding.
+**Manual v2.1 check (2026-10-03):** AS_MASK is one fixed threshold per input — the bit is 0 below 2 V
+and 1 above 3 V. It cannot split one resistor ladder into SET / RESUME / CANCEL, so Option A only
+works if each switch has its own analog input. With one ladder wire, use Option B.
 If supported:
 1. In the configurator, assign Analog 2 as an Analog Switch input
 2. Enter the voltage thresholds for each switch state (from the ST185 diagram)
 3. Assign each decoded state to an AS_MASK bit (bit0=SET, bit1=RESUME, bit2=CANCEL, etc.)
-4. In PCLink, extend the 0x642 CAN User Stream to include byte3:
+4. In PCLink, extend the 0x642 CAN User Stream to include byte5 (AS_MASK):
    - AS_MASK bit0 → VDI1 (cruise SET)
    - AS_MASK bit1 → VDI2 (cruise RESUME; VDI2 is unassigned since A/C left the CSB3)
    - AS_MASK bit2 → VDI3 (cruise CANCEL)
@@ -197,7 +199,7 @@ In the configurator, map physical wires to digital input channels and confirm th
 
 ---
 
-## Step 6 — Rotary Encoder Assignments (0x642 bytes 0–2)
+## Step 6 — Rotary Encoder Assignments (0x642 bytes 0–3)
 
 Rotary positions are nibble-packed (4 bits each, 0–15 positions per encoder):
 
@@ -205,12 +207,14 @@ Rotary positions are nibble-packed (4 bits each, 0–15 positions per encoder):
 |---|---|---|
 | byte0 | Rotary 1 | Rotary 2 |
 | byte1 | Rotary 3 | Rotary 4 |
-| byte2 | Rotary 5 | Mode switch position |
+| byte2 | Rotary 5 | Rotary 6 |
+| byte3 | Rotary 7 | Rotary 8 |
 
 Assign physical encoders in the configurator:
-- **Rotary 1–5 / Mode** → TBD — assign functions once hardware and use-case are confirmed
+- **Rotary 1–8** → TBD — assign functions once hardware and use-case are confirmed
+  (manual v2.1: rotaries are read from the analog inputs; R# = position of a rotary switch on analog input #)
 
-**Routing note:** CSB3 rotary values (0x642 bytes 0-2) go to the **ECU only**. The ECU decides
+**Routing note:** CSB3 rotary values (0x642 bytes 0-3) go to the **ECU only**. The ECU decides
 what to do with them. The cluster does NOT read switchboard frames.
 
 The cluster's own boost-map and TC-map encoder inputs come from its physical GPIO encoders
@@ -222,17 +226,23 @@ The CSB3 rotary channels are a separate set of inputs available to the ECU for o
 
 ## Step 7 — Low-Side Outputs (0x643 — CSB3 is the receiver)
 
-The ECU commands CSB3 low-side outputs via ID 0x643 at 50 ms. The cluster does NOT transmit 0x643. The ECU is the sole transmitter.
+The ECU commands CSB3 low-side outputs via ID 0x643, sent as a 50 ms periodic PCLink CAN TX stream (the
+bytes only change when an output changes; the manual sets no required rate). The cluster does NOT
+transmit 0x643. The ECU is the sole transmitter (decided 2026-06-14, `CAN-BUS-MASTER-DESIGN.md` §9).
 
-| 0x643 Byte | Bit | CSB3 Output | Suggested Use |
-|---|---|---|---|
-| byte0 | bit0 | LS Out 1 | Cooling fan relay 1 |
-| byte0 | bit1 | LS Out 2 | Cooling fan relay 2 |
-| byte0 | bit2 | LS Out 3 | AC compressor relay |
-| byte0 | bit3 | LS Out 4 | Spare |
-| byte1 | bit0–7 | LS Out 5–8 (if equipped) | Spare |
+Layout per the CSB3 manual v2.1 §6 (DLC ≥ 4, one **byte** per output, not bits) — same as
+`switchboard_frames.json` and `CAN-BUS-ID-ALLOCATION-TABLE.md` §5:
 
-In PCLink, set up a **CAN Transmit** stream on ID 0x643 with a 50 ms cycle time. Use PCLink virtual outputs and bit-packing to map your fan/AC channels to the correct bits.
+| 0x643 Byte | CSB3 Output | Use |
+|---|---|---|
+| byte0 | L1 ctrl | Unused (LED-only if ever used) |
+| byte1 | L2 ctrl | Unused (LED-only if ever used) |
+| byte2 | L3 ctrl | Unused (LED-only if ever used) |
+| byte3 | L4 ctrl | Unused (LED-only if ever used) |
+| byte4–7 | — | Send 0x00 |
+
+Each output is rated 0.5 A (manual §2). Nothing is assigned yet, so the PCLink 0x643 stream can wait;
+when an LED is added, map its PCLink virtual output to the matching byte.
 
 ---
 
@@ -250,22 +260,25 @@ The CSB3 needs no configuration for the heartbeat. PCLink side: see `CANBUS-LINK
 
 ## Step 9 — Termination (Critical)
 
-Exactly two 120Ω termination resistors go on the bus — one at each physical end.
+Exactly two 120Ω termination resistors go on the bus — one at each physical end. **Settled
+(2026-09-27): the two ends are the ECU and the Link CAN-Lambda**, as drawn in
+`docs/harness/rebuild/ST185-CAN.harness` (`r_term_ecu`, `r_term_end`). See the topology bullets in
+`CAN-BUS-MASTER-DESIGN.md` and `WIRING.md` §7.
 
 | Node | Position | Termination |
 |---|---|---|
-| Link G4X XtremeX ECU | Bus end 1 | **ON** (120Ω — built-in or add inline) |
-| center-cluster-esp32-p4 | Middle | **None** (SN65HVD230 has no termination) |
-| ECUMaster CSB3 | Middle | **Jumper OFF** — do not close onboard termination |
-| Pi4+/Pi5 + USB-CAN adapter | Bus end 2 | **ON** — via adapter termination switch (PCAN USB) or inline 120Ω (CANable) |
+| Link G4X XtremeX ECU | Bus end 1 | **ON** — 120Ω in the CAN harness at the ECU end |
+| Link CAN-Lambda | Bus end 2 | **ON** — 120Ω in the CAN harness at the CAN-Lambda end |
+| center-cluster-esp32-p4 | Mid-bus stub | **None** (SN65HVD230 has no termination) |
+| ECUMaster CSB3 | Mid-bus stub | **Jumper OFF** — do not close onboard termination |
+| Pi4+/Pi5 + USB-CAN adapter | Mid-bus stub | **None** — PCAN USB termination switch OFF; no inline resistor on a CANable |
 
 **NOTE:** The Waveshare hat on the Pi is for cooling fan only — it has no CAN connections.
-The termination at the Pi end comes from the USB-CAN adapter or an inline resistor, not the hat.
 
-Bus topology (daisy chain, shortest stub lengths):
+Bus topology (daisy chain, shortest stub lengths; stub order as drawn in `ST185-CAN.harness`):
 ```
-[ECU end] ──── center cluster ──── CSB3 ──── Pi/USB-CAN [bus end]
-   120Ω                                              120Ω
+[ECU end] ──── mid-bus stubs: cluster, CSB3, Pi/USB-CAN ──── [CAN-Lambda end]
+   120Ω                                                          120Ω
 ```
 
 If you need to bench-test the CSB3 alone on a short cable with a USB-CAN adapter, you can close the CSB3 termination jumper temporarily. **Remove it again before connecting to the full bus.**
@@ -283,4 +296,4 @@ Before first power-on with ECU on the bus:
 - [ ] With CSB3 powered and isolated, 0x640 / 0x641 / 0x642 frames visible in CAN monitor at 1 Mbit/s
 - [ ] In PCLink — CAN User Stream 0x642 byte4 bits 0-4 → VDI1-5 configured
 - [ ] In PCLink — receive timeout 200 ms set for 0x640 / 0x641 / 0x642
-- [ ] In PCLink — 0x643 TX stream configured for low-side outputs (fan / AC)
+- [ ] In PCLink — 0x643 TX stream (50 ms) only once an output is assigned (L1-L4 unused / LED-only for now)

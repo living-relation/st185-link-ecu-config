@@ -57,7 +57,7 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
   - 0x640: Analog Inputs 1-4 (raw mV, 0-5000)
   - 0x641: Analog Inputs 5-8 (raw mV, 0-5000)
   - 0x642: Rotaries 1-8 (nibble-packed), SW_MASK (8 switches), AS_MASK (8 analog-states), LS_MASK (4 low-side outputs), heartbeat byte
-- **Input frame** (Base+3 = 0x643): low-side output control (L1-L4), source TBD — see §9.
+- **Input frame** (Base+3 = 0x643): low-side output control (L1-L4), source = **ECU** (decided 2026-06-14, §9). Outputs unused / LED-only for now. Sent as a 50 ms periodic PCLink TX stream; bytes change only when an output changes.
 
 ### SW_MASK assignment (0x642 byte4)
 
@@ -189,7 +189,7 @@ The docx does not address the ECUMaster switchboard's bus segment or speed at al
 | 2 | Add 0x3EF (50ms), 0x3F0 (100ms), 0x3F1 (50ms) Custom/BigEndian streams to `link_g4x_can_setup.lcs`/`.json` | PCLink config |
 | 3 | Configure PCLink User Stream 2 (0x642 byte4 bits0-4 → VDI1-5). User Stream 1 (cabin temp → GP Temp1) is retired, see §5 | PCLink config |
 | 4 | Configure PCLink receive timeouts (200ms) on 0x640/0x641/0x642 with fail-safe defaults (VDI1-5→0) | PCLink config |
-| 5 | Cluster firmware: **no changes.** Cluster displays are unchanged — it keeps decoding 0x3E8–0x3EE and transmitting 0x3EC/0x3ED. The new 0x3EF/0x3F0/0x3F1 streams are ECU→RealDash only; switchboard comm-fault (§6) is ECU-detected and surfaced to RealDash via 0x3F1 byte6 bit5. | — (none) |
+| 5 | Cluster firmware: **no changes.** Cluster displays are unchanged — it keeps decoding 0x3E8–0x3EB and 0x3EE (`main/canbus.c`) and transmitting 0x3EC/0x3ED. The new 0x3EF/0x3F0/0x3F1 streams are ECU→RealDash only; switchboard comm-fault (§6) is ECU-detected and surfaced to RealDash via 0x3F1 byte6 bit5. | — (none) |
 | 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §9 — outputs unused/LED-only, low priority | PCLink config (deferred) |
 | 7 | RealDash XML frame/value definitions for 0x3EF-0x3F1 — **done** (`link_g4x_realdash.xml`). Build the dashboard per `REALDASH-LAYOUT.md`. 0x640-0x642 deliberately excluded (ECU echoes display-relevant values) | RealDash config |
 | 8 | Verify bus termination (120Ω × 2): ECU end + CAN-Lambda end only. Center cluster, switchboard, and Pi (USB-CAN adapter) are mid-bus stubs — confirm none of them are terminated. Waveshare hat is not on the bus. | Hardware |
