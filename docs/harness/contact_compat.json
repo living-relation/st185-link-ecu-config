@@ -1,0 +1,4 @@
+{
+  "_doc": "Contact part numbers the MAKER lists for each connector part number, copied from the maker's datasheet or catalog page - never inferred. audit_cavity_parts.py K4 fails a contact not listed here for its connector; a connector part number with no entry is reported as a GAP. Add one entry per connector part number: {\"contacts\": [\"<contact PN>\", ...], \"source\": \"<datasheet title, rev, page or URL>\"}.",
+  "connectors": {}
+}
