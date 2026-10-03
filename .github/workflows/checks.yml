@@ -1,7 +1,7 @@
 name: Repo checks
 
 # Runs the harness gates (docs/harness/check_all.py), byte-compiles the CAN
-# bench/sender code, and runs the CAN parity check.
+# bench/sender code, runs the CAN parity check and the tune seed-table check.
 #
 # Runs on EVERY pull request and push to main so the "Repo checks" status always
 # reports (it is a required check - a path-filtered workflow that never starts
@@ -11,7 +11,8 @@ name: Repo checks
 # unrelated changes.
 #
 # Python 3.14 matches the local dev machine (dansPC) and research-hub.yml.
-# Every script these steps run is standard-library only, so there is no pip step.
+# Everything is standard-library only except tune/scripts/validate_tune.py, which needs
+# PyYAML - installed pinned (same version as on dansPC) right before that step.
 on:
   push:
     branches: [main]
@@ -49,7 +50,7 @@ jobs:
           fi
           CHANGED="$(git diff --name-only "$RANGE")"
           echo "Changed files:"; echo "$CHANGED"
-          if echo "$CHANGED" | grep -qE '^(sot/|docs/harness/|bench/|apps/|XTREMEX-IO-TABLE\.html$|link_g4x_can_setup\.(json|lcs)$|link_g4x_realdash\.xml$|switchboard_frames\.json$|CAN-BUS-ID-ALLOCATION-TABLE\.md$|\.github/workflows/checks\.yml$)'; then
+          if echo "$CHANGED" | grep -qE '^(sot/|docs/harness/|bench/|apps/|tune/|docs/intercooler-turbo-study/model/inputs\.yaml$|XTREMEX-IO-TABLE\.html$|link_g4x_can_setup\.(json|lcs)$|link_g4x_realdash\.xml$|switchboard_frames\.json$|CAN-BUS-ID-ALLOCATION-TABLE\.md$|\.github/workflows/checks\.yml$)'; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "No checked files changed - skipping the checks (reported as passed)."
@@ -71,3 +72,9 @@ jobs:
       - name: CAN parity (JSON / .lcs / frames.py / ID table / RealDash XML / sender UI)
         if: steps.scope.outputs.run == 'true' && hashFiles('bench/check_parity.py') != ''
         run: python bench/check_parity.py
+      - name: Install PyYAML for the tune checker (pinned)
+        if: steps.scope.outputs.run == 'true'
+        run: python -m pip install --disable-pip-version-check pyyaml==6.0.3
+      - name: Tune seed tables (validate_tune.py)
+        if: steps.scope.outputs.run == 'true'
+        run: python tune/scripts/validate_tune.py
