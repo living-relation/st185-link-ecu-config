@@ -11,7 +11,8 @@ a PC that has RealDash installed and a real GPU-backed desktop**. Everything the
    this PC uses hardware OpenGL (RealDash must reach the **Garage** screen after login, not a stuck
    spinner).
 3. Install tooling per `tools/SETUP.md` (`pip install -r tools/requirements.txt`).
-4. Launch RealDash, log in with `CREDENTIALS.md`, import `link_g4x_realdash.xml` (PLAN.md section 3).
+4. Launch RealDash, log in with `CREDENTIALS.md` (local only, gitignored), import the repo-root
+   `link_g4x_realdash.xml` (PLAN.md section 3).
 5. Build the single-page dashboard exactly per PLAN.md section 4, validate (section 6), export the
    `.rd` (+ `_anim.xml`) and hand it back (section 7).
 
@@ -26,8 +27,9 @@ a PC that has RealDash installed and a real GPU-backed desktop**. Everything the
   this handoff; keep private.
 - `FINDINGS.md` - why this must run on a GPU-backed PC (the software-OpenGL-ES deadlock diagnosis),
   and everything already ruled out (network, login, subscription, device limit).
-- `link_g4x_realdash.xml` - RealDash CAN v2 channel-description file. Import it so the `ST185:`-prefixed
-  inputs exist for gauges to bind to (also embedded inline in PLAN.md section 3).
+- The CAN channel file is the **repo-root** `link_g4x_realdash.xml` (single copy — there is no
+  `rd-build/link_g4x_realdash.xml` any more). Import it so the `ST185:`-prefixed inputs exist for
+  gauges to bind to (PLAN.md section 3).
 - `realdash-simulation-REFERENCE.html` - live HTML/JS preview of the dashboard's look & feel (open in
   any browser). **Visual/style reference only** — it still shows a leftover "CABIN" tile that is NOT
   in the final layout. The authoritative layout is PLAN.md section 4 (no Cabin tile; Trigger Errors
@@ -39,6 +41,19 @@ a PC that has RealDash installed and a real GPU-backed desktop**. Everything the
   - `SETUP.md` - install + per-OS permissions (macOS Accessibility/Screen Recording, Linux
     scrot/tk), verification steps, and an optional remote (VNC) path.
   - `mcp.example.json` - OPTIONAL example only; no MCP server is required.
+
+## Which file is current (declared 2026-10-03; nothing deleted)
+
+| What | Current | Older copies (history only) |
+|---|---|---|
+| Dashboard `.rd` | repo-root `st185_dash.rd` — the delivered build per `BUILD-NOTES.md` (2026-07-06) | `rd-build/realdash-root/st185_dash.rd` and `st185_dash_v2.rd` … `st185_dash_v10.rd` (intermediate editor saves; v10 is the last numbered save) |
+| Simulation / look-and-feel | repo-root `realdash-simulation.html` (no Cabin tile; linked from `REALDASH-LAYOUT.md`) | `rd-build/realdash-simulation-REFERENCE.html` (still shows a Cabin tile) |
+| CAN channel file | repo-root `link_g4x_realdash.xml` | none |
+
+**Open item:** `BUILD-NOTES.md` says the root file and `realdash-root/st185_dash.rd` are the same
+39,248-byte build, but the committed files differ (root 39,548 bytes; `realdash-root/st185_dash.rd`
+99,648 bytes). Confirm which `.rd` is actually on the Pi before building on either. Tracked in
+`docs/OPEN-ITEMS.md`.
 
 ## Tools / MCP / connectors required
 

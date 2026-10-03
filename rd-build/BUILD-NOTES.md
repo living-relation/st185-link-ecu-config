@@ -45,7 +45,8 @@ type/target to the real source; keep the same channel description file.
 - Live sanity checks: all 13 values render and update from the bound channels
   (Target Lambda shows 0.6 = channel rangeMin; alarm tiles white below warning).
 - NOT yet validated against real CAN frames — last-mile step on the bench/Pi with
-  `apps/canbus-bench-test.html` / `canbus-live-sender` per PLAN.md §6.
+  `apps/trackcluster-can-sender` (RealDash profile) or `bench/can_bench.py full-realdash`, per PLAN.md §6.
+  (The older `apps/canbus-bench-test.html` / `canbus-live-sender` tools no longer exist.)
 
 ## Account note
 Login used the My RealDash account from CREDENTIALS.md. Consider rotating that

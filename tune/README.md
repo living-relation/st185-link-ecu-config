@@ -27,9 +27,16 @@ This directory covers **engine calibration only**. It is not an I/O or wiring so
 | `tables/warmup_fuel_temp_trim.csv` | Fuel temp vs additive cranking/post-start enrichment trim — hot-restart vapor-lock compensation, on top of PCLink's native ECT-based warm-up enrichment. |
 | `limits.yaml` | ECU protection limits + cluster cosmetic thresholds. Intentionally loose for the startup map. Fuel temp warn/limit (55/70°C) is an exception — matches the already-considered RealDash alarm thresholds, not tuning noise. |
 | `docs/` | Engine-side guides: spec, trigger/COP, driveability, limits, first-start, protection, research. |
-| `scripts/` | `calc_engine.py`, `build_limits_tracker.py` (generates `docs/LIMITS_PROTECTION_TRACKER.xlsx`). |
+| `scripts/` | `calc_engine.py`, `build_limits_tracker.py` (generates `docs/LIMITS_PROTECTION_TRACKER.xlsx`), `validate_tune.py` (seed-table gate, below). |
 
-All three main tables share one axis pair: **MAP 20–200 kPa (rows) × RPM 800–7000 (columns)**.
+All three main tables share one axis pair: **MAP 20–200 kPa (rows) × RPM 800–7000 (columns)**
+(`lambda_target.csv` uses the same breakpoints).
+
+**Check:** `python tune/scripts/validate_tune.py` (needs PyYAML) - all 14 CSVs parse with even
+rows, axes are monotonic, the shared MAP × RPM axis holds, boost ceilings match
+`engine_constants.yaml` (street seed 18 psi, eventual 30 psi), `limits.yaml`'s ethanol-fault cap
+equals the street seed, every path named here exists, and
+`docs/intercooler-turbo-study/model/inputs.yaml` engine numbers match `engine_constants.yaml`.
 
 ## Provenance
 
