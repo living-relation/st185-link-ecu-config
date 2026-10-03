@@ -68,7 +68,7 @@ jobs:
         run: python docs/harness/check_all.py
       - name: Tree unchanged after check_all
         if: steps.scope.outputs.run == 'true'
-        run: git diff --exit-code -- . ':!_cluster'
+        run: git diff --exit-code
       - name: Byte-compile CAN tooling
         if: steps.scope.outputs.run == 'true'
         run: python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py
