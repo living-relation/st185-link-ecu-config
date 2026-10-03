@@ -106,71 +106,17 @@ Guidelines:
 
 ## 3. Import the CAN channel description (the data contract)
 
-> **Correction, 2026-09-04 — Turbo Speed scaling was wrong in this package.** This file's Turbo
-> Speed line previously read `conversion="V*100" rangeMax="200000"`, which is inconsistent with
-> its own stated range (a single byte, max raw 255, can only reach 25,500 at x100 — never
-> 200,000) and disagreed with every other source in the repo. Checked against the canonical
-> config contract, `link_g4x_can_setup.json` ("Turbo Speed x1000... raw x 1000 = RPM... e.g. 150 =
-> 150,000"), plus `CAN-BUS-ID-ALLOCATION-TABLE.md`, `REALDASH-LAYOUT.md`, and the root
-> `link_g4x_realdash.xml` — all four agree on **x1000, range 0–255,000 RPM**. Corrected below and
-> in `rd-build/link_g4x_realdash.xml`. This also means the row-7 TURBO tile's `value/1000 → "k rpm"`
-> display logic (section 4.3) was already written for the *correct* scaling — it just needs to
-> receive a correctly-scaled input, which this fix provides. If a `.rd` file was already built
-> against the old `V*100` line, re-import this corrected channel file before trusting turbo-speed
-> readings on it.
+Import the repo-root **`link_g4x_realdash.xml`** — it is the only copy (the duplicate that used to
+live in this folder, and the inline copy that used to be pasted here, were removed after they
+drifted). In RealDash: **Garage → add/open the car → Connections → add a CAN/Serial connection →
+Select Vehicle → Custom Channel Description File → browse to `link_g4x_realdash.xml` → Done.** This
+registers every `ST185:`-prefixed input under **Settings → Inputs → ECU Specific**, which the
+dashboard gauges bind to by name.
 
-Copy the file below onto the VM as `link_g4x_realdash.xml`, then in RealDash: **Garage → add/open
-the car → Connections → add a CAN/Serial connection → Select Vehicle → Custom Channel Description
-File → browse to `link_g4x_realdash.xml` → Done.** This registers every `ST185:`-prefixed input
-under **Settings → Inputs → ECU Specific**, which the dashboard gauges bind to by name.
-
-Bus facts: **1 Mbit/s, BigEndian, passive/listen-only** (RealDash never transmits). Only 3 frames
-matter to RealDash — `0x3E8–0x3EE` and `0x640–0x643` are read by the cluster/ECU only, not RealDash.
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<RealDashCAN version="2">
-  <frames>
-
-    <!-- 0x3EF (1007) Drive Assist & Status — 50ms, BigEndian -->
-    <frame id="1007" endianness="big" timeout="2000">
-      <value name="ST185: Target Lambda"    offset="0" length="2" conversion="V*0.001" rangeMin="0.6" rangeMax="1.3"/>
-      <value name="ST185: Throttle"         offset="2" length="1" conversion="V"        rangeMin="0"   rangeMax="100"/>
-      <value name="ST185: TC Setting"       offset="3" length="1" conversion="V"        rangeMin="0"   rangeMax="4"/>
-      <value name="ST185: TC Intervention"  offset="4" length="1" conversion="V"        rangeMin="0"   rangeMax="100"/>
-      <value name="ST185: Boost Map"        offset="5" length="1" conversion="V"        rangeMin="0"   rangeMax="3"/>
-      <value name="ST185: Cruise State"     offset="6" length="1" enum="0:OFF,1:STBY,2:SET,3:RES,4:OVR,#:---"/>
-      <value name="ST185: AC Status"        offset="7" length="1" enum="0:OFF,1:REQ,2:ON,3:FLT,#:---"/>
-    </frame>
-
-    <!-- 0x3F0 (1008) Extended Sensors — 100ms, BigEndian -->
-    <frame id="1008" endianness="big" timeout="2000">
-      <value name="ST185: Fuel Temp"        offset="0" length="1" conversion="V-50"  units="C"/>
-      <value name="ST185: Engine Load"      offset="1" length="1" conversion="V"     rangeMin="0" rangeMax="100"/>
-      <value name="ST185: Coolant Pressure" offset="2" length="2" conversion="V"     rangeMin="0" rangeMax="1000"/>
-      <value name="ST185: Ethanol"          offset="4" length="1" conversion="V"     rangeMin="0" rangeMax="100"/>
-      <value name="ST185: Charge-Pipe IAT"  offset="5" length="1" conversion="V-50"  units="C"/>
-      <value name="ST185: Turbo Speed"      offset="6" length="1" conversion="V*1000" rangeMin="0" rangeMax="255000"/>
-      <value name="ST185: Trigger Errors"   offset="7" length="1" conversion="V"     rangeMin="0" rangeMax="255"/>
-    </frame>
-
-    <!-- 0x3F1 (1009) IMU & Extended Warnings — 50ms, BigEndian -->
-    <frame id="1009" endianness="big" timeout="2000">
-      <value name="ST185: Accel X"          offset="0" length="2" signed="true" conversion="V*0.1" rangeMin="-2" rangeMax="2"/>
-      <value name="ST185: Accel Y"          offset="2" length="2" signed="true" conversion="V*0.1" rangeMin="-2" rangeMax="2"/>
-      <value name="ST185: Accel Z"          offset="4" length="2" signed="true" conversion="V*0.1" rangeMin="-2" rangeMax="2"/>
-      <value name="ST185: Warn Bits"        offset="6" length="1" conversion="V"/>
-      <value name="ST185: Flat Shift"       offset="6" length="1" startbit="0" bitcount="1" units="bit"/>
-      <value name="ST185: Radiator Fan"     offset="6" length="1" startbit="1" bitcount="1" units="bit"/>
-      <value name="ST185: Low Fuel"         offset="6" length="1" startbit="2" bitcount="1" units="bit"/>
-      <value name="ST185: High Coolant Press" offset="6" length="1" startbit="3" bitcount="1" units="bit"/>
-      <value name="ST185: Low Oil Press 2"  offset="6" length="1" startbit="4" bitcount="1" units="bit"/>
-      <value name="ST185: Switchboard Fault" offset="6" length="1" startbit="5" bitcount="1" units="bit"/>
-    </frame>
-
-  </frames>
-</RealDashCAN>
-```
+Bus facts: **1 Mbit/s, BigEndian, passive/listen-only** (RealDash never transmits). RealDash reads
+the three ECU→RealDash frames **0x3EF / 0x3F0 / 0x3F1** plus the **gear byte of 0x3EB**
+(`ST185: Gear`, reverse-camera switch only). The rest of `0x3E8–0x3EE` and `0x640–0x643` are read
+by the cluster/ECU only. `python bench/check_parity.py` checks the XML against the CAN contract.
 
 Bit map reference (0x3F1 byte 6, canonical per `CAN-BUS-ID-ALLOCATION-TABLE.md` §6): bit0 Flat
 Shift Active · bit1 Radiator Fan On · bit2 Low Fuel Warning · bit3 High Coolant Pressure · bit4 Low
@@ -180,8 +126,8 @@ Oil Pressure (secondary threshold) · bit5 Switchboard Comm Fault (ECU-set) · b
 
 ## 4. Build target — single-page dashboard, exact spec
 
-This is the corrected design (matches `realdash-simulation.html` with its stale **Cabin Temp**
-tile removed, per prior agreement). Canvas **800×480, one page, no swipe/second page.**
+This is the current design — it matches the repo-root `realdash-simulation.html` (no Cabin Temp tile;
+the older `rd-build/realdash-simulation-REFERENCE.html` still shows one). Canvas **800×480, one page, no swipe/second page.**
 
 ### 4.1 Palette
 | Token | Hex |
@@ -280,8 +226,8 @@ Select the element → **Edit → Animations → Add → Fade**, opacity 100 →
 2. **What cannot be validated on this VM**: real CAN traffic end-to-end, since cloud VMs have no
    USB-CAN passthrough. That final check only happens once the `.rd` + `link_g4x_realdash.xml` are
    on the actual Pi with the real bus (or the bench tools already in this repo —
-   `apps/canbus-bench-test.html` / `apps/canbus-live-sender` — feeding simulated frames into a
-   USB-CAN adapter connected to the Pi). Call this out explicitly to the user as the required last
+   `apps/trackcluster-can-sender` (RealDash profile) or `python bench/can_bench.py ... full-realdash` —
+   feeding simulated frames into a USB-CAN adapter connected to the Pi). Call this out explicitly to the user as the required last
    mile step they must do themselves on real hardware.
 
 ---

@@ -7,7 +7,8 @@
 # core, FuryX vs XtremeX, etc.).
 #
 # Authoritative engine data mirrors tune/engine_constants.yaml (the repo's
-# canonical build spec). Where a value is estimated rather than measured, it is
+# canonical build spec). tune/scripts/validate_tune.py fails if bore, stroke,
+# displacement, compression or the rev limits here drift from that file. Where a value is estimated rather than measured, it is
 # labelled `_source: estimated` with the basis.
 # ============================================================================
 
