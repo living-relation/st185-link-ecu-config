@@ -1,7 +1,8 @@
 name: Repo checks
 
 # Runs the harness gates (docs/harness/check_all.py), byte-compiles the CAN
-# bench/sender code, runs the CAN parity check and the tune seed-table check.
+# bench/sender code, runs the CAN parity check (including the frozen cluster firmware,
+# checked out read-only from its public repo) and the tune seed-table check.
 #
 # Runs on EVERY pull request and push to main so the "Repo checks" status always
 # reports (it is a required check - a path-filtered workflow that never starts
@@ -18,6 +19,8 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'   # weekly: catch drift in the frozen cluster repo (it can change without a PR here)
 
 permissions:
   contents: read
@@ -43,7 +46,7 @@ jobs:
           PUSH_AFTER: ${{ github.sha }}
         run: |
           set -euo pipefail
-          if [ "$EVENT" = "workflow_dispatch" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ "$EVENT" = "workflow_dispatch" ] || [ "$EVENT" = "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
           if [ "$EVENT" = "pull_request" ]; then RANGE="$PR_BASE...$PR_HEAD"; FIRST="$PR_BASE"; else RANGE="$PUSH_BEFORE..$PUSH_AFTER"; FIRST="$PUSH_BEFORE"; fi
           if [ -z "$FIRST" ] || [ "$FIRST" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$FIRST^{commit}" 2>/dev/null; then
             echo "Cannot tell what changed - running everything."; echo "run=true" >> "$GITHUB_OUTPUT"; exit 0
@@ -65,12 +68,23 @@ jobs:
         run: python docs/harness/check_all.py
       - name: Tree unchanged after check_all
         if: steps.scope.outputs.run == 'true'
-        run: git diff --exit-code
+        run: git diff --exit-code -- . ':!_cluster'
       - name: Byte-compile CAN tooling
         if: steps.scope.outputs.run == 'true'
         run: python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py
-      - name: CAN parity (JSON / .lcs / frames.py / ID table / RealDash XML / sender UI)
+      - name: Check out the frozen cluster firmware (public repo, read-only)
+        if: steps.scope.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: living-relation/center-cluster-esp32-p4
+          ref: main
+          path: _cluster
+          persist-credentials: false
+      - name: CAN parity (JSON / .lcs / frames.py / ID table / RealDash XML / sender UI / cluster source)
         if: steps.scope.outputs.run == 'true' && hashFiles('bench/check_parity.py') != ''
+        env:
+          CLUSTER_DIR: _cluster
+          CLUSTER_REQUIRED: '1'
         run: python bench/check_parity.py
       - name: Install PyYAML for the tune checker (pinned)
         if: steps.scope.outputs.run == 'true'

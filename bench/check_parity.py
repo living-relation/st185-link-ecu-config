@@ -21,9 +21,11 @@ D2 (2026-10-02): the JSON stays in PCLink's encode form and everything else uses
 The conversion is decode_scale = 1 / scale, decode_offset = -offset / scale; this script
 applies it, so a scale written in the wrong convention shows up as a mismatch.
 
-The cluster firmware (center-cluster-esp32-p4 main/canbus.c) is frozen and lives in
-another repo, so CI cannot read it. Reconcile against it by hand on any CAN change
-(docs/RECONCILIATION-RULES.md Rule 2).
+The cluster firmware (center-cluster-esp32-p4, frozen, PUBLIC repo) is checked too:
+check_cluster_source() parses its main/canbus.c, inputs.c, Kconfig.projbuild and
+menu_strings.h. CI checks that repo out read-only and sets CLUSTER_DIR / CLUSTER_REQUIRED=1;
+locally it reads the sibling folder ../center-cluster-esp32-p4 when present (whatever branch
+is checked out there - CI always uses its main branch).
 """
 from __future__ import annotations
 
@@ -465,20 +467,62 @@ def check_xml(model, bits):
 
 # --- 7. sender UI device profiles ----------------------------------------------------------
 CLUSTER_FRAMES = {0x3E8, 0x3E9, 0x3EA, 0x3EB, 0x3EE}   # what main/canbus.c decodes
-CLUSTER_SRC = os.environ.get("CLUSTER_CANBUS_C") or os.path.join(
-    os.path.dirname(ROOT), "center-cluster-esp32-p4", "main", "canbus.c")
+CLUSTER_DIR = os.environ.get("CLUSTER_DIR") or os.path.join(os.path.dirname(ROOT), "center-cluster-esp32-p4")
+CLUSTER_REQUIRED = os.environ.get("CLUSTER_REQUIRED") == "1"   # CI sets this; locally optional
 
 
-def check_cluster_source():
-    """Local only: if the frozen cluster repo sits next to this one, confirm the set of
-    frames it decodes still equals CLUSTER_FRAMES. Skipped silently in CI."""
-    if not os.path.exists(CLUSTER_SRC):
+def cluster_file(name):
+    p = os.path.join(CLUSTER_DIR, "main", name)
+    return open(p, encoding="utf-8", errors="replace").read() if os.path.exists(p) else None
+
+
+def check_cluster_source(model=None, rx=None):
+    """Compare against the FROZEN cluster firmware itself (center-cluster-esp32-p4, public).
+    CI checks it out read-only (checks.yml); locally it is read from the sibling folder.
+      X1  canbus.c decodes exactly CLUSTER_FRAMES (the dispatch switch)
+      X2  each decode_3xx() reads the same byte offsets / widths the JSON declares
+          (be_u16(d + N) = 2 bytes at N, d[N] = 1 byte at N)
+      X3  canbus_tx_selection() sends DLC 1 with the index in byte 0, and inputs.c calls it
+          with CONFIG_TC_CAN_TX_BOOST_ID / _TC_ID whose Kconfig defaults are 0x3EC / 0x3ED
+      X4  the index ranges in the JSON match BOOST_MAP_COUNT / TC_SLIP_COUNT (menu_strings.h)
+    Returns False when the cluster source is not available (and CLUSTER_REQUIRED is off)."""
+    src = cluster_file("canbus.c")
+    if src is None:
+        if CLUSTER_REQUIRED:
+            err("cluster", "CLUSTER_REQUIRED=1 but %s has no main/canbus.c" % CLUSTER_DIR)
         return False
-    src = open(CLUSTER_SRC, encoding="utf-8", errors="replace").read()
     got = {int(x, 16) for x in re.findall(r"case\s+(0x[0-9A-Fa-f]+)\s*:\s*decode_", src)}
     if got != CLUSTER_FRAMES:
-        err("cluster canbus.c", "decodes %s, check_parity expects %s"
+        err("cluster canbus.c X1", "decodes %s, check_parity expects %s"
             % (sorted(map(hex, got)), sorted(map(hex, CLUSTER_FRAMES))))
+    for name, body in re.findall(r"static void (decode_3[0-9a-fA-F]{2})\(const uint8_t \*d\)\s*\{(.*?)\n\}", src, re.S):
+        fid = int(name[-3:], 16)
+        reads = {(int(n), 2) for n in re.findall(r"be_u16\(\s*d\s*\+\s*(\d+)\s*\)", body)}
+        reads |= {(int(n), 1) for n in re.findall(r"\bd\[(\d+)\]", body)}
+        want = {(b, f["length"]) for b, f in ((model or {}).get(fid, {}).get("fields") or {}).items()}
+        if model is not None and reads != want:
+            err("cluster canbus.c X2 0x%03X" % fid, "reads (byte, width) %s, JSON declares %s"
+                % (sorted(reads), sorted(want)))
+    tx = re.search(r"void canbus_tx_selection\([^)]*\)\s*\{(.*?)\n\}", src, re.S)
+    if not tx or not re.search(r"\.data_length_code\s*=\s*1\b", tx.group(1)) \
+            or not re.search(r"\.data\s*=\s*\{\s*index\s*,", tx.group(1)):
+        err("cluster canbus.c X3", "canbus_tx_selection() is no longer DLC 1 with the index in byte 0")
+    kc, inp = cluster_file("Kconfig.projbuild") or "", cluster_file("inputs.c") or ""
+    for cfg, fid in (("TC_CAN_TX_BOOST_ID", 0x3EC), ("TC_CAN_TX_TC_ID", 0x3ED)):
+        m = re.search(r"config\s+%s\b.*?default\s+(0x[0-9A-Fa-f]+)" % cfg, kc, re.S)
+        if not m or int(m.group(1), 16) != fid:
+            err("cluster Kconfig X3", "%s default is %s, expected 0x%03X" % (cfg, m and m.group(1), fid))
+        if "canbus_tx_selection(CONFIG_%s" % cfg not in inp:
+            err("cluster inputs.c X3", "no canbus_tx_selection(CONFIG_%s, ...) call" % cfg)
+    ms = cluster_file("menu_strings.h") or ""
+    for macro, fid in (("BOOST_MAP_COUNT", 0x3EC), ("TC_SLIP_COUNT", 0x3ED)):
+        m = re.search(r"#define\s+%s\s+(\d+)" % macro, ms)
+        rng = (((rx or {}).get(fid) or {}).get("channels") or [{}])[0].get("range")
+        if not m:
+            err("cluster menu_strings.h X4", "%s not found" % macro)
+        elif rx is not None and rng != [0, int(m.group(1)) - 1]:
+            err("json dashboard_to_ecu X4", "0x%03X range %s, cluster %s = %s -> [0, %d]"
+                % (fid, rng, macro, m.group(1), int(m.group(1)) - 1))
     return True
 
 
@@ -629,7 +673,7 @@ def main() -> int:
     check_switchboard(sb, text)
     rx = load_rx()
     check_rx(rx, text)
-    cluster_seen = check_cluster_source()
+    cluster_seen = check_cluster_source(model, rx)
     j3f1 = model.get(0x3F1, {}).get("fields", {}).get(6, {})
     check_warn_text("json 0x3F1 byte 6 note", j3f1.get("note", ""), bits)
     row = re.search(r"^\|\s*6\s*\|\s*Extended Warnings Bitmask.*$", text, re.M)
@@ -641,8 +685,9 @@ def main() -> int:
         return 1
     print("CAN parity OK: %d ECU frames, 2 ECU receive frames, 4 switchboard frames, %d warning bits - "
           "json / .lcs / frames.py / ID table / RealDash XML / sender UI agree" % (len(model), len(bits)))
-    print("cluster canbus.c: " + ("decoded frame set matches (%s)" % CLUSTER_SRC if cluster_seen
-                                  else "not found next to this repo - reconcile by hand"))
+    print("cluster firmware: " + ("decode IDs, byte layouts, TX IDs/DLC and index ranges match (%s)"
+                                  % CLUSTER_DIR if cluster_seen
+                                  else "source not found at %s - reconcile by hand" % CLUSTER_DIR))
     return 0
 
 
