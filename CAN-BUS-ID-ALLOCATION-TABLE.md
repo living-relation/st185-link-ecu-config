@@ -3,6 +3,11 @@
 **Bus:** Single CAN bus, **1 Mbit/s**, ISO 11898-2, 120Ω terminated.
 **Members:** Link G4X XtremeX ECU, center-cluster-esp32-p4 (TWAI, NORMAL/bidirectional), ECUMaster CAN Switch Board V3, and Raspberry Pi 5 running RealDash via a **USB-CAN adapter** (CANable/PCAN). (The Waveshare dual-MCP2515 hat on the Pi is retained for its fan only — it is **not** on the CAN bus.)
 
+> **Scale convention:** Scale/Offset in this file are the DECODE form, value = raw × Scale + Offset —
+> the same as `link_g4x_can_setup.lcs` and `bench/frames.py`. `link_g4x_can_setup.json` holds the same
+> fields in PCLink ENCODE form (raw = value × scale + offset). `bench/check_parity.py` checks every copy
+> (JSON, .lcs, this table, frames.py, RealDash XML, sender UI, `switchboard_frames.json`) and runs in CI.
+
 > **Configuration requirement:** the ECUMaster CAN Switch Board V3 ships with a **default speed of 500 kbps**. It must be set to **1 Mbit/s** to share this bus (matches `link_g4x_can_setup.lcs` CANModule Index=1 / CAN1, BitRate=1000000). 1000 kbps is a supported speed per the switchboard manual — this is a config change, not a hardware conflict.
 
 ---
@@ -26,7 +31,7 @@
 | 0x640 | 1600 | Switchboard Analog 1–4 (Base+0) | Switchboard → ECU | 20 Hz (default) | Existing device, fully mapped below. ECU-only; RealDash does not read it — display-relevant values are echoed into 0x3EF/0x3F1. |
 | 0x641 | 1601 | Switchboard Analog 5–8 (Base+1) | Switchboard → ECU | 20 Hz (default) | Existing device, fully mapped below. ECU-only (not read by RealDash). |
 | 0x642 | 1602 | Switchboard Rotary/Switch/Heartbeat (Base+2) | Switchboard → ECU | 20 Hz (default) | Existing device, fully mapped below. ECU-only (not read by RealDash). |
-| 0x643 | 1603 | Switchboard Low-Side Output Control (Base+3) | **ECU** → Switchboard | event | INPUT — source = **ECU** (PCLink aux→CAN TX); outputs unused/LED-only — master-design §9 |
+| 0x643 | 1603 | Switchboard Low-Side Output Control (Base+3) | **ECU** → Switchboard | 50 ms (periodic PCLink TX; bytes change only when an output changes) | INPUT — source = **ECU** (PCLink aux→CAN TX); outputs unused/LED-only — master-design §9 |
 | 0x644+ | 1604+ | — | — | — | Available if a second switchboard is added (Base ID configurable) |
 
 ---
@@ -107,7 +112,7 @@ Both are **event-driven** (sent once on selection change), not periodic.
 
 ## 5. Section D — ECUMaster CAN Switch Board V3 (Base ID = 0x640)
 
-Source: switchboard manual v2.1 (FW 3.0+). "CAN Switch Board uses Base ID + 0 to Base ID + 2 as output IDs and Base ID + 3 as an input ID." Default transmission rate 20 Hz.
+Source: switchboard manual v2.1 (FW 3.0+), sections 5-6. Machine-readable copy: `switchboard_frames.json`. "CAN Switch Board uses Base ID + 0 to Base ID + 2 as output IDs and Base ID + 3 as an input ID." Default transmission rate 20 Hz.
 
 ### 0x640 (Base+0) — Analog Inputs 1–4 (OUTPUT)
 | Bytes | Field | Type | Range | Notes |
@@ -154,7 +159,7 @@ Source: switchboard manual v2.1 (FW 3.0+). "CAN Switch Board uses Base ID + 0 to
 
 ### 0x643 (Base+3) — Low-Side Output Control (INPUT, host → switchboard)
 
-> **Source = ECU** (Link G4X PCLink aux output → CAN TX), decided 2026-06-14. Switchboard outputs are currently unused (likely LED-only when used); the cluster does **not** transmit 0x643. See master-design §9.
+> **Source = ECU** (Link G4X PCLink aux output → CAN TX), decided 2026-06-14. Sent as a 50 ms periodic PCLink TX stream; the manual sets no required rate (DLC ≥ 4). Switchboard outputs are currently unused (likely LED-only when used); the cluster does **not** transmit 0x643. See master-design §9.
 | Byte | Field | Notes |
 |---|---|---|
 | 0 | L1 control | DLC ≥ 4 required |
@@ -181,6 +186,9 @@ All new streams follow the existing convention: **Custom type, BigEndian, non-mu
 | 7 | AC Status | uint8 (enum) | 1 | 0 | ECU (new PCLink broadcast, post-VDI). 0=Off, 1=Requested, 2=Compressor Engaged, 3=Fault |
 
 > **Bytes 3 & 5 are ECU echoes.** RealDash and the cluster share no CAN traffic directly — everything RealDash sees comes from the ECU. The cluster transmits its boost-map and TC selections to the ECU on **0x3EC** (map index) and **0x3ED** (TC index); the ECU receives those into channels and re-broadcasts them to RealDash in 0x3EF bytes 5 and 3. PCLink config required: receive 0x3EC/0x3ED into channels, then place those channels in 0x3EF (Task #9).
+
+> **Open (2026-10-03):** whether the ECU is actually set up to receive 0x3EC/0x3ED has **not been decided**.
+> Until it is, 0x3EF bytes 3 and 5 have no source. Tracked in `docs/OPEN-ITEMS.md`.
 
 ### 0x3F0 — Extended Sensors (CycleTime 100ms)
 | Byte | Field | Type | Scale | Offset | Notes |
@@ -239,6 +247,6 @@ All new streams follow the existing convention: **Custom type, BigEndian, non-mu
 |---|---|
 | Add 3 new Custom/BigEndian streams to `link_g4x_can_setup.lcs` / `.json` | 0x3EF (50ms), 0x3F0 (100ms), 0x3F1 (50ms) — see Section E for field layouts |
 | Configure ECUMaster Switch Board V3 | Set CAN speed to 1000 kbps (non-default); confirm Base ID = 0x640; verify SW_MASK assignments match Section 5 |
-| Cluster firmware (`canbus.c`/`dash_data.c`) | **No changes** — cluster displays are unchanged; it keeps decoding 0x3E8–0x3EE and sending 0x3EC/0x3ED. 0x3EF/0x3F0/0x3F1 are ECU→RealDash only |
+| Cluster firmware (`canbus.c`/`dash_data.c`) | **No changes** — cluster displays are unchanged; it keeps decoding 0x3E8–0x3EB and 0x3EE (`main/canbus.c`) and sending 0x3EC/0x3ED. 0x3EF/0x3F0/0x3F1 are ECU→RealDash only |
 | RealDash XML | **Done** — `link_g4x_realdash.xml` defines `<frame id="1007/1008/1009">` (0x3EF–0x3F1) as valid RealDash CAN v2 (BigEndian, per-bit warning decode). 0x640–0x642 excluded (ECU echoes display-relevant values). Dashboard layout: `REALDASH-LAYOUT.md` |
 | 0x643 source = **ECU** | L1–L4 control transmitted by ECU (PCLink aux output → CAN TX); switchboard outputs unused for now (likely LED-only). Cluster has no 0x643 TX role — master-design §9 |

@@ -10,33 +10,35 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 
 ## Related repos
 
-- **[center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4)** — the gauge cluster firmware. Its `CANBUS-ENCODE-DECODE-REFERENCE.html` (derived from `main/canbus.c`) is the **single source of truth** for all CAN IDs, byte layouts, and scales on this bus. Any change to CAN framing, IDs, or wiring in this repo must be checked against that repo for compatibility — see `CAN-CONFIG-STATUS.md`.
+- **[center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4)** — the gauge cluster firmware. Its `main/canbus.c` is the decode truth for the frames the cluster reads (0x3E8–0x3EB, 0x3EE); its `CANBUS-ENCODE-DECODE-REFERENCE.html` is the readable reference derived from it (mirrored here). Any change to CAN framing, IDs, or wiring in this repo must be checked against that repo for compatibility — see `CAN-CONFIG-STATUS.md`.
 
 ## 5-Node CAN Bus (1 Mbit/s, BigEndian)
 
 | Node | ID Range | Role |
 |---|---|---|
-| Link G4X XtremeX ECU | 0x3E8–0x3F1 TX, 0x3EC/0x3ED RX | Engine management — bus master |
+| Link G4X XtremeX ECU | 0x3E8–0x3EB, 0x3EE–0x3F1 TX, 0x643 TX (once an output is used); RX 0x3B6, 0x640–0x642 (0x3EC/0x3ED RX not decided — `docs/OPEN-ITEMS.md`) | Engine management — bus master |
 | Link CAN-Lambda | 0x3B6 TX (0x3BE RX) | External wideband module — physically on the bus |
 | [center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4) | 0x3EC/0x3ED TX, all others RX | Gauge cluster — listens + sends driver selections |
 | ECUMaster CAN Switch Board V3 | 0x640–0x642 TX, 0x643 RX | Analog/digital inputs, low-side outputs |
-| Raspberry Pi 5 (RealDash) | passive listener (ch1) | Dashboard display — listen-only |
+| Raspberry Pi 5 (RealDash) | RX 0x3EB (gear byte only), 0x3EF–0x3F1 | Dashboard display — listen-only |
 
 ## Files
 
 | File | Purpose |
 |---|---|
 | `link_g4x_can_setup.lcs` | PCLink-importable CAN TX stream config. v1.1 has 2 scale bug-fixes. |
-| `link_g4x_can_setup.json` | Canonical CAN config twin — authoritative source of truth for all IDs, offsets, scales, and notes. |
-| `link_g4x_realdash.xml` | RealDash CAN **channel-description** XML v2 — the 3 ECU→RealDash frames (0x3EF–0x3F1), valid/importable, BigEndian, with bit-decoded warnings and named `ST185:` inputs. |
-| `CANBUS-ENCODE-DECODE-REFERENCE.html` | **Canonical CAN encode/decode reference** (ECU <-> center cluster, frames 0x3E8-0x3EE + lambda) — source of truth for wire size/scale/offset. Open in any browser. |
+| `link_g4x_can_setup.json` | Canonical ECU wire contract for 0x3E8–0x3F1 (IDs, offsets, scales, notes). Scales are PCLink **encode** form (raw = value × scale + offset); the `.lcs`, ID table and `bench/frames.py` use **decode** form. |
+| `switchboard_frames.json` | ECUMaster CSB3 frames 0x640–0x643 (layout per the CSB3 manual v2.1). |
+| `bench/check_parity.py` | Checks the JSON, `.lcs`, ID table, `frames.py`, RealDash XML, sender UI and `switchboard_frames.json` all agree. Runs in CI. |
+| `link_g4x_realdash.xml` | RealDash CAN **channel-description** XML v2 — the 3 ECU→RealDash frames (0x3EF–0x3F1) plus the gear byte of 0x3EB (reverse-camera switch), valid/importable, BigEndian, with bit-decoded warnings and named `ST185:` inputs. |
+| `CANBUS-ENCODE-DECODE-REFERENCE.html` | Mirror of the cluster repo's encode/decode reference (ECU <-> center cluster, frames 0x3E8-0x3EE + lambda), derived from its `main/canbus.c`. If they drift, the cluster copy wins. Open in any browser. |
 | `REALDASH-LAYOUT.md` | RealDash **dashboard layout design** — buildable spec for the **single-page** blue/chrome 800x480 engineering dash (4x4 tile grid + strobing warning strip; no media page). Binds to `link_g4x_realdash.xml`. |
 | `CAN-CONFIG-STATUS.md` | Handoff/status note — snapshot of the reconciled CAN config, the source-of-truth HTML, and open items. |
 | `sot/channels.csv` | **Wiring source of truth** — every ECU pin and channel, and the conditioner / A/C amp / power owners. New pin facts go here first. |
 | `XTREMEX-IO-TABLE.html` | Visual face of `sot/channels.csv`: channel plan, pin budget, and a generated pin map of every ECU pin. `docs/harness/sync_io_table.py --check` fails if it disagrees with the CSV. Open in a browser. |
 | `docs/harness/rebuild/*.harness` | **The physical harnesses, one per file** (harness.design v0.9; ownership in docs/harness/interfaces.json) — what gets built. Upload copies in `docs/harness/min/`. See `docs/harness/README.md`. |
 | `docs/harness/check_all.py` | Runs every harness gate (SoT, IO table, lint, mating, shields, pin names, buy/build lists). Must pass before every commit. |
-| `docs/harness/HARNESS-BUILD-LIST.csv` / `NEED-TO-BUY.md` | Generated per-wire build list and buy list. Never hand-edit — `check_all.py` regenerates them. |
+| `docs/harness/HARNESS-BUILD-LIST.csv` / `NEED-TO-BUY.md` | Generated per-wire build list and buy list. Never hand-edit — regenerate with `docs/harness/buildlist.py` / `buylist.py`; `check_all.py` fails if they are stale. |
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table with factory EWD snips. How power and ground re-enter the OEM engine-room, cowl and dash looms after the battery and fuse box leave the bay. |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |
 | `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 5-node topology. |
@@ -56,13 +58,19 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 2. File → Open → `link_g4x_can_setup.lcs` — verify all 8 TX channels appear.
 3. Add User Stream: 0x642 byte4 bits0-4 → VDI1-5 (VDI1/2 unassigned; the 0x640 cabin-temp stream is retired).
 4. Set CAN Receive Timeout: 200 ms on frames 0x640 / 0x641 / 0x642.
-5. Confirm ECU echoes TC Setting (0x3EF byte3) and Boost Map Index (0x3EF byte5) back to 0x3ED / 0x3EC.
+5. Echo target: 0x3EF byte 3 (TC Setting) and byte 5 (Boost Map Index) are meant to carry the cluster's
+   0x3ED / 0x3EC selections, re-broadcast by the ECU. **Not decided yet:** whether the ECU receives
+   0x3EC/0x3ED at all (`docs/OPEN-ITEMS.md`). Until then, bytes 3 and 5 have no source.
 
 ## Known Fixes vs. Previous Version
 
-| Frame | Parameter | Old Scale | Correct Scale | Effect of Bug |
-|---|---|---|---|---|
-| 0x3EF | Lambda Target | 1000 | **0.001** | Transmitted value was always 0 (truncated) |
-| 0x3F1 | Accel X/Y/Z | 10 | **0.1** | Transmitted value was always 0 (truncated) |
+Scales in this table are **decode** form (as in the `.lcs`): value = raw × Scale + Offset.
 
-See `link_g4x_can_setup.json` for the definitive scale derivations.
+| Frame | Parameter | File | Old Scale | Correct Scale | Effect of Bug |
+|---|---|---|---|---|---|
+| 0x3EF | Lambda Target | `.lcs` | 1000 | **0.001** | Transmitted value was always 0 (truncated) |
+| 0x3F1 | Accel X/Y/Z | `.lcs` | 10 | **0.1** | Transmitted value was always 0 (truncated) |
+| 0x3F0 | Turbo Speed | `.json` (encode form) | 1000 | **0.001** | Documentation only (2026-10-03) — the JSON had the decode value in an encode-form file; wire bytes never changed |
+
+`link_g4x_can_setup.json` holds the same fields in **encode** form (e.g. Lambda Target scale 1000 there
+= 0.001 here). `bench/check_parity.py` checks the two agree.

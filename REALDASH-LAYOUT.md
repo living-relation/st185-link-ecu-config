@@ -9,8 +9,9 @@ the finished look is [`realdash-simulation.html`](realdash-simulation.html) (ope
 > by the in-app visual editor. The layout is version-controlled here as a buildable spec plus the
 > importable channel-description XML it binds to.
 
-> **CAN scope:** RealDash listens only to the three ECU->RealDash frames **0x3EF / 0x3F0 / 0x3F1**.
-> The cluster frames 0x3E8-0x3EE (RPM, boost, temps, speed, gear, lambda, protection) belong to the
+> **CAN scope:** RealDash listens to the three ECU->RealDash frames **0x3EF / 0x3F0 / 0x3F1**, plus the
+> **gear byte of 0x3EB** (`ST185: Gear`, reverse-camera auto-switch only — added 2026-09-04).
+> The other cluster frames 0x3E8-0x3EE (RPM, boost, temps, speed, lambda, protection) belong to the
 > **center cluster** and are documented in
 > [`CANBUS-ENCODE-DECODE-REFERENCE.html`](CANBUS-ENCODE-DECODE-REFERENCE.html) — RealDash does not
 > display those (no duplication).

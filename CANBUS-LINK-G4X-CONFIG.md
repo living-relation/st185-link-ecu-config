@@ -1,4 +1,4 @@
-<!-- STATUS: CODED-COMPLETE — config artifacts shipped: link_g4x_can_setup.lcs / .json (this folder); firmware decode map main/protocols/link_g4x.json -->
+<!-- STATUS: CODED-COMPLETE — config artifacts shipped: link_g4x_can_setup.lcs / .json (this folder); cluster decoder center-cluster-esp32-p4 main/canbus.c (frozen) -->
 # Link G4X — PCLink CAN setup (ECU side)
 
 Apply this to the **Link G4X XtremeX** in PCLink so it broadcasts exactly the frames the center
@@ -7,8 +7,8 @@ cluster decodes. The matching config is shipped two ways in this folder:
 - **`link_g4x_can_setup.lcs`** — import directly: PCLink → **CAN → Setup → File → Open**.
 - **`link_g4x_can_setup.json`** — human-readable canonical copy of the same map.
 
-The firmware's decoder (`main/protocols/link_g4x.json`) is a strict match of this; don't let
-them drift. **Assign only the channels below** — extra channels just waste bus bandwidth.
+The cluster's decoder (`main/canbus.c` in `center-cluster-esp32-p4`, frozen) must match this; don't let
+them drift. `bench/check_parity.py` checks that this repo's copies agree with each other. **Assign only the channels below** — extra channels just waste bus bandwidth.
 
 ---
 
@@ -114,6 +114,10 @@ Receive `0x3EC` (boost-map index 0–3) and `0x3ED` (TC index 0–4) from the cl
 switch the ECU boost map / traction level. The ECU echoes those selections back to RealDash in 0x3EF
 bytes 5 / 3 (no direct cluster↔RealDash CAN traffic).
 
+> **Not decided yet (2026-10-03):** whether the ECU receives 0x3EC/0x3ED at all is an open item
+> (`docs/OPEN-ITEMS.md`). The module table above lists it as optional; `link_g4x_can_setup.lcs` has no
+> receive entries for it on purpose.
+
 ---
 
 ## Adding / removing a channel later
@@ -122,8 +126,9 @@ The order matters — never broadcast a channel the firmware has no field for:
 1. Add the field to `main/dash_data.h` (`dash_data_t`).
 2. Decode it in `main/canbus.c`; carry it in the relevant UART frame in `main/dash_data.c`
    (free bytes are reserved) and render it in the cluster's `ui_*.c`.
-3. **Then** assign it on the next free byte of a stream here, and update
-   `main/protocols/link_g4x.json` + this file's `.lcs`/`.json` to match.
+3. **Then** assign it on the next free byte of a stream here, and update this repo's `.lcs`/`.json`,
+   `CAN-BUS-ID-ALLOCATION-TABLE.md` and `bench/frames.py` to match; `python bench/check_parity.py` must pass.
+   (Steps 1-2 change the cluster firmware, which is frozen — they need Daniel's explicit approval.)
 
 To remove a sensor, strip it from the UI/data model and from PCLink in the same change.
 
