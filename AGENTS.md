@@ -23,13 +23,13 @@
 - Primary contracts are `link_g4x_can_setup.json` and `link_g4x_realdash.xml`.
 
 ## Source Of Truth
-- CAN IDs, offsets, scaling: `link_g4x_can_setup.json`.
+- CAN IDs, offsets, scaling: `link_g4x_can_setup.json` (ECU frames, PCLink encode form) and `switchboard_frames.json` (0x640-0x643). Parity gate: `python bench/check_parity.py`.
 - Architecture and allocation: `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`.
 - Bench behavior: `bench/frames.py`, `bench/can_bench.py`, `BENCH-TEST.md`.
 - RealDash channel definitions: `link_g4x_realdash.xml`.
 - Engine-room power splice table (kick-panel J/Bs, vacated J/B2): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - Wiring SoT (every ECU pin and channel): `sot/channels.csv`. Visual face: `XTREMEX-IO-TABLE.html` (gated by `docs/harness/sync_io_table.py --check`).
-- The harnesses: `docs/harness/rebuild/*.harness` (14 files, one physical harness per file; wires between files are drawn broken off in both; the four ECU looms split by connector letter 2026-09-28; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
+- The harnesses: `docs/harness/rebuild/*.harness` (15 files, one physical harness per file; wires between files are drawn broken off in both; the four ECU looms split by connector letter 2026-09-28; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
 - Wiring reconciliation rules: `docs/RECONCILIATION-RULES.md` Rule 1; ECU loom letter rule: Rule 3.
 
 ## Board / progress snapshot
@@ -48,10 +48,10 @@ Cluster firmware is frozen; everything here must stay compatible with it **as-is
 Any time you are working with CAN bus IDs/frames/byte layouts, or with wiring
 (harness, transceivers, pinout), you MUST reference `center-cluster-esp32-p4`
 before making changes:
-- Its `CANBUS-ENCODE-DECODE-REFERENCE.html` (derived from `main/canbus.c`) is the
-  **single source of truth** for CAN IDs, byte layouts, scales, and offsets — see
+- Its `main/canbus.c` is the **decode truth** (reads 0x3E8-0x3EB and 0x3EE, sends 0x3EC/0x3ED);
+  its `CANBUS-ENCODE-DECODE-REFERENCE.html` is the readable reference derived from it — see
   `CAN-CONFIG-STATUS.md` in this repo.
-- Its `main/protocols/link_g4x.json` and `sdkconfig`/`Kconfig.projbuild` define the
+- Its `sdkconfig` and `main/Kconfig.projbuild` define the
   cluster's TWAI GPIO pinout and transceiver wiring — see `WIRING.md` and
   `CAN-BUS-MASTER-DESIGN.md` in this repo for how it fits the 5-node topology.
 - Do not introduce a CAN ID, frame layout, or wiring change here that the cluster
@@ -82,21 +82,25 @@ python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000
 python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 full-realdash
 ```
 
-### Run sender app
-```bash
+### Run sender app (PowerShell)
+```powershell
 python apps/trackcluster-can-sender/app.py
-set TC_DEVICE=cluster && python apps/trackcluster-can-sender/app.py
-set TC_DEVICE=realdash && python apps/trackcluster-can-sender/app.py
+$env:TC_DEVICE='cluster'; python apps/trackcluster-can-sender/app.py
+$env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py
 ```
 
 ### Quick checks
 ```bash
+python docs/harness/check_all.py
+python bench/check_parity.py
+python tune/scripts/validate_tune.py
 python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py
 python rd-build/tools/automation_helper.py size
 ```
 
 ## Working Rules
-- Keep CAN changes synchronized across `bench/frames.py`, `link_g4x_can_setup.json`, and `CAN-BUS-ID-ALLOCATION-TABLE.md`.
+- Keep CAN changes synchronized across `bench/frames.py`, `link_g4x_can_setup.json`, `switchboard_frames.json`, the `.lcs`, the RealDash XML, the sender UI and `CAN-BUS-ID-ALLOCATION-TABLE.md` — `python bench/check_parity.py` must pass.
+- Open items live in one table: `docs/OPEN-ITEMS.md`.
 - Keep `ST185:` names in `link_g4x_realdash.xml` unchanged unless migration is explicitly requested.
 - Keep warning-bit mapping parity between XML and `bench/frames.py` bit constants.
 - Prefer minimal targeted edits; avoid broad rewrites of stable docs.
@@ -130,11 +134,11 @@ silently alter how this project is worked on.
 | `docs/harness/HARNESS-BUILD-LIST.csv` | `docs/harness/buildlist.py` | Commit it, but always regenerate - never hand-edit, never hand-merge. |
 | `docs/harness/NEED-TO-BUY.md` | `docs/harness/buylist.py` | Same. |
 
-`.gitattributes` marks all three `linguist-generated` and gives `research-hub.html`
-`merge=ours`. Enable the driver once per clone:
+`.gitattributes` marks them `linguist-generated` and gives `research-hub.html`
+`merge=ours`. Enable the driver and the pre-commit hook once per clone:
 
 ```
-git config merge.ours.driver true
+powershell -File .githooks/setup.ps1
 ```
 
 If you still land in a conflict on one of these, do not resolve it by hand. Take either
