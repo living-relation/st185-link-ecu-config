@@ -46,6 +46,7 @@ one-time Zadig → WinUSB bind for gs_usb.
 
 ## Notes
 - This unified app replaced the two standalone per-device sender apps (formerly
-  `apps/canbus-live-sender/`), which have been removed. The signal maps here are verbatim copies of
-  those, verified against `link_g4x_realdash.xml` and `main/canbus.c`.
+  `apps/canbus-live-sender/`), which have been removed. The signal maps in `ui/index.html` must match
+  the wire contract (`link_g4x_can_setup.json`, `link_g4x_realdash.xml`, the cluster's `main/canbus.c`);
+  `python bench/check_parity.py` checks them.
 - `dist/`, `build/`, `.venv/`, `*.spec` are gitignored.

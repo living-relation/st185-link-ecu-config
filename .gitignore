@@ -5,7 +5,7 @@
 Thumbs.db
 .DS_Store
 
-# Python (apps/canbus-live-sender)
+# Python (bench/, apps/trackcluster-can-sender/, docs/harness/, tune/scripts/)
 __pycache__/
 *.pyc
 .venv/
