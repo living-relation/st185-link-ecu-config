@@ -9,7 +9,14 @@ paths:
 ---
 # extend-trackcluster-can-sender
 
+## Where to run
+- Working location: the repo root, `C:\projects\shipping\st185-link-ecu-config`. Every path below is
+  relative to it: app `apps/trackcluster-can-sender/app.py`, UI `apps/trackcluster-can-sender/ui/index.html`,
+  deps `apps/trackcluster-can-sender/requirements.txt`, build notes `apps/trackcluster-can-sender/BUILD.md`.
+  Shell: PowerShell.
+
 ## Critical
+- The UI device profiles (`FRAMES_REALDASH`, `FRAMES_CLUSTER` in `ui/index.html`) are checked by `python bench/check_parity.py` (byte, length, signed, bit, period, RealDash `toRaw`). RealDash profile = 0x3EB (gear) + 0x3EF-0x3F1; cluster profile = what `C:\projects\shipping\center-cluster-esp32-p4\main\canbus.c` decodes (0x3E8-0x3EB, 0x3EE).
 - Treat `link_g4x_can_setup.json` as the CAN contract source of truth before changing sender behavior.
 - Do not ship sender changes unless `apps/trackcluster-can-sender/app.py` still compiles and bench contract IDs `0x3E8`-`0x3F1` remain aligned with `bench/frames.py` and `CAN-BUS-ID-ALLOCATION-TABLE.md`.
 - Keep multibyte CAN fields BigEndian unless an existing project file explicitly documents an exception.
@@ -67,12 +74,13 @@ paths:
 6. **Execute project sanity commands for this app change**
    - Run:
      - `python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py`
+- `python bench/check_parity.py`
    - If dependencies changed, run:
      - `python -m pip install -r apps/trackcluster-can-sender/requirements.txt`
    - Run sender app in default and explicit device modes:
      - `python apps/trackcluster-can-sender/app.py`
-     - `set TC_DEVICE=cluster && python apps/trackcluster-can-sender/app.py`
-     - `set TC_DEVICE=realdash && python apps/trackcluster-can-sender/app.py`
+     - PowerShell: `$env:TC_DEVICE='cluster'; python apps/trackcluster-can-sender/app.py`
+     - PowerShell: `$env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py`
    - **Validation gate:** Verify all three app runs start without import/runtime startup errors before proceeding to the next step.
    - **Dependency:** This step uses output from Step 5.
 
@@ -127,8 +135,8 @@ paths:
 
 - Wrong behavior only in one mode after a profile tweak (`cluster` or `realdash`)
   1. Test both explicit modes:
-     - `set TC_DEVICE=cluster && python apps/trackcluster-can-sender/app.py`
-     - `set TC_DEVICE=realdash && python apps/trackcluster-can-sender/app.py`
+     - PowerShell: `$env:TC_DEVICE='cluster'; python apps/trackcluster-can-sender/app.py`
+     - PowerShell: `$env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py`
   2. Verify UI profile key names in `ui/index.html` exactly match backend profile handling in `app.py`
   3. Restore compatibility for any renamed profile field
 
