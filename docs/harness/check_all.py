@@ -8,17 +8,21 @@ What it runs, in order - every one in HARD is a hard gate:
   sync_io_table.py --check XTREMEX-IO-TABLE.html agrees with sot/channels.csv
   lint_v09.py              schema and reference check, every loom
   validate_ownership.py    every drawing registered, one owner per conductor and part
-  validate_interfaces.py   inline interfaces are real, matched connector pairs
+  validate_interfaces.py   inline interfaces are real, matched connector pairs, wired pin for
+                           pin (same circuit / named ECU pin on matching cavities, spares on both)
   validate_wheel_speed.py  front/rear wheel-speed Y harnesses, interfaces and spurs
-  verify_connectivity.py   every SoT signal pin reaches a device, across every boundary
+  verify_connectivity.py   every SoT signal pin reaches a LABELLED far end (device plug, flying
+                           lead, endpoint lead), across every boundary
   validate_oem_endpoints.py OEM points are flying leads with EWD locators
-  audit_cavity_parts.py    no cavity claims both a contact and a sealing plug
+  audit_cavity_parts.py    right part per cavity, and the contact fits: gender, wire gauge
+                           (combined gauge for splices) in range, datasheet contact list (gaps listed)
   audit_shields.py         docs/SHIELD-RULES.md, enforced
   audit_pin_names.py       shield grounds carry drains only; one name per mating cavity
   audit_mating.py          A cabin mates A engine, B mates B
   validate_bulkhead_letter.py ECU looms follow the ECU connector letter; crossovers a/b/c only
   audit_bulkhead_pairs.py  no bulkhead cavity wired on one side only
-  audit_bh_collisions.py   no two circuits on one half of a bulkhead cavity
+  audit_bh_collisions.py   one circuit per bulkhead hole (a splice of it is fine); different
+                           circuits share only if all +5V, all ground, all +12V or all shields
   part_desc.py             part descriptions describe the part only (standard format)
   buylist.py --check       buy list is current, and the shared-connector consistency check
   buildlist.py --check     per-wire build list is current
