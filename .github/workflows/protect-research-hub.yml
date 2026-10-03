@@ -1,0 +1,30 @@
+name: Protect research hub
+
+# docs/research-hub.html is generated and committed only by the
+# "Regenerate research hub" Action (research-hub.yml). This job runs ONLY when a
+# change touches that file, and fails unless the change came from that bot -
+# the cloud/web-edit twin of the local .githooks/pre-commit hook.
+# It never runs check_all; that stays in checks.yml.
+on:
+  pull_request:
+    paths:
+      - 'docs/research-hub.html'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/research-hub.html'
+
+permissions:
+  contents: read
+
+jobs:
+  bot-owned-file:
+    # Same bot skip as checks.yml.
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Refuse human / agent edits to docs/research-hub.html
+        run: |
+          echo "::error file=docs/research-hub.html::docs/research-hub.html is bot-owned; remove it from this change."
+          echo "docs/research-hub.html is bot-owned; remove it from this change."
+          exit 1
