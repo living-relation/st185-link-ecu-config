@@ -104,6 +104,7 @@ python rd-build/tools/automation_helper.py size
 - Keep `ST185:` names in `link_g4x_realdash.xml` unchanged unless migration is explicitly requested.
 - Keep warning-bit mapping parity between XML and `bench/frames.py` bit constants.
 - Prefer minimal targeted edits; avoid broad rewrites of stable docs.
+- main is protected (ruleset "Protect main"); all changes go through PRs with "Repo checks" and "Protect research hub" green; only the research-hub bot (deploy key) bypasses.
 - Root `link_g4x_realdash.xml` is the single copy; do not reintroduce a duplicate under `rd-build/`.
 - Before any CAN ID/frame or wiring change, check compatibility against `center-cluster-esp32-p4` (see **Related Repos** above).
 

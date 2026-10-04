@@ -114,6 +114,9 @@ python rd-build/tools/automation_helper.py screenshot rd-build/rd_screen.png
 - Optional desktop-control MCP example exists at `rd-build/tools/mcp.example.json`.
 - `.claude/settings.json` exists (allow-list for git/python/pip/pytest). Do not edit it, `.claude/settings.local.json`, or `mcpServers` configs as part of normal work.
 
+## Branch protection
+- main is protected (ruleset "Protect main"); all changes go through PRs with "Repo checks" and "Protect research hub" green; only the research-hub bot (deploy key `RESEARCH_HUB_DEPLOY_KEY`) bypasses.
+
 ## Local environment
 
 - Local checkout of this repo on dansPC is `C:\projects\shipping\st185-link-ecu-config` (moved from `C:\projects\st185-link-ecu-config`).
