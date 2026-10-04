@@ -12,12 +12,14 @@ agree. `python docs/harness/check_all.py` must pass before every commit.
 
 ## Source of truth
 
-`sot/channels.csv` → `XTREMEX-IO-TABLE.html` (visual face, gated by `sync_io_table.py`) +
-`docs/harness/rebuild/*.harness` (the looms) → `docs/harness/min/` → harness.design app copy
-(mirror only, never edit as source).
+`sot/channels.csv` is the pin source of truth. New pin facts go into it first; if anything
+disagrees with it, the other thing is wrong. `XTREMEX-IO-TABLE.html` is its visual face
+(gated by `sync_io_table.py`).
 
-New pin facts go into `sot/channels.csv` first. If anything disagrees with it, the other
-thing is wrong.
+The looms, `docs/harness/rebuild/*.harness`, are drawings of what gets built. **They are not a
+source of truth** (Daniel, 2026-10-04): they must agree with the SoT, and no truth document is
+ever generated from them. `docs/harness/min/` and the harness.design app copy are copies of
+the drawings (mirror only, never edit as source).
 
 ## Facts that are commonly stale
 

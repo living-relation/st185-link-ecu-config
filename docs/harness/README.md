@@ -9,11 +9,13 @@ enforces that.
 
 ## The short answer
 
-**`rebuild/` is the truth. Everything else is a copy, a build product, or history.**
+**`rebuild/` holds the current drawings - edit the looms there. Everything else here is a copy,
+a build product, or history.** The drawings are **not a source of truth** (Daniel,
+2026-10-04): they follow `sot/channels.csv`, and no truth document is generated from them.
 
 | Folder / file | What it is | Edit it? |
 |---|---|---|
-| **`rebuild/`** | The 14 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - this is the source** |
+| **`rebuild/`** | The 14 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - edit the drawings here** (not a source of truth) |
 | **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, broken-off pairs. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
 | `min/` | Same documents, whitespace stripped, for upload to the harness.design project "ST185 harness design". The Free plan caps a harness at 100 connections, so every file must stay under 100 | No - `make_min.py` regenerates it |
 | `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |

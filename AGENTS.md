@@ -6,8 +6,8 @@
 >
 > 1. **Wiring** — a change to one wiring document is not done until it is checked against
 >    the source-of-truth chain and **every other wiring surface**, including ones you did
->    not edit. `XTREMEX-IO-TABLE.html` is the pin source of truth; everything else is a
->    face of it.
+>    not edit. `sot/channels.csv` is the pin source of truth; `XTREMEX-IO-TABLE.html` is its
+>    visual face. The `.harness` looms are drawings, not a source of truth.
 > 2. **CAN** — a change on any device must be reconciled against **all** of them: Link ECU,
 >    center cluster, RealDash, ECUMaster CSB3. This crosses repo boundaries. The cluster
 >    firmware is frozen and outranks everything; on conflict, the other device changes.
@@ -29,7 +29,7 @@
 - RealDash channel definitions: `link_g4x_realdash.xml`.
 - Engine-room power splice table (kick-panel J/Bs, vacated J/B2): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - Wiring SoT (every ECU pin and channel): `sot/channels.csv`. Visual face: `XTREMEX-IO-TABLE.html` (gated by `docs/harness/sync_io_table.py --check`).
-- The harnesses: `docs/harness/rebuild/*.harness` (15 files, one physical harness per file; wires between files are drawn broken off in both; the four ECU looms split by connector letter 2026-09-28; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
+- The harness drawings - **not a source of truth** (Daniel, 2026-10-04: they follow `sot/channels.csv`; never generate truth docs from them): `docs/harness/rebuild/*.harness` (15 files, one physical harness per file; wires between files are drawn broken off in both; the four ECU looms split by connector letter 2026-09-28; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
 - Wiring reconciliation rules: `docs/RECONCILIATION-RULES.md` Rule 1; ECU loom letter rule: Rule 3.
 
 ## Board / progress snapshot
