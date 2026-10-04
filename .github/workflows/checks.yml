@@ -69,6 +69,9 @@ jobs:
       - name: Tree unchanged after check_all
         if: steps.scope.outputs.run == 'true'
         run: git diff --exit-code
+      - name: Gate self-tests (bulkhead sharing + contact fit)
+        if: steps.scope.outputs.run == 'true'
+        run: python docs/harness/test_gates.py
       - name: Byte-compile CAN tooling
         if: steps.scope.outputs.run == 'true'
         run: python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py
