@@ -49,8 +49,8 @@ Any time you are working with CAN bus IDs/frames/byte layouts, or with wiring
 (harness, transceivers, pinout), you MUST reference `center-cluster-esp32-p4`
 before making changes:
 - Its `main/canbus.c` is the **decode truth** (reads 0x3E8-0x3EB and 0x3EE, sends 0x3EC/0x3ED);
-  its `CANBUS-ENCODE-DECODE-REFERENCE.html` is the readable reference derived from it — see
-  `CAN-CONFIG-STATUS.md` in this repo.
+  its `CANBUS-ENCODE-DECODE-REFERENCE.html` (https://github.com/living-relation/center-cluster-esp32-p4/blob/main/CANBUS-ENCODE-DECODE-REFERENCE.html) is the readable reference derived from it —
+  link to it, never copy cluster files here; see `CAN-CONFIG-STATUS.md` in this repo.
 - Its `sdkconfig` and `main/Kconfig.projbuild` define the
   cluster's TWAI GPIO pinout and transceiver wiring — see `WIRING.md` and
   `CAN-BUS-MASTER-DESIGN.md` in this repo for how it fits the 5-node topology.

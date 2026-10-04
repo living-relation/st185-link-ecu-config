@@ -13,7 +13,7 @@ the finished look is [`realdash-simulation.html`](realdash-simulation.html) (ope
 > **gear byte of 0x3EB** (`ST185: Gear`, reverse-camera auto-switch only — added 2026-09-04).
 > The other cluster frames 0x3E8-0x3EE (RPM, boost, temps, speed, lambda, protection) belong to the
 > **center cluster** and are documented in
-> [`CANBUS-ENCODE-DECODE-REFERENCE.html`](CANBUS-ENCODE-DECODE-REFERENCE.html) — RealDash does not
+> the cluster repo's [`CANBUS-ENCODE-DECODE-REFERENCE.html`](https://github.com/living-relation/center-cluster-esp32-p4/blob/main/CANBUS-ENCODE-DECODE-REFERENCE.html) — RealDash does not
 > display those (no duplication).
 
 ---

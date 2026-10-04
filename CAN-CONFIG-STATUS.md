@@ -5,8 +5,8 @@ Quick snapshot so a new chat can pick up the ECU / RealDash CAN config without r
 ## Single source of truth
 The cluster firmware is frozen. Its `main/canbus.c` is the decode truth: it reads **0x3E8–0x3EB and
 0x3EE** and transmits **0x3EC/0x3ED**. `center-cluster-esp32-p4/CANBUS-ENCODE-DECODE-REFERENCE.html` is
-the readable reference derived from it; this repo keeps a mirror (differs only in the CAN-Lambda manual
-link). In this repo, `link_g4x_can_setup.json` is the ECU wire contract and `switchboard_frames.json`
+the readable reference derived from it; this repo only keeps a pointer page to it (no copy, so nothing
+can drift). In this repo, `link_g4x_can_setup.json` is the ECU wire contract and `switchboard_frames.json`
 holds the switchboard frames. `python bench/check_parity.py` checks every copy agrees (runs in CI).
 
 ## Which repos are in use

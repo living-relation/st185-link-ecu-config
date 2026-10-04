@@ -3,10 +3,10 @@
 ## Mission
 - Keep `Link G4X XtremeX` CAN configuration, `RealDash` channels, and bench tooling synchronized.
 - Treat `link_g4x_can_setup.json` as the canonical config contract for IDs, scaling, and offsets.
-- Preserve compatibility with frozen cluster firmware assumptions documented in `README.md` and `CANBUS-ENCODE-DECODE-REFERENCE.html`.
+- Preserve compatibility with frozen cluster firmware assumptions documented in `README.md` and the cluster repo's `CANBUS-ENCODE-DECODE-REFERENCE.html` (pointer only, never copied here).
 
 ## Project Map
-- **Core CAN contracts**: `link_g4x_can_setup.json` (ECU frames, PCLink encode form), `link_g4x_can_setup.lcs` (decode form), `switchboard_frames.json` (CSB3 0x640-0x643), `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`, `CAN-CONFIG-STATUS.md` (status note), `ECUMASTER_SWITCHBOARD_SETUP.md`, `CANBUS-ENCODE-DECODE-REFERENCE.html` (mirror of the cluster repo's copy - the cluster copy wins).
+- **Core CAN contracts**: `link_g4x_can_setup.json` (ECU frames, PCLink encode form), `link_g4x_can_setup.lcs` (decode form), `switchboard_frames.json` (CSB3 0x640-0x643), `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`, `CAN-CONFIG-STATUS.md` (status note), `ECUMASTER_SWITCHBOARD_SETUP.md`, `CANBUS-ENCODE-DECODE-REFERENCE.html` (a POINTER page to the cluster repo's file - no cluster file is copied into this repo; CI reads the cluster repo read-only at run time).
 - **CAN parity gate**: `bench/check_parity.py` - JSON, `.lcs`, ID table, `bench/frames.py`, RealDash XML, sender UI and `switchboard_frames.json` must agree. Runs in CI (`.github/workflows/checks.yml`).
 - **RealDash contract**: `link_g4x_realdash.xml`, `REALDASH-LAYOUT.md`, `realdash-simulation.html`.
 - **Bench tooling**: `bench/can_bench.py`, `bench/frames.py`, `bench/requirements.txt`, `BENCH-TEST.md`.
@@ -31,8 +31,8 @@ Any time you are working with CAN bus IDs/frames/byte layouts, or with wiring
 (harness, transceivers, pinout), you MUST reference `center-cluster-esp32-p4`
 before making changes:
 - Its `main/canbus.c` is the **decode truth** (it reads 0x3E8-0x3EB and 0x3EE, sends
-  0x3EC/0x3ED); its `CANBUS-ENCODE-DECODE-REFERENCE.html` is the readable reference derived
-  from it — see `CAN-CONFIG-STATUS.md` in this repo.
+  0x3EC/0x3ED); its `CANBUS-ENCODE-DECODE-REFERENCE.html` (https://github.com/living-relation/center-cluster-esp32-p4/blob/main/CANBUS-ENCODE-DECODE-REFERENCE.html) is the readable
+  reference derived from it — link to it, never copy it here; see `CAN-CONFIG-STATUS.md`.
 - Its `sdkconfig` and `main/Kconfig.projbuild` define the
   cluster's TWAI GPIO pinout and transceiver wiring — see `WIRING.md` and
   `CAN-BUS-MASTER-DESIGN.md` in this repo for how it fits the 5-node topology.

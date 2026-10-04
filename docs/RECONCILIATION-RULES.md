@@ -102,8 +102,8 @@ is final. All of them, every time — not just the pair you happened to be worki
 | **Link CAN-Lambda** | On the same bus — see bus facts below |
 
 Shared contract documents that must also stay in step: `CAN-BUS-ID-ALLOCATION-TABLE.md`,
-`CAN-BUS-MASTER-DESIGN.md`, `CAN-CONFIG-STATUS.md`, `CANBUS-ENCODE-DECODE-REFERENCE.html`,
-`BENCH-TEST.md`, `bench/frames.py`.
+`CAN-BUS-MASTER-DESIGN.md`, `CAN-CONFIG-STATUS.md`, `BENCH-TEST.md`, `bench/frames.py` (the cluster's
+`CANBUS-ENCODE-DECODE-REFERENCE.html` lives only in the cluster repo - linked, never copied).
 
 ### Bus facts
 
