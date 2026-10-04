@@ -26,3 +26,5 @@ docs/intercooler-turbo-study/model/matchbot_shots/
 
 # Screenshots delivered to chat land here; not repo content
 Claude outputs/
+# CI-only read-only checkout of the frozen cluster repo (checks.yml) - never commit it
+_cluster/

@@ -46,7 +46,7 @@ Several surfaces describe the same ECU pin story. They drifted before; they will
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table + EWD snips | None as a table | **Living splice table** |
 | Desktop `Documents\Wire Harnesses\…ECU Harness.harness` | Local harness.design copy | Third copy of the same looms | **Mirror** — pull from repo, do not edit as SoT |
 | `DOCS-CLEANUP-PLAN.md` **and** `.html` | 2026-08-31 inventory (same content, two formats) | Each other; also stale (claims IO table unpushed, 3S-GTE, FuryX) | **Done 2026-09-16** — retired; this file is the living plan |
-| `CANBUS-ENCODE-DECODE-REFERENCE.html` (this repo) | Byte-identical copy of the cluster file | `center-cluster-esp32-p4` original | Keep a copy for offline reading; **do not edit** — cluster `canbus.c` wins |
+| `CANBUS-ENCODE-DECODE-REFERENCE.html` (this repo) | Pointer page to the cluster file (2026-10-03) | `center-cluster-esp32-p4` original | **Done** — the copy was replaced by a link; cluster `canbus.c` wins |
 | `WIRING.md` | Cluster GPIO + 5-node CAN physical | `CAN-BUS-MASTER-DESIGN.md` topology paragraphs | Keep; strip any ECU-cavity claims (already defers) |
 | `docs/HARNESS-FACES-2026-09-11.md` | Why schematic ≠ `.harness` | This plan | Fold the “two faces” rule into this file, then leave the dated note frozen |
 | `docs/BOARD-VERIFY-2026-09-11.md` | Claude board vs git | Unrelated to harness pins | Frozen |
@@ -60,7 +60,7 @@ Several surfaces describe the same ECU pin story. They drifted before; they will
 3. ~~**Stop dual-maintaining the cleanup plan.**~~ **Done 2026-09-16.** `DOCS-CLEANUP-PLAN.html` and `.md` are retired; this file is the living plan. Its section 12 open decisions were closed out at Daniel's direction, not carried forward.
 4. **Keep dated verify/audit notes frozen.** New pin facts go into the IO table first, then the two faces. Do not append living pin maps onto `VERIFY` / `AUDIT` / `FACES` notes.
 5. **Print schematic.** Either export from the interactive app when it can, or treat `SCHEMATIC-WIRING.html` as a hand-drawn one-pager that *only* changes when the IO table does. No connector PNs, no AWG, no bundle lengths there.
-6. **Cluster CAN HTML.** Leave the duplicate `CANBUS-ENCODE-DECODE-REFERENCE.html` until a dedicated CAN-docs pass; it is not a harness problem.
+6. ~~**Cluster CAN HTML.**~~ **Done 2026-10-03:** the duplicate `CANBUS-ENCODE-DECODE-REFERENCE.html` is now a pointer page to the cluster repo.
 
 Nothing in this list requires a CAN ID or cluster-firmware change.
 

@@ -10,7 +10,7 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 
 ## Related repos
 
-- **[center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4)** — the gauge cluster firmware. Its `main/canbus.c` is the decode truth for the frames the cluster reads (0x3E8–0x3EB, 0x3EE); its `CANBUS-ENCODE-DECODE-REFERENCE.html` is the readable reference derived from it (mirrored here). Any change to CAN framing, IDs, or wiring in this repo must be checked against that repo for compatibility — see `CAN-CONFIG-STATUS.md`.
+- **[center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4)** — the gauge cluster firmware. Its `main/canbus.c` is the decode truth for the frames the cluster reads (0x3E8–0x3EB, 0x3EE); its [`CANBUS-ENCODE-DECODE-REFERENCE.html`](https://github.com/living-relation/center-cluster-esp32-p4/blob/main/CANBUS-ENCODE-DECODE-REFERENCE.html) is the readable reference derived from it (linked, not copied). Any change to CAN framing, IDs, or wiring in this repo must be checked against that repo for compatibility — see `CAN-CONFIG-STATUS.md`.
 
 ## 5-Node CAN Bus (1 Mbit/s, BigEndian)
 
@@ -31,7 +31,7 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `switchboard_frames.json` | ECUMaster CSB3 frames 0x640–0x643 (layout per the CSB3 manual v2.1). |
 | `bench/check_parity.py` | Checks the JSON, `.lcs`, ID table, `frames.py`, RealDash XML, sender UI and `switchboard_frames.json` all agree. Runs in CI. |
 | `link_g4x_realdash.xml` | RealDash CAN **channel-description** XML v2 — the 3 ECU→RealDash frames (0x3EF–0x3F1) plus the gear byte of 0x3EB (reverse-camera switch), valid/importable, BigEndian, with bit-decoded warnings and named `ST185:` inputs. |
-| `CANBUS-ENCODE-DECODE-REFERENCE.html` | Mirror of the cluster repo's encode/decode reference (ECU <-> center cluster, frames 0x3E8-0x3EE + lambda), derived from its `main/canbus.c`. If they drift, the cluster copy wins. Open in any browser. |
+| `CANBUS-ENCODE-DECODE-REFERENCE.html` | Pointer page only: links to the cluster repo's encode/decode reference and its `main/canbus.c`. No cluster file is copied into this repo; `bench/check_parity.py` reads the cluster source read-only in CI. |
 | `REALDASH-LAYOUT.md` | RealDash **dashboard layout design** — buildable spec for the **single-page** blue/chrome 800x480 engineering dash (4x4 tile grid + strobing warning strip; no media page). Binds to `link_g4x_realdash.xml`. |
 | `CAN-CONFIG-STATUS.md` | Handoff/status note — snapshot of the reconciled CAN config, the source-of-truth HTML, and open items. |
 | `sot/channels.csv` | **Wiring source of truth** — every ECU pin and channel, and the conditioner / A/C amp / power owners. New pin facts go here first. |
