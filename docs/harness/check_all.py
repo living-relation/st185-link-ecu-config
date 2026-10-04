@@ -21,8 +21,9 @@ What it runs, in order - every one in HARD is a hard gate:
   audit_mating.py          A cabin mates A engine, B mates B
   validate_bulkhead_letter.py ECU looms follow the ECU connector letter; crossovers a/b/c only
   audit_bulkhead_pairs.py  no bulkhead cavity wired on one side only
-  audit_bh_collisions.py   one circuit per bulkhead hole (a splice of it is fine); different
-                           circuits share only if all +5V, all ground, all +12V or all shields
+  audit_bh_collisions.py   bulkhead pin sharing (direct or pigtail + splice): only one class
+                           behind a pin - same rail, ground, shield drain, CAN H or CAN L
+                           (self-test: test_gates.py, run in CI)
   part_desc.py             part descriptions describe the part only (standard format)
   buylist.py --check       buy list is current, and the shared-connector consistency check
   buildlist.py --check     per-wire build list is current
