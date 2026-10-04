@@ -59,6 +59,10 @@ jobs:
             echo "No checked files changed - skipping the checks (reported as passed)."
             echo "run=false" >> "$GITHUB_OUTPUT"
           fi
+      # Doc hygiene runs on every change (Markdown edits skip the heavy steps above).
+      # WARN-ONLY: shows warning annotations, never fails the check.
+      - name: Doc hygiene - passages duplicated across .md files (warn-only)
+        run: python3 .github/scripts/check_doc_duplicates.py
       - uses: actions/setup-python@v5
         if: steps.scope.outputs.run == 'true'
         with:

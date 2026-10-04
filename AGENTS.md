@@ -94,6 +94,7 @@ $env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py
 python docs/harness/check_all.py
 python bench/check_parity.py
 python tune/scripts/validate_tune.py
+python .github/scripts/check_doc_duplicates.py   # copied .md passages (warn-only)
 python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py
 python rd-build/tools/automation_helper.py size
 ```
