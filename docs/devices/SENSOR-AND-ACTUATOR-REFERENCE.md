@@ -486,6 +486,8 @@ Shield: no
 External wideband controller for a Bosch LSU 4.9. On CAN bus 1. Link pinout
 for the CAN pair is recorded in `docs/harness/redesign/DECISIONS.md` B1. The
 other two wires are +12V and ground; those pin numbers are not confirmed here.
+The controller stays in the engine bay; its CAN and power run through bulkhead B,
+shielded the whole run (Daniel, 2026-10-03).
 
 Shield: yes
 
@@ -501,7 +503,7 @@ Shield: yes
 1400 cc high-Z sequential. Each injector is two pins. Pin numbers are not
 in this repo. No part number recorded.
 
-Shield: yes
+Shield: no
 
 | Pin | Name |
 |---|---|
@@ -520,3 +522,16 @@ Shield: no
 |  | +B |
 |  | IGT |
 |  | ground |
+
+**CAN bus - every run between nodes**
+
+The CAN H / CAN L pair between every node on CAN bus 1 (ECU, center cluster,
+CSB3, Pi / RealDash adapter, CAN-Lambda) is shielded on every run (Daniel,
+2026-10-03). The pair is drawn once, in `ST185-CAN.harness`.
+
+Shield: yes
+
+| Pin | Name |
+|---|---|
+|  | CAN H |
+|  | CAN L |
