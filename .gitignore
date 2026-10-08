@@ -28,3 +28,6 @@ docs/intercooler-turbo-study/model/matchbot_shots/
 Claude outputs/
 # CI-only read-only checkout of the frozen cluster repo (checks.yml) - never commit it
 _cluster/
+
+# Local backup of rolled-back harness drawings (kept on disk, not tracked; see git history 56656d9)
+/archive/2026-10-01-before-rollback/
