@@ -15,7 +15,7 @@ paths:
 # run-can-bench-scenarios
 
 ## Where to run
-- Working location: the repo root, `C:\projects\shipping\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
+- Working location: the repo root, `C:\projects\active\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
 
 ## Critical
 - Treat `link_g4x_can_setup.json` as the canonical CAN contract before interpreting any bench output.

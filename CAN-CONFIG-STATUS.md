@@ -10,8 +10,8 @@ can drift). In this repo, `link_g4x_can_setup.json` is the ECU wire contract and
 holds the switchboard frames. `python bench/check_parity.py` checks every copy agrees (runs in CI).
 
 ## Which repos are in use
-- **ECU + RealDash config:** `C:\projects\shipping\st185-link-ecu-config` (this repo). Holds `link_g4x_can_setup.json` (ECU send config), `link_g4x_can_setup.lcs` (PCLink import), `link_g4x_realdash.xml` (RealDash receive), and `CAN-BUS-ID-ALLOCATION-TABLE.md` (master map).
-- **Center cluster firmware:** `C:\projects\shipping\center-cluster-esp32-p4` (GitHub: [living-relation/center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4)). Decodes the ECU frames in `main/canbus.c`; holds the reference HTML. (There is no `main/protocols/link_g4x.json`.)
+- **ECU + RealDash config:** `C:\projects\active\st185-link-ecu-config` (this repo). Holds `link_g4x_can_setup.json` (ECU send config), `link_g4x_can_setup.lcs` (PCLink import), `link_g4x_realdash.xml` (RealDash receive), and `CAN-BUS-ID-ALLOCATION-TABLE.md` (master map).
+- **Center cluster firmware:** `C:\projects\active\center-cluster-esp32-p4` (GitHub: [living-relation/center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4)). Decodes the ECU frames in `main/canbus.c`; holds the reference HTML. (There is no `main/protocols/link_g4x.json`.)
 
 ## What was reconciled (2026-07-04)
 1. **Boost = MAP, not MGP.** `0x3E8` bytes 2-3 are the ECU's **MAP** (absolute) channel — matches the source-of-truth HTML in `link_g4x_can_setup.json` **and** `link_g4x_can_setup.lcs`. (MGP would read ~−14 psi at idle.)

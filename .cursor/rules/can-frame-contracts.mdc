@@ -32,7 +32,7 @@ on any one device is not done until it has been reconciled against **all** the o
 | Device | Config lives in |
 |---|---|
 | Link G4X XtremeX ECU | `link_g4x_can_setup.json`, `.lcs`, `CANBUS-LINK-G4X-CONFIG.md` |
-| Center cluster ESP32-P4 | `center-cluster-esp32-p4` repo (`C:\projects\shipping\center-cluster-esp32-p4`) — `main/canbus.c` (decode truth; there is no `main/protocols/link_g4x.json`) |
+| Center cluster ESP32-P4 | `center-cluster-esp32-p4` repo (`C:\projects\active\center-cluster-esp32-p4`) — `main/canbus.c` (decode truth; there is no `main/protocols/link_g4x.json`) |
 | RealDash | `link_g4x_realdash.xml`, `st185_dash.rd`, `REALDASH-LAYOUT.md`, `rd-build/` |
 | ECUMaster CSB3 switchboard | `switchboard_frames.json`, `ECUMASTER_SWITCHBOARD_SETUP.md` |
 | Link CAN-Lambda | On the same bus — see below |
@@ -72,7 +72,7 @@ last resort and requires explicit approval from Daniel — never do it just to c
 - Scale convention: `link_g4x_can_setup.json` is PCLink ENCODE form (`raw = value*scale + offset`);
   `.lcs`, ID table and `frames.py` are DECODE form. Switchboard `0x640`-`0x643` live in `switchboard_frames.json`.
 - RealDash also reads `0x3EB` (gear byte only). Cluster decode truth:
-  `C:\projects\shipping\center-cluster-esp32-p4\main\canbus.c` (decodes 0x3E8-0x3EB, 0x3EE).
+  `C:\projects\active\center-cluster-esp32-p4\main\canbus.c` (decodes 0x3E8-0x3EB, 0x3EE).
 - Validate with targeted `bench/can_bench.py` command paths before finalizing.
 
 If a mismatch is found and not fixed in the same pass, write it down as an open item. Never

@@ -42,7 +42,7 @@ before making changes:
   part of work in this repo.
 
 If a local checkout of `center-cluster-esp32-p4` exists (on dansPC:
-`C:\projects\shipping\center-cluster-esp32-p4`), prefer reading its source files directly
+`C:\projects\active\center-cluster-esp32-p4`), prefer reading its source files directly
 (`bench/check_parity.py` also checks its decoded frame set when it sits next to this repo);
 otherwise consult the GitHub repo linked above.
 
@@ -121,7 +121,7 @@ python rd-build/tools/automation_helper.py screenshot rd-build/rd_screen.png
 
 ## Local environment
 
-- Local checkout of this repo on dansPC is `C:\projects\shipping\st185-link-ecu-config` (moved from `C:\projects\st185-link-ecu-config`).
+- Local checkout of this repo on dansPC is `C:\projects\active\st185-link-ecu-config` (moved from `C:\projects\shipping\st185-link-ecu-config`).
 
 ## Model
 

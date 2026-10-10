@@ -13,7 +13,7 @@ paths:
 # maintain-realdash-xml-mapping
 
 ## Where to run
-- Working location: the repo root, `C:\projects\shipping\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
+- Working location: the repo root, `C:\projects\active\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
 
 ## Critical
 - RealDash reads 0x3EB (gear byte only, reverse-camera switch) plus 0x3EF-0x3F1. `python bench/check_parity.py` checks every XML value's offset, length, signedness, conversion and warning bit against the contract.

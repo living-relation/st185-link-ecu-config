@@ -221,7 +221,7 @@ Its allow-list is (a)-(c) and nothing else.
 ## Scope note
 
 These rules cross repository boundaries. The cluster repo is checked out alongside this one
-at `C:\projects\shipping\center-cluster-esp32-p4`, so references such as `main/canbus.c`
+at `C:\projects\active\center-cluster-esp32-p4`, so references such as `main/canbus.c`
 resolve there, not here. A CAN change in this repo that affects the cluster is not complete
 until the cluster side is checked, even though it lives in a different repository.
 
