@@ -2,7 +2,8 @@
 
 **Date:** 2026-09-27  
 **Repo:** `st185-link-ecu-config`  
-**Status:** Frozen decision record. Merges `HARNESS-REDESIGN-PLAN.md` and `HARNESS-CHECKER-AUDIT.md`.
+**Status:** Frozen decision record. Merges the now-removed `output/HARNESS-REDESIGN-PLAN.md` and
+`output/HARNESS-CHECKER-AUDIT.md` (superseded and deleted 2026-10-10).
 The phased work, and the conflicts with current rules that must be settled first, are in
 [`IMPLEMENTATION-PLAN.md`](IMPLEMENTATION-PLAN.md).
 
