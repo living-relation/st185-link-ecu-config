@@ -1,5 +1,5 @@
 # docs/research-hub.html is generated and owned by the "Regenerate research hub"
-# GitHub Action. Humans and agents must NOT commit it -- see CLAUDE.md / AGENTS.md.
+# GitHub Action. Humans and agents must NOT commit it -- see AGENTS.md.
 #
 # merge=ours makes a merge or rebase keep the local side instead of raising a
 # conflict when the bot has regenerated it upstream. It needs the driver enabled
