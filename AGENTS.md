@@ -59,7 +59,7 @@ before making changes:
   part of work in this repo.
 
 If a local checkout of `center-cluster-esp32-p4` exists (commonly
-`C:\projects\shipping\center-cluster-esp32-p4`), prefer reading its source files directly;
+`C:\projects\active\center-cluster-esp32-p4`), prefer reading its source files directly;
 otherwise consult the GitHub repo linked above.
 
 ## Current Runnable Paths

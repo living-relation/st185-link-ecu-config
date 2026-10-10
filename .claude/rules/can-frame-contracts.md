@@ -41,7 +41,7 @@ needing explicit approval from Daniel — never to clear a mismatch.
 - Scale convention: `link_g4x_can_setup.json` is PCLink ENCODE form (`raw = value*scale + offset`);
   `.lcs`, ID table and `frames.py` are DECODE form. Switchboard `0x640`-`0x643` live in `switchboard_frames.json`.
 - RealDash also reads `0x3EB` (gear byte only). Cluster decode truth:
-  `C:\projects\shipping\center-cluster-esp32-p4\main\canbus.c` (decodes 0x3E8-0x3EB, 0x3EE).
+  `C:\projects\active\center-cluster-esp32-p4\main\canbus.c` (decodes 0x3E8-0x3EB, 0x3EE).
 
 A mismatch found and not fixed in the same pass gets written down as an open item. Never
 leave it silent.

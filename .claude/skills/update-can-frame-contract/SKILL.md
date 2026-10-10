@@ -16,13 +16,13 @@ paths:
 # update-can-frame-contract
 
 ## Where to run
-- Working location: the repo root, `C:\projects\shipping\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
+- Working location: the repo root, `C:\projects\active\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
 
 ## Critical
 - `python bench/check_parity.py` is the parity gate (also run in CI). It compares the JSON, `.lcs`, `bench/frames.py`, `CAN-BUS-ID-ALLOCATION-TABLE.md`, `link_g4x_realdash.xml`, the sender UI profiles and `switchboard_frames.json`. Exit 0 = all agree. A change is not done until it passes.
 - Scale convention: `link_g4x_can_setup.json` uses PCLink ENCODE form (`raw = value * scale + offset`); the `.lcs`, the ID table and `bench/frames.py` use DECODE form (`value = raw * (1/scale) - offset/scale`). Write each file in its own convention.
 - Switchboard frames `0x640`-`0x643` live in `switchboard_frames.json`, not in `link_g4x_can_setup.json`.
-- Reconcile against the frozen cluster decoder `C:\projects\shipping\center-cluster-esp32-p4\main\canbus.c` (decodes 0x3E8-0x3EB, 0x3EE). CI cannot see that repo.
+- Reconcile against the frozen cluster decoder `C:\projects\active\center-cluster-esp32-p4\main\canbus.c` (decodes 0x3E8-0x3EB, 0x3EE). CI cannot see that repo.
 - Treat `link_g4x_can_setup.json` as the canonical CAN contract for IDs, scaling, offsets, and signal ranges. Do not change `bench/frames.py` first.
 - Keep `0x3E8`-`0x3F1` semantics aligned across `bench/frames.py`, `link_g4x_can_setup.json`, and docs.
 - Keep all multibyte CAN fields BigEndian unless an existing source file explicitly documents otherwise.
