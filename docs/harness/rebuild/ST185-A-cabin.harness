@@ -714,32 +714,6 @@
       "width": 390
     },
     {
-      "id": "ix_accts_r",
-      "label": "A/C coolant switch - 2-way inline to A/C amplifier spur (IX_AC_CTS)",
-      "width": 270,
-      "partId": "cp_dt04_2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "A/C coolant switch return -> A/C amplifier"
-        }
-      ],
-      "schematicPosition": {
-        "x": 4080,
-        "y": 2040
-      },
-      "layoutPosition": {
-        "x": 1680,
-        "y": 120
-      }
-    },
-    {
       "id": "ix_ws_front_p",
       "label": "WS FRONT spur - 6-way inline mate (IX_WS_FRONT)",
       "width": 270,
@@ -834,10 +808,10 @@
   ],
   "terminals": [
     {
-      "id": "br_w_ac_kill",
+      "id": "fl_acamp_tw",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-ACAmp-Spur: Aux 4 AC kill to A/C amplifier A18-11",
-      "width": 390,
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.150 A34-20 R-G TW water temp input <- A/C coolant switch - solder sleeve into the factory R-G lead at the amplifier",
       "schematicPosition": {
         "x": 660,
         "y": 1110
@@ -845,6 +819,90 @@
       "layoutPosition": {
         "x": 1680,
         "y": 0
+      }
+    },
+    {
+      "id": "fl_acamp_sg",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.150 A34-TBD TBD A/C coolant switch return - solder sleeve into the factory sensor-return lead at the amplifier",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1170
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": 60
+      }
+    },
+    {
+      "id": "fl_acamp_act",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder sleeve into the factory G-Y lead at the A/C amplifier",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1230
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": 120
+      }
+    },
+    {
+      "id": "fl_acamp_mg",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1990 p.152 A18-5 Y-B magnetic clutch -> A4-3 - solder sleeve into the factory Y-B lead at the A/C amplifier",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1290
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": 180
+      }
+    },
+    {
+      "id": "fl_acamp_psw",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder sleeve into the factory Y-R lead at the A/C amplifier",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1350
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": 240
+      }
+    },
+    {
+      "id": "br_ac_mg",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: A/C magnetic clutch A4-3 <- A18-5 (fl_acamp_mg)",
+      "width": 390,
+      "schematicPosition": {
+        "x": 660,
+        "y": 1410
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": 300
+      }
+    },
+    {
+      "id": "br_ac_psw",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: A/C pressure switch A5-4 -> A18-13 (fl_acamp_psw)",
+      "width": 390,
+      "schematicPosition": {
+        "x": 660,
+        "y": 1470
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": 360
       }
     },
     {
@@ -1763,7 +1821,7 @@
         "handle": "a18"
       },
       "target": {
-        "id": "br_w_ac_kill",
+        "id": "fl_acamp_act",
         "handle": "Terminal"
       },
       "partId": "wp_20_gry"
@@ -1855,8 +1913,8 @@
         "handle": "c37"
       },
       "target": {
-        "id": "ix_accts_r",
-        "handle": "c1"
+        "id": "fl_acamp_tw",
+        "handle": "Terminal"
       },
       "color": "Yellow",
       "partId": "wp_20_yel"
@@ -1868,11 +1926,39 @@
         "handle": "c38"
       },
       "target": {
-        "id": "ix_accts_r",
-        "handle": "c2"
+        "id": "fl_acamp_sg",
+        "handle": "Terminal"
       },
       "color": "Brown",
       "partId": "wp_20_brn"
+    },
+    {
+      "id": "w_ac_clutch_mg",
+      "source": {
+        "id": "fl_acamp_mg",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "br_ac_mg",
+        "handle": "Terminal"
+      },
+      "color": "Yellow",
+      "stripeColor": "Black",
+      "partId": "wp_20_yel_blk"
+    },
+    {
+      "id": "w_ac_psw_sw",
+      "source": {
+        "id": "fl_acamp_psw",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "br_ac_psw",
+        "handle": "Terminal"
+      },
+      "color": "Yellow",
+      "stripeColor": "Red",
+      "partId": "wp_20_yel_red"
     },
     {
       "id": "w77",
@@ -2922,20 +3008,65 @@
       }
     },
     {
-      "id": "bn_bp_fl_acamp__br_w_ac_kill",
+      "id": "bn_bp_fl_acamp__fl_acamp_tw",
       "sourceId": "bp_fl_acamp",
-      "targetId": "br_w_ac_kill",
+      "targetId": "fl_acamp_tw",
       "length": {
         "value": 50,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_bp_fl_acamp__ix_accts_r",
+      "id": "bn_bp_fl_acamp__fl_acamp_sg",
       "sourceId": "bp_fl_acamp",
-      "targetId": "ix_accts_r",
+      "targetId": "fl_acamp_sg",
       "length": {
-        "value": 150,
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_acamp__fl_acamp_act",
+      "sourceId": "bp_fl_acamp",
+      "targetId": "fl_acamp_act",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_acamp__fl_acamp_mg",
+      "sourceId": "bp_fl_acamp",
+      "targetId": "fl_acamp_mg",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_acamp__fl_acamp_psw",
+      "sourceId": "bp_fl_acamp",
+      "targetId": "fl_acamp_psw",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_fl_acamp_mg__br_ac_mg",
+      "sourceId": "fl_acamp_mg",
+      "targetId": "br_ac_mg",
+      "length": {
+        "value": 20,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_fl_acamp_psw__br_ac_psw",
+      "sourceId": "fl_acamp_psw",
+      "targetId": "br_ac_psw",
+      "length": {
+        "value": 20,
         "unit": "mm"
       }
     },
@@ -3615,6 +3746,30 @@
       }
     },
     {
+      "id": "wp_20_yel_blk",
+      "partNumber": "EW-1C20-YEL-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Yellow",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_yel_red",
+      "partNumber": "EW-1C20-YEL-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Yellow",
+      "stripeColor": "Red",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
       "id": "wp_18_wht",
       "partNumber": "EW-1C18-WHT",
       "manufacturer": "generic",
@@ -3931,24 +4086,6 @@
         }
       ],
       "url": "https://www.te.com/usa-en/product-DT06-6S.html"
-    },
-    {
-      "id": "cp_dt04_2p",
-      "partNumber": "DT04-2P",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY",
-      "numberOfCavities": 2,
-      "gender": "Male",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_hdp16p",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w2p"
-        }
-      ],
-      "url": "https://www.te.com/usa-en/product-DT04-2P.html"
     },
     {
       "id": "cp_dtp04_4p_l012",

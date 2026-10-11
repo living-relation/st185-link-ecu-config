@@ -572,7 +572,7 @@
       "id": "fl_ac_press_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD p.152 A5-1 V-R A/C pressure switch +12V (ACPS 5 A, IG) - solder sleeve into the factory V-R lead at the switch",
+      "signal": "EWD p.152 A5-1 (V-R in the factory wiring, new wire here) A/C pressure switch +12V (ACPS 5 A, IG) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
       "schematicPosition": {
         "x": 0,
         "y": 1590
@@ -580,6 +580,62 @@
       "layoutPosition": {
         "x": 420,
         "y": -270
+      }
+    },
+    {
+      "id": "fl_a4_3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1990 p.152 A4-3 (Y-B in the factory wiring, new wire here) A/C magnetic clutch <- A18-5 (br_ac_mg) - new-wire run terminated at the clutch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 0,
+        "y": 1650
+      },
+      "layoutPosition": {
+        "x": 420,
+        "y": -210
+      }
+    },
+    {
+      "id": "fl_a5_4",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1990 p.152 A5-4 (Y-R in the factory wiring, new wire here) A/C pressure switch switched return -> A18-13 (br_ac_psw) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 0,
+        "y": 1710
+      },
+      "layoutPosition": {
+        "x": 420,
+        "y": -150
+      }
+    },
+    {
+      "id": "br_ac_mg",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: A/C magnetic clutch A4-3 (fl_a4_3) <- A18-5 (fl_acamp_mg)",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 1770
+      },
+      "layoutPosition": {
+        "x": 420,
+        "y": -90
+      }
+    },
+    {
+      "id": "br_ac_psw",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: A/C pressure switch A5-4 (fl_a5_4) -> A18-13 (fl_acamp_psw)",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 1830
+      },
+      "layoutPosition": {
+        "x": 420,
+        "y": -30
       }
     },
     {
@@ -724,6 +780,34 @@
     }
   ],
   "wires": [
+    {
+      "id": "w_ac_mg",
+      "color": "Yellow",
+      "stripeColor": "Black",
+      "source": {
+        "id": "br_ac_mg",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_a4_3",
+        "handle": "Terminal"
+      },
+      "partId": "wp_20_yel_blk"
+    },
+    {
+      "id": "w_ac_psw",
+      "color": "Yellow",
+      "stripeColor": "Red",
+      "source": {
+        "id": "br_ac_psw",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_a5_4",
+        "handle": "Terminal"
+      },
+      "partId": "wp_20_yel_red"
+    },
     {
       "id": "w_h1_pdb",
       "color": "Red",
@@ -1693,6 +1777,42 @@
       }
     },
     {
+      "id": "bn_bp_fl_ac_press__fl_a4_3",
+      "sourceId": "bp_fl_ac_press",
+      "targetId": "fl_a4_3",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_ac_press__fl_a5_4",
+      "sourceId": "bp_fl_ac_press",
+      "targetId": "fl_a5_4",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_ac_press__br_ac_mg",
+      "sourceId": "bp_fl_ac_press",
+      "targetId": "br_ac_mg",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_ac_press__br_ac_psw",
+      "sourceId": "bp_fl_ac_press",
+      "targetId": "br_ac_psw",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
       "id": "bn_bp_fl_ac_press__fl_ac_press_c1",
       "sourceId": "bp_fl_ac_press",
       "targetId": "fl_ac_press_c1",
@@ -2209,6 +2329,30 @@
     }
   ],
   "wireParts": [
+    {
+      "id": "wp_20_yel_blk",
+      "partNumber": "EW-1C20-YEL-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Yellow",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_yel_red",
+      "partNumber": "EW-1C20-YEL-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Yellow",
+      "stripeColor": "Red",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
     {
       "id": "wp_20_gry",
       "partNumber": "EW-1C20-GRY",
