@@ -49,9 +49,8 @@ every commit.
 | `sot/channels.csv` | ECU pin/channel SoT |
 | `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` | Device pin, pin name, whether that device gets a shield (one flag per device, never per pin or wire) |
 | `XTREMEX-IO-TABLE.html` | Visual face of the ECU SoT, with a generated pin map |
-| `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: A-triggered relays, APS, front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
-| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: condenser fan relay, fuel level branch, rear wheel-speed spur (Rule 3) |
-| `docs/harness/rebuild/ST185-APS-Pedal.harness` | APS pedal harness: A/B pedal wires broken off the cabin looms, female/male DT 6-way pair, run to the pedal (Rule 3 crossover c) |
+| `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: A-triggered relays, the BRZ APS pedal connector (Rule 3 crossover c), front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
+| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: condenser fan relay, fuel level branch, rear wheel-speed spur, the APS B33 leg broken off from A-cabin (Rule 3 crossover c) |
 | `docs/harness/rebuild/ST185-CabinPower.harness` | Cabin fuse block, HCFB, battery feed, fuel pump run (non-ECU) |
 | `docs/harness/rebuild/ST185-CSB3.harness` | ECUMaster CSB3 plug and switch inputs (non-ECU) |
 | `docs/harness/rebuild/ST185-A-engine.harness` | Bulkhead A engine half to every A-letter engine device (Rule 3) |
@@ -188,10 +187,13 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     DRB102 cavity map.
   - **(b)** ETB: relay trigger on A20, H-bridge supply on B5 (by ECU pin design).
   - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design). All pedal
-    wiring stays in the cabin: the A pedal wires break off `ST185-A-cabin` and the B33
-    wire breaks off `ST185-B-cabin`, both at the female DT 6-way of `IX_APS`, and
-    `ST185-APS-Pedal` runs from the male half to the pedal. The throttle **body** (A20
-    relay trigger, B5 supply, B18/B26 motor, A22/A33 sensors) is engine-bay wiring.
+    wiring stays in the cabin: the BRZ e-throttle pedal connector itself is drawn on
+    `ST185-A-cabin` (folded in from the retired `ST185-APS-Pedal` 2026-10-11, "pedal is
+    one cable in A-cabin") - 5 of 6 pins wire straight from there; only the B33 leg
+    (conductor `w_aps_vpa2`) breaks off to `ST185-B-cabin`, the one allow-listed A-file
+    wire reaching a B-letter device cavity (`docs/harness/validate_bulkhead_letter.py`
+    `ALLOW["c"]`). The throttle **body** (A20 relay trigger, B5 supply, B18/B26 motor,
+    A22/A33 sensors) is engine-bay wiring.
   - The injector rail (F11 15 A) and COP rail (F10 20 A) are **not** a crossover: non-ECU
     power follows its device's ECU signal letter, so they cross on the A side through
     `IX_RAIL_A`, a Deutsch DTP 4-way flange pass-through beside bulkhead A (`ST185-A-cabin`

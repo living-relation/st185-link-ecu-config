@@ -34,8 +34,10 @@ The allow-list is the rule's crossovers and nothing else:
   (b) ETB: relay trigger A20, H-bridge supply B5 from that relay's output; the B18 / B26
       motor wires leave B-engine as a short broken-off spur after bulkhead B and come
       into A-engine just after bulkhead A, to the throttle body drawn there
-  (c) APS pedal: A14 / B33; all pedal wiring is in the cabin and breaks off A-cabin and
-      B-cabin into ST185-APS-Pedal
+  (c) APS pedal: A14 / B33; the pedal connector itself is drawn on A-cabin (folded in
+      from the retired ST185-APS-Pedal 2026-10-11, "pedal is one cable in A-cabin") -
+      its B33 leg (conductor w_aps_vpa2) is the one allowed A-file wire reaching a
+      B-letter device cavity, and still breaks off to B-cabin in the usual way (L6)
 The injector (F11) and COP (F10) rails are not a crossover: they cross on the A side
 through IX_RAIL_A, a DTP 4-way flange pass-through beside bulkhead A (Daniel,
 2026-09-28; crossover (d) retired).
@@ -54,7 +56,7 @@ WALK = ("SP", "BH", "IX", "BRK")
 ALLOW = {
     "a": {"nets": {"P5V", "GNDOUT"}},
     "b": {"conductors": {"w124_e_ae", "w215_e_ae"}},
-    "c": {"harness": "APS-Pedal"},
+    "c": {"conductors": {"w_aps_vpa2"}},
 }
 
 reg = model.registry()
@@ -114,7 +116,7 @@ for loom, L in ECU_LOOMS.items():
         for bh, cav in [bh_end(e) for e in ends if bh_end(e)]:
             if BH_LETTER[bh] != L:
                 bad.append("L2 %s: %s lands on %s %s but is drawn on a %s file" % (loom, cond["id"], bh, cav, L))
-        if cond["id"] in ALLOW["b"]["conductors"]:
+        if cond["id"] in ALLOW["b"]["conductors"] or cond["id"] in ALLOW["c"]["conductors"]:
             continue
         for e in ends:
             dev, S = device_letter(loom, e)
