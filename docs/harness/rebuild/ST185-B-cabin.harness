@@ -197,7 +197,9 @@
         },
         {
           "id": "b10",
-          "designation": "B10"
+          "signal": "Ign 8 (A/C Clutch Rly)",
+          "designation": "B10",
+          "contactPartId": "ct_ss10_075"
         },
         {
           "id": "b11",
@@ -487,6 +489,45 @@
         }
       ],
       "partId": "cp_rly_hcr150"
+    },
+    {
+      "id": "k_acc",
+      "label": "A/C Clutch Relay (on/off) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) gated through the A5 dual pressure switch, not raw switched 12V",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "30",
+          "signal": "Fused +12V in (glove-box fuse/relay box - rating TBD, fuse-box decision pending; docs/OPEN-ITEMS.md) - cross-harness wire to CabinPower not yet drawn *",
+          "contactPartId": "ct_f7_load8"
+        },
+        {
+          "id": "c2",
+          "designation": "85",
+          "signal": "ACTIVE-LOW Coil - <- ECU-B B10 (Ign 8) *",
+          "contactPartId": "ct_f7_coil"
+        },
+        {
+          "id": "c3",
+          "designation": "86",
+          "signal": "Coil + <- A5 dual pressure switch pin 4 output (FL_A5_4, EngineRoom-C) - hardware cut below 30 / above 384 psi; no A/C coolant switch in series. Cross-harness wire not yet drawn *",
+          "contactPartId": "ct_f7_coil"
+        },
+        {
+          "id": "c4",
+          "designation": "87",
+          "signal": "+12V out -> A/C compressor clutch coil, A4 pin 4 (EngineRoom-C) - cross-harness wire not yet drawn"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2640,
+        "y": 750
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 4770
+      },
+      "partId": "cp_rly_f7_d",
+      "width": 390
     }
   ],
   "terminals": [
@@ -516,6 +557,32 @@
       "layoutPosition": {
         "x": 1560,
         "y": -180
+      }
+    },
+    {
+      "id": "t_ac_btn",
+      "type": "Loose",
+      "signal": "A/C request button signal -> ECU-B B31 (An Volt 10) - device/pull-up TBD, docs/OPEN-ITEMS.md",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1110
+      },
+      "layoutPosition": {
+        "x": 1560,
+        "y": -270
+      }
+    },
+    {
+      "id": "t_evap_temp",
+      "type": "Loose",
+      "signal": "Evaporator thermistor signal -> ECU-B B32 (An Volt 11) - device/pull-up TBD, docs/OPEN-ITEMS.md",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1260
+      },
+      "layoutPosition": {
+        "x": 1560,
+        "y": -360
       }
     },
     {
@@ -1315,6 +1382,45 @@
         "handle": "c2"
       },
       "partId": "wp_18_vio"
+    },
+    {
+      "id": "w_acc_trig",
+      "color": "Violet",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b10"
+      },
+      "target": {
+        "id": "k_acc",
+        "handle": "c2"
+      },
+      "partId": "wp_18_vio"
+    },
+    {
+      "id": "w_ac_btn",
+      "color": "Gray",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b31"
+      },
+      "target": {
+        "id": "t_ac_btn",
+        "handle": "Terminal"
+      },
+      "partId": "wp_20_gry"
+    },
+    {
+      "id": "w_evap_temp",
+      "color": "Gray",
+      "source": {
+        "id": "ecu_b",
+        "handle": "b32"
+      },
+      "target": {
+        "id": "t_evap_temp",
+        "handle": "Terminal"
+      },
+      "partId": "wp_20_gry"
     },
     {
       "id": "w_fan2_pwr_bc",
