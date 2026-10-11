@@ -128,7 +128,7 @@
     },
     {
       "id": "siren",
-      "label": "Siren (engine bay)",
+      "label": "Siren (engine bay, center firewall behind the engine) - leads cross via harness C's own RH fender grommet, decided 2026-10-10, not the FR wheel-speed grommet",
       "width": 390,
       "partId": "pdfTYmAD2zDku_jfHqzBu",
       "cavities": [
@@ -276,7 +276,7 @@
       "id": "t_at_hood",
       "type": "Loose",
       "width": 390,
-      "signal": "Hood pin switch - ADD ONE *",
+      "signal": "Hood pin switch - ADD ONE *. Rides harness C down the RH fender to the front, same grommet as the siren leads - exact hood-pin mounting spot still TBD",
       "layoutPosition": {
         "x": 180,
         "y": 0
