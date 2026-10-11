@@ -23,9 +23,24 @@ the drawings (mirror only, never edit as source).
 
 ## Facts that are commonly stale
 
-- **Two bulkheads only**, A and B, HDP20 from owned stock: A is `HDP24-24-47PE-L017` /
-  `HDP26-24-47SE-L015`, B is `HDP24-24-21PN` / `HDP26-24-21SN`. Bulkhead C is deleted. The
-  Souriau 8STA 37-way design is superseded — do not reintroduce it.
+- **Two bulkheads only**, A and B, each a shared **DRB102** pair from owned stock: the
+  cabin/firewall-mount receptacle half is `DRB12-102PAE-L018` (+ `DRBF-1A` backshell), the
+  engine-side plug half is `DRB16-102SAE-L018` — same part family on both A and B
+  (`bh_a_fw`/`bh_a_eng`, `bh_b_fw`/`bh_b_eng` all use `partId: cp_drb_recept` /
+  `cp_drb_plug`, confirmed 2026-10-10 against the drawn `.harness` files). This supersedes
+  the earlier HDP20 choice (`HDP24-24-47PE-L017` / `HDP26-24-47SE-L015` for A,
+  `HDP24-24-21PN` / `HDP26-24-21SN` for B, per `BULKHEAD-OPTIONS` 2026-09-29) — those HDP
+  part numbers still sit, unreferenced, in the `.harness` files' own connector-part
+  catalogs (dead entries, not a drawn connector; see `docs/OPEN-ITEMS.md`). Bulkhead C is
+  deleted. The Souriau 8STA 37-way design is superseded — do not reintroduce either of
+  these older designs. **The DRB102 cavity map is still provisional** (~26 size-16 spare
+  reported on the B half, enough for the alternator IG/L/S crossover — this contradicts
+  the older "bulkhead B has no size-16/20 spare" sizing below, which was HDP20-era; treat
+  the provisional DRB102 count as current until a full cavity map lands).
+- **No factory engine-bay wire is reused** (Daniel, 2026-10-04, binding): every engine-bay
+  circuit is new wire in project colors, terminated at the device's own plug (OEM or new).
+  This does not apply to cabin wiring, where splicing into factory leads stays normal.
+  Device connectors stay as recorded (DT for the horns and the fuel level sender).
 - **ECU looms follow the ECU connector letter** - canonical text `docs/RECONCILIATION-RULES.md`
   Rule 3 (Daniel, 2026-09-28; overrides "A = signal / B = power" and the merged ECU-Cabin).
   Four ECU files: `ST185-A-cabin`, `-B-cabin`, `-A-engine`, `-B-engine`; the letter is the

@@ -83,11 +83,25 @@ Fallback, if that ever stops being true:
 | crank | cable floats at the sensor → `bh_a_eng` c33 → `bh_a_fw` c33 → `sp_shield_a` → **ECU-A A7** | own pin, bulkhead A |
 | cam | same, c34 → `sp_shield_a` → **A7** | own pin, bulkhead A |
 | knock 1 | cable floats at the sensor → `bh_b_eng` c18 → `bh_b_fw` c18 → `sp_shield_b` → **ECU-B B17** (knock is pin B9, loom B) | own pin, bulkhead B |
-| wss FL, FR | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin; fender route, no bulkhead; output screen → `IX_WS_FRONT` pin 5 → `sp_shield_a` → A7 | none — fender; inline pin 5 |
+| wss FL | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin; fender route, no bulkhead; combined 4-core output screen → `IX_WS_FRONT` c5 → `sp_shield_a` → A7 | none — fender; inline pin 5 |
+| wss FR | same VRC-side cable as FL (one shared VRC output screen to A7); FR's own core leaves the shield at `IX_WS_FRONT` (c6 now spare, not a drain) and continues cabin-side as its own short shielded B-cabin spur, floating at the inline end, draining only at **B17** (Route 9 rev 3, 2026-10-10 - supersedes the earlier two-separate-output-cables design) | none — fender for the VRC leg; the B-cabin spur has no bulkhead either |
 | wss RL, RR | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin; no bulkhead; output screen → `IX_WS_REAR` pin 5 → `sp_shield_b` → B17 | none — grommet; inline pin 5 |
+| turbo speed, flex fuel, ETB sensor group (A22/A33) | **planned, not yet drawn** - redraw list below | new size-16 pin each, bulkhead A |
+| ETB motor group (B18/B26), gearbox VSS, CAN-Lambda pair | **planned, not yet drawn** - redraw list below; these three plus knock 1 share bulkhead B's one spare drain pin (c1) via a 14 AWG pigtail splice, since bulkhead B has no other size-16/20 spare (`docs/RECONCILIATION-RULES.md`, DRB102 caveat) | shared pin, bulkhead B |
+| CAN trunk + drops (ECU/CSB3/cluster/RealDash) | **planned, not yet drawn** - CAN pair only (H/L); +12V/ground stay plain. Joins the same bulkhead-B shared drain above | shared pin, bulkhead B |
+| APS pedal — A group (VC2/GND2/VC1/GND1/VPA1) | **planned, not yet drawn** - folds into `IX_APS` growing a drain pin (`ST185-APS-Pedal` harness being folded into A-cabin, see `docs/OPEN-ITEMS.md`) | new pin, bulkhead A side of `IX_APS` |
+| APS pedal — B group (VPA2) | **planned, not yet drawn** - same fold-in, B side of `IX_APS` | new pin, bulkhead B side of `IX_APS` |
 
 Loom A screens land on A7 through `sp_shield_a`, loom B screens on B17 through
-`sp_shield_b`. Nothing but a drain lands on A7 or B17.
+`sp_shield_b`. Nothing but a drain lands on A7 or B17. The "planned, not yet drawn"
+rows above are the harness-reconcile pass's redraw list (currently crank/cam/knock
+pass S1-S5; turbo speed, flex fuel, ETB, gearbox VSS, CAN and APS pedal still draw
+loose, unshielded wires and fail S1-S5 until their harness files are redrawn - the
+A-engine/B-engine/CAN/CSB3/APS-Pedal steps of the harness-reconcile pass, not yet
+done). `docs/harness/audit_shields.py` only enforces what IS drawn; it does not
+yet flag these as failing because the device-level "Shield: yes" flags in
+`docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` aren't cross-checked against the
+drawings (`docs/OPEN-ITEMS.md` row 31).
 
 `bh_a_fw` c1 / `bh_a_eng` c1 used to be a single shared drain. **Retired
 2026-09-22** when §6.32 first choice was finally applied. Both are spare.
