@@ -45,12 +45,12 @@
         {
           "id": "c6",
           "designation": "AM1",
-          "signal": "40A fused AM1 to IE1-10 / I9-4"
+          "signal": "40A fused AM1 to IE1-10 / I13-4"
         },
         {
           "id": "c7",
           "designation": "AM2",
-          "signal": "30A fused AM2 to IE1-17 / I9-10"
+          "signal": "30A fused AM2 to IE1-17 / I13-10"
         },
         {
           "id": "c8",
@@ -744,7 +744,7 @@
       "id": "fl_oem_ie1_c10",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.31 IE1-10 W AM1 to ignition switch I9-4 - heavy crimp butt splice into the factory lead",
+      "signal": "EWD p.31 IE1-10 W AM1 to ignition switch I13-4 - heavy crimp butt splice into the factory lead",
       "schematicPosition": {
         "x": 1320,
         "y": 0
@@ -758,7 +758,7 @@
       "id": "fl_oem_ie1_c17",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.31 IE1-17 B-R AM2 to ignition switch I9-10 - heavy crimp butt splice into the factory lead",
+      "signal": "EWD p.31 IE1-17 B-R AM2 to ignition switch I13-10 - heavy crimp butt splice into the factory lead",
       "schematicPosition": {
         "x": 1320,
         "y": 60

@@ -122,7 +122,7 @@ ratings not written above are `TBD` until sized against the load.
 1. Disconnect the battery (once it still lives in the bay) and **unplug J/B No.2 connectors 2A, 2B, 2C, 2D, 2E** and fusible-link box **F11**. Remove the ABS actuator, ABS relays, and crash-sensor connectors. Leave the engine-room main, cowl and dash looms in the car.
 2. Build the glove-box PDB, the second fuse block and the relays.
 3. Restore **always-hot** into J/B No.1 at **1I pin 1** (left kick). That is the bus behind 15A STOP, 15A ECU-B, 30A DEFOGGER and the taillight-relay battery side.
-4. Restore **AM1** and **AM2** at **IE1 pins 10 and 17** (left kick, engine-room main ↔ cowl). Those two wires are the ignition-switch supply. From the starting diagram they already pass IE1 on the way from F11 to I9.
+4. Restore **AM1** and **AM2** at **IE1 pins 10 and 17** (left kick, engine-room main ↔ cowl). Those two wires are the ignition-switch supply. From the starting diagram they already pass IE1 on the way from F11 to I13.
 5. Restore lighting / horn / dome / retract at the **vacated 2A / 2D / 2E cavities** with a short jumper harness from the glove box. **Open item (2026-09-29):** this step was written when J/B No.2 was still believed to be passenger-side, routed with the passenger-side engine-room main (EA1 / ABS trough); §2's correction puts J/B No.2 on the driver side, so this jumper's actual route is superseded — resolved as part of the EngineRoom-C restructure, not re-derived here.
 6. Feed R/B No.4 heater fuse (right kick, next to the glove box) and R/B No.2 POWER fuse (left kick) with always-hot from the PDB.
 7. Do **not** refeed 2B / 2C EFI, engine-main-relay-to-OEM-ECU, or circuit-opening-relay pins. Link owns those circuits in the Power file.
@@ -194,12 +194,12 @@ J/B No.1 already contains: 15A ECU-IG, 20A WIPER, 15A GAUGE, 10A TURN, 7.5A IGN,
 | # | Inject? | Connector | Pin | Signal | New source | Action |
 |---|---|---|---|---|---|---|
 | L1 | **YES** | **1I** (engine-room main) | **1** | Always-hot into J/B1 (STOP / ECU-B / DEFOGGER / tail-relay B+) | PDB OEM HOT, fused 40–60 A upstream of the J/B fuses | Primary left-kick B+. Probe 1I-1 to battery + on the stock car to confirm before cutting |
-| L2 | no | **1H** | **7** | IG2 from ignition switch I9-9 | I9 still feeds it via cowl | Do not overlay. Comes alive once AM2 is restored |
+| L2 | no | **1H** | **7** | IG2 from ignition switch I13-9 | I13 still feeds it via cowl | Do not overlay. Comes alive once AM2 is restored |
 | L3 | maybe | **1H** | **8** | Tied to 1I-1 / 1F-8 / 1I-3 on the inner circuit | Follows L1 if the inner bus is intact | Only add a second feed if L1 does not light 1H-8 |
-| L4 | no | **1A** | **7** | ACC from I9-3 | Ignition switch | Restored by AM1 (L6) |
-| L5 | no | **1A** | **5** | IG1 from I9-2 | Ignition switch | Restored by AM1 (L6) |
-| L6 | **YES** | **IE1** (ER main ↔ cowl, left kick) | **10** | AM1 to ignition I9-4 | PDB AM1, **40 A** fuse (replaces F11 40A FL AM1) | Feeds the switch **and** backfeeds engine-room AM1 toward unplugged 2E-5 |
-| L7 | **YES** | **IE1** | **17** | AM2 to ignition I9-10 | PDB AM2, **30 A** fuse (replaces F11 30A FL AM2) | Same, toward 2E-3 |
+| L4 | no | **1A** | **7** | ACC from I13-3 | Ignition switch | Restored by AM1 (L6) |
+| L5 | no | **1A** | **5** | IG1 from I13-2 | Ignition switch | Restored by AM1 (L6) |
+| L6 | **YES** | **IE1** (ER main ↔ cowl, left kick) | **10** | AM1 to ignition I13-4 | PDB AM1, **40 A** fuse (replaces F11 40A FL AM1) | Feeds the switch **and** backfeeds engine-room AM1 toward unplugged 2E-5 |
+| L7 | **YES** | **IE1** | **17** | AM2 to ignition I13-10 | PDB AM2, **30 A** fuse (replaces F11 30A FL AM2) | Same, toward 2E-3 |
 | L8 | **YES** | Ground **ID** | stud | Left kick body ground | PDB ground strap | See grounds, EWD p.169 |
 | L9 | **YES** | **R/B No.2** 30A POWER fuse | pins 1–2 (housing EWD p.23) | Power-window / lock battery | PDB, 30 A already in the R/B — feed the fuse **input** only | Left kick |
 
@@ -253,8 +253,8 @@ Two pages of the **same 1990 All-Trac EWD** disagree on what lives on 2E-2 and 2
 
 | Pin | Inner circuit p.21 | Starting + ignition p.48 |
 |---|---|---|
-| **2E-2** | 30A RTR fused output | AM1 pass-through with **2E-5**, then **IE1-10** → I9-4 |
-| **2E-3** | 15A HAZ-HORN fused output | AM2 pass-through with **2E-6**, then **IE1-17** → I9-10 |
+| **2E-2** | 30A RTR fused output | AM1 pass-through with **2E-5**, then **IE1-10** → I13-4 |
+| **2E-3** | 15A HAZ-HORN fused output | AM2 pass-through with **2E-6**, then **IE1-17** → I13-10 |
 | **2E-4** | 20A DOME | (not on that path) |
 | **2A-3 / 2D-2** | 15A HEAD LH | (not on that path) |
 | **2A-6 / 2D-6** | 15A HEAD RH | (not on that path) |
@@ -345,7 +345,7 @@ harness file. Fans and EPS do not cross a signal bulkhead.
 | 1992 Celica Electrical Wiring Diagram | EWD132U | Covers ST185; year-adjacent to 1993. Same J/B No.1 / No.2 / kick-panel layout with All-Trac callouts. |
 | 1993 Celica EWD160U | Dealer 265 p. book | The All-Trac pages of this book are the year-exact match. The public PDF labelled EWD160U is the **FWD** AT180/ST184 book — do not mix its J/B2 pin numbers into this table. |
 
-On-car check before first power-up: with J/B2 unplugged and the battery still isolated, ohmmeter from each row's cavity to the named load (headlight, dome, ignition I9-4 / I9-10, J/B1 1I-1).
+On-car check before first power-up: with J/B2 unplugged and the battery still isolated, ohmmeter from each row's cavity to the named load (headlight, dome, ignition I13-4 / I13-10, J/B1 1I-1).
 
 ---
 

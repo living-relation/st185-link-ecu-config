@@ -12,7 +12,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 40 | 0 | **40** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 32 | 0 | **32** |
-| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 28 | 0 | **28** |
+| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 30 | 0 | **30** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 16 | 6 | **10** |
@@ -107,9 +107,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
 | `0413-214-1205` | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 4 | 10 |
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 99 | 130 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 98 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 95 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 94 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS | 1 | 1 |
@@ -217,9 +217,8 @@ Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no co
 | B-cabin | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
 | B-cabin | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
 | B-engine | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
-| WheelSpeed-Front | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
 | WheelSpeed-Front | `GENERIC SHLD CABLE 2C TP 20AWG` | 2 |
-| WheelSpeed-Front | `GENERIC SHLD CABLE 3C 20AWG` | 1 |
+| WheelSpeed-Front | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
 | WheelSpeed-Rear | `GENERIC SHLD CABLE 2C TP 20AWG` | 2 |
 | WheelSpeed-Rear | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
 

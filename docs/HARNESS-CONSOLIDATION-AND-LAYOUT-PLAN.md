@@ -1626,8 +1626,8 @@ For J/B No.1 there are exactly three:
 | Injection point | Bus | Feeds |
 |---|---|---|
 | `1I-1` | always-hot | STOP, ECU-B, DEFOGGER, taillight relay battery side |
-| `IE1-10` | AM1 | ignition switch I9-4 |
-| `IE1-17` | AM2 | ignition switch I9-10 |
+| `IE1-10` | AM1 | ignition switch I13-4 |
+| `IE1-17` | AM2 | ignition switch I13-10 |
 
 ### What the PDU takes
 

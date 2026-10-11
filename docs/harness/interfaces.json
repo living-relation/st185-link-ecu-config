@@ -97,9 +97,9 @@
         "c1": "+5V",
         "c2": "Gnd Out",
         "c3": "FL out -> A23",
-        "c4": "FR out -> B21",
-        "c5": "drain, FL/supply cable -> SHIELD_A A7",
-        "c6": "drain, FR cable -> SHIELD_B B17 (floats at VRC)"
+        "c4": "FR out -> B21. Leaves the shield at this inline connector - continues cabin-side as its own short shielded spur on A-cabin/B-cabin, own drain, not drawn here.",
+        "c5": "drain, combined 4-core cable -> SHIELD_A A7",
+        "c6": "spare, plugged. Was the FR cable's own drain when FL/FR were two separate output cables - superseded 2026-10-10, Route 9 rev 3."
       },
       "halves": [
         {
@@ -379,7 +379,7 @@
       "terminal": "fl_ign_sw_c1",
       "ewd": {
         "page": "TBD - page not recorded in this repo yet",
-        "connector": "Ignition switch I9",
+        "connector": "Ignition switch I13",
         "pin": "TBD",
         "color": "TBD",
         "function": "IGN ON -> ECU-B B28",
@@ -438,7 +438,7 @@
         "connector": "IE1",
         "pin": "10",
         "color": "W",
-        "function": "AM1 to ignition switch I9-4",
+        "function": "AM1 to ignition switch I13-4",
         "method": "heavy crimp butt splice into the factory lead"
       }
     },
@@ -452,7 +452,7 @@
         "connector": "IE1",
         "pin": "17",
         "color": "B-R",
-        "function": "AM2 to ignition switch I9-10",
+        "function": "AM2 to ignition switch I13-10",
         "method": "heavy crimp butt splice into the factory lead"
       }
     },
@@ -754,15 +754,9 @@
       "outputCables": [
         {
           "cable": "cab_fout",
-          "cores": 3,
+          "cores": 4,
           "drainPin": "c5",
           "screenFromEnclosure": true
-        },
-        {
-          "cable": "cab_fout_fr",
-          "cores": 1,
-          "drainPin": "c6",
-          "screenFromEnclosure": false
         }
       ],
       "spurHarness": "A-cabin",
@@ -771,8 +765,7 @@
         "c2": "sp_gndout",
         "c3": "ecu_a.a23",
         "c4": "ecu_b.b21",
-        "c5": "sp_shield_a",
-        "c6": "sp_shield_b"
+        "c5": "sp_shield_a"
       }
     }
   },
