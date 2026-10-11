@@ -151,6 +151,29 @@ CASES.append(("... but the combined 12 AWG does not fit the 16-20 AWG contact (K
               "audit_cavity_parts.py", 1, CASES[-1][3]))
 
 
+def designate(d, loom, conn, cav, num):
+    p, doc = load(d, loom)
+    for c in doc["connectors"]:
+        if c["id"] == conn:
+            for cv in c["cavities"]:
+                if cv["id"] == cav:
+                    cv["designation"] = num
+    save(p, doc)
+
+
+@case("DRB102: B spare moved onto A's crank cavity 9, both halves (M8 collision)", "audit_mating.py", 1)
+def _(d):
+    for loom, half in (("B-cabin", "bh_b_fw"), ("B-engine", "bh_b_eng")):
+        designate(d, loom, half, "c25", "9")
+
+
+@case("DRB102: size-12 plug put in a size-16 cavity (M8 size)", "audit_mating.py", 1)
+def _(d):
+    for loom, half in (("B-cabin", "bh_b_fw"), ("B-engine", "bh_b_eng")):
+        designate(d, loom, half, "c1", "62")
+        designate(d, loom, half, "c25", "97")
+
+
 def unit_cases():
     """judge() on hand-made pin contents (classes that the drawings don't contain yet)."""
     out = []

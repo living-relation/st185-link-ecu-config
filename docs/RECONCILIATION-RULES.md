@@ -175,15 +175,12 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     generic soldered splice point. The B-engine sensors' +5V crosses on bulkhead A
     c45-c47 and runs as a short A-engine spur to the DT 6-way inline pair `IX_B_RAIL`
     (DT06-6S on A-engine, DT04-6P on B-engine, c4-c6 spare), one +5V pin per pressure
-    sensor (Daniel, 2026-09-28). Spare bulkhead cavities (HDP20-era count, now superseded -
-    see below): A c1 (size 16), c6, c10-c12, c27, c28, c30-c32 (size 20); B c1, c2 (size 12).
-    Bulkhead B has no size-16 or size-20 spare for a screen drain (Daniel, 2026-09-28:
-    accepted) **- superseded 2026-10-10 by the DRB102 bulkhead switch** (`BULKHEAD-OPTIONS`
-    2026-09-29): the DRB102 B half reportedly has ~26 size-16 positions spare (enough for
-    the alternator IG/L/S crossover, `docs/harness/redesign/DECISIONS.md`), but that count
-    is still provisional - no full cavity map has landed yet. Do not re-use the "B has no
-    spare" conclusion above for new work; `docs/OPEN-ITEMS.md` tracks getting the real
-    DRB102 cavity map.
+    sensor (Daniel, 2026-09-28). Bulkhead cavities and spares follow the real DRB102
+    cavity map, `docs/harness/DRB102-CAVITY-MAP.md` (from TE's drawing, 2026-10-11; gate
+    `audit_mating.py` M8): A has 7 size-16 spares plus 3 reserved shield-drain cavities
+    (c6, c10, c11); B has 13 size-16, 12 size-12, 4 size-8 and 2 size-4 spares plus 3
+    reserved drain cavities (c22-c24). The old HDP20-era "bulkhead B has no size-16/20
+    spare" limit is gone; every shield drain gets its own cavity.
   - **(b)** ETB: relay trigger on A20, H-bridge supply on B5 (by ECU pin design).
   - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design). All pedal
     wiring stays in the cabin: the BRZ e-throttle pedal connector itself is drawn on

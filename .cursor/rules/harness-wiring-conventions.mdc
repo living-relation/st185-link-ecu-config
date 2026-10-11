@@ -47,10 +47,11 @@ the drawings (mirror only, never edit as source).
   part numbers still sit, unreferenced, in the `.harness` files' own connector-part
   catalogs (dead entries, not a drawn connector; see `docs/OPEN-ITEMS.md`). Bulkhead C is
   deleted. The Souriau 8STA 37-way design is superseded — do not reintroduce either of
-  these older designs. **The DRB102 cavity map is still provisional** (~26 size-16 spare
-  reported on the B half, enough for the alternator IG/L/S crossover — this contradicts
-  the older "bulkhead B has no size-16/20 spare" sizing below, which was HDP20-era; treat
-  the provisional DRB102 count as current until a full cavity map lands).
+  these older designs. **The DRB102 cavity map is settled** from TE's drawing
+  (2026-10-11): `docs/harness/DRB102-CAVITY-MAP.md`. Each drawn cavity's `designation` is
+  its real DRB cavity number, A and B use each of the 102 cavities once (gate
+  `audit_mating.py` M8). A logical half is not a wedgelock half. Every shield drain has
+  its own cavity; B has 13 size-16 spares (the old HDP20-era "B has no spare" is gone).
 - **No factory engine-bay wire is reused** (Daniel, 2026-10-04, binding): every engine-bay
   circuit is new wire in project colors, terminated at the device's own plug (OEM or new).
   This does not apply to cabin wiring, where splicing into factory leads stays normal.

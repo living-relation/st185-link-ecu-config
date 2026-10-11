@@ -72,7 +72,8 @@ How each kind of boundary is drawn is in `redesign/INTERFACES.md`. In short:
 - **Bulkhead** - one shared Deutsch DRB102 (`DRB12-102PAE-L018` receptacle / `DRB16-102SAE-L018`
   plug + `DRBF-1A` flange), drawn as two logical halves (A and B) so each half's own harnesses
   populate it and the connector-letter gate still applies. See `redesign/DECISIONS.md`
-  ("Bulkhead A/B + DTP replaced by a shared DRB102").
+  ("Bulkhead A/B + DTP replaced by a shared DRB102"). Real cavity numbers, sizes and
+  spares: `DRB102-CAVITY-MAP.md` (gate `audit_mating.py` M8).
 - **OEM flying lead** - a `Loose` terminal whose text is the EWD locator. No OEM housing
   is ever modelled or bought.
 - **Device endpoint** - the VRCs are not drawn; each lead ends at a labelled `Loose`

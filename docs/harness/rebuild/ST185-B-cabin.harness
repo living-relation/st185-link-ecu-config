@@ -13,129 +13,321 @@
       "cavities": [
         {
           "id": "c1",
-          "designation": "1",
+          "designation": "97",
           "signal": "spare (size 12)",
           "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c2",
-          "designation": "2",
+          "designation": "98",
           "signal": "spare (size 12)",
           "cavityPlugPartId": "pl_sz12"
         },
         {
           "id": "c3",
-          "designation": "3",
+          "designation": "95",
           "signal": "CAN-Lambda +12V, cabin fuse F5 10A (14 AWG)",
           "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c4",
-          "designation": "4",
+          "designation": "96",
           "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
           "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c5",
-          "designation": "5",
+          "designation": "86",
           "contactPartId": "ct_hdp16p",
           "signal": "ETB motor + (Aux 9, B18)"
         },
         {
           "id": "c6",
-          "designation": "6",
+          "designation": "87",
           "contactPartId": "ct_hdp16p",
           "signal": "ETB motor - (Aux 10, B26)"
         },
         {
           "id": "c7",
-          "designation": "7",
+          "designation": "71",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-B B15"
         },
         {
           "id": "c8",
-          "designation": "8",
+          "designation": "72",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-B B16"
         },
         {
           "id": "c9",
-          "designation": "9",
+          "designation": "73",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-B B23"
         },
         {
           "id": "c10",
-          "designation": "10",
+          "designation": "74",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-B B6"
         },
         {
           "id": "c11",
-          "designation": "11",
+          "designation": "75",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-B B7"
         },
         {
           "id": "c12",
-          "designation": "12",
+          "designation": "76",
           "contactPartId": "ct_hdp16p",
           "signal": "ECUMaster CSB3 - Power/CAN/Switch I/O SW"
         },
         {
           "id": "c13",
-          "designation": "13",
+          "designation": "92",
           "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c14",
-          "designation": "14",
+          "designation": "93",
           "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c15",
-          "designation": "15",
+          "designation": "89",
           "signal": "Gearbox VSS signal (ECU B29, DI 8)",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c16",
-          "designation": "16",
+          "designation": "83",
           "signal": "Knock 1 SIG+ (ECU B9)",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c17",
-          "designation": "17",
+          "designation": "84",
           "signal": "Knock 1 SIG- (to Gnd Out B22)",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c18",
-          "designation": "18",
+          "designation": "85",
           "signal": "Knock 1 screen",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c19",
-          "designation": "19",
+          "designation": "77",
           "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c20",
-          "designation": "20",
+          "designation": "90",
           "signal": "Switched 12V to gearbox VSS (from sp_sw12)",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c21",
-          "designation": "21",
+          "designation": "78",
           "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
           "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c22",
+          "designation": "88",
+          "signal": "reserved - ETB motor shield drain (to B17), drawn in the shield redraw",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c23",
+          "designation": "91",
+          "signal": "reserved - gearbox VSS shield drain (to B17), drawn in the shield redraw",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c24",
+          "designation": "94",
+          "signal": "reserved - CAN-Lambda CAN pair shield drain (to B17), drawn in the shield redraw",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c25",
+          "designation": "62",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c26",
+          "designation": "63",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c27",
+          "designation": "64",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c28",
+          "designation": "65",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c29",
+          "designation": "66",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c30",
+          "designation": "67",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c31",
+          "designation": "68",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c32",
+          "designation": "69",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c33",
+          "designation": "70",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c34",
+          "designation": "79",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c35",
+          "designation": "80",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c36",
+          "designation": "81",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c37",
+          "designation": "82",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c38",
+          "designation": "3",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c39",
+          "designation": "4",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c40",
+          "designation": "5",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c41",
+          "designation": "6",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c42",
+          "designation": "7",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c43",
+          "designation": "8",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c44",
+          "designation": "99",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c45",
+          "designation": "100",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c46",
+          "designation": "101",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c47",
+          "designation": "102",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
+        },
+        {
+          "id": "c48",
+          "designation": "48",
+          "signal": "spare (size 8)",
+          "cavityPlugPartId": "pl_sz8"
+        },
+        {
+          "id": "c49",
+          "designation": "49",
+          "signal": "spare (size 8)",
+          "cavityPlugPartId": "pl_sz8"
+        },
+        {
+          "id": "c50",
+          "designation": "54",
+          "signal": "spare (size 8)",
+          "cavityPlugPartId": "pl_sz8"
+        },
+        {
+          "id": "c51",
+          "designation": "55",
+          "signal": "spare (size 8)",
+          "cavityPlugPartId": "pl_sz8"
+        },
+        {
+          "id": "c52",
+          "designation": "43",
+          "signal": "spare (size 4)",
+          "cavityPlugPartId": "pl_sz4"
+        },
+        {
+          "id": "c53",
+          "designation": "60",
+          "signal": "spare (size 4)",
+          "cavityPlugPartId": "pl_sz4"
         }
       ],
       "layoutPosition": {
@@ -2621,7 +2813,7 @@
       "partNumber": "DRB12-102PAE-L018",
       "manufacturer": "TE DEUTSCH",
       "description": "CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT",
-      "numberOfCavities": 21,
+      "numberOfCavities": 53,
       "gender": "Male",
       "hasShell": false,
       "configurations": [
@@ -2938,6 +3130,18 @@
       "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW",
       "id": "pl_sz12"
+    },
+    {
+      "partNumber": "114019-ZZ",
+      "manufacturer": "TE DEUTSCH",
+      "description": "PLUG, SEALING, CAVITY, SIZE 4, WHITE",
+      "id": "pl_sz4"
+    },
+    {
+      "partNumber": "114018-ZZ",
+      "manufacturer": "TE DEUTSCH",
+      "description": "PLUG, SEALING, CAVITY, SIZE 8, WHITE",
+      "id": "pl_sz8"
     }
   ],
   "lockParts": [

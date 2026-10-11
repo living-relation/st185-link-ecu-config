@@ -16,6 +16,11 @@ checks, against sot/channels.csv:
       loom C) never land on a bulkhead cavity.
   M7  a device connector drawn on two looms has each cavity wired on one loom
       only (one cavity, one circuit).
+  M8  the DRB102 physical cavity map (docs/harness/DRB102-CAVITY-MAP.md): every
+      bulkhead cavity's `designation` is its real DRB102 cavity number, the same
+      on both halves of its bulkhead; A and B together use each of the 102
+      physical cavities exactly once; and the contact or sealing plug in each
+      cavity is the size TE's drawing gives that cavity.
 
 Shared rails (+5V, +8V, Gnd Out) are exempt from M2: loom B has no +5V pin, so
 it borrows A32 by design. Pin *names* across each mating pair are checked by
@@ -179,6 +184,44 @@ for (nid, cav), looms in sorted(cav_owner.items()):
     if len(looms) > 1:
         bad.append("M7 %s %s is wired on %d looms (%s) - one cavity, one circuit"
                    % (nid, cav, len(looms), ", ".join(sorted(looms))))
+
+# M8 - DRB102 physical cavity map. Cavity sizes from TE customer drawing
+# DRB12-102PXE-L018 rev C3 (insert face): size 12 = 1-8 and 95-102, size 8 = 48, 49,
+# 54, 55, size 4 = 43 and 60, size 16 = the other 80. Two wedgelock halves, 1-51 and
+# 52-102. bh_a_* and bh_b_* are logical halves (ECU letter), not wedgelock halves.
+DRB_SIZE = {n: 16 for n in range(1, 103)}
+DRB_SIZE.update({n: 12 for n in list(range(1, 9)) + list(range(95, 103))})
+DRB_SIZE.update({48: 8, 49: 8, 54: 8, 55: 8, 43: 4, 60: 4})
+PART_SIZE = {"ct_hdp16p": 16, "ct_hdp16s": 16, "ct_hdp12p": 12, "ct_hdp12s": 12,
+             "pl_sz16": 16, "pl_114017": 16, "pl_sz12": 12, "pl_sz8": 8, "pl_sz4": 4}
+desig = {}   # bulkhead id -> {cavity id: physical number}
+for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
+    d = json.load(open(path, encoding="utf-8"))
+    for cn in d.get("connectors", []):
+        if cn["id"] not in LETTER:
+            continue
+        m = desig.setdefault(cn["id"], {})
+        for cv in cn.get("cavities", []):
+            num = str(cv.get("designation", ""))
+            if not num.isdigit() or int(num) not in DRB_SIZE:
+                bad.append("M8 %s %s designation %r is not a DRB102 cavity number (1-102)"
+                           % (cn["id"], cv["id"], num))
+                continue
+            m[cv["id"]] = int(num)
+            part = cv.get("contactPartId") or cv.get("cavityPlugPartId")
+            if PART_SIZE.get(part) != DRB_SIZE[int(num)]:
+                bad.append("M8 %s %s (DRB cavity %s, size %d) holds %s - not a size-%d part"
+                           % (cn["id"], cv["id"], num, DRB_SIZE[int(num)], part, DRB_SIZE[int(num)]))
+for fw, eng in PAIRS.items():
+    if desig.get(fw) != desig.get(eng):
+        diff = sorted(set(desig.get(fw, {}).items()) ^ set(desig.get(eng, {}).items()))
+        bad.append("M8 %s and %s disagree on the cavity map: %s" % (fw, eng, diff[:6]))
+phys = collections.Counter(desig.get("bh_a_fw", {}).values())
+phys.update(desig.get("bh_b_fw", {}).values())
+for n in sorted(DRB_SIZE):
+    if phys[n] != 1:
+        bad.append("M8 DRB102 cavity %d is used %d times across bulkheads A and B (must be 1)"
+                   % (n, phys[n]))
 
 for line in bad:
     print(line)

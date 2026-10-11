@@ -208,295 +208,295 @@
       "cavities": [
         {
           "id": "c1",
-          "designation": "1",
-          "signal": "spare (size 16) - was the shared shield *",
+          "designation": "52",
+          "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c2",
-          "designation": "2",
+          "designation": "23",
           "contactPartId": "ct_hdp16p",
           "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB"
         },
         {
           "id": "c3",
-          "designation": "3",
+          "designation": "26",
           "contactPartId": "ct_hdp16p",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch"
         },
         {
           "id": "c4",
-          "designation": "4",
+          "designation": "12",
           "contactPartId": "ct_hdp16p",
           "signal": "+8V Out to cam Hall"
         },
         {
           "id": "c5",
-          "designation": "5",
+          "designation": "20",
           "contactPartId": "ct_hdp16p",
           "signal": "Switched 12V to engine sensors"
         },
         {
           "id": "c6",
-          "designation": "6",
-          "signal": "spare",
+          "designation": "19",
+          "signal": "reserved - turbo speed shield drain (to A7), drawn in the shield redraw",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c7",
-          "designation": "7",
+          "designation": "17",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A30"
         },
         {
           "id": "c8",
-          "designation": "8",
+          "designation": "30",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A17"
         },
         {
           "id": "c9",
-          "designation": "9",
+          "designation": "21",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A31"
         },
         {
           "id": "c10",
-          "designation": "10",
-          "signal": "spare (size 20)",
+          "designation": "22",
+          "signal": "reserved - flex fuel shield drain (to A7), drawn in the shield redraw",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c11",
-          "designation": "11",
-          "signal": "spare (size 20)",
+          "designation": "27",
+          "signal": "reserved - ETB sensor group shield drain (to A7), drawn in the shield redraw",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c12",
-          "designation": "12",
-          "signal": "spare (size 20)",
+          "designation": "53",
+          "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c13",
-          "designation": "13",
+          "designation": "31",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A4"
         },
         {
           "id": "c14",
-          "designation": "14",
+          "designation": "32",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A3"
         },
         {
           "id": "c15",
-          "designation": "15",
+          "designation": "33",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A2"
         },
         {
           "id": "c16",
-          "designation": "16",
+          "designation": "34",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A1"
         },
         {
           "id": "c17",
-          "designation": "17",
+          "designation": "35",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A13"
         },
         {
           "id": "c18",
-          "designation": "18",
+          "designation": "36",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A12"
         },
         {
           "id": "c19",
-          "designation": "19",
+          "designation": "37",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A11"
         },
         {
           "id": "c20",
-          "designation": "20",
+          "designation": "38",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A10"
         },
         {
           "id": "c21",
-          "designation": "21",
+          "designation": "24",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A22"
         },
         {
           "id": "c22",
-          "designation": "22",
+          "designation": "25",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A33"
         },
         {
           "id": "c23",
-          "designation": "23",
+          "designation": "39",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A21"
         },
         {
           "id": "c24",
-          "designation": "24",
+          "designation": "9",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A8"
         },
         {
           "id": "c25",
-          "designation": "25",
+          "designation": "40",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A15"
         },
         {
           "id": "c26",
-          "designation": "26",
+          "designation": "41",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A16"
         },
         {
           "id": "c27",
-          "designation": "27",
-          "signal": "spare",
+          "designation": "56",
+          "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c28",
-          "designation": "28",
-          "signal": "spare (size 20)",
+          "designation": "57",
+          "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c29",
-          "designation": "29",
+          "designation": "13",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A9"
         },
         {
           "id": "c30",
-          "designation": "30",
-          "signal": "spare (size 20)",
+          "designation": "58",
+          "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c31",
-          "designation": "31",
-          "signal": "spare (size 20)",
+          "designation": "59",
+          "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c32",
-          "designation": "32",
-          "signal": "spare (size 20)",
+          "designation": "61",
+          "signal": "spare (size 16)",
           "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c33",
-          "designation": "33",
+          "designation": "11",
           "signal": "Crank VR screen",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c34",
-          "designation": "34",
+          "designation": "15",
           "signal": "Cam Hall screen",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c35",
-          "designation": "35",
+          "designation": "42",
           "signal": "MRS EPS pump logic enable (cabin fuse block c14, 7.5A) *",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c36",
-          "designation": "36",
+          "designation": "44",
           "signal": "Aux 7 MRS speed-out (ECU A27)",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c37",
-          "designation": "37",
+          "designation": "45",
           "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c38",
-          "designation": "38",
+          "designation": "46",
           "signal": "A/C coolant switch return -> A/C amplifier",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c39",
-          "designation": "39",
+          "designation": "28",
           "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c40",
-          "designation": "40",
+          "designation": "16",
           "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c41",
-          "designation": "41",
+          "designation": "10",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c42",
-          "designation": "42",
+          "designation": "14",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c43",
-          "designation": "43",
+          "designation": "18",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c44",
-          "designation": "44",
+          "designation": "29",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c45",
-          "designation": "45",
+          "designation": "47",
           "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c46",
-          "designation": "46",
+          "designation": "50",
           "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c47",
-          "designation": "47",
+          "designation": "51",
           "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c48",
-          "designation": "48",
+          "designation": "1",
           "signal": "Switched 12V - INJECTOR power feed, fuse F11 15A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
           "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c49",
-          "designation": "49",
+          "designation": "2",
           "signal": "Switched 12V - COP / ignition coil power feed, fuse F10 20A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
           "contactPartId": "ct_hdp12p"
         }
