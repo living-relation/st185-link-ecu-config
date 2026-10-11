@@ -89,14 +89,12 @@ Fallback, if that ever stops being true:
 | turbo speed, flex fuel, ETB sensor group (A22/A33) | 3- or 4-core cable (`cab_turbo`, `cab_flex`, `cab_etbs`) floats at the sensor → `bh_a_eng` c6 / c10 / c11 → `bh_a_fw` same → `sp_shield_a` → **A7** | own pin each, bulkhead A c6 / c10 / c11 (DRB 19 / 22 / 27, `docs/harness/DRB102-CAVITY-MAP.md`) |
 | ETB motor group (B18/B26), gearbox VSS, CAN-Lambda pair | ETB motor: 2-core 18 AWG cable floats at the ETB (A-engine spur `cab_etbm_ae`), broken off to B-engine `cab_etbm_be` → `bh_b_eng` c22 → `bh_b_fw` c22 → `sp_shield_b` → **B17**. VSS: `cab_vss` floats at the VSS → c23 → `sp_shield_b` → B17. CAN-Lambda: `cab_can_lam` floats at the Lambda → `cab_lamcan_be` → c24 → B-cabin `cab_canbh_bc` → the CAN screen splice `sp_shield_can` → B17 (see CAN row). Each drain has its own cavity; the old shared B c1 pigtail plan is dropped | own pin each, bulkhead B c22 / c23 / c24 (DRB 88 / 91 / 94) |
 | CAN trunk + drops (ECU/CSB3/cluster/RealDash) | CAN pair only (H/L); +12V/ground stay plain. Every segment is a 2-core shielded twisted pair (`cab_can_*` in ST185-CAN, `cab_can_csb_csb` in ST185-CSB3); the screens join at `sp_shield_can` and float at every node (ECU port, CSB3, cluster, RealDash, Lambda). One drain `w_shd_can` breaks off to B-cabin `sp_shield_b` → **B17** | none for the cabin drops; the Lambda leg uses bulkhead B c24 (row above) |
-| APS pedal — A group (VC2/GND2/VC1/GND1/VPA1) | **planned, not yet drawn** - `ST185-APS-Pedal` and its `IX_APS` inline connector were folded directly into A-cabin 2026-10-11 ("pedal is one cable in A-cabin"); the old plan to grow `IX_APS` a drain pin no longer applies - there is no inline connector to grow a pin on. A future shielded cable would need to float at the pedal and land its drain on a new bulkhead A cavity instead | new pin, bulkhead A (not `IX_APS` - retired) |
-| APS pedal — B group (VPA2) | **planned, not yet drawn** - same fold-in; the B33 leg is now a same-conductor break (`w_aps_vpa2` -> `br_w39`) straight from the pedal connector on A-cabin to B-cabin, no `IX_APS` involved | new pin, bulkhead B (not `IX_APS` - retired) |
+| APS pedal (VC1/GND1/VPA1, VC2/GND2/VPA2) | one 6-core shielded cable `cab_aps` on A-cabin, pedal to the ECU (2026-10-11, "pedal is one cable in A-cabin"); the screen floats at the pedal and drains at `sp_shield_a` → **A7**. The VPA2 core breaks off near the ECU to B-cabin (`w_aps_vpa2` → `br_w39` → B33, crossover (c)) | none — the pedal and the ECU are both in the cabin |
 
 Loom A screens land on A7 through `sp_shield_a`, loom B screens on B17 through
-`sp_shield_b`. Nothing but a drain lands on A7 or B17. The "planned, not yet drawn"
-rows above are what is left of the harness-reconcile pass's redraw list: only the APS
-pedal still draws loose, unshielded wires. Turbo speed, flex fuel, ETB, gearbox VSS and
-CAN were redrawn as shielded cables 2026-10-11 (plan §7.3). `docs/harness/audit_shields.py`
+`sp_shield_b`. Nothing but a drain lands on A7 or B17. The harness-reconcile pass's redraw list is
+done: turbo speed, flex fuel, ETB, gearbox VSS and CAN were redrawn as shielded cables
+2026-10-11 (plan §7.3), and the APS pedal as one shielded cable the same day. `docs/harness/audit_shields.py`
 only enforces what IS drawn; it does not
 yet flag these as failing because the device-level "Shield: yes" flags in
 `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` aren't cross-checked against the

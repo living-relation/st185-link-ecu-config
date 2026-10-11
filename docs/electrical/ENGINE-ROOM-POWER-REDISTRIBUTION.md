@@ -97,9 +97,9 @@ Rule: **one source per load** — never two paths feeding the same circuit.
 |---|---|---|
 | Starter motor | Battery cable + RADLOK + existing `k_str` for solenoid | Cranking amps |
 | 160 A alternator B+ | 4 AWG (or 2 AWG) to starter B+, does not recross | Heavy cable. Protected by a fusible link or inline fuse / breaker at the trunk battery or near the cabin fuse box, never at the starter (Daniel 2026-09-28) |
-| MRS EPS pump | `k_eps` HCR 150 in the glove box (moved from the engine bay 2026-09-28, `ST185-B-cabin`), LMI L7 Bussmann AMI-60 (was HCFB H4), 8 AWG feed (sized 2026-09-28, `sot/channels.csv` k_eps c1) | Too big for a micro relay |
+| MRS EPS pump | `k_eps` HCR 150 in the glove box beside the fuse box (moved from the engine bay 2026-09-28; drawn on `ST185-CabinPower` since 2026-10-11), LMI L7 Bussmann AMI-60 (was HCFB H4), 8 AWG feed (sized 2026-09-28, `sot/channels.csv` k_eps c1) | Too big for a micro relay |
 | Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Coils from Aux 5 / Ign 5 |
-| EFI main, ETB, fuel pump | Cabin relays in `ST185-A-cabin.harness` | Hold-power and Link's published ETB circuit |
+| EFI main, ETB, fuel pump | Relays seated in the glove-box fuse box, `ST185-CabinPower.harness` (coil wires on `ST185-A-cabin.harness`) | Hold-power and Link's published ETB circuit |
 | HEAD LH / HEAD RH | Relay + fuse, RFRM (CabinPower), into J/B2 2A-3 / 2A-6 | Replaces 15 A HEAD fuses in J/B2 |
 | HAZ-HORN | Fuse (+ horn relay if the car lacks one) into 2E-3 | Replaces 15 A HAZ-HORN |
 | DOME | Fuse only, always-hot, into 2E-4 | Replaces 20 A DOME |
@@ -325,9 +325,9 @@ see `docs/harness/README.md` for the current file map.
 
 | File | Owns |
 |---|---|
-| `docs/harness/rebuild/ST185-CabinPower.harness` | Glove-box fuse box (LMI + RFRM + 3x MTA, Option B 2026-10-11) - the box lives only here |
-| `docs/harness/rebuild/ST185-A-cabin.harness` | EFI / ETB / FP / start / rad fan relays, ECU 12 V, ECU-A pins, CSB3 plug and switch inputs (ECU loom letter rule, 2026-09-28) |
-| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU-B pins, condenser fan relay, CAN-Lambda cabin leg (bulkhead B c3/c4, c13/c14) |
+| `docs/harness/rebuild/ST185-CabinPower.harness` | Glove-box fuse box (LMI + RFRM + 3x MTA, Option B 2026-10-11) with every ECU-switched relay seated in it - the box lives only here |
+| `docs/harness/rebuild/ST185-A-cabin.harness` | EFI / ETB / FP / start / rad fan relay coil wires (relays in the box), ECU 12 V, ECU-A pins, CSB3 plug and switch inputs (ECU loom letter rule, 2026-09-28) |
+| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU-B pins, condenser fan / EPS / A/C clutch relay coil wires (relays in the box), CAN-Lambda cabin leg (bulkhead B c3/c4, c13/c14) |
 | `docs/harness/rebuild/ST185-A-engine.harness` | A-letter engine devices: MRS speed / enable cavities (bulkhead A c36 / c35), ETB sensors, injectors, coils |
 | `docs/harness/rebuild/ST185-B-engine.harness` | B-letter engine devices, ETB motor, injector / coil 12 V engine leg (Q-RAIL open) |
 | `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB (battery / RADLOK / ground studs), RADLOK, OEM injection blocks, EPS power, uprated fans. The old glove-box body block `gbx_body` and the PDB's fused outputs moved to `ST185-CabinPower` 2026-10-11; the OEM ends stay here, broken off |
@@ -374,17 +374,17 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI `LMI5-M-2-
 
 | # | Circuit | Was (before Option B) | Unit | Slot | Fuse (A) | Relay | Relay part | AWG | Note |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Bus 1 feed (permanent) | CabinPower hcfb h1 50A | LMI | L1 | 50 AMI | — | — | 10 | → RFRM Bus 1 stud |
+| 1 | Bus 1 feed (permanent) | CabinPower hcfb h1 50A | LMI | L1 | 50 AMI | — | — | 8 | → RFRM Bus 1 stud |
 | 2 | Radiator fan | hcfb h2 40A | MTA-1 | MaxiVal + Maxi R1 | 40 MAXI | k_fan | TE 1-1414147-0 (own) | 8 | Link Aux 5 A29 |
 | 3 | k_efi EFI main (→ Bus 2) | fusebox c1 30A / c15 | MTA-1 | MiniVal 1 + Maxi R2 | 30 MINI | k_efi | TE 1-1414147-0 (own) | 12 in / 10 out | Aux 6 A28 hold; 87 → RFRM Bus 2 |
-| 4 | Fuel pump | fusebox c2 25A | MTA-1 | MiniVal 2 + micro | 20 MINI | k_fp | TE 4-1904124-2 (own) | 12 | Aux 3 A19; pump 14.4 A |
+| 4 | Fuel pump | fusebox c2 25A | MTA-1 | MiniVal 2 + micro | 20 MINI | k_fp | TE 4-1904124-2 (own) | 12 in / 10 out | Aux 3 A19; pump 14.4 A |
 | 5 | Blower / heater | pdb c3 → R/B4 (40A) | MTA-2 | MaxiVal + Maxi R1 | 40 MAXI | heater | TE 1-1414147-0 (own) | 8 | coil: auto amp HR path |
-| 6 | Starter S | fusebox c4 30A | MTA-2 | MiniVal 1 + Maxi R2 | 30 MINI | k_str | TE 1-1414147-0 (BUY) | 12 | Aux 8 A26 |
+| 6 | Starter S | fusebox c4 30A | MTA-2 | MiniVal 1 + Maxi R2 | 30 MINI | k_str | TE 1-1414147-0 (BUY) | 12 in / 10 out | Aux 8 A26 |
 | 7 | ETB power | fusebox c3 10A | MTA-2 | MiniVal 2 + micro | 10 MINI | k_etb | TE 4-1904124-2 (own) | 16 | Aux 2 A20 → B5 |
 | 8 | MR-S EPS enable logic (F13) | fusebox c14 7.5A | MTA-2 | MiniVal 3 | 7.5 MINI | — | — | 20 | fed from k_eps_en 87 |
 | 9 | Condenser fan | hcfb h3 30A | MTA-3 | MaxiVal + Maxi R1 | 30 MAXI | k_fan2 | TE 1-1393304-0 (own, bracket: test-fit) | 8 | Ign 5 B13; plain relay, no diode |
 | 10 | Power windows/locks + tilt-away (ex-R/B2 POWER) | pdb c3 → R/B2 | LMI → MTA-3 | L2 + Maxi R2 | 30 AMI | power | TE 1-1393304-0 (own, bracket: test-fit) | 10 | coil: key IG; ATAS tap before relay |
-| 11 | A/C (ACPS) from heater-relay 87 | gbx_body c12 (5A drawn) | MTA-3 | MiniVal 1 | 10 MINI | — | — | 18 | plan 26.2 = 10 A; drawing 5 A → fix drawing |
+| 11 | A/C (ACPS) from heater-relay 87 | gbx_body c12 (5A drawn) | MTA-3 | MiniVal 1 | 10 MINI | — | — | 10 jumper / 18 out | plan 26.2 = 10 A; drawing 5 A → fix drawing |
 | 12 | B30 start request (ST1 tap) | Route 6/7 | MTA-3 | MiniVal 2 | 2 MINI | — | — | 20 | B-W from old R/B4 spot → DI7 B30 |
 | 13 | RTR pop-up headlights (OEM R8 relay) | gbx_body c8 30A | LMI | L3 | 30 AMI | — | no relay (OEM R8) | 10 | drawing shows relay 87 → remove |
 | 14 | AM1 → IE1-10 / I13-4 | pdb c6 40A | LMI | L4 | 40 AMI | — | — | 8 |  |
@@ -399,10 +399,10 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI `LMI5-M-2-
 | 23 | DOME | gbx_body c7 20A | RFRM | Bus 1 | 20 | — | — | 12 |  |
 | 24 | Wiper park | gbx_body c9 15A | RFRM | Bus 1 + micro | 15 | WP | TE 4-1904124-3 (own) | 14 | optional |
 | 25 | Alt excite | research list (not drawn) | RFRM | Bus 1 | 5 | — | — | 18 | add to drawing if kept |
-| 26 | CAN-Lambda +12V (F5) | fusebox c5 10A | RFRM | Bus 2 | 10 | — | — | 14 | → bulkhead B c3 |
-| 27 | Switched sensor rail / relay coils sp_sw12 (F9) | fusebox c9 10A + gbx_body c3 | RFRM | Bus 2 | 10 | — | — | 18 |  |
-| 28 | COP coil bank (F10) | fusebox c10 20A | RFRM | Bus 2 | 20 | — | — | 14 |  |
-| 29 | Injector bank (F11) | fusebox c11 15A | RFRM | Bus 2 | 15 | — | — | 14 |  |
+| 26 | CAN-Lambda +12V (F5) | fusebox c5 10A | RFRM | Bus 2 | 7.5 | — | — | 14 | → bulkhead B c3 |
+| 27 | Switched sensor rail / relay coils sp_sw12 (F9) | fusebox c9 10A + gbx_body c3 | RFRM | Bus 2 | 7.5 | — | — | 16 in / 18-20 out |  |
+| 28 | COP coil bank (F10) | fusebox c10 20A | RFRM | Bus 2 | 15 | — | — | 14 trunk / 16 branches |  |
+| 29 | Injector bank (F11) | fusebox c11 15A | RFRM | Bus 2 | 15 | — | — | 14 trunk / 16 branches |  |
 | 30 | CSB3 | gbx_body c10 5A | RFRM | Bus 2 | 5 | — | — | 18 | now k_efi rail (decided), drawing says permanent |
 | 31 | DEV: cluster + RealDash Pi | gbx_body c11 | RFRM | Bus 2 | 15 | — | — | 16 | one fuse as drawn |
 | 32 | k_eps_en contact feed | Route 7 / plan 18.1 | RFRM | Bus 2 + micro | TBD | k_eps_en | TE 6-1419137-4 (own) | 18 | Ign 6 B12 |
@@ -413,6 +413,31 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI `LMI5-M-2-
 - Trunk MEGA 300 A → 1/0 → Blue Sea 2127 + bus (glove box). That bus feeds: LMI input (M8), the 3 MTA module power inputs, and nothing else.
 - RFRM Bus 1 = permanent, from LMI L1 50 A. RFRM Bus 2 = switched, from k_efi 87 (MTA-1).
 - MTA MiniVal positions are fed one by one (A/C from heater-relay 87, B30 from ST1, F13 from k_eps_en 87, k_fp/k_etb/k_efi/k_str from the + bus). Confirm the 0301491 internal bus on MTA's drawing.
+
+**Fuse and wire sizing check (calculated 2026-10-11, Claude Code; the 2026-09-17 gauge rule)**
+
+Each fuse must protect the thinnest wire downstream of it, through splices, bulkheads and
+broken-off pairs. Basis: M22759/16 ETFE (150 C) in a bundle, conservative maximum fuse per
+gauge: 20 AWG 7.5 A, 18 AWG 10 A, 16 AWG 15 A, 14 AWG 20 A, 12 AWG 30 A, 10 AWG 40 A,
+8 AWG 60 A, 6 AWG 80 A. Six nets failed on the drawings and were fixed:
+
+| Net | Was | Now | Why |
+|---|---|---|---|
+| LMI L1 50 A → RFRM Bus 1 | 10 AWG | **8 AWG** | 10 AWG is good for 40 A |
+| MTA-2 HTR 40 A → MTA-3 ACPS IN jumper | 18 AWG | **10 AWG** | the jumper sits behind the 40 A heater fuse, ahead of the 10 A MiniVal |
+| RFRM SW12 | 10 A | **7.5 A** | 20 AWG rail branches (boost solenoid, flex, VSS, B-side rail); load is under 3 A (ECU +14V, relay coils, sensors) |
+| RFRM LAM | 10 A | **7.5 A** | 20 AWG feed to the CAN-Lambda; heater peak about 4 A |
+| RFRM COP | 20 A | **15 A**, branches **16 AWG** | 4 smart coils average well under 10 A; coil contacts take 20-16 AWG |
+| RFRM INJ 15 A | 18 AWG branches | **16 AWG** branches | injector contacts take 18-16 AWG |
+
+Voltage drop (copper about 6.2 mOhm/m for 12 AWG and 3.9 mOhm/m for 10 AWG at 105 C): the fuel
+pump feed (14.4 A, about 4.5 m to the trunk) drops about 0.40 V (3.3 %) on 12 AWG and about
+0.25 V (2.1 %) on 10 AWG; the starter S feed (solenoid pull-in about 35 A, about 3 m) drops
+about 0.65 V on 12 AWG and about 0.41 V on 10 AWG. Both go up to **10 AWG** (take the larger
+size). Fans (8 AWG, about 3 m): radiator fan 40 A drops about 0.31 V (2.6 %). EPS pump
+(8 AWG, about 3 m, 60 A peak): about 0.47 V at peak, about 0.25 V at a typical 30 A; stays
+8 AWG because the MR-S pump plug's Toyota terminals do not take 6 AWG. H5 alternator B+ is
+DECISIONS S6. Run lengths are estimates from the routes; re-check if a run grows.
 
 **Spare capacity**
 

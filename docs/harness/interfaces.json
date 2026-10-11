@@ -4,15 +4,15 @@
   "harnesses": {
     "A-cabin": {
       "file": "ST185-A-cabin.harness",
-      "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the A-triggered relays (fuse box - LMI + RFRM + 3x MTA, Option B - on ST185-CabinPower), APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
+      "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the A-pin relay coil (85) wires, broken off to the relays seated in the fuse box (ST185-CabinPower), APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
     },
     "B-cabin": {
       "file": "ST185-B-cabin.harness",
-      "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
+      "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, the B-pin relay coil (85) wires (k_fan2 / k_eps / k_acc in the fuse box, ST185-CabinPower), fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
     },
     "CabinPower": {
       "file": "ST185-CabinPower.harness",
-      "physical": "Cabin power (non-ECU): the glove-box fuse box (LMI + RFRM + 3x MTA, Option B), battery feed ring, fuel pump run to the trunk; feeds to the A-cabin / B-cabin relays and splices, CSB3 and the EngineRoom-C OEM ends arrive broken off"
+      "physical": "Cabin power (non-ECU): the glove-box fuse box (LMI + RFRM + 3x MTA, Option B) with the ECU-switched relays seated in it (k_fan2 / k_efi / k_fp / k_str / k_etb / k_fan / k_acc, k_eps HCR150 beside), battery feed ring, fuel pump run to the trunk; ECU coil wires from A-cabin / B-cabin and the A-cabin, B-cabin, A-engine, CSB3 and EngineRoom-C ends arrive broken off"
     },
     "A-engine": {
       "file": "ST185-A-engine.harness",
@@ -614,6 +614,20 @@
       }
     },
     {
+      "id": "FL_A4_4",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_a4_4",
+      "ewd": {
+        "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png); 1992 EWD132U locator A4",
+        "connector": "A4",
+        "pin": "4",
+        "color": "B-W (factory wiring; new wire here)",
+        "function": "A/C magnet clutch <- k_acc 87 (Link Ign 8, B10; A5 pressure switch in the coil feed)",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
+      }
+    },
+    {
       "id": "FL_ACAMP_PSW",
       "type": "oem_flying_lead",
       "harness": "A-cabin",
@@ -857,21 +871,6 @@
       ]
     },
     {
-      "id": "BR_W_K_FAN2_86",
-      "type": "broken_off",
-      "what": "switched 12V from sp_sw12 (cabin)",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w_k_fan2_86"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_k_fan2_86"
-        }
-      ]
-    },
-    {
       "id": "BR_W_RAIL_5V_B_C",
       "type": "broken_off",
       "what": "+5V trunk (18 AWG) from sp_5v at ECU A to the loom B splice sp_5v_b (crossover a)",
@@ -902,51 +901,6 @@
       ]
     },
     {
-      "id": "BR_W_K_EPS_86",
-      "type": "broken_off",
-      "what": "switched 12V from sp_sw12 (cabin)",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w_k_eps_86"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_k_eps_86"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_FB_K_FAN2_30",
-      "type": "broken_off",
-      "what": "MTA-3 FAN2 30A feed to the condenser fan relay 30",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w_fb_k_fan2_30"
-        },
-        {
-          "harness": "CabinPower",
-          "terminal": "br_w_fb_k_fan2_30"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_FB_K_EPS_30",
-      "type": "broken_off",
-      "what": "LMI L7 feed to the EPS relay 30",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w_fb_k_eps_30"
-        },
-        {
-          "harness": "CabinPower",
-          "terminal": "br_w_fb_k_eps_30"
-        }
-      ]
-    },
-    {
       "id": "BR_W82",
       "type": "broken_off",
       "what": "ETB relay 87 to ECU-B B5 (crossover b)",
@@ -956,7 +910,7 @@
           "terminal": "br_w82"
         },
         {
-          "harness": "A-cabin",
+          "harness": "CabinPower",
           "terminal": "br_w82"
         }
       ]
@@ -979,7 +933,7 @@
     {
       "id": "BR_W_COP_PWR_C",
       "type": "broken_off",
-      "what": "RFRM COP 20A COP rail to bulkhead A firewall (bh_a_fw c49, shared DRB102)",
+      "what": "RFRM COP 15A COP rail to bulkhead A firewall (bh_a_fw c49, shared DRB102)",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1151,7 +1105,7 @@
           "terminal": "br_w_fan_pwr"
         },
         {
-          "harness": "A-cabin",
+          "harness": "CabinPower",
           "terminal": "br_w_fan_pwr"
         }
       ]
@@ -1166,7 +1120,7 @@
           "terminal": "br_w_fan2_pwr"
         },
         {
-          "harness": "B-cabin",
+          "harness": "CabinPower",
           "terminal": "br_w_fan2_pwr"
         }
       ]
@@ -1181,7 +1135,7 @@
           "terminal": "br_w_eps_pwr"
         },
         {
-          "harness": "B-cabin",
+          "harness": "CabinPower",
           "terminal": "br_w_eps_pwr"
         }
       ]
@@ -1241,7 +1195,7 @@
           "terminal": "br_w_strl"
         },
         {
-          "harness": "A-cabin",
+          "harness": "CabinPower",
           "terminal": "br_w_strl"
         }
       ]
@@ -1367,36 +1321,6 @@
       ]
     },
     {
-      "id": "BR_W77",
-      "type": "broken_off",
-      "what": "RFRM Bus 2 IN to EFI Main Relay 87",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w77"
-        },
-        {
-          "harness": "CabinPower",
-          "terminal": "br_w77"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_FPUMP",
-      "type": "broken_off",
-      "what": "Fuel Pump c1 to Fuel Pump Relay 87",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_fpump"
-        },
-        {
-          "harness": "CabinPower",
-          "terminal": "br_w_fpump"
-        }
-      ]
-    },
-    {
       "id": "BR_W_FB_SW12",
       "type": "broken_off",
       "what": "RFRM SW12 to sp_sw12",
@@ -1423,96 +1347,6 @@
         {
           "harness": "CabinPower",
           "terminal": "br_w_fb_ecu"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_FB_K_EFI_30",
-      "type": "broken_off",
-      "what": "MTA-1 EFI to EFI Main Relay 30",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_fb_k_efi_30"
-        },
-        {
-          "harness": "CabinPower",
-          "terminal": "br_w_fb_k_efi_30"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_K_EFI_86",
-      "type": "broken_off",
-      "what": "RFRM EFI86 to EFI Main Relay 86",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_k_efi_86"
-        },
-        {
-          "harness": "CabinPower",
-          "terminal": "br_w_k_efi_86"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_FB_K_FP_30",
-      "type": "broken_off",
-      "what": "MTA-1 FP to Fuel Pump Relay 30",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_fb_k_fp_30"
-        },
-        {
-          "harness": "CabinPower",
-          "terminal": "br_w_fb_k_fp_30"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_FB_K_ETB_30",
-      "type": "broken_off",
-      "what": "MTA-2 ETB to ETB Power Relay 30",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_fb_k_etb_30"
-        },
-        {
-          "harness": "CabinPower",
-          "terminal": "br_w_fb_k_etb_30"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_FB_K_STR_30",
-      "type": "broken_off",
-      "what": "MTA-2 STR to Start Relay 30",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_fb_k_str_30"
-        },
-        {
-          "harness": "CabinPower",
-          "terminal": "br_w_fb_k_str_30"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_FB_K_FAN_30",
-      "type": "broken_off",
-      "what": "MTA-1 FAN to Radiator Fan Relay 30",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_fb_k_fan_30"
-        },
-        {
-          "harness": "CabinPower",
-          "terminal": "br_w_fb_k_fan_30"
         }
       ]
     },
@@ -1564,7 +1398,7 @@
     {
       "id": "BR_AC_MG",
       "type": "broken_off",
-      "what": "A/C magnetic clutch A4-3 <- amplifier A18-5 (fl_acamp_mg on A-cabin, fl_a4_3 on EngineRoom-C)",
+      "what": "A/C VC control coil A4-3 (not fitted) <- amplifier A18-5 (fl_acamp_mg on A-cabin, fl_a4_3 on EngineRoom-C)",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1832,17 +1666,242 @@
       ]
     },
     {
-      "id": "BR_W_FB_K_ACC_30",
+      "id": "BR_W76",
       "type": "broken_off",
-      "what": "RFRM ACC 10A feed to the A/C clutch relay 30",
+      "what": "EFI Main Relay 85 (k_efi) <- ECU-A A28",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w76"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w76"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FP85",
+      "type": "broken_off",
+      "what": "Fuel Pump Relay 85 (k_fp) <- ECU-A A19",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fp85"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fp85"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FAN85",
+      "type": "broken_off",
+      "what": "Radiator Fan Relay (on/off) 85 (k_fan) <- ECU-A A29",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_fan85"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fan85"
+        }
+      ]
+    },
+    {
+      "id": "BR_W81",
+      "type": "broken_off",
+      "what": "ETB Power Relay 85 (k_etb) <- ECU-A A20",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w81"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w81"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_STR85",
+      "type": "broken_off",
+      "what": "Start Relay 85 (k_str) <- ECU-A A26",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_str85"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_str85"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FAN285",
+      "type": "broken_off",
+      "what": "Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_fan285"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fan285"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_EPS_TRIG",
+      "type": "broken_off",
+      "what": "MR-S EHPS pump relay (HCR150, glove box) 85 (k_eps) <- ECU-B B12",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_eps_trig"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_eps_trig"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_ACC_TRIG",
+      "type": "broken_off",
+      "what": "A/C Clutch Relay (on/off) 85 (k_acc) <- ECU-B B10",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_acc_trig"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_acc_trig"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_ACC86",
+      "type": "broken_off",
+      "what": "A/C dual pressure switch A5-4 (switched, via sp_ac_psw) -> A/C Clutch Relay 86 (k_acc c3)",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_acc86"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_acc86"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_ACC_CLUTCH",
+      "type": "broken_off",
+      "what": "A/C Clutch Relay 87 (k_acc c4) -> A/C magnet clutch A4-4 (fl_a4_4)",
       "ends": [
         {
           "harness": "CabinPower",
-          "terminal": "br_w_fb_k_acc_30"
+          "terminal": "br_w_acc_clutch"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_acc_clutch"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_START_IN",
+      "type": "broken_off",
+      "what": "Ignition switch ST1 tap (fl_start_req_c1) -> MTA-3 B30 IN",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_start_in"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_start_in"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_START_OUT",
+      "type": "broken_off",
+      "what": "MTA-3 B30 2A MiniVal out -> ECU-B B30 (DI 7)",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_start_out"
         },
         {
           "harness": "B-cabin",
-          "terminal": "br_w_fb_k_acc_30"
+          "terminal": "br_w_start_out"
+        }
+      ]
+    },
+    {
+      "id": "BR_T_AT_12V",
+      "type": "broken_off",
+      "what": "RFRM ALM 5A (Bus 1, permanent) -> alarm +12V constant",
+      "ends": [
+        {
+          "harness": "AntiTheft",
+          "terminal": "t_at_12v"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "t_at_12v"
+        }
+      ]
+    },
+    {
+      "id": "BR_T_AT_12V_SHK",
+      "type": "broken_off",
+      "what": "RFRM ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
+      "ends": [
+        {
+          "harness": "AntiTheft",
+          "terminal": "t_at_12v_shk"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "t_at_12v_shk"
+        }
+      ]
+    },
+    {
+      "id": "BR_T_AT_IG",
+      "type": "broken_off",
+      "what": "RFRM ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
+      "ends": [
+        {
+          "harness": "AntiTheft",
+          "terminal": "t_at_ig"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "t_at_ig"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_DEV",
+      "type": "broken_off",
+      "what": "RFRM DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_dev"
+        },
+        {
+          "harness": "CAN",
+          "terminal": "br_w_dev"
         }
       ]
     }

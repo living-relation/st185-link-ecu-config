@@ -26,7 +26,7 @@
         {
           "id": "c3",
           "designation": "95",
-          "signal": "CAN-Lambda +12V, RFRM LAM 10A (14 AWG)",
+          "signal": "CAN-Lambda +12V, RFRM LAM 7.5A (14 AWG)",
           "contactPartId": "ct_hdp12s"
         },
         {
@@ -2153,26 +2153,6 @@
         "source": "url",
         "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399.webp",
         "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399_200x.webp"
-      }
-    },
-    {
-      "partNumber": "HDP26-24-21SN",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 21 POS, SOCKET CONTACTS, N SEAL",
-      "numberOfCavities": 21,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "cavityPlugPartId": "pl_sz16"
-        }
-      ],
-      "id": "cp_hdp_b_eng",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/catalog/common/images/PartImages/prhdp26-24-21sn.jpg",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp26-24-21sn.jpg"
       }
     },
     {
