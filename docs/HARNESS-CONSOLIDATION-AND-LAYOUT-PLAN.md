@@ -1256,6 +1256,14 @@ Bulkhead A is HDP24-24-47, which is 5 size 16 plus 42 size 20 - the same shell
 size 24 and the same contact system. So the CSB3 box lands on one contact
 family, one crimp tool, one removal tool for the whole car.
 
+**Superseded 2026-10-10:** bulkhead A/B moved to the DRB102 family
+(`DRB12-102PAE-L018` + `DRBF-1A` / `DRB16-102SAE-L018`, `BULKHEAD-OPTIONS`
+2026-09-29) - see `.claude/rules/harness-wiring-conventions.md`. The contact-family
+argument above is historical reasoning from the HDP20 era; whether DRB102 uses
+the same size-20/size-16 contact system (so the "one crimp tool" conclusion still
+holds) has not been re-checked. `docs/OPEN-ITEMS.md` tracks the open DRB102
+cavity-map / contact-compat gap.
+
 ### Parts
 
 | Role | Part number | Notes |
@@ -1381,15 +1389,21 @@ Fuel level and fuel pump come **out of** `ST185-B-ECU`, where they sit today.
 
 #### Physical layout
 
-Settled 2026-09-22.
+Settled 2026-09-22; **superseded 2026-10-10 (Section 32 of the harness-reconcile
+pass, Dan: "vrc x2")**: the rear VRC box moved from the rear driver-side frame to
+**mid-dash, right above the ECU, side by side with the front VRC box**. Its sensor
+cables now run the long way (LH sill -> driver kick -> mid-dash) instead of a short
+run from the back seat.
 
-- The **rear VRC box** sits at the rear driver-side frame, in the back seat area.
+- The **rear VRC box** sits mid-dash, above the ECU, beside the front VRC box.
 - The **fuel tank** is all the way back in the trunk.
 
-So the pump and level-sender runs are long, and the VRC is not near either. The
-pump and sender wires **run in the same bundle as the VRC harness for packaging**,
-but their connectors are in different places. Nothing is co-located just because
-it shares a loom.
+The pump and level-sender runs stay long either way, but the rear VRC move drops
+the old reason they shared a bundle. **The "same bundle as the VRC harness for
+packaging" note below no longer applies** - fuel level / pump wiring moved to the
+passenger side (Route 6 rev 2, Section 25) while the VRC sensor cables run the LH
+sill; they are not packaged together. Kept for history: Nothing is co-located just
+because it shares a loom.
 
 #### Junction: an inline connector, signals only
 
