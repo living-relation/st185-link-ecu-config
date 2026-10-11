@@ -378,6 +378,18 @@ is no more shell-24 HDP housing to backshell, gasket, or panel-nut.
 it tracks ECU signal channels, and the injector/COP power feeds were never recorded
 there as rows.
 
+## Settled 2026-10-11 (Daniel) - final, do not re-ask
+
+| # | Decision | Recorded detail |
+|---|---|---|
+| S1 | **MR-S EPS speed signal** (Link Aux 7, A27 -> pump B pin 2): start from the OEM vehicle-speed pulse rate the MR-S pump expects for its model years, and keep the ECU output's pulse range adjustable so the assist level can be tuned. | Exact rate and output setup are set at ECU setup time (`docs/OPEN-ITEMS.md` setup-time table). |
+| S2 | **All ECU settings happen at setup time** (no ECU on hand now): PCLink setting names, output config, tuning. They are a setup-time group in the tracker, not open questions. Outputs are named by ECU connector + pin and/or the Link XtremeX Quick Start Guide pin label (e.g. "B12 / Ign 6"). | `docs/OPEN-ITEMS.md` setup-time table. |
+| S3 | **Front wheel-speed sensor plug: designer's choice.** Chosen: keep what is drawn - a sealed Deutsch DT 2-way at each front sensor (`DT06-2S` on `ST185-WheelSpeed-Front`, `wss_fl` / `wss_fr`; owned size-16 contacts), the same family as the rear and the fuel-level sender. | Note: the drawing does not use the OEM ABS 2-pin housing; if the sensor keeps its OEM pigtail, a `DT04-2P` goes on that pigtail. |
+| S4 | **+5V (A32) load is an engineering estimate, not a question.** Consumers on `sp_5v`: MAP, fuel and oil pressure (Lowdoller 899005 / 7990150 x2), coolant pressure (Ronybuy), ETB TPS (2 tracks), APS pedal (2 tracks), turbo speed (BorgWarner 179430), 2 VRC boards (NCV1124). Upper bound from the usual supply current of each sensor class (ratiometric pressure sensor <= 10 mA, Hall/pot track <= 10 mA, Hall speed sensor <= 20 mA, NCV1124 board <= 10 mA): 4 x 10 + 4 x 10 + 20 + 2 x 10 = **about 120 mA worst case, about 60 mA typical**. | Not datasheet-confirmed per part; the Link +5V Out current limit is not in the local Link PDFs, so compare at setup time (PCLink help) - setup-time table. |
+| S5 | **DTM seals: closed.** Every DTM connector uses its built-in seals; no separate core-OD rule is added. | - |
+| S6 | **Heavy cable sizes are calculated** (amps, run length, temperature - the 2026-09-17 gauge rule in `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md`), never asked. H5 alternator B+ (`w_alt`): 160 A peak; 2 AWG copper is about 0.51 mOhm/m at 20 C, about 0.68 mOhm/m at 105 C, so a ~1.5 m bay run drops about 0.16 V (1.4 %) at 160 A. 4 AWG (about 1.1 mOhm/m hot) would drop about 0.26 V (2.2 %) and run hotter, with less margin for the peak-current-plus-margin rule. **H5 stays 2 AWG**, as drawn. | Run length is an estimate from Route 1 (not drawn as a length); re-check if the route grows past ~3 m. |
+| S7 | **No configs are pending:** RealDash and the center cluster are already configured; the CSB3 is not bought yet, so its CAN/input assignments wait for setup (its harness stays drawn). | `docs/OPEN-ITEMS.md` setup-time table. |
+
 ## Harness reconcile plan (2026-09-29 to 2026-10-11) - retired 2026-10-11
 
 The harness reconcile plan (`HARNESS-RECONCILE-PLAN.html`, local-only, never committed) was
