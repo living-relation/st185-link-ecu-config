@@ -1,7 +1,13 @@
 # A/C amplifier spur labels (2026-09-30)
 
-Three circuits land on `ST185-ACAmp-Spur` as labeled flying leads. No OEM A/C
-housings are in the loom. Solar sensor is not drawn. Ambient (TAM / TAM_RTN) is
+**`ST185-ACAmp-Spur` was retired 2026-10-11** (harness-reconcile pass, step 2):
+the amplifier-side leads (`fl_acamp_tw`, `fl_acamp_sg`, `fl_acamp_act`,
+`fl_acamp_mg`, `fl_acamp_psw`) are now drawn on `ST185-A-cabin`; the two
+device-side leads (`fl_a4_3`, `fl_a5_4`) are on `ST185-EngineRoom-C`, crossing
+between the two files as broken-off pairs `BR_AC_MG` / `BR_AC_PSW`
+(`docs/harness/interfaces.json`). The pin/colour/source facts below are
+unchanged - only which file draws each terminal changed. No OEM A/C
+housings are in either file. Solar sensor is not drawn. Ambient (TAM / TAM_RTN) is
 not this pass.
 
 Daniel (2026-09-30): 1990–1993 A/C amplifier and auto A/C amplifier pinouts are
@@ -26,7 +32,12 @@ Existing coolant-thermistor leads (not this pass, already on the spur):
 | `fl_acamp_tw` | AUTO A/C AMPLIFIER **A34 pin 20** | R-G | TW - heater-core water temp thermistor (dash, on the heater housing), not an engine coolant switch | 1990 p.150 (`1990-st185-autoac-amplifier-p150.png`); **corrected 2026-10-04** per 1993 TIS EWD p.211 and Mitchell component locations |
 | `fl_acamp_sg` | A34 return **TBD** | TBD | TW return (thermistor, not a switch) | 1990 p.150 does not show the return pin — do not invent |
 
-Kill copper: ECU-A A18 Aux 4 (Gray 20 AWG, this harness) on `ST185-A-cabin` → broken-off `br_w_ac_kill` → `fl_acamp_act` on this spur. Factory ACT colour is G-Y; splice the Gray lead into that G-Y at A18-11.
+Kill copper: ECU-A A18 Aux 4 (Gray 20 AWG) wires straight to `fl_acamp_act`, both on `ST185-A-cabin` now (no break needed since the kill switch output and the amplifier lead are in the same file). Factory ACT colour is G-Y; splice the Gray lead into that G-Y at A18-11.
+
+Since 2026-10-11, `fl_a4_3` and `fl_a5_4` are new-wire runs terminated at the
+clutch/pressure-switch's own mating plug, not solder-sleeved into factory
+wire (Section 39, no factory engine-bay wire reused) - the plug part numbers
+are not yet chosen.
 
 ## Assumptions
 

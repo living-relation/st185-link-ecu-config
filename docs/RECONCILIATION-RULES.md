@@ -59,7 +59,6 @@ every commit.
 | `docs/harness/rebuild/ST185-EngineRoom-C.harness` | Loom C engine room, no bulkhead |
 | `docs/harness/rebuild/ST185-WheelSpeed-Front.harness` / `-Rear.harness` | Wheel-speed Y harnesses to VRC endpoints and `IX_WS_FRONT` / `IX_WS_REAR` |
 | `docs/harness/rebuild/ST185-RearFuel.harness` | Fuel level sender behind `IX_FUEL_LVL` |
-| `docs/harness/rebuild/ST185-ACAmp-Spur.harness` | A/C amplifier spur behind `IX_AC_CTS` |
 | `docs/harness/interfaces.json` | Ownership registry: interfaces, endpoints, flying leads, references |
 | `docs/harness/rebuild/ST185-ClusterLED.harness` | Cluster warning LEDs |
 | `docs/harness/rebuild/ST185-AntiTheft.harness` | Anti-theft |
@@ -230,7 +229,9 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
   `ST185-CabinPower` (Daniel, 2026-09-28, same reason). The relays stay on `ST185-A-cabin`:
   their ECU-A trigger gives them letter A.
 - Every other loom stays as it is: `EngineRoom-C`, `CAN`, `ClusterLED`, `AntiTheft`,
-  `WheelSpeed-Front` / `-Rear`, `RearFuel`, `ACAmp-Spur`.
+  `WheelSpeed-Front` / `-Rear`, `RearFuel`, `HeavyDC`. `ACAmp-Spur` and `APS-Pedal` were
+  retired 2026-10-11 - their non-ECU content folded into `A-cabin` (and, for the A/C
+  device-side leads, `EngineRoom-C`); crossover (c) below covers what crosses letters.
 
 **Enforced by** `docs/harness/validate_bulkhead_letter.py`, a hard gate in `check_all.py`.
 Its allow-list is (a)-(c) and nothing else.
