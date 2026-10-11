@@ -34,6 +34,10 @@
       "file": "ST185-EngineRoom-C.harness",
       "physical": "Loom C - engine-room / high-current harness"
     },
+    "HeavyDC": {
+      "file": "ST185-HeavyDC.harness",
+      "physical": "Heavy DC chain (Route 1) - trunk battery, RADLOK firewall pair, starter, 160 A alternator B+, engine-bay jump post, engine block ground. Hands off to EngineRoom-C at the cabin PDB (breaks H1/H2/H3/H6a) - the PDB itself, and everything else it feeds (cabin fuse block, glove-box body block, OEM hot, AM1/AM2), stays on EngineRoom-C."
+    },
     "ClusterLED": {
       "file": "ST185-ClusterLED.harness",
       "physical": "Cluster warning LEDs"
@@ -779,6 +783,66 @@
     }
   ],
   "breaks": [
+    {
+      "id": "BR_H1_BATT_POS",
+      "type": "broken_off",
+      "what": "H1 - trunk battery + to cabin PDB c1 (BAT+)",
+      "ends": [
+        {
+          "harness": "HeavyDC",
+          "terminal": "br_h1_batt_pos"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_h1_batt_pos"
+        }
+      ]
+    },
+    {
+      "id": "BR_H2_BATT_NEG",
+      "type": "broken_off",
+      "what": "H2 - trunk battery - to cabin PDB c8 (GND bus)",
+      "ends": [
+        {
+          "harness": "HeavyDC",
+          "terminal": "br_h2_batt_neg"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_h2_batt_neg"
+        }
+      ]
+    },
+    {
+      "id": "BR_H3_RADLOK_POS",
+      "type": "broken_off",
+      "what": "H3 - cabin PDB c2 (ALT/STR) to RADLOK +",
+      "ends": [
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_h3_radlok_pos"
+        },
+        {
+          "harness": "HeavyDC",
+          "terminal": "br_h3_radlok_pos"
+        }
+      ]
+    },
+    {
+      "id": "BR_H6A_RADLOK_NEG",
+      "type": "broken_off",
+      "what": "H6a - cabin PDB c8 (GND bus) to RADLOK -",
+      "ends": [
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_h6a_radlok_neg"
+        },
+        {
+          "harness": "HeavyDC",
+          "terminal": "br_h6a_radlok_neg"
+        }
+      ]
+    },
     {
       "id": "BR_W_B25",
       "type": "broken_off",

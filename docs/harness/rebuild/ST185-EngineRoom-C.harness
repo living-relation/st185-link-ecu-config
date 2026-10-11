@@ -137,90 +137,6 @@
       "partId": "cp_gbx_body"
     },
     {
-      "id": "rl_pos_fw",
-      "label": "RADLOK + firewall",
-      "width": 150,
-      "schematicPosition": {
-        "x": 660,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 3510,
-        "y": 270
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "heavy DC +"
-        }
-      ],
-      "partId": "cp_rl_red_eng"
-    },
-    {
-      "id": "rl_pos_eng",
-      "label": "RADLOK + engine",
-      "width": 150,
-      "schematicPosition": {
-        "x": 660,
-        "y": 120
-      },
-      "layoutPosition": {
-        "x": 3270,
-        "y": 270
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "heavy DC +"
-        }
-      ],
-      "partId": "cp_rl_red_eng"
-    },
-    {
-      "id": "rl_neg_fw",
-      "label": "RADLOK - firewall",
-      "width": 150,
-      "schematicPosition": {
-        "x": 660,
-        "y": 240
-      },
-      "layoutPosition": {
-        "x": 3630,
-        "y": 180
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "heavy DC -"
-        }
-      ],
-      "partId": "cp_rl_blk_eng"
-    },
-    {
-      "id": "rl_neg_eng",
-      "label": "RADLOK - engine",
-      "width": 150,
-      "schematicPosition": {
-        "x": 660,
-        "y": 360
-      },
-      "layoutPosition": {
-        "x": 3390,
-        "y": 180
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "heavy DC -"
-        }
-      ],
-      "partId": "cp_rl_blk_eng"
-    },
-    {
       "id": "oem_jb2_2a",
       "label": "OEM J/B2 2A (engine room main)",
       "width": 390,
@@ -386,27 +302,6 @@
       "partId": "cp_dthd_1_8s"
     },
     {
-      "id": "jump_pos",
-      "label": "Engine-bay jump post",
-      "width": 270,
-      "schematicPosition": {
-        "x": 660,
-        "y": 840
-      },
-      "layoutPosition": {
-        "x": 2790,
-        "y": -330
-      },
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Tied to starter B+ / RADLOK +"
-        }
-      ],
-      "partId": "cp_jump"
-    },
-    {
       "id": "mrs_eps",
       "label": "MR-S EHPS pump (A power / B signal / C ignition)",
       "width": 390,
@@ -517,109 +412,56 @@
   ],
   "terminals": [
     {
-      "id": "t_trunk_pos",
-      "type": "Ring",
-      "signal": "Trunk battery +  (1/0, jump lug)",
-      "width": 270,
+      "id": "br_h1_batt_pos",
+      "type": "Loose",
+      "signal": "H1 - broken off, continues on ST185-HeavyDC: cabin PDB c1 (BAT+) <- trunk battery +",
       "schematicPosition": {
         "x": 0,
         "y": 0
       },
       "layoutPosition": {
-        "x": 5790,
+        "x": 5550,
         "y": 240
-      },
-      "partId": "tp_lug_m10_50"
+      }
     },
     {
-      "id": "t_trunk_neg",
-      "type": "Ring",
-      "signal": "Trunk battery -  (1/0, jump lug)",
-      "width": 270,
+      "id": "br_h2_batt_neg",
+      "type": "Loose",
+      "signal": "H2 - broken off, continues on ST185-HeavyDC: cabin PDB c8 (GND bus) <- trunk battery -",
       "schematicPosition": {
         "x": 0,
-        "y": 90
+        "y": 60
       },
       "layoutPosition": {
-        "x": 5910,
+        "x": 5670,
         "y": 150
-      },
-      "partId": "tp_lug_m10_50"
+      }
     },
     {
-      "id": "t_starter_b",
-      "type": "Ring",
-      "signal": "Starter B+ post, jump lug, 1/0",
-      "width": 270,
+      "id": "br_h3_radlok_pos",
+      "type": "Loose",
+      "signal": "H3 - broken off, continues on ST185-HeavyDC: cabin PDB c2 (ALT/STR) -> RADLOK +",
       "schematicPosition": {
-        "x": 660,
-        "y": 480
+        "x": 0,
+        "y": 120
       },
       "layoutPosition": {
-        "x": 2310,
-        "y": -240
-      },
-      "partId": "tp_lug_m10_50"
+        "x": 3870,
+        "y": 270
+      }
     },
     {
-      "id": "t_starter_b_2",
-      "type": "Ring",
-      "signal": "Starter B+ post - lug 2, 2 AWG from alt",
-      "width": 390,
+      "id": "br_h6a_radlok_neg",
+      "type": "Loose",
+      "signal": "H6a - broken off, continues on ST185-HeavyDC: cabin PDB c8 (GND bus) -> RADLOK -",
       "schematicPosition": {
-        "x": 660,
-        "y": 570
+        "x": 0,
+        "y": 180
       },
       "layoutPosition": {
-        "x": 2550,
-        "y": -180
-      },
-      "partId": "tp_lug_m10_2"
-    },
-    {
-      "id": "t_starter_b_3",
-      "type": "Ring",
-      "signal": "Starter B+ post - lug 3, 2 AWG to jump post",
-      "width": 390,
-      "schematicPosition": {
-        "x": 660,
-        "y": 660
-      },
-      "layoutPosition": {
-        "x": 2670,
-        "y": -240
-      },
-      "partId": "tp_lug_m10_2"
-    },
-    {
-      "id": "t_alt_b",
-      "type": "Ring",
-      "signal": "160 A alternator B+, 2 AWG to starter B+",
-      "width": 390,
-      "schematicPosition": {
-        "x": 660,
-        "y": 750
-      },
-      "layoutPosition": {
-        "x": 1620,
-        "y": -150
-      },
-      "partId": "tp_lug_m8_2"
-    },
-    {
-      "id": "t_eng_block",
-      "type": "Ring",
-      "signal": "Engine block ground stud, 1/0, jump lug",
-      "width": 390,
-      "schematicPosition": {
-        "x": 660,
-        "y": 960
-      },
-      "layoutPosition": {
-        "x": 2070,
-        "y": -90
-      },
-      "partId": "tp_lug_m10_50"
+        "x": 3870,
+        "y": 180
+      }
     },
     {
       "id": "t_eng_block_2",
@@ -883,10 +725,10 @@
   ],
   "wires": [
     {
-      "id": "w_trunk_pos",
+      "id": "w_h1_pdb",
       "color": "Red",
       "source": {
-        "id": "t_trunk_pos",
+        "id": "br_h1_batt_pos",
         "handle": "Terminal"
       },
       "target": {
@@ -896,10 +738,10 @@
       "partId": "wp_1_0_red"
     },
     {
-      "id": "w_trunk_neg",
+      "id": "w_h2_pdb",
       "color": "Black",
       "source": {
-        "id": "t_trunk_neg",
+        "id": "br_h2_batt_neg",
         "handle": "Terminal"
       },
       "target": {
@@ -916,62 +758,10 @@
         "handle": "c2"
       },
       "target": {
-        "id": "rl_pos_fw",
-        "handle": "c1"
-      },
-      "partId": "wp_1_0_red"
-    },
-    {
-      "id": "w_rl_pos",
-      "color": "Red",
-      "source": {
-        "id": "rl_pos_fw",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "rl_pos_eng",
-        "handle": "c1"
-      },
-      "partId": "wp_1_0_red"
-    },
-    {
-      "id": "w_rlp_str",
-      "color": "Red",
-      "source": {
-        "id": "rl_pos_eng",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "t_starter_b",
+        "id": "br_h3_radlok_pos",
         "handle": "Terminal"
       },
       "partId": "wp_1_0_red"
-    },
-    {
-      "id": "w_alt",
-      "color": "Red",
-      "source": {
-        "id": "t_alt_b",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "t_starter_b_2",
-        "handle": "Terminal"
-      },
-      "partId": "wp_2_red"
-    },
-    {
-      "id": "w_jump",
-      "color": "Red",
-      "source": {
-        "id": "t_starter_b_3",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "jump_pos",
-        "handle": "c1"
-      },
-      "partId": "wp_2_red"
     },
     {
       "id": "w_pdb_rln",
@@ -981,33 +771,7 @@
         "handle": "c8"
       },
       "target": {
-        "id": "rl_neg_fw",
-        "handle": "c1"
-      },
-      "partId": "wp_1_0_blk"
-    },
-    {
-      "id": "w_rln",
-      "color": "Black",
-      "source": {
-        "id": "rl_neg_fw",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "rl_neg_eng",
-        "handle": "c1"
-      },
-      "partId": "wp_1_0_blk"
-    },
-    {
-      "id": "w_rln_blk",
-      "color": "Black",
-      "source": {
-        "id": "rl_neg_eng",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "t_eng_block",
+        "id": "br_h6a_radlok_neg",
         "handle": "Terminal"
       },
       "partId": "wp_1_0_blk"
@@ -1758,38 +1522,11 @@
       }
     },
     {
-      "id": "bn_bp_420__t_alt_b",
-      "sourceId": "bp_420",
-      "targetId": "t_alt_b",
-      "length": {
-        "value": 990,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_690__t_eng_block",
-      "sourceId": "bp_690",
-      "targetId": "t_eng_block",
-      "length": {
-        "value": 890,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_720__t_eng_block_2",
       "sourceId": "bp_720",
       "targetId": "t_eng_block_2",
       "length": {
         "value": 890,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_750__t_starter_b",
-      "sourceId": "bp_750",
-      "targetId": "t_starter_b",
-      "length": {
-        "value": 1060,
         "unit": "mm"
       }
     },
@@ -1803,65 +1540,38 @@
       }
     },
     {
-      "id": "bn_bp_810__t_starter_b_2",
-      "sourceId": "bp_810",
-      "targetId": "t_starter_b_2",
+      "id": "bn_bp_900__br_h1_batt_pos",
+      "sourceId": "bp_900",
+      "targetId": "br_h1_batt_pos",
       "length": {
-        "value": 1060,
+        "value": 20,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_bp_840__t_starter_b_3",
-      "sourceId": "bp_840",
-      "targetId": "t_starter_b_3",
+      "id": "bn_bp_960__br_h2_batt_neg",
+      "sourceId": "bp_960",
+      "targetId": "br_h2_batt_neg",
       "length": {
-        "value": 1060,
+        "value": 20,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_bp_870__jump_pos",
-      "sourceId": "bp_870",
-      "targetId": "jump_pos",
+      "id": "bn_bp_900__br_h3_radlok_pos",
+      "sourceId": "bp_900",
+      "targetId": "br_h3_radlok_pos",
       "length": {
-        "value": 1340,
+        "value": 20,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_bp_990__rl_pos_eng",
-      "sourceId": "bp_990",
-      "targetId": "rl_pos_eng",
+      "id": "bn_bp_960__br_h6a_radlok_neg",
+      "sourceId": "bp_960",
+      "targetId": "br_h6a_radlok_neg",
       "length": {
-        "value": 410,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1020__rl_neg_eng",
-      "sourceId": "bp_1020",
-      "targetId": "rl_neg_eng",
-      "length": {
-        "value": 400,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1050__rl_pos_fw",
-      "sourceId": "bp_1050",
-      "targetId": "rl_pos_fw",
-      "length": {
-        "value": 390,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1080__rl_neg_fw",
-      "sourceId": "bp_1080",
-      "targetId": "rl_neg_fw",
-      "length": {
-        "value": 180,
+        "value": 20,
         "unit": "mm"
       }
     },
@@ -1925,24 +1635,6 @@
       "targetId": "gbx_body",
       "length": {
         "value": 250,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_2430__t_trunk_pos",
-      "sourceId": "bp_2430",
-      "targetId": "t_trunk_pos",
-      "length": {
-        "value": 260,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_2460__t_trunk_neg",
-      "sourceId": "bp_2460",
-      "targetId": "t_trunk_neg",
-      "length": {
-        "value": 200,
         "unit": "mm"
       }
     },
@@ -2410,18 +2102,6 @@
       }
     }
   ],
-  "mates": [
-    {
-      "id": "m_rlp",
-      "sourceId": "rl_pos_fw",
-      "targetId": "rl_pos_eng"
-    },
-    {
-      "id": "m_rln",
-      "sourceId": "rl_neg_fw",
-      "targetId": "rl_neg_eng"
-    }
-  ],
   "schematicNotes": [
     {
       "id": "n_intro",
@@ -2433,18 +2113,8 @@
       }
     },
     {
-      "id": "n_heavy",
-      "text": "HEAVY DC: trunk battery -> cabin PDB (glove box) -> RADLOK 5.7 mm through the firewall -> starter B+. 160 A alt B+ joins the starter post and does not recross; its protection is NOT at the starter (see n_alt_prot). Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. 2 AWG is OK for cranking; 160 A continuous charge may need 1/0 + 8 mm RADLOK - see the table.",
-      "width": 390,
-      "schematicPosition": {
-        "x": 3180,
-        "y": 210
-      },
-      "color": "Orange"
-    },
-    {
       "id": "n_split",
-      "text": "RED / BLUE PHYSICAL ROUTE (Daniel's marked-up path, 2026-09-29; corrected for J/B No.2's real side - see n_jb2_side below). RED (heavy DC): trunk battery -> up the passenger side of the cabin -> glove-box PDB -> through the passenger side into the engine bay -> RADLOK firewall pair -> alternator and starter. BLUE (normal power): from the passenger-side glove-box PDB / gbx_body, out through the passenger fender (the OEM engine-room main's only bay crossing - EA1/EB1/EB2) to the MR-S EHPS pump (vacated ABS actuator space), the alternator, and the passenger headlight; A/C compressor clutch stays on engine harness A/B, not drawn here. Then across the front of the bay: horn (R/B5 fallback, see n_probe), both uprated fans (core-support run). Then down the driver side - where J/B No.2 actually sits - to the driver headlight and the J/B No.2 dummy header (oem_jb2_2a/2d/2e: HL/HR/HZ/DOME/RTR) and wiper-park feed (gbx_body c9, not yet wired - no sourced wiper-motor circuit to draw against). Ends at driver J/B No.1 and R/B No.2, left kick (IE1 AM1/AM2, J/B1 primary B+, R/B2 POWER fuse in). A BLUE cabin run also crosses from the driver kick back to the passenger PDB, and a BLUE run rides alongside RED out to the trunk. Crash sensors and ABS solenoid are deleted - do not refeed 60A FL ABS, A7/A8, A11/A12, A37.",
+      "text": "RED / BLUE PHYSICAL ROUTE (Daniel's marked-up path, 2026-09-29; corrected for J/B No.2's real side - see n_jb2_side below). The RED (heavy DC) leg - trunk battery, RADLOK, starter, alternator B+, jump post, engine block ground - moved to ST185-HeavyDC.harness 2026-10-11 (harness-reconcile pass step 4); only its PDB handoff (breaks H1/H2/H3/H6a) stays here. Kept for history: RED (heavy DC): trunk battery -> up the passenger side of the cabin -> glove-box PDB -> through the passenger side into the engine bay -> RADLOK firewall pair -> alternator and starter. BLUE (normal power): from the passenger-side glove-box PDB / gbx_body, out through the passenger fender (the OEM engine-room main's only bay crossing - EA1/EB1/EB2) to the MR-S EHPS pump (vacated ABS actuator space), the alternator, and the passenger headlight; A/C compressor clutch stays on engine harness A/B, not drawn here. Then across the front of the bay: horn (R/B5 fallback, see n_probe), both uprated fans (core-support run). Then down the driver side - where J/B No.2 actually sits - to the driver headlight and the J/B No.2 dummy header (oem_jb2_2a/2d/2e: HL/HR/HZ/DOME/RTR) and wiper-park feed (gbx_body c9, not yet wired - no sourced wiper-motor circuit to draw against). Ends at driver J/B No.1 and R/B No.2, left kick (IE1 AM1/AM2, J/B1 primary B+, R/B2 POWER fuse in). A BLUE cabin run also crosses from the driver kick back to the passenger PDB, and a BLUE run rides alongside RED out to the trunk. Crash sensors and ABS solenoid are deleted - do not refeed 60A FL ABS, A7/A8, A11/A12, A37.",
       "width": 390,
       "schematicPosition": {
         "x": 3180,
@@ -2471,16 +2141,6 @@
         "y": 570
       },
       "color": "Green"
-    },
-    {
-      "id": "shdr_1",
-      "text": "FIREWALL RADLOK",
-      "width": 270,
-      "schematicPosition": {
-        "x": 3180,
-        "y": 660
-      },
-      "color": "Orange"
     },
     {
       "id": "n_probe",
@@ -2545,16 +2205,6 @@
       "schematicPosition": {
         "x": 3660,
         "y": 240
-      }
-    },
-    {
-      "id": "n_alt_prot",
-      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. Size for the 160 A alternator (plan 6.20: 175 A). Battery is AGM. The trunk Longacre 4-terminal kill switch cuts the battery positive and, on its second pair, the alternator IG feed.",
-      "width": 390,
-      "color": "Orange",
-      "schematicPosition": {
-        "x": 1080,
-        "y": 690
       }
     }
   ],
@@ -2681,17 +2331,6 @@
       }
     },
     {
-      "id": "wp_2_red",
-      "partNumber": "BC-2-RED",
-      "manufacturer": "generic",
-      "description": "CABLE, BATTERY, 2 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 2,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "wp_4_blk",
       "partNumber": "BC-4-BLK",
       "manufacturer": "generic",
@@ -2771,22 +2410,6 @@
     {
       "type": "Ring",
       "size": "M10",
-      "partNumber": "GENERIC LUG M10 2AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 3,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 2,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m10_2"
-    },
-    {
-      "type": "Ring",
-      "size": "M10",
       "partNumber": "GENERIC LUG M10 4AWG",
       "manufacturer": "generic",
       "minGauge": {
@@ -2803,22 +2426,6 @@
     {
       "type": "Ring",
       "size": "M10",
-      "partNumber": "GENERIC LUG M10 50MM2",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 35,
-        "unit": "Metric"
-      },
-      "maxGauge": {
-        "value": 110,
-        "unit": "Metric"
-      },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m10_50"
-    },
-    {
-      "type": "Ring",
-      "size": "M10",
       "partNumber": "GENERIC LUG M10 8AWG",
       "manufacturer": "generic",
       "minGauge": {
@@ -2831,22 +2438,6 @@
       },
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK",
       "id": "tp_lug_m10_8"
-    },
-    {
-      "type": "Ring",
-      "size": "M8",
-      "partNumber": "GENERIC LUG M8 2AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 3,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 2,
-        "unit": "AWG"
-      },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M8 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m8_2"
     },
     {
       "type": "Ring",
@@ -2881,22 +2472,6 @@
     }
   ],
   "connectorParts": [
-    {
-      "partNumber": "jump-post-M8",
-      "manufacturer": "TBD",
-      "description": "POST, JUMP START, M8, INSULATED",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_lug_stud"
-        }
-      ],
-      "id": "cp_jump",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/jump-post-m8.png"
-      }
-    },
     {
       "partNumber": "MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942",
       "manufacturer": "Toyota / Sumitomo",
@@ -2966,40 +2541,6 @@
       }
     },
     {
-      "partNumber": "RL00801-50BK",
-      "manufacturer": "Amphenol",
-      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_radlok8"
-        }
-      ],
-      "id": "cp_rl_blk_eng",
-      "image": {
-        "source": "url",
-        "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Black_SPL.jpg",
-        "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Black_SPL.jpg"
-      }
-    },
-    {
-      "partNumber": "RL00801-50RE",
-      "manufacturer": "Amphenol",
-      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_radlok8"
-        }
-      ],
-      "id": "cp_rl_red_eng",
-      "image": {
-        "source": "url",
-        "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Red_SPL.jpg",
-        "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Red_SPL.jpg"
-      }
-    },
-    {
       "partNumber": "DTHD06-1-8S",
       "manufacturer": "TE DEUTSCH",
       "description": "CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A",
@@ -3038,15 +2579,6 @@
       "contactColor": "Silver",
       "description": "CONTACT, SOCKET, CRIMP, TOYOTA",
       "id": "ct_mrs_ts"
-    },
-    {
-      "partNumber": "(integral - RL00801-50)",
-      "manufacturer": "Amphenol",
-      "type": "Crimp",
-      "gender": "Socket",
-      "contactColor": "Silver",
-      "description": "CONTACT, RADSOK 8.0, INTEGRAL TO RL00801-50 CABLE CONNECTOR, 50 MM2 (1/0) CRIMP BARREL",
-      "id": "ct_radlok8"
     },
     {
       "partNumber": "0462-203-08141",
