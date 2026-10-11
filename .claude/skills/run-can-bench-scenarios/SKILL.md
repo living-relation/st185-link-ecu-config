@@ -39,7 +39,7 @@ paths:
    - **Dependency:** This step has no dependency.
 
 2. **Establish the exact runtime target (interface/channel/bitrate)**
-   - Use the project’s standard invocation pattern from `CLAUDE.md`:
+   - Use the project’s standard invocation pattern from `AGENTS.md` (section **Fast Commands > Bench validation**):
      - `python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 <scenario>`
    - Keep `--interface pcan --channel PCAN_USBBUS1 --bitrate 1000000` unless the user explicitly supplies a different target.
    - **Verify** the chosen values are confirmed by the user/session context before proceeding to the next step.

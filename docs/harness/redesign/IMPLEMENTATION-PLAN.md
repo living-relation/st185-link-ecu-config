@@ -240,7 +240,7 @@ Only after every gate above is HARD and green:
 ### Phase 9 — Propagate to every wiring surface
 
 Per `RECONCILIATION-RULES.md` Rule 1, in the same PR as Phase 8 or directly after it:
-`docs/harness/README.md` (file table, pipeline), `AGENTS.md` / `CLAUDE.md` ("nine looms"),
+`docs/harness/README.md` (file table, pipeline), `AGENTS.md` ("nine looms"),
 `.cursor/rules/harness-wiring-conventions.mdc`, `docs/SHIELD-RULES.md`,
 `RECONCILIATION-RULES.md` SoT table (its stale Signal/Power rows, open since 6.41),
 `XTREMEX-IO-TABLE.html` via `sync_io_table.py`, `min/` via `make_min.py`, then upload to
