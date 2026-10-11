@@ -82,6 +82,17 @@ are not authoritative.
 
 Generated files are never hand-edited — re-run their script.
 
+### No factory engine-bay wire is reused (Daniel, 2026-10-04, binding)
+
+Every engine-bay circuit is new wire in project colors, terminated at the device's own
+plug (OEM or new) - never a solder-sleeve splice into an existing factory lead. This
+applies only to the **engine bay** (loom C's domain and the engine-side harnesses); cabin
+wiring still splices into factory leads normally (flying leads stay the usual method
+there). Device connectors stay as recorded where one is specified (DT for the horns and
+the fuel level sender). A circuit drawn with an `oem_flying_lead` method description in
+the engine bay after this date is either an oversight or predates the rule - check
+`docs/OPEN-ITEMS.md` before assuming it is current.
+
 ---
 
 ## Rule 2 — CAN: any change on any device reconciles across all devices
@@ -166,9 +177,15 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     generic soldered splice point. The B-engine sensors' +5V crosses on bulkhead A
     c45-c47 and runs as a short A-engine spur to the DT 6-way inline pair `IX_B_RAIL`
     (DT06-6S on A-engine, DT04-6P on B-engine, c4-c6 spare), one +5V pin per pressure
-    sensor (Daniel, 2026-09-28). Spare bulkhead cavities: A c1 (size 16), c6, c10-c12,
-    c27, c28, c30-c32 (size 20); B c1, c2 (size 12). Bulkhead B has no size-16 or size-20
-    spare for a screen drain (Daniel, 2026-09-28: accepted).
+    sensor (Daniel, 2026-09-28). Spare bulkhead cavities (HDP20-era count, now superseded -
+    see below): A c1 (size 16), c6, c10-c12, c27, c28, c30-c32 (size 20); B c1, c2 (size 12).
+    Bulkhead B has no size-16 or size-20 spare for a screen drain (Daniel, 2026-09-28:
+    accepted) **- superseded 2026-10-10 by the DRB102 bulkhead switch** (`BULKHEAD-OPTIONS`
+    2026-09-29): the DRB102 B half reportedly has ~26 size-16 positions spare (enough for
+    the alternator IG/L/S crossover, `docs/harness/redesign/DECISIONS.md`), but that count
+    is still provisional - no full cavity map has landed yet. Do not re-use the "B has no
+    spare" conclusion above for new work; `docs/OPEN-ITEMS.md` tracks getting the real
+    DRB102 cavity map.
   - **(b)** ETB: relay trigger on A20, H-bridge supply on B5 (by ECU pin design).
   - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design). All pedal
     wiring stays in the cabin: the A pedal wires break off `ST185-A-cabin` and the B33
