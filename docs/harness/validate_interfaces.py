@@ -16,7 +16,7 @@
   I10 a cavity left unwired on both halves is an explicit spare: its label says "spare" (or
       "plug") on both halves
   The same I7 / I9 / I10 rules also cover connector pairs mated inside one drawing
-  (interfaces.json "inFileMates", e.g. IX_APS).
+  (interfaces.json "inFileMates"; none today - IX_APS was retired 2026-10-11).
 
 Exit 1 on any finding.
 """

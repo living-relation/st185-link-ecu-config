@@ -16,6 +16,7 @@ a build product, or history.** The drawings are **not a source of truth** (Danie
 | Folder / file | What it is | Edit it? |
 |---|---|---|
 | **`rebuild/`** | The 14 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - edit the drawings here** (not a source of truth) |
+| **`routes/`** | Dan's approved route drawing for each harness (one HTML per route, current version only; git history keeps the revisions). A drawing's path must match its route. Lint: `check_route_drawings.py` (SOFT gate) | Only from Dan's markup (`st185-apply-route-markup`) |
 | **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, broken-off pairs. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
 | `min/` | Same documents, whitespace stripped, for upload to the harness.design project "ST185 harness design". The Free plan caps a harness at 100 connections, so every file must stay under 100 | No - `make_min.py` regenerates it |
 | `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |
@@ -35,7 +36,7 @@ physical section of copper, a connector or a BOM line has one owner.
 | `ST185-A-engine.harness` | ECU connector A, engine | bulkhead A engine half to every A-letter engine device, plus the `IX_B_RAIL` spur (B-engine sensor +5V / Gnd Out) |
 | `ST185-B-engine.harness` | ECU connector B, engine | bulkhead B engine half to every B-letter engine device and the ETB motor; the B sensors' +5V / Gnd Out come in on `IX_B_RAIL` |
 | `ST185-CAN.harness` | CAN backbone | the only drawing with CAN H/L |
-| `ST185-EngineRoom-C.harness` | Loom C | engine room, PDB, fuse blocks + relays, EPS, OEM J/B feeds (J/B2 dummy headers; the rest are flying leads); the A4/A5 A/C device-side flying leads (clutch, pressure switch - folded in from ST185-ACAmp-Spur 2026-10-11, new-wire runs per Section 39, no OEM wire reused) |
+| `ST185-EngineRoom-C.harness` | Loom C | engine room, PDB (battery, RADLOK and ground studs; the fuse box is on CabinPower), EPS, OEM J/B feeds (J/B2 dummy headers; the rest are flying leads); the A4/A5 A/C device-side flying leads (VC coil - not fitted - and pressure switch, folded in from ST185-ACAmp-Spur 2026-10-11, new-wire runs, no factory engine-bay wire reused) |
 | `ST185-WheelSpeed-Front.harness` | Front wheel speed | one Y harness: FL/FR drops to the front VRC endpoints, output to `IX_WS_FRONT` |
 | `ST185-WheelSpeed-Rear.harness` | Rear wheel speed | one Y harness: RL/RR drops to the rear VRC endpoints, output to `IX_WS_REAR` |
 | `ST185-RearFuel.harness` | Rear Fuel | fuel level sender behind `IX_FUEL_LVL` |
@@ -43,8 +44,8 @@ physical section of copper, a connector or a BOM line has one owner.
 | `ST185-AntiTheft.harness` | Anti-theft | cabin |
 
 The four ECU loom files follow the ECU connector letter - the rule, its three allowed
-crossovers and the one open deviation (Q-RAIL) are in `../RECONCILIATION-RULES.md`
-Rule 3. `validate_bulkhead_letter.py` enforces it; `audit_mating.py` checks A cabin cN
+crossovers are in `../RECONCILIATION-RULES.md` Rule 3 (the old Q-RAIL deviation is
+closed: the injector/COP rails cross on bulkhead A c48 / c49). `validate_bulkhead_letter.py` enforces it; `audit_mating.py` checks A cabin cN
 mates A engine cN and B mates B.
 
 The only center-cluster portion in this repo is the CAN node, plus power and
@@ -52,7 +53,8 @@ ground to the cluster. Interior cluster wiring lives only in
 `center-cluster-esp32-p4`. Do not add interior cluster circuits here.
 `ST185-CAN` ends at its CAN-drop terminal.
 
-The fuse box lives only in `ST185-CabinPower` (2026-10-11, Option B, `_research/FUSEBOX-B-SLOT-MAP.md`).
+The fuse box lives only in `ST185-CabinPower` (2026-10-11, Option B; slot map in
+`../electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §8.1).
 Loom C's old `gbx_body` glove-box body block and the PDB's fused AM1 / AM2 / OEM HOT
 outputs moved there; EngineRoom-C keeps the OEM ends (J/B2, IE1, J/B1, R/B2, R/B4,
 A/C pressure switch) and reaches the box through broken-off pairs. The PDB keeps only
@@ -64,9 +66,10 @@ from the PMU-16 days - names only, not a PMU.
 How each kind of boundary is drawn is in `redesign/INTERFACES.md`. In short:
 
 - **Inline interface** - a real connector pair, one half per harness, same cavity text
-  on both. The four today: `IX_WS_FRONT`, `IX_WS_REAR` (DT 6-way), `IX_AC_CTS`,
-  `IX_FUEL_LVL` (DT 2-way). The pedal's DT 6-way pair is mated inside one drawing
-  (`inFileMates`).
+  on both. The four today: `IX_WS_FRONT`, `IX_WS_REAR` (DT 6-way), `IX_FUEL_LVL`
+  (DT 2-way) and `IX_B_RAIL` (A-engine to B-engine sensor +5V / Gnd Out). `IX_AC_CTS`
+  (A/C coolant switch deleted) and the pedal's `IX_APS` (folded into A-cabin 2026-10-11)
+  are retired.
 - **Broken-off wire** - a wire that runs between two harness files is drawn in both, each
   section ending at a `Loose` terminal (`br_<wire>`) whose note names the other file. The
   pairs are `interfaces.json` "breaks"; no device is drawn on two files and there are no
@@ -133,8 +136,8 @@ to one node).
 3. **Broken-off ends claim nothing.** A `br_` terminal has no part; the wire section on each
    side is counted on its own harness.
 4. **Never invent a part number.** A part not checked against the manufacturer gets
-   `TBD ...` and the reason. Current examples: the RADLOK pass-through, the A/C
-   coolant switch.
+   `TBD ...` and the reason. Current example: the A/C coolant-switch connector on
+   A-engine (the RADLOK parts were picked in plan 6.51).
 5. **A description names the part, never its use.** `TYPE, SUBTYPE, key ratings`,
    uppercase, at most 170 characters. Never a net, circuit, device, group, layer, sensor,
    signal, harness, stock count, date or plan reference. Every wire of one part number

@@ -23,9 +23,9 @@ are the same on both except where an assumption is called out.
 | `fl_acamp_mg` | A/C AMPLIFIER **A18 pin 5** | Y-B | Variable-displacement control coil (**not fitted** - Dan's compressor is fixed-displacement mag-clutch) | **1990** ST185 EWD p.152 A18-5 Y-B via IH1-3 to A4-3. Repo snip: `docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png`. **1992** EWD132U p.218 A17-5 Y-B via IH1-3 matches (`1992-celica-ewd132u-a17-clutch-p218.png`). **Corrected 2026-10-04**: not the magnetic clutch - see 1993 TIS EWD p.210 note *1 and Mitchell A15 pin-5 table note 1. The magnetic clutch coil is **A4 pin 4** (B-W), fed via the clutch relay - a different pin from this lead |
 | `fl_a4_3` | **A4 pin 3** (A/C compressor VC control coil) | Y-B | Other end of the variable-displacement control coil (**not fitted**) | **1990** p.152 A4 pin 3. **1992** locator A4. The magnetic clutch is on the compressor's **pin 4**, not pin 3 - see `fl_acamp_mg` correction above |
 | `fl_acamp_psw` | A/C AMPLIFIER **A18 pin 13** | Y-R | A/C pressure switch in | **1990** ST185 EWD p.152 (`1990-st185-autoac-pressure-clutch-p152.png`). 1992 EWD132U p.219 A17-13 matches (`1992-celica-ewd132u-a17-pressure-p219.png`) |
-| `fl_a5_4` | **A5 pin 4** (A/C pressure switch) | Y-R | Other end of the pressure-switch signal | **1990** p.152 (A5 pin 4 Y-R). EngineRoom-C still feeds **A5 pin 1** +12V (V-R) only |
+| `fl_a5_4` | **A5 pin 4** (A/C pressure switch) | Y-R | Other end of the pressure-switch signal | **1990** p.152 (A5 pin 4 Y-R). **A5 pin 1** +12V comes from `ST185-CabinPower` (MTA-3 ACPS 10 A, `w_acp_1`, broken off through EngineRoom-C) |
 
-Existing coolant-thermistor leads (not this pass, already on the spur):
+Heater-core thermistor (TW) leads:
 
 | Terminal | Land on | Factory colour | Function | Source |
 |---|---|---|---|---|
@@ -35,8 +35,8 @@ Existing coolant-thermistor leads (not this pass, already on the spur):
 Kill copper: ECU-A A18 Aux 4 (Gray 20 AWG) wires straight to `fl_acamp_act`, both on `ST185-A-cabin` now (no break needed since the kill switch output and the amplifier lead are in the same file). Factory ACT colour is G-Y; splice the Gray lead into that G-Y at A18-11.
 
 Since 2026-10-11, `fl_a4_3` and `fl_a5_4` are new-wire runs terminated at the
-clutch/pressure-switch's own mating plug, not solder-sleeved into factory
-wire (Section 39, no factory engine-bay wire reused) - the plug part numbers
+VC coil's / pressure switch's own mating plug, not solder-sleeved into factory
+wire (no factory engine-bay wire reused, `docs/RECONCILIATION-RULES.md` Rule 1) - the plug part numbers
 are not yet chosen.
 
 ## Assumptions
@@ -44,7 +44,7 @@ are not yet chosen.
 1. **A18-11 = A17-11.** Pin 11 is not on 1990 p.150 or p.152 (that is why SoT left ACT as TBD). 1992 p.93/p.218 show A17 pin 11 G-Y = ACT. Applied to the 1990 locator A18 because Daniel said 1990–1993 amplifier pinouts are interchangeable, and pins 5 (clutch Y-B) and 13 (pressure Y-R) already match across those years.
 2. No Toyota housing part number is cited for A18, A4, or A5 — none is in the diagrams used here, and none is invented.
 
-The flying-lead insulation on clutch and pressure follows the factory lead being sleeved (Y-B, Y-R). That is a splice colour, not the ECU harness palette. Kill stays Gray 20 AWG. The compressor has the clutch only.
+The flying-lead insulation on the VC-coil and pressure leads follows the factory colours (Y-B, Y-R). That is a splice colour, not the ECU harness palette. Kill stays Gray 20 AWG. The compressor has the clutch only, so the VC-coil leads are not fitted; the clutch itself is on A4 pin 4, fed from `k_acc`.
 
 ## Out of scope
 

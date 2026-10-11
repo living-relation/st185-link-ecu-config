@@ -4,8 +4,8 @@
 **Repo:** `st185-link-ecu-config`  
 **Status:** Frozen decision record. Merges the now-removed `output/HARNESS-REDESIGN-PLAN.md` and
 `output/HARNESS-CHECKER-AUDIT.md` (superseded and deleted 2026-10-10).
-The phased work, and the conflicts with current rules that must be settled first, are in
-[`IMPLEMENTATION-PLAN.md`](IMPLEMENTATION-PLAN.md).
+The 2026-09-27 phased implementation plan is complete (deleted 2026-10-11); open work is in
+`docs/OPEN-ITEMS.md`.
 
 ## Objective
 
@@ -232,20 +232,20 @@ become flying leads.
 
 | | Question | Options | State |
 |---|---|---|---|
-| Q-RAIL | The injector rail (F11 15 A) and COP rail (F10 20 A) feed A devices but cross on bulkhead B c1/c2, on size-12 contacts (`0460-220-1231` / `0462-210-1231`, 25 A). Rule 3 wants them on bulkhead A, which (`HDP24-24-47`) has 5 size-16 and 42 size-20 cavities, no size-12; the size-16 contacts are 13 A and only c1 is spare. | (1) keep on B as a recorded exception; (2) run both rails through loom C point-to-point like the starter and fan feeds; (3) replace bulkhead A with an insert that has size-12 positions; (4) split each rail over two size-16 contacts on A | ~~Resolved 2026-09-28 (Daniel): option (1) as a spur~~ **Final 2026-09-28 (Daniel): A side, through the DTP 4-way pass-through `IX_RAIL_A`** - see "Audit closed" below. Crossover (d) retired. |
+| Q-RAIL | The injector rail (F11 15 A) and COP rail (F10 20 A) feed A devices but cross on bulkhead B c1/c2, on size-12 contacts (`0460-220-1231` / `0462-210-1231`, 25 A). Rule 3 wants them on bulkhead A, which (`HDP24-24-47`) has 5 size-16 and 42 size-20 cavities, no size-12; the size-16 contacts are 13 A and only c1 is spare. | (1) keep on B as a recorded exception; (2) run both rails through loom C point-to-point like the starter and fan feeds; (3) replace bulkhead A with an insert that has size-12 positions; (4) split each rail over two size-16 contacts on A | ~~Resolved 2026-09-28 (Daniel): option (1) as a spur~~ **Final 2026-09-28 (Daniel): A side, through the DTP 4-way pass-through `IX_RAIL_A`** - see "Audit closed" below. Crossover (d) retired. **Closed.** `IX_RAIL_A` itself was retired 2026-09-29: the rails cross on bulkhead A c48 / c49 of the shared DRB102 (see below). Fuses are now RFRM INJ 15 A / RFRM COP 20 A (Option B, 2026-10-11). |
 
 ## Binding decisions (Daniel, 2026-09-28 audit) - final, do not re-ask
 
 | | Decision | Where it lives |
 |---|---|---|
-| B1 | **Link CAN-Lambda** runs its four wires through **bulkhead B**: c13 CAN H, c14 CAN L (size 16, 20 AWG), c3 +12V, c4 GND (size 12, 14 AWG, stepped to 20 AWG at `sp_lam12_b` / `sp_lamg_b` after the firewall for the DTM plug). +12V from cabin fuse **F5 10 A** (`ST185-CabinPower`); GND to the cabin chassis ground `sp_chassis`. Link pinout: pin 3 CAN L, pin 4 CAN H. Broken off CAN <-> B-cabin / B-engine. This uses bulkhead B's last four spares. | `ST185-CAN`, `-B-cabin`, `-B-engine`, `-CabinPower`, `-A-cabin`, `interfaces.json` |
+| B1 | **Link CAN-Lambda** runs its four wires through **bulkhead B**: c13 CAN H, c14 CAN L (size 16, 20 AWG), c3 +12V, c4 GND (size 12, 14 AWG, stepped to 20 AWG at `sp_lam12_b` / `sp_lamg_b` after the firewall for the DTM plug). +12V from cabin fuse **F5 10 A** (`ST185-CabinPower`; since Option B 2026-10-11 the fuse is **RFRM LAM 10 A**, RFRM Bus 2); GND to the cabin chassis ground `sp_chassis`. Link pinout: pin 3 CAN L, pin 4 CAN H. Broken off CAN <-> B-cabin / B-engine. This uses bulkhead B's last four spares. | `ST185-CAN`, `-B-cabin`, `-B-engine`, `-CabinPower`, `-A-cabin`, `interfaces.json` |
 | B2 | **VSS (E154F)**: drawn as-is on the best reading - Toyota 83181-20040, plug **90980-11143**, pin 1 IG +12V, 2 ground, 3 SP1 out. No TBD. | `ST185-B-engine`, `sot/channels.csv` B29 |
 | B3 | **Charge-lamp resistor**: reference note on ClusterLED only, never a drawn part. | `ST185-ClusterLED` `n_chg_test` |
 | B4 | `sp_5v` is split into `sp_5v` + `sp_5v_2`; `sp_gndout_eng` is a `GENERIC CRIMP SPLICE 14-10`: four 20 AWG = one 14 AWG combined (Wire Barn Combined Wire Gauge Calculator). Closed by Daniel 2026-09-28 under the combined-gauge splice rule below. | `ST185-A-cabin`, `-A-engine` |
 | B5 | **Alternator output protection**: fusible link or inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box - never at the starter. | `ST185-EngineRoom-C` `n_alt_prot`, plan 6.20 |
-| B6 | Battery is **AGM**. Main power parts: Eaton RFRM box plus a small GEP set, a **Longacre 4-terminal kill switch** in the trunk (second pair cuts the alternator IG), and the G4X Stop Switch input. Drawn only where a place already exists; the power layout is not redesigned. | AGM and kill switch: `n_alt_prot`, `buylist.py`. RFRM, GEP and the Stop Switch input have no place in the drawings yet, so they are recorded here only |
-| B7 | **RealDash Pi**: switched ignition feed only, on and off with the car. No Pi-hold relay or power-hold circuit anywhere. | EngineRoom-C `gbx_body` DEV, CSB3 L1 spare, plan 6.38 / 6.47 |
-| B8 | **k_eps** sized: HCFB H4 Bussmann **AMI-60**, **8 AWG** feed. Sources in `sot/channels.csv` k_eps c1. | `ST185-CabinPower`, `-B-cabin`, `-EngineRoom-C` |
+| B6 | Battery is **AGM**. Main power parts: Eaton RFRM box plus a small GEP set, a **Longacre 4-terminal kill switch** in the trunk (second pair cuts the alternator IG), and the G4X Stop Switch input. Drawn only where a place already exists; the power layout is not redesigned. | AGM and kill switch: `n_alt_prot`, `buylist.py`. RFRM is drawn in `ST185-CabinPower` since fuse box Option B (2026-10-11, PR #83); GEP and the Stop Switch input have no place in the drawings yet, so they are recorded here only |
+| B7 | **RealDash Pi**: switched ignition feed only, on and off with the car. No Pi-hold relay or power-hold circuit anywhere. | `ST185-CabinPower` RFRM DEV (was EngineRoom-C `gbx_body` DEV before Option B, 2026-10-11), CSB3 L1 spare, plan 6.38 / 6.47 |
+| B8 | **k_eps** sized: HCFB H4 Bussmann **AMI-60** (now **LMI L7**, AMI-60, since Option B 2026-10-11), **8 AWG** feed. Sources in `sot/channels.csv` k_eps c1. | `ST185-CabinPower`, `-B-cabin`, `-EngineRoom-C` |
 
 **Audit closed (Daniel, 2026-09-28, final):**
 
@@ -311,8 +311,8 @@ become flying leads.
 final, above) are retired and replaced by **one** Deutsch DRB 102-way bulkhead —
 `DRB12-102PAE-L018` (firewall receptacle) + `DRB16-102SAE-L018` (engine plug) +
 `DRBF-1A` (mounting flange for the mated pair), one firewall hole in place of three.
-Full options and ratings are in `C:\projects\inbox\st185-research\BULKHEAD-OPTIONS-2026-09-29.html`
-and `DRB102-RATINGS.html`.
+Full options and ratings are in `_research\BULKHEAD-OPTIONS-2026-09-29.html`
+and `_research\DRB102-RATINGS.html` (local-only, untracked; moved from the retired `C:\projects\inbox\st185-research\`).
 
 Ratings: 6 of 9 checked items pass with margin against a firewall location (-55 to
 125°C operating range, IP68 | IP6K9K mated sealing, vibration, mechanical shock,
@@ -378,7 +378,41 @@ is no more shell-24 HDP housing to backshell, gasket, or panel-nut.
 it tracks ECU signal channels, and the injector/COP power feeds were never recorded
 there as rows.
 
+## Harness reconcile plan (2026-09-29 to 2026-10-11) - retired 2026-10-11
+
+The harness reconcile plan (`HARNESS-RECONCILE-PLAN.html`, local-only, never committed) was
+the planning document for the routes and the harness update pass. It was retired in the
+2026-10-11 repo cleanup: its decisions are applied in the files named below, its open
+questions are rows in `docs/OPEN-ITEMS.md`, and the approved route drawings are tracked in
+`docs/harness/routes/`. Repo text that cites "plan §N" or "Section N" (2026-10 dates) means
+this plan; the index below says what each section settled and where it lives now.
+
+| § | Settled (Daniel unless noted) | Lives now in |
+|---|---|---|
+| 1-2 | J/B and R/B map; factory harness list | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` |
+| 3, 9.5, 15 | A/C: keep the auto amp, delete A15; Link drives the clutch relay `k_acc` on Ign 8 (B10); A/C button on An Volt 10 (B31), evaporator thermistor on An Volt 11 (B32); dual pressure switch A5 in series with the relay coil | `sot/channels.csv` b10/b31/b32, `docs/harness/ACAMP-SPUR-LABELS.md` |
+| 7 | Shield rules S1-S7, V1-V3, B1; redraw list 7.3 (done, PR #82) | `docs/SHIELD-RULES.md`, `docs/RECONCILIATION-RULES.md` |
+| 8 | Endpoint pin list authored from the SoT, drawings checked against it (not generated from drawings) - not yet approved or built | `docs/OPEN-ITEMS.md` |
+| 9.1 | No fuse or relay in the engine bay; F11, R/B No.5 and J/B No.2 deleted | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` |
+| 10, 36 | `ST185-HeavyDC` split out of harness C (PR #75); alternator IG/L/S through bulkhead B size-16 spares | `docs/harness/rebuild/ST185-HeavyDC.harness`, `docs/harness/DRB102-CAVITY-MAP.md` |
+| 11 | VRC +5V from ECU A32 | `docs/devices/VR-WHEEL-SPEED-CONDITIONER.md` |
+| 13.1 | ETB and APS: one shielded cable per device | `docs/SHIELD-RULES.md` |
+| 18, 18.1 | MR-S EHPS pump: `k_eps` coil - switched by pump B5; `k_eps_en` (Ign 6, B12) enables it above ~400 rpm | `sot/channels.csv` b12, `k_eps` rows; `docs/OPEN-ITEMS.md` row 40 |
+| 19 | Deleted: circuit opening relay, injector resistor pack, fuel pump resistor, fog lights | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §5.6 |
+| 20, 23, 32 | VRC boxes: Hammond 1590WUFL, one DTM 8-way IN (key A) + one OUT (key B); both VRCs mid-dash above the ECU; ECU at the factory ECM spot | VRC location: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md`; the 1590WUFL/DTM enclosure change is not yet in `docs/enclosures/` (`docs/OPEN-ITEMS.md`) |
+| 25.1 | Doc policy: open questions may live in repo docs only if kept current; completed handoffs are removed; one project tracker | `docs/OPEN-ITEMS.md` |
+| 26.1 | Start is ECU-controlled (`k_str`, Aux 8 A26); no clutch-start interlock; clutch switch stays a CSB3 input | `sot/channels.csv`, `docs/harness/rebuild/ST185-CSB3.harness` |
+| 26.2 | OEM R/B No.2, No.3, No.4 removed; power windows/locks and blower get fuse + relay in the glove-box box; A/C fuse fed from the heater relay output | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §8 |
+| 26.3, 27 | Relays not driven directly by the Link: `k_acc` (pressure switch in series), `k_eps` (pump B5), heater (auto amp), headlight (IE1-2), horn (IE1-19), power (key IG), OEM R8 retract relay; everything else Link-direct. B28 senses IG2 at J/B1 1H-7 | `sot/channels.csv` b28 |
+| 34 | Route drawings: every isometric route figure has a top view (RM305U1 p.IN-24 outline); markup code - blue line = route, blue arrow + black label = part spot, black box = instruction | `docs/harness/routes/`, lint `docs/harness/check_route_drawings.py`, skill `st185-apply-route-markup` |
+| 35 | AntiTheft: status LED centre console, siren bay centre by the firewall, valet switch driver side, shock sensor beside the alarm module; siren/hood-pin leads through harness C's RH grommet | `docs/harness/rebuild/ST185-AntiTheft.harness` |
+| 36.5 | Process: one ordered question queue; nothing answerable from the EWD, datasheets or SoT is asked | `docs/OPEN-ITEMS.md` |
+| 38 | RTR fuse only (OEM R8 relay stays); tilt-away column on 30 A POWER; ECU wake IG2 -> diode, B28 before the diode, Aux 6 holds `k_efi`; B30 start request from ST1 through a 2 A box fuse | `sot/channels.csv` b28/b30, `ENGINE-ROOM-POWER-REDISTRIBUTION.md` §8.1 |
+| 39 | No factory engine-bay wire reused | `docs/RECONCILIATION-RULES.md` Rule 1, `.claude/rules/harness-wiring-conventions.md` |
+| 40 | All 14 routes approved 2026-10-10; harness update pass checklist (steps 1-4, 8, 9, 11 and the shield redraw done in PRs #73-#83) | remaining steps: `docs/OPEN-ITEMS.md` |
+| 33, 36.4 | GEP PDM-R stack - superseded by fuse box Option B (2026-10-11) | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §8.1 |
+
 ## Current state
 
-Execution is in progress; see the adopted decisions above and the phase status in
-`IMPLEMENTATION-PLAN.md`. Deleting legacy checker scripts requires replacement validation first.
+The 2026-09-27 phased implementation plan is complete and was deleted 2026-10-11. Open work and
+project history are tracked in `docs/OPEN-ITEMS.md`.

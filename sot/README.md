@@ -55,7 +55,7 @@ box owns the OEM power splices.
 
 ## TBD means TBD
 
-Two rows are `tbd` (the A/C amp's ambient-sensor return and coolant-switch
-return). They stay blank until a document says otherwise - do not invent a pin
+Two rows are `tbd` (the A/C amp's ambient-sensor return and the heater-core
+thermistor (TW) return). They stay blank until a document says otherwise - do not invent a pin
 number to make a drawing look finished. ACT is A18 pin 11 (1992 EWD132U A17-11;
 assumption documented in `docs/harness/ACAMP-SPUR-LABELS.md`).

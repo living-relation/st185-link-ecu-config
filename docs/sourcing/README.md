@@ -43,7 +43,9 @@ Not imported here - this folder is electrical.
 The list has roughly 300 size-16 contacts (0460-202-1631, 0462-201-1631,
 0460-215-1631, 0462-209-1631, 0462-221-1631) and **zero size 20**.
 
-That matters because:
+That matters because (2026-09-21; since 2026-09-29 both bulkheads are one shared DRB102,
+`docs/harness/DRB102-CAVITY-MAP.md`, so the bulkhead lines below are history - the stock
+facts stand):
 
 - Bulkhead A is HDP24-24-47, a 16/20 arrangement. Both halves need size-20
   contacts for the small-gauge cavities.

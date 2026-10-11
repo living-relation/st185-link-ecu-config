@@ -44,4 +44,4 @@ Pins 5–17 (cruise) vs 15–17 (main). Configure Link cruise after base idle is
 
 ## Validation tests
 
-Documented in `AGENT_SESSION_CONTEXT.md` (clutch hold, hidden neutral, reverse switch, ratio fault invisible).
+Documented in `AGENT_SESSION_CONTEXT.md` (a session note that was not imported into this repo; clutch hold, hidden neutral, reverse switch, ratio fault invisible).

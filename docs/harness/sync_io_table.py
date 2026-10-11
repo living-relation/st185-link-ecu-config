@@ -152,7 +152,10 @@ def main():
     rs = rows()
     with open(HTML, encoding="utf-8", newline="") as f:
         doc = f.read()
-    block = build_block(rs)
+    # Match the file's own line endings: a CRLF checkout (core.autocrlf) must
+    # not read as "stale" when only the newlines differ.
+    eol = "\r\n" if "\r\n" in doc else "\n"
+    block = build_block(rs).replace("\n", eol)
     errs = []
     if BEGIN in doc and END in doc:
         cur = doc[doc.index(BEGIN):doc.index(END) + len(END)]

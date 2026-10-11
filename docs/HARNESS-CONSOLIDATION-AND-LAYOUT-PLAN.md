@@ -13,12 +13,14 @@ Proposal only for *where files should live* and *how the two `.harness` drawings
 > `ST185-Signal.harness`. That is no longer the structure.
 >
 > **Where sections 1–5 and section 6.x disagree, 6.x wins, and the highest
-> numbered subsection wins within 6.x.** The current loom structure is defined in
-> **6.41**, not in section 2.
+> numbered subsection wins within 6.x.** The loom split rules are in **6.41**; the
+> current file list (14 looms, one physical harness per file, 2026-09-27 redesign) is
+> `docs/harness/README.md`. **6.56** (2026-10-11) records what replaced the fuse block,
+> the HDP20 bulkheads and the PMU; later decisions are in `docs/harness/redesign/DECISIONS.md`.
 >
-> | Then (sections 1–5) | Now (6.41) |
+> | Then (sections 1–5) | Now |
 > |---|---|
-> | 2 living looms: Power, Signal | 6 looms: A, B, C, CAN, cabin accessory, rear trunk |
+> | 2 living looms: Power, Signal | 14 looms (`docs/harness/README.md`) |
 > | Split by power vs signal | Split by which bulkhead a wire crosses |
 > | `docs/harness/*.harness` | `docs/harness/rebuild/*.harness` |
 >
@@ -42,7 +44,7 @@ Several surfaces describe the same ECU pin story. They drifted before; they will
 | `docs/harness/HARNESS_WIRING_DIAGRAM.html` | Redirect stub | None | Keep as pointer |
 | `docs/harness/ST185-Power.harness` | Power BOM, splices, layout | Duplicates sensors that belong in Signal; leftover `bh_c` still drawn | **Retired drawing** (redesign 2026-09-27). A `.harness` file is never a source of truth (Daniel, 2026-10-04). Do not build `bh_c` |
 | `docs/harness/ST185-Signal.harness` | Signal BOM, ECU A/B/C, layout | Duplicates power-only parts (`rad_fan`, `fan2`, `buck`, `fuelpump`, `mrs_pwr`) | **Retired drawing** (redesign 2026-09-27). Not a source of truth |
-| `docs/harness/ST185-EngineRoom-C.harness` | Partial engine-room add-on + OEM J/B injection | Overlaps Power leftover `bh_c` fan/EPS 87 wires | **Retired drawing** (redesign 2026-09-27). Not a source of truth |
+| `docs/harness/ST185-EngineRoom-C.harness` | Partial engine-room add-on + OEM J/B injection | Overlaps Power leftover `bh_c` fan/EPS 87 wires | **Retired drawing** at this path (redesign 2026-09-27); the live loom C is `docs/harness/rebuild/ST185-EngineRoom-C.harness`. Not a source of truth |
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table + EWD snips | None as a table | **Living splice table** |
 | Desktop `Documents\Wire Harnesses\…ECU Harness.harness` | Local harness.design copy | Third copy of the same looms | **Mirror** — pull from repo, do not edit as SoT |
 | `DOCS-CLEANUP-PLAN.md` **and** `.html` | 2026-08-31 inventory (same content, two formats) | Each other; also stale (claims IO table unpushed, 3S-GTE, FuryX) | **Done 2026-09-16** — retired; this file is the living plan |
@@ -156,6 +158,9 @@ Main = full-range track. After probing, set PCLink `APS (Sub) 100%` if the sub t
 These govern the rework. Where they conflict with anything above, these win.
 
 ### 6.1 Harness split
+
+> **Superseded in part (see 6.56):** the HDP20 bulkheads are now one shared DRB102, there is
+> no PMU-16 (6.48), and the glove-box fuse box is Option B. The A/B/C/Heavy DC split stands.
 
 Three harnesses. **Only two signal bulkheads exist** (HDP20 A and B, passenger side).
 Large DC uses RADLOK, not a third HDP20. `bh_c` is deleted.
@@ -2286,6 +2291,9 @@ separate — it is an HCR150 bolted beside the pump, not part of it.
 
 ## 6.54 Finish pass - contact limits, fusing and feeds (2026-09-25)
 
+> **Fuse names superseded by 6.56 (2026-10-11):** the F-numbered block and HCFB H1-H4 are now
+> LMI / RFRM / MTA positions. Wire sizing and contact limits below still stand.
+
 Daniel's rulings applied in one pass across all nine looms. Every wire is now
 inside its contact's rated range and every fuse sits on a wire sized for it.
 
@@ -2369,6 +2377,9 @@ cavity it affects.
 
 ## 6.55 Relay datasheets, glove-box block id, loom C notes (2026-09-26)
 
+> **Superseded in part by 6.56 (2026-10-11):** the TE `2141029-1` block (FB1) and `gbx_body`
+> are retired; the relay datasheet facts still stand.
+
 ### Relay specs
 
 Every relay part (`cp_rly_nor`, `cp_rly_f7_a`, `cp_rly_f7_b`, `cp_rly_f7_d`,
@@ -2414,3 +2425,19 @@ or the Cursor rules refers to it.
   relay in the cabin.
 - ~~CAN termination.~~ **Settled (Daniel, 2026-09-27) - not an open item.**
   `ST185-CAN.harness` stands as drawn.
+
+## 6.56 Fuse box Option B, DRB102 bulkhead, no PMU (2026-10-11)
+
+What replaced what. Details live in the files named; this section only stops the older
+6.x text from reading as current.
+
+- **Glove-box fuse box = Option B** (PR #83): Bussmann LMI (L1-L7), Eaton RFRM
+  `15401-1-2-1-0A` and 3x MTA `0301491`, drawn only in `docs/harness/rebuild/ST185-CabinPower.harness`.
+  Slot map: `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §8.1. Retired: the TE
+  `2141029-1` / MFINITY F1-F13 block, the "second fuse block", the ANL 100 A feed, HCFB H1-H4
+  names (H4 is now LMI L7), and EngineRoom-C's `gbx_body` (6.48-6.55 text that names them is history).
+- **Bulkheads = one shared Deutsch DRB102** (2026-09-29; cavity map `docs/harness/DRB102-CAVITY-MAP.md`),
+  replacing HDP20 A and B and the `IX_RAIL_A` DTP pass-through (6.1, 6.41 text).
+- **No PMU / PDU** (6.48) - relays and fuses in the glove-box box, CSB3 does the logic.
+- **OEM R/B No.2, No.3, No.4 removed** (2026-10-10, `docs/harness/redesign/DECISIONS.md` reconcile-plan §26.2).
+- Open follow-ups: `docs/OPEN-ITEMS.md` rows 45-53.

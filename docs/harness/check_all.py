@@ -29,6 +29,12 @@ What it runs, in order - every one in HARD is a hard gate:
   buildlist.py --check     per-wire build list is current
   make_min.py --check      the upload copies in min/ are current
 
+SOFT (reported, not failing):
+
+  check_route_drawings.py  the approved route drawings in routes/ (red route lines unfilled,
+                           no broken attributes, a top view after every figure, no
+                           overlapping markers in one figure)
+
 The three generators run in --check mode here: they rebuild in memory and fail
 if the committed file is stale, but never write. So check_all.py leaves the tree
 untouched and CI can trust it. After a harness change, regenerate locally:
@@ -40,8 +46,7 @@ untouched and CI can trust it. After a harness change, regenerate locally:
 (no flag, or --write, writes the file) and commit the results with the drawing.
 
 SOFT gates report but do not fail the run. A gate starts SOFT only while the
-drawings it checks are still being migrated (redesign/IMPLEMENTATION-PLAN.md);
-it moves to HARD the day it first reports zero, and a HARD gate never goes back.
+drawings it checks are still being migrated; it moves to HARD the day it first reports zero, and a HARD gate never goes back.
 """
 import subprocess, sys, os
 
@@ -53,7 +58,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["part_desc.py"], ["buylist.py", "--check"],
         ["buildlist.py", "--check"], ["make_min.py", "--check"]]
-SOFT = []
+SOFT = [["check_route_drawings.py"]]  # 2026-10-11: routes tracked; 1 finding (Route 1 Fig. 4, an EWD sheet with no top view)
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy
 # baseline cannot follow the redesign's intentional ownership and boundary moves.
 #
@@ -63,7 +68,7 @@ SOFT = []
 # pair. Neither may ever go back above zero.
 #
 # 2026-09-28: validate_bulkhead_letter started HARD - Daniel's ECU loom rule. Its
-# Its PENDING list is empty since Q-RAIL was ruled on (rails cross on the A side, IX_RAIL_A).
+# Its PENDING list is empty since Q-RAIL was ruled on (rails cross on the A side, now bulkhead A c48 / c49).
 #
 # 2026-09-28: part_desc started HARD - Daniel's rule that a part description names
 # the part itself, never the net, device or circuit it is used on.

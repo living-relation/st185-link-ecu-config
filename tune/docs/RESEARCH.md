@@ -98,5 +98,5 @@ Problem example: hot idle **7 PSI** with long turbo feed lines reported on MR2 b
 ## References in repo
 
 - ~~`docs/references/FuryXQuickstartGuide.pdf`~~ — FuryX-specific, not imported (ECU is an XtremeX)
-- `docs/references/linkecu-furyx-dealer.html`
+- `docs/references/linkecu-furyx-dealer.html` (not in this repo; FuryX-era reference)
 - Center cluster CAN: `link_g4x_can_setup.*` (repo root)
