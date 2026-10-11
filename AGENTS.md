@@ -37,7 +37,22 @@
 - **Open items**: `docs/OPEN-ITEMS.md` - the one table of everything unresolved (owner, file:line, what unblocks it).
 - **Handoffs**: `output/` (tracked) - session handoff notes. Not authoritative; the files they describe win.
 - **Archive**: `archive/` holds retired harness drawings only. **Do not read or search it during normal work**; it is excluded from agent context and nothing in it is authoritative. Consult it only when explicitly asked why a past decision was made, and if it disagrees with a current doc, the current doc wins.
-- **Agent ecosystem**: `.claude/skills/` (9 skills: `run-can-bench-scenarios`, `update-can-frame-contract`, `maintain-realdash-xml-mapping`, `extend-trackcluster-can-sender` - CAN/bench; `apply-route-markup` - redraw a route drawing from Dan's markup and add its top view; `build-harness-from-sot` - build/check one `.harness` file against the SoT; `change-sot` - edit `sot/channels.csv` / `interfaces.json` and propagate; `pick-parts` - pick real part numbers in the on-hand-then-TE sourcing order; `ship-change` - PR a finished change to protected `main` and clean up the worktree/branch), `.claude/rules/` + `.cursor/rules/` (same rules, two tools), `.claude/settings.json` (permission allow-list), `.cursor/environment.json` + `.cursor/install.sh` (Cursor Cloud bootstrap), `.claudeignore` (keeps `archive/` out of context), `.githooks/` (pre-commit refuses `docs/research-hub.html`). No agent hooks are configured.
+- **Agent ecosystem**: `.claude/skills/` (4 repo skills: `run-can-bench-scenarios`, `update-can-frame-contract`, `maintain-realdash-xml-mapping`, `extend-trackcluster-can-sender` - CAN/bench; see **Skills** below for the 5 global ST185 skills), `.claude/rules/` + `.cursor/rules/` (same rules, two tools), `.claude/settings.json` (permission allow-list), `.cursor/environment.json` + `.cursor/install.sh` (Cursor Cloud bootstrap), `.claudeignore` (keeps `archive/` out of context), `.githooks/` (pre-commit refuses `docs/research-hub.html`). No agent hooks are configured.
+
+## Skills
+Five skills for this project are saved **globally** (user-level, not in this repo) at
+`C:\Users\danie\.claude\skills\st185-*\SKILL.md` - prefixed `st185-` so they don't collide
+with other projects, and scoped by their own description to this repo. Their bodies are
+not copied here; this is a pointer only.
+
+- [`st185-apply-route-markup`](C:\Users\danie\.claude\skills\st185-apply-route-markup\SKILL.md) - redraw a route drawing in `_research/routes/` from Dan's markup and add its top view (drawing-only).
+- [`st185-build-harness-from-sot`](C:\Users\danie\.claude\skills\st185-build-harness-from-sot\SKILL.md) - build/check one `docs/harness/rebuild/*.harness` file against the SoT, never the reverse.
+- [`st185-change-sot`](C:\Users\danie\.claude\skills\st185-change-sot\SKILL.md) - edit `sot/channels.csv` / `docs/harness/interfaces.json` and run the required check sequence, then list downstream harness files to redraw.
+- [`st185-pick-parts`](C:\Users\danie\.claude\skills\st185-pick-parts\SKILL.md) - pick real part numbers in the on-hand-then-TE sourcing order; never guess a part number.
+- [`st185-ship-change`](C:\Users\danie\.claude\skills\st185-ship-change\SKILL.md) - PR a finished change to protected `main`, squash-merge, clean up the worktree/branch.
+
+The route-drawing lint they call, `scripts/check_route_drawings.py`, lives in this repo
+(see **Fast Commands** below) since it's a test, not a skill.
 
 ## Scope
 - This repo is CAN configuration + bench/tooling for ST185 TrackCluster.
