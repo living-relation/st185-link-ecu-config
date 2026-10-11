@@ -413,7 +413,7 @@
         {
           "id": "c35",
           "designation": "42",
-          "signal": "MRS EPS pump logic enable (cabin fuse block c14, 7.5A) *",
+          "signal": "MRS EPS pump logic enable (fuse box MTA-2 MRS, 7.5A) *",
           "contactPartId": "ct_hdp16p"
         },
         {
@@ -491,13 +491,13 @@
         {
           "id": "c48",
           "designation": "1",
-          "signal": "Switched 12V - INJECTOR power feed, fuse F11 15A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
+          "signal": "Switched 12V - INJECTOR power feed, fuse RFRM INJ 15A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
           "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c49",
           "designation": "2",
-          "signal": "Switched 12V - COP / ignition coil power feed, fuse F10 20A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
+          "signal": "Switched 12V - COP / ignition coil power feed, fuse RFRM COP 20A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
           "contactPartId": "ct_hdp12p"
         }
       ],
@@ -512,12 +512,12 @@
     },
     {
       "id": "k_efi",
-      "label": "EFI Main Relay - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) permanent 12 V (F12 5 A)",
+      "label": "EFI Main Relay - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) permanent 12 V (RFRM EFI86 5 A)",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (F1 30A)",
+          "signal": "Fused +12V in (MTA-1 EFI 30A)",
           "contactPartId": "ct_f7_load"
         },
         {
@@ -529,13 +529,13 @@
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + - PERMANENT battery via F12 5A *",
+          "signal": "Coil + - PERMANENT battery via RFRM EFI86 5A *",
           "contactPartId": "ct_f7_coil"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> FB1 SW IN (F9 sensors/coils, F10 COP, F11 injectors)",
+          "signal": "+12V out -> RFRM Bus 2 IN (SW12 sensors/coils, COP, INJ)",
           "contactPartId": "ct_f7_load"
         }
       ],
@@ -557,7 +557,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (F3 10A)"
+          "signal": "Fused +12V in (MTA-2 ETB 10A)"
         },
         {
           "id": "c2",
@@ -600,7 +600,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (F2 25A)",
+          "signal": "Fused +12V in (MTA-1 FP 20A)",
           "contactPartId": "ct_f7_load"
         },
         {
@@ -640,7 +640,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (HCFB H2 40A)",
+          "signal": "Fused +12V in (MTA-1 FAN 40A)",
           "contactPartId": "ct_f7_load8"
         },
         {
@@ -680,7 +680,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (F4 30A)",
+          "signal": "Fused +12V in (MTA-2 STR 30A)",
           "contactPartId": "ct_f7_load"
         },
         {
@@ -1061,20 +1061,6 @@
       }
     },
     {
-      "id": "br_w_csb12",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CSB3: CSB3 +12V from sp_12v",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1680,
-        "y": 90
-      },
-      "schematicPosition": {
-        "x": 1110,
-        "y": 2790
-      }
-    },
-    {
       "id": "br_w_csbg",
       "type": "Loose",
       "signal": "Broken off - continues on ST185-CSB3: CSB3 ground to sp_chassis",
@@ -1133,7 +1119,7 @@
     {
       "id": "br_w77",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Cabin fuse block SW IN to EFI Main Relay 87",
+      "signal": "Broken off - continues on ST185-CabinPower: RFRM Bus 2 IN to EFI Main Relay 87",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -1161,7 +1147,7 @@
     {
       "id": "br_w_fb_sw12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Cabin fuse block F9 to sp_sw12",
+      "signal": "Broken off - continues on ST185-CabinPower: RFRM SW12 to sp_sw12",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -1175,7 +1161,7 @@
     {
       "id": "br_w_fb_ecu",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Cabin fuse block F8 to sp_12v",
+      "signal": "Broken off - continues on ST185-CabinPower: RFRM ECU to sp_12v",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -1189,7 +1175,7 @@
     {
       "id": "br_w_fb_k_efi_30",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Cabin fuse block F1 to EFI Main Relay 30",
+      "signal": "Broken off - continues on ST185-CabinPower: MTA-1 EFI to EFI Main Relay 30",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -1203,7 +1189,7 @@
     {
       "id": "br_w_k_efi_86",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Cabin fuse block F12 to EFI Main Relay 86",
+      "signal": "Broken off - continues on ST185-CabinPower: RFRM EFI86 to EFI Main Relay 86",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -1217,7 +1203,7 @@
     {
       "id": "br_w_fb_k_fp_30",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Cabin fuse block F2 to Fuel Pump Relay 30",
+      "signal": "Broken off - continues on ST185-CabinPower: MTA-1 FP to Fuel Pump Relay 30",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -1231,7 +1217,7 @@
     {
       "id": "br_w_fb_k_etb_30",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Cabin fuse block F3 to ETB Power Relay 30",
+      "signal": "Broken off - continues on ST185-CabinPower: MTA-2 ETB to ETB Power Relay 30",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -1245,7 +1231,7 @@
     {
       "id": "br_w_fb_k_str_30",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Cabin fuse block F4 to Start Relay 30",
+      "signal": "Broken off - continues on ST185-CabinPower: MTA-2 STR to Start Relay 30",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -1259,7 +1245,7 @@
     {
       "id": "br_w_fb_k_fan_30",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: High-current fuse block HCFB H2 to Radiator Fan Relay 30",
+      "signal": "Broken off - continues on ST185-CabinPower: MTA-1 FAN to Radiator Fan Relay 30",
       "width": 390,
       "layoutPosition": {
         "x": 1800,
@@ -1273,7 +1259,7 @@
     {
       "id": "br_w_fb_mrs_en",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Cabin fuse block F13 to Bulkhead A 35",
+      "signal": "Broken off - continues on ST185-CabinPower: MTA-2 MRS to Bulkhead A 35",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -1301,7 +1287,7 @@
     {
       "id": "br_w_inj_pwr_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: F11 15A injector rail from the cabin fuse block to IX_RAIL_A c1",
+      "signal": "Broken off - continues on ST185-CabinPower: RFRM INJ 15A injector rail from the fuse box to IX_RAIL_A c1",
       "width": 390,
       "layoutPosition": {
         "x": 780,
@@ -1315,7 +1301,7 @@
     {
       "id": "br_w_cop_pwr_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: F10 20A COP rail from the cabin fuse block to IX_RAIL_A c2",
+      "signal": "Broken off - continues on ST185-CabinPower: RFRM COP 20A COP rail from the fuse box to IX_RAIL_A c2",
       "width": 390,
       "layoutPosition": {
         "x": 780,
@@ -2475,19 +2461,6 @@
       "partId": "wp_20_org"
     },
     {
-      "id": "w_csb12_ac",
-      "source": {
-        "id": "sp_12v",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_csb12",
-        "handle": "Terminal"
-      },
-      "color": "Red",
-      "partId": "wp_20_red"
-    },
-    {
       "id": "w_csbg_ac",
       "source": {
         "id": "sp_chassis",
@@ -3290,15 +3263,6 @@
       }
     },
     {
-      "id": "bn_b_bp_1020__br_w_csb12",
-      "sourceId": "b_bp_1020",
-      "targetId": "br_w_csb12",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_b_bp_1170__br_w_csbg",
       "sourceId": "b_bp_1170",
       "targetId": "br_w_csbg",
@@ -3645,7 +3609,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via F12 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A (A32 lead 18 AWG) - feeds sp_5v_bha before bulkhead A (c2, c39, c40 at 20 AWG), an 18 AWG trunk to sp_5v_b on ST185-B-cabin (broken off), crossover (a), and an 18 AWG link to sp_5v_2\nsp_5v_2 (Splice): +5V cabin loads off sp_5v - APS, cruise ladder, w210 (20 AWG each)\nsp_gndout (Splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds sp_gnd_bha before bulkhead A (c3, c41-c44 at 20 AWG) for the A loads only; loom B's sensors return to their own Gnd Out, ECU B22 (no A24-B22 tie in the harness)\nsp_sw12 (Splice): switched 12V bus - its B-side loads (condenser fan and EPS relay coils, VSS feed on bulkhead B c20) are drawn on ST185-B-cabin (broken off)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via RFRM EFI86 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A (A32 lead 18 AWG) - feeds sp_5v_bha before bulkhead A (c2, c39, c40 at 20 AWG), an 18 AWG trunk to sp_5v_b on ST185-B-cabin (broken off), crossover (a), and an 18 AWG link to sp_5v_2\nsp_5v_2 (Splice): +5V cabin loads off sp_5v - APS, cruise ladder, w210 (20 AWG each)\nsp_gndout (Splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds sp_gnd_bha before bulkhead A (c3, c41-c44 at 20 AWG) for the A loads only; loom B's sensors return to their own Gnd Out, ECU B22 (no A24-B22 tie in the harness)\nsp_sw12 (Splice): switched 12V bus - its B-side loads (condenser fan and EPS relay coils, VSS feed on bulkhead B c20) are drawn on ST185-B-cabin (broken off)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)",
       "schematicPosition": {
         "x": 4200,
         "y": 0

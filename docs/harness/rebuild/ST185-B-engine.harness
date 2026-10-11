@@ -26,7 +26,7 @@
         {
           "id": "c3",
           "designation": "95",
-          "signal": "CAN-Lambda +12V, cabin fuse F5 10A (14 AWG)",
+          "signal": "CAN-Lambda +12V, RFRM LAM 10A (14 AWG)",
           "contactPartId": "ct_hdp12s"
         },
         {
@@ -650,7 +650,7 @@
     {
       "id": "br_w_lam12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda +12V from cabin fuse F5, bulkhead B c3",
+      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda +12V from RFRM LAM, bulkhead B c3",
       "width": 390,
       "layoutPosition": {
         "x": 2280,

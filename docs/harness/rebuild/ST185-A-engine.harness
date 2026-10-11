@@ -218,7 +218,7 @@
         {
           "id": "c35",
           "designation": "42",
-          "signal": "MRS EPS pump logic enable (cabin fuse block c14, 7.5A) *",
+          "signal": "MRS EPS pump logic enable (fuse box MTA-2 MRS, 7.5A) *",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -296,13 +296,13 @@
         {
           "id": "c48",
           "designation": "1",
-          "signal": "Switched 12V - INJECTOR power feed, fuse F11 15A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
+          "signal": "Switched 12V - INJECTOR power feed, fuse RFRM INJ 15A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
           "contactPartId": "ct_hdp12s"
         },
         {
           "id": "c49",
           "designation": "2",
-          "signal": "Switched 12V - COP / ignition coil power feed, fuse F10 20A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
+          "signal": "Switched 12V - COP / ignition coil power feed, fuse RFRM COP 20A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
           "contactPartId": "ct_hdp12s"
         }
       ],

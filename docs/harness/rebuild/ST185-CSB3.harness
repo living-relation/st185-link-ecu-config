@@ -288,7 +288,7 @@
     {
       "id": "br_w_csb12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: CSB3 +12V from sp_12v",
+      "signal": "Broken off - continues on ST185-CabinPower: CSB3 +12V from RFRM CSB 5A (switched k_efi rail)",
       "width": 390,
       "layoutPosition": {
         "x": 60,

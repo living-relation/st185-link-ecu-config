@@ -29,7 +29,7 @@ physical section of copper, a connector or a BOM line has one owner.
 |---|---|---|
 | `ST185-A-cabin.harness` | ECU connector A, cabin | ECU-A, cabin half of bulkhead A, A-triggered relays, the BRZ APS pedal connector (folded in 2026-10-11, B33 leg breaks off to B-cabin), the A/C amplifier's cabin-side flying leads (folded in from ST185-ACAmp-Spur 2026-10-11: TW/return, kill, clutch and pressure-switch taps at the amplifier - the A4/A5 device-side ends are on EngineRoom-C), front wheel-speed spur, the +5V / Gnd Out / +8V / switched-12V splices |
 | `ST185-B-cabin.harness` | ECU connector B, cabin | ECU-B, cabin half of bulkhead B, condenser fan relay, fuel level branch, rear wheel-speed spur, the front spur's FR core, the B legs of +5V / Gnd Out |
-| `ST185-CabinPower.harness` | Cabin power (non-ECU) | cabin fuse block, HCFB, battery feed ring, fuel pump run to the trunk; feeds to the A-cabin relays and splices and to B-cabin arrive broken off |
+| `ST185-CabinPower.harness` | Cabin power (non-ECU) | the glove-box fuse box (Option B: Bussmann LMI `hcfb` L1-L7, Eaton RFRM `rfrm`, 3x MTA 0301491 `mta1`-`mta3`), battery feed ring, fuel pump run to the trunk; feeds to the A-cabin / B-cabin relays and splices, CSB3 and the EngineRoom-C OEM ends arrive broken off |
 | `ST185-HeavyDC.harness` | Heavy DC (Route 1) | trunk battery, RADLOK firewall pair, starter, 160 A alternator B+, engine-bay jump post, engine block ground; hands off to EngineRoom-C at the cabin PDB (breaks H1/H2/H3/H6a) |
 | `ST185-CSB3.harness` | ECUMaster CSB3 | CSB3 plug, cruise stalk, clutch and brake switches, cruise ladder; power, ground, reverse, LED and CAN wires arrive broken off |
 | `ST185-A-engine.harness` | ECU connector A, engine | bulkhead A engine half to every A-letter engine device, plus the `IX_B_RAIL` spur (B-engine sensor +5V / Gnd Out) |
@@ -52,10 +52,12 @@ ground to the cluster. Interior cluster wiring lives only in
 `center-cluster-esp32-p4`. Do not add interior cluster circuits here.
 `ST185-CAN` ends at its CAN-drop terminal.
 
-Loom C's `gbx_body` node (part `cp_gbx_body`) is the glove-box body block - a
-second fuse block plus micro ISO relays - carrying the ex-J/B2 circuits plus the
-CSB3 and device feeds. Some wire ids still carry `pmu` (`w_pmu_hl`, `w_pdb_pmu` ...)
-from its PMU-16 days - names only, not a PMU.
+The fuse box lives only in `ST185-CabinPower` (2026-10-11, Option B, `_research/FUSEBOX-B-SLOT-MAP.md`).
+Loom C's old `gbx_body` glove-box body block and the PDB's fused AM1 / AM2 / OEM HOT
+outputs moved there; EngineRoom-C keeps the OEM ends (J/B2, IE1, J/B1, R/B2, R/B4,
+A/C pressure switch) and reaches the box through broken-off pairs. The PDB keeps only
+its battery, RADLOK and ground studs. Some wire ids still carry `pmu` (`w_pmu_hl` ...)
+from the PMU-16 days - names only, not a PMU.
 
 ## Boundaries
 
