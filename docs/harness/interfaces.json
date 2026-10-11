@@ -4,7 +4,7 @@
   "harnesses": {
     "A-cabin": {
       "file": "ST185-A-cabin.harness",
-      "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the A-triggered relays (fuse block and HCFB on ST185-CabinPower), APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
+      "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the A-triggered relays (fuse box - LMI + RFRM + 3x MTA, Option B - on ST185-CabinPower), APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
     },
     "B-cabin": {
       "file": "ST185-B-cabin.harness",

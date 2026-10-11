@@ -1,11 +1,11 @@
-"""Lints Dan's route-markup HTML drawings.
+"""Lints Dan's route-markup HTML drawings in docs/harness/routes/ (one file per
+route, current version only; git history is the revision record).
 
-Standalone, not wired into docs/harness/check_all.py: the routes live in
-_research/routes/, which this repo does not track (see AGENTS.md "Fast
-Commands"). Run it by hand, pointed at a file or a directory:
+A SOFT gate in docs/harness/check_all.py (no argument = docs/harness/routes/).
+Run it by hand on one file or a directory:
 
-    python scripts/check_route_drawings.py "C:\\projects\\active\\st185-link-ecu-config\\_research\\routes"
-    python scripts/check_route_drawings.py path\\to\\ROUTE-5-A-CABIN-rev3.html
+    python docs/harness/check_route_drawings.py
+    python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.html
 
 Checks, per file:
   1. every red route <polyline>/<path> has fill="none" (a red shape without
@@ -14,8 +14,8 @@ Checks, per file:
      tag (same attribute twice on one tag, or an unterminated quote)
   3. every isometric route figure ("Fig. <id>" caption) is followed, before
      the next one, by a top view ("Top view" caption) - Dan's top-view rule,
-     binding (HARNESS-RECONCILE-PLAN.html section 34)
-  4. no two numbered marker circles overlap
+     binding (route rules in docs/harness/redesign/DECISIONS.md)
+  4. no two numbered marker circles overlap within one figure (<svg>)
 
 Exit 0 if every file is clean, 1 otherwise.
 """
@@ -67,24 +67,27 @@ def check_file(path):
                        % (path, pos))
 
     # 4. numbered marker circles must not overlap
-    markers = [(float(cx), float(cy), float(r)) for cx, cy, r in MARKER.findall(text)]
-    for i in range(len(markers)):
-        x1, y1, r1 = markers[i]
-        for j in range(i + 1, len(markers)):
-            x2, y2, r2 = markers[j]
-            if abs(x1 - x2) < (r1 + r2) and abs(y1 - y2) < (r1 + r2):
-                bad.append("%s: marker labels overlap near (%.0f,%.0f) and (%.0f,%.0f)"
-                           % (path, x1, y1, x2, y2))
+    #    (each figure is its own <svg>, so only compare markers inside one)
+    for svg in re.findall(r'<svg.*?</svg>', text, re.I | re.S):
+        markers = [(float(cx), float(cy), float(r)) for cx, cy, r in MARKER.findall(svg)]
+        for i in range(len(markers)):
+            x1, y1, r1 = markers[i]
+            for j in range(i + 1, len(markers)):
+                x2, y2, r2 = markers[j]
+                if abs(x1 - x2) < (r1 + r2) and abs(y1 - y2) < (r1 + r2):
+                    bad.append("%s: marker labels overlap near (%.0f,%.0f) and (%.0f,%.0f)"
+                               % (path, x1, y1, x2, y2))
 
     return bad
 
 
 def main(argv):
-    if len(argv) != 2:
-        print("usage: python scripts/check_route_drawings.py <file-or-directory>")
+    if len(argv) > 2:
+        print("usage: python docs/harness/check_route_drawings.py [file-or-directory]")
         return 2
 
-    target = argv[1]
+    target = argv[1] if len(argv) == 2 else os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "routes")
     if os.path.isdir(target):
         files = sorted(glob.glob(os.path.join(target, "*.html")))
     elif os.path.isfile(target):

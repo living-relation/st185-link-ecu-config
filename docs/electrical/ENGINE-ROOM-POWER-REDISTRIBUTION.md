@@ -312,7 +312,7 @@ Routed with the OEM engine-room main. Passenger fender / ABS trough for EPS; cor
 | C7 | Rad fan GND | 8 AWG | Fan → EA | |
 | C8 | Condenser fan 12 V | 8 AWG | `k_fan2` 87 → core support | New DT 2-way |
 | C9 | Condenser fan GND | 8 AWG | Fan → EA | |
-| C10 | A/C compressor clutch | — | **ST185-EngineRoom-C** flying lead `fl_a4_3` (device side; A18-5 amplifier side is on ST185-A-cabin, `br_ac_mg` break), not a numbered loom-C circuit | Not on A/B; `docs/harness/ACAMP-SPUR-LABELS.md` |
+| C10 | A/C compressor VC control coil (not fitted; the clutch is A4 pin 4 from `k_acc`) | — | **ST185-EngineRoom-C** flying lead `fl_a4_3` (device side; A18-5 amplifier side is on ST185-A-cabin, `br_ac_mg` break), not a numbered loom-C circuit | Not on A/B; `docs/harness/ACAMP-SPUR-LABELS.md` |
 
 Wiper, washer, headlights, turn, park, horn motors **stay on the OEM engine-room loom**. We only restore their power at J1–J5.
 
@@ -359,14 +359,66 @@ Since Option B (2026-10-11) the whole glove-box fuse box (Bussmann LMI, Eaton RF
 | AM1 | 40 A | F11 40A FL AM1 | IE1-10 (L6) |
 | AM2 | 30 A | F11 30A FL AM2 | IE1-17 (L7) |
 | OEM HOT | 60 A (set 2026-09-25, 6 AWG `w_pdb_jb1`) | FL ALT feed into J/B1 | 1I-1 (L1) |
-| HEATER feed | unfused stub; 40 A lives in R/B4 | FL ALT → E13 → R/B4 | R/B4 fuse pins 1–2 (R1) |
-| POWER feed | unfused stub; 30 A lives in R/B2 | FL ALT → I2 → R/B2 | R/B2 fuse pins 1–2 (L9) |
+| HEATER feed | 40 A MAXI + heater relay in MTA-2 (Option B; R/B No.4 removed, 2026-10-10) | FL ALT → E13 → R/B4 | OEM blower wire; exact landing open (`docs/OPEN-ITEMS.md` row 52) |
+| POWER feed | 30 A (LMI L2) + power relay in MTA-3 (Option B; R/B No.2 removed, 2026-10-10) | FL ALT → I2 → R/B2 | OEM windows/locks wire; exact landing open (`docs/OPEN-ITEMS.md` row 52) |
 | ~~2nd fuse block feed~~ | retired (ANL 100 A gone, Option B) | J/B2 HEAD/HAZ/DOME/RTR fuses | now RFRM positions in `ST185-CabinPower` |
 | ACPS (A/C pressure switch +12V) | 10 A per the Option B slot map (was 5 A), from heater relay 87 | OEM A/C circuit feed to A5 pin 1, EWD p.152 | CabinPower → flying lead A5 pin 1 (`w_acp_1`); switched return A5 pin 4 (`fl_a5_4`) breaks off to A/C amplifier A18 pin 13 (`fl_acamp_psw`) on `ST185-A-cabin` via `BR_AC_PSW` |
 | Charge / start | none at PDB, or ANL 200 A | F11 100A FL ALT | RADLOK + → starter B+ |
 | ABS | **omit** | F11 60A FL ABS | deleted |
 
-Heater and POWER keep their OEM fuses in the kick-panel R/Bs. We only restore the always-hot into those fuse **inputs**.
+R/B No.2, No.3 and No.4 are removed (Daniel, 2026-10-10): heater and POWER get their fuse and relay in the glove-box box (slot map below).
+
+### 8.1 Option B slot map (2026-10-11)
+
+Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI `LMI5-M-2-CB1AD` (+3 x `LMI1-M-1-0`). Relays from `docs/sourcing/te-on-hand-bom.csv`. Drawn in `ST185-CabinPower.harness` (PR #83, which applied the slot map's drawing fixes); what is still open is `docs/OPEN-ITEMS.md` rows 45-53. The "Was" column names the retired pre-Option B drawing positions (history).
+
+| # | Circuit | Was (before Option B) | Unit | Slot | Fuse (A) | Relay | Relay part | AWG | Note |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Bus 1 feed (permanent) | CabinPower hcfb h1 50A | LMI | L1 | 50 AMI | — | — | 10 | → RFRM Bus 1 stud |
+| 2 | Radiator fan | hcfb h2 40A | MTA-1 | MaxiVal + Maxi R1 | 40 MAXI | k_fan | TE 1-1414147-0 (own) | 8 | Link Aux 5 A29 |
+| 3 | k_efi EFI main (→ Bus 2) | fusebox c1 30A / c15 | MTA-1 | MiniVal 1 + Maxi R2 | 30 MINI | k_efi | TE 1-1414147-0 (own) | 12 in / 10 out | Aux 6 A28 hold; 87 → RFRM Bus 2 |
+| 4 | Fuel pump | fusebox c2 25A | MTA-1 | MiniVal 2 + micro | 20 MINI | k_fp | TE 4-1904124-2 (own) | 12 | Aux 3 A19; pump 14.4 A |
+| 5 | Blower / heater | pdb c3 → R/B4 (40A) | MTA-2 | MaxiVal + Maxi R1 | 40 MAXI | heater | TE 1-1414147-0 (own) | 8 | coil: auto amp HR path |
+| 6 | Starter S | fusebox c4 30A | MTA-2 | MiniVal 1 + Maxi R2 | 30 MINI | k_str | TE 1-1414147-0 (BUY) | 12 | Aux 8 A26 |
+| 7 | ETB power | fusebox c3 10A | MTA-2 | MiniVal 2 + micro | 10 MINI | k_etb | TE 4-1904124-2 (own) | 16 | Aux 2 A20 → B5 |
+| 8 | MR-S EPS enable logic (F13) | fusebox c14 7.5A | MTA-2 | MiniVal 3 | 7.5 MINI | — | — | 20 | fed from k_eps_en 87 |
+| 9 | Condenser fan | hcfb h3 30A | MTA-3 | MaxiVal + Maxi R1 | 30 MAXI | k_fan2 | TE 1-1393304-0 (own, bracket: test-fit) | 8 | Ign 5 B13; plain relay, no diode |
+| 10 | Power windows/locks + tilt-away (ex-R/B2 POWER) | pdb c3 → R/B2 | LMI → MTA-3 | L2 + Maxi R2 | 30 AMI | power | TE 1-1393304-0 (own, bracket: test-fit) | 10 | coil: key IG; ATAS tap before relay |
+| 11 | A/C (ACPS) from heater-relay 87 | gbx_body c12 (5A drawn) | MTA-3 | MiniVal 1 | 10 MINI | — | — | 18 | plan 26.2 = 10 A; drawing 5 A → fix drawing |
+| 12 | B30 start request (ST1 tap) | Route 6/7 | MTA-3 | MiniVal 2 | 2 MINI | — | — | 20 | B-W from old R/B4 spot → DI7 B30 |
+| 13 | RTR pop-up headlights (OEM R8 relay) | gbx_body c8 30A | LMI | L3 | 30 AMI | — | no relay (OEM R8) | 10 | drawing shows relay 87 → remove |
+| 14 | AM1 → IE1-10 / I13-4 | pdb c6 40A | LMI | L4 | 40 AMI | — | — | 8 |  |
+| 15 | AM2 → IE1-17 / I13-10 | pdb c7 30A | LMI | L5 | 30 AMI | — | — | 10 |  |
+| 16 | OEM HOT → J/B1 1I-1 | pdb c5 60A | LMI | L6 | 60 AMI | — | — | 6 |  |
+| 17 | EPS pump → HCR150 30 | hcfb h4 60A | LMI | L7 | 60 AMI | k_eps | TE HCR150 1416010-1 (own) | 8 | coil ← k_eps_en; mount beside |
+| 18 | ECU permanent +12V (F8) | fusebox c8 10A | RFRM | Bus 1 | 10 | — | — | 18 |  |
+| 19 | Relay-coil perm feed k_efi 86 (F12) | fusebox c12 5A | RFRM | Bus 1 | 5 | — | — | 18 |  |
+| 20 | HEAD LH | gbx_body c4 15A | RFRM | Bus 1 + micro | 15 | HEAD LH | TE 5-1393292-8 (own, diode) | 14 | coil − IE1-2 |
+| 21 | HEAD RH | gbx_body c5 15A | RFRM | Bus 1 + micro | 15 | HEAD RH | TE 5-1393292-8 (own, diode) | 14 |  |
+| 22 | HAZ-HORN (+ horn relay) | gbx_body c6 15A | RFRM | Bus 1 + micro | 15 | horn | TE 4-1904124-3 (own) | 14 | coil − IE1-19 |
+| 23 | DOME | gbx_body c7 20A | RFRM | Bus 1 | 20 | — | — | 12 |  |
+| 24 | Wiper park | gbx_body c9 15A | RFRM | Bus 1 + micro | 15 | WP | TE 4-1904124-3 (own) | 14 | optional |
+| 25 | Alt excite | research list (not drawn) | RFRM | Bus 1 | 5 | — | — | 18 | add to drawing if kept |
+| 26 | CAN-Lambda +12V (F5) | fusebox c5 10A | RFRM | Bus 2 | 10 | — | — | 14 | → bulkhead B c3 |
+| 27 | Switched sensor rail / relay coils sp_sw12 (F9) | fusebox c9 10A + gbx_body c3 | RFRM | Bus 2 | 10 | — | — | 18 |  |
+| 28 | COP coil bank (F10) | fusebox c10 20A | RFRM | Bus 2 | 20 | — | — | 14 |  |
+| 29 | Injector bank (F11) | fusebox c11 15A | RFRM | Bus 2 | 15 | — | — | 14 |  |
+| 30 | CSB3 | gbx_body c10 5A | RFRM | Bus 2 | 5 | — | — | 18 | now k_efi rail (decided), drawing says permanent |
+| 31 | DEV: cluster + RealDash Pi | gbx_body c11 | RFRM | Bus 2 | 15 | — | — | 16 | one fuse as drawn |
+| 32 | k_eps_en contact feed | Route 7 / plan 18.1 | RFRM | Bus 2 + micro | TBD | k_eps_en | TE 6-1419137-4 (own) | 18 | Ign 6 B12 |
+| 33 | k_acc A/C clutch | plan 9.3 | RFRM | Bus 2 + micro | 10 (verify) | k_acc | TE 6-1419137-4 (own) | 16 | Ign 8 B10; A5 in series |
+
+**Feeds**
+
+- Trunk MEGA 300 A → 1/0 → Blue Sea 2127 + bus (glove box). That bus feeds: LMI input (M8), the 3 MTA module power inputs, and nothing else.
+- RFRM Bus 1 = permanent, from LMI L1 50 A. RFRM Bus 2 = switched, from k_efi 87 (MTA-1).
+- MTA MiniVal positions are fed one by one (A/C from heater-relay 87, B30 from ST1, F13 from k_eps_en 87, k_fp/k_etb/k_efi/k_str from the + bus). Confirm the 0301491 internal bus on MTA's drawing.
+
+**Spare capacity**
+
+- RFRM: 16 of 40 fuse slots used, 6 of 10 micro relays (4 spare).
+- MTA: 6 of 6 Maxi relays, 3 of 3 MaxiVal, 7 of 18 MiniVal, 2 of 3 micro (1 spare).
+- LMI: 7 of 7 (no spare; max 7 per assembly).
 
 ---
 
@@ -378,7 +430,7 @@ Heater and POWER keep their OEM fuses in the kick-panel R/Bs. We only restore th
 4. Trunk battery, cabin-floor 2 AWG / 1/0, glove-box PDB, fuse box (LMI + RFRM + 3x MTA), relays. RADLOK through the firewall. Jump lugs at trunk, PDB, starter, block, bay post.
 5. Inject L1, L6, L7, L8, L9, R1, R5. Isolate R2 (OEM starter relay). Do not land J3/J4 until the probe in step 2 says so.
 6. Dummy-header J1 / J2 / J5 (HEAD LH/RH + DOME) along the driver-side engine-room main (route per EngineRoom-C). Jumper 2A-3↔2D-2 and 2A-6↔2D-6.
-7. Engine Room C add-ons: EPS 8 AWG in the vacated ABS trough; uprated fans 8 AWG on the core support. A/C clutch (`fl_a4_3`) and pressure-switch signal (`fl_a5_4`) are flying leads on this loom (device side; amplifier side is on `ST185-A-cabin`, folded in from the retired `ST185-ACAmp-Spur` 2026-10-11).
+7. Engine Room C add-ons: EPS 8 AWG in the vacated ABS trough; uprated fans 8 AWG on the core support. A/C VC-coil lead (`fl_a4_3`, not fitted) and pressure-switch signal (`fl_a5_4`) are flying leads on this loom (device side; amplifier side is on `ST185-A-cabin`, folded in from the retired `ST185-ACAmp-Spur` 2026-10-11).
 8. Power-up: PDB only → 1I-1 lights J/B1 STOP/ECU-B/DEFOGGER → AM1/AM2 crank the ignition switch → fuse box (RFRM) live → headlights / dome. Starter last.
 
 Loom C is `docs/harness/rebuild/ST185-EngineRoom-C.harness`, live on harness.design.

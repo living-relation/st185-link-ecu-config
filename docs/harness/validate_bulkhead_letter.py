@@ -38,9 +38,9 @@ The allow-list is the rule's crossovers and nothing else:
       from the retired ST185-APS-Pedal 2026-10-11, "pedal is one cable in A-cabin") -
       its B33 leg (conductor w_aps_vpa2) is the one allowed A-file wire reaching a
       B-letter device cavity, and still breaks off to B-cabin in the usual way (L6)
-The injector (F11) and COP (F10) rails are not a crossover: they cross on the A side
-through IX_RAIL_A, a DTP 4-way flange pass-through beside bulkhead A (Daniel,
-2026-09-28; crossover (d) retired).
+The injector (RFRM INJ) and COP (RFRM COP) rails are not a crossover: they cross on the
+A side, bulkhead A c48 / c49 of the shared DRB102 (IX_RAIL_A retired 2026-09-29;
+crossover (d) retired, Daniel 2026-09-28).
 
 Exit 1 on any finding.
 """

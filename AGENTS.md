@@ -34,8 +34,9 @@
 - **Harness / electrical**: `docs/harness/rebuild/*.harness` - drawings, **not a source of truth** (Daniel, 2026-10-04: they follow `sot/channels.csv`; never generate truth docs from them) (one physical harness per file, ownership in `docs/harness/interfaces.json`; see `docs/harness/README.md`), gate `python docs/harness/check_all.py`. ECU looms follow the ECU connector letter (`ST185-A-cabin` / `-B-cabin` / `-A-engine` / `-B-engine`) - canonical rule `docs/RECONCILIATION-RULES.md` Rule 3, gate `validate_bulkhead_letter.py`; `docs/SHIELD-RULES.md`, `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - **Engine calibration**: `tune/engine_constants.yaml`, `tune/limits.yaml`, `tune/tables/*.csv`, `tune/docs/`, `tune/scripts/` (incl. `validate_tune.py`), `tune/README.md` — PCLink seeds only; not an I/O or CAN source. `FUEL-SYSTEM.md` is fuel hardware reference, not CAN.
 - **Other docs/**: `docs/devices/`, `docs/enclosures/`, `docs/sourcing/`, `docs/procedures/`, `docs/intercooler-turbo-study/`, `docs/5sgte-project-data/` (research), `docs/research-hub.html` (generated, see below).
-- **Open items**: `docs/OPEN-ITEMS.md` - the one table of everything unresolved (owner, file:line, what unblocks it).
-- **Handoffs**: `output/` (tracked) - session handoff notes. Not authoritative; the files they describe win.
+- **Project tracker**: `docs/OPEN-ITEMS.md` - THE one tracker: every unresolved item (owner, source, what unblocks it) plus the dated project history. Decisions live in `docs/harness/redesign/DECISIONS.md`.
+- **Route drawings**: `docs/harness/routes/` - Dan's approved route for each harness (one HTML per route, current version only); lint `docs/harness/check_route_drawings.py`.
+- **Handoffs**: none kept. A finished handoff is deleted; open work goes into `docs/OPEN-ITEMS.md` (`output/` is for a handoff in flight only).
 - **Archive**: `archive/` holds retired harness drawings only. **Do not read or search it during normal work**; it is excluded from agent context and nothing in it is authoritative. Consult it only when explicitly asked why a past decision was made, and if it disagrees with a current doc, the current doc wins.
 - **Agent ecosystem**: `.claude/skills/` (4 repo skills: `run-can-bench-scenarios`, `update-can-frame-contract`, `maintain-realdash-xml-mapping`, `extend-trackcluster-can-sender` - CAN/bench; see **Skills** below for the 5 global ST185 skills), `.claude/rules/` + `.cursor/rules/` (same rules, two tools), `.claude/settings.json` (permission allow-list), `.cursor/environment.json` + `.cursor/install.sh` (Cursor Cloud bootstrap), `.claudeignore` (keeps `archive/` out of context), `.githooks/` (pre-commit refuses `docs/research-hub.html`). No agent hooks are configured.
 
@@ -45,14 +46,14 @@ Five skills for this project are saved **globally** (user-level, not in this rep
 with other projects, and scoped by their own description to this repo. Their bodies are
 not copied here; this is a pointer only.
 
-- [`st185-apply-route-markup`](C:\Users\danie\.claude\skills\st185-apply-route-markup\SKILL.md) - redraw a route drawing in `_research/routes/` from Dan's markup and add its top view (drawing-only).
+- [`st185-apply-route-markup`](C:\Users\danie\.claude\skills\st185-apply-route-markup\SKILL.md) - redraw a route drawing in `docs/harness/routes/` from Dan's markup and add its top view (drawing-only).
 - [`st185-build-harness-from-sot`](C:\Users\danie\.claude\skills\st185-build-harness-from-sot\SKILL.md) - build/check one `docs/harness/rebuild/*.harness` file against the SoT, never the reverse.
 - [`st185-change-sot`](C:\Users\danie\.claude\skills\st185-change-sot\SKILL.md) - edit `sot/channels.csv` / `docs/harness/interfaces.json` and run the required check sequence, then list downstream harness files to redraw.
 - [`st185-pick-parts`](C:\Users\danie\.claude\skills\st185-pick-parts\SKILL.md) - pick real part numbers in the on-hand-then-TE sourcing order; never guess a part number.
 - [`st185-ship-change`](C:\Users\danie\.claude\skills\st185-ship-change\SKILL.md) - PR a finished change to protected `main`, squash-merge, clean up the worktree/branch.
 
-The route-drawing lint they call, `scripts/check_route_drawings.py`, lives in this repo
-(see **Fast Commands** below) since it's a test, not a skill.
+The route-drawing lint they call, `docs/harness/check_route_drawings.py`, lives in this repo
+and runs as a SOFT gate in `check_all.py`, since it's a test, not a skill.
 
 ## Scope
 - This repo is CAN configuration + bench/tooling for ST185 TrackCluster.
@@ -66,7 +67,7 @@ The route-drawing lint they call, `scripts/check_route_drawings.py`, lives in th
 - RealDash channel definitions: `link_g4x_realdash.xml`.
 - Engine-room power splice table (kick-panel J/Bs, vacated J/B2): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - Wiring SoT (every ECU pin and channel): `sot/channels.csv`. Visual face: `XTREMEX-IO-TABLE.html` (gated by `docs/harness/sync_io_table.py --check`).
-- The harness drawings - **not a source of truth** (Daniel, 2026-10-04: they follow `sot/channels.csv`; never generate truth docs from them): `docs/harness/rebuild/*.harness` (15 files, one physical harness per file; wires between files are drawn broken off in both; the four ECU looms split by connector letter 2026-09-28; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
+- The harness drawings - **not a source of truth** (Daniel, 2026-10-04: they follow `sot/channels.csv`; never generate truth docs from them): `docs/harness/rebuild/*.harness` (14 files, one physical harness per file; wires between files are drawn broken off in both; the four ECU looms split by connector letter 2026-09-28; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
 - Wiring reconciliation rules: `docs/RECONCILIATION-RULES.md` Rule 1; ECU loom letter rule: Rule 3.
 
 ## Board / progress snapshot
@@ -75,7 +76,7 @@ The route-drawing lint they call, `scripts/check_route_drawings.py`, lives in th
   redesign (physical-harness-per-file, ownership/interface model) supersedes the file
   inventory in §6.41; current decisions are `docs/harness/redesign/DECISIONS.md`.
 - `archive/` holds retired harness drawings only. They are not authoritative.
-- Paste **CONFLICT rows only** into the ACTIVE `shipping\` trance; park husk-keyed chats.
+
 ## Related Repos (mandatory for CAN bus / wiring work)
 This repo defines only one side of the CAN bus (ECU, RealDash, switchboard). The
 other node — the gauge cluster — lives in a separate repo:
@@ -150,11 +151,12 @@ python rd-build/tools/automation_helper.py size
 python rd-build/tools/automation_helper.py screenshot rd-build/rd_screen.png
 ```
 
-### Route-drawing lint (standalone - not in `check_all.py`)
-`_research/` is untracked and local-only (main checkout only), so this is not wired into
-`docs/harness/check_all.py`. Run it by hand, pointed at a file or directory:
+### Route-drawing lint
+The approved route drawings are `docs/harness/routes/` (current version only; git history is
+the revision record). `check_all.py` runs the lint as a SOFT gate; by hand:
 ```bash
-python scripts/check_route_drawings.py "C:\projects\active\st185-link-ecu-config\_research\routes"
+python docs/harness/check_route_drawings.py                      # all routes
+python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.html
 ```
 
 ## Working Rules
@@ -187,7 +189,7 @@ python scripts/check_route_drawings.py "C:\projects\active\st185-link-ecu-config
 
 ## Local environment
 
-- Local checkout of this repo on dansPC is `C:\projects\active\st185-link-ecu-config` (moved from `C:\projects\shipping\st185-link-ecu-config`).
+- Local checkout of this repo on dansPC is `C:\projects\active\st185-link-ecu-config`.
 
 ## Cursor Cloud specific instructions
 - The Cloud Agent environment is defined by `.cursor/environment.json`, which runs `.cursor/install.sh` (installs the WebKit2 GTK backend for the `pywebview` sender app plus the Python deps from the three `requirements.txt` files).

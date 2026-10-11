@@ -105,7 +105,7 @@ is final. All of them, every time — not just the pair you happened to be worki
 | Device | Where its config lives |
 |---|---|
 | **Link G4X XtremeX ECU** | `link_g4x_can_setup.json`, `link_g4x_can_setup.lcs`, `CANBUS-LINK-G4X-CONFIG.md` |
-| **Center cluster (ESP32-P4)** | `center-cluster-esp32-p4` repo — `main/canbus.c`, `main/protocols/link_g4x.json` |
+| **Center cluster (ESP32-P4)** | `center-cluster-esp32-p4` repo — `main/canbus.c` |
 | **RealDash** | `link_g4x_realdash.xml`, `st185_dash.rd`, `REALDASH-LAYOUT.md`, `rd-build/` |
 | **ECUMaster CAN Switchboard (CSB3)** | `ECUMASTER_SWITCHBOARD_SETUP.md` |
 | **Link CAN-Lambda** | On the same bus — see bus facts below |
@@ -190,11 +190,11 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     wire reaching a B-letter device cavity (`docs/harness/validate_bulkhead_letter.py`
     `ALLOW["c"]`). The throttle **body** (A20 relay trigger, B5 supply, B18/B26 motor,
     A22/A33 sensors) is engine-bay wiring.
-  - The injector rail (F11 15 A) and COP rail (F10 20 A) are **not** a crossover: non-ECU
-    power follows its device's ECU signal letter, so they cross on the A side through
-    `IX_RAIL_A`, a Deutsch DTP 4-way flange pass-through beside bulkhead A (`ST185-A-cabin`
-    receptacle, `ST185-A-engine` plug). Crossover (d) is retired (Daniel, 2026-09-28;
-    `docs/harness/redesign/DECISIONS.md` Q-RAIL).
+  - The injector rail (RFRM INJ 15 A) and COP rail (RFRM COP 20 A) are **not** a crossover:
+    non-ECU power follows its device's ECU signal letter, so they cross on the A side, on
+    bulkhead A c48 / c49 of the shared DRB102 (`docs/harness/DRB102-CAVITY-MAP.md`). The
+    earlier `IX_RAIL_A` DTP pass-through is retired (2026-09-29). Crossover (d) is retired
+    (Daniel, 2026-09-28; `docs/harness/redesign/DECISIONS.md` Q-RAIL).
 - **Splice sizing (Daniel, 2026-09-28, standing):** a splice is sized by the **combined** gauge
   of the wires it joins, from the Wire Barn Combined Wire Gauge Calculator
   (https://www.wirebarn.com/Combined-Wire-Gauge-Calculator_ep_42.html). The splice part's range
@@ -229,7 +229,7 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
 - Every other loom stays as it is: `EngineRoom-C`, `CAN`, `ClusterLED`, `AntiTheft`,
   `WheelSpeed-Front` / `-Rear`, `RearFuel`, `HeavyDC`. `ACAmp-Spur` and `APS-Pedal` were
   retired 2026-10-11 - their non-ECU content folded into `A-cabin` (and, for the A/C
-  device-side leads, `EngineRoom-C`); crossover (c) below covers what crosses letters.
+  device-side leads, `EngineRoom-C`); crossover (c) above covers what crosses letters.
 
 **Enforced by** `docs/harness/validate_bulkhead_letter.py`, a hard gate in `check_all.py`.
 Its allow-list is (a)-(c) and nothing else.

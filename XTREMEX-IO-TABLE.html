@@ -340,7 +340,7 @@
   <tr><td>Ignition</td><td>8</td><td>4 coils + 3 aux (Ign 5, Ign 6, Ign 8)</td><td>1 (Ign 7)</td></tr>
   <tr><td>Aux</td><td>10</td><td>10 (9/10 = ETB)</td><td>0 → spare Ign/Inj</td></tr>
 </table>
-<div class="note"><strong>Aux is exactly full — zero spare.</strong> Every one of the 10 Aux outputs is allocated. The next <em>ECU</em> actuator comes out of spare Ign 7 / Inj 5–8 (Ign 5 = condenser-fan relay, Ign 6 = EPS enable relay, Ign 8 = A/C clutch relay). <strong>No PMU/PDU</strong> (plan 6.48): the glove-box body block is a second fuse block plus micro ISO relays, with the CSB3 doing the logic. EPS pump, both fans and the fuel pump stay on relay + fuse. Scope and current figures: <code>docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md</code> §6.2.1. Splice table: <code>docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md</code>.</div>
+<div class="note"><strong>Aux is exactly full — zero spare.</strong> Every one of the 10 Aux outputs is allocated. The next <em>ECU</em> actuator comes out of spare Ign 7 / Inj 5–8 (Ign 5 = condenser-fan relay, Ign 6 = EPS enable relay, Ign 8 = A/C clutch relay). <strong>No PMU/PDU</strong> (plan 6.48): the glove-box fuse box is fuse box Option B (Bussmann LMI + Eaton RFRM + 3x MTA, drawn in <code>ST185-CabinPower</code>, 2026-10-11) with micro ISO relays, the CSB3 doing the logic. EPS pump, both fans and the fuel pump stay on relay + fuse. Scope and current figures: <code>docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md</code> §6.2.1. Splice table: <code>docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md</code>.</div>
 
 
 <h2>Comms port (6-pin) — USER CAN 1</h2>
