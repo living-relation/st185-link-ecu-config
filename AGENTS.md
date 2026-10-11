@@ -37,7 +37,7 @@
 - **Open items**: `docs/OPEN-ITEMS.md` - the one table of everything unresolved (owner, file:line, what unblocks it).
 - **Handoffs**: `output/` (tracked) - session handoff notes. Not authoritative; the files they describe win.
 - **Archive**: `archive/` holds retired harness drawings only. **Do not read or search it during normal work**; it is excluded from agent context and nothing in it is authoritative. Consult it only when explicitly asked why a past decision was made, and if it disagrees with a current doc, the current doc wins.
-- **Agent ecosystem**: `.claude/skills/` (4 skills), `.claude/rules/` + `.cursor/rules/` (same rules, two tools), `.claude/settings.json` (permission allow-list), `.cursor/environment.json` + `.cursor/install.sh` (Cursor Cloud bootstrap), `.claudeignore` (keeps `archive/` out of context), `.githooks/` (pre-commit refuses `docs/research-hub.html`). No agent hooks are configured.
+- **Agent ecosystem**: `.claude/skills/` (9 skills: `run-can-bench-scenarios`, `update-can-frame-contract`, `maintain-realdash-xml-mapping`, `extend-trackcluster-can-sender` - CAN/bench; `apply-route-markup` - redraw a route drawing from Dan's markup and add its top view; `build-harness-from-sot` - build/check one `.harness` file against the SoT; `change-sot` - edit `sot/channels.csv` / `interfaces.json` and propagate; `pick-parts` - pick real part numbers in the on-hand-then-TE sourcing order; `ship-change` - PR a finished change to protected `main` and clean up the worktree/branch), `.claude/rules/` + `.cursor/rules/` (same rules, two tools), `.claude/settings.json` (permission allow-list), `.cursor/environment.json` + `.cursor/install.sh` (Cursor Cloud bootstrap), `.claudeignore` (keeps `archive/` out of context), `.githooks/` (pre-commit refuses `docs/research-hub.html`). No agent hooks are configured.
 
 ## Scope
 - This repo is CAN configuration + bench/tooling for ST185 TrackCluster.
@@ -133,6 +133,13 @@ python .github/scripts/check_doc_duplicates.py   # copied .md passages (warn-onl
 python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py
 python rd-build/tools/automation_helper.py size
 python rd-build/tools/automation_helper.py screenshot rd-build/rd_screen.png
+```
+
+### Route-drawing lint (standalone - not in `check_all.py`)
+`_research/` is untracked and local-only (main checkout only), so this is not wired into
+`docs/harness/check_all.py`. Run it by hand, pointed at a file or directory:
+```bash
+python scripts/check_route_drawings.py "C:\projects\active\st185-link-ecu-config\_research\routes"
 ```
 
 ## Working Rules
