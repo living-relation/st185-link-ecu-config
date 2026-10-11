@@ -1261,8 +1261,8 @@ family, one crimp tool, one removal tool for the whole car.
 2026-09-29) - see `.claude/rules/harness-wiring-conventions.md`. The contact-family
 argument above is historical reasoning from the HDP20 era; whether DRB102 uses
 the same size-20/size-16 contact system (so the "one crimp tool" conclusion still
-holds) has not been re-checked. `docs/OPEN-ITEMS.md` tracks the open DRB102
-cavity-map / contact-compat gap.
+holds) has not been re-checked. The DRB102 cavity map itself is settled:
+`docs/harness/DRB102-CAVITY-MAP.md`.
 
 ### Parts
 

@@ -333,6 +333,16 @@ Every existing contact part number is reused unchanged (`0460/0462-202/201-1631`
 gold 13 A, `0460/0462-220/210-1231` size-12 gold 25 A already in the owned-stock and
 contact library) — the DRB102 needed zero new contact parts, only new housings.
 
+**Cavity map settled (2026-10-11, from TE's drawing DRB12-102PXE-L018 rev C3):**
+`docs/harness/DRB102-CAVITY-MAP.md`. Each drawn cavity's `designation` is now its real
+DRB cavity number; cavity ids (`cN`) are unchanged, so no wire moved. A keeps its 49
+cavities (37 live circuits and 3 reserved drains fill the right wedgelock half's 40
+size-16 positions, its 7 spares in 52-61, injector/COP on size-12 1 and 2). B grows from 21 to 53
+so that all 102 physical cavities are drawn exactly once, each with a contact or a sealing
+plug: 3 reserved shield-drain cavities (c22-c24) plus every remaining spare (size 16, 12, 8
+and 4). Each shield drain gets its own cavity, which retires the §7.3 plan to share B c1
+through a 14 AWG pigtail. Gate: `audit_mating.py` M8.
+
 Each half's `.harness` file carries its own local `connectorParts` copy of the DRB102
 housing (`cp_drb_recept` / `cp_drb_plug`), with `numberOfCavities` set to that file's own
 cavity count (49 or 21) so `lint_v09.py`'s per-file cavity-count check still holds —
