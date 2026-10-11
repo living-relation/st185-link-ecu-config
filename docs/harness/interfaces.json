@@ -386,7 +386,7 @@
         "pin": "TBD",
         "color": "TBD",
         "function": "reverse signal -> bulkhead B c12 -> CSB3 S8",
-        "method": "solder sleeve into the factory lead"
+        "method": "new-wire run terminated at the switch's own OEM mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); not a solder-sleeve splice"
       }
     },
     {

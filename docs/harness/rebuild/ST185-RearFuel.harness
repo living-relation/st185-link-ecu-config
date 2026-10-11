@@ -31,15 +31,17 @@
     },
     {
       "id": "fuellvl",
-      "label": "Fuel Level Sender",
-      "partId": "cp_mp150_2",
+      "label": "Fuel Level Sender - DT 2-way (Dan rev 2, 2026-10-10 - no OEM connector)",
+      "partId": "cp_dt04_2p",
       "cavities": [
         {
           "id": "c1",
+          "designation": "1",
           "signal": "SIG"
         },
         {
           "id": "c2",
+          "designation": "2",
           "signal": "GND"
         }
       ],
@@ -102,7 +104,7 @@
         "x": 1080,
         "y": 0
       },
-      "text": "REAR FUEL - fuel level sender only, behind IX_FUEL_LVL (DT04-2P on the ECU/cabin harness, DT06-2S here). Sender uses its OEM connector; both halves on hand (plan 6.41). The fuel pump is NOT in this harness: its 12 AWG feed runs unbroken from k_fp to the pump's own connector on the ECU/cabin harness, per 6.41 (no extra joint in a 20 A circuit). Run length to the tank is an estimate - measure at install."
+      "text": "REAR FUEL - fuel level sender only, behind IX_FUEL_LVL (DT04-2P on the ECU/cabin harness, DT06-2S here). Rev 2 (Dan, 2026-10-10): the sender gets a DT 2-way instead of its OEM connector - DT04-2P + W2P on the sender lead, size-16 contacts 0460-202-1631 (owned); no OEM housing. Everything in the trunk (IX_FUEL_LVL, sender, pump, ground stud) also moved to the driver side - see docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md / Route 11. The fuel pump is NOT in this harness: its 12 AWG feed runs unbroken from k_fp to the pump's own connector on the ECU/cabin harness, per 6.41 (no extra joint in a 20 A circuit). Run length to the tank is an estimate - measure at install."
     }
   ],
   "wireParts": [
@@ -191,24 +193,22 @@
       "id": "cp_dt2s"
     },
     {
-      "partNumber": "12052641",
-      "manufacturer": "Aptiv",
-      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 2 POS, SEALED, SOCKET CONTACTS",
+      "id": "cp_dt04_2p",
+      "partNumber": "DT04-2P",
+      "manufacturer": "TE DEUTSCH",
+      "description": "CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY",
       "numberOfCavities": 2,
-      "gender": "Female",
+      "gender": "Male",
       "hasShell": false,
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_mp150_skt"
+          "contactPartId": "ct_dt16p",
+          "cavityPlugPartId": "pl_sz16",
+          "lockPartId": "lp_w2p"
         }
       ],
-      "id": "cp_mp150_2",
-      "image": {
-        "source": "url",
-        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/12052641982_SPL.jpg",
-        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/12052641982_SPL.jpg"
-      }
+      "url": "https://www.te.com/usa-en/product-DT04-2P.html"
     }
   ],
   "contactParts": [
@@ -230,21 +230,21 @@
       "id": "ct_dt16s_ni"
     },
     {
-      "partNumber": "12084200",
-      "manufacturer": "Aptiv",
+      "partNumber": "0460-202-1631",
+      "manufacturer": "TE DEUTSCH",
       "type": "Crimp",
-      "gender": "Socket",
+      "gender": "Pin",
       "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
-      "maxGauge": {
         "value": 20,
         "unit": "AWG"
       },
-      "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG)",
-      "id": "ct_mp150_skt"
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "contactColor": "Gold",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "id": "ct_dt16p"
     }
   ],
   "lockParts": [
@@ -253,6 +253,12 @@
       "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 2-WAY PLUG",
       "id": "lp_w2s"
+    },
+    {
+      "partNumber": "W2P",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DT, 2-WAY RECEPTACLE",
+      "id": "lp_w2p"
     }
   ],
   "cavityPlugParts": [

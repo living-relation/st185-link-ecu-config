@@ -389,7 +389,7 @@
       "id": "fl_reverse_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD Back-up light switch-TBD TBD reverse signal -> bulkhead B c12 -> CSB3 S8 - solder sleeve into the factory lead",
+      "signal": "EWD TBD Back-up light switch-TBD TBD reverse signal -> bulkhead B c12 -> CSB3 S8 - new-wire run terminated at the switch's own OEM mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); not a solder-sleeve splice",
       "schematicPosition": {
         "x": 660,
         "y": 870
