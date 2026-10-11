@@ -768,12 +768,12 @@
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Screen drain, FL/supply cable -> SHIELD_A (A7)"
+          "signal": "Screen drain, combined 4-core cable -> SHIELD_A (A7)"
         },
         {
           "id": "c6",
           "designation": "6",
-          "signal": "Screen drain, FR cable -> SHIELD_B (B17)"
+          "signal": "spare, plugged - was the FR cable's own drain (B17) when FL/FR were two separate output cables; superseded 2026-10-10, Route 9 rev 3"
         }
       ],
       "schematicPosition": {
@@ -2721,10 +2721,6 @@
       "shield": {
         "id": "cab_fspur_fr_sh_ac",
         "color": "Shield",
-        "source": {
-          "id": "ix_ws_front_p",
-          "handle": "c6"
-        },
         "target": {
           "id": "br_cab_fspur_fr_sh",
           "handle": "Terminal"
