@@ -368,6 +368,20 @@
         "x": 1380,
         "y": -60
       }
+    },
+    {
+      "id": "br_cab_cancsb_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2460,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": -60
+      }
     }
   ],
   "splices": [
@@ -569,32 +583,6 @@
       },
       "color": "White",
       "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_h_csb_csb",
-      "source": {
-        "id": "csb3io",
-        "handle": "c5"
-      },
-      "target": {
-        "id": "br_wc_h_csb",
-        "handle": "Terminal"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_csb_csb",
-      "source": {
-        "id": "csb3io",
-        "handle": "c6"
-      },
-      "target": {
-        "id": "br_wc_l_csb",
-        "handle": "Terminal"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
     }
   ],
   "bundles": [
@@ -847,6 +835,15 @@
       "targetId": "br_w_csbg",
       "length": {
         "value": 470,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1230__br_cab_cancsb_sh",
+      "sourceId": "bp_1230",
+      "targetId": "br_cab_cancsb_sh",
+      "length": {
+        "value": 50,
         "unit": "mm"
       }
     }
@@ -1113,6 +1110,79 @@
       "partNumber": "10k 1/4W",
       "manufacturer": "generic",
       "description": "RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W"
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_sh_2c",
+      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White",
+          "twistedWithNext": true,
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Green",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    }
+  ],
+  "cables": [
+    {
+      "id": "cab_can_csb_csb",
+      "partId": "cab_sh_2c",
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "cores": [
+        {
+          "id": "wc_h_csb_csb",
+          "color": "White",
+          "source": {
+            "id": "csb3io",
+            "handle": "c5"
+          },
+          "target": {
+            "id": "br_wc_h_csb",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_csb_csb",
+          "color": "Green",
+          "source": {
+            "id": "csb3io",
+            "handle": "c6"
+          },
+          "target": {
+            "id": "br_wc_l_csb",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_can_csb_csb_sh",
+        "color": "Shield",
+        "source": {
+          "id": "br_cab_cancsb_sh",
+          "handle": "Terminal"
+        }
+      }
     }
   ]
 }

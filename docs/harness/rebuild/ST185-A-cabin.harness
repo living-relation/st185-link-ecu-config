@@ -239,8 +239,8 @@
         {
           "id": "c6",
           "designation": "19",
-          "signal": "reserved - turbo speed shield drain (to A7), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Turbo speed screen",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c7",
@@ -263,14 +263,14 @@
         {
           "id": "c10",
           "designation": "22",
-          "signal": "reserved - flex fuel shield drain (to A7), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Flex fuel screen",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c11",
           "designation": "27",
-          "signal": "reserved - ETB sensor group shield drain (to A7), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "ETB sensor group screen",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c12",
@@ -2725,6 +2725,45 @@
       },
       "color": "Red",
       "partId": "wp_14_red"
+    },
+    {
+      "id": "w_shc_turbo",
+      "color": "Shield",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c6"
+      },
+      "target": {
+        "id": "sp_shield_a",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_shd"
+    },
+    {
+      "id": "w_shc_flex",
+      "color": "Shield",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c10"
+      },
+      "target": {
+        "id": "sp_shield_a",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_shd"
+    },
+    {
+      "id": "w_shc_etbs",
+      "color": "Shield",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c11"
+      },
+      "target": {
+        "id": "sp_shield_a",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_shd"
     }
   ],
   "cables": [

@@ -140,20 +140,20 @@
         {
           "id": "c22",
           "designation": "88",
-          "signal": "reserved - ETB motor shield drain (to B17), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "ETB motor screen",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c23",
           "designation": "91",
-          "signal": "reserved - gearbox VSS shield drain (to B17), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gearbox VSS screen",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c24",
           "designation": "94",
-          "signal": "reserved - CAN-Lambda CAN pair shield drain (to B17), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "CAN-Lambda CAN pair screen",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c25",
@@ -1056,6 +1056,34 @@
         "x": 3300,
         "y": 1380
       }
+    },
+    {
+      "id": "br_cab_canbh_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can to bulkhead B c24",
+      "width": 390,
+      "layoutPosition": {
+        "x": 900,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1200
+      }
+    },
+    {
+      "id": "br_w_shd_can",
+      "type": "Loose",
+      "signal": "Broken off - drain comes in from ST185-CAN: CAN screen splice sp_shield_can to sp_shield_b (B17)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 900,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1200
+      }
     }
   ],
   "splices": [
@@ -1696,32 +1724,6 @@
       "partId": "wp_20_blk_wht"
     },
     {
-      "id": "wc_h_bh_bc",
-      "source": {
-        "id": "br_wc_h_bh",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c13"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_bh_bc",
-      "source": {
-        "id": "br_wc_l_bh",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c14"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
-    },
-    {
       "id": "w_lam12_bc",
       "source": {
         "id": "br_w_lam12_c",
@@ -1746,6 +1748,45 @@
       },
       "color": "Black",
       "partId": "wp_14_blk"
+    },
+    {
+      "id": "w_shc_etbm",
+      "color": "Shield",
+      "source": {
+        "id": "bh_b_fw",
+        "handle": "c22"
+      },
+      "target": {
+        "id": "sp_shield_b",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_shd"
+    },
+    {
+      "id": "w_shc_vss",
+      "color": "Shield",
+      "source": {
+        "id": "bh_b_fw",
+        "handle": "c23"
+      },
+      "target": {
+        "id": "sp_shield_b",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_shd"
+    },
+    {
+      "id": "w_shd_can_bc",
+      "color": "Shield",
+      "source": {
+        "id": "br_w_shd_can",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_shield_b",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_shd"
     }
   ],
   "cables": [
@@ -1850,6 +1891,53 @@
         "target": {
           "id": "sp_shield_b",
           "handle": "Splice"
+        }
+      }
+    },
+    {
+      "id": "cab_canbh_bc",
+      "partId": "cab_sh_2c",
+      "schematicPosition": {
+        "x": 3810,
+        "y": 1920
+      },
+      "cores": [
+        {
+          "id": "wc_h_bh_bc",
+          "color": "White",
+          "source": {
+            "id": "br_wc_h_bh",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "bh_b_fw",
+            "handle": "c13"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_bh_bc",
+          "color": "Green",
+          "source": {
+            "id": "br_wc_l_bh",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "bh_b_fw",
+            "handle": "c14"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_canbh_bc_sh",
+        "color": "Shield",
+        "source": {
+          "id": "br_cab_canbh_sh",
+          "handle": "Terminal"
+        },
+        "target": {
+          "id": "bh_b_fw",
+          "handle": "c24"
         }
       }
     }
@@ -2354,6 +2442,24 @@
       "id": "bn_bp_870__br_w_lamg_b",
       "sourceId": "bp_870",
       "targetId": "br_w_lamg_b",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_870__br_cab_canbh_sh",
+      "sourceId": "bp_870",
+      "targetId": "br_cab_canbh_sh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_870__br_w_shd_can",
+      "sourceId": "bp_870",
+      "targetId": "br_w_shd_can",
       "length": {
         "value": 50,
         "unit": "mm"
@@ -3221,6 +3327,32 @@
         {
           "id": "k4",
           "color": "Violet",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_2c",
+      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White",
+          "twistedWithNext": true,
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Green",
           "gauge": {
             "value": 20,
             "unit": "AWG"

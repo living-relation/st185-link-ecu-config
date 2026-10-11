@@ -177,9 +177,9 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     (DT06-6S on A-engine, DT04-6P on B-engine, c4-c6 spare), one +5V pin per pressure
     sensor (Daniel, 2026-09-28). Bulkhead cavities and spares follow the real DRB102
     cavity map, `docs/harness/DRB102-CAVITY-MAP.md` (from TE's drawing, 2026-10-11; gate
-    `audit_mating.py` M8): A has 7 size-16 spares plus 3 reserved shield-drain cavities
+    `audit_mating.py` M8): A has 7 size-16 spares plus 3 shield-drain cavities
     (c6, c10, c11); B has 13 size-16, 12 size-12, 4 size-8 and 2 size-4 spares plus 3
-    reserved drain cavities (c22-c24). The old HDP20-era "bulkhead B has no size-16/20
+    shield-drain cavities (c22-c24). The old HDP20-era "bulkhead B has no size-16/20
     spare" limit is gone; every shield drain gets its own cavity.
   - **(b)** ETB: relay trigger on A20, H-bridge supply on B5 (by ECU pin design).
   - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design). All pedal

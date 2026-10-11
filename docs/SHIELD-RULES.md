@@ -86,19 +86,17 @@ Fallback, if that ever stops being true:
 | wss FL | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin; fender route, no bulkhead; combined 4-core output screen → `IX_WS_FRONT` c5 → `sp_shield_a` → A7 | none — fender; inline pin 5 |
 | wss FR | same VRC-side cable as FL (one shared VRC output screen to A7); FR's own core leaves the shield at `IX_WS_FRONT` (c6 now spare, not a drain) and continues cabin-side as its own short shielded B-cabin spur, floating at the inline end, draining only at **B17** (Route 9 rev 3, 2026-10-10 - supersedes the earlier two-separate-output-cables design) | none — fender for the VRC leg; the B-cabin spur has no bulkhead either |
 | wss RL, RR | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin; no bulkhead; output screen → `IX_WS_REAR` pin 5 → `sp_shield_b` → B17 | none — grommet; inline pin 5 |
-| turbo speed, flex fuel, ETB sensor group (A22/A33) | **planned, not yet drawn** - redraw list below | own reserved pin each, bulkhead A c6 / c10 / c11 (DRB 19 / 22 / 27, `docs/harness/DRB102-CAVITY-MAP.md`) |
-| ETB motor group (B18/B26), gearbox VSS, CAN-Lambda pair | **planned, not yet drawn** - redraw list below. Each drain has its own reserved cavity; the earlier plan to share B c1 through a 14 AWG pigtail is dropped (the DRB102 B half has spares) | own reserved pin each, bulkhead B c22 / c23 / c24 (DRB 88 / 91 / 94) |
-| CAN trunk + drops (ECU/CSB3/cluster/RealDash) | **planned, not yet drawn** - CAN pair only (H/L); +12V/ground stay plain. All cabin-side: the CAN shields join near the CAN splice and break into B-cabin `sp_shield_b` → B17 | none - cabin only |
+| turbo speed, flex fuel, ETB sensor group (A22/A33) | 3- or 4-core cable (`cab_turbo`, `cab_flex`, `cab_etbs`) floats at the sensor → `bh_a_eng` c6 / c10 / c11 → `bh_a_fw` same → `sp_shield_a` → **A7** | own pin each, bulkhead A c6 / c10 / c11 (DRB 19 / 22 / 27, `docs/harness/DRB102-CAVITY-MAP.md`) |
+| ETB motor group (B18/B26), gearbox VSS, CAN-Lambda pair | ETB motor: 2-core 18 AWG cable floats at the ETB (A-engine spur `cab_etbm_ae`), broken off to B-engine `cab_etbm_be` → `bh_b_eng` c22 → `bh_b_fw` c22 → `sp_shield_b` → **B17**. VSS: `cab_vss` floats at the VSS → c23 → `sp_shield_b` → B17. CAN-Lambda: `cab_can_lam` floats at the Lambda → `cab_lamcan_be` → c24 → B-cabin `cab_canbh_bc` → the CAN screen splice `sp_shield_can` → B17 (see CAN row). Each drain has its own cavity; the old shared B c1 pigtail plan is dropped | own pin each, bulkhead B c22 / c23 / c24 (DRB 88 / 91 / 94) |
+| CAN trunk + drops (ECU/CSB3/cluster/RealDash) | CAN pair only (H/L); +12V/ground stay plain. Every segment is a 2-core shielded twisted pair (`cab_can_*` in ST185-CAN, `cab_can_csb_csb` in ST185-CSB3); the screens join at `sp_shield_can` and float at every node (ECU port, CSB3, cluster, RealDash, Lambda). One drain `w_shd_can` breaks off to B-cabin `sp_shield_b` → **B17** | none for the cabin drops; the Lambda leg uses bulkhead B c24 (row above) |
 | APS pedal — A group (VC2/GND2/VC1/GND1/VPA1) | **planned, not yet drawn** - `ST185-APS-Pedal` and its `IX_APS` inline connector were folded directly into A-cabin 2026-10-11 ("pedal is one cable in A-cabin"); the old plan to grow `IX_APS` a drain pin no longer applies - there is no inline connector to grow a pin on. A future shielded cable would need to float at the pedal and land its drain on a new bulkhead A cavity instead | new pin, bulkhead A (not `IX_APS` - retired) |
 | APS pedal — B group (VPA2) | **planned, not yet drawn** - same fold-in; the B33 leg is now a same-conductor break (`w_aps_vpa2` -> `br_w39`) straight from the pedal connector on A-cabin to B-cabin, no `IX_APS` involved | new pin, bulkhead B (not `IX_APS` - retired) |
 
 Loom A screens land on A7 through `sp_shield_a`, loom B screens on B17 through
 `sp_shield_b`. Nothing but a drain lands on A7 or B17. The "planned, not yet drawn"
-rows above are the harness-reconcile pass's redraw list (currently crank/cam/knock
-pass S1-S5; turbo speed, flex fuel, ETB, gearbox VSS, CAN and APS pedal still draw
-loose, unshielded wires and fail S1-S5 until their harness files are redrawn - the
-A-engine/B-engine/CAN/CSB3 steps of the harness-reconcile pass (plus the APS pedal
-shield redraw on A-cabin/B-cabin), not yet done). `docs/harness/audit_shields.py`
+rows above are what is left of the harness-reconcile pass's redraw list: only the APS
+pedal still draws loose, unshielded wires. Turbo speed, flex fuel, ETB, gearbox VSS and
+CAN were redrawn as shielded cables 2026-10-11 (plan §7.3). `docs/harness/audit_shields.py`
 only enforces what IS drawn; it does not
 yet flag these as failing because the device-level "Shield: yes" flags in
 `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` aren't cross-checked against the

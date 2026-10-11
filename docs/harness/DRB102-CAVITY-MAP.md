@@ -48,7 +48,7 @@ Columns 1-6 (52-102) are the left wedgelock half, 7-12 (1-51) the right.
 ## Allocation rules used
 
 - **A and B are logical halves, not wedgelock halves.** A has 47 size-16 positions drawn and
-  one wedgelock half has 40, so A's 37 live circuits and 3 reserved drains fill the right
+  one wedgelock half has 40, so A's 37 live circuits and 3 shield drains fill the right
   half's size-16 cavities and A's 7 spares sit in the next column over (52-61). B takes everything else. Rule 3 is about
   which loom and which drawn half a pin is on; the physical shell is one part.
 - **Each shielded run sits in one column, signal - return - drain in a row** (crank, cam,
@@ -59,8 +59,8 @@ Columns 1-6 (52-102) are the left wedgelock half, 7-12 (1-51) the right.
   shared only by the same signal) is met trivially: nothing shares.
 - **Every one of the 102 cavities is drawn exactly once** across the two halves, each with a
   contact or a sealing plug, so the buy list counts every plug the E-seal needs.
-- Reserved drain cavities (A c6, c10, c11; B c22, c23, c24) carry a plug until the shield
-  redraw wires them.
+- The six drain cavities (A c6, c10, c11; B c22, c23, c24) were reserved by #81 and are wired
+  by the shield redraw (plan §7.3, 2026-10-11).
 
 Gate: `docs/harness/audit_mating.py` rule M8 (designation = real cavity number on both halves,
 each cavity used once, contact/plug size matches this map).
@@ -106,15 +106,15 @@ not list a plug by number - check one in the physical housing before buying more
 | 16 | right (1-51) | 16 | A | c40 | +5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed |
 | 17 | right (1-51) | 16 | A | c7 | ECU-A A30 |
 | 18 | right (1-51) | 16 | A | c43 | Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed |
-| 19 | right (1-51) | 16 | A | c6 | reserved - turbo speed shield drain (to A7), drawn in the shield redraw |
+| 19 | right (1-51) | 16 | A | c6 | Turbo speed screen (to A7) |
 | 20 | right (1-51) | 16 | A | c5 | Switched 12V to engine sensors |
 | 21 | right (1-51) | 16 | A | c9 | ECU-A A31 |
-| 22 | right (1-51) | 16 | A | c10 | reserved - flex fuel shield drain (to A7), drawn in the shield redraw |
+| 22 | right (1-51) | 16 | A | c10 | Flex fuel screen (to A7) |
 | 23 | right (1-51) | 16 | A | c2 | +5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB |
 | 24 | right (1-51) | 16 | A | c21 | ECU-A A22 |
 | 25 | right (1-51) | 16 | A | c22 | ECU-A A33 |
 | 26 | right (1-51) | 16 | A | c3 | Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch |
-| 27 | right (1-51) | 16 | A | c11 | reserved - ETB sensor group shield drain (to A7), drawn in the shield redraw |
+| 27 | right (1-51) | 16 | A | c11 | ETB sensor group screen (to A7) |
 | 28 | right (1-51) | 16 | A | c39 | +5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP |
 | 29 | right (1-51) | 16 | A | c44 | Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch |
 | 30 | right (1-51) | 16 | A | c8 | ECU-A A17 |
@@ -175,13 +175,13 @@ not list a plug by number - check one in the physical housing before buying more
 | 85 | left (52-102) | 16 | B | c18 | Knock 1 screen |
 | 86 | left (52-102) | 16 | B | c5 | ETB motor + (Aux 9, B18) |
 | 87 | left (52-102) | 16 | B | c6 | ETB motor - (Aux 10, B26) |
-| 88 | left (52-102) | 16 | B | c22 | reserved - ETB motor shield drain (to B17), drawn in the shield redraw |
+| 88 | left (52-102) | 16 | B | c22 | ETB motor screen (to B17) |
 | 89 | left (52-102) | 16 | B | c15 | Gearbox VSS signal (ECU B29, DI 8) |
 | 90 | left (52-102) | 16 | B | c20 | Switched 12V to gearbox VSS (from sp_sw12) |
-| 91 | left (52-102) | 16 | B | c23 | reserved - gearbox VSS shield drain (to B17), drawn in the shield redraw |
+| 91 | left (52-102) | 16 | B | c23 | Gearbox VSS screen (to B17) |
 | 92 | left (52-102) | 16 | B | c13 | CAN H to Link CAN-Lambda (ST185-CAN) |
 | 93 | left (52-102) | 16 | B | c14 | CAN L to Link CAN-Lambda (ST185-CAN) |
-| 94 | left (52-102) | 16 | B | c24 | reserved - CAN-Lambda CAN pair shield drain (to B17), drawn in the shield redraw |
+| 94 | left (52-102) | 16 | B | c24 | CAN-Lambda CAN pair screen (to B17, via the CAN screen splice) |
 | 95 | left (52-102) | 12 | B | c3 | CAN-Lambda +12V, cabin fuse F5 10A (14 AWG) |
 | 96 | left (52-102) | 12 | B | c4 | CAN-Lambda ground to cabin chassis ground (14 AWG) |
 | 97 | left (52-102) | 12 | B | c1 | spare (size 12) |
