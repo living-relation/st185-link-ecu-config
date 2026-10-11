@@ -14,10 +14,6 @@
       "file": "ST185-CabinPower.harness",
       "physical": "Cabin power (non-ECU): cabin fuse block, high-current fuse block, battery feed ring, fuel pump run to the trunk; feeds to the A-cabin relays and splices and to B-cabin arrive broken off"
     },
-    "APS-Pedal": {
-      "file": "ST185-APS-Pedal.harness",
-      "physical": "APS pedal harness - male half of IX_APS to the BRZ e-throttle pedal plug (cabin)"
-    },
     "A-engine": {
       "file": "ST185-A-engine.harness",
       "physical": "Engine harness behind bulkhead A - every engine device whose ECU signal is on connector A"
@@ -774,14 +770,6 @@
     }
   },
   "references": [],
-  "inFileMates": [
-    {
-      "harness": "APS-Pedal",
-      "mate": "m_aps",
-      "family": "Deutsch DT 6-way (DT06-6S female, DT04-6P male)",
-      "note": "the A and B pedal wires converge on the female half; one harness runs from the male half to the pedal"
-    }
-  ],
   "breaks": [
     {
       "id": "BR_H1_BATT_POS",
@@ -1144,91 +1132,16 @@
       ]
     },
     {
-      "id": "BR_W38",
-      "type": "broken_off",
-      "what": "e-throttle pedal pin 6",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w38"
-        },
-        {
-          "harness": "APS-Pedal",
-          "terminal": "br_w38"
-        }
-      ]
-    },
-    {
-      "id": "BR_W210",
-      "type": "broken_off",
-      "what": "e-throttle pedal pin 1",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w210"
-        },
-        {
-          "harness": "APS-Pedal",
-          "terminal": "br_w210"
-        }
-      ]
-    },
-    {
-      "id": "BR_W40",
-      "type": "broken_off",
-      "what": "e-throttle pedal pin 5",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w40"
-        },
-        {
-          "harness": "APS-Pedal",
-          "terminal": "br_w40"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_APS_VC1",
-      "type": "broken_off",
-      "what": "e-throttle pedal pin 4",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_aps_vc1"
-        },
-        {
-          "harness": "APS-Pedal",
-          "terminal": "br_w_aps_vc1"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_APS_GND2",
-      "type": "broken_off",
-      "what": "e-throttle pedal pin 2",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_aps_gnd2"
-        },
-        {
-          "harness": "APS-Pedal",
-          "terminal": "br_w_aps_gnd2"
-        }
-      ]
-    },
-    {
       "id": "BR_W39",
       "type": "broken_off",
-      "what": "e-throttle pedal pin 3",
+      "what": "e-throttle pedal pin 3 (VPA2) -> ECU-B B33",
       "ends": [
         {
           "harness": "B-cabin",
           "terminal": "br_w39"
         },
         {
-          "harness": "APS-Pedal",
+          "harness": "A-cabin",
           "terminal": "br_w39"
         }
       ]

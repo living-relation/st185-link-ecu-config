@@ -756,7 +756,7 @@
     {
       "id": "br_w39",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 3",
+      "signal": "Broken off - continues on ST185-A-cabin: e-throttle pedal pin 3 (VPA2) - folded in from ST185-APS-Pedal 2026-10-11",
       "width": 390,
       "layoutPosition": {
         "x": 1380,

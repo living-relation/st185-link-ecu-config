@@ -784,6 +784,52 @@
         "x": 1440,
         "y": 480
       }
+    },
+    {
+      "id": "aps",
+      "label": "BRZ e-throttle pedal (APS) - folded in from ST185-APS-Pedal 2026-10-11, pedal is one cable in A-cabin",
+      "partId": "cp_brz_aps6",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "VC2 +5V (sub)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Ground (GND2, sub)"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "VPA2 APS-S -> ECU-B B33 (br_w39, broken off to ST185-B-cabin)"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "VC1 +5V (main)"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "Ground (GND1, main)"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "VPA1 APS-M -> ECU-A A14"
+        }
+      ],
+      "layoutPosition": {
+        "x": 4440,
+        "y": 1560
+      },
+      "schematicPosition": {
+        "x": 4440,
+        "y": 1560
+      },
+      "width": 270
     }
   ],
   "terminals": [
@@ -985,65 +1031,9 @@
       }
     },
     {
-      "id": "br_w38",
+      "id": "br_w39",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 6",
-      "width": 390,
-      "layoutPosition": {
-        "x": 60,
-        "y": 60
-      },
-      "schematicPosition": {
-        "x": 60,
-        "y": 60
-      }
-    },
-    {
-      "id": "br_w210",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 1",
-      "width": 390,
-      "layoutPosition": {
-        "x": 60,
-        "y": 60
-      },
-      "schematicPosition": {
-        "x": 60,
-        "y": 60
-      }
-    },
-    {
-      "id": "br_w40",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 5",
-      "width": 390,
-      "layoutPosition": {
-        "x": 60,
-        "y": 60
-      },
-      "schematicPosition": {
-        "x": 60,
-        "y": 60
-      }
-    },
-    {
-      "id": "br_w_aps_vc1",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 4",
-      "width": 390,
-      "layoutPosition": {
-        "x": 60,
-        "y": 60
-      },
-      "schematicPosition": {
-        "x": 60,
-        "y": 60
-      }
-    },
-    {
-      "id": "br_w_aps_gnd2",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-APS-Pedal: e-throttle pedal pin 2",
+      "signal": "Broken off - continues on ST185-B-cabin: e-throttle pedal pin 3 (VPA2) -> ECU-B B33",
       "width": 390,
       "layoutPosition": {
         "x": 60,
@@ -1470,8 +1460,8 @@
       "id": "w38",
       "color": "White",
       "source": {
-        "id": "br_w38",
-        "handle": "Terminal"
+        "id": "aps",
+        "handle": "c6"
       },
       "target": {
         "id": "ecu_a",
@@ -1940,8 +1930,8 @@
       "id": "w210",
       "color": "Orange",
       "source": {
-        "id": "br_w210",
-        "handle": "Terminal"
+        "id": "aps",
+        "handle": "c1"
       },
       "target": {
         "id": "sp_5v_2",
@@ -1981,8 +1971,8 @@
       "id": "w40",
       "color": "Black",
       "source": {
-        "id": "br_w40",
-        "handle": "Terminal"
+        "id": "aps",
+        "handle": "c5"
       },
       "target": {
         "id": "sp_gndout",
@@ -2034,8 +2024,8 @@
       "id": "w_aps_vc1",
       "color": "Orange",
       "source": {
-        "id": "br_w_aps_vc1",
-        "handle": "Terminal"
+        "id": "aps",
+        "handle": "c4"
       },
       "target": {
         "id": "sp_5v_2",
@@ -2048,14 +2038,27 @@
       "color": "Black",
       "stripeColor": "White",
       "source": {
-        "id": "br_w_aps_gnd2",
-        "handle": "Terminal"
+        "id": "aps",
+        "handle": "c2"
       },
       "target": {
         "id": "sp_gndout",
         "handle": "Splice"
       },
       "partId": "wp_20_blk_wht"
+    },
+    {
+      "id": "w_aps_vpa2",
+      "color": "White",
+      "source": {
+        "id": "aps",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "br_w39",
+        "handle": "Terminal"
+      },
+      "partId": "wp_20_wht"
     },
     {
       "id": "w_rail_sp_5v_c",
@@ -3135,45 +3138,18 @@
       }
     },
     {
-      "id": "bn_bp_960__br_w38",
+      "id": "bn_bp_960__aps",
       "sourceId": "bp_960",
-      "targetId": "br_w38",
+      "targetId": "aps",
       "length": {
         "value": 860,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_bp_960__br_w210",
+      "id": "bn_bp_960__br_w39",
       "sourceId": "bp_960",
-      "targetId": "br_w210",
-      "length": {
-        "value": 860,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_960__br_w40",
-      "sourceId": "bp_960",
-      "targetId": "br_w40",
-      "length": {
-        "value": 860,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_960__br_w_aps_vc1",
-      "sourceId": "bp_960",
-      "targetId": "br_w_aps_vc1",
-      "length": {
-        "value": 860,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_960__br_w_aps_gnd2",
-      "sourceId": "bp_960",
-      "targetId": "br_w_aps_gnd2",
+      "targetId": "br_w39",
       "length": {
         "value": 860,
         "unit": "mm"
@@ -3504,6 +3480,15 @@
         "x": 4200,
         "y": 0
       }
+    },
+    {
+      "id": "n_aps",
+      "text": "APS PEDAL - folded in 2026-10-11 (harness-reconcile pass step 2, \"pedal is one cable in A-cabin\"): ST185-APS-Pedal.harness and its DT06-6S/DT04-6P inline mate (IX_APS) are retired; the BRZ e-throttle pedal's Sumitomo TS 025 plug is wired directly from this file. 5 of 6 pins (VC2, GND2, VC1, GND1, VPA1 -> A14) are ECU-A signals, wired straight from here; the 6th (VPA2 -> ECU-B B33) still breaks off to ST185-B-cabin (br_w39) since it's a B-letter signal - same crossover as before, just without the intermediate connector. Colours follow the former inline mate's. Run length to the pedal is still a placeholder (was 150 mm pedal-to-inline on APS-Pedal; now pedal-to-dash) - TBD, measure at the car.",
+      "schematicPosition": {
+        "x": 4440,
+        "y": 1800
+      },
+      "width": 390
     }
   ],
   "wireParts": [
@@ -3983,6 +3968,26 @@
           "mountPartId": "mt_dtp4p_gkt"
         }
       ]
+    },
+    {
+      "partNumber": "Sumitomo TS 025 6-way",
+      "manufacturer": "Sumitomo / Subaru",
+      "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS",
+      "numberOfCavities": 6,
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_generic_skt"
+        }
+      ],
+      "id": "cp_brz_aps6",
+      "image": {
+        "source": "url",
+        "url": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring.jpg",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring_200x.jpg"
+      }
     }
   ],
   "spliceParts": [
@@ -4175,6 +4180,14 @@
       },
       "description": "CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A",
       "id": "ct_hdp12p"
+    },
+    {
+      "partNumber": "(generic)",
+      "manufacturer": "Generic",
+      "type": "Crimp",
+      "gender": "Socket",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
+      "id": "ct_generic_skt"
     }
   ],
   "resistorParts": [
