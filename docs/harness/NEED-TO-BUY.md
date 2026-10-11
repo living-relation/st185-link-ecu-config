@@ -9,8 +9,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 62 | 0 | **62** |
-| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 40 | 0 | **40** |
+| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 50 | 0 | **50** |
+| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 41 | 0 | **41** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 32 | 0 | **32** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
@@ -19,11 +19,11 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 9 | 0 | **9** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 14 | 6 | **8** |
 | `Jump lugs 1/0` | generic | LUG, RING, COPPER, 1/0 AWG | 8 | 0 | **8** |
+| `15326426` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM | 7 | 0 | **7** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 9 | 2 | **7** |
 | `1-1355877-1` | TE Connectivity | CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 1.0-2.5 MM2 (18-14 AWG) | 6 | 0 | **6** |
 | `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) | 6 | 0 | **6** |
 | `1393310-4` | TE Connectivity | SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS | 6 | 1 | **5** |
-| `15326426` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM | 5 | 0 | **5** |
 | `280755-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 6-10 MM2 (10-8 AWG) | 5 | 0 | **5** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
 | `GENERIC HEAVY FLYING LEAD 10-6` | generic | TERMINAL, FLYING LEAD, HEAVY | 5 | 0 | **5** |
@@ -59,7 +59,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `1-1904045-6` | TE Connectivity | SOCKET, RELAY, MICRO ISO, 5 POS, WITH MOUNTING FLAP (V23333-Z0001-B046) | 1 | 0 | **1** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `10k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
-| `15326427` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, GOLD, 0.75-1.0 MM2 (18-16 AWG) | 6 | 5 | **1** |
 | `470R 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `90980-11143` | Toyota | CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS | 1 | 0 | **1** |
 | `DRB12-102PAE-L018` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT | 1 | 0 | **1** |
@@ -106,9 +105,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 92 | 130 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 98 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 88 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 94 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS | 1 | 1 |
@@ -118,6 +117,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `114019-ZZ` | PLUG, SEALING, CAVITY, SIZE 4, WHITE | 4 | 10 |
 | `12052641` | CONNECTOR, PLUG, METRI-PACK 150.2, 2 POS, SEALED, SOCKET CONTACTS | 1 | 1 |
 | `13519047` | CONNECTOR, PLUG, GT 150, 3 POS, SEALED, SOCKET CONTACTS | 1 | 1 |
+| `15326427` | CONTACT, SOCKET, CRIMP, GT 150, GOLD, 0.75-1.0 MM2 (18-16 AWG) | 4 | 5 |
 | `2141029-1` | FUSE HOLDER, MODULE, MFINITY, 16 POS MINI FUSE, HARD WIRED | 1 | 1 |
 | `281934-2` | SEAL, WIRE, SUPERSEAL 1.5 | 2 | 10 |
 | `282080-1` | HOUSING, PLUG, SUPERSEAL 1.5, 2 POS | 1 | 2 |
@@ -215,9 +215,17 @@ Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no co
 | A-cabin | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
 | A-cabin | `GENERIC SHLD CABLE 3C 20AWG` | 1 |
 | A-engine | `GENERIC SHLD CABLE 1C 20AWG BLU` | 2 |
+| A-engine | `GENERIC SHLD CABLE 2C 18AWG` | 1 |
+| A-engine | `GENERIC SHLD CABLE 3C 20AWG` | 2 |
+| A-engine | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
 | B-cabin | `GENERIC SHLD CABLE 1C 20AWG VIO` | 1 |
+| B-cabin | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
 | B-cabin | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
-| B-engine | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
+| B-engine | `GENERIC SHLD CABLE 2C 18AWG` | 1 |
+| B-engine | `GENERIC SHLD CABLE 2C TP 20AWG` | 2 |
+| B-engine | `GENERIC SHLD CABLE 3C 20AWG` | 1 |
+| CAN | `GENERIC SHLD CABLE 2C TP 20AWG` | 6 |
+| CSB3 | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
 | WheelSpeed-Front | `GENERIC SHLD CABLE 2C TP 20AWG` | 2 |
 | WheelSpeed-Front | `GENERIC SHLD CABLE 4C 20AWG` | 1 |
 | WheelSpeed-Rear | `GENERIC SHLD CABLE 2C TP 20AWG` | 2 |

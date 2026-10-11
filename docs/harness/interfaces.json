@@ -688,6 +688,26 @@
     {
       "id": "cab_fspur_fr_sh_ac",
       "reason": "A-cabin section of the FR screen: inline pin 6 to the broken-off end; continues on B-cabin as cab_fspur_fr_sh to sp_shield_b (B17)"
+    },
+    {
+      "id": "cab_etbm_be_sh",
+      "reason": "ETB motor screen: bulkhead B c22 to the broken-off end; continues on A-engine as cab_etbm_ae_sh and floats at the ETB - one screen node, grounded only at B17"
+    },
+    {
+      "id": "cab_lamcan_be_sh",
+      "reason": "CAN-Lambda pair screen: bulkhead B c24 to the broken-off end; continues on CAN as cab_can_lam_sh and floats at the Lambda - grounded only at B17"
+    },
+    {
+      "id": "cab_canbh_bc_sh",
+      "reason": "CAN pair screen continuation: broken-off end (from sp_shield_can) to bulkhead B c24 - carries the CAN screen through to the Lambda side, grounded only at B17"
+    },
+    {
+      "id": "cab_can_bh_sh",
+      "reason": "CAN pair screen continuation: sp_shield_can to the broken-off end toward bulkhead B c24 - one CAN screen node, grounded only at B17"
+    },
+    {
+      "id": "cab_can_csb_sh",
+      "reason": "CAN pair screen continuation: sp_shield_can to the broken-off end toward CSB3; floats at CSB3 - grounded only at B17"
     }
   ],
   "wheelSpeed": {
@@ -1568,6 +1588,81 @@
         {
           "harness": "EngineRoom-C",
           "terminal": "br_ac_psw"
+        }
+      ]
+    },
+    {
+      "id": "BR_CAB_ETBM_SH",
+      "type": "broken_off",
+      "what": "ETB motor cable screen, bulkhead B c22 to the ETB spur (floats at the ETB)",
+      "ends": [
+        {
+          "harness": "B-engine",
+          "terminal": "br_cab_etbm_sh"
+        },
+        {
+          "harness": "A-engine",
+          "terminal": "br_cab_etbm_sh"
+        }
+      ]
+    },
+    {
+      "id": "BR_CAB_LAMCAN_SH",
+      "type": "broken_off",
+      "what": "CAN-Lambda pair screen, bulkhead B c24 to the Lambda run (floats at the Lambda)",
+      "ends": [
+        {
+          "harness": "B-engine",
+          "terminal": "br_cab_lamcan_sh"
+        },
+        {
+          "harness": "CAN",
+          "terminal": "br_cab_lamcan_sh"
+        }
+      ]
+    },
+    {
+      "id": "BR_CAB_CANBH_SH",
+      "type": "broken_off",
+      "what": "CAN pair screen, sp_shield_can to bulkhead B c24",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_cab_canbh_sh"
+        },
+        {
+          "harness": "B-cabin",
+          "terminal": "br_cab_canbh_sh"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_SHD_CAN",
+      "type": "broken_off",
+      "what": "CAN screen drain, sp_shield_can to sp_shield_b (B17)",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_w_shd_can"
+        },
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_shd_can"
+        }
+      ]
+    },
+    {
+      "id": "BR_CAB_CANCSB_SH",
+      "type": "broken_off",
+      "what": "CAN pair screen, sp_shield_can to the CSB3 plug run (floats at CSB3)",
+      "ends": [
+        {
+          "harness": "CAN",
+          "terminal": "br_cab_cancsb_sh"
+        },
+        {
+          "harness": "CSB3",
+          "terminal": "br_cab_cancsb_sh"
         }
       ]
     }

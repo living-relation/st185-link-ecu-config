@@ -44,8 +44,8 @@
         {
           "id": "c6",
           "designation": "19",
-          "signal": "reserved - turbo speed shield drain (to A7), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Turbo speed screen",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c7",
@@ -68,14 +68,14 @@
         {
           "id": "c10",
           "designation": "22",
-          "signal": "reserved - flex fuel shield drain (to A7), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Flex fuel screen",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c11",
           "designation": "27",
-          "signal": "reserved - ETB sensor group shield drain (to A7), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "ETB sensor group screen",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c12",
@@ -381,11 +381,13 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V/8V"
+          "signal": "12V/8V",
+          "contactPartId": "ct_gt150_skt_05"
         },
         {
           "id": "c2",
-          "signal": "GND"
+          "signal": "GND",
+          "contactPartId": "ct_gt150_skt_05"
         },
         {
           "id": "c3",
@@ -964,6 +966,20 @@
         "x": 150,
         "y": -120
       }
+    },
+    {
+      "id": "br_cab_etbm_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen comes in from ST185-B-engine: ETB motor cable screen, bulkhead B c22",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2160,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": -120
+      }
     }
   ],
   "splices": [
@@ -1046,19 +1062,6 @@
   ],
   "wires": [
     {
-      "id": "w16_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c7"
-      },
-      "target": {
-        "id": "turbospd",
-        "handle": "c2"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
-    },
-    {
       "id": "w26_e",
       "source": {
         "id": "bh_a_eng",
@@ -1070,19 +1073,6 @@
       },
       "color": "White",
       "partId": "wp_20_wht"
-    },
-    {
-      "id": "w48_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c9"
-      },
-      "target": {
-        "id": "flex",
-        "handle": "c3"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
     },
     {
       "id": "w108_e",
@@ -1189,32 +1179,6 @@
       "partId": "wp_20_vio"
     },
     {
-      "id": "w128_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c21"
-      },
-      "target": {
-        "id": "etb",
-        "handle": "c6"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "w129_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c22"
-      },
-      "target": {
-        "id": "etb",
-        "handle": "c5"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
       "id": "w103_e",
       "source": {
         "id": "bh_a_eng",
@@ -1280,19 +1244,6 @@
       "partId": "wp_20_brn"
     },
     {
-      "id": "w218",
-      "color": "Orange",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c40"
-      },
-      "target": {
-        "id": "turbospd",
-        "handle": "c1"
-      },
-      "partId": "wp_20_org"
-    },
-    {
       "id": "w219",
       "color": "Red",
       "source": {
@@ -1317,33 +1268,6 @@
         "handle": "c1"
       },
       "partId": "wp_20_org"
-    },
-    {
-      "id": "w126",
-      "color": "Orange",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "etb",
-        "handle": "c3"
-      },
-      "partId": "wp_20_org"
-    },
-    {
-      "id": "w217",
-      "color": "Red",
-      "source": {
-        "id": "flex",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "sp_sw12_eng",
-        "handle": "Splice"
-      },
-      "stripeColor": "White",
-      "partId": "wp_18_red_wht"
     },
     {
       "id": "w2",
@@ -1410,48 +1334,6 @@
       },
       "target": {
         "id": "sp_gndout_eng2",
-        "handle": "Splice"
-      },
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w47",
-      "color": "Black",
-      "source": {
-        "id": "flex",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "sp_gndout_eng2",
-        "handle": "Splice"
-      },
-      "stripeColor": "White",
-      "partId": "wp_18_blk_wht"
-    },
-    {
-      "id": "w17",
-      "color": "Black",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c43"
-      },
-      "target": {
-        "id": "turbospd",
-        "handle": "c3"
-      },
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w127",
-      "color": "Black",
-      "source": {
-        "id": "etb",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "sp_gndout_eng",
         "handle": "Splice"
       },
       "stripeColor": "White",
@@ -1601,32 +1483,6 @@
       },
       "color": "Gray",
       "partId": "wp_20_gry"
-    },
-    {
-      "id": "w124_e_ae",
-      "source": {
-        "id": "br_w124_e",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "etb",
-        "handle": "c4"
-      },
-      "color": "White",
-      "partId": "wp_18_wht"
-    },
-    {
-      "id": "w215_e_ae",
-      "source": {
-        "id": "br_w215_e",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "etb",
-        "handle": "c1"
-      },
-      "color": "White",
-      "partId": "wp_18_wht"
     },
     {
       "id": "w211",
@@ -1870,6 +1726,222 @@
         "source": {
           "id": "bh_a_eng",
           "handle": "c34"
+        }
+      }
+    },
+    {
+      "id": "cab_turbo",
+      "partId": "cab_sh_3c",
+      "schematicPosition": {
+        "x": 480,
+        "y": 120
+      },
+      "cores": [
+        {
+          "id": "w218",
+          "color": "Orange",
+          "source": {
+            "id": "bh_a_eng",
+            "handle": "c40"
+          },
+          "target": {
+            "id": "turbospd",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "w17",
+          "color": "Black",
+          "source": {
+            "id": "bh_a_eng",
+            "handle": "c43"
+          },
+          "target": {
+            "id": "turbospd",
+            "handle": "c3"
+          }
+        },
+        {
+          "id": "w16_e",
+          "color": "Blue",
+          "source": {
+            "id": "bh_a_eng",
+            "handle": "c7"
+          },
+          "target": {
+            "id": "turbospd",
+            "handle": "c2"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_turbo_sh",
+        "color": "Shield",
+        "source": {
+          "id": "bh_a_eng",
+          "handle": "c6"
+        }
+      }
+    },
+    {
+      "id": "cab_flex",
+      "partId": "cab_sh_3c",
+      "schematicPosition": {
+        "x": 480,
+        "y": 240
+      },
+      "cores": [
+        {
+          "id": "w217",
+          "color": "Orange",
+          "source": {
+            "id": "flex",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "sp_sw12_eng",
+            "handle": "Splice"
+          }
+        },
+        {
+          "id": "w47",
+          "color": "Black",
+          "source": {
+            "id": "flex",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "sp_gndout_eng2",
+            "handle": "Splice"
+          }
+        },
+        {
+          "id": "w48_e",
+          "color": "Blue",
+          "source": {
+            "id": "bh_a_eng",
+            "handle": "c9"
+          },
+          "target": {
+            "id": "flex",
+            "handle": "c3"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_flex_sh",
+        "color": "Shield",
+        "source": {
+          "id": "bh_a_eng",
+          "handle": "c10"
+        }
+      }
+    },
+    {
+      "id": "cab_etbs",
+      "partId": "cab_sh_4c",
+      "schematicPosition": {
+        "x": 480,
+        "y": 360
+      },
+      "cores": [
+        {
+          "id": "w126",
+          "color": "Orange",
+          "source": {
+            "id": "bh_a_eng",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "etb",
+            "handle": "c3"
+          }
+        },
+        {
+          "id": "w127",
+          "color": "Black",
+          "source": {
+            "id": "etb",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "sp_gndout_eng",
+            "handle": "Splice"
+          }
+        },
+        {
+          "id": "w128_e",
+          "color": "Blue",
+          "source": {
+            "id": "bh_a_eng",
+            "handle": "c21"
+          },
+          "target": {
+            "id": "etb",
+            "handle": "c6"
+          }
+        },
+        {
+          "id": "w129_e",
+          "color": "Violet",
+          "source": {
+            "id": "bh_a_eng",
+            "handle": "c22"
+          },
+          "target": {
+            "id": "etb",
+            "handle": "c5"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_etbs_sh",
+        "color": "Shield",
+        "source": {
+          "id": "bh_a_eng",
+          "handle": "c11"
+        }
+      }
+    },
+    {
+      "id": "cab_etbm_ae",
+      "partId": "cab_sh_2c_18",
+      "schematicPosition": {
+        "x": 480,
+        "y": 480
+      },
+      "cores": [
+        {
+          "id": "w124_e_ae",
+          "color": "Red",
+          "source": {
+            "id": "br_w124_e",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "etb",
+            "handle": "c4"
+          }
+        },
+        {
+          "id": "w215_e_ae",
+          "color": "Black",
+          "source": {
+            "id": "br_w215_e",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "etb",
+            "handle": "c1"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_etbm_ae_sh",
+        "color": "Shield",
+        "source": {
+          "id": "br_cab_etbm_sh",
+          "handle": "Terminal"
         }
       }
     }
@@ -2385,6 +2457,15 @@
       "targetId": "bh_a_eng",
       "length": {
         "value": 190,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_750__br_cab_etbm_sh",
+      "sourceId": "bp_750",
+      "targetId": "br_cab_etbm_sh",
+      "length": {
+        "value": 50,
         "unit": "mm"
       }
     }
@@ -3452,6 +3533,105 @@
           "color": "Blue",
           "gauge": {
             "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_3c",
+      "partNumber": "GENERIC SHLD CABLE 3C 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Orange",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_4c",
+      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Orange",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k4",
+          "color": "Violet",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_2c_18",
+      "partNumber": "GENERIC SHLD CABLE 2C 18AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR, 18 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "value": 18,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 18,
             "unit": "AWG"
           }
         }

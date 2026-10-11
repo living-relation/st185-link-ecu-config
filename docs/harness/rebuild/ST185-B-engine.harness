@@ -140,20 +140,20 @@
         {
           "id": "c22",
           "designation": "88",
-          "signal": "reserved - ETB motor shield drain (to B17), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "ETB motor screen",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c23",
           "designation": "91",
-          "signal": "reserved - gearbox VSS shield drain (to B17), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Gearbox VSS screen",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c24",
           "designation": "94",
-          "signal": "reserved - CAN-Lambda CAN pair shield drain (to B17), drawn in the shield redraw",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "CAN-Lambda CAN pair screen",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c25",
@@ -674,6 +674,34 @@
         "x": 150,
         "y": 2160
       }
+    },
+    {
+      "id": "br_cab_etbm_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen continues on ST185-A-engine: ETB motor cable screen from bulkhead B c22",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2280,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 1380
+      }
+    },
+    {
+      "id": "br_cab_lamcan_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen continues on ST185-CAN: CAN-Lambda pair screen from bulkhead B c24",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2280,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 150,
+        "y": 1980
+      }
     }
   ],
   "splices": [
@@ -932,71 +960,6 @@
       "partId": "wp_20_blk_wht"
     },
     {
-      "id": "w124_e",
-      "color": "White",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c5"
-      },
-      "target": {
-        "id": "br_w124_e",
-        "handle": "Terminal"
-      },
-      "partId": "wp_18_wht"
-    },
-    {
-      "id": "w215_e",
-      "color": "White",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c6"
-      },
-      "target": {
-        "id": "br_w215_e",
-        "handle": "Terminal"
-      },
-      "partId": "wp_18_wht"
-    },
-    {
-      "id": "w_vss_12v",
-      "color": "Red",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c20"
-      },
-      "target": {
-        "id": "vss",
-        "handle": "c1"
-      },
-      "partId": "wp_20_red"
-    },
-    {
-      "id": "w_vss_gnd",
-      "color": "Black",
-      "source": {
-        "id": "vss",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "sp_gndout_b_eng3",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_blk"
-    },
-    {
-      "id": "w_vss_sig_e",
-      "color": "Green",
-      "source": {
-        "id": "vss",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "bh_b_eng",
-        "handle": "c15"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
       "id": "w_rail_gnd_b_e",
       "source": {
         "id": "sp_gndout_b_eng2",
@@ -1037,32 +1000,6 @@
       "color": "Black",
       "stripeColor": "White",
       "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "wc_h_lam_be",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c13"
-      },
-      "target": {
-        "id": "br_wc_h_lam",
-        "handle": "Terminal"
-      },
-      "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_lam_be",
-      "source": {
-        "id": "bh_b_eng",
-        "handle": "c14"
-      },
-      "target": {
-        "id": "br_wc_l_lam",
-        "handle": "Terminal"
-      },
-      "color": "Green",
-      "partId": "wp_20_grn"
     },
     {
       "id": "w_lam12_be14",
@@ -1158,6 +1095,153 @@
         "source": {
           "id": "bh_b_eng",
           "handle": "c18"
+        }
+      }
+    },
+    {
+      "id": "cab_etbm_be",
+      "partId": "cab_sh_2c_18",
+      "schematicPosition": {
+        "x": 480,
+        "y": 1680
+      },
+      "cores": [
+        {
+          "id": "w124_e",
+          "color": "Red",
+          "source": {
+            "id": "bh_b_eng",
+            "handle": "c5"
+          },
+          "target": {
+            "id": "br_w124_e",
+            "handle": "Terminal"
+          }
+        },
+        {
+          "id": "w215_e",
+          "color": "Black",
+          "source": {
+            "id": "bh_b_eng",
+            "handle": "c6"
+          },
+          "target": {
+            "id": "br_w215_e",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_etbm_be_sh",
+        "color": "Shield",
+        "source": {
+          "id": "bh_b_eng",
+          "handle": "c22"
+        },
+        "target": {
+          "id": "br_cab_etbm_sh",
+          "handle": "Terminal"
+        }
+      }
+    },
+    {
+      "id": "cab_vss",
+      "partId": "cab_sh_3c",
+      "schematicPosition": {
+        "x": 480,
+        "y": 1800
+      },
+      "cores": [
+        {
+          "id": "w_vss_12v",
+          "color": "Orange",
+          "source": {
+            "id": "bh_b_eng",
+            "handle": "c20"
+          },
+          "target": {
+            "id": "vss",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "w_vss_gnd",
+          "color": "Black",
+          "source": {
+            "id": "vss",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "sp_gndout_b_eng3",
+            "handle": "Splice"
+          }
+        },
+        {
+          "id": "w_vss_sig_e",
+          "color": "Blue",
+          "source": {
+            "id": "vss",
+            "handle": "c3"
+          },
+          "target": {
+            "id": "bh_b_eng",
+            "handle": "c15"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_vss_sh",
+        "color": "Shield",
+        "source": {
+          "id": "bh_b_eng",
+          "handle": "c23"
+        }
+      }
+    },
+    {
+      "id": "cab_lamcan_be",
+      "partId": "cab_sh_2c",
+      "schematicPosition": {
+        "x": 480,
+        "y": 1920
+      },
+      "cores": [
+        {
+          "id": "wc_h_lam_be",
+          "color": "White",
+          "source": {
+            "id": "bh_b_eng",
+            "handle": "c13"
+          },
+          "target": {
+            "id": "br_wc_h_lam",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_lam_be",
+          "color": "Green",
+          "source": {
+            "id": "bh_b_eng",
+            "handle": "c14"
+          },
+          "target": {
+            "id": "br_wc_l_lam",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_lamcan_be_sh",
+        "color": "Shield",
+        "source": {
+          "id": "bh_b_eng",
+          "handle": "c24"
+        },
+        "target": {
+          "id": "br_cab_lamcan_sh",
+          "handle": "Terminal"
         }
       }
     }
@@ -1527,6 +1611,24 @@
       "id": "bn_be_750__br_w_lamg",
       "sourceId": "be_750",
       "targetId": "br_w_lamg",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_be_750__br_cab_etbm_sh",
+      "sourceId": "be_750",
+      "targetId": "br_cab_etbm_sh",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_be_750__br_cab_lamcan_sh",
+      "sourceId": "be_750",
+      "targetId": "br_cab_lamcan_sh",
       "length": {
         "value": 50,
         "unit": "mm"
@@ -2150,6 +2252,64 @@
         {
           "id": "k2",
           "color": "Green",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_2c_18",
+      "partNumber": "GENERIC SHLD CABLE 2C 18AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR, 18 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "value": 18,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 18,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_3c",
+      "partNumber": "GENERIC SHLD CABLE 3C 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Orange",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
           "gauge": {
             "value": 20,
             "unit": "AWG"

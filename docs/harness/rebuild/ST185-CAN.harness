@@ -224,6 +224,62 @@
         "x": 2040,
         "y": 60
       }
+    },
+    {
+      "id": "br_cab_lamcan_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen comes in from ST185-B-engine: CAN-Lambda pair screen, bulkhead B c24",
+      "width": 390,
+      "layoutPosition": {
+        "x": 840,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 2040,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_cab_canbh_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen continues on ST185-B-cabin: CAN pair screen to bulkhead B c24",
+      "width": 390,
+      "layoutPosition": {
+        "x": 960,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_w_shd_can",
+      "type": "Loose",
+      "signal": "Broken off - drain continues on ST185-B-cabin: sp_shield_can to sp_shield_b (B17)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 960,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 60
+      }
+    },
+    {
+      "id": "br_cab_cancsb_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen continues on ST185-CSB3: CAN pair screen into the CSB3 plug run",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1320,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 720,
+        "y": 60
+      }
     }
   ],
   "splices": [
@@ -278,6 +334,19 @@
         "x": 840,
         "y": 0
       }
+    },
+    {
+      "id": "sp_shield_can",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_930",
+      "layoutPosition": {
+        "x": 1080,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 510,
+        "y": 180
+      }
     }
   ],
   "resistors": [
@@ -309,162 +378,6 @@
     }
   ],
   "wires": [
-    {
-      "id": "wc_h_ecu",
-      "color": "White",
-      "source": {
-        "id": "ecu_com",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "sp_canh",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_ecu",
-      "color": "Green",
-      "source": {
-        "id": "ecu_com",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "sp_canl",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "wc_h_csb",
-      "color": "White",
-      "source": {
-        "id": "sp_canh",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_wc_h_csb",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_csb",
-      "color": "Green",
-      "source": {
-        "id": "sp_canl",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_wc_l_csb",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "wc_h_clu",
-      "color": "White",
-      "source": {
-        "id": "sp_canh",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "t_cluster_can",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_clu",
-      "color": "Green",
-      "source": {
-        "id": "sp_canl",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "t_cluster_can",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "wc_h_rd",
-      "color": "White",
-      "source": {
-        "id": "sp_canh",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "t_realdash_can",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_rd",
-      "color": "Green",
-      "source": {
-        "id": "sp_canl",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "t_realdash_can",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "wc_h_bh",
-      "color": "White",
-      "source": {
-        "id": "sp_canh",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_wc_h_bh",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_bh",
-      "color": "Green",
-      "source": {
-        "id": "sp_canl",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_wc_l_bh",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_grn"
-    },
-    {
-      "id": "wc_h_lam",
-      "color": "White",
-      "source": {
-        "id": "br_wc_h_lam",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_canh_lam",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "wc_l_lam",
-      "color": "Green",
-      "source": {
-        "id": "br_wc_l_lam",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_canl_lam",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_grn"
-    },
     {
       "id": "wc_term1",
       "color": "White",
@@ -568,6 +481,19 @@
       },
       "color": "Black",
       "partId": "wp_20_blk"
+    },
+    {
+      "id": "w_shd_can",
+      "color": "Shield",
+      "source": {
+        "id": "sp_shield_can",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_shd_can",
+        "handle": "Terminal"
+      },
+      "partId": "wp_20_shd"
     }
   ],
   "bundles": [
@@ -714,6 +640,42 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_780__br_cab_lamcan_sh",
+      "sourceId": "bp_780",
+      "targetId": "br_cab_lamcan_sh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__br_cab_canbh_sh",
+      "sourceId": "bp_840",
+      "targetId": "br_cab_canbh_sh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__br_w_shd_can",
+      "sourceId": "bp_840",
+      "targetId": "br_w_shd_can",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1050__br_cab_cancsb_sh",
+      "sourceId": "bp_1050",
+      "targetId": "br_cab_cancsb_sh",
+      "length": {
+        "value": 90,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -812,6 +774,17 @@
       "manufacturer": "generic",
       "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
       "color": "Red",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_shd",
+      "partNumber": "EW-1C20-DRAIN",
+      "manufacturer": "generic",
+      "description": "WIRE, DRAIN, 20 AWG, TINNED COPPER, CLEAR ETFE SLEEVE",
+      "color": "Shield",
       "gauge": {
         "value": 20,
         "unit": "AWG"
@@ -936,6 +909,302 @@
       },
       "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
       "id": "ct_hdp20s"
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_sh_2c",
+      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White",
+          "twistedWithNext": true,
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Green",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    }
+  ],
+  "cables": [
+    {
+      "id": "cab_can_ecu",
+      "partId": "cab_sh_2c",
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "cores": [
+        {
+          "id": "wc_h_ecu",
+          "color": "White",
+          "source": {
+            "id": "ecu_com",
+            "handle": "c3"
+          },
+          "target": {
+            "id": "sp_canh",
+            "handle": "Splice"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_ecu",
+          "color": "Green",
+          "source": {
+            "id": "ecu_com",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "sp_canl",
+            "handle": "Splice"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_can_ecu_sh",
+        "color": "Shield",
+        "target": {
+          "id": "sp_shield_can",
+          "handle": "Splice"
+        }
+      }
+    },
+    {
+      "id": "cab_can_csb",
+      "partId": "cab_sh_2c",
+      "schematicPosition": {
+        "x": 0,
+        "y": 120
+      },
+      "cores": [
+        {
+          "id": "wc_h_csb",
+          "color": "White",
+          "source": {
+            "id": "sp_canh",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "br_wc_h_csb",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_csb",
+          "color": "Green",
+          "source": {
+            "id": "sp_canl",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "br_wc_l_csb",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_can_csb_sh",
+        "color": "Shield",
+        "source": {
+          "id": "sp_shield_can",
+          "handle": "Splice"
+        },
+        "target": {
+          "id": "br_cab_cancsb_sh",
+          "handle": "Terminal"
+        }
+      }
+    },
+    {
+      "id": "cab_can_clu",
+      "partId": "cab_sh_2c",
+      "schematicPosition": {
+        "x": 0,
+        "y": 240
+      },
+      "cores": [
+        {
+          "id": "wc_h_clu",
+          "color": "White",
+          "source": {
+            "id": "sp_canh",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "t_cluster_can",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_clu",
+          "color": "Green",
+          "source": {
+            "id": "sp_canl",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "t_cluster_can",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_can_clu_sh",
+        "color": "Shield",
+        "source": {
+          "id": "sp_shield_can",
+          "handle": "Splice"
+        }
+      }
+    },
+    {
+      "id": "cab_can_rd",
+      "partId": "cab_sh_2c",
+      "schematicPosition": {
+        "x": 0,
+        "y": 360
+      },
+      "cores": [
+        {
+          "id": "wc_h_rd",
+          "color": "White",
+          "source": {
+            "id": "sp_canh",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "t_realdash_can",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_rd",
+          "color": "Green",
+          "source": {
+            "id": "sp_canl",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "t_realdash_can",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_can_rd_sh",
+        "color": "Shield",
+        "source": {
+          "id": "sp_shield_can",
+          "handle": "Splice"
+        }
+      }
+    },
+    {
+      "id": "cab_can_bh",
+      "partId": "cab_sh_2c",
+      "schematicPosition": {
+        "x": 0,
+        "y": 480
+      },
+      "cores": [
+        {
+          "id": "wc_h_bh",
+          "color": "White",
+          "source": {
+            "id": "sp_canh",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "br_wc_h_bh",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_bh",
+          "color": "Green",
+          "source": {
+            "id": "sp_canl",
+            "handle": "Splice"
+          },
+          "target": {
+            "id": "br_wc_l_bh",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_can_bh_sh",
+        "color": "Shield",
+        "source": {
+          "id": "sp_shield_can",
+          "handle": "Splice"
+        },
+        "target": {
+          "id": "br_cab_canbh_sh",
+          "handle": "Terminal"
+        }
+      }
+    },
+    {
+      "id": "cab_can_lam",
+      "partId": "cab_sh_2c",
+      "schematicPosition": {
+        "x": 0,
+        "y": 600
+      },
+      "cores": [
+        {
+          "id": "wc_h_lam",
+          "color": "White",
+          "source": {
+            "id": "br_wc_h_lam",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "sp_canh_lam",
+            "handle": "Splice"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "wc_l_lam",
+          "color": "Green",
+          "source": {
+            "id": "br_wc_l_lam",
+            "handle": "Terminal"
+          },
+          "target": {
+            "id": "sp_canl_lam",
+            "handle": "Splice"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_can_lam_sh",
+        "color": "Shield",
+        "source": {
+          "id": "br_cab_lamcan_sh",
+          "handle": "Terminal"
+        }
+      }
     }
   ]
 }
