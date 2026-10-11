@@ -2156,26 +2156,6 @@
       }
     },
     {
-      "partNumber": "HDP26-24-21SN",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 21 POS, SOCKET CONTACTS, N SEAL",
-      "numberOfCavities": 21,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "cavityPlugPartId": "pl_sz16"
-        }
-      ],
-      "id": "cp_hdp_b_eng",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/catalog/common/images/PartImages/prhdp26-24-21sn.jpg",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp26-24-21sn.jpg"
-      }
-    },
-    {
       "partNumber": "1 928 403 874",
       "manufacturer": "Bosch",
       "description": "CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS",

@@ -296,13 +296,13 @@
         {
           "id": "c48",
           "designation": "1",
-          "signal": "Switched 12V - INJECTOR power feed, fuse RFRM INJ 15A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
+          "signal": "Switched 12V - INJECTOR power feed, fuse RFRM INJ 15A (14 AWG)",
           "contactPartId": "ct_hdp12s"
         },
         {
           "id": "c49",
           "designation": "2",
-          "signal": "Switched 12V - COP / ignition coil power feed, fuse RFRM COP 20A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way)",
+          "signal": "Switched 12V - COP / ignition coil power feed, fuse RFRM COP 20A (14 AWG)",
           "contactPartId": "ct_hdp12s"
         }
       ],
@@ -928,7 +928,7 @@
     {
       "id": "br_w_strl",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: start relay 87 to the starter S terminal",
+      "signal": "Broken off - continues on ST185-CabinPower: start relay 87 to the starter S terminal",
       "width": 390,
       "layoutPosition": {
         "x": 3150,
@@ -3375,26 +3375,6 @@
         "source": "url",
         "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/13519047982_SPL.jpg",
         "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/13519047982_SPL.jpg"
-      }
-    },
-    {
-      "partNumber": "HDP26-24-47SE-L015",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 47 POS, SOCKET CONTACTS, E SEAL, THREADED COUPLING",
-      "numberOfCavities": 47,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "cavityPlugPartId": "pl_sz16"
-        }
-      ],
-      "id": "cp_hdp_a_eng",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/HDP/262/447/HDP26-24-47SE-L015-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/HDP/262/447/HDP26-24-47SE-L015-t1.jpg/jcr:content/renditions/product-details.png"
       }
     },
     {
