@@ -53,7 +53,7 @@ paths:
    - **Validation gate:** Verify every changed signal has matching byte/bit placement in both `link_g4x_can_setup.json` and `bench/frames.py` before proceeding to Step 4.
 
 4. **Run bench-level contract validation commands**
-   - Use the project bench commands from `CLAUDE.md`:
+   - Use the project bench commands from `AGENTS.md` (section **Fast Commands > Bench validation**):
      - `python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 monitor --known-only`
      - `python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 full-cluster`
      - `python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 full-realdash`
@@ -127,7 +127,7 @@ paths:
 
 - **Error:** `pcan` interface/open failure (for example, cannot open `PCAN_USBBUS1`)
   1. Confirm device/channel is connected and available.
-  2. Retry with the exact command from `CLAUDE.md` including `--channel PCAN_USBBUS1 --bitrate 1000000`.
+  2. Retry with the exact command from `AGENTS.md` (section **Fast Commands > Bench validation**) including `--channel PCAN_USBBUS1 --bitrate 1000000`.
   3. If hardware is unavailable, complete compile validation first and mark bench hardware validation as pending.
 
 - **Issue:** RealDash stops updating a channel after CAN changes

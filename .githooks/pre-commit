@@ -1,6 +1,6 @@
 #!/bin/sh
 # Refuse a commit that stages docs/research-hub.html.
-# That file is owned by the "Regenerate research hub" GitHub Action (see CLAUDE.md,
+# That file is owned by the "Regenerate research hub" GitHub Action (see AGENTS.md,
 # "Generated files - who owns them"). Committing it locally causes rebase conflicts.
 # Enable once per clone:  powershell -File .githooks/setup.ps1   (or run the two
 # git config lines in that file by hand).
