@@ -26,7 +26,7 @@
         {
           "id": "c3",
           "designation": "95",
-          "signal": "CAN-Lambda +12V, cabin fuse F5 10A (14 AWG)",
+          "signal": "CAN-Lambda +12V, RFRM LAM 10A (14 AWG)",
           "contactPartId": "ct_hdp12p"
         },
         {
@@ -533,7 +533,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (HCFB H3 30A)",
+          "signal": "Fused +12V in (MTA-3 FAN2 30A)",
           "contactPartId": "ct_f7_load8"
         },
         {
@@ -655,7 +655,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (HCFB H4, ST185-CabinPower; Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)) *"
+          "signal": "Fused +12V in (LMI L7, ST185-CabinPower; Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)) *"
         },
         {
           "id": "c2",
@@ -689,7 +689,7 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (glove-box fuse/relay box - rating TBD, fuse-box decision pending; docs/OPEN-ITEMS.md) - cross-harness wire to CabinPower not yet drawn *",
+          "signal": "Fused +12V in (RFRM ACC 10A, ST185-CabinPower; rating to verify; 10 AWG for the Maxi socket terminal)",
           "contactPartId": "ct_f7_load8"
         },
         {
@@ -864,7 +864,7 @@
     {
       "id": "br_w_fb_k_fan2_30",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: HCFB H3 30A feed to the condenser fan relay 30",
+      "signal": "Broken off - continues on ST185-CabinPower: MTA-3 FAN2 30A feed to the condenser fan relay 30",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -878,7 +878,7 @@
     {
       "id": "br_w_fb_k_eps_30",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: HCFB H4 feed to the EPS relay 30",
+      "signal": "Broken off - continues on ST185-CabinPower: LMI L7 feed to the EPS relay 30",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -1032,7 +1032,7 @@
     {
       "id": "br_w_lam12_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from cabin fuse F5 to bulkhead B c3",
+      "signal": "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from RFRM LAM to bulkhead B c3",
       "width": 390,
       "layoutPosition": {
         "x": 900,
@@ -1083,6 +1083,20 @@
       "schematicPosition": {
         "x": 3300,
         "y": 1200
+      }
+    },
+    {
+      "id": "br_w_fb_k_acc_30",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: RFRM ACC 10A feed to the A/C clutch relay 30",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1860,
+        "y": 510
+      },
+      "schematicPosition": {
+        "x": 540,
+        "y": 2760
       }
     }
   ],
@@ -1787,6 +1801,19 @@
         "handle": "Splice"
       },
       "partId": "wp_20_shd"
+    },
+    {
+      "id": "w_fb_k_acc_30",
+      "color": "Red",
+      "source": {
+        "id": "br_w_fb_k_acc_30",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_acc",
+        "handle": "c1"
+      },
+      "partId": "wp_10_red"
     }
   ],
   "cables": [
@@ -2464,6 +2491,15 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_b_bp_1065__br_w_fb_k_acc_30",
+      "sourceId": "b_bp_1065",
+      "targetId": "br_w_fb_k_acc_30",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -2681,7 +2717,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression (on/off relay; INFERENCE from the G4X help Auxiliary Output Wiring PWM-only diode advice, not a Link statement) - fitted TE 7-1904094-9 has its own coil diode, keep 86 = coil +\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: HCFB H4 - Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nHigh-current fuse block HCFB h4: Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser Fan Relay (on/off, diode) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression (on/off relay; INFERENCE from the G4X help Auxiliary Output Wiring PWM-only diode advice, not a Link statement) - fitted TE 7-1904094-9 has its own coil diode, keep 86 = coil +\nCondenser Fan Relay (on/off, diode) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: LMI L7 - Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nHigh-current fuse block HCFB h4: Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)",
       "schematicPosition": {
         "x": 4200,
         "y": 0
@@ -2910,6 +2946,28 @@
       "color": "Black",
       "gauge": {
         "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_16_red",
+      "partNumber": "EW-1C16-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_10_red",
+      "partNumber": "EW-1C10-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 10 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 10,
         "unit": "AWG"
       }
     }

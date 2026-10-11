@@ -12,7 +12,7 @@
     },
     "CabinPower": {
       "file": "ST185-CabinPower.harness",
-      "physical": "Cabin power (non-ECU): cabin fuse block, high-current fuse block, battery feed ring, fuel pump run to the trunk; feeds to the A-cabin relays and splices and to B-cabin arrive broken off"
+      "physical": "Cabin power (non-ECU): the glove-box fuse box (LMI + RFRM + 3x MTA, Option B), battery feed ring, fuel pump run to the trunk; feeds to the A-cabin / B-cabin relays and splices, CSB3 and the EngineRoom-C OEM ends arrive broken off"
     },
     "A-engine": {
       "file": "ST185-A-engine.harness",
@@ -919,7 +919,7 @@
     {
       "id": "BR_W_FB_K_FAN2_30",
       "type": "broken_off",
-      "what": "HCFB H3 30A feed to the condenser fan relay 30",
+      "what": "MTA-3 FAN2 30A feed to the condenser fan relay 30",
       "ends": [
         {
           "harness": "B-cabin",
@@ -934,7 +934,7 @@
     {
       "id": "BR_W_FB_K_EPS_30",
       "type": "broken_off",
-      "what": "HCFB H4 feed to the EPS relay 30",
+      "what": "LMI L7 feed to the EPS relay 30",
       "ends": [
         {
           "harness": "B-cabin",
@@ -964,7 +964,7 @@
     {
       "id": "BR_W_INJ_PWR_C",
       "type": "broken_off",
-      "what": "F11 15A injector rail to bulkhead A firewall (bh_a_fw c48, shared DRB102)",
+      "what": "RFRM INJ 15A injector rail to bulkhead A firewall (bh_a_fw c48, shared DRB102)",
       "ends": [
         {
           "harness": "A-cabin",
@@ -979,7 +979,7 @@
     {
       "id": "BR_W_COP_PWR_C",
       "type": "broken_off",
-      "what": "F10 20A COP rail to bulkhead A firewall (bh_a_fw c49, shared DRB102)",
+      "what": "RFRM COP 20A COP rail to bulkhead A firewall (bh_a_fw c49, shared DRB102)",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1039,14 +1039,14 @@
     {
       "id": "BR_W_CSB12",
       "type": "broken_off",
-      "what": "CSB3 +12V from sp_12v",
+      "what": "CSB3 +12V from RFRM CSB 5A (switched k_efi rail)",
       "ends": [
         {
           "harness": "CSB3",
           "terminal": "br_w_csb12"
         },
         {
-          "harness": "A-cabin",
+          "harness": "CabinPower",
           "terminal": "br_w_csb12"
         }
       ]
@@ -1249,7 +1249,7 @@
     {
       "id": "BR_W_LAM12",
       "type": "broken_off",
-      "what": "CAN-Lambda +12V from cabin fuse F5, bulkhead B c3",
+      "what": "CAN-Lambda +12V from RFRM LAM, bulkhead B c3",
       "ends": [
         {
           "harness": "B-engine",
@@ -1369,7 +1369,7 @@
     {
       "id": "BR_W77",
       "type": "broken_off",
-      "what": "Cabin fuse block SW IN to EFI Main Relay 87",
+      "what": "RFRM Bus 2 IN to EFI Main Relay 87",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1399,7 +1399,7 @@
     {
       "id": "BR_W_FB_SW12",
       "type": "broken_off",
-      "what": "Cabin fuse block F9 to sp_sw12",
+      "what": "RFRM SW12 to sp_sw12",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1414,7 +1414,7 @@
     {
       "id": "BR_W_FB_ECU",
       "type": "broken_off",
-      "what": "Cabin fuse block F8 to sp_12v",
+      "what": "RFRM ECU to sp_12v",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1429,7 +1429,7 @@
     {
       "id": "BR_W_FB_K_EFI_30",
       "type": "broken_off",
-      "what": "Cabin fuse block F1 to EFI Main Relay 30",
+      "what": "MTA-1 EFI to EFI Main Relay 30",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1444,7 +1444,7 @@
     {
       "id": "BR_W_K_EFI_86",
       "type": "broken_off",
-      "what": "Cabin fuse block F12 to EFI Main Relay 86",
+      "what": "RFRM EFI86 to EFI Main Relay 86",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1459,7 +1459,7 @@
     {
       "id": "BR_W_FB_K_FP_30",
       "type": "broken_off",
-      "what": "Cabin fuse block F2 to Fuel Pump Relay 30",
+      "what": "MTA-1 FP to Fuel Pump Relay 30",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1474,7 +1474,7 @@
     {
       "id": "BR_W_FB_K_ETB_30",
       "type": "broken_off",
-      "what": "Cabin fuse block F3 to ETB Power Relay 30",
+      "what": "MTA-2 ETB to ETB Power Relay 30",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1489,7 +1489,7 @@
     {
       "id": "BR_W_FB_K_STR_30",
       "type": "broken_off",
-      "what": "Cabin fuse block F4 to Start Relay 30",
+      "what": "MTA-2 STR to Start Relay 30",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1504,7 +1504,7 @@
     {
       "id": "BR_W_FB_K_FAN_30",
       "type": "broken_off",
-      "what": "High-current fuse block HCFB H2 to Radiator Fan Relay 30",
+      "what": "MTA-1 FAN to Radiator Fan Relay 30",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1519,7 +1519,7 @@
     {
       "id": "BR_W_FB_MRS_EN",
       "type": "broken_off",
-      "what": "Cabin fuse block F13 to Bulkhead A 35",
+      "what": "MTA-2 MRS to Bulkhead A 35",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1534,7 +1534,7 @@
     {
       "id": "BR_W_LAM12_C",
       "type": "broken_off",
-      "what": "CAN-Lambda +12V from cabin fuse F5 to bulkhead B c3",
+      "what": "CAN-Lambda +12V from RFRM LAM to bulkhead B c3",
       "ends": [
         {
           "harness": "CabinPower",
@@ -1663,6 +1663,186 @@
         {
           "harness": "CSB3",
           "terminal": "br_cab_cancsb_sh"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_PMU_HL",
+      "type": "broken_off",
+      "what": "HEAD LH, RFRM HL 15A + relay to J/B2 2A-3",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_pmu_hl"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_pmu_hl"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_PMU_HR",
+      "type": "broken_off",
+      "what": "HEAD RH, RFRM HR 15A + relay to J/B2 2A-6",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_pmu_hr"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_pmu_hr"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_PMU_HORN",
+      "type": "broken_off",
+      "what": "HAZ-HORN, RFRM HZ 15A to J/B2 2E-3",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_pmu_horn"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_pmu_horn"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_PMU_DOME",
+      "type": "broken_off",
+      "what": "DOME, RFRM DM 20A to J/B2 2E-4",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_pmu_dome"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_pmu_dome"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_PMU_RTR",
+      "type": "broken_off",
+      "what": "RTR, LMI L3 30A to J/B2 2E-2",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_pmu_rtr"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_pmu_rtr"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_ACP_1",
+      "type": "broken_off",
+      "what": "A/C pressure switch +12V, MTA-3 ACPS 10A to A5-1",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_acp_1"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_acp_1"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_PDB_AM1",
+      "type": "broken_off",
+      "what": "AM1, LMI L4 40A to IE1-10",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_pdb_am1"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_pdb_am1"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_PDB_AM2",
+      "type": "broken_off",
+      "what": "AM2, LMI L5 30A to IE1-17",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_pdb_am2"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_pdb_am2"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_PDB_JB1",
+      "type": "broken_off",
+      "what": "OEM HOT, LMI L6 60A to J/B1 1I-1",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_pdb_jb1"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_pdb_jb1"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_RB4",
+      "type": "broken_off",
+      "what": "heater relay 87 (MTA-2 HTR 40A) to the R/B4 HEATER circuit",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_rb4"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_rb4"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_RB2",
+      "type": "broken_off",
+      "what": "power relay 87 (MTA-3 PWR 30A) to the R/B2 POWER circuit",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_rb2"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_rb2"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_FB_K_ACC_30",
+      "type": "broken_off",
+      "what": "RFRM ACC 10A feed to the A/C clutch relay 30",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_fb_k_acc_30"
+        },
+        {
+          "harness": "B-cabin",
+          "terminal": "br_w_fb_k_acc_30"
         }
       ]
     }

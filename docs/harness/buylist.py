@@ -31,10 +31,12 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  # socket and its 280755-4 / 280756-4 / 42281-1 terminals come off the drawings.
  ("282080-1","TE Connectivity","HOUSING, PLUG, SUPERSEAL 1.5, 2 POS",1,2),
  ("281934-2","TE Connectivity","SEAL, WIRE, SUPERSEAL 1.5",2,10),
+ # 2026-10-11: fuse box Option B - LMI L1 50, L2/L3/L5 30, L4 40, L6/L7 60 (FUSEBOX-B-SLOT-MAP).
  ("AMI-50","Eaton Bussmann","FUSE, AMI, 50 A, M5 BOLT-DOWN",1,0),
  ("AMI-40","Eaton Bussmann","FUSE, AMI, 40 A, M5 BOLT-DOWN",1,0),
- ("AMI-30","Eaton Bussmann","FUSE, AMI, 30 A, M5 BOLT-DOWN",1,0),
- ("AMI-60","Eaton Bussmann","FUSE, AMI, 60 A, M5 BOLT-DOWN",1,0),
+ ("AMI-30","Eaton Bussmann","FUSE, AMI, 30 A, M5 BOLT-DOWN",3,0),
+ ("AMI-60","Eaton Bussmann","FUSE, AMI, 60 A, M5 BOLT-DOWN",2,0),
+ ("LMI1-M-1-0","Eaton Bussmann","FUSE BLOCK, MODULAR, LMI, METRIC, 1 AMI FUSE MODULE (M5 STUDS)",3,0),
  ("RL9080-301-F1RE","Amphenol","RECEPTACLE, FEED-THROUGH, RADLOK 8.0, PANEL MOUNT, 200 A, 1 KV, RED, MATES RL00801-50RE",1,0),
  ("RL9080-301-F1","Amphenol","RECEPTACLE, FEED-THROUGH, RADLOK 8.0, PANEL MOUNT, 200 A, 1 KV, BLACK, MATES RL00801-50BK",1,0),
  ("1/0 AWG welding cable red/black","generic","CABLE, WELDING, 1/0 AWG, RED AND BLACK, APPROX 45 FT EACH COLOUR",1,0),
@@ -43,8 +45,6 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("8 AWG TXL red/black","generic","WIRE, ELECTRICAL, 8 AWG, RED AND BLACK, SAE J1128 TXL",1,0),
 
  ("Micro ISO relays x4","TE Connectivity","RELAY, PLUG-IN, MICRO ISO, 1 FORM A, 12 VDC COIL",4,4),
- ("2nd fuse block 12-16 way","generic","FUSE BLOCK, BLADE, 12-16 WAY",1,0),
- ("ANL 100A + holder","generic","FUSE, ANL, 100 A, WITH HOLDER",1,0),
  ("2127","Blue Sea Systems","BUSBAR, POWERBAR, 250 A, FOUR 5/16-18 STUDS",1,0),
  ("2719","Blue Sea Systems","COVER, INSULATING, MAXIBUS, FITS 2127",1,0),
  ("ANL/MEGA 300A + holder","generic","FUSE, ANL OR MEGA, 300 A, WITH HOLDER",1,0),

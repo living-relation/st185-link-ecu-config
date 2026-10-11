@@ -97,7 +97,7 @@ Rule: **one source per load** — never two paths feeding the same circuit.
 |---|---|---|
 | Starter motor | Battery cable + RADLOK + existing `k_str` for solenoid | Cranking amps |
 | 160 A alternator B+ | 4 AWG (or 2 AWG) to starter B+, does not recross | Heavy cable. Protected by a fusible link or inline fuse / breaker at the trunk battery or near the cabin fuse box, never at the starter (Daniel 2026-09-28) |
-| MRS EPS pump | `k_eps` HCR 150 in the glove box (moved from the engine bay 2026-09-28, `ST185-B-cabin`), HCFB H4 Bussmann AMI-60, 8 AWG feed (sized 2026-09-28, `sot/channels.csv` k_eps c1) | Too big for a micro relay |
+| MRS EPS pump | `k_eps` HCR 150 in the glove box (moved from the engine bay 2026-09-28, `ST185-B-cabin`), LMI L7 Bussmann AMI-60 (was HCFB H4), 8 AWG feed (sized 2026-09-28, `sot/channels.csv` k_eps c1) | Too big for a micro relay |
 | Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Coils from Aux 5 / Ign 5 |
 | EFI main, ETB, fuel pump | Cabin relays in `ST185-A-cabin.harness` | Hold-power and Link's published ETB circuit |
 | HEAD LH / HEAD RH | Relay + fuse, second fuse block, into J/B2 2A-3 / 2A-6 | Replaces 15 A HEAD fuses in J/B2 |
@@ -325,11 +325,12 @@ see `docs/harness/README.md` for the current file map.
 
 | File | Owns |
 |---|---|
-| `docs/harness/rebuild/ST185-A-cabin.harness` | Cabin fuse block, HCFB, EFI / ETB / FP / start / rad fan relays, ECU 12 V, ECU-A pins, CSB3 plug and switch inputs (ECU loom letter rule, 2026-09-28) |
+| `docs/harness/rebuild/ST185-CabinPower.harness` | Glove-box fuse box (LMI + RFRM + 3x MTA, Option B 2026-10-11) - the box lives only here |
+| `docs/harness/rebuild/ST185-A-cabin.harness` | EFI / ETB / FP / start / rad fan relays, ECU 12 V, ECU-A pins, CSB3 plug and switch inputs (ECU loom letter rule, 2026-09-28) |
 | `docs/harness/rebuild/ST185-B-cabin.harness` | ECU-B pins, condenser fan relay, CAN-Lambda cabin leg (bulkhead B c3/c4, c13/c14) |
 | `docs/harness/rebuild/ST185-A-engine.harness` | A-letter engine devices: MRS speed / enable cavities (bulkhead A c36 / c35), ETB sensors, injectors, coils |
 | `docs/harness/rebuild/ST185-B-engine.harness` | B-letter engine devices, ETB motor, injector / coil 12 V engine leg (Q-RAIL open) |
-| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB → fuse blocks + relays, RADLOK, OEM injection blocks, EPS power, uprated fans. Glove-box body block is node `gbx_body` (was `pmu` until 2026-09-26; no PMU fitted) |
+| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB (battery / RADLOK / ground studs), RADLOK, OEM injection blocks, EPS power, uprated fans. The old glove-box body block `gbx_body` and the PDB's fused outputs moved to `ST185-CabinPower` 2026-10-11; the OEM ends stay here, broken off |
 | This document | Splice table and factory citations. No second current-flow diagram of the OEM loom |
 
 `bh_c` (HDP20 9-way) **is deleted** — confirmed 2026-09-22, zero references in any
