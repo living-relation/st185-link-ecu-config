@@ -154,17 +154,17 @@
         {
           "id": "lam",
           "designation": "LAM",
-          "signal": "Bus 2 10A - Link CAN-Lambda +12V"
+          "signal": "Bus 2 7.5A - Link CAN-Lambda +12V"
         },
         {
           "id": "sw12",
           "designation": "SW12",
-          "signal": "Bus 2 10A - switched 12V sensor rail, ECU +14V, relay coils"
+          "signal": "Bus 2 7.5A - switched 12V sensor rail, ECU +14V, relay coils"
         },
         {
           "id": "cop",
           "designation": "COP",
-          "signal": "Bus 2 20A - COP / ignition coil bank"
+          "signal": "Bus 2 15A - COP / ignition coil bank"
         },
         {
           "id": "inj",
@@ -179,7 +179,7 @@
         {
           "id": "dev",
           "designation": "DEV",
-          "signal": "Bus 2 15A - cluster + RealDash Pi (not yet wired)"
+          "signal": "Bus 2 15A - DEV: center cluster + RealDash Pi +12V (switched k_efi rail, decision B7) -> ST185-CAN sp_dev"
         },
         {
           "id": "epsen",
@@ -190,6 +190,21 @@
           "id": "acc",
           "designation": "ACC",
           "signal": "Bus 2 10A - A/C clutch relay k_acc 30 (rating to verify)"
+        },
+        {
+          "id": "alm",
+          "designation": "ALM",
+          "signal": "Bus 1 5A - anti-theft alarm +12V constant (alarm c1)"
+        },
+        {
+          "id": "alms",
+          "designation": "ALMS",
+          "signal": "Bus 1 2A - anti-theft shock sensor +12V constant"
+        },
+        {
+          "id": "almig",
+          "designation": "ALMIG",
+          "signal": "Bus 2 2A - anti-theft alarm ignition sense (switched k_efi rail)"
         }
       ]
     },
@@ -716,7 +731,7 @@
     {
       "id": "br_w_cop_pwr_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: RFRM COP 20A COP rail to bulkhead A c49 (shared DRB102)",
+      "signal": "Broken off - continues on ST185-A-cabin: RFRM COP 15A COP rail to bulkhead A c49 (shared DRB102)",
       "width": 390,
       "layoutPosition": {
         "x": 1740,
@@ -1233,6 +1248,62 @@
         "x": 3180,
         "y": 3900
       }
+    },
+    {
+      "id": "t_at_12v",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-AntiTheft: RFRM ALM 5A (Bus 1, permanent) -> alarm +12V constant",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1680,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 2940
+      }
+    },
+    {
+      "id": "t_at_12v_shk",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-AntiTheft: RFRM ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1680,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 2940
+      }
+    },
+    {
+      "id": "t_at_ig",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-AntiTheft: RFRM ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1680,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 2940
+      }
+    },
+    {
+      "id": "br_w_dev",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: RFRM DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1680,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 1200,
+        "y": 2940
+      }
     }
   ],
   "wires": [
@@ -1273,7 +1344,7 @@
         "id": "rfrm",
         "handle": "b1"
       },
-      "partId": "wp_10_red"
+      "partId": "wp_8_red"
     },
     {
       "id": "w_fb_k_fan2_30_ac",
@@ -1351,7 +1422,7 @@
         "id": "fuelpump",
         "handle": "c1"
       },
-      "partId": "wp_12_red"
+      "partId": "wp_10_red"
     },
     {
       "id": "w_fb_sw12_cp",
@@ -1546,7 +1617,7 @@
         "id": "mta3",
         "handle": "acin"
       },
-      "partId": "wp_18_red"
+      "partId": "wp_10_red"
     },
     {
       "id": "w_pmu_hl_cp",
@@ -1885,7 +1956,7 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "partId": "wp_12_red"
+      "partId": "wp_10_red"
     },
     {
       "id": "w_fan285_cp",
@@ -2030,6 +2101,58 @@
         "handle": "Terminal"
       },
       "partId": "wp_20_grn"
+    },
+    {
+      "id": "w_at_12v_tie_cp",
+      "color": "Red",
+      "source": {
+        "id": "rfrm",
+        "handle": "alm"
+      },
+      "target": {
+        "id": "t_at_12v",
+        "handle": "Terminal"
+      },
+      "partId": "wp_20_red"
+    },
+    {
+      "id": "w_at_12v_shk_tie_cp",
+      "color": "Red",
+      "source": {
+        "id": "rfrm",
+        "handle": "alms"
+      },
+      "target": {
+        "id": "t_at_12v_shk",
+        "handle": "Terminal"
+      },
+      "partId": "wp_20_red"
+    },
+    {
+      "id": "w_at_ig_tie_cp",
+      "color": "Gray",
+      "source": {
+        "id": "rfrm",
+        "handle": "almig"
+      },
+      "target": {
+        "id": "t_at_ig",
+        "handle": "Terminal"
+      },
+      "partId": "wp_20_gry"
+    },
+    {
+      "id": "w_dev_cp",
+      "color": "Red",
+      "source": {
+        "id": "rfrm",
+        "handle": "dev"
+      },
+      "target": {
+        "id": "br_w_dev",
+        "handle": "Terminal"
+      },
+      "partId": "wp_16_red"
     }
   ],
   "bundles": [
@@ -2559,6 +2682,42 @@
       "id": "b_bn_b_bp_1065__br_w_start_out",
       "sourceId": "b_bp_1065",
       "targetId": "br_w_start_out",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_b_bp_1050__t_at_12v",
+      "sourceId": "b_bp_1050",
+      "targetId": "t_at_12v",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_b_bp_1050__t_at_12v_shk",
+      "sourceId": "b_bp_1050",
+      "targetId": "t_at_12v_shk",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_b_bp_1050__t_at_ig",
+      "sourceId": "b_bp_1050",
+      "targetId": "t_at_ig",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_b_bp_1050__br_w_dev",
+      "sourceId": "b_bp_1050",
+      "targetId": "br_w_dev",
       "length": {
         "value": 300,
         "unit": "mm"

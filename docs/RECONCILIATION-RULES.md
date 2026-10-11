@@ -49,9 +49,9 @@ every commit.
 | `sot/channels.csv` | ECU pin/channel SoT |
 | `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` | Device pin, pin name, whether that device gets a shield (one flag per device, never per pin or wire) |
 | `XTREMEX-IO-TABLE.html` | Visual face of the ECU SoT, with a generated pin map |
-| `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: A-triggered relays, the BRZ APS pedal connector (Rule 3 crossover c), front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
-| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: condenser fan relay, fuel level branch, rear wheel-speed spur, the APS B33 leg broken off from A-cabin (Rule 3 crossover c) |
-| `docs/harness/rebuild/ST185-CabinPower.harness` | Glove-box fuse box (LMI + RFRM + 3x MTA), battery feed, fuel pump run (non-ECU) |
+| `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: the A-pin relay coil wires (broken off to the box), the BRZ APS pedal connector (Rule 3 crossover c), front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
+| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: the B-pin relay coil wires (broken off to the box), fuel level branch, rear wheel-speed spur, the APS B33 leg broken off from A-cabin (Rule 3 crossover c) |
+| `docs/harness/rebuild/ST185-CabinPower.harness` | Glove-box fuse box (LMI + RFRM + 3x MTA) with the ECU-switched relays seated in it, battery feed, fuel pump run (non-ECU) |
 | `docs/harness/rebuild/ST185-CSB3.harness` | ECUMaster CSB3 plug and switch inputs (non-ECU) |
 | `docs/harness/rebuild/ST185-A-engine.harness` | Bulkhead A engine half to every A-letter engine device (Rule 3) |
 | `docs/harness/rebuild/ST185-B-engine.harness` | Bulkhead B engine half to every B-letter engine device, ETB motor (Rule 3) |
@@ -224,8 +224,9 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
   `ST185-CSB3` (keeps `ST185-A-cabin` under the harness.design 100-connection limit).
 - The glove-box fuse box (LMI + RFRM + 3x MTA, Option B 2026-10-11), battery feed ring and
   fuel pump run are the non-ECU harness `ST185-CabinPower` (Daniel, 2026-09-28, same reason).
-  The box lives in that file only; every other file reaches it through broken-off pairs. The relays stay on `ST185-A-cabin`:
-  their ECU-A trigger gives them letter A.
+  The box lives in that file only; every other file reaches it through broken-off pairs. The ECU-switched
+  relays sit in the box (Option B) and are drawn there; their ECU coil (85) wires stay on the ECU loom of
+  the pin's letter (`ST185-A-cabin` / `ST185-B-cabin`) and break off to the box (2026-10-11, OPEN-ITEMS row 45).
 - Every other loom stays as it is: `EngineRoom-C`, `CAN`, `ClusterLED`, `AntiTheft`,
   `WheelSpeed-Front` / `-Rear`, `RearFuel`, `HeavyDC`. `ACAmp-Spur` and `APS-Pedal` were
   retired 2026-10-11 - their non-ECU content folded into `A-cabin` (and, for the A/C

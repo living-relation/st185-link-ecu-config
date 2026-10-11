@@ -26,7 +26,7 @@
         {
           "id": "c3",
           "designation": "95",
-          "signal": "CAN-Lambda +12V, RFRM LAM 10A (14 AWG)",
+          "signal": "CAN-Lambda +12V, RFRM LAM 7.5A (14 AWG)",
           "contactPartId": "ct_hdp12p"
         },
         {
@@ -1088,7 +1088,7 @@
     },
     {
       "id": "w39",
-      "color": "White",
+      "color": "Blue",
       "source": {
         "id": "br_w39",
         "handle": "Terminal"
@@ -1097,7 +1097,7 @@
         "id": "ecu_b",
         "handle": "b33"
       },
-      "partId": "wp_20_wht"
+      "partId": "wp_20_blu"
     },
     {
       "id": "w43",
@@ -2662,6 +2662,17 @@
       "color": "Red",
       "gauge": {
         "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_20_blu",
+      "partNumber": "EW-1C20-BLU",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLUE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Blue",
+      "gauge": {
+        "value": 20,
         "unit": "AWG"
       }
     }

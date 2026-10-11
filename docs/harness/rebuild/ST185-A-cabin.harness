@@ -497,7 +497,7 @@
         {
           "id": "c49",
           "designation": "2",
-          "signal": "Switched 12V - COP / ignition coil power feed, fuse RFRM COP 20A (14 AWG)",
+          "signal": "Switched 12V - COP / ignition coil power feed, fuse RFRM COP 15A (14 AWG)",
           "contactPartId": "ct_hdp12p"
         }
       ],
@@ -558,7 +558,7 @@
     },
     {
       "id": "aps",
-      "label": "BRZ e-throttle pedal (APS) - folded in from ST185-APS-Pedal 2026-10-11, pedal is one cable in A-cabin",
+      "label": "BRZ e-throttle pedal (APS) - one 6-core shielded cable (cab_aps) to the ECU; screen floats at the pedal, drains at A7 (sp_shield_a); VPA2 core breaks off to ST185-B-cabin B33",
       "partId": "cp_brz_aps6",
       "cavities": [
         {
@@ -916,7 +916,7 @@
     {
       "id": "br_w_cop_pwr_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: RFRM COP 20A COP rail from the fuse box to bulkhead A c49 (shared DRB102)",
+      "signal": "Broken off - continues on ST185-CabinPower: RFRM COP 15A COP rail from the fuse box to bulkhead A c49 (shared DRB102)",
       "width": 390,
       "layoutPosition": {
         "x": 780,
@@ -1210,19 +1210,6 @@
         "handle": "c8"
       },
       "color": "White",
-      "partId": "wp_20_wht"
-    },
-    {
-      "id": "w38",
-      "color": "White",
-      "source": {
-        "id": "aps",
-        "handle": "c6"
-      },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a14"
-      },
       "partId": "wp_20_wht"
     },
     {
@@ -1685,19 +1672,6 @@
       "partId": "wp_18_org"
     },
     {
-      "id": "w210",
-      "color": "Orange",
-      "source": {
-        "id": "aps",
-        "handle": "c1"
-      },
-      "target": {
-        "id": "sp_5v_2",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_org"
-    },
-    {
       "id": "w19",
       "color": "Orange",
       "source": {
@@ -1724,20 +1698,6 @@
       },
       "partId": "wp_18_blk_wht",
       "stripeColor": "White"
-    },
-    {
-      "id": "w40",
-      "color": "Black",
-      "source": {
-        "id": "aps",
-        "handle": "c5"
-      },
-      "target": {
-        "id": "sp_gndout",
-        "handle": "Splice"
-      },
-      "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
     },
     {
       "id": "w66",
@@ -1777,46 +1737,6 @@
         "handle": "Splice"
       },
       "partId": "wp_18_blk"
-    },
-    {
-      "id": "w_aps_vc1",
-      "color": "Orange",
-      "source": {
-        "id": "aps",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "sp_5v_2",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_org"
-    },
-    {
-      "id": "w_aps_gnd2",
-      "color": "Black",
-      "stripeColor": "White",
-      "source": {
-        "id": "aps",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "sp_gndout",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_blk_wht"
-    },
-    {
-      "id": "w_aps_vpa2",
-      "color": "White",
-      "source": {
-        "id": "aps",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "br_w39",
-        "handle": "Terminal"
-      },
-      "partId": "wp_20_wht"
     },
     {
       "id": "w_rail_sp_5v_c",
@@ -2343,6 +2263,96 @@
         "target": {
           "id": "br_cab_fspur_fr_sh",
           "handle": "Terminal"
+        }
+      }
+    },
+    {
+      "id": "cab_aps",
+      "partId": "cab_sh_6c",
+      "schematicPosition": {
+        "x": 4890,
+        "y": 1560
+      },
+      "cores": [
+        {
+          "id": "w_aps_vc1",
+          "color": "Orange",
+          "source": {
+            "id": "aps",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "sp_5v_2",
+            "handle": "Splice"
+          }
+        },
+        {
+          "id": "w40",
+          "color": "Black",
+          "source": {
+            "id": "aps",
+            "handle": "c5"
+          },
+          "target": {
+            "id": "sp_gndout",
+            "handle": "Splice"
+          }
+        },
+        {
+          "id": "w38",
+          "color": "White",
+          "source": {
+            "id": "aps",
+            "handle": "c6"
+          },
+          "target": {
+            "id": "ecu_a",
+            "handle": "a14"
+          }
+        },
+        {
+          "id": "w210",
+          "color": "Red",
+          "source": {
+            "id": "aps",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "sp_5v_2",
+            "handle": "Splice"
+          }
+        },
+        {
+          "id": "w_aps_gnd2",
+          "color": "Brown",
+          "source": {
+            "id": "aps",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "sp_gndout",
+            "handle": "Splice"
+          }
+        },
+        {
+          "id": "w_aps_vpa2",
+          "color": "Blue",
+          "source": {
+            "id": "aps",
+            "handle": "c3"
+          },
+          "target": {
+            "id": "br_w39",
+            "handle": "Terminal"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_aps_sh",
+        "color": "Shield",
+        "target": {
+          "id": "sp_shield_a",
+          "handle": "Splice"
         }
       }
     }
@@ -3653,6 +3663,63 @@
         {
           "id": "k1",
           "color": "Violet",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_6c",
+      "partNumber": "GENERIC SHLD CABLE 6C 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 6 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Orange",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "White",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k4",
+          "color": "Red",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k5",
+          "color": "Brown",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k6",
+          "color": "Blue",
           "gauge": {
             "value": 20,
             "unit": "AWG"

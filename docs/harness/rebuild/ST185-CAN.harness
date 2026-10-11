@@ -56,7 +56,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Power +12V ign, RFRM LAM 10A *"
+          "signal": "Power +12V ign, RFRM LAM 7.5A *"
         },
         {
           "id": "c2",
@@ -280,6 +280,110 @@
         "x": 720,
         "y": 60
       }
+    },
+    {
+      "id": "t_cluster_pwr",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 870
+      },
+      "layoutPosition": {
+        "x": 1020,
+        "y": -10
+      },
+      "signal": "TrackCluster ESP32-P4 - +12V switched (DEV)",
+      "partId": "tp_flying_lead"
+    },
+    {
+      "id": "t_realdash_pwr",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 960
+      },
+      "layoutPosition": {
+        "x": 1260,
+        "y": 200
+      },
+      "signal": "RealDash Pi 5 - +12V switched (DEV) into the Pi's 12 V to 5 V supply",
+      "partId": "tp_flying_lead"
+    },
+    {
+      "id": "t_cluster_gnd",
+      "type": "Ring",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 960
+      },
+      "layoutPosition": {
+        "x": 1020,
+        "y": 20
+      },
+      "signal": "Cabin chassis ground stud M6 - cluster ground",
+      "partId": "tp_ring_m6_22_16"
+    },
+    {
+      "id": "t_realdash_gnd",
+      "type": "Ring",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 1050
+      },
+      "layoutPosition": {
+        "x": 1260,
+        "y": 230
+      },
+      "signal": "Cabin chassis ground stud M6 - RealDash Pi ground",
+      "partId": "tp_ring_m6_22_16"
+    },
+    {
+      "id": "br_w_dev",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: RFRM DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1020,
+        "y": -210
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 270
+      }
+    },
+    {
+      "id": "t_cluster_gnd_lead",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 1050
+      },
+      "layoutPosition": {
+        "x": 1020,
+        "y": 50
+      },
+      "signal": "TrackCluster ESP32-P4 - ground",
+      "partId": "tp_flying_lead"
+    },
+    {
+      "id": "t_realdash_gnd_lead",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 1140
+      },
+      "layoutPosition": {
+        "x": 1260,
+        "y": 260
+      },
+      "signal": "RealDash Pi 5 - ground (Pi supply 0 V)",
+      "partId": "tp_flying_lead"
     }
   ],
   "splices": [
@@ -347,6 +451,19 @@
         "x": 510,
         "y": 180
       }
+    },
+    {
+      "id": "sp_dev",
+      "schematicPosition": {
+        "x": 600,
+        "y": 900
+      },
+      "layoutPosition": {
+        "x": 1140,
+        "y": -90
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_930"
     }
   ],
   "resistors": [
@@ -494,6 +611,71 @@
         "handle": "Terminal"
       },
       "partId": "wp_20_shd"
+    },
+    {
+      "id": "w_dev",
+      "color": "Red",
+      "source": {
+        "id": "br_w_dev",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_dev",
+        "handle": "Splice"
+      },
+      "partId": "wp_16_red"
+    },
+    {
+      "id": "w_dev_clu",
+      "color": "Red",
+      "source": {
+        "id": "sp_dev",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "t_cluster_pwr",
+        "handle": "Terminal"
+      },
+      "partId": "wp_16_red"
+    },
+    {
+      "id": "w_dev_rd",
+      "color": "Red",
+      "source": {
+        "id": "sp_dev",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "t_realdash_pwr",
+        "handle": "Terminal"
+      },
+      "partId": "wp_16_red"
+    },
+    {
+      "id": "w_gnd_clu",
+      "color": "Black",
+      "source": {
+        "id": "t_cluster_gnd_lead",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "t_cluster_gnd",
+        "handle": "Terminal"
+      },
+      "partId": "wp_16_blk"
+    },
+    {
+      "id": "w_gnd_rd",
+      "color": "Black",
+      "source": {
+        "id": "t_realdash_gnd_lead",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "t_realdash_gnd",
+        "handle": "Terminal"
+      },
+      "partId": "wp_16_blk"
     }
   ],
   "bundles": [
@@ -676,6 +858,69 @@
         "value": 90,
         "unit": "mm"
       }
+    },
+    {
+      "id": "b_bn_bp_930__br_w_dev",
+      "sourceId": "bp_930",
+      "targetId": "br_w_dev",
+      "length": {
+        "value": 660,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_930__t_cluster_pwr",
+      "sourceId": "bp_930",
+      "targetId": "t_cluster_pwr",
+      "length": {
+        "value": 660,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_930__t_cluster_gnd",
+      "sourceId": "bp_930",
+      "targetId": "t_cluster_gnd",
+      "length": {
+        "value": 660,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_930__t_cluster_gnd_lead",
+      "sourceId": "bp_930",
+      "targetId": "t_cluster_gnd_lead",
+      "length": {
+        "value": 660,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1050__t_realdash_pwr",
+      "sourceId": "bp_1050",
+      "targetId": "t_realdash_pwr",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1050__t_realdash_gnd",
+      "sourceId": "bp_1050",
+      "targetId": "t_realdash_gnd",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1050__t_realdash_gnd_lead",
+      "sourceId": "bp_1050",
+      "targetId": "t_realdash_gnd_lead",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -727,7 +972,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, RFRM LAM 10A - broken off here, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse RFRM LAM\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, RFRM LAM 7.5A - broken off here, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse RFRM LAM\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)",
       "schematicPosition": {
         "x": 3180,
         "y": 150
@@ -789,6 +1034,28 @@
         "value": 20,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "wp_16_red",
+      "partNumber": "EW-1C16-RED",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_16_blk",
+      "partNumber": "EW-1C16-BLK",
+      "manufacturer": "generic",
+      "description": "WIRE, ELECTRICAL, 16 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
     }
   ],
   "spliceParts": [
@@ -814,6 +1081,22 @@
       },
       "description": "TERMINAL, FLYING LEAD",
       "id": "tp_flying_lead"
+    },
+    {
+      "type": "Ring",
+      "size": "M6",
+      "partNumber": "GENERIC RING M6 22-16",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 22,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
+      "id": "tp_ring_m6_22_16"
     }
   ],
   "connectorParts": [

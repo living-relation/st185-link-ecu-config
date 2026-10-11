@@ -933,7 +933,7 @@
     {
       "id": "BR_W_COP_PWR_C",
       "type": "broken_off",
-      "what": "RFRM COP 20A COP rail to bulkhead A firewall (bh_a_fw c49, shared DRB102)",
+      "what": "RFRM COP 15A COP rail to bulkhead A firewall (bh_a_fw c49, shared DRB102)",
       "ends": [
         {
           "harness": "A-cabin",
@@ -1842,6 +1842,66 @@
         {
           "harness": "B-cabin",
           "terminal": "br_w_start_out"
+        }
+      ]
+    },
+    {
+      "id": "BR_T_AT_12V",
+      "type": "broken_off",
+      "what": "RFRM ALM 5A (Bus 1, permanent) -> alarm +12V constant",
+      "ends": [
+        {
+          "harness": "AntiTheft",
+          "terminal": "t_at_12v"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "t_at_12v"
+        }
+      ]
+    },
+    {
+      "id": "BR_T_AT_12V_SHK",
+      "type": "broken_off",
+      "what": "RFRM ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
+      "ends": [
+        {
+          "harness": "AntiTheft",
+          "terminal": "t_at_12v_shk"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "t_at_12v_shk"
+        }
+      ]
+    },
+    {
+      "id": "BR_T_AT_IG",
+      "type": "broken_off",
+      "what": "RFRM ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
+      "ends": [
+        {
+          "harness": "AntiTheft",
+          "terminal": "t_at_ig"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "t_at_ig"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_DEV",
+      "type": "broken_off",
+      "what": "RFRM DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_dev"
+        },
+        {
+          "harness": "CAN",
+          "terminal": "br_w_dev"
         }
       ]
     }
