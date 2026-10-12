@@ -145,32 +145,27 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "ABS+ RL IN",
-          "contactPartId": "ct_m9_solder"
+          "signal": "ABS+ RL IN"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "ABS- RL IN",
-          "contactPartId": "ct_m9_solder"
+          "signal": "ABS- RL IN"
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "ABS Rear SHIELD",
-          "contactPartId": "ct_m9_solder"
+          "signal": "ABS Rear SHIELD"
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "ABS+ RR IN",
-          "contactPartId": "ct_m9_solder"
+          "signal": "ABS+ RR IN"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "ABS- RR IN",
-          "contactPartId": "ct_m9_solder"
+          "signal": "ABS- RR IN"
         }
       ]
     },
@@ -192,35 +187,30 @@
           "id": "c1",
           "designation": "1",
           "signal": "+5V",
-          "contactPartId": "ct_m9_solder",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
           "signal": "Gnd",
-          "contactPartId": "ct_m9_solder",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
           "signal": "RL out",
-          "contactPartId": "ct_m9_solder",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
           "signal": "RR out",
-          "contactPartId": "ct_m9_solder",
           "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
           "signal": "screen drain",
-          "contactPartId": "ct_m9_solder",
           "propagate": false
         }
       ]
@@ -584,14 +574,6 @@
       "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "contactColor": "Gold",
       "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "ct_m9_solder",
-      "partNumber": "(integral - 99 0414 00 05)",
-      "manufacturer": "binder",
-      "type": "Solder",
-      "gender": "Socket",
-      "description": "CONTACT, SOCKET, SOLDER CUP, INTEGRAL"
     }
   ],
   "connectorParts": [

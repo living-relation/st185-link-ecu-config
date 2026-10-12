@@ -147,6 +147,13 @@ for loom, d in ds.items():
             if nid in comp_ids:
                 land[(nid, h if comp_ids[nid] == "connectors" else "-")].append((loom, cond["id"], awg))
 
+# Housings whose contacts are part of the housing and have no part number of their own, so a
+# wired cavity needs no contact part (Daniel, 2026-10-12: no placeholder parts).
+INTEGRAL = {
+    "99 0414 00 05": "binder product page: Termination solder, max. 0.25 mm2 / AWG 24; "
+                     "accessories are only a tool and a cap - OPEN-ITEMS row 76",
+}
+
 seen_cav = set()
 for loom, d in ds.items():
     P = _model.parts(d)
@@ -165,7 +172,9 @@ for loom, d in ds.items():
             ct = P.get(ctid)
             where = "%s/%s %s" % (loom, c["id"], cv["id"])
             if not ct:
-                if str(cpn).upper().startswith(("TBD", "(")):
+                if cpn in INTEGRAL:
+                    gaps_gauge.add("%s: %s has integral contacts (%s) - gauge not checked" % (where, cpn, INTEGRAL[cpn]))
+                elif str(cpn).upper().startswith(("TBD", "(")):
                     gaps_gauge.add("%s: housing is %r - no contact can be chosen until the part is" % (where, cpn))
                 else:
                     fit_bad.append("K1 %s is wired but has no contact" % where)

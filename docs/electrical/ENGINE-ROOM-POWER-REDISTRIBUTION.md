@@ -370,11 +370,11 @@ R/B No.2, No.3 and No.4 are removed (Daniel, 2026-10-10): heater and POWER get t
 
 ### 8.1 Option B slot map (2026-10-11)
 
-Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI `LMI5-M-2-CB1AD` (+3 x `LMI1-M-1-0`). Relays from `docs/sourcing/te-on-hand-bom.csv`. Drawn in `ST185-CabinPower.harness` (PR #83, which applied the slot map's drawing fixes); what is still open is `docs/OPEN-ITEMS.md` rows 45-53. The "Was" column names the retired pre-Option B drawing positions (history).
+Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI from loose modules in two stacks (DECISIONS S14): stack A = `LMI1-M-1-1` input + 4 x `LMI1-M-1-0` (L1 / L4 / L6 / L7) on bus bar `B109-7046-5`, stack B = `LMI1-M-1-1` input + 3 x `LMI1-M-1-0` (L2 / L3 / L5) on `B109-7046-4`; AMI fuses bought loose. Relays from `docs/sourcing/te-on-hand-bom.csv`. Drawn in `ST185-CabinPower.harness` (PR #83, which applied the slot map's drawing fixes); what is still open is `docs/OPEN-ITEMS.md` rows 45-53. The "Was" column names the retired pre-Option B drawing positions (history).
 
 | # | Circuit | Was (before Option B) | Unit | Slot | Fuse (A) | Relay | Relay part | AWG | Note |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Bus 1 feed (permanent) | CabinPower hcfb h1 50A | LMI | L1 | 50 AMI | — | — | 8 | → RFRM Bus 1 stud |
+| 1 | Bus 1 feed (permanent) | CabinPower hcfb h1 50A (now `lmi_a_l1`) | LMI | L1 | 50 AMI | — | — | 8 | → RFRM Bus 1 stud |
 | 2 | Radiator fan | hcfb h2 40A | MTA-1 | MaxiVal + Maxi R1 | 40 MAXI | k_fan | TE 1-1414147-0 (own) | 8 | Link Aux 5 A29 |
 | 3 | k_efi EFI main (→ Bus 2) | fusebox c1 30A / c15 | MTA-1 | MiniVal 1 + Maxi R2 | 30 MINI | k_efi | TE 1-1414147-0 (own) | 12 in / 10 out | Aux 6 A28 hold; 87 → RFRM Bus 2 |
 | 4 | Fuel pump | fusebox c2 25A | MTA-1 | MiniVal 2 + micro | 20 MINI | k_fp | TE 4-1904124-2 (own) | 12 in / 10 out | Aux 3 A19; pump 14.4 A |
@@ -410,7 +410,7 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI `LMI5-M-2-
 
 **Feeds**
 
-- Trunk MEGA 300 A → 1/0 → Blue Sea 2127 + bus (glove box). That bus feeds: LMI input (M8), the 3 MTA module power inputs, and nothing else.
+- Trunk MEGA 300 A → 1/0 → Blue Sea 2127 + bus (glove box). That bus feeds: both LMI inputs (M8, one 4 AWG each), the 3 MTA module power inputs, and nothing else.
 - RFRM Bus 1 = permanent, from LMI L1 50 A. RFRM Bus 2 = switched, from k_efi 87 (MTA-1).
 - MTA MiniVal positions are fed one by one (A/C from heater-relay 87, B30 from ST1, F13 from k_eps_en 87, k_fp/k_etb/k_efi/k_str from the + bus). Confirm the 0301491 internal bus on MTA's drawing.
 
@@ -443,7 +443,7 @@ DECISIONS S6. Run lengths are estimates from the routes; re-check if a run grows
 
 - RFRM: 18 of 40 fuse slots used (2026-10-12: + alarm ALM / ALMS / ALMIG, - ECU permanent), 6 of 10 micro relays (4 spare).
 - MTA: 6 of 6 Maxi relays, 3 of 3 MaxiVal, 7 of 18 MiniVal, 2 of 3 micro (1 spare).
-- LMI: 7 of 7 (no spare; max 7 per assembly).
+- LMI: 7 fuses in two stacks, A 4 + B 3 (Eaton: max 7 modules per assembly including the input module); a spare means a longer bus bar and one more `LMI1-M-1-0`.
 
 ---
 

@@ -9,14 +9,19 @@ number as the same part, so the library must hold exactly what the drawings use.
       the referenced part's type + partNumber (ids differ between files). Every field counts,
       numberOfCavities included: a shared connector is drawn whole in every file
       (audit_shared_connectors.py), so one part fits all of them
+  H4  ids too: a drawing part whose id is also a library id must be that same library part
+      (same type and partNumber), and a part number may not match a library one only after
+      ignoring case or spacing - one spelling, one copy (Daniel, 2026-10-12)
   H3  the library itself: one entry per type + partNumber, every entry has a partNumber, every
       configuration reference resolves inside the library, ids are unique across the whole file,
       and the header is the documented library form - "version": 0.9, "kind": "library",
       "currency", part arrays and nothing else
       (https://docs.harness.design/feature/local-files/json-format)
 
-Whenever a .harness file adds or changes a part, the same change goes into ST185.harnesslib in
-the same PR. `--add-missing` copies parts the drawings use but the library lacks (H1 only - an
+The library is the master (Daniel, 2026-10-12): a part is changed in ST185.harnesslib FIRST, then
+copied into the drawings - never edited by hand inside one drawing. There are no exceptions: any
+difference between a drawing's part and the library entry fails (H2, H4). `--add-missing`
+copies parts the drawings use but the library lacks (H1 only - an
 H2 difference is a decision: change the drawing or the library, never silently).
 
 Exit 1 on any finding (check mode).
@@ -72,6 +77,12 @@ def main():
                 for k, v in c.items():
                     if k in REF and v not in lidx:
                         bad.append("H3 library %s %s %s -> %s does not resolve" % (t, p.get("partNumber"), k, v))
+    fold = {}
+    for (t, pn) in lpn:
+        k = (t, " ".join((pn or "").split()).upper())
+        if k in fold:
+            bad.append("H4 library has %s %r and %r - one spelling only" % (t, fold[k], pn))
+        fold[k] = pn
     reg = model.registry()
     added = 0
     for loom, d in model.docs(reg).items():
@@ -79,7 +90,16 @@ def main():
         for t in arrays(d):
             for p in d[t]:
                 key = (t, p.get("partNumber"))
+                if p["id"] in lidx and lidx[p["id"]] != key:
+                    bad.append("H4 %s: %s id %s is %s here but %s %s in ST185.harnesslib"
+                               % (loom, t, p["id"], p.get("partNumber"), lidx[p["id"]][0], lidx[p["id"]][1]))
                 lp = lpn.get(key)
+                if lp is None:
+                    alt = fold.get((t, " ".join((p.get("partNumber") or "").split()).upper()))
+                    if alt is not None:
+                        bad.append("H4 %s: %s %r is spelled %r in ST185.harnesslib - use the library spelling"
+                                   % (loom, t, p.get("partNumber"), alt))
+                        continue
                 if lp is None:
                     if write:
                         q = copy.deepcopy(p)
