@@ -1130,7 +1130,7 @@
           "mountPartId": "mt_drbf_1a"
         }
       ],
-      "numberOfCavities": 49
+      "numberOfCavities": 102
     },
     {
       "id": "cp_drb16_102sae_l018",
@@ -1149,7 +1149,7 @@
           "id": "cfg"
         }
       ],
-      "numberOfCavities": 49
+      "numberOfCavities": 102
     },
     {
       "id": "cp_dt04_12pa",

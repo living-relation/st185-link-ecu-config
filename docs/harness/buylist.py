@@ -126,15 +126,15 @@ def stamp(c, parts):
     return pn, ct
 
 SHARED, clash = {}, []
-# physical part groups: two or more DIFFERENT connector ids that are documentation
-# halves of ONE physical part - e.g. the DRB102 bulkhead's A-half and B-half,
-# split so the A/B ECU-letter gate still works (docs/harness/redesign/DECISIONS.md,
-# 2026-09-29). This is a different problem from SHARED above: SHARED is the SAME
+# physical part groups: two or more DIFFERENT connector ids that are drawings of ONE
+# physical part - e.g. the DRB102 bulkhead, drawn whole on the A and B looms with the
+# other section's cavities N/C (shared-connector rule, DECISIONS S10/S11, 2026-10-12).
+# This is a different problem from SHARED above: SHARED is the SAME
 # id copied into more than one loom (always identical cavities, asserted by the
-# clash check); a physical part group is different ids with different, non-overlapping
-# cavities that nonetheless share one housing. So only the housing part number and
+# clash check); a physical part group is different ids whose live cavities do not
+# overlap but that share one housing. So only the housing part number and
 # its configuration hardware (lock/boot/backshell/mount/dustCover) are counted once
-# per group below - each half's own cavities are real and stay per-id, uncoditionally.
+# per group below - each file's live cavities stay per-id; N/C cavities are skipped.
 # Owner = alphabetically-first id in the group, so it never depends on the order
 # harness_files() happens to return.
 # The groups live in interfaces.json "physicalPartGroups" (harness.design rejects unknown
@@ -239,14 +239,13 @@ out += ["", "## Counted once, drawn more than once", "",
  "| Connector | One part, drawn on | Counted in |", "|---|---|---|"]
 for cid, (looms, owner) in sorted(SHARED.items()):
     out.append("| `%s` | %s | %s |" % (cid, ", ".join(looms), owner))
-out += ["", "## One housing, drawn as two logical halves", "",
- "These connector ids are DIFFERENT nodes with different, non-overlapping cavities, not",
- "copies of the same node - but they are still one physical housing, split across an",
- "A-half and a B-half so the A/B ECU-letter gate applies to each side's own signals.",
- "The housing part number and its wedgelock/mount/backshell hardware are counted once,",
- "on the alphabetically-first half; every cavity's own contacts and plugs are still",
- "counted on both halves, since those are real and separate.", "",
- "| Group | Halves | Counted in |", "|---|---|---|"]
+out += ["", "## One housing, drawn whole in several files", "",
+ "These connector ids are the SAME physical connector drawn whole in more than one file",
+ "(shared-connector rule, Daniel 2026-10-12): each file wires its own section and marks",
+ "the other files' cavities N/C. The housing part number and its wedgelock/mount/backshell",
+ "hardware are counted once, on the alphabetically-first id; each live cavity's contact or",
+ "plug is counted in the file that owns it, N/C cavities never.", "",
+ "| Group | Drawn as | Counted in |", "|---|---|---|"]
 for pg, ids in sorted(group_members.items()):
     out.append("| `%s` | %s | `%s` |" % (pg, ", ".join(sorted(ids)), group_owner[pg]))
 REG = model.registry()

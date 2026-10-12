@@ -1,9 +1,13 @@
 # DRB102 bulkhead - physical cavity map
 
 The one firewall bulkhead is a Deutsch DRB 102-way: `DRB12-102PAE-L018` receptacle (cabin,
-pin contacts) + `DRB16-102SAE-L018` plug (engine, socket contacts) + `DRBF-1A` flange. It is
-drawn as two logical halves by ECU connector letter (Rule 3): `bh_a_fw` / `bh_a_eng` and
-`bh_b_fw` / `bh_b_eng`. This file says which of the 102 real cavities each drawn cavity is.
+pin contacts) + `DRB16-102SAE-L018` plug (engine, socket contacts) + `DRBF-1A` flange. It is ONE
+102-position connector (Daniel, 2026-10-12, DECISIONS S10). Every drawing that uses it shows
+the whole connector - all 102 cavities with TE's numbers: the receptacle `bh_a_fw` on
+`ST185-A-cabin` and `bh_b_fw` on `ST185-B-cabin`, the plug `bh_a_eng` on `ST185-A-engine` and
+`bh_b_eng` on `ST185-B-engine`. "A" and "B" are only our names for its two sections, set by
+ECU connector letter (Rule 3); each drawing wires its own section and marks the other
+section's cavities N/C ("see ST185-<other>"). This file says which section owns each cavity.
 
 Resolved 2026-10-11 (Claude Code) from TE's own customer drawing, closing `OPEN-ITEMS` row 42.
 Nothing here is provisional.
@@ -47,7 +51,7 @@ Columns 1-6 (52-102) are the left wedgelock half, 7-12 (1-51) the right.
 
 ## Allocation rules used
 
-- **A and B are logical halves, not wedgelock halves.** A has 47 size-16 positions drawn and
+- **A and B are sections of the one connector, not wedgelock halves.** A has 47 size-16 positions drawn and
   one wedgelock half has 40, so A's 37 live circuits and 3 shield drains fill the right
   half's size-16 cavities and A's 7 spares sit in the next column over (52-61). B takes everything else. Rule 3 is about
   which loom and which drawn half a pin is on; the physical shell is one part.

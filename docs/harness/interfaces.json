@@ -240,7 +240,7 @@
         "m9_vrc_r_in.c3",
         "m9_vrc_r_out.c5"
       ],
-      "note": "Drain connected on both the VRC input and the VRC output, by pin: IN pin 3 (both sensor screens via one SolderSleeve splice) is wired to OUT pin 5 inside the box. No connector shell and no case bond (Daniel 2026-10-12). Grounded at the ECU."
+      "note": "Drain connected on both the VRC input and the VRC output, by pin: IN pin 3 (one sensor drain crimped in, the other T-spliced onto it behind the plug, DECISIONS S9) is wired to OUT pin 5 inside the box. No connector shell and no case bond (Daniel 2026-10-12). Grounded at the ECU."
     },
     {
       "id": "VRC_FRONT",
@@ -249,7 +249,7 @@
         "m9_vrc_f_in.c3",
         "m9_vrc_f_out.c5"
       ],
-      "note": "Drain connected on both the VRC input and the VRC output, by pin: IN pin 3 (both sensor screens via one SolderSleeve splice) is wired to OUT pin 5 inside the box. No connector shell and no case bond (Daniel 2026-10-12). Grounded at the ECU."
+      "note": "Drain connected on both the VRC input and the VRC output, by pin: IN pin 3 (one sensor drain crimped in, the other T-spliced onto it behind the plug, DECISIONS S9) is wired to OUT pin 5 inside the box. No connector shell and no case bond (Daniel 2026-10-12). Grounded at the ECU."
     }
   ],
   "flyingLeads": [
@@ -1896,7 +1896,7 @@
     }
   ],
   "physicalPartGroups": {
-    "_doc": "Different connector ids that are documentation halves of ONE physical part (the DRB102 bulkhead A/B halves). buylist.py counts the housing and its configuration hardware once per group. Lives here because harness.design rejects unknown connector keys.",
+    "_doc": "Connector ids in different harness files that are the SAME physical connector (the DRB102 bulkhead: receptacle on A-cabin + B-cabin, plug on A-engine + B-engine). Each file draws the whole connector and marks the other files' cavities N/C (audit_shared_connectors.py). buylist.py counts the housing and its configuration hardware once per group. Lives here because harness.design rejects unknown connector keys.",
     "drb102_recept": [
       {
         "harness": "A-cabin",

@@ -87,10 +87,20 @@ How each kind of boundary is drawn is in `redesign/INTERFACES.md`. In short:
   pairs are `interfaces.json` "breaks"; no device is drawn on two files and there are no
   cross-reference dummies (Rule 3, `validate_bulkhead_letter.py` L6 / L7).
 - **Bulkhead** - one shared Deutsch DRB102 (`DRB12-102PAE-L018` receptacle / `DRB16-102SAE-L018`
-  plug + `DRBF-1A` flange), drawn as two logical halves (A and B) so each half's own harnesses
-  populate it and the connector-letter gate still applies. See `redesign/DECISIONS.md`
+  plug + `DRBF-1A` flange), one 102-position connector drawn WHOLE on every loom that uses it (A-cabin / B-cabin: the
+  receptacle; A-engine / B-engine: the plug). A and B are only our names for its sections
+  (connector-letter gate): each loom wires its own section and marks the other's cavities N/C
+  with a "see ST185-<other>" note. See `redesign/DECISIONS.md`
   ("Bulkhead A/B + DTP replaced by a shared DRB102"). Real cavity numbers, sizes and
   spares: `DRB102-CAVITY-MAP.md` (gate `audit_mating.py` M8).
+- **Shared connectors** (Daniel, 2026-10-12, binding, all harnesses): any physical connector
+  used by more than one harness file is drawn as the WHOLE connector in every file - the real
+  part, its real cavity count, the same designations. Cavities another file owns are marked
+  Not Connected (harness.design N/C cavity, https://docs.harness.design/component/connector)
+  with a note "see ST185-<other file>"; they carry no signal, contact or plug, so the owning
+  file counts them. Never draw a partial connector or invent a split part. Register the
+  connector in `interfaces.json` "physicalPartGroups"; gate `audit_shared_connectors.py`.
+  Today the only shared connector is the DRB102 bulkhead.
 - **OEM flying lead** - a `Loose` terminal whose text is the EWD locator. No OEM housing
   is ever modelled or bought.
 - **Device endpoint** - the VRCs are not drawn; each lead ends at a labelled `Loose`

@@ -6,9 +6,9 @@ number as the same part, so the library must hold exactly what the drawings use.
 
   H1  every part a drawing uses (type + partNumber) is in ST185.harnesslib
   H2  ...and is equal to it: every field but the id; configuration references are compared by
-      the referenced part's type + partNumber (ids differ between files). numberOfCavities is
-      not compared for connectors that are documentation halves of one physical part
-      (interfaces.json "physicalPartGroups", e.g. the DRB102 bulkhead A / B halves)
+      the referenced part's type + partNumber (ids differ between files). Every field counts,
+      numberOfCavities included: a shared connector is drawn whole in every file
+      (audit_shared_connectors.py), so one part fits all of them
   H3  the library itself: one entry per type + partNumber, every entry has a partNumber, every
       configuration reference resolves inside the library, ids are unique across the whole file,
       and the header is the documented library form - "version": 0.9, "kind": "library",
@@ -38,8 +38,8 @@ def arrays(d):
     return [k for k in d if k.endswith("Parts") and isinstance(d[k], list)]
 
 
-def norm(p, idx, skip_cav):
-    q = {k: v for k, v in p.items() if k != "id" and not (skip_cav and k == "numberOfCavities")}
+def norm(p, idx):
+    q = {k: v for k, v in p.items() if k != "id"}
     if "configurations" in q:
         q["configurations"] = [{k: (idx.get(v, ("?", v)) if k in REF else v) for k, v in c.items()}
                                for c in q["configurations"]]
@@ -73,12 +73,9 @@ def main():
                     if k in REF and v not in lidx:
                         bad.append("H3 library %s %s %s -> %s does not resolve" % (t, p.get("partNumber"), k, v))
     reg = model.registry()
-    grouped = {m["connector"] for pg, ms in reg.get("physicalPartGroups", {}).items() if not pg.startswith("_")
-               for m in ms}
     added = 0
     for loom, d in model.docs(reg).items():
         fidx = {p["id"]: (t, p.get("partNumber")) for t in arrays(d) for p in d[t]}
-        grouped_parts = {c.get("partId") for c in d.get("connectors", []) if c["id"] in grouped}
         for t in arrays(d):
             for p in d[t]:
                 key = (t, p.get("partNumber"))
@@ -100,10 +97,8 @@ def main():
                     else:
                         bad.append("H1 %s: %s %s is not in ST185.harnesslib" % (loom, t, p.get("partNumber")))
                     continue
-                skip = t == "connectorParts" and p["id"] in grouped_parts
-                if norm(p, fidx, skip) != norm(lp, lidx, skip):
-                    diff = sorted(k for k in set(p) | set(lp) if k != "id" and p.get(k) != lp.get(k)
-                                  and not (skip and k == "numberOfCavities"))
+                if norm(p, fidx) != norm(lp, lidx):
+                    diff = sorted(k for k in set(p) | set(lp) if k != "id" and p.get(k) != lp.get(k))
                     bad.append("H2 %s: %s %s differs from ST185.harnesslib (%s)"
                                % (loom, t, p.get("partNumber"), ", ".join(diff) or "configuration refs"))
     if write and added:

@@ -23,6 +23,37 @@ non-shielded, and their drains have their own pins. It supersedes the metal-shel
 in `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` 6.30 "Why M8 and not DT/DTM".
 `lint_v09.py` rejects any connector `shell`; `audit_shields.py` R3 rejects any screen on a shell.
 
+## Drain T-splice (Daniel, 2026-10-12, binding)
+
+Raychem shielded cable has no drain wire. Each screen gets a Raychem SolderSleeve whose short
+insulated lead is that cable's drain - a drain is a normal insulated wire.
+
+- **Two or more drains on one pin: T-splice.** One drain is the one crimped (or soldered)
+  into the pin. Each other drain is soldered onto it about **6 mm (0.25 in) behind the rear
+  of the connector**: cut away about 6 mm of insulation at that one spot on the crimped drain
+  and solder the other drain to it, then cover it. No combined-gauge pigtail, never two wires
+  in one contact.
+- **Drain gauge does not scale with the number of screens.** Drains carry only noise current,
+  so the normal drain lead gauge stays (20 / 22 AWG). The combined-gauge splice rule
+  (`docs/RECONCILIATION-RULES.md` Rule 3) is for power and signal splices only, never drains.
+- **CAN:** every node branch drain T-splices onto the bus trunk drain (`sp_shield_can`, at the
+  branch point), and the trunk drain T-splices onto the B17 drain behind ECU-B.
+- Drawn as: each screen ends at its SolderSleeve splice (covering `S200-2-W1-22-9`) or, where
+  the cable already arrives as a drain, at the T-splice; the T-splice is a
+  `GENERIC SOLDER SPLICE` placed on the pin's connector (`locationId`, harness.design
+  "drag its location handle onto a connector", https://docs.harness.design/component/splice).
+  The wire from the T-splice to the pin is the last few mm of the crimped drain.
+
+| Pin | Crimped drain | T-spliced onto it | T-splice |
+|---|---|---|---|
+| ECU-A A7 | crank (`w_drain_ecu_a` is its end) | cam, turbo, flex, ETB sensor, APS, front WS spur | `sp_shield_a` at `ecu_a` |
+| ECU-B B17 | knock (`w_drain_ecu_b` is its end) | ETB motor, VSS, CAN trunk, rear WS spur, front WS FR spur | `sp_shield_b` at `ecu_b` |
+| CAN trunk drain `w_shd_can` | CAN trunk | ECU port, CSB3, cluster, RealDash, bulkhead / Lambda branches | `sp_shield_can` at the branch point |
+| VRC front IN pin 3 | FL sensor cable | FR sensor cable | `sp_vrc_f_in_t` at `m9_vrc_f_in` |
+| VRC rear IN pin 3 | RL sensor cable | RR sensor cable | `sp_vrc_r_in_t` at `m9_vrc_r_in` |
+
+Every bulkhead drain has its own cavity, so no bulkhead cavity needs a T-splice.
+
 ## Vocabulary (Daniel)
 
 **Screen means shield.** A **drain** is the wire that connects the shield to the
@@ -30,7 +61,8 @@ pin. Shields exist only on cables. Some cables have a shield and some do not.
 Not every shielded cable has a drain wire. When a shielded cable has no drain
 wire and the shield has to land on a connector pin, the termination is a
 Raychem solder sleeve with a wire lead, and that lead is the drain. Do not
-solder a plain wire, a splice, a flying lead, or an unshielded part. A solder
+put a solder sleeve on a plain wire, a flying lead, or an unshielded part (joining two drains
+is a T-splice, above). A solder
 sleeve is not for the sensor end when the sensor already has its own connector.
 
 ## The five absolute rules
@@ -93,9 +125,9 @@ Fallback, if that ever stops being true:
 | crank | cable floats at the sensor → `bh_a_eng` c33 → `bh_a_fw` c33 → `sp_shield_a` → **ECU-A A7** | own pin, bulkhead A |
 | cam | same, c34 → `sp_shield_a` → **A7** | own pin, bulkhead A |
 | knock 1 | cable floats at the sensor → `bh_b_eng` c18 → `bh_b_fw` c18 → `sp_shield_b` → **ECU-B B17** (knock is pin B9, loom B) | own pin, bulkhead B |
-| wss FL | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin; fender route, no bulkhead; combined 4-core output screen → `IX_WS_FRONT` c5 → `sp_shield_a` → A7 | none — fender; inline pin 5 |
+| wss FL | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin (T-splice, S9); fender route, no bulkhead; combined 4-core output screen → `IX_WS_FRONT` c5 → `sp_shield_a` → A7 | none — fender; inline pin 5 |
 | wss FR | same VRC-side cable as FL (one shared VRC output screen to A7); FR's own core leaves the shield at `IX_WS_FRONT` (c6 now spare, not a drain) and continues cabin-side as its own short shielded B-cabin spur, floating at the inline end, draining only at **B17** (Route 9 rev 3, 2026-10-10 - supersedes the earlier two-separate-output-cables design) | none — fender for the VRC leg; the B-cabin spur has no bulkhead either |
-| wss RL, RR | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin; no bulkhead; output screen → `IX_WS_REAR` pin 5 → `sp_shield_b` → B17 | none — grommet; inline pin 5 |
+| wss RL, RR | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin (T-splice, S9); no bulkhead; output screen → `IX_WS_REAR` pin 5 → `sp_shield_b` → B17 | none — grommet; inline pin 5 |
 | turbo speed, flex fuel, ETB sensor group (A22/A33) | 3- or 4-core cable (`cab_turbo`, `cab_flex`, `cab_etbs`) floats at the sensor → `bh_a_eng` c6 / c10 / c11 → `bh_a_fw` same → `sp_shield_a` → **A7** | own pin each, bulkhead A c6 / c10 / c11 (DRB 19 / 22 / 27, `docs/harness/DRB102-CAVITY-MAP.md`) |
 | ETB motor group (B18/B26), gearbox VSS, CAN-Lambda pair | ETB motor: 2-core 18 AWG cable floats at the ETB (A-engine spur `cab_etbm_ae`), broken off to B-engine `cab_etbm_be` → `bh_b_eng` c22 → `bh_b_fw` c22 → `sp_shield_b` → **B17**. VSS: `cab_vss` floats at the VSS → c23 → `sp_shield_b` → B17. CAN-Lambda: `cab_can_lam` floats at the Lambda → `cab_lamcan_be` → c24 → B-cabin `cab_canbh_bc` → the CAN screen splice `sp_shield_can` → B17 (see CAN row). Each drain has its own cavity; the old shared B c1 pigtail plan is dropped | own pin each, bulkhead B c22 / c23 / c24 (DRB 88 / 91 / 94) |
 | CAN trunk + drops (ECU/CSB3/cluster/RealDash) | CAN pair only (H/L); +12V/ground stay plain. Every segment is a 2-core shielded twisted pair (`cab_can_*` in ST185-CAN, `cab_can_csb_csb` in ST185-CSB3); the screens join at `sp_shield_can` and float at every node (ECU port, CSB3, cluster, RealDash, Lambda). One drain `w_shd_can` breaks off to B-cabin `sp_shield_b` → **B17** | none for the cabin drops; the Lambda leg uses bulkhead B c24 (row above) |
@@ -135,9 +167,10 @@ Front box → `sp_shield_a` → **A7**; rear box → `sp_shield_b` → **B17**.
 
 The VRC and its panel sockets are not drawn. Each VRC harness is two separate pieces ending in
 two non-shielded 5-pin M9 plugs (binder `99 0414 00 05`; DECISIONS S8, Daniel's example
-2026-10-12): the two sensor cable screens join at one splice under a Raychem
-`S200-2-W1-22-9` SolderSleeve, whose 22 AWG lead is the single drain to IN pin 3 (the "splice
-together and terminate on a single pin" rule above); the output cable drain is OUT pin 5.
+2026-10-12): each sensor cable screen has its own Raychem `S200-2-W1-22-9` SolderSleeve with a
+22 AWG drain lead; the left drain is the one soldered into IN pin 3 and the right drain is
+T-spliced onto it about 6 mm behind the plug (DECISIONS S9 - this is how the "splice together
+and terminate on a single pin" rule above is built); the output cable drain is OUT pin 5.
 Inside the box the build wires IN pin 3 to OUT pin 5 - drain continuity is by pin, never by a
 connector shell, and nothing bonds to the case. `interfaces.json` "enclosures" names the two
 drain pins each box joins (`<plug>.<pin>`). `audit_shields.py` traces on that one graph through

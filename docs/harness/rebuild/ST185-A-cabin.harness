@@ -202,28 +202,77 @@
     },
     {
       "id": "bh_a_fw",
-      "label": "Bulkhead A - firewall, A-half of shared DRB102 (DRB12-102PAE-L018 + DRBF-1A)",
+      "label": "Bulkhead DRB102 - firewall receptacle (DRB12-102PAE-L018 + DRBF-1A), all 102 cavities; section A wired here",
       "width": 390,
       "partId": "cp_drb_recept",
       "cavities": [
         {
-          "id": "c1",
-          "designation": "52",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "id": "c48",
+          "designation": "1",
+          "signal": "Switched 12V - INJECTOR power feed, fuse RFRM INJ 15A (14 AWG)",
+          "contactPartId": "ct_hdp12p"
         },
         {
-          "id": "c2",
-          "designation": "23",
+          "id": "c49",
+          "designation": "2",
+          "signal": "Switched 12V - COP / ignition coil power feed, fuse RFRM COP 15A (14 AWG)",
+          "contactPartId": "ct_hdp12p"
+        },
+        {
+          "id": "nc3",
+          "designation": "3",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc4",
+          "designation": "4",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc5",
+          "designation": "5",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc6",
+          "designation": "6",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc7",
+          "designation": "7",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc8",
+          "designation": "8",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c24",
+          "designation": "9",
           "contactPartId": "ct_hdp16p",
-          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB",
+          "signal": "ECU-A A8",
           "propagate": false
         },
         {
-          "id": "c3",
-          "designation": "26",
+          "id": "c41",
+          "designation": "10",
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank",
           "contactPartId": "ct_hdp16p",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch",
+          "propagate": false
+        },
+        {
+          "id": "c33",
+          "designation": "11",
+          "signal": "Crank VR screen",
+          "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
@@ -234,16 +283,30 @@
           "propagate": false
         },
         {
-          "id": "c5",
-          "designation": "20",
+          "id": "c29",
+          "designation": "13",
           "contactPartId": "ct_hdp16p",
-          "signal": "Switched 12V to engine sensors",
+          "signal": "ECU-A A9",
           "propagate": false
         },
         {
-          "id": "c6",
-          "designation": "19",
-          "signal": "Turbo speed screen",
+          "id": "c42",
+          "designation": "14",
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c34",
+          "designation": "15",
+          "signal": "Cam Hall screen",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c40",
+          "designation": "16",
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -255,10 +318,24 @@
           "propagate": false
         },
         {
-          "id": "c8",
-          "designation": "30",
+          "id": "c43",
+          "designation": "18",
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-A A17",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "19",
+          "signal": "Turbo speed screen",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "20",
+          "contactPartId": "ct_hdp16p",
+          "signal": "Switched 12V to engine sensors",
           "propagate": false
         },
         {
@@ -276,6 +353,34 @@
           "propagate": false
         },
         {
+          "id": "c2",
+          "designation": "23",
+          "contactPartId": "ct_hdp16p",
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB",
+          "propagate": false
+        },
+        {
+          "id": "c21",
+          "designation": "24",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-A A22",
+          "propagate": false
+        },
+        {
+          "id": "c22",
+          "designation": "25",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-A A33",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "26",
+          "contactPartId": "ct_hdp16p",
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch",
+          "propagate": false
+        },
+        {
           "id": "c11",
           "designation": "27",
           "signal": "ETB sensor group screen",
@@ -283,10 +388,25 @@
           "propagate": false
         },
         {
-          "id": "c12",
-          "designation": "53",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "id": "c39",
+          "designation": "28",
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c44",
+          "designation": "29",
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "30",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-A A17",
+          "propagate": false
         },
         {
           "id": "c13",
@@ -345,31 +465,10 @@
           "propagate": false
         },
         {
-          "id": "c21",
-          "designation": "24",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-A A22",
-          "propagate": false
-        },
-        {
-          "id": "c22",
-          "designation": "25",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-A A33",
-          "propagate": false
-        },
-        {
           "id": "c23",
           "designation": "39",
           "contactPartId": "ct_hdp16p",
           "signal": "ECU-A A21",
-          "propagate": false
-        },
-        {
-          "id": "c24",
-          "designation": "9",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-A A8",
           "propagate": false
         },
         {
@@ -387,61 +486,16 @@
           "propagate": false
         },
         {
-          "id": "c27",
-          "designation": "56",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c28",
-          "designation": "57",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c29",
-          "designation": "13",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-A A9",
-          "propagate": false
-        },
-        {
-          "id": "c30",
-          "designation": "58",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c31",
-          "designation": "59",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c32",
-          "designation": "61",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c33",
-          "designation": "11",
-          "signal": "Crank VR screen",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c34",
-          "designation": "15",
-          "signal": "Cam Hall screen",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
           "id": "c35",
           "designation": "42",
           "signal": "MRS EPS pump logic enable (fuse box MTA-2 MRS, 7.5A) *",
           "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "nc43",
+          "designation": "43",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
           "id": "c36",
@@ -463,53 +517,23 @@
           "contactPartId": "ct_hdp16p"
         },
         {
-          "id": "c39",
-          "designation": "28",
-          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c40",
-          "designation": "16",
-          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c41",
-          "designation": "10",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c42",
-          "designation": "14",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c43",
-          "designation": "18",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c44",
-          "designation": "29",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
           "id": "c45",
           "designation": "47",
           "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
           "contactPartId": "ct_hdp16p",
           "propagate": false
+        },
+        {
+          "id": "nc48",
+          "designation": "48",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc49",
+          "designation": "49",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
           "id": "c46",
@@ -526,16 +550,310 @@
           "propagate": false
         },
         {
-          "id": "c48",
-          "designation": "1",
-          "signal": "Switched 12V - INJECTOR power feed, fuse RFRM INJ 15A (14 AWG)",
-          "contactPartId": "ct_hdp12p"
+          "id": "c1",
+          "designation": "52",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
         },
         {
-          "id": "c49",
-          "designation": "2",
-          "signal": "Switched 12V - COP / ignition coil power feed, fuse RFRM COP 15A (14 AWG)",
-          "contactPartId": "ct_hdp12p"
+          "id": "c12",
+          "designation": "53",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "nc54",
+          "designation": "54",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc55",
+          "designation": "55",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c27",
+          "designation": "56",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c28",
+          "designation": "57",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c30",
+          "designation": "58",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c31",
+          "designation": "59",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "nc60",
+          "designation": "60",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c32",
+          "designation": "61",
+          "signal": "spare (size 16)",
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "nc62",
+          "designation": "62",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc63",
+          "designation": "63",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc64",
+          "designation": "64",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc65",
+          "designation": "65",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc66",
+          "designation": "66",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc67",
+          "designation": "67",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc68",
+          "designation": "68",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc69",
+          "designation": "69",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc70",
+          "designation": "70",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc71",
+          "designation": "71",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc72",
+          "designation": "72",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc73",
+          "designation": "73",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc74",
+          "designation": "74",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc75",
+          "designation": "75",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc76",
+          "designation": "76",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc77",
+          "designation": "77",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc78",
+          "designation": "78",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc79",
+          "designation": "79",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc80",
+          "designation": "80",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc81",
+          "designation": "81",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc82",
+          "designation": "82",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc83",
+          "designation": "83",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc84",
+          "designation": "84",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc85",
+          "designation": "85",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc86",
+          "designation": "86",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc87",
+          "designation": "87",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc88",
+          "designation": "88",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc89",
+          "designation": "89",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc90",
+          "designation": "90",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc91",
+          "designation": "91",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc92",
+          "designation": "92",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc93",
+          "designation": "93",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc94",
+          "designation": "94",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc95",
+          "designation": "95",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc96",
+          "designation": "96",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc97",
+          "designation": "97",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc98",
+          "designation": "98",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc99",
+          "designation": "99",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc100",
+          "designation": "100",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc101",
+          "designation": "101",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc102",
+          "designation": "102",
+          "notConnected": true,
+          "cavityPlugPartId": null
         }
       ],
       "layoutPosition": {
@@ -962,7 +1280,7 @@
       },
       "schematicPosition": {
         "x": 1470,
-        "y": 1500
+        "y": 3090
       },
       "propagate": false
     },
@@ -977,7 +1295,7 @@
       },
       "schematicPosition": {
         "x": 1470,
-        "y": 1560
+        "y": 3150
       },
       "propagate": false
     },
@@ -1110,7 +1428,7 @@
         "y": 210
       },
       "partId": "spp_solder_generic",
-      "locationId": "bp_900"
+      "locationId": "ecu_a"
     },
     {
       "id": "sp_8v",
@@ -1560,8 +1878,7 @@
     },
     {
       "id": "w_drain_ecu_a",
-      "color": "Green",
-      "stripeColor": "Yellow",
+      "color": "Shield",
       "source": {
         "id": "sp_shield_a",
         "handle": "Splice"
@@ -1570,7 +1887,7 @@
         "id": "ecu_a",
         "handle": "a7"
       },
-      "partId": "wp_20_grn_yel"
+      "partId": "wp_20_shd"
     },
     {
       "id": "w_cam_pullup_8v",
@@ -2217,7 +2534,7 @@
       "partId": "cab_sh_3c",
       "schematicPosition": {
         "x": 1080,
-        "y": 1560
+        "y": 3150
       },
       "cores": [
         {
@@ -3054,7 +3371,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A (A32 lead 18 AWG) - feeds sp_5v_bha before bulkhead A (c2, c39, c40 at 20 AWG), an 18 AWG trunk to sp_5v_b on ST185-B-cabin (broken off), crossover (a), and an 18 AWG link to sp_5v_2\nsp_5v_2 (Splice): +5V cabin loads off sp_5v - APS, cruise ladder, w210 (20 AWG each)\nsp_gndout (Splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds sp_gnd_bha before bulkhead A (c3, c41-c44 at 20 AWG) for the A loads only; loom B's sensors return to their own Gnd Out, ECU B22 (no A24-B22 tie in the harness)\nsp_sw12 (Splice): switched 12V bus - its B-side load (VSS feed on bulkhead B c20) is drawn on ST185-B-cabin (broken off); relay coil+ feeds come from sp_cp_sw12 inside the fuse box (ST185-CabinPower)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead A - firewall (HDP24-2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - firewall (HDP24-2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nsp_5v (Splice): +5V at ECU A (A32 lead 18 AWG) - feeds sp_5v_bha before bulkhead A (c2, c39, c40 at 20 AWG), an 18 AWG trunk to sp_5v_b on ST185-B-cabin (broken off), crossover (a), and an 18 AWG link to sp_5v_2\nsp_5v_2 (Splice): +5V cabin loads off sp_5v - APS, cruise ladder, w210 (20 AWG each)\nsp_gndout (Splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds sp_gnd_bha before bulkhead A (c3, c41-c44 at 20 AWG) for the A loads only; loom B's sensors return to their own Gnd Out, ECU B22 (no A24-B22 tie in the harness)\nsp_sw12 (Splice): switched 12V bus - its B-side load (VSS feed on bulkhead B c20) is drawn on ST185-B-cabin (broken off); relay coil+ feeds come from sp_cp_sw12 inside the fuse box (ST185-CabinPower)\nsp_chassis (Splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)\nsp_shield_a (Splice): drain T-splice about 6 mm (0.25 in) behind the ECU-A plug (Daniel 2026-10-12). The crank drain is the one crimped into A7 (w_drain_ecu_a is its last few mm); every other loom-A drain (cam, turbo, flex, ETB sensor, APS, front WS spur) is soldered onto it where 6 mm of its insulation is cut away. Drains stay 20/22 AWG - no combined-gauge pigtail, one wire per pin.",
       "schematicPosition": {
         "x": 5220,
         "y": 0
@@ -3065,9 +3382,19 @@
       "text": "APS PEDAL - folded in 2026-10-11 (harness-reconcile pass step 2, \"pedal is one cable in A-cabin\"): ST185-APS-Pedal.harness and its DT06-6S/DT04-6P inline mate (IX_APS) are retired; the BRZ e-throttle pedal's Sumitomo TS 025 plug is wired directly from this file. 5 of 6 pins (VC2, GND2, VC1, GND1, VPA1 -> A14) are ECU-A signals, wired straight from here; the 6th (VPA2 -> ECU-B B33) still breaks off to ST185-B-cabin (br_w39) since it's a B-letter signal - same crossover as before, just without the intermediate connector. Colours follow the former inline mate's. Run length to the pedal is still a placeholder (was 150 mm pedal-to-inline on APS-Pedal; now pedal-to-dash) - TBD, measure at the car.",
       "schematicPosition": {
         "x": 5220,
-        "y": 720
+        "y": 1050
       },
       "width": 390
+    },
+    {
+      "id": "n_drb102",
+      "width": 390,
+      "color": "Orange",
+      "schematicPosition": {
+        "x": 1110,
+        "y": -180
+      },
+      "text": "BULKHEAD = ONE DRB102 CONNECTOR (Daniel 2026-10-12, shared-connector rule). bh_a_fw is the whole 102-cavity receptacle with TE's cavity numbers. A and B are only our names for its sections. Cavities marked N/C here are wired on ST185-B-cabin - see ST185-B-cabin (DRB 3-8, 43, 48-49, 54-55, 60, 62-102); their contacts and sealing plugs are counted there."
     }
   ],
   "wireParts": [
@@ -3110,18 +3437,6 @@
       "manufacturer": "generic",
       "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
       "color": "Green",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_grn_yel",
-      "partNumber": "EW-1C20-GRN-YEL",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Green",
-      "stripeColor": "Yellow",
       "gauge": {
         "value": 20,
         "unit": "AWG"
@@ -3373,7 +3688,7 @@
           "mountPartId": "mt_drbf1a"
         }
       ],
-      "numberOfCavities": 49
+      "numberOfCavities": 102
     },
     {
       "id": "cp_ss34a",
