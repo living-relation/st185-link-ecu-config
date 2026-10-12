@@ -164,7 +164,7 @@
       "pins": {
         "+": "c1",
         "-": "c2",
-        "screen": "shell"
+        "screen": "c3"
       }
     },
     {
@@ -174,9 +174,9 @@
       "device": "rear VR conditioner, IN_R input (RR sensor); harness side ends in the M8 cable plug m8_vrc_r_in (Daniel 2026-10-12)",
       "connector": "m8_vrc_r_in",
       "pins": {
-        "+": "c3",
-        "-": "c4",
-        "screen": "shell"
+        "+": "c4",
+        "-": "c5",
+        "screen": "c6"
       }
     },
     {
@@ -190,7 +190,7 @@
         "Gnd": "c2",
         "RL": "c3",
         "RR": "c4",
-        "screen": "shell"
+        "screen": "c5"
       }
     },
     {
@@ -202,7 +202,7 @@
       "pins": {
         "+": "c1",
         "-": "c2",
-        "screen": "shell"
+        "screen": "c3"
       }
     },
     {
@@ -212,9 +212,9 @@
       "device": "front VR conditioner, IN_R input (FR sensor); harness side ends in the M8 cable plug m8_vrc_f_in (Daniel 2026-10-12)",
       "connector": "m8_vrc_f_in",
       "pins": {
-        "+": "c3",
-        "-": "c4",
-        "screen": "shell"
+        "+": "c4",
+        "-": "c5",
+        "screen": "c6"
       }
     },
     {
@@ -228,7 +228,7 @@
         "Gnd": "c2",
         "FL": "c3",
         "FR": "c4",
-        "screen": "shell"
+        "screen": "c5"
       }
     }
   ],
@@ -237,19 +237,21 @@
       "id": "VRC_REAR",
       "harness": "WheelSpeed-Rear",
       "screen": [
-        "m8_vrc_r_in.shell",
-        "m8_vrc_r_out.shell"
+        "m8_vrc_r_in.c3",
+        "m8_vrc_r_in.c6",
+        "m8_vrc_r_out.c5"
       ],
-      "note": "Drain connected on both the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (SHIELD-RULES 6.30). Isolated from chassis; grounded at the ECU."
+      "note": "Drain connected on both the VRC input and the VRC output, by pin: inside the box the IN drain pins 3 / 6 are jumpered to the OUT drain pin 5 and the case (no connector shells, Daniel 2026-10-12). Isolated from chassis; grounded at the ECU."
     },
     {
       "id": "VRC_FRONT",
       "harness": "WheelSpeed-Front",
       "screen": [
-        "m8_vrc_f_in.shell",
-        "m8_vrc_f_out.shell"
+        "m8_vrc_f_in.c3",
+        "m8_vrc_f_in.c6",
+        "m8_vrc_f_out.c5"
       ],
-      "note": "Drain connected on both the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (SHIELD-RULES 6.30). Isolated from chassis; grounded at the ECU."
+      "note": "Drain connected on both the VRC input and the VRC output, by pin: inside the box the IN drain pins 3 / 6 are jumpered to the OUT drain pin 5 and the case (no connector shells, Daniel 2026-10-12). Isolated from chassis; grounded at the ECU."
     }
   ],
   "flyingLeads": [
