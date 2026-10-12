@@ -440,7 +440,7 @@
         "id": "sp_cruise_ladder",
         "handle": "Splice"
       },
-      "partId": "wp_20_wht"
+      "partId": "m16_20_9"
     },
     {
       "id": "w_sw2",
@@ -453,7 +453,7 @@
         "id": "csb3io",
         "handle": "c17"
       },
-      "partId": "wp_20_grn"
+      "partId": "m16_20_5"
     },
     {
       "id": "w_sw3",
@@ -466,7 +466,7 @@
         "id": "csb3io",
         "handle": "c18"
       },
-      "partId": "wp_20_grn"
+      "partId": "m16_20_5"
     },
     {
       "id": "w_sw4",
@@ -479,7 +479,7 @@
         "id": "csb3io",
         "handle": "c19"
       },
-      "partId": "wp_20_grn"
+      "partId": "m16_20_5"
     },
     {
       "id": "w_sw5",
@@ -492,7 +492,7 @@
         "id": "csb3io",
         "handle": "c20"
       },
-      "partId": "wp_20_grn"
+      "partId": "m16_20_5"
     },
     {
       "id": "w_sw6",
@@ -505,7 +505,7 @@
         "id": "csb3io",
         "handle": "c21"
       },
-      "partId": "wp_20_grn"
+      "partId": "m16_20_5"
     },
     {
       "id": "w_cru_sig",
@@ -518,7 +518,7 @@
         "id": "sp_cruise_ladder",
         "handle": "Splice"
       },
-      "partId": "wp_20_wht"
+      "partId": "m16_20_9"
     },
     {
       "id": "w_cru_5v",
@@ -531,7 +531,7 @@
         "id": "br_w_cru_5v",
         "handle": "Terminal"
       },
-      "partId": "wp_20_org"
+      "partId": "m16_20_3"
     },
     {
       "id": "w_cru_ladder_out",
@@ -544,7 +544,7 @@
         "id": "csb3io",
         "handle": "c8"
       },
-      "partId": "wp_20_wht"
+      "partId": "m16_20_9"
     },
     {
       "id": "w_csb12",
@@ -557,7 +557,7 @@
         "id": "br_w_csb12",
         "handle": "Terminal"
       },
-      "partId": "wp_20_red"
+      "partId": "m16_20_2"
     },
     {
       "id": "w_csbg",
@@ -570,7 +570,7 @@
         "id": "br_w_csbg",
         "handle": "Terminal"
       },
-      "partId": "wp_20_blk"
+      "partId": "m16_20_0"
     },
     {
       "id": "w_sw7_c_csb",
@@ -583,7 +583,7 @@
         "handle": "Terminal"
       },
       "color": "Green",
-      "partId": "wp_20_grn"
+      "partId": "m16_20_5"
     },
     {
       "id": "w_oil_k_csb",
@@ -596,7 +596,7 @@
         "handle": "Terminal"
       },
       "color": "White",
-      "partId": "wp_20_wht"
+      "partId": "m16_20_9"
     }
   ],
   "bundles": [
@@ -971,10 +971,10 @@
   ],
   "wireParts": [
     {
-      "id": "wp_20_blk",
-      "partNumber": "EW-1C20-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_0",
+      "partNumber": "M22759/16-20-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Black",
       "gauge": {
         "value": 20,
@@ -982,10 +982,10 @@
       }
     },
     {
-      "id": "wp_20_grn",
-      "partNumber": "EW-1C20-GRN",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_5",
+      "partNumber": "M22759/16-20-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Green",
       "gauge": {
         "value": 20,
@@ -993,10 +993,10 @@
       }
     },
     {
-      "id": "wp_20_org",
-      "partNumber": "EW-1C20-ORG",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_3",
+      "partNumber": "M22759/16-20-3",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Orange",
       "gauge": {
         "value": 20,
@@ -1004,10 +1004,10 @@
       }
     },
     {
-      "id": "wp_20_wht",
-      "partNumber": "EW-1C20-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "White",
       "gauge": {
         "value": 20,
@@ -1015,10 +1015,10 @@
       }
     },
     {
-      "id": "wp_20_red",
-      "partNumber": "EW-1C20-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_2",
+      "partNumber": "M22759/16-20-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Red",
       "gauge": {
         "value": 20,

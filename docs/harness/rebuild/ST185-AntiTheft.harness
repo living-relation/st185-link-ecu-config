@@ -488,7 +488,7 @@
     {
       "id": "w_at_12v",
       "color": "Red",
-      "partId": "wp_20_red",
+      "partId": "m16_20_2",
       "source": {
         "id": "sp_at_12v",
         "handle": "Splice"
@@ -501,7 +501,7 @@
     {
       "id": "w_at_ig",
       "color": "Gray",
-      "partId": "wp_20_gry",
+      "partId": "m16_20_8",
       "source": {
         "id": "sp_ig",
         "handle": "Splice"
@@ -514,7 +514,7 @@
     {
       "id": "w_at_siren",
       "color": "Brown",
-      "partId": "wp_20_brn",
+      "partId": "m16_20_1",
       "source": {
         "id": "alarm",
         "handle": "c4"
@@ -527,7 +527,7 @@
     {
       "id": "w_at_park",
       "color": "White",
-      "partId": "wp_20_wht",
+      "partId": "m16_20_9",
       "source": {
         "id": "alarm",
         "handle": "c5"
@@ -540,7 +540,7 @@
     {
       "id": "w_at_door",
       "color": "Green",
-      "partId": "wp_20_grn",
+      "partId": "m16_20_5",
       "source": {
         "id": "sp_door",
         "handle": "Splice"
@@ -553,7 +553,7 @@
     {
       "id": "w_at_hood",
       "color": "Green",
-      "partId": "wp_20_grn",
+      "partId": "m16_20_5",
       "source": {
         "id": "sp_hood",
         "handle": "Splice"
@@ -566,7 +566,7 @@
     {
       "id": "w_at_trunk",
       "color": "Green",
-      "partId": "wp_20_grn",
+      "partId": "m16_20_5",
       "source": {
         "id": "sp_trunk",
         "handle": "Splice"
@@ -579,7 +579,7 @@
     {
       "id": "w_at_led",
       "color": "Orange",
-      "partId": "wp_20_org",
+      "partId": "m16_20_3",
       "source": {
         "id": "alarm",
         "handle": "c10"
@@ -592,7 +592,7 @@
     {
       "id": "w_at_valet",
       "color": "White",
-      "partId": "wp_20_wht",
+      "partId": "m16_20_9",
       "source": {
         "id": "alarm",
         "handle": "c11"
@@ -605,7 +605,7 @@
     {
       "id": "w_at_shk_sig",
       "color": "Blue",
-      "partId": "wp_20_blu",
+      "partId": "m16_20_6",
       "source": {
         "id": "shock",
         "handle": "c3"
@@ -618,7 +618,7 @@
     {
       "id": "w_at_gnd_a1",
       "color": "Black",
-      "partId": "wp_20_blk",
+      "partId": "m16_20_0",
       "source": {
         "id": "alarm",
         "handle": "c2"
@@ -631,7 +631,7 @@
     {
       "id": "w_at_gnd_a2",
       "color": "Black",
-      "partId": "wp_20_blk",
+      "partId": "m16_20_0",
       "source": {
         "id": "siren",
         "handle": "c2"
@@ -644,7 +644,7 @@
     {
       "id": "w_at_gnd_b1",
       "color": "Black",
-      "partId": "wp_20_blk",
+      "partId": "m16_20_0",
       "source": {
         "id": "shock",
         "handle": "c2"
@@ -657,7 +657,7 @@
     {
       "id": "w_at_gnd_b2",
       "color": "Black",
-      "partId": "wp_20_blk",
+      "partId": "m16_20_0",
       "source": {
         "id": "led_sts",
         "handle": "c2"
@@ -670,7 +670,7 @@
     {
       "id": "w_at_gnd_c1",
       "color": "Black",
-      "partId": "wp_20_blk",
+      "partId": "m16_20_0",
       "source": {
         "id": "valet",
         "handle": "c2"
@@ -683,7 +683,7 @@
     {
       "id": "w_at_12v_shk",
       "color": "Red",
-      "partId": "wp_20_red",
+      "partId": "m16_20_2",
       "source": {
         "id": "sp_12v_shk",
         "handle": "Splice"
@@ -696,7 +696,7 @@
     {
       "id": "w_at_immob2",
       "color": "Violet",
-      "partId": "wp_20_vio",
+      "partId": "m16_20_7",
       "source": {
         "id": "alarm",
         "handle": "c9"
@@ -709,7 +709,7 @@
     {
       "id": "w_at_12v_tie",
       "color": "Red",
-      "partId": "wp_20_red",
+      "partId": "m16_20_2",
       "source": {
         "id": "t_at_12v",
         "handle": "Terminal"
@@ -722,7 +722,7 @@
     {
       "id": "w_at_ig_tie",
       "color": "Gray",
-      "partId": "wp_20_gry",
+      "partId": "m16_20_8",
       "source": {
         "id": "t_at_ig",
         "handle": "Terminal"
@@ -735,7 +735,7 @@
     {
       "id": "w_at_door_tie",
       "color": "Green",
-      "partId": "wp_20_grn",
+      "partId": "m16_20_5",
       "source": {
         "id": "t_at_door",
         "handle": "Terminal"
@@ -749,7 +749,7 @@
     {
       "id": "w_at_hood_tie",
       "color": "Green",
-      "partId": "wp_20_grn",
+      "partId": "m16_20_5",
       "source": {
         "id": "t_at_hood",
         "handle": "Terminal"
@@ -763,7 +763,7 @@
     {
       "id": "w_at_trunk_tie",
       "color": "Green",
-      "partId": "wp_20_grn",
+      "partId": "m16_20_5",
       "source": {
         "id": "t_at_trunk",
         "handle": "Terminal"
@@ -777,7 +777,7 @@
     {
       "id": "w_at_park_tie",
       "color": "White",
-      "partId": "wp_20_wht",
+      "partId": "m16_20_9",
       "source": {
         "id": "sp_park",
         "handle": "Splice"
@@ -791,7 +791,7 @@
     {
       "id": "w_at_12v_shk_tie",
       "color": "Red",
-      "partId": "wp_20_red",
+      "partId": "m16_20_2",
       "source": {
         "id": "t_at_12v_shk",
         "handle": "Terminal"
@@ -1153,10 +1153,10 @@
   ],
   "wireParts": [
     {
-      "id": "wp_20_blk",
-      "partNumber": "EW-1C20-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_0",
+      "partNumber": "M22759/16-20-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Black",
       "gauge": {
         "value": 20,
@@ -1164,10 +1164,10 @@
       }
     },
     {
-      "id": "wp_20_blu",
-      "partNumber": "EW-1C20-BLU",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLUE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_6",
+      "partNumber": "M22759/16-20-6",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Blue",
       "gauge": {
         "value": 20,
@@ -1175,10 +1175,10 @@
       }
     },
     {
-      "id": "wp_20_brn",
-      "partNumber": "EW-1C20-BRN",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BROWN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_1",
+      "partNumber": "M22759/16-20-1",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BROWN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Brown",
       "gauge": {
         "value": 20,
@@ -1186,10 +1186,10 @@
       }
     },
     {
-      "id": "wp_20_grn",
-      "partNumber": "EW-1C20-GRN",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_5",
+      "partNumber": "M22759/16-20-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Green",
       "gauge": {
         "value": 20,
@@ -1197,10 +1197,10 @@
       }
     },
     {
-      "id": "wp_20_org",
-      "partNumber": "EW-1C20-ORG",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_3",
+      "partNumber": "M22759/16-20-3",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Orange",
       "gauge": {
         "value": 20,
@@ -1208,10 +1208,10 @@
       }
     },
     {
-      "id": "wp_20_gry",
-      "partNumber": "EW-1C20-GRY",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GRAY, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_8",
+      "partNumber": "M22759/16-20-8",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GRAY, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Gray",
       "gauge": {
         "value": 20,
@@ -1219,10 +1219,10 @@
       }
     },
     {
-      "id": "wp_20_vio",
-      "partNumber": "EW-1C20-VIO",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, VIOLET, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_7",
+      "partNumber": "M22759/16-20-7",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, VIOLET, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Violet",
       "gauge": {
         "value": 20,
@@ -1230,10 +1230,10 @@
       }
     },
     {
-      "id": "wp_20_wht",
-      "partNumber": "EW-1C20-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "White",
       "gauge": {
         "value": 20,
@@ -1241,10 +1241,10 @@
       }
     },
     {
-      "id": "wp_20_red",
-      "partNumber": "EW-1C20-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_2",
+      "partNumber": "M22759/16-20-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Red",
       "gauge": {
         "value": 20,

@@ -529,7 +529,7 @@
         "id": "sp_canh",
         "handle": "Splice"
       },
-      "partId": "wp_20_wht"
+      "partId": "m16_20_9"
     },
     {
       "id": "wc_term2",
@@ -542,7 +542,7 @@
         "id": "sp_canl",
         "handle": "Splice"
       },
-      "partId": "wp_20_grn"
+      "partId": "m16_20_5"
     },
     {
       "id": "wc_term3",
@@ -555,7 +555,7 @@
         "id": "sp_canh_lam",
         "handle": "Splice"
       },
-      "partId": "wp_20_wht"
+      "partId": "m16_20_9"
     },
     {
       "id": "wc_term4",
@@ -568,7 +568,7 @@
         "id": "sp_canl_lam",
         "handle": "Splice"
       },
-      "partId": "wp_20_grn"
+      "partId": "m16_20_5"
     },
     {
       "id": "wc_h_lam_pin",
@@ -581,7 +581,7 @@
         "id": "lambda",
         "handle": "c4"
       },
-      "partId": "wp_20_wht"
+      "partId": "m16_20_9"
     },
     {
       "id": "wc_l_lam_pin",
@@ -594,7 +594,7 @@
         "id": "lambda",
         "handle": "c3"
       },
-      "partId": "wp_20_grn"
+      "partId": "m16_20_5"
     },
     {
       "id": "w_lam12_can",
@@ -607,7 +607,7 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "partId": "wp_20_red"
+      "partId": "m16_20_2"
     },
     {
       "id": "w_lamg_can",
@@ -620,7 +620,7 @@
         "handle": "Terminal"
       },
       "color": "Black",
-      "partId": "wp_20_blk"
+      "partId": "m16_20_0"
     },
     {
       "id": "w_shd_can",
@@ -633,7 +633,7 @@
         "id": "br_w_shd_can",
         "handle": "Terminal"
       },
-      "partId": "wp_20_shd"
+      "partId": "m16_20_06"
     },
     {
       "id": "w_dev",
@@ -646,7 +646,7 @@
         "id": "sp_dev",
         "handle": "Splice"
       },
-      "partId": "wp_16_red"
+      "partId": "m16_16_2"
     },
     {
       "id": "w_dev_clu",
@@ -659,7 +659,7 @@
         "id": "t_cluster_pwr",
         "handle": "Terminal"
       },
-      "partId": "wp_16_red"
+      "partId": "m16_16_2"
     },
     {
       "id": "w_dev_rd",
@@ -672,7 +672,7 @@
         "id": "t_realdash_pwr",
         "handle": "Terminal"
       },
-      "partId": "wp_16_red"
+      "partId": "m16_16_2"
     },
     {
       "id": "w_gnd_clu",
@@ -685,7 +685,7 @@
         "id": "t_cluster_gnd",
         "handle": "Terminal"
       },
-      "partId": "wp_16_blk"
+      "partId": "m16_16_0"
     },
     {
       "id": "w_gnd_rd",
@@ -698,7 +698,7 @@
         "id": "t_realdash_gnd",
         "handle": "Terminal"
       },
-      "partId": "wp_16_blk"
+      "partId": "m16_16_0"
     }
   ],
   "bundles": [
@@ -1004,10 +1004,10 @@
   ],
   "wireParts": [
     {
-      "id": "wp_20_blk",
-      "partNumber": "EW-1C20-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_0",
+      "partNumber": "M22759/16-20-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Black",
       "gauge": {
         "value": 20,
@@ -1015,10 +1015,10 @@
       }
     },
     {
-      "id": "wp_20_grn",
-      "partNumber": "EW-1C20-GRN",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_5",
+      "partNumber": "M22759/16-20-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Green",
       "gauge": {
         "value": 20,
@@ -1026,10 +1026,10 @@
       }
     },
     {
-      "id": "wp_20_wht",
-      "partNumber": "EW-1C20-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "White",
       "gauge": {
         "value": 20,
@@ -1037,10 +1037,10 @@
       }
     },
     {
-      "id": "wp_20_red",
-      "partNumber": "EW-1C20-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_2",
+      "partNumber": "M22759/16-20-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Red",
       "gauge": {
         "value": 20,
@@ -1048,21 +1048,22 @@
       }
     },
     {
-      "id": "wp_20_shd",
-      "partNumber": "EW-1C20-DRAIN",
-      "manufacturer": "generic",
-      "description": "WIRE, DRAIN, 20 AWG, TINNED COPPER, CLEAR ETFE SLEEVE",
-      "color": "Shield",
+      "id": "m16_20_06",
+      "partNumber": "M22759/16-20-06",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "stripeColor": "Blue",
       "gauge": {
         "value": 20,
         "unit": "AWG"
       }
     },
     {
-      "id": "wp_16_red",
-      "partNumber": "EW-1C16-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_16_2",
+      "partNumber": "M22759/16-16-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Red",
       "gauge": {
         "value": 16,
@@ -1070,10 +1071,10 @@
       }
     },
     {
-      "id": "wp_16_blk",
-      "partNumber": "EW-1C16-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 16 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_16_0",
+      "partNumber": "M22759/16-16-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Black",
       "gauge": {
         "value": 16,

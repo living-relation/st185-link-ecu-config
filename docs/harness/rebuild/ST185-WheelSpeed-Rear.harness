@@ -14,7 +14,8 @@
         "id": "m9_vrc_r_in",
         "handle": "c3"
       },
-      "color": "Gray"
+      "color": "Gray",
+      "partId": "m16_20_06"
     }
   ],
   "connectors": [
@@ -707,6 +708,20 @@
       "partNumber": "114017",
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "wireParts": [
+    {
+      "id": "m16_20_06",
+      "partNumber": "M22759/16-20-06",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
     }
   ]
 }

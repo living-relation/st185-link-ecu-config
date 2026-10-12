@@ -35,7 +35,7 @@ is to terminate one screen. A cable's shield connects straight to its connector 
   splices, never one splice per cable, never two wires in one contact. (How it is built is
   shop practice, not drawn.)
 - **Drain gauge does not scale with the number of screens.** Drains carry only noise current,
-  so the normal drain wire stays (`EW-1C20-DRAIN`, 20 AWG). The combined-gauge splice rule
+  so the normal drain wire stays (`M22759/16-20-06`, 20 AWG black/blue Tefzel; Daniel, 2026-10-12). The combined-gauge splice rule
   (`docs/RECONCILIATION-RULES.md` Rule 3) is for power and signal splices only, never drains.
 - **CAN:** every node branch shield goes into the one trunk screen splice (`sp_shield_can`).
 - Drawn as: a `GENERIC SOLDER SPLICE` (no covering) with its `locationId` on the pin's
