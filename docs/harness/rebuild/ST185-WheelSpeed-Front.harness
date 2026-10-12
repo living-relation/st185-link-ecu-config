@@ -630,7 +630,7 @@
         "x": 1920,
         "y": 0
       },
-      "text": "FRONT WHEEL SPEED - one Y harness. FL and FR ABS drops (loom C fender route, no bulkhead) run to the front VRC; the output runs through a grommet to the 6-way inline DT04-6P near the ECU (IX_WS_FRONT). The ECU side owns only the short spur and the DT06-6S mating half (ST185-A-cabin; the FR core and its c6 drain belong to ST185-B-cabin)."
+      "text": "FRONT WHEEL SPEED - one Y harness. FL and FR ABS drops (loom C fender route, no bulkhead) run to the front VRC; the output runs through a grommet to the 6-way inline DT04-6P near the ECU (IX_WS_FRONT). The ECU side owns only the short spur and the DT06-6S mating half (ST185-A-cabin; the FR core's short screened spur to B21 runs on to ST185-B-cabin; c6 is a plugged spare)."
     },
     {
       "id": "n_vrc",
@@ -650,7 +650,7 @@
         "x": 1920,
         "y": 420
       },
-      "text": "SHIELDS - VRC powered-device exception (docs/SHIELD-RULES.md 6.30). Each sensor screen floats at the sensor and lands on the IN endpoint screen lead (IN pin 3, wire inside the box to the case). The FL/supply cable screen is bonded to the case and runs to inline pin 5, then to SHIELD_A (A7). The FR output has its own 1-core screened cable: it FLOATS at the VRC and runs to pin 6, then to SHIELD_B (B17). A7 and B17 never meet."
+      "text": "SHIELDS - VRC powered-device exception (docs/SHIELD-RULES.md 6.30). Each sensor screen floats at the sensor and lands on the IN endpoint screen lead (IN pin 3, wire inside the box to the case). The output is ONE 4-core screened cable (cab_fout: +5V, Gnd Out, FL, FR; Route 9 rev 3, 2026-10-10): its screen is bonded to the case and runs to inline pin 5, then to SHIELD_A (A7). Inline pin 6 is a plugged spare. After IX_WS_FRONT the FR core continues on its own short screened spur on ST185-A-cabin / ST185-B-cabin, floating at the inline end and draining to SHIELD_B (B17). A7 and B17 never meet."
     },
     {
       "id": "n_iso",

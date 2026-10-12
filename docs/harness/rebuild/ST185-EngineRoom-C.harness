@@ -2800,6 +2800,22 @@
         "unit": "AWG"
       },
       "description": "TERMINAL, FLYING LEAD, HEAVY"
+    },
+    {
+      "type": "Ring",
+      "size": "M10",
+      "partNumber": "GENERIC LUG M10 50MM2",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 35,
+        "unit": "Metric"
+      },
+      "maxGauge": {
+        "value": 110,
+        "unit": "Metric"
+      },
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK",
+      "id": "tp_lug_m10_50"
     }
   ],
   "connectorParts": [

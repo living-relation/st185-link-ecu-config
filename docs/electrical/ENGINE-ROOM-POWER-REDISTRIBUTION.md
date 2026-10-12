@@ -391,7 +391,7 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI `LMI5-M-2-
 | 15 | AM2 → IE1-17 / I13-10 | pdb c7 30A | LMI | L5 | 30 AMI | — | — | 10 |  |
 | 16 | OEM HOT → J/B1 1I-1 | pdb c5 60A | LMI | L6 | 60 AMI | — | — | 6 |  |
 | 17 | EPS pump → HCR150 30 | hcfb h4 60A | LMI | L7 | 60 AMI | k_eps | TE HCR150 1416010-1 (own) | 8 | coil ← k_eps_en; mount beside |
-| 18 | ECU permanent +12V (F8) | fusebox c8 10A | RFRM | Bus 1 | 10 | — | — | 18 |  |
+| 18 | ~~ECU permanent +12V (F8)~~ | fusebox c8 10A | RFRM | — | — | — | — | — | Removed 2026-10-12: the XtremeX has one +14V input (A5, fed from SW12) and no keep-alive pin; this feed only served the CSB3, which moved to RFRM CSB |
 | 19 | Relay-coil perm feed k_efi 86 (F12) | fusebox c12 5A | RFRM | Bus 1 | 5 | — | — | 18 |  |
 | 20 | HEAD LH | gbx_body c4 15A | RFRM | Bus 1 + micro | 15 | HEAD LH | TE 5-1393292-8 (own, diode) | 14 | coil − IE1-2 |
 | 21 | HEAD RH | gbx_body c5 15A | RFRM | Bus 1 + micro | 15 | HEAD RH | TE 5-1393292-8 (own, diode) | 14 |  |
@@ -441,7 +441,7 @@ DECISIONS S6. Run lengths are estimates from the routes; re-check if a run grows
 
 **Spare capacity**
 
-- RFRM: 16 of 40 fuse slots used, 6 of 10 micro relays (4 spare).
+- RFRM: 18 of 40 fuse slots used (2026-10-12: + alarm ALM / ALMS / ALMIG, - ECU permanent), 6 of 10 micro relays (4 spare).
 - MTA: 6 of 6 Maxi relays, 3 of 3 MaxiVal, 7 of 18 MiniVal, 2 of 3 micro (1 spare).
 - LMI: 7 of 7 (no spare; max 7 per assembly).
 

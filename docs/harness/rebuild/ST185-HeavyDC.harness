@@ -629,7 +629,12 @@
     },
     {
       "id": "n_rev4",
-      "text": "ROUTE 1 REV 4 (Dan's mark-up, 2026-10-10): battery box moved to the passenger-side rear corner of the trunk (H1/H2 rerouted from there - bundle lengths above are inherited estimates from the prior ST185-EngineRoom-C drawing, not re-measured against the new spot - verify on the car). Starter moved to Dan's spot (lower-middle of the engine, p.29 leaders S2/S3). H4 (RADLOK+ -> starter) and H5 (alt B+ -> starter) now run as one bundle along the firewall and down to the starter (Dan: \"run 1 and 3 together\") - drawn as separate conductors here (H4 via RADLOK/rl_pos_eng, H5 via t_alt_b/w_alt) since harness.design has no native \"co-routed, not bundled-as-one-cable\" primitive; the physical bundling is a routing note, not a schema change. Alternator moved to the rear of the engine, RH side, under bulkheads A/B (MR2-style, rev 3 Dan mark-up 2026-10-04) - only t_alt_b (G1/B+ ring) is drawn here; the G2 3-pin plug (IG/L/S small wires) is NOT this file's concern - Route 1's own ALT-S row sends those through spare size-16 positions on the B half of the DRB102 bulkhead to ST185-B-engine (bay) and ST185-B-cabin / ST185-CabinPower (cabin), not drawn yet anywhere (docs/OPEN-ITEMS.md row 42, provisional cavity map)."
+      "text": "ROUTE 1 REV 4 (Dan's mark-up, 2026-10-10): battery box moved to the passenger-side rear corner of the trunk (H1/H2 rerouted from there - bundle lengths above are inherited estimates from the prior ST185-EngineRoom-C drawing, not re-measured against the new spot - verify on the car). Starter moved to Dan's spot (lower-middle of the engine, p.29 leaders S2/S3). H4 (RADLOK+ -> starter) and H5 (alt B+ -> starter) now run as one bundle along the firewall and down to the starter (Dan: \"run 1 and 3 together\") - drawn as separate conductors here (H4 via RADLOK/rl_pos_eng, H5 via t_alt_b/w_alt) since harness.design has no native \"co-routed, not bundled-as-one-cable\" primitive; the physical bundling is a routing note, not a schema change. Alternator moved to the rear of the engine, RH side, under bulkheads A/B (MR2-style, rev 3 Dan mark-up 2026-10-04) - only t_alt_b (G1/B+ ring) is drawn here; the G2 3-pin plug (IG/L/S small wires) is NOT this file's concern - Route 1's own ALT-S row sends those through spare size-16 positions on the B half of the DRB102 bulkhead to ST185-B-engine (bay) and ST185-B-cabin / ST185-CabinPower (cabin), not drawn yet anywhere (docs/OPEN-ITEMS.md row 42, provisional cavity map).",
+      "schematicPosition": {
+        "x": 1980,
+        "y": 480
+      },
+      "width": 390
     }
   ],
   "wireParts": [
