@@ -12,12 +12,14 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "VR+ (rear left)"
+          "signal": "VR+ (rear left)",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "VR- (rear left)"
+          "signal": "VR- (rear left)",
+          "propagate": false
         }
       ],
       "schematicPosition": {
@@ -38,12 +40,14 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "VR+ (rear right)"
+          "signal": "VR+ (rear right)",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "VR- (rear right)"
+          "signal": "VR- (rear right)",
+          "propagate": false
         }
       ],
       "schematicPosition": {
@@ -64,27 +68,32 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V - VRC rear supply (ECU sensor +5V)"
+          "signal": "+5V - VRC rear supply (ECU sensor +5V)",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Gnd Out - VRC rear ground"
+          "signal": "Gnd Out - VRC rear ground",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "RL conditioned out -> ECU-B B20 (DI 5)"
+          "signal": "RL conditioned out -> ECU-B B20 (DI 5)",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "RR conditioned out -> ECU-B B19 (DI 6)"
+          "signal": "RR conditioned out -> ECU-B B19 (DI 6)",
+          "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Screen drain -> SHIELD_B (B17)"
+          "signal": "Screen drain -> SHIELD_B (B17)",
+          "propagate": false
         },
         {
           "id": "c6",
@@ -155,7 +164,7 @@
       "partId": "cp_m9_5f",
       "layoutPosition": {
         "x": 900,
-        "y": 0
+        "y": 60
       },
       "schematicPosition": {
         "x": 570,
@@ -166,31 +175,36 @@
           "id": "c1",
           "designation": "1",
           "signal": "+5V",
-          "contactPartId": "ct_m9_solder"
+          "contactPartId": "ct_m9_solder",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
           "signal": "Gnd",
-          "contactPartId": "ct_m9_solder"
+          "contactPartId": "ct_m9_solder",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
           "signal": "RL out",
-          "contactPartId": "ct_m9_solder"
+          "contactPartId": "ct_m9_solder",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
           "signal": "RR out",
-          "contactPartId": "ct_m9_solder"
+          "contactPartId": "ct_m9_solder",
+          "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
           "signal": "screen drain",
-          "contactPartId": "ct_m9_solder"
+          "contactPartId": "ct_m9_solder",
+          "propagate": false
         }
       ]
     }
@@ -394,12 +408,20 @@
     {
       "id": "bn_bp_r_y__m9_vrc_r_in",
       "sourceId": "bp_r_y",
-      "targetId": "m9_vrc_r_in"
+      "targetId": "m9_vrc_r_in",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      }
     },
     {
       "id": "bn_bp_r_out__m9_vrc_r_out",
       "sourceId": "bp_r_out",
-      "targetId": "m9_vrc_r_out"
+      "targetId": "m9_vrc_r_out",
+      "length": {
+        "unit": "mm",
+        "value": 50
+      }
     },
     {
       "id": "bn_bp_r_out__bp_r_fwd",
@@ -448,7 +470,7 @@
       "id": "n_scope",
       "width": 390,
       "schematicPosition": {
-        "x": 1920,
+        "x": 1740,
         "y": 0
       },
       "text": "REAR WHEEL SPEED - two pieces. IN: the RL and RR ABS drops run as separate cables to a point by the IN plug and land in it. OUT: the OUT plug, the screened 4-core output cable and the 6-way inline DT04-6P near the ECU (IX_WS_REAR). The ECU side owns only the short spur and the DT06-6S mating half. No bulkhead."
@@ -458,7 +480,7 @@
       "width": 390,
       "color": "Orange",
       "schematicPosition": {
-        "x": 1920,
+        "x": 1740,
         "y": 210
       },
       "text": "VRC NOT DRAWN. The VR conditioner and its enclosure belong to the enclosure build. This harness is two separate pieces with no drawn link (Daniel 2026-10-12): IN - the RL and RR legs land in the IN plug m9_vrc_r_in (pin 1 ABS+ RL, 2 ABS- RL, 3 shield drain, 4 ABS+ RR, 5 ABS- RR); OUT - the OUT plug m9_vrc_r_out (pin 1 +5V, 2 Gnd, 3 RL out, 4 RR out, 5 screen drain) -> 4-core screened cable -> IX_WS_REAR c1-c5 (c6 spare). Both plugs: binder 99 0414 00 05, M9 female, 5 pins, unshielded."
@@ -468,8 +490,8 @@
       "width": 390,
       "color": "Orange",
       "schematicPosition": {
-        "x": 1920,
-        "y": 420
+        "x": 1740,
+        "y": 480
       },
       "text": "SHIELDS (docs/SHIELD-RULES.md; no connector shells, drains on pins). Each sensor screen floats at the sensor. The RL and RR cable screens join at one splice under a Raychem S200-2-W1-22-9 SolderSleeve; its 22 AWG lead is the one drain to IN pin 3. The output cable drain lands on OUT pin 5 and runs on to inline pin 5 and the ECU shield ground. Inside the VRC the build joins IN pin 3 to OUT pin 5 by wire. One screen node, grounded once, at the ECU."
     },
@@ -478,8 +500,8 @@
       "width": 390,
       "color": "Red",
       "schematicPosition": {
-        "x": 1920,
-        "y": 630
+        "x": 1740,
+        "y": 750
       },
       "text": "ISOLATION. The PCB must not touch the enclosure - nylon standoffs; the board grounds through the output cable only. The screen never touches the case either: the drains run pin to pin inside the box. Mount the enclosure on nylon hardware."
     },
@@ -488,8 +510,8 @@
       "width": 390,
       "color": "Red",
       "schematicPosition": {
-        "x": 1920,
-        "y": 810
+        "x": 1740,
+        "y": 930
       },
       "text": "NO CONNECTOR OR CASE LANDINGS FOR THE SCREEN. Drains run by pin (IN 3, OUT 5) and join inside the box by wire - nothing bonds to the case and no connector shell carries the screen, so there is no bare-metal spot to mask before powder coat."
     }

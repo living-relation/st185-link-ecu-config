@@ -50,31 +50,36 @@
           "id": "c7",
           "designation": "71",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B15"
+          "signal": "ECU-B B15",
+          "propagate": false
         },
         {
           "id": "c8",
           "designation": "72",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B16"
+          "signal": "ECU-B B16",
+          "propagate": false
         },
         {
           "id": "c9",
           "designation": "73",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B23"
+          "signal": "ECU-B B23",
+          "propagate": false
         },
         {
           "id": "c10",
           "designation": "74",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B6"
+          "signal": "ECU-B B6",
+          "propagate": false
         },
         {
           "id": "c11",
           "designation": "75",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-B B7"
+          "signal": "ECU-B B7",
+          "propagate": false
         },
         {
           "id": "c12",
@@ -98,19 +103,22 @@
           "id": "c15",
           "designation": "89",
           "signal": "Gearbox VSS signal (ECU B29, DI 8)",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c16",
           "designation": "83",
           "signal": "Knock 1 SIG+ (ECU B9)",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c17",
           "designation": "84",
           "signal": "Knock 1 SIG- (to Gnd Out B22)",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c18",
@@ -122,19 +130,22 @@
           "id": "c19",
           "designation": "77",
           "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c20",
           "designation": "90",
           "signal": "Switched 12V to gearbox VSS (from sp_sw12)",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c21",
           "designation": "78",
           "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c22",
@@ -334,7 +345,7 @@
         "y": 270
       },
       "schematicPosition": {
-        "x": 0,
+        "x": 330,
         "y": 1500
       }
     },
@@ -353,7 +364,8 @@
         },
         {
           "id": "c3",
-          "signal": "GND"
+          "signal": "GND",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -361,7 +373,7 @@
         "y": 90
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 0,
         "y": 690
       },
       "width": 210
@@ -389,7 +401,7 @@
         "y": 270
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 0,
         "y": 510
       },
       "width": 210
@@ -417,7 +429,7 @@
         "y": -330
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 0,
         "y": 150
       },
       "width": 210
@@ -433,7 +445,8 @@
         },
         {
           "id": "c2",
-          "signal": "GND"
+          "signal": "GND",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -441,7 +454,7 @@
         "y": 30
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 60,
         "y": 330
       },
       "width": 150
@@ -457,7 +470,8 @@
         },
         {
           "id": "c2",
-          "signal": "GND"
+          "signal": "GND",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -465,7 +479,7 @@
         "y": 270
       },
       "schematicPosition": {
-        "x": 1680,
+        "x": 0,
         "y": 0
       },
       "width": 210
@@ -476,7 +490,7 @@
       "width": 390,
       "partId": "cp_vss3",
       "schematicPosition": {
-        "x": 0,
+        "x": 330,
         "y": 0
       },
       "layoutPosition": {
@@ -494,7 +508,8 @@
           "id": "c2",
           "designation": "2",
           "signal": "Ground (pin 2)",
-          "contactPartId": "ct_toy_ts"
+          "contactPartId": "ct_toy_ts",
+          "propagate": false
         },
         {
           "id": "c3",
@@ -523,7 +538,7 @@
         "y": 0
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 60,
         "y": 1620
       },
       "width": 150
@@ -537,17 +552,20 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
+          "propagate": false
         },
         {
           "id": "c4",
@@ -570,7 +588,7 @@
         "y": 360
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 1530,
         "y": 1500
       }
     }
@@ -582,13 +600,14 @@
       "partId": "tp_flying_lead",
       "signal": "EWD TBD Back-up light switch-TBD TBD reverse signal -> bulkhead B c12 -> CSB3 S8 - new-wire run terminated at the switch's own OEM mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); not a solder-sleeve splice",
       "schematicPosition": {
-        "x": 660,
+        "x": 990,
         "y": 870
       },
       "layoutPosition": {
         "x": 2610,
         "y": -330
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w124_e",
@@ -600,9 +619,10 @@
         "y": 150
       },
       "schematicPosition": {
-        "x": 150,
+        "x": 480,
         "y": 1380
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w215_e",
@@ -611,12 +631,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2280,
-        "y": 150
+        "y": 450
       },
       "schematicPosition": {
-        "x": 150,
-        "y": 1380
-      }
+        "x": 480,
+        "y": 3210
+      },
+      "propagate": false
     },
     {
       "id": "br_wc_h_lam",
@@ -625,12 +646,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2280,
-        "y": 210
+        "y": 510
       },
       "schematicPosition": {
-        "x": 150,
-        "y": 1980
-      }
+        "x": 480,
+        "y": 3330
+      },
+      "propagate": false
     },
     {
       "id": "br_wc_l_lam",
@@ -642,9 +664,10 @@
         "y": 240
       },
       "schematicPosition": {
-        "x": 150,
-        "y": 2040
-      }
+        "x": 480,
+        "y": 3390
+      },
+      "propagate": false
     },
     {
       "id": "br_w_lam12",
@@ -653,12 +676,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2280,
-        "y": 270
+        "y": 330
       },
       "schematicPosition": {
-        "x": 150,
-        "y": 2100
-      }
+        "x": 480,
+        "y": 3270
+      },
+      "propagate": false
     },
     {
       "id": "br_w_lamg",
@@ -670,9 +694,10 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": 150,
-        "y": 2160
-      }
+        "x": 480,
+        "y": 3150
+      },
+      "propagate": false
     },
     {
       "id": "br_cab_etbm_sh",
@@ -681,12 +706,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2280,
-        "y": 150
+        "y": 210
       },
       "schematicPosition": {
-        "x": 150,
-        "y": 1380
-      }
+        "x": 480,
+        "y": 1440
+      },
+      "propagate": false
     },
     {
       "id": "br_cab_lamcan_sh",
@@ -695,12 +721,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2280,
-        "y": 210
+        "y": 390
       },
       "schematicPosition": {
-        "x": 150,
-        "y": 1980
-      }
+        "x": 480,
+        "y": 3450
+      },
+      "propagate": false
     }
   ],
   "splices": [
@@ -712,7 +739,7 @@
         "y": 120
       },
       "schematicPosition": {
-        "x": 1920,
+        "x": 2250,
         "y": 1800
       },
       "locationId": "be_480"
@@ -726,7 +753,7 @@
         "y": 120
       },
       "schematicPosition": {
-        "x": 1920,
+        "x": 2250,
         "y": 2040
       }
     },
@@ -739,7 +766,7 @@
         "y": 120
       },
       "schematicPosition": {
-        "x": 1920,
+        "x": 2250,
         "y": 2280
       }
     },
@@ -752,7 +779,7 @@
         "y": 180
       },
       "schematicPosition": {
-        "x": 600,
+        "x": 930,
         "y": 2100
       }
     },
@@ -765,7 +792,7 @@
         "y": 240
       },
       "schematicPosition": {
-        "x": 600,
+        "x": 930,
         "y": 2220
       }
     }
@@ -1058,7 +1085,7 @@
       "id": "cab_knock1",
       "partId": "cab_sh_2c",
       "schematicPosition": {
-        "x": 480,
+        "x": 810,
         "y": 1560
       },
       "cores": [
@@ -1101,7 +1128,7 @@
       "id": "cab_etbm_be",
       "partId": "cab_sh_2c_18",
       "schematicPosition": {
-        "x": 480,
+        "x": 810,
         "y": 1680
       },
       "cores": [
@@ -1147,7 +1174,7 @@
       "id": "cab_vss",
       "partId": "cab_sh_3c",
       "schematicPosition": {
-        "x": 480,
+        "x": 810,
         "y": 1800
       },
       "cores": [
@@ -1201,7 +1228,7 @@
       "id": "cab_lamcan_be",
       "partId": "cab_sh_2c",
       "schematicPosition": {
-        "x": 480,
+        "x": 810,
         "y": 1920
       },
       "cores": [
@@ -1823,7 +1850,7 @@
       "id": "n_cavity_notes",
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nGearbox VSS (Toyota 83181-20040) - 3: SP1 speed output (pin 3) -> bulkhead B c15 -> ECU-B B29 (DI 8). Actual road speed. 12V direct, no divider - Link DI is +/-50V tolerant with a selectable 4k7 pull-up to 12V. PCLink DI 8 pull-up ON (sot/channels.csv B29).",
       "schematicPosition": {
-        "x": 4200,
+        "x": 2400,
         "y": 0
       }
     }

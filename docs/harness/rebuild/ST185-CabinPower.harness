@@ -89,7 +89,7 @@
       },
       "layoutPosition": {
         "x": 1800,
-        "y": 450
+        "y": 510
       }
     },
     {
@@ -109,17 +109,20 @@
         {
           "id": "b1",
           "designation": "BUS1",
-          "signal": "Bus 1 in (permanent) - 50A from LMI L1"
+          "signal": "Bus 1 in (permanent) - 50A from LMI L1",
+          "propagate": false
         },
         {
           "id": "b2",
           "designation": "BUS2",
-          "signal": "Bus 2 in (switched) - EFI main relay 87"
+          "signal": "Bus 2 in (switched) - EFI main relay 87",
+          "propagate": false
         },
         {
           "id": "efi86",
           "designation": "EFI86",
-          "signal": "Bus 1 5A - EFI main relay coil feed 86, PERMANENT"
+          "signal": "Bus 1 5A - EFI main relay coil feed 86, PERMANENT",
+          "propagate": false
         },
         {
           "id": "hl",
@@ -154,7 +157,8 @@
         {
           "id": "sw12",
           "designation": "SW12",
-          "signal": "Bus 2 7.5A - switched 12V sensor rail, ECU +14V, relay coils"
+          "signal": "Bus 2 7.5A - switched 12V sensor rail, ECU +14V, relay coils",
+          "propagate": false
         },
         {
           "id": "cop",
@@ -184,7 +188,8 @@
         {
           "id": "acc",
           "designation": "ACC",
-          "signal": "Bus 2 10A - A/C clutch relay k_acc 30 (rating to verify)"
+          "signal": "Bus 2 10A - A/C clutch relay k_acc 30 (rating to verify)",
+          "propagate": false
         },
         {
           "id": "alm",
@@ -210,7 +215,7 @@
       "partId": "cp_mta",
       "layoutPosition": {
         "x": 1920,
-        "y": 450
+        "y": 690
       },
       "schematicPosition": {
         "x": 1380,
@@ -225,17 +230,20 @@
         {
           "id": "fan",
           "designation": "FAN",
-          "signal": "MaxiVal 40A - radiator fan relay k_fan 30 (relay in Maxi R1)"
+          "signal": "MaxiVal 40A - radiator fan relay k_fan 30 (relay in Maxi R1)",
+          "propagate": false
         },
         {
           "id": "efi",
           "designation": "EFI",
-          "signal": "MiniVal 30A - EFI main relay k_efi 30 (relay in Maxi R2; rating carried from old F1, verify)"
+          "signal": "MiniVal 30A - EFI main relay k_efi 30 (relay in Maxi R2; rating carried from old F1, verify)",
+          "propagate": false
         },
         {
           "id": "fp",
           "designation": "FP",
-          "signal": "MiniVal 20A - fuel pump relay k_fp 30 (micro relay)"
+          "signal": "MiniVal 20A - fuel pump relay k_fp 30 (micro relay)",
+          "propagate": false
         }
       ]
     },
@@ -246,7 +254,7 @@
       "partId": "cp_mta",
       "layoutPosition": {
         "x": 2040,
-        "y": 450
+        "y": 1110
       },
       "schematicPosition": {
         "x": 2280,
@@ -266,12 +274,14 @@
         {
           "id": "str",
           "designation": "STR",
-          "signal": "MiniVal 30A - start relay k_str 30 (relay in Maxi R2; rating carried from old F4, verify)"
+          "signal": "MiniVal 30A - start relay k_str 30 (relay in Maxi R2; rating carried from old F4, verify)",
+          "propagate": false
         },
         {
           "id": "etb",
           "designation": "ETB",
-          "signal": "MiniVal 10A - ETB power relay k_etb 30 (micro relay)"
+          "signal": "MiniVal 10A - ETB power relay k_etb 30 (micro relay)",
+          "propagate": false
         },
         {
           "id": "mrs",
@@ -302,12 +312,14 @@
         {
           "id": "fan2",
           "designation": "FAN2",
-          "signal": "MaxiVal 30A - condenser fan relay k_fan2 30 (relay in Maxi R1)"
+          "signal": "MaxiVal 30A - condenser fan relay k_fan2 30 (relay in Maxi R1)",
+          "propagate": false
         },
         {
           "id": "pin",
           "designation": "PWR IN",
-          "signal": "Power relay 30 in - 30A from LMI L2"
+          "signal": "Power relay 30 in - 30A from LMI L2",
+          "propagate": false
         },
         {
           "id": "pwr",
@@ -317,7 +329,8 @@
         {
           "id": "acin",
           "designation": "ACPS IN",
-          "signal": "A/C MiniVal feed in - heater relay 87 (MTA-2 HTR)"
+          "signal": "A/C MiniVal feed in - heater relay 87 (MTA-2 HTR)",
+          "propagate": false
         },
         {
           "id": "acps",
@@ -367,7 +380,7 @@
       ],
       "layoutPosition": {
         "x": 1980,
-        "y": 570
+        "y": 810
       },
       "schematicPosition": {
         "x": 4200,
@@ -396,13 +409,15 @@
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - ignition-switched 12V *",
-          "contactPartId": "ct_mta"
+          "contactPartId": "ct_mta",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
           "signal": "+12V out -> fuel pump",
-          "contactPartId": "ct_mta"
+          "contactPartId": "ct_mta",
+          "propagate": false
         },
         {
           "id": "c5",
@@ -413,7 +428,7 @@
       ],
       "layoutPosition": {
         "x": 1980,
-        "y": 570
+        "y": 930
       },
       "schematicPosition": {
         "x": 4800,
@@ -442,7 +457,8 @@
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - ignition-switched 12V *",
-          "contactPartId": "ct_mta"
+          "contactPartId": "ct_mta",
+          "propagate": false
         },
         {
           "id": "c4",
@@ -453,7 +469,7 @@
       ],
       "layoutPosition": {
         "x": 1980,
-        "y": 570
+        "y": 1050
       },
       "schematicPosition": {
         "x": 5400,
@@ -482,7 +498,8 @@
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - ignition-switched 12V *",
-          "contactPartId": "ct_mta"
+          "contactPartId": "ct_mta",
+          "propagate": false
         },
         {
           "id": "c4",
@@ -499,7 +516,7 @@
       ],
       "layoutPosition": {
         "x": 2100,
-        "y": 570
+        "y": 1170
       },
       "schematicPosition": {
         "x": 4200,
@@ -528,7 +545,8 @@
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - ignition-switched 12V *",
-          "contactPartId": "ct_mta"
+          "contactPartId": "ct_mta",
+          "propagate": false
         },
         {
           "id": "c4",
@@ -539,7 +557,7 @@
       ],
       "layoutPosition": {
         "x": 2100,
-        "y": 570
+        "y": 1290
       },
       "schematicPosition": {
         "x": 4800,
@@ -568,7 +586,8 @@
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - ignition-switched 12V *",
-          "contactPartId": "ct_mta"
+          "contactPartId": "ct_mta",
+          "propagate": false
         },
         {
           "id": "c4",
@@ -579,7 +598,7 @@
       ],
       "layoutPosition": {
         "x": 2220,
-        "y": 570
+        "y": 1530
       },
       "schematicPosition": {
         "x": 5400,
@@ -604,7 +623,8 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (LMI L7, ST185-CabinPower; Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)) *"
+          "signal": "Fused +12V in (LMI L7, ST185-CabinPower; Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)) *",
+          "propagate": false
         },
         {
           "id": "c2",
@@ -668,7 +688,7 @@
       ],
       "layoutPosition": {
         "x": 1740,
-        "y": 480
+        "y": 960
       },
       "schematicPosition": {
         "x": 4800,
@@ -692,7 +712,8 @@
         "x": 3720,
         "y": 0
       },
-      "partId": "tp_ring_m6_12_10"
+      "partId": "tp_ring_m6_12_10",
+      "propagate": false
     },
     {
       "id": "batt_ring",
@@ -707,7 +728,8 @@
         "y": 2700
       },
       "partId": "tp_lug_m8_4",
-      "width": 270
+      "width": 270,
+      "propagate": false
     },
     {
       "id": "br_w_inj_pwr_c",
@@ -716,12 +738,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1740,
-        "y": 300
+        "y": 840
       },
       "schematicPosition": {
         "x": 1260,
         "y": 2880
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_cop_pwr_c",
@@ -730,12 +753,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1740,
-        "y": 300
+        "y": 720
       },
       "schematicPosition": {
         "x": 1260,
-        "y": 2880
-      }
+        "y": 3870
+      },
+      "propagate": false
     },
     {
       "id": "br_w_fb_sw12",
@@ -749,7 +773,8 @@
       "schematicPosition": {
         "x": 1710,
         "y": 3720
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_fb_mrs_en",
@@ -758,12 +783,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1680,
-        "y": 330
+        "y": 450
       },
       "schematicPosition": {
         "x": 3660,
         "y": 0
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_lam12_c",
@@ -777,7 +803,8 @@
       "schematicPosition": {
         "x": 1710,
         "y": 3600
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_pmu_hl",
@@ -786,12 +813,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 420
+        "y": 1020
       },
       "schematicPosition": {
         "x": 3300,
         "y": 2700
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_pmu_hr",
@@ -800,12 +828,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 420
+        "y": 1140
       },
       "schematicPosition": {
         "x": 3300,
         "y": 2760
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_pmu_horn",
@@ -814,12 +843,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 420
+        "y": 1260
       },
       "schematicPosition": {
         "x": 3300,
         "y": 2820
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_pmu_dome",
@@ -828,12 +858,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 420
+        "y": 1380
       },
       "schematicPosition": {
         "x": 3300,
         "y": 2880
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_pmu_rtr",
@@ -842,12 +873,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 420
+        "y": 1500
       },
       "schematicPosition": {
         "x": 3300,
         "y": 2940
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_acp_1",
@@ -856,12 +888,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 420
+        "y": 1620
       },
       "schematicPosition": {
         "x": 3300,
         "y": 3000
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_pdb_am1",
@@ -870,12 +903,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 420
+        "y": 1560
       },
       "schematicPosition": {
         "x": 3300,
         "y": 3060
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_pdb_am2",
@@ -884,12 +918,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 420
+        "y": 1440
       },
       "schematicPosition": {
         "x": 3300,
         "y": 3120
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_pdb_jb1",
@@ -898,12 +933,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 420
+        "y": 1320
       },
       "schematicPosition": {
         "x": 3300,
         "y": 3180
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_rb4",
@@ -912,12 +948,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 420
+        "y": 1200
       },
       "schematicPosition": {
         "x": 3300,
         "y": 3240
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_rb2",
@@ -926,12 +963,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 420
+        "y": 1080
       },
       "schematicPosition": {
         "x": 3300,
         "y": 3300
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_csb12",
@@ -940,12 +978,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1680,
-        "y": 330
+        "y": 390
       },
       "schematicPosition": {
         "x": 1710,
         "y": 3840
-      }
+      },
+      "propagate": false
     },
     {
       "id": "t_pdb_mta1",
@@ -953,14 +992,15 @@
       "signal": "Glove-box PDB bus stud (M8) - MTA-1 module feed",
       "layoutPosition": {
         "x": 1200,
-        "y": 390
+        "y": 510
       },
       "schematicPosition": {
         "x": 0,
         "y": 3300
       },
       "partId": "tp_lug_m8_4",
-      "width": 390
+      "width": 390,
+      "propagate": false
     },
     {
       "id": "t_pdb_mta2",
@@ -968,14 +1008,15 @@
       "signal": "Glove-box PDB bus stud (M8) - MTA-2 module feed",
       "layoutPosition": {
         "x": 1200,
-        "y": 390
+        "y": 570
       },
       "schematicPosition": {
         "x": 0,
         "y": 3900
       },
       "partId": "tp_lug_m8_4",
-      "width": 390
+      "width": 390,
+      "propagate": false
     },
     {
       "id": "t_pdb_mta3",
@@ -983,14 +1024,15 @@
       "signal": "Glove-box PDB bus stud (M8) - MTA-3 module feed",
       "layoutPosition": {
         "x": 1200,
-        "y": 390
+        "y": 450
       },
       "schematicPosition": {
         "x": 0,
         "y": 4500
       },
       "partId": "tp_lug_m8_8",
-      "width": 390
+      "width": 390,
+      "propagate": false
     },
     {
       "id": "br_w76",
@@ -999,12 +1041,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1980,
-        "y": 570
+        "y": 990
       },
       "schematicPosition": {
         "x": 4200,
-        "y": 2700
-      }
+        "y": 2880
+      },
+      "propagate": false
     },
     {
       "id": "br_w_fp85",
@@ -1013,12 +1056,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1980,
-        "y": 570
+        "y": 870
       },
       "schematicPosition": {
         "x": 4800,
-        "y": 2700
-      }
+        "y": 2910
+      },
+      "propagate": false
     },
     {
       "id": "br_w_fan85",
@@ -1027,12 +1071,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1980,
-        "y": 570
+        "y": 750
       },
       "schematicPosition": {
         "x": 5400,
-        "y": 2700
-      }
+        "y": 2880
+      },
+      "propagate": false
     },
     {
       "id": "br_w_fan_pwr",
@@ -1045,8 +1090,9 @@
       },
       "schematicPosition": {
         "x": 1260,
-        "y": 3870
-      }
+        "y": 3930
+      },
+      "propagate": false
     },
     {
       "id": "br_w81",
@@ -1055,12 +1101,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2100,
-        "y": 570
+        "y": 1350
       },
       "schematicPosition": {
         "x": 4200,
-        "y": 3300
-      }
+        "y": 3510
+      },
+      "propagate": false
     },
     {
       "id": "br_w82",
@@ -1073,8 +1120,9 @@
       },
       "schematicPosition": {
         "x": 1260,
-        "y": 3630
-      }
+        "y": 3810
+      },
+      "propagate": false
     },
     {
       "id": "br_w_str85",
@@ -1083,12 +1131,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2100,
-        "y": 570
+        "y": 1230
       },
       "schematicPosition": {
         "x": 4800,
-        "y": 3300
-      }
+        "y": 3480
+      },
+      "propagate": false
     },
     {
       "id": "br_w_strl",
@@ -1102,7 +1151,8 @@
       "schematicPosition": {
         "x": 1260,
         "y": 4590
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_fan285",
@@ -1111,12 +1161,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2220,
-        "y": 570
+        "y": 1590
       },
       "schematicPosition": {
         "x": 5400,
-        "y": 3300
-      }
+        "y": 3480
+      },
+      "propagate": false
     },
     {
       "id": "br_w_fan2_pwr",
@@ -1125,12 +1176,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2700,
-        "y": 390
+        "y": 450
       },
       "schematicPosition": {
         "x": 1260,
         "y": 4110
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_eps_trig",
@@ -1139,12 +1191,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1860,
-        "y": 570
+        "y": 630
       },
       "schematicPosition": {
         "x": 4200,
-        "y": 3900
-      }
+        "y": 4110
+      },
+      "propagate": false
     },
     {
       "id": "br_w_eps_pwr",
@@ -1153,12 +1206,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2820,
-        "y": 450
+        "y": 510
       },
       "schematicPosition": {
         "x": 1260,
         "y": 4410
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_acc_trig",
@@ -1167,12 +1221,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1740,
-        "y": 480
+        "y": 900
       },
       "schematicPosition": {
         "x": 4800,
-        "y": 3900
-      }
+        "y": 4170
+      },
+      "propagate": false
     },
     {
       "id": "br_w_acc86",
@@ -1181,12 +1236,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1740,
-        "y": 480
+        "y": 780
       },
       "schematicPosition": {
         "x": 4800,
-        "y": 3900
-      }
+        "y": 4230
+      },
+      "propagate": false
     },
     {
       "id": "br_w_acc_clutch",
@@ -1195,12 +1251,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1740,
-        "y": 480
+        "y": 660
       },
       "schematicPosition": {
         "x": 4800,
-        "y": 3900
-      }
+        "y": 4110
+      },
+      "propagate": false
     },
     {
       "id": "br_w_start_in",
@@ -1209,12 +1266,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2160,
-        "y": 450
+        "y": 1410
       },
       "schematicPosition": {
         "x": 3180,
-        "y": 3900
-      }
+        "y": 4260
+      },
+      "propagate": false
     },
     {
       "id": "br_w_start_out",
@@ -1223,12 +1281,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2160,
-        "y": 450
+        "y": 1470
       },
       "schematicPosition": {
         "x": 3180,
-        "y": 3900
-      }
+        "y": 4200
+      },
+      "propagate": false
     },
     {
       "id": "t_at_12v",
@@ -1237,12 +1296,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1680,
-        "y": 360
+        "y": 480
       },
       "schematicPosition": {
         "x": 1200,
-        "y": 2940
-      }
+        "y": 3630
+      },
+      "propagate": false
     },
     {
       "id": "t_at_12v_shk",
@@ -1251,12 +1311,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1680,
-        "y": 360
+        "y": 600
       },
       "schematicPosition": {
         "x": 1200,
-        "y": 2940
-      }
+        "y": 3750
+      },
+      "propagate": false
     },
     {
       "id": "t_at_ig",
@@ -1265,12 +1326,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1680,
-        "y": 360
+        "y": 540
       },
       "schematicPosition": {
         "x": 1200,
-        "y": 2940
-      }
+        "y": 3690
+      },
+      "propagate": false
     },
     {
       "id": "br_w_dev",
@@ -1279,12 +1341,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1680,
-        "y": 360
+        "y": 420
       },
       "schematicPosition": {
         "x": 1200,
-        "y": 2940
-      }
+        "y": 3570
+      },
+      "propagate": false
     }
   ],
   "wires": [
@@ -3288,16 +3351,16 @@
     {
       "id": "n_cabinpower",
       "schematicPosition": {
-        "x": 0,
-        "y": -300
+        "x": 5910,
+        "y": 0
       },
       "text": "CABIN POWER HARNESS - non-ECU: the glove-box fuse box (Option B, _research FUSEBOX-B-SLOT-MAP 2026-10-11): Bussmann LMI (LMI5-M-2-CB1AD + 3x LMI1-M-1-0, ids hcfb l1-l7), Eaton RFRM 15401-1-2-1-0A (rfrm) and 3x MTA 0301491 (mta1-mta3); the battery feed ring (PDB bus) and the fuel pump run to the trunk. The box lives only in this file. The ECU-switched relays are seated in the box and drawn here (k_fan / k_efi / k_fp on MTA-1, k_str / k_etb on MTA-2, k_fan2 on MTA-3, k_acc in the RFRM, k_eps HCR150 beside the box); their wires land on the module's own relay-position terminals. Fuse -> relay 30 and relay coil+ links are short jumpers inside the box (the MTA 0301491 internal bus is unconfirmed, OPEN-ITEMS row 48). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and A-cabin, B-cabin, CSB3 or EngineRoom-C is drawn broken off in both with a note naming the other file. RFRM / MTA slot numbers are not assigned: cavities are named by circuit."
     },
     {
       "id": "n_cavity_notes",
       "schematicPosition": {
-        "x": 4200,
-        "y": 0
+        "x": 5910,
+        "y": 600
       },
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nRFRM EFI86: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nMTA-2 MRS: 7.5A - MRS EPS pump logic enable (fed from k_eps_en 87 per the slot map; k_eps_en not yet in the SoT, OPEN-ITEMS row 40)\nLMI L7: 60A AMI - EPS pump relay 30 (k_eps HCR150, beside the box), Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via RFRM EFI86 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nCondenser Fan Relay (on/off) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression (on/off relay; INFERENCE from the G4X help Auxiliary Output Wiring PWM-only diode advice, not a Link statement) - TE 1-1393304-0, plain relay, no diode (slot map row 9)\nCondenser Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: LMI L7 - Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)"
     }

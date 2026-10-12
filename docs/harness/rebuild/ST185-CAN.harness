@@ -29,7 +29,8 @@
         {
           "id": "c4",
           "designation": "C4",
-          "signal": "CAN 1 Low (Green)"
+          "signal": "CAN 1 Low (Green)",
+          "propagate": false
         },
         {
           "id": "c5",
@@ -100,7 +101,8 @@
         "y": -210
       },
       "signal": "TrackCluster ESP32-P4 - CAN drop *",
-      "partId": "tp_flying_lead"
+      "partId": "tp_flying_lead",
+      "propagate": false
     },
     {
       "id": "t_realdash_can",
@@ -112,10 +114,11 @@
       },
       "layoutPosition": {
         "x": 1260,
-        "y": 0
+        "y": 120
       },
       "signal": "RealDash Pi 5 - CAN drop *",
-      "partId": "tp_flying_lead"
+      "partId": "tp_flying_lead",
+      "propagate": false
     },
     {
       "id": "br_wc_h_csb",
@@ -129,7 +132,8 @@
       "schematicPosition": {
         "x": 720,
         "y": 60
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_wc_l_csb",
@@ -138,12 +142,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1320,
-        "y": 300
+        "y": 420
       },
       "schematicPosition": {
         "x": 720,
-        "y": 60
-      }
+        "y": 180
+      },
+      "propagate": false
     },
     {
       "id": "br_w_lam12",
@@ -157,7 +162,8 @@
       "schematicPosition": {
         "x": 2700,
         "y": -60
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_lamg",
@@ -166,12 +172,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 450,
-        "y": 0
+        "y": 120
       },
       "schematicPosition": {
         "x": 2700,
-        "y": -60
-      }
+        "y": 180
+      },
+      "propagate": false
     },
     {
       "id": "br_wc_h_bh",
@@ -180,12 +187,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 960,
-        "y": 360
+        "y": 480
       },
       "schematicPosition": {
         "x": 1380,
         "y": 60
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_wc_l_bh",
@@ -194,12 +202,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 960,
-        "y": 360
+        "y": 600
       },
       "schematicPosition": {
         "x": 1380,
-        "y": 60
-      }
+        "y": 180
+      },
+      "propagate": false
     },
     {
       "id": "br_wc_h_lam",
@@ -213,7 +222,8 @@
       "schematicPosition": {
         "x": 2040,
         "y": 60
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_wc_l_lam",
@@ -222,12 +232,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 840,
-        "y": 300
+        "y": 420
       },
       "schematicPosition": {
         "x": 2040,
-        "y": 60
-      }
+        "y": 180
+      },
+      "propagate": false
     },
     {
       "id": "br_cab_lamcan_sh",
@@ -236,12 +247,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 840,
-        "y": 300
+        "y": 360
       },
       "schematicPosition": {
         "x": 2040,
-        "y": 60
-      }
+        "y": 120
+      },
+      "propagate": false
     },
     {
       "id": "br_cab_canbh_sh",
@@ -250,12 +262,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 960,
-        "y": 360
+        "y": 660
       },
       "schematicPosition": {
         "x": 1380,
-        "y": 60
-      }
+        "y": 240
+      },
+      "propagate": false
     },
     {
       "id": "br_w_shd_can",
@@ -264,12 +277,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 960,
-        "y": 360
+        "y": 540
       },
       "schematicPosition": {
         "x": 1380,
-        "y": 60
-      }
+        "y": 120
+      },
+      "propagate": false
     },
     {
       "id": "br_cab_cancsb_sh",
@@ -278,12 +292,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1320,
-        "y": 300
+        "y": 360
       },
       "schematicPosition": {
         "x": 720,
-        "y": 60
-      }
+        "y": 120
+      },
+      "propagate": false
     },
     {
       "id": "t_cluster_pwr",
@@ -295,10 +310,11 @@
       },
       "layoutPosition": {
         "x": 1020,
-        "y": -10
+        "y": 0
       },
       "signal": "TrackCluster ESP32-P4 - +12V switched (DEV)",
-      "partId": "tp_flying_lead"
+      "partId": "tp_flying_lead",
+      "propagate": false
     },
     {
       "id": "t_realdash_pwr",
@@ -310,10 +326,11 @@
       },
       "layoutPosition": {
         "x": 1260,
-        "y": 200
+        "y": 210
       },
       "signal": "RealDash Pi 5 - +12V switched (DEV) into the Pi's 12 V to 5 V supply",
-      "partId": "tp_flying_lead"
+      "partId": "tp_flying_lead",
+      "propagate": false
     },
     {
       "id": "t_cluster_gnd",
@@ -321,14 +338,15 @@
       "width": 390,
       "schematicPosition": {
         "x": 0,
-        "y": 960
+        "y": 1020
       },
       "layoutPosition": {
         "x": 1020,
-        "y": 20
+        "y": 30
       },
       "signal": "Cabin chassis ground stud M6 - cluster ground",
-      "partId": "tp_ring_m6_22_16"
+      "partId": "tp_ring_m6_22_16",
+      "propagate": false
     },
     {
       "id": "t_realdash_gnd",
@@ -340,10 +358,11 @@
       },
       "layoutPosition": {
         "x": 1260,
-        "y": 230
+        "y": 240
       },
       "signal": "Cabin chassis ground stud M6 - RealDash Pi ground",
-      "partId": "tp_ring_m6_22_16"
+      "partId": "tp_ring_m6_22_16",
+      "propagate": false
     },
     {
       "id": "br_w_dev",
@@ -352,12 +371,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1020,
-        "y": -210
+        "y": -150
       },
       "schematicPosition": {
         "x": 0,
-        "y": 270
-      }
+        "y": 330
+      },
+      "propagate": false
     },
     {
       "id": "t_cluster_gnd_lead",
@@ -365,14 +385,15 @@
       "width": 390,
       "schematicPosition": {
         "x": 0,
-        "y": 1050
+        "y": 1110
       },
       "layoutPosition": {
         "x": 1020,
-        "y": 50
+        "y": 60
       },
       "signal": "TrackCluster ESP32-P4 - ground",
-      "partId": "tp_flying_lead"
+      "partId": "tp_flying_lead",
+      "propagate": false
     },
     {
       "id": "t_realdash_gnd_lead",
@@ -384,10 +405,11 @@
       },
       "layoutPosition": {
         "x": 1260,
-        "y": 260
+        "y": 270
       },
       "signal": "RealDash Pi 5 - ground (Pi supply 0 V)",
-      "partId": "tp_flying_lead"
+      "partId": "tp_flying_lead",
+      "propagate": false
     }
   ],
   "splices": [
@@ -970,15 +992,15 @@
       "width": 390,
       "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Only the CAN-Lambda crosses the firewall, on bulkhead B c13 / c14 (CAN) and c3 / c4 (+12V / GND); the cluster and RealDash are CAN drops only - their devices and their power are not part of this harness. 120R termination at the ECU end and at the lambda end.",
       "schematicPosition": {
-        "x": 3180,
-        "y": 0
+        "x": 3210,
+        "y": -60
       }
     },
     {
       "id": "n_cavity_notes",
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, RFRM LAM 7.5A - broken off here, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse RFRM LAM\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)",
       "schematicPosition": {
-        "x": 3180,
+        "x": 3210,
         "y": 150
       }
     }

@@ -20,25 +20,29 @@
           "id": "c2",
           "designation": "23",
           "contactPartId": "ct_hdp16s",
-          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB"
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "26",
           "contactPartId": "ct_hdp16s",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch"
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "12",
           "contactPartId": "ct_hdp16s",
-          "signal": "+8V Out to cam Hall"
+          "signal": "+8V Out to cam Hall",
+          "propagate": false
         },
         {
           "id": "c5",
           "designation": "20",
           "contactPartId": "ct_hdp16s",
-          "signal": "Switched 12V to engine sensors"
+          "signal": "Switched 12V to engine sensors",
+          "propagate": false
         },
         {
           "id": "c6",
@@ -50,19 +54,22 @@
           "id": "c7",
           "designation": "17",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A30"
+          "signal": "ECU-A A30",
+          "propagate": false
         },
         {
           "id": "c8",
           "designation": "30",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A17"
+          "signal": "ECU-A A17",
+          "propagate": false
         },
         {
           "id": "c9",
           "designation": "21",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A31"
+          "signal": "ECU-A A31",
+          "propagate": false
         },
         {
           "id": "c10",
@@ -86,85 +93,99 @@
           "id": "c13",
           "designation": "31",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A4"
+          "signal": "ECU-A A4",
+          "propagate": false
         },
         {
           "id": "c14",
           "designation": "32",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A3"
+          "signal": "ECU-A A3",
+          "propagate": false
         },
         {
           "id": "c15",
           "designation": "33",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A2"
+          "signal": "ECU-A A2",
+          "propagate": false
         },
         {
           "id": "c16",
           "designation": "34",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A1"
+          "signal": "ECU-A A1",
+          "propagate": false
         },
         {
           "id": "c17",
           "designation": "35",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A13"
+          "signal": "ECU-A A13",
+          "propagate": false
         },
         {
           "id": "c18",
           "designation": "36",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A12"
+          "signal": "ECU-A A12",
+          "propagate": false
         },
         {
           "id": "c19",
           "designation": "37",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A11"
+          "signal": "ECU-A A11",
+          "propagate": false
         },
         {
           "id": "c20",
           "designation": "38",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A10"
+          "signal": "ECU-A A10",
+          "propagate": false
         },
         {
           "id": "c21",
           "designation": "24",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A22"
+          "signal": "ECU-A A22",
+          "propagate": false
         },
         {
           "id": "c22",
           "designation": "25",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A33"
+          "signal": "ECU-A A33",
+          "propagate": false
         },
         {
           "id": "c23",
           "designation": "39",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A21"
+          "signal": "ECU-A A21",
+          "propagate": false
         },
         {
           "id": "c24",
           "designation": "9",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A8"
+          "signal": "ECU-A A8",
+          "propagate": false
         },
         {
           "id": "c25",
           "designation": "40",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A15"
+          "signal": "ECU-A A15",
+          "propagate": false
         },
         {
           "id": "c26",
           "designation": "41",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A16"
+          "signal": "ECU-A A16",
+          "propagate": false
         },
         {
           "id": "c27",
@@ -182,7 +203,8 @@
           "id": "c29",
           "designation": "13",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A9"
+          "signal": "ECU-A A9",
+          "propagate": false
         },
         {
           "id": "c30",
@@ -230,49 +252,57 @@
           "id": "c37",
           "designation": "45",
           "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c38",
           "designation": "46",
           "signal": "A/C coolant switch return -> A/C amplifier",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c39",
           "designation": "28",
           "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c40",
           "designation": "16",
           "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c41",
           "designation": "10",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c42",
           "designation": "14",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c43",
           "designation": "18",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c44",
           "designation": "29",
           "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c45",
@@ -296,13 +326,15 @@
           "id": "c48",
           "designation": "1",
           "signal": "Switched 12V - INJECTOR power feed, fuse RFRM INJ 15A (14 AWG)",
-          "contactPartId": "ct_hdp12s"
+          "contactPartId": "ct_hdp12s",
+          "propagate": false
         },
         {
           "id": "c49",
           "designation": "2",
           "signal": "Switched 12V - COP / ignition coil power feed, fuse RFRM COP 15A (14 AWG)",
-          "contactPartId": "ct_hdp12s"
+          "contactPartId": "ct_hdp12s",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -310,7 +342,7 @@
         "y": 180
       },
       "schematicPosition": {
-        "x": 0,
+        "x": 3060,
         "y": 0
       }
     },
@@ -343,7 +375,7 @@
         "y": 90
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 2580,
         "y": 1020
       },
       "width": 210
@@ -363,7 +395,8 @@
         },
         {
           "id": "c3",
-          "signal": "GND"
+          "signal": "GND",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -371,7 +404,7 @@
         "y": 270
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 2640,
         "y": 1770
       },
       "width": 150
@@ -384,7 +417,8 @@
         {
           "id": "c1",
           "signal": "12V/8V",
-          "contactPartId": "ct_gt150_skt_05"
+          "contactPartId": "ct_gt150_skt_05",
+          "propagate": false
         },
         {
           "id": "c2",
@@ -402,7 +436,7 @@
         "y": 360
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 2640,
         "y": 330
       },
       "width": 150
@@ -428,7 +462,7 @@
         "y": -150
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 2100,
         "y": 1320
       },
       "width": 150
@@ -441,7 +475,8 @@
         {
           "id": "c1",
           "signal": "12V",
-          "contactPartId": "ct_gt150_skt"
+          "contactPartId": "ct_gt150_skt",
+          "propagate": false
         },
         {
           "id": "c2",
@@ -454,7 +489,7 @@
         "y": -60
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 2100,
         "y": 1470
       },
       "width": 150
@@ -467,7 +502,8 @@
         {
           "id": "c1",
           "signal": "12V",
-          "contactPartId": "ct_gt150_skt"
+          "contactPartId": "ct_gt150_skt",
+          "propagate": false
         },
         {
           "id": "c2",
@@ -480,7 +516,7 @@
         "y": 60
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 2100,
         "y": 1620
       },
       "width": 150
@@ -493,7 +529,8 @@
         {
           "id": "c1",
           "signal": "12V",
-          "contactPartId": "ct_gt150_skt"
+          "contactPartId": "ct_gt150_skt",
+          "propagate": false
         },
         {
           "id": "c2",
@@ -506,7 +543,7 @@
         "y": -30
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 2100,
         "y": 1770
       },
       "width": 150
@@ -537,7 +574,7 @@
         "y": -150
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 2100,
         "y": 480
       },
       "width": 150
@@ -549,7 +586,8 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+B 12V (COP rail, spur from ST185-B-engine)"
+          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
+          "propagate": false
         },
         {
           "id": "c2"
@@ -560,7 +598,8 @@
         },
         {
           "id": "c4",
-          "signal": "GND"
+          "signal": "GND",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -568,7 +607,7 @@
         "y": -60
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 2100,
         "y": 690
       },
       "width": 150
@@ -580,7 +619,8 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+B 12V (COP rail, spur from ST185-B-engine)"
+          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
+          "propagate": false
         },
         {
           "id": "c2"
@@ -591,15 +631,16 @@
         },
         {
           "id": "c4",
-          "signal": "GND"
+          "signal": "GND",
+          "propagate": false
         }
       ],
       "layoutPosition": {
         "x": 2250,
-        "y": 60
+        "y": 420
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 2100,
         "y": 900
       },
       "width": 150
@@ -611,7 +652,8 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+B 12V (COP rail, spur from ST185-B-engine)"
+          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
+          "propagate": false
         },
         {
           "id": "c2"
@@ -622,7 +664,8 @@
         },
         {
           "id": "c4",
-          "signal": "GND"
+          "signal": "GND",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -630,7 +673,7 @@
         "y": -30
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 2100,
         "y": 1110
       },
       "width": 150
@@ -649,7 +692,8 @@
         {
           "id": "c2",
           "signal": "Poti- (GND)",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
+          "contactPartId": "wbsN09tiboovqanDL_xZA",
+          "propagate": false
         },
         {
           "id": "c3",
@@ -677,7 +721,7 @@
         "y": 330
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 2640,
         "y": 1200
       }
     },
@@ -702,7 +746,7 @@
         "y": 330
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 2580,
         "y": 0
       },
       "width": 210
@@ -726,7 +770,7 @@
         "y": -240
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 2100,
         "y": 180
       },
       "width": 150
@@ -742,7 +786,8 @@
         },
         {
           "id": "c2",
-          "signal": "GND"
+          "signal": "GND",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -750,7 +795,7 @@
         "y": 270
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 2580,
         "y": 1470
       },
       "width": 210
@@ -773,7 +818,7 @@
         }
       ],
       "schematicPosition": {
-        "x": 1200,
+        "x": 1980,
         "y": 2400
       },
       "layoutPosition": {
@@ -800,7 +845,7 @@
         "y": -210
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 2040,
         "y": 1920
       },
       "width": 210
@@ -828,7 +873,7 @@
         "y": -240
       },
       "schematicPosition": {
-        "x": 1200,
+        "x": 2040,
         "y": 0
       },
       "width": 210
@@ -842,17 +887,20 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
+          "propagate": false
         },
         {
           "id": "c4",
@@ -872,10 +920,10 @@
       ],
       "layoutPosition": {
         "x": 2250,
-        "y": 300
+        "y": 480
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 2520,
         "y": 2400
       }
     }
@@ -890,11 +938,12 @@
         "y": -90
       },
       "schematicPosition": {
-        "x": 1980,
+        "x": 1080,
         "y": 330
       },
       "partId": "tp_ring_m6_12_10",
-      "width": 390
+      "width": 390,
+      "propagate": false
     },
     {
       "id": "starter_trigger",
@@ -905,11 +954,12 @@
         "y": -180
       },
       "schematicPosition": {
-        "x": 3180,
+        "x": 0,
         "y": 150
       },
       "partId": "tp_spade_str",
-      "width": 270
+      "width": 270,
+      "propagate": false
     },
     {
       "id": "br_w_hv_mrs_en_e",
@@ -921,9 +971,10 @@
         "y": 120
       },
       "schematicPosition": {
-        "x": 60,
+        "x": 3000,
         "y": -60
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_mrs_e",
@@ -932,12 +983,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2070,
-        "y": 120
+        "y": 240
       },
       "schematicPosition": {
-        "x": 60,
-        "y": -60
-      }
+        "x": 3000,
+        "y": 1530
+      },
+      "propagate": false
     },
     {
       "id": "br_w_strl",
@@ -949,9 +1001,10 @@
         "y": 450
       },
       "schematicPosition": {
-        "x": 720,
-        "y": 60
-      }
+        "x": 2340,
+        "y": 120
+      },
+      "propagate": false
     },
     {
       "id": "br_w124_e",
@@ -963,9 +1016,10 @@
         "y": 60
       },
       "schematicPosition": {
-        "x": 150,
+        "x": 2910,
         "y": -120
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w215_e",
@@ -974,12 +1028,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2160,
-        "y": 60
+        "y": 300
       },
       "schematicPosition": {
-        "x": 150,
-        "y": -120
-      }
+        "x": 2910,
+        "y": 1590
+      },
+      "propagate": false
     },
     {
       "id": "br_cab_etbm_sh",
@@ -988,12 +1043,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2160,
-        "y": 60
+        "y": 360
       },
       "schematicPosition": {
-        "x": 150,
-        "y": -120
-      }
+        "x": 2910,
+        "y": 1650
+      },
+      "propagate": false
     }
   ],
   "splices": [
@@ -1004,7 +1060,7 @@
         "y": 60
       },
       "schematicPosition": {
-        "x": 1830,
+        "x": 1590,
         "y": 390
       },
       "partId": "spp_solder_generic",
@@ -1017,7 +1073,7 @@
         "y": 120
       },
       "schematicPosition": {
-        "x": 1830,
+        "x": 1590,
         "y": 690
       },
       "partId": "spp_crimp_14_10",
@@ -1030,7 +1086,7 @@
         "y": 60
       },
       "schematicPosition": {
-        "x": 2490,
+        "x": 930,
         "y": 720
       },
       "partId": "spp_solder_generic",
@@ -1043,7 +1099,7 @@
         "y": 60
       },
       "schematicPosition": {
-        "x": 2490,
+        "x": 930,
         "y": 1530
       },
       "partId": "spp_solder_generic"
@@ -1055,7 +1111,7 @@
         "y": 120
       },
       "schematicPosition": {
-        "x": 2490,
+        "x": 930,
         "y": 930
       },
       "partId": "spp_solder_generic"
@@ -1069,7 +1125,7 @@
         "y": 60
       },
       "schematicPosition": {
-        "x": 2490,
+        "x": 930,
         "y": 2100
       }
     }
@@ -1687,7 +1743,7 @@
       "id": "cab_crank",
       "partId": "cab_sh_1c",
       "schematicPosition": {
-        "x": 480,
+        "x": 2700,
         "y": 960
       },
       "cores": [
@@ -1717,7 +1773,7 @@
       "id": "cab_cam",
       "partId": "cab_sh_1c",
       "schematicPosition": {
-        "x": 480,
+        "x": 2700,
         "y": 0
       },
       "cores": [
@@ -1747,7 +1803,7 @@
       "id": "cab_turbo",
       "partId": "cab_sh_3c",
       "schematicPosition": {
-        "x": 480,
+        "x": 2700,
         "y": 120
       },
       "cores": [
@@ -1801,7 +1857,7 @@
       "id": "cab_flex",
       "partId": "cab_sh_3c",
       "schematicPosition": {
-        "x": 480,
+        "x": 2700,
         "y": 240
       },
       "cores": [
@@ -1855,7 +1911,7 @@
       "id": "cab_etbs",
       "partId": "cab_sh_4c",
       "schematicPosition": {
-        "x": 480,
+        "x": 2700,
         "y": 360
       },
       "cores": [
@@ -1921,7 +1977,7 @@
       "id": "cab_etbm_ae",
       "partId": "cab_sh_2c_18",
       "schematicPosition": {
-        "x": 480,
+        "x": 2700,
         "y": 480
       },
       "cores": [
@@ -2669,8 +2725,8 @@
       "id": "n_cavity_notes",
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead A - engine plug (HDP2 1: spare (size 16) - was the shared shield drain, retired by 6.32\nBulkhead A - engine plug (HDP2 35: MRS EPS pump logic enable - cabin fuse block c14 (7.5A, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27); engine-side wire on ST185-EngineRoom-C (broken off)\nBulkhead A - engine plug (HDP2 36: Aux 7 MRS speed-out (ECU A27) - engine-side wire on ST185-EngineRoom-C (broken off)",
       "schematicPosition": {
-        "x": 4200,
-        "y": 0
+        "x": 3570,
+        "y": -120
       }
     },
     {
@@ -2678,8 +2734,8 @@
       "text": "sp_gndout_eng SPLICE FIT: four 20 AWG wires = one 14 AWG combined (Wire Barn Combined Wire Gauge Calculator, https://www.wirebarn.com/Combined-Wire-Gauge-Calculator_ep_42.html), inside the GENERIC CRIMP SPLICE 14-10 range. Splices are sized by combined gauge (Daniel 2026-09-28). harness.design's per-wire 'wires are too thin' warning on this splice is a known false alarm.",
       "width": 390,
       "schematicPosition": {
-        "x": 1980,
-        "y": 780
+        "x": 3570,
+        "y": 270
       }
     }
   ],

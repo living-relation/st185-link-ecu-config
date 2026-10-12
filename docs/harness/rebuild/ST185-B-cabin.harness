@@ -38,43 +38,50 @@
           "id": "c5",
           "designation": "86",
           "contactPartId": "ct_hdp16p",
-          "signal": "ETB motor + (Aux 9, B18)"
+          "signal": "ETB motor + (Aux 9, B18)",
+          "propagate": false
         },
         {
           "id": "c6",
           "designation": "87",
           "contactPartId": "ct_hdp16p",
-          "signal": "ETB motor - (Aux 10, B26)"
+          "signal": "ETB motor - (Aux 10, B26)",
+          "propagate": false
         },
         {
           "id": "c7",
           "designation": "71",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B15"
+          "signal": "ECU-B B15",
+          "propagate": false
         },
         {
           "id": "c8",
           "designation": "72",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B16"
+          "signal": "ECU-B B16",
+          "propagate": false
         },
         {
           "id": "c9",
           "designation": "73",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B23"
+          "signal": "ECU-B B23",
+          "propagate": false
         },
         {
           "id": "c10",
           "designation": "74",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B6"
+          "signal": "ECU-B B6",
+          "propagate": false
         },
         {
           "id": "c11",
           "designation": "75",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B7"
+          "signal": "ECU-B B7",
+          "propagate": false
         },
         {
           "id": "c12",
@@ -98,31 +105,36 @@
           "id": "c15",
           "designation": "89",
           "signal": "Gearbox VSS signal (ECU B29, DI 8)",
-          "contactPartId": "ct_hdp16p"
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c16",
           "designation": "83",
           "signal": "Knock 1 SIG+ (ECU B9)",
-          "contactPartId": "ct_hdp16p"
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c17",
           "designation": "84",
           "signal": "Knock 1 SIG- (to Gnd Out B22)",
-          "contactPartId": "ct_hdp16p"
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c18",
           "designation": "85",
           "signal": "Knock 1 screen",
-          "contactPartId": "ct_hdp16p"
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c19",
           "designation": "77",
           "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
-          "contactPartId": "ct_hdp16p"
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c20",
@@ -134,19 +146,22 @@
           "id": "c21",
           "designation": "78",
           "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
-          "contactPartId": "ct_hdp16p"
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c22",
           "designation": "88",
           "signal": "ETB motor screen",
-          "contactPartId": "ct_hdp16p"
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c23",
           "designation": "91",
           "signal": "Gearbox VSS screen",
-          "contactPartId": "ct_hdp16p"
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c24",
@@ -335,7 +350,7 @@
       },
       "schematicPosition": {
         "x": 3660,
-        "y": 1500
+        "y": 1620
       }
     },
     {
@@ -498,11 +513,13 @@
         },
         {
           "id": "b31",
-          "designation": "B31"
+          "designation": "B31",
+          "signal": "An Volt 10 (A/C Btn)"
         },
         {
           "id": "b32",
-          "designation": "B32"
+          "designation": "B32",
+          "signal": "An Volt 11 (Evap Temp)"
         },
         {
           "id": "b33",
@@ -518,7 +535,7 @@
       ],
       "layoutPosition": {
         "x": 1560,
-        "y": 330
+        "y": 450
       },
       "schematicPosition": {
         "x": 3120,
@@ -534,12 +551,14 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)"
+          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Fuel level ground -> Gnd Out"
+          "signal": "Fuel level ground -> Gnd Out",
+          "propagate": false
         }
       ],
       "schematicPosition": {
@@ -565,22 +584,26 @@
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Gnd Out - VRC rear ground"
+          "signal": "Gnd Out - VRC rear ground",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "RL conditioned out -> ECU-B B20 (DI 5)"
+          "signal": "RL conditioned out -> ECU-B B20 (DI 5)",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "RR conditioned out -> ECU-B B19 (DI 6)"
+          "signal": "RR conditioned out -> ECU-B B19 (DI 6)",
+          "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Screen drain -> SHIELD_B (B17)"
+          "signal": "Screen drain -> SHIELD_B (B17)",
+          "propagate": false
         },
         {
           "id": "c6",
@@ -612,7 +635,8 @@
       "layoutPosition": {
         "x": 2280,
         "y": -90
-      }
+      },
+      "propagate": false
     },
     {
       "id": "fl_ign_sw_c1",
@@ -625,8 +649,9 @@
       },
       "layoutPosition": {
         "x": 1560,
-        "y": -180
-      }
+        "y": -120
+      },
+      "propagate": false
     },
     {
       "id": "t_ac_btn",
@@ -639,7 +664,8 @@
       "layoutPosition": {
         "x": 1560,
         "y": -270
-      }
+      },
+      "propagate": false
     },
     {
       "id": "t_evap_temp",
@@ -652,7 +678,8 @@
       "layoutPosition": {
         "x": 1560,
         "y": -360
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_b25",
@@ -661,12 +688,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2400,
-        "y": 210
+        "y": 330
       },
       "schematicPosition": {
         "x": 1770,
         "y": 2820
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_b34",
@@ -675,12 +703,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2400,
-        "y": 210
+        "y": 270
       },
       "schematicPosition": {
         "x": 1770,
-        "y": 2820
-      }
+        "y": 2880
+      },
+      "propagate": false
     },
     {
       "id": "br_w_rail_5v_b_c",
@@ -689,12 +718,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1200,
-        "y": 210
+        "y": 330
       },
       "schematicPosition": {
         "x": 1770,
         "y": 2760
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_rail_sw12_b_c",
@@ -708,7 +738,8 @@
       "schematicPosition": {
         "x": 1770,
         "y": 3780
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w82",
@@ -722,7 +753,8 @@
       "schematicPosition": {
         "x": 1260,
         "y": 3750
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_cab_fspur_r",
@@ -736,7 +768,8 @@
       "schematicPosition": {
         "x": 4140,
         "y": 1620
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_cab_fspur_fr_sh",
@@ -745,12 +778,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1500,
-        "y": 540
+        "y": 600
       },
       "schematicPosition": {
         "x": 4140,
-        "y": 1620
-      }
+        "y": 1680
+      },
+      "propagate": false
     },
     {
       "id": "br_w_sw7_c",
@@ -764,7 +798,8 @@
       "schematicPosition": {
         "x": 1380,
         "y": 60
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w39",
@@ -778,7 +813,8 @@
       "schematicPosition": {
         "x": 720,
         "y": 60
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_at_immob2",
@@ -792,7 +828,8 @@
       "schematicPosition": {
         "x": 3180,
         "y": -60
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_wc_h_bh",
@@ -805,8 +842,9 @@
       },
       "schematicPosition": {
         "x": 3300,
-        "y": 1200
-      }
+        "y": 1560
+      },
+      "propagate": false
     },
     {
       "id": "br_wc_l_bh",
@@ -819,8 +857,9 @@
       },
       "schematicPosition": {
         "x": 3300,
-        "y": 1260
-      }
+        "y": 1320
+      },
+      "propagate": false
     },
     {
       "id": "br_w_lam12_c",
@@ -829,12 +868,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 900,
-        "y": 240
+        "y": 300
       },
       "schematicPosition": {
         "x": 3300,
-        "y": 1320
-      }
+        "y": 1380
+      },
+      "propagate": false
     },
     {
       "id": "br_w_lamg_b",
@@ -847,8 +887,9 @@
       },
       "schematicPosition": {
         "x": 3300,
-        "y": 1380
-      }
+        "y": 1440
+      },
+      "propagate": false
     },
     {
       "id": "br_cab_canbh_sh",
@@ -857,12 +898,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 900,
-        "y": 180
+        "y": 360
       },
       "schematicPosition": {
         "x": 3300,
-        "y": 1200
-      }
+        "y": 1500
+      },
+      "propagate": false
     },
     {
       "id": "br_w_shd_can",
@@ -871,12 +913,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 900,
-        "y": 180
+        "y": 240
       },
       "schematicPosition": {
         "x": 3300,
-        "y": 1200
-      }
+        "y": 1260
+      },
+      "propagate": false
     },
     {
       "id": "br_w_fan285",
@@ -885,12 +928,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1560,
-        "y": 330
+        "y": 570
       },
       "schematicPosition": {
         "x": 3120,
-        "y": 0
-      }
+        "y": 1140
+      },
+      "propagate": false
     },
     {
       "id": "br_w_eps_trig",
@@ -899,12 +943,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1560,
-        "y": 330
+        "y": 510
       },
       "schematicPosition": {
         "x": 3120,
-        "y": 0
-      }
+        "y": 1200
+      },
+      "propagate": false
     },
     {
       "id": "br_w_acc_trig",
@@ -913,12 +958,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 1560,
-        "y": 330
+        "y": 390
       },
       "schematicPosition": {
         "x": 3120,
-        "y": 0
-      }
+        "y": 1080
+      },
+      "propagate": false
     },
     {
       "id": "br_w_start_in",
@@ -927,12 +973,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2280,
-        "y": -90
+        "y": 30
       },
       "schematicPosition": {
         "x": 660,
-        "y": 960
-      }
+        "y": 1080
+      },
+      "propagate": false
     },
     {
       "id": "br_w_start_out",
@@ -941,12 +988,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2280,
-        "y": -90
+        "y": -30
       },
       "schematicPosition": {
         "x": 660,
-        "y": 960
-      }
+        "y": 1020
+      },
+      "propagate": false
     }
   ],
   "splices": [
@@ -2445,8 +2493,8 @@
       "id": "n_cavity_notes",
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)",
       "schematicPosition": {
-        "x": 4200,
-        "y": 0
+        "x": 4650,
+        "y": -60
       }
     }
   ],

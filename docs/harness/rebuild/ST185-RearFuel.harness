@@ -12,16 +12,18 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)"
+          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Fuel level ground -> Gnd Out"
+          "signal": "Fuel level ground -> Gnd Out",
+          "propagate": false
         }
       ],
       "schematicPosition": {
-        "x": 0,
+        "x": 270,
         "y": 0
       },
       "layoutPosition": {
@@ -50,7 +52,7 @@
         "y": 0
       },
       "schematicPosition": {
-        "x": 660,
+        "x": 0,
         "y": 0
       },
       "width": 150
@@ -101,7 +103,7 @@
       "id": "n_scope",
       "width": 390,
       "schematicPosition": {
-        "x": 1080,
+        "x": 660,
         "y": 0
       },
       "text": "REAR FUEL - fuel level sender only, behind IX_FUEL_LVL (DT04-2P on the ECU/cabin harness, DT06-2S here). Rev 2 (Dan, 2026-10-10): the sender gets a DT 2-way instead of its OEM connector - DT04-2P + W2P on the sender lead, size-16 contacts 0460-202-1631 (owned); no OEM housing. Everything in the trunk (IX_FUEL_LVL, sender, pump, ground stud) also moved to the driver side - see docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md / Route 11. The fuel pump is NOT in this harness: its 12 AWG feed runs unbroken from k_fp to the pump's own connector on the ECU/cabin harness, per 6.41 (no extra joint in a 20 A circuit). Run length to the tank is an estimate - measure at install."
