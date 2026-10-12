@@ -32,6 +32,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `15419715` | Aptiv | CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6 | 4 | 0 | **4** |
 | `90980-11062` | Toyota | CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS | 4 | 0 | **4** |
 | `90980-11885` | Toyota | CONNECTOR, PLUG, TOYOTA, 4 POS, SOCKET CONTACTS | 4 | 0 | **4** |
+| `99 0414 00 05` | binder | CONNECTOR, CIRCULAR, M9, CABLE CONNECTOR, FEMALE, 5 POS, UNSHIELDED, SOLDER, IP67 | 4 | 0 | **4** |
 | `DTHD06-1-8S` | TE DEUTSCH | CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A | 4 | 0 | **4** |
 | `0301491` | MTA | MODULE, FUSE AND RELAY, SEALED, 2 MAXI RELAY, 1 MAXI FUSE, 6 MINI FUSE | 3 | 0 | **3** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A | 15 | 12 | **3** |
@@ -50,6 +51,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC LUG M10 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK | 2 | 0 | **2** |
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK | 2 | 0 | **2** |
 | `RL00801-50RE` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED | 2 | 0 | **2** |
+| `S200-2-W1-22-9` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 22 AWG LEAD | 2 | 0 | **2** |
 | `W3S` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY PLUG | 2 | 0 | **2** |
 | `AMI-60` | Eaton Bussmann | FUSE, AMI, 60 A, M5 BOLT-DOWN | 2 | 0 | **2** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
@@ -141,14 +143,13 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(OEM block)` | CONNECTOR, OEM, JUNCTION OR RELAY BLOCK | 3 |
 | `(Toyota TS terminals, supplied with owned housings)` | CONTACT, SOCKET, CRIMP, TOYOTA | 4 |
 | `(generic)` | CONTACT, SOCKET, CRIMP, GENERIC | 18 |
+| `(integral - 99 0414 00 05)` | CONTACT, SOCKET, SOLDER CUP, INTEGRAL | 20 |
 | `(integral - RL00801-50)` | CONTACT, RADSOK 8.0, INTEGRAL TO RL00801-50 CABLE CONNECTOR, 50 MM2 (1/0) CRIMP BARREL | 4 |
 | `(kit socket, D 261 205 358-01)` | CONTACT, SOCKET, CRIMP, GOLD | 6 |
 | `(kit-supplied pigtail)` | CONNECTOR, PIGTAIL, 3 POS | 1 |
 | `(pump pigtail - Walbro F90000295)` | CONNECTOR, PIGTAIL, 2 POS | 1 |
 | `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK | 2 |
 | `(ring lug, sized to cable)` | TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK | 4 |
-| `TBD (M8 6-pos male cable plug, unshielded, field-attachable, 20 AWG)` | CONNECTOR, CIRCULAR, M8, CABLE PLUG, MALE, 6 POS, UNSHIELDED, FIELD ATTACHABLE | 4 |
-| `TBD (integral to the M8 6-pos plug)` | CONTACT, PIN, M8, INTEGRAL | 22 |
 | `TBD - A/C coolant temperature switch connector` | CONNECTOR, 2 POS, TYPE TBD | 1 |
 
 ## Counted once, drawn more than once

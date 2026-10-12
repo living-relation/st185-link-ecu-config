@@ -10,8 +10,12 @@ Checked per side against interfaces.json "wheelSpeed":
       half and its declared VRC endpoint plugs as connectors, and draws no cross-reference
   W3  each sensor drop is one screened 2-core cable: c1 to the VRC IN "+" endpoint, c2 to
       "-"; its screen has one end only, on the IN "screen" endpoint (floats at the sensor),
-      and that endpoint is part of the VRC enclosure. Its layout bundle runs straight from
-      the sensor plug to the VRC (no branch point shared with the other sensor's leg)
+      and that endpoint is part of the VRC enclosure. Where the endpoint is a drawn plug the
+      screen may instead end at a splice from which exactly one drain wire reaches the
+      endpoint's screen pin (Daniel's example 2026-10-12: both sensor screens under one
+      SolderSleeve, one drain to IN pin 3). Its layout leg runs from the sensor plug either
+      straight to the IN plug or to a branch point that carries only the sensor legs and one
+      bundle to the IN plug (the legs meet only by the plug)
   W4  the output cable(s) run from the VRC OUT endpoint to the interface source half; each
       screen lands on its declared drain pin, starting at the enclosure or floating there
   W5  the interface is a Deutsch DT 6-way pair
@@ -99,6 +103,11 @@ for side, s in sorted(spec.items()):
             bad.append("W3 %s: %s is not a screened pair %s c1/c2 -> %s +/-" % (side, cb["id"], sensor, ep_id))
         sh = cb.get("shield") or {}
         ends = [end(sh.get(k)) for k in ("source", "target") if sh.get(k)]
+        if ep.get("connector") and len(ends) == 1 and ends[0][1] == "Splice":
+            drains = [w for w in d.get("wires", []) if end(w.get("source")) == ends[0] or end(w.get("target")) == ends[0]]
+            reach = [end(w["target"]) if end(w["source"]) == ends[0] else end(w["source"]) for w in drains]
+            if reach == [t["screen"]]:
+                ends = [t["screen"]]
         if ends != [t["screen"]]:
             bad.append("W3 %s: %s screen must land on %s only (floats at the sensor), has %s"
                        % (side, cb["id"], t["screen"], ends))
@@ -108,6 +117,12 @@ for side, s in sorted(spec.items()):
         if ep.get("connector"):
             legs = {b["sourceId"] if b["targetId"] == sensor else b["targetId"]
                     for b in d.get("bundles", []) if sensor in (b["sourceId"], b["targetId"])}
+            if len(legs) == 1 and next(iter(legs)) in {x["id"] for x in d.get("branchPoints", [])}:
+                bp = next(iter(legs))
+                nb = [b["sourceId"] if b["targetId"] == bp else b["targetId"]
+                      for b in d.get("bundles", []) if bp in (b["sourceId"], b["targetId"])]
+                if nb.count(ep["connector"]) == 1 and set(nb) - {ep["connector"]} <= set(s["sensors"]):
+                    legs = {ep["connector"]}
             if legs != {ep["connector"]}:
                 bad.append("W3 %s: %s layout leg must run straight to %s, runs to %s"
                            % (side, sensor, ep["connector"], sorted(legs)))

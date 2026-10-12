@@ -106,6 +106,11 @@ for f in F:
             pid = n.get("partId") or n.get("bootPartId")
             if pid and pid in parts:
                 q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+            # coverings on a node (e.g. a SolderSleeve on a screen splice) are one each
+            for cid in n.get("coveringIds", []):
+                q = next((x for x in d.get("coveringParts", []) if x["id"] == cid), None)
+                if q:
+                    req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
 
 def stamp(c, parts):
     """What this copy claims: its part number and every contact/plug it names.
