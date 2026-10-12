@@ -1,7 +1,23 @@
 {
   "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
   "version": 0.9,
   "lengthUnit": "mm",
+  "wires": [
+    {
+      "id": "e7gavP",
+      "source": {
+        "id": "SvhsQx",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "m9_vrc_f_in",
+        "handle": "c3"
+      },
+      "color": "Black",
+      "stripeColor": "Blue"
+    }
+  ],
   "connectors": [
     {
       "id": "wss_fl",
@@ -166,8 +182,8 @@
         "y": 60
       },
       "schematicPosition": {
-        "x": 570,
-        "y": 510
+        "x": 270,
+        "y": 570
       },
       "cavities": [
         {
@@ -208,13 +224,12 @@
       ]
     }
   ],
-  "terminals": [],
   "cables": [
     {
       "id": "cab_fl",
       "partId": "cab_sh_2c",
       "schematicPosition": {
-        "x": 240,
+        "x": 360,
         "y": 0
       },
       "cores": [
@@ -248,7 +263,7 @@
         "id": "cab_fl_sh",
         "color": "Shield",
         "source": {
-          "id": "sp_vrc_f_in_sh",
+          "id": "SvhsQx",
           "handle": "Splice"
         }
       }
@@ -257,7 +272,7 @@
       "id": "cab_fr",
       "partId": "cab_sh_2c",
       "schematicPosition": {
-        "x": 240,
+        "x": 360,
         "y": 270
       },
       "cores": [
@@ -291,7 +306,7 @@
         "id": "cab_fr_sh",
         "color": "Shield",
         "source": {
-          "id": "sp_vrc_f_in_sh",
+          "id": "SvhsQx",
           "handle": "Splice"
         }
       }
@@ -441,27 +456,14 @@
       }
     }
   ],
-  "branchPoints": [
+  "splices": [
     {
-      "id": "bp_f_y",
-      "layoutPosition": {
-        "x": 510,
-        "y": 0
-      }
-    },
-    {
-      "id": "bp_f_out",
-      "layoutPosition": {
-        "x": 930,
-        "y": 0
-      }
-    },
-    {
-      "id": "bp_f_fwd",
-      "layoutPosition": {
-        "x": 1440,
-        "y": 0
-      }
+      "id": "SvhsQx",
+      "schematicPosition": {
+        "x": 750,
+        "y": 210
+      },
+      "partId": "oUUgBZxSjz-XvnltX7ACJ"
     }
   ],
   "schematicNotes": [
@@ -492,7 +494,7 @@
         "x": 1740,
         "y": 480
       },
-      "text": "SHIELDS (docs/SHIELD-RULES.md; no connector shells, drains on pins). Every shielded cable is drawn as if it had a drain wire. Each sensor screen floats at the sensor. The two sensor screens go into ONE splice at the IN plug (sp_vrc_f_in_sh) and one drain wire runs from it to IN pin 3 (Daniel 2026-10-12; no sleeve, no second splice). The output cable drain lands on OUT pin 5 and runs on to inline pin 5 and the ECU shield ground. Inside the VRC the build joins IN pin 3 to OUT pin 5 by wire. One screen node, grounded once, at the ECU."
+      "text": "SHIELDS (docs/SHIELD-RULES.md; no connector shells, drains on pins). Each sensor screen floats at the sensor. Each sensor cable gets its own Raychem S200-3-WI-22-9 SolderSleeve (sized to the cable, DECISIONS S12); its 22 AWG lead is that cable's drain. DRAIN T-SPLICE (Daniel 2026-10-12): the FL drain is the one crimped (soldered) into IN pin 3; the FR drain is soldered onto it about 6 mm (0.25 in) behind the rear of the plug, where 6 mm of the FL drain's insulation is cut away - no combined pigtail, no two wires in one pin, drains stay 22 AWG. The output cable has a SolderSleeve at each end: S200-3-WI-22-9 (22 AWG lead) to OUT pin 5, S02-03-R (20 AWG lead) to inline pin 5, which runs on to the ECU shield ground. Inside the VRC the build joins IN pin 3 to OUT pin 5 by wire. One screen node, grounded once, at the ECU."
     },
     {
       "id": "n_iso",
@@ -515,6 +517,172 @@
       "text": "NO CONNECTOR OR CASE LANDINGS FOR THE SCREEN. Drains run by pin (IN 3, OUT 5) and join inside the box by wire - nothing bonds to the case and no connector shell carries the screen, so there is no bare-metal spot to mask before powder coat."
     }
   ],
+  "layoutNotes": [
+    {
+      "id": "ln_vrc_f",
+      "text": "VRC FRONT",
+      "color": "Orange",
+      "width": 210,
+      "layoutPosition": {
+        "x": 630,
+        "y": 30
+      }
+    }
+  ],
+  "wireParts": [],
+  "cableParts": [
+    {
+      "id": "cab_sh_2c",
+      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White",
+          "twistedWithNext": true,
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Green",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_4c",
+      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Orange",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k4",
+          "color": "Violet",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    }
+  ],
+  "spliceParts": [
+    {
+      "id": "oUUgBZxSjz-XvnltX7ACJ",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 26
+      },
+      "partNumber": "GENERIC SOLDER SLEEVE 26-14",
+      "description": "SPLICE, SOLDER SLEEVE",
+      "manufacturer": "generic"
+    }
+  ],
+  "branchPoints": [
+    {
+      "id": "bp_f_y",
+      "layoutPosition": {
+        "x": 510,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_f_out",
+      "layoutPosition": {
+        "x": 930,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_f_fwd",
+      "layoutPosition": {
+        "x": 1440,
+        "y": 0
+      }
+    }
+  ],
+  "contactParts": [
+    {
+      "id": "ct_dt16s_ni",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-16141",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
+      "contactColor": "Silver",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "ct_dt16p",
+      "type": "Crimp",
+      "gender": "Pin",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0460-202-1631",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "contactColor": "Gold",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "ct_m9_solder",
+      "partNumber": "(integral - 99 0414 00 05)",
+      "manufacturer": "binder",
+      "type": "Solder",
+      "gender": "Socket",
+      "description": "CONTACT, SOCKET, SOLDER CUP, INTEGRAL"
+    }
+  ],
+  "coveringParts": [],
   "connectorParts": [
     {
       "id": "cp_dt2s_ni",
@@ -610,119 +778,6 @@
       "configurations": []
     }
   ],
-  "contactParts": [
-    {
-      "id": "ct_dt16s_ni",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "partNumber": "0462-201-16141",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
-      "contactColor": "Silver",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "ct_dt16p",
-      "type": "Crimp",
-      "gender": "Pin",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "partNumber": "0460-202-1631",
-      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
-      "contactColor": "Gold",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "ct_m9_solder",
-      "partNumber": "(integral - 99 0414 00 05)",
-      "manufacturer": "binder",
-      "type": "Solder",
-      "gender": "Socket",
-      "description": "CONTACT, SOCKET, SOLDER CUP, INTEGRAL"
-    }
-  ],
-  "cableParts": [
-    {
-      "id": "cab_sh_2c",
-      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "White",
-          "twistedWithNext": true,
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Green",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_4c",
-      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k4",
-          "color": "Violet",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    }
-  ],
   "lockParts": [
     {
       "id": "lp_w2s",
@@ -743,69 +798,6 @@
       "partNumber": "114017",
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "manufacturer": "TE DEUTSCH"
-    }
-  ],
-  "splices": [
-    {
-      "id": "sp_vrc_f_in_sh",
-      "partId": "spp_solder_generic",
-      "locationId": "m9_vrc_f_in",
-      "layoutPosition": {
-        "x": 510,
-        "y": 0
-      },
-      "schematicPosition": {
-        "x": 1050,
-        "y": 180
-      }
-    }
-  ],
-  "wires": [
-    {
-      "id": "w_vrc_f_in_drain",
-      "color": "Shield",
-      "source": {
-        "id": "sp_vrc_f_in_sh",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "m9_vrc_f_in",
-        "handle": "c3"
-      },
-      "partId": "wp_20_shd"
-    }
-  ],
-  "layoutNotes": [
-    {
-      "id": "ln_vrc_f",
-      "text": "VRC FRONT",
-      "color": "Orange",
-      "width": 210,
-      "layoutPosition": {
-        "x": 630,
-        "y": 30
-      }
-    }
-  ],
-  "wireParts": [
-    {
-      "id": "wp_20_shd",
-      "partNumber": "EW-1C20-DRAIN",
-      "manufacturer": "generic",
-      "description": "WIRE, DRAIN, 20 AWG, TINNED COPPER, CLEAR ETFE SLEEVE",
-      "color": "Shield",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    }
-  ],
-  "spliceParts": [
-    {
-      "id": "spp_solder_generic",
-      "partNumber": "GENERIC SOLDER SPLICE",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "generic"
     }
   ]
 }
