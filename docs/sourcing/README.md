@@ -88,3 +88,16 @@ Daniel's call. Flagged, not decided.
 - A part number in a `.harness` file must exist here, or the BOM row must say why
   it is being bought new.
 - When a part is consumed by a build, note it - do not silently decrement.
+
+## Picked parts not on hand
+
+One line per pick; OWN = on the on-hand list, BUY = not. Prices are estimates with their source.
+
+| Part | Maker | What | Used on | OWN / BUY | Est. price | Why this maker | Source |
+|---|---|---|---|---|---|---|---|
+| `99 0414 00 05` | binder | M9 female cable connector, 5 contacts, unshielded, solder, IP67, 3.5-5.0 mm cable; max 0.25 mm2 / AWG 24 per contact, 3.0 A, 125 V | VRC IN + OUT plugs, `ST185-WheelSpeed-Front` / `-Rear` (DECISIONS S8) | BUY x4 | USD 19.32 each (Daniel's part record, harness.design ZZxQ) | Daniel's own pick in his example drawing (2026-10-12); nothing on hand fits; not a TE part | [binder 99 0414 00 05](https://www.binder-usa.com/us-en/products/subminiature-circular-connectors/m9-ip67/99-0414-00-05-m9-ip67-female-cable-connector-5-35-50-mm-unshielded-solder-ip67) |
+| `S200-2-W1-22-9` | TE Connectivity (Raychem) | SolderSleeve shield terminator, 2.67 mm expanded ID, pre-installed 22 AWG white lead (AS22759/91-22-9), 200 C | VRC IN sensor-screen splice, one per VRC harness | BUY x2 | not priced (TE / distributor quote) | TE (step 2) | [TE SolderSleeve shield terminators](https://www.te.com/en/products/wire-protection-and-management/interconnect-devices/soldersleeve-shield-terminators.html), [datasheet](https://datasheets.ibselectronics.com/S200-2-W1-22-9-TE-Connectivity---Raychem-datasheet-182760826.pdf) |
+
+Notes: Daniel's export spelled the sleeve `S200-2-WI-22-9`; TE lists it as `S200-2-W1-22-9`
+(digit one). The binder solder cups take AWG 24 at most while the VRC cables are 20 AWG -
+`docs/OPEN-ITEMS.md` row 76.

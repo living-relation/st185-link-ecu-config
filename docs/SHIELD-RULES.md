@@ -134,11 +134,13 @@ Front box → `sp_shield_a` → **A7**; rear box → `sp_shield_b` → **B17**.
 `docs/harness/interfaces.json`.
 
 The VRC and its panel sockets are not drawn. Each VRC harness is two separate pieces ending in
-two non-shielded 6-pin M8 cable plugs (DECISIONS S8, 2026-10-12): the IN plug takes both
-sensor cables, each drain on its own pin (L drain pin 3, R drain pin 6); the OUT plug's drain
-is pin 5. Inside the box the enclosure build jumpers the IN drain pins to the OUT drain pin
-(and the case) - drain continuity is by pin, never by connector shell (rule above).
-`interfaces.json` "enclosures" names the three drain pins each box joins (`<plug>.<pin>`). `audit_shields.py` traces on that one graph through
+two non-shielded 5-pin M9 plugs (binder `99 0414 00 05`; DECISIONS S8, Daniel's example
+2026-10-12): the two sensor cable screens join at one splice under a Raychem
+`S200-2-W1-22-9` SolderSleeve, whose 22 AWG lead is the single drain to IN pin 3 (the "splice
+together and terminate on a single pin" rule above); the output cable drain is OUT pin 5.
+Inside the box the build wires IN pin 3 to OUT pin 5 - drain continuity is by pin, never by a
+connector shell, and nothing bonds to the case. `interfaces.json` "enclosures" names the two
+drain pins each box joins (`<plug>.<pin>`). `audit_shields.py` traces on that one graph through
 the inline interfaces.
 
 Two isolation rules, both of which fail silently and read as a flaky sensor:

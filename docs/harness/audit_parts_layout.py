@@ -31,6 +31,8 @@ def refs(obj, out):
         for k, v in obj.items():
             if isinstance(v, str) and (k == "partId" or k.endswith("PartId")):
                 out.add(v)
+            elif k == "coveringIds" and isinstance(v, list):
+                out.update(x for x in v if isinstance(x, str))
             else:
                 refs(v, out)
     elif isinstance(obj, list):
