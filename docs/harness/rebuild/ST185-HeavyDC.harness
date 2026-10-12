@@ -20,7 +20,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "heavy DC +"
+          "signal": "heavy DC +",
+          "propagate": false
         }
       ],
       "partId": "cp_rl_red_eng"
@@ -62,7 +63,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "heavy DC -"
+          "signal": "heavy DC -",
+          "propagate": false
         }
       ],
       "partId": "cp_rl_blk_eng"
@@ -121,8 +123,9 @@
       },
       "layoutPosition": {
         "x": 4440,
-        "y": 340
-      }
+        "y": 330
+      },
+      "propagate": false
     },
     {
       "id": "br_h2_batt_neg",
@@ -134,8 +137,9 @@
       },
       "layoutPosition": {
         "x": 4560,
-        "y": 340
-      }
+        "y": 390
+      },
+      "propagate": false
     },
     {
       "id": "br_h3_radlok_pos",
@@ -148,7 +152,8 @@
       "layoutPosition": {
         "x": 3870,
         "y": 270
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_h6a_radlok_neg",
@@ -161,7 +166,8 @@
       "layoutPosition": {
         "x": 3870,
         "y": 180
-      }
+      },
+      "propagate": false
     },
     {
       "id": "t_trunk_pos",
@@ -176,7 +182,8 @@
         "x": 5790,
         "y": 240
       },
-      "partId": "tp_lug_m10_50"
+      "partId": "tp_lug_m10_50",
+      "propagate": false
     },
     {
       "id": "t_trunk_neg",
@@ -191,7 +198,8 @@
         "x": 5910,
         "y": 150
       },
-      "partId": "tp_lug_m10_50"
+      "partId": "tp_lug_m10_50",
+      "propagate": false
     },
     {
       "id": "t_starter_b",
@@ -206,7 +214,8 @@
         "x": 2310,
         "y": -240
       },
-      "partId": "tp_lug_m10_50"
+      "partId": "tp_lug_m10_50",
+      "propagate": false
     },
     {
       "id": "t_starter_b_2",
@@ -221,7 +230,8 @@
         "x": 2550,
         "y": -180
       },
-      "partId": "tp_lug_m10_2"
+      "partId": "tp_lug_m10_2",
+      "propagate": false
     },
     {
       "id": "t_starter_b_3",
@@ -236,7 +246,8 @@
         "x": 2670,
         "y": -240
       },
-      "partId": "tp_lug_m10_2"
+      "partId": "tp_lug_m10_2",
+      "propagate": false
     },
     {
       "id": "t_alt_b",
@@ -251,7 +262,8 @@
         "x": 1620,
         "y": -150
       },
-      "partId": "tp_lug_m8_2"
+      "partId": "tp_lug_m8_2",
+      "propagate": false
     },
     {
       "id": "t_eng_block",
@@ -266,7 +278,8 @@
         "x": 2070,
         "y": -90
       },
-      "partId": "tp_lug_m10_50"
+      "partId": "tp_lug_m10_50",
+      "propagate": false
     }
   ],
   "wires": [
@@ -406,28 +419,28 @@
       "id": "bp_hdc_batt",
       "layoutPosition": {
         "x": 5700,
-        "y": 200
+        "y": 210
       }
     },
     {
       "id": "bp_hdc_pdb_h",
       "layoutPosition": {
         "x": 4500,
-        "y": 220
+        "y": 210
       }
     },
     {
       "id": "bp_hdc_fw",
       "layoutPosition": {
         "x": 3300,
-        "y": 220
+        "y": 210
       }
     },
     {
       "id": "bp_hdc_str",
       "layoutPosition": {
         "x": 2400,
-        "y": -200
+        "y": -210
       }
     }
   ],
@@ -604,7 +617,7 @@
       "text": "HEAVY DC: trunk battery -> cabin PDB (glove box, ST185-EngineRoom-C) -> RADLOK 5.7 mm through the firewall -> starter B+. 160 A alt B+ joins the starter post and does not recross; its protection is NOT at the starter (see n_alt_prot). Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. 2 AWG is OK for cranking; 160 A continuous charge may need 1/0 + 8 mm RADLOK - see the table. Moved out of ST185-EngineRoom-C into its own file 2026-10-11 (harness-reconcile pass, Section 40.1 step 4) - the cabin PDB (and everything it also feeds: cabin fuse block, glove-box body block, OEM hot, AM1/AM2) stays on EngineRoom-C; only the H1-H8 heavy-DC chain moved.",
       "width": 390,
       "schematicPosition": {
-        "x": 1980,
+        "x": 1710,
         "y": 0
       }
     },
@@ -613,8 +626,8 @@
       "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. Size for the 160 A alternator (plan 6.20: 175 A). Battery is AGM. The trunk Longacre 4-terminal kill switch cuts the battery positive and, on its second pair, the alternator IG feed.",
       "width": 390,
       "schematicPosition": {
-        "x": 1980,
-        "y": 180
+        "x": 1710,
+        "y": 330
       }
     },
     {
@@ -622,8 +635,8 @@
       "text": "FIREWALL RADLOK",
       "width": 270,
       "schematicPosition": {
-        "x": 3300,
-        "y": 0
+        "x": 1710,
+        "y": 570
       },
       "color": "Orange"
     },
@@ -631,8 +644,8 @@
       "id": "n_rev4",
       "text": "ROUTE 1 REV 4 (Dan's mark-up, 2026-10-10): battery box moved to the passenger-side rear corner of the trunk (H1/H2 rerouted from there - bundle lengths above are inherited estimates from the prior ST185-EngineRoom-C drawing, not re-measured against the new spot - verify on the car). Starter moved to Dan's spot (lower-middle of the engine, p.29 leaders S2/S3). H4 (RADLOK+ -> starter) and H5 (alt B+ -> starter) now run as one bundle along the firewall and down to the starter (Dan: \"run 1 and 3 together\") - drawn as separate conductors here (H4 via RADLOK/rl_pos_eng, H5 via t_alt_b/w_alt) since harness.design has no native \"co-routed, not bundled-as-one-cable\" primitive; the physical bundling is a routing note, not a schema change. Alternator moved to the rear of the engine, RH side, under bulkheads A/B (MR2-style, rev 3 Dan mark-up 2026-10-04) - only t_alt_b (G1/B+ ring) is drawn here; the G2 3-pin plug (IG/L/S small wires) is NOT this file's concern - Route 1's own ALT-S row sends those through spare size-16 positions on the B half of the DRB102 bulkhead to ST185-B-engine (bay) and ST185-B-cabin / ST185-CabinPower (cabin), not drawn yet anywhere (docs/OPEN-ITEMS.md row 42, provisional cavity map).",
       "schematicPosition": {
-        "x": 1980,
-        "y": 480
+        "x": 1710,
+        "y": 690
       },
       "width": 390
     }

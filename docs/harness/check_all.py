@@ -28,6 +28,8 @@ What it runs, in order - every one in HARD is a hard gate:
   audit_parts_layout.py    no unused parts in any parts list; no layout join between separate
                            harnesses (Daniel 2026-10-12)
   check_harnesslib.py      every part a drawing uses is in min/ST185.harnesslib and equal to it
+  audit_drawing_rules.py   signals (one propagating per net, terminals never, no empty wired
+                           cavity), 30-unit grid, bundle lengths, left-to-right flow, no overlaps
   buylist.py --check       buy list is current, and the shared-connector consistency check
   buildlist.py --check     per-wire build list is current
   make_min.py --check      the upload copies in min/ are current
@@ -59,7 +61,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_shields.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
-        ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["buylist.py", "--check"],
+        ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["buylist.py", "--check"],
         ["buildlist.py", "--check"], ["make_min.py", "--check"]]
 SOFT = [["check_route_drawings.py"]]  # 2026-10-11: routes tracked; 1 finding (Route 1 Fig. 4, an EWD sheet with no top view)
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy

@@ -199,7 +199,8 @@
       "layoutPosition": {
         "x": 1800,
         "y": -270
-      }
+      },
+      "propagate": false
     },
     {
       "id": "fl_cruise_stalk_c3",
@@ -213,7 +214,8 @@
       "layoutPosition": {
         "x": 1800,
         "y": -210
-      }
+      },
+      "propagate": false
     },
     {
       "id": "fl_cruise_stalk_c4",
@@ -227,7 +229,8 @@
       "layoutPosition": {
         "x": 1800,
         "y": -150
-      }
+      },
+      "propagate": false
     },
     {
       "id": "fl_cruise_stalk_c5",
@@ -241,7 +244,8 @@
       "layoutPosition": {
         "x": 1800,
         "y": -90
-      }
+      },
+      "propagate": false
     },
     {
       "id": "fl_clutch_sw_c1",
@@ -255,7 +259,8 @@
       "layoutPosition": {
         "x": 1200,
         "y": -180
-      }
+      },
+      "propagate": false
     },
     {
       "id": "fl_brake_sw_c1",
@@ -269,7 +274,8 @@
       "layoutPosition": {
         "x": 1080,
         "y": -270
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_cru_5v",
@@ -283,7 +289,8 @@
       "schematicPosition": {
         "x": 60,
         "y": 60
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_csb12",
@@ -292,12 +299,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 60,
-        "y": 60
+        "y": 180
       },
       "schematicPosition": {
         "x": 60,
-        "y": 60
-      }
+        "y": 180
+      },
+      "propagate": false
     },
     {
       "id": "br_w_csbg",
@@ -306,12 +314,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 60,
-        "y": 60
+        "y": 120
       },
       "schematicPosition": {
         "x": 60,
-        "y": 60
-      }
+        "y": 120
+      },
+      "propagate": false
     },
     {
       "id": "br_w_sw7_c",
@@ -325,7 +334,8 @@
       "schematicPosition": {
         "x": 1380,
         "y": -60
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_oil_k",
@@ -334,12 +344,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2460,
-        "y": 90
+        "y": 210
       },
       "schematicPosition": {
         "x": 1380,
-        "y": -60
-      }
+        "y": 1050
+      },
+      "propagate": false
     },
     {
       "id": "br_wc_h_csb",
@@ -348,12 +359,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2460,
-        "y": 90
+        "y": 330
       },
       "schematicPosition": {
         "x": 1380,
-        "y": -60
-      }
+        "y": 1170
+      },
+      "propagate": false
     },
     {
       "id": "br_wc_l_csb",
@@ -362,12 +374,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2460,
-        "y": 90
+        "y": 390
       },
       "schematicPosition": {
         "x": 1380,
-        "y": -60
-      }
+        "y": 1230
+      },
+      "propagate": false
     },
     {
       "id": "br_cab_cancsb_sh",
@@ -376,12 +389,13 @@
       "width": 390,
       "layoutPosition": {
         "x": 2460,
-        "y": 90
+        "y": 270
       },
       "schematicPosition": {
         "x": 1380,
-        "y": -60
-      }
+        "y": 1110
+      },
+      "propagate": false
     }
   ],
   "splices": [
@@ -1072,16 +1086,16 @@
     {
       "id": "n_csb3",
       "schematicPosition": {
-        "x": 0,
-        "y": -300
+        "x": 1890,
+        "y": -60
       },
       "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse input from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
     },
     {
       "id": "n_cavity_notes",
       "schematicPosition": {
-        "x": 4200,
-        "y": 0
+        "x": 1890,
+        "y": 210
       },
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (broken off)"
     }

@@ -15,7 +15,8 @@
         "x": 1080,
         "y": -390
       },
-      "partId": "tp_ring_m6_22_16"
+      "partId": "tp_ring_m6_22_16",
+      "propagate": false
     },
     {
       "id": "fl_cl_c11_c2",
@@ -29,7 +30,8 @@
       "layoutPosition": {
         "x": 960,
         "y": -150
-      }
+      },
+      "propagate": false
     },
     {
       "id": "fl_cl_c11_c11",
@@ -43,7 +45,8 @@
       "layoutPosition": {
         "x": 960,
         "y": -90
-      }
+      },
+      "propagate": false
     },
     {
       "id": "fl_cl_c11_c12",
@@ -57,7 +60,8 @@
       "layoutPosition": {
         "x": 960,
         "y": -30
-      }
+      },
+      "propagate": false
     },
     {
       "id": "fl_cl_c12_c1",
@@ -71,7 +75,8 @@
       "layoutPosition": {
         "x": 960,
         "y": -330
-      }
+      },
+      "propagate": false
     },
     {
       "id": "fl_cl_c12_c8",
@@ -85,7 +90,8 @@
       "layoutPosition": {
         "x": 960,
         "y": -270
-      }
+      },
+      "propagate": false
     },
     {
       "id": "fl_cl_c12_c9",
@@ -99,7 +105,8 @@
       "layoutPosition": {
         "x": 960,
         "y": -210
-      }
+      },
+      "propagate": false
     },
     {
       "id": "br_w_oil_k",
@@ -113,7 +120,8 @@
       "schematicPosition": {
         "x": 720,
         "y": 150
-      }
+      },
+      "propagate": false
     }
   ],
   "splices": [
@@ -570,7 +578,7 @@
       "text": "ST185 cluster LED loom. A separate circuit from the cluster itself - warning and status indicators only. Migrated 2026-09-19 from docs/electrical/CLUSTER-LED-DIAGRAM.html, which was the only record of these connections.",
       "width": 390,
       "schematicPosition": {
-        "x": 1200,
+        "x": 1230,
         "y": 0
       }
     },
@@ -579,8 +587,8 @@
       "text": "Stripe colours live in the cavity text - the schema colour list has no striped values. C11-2 G-B, C11-11 G-Y, C11-12 R-L, C12-1 R-G, C12-8 Y, C12-9 B-O.",
       "width": 390,
       "schematicPosition": {
-        "x": 1200,
-        "y": 150
+        "x": 1230,
+        "y": 180
       }
     },
     {
@@ -588,8 +596,8 @@
       "text": "Charge LED is a series path: IG +12 (C12-9) to LED to alternator L (C12-8). ON when the regulator grounds L (not charging), OFF when L sits near battery volts. Alternator S is a battery sense line, NOT a lamp - do not wire it here.",
       "width": 390,
       "schematicPosition": {
-        "x": 1200,
-        "y": 270
+        "x": 1230,
+        "y": 330
       }
     },
     {
@@ -597,8 +605,8 @@
       "text": "Oil LED is CAN-driven, no discrete sense wire. Link sets Low Oil Press 2 on 0x3F1 bit4; PCLink packs the CSB low-side on 0x643. The CSB sinks the cathode; the anode goes to +12 IG.",
       "width": 390,
       "schematicPosition": {
-        "x": 1200,
-        "y": 420
+        "x": 1230,
+        "y": 510
       }
     },
     {
@@ -606,32 +614,32 @@
       "text": "ASSUMPTIONS (2026-09-25, closes the old open items) 1) LED common return: sp_led_gnd -> t_led_gnd on OEM ground point ID, left kick panel (M6 stud assumed). 2) +12V IG for the LED anodes: one tap off C12-9 (IG +12, B-O) to sp_led_12v, which feeds the charge, park-brake and oil LEDs. 3) Current limiting is on the LED board; the loom carries no resistors. Oil LED sinks on CSB3 L4 (plan 6.48 L-channel table). Park brake grounds through the OEM P1 / B2 path, which is why its cathode goes to C12-1 and not to the common return.",
       "width": 390,
       "schematicPosition": {
-        "x": 1200,
-        "y": 570
+        "x": 1230,
+        "y": 690
       }
     },
     {
       "id": "note_oem_filters",
       "text": "OEM FILTER PARTS CARRIED OVER (EWD 1990 ST185)\n- Charging p.52 (1993 Celica EWD Fig. 1/15 agrees): the C12 charge lamp sits\n  between pin 9 (IG, B-O) and pin 8 (alt L, Y) with a diode in series. The\n  IC regulator is powered from its own IG lead (B-R via J3), so the lamp is an\n  indicator the regulator sinks through L, not the excitation feed.\n  The LED alone drives it; no excite resistor (removed 2026-09-28, Daniel).\n  First-start check: docs/procedures/charge-led-test.html.\n- J/B No.1 p.19 holds a 3-terminal diode (common cathode on pin 2). It stays\n  inside the block we keep - do not inject power in a way that bypasses it.\n- J/B No.2 p.21, J/B No.3 p.22, Power source p.46: no diodes, no capacitors.\n- Starting p.48: the diode in the S2 start injector time switch is deleted\n  with the cold-start injector.",
       "schematicPosition": {
-        "x": 1200,
-        "y": 870
+        "x": 1230,
+        "y": 960
       }
     },
     {
       "id": "n_cavity_notes",
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nt_led_gnd: LED common return - OEM ground point ID, left kick panel (assumed)",
       "schematicPosition": {
-        "x": 1200,
-        "y": 1380
+        "x": 1230,
+        "y": 1500
       }
     },
     {
       "id": "n_chg_test",
       "width": 390,
       "schematicPosition": {
-        "x": 660,
-        "y": 240
+        "x": 1230,
+        "y": 1680
       },
       "text": "CHARGE LED (d_chg) - FIRST-START CHECK: run the LED test in docs/procedures/charge-led-test.html (st185-link-ecu-config repo). IF ANY STEP FAILS, fit the fallback resistor in parallel with this LED: 56 ohm, 5 W, wirewound, one end to C12 pin 9 (IG +12, BLK-ORG), the other to C12 pin 8 (alternator L, YEL). With the key on and the engine stopped it carries about 0.25 A and dissipates up to about 3.5 W, so mount it clear of the loom on a heat-safe surface. With the alternator charging it carries almost nothing."
     }
