@@ -14,7 +14,8 @@
         "id": "m9_vrc_r_in",
         "handle": "c3"
       },
-      "color": "Gray",
+      "color": "Black",
+      "stripeColor": "Blue",
       "partId": "m16_20_06"
     }
   ],

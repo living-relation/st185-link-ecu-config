@@ -20,6 +20,8 @@ RULE 2 - A BULKHEAD CAVITY HAS ONE NAME ON BOTH HALVES.
 """
 import json, glob, os, sys, collections
 
+import model
+
 R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
 SHIELD_PINS = {("ecu_a", "a7"), ("ecu_b", "b17")}
 PAIRS = {"bh_a_fw": "bh_a_eng", "bh_b_fw": "bh_b_eng"}
@@ -31,10 +33,7 @@ docs = {os.path.basename(f)[6:-8]: json.load(open(f, encoding="utf-8"))
 def conductors(d):
     """(wire, is_screen) for everything that carries current or signal."""
     for w in d.get("wires", []):
-        tail = w["id"].rsplit("_", 1)[-1]
-        screen = (w.get("color") == "Shield" or tail in ("sh", "shield", "drain")
-                  or w["id"].startswith("w_drain"))
-        yield w, screen
+        yield w, model.is_drain(w)
     for cb in d.get("cables", []):
         for co in cb.get("cores", []):
             yield co, False

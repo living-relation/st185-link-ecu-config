@@ -14,8 +14,14 @@ Each rule here cost a failed set_document_json at least once:
   - a cable's core count must match its CablePart's core count
   - every partId / contactPartId / cavityPlugPartId must resolve
   - every wire end must point at a node and a cavity that exist
+  - drains are the drain part M22759/16-20-06, black/blue, and that colour is used
+    by nothing else (Daniel 2026-10-12, docs/SHIELD-RULES.md)
 """
 import json, os, sys
+
+import model
+
+DRAIN_COLOUR = ("Black", "Blue")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "rebuild")
@@ -162,6 +168,14 @@ def check(fn):
             bad.append("duplicate wire id %s" % wid)
         seen.add(wid)
         check_conductor("wire", wid, w)
+        drain = w.get("partId") == model.DRAIN_PART
+        black_blue = (w.get("color"), w.get("stripeColor")) == DRAIN_COLOUR
+        if drain and not black_blue:
+            bad.append("drain wire %s is %s/%s, must be Black/Blue"
+                       % (wid, w.get("color"), w.get("stripeColor")))
+        if black_blue and not drain:
+            bad.append("wire %s is Black/Blue but not the drain part %s - that colour is "
+                       "drains only" % (wid, model.DRAIN_PART))
 
     for cb in d.get("cables", []):
         cid = cb.get("id")
