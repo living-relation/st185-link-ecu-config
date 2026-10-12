@@ -72,7 +72,7 @@ for ep in reg.get("endpoints", []):
     d = ds.get(ep["harness"]) or {}
     if ep.get("connector"):
         c = next((x for x in d.get("connectors", []) if x["id"] == ep["connector"]), None)
-        cavs = {cv["id"] for cv in (c or {}).get("cavities", [])}
+        cavs = {cv["id"] for cv in (c or {}).get("cavities", [])} | {((c or {}).get("shell") or {}).get("id")}
         if not c or not c.get("partId"):
             bad.append("O6 endpoint %s plug %s is not drawn on %s with a part" % (ep["id"], ep["connector"], ep["harness"]))
         elif not set(ep["pins"].values()) <= cavs:

@@ -123,9 +123,12 @@ Front box → `sp_shield_a` → **A7**; rear box → `sp_shield_b` → **B17**.
 `audit_shields.py` R6 reads the both-end VRC screens from `shieldBothEndsOk` in
 `docs/harness/interfaces.json`.
 
-The VRC and its M8 connectors are not drawn (harness redesign, 2026-09-27). Each lead
-ends at a registered VRC endpoint; `interfaces.json` "enclosures" names the IN and OUT
-screen leads each case joins. `audit_shields.py` traces on that one graph through
+The VRC and its panel sockets are not drawn. Each VRC harness ends in two M8 cable plugs
+(DECISIONS S8, 2026-10-12): the IN plug takes both sensor cables, and their two drains land
+together on its metal shell (the single landing above); the OUT plug's shell takes the output
+screen. Both shells bond to the VRC case through the panel sockets - the one place on the car
+with metal-shell connectors. `interfaces.json` "enclosures" names the two shells each case
+joins (`<plug>.shell`). `audit_shields.py` traces on that one graph through
 the inline interfaces.
 
 Two isolation rules, both of which fail silently and read as a flaky sensor:

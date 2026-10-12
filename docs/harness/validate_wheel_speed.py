@@ -19,6 +19,8 @@ Checked per side against interfaces.json "wheelSpeed":
       conductor to the declared ECU pin or splice (on the spur harness or a harness the
       half is alsoDrawnOn - the front spur's FR core belongs to the B cabin loom)
   W7  once both sides are drawn, the old combined ST185-WheelSpeed drawing is gone
+  W8  exactly two VRC M8 cable plugs per side, same part (Daniel 2026-10-12): one IN plug
+      shared by both sensor endpoints (both legs land on it) and one OUT plug
 
 Exit 1 on any finding.
 """
@@ -104,8 +106,15 @@ for side, s in sorted(spec.items()):
             if legs != {ep["connector"]}:
                 bad.append("W3 %s: %s layout leg must run straight to %s, runs to %s"
                            % (side, sensor, ep["connector"], sorted(legs)))
-    out = (eps.get(s["output"]) or {}).get("terminals", {})
-    out_ids = {v for k, v in out.items() if k != "screen"}
+    oep = eps.get(s["output"]) or {}
+    out = model.endpoint_ends(oep) if oep else {}
+    out_ids = {v[0] for k, v in out.items() if k != "screen"}
+    in_plugs = {(eps.get(e) or {}).get("connector") for e in s["sensors"].values()}
+    plugs = [x for x in in_plugs | {oep.get("connector")} if x]
+    pparts = {(conns.get(x) or {}).get("partId") for x in plugs}
+    if len(in_plugs) != 1 or None in in_plugs or not oep.get("connector") or len(plugs) != 2             or len(pparts) != 1:
+        bad.append("W8 %s: want one shared IN plug and one OUT plug, same part; have IN %s, OUT %s, parts %s"
+                   % (side, sorted(x or "-" for x in in_plugs), oep.get("connector"), sorted(x or "-" for x in pparts)))
     for oc in s["outputCables"]:
         cb = cables.get(oc["cable"])
         if not cb:
@@ -122,7 +131,7 @@ for side, s in sorted(spec.items()):
         got = {end(sh.get(k)) for k in ("source", "target") if sh.get(k)}
         want_sh = {(src["connector"], oc["drainPin"])}
         if oc.get("screenFromEnclosure"):
-            want_sh.add((out["screen"], "Terminal"))
+            want_sh.add(out["screen"])
         if got != want_sh:
             bad.append("W4 %s: %s screen lands on %s, want %s" % (side, cb["id"], sorted(got), sorted(want_sh)))
     for h in (src, rcv):

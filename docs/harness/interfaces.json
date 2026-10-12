@@ -159,74 +159,76 @@
       "id": "VRC_REAR_IN_L",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Rear",
-      "device": "rear VR conditioner, IN_L input (RL sensor); harness side ends in the M8 cable plug m8_vrc_r_inl (Daniel 2026-10-12)",
-      "connector": "m8_vrc_r_inl",
+      "device": "rear VR conditioner, IN_L input (RL sensor); harness side ends in the M8 cable plug m8_vrc_r_in (Daniel 2026-10-12)",
+      "connector": "m8_vrc_r_in",
       "pins": {
         "+": "c1",
         "-": "c2",
-        "screen": "c3"
+        "screen": "shell"
       }
     },
     {
       "id": "VRC_REAR_IN_R",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Rear",
-      "device": "rear VR conditioner, IN_R input (RR sensor); harness side ends in the M8 cable plug m8_vrc_r_inr (Daniel 2026-10-12)",
-      "connector": "m8_vrc_r_inr",
+      "device": "rear VR conditioner, IN_R input (RR sensor); harness side ends in the M8 cable plug m8_vrc_r_in (Daniel 2026-10-12)",
+      "connector": "m8_vrc_r_in",
       "pins": {
-        "+": "c1",
-        "-": "c2",
-        "screen": "c3"
+        "+": "c3",
+        "-": "c4",
+        "screen": "shell"
       }
     },
     {
       "id": "VRC_REAR_OUT",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Rear",
-      "device": "rear VR conditioner, output",
-      "terminals": {
-        "+5V": "ep_vrc_r_out_5v",
-        "Gnd": "ep_vrc_r_out_gnd",
-        "RL": "ep_vrc_r_out_l",
-        "RR": "ep_vrc_r_out_r",
-        "screen": "ep_vrc_r_out_sh"
+      "device": "rear VR conditioner, output; harness side ends in the M8 cable plug m8_vrc_r_out (Daniel 2026-10-12)",
+      "connector": "m8_vrc_r_out",
+      "pins": {
+        "+5V": "c1",
+        "Gnd": "c2",
+        "RL": "c3",
+        "RR": "c4",
+        "screen": "shell"
       }
     },
     {
       "id": "VRC_FRONT_IN_L",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Front",
-      "device": "front VR conditioner, IN_L input (FL sensor); harness side ends in the M8 cable plug m8_vrc_f_inl (Daniel 2026-10-12)",
-      "connector": "m8_vrc_f_inl",
+      "device": "front VR conditioner, IN_L input (FL sensor); harness side ends in the M8 cable plug m8_vrc_f_in (Daniel 2026-10-12)",
+      "connector": "m8_vrc_f_in",
       "pins": {
         "+": "c1",
         "-": "c2",
-        "screen": "c3"
+        "screen": "shell"
       }
     },
     {
       "id": "VRC_FRONT_IN_R",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Front",
-      "device": "front VR conditioner, IN_R input (FR sensor); harness side ends in the M8 cable plug m8_vrc_f_inr (Daniel 2026-10-12)",
-      "connector": "m8_vrc_f_inr",
+      "device": "front VR conditioner, IN_R input (FR sensor); harness side ends in the M8 cable plug m8_vrc_f_in (Daniel 2026-10-12)",
+      "connector": "m8_vrc_f_in",
       "pins": {
-        "+": "c1",
-        "-": "c2",
-        "screen": "c3"
+        "+": "c3",
+        "-": "c4",
+        "screen": "shell"
       }
     },
     {
       "id": "VRC_FRONT_OUT",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Front",
-      "device": "front VR conditioner, output",
-      "terminals": {
-        "+5V": "ep_vrc_f_out_5v",
-        "Gnd": "ep_vrc_f_out_gnd",
-        "FL": "ep_vrc_f_out_l",
-        "FR": "ep_vrc_f_out_r",
-        "screen": "ep_vrc_f_out_sh"
+      "device": "front VR conditioner, output; harness side ends in the M8 cable plug m8_vrc_f_out (Daniel 2026-10-12)",
+      "connector": "m8_vrc_f_out",
+      "pins": {
+        "+5V": "c1",
+        "Gnd": "c2",
+        "FL": "c3",
+        "FR": "c4",
+        "screen": "shell"
       }
     }
   ],
@@ -235,9 +237,8 @@
       "id": "VRC_REAR",
       "harness": "WheelSpeed-Rear",
       "screen": [
-        "m8_vrc_r_inl.c3",
-        "m8_vrc_r_inr.c3",
-        "ep_vrc_r_out_sh"
+        "m8_vrc_r_in.shell",
+        "m8_vrc_r_out.shell"
       ],
       "note": "Drain connected on both the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (SHIELD-RULES 6.30). Isolated from chassis; grounded at the ECU."
     },
@@ -245,9 +246,8 @@
       "id": "VRC_FRONT",
       "harness": "WheelSpeed-Front",
       "screen": [
-        "m8_vrc_f_inl.c3",
-        "m8_vrc_f_inr.c3",
-        "ep_vrc_f_out_sh"
+        "m8_vrc_f_in.shell",
+        "m8_vrc_f_out.shell"
       ],
       "note": "Drain connected on both the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (SHIELD-RULES 6.30). Isolated from chassis; grounded at the ECU."
     }
