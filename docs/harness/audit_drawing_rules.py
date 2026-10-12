@@ -14,7 +14,8 @@ splices - a connector never joins its own cavities.
       it inherits that one name (the docs: define a signal once where it originates, set one
       explicitly only where a cavity needs a different label)
   G1  every schematicPosition / layoutPosition / layout point is on the 30-unit grid
-  G2  every bundle segment has a length
+  G2  a bundle segment without a length is listed (not a failure; Daniel's own drawing leaves the
+      sensor legs unmeasured until the car is measured, 2026-10-12)
   L1  the LAYOUT reads left to right along the physical route (Daniel 2026-10-12): in every layout
       piece, walking away from one end (the leftmost or the rightmost node), x never doubles back -
       a branch may drop straight up or down but never runs back past its parent. The SCHEMATIC has no
@@ -141,6 +142,9 @@ def layout_backtracks(g, p, root, sign):
     return bad, prev
 
 
+todo_len = []
+
+
 def check(loom, d):
     bad = []
     lab = labels(d)
@@ -168,7 +172,7 @@ def check(loom, d):
                     bad.append("G1 %s: %s %s %s (%s, %s) is off the 30-unit grid" % (loom, k, x["id"], pk, q["x"], q["y"]))
     for b in d.get("bundles", []):
         if not (b.get("length") or {}).get("value"):
-            bad.append("G2 %s: bundle %s has no length" % (loom, b["id"]))
+            todo_len.append("%s: bundle %s" % (loom, b["id"]))
         for lp in b.get("layoutPoints", []):
             q = lp.get("layoutPosition") or {}
             if q.get("x", 0) % GRID or q.get("y", 0) % GRID:

@@ -254,22 +254,6 @@
   ],
   "connectorParts": [
     {
-      "id": "cp_cluster",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-combination-meter.png",
-        "source": "url"
-      },
-      "partNumber": "(OEM ST185 combination meter connector)",
-      "description": "CONNECTOR, OEM, COMBINATION METER",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ]
-    },
-    {
       "id": "cp_oem",
       "image": {
         "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-junction-block.png",
@@ -282,70 +266,6 @@
         {
           "id": "cfg",
           "contactPartId": "ct_generic_skt"
-        }
-      ]
-    },
-    {
-      "id": "cp_oem_block_2",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-block-2way.png",
-        "source": "url"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(OEM block, 2-way)",
-      "description": "CONNECTOR, OEM, 2 POS",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_oem_block_5",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-block-5way.png",
-        "source": "url"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(OEM block, 5-way)",
-      "description": "CONNECTOR, OEM, 5 POS",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 5
-    },
-    {
-      "id": "cp_xref",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cross-reference.png",
-        "source": "url"
-      },
-      "partNumber": "(cross-reference - no part)",
-      "description": "REFERENCE, CROSS-DRAWING, NO PART",
-      "manufacturer": "n/a"
-    },
-    {
-      "id": "cp_pmu",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/glovebox-fuse-relay-block.png",
-        "source": "url"
-      },
-      "partNumber": "(glove-box body block - 2nd fuse block + relays)",
-      "description": "ASSEMBLY, FUSE AND RELAY BLOCK, 12-16 WAY, GLOVE BOX",
-      "manufacturer": "assembly",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_lug_stud"
         }
       ]
     },
@@ -387,25 +307,6 @@
         }
       ],
       "numberOfCavities": 2
-    },
-    {
-      "id": "cp_acamp",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-ac-amplifier.png",
-        "source": "url"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(unspecified - OEM ST185 AC amplifier)",
-      "description": "CONNECTOR, OEM, A/C AMPLIFIER, 7 POS",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 7
     },
     {
       "id": "cp_mta",
@@ -480,26 +381,6 @@
       "numberOfCavities": 4
     },
     {
-      "id": "cp_relay5",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/119/040/456/1-1904045-6-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/119/040/456/1-1904045-6-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "1-1904045-6",
-      "description": "SOCKET, RELAY, MICRO ISO, 5 POS, WITH MOUNTING FLAP (V23333-Z0001-B046)",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_relay_blade"
-        }
-      ],
-      "numberOfCavities": 5
-    },
-    {
       "id": "4tMtF6fi0qAjcEn_edToC",
       "color": "Violet",
       "image": {
@@ -541,47 +422,6 @@
       "numberOfCavities": 3
     },
     {
-      "id": "cp_mp150_4",
-      "color": "Violet",
-      "image": {
-        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/12162144982_SPL.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/12162144982_SPL.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "12162144",
-      "description": "CONNECTOR, METRI-PACK 150.2, 4 POS",
-      "manufacturer": "Aptiv",
-      "configurations": [
-        {
-          "id": "cfg"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "d-RfkpTVw0Zo5AW75XVom",
-      "color": "Violet",
-      "image": {
-        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/12162694982_SPL.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/12162694982_SPL.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "12162694",
-      "description": "CONNECTOR, METRI-PACK 280, 2 POS, FUEL-SAFE",
-      "manufacturer": "Aptiv (Delphi)",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "V2lkedlnwhzCvVixqP-Kf"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
       "id": "84OztkWK4fJlwEcZMMyKM",
       "color": "Violet",
       "image": {
@@ -599,21 +439,6 @@
           "id": "cfg"
         }
       ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "cp_gt150_m",
-      "color": "Violet",
-      "image": {
-        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/13519049982_SPL.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/13519049982_SPL.jpg"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "13519049",
-      "description": "CONNECTOR, GT 150, 3 POS, SEALED, MALE",
-      "manufacturer": "Aptiv",
       "numberOfCavities": 3
     },
     {
@@ -649,23 +474,6 @@
         }
       ],
       "numberOfCavities": 2
-    },
-    {
-      "id": "cp_fusebox",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr2141029-1.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th2141029-1.jpg"
-      },
-      "partNumber": "2141029-1",
-      "description": "FUSE HOLDER, MODULE, MFINITY, 16 POS MINI FUSE, HARD WIRED",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_fb_25"
-        }
-      ]
     },
     {
       "id": "sgv2Fm_H2lTBA0jR-iPA3",
@@ -741,188 +549,6 @@
       "numberOfCavities": 5
     },
     {
-      "id": "cp_ss34b_hdr",
-      "color": "Blue",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/064/372/881/6437288-1-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/064/372/881/6437288-1-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "6437288-1",
-      "description": "CONNECTOR, HEADER, SUPERSEAL 1.0, 34 POS, CODE 1",
-      "manufacturer": "TE Connectivity",
-      "numberOfCavities": 34
-    },
-    {
-      "id": "cp_ss34a_hdr",
-      "url": "https://www.te.com/content/dam/te-com/documents/industrial-and-commercial-transportation/global/ict-superseal-cat-a4-1-1773985-2-en.pdf",
-      "color": "Blue",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/064/372/882/6437288-2-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/064/372/882/6437288-2-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "6437288-2",
-      "description": "CONNECTOR, HEADER, SUPERSEAL 1.0, 34 POS, CODE 2",
-      "manufacturer": "TE Connectivity",
-      "numberOfCavities": 34
-    },
-    {
-      "id": "cp_rly_f7_d",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
-      },
-      "partNumber": "7-1904094-9",
-      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X439, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 91 OHM, DIODE SUPPRESSED, CATHODE ON 86",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "mountPartId": "mt_vcf7",
-          "contactPartId": "ct_f7_load"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "sKVLIUPYlZdotnoPO3WEA",
-      "color": "White",
-      "image": {
-        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790017827888.png",
-        "source": "cloud"
-      },
-      "hasShell": false,
-      "partNumber": "76 0231 0011 00604-0200",
-      "description": "CONN, FRONT PANEL MNT, M12-A, RECP, 4 PIN, IP68, WIRED",
-      "manufacturer": "Binder",
-      "numberOfCavities": 4
-    },
-    {
-      "id": "hAoEOpgrxfMXeYIlvg8St",
-      "color": "White",
-      "image": {
-        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014368650.jpg",
-        "source": "cloud"
-      },
-      "gender": "Female",
-      "hasShell": true,
-      "partNumber": "86 6618 1121 00004",
-      "description": "CONN, REAR PANEL MNT, M8 PLUG, 4 SKT, IP67, SHIELDABLE",
-      "manufacturer": "BINDER",
-      "numberOfCavities": 4
-    },
-    {
-      "id": "TL4Hrs-zWaMxiKaxSocT8",
-      "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-      "color": "Green",
-      "image": {
-        "url": "https://www.mouser.com/images/souriau/lrg/8TSA.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/souriau/sm/8TSA.jpg"
-      },
-      "gender": "Female",
-      "partNumber": "8STA0-14-35SA",
-      "description": "CONNECTOR, RECEPTACLE, 8STA, SHELL 14, OVAL FLANGE, 37 POS, SIZE 22D SOCKET CONTACTS, A KEYWAY (YELLOW)",
-      "manufacturer": "Eaton / Souriau",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "s5tI59RkGGAT-tc-S_vtR"
-        }
-      ],
-      "numberOfCavities": 37
-    },
-    {
-      "id": "lfmSAku991wu1lTmBTFPf",
-      "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-      "color": "Green",
-      "image": {
-        "url": "https://www.mouser.com/images/souriau/lrg/8TSA.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/souriau/sm/8TSA.jpg"
-      },
-      "gender": "Female",
-      "partNumber": "8STA0-14-35SN",
-      "description": "CONNECTOR, RECEPTACLE, 8STA, SHELL 14, OVAL FLANGE, 37 POS, SIZE 22D SOCKET CONTACTS, N KEYWAY (RED)",
-      "manufacturer": "Eaton / Souriau",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "s5tI59RkGGAT-tc-S_vtR"
-        }
-      ],
-      "numberOfCavities": 37
-    },
-    {
-      "id": "KZR94RFJkz03hrsggapbA",
-      "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-      "color": "Green",
-      "image": {
-        "url": "https://www.mouser.com/images/souriau/lrg/8TSA.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/souriau/sm/8TSA.jpg"
-      },
-      "gender": "Male",
-      "partNumber": "8STA6-14-35PA",
-      "description": "CONNECTOR, PLUG, 8STA, SHELL 14, 37 POS, SIZE 22D PIN CONTACTS, A KEYWAY (YELLOW)",
-      "manufacturer": "Eaton / Souriau",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "Hvj0rpCKaJi3Pz2kCoXg3"
-        }
-      ],
-      "numberOfCavities": 37
-    },
-    {
-      "id": "0O1p2REgD39mOrv3W6UEb",
-      "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-      "color": "Green",
-      "image": {
-        "url": "https://www.mouser.com/images/souriau/lrg/8TSA.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/souriau/sm/8TSA.jpg"
-      },
-      "gender": "Male",
-      "partNumber": "8STA6-14-35PN",
-      "description": "CONNECTOR, PLUG, 8STA, SHELL 14, 37 POS, SIZE 22D PIN CONTACTS, N KEYWAY (RED)",
-      "manufacturer": "Eaton / Souriau",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "Hvj0rpCKaJi3Pz2kCoXg3"
-        }
-      ],
-      "numberOfCavities": 37
-    },
-    {
-      "id": "TiADVT4YR9JZitlAjx_vn",
-      "color": "Orange",
-      "image": {
-        "url": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/large/d12b709c26ed98172dee2db6f5b83ca9/bdd245d794418a5f1656a289de1160ae.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/small/d12b709c26ed98172dee2db6f5b83ca9/bdd245d794418a5f1656a289de1160ae.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-10942",
-      "description": "CONNECTOR, HOUSING, TOYOTA, PIGTAIL 82998-12440",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
       "id": "cp_toy2p",
       "color": "Orange",
       "image": {
@@ -984,28 +610,6 @@
       "numberOfCavities": 4
     },
     {
-      "id": "Db3h5i-PPJuD1s4dAvZ98",
-      "color": "Orange",
-      "image": {
-        "url": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/large/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/small/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-12068",
-      "description": "CONNECTOR, HOUSING, TOYOTA",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 2,
-      "internalPartNumber": "82998-12500"
-    },
-    {
       "id": "UYLwFL7_IICzqQC-jd8zN",
       "url": "https://www.binder-usa.com/us-en/products/subminiature-circular-connectors/m9-ip67/99-0414-00-05-m9-ip67-female-cable-connector-5-35-50-mm-unshielded-solder-ip67",
       "color": "Black",
@@ -1020,77 +624,6 @@
       "manufacturer": "binder",
       "numberOfCavities": 5,
       "configurations": []
-    },
-    {
-      "id": "5l7n-edCWnVoL5Axqke2l",
-      "color": "White",
-      "image": {
-        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790017970754.png",
-        "source": "cloud"
-      },
-      "partNumber": "99 1430 822 04",
-      "description": "CONN, M12 CBL MNT, PLUG, 4 SKT, SCREW CLAMP, 90",
-      "manufacturer": "BINDER",
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_m8_plug_f",
-      "image": {
-        "url": "https://www.binder-connector.com/prod_media/produktfoto_seo/768_2_KDS.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.binder-connector.com/prod_media/_processed_/2/9/csm_768_2_KDS_964a4b2a49.jpg"
-      },
-      "gender": "Female",
-      "hasShell": true,
-      "partNumber": "99 3362 100 04",
-      "description": "CONNECTOR, PLUG, M8, 4 POS, FEMALE, CABLE, SHIELDABLE, SCREW CLAMP 0.14-0.5 MM2, CABLE OD 4.0-5.5 MM, IP67",
-      "manufacturer": "binder",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_m8_clamp_skt"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_m8_plug_m",
-      "image": {
-        "url": "https://www.binder-connector.com/prod_media/produktfoto_seo/768_1_KSS.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.binder-connector.com/prod_media/_processed_/3/3/csm_768_1_KSS_2db6dbcc1d.jpg"
-      },
-      "gender": "Male",
-      "hasShell": true,
-      "partNumber": "99 3363 100 04",
-      "description": "CONNECTOR, PLUG, M8, 4 POS, MALE, CABLE, SHIELDABLE, SCREW CLAMP 0.14-0.5 MM2, CABLE OD 4.0-5.5 MM, IP67",
-      "manufacturer": "binder",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_m8_clamp_pin"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "smt6VoWynXFpo9uB3ft8d",
-      "color": "Red",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cam-sensor-kit-pigtail.png",
-        "source": "url"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "Cam Sensor",
-      "description": "CONNECTOR, PIGTAIL, 3 POS",
-      "manufacturer": "RacerX",
-      "configurations": [
-        {
-          "id": "cfg"
-        }
-      ],
-      "numberOfCavities": 3
     },
     {
       "id": "cp_etb",
@@ -1152,26 +685,6 @@
       "numberOfCavities": 102
     },
     {
-      "id": "cp_dt04_12pa",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/0DT/041/2PA/DT04-12PA-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/0DT/041/2PA/DT04-12PA-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DT04-12PA",
-      "description": "CONNECTOR, RECEPTACLE, DT, 12 POS, PIN CONTACTS, N SEAL, KEY A",
-      "manufacturer": "Deutsch (TE Connectivity)",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_w12p"
-        }
-      ],
-      "numberOfCavities": 12
-    },
-    {
       "id": "AfUoSdF5SmQt3lpefky6M",
       "url": "https://www.te.com/usa-en/product-DT04-2P.html",
       "gender": "Male",
@@ -1188,26 +701,6 @@
         }
       ],
       "numberOfCavities": 2
-    },
-    {
-      "id": "cp_dt04_3p",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/DT0/43P/DT04-3P-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/DT0/43P/DT04-3P-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DT04-3P",
-      "description": "CONNECTOR, RECEPTACLE, DT, 3 POS, PIN CONTACTS",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_w3p"
-        }
-      ],
-      "numberOfCavities": 3
     },
     {
       "id": "l6qW0gWoy4ikWTUN2be1P",
@@ -1528,45 +1021,6 @@
       "numberOfCavities": 1
     },
     {
-      "id": "cp_dtm04_4p",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/44P/DTM04-4P-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/44P/DTM04-4P-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DTM04-4P",
-      "description": "CONNECTOR, RECEPTACLE, DTM, 4 POS, PIN CONTACTS",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_dtm04_6p",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/46P/DTM04-6P-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/46P/DTM04-6P-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DTM04-6P",
-      "description": "CONNECTOR, RECEPTACLE, DTM, 6 POS, PIN CONTACTS",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dtm6wp"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
       "id": "cp_dtm4s",
       "color": "Green",
       "image": {
@@ -1611,151 +1065,6 @@
       "numberOfCavities": 6
     },
     {
-      "id": "YYUCVJmP-dnU-orvkdlUt",
-      "url": "https://www.te.com/usa-en/product-DTP04-4P-L012.html",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/DTP/044/PL0/DTP04-4P-L012-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DTP/044/PL0/DTP04-4P-L012-t1.jpg/jcr:content/renditions/product-small.png"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DTP04-4P-L012",
-      "description": "CONNECTOR, RECEPTACLE, DTP, 4 POS, PIN CONTACTS, FLANGE MOUNT",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "jEdwkVeebH297lYn4HusA",
-          "mountPartId": "lvDLzQ5x_r83GAbWNy5qx",
-          "contactPartId": "ct_hdp12p"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_dtp06_4s",
-      "url": "https://www.te.com/usa-en/product-DTP06-4S.html",
-      "image": {
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/300/265/702/DTP06-4S_sml.jpg",
-        "source": "url",
-        "lowResUrl": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/300/265/702/DTP06-4S_sml.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTP06-4S",
-      "description": "CONNECTOR, PLUG, DTP, 4 POS, SOCKET CONTACTS",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_wp4s",
-          "contactPartId": "ct_hdp12s"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_gen_254_1x2",
-      "image": {
-        "url": "https://a.pololu-files.com/picture/0J1599.1200.jpg",
-        "source": "url",
-        "lowResUrl": "https://a.pololu-files.com/picture/0J1599.98x98.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "GENERIC 2.54 1x2 HOUSING",
-      "description": "HOUSING, 2.54MM, 1X2, FEMALE",
-      "manufacturer": "generic",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_gen_254_skt"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_gen_254_1x4",
-      "image": {
-        "url": "https://a.pololu-files.com/picture/0J1599.1200.jpg",
-        "source": "url",
-        "lowResUrl": "https://a.pololu-files.com/picture/0J1599.98x98.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "GENERIC 2.54 1x4 HOUSING",
-      "description": "HOUSING, 2.54MM, 1X4, FEMALE",
-      "manufacturer": "generic",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_gen_254_skt"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_gen_254_1x5",
-      "image": {
-        "url": "https://a.pololu-files.com/picture/0J1599.1200.jpg",
-        "source": "url",
-        "lowResUrl": "https://a.pololu-files.com/picture/0J1599.98x98.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "GENERIC 2.54 1x5 HOUSING",
-      "description": "HOUSING, 2.54MM, 1X5, FEMALE",
-      "manufacturer": "generic",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_gen_254_skt"
-        }
-      ],
-      "numberOfCavities": 5
-    },
-    {
-      "id": "cp_gen_254_1x6",
-      "image": {
-        "url": "https://a.pololu-files.com/picture/0J1599.1200.jpg",
-        "source": "url",
-        "lowResUrl": "https://a.pololu-files.com/picture/0J1599.98x98.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "GENERIC 2.54 1x6 HOUSING",
-      "description": "HOUSING, 2.54MM, 1X6, FEMALE",
-      "manufacturer": "generic",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_gen_254_skt"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_gen_254_2x20",
-      "image": {
-        "url": "https://a.pololu-files.com/picture/0J1599.1200.jpg",
-        "source": "url",
-        "lowResUrl": "https://a.pololu-files.com/picture/0J1599.98x98.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "GENERIC 2.54 2x20 HOUSING",
-      "description": "HOUSING, 2.54MM, 2X20 (40-WAY), FEMALE",
-      "manufacturer": "generic",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_gen_254_skt"
-        }
-      ],
-      "numberOfCavities": 40
-    },
-    {
       "id": "cp_csb3_plug",
       "image": {
         "url": "https://www.te.com/catalog/common/images/PartImages/prhd36-24-33sn.jpg",
@@ -1775,84 +1084,6 @@
         }
       ],
       "numberOfCavities": 33
-    },
-    {
-      "id": "zx0B7pVz52OEmykCntjAc",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/prhdp24-24-21pn.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp24-24-21pn.jpg"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "HDP24-24-21PN",
-      "description": "CONNECTOR, RECEPTACLE, HDP20, SHELL 24, 21 POS, PIN CONTACTS, N SEAL",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg"
-        }
-      ],
-      "numberOfCavities": 21
-    },
-    {
-      "id": "cp_hdp_a_fw",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/HDP/242/447/HDP24-24-47PE-L017-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/HDP/242/447/HDP24-24-47PE-L017-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "HDP24-24-47PE-L017",
-      "description": "CONNECTOR, RECEPTACLE, HDP20, SHELL 24, 47 POS, PIN CONTACTS, E SEAL, REVERSE RING FLANGE",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "cavityPlugPartId": "pl_sz20"
-        }
-      ],
-      "numberOfCavities": 47
-    },
-    {
-      "id": "W8_u6lhIB8EfEqHP0cHka",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/prhdp26-24-21sn.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhdp26-24-21sn.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "HDP26-24-21SN",
-      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 21 POS, SOCKET CONTACTS, N SEAL",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg"
-        }
-      ],
-      "numberOfCavities": 21
-    },
-    {
-      "id": "cp_hdp_a_eng",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/HDP/262/447/HDP26-24-47SE-L015-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/HDP/262/447/HDP26-24-47SE-L015-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "HDP26-24-47SE-L015",
-      "description": "CONNECTOR, PLUG, HDP20, SHELL 24, 47 POS, SOCKET CONTACTS, E SEAL, THREADED COUPLING",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "cavityPlugPartId": "pl_sz20"
-        }
-      ],
-      "numberOfCavities": 47
     },
     {
       "id": "cp_lmi5",
@@ -1970,44 +1201,6 @@
       "configurations": []
     },
     {
-      "id": "cp_ac_press",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/toyota-ac-pressure-sw-2pos.png",
-        "source": "url"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "TBD - A/C pressure switch connector, 2-way",
-      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_amb_temp",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/toyota-ambient-temp-2pos.png",
-        "source": "url"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "TBD - ambient temp sensor connector",
-      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
       "id": "cp_rly_hcr150",
       "image": {
         "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_high_current_150.jpg",
@@ -2094,38 +1287,6 @@
       "id": "ct_radlok8"
     },
     {
-      "id": "ct_m8_clamp_skt",
-      "type": "Other",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 26
-      },
-      "partNumber": "(integral screw clamp - 99 3362 100 04)",
-      "description": "CONTACT, SOCKET, INTEGRAL SCREW CLAMP, 0.14-0.5 MM2 (26-20 AWG)",
-      "manufacturer": "binder"
-    },
-    {
-      "id": "ct_m8_clamp_pin",
-      "type": "Other",
-      "gender": "Pin",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 26
-      },
-      "partNumber": "(integral screw clamp - 99 3363 100 04)",
-      "description": "CONTACT, PIN, INTEGRAL SCREW CLAMP, 0.14-0.5 MM2 (26-20 AWG)",
-      "manufacturer": "binder"
-    },
-    {
       "id": "wbsN09tiboovqanDL_xZA",
       "type": "Crimp",
       "gender": "Socket",
@@ -2160,22 +1321,6 @@
       "manufacturer": "generic"
     },
     {
-      "id": "ct_dt_pin",
-      "type": "Crimp",
-      "gender": "Pin",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "partNumber": "0460-202-16141",
-      "description": "CONTACT, PIN, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
-      "manufacturer": "Deutsch (TE Connectivity)"
-    },
-    {
       "id": "jbEmvVFIMtwgbQyl7PHUl",
       "type": "Crimp",
       "gender": "Pin",
@@ -2190,27 +1335,6 @@
       "partNumber": "0460-202-1631",
       "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "contactColor": "Gold",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "_7NKvEnYqVZfP7hxIWVV8",
-      "type": "Crimp",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr0460-202-2031.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartImages/pr0460-202-2031.jpg"
-      },
-      "gender": "Pin",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "partNumber": "0460-202-2031",
-      "description": "CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
       "manufacturer": "TE DEUTSCH"
     },
     {
@@ -2332,74 +1456,6 @@
       "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "ct_fb_05",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 18
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "partNumber": "1-1355833-1",
-      "description": "CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 0.5-1.0 MM2 (20-18 AWG)",
-      "contactColor": "Silver",
-      "manufacturer": "TE Connectivity"
-    },
-    {
-      "id": "ct_fb_bus",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "Metric",
-        "value": 6
-      },
-      "minGauge": {
-        "unit": "Metric",
-        "value": 4
-      },
-      "partNumber": "1-1355844-1",
-      "description": "CONTACT, BUSBAR, CUNISI PRE-TINNED, 4.0-6.0 MM2 (10 AWG)",
-      "contactColor": "Silver",
-      "manufacturer": "TE Connectivity"
-    },
-    {
-      "id": "ct_fb_25",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 14
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 18
-      },
-      "partNumber": "1-1355877-1",
-      "description": "CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 1.0-2.5 MM2 (18-14 AWG)",
-      "contactColor": "Silver",
-      "manufacturer": "TE Connectivity"
-    },
-    {
-      "id": "ct_fb_4",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 12
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 14
-      },
-      "partNumber": "1-1355880-1",
-      "description": "CONTACT, FUSE, SINGLE, CUNISI PRE-TINNED, 2.5-4 MM2 (14-12 AWG)",
-      "contactColor": "Silver",
-      "manufacturer": "TE Connectivity"
-    },
-    {
       "id": "dIbtt1gC7OvKIxZqOiZ5-",
       "type": "Crimp",
       "gender": "Socket",
@@ -2466,23 +1522,6 @@
       "manufacturer": "TE Connectivity"
     },
     {
-      "id": "ct_f7_load8",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 8
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 10
-      },
-      "partNumber": "280755-4",
-      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 6-10 MM2 (10-8 AWG)",
-      "contactColor": "Silver",
-      "manufacturer": "TE Connectivity"
-    },
-    {
       "id": "ct_f7_load",
       "type": "Crimp",
       "image": {
@@ -2502,31 +1541,6 @@
       "partNumber": "280756-4",
       "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG)",
       "contactColor": "Silver",
-      "manufacturer": "TE Connectivity"
-    },
-    {
-      "id": "ct_relay_coil",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "partNumber": "280919-4",
-      "description": "CONTACT, RECEPTACLE, 4.8 X 0.8, TIN, 0.5-1.5 MM2 (20-16 AWG)",
-      "contactColor": "Silver",
-      "manufacturer": "TE Connectivity"
-    },
-    {
-      "id": "ct_relay_blade",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "281197-2",
-      "description": "CONTACT, 6.3 X 0.8 MM, MICRO ISO RELAY SOCKET",
       "manufacturer": "TE Connectivity"
     },
     {
@@ -2584,23 +1598,6 @@
       "manufacturer": "TE Connectivity"
     },
     {
-      "id": "ct_f7_coil",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 14
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 18
-      },
-      "partNumber": "42281-1",
-      "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 250 (6.3 MM), TIN, 0.8-2.0 MM2 (18-14 AWG)",
-      "contactColor": "Silver",
-      "manufacturer": "TE Connectivity"
-    },
-    {
       "id": "ct_toy_ts",
       "type": "Crimp",
       "gender": "Socket",
@@ -2632,30 +1629,6 @@
       "partNumber": "BDK 2.8",
       "description": "CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG)",
       "manufacturer": "Bosch"
-    },
-    {
-      "id": "jqON5xQKKJz_7Cp8-rf5w",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "D 261 205 358-01",
-      "description": "CONTACT, SOCKET, GOLD, SUPPLIED WITH D 261 205 358-01",
-      "manufacturer": "Bosch / AMP"
-    },
-    {
-      "id": "ct_gen_254_skt",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 22
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 28
-      },
-      "partNumber": "GENERIC 2.54 CRIMP SOCKET 22-28",
-      "description": "CONTACT, SOCKET, 2.54MM (DUPONT-STYLE) CRIMP, 22-28 AWG",
-      "manufacturer": "generic"
     },
     {
       "id": "ct_ring_m8_4",
@@ -2707,48 +1680,6 @@
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 6 AWG, M5 STUD, ADHESIVE HEATSHRINK",
       "contactColor": "Silver",
       "manufacturer": "generic"
-    },
-    {
-      "id": "s5tI59RkGGAT-tc-S_vtR",
-      "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 22
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 26
-      },
-      "partNumber": "M39029/56-348",
-      "description": "CONTACT, SOCKET, SIZE 22D, GOLD, 22-26 AWG, 5 A",
-      "manufacturer": "Eaton / Souriau"
-    },
-    {
-      "id": "Hvj0rpCKaJi3Pz2kCoXg3",
-      "url": "https://xtramotorsport.com/connectors/souriau-8sta-connectors/",
-      "type": "Crimp",
-      "gender": "Pin",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 22
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 26
-      },
-      "partNumber": "M39029/58-360",
-      "description": "CONTACT, PIN, SIZE 22D, GOLD, 22-26 AWG, 5 A",
-      "manufacturer": "Eaton / Souriau"
-    },
-    {
-      "id": "V2lkedlnwhzCvVixqP-Kf",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "MP280-2S-1G",
-      "description": "CONTACT KIT, METRI-PACK 280, FUEL-SAFE",
-      "manufacturer": "Aptiv (Delphi)"
     }
   ],
   "coveringParts": [],
@@ -2761,12 +1692,6 @@
     }
   ],
   "lockParts": [
-    {
-      "id": "lp_w12p",
-      "partNumber": "W12P",
-      "description": "WEDGELOCK, DT, 12 POS, RECEPTACLE",
-      "manufacturer": "Deutsch (TE Connectivity)"
-    },
     {
       "id": "lp_w12s",
       "partNumber": "W12S",
@@ -2784,12 +1709,6 @@
       "partNumber": "W2S",
       "description": "WEDGELOCK, DT, 2-WAY PLUG",
       "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lp_w3p",
-      "partNumber": "W3P",
-      "description": "WEDGELOCK, DT, 3 POS, RECEPTACLE",
-      "manufacturer": "Deutsch"
     },
     {
       "id": "lp_dt3wl",
@@ -2820,60 +1739,16 @@
       "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "lp_wb51pal",
-      "partNumber": "WB-51PAL",
-      "description": "WEDGELOCK, DRB 102/128, RECEPTACLE, LEFT",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lp_wb51par",
-      "partNumber": "WB-51PAR",
-      "description": "WEDGELOCK, DRB 102/128, RECEPTACLE, RIGHT",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lp_wb51sal",
-      "partNumber": "WB-51SAL",
-      "description": "WEDGELOCK, DRB 102/128, PLUG, LEFT",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lp_wb51sar",
-      "partNumber": "WB-51SAR",
-      "description": "WEDGELOCK, DRB 102/128, PLUG, RIGHT",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
       "id": "lp_wm4s",
       "partNumber": "WM-4S",
       "description": "WEDGELOCK, DTM, 4 POS, PLUG",
       "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "lp_dtm6wp",
-      "partNumber": "WM-6P",
-      "description": "WEDGELOCK, DTM, 6 POS, RECEPTACLE",
-      "manufacturer": "Deutsch"
-    },
-    {
       "id": "lp_dtm6wl",
       "partNumber": "WM-6S",
       "description": "WEDGELOCK, DTM, 6 POS, PLUG",
       "manufacturer": "Deutsch"
-    },
-    {
-      "id": "jEdwkVeebH297lYn4HusA",
-      "url": "https://www.te.com/usa-en/product-WP-4P.html",
-      "partNumber": "WP-4P",
-      "description": "WEDGELOCK, DTP, 4 POS, RECEPTACLE",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lp_wp4s",
-      "url": "https://www.te.com/usa-en/product-WP-4S.html",
-      "partNumber": "WP-4S",
-      "description": "WEDGELOCK, DTP, 4 POS, PLUG",
-      "manufacturer": "TE DEUTSCH"
     }
   ],
   "mountParts": [
@@ -2893,12 +1768,6 @@
       "id": "mt_drbf_1a",
       "partNumber": "DRBF-1A",
       "description": "FLANGE, MOUNTING, DRB 102/128 SERIES",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lvDLzQ5x_r83GAbWNy5qx",
-      "partNumber": "DTP4P-L012-GKT",
-      "description": "GASKET, MOUNTING, DTP 4 POS FLANGE RECEPTACLE L012",
       "manufacturer": "TE DEUTSCH"
     }
   ],
@@ -2931,34 +1800,6 @@
   ],
   "spliceParts": [
     {
-      "id": "spp_butt_22_16",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 22
-      },
-      "partNumber": "GENERIC BUTT SPLICE 22-16",
-      "description": "SPLICE, BUTT, INSULATED, 22-16 AWG",
-      "manufacturer": "generic"
-    },
-    {
-      "id": "spp_crimp_10_6",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 6
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 10
-      },
-      "partNumber": "GENERIC CRIMP SPLICE 10-6",
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 10-6 AWG, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "generic"
-    },
-    {
       "id": "spp_crimp_14_10",
       "maxGauge": {
         "unit": "AWG",
@@ -2970,20 +1811,6 @@
       },
       "partNumber": "GENERIC CRIMP SPLICE 14-10",
       "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "generic"
-    },
-    {
-      "id": "-DtQES_JgGpKyAaIENuUg",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 14
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 26
-      },
-      "partNumber": "GENERIC SOLDER SLEEVE 26-14",
-      "description": "SPLICE, SOLDER SLEEVE",
       "manufacturer": "generic"
     },
     {
@@ -3504,18 +2331,6 @@
       "manufacturer": "generic",
       "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
       "color": "Green",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_grn_yel",
-      "partNumber": "EW-1C20-GRN-YEL",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Green",
-      "stripeColor": "Yellow",
       "gauge": {
         "value": 20,
         "unit": "AWG"

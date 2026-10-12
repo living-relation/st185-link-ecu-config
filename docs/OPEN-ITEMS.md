@@ -109,6 +109,7 @@ redesign and the check_all/check_parity/validate_tune/test_gates CI gates alread
 
 ## History
 
+- 2026-10-12 - Daniel's clean-drawing rule (DECISIONS S13): his hand-fixed `ST185-WheelSpeed-Rear.harness` adopted as is; "not used" cavity signals and their contacts cleared (CabinPower relay 87a, CAN ECU COM, EngineRoom-C J/B2 and MR-S), 74 unused parts pruned from `ST185.harnesslib`; G2 length and unused-cavity-plug gates relaxed.
 - 2026-10-12 - Daniel dropped SolderSleeves (DECISIONS S12): every shielded cable is drawn as if it had a drain wire, shields go straight to their pin, and 2+ shields on one pin share ONE splice. #103 / #104 reverted (sleeve splices, `audit_solder_sleeves.py`, `cable_dimensions.json`, sleeve library parts); WheelSpeed-Front / -Rear redrawn with one shield splice each. Row 81 (cable OD / sleeve sizing) closed as dropped.
 One line per merged PR or decision batch, newest first. `git log` has the detail.
 

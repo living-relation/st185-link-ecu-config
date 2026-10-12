@@ -2,7 +2,8 @@
 
   1. (2026-09-22) no cavity claims BOTH a contact and a cavity plug - only possible in
      hand-edited JSON; harness.design itself clears one when you set the other.
-  2. (2026-09-25) a bulkhead cavity wired in any loom has a contact, an unused one a plug.
+  2. (2026-09-25) a bulkhead cavity wired in any loom has a contact. An unused one needs no plug:
+     drawings stay clean, only parts Daniel asked for (2026-10-12).
   3. (2026-10-03) contact fit, K1-K4 - see the block at the end of this file: contact
      present, gender match, wire gauge (combined gauge for several wires in one cavity)
      inside the contact's rated range, and contact part listed for the connector in the
@@ -71,9 +72,6 @@ for loom, d in docs.items():
             wired = cv["id"] in used[c["id"]]
             if wired and not cv.get("contactPartId"):
                 print("  %-12s %s %s is wired but has no contact" % (loom, c["id"], cv["id"]))
-                wrong += 1
-            elif not wired and not cv.get("cavityPlugPartId"):
-                print("  %-12s %s %s is unused but has no sealing plug" % (loom, c["id"], cv["id"]))
                 wrong += 1
 print("%d bulkhead cavities with the wrong part for their use." % wrong)
 OLD_FAIL = bool(tot or wrong)
