@@ -117,11 +117,6 @@
           "signal": "Bus 2 in (switched) - EFI main relay 87"
         },
         {
-          "id": "ecu",
-          "designation": "ECU",
-          "signal": "Bus 1 10A - ECU permanent +12V"
-        },
-        {
           "id": "efi86",
           "designation": "EFI86",
           "signal": "Bus 1 5A - EFI main relay coil feed 86, PERMANENT"
@@ -754,20 +749,6 @@
       "schematicPosition": {
         "x": 1710,
         "y": 3720
-      }
-    },
-    {
-      "id": "br_w_fb_ecu",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: RFRM ECU to sp_12v",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1680,
-        "y": 330
-      },
-      "schematicPosition": {
-        "x": 1050,
-        "y": 2850
       }
     },
     {
@@ -1433,19 +1414,6 @@
       },
       "target": {
         "id": "br_w_fb_sw12",
-        "handle": "Terminal"
-      },
-      "partId": "wp_18_red"
-    },
-    {
-      "id": "w_fb_ecu_cp",
-      "color": "Red",
-      "source": {
-        "id": "rfrm",
-        "handle": "ecu"
-      },
-      "target": {
-        "id": "br_w_fb_ecu",
         "handle": "Terminal"
       },
       "partId": "wp_18_red"
@@ -2268,15 +2236,6 @@
       "id": "bn_b_bp_1050__br_w_fb_sw12",
       "sourceId": "b_bp_1050",
       "targetId": "br_w_fb_sw12",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_b_bp_1050__br_w_fb_ecu",
-      "sourceId": "b_bp_1050",
-      "targetId": "br_w_fb_ecu",
       "length": {
         "value": 50,
         "unit": "mm"

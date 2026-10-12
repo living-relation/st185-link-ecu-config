@@ -204,7 +204,6 @@
       "label": "Bulkhead A - firewall, A-half of shared DRB102 (DRB12-102PAE-L018 + DRBF-1A)",
       "width": 390,
       "partId": "cp_drb_recept",
-      "physicalPartGroup": "drb102_recept",
       "cavities": [
         {
           "id": "c1",
@@ -858,20 +857,6 @@
       }
     },
     {
-      "id": "br_w_fb_ecu",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: RFRM ECU to sp_12v",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1680,
-        "y": 330
-      },
-      "schematicPosition": {
-        "x": 1200,
-        "y": 2940
-      }
-    },
-    {
       "id": "br_w_fb_mrs_en",
       "type": "Loose",
       "signal": "Broken off - continues on ST185-CabinPower: MTA-2 MRS to Bulkhead A 35",
@@ -1077,19 +1062,6 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1080"
-    },
-    {
-      "id": "sp_12v",
-      "layoutPosition": {
-        "x": 1620,
-        "y": 150
-      },
-      "schematicPosition": {
-        "x": 1050,
-        "y": 2850
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_1020"
     },
     {
       "id": "sp_gndout",
@@ -1801,19 +1773,6 @@
       },
       "target": {
         "id": "sp_sw12",
-        "handle": "Splice"
-      },
-      "partId": "wp_18_red"
-    },
-    {
-      "id": "w_fb_ecu",
-      "color": "Red",
-      "source": {
-        "id": "br_w_fb_ecu",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_12v",
         "handle": "Splice"
       },
       "partId": "wp_18_red"
@@ -2749,15 +2708,6 @@
       "id": "bn_b_bp_1050__br_w_fb_sw12",
       "sourceId": "b_bp_1050",
       "targetId": "br_w_fb_sw12",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_b_bp_1050__br_w_fb_ecu",
-      "sourceId": "b_bp_1050",
-      "targetId": "br_w_fb_ecu",
       "length": {
         "value": 50,
         "unit": "mm"

@@ -121,20 +121,24 @@ def stamp(c, parts):
     return pn, ct
 
 SHARED, clash = {}, []
-# physicalPartGroup: two or more DIFFERENT connector ids that are documentation
+# physical part groups: two or more DIFFERENT connector ids that are documentation
 # halves of ONE physical part - e.g. the DRB102 bulkhead's A-half and B-half,
 # split so the A/B ECU-letter gate still works (docs/harness/redesign/DECISIONS.md,
 # 2026-09-29). This is a different problem from SHARED above: SHARED is the SAME
 # id copied into more than one loom (always identical cavities, asserted by the
-# clash check); a physicalPartGroup is different ids with different, non-overlapping
+# clash check); a physical part group is different ids with different, non-overlapping
 # cavities that nonetheless share one housing. So only the housing part number and
 # its configuration hardware (lock/boot/backshell/mount/dustCover) are counted once
 # per group below - each half's own cavities are real and stay per-id, uncoditionally.
 # Owner = alphabetically-first id in the group, so it never depends on the order
 # harness_files() happens to return.
+# The groups live in interfaces.json "physicalPartGroups" (harness.design rejects unknown
+# connector keys, so they cannot sit on the connector itself).
+PART_GROUP = {m["connector"]: pg for pg, ms in model.registry().get("physicalPartGroups", {}).items()
+              if not pg.startswith("_") for m in ms}
 group_members = collections.OrderedDict()
 for cid, cc in copies.items():
-    pg = cc[0][1].get("physicalPartGroup")
+    pg = PART_GROUP.get(cid)
     if pg:
         group_members.setdefault(pg, []).append(cid)
 group_owner = {pg: min(ids) for pg, ids in group_members.items()}
@@ -154,7 +158,7 @@ for cid, cc in copies.items():
     # count the copy that actually carries the parts, not whichever file came first
     loom0 = real[0][0]
     c, parts = next((c, p) for l, c, p in cc if l == loom0)
-    pg = c.get("physicalPartGroup")
+    pg = PART_GROUP.get(cid)
     is_owner = (group_owner.get(pg) == cid) if pg else True
     if is_owner and c.get("partId") and c["partId"] in parts:
         q = parts[c["partId"]]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q

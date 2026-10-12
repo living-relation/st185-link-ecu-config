@@ -9,7 +9,6 @@
       "label": "Bulkhead B - firewall, B-half of shared DRB102 (DRB12-102PAE-L018 + DRBF-1A)",
       "width": 390,
       "partId": "cp_drb_recept",
-      "physicalPartGroup": "drb102_recept",
       "cavities": [
         {
           "id": "c1",

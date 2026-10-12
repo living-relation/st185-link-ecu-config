@@ -348,8 +348,9 @@ housing (`cp_drb_recept` / `cp_drb_plug`), with `numberOfCavities` set to that f
 cavity count (49 or 21) so `lint_v09.py`'s per-file cavity-count check still holds —
 this is a per-file documentation choice, not a claim that the physical housing itself
 has only 49 or 21 positions. The two halves are tied together with a new
-`"physicalPartGroup"` field (`"drb102_recept"` on `bh_a_fw`/`bh_b_fw`,
-`"drb102_plug"` on `bh_a_eng`/`bh_b_eng`) so `buylist.py` counts the housing and its
+physical part group (`drb102_recept` = `bh_a_fw`/`bh_b_fw`,
+`drb102_plug` = `bh_a_eng`/`bh_b_eng`; since 2026-10-12 kept in `docs/harness/interfaces.json`
+`physicalPartGroups`, because harness.design rejects an unknown connector key) so `buylist.py` counts the housing and its
 flange once, not once per half — see the "shared physical part" gap this closes,
 below. The flange is wired through `cp_drb_recept`'s `mountPartId` (owned by the
 alphabetically-first half, `bh_a_fw`) so it is bought exactly once. The DRB102 needs
@@ -359,7 +360,7 @@ alphabetically-first half, `bh_a_fw`) so it is bought exactly once. The DRB102 n
 are tracked as `buylist.py` `EXTRA` line items instead (documented in each half's
 `lockParts` library for reference) rather than forced into that single field.
 
-`buylist.py` gained the `physicalPartGroup` mechanism described above: distinct
+`buylist.py` gained the physical-part-group mechanism described above: distinct
 connector ids that are documentation halves of one physical part (not copies of the
 same id in different looms — that's the pre-existing `SHARED` handling) now dedupe the
 housing part number and its configuration hardware (lock/boot/backshell/mount/

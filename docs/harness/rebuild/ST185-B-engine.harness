@@ -9,7 +9,6 @@
       "label": "Bulkhead B - engine plug, B-half of shared DRB102 (DRB16-102SAE-L018)",
       "width": 390,
       "partId": "cp_drb_plug",
-      "physicalPartGroup": "drb102_plug",
       "cavities": [
         {
           "id": "c1",

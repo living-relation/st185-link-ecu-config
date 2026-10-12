@@ -1336,21 +1336,6 @@
       ]
     },
     {
-      "id": "BR_W_FB_ECU",
-      "type": "broken_off",
-      "what": "RFRM ECU to sp_12v",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_fb_ecu"
-        },
-        {
-          "harness": "CabinPower",
-          "terminal": "br_w_fb_ecu"
-        }
-      ]
-    },
-    {
       "id": "BR_W_FB_MRS_EN",
       "type": "broken_off",
       "what": "MTA-2 MRS to Bulkhead A 35",
@@ -1905,5 +1890,28 @@
         }
       ]
     }
-  ]
+  ],
+  "physicalPartGroups": {
+    "_doc": "Different connector ids that are documentation halves of ONE physical part (the DRB102 bulkhead A/B halves). buylist.py counts the housing and its configuration hardware once per group. Lives here because harness.design rejects unknown connector keys.",
+    "drb102_recept": [
+      {
+        "harness": "A-cabin",
+        "connector": "bh_a_fw"
+      },
+      {
+        "harness": "B-cabin",
+        "connector": "bh_b_fw"
+      }
+    ],
+    "drb102_plug": [
+      {
+        "harness": "A-engine",
+        "connector": "bh_a_eng"
+      },
+      {
+        "harness": "B-engine",
+        "connector": "bh_b_eng"
+      }
+    ]
+  }
 }
