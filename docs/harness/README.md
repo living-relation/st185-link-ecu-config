@@ -48,7 +48,7 @@ physical section of copper, a connector or a BOM line has one owner.
 | `ST185-A-engine.harness` | ECU connector A, engine | bulkhead A engine half to every A-letter engine device, plus the `IX_B_RAIL` spur (B-engine sensor +5V / Gnd Out) |
 | `ST185-B-engine.harness` | ECU connector B, engine | bulkhead B engine half to every B-letter engine device and the ETB motor; the B sensors' +5V / Gnd Out come in on `IX_B_RAIL` |
 | `ST185-CAN.harness` | CAN backbone | the only drawing with CAN H/L |
-| `ST185-EngineRoom-C.harness` | Loom C | engine room, PDB (battery, RADLOK and ground studs; the fuse box is on CabinPower), EPS, OEM J/B feeds (J/B2 dummy headers; the rest are flying leads); the A4/A5 A/C device-side flying leads (VC coil - not fitted - and pressure switch, folded in from ST185-ACAmp-Spur 2026-10-11, new-wire runs, no factory engine-bay wire reused) |
+| `ST185-EngineRoom-C.harness` | Loom C | engine room, PDB (battery, RADLOK and ground studs; the fuse box is on CabinPower), EPS, the ex-J/B2 / R/B loads (headlamp and horn feeds to the device plugs; cabin-side landings at J/B1 / IE1 / blower / window feed as flying leads); the A4/A5 A/C device-side flying leads (VC coil - not fitted - and pressure switch, folded in from ST185-ACAmp-Spur 2026-10-11, new-wire runs, no factory engine-bay wire reused) |
 | `ST185-WheelSpeed-Front.harness` | Front wheel speed | one Y harness: FL/FR drops to the front VRC endpoints, output to `IX_WS_FRONT` |
 | `ST185-WheelSpeed-Rear.harness` | Rear wheel speed | one Y harness: RL/RR drops to the rear VRC endpoints, output to `IX_WS_REAR` |
 | `ST185-RearFuel.harness` | Rear Fuel | fuel level sender behind `IX_FUEL_LVL` |

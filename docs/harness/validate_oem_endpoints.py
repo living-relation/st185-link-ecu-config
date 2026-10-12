@@ -7,7 +7,7 @@
       buildable without this file
   E4  no connector is an OEM housing (a part whose number starts "(OEM" or
       "(unspecified - OEM") unless interfaces.json lists it as a real connector the build
-      plugs into (the J/B2 dummy headers)
+      plugs into (none since the J/B2 dummy headers were removed, 2026-10-12)
 
 Exit 1 on any finding.
 """

@@ -743,8 +743,8 @@
         "unit": "AWG"
       },
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 12
       },
       "description": "TERMINAL, FLYING LEAD",
       "id": "tp_flying_lead"
