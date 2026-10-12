@@ -102,13 +102,13 @@
       }
     },
     {
-      "id": "m8_vrc_f_inl",
-      "label": "VRC front IN_L M8 cable plug (FL sensor) - mates the VRC enclosure IN_L M8 panel socket",
+      "id": "m8_vrc_f_in",
+      "label": "VRC front IN M8 cable plug - both sensor legs (FL, FR) land here; mates the VRC enclosure IN M8 panel socket",
       "width": 390,
       "partId": "cp_m8_plug_4m",
       "layoutPosition": {
         "x": 900,
-        "y": -150
+        "y": 0
       },
       "schematicPosition": {
         "x": 660,
@@ -128,119 +128,61 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "FL sensor screen - to the VRC case (enclosure joins it)"
+          "signal": "FR VR+"
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "spare"
+          "signal": "FR VR-"
         }
-      ]
+      ],
+      "shell": {
+        "id": "shell",
+        "signal": "FL + FR sensor screens - both drains on the shell (one landing), shell to the VRC case"
+      }
     },
     {
-      "id": "m8_vrc_f_inr",
-      "label": "VRC front IN_R M8 cable plug (FR sensor) - mates the VRC enclosure IN_R M8 panel socket",
+      "id": "m8_vrc_f_out",
+      "label": "VRC front OUT M8 cable plug - output cable to IX_WS_FRONT; mates the VRC enclosure OUT M8 panel socket",
       "width": 390,
       "partId": "cp_m8_plug_4m",
       "layoutPosition": {
-        "x": 900,
-        "y": 150
+        "x": 1140,
+        "y": 0
       },
       "schematicPosition": {
         "x": 660,
-        "y": 270
+        "y": 540
       },
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "FR VR+"
+          "signal": "+5V (VRC supply)"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "FR VR-"
+          "signal": "Gnd Out (VRC ground)"
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "FR sensor screen - to the VRC case (enclosure joins it)"
+          "signal": "FL conditioned out"
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "spare"
+          "signal": "FR conditioned out"
         }
-      ]
-    }
-  ],
-  "terminals": [
-    {
-      "id": "ep_vrc_f_out_5v",
-      "type": "Loose",
-      "signal": "VRC_FRONT_OUT +5V",
-      "schematicPosition": {
-        "x": 660,
-        "y": 540
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": -120
-      }
-    },
-    {
-      "id": "ep_vrc_f_out_gnd",
-      "type": "Loose",
-      "signal": "VRC_FRONT_OUT Gnd Out",
-      "schematicPosition": {
-        "x": 660,
-        "y": 600
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": -60
-      }
-    },
-    {
-      "id": "ep_vrc_f_out_l",
-      "type": "Loose",
-      "signal": "VRC_FRONT_OUT FL out",
-      "schematicPosition": {
-        "x": 660,
-        "y": 660
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": 0
-      }
-    },
-    {
-      "id": "ep_vrc_f_out_r",
-      "type": "Loose",
-      "signal": "VRC_FRONT_OUT FR out",
-      "schematicPosition": {
-        "x": 660,
-        "y": 720
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": 60
-      }
-    },
-    {
-      "id": "ep_vrc_f_out_sh",
-      "type": "Loose",
-      "signal": "VRC_FRONT_OUT screen - bonded to the VRC case",
-      "schematicPosition": {
-        "x": 660,
-        "y": 780
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": 120
+      ],
+      "shell": {
+        "id": "shell",
+        "signal": "Output cable screen - shell bonded to the VRC case"
       }
     }
   ],
+  "terminals": [],
   "cables": [
     {
       "id": "cab_fl",
@@ -258,7 +200,7 @@
             "handle": "c1"
           },
           "target": {
-            "id": "m8_vrc_f_inl",
+            "id": "m8_vrc_f_in",
             "handle": "c1"
           },
           "twistedWithNext": true
@@ -271,7 +213,7 @@
             "handle": "c2"
           },
           "target": {
-            "id": "m8_vrc_f_inl",
+            "id": "m8_vrc_f_in",
             "handle": "c2"
           }
         }
@@ -280,8 +222,8 @@
         "id": "cab_fl_sh",
         "color": "Shield",
         "source": {
-          "id": "m8_vrc_f_inl",
-          "handle": "c3"
+          "id": "m8_vrc_f_in",
+          "handle": "shell"
         }
       }
     },
@@ -301,8 +243,8 @@
             "handle": "c1"
           },
           "target": {
-            "id": "m8_vrc_f_inr",
-            "handle": "c1"
+            "id": "m8_vrc_f_in",
+            "handle": "c3"
           },
           "twistedWithNext": true
         },
@@ -314,8 +256,8 @@
             "handle": "c2"
           },
           "target": {
-            "id": "m8_vrc_f_inr",
-            "handle": "c2"
+            "id": "m8_vrc_f_in",
+            "handle": "c4"
           }
         }
       ],
@@ -323,8 +265,8 @@
         "id": "cab_fr_sh",
         "color": "Shield",
         "source": {
-          "id": "m8_vrc_f_inr",
-          "handle": "c3"
+          "id": "m8_vrc_f_in",
+          "handle": "shell"
         }
       }
     },
@@ -340,8 +282,8 @@
           "id": "cab_fout_5v",
           "color": "Orange",
           "source": {
-            "id": "ep_vrc_f_out_5v",
-            "handle": "Terminal"
+            "id": "m8_vrc_f_out",
+            "handle": "c1"
           },
           "target": {
             "id": "ix_ws_front_r",
@@ -352,8 +294,8 @@
           "id": "cab_fout_gnd",
           "color": "Black",
           "source": {
-            "id": "ep_vrc_f_out_gnd",
-            "handle": "Terminal"
+            "id": "m8_vrc_f_out",
+            "handle": "c2"
           },
           "target": {
             "id": "ix_ws_front_r",
@@ -364,8 +306,8 @@
           "id": "cab_fout_l",
           "color": "Blue",
           "source": {
-            "id": "ep_vrc_f_out_l",
-            "handle": "Terminal"
+            "id": "m8_vrc_f_out",
+            "handle": "c3"
           },
           "target": {
             "id": "ix_ws_front_r",
@@ -376,8 +318,8 @@
           "id": "cab_fout_r",
           "color": "Violet",
           "source": {
-            "id": "ep_vrc_f_out_r",
-            "handle": "Terminal"
+            "id": "m8_vrc_f_out",
+            "handle": "c4"
           },
           "target": {
             "id": "ix_ws_front_r",
@@ -389,8 +331,8 @@
         "id": "cab_fout_sh",
         "color": "Shield",
         "source": {
-          "id": "ep_vrc_f_out_sh",
-          "handle": "Terminal"
+          "id": "m8_vrc_f_out",
+          "handle": "shell"
         },
         "target": {
           "id": "ix_ws_front_r",
@@ -401,53 +343,8 @@
   ],
   "bundles": [
     {
-      "id": "bn_bp_f_out__ep_vrc_f_out_5v",
-      "sourceId": "bp_f_out",
-      "targetId": "ep_vrc_f_out_5v",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_f_out__ep_vrc_f_out_gnd",
-      "sourceId": "bp_f_out",
-      "targetId": "ep_vrc_f_out_gnd",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_f_out__ep_vrc_f_out_l",
-      "sourceId": "bp_f_out",
-      "targetId": "ep_vrc_f_out_l",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_f_out__ep_vrc_f_out_r",
-      "sourceId": "bp_f_out",
-      "targetId": "ep_vrc_f_out_r",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_f_out__ep_vrc_f_out_sh",
-      "sourceId": "bp_f_out",
-      "targetId": "ep_vrc_f_out_sh",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_f_out__bp_f_fwd",
-      "sourceId": "bp_f_out",
+      "id": "bn_m8_vrc_f_out__bp_f_fwd",
+      "sourceId": "m8_vrc_f_out",
       "targetId": "bp_f_fwd",
       "length": {
         "value": 1100,
@@ -464,18 +361,18 @@
       }
     },
     {
-      "id": "bn_wss_fl__m8_vrc_f_inl",
+      "id": "bn_wss_fl__m8_vrc_f_in",
       "sourceId": "wss_fl",
-      "targetId": "m8_vrc_f_inl",
+      "targetId": "m8_vrc_f_in",
       "length": {
         "value": 1310,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_wss_fr__m8_vrc_f_inr",
+      "id": "bn_wss_fr__m8_vrc_f_in",
       "sourceId": "wss_fr",
-      "targetId": "m8_vrc_f_inr",
+      "targetId": "m8_vrc_f_in",
       "length": {
         "value": 970,
         "unit": "mm"
@@ -483,13 +380,6 @@
     }
   ],
   "branchPoints": [
-    {
-      "id": "bp_f_out",
-      "layoutPosition": {
-        "x": 1140,
-        "y": 0
-      }
-    },
     {
       "id": "bp_f_fwd",
       "layoutPosition": {
@@ -506,7 +396,7 @@
         "x": 1920,
         "y": 0
       },
-      "text": "FRONT WHEEL SPEED - one Y harness. FL and FR ABS drops (loom C fender route, no bulkhead) run as two separate legs to the front VRC IN M8 plugs; the output runs through a grommet to the 6-way inline DT04-6P near the ECU (IX_WS_FRONT). The ECU side owns only the short spur and the DT06-6S mating half (ST185-A-cabin; the FR core's short screened spur to B21 runs on to ST185-B-cabin; c6 is a plugged spare)."
+      "text": "FRONT WHEEL SPEED - one Y harness. FL and FR ABS drops (loom C fender route, no bulkhead) run as two separate legs to the front VRC's one IN M8 plug; the output runs through a grommet to the 6-way inline DT04-6P near the ECU (IX_WS_FRONT). The ECU side owns only the short spur and the DT06-6S mating half (ST185-A-cabin; the FR core's short screened spur to B21 runs on to ST185-B-cabin; c6 is a plugged spare)."
     },
     {
       "id": "n_vrc",
@@ -516,7 +406,7 @@
         "x": 1920,
         "y": 210
       },
-      "text": "VRC NOT DRAWN. The VR conditioner, its enclosure and its panel connectors belong to the enclosure build, not this harness. The two IN M8 cable plugs (m8_vrc_f_inl / m8_vrc_f_inr, binder 99 3363 100 04: pin 1 VR+, pin 2 VR-, pin 3 screen to the case, pin 4 spare) ARE drawn on this harness (Daniel 2026-10-12). The OUT side is still the loose device endpoint VRC_FRONT_OUT. FL and FR run as separate legs to the box - no shared Y."
+      "text": "VRC NOT DRAWN. The VR conditioner, its enclosure and its panel sockets belong to the enclosure build. This harness ends in exactly two M8 cable plugs, same part (binder 99 3363 100 04, 4 contacts + metal shell; Daniel 2026-10-12): m8_vrc_f_in IN - pin 1 FL VR+, 2 FL VR-, 3 FR VR+, 4 FR VR-, both sensor screens on the shell; m8_vrc_f_out OUT - pin 1 +5V, 2 Gnd Out, 3 FL out, 4 FR out, output screen on the shell. The shells bond to the VRC case. FL and FR run as separate legs and meet only at the IN plug."
     },
     {
       "id": "n_shield",
@@ -526,7 +416,7 @@
         "x": 1920,
         "y": 420
       },
-      "text": "SHIELDS - VRC powered-device exception (docs/SHIELD-RULES.md 6.30). Each sensor screen floats at the sensor and lands on its M8 IN plug pin 3 (to the case inside the box). The output is ONE 4-core screened cable (cab_fout: +5V, Gnd Out, FL, FR; Route 9 rev 3, 2026-10-10): its screen is bonded to the case and runs to inline pin 5, then to SHIELD_A (A7). Inline pin 6 is a plugged spare. After IX_WS_FRONT the FR core continues on its own short screened spur on ST185-A-cabin / ST185-B-cabin, floating at the inline end and draining to SHIELD_B (B17). A7 and B17 never meet."
+      "text": "SHIELDS - VRC powered-device exception (docs/SHIELD-RULES.md 6.30). Each sensor screen floats at the sensor; the two input drains land together on the IN plug's metal shell (one landing). The output cable screen lands on the OUT plug's shell. Both shells bond to the VRC case through the panel sockets (360 degrees, no pigtail - plan 6.30 'Why M8'). The output screen runs on to inline pin 5 and the ECU shield ground. One screen node, grounded once, at the ECU."
     },
     {
       "id": "n_iso",
@@ -631,10 +521,10 @@
       "id": "cp_m8_plug_4m",
       "partNumber": "99 3363 100 04",
       "manufacturer": "binder",
-      "description": "CONNECTOR, CIRCULAR, M8, CABLE PLUG, MALE, 4 POS, SHIELDABLE, SCREW CLAMP, IP67",
+      "description": "CONNECTOR, CIRCULAR, M8, CABLE PLUG, MALE, 4 POS, SHIELDABLE, METAL SHELL, SCREW CLAMP, IP67",
       "numberOfCavities": 4,
       "gender": "Male",
-      "hasShell": false,
+      "hasShell": true,
       "configurations": [
         {
           "id": "cfg",
