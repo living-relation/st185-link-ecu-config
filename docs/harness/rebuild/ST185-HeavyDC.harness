@@ -120,8 +120,8 @@
         "y": 150
       },
       "layoutPosition": {
-        "x": 5550,
-        "y": 240
+        "x": 4440,
+        "y": 340
       }
     },
     {
@@ -133,8 +133,8 @@
         "y": 240
       },
       "layoutPosition": {
-        "x": 5670,
-        "y": 150
+        "x": 4560,
+        "y": 340
       }
     },
     {
@@ -463,8 +463,8 @@
       }
     },
     {
-      "id": "bn_bp_hdc_batt__br_h1_batt_pos",
-      "sourceId": "bp_hdc_batt",
+      "id": "bn_bp_hdc_pdb_h__br_h1_batt_pos",
+      "sourceId": "bp_hdc_pdb_h",
       "targetId": "br_h1_batt_pos",
       "length": {
         "value": 60,
@@ -472,8 +472,8 @@
       }
     },
     {
-      "id": "bn_bp_hdc_batt__br_h2_batt_neg",
-      "sourceId": "bp_hdc_batt",
+      "id": "bn_bp_hdc_pdb_h__br_h2_batt_neg",
+      "sourceId": "bp_hdc_pdb_h",
       "targetId": "br_h2_batt_neg",
       "length": {
         "value": 60,

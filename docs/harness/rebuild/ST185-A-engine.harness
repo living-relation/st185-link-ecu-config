@@ -2280,15 +2280,6 @@
       }
     },
     {
-      "id": "bn_bp_360__bp_390",
-      "sourceId": "be_360",
-      "targetId": "bp_390",
-      "length": {
-        "value": 40,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_750__bh_b_eng",
       "sourceId": "be_750",
       "targetId": "bp_at_bh_b_eng",
@@ -2339,15 +2330,6 @@
       "targetId": "bp_1050",
       "length": {
         "value": 160,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "be_bn_bp_360__boost",
-      "sourceId": "be_360",
-      "targetId": "boost",
-      "length": {
-        "value": 50,
         "unit": "mm"
       }
     },
@@ -2590,20 +2572,6 @@
       }
     },
     {
-      "id": "be_360",
-      "layoutPosition": {
-        "x": 450,
-        "y": 210
-      }
-    },
-    {
-      "id": "bp_390",
-      "layoutPosition": {
-        "x": 570,
-        "y": 210
-      }
-    },
-    {
       "id": "be_660",
       "layoutPosition": {
         "x": 1650,
@@ -2702,33 +2670,11 @@
   ],
   "wireParts": [
     {
-      "id": "wp_20_blk",
-      "partNumber": "EW-1C20-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "wp_20_brn",
       "partNumber": "EW-1C20-BRN",
       "manufacturer": "generic",
       "description": "WIRE, ELECTRICAL, 20 AWG, BROWN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
       "color": "Brown",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_grn",
-      "partNumber": "EW-1C20-GRN",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Green",
       "gauge": {
         "value": 20,
         "unit": "AWG"
@@ -2786,17 +2732,6 @@
       "color": "Yellow",
       "gauge": {
         "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_18_wht",
-      "partNumber": "EW-1C18-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "White",
-      "gauge": {
-        "value": 18,
         "unit": "AWG"
       }
     },
@@ -2876,30 +2811,6 @@
       "color": "Red",
       "gauge": {
         "value": 14,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_18_red_wht",
-      "partNumber": "EW-1C18-RED-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_18_blk_wht",
-      "partNumber": "EW-1C18-BLK-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Black",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 18,
         "unit": "AWG"
       }
     },
@@ -3016,22 +2927,6 @@
       "id": "ct_gt150_skt_05"
     },
     {
-      "partNumber": "0462-201-2031",
-      "manufacturer": "TE DEUTSCH",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
-      "id": "ct_hdp20s"
-    },
-    {
       "partNumber": "12084200",
       "manufacturer": "Aptiv",
       "type": "Crimp",
@@ -3104,12 +2999,6 @@
       "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
-    },
-    {
-      "partNumber": "0413-204-2005",
-      "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
-      "id": "pl_sz20"
     },
     {
       "id": "pl_114017",
@@ -3491,24 +3380,6 @@
         }
       ],
       "url": "https://www.te.com/usa-en/product-DT06-6S.html"
-    },
-    {
-      "id": "cp_dtp06_4s",
-      "partNumber": "DTP06-4S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DTP, 4 POS, SOCKET CONTACTS",
-      "numberOfCavities": 4,
-      "gender": "Female",
-      "hasShell": false,
-      "url": "https://www.te.com/usa-en/product-DTP06-4S.html",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_hdp12s",
-          "cavityPlugPartId": "pl_114017",
-          "lockPartId": "lp_wp4s"
-        }
-      ]
     }
   ],
   "cableParts": [
@@ -3631,18 +3502,6 @@
   ],
   "lockParts": [
     {
-      "id": "lp_wb51sal",
-      "partNumber": "WB-51SAL",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DRB 102/128, PLUG, LEFT"
-    },
-    {
-      "id": "lp_wb51sar",
-      "partNumber": "WB-51SAR",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DRB 102/128, PLUG, RIGHT"
-    },
-    {
       "partNumber": "W2S",
       "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 2-WAY PLUG",
@@ -3659,13 +3518,6 @@
       "partNumber": "W6S",
       "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 6-WAY PLUG"
-    },
-    {
-      "id": "lp_wp4s",
-      "partNumber": "WP-4S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DTP, 4 POS, PLUG",
-      "url": "https://www.te.com/usa-en/product-WP-4S.html"
     }
   ]
 }

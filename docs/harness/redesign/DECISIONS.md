@@ -357,8 +357,9 @@ alphabetically-first half, `bh_a_fw`) so it is bought exactly once. The DRB102 n
 **two** wedgelocks per shell (left + right, different part numbers:
 `WB-51PAL`/`WB-51PAR` receptacle side, `WB-51SAL`/`WB-51SAR` plug side) and the
 `.harness` schema only holds one `lockPartId` per connector configuration, so all four
-are tracked as `buylist.py` `EXTRA` line items instead (documented in each half's
-`lockParts` library for reference) rather than forced into that single field.
+are tracked as `buylist.py` `EXTRA` line items instead rather than forced into that single field
+(the reference copies in each half's `lockParts` list were removed 2026-10-12: no unused
+parts in a parts list, `audit_parts_layout.py` P1).
 
 `buylist.py` gained the physical-part-group mechanism described above: distinct
 connector ids that are documentation halves of one physical part (not copies of the
