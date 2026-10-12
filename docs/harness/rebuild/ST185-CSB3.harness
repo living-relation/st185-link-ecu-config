@@ -343,7 +343,7 @@
       "signal": "Broken off - continues on ST185-ClusterLED: oil pressure LED sink on CSB3 L4",
       "width": 390,
       "layoutPosition": {
-        "x": 2460,
+        "x": 2340,
         "y": 210
       },
       "schematicPosition": {
@@ -358,7 +358,7 @@
       "signal": "Broken off - continues on ST185-CAN: CAN H into the CSB3 plug",
       "width": 390,
       "layoutPosition": {
-        "x": 2460,
+        "x": 2340,
         "y": 330
       },
       "schematicPosition": {
@@ -373,7 +373,7 @@
       "signal": "Broken off - continues on ST185-CAN: CAN L into the CSB3 plug",
       "width": 390,
       "layoutPosition": {
-        "x": 2460,
+        "x": 2340,
         "y": 390
       },
       "schematicPosition": {
@@ -388,7 +388,7 @@
       "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can",
       "width": 390,
       "layoutPosition": {
-        "x": 2460,
+        "x": 2340,
         "y": 270
       },
       "schematicPosition": {

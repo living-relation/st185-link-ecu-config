@@ -29,7 +29,7 @@ What it runs, in order - every one in HARD is a hard gate:
                            harnesses (Daniel 2026-10-12)
   check_harnesslib.py      every part a drawing uses is in min/ST185.harnesslib and equal to it
   audit_drawing_rules.py   signals (one propagating per net, terminals never, no empty wired
-                           cavity), 30-unit grid, bundle lengths, left-to-right flow, no overlaps
+                           cavity), 30-unit grid, bundle lengths, layout left to right, no overlaps
   buylist.py --check       buy list is current, and the shared-connector consistency check
   buildlist.py --check     per-wire build list is current
   make_min.py --check      the upload copies in min/ are current

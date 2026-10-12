@@ -10,11 +10,15 @@ splices - a connector never joins its own cavities.
   S1  at most one propagating signal per net (no signal conflict)
   S2  a terminal's signal never propagates ("propagate": false): terminal signals are descriptions
       (broken-off ends, flying leads, device endpoints, studs), never a net name
-  S3  every wired connector cavity carries its own explicit signal - nothing relies on auto-fill
+  S3  a wired cavity with no signal of its own sits on a net with exactly one propagating signal, so
+      it inherits that one name (the docs: define a signal once where it originates, set one
+      explicitly only where a cavity needs a different label)
   G1  every schematicPosition / layoutPosition / layout point is on the 30-unit grid
   G2  every bundle segment has a length
-  F1  schematic flow is left to right: on every wire between a device connector and an ECU,
-      bulkhead or inline-interface connector, the device is to the left
+  L1  the LAYOUT reads left to right along the physical route (Daniel 2026-10-12): in every layout
+      piece, walking away from one end (the leftmost or the rightmost node), x never doubles back -
+      a branch may drop straight up or down but never runs back past its parent. The SCHEMATIC has no
+      direction rule (center-out around the main connector is fine); it only must not overlap
   G3  no two schematic nodes (connectors, terminals, splices, notes) overlap
       (estimated boxes - connector height = 30 per cavity + header, note height from its text)
 
@@ -104,26 +108,37 @@ def overlaps(bx):
     return hits
 
 
-def flow_pairs(loom, d, reg=None):
-    """(wrong-way [(device, right-hand node)], total) for device -> ECU / bulkhead / inline wires."""
-    reg = reg or model.registry()
-    ix = {(h["harness"], h["connector"]) for i in reg.get("interfaces", []) for h in i["halves"]}
-    conns = {c["id"]: c for c in d.get("connectors", [])}
-
-    def right(i):
-        return i in ("ecu_a", "ecu_b", "ecu_com") or i in model.BULKHEAD_MATE or (loom, i) in ix
-    bad, tot = set(), 0
-    for c, _, _ in model.conductors(d):
-        e = [x["id"] for x in (c.get("source"), c.get("target")) if x and x.get("id")]
-        if len(e) != 2:
+def layout_pieces(d):
+    g = collections.defaultdict(set)
+    for b in d.get("bundles", []):
+        g[b["sourceId"]].add(b["targetId"])
+        g[b["targetId"]].add(b["sourceId"])
+    seen = set()
+    for s in list(g):
+        if s in seen:
             continue
-        r = [x for x in e if right(x)]
-        o = [x for x in e if not right(x) and x in conns]
-        if len(r) == 1 and len(o) == 1 and conns.get(r[0], {}).get("schematicPosition")                 and conns[o[0]].get("schematicPosition"):
-            tot += 1
-            if conns[o[0]]["schematicPosition"]["x"] > conns[r[0]]["schematicPosition"]["x"]:
-                bad.add((o[0], r[0]))
-    return sorted(bad), tot
+        comp, todo = {s}, [s]
+        while todo:
+            for m in g[todo.pop()] - comp:
+                comp.add(m)
+                todo.append(m)
+        seen |= comp
+        yield comp, g
+
+
+def layout_backtracks(g, p, root, sign):
+    """Edges (parent, child) walking away from root where x moves back toward the root side."""
+    bad, prev, todo = [], {root: None}, [root]
+    while todo:
+        n = todo.pop()
+        for m in sorted(g[n]):
+            if m in prev:
+                continue
+            prev[m] = n
+            todo.append(m)
+            if n in p and m in p and sign * (p[m][0] - p[n][0]) < 0:
+                bad.append((n, m))
+    return bad, prev
 
 
 def check(loom, d):
@@ -141,8 +156,9 @@ def check(loom, d):
             kind, obj = lab[n]
             if kind == "T" and obj.get("signal") and obj.get("propagate", True):
                 bad.append("S2 %s: terminal %s signal propagates" % (loom, n[0]))
-            if kind == "C" and not obj.get("signal"):
-                bad.append("S3 %s: wired cavity %s.%s has no explicit signal" % (loom, n[0], n[1]))
+            if kind == "C" and not obj.get("signal") and len(prop) != 1:
+                bad.append("S3 %s: wired cavity %s.%s has no signal and its net has %d propagating signals"
+                           % (loom, n[0], n[1], len(prop)))
     for k in ("connectors", "terminals", "splices", "resistors", "diodes", "branchPoints", "cables",
               "schematicNotes", "layoutNotes"):
         for x in d.get(k, []):
@@ -157,8 +173,20 @@ def check(loom, d):
             q = lp.get("layoutPosition") or {}
             if q.get("x", 0) % GRID or q.get("y", 0) % GRID:
                 bad.append("G1 %s: bundle %s layout point off the grid" % (loom, b["id"]))
-    for dev, rgt in flow_pairs(loom, d)[0]:
-        bad.append("F1 %s: device %s is right of %s - schematic flows right to left" % (loom, dev, rgt))
+    p = {x["id"]: (x["layoutPosition"]["x"], x["layoutPosition"]["y"])
+         for k in ("connectors", "terminals", "branchPoints") for x in d.get(k, []) if x.get("layoutPosition")}
+    for comp, g in layout_pieces(d):
+        cand = [n for n in comp if n in p]
+        if len(cand) < 2:
+            continue
+        left = min(cand, key=lambda n: (p[n][0], p[n][1]))
+        right = max(cand, key=lambda n: (p[n][0], -p[n][1]))
+        a, _ = layout_backtracks(g, p, left, +1)
+        b, _ = layout_backtracks(g, p, right, -1)
+        if a and b:
+            best = a if len(a) <= len(b) else b
+            bad.append("L1 %s: layout piece at %s doubles back - %d bundle(s), e.g. %s -> %s"
+                       % (loom, left, len(best), best[0][0], best[0][1]))
     for a, b in overlaps(boxes(d)):
         bad.append("G3 %s: schematic %s overlaps %s" % (loom, a, b))
     return bad

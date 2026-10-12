@@ -539,7 +539,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 840,
+        "x": 1800,
         "y": 150
       },
       "schematicPosition": {
@@ -593,7 +593,7 @@
         "y": 1560
       },
       "layoutPosition": {
-        "x": 1440,
+        "x": 1680,
         "y": 540
       }
     },
@@ -793,7 +793,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2400,
-        "y": 270
+        "y": 330
       },
       "schematicPosition": {
         "x": 3000,
@@ -807,7 +807,7 @@
       "signal": "Broken off - continues on ST185-B-cabin: +5V from sp_5v at ECU A (crossover a)",
       "width": 390,
       "layoutPosition": {
-        "x": 1200,
+        "x": 1920,
         "y": 90
       },
       "schematicPosition": {
@@ -823,7 +823,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2040,
-        "y": 90
+        "y": 270
       },
       "schematicPosition": {
         "x": 3000,
@@ -837,7 +837,7 @@
       "signal": "Broken off - continues on ST185-B-cabin: front wheel-speed FR core to ECU-B B21",
       "width": 390,
       "layoutPosition": {
-        "x": 1500,
+        "x": 1620,
         "y": 660
       },
       "schematicPosition": {
@@ -852,7 +852,7 @@
       "signal": "Broken off - continues on ST185-B-cabin: front wheel-speed FR shield to sp_shield_b (B17)",
       "width": 390,
       "layoutPosition": {
-        "x": 1500,
+        "x": 1620,
         "y": 720
       },
       "schematicPosition": {
@@ -867,7 +867,7 @@
       "signal": "Broken off - continues on ST185-CSB3: +5V to the cruise ladder pull-up",
       "width": 390,
       "layoutPosition": {
-        "x": 1200,
+        "x": 1920,
         "y": 210
       },
       "schematicPosition": {
@@ -957,7 +957,7 @@
       "signal": "Broken off - continues on ST185-CabinPower: RFRM INJ 15A injector rail from the fuse box to bulkhead A c48 (shared DRB102)",
       "width": 390,
       "layoutPosition": {
-        "x": 780,
+        "x": 1860,
         "y": 300
       },
       "schematicPosition": {
@@ -972,8 +972,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: RFRM COP 15A COP rail from the fuse box to bulkhead A c49 (shared DRB102)",
       "width": 390,
       "layoutPosition": {
-        "x": 780,
-        "y": 330
+        "x": 1860,
+        "y": 450
       },
       "schematicPosition": {
         "x": 1470,
@@ -987,7 +987,7 @@
       "signal": "Broken off - continues on ST185-CabinPower: EFI Main Relay 85 (k_efi) <- ECU-A A28",
       "width": 390,
       "layoutPosition": {
-        "x": 1440,
+        "x": 1920,
         "y": 360
       },
       "schematicPosition": {
@@ -1002,7 +1002,7 @@
       "signal": "Broken off - continues on ST185-CabinPower: Fuel Pump Relay 85 (k_fp) <- ECU-A A19",
       "width": 390,
       "layoutPosition": {
-        "x": 1440,
+        "x": 2400,
         "y": 480
       },
       "schematicPosition": {
@@ -1017,7 +1017,7 @@
       "signal": "Broken off - continues on ST185-CabinPower: Radiator Fan Relay (on/off) 85 (k_fan) <- ECU-A A29",
       "width": 390,
       "layoutPosition": {
-        "x": 1440,
+        "x": 2880,
         "y": 600
       },
       "schematicPosition": {
@@ -1032,7 +1032,7 @@
       "signal": "Broken off - continues on ST185-CabinPower: ETB Power Relay 85 (k_etb) <- ECU-A A20",
       "width": 390,
       "layoutPosition": {
-        "x": 1440,
+        "x": 2160,
         "y": 420
       },
       "schematicPosition": {
@@ -1047,7 +1047,7 @@
       "signal": "Broken off - continues on ST185-CabinPower: Start Relay 85 (k_str) <- ECU-A A26",
       "width": 390,
       "layoutPosition": {
-        "x": 1440,
+        "x": 2640,
         "y": 300
       },
       "schematicPosition": {
@@ -2892,28 +2892,28 @@
     {
       "id": "bp_840",
       "layoutPosition": {
-        "x": 840,
+        "x": 1800,
         "y": 240
       }
     },
     {
       "id": "bp_870",
       "layoutPosition": {
-        "x": 960,
+        "x": 1680,
         "y": 240
       }
     },
     {
       "id": "bp_900",
       "layoutPosition": {
-        "x": 1080,
+        "x": 1560,
         "y": 240
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 1200,
+        "x": 1440,
         "y": 240
       }
     },
@@ -2976,14 +2976,14 @@
     {
       "id": "b_bp_870",
       "layoutPosition": {
-        "x": 960,
+        "x": 1680,
         "y": 240
       }
     },
     {
       "id": "b_bp_900",
       "layoutPosition": {
-        "x": 1080,
+        "x": 1800,
         "y": 240
       }
     },
@@ -3039,7 +3039,7 @@
     {
       "id": "bp_at_bh_b_fw",
       "layoutPosition": {
-        "x": 960,
+        "x": 1680,
         "y": 90
       }
     },

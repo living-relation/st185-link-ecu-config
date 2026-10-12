@@ -534,7 +534,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1560,
+        "x": 2280,
         "y": 450
       },
       "schematicPosition": {
@@ -566,7 +566,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 3270,
+        "x": 3930,
         "y": 90
       }
     },
@@ -688,7 +688,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2400,
-        "y": 330
+        "y": 390
       },
       "schematicPosition": {
         "x": 1770,
@@ -703,7 +703,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2400,
-        "y": 270
+        "y": 330
       },
       "schematicPosition": {
         "x": 1770,
@@ -717,8 +717,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: +5V from sp_5v at ECU A (crossover a)",
       "width": 390,
       "layoutPosition": {
-        "x": 1200,
-        "y": 330
+        "x": 2640,
+        "y": 450
       },
       "schematicPosition": {
         "x": 1770,
@@ -762,7 +762,7 @@
       "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR core from IX_WS_FRONT pin 4",
       "width": 390,
       "layoutPosition": {
-        "x": 1500,
+        "x": 1620,
         "y": 540
       },
       "schematicPosition": {
@@ -777,7 +777,7 @@
       "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR shield from IX_WS_FRONT pin 6",
       "width": 390,
       "layoutPosition": {
-        "x": 1500,
+        "x": 1620,
         "y": 600
       },
       "schematicPosition": {
@@ -822,7 +822,7 @@
       "signal": "Broken off - continues on ST185-AntiTheft: immobiliser output to ECU-B B27 (DI 10)",
       "width": 390,
       "layoutPosition": {
-        "x": 1620,
+        "x": 2220,
         "y": 270
       },
       "schematicPosition": {
@@ -852,7 +852,7 @@
       "signal": "Broken off - continues on ST185-CAN: CAN L from the CAN bus splice to bulkhead B c14",
       "width": 390,
       "layoutPosition": {
-        "x": 900,
+        "x": 1020,
         "y": 210
       },
       "schematicPosition": {
@@ -867,7 +867,7 @@
       "signal": "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from RFRM LAM to bulkhead B c3",
       "width": 390,
       "layoutPosition": {
-        "x": 900,
+        "x": 1020,
         "y": 300
       },
       "schematicPosition": {
@@ -882,7 +882,7 @@
       "signal": "Broken off - continues on ST185-A-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis",
       "width": 390,
       "layoutPosition": {
-        "x": 900,
+        "x": 1020,
         "y": 270
       },
       "schematicPosition": {
@@ -897,7 +897,7 @@
       "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can to bulkhead B c24",
       "width": 390,
       "layoutPosition": {
-        "x": 900,
+        "x": 1020,
         "y": 360
       },
       "schematicPosition": {
@@ -912,7 +912,7 @@
       "signal": "Broken off - drain comes in from ST185-CAN: CAN screen splice sp_shield_can to sp_shield_b (B17)",
       "width": 390,
       "layoutPosition": {
-        "x": 900,
+        "x": 1020,
         "y": 240
       },
       "schematicPosition": {
@@ -927,7 +927,7 @@
       "signal": "Broken off - continues on ST185-CabinPower: Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13",
       "width": 390,
       "layoutPosition": {
-        "x": 1560,
+        "x": 3720,
         "y": 570
       },
       "schematicPosition": {
@@ -942,7 +942,7 @@
       "signal": "Broken off - continues on ST185-CabinPower: MR-S EHPS pump relay (HCR150, glove box) 85 (k_eps) <- ECU-B B12",
       "width": 390,
       "layoutPosition": {
-        "x": 1560,
+        "x": 3720,
         "y": 510
       },
       "schematicPosition": {

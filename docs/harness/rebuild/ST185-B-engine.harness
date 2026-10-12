@@ -341,7 +341,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2130,
+        "x": -510,
         "y": 270
       },
       "schematicPosition": {
@@ -369,7 +369,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 930,
+        "x": 450,
         "y": 90
       },
       "schematicPosition": {
@@ -397,7 +397,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1290,
+        "x": -2070,
         "y": 270
       },
       "schematicPosition": {
@@ -425,7 +425,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1290,
+        "x": 330,
         "y": -330
       },
       "schematicPosition": {
@@ -450,7 +450,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 810,
+        "x": 570,
         "y": 30
       },
       "schematicPosition": {
@@ -475,7 +475,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 330,
+        "x": 1290,
         "y": 270
       },
       "schematicPosition": {
@@ -494,7 +494,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 2730,
+        "x": -1110,
         "y": -360
       },
       "cavities": [
@@ -534,7 +534,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1050,
+        "x": 330,
         "y": 0
       },
       "schematicPosition": {
@@ -584,7 +584,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2010,
+        "x": -390,
         "y": 360
       },
       "schematicPosition": {
@@ -604,7 +604,7 @@
         "y": 870
       },
       "layoutPosition": {
-        "x": 2610,
+        "x": -990,
         "y": -330
       },
       "propagate": false
@@ -615,7 +615,7 @@
       "signal": "Broken off - spur continues on ST185-A-engine: ETB motor + (Aux 9, B18), bulkhead B c5",
       "width": 390,
       "layoutPosition": {
-        "x": 2280,
+        "x": -660,
         "y": 150
       },
       "schematicPosition": {
@@ -630,7 +630,7 @@
       "signal": "Broken off - spur continues on ST185-A-engine: ETB motor - (Aux 10, B26), bulkhead B c6",
       "width": 390,
       "layoutPosition": {
-        "x": 2280,
+        "x": -660,
         "y": 450
       },
       "schematicPosition": {
@@ -645,7 +645,7 @@
       "signal": "Broken off - continues on ST185-CAN: CAN H from bulkhead B c13 to the Lambda",
       "width": 390,
       "layoutPosition": {
-        "x": 2280,
+        "x": -660,
         "y": 510
       },
       "schematicPosition": {
@@ -660,7 +660,7 @@
       "signal": "Broken off - continues on ST185-CAN: CAN L from bulkhead B c14 to the Lambda",
       "width": 390,
       "layoutPosition": {
-        "x": 2280,
+        "x": -660,
         "y": 240
       },
       "schematicPosition": {
@@ -675,7 +675,7 @@
       "signal": "Broken off - continues on ST185-CAN: CAN-Lambda +12V from RFRM LAM, bulkhead B c3",
       "width": 390,
       "layoutPosition": {
-        "x": 2280,
+        "x": -660,
         "y": 330
       },
       "schematicPosition": {
@@ -690,7 +690,7 @@
       "signal": "Broken off - continues on ST185-CAN: CAN-Lambda ground to cabin chassis ground, bulkhead B c4",
       "width": 390,
       "layoutPosition": {
-        "x": 2280,
+        "x": -660,
         "y": 300
       },
       "schematicPosition": {
@@ -705,7 +705,7 @@
       "signal": "Broken off - screen continues on ST185-A-engine: ETB motor cable screen from bulkhead B c22",
       "width": 390,
       "layoutPosition": {
-        "x": 2280,
+        "x": -660,
         "y": 210
       },
       "schematicPosition": {
@@ -720,7 +720,7 @@
       "signal": "Broken off - screen continues on ST185-CAN: CAN-Lambda pair screen from bulkhead B c24",
       "width": 390,
       "layoutPosition": {
-        "x": 2280,
+        "x": -660,
         "y": 390
       },
       "schematicPosition": {
@@ -1665,7 +1665,7 @@
     {
       "id": "bp_420",
       "layoutPosition": {
-        "x": 570,
+        "x": 810,
         "y": 180
       }
     },
@@ -1679,49 +1679,49 @@
     {
       "id": "bp_480",
       "layoutPosition": {
-        "x": 810,
+        "x": 570,
         "y": 180
       }
     },
     {
       "id": "bp_510",
       "layoutPosition": {
-        "x": 930,
+        "x": 450,
         "y": 180
       }
     },
     {
       "id": "bp_540",
       "layoutPosition": {
-        "x": 1050,
+        "x": 330,
         "y": 180
       }
     },
     {
       "id": "be_330",
       "layoutPosition": {
-        "x": 330,
+        "x": 1290,
         "y": 210
       }
     },
     {
       "id": "be_360",
       "layoutPosition": {
-        "x": 450,
+        "x": 1170,
         "y": 210
       }
     },
     {
       "id": "bp_390",
       "layoutPosition": {
-        "x": 570,
+        "x": 1050,
         "y": 210
       }
     },
     {
       "id": "be_420",
       "layoutPosition": {
-        "x": 690,
+        "x": 930,
         "y": 210
       }
     },
@@ -1735,112 +1735,112 @@
     {
       "id": "be_480",
       "layoutPosition": {
-        "x": 930,
+        "x": 690,
         "y": 210
       }
     },
     {
       "id": "be_510",
       "layoutPosition": {
-        "x": 1050,
+        "x": 570,
         "y": 210
       }
     },
     {
       "id": "be_540",
       "layoutPosition": {
-        "x": 1170,
+        "x": 450,
         "y": 210
       }
     },
     {
       "id": "be_570",
       "layoutPosition": {
-        "x": 1290,
+        "x": 330,
         "y": 210
       }
     },
     {
       "id": "be_600",
       "layoutPosition": {
-        "x": 1410,
+        "x": 210,
         "y": 210
       }
     },
     {
       "id": "be_630",
       "layoutPosition": {
-        "x": 1530,
+        "x": 90,
         "y": 210
       }
     },
     {
       "id": "be_660",
       "layoutPosition": {
-        "x": 1650,
+        "x": -30,
         "y": 210
       }
     },
     {
       "id": "be_690",
       "layoutPosition": {
-        "x": 1770,
+        "x": -150,
         "y": 210
       }
     },
     {
       "id": "be_720",
       "layoutPosition": {
-        "x": 1890,
+        "x": -270,
         "y": 210
       }
     },
     {
       "id": "be_750",
       "layoutPosition": {
-        "x": 2010,
+        "x": -390,
         "y": 210
       }
     },
     {
       "id": "be_810",
       "layoutPosition": {
-        "x": 2250,
+        "x": -630,
         "y": 210
       }
     },
     {
       "id": "be_840",
       "layoutPosition": {
-        "x": 2370,
+        "x": -750,
         "y": 210
       }
     },
     {
       "id": "be_870",
       "layoutPosition": {
-        "x": 2490,
+        "x": -870,
         "y": 210
       }
     },
     {
       "id": "be_900",
       "layoutPosition": {
-        "x": 2610,
+        "x": -990,
         "y": 210
       }
     },
     {
       "id": "be_930",
       "layoutPosition": {
-        "x": 2730,
+        "x": -1110,
         "y": 210
       }
     },
     {
       "id": "bp_at_turbospd",
       "layoutPosition": {
-        "x": 690,
+        "x": 930,
         "y": 0
       }
     }

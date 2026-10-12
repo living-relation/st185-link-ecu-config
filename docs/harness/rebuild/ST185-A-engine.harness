@@ -997,7 +997,7 @@
       "signal": "Broken off - continues on ST185-CabinPower: start relay 87 to the starter S terminal",
       "width": 390,
       "layoutPosition": {
-        "x": 3150,
+        "x": 3390,
         "y": 450
       },
       "schematicPosition": {
@@ -2652,7 +2652,7 @@
     {
       "id": "be_750",
       "layoutPosition": {
-        "x": 2010,
+        "x": 2250,
         "y": 210
       }
     },
@@ -2694,7 +2694,7 @@
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 3090,
+        "x": 3330,
         "y": 210
       }
     },
