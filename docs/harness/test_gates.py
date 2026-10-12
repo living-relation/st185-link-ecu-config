@@ -23,7 +23,7 @@ import audit_bh_collisions as bhc  # noqa: E402  (unit-level cases below)
 def sandbox():
     d = tempfile.mkdtemp(prefix="gates_")
     shutil.copytree(HERE, os.path.join(d, "docs", "harness"),
-                    ignore=shutil.ignore_patterns("__pycache__", "min"))
+                    ignore=shutil.ignore_patterns("__pycache__"))
     shutil.copytree(os.path.join(ROOT, "sot"), os.path.join(d, "sot"))
     return d
 

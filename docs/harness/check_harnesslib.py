@@ -1,6 +1,6 @@
 """The part library travels with the harness files (Daniel, 2026-10-12).
 
-docs/harness/min/ST185.harnesslib is the harness.design local part library (same JSON as a
+docs/harness/rebuild/ST185.harnesslib is the harness.design local part library (same JSON as a
 .harness file, part arrays only, version 0.9). harness.design treats parts with the same part
 number as the same part, so the library must hold exactly what the drawings use.
 
@@ -28,7 +28,7 @@ import sys
 
 import model
 
-LIB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "min", "ST185.harnesslib")
+LIB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild", "ST185.harnesslib")
 REF = {"contactPartId": "contactParts", "lockPartId": "lockParts", "cavityPlugPartId": "cavityPlugParts",
        "mountPartId": "mountParts", "bootPartId": "bootParts", "backshellPartId": "backshellParts",
        "dustCoverPartId": "dustCoverParts", "cavitySealPartId": "cavitySealParts"}

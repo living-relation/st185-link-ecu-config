@@ -27,12 +27,11 @@ What it runs, in order - every one in HARD is a hard gate:
   part_desc.py             part descriptions describe the part only (standard format)
   audit_parts_layout.py    no unused parts in any parts list; no layout join between separate
                            harnesses (Daniel 2026-10-12)
-  check_harnesslib.py      every part a drawing uses is in min/ST185.harnesslib and equal to it
+  check_harnesslib.py      every part a drawing uses is in rebuild/ST185.harnesslib and equal to it
   audit_drawing_rules.py   signals (one propagating per net, terminals never, no empty wired
                            cavity), 30-unit grid, bundle lengths, layout left to right, no overlaps
   buylist.py --check       buy list is current, and the shared-connector consistency check
   buildlist.py --check     per-wire build list is current
-  make_min.py --check      the upload copies in min/ are current
 
 SOFT (reported, not failing):
 
@@ -40,13 +39,12 @@ SOFT (reported, not failing):
                            no broken attributes, a top view after every figure, no
                            overlapping markers in one figure)
 
-The three generators run in --check mode here: they rebuild in memory and fail
+The generators run in --check mode here: they rebuild in memory and fail
 if the committed file is stale, but never write. So check_all.py leaves the tree
 untouched and CI can trust it. After a harness change, regenerate locally:
 
     python docs/harness/buylist.py
     python docs/harness/buildlist.py
-    python docs/harness/make_min.py
 
 (no flag, or --write, writes the file) and commit the results with the drawing.
 
@@ -62,7 +60,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["buylist.py", "--check"],
-        ["buildlist.py", "--check"], ["make_min.py", "--check"]]
+        ["buildlist.py", "--check"]]
 SOFT = [["check_route_drawings.py"]]  # 2026-10-11: routes tracked; 1 finding (Route 1 Fig. 4, an EWD sheet with no top view)
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy
 # baseline cannot follow the redesign's intentional ownership and boundary moves.
