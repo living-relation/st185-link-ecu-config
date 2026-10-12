@@ -1533,51 +1533,6 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_fl_acamp"
-    },
-    {
-      "id": "ss_cab_fspur_s",
-      "coveringIds": [
-        "cov_s02_03_r"
-      ],
-      "locationId": "ix_ws_front_p",
-      "layoutPosition": {
-        "x": 1680,
-        "y": 540
-      },
-      "schematicPosition": {
-        "x": 780,
-        "y": 1560
-      }
-    },
-    {
-      "id": "ss_cab_fspur_t",
-      "coveringIds": [
-        "cov_s02_03_r"
-      ],
-      "locationId": "ecu_a",
-      "layoutPosition": {
-        "x": 1440,
-        "y": 240
-      },
-      "schematicPosition": {
-        "x": 1590,
-        "y": 0
-      }
-    },
-    {
-      "id": "ss_cab_aps_t",
-      "coveringIds": [
-        "cov_s02_04_r"
-      ],
-      "locationId": "ecu_a",
-      "layoutPosition": {
-        "x": 1440,
-        "y": 240
-      },
-      "schematicPosition": {
-        "x": 1620,
-        "y": -30
-      }
     }
   ],
   "resistors": [
@@ -2571,45 +2526,6 @@
         "handle": "Terminal"
       },
       "partId": "wp_18_yel_red"
-    },
-    {
-      "id": "w_fspur_s_drain",
-      "color": "White",
-      "source": {
-        "id": "ss_cab_fspur_s",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "ix_ws_front_p",
-        "handle": "c5"
-      },
-      "partId": "wp_20_wht_s02"
-    },
-    {
-      "id": "w_fspur_t_drain",
-      "color": "White",
-      "source": {
-        "id": "ss_cab_fspur_t",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "sp_shield_a",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_wht_s02"
-    },
-    {
-      "id": "w_aps_t_drain",
-      "color": "White",
-      "source": {
-        "id": "ss_cab_aps_t",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "sp_shield_a",
-        "handle": "Splice"
-      },
-      "partId": "wp_20_wht_s02"
     }
   ],
   "cables": [
@@ -2662,11 +2578,11 @@
         "id": "cab_fspur_sh",
         "color": "Shield",
         "source": {
-          "id": "ss_cab_fspur_s",
-          "handle": "Splice"
+          "id": "ix_ws_front_p",
+          "handle": "c5"
         },
         "target": {
-          "id": "ss_cab_fspur_t",
+          "id": "sp_shield_a",
           "handle": "Splice"
         }
       }
@@ -2786,7 +2702,7 @@
         "id": "cab_aps_sh",
         "color": "Shield",
         "target": {
-          "id": "ss_cab_aps_t",
+          "id": "sp_shield_a",
           "handle": "Splice"
         }
       }
@@ -3751,17 +3667,6 @@
         "value": 18,
         "unit": "AWG"
       }
-    },
-    {
-      "id": "wp_20_wht_s02",
-      "partNumber": "M22759/32-20-9",
-      "manufacturer": "TE Connectivity (Raychem)",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, TIN PLATED COPPER, XL-ETFE, STRANDED",
-      "color": "White",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
     }
   ],
   "connectorParts": [
@@ -4137,50 +4042,6 @@
       "partNumber": "GENERIC RING M6 12-10",
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
       "manufacturer": "generic"
-    }
-  ],
-  "coveringParts": [
-    {
-      "id": "cov_s02_03_r",
-      "partNumber": "S02-03-R",
-      "manufacturer": "TE Connectivity (Raychem)",
-      "type": "HeatShrink",
-      "description": "SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-3",
-      "minDiameter": {
-        "unit": "mm",
-        "value": 2.15
-      },
-      "maxDiameter": {
-        "unit": "mm",
-        "value": 4.3
-      },
-      "length": {
-        "unit": "mm",
-        "value": 150
-      },
-      "isFixedLength": true,
-      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS"
-    },
-    {
-      "id": "cov_s02_04_r",
-      "partNumber": "S02-04-R",
-      "manufacturer": "TE Connectivity (Raychem)",
-      "type": "HeatShrink",
-      "description": "SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-4",
-      "minDiameter": {
-        "unit": "mm",
-        "value": 3.3
-      },
-      "maxDiameter": {
-        "unit": "mm",
-        "value": 6.0
-      },
-      "length": {
-        "unit": "mm",
-        "value": 150
-      },
-      "isFixedLength": true,
-      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS"
     }
   ]
 }

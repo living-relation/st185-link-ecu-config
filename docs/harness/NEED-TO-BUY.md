@@ -15,7 +15,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
-| `S02-03-R` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-3 | 14 | 0 | **14** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 9 | 0 | **9** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 14 | 6 | **8** |
@@ -25,7 +24,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `GENERIC RING M5 10-8` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M5 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `GENERIC RING M6 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG | 6 | 0 | **6** |
-| `S02-04-R` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-4 | 6 | 0 | **6** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
 | `GENERIC HEAVY FLYING LEAD 10-6` | generic | TERMINAL, FLYING LEAD, HEAVY | 5 | 0 | **5** |
 | `GENERIC LUG M8 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK | 5 | 0 | **5** |
@@ -36,7 +34,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `90980-11885` | Toyota | CONNECTOR, PLUG, TOYOTA, 4 POS | 4 | 0 | **4** |
 | `99 0414 00 05` | binder | CONNECTOR, CIRCULAR, M9, CABLE CONNECTOR, FEMALE, 5 POS, UNSHIELDED, SOLDER, IP67 | 4 | 0 | **4** |
 | `DTHD06-1-8S` | TE DEUTSCH | CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A | 4 | 0 | **4** |
-| `S200-3-WI-22-9` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 22 AWG LEAD, SN96 SOLDER, 200 C | 4 | 0 | **4** |
 | `0301491` | MTA | MODULE, FUSE AND RELAY, SEALED, 2 MAXI RELAY, 1 MAXI FUSE, 6 MINI FUSE | 3 | 0 | **3** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A | 15 | 12 | **3** |
 | `1393310-4` | TE Connectivity | SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS | 4 | 1 | **3** |
@@ -44,7 +41,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `DT06-6S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY | 3 | 0 | **3** |
 | `GENERIC LUG M8 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK | 3 | 0 | **3** |
 | `GENERIC RING M6 12-10` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG | 3 | 0 | **3** |
-| `S02-02-R` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-2 | 3 | 0 | **3** |
 | `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 3 | 0 | **3** |
 | `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 3 | 0 | **3** |
 | `AMI-30` | Eaton Bussmann | FUSE, AMI, 30 A, M5 BOLT-DOWN | 3 | 0 | **3** |
@@ -55,7 +51,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC LUG M10 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK | 2 | 0 | **2** |
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK | 2 | 0 | **2** |
 | `RL00801-50RE` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED | 2 | 0 | **2** |
-| `S200-4-WI-22-9` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 22 AWG LEAD, SN96 SOLDER, 200 C | 2 | 0 | **2** |
 | `W3S` | Deutsch | WEDGELOCK, DT, 3 POS, PLUG | 2 | 0 | **2** |
 | `AMI-60` | Eaton Bussmann | FUSE, AMI, 60 A, M5 BOLT-DOWN | 2 | 0 | **2** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
