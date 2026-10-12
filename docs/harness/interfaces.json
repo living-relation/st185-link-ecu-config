@@ -159,22 +159,24 @@
       "id": "VRC_REAR_IN_L",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Rear",
-      "device": "rear VR conditioner, IN_L input (RL sensor)",
-      "terminals": {
-        "+": "ep_vrc_r_inl_p",
-        "-": "ep_vrc_r_inl_n",
-        "screen": "ep_vrc_r_inl_sh"
+      "device": "rear VR conditioner, IN_L input (RL sensor); harness side ends in the M8 cable plug m8_vrc_r_inl (Daniel 2026-10-12)",
+      "connector": "m8_vrc_r_inl",
+      "pins": {
+        "+": "c1",
+        "-": "c2",
+        "screen": "c3"
       }
     },
     {
       "id": "VRC_REAR_IN_R",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Rear",
-      "device": "rear VR conditioner, IN_R input (RR sensor)",
-      "terminals": {
-        "+": "ep_vrc_r_inr_p",
-        "-": "ep_vrc_r_inr_n",
-        "screen": "ep_vrc_r_inr_sh"
+      "device": "rear VR conditioner, IN_R input (RR sensor); harness side ends in the M8 cable plug m8_vrc_r_inr (Daniel 2026-10-12)",
+      "connector": "m8_vrc_r_inr",
+      "pins": {
+        "+": "c1",
+        "-": "c2",
+        "screen": "c3"
       }
     },
     {
@@ -233,8 +235,8 @@
       "id": "VRC_REAR",
       "harness": "WheelSpeed-Rear",
       "screen": [
-        "ep_vrc_r_inl_sh",
-        "ep_vrc_r_inr_sh",
+        "m8_vrc_r_inl.c3",
+        "m8_vrc_r_inr.c3",
         "ep_vrc_r_out_sh"
       ],
       "note": "Drain connected on both the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (SHIELD-RULES 6.30). Isolated from chassis; grounded at the ECU."
