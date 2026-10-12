@@ -162,6 +162,7 @@ python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.
 ## Working Rules
 - Keep CAN changes synchronized across `bench/frames.py`, `link_g4x_can_setup.json`, `switchboard_frames.json`, the `.lcs`, the RealDash XML, the sender UI and `CAN-BUS-ID-ALLOCATION-TABLE.md` — `python bench/check_parity.py` must pass.
 - Open items live in one table: `docs/OPEN-ITEMS.md`.
+- harness.design format / how-to: read its docs, never guess, and cite the page in the PR when it drives a format choice - https://docs.harness.design/feature/local-files/json-format (v0.9 `.harness` / `.harnesslib`), https://docs.harness.design/feature/part-libraries, https://docs.harness.design/feature/desktop, https://docs.harness.design/feature/pinouts, https://docs.harness.design/files/harness/editing-guide.md.
 - The part library travels with the drawings: any part a `.harness` file adds or changes goes into `docs/harness/min/ST185.harnesslib` in the same PR (gate `docs/harness/check_harnesslib.py`, in `check_all.py`; `--add-missing` copies new parts).
 - Keep `ST185:` names in `link_g4x_realdash.xml` unchanged unless migration is explicitly requested.
 - Keep warning-bit mapping parity between XML and `bench/frames.py` bit constants.
