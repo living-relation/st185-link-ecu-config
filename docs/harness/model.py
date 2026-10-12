@@ -108,9 +108,19 @@ def mate_halves(reg, ds):
     return out
 
 
+def endpoint_ends(ep):
+    """role -> (id, handle) for a device endpoint. Two forms (interfaces.json "endpoints"):
+    "terminals" {role: Loose terminal id}, or - where the harness-side mating plug is drawn
+    (front VRC IN M8 cable plugs, Daniel 2026-10-12) - "connector" plus "pins" {role: cavity}."""
+    if ep.get("connector"):
+        return {r: (ep["connector"], c) for r, c in ep["pins"].items()}
+    return {r: (t, "Terminal") for r, t in ep["terminals"].items()}
+
+
 def enclosure_nodes(reg):
     """(harness, terminal id) -> enclosure id for every screen landing that a
-    device enclosure joins internally (SHIELD-RULES 6.30)."""
+    device enclosure joins internally (SHIELD-RULES 6.30). A "connector.cavity"
+    entry is a screen pin on a drawn mating plug (keyed (harness, "conn.cav"))."""
     out = {}
     for enc in reg.get("enclosures", []):
         for t in enc["screen"]:
@@ -161,6 +171,8 @@ class Graph:
             return ("BRK", self.brk[(loom, nid)])
         if (loom, nid) in self.enc:
             return ("ENC", self.enc[(loom, nid)])
+        if h and (loom, "%s.%s" % (nid, h)) in self.enc:
+            return ("ENC", self.enc[(loom, "%s.%s" % (nid, h))])
         if nid.startswith("dm_"):
             body = nid[3:]
             if body.endswith("_Splice"):

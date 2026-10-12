@@ -70,6 +70,14 @@ for rc in reg.get("realConnectors", []):
 
 for ep in reg.get("endpoints", []):
     d = ds.get(ep["harness"]) or {}
+    if ep.get("connector"):
+        c = next((x for x in d.get("connectors", []) if x["id"] == ep["connector"]), None)
+        cavs = {cv["id"] for cv in (c or {}).get("cavities", [])}
+        if not c or not c.get("partId"):
+            bad.append("O6 endpoint %s plug %s is not drawn on %s with a part" % (ep["id"], ep["connector"], ep["harness"]))
+        elif not set(ep["pins"].values()) <= cavs:
+            bad.append("O6 endpoint %s pins %s are not all cavities of %s" % (ep["id"], sorted(ep["pins"].values()), ep["connector"]))
+        continue
     terms = {t["id"]: t for t in d.get("terminals", [])}
     for tid in ep["terminals"].values():
         t = terms.get(tid)

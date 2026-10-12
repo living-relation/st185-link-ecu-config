@@ -2,13 +2,16 @@
 
 Checked per side against interfaces.json "wheelSpeed":
 
-  W1  no VRC connector (cp_m8_*, vrc_*) is drawn on any harness - the VRC and its M8
-      panel connectors belong to the enclosure build, not the harness
-  W2  the side's harness holds exactly its two ABS sensor plugs and the interface source
-      half as connectors, and draws no cross-reference
+  W1  no VRC device or panel connector (vrc_*, cp_m8_panel_*) is drawn on any harness - the
+      VRC and its panel connectors belong to the enclosure build. The harness-side M8
+      cable plugs that mate them ARE drawn where interfaces.json declares an endpoint
+      "connector" (front IN plugs, Daniel 2026-10-12); any other cp_m8_* connector fails
+  W2  the side's harness holds exactly its two ABS sensor plugs, the interface source
+      half and its declared VRC endpoint plugs as connectors, and draws no cross-reference
   W3  each sensor drop is one screened 2-core cable: c1 to the VRC IN "+" endpoint, c2 to
       "-"; its screen has one end only, on the IN "screen" endpoint (floats at the sensor),
-      and that endpoint is part of the VRC enclosure
+      and that endpoint is part of the VRC enclosure. Its layout bundle runs straight from
+      the sensor plug to the VRC (no branch point shared with the other sensor's leg)
   W4  the output cable(s) run from the VRC OUT endpoint to the interface source half; each
       screen lands on its declared drain pin, starting at the enclosure or floating there
   W5  the interface is a Deutsch DT 6-way pair
@@ -27,13 +30,16 @@ reg = model.registry()
 ds = model.docs(reg)
 spec = reg.get("wheelSpeed") or {}
 bad = []
+eps = {e["id"]: e for e in reg.get("endpoints", [])}
+EP_PLUGS = {(e["harness"], e["connector"]) for e in eps.values() if e.get("connector")}
 
 for loom, d in ds.items():
     for c in d.get("connectors", []):
-        if (c.get("partId") or "").startswith("cp_m8") or c["id"].startswith("vrc_"):
-            bad.append("W1 %s draws VRC connector %s - use VRC endpoints" % (loom, c["id"]))
+        m8 = (c.get("partId") or "").startswith("cp_m8")
+        if c["id"].startswith("vrc_") or (m8 and (loom, c["id"]) not in EP_PLUGS):
+            bad.append("W1 %s draws VRC connector %s - use VRC endpoints or a declared endpoint plug"
+                       % (loom, c["id"]))
 
-eps = {e["id"]: e for e in reg.get("endpoints", [])}
 encs = {e["id"]: e for e in reg.get("enclosures", [])}
 ixs = {i["id"]: i for i in reg.get("interfaces", [])}
 
@@ -57,7 +63,9 @@ for side, s in sorted(spec.items()):
         bad.append("W6 %s: interface halves are on %s / %s, want %s / %s"
                    % (side, src["harness"], rcv["harness"], s["harness"], s["spurHarness"]))
     conns = {c["id"]: c for c in d.get("connectors", [])}
-    want = set(s["sensors"]) | {src["connector"]}
+    want = set(s["sensors"]) | {src["connector"]} | {
+        eps[e]["connector"] for e in list(s["sensors"].values()) + [s["output"]]
+        if e in eps and eps[e].get("connector")}
     if set(conns) != want:
         bad.append("W2 %s: connectors are %s, want %s" % (side, sorted(conns), sorted(want)))
     parts = model.parts(d)
@@ -68,7 +76,7 @@ for side, s in sorted(spec.items()):
         if not ep:
             bad.append("W3 %s: endpoint %s is not declared" % (side, ep_id))
             continue
-        t = ep["terminals"]
+        t = model.endpoint_ends(ep)
         hit = [cb for cb in cables.values()
                if {end(co.get("source")) for co in cb["cores"]} | {end(co.get("target")) for co in cb["cores"]}
                >= {(sensor, "c1"), (sensor, "c2")}]
@@ -79,16 +87,23 @@ for side, s in sorted(spec.items()):
         cp = parts.get(cb.get("partId")) or {}
         pairs = {frozenset((end(co.get("source")), end(co.get("target")))) for co in cb["cores"]}
         if len(cb["cores"]) != 2 or not cp.get("shielded") or pairs != {
-                frozenset(((sensor, "c1"), (t["+"], "Terminal"))),
-                frozenset(((sensor, "c2"), (t["-"], "Terminal")))}:
+                frozenset(((sensor, "c1"), t["+"])),
+                frozenset(((sensor, "c2"), t["-"]))}:
             bad.append("W3 %s: %s is not a screened pair %s c1/c2 -> %s +/-" % (side, cb["id"], sensor, ep_id))
         sh = cb.get("shield") or {}
         ends = [end(sh.get(k)) for k in ("source", "target") if sh.get(k)]
-        if ends != [(t["screen"], "Terminal")]:
+        if ends != [t["screen"]]:
             bad.append("W3 %s: %s screen must land on %s only (floats at the sensor), has %s"
                        % (side, cb["id"], t["screen"], ends))
-        if t["screen"] not in enc["screen"]:
-            bad.append("W3 %s: %s is not in enclosure %s" % (side, t["screen"], s["enclosure"]))
+        sk = t["screen"][0] if t["screen"][1] == "Terminal" else "%s.%s" % t["screen"]
+        if sk not in enc["screen"]:
+            bad.append("W3 %s: %s is not in enclosure %s" % (side, sk, s["enclosure"]))
+        if ep.get("connector"):
+            legs = {b["sourceId"] if b["targetId"] == sensor else b["targetId"]
+                    for b in d.get("bundles", []) if sensor in (b["sourceId"], b["targetId"])}
+            if legs != {ep["connector"]}:
+                bad.append("W3 %s: %s layout leg must run straight to %s, runs to %s"
+                           % (side, sensor, ep["connector"], sorted(legs)))
     out = (eps.get(s["output"]) or {}).get("terminals", {})
     out_ids = {v for k, v in out.items() if k != "screen"}
     for oc in s["outputCables"]:

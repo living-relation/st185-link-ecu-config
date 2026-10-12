@@ -101,7 +101,7 @@ REG = model.registry()
 IX = {(h["harness"], h["connector"]): (ix["id"], [o["harness"] for o in ix["halves"] if o is not h][0])
       for ix in REG.get("interfaces", []) for h in ix["halves"]}
 FL = {(f["harness"], f["terminal"]): f["ewd"] for f in REG.get("flyingLeads", [])}
-EP = {(e["harness"], t): e["id"] for e in REG.get("endpoints", []) for t in e["terminals"].values()}
+EP = {(e["harness"], t): e["id"] for e in REG.get("endpoints", []) for t, _ in model.endpoint_ends(e).values()}
 REF = {(x["harness"], x["connector"]): x["realOn"] for x in REG.get("references", [])}
 BH = {"bh_a_fw": "bulkhead A (mates engine half)", "bh_a_eng": "bulkhead A (mates cabin half)",
       "bh_b_fw": "bulkhead B (mates engine half)", "bh_b_eng": "bulkhead B (mates cabin half)"}

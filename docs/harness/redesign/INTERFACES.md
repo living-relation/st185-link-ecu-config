@@ -17,7 +17,7 @@ harness.design JSON.
 | `real_connector` | A connector with a real `partId` and contacts or plugs in every cavity. | Counted on the one drawing that owns it. |
 | `inline_interface` | Two real connectors of opposite gender, one on each harness, same cavity ids and the same signal text per cavity. No mate (mates stay inside one document). | Each half counted once, on its own harness. |
 | `oem_flying_lead` | A `Loose` terminal, no part, whose `signal` reads `EWD <page> <connector>-<pin> <function> - <method>`. | Nothing. |
-| `device_endpoint` | One `Loose` terminal per conductor, no part, `signal` naming the device and pin (`VRC_REAR_IN_L +`). The device is not drawn (harness.design "devices" rule). | Nothing. |
+| `device_endpoint` | One `Loose` terminal per conductor, no part, `signal` naming the device and pin (`VRC_REAR_IN_L +`). The device is not drawn (harness.design "devices" rule). Where the harness-side mating plug is drawn (front VRC IN M8 cable plugs, DECISIONS S8), the endpoint names that `connector` and its `pins` per role instead of terminals. | Nothing. |
 | `broken_off` | A wire that runs between two harness files, drawn in both: each file draws its own section, ending at a `Loose` terminal `br_<wire>` (no part) whose note names the other file. Replaced `reference_only` cross-reference dummies on 2026-09-28 (Daniel: no harness drawn inside another; `docs/RECONCILIATION-RULES.md` Rule 3). | Each section's wire counted on its own harness. |
 
 ## Registry sections
