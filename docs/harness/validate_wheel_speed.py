@@ -18,7 +18,8 @@ Checked per side against interfaces.json "wheelSpeed":
       straight to the IN plug or to a branch point that carries only the sensor legs and one
       bundle to the IN plug (the legs meet only by the plug)
   W4  the output cable(s) run from the VRC OUT endpoint to the interface source half; each
-      screen lands on its declared drain pin, starting at the enclosure or floating there
+      screen lands on its declared drain pin (through its SolderSleeve and drain lead),
+      starting at the enclosure or floating there
   W5  the interface is a Deutsch DT 6-way pair
   W6  the ECU spur: the receiving half is on the spur harness, and each of its pins has one
       conductor to the declared ECU pin or splice (on the spur harness or a harness the
@@ -180,7 +181,7 @@ for side, s in sorted(spec.items()):
             if not ({a[0], b[0]} & out_ids and src["connector"] in (a[0], b[0])):
                 bad.append("W4 %s: core %s does not run VRC OUT -> %s" % (side, co["id"], src["connector"]))
         sh = cb.get("shield") or {}
-        got = {end(sh.get(k)) for k in ("source", "target") if sh.get(k)}
+        got = {model.through_sleeves(d, end(sh.get(k)), sh.get("id")) for k in ("source", "target") if sh.get(k)}
         want_sh = {(src["connector"], oc["drainPin"])}
         if oc.get("screenFromEnclosure"):
             want_sh.add(out["screen"])
@@ -219,7 +220,8 @@ for side, s in sorted(spec.items()):
             ends = {end(cond.get("source")), end(cond.get("target"))}
             if (rcv["connector"], pin) in ends:
                 far = ends - {(rcv["connector"], pin)}
-                hits.append({follow(s["spurHarness"], x) for x in far})
+                sd = ds.get(s["spurHarness"]) or {}
+                hits.append({follow(s["spurHarness"], model.through_sleeves(sd, x, cond.get("id"))) for x in far})
         tid, _, th = target.partition(".")
         ok = [x for x in hits if x and next(iter(x))[0] in (tid, "dm_%s_Splice" % tid)
               and (not th or next(iter(x))[1] == th)]

@@ -14,6 +14,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
+| `S02-03-R` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-3 | 19 | 0 | **19** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 9 | 0 | **9** |
@@ -24,6 +25,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `GENERIC RING M5 10-8` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M5 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `GENERIC RING M6 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG | 6 | 0 | **6** |
+| `S200-3-WI-22-9` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 22 AWG LEAD, SN96 SOLDER, 200 C | 6 | 0 | **6** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
 | `GENERIC HEAVY FLYING LEAD 10-6` | generic | TERMINAL, FLYING LEAD, HEAVY | 5 | 0 | **5** |
 | `GENERIC LUG M8 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK | 5 | 0 | **5** |
@@ -34,7 +36,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `90980-11885` | Toyota | CONNECTOR, PLUG, TOYOTA, 4 POS | 4 | 0 | **4** |
 | `99 0414 00 05` | binder | CONNECTOR, CIRCULAR, M9, CABLE CONNECTOR, FEMALE, 5 POS, UNSHIELDED, SOLDER, IP67 | 4 | 0 | **4** |
 | `DTHD06-1-8S` | TE DEUTSCH | CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A | 4 | 0 | **4** |
-| `S200-2-W1-22-9` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 22 AWG LEAD | 4 | 0 | **4** |
 | `0301491` | MTA | MODULE, FUSE AND RELAY, SEALED, 2 MAXI RELAY, 1 MAXI FUSE, 6 MINI FUSE | 3 | 0 | **3** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A | 15 | 12 | **3** |
 | `1393310-4` | TE Connectivity | SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS | 4 | 1 | **3** |
@@ -42,6 +43,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `DT06-6S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY | 3 | 0 | **3** |
 | `GENERIC LUG M8 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK | 3 | 0 | **3** |
 | `GENERIC RING M6 12-10` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG | 3 | 0 | **3** |
+| `S02-02-R` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-2 | 3 | 0 | **3** |
 | `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 3 | 0 | **3** |
 | `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 3 | 0 | **3** |
 | `AMI-30` | Eaton Bussmann | FUSE, AMI, 30 A, M5 BOLT-DOWN | 3 | 0 | **3** |
@@ -73,6 +75,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `LMI5-M-2-CB1AD` | Eaton Bussmann | FUSE BLOCK, MODULAR, LMI, METRIC, 1 INPUT MODULE (M8 STUD) + 4 AMI FUSE MODULES (M5 STUDS), 400 A MAX COMBINED | 1 | 0 | **1** |
 | `MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942` | Toyota / Sumitomo | CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS | 1 | 0 | **1** |
 | `PDB-M8x8` | TBD | BLOCK, POWER DISTRIBUTION, 8 STUD M8, 150-250 A BUS | 1 | 0 | **1** |
+| `S02-04-R` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-4 | 1 | 0 | **1** |
 | `Sumitomo TS 025 6-way` | Sumitomo / Subaru | CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS | 1 | 0 | **1** |
 | `V23132-A2001-B200` | TE Connectivity | RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS | 1 | 0 | **1** |
 | `W3P` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY RECEPTACLE | 1 | 0 | **1** |

@@ -1356,6 +1356,66 @@
         "x": 3000,
         "y": 2880
       }
+    },
+    {
+      "id": "ss_cab_rspur_s",
+      "coveringIds": [
+        "cov_s02_03_r"
+      ],
+      "locationId": "ix_ws_rear_p",
+      "layoutPosition": {
+        "x": 1560,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 4050,
+        "y": 1200
+      }
+    },
+    {
+      "id": "ss_cab_rspur_t",
+      "coveringIds": [
+        "cov_s02_03_r"
+      ],
+      "locationId": "ecu_b",
+      "layoutPosition": {
+        "x": 2280,
+        "y": 450
+      },
+      "schematicPosition": {
+        "x": 3480,
+        "y": 750
+      }
+    },
+    {
+      "id": "ss_cab_fspur_fr_t",
+      "coveringIds": [
+        "cov_s02_02_r"
+      ],
+      "locationId": "ecu_b",
+      "layoutPosition": {
+        "x": 2280,
+        "y": 450
+      },
+      "schematicPosition": {
+        "x": 3510,
+        "y": 720
+      }
+    },
+    {
+      "id": "ss_cab_canbh_bc_t",
+      "coveringIds": [
+        "cov_s02_03_r"
+      ],
+      "locationId": "bh_b_fw",
+      "layoutPosition": {
+        "x": 960,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 3630,
+        "y": 1620
+      }
     }
   ],
   "resistors": [
@@ -1926,6 +1986,58 @@
         "handle": "Terminal"
       },
       "partId": "wp_20_grn"
+    },
+    {
+      "id": "w_rspur_s_drain",
+      "color": "White",
+      "source": {
+        "id": "ss_cab_rspur_s",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "ix_ws_rear_p",
+        "handle": "c5"
+      },
+      "partId": "wp_20_wht_s02"
+    },
+    {
+      "id": "w_rspur_t_drain",
+      "color": "White",
+      "source": {
+        "id": "ss_cab_rspur_t",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_shield_b",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_wht_s02"
+    },
+    {
+      "id": "w_fspur_fr_t_drain",
+      "color": "White",
+      "source": {
+        "id": "ss_cab_fspur_fr_t",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_shield_b",
+        "handle": "Splice"
+      },
+      "partId": "wp_20_wht_s02"
+    },
+    {
+      "id": "w_canbh_bc_t_drain",
+      "color": "White",
+      "source": {
+        "id": "ss_cab_canbh_bc_t",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c24"
+      },
+      "partId": "wp_20_wht_s02"
     }
   ],
   "cables": [
@@ -1990,11 +2102,11 @@
         "id": "cab_rspur_sh",
         "color": "Shield",
         "source": {
-          "id": "ix_ws_rear_p",
-          "handle": "c5"
+          "id": "ss_cab_rspur_s",
+          "handle": "Splice"
         },
         "target": {
-          "id": "sp_shield_b",
+          "id": "ss_cab_rspur_t",
           "handle": "Splice"
         }
       }
@@ -2028,7 +2140,7 @@
           "handle": "Terminal"
         },
         "target": {
-          "id": "sp_shield_b",
+          "id": "ss_cab_fspur_fr_t",
           "handle": "Splice"
         }
       }
@@ -2075,8 +2187,8 @@
           "handle": "Terminal"
         },
         "target": {
-          "id": "bh_b_fw",
-          "handle": "c24"
+          "id": "ss_cab_canbh_bc_t",
+          "handle": "Splice"
         }
       }
     }
@@ -3002,6 +3114,17 @@
         "value": 20,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "wp_20_wht_s02",
+      "partNumber": "M22759/32-20-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, TIN PLATED COPPER, XL-ETFE, STRANDED",
+      "color": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
     }
   ],
   "connectorParts": [
@@ -3351,6 +3474,50 @@
       "partNumber": "DRBF-1A",
       "description": "FLANGE, MOUNTING, DRB 102/128 SERIES",
       "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_s02_02_r",
+      "partNumber": "S02-02-R",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "type": "HeatShrink",
+      "description": "SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-2",
+      "minDiameter": {
+        "unit": "mm",
+        "value": 1.4
+      },
+      "maxDiameter": {
+        "unit": "mm",
+        "value": 2.7
+      },
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "isFixedLength": true,
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS"
+    },
+    {
+      "id": "cov_s02_03_r",
+      "partNumber": "S02-03-R",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "type": "HeatShrink",
+      "description": "SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-3",
+      "minDiameter": {
+        "unit": "mm",
+        "value": 2.15
+      },
+      "maxDiameter": {
+        "unit": "mm",
+        "value": 4.3
+      },
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "isFixedLength": true,
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS"
     }
   ]
 }
