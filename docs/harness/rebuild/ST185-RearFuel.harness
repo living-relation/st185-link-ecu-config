@@ -29,6 +29,15 @@
       "layoutPosition": {
         "x": 0,
         "y": 0
+      },
+      "partImage": {
+        "schematic": {
+          "size": 270,
+          "position": {
+            "x": 270,
+            "y": -300
+          }
+        }
       }
     },
     {
@@ -52,10 +61,19 @@
         "y": 0
       },
       "schematicPosition": {
-        "x": 0,
+        "x": -300,
         "y": 0
       },
-      "width": 150
+      "width": 150,
+      "partImage": {
+        "schematic": {
+          "size": 150,
+          "position": {
+            "x": -300,
+            "y": -180
+          }
+        }
+      }
     }
   ],
   "wires": [
