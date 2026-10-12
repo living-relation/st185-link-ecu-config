@@ -89,7 +89,7 @@ The enclosure BOM defines Hammond 1590WYFL (liquid resistant, flanged) with TE D
 
 ### VRC
 
-Do not show VRC devices, enclosures, or M8 panel connectors. Use labeled endpoints such as `VRC_REAR_IN_L`, `VRC_REAR_IN_R`, `VRC_REAR_OUT`, and their front equivalents. Output semantics are +5V, Gnd Out, left output, right output, and shield/drain.
+Do not show VRC devices, enclosures, or their panel connectors. Exception (Daniel 2026-10-12, S8): the front VRC IN M8 *cable plugs* are drawn on `ST185-WheelSpeed-Front`. Otherwise use labeled endpoints such as `VRC_REAR_IN_L`, `VRC_REAR_IN_R`, `VRC_REAR_OUT`, and their front equivalents. Output semantics are +5V, Gnd Out, left output, right output, and shield/drain.
 
 ### OEM flying leads
 
@@ -390,6 +390,12 @@ there as rows.
 | S5 | **DTM seals: closed.** Every DTM connector uses its built-in seals; no separate core-OD rule is added. | - |
 | S6 | **Heavy cable sizes are calculated** (amps, run length, temperature - the 2026-09-17 gauge rule in `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md`), never asked. H5 alternator B+ (`w_alt`): 160 A peak; 2 AWG copper is about 0.51 mOhm/m at 20 C, about 0.68 mOhm/m at 105 C, so a ~1.5 m bay run drops about 0.16 V (1.4 %) at 160 A. 4 AWG (about 1.1 mOhm/m hot) would drop about 0.26 V (2.2 %) and run hotter, with less margin for the peak-current-plus-margin rule. **H5 stays 2 AWG**, as drawn. | Run length is an estimate from Route 1 (not drawn as a length); re-check if the route grows past ~3 m. |
 | S7 | **No configs are pending:** RealDash and the center cluster are already configured; the CSB3 is not bought yet, so its CAN/input assignments wait for setup (its harness stays drawn). | `docs/OPEN-ITEMS.md` setup-time table. |
+
+## Settled 2026-10-12 (Daniel) - binding
+
+| # | Decision | Recorded detail |
+|---|---|---|
+| S8 | **Front wheel speed, `ST185-WheelSpeed-Front`:** (a) the FL and FR sensor drops run as **separate legs** to the front VRC in the layout - no shared Y branch (the schematic was already right); (b) the two VRC inputs end in **real M8 cable plugs**, drawn on the harness in both views: `m8_vrc_f_inl` / `m8_vrc_f_inr`, binder `99 3363 100 04` (M8 male cable plug, 4 contacts, shieldable, screw clamp, 0.14-0.5 mm2), pin 1 VR+, pin 2 VR-, pin 3 screen to the VRC case, pin 4 spare. They mate the enclosure's M8 IN panel sockets (binder `86 6618 1121 00004`, `docs/enclosures/vr-conditioner-bom.csv`). | Part pick (st185-pick-parts): nothing M8 on hand; TE `T4011019041-000` (shielded M8 male plug) takes only 24-26 AWG and TE lists it unavailable, so it cannot take the 20 AWG sensor pair - binder, the panel maker, is used. Gates: `validate_wheel_speed.py` W1 allows declared endpoint plugs, W3 checks the separate leg; `interfaces.json` endpoints carry `connector` + `pins`. This reverses, for the front box IN side, the 2026-10-05 "one DTM 8-way IN" entry below (row 20/23/32) and Route 9 rev 3's IN text - see `docs/OPEN-ITEMS.md` rows 71-72. |
 
 ## Harness reconcile plan (2026-09-29 to 2026-10-11) - retired 2026-10-11
 

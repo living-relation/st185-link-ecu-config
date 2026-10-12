@@ -46,6 +46,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `LMI1-M-1-0` | Eaton Bussmann | FUSE BLOCK, MODULAR, LMI, METRIC, 1 AMI FUSE MODULE (M5 STUDS) | 3 | 0 | **3** |
 | `1-1904045-6` | TE Connectivity | SOCKET, RELAY, MICRO ISO, 5 POS, WITH MOUNTING FLAP (V23333-Z0001-B046) | 2 | 0 | **2** |
 | `120R 1/4W` | Generic | RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W | 2 | 0 | **2** |
+| `99 3363 100 04` | binder | CONNECTOR, CIRCULAR, M8, CABLE PLUG, MALE, 4 POS, SHIELDABLE, SCREW CLAMP, IP67 | 2 | 0 | **2** |
 | `BDK 2.8` | Bosch | CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG) | 2 | 0 | **2** |
 | `GENERIC LUG M10 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK | 2 | 0 | **2** |
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK | 2 | 0 | **2** |
@@ -141,6 +142,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(OEM block)` | CONNECTOR, OEM, JUNCTION OR RELAY BLOCK | 3 |
 | `(Toyota TS terminals, supplied with owned housings)` | CONTACT, SOCKET, CRIMP, TOYOTA | 4 |
 | `(generic)` | CONTACT, SOCKET, CRIMP, GENERIC | 18 |
+| `(integral - 99 3363 100 04)` | CONTACT, PIN, SCREW CLAMP, INTEGRAL | 6 |
 | `(integral - RL00801-50)` | CONTACT, RADSOK 8.0, INTEGRAL TO RL00801-50 CABLE CONNECTOR, 50 MM2 (1/0) CRIMP BARREL | 4 |
 | `(kit socket, D 261 205 358-01)` | CONTACT, SOCKET, CRIMP, GOLD | 6 |
 | `(kit-supplied pigtail)` | CONNECTOR, PIGTAIL, 3 POS | 1 |
