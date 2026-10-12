@@ -2931,49 +2931,49 @@
   ],
   "connectorParts": [
     {
-      "partNumber": "(pump pigtail - Walbro F90000295)",
-      "manufacturer": "Walbro",
-      "description": "CONNECTOR, PIGTAIL, 2 POS",
-      "numberOfCavities": 2,
+      "id": "cp_fuelpump",
+      "image": {
+        "url": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/original/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg",
+        "source": "url",
+        "lowResUrl": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/80w/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg"
+      },
       "gender": "Female",
       "hasShell": false,
+      "partNumber": "(pump pigtail - Walbro F90000295)",
+      "description": "CONNECTOR, PIGTAIL, 2 POS",
+      "manufacturer": "Walbro",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_generic_skt"
         }
       ],
-      "id": "cp_fuelpump",
-      "image": {
-        "source": "url",
-        "url": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/original/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg",
-        "lowResUrl": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/80w/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg"
-      }
+      "numberOfCavities": 2
     },
     {
+      "id": "cp_lmi5",
+      "image": {
+        "url": "https://www.mouser.com/images/eatoncorporation/lrg/LMI1-series_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/eatoncorporation/sm/LMI1-series_SPL.jpg"
+      },
       "partNumber": "LMI5-M-2-CB1AD",
-      "manufacturer": "Eaton Bussmann",
       "description": "FUSE BLOCK, MODULAR, LMI, METRIC, 1 INPUT MODULE (M8 STUD) + 4 AMI FUSE MODULES (M5 STUDS), 400 A MAX COMBINED",
+      "manufacturer": "Eaton Bussmann",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_ring_m5_10_8"
         }
-      ],
-      "id": "cp_lmi5",
-      "image": {
-        "source": "url",
-        "url": "https://www.mouser.com/images/eatoncorporation/lrg/LMI1-series_SPL.jpg",
-        "lowResUrl": "https://www.mouser.com/images/eatoncorporation/sm/LMI1-series_SPL.jpg"
-      }
+      ]
     },
     {
       "id": "cp_rfrm",
-      "partNumber": "15401-1-2-1-0A",
-      "manufacturer": "Eaton Bussmann",
-      "description": "MODULE, FUSE AND RELAY, RFRM, SEALED, 40 MINI FUSE, 10 MICRO RELAY, 2 BUS",
       "gender": "Female",
       "hasShell": false,
+      "partNumber": "15401-1-2-1-0A",
+      "description": "MODULE, FUSE AND RELAY, RFRM, SEALED, 40 MINI FUSE, 10 MICRO RELAY, 2 BUS",
+      "manufacturer": "Eaton Bussmann",
       "configurations": [
         {
           "id": "cfg",
@@ -2983,11 +2983,11 @@
     },
     {
       "id": "cp_mta",
-      "partNumber": "0301491",
-      "manufacturer": "MTA",
-      "description": "MODULE, FUSE AND RELAY, SEALED, 2 MAXI RELAY, 1 MAXI FUSE, 6 MINI FUSE",
       "gender": "Female",
       "hasShell": false,
+      "partNumber": "0301491",
+      "description": "MODULE, FUSE AND RELAY, SEALED, 2 MAXI RELAY, 1 MAXI FUSE, 6 MINI FUSE",
+      "manufacturer": "MTA",
       "configurations": [
         {
           "id": "cfg",
@@ -2996,287 +2996,292 @@
       ]
     },
     {
-      "partNumber": "1-1414147-0",
-      "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR",
-      "numberOfCavities": 4,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_f7_load",
-          "mountPartId": "mt_vcf7"
-        }
-      ],
       "id": "cp_rly_f7_b",
       "image": {
-        "source": "url",
         "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
+        "source": "url",
         "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
-      }
-    },
-    {
-      "partNumber": "1-1393304-0",
+      },
+      "partNumber": "1-1414147-0",
+      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J1052-X281, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 560 OHM PARALLEL RESISTOR, MOUNTING BRACKET",
-      "numberOfCavities": 4,
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_f7_load",
-          "mountPartId": "mt_vcf7"
+          "mountPartId": "mt_vcf7",
+          "contactPartId": "ct_f7_load"
         }
       ],
+      "numberOfCavities": 4
+    },
+    {
       "id": "cp_rly_f7_a",
       "image": {
-        "source": "url",
         "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
+        "source": "url",
         "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
-      }
-    },
-    {
-      "partNumber": "4-1904124-2",
+      },
+      "partNumber": "1-1393304-0",
+      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J1052-X281, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 560 OHM PARALLEL RESISTOR, MOUNTING BRACKET",
       "manufacturer": "TE Connectivity",
-      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A402, 1 FORM A, 25 A, 12 VDC COIL 119 OHM, 680 OHM PARALLEL RESISTOR",
-      "numberOfCavities": 5,
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_relay_63",
-          "mountPartId": "mt_relay_skt"
+          "mountPartId": "mt_vcf7",
+          "contactPartId": "ct_f7_load"
         }
       ],
-      "id": "cp_rly_nor",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/919/041/057/9-1904105-7-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/919/041/057/9-1904105-7-t1.jpg/jcr:content/renditions/product-details.png"
-      }
+      "numberOfCavities": 4
     },
     {
-      "partNumber": "V23132-A2001-B200",
+      "id": "cp_rly_nor",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/919/041/057/9-1904105-7-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/919/041/057/9-1904105-7-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "partNumber": "4-1904124-2",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A402, 1 FORM A, 25 A, 12 VDC COIL 119 OHM, 680 OHM PARALLEL RESISTOR",
       "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "mountPartId": "mt_relay_skt",
+          "contactPartId": "ct_relay_63"
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_rly_hcr150",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_high_current_150.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_high_current_150.jpg"
+      },
+      "partNumber": "V23132-A2001-B200",
       "description": "RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS",
-      "numberOfCavities": 5,
+      "manufacturer": "TE Connectivity",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_ring_m6_8"
         }
       ],
-      "id": "cp_rly_hcr150",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_high_current_150.jpg",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_high_current_150.jpg"
-      }
+      "numberOfCavities": 5
     },
     {
       "id": "cp_rly_micro_co",
       "partNumber": "6-1419137-4",
-      "manufacturer": "TE Connectivity",
       "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A403, 1 FORM C, 12 VDC COIL, DIODE SUPPRESSED",
-      "numberOfCavities": 5,
+      "manufacturer": "TE Connectivity",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_rfrm"
         }
-      ]
+      ],
+      "numberOfCavities": 5
     }
   ],
   "contactParts": [
     {
-      "partNumber": "(generic)",
-      "manufacturer": "Generic",
+      "id": "ct_generic_skt",
       "type": "Crimp",
       "gender": "Socket",
+      "partNumber": "(generic)",
       "description": "CONTACT, SOCKET, CRIMP, GENERIC",
-      "id": "ct_generic_skt"
+      "manufacturer": "Generic"
     },
     {
+      "id": "ct_ring_m5_10_8",
+      "type": "Other",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
       "partNumber": "GENERIC RING M5 10-8",
-      "manufacturer": "generic",
-      "type": "Other",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 8,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M5 STUD, ADHESIVE HEATSHRINK",
-      "id": "ct_ring_m5_10_8"
+      "contactColor": "Silver",
+      "manufacturer": "generic"
     },
     {
-      "partNumber": "GENERIC LUG M8 4AWG",
-      "manufacturer": "generic",
+      "id": "ct_ring_m8_4",
       "type": "Other",
       "gender": "Socket",
-      "minGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 4,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 4
       },
-      "contactColor": "Silver",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 6
+      },
+      "partNumber": "GENERIC LUG M8 4AWG",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK",
-      "id": "ct_ring_m8_4"
+      "contactColor": "Silver",
+      "manufacturer": "generic"
     },
     {
       "id": "ct_rfrm",
-      "partNumber": "(Eaton RFRM terminals - per the 15401 drawing)",
-      "manufacturer": "Eaton Bussmann",
       "type": "Crimp",
       "gender": "Socket",
-      "description": "TERMINAL, FUSE AND RELAY MODULE, RFRM"
+      "partNumber": "(Eaton RFRM terminals - per the 15401 drawing)",
+      "description": "TERMINAL, FUSE AND RELAY MODULE, RFRM",
+      "manufacturer": "Eaton Bussmann"
     },
     {
       "id": "ct_mta",
-      "partNumber": "(MTA 0301491 terminals - per the MTA drawing)",
-      "manufacturer": "MTA",
       "type": "Crimp",
       "gender": "Socket",
-      "description": "TERMINAL, FUSE AND RELAY MODULE, MTA"
+      "partNumber": "(MTA 0301491 terminals - per the MTA drawing)",
+      "description": "TERMINAL, FUSE AND RELAY MODULE, MTA",
+      "manufacturer": "MTA"
     },
     {
       "id": "ct_ring_m5_6",
+      "type": "Other",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 6
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 6
+      },
       "partNumber": "GENERIC RING M5 6AWG",
-      "manufacturer": "generic",
-      "type": "Other",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 6 AWG, M5 STUD, ADHESIVE HEATSHRINK",
       "contactColor": "Silver",
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 6 AWG, M5 STUD, ADHESIVE HEATSHRINK"
+      "manufacturer": "generic"
     },
     {
+      "id": "ct_f7_load",
+      "type": "Crimp",
+      "image": {
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/200/139/335/280756-4_sml.jpg",
+        "source": "url",
+        "lowResUrl": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/200/139/335/280756-4_sml.jpg"
+      },
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
       "partNumber": "280756-4",
-      "manufacturer": "TE Connectivity",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 12,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
       "description": "CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG)",
-      "id": "ct_f7_load"
+      "contactColor": "Silver",
+      "manufacturer": "TE Connectivity"
     },
     {
+      "id": "ct_relay_63",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
       "partNumber": "160927-4",
-      "manufacturer": "TE Connectivity",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 18,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
       "description": "CONTACT, RECEPTACLE, 6.3 X 0.8, TIN, 1.0-2.5 MM2 (18-14 AWG)",
-      "id": "ct_relay_63"
+      "contactColor": "Silver",
+      "manufacturer": "TE Connectivity"
     },
     {
-      "partNumber": "282110-1",
-      "manufacturer": "TE Connectivity",
+      "id": "ct_ss15",
       "type": "Crimp",
       "gender": "Socket",
-      "minGauge": {
-        "value": 18,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
-      "contactColor": "Silver",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "282110-1",
       "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2",
-      "id": "ct_ss15"
+      "contactColor": "Silver",
+      "manufacturer": "TE Connectivity"
     },
     {
-      "partNumber": "(ring lug, 8 AWG, M6)",
-      "manufacturer": "generic",
+      "id": "ct_ring_m6_8",
       "type": "Other",
       "gender": "Socket",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 8,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 8
       },
-      "contactColor": "Silver",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "(ring lug, 8 AWG, M6)",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK",
-      "id": "ct_ring_m6_8"
+      "contactColor": "Silver",
+      "manufacturer": "generic"
     }
   ],
   "terminalParts": [
     {
-      "type": "Ring",
+      "id": "tp_lug_m8_4",
       "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 4
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 6
+      },
       "partNumber": "GENERIC LUG M8 4AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 4,
-        "unit": "AWG"
-      },
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m8_4"
+      "manufacturer": "generic"
     },
     {
-      "type": "Ring",
+      "id": "tp_ring_m6_12_10",
       "size": "M6",
-      "partNumber": "GENERIC RING M6 12-10",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 12,
-        "unit": "AWG"
-      },
+      "type": "Ring",
       "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 10
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "partNumber": "GENERIC RING M6 12-10",
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
-      "id": "tp_ring_m6_12_10"
+      "manufacturer": "generic"
     },
     {
-      "type": "Ring",
+      "id": "tp_lug_m8_8",
       "size": "M8",
-      "partNumber": "GENERIC LUG M8 8AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
+      "type": "Ring",
       "maxGauge": {
-        "value": 8,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 8
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "GENERIC LUG M8 8AWG",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m8_8"
+      "manufacturer": "generic"
     }
   ],
   "schematicNotes": [
@@ -3316,22 +3321,22 @@
     {
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
-      "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
     }
   ],
   "mountParts": [
     {
+      "id": "mt_vcf7",
       "partNumber": "1393310-4",
-      "manufacturer": "TE Connectivity",
       "description": "SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS",
-      "id": "mt_vcf7"
+      "manufacturer": "TE Connectivity"
     },
     {
+      "id": "mt_relay_skt",
       "partNumber": "1-1904045-6",
-      "manufacturer": "TE Connectivity",
       "description": "SOCKET, RELAY, MICRO ISO, 5 POS, WITH MOUNTING FLAP (V23333-Z0001-B046)",
-      "id": "mt_relay_skt"
+      "manufacturer": "TE Connectivity"
     }
   ]
 }

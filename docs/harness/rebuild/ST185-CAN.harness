@@ -12,12 +12,14 @@
         {
           "id": "c1",
           "signal": "Ground (Brown)",
-          "designation": "C1"
+          "designation": "C1",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c2",
           "designation": "C2",
-          "signal": "Unused (Blue)"
+          "signal": "Unused (Blue)",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c3",
@@ -32,12 +34,14 @@
         {
           "id": "c5",
           "designation": "C5",
-          "signal": "RS232 TX (Yellow) - not used on this build"
+          "signal": "RS232 TX (Yellow) - not used on this build",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c6",
           "designation": "C6",
-          "signal": "RS232 RX (Grey) - not used on this build"
+          "signal": "RS232 RX (Grey) - not used on this build",
+          "cavityPlugPartId": "pl_sz20"
         }
       ],
       "layoutPosition": {
@@ -1062,87 +1066,87 @@
     {
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
-      "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
     }
   ],
   "terminalParts": [
     {
+      "id": "tp_flying_lead",
       "type": "Loose",
-      "partNumber": "GENERIC FLYING LEAD",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC FLYING LEAD",
       "description": "TERMINAL, FLYING LEAD",
-      "id": "tp_flying_lead"
+      "manufacturer": "generic"
     },
     {
-      "type": "Ring",
+      "id": "tp_ring_m6_22_16",
       "size": "M6",
-      "partNumber": "GENERIC RING M6 22-16",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
+      "type": "Ring",
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC RING M6 22-16",
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
-      "id": "tp_ring_m6_22_16"
+      "manufacturer": "generic"
     }
   ],
   "connectorParts": [
     {
-      "partNumber": "DTM06-4S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY",
-      "numberOfCavities": 4,
+      "id": "cp_dtm4s",
+      "color": "Green",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-details.png"
+      },
       "gender": "Female",
       "hasShell": false,
+      "partNumber": "DTM06-4S",
+      "description": "CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY",
+      "manufacturer": "Deutsch",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_hdp20s",
-          "cavityPlugPartId": "pl_sz20",
           "lockPartId": "lp_wm4s"
         }
       ],
-      "id": "cp_dtm4s",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-details.png"
-      }
+      "numberOfCavities": 4
     },
     {
-      "partNumber": "DTM06-6S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY",
-      "numberOfCavities": 6,
+      "id": "cp_dtm6s",
+      "color": "Green",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-details.png"
+      },
       "gender": "Female",
       "hasShell": false,
+      "partNumber": "DTM06-6S",
+      "description": "CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY",
+      "manufacturer": "Deutsch",
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_hdp20s",
-          "cavityPlugPartId": "pl_sz20",
-          "lockPartId": "lp_wm6s"
+          "lockPartId": "lp_wm6s",
+          "contactPartId": "ct_hdp20s"
         }
       ],
-      "id": "cp_dtm6s",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-details.png"
-      }
+      "numberOfCavities": 6
     }
   ],
   "resistorParts": [
@@ -1156,42 +1160,47 @@
   ],
   "lockParts": [
     {
+      "id": "lp_wm4s",
       "partNumber": "WM-4S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DTM, 4-WAY PLUG",
-      "id": "lp_wm4s"
+      "description": "WEDGELOCK, DTM, 4 POS, PLUG",
+      "manufacturer": "TE DEUTSCH"
     },
     {
+      "id": "lp_wm6s",
       "partNumber": "WM-6S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DTM, 6-WAY PLUG",
-      "id": "lp_wm6s"
+      "description": "WEDGELOCK, DTM, 6 POS, PLUG",
+      "manufacturer": "Deutsch"
     }
   ],
   "cavityPlugParts": [
     {
+      "id": "pl_sz20",
       "partNumber": "0413-204-2005",
-      "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
-      "id": "pl_sz20"
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "contactParts": [
     {
-      "partNumber": "0462-201-2031",
-      "manufacturer": "TE DEUTSCH",
+      "id": "ct_hdp20s",
       "type": "Crimp",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr0462-201-2031.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartImages/pr0462-201-2031.jpg"
+      },
       "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 20,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 20
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-2031",
       "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
-      "id": "ct_hdp20s"
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "cableParts": [

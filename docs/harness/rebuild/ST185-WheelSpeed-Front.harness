@@ -118,27 +118,32 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "ABS+ FL IN"
+          "signal": "ABS+ FL IN",
+          "contactPartId": "ct_m9_solder"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "ABS- FL IN"
+          "signal": "ABS- FL IN",
+          "contactPartId": "ct_m9_solder"
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "ABS Front SHIELD"
+          "signal": "ABS Front SHIELD",
+          "contactPartId": "ct_m9_solder"
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "ABS+ FR IN"
+          "signal": "ABS+ FR IN",
+          "contactPartId": "ct_m9_solder"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "ABS- FR IN"
+          "signal": "ABS- FR IN",
+          "contactPartId": "ct_m9_solder"
         }
       ]
     },
@@ -159,27 +164,32 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V"
+          "signal": "+5V",
+          "contactPartId": "ct_m9_solder"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Gnd"
+          "signal": "Gnd",
+          "contactPartId": "ct_m9_solder"
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "FL out"
+          "signal": "FL out",
+          "contactPartId": "ct_m9_solder"
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "FR out"
+          "signal": "FR out",
+          "contactPartId": "ct_m9_solder"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "screen drain"
+          "signal": "screen drain",
+          "contactPartId": "ct_m9_solder"
         }
       ]
     }
@@ -485,25 +495,13 @@
   ],
   "connectorParts": [
     {
-      "partNumber": "DT06-2S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "numberOfCavities": 2,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_dt16s_ni",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w2s"
-        }
-      ],
+      "id": "cp_dt2s_ni",
       "url": "https://www.te.com/usa-en/product-DT06-2S.html",
       "image": {
         "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014830313.png",
         "source": "cloud"
       },
+      "gender": "Female",
       "pinout": {
         "id": "te-deutsch-dt-2",
         "name": "DT 2-way",
@@ -538,82 +536,92 @@
         ],
         "mirrored": true
       },
+      "hasShell": false,
+      "partNumber": "DT06-2S",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "lockPartId": "lp_w2s",
+          "contactPartId": "ct_dt16s_ni",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "numberOfCavities": 2,
       "designationStrategy": {
         "type": "sequential"
-      },
-      "id": "cp_dt2s_ni"
+      }
     },
     {
       "id": "cp_dt04_6p",
-      "partNumber": "DT04-6P",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
-      "numberOfCavities": 6,
+      "url": "https://www.te.com/usa-en/product-DT04-6P.html",
       "gender": "Male",
       "hasShell": false,
+      "partNumber": "DT04-6P",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
       "configurations": [
         {
           "id": "cfg",
+          "lockPartId": "lp_w6p",
           "contactPartId": "ct_dt16p",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w6p"
+          "cavityPlugPartId": "pl_sz16"
         }
       ],
-      "url": "https://www.te.com/usa-en/product-DT04-6P.html"
+      "numberOfCavities": 6
     },
     {
       "id": "cp_m9_5f",
-      "partNumber": "99 0414 00 05",
-      "manufacturer": "binder",
-      "description": "CONNECTOR, CIRCULAR, M9, CABLE CONNECTOR, FEMALE, 5 POS, UNSHIELDED, SOLDER, IP67",
-      "numberOfCavities": 5,
-      "gender": "Female",
-      "hasShell": false,
-      "color": "Black",
-      "price": 19.32,
       "url": "https://www.binder-usa.com/us-en/products/subminiature-circular-connectors/m9-ip67/99-0414-00-05-m9-ip67-female-cable-connector-5-35-50-mm-unshielded-solder-ip67",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_m9_solder"
-        }
-      ]
+      "color": "Black",
+      "image": {
+        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1791804249562.png",
+        "source": "cloud"
+      },
+      "price": 19.32,
+      "gender": "Female",
+      "partNumber": "99 0414 00 05",
+      "description": "CONNECTOR, CIRCULAR, M9, CABLE CONNECTOR, FEMALE, 5 POS, UNSHIELDED, SOLDER, IP67",
+      "manufacturer": "binder",
+      "numberOfCavities": 5,
+      "configurations": []
     }
   ],
   "contactParts": [
     {
-      "partNumber": "0462-201-16141",
-      "manufacturer": "TE DEUTSCH",
+      "id": "ct_dt16s_ni",
       "type": "Crimp",
       "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
-      "contactColor": "Silver",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-16141",
       "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
-      "id": "ct_dt16s_ni"
+      "contactColor": "Silver",
+      "manufacturer": "TE DEUTSCH"
     },
     {
       "id": "ct_dt16p",
-      "partNumber": "0460-202-1631",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "type": "Crimp",
       "gender": "Pin",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
-      "contactColor": "Gold"
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0460-202-1631",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "contactColor": "Gold",
+      "manufacturer": "TE DEUTSCH"
     },
     {
       "id": "ct_m9_solder",
@@ -695,24 +703,24 @@
   ],
   "lockParts": [
     {
+      "id": "lp_w2s",
       "partNumber": "W2S",
-      "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 2-WAY PLUG",
-      "id": "lp_w2s"
+      "manufacturer": "TE DEUTSCH"
     },
     {
       "id": "lp_w6p",
       "partNumber": "W6P",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE"
+      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE",
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "cavityPlugParts": [
     {
+      "id": "pl_sz16",
       "partNumber": "114017",
-      "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
-      "id": "pl_sz16"
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "splices": [

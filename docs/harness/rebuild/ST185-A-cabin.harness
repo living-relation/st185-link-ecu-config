@@ -3281,182 +3281,198 @@
   ],
   "connectorParts": [
     {
-      "partNumber": "DRB12-102PAE-L018",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT",
-      "numberOfCavities": 49,
+      "id": "cp_drb_recept",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
+      },
       "gender": "Male",
       "hasShell": false,
+      "partNumber": "DRB12-102PAE-L018",
+      "description": "CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT",
+      "manufacturer": "TE DEUTSCH",
       "configurations": [
         {
           "id": "cfg",
-          "cavityPlugPartId": "pl_114017",
           "mountPartId": "mt_drbf1a"
         }
       ],
-      "id": "cp_drb_recept",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
-      }
+      "numberOfCavities": 49
     },
     {
-      "partNumber": "4-1437290-1",
-      "manufacturer": "TE Connectivity",
-      "description": "CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 2, SOCKET CONTACTS, BLUE",
-      "numberOfCavities": 34,
+      "id": "cp_ss34a",
+      "url": "https://www.te.com/en/product-4-1437290-1.html",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/414/372/901/4-1437290-1-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/414/372/901/4-1437290-1-t1.jpg/jcr:content/renditions/product-details.png"
+      },
       "gender": "Female",
       "hasShell": false,
+      "partNumber": "4-1437290-1",
+      "description": "CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 2, SOCKET CONTACTS, BLUE",
+      "manufacturer": "TE Connectivity",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_ss10"
         }
       ],
-      "url": "https://www.te.com/en/product-4-1437290-1.html",
-      "id": "cp_ss34a",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/414/372/901/4-1437290-1-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/414/372/901/4-1437290-1-t1.jpg/jcr:content/renditions/product-details.png"
-      }
+      "numberOfCavities": 34
     },
     {
       "id": "cp_dt06_6s",
-      "partNumber": "DT06-6S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "numberOfCavities": 6,
+      "url": "https://www.te.com/usa-en/product-DT06-6S.html",
+      "image": {
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/6/300/323/735/DT06-6S_web%28640x640%29.jpg",
+        "source": "url",
+        "lowResUrl": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/300/323/735/DT06-6S_sml%28200x200%29.jpg"
+      },
       "gender": "Female",
       "hasShell": false,
+      "partNumber": "DT06-6S",
+      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
       "configurations": [
         {
           "id": "cfg",
+          "lockPartId": "lp_w6s",
           "contactPartId": "ct_hdp16s",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w6s"
+          "cavityPlugPartId": "pl_sz16"
         }
       ],
-      "url": "https://www.te.com/usa-en/product-DT06-6S.html"
+      "numberOfCavities": 6
     },
     {
-      "partNumber": "Sumitomo TS 025 6-way",
-      "manufacturer": "Sumitomo / Subaru",
-      "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS",
-      "numberOfCavities": 6,
+      "id": "cp_brz_aps6",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring.jpg",
+        "source": "url",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring_200x.jpg"
+      },
       "gender": "Female",
       "hasShell": false,
+      "partNumber": "Sumitomo TS 025 6-way",
+      "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS",
+      "manufacturer": "Sumitomo / Subaru",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_generic_skt"
         }
       ],
-      "id": "cp_brz_aps6",
-      "image": {
-        "source": "url",
-        "url": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring.jpg",
-        "lowResUrl": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring_200x.jpg"
-      }
+      "numberOfCavities": 6
     }
   ],
   "spliceParts": [
     {
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
-      "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
     }
   ],
   "contactParts": [
     {
-      "partNumber": "0460-202-1631",
-      "manufacturer": "TE DEUTSCH",
+      "id": "ct_hdp16p",
       "type": "Crimp",
       "gender": "Pin",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0460-202-1631",
       "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
-      "id": "ct_hdp16p"
+      "contactColor": "Gold",
+      "manufacturer": "TE DEUTSCH"
     },
     {
+      "id": "ct_ss10",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
       "partNumber": "3-1447221-4",
-      "manufacturer": "TE Connectivity",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
       "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.5 MM2 (20 AWG), INSUL 1.6-2.2 MM",
-      "id": "ct_ss10"
+      "manufacturer": "TE Connectivity"
     },
     {
-      "partNumber": "3-1447221-3",
-      "manufacturer": "TE Connectivity",
+      "id": "ct_ss10_075",
       "type": "Crimp",
+      "image": {
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/200/286/637/3-1447221-3_sml.jpg",
+        "source": "url",
+        "lowResUrl": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/200/286/637/3-1447221-3_sml.jpg"
+      },
       "gender": "Socket",
-      "minGauge": {
-        "value": 18,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 18,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 18
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "3-1447221-3",
       "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.0, GOLD, 0.75-0.85 MM2 (18 AWG)",
-      "id": "ct_ss10_075"
+      "manufacturer": "TE Connectivity"
     },
     {
       "id": "ct_hdp16s",
-      "partNumber": "0462-201-1631",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "type": "Crimp",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr0462-201-1631.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartImages/pr0462-201-1631.jpg"
+      },
       "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
-      "contactColor": "Gold"
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-1631",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "contactColor": "Gold",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "partNumber": "0460-220-1231",
-      "manufacturer": "TE DEUTSCH",
+      "id": "ct_hdp12p",
       "type": "Crimp",
       "gender": "Pin",
-      "minGauge": {
-        "value": 14,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 12,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 12
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "partNumber": "0460-220-1231",
       "description": "CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A",
-      "id": "ct_hdp12p"
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "partNumber": "(generic)",
-      "manufacturer": "Generic",
+      "id": "ct_generic_skt",
       "type": "Crimp",
       "gender": "Socket",
+      "partNumber": "(generic)",
       "description": "CONTACT, SOCKET, CRIMP, GENERIC",
-      "id": "ct_generic_skt"
+      "manufacturer": "Generic"
     }
   ],
   "resistorParts": [
@@ -3469,33 +3485,31 @@
   ],
   "cavityPlugParts": [
     {
+      "id": "pl_sz16",
       "partNumber": "114017",
-      "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
-      "id": "pl_sz16"
-    },
-    {
-      "id": "pl_114017",
-      "partNumber": "114017",
-      "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 12 / 16, WHITE",
-      "url": "https://www.te.com/usa-en/product-114017.html"
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "mountParts": [
     {
       "id": "mt_drbf1a",
       "partNumber": "DRBF-1A",
-      "manufacturer": "TE DEUTSCH",
-      "description": "FLANGE, MOUNTING, DRB 102/128 SERIES"
+      "description": "FLANGE, MOUNTING, DRB 102/128 SERIES",
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "lockParts": [
     {
       "id": "lp_w6s",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W6S/W6S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W6S/W6S-t1.jpg/jcr:content/renditions/product-small.png"
+      },
       "partNumber": "W6S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DT, 6-WAY PLUG"
+      "description": "WEDGELOCK, DT, 6-WAY PLUG",
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "cableParts": [
@@ -3609,35 +3623,35 @@
   ],
   "terminalParts": [
     {
+      "id": "tp_flying_lead",
       "type": "Loose",
-      "partNumber": "GENERIC FLYING LEAD",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC FLYING LEAD",
       "description": "TERMINAL, FLYING LEAD",
-      "id": "tp_flying_lead"
+      "manufacturer": "generic"
     },
     {
-      "type": "Ring",
+      "id": "tp_ring_m6_12_10",
       "size": "M6",
-      "partNumber": "GENERIC RING M6 12-10",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 12,
-        "unit": "AWG"
-      },
+      "type": "Ring",
       "maxGauge": {
-        "value": 10,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 10
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "partNumber": "GENERIC RING M6 12-10",
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
-      "id": "tp_ring_m6_12_10"
+      "manufacturer": "generic"
     }
   ]
 }
