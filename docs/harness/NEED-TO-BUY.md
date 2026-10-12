@@ -10,7 +10,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 50 | 0 | **50** |
-| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 44 | 0 | **44** |
+| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 43 | 0 | **43** |
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
@@ -67,6 +67,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC LUG M10 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC LUG M8 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M8 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC RING M5 6AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 6 AWG, M5 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
+| `GENERIC SOLDER SLEEVE 26-14` | generic | SPLICE, SOLDER SLEEVE | 1 | 0 | **1** |
 | `GENERIC SPADE RECEPTACLE 12-10` | generic | TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 6.3 MM (250) TAB, 12-10 AWG | 1 | 0 | **1** |
 | `HD36-24-33SE` | TE DEUTSCH | CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL | 1 | 0 | **1** |
 | `LMI5-M-2-CB1AD` | Eaton Bussmann | FUSE BLOCK, MODULAR, LMI, METRIC, 1 INPUT MODULE (M8 STUD) + 4 AMI FUSE MODULES (M5 STUDS), 400 A MAX COMBINED | 1 | 0 | **1** |
