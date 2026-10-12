@@ -19,6 +19,7 @@ a build product, or history.** The drawings are **not a source of truth** (Danie
 | **`routes/`** | Dan's approved route drawing for each harness (one HTML per route, current version only; git history keeps the revisions). A drawing's path must match its route. Lint: `check_route_drawings.py` (SOFT gate) | Only from Dan's markup (`st185-apply-route-markup`) |
 | **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, broken-off pairs. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
 | `min/` | Same documents, whitespace stripped, for upload to the harness.design project "ST185 harness design". The Free plan caps a harness at 100 connections, so every file must stay under 100 | No - `make_min.py` regenerates it |
+| `min/ST185.harnesslib` | The harness.design local part library (same JSON as a `.harness`, part arrays only). Every part the drawings use, equal to the drawing; update it in the same PR as any part change | **Yes - with the drawings** (gate `check_harnesslib.py`) |
 | `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |
 
 ## The 14 harnesses
