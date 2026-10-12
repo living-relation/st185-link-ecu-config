@@ -28,6 +28,8 @@ Exit 1 on any finding. Read-only - it changes nothing.
 """
 import csv, json, pathlib, sys, collections
 
+import model
+
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 SOT = ROOT / "sot" / "channels.csv"
 REB = ROOT / "docs" / "harness" / "rebuild"
@@ -93,9 +95,7 @@ landings = collections.defaultdict(list)
 def is_drain(cond, cable_shield):
     if cable_shield:
         return True
-    tail = cond["id"].rsplit("_", 1)[-1]
-    return (cond.get("color") == "Shield" or tail in ("sh", "shield", "drain")
-            or cond["id"].startswith("w_drain"))
+    return model.is_drain(cond)
 
 
 def conductors(d):

@@ -62,6 +62,8 @@ Not every shielded cable has a drain wire, but the drawings show every cable as 
 (Daniel, 2026-10-12): no solder sleeves are drawn. Joining two or more drains on one pin is one
 splice (above).
 
+**Drain = `M22759/16-20-06`, black/blue, unique** (Daniel, 2026-10-12): every drain wire is that part, no other wire is black/blue, and the gates find drains by the part, never by colour (`lint_v09.py`).
+
 ## The five absolute rules
 
 1. **A shield is never connected at the sensor end.** It floats there. Always.

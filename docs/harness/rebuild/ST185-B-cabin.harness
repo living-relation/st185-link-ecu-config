@@ -1572,7 +1572,8 @@
     },
     {
       "id": "w_drain_ecu_b",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "sp_shield_b",
         "handle": "Splice"
@@ -1585,7 +1586,8 @@
     },
     {
       "id": "w_shc_knock1",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "bh_b_fw",
         "handle": "c18"
@@ -1877,7 +1879,8 @@
     },
     {
       "id": "w_shc_etbm",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "bh_b_fw",
         "handle": "c22"
@@ -1890,7 +1893,8 @@
     },
     {
       "id": "w_shc_vss",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "bh_b_fw",
         "handle": "c23"
@@ -1903,7 +1907,8 @@
     },
     {
       "id": "w_shd_can_bc",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "br_w_shd_can",
         "handle": "Terminal"

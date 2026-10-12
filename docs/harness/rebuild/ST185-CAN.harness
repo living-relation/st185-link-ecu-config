@@ -624,7 +624,8 @@
     },
     {
       "id": "w_shd_can",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "sp_shield_can",
         "handle": "Splice"

@@ -25,6 +25,9 @@ BULKHEAD_MATE = {"bh_a_fw": "bh_a_eng", "bh_a_eng": "bh_a_fw",
                  "bh_b_fw": "bh_b_eng", "bh_b_eng": "bh_b_fw"}
 SHIELD_PINS = {("ecu_a", "a7"): "A", ("ecu_b", "b17"): "B"}
 XREF_PART = "cp_xref"
+# Drains are found by their part, never by colour: M22759/16-20-06, black/blue,
+# used for nothing else (docs/SHIELD-RULES.md).
+DRAIN_PART = "m16_20_06"
 
 
 def registry():
@@ -60,15 +63,19 @@ def parts(d):
 def conductors(d):
     """(conductor, cable id or None, is_screen) for every wire, core and screen."""
     for w in d.get("wires", []):
-        tail = w["id"].rsplit("_", 1)[-1]
-        screen = (w.get("color") == "Shield" or tail in ("sh", "shield", "drain")
-                  or w["id"].startswith("w_drain"))
-        yield w, None, screen
+        yield w, None, is_drain(w)
     for cb in d.get("cables", []):
         for co in cb.get("cores", []):
             yield co, cb["id"], False
         if cb.get("shield"):
             yield cb["shield"], cb["id"], True
+
+
+def is_drain(w):
+    """A drain wire is the drain part; the id tails are a fallback for an unparted wire."""
+    tail = w["id"].rsplit("_", 1)[-1]
+    return (w.get("partId") == DRAIN_PART or tail in ("sh", "shield", "drain")
+            or w["id"].startswith("w_drain"))
 
 
 def is_xref(c):

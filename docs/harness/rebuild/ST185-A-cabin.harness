@@ -1878,7 +1878,8 @@
     },
     {
       "id": "w_drain_ecu_a",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "sp_shield_a",
         "handle": "Splice"
@@ -1918,7 +1919,8 @@
     },
     {
       "id": "w_shc_crank",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "bh_a_fw",
         "handle": "c33"
@@ -1931,7 +1933,8 @@
     },
     {
       "id": "w_shc_cam",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "bh_a_fw",
         "handle": "c34"
@@ -2462,7 +2465,8 @@
     },
     {
       "id": "w_shc_turbo",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "bh_a_fw",
         "handle": "c6"
@@ -2475,7 +2479,8 @@
     },
     {
       "id": "w_shc_flex",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "bh_a_fw",
         "handle": "c10"
@@ -2488,7 +2493,8 @@
     },
     {
       "id": "w_shc_etbs",
-      "color": "Shield",
+      "color": "Black",
+      "stripeColor": "Blue",
       "source": {
         "id": "bh_a_fw",
         "handle": "c11"
