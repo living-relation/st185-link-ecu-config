@@ -38,8 +38,8 @@ insulated lead is that cable's drain - a drain is a normal insulated wire.
   (`docs/RECONCILIATION-RULES.md` Rule 3) is for power and signal splices only, never drains.
 - **CAN:** every node branch drain T-splices onto the bus trunk drain (`sp_shield_can`, at the
   branch point), and the trunk drain T-splices onto the B17 drain behind ECU-B.
-- Drawn as: each screen ends at its SolderSleeve splice (covering `S200-2-W1-22-9`) or, where
-  the cable already arrives as a drain, at the T-splice; the T-splice is a
+- Drawn as: each screen ends at its SolderSleeve splice (next section) and the sleeve's own
+  drain lead runs to the pin or the T-splice; the T-splice is a
   `GENERIC SOLDER SPLICE` placed on the pin's connector (`locationId`, harness.design
   "drag its location handle onto a connector", https://docs.harness.design/component/splice).
   The wire from the T-splice to the pin is the last few mm of the crimped drain.
@@ -53,6 +53,38 @@ insulated lead is that cable's drain - a drain is a normal insulated wire.
 | VRC rear IN pin 3 | RL sensor cable | RR sensor cable | `sp_vrc_r_in_t` at `m9_vrc_r_in` |
 
 Every bulkhead drain has its own cavity, so no bulkhead cavity needs a T-splice.
+
+## SolderSleeves on every terminated screen (Daniel, 2026-10-12, binding)
+
+Our Raychem shielded cables have no drain wire, so **every cable end where the screen is
+terminated gets a Raychem SolderSleeve shield terminator with a pre-attached drain lead**,
+right behind the connector (or T-splice) that drain lands on. An end that floats by rule
+needs none. Drawn the way Daniel's WS-Front example does it: a splice whose covering is the
+sleeve, joining only the screen and the sleeve's drain lead (`ss_<cable>_<s|t>`, lead
+`w_<cable>_<s|t>_drain`); the lead is the drain that is crimped or T-spliced.
+
+Sizing comes from TE's SolderSleeve catalog (5-1654025-5, section 8): a sleeve fits when the
+cable **jacket OD <= its Jacket OD Max** and the **screen OD >= its Shield OD Min**. The cables
+are generic (plan 6.24), so each is sized against its M27500 TG-14 equivalent (ETFE, tinned
+braid, ETFE jacket; Harbour Industries WC27500 table). Data and sources:
+`docs/harness/cable_dimensions.json`. Lead gauge follows what the lead lands on: **20 AWG
+(`S02-0N-R`, M83519/2)** for crimp contacts and T-splices - the DRB and DT size-16 contacts
+take 14-20 AWG, which a 22 AWG lead misses - and **22 AWG (`S200-N-WI-22-9`)** only on the
+VRC M9 solder cups.
+
+| Cable (generic) | Reference | Screen / jacket OD | Sleeve, 20 AWG lead | Sleeve, 22 AWG lead |
+|---|---|---|---|---|
+| 1C 20 AWG | M27500-20TG1T14 | 1.70 / 1.85 mm | `S02-02-R` | `S200-2-WI-22-9` |
+| 2C TP 20 AWG | M27500-20TG2T14 | 3.00 / 3.40 mm | `S02-03-R` | `S200-3-WI-22-9` |
+| 2C 18 AWG | M27500-18TG2T14 | 3.51 / 3.91 mm | `S02-03-R` | - |
+| 3C 20 AWG | M27500-20TG3T14 | 3.38 / 3.66 mm | `S02-03-R` | - |
+| 4C 20 AWG | M27500-20TG4T14 | 3.53 / 3.94 mm | `S02-03-R` | `S200-3-WI-22-9` |
+| 6C 20 AWG | M27500-20TG6T14 | > 3.53 / >= 4.57 mm (bounded, not tabulated) | `S02-04-R` | - |
+
+Where two sizes fit, the one with the larger worst-case margin is used. Gate:
+`docs/harness/audit_solder_sleeves.py` (SS1 a sleeve at every terminated screen end, SS2 one
+sleeve joining only the screen and a lead of its gauge, SS3 sized to the cable and the
+covering part carries the datasheet diameters, SS4 at least one sleeve per shielded run).
 
 ## Vocabulary (Daniel)
 
@@ -167,7 +199,7 @@ Front box → `sp_shield_a` → **A7**; rear box → `sp_shield_b` → **B17**.
 
 The VRC and its panel sockets are not drawn. Each VRC harness is two separate pieces ending in
 two non-shielded 5-pin M9 plugs (binder `99 0414 00 05`; DECISIONS S8, Daniel's example
-2026-10-12): each sensor cable screen has its own Raychem `S200-2-W1-22-9` SolderSleeve with a
+2026-10-12): each sensor cable screen has its own Raychem `S200-3-WI-22-9` SolderSleeve with a
 22 AWG drain lead; the left drain is the one soldered into IN pin 3 and the right drain is
 T-spliced onto it about 6 mm behind the plug (DECISIONS S9 - this is how the "splice together
 and terminate on a single pin" rule above is built); the output cable drain is OUT pin 5.

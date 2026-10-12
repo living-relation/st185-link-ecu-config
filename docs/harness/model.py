@@ -71,6 +71,39 @@ def conductors(d):
             yield cb["shield"], cb["id"], True
 
 
+SLEEVE_PREFIXES = ("S200-", "S01-", "S02-", "S03-", "SO63-", "SO96-", "SO175-")
+
+
+def sleeves(d):
+    """Splice ids that are a Raychem SolderSleeve shield terminator (covering part number)."""
+    P = parts(d)
+    return {s["id"] for s in d.get("splices", [])
+            if any((P.get(c) or {}).get("partNumber", "").startswith(SLEEVE_PREFIXES)
+                   for c in s.get("coveringIds", []))}
+
+
+def through_sleeves(d, e, cond_id=None):
+    """Follow an end through SolderSleeve splices: a sleeve joins exactly a screen and its
+    drain lead (Daniel 2026-10-12), so the far end of the other conductor is where the drain
+    really goes. `e` is (id, handle); `cond_id` is the conductor we arrived on."""
+    sl = sleeves(d)
+    seen = set()
+    while e and e[1] == "Splice" and e[0] in sl and e[0] not in seen:
+        seen.add(e[0])
+        other = [c for c, _, _ in conductors(d)
+                 if c.get("id") != cond_id and e[0] in ((c.get("source") or {}).get("id"),
+                                                        (c.get("target") or {}).get("id"))]
+        if len(other) != 1:
+            return e
+        c = other[0]
+        s, t = c.get("source") or {}, c.get("target") or {}
+        nxt = t if s.get("id") == e[0] else s
+        if not nxt:
+            return (None, None)              # the screen floats past the sleeve
+        e, cond_id = (nxt.get("id"), nxt.get("handle")), c.get("id")
+    return e
+
+
 def is_xref(c):
     return c.get("partId") == XREF_PART
 

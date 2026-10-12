@@ -1,0 +1,22 @@
+{
+  "_doc": "Repo-only sizing data for shielded cables and SolderSleeve shield terminators (harness.design cable parts have no diameter field, https://docs.harness.design/feature/local-files/json-format). Cables are GENERIC by rule (HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN 6.24); each generic part is sized against its NEMA WC 27500 / M27500 TG-14 equivalent (tin-plated copper, ETFE primaries, tin-plated copper braid, white extruded ETFE jacket - 'multi-conductor Tefzel Raychem cable', SHIELD-RULES). Dimensions are nominal inches from the Harbour Industries WC27500 reference guide, Type TG-14 table (https://www.iewc.com/userfiles/documents/products/ha/rb/ou/rm/27/50/0/harbourm27500.pdf), converted to mm. Gate: audit_solder_sleeves.py (Daniel 2026-10-12).",
+  "cables": {
+    "GENERIC SHLD CABLE 1C 20AWG BLU": {"ref": "M27500-20TG1T14", "shield_in": 0.067, "jacket_in": 0.073},
+    "GENERIC SHLD CABLE 1C 20AWG VIO": {"ref": "M27500-20TG1T14", "shield_in": 0.067, "jacket_in": 0.073},
+    "GENERIC SHLD CABLE 2C TP 20AWG": {"ref": "M27500-20TG2T14", "shield_in": 0.118, "jacket_in": 0.134},
+    "GENERIC SHLD CABLE 2C 18AWG": {"ref": "M27500-18TG2T14", "shield_in": 0.138, "jacket_in": 0.154},
+    "GENERIC SHLD CABLE 3C 20AWG": {"ref": "M27500-20TG3T14", "shield_in": 0.133, "jacket_in": 0.144},
+    "GENERIC SHLD CABLE 4C 20AWG": {"ref": "M27500-20TG4T14", "shield_in": 0.139, "jacket_in": 0.155},
+    "GENERIC SHLD CABLE 6C 20AWG": {"ref": "M27500-20TG6T14", "shield_in_min": 0.139, "jacket_in_min": 0.180,
+      "note": "6-conductor is not in the Harbour TG-14 table (1-4 only). Bounded from published data instead of guessed: its shield is larger than the 4-conductor 20 AWG shield (0.139 in, Harbour) and its jacket is at least the 6-conductor 22 AWG TG-14 OD of 0.180 in (Aircraft Spruce, M27500-22TG6T14). That rules out size 3 (jacket max 4.3 mm = 0.170 in) and fits size 4 (shield min 3.30 mm = 0.130 in, jacket max 6.0 mm = 0.235 in). Confirm the cable on the shelf is under 6.0 mm OD."}
+  },
+  "sleeves": {
+    "_source": "TE Connectivity SolderSleeve Shield Terminators catalog section 8 (5-1654025-5), https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS - Table G (S200, 22 AWG M22759/91 lead, 200 C) and the M83519 table (S02, 20 AWG 55A0111 / M22759/32 lead, 150 C). Columns: Jacket OD Max, Shield OD Min (mm). A sleeve fits when the cable jacket OD <= max and the shield OD >= min.",
+    "S200-2-WI-22-9": {"jacket_max_mm": 2.7, "shield_min_mm": 1.40, "lead_awg": 22},
+    "S200-3-WI-22-9": {"jacket_max_mm": 4.3, "shield_min_mm": 2.15, "lead_awg": 22},
+    "S200-4-WI-22-9": {"jacket_max_mm": 6.0, "shield_min_mm": 3.30, "lead_awg": 22},
+    "S02-02-R": {"mil": "M83519/2-2", "jacket_max_mm": 2.7, "shield_min_mm": 1.40, "lead_awg": 20},
+    "S02-03-R": {"mil": "M83519/2-3", "jacket_max_mm": 4.3, "shield_min_mm": 2.15, "lead_awg": 20},
+    "S02-04-R": {"mil": "M83519/2-4", "jacket_max_mm": 6.0, "shield_min_mm": 3.30, "lead_awg": 20}
+  }
+}

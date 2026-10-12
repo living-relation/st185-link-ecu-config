@@ -1089,6 +1089,66 @@
         "x": 930,
         "y": 2220
       }
+    },
+    {
+      "id": "ss_cab_knock1_s",
+      "coveringIds": [
+        "cov_s02_03_r"
+      ],
+      "locationId": "bh_b_eng",
+      "layoutPosition": {
+        "x": -510,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 300,
+        "y": 1500
+      }
+    },
+    {
+      "id": "ss_cab_etbm_be_s",
+      "coveringIds": [
+        "cov_s02_03_r"
+      ],
+      "locationId": "bh_b_eng",
+      "layoutPosition": {
+        "x": -510,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 330,
+        "y": 1470
+      }
+    },
+    {
+      "id": "ss_cab_vss_s",
+      "coveringIds": [
+        "cov_s02_03_r"
+      ],
+      "locationId": "bh_b_eng",
+      "layoutPosition": {
+        "x": -510,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 270,
+        "y": 1500
+      }
+    },
+    {
+      "id": "ss_cab_lamcan_be_s",
+      "coveringIds": [
+        "cov_s02_03_r"
+      ],
+      "locationId": "bh_b_eng",
+      "layoutPosition": {
+        "x": -510,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 300,
+        "y": 1470
+      }
     }
   ],
   "wires": [
@@ -1372,6 +1432,58 @@
       },
       "color": "Black",
       "partId": "wp_20_blk"
+    },
+    {
+      "id": "w_knock1_s_drain",
+      "color": "White",
+      "source": {
+        "id": "ss_cab_knock1_s",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_eng",
+        "handle": "c18"
+      },
+      "partId": "wp_20_wht_s02"
+    },
+    {
+      "id": "w_etbm_be_s_drain",
+      "color": "White",
+      "source": {
+        "id": "ss_cab_etbm_be_s",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_eng",
+        "handle": "c22"
+      },
+      "partId": "wp_20_wht_s02"
+    },
+    {
+      "id": "w_vss_s_drain",
+      "color": "White",
+      "source": {
+        "id": "ss_cab_vss_s",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_eng",
+        "handle": "c23"
+      },
+      "partId": "wp_20_wht_s02"
+    },
+    {
+      "id": "w_lamcan_be_s_drain",
+      "color": "White",
+      "source": {
+        "id": "ss_cab_lamcan_be_s",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_b_eng",
+        "handle": "c24"
+      },
+      "partId": "wp_20_wht_s02"
     }
   ],
   "cables": [
@@ -1413,8 +1525,8 @@
         "id": "cab_knock1_sh",
         "color": "Shield",
         "source": {
-          "id": "bh_b_eng",
-          "handle": "c18"
+          "id": "ss_cab_knock1_s",
+          "handle": "Splice"
         }
       }
     },
@@ -1455,8 +1567,8 @@
         "id": "cab_etbm_be_sh",
         "color": "Shield",
         "source": {
-          "id": "bh_b_eng",
-          "handle": "c22"
+          "id": "ss_cab_etbm_be_s",
+          "handle": "Splice"
         },
         "target": {
           "id": "br_cab_etbm_sh",
@@ -1513,8 +1625,8 @@
         "id": "cab_vss_sh",
         "color": "Shield",
         "source": {
-          "id": "bh_b_eng",
-          "handle": "c23"
+          "id": "ss_cab_vss_s",
+          "handle": "Splice"
         }
       }
     },
@@ -1556,8 +1668,8 @@
         "id": "cab_lamcan_be_sh",
         "color": "Shield",
         "source": {
-          "id": "bh_b_eng",
-          "handle": "c24"
+          "id": "ss_cab_lamcan_be_s",
+          "handle": "Splice"
         },
         "target": {
           "id": "br_cab_lamcan_sh",
@@ -2259,6 +2371,17 @@
         "value": 14,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "wp_20_wht_s02",
+      "partNumber": "M22759/32-20-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, TIN PLATED COPPER, XL-ETFE, STRANDED",
+      "color": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
     }
   ],
   "spliceParts": [
@@ -2636,6 +2759,29 @@
       "partNumber": "W6P",
       "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE",
       "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_s02_03_r",
+      "partNumber": "S02-03-R",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "type": "HeatShrink",
+      "description": "SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-3",
+      "minDiameter": {
+        "unit": "mm",
+        "value": 2.15
+      },
+      "maxDiameter": {
+        "unit": "mm",
+        "value": 4.3
+      },
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "isFixedLength": true,
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS"
     }
   ]
 }
