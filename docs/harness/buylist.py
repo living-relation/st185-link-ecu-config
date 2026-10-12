@@ -106,7 +106,7 @@ for f in F:
             pid = n.get("partId") or n.get("bootPartId")
             if pid and pid in parts:
                 q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
-            # coverings on a node (e.g. a SolderSleeve on a screen splice) are one each
+            # coverings on a node are one each
             for cid in n.get("coveringIds", []):
                 q = next((x for x in d.get("coveringParts", []) if x["id"] == cid), None)
                 if q:

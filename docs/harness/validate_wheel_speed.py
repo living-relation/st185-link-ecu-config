@@ -11,15 +11,14 @@ Checked per side against interfaces.json "wheelSpeed":
   W3  each sensor drop is one screened 2-core cable: c1 to the VRC IN "+" endpoint, c2 to
       "-"; its screen has one end only, on the IN "screen" endpoint (floats at the sensor),
       and that endpoint is part of the VRC enclosure. Where the endpoint is a drawn plug the
-      screen may instead end at its SolderSleeve splice whose drain lead reaches the
-      endpoint's screen pin, directly or through a drain T-splice and nothing else
-      (Daniel 2026-10-12: one sensor drain crimped into IN pin 3, the other T-spliced onto
-      it about 6 mm behind the plug). Its layout leg runs from the sensor plug either
+      screen may instead end at the ONE shared screen splice of that side, whose single
+      drain wire reaches the endpoint's screen pin (Daniel 2026-10-12: both sensor screens
+      go into one splice, one wire to IN pin 3; every cable is drawn as if it had a drain
+      wire - no SolderSleeve, no per-cable splice, no second splice node). Its layout leg runs from the sensor plug either
       straight to the IN plug or to a branch point that carries only the sensor legs and one
       bundle to the IN plug (the legs meet only by the plug)
   W4  the output cable(s) run from the VRC OUT endpoint to the interface source half; each
-      screen lands on its declared drain pin (through its SolderSleeve and drain lead),
-      starting at the enclosure or floating there
+      screen lands on its declared drain pin, starting at the enclosure or floating there
   W5  the interface is a Deutsch DT 6-way pair
   W6  the ECU spur: the receiving half is on the spur harness, and each of its pins has one
       conductor to the declared ECU pin or splice (on the spur harness or a harness the
@@ -106,7 +105,7 @@ for side, s in sorted(spec.items()):
         sh = cb.get("shield") or {}
         ends = [end(sh.get(k)) for k in ("source", "target") if sh.get(k)]
         if ep.get("connector") and len(ends) == 1 and ends[0][1] == "Splice":
-            # follow the drain leads through any T-splice (Daniel 2026-10-12) to the pin
+            # follow the drain wire from the shared screen splice to the pin
             seen, todo, reach = {ends[0]}, [ends[0]], []
             while todo:
                 n = todo.pop()
@@ -139,6 +138,12 @@ for side, s in sorted(spec.items()):
             if legs != {ep["connector"]}:
                 bad.append("W3 %s: %s layout leg must run straight to %s, runs to %s"
                            % (side, sensor, ep["connector"], sorted(legs)))
+    shield_nodes = {(cb.get("shield") or {}).get(k, {}).get("id") for cb in cables.values()
+                    for k in ("source", "target") if (cb.get("shield") or {}).get(k, {}).get("handle") == "Splice"}
+    one = {x["id"] for x in d.get("splices", [])}
+    if len(one) != 1 or shield_nodes != one:
+        bad.append("W3 %s: the sensor screens must share exactly ONE splice node (one drain wire to the IN pin); "
+                   "found splices %s, screen splices %s" % (side, [x["id"] for x in d.get("splices", [])], sorted(shield_nodes)))
     oep = eps.get(s["output"]) or {}
     out = model.endpoint_ends(oep) if oep else {}
     out_ids = {v[0] for k, v in out.items() if k != "screen"}
@@ -181,7 +186,7 @@ for side, s in sorted(spec.items()):
             if not ({a[0], b[0]} & out_ids and src["connector"] in (a[0], b[0])):
                 bad.append("W4 %s: core %s does not run VRC OUT -> %s" % (side, co["id"], src["connector"]))
         sh = cb.get("shield") or {}
-        got = {model.through_sleeves(d, end(sh.get(k)), sh.get("id")) for k in ("source", "target") if sh.get(k)}
+        got = {end(sh.get(k)) for k in ("source", "target") if sh.get(k)}
         want_sh = {(src["connector"], oc["drainPin"])}
         if oc.get("screenFromEnclosure"):
             want_sh.add(out["screen"])
@@ -220,8 +225,7 @@ for side, s in sorted(spec.items()):
             ends = {end(cond.get("source")), end(cond.get("target"))}
             if (rcv["connector"], pin) in ends:
                 far = ends - {(rcv["connector"], pin)}
-                sd = ds.get(s["spurHarness"]) or {}
-                hits.append({follow(s["spurHarness"], model.through_sleeves(sd, x, cond.get("id"))) for x in far})
+                hits.append({follow(s["spurHarness"], x) for x in far})
         tid, _, th = target.partition(".")
         ok = [x for x in hits if x and next(iter(x))[0] in (tid, "dm_%s_Splice" % tid)
               and (not th or next(iter(x))[1] == th)]

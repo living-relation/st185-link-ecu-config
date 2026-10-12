@@ -199,8 +199,8 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
   must cover the combined gauge, not each wire (4 x 20 AWG = 1 x 14 AWG, fits a 14-10 splice).
   harness.design flags splices whose individual wires are below the part's minimum gauge
   ("wires are too thin"); that per-wire warning is a known false alarm and is not chased.
-  **Not for shield drains** (Daniel, 2026-10-12): drains sharing a pin are T-spliced and keep
-  their normal gauge - `docs/SHIELD-RULES.md` "Drain T-splice".
+  **Not for shield drains** (Daniel, 2026-10-12): drains sharing a pin go into one splice and keep
+  their normal gauge - `docs/SHIELD-RULES.md` "Shared drain pin".
 - **Connector substitution (Daniel, 2026-09-28, standing):** if bulkhead A or B runs out of
   pins or needs higher-capacity contacts, a different connector may replace it or a second
   one may be added beside it - but only with a **complete, compatible matching set for both
