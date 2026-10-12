@@ -3340,25 +3340,6 @@
       "url": "https://www.te.com/usa-en/product-DT06-6S.html"
     },
     {
-      "id": "cp_dtp04_4p_l012",
-      "partNumber": "DTP04-4P-L012",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, RECEPTACLE, DTP, 4 POS, PIN CONTACTS, FLANGE MOUNT",
-      "numberOfCavities": 4,
-      "gender": "Male",
-      "hasShell": false,
-      "url": "https://www.te.com/usa-en/product-DTP04-4P-L012.html",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_hdp12p",
-          "cavityPlugPartId": "pl_114017",
-          "lockPartId": "lp_wp4p",
-          "mountPartId": "mt_dtp4p_gkt"
-        }
-      ]
-    },
-    {
       "partNumber": "Sumitomo TS 025 6-way",
       "manufacturer": "Sumitomo / Subaru",
       "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS",
@@ -3403,22 +3384,6 @@
       },
       "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "id": "ct_hdp16p"
-    },
-    {
-      "partNumber": "0460-202-2031",
-      "manufacturer": "TE DEUTSCH",
-      "type": "Crimp",
-      "gender": "Pin",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "description": "CONTACT, PIN, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
-      "id": "ct_hdp20p"
     },
     {
       "partNumber": "3-1447221-4",
@@ -3510,12 +3475,6 @@
       "id": "pl_sz16"
     },
     {
-      "partNumber": "0413-204-2005",
-      "manufacturer": "TE DEUTSCH",
-      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
-      "id": "pl_sz20"
-    },
-    {
       "id": "pl_114017",
       "partNumber": "114017",
       "manufacturer": "TE DEUTSCH",
@@ -3529,45 +3488,14 @@
       "partNumber": "DRBF-1A",
       "manufacturer": "TE DEUTSCH",
       "description": "FLANGE, MOUNTING, DRB 102/128 SERIES"
-    },
-    {
-      "id": "mt_dtp4p_gkt",
-      "partNumber": "DTP4P-L012-GKT",
-      "manufacturer": "TE DEUTSCH",
-      "description": "GASKET, MOUNTING, DTP 4 POS FLANGE RECEPTACLE L012"
     }
   ],
   "lockParts": [
-    {
-      "id": "lp_wb51pal",
-      "partNumber": "WB-51PAL",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DRB 102/128, RECEPTACLE, LEFT"
-    },
-    {
-      "id": "lp_wb51par",
-      "partNumber": "WB-51PAR",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DRB 102/128, RECEPTACLE, RIGHT"
-    },
     {
       "id": "lp_w6s",
       "partNumber": "W6S",
       "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 6-WAY PLUG"
-    },
-    {
-      "id": "lp_w2p",
-      "partNumber": "W2P",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DT, 2-WAY RECEPTACLE"
-    },
-    {
-      "id": "lp_wp4p",
-      "partNumber": "WP-4P",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DTP, 4 POS, RECEPTACLE",
-      "url": "https://www.te.com/usa-en/product-WP-4P.html"
     }
   ],
   "cableParts": [

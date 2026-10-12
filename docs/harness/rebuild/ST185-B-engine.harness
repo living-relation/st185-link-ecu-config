@@ -1885,17 +1885,6 @@
       }
     },
     {
-      "id": "wp_18_wht",
-      "partNumber": "EW-1C18-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 18 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "White",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "wp_20_blk_wht",
       "partNumber": "EW-1C20-BLK-WHT",
       "manufacturer": "generic",
@@ -2299,18 +2288,6 @@
     }
   ],
   "lockParts": [
-    {
-      "id": "lp_wb51sal",
-      "partNumber": "WB-51SAL",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DRB 102/128, PLUG, LEFT"
-    },
-    {
-      "id": "lp_wb51sar",
-      "partNumber": "WB-51SAR",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DRB 102/128, PLUG, RIGHT"
-    },
     {
       "id": "lp_w6p",
       "partNumber": "W6P",

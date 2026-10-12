@@ -1521,69 +1521,6 @@
       }
     },
     {
-      "id": "bn_bp_1200__bp_1230",
-      "sourceId": "bp_1200",
-      "targetId": "bp_1230",
-      "length": {
-        "value": 130,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1230__bp_1260",
-      "sourceId": "bp_1230",
-      "targetId": "bp_1260",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1260__bp_1290",
-      "sourceId": "bp_1260",
-      "targetId": "bp_1290",
-      "length": {
-        "value": 20,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1290__bp_1320",
-      "sourceId": "bp_1290",
-      "targetId": "bp_1320",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1320__bp_1350",
-      "sourceId": "bp_1320",
-      "targetId": "bp_1350",
-      "length": {
-        "value": 30,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1350__bp_2430",
-      "sourceId": "bp_1350",
-      "targetId": "bp_2430",
-      "length": {
-        "value": 2640,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_2430__bp_2460",
-      "sourceId": "bp_2430",
-      "targetId": "bp_2460",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_120__fan2",
       "sourceId": "bp_120",
       "targetId": "fan2",
@@ -2300,55 +2237,6 @@
       }
     },
     {
-      "id": "bp_1230",
-      "layoutPosition": {
-        "x": 4230,
-        "y": 390
-      }
-    },
-    {
-      "id": "bp_1260",
-      "layoutPosition": {
-        "x": 4350,
-        "y": 390
-      }
-    },
-    {
-      "id": "bp_1290",
-      "layoutPosition": {
-        "x": 4470,
-        "y": 390
-      }
-    },
-    {
-      "id": "bp_1320",
-      "layoutPosition": {
-        "x": 4590,
-        "y": 390
-      }
-    },
-    {
-      "id": "bp_1350",
-      "layoutPosition": {
-        "x": 4710,
-        "y": 390
-      }
-    },
-    {
-      "id": "bp_2430",
-      "layoutPosition": {
-        "x": 5790,
-        "y": 390
-      }
-    },
-    {
-      "id": "bp_2460",
-      "layoutPosition": {
-        "x": 5910,
-        "y": 390
-      }
-    },
-    {
       "id": "bp_185",
       "layoutPosition": {
         "x": 660,
@@ -2559,17 +2447,6 @@
       "color": "Red",
       "gauge": {
         "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_4_red",
-      "partNumber": "BC-4-RED",
-      "manufacturer": "generic",
-      "description": "CABLE, BATTERY, 4 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 4,
         "unit": "AWG"
       }
     },

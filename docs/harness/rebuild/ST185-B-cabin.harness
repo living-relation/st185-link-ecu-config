@@ -2654,17 +2654,6 @@
       }
     },
     {
-      "id": "wp_16_red",
-      "partNumber": "EW-1C16-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "wp_20_blu",
       "partNumber": "EW-1C20-BLU",
       "manufacturer": "generic",
@@ -2871,18 +2860,6 @@
     }
   ],
   "lockParts": [
-    {
-      "id": "lp_wb51pal",
-      "partNumber": "WB-51PAL",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DRB 102/128, RECEPTACLE, LEFT"
-    },
-    {
-      "id": "lp_wb51par",
-      "partNumber": "WB-51PAR",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DRB 102/128, RECEPTACLE, RIGHT"
-    },
     {
       "id": "lp_w6s",
       "partNumber": "W6S",
