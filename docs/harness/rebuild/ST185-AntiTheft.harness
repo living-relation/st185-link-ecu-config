@@ -1239,101 +1239,95 @@
     {
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
-      "manufacturer": "generic",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
     }
   ],
   "contactParts": [
     {
       "id": "ct_hdp16s",
-      "partNumber": "0462-201-1631",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "type": "Crimp",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr0462-201-1631.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartImages/pr0462-201-1631.jpg"
+      },
       "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
-      "contactColor": "Gold"
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-1631",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "contactColor": "Gold",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "partNumber": "0462-201-16141",
-      "manufacturer": "TE DEUTSCH",
+      "id": "ct_dt16s_ni",
       "type": "Crimp",
       "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
-      "contactColor": "Silver",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-16141",
       "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
-      "id": "ct_dt16s_ni"
+      "contactColor": "Silver",
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "terminalParts": [
     {
+      "id": "tp_flying_lead",
       "type": "Loose",
-      "partNumber": "GENERIC FLYING LEAD",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC FLYING LEAD",
       "description": "TERMINAL, FLYING LEAD",
-      "id": "tp_flying_lead"
+      "manufacturer": "generic"
     },
     {
-      "type": "Ring",
+      "id": "tp_ring_m6_22_16",
       "size": "M6",
-      "partNumber": "GENERIC RING M6 22-16",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
+      "type": "Ring",
       "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 16
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC RING M6 22-16",
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
-      "id": "tp_ring_m6_22_16"
+      "manufacturer": "generic"
     }
   ],
   "connectorParts": [
     {
-      "partNumber": "DT06-3S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "numberOfCavities": 3,
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_dt16s_ni",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w3s"
-        }
-      ],
+      "id": "cp_dt3s",
       "url": "https://www.te.com/usa-en/product-DT06-3S.html",
+      "color": "Gray",
       "image": {
         "url": "https://www.te.com/content/dam/te-com/catalog/part/000/DT0/63S/DT06-3S-t1.jpg/jcr:content/renditions/product-high-res.png",
         "source": "url",
         "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/DT0/63S/DT06-3S-t1.jpg/jcr:content/renditions/product-details.png"
       },
+      "gender": "Female",
       "pinout": {
         "id": "te-deutsch-dt-3",
         "name": "DT 3-way",
@@ -1385,54 +1379,151 @@
         ],
         "mirrored": true
       },
-      "designationStrategy": {
-        "type": "alphabetical"
-      },
-      "id": "cp_dt3s"
-    },
-    {
-      "partNumber": "DT06-12SA",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 12 POS, SOCKET CONTACTS, N SEAL, KEY A, GRAY",
-      "numberOfCavities": 12,
-      "gender": "Female",
-      "hasShell": false,
+      "partNumber": "DT06-3S",
+      "description": "CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE Connectivity DEUTSCH",
       "configurations": [
         {
-          "id": "cfg12",
-          "contactPartId": "ct_hdp16s",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w12s"
+          "id": "cfg",
+          "lockPartId": "lp_w3s"
         }
       ],
+      "numberOfCavities": 3,
+      "designationStrategy": {
+        "type": "alphabetical"
+      }
+    },
+    {
+      "id": "cp_dt06_12sa",
       "url": "https://www.te.com/usa-en/product-DT06-12SA.html",
+      "color": "Gray",
       "image": {
         "url": "https://www.te.com/content/dam/te-com/catalog/part/0DT/061/2SA/DT06-12SA-t1.jpg/jcr:content/renditions/product-high-res.png",
         "source": "url",
         "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/0DT/061/2SA/DT06-12SA-t1.jpg/jcr:content/renditions/product-details.png"
       },
-      "id": "cp_dt06_12sa"
-    },
-    {
-      "partNumber": "DT06-2S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "numberOfCavities": 2,
       "gender": "Female",
-      "hasShell": false,
+      "pinout": {
+        "id": "te-deutsch-dt-12",
+        "name": "DT 12-way",
+        "pins": [
+          {
+            "x": -11.125,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": -6.675,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": -2.225,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 2.225,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 6.675,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 11.125,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 11.125,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": 6.675,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": 2.225,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -2.225,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -6.675,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -11.125,
+            "y": -4.56,
+            "size": 3.5
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 32.3,
+          "height": 18.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "x": 16.15,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 8
+            }
+          },
+          {
+            "x": -16.15,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 8
+            }
+          },
+          {
+            "y": -9.35,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 2
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "partNumber": "DT06-12SA",
+      "description": "CONNECTOR, PLUG, DT, 12 POS, SOCKET CONTACTS, N SEAL, KEY A, GRAY",
+      "manufacturer": "TE Connectivity DEUTSCH",
       "configurations": [
         {
-          "id": "cfg",
-          "contactPartId": "ct_hdp16s",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w2s"
+          "id": "cfg12",
+          "lockPartId": "lp_w12s"
         }
       ],
+      "numberOfCavities": 12
+    },
+    {
+      "id": "pdfTYmAD2zDku_jfHqzBu",
       "url": "https://www.te.com/usa-en/product-DT06-2S.html",
       "image": {
         "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014830313.png",
         "source": "cloud"
       },
+      "gender": "Female",
       "pinout": {
         "id": "te-deutsch-dt-2",
         "name": "DT 2-way",
@@ -1467,38 +1558,55 @@
         ],
         "mirrored": true
       },
+      "hasShell": false,
+      "partNumber": "DT06-2S",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "lockPartId": "lp_w2s",
+          "contactPartId": "ct_dt16s_ni",
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "numberOfCavities": 2,
       "designationStrategy": {
         "type": "sequential"
-      },
-      "id": "pdfTYmAD2zDku_jfHqzBu"
+      }
     }
   ],
   "lockParts": [
     {
+      "id": "lp_w3s",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W3S/W3S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W3S/W3S-t1.jpg/jcr:content/renditions/product-small.png"
+      },
       "partNumber": "W3S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DT, 3-WAY PLUG",
-      "id": "lp_w3s"
+      "description": "WEDGELOCK, DT, 3 POS, PLUG",
+      "manufacturer": "Deutsch"
     },
     {
+      "id": "lp_w12s",
       "partNumber": "W12S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "WEDGELOCK, DT, 12-WAY PLUG",
-      "id": "lp_w12s"
+      "description": "WEDGELOCK, DT, 12 POS, PLUG",
+      "manufacturer": "Deutsch (TE Connectivity)"
     },
     {
+      "id": "lp_w2s",
       "partNumber": "W2S",
-      "manufacturer": "TE DEUTSCH",
       "description": "WEDGELOCK, DT, 2-WAY PLUG",
-      "id": "lp_w2s"
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "cavityPlugParts": [
     {
+      "id": "pl_sz16",
       "partNumber": "114017",
-      "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
-      "id": "pl_sz16"
+      "manufacturer": "TE DEUTSCH"
     }
   ]
 }

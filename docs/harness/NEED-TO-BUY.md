@@ -31,7 +31,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS | 4 | 0 | **4** |
 | `15419715` | Aptiv | CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6 | 4 | 0 | **4** |
 | `90980-11062` | Toyota | CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS | 4 | 0 | **4** |
-| `90980-11885` | Toyota | CONNECTOR, PLUG, TOYOTA, 4 POS, SOCKET CONTACTS | 4 | 0 | **4** |
+| `90980-11885` | Toyota | CONNECTOR, PLUG, TOYOTA, 4 POS | 4 | 0 | **4** |
 | `99 0414 00 05` | binder | CONNECTOR, CIRCULAR, M9, CABLE CONNECTOR, FEMALE, 5 POS, UNSHIELDED, SOLDER, IP67 | 4 | 0 | **4** |
 | `DTHD06-1-8S` | TE DEUTSCH | CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A | 4 | 0 | **4** |
 | `0301491` | MTA | MODULE, FUSE AND RELAY, SEALED, 2 MAXI RELAY, 1 MAXI FUSE, 6 MINI FUSE | 3 | 0 | **3** |
@@ -52,7 +52,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK | 2 | 0 | **2** |
 | `RL00801-50RE` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED | 2 | 0 | **2** |
 | `S200-2-W1-22-9` | TE Connectivity (Raychem) | SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 22 AWG LEAD | 2 | 0 | **2** |
-| `W3S` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY PLUG | 2 | 0 | **2** |
+| `W3S` | Deutsch | WEDGELOCK, DT, 3 POS, PLUG | 2 | 0 | **2** |
 | `AMI-60` | Eaton Bussmann | FUSE, AMI, 60 A, M5 BOLT-DOWN | 2 | 0 | **2** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `10k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
@@ -76,8 +76,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `Sumitomo TS 025 6-way` | Sumitomo / Subaru | CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS | 1 | 0 | **1** |
 | `V23132-A2001-B200` | TE Connectivity | RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS | 1 | 0 | **1** |
 | `W3P` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY RECEPTACLE | 1 | 0 | **1** |
-| `WM-4S` | TE DEUTSCH | WEDGELOCK, DTM, 4-WAY PLUG | 1 | 0 | **1** |
-| `WM-6S` | TE DEUTSCH | WEDGELOCK, DTM, 6-WAY PLUG | 1 | 0 | **1** |
+| `WM-4S` | TE DEUTSCH | WEDGELOCK, DTM, 4 POS, PLUG | 1 | 0 | **1** |
+| `WM-6S` | Deutsch | WEDGELOCK, DTM, 6 POS, PLUG | 1 | 0 | **1** |
 | `jump-post-M8` | TBD | POST, JUMP START, M8, INSULATED | 1 | 0 | **1** |
 | `AMI-50` | Eaton Bussmann | FUSE, AMI, 50 A, M5 BOLT-DOWN | 1 | 0 | **1** |
 | `AMI-40` | Eaton Bussmann | FUSE, AMI, 40 A, M5 BOLT-DOWN | 1 | 0 | **1** |
@@ -110,9 +110,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `1-1414147-0` | RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 3 | 3 |
 | `114018-ZZ` | PLUG, SEALING, CAVITY, SIZE 8, WHITE | 8 | 10 |
 | `114019-ZZ` | PLUG, SEALING, CAVITY, SIZE 4, WHITE | 4 | 10 |
-| `12052641` | CONNECTOR, PLUG, METRI-PACK 150.2, 2 POS, SEALED, SOCKET CONTACTS | 1 | 1 |
+| `12052641` | CONNECTOR, 2 POS, SEALED | 1 | 1 |
 | `13519047` | CONNECTOR, PLUG, GT 150, 3 POS, SEALED, SOCKET CONTACTS | 1 | 1 |
-| `15326427` | CONTACT, SOCKET, CRIMP, GT 150, GOLD, 0.75-1.0 MM2 (18-16 AWG) | 4 | 5 |
+| `15326427` | CONTACT, SOCKET, CRIMP, GT 150, GOLD, 0.75-1.0 MM2 | 4 | 5 |
 | `281934-2` | SEAL, WIRE, SUPERSEAL 1.5 | 2 | 10 |
 | `282080-1` | HOUSING, PLUG, SUPERSEAL 1.5, 2 POS | 1 | 2 |
 | `282110-1` | CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2 | 2 | 10 |
@@ -130,7 +130,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `DTM06-6S` | CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY | 1 | 1 |
 | `Micro ISO relays x4` | RELAY, PLUG-IN, MICRO ISO, 1 FORM A, 12 VDC COIL | 4 | 4 |
 | `W12P` | WEDGELOCK, DT, 12-WAY RECEPTACLE | 1 | 2 |
-| `W12S` | WEDGELOCK, DT, 12-WAY PLUG | 1 | 2 |
+| `W12S` | WEDGELOCK, DT, 12 POS, PLUG | 1 | 2 |
 | `generic` | CABLE, SHIELDED, 1 CONDUCTOR, 22 AWG, WHITE, ETFE (TEFZEL), TINNED COPPER BRAID | 1 | 1 |
 
 ## Not purchased — already on the car, or supplied with the device

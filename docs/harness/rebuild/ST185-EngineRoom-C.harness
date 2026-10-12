@@ -2585,232 +2585,237 @@
   ],
   "terminalParts": [
     {
+      "id": "tp_flying_lead",
       "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
       "partNumber": "GENERIC FLYING LEAD",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 22,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
       "description": "TERMINAL, FLYING LEAD",
-      "id": "tp_flying_lead"
+      "manufacturer": "generic"
     },
     {
-      "type": "Ring",
+      "id": "tp_lug_m8_4",
       "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 4
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 6
+      },
       "partNumber": "GENERIC LUG M8 4AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 4,
-        "unit": "AWG"
-      },
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m8_4"
+      "manufacturer": "generic"
     },
     {
-      "type": "Ring",
+      "id": "tp_lug_m10_4",
       "size": "M10",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 4
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 6
+      },
       "partNumber": "GENERIC LUG M10 4AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 6,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 4,
-        "unit": "AWG"
-      },
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m10_4"
+      "manufacturer": "generic"
     },
     {
-      "type": "Ring",
+      "id": "tp_lug_m10_8",
       "size": "M10",
-      "partNumber": "GENERIC LUG M10 8AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
+      "type": "Ring",
       "maxGauge": {
-        "value": 8,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 8
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "GENERIC LUG M10 8AWG",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m10_8"
+      "manufacturer": "generic"
     },
     {
-      "type": "Ring",
+      "id": "tp_lug_m8_8",
       "size": "M8",
-      "partNumber": "GENERIC LUG M8 8AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
+      "type": "Ring",
       "maxGauge": {
-        "value": 8,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 8
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "GENERIC LUG M8 8AWG",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m8_8"
+      "manufacturer": "generic"
     },
     {
       "id": "tp_flying_lead_heavy",
       "type": "Loose",
-      "partNumber": "GENERIC HEAVY FLYING LEAD 10-6",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
-      },
       "maxGauge": {
-        "value": 6,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 6
       },
-      "description": "TERMINAL, FLYING LEAD, HEAVY"
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "GENERIC HEAVY FLYING LEAD 10-6",
+      "description": "TERMINAL, FLYING LEAD, HEAVY",
+      "manufacturer": "generic"
     },
     {
-      "type": "Ring",
+      "id": "tp_lug_m10_50",
       "size": "M10",
-      "partNumber": "GENERIC LUG M10 50MM2",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 35,
-        "unit": "Metric"
-      },
+      "type": "Ring",
       "maxGauge": {
-        "value": 110,
-        "unit": "Metric"
+        "unit": "Metric",
+        "value": 110
       },
+      "minGauge": {
+        "unit": "Metric",
+        "value": 35
+      },
+      "partNumber": "GENERIC LUG M10 50MM2",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m10_50"
+      "manufacturer": "generic"
     }
   ],
   "connectorParts": [
     {
-      "partNumber": "MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942",
-      "manufacturer": "Toyota / Sumitomo",
-      "description": "CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS",
-      "numberOfCavities": 10,
+      "id": "cp_mrs_eps",
+      "image": {
+        "url": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/large/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/small/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg"
+      },
       "gender": "Female",
       "hasShell": false,
+      "partNumber": "MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942",
+      "description": "CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS",
+      "manufacturer": "Toyota / Sumitomo",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_mrs_ts"
         }
       ],
-      "id": "cp_mrs_eps",
-      "image": {
-        "source": "url",
-        "url": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/large/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg",
-        "lowResUrl": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/small/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg"
-      }
+      "numberOfCavities": 10
     },
     {
+      "id": "cp_oem",
+      "image": {
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-junction-block.png",
+        "source": "url"
+      },
       "partNumber": "(OEM block)",
-      "manufacturer": "Toyota",
       "description": "CONNECTOR, OEM, JUNCTION OR RELAY BLOCK",
+      "manufacturer": "Toyota",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_generic_skt"
         }
-      ],
-      "id": "cp_oem",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-junction-block.png"
-      }
+      ]
     },
     {
+      "id": "cp_pdb",
+      "image": {
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/pdb-m8x8.png",
+        "source": "url"
+      },
       "partNumber": "PDB-M8x8",
-      "manufacturer": "TBD",
       "description": "BLOCK, POWER DISTRIBUTION, 8 STUD M8, 150-250 A BUS",
+      "manufacturer": "TBD",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_lug_stud"
         }
-      ],
-      "id": "cp_pdb",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/pdb-m8x8.png"
-      }
+      ]
     },
     {
-      "partNumber": "DTHD06-1-8S",
-      "manufacturer": "TE DEUTSCH",
-      "description": "CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A",
-      "numberOfCavities": 1,
+      "id": "cp_dthd_1_8s",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DTH/D06/18S/DTHD06-1-8S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DTH/D06/18S/DTHD06-1-8S-t1.jpg/jcr:content/renditions/product-details.png"
+      },
       "gender": "Female",
       "hasShell": false,
+      "partNumber": "DTHD06-1-8S",
+      "description": "CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A",
+      "manufacturer": "TE DEUTSCH",
       "configurations": [
         {
           "id": "cfg",
           "contactPartId": "ct_hd8s"
         }
       ],
-      "id": "cp_dthd_1_8s",
-      "image": {
-        "source": "url",
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/DTH/D06/18S/DTHD06-1-8S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DTH/D06/18S/DTHD06-1-8S-t1.jpg/jcr:content/renditions/product-details.png"
-      }
+      "numberOfCavities": 1
     }
   ],
   "contactParts": [
     {
-      "partNumber": "(ring lug, sized to cable)",
-      "manufacturer": "generic",
+      "id": "ct_lug_stud",
       "type": "Other",
       "gender": "Socket",
-      "contactColor": "Silver",
+      "partNumber": "(ring lug, sized to cable)",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK",
-      "id": "ct_lug_stud"
-    },
-    {
-      "partNumber": "(Toyota TS terminals, supplied with owned housings)",
-      "manufacturer": "Toyota / Sumitomo",
-      "type": "Crimp",
-      "gender": "Socket",
       "contactColor": "Silver",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "ct_mrs_ts",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "(Toyota TS terminals, supplied with owned housings)",
       "description": "CONTACT, SOCKET, CRIMP, TOYOTA",
-      "id": "ct_mrs_ts"
+      "contactColor": "Silver",
+      "manufacturer": "Toyota / Sumitomo"
     },
     {
-      "partNumber": "0462-203-08141",
-      "manufacturer": "TE DEUTSCH",
+      "id": "ct_hd8s",
       "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 10,
-        "unit": "AWG"
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr0462-203-08141.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartImages/pr0462-203-08141.jpg"
       },
+      "gender": "Socket",
       "maxGauge": {
-        "value": 8,
-        "unit": "AWG"
+        "unit": "AWG",
+        "value": 8
       },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "0462-203-08141",
       "description": "CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A",
-      "id": "ct_hd8s"
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "partNumber": "(generic)",
-      "manufacturer": "Generic",
+      "id": "ct_generic_skt",
       "type": "Crimp",
       "gender": "Socket",
+      "partNumber": "(generic)",
       "description": "CONTACT, SOCKET, CRIMP, GENERIC",
-      "id": "ct_generic_skt"
+      "manufacturer": "Generic"
     }
   ]
 }
