@@ -790,7 +790,7 @@
     {
       "id": "ss_cab_fout_s",
       "coveringIds": [
-        "cov_s200_3_wi_22_9"
+        "cov_s200_4_wi_22_9"
       ],
       "locationId": "m9_vrc_f_out",
       "layoutPosition": {
@@ -805,7 +805,7 @@
     {
       "id": "ss_cab_fout_t",
       "coveringIds": [
-        "cov_s02_03_r"
+        "cov_s02_04_r"
       ],
       "locationId": "ix_ws_front_r",
       "layoutPosition": {
@@ -899,11 +899,11 @@
   ],
   "coveringParts": [
     {
-      "id": "cov_s02_03_r",
-      "partNumber": "S02-03-R",
+      "id": "cov_s200_3_wi_22_9",
+      "partNumber": "S200-3-WI-22-9",
       "manufacturer": "TE Connectivity (Raychem)",
       "type": "HeatShrink",
-      "description": "SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-3",
+      "description": "SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 22 AWG LEAD, SN96 SOLDER, 200 C",
       "minDiameter": {
         "unit": "mm",
         "value": 2.15
@@ -920,18 +920,39 @@
       "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS"
     },
     {
-      "id": "cov_s200_3_wi_22_9",
-      "partNumber": "S200-3-WI-22-9",
+      "id": "cov_s200_4_wi_22_9",
+      "partNumber": "S200-4-WI-22-9",
       "manufacturer": "TE Connectivity (Raychem)",
       "type": "HeatShrink",
       "description": "SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 22 AWG LEAD, SN96 SOLDER, 200 C",
       "minDiameter": {
         "unit": "mm",
-        "value": 2.15
+        "value": 3.3
       },
       "maxDiameter": {
         "unit": "mm",
-        "value": 4.3
+        "value": 6.0
+      },
+      "length": {
+        "unit": "mm",
+        "value": 150
+      },
+      "isFixedLength": true,
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&DocNm=5-1654025-5_sec8_SolderSleevShld_Trmntrs&DocType=CS"
+    },
+    {
+      "id": "cov_s02_04_r",
+      "partNumber": "S02-04-R",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "type": "HeatShrink",
+      "description": "SLEEVE, SOLDERSLEEVE, SHIELD TERMINATOR, 20 AWG LEAD, SN63 SOLDER, 150 C, M83519/2-4",
+      "minDiameter": {
+        "unit": "mm",
+        "value": 3.3
+      },
+      "maxDiameter": {
+        "unit": "mm",
+        "value": 6.0
       },
       "length": {
         "unit": "mm",
