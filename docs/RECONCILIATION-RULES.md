@@ -28,9 +28,7 @@ sot/channels.csv             ECU pin and channel SoT
       +-- XTREMEX-IO-TABLE.html        visual face; sync_io_table.py --check gates it
       +-- docs/harness/rebuild/*.harness   the physical looms  <- what gets built
               |
-              +-- docs/harness/min/*.harness   upload copies (make_min.py)
-                      |
-                      +-- harness.design app copy   mirror - never edit as source
+              +-- harness.design app copy   mirror - never edit as source
 ```
 
 New ECU pin facts go into `sot/channels.csv` **first** (Daniel, 2026-09-25), then the IO

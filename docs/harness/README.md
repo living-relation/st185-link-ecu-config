@@ -18,9 +18,20 @@ a build product, or history.** The drawings are **not a source of truth** (Danie
 | **`rebuild/`** | The 14 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - edit the drawings here** (not a source of truth) |
 | **`routes/`** | Dan's approved route drawing for each harness (one HTML per route, current version only; git history keeps the revisions). A drawing's path must match its route. Lint: `check_route_drawings.py` (SOFT gate) | Only from Dan's markup (`st185-apply-route-markup`) |
 | **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, broken-off pairs. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
-| `min/` | Same documents, whitespace stripped, for upload to the harness.design project "ST185 harness design". The Free plan caps a harness at 100 connections, so every file must stay under 100 | No - `make_min.py` regenerates it |
-| `min/ST185.harnesslib` | The harness.design local part library (same JSON as a `.harness`, part arrays only). Every part the drawings use, equal to the drawing; update it in the same PR as any part change | **Yes - with the drawings** (gate `check_harnesslib.py`) |
+| `rebuild/ST185.harnesslib` | The harness.design local part library (same JSON as a `.harness`, part arrays only), kept next to the drawings so the desktop app links it from the folder it opens. Every part the drawings use, equal to the drawing; update it in the same PR as any part change | **Yes - with the drawings** (gate `check_harnesslib.py`) |
 | `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |
+
+## Open in the desktop app
+
+Dan edits the drawings in the harness.design **desktop app**, which opens the files and reloads live
+(https://docs.harness.design/feature/desktop). No upload step; cloud copies are for sharing only.
+
+- **Open the files** in `docs/harness/rebuild/` (File > Open..., or double-click a `.harness`). The app opens one file at a time, watches it and reloads saved changes at once; `min/` no longer exists.
+- **Link the part library once:** Preferences > Part Libraries > Link existing > `rebuild/ST185.harnesslib`. The library wins on part data; it is committed with the drawings.
+- **Flow:** edit in the app (it saves the file itself), then run `python docs/harness/check_all.py`, commit the drawing and any `.harnesslib` change together.
+- **Agents pause while Dan edits.** The version saved to disk wins: if the app has unsaved edits when an agent saves, the app's edits are discarded. An agent never rewrites a file Dan has open with unsaved changes. The gates read the JSON, not its whitespace, so the app's own formatting never fails CI.
+- Free plan: 100 connections per harness also applies to local files. The app rejects unknown keys, so repo-only data lives in `interfaces.json`, never in a `.harness`.
+- Agents: use the global skill `harness-design` (`C:/Users/danie/.claude/skills/harness-design/SKILL.md`).
 
 ## The 14 harnesses
 
@@ -110,7 +121,6 @@ interfaces.json              <- and the ownership facts with them
         audit_bh_collisions.py     no two circuits on one cavity half
         buylist.py                 writes NEED-TO-BUY.md
         buildlist.py               writes HARNESS-BUILD-LIST.csv
-        make_min.py                writes min/  -> uploaded to harness.design
 ```
 
 Use it before every commit:

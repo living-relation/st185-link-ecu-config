@@ -18,7 +18,7 @@ disagrees with it, the other thing is wrong. `XTREMEX-IO-TABLE.html` is its visu
 
 The looms, `docs/harness/rebuild/*.harness`, are drawings of what gets built. **They are not a
 source of truth** (Daniel, 2026-10-04): they must agree with the SoT, and no truth document is
-ever generated from them. `docs/harness/min/` and the harness.design app copy are copies of
+ever generated from them. The harness.design app copy is a copy of
 the drawings (mirror only, never edit as source).
 
 ## Facts that are commonly stale
