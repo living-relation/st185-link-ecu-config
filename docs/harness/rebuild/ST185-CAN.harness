@@ -18,7 +18,6 @@
         {
           "id": "c2",
           "designation": "C2",
-          "signal": "Unused (Blue)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
@@ -35,13 +34,11 @@
         {
           "id": "c5",
           "designation": "C5",
-          "signal": "RS232 TX (Yellow) - not used on this build",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c6",
           "designation": "C6",
-          "signal": "RS232 RX (Grey) - not used on this build",
           "cavityPlugPartId": "pl_sz20"
         }
       ],

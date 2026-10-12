@@ -421,9 +421,7 @@
         },
         {
           "id": "c5",
-          "designation": "87a",
-          "signal": "not used",
-          "contactPartId": "ct_mta"
+          "designation": "87a"
         }
       ],
       "layoutPosition": {
@@ -509,9 +507,7 @@
         },
         {
           "id": "c5",
-          "designation": "87a",
-          "signal": "not used",
-          "contactPartId": "ct_mta"
+          "designation": "87a"
         }
       ],
       "layoutPosition": {
@@ -645,8 +641,7 @@
         },
         {
           "id": "c5",
-          "designation": "87a",
-          "signal": "not used"
+          "designation": "87a"
         }
       ],
       "partId": "cp_rly_hcr150"
@@ -681,9 +676,7 @@
         },
         {
           "id": "c5",
-          "designation": "87a",
-          "signal": "not used",
-          "contactPartId": "ct_rfrm"
+          "designation": "87a"
         }
       ],
       "layoutPosition": {

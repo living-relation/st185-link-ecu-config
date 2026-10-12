@@ -97,13 +97,11 @@
         },
         {
           "id": "c3",
-          "designation": "3",
-          "signal": "Headlight relay coil - unused *"
+          "designation": "3"
         },
         {
           "id": "c5",
-          "designation": "5",
-          "signal": "Rad fan relay coil - unused after fan move"
+          "designation": "5"
         },
         {
           "id": "c6",
@@ -154,8 +152,7 @@
         },
         {
           "id": "c8",
-          "designation": "8",
-          "signal": "15A EFI - unused, Link EFI relay in cabin"
+          "designation": "8"
         }
       ],
       "partId": "cp_oem"
@@ -220,8 +217,7 @@
         },
         {
           "id": "b1",
-          "designation": "B-1",
-          "signal": "[B 90980-10897 pin 1] not used"
+          "designation": "B-1"
         },
         {
           "id": "b2",
@@ -230,18 +226,15 @@
         },
         {
           "id": "b3",
-          "designation": "B-3",
-          "signal": "[B 90980-10897 pin 3] not used"
+          "designation": "B-3"
         },
         {
           "id": "b4",
-          "designation": "B-4",
-          "signal": "[B 90980-10897 pin 4] not used"
+          "designation": "B-4"
         },
         {
           "id": "b5",
-          "designation": "B-5",
-          "signal": "[B 90980-10897 pin 5] not used"
+          "designation": "B-5"
         },
         {
           "id": "b6",
@@ -255,8 +248,7 @@
         },
         {
           "id": "c2",
-          "designation": "C-2",
-          "signal": "[C 90980-10942 pin 2] not used"
+          "designation": "C-2"
         }
       ],
       "layoutPosition": {
