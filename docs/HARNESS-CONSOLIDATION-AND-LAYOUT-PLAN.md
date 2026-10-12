@@ -168,10 +168,10 @@ Large DC uses RADLOK, not a third HDP20. `bh_c` is deleted.
 | Harness | Crosses | Carries |
 |---|---|---|
 | **A / B** (engine + signal) | Bulkheads A and B, **passenger side** | Everything ECU-side. All IAT sensors. A/C compressor clutch. EPS *speed* and *relay-request* only. |
-| **C — Engine Room Harness (partial)** | **No HDP20.** OEM engine-room / cowl / dash looms stay. Add-on wires only | Uprated rad + condenser fan power, EPS *power/ground/enable* up the passenger fender in the vacated ABS actuator trough, J/B2 dummy-header feeds, kick-panel B+ / AM1 / AM2 injection. Headlights, turn, park, horn, wipers, washer stay on the OEM engine-room loom — we only restore their power. |
+| **C — Engine Room Harness** | **No HDP20.** No factory engine-bay wire reused (Dan, 2026-10-10): J/B2, R/B2-5, F11 and the engine-room main wire are removed | Every bay circuit as new wire from the glove-box fuse box to the device plug (fans, EPS, headlamps, horns, A/C, wiper / washer ...) plus the cabin-side landings (J/B1, IE1, blower, window feed). Landing table: `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §5.4. |
 | **Heavy DC** | RADLOK 5.7 mm +/− at the firewall | Trunk battery → glove-box PDB → starter B+ / 160 A alt. Jump lugs at trunk, PDB, starter, block. |
 
-Battery is in the **trunk**. Fuse block, PDB, PMU-16 and the relays the PMU cannot replace sit in the **passenger glove box** (next to OEM R/B No.3 / No.4). Kick-panel J/B No.1, R/B No.2 / No.3 / No.4 stay — do not clone them.
+Battery is in the **trunk**. Fuse block, PDB, PMU-16 and the relays the PMU cannot replace sit in the **passenger glove box** (next to OEM R/B No.3 / No.4). Kick-panel J/B No.1 stays; R/B No.2 / No.3 / No.4 are removed (2026-10-10) and their fuses and relays are in the glove-box box.
 
 **Nothing else comes off A/B except the EPS control wires.** ABS solenoid, 60A FL ABS and crash sensors are deleted.
 

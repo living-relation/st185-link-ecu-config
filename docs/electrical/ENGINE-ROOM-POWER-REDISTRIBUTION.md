@@ -1,6 +1,6 @@
 # Engine-room power redistribution — 1993 ST185 All-Trac
 
-**Decision:** keep the OEM engine-room, cowl and dash looms. Do **not** redraw factory harness C. Add a partial Engine Room Harness C for new / upgraded devices only, and inject power and ground at the factory kick-panel junction blocks plus the vacated J/B No.2 connector cavities.
+**Decision (Dan, 2026-10-10, binding; supersedes the 2026-09-29 "keep the OEM engine-room loom + J/B2 dummy header" plan):** no factory engine-bay wire or connector is reused. J/B No.2, R/B No.2 / No.3 / No.4 / No.5, F11 and the engine-room main wire (with every factory plug and wire that ran to them) are **removed from the car**. Every engine-bay load gets new wire from the glove-box fuse box (`ST185-CabinPower`) straight to its device plug (the OEM device plug where one is recorded, DT where Dan chose DT). Cabin reuse is unchanged: J/B No.1, J/B No.3, the cowl / dash looms and the cabin side of IE1 stay, and new feeds splice into their factory cabin leads.
 
 This is the living splice table. Pin facts come from the 1990 ST185 All-Trac EWD (the All-Trac-specific book) cross-checked against the 1992 Celica EWD132U (covers ST185, year-adjacent to 1993). The 1993 bound book is EWD160U; the freely available PDF of that number is the FWD AT180/ST184 book, so it is **not** used as All-Trac pin authority.
 
@@ -10,22 +10,12 @@ Factory snips live in `docs/electrical/ewd-snips/`. The drawing is `docs/harness
 
 ## 1. Recommendation
 
-Two ways were on the table:
+Settled by the decision above; the old "keep the OEM looms + splice table" comparison (2026-09-29) is retired - git history keeps it.
 
-| | Keep OEM looms + splice table | Fully redraw engine-room C |
-|---|---|---|
-| Kick-panel J/B No.1, R/B 2/3/4 | Stay. Their internal buses, fuses and relays are why we keep them. | Would have to clone those internals in the kick panels. There is not room. |
-| Engine-room main, cowl, dash | Intact except deleted ABS / crash-sensor wires and the new add-on runs. | Hundreds of OEM cavities and splices to reverse-engineer. |
-| New EPS, big fans, trunk battery, 160 A alt | Partial C drawing + heavy-DC RADLOK. | Same work, plus the OEM clone. |
-| Risk | Miss a J/B2 output pin — caught by the table and an on-car continuity check. | Silent omission of an OEM lighting / wiper / horn circuit. |
-
-**Keep the OEM looms.** Engine Room C is a partial add-on, the same way looms A and B were drawn: only the wires we add.
-
-That also matches the already-written split in `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.1, with three refinements from this pass:
-
-1. Battery moves to the **trunk**, not the passenger footwell. Cables run forward to a glove-box PDB.
-2. The relocated fuse box (Bussmann LMI + Eaton RFRM + 3x MTA, Option B 2026-10-11, drawn only in `ST185-CabinPower`; it replaced the TE `2141029-1` block and the second fuse block) and the relays sit in the **passenger glove box**, next to OEM R/B No.3 / No.4 (right kick). (No PMU — see plan 6.48.)
-3. EPS power uses the vacated **passenger-side ABS actuator** path, not a third HDP20 bulkhead. `bh_c` stays deleted. Large cables (battery / starter / alternator charge) still cross the firewall on **RADLOK**.
+1. Battery moves to the **trunk**. Cables run forward to a glove-box PDB (`ST185-HeavyDC`).
+2. The fuse box (Bussmann LMI + Eaton RFRM + 3x MTA, Option B 2026-10-11, drawn only in `ST185-CabinPower`) and every relay sit in the **passenger glove box**. No fuse or relay in the engine bay (DECISIONS 9.1). (No PMU - plan 6.48.)
+3. EPS power uses the vacated **passenger-side ABS actuator** path. `bh_c` stays deleted. Large cables (battery / starter / alternator charge) cross the firewall on **RADLOK**.
+4. Harness C (`ST185-EngineRoom-C`) carries every new bay circuit along the approved route `docs/harness/routes/ROUTE-2-HARNESS-C.html` (rev 9).
 
 ---
 
@@ -39,7 +29,7 @@ Battery (engine bay, near J/B No.2) → fusible-link box **F11** → J/B No.2 (e
 
 **J/B No.2 side, corrected 2026-09-29.** This section previously said J/B No.2 was on the passenger side; that was backwards. Cross-check: EWD p.16 (`ewd-snips/1990-st185-locations-engine-bay.png`, reproduced below at §3) draws R/B No.5 and the ABS relays on one side of the bay and J/B No.2 on the other. EWD p.24 (`ewd-snips/1990-st185-rb4-right-rb5-bay.png`) independently captions R/B No.5 as **"Engine Compartment Front Right"** — a plain-text location, not an inference from the drawing. Since R/B No.5 sits on the side of the p.16 drawing opposite J/B No.2, and R/B No.5 is confirmed front-right (passenger, LHD) by its own page, J/B No.2 is on the **driver side**. This also lines up with the ABS actuator already being called out passenger-side elsewhere in this doc (§1) — the ABS relays are drawn on the same side as R/B No.5 in the p.16 image, so that claim stands unchanged.
 
-This flips which fender the ex-J/B2 jumper harness (§4, step 5) and the EngineRoom-C loom actually need to reach — see the EngineRoom-C restructure notes for the routing consequence; it is not re-derived here.
+Moot since 2026-10-10: J/B No.2 is removed and harness C follows Route 2.
 
 | Code | What it joins | Where |
 |---|---|---|
@@ -58,7 +48,7 @@ This flips which fender the ex-J/B2 jumper harness (§4, step 5) and the EngineR
 
 ![Joiner codes IE1 / ID1, EWD p.31](ewd-snips/1990-st185-kick-joiners.png)
 
-J/B No.2 is the box we are physically removing from the bay. Everything downstream of it — lights, horn, dome, retract, AM1/AM2, the always-hot feed into J/B No.1 — goes dead unless we put those volts back at the **same cavities**, or at the kick-panel end of the same wires.
+J/B No.2 is removed with its plugs and the engine-room main wire. Everything it fed — lights, horn, hazard, dome, retract, AM1/AM2, the always-hot feed into J/B No.1 — gets a new wire from the glove-box fuse box: to the device itself in the bay, or to the cabin end of the old wire (IE1 cowl side, J/B No.1). §5.4 is the landing table.
 
 ![J/B No.2 housing, EWD p.20](ewd-snips/1990-st185-jb2-engine-bay.png)
 
@@ -77,7 +67,7 @@ TRUNK battery −  ──2 AWG / 1/0──►  PDB ground     ├─► always-h
                                                      engine-bay jump post on the starter B+ net
 ```
 
-Glove box is passenger side, so R/B No.3 and R/B No.4 are a short hop. J/B No.1 and R/B No.2 are the driver kick — a dash-cross of fused feeds, not a second battery cable.
+Glove box is passenger side, next to the blower (B4). J/B No.1, IE1 and the old R/B No.2 spot are the driver kick — a dash-cross of fused feeds, not a second battery cable.
 
 ![Dash J/B and R/B locations, EWD p.17](ewd-snips/1990-st185-locations-dash.png)
 
@@ -86,7 +76,7 @@ Glove box is passenger side, so R/B No.3 and R/B No.4 are a short hop. J/B No.1 
 ### 3.1 Where each load gets its power
 
 No PMU/PDM — dropped 2026-09-22 (plan 6.46 / 6.47 / 6.48). The 40 A blower exceeds
-every PDM channel on the market, so R/B No.4 survives regardless. Logic that was
+every PDM channel on the market, so it gets a Maxi relay + MAXI fuse in MTA-2. Logic that was
 going to live in a PMU — device hold, kill relay, alternator excite — is
 **withdrawn** (plan 6.48): the only logic is the ECU's own hold power. The RealDash Pi
 runs on a switched ignition fuse only, on and off with the car (2026-09-28). Every relay and fuse is in the cabin.
@@ -100,14 +90,14 @@ Rule: **one source per load** — never two paths feeding the same circuit.
 | MRS EPS pump | `k_eps` HCR 150 in the glove box beside the fuse box (moved from the engine bay 2026-09-28; drawn on `ST185-CabinPower` since 2026-10-11), LMI L7 Bussmann AMI-60 (was HCFB H4), 8 AWG feed (sized 2026-09-28, `sot/channels.csv` k_eps c1) | Too big for a micro relay |
 | Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Coils from Aux 5 / Ign 5 |
 | EFI main, ETB, fuel pump | Relays seated in the glove-box fuse box, `ST185-CabinPower.harness` (coil wires on `ST185-A-cabin.harness`) | Hold-power and Link's published ETB circuit |
-| HEAD LH / HEAD RH | Relay + fuse, RFRM (CabinPower), into J/B2 2A-3 / 2A-6 | Replaces 15 A HEAD fuses in J/B2 |
-| HAZ-HORN | Fuse (+ horn relay if the car lacks one) into 2E-3 | Replaces 15 A HAZ-HORN |
-| DOME | Fuse only, always-hot, into 2E-4 | Replaces 20 A DOME |
-| Retract motors | Relay + fuse into 2E-2 | Replaces 30 A RTR; confirm inrush on the car |
+| HEAD LH / HEAD RH | Relay + fuse, RFRM HL / HR, new wire to headlight H1 / H2 pin 3 | Replaces 15 A HEAD fuses + headlight relay in J/B2 |
+| HAZ-HORN | RFRM HZ fuse: hazard feed to IE1-12 (cowl side); horn relay (RFRM HN) to a DT 2-way at each horn H3 / H4 | Replaces 15 A HAZ-HORN and the R/B5 horn relay |
+| DOME | RFRM DM fuse only, always-hot, to J/B1 1H-2 (cabin) | Replaces 20 A DOME |
+| Retract motors | LMI L3 fuse only, to IE1-3 → OEM retract control relay R8 | Replaces 30 A RTR (DECISIONS 38) |
 | Wiper park | Relay + fuse, optional | Only if the park circuit needs it |
-| Heater blower | Keep 40 A fuse in **R/B No.4** | OEM fuse/relay already sit at the right kick |
-| Power windows / locks | Keep 30 A POWER in **R/B No.2** | Same reason, driver kick |
-| Wiper, gauge, turn, CIG, ECU-IG, IGN, STOP, TAIL, ECU-B, DEFOGGER | Stay as **J/B No.1** fuses | That is why the J/B stays. We only restore its upstream B+ and IG |
+| Heater blower | MTA-2 40 A MAXI + heater relay, to blower motor B4 pin 2 | R/B No.4 removed (DECISIONS 26.2) |
+| Power windows | LMI L2 30 A + MTA-3 power relay, to the W-G window feed (old R/B2 power main relay terminal 1) | R/B No.2 removed (DECISIONS 26.2). The always-hot W-L net (door lock ECU, tilt-away) is open - `docs/OPEN-ITEMS.md` |
+| Wiper, gauge, turn, CIG, ECU-IG, IGN, STOP, TAIL, ECU-B, DEFOGGER | Stay as **J/B No.1** fuses | That is why the J/B stays. We only restore its upstream B+ and IG; their bay legs (wiper motor, front turn / clearance) are new harness C wire |
 | A/C compressor | Engine harness A/B (already drawn) | Not engine-room C |
 | ABS actuator / ABS relays / 60 A FL ABS | **Deleted** | Solenoid module removed |
 | Crash / SRS sensors | **Deleted** | Do not refeed the airbag IGN circuit |
@@ -117,16 +107,14 @@ ratings not written above are `TBD` until sized against the load.
 
 ---
 
-## 4. Method — unplug J/B No.2, inject at both ends of the engine-room main
+## 4. Method
 
-1. Disconnect the battery (once it still lives in the bay) and **unplug J/B No.2 connectors 2A, 2B, 2C, 2D, 2E** and fusible-link box **F11**. Remove the ABS actuator, ABS relays, and crash-sensor connectors. Leave the engine-room main, cowl and dash looms in the car.
-2. Build the glove-box PDB and the fuse box (LMI + RFRM + 3x MTA) with its relays.
-3. Restore **always-hot** into J/B No.1 at **1I pin 1** (left kick). That is the bus behind 15A STOP, 15A ECU-B, 30A DEFOGGER and the taillight-relay battery side.
-4. Restore **AM1** and **AM2** at **IE1 pins 10 and 17** (left kick, engine-room main ↔ cowl). Those two wires are the ignition-switch supply. From the starting diagram they already pass IE1 on the way from F11 to I13.
-5. Restore lighting / horn / dome / retract at the **vacated 2A / 2D / 2E cavities** with a short jumper harness from the glove box. **Open item (2026-09-29):** J/B No.2 is on the **driver** side (§2 correction), so the jumper runs with the driver-side engine-room main, not the passenger EA1 / ABS trough this step was first written for. The exact route is whatever `ST185-EngineRoom-C.harness` draws; it is not re-derived here.
-6. Feed R/B No.4 heater fuse (right kick, next to the glove box) and R/B No.2 POWER fuse (left kick) with always-hot from the PDB.
-7. Do **not** refeed 2B / 2C EFI, engine-main-relay-to-OEM-ECU, or circuit-opening-relay pins. Link owns those circuits in the Power file.
-8. Continuity-check every row in §5 on the car before first power-up. Toyota pin numbering is wire-side vs device-side in places; the cavity drawings below win over this table if they disagree on the car.
+1. Remove J/B No.2 (2A-2E), F11, R/B No.2 / No.3 / No.4 / No.5, the engine-room main wire and every factory engine-bay wire, plus the ABS actuator, ABS relays and crash sensors. Keep J/B No.1, J/B No.3 and the cowl / dash looms; depin and plug the engine-room-main half of IE1, 1H and 1I and keep the cabin half as the splice point.
+2. Build the trunk battery, glove-box PDB and fuse box (LMI + RFRM + 3x MTA) with its relays.
+3. Restore always-hot at J/B1 1I-1, AM1 / AM2 at IE1-10 / IE1-17 (cowl side).
+4. Land every other ex-J/B2 / R/B load per §5.4: bay loads on new wire to the device plug, cabin loads on their factory cabin lead.
+5. Do **not** refeed EFI, engine-main-relay or circuit-opening-relay circuits. Link owns those (`k_efi`, `k_fp`).
+6. Continuity-check every row in §5 on the car before first power-up.
 
 ---
 
@@ -142,7 +130,7 @@ ratings not written above are `TBD` until sized against the load.
 | H4 | Charge / start + | **1/0** | RADLOK + firewall, engine side (`RL00801-50RE`) | Starter B+ post, jump lug | | |
 | H5 | Alternator B+ | 2 AWG | Alternator B+ (rear of block, under intake) | Starter B+ | Does **not** recross the firewall | Short bay jumper; factory A17 pin B, we replace that cable |
 | H6 | Engine ground | **1/0** | RADLOK − firewall, engine side (`RL00801-50BK`) | Engine block stud, jump lug | Feed-through is `RL9080-301-F1` | OEM grounds EA / EB / EC stay |
-| H7 | Cabin ground | **1/0** | PDB ground | Kick-panel ground **ID** (left) and a new glove-box ground near R/B4 | | |
+| H7 | Cabin ground | **1/0** | PDB ground | Kick-panel ground **ID** (left) and a new glove-box ground at IG (old R/B4 set bolt) | | |
 | H8 | Jump post | 2 AWG | Starter B+ | Engine-bay jump post | So you can still jump-start from the bay | |
 
 ![Starting, EWD p.48 — AM1/AM2 through IE1, starter via R/B4](ewd-snips/1990-st185-starting.png)
@@ -198,76 +186,38 @@ J/B No.1 already contains: 15A ECU-IG, 20A WIPER, 15A GAUGE, 10A TURN, 7.5A IGN,
 | L3 | maybe | **1H** | **8** | Tied to 1I-1 / 1F-8 / 1I-3 on the inner circuit | Follows L1 if the inner bus is intact | Only add a second feed if L1 does not light 1H-8 |
 | L4 | no | **1A** | **7** | ACC from I13-3 | Ignition switch | Restored by AM1 (L6) |
 | L5 | no | **1A** | **5** | IG1 from I13-2 | Ignition switch | Restored by AM1 (L6) |
-| L6 | **YES** | **IE1** (ER main ↔ cowl, left kick) | **10** | AM1 to ignition I13-4 | PDB AM1, **40 A** fuse (replaces F11 40A FL AM1) | Feeds the switch **and** backfeeds engine-room AM1 toward unplugged 2E-5 |
-| L7 | **YES** | **IE1** | **17** | AM2 to ignition I13-10 | PDB AM2, **30 A** fuse (replaces F11 30A FL AM2) | Same, toward 2E-3 |
+| L6 | **YES** | **IE1** (ER main ↔ cowl, left kick) | **10** | AM1 to ignition I13-4 | PDB AM1, **40 A** fuse (replaces F11 40A FL AM1) | Feeds the switch (the engine-room AM1 run is removed) |
+| L7 | **YES** | **IE1** | **17** | AM2 to ignition I13-10 | PDB AM2, **30 A** fuse (replaces F11 30A FL AM2) | Same |
 | L8 | **YES** | Ground **ID** | stud | Left kick body ground | PDB ground strap | See grounds, EWD p.169 |
-| L9 | **YES** | **R/B No.2** 30A POWER fuse | pins 1–2 (housing EWD p.23) | Power-window / lock battery | PDB, 30 A already in the R/B — feed the fuse **input** only | Left kick |
 
-Do not land new wires on 1A/1B/1C/1D/1E/1F/1G unless a circuit is dead after L1/L6/L7. Those cavities are cowl / floor / roof, still OEM.
+Do not land new wires on 1A/1B/1C/1D/1E/1F/1G unless a circuit is dead after L1/L6/L7. Those cavities are cowl / floor / roof, still OEM. The 1H / 1I / IE1 landings are cabin-side splices into the factory lead (the engine-room main wire that used to mate there is removed).
 
-### 5.3 Right kick panel — R/B No.3 / No.4 (keep, next to the glove box)
+### 5.3 Right kick panel — R/B No.3 / No.4 removed
 
-![R/B No.2 left and R/B No.3 right, EWD p.23](ewd-snips/1990-st185-rb2-left-rb3-right.png)
-
-![R/B No.4 right kick and R/B No.5 engine bay, EWD p.24](ewd-snips/1990-st185-rb4-right-rb5-bay.png)
-
-| # | Inject? | Connector | Pin | Signal | New source | Action |
-|---|---|---|---|---|---|---|
-| R1 | **YES** | **R/B No.4** 40A HEATER fuse | input (housing pins 1–2) | Heater / blower battery | PDB, short run | Keep the OEM 40A fuse and heater relay |
-| R2 | isolate | **R/B No.4** starter relay | 30 / 87 | OEM starter | Link `k_str` in the Power file | Unplug or tape the OEM relay. Do not parallel two starter relays |
-| R3 | keep | **R/B No.4** 10A A/C, 20A FR FOG | as-is | Fog / A/C amp | Follows R1 if they share the R/B hot bus; otherwise feed from the RFRM (CabinPower) | Fog is optional |
-| R4 | keep | **R/B No.3** fog-light relay | coil / 30 | Fog | Only if fog lights stay | |
-| R5 | **YES** | New ground near R/B4 set bolt (OEM **IG** is the R/B4 set bolt) | stud | Right kick body ground | PDB ground | EWD ground index p.171 |
+R/B No.3 (fog relay; fog lights deleted) and R/B No.4 are removed (Dan, 2026-10-10, DECISIONS 26.2). Their jobs move to the glove-box box: 40 A HEATER + heater relay → MTA-2 (blower B4 pin 2, §5.4), 10 A A/C → MTA-3 ACPS, OEM starter relay → Link `k_str`, B30 start request → MTA-3. The right-kick body ground **IG** (old R/B4 set bolt) stays and gets a PDB ground strap (EWD ground index p.171).
 
 J/B No.3 (behind the combination meter) is a **cowl junction only**. It does not need a new battery feed. Do not splice it.
 
 ![J/B No.3, EWD p.22](ewd-snips/1990-st185-jb3-behind-meter.png)
 
-### 5.4 Vacated J/B No.2 cavities (driver-side bay, engine-room main)
+### 5.4 Where each ex-J/B2 / R/B load lands (2026-10-12)
 
-Make a **J/B2 dummy header**: the mating plugs that used to snap onto J/B No.2, wired back to the glove box along the driver-side engine-room main (route per `ST185-EngineRoom-C.harness`; the passenger fender / ABS trough / EA1 route was the pre-2026-09-29 assumption and is superseded). Only the pins below are populated. Tape or cavity-plug the rest.
+Drawn in `ST185-EngineRoom-C` (cabin and bay ends) and `ST185-CabinPower` (fuse / relay). Pins from the 1993 TIS EWD in `st185-celica-repair-manual\electrical\circuits\`. Bay ends are new wire to the device's own plug; cabin ends splice into the factory cabin lead.
 
-| # | J/B2 cavity | Factory job | New source | Populate? |
-|---|---|---|---|---|
-| J1 | **2A-3** / **2D-2** | 15A HEAD LH | HEAD LH relay + fuse | **YES** |
-| J2 | **2A-6** / **2D-6** | 15A HEAD RH | HEAD RH relay + fuse | **YES** |
-| J3 | **2E-2** | Inner cct: 30A RTR. Starting p.48: AM1 with 2E-5 | RTR relay + fuse **only if probe fails AM1** | **PROBE** — see §5.4.1 |
-| J4 | **2E-3** | Inner cct: 15A HAZ-HORN. Starting p.48: AM2 with 2E-6 | HAZ-HORN fuse **only if probe fails AM2** | **PROBE** — horn fallback is R/B5 |
-| J5 | **2E-4** | 20A DOME | DOME fuse | **YES** — not on the AM1/AM2 pass-through |
-| J6 | **2E-5** | AM1 into engine room (starting p.48, with 2E-2) | Backfed from IE1-10 once L6 is in | Do not feed from the RFRM |
-| J7 | **2A-5** / **2C-3** | Engine main relay 87 | **No.** Link EFI / ignition switched rail is `sp_sw12` in Power | |
-| J8 | **2E-8** / **2C-4** | 15A EFI / EFI main relay | **No.** Cabin `k_efi` | |
-| J9 | **2A-4** / **2D-5** | 30A FL RDI FAN / fan relay | **No.** Uprated fan is Engine Room C `k_fan` | |
-| J10 | **2A-2** / **2B-4** | 30A FL CDS FAN | **No.** Uprated condenser fan is `k_fan2` | |
-| J11 | **2B / 2C** remaining | Engine wire to OEM ECU, igniter, injectors | **No.** Engine harness A/B | |
-| J12 | F11 60A FL ABS | ABS actuator | **Deleted** | |
-| J13 | F11 100A FL ALT | Alternator B+ | Replaced by H4/H5 | |
+| Load | From (box) | AWG | To | Where | EWD 1993 |
+|---|---|---|---|---|---|
+| HEAD LH | RFRM HL 15 A + relay | 14 | H1 pin 3 (headlamp plug) | Bay, LH corner | p.116 |
+| HEAD RH | RFRM HR 15 A + relay | 14 | H2 pin 3 (headlamp plug) | Bay, RH corner | p.116 |
+| Horns | RFRM HN (horn relay 87, HAZ-HORN 15 A) | 14 → splice → 16 each | DT 2-way at H3 and H4, c1 +; c2 16 AWG ground to EA | Bay, front centre | p.185 |
+| Hazard | RFRM HZ 15 A (before the horn relay) | 14 | IE1-12 W | Cabin, left kick | p.130 |
+| DOME | RFRM DM 20 A | 12 | J/B1 1H-2 | Cabin, left kick | p.132 |
+| RTR | LMI L3 30 A | 10 | IE1-3 W → R8 pin 3 | Cabin, left kick | p.116 |
+| AM1 / AM2 | LMI L4 40 A / L5 30 A | 8 / 10 | IE1-10 / IE1-17 | Cabin, left kick | p.62 |
+| J/B1 always-hot | LMI L6 60 A | 6 | J/B1 1I-1 | Cabin, left kick | p.62 |
+| Blower | MTA-2 HTR 40 A + heater relay | 8 | Blower motor B4 pin 2 | Cabin, behind the glove box | p.215-216 |
+| Power windows | LMI L2 30 A + MTA-3 power relay | 10 | W-G window feed (old R/B2 power main relay terminal 1) | Cabin, left kick | p.137 |
 
-Pin numbers on 2A/2D/2E are taken from EWD p.20–21 (housing + inner circuit). **Verify with a meter on the unplugged J/B2 connector** before crimping the dummy header: confirm 2A-3 shows continuity to the left headlight feed, 2A-6 to the right, 2E-4 to dome. For 2E-2 / 2E-3 follow §5.4.1.
-
-When J/B No.2 is unplugged, the **inner** HEAD LH / HEAD RH jumpers disappear. The dummy header must recreate **2A-3 ↔ 2D-2** and **2A-6 ↔ 2D-6** (or splice HEAD LH relay + fuse/O2 to both cavities). Feeding only 2A leaves 2D dead.
-
-### 5.4.1 Same-book pin collision — 2E-2 / 2E-3
-
-Two pages of the **same 1990 All-Trac EWD** disagree on what lives on 2E-2 and 2E-3:
-
-| Pin | Inner circuit p.21 | Starting + ignition p.48 |
-|---|---|---|
-| **2E-2** | 30A RTR fused output | AM1 pass-through with **2E-5**, then **IE1-10** → I13-4 |
-| **2E-3** | 15A HAZ-HORN fused output | AM2 pass-through with **2E-6**, then **IE1-17** → I13-10 |
-| **2E-4** | 20A DOME | (not on that path) |
-| **2A-3 / 2D-2** | 15A HEAD LH | (not on that path) |
-| **2A-6 / 2D-6** | 15A HEAD RH | (not on that path) |
-
-IE1-10 / IE1-17 as AM1/AM2 (L6 / L7) is unambiguous — both the starting diagram and the power-source circuit agree. **Do that first.**
-
-Then, with 2E unplugged and AM1/AM2 **not** yet injected, ohmmeter:
-
-1. 2E-2 → IE1-10 and 2E-5. Continuity means 2E-2 **is AM1**. Do **not** land the RTR relay + fuse. Retract, if kept, gets a dedicated feed at the retract-control relay **R9** / motor, not at 2E-2.
-2. 2E-3 → IE1-17 and 2E-6. Continuity means 2E-3 **is AM2**. Do **not** land the HAZ-HORN fuse (that would short a fused feed onto ignition AM2). Horn stays on **R/B No.5** horn relay, battery-side fed from the PDB.
-3. No continuity to IE1: treat them as the inner-circuit load outputs and land the RTR relay + fuse / O3.
-
-Landing a fused feed on an AM1/AM2 pass-through pin after L6/L7 are live will backfeed the ignition switch supply from a switched fused feed, or fight two sources. The HEAD and DOME pins do not have this collision.
+Not landed yet (`docs/OPEN-ITEMS.md`): the always-hot W-L net that R/B2's POWER fuse also fed (door lock ECU D8-8, auto tilt-away, p.137 / p.170); relay coil wires (row 46); the rest of the bay circuits on the approved route — headlamp high / low returns, turn / clearance, side markers, retract-motor leads, wiper / washer (row 54).
 
 ### 5.5 Engine-room grounds (keep the OEM rings)
 
@@ -282,7 +232,7 @@ Landing a fused feed on an AM1/AM2 pass-through pin after L6/L7 are live will ba
 | **EC** | Intake manifold | Yes, leftover OEM engine-wire grounds | Do not put EPS / fan current on EC |
 | **ID** | Left kick panel | Yes | Strap from PDB (L8) |
 | **IE / IF** | Dash braces | Yes | Untouched |
-| **IG** | R/B No.4 set bolt | Yes | Strap from PDB (R5) |
+| **IG** | R/B No.4 set bolt | Yes | Strap from PDB |
 
 ### 5.6 Deleted OEM circuits — do not restore
 
@@ -294,8 +244,6 @@ Landing a fused feed on an AM1/AM2 pass-through pin after L6/L7 are live will ba
 | SRS airbag / crash sensors | Center airbag sensor (dash, EWD p.17); yellow cowl airbag harness | Deleted. Do not refeed 7.5A IGN into the airbag ECU |
 | OEM EFI main / circuit opening / OEM ECU | J/B2 EFI fuse, R/B5 fuel-pump relay, C7 | Replaced by Link `k_efi` / `k_fp` |
 | OEM radiator / condenser fan relays in J/B2 and R/B5 | R/B5 fan relays 2 and 3; J/B2 RDI FAN relay | Replaced by `k_fan` / `k_fan2` |
-
-R/B No.5 (engine-bay front right) can stay as a **horn-only** island if you would rather not spend a fuse-block way on the horn. Otherwise unplug it and let the HAZ-HORN fuse drive HAZ-HORN at 2E-3, which already feeds the horn relay coil bus.
 
 ### 5.7 New Engine Room C runs (the only new bay wiring)
 
@@ -314,7 +262,7 @@ Routed with the OEM engine-room main. Passenger fender / ABS trough for EPS; cor
 | C9 | Condenser fan GND | 8 AWG | Fan → EA | |
 | C10 | A/C compressor VC control coil (not fitted; the clutch is A4 pin 4 from `k_acc`) | — | **ST185-EngineRoom-C** flying lead `fl_a4_3` (device side; A18-5 amplifier side is on ST185-A-cabin, `br_ac_mg` break), not a numbered loom-C circuit | Not on A/B; `docs/harness/ACAMP-SPUR-LABELS.md` |
 
-Wiper, washer, headlights, turn, park, horn motors **stay on the OEM engine-room loom**. We only restore their power at J1–J5.
+Wiper, washer, headlights, turn, park and horns are new harness C wire too (§5.4 and Route 2); none of the OEM engine-room loom stays.
 
 ---
 
@@ -330,7 +278,7 @@ see `docs/harness/README.md` for the current file map.
 | `docs/harness/rebuild/ST185-B-cabin.harness` | ECU-B pins, condenser fan / EPS / A/C clutch relay coil wires (relays in the box), CAN-Lambda cabin leg (bulkhead B c3/c4, c13/c14) |
 | `docs/harness/rebuild/ST185-A-engine.harness` | A-letter engine devices: MRS speed / enable cavities (bulkhead A c36 / c35), ETB sensors, injectors, coils |
 | `docs/harness/rebuild/ST185-B-engine.harness` | B-letter engine devices, ETB motor, injector / coil 12 V engine leg (Q-RAIL open) |
-| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB (battery / RADLOK / ground studs), RADLOK, OEM injection blocks, EPS power, uprated fans. The old glove-box body block `gbx_body` and the PDB's fused outputs moved to `ST185-CabinPower` 2026-10-11; the OEM ends stay here, broken off |
+| `docs/harness/rebuild/ST185-EngineRoom-C.harness` | **Loom C:** trunk → PDB (battery / RADLOK / ground studs), RADLOK, the ex-J/B2 / R/B landings (§5.4), EPS power, uprated fans. The old glove-box body block `gbx_body` and the PDB's fused outputs moved to `ST185-CabinPower` 2026-10-11; the OEM ends stay here, broken off |
 | This document | Splice table and factory citations. No second current-flow diagram of the OEM loom |
 
 `bh_c` (HDP20 9-way) **is deleted** — confirmed 2026-09-22, zero references in any
@@ -346,7 +294,7 @@ harness file. Fans and EPS do not cross a signal bulkhead.
 | 1992 Celica Electrical Wiring Diagram | EWD132U | Covers ST185; year-adjacent to 1993. Same J/B No.1 / No.2 / kick-panel layout with All-Trac callouts. |
 | 1993 Celica EWD160U | Dealer 265 p. book | The All-Trac pages of this book are the year-exact match. The public PDF labelled EWD160U is the **FWD** AT180/ST184 book — do not mix its J/B2 pin numbers into this table. |
 
-On-car check before first power-up: with J/B2 unplugged and the battery still isolated, ohmmeter from each row's cavity to the named load (headlight, dome, ignition I13-4 / I13-10, J/B1 1I-1).
+On-car check before first power-up: with the battery isolated, ohmmeter from each §5.4 cabin landing to its named load (dome, R8, hazard switch, ignition I13-4 / I13-10, J/B1 1I-1, window switches, blower).
 
 ---
 
@@ -359,8 +307,8 @@ Since Option B (2026-10-11) the whole glove-box fuse box (Bussmann LMI, Eaton RF
 | AM1 | 40 A | F11 40A FL AM1 | IE1-10 (L6) |
 | AM2 | 30 A | F11 30A FL AM2 | IE1-17 (L7) |
 | OEM HOT | 60 A (set 2026-09-25, 6 AWG `w_pdb_jb1`) | FL ALT feed into J/B1 | 1I-1 (L1) |
-| HEATER feed | 40 A MAXI + heater relay in MTA-2 (Option B; R/B No.4 removed, 2026-10-10) | FL ALT → E13 → R/B4 | OEM blower wire; exact landing open (`docs/OPEN-ITEMS.md` row 52) |
-| POWER feed | 30 A (LMI L2) + power relay in MTA-3 (Option B; R/B No.2 removed, 2026-10-10) | FL ALT → I2 → R/B2 | OEM windows/locks wire; exact landing open (`docs/OPEN-ITEMS.md` row 52) |
+| HEATER feed | 40 A MAXI + heater relay in MTA-2 (Option B; R/B No.4 removed, 2026-10-10) | FL ALT → E13 → R/B4 | Blower motor B4 pin 2 (§5.4) |
+| POWER feed | 30 A (LMI L2) + power relay in MTA-3 (Option B; R/B No.2 removed, 2026-10-10) | FL ALT → I2 → R/B2 | W-G window feed (§5.4) |
 | ~~2nd fuse block feed~~ | retired (ANL 100 A gone, Option B) | J/B2 HEAD/HAZ/DOME/RTR fuses | now RFRM positions in `ST185-CabinPower` |
 | ACPS (A/C pressure switch +12V) | 10 A per the Option B slot map (was 5 A), from heater relay 87 | OEM A/C circuit feed to A5 pin 1, EWD p.152 | CabinPower → flying lead A5 pin 1 (`w_acp_1`); switched return A5 pin 4 (`fl_a5_4`) breaks off to A/C amplifier A18 pin 13 (`fl_acamp_psw`) on `ST185-A-cabin` via `BR_AC_PSW` |
 | Charge / start | none at PDB, or ANL 200 A | F11 100A FL ALT | RADLOK + → starter B+ |
@@ -449,14 +397,13 @@ DECISIONS S6. Run lengths are estimates from the routes; re-check if a run grows
 
 ## 9. Execution order
 
-1. Photograph and label every J/B2 / F11 / ABS / crash-sensor connector **before** unplugging. Pull the 2A / 2D / 2E plugs and write the connector and pin of each cavity on the table.
-2. Continuity-map §5.4.1 (2E-2/3 vs IE1) and L1 (1I-1 → battery + on the stock car) while the factory battery is still in the bay, then disconnect it. **Also clamp-meter AM1 and AM2 draw with the ignition on and the dash loaded** — sizes the PDB fuse and the feed wire (§10).
-3. Unplug F11, 2A–2E, 2B, 2C. Remove ABS actuator, ABS relays, crash-sensor connectors. Do not cut the engine-room main, cowl or dash looms.
-4. Trunk battery, cabin-floor 2 AWG / 1/0, glove-box PDB, fuse box (LMI + RFRM + 3x MTA), relays. RADLOK through the firewall. Jump lugs at trunk, PDB, starter, block, bay post.
-5. Inject L1, L6, L7, L8, L9, R1, R5. Isolate R2 (OEM starter relay). Do not land J3/J4 until the probe in step 2 says so.
-6. Dummy-header J1 / J2 / J5 (HEAD LH/RH + DOME) along the driver-side engine-room main (route per EngineRoom-C). Jumper 2A-3↔2D-2 and 2A-6↔2D-6.
-7. Engine Room C add-ons: EPS 8 AWG in the vacated ABS trough; uprated fans 8 AWG on the core support. A/C VC-coil lead (`fl_a4_3`, not fitted) and pressure-switch signal (`fl_a5_4`) are flying leads on this loom (device side; amplifier side is on `ST185-A-cabin`, folded in from the retired `ST185-ACAmp-Spur` 2026-10-11).
-8. Power-up: PDB only → 1I-1 lights J/B1 STOP/ECU-B/DEFOGGER → AM1/AM2 crank the ignition switch → fuse box (RFRM) live → headlights / dome. Starter last.
+1. Photograph and label every J/B2 / R/B / F11 / ABS / crash-sensor connector, and the cabin side of IE1 / 1H / 1I, **before** removing anything.
+2. While the factory battery is still in the bay: probe 1I-1 to battery + and **clamp-meter AM1 and AM2** with the ignition on and the dash loaded (sizes the feed, §10). Then disconnect it.
+3. Remove J/B2, F11, R/B2-5, the engine-room main wire and every factory bay wire (§4 step 1). Depin and plug the bay half of IE1 / 1H / 1I.
+4. Trunk battery, cabin-floor 1/0, glove-box PDB, fuse box (LMI + RFRM + 3x MTA), relays. RADLOK through the firewall. Jump lugs at trunk, PDB, starter, block, bay post.
+5. Cabin landings (§5.2, §5.4): L1, L6, L7, L8, IG ground, dome, RTR, hazard, power windows, blower.
+6. Harness C bay runs along Route 2: corner branches (headlamps), horn branch, fans, EPS, A/C leads.
+7. Power-up: PDB only → 1I-1 lights J/B1 STOP/ECU-B/DEFOGGER → AM1/AM2 crank the ignition switch → fuse box live → headlights / dome. Starter last.
 
 Loom C is `docs/harness/rebuild/ST185-EngineRoom-C.harness`, live on harness.design.
 Cabin ECU power is in `rebuild/ST185-A-cabin.harness` and `rebuild/ST185-B-cabin.harness`.
@@ -483,7 +430,7 @@ feeds, as this document always had them.
 | AM1 → `IE1-10` | plain fused feed from the PDB, 40 A |
 | AM2 → `IE1-17` | plain fused feed from the PDB, 30 A |
 | Always-hot → `1I-1` | plain fused feed from the PDB |
-| R/B No.2 POWER, R/B No.4 HEATER | OEM fuses, unchanged |
+| Power windows, blower | Fuse + relay in the glove-box box (R/B No.2 / No.4 removed 2026-10-10, §5.4) |
 | Everything inside J/B No.1 | **untouched** — §3.1 stands as written |
 | Ex-J/B2 body circuits | RFRM + relays in the glove box (`ST185-CabinPower`) |
 

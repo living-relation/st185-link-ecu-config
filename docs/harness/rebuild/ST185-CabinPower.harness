@@ -167,7 +167,7 @@
         {
           "id": "out",
           "designation": "OUT",
-          "signal": "30A AMI - MTA-3 power relay 30 (windows / locks / tilt-away, ex-R/B2 POWER)",
+          "signal": "30A AMI - MTA-3 power relay 30 (power windows, ex-R/B2 POWER)",
           "contactPartId": "ct_ring_m5_10_8"
         }
       ],
@@ -215,7 +215,7 @@
         {
           "id": "out",
           "designation": "OUT",
-          "signal": "30A AMI - RTR pop-up headlights -> J/B2 2E-2 (fuse only; the OEM R8 retract relay stays)",
+          "signal": "30A AMI - RTR pop-up headlights -> IE1-3 -> retract control relay R8 (fuse only; the OEM R8 relay stays)",
           "contactPartId": "ct_ring_m5_10_8"
         }
       ],
@@ -289,22 +289,27 @@
         {
           "id": "hl",
           "designation": "HL",
-          "signal": "Bus 1 15A + HEAD LH micro relay 87 -> J/B2 2A-3"
+          "signal": "Bus 1 15A + HEAD LH micro relay 87 -> headlight LH H1 pin 3"
         },
         {
           "id": "hr",
           "designation": "HR",
-          "signal": "Bus 1 15A + HEAD RH micro relay 87 -> J/B2 2A-6"
+          "signal": "Bus 1 15A + HEAD RH micro relay 87 -> headlight RH H2 pin 3"
         },
         {
           "id": "hz",
           "designation": "HZ",
-          "signal": "Bus 1 15A HAZ-HORN (+ horn micro relay) -> J/B2 2E-3"
+          "signal": "Bus 1 15A HAZ-HORN fuse out -> hazard feed IE1-12 and horn micro relay 30"
+        },
+        {
+          "id": "hn",
+          "designation": "HN",
+          "signal": "HAZ-HORN horn micro relay 87 -> horns H3 / H4 (DT 2-way each)"
         },
         {
           "id": "dm",
           "designation": "DM",
-          "signal": "Bus 1 20A DOME, always-hot -> J/B2 2E-4"
+          "signal": "Bus 1 20A DOME, always-hot -> J/B1 1H-2"
         },
         {
           "id": "wp",
@@ -431,7 +436,7 @@
         {
           "id": "htr",
           "designation": "HTR",
-          "signal": "MaxiVal 40A + heater Maxi relay 87 -> blower / heater (ex-R/B4 HEATER); coil from the auto amp HR path"
+          "signal": "MaxiVal 40A + heater Maxi relay 87 -> blower motor B4 pin 2 (ex-R/B4 HEATER); coil from the auto amp HR path"
         },
         {
           "id": "str",
@@ -486,7 +491,7 @@
         {
           "id": "pwr",
           "designation": "PWR",
-          "signal": "Power Maxi relay 87 -> windows / locks / tilt-away (ex-R/B2 POWER); coil key IG"
+          "signal": "Power Maxi relay 87 -> power-window feed W-G (ex-R/B2 power main relay terminal 1); coil key IG"
         },
         {
           "id": "acin",
@@ -964,7 +969,7 @@
     {
       "id": "br_w_pmu_hl",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: HEAD LH, RFRM HL 15A + relay to J/B2 2A-3",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: HEAD LH, RFRM HL 15A + relay -> headlight LH H1 pin 3",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -979,7 +984,7 @@
     {
       "id": "br_w_pmu_hr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: HEAD RH, RFRM HR 15A + relay to J/B2 2A-6",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: HEAD RH, RFRM HR 15A + relay -> headlight RH H2 pin 3",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -994,7 +999,7 @@
     {
       "id": "br_w_pmu_horn",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: HAZ-HORN, RFRM HZ 15A to J/B2 2E-3",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: horn relay 87 (RFRM HN, HAZ-HORN 15A) -> horns H3 / H4",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -1009,7 +1014,7 @@
     {
       "id": "br_w_pmu_dome",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: DOME, RFRM DM 20A to J/B2 2E-4",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: DOME, RFRM DM 20A -> J/B1 1H-2",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -1024,7 +1029,7 @@
     {
       "id": "br_w_pmu_rtr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: RTR, LMI L3 30A to J/B2 2E-2",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: RTR, LMI L3 30A -> IE1-3 (retract control relay R8)",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -1099,7 +1104,7 @@
     {
       "id": "br_w_rb4",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: heater relay 87 (MTA-2 HTR 40A) to the R/B4 HEATER circuit",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: heater relay 87 (MTA-2 HTR 40A) -> blower motor B4 pin 2",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -1114,7 +1119,7 @@
     {
       "id": "br_w_rb2",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: power relay 87 (MTA-3 PWR 30A) to the R/B2 POWER circuit",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: power relay 87 (MTA-3 PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -1519,6 +1524,21 @@
         "y": 3570
       },
       "propagate": false
+    },
+    {
+      "id": "br_w_haz",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: HAZ-HORN, RFRM HZ 15A fuse out -> hazard feed IE1-12",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1860,
+        "y": 1680
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 3360
+      },
+      "propagate": false
     }
   ],
   "wires": [
@@ -1865,7 +1885,7 @@
       "color": "Red",
       "source": {
         "id": "rfrm",
-        "handle": "hz"
+        "handle": "hn"
       },
       "target": {
         "id": "br_w_pmu_horn",
@@ -2368,6 +2388,19 @@
         "handle": "Terminal"
       },
       "partId": "m16_16_2"
+    },
+    {
+      "id": "w_haz_cp",
+      "color": "Red",
+      "source": {
+        "id": "rfrm",
+        "handle": "hz"
+      },
+      "target": {
+        "id": "br_w_haz",
+        "handle": "Terminal"
+      },
+      "partId": "m16_14_2"
     }
   ],
   "bundles": [
@@ -3007,6 +3040,15 @@
       "targetId": "br_w_dev",
       "length": {
         "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1050__br_w_haz",
+      "sourceId": "b_bp_1050",
+      "targetId": "br_w_haz",
+      "length": {
+        "value": 50,
         "unit": "mm"
       }
     }

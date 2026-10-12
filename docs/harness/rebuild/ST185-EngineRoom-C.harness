@@ -36,128 +36,6 @@
       "partId": "cp_pdb"
     },
     {
-      "id": "oem_jb2_2a",
-      "label": "OEM J/B2 2A (engine room main)",
-      "width": 390,
-      "schematicPosition": {
-        "x": 1320,
-        "y": 600
-      },
-      "layoutPosition": {
-        "x": 1380,
-        "y": -330
-      },
-      "cavities": [
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "30A CDS FAN out - DO NOT REFEED *"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "15A HEAD LH (inner circuit) - PMU O1"
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "RDI FAN out - DO NOT REFEED, fan moved to k_fan"
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "signal": "Engine main relay 87 - DO NOT REFEED *"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "signal": "15A HEAD RH (inner circuit) - PMU O2"
-        }
-      ],
-      "partId": "cp_oem"
-    },
-    {
-      "id": "oem_jb2_2d",
-      "label": "OEM J/B2 2D (engine room main)",
-      "width": 390,
-      "schematicPosition": {
-        "x": 1320,
-        "y": 840
-      },
-      "layoutPosition": {
-        "x": 1260,
-        "y": -480
-      },
-      "cavities": [
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "15A HEAD LH twin of 2A-3 - dummy-header jumper",
-          "propagate": false
-        },
-        {
-          "id": "c3",
-          "designation": "3"
-        },
-        {
-          "id": "c5",
-          "designation": "5"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "signal": "15A HEAD RH twin of 2A-6 - dummy-header jumper",
-          "propagate": false
-        }
-      ],
-      "partId": "cp_oem"
-    },
-    {
-      "id": "oem_jb2_2e",
-      "label": "OEM J/B2 2E (engine room main)",
-      "width": 390,
-      "schematicPosition": {
-        "x": 1320,
-        "y": 1050
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": -390
-      },
-      "cavities": [
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "PROBE: inner cct = 30A RTR *"
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "PROBE: inner cct = 15A HAZ-HORN *"
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "20A DOME *"
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "signal": "AM1 pass-through (starting p.48) *"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "signal": "AM2 / engine-main related. Do not PMU-feed *"
-        },
-        {
-          "id": "c8",
-          "designation": "8"
-        }
-      ],
-      "partId": "cp_oem"
-    },
-    {
       "id": "rad_fan",
       "label": "Uprated radiator fan (+)",
       "width": 390,
@@ -301,6 +179,62 @@
         }
       ],
       "partId": "cp_dthd_1_8s"
+    },
+    {
+      "id": "horn_lh",
+      "label": "Horn LH (EWD H3) - custom DT 2-way",
+      "width": 390,
+      "partId": "9ZUUE7W4KO7XV5_EclsXt",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 690
+      },
+      "layoutPosition": {
+        "x": 1260,
+        "y": -540
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Horn + (EWD 1993 p.185 H3 pin 1, G-R in the factory wiring) <- horn relay 87",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Horn ground -> EA bay ground (dedicated wire, Route 2 rev 8)",
+          "propagate": false
+        }
+      ]
+    },
+    {
+      "id": "horn_rh",
+      "label": "Horn RH (EWD H4) - custom DT 2-way",
+      "width": 390,
+      "partId": "9ZUUE7W4KO7XV5_EclsXt",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 870
+      },
+      "layoutPosition": {
+        "x": 1320,
+        "y": -480
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Horn + (EWD 1993 p.185 H4 pin 1, G-R in the factory wiring) <- horn relay 87",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Horn ground -> EA bay ground (dedicated wire, Route 2 rev 8)",
+          "propagate": false
+        }
+      ]
     }
   ],
   "terminals": [
@@ -551,7 +485,7 @@
       "id": "fl_oem_ie1_c10",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.31 IE1-10 W AM1 to ignition switch I13-4 - heavy crimp butt splice into the factory lead",
+      "signal": "EWD p.31 IE1-10 W AM1 to ignition switch I13-4 - heavy crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
       "schematicPosition": {
         "x": 1320,
         "y": 0
@@ -566,7 +500,7 @@
       "id": "fl_oem_ie1_c17",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.31 IE1-17 B-R AM2 to ignition switch I13-10 - heavy crimp butt splice into the factory lead",
+      "signal": "EWD p.31 IE1-17 B-R AM2 to ignition switch I13-10 - heavy crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
       "schematicPosition": {
         "x": 1320,
         "y": 60
@@ -581,44 +515,14 @@
       "id": "fl_oem_jb1_1i_c1",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.18-19 / p.46 J/B1 1I-1 B J/B1 primary B+ (always hot; was FL ALT) - heavy crimp butt splice into the factory 1I-1 lead",
+      "signal": "EWD p.18-19 / p.46 J/B1 1I-1 B J/B1 primary B+ (always hot; was FL ALT) - heavy crimp butt splice into the factory 1I-1 lead at J/B1 (cabin side; engine-room main removed)",
       "schematicPosition": {
         "x": 1320,
-        "y": 150
+        "y": 240
       },
       "layoutPosition": {
         "x": 3990,
         "y": -420
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_oem_rb2_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.23 R/B2-1 W 30A POWER fuse input (windows / locks) - feed the fuse input only - heavy crimp butt splice into the factory lead",
-      "schematicPosition": {
-        "x": 1320,
-        "y": 270
-      },
-      "layoutPosition": {
-        "x": 4110,
-        "y": -450
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_oem_rb4_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.24 / p.46 R/B4-1 W 40A HEATER fuse input - feed the fuse input only - heavy crimp butt splice into the factory lead",
-      "schematicPosition": {
-        "x": 1320,
-        "y": 420
-      },
-      "layoutPosition": {
-        "x": 2910,
-        "y": 480
       },
       "propagate": false
     },
@@ -700,7 +604,7 @@
     {
       "id": "br_w_pmu_hl",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: HEAD LH, RFRM HL 15A + relay to J/B2 2A-3",
+      "signal": "Broken off - continues on ST185-CabinPower: HEAD LH, RFRM HL 15A + relay -> headlight LH H1 pin 3",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -715,7 +619,7 @@
     {
       "id": "br_w_pmu_hr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: HEAD RH, RFRM HR 15A + relay to J/B2 2A-6",
+      "signal": "Broken off - continues on ST185-CabinPower: HEAD RH, RFRM HR 15A + relay -> headlight RH H2 pin 3",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -730,7 +634,7 @@
     {
       "id": "br_w_pmu_horn",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: HAZ-HORN, RFRM HZ 15A to J/B2 2E-3",
+      "signal": "Broken off - continues on ST185-CabinPower: horn relay 87 (RFRM HN, HAZ-HORN 15A) -> horns H3 / H4",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -745,7 +649,7 @@
     {
       "id": "br_w_pmu_dome",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: DOME, RFRM DM 20A to J/B2 2E-4",
+      "signal": "Broken off - continues on ST185-CabinPower: DOME, RFRM DM 20A -> J/B1 1H-2",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -760,7 +664,7 @@
     {
       "id": "br_w_pmu_rtr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: RTR, LMI L3 30A to J/B2 2E-2",
+      "signal": "Broken off - continues on ST185-CabinPower: RTR, LMI L3 30A -> IE1-3 (retract control relay R8)",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -835,7 +739,7 @@
     {
       "id": "br_w_rb4",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: heater relay 87 (MTA-2 HTR 40A) to the R/B4 HEATER circuit",
+      "signal": "Broken off - continues on ST185-CabinPower: heater relay 87 (MTA-2 HTR 40A) -> blower motor B4 pin 2",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -850,7 +754,7 @@
     {
       "id": "br_w_rb2",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: power relay 87 (MTA-3 PWR 30A) to the R/B2 POWER circuit",
+      "signal": "Broken off - continues on ST185-CabinPower: power relay 87 (MTA-3 PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -890,6 +794,158 @@
         "x": 0,
         "y": 1590
       },
+      "propagate": false
+    },
+    {
+      "id": "br_w_haz",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: HAZ-HORN, RFRM HZ 15A fuse out -> hazard feed IE1-12",
+      "width": 390,
+      "layoutPosition": {
+        "x": 3270,
+        "y": 1320
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 1170
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD 1993 p.116 IE1-3 W 30A RTR -> retract control relay R8 pin 3 (OEM relay stays, fuse only) - heavy crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 3870,
+        "y": -630
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c12",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 p.130 IE1-12 W HAZ-HORN feed -> hazard switch / turn flasher - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 3930,
+        "y": -690
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_jb1_1h_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 p.132 J/B1 1H-2 20A DOME feed into J/B1 (interior lights) - crimp butt splice into the factory 1H-2 lead at J/B1 (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 300
+      },
+      "layoutPosition": {
+        "x": 4050,
+        "y": -480
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_rb2_wg",
+      "type": "Loose",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD 1993 p.137 R/B2 power main relay terminal 1 output W-G -> power window master SW P6 (A)6 / RH SW P9-6 (R/B2 removed) - heavy crimp butt splice into the factory cowl-side W-G lead at the left kick",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": 4110,
+        "y": -450
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_b4_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead_heavy",
+      "signal": "EWD 1993 p.215-216 B4 pin 2 blower motor + (was R/B4 heater relay terminal 4 output; R/B4 removed) - heavy crimp butt splice into the factory lead at the blower motor (cabin, behind the glove box)",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": 2910,
+        "y": 480
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_h1_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 p.116 H1 pin 3 (R in the factory wiring, new wire here) headlight LH power <- RFRM HL - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 540
+      },
+      "layoutPosition": {
+        "x": 1380,
+        "y": -330
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_h2_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 p.116 H2 pin 3 (R-Y in the factory wiring, new wire here) headlight RH power <- RFRM HR - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 1320,
+        "y": 600
+      },
+      "layoutPosition": {
+        "x": 1140,
+        "y": -390
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_gnd_ea_h3",
+      "type": "Ring",
+      "signal": "OEM ground EA - horn ground",
+      "width": 390,
+      "schematicPosition": {
+        "x": 1980,
+        "y": 1260
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": 300
+      },
+      "partId": "tp_ring_m8_22_16",
+      "propagate": false
+    },
+    {
+      "id": "t_gnd_ea_h4",
+      "type": "Ring",
+      "signal": "OEM ground EA - horn ground",
+      "width": 390,
+      "schematicPosition": {
+        "x": 1980,
+        "y": 1350
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 300
+      },
+      "partId": "tp_ring_m8_22_16",
       "propagate": false
     }
   ],
@@ -1014,97 +1070,6 @@
       "partId": "m16_10_1"
     },
     {
-      "id": "w_pmu_hl",
-      "color": "Red",
-      "source": {
-        "id": "br_w_pmu_hl",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "oem_jb2_2a",
-        "handle": "c3"
-      },
-      "partId": "m16_14_2"
-    },
-    {
-      "id": "w_pmu_hr",
-      "color": "Red",
-      "source": {
-        "id": "br_w_pmu_hr",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "oem_jb2_2a",
-        "handle": "c6"
-      },
-      "partId": "m16_14_2"
-    },
-    {
-      "id": "w_hl_twin",
-      "color": "Red",
-      "source": {
-        "id": "oem_jb2_2a",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "oem_jb2_2d",
-        "handle": "c2"
-      },
-      "partId": "m16_14_2"
-    },
-    {
-      "id": "w_hr_twin",
-      "color": "Red",
-      "source": {
-        "id": "oem_jb2_2a",
-        "handle": "c6"
-      },
-      "target": {
-        "id": "oem_jb2_2d",
-        "handle": "c6"
-      },
-      "partId": "m16_14_2"
-    },
-    {
-      "id": "w_pmu_dome",
-      "color": "Red",
-      "source": {
-        "id": "br_w_pmu_dome",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "oem_jb2_2e",
-        "handle": "c4"
-      },
-      "partId": "m16_12_2"
-    },
-    {
-      "id": "w_pmu_horn",
-      "color": "Red",
-      "source": {
-        "id": "br_w_pmu_horn",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "oem_jb2_2e",
-        "handle": "c3"
-      },
-      "partId": "m16_14_2"
-    },
-    {
-      "id": "w_pmu_rtr",
-      "color": "Red",
-      "source": {
-        "id": "br_w_pmu_rtr",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "oem_jb2_2e",
-        "handle": "c2"
-      },
-      "partId": "m16_10_2"
-    },
-    {
       "id": "w_eps_pwr",
       "color": "Red",
       "source": {
@@ -1190,7 +1155,7 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "fl_oem_rb4_c1",
+        "id": "fl_b4_c2",
         "handle": "Terminal"
       },
       "partId": "m16_8_2"
@@ -1203,7 +1168,7 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "fl_oem_rb2_c1",
+        "id": "fl_oem_rb2_wg",
         "handle": "Terminal"
       },
       "partId": "m16_10_2"
@@ -1298,6 +1263,136 @@
         "handle": "Terminal"
       },
       "partId": "m16_16_2"
+    },
+    {
+      "id": "w_pmu_rtr",
+      "color": "Red",
+      "source": {
+        "id": "br_w_pmu_rtr",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_oem_ie1_c3",
+        "handle": "Terminal"
+      },
+      "partId": "m16_10_2"
+    },
+    {
+      "id": "w_haz",
+      "color": "Red",
+      "source": {
+        "id": "br_w_haz",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_oem_ie1_c12",
+        "handle": "Terminal"
+      },
+      "partId": "m16_14_2"
+    },
+    {
+      "id": "w_pmu_dome",
+      "color": "Red",
+      "source": {
+        "id": "br_w_pmu_dome",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_oem_jb1_1h_c2",
+        "handle": "Terminal"
+      },
+      "partId": "m16_12_2"
+    },
+    {
+      "id": "w_pmu_hl",
+      "color": "Red",
+      "source": {
+        "id": "br_w_pmu_hl",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_h1_c3",
+        "handle": "Terminal"
+      },
+      "partId": "m16_14_2"
+    },
+    {
+      "id": "w_pmu_hr",
+      "color": "Red",
+      "source": {
+        "id": "br_w_pmu_hr",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_h2_c3",
+        "handle": "Terminal"
+      },
+      "partId": "m16_14_2"
+    },
+    {
+      "id": "w_pmu_horn",
+      "color": "Red",
+      "source": {
+        "id": "br_w_pmu_horn",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_horn",
+        "handle": "Splice"
+      },
+      "partId": "m16_14_2"
+    },
+    {
+      "id": "w_horn_lh",
+      "color": "Red",
+      "source": {
+        "id": "sp_horn",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "horn_lh",
+        "handle": "c1"
+      },
+      "partId": "m16_16_2"
+    },
+    {
+      "id": "w_horn_rh",
+      "color": "Red",
+      "source": {
+        "id": "sp_horn",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "horn_rh",
+        "handle": "c1"
+      },
+      "partId": "m16_16_2"
+    },
+    {
+      "id": "w_horn_lh_g",
+      "color": "Black",
+      "source": {
+        "id": "horn_lh",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "t_gnd_ea_h3",
+        "handle": "Terminal"
+      },
+      "partId": "m16_16_0"
+    },
+    {
+      "id": "w_horn_rh_g",
+      "color": "Black",
+      "source": {
+        "id": "horn_rh",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "t_gnd_ea_h4",
+        "handle": "Terminal"
+      },
+      "partId": "m16_16_0"
     }
   ],
   "bundles": [
@@ -1608,33 +1703,6 @@
       }
     },
     {
-      "id": "bn_bp_300__oem_jb2_2e",
-      "sourceId": "bp_300",
-      "targetId": "oem_jb2_2e",
-      "length": {
-        "value": 1410,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_330__oem_jb2_2d",
-      "sourceId": "bp_330",
-      "targetId": "oem_jb2_2d",
-      "length": {
-        "value": 1380,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_360__oem_jb2_2a",
-      "sourceId": "bp_360",
-      "targetId": "oem_jb2_2a",
-      "length": {
-        "value": 1340,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_390__mrs_eps",
       "sourceId": "bp_390",
       "targetId": "mrs_eps",
@@ -1878,24 +1946,6 @@
       }
     },
     {
-      "id": "bn_bp_fl_oem_rb2__fl_oem_rb2_c1",
-      "sourceId": "bp_fl_oem_rb2",
-      "targetId": "fl_oem_rb2_c1",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_oem_rb4__fl_oem_rb4_c1",
-      "sourceId": "bp_fl_oem_rb4",
-      "targetId": "fl_oem_rb4_c1",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_1020__br_w_fan_pwr",
       "sourceId": "bp_1020",
       "targetId": "br_w_fan_pwr",
@@ -2056,6 +2106,95 @@
         "value": 300,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_990__br_w_haz",
+      "sourceId": "bp_990",
+      "targetId": "br_w_haz",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c3",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c3",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c12",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c12",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_jb1_1i__fl_oem_jb1_1h_c2",
+      "sourceId": "bp_fl_oem_jb1_1i",
+      "targetId": "fl_oem_jb1_1h_c2",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_rb2__fl_oem_rb2_wg",
+      "sourceId": "bp_fl_oem_rb2",
+      "targetId": "fl_oem_rb2_wg",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_rb4__fl_b4_c2",
+      "sourceId": "bp_fl_oem_rb4",
+      "targetId": "fl_b4_c2",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_360__fl_h1_c3",
+      "sourceId": "bp_360",
+      "targetId": "fl_h1_c3"
+    },
+    {
+      "id": "bn_bp_300__fl_h2_c3",
+      "sourceId": "bp_300",
+      "targetId": "fl_h2_c3"
+    },
+    {
+      "id": "bn_bp_330__bp_horn",
+      "sourceId": "bp_330",
+      "targetId": "bp_horn"
+    },
+    {
+      "id": "bn_bp_horn__horn_lh",
+      "sourceId": "bp_horn",
+      "targetId": "horn_lh"
+    },
+    {
+      "id": "bn_bp_horn__horn_rh",
+      "sourceId": "bp_horn",
+      "targetId": "horn_rh"
+    },
+    {
+      "id": "bn_bp_240__t_gnd_ea_h3",
+      "sourceId": "bp_240",
+      "targetId": "t_gnd_ea_h3"
+    },
+    {
+      "id": "bn_bp_270__t_gnd_ea_h4",
+      "sourceId": "bp_270",
+      "targetId": "t_gnd_ea_h4"
     }
   ],
   "branchPoints": [
@@ -2317,12 +2456,19 @@
         "x": 2910,
         "y": 480
       }
+    },
+    {
+      "id": "bp_horn",
+      "layoutPosition": {
+        "x": 1260,
+        "y": -300
+      }
     }
   ],
   "schematicNotes": [
     {
       "id": "n_intro",
-      "text": "ENGINE ROOM HARNESS C - PARTIAL. Only new / upgraded / relocated feeds. Do not redraw the OEM engine-room, cowl or dash looms. Kick-panel J/B No.1, R/B No.2 / No.3 / No.4 stay. Unplug engine-bay J/B No.2 and RFRM INJ; inject at the pins in the splice table (docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md). J/B1 1H is not touched: 1H-7 IG2 (B-O from the ignition switch) stays, do not overlay; 1H-8 is on the always-hot bus.",
+      "text": "ENGINE ROOM HARNESS C. No factory engine-bay wire or connector is reused (Dan, 2026-10-10, binding): J/B No.2, R/B No.2-5, F11 and the engine-room main wire are removed from the car. Every bay load is new wire from the glove-box fuse box (ST185-CabinPower) straight to its device plug (OEM device plug, or DT where Dan chose DT). Cabin landings (IE1 / J/B1 cowl side, the old R/B2 and R/B4 outputs, the blower) splice into factory cabin leads - cabin reuse is unchanged. Owner text: docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md.",
       "width": 390,
       "schematicPosition": {
         "x": 3210,
@@ -2331,23 +2477,13 @@
     },
     {
       "id": "n_split",
-      "text": "RED / BLUE PHYSICAL ROUTE (Daniel's marked-up path, 2026-09-29; corrected for J/B No.2's real side - see n_jb2_side below). The RED (heavy DC) leg - trunk battery, RADLOK, starter, alternator B+, jump post, engine block ground - moved to ST185-HeavyDC.harness 2026-10-11 (harness-reconcile pass step 4); only its PDB handoff (breaks H1/H2/H3/H6a) stays here. Kept for history: RED (heavy DC): trunk battery -> up the passenger side of the cabin -> glove-box PDB -> through the passenger side into the engine bay -> RADLOK firewall pair -> alternator and starter. BLUE (normal power): from the passenger-side glove-box PDB / fuse box (ST185-CabinPower), out through the passenger fender (the OEM engine-room main's only bay crossing - EA1/EB1/EB2) to the MR-S EHPS pump (vacated ABS actuator space), the alternator, and the passenger headlight; A/C compressor clutch stays on engine harness A/B, not drawn here. Then across the front of the bay: horn (R/B5 fallback, see n_probe), both uprated fans (core-support run). Then down the driver side - where J/B No.2 actually sits - to the driver headlight and the J/B No.2 dummy header (oem_jb2_2a/2d/2e: HL/HR/HZ/DOME/RTR) and wiper-park feed (RFRM WP, not yet wired - no sourced wiper-motor circuit to draw against). Ends at driver J/B No.1 and R/B No.2, left kick (IE1 AM1/AM2, J/B1 primary B+, R/B2 POWER fuse in). A BLUE cabin run also crosses from the driver kick back to the passenger PDB, and a BLUE run rides alongside RED out to the trunk. Crash sensors and ABS solenoid are deleted - do not refeed 60A FL ABS, A7/A8, A11/A12, A37.",
+      "text": "ROUTE: docs/harness/routes/ROUTE-2-HARNESS-C.html (approved, rev 9). Glove box -> right kick (blower) -> under the dash -> left kick (IE1 / J/B1 / old R/B2 landings); glove box -> RH fender grommet -> RH inner fender (A/C, EPS pump) -> fan branch -> across the front: RH corner (H2), horn branch (DT 2-way per horn), LH corner (H1). Heavy DC is ST185-HeavyDC (breaks H1/H2/H3/H6a). Still to draw on this route (OPEN-ITEMS row 54): headlamp high/low returns, turn / clearance, side markers, retract-motor leads, wiper / washer.",
       "width": 390,
       "schematicPosition": {
         "x": 3210,
         "y": 240
       },
       "color": "Green"
-    },
-    {
-      "id": "n_jb2_side",
-      "text": "J/B No.2 SIDE + FENDER ROUTING DECISION (2026-09-29). ENGINE-ROOM-POWER-REDISTRIBUTION.md previously said J/B No.2 was passenger-side; that was backwards (corrected the same day - see that doc's own cross-check, EWD p.16 vs p.24). J/B No.2 is on the DRIVER side. This drawing's dummy-header wires (w_pmu_hl/hr/horn/dome/rtr, feeding oem_jb2_2a/2d/2e) were themselves modelled assuming the old passenger-side location; they do NOT actually ride the passenger ABS trough alongside the EPS pump - only the EPS pump, alternator and passenger headlight stay on that passenger run. Fender routing (Daniel gave a preferred path, flexible if a shorter run existed): starting passenger (matching the PDB and the OEM's own only fender crossing) and finishing driver-side at J/B No.2 and J/B No.1 is shorter than the reverse, which would need a crossing before AND after the passenger-side loads. Kept as given. Exact bundle lengths on the oem_jb2_2a/2d/2e branches (currently 1.3-1.4 m) are pre-existing estimates, not re-measured against this correction - verify on the car before cutting cable.",
-      "width": 390,
-      "schematicPosition": {
-        "x": 3210,
-        "y": 870
-      },
-      "color": "Red"
     },
     {
       "id": "shdr_0",
@@ -2360,18 +2496,8 @@
       "color": "Green"
     },
     {
-      "id": "n_probe",
-      "text": "PROBE BEFORE CRIMPING 2E-2 / 2E-3. Starting + ignition (EWD p.48) puts AM1 on 2E-2/2E-5 and AM2 on 2E-3/2E-6, then IE1-10 / IE1-17. Inner circuit (p.21) puts 30A RTR on 2E-2 and 15A HAZ-HORN on 2E-3. If the unplugged 2E-2 shows continuity to IE1-10, that pin is AM1 - do not land the RTR fuse (LMI L3) there. Same for 2E-3 vs IE1-17 / AM2. HEAD 2A-3/2A-6 and DOME 2E-4 do not sit on that pass-through. Horn fallback is R/B5.",
-      "width": 390,
-      "schematicPosition": {
-        "x": 3210,
-        "y": 1440
-      },
-      "color": "Red"
-    },
-    {
       "id": "shdr_2",
-      "text": "OEM INJECTION (keep J/Bs)",
+      "text": "CABIN LANDINGS (cowl side - J/B1, IE1, old R/B2 / R/B4 outputs, blower)",
       "width": 390,
       "schematicPosition": {
         "x": 3210,
@@ -2399,7 +2525,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nOEM J/B2 2A (engine room main) 2: 30A CDS FAN out - DO NOT REFEED, fan moved to k_fan2\nOEM J/B2 2A (engine room main) 5: Engine main relay 87 - DO NOT REFEED, Link EFI in Power\nOEM J/B2 2D (engine room main) 3: Headlight relay coil - unused, PMU switches the lamps\nOEM J/B2 2E (engine room main) 2: PROBE: inner cct = 30A RTR; starting p.48 = AM1 with 2E-5\nOEM J/B2 2E (engine room main) 3: PROBE: inner cct = 15A HAZ-HORN; starting p.48 = AM2 with 2E-6\nOEM J/B2 2E (engine room main) 4: 20A DOME (inner circuit, not on AM1/AM2 path) - PMU O4\nOEM J/B2 2E (engine room main) 5: AM1 pass-through (starting p.48). Do not PMU-feed. Restored at IE1-10\nOEM J/B2 2E (engine room main) 6: AM2 / engine-main related. Do not PMU-feed. Restored at IE1-17\nOEM R/B4 (right kick, by glove STR: OEM starter relay - isolate, Link k_str replaces\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87 (glove box, ST185-B-cabin), passenger fender; 8 AWG (sized 2026-09-28 against the AMI-60 - sot/channels.csv k_eps c1)\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si B-6: [B 90980-10897 pin 6] relay request out - NOT WIRED. 6.16 moved the EPS relay trigger to the ECU (Ign 6 / ecu_b B12). Kept for reference.\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, MTA-2 MRS 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box body block APS, 5 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87 (glove box, ST185-B-cabin), passenger fender; 8 AWG (sized 2026-09-28 against the AMI-60 - sot/channels.csv k_eps c1)\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si B-6: [B 90980-10897 pin 6] relay request out - NOT WIRED. 6.16 moved the EPS relay trigger to the ECU (Ign 6 / ecu_b B12). Kept for reference.\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, MTA-2 MRS 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box body block APS, 5 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.",
       "schematicPosition": {
         "x": 3210,
         "y": 2640
@@ -2407,22 +2533,13 @@
     },
     {
       "id": "n_jb_disposition",
-      "text": "J/B AND RELAY BLOCK DISPOSITION - owned by docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md: §4 method, §5.2 J/B No.1 + R/B No.2 (left kick), §5.3 R/B No.3 / No.4 (right kick), §5.4 vacated J/B No.2 cavities, §5.6 deleted circuits, §8 glove-box fuse schedule. Read it there - this drawing does not repeat it.",
+      "text": "J/B AND RELAY BLOCK DISPOSITION - owned by docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md (what is removed, where each ex-J/B2 / R/B load lands, glove-box fuse schedule). Read it there - this drawing does not repeat it.",
       "width": 390,
       "schematicPosition": {
         "x": 3210,
         "y": 4170
       },
       "color": "Red"
-    },
-    {
-      "id": "n_rb2_rb3",
-      "text": "R/B No.2 (LEFT KICK) / R/B No.3 (RIGHT KICK) - EWD p.23, docs/electrical/ewd-snips/1990-st185-rb2-left-rb3-right.png (1990 book - confirm on the 1993 car). R/B No.2: Power Main Relay (4-pin) + 30A POWER fuse (housing pins 1-2). Loom C feeds the fuse input from the PDB (w_rb2 -> oem_rb2 c1); the relay stays in circuit (oem_rb2 c2). R/B No.3: Fog Light Relay (4-pin) only; not drawn here - keep only if fog lights stay. Actions: power doc §5.2 L9, §5.3 R4.",
-      "width": 390,
-      "schematicPosition": {
-        "x": 3210,
-        "y": 4380
-      }
     }
   ],
   "wireParts": [
@@ -2622,7 +2739,7 @@
       "type": "Loose",
       "maxGauge": {
         "unit": "AWG",
-        "value": 16
+        "value": 12
       },
       "minGauge": {
         "unit": "AWG",
@@ -2726,6 +2843,22 @@
       "partNumber": "GENERIC LUG M10 50MM2",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK",
       "manufacturer": "generic"
+    },
+    {
+      "id": "tp_ring_m8_22_16",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC RING M8 22-16",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG",
+      "manufacturer": "generic"
     }
   ],
   "connectorParts": [
@@ -2748,22 +2881,6 @@
         }
       ],
       "numberOfCavities": 10
-    },
-    {
-      "id": "cp_oem",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-junction-block.png",
-        "source": "url"
-      },
-      "partNumber": "(OEM block)",
-      "description": "CONNECTOR, OEM, JUNCTION OR RELAY BLOCK",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ]
     },
     {
       "id": "cp_pdb",
@@ -2800,6 +2917,65 @@
         }
       ],
       "numberOfCavities": 1
+    },
+    {
+      "id": "9ZUUE7W4KO7XV5_EclsXt",
+      "url": "https://www.te.com/usa-en/product-DT06-2S.html",
+      "image": {
+        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014830313.png",
+        "source": "cloud"
+      },
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-2",
+        "name": "DT 2-way",
+        "pins": [
+          {
+            "x": 2.73,
+            "y": 0,
+            "size": 4.2
+          },
+          {
+            "x": -2.73,
+            "y": 0,
+            "size": 4.2
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 15.1,
+          "height": 11.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "y": -5.85,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 8.5,
+              "height": 3
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "hasShell": false,
+      "partNumber": "DT06-2S",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "lockPartId": "Wr6W4NbhdPbClGtmLWBXH",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        }
+      ],
+      "numberOfCavities": 2,
+      "designationStrategy": {
+        "type": "sequential"
+      }
     }
   ],
   "contactParts": [
@@ -2843,12 +3019,68 @@
       "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "ct_generic_skt",
+      "id": "l5UlOB1lt6BfYQ7Ey3Ck2",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "(generic)",
-      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
-      "manufacturer": "Generic"
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-16141",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
+      "contactColor": "Silver",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "lockParts": [
+    {
+      "id": "Wr6W4NbhdPbClGtmLWBXH",
+      "partNumber": "W2S",
+      "description": "WEDGELOCK, DT, 2-WAY PLUG",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "id": "F6dRxdC4XlgPgmxZh_zyn",
+      "partNumber": "114017",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "spliceParts": [
+    {
+      "id": "spp_crimp_14_10",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "partNumber": "GENERIC CRIMP SPLICE 14-10",
+      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
+    }
+  ],
+  "splices": [
+    {
+      "id": "sp_horn",
+      "partId": "spp_crimp_14_10",
+      "locationId": "bn_bp_330__bp_horn",
+      "schematicPosition": {
+        "x": 900,
+        "y": 780
+      },
+      "layoutPosition": {
+        "x": 1260,
+        "y": -300
+      }
     }
   ]
 }

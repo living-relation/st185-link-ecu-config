@@ -450,31 +450,101 @@
       }
     },
     {
-      "id": "FL_OEM_RB2_C1",
+      "id": "FL_OEM_IE1_C3",
       "type": "oem_flying_lead",
       "harness": "EngineRoom-C",
-      "terminal": "fl_oem_rb2_c1",
+      "terminal": "fl_oem_ie1_c3",
       "ewd": {
-        "page": "p.23",
-        "connector": "R/B2",
-        "pin": "1",
+        "page": "1993 p.116",
+        "connector": "IE1",
+        "pin": "3",
         "color": "W",
-        "function": "30A POWER fuse input (windows / locks)",
-        "method": "feed the fuse input only - heavy crimp butt splice into the factory lead"
+        "function": "30A RTR -> retract control relay R8 pin 3 (OEM relay stays)",
+        "method": "heavy crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
       }
     },
     {
-      "id": "FL_OEM_RB4_C1",
+      "id": "FL_OEM_IE1_C12",
       "type": "oem_flying_lead",
       "harness": "EngineRoom-C",
-      "terminal": "fl_oem_rb4_c1",
+      "terminal": "fl_oem_ie1_c12",
       "ewd": {
-        "page": "p.24 / p.46",
-        "connector": "R/B4",
-        "pin": "1",
+        "page": "1993 p.130",
+        "connector": "IE1",
+        "pin": "12",
         "color": "W",
-        "function": "40A HEATER fuse input",
-        "method": "feed the fuse input only - heavy crimp butt splice into the factory lead"
+        "function": "HAZ-HORN feed -> hazard switch / turn flasher",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_JB1_1H_C2",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_jb1_1h_c2",
+      "ewd": {
+        "page": "1993 p.132",
+        "connector": "J/B1 1H",
+        "pin": "2",
+        "color": "TBD - not read off the 1993 EWD page",
+        "function": "20A DOME feed into J/B1 (interior lights)",
+        "method": "crimp butt splice into the factory 1H-2 lead at J/B1 (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_RB2_WG",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_rb2_wg",
+      "ewd": {
+        "page": "1993 p.137",
+        "connector": "R/B2",
+        "pin": "power main relay terminal 1 output",
+        "color": "W-G",
+        "function": "power-window feed -> master SW P6 (A)6 / RH SW P9-6 (R/B2 removed)",
+        "method": "heavy crimp butt splice into the factory cowl-side W-G lead at the left kick"
+      }
+    },
+    {
+      "id": "FL_B4_C2",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_b4_c2",
+      "ewd": {
+        "page": "1993 p.215-216",
+        "connector": "B4",
+        "pin": "2",
+        "color": "TBD - not read off the 1993 EWD page",
+        "function": "blower motor + (was R/B4 heater relay terminal 4 output; R/B4 removed)",
+        "method": "heavy crimp butt splice into the factory lead at the blower motor (cabin, behind the glove box)"
+      }
+    },
+    {
+      "id": "FL_H1_C3",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_h1_c3",
+      "ewd": {
+        "page": "1993 p.116",
+        "connector": "H1",
+        "pin": "3",
+        "color": "R (factory wiring; new wire here)",
+        "function": "headlight LH power <- RFRM HL",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_H2_C3",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_h2_c3",
+      "ewd": {
+        "page": "1993 p.116",
+        "connector": "H2",
+        "pin": "3",
+        "color": "R-Y (factory wiring; new wire here)",
+        "function": "headlight RH power <- RFRM HR",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
       }
     },
     {
@@ -665,21 +735,6 @@
       "harness": "CSB3",
       "connector": "csb3io",
       "note": "HD36-24-33SE plug mating the CSB3 enclosure's HD34-24-33PE. The harness stops here; CSB3 itself is not drawn."
-    },
-    {
-      "harness": "EngineRoom-C",
-      "connector": "oem_jb2_2a",
-      "note": "Dummy header crimped and plugged into J/B2 2A (ENGINE-ROOM-POWER-REDISTRIBUTION.md section 5.4). Plugs in, so it is a connector, not a flying lead."
-    },
-    {
-      "harness": "EngineRoom-C",
-      "connector": "oem_jb2_2d",
-      "note": "Dummy header into J/B2 2D, same."
-    },
-    {
-      "harness": "EngineRoom-C",
-      "connector": "oem_jb2_2e",
-      "note": "Dummy header into J/B2 2E, same."
     }
   ],
   "shieldBothEndsOk": [
@@ -1492,7 +1547,7 @@
     {
       "id": "BR_W_PMU_HL",
       "type": "broken_off",
-      "what": "HEAD LH, RFRM HL 15A + relay to J/B2 2A-3",
+      "what": "HEAD LH, RFRM HL 15A + relay -> headlight LH H1 pin 3",
       "ends": [
         {
           "harness": "CabinPower",
@@ -1507,7 +1562,7 @@
     {
       "id": "BR_W_PMU_HR",
       "type": "broken_off",
-      "what": "HEAD RH, RFRM HR 15A + relay to J/B2 2A-6",
+      "what": "HEAD RH, RFRM HR 15A + relay -> headlight RH H2 pin 3",
       "ends": [
         {
           "harness": "CabinPower",
@@ -1522,7 +1577,7 @@
     {
       "id": "BR_W_PMU_HORN",
       "type": "broken_off",
-      "what": "HAZ-HORN, RFRM HZ 15A to J/B2 2E-3",
+      "what": "horn relay 87 (RFRM HN, HAZ-HORN 15A) -> horns H3 / H4",
       "ends": [
         {
           "harness": "CabinPower",
@@ -1535,9 +1590,24 @@
       ]
     },
     {
+      "id": "BR_W_HAZ",
+      "type": "broken_off",
+      "what": "HAZ-HORN, RFRM HZ 15A fuse out -> hazard feed IE1-12",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_haz"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_haz"
+        }
+      ]
+    },
+    {
       "id": "BR_W_PMU_DOME",
       "type": "broken_off",
-      "what": "DOME, RFRM DM 20A to J/B2 2E-4",
+      "what": "DOME, RFRM DM 20A -> J/B1 1H-2",
       "ends": [
         {
           "harness": "CabinPower",
@@ -1552,7 +1622,7 @@
     {
       "id": "BR_W_PMU_RTR",
       "type": "broken_off",
-      "what": "RTR, LMI L3 30A to J/B2 2E-2",
+      "what": "RTR, LMI L3 30A -> IE1-3 (retract control relay R8)",
       "ends": [
         {
           "harness": "CabinPower",
@@ -1627,7 +1697,7 @@
     {
       "id": "BR_W_RB4",
       "type": "broken_off",
-      "what": "heater relay 87 (MTA-2 HTR 40A) to the R/B4 HEATER circuit",
+      "what": "heater relay 87 (MTA-2 HTR 40A) -> blower motor B4 pin 2",
       "ends": [
         {
           "harness": "CabinPower",
@@ -1642,7 +1712,7 @@
     {
       "id": "BR_W_RB2",
       "type": "broken_off",
-      "what": "power relay 87 (MTA-3 PWR 30A) to the R/B2 POWER circuit",
+      "what": "power relay 87 (MTA-3 PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
       "ends": [
         {
           "harness": "CabinPower",

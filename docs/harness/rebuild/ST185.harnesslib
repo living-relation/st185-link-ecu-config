@@ -254,22 +254,6 @@
   ],
   "connectorParts": [
     {
-      "id": "cp_oem",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/oem-junction-block.png",
-        "source": "url"
-      },
-      "partNumber": "(OEM block)",
-      "description": "CONNECTOR, OEM, JUNCTION OR RELAY BLOCK",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ]
-    },
-    {
       "id": "cp_camkit",
       "image": {
         "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cam-sensor-kit-pigtail.png",
@@ -1853,7 +1837,7 @@
       "type": "Loose",
       "maxGauge": {
         "unit": "AWG",
-        "value": 16
+        "value": 12
       },
       "minGauge": {
         "unit": "AWG",
@@ -2035,6 +2019,22 @@
       },
       "partNumber": "GENERIC SPADE RECEPTACLE 12-10",
       "description": "TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 6.3 MM (250) TAB, 12-10 AWG",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_ring_m8_22_16",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC RING M8 22-16",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG",
       "manufacturer": "generic"
     }
   ],
