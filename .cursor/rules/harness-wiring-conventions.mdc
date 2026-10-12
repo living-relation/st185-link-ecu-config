@@ -50,7 +50,7 @@ the drawings (mirror only, never edit as source).
   these older designs. **The DRB102 cavity map is settled** from TE's drawing
   (2026-10-11): `docs/harness/DRB102-CAVITY-MAP.md`. Each drawn cavity's `designation` is
   its real DRB cavity number, A and B use each of the 102 cavities once (gate
-  `audit_mating.py` M8). A logical half is not a wedgelock half. Every shield drain has
+  `audit_mating.py` M8). It is ONE 102-cavity connector: every bulkhead drawing shows all 102 cavities, its own section wired and the other section N/C (DECISIONS S10, gate `audit_shared_connectors.py`); a section is not a wedgelock half. Every shield drain has
   its own cavity; B has 13 size-16 spares (the old HDP20-era "B has no spare" is gone).
 - **No factory engine-bay wire is reused** (Daniel, 2026-10-04, binding): every engine-bay
   circuit is new wire in project colors, terminated at the device's own plug (OEM or new).

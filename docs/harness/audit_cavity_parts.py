@@ -66,6 +66,8 @@ for loom, d in docs.items():
         if c["id"] not in BH:
             continue
         for cv in c.get("cavities", []):
+            if cv.get("notConnected"):
+                continue          # another loom's section of the shared DRB102 - counted there
             wired = cv["id"] in used[c["id"]]
             if wired and not cv.get("contactPartId"):
                 print("  %-12s %s %s is wired but has no contact" % (loom, c["id"], cv["id"]))

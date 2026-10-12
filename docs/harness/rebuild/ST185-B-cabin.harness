@@ -6,168 +6,375 @@
   "connectors": [
     {
       "id": "bh_b_fw",
-      "label": "Bulkhead B - firewall, B-half of shared DRB102 (DRB12-102PAE-L018 + DRBF-1A)",
+      "label": "Bulkhead DRB102 - firewall receptacle (DRB12-102PAE-L018 + DRBF-1A), all 102 cavities; section B wired here",
       "width": 390,
       "partId": "cp_drb_recept",
       "cavities": [
         {
-          "id": "c1",
-          "designation": "97",
+          "id": "nc1",
+          "designation": "1",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc2",
+          "designation": "2",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c38",
+          "designation": "3",
           "signal": "spare (size 12)",
           "cavityPlugPartId": "pl_sz12"
         },
         {
-          "id": "c2",
-          "designation": "98",
+          "id": "c39",
+          "designation": "4",
           "signal": "spare (size 12)",
           "cavityPlugPartId": "pl_sz12"
         },
         {
-          "id": "c3",
-          "designation": "95",
-          "signal": "CAN-Lambda +12V, RFRM LAM 7.5A (14 AWG)",
-          "contactPartId": "ct_hdp12p"
+          "id": "c40",
+          "designation": "5",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
         },
         {
-          "id": "c4",
-          "designation": "96",
-          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
-          "contactPartId": "ct_hdp12p"
+          "id": "c41",
+          "designation": "6",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
         },
         {
-          "id": "c5",
-          "designation": "86",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ETB motor + (Aux 9, B18)",
-          "propagate": false
+          "id": "c42",
+          "designation": "7",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
         },
         {
-          "id": "c6",
-          "designation": "87",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ETB motor - (Aux 10, B26)",
-          "propagate": false
+          "id": "c43",
+          "designation": "8",
+          "signal": "spare (size 12)",
+          "cavityPlugPartId": "pl_sz12"
         },
         {
-          "id": "c7",
-          "designation": "71",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B15",
-          "propagate": false
+          "id": "nc9",
+          "designation": "9",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c8",
-          "designation": "72",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B16",
-          "propagate": false
+          "id": "nc10",
+          "designation": "10",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c9",
-          "designation": "73",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B23",
-          "propagate": false
+          "id": "nc11",
+          "designation": "11",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c10",
-          "designation": "74",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B6",
-          "propagate": false
+          "id": "nc12",
+          "designation": "12",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c11",
-          "designation": "75",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B7",
-          "propagate": false
+          "id": "nc13",
+          "designation": "13",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c12",
-          "designation": "76",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECUMaster CSB3 - Power/CAN/Switch I/O SW"
+          "id": "nc14",
+          "designation": "14",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c13",
-          "designation": "92",
-          "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
-          "contactPartId": "ct_hdp16p"
+          "id": "nc15",
+          "designation": "15",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c14",
-          "designation": "93",
-          "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
-          "contactPartId": "ct_hdp16p"
+          "id": "nc16",
+          "designation": "16",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c15",
-          "designation": "89",
-          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
+          "id": "nc17",
+          "designation": "17",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c16",
-          "designation": "83",
-          "signal": "Knock 1 SIG+ (ECU B9)",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
+          "id": "nc18",
+          "designation": "18",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c17",
-          "designation": "84",
-          "signal": "Knock 1 SIG- (to Gnd Out B22)",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
+          "id": "nc19",
+          "designation": "19",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c18",
-          "designation": "85",
-          "signal": "Knock 1 screen",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
+          "id": "nc20",
+          "designation": "20",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c19",
-          "designation": "77",
-          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
+          "id": "nc21",
+          "designation": "21",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c20",
-          "designation": "90",
-          "signal": "Switched 12V to gearbox VSS (from sp_sw12)",
-          "contactPartId": "ct_hdp16p"
+          "id": "nc22",
+          "designation": "22",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c21",
-          "designation": "78",
-          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
+          "id": "nc23",
+          "designation": "23",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c22",
-          "designation": "88",
-          "signal": "ETB motor screen",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
+          "id": "nc24",
+          "designation": "24",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c23",
-          "designation": "91",
-          "signal": "Gearbox VSS screen",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
+          "id": "nc25",
+          "designation": "25",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
-          "id": "c24",
-          "designation": "94",
-          "signal": "CAN-Lambda CAN pair screen",
-          "contactPartId": "ct_hdp16p"
+          "id": "nc26",
+          "designation": "26",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc27",
+          "designation": "27",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc28",
+          "designation": "28",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc29",
+          "designation": "29",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc30",
+          "designation": "30",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc31",
+          "designation": "31",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc32",
+          "designation": "32",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc33",
+          "designation": "33",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc34",
+          "designation": "34",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc35",
+          "designation": "35",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc36",
+          "designation": "36",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc37",
+          "designation": "37",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc38",
+          "designation": "38",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc39",
+          "designation": "39",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc40",
+          "designation": "40",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc41",
+          "designation": "41",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc42",
+          "designation": "42",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c52",
+          "designation": "43",
+          "signal": "spare (size 4)",
+          "cavityPlugPartId": "pl_sz4"
+        },
+        {
+          "id": "nc44",
+          "designation": "44",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc45",
+          "designation": "45",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc46",
+          "designation": "46",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc47",
+          "designation": "47",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c48",
+          "designation": "48",
+          "signal": "spare (size 8)",
+          "cavityPlugPartId": "pl_sz8"
+        },
+        {
+          "id": "c49",
+          "designation": "49",
+          "signal": "spare (size 8)",
+          "cavityPlugPartId": "pl_sz8"
+        },
+        {
+          "id": "nc50",
+          "designation": "50",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc51",
+          "designation": "51",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc52",
+          "designation": "52",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc53",
+          "designation": "53",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c50",
+          "designation": "54",
+          "signal": "spare (size 8)",
+          "cavityPlugPartId": "pl_sz8"
+        },
+        {
+          "id": "c51",
+          "designation": "55",
+          "signal": "spare (size 8)",
+          "cavityPlugPartId": "pl_sz8"
+        },
+        {
+          "id": "nc56",
+          "designation": "56",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc57",
+          "designation": "57",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc58",
+          "designation": "58",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc59",
+          "designation": "59",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c53",
+          "designation": "60",
+          "signal": "spare (size 4)",
+          "cavityPlugPartId": "pl_sz4"
+        },
+        {
+          "id": "nc61",
+          "designation": "61",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
           "id": "c25",
@@ -224,6 +431,61 @@
           "cavityPlugPartId": "pl_sz16"
         },
         {
+          "id": "c7",
+          "designation": "71",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-B B15",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "72",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-B B16",
+          "propagate": false
+        },
+        {
+          "id": "c9",
+          "designation": "73",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-B B23",
+          "propagate": false
+        },
+        {
+          "id": "c10",
+          "designation": "74",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-B B6",
+          "propagate": false
+        },
+        {
+          "id": "c11",
+          "designation": "75",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-B B7",
+          "propagate": false
+        },
+        {
+          "id": "c12",
+          "designation": "76",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECUMaster CSB3 - Power/CAN/Switch I/O SW"
+        },
+        {
+          "id": "c19",
+          "designation": "77",
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c21",
+          "designation": "78",
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
           "id": "c34",
           "designation": "79",
           "signal": "spare (size 16)",
@@ -248,38 +510,106 @@
           "cavityPlugPartId": "pl_sz16"
         },
         {
-          "id": "c38",
-          "designation": "3",
+          "id": "c16",
+          "designation": "83",
+          "signal": "Knock 1 SIG+ (ECU B9)",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c17",
+          "designation": "84",
+          "signal": "Knock 1 SIG- (to Gnd Out B22)",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c18",
+          "designation": "85",
+          "signal": "Knock 1 screen",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "86",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ETB motor + (Aux 9, B18)",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "87",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ETB motor - (Aux 10, B26)",
+          "propagate": false
+        },
+        {
+          "id": "c22",
+          "designation": "88",
+          "signal": "ETB motor screen",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c15",
+          "designation": "89",
+          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c20",
+          "designation": "90",
+          "signal": "Switched 12V to gearbox VSS (from sp_sw12)",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c23",
+          "designation": "91",
+          "signal": "Gearbox VSS screen",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c13",
+          "designation": "92",
+          "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c14",
+          "designation": "93",
+          "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c24",
+          "designation": "94",
+          "signal": "CAN-Lambda CAN pair screen",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c3",
+          "designation": "95",
+          "signal": "CAN-Lambda +12V, RFRM LAM 7.5A (14 AWG)",
+          "contactPartId": "ct_hdp12p"
+        },
+        {
+          "id": "c4",
+          "designation": "96",
+          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
+          "contactPartId": "ct_hdp12p"
+        },
+        {
+          "id": "c1",
+          "designation": "97",
           "signal": "spare (size 12)",
           "cavityPlugPartId": "pl_sz12"
         },
         {
-          "id": "c39",
-          "designation": "4",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
-        },
-        {
-          "id": "c40",
-          "designation": "5",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
-        },
-        {
-          "id": "c41",
-          "designation": "6",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
-        },
-        {
-          "id": "c42",
-          "designation": "7",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
-        },
-        {
-          "id": "c43",
-          "designation": "8",
+          "id": "c2",
+          "designation": "98",
           "signal": "spare (size 12)",
           "cavityPlugPartId": "pl_sz12"
         },
@@ -306,42 +636,6 @@
           "designation": "102",
           "signal": "spare (size 12)",
           "cavityPlugPartId": "pl_sz12"
-        },
-        {
-          "id": "c48",
-          "designation": "48",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
-        },
-        {
-          "id": "c49",
-          "designation": "49",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
-        },
-        {
-          "id": "c50",
-          "designation": "54",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
-        },
-        {
-          "id": "c51",
-          "designation": "55",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
-        },
-        {
-          "id": "c52",
-          "designation": "43",
-          "signal": "spare (size 4)",
-          "cavityPlugPartId": "pl_sz4"
-        },
-        {
-          "id": "c53",
-          "designation": "60",
-          "signal": "spare (size 4)",
-          "cavityPlugPartId": "pl_sz4"
         }
       ],
       "layoutPosition": {
@@ -2495,6 +2789,16 @@
         "x": 4650,
         "y": -60
       }
+    },
+    {
+      "id": "n_drb102",
+      "width": 390,
+      "color": "Orange",
+      "schematicPosition": {
+        "x": 3690,
+        "y": 1440
+      },
+      "text": "BULKHEAD = ONE DRB102 CONNECTOR (Daniel 2026-10-12, shared-connector rule). bh_b_fw is the whole 102-cavity receptacle with TE's cavity numbers. A and B are only our names for its sections. Cavities marked N/C here are wired on ST185-A-cabin - see ST185-A-cabin (DRB 1-2, 9-42, 44-47, 50-53, 56-59, 61); their contacts and sealing plugs are counted there."
     }
   ],
   "wireParts": [
@@ -2719,7 +3023,7 @@
           "mountPartId": "mt_drbf_1a"
         }
       ],
-      "numberOfCavities": 53
+      "numberOfCavities": 102
     },
     {
       "id": "cp_dt06_6s",

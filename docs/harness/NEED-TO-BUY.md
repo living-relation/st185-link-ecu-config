@@ -162,16 +162,15 @@ will over-order these; use this list, not the drawings.
 | Connector | One part, drawn on | Counted in |
 |---|---|---|
 
-## One housing, drawn as two logical halves
+## One housing, drawn whole in several files
 
-These connector ids are DIFFERENT nodes with different, non-overlapping cavities, not
-copies of the same node - but they are still one physical housing, split across an
-A-half and a B-half so the A/B ECU-letter gate applies to each side's own signals.
-The housing part number and its wedgelock/mount/backshell hardware are counted once,
-on the alphabetically-first half; every cavity's own contacts and plugs are still
-counted on both halves, since those are real and separate.
+These connector ids are the SAME physical connector drawn whole in more than one file
+(shared-connector rule, Daniel 2026-10-12): each file wires its own section and marks
+the other files' cavities N/C. The housing part number and its wedgelock/mount/backshell
+hardware are counted once, on the alphabetically-first id; each live cavity's contact or
+plug is counted in the file that owns it, N/C cavities never.
 
-| Group | Halves | Counted in |
+| Group | Drawn as | Counted in |
 |---|---|---|
 | `drb102_plug` | bh_a_eng, bh_b_eng | `bh_a_eng` |
 | `drb102_recept` | bh_a_fw, bh_b_fw | `bh_a_fw` |

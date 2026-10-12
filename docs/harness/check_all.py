@@ -19,6 +19,8 @@ What it runs, in order - every one in HARD is a hard gate:
   audit_shields.py         docs/SHIELD-RULES.md, enforced
   audit_pin_names.py       shield grounds carry drains only; one name per mating cavity
   audit_mating.py          A cabin mates A engine, B mates B
+  audit_shared_connectors.py a connector shared by several files is drawn whole in each: same
+                           part, full cavity count, other files' cavities N/C (Daniel 2026-10-12)
   validate_bulkhead_letter.py ECU looms follow the ECU connector letter; crossovers a/b/c only
   audit_bulkhead_pairs.py  no bulkhead cavity wired on one side only
   audit_bh_collisions.py   bulkhead pin sharing (direct or pigtail + splice): only one class
@@ -57,7 +59,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["validate_ownership.py"], ["validate_interfaces.py"], ["validate_wheel_speed.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_shields.py"],
-        ["audit_pin_names.py"], ["audit_mating.py"], ["validate_bulkhead_letter.py"],
+        ["audit_pin_names.py"], ["audit_mating.py"], ["audit_shared_connectors.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["buylist.py", "--check"],
         ["buildlist.py", "--check"]]

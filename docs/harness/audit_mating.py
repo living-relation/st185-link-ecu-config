@@ -20,7 +20,9 @@ checks, against sot/channels.csv:
       bulkhead cavity's `designation` is its real DRB102 cavity number, the same
       on both halves of its bulkhead; A and B together use each of the 102
       physical cavities exactly once; and the contact or sealing plug in each
-      cavity is the size TE's drawing gives that cavity.
+      cavity is the size TE's drawing gives that cavity. Only live cavities count here:
+      each drawing shows all 102 and marks the other section's cavities N/C
+      (audit_shared_connectors.py checks those).
 
 Shared rails (+5V, +8V, Gnd Out) are exempt from M2: loom B has no +5V pin, so
 it borrows A32 by design. Pin *names* across each mating pair are checked by
@@ -188,7 +190,7 @@ for (nid, cav), looms in sorted(cav_owner.items()):
 # M8 - DRB102 physical cavity map. Cavity sizes from TE customer drawing
 # DRB12-102PXE-L018 rev C3 (insert face): size 12 = 1-8 and 95-102, size 8 = 48, 49,
 # 54, 55, size 4 = 43 and 60, size 16 = the other 80. Two wedgelock halves, 1-51 and
-# 52-102. bh_a_* and bh_b_* are logical halves (ECU letter), not wedgelock halves.
+# 52-102. bh_a_* and bh_b_* each draw all 102; A / B are sections (ECU letter), not wedgelock halves.
 DRB_SIZE = {n: 16 for n in range(1, 103)}
 DRB_SIZE.update({n: 12 for n in list(range(1, 9)) + list(range(95, 103))})
 DRB_SIZE.update({48: 8, 49: 8, 54: 8, 55: 8, 43: 4, 60: 4})
@@ -202,6 +204,8 @@ for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
             continue
         m = desig.setdefault(cn["id"], {})
         for cv in cn.get("cavities", []):
+            if cv.get("notConnected"):
+                continue          # the other section's cavity, live on the other loom (audit_shared_connectors.py)
             num = str(cv.get("designation", ""))
             if not num.isdigit() or int(num) not in DRB_SIZE:
                 bad.append("M8 %s %s designation %r is not a DRB102 cavity number (1-102)"

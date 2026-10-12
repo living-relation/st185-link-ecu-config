@@ -1896,7 +1896,7 @@
     }
   ],
   "physicalPartGroups": {
-    "_doc": "Different connector ids that are documentation halves of ONE physical part (the DRB102 bulkhead A/B halves). buylist.py counts the housing and its configuration hardware once per group. Lives here because harness.design rejects unknown connector keys.",
+    "_doc": "Connector ids in different harness files that are the SAME physical connector (the DRB102 bulkhead: receptacle on A-cabin + B-cabin, plug on A-engine + B-engine). Each file draws the whole connector and marks the other files' cavities N/C (audit_shared_connectors.py). buylist.py counts the housing and its configuration hardware once per group. Lives here because harness.design rejects unknown connector keys.",
     "drb102_recept": [
       {
         "harness": "A-cabin",
