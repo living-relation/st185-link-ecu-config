@@ -45,6 +45,15 @@
       "layoutPosition": {
         "x": -30,
         "y": -120
+      },
+      "partImage": {
+        "schematic": {
+          "size": 150,
+          "position": {
+            "x": 30,
+            "y": -150
+          }
+        }
       }
     },
     {
@@ -118,12 +127,21 @@
         }
       ],
       "schematicPosition": {
-        "x": 1290,
+        "x": 1230,
         "y": 510
       },
       "layoutPosition": {
         "x": 1470,
         "y": 0
+      },
+      "partImage": {
+        "schematic": {
+          "size": 150,
+          "position": {
+            "x": 1290,
+            "y": 360
+          }
+        }
       }
     },
     {
@@ -136,8 +154,8 @@
         "y": 0
       },
       "schematicPosition": {
-        "x": 1230,
-        "y": 120
+        "x": 1140,
+        "y": 90
       },
       "cavities": [
         {
@@ -182,8 +200,8 @@
         "y": 60
       },
       "schematicPosition": {
-        "x": 270,
-        "y": 570
+        "x": 30,
+        "y": 600
       },
       "cavities": [
         {
@@ -221,7 +239,16 @@
           "contactPartId": "ct_m9_solder",
           "propagate": false
         }
-      ]
+      ],
+      "partImage": {
+        "schematic": {
+          "size": 150,
+          "position": {
+            "x": 150,
+            "y": 450
+          }
+        }
+      }
     }
   ],
   "cables": [
@@ -378,6 +405,15 @@
         "target": {
           "id": "ix_ws_front_r",
           "handle": "c5"
+        }
+      },
+      "partImage": {
+        "schematic": {
+          "size": 90,
+          "position": {
+            "x": 975,
+            "y": 390
+          }
         }
       }
     }
