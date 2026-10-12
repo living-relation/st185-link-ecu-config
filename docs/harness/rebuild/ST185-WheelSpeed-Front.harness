@@ -291,7 +291,7 @@
         "id": "cab_fr_sh",
         "color": "Shield",
         "source": {
-          "id": "sp_vrc_f_in_sh",
+          "id": "sp_vrc_f_fr_ss",
           "handle": "Splice"
         }
       }
@@ -492,7 +492,7 @@
         "x": 1740,
         "y": 480
       },
-      "text": "SHIELDS (docs/SHIELD-RULES.md; no connector shells, drains on pins). Each sensor screen floats at the sensor. The FL and FR cable screens join at one splice under a Raychem S200-2-W1-22-9 SolderSleeve; its 22 AWG lead is the one drain to IN pin 3. The output cable drain lands on OUT pin 5 and runs on to inline pin 5 and the ECU shield ground. Inside the VRC the build joins IN pin 3 to OUT pin 5 by wire. One screen node, grounded once, at the ECU."
+      "text": "SHIELDS (docs/SHIELD-RULES.md; no connector shells, drains on pins). Each sensor screen floats at the sensor. Each sensor cable gets its own Raychem S200-2-W1-22-9 SolderSleeve; its 22 AWG lead is that cable's drain. DRAIN T-SPLICE (Daniel 2026-10-12): the FL drain is the one crimped (soldered) into IN pin 3; the FR drain is soldered onto it about 6 mm (0.25 in) behind the rear of the plug, where 6 mm of the FL drain's insulation is cut away - no combined pigtail, no two wires in one pin, drains stay 22 AWG. The output cable drain lands on OUT pin 5 and runs on to inline pin 5 and the ECU shield ground. Inside the VRC the build joins IN pin 3 to OUT pin 5 by wire. One screen node, grounded once, at the ECU."
     },
     {
       "id": "n_iso",
@@ -500,7 +500,7 @@
       "color": "Red",
       "schematicPosition": {
         "x": 1740,
-        "y": 750
+        "y": 870
       },
       "text": "ISOLATION. The PCB must not touch the enclosure - nylon standoffs; the board grounds through the output cable only. The screen never touches the case either: the drains run pin to pin inside the box. Mount the enclosure on nylon hardware."
     },
@@ -510,7 +510,7 @@
       "color": "Red",
       "schematicPosition": {
         "x": 1740,
-        "y": 930
+        "y": 1080
       },
       "text": "NO CONNECTOR OR CASE LANDINGS FOR THE SCREEN. Drains run by pin (IN 3, OUT 5) and join inside the box by wire - nothing bonds to the case and no connector shell carries the screen, so there is no bare-metal spot to mask before powder coat."
     }
@@ -757,21 +757,74 @@
       },
       "schematicPosition": {
         "x": 750,
-        "y": 210
+        "y": 30
+      }
+    },
+    {
+      "id": "sp_vrc_f_fr_ss",
+      "coveringIds": [
+        "cov_s200_22"
+      ],
+      "layoutPosition": {
+        "x": 450,
+        "y": 90
+      },
+      "schematicPosition": {
+        "x": 750,
+        "y": 300
+      }
+    },
+    {
+      "id": "sp_vrc_f_in_t",
+      "partId": "spp_solder_generic",
+      "locationId": "m9_vrc_f_in",
+      "layoutPosition": {
+        "x": 510,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 1050,
+        "y": 180
       }
     }
   ],
   "wires": [
     {
-      "id": "w_vrc_f_in_drain",
+      "id": "w_vrc_f_fl_drain",
       "color": "White",
       "source": {
         "id": "sp_vrc_f_in_sh",
         "handle": "Splice"
       },
       "target": {
+        "id": "sp_vrc_f_in_t",
+        "handle": "Splice"
+      },
+      "partId": "wp_22_wht_s200"
+    },
+    {
+      "id": "w_vrc_f_in_drain",
+      "color": "White",
+      "source": {
+        "id": "sp_vrc_f_in_t",
+        "handle": "Splice"
+      },
+      "target": {
         "id": "m9_vrc_f_in",
         "handle": "c3"
+      },
+      "partId": "wp_22_wht_s200"
+    },
+    {
+      "id": "w_vrc_f_fr_drain",
+      "color": "White",
+      "source": {
+        "id": "sp_vrc_f_fr_ss",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_vrc_f_in_t",
+        "handle": "Splice"
       },
       "partId": "wp_22_wht_s200"
     }
@@ -822,6 +875,14 @@
         "value": 22,
         "unit": "AWG"
       }
+    }
+  ],
+  "spliceParts": [
+    {
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
     }
   ]
 }

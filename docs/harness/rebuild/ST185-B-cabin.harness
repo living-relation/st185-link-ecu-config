@@ -1022,7 +1022,7 @@
         "y": 150
       },
       "partId": "spp_solder_generic",
-      "locationId": "bp_930"
+      "locationId": "ecu_b"
     },
     {
       "id": "sp_5v_b",
@@ -1278,8 +1278,7 @@
     },
     {
       "id": "w_drain_ecu_b",
-      "color": "Green",
-      "stripeColor": "Yellow",
+      "color": "Shield",
       "source": {
         "id": "sp_shield_b",
         "handle": "Splice"
@@ -1288,7 +1287,7 @@
         "id": "ecu_b",
         "handle": "b17"
       },
-      "partId": "wp_20_grn_yel"
+      "partId": "wp_20_shd"
     },
     {
       "id": "w_shc_knock1",
@@ -2491,7 +2490,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)\nsp_shield_b (Splice): drain T-splice about 6 mm (0.25 in) behind the ECU-B plug (Daniel 2026-10-12). The knock drain is the one crimped into B17 (w_drain_ecu_b is its last few mm); every other loom-B drain (ETB motor, VSS, CAN trunk drain from ST185-CAN, rear WS spur, front WS FR spur) is soldered onto it where 6 mm of its insulation is cut away. Drains stay 20 AWG - no combined-gauge pigtail, one wire per pin.",
       "schematicPosition": {
         "x": 4650,
         "y": -60
@@ -2505,18 +2504,6 @@
       "manufacturer": "generic",
       "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
       "color": "Green",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "wp_20_grn_yel",
-      "partNumber": "EW-1C20-GRN-YEL",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
-      "color": "Green",
-      "stripeColor": "Yellow",
       "gauge": {
         "value": 20,
         "unit": "AWG"

@@ -240,7 +240,7 @@
         "m9_vrc_r_in.c3",
         "m9_vrc_r_out.c5"
       ],
-      "note": "Drain connected on both the VRC input and the VRC output, by pin: IN pin 3 (both sensor screens via one SolderSleeve splice) is wired to OUT pin 5 inside the box. No connector shell and no case bond (Daniel 2026-10-12). Grounded at the ECU."
+      "note": "Drain connected on both the VRC input and the VRC output, by pin: IN pin 3 (one sensor drain crimped in, the other T-spliced onto it behind the plug, DECISIONS S9) is wired to OUT pin 5 inside the box. No connector shell and no case bond (Daniel 2026-10-12). Grounded at the ECU."
     },
     {
       "id": "VRC_FRONT",
@@ -249,7 +249,7 @@
         "m9_vrc_f_in.c3",
         "m9_vrc_f_out.c5"
       ],
-      "note": "Drain connected on both the VRC input and the VRC output, by pin: IN pin 3 (both sensor screens via one SolderSleeve splice) is wired to OUT pin 5 inside the box. No connector shell and no case bond (Daniel 2026-10-12). Grounded at the ECU."
+      "note": "Drain connected on both the VRC input and the VRC output, by pin: IN pin 3 (one sensor drain crimped in, the other T-spliced onto it behind the plug, DECISIONS S9) is wired to OUT pin 5 inside the box. No connector shell and no case bond (Daniel 2026-10-12). Grounded at the ECU."
     }
   ],
   "flyingLeads": [

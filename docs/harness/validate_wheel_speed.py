@@ -11,9 +11,10 @@ Checked per side against interfaces.json "wheelSpeed":
   W3  each sensor drop is one screened 2-core cable: c1 to the VRC IN "+" endpoint, c2 to
       "-"; its screen has one end only, on the IN "screen" endpoint (floats at the sensor),
       and that endpoint is part of the VRC enclosure. Where the endpoint is a drawn plug the
-      screen may instead end at a splice from which exactly one drain wire reaches the
-      endpoint's screen pin (Daniel's example 2026-10-12: both sensor screens under one
-      SolderSleeve, one drain to IN pin 3). Its layout leg runs from the sensor plug either
+      screen may instead end at its SolderSleeve splice whose drain lead reaches the
+      endpoint's screen pin, directly or through a drain T-splice and nothing else
+      (Daniel 2026-10-12: one sensor drain crimped into IN pin 3, the other T-spliced onto
+      it about 6 mm behind the plug). Its layout leg runs from the sensor plug either
       straight to the IN plug or to a branch point that carries only the sensor legs and one
       bundle to the IN plug (the legs meet only by the plug)
   W4  the output cable(s) run from the VRC OUT endpoint to the interface source half; each
@@ -104,8 +105,19 @@ for side, s in sorted(spec.items()):
         sh = cb.get("shield") or {}
         ends = [end(sh.get(k)) for k in ("source", "target") if sh.get(k)]
         if ep.get("connector") and len(ends) == 1 and ends[0][1] == "Splice":
-            drains = [w for w in d.get("wires", []) if end(w.get("source")) == ends[0] or end(w.get("target")) == ends[0]]
-            reach = [end(w["target"]) if end(w["source"]) == ends[0] else end(w["source"]) for w in drains]
+            # follow the drain leads through any T-splice (Daniel 2026-10-12) to the pin
+            seen, todo, reach = {ends[0]}, [ends[0]], []
+            while todo:
+                n = todo.pop()
+                for w in d.get("wires", []):
+                    a, b = end(w.get("source")), end(w.get("target"))
+                    if n not in (a, b):
+                        continue
+                    o = b if a == n else a
+                    if o in seen:
+                        continue
+                    seen.add(o)
+                    (todo if o[1] == "Splice" else reach).append(o)
             if reach == [t["screen"]]:
                 ends = [t["screen"]]
         if ends != [t["screen"]]:
