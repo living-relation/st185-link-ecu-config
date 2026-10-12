@@ -15,7 +15,8 @@
         "handle": "c3"
       },
       "color": "Black",
-      "stripeColor": "Blue"
+      "stripeColor": "Blue",
+      "partId": "m16_20_06"
     }
   ],
   "connectors": [
@@ -565,7 +566,20 @@
       }
     }
   ],
-  "wireParts": [],
+  "wireParts": [
+    {
+      "id": "m16_20_06",
+      "partNumber": "M22759/16-20-06",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    }
+  ],
   "cableParts": [
     {
       "id": "cab_sh_2c",

@@ -250,7 +250,7 @@
         "id": "d_hb",
         "handle": "Left"
       },
-      "partId": "wp_20_red"
+      "partId": "m16_20_2"
     },
     {
       "id": "w_hb_k",
@@ -263,7 +263,7 @@
         "id": "sp_led_gnd",
         "handle": "Splice"
       },
-      "partId": "wp_20_blk"
+      "partId": "m16_20_0"
     },
     {
       "id": "w_tl_a",
@@ -276,7 +276,7 @@
         "id": "d_tl",
         "handle": "Left"
       },
-      "partId": "wp_20_grn"
+      "partId": "m16_20_5"
     },
     {
       "id": "w_tl_k",
@@ -289,7 +289,7 @@
         "id": "sp_led_gnd",
         "handle": "Splice"
       },
-      "partId": "wp_20_blk"
+      "partId": "m16_20_0"
     },
     {
       "id": "w_tr_a",
@@ -302,7 +302,7 @@
         "id": "d_tr",
         "handle": "Left"
       },
-      "partId": "wp_20_grn"
+      "partId": "m16_20_5"
     },
     {
       "id": "w_tr_k",
@@ -315,7 +315,7 @@
         "id": "sp_led_gnd",
         "handle": "Splice"
       },
-      "partId": "wp_20_blk"
+      "partId": "m16_20_0"
     },
     {
       "id": "w_led_gnd_out",
@@ -328,7 +328,7 @@
         "id": "t_led_gnd",
         "handle": "Terminal"
       },
-      "partId": "wp_20_blk"
+      "partId": "m16_20_0"
     },
     {
       "id": "w_pk_a",
@@ -341,7 +341,7 @@
         "id": "d_pk",
         "handle": "Left"
       },
-      "partId": "wp_20_red"
+      "partId": "m16_20_2"
     },
     {
       "id": "w_pk_k",
@@ -355,7 +355,7 @@
         "handle": "Terminal"
       },
       "stripeColor": "Green",
-      "partId": "wp_20_red_grn"
+      "partId": "m16_20_25"
     },
     {
       "id": "w_chg_a",
@@ -369,7 +369,7 @@
         "handle": "Left"
       },
       "stripeColor": "Orange",
-      "partId": "wp_20_blk_org"
+      "partId": "m16_20_03"
     },
     {
       "id": "w_chg_k",
@@ -382,7 +382,7 @@
         "id": "fl_cl_c12_c8",
         "handle": "Terminal"
       },
-      "partId": "wp_20_yel"
+      "partId": "m16_20_4"
     },
     {
       "id": "w_oil_a",
@@ -395,7 +395,7 @@
         "id": "d_oil",
         "handle": "Left"
       },
-      "partId": "wp_20_red"
+      "partId": "m16_20_2"
     },
     {
       "id": "w_oil_k",
@@ -408,7 +408,7 @@
         "id": "br_w_oil_k",
         "handle": "Terminal"
       },
-      "partId": "wp_20_wht"
+      "partId": "m16_20_9"
     },
     {
       "id": "w_ig_tap",
@@ -422,7 +422,7 @@
         "id": "sp_led_12v",
         "handle": "Splice"
       },
-      "partId": "wp_20_blk_org"
+      "partId": "m16_20_03"
     }
   ],
   "bundles": [
@@ -646,10 +646,10 @@
   ],
   "wireParts": [
     {
-      "id": "wp_20_blk",
-      "partNumber": "EW-1C20-BLK",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_0",
+      "partNumber": "M22759/16-20-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Black",
       "gauge": {
         "value": 20,
@@ -657,10 +657,10 @@
       }
     },
     {
-      "id": "wp_20_grn",
-      "partNumber": "EW-1C20-GRN",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_5",
+      "partNumber": "M22759/16-20-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Green",
       "gauge": {
         "value": 20,
@@ -668,10 +668,10 @@
       }
     },
     {
-      "id": "wp_20_wht",
-      "partNumber": "EW-1C20-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "White",
       "gauge": {
         "value": 20,
@@ -679,10 +679,10 @@
       }
     },
     {
-      "id": "wp_20_yel",
-      "partNumber": "EW-1C20-YEL",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_4",
+      "partNumber": "M22759/16-20-4",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Yellow",
       "gauge": {
         "value": 20,
@@ -690,10 +690,10 @@
       }
     },
     {
-      "id": "wp_20_red",
-      "partNumber": "EW-1C20-RED",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_2",
+      "partNumber": "M22759/16-20-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Red",
       "gauge": {
         "value": 20,
@@ -701,10 +701,10 @@
       }
     },
     {
-      "id": "wp_20_blk_org",
-      "partNumber": "EW-1C20-BLK-ORG",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/ORANGE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_03",
+      "partNumber": "M22759/16-20-03",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Black",
       "stripeColor": "Orange",
       "gauge": {
@@ -713,10 +713,10 @@
       }
     },
     {
-      "id": "wp_20_red_grn",
-      "partNumber": "EW-1C20-RED-GRN",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED/GREEN, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_25",
+      "partNumber": "M22759/16-20-25",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED/GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Red",
       "stripeColor": "Green",
       "gauge": {

@@ -55,7 +55,7 @@ def add_copy(d, loom, wire, half, cav, extra_target=None, gauge_part=None):
     save(p, doc)
 
 
-def add_wire(d, loom, wid, a, b, part="wp_20_blk"):
+def add_wire(d, loom, wid, a, b, part="m16_20_0"):
     p, doc = load(d, loom)
     doc["wires"].append({"id": wid, "source": a, "target": b, "color": "Black", "partId": part})
     save(p, doc)

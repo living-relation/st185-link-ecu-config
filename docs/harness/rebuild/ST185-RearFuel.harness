@@ -70,7 +70,7 @@
         "handle": "c1"
       },
       "color": "White",
-      "partId": "wp_20_wht"
+      "partId": "m16_20_9"
     },
     {
       "id": "w45_r",
@@ -84,7 +84,7 @@
       },
       "color": "Black",
       "stripeColor": "White",
-      "partId": "wp_20_blk_wht"
+      "partId": "m16_20_09"
     }
   ],
   "bundles": [
@@ -111,10 +111,10 @@
   ],
   "wireParts": [
     {
-      "id": "wp_20_wht",
-      "partNumber": "EW-1C20-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "White",
       "gauge": {
         "value": 20,
@@ -122,10 +122,10 @@
       }
     },
     {
-      "id": "wp_20_blk_wht",
-      "partNumber": "EW-1C20-BLK-WHT",
-      "manufacturer": "generic",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV",
+      "id": "m16_20_09",
+      "partNumber": "M22759/16-20-09",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Black",
       "stripeColor": "White",
       "gauge": {
