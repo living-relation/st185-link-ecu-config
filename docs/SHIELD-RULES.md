@@ -65,21 +65,27 @@ sleeve, joining only the screen and the sleeve's drain lead (`ss_<cable>_<s|t>`,
 
 Sizing comes from TE's SolderSleeve catalog (5-1654025-5, section 8): a sleeve fits when the
 cable **jacket OD <= its Jacket OD Max** and the **screen OD >= its Shield OD Min**. The cables
-are generic (plan 6.24), so each is sized against its M27500 TG-14 equivalent (ETFE, tinned
-braid, ETFE jacket; Harbour Industries WC27500 table). Data and sources:
+are generic (plan 6.24), so each is sized against the Raychem (TE) 55PC shielded cable of the
+same core count and 20 AWG, from TE's own specification control drawings (Daniel's shelf cable
+is Raychem, no drain wire). Jacket OD is the sheet's upper spec limit; screen OD is derived
+(braid sits under the jacket: lower-limit OD minus twice the target wall). Data and sources:
 `docs/harness/cable_dimensions.json`. Lead gauge follows what the lead lands on: **20 AWG
 (`S02-0N-R`, M83519/2)** for crimp contacts and T-splices - the DRB and DT size-16 contacts
 take 14-20 AWG, which a 22 AWG lead misses - and **22 AWG (`S200-N-WI-22-9`)** only on the
 VRC M9 solder cups.
 
-| Cable (generic) | Reference | Screen / jacket OD | Sleeve, 20 AWG lead | Sleeve, 22 AWG lead |
+| Cable (generic) | TE sheet | Screen / jacket OD | Sleeve, 20 AWG lead | Sleeve, 22 AWG lead |
 |---|---|---|---|---|
-| 1C 20 AWG | M27500-20TG1T14 | 1.70 / 1.85 mm | `S02-02-R` | `S200-2-WI-22-9` |
-| 2C TP 20 AWG | M27500-20TG2T14 | 3.00 / 3.40 mm | `S02-03-R` | `S200-3-WI-22-9` |
-| 2C 18 AWG | M27500-18TG2T14 | 3.51 / 3.91 mm | `S02-03-R` | - |
-| 3C 20 AWG | M27500-20TG3T14 | 3.38 / 3.66 mm | `S02-03-R` | - |
-| 4C 20 AWG | M27500-20TG4T14 | 3.53 / 3.94 mm | `S02-03-R` | `S200-3-WI-22-9` |
-| 6C 20 AWG | M27500-20TG6T14 | > 3.53 / >= 4.57 mm (bounded, not tabulated) | `S02-04-R` | - |
+| 1C 20 AWG | 55PC1213-20 (SCD rev B) | 1.73 / 2.21 mm | `S02-02-R` | `S200-2-WI-22-9` |
+| 2C TP 20 AWG | 55PC1122-20 (rev D) | 2.84 / 3.40 mm | `S02-03-R` | `S200-3-WI-22-9` |
+| 2C 18 AWG | 55PC1122-18 (rev D) | 3.33 / 3.91 mm | `S02-03-R` | - |
+| 3C 20 AWG | 55PC1133-20 (rev C) | 3.05 / 3.66 mm | `S02-03-R` | - |
+| 4C 20 AWG | 55PC1243-20 (rev A) | 3.38 / 4.95 mm | `S02-04-R` | `S200-4-WI-22-9` |
+| 6C 20 AWG | 55PC6291-20 (rev A, 6-core sheet) | 4.11 / 4.80 mm | `S02-04-R` | - |
+
+The 2-core jacket (3.40 mm) is over the `-2` limit of 2.7 mm, so Daniel's `S200-2` example
+does not fit a 2-core; it fits only the 1-core. The 4-core has a wide OD tolerance
+(.150-.195 in); its .173 in target (4.39 mm) is already over the `-3` limit of 4.3 mm.
 
 Where two sizes fit, the one with the larger worst-case margin is used. Gate:
 `docs/harness/audit_solder_sleeves.py` (SS1 a sleeve at every terminated screen end, SS2 one
@@ -199,7 +205,7 @@ Front box → `sp_shield_a` → **A7**; rear box → `sp_shield_b` → **B17**.
 
 The VRC and its panel sockets are not drawn. Each VRC harness is two separate pieces ending in
 two non-shielded 5-pin M9 plugs (binder `99 0414 00 05`; DECISIONS S8, Daniel's example
-2026-10-12): each sensor cable screen has its own Raychem `S200-3-WI-22-9` SolderSleeve with a
+2026-10-12): each sensor cable screen has its own Raychem SolderSleeve (`S200-3-WI-22-9` on the 2-core IN cables, `S200-4-WI-22-9` on the 4-core OUT cable) with a
 22 AWG drain lead; the left drain is the one soldered into IN pin 3 and the right drain is
 T-spliced onto it about 6 mm behind the plug (DECISIONS S9 - this is how the "splice together
 and terminate on a single pin" rule above is built); the output cable drain is OUT pin 5.
