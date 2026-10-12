@@ -103,9 +103,9 @@
     },
     {
       "id": "m8_vrc_f_in",
-      "label": "VRC front IN M8 cable plug - both sensor legs (FL, FR) land here; mates the VRC enclosure IN M8 panel socket",
+      "label": "VRC front IN M8 cable plug - both sensor legs (FL, FR) land here; end of the IN piece (mates the VRC IN panel socket)",
       "width": 390,
-      "partId": "cp_m8_plug_4m",
+      "partId": "cp_m8_plug_6m",
       "layoutPosition": {
         "x": 900,
         "y": 0
@@ -128,26 +128,32 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "FR VR+"
+          "signal": "FL sensor drain"
         },
         {
           "id": "c4",
           "designation": "4",
+          "signal": "FR VR+"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
           "signal": "FR VR-"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "FR sensor drain"
         }
-      ],
-      "shell": {
-        "id": "shell",
-        "signal": "FL + FR sensor screens - both drains on the shell (one landing), shell to the VRC case"
-      }
+      ]
     },
     {
       "id": "m8_vrc_f_out",
-      "label": "VRC front OUT M8 cable plug - output cable to IX_WS_FRONT; mates the VRC enclosure OUT M8 panel socket",
+      "label": "VRC front OUT M8 cable plug - start of the OUT piece, output cable to IX_WS_FRONT (mates the VRC OUT panel socket)",
       "width": 390,
-      "partId": "cp_m8_plug_4m",
+      "partId": "cp_m8_plug_6m",
       "layoutPosition": {
-        "x": 1140,
+        "x": 1500,
         "y": 0
       },
       "schematicPosition": {
@@ -174,12 +180,18 @@
           "id": "c4",
           "designation": "4",
           "signal": "FR conditioned out"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "Output cable drain"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "spare"
         }
-      ],
-      "shell": {
-        "id": "shell",
-        "signal": "Output cable screen - shell bonded to the VRC case"
-      }
+      ]
     }
   ],
   "terminals": [],
@@ -223,7 +235,7 @@
         "color": "Shield",
         "source": {
           "id": "m8_vrc_f_in",
-          "handle": "shell"
+          "handle": "c3"
         }
       }
     },
@@ -244,7 +256,7 @@
           },
           "target": {
             "id": "m8_vrc_f_in",
-            "handle": "c3"
+            "handle": "c4"
           },
           "twistedWithNext": true
         },
@@ -257,7 +269,7 @@
           },
           "target": {
             "id": "m8_vrc_f_in",
-            "handle": "c4"
+            "handle": "c5"
           }
         }
       ],
@@ -266,7 +278,7 @@
         "color": "Shield",
         "source": {
           "id": "m8_vrc_f_in",
-          "handle": "shell"
+          "handle": "c6"
         }
       }
     },
@@ -332,7 +344,7 @@
         "color": "Shield",
         "source": {
           "id": "m8_vrc_f_out",
-          "handle": "shell"
+          "handle": "c5"
         },
         "target": {
           "id": "ix_ws_front_r",
@@ -396,7 +408,7 @@
         "x": 1920,
         "y": 0
       },
-      "text": "FRONT WHEEL SPEED - one Y harness. FL and FR ABS drops (loom C fender route, no bulkhead) run as two separate legs to the front VRC's one IN M8 plug; the output runs through a grommet to the 6-way inline DT04-6P near the ECU (IX_WS_FRONT). The ECU side owns only the short spur and the DT06-6S mating half (ST185-A-cabin; the FR core's short screened spur to B21 runs on to ST185-B-cabin; c6 is a plugged spare)."
+      "text": "FRONT WHEEL SPEED - one Y harness. FL and FR ABS drops (loom C fender route, no bulkhead) run as two separate legs to the front VRC's one IN M8 plug (the IN piece ends there); the output runs through a grommet to the 6-way inline DT04-6P near the ECU (IX_WS_FRONT). The ECU side owns only the short spur and the DT06-6S mating half (ST185-A-cabin; the FR core's short screened spur to B21 runs on to ST185-B-cabin; c6 is a plugged spare)."
     },
     {
       "id": "n_vrc",
@@ -406,7 +418,7 @@
         "x": 1920,
         "y": 210
       },
-      "text": "VRC NOT DRAWN. The VR conditioner, its enclosure and its panel sockets belong to the enclosure build. This harness ends in exactly two M8 cable plugs, same part (binder 99 3363 100 04, 4 contacts + metal shell; Daniel 2026-10-12): m8_vrc_f_in IN - pin 1 FL VR+, 2 FL VR-, 3 FR VR+, 4 FR VR-, both sensor screens on the shell; m8_vrc_f_out OUT - pin 1 +5V, 2 Gnd Out, 3 FL out, 4 FR out, output screen on the shell. The shells bond to the VRC case. FL and FR run as separate legs and meet only at the IN plug."
+      "text": "VRC NOT DRAWN. The VR conditioner, its enclosure and its panel sockets belong to the enclosure build. This harness is TWO SEPARATE PIECES with no drawn link (Daniel 2026-10-12): the IN piece - FL and FR legs into the one IN M8 plug m8_vrc_f_in (pin 1 FL VR+, 2 FL VR-, 3 FL drain, 4 FR VR+, 5 FR VR-, 6 FR drain) - and the OUT piece - OUT M8 plug m8_vrc_f_out (pin 1 +5V, 2 Gnd Out, 3 FL out, 4 FR out, 5 drain, 6 spare) -> output cable -> IX_WS_FRONT. Both plugs are the same part, a non-shielded 6-pin M8 (part TBD - OPEN-ITEMS row 74). Drains run by pin, never by connector shell."
     },
     {
       "id": "n_shield",
@@ -416,7 +428,7 @@
         "x": 1920,
         "y": 420
       },
-      "text": "SHIELDS - VRC powered-device exception (docs/SHIELD-RULES.md 6.30). Each sensor screen floats at the sensor; the two input drains land together on the IN plug's metal shell (one landing). The output cable screen lands on the OUT plug's shell. Both shells bond to the VRC case through the panel sockets (360 degrees, no pigtail - plan 6.30 'Why M8'). The output screen runs on to inline pin 5 and the ECU shield ground. One screen node, grounded once, at the ECU."
+      "text": "SHIELDS - VRC powered-device exception (docs/SHIELD-RULES.md 6.30; no connector shells, Daniel 2026-10-12). Each sensor screen floats at the sensor; its drain lands on its own IN plug pin (FL pin 3, FR pin 6). The output cable drain lands on OUT plug pin 5. Inside the box the enclosure build joins IN pins 3 / 6 to OUT pin 5 (and the case). The output screen runs on to inline pin 5 and the ECU shield ground. One screen node, grounded once, at the ECU."
     },
     {
       "id": "n_iso",
@@ -436,7 +448,7 @@
         "x": 1920,
         "y": 810
       },
-      "text": "MASK THE THREE CONNECTOR LANDINGS AND THE CASE RING-TERMINAL SPOT BEFORE POWDER COAT. The OUT shielding plate and the input screen ring terminals need bare metal. A coated landing silently breaks the screen."
+      "text": "MASK THE CASE RING-TERMINAL SPOT BEFORE POWDER COAT. Inside the box the drain jumper (IN pins 3 and 6 to OUT pin 5) bonds to the case there; a coated spot silently breaks the screen. No connector landing needs bare metal - the drains run by pin, not by connector shell."
     }
   ],
   "connectorParts": [
@@ -518,17 +530,17 @@
       "url": "https://www.te.com/usa-en/product-DT04-6P.html"
     },
     {
-      "id": "cp_m8_plug_4m",
-      "partNumber": "99 3363 100 04",
-      "manufacturer": "binder",
-      "description": "CONNECTOR, CIRCULAR, M8, CABLE PLUG, MALE, 4 POS, SHIELDABLE, METAL SHELL, SCREW CLAMP, IP67",
-      "numberOfCavities": 4,
+      "id": "cp_m8_plug_6m",
+      "partNumber": "TBD (M8 6-pos male cable plug, unshielded, field-attachable, 20 AWG)",
+      "manufacturer": "TBD",
+      "description": "CONNECTOR, CIRCULAR, M8, CABLE PLUG, MALE, 6 POS, UNSHIELDED, FIELD ATTACHABLE",
+      "numberOfCavities": 6,
       "gender": "Male",
-      "hasShell": true,
+      "hasShell": false,
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_m8_integral"
+          "contactPartId": "ct_m8_tbd"
         }
       ]
     }
@@ -569,20 +581,12 @@
       "contactColor": "Gold"
     },
     {
-      "id": "ct_m8_integral",
-      "partNumber": "(integral - 99 3363 100 04)",
-      "manufacturer": "binder",
-      "type": "Screw",
+      "id": "ct_m8_tbd",
+      "partNumber": "TBD (integral to the M8 6-pos plug)",
+      "manufacturer": "TBD",
+      "type": "Crimp",
       "gender": "Pin",
-      "description": "CONTACT, PIN, SCREW CLAMP, INTEGRAL",
-      "minGauge": {
-        "value": 26,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
+      "description": "CONTACT, PIN, M8, INTEGRAL"
     }
   ],
   "cableParts": [

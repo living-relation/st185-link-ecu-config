@@ -7,9 +7,8 @@ Each rule here cost a failed set_document_json at least once:
   - wires take no 'signal'
   - cavities take no 'description'
   - connectors take no 'notes'
-  - connectors take no 'shell' (6.27: no connector on this car has one) - except the VRC
-    IN / OUT M8 cable plugs declared as endpoint connectors in interfaces.json, the one
-    place with metal-shell connectors (plan 6.30 "Why M8"; Daniel 2026-10-12)
+  - connectors take no 'shell' (6.27; Daniel 2026-10-12, project-wide: never rely on a
+    connector shell - every drain lands on a pin)
   - a CablePart declares its screen with the boolean 'shielded'; the object
     form 'shield' belongs to the cable instance only
   - a cable's core count must match its CablePart's core count
@@ -22,8 +21,6 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "rebuild")
 
 WIDTHS = {60, 90, 150, 210, 270, 390}
-with open(os.path.join(HERE, "interfaces.json"), encoding="utf-8") as _fh:
-    SHELL_OK = {e["connector"] for e in json.load(_fh).get("endpoints", []) if e.get("connector")}
 COLORS = {"Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue",
           "Violet", "Gray", "White", "Pink", "Tan", "Maroon", "Light Yellow",
           "Light Green", "Light Blue", "Light Gray", "Transparent", "Shield"}
@@ -78,10 +75,8 @@ def check(fn):
         if c.get("width") is not None and c["width"] not in WIDTHS:
             bad.append("connector %s width %s" % (c["id"], c["width"]))
         if "shell" in c:
-            # 6.27: no connector on this car has a shield shell - except the declared VRC
-            # M8 plugs, whose shells bond to the VRC case (plan 6.30, Daniel 2026-10-12).
-            if c["id"] not in SHELL_OK:
-                bad.append("connector %s has a shell (6.27 says none do)" % c["id"])
+            # 6.27 / Daniel 2026-10-12: no connector shells anywhere - drains land on pins.
+            bad.append("connector %s has a shell (no connector shells - drains land on pins)" % c["id"])
             cav[c["id"]].add(c["shell"].get("id"))
         if "notes" in c:
             bad.append("connector %s has a notes key" % c["id"])

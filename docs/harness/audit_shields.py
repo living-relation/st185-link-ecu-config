@@ -7,9 +7,8 @@ The rules live in docs/SHIELD-RULES.md (short form) and plan 6.27 / 6.30 / 6.31 
       pin, a splice, a bulkhead or inline-interface cavity, a device-enclosure
       screen lead (VRC enclosure leads), or a legacy cross-reference - never a
       sensor or device cavity
-  R3  no screen lands on a connector shell - except the VRC IN / OUT M8 cable plugs declared
-      as endpoint connectors in interfaces.json, the one place with metal-shell connectors
-      (plan 6.30 "Why M8"; Daniel 2026-10-12)
+  R3  no screen lands on a connector shell - never rely on a shell, every drain lands on a
+      regular pin (Daniel 2026-10-12, project-wide; the VRC M8 plugs included)
   R5  a screen crossing a bulkhead uses its own pin, wired on BOTH halves
   R2  every screen reaches an ECU shield-ground pin
   R6  a cable screen landed at BOTH ends is allowed only where interfaces.json
@@ -34,9 +33,6 @@ g = model.Graph(reg)
 BOTH_ENDS_OK = {s["id"] for s in reg.get("shieldBothEndsOk", [])}
 ECU_SHIELD = {("ECU",) + k for k in model.SHIELD_PINS}
 
-# The VRC IN / OUT M8 cable plugs are the one place with metal-shell connectors (plan 6.30
-# "Why M8"): their screens land on the shell, which bonds to the VRC case (Daniel 2026-10-12).
-VRC_PLUGS = {(e["harness"], e["connector"]) for e in reg.get("endpoints", []) if e.get("connector")}
 bad = []
 used_cav = collections.defaultdict(set)
 for loom, d in g.docs.items():
@@ -52,7 +48,7 @@ for loom, d in g.docs.items():
         ends = [e for e in (w.get("source"), w.get("target")) if e]
         nodes = [g.node(loom, e) for e in ends]
         for e, n in zip(ends, nodes):
-            if e.get("handle") == "shell" and (loom, e.get("id")) not in VRC_PLUGS:
+            if e.get("handle") == "shell":
                 bad.append("R3 %s/%s lands on the shell of %s" % (loom, w["id"], e["id"]))
             elif n[0] == "C" and not e["id"].startswith("dm_"):
                 bad.append("R1 %s/%s lands on %s %s - a screen floats at the device"

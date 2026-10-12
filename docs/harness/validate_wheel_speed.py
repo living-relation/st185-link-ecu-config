@@ -21,9 +21,14 @@ Checked per side against interfaces.json "wheelSpeed":
   W7  once both sides are drawn, the old combined ST185-WheelSpeed drawing is gone
   W8  exactly two VRC M8 cable plugs per side, same part (Daniel 2026-10-12): one IN plug
       shared by both sensor endpoints (both legs land on it) and one OUT plug
+  W9  the IN piece and the OUT piece are separate (Daniel 2026-10-12): no bundle, branch
+      point, wire or cable joins the IN plug to the OUT plug in the drawing - the VRC box
+      that links them is not drawn. Gates that need the electrical link (screens, R2) get
+      it from interfaces.json "enclosures", never from a drawn connection
 
 Exit 1 on any finding.
 """
+import collections
 import sys
 
 import model
@@ -115,6 +120,26 @@ for side, s in sorted(spec.items()):
     if len(in_plugs) != 1 or None in in_plugs or not oep.get("connector") or len(plugs) != 2             or len(pparts) != 1:
         bad.append("W8 %s: want one shared IN plug and one OUT plug, same part; have IN %s, OUT %s, parts %s"
                    % (side, sorted(x or "-" for x in in_plugs), oep.get("connector"), sorted(x or "-" for x in pparts)))
+    if len(in_plugs) == 1 and oep.get("connector"):
+        link = collections.defaultdict(set)
+        for b in d.get("bundles", []):
+            link[b["sourceId"]].add(b["targetId"]); link[b["targetId"]].add(b["sourceId"])
+        for cond, cable, screen in model.conductors(d):
+            a_, b_ = end(cond.get("source"))[0], end(cond.get("target"))[0]
+            if a_ and b_:
+                link[a_].add(b_); link[b_].add(a_)
+        for cb in d.get("cables", []):
+            ids = [end(x.get(k))[0] for x in cb["cores"] + ([cb["shield"]] if cb.get("shield") else [])
+                   for k in ("source", "target") if x.get(k)]
+            for i_ in ids[1:]:
+                link[ids[0]].add(i_); link[i_].add(ids[0])
+        seen, todo = {next(iter(in_plugs))}, [next(iter(in_plugs))]
+        while todo:
+            for m_ in link[todo.pop()] - seen:
+                seen.add(m_); todo.append(m_)
+        if oep["connector"] in seen:
+            bad.append("W9 %s: the IN plug %s and the OUT plug %s are joined in the drawing - keep the IN and "
+                       "OUT pieces separate" % (side, next(iter(in_plugs)), oep["connector"]))
     for oc in s["outputCables"]:
         cb = cables.get(oc["cable"])
         if not cb:

@@ -13,6 +13,16 @@ Device pin, pin name, and whether that device gets a shield:
 lands on is owned by the ECU (`sot/channels.csv`, Link documentation, XtremeX
 quick install manual).
 
+## No connector shells (Daniel, 2026-10-12, binding, project-wide)
+
+**Never rely on a connector shell for a screen.** Every cable drain / screen lands on a
+regular pin in the connector, the same way as any other conductor. No connector on this car
+is chosen for a shieldable shell, and no screen continuity runs through a connector body,
+backshell or shielding plate. This includes the VRC M8 plugs (DECISIONS S8): they are
+non-shielded, and their drains have their own pins. It supersedes the metal-shell reasoning
+in `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` 6.30 "Why M8 and not DT/DTM".
+`lint_v09.py` rejects any connector `shell`; `audit_shields.py` R3 rejects any screen on a shell.
+
 ## Vocabulary (Daniel)
 
 **Screen means shield.** A **drain** is the wire that connects the shield to the
@@ -123,12 +133,12 @@ Front box → `sp_shield_a` → **A7**; rear box → `sp_shield_b` → **B17**.
 `audit_shields.py` R6 reads the both-end VRC screens from `shieldBothEndsOk` in
 `docs/harness/interfaces.json`.
 
-The VRC and its panel sockets are not drawn. Each VRC harness ends in two M8 cable plugs
-(DECISIONS S8, 2026-10-12): the IN plug takes both sensor cables, and their two drains land
-together on its metal shell (the single landing above); the OUT plug's shell takes the output
-screen. Both shells bond to the VRC case through the panel sockets - the one place on the car
-with metal-shell connectors. `interfaces.json` "enclosures" names the two shells each case
-joins (`<plug>.shell`). `audit_shields.py` traces on that one graph through
+The VRC and its panel sockets are not drawn. Each VRC harness is two separate pieces ending in
+two non-shielded 6-pin M8 cable plugs (DECISIONS S8, 2026-10-12): the IN plug takes both
+sensor cables, each drain on its own pin (L drain pin 3, R drain pin 6); the OUT plug's drain
+is pin 5. Inside the box the enclosure build jumpers the IN drain pins to the OUT drain pin
+(and the case) - drain continuity is by pin, never by connector shell (rule above).
+`interfaces.json` "enclosures" names the three drain pins each box joins (`<plug>.<pin>`). `audit_shields.py` traces on that one graph through
 the inline interfaces.
 
 Two isolation rules, both of which fail silently and read as a flaky sensor:
