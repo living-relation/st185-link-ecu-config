@@ -164,7 +164,7 @@ python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.
 - Open items live in one table: `docs/OPEN-ITEMS.md`.
 - harness.design format / how-to: read its docs, never guess, and cite the page in the PR when it drives a format choice - https://docs.harness.design/feature/local-files/json-format (v0.9 `.harness` / `.harnesslib`), https://docs.harness.design/feature/part-libraries, https://docs.harness.design/feature/desktop, https://docs.harness.design/feature/pinouts, https://docs.harness.design/files/harness/editing-guide.md.
 - Dan edits the looms in the harness.design desktop app on the files in `docs/harness/rebuild/` (live files, no upload step; `docs/harness/README.md` "Open in the desktop app"); agents pause while he edits, the saved file wins. Drawing conventions: global skill `harness-design`; harness.design docs win.
-- The part library travels with the drawings: any part a `.harness` file adds or changes goes into `docs/harness/rebuild/ST185.harnesslib` in the same PR (gate `docs/harness/check_harnesslib.py`, in `check_all.py`; `--add-missing` copies new parts).
+- The part library is the master (Daniel, 2026-10-12): change a part in `docs/harness/rebuild/ST185.harnesslib` FIRST, then copy it into the drawings, in the same PR; any difference between a drawing's part and the library fails, no exceptions (gate `docs/harness/check_harnesslib.py`, in `check_all.py`; `--add-missing` copies new parts).
 - Keep `ST185:` names in `link_g4x_realdash.xml` unchanged unless migration is explicitly requested.
 - Keep warning-bit mapping parity between XML and `bench/frames.py` bit constants.
 - Prefer minimal targeted edits; avoid broad rewrites of stable docs.

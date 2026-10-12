@@ -36,7 +36,10 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("AMI-40","Eaton Bussmann","FUSE, AMI, 40 A, M5 BOLT-DOWN",1,0),
  ("AMI-30","Eaton Bussmann","FUSE, AMI, 30 A, M5 BOLT-DOWN",3,0),
  ("AMI-60","Eaton Bussmann","FUSE, AMI, 60 A, M5 BOLT-DOWN",2,0),
- ("LMI1-M-1-0","Eaton Bussmann","FUSE BLOCK, MODULAR, LMI, METRIC, 1 AMI FUSE MODULE (M5 STUDS)",3,0),
+ # 2026-10-12: LMI built from loose modules (drawn) in two stacks; bus bars are not drawable.
+ # Eaton Series LMI: "bus bars can be individually ordered using part number B109-7046-x".
+ ("B109-7046-5","Eaton Bussmann","BUS BAR, LMI, 5 MODULE",1,0),
+ ("B109-7046-4","Eaton Bussmann","BUS BAR, LMI, 4 MODULE",1,0),
  ("RL9080-301-F1RE","Amphenol","RECEPTACLE, FEED-THROUGH, RADLOK 8.0, PANEL MOUNT, 200 A, 1 KV, RED, MATES RL00801-50RE",1,0),
  ("RL9080-301-F1","Amphenol","RECEPTACLE, FEED-THROUGH, RADLOK 8.0, PANEL MOUNT, 200 A, 1 KV, BLACK, MATES RL00801-50BK",1,0),
  ("1/0 AWG welding cable red/black","generic","CABLE, WELDING, 1/0 AWG, RED AND BLACK, APPROX 45 FT EACH COLOUR",1,0),

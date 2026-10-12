@@ -29,57 +29,19 @@
       "width": 150
     },
     {
-      "id": "hcfb",
-      "label": "High-current fuse block - Bussmann LMI (LMI5-M-2-CB1AD + 3x LMI1-M-1-0), glove box",
-      "partId": "cp_lmi5",
+      "id": "lmi_a_l1",
+      "label": "Bussmann LMI stack A - fuse module L1 (glove box)",
+      "partId": "cp_lmi1_fm",
       "width": 390,
       "cavities": [
         {
-          "id": "in",
-          "designation": "IN",
-          "signal": "Battery feed in from the glove-box PDB bus (M8)",
-          "contactPartId": "ct_ring_m8_4"
+          "id": "bus",
+          "designation": "BUS"
         },
         {
-          "id": "l1",
-          "designation": "L1",
+          "id": "out",
+          "designation": "OUT",
           "signal": "50A AMI - RFRM Bus 1 (permanent) feed",
-          "contactPartId": "ct_ring_m5_10_8"
-        },
-        {
-          "id": "l2",
-          "designation": "L2",
-          "signal": "30A AMI - MTA-3 power relay 30 (windows / locks / tilt-away, ex-R/B2 POWER)",
-          "contactPartId": "ct_ring_m5_10_8"
-        },
-        {
-          "id": "l3",
-          "designation": "L3",
-          "signal": "30A AMI - RTR pop-up headlights -> J/B2 2E-2 (fuse only; the OEM R8 retract relay stays)",
-          "contactPartId": "ct_ring_m5_10_8"
-        },
-        {
-          "id": "l4",
-          "designation": "L4",
-          "signal": "40A AMI - AM1 -> IE1-10 / I13-4",
-          "contactPartId": "ct_ring_m5_10_8"
-        },
-        {
-          "id": "l5",
-          "designation": "L5",
-          "signal": "30A AMI - AM2 -> IE1-17 / I13-10",
-          "contactPartId": "ct_ring_m5_10_8"
-        },
-        {
-          "id": "l6",
-          "designation": "L6",
-          "signal": "60A AMI - OEM HOT -> J/B1 1I-1 (6 AWG)",
-          "contactPartId": "ct_ring_m5_6"
-        },
-        {
-          "id": "l7",
-          "designation": "L7",
-          "signal": "60A AMI - EPS pump relay 30 (k_eps HCR150, ST185-B-cabin) *",
           "contactPartId": "ct_ring_m5_10_8"
         }
       ],
@@ -90,6 +52,206 @@
       "layoutPosition": {
         "x": 1800,
         "y": 510
+      }
+    },
+    {
+      "id": "lmi_a_l4",
+      "label": "Bussmann LMI stack A - fuse module L4 (glove box)",
+      "partId": "cp_lmi1_fm",
+      "width": 390,
+      "cavities": [
+        {
+          "id": "bus",
+          "designation": "BUS"
+        },
+        {
+          "id": "out",
+          "designation": "OUT",
+          "signal": "40A AMI - AM1 -> IE1-10 / I13-4",
+          "contactPartId": "ct_ring_m5_10_8"
+        }
+      ],
+      "schematicPosition": {
+        "x": 480,
+        "y": 2820
+      },
+      "layoutPosition": {
+        "x": 1830,
+        "y": 510
+      }
+    },
+    {
+      "id": "lmi_a_in",
+      "label": "Bussmann LMI stack A - input module (glove box)",
+      "partId": "cp_lmi1_in",
+      "width": 390,
+      "cavities": [
+        {
+          "id": "in",
+          "designation": "IN",
+          "signal": "Battery feed in from the glove-box PDB bus (M8)",
+          "contactPartId": "ct_ring_m8_4"
+        }
+      ],
+      "schematicPosition": {
+        "x": 480,
+        "y": 2940
+      },
+      "layoutPosition": {
+        "x": 1860,
+        "y": 510
+      }
+    },
+    {
+      "id": "lmi_a_l6",
+      "label": "Bussmann LMI stack A - fuse module L6 (glove box)",
+      "partId": "cp_lmi1_fm",
+      "width": 390,
+      "cavities": [
+        {
+          "id": "bus",
+          "designation": "BUS"
+        },
+        {
+          "id": "out",
+          "designation": "OUT",
+          "signal": "60A AMI - OEM HOT -> J/B1 1I-1 (6 AWG)",
+          "contactPartId": "ct_ring_m5_6"
+        }
+      ],
+      "schematicPosition": {
+        "x": 480,
+        "y": 3030
+      },
+      "layoutPosition": {
+        "x": 1890,
+        "y": 510
+      }
+    },
+    {
+      "id": "lmi_a_l7",
+      "label": "Bussmann LMI stack A - fuse module L7 (glove box)",
+      "partId": "cp_lmi1_fm",
+      "width": 390,
+      "cavities": [
+        {
+          "id": "bus",
+          "designation": "BUS"
+        },
+        {
+          "id": "out",
+          "designation": "OUT",
+          "signal": "60A AMI - EPS pump relay 30 (k_eps HCR150, ST185-B-cabin) *",
+          "contactPartId": "ct_ring_m5_10_8"
+        }
+      ],
+      "schematicPosition": {
+        "x": 480,
+        "y": 3150
+      },
+      "layoutPosition": {
+        "x": 1920,
+        "y": 510
+      }
+    },
+    {
+      "id": "lmi_b_l2",
+      "label": "Bussmann LMI stack B - fuse module L2 (glove box)",
+      "partId": "cp_lmi1_fm",
+      "width": 390,
+      "cavities": [
+        {
+          "id": "bus",
+          "designation": "BUS"
+        },
+        {
+          "id": "out",
+          "designation": "OUT",
+          "signal": "30A AMI - MTA-3 power relay 30 (windows / locks / tilt-away, ex-R/B2 POWER)",
+          "contactPartId": "ct_ring_m5_10_8"
+        }
+      ],
+      "schematicPosition": {
+        "x": 480,
+        "y": 3300
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": 390
+      }
+    },
+    {
+      "id": "lmi_b_in",
+      "label": "Bussmann LMI stack B - input module (glove box)",
+      "partId": "cp_lmi1_in",
+      "width": 390,
+      "cavities": [
+        {
+          "id": "in",
+          "designation": "IN",
+          "signal": "Battery feed in from the glove-box PDB bus (M8)",
+          "contactPartId": "ct_ring_m8_4"
+        }
+      ],
+      "schematicPosition": {
+        "x": 480,
+        "y": 3420
+      },
+      "layoutPosition": {
+        "x": 1830,
+        "y": 390
+      }
+    },
+    {
+      "id": "lmi_b_l3",
+      "label": "Bussmann LMI stack B - fuse module L3 (glove box)",
+      "partId": "cp_lmi1_fm",
+      "width": 390,
+      "cavities": [
+        {
+          "id": "bus",
+          "designation": "BUS"
+        },
+        {
+          "id": "out",
+          "designation": "OUT",
+          "signal": "30A AMI - RTR pop-up headlights -> J/B2 2E-2 (fuse only; the OEM R8 retract relay stays)",
+          "contactPartId": "ct_ring_m5_10_8"
+        }
+      ],
+      "schematicPosition": {
+        "x": 480,
+        "y": 3510
+      },
+      "layoutPosition": {
+        "x": 1860,
+        "y": 390
+      }
+    },
+    {
+      "id": "lmi_b_l5",
+      "label": "Bussmann LMI stack B - fuse module L5 (glove box)",
+      "partId": "cp_lmi1_fm",
+      "width": 390,
+      "cavities": [
+        {
+          "id": "bus",
+          "designation": "BUS"
+        },
+        {
+          "id": "out",
+          "designation": "OUT",
+          "signal": "30A AMI - AM2 -> IE1-17 / I13-10",
+          "contactPartId": "ct_ring_m5_10_8"
+        }
+      ],
+      "schematicPosition": {
+        "x": 480,
+        "y": 3630
+      },
+      "layoutPosition": {
+        "x": 1890,
+        "y": 390
       }
     },
     {
@@ -980,6 +1142,22 @@
       "propagate": false
     },
     {
+      "id": "t_pdb_lmi_b",
+      "type": "Ring",
+      "signal": "Glove-box PDB bus stud (M8) - LMI stack B input",
+      "layoutPosition": {
+        "x": 1200,
+        "y": 630
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 3420
+      },
+      "partId": "tp_lug_m8_4",
+      "width": 390,
+      "propagate": false
+    },
+    {
       "id": "t_pdb_mta1",
       "type": "Ring",
       "signal": "Glove-box PDB bus stud (M8) - MTA-1 module feed",
@@ -1365,7 +1543,20 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "hcfb",
+        "id": "lmi_a_in",
+        "handle": "in"
+      },
+      "partId": "wp_4_red"
+    },
+    {
+      "id": "w_fb_in_b",
+      "color": "Red",
+      "source": {
+        "id": "t_pdb_lmi_b",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "lmi_b_in",
         "handle": "in"
       },
       "partId": "wp_4_red"
@@ -1374,8 +1565,8 @@
       "id": "w_hc_fb",
       "color": "Red",
       "source": {
-        "id": "hcfb",
-        "handle": "l1"
+        "id": "lmi_a_l1",
+        "handle": "out"
       },
       "target": {
         "id": "rfrm",
@@ -1399,8 +1590,8 @@
     {
       "id": "w_fb_k_eps_30_ac",
       "source": {
-        "id": "hcfb",
-        "handle": "l7"
+        "id": "lmi_a_l7",
+        "handle": "out"
       },
       "target": {
         "id": "k_eps",
@@ -1621,8 +1812,8 @@
       "id": "w_lmi_pwr",
       "color": "Red",
       "source": {
-        "id": "hcfb",
-        "handle": "l2"
+        "id": "lmi_b_l2",
+        "handle": "out"
       },
       "target": {
         "id": "mta3",
@@ -1699,8 +1890,8 @@
       "id": "w_pmu_rtr_cp",
       "color": "Red",
       "source": {
-        "id": "hcfb",
-        "handle": "l3"
+        "id": "lmi_b_l3",
+        "handle": "out"
       },
       "target": {
         "id": "br_w_pmu_rtr",
@@ -1725,8 +1916,8 @@
       "id": "w_pdb_am1_cp",
       "color": "White",
       "source": {
-        "id": "hcfb",
-        "handle": "l4"
+        "id": "lmi_a_l4",
+        "handle": "out"
       },
       "target": {
         "id": "br_w_pdb_am1",
@@ -1738,8 +1929,8 @@
       "id": "w_pdb_am2_cp",
       "color": "Brown",
       "source": {
-        "id": "hcfb",
-        "handle": "l5"
+        "id": "lmi_b_l5",
+        "handle": "out"
       },
       "target": {
         "id": "br_w_pdb_am2",
@@ -1751,8 +1942,8 @@
       "id": "w_pdb_jb1_cp",
       "color": "White",
       "source": {
-        "id": "hcfb",
-        "handle": "l6"
+        "id": "lmi_a_l6",
+        "handle": "out"
       },
       "target": {
         "id": "br_w_pdb_jb1",
@@ -2262,9 +2453,81 @@
       }
     },
     {
-      "id": "b_bn_bp_1065__hcfb",
+      "id": "b_bn_bp_1065__lmi_a_l1",
       "sourceId": "b_bp_1065",
-      "targetId": "hcfb",
+      "targetId": "lmi_a_l1",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1065__lmi_a_l4",
+      "sourceId": "b_bp_1065",
+      "targetId": "lmi_a_l4",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1065__lmi_a_in",
+      "sourceId": "b_bp_1065",
+      "targetId": "lmi_a_in",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1065__lmi_a_l6",
+      "sourceId": "b_bp_1065",
+      "targetId": "lmi_a_l6",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1065__lmi_a_l7",
+      "sourceId": "b_bp_1065",
+      "targetId": "lmi_a_l7",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1065__lmi_b_l2",
+      "sourceId": "b_bp_1065",
+      "targetId": "lmi_b_l2",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1065__lmi_b_in",
+      "sourceId": "b_bp_1065",
+      "targetId": "lmi_b_in",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1065__lmi_b_l3",
+      "sourceId": "b_bp_1065",
+      "targetId": "lmi_b_l3",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1065__lmi_b_l5",
+      "sourceId": "b_bp_1065",
+      "targetId": "lmi_b_l5",
       "length": {
         "value": 250,
         "unit": "mm"
@@ -2447,6 +2710,15 @@
       "targetId": "br_w_csb12",
       "length": {
         "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_930__t_pdb_lmi_b",
+      "sourceId": "b_bp_930",
+      "targetId": "t_pdb_lmi_b",
+      "length": {
+        "value": 260,
         "unit": "mm"
       }
     },
@@ -3007,37 +3279,6 @@
       "numberOfCavities": 2
     },
     {
-      "id": "cp_lmi5",
-      "image": {
-        "url": "https://www.mouser.com/images/eatoncorporation/lrg/LMI1-series_SPL.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/eatoncorporation/sm/LMI1-series_SPL.jpg"
-      },
-      "partNumber": "LMI5-M-2-CB1AD",
-      "description": "FUSE BLOCK, MODULAR, LMI, METRIC, 1 INPUT MODULE (M8 STUD) + 4 AMI FUSE MODULES (M5 STUDS), 400 A MAX COMBINED",
-      "manufacturer": "Eaton Bussmann",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_ring_m5_10_8"
-        }
-      ]
-    },
-    {
-      "id": "cp_rfrm",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "15401-1-2-1-0A",
-      "description": "MODULE, FUSE AND RELAY, RFRM, SEALED, 40 MINI FUSE, 10 MICRO RELAY, 2 BUS",
-      "manufacturer": "Eaton Bussmann",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_rfrm"
-        }
-      ]
-    },
-    {
       "id": "cp_mta",
       "gender": "Female",
       "hasShell": false,
@@ -3050,25 +3291,6 @@
           "contactPartId": "ct_mta"
         }
       ]
-    },
-    {
-      "id": "cp_rly_f7_b",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
-      },
-      "partNumber": "1-1414147-0",
-      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "mountPartId": "mt_vcf7",
-          "contactPartId": "ct_f7_load"
-        }
-      ],
-      "numberOfCavities": 4
     },
     {
       "id": "cp_rly_f7_a",
@@ -3090,6 +3312,39 @@
       "numberOfCavities": 4
     },
     {
+      "id": "cp_rly_f7_b",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
+      },
+      "partNumber": "1-1414147-0",
+      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "mountPartId": "mt_vcf7",
+          "contactPartId": "ct_f7_load"
+        }
+      ],
+      "numberOfCavities": 4
+    },
+    {
+      "id": "cp_rfrm",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "15401-1-2-1-0A",
+      "description": "MODULE, FUSE AND RELAY, RFRM, SEALED, 40 MINI FUSE, 10 MICRO RELAY, 2 BUS",
+      "manufacturer": "Eaton Bussmann",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_rfrm"
+        }
+      ]
+    },
+    {
       "id": "cp_rly_nor",
       "image": {
         "url": "https://www.te.com/content/dam/te-com/catalog/part/919/041/057/9-1904105-7-t1.jpg/jcr:content/renditions/product-high-res.png",
@@ -3109,6 +3364,57 @@
       "numberOfCavities": 5
     },
     {
+      "id": "cp_rly_micro_co",
+      "partNumber": "6-1419137-4",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A403, 1 FORM C, 12 VDC COIL, DIODE SUPPRESSED",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_rfrm"
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_lmi1_fm",
+      "url": "https://www.eaton.com/us/en-us/catalog/emobility/series-lmi.html",
+      "image": {
+        "url": "https://www.mouser.com/images/eatoncorporation/lrg/LMI1-series_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/eatoncorporation/sm/LMI1-series_SPL.jpg"
+      },
+      "partNumber": "LMI1-M-1-0",
+      "description": "FUSE HOLDER, MODULAR, LMI, AMI FUSE MODULE, 2 M5 STAINLESS STUDS, KEPS NUTS",
+      "manufacturer": "Eaton Bussmann",
+      "numberOfCavities": 2,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_ring_m5_10_8"
+        }
+      ]
+    },
+    {
+      "id": "cp_lmi1_in",
+      "url": "https://www.eaton.com/us/en-us/catalog/emobility/series-lmi.html",
+      "image": {
+        "url": "https://www.mouser.com/images/eatoncorporation/lrg/LMI1-series_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/eatoncorporation/sm/LMI1-series_SPL.jpg"
+      },
+      "partNumber": "LMI1-M-1-1",
+      "description": "FUSE HOLDER, MODULAR, LMI, INPUT MODULE, M8 X 1.25 STAINLESS STUD, KEPS NUT",
+      "manufacturer": "Eaton Bussmann",
+      "numberOfCavities": 1,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_ring_m8_4"
+        }
+      ]
+    },
+    {
       "id": "cp_rly_hcr150",
       "image": {
         "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_high_current_150.jpg",
@@ -3122,19 +3428,6 @@
         {
           "id": "cfg",
           "contactPartId": "ct_ring_m6_8"
-        }
-      ],
-      "numberOfCavities": 5
-    },
-    {
-      "id": "cp_rly_micro_co",
-      "partNumber": "6-1419137-4",
-      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A403, 1 FORM C, 12 VDC COIL, DIODE SUPPRESSED",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_rfrm"
         }
       ],
       "numberOfCavities": 5
@@ -3347,7 +3640,7 @@
         "x": 5910,
         "y": 0
       },
-      "text": "CABIN POWER HARNESS - non-ECU: the glove-box fuse box (Option B, _research FUSEBOX-B-SLOT-MAP 2026-10-11): Bussmann LMI (LMI5-M-2-CB1AD + 3x LMI1-M-1-0, ids hcfb l1-l7), Eaton RFRM 15401-1-2-1-0A (rfrm) and 3x MTA 0301491 (mta1-mta3); the battery feed ring (PDB bus) and the fuel pump run to the trunk. The box lives only in this file. The ECU-switched relays are seated in the box and drawn here (k_fan / k_efi / k_fp on MTA-1, k_str / k_etb on MTA-2, k_fan2 on MTA-3, k_acc in the RFRM, k_eps HCR150 beside the box); their wires land on the module's own relay-position terminals. Fuse -> relay 30 and relay coil+ links are short jumpers inside the box (the MTA 0301491 internal bus is unconfirmed, OPEN-ITEMS row 48). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and A-cabin, B-cabin, CSB3 or EngineRoom-C is drawn broken off in both with a note naming the other file. RFRM / MTA slot numbers are not assigned: cavities are named by circuit."
+      "text": "CABIN POWER HARNESS - non-ECU: the glove-box fuse box (Option B, _research FUSEBOX-B-SLOT-MAP 2026-10-11): Bussmann LMI, two stacks (lmi_a_*, lmi_b_*, DECISIONS S14), Eaton RFRM 15401-1-2-1-0A (rfrm) and 3x MTA 0301491 (mta1-mta3); the battery feed ring (PDB bus) and the fuel pump run to the trunk. The box lives only in this file. The ECU-switched relays are seated in the box and drawn here (k_fan / k_efi / k_fp on MTA-1, k_str / k_etb on MTA-2, k_fan2 on MTA-3, k_acc in the RFRM, k_eps HCR150 beside the box); their wires land on the module's own relay-position terminals. Fuse -> relay 30 and relay coil+ links are short jumpers inside the box (the MTA 0301491 internal bus is unconfirmed, OPEN-ITEMS row 48). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and A-cabin, B-cabin, CSB3 or EngineRoom-C is drawn broken off in both with a note naming the other file. RFRM / MTA slot numbers are not assigned: cavities are named by circuit."
     },
     {
       "id": "n_cavity_notes",
