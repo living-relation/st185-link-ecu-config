@@ -1,7 +1,7 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
-  "$docs": "https://docs.harness.design/feature/part-libraries",
   "version": 0.9,
+  "kind": "library",
+  "currency": "$",
   "cableParts": [
     {
       "id": "cab_sh_1c",

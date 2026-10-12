@@ -9,8 +9,11 @@ number as the same part, so the library must hold exactly what the drawings use.
       the referenced part's type + partNumber (ids differ between files). numberOfCavities is
       not compared for connectors that are documentation halves of one physical part
       (interfaces.json "physicalPartGroups", e.g. the DRB102 bulkhead A / B halves)
-  H3  the library itself: one entry per type + partNumber, every entry has a partNumber, and
-      every configuration reference resolves inside the library
+  H3  the library itself: one entry per type + partNumber, every entry has a partNumber, every
+      configuration reference resolves inside the library, ids are unique across the whole file,
+      and the header is the documented library form - "version": 0.9, "kind": "library",
+      "currency", part arrays and nothing else
+      (https://docs.harness.design/feature/local-files/json-format)
 
 Whenever a .harness file adds or changes a part, the same change goes into ST185.harnesslib in
 the same PR. `--add-missing` copies parts the drawings use but the library lacks (H1 only - an
@@ -48,6 +51,14 @@ def main():
     with open(LIB, encoding="utf-8") as f:
         lib = json.load(f)
     bad = []
+    if lib.get("version") != 0.9 or lib.get("kind") != "library" or "currency" not in lib:
+        bad.append("H3 library header must be version 0.9, kind library, currency (json-format docs)")
+    extra = sorted(k for k in lib if k not in ("version", "kind", "currency") and k not in arrays(lib))
+    if extra:
+        bad.append("H3 library holds keys other than currency and part arrays: %s" % ", ".join(extra))
+    allids = [p["id"] for t in arrays(lib) for p in lib[t]]
+    for i in sorted({i for i in allids if allids.count(i) > 1}):
+        bad.append("H3 library id %s is used more than once" % i)
     lidx = {p["id"]: (t, p.get("partNumber")) for t in arrays(lib) for p in lib[t]}
     lpn = {}
     for t in arrays(lib):
