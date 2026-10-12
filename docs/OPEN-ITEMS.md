@@ -104,6 +104,7 @@ redesign and the check_all/check_parity/validate_tune/test_gates CI gates alread
 
 One line per merged PR or decision batch, newest first. `git log` has the detail.
 
+- 2026-10-12 - Daniel rule: no unused parts in a parts list, never join separate harnesses in the layout; HARD gate `audit_parts_layout.py`; HeavyDC H1/H2 break ends moved to the PDB, stray layout stubs removed, unused parts pruned. Library sync of parts to harness.design needs the app connector (not in the session).
 - 2026-10-12 - Daniel S8 extended to the rear: WheelSpeed-Rear RL/RR legs separate, rear VRC IN M8 cable plugs drawn; row 72 dropped.
 - 2026-10-12 - Daniel S8: front wheel-speed FL/FR legs separate in the layout, front VRC IN M8 cable plugs drawn (binder 99 3363 100 04).
 - 2026-10-12 - harness.design upload fixes: dead `sp_12v` / RFRM ECU permanent feed removed (no XtremeX pin uses it), WheelSpeed-Front notes match Route 9 rev 3, `tp_lug_m10_50` defined on EngineRoom-C, HeavyDC `n_rev4` placed, `physicalPartGroup` moved to `interfaces.json`.
