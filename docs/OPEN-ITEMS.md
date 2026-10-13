@@ -10,13 +10,25 @@ closed rows are pruned in a later cleanup pass, never in the PR that closes them
 Owner: **Daniel** = needs a decision, a part, or a measurement. **Agent** = doc or tooling work an
 agent can do once unblocked.
 
-## Status (2026-10-13 sweep)
+## Status (2026-10-13)
 
-- Open rows: 48. Harness wiring 21, Parts 7, CAN 2, RealDash 3, Tune-ECU setup-time 11, Housekeeping 4.
-- Counts by Area column (Research counts as Harness wiring; Tooling / Docs as Housekeeping); setup-time table rows count as Tune-ECU setup-time (RealDash rows as RealDash); Deferred and Blocked rows count as open.
-- Blocks progress (1): row 88 - glove-box bus bar on hold while Daniel finishes the custom CAD (placeholder `PDB-M8x8` and the Blue Sea EXTRA lines stay).
-- Blocks progress (2): row 90 + G1-5 - the 6-channel optoisolator part (Daniel's pictures) and the B28 / B30 optoisolator question.
-- Blocks progress (3): rows 11 / 12 - EWD page / pin / colour still TBD on 13 flying leads (no guessing); they keep the build list incomplete.
+The research hub (`docs/research-hub.html`) reads this section: keep the table and the numbered list in this shape.
+Bucket = Area column (Research counts as Harness wiring; Tooling / Docs as Housekeeping); rows in the setup-time table below count as Tune-ECU setup-time (RealDash rows as RealDash); Deferred, Blocked and On hold rows count as open.
+
+| Bucket | Open | In plain words |
+|---|---|---|
+| Harness wiring | 21 | Drawings and wire facts: EWD pins to look up, relay coil returns, VRC plug and cable questions, route labels, lengths. |
+| Parts | 7 | Part numbers and test-fits: bus bar (on hold), MTA terminals, plugs, the optoisolator module, VRC box size. |
+| CAN | 2 | The cruise-stalk decode choice and the scale / unit flags left from the CAN audit. |
+| RealDash | 3 | Checks that need the Pi or the bench: which .rd file is live, real-frame test, headless editor limit. |
+| Tune-ECU setup-time | 11 | Done on the bench when the ECU and CSB3 arrive: PCLink imports, tables, outputs, switchboard mapping. |
+| Housekeeping | 4 | Tracker, docs and tooling chores, and what to do with old local files. |
+
+Blocks progress:
+
+1. Row 88 - glove-box bus bar is on hold while Daniel finishes the custom CAD (placeholder `PDB-M8x8` and the Blue Sea EXTRA lines stay).
+2. Row 90 + G1-5 - the 6-channel optoisolator part (Daniel's pictures) and the B28 / B30 optoisolator question.
+3. Rows 11 / 12 - EWD page / pin / colour still TBD on 13 flying leads (no guessing); they keep the build list incomplete.
 
 | # | Area | Item | Owner | Source | Status | What unblocks it |
 |---|---|---|---|---|---|---|
@@ -132,6 +144,7 @@ redesign and the check_all/check_parity/validate_tune/test_gates CI gates alread
 
 ## History
 
+- 2026-10-13 - Status section turned into a table (Bucket / Open / In plain words) plus a numbered blockers list; `docs/build-research-hub.py` reads it and renders it as the first table of the research hub, with an anchored open-row group per bucket (`#status`, `#items-<bucket>`). Counts stay in this file only; the generator warns if the Status numbers differ from the rows. -- Claude Code
 - 2026-10-13 - Open-items honesty sweep (branch `docs/open-items-sweep`): rows closed or shortened with their PR/decision cited (15, 16, 40, 47, 76-78, 82, 84-87, G1-1 to G1-4, G1-6); rows 11, 26, 27, 32, 46, 48, 54, 63, 64, 70, 71, 73, 88 reworded to what is really left; row 75 merged into 64; Status summary added at the top. Tracker text only - no drawing, SoT or other doc changed. Row numbers kept (other docs cite them). -- Claude Code
 - 2026-10-13 - J1 / J2 (branch `harness/j1-j2`): retract motors R2 / R3 pin 4 (feed) and pin 5 (ground) 12 AWG to one crimp splice per conductor at each motor, 16 AWG pigtail 150 mm max into the 5-pin plug, RTR stays 30 A (DECISIONS S20, R63); Longacre kill switch `52-45780` drawn whole on `ST185-HeavyDC` (H1 through the main pole, alternator B+ confirmed on the LOAD side), alternator IG detoured through its 20 A second pole along the RH sill (S21, R64; G4X Stop Switch input kept); `buylist.py` EXTRA kill-switch line dropped (now from the drawing). J1 / J2 closed. -- Claude Code
 - 2026-10-13 - Route 2 rev 11 (branch `routes/wiper-spots`): Dan's wiper / washer spots - F9 under the driver-side windshield cowl, fed through the driver (LH) fender pass-through; W1 at the passenger front corner, lower front fender. Route 2 Fig. B and top view redrawn with labeled arrows, `ST185-EngineRoom-C` wiper branch via `bp_l_pass`; DECISIONS S19. -- Claude Code
