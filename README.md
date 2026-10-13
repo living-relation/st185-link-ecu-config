@@ -39,7 +39,7 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `docs/harness/rebuild/*.harness` | **The physical harnesses, one per file** (harness.design v0.9; ownership in docs/harness/interfaces.json) — what gets built. See `docs/harness/README.md`. |
 | `docs/harness/check_all.py` | Runs every harness gate (SoT, IO table, lint, mating, shields, pin names, buy/build lists). Must pass before every commit. |
 | `docs/harness/HARNESS-BUILD-LIST.csv` / `NEED-TO-BUY.md` | Generated per-wire build list and buy list. Never hand-edit — regenerate with `docs/harness/buildlist.py` / `buylist.py`; `check_all.py` fails if they are stale. |
-| `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table with factory EWD snips. How power and ground re-enter the OEM engine-room, cowl and dash looms after the battery and fuse box leave the bay. |
+| `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Splice table with factory EWD snips: where every ex-J/B2 / R/B load lands now that the OEM engine-bay boxes are removed (R12, §5.4). How power and ground re-enter the OEM engine-room, cowl and dash looms after the battery and fuse box leave the bay. |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |
 | `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 5-node topology. |
 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Master ID allocation table — all byte layouts, sections A–E. |

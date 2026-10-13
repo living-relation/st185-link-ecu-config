@@ -99,19 +99,18 @@
 <table><tr><th>Run</th><th>Cable</th><th>Ends</th><th>Shield</th></tr>
 <tr><td>FL sensor &rarr; VRC IN</td><td>2C twisted pair, shielded (ETFE, M22759/16-class cores &ge;1.35&nbsp;mm for the DTM seal)</td><td>FL ABS sensor (2 wires) &rarr; up the fender harness &rarr; LH pass-through (top of fender) &rarr; driver kick by J/B1 &rarr; VRC IN pins 1 (VR+) / 2 (VR&minus;)</td><td>Floats at the sensor; drain on <b>IN pin 3</b></td></tr>
 <tr><td>FR sensor &rarr; VRC IN</td><td>Same</td><td>FR ABS sensor &rarr; up the fender harness &rarr; RH pass-through (top of fender) &rarr; passenger side by R/B4 &rarr; across the dash &rarr; VRC IN pins 4 / 5</td><td>Floats at the sensor; drain on <b>IN pin 6</b> (L+R may splice to one pin only if pins run short)</td></tr>
-<tr><td>VRC OUT &rarr; <code>IX_WS_FRONT</code> &mdash; <b>one cable</b> (Dan: &ldquo;put in one shielded cable&rdquo;)</td><td><b>4C shielded</b> (+5V, GND, OUT-L, OUT-R) &mdash; same cable type as the rear VRC output</td><td>OUT pins 1 / 2 / 3 / 4 &rarr; inline c1 / c2 / c3 / c4</td><td>Drain on <b>OUT pin 5</b> (VRC case via <code>ring_scr</code>) &rarr; inline <b>c5</b> &rarr; A-cabin &rarr; <code>sp_shield_a</code> &rarr; <b>A7</b>, continuous</td></tr>
+<tr><td>VRC OUT &rarr; <code>IX_WS_FRONT</code> &mdash; <b>one cable</b> (Dan: &ldquo;put in one shielded cable&rdquo;)</td><td><b>4C shielded</b> (+5V, GND, OUT-L, OUT-R) &mdash; same cable type as the rear VRC output</td><td>OUT pins 1 / 2 / 3 / 4 &rarr; inline c1 / c2 / c3 / c4</td><td>Drain on <b>OUT pin 5</b> (by pin, nothing bonds to the case) &rarr; inline <b>c5</b> &rarr; A-cabin &rarr; <code>sp_shield_a</code> &rarr; <b>A7</b>, continuous</td></tr>
 <tr><td>FR spur after <code>IX_WS_FRONT</code> (B-cabin, Route 6)</td><td>Short 1C shielded lead</td><td>Inline c4 &rarr; ECU <b>B21</b></td><td>Drain &rarr; <code>sp_shield_b</code> &rarr; <b>B17</b>; floats at the inline end</td></tr>
 </table>
-<div class="box"><b>VRC box (decided):</b> Hammond 1590WUFL in the cabin, mid-dash right above the ECU. IN = <code>DTM04-08PA-L012</code> (key A, grey), OUT = <code>DTM04-08PB-L012</code> (key B, black) on adjacent walls; mating plugs <code>DTM06-08SA</code> / <code>DTM06-08SB</code>. The PCB is isolated from the case (nylon standoffs); the case is isolation-mounted; inside, IN pins 3/6 and OUT pins 5/6 join the case through the <code>ring_scr</code> lead. Power: +5V from ECU A32 (<code>sp_5v</code>), ground from A24 Gnd Out (<code>sp_gndout</code>). Cabin mounting clears the engine-bay heat concern.</div>
+<div class="box"><b>VRC box (decided):</b> Hammond 1590WUFL in the cabin, mid-dash right above the ECU. IN and OUT = two identical CNLINKO <code>LP-16-J05PE-02-001</code> 5-pin cable plugs (DECISIONS S8 / S16), mating two <code>LP-16-C05SX-02-101</code> panel sockets on adjacent walls. The PCB is isolated from the case (nylon standoffs); the case is isolation-mounted; screens go by pin and join inside the box by wire, nothing bonds to the case (R31 / R33). Power: +5V from ECU A32 (<code>sp_5v</code>), ground from A24 Gnd Out (<code>sp_gndout</code>). Cabin mounting clears the engine-bay heat concern.</div>
 <h2>Pin maps</h2>
-<table><tr><th>Pin</th><th>VRC IN (key A)</th><th>VRC OUT (key B)</th><th><code>IX_WS_FRONT</code> (DT 6-way)</th></tr>
-<tr><td>1</td><td>FL VR+</td><td>+5V</td><td>+5V &rarr; A-cabin <code>sp_5v</code></td></tr>
-<tr><td>2</td><td>FL VR&minus;</td><td>GND</td><td>GND &rarr; A-cabin <code>sp_gndout</code></td></tr>
-<tr><td>3</td><td>FL drain</td><td>OUT-L (FL)</td><td>FL &rarr; A23</td></tr>
-<tr><td>4</td><td>FR VR+</td><td>OUT-R (FR)</td><td>FR &rarr; B-cabin B21</td></tr>
-<tr><td>5</td><td>FR VR&minus;</td><td>Drain, 4C output cable</td><td>Drain &rarr; A-cabin &rarr; A7</td></tr>
-<tr><td>6</td><td>FR drain</td><td>spare (plug)</td><td>spare, plugged (was the FR cable drain)</td></tr>
-<tr><td>7&ndash;8</td><td>spare (plug)</td><td>spare (plug)</td><td>&mdash;</td></tr>
+<table><tr><th>Pin</th><th>VRC IN (LP-16)</th><th>VRC OUT (LP-16)</th><th><code>IX_WS_FRONT</code> (DT 6-way)</th></tr>
+<tr><td>1</td><td>FL ABS+</td><td>+5V</td><td>+5V &rarr; A-cabin <code>sp_5v</code></td></tr>
+<tr><td>2</td><td>FL ABS&minus;</td><td>Gnd</td><td>GND &rarr; A-cabin <code>sp_gndout</code></td></tr>
+<tr><td>3</td><td>Shield drain (both sensor screens, one splice)</td><td>L out (FL)</td><td>FL &rarr; A23</td></tr>
+<tr><td>4</td><td>FR ABS+</td><td>R out (FR)</td><td>FR &rarr; B-cabin B21</td></tr>
+<tr><td>5</td><td>FR ABS&minus;</td><td>Screen drain, 4C output cable</td><td>Drain &rarr; A-cabin &rarr; A7</td></tr>
+<tr><td>6</td><td colspan="2">&mdash; (LP-16 has 5 contacts)</td><td>spare, plugged</td></tr>
 </table>
 <div class="box"><b>Drain choice (rev 3):</b> one cable has one shield, so its drain can land on only one ECU shield pin. <b>A7</b> is chosen because three of the four cores belong to connector A (+5V from A32, GND from A24, OUT-L to A23); the drain runs unbroken VRC OUT pin 5 &rarr; inline c5 &rarr; A-cabin &rarr; A7. After <code>IX_WS_FRONT</code> the FR signal leaves the shield for the short B-cabin lead to B21, which gets its own short shield to <b>B17</b> (floating at the inline end), so the letter rule and one-drain-per-shield both hold; A7 and B17 never meet. Repo fix when applied: <code>interfaces.json</code> <code>IX_WS_FRONT</code> c6 &rarr; spare, front output cable &rarr; 4 cores; <code>channels.csv</code> VRC_FRONT_OUT screen note.</div>
 <h2>Broken-off hand-offs</h2>

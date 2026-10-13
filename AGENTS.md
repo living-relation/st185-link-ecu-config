@@ -70,7 +70,7 @@ and runs as a SOFT gate in `check_all.py`, since it's a test, not a skill.
 - Architecture and allocation: `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`.
 - Bench behavior: `bench/frames.py`, `bench/can_bench.py`, `BENCH-TEST.md`.
 - RealDash channel definitions: `link_g4x_realdash.xml`.
-- Engine-room power splice table (kick-panel J/Bs, vacated J/B2): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
+- Engine-room power splice table (where every ex-J/B2 / R/B load lands, §5.4; the OEM engine-bay boxes are removed, R12): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - Wiring SoT (every ECU pin and channel): `sot/channels.csv`. Visual face: `XTREMEX-IO-TABLE.html` (gated by `docs/harness/sync_io_table.py --check`).
 - The harness drawings - **not a source of truth** (Daniel, 2026-10-04: they follow `sot/channels.csv`; never generate truth docs from them): `docs/harness/rebuild/*.harness` (15 files, one physical harness per file; wires between files are drawn broken off in both; the four ECU looms split by connector letter 2026-09-28; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
 - Every binding wiring / parts / drawing rule: `docs/harness/redesign/DECISIONS.md` "Binding rules from Daniel". Reconcile procedure: `docs/RECONCILIATION-RULES.md` Rule 1; ECU loom letter detail: Rule 3.
