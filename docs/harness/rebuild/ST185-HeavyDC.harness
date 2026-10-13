@@ -134,7 +134,7 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "IG - excite <- J/B No.1 ECU-IG 15A (IG2-15 cowl lead)",
+          "signal": "IG - excite <- trunk kill switch 2nd pair <- J/B No.1 ECU-IG 15A (IG2-15)",
           "propagate": false,
           "contactPartId": "ct_generic_skt"
         }
@@ -146,6 +146,50 @@
       "layoutPosition": {
         "x": 1500,
         "y": -390
+      }
+    },
+    {
+      "id": "kill_sw",
+      "width": 390,
+      "partId": "cp_ks_longacre",
+      "label": "Kill switch - Longacre 52-45780, 4 terminal (trunk, passenger rear corner, Route 1)",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "MAIN 1",
+          "signal": "Battery + (LINE) <- trunk battery +",
+          "propagate": false,
+          "contactPartId": "ct_lug_stud"
+        },
+        {
+          "id": "c2",
+          "designation": "MAIN 2",
+          "signal": "LOAD -> H1 -> cabin PDB BAT+ (everything incl. alternator B+)",
+          "propagate": false,
+          "contactPartId": "ct_lug_stud"
+        },
+        {
+          "id": "c3",
+          "designation": "ALT 1",
+          "signal": "Alternator IG in <- IG2-15 (J/B No.1 ECU-IG 15A)",
+          "propagate": false,
+          "contactPartId": "ct_lug_stud"
+        },
+        {
+          "id": "c4",
+          "designation": "ALT 2",
+          "signal": "Alternator IG out -> alternator G2-3 (20 A pole)",
+          "propagate": false,
+          "contactPartId": "ct_lug_stud"
+        }
+      ],
+      "schematicPosition": {
+        "x": 0,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": 5850,
+        "y": 420
       }
     }
   ],
@@ -352,7 +396,7 @@
       "id": "br_alt_ig",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator IG (G2-3) <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
+      "signal": "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator IG (G2-3) <- kill switch 2nd pair <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
       "schematicPosition": {
         "x": 480,
         "y": 1200
@@ -360,6 +404,36 @@
       "layoutPosition": {
         "x": 1680,
         "y": -570
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_ig_ks_in",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-EngineRoom-C (glove box): alternator IG <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
+      "schematicPosition": {
+        "x": 0,
+        "y": 660
+      },
+      "layoutPosition": {
+        "x": 4560,
+        "y": 450
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_ig_ks_out",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-EngineRoom-C (glove box -> RH fender grommet): kill switch 2nd pair -> alternator IG (G2-3)",
+      "schematicPosition": {
+        "x": 0,
+        "y": 720
+      },
+      "layoutPosition": {
+        "x": 4560,
+        "y": 510
       },
       "propagate": false
     }
@@ -371,6 +445,19 @@
       "source": {
         "id": "t_trunk_pos",
         "handle": "Terminal"
+      },
+      "target": {
+        "id": "kill_sw",
+        "handle": "c1"
+      },
+      "partId": "wp_1_0_red"
+    },
+    {
+      "id": "w_ks_h1",
+      "color": "Red",
+      "source": {
+        "id": "kill_sw",
+        "handle": "c2"
       },
       "target": {
         "id": "br_h1_batt_pos",
@@ -532,6 +619,32 @@
         "handle": "c3"
       },
       "color": "Red",
+      "partId": "m16_16_2"
+    },
+    {
+      "id": "w_ig_ks_in",
+      "color": "Red",
+      "source": {
+        "id": "br_ig_ks_in",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "kill_sw",
+        "handle": "c3"
+      },
+      "partId": "m16_16_2"
+    },
+    {
+      "id": "w_ig_ks_out",
+      "color": "Red",
+      "source": {
+        "id": "kill_sw",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "br_ig_ks_out",
+        "handle": "Terminal"
+      },
       "partId": "m16_16_2"
     }
   ],
@@ -757,6 +870,33 @@
         "value": 300,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_hdc_batt__kill_sw",
+      "sourceId": "bp_hdc_batt",
+      "targetId": "kill_sw",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_pdb_h__br_ig_ks_in",
+      "sourceId": "bp_hdc_pdb_h",
+      "targetId": "br_ig_ks_in",
+      "length": {
+        "value": 60,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_pdb_h__br_ig_ks_out",
+      "sourceId": "bp_hdc_pdb_h",
+      "targetId": "br_ig_ks_out",
+      "length": {
+        "value": 60,
+        "unit": "mm"
+      }
     }
   ],
   "schematicNotes": [
@@ -771,7 +911,7 @@
     },
     {
       "id": "n_alt_prot",
-      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. Size for the 160 A alternator (plan 6.20: 175 A). Battery is AGM. The trunk Longacre 4-terminal kill switch cuts the battery positive. Alternator IG is fed from J/B No.1 ECU-IG 15A (Dan 2026-10-13, 1993 EWD p.74); the older idea of cutting IG on the switch's second pair is not drawn - the engine stops on the G4X Stop Switch input (R19). Question J2 in docs/OPEN-ITEMS.md.",
+      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. Size for the 160 A alternator (plan 6.20: 175 A). Battery is AGM.\nKILL SWITCH (Dan 2026-10-13, J2; DECISIONS S21 / R64): Longacre 52-45780 in the trunk (175 A main, 20 A alternator pole). Main pole: battery + -> MAIN 1, MAIN 2 (LOAD) -> H1 -> PDB BAT+ -> PDB ALT/STR -> H3 -> RADLOK -> starter B+, where the alternator B+ (w_alt) lands - so the alternator is on the LOAD side. Second pole: the alternator IG (excite, J/B No.1 ECU-IG 15A via IG2-15, 16 AWG for the 15 A fuse) runs glove box -> RH sill (with H1 / H2) -> ALT 1 / ALT 2 -> back -> RH fender grommet -> G2-3. Switch off = battery cut AND excite cut, so the alternator cannot keep the engine running; the G4X Stop Switch input stays as well (R19).\nSPIKE PROTECTION (info only, not drawn): opening the main pole while the alternator charges can load-dump into the loads. Option: a cutoff with alternator protection (Pegasus 4430 re-routes the alternator output to ground) - Daniel's call, not part of this build.",
       "width": 390,
       "schematicPosition": {
         "x": 1710,
@@ -784,7 +924,7 @@
       "width": 270,
       "schematicPosition": {
         "x": 1710,
-        "y": 570
+        "y": 960
       },
       "color": "Orange"
     },
@@ -793,7 +933,7 @@
       "text": "ROUTE 1 REV 4 (Dan's mark-up, 2026-10-10): battery box moved to the passenger-side rear corner of the trunk (H1/H2 rerouted from there - bundle lengths above are inherited estimates from the prior ST185-EngineRoom-C drawing, not re-measured against the new spot - verify on the car). Starter moved to Dan's spot (lower-middle of the engine, p.29 leaders S2/S3). H4 (RADLOK+ -> starter) and H5 (alt B+ -> starter) now run as one bundle along the firewall and down to the starter (Dan: \"run 1 and 3 together\") - drawn as separate conductors here (H4 via RADLOK/rl_pos_eng, H5 via t_alt_b/w_alt) since harness.design has no native \"co-routed, not bundled-as-one-cable\" primitive; the physical bundling is a routing note, not a schema change. Alternator moved to the rear of the engine, RH side, under bulkheads A/B (MR2-style, rev 3 Dan mark-up 2026-10-04). The G2 round 3-pin plug (alt_plug, Toyota 90980-10341) is drawn here (Dan 2026-10-13, R17); its IG / L / S leads break off to ST185-EngineRoom-C and cross the firewall in harness C's own RH fender grommet (no ECU signal, so no bulkhead letter, R2) - IG and L to the cowl-side IG2-15 / IG2-16 leads under the ECU, S to the glove-box RFRM ALTS 2A.",
       "schematicPosition": {
         "x": 1710,
-        "y": 690
+        "y": 1080
       },
       "width": 390
     }
@@ -977,6 +1117,20 @@
         {
           "id": "cfg",
           "contactPartId": "ct_generic_skt"
+        }
+      ]
+    },
+    {
+      "id": "cp_ks_longacre",
+      "partNumber": "52-45780",
+      "manufacturer": "Longacre",
+      "description": "SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE, 175 A CONTINUOUS, 1000 A PEAK, 20 A AUXILIARY POLE, 6-36 V",
+      "url": "https://www.ogracing.com/products/longacre-battery-disconnect-switch",
+      "numberOfCavities": 4,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_lug_stud"
         }
       ]
     }

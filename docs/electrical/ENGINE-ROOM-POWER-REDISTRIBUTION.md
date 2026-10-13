@@ -227,7 +227,7 @@ Bay lighting and wipers (2026-10-13, Route 2 rev 10; no side markers, R62) - not
 | Front clearance | J/B1 1H-6 (TAIL 15A) | 16 | F7 / F8 pin 1 | Bay, both corners | p.112 |
 | Front turn LH / RH | J/B1 1H-4 / 1H-8 (TURN 10A via flasher) | 18 | F7 / F8 pin 3 | Bay, both corners | p.130 |
 | Headlamp returns | IE1-18 low (R-W), IE1-11 high (R-L) | 16 per lamp, 14 to IE1 | H1 / H2 pins 2 / 1 | Bay, both corners | p.116 |
-| Retract motors | IE1-14 / 15 (R2), IE1-8 / 7 (R3), IE1-9 / 16 limits (OEM R8, RTR 30 A) | 16 / 18 (J1) | R2 / R3 pins 1-4, ground pin 5 to EB | Bay, both corners | p.117 |
+| Retract motors | IE1-14 / 15 (R2), IE1-8 / 7 (R3), IE1-9 / 16 limits (OEM R8, RTR 30 A) | pin 4 feed and pin 5 ground 12 -> splice -> 16 pigtail (150 mm max); pin 2 16, limits 18 (DECISIONS S20) | R2 / R3 pins 1-4, ground pin 5 to EB | Bay, both corners | p.117 |
 | Front wiper | J/B1 1H-5 (WIPER 20A), IE1-20 / 13 / 6 | 14 | F9 pins 4 / 1 / 2 / 3 | Bay, under the windshield cowl, driver side; feed via the driver (LH) fender pass-through (S19) | p.148 |
 | Washer | cowl leads to W1 (L from splice I2, L-R from C16-8) | 14 | W1 pins 2 / 1 | Bay, passenger front corner, lower front fender (S19) | p.148 |
 
