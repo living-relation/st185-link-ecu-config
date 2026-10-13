@@ -319,7 +319,7 @@ the pump itself**, so everything below lives in the engine bay.
 | Ours | On the pump | Cavities | Part number | Used |
 |---|---|---:|---|---|
 | `mrs_pwr` | **A** - main power | 2 | `90980-12068` | 1 = +12 V from `k_eps`, 2 = GND to block |
-| `mrs_ctrl` | **B** - signal | **6** | *not yet identified* | speed pulse; the rest unused |
+| `mrs_ctrl` | **B** - signal | **6** | *not yet identified* | 2 = speed pulse in; 5 = switches `k_eps` coil- (R22); the rest unused |
 | `mrs_en` | **C** - ignition | 2 | `90980-10942` | 1 = switched 12 V (7.5 A ign fuse), 2 unused |
 
 No shields on the MRS.
@@ -331,8 +331,7 @@ number is still unidentified; `90980-*` family, to confirm.
 ### Relay placement
 
 **Changed 2026-09-28 (Daniel): every relay is in the cabin.** `k_eps` (HCR 150) now sits
-in the glove box beside the fuse box LMI (was HCFB), drawn on `ST185-B-cabin` because its trigger is ECU-B
-B12. The ECU active low, coil feed and LMI L7 feed (was HCFB H4) are cabin wires; the pump feed from
+in the glove box beside the fuse box LMI (was HCFB), drawn on `ST185-CabinPower`. The ECU active low, coil feed and LMI L7 feed (was HCFB H4) are cabin wires; the pump feed from
 contact 87 runs point-to-point on loom C through the firewall (no bulkhead), like the fan
 feeds. This replaces the 2026-09-17 "engine bay, next to the pump" placement.
 
@@ -340,10 +339,14 @@ feeds. This replaces the 2026-09-17 "engine bay, next to the pump" placement.
 with a 25 mm2 load cable (TE datasheet V23132-X0000-A001). The longer heavy run from the
 glove box to the pump also makes voltage drop a sizing input once the current is known.
 
-The reference wiring feeds the relay coil straight from ignition-switched 12 V. Our
-diagrams currently run `w_mrs_relay_req` from `mrs_ctrl.c3` to `k_eps.c2`, i.e. the pump
-switching its own main relay. That is **not** in the factory arrangement - confirm the
-intent before building it.
+**Two relays (DECISIONS R22, Daniel 2026-10-04; drawn 2026-10-12).** `k_eps` (HCR 150) carries
+the pump feed: coil+ = 12 V ignition (`sp_sw12`), coil- switched to ground by the pump's own pin
+B5 (net `MRS_RLY`, glove box -> `ST185-A-cabin` -> bulkhead A c27 -> `ST185-A-engine` ->
+`ST185-EngineRoom-C`). `k_eps_en` (TE `6-1419137-4` micro relay in an RFRM micro position, fed by
+RFRM EPSEN 7.5 A) is the ECU's enable: Link Ign 6 (B12) sinks its coil-, its 87 feeds the MTA-2
+MRS 7.5 A fuse -> pump C1. So the ECU switches the pump on, and the pump switches its own main
+relay. Ign 6 runs on above ~400 rpm with a 1-2 s off-delay (setup time, R52). Older text named
+connector B pin 6 "relay request out"; R22 names B5 - see `docs/OPEN-ITEMS.md`.
 
 ### Speed signal - it is an ECU output
 

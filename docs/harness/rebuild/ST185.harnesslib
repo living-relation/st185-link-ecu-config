@@ -1255,7 +1255,15 @@
       "gender": "Socket",
       "partNumber": "(Eaton RFRM terminals - per the 15401 drawing)",
       "description": "TERMINAL, FUSE AND RELAY MODULE, RFRM",
-      "manufacturer": "Eaton Bussmann"
+      "manufacturer": "Eaton Bussmann",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      }
     },
     {
       "id": "ct_mta",
@@ -1670,6 +1678,23 @@
       "manufacturer": "generic"
     },
     {
+      "id": "ct_ring_m8_10_8",
+      "type": "Other",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "GENERIC RING M8 10-8",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M8 STUD, ADHESIVE HEATSHRINK",
+      "contactColor": "Silver",
+      "manufacturer": "generic"
+    },
+    {
       "id": "ct_ring_m5_6",
       "type": "Other",
       "gender": "Socket",
@@ -1816,20 +1841,6 @@
       },
       "partNumber": "GENERIC CRIMP SPLICE 14-10",
       "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "generic"
-    },
-    {
-      "id": "oUUgBZxSjz-XvnltX7ACJ",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 14
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 26
-      },
-      "partNumber": "GENERIC SOLDER SLEEVE 26-14",
-      "description": "SPLICE, SOLDER SLEEVE",
       "manufacturer": "generic"
     },
     {

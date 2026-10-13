@@ -375,8 +375,9 @@
         {
           "id": "c27",
           "designation": "56",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "MR-S pump B5 -> EPS relay k_eps coil- (85)",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c28",
@@ -1368,6 +1369,21 @@
         "y": 3240
       },
       "propagate": false
+    },
+    {
+      "id": "br_w_eps_rly_e",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2070,
+        "y": 180
+      },
+      "schematicPosition": {
+        "x": 2580,
+        "y": -60
+      },
+      "propagate": false
     }
   ],
   "splices": [
@@ -2054,6 +2070,19 @@
       },
       "color": "Orange",
       "partId": "m16_20_3"
+    },
+    {
+      "id": "w_eps_rly_ae",
+      "source": {
+        "id": "bh_a_eng",
+        "handle": "c27"
+      },
+      "target": {
+        "id": "br_w_eps_rly_e",
+        "handle": "Terminal"
+      },
+      "color": "Violet",
+      "partId": "m16_20_7"
     }
   ],
   "cables": [
@@ -2834,6 +2863,15 @@
       "id": "bn_bp_750__br_cab_etbm_sh",
       "sourceId": "bp_750",
       "targetId": "br_cab_etbm_sh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_750__br_w_eps_rly_e",
+      "sourceId": "bp_750",
+      "targetId": "br_w_eps_rly_e",
       "length": {
         "value": 50,
         "unit": "mm"

@@ -73,12 +73,14 @@ each cavity used once, contact/plug size matches this map).
 
 | Size | A spare | B spare |
 |---|---|---|
-| 16 | 7 (52, 53, 56, 57, 58, 59, 61) | 13 (62-70, 79-82) |
+| 16 | 6 (52, 53, 57, 58, 59, 61) | 13 (62-70, 79-82) |
 | 12 | 0 | 12 (3-8, 97-102) |
 | 8 | - | 4 (48, 49, 54, 55) |
 | 4 | - | 2 (43, 60) |
 
-The alternator IG/L/S crossover (plan §36) fits in B's size-16 spares.
+A cavity 56 (`c27`) carries the EPS relay coil- wire from the MR-S pump B5 since 2026-10-12 (DECISIONS R22).
+The alternator IG/L/S do NOT cross here: DECISIONS R17 puts the alternator plug and its wires in
+`ST185-HeavyDC` (how they cross the firewall is an open question in `docs/OPEN-ITEMS.md`).
 
 ## Sealing plugs
 

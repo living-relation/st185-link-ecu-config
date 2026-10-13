@@ -436,7 +436,7 @@
         "x": 1740,
         "y": 480
       },
-      "text": "SHIELDS (docs/SHIELD-RULES.md; no connector shells, drains on pins). Each sensor screen floats at the sensor. Each sensor cable gets its own Raychem S200-3-WI-22-9 SolderSleeve (sized to the cable, DECISIONS S12); its 22 AWG lead is that cable's drain. DRAIN T-SPLICE (Daniel 2026-10-12): the RL drain is the one crimped (soldered) into IN pin 3; the RR drain is soldered onto it about 6 mm (0.25 in) behind the rear of the plug, where 6 mm of the RL drain's insulation is cut away - no combined pigtail, no two wires in one pin, drains stay 22 AWG. The output cable has a SolderSleeve at each end: S200-3-WI-22-9 (22 AWG lead) to OUT pin 5, S02-03-R (20 AWG lead) to inline pin 5, which runs on to the ECU shield ground. Inside the VRC the build joins IN pin 3 to OUT pin 5 by wire. One screen node, grounded once, at the ECU."
+      "text": "SHIELDS (docs/SHIELD-RULES.md; no connector shells, drains on pins). Each sensor screen floats at the sensor. Every screen is drawn as if it had a drain wire (R29): both sensor screens meet at ONE splice by the IN plug and one drain wire (M22759/16-20-06) runs from it to IN pin 3. Build method, not drawn (R30): the RL drain is the one crimped (soldered) into IN pin 3; the RR drain is soldered onto it about 6 mm (0.25 in) behind the rear of the plug, where 6 mm of the RL drain's insulation is cut away. The output cable screen lands straight on OUT pin 5 and on inline pin 5, which runs on to the ECU shield ground. Inside the VRC the build joins IN pin 3 to OUT pin 5 by wire. One screen node, grounded once, at the ECU."
     },
     {
       "id": "n_iso",

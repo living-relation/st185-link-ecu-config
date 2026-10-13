@@ -8,11 +8,11 @@
     },
     "B-cabin": {
       "file": "ST185-B-cabin.harness",
-      "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, the B-pin relay coil (85) wires (k_fan2 / k_eps / k_acc in the fuse box, ST185-CabinPower), fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
+      "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, the B-pin relay coil (85) wires (k_fan2 / k_eps_en / k_acc in the fuse box, ST185-CabinPower), fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
     },
     "CabinPower": {
       "file": "ST185-CabinPower.harness",
-      "physical": "Cabin power (non-ECU): the glove-box fuse box (LMI + RFRM + 3x MTA, Option B) with the ECU-switched relays seated in it (k_fan2 / k_efi / k_fp / k_str / k_etb / k_fan / k_acc, k_eps HCR150 beside), battery feed ring, fuel pump run to the trunk; ECU coil wires from A-cabin / B-cabin and the A-cabin, B-cabin, A-engine, CSB3 and EngineRoom-C ends arrive broken off"
+      "physical": "Cabin power (non-ECU): the glove-box fuse box (LMI + RFRM + 3x MTA, Option B) with the ECU-switched relays seated in it (k_fan2 / k_efi / k_fp / k_str / k_etb / k_fan / k_acc / k_eps_en, k_eps HCR150 beside), battery feed ring, fuel pump run to the trunk; ECU coil wires from A-cabin / B-cabin and the A-cabin, B-cabin, A-engine, CSB3 and EngineRoom-C ends arrive broken off"
     },
     "A-engine": {
       "file": "ST185-A-engine.harness",
@@ -503,6 +503,20 @@
         "color": "W-G",
         "function": "power-window feed -> master SW P6 (A)6 / RH SW P9-6 (R/B2 removed)",
         "method": "heavy crimp butt splice into the factory cowl-side W-G lead at the left kick"
+      }
+    },
+    {
+      "id": "FL_OEM_RB2_WL",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_rb2_wl",
+      "ewd": {
+        "page": "1993 p.137 / p.170",
+        "connector": "R/B2",
+        "pin": "2",
+        "color": "W-L",
+        "function": "always-hot door lock / auto tilt-away feed -> splice I1 -> door lock ECU D8-8 / tilt-away ECU (R/B2 removed; R58 new RFRM 15 A fuse)",
+        "method": "crimp butt splice into the factory cowl-side W-L lead at the left kick (cabin side)"
       }
     },
     {
@@ -1725,6 +1739,21 @@
       ]
     },
     {
+      "id": "BR_W_RB2_WL",
+      "type": "broken_off",
+      "what": "RFRM WL 15A -> door lock / tilt-away always-hot W-L (ex-R/B2 pin 2, R58)",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_rb2_wl"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_rb2_wl"
+        }
+      ]
+    },
+    {
       "id": "BR_W76",
       "type": "broken_off",
       "what": "EFI Main Relay 85 (k_efi) <- ECU-A A28",
@@ -1817,7 +1846,7 @@
     {
       "id": "BR_W_EPS_TRIG",
       "type": "broken_off",
-      "what": "MR-S EHPS pump relay (HCR150, glove box) 85 (k_eps) <- ECU-B B12",
+      "what": "EPS enable relay k_eps_en 85 (RFRM micro, glove box) <- ECU-B B12",
       "ends": [
         {
           "harness": "B-cabin",
@@ -1826,6 +1855,36 @@
         {
           "harness": "CabinPower",
           "terminal": "br_w_eps_trig"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_EPS_RLY",
+      "type": "broken_off",
+      "what": "EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
+      "ends": [
+        {
+          "harness": "A-cabin",
+          "terminal": "br_w_eps_rly"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_eps_rly"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_EPS_RLY_E",
+      "type": "broken_off",
+      "what": "EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
+      "ends": [
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_eps_rly_e"
+        },
+        {
+          "harness": "A-engine",
+          "terminal": "br_w_eps_rly_e"
         }
       ]
     },

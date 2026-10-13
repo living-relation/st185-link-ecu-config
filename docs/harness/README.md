@@ -42,7 +42,7 @@ physical section of copper, a connector or a BOM line has one owner.
 | File | Harness | Scope |
 |---|---|---|
 | `ST185-A-cabin.harness` | ECU connector A, cabin | ECU-A, cabin half of bulkhead A, the A-pin relay coil wires (relays are in the box, CabinPower), the BRZ APS pedal connector (folded in 2026-10-11, B33 leg breaks off to B-cabin), the A/C amplifier's cabin-side flying leads (folded in from ST185-ACAmp-Spur 2026-10-11: TW/return, kill, clutch and pressure-switch taps at the amplifier - the A4/A5 device-side ends are on EngineRoom-C), front wheel-speed spur, the +5V / Gnd Out / +8V / switched-12V splices |
-| `ST185-B-cabin.harness` | ECU connector B, cabin | ECU-B, cabin half of bulkhead B, the B-pin relay coil wires (k_fan2 / k_eps / k_acc are in the box, CabinPower), fuel level branch, rear wheel-speed spur, the front spur's FR core, the B legs of +5V / Gnd Out |
+| `ST185-B-cabin.harness` | ECU connector B, cabin | ECU-B, cabin half of bulkhead B, the B-pin relay coil wires (k_fan2 / k_eps_en / k_acc are in the box, CabinPower), fuel level branch, rear wheel-speed spur, the front spur's FR core, the B legs of +5V / Gnd Out |
 | `ST185-CabinPower.harness` | Cabin power (non-ECU) | the glove-box fuse box (Option B: Bussmann LMI in two stacks `lmi_a_*` / `lmi_b_*` (L1-L7, DECISIONS S14), Eaton RFRM `rfrm`, 3x MTA 0301491 `mta1`-`mta3`) with the ECU-switched relays seated in it, battery feed ring, fuel pump run to the trunk; the ECU coil wires, splices, CSB3, CAN (DEV), AntiTheft and EngineRoom-C ends arrive broken off |
 | `ST185-HeavyDC.harness` | Heavy DC (Route 1) | trunk battery, RADLOK firewall pair, starter, 160 A alternator B+, engine-bay jump post, engine block ground; hands off to EngineRoom-C at the cabin PDB (breaks H1/H2/H3/H6a) |
 | `ST185-CSB3.harness` | ECUMaster CSB3 | CSB3 plug, cruise stalk, clutch and brake switches, cruise ladder; power, ground, reverse, LED and CAN wires arrive broken off |
@@ -69,8 +69,8 @@ ground to the cluster. Interior cluster wiring lives only in
 The fuse box lives only in `ST185-CabinPower` (2026-10-11, Option B; slot map in
 `../electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §8.1).
 Loom C's old `gbx_body` glove-box body block and the PDB's fused AM1 / AM2 / OEM HOT
-outputs moved there; EngineRoom-C keeps the OEM ends (J/B2, IE1, J/B1, R/B2, R/B4,
-A/C pressure switch) and reaches the box through broken-off pairs. The PDB keeps only
+outputs moved there; EngineRoom-C keeps the cabin-side OEM ends (IE1, J/B1, the leads at the old R/B2 / R/B4
+spots, A/C pressure switch; J/B2 and the R/Bs themselves are removed, R12) and reaches the box through broken-off pairs. The PDB keeps only
 its battery, RADLOK and ground studs. Some wire ids still carry `pmu` (`w_pmu_hl` ...)
 from the PMU-16 days - names only, not a PMU.
 

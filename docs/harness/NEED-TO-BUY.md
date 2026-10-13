@@ -9,9 +9,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 50 | 0 | **50** |
+| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 48 | 0 | **48** |
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 43 | 0 | **43** |
-| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 38 | 0 | **38** |
+| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 39 | 0 | **39** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
@@ -50,6 +50,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `BDK 2.8` | Bosch | CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG) | 2 | 0 | **2** |
 | `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER | 2 | 0 | **2** |
 | `GENERIC LUG M10 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK | 2 | 0 | **2** |
+| `GENERIC RING M8 10-8` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M8 STUD, ADHESIVE HEATSHRINK | 2 | 0 | **2** |
 | `GENERIC RING M8 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG | 2 | 0 | **2** |
 | `LMI1-M-1-1` | Eaton Bussmann | FUSE HOLDER, MODULAR, LMI, INPUT MODULE, M8 X 1.25 STAINLESS STUD, KEPS NUT | 2 | 0 | **2** |
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK | 2 | 0 | **2** |
@@ -69,7 +70,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC LUG M10 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC LUG M8 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M8 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC RING M5 6AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 6 AWG, M5 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
-| `GENERIC SOLDER SLEEVE 26-14` | generic | SPLICE, SOLDER SLEEVE | 1 | 0 | **1** |
 | `GENERIC SPADE RECEPTACLE 12-10` | generic | TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 6.3 MM (250) TAB, 12-10 AWG | 1 | 0 | **1** |
 | `HD36-24-33SE` | TE DEUTSCH | CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL | 1 | 0 | **1** |
 | `MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942` | Toyota / Sumitomo | CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS | 1 | 0 | **1** |
@@ -103,9 +103,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 98 | 130 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 99 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 94 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 95 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS | 1 | 1 |
@@ -124,7 +124,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `4-1437290-0` | CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET CONTACTS, BLUE | 1 | 2 |
 | `4-1437290-1` | CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 2, SOCKET CONTACTS, BLUE | 1 | 2 |
 | `4-1904124-2` | RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A402, 1 FORM A, 25 A, 12 VDC COIL 119 OHM, 680 OHM PARALLEL RESISTOR | 2 | 2 |
-| `6-1419137-4` | RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A403, 1 FORM C, 12 VDC COIL, DIODE SUPPRESSED | 1 | 2 |
+| `6-1419137-4` | RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A403, 1 FORM C, 12 VDC COIL, DIODE SUPPRESSED | 2 | 2 |
 | `D 261 205 358-01` | CONNECTOR, PLUG, BOSCH MOTORSPORT KIT, 6 POS, SOCKET CONTACTS | 1 | 1 |
 | `DT04-12PA` | CONN RECP DT 12-WAY PIN SEALED A-KEY | 1 | 2 |
 | `DT06-12SA` | CONNECTOR, PLUG, DT, 12 POS, SOCKET CONTACTS, N SEAL, KEY A, GRAY | 1 | 2 |
@@ -140,10 +140,10 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Modelled as | What it really is | Qty |
 |---|---|---:|
-| `(Eaton RFRM terminals - per the 15401 drawing)` | TERMINAL, FUSE AND RELAY MODULE, RFRM | 22 |
+| `(Eaton RFRM terminals - per the 15401 drawing)` | TERMINAL, FUSE AND RELAY MODULE, RFRM | 26 |
 | `(LED board indicator - 12 V, resistor on board)` | DIODE, LIGHT EMITTING, INDICATOR, 12 V | 6 |
-| `(MTA 0301491 terminals - per the MTA drawing)` | TERMINAL, FUSE AND RELAY MODULE, MTA | 41 |
-| `(Toyota TS terminals, supplied with owned housings)` | CONTACT, SOCKET, CRIMP, TOYOTA | 4 |
+| `(MTA 0301491 terminals - per the MTA drawing)` | TERMINAL, FUSE AND RELAY MODULE, MTA | 42 |
+| `(Toyota TS terminals, supplied with owned housings)` | CONTACT, SOCKET, CRIMP, TOYOTA | 5 |
 | `(generic)` | CONTACT, SOCKET, CRIMP, GENERIC | 11 |
 | `(integral - RL00801-50)` | CONTACT, RADSOK 8.0, INTEGRAL TO RL00801-50 CABLE CONNECTOR, 50 MM2 (1/0) CRIMP BARREL | 4 |
 | `(kit socket, D 261 205 358-01)` | CONTACT, SOCKET, CRIMP, GOLD | 6 |
@@ -200,7 +200,7 @@ is in `interfaces.json` and in the build list's EWD column.
 | B-engine | 1 |
 | CSB3 | 6 |
 | ClusterLED | 6 |
-| EngineRoom-C | 14 |
+| EngineRoom-C | 15 |
 
 ## Screened cable pieces by owning harness
 
