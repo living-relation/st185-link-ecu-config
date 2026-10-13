@@ -110,6 +110,43 @@
         }
       ],
       "partId": "cp_jump"
+    },
+    {
+      "id": "alt_plug",
+      "width": 390,
+      "partId": "cp_alt_round3",
+      "label": "Alternator G2 - round 3-pin plug (Toyota 90980-10341; 1993 EWD p.74-75 G2 (B) pinout)",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "S - battery sense <- RFRM ALTS 2A (Bus 1)",
+          "propagate": false,
+          "contactPartId": "ct_generic_skt"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "L - charge lamp -> IG2-16 cowl lead -> ClusterLED charge LED (C12-8)",
+          "propagate": false,
+          "contactPartId": "ct_generic_skt"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "IG - excite <- J/B No.1 ECU-IG 15A (IG2-15 cowl lead)",
+          "propagate": false,
+          "contactPartId": "ct_generic_skt"
+        }
+      ],
+      "schematicPosition": {
+        "x": 0,
+        "y": 1080
+      },
+      "layoutPosition": {
+        "x": 1500,
+        "y": -390
+      }
     }
   ],
   "terminals": [
@@ -280,6 +317,51 @@
       },
       "partId": "tp_lug_m10_50",
       "propagate": false
+    },
+    {
+      "id": "br_alt_s",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator S (G2-1) -> RFRM ALTS 2A, battery sense",
+      "schematicPosition": {
+        "x": 480,
+        "y": 1080
+      },
+      "layoutPosition": {
+        "x": 1620,
+        "y": -450
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_alt_l",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator L (G2-2) -> IG2-16 cowl lead -> charge LED",
+      "schematicPosition": {
+        "x": 480,
+        "y": 1140
+      },
+      "layoutPosition": {
+        "x": 1650,
+        "y": -510
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_alt_ig",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator IG (G2-3) <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
+      "schematicPosition": {
+        "x": 480,
+        "y": 1200
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": -570
+      },
+      "propagate": false
     }
   ],
   "wires": [
@@ -412,6 +494,45 @@
         "handle": "Terminal"
       },
       "partId": "wp_1_0_blk"
+    },
+    {
+      "id": "w_alt_s_h",
+      "source": {
+        "id": "alt_plug",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "br_alt_s",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "partId": "m16_20_9"
+    },
+    {
+      "id": "w_alt_l_h",
+      "source": {
+        "id": "alt_plug",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "br_alt_l",
+        "handle": "Terminal"
+      },
+      "color": "Yellow",
+      "partId": "m16_20_4"
+    },
+    {
+      "id": "w_alt_ig_h",
+      "source": {
+        "id": "br_alt_ig",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "alt_plug",
+        "handle": "c3"
+      },
+      "color": "Red",
+      "partId": "m16_16_2"
     }
   ],
   "branchPoints": [
@@ -609,6 +730,33 @@
         "value": 1340,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_alt_plug__br_alt_s",
+      "sourceId": "alt_plug",
+      "targetId": "br_alt_s",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_alt_plug__br_alt_l",
+      "sourceId": "alt_plug",
+      "targetId": "br_alt_l",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_alt_plug__br_alt_ig",
+      "sourceId": "alt_plug",
+      "targetId": "br_alt_ig",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
     }
   ],
   "schematicNotes": [
@@ -623,7 +771,7 @@
     },
     {
       "id": "n_alt_prot",
-      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. Size for the 160 A alternator (plan 6.20: 175 A). Battery is AGM. The trunk Longacre 4-terminal kill switch cuts the battery positive and, on its second pair, the alternator IG feed.",
+      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. Size for the 160 A alternator (plan 6.20: 175 A). Battery is AGM. The trunk Longacre 4-terminal kill switch cuts the battery positive. Alternator IG is fed from J/B No.1 ECU-IG 15A (Dan 2026-10-13, 1993 EWD p.74); the older idea of cutting IG on the switch's second pair is not drawn - the engine stops on the G4X Stop Switch input (R19). Question J2 in docs/OPEN-ITEMS.md.",
       "width": 390,
       "schematicPosition": {
         "x": 1710,
@@ -642,7 +790,7 @@
     },
     {
       "id": "n_rev4",
-      "text": "ROUTE 1 REV 4 (Dan's mark-up, 2026-10-10): battery box moved to the passenger-side rear corner of the trunk (H1/H2 rerouted from there - bundle lengths above are inherited estimates from the prior ST185-EngineRoom-C drawing, not re-measured against the new spot - verify on the car). Starter moved to Dan's spot (lower-middle of the engine, p.29 leaders S2/S3). H4 (RADLOK+ -> starter) and H5 (alt B+ -> starter) now run as one bundle along the firewall and down to the starter (Dan: \"run 1 and 3 together\") - drawn as separate conductors here (H4 via RADLOK/rl_pos_eng, H5 via t_alt_b/w_alt) since harness.design has no native \"co-routed, not bundled-as-one-cable\" primitive; the physical bundling is a routing note, not a schema change. Alternator moved to the rear of the engine, RH side, under bulkheads A/B (MR2-style, rev 3 Dan mark-up 2026-10-04) - only t_alt_b (G1/B+ ring) is drawn here; the G2 3-pin plug (IG/L/S small wires) is NOT this file's concern - Route 1's own ALT-S row sends those through spare size-16 positions on the B half of the DRB102 bulkhead to ST185-B-engine (bay) and ST185-B-cabin / ST185-CabinPower (cabin), not drawn yet anywhere (docs/OPEN-ITEMS.md row 42, provisional cavity map).",
+      "text": "ROUTE 1 REV 4 (Dan's mark-up, 2026-10-10): battery box moved to the passenger-side rear corner of the trunk (H1/H2 rerouted from there - bundle lengths above are inherited estimates from the prior ST185-EngineRoom-C drawing, not re-measured against the new spot - verify on the car). Starter moved to Dan's spot (lower-middle of the engine, p.29 leaders S2/S3). H4 (RADLOK+ -> starter) and H5 (alt B+ -> starter) now run as one bundle along the firewall and down to the starter (Dan: \"run 1 and 3 together\") - drawn as separate conductors here (H4 via RADLOK/rl_pos_eng, H5 via t_alt_b/w_alt) since harness.design has no native \"co-routed, not bundled-as-one-cable\" primitive; the physical bundling is a routing note, not a schema change. Alternator moved to the rear of the engine, RH side, under bulkheads A/B (MR2-style, rev 3 Dan mark-up 2026-10-04). The G2 round 3-pin plug (alt_plug, Toyota 90980-10341) is drawn here (Dan 2026-10-13, R17); its IG / L / S leads break off to ST185-EngineRoom-C and cross the firewall in harness C's own RH fender grommet (no ECU signal, so no bulkhead letter, R2) - IG and L to the cowl-side IG2-15 / IG2-16 leads under the ECU, S to the glove-box RFRM ALTS 2A.",
       "schematicPosition": {
         "x": 1710,
         "y": 690
@@ -681,6 +829,39 @@
       "color": "Red",
       "gauge": {
         "value": 2,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_4",
+      "partNumber": "M22759/16-20-4",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Yellow",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_2",
+      "partNumber": "M22759/16-16-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 16,
         "unit": "AWG"
       }
     }
@@ -785,6 +966,19 @@
         "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Red_SPL.jpg",
         "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Red_SPL.jpg"
       }
+    },
+    {
+      "id": "cp_alt_round3",
+      "partNumber": "90980-10341",
+      "description": "CONNECTOR, PLUG, TOYOTA, ROUND, 3 POS",
+      "manufacturer": "Toyota",
+      "numberOfCavities": 3,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_generic_skt"
+        }
+      ]
     }
   ],
   "contactParts": [
@@ -805,6 +999,14 @@
       "contactColor": "Silver",
       "description": "CONTACT, RADSOK 8.0, INTEGRAL TO RL00801-50 CABLE CONNECTOR, 50 MM2 (1/0) CRIMP BARREL",
       "id": "ct_radlok8"
+    },
+    {
+      "id": "ct_generic_skt",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "(generic)",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
+      "manufacturer": "Generic"
     }
   ]
 }

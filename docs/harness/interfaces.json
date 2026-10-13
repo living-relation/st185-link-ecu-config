@@ -1656,6 +1656,34 @@
         "function": "front wiper motor +B (park switch) <- J/B1 1H-5 WIPER 20A",
         "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
       }
+    },
+    {
+      "id": "FL_OEM_IG2_C15",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ig2_c15",
+      "ewd": {
+        "page": "1993 p.74-75",
+        "connector": "IG2",
+        "pin": "15",
+        "color": "B-R",
+        "function": "J/B No.1 ECU-IG 15A (1B-8 via J3) -> alternator IG (G2-3)",
+        "method": "crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IG2_C16",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ig2_c16",
+      "ewd": {
+        "page": "1993 p.74-75",
+        "connector": "IG2",
+        "pin": "16",
+        "color": "Y",
+        "function": "alternator L (G2-2) -> splice I5 -> combination meter lead C14-8 / C12-8 (ClusterLED charge LED)",
+        "method": "crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)"
+      }
     }
   ],
   "realConnectors": [
@@ -2979,6 +3007,66 @@
         {
           "harness": "B-cabin",
           "terminal": "br_rev_feed"
+        }
+      ]
+    },
+    {
+      "id": "BR_ALT_IG",
+      "type": "broken_off",
+      "what": "alternator IG (G2-3) <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
+      "ends": [
+        {
+          "harness": "HeavyDC",
+          "terminal": "br_alt_ig"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_alt_ig"
+        }
+      ]
+    },
+    {
+      "id": "BR_ALT_L",
+      "type": "broken_off",
+      "what": "alternator L (G2-2) -> IG2-16 cowl lead -> charge LED",
+      "ends": [
+        {
+          "harness": "HeavyDC",
+          "terminal": "br_alt_l"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_alt_l"
+        }
+      ]
+    },
+    {
+      "id": "BR_ALT_S",
+      "type": "broken_off",
+      "what": "alternator S (G2-1) -> RFRM ALTS 2A, battery sense",
+      "ends": [
+        {
+          "harness": "HeavyDC",
+          "terminal": "br_alt_s"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_alt_s"
+        }
+      ]
+    },
+    {
+      "id": "BR_ALT_S_CP",
+      "type": "broken_off",
+      "what": "RFRM ALTS 2A (Bus 1) -> alternator S battery sense",
+      "ends": [
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_alt_s_cp"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_alt_s_cp"
         }
       ]
     }

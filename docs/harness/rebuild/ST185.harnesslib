@@ -1254,6 +1254,19 @@
       "manufacturer": "TBD",
       "numberOfCavities": 6,
       "configurations": []
+    },
+    {
+      "id": "cp_alt_round3",
+      "partNumber": "90980-10341",
+      "description": "CONNECTOR, PLUG, TOYOTA, ROUND, 3 POS",
+      "manufacturer": "Toyota",
+      "numberOfCavities": 3,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_generic_skt"
+        }
+      ]
     }
   ],
   "contactParts": [

@@ -9,7 +9,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 104 | 0 | **104** |
+| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 106 | 0 | **106** |
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 56 | 0 | **56** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 46 | 0 | **46** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
@@ -62,6 +62,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `15401-1-2-1-0A` | Eaton Bussmann | MODULE, FUSE AND RELAY, RFRM, SEALED, 40 MINI FUSE, 10 MICRO RELAY, 2 BUS | 1 | 0 | **1** |
 | `470R 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `6-1419137-4` | TE Connectivity | RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A403, 1 FORM C, 12 VDC COIL, DIODE SUPPRESSED | 3 | 2 | **1** |
+| `90980-10341` | Toyota | CONNECTOR, PLUG, TOYOTA, ROUND, 3 POS | 1 | 0 | **1** |
 | `90980-11143` | Toyota | CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS | 1 | 0 | **1** |
 | `DRB12-102PAE-L018` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT | 1 | 0 | **1** |
 | `DRB16-102SAE-L018` | TE DEUTSCH | CONNECTOR, PLUG, DRB, 102 POS, SOCKET CONTACTS, E SEAL, A KEY, WIRE ROUTER | 1 | 0 | **1** |
@@ -140,11 +141,11 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Modelled as | What it really is | Qty |
 |---|---|---:|
-| `(Eaton RFRM terminals - per the 15401 drawing)` | TERMINAL, FUSE AND RELAY MODULE, RFRM | 30 |
+| `(Eaton RFRM terminals - per the 15401 drawing)` | TERMINAL, FUSE AND RELAY MODULE, RFRM | 31 |
 | `(LED board indicator - 12 V, resistor on board)` | DIODE, LIGHT EMITTING, INDICATOR, 12 V | 6 |
 | `(MTA 0301491 terminals - per the MTA drawing)` | TERMINAL, FUSE AND RELAY MODULE, MTA | 42 |
 | `(Toyota TS terminals, supplied with owned housings)` | CONTACT, SOCKET, CRIMP, TOYOTA | 5 |
-| `(generic)` | CONTACT, SOCKET, CRIMP, GENERIC | 11 |
+| `(generic)` | CONTACT, SOCKET, CRIMP, GENERIC | 14 |
 | `(integral - RL00801-50)` | CONTACT, RADSOK 8.0, INTEGRAL TO RL00801-50 CABLE CONNECTOR, 50 MM2 (1/0) CRIMP BARREL | 4 |
 | `(kit socket, D 261 205 358-01)` | CONTACT, SOCKET, CRIMP, GOLD | 6 |
 | `(kit-supplied pigtail)` | CONNECTOR, PIGTAIL, 3 POS | 1 |
@@ -202,7 +203,7 @@ is in `interfaces.json` and in the build list's EWD column.
 | CSB3 | 6 |
 | CabinPower | 1 |
 | ClusterLED | 6 |
-| EngineRoom-C | 58 |
+| EngineRoom-C | 60 |
 | RearLights | 20 |
 
 ## Screened cable pieces by owning harness
