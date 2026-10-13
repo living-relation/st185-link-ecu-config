@@ -1,0 +1,447 @@
+{
+ "design": "B_rev3",
+ "parts": {
+  "Bar_POS_Al6061": {
+   "mass_g": 321.0,
+   "volume_cm3": 118.88
+  },
+  "Bar_NEG_Al6061": {
+   "mass_g": 265.2,
+   "volume_cm3": 98.22
+  },
+  "Bar_UNI_Al6061": {
+   "mass_g": 86.1,
+   "volume_cm3": 31.88
+  },
+  "Body_printed_ASA": {
+   "mass_g": 274.2,
+   "volume_cm3": 258.69
+  },
+  "LinkStrap_6061_6x20_P50": {
+   "mass_g": 19.7,
+   "volume_cm3": 7.3
+  },
+  "NotchPlug_P_printed_ASA": {
+   "mass_g": 2.1,
+   "volume_cm3": 2.01
+  },
+  "NotchPlug_N_printed_ASA": {
+   "mass_g": 2.1,
+   "volume_cm3": 2.01
+  },
+  "Cover_printed_ASA": {
+   "mass_g": 171.6,
+   "volume_cm3": 161.85
+  },
+  "Bolt_ISO4017_M8x25_A2": {
+   "qty": 10,
+   "mass_g": 16.3,
+   "volume_cm3": 2.03
+  },
+  "SetScrew_ISO4029_M8x12_A2": {
+   "qty": 16,
+   "mass_g": 4.4,
+   "volume_cm3": 0.55
+  },
+  "Bolt_ISO4017_M8x30_A2": {
+   "qty": 3,
+   "mass_g": 18.3,
+   "volume_cm3": 2.28
+  },
+  "BarScrew_ISO7380_M4x10_A2": {
+   "qty": 10,
+   "mass_g": 1.8,
+   "volume_cm3": 0.23
+  },
+  "HeatSetInsert_M4x8.1_brass": {
+   "qty": 10,
+   "mass_g": 0.3,
+   "volume_cm3": 0.1
+  },
+  "REF_MountScrew_ISO7380_M6x16_A2": {
+   "qty": 4,
+   "mass_g": 7.4,
+   "volume_cm3": 0.92
+  }
+ },
+ "studs": [
+  {
+   "x": -41.5,
+   "y": -31,
+   "lug": "4R8",
+   "lug_src": "Klauke 4R8 (25 mm2, M8, Cu tin)",
+   "size": "M8",
+   "bolt": "ISO 4017 M8x25 A2-70",
+   "land_top": 16.0,
+   "stud_top": 34.3,
+   "exit": "front (-y)",
+   "pole": "POS",
+   "label": "LMI-A IN (4 AWG)"
+  },
+  {
+   "x": -21.5,
+   "y": -31,
+   "lug": "4R8",
+   "lug_src": "Klauke 4R8 (25 mm2, M8, Cu tin)",
+   "size": "M8",
+   "bolt": "ISO 4017 M8x25 A2-70",
+   "land_top": 16.0,
+   "stud_top": 34.3,
+   "exit": "front (-y)",
+   "pole": "POS",
+   "label": "LMI-B IN (4 AWG)"
+  },
+  {
+   "x": -1.5,
+   "y": -31,
+   "lug": "4R8",
+   "lug_src": "Klauke 4R8 (25 mm2, M8, Cu tin)",
+   "size": "M8",
+   "bolt": "ISO 4017 M8x25 A2-70",
+   "land_top": 16.0,
+   "stud_top": 34.3,
+   "exit": "front (-y)",
+   "pole": "POS",
+   "label": "MTA-1 (4 AWG)"
+  },
+  {
+   "x": 18.5,
+   "y": -31,
+   "lug": "4R8",
+   "lug_src": "Klauke 4R8 (25 mm2, M8, Cu tin)",
+   "size": "M8",
+   "bolt": "ISO 4017 M8x25 A2-70",
+   "land_top": 16.0,
+   "stud_top": 34.3,
+   "exit": "front (-y)",
+   "pole": "POS",
+   "label": "MTA-2 (4 AWG)"
+  },
+  {
+   "x": 38.5,
+   "y": -31,
+   "lug": "2R8",
+   "lug_src": "Klauke 2R8 (10 mm2, M8, Cu tin)",
+   "size": "M8",
+   "bolt": "ISO 4017 M8x25 A2-70",
+   "land_top": 16.0,
+   "stud_top": 34.3,
+   "exit": "front (-y)",
+   "pole": "POS",
+   "label": "MTA-3 (8 AWG)"
+  },
+  {
+   "x": 58.5,
+   "y": -31,
+   "lug": "4R8",
+   "lug_src": "Klauke 4R8 (25 mm2, M8, Cu tin)",
+   "size": "M8",
+   "bolt": "ISO 4017 M8x25 A2-70",
+   "land_top": 16.0,
+   "stud_top": 34.3,
+   "exit": "front (-y)",
+   "pole": "POS",
+   "label": "SPARE M8"
+  },
+  {
+   "x": -40.5,
+   "y": 31,
+   "lug": "4R8",
+   "lug_src": "Klauke 4R8 (25 mm2, M8, Cu tin)",
+   "size": "M8",
+   "bolt": "ISO 4017 M8x25 A2-70",
+   "land_top": 16.0,
+   "stud_top": 34.3,
+   "exit": "rear (+y)",
+   "pole": "NEG",
+   "label": "SPARE M8"
+  },
+  {
+   "x": 118.5,
+   "y": 31,
+   "lug": "4R8",
+   "lug_src": "Klauke 4R8 (25 mm2, M8, Cu tin)",
+   "size": "M8",
+   "bolt": "ISO 4017 M8x25 A2-70",
+   "land_top": 16.0,
+   "stud_top": 34.3,
+   "exit": "rear (+y)",
+   "pole": "UNI",
+   "label": "U-1 (M8)"
+  },
+  {
+   "x": 138.5,
+   "y": 31,
+   "lug": "4R8",
+   "lug_src": "Klauke 4R8 (25 mm2, M8, Cu tin)",
+   "size": "M8",
+   "bolt": "ISO 4017 M8x25 A2-70",
+   "land_top": 16.0,
+   "stud_top": 34.3,
+   "exit": "rear (+y)",
+   "pole": "UNI",
+   "label": "U-2 (M8)"
+  },
+  {
+   "x": 158.5,
+   "y": 31,
+   "lug": "4R8",
+   "lug_src": "Klauke 4R8 (25 mm2, M8, Cu tin)",
+   "size": "M8",
+   "bolt": "ISO 4017 M8x25 A2-70",
+   "land_top": 16.0,
+   "stud_top": 34.3,
+   "exit": "rear (+y)",
+   "pole": "UNI",
+   "label": "U-3 (M8)"
+  }
+ ],
+ "ports": [
+  {
+   "x": -94.5,
+   "face_y": -46.0,
+   "pole": "POS",
+   "label": "BAT+ IN (H1, 1/0)",
+   "bore": 13.5,
+   "depth": 28.0,
+   "exit": "front (-y)"
+  },
+  {
+   "x": -73.5,
+   "face_y": -46.0,
+   "pole": "POS",
+   "label": "RADLOK+ OUT (H3, 1/0)",
+   "bore": 13.5,
+   "depth": 28.0,
+   "exit": "front (-y)"
+  },
+  {
+   "x": 121.5,
+   "face_y": -46.0,
+   "pole": "POS",
+   "label": "SPARE 1/0 port",
+   "bore": 13.5,
+   "depth": 28.0,
+   "exit": "front (-y)"
+  },
+  {
+   "x": -94.5,
+   "face_y": 46.0,
+   "pole": "NEG",
+   "label": "BAT- (H2, 1/0)",
+   "bore": 13.5,
+   "depth": 28.0,
+   "exit": "rear (+y)"
+  },
+  {
+   "x": -73.5,
+   "face_y": 46.0,
+   "pole": "NEG",
+   "label": "RADLOK- (H6a, 1/0)",
+   "bore": 13.5,
+   "depth": 28.0,
+   "exit": "rear (+y)"
+  },
+  {
+   "x": -18.5,
+   "face_y": 46.0,
+   "pole": "NEG",
+   "label": "GND ID (H7, 1/0)",
+   "bore": 13.5,
+   "depth": 28.0,
+   "exit": "rear (+y)"
+  },
+  {
+   "x": 2.5,
+   "face_y": 46.0,
+   "pole": "NEG",
+   "label": "GND IG (H7, 1/0)",
+   "bore": 13.5,
+   "depth": 28.0,
+   "exit": "rear (+y)"
+  },
+  {
+   "x": 23.5,
+   "face_y": 46.0,
+   "pole": "NEG",
+   "label": "SPARE 1/0 port",
+   "bore": 13.5,
+   "depth": 28.0,
+   "exit": "rear (+y)"
+  }
+ ],
+ "etched_tags": [
+  {
+   "x": -41.5,
+   "y": -31,
+   "text": "LMI-A / 4AWG M8 / exit 18x19"
+  },
+  {
+   "x": -21.5,
+   "y": -31,
+   "text": "LMI-B / 4AWG M8 / exit 18x19"
+  },
+  {
+   "x": -1.5,
+   "y": -31,
+   "text": "MTA-1 / 4AWG M8 / exit 18x19"
+  },
+  {
+   "x": 18.5,
+   "y": -31,
+   "text": "MTA-2 / 4AWG M8 / exit 18x19"
+  },
+  {
+   "x": 38.5,
+   "y": -31,
+   "text": "MTA-3 / 8AWG M8 / exit 17x16"
+  },
+  {
+   "x": 58.5,
+   "y": -31,
+   "text": "SPARE / 4AWG M8 / exit 18x19"
+  },
+  {
+   "x": -40.5,
+   "y": 31,
+   "text": "SPARE / 4AWG M8 / exit 18x19"
+  },
+  {
+   "x": 118.5,
+   "y": 31,
+   "text": "U-1 / 4AWG M8 / exit 18x19"
+  },
+  {
+   "x": 138.5,
+   "y": 31,
+   "text": "U-2 / 4AWG M8 / exit 18x19"
+  },
+  {
+   "x": 158.5,
+   "y": 31,
+   "text": "U-3 / 4AWG M8 / exit 18x19"
+  },
+  {
+   "x": -94.5,
+   "y": -32.0,
+   "text": "BAT+ / 1/0 D13.5 / exit 22x20"
+  },
+  {
+   "x": -73.5,
+   "y": -32.0,
+   "text": "RADLOK+ / 1/0 D13.5 / exit 22x20"
+  },
+  {
+   "x": 121.5,
+   "y": -32.0,
+   "text": "SPARE / 1/0 D13.5 / exit 22x20"
+  },
+  {
+   "x": -94.5,
+   "y": 32.0,
+   "text": "BAT- / 1/0 D13.5 / exit 22x20"
+  },
+  {
+   "x": -73.5,
+   "y": 32.0,
+   "text": "RADLOK- / 1/0 D13.5 / exit 22x20"
+  },
+  {
+   "x": -18.5,
+   "y": 32.0,
+   "text": "GND ID / 1/0 D13.5 / exit 22x20"
+  },
+  {
+   "x": 2.5,
+   "y": 32.0,
+   "text": "GND IG / 1/0 D13.5 / exit 22x20"
+  },
+  {
+   "x": 23.5,
+   "y": 32.0,
+   "text": "SPARE / 1/0 D13.5 / exit 22x20"
+  },
+  {
+   "x": 46.5,
+   "y": 25.0,
+   "text": "LINK N / M8 link stud / strap 6x20"
+  },
+  {
+   "x": 97.3,
+   "y": 25.0,
+   "text": "LINK U / M8 link stud / strap 6x20"
+  },
+  {
+   "x": 97.3,
+   "y": -25.799999999999997,
+   "text": "LINK P / M8 link stud / strap 6x20"
+  },
+  {
+   "x": 165.0,
+   "y": -15.0,
+   "text": "LINK: strap or / AMG fuse 50.8 / ONE ONLY"
+  }
+ ],
+ "links": [
+  {
+   "x": 46.5,
+   "y": 25.0,
+   "pole": "NEG",
+   "label": "LINK N",
+   "bolt": "ISO 4017 M8x30 A2-70"
+  },
+  {
+   "x": 97.3,
+   "y": 25.0,
+   "pole": "UNI",
+   "label": "LINK U",
+   "bolt": "ISO 4017 M8x30 A2-70"
+  },
+  {
+   "x": 97.3,
+   "y": -25.799999999999997,
+   "pole": "POS",
+   "label": "LINK P",
+   "bolt": "ISO 4017 M8x30 A2-70"
+  }
+ ],
+ "overall_mm": [
+  345.0,
+  120.0,
+  45.0
+ ],
+ "exported": [
+  "B_rev3_Bar_POS_Al6061.step",
+  "B_rev3_Bar_NEG_Al6061.step",
+  "B_rev3_Bar_UNI_Al6061.step",
+  "B_rev3_Body_printed_ASA.step",
+  "B_rev3_Body_printed_ASA.stl",
+  "B_rev3_LinkStrap_6061_6x20_P50.step",
+  "B_rev3_NotchPlug_P_printed_ASA.step",
+  "B_rev3_NotchPlug_P_printed_ASA.stl",
+  "B_rev3_NotchPlug_N_printed_ASA.step",
+  "B_rev3_NotchPlug_N_printed_ASA.stl",
+  "B_rev3_Cover_printed_ASA.step",
+  "B_rev3_Cover_printed_ASA.stl",
+  "B_rev3_Bolt_ISO4017_M8x25_A2.step",
+  "B_rev3_SetScrew_ISO4029_M8x12_A2.step",
+  "B_rev3_Bolt_ISO4017_M8x30_A2.step",
+  "B_rev3_BarScrew_ISO7380_M4x10_A2.step",
+  "B_rev3_HeatSetInsert_M4x8.1_brass.step",
+  "B_rev3_REF_MountScrew_ISO7380_M6x16_A2.step",
+  "B_rev3_ASSEMBLY.step",
+  "ST185_busbar_B_rev3.f3d"
+ ],
+ "isolation": {
+  "min_to_mount_face": 4.0,
+  "min_to_mount_screw": 8.0,
+  "worst_face": [
+   "Bar_POS_Al6061",
+   4.0
+  ],
+  "worst_screw": [
+   "Bar_POS_Al6061",
+   8.0
+  ]
+ }
+}
