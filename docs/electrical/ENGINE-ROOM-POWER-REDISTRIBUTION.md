@@ -96,7 +96,7 @@ Rule: **one source per load** — never two paths feeding the same circuit.
 | HAZ-HORN | RFRM HZ fuse: hazard feed to IE1-12 (cowl side); horn relay (RFRM HN) to a DT 2-way at each horn H3 / H4 | Replaces 15 A HAZ-HORN and the R/B5 horn relay |
 | DOME | RFRM DM fuse only, always-hot, to J/B1 1H-2 (cabin) | Replaces 20 A DOME |
 | Retract motors | LMI L3 fuse only, to IE1-3 → OEM retract control relay R8 | Replaces 30 A RTR (DECISIONS 38) |
-| Wiper park | Relay + fuse, optional | Only if the park circuit needs it |
+| Wiper / washer | J/B No.1 WIPER 20A (R61), no relay of ours | The park switch is in the motor F9 (pins 3-4) and the wiper relay is inside the switch C16 (1993 p.148); RFRM `wp` stays spare |
 | Heater blower | MTA-2 40 A MAXI + heater relay, to blower motor B4 pin 2 | R/B No.4 removed (DECISIONS 26.2) |
 | Power windows | LMI L2 30 A + MTA-3 power relay, to the W-G window feed (old R/B2 power main relay terminal 1) | R/B No.2 removed (DECISIONS 26.2). The always-hot W-L net (door lock ECU, tilt-away) is open - `docs/OPEN-ITEMS.md` |
 | Wiper, gauge, turn, CIG, ECU-IG, IGN, STOP, TAIL, ECU-B, DEFOGGER | Stay as **J/B No.1** fuses (rule R61, 2026-10-13: anything in a kept cabin J/B stays fed from it) | That is why the J/B stays. We only restore its upstream B+ and IG; their bay legs (wiper motor, front turn / clearance) are new harness C wire; the rear lamps are the new `ST185-RearLights` (J/B No.1 1F-1 / 1F-3 / 1F-2 and S9 pin 1; reverse relay `k_rev` contact on the GAUGE fuse via J/B3 3B-9) |
@@ -220,7 +220,18 @@ Drawn in `ST185-EngineRoom-C` (cabin and bay ends) and `ST185-CabinPower` (fuse 
 | Power windows | LMI L2 30 A + MTA-3 power relay | 10 | W-G window feed (old R/B2 power main relay terminal 1) | Cabin, left kick | p.137 |
 | Door lock / tilt-away always-hot | RFRM WL 15 A (R58, drawn 2026-10-12) | 14 | W-L lead at old R/B2 pin 2 → splice I1 → door lock ECU D8-8 / tilt-away ECU | Cabin, left kick | p.137 / p.170 |
 
-Not landed yet (`docs/OPEN-ITEMS.md`): relay coil wires (row 46); the rest of the bay circuits on the approved route — headlamp high / low returns, turn / clearance, side markers, retract-motor leads, wiper / washer (row 54).
+Bay lighting and wipers (2026-10-13, Route 2 rev 10; no side markers, R62) - not a box output, fed from J/B No.1 per R61:
+
+| Load | From (cabin landing) | AWG | To | Where | EWD 1993 |
+|---|---|---|---|---|---|
+| Front clearance | J/B1 1H-6 (TAIL 15A) | 16 | F7 / F8 pin 1 | Bay, both corners | p.112 |
+| Front turn LH / RH | J/B1 1H-4 / 1H-8 (TURN 10A via flasher) | 18 | F7 / F8 pin 3 | Bay, both corners | p.130 |
+| Headlamp returns | IE1-18 low (R-W), IE1-11 high (R-L) | 16 per lamp, 14 to IE1 | H1 / H2 pins 2 / 1 | Bay, both corners | p.116 |
+| Retract motors | IE1-14 / 15 (R2), IE1-8 / 7 (R3), IE1-9 / 16 limits (OEM R8, RTR 30 A) | 16 / 18 (J1) | R2 / R3 pins 1-4, ground pin 5 to EB | Bay, both corners | p.117 |
+| Front wiper | J/B1 1H-5 (WIPER 20A), IE1-20 / 13 / 6 | 14 | F9 pins 4 / 1 / 2 / 3 | Bay, driver-side cowl | p.148 |
+| Washer | cowl leads to W1 (L from splice I2, L-R from C16-8) | 14 | W1 pins 2 / 1 | Bay, RH front | p.148 |
+
+Not landed yet (`docs/OPEN-ITEMS.md`): relay coil wires (row 46).
 
 ### 5.5 Engine-room grounds (keep the OEM rings)
 
@@ -349,7 +360,7 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI from loose
 | 21 | HEAD RH | gbx_body c5 15A | RFRM | Bus 1 + micro | 15 | HEAD RH | TE 5-1393292-8 (own, diode) | 14 |  |
 | 22 | HAZ-HORN (+ horn relay) | gbx_body c6 15A | RFRM | Bus 1 + micro | 15 | horn | TE 4-1904124-3 (own) | 14 | coil − IE1-19 |
 | 23 | DOME | gbx_body c7 20A | RFRM | Bus 1 | 20 | — | — | 12 |  |
-| 24 | Wiper park | gbx_body c9 15A | RFRM | Bus 1 + micro | 15 | WP | TE 4-1904124-3 (own) | 14 | optional |
+| 24 | Wiper park | gbx_body c9 15A | RFRM | — (spare) | — | — | — | — | not used (2026-10-13): the wiper stays on J/B No.1 WIPER 20A (R61); park switch in the motor, relay in C16 |
 | 25 | Alt excite | research list (not drawn) | RFRM | Bus 1 | 5 | — | — | 18 | add to drawing if kept |
 | 26 | CAN-Lambda +12V (F5) | fusebox c5 10A | RFRM | Bus 2 | 7.5 | — | — | 14 | → bulkhead B c3 |
 | 27 | Switched sensor rail / relay coils sp_sw12 (F9) | fusebox c9 10A + gbx_body c3 | RFRM | Bus 2 | 7.5 | — | — | 16 in / 18-20 out |  |
@@ -396,7 +407,7 @@ DECISIONS S6. Run lengths are estimates from the routes; re-check if a run grows
 
 **Spare capacity**
 
-- RFRM: 19 of 40 fuse slots used (2026-10-12: + alarm ALM / ALMS / ALMIG, - ECU permanent, + WL door lock / tilt-away R58; EPSEN now wired), 7 of 10 micro relays (3 spare; + `k_rev` 2026-10-13).
+- RFRM: 18 of 40 fuse slots used (2026-10-12: + alarm ALM / ALMS / ALMIG, - ECU permanent, + WL door lock / tilt-away R58; EPSEN now wired; 2026-10-13: WP not used), 6 of 10 micro relays (4 spare; 2026-10-13: + `k_rev`, - wiper park).
 - MTA: 6 of 6 Maxi relays, 3 of 3 MaxiVal, 7 of 18 MiniVal, 2 of 3 micro (1 spare).
 - LMI: 7 fuses in two stacks, A 4 + B 3 (Eaton: max 7 modules per assembly including the input module); a spare means a longer bus bar and one more `LMI1-M-1-0`.
 

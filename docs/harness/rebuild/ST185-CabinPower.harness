@@ -316,7 +316,7 @@
         {
           "id": "wp",
           "designation": "WP",
-          "signal": "Bus 1 15A + wiper-park micro relay - front wiper (R53), drawn with the Route 2 wiper markup"
+          "signal": "spare (the front wiper stays on J/B No.1 WIPER 20A, rule R61; its park switch is in the motor F9)"
         },
         {
           "id": "lam",

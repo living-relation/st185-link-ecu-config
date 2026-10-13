@@ -2631,6 +2631,149 @@
         "value": 16,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "m16_16_29",
+      "partNumber": "M22759/16-16-29",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_29",
+      "partNumber": "M22759/16-14-29",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_26",
+      "partNumber": "M22759/16-14-26",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, RED/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_53",
+      "partNumber": "M22759/16-16-53",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Orange",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_50",
+      "partNumber": "M22759/16-16-50",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_54",
+      "partNumber": "M22759/16-16-54",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_59",
+      "partNumber": "M22759/16-18-59",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_6",
+      "partNumber": "M22759/16-14-6",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_63",
+      "partNumber": "M22759/16-14-63",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "Orange",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_60",
+      "partNumber": "M22759/16-14-60",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_69",
+      "partNumber": "M22759/16-14-69",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_62",
+      "partNumber": "M22759/16-14-62",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "Red",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
     }
   ]
 }

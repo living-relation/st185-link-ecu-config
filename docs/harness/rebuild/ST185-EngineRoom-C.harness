@@ -993,6 +993,742 @@
         "y": -450
       },
       "propagate": false
+    },
+    {
+      "id": "fl_oem_jb1_1h_c6",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.112 J/B1-1H-6 G TAIL 15A out (TAIL relay) -> front clearance F7 / F8 pin 1 - crimp butt splice into the factory 1H-6 lead at J/B1 (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 4020,
+        "y": -480
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_jb1_1h_c4",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.130 J/B1-1H-4 G-B turn LH out (flasher) -> F7 pin 3 - crimp butt splice into the factory 1H-4 lead at J/B1 (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 60
+      },
+      "layoutPosition": {
+        "x": 4050,
+        "y": -540
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_jb1_1h_c8",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.130 J/B1-1H-8 G-Y turn RH out (flasher) -> F8 pin 3 - crimp butt splice into the factory 1H-8 lead at J/B1 (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 4080,
+        "y": -600
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_jb1_1h_c5",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 J/B1-1H-5 L WIPER 20A out -> front wiper motor F9 pin 4 (+B to the park switch) - crimp butt splice into the factory 1H-5 lead at J/B1 (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 3930,
+        "y": -870
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c20",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 IE1-20 L-O wiper switch C16-13 (HIGH) -> F9 pin 1 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 3960,
+        "y": -870
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c13",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 IE1-13 L-B wiper switch C16-7 (LOW / INT / MIST) -> F9 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 300
+      },
+      "layoutPosition": {
+        "x": 3990,
+        "y": -870
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c6",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 IE1-6 L-W wiper switch C16-4 (park S) <- F9 pin 3 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": 4020,
+        "y": -870
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c18",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.116 IE1-18 R-W headlight low-beam return (C15-12 dimmer side) <- H1 / H2 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": 3900,
+        "y": -630
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c11",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.116 IE1-11 R-L headlight high-beam return (C15-3 dimmer / flash, high-beam indicator) <- H1 / H2 pin 1 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 480
+      },
+      "layoutPosition": {
+        "x": 3930,
+        "y": -690
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c14",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 IE1-14 G retract control relay R8-1 -> retract motor LH R2 pin 4 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 540
+      },
+      "layoutPosition": {
+        "x": 3960,
+        "y": -630
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c15",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 IE1-15 G-O retract control relay R8-2 -> retract motor LH R2 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 600
+      },
+      "layoutPosition": {
+        "x": 3990,
+        "y": -690
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c8",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 IE1-8 G-B retract control relay R8-5 -> retract motor RH R3 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 660
+      },
+      "layoutPosition": {
+        "x": 4020,
+        "y": -630
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c7",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 IE1-7 G-Y retract control relay R8-4 -> retract motor RH R3 pin 4 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 720
+      },
+      "layoutPosition": {
+        "x": 4050,
+        "y": -690
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c9",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 IE1-9 G-Y retract control relay R8-11 (DOWN / close limit) <- R2 / R3 pin 3 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 780
+      },
+      "layoutPosition": {
+        "x": 4080,
+        "y": -630
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c16",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 IE1-16 G-W retract control relay R8-7 (UP / open limit) <- R2 / R3 pin 1 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 840
+      },
+      "layoutPosition": {
+        "x": 4110,
+        "y": -690
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_w1_cowl_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 W1-2 (cowl lead) L WIPER 20A via cowl splice I2 -> washer motor W1 pin 2 - crimp butt splice into the factory cowl-wire lead to W1 at the firewall (cabin side; its bay run is removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 900
+      },
+      "layoutPosition": {
+        "x": 3270,
+        "y": -330
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_w1_cowl_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 W1-1 (cowl lead) L-R washer switch C16-8 <- washer motor W1 pin 1 - crimp butt splice into the factory cowl-wire lead to W1 at the firewall (cabin side; its bay run is removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 960
+      },
+      "layoutPosition": {
+        "x": 3300,
+        "y": -390
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_f7_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.112 F7 pin 1 (G in the factory wiring, new wire here) front clearance LH <- sp_clr - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 1380,
+        "y": 600
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_f7_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.112 / p.130 F7 pin 2 (W-B in the factory wiring, new wire here) front turn / clearance LH ground -> EB - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 60
+      },
+      "layoutPosition": {
+        "x": 1410,
+        "y": 600
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_f7_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.130 F7 pin 3 (G-B in the factory wiring, new wire here) front turn LH <- J/B1 1H-4 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 1440,
+        "y": 600
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_f8_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.112 F8 pin 1 (G in the factory wiring, new wire here) front clearance RH <- sp_clr - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 1140,
+        "y": 600
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_f8_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.112 / p.130 F8 pin 2 (W-B in the factory wiring, new wire here) front turn / clearance RH ground -> EA - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 1170,
+        "y": 600
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_f8_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.130 F8 pin 3 (G-Y in the factory wiring, new wire here) front turn RH <- J/B1 1H-8 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 300
+      },
+      "layoutPosition": {
+        "x": 1200,
+        "y": 600
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_h1_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.116 H1 pin 1 (R-L in the factory wiring, new wire here) headlight LH high-beam return -> sp_hl_high -> IE1-11 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": 1410,
+        "y": -330
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_h1_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.116 H1 pin 2 (R-W in the factory wiring, new wire here) headlight LH low-beam return -> sp_hl_low -> IE1-18 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": 1440,
+        "y": -330
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_h2_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.116 H2 pin 1 (R-L in the factory wiring, new wire here) headlight RH high-beam return -> sp_hl_high -> IE1-11 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 480
+      },
+      "layoutPosition": {
+        "x": 1170,
+        "y": -390
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_h2_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.116 H2 pin 2 (R-W in the factory wiring, new wire here) headlight RH low-beam return -> sp_hl_low -> IE1-18 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 540
+      },
+      "layoutPosition": {
+        "x": 1200,
+        "y": -390
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r2_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 R2 pin 1 (G-W in the factory wiring, new wire here) retract motor LH UP / open limit -> sp_rtr_open -> IE1-16 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 600
+      },
+      "layoutPosition": {
+        "x": 1410,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r2_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 R2 pin 2 (G-O in the factory wiring, new wire here) retract motor LH <- IE1-15 (R8-2) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 660
+      },
+      "layoutPosition": {
+        "x": 1440,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r2_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 R2 pin 3 (G-Y in the factory wiring, new wire here) retract motor LH DOWN / close limit -> sp_rtr_close -> IE1-9 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 720
+      },
+      "layoutPosition": {
+        "x": 1470,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r2_c4",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 R2 pin 4 (G in the factory wiring, new wire here) retract motor LH <- IE1-14 (R8-1) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 780
+      },
+      "layoutPosition": {
+        "x": 1500,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r2_c5",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 R2 pin 5 (W-B in the factory wiring, new wire here) retract motor LH ground -> sp_rtr_gnd -> EB - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 840
+      },
+      "layoutPosition": {
+        "x": 1530,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r3_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 R3 pin 1 (G-W in the factory wiring, new wire here) retract motor RH UP / open limit -> sp_rtr_open -> IE1-16 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 900
+      },
+      "layoutPosition": {
+        "x": 1170,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r3_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 R3 pin 2 (G-B in the factory wiring, new wire here) retract motor RH <- IE1-8 (R8-5) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 960
+      },
+      "layoutPosition": {
+        "x": 1200,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r3_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 R3 pin 3 (G-Y in the factory wiring, new wire here) retract motor RH DOWN / close limit -> sp_rtr_close -> IE1-9 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1020
+      },
+      "layoutPosition": {
+        "x": 1230,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r3_c4",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 R3 pin 4 (G-Y in the factory wiring, new wire here) retract motor RH <- IE1-7 (R8-4) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1080
+      },
+      "layoutPosition": {
+        "x": 1260,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r3_c5",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.117 R3 pin 5 (W-B in the factory wiring, new wire here) retract motor RH ground -> sp_rtr_gnd -> EB - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1140
+      },
+      "layoutPosition": {
+        "x": 1290,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_w1_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 W1 pin 1 (L-R in the factory wiring, new wire here) washer motor - <- washer switch C16-8 (cowl lead) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1200
+      },
+      "layoutPosition": {
+        "x": 1200,
+        "y": 900
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_w1_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 W1 pin 2 (L in the factory wiring, new wire here) washer motor + <- WIPER 20A (cowl lead) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1260
+      },
+      "layoutPosition": {
+        "x": 1230,
+        "y": 900
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_f9_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 F9 pin 1 (L-O in the factory wiring, new wire here) front wiper motor HIGH <- IE1-20 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1320
+      },
+      "layoutPosition": {
+        "x": 3930,
+        "y": -930
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_f9_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 F9 pin 2 (L-B in the factory wiring, new wire here) front wiper motor LOW <- IE1-13 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1380
+      },
+      "layoutPosition": {
+        "x": 3960,
+        "y": -930
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_f9_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 F9 pin 3 (L-W in the factory wiring, new wire here) front wiper motor park switch S -> IE1-6 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1440
+      },
+      "layoutPosition": {
+        "x": 3990,
+        "y": -930
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_f9_c4",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.148 F9 pin 4 (L in the factory wiring, new wire here) front wiper motor +B (park switch) <- J/B1 1H-5 WIPER 20A - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1500
+      },
+      "layoutPosition": {
+        "x": 4020,
+        "y": -930
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_gnd_eb_f7",
+      "type": "Ring",
+      "partId": "tp_ring_m8_22_16",
+      "width": 390,
+      "signal": "OEM ground EB - left front fender - front turn / clearance LH F7 ground",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1560
+      },
+      "layoutPosition": {
+        "x": 810,
+        "y": -450
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_gnd_eb_rtr",
+      "type": "Ring",
+      "partId": "tp_ring_m8_22_16",
+      "width": 390,
+      "signal": "OEM ground EB - left front fender - retract motors R2 / R3 ground (OEM E3 -> EB)",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1620
+      },
+      "layoutPosition": {
+        "x": 840,
+        "y": -450
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_gnd_ea_f8",
+      "type": "Ring",
+      "partId": "tp_ring_m8_22_16",
+      "width": 390,
+      "signal": "OEM ground EA - right front fender (M8, R59) - front turn / clearance RH F8 ground",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1680
+      },
+      "layoutPosition": {
+        "x": 930,
+        "y": 360
+      },
+      "propagate": false
     }
   ],
   "wires": [
@@ -1465,6 +2201,448 @@
         "handle": "Terminal"
       },
       "partId": "m16_14_2"
+    },
+    {
+      "id": "w_clr",
+      "source": {
+        "id": "fl_oem_jb1_1h_c6",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_clr",
+        "handle": "Splice"
+      },
+      "color": "Green",
+      "partId": "m16_16_5"
+    },
+    {
+      "id": "w_clr_f7",
+      "source": {
+        "id": "sp_clr",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_f7_c1",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "partId": "m16_16_5"
+    },
+    {
+      "id": "w_clr_f8",
+      "source": {
+        "id": "sp_clr",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_f8_c1",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "partId": "m16_16_5"
+    },
+    {
+      "id": "w_turn_f7",
+      "source": {
+        "id": "fl_oem_jb1_1h_c4",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_f7_c3",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "stripeColor": "Black",
+      "partId": "m16_18_50"
+    },
+    {
+      "id": "w_turn_f8",
+      "source": {
+        "id": "fl_oem_jb1_1h_c8",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_f8_c3",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "partId": "m16_18_54"
+    },
+    {
+      "id": "w_f7_gnd",
+      "source": {
+        "id": "fl_f7_c2",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "t_gnd_eb_f7",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "stripeColor": "Black",
+      "partId": "m16_16_90"
+    },
+    {
+      "id": "w_f8_gnd",
+      "source": {
+        "id": "fl_f8_c2",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "t_gnd_ea_f8",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "stripeColor": "Black",
+      "partId": "m16_16_90"
+    },
+    {
+      "id": "w_hl_low_h1",
+      "source": {
+        "id": "fl_h1_c2",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_hl_low",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "stripeColor": "White",
+      "partId": "m16_16_29"
+    },
+    {
+      "id": "w_hl_low_h2",
+      "source": {
+        "id": "fl_h2_c2",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_hl_low",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "stripeColor": "White",
+      "partId": "m16_16_29"
+    },
+    {
+      "id": "w_hl_low",
+      "source": {
+        "id": "sp_hl_low",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_oem_ie1_c18",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "stripeColor": "White",
+      "partId": "m16_14_29"
+    },
+    {
+      "id": "w_hl_high_h1",
+      "source": {
+        "id": "fl_h1_c1",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_hl_high",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "stripeColor": "Blue",
+      "partId": "m16_16_26"
+    },
+    {
+      "id": "w_hl_high_h2",
+      "source": {
+        "id": "fl_h2_c1",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_hl_high",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "stripeColor": "Blue",
+      "partId": "m16_16_26"
+    },
+    {
+      "id": "w_hl_high",
+      "source": {
+        "id": "sp_hl_high",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_oem_ie1_c11",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "stripeColor": "Blue",
+      "partId": "m16_14_26"
+    },
+    {
+      "id": "w_rtr_r2_4",
+      "source": {
+        "id": "fl_oem_ie1_c14",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_r2_c4",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "partId": "m16_16_5"
+    },
+    {
+      "id": "w_rtr_r2_2",
+      "source": {
+        "id": "fl_oem_ie1_c15",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_r2_c2",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "stripeColor": "Orange",
+      "partId": "m16_16_53"
+    },
+    {
+      "id": "w_rtr_r3_2",
+      "source": {
+        "id": "fl_oem_ie1_c8",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_r3_c2",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "stripeColor": "Black",
+      "partId": "m16_16_50"
+    },
+    {
+      "id": "w_rtr_r3_4",
+      "source": {
+        "id": "fl_oem_ie1_c7",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_r3_c4",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "partId": "m16_16_54"
+    },
+    {
+      "id": "w_rtr_close",
+      "source": {
+        "id": "fl_oem_ie1_c9",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rtr_close",
+        "handle": "Splice"
+      },
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "partId": "m16_18_54"
+    },
+    {
+      "id": "w_rtr_close_r2",
+      "source": {
+        "id": "sp_rtr_close",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r2_c3",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "partId": "m16_18_54"
+    },
+    {
+      "id": "w_rtr_close_r3",
+      "source": {
+        "id": "sp_rtr_close",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r3_c3",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "partId": "m16_18_54"
+    },
+    {
+      "id": "w_rtr_open",
+      "source": {
+        "id": "fl_oem_ie1_c16",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rtr_open",
+        "handle": "Splice"
+      },
+      "color": "Green",
+      "stripeColor": "White",
+      "partId": "m16_18_59"
+    },
+    {
+      "id": "w_rtr_open_r2",
+      "source": {
+        "id": "sp_rtr_open",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r2_c1",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "stripeColor": "White",
+      "partId": "m16_18_59"
+    },
+    {
+      "id": "w_rtr_open_r3",
+      "source": {
+        "id": "sp_rtr_open",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r3_c1",
+        "handle": "Terminal"
+      },
+      "color": "Green",
+      "stripeColor": "White",
+      "partId": "m16_18_59"
+    },
+    {
+      "id": "w_rtr_gnd_r2",
+      "source": {
+        "id": "fl_r2_c5",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rtr_gnd",
+        "handle": "Splice"
+      },
+      "color": "White",
+      "stripeColor": "Black",
+      "partId": "m16_16_90"
+    },
+    {
+      "id": "w_rtr_gnd_r3",
+      "source": {
+        "id": "fl_r3_c5",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rtr_gnd",
+        "handle": "Splice"
+      },
+      "color": "White",
+      "stripeColor": "Black",
+      "partId": "m16_16_90"
+    },
+    {
+      "id": "w_rtr_gnd",
+      "source": {
+        "id": "sp_rtr_gnd",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "t_gnd_eb_rtr",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "stripeColor": "Black",
+      "partId": "m16_16_90"
+    },
+    {
+      "id": "w_wip_b",
+      "source": {
+        "id": "fl_oem_jb1_1h_c5",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_f9_c4",
+        "handle": "Terminal"
+      },
+      "color": "Blue",
+      "partId": "m16_14_6"
+    },
+    {
+      "id": "w_wip_hi",
+      "source": {
+        "id": "fl_oem_ie1_c20",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_f9_c1",
+        "handle": "Terminal"
+      },
+      "color": "Blue",
+      "stripeColor": "Orange",
+      "partId": "m16_14_63"
+    },
+    {
+      "id": "w_wip_lo",
+      "source": {
+        "id": "fl_oem_ie1_c13",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_f9_c2",
+        "handle": "Terminal"
+      },
+      "color": "Blue",
+      "stripeColor": "Black",
+      "partId": "m16_14_60"
+    },
+    {
+      "id": "w_wip_park",
+      "source": {
+        "id": "fl_f9_c3",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_oem_ie1_c6",
+        "handle": "Terminal"
+      },
+      "color": "Blue",
+      "stripeColor": "White",
+      "partId": "m16_14_69"
+    },
+    {
+      "id": "w_wash_pos",
+      "source": {
+        "id": "fl_w1_cowl_c2",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_w1_c2",
+        "handle": "Terminal"
+      },
+      "color": "Blue",
+      "partId": "m16_14_6"
+    },
+    {
+      "id": "w_wash_neg",
+      "source": {
+        "id": "fl_w1_c1",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_w1_cowl_c1",
+        "handle": "Terminal"
+      },
+      "color": "Blue",
+      "stripeColor": "Red",
+      "partId": "m16_14_62"
     }
   ],
   "bundles": [
@@ -2294,6 +3472,471 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_300__bp_f8",
+      "sourceId": "bp_300",
+      "targetId": "bp_f8",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_300__bp_r3",
+      "sourceId": "bp_300",
+      "targetId": "bp_r3",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_300__bp_w1",
+      "sourceId": "bp_300",
+      "targetId": "bp_w1",
+      "length": {
+        "value": 400,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_360__bp_f7",
+      "sourceId": "bp_360",
+      "targetId": "bp_f7",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_360__bp_r2",
+      "sourceId": "bp_360",
+      "targetId": "bp_r2",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__bp_f9",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "bp_f9",
+      "length": {
+        "value": 600,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_990__bp_fl_w1",
+      "sourceId": "bp_990",
+      "targetId": "bp_fl_w1",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_jb1_1i__fl_oem_jb1_1h_c6",
+      "sourceId": "bp_fl_oem_jb1_1i",
+      "targetId": "fl_oem_jb1_1h_c6",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_jb1_1i__fl_oem_jb1_1h_c4",
+      "sourceId": "bp_fl_oem_jb1_1i",
+      "targetId": "fl_oem_jb1_1h_c4",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_jb1_1i__fl_oem_jb1_1h_c8",
+      "sourceId": "bp_fl_oem_jb1_1i",
+      "targetId": "fl_oem_jb1_1h_c8",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f9__fl_oem_jb1_1h_c5",
+      "sourceId": "bp_f9",
+      "targetId": "fl_oem_jb1_1h_c5",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f9__fl_oem_ie1_c20",
+      "sourceId": "bp_f9",
+      "targetId": "fl_oem_ie1_c20",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f9__fl_oem_ie1_c13",
+      "sourceId": "bp_f9",
+      "targetId": "fl_oem_ie1_c13",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f9__fl_oem_ie1_c6",
+      "sourceId": "bp_f9",
+      "targetId": "fl_oem_ie1_c6",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c18",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c18",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c11",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c11",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c14",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c14",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c15",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c15",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c8",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c8",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c7",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c7",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c9",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c9",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__fl_oem_ie1_c16",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "fl_oem_ie1_c16",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_w1__fl_w1_cowl_c2",
+      "sourceId": "bp_fl_w1",
+      "targetId": "fl_w1_cowl_c2",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_w1__fl_w1_cowl_c1",
+      "sourceId": "bp_fl_w1",
+      "targetId": "fl_w1_cowl_c1",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f7__fl_f7_c1",
+      "sourceId": "bp_f7",
+      "targetId": "fl_f7_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f7__fl_f7_c2",
+      "sourceId": "bp_f7",
+      "targetId": "fl_f7_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f7__fl_f7_c3",
+      "sourceId": "bp_f7",
+      "targetId": "fl_f7_c3",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f8__fl_f8_c1",
+      "sourceId": "bp_f8",
+      "targetId": "fl_f8_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f8__fl_f8_c2",
+      "sourceId": "bp_f8",
+      "targetId": "fl_f8_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f8__fl_f8_c3",
+      "sourceId": "bp_f8",
+      "targetId": "fl_f8_c3",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_360__fl_h1_c1",
+      "sourceId": "bp_360",
+      "targetId": "fl_h1_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_360__fl_h1_c2",
+      "sourceId": "bp_360",
+      "targetId": "fl_h1_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_300__fl_h2_c1",
+      "sourceId": "bp_300",
+      "targetId": "fl_h2_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_300__fl_h2_c2",
+      "sourceId": "bp_300",
+      "targetId": "fl_h2_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_r2__fl_r2_c1",
+      "sourceId": "bp_r2",
+      "targetId": "fl_r2_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_r2__fl_r2_c2",
+      "sourceId": "bp_r2",
+      "targetId": "fl_r2_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_r2__fl_r2_c3",
+      "sourceId": "bp_r2",
+      "targetId": "fl_r2_c3",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_r2__fl_r2_c4",
+      "sourceId": "bp_r2",
+      "targetId": "fl_r2_c4",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_r2__fl_r2_c5",
+      "sourceId": "bp_r2",
+      "targetId": "fl_r2_c5",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_r3__fl_r3_c1",
+      "sourceId": "bp_r3",
+      "targetId": "fl_r3_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_r3__fl_r3_c2",
+      "sourceId": "bp_r3",
+      "targetId": "fl_r3_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_r3__fl_r3_c3",
+      "sourceId": "bp_r3",
+      "targetId": "fl_r3_c3",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_r3__fl_r3_c4",
+      "sourceId": "bp_r3",
+      "targetId": "fl_r3_c4",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_r3__fl_r3_c5",
+      "sourceId": "bp_r3",
+      "targetId": "fl_r3_c5",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_w1__fl_w1_c1",
+      "sourceId": "bp_w1",
+      "targetId": "fl_w1_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_w1__fl_w1_c2",
+      "sourceId": "bp_w1",
+      "targetId": "fl_w1_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f9__fl_f9_c1",
+      "sourceId": "bp_f9",
+      "targetId": "fl_f9_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f9__fl_f9_c2",
+      "sourceId": "bp_f9",
+      "targetId": "fl_f9_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f9__fl_f9_c3",
+      "sourceId": "bp_f9",
+      "targetId": "fl_f9_c3",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_f9__fl_f9_c4",
+      "sourceId": "bp_f9",
+      "targetId": "fl_f9_c4",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_210__t_gnd_eb_f7",
+      "sourceId": "bp_210",
+      "targetId": "t_gnd_eb_f7"
+    },
+    {
+      "id": "bn_bp_210__t_gnd_eb_rtr",
+      "sourceId": "bp_210",
+      "targetId": "t_gnd_eb_rtr"
+    },
+    {
+      "id": "bn_bp_240__t_gnd_ea_f8",
+      "sourceId": "bp_240",
+      "targetId": "t_gnd_ea_f8"
     }
   ],
   "branchPoints": [
@@ -2562,6 +4205,55 @@
         "x": 1260,
         "y": -300
       }
+    },
+    {
+      "id": "bp_f8",
+      "layoutPosition": {
+        "x": 1140,
+        "y": 540
+      }
+    },
+    {
+      "id": "bp_r3",
+      "layoutPosition": {
+        "x": 1170,
+        "y": 690
+      }
+    },
+    {
+      "id": "bp_w1",
+      "layoutPosition": {
+        "x": 1200,
+        "y": 840
+      }
+    },
+    {
+      "id": "bp_f7",
+      "layoutPosition": {
+        "x": 1380,
+        "y": 540
+      }
+    },
+    {
+      "id": "bp_r2",
+      "layoutPosition": {
+        "x": 1410,
+        "y": 690
+      }
+    },
+    {
+      "id": "bp_f9",
+      "layoutPosition": {
+        "x": 3930,
+        "y": -810
+      }
+    },
+    {
+      "id": "bp_fl_w1",
+      "layoutPosition": {
+        "x": 3270,
+        "y": -270
+      }
     }
   ],
   "schematicNotes": [
@@ -2576,7 +4268,7 @@
     },
     {
       "id": "n_split",
-      "text": "ROUTE: docs/harness/routes/ROUTE-2-HARNESS-C.html (approved, rev 9). Glove box -> right kick (blower) -> under the dash -> left kick (IE1 / J/B1 / old R/B2 landings); glove box -> RH fender grommet -> RH inner fender (A/C, EPS pump) -> fan branch -> across the front: RH corner (H2), horn branch (DT 2-way per horn), LH corner (H1). Heavy DC is ST185-HeavyDC (breaks H1/H2/H3/H6a). Still to draw on this route (OPEN-ITEMS row 54): headlamp high/low returns, turn / clearance, side markers, retract-motor leads, wiper / washer.",
+      "text": "ROUTE: docs/harness/routes/ROUTE-2-HARNESS-C.html (approved, rev 9). Glove box -> right kick (blower) -> under the dash -> left kick (IE1 / J/B1 / old R/B2 landings); glove box -> RH fender grommet -> RH inner fender (A/C, EPS pump) -> fan branch -> across the front: RH corner (H2), horn branch (DT 2-way per horn), LH corner (H1). Heavy DC is ST185-HeavyDC (breaks H1/H2/H3/H6a). Front lighting, retract motors and wipers drawn 2026-10-13 (Route 2 rev 10): no side marker lights on the car (Dan); F7 / F8 turn + clearance (J/B1 1H-4 / 1H-8 turn, 1H-6 TAIL), H1 / H2 high / low returns to IE1-11 / IE1-18, retract motors R2 / R3 from the OEM R8 via IE1-7/8/9/14/15/16, front wiper F9 (J/B1 1H-5 WIPER 20A + IE1-6/13/20; park switch in the motor, no relay of ours) and washer W1 (cowl leads); grounds F7 / R2 / R3 to EB, F8 to EA. Rule R61: these stay fed from J/B No.1.",
       "width": 390,
       "schematicPosition": {
         "x": 3210,
@@ -2639,6 +4331,15 @@
         "y": 4170
       },
       "color": "Red"
+    },
+    {
+      "id": "n_rtr_gauge",
+      "width": 390,
+      "schematicPosition": {
+        "x": 4890,
+        "y": 0
+      },
+      "text": "RETRACT MOTOR WIRE SIZE: the R2 / R3 leads are 16 AWG (motor) / 18 AWG (limit) like the factory leads they continue; the RTR fuse upstream of the OEM retract control relay R8 is 30 A (LMI L3). Question J1 in docs/OPEN-ITEMS.md."
     }
   ],
   "wireParts": [
@@ -2828,6 +4529,208 @@
       "color": "Red",
       "gauge": {
         "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_5",
+      "partNumber": "M22759/16-16-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_50",
+      "partNumber": "M22759/16-18-50",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_54",
+      "partNumber": "M22759/16-18-54",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_90",
+      "partNumber": "M22759/16-16-90",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, WHITE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_29",
+      "partNumber": "M22759/16-16-29",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_29",
+      "partNumber": "M22759/16-14-29",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_26",
+      "partNumber": "M22759/16-16-26",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_26",
+      "partNumber": "M22759/16-14-26",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, RED/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_53",
+      "partNumber": "M22759/16-16-53",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Orange",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_50",
+      "partNumber": "M22759/16-16-50",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_54",
+      "partNumber": "M22759/16-16-54",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_59",
+      "partNumber": "M22759/16-18-59",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_6",
+      "partNumber": "M22759/16-14-6",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_63",
+      "partNumber": "M22759/16-14-63",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "Orange",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_60",
+      "partNumber": "M22759/16-14-60",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_69",
+      "partNumber": "M22759/16-14-69",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_62",
+      "partNumber": "M22759/16-14-62",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "Red",
+      "gauge": {
+        "value": 14,
         "unit": "AWG"
       }
     }
@@ -3165,6 +5068,12 @@
       "partNumber": "GENERIC CRIMP SPLICE 14-10",
       "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
       "manufacturer": "generic"
+    },
+    {
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
     }
   ],
   "splices": [
@@ -3179,6 +5088,84 @@
       "layoutPosition": {
         "x": 1260,
         "y": -300
+      }
+    },
+    {
+      "id": "sp_clr",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_300",
+      "schematicPosition": {
+        "x": 4230,
+        "y": 60
+      },
+      "layoutPosition": {
+        "x": 1170,
+        "y": 420
+      }
+    },
+    {
+      "id": "sp_hl_low",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_300",
+      "schematicPosition": {
+        "x": 4230,
+        "y": 210
+      },
+      "layoutPosition": {
+        "x": 1200,
+        "y": 420
+      }
+    },
+    {
+      "id": "sp_hl_high",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_300",
+      "schematicPosition": {
+        "x": 4230,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": 1230,
+        "y": 420
+      }
+    },
+    {
+      "id": "sp_rtr_close",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_300",
+      "schematicPosition": {
+        "x": 4230,
+        "y": 510
+      },
+      "layoutPosition": {
+        "x": 1260,
+        "y": 420
+      }
+    },
+    {
+      "id": "sp_rtr_open",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_300",
+      "schematicPosition": {
+        "x": 4230,
+        "y": 660
+      },
+      "layoutPosition": {
+        "x": 1290,
+        "y": 420
+      }
+    },
+    {
+      "id": "sp_rtr_gnd",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_360",
+      "schematicPosition": {
+        "x": 4230,
+        "y": 810
+      },
+      "layoutPosition": {
+        "x": 1410,
+        "y": 420
       }
     }
   ]
