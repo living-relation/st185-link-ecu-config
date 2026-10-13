@@ -1054,6 +1054,608 @@
         "function": "GAUGE 15A (J/B1 1E-5, ignition) -> reverse relay k_rev 30 + back-up switch B1 pin 2",
         "method": "crimp butt splice into the factory R-L lead at J/B3 3B-9 (cabin side; its engine-wire leg to the switch is gone)"
       }
+    },
+    {
+      "id": "FL_OEM_JB1_1H_C6",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_jb1_1h_c6",
+      "ewd": {
+        "page": "1993 p.112",
+        "connector": "J/B1",
+        "pin": "1H-6",
+        "color": "G",
+        "function": "TAIL 15A out (TAIL relay) -> front clearance F7 / F8 pin 1",
+        "method": "crimp butt splice into the factory 1H-6 lead at J/B1 (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_JB1_1H_C4",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_jb1_1h_c4",
+      "ewd": {
+        "page": "1993 p.130",
+        "connector": "J/B1",
+        "pin": "1H-4",
+        "color": "G-B",
+        "function": "turn LH out (flasher) -> F7 pin 3",
+        "method": "crimp butt splice into the factory 1H-4 lead at J/B1 (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_JB1_1H_C8",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_jb1_1h_c8",
+      "ewd": {
+        "page": "1993 p.130",
+        "connector": "J/B1",
+        "pin": "1H-8",
+        "color": "G-Y",
+        "function": "turn RH out (flasher) -> F8 pin 3",
+        "method": "crimp butt splice into the factory 1H-8 lead at J/B1 (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_JB1_1H_C5",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_jb1_1h_c5",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "J/B1",
+        "pin": "1H-5",
+        "color": "L",
+        "function": "WIPER 20A out -> front wiper motor F9 pin 4 (+B to the park switch)",
+        "method": "crimp butt splice into the factory 1H-5 lead at J/B1 (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C20",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c20",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "IE1",
+        "pin": "20",
+        "color": "L-O",
+        "function": "wiper switch C16-13 (HIGH) -> F9 pin 1",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C13",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c13",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "IE1",
+        "pin": "13",
+        "color": "L-B",
+        "function": "wiper switch C16-7 (LOW / INT / MIST) -> F9 pin 2",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C6",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c6",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "IE1",
+        "pin": "6",
+        "color": "L-W",
+        "function": "wiper switch C16-4 (park S) <- F9 pin 3",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C18",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c18",
+      "ewd": {
+        "page": "1993 p.116",
+        "connector": "IE1",
+        "pin": "18",
+        "color": "R-W",
+        "function": "headlight low-beam return (C15-12 dimmer side) <- H1 / H2 pin 2",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C11",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c11",
+      "ewd": {
+        "page": "1993 p.116",
+        "connector": "IE1",
+        "pin": "11",
+        "color": "R-L",
+        "function": "headlight high-beam return (C15-3 dimmer / flash, high-beam indicator) <- H1 / H2 pin 1",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C14",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c14",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "IE1",
+        "pin": "14",
+        "color": "G",
+        "function": "retract control relay R8-1 -> retract motor LH R2 pin 4",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C15",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c15",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "IE1",
+        "pin": "15",
+        "color": "G-O",
+        "function": "retract control relay R8-2 -> retract motor LH R2 pin 2",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C8",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c8",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "IE1",
+        "pin": "8",
+        "color": "G-B",
+        "function": "retract control relay R8-5 -> retract motor RH R3 pin 2",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C7",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c7",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "IE1",
+        "pin": "7",
+        "color": "G-Y",
+        "function": "retract control relay R8-4 -> retract motor RH R3 pin 4",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C9",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c9",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "IE1",
+        "pin": "9",
+        "color": "G-Y",
+        "function": "retract control relay R8-11 (DOWN / close limit) <- R2 / R3 pin 3",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C16",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_ie1_c16",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "IE1",
+        "pin": "16",
+        "color": "G-W",
+        "function": "retract control relay R8-7 (UP / open limit) <- R2 / R3 pin 1",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_W1_COWL_C2",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_w1_cowl_c2",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "W1",
+        "pin": "2 (cowl lead)",
+        "color": "L",
+        "function": "WIPER 20A via cowl splice I2 -> washer motor W1 pin 2",
+        "method": "crimp butt splice into the factory cowl-wire lead to W1 at the firewall (cabin side; its bay run is removed)"
+      }
+    },
+    {
+      "id": "FL_W1_COWL_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_w1_cowl_c1",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "W1",
+        "pin": "1 (cowl lead)",
+        "color": "L-R",
+        "function": "washer switch C16-8 <- washer motor W1 pin 1",
+        "method": "crimp butt splice into the factory cowl-wire lead to W1 at the firewall (cabin side; its bay run is removed)"
+      }
+    },
+    {
+      "id": "FL_F7_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_f7_c1",
+      "ewd": {
+        "page": "1993 p.112",
+        "connector": "F7",
+        "pin": "1",
+        "color": "G (factory wiring; new wire here)",
+        "function": "front clearance LH <- sp_clr",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_F7_C2",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_f7_c2",
+      "ewd": {
+        "page": "1993 p.112 / p.130",
+        "connector": "F7",
+        "pin": "2",
+        "color": "W-B (factory wiring; new wire here)",
+        "function": "front turn / clearance LH ground -> EB",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_F7_C3",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_f7_c3",
+      "ewd": {
+        "page": "1993 p.130",
+        "connector": "F7",
+        "pin": "3",
+        "color": "G-B (factory wiring; new wire here)",
+        "function": "front turn LH <- J/B1 1H-4",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_F8_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_f8_c1",
+      "ewd": {
+        "page": "1993 p.112",
+        "connector": "F8",
+        "pin": "1",
+        "color": "G (factory wiring; new wire here)",
+        "function": "front clearance RH <- sp_clr",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_F8_C2",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_f8_c2",
+      "ewd": {
+        "page": "1993 p.112 / p.130",
+        "connector": "F8",
+        "pin": "2",
+        "color": "W-B (factory wiring; new wire here)",
+        "function": "front turn / clearance RH ground -> EA",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_F8_C3",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_f8_c3",
+      "ewd": {
+        "page": "1993 p.130",
+        "connector": "F8",
+        "pin": "3",
+        "color": "G-Y (factory wiring; new wire here)",
+        "function": "front turn RH <- J/B1 1H-8",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_H1_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_h1_c1",
+      "ewd": {
+        "page": "1993 p.116",
+        "connector": "H1",
+        "pin": "1",
+        "color": "R-L (factory wiring; new wire here)",
+        "function": "headlight LH high-beam return -> sp_hl_high -> IE1-11",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_H1_C2",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_h1_c2",
+      "ewd": {
+        "page": "1993 p.116",
+        "connector": "H1",
+        "pin": "2",
+        "color": "R-W (factory wiring; new wire here)",
+        "function": "headlight LH low-beam return -> sp_hl_low -> IE1-18",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_H2_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_h2_c1",
+      "ewd": {
+        "page": "1993 p.116",
+        "connector": "H2",
+        "pin": "1",
+        "color": "R-L (factory wiring; new wire here)",
+        "function": "headlight RH high-beam return -> sp_hl_high -> IE1-11",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_H2_C2",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_h2_c2",
+      "ewd": {
+        "page": "1993 p.116",
+        "connector": "H2",
+        "pin": "2",
+        "color": "R-W (factory wiring; new wire here)",
+        "function": "headlight RH low-beam return -> sp_hl_low -> IE1-18",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R2_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_r2_c1",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "R2",
+        "pin": "1",
+        "color": "G-W (factory wiring; new wire here)",
+        "function": "retract motor LH UP / open limit -> sp_rtr_open -> IE1-16",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R2_C2",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_r2_c2",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "R2",
+        "pin": "2",
+        "color": "G-O (factory wiring; new wire here)",
+        "function": "retract motor LH <- IE1-15 (R8-2)",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R2_C3",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_r2_c3",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "R2",
+        "pin": "3",
+        "color": "G-Y (factory wiring; new wire here)",
+        "function": "retract motor LH DOWN / close limit -> sp_rtr_close -> IE1-9",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R2_C4",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_r2_c4",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "R2",
+        "pin": "4",
+        "color": "G (factory wiring; new wire here)",
+        "function": "retract motor LH <- IE1-14 (R8-1)",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R2_C5",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_r2_c5",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "R2",
+        "pin": "5",
+        "color": "W-B (factory wiring; new wire here)",
+        "function": "retract motor LH ground -> sp_rtr_gnd -> EB",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R3_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_r3_c1",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "R3",
+        "pin": "1",
+        "color": "G-W (factory wiring; new wire here)",
+        "function": "retract motor RH UP / open limit -> sp_rtr_open -> IE1-16",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R3_C2",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_r3_c2",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "R3",
+        "pin": "2",
+        "color": "G-B (factory wiring; new wire here)",
+        "function": "retract motor RH <- IE1-8 (R8-5)",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R3_C3",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_r3_c3",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "R3",
+        "pin": "3",
+        "color": "G-Y (factory wiring; new wire here)",
+        "function": "retract motor RH DOWN / close limit -> sp_rtr_close -> IE1-9",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R3_C4",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_r3_c4",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "R3",
+        "pin": "4",
+        "color": "G-Y (factory wiring; new wire here)",
+        "function": "retract motor RH <- IE1-7 (R8-4)",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R3_C5",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_r3_c5",
+      "ewd": {
+        "page": "1993 p.117",
+        "connector": "R3",
+        "pin": "5",
+        "color": "W-B (factory wiring; new wire here)",
+        "function": "retract motor RH ground -> sp_rtr_gnd -> EB",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_W1_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_w1_c1",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "W1",
+        "pin": "1",
+        "color": "L-R (factory wiring; new wire here)",
+        "function": "washer motor - <- washer switch C16-8 (cowl lead)",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_W1_C2",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_w1_c2",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "W1",
+        "pin": "2",
+        "color": "L (factory wiring; new wire here)",
+        "function": "washer motor + <- WIPER 20A (cowl lead)",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_F9_C1",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_f9_c1",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "F9",
+        "pin": "1",
+        "color": "L-O (factory wiring; new wire here)",
+        "function": "front wiper motor HIGH <- IE1-20",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_F9_C2",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_f9_c2",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "F9",
+        "pin": "2",
+        "color": "L-B (factory wiring; new wire here)",
+        "function": "front wiper motor LOW <- IE1-13",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_F9_C3",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_f9_c3",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "F9",
+        "pin": "3",
+        "color": "L-W (factory wiring; new wire here)",
+        "function": "front wiper motor park switch S -> IE1-6",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_F9_C4",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_f9_c4",
+      "ewd": {
+        "page": "1993 p.148",
+        "connector": "F9",
+        "pin": "4",
+        "color": "L (factory wiring; new wire here)",
+        "function": "front wiper motor +B (park switch) <- J/B1 1H-5 WIPER 20A",
+        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
     }
   ],
   "realConnectors": [
