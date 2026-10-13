@@ -22,12 +22,12 @@
         },
         {
           "id": "c3",
-          "signal": "+5V sensor supply (brought out, spare)",
+          "signal": "+5V sensor supply -> opto board VCC (its 10k output pull-ups; keeps S7 / S8 at 5 V max)",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c4",
-          "signal": "SGND - opto emitter common (OUT-)",
+          "signal": "SGND -> opto board output GND (phototransistor emitters)",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -112,12 +112,12 @@
         },
         {
           "id": "c21",
-          "signal": "S7 - Brake Switch (via opto OUT1; S9 is +12V-active, S7 is ground-active - R56)",
+          "signal": "S7 - Brake Switch (via opto O1; S9 is +12V-active, S7 is ground-active - R56)",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c22",
-          "signal": "S8 - Reverse (via opto OUT2; back-up switch is +12V-active, S8 ground-active - R56)",
+          "signal": "S8 - Reverse (via opto O2; back-up switch is +12V-active, S8 ground-active - R56)",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -186,46 +186,117 @@
       }
     },
     {
-      "id": "opto6",
-      "label": "Optoisolator, 6 channel - inline at the CSB3 (part TBD: Dan's module, pin names from its pictures)",
+      "id": "opto8",
+      "label": "Optocoupler board, 8 channel (Dan's, generic EL814) - inline at the CSB3",
       "width": 390,
-      "partId": "cp_opto6_tbd",
+      "partId": "cp_opto8_el814",
       "cavities": [
         {
-          "id": "in1",
-          "designation": "IN1",
-          "signal": "IN1 + <- brake, S9 pin 1 (+12V with the pedal pressed)",
+          "id": "com1",
+          "designation": "COM",
+          "signal": "input COM (LED return) <- CSB3 ground (sp_csb_gnd); PNP / +12V-active inputs",
           "propagate": false
         },
         {
-          "id": "in2",
-          "designation": "IN2",
-          "signal": "IN2 + <- reverse, back-up switch B1 pin 1 (+12V in R)",
+          "id": "com2",
+          "designation": "COM",
+          "notConnected": true
+        },
+        {
+          "id": "i1",
+          "designation": "01",
+          "signal": "input 01 <- brake, S9 pin 1 (+12V with the pedal pressed)",
           "propagate": false
         },
         {
-          "id": "inc",
-          "designation": "IN-",
-          "signal": "LED common - <- CSB3 ground (sp_csb_gnd)",
+          "id": "i2",
+          "designation": "02",
+          "signal": "input 02 <- reverse, back-up switch B1 pin 1 (+12V in R)",
           "propagate": false
         },
         {
-          "id": "out1",
-          "designation": "OUT1",
-          "signal": "OUT1 collector -> CSB3 S7 (c21)",
+          "id": "i3",
+          "designation": "03",
+          "notConnected": true
+        },
+        {
+          "id": "i4",
+          "designation": "04",
+          "notConnected": true
+        },
+        {
+          "id": "i5",
+          "designation": "05",
+          "notConnected": true
+        },
+        {
+          "id": "i6",
+          "designation": "06",
+          "notConnected": true
+        },
+        {
+          "id": "i7",
+          "designation": "07",
+          "notConnected": true
+        },
+        {
+          "id": "i8",
+          "designation": "08",
+          "notConnected": true
+        },
+        {
+          "id": "vcc",
+          "designation": "VCC",
+          "signal": "output VCC <- CSB3 +5V (c3): the board's 10k pull-ups",
           "propagate": false
         },
         {
-          "id": "out2",
-          "designation": "OUT2",
-          "signal": "OUT2 collector -> CSB3 S8 (c22)",
+          "id": "gnd",
+          "designation": "GND",
+          "signal": "output GND -> CSB3 SGND (c4)",
           "propagate": false
         },
         {
-          "id": "outc",
-          "designation": "OUT-",
-          "signal": "emitter common -> CSB3 SGND (c4)",
+          "id": "o1",
+          "designation": "01",
+          "signal": "output 01 (open collector, low when input 01 is on) -> CSB3 S7 (c21)",
           "propagate": false
+        },
+        {
+          "id": "o2",
+          "designation": "02",
+          "signal": "output 02 (open collector, low when input 02 is on) -> CSB3 S8 (c22)",
+          "propagate": false
+        },
+        {
+          "id": "o3",
+          "designation": "03",
+          "notConnected": true
+        },
+        {
+          "id": "o4",
+          "designation": "04",
+          "notConnected": true
+        },
+        {
+          "id": "o5",
+          "designation": "05",
+          "notConnected": true
+        },
+        {
+          "id": "o6",
+          "designation": "06",
+          "notConnected": true
+        },
+        {
+          "id": "o7",
+          "designation": "07",
+          "notConnected": true
+        },
+        {
+          "id": "o8",
+          "designation": "08",
+          "notConnected": true
         }
       ],
       "schematicPosition": {
@@ -567,8 +638,8 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "opto6",
-        "handle": "in1"
+        "id": "opto8",
+        "handle": "i1"
       },
       "partId": "m16_16_59",
       "stripeColor": "White"
@@ -645,8 +716,8 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "opto6",
-        "handle": "in2"
+        "id": "opto8",
+        "handle": "i2"
       },
       "color": "Red",
       "partId": "m16_16_20",
@@ -685,8 +756,8 @@
         "handle": "Splice"
       },
       "target": {
-        "id": "opto6",
-        "handle": "inc"
+        "id": "opto8",
+        "handle": "com1"
       },
       "color": "Black",
       "partId": "m16_20_0"
@@ -694,8 +765,8 @@
     {
       "id": "w_opto_out1",
       "source": {
-        "id": "opto6",
-        "handle": "out1"
+        "id": "opto8",
+        "handle": "o1"
       },
       "target": {
         "id": "csb3io",
@@ -707,8 +778,8 @@
     {
       "id": "w_opto_out2",
       "source": {
-        "id": "opto6",
-        "handle": "out2"
+        "id": "opto8",
+        "handle": "o2"
       },
       "target": {
         "id": "csb3io",
@@ -720,8 +791,8 @@
     {
       "id": "w_opto_outc",
       "source": {
-        "id": "opto6",
-        "handle": "outc"
+        "id": "opto8",
+        "handle": "gnd"
       },
       "target": {
         "id": "csb3io",
@@ -729,6 +800,19 @@
       },
       "color": "Black",
       "partId": "m16_20_0"
+    },
+    {
+      "id": "w_opto_vcc",
+      "color": "Orange",
+      "source": {
+        "id": "csb3io",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "opto8",
+        "handle": "vcc"
+      },
+      "partId": "m16_20_3"
     }
   ],
   "bundles": [
@@ -994,9 +1078,9 @@
       }
     },
     {
-      "id": "bn_bp_1200__opto6",
+      "id": "bn_bp_1200__opto8",
       "sourceId": "bp_1200",
-      "targetId": "opto6",
+      "targetId": "opto8",
       "length": {
         "value": 100,
         "unit": "mm"
@@ -1254,13 +1338,13 @@
         "x": 1890,
         "y": -60
       },
-      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up, and ONE 6-channel optoisolator inline at the plug (Dan 2026-10-13, C10-C13): brake (S9, +12V-active) -> S7 and reverse (B1, +12V-active) -> S8, both ground-active inputs (R56). Opto part TBD until Dan's pictures; if it has no built-in input resistors, add one per channel. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse switch output from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
+      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up, and ONE 8-channel optocoupler board inline at the plug (Dan's on-hand board, 2026-10-13, C10-C13): brake (S9, +12V-active) -> input 01 -> output 01 -> S7 and reverse (B1, +12V-active) -> input 02 -> output 02 -> S8, both ground-active inputs (R56). Input COM to ground; the board's own 4.7k input resistors set the LED current. Output VCC from the CSB3 +5V (c3), never 12V: the board's 10k pull-ups go to VCC and the CSB3 S inputs are 'switched to ground' with no 12V rating (CSB3 manual v2.1 pp.3-5). Output GND to SGND (c4). Channels 03-08 not connected. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse switch output from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
     },
     {
       "id": "n_cavity_notes",
       "schematicPosition": {
         "x": 1890,
-        "y": 300
+        "y": 630
       },
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (broken off)"
     }
@@ -1288,11 +1372,11 @@
       "numberOfCavities": 33
     },
     {
-      "id": "cp_opto6_tbd",
-      "partNumber": "TBD - 6-channel optoisolator module (Dan's, part number from his pictures)",
-      "description": "MODULE, OPTOISOLATOR, 6 CHANNEL, TYPE TBD",
-      "manufacturer": "TBD",
-      "numberOfCavities": 6,
+      "id": "cp_opto8_el814",
+      "partNumber": "(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)",
+      "description": "MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, EL814 AC INPUT, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR OUTPUT, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS",
+      "manufacturer": "generic",
+      "numberOfCavities": 20,
       "configurations": []
     }
   ],
