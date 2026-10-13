@@ -1,5 +1,8 @@
 # 5S-GTE ST185 — Intercooler and Turbo Selection Study
 
+> **2026-10-13 consolidation:** the round 1-6 working scripts, charts and JSON in this folder were removed (git history keeps them); the findings below are the record, and the current deliverables are `../intercooler-report.html` and `../turbo-comparison.html`, built from `../model/`. Kept here: `data/throttle-body-plumbing/` (pipe-sizing source the model reads) and `data/prior-turbo-research/` (earlier turbo study images and data; its CSV / script / head-flow copies live once, in `docs/5sgte-project-data/`). Scanned parts invoices are kept local only (`_research/purchase-records/`) - this repo is public.
+
+
 Research + engineering study for the 1991 Celica GT-Four ST185 with the 5S-GTE hybrid.
 Round one picked the intercooler. Round two picked the turbo and the redline. Round three
 (30 August 2026) reconciled this study against a body of earlier turbo research supplied
@@ -15,7 +18,7 @@ rewrites.**
 | **Oil cooler placement** | Front corner or fender well, outside the intercooler footprint. Behind the core costs the radiator **21% of its driving temperature difference**; in front of the core costs **5.0 °C of IAT**. If a corner feed is impossible, take *behind* over *in front* — never put a heat source in the charge cooler's inlet air. | §13 |
 | **CS crash bar** | Do not remove it. Start the duct lip 40–60 mm behind it so its wake re-attaches, or fair it. Bare it costs **4.6 °C**; radiused, 2.5 °C; with a teardrop fairing, **0.9 °C**. The 25.4 mm bar is only 11% geometric blockage but ~28% *effective* blockage, because a square section sheds a wake 2.5× its height. | §12 |
 
-Working: `oilcooler_crashbar.py` → `data/r6_data.json`.
+(Working scripts removed 2026-10-13; git history keeps them.)
 
 ## Open this
 
