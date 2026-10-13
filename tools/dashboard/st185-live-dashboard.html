@@ -1,0 +1,206 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ST185 live dashboard</title>
+<style>
+:root{color-scheme:light}
+body{font-family:system-ui,Segoe UI,sans-serif;margin:0;background:#f3f4f6;color:#111}
+header{background:#111827;color:#fff;padding:10px 14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+header h1{font-size:17px;margin:0;flex:1}
+header small{opacity:.75}
+main{padding:12px;max-width:1100px;margin:auto}
+section{background:#fff;border-radius:10px;padding:12px 14px;margin:12px 0;box-shadow:0 1px 3px #0002}
+h2{font-size:16px;margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.badge{background:#dc2626;color:#fff;border-radius:999px;padding:1px 8px;font-size:12px}
+.q{border-top:1px solid #eee;padding:9px 0}
+.q:first-of-type{border-top:0}
+.qid{font-weight:700;color:#1d4ed8;margin-right:6px}
+.qtext{font-weight:600}
+.why{font-size:13px;color:#555;margin:2px 0 6px}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.opts label{border:1px solid #cbd5e1;border-radius:8px;padding:5px 9px;cursor:pointer;font-size:14px;background:#f8fafc}
+.opts input{margin-right:5px}
+.opts label.rec{border-color:#16a34a}
+.opts label.rec::after{content:" ✅";}
+textarea{width:100%;box-sizing:border-box;min-height:34px;font:inherit;font-size:14px;border:1px solid #cbd5e1;border-radius:8px;padding:6px}
+button{font:inherit;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;background:#1d4ed8;color:#fff}
+button.sec{background:#e5e7eb;color:#111}
+#sendbar{position:sticky;bottom:0;background:#fff;padding:10px 14px;border-top:1px solid #ddd;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#sendmsg{font-size:14px}
+.sess{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:14px}
+.led{width:11px;height:11px;border-radius:50%;flex:none}
+.run{background:#16a34a;box-shadow:0 0 6px #16a34a}
+.idle{background:#9ca3af}
+.wait{background:#f59e0b;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.2}}
+.files .grp{margin:8px 0 2px;font-weight:700;font-size:14px;color:#374151}
+.file{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px dashed #eee;font-size:14px}
+.file a{color:#1d4ed8;cursor:pointer;text-decoration:underline;word-break:break-all}
+.file .t{color:#6b7280;font-size:12px;white-space:nowrap}
+.new{background:#fef3c7;border-radius:4px;padding:0 4px;font-size:11px;margin-left:4px}
+details summary{cursor:pointer;font-weight:600;margin-top:8px}
+.row{font-size:13px;border-top:1px solid #f0f0f0;padding:6px 0}
+.row b{color:#1d4ed8}
+.muted{color:#6b7280;font-size:13px}
+</style></head>
+<body>
+<header><h1>ST185 live dashboard</h1><small id="head">loading…</small></header>
+<main>
+
+<section id="qsec"><h2>Needs your answer <span class="badge" id="qcount">0</span></h2>
+<div class="muted">Pick an option or write your own. Nothing is sent until you press <b>Send all answers</b>.</div>
+<div id="questions"></div></section>
+
+<section><h2>Sessions</h2>
+<div class="muted">🟢 running · ⚪ finished · 🟠 blinking = may be waiting on you (open that chat in Claude). Permission prompts can only be approved inside the chat.</div>
+<div id="sessions" class="muted">loading…</div>
+<details><summary id="archsum">Finished code sessions you can archive</summary>
+<div class="muted">These are idle (done). Their PRs are merged unless the session said otherwise. Archive them in the Claude sidebar to free the locked folders.</div>
+<div id="archive"></div></details></section>
+
+<section class="files"><h2>New / updated files <span class="badge" id="newcount">0</span></h2>
+<div class="muted">Click to open on your PC. Opened files move to "Already viewed".</div>
+<div id="newfiles">loading…</div>
+<details><summary>Already viewed</summary><div id="readfiles"></div></details></section>
+
+<section><h2>Tracker items owned by you (OPEN-ITEMS)</h2>
+<div class="muted">Live from the repo. Most are setup-time or data gaps; answer any of them in the box and it's sent with the rest.</div>
+<details><summary id="rowsum">show</summary><div id="rows"></div></details></section>
+
+</main>
+<div id="sendbar"><button id="send">Send all answers</button><button class="sec" id="clear">Clear</button><span id="sendmsg" class="muted"></span></div>
+
+<script>
+// ---- questions Dispatch is waiting on (Dispatch updates this list) ----
+const QUESTIONS = [
+ {id:"L1", q:"Fuse box: 30-60 A fuses", why:"Stud fuses are sourced and solid but make Box 1 ~50 mm longer. MAXI blades are smaller/plug-in but their bussed terminals aren't sourced yet.", opts:["AMI stud fuses","MAXI blade fuses"], rec:0},
+ {id:"L4", q:"Glove box space", why:"Usable length x width x height behind the glove box, and which side the harness enters. Sets the fuse box shape.", opts:[], write:true},
+ {id:"L5", q:"Fuse box: replace the RFRM + MTA + LMI kit with the 2 custom printed boxes?", why:"The current kit doesn't fit 6 of your relays (RFRM takes 2.8 mm blades only). Custom boxes fit your relays, 1 power feed, ~6% smaller.", opts:["Yes, custom boxes","Keep the kit (fix the relay mismatch another way)"], rec:0},
+ {id:"C12", q:"Optoisolator pictures (6-channel, for brake + reverse at the CSB3)", why:"Pictures with the part number/label visible. Send them in chat; mark here when sent.", opts:["Sent in chat","Later"], write:true},
+ {id:"O1", q:"Bus bar pockets: lug tongue thickness + end mill size", why:"Caliper a real 6R10 / 4R8 / 2R8 lug tongue (3 mm pocket depth is assumed) and pick the end mill for pocket corners.", opts:["3 mm mill","4 mm mill","5 mm mill","6 mm mill"], write:true},
+ {id:"E1", q:"VRC enclosure: the VR module has no mounting holes - use a small carrier board + socket?", why:"Needed so the module can be mounted on insulated standoffs.", opts:["Yes, carrier board + socket","Other (write in)"], rec:0, write:true},
+ {id:"E2", q:"Which VRC board version do you have?", why:"Sets the board size/pinout in the enclosure.", opts:[], write:true},
+ {id:"E4", q:"Enclosure O-ring material", why:"NBR if oil/fuel can reach it, EPDM for weather/coolant only.", opts:["NBR","EPDM"], rec:0},
+ {id:"E5", q:"Enclosure mounting-tab screws", why:"Tabs are slotted for M5 now.", opts:["M5","M4","M6"], rec:0},
+];
+const ANSWERS_FILE = "C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\dashboard-answers.json";
+const WAKE_TASK = "st185-session-watch";
+const DC_START = "mcp__Desktop_Commander__start_process";
+const DC_WRITE = "mcp__Desktop_Commander__write_file";
+const DC_READ = "mcp__Desktop_Commander__read_file";
+const SESS_FILE = "C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\dashboard-sessions.json";
+
+const store = {
+  get(k,d){try{return JSON.parse(localStorage.getItem(k)) ?? d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function renderQuestions(){
+  const draft = store.get("st185-draft",{});
+  const el = document.getElementById("questions"); el.innerHTML="";
+  QUESTIONS.forEach(x=>{
+    const d=document.createElement("div"); d.className="q";
+    let h=`<div><span class="qid">${x.id}</span><span class="qtext">${esc(x.q)}</span></div><div class="why">${esc(x.why)}</div>`;
+    if(x.opts.length){h+=`<div class="opts">`+x.opts.map((o,i)=>`<label class="${i===x.rec?'rec':''}"><input type="radio" name="${x.id}" value="${esc(o)}" ${draft[x.id]?.choice===o?'checked':''}>${esc(o)}</label>`).join("")+`</div>`;}
+    h+=`<textarea data-id="${x.id}" placeholder="${x.write?'Write your answer':'Optional note / other answer'}">${esc(draft[x.id]?.text||"")}</textarea>`;
+    d.innerHTML=h; el.appendChild(d);
+  });
+  document.getElementById("qcount").textContent=QUESTIONS.length;
+  el.addEventListener("change",saveDraft); el.addEventListener("input",saveDraft);
+}
+function collect(){
+  const out={};
+  QUESTIONS.forEach(x=>{
+    const c=document.querySelector(`input[name="${x.id}"]:checked`);
+    const t=document.querySelector(`textarea[data-id="${x.id}"]`).value.trim();
+    if(c||t) out[x.id]={choice:c?c.value:null,text:t||null};
+  });
+  document.querySelectorAll("textarea[data-row]").forEach(t=>{ if(t.value.trim()) out["row-"+t.dataset.row]={choice:null,text:t.value.trim()}; });
+  return out;
+}
+function saveDraft(){ store.set("st185-draft",collect()); }
+
+async function dc(cmd){
+  const r = await window.cowork.callMcpTool(DC_START,{command:cmd,timeout_ms:60000,shell:"powershell.exe"});
+  if(r.isError) throw new Error(r.content?.[0]?.text||"tool error");
+  return r.content[0].text;
+}
+
+async function loadData(){
+  const txt = await dc("powershell -NoProfile -ExecutionPolicy Bypass -File C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\st185-dashboard-data.ps1");
+  const i = txt.indexOf("##JSON##");
+  if(i<0){ document.getElementById("newfiles").textContent="Could not read data: "+txt.slice(0,300); return; }
+  const data = JSON.parse(txt.slice(i+8).trim());
+  document.getElementById("head").textContent = `repo ${data.head} · refreshed ${data.now.replace('T',' ')}`;
+  renderFiles(data.files); renderRows(data.rows);
+}
+
+function renderFiles(files){
+  const seen = store.get("st185-seen",{});  // path -> mtime seen
+  const nw=document.getElementById("newfiles"), rd=document.getElementById("readfiles");
+  nw.innerHTML=""; rd.innerHTML="";
+  const groups={}; files.forEach(f=>{(groups[f.g]=groups[f.g]||[]).push(f)});
+  let ncount=0;
+  for(const g of Object.keys(groups)){
+    const fresh=groups[g].filter(f=>seen[f.p]!==f.t).sort((a,b)=>b.t.localeCompare(a.t));
+    const old=groups[g].filter(f=>seen[f.p]===f.t).sort((a,b)=>b.t.localeCompare(a.t));
+    ncount+=fresh.length;
+    if(fresh.length){ nw.insertAdjacentHTML("beforeend",`<div class="grp">${esc(g)}</div>`); fresh.forEach(f=>nw.appendChild(fileRow(f,seen[f.p]!==undefined))); }
+    if(old.length){ rd.insertAdjacentHTML("beforeend",`<div class="grp">${esc(g)}</div>`); old.forEach(f=>rd.appendChild(fileRow(f,false))); }
+  }
+  if(!ncount) nw.innerHTML='<div class="muted">Nothing new.</div>';
+  document.getElementById("newcount").textContent=ncount;
+}
+function fileRow(f,updated){
+  const d=document.createElement("div"); d.className="file";
+  d.innerHTML=`<span><a>${esc(f.n)}</a>${updated?'<span class="new">updated</span>':''}</span><span class="t">${f.t.replace('T',' ')}</span>`;
+  d.querySelector("a").onclick=async()=>{
+    try{ await dc(`Start-Process -FilePath "${f.p}"`); }catch(e){ alert("Could not open: "+e.message); return; }
+    const seen=store.get("st185-seen",{}); seen[f.p]=f.t; store.set("st185-seen",seen); loadData();
+  };
+  return d;
+}
+function renderRows(rows){
+  const el=document.getElementById("rows");
+  document.getElementById("rowsum").textContent=`show ${rows.length} items`;
+  el.innerHTML=rows.map(r=>`<div class="row"><b>#${esc(r.id)}</b> [${esc(r.area)}] ${esc(r.text)}<br><span class="muted">${esc(r.status)}</span><textarea data-row="${esc(r.id)}" placeholder="Optional answer for #${esc(r.id)}"></textarea></div>`).join("");
+}
+
+async function loadSessions(){
+  const el=document.getElementById("sessions");
+  try{
+    const r=await window.cowork.callMcpTool(DC_READ,{path:SESS_FILE});
+    if(r.isError){ el.textContent="Session list unavailable: "+(r.content?.[0]?.text||""); return; }
+    const txt=r.content[0].text; const j=txt.indexOf("{");
+    if(j<0){ el.textContent="Session file unreadable."; return; }
+    const s=JSON.parse(txt.slice(j));
+    const active=s.running, done=s.idle_code;
+    el.innerHTML = `<div class="muted">Updated: ${esc(s.updated)}</div>` + (active.length ? active.map(x=>
+      `<div class="sess"><span class="led run"></span>${esc(x.title)} <span class="muted">running</span></div>`
+    ).join("") : '<div class="muted">No sessions running right now.</div>');
+    document.getElementById("archsum").textContent=`Finished code sessions you can archive (${done.length})`;
+    document.getElementById("archive").innerHTML=done.map(x=>`<div class="sess"><span class="led idle"></span>${esc(x.title)}</div>`).join("");
+  }catch(e){ el.textContent="Session list unavailable: "+e.message; }
+}
+
+document.getElementById("send").onclick=async()=>{
+  const ans=collect(); const msg=document.getElementById("sendmsg");
+  if(!Object.keys(ans).length){ msg.textContent="Nothing to send yet."; return; }
+  msg.textContent="Saving…";
+  try{
+    const payload={sent:new Date().toISOString(),answers:ans};
+    const w=await window.cowork.callMcpTool(DC_WRITE,{path:ANSWERS_FILE,content:JSON.stringify(payload,null,2),mode:"rewrite"});
+    if(w.isError) throw new Error(w.content?.[0]?.text||"write failed");
+    msg.textContent="Saved. Waking Dispatch…";
+    const t=await window.cowork.runScheduledTask(WAKE_TASK);
+    if(t?.isError) throw new Error(t.error||"wake failed");
+    msg.textContent=`Sent ${Object.keys(ans).length} answer(s). Dispatch will pick them up.`;
+  }catch(e){ msg.textContent="Send failed: "+e.message; }
+};
+document.getElementById("clear").onclick=()=>{ store.set("st185-draft",{}); renderQuestions(); document.querySelectorAll("textarea[data-row]").forEach(t=>t.value=""); };
+
+renderQuestions();
+loadData().catch(e=>{document.getElementById("newfiles").textContent="Data error: "+e.message});
+loadSessions();
+</script>
+</body></html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VRC connector pick</title>
+<style>
+:root{--bg:#fff;--fg:#1b1b1b;--mut:#666;--line:#ddd;--ok:#1a7f37;--warn:#b35900;--bad:#c62828;--card:#f7f7f7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161616;--fg:#eee;--mut:#aaa;--line:#333;--card:#1f1f1f;--ok:#4cc26a;--warn:#f0a040;--bad:#ff6b6b}}
+body{background:var(--bg);color:var(--fg);font:15px/1.45 system-ui,sans-serif;margin:0;padding:16px;max-width:1100px}
+h1{font-size:20px;margin:0 0 4px}h2{font-size:16px;margin:22px 0 8px}
+.mut{color:var(--mut)}.ok{color:var(--ok);font-weight:600}.warn{color:var(--warn);font-weight:600}.bad{color:var(--bad);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}td,th{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--card)}.wrap{overflow-x:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px}
+.card.rec{border:2px solid var(--ok)}img{max-width:100%;border-radius:6px}
+code{font-size:13px}
+</style></head><body>
+<h1>VRC enclosure connector: pick</h1>
+<p class="mut">ST185, OPEN-ITEMS row 76 (binder M9 solder cups take AWG 24 max, VRC cables are 20 AWG). Claude Code, 2026-10-12. Chosen option is C.</p>
+
+<h2>Enclosure: Hammond 1590WYFL (drawing <code>docs/enclosures/hammond-1590WYFL.pdf</code>)</h2>
+<table>
+<tr><th>Outside</th><td>92.0 x 92.0 mm; body 38.0 mm tall + 4.0 mm lid = 42.0; mounting flange on the lid, 122.2 mm</td></tr>
+<tr><th>Inside</th><td>85.17 x 85.17 mm, 36.3 mm tall; floor 2.5 mm</td></tr>
+<tr><th>Side wall</th><td>about <b>3.4 mm</b> at the rim ((92.0 - 85.17) / 2). Hammond gives no draft angle, so the wall may be thicker lower down. Measure it before drilling.</td></tr>
+<tr><th>Usable face per wall</th><td>about 85 mm wide x 38 mm tall from the outside. Two connectors (IN + OUT) fit side by side on one wall, or one on each opposite wall.</td></tr>
+</table>
+
+<h2>Options</h2>
+<div class="cards">
+<div class="card">
+<b>A. CNLINKO LP-12, jam nut ("panel mounting rear locking", code 101)</b><br>
+<img src="ST185-vrc-connector-pick-files/socket-dim.jpg" alt="LP-12 socket drawing">
+<p>Panel: <code>LP-12-C05SX-02-101</code> (male, plastic, solder). Cable: <code>LP-12-J05PE-02-001</code> (female, plastic, solder).</p>
+<ul>
+<li>Wire: 0.34-0.75 mm2 / 22-20 AWG, 2-6 pin <span class="ok">20 AWG OK</span></li>
+<li>5 A, 125-150 V AC; IP67 mated (catalog) / IP68 (plug drawing); latch</li>
+<li>Cutout: D-hole, 12.0 mm with an 11.5 mm flat</li>
+<li>Face 18.0-19.3 x 17.6-18.9 mm; overall length 22.2 mm</li>
+<li>Max panel thickness: <span class="bad">not published</span> (catalog and both drawings found give no thread length). The wall is about 3.4 mm.</li>
+<li>Price: about INR 219 (about USD 2.60) for the socket (Evelta); Dan's AliExpress pair USD 13.05</li>
+</ul>
+<p class="warn">Fits except panel thickness, which can't be checked against a datasheet.</p>
+</div>
+<div class="card">
+<b>B. CNLINKO LP-12, 4-hole flange (code 401), like Dan's photo</b><br>
+<img src="ST185-vrc-connector-pick-files/dan-example-cnlinko-lp12.png" alt="Dan's example" style="max-height:260px">
+<p>Panel: <code>LP-12-C05SX-02-401</code>. Cable: <code>LP-12-J05PE-02-001</code>.</p>
+<ul>
+<li>Same contacts, wire range and ratings as A <span class="ok">20 AWG OK</span></li>
+<li>Cutout: 12.0 mm hole + 4 x 2.3 mm holes on a 13.0 x 13.0 mm square</li>
+<li>Face SQ 19.0 mm; depth 19.0 mm overall, 7.5 mm in front</li>
+<li>Panel thickness: screws pass through, so only the screw length matters <span class="ok">fits</span></li>
+<li>Price: Dan's AliExpress listing USD 13.05 per pair (6-pin semi-metal)</li>
+</ul>
+<p class="ok">Fully checked, but it's the flange style Dan likes less.</p>
+</div>
+<div class="card rec">
+<b>C. CNLINKO LP-16, jam nut (code 101)</b>
+<p>Panel: <code>LP-16-C05SX-02-101</code>. Cable: <code>LP-16-J05PE-02-001</code>.</p>
+<ul>
+<li>Wire 0.34-0.5 mm2 / 22-20 AWG, 5 pin <span class="ok">20 AWG OK</span>; 5 A 250 V; IP68 mated</li>
+<li>Cutout: D-hole, 18.5 mm with a 16.5 mm flat; thread M18 x 1.5</li>
+<li><b>Max panel thickness 4.5 mm</b> <span class="ok">wall 3.4 mm OK</span></li>
+<li>Face 25.5 mm round, 27.8 mm tall; behind the panel 27.0 mm or less (inside: 85 mm) <span class="ok">fits</span></li>
+<li>Price: not found (TBD)</li>
+</ul>
+<p class="ok">Fully checked against CNLINKO's own drawing. Bigger than LP-12.</p>
+</div>
+<div class="card">
+<b>D. TE M12 A-coded (sourcing rule: TE before other makers)</b>
+<p>Cable: <code>T4110011051-000</code> (M12 female, 5 pos, screw terminal, 18-24 AWG, IP67, PG7). Panel mate: <b>TBD</b>, not picked.</p>
+<p class="warn">TE's page says this part is currently not available, and its metal shell is shielded (fine unused). Listed only for the TE-first rule.</p>
+</div>
+</div>
+
+<h2>All options</h2>
+<ul>
+<li>Gender: <b>female cable plug, male panel socket</b>, the same as the binder plug. The OUT cable carries +5 V from the ECU, so its loose end has recessed sockets, not bare pins.</li>
+<li>Same part for IN and OUT (R34 / gate W8). Pin map unchanged: IN 1 ABS+ L, 2 ABS- L, 3 drain, 4 ABS+ R, 5 ABS- R; OUT 1 +5V, 2 Gnd, 3 L out, 4 R out, 5 drain.</li>
+<li>On hand: nothing fits. The HDP20 pairs in <code>te-on-hand-bom.csv</code> are shell size 18/24 with heavy contacts, and there is only one pair of each.</li>
+<li>Carried over from M9, not new: the IN plug takes both sensor cables through one cable seal.</li>
+</ul>
+
+<h2>Chosen (Dan, 2026-10-12)</h2><p class="ok">C: LP-16 jam nut. Cable plug <code>LP-16-J05PE-02-001</code> x4, panel socket <code>LP-16-C05SX-02-101</code> x4. Dan remembered the cutout as 18 mm / 16 mm across the flats, which matches LP-16 (CNLINKO: 18.5 / 16.5).</p>
+<h2>Recommendation (before Dan chose)</h2>
+<p><b>C (LP-16 jam nut)</b> if jam nut is a must, because it is the only jam-nut option fully checked against a datasheet. <b>A (LP-12 jam nut)</b> if Dan accepts measuring the thread on the first part and spot-facing the inside of the wall if it's short. <b>B</b> if the flange is OK.</p>
+
+<h2>Sources</h2>
+<ul>
+<li><a href="https://robu.in/wp-content/uploads/2024/05/lp12.pdf">CNLINKO LP-12 catalog pages 25-30</a> (part numbers, wire range, rear-locking cutout, flange cutout)</li>
+<li><a href="https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250327/LP-12-xxxPE-02-0xxx.pdf">CNLINKO drawing LP-12-xxxPE-02-0xxx</a> (plastic plug: 22-20 AWG, cable OD 3.5-6.5, 17.1 x 45.5-49.5 mm)</li>
+<li><a href="https://evelta.com/content/datasheets/LP12-Series.pdf">LP-12 spec sheet (Evelta)</a> and <a href="https://evelta.com/lp-12-series-5-pin-female-socket-ip67-waterproof-power-connector-panel-mount/">Evelta LP-12-J05SX-02-101</a> (socket drawing, price)</li>
+<li><a href="https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/cd40c0469b895b5b8873f6364e9ae22b-1755575078.pdf">CNLINKO drawing LP-16-xxxSX-02-1xxx</a> (cutout, M18x1.5, max panel 4.5 mm, A length)</li>
+<li><a href="https://www.cnlinko.com/service/download.html?id=25">CNLINKO download center, LP series</a> (has no LP-12 jam-nut drawing)</li>
+<li><a href="https://www.te.com/en/product-T4110011051-000.html">TE T4110011051-000</a></li>
+</ul>
+</body></html>

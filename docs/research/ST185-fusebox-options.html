@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fuse box options</title>
+<style>
+:root{--bg:#f2f2f2;--card:#fff;--tx:#111;--mut:#666;--g:#2e7d32;--r:#c62828;--a:#ef6c00;--bar:#ddd}
+@media (prefers-color-scheme:dark){:root{--bg:#161616;--card:#222;--tx:#eee;--mut:#aaa;--bar:#444}}
+body{font-family:system-ui,sans-serif;margin:0;padding:12px 16px;background:var(--bg);color:var(--tx);max-width:640px;margin:auto}
+h1{font-size:20px;margin:8px 0}h2{font-size:17px;margin:0 0 4px}
+.c{background:var(--card);border-radius:14px;padding:12px;margin:12px 0;box-shadow:0 1px 4px #0003}
+.rec{outline:3px solid var(--g)}
+.tag{display:inline-block;background:var(--g);color:#fff;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700}
+.imgs{display:flex;gap:6px;overflow-x:auto;margin:8px 0}.imgs img{height:110px;width:auto;max-width:48%;object-fit:contain;background:#fff;border-radius:8px;flex:none}
+.big{font-size:26px;font-weight:800}.row{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin:3px 0}
+.b{margin:5px 0;font-size:13px}.b i{display:block;height:10px;border-radius:5px;background:var(--bar);overflow:hidden}.b i s{display:block;height:100%;text-decoration:none}
+.ok{background:var(--g)}.no{background:var(--r)}.es{background:var(--a)}
+.n{font-size:12px;color:var(--mut)}a{color:#1565c0;word-break:break-word}
+@media (prefers-color-scheme:dark){a{color:#90caf9}}
+.w{color:var(--r);font-size:13px}
+.why{background:#e8f5e9;color:#1b5e20;border-radius:10px;padding:10px;font-weight:600;margin:8px 0}
+@media (prefers-color-scheme:dark){.why{background:#1b3a1e;color:#c8e6c9}}
+</style></head><body>
+<h1>Cabin fuse box: options</h1>
+<div class="n">2026-10-12 · bars = slots have vs need · "est" = Claude estimate · fuse/relay counts from ENGINE-ROOM-POWER-REDISTRIBUTION.md §8.1 (26 firm mini fuses incl. the new 15 A door lock; 2 est. for rear lights/reverse; 8 firm micro relays + 2 est.; 6 maxi relays + the HCR150 EPS relay, which sits outside any box)</div>
+
+<div class="why">Result: nothing sealed beats CURRENT on price. RFRM is already about $3 per slot. Only option B has fewer parts (6 housings instead of 15), and it costs about $200 more.</div>
+
+<!-- A -->
+<div class="c">
+<h2>A · CURRENT (baseline)</h2>
+<div class="imgs">
+<img src="https://s.turbifycdn.com/aah/yhst-142618731068637/bussmann-15400-rfrm-fuse-relay-module-dual-bus-bars-w-cover-22.png" alt="RFRM">
+<img src="https://s.turbifycdn.com/aah/yhst-142618731068637/lmi-1-m-1-0-bolt-in-fuse-holder-for-single-or-multiple-ami-fuses-22.png" alt="LMI">
+</div>
+<div class="big">$233.69+ <span class="n">holders only</span></div>
+<div class="row"><span>Separate parts</span><b>15</b></div>
+<div class="row"><span>Sealed</span><b>RFRM + MTA yes · LMI no</b></div>
+<div class="row"><span>Size</span><b>not checked</b></div>
+<div class="b">Small fuses 58 / 28 est<i><s class="ok" style="width:100%"></s></i></div>
+<div class="b">Small relays 13 / 10 est<i><s class="ok" style="width:100%"></s></i></div>
+<div class="b">Maxi relays 6 / 6<i><s class="ok" style="width:100%"></s></i></div>
+<div class="b">Big fuses 10 / 10<i><s class="ok" style="width:100%"></s></i></div>
+<div class="w">Not in the price: MTA covers + legs, one 5-position bus bar, fuses, relays, terminals. The MTA 0301491 part number is still unverified (not found by search).</div>
+<div class="n">Buy: <a href="https://www.connectorconcepts.com/bu15rffuremo.html">RFRM (Connector Concepts)</a> · <a href="https://www.eaton.com/us/en-us/catalog/emobility/series-lmi.html">LMI (Eaton)</a> · <a href="https://swe-check.com.au/series/mta-power-distribution-modules">MTA series page</a></div>
+</div>
+
+<!-- B -->
+<div class="c rec">
+<span class="tag">RECOMMENDED if parts count matters</span>
+<h2>B · RFRM + GEP sealed maxi boxes</h2>
+<div class="imgs">
+<img src="https://ceautoelectricsupply.com/wp-content/uploads/2026/01/GEP_MAXI_Fused_6-MAXI_Relay_PDC_Kit-1000x750.webp" alt="GEP 6 maxi relay kit">
+<img src="https://ceautoelectricsupply.com/wp-content/uploads/2023/10/6_position_GEP_MAXI_Waterproof_PDC-1000x750.jpg" alt="GEP 6 fuse PDC">
+<img src="https://s.turbifycdn.com/aah/yhst-142618731068637/bussmann-15400-rfrm-fuse-relay-module-dual-bus-bars-w-cover-22.png" alt="RFRM">
+</div>
+<div class="big">$435.54 <span class="n">holders, with 6 maxi relays + 6 fuses included</span></div>
+<div class="n">$118.69 + $229.95 + $69.95 + $16.95. About 7 more maxi fuses at $4–5 each (GEP page).</div>
+<div class="row"><span>Separate parts</span><b>6 housings (vs 15)</b></div>
+<div class="row"><span>Sealed</span><b>yes, all (GEP lists no IP number)</b></div>
+<div class="row"><span>Size</span><b>GEP 164×59×92 mm each; relay bases 164×59×69</b></div>
+<div class="b">Small fuses 40 / 25 est<i><s class="ok" style="width:100%"></s></i></div>
+<div class="b">Small relays 10 / 10 est (tight)<i><s class="es" style="width:100%"></s></i></div>
+<div class="b">Maxi relays 6 / 6<i><s class="ok" style="width:100%"></s></i></div>
+<div class="b">Big fuses 13 / 13<i><s class="ok" style="width:100%"></s></i></div>
+<div class="w">Why 13 big fuses: RFRM takes 12–22 AWG only, and EFI, fuel pump and starter are drawn at 10 AWG, so they move to maxi fuses. Needs a drawing change. GEP kit terminals are 12–10 AWG; the page lists 8 and 6 AWG as compatible, but the 8/6 AWG terminals are not in the kit. Not checked: bus feed wiring between boxes.</div>
+<div class="n">Buy: <a href="https://ceautoelectricsupply.com/product/gep-maxi-fused-6-maxi-relay-pdc-kit/">GEP 6 maxi relay + 6 fuse kit $229.95</a> · <a href="https://ceautoelectricsupply.com/product/gep-6-position-maxi-fuse-waterproof-pdc-kit/">GEP 6-pos fuse PDC $69.95</a> · <a href="https://ceautoelectricsupply.com/product/gep-waterproof-maxi-fuse-holder-kit/">GEP maxi fuse holder $16.95</a> · <a href="https://www.connectorconcepts.com/bu15rffuremo.html">RFRM $118.69</a></div>
+</div>
+
+<div class="why">Why B: it drops the 9 LMI modules, 2 bus bars and 3 MTA modules for 3 GEP boxes plus 1 fuse holder, all sealed, relays and 6 fuses included. If price matters more, stay on A.</div>
+
+<!-- Ref -->
+<div class="c">
+<h2>C · Electronic PDM (price reference only)</h2>
+<div class="imgs">
+<img src="https://www.gspeed.com/cdn/shop/files/mpdm15-2square_700x700.jpg?v=1692220503" alt="MoTeC PDM15">
+<img src="https://billysspeedshop.com/cdn/shop/files/HT-198100_00_7b789453-6a13-4d17-b681-7d1945e5bccf.jpg?v=1759908649" alt="Haltech PD16">
+</div>
+<div class="big">$2,080 / £1,036</div>
+<div class="row"><span>MoTeC PDM15</span><b>$2,080 · 8×20 A + 7×8 A</b></div>
+<div class="row"><span>Haltech PD16</span><b>£1,036 inc VAT · Haltech ECUs only</b></div>
+<div class="b">Outputs vs the 40 A fans/blower<i><s class="no" style="width:30%"></s></i></div>
+<div class="w">Dropped already (plan 6.48): no channel carries 40 A. Both are 8–10× the cost of A.</div>
+<div class="n"><a href="https://www.gspeed.com/products/motec-pdm15">MoTeC PDM15 (GSpeed)</a> · <a href="https://billysspeedshop.com/products/ht-198100">Haltech PD16 (Billy's)</a></div>
+</div>
+
+<div class="c">
+<h2>Checked and rejected</h2>
+<div class="n" style="font-size:13px;color:var(--tx)">
+• <a href="https://www.ptmotorsport.com.au/product/bussmann-weatherproof-5-relay-bussed-fuse-box/">PT Motorsport Bussmann 5-relay box</a>: A$317.98, IP66, only 10 fuses + 5 micro relays. Two would cost more than RFRM and still have no maxi relays.<br>
+• <a href="https://www.ptmotorsport.com.au/product/3-position-relay-fuse-box-kit/">PT Motorsport 3-position kit</a>: A$163.90–221.92, 3 relays.<br>
+• <a href="https://www.ptmotorsport.com.au/product/assembled-dual-relay-xhd-fuse-box/">PT Motorsport dual-relay XHD</a>: A$446.99–557.70.<br>
+• <a href="https://enginemaster.com.au/products/painless-wiring-pw30004-20-circuit-universal-weatherproof-fuse-block">Painless 30004</a>: A$360.50, sold out, "weather-resistant" not sealed, no relays.<br>
+• <a href="https://waytekwire.com/product/blue-sea-systems-5026-st-blade-fuse-block">Blue Sea 5026</a>: ~$52–74, 12 fuses, no relays, not sealed.<br>
+• <a href="https://www.waytekwire.com/product/eaton-s-bussmann-series-15303-6-2-4-rtmr-mini-fuse">Eaton RTMR 15303/15305</a>: sealed IP66, 10 fuses + 3 or 5 micro relays each, about $44 (unverified; 0 in stock at Waytek). 3 of them cost more than 1 RFRM.<br>
+• Not checked: ProWire (page blocked, 403), Corsa Technic (no product list), KSV, Plimpton (no fuse boxes on first page), B Motorsports (only loose sealed fuse holders and relay bases).
+</div></div>
+
+<div class="n">Prices: US$ unless marked A$/£. Seen 2026-10-12; they change. A uses the TTI RFRM price ($115.63) from your kit page; B uses Connector Concepts ($118.69).</div>
+</body></html>

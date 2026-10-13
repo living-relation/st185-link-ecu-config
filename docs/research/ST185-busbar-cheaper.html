@@ -1,0 +1,42 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ST185 cheaper bus bars</title>
+<style>
+:root{--bg:#f4f4f2;--card:#fff;--ink:#1a1a1a;--mut:#666;--pos:#d12b2b;--neg:#222;--ok:#1a7f37;--bad:#b42318;--warn:#b7791f;--line:#ddd}
+@media(prefers-color-scheme:dark){:root{--bg:#121212;--card:#1d1d1d;--ink:#eee;--mut:#9a9a9a;--pos:#ff5a5a;--neg:#ddd;--ok:#4cc16b;--bad:#ff7b6b;--warn:#e8b04a;--line:#333}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,sans-serif;padding:16px;max-width:560px;margin-inline:auto}
+h1{font-size:1.25rem;margin:0 0 4px}
+.need{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0 16px;font-size:.92rem}
+.card{background:var(--card);border:2px solid var(--line);border-radius:14px;overflow:hidden;margin:0 0 16px}
+.card.rec{border-color:var(--ok)}
+.tag{background:var(--ok);color:#fff;font-weight:700;font-size:.8rem;letter-spacing:.05em;padding:4px 12px}
+.photo{background:#fff;display:flex;justify-content:center}
+.photo img{width:100%;max-height:230px;object-fit:contain;display:block}
+.body{padding:10px 12px 12px}
+.body h2{font-size:1rem;margin:0 0 4px}
+.row{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.9rem;margin:2px 0}
+.price{font-weight:700;font-size:1.1rem}
+svg{width:100%;height:auto;display:block;margin:6px 0}
+.fit{font-weight:700;margin:4px 0}.fit.y{color:var(--ok)}.fit.n{color:var(--bad)}
+.warn{background:rgba(183,121,31,.15);border-left:4px solid var(--warn);padding:6px 8px;margin:6px 0;font-size:.88rem}
+a.btn{display:inline-block;margin-top:6px;padding:8px 14px;border-radius:8px;background:#0a5ad4;color:#fff;text-decoration:none;font-weight:600}
+.note{font-size:.82rem;color:var(--mut);margin-top:18px}
+</style></head><body>
+<h1>Cheaper bus bars: 6 options</h1>
+<div class="need"><b>Need:</b> + side 6 studs (battery 1/0 in, RADLOK 1/0 out, LMI-B, MTA-1/2/3). − side 4 studs (battery 1/0 in, RADLOK 1/0, ID, IG). 1/0 cables need M8 (5/16") or bigger studs. Old pick: Joinfworld $62.09.</div>
+<div id="cards"></div>
+<p class="note">Prices seen on Amazon 2026-10-12. Amp ratings are what sellers claim; I tested none. Every pair here has only M8 studs, so both 1/0 lugs go on M8 studs with a 5/16" ring lug. 250 A is below what a 1/0 cable can carry: if the starter or alternator main lands on the + bar, use the Joinfworld 500 A instead. Car-audio set-screw blocks take bare wire only (no ring lugs), so they cannot take our M8 lugs. Also searched: Blue Sea PowerBar comes in 4 or 8 studs (about $106-143, out of stock at Defender), so no match. Not checked: ProWire and PT Motorsport from your supplier list.</p>
+<script>
+const R={M:11,E:8};
+const C=[
+{rec:1,name:"6 × M8 pair, with cover + 6 lugs (no brand)",img:"https://m.media-amazon.com/images/I/71K1vMP5f5L._AC_SY300_SX300_QL70_ML2_.jpg",price:"$21.99 for + and −",stars:"4.7★ (184)",amps:"250 A (seller)",p:"EEEEEE",n:"EEEEEE",fit:"y",fitTxt:"Fits: + 6 of 6, − 6 of 4. Cheapest set that fits.",ring:"Studs take ring lugs (6 included, check they are big enough for 1/0).",why:"Saves $40 vs the $62 pick. Copper plate, stainless studs, in stock.",url:"https://www.amazon.com/dp/B0CKYRBQSV"},
+{name:"6 × M8 pair, red + black",img:"https://m.media-amazon.com/images/I/71fAS8MKrPL._AC_SY300_SX300_QL70_ML2_.jpg",price:"$23.99 for + and −",stars:"4.5★ (63)",amps:"250 A (seller)",p:"EEEEEE",n:"EEEEEE",fit:"y",fitTxt:"Fits: 6 + and 6 −, ring lugs OK.",ring:"Studs, ring lugs. No lugs listed in the kit.",why:"Backup, $2 more. Brass plate (not copper).",url:"https://www.amazon.com/dp/B0CR9ZYK6P"},
+{name:"RVMARINEPAT 6 × M8 pair (the old budget pick)",img:"https://m.media-amazon.com/images/I/714w9RTs5uL._AC_SY355_.jpg",price:"$26.99 for + and −",stars:"4.8★",amps:"250 A (seller)",p:"EEEEEE",n:"EEEEEE",fit:"y",fitTxt:"Fits. Best reviewed, $5 more than the pick. Includes 12 lugs.",ring:"Studs, ring lugs.",why:"",url:"https://www.amazon.com/dp/B0DGGKXX3C"},
+{name:"Ampper 6 × M8 (+) and Ampper 4 × M8 (−)",img:"https://m.media-amazon.com/images/I/61S0iOXnBGL._AC_SY300_SX300_QL70_ML2_.jpg",price:"$16.99 + $12.99 = $29.98",stars:"4.6★ (222) / 5.0★ (16)",amps:"200 A at 12 V (seller)",p:"EEEEEE",n:"EEEE",fit:"y",fitTxt:"Fits exactly (6 + and 4 −), but dearer than the pair and only 200 A. Both are listed in black.",ring:"Studs, ring lugs.",why:"",url:"https://www.amazon.com/dp/B0DN9Z8JPJ",url2:"https://www.amazon.com/dp/B0CKRGKMX8"},
+{name:"ZOOKOTO 1/0 in, 4 × 4 GA out (car audio)",img:"https://m.media-amazon.com/images/I/51y1uIMIn1L._AC_SY300_SX300_QL70_ML2_.jpg",price:"$10.99 each (need 2 for +)",stars:"4.5★ (60)",amps:"Not stated",p:"M-EEE",n:"M-EEE",fit:"n",fitTxt:"Does NOT fit: only one 1/0 port and four 4 GA outs. RADLOK 1/0 out has no port.",ring:"Set-screw: bare wire only, NO ring lugs.",why:"",warn:"Listing gives no amp rating. Outputs take 4 GA wire only.",url:"https://www.amazon.com/dp/B07J43MTS9"},
+{name:"Stinger SHD21 (2 × 1/0 in, 4 × 4/8 GA out)",img:"https://www.parts-express.com/SSP%2520Applications/PartsExpress@SuiteCentric/SCA%25202019.1/img/268-461_HR_0.default.jpg?resizeid=104&resizeh=600&resizew=600",price:"was ~$33",stars:"n/a",amps:"Not stated",p:"MMEEEE",n:"MMEEEE",fit:"n",fitTxt:"Not available: Parts Express says No Longer Available; Bassjunkies (UK) sold out.",ring:"Set-screw: bare wire only, NO ring lugs.",why:"Would be a 6-port − side, but you would need two for + and it is gone.",url:"https://www.parts-express.com/Stinger-SHD21-Power-or-Ground-Distribution-Block-1-0-AWG-in-Four-4-AWG-Out-268-461"}
+];
+function svg(c){let x=14,o="";const row=(s,y,col)=>{x=14;for(const ch of s){if(ch=="-"){x+=14;continue}const r=R[ch];x+=r;o+=`<circle cx="${x}" cy="${y}" r="${r}" fill="${col}"/>`;x+=r+10}};
+row(c.p,23,"var(--pos)");row(c.n,64,"var(--neg)");
+return `<svg viewBox="0 0 320 88"><rect x="4" y="4" width="312" height="40" rx="6" fill="none" stroke="var(--line)"/><rect x="4" y="45" width="312" height="40" rx="6" fill="none" stroke="var(--line)"/>${o}</svg>`}
+document.getElementById("cards").innerHTML=C.map(c=>`<div class="card${c.rec?" rec":""}">${c.rec?'<div class="tag">RECOMMENDED · CHEAPEST THAT FITS</div>':""}<div class="photo"><img src="${c.img}" alt="" loading="lazy"></div><div class="body"><h2>${c.name}</h2><div class="row"><span class="price">${c.price}</span><span>${c.stars}</span></div>${svg(c)}<div class="fit ${c.fit}">${c.fitTxt}</div><div class="row"><span>Rating: ${c.amps}</span></div><div class="row"><span>${c.ring}</span></div>${c.why?`<div class="row">${c.why}</div>`:""}${c.warn?`<div class="warn">⚠ ${c.warn}</div>`:""}<a class="btn" href="${c.url}">Open listing</a>${c.url2?` <a class="btn" href="${c.url2}">Open − bar</a>`:""}</div></div>`).join("");
+</script></body></html>

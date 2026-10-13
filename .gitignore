@@ -31,3 +31,17 @@ _cluster/
 
 # Local backup of rolled-back harness drawings (kept on disk, not tracked; see git history 56656d9)
 /archive/2026-10-01-before-rollback/
+
+# Heavy CAD stays local and untracked, but inside this project beside its design (DECISIONS R67, 2026-10-13):
+# every STEP file, the 10-15 MB busbar drawing PDFs and the >5 MB B rev2/rev3 cover STLs.
+*.step
+*.stp
+*.STEP
+*.STP
+docs/electrical/cad/busbar/**/*_drawing.pdf
+docs/electrical/cad/busbar/design-B-rev2/B_rev2_Cover_printed_ASA.stl
+docs/electrical/cad/busbar/design-B-rev3/B_rev3_Cover_printed_ASA.stl
+
+# Live dashboard data (local only)
+tools/dashboard/dashboard-answers.json
+tools/dashboard/dashboard-sessions.json
