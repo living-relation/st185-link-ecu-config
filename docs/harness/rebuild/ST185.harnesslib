@@ -1246,6 +1246,14 @@
         "source": "url",
         "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/jump-post-m8.png"
       }
+    },
+    {
+      "id": "cp_opto6_tbd",
+      "partNumber": "TBD - 6-channel optoisolator module (Dan's, part number from his pictures)",
+      "description": "MODULE, OPTOISOLATOR, 6 CHANNEL, TYPE TBD",
+      "manufacturer": "TBD",
+      "numberOfCavities": 6,
+      "configurations": []
     }
   ],
   "contactParts": [
@@ -2538,6 +2546,89 @@
       "color": "White",
       "gauge": {
         "value": 8,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_5",
+      "partNumber": "M22759/16-16-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_59",
+      "partNumber": "M22759/16-16-59",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_50",
+      "partNumber": "M22759/16-18-50",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_54",
+      "partNumber": "M22759/16-18-54",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_20",
+      "partNumber": "M22759/16-16-20",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_90",
+      "partNumber": "M22759/16-16-90",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, WHITE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_26",
+      "partNumber": "M22759/16-16-26",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 16,
         "unit": "AWG"
       }
     }

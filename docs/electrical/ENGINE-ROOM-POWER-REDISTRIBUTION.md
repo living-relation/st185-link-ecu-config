@@ -99,7 +99,7 @@ Rule: **one source per load** — never two paths feeding the same circuit.
 | Wiper park | Relay + fuse, optional | Only if the park circuit needs it |
 | Heater blower | MTA-2 40 A MAXI + heater relay, to blower motor B4 pin 2 | R/B No.4 removed (DECISIONS 26.2) |
 | Power windows | LMI L2 30 A + MTA-3 power relay, to the W-G window feed (old R/B2 power main relay terminal 1) | R/B No.2 removed (DECISIONS 26.2). The always-hot W-L net (door lock ECU, tilt-away) is open - `docs/OPEN-ITEMS.md` |
-| Wiper, gauge, turn, CIG, ECU-IG, IGN, STOP, TAIL, ECU-B, DEFOGGER | Stay as **J/B No.1** fuses | That is why the J/B stays. We only restore its upstream B+ and IG; their bay legs (wiper motor, front turn / clearance) are new harness C wire |
+| Wiper, gauge, turn, CIG, ECU-IG, IGN, STOP, TAIL, ECU-B, DEFOGGER | Stay as **J/B No.1** fuses (rule R61, 2026-10-13: anything in a kept cabin J/B stays fed from it) | That is why the J/B stays. We only restore its upstream B+ and IG; their bay legs (wiper motor, front turn / clearance) are new harness C wire; the rear lamps are the new `ST185-RearLights` (J/B No.1 1F-1 / 1F-3 / 1F-2 and S9 pin 1; reverse relay `k_rev` contact on the GAUGE fuse via J/B3 3B-9) |
 | A/C compressor | Engine harness A/B (already drawn) | Not engine-room C |
 | ABS actuator / ABS relays / 60 A FL ABS | **Deleted** | Solenoid module removed |
 | Crash / SRS sensors | **Deleted** | Do not refeed the airbag IGN circuit |
@@ -192,7 +192,7 @@ J/B No.1 already contains: 15A ECU-IG, 20A WIPER, 15A GAUGE, 10A TURN, 7.5A IGN,
 | L7 | **YES** | **IE1** | **17** | AM2 to ignition I13-10 | PDB AM2, **30 A** fuse (replaces F11 30A FL AM2) | Same |
 | L8 | **YES** | Ground **ID** | stud | Left kick body ground | PDB ground strap | See grounds, EWD p.169 |
 
-Do not land new wires on 1A/1B/1C/1D/1E/1F/1G unless a circuit is dead after L1/L6/L7. Those cavities are cowl / floor / roof, still OEM. The 1H / 1I / IE1 landings are cabin-side splices into the factory lead (the engine-room main wire that used to mate there is removed).
+Do not land new wires on 1A/1B/1C/1D/1E/1F/1G unless a circuit is dead after L1/L6/L7. Exception (2026-10-13, Route 15): the rear floor wire is missing, so `ST185-RearLights` takes its tail / turn feeds from the 1F-1 / 1F-3 / 1F-2 leads at J/B No.1 (R61). Those cavities are cowl / floor / roof, still OEM. The 1H / 1I / IE1 landings are cabin-side splices into the factory lead (the engine-room main wire that used to mate there is removed).
 
 ### 5.3 Right kick panel — R/B No.3 / No.4 removed
 
@@ -360,6 +360,7 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI from loose
 | 32 | k_eps_en contact feed | Route 7 / plan 18.1 | RFRM | Bus 2 + micro | 7.5 | k_eps_en | TE 6-1419137-4 (own) | 18 | Ign 6 B12; 87 → MTA-2 MRS IN (drawn 2026-10-12) |
 | 33 | k_acc A/C clutch | plan 9.3 | RFRM | Bus 2 + micro | 10 (verify) | k_acc | TE 6-1419137-4 (own) | 16 | Ign 8 B10; A5 in series |
 | 34 | Door lock / tilt-away always-hot W-L (R58) | R/B2 POWER fuse (removed) | RFRM | Bus 1 | 15 | — | — | 14 | flying lead into the factory W-L at old R/B2 pin 2 (EngineRoom-C `fl_oem_rb2_wl`) |
+| 35 | Reverse lamps (Route 15, 2026-10-13) | OEM GAUGE fuse -> back-up switch -> lamps | RFRM | micro only (no RFRM fuse) | — (J/B No.1 GAUGE 15A, R61) | k_rev | TE 6-1419137-4 (BUY: both owned ones are k_acc / k_eps_en) | 16 | 30 from the factory R-L lead at J/B3 3B-9; coil 86 from back-up switch B1 pin 1 (bulkhead B c12), 85 to the PDB ground bus; 87 -> `ST185-RearLights` R11 / R12 pin 4 |
 
 **Feeds**
 
@@ -395,7 +396,7 @@ DECISIONS S6. Run lengths are estimates from the routes; re-check if a run grows
 
 **Spare capacity**
 
-- RFRM: 19 of 40 fuse slots used (2026-10-12: + alarm ALM / ALMS / ALMIG, - ECU permanent, + WL door lock / tilt-away R58; EPSEN now wired), 6 of 10 micro relays (4 spare).
+- RFRM: 19 of 40 fuse slots used (2026-10-12: + alarm ALM / ALMS / ALMIG, - ECU permanent, + WL door lock / tilt-away R58; EPSEN now wired), 7 of 10 micro relays (3 spare; + `k_rev` 2026-10-13).
 - MTA: 6 of 6 Maxi relays, 3 of 3 MaxiVal, 7 of 18 MiniVal, 2 of 3 micro (1 spare).
 - LMI: 7 fuses in two stacks, A 4 + B 3 (Eaton: max 7 modules per assembly including the input module); a spare means a longer bus bar and one more `LMI1-M-1-0`.
 

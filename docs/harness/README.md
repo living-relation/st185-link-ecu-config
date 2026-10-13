@@ -16,7 +16,7 @@ a build product, or history.** The drawings are **not a source of truth** (Danie
 
 | Folder / file | What it is | Edit it? |
 |---|---|---|
-| **`rebuild/`** | The 14 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - edit the drawings here** (not a source of truth) |
+| **`rebuild/`** | The 15 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - edit the drawings here** (not a source of truth) |
 | **`routes/`** | Dan's approved route drawing for each harness (one HTML per route, current version only; git history keeps the revisions). A drawing's path must match its route. Lint: `check_route_drawings.py` (SOFT gate) | Only from Dan's markup (`st185-apply-route-markup`) |
 | **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, broken-off pairs. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
 | `rebuild/ST185.harnesslib` | The harness.design local part library (same JSON as a `.harness`, part arrays only), kept next to the drawings so the desktop app links it from the folder it opens. Every part the drawings use, equal to the drawing; update it in the same PR as any part change | **Yes - with the drawings** (gate `check_harnesslib.py`) |
@@ -34,7 +34,7 @@ Dan edits the drawings in the harness.design **desktop app**, which opens the fi
 - Free plan: 100 connections per harness also applies to local files. The app rejects unknown keys, so repo-only data lives in `interfaces.json`, never in a `.harness`.
 - Agents: use the global skill `harness-design` (`C:/Users/danie/.claude/skills/harness-design/SKILL.md`).
 
-## The 14 harnesses
+## The 15 harnesses
 
 Each file is one physical harness that gets built. Shared nets may cross a boundary; a
 physical section of copper, a connector or a BOM line has one owner.
@@ -45,7 +45,7 @@ physical section of copper, a connector or a BOM line has one owner.
 | `ST185-B-cabin.harness` | ECU connector B, cabin | ECU-B, cabin half of bulkhead B, the B-pin relay coil wires (k_fan2 / k_eps_en / k_acc are in the box, CabinPower), fuel level branch, rear wheel-speed spur, the front spur's FR core, the B legs of +5V / Gnd Out |
 | `ST185-CabinPower.harness` | Cabin power (non-ECU) | the glove-box fuse box (Option B: Bussmann LMI in two stacks `lmi_a_*` / `lmi_b_*` (L1-L7, DECISIONS S14), Eaton RFRM `rfrm`, 3x MTA 0301491 `mta1`-`mta3`) with the ECU-switched relays seated in it, battery feed ring, fuel pump run to the trunk; the ECU coil wires, splices, CSB3, CAN (DEV), AntiTheft and EngineRoom-C ends arrive broken off |
 | `ST185-HeavyDC.harness` | Heavy DC (Route 1) | trunk battery, RADLOK firewall pair, starter, 160 A alternator B+, engine-bay jump post, engine block ground; hands off to EngineRoom-C at the cabin PDB (breaks H1/H2/H3/H6a) |
-| `ST185-CSB3.harness` | ECUMaster CSB3 | CSB3 plug, cruise stalk, clutch and brake switches, cruise ladder; power, ground, reverse, LED and CAN wires arrive broken off |
+| `ST185-CSB3.harness` | ECUMaster CSB3 | CSB3 plug, cruise stalk, clutch and brake switches, cruise ladder, the 6-channel brake / reverse optoisolator inline at the plug (DECISIONS S17); power, ground, reverse, LED and CAN wires arrive broken off |
 | `ST185-A-engine.harness` | ECU connector A, engine | bulkhead A engine half to every A-letter engine device, plus the `IX_B_RAIL` spur (B-engine sensor +5V / Gnd Out) |
 | `ST185-B-engine.harness` | ECU connector B, engine | bulkhead B engine half to every B-letter engine device and the ETB motor; the B sensors' +5V / Gnd Out come in on `IX_B_RAIL` |
 | `ST185-CAN.harness` | CAN backbone | the only drawing with CAN H/L |
@@ -55,6 +55,7 @@ physical section of copper, a connector or a BOM line has one owner.
 | `ST185-RearFuel.harness` | Rear Fuel | fuel level sender behind `IX_FUEL_LVL` |
 | `ST185-ClusterLED.harness` | Cluster warning LEDs | LED loom; C11/C12 taps are flying leads |
 | `ST185-AntiTheft.harness` | Anti-theft | cabin |
+| `ST185-RearLights.harness` | Rear lights (Route 15) | J/B No.1 1F tail / turn and S9 stop flying leads, reverse feed broken off from `k_rev` (CabinPower), R11 / R12 rear combination lamps, L1 license light, H6 high-mount stop light (hatch), one rear ground BL |
 
 The four ECU loom files follow the ECU connector letter - the rule, its three allowed
 crossovers are in `../RECONCILIATION-RULES.md` Rule 3 (the old Q-RAIL deviation is

@@ -73,12 +73,13 @@ each cavity used once, contact/plug size matches this map).
 
 | Size | A spare | B spare |
 |---|---|---|
-| 16 | 6 (52, 53, 57, 58, 59, 61) | 13 (62-70, 79-82) |
+| 16 | 6 (52, 53, 57, 58, 59, 61) | 12 (63-70, 79-82) |
 | 12 | 0 | 12 (3-8, 97-102) |
 | 8 | - | 4 (48, 49, 54, 55) |
 | 4 | - | 2 (43, 60) |
 
 A cavity 56 (`c27`) carries the EPS relay coil- wire from the MR-S pump B5 since 2026-10-12 (DECISIONS R22).
+B cavity 62 (`c25`) carries the back-up switch feed since 2026-10-13 (DECISIONS S17 C4); cavity 76 (`c12`) is the switch output.
 The alternator IG/L/S do NOT cross here: DECISIONS R17 puts the alternator plug and its wires in
 `ST185-HeavyDC` (how they cross the firewall is an open question in `docs/OPEN-ITEMS.md`).
 
@@ -155,7 +156,7 @@ not list a plug by number - check one in the physical housing before buying more
 | 59 | left (52-102) | 16 | A | c31 | spare (size 16) |
 | 60 | left (52-102) | 4 | B | c53 | spare (size 4) |
 | 61 | left (52-102) | 16 | A | c32 | spare (size 16) |
-| 62 | left (52-102) | 16 | B | c25 | spare (size 16) |
+| 62 | left (52-102) | 16 | B | c25 | Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L) |
 | 63 | left (52-102) | 16 | B | c26 | spare (size 16) |
 | 64 | left (52-102) | 16 | B | c27 | spare (size 16) |
 | 65 | left (52-102) | 16 | B | c28 | spare (size 16) |
@@ -169,7 +170,7 @@ not list a plug by number - check one in the physical housing before buying more
 | 73 | left (52-102) | 16 | B | c9 | ECU-B B23 |
 | 74 | left (52-102) | 16 | B | c10 | ECU-B B6 |
 | 75 | left (52-102) | 16 | B | c11 | ECU-B B7 |
-| 76 | left (52-102) | 16 | B | c12 | ECUMaster CSB3 - Power/CAN/Switch I/O SW |
+| 76 | left (52-102) | 16 | B | c12 | Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8) |
 | 77 | left (52-102) | 16 | B | c19 | Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch |
 | 78 | left (52-102) | 16 | B | c21 | Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch |
 | 79 | left (52-102) | 16 | B | c34 | spare (size 16) |

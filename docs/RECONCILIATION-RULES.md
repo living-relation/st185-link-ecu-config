@@ -62,6 +62,7 @@ every commit.
 | `docs/harness/interfaces.json` | Ownership registry: interfaces, endpoints, flying leads, references |
 | `docs/harness/rebuild/ST185-ClusterLED.harness` | Cluster warning LEDs |
 | `docs/harness/rebuild/ST185-AntiTheft.harness` | Anti-theft |
+| `docs/harness/rebuild/ST185-RearLights.harness` | Rear lights: J/B No.1 / S9 feeds to the rear lamps, reverse from `k_rev` |
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Cabin landing table for every ex-J/B2 / R/B load (§5.4), fuse-box slot map (§8.1) |
 | `docs/harness/HARNESS-BUILD-LIST.csv` | Generated - re-run `buildlist.py` |
 | `docs/harness/NEED-TO-BUY.md` | Generated - re-run `buylist.py` |
@@ -216,7 +217,7 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
   relays sit in the box (Option B) and are drawn there; their ECU coil (85) wires stay on the ECU loom of
   the pin's letter (`ST185-A-cabin` / `ST185-B-cabin`) and break off to the box (2026-10-11, OPEN-ITEMS row 45).
 - Every other loom stays as it is: `EngineRoom-C`, `CAN`, `ClusterLED`, `AntiTheft`,
-  `WheelSpeed-Front` / `-Rear`, `RearFuel`, `HeavyDC`. `ACAmp-Spur` and `APS-Pedal` were
+  `WheelSpeed-Front` / `-Rear`, `RearFuel`, `HeavyDC`, `RearLights` (added 2026-10-13). `ACAmp-Spur` and `APS-Pedal` were
   retired 2026-10-11 - their non-ECU content folded into `A-cabin` (and, for the A/C
   device-side leads, `EngineRoom-C`); crossover (c) above covers what crosses letters.
 

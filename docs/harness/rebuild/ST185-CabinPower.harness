@@ -920,6 +920,54 @@
       },
       "partId": "cp_rly_micro_co",
       "width": 390
+    },
+    {
+      "id": "k_rev",
+      "label": "Reverse Relay (seated in RFRM micro) - coil+ (86) from the back-up switch B1 pin 1 (+12V in R), coil- (85) to ground; contact fed from J/B No.1 GAUGE 15A",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "30",
+          "signal": "Fused +12V in - J/B No.1 GAUGE 15A via the factory R-L lead from J/B3 3B-9 (sp_rev_gauge)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "85",
+          "signal": "Coil - -> glove-box PDB ground bus",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "86",
+          "signal": "Coil + <- back-up switch B1 pin 1, +12V in reverse (bulkhead B c12, br_rev_coil)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "87",
+          "signal": "+12V out -> back-up lamps R11 / R12 pin 4 (br_rl_rev, ST185-RearLights)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "87a"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1740,
+        "y": 1080
+      },
+      "schematicPosition": {
+        "x": 6000,
+        "y": 3900
+      },
+      "partId": "cp_rly_micro_co",
+      "width": 390
     }
   ],
   "terminals": [
@@ -1631,6 +1679,83 @@
       "schematicPosition": {
         "x": 3300,
         "y": 3420
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_jb3_b9",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD Mitchell 1993 Fig. 16 (grid 63) / 1992 p.132 J/B3 3B-9 R-L GAUGE 15A (J/B1 1E-5, ignition) -> reverse relay k_rev 30 + back-up switch B1 pin 2 - crimp butt splice into the factory R-L lead at J/B3 3B-9 (cabin side; its engine-wire leg to the switch is gone)",
+      "schematicPosition": {
+        "x": 6000,
+        "y": 4170
+      },
+      "layoutPosition": {
+        "x": 1740,
+        "y": 1140
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_rev_feed",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-B-cabin: GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2",
+      "schematicPosition": {
+        "x": 6000,
+        "y": 4230
+      },
+      "layoutPosition": {
+        "x": 1740,
+        "y": 1200
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_rev_coil",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86",
+      "schematicPosition": {
+        "x": 6000,
+        "y": 4290
+      },
+      "layoutPosition": {
+        "x": 1740,
+        "y": 1260
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_rl_rev",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-RearLights: reverse relay k_rev 87 -> back-up lamps R11 / R12 pin 4",
+      "schematicPosition": {
+        "x": 6000,
+        "y": 4350
+      },
+      "layoutPosition": {
+        "x": 1740,
+        "y": 1320
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_pdb_gnd_rev",
+      "type": "Ring",
+      "partId": "tp_ring_m8_22_16",
+      "width": 390,
+      "signal": "Glove-box PDB ground bus stud (M8) - reverse relay coil-",
+      "schematicPosition": {
+        "x": 6000,
+        "y": 4410
+      },
+      "layoutPosition": {
+        "x": 1740,
+        "y": 1380
       },
       "propagate": false
     }
@@ -2560,6 +2685,89 @@
         "handle": "Terminal"
       },
       "partId": "m16_14_2"
+    },
+    {
+      "id": "w_rev_gauge_cp",
+      "source": {
+        "id": "fl_oem_jb3_b9",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rev_gauge",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "stripeColor": "Blue",
+      "partId": "m16_16_26"
+    },
+    {
+      "id": "w_rev_30_cp",
+      "source": {
+        "id": "sp_rev_gauge",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "k_rev",
+        "handle": "c1"
+      },
+      "color": "Red",
+      "stripeColor": "Blue",
+      "partId": "m16_16_26"
+    },
+    {
+      "id": "w_rev_feed_cp",
+      "source": {
+        "id": "sp_rev_gauge",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_rev_feed",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "stripeColor": "Blue",
+      "partId": "m16_16_26"
+    },
+    {
+      "id": "w_rev_86_cp",
+      "source": {
+        "id": "br_rev_coil",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_rev",
+        "handle": "c3"
+      },
+      "color": "Red",
+      "stripeColor": "Black",
+      "partId": "m16_16_20"
+    },
+    {
+      "id": "w_rev_85_cp",
+      "source": {
+        "id": "k_rev",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "t_pdb_gnd_rev",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "m16_20_0"
+    },
+    {
+      "id": "w_rev_87_cp",
+      "source": {
+        "id": "k_rev",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "br_rl_rev",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "stripeColor": "Black",
+      "partId": "m16_16_20"
     }
   ],
   "bundles": [
@@ -3237,6 +3445,60 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "b_bn_b_bp_1050__k_rev",
+      "sourceId": "b_bp_1050",
+      "targetId": "k_rev",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_b_bp_1050__fl_oem_jb3_b9",
+      "sourceId": "b_bp_1050",
+      "targetId": "fl_oem_jb3_b9",
+      "length": {
+        "value": 900,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_b_bp_1050__br_rev_feed",
+      "sourceId": "b_bp_1050",
+      "targetId": "br_rev_feed",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_b_bp_1050__br_rev_coil",
+      "sourceId": "b_bp_1050",
+      "targetId": "br_rev_coil",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_b_bp_1050__br_rl_rev",
+      "sourceId": "b_bp_1050",
+      "targetId": "br_rl_rev",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_b_bp_1050__t_pdb_gnd_rev",
+      "sourceId": "b_bp_1050",
+      "targetId": "t_pdb_gnd_rev",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -3481,6 +3743,41 @@
       "stripeColor": "Red",
       "gauge": {
         "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_26",
+      "partNumber": "M22759/16-16-26",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_20",
+      "partNumber": "M22759/16-16-20",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_0",
+      "partNumber": "M22759/16-20-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 20,
         "unit": "AWG"
       }
     }
@@ -3884,6 +4181,37 @@
       "partNumber": "GENERIC LUG M8 8AWG",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK",
       "manufacturer": "generic"
+    },
+    {
+      "id": "tp_flying_lead",
+      "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC FLYING LEAD",
+      "description": "TERMINAL, FLYING LEAD",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_ring_m8_22_16",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC RING M8 22-16",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG",
+      "manufacturer": "generic"
     }
   ],
   "schematicNotes": [
@@ -3917,6 +4245,19 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1050"
+    },
+    {
+      "id": "sp_rev_gauge",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_1050",
+      "schematicPosition": {
+        "x": 5760,
+        "y": 4170
+      },
+      "layoutPosition": {
+        "x": 1710,
+        "y": 270
+      }
     }
   ],
   "spliceParts": [

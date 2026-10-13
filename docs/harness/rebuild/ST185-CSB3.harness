@@ -27,7 +27,7 @@
         },
         {
           "id": "c4",
-          "signal": "SGND sensor ground (brought out, spare)",
+          "signal": "SGND - opto emitter common (OUT-)",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -112,12 +112,12 @@
         },
         {
           "id": "c21",
-          "signal": "S7 - Brake Switch",
+          "signal": "S7 - Brake Switch (via opto OUT1; S9 is +12V-active, S7 is ground-active - R56)",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c22",
-          "signal": "S8 - Reverse (via Bulkhead B c12)",
+          "signal": "S8 - Reverse (via opto OUT2; back-up switch is +12V-active, S8 ground-active - R56)",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -183,6 +183,58 @@
       "schematicPosition": {
         "x": 1320,
         "y": 0
+      }
+    },
+    {
+      "id": "opto6",
+      "label": "Optoisolator, 6 channel - inline at the CSB3 (part TBD: Dan's module, pin names from its pictures)",
+      "width": 390,
+      "partId": "cp_opto6_tbd",
+      "cavities": [
+        {
+          "id": "in1",
+          "designation": "IN1",
+          "signal": "IN1 + <- brake, S9 pin 1 (+12V with the pedal pressed)",
+          "propagate": false
+        },
+        {
+          "id": "in2",
+          "designation": "IN2",
+          "signal": "IN2 + <- reverse, back-up switch B1 pin 1 (+12V in R)",
+          "propagate": false
+        },
+        {
+          "id": "inc",
+          "designation": "IN-",
+          "signal": "LED common - <- CSB3 ground (sp_csb_gnd)",
+          "propagate": false
+        },
+        {
+          "id": "out1",
+          "designation": "OUT1",
+          "signal": "OUT1 collector -> CSB3 S7 (c21)",
+          "propagate": false
+        },
+        {
+          "id": "out2",
+          "designation": "OUT2",
+          "signal": "OUT2 collector -> CSB3 S8 (c22)",
+          "propagate": false
+        },
+        {
+          "id": "outc",
+          "designation": "OUT-",
+          "signal": "emitter common -> CSB3 SGND (c4)",
+          "propagate": false
+        }
+      ],
+      "schematicPosition": {
+        "x": 660,
+        "y": 900
+      },
+      "layoutPosition": {
+        "x": 2280,
+        "y": 60
       }
     }
   ],
@@ -266,7 +318,7 @@
       "id": "fl_brake_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD Stop lamp switch-TBD TBD brake switch signal -> CSB3 S7 - solder sleeve into the factory lead",
+      "signal": "EWD 1993 p.126-127 S9 pin 1 G-W stop light switch lamp side, +12V with the pedal pressed -> opto IN1 -> CSB3 S7 - soldered tap into the factory G-W lead at S9 (cabin; RearLights' stop feed FL_OEM_S9_C1 lands on the same lead)",
       "schematicPosition": {
         "x": 660,
         "y": 270
@@ -325,7 +377,7 @@
     {
       "id": "br_w_sw7_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: reverse switch (bulkhead B c12) to CSB3 S8",
+      "signal": "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
       "width": 390,
       "layoutPosition": {
         "x": 2460,
@@ -411,6 +463,19 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_1170"
+    },
+    {
+      "id": "sp_csb_gnd",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_1230",
+      "schematicPosition": {
+        "x": 480,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 2370,
+        "y": 210
+      }
     }
   ],
   "resistors": [
@@ -502,10 +567,11 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "csb3io",
-        "handle": "c21"
+        "id": "opto6",
+        "handle": "in1"
       },
-      "partId": "m16_20_5"
+      "partId": "m16_16_59",
+      "stripeColor": "White"
     },
     {
       "id": "w_cru_sig",
@@ -567,23 +633,24 @@
         "handle": "c2"
       },
       "target": {
-        "id": "br_w_csbg",
-        "handle": "Terminal"
+        "id": "sp_csb_gnd",
+        "handle": "Splice"
       },
       "partId": "m16_20_0"
     },
     {
       "id": "w_sw7_c_csb",
       "source": {
-        "id": "csb3io",
-        "handle": "c22"
-      },
-      "target": {
         "id": "br_w_sw7_c",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "partId": "m16_20_5"
+      "target": {
+        "id": "opto6",
+        "handle": "in2"
+      },
+      "color": "Red",
+      "partId": "m16_16_20",
+      "stripeColor": "Black"
     },
     {
       "id": "w_oil_k_csb",
@@ -597,6 +664,71 @@
       },
       "color": "White",
       "partId": "m16_20_9"
+    },
+    {
+      "id": "w_csbg_br",
+      "source": {
+        "id": "sp_csb_gnd",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_csbg",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "m16_20_0"
+    },
+    {
+      "id": "w_opto_inc",
+      "source": {
+        "id": "sp_csb_gnd",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "opto6",
+        "handle": "inc"
+      },
+      "color": "Black",
+      "partId": "m16_20_0"
+    },
+    {
+      "id": "w_opto_out1",
+      "source": {
+        "id": "opto6",
+        "handle": "out1"
+      },
+      "target": {
+        "id": "csb3io",
+        "handle": "c21"
+      },
+      "color": "Green",
+      "partId": "m16_20_5"
+    },
+    {
+      "id": "w_opto_out2",
+      "source": {
+        "id": "opto6",
+        "handle": "out2"
+      },
+      "target": {
+        "id": "csb3io",
+        "handle": "c22"
+      },
+      "color": "Green",
+      "partId": "m16_20_5"
+    },
+    {
+      "id": "w_opto_outc",
+      "source": {
+        "id": "opto6",
+        "handle": "outc"
+      },
+      "target": {
+        "id": "csb3io",
+        "handle": "c4"
+      },
+      "color": "Black",
+      "partId": "m16_20_0"
     }
   ],
   "bundles": [
@@ -860,6 +992,15 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_1200__opto6",
+      "sourceId": "bp_1200",
+      "targetId": "opto6",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -1024,6 +1165,30 @@
         "value": 20,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "m16_16_59",
+      "partNumber": "M22759/16-16-59",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_20",
+      "partNumber": "M22759/16-16-20",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
     }
   ],
   "spliceParts": [
@@ -1089,13 +1254,13 @@
         "x": 1890,
         "y": -60
       },
-      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse input from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
+      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up, and ONE 6-channel optoisolator inline at the plug (Dan 2026-10-13, C10-C13): brake (S9, +12V-active) -> S7 and reverse (B1, +12V-active) -> S8, both ground-active inputs (R56). Opto part TBD until Dan's pictures; if it has no built-in input resistors, add one per channel. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse switch output from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
     },
     {
       "id": "n_cavity_notes",
       "schematicPosition": {
         "x": 1890,
-        "y": 210
+        "y": 300
       },
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (broken off)"
     }
@@ -1121,6 +1286,14 @@
         }
       ],
       "numberOfCavities": 33
+    },
+    {
+      "id": "cp_opto6_tbd",
+      "partNumber": "TBD - 6-channel optoisolator module (Dan's, part number from his pictures)",
+      "description": "MODULE, OPTOISOLATOR, 6 CHANNEL, TYPE TBD",
+      "manufacturer": "TBD",
+      "numberOfCavities": 6,
+      "configurations": []
     }
   ],
   "resistorParts": [
