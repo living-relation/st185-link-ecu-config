@@ -29,8 +29,6 @@ Claude outputs/
 # CI-only read-only checkout of the frozen cluster repo (checks.yml) - never commit it
 _cluster/
 
-# Local backup of rolled-back harness drawings (kept on disk, not tracked; see git history 56656d9)
-/archive/2026-10-01-before-rollback/
 
 # Heavy CAD stays local and untracked, but inside this project beside its design (DECISIONS R67, 2026-10-13):
 # every STEP file, the 10-15 MB busbar drawing PDFs and the >5 MB B rev2/rev3 cover STLs.

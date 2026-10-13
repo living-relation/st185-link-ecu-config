@@ -163,7 +163,7 @@ Adding up the parts lists off the individual drawings by hand will over-order.
 Files are not version-numbered. Git is the version history, and one folder means
 one generation:
 
-- a new generation gets a new folder, and the old one moves to `archive/` - only with
-  Daniel's OK (R46: never auto-archive)
+- a new generation replaces the old one in place; git history keeps the old one
+  (there is no in-repo `archive/` any more - Daniel, 2026-10-13, R46)
 - nothing is ever copied sideways into the same folder with a suffix
 - `-v2`, `-new`, `-final`, `-copy` in a filename is a bug, not a version
