@@ -13,4 +13,4 @@ is recorded in `docs/harness/redesign/DECISIONS.md` or `docs/OPEN-ITEMS.md`, and
 | `ST185-vrc-connector-pick.html` (+ `ST185-vrc-connector-pick-files/`) | VRC panel connector pick (R60, CNLINKO LP-16) |
 | `ST185-ECU-CAN-setup-checklist.html` | ECU CAN setup checklist |
 | `Evans-Link-tuning-summaries.html` | Evans Link tuning video summaries |
-| `ST185-RULES-AUDIT.html` | 2026-10-12 audit of Dan's rules against the repo (rules now in DECISIONS R1-R67) |
+| `ST185-RULES-AUDIT.html` | 2026-10-12 audit of Dan's rules against the repo (rules now in DECISIONS R1-R68) |

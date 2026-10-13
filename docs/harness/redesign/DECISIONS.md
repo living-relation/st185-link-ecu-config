@@ -104,6 +104,7 @@ of these lines. Gates in brackets are the scripts in `docs/harness/` that check 
 - **R51** (2026-06-16, 2026-10-03) Switchboard (CSB3) 0x640 / 0x641 / 0x642 go to the ECU only; the ECU echoes what it needs into its own TX frames. The cluster reads 0x3E8-0x3EB and 0x3EE; RealDash reads 0x3EB (gear byte only) and 0x3EF-0x3F1. The cluster sends 0x3EC / 0x3ED to the ECU (in the `.lcs` receive list). Cluster firmware as flashed is frozen and outranks every other device. Procedure: `docs/RECONCILIATION-RULES.md` Rule 2; contract details: `AGENTS.md` Working Rules. [`bench/check_parity.py`]
 - **R65** (2026-10-13, units) RealDash shows repeat ECU values in different units from the clusters, on purpose. RealDash is an aux display, so °C / kPa there next to °F / psi / mph on the clusters is intended, not a mismatch to fix. Each screen's own config sets its units (S22).
 - **R66** (2026-10-13, cruise stalk) Retain ALL OEM cruise stalk functions: MAIN on/off, SET/COAST (hold = decelerate), RES/ACC (hold = accelerate) and CANCEL. Wire colours, pins and resistor values come from the FSM, not from guesses (S23).
+- **R68** (2026-10-13, cluster colours) The clusters' colour-change thresholds (for example oil temperature 215 / 250 °F, fuel 15 / 20 %) are DISPLAY BEHAVIOR, not warnings: never "fix" or unify them across clusters. The only real warnings are the popups that are otherwise hidden. Closes CAN audit item N2 as not a bug (OPEN-ITEMS row 32).
 
 ### Setup time
 
