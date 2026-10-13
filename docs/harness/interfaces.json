@@ -56,7 +56,7 @@
     },
     "CSB3": {
       "file": "ST185-CSB3.harness",
-      "physical": "ECUMaster CSB3 plug and switch inputs (cruise stalk, clutch, brake, cruise ladder) and the 6-channel brake / reverse optoisolator inline at the plug; power, ground, reverse, LED and CAN wires arrive broken off"
+      "physical": "ECUMaster CSB3 plug and switch inputs (cruise stalk, clutch, brake, cruise ladder) and the 8-channel brake / reverse optocoupler board inline at the plug; power, ground, reverse, LED and CAN wires arrive broken off"
     },
     "RearLights": {
       "file": "ST185-RearLights.harness",

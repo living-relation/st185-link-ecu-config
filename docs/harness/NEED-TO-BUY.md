@@ -141,6 +141,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Modelled as | What it really is | Qty |
 |---|---|---:|
+| `(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)` | MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, EL814 AC INPUT, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR OUTPUT, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS | 1 |
 | `(Eaton RFRM terminals - per the 15401 drawing)` | TERMINAL, FUSE AND RELAY MODULE, RFRM | 31 |
 | `(LED board indicator - 12 V, resistor on board)` | DIODE, LIGHT EMITTING, INDICATOR, 12 V | 6 |
 | `(MTA 0301491 terminals - per the MTA drawing)` | TERMINAL, FUSE AND RELAY MODULE, MTA | 42 |
@@ -152,7 +153,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(pump pigtail - Walbro F90000295)` | CONNECTOR, PIGTAIL, 2 POS | 1 |
 | `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK | 2 |
 | `(ring lug, sized to cable)` | TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK | 8 |
-| `TBD - 6-channel optoisolator module (Dan's, part number from his pictures)` | MODULE, OPTOISOLATOR, 6 CHANNEL, TYPE TBD | 1 |
 | `TBD - A/C coolant temperature switch connector` | CONNECTOR, 2 POS, TYPE TBD | 1 |
 
 ## Counted once, drawn more than once
