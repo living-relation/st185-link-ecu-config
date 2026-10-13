@@ -3,9 +3,9 @@
 Checked per side against interfaces.json "wheelSpeed":
 
   W1  no VRC device or panel connector (vrc_*, cp_m8_panel_*) is drawn on any harness - the
-      VRC and its panel connectors belong to the enclosure build. The harness-side M8
+      VRC and its panel sockets belong to the enclosure build. The harness-side LP-16
       cable plugs that mate them ARE drawn where interfaces.json declares an endpoint
-      "connector" (front IN plugs, Daniel 2026-10-12); any other cp_m8_* connector fails
+      "connector" (IN and OUT plugs, S8 / S16); any other cp_m8_* connector fails
   W2  the side's harness holds exactly its two ABS sensor plugs, the interface source
       half and its declared VRC endpoint plugs as connectors, and draws no cross-reference
   W3  each sensor drop is one screened 2-core cable: c1 to the VRC IN "+" endpoint, c2 to

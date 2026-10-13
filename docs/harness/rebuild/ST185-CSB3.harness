@@ -127,12 +127,12 @@
         },
         {
           "id": "c24",
-          "signal": "L2 low-side - reserved: kill relay coil (plan 6.48), not wired yet",
+          "signal": "L2 low-side - spare",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c25",
-          "signal": "L3 low-side - reserved: alternator excite drop (plan 6.48), not wired yet",
+          "signal": "L3 low-side - spare",
           "contactPartId": "ct_hdp20s"
         },
         {

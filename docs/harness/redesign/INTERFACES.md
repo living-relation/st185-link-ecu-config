@@ -56,4 +56,4 @@ harness.design JSON.
   same signal text per cavity, and every pin either wired on both halves or plugged on both.
 - A conductor never crosses from one harness to another except through a declared interface,
   a bulkhead pair, or a registered broken-off pair.
-- No device is drawn: no `cp_m8_*` VRC connectors, no CSB3 body, no OEM housing on a flying lead.
+- No device is drawn: no VRC box or panel sockets (the harness-side cable plugs of both VRC harnesses are drawn: two CNLINKO LP-16 plugs per harness, S8 / S16), no CSB3 body, no OEM housing on a flying lead.

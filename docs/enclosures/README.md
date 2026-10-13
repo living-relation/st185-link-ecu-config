@@ -20,7 +20,7 @@ Both boxes are Hammond 1590WYFL (natural diecast Al, 92x92x42 mm, 122.2 mm outsi
 ## Build notes (carry into the CSV `notes` column when they change)
 
 - VR: two CNLINKO LP-16 rear-nut panel sockets (IN + OUT, `LP-16-C05SX-02-101`, DECISIONS S16), D cutout 18.5 mm / 16.5 mm across the flat. Nothing bonds to the case (DECISIONS R31 / R33), so there is no landing to mask.
-- VR: PCB on nylon standoffs; shell carries the screen (6.30).
+- VR: PCB on nylon standoffs; screens go by pin and join inside the box by wire, nothing bonds to the case (6.30, R31 / R33).
 - CSB3: on-board 120 ohm terminator jumper stays OPEN.
 - CSB3: signal wire to this box is 20 AWG minimum (HD30 size-20 contacts).
 
