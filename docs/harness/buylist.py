@@ -52,7 +52,6 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("2719","Blue Sea Systems","COVER, INSULATING, MAXIBUS, FITS 2127",1,0),
  ("ANL/MEGA 300A + holder","generic","FUSE, ANL OR MEGA, 300 A, WITH HOLDER",1,0),
  ("Alternator protection 175A","generic","FUSIBLE LINK OR INLINE FUSE / CIRCUIT BREAKER, 175 A",1,0),
- ("Longacre 4-terminal kill switch","Longacre","SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE",1,0),
  ("generic","generic","CABLE, SHIELDED, 1 CONDUCTOR, 22 AWG, WHITE, ETFE (TEFZEL), TINNED COPPER BRAID",1,1),
  # 2026-09-29: HDP24 shell A/B bulkheads and their backshells/gasket/panel nuts
  # are retired - replaced by the shared DRB102 (see docs/harness/redesign/DECISIONS.md).

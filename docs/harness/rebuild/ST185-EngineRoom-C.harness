@@ -1479,7 +1479,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R2 pin 4 (G in the factory wiring, new wire here) retract motor LH <- IE1-14 (R8-1) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "EWD 1993 p.117 R2 pin 4 (G in the factory wiring, new wire here) retract motor LH <- sp_rtr_r2_4 <- 12 AWG <- IE1-14 (R8-1), 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
       "schematicPosition": {
         "x": 4410,
         "y": 780
@@ -1495,7 +1495,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R2 pin 5 (W-B in the factory wiring, new wire here) retract motor LH ground -> sp_rtr_gnd -> EB - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "EWD 1993 p.117 R2 pin 5 (W-B in the factory wiring, new wire here) retract motor LH ground -> sp_rtr_gnd_r2 -> 12 AWG -> EB, 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
       "schematicPosition": {
         "x": 4410,
         "y": 840
@@ -1559,7 +1559,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R3 pin 4 (G-Y in the factory wiring, new wire here) retract motor RH <- IE1-7 (R8-4) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "EWD 1993 p.117 R3 pin 4 (G-Y in the factory wiring, new wire here) retract motor RH <- sp_rtr_r3_4 <- 12 AWG <- IE1-7 (R8-4), 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
       "schematicPosition": {
         "x": 4410,
         "y": 1080
@@ -1575,7 +1575,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R3 pin 5 (W-B in the factory wiring, new wire here) retract motor RH ground -> sp_rtr_gnd -> EB - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "EWD 1993 p.117 R3 pin 5 (W-B in the factory wiring, new wire here) retract motor RH ground -> sp_rtr_gnd_r3 -> 12 AWG -> EB, 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
       "schematicPosition": {
         "x": 4410,
         "y": 1140
@@ -1701,9 +1701,9 @@
     {
       "id": "t_gnd_eb_rtr",
       "type": "Ring",
-      "partId": "tp_ring_m8_22_16",
+      "partId": "tp_lug_m8_8",
       "width": 390,
-      "signal": "OEM ground EB - left front fender - retract motors R2 / R3 ground (OEM E3 -> EB)",
+      "signal": "OEM ground EB - left front fender (M8) - retract motors R2 / R3 ground, two 12 AWG (one per motor) in one ring, combined 9 AWG (OEM E3 -> EB)",
       "schematicPosition": {
         "x": 4410,
         "y": 1620
@@ -1764,7 +1764,7 @@
       "id": "br_alt_ig",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator IG (G2-3) <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
+      "signal": "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator IG (G2-3) <- kill switch 2nd pair <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
       "schematicPosition": {
         "x": 4410,
         "y": 1920
@@ -1780,7 +1780,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.74 IG2-15 B-R J/B No.1 ECU-IG 15A (1B-8 via J3) -> alternator IG (G2-3) - crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)",
+      "signal": "EWD 1993 p.74 IG2-15 B-R J/B No.1 ECU-IG 15A (1B-8 via J3) -> trunk kill switch 2nd pair -> alternator IG (G2-3) - crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)",
       "schematicPosition": {
         "x": 3750,
         "y": 1800
@@ -1819,6 +1819,36 @@
       "layoutPosition": {
         "x": 3270,
         "y": 1380
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_ig_ks_in",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-HeavyDC (along H1 / H2 on the RH sill to the trunk): alternator IG <- IG2-15 cowl lead (J/B No.1 ECU-IG 15A) -> kill switch 2nd pair (ALT 1)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 1980
+      },
+      "layoutPosition": {
+        "x": 3270,
+        "y": 1440
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_ig_ks_out",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-HeavyDC (back from the trunk along H1 / H2): kill switch 2nd pair (ALT 2) -> alternator IG, on through the RH fender grommet",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 2040
+      },
+      "layoutPosition": {
+        "x": 3270,
+        "y": 1500
       },
       "propagate": false
     }
@@ -2480,6 +2510,19 @@
         "handle": "Terminal"
       },
       "target": {
+        "id": "sp_rtr_r2_4",
+        "handle": "Splice"
+      },
+      "color": "Green",
+      "partId": "m16_12_5"
+    },
+    {
+      "id": "w_rtr_r2_4_p",
+      "source": {
+        "id": "sp_rtr_r2_4",
+        "handle": "Splice"
+      },
+      "target": {
         "id": "fl_r2_c4",
         "handle": "Terminal"
       },
@@ -2519,6 +2562,20 @@
       "source": {
         "id": "fl_oem_ie1_c7",
         "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rtr_r3_4",
+        "handle": "Splice"
+      },
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "partId": "m16_12_54"
+    },
+    {
+      "id": "w_rtr_r3_4_p",
+      "source": {
+        "id": "sp_rtr_r3_4",
+        "handle": "Splice"
       },
       "target": {
         "id": "fl_r3_c4",
@@ -2619,7 +2676,7 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "sp_rtr_gnd",
+        "id": "sp_rtr_gnd_r2",
         "handle": "Splice"
       },
       "color": "White",
@@ -2627,23 +2684,9 @@
       "partId": "m16_16_90"
     },
     {
-      "id": "w_rtr_gnd_r3",
+      "id": "w_rtr_gnd_r2_t",
       "source": {
-        "id": "fl_r3_c5",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_rtr_gnd",
-        "handle": "Splice"
-      },
-      "color": "White",
-      "stripeColor": "Black",
-      "partId": "m16_16_90"
-    },
-    {
-      "id": "w_rtr_gnd",
-      "source": {
-        "id": "sp_rtr_gnd",
+        "id": "sp_rtr_gnd_r2",
         "handle": "Splice"
       },
       "target": {
@@ -2652,7 +2695,35 @@
       },
       "color": "White",
       "stripeColor": "Black",
+      "partId": "m16_12_90"
+    },
+    {
+      "id": "w_rtr_gnd_r3",
+      "source": {
+        "id": "fl_r3_c5",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rtr_gnd_r3",
+        "handle": "Splice"
+      },
+      "color": "White",
+      "stripeColor": "Black",
       "partId": "m16_16_90"
+    },
+    {
+      "id": "w_rtr_gnd_r3_t",
+      "source": {
+        "id": "sp_rtr_gnd_r3",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "t_gnd_eb_rtr",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "stripeColor": "Black",
+      "partId": "m16_12_90"
     },
     {
       "id": "w_wip_b",
@@ -2737,9 +2808,22 @@
       "partId": "m16_14_62"
     },
     {
-      "id": "w_alt_ig_c",
+      "id": "w_alt_ig_ks",
       "source": {
         "id": "fl_oem_ig2_c15",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "br_ig_ks_in",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_2"
+    },
+    {
+      "id": "w_alt_ig_c",
+      "source": {
+        "id": "br_ig_ks_out",
         "handle": "Terminal"
       },
       "target": {
@@ -4149,6 +4233,24 @@
         "value": 300,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_990__br_ig_ks_in",
+      "sourceId": "bp_990",
+      "targetId": "br_ig_ks_in",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_990__br_ig_ks_out",
+      "sourceId": "bp_990",
+      "targetId": "br_ig_ks_out",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -4572,7 +4674,7 @@
         "x": 4890,
         "y": 0
       },
-      "text": "RETRACT MOTOR WIRE SIZE: the R2 / R3 leads are 16 AWG (motor) / 18 AWG (limit) like the factory leads they continue; the RTR fuse upstream of the OEM retract control relay R8 is 30 A (LMI L3). Question J1 in docs/OPEN-ITEMS.md."
+      "text": "RETRACT MOTOR WIRE SIZE (Dan 2026-10-13, J1; DECISIONS S20 / R63): RTR stays 30 A (LMI L3, factory value for the motor start current). The motor current path is R8 -> pin 4 -> motor -> pin 5 -> EB (1993 EWD p.117), so pin 4 and pin 5 run 12 AWG (good for 30 A) from the IE1 landing / EB to a splice at each motor breakout, then a SHORT 16 AWG pigtail into the Toyota 5-pin plug, which will not take 12 AWG. Pigtail 150 mm (6 in) max - keep it as short as the plug allows. Splices sp_rtr_r2_4 / sp_rtr_r3_4 / sp_rtr_gnd_r2 / sp_rtr_gnd_r3 = 12 + 16 AWG, combined 11 AWG (crimp splice 14-10, R36). Pin 2 (R8 relay coil through the motor's limit cam) and pins 1 / 3 (limit sense through the motor's diodes to R8-7 / R8-11) carry no motor current: they stay 16 / 18 AWG as drawn."
     }
   ],
   "wireParts": [
@@ -4986,6 +5088,41 @@
       "color": "White",
       "gauge": {
         "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_5",
+      "partNumber": "M22759/16-12-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_54",
+      "partNumber": "M22759/16-12-54",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_90",
+      "partNumber": "M22759/16-12-90",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, WHITE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 12,
         "unit": "AWG"
       }
     }
@@ -5411,16 +5548,55 @@
       }
     },
     {
-      "id": "sp_rtr_gnd",
-      "partId": "spp_solder_generic",
-      "locationId": "bp_360",
+      "id": "sp_rtr_r2_4",
+      "partId": "spp_crimp_14_10",
+      "locationId": "bp_r2",
       "schematicPosition": {
         "x": 4230,
         "y": 810
       },
       "layoutPosition": {
-        "x": 1410,
-        "y": 420
+        "x": 1440,
+        "y": 660
+      }
+    },
+    {
+      "id": "sp_rtr_r3_4",
+      "partId": "spp_crimp_14_10",
+      "locationId": "bp_r3",
+      "schematicPosition": {
+        "x": 4230,
+        "y": 960
+      },
+      "layoutPosition": {
+        "x": 1200,
+        "y": 660
+      }
+    },
+    {
+      "id": "sp_rtr_gnd_r2",
+      "partId": "spp_crimp_14_10",
+      "locationId": "bp_r2",
+      "schematicPosition": {
+        "x": 4230,
+        "y": 1110
+      },
+      "layoutPosition": {
+        "x": 1440,
+        "y": 660
+      }
+    },
+    {
+      "id": "sp_rtr_gnd_r3",
+      "partId": "spp_crimp_14_10",
+      "locationId": "bp_r3",
+      "schematicPosition": {
+        "x": 4230,
+        "y": 1260
+      },
+      "layoutPosition": {
+        "x": 1200,
+        "y": 660
       }
     }
   ]

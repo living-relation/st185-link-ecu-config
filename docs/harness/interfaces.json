@@ -1485,7 +1485,7 @@
         "connector": "R2",
         "pin": "4",
         "color": "G (factory wiring; new wire here)",
-        "function": "retract motor LH <- IE1-14 (R8-1)",
+        "function": "retract motor LH <- 16 AWG pigtail <- sp_rtr_r2_4 <- 12 AWG <- IE1-14 (R8-1)",
         "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
       }
     },
@@ -1499,7 +1499,7 @@
         "connector": "R2",
         "pin": "5",
         "color": "W-B (factory wiring; new wire here)",
-        "function": "retract motor LH ground -> sp_rtr_gnd -> EB",
+        "function": "retract motor LH ground -> 16 AWG pigtail -> sp_rtr_gnd_r2 -> 12 AWG -> EB",
         "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
       }
     },
@@ -1555,7 +1555,7 @@
         "connector": "R3",
         "pin": "4",
         "color": "G-Y (factory wiring; new wire here)",
-        "function": "retract motor RH <- IE1-7 (R8-4)",
+        "function": "retract motor RH <- 16 AWG pigtail <- sp_rtr_r3_4 <- 12 AWG <- IE1-7 (R8-4)",
         "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
       }
     },
@@ -1569,7 +1569,7 @@
         "connector": "R3",
         "pin": "5",
         "color": "W-B (factory wiring; new wire here)",
-        "function": "retract motor RH ground -> sp_rtr_gnd -> EB",
+        "function": "retract motor RH ground -> 16 AWG pigtail -> sp_rtr_gnd_r3 -> 12 AWG -> EB",
         "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
       }
     },
@@ -1667,7 +1667,7 @@
         "connector": "IG2",
         "pin": "15",
         "color": "B-R",
-        "function": "J/B No.1 ECU-IG 15A (1B-8 via J3) -> alternator IG (G2-3)",
+        "function": "J/B No.1 ECU-IG 15A (1B-8 via J3) -> trunk kill switch 2nd pair -> alternator IG (G2-3)",
         "method": "crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)"
       }
     },
@@ -3011,9 +3011,39 @@
       ]
     },
     {
+      "id": "BR_IG_KS_IN",
+      "type": "broken_off",
+      "what": "alternator IG <- IG2-15 cowl lead (J/B No.1 ECU-IG 15A) -> trunk kill switch ALT 1",
+      "ends": [
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_ig_ks_in"
+        },
+        {
+          "harness": "HeavyDC",
+          "terminal": "br_ig_ks_in"
+        }
+      ]
+    },
+    {
+      "id": "BR_IG_KS_OUT",
+      "type": "broken_off",
+      "what": "trunk kill switch ALT 2 -> alternator IG (through harness C's RH fender grommet)",
+      "ends": [
+        {
+          "harness": "HeavyDC",
+          "terminal": "br_ig_ks_out"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_ig_ks_out"
+        }
+      ]
+    },
+    {
       "id": "BR_ALT_IG",
       "type": "broken_off",
-      "what": "alternator IG (G2-3) <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
+      "what": "alternator IG (G2-3) <- kill switch 2nd pair <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
       "ends": [
         {
           "harness": "HeavyDC",

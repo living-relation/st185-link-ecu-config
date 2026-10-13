@@ -1267,6 +1267,20 @@
           "contactPartId": "ct_generic_skt"
         }
       ]
+    },
+    {
+      "id": "cp_ks_longacre",
+      "partNumber": "52-45780",
+      "manufacturer": "Longacre",
+      "description": "SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE, 175 A CONTINUOUS, 1000 A PEAK, 20 A AUXILIARY POLE, 6-36 V",
+      "url": "https://www.ogracing.com/products/longacre-battery-disconnect-switch",
+      "numberOfCavities": 4,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_lug_stud"
+        }
+      ]
     }
   ],
   "contactParts": [
@@ -2785,6 +2799,41 @@
       "stripeColor": "Red",
       "gauge": {
         "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_5",
+      "partNumber": "M22759/16-12-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_54",
+      "partNumber": "M22759/16-12-54",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_90",
+      "partNumber": "M22759/16-12-90",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, WHITE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 12,
         "unit": "AWG"
       }
     }
