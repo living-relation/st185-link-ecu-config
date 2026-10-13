@@ -159,8 +159,8 @@
       "id": "VRC_REAR_IN_L",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Rear",
-      "device": "rear VR conditioner, IN_L input (RL sensor); harness side ends in the M9 plug m9_vrc_r_in",
-      "connector": "m9_vrc_r_in",
+      "device": "rear VR conditioner, IN_L input (RL sensor); harness side ends in the LP-16 plug lp16_vrc_r_in",
+      "connector": "lp16_vrc_r_in",
       "pins": {
         "+": "c1",
         "-": "c2",
@@ -171,8 +171,8 @@
       "id": "VRC_REAR_IN_R",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Rear",
-      "device": "rear VR conditioner, IN_R input (RR sensor); harness side ends in the M9 plug m9_vrc_r_in",
-      "connector": "m9_vrc_r_in",
+      "device": "rear VR conditioner, IN_R input (RR sensor); harness side ends in the LP-16 plug lp16_vrc_r_in",
+      "connector": "lp16_vrc_r_in",
       "pins": {
         "+": "c4",
         "-": "c5",
@@ -183,8 +183,8 @@
       "id": "VRC_REAR_OUT",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Rear",
-      "device": "rear VR conditioner, output; harness side ends in the M9 plug m9_vrc_r_out",
-      "connector": "m9_vrc_r_out",
+      "device": "rear VR conditioner, output; harness side ends in the LP-16 plug lp16_vrc_r_out",
+      "connector": "lp16_vrc_r_out",
       "pins": {
         "+5V": "c1",
         "Gnd": "c2",
@@ -197,8 +197,8 @@
       "id": "VRC_FRONT_IN_L",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Front",
-      "device": "front VR conditioner, IN_L input (FL sensor); harness side ends in the M9 plug m9_vrc_f_in",
-      "connector": "m9_vrc_f_in",
+      "device": "front VR conditioner, IN_L input (FL sensor); harness side ends in the LP-16 plug lp16_vrc_f_in",
+      "connector": "lp16_vrc_f_in",
       "pins": {
         "+": "c1",
         "-": "c2",
@@ -209,8 +209,8 @@
       "id": "VRC_FRONT_IN_R",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Front",
-      "device": "front VR conditioner, IN_R input (FR sensor); harness side ends in the M9 plug m9_vrc_f_in",
-      "connector": "m9_vrc_f_in",
+      "device": "front VR conditioner, IN_R input (FR sensor); harness side ends in the LP-16 plug lp16_vrc_f_in",
+      "connector": "lp16_vrc_f_in",
       "pins": {
         "+": "c4",
         "-": "c5",
@@ -221,8 +221,8 @@
       "id": "VRC_FRONT_OUT",
       "type": "device_endpoint",
       "harness": "WheelSpeed-Front",
-      "device": "front VR conditioner, output; harness side ends in the M9 plug m9_vrc_f_out",
-      "connector": "m9_vrc_f_out",
+      "device": "front VR conditioner, output; harness side ends in the LP-16 plug lp16_vrc_f_out",
+      "connector": "lp16_vrc_f_out",
       "pins": {
         "+5V": "c1",
         "Gnd": "c2",
@@ -237,8 +237,8 @@
       "id": "VRC_REAR",
       "harness": "WheelSpeed-Rear",
       "screen": [
-        "m9_vrc_r_in.c3",
-        "m9_vrc_r_out.c5"
+        "lp16_vrc_r_in.c3",
+        "lp16_vrc_r_out.c5"
       ],
       "note": "Drain connected on both the VRC input and the VRC output, by pin: IN pin 3 (one sensor drain crimped in, the other T-spliced onto it behind the plug, DECISIONS S9) is wired to OUT pin 5 inside the box. No connector shell and no case bond (Daniel 2026-10-12). Grounded at the ECU."
     },
@@ -246,8 +246,8 @@
       "id": "VRC_FRONT",
       "harness": "WheelSpeed-Front",
       "screen": [
-        "m9_vrc_f_in.c3",
-        "m9_vrc_f_out.c5"
+        "lp16_vrc_f_in.c3",
+        "lp16_vrc_f_out.c5"
       ],
       "note": "Drain connected on both the VRC input and the VRC output, by pin: IN pin 3 (one sensor drain crimped in, the other T-spliced onto it behind the plug, DECISIONS S9) is wired to OUT pin 5 inside the box. No connector shell and no case bond (Daniel 2026-10-12). Grounded at the ECU."
     }

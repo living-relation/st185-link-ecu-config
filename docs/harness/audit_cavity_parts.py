@@ -150,8 +150,8 @@ for loom, d in ds.items():
 # Housings whose contacts are part of the housing and have no part number of their own, so a
 # wired cavity needs no contact part (Daniel, 2026-10-12: no placeholder parts).
 INTEGRAL = {
-    "99 0414 00 05": "binder product page: Termination solder, max. 0.25 mm2 / AWG 24; "
-                     "accessories are only a tool and a cap - OPEN-ITEMS row 76",
+    "LP-16-J05PE-02-001": "CNLINKO drawing LP-16-xxxPE-02-0xxx: solder cups, 0.34-0.5 mm2 / "
+                          "22-20 AWG (5 pin); no separate contact part",
 }
 
 seen_cav = set()
