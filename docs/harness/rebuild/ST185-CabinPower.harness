@@ -271,14 +271,16 @@
         {
           "id": "b1",
           "designation": "BUS1",
-          "signal": "Bus 1 in (permanent) - 50A from LMI L1",
-          "propagate": false
+          "signal": "Bus 1 in (permanent) - 50A from LMI L1, M8 input stud",
+          "propagate": false,
+          "contactPartId": "ct_ring_m8_10_8"
         },
         {
           "id": "b2",
           "designation": "BUS2",
-          "signal": "Bus 2 in (switched) - EFI main relay 87",
-          "propagate": false
+          "signal": "Bus 2 in (switched) - EFI main relay 87, M8 input stud",
+          "propagate": false,
+          "contactPartId": "ct_ring_m8_10_8"
         },
         {
           "id": "efi86",
@@ -3524,7 +3526,15 @@
       "gender": "Socket",
       "partNumber": "(Eaton RFRM terminals - per the 15401 drawing)",
       "description": "TERMINAL, FUSE AND RELAY MODULE, RFRM",
-      "manufacturer": "Eaton Bussmann"
+      "manufacturer": "Eaton Bussmann",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      }
     },
     {
       "id": "ct_mta",
@@ -3621,6 +3631,23 @@
       },
       "partNumber": "(ring lug, 8 AWG, M6)",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK",
+      "contactColor": "Silver",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "ct_ring_m8_10_8",
+      "type": "Other",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "GENERIC RING M8 10-8",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M8 STUD, ADHESIVE HEATSHRINK",
       "contactColor": "Silver",
       "manufacturer": "generic"
     }

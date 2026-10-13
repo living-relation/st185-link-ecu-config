@@ -322,9 +322,9 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI from loose
 
 | # | Circuit | Was (before Option B) | Unit | Slot | Fuse (A) | Relay | Relay part | AWG | Note |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Bus 1 feed (permanent) | CabinPower hcfb h1 50A (now `lmi_a_l1`) | LMI | L1 | 50 AMI | — | — | 8 | → RFRM Bus 1 stud |
+| 1 | Bus 1 feed (permanent) | CabinPower hcfb h1 50A (now `lmi_a_l1`) | LMI | L1 | 50 AMI | — | — | 8 | → RFRM Bus 1 M8 input stud (ring lug) |
 | 2 | Radiator fan | hcfb h2 40A | MTA-1 | MaxiVal + Maxi R1 | 40 MAXI | k_fan | TE 1-1414147-0 (own) | 8 | Link Aux 5 A29 |
-| 3 | k_efi EFI main (→ Bus 2) | fusebox c1 30A / c15 | MTA-1 | MiniVal 1 + Maxi R2 | 30 MINI | k_efi | TE 1-1414147-0 (own) | 12 in / 10 out | Aux 6 A28 hold; 87 → RFRM Bus 2 |
+| 3 | k_efi EFI main (→ Bus 2) | fusebox c1 30A / c15 | MTA-1 | MiniVal 1 + Maxi R2 | 30 MINI | k_efi | TE 1-1414147-0 (own) | 12 in / 10 out | Aux 6 A28 hold; 87 → RFRM Bus 2 M8 input stud (ring lug) |
 | 4 | Fuel pump | fusebox c2 25A | MTA-1 | MiniVal 2 + micro | 20 MINI | k_fp | TE 4-1904124-2 (own) | 12 in / 10 out | Aux 3 A19; pump 14.4 A |
 | 5 | Blower / heater | pdb c3 → R/B4 (40A) | MTA-2 | MaxiVal + Maxi R1 | 40 MAXI | heater | TE 1-1414147-0 (own) | 8 | coil: auto amp HR path |
 | 6 | Starter S | fusebox c4 30A | MTA-2 | MiniVal 1 + Maxi R2 | 30 MINI | k_str | TE 1-1414147-0 (BUY) | 12 in / 10 out | Aux 8 A26 |
@@ -360,6 +360,7 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI from loose
 
 - Trunk MEGA 300 A → 1/0 → Blue Sea 2127 + bus (glove box). That bus feeds: both LMI inputs (M8, one 4 AWG each), the 3 MTA module power inputs, and nothing else.
 - RFRM Bus 1 = permanent, from LMI L1 50 A. RFRM Bus 2 = switched, from k_efi 87 (MTA-1).
+- RFRM wire size (Daniel 2026-10-12, F2): the RFRM fuse and relay cavities take #12-22 AWG only (Aptiv / Delphi 280 Series terminals); power enters on the two bus input studs, M8 x 1.25, 100 A per bus bar (Eaton Series 15400 RFRM data sheet). So only the Bus 1 (8 AWG) and Bus 2 (10 AWG) feeds are heavier than 12 AWG, and they land on the studs with M8 ring lugs; every circuit drawn at 10 AWG or heavier (EFI main, fuel pump, starter, fans, heater, power windows, EPS, AM1 / AM2, OEM HOT, RTR) sits on an MTA Maxi / MiniVal position or the LMI. Gate: `docs/harness/audit_rfrm_gauge.py`.
 - MTA MiniVal positions are fed one by one (A/C from heater-relay 87, B30 from ST1, F13 from k_eps_en 87, k_fp/k_etb/k_efi/k_str from the + bus). Confirm the 0301491 internal bus on MTA's drawing.
 
 **Fuse and wire sizing check (calculated 2026-10-11, Claude Code; the 2026-09-17 gauge rule)**
