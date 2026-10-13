@@ -13,6 +13,7 @@ import csv
 import html
 import json
 import re
+import sys
 from collections import Counter
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -243,6 +244,93 @@ def read_md(p: Path) -> tuple[str, str, list, list]:
                 "source": rel,
             })
     return title, summary, secs, tables
+
+
+# --- Project status (docs/OPEN-ITEMS.md is the only source of the numbers) ---
+TRACKER = DOCS / "OPEN-ITEMS.md"
+# Area column -> Status bucket. Rows in the tracker's "Setup-time" table count as
+# "Tune-ECU setup-time" (RealDash rows stay RealDash). Names must match the Status table.
+AREA_BUCKET = {
+    "Wiring": "Harness wiring", "Harness": "Harness wiring", "Held WS4": "Harness wiring",
+    "Research": "Harness wiring", "Parts": "Parts", "CAN": "CAN", "RealDash": "RealDash",
+    "Tooling": "Housekeeping", "Docs": "Housekeeping", "Housekeeping": "Housekeeping",
+}
+SETUP_BUCKET = "Tune-ECU setup-time"
+
+
+def _slug(s: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+
+
+def _inline(s: str) -> str:
+    """Escape a tracker cell; `code` spans become <code>."""
+    return re.sub(r"`([^`]+)`", lambda m: f"<code>{m.group(1)}</code>", html.escape(s))
+
+
+def load_status() -> dict | None:
+    """Read the Status section (bucket table + numbered blockers) and the open rows."""
+    if not TRACKER.is_file():
+        return None
+    text = TRACKER.read_text(encoding="utf-8", errors="replace")
+    tables = parse_md_tables(text)
+    status = next((t for t in tables if t["columns"][:2] == ["Bucket", "Open"]), None)
+    if not status:
+        return None
+    m = re.search(r"^## Status[^\n]*\n(.*?)^\| # \|", text, re.S | re.M)
+    blockers = re.findall(r"^\d+\. (.+)$", m.group(1), re.M) if m else []
+    groups = {r[0]: [] for r in status["rows"]}
+    for t in tables:
+        if t["columns"][:2] != ["#", "Area"]:
+            continue
+        setup = t["title"].lower().startswith("setup-time")
+        for r in t["rows"]:
+            rid, area, item, owner, _src, st = r[:6]
+            if st.startswith(("Closed", "Merged")):
+                continue
+            b = area if (setup and area == "RealDash") else SETUP_BUCKET if setup                 else AREA_BUCKET.get(area, "Housekeeping")
+            groups.setdefault(b, []).append(
+                {"id": rid, "item": item, "owner": owner, "status": st})
+    buckets = []
+    for name, n, words in (r[:3] for r in status["rows"]):
+        found = len(groups.get(name, []))
+        if str(found) != n:
+            print(f"WARNING: OPEN-ITEMS Status says {name} = {n}, rows count {found}",
+                  file=sys.stderr)
+        buckets.append({"name": name, "open": n, "words": words, "rows": groups.get(name, [])})
+    return {"buckets": buckets, "blockers": blockers}
+
+
+def status_html(st: dict | None) -> str:
+    """Static top-of-page table plus one anchored row group per bucket."""
+    if not st:
+        return ""
+    body = "".join(
+        f'<tr><td><a href="#items-{_slug(b["name"])}">{html.escape(b["name"])}</a></td>'
+        f'<td class="num">{html.escape(b["open"])}</td><td>{_inline(b["words"])}</td></tr>'
+        for b in st["buckets"])
+    blockers = "".join(f"<li>{_inline(x)}</li>" for x in st["blockers"])
+    groups = ""
+    for b in st["buckets"]:
+        rows = "".join(
+            f'<tr><td class="num">{html.escape(r["id"])}</td><td>{_inline(r["item"][:240])}'
+            f'{"&hellip;" if len(r["item"]) > 240 else ""}</td>'
+            f'<td>{html.escape(r["owner"])}</td><td>{html.escape(r["status"])}</td></tr>'
+            for r in b["rows"])
+        groups += (
+            f'<details class="items" id="items-{_slug(b["name"])}" open>'
+            f'<summary>{html.escape(b["name"])} &middot; {html.escape(b["open"])} open</summary>'
+            f'<div class="twrap"><table class="data"><thead><tr><th>#</th><th>Item</th>'
+            f'<th>Owner</th><th>Status</th></tr></thead><tbody>{rows}</tbody></table></div>'
+            f'</details>')
+    return (
+        '<section class="board" id="status">\n<h2>Project status</h2>\n'
+        '<p class="blurb">Big picture, read from the <code>Status</code> section of '
+        '<a href="../docs/OPEN-ITEMS.md">docs/OPEN-ITEMS.md</a> (the one tracker). '
+        'Click a bucket for its open rows.</p>\n'
+        '<div class="twrap"><table class="data"><thead><tr><th>Bucket</th><th>Open</th>'
+        f'<th>In plain words</th></tr></thead><tbody>{body}</tbody></table></div>\n'
+        f'<h3 id="blockers">What blocks progress</h3>\n<ol class="blockers">{blockers}</ol>\n'
+        f'<h3 id="open-items">Open rows by bucket</h3>\n{groups}\n</section>\n')
 
 
 def classify(p: Path, topic_dir: Path, rel: str) -> str:
@@ -631,7 +719,7 @@ def build() -> dict:
         })
 
     dupes = {k: v for k, v in digests.items() if len(v) > 1}
-    return {"topics": topics, "dupes": dupes, "parts": load_parts()}
+    return {"topics": topics, "dupes": dupes, "parts": load_parts(), "status": load_status()}
 
 
 HUB_CSS = """
@@ -672,6 +760,9 @@ HUB_CSS = """
     color:var(--muted); border-radius:7px; cursor:pointer; font-size:13px; }
   .toggle button[aria-pressed="true"] { background:var(--accent-soft);
     border-color:var(--accent); color:var(--accent); font-weight:600; }
+  details.items { margin:0 0 12px; }
+  details.items summary { cursor:pointer; font-weight:600; margin:0 0 6px; }
+  ol.blockers { margin:0 0 14px; padding-left:20px; font-size:13px; }
   .topic-nav { display:flex; gap:6px; flex-wrap:wrap; margin:0 0 18px; }
   .topic-nav a { font-size:12.5px; color:var(--muted); text-decoration:none;
     border:1px solid var(--line); background:var(--panel); padding:5px 9px; border-radius:999px; }
@@ -998,7 +1089,7 @@ function topicTables(dir) {
 }
 
 function renderNav() {
-  document.getElementById("topic-nav").innerHTML = DATA.topics.map(t =>
+  document.getElementById("topic-nav").innerHTML = (DATA.status ? `<a href="#status">Status</a>` : "") + DATA.topics.map(t =>
     `<a href="#topic-${esc(t.dir)}">${esc(t.title)}</a>`
   ).join("") + `<a href="#parts">Parts board</a>`;
 }
@@ -1159,6 +1250,7 @@ def render(data: dict) -> str:
         f"{stats.get('onhand_skus', 0)} on-hand SKUs &middot; regenerate with "
         f"<code>python docs/build-research-hub.py</code></p>\n"
         "</header>\n\n"
+        + status_html(data.get("status")) + "\n"
         "<div class=\"bar\">\n"
         "  <input id=\"q\" type=\"search\" placeholder=\"Filter titles, sections, tables, or filenames&hellip;\"\n"
         "         autocomplete=\"off\">\n"
