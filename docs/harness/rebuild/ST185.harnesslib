@@ -1819,20 +1819,6 @@
       "manufacturer": "generic"
     },
     {
-      "id": "oUUgBZxSjz-XvnltX7ACJ",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 14
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 26
-      },
-      "partNumber": "GENERIC SOLDER SLEEVE 26-14",
-      "description": "SPLICE, SOLDER SLEEVE",
-      "manufacturer": "generic"
-    },
-    {
       "id": "HP4pP__XZ40Qy8PCarkKn",
       "partNumber": "GENERIC SOLDER SPLICE",
       "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
