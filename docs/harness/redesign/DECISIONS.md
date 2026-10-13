@@ -84,6 +84,17 @@ of these lines. Gates in brackets are the scripts in `docs/harness/` that check 
 - **R49** (2026-10-12) No unused part in any parts list; never join separate harnesses in one layout. [`audit_parts_layout.py` P1/P2]
 - **R50** (2026-10-12) Daniel edits the drawings in the harness.design desktop app on the live files in `docs/harness/rebuild/`; agents pause while he edits and the file saved to disk wins. Workflow: `docs/harness/README.md` "Open in the desktop app", global skill `harness-design`.
 
+### Body wiring (added 2026-10-12, second card)
+
+- **R53** (2026-10-12) Front windshield wipers and washer stay. They are new engine-bay wiring on `ST185-EngineRoom-C` (R11) and must be drawn: wiper motor, washer pump, park circuit. Not drawn yet (OPEN-ITEMS row 54 step 5).
+- **R54** (2026-10-12) The rear windshield wiper and washer are DELETED. Nothing is drawn for them; any doc or drawing that still carries a rear wiper / washer circuit, fuse or relay is stale. Owner of the deleted list: `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §5.6.
+- **R55** (2026-10-12) Rear lighting is a NEW harness (the original rear wires are missing): full third brake light, reverse lights, tail lights and brake lights, all new wire. No doc or drawing may assume the OEM rear lighting wiring is reused. The harness file, its `interfaces.json` entry, route and feed point are still to be made (OPEN-ITEMS row 86).
+- **R56** (2026-10-12, corrected the same day) Brake switch -> CSB3 input S7 (`interfaces.json` FL_BRAKE_SW_C1); the ECU gets brake over CAN from the CSB3. Any 12 V-active switch feeding an input that needs ground-active goes through an optoisolator.
+- **R57** (2026-10-12) Glove-box power block = ONE combined power + ground bus bar; the part is being picked (Victron / Egis single-polarity options rejected). The Blue Sea 2127 / 2719 PowerBar lines in `buylist.py` EXTRA and the `PDB-M8x8` placeholder stand only until that part is picked (OPEN-ITEMS row 88).
+- **R58** (2026-10-12) The door lock / tilt-away always-hot feed (the ex-R/B2 W-L net) = a new 15 A fuse on the RFRM. Closes the question in OPEN-ITEMS row 82; drawing it on `ST185-CabinPower` is pending.
+- **R59** (2026-10-12) The EA engine-bay ground stud (right front fender) is M8: every ring lug landing on EA is an M8 ring sized to its wire.
+- **R60** (2026-10-12) VRC enclosure panel connector = a solder, jam-nut style connector that fits the enclosure wall; part TBD (R38). This replaces the binder M9 panel mate and its AWG 24 solder-cup limit (OPEN-ITEMS rows 76 / 77). *Partly supersedes R34 / S8: the two-plugs-per-harness form, pin map and one-splice drain stay; the plug part number `99 0414 00 05` holds in the drawings only until the jam-nut panel part and its cable mate are picked.*
+
 ### CAN data routing
 
 - **R51** (2026-06-16, 2026-10-03) Switchboard (CSB3) 0x640 / 0x641 / 0x642 go to the ECU only; the ECU echoes what it needs into its own TX frames. The cluster reads 0x3E8-0x3EB and 0x3EE; RealDash reads 0x3EB (gear byte only) and 0x3EF-0x3F1. The cluster sends 0x3EC / 0x3ED to the ECU (in the `.lcs` receive list). Cluster firmware as flashed is frozen and outranks every other device. Procedure: `docs/RECONCILIATION-RULES.md` Rule 2; contract details: `AGENTS.md` Working Rules. [`bench/check_parity.py`]
@@ -107,6 +118,10 @@ of these lines. Gates in brackets are the scripts in `docs/harness/` that check 
 | R29 / R30 vs OPEN-ITEMS row 73 | Row 73 still says "each cable has its own SolderSleeve ... T-spliced ... inside the transition boot" | Row 73 drain text corrected to S9/S12 (one splice drawn; T-splice is build method). |
 | R14 | "combo meter and all its plugs/wires gone" vs `ST185-ClusterLED` flying leads at C11/C12 "at the combination meter" | Read as the dash-harness side of those connectors (cabin reuse allowed). **Daniel to confirm.** |
 | R42 vs plan §6.33 | Fixed left-to-right schematic geometry (09-20) vs "schematic: any direction; layout: left to right" (10-12) | Newer wins; §6.33 is history. |
+| R60 vs R34 / S8 | Binder M9 `99 0414 00 05` plugs (10-12, morning) vs solder jam-nut panel connector, part TBD (10-12, later) | Newer wins for the panel part; the drawings keep the M9 plug part until the pick (no drawing change in the rules PR). |
+| R57 vs `buylist.py` EXTRA | Blue Sea 2127 PowerBar + 2719 cover (single polarity, 09-17) vs one combined power + ground bus bar (10-12) | Newer wins; the EXTRA lines and the `PDB-M8x8` placeholder are replaced when the part is picked. |
+| R58 vs OPEN-ITEMS row 82 | "pick the fuse for W-L" vs new 15 A RFRM fuse | Answered by R58; the drawing is still to do. |
+| R55 vs ENGINE-ROOM-POWER-REDISTRIBUTION §3.1 / §5.2 | J/B No.1 STOP / TAIL fuses assumed to feed the OEM rear lighting | The OEM rear wires are missing; the new rear harness needs its own feed point - **Daniel decides** (row 86). |
 
 ## Objective
 
