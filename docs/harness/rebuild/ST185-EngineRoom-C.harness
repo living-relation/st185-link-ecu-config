@@ -1729,6 +1729,98 @@
         "y": 360
       },
       "propagate": false
+    },
+    {
+      "id": "br_alt_s",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator S (G2-1) -> RFRM ALTS 2A, battery sense",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1800
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": 90
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_alt_l",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator L (G2-2) -> IG2-16 cowl lead -> charge LED",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1860
+      },
+      "layoutPosition": {
+        "x": 1830,
+        "y": 30
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_alt_ig",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator IG (G2-3) <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
+      "schematicPosition": {
+        "x": 4410,
+        "y": 1920
+      },
+      "layoutPosition": {
+        "x": 1860,
+        "y": -30
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ig2_c15",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.74 IG2-15 B-R J/B No.1 ECU-IG 15A (1B-8 via J3) -> alternator IG (G2-3) - crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 1800
+      },
+      "layoutPosition": {
+        "x": 3390,
+        "y": -330
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ig2_c16",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.74 IG2-16 Y alternator L (G2-2) -> splice I5 -> combination meter lead C14-8 / C12-8 (ClusterLED charge LED) - crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 1860
+      },
+      "layoutPosition": {
+        "x": 3420,
+        "y": -390
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_alt_s_cp",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: RFRM ALTS 2A (Bus 1) -> alternator S battery sense",
+      "schematicPosition": {
+        "x": 3750,
+        "y": 1920
+      },
+      "layoutPosition": {
+        "x": 3270,
+        "y": 1380
+      },
+      "propagate": false
     }
   ],
   "wires": [
@@ -2643,6 +2735,45 @@
       "color": "Blue",
       "stripeColor": "Red",
       "partId": "m16_14_62"
+    },
+    {
+      "id": "w_alt_ig_c",
+      "source": {
+        "id": "fl_oem_ig2_c15",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "br_alt_ig",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_2"
+    },
+    {
+      "id": "w_alt_l_c",
+      "source": {
+        "id": "br_alt_l",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_oem_ig2_c16",
+        "handle": "Terminal"
+      },
+      "color": "Yellow",
+      "partId": "m16_20_4"
+    },
+    {
+      "id": "w_alt_s_c",
+      "source": {
+        "id": "br_alt_s_cp",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "br_alt_s",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "partId": "m16_20_9"
     }
   ],
   "bundles": [
@@ -3937,6 +4068,78 @@
       "id": "bn_bp_240__t_gnd_ea_f8",
       "sourceId": "bp_240",
       "targetId": "t_gnd_ea_f8"
+    },
+    {
+      "id": "bn_bp_450__bp_alt",
+      "sourceId": "bp_450",
+      "targetId": "bp_alt",
+      "length": {
+        "value": 400,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1020__bp_fl_ig2",
+      "sourceId": "bp_1020",
+      "targetId": "bp_fl_ig2",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_alt__br_alt_s",
+      "sourceId": "bp_alt",
+      "targetId": "br_alt_s",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_alt__br_alt_l",
+      "sourceId": "bp_alt",
+      "targetId": "br_alt_l",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_alt__br_alt_ig",
+      "sourceId": "bp_alt",
+      "targetId": "br_alt_ig",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_ig2__fl_oem_ig2_c15",
+      "sourceId": "bp_fl_ig2",
+      "targetId": "fl_oem_ig2_c15",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_fl_ig2__fl_oem_ig2_c16",
+      "sourceId": "bp_fl_ig2",
+      "targetId": "fl_oem_ig2_c16",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_990__br_alt_s_cp",
+      "sourceId": "bp_990",
+      "targetId": "br_alt_s_cp",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -4252,6 +4455,20 @@
       "id": "bp_fl_w1",
       "layoutPosition": {
         "x": 3270,
+        "y": -270
+      }
+    },
+    {
+      "id": "bp_alt",
+      "layoutPosition": {
+        "x": 1800,
+        "y": 150
+      }
+    },
+    {
+      "id": "bp_fl_ig2",
+      "layoutPosition": {
+        "x": 3390,
         "y": -270
       }
     }
@@ -4731,6 +4948,28 @@
       "stripeColor": "Red",
       "gauge": {
         "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_4",
+      "partNumber": "M22759/16-20-4",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Yellow",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 20,
         "unit": "AWG"
       }
     }

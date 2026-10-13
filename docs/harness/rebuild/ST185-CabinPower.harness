@@ -381,6 +381,11 @@
           "designation": "WL",
           "signal": "Bus 1 15A - door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58)",
           "propagate": false
+        },
+        {
+          "id": "alts",
+          "designation": "ALTS",
+          "signal": "Bus 1 2A - alternator S battery sense (G2-1)"
         }
       ]
     },
@@ -1758,6 +1763,21 @@
         "y": 1380
       },
       "propagate": false
+    },
+    {
+      "id": "br_alt_s_cp",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-EngineRoom-C: RFRM ALTS 2A (Bus 1) -> alternator S battery sense (G2-1)",
+      "schematicPosition": {
+        "x": 1200,
+        "y": 3660
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": 660
+      },
+      "propagate": false
     }
   ],
   "wires": [
@@ -2768,6 +2788,19 @@
       "color": "Red",
       "stripeColor": "Black",
       "partId": "m16_16_20"
+    },
+    {
+      "id": "w_alt_s_cp",
+      "source": {
+        "id": "rfrm",
+        "handle": "alts"
+      },
+      "target": {
+        "id": "br_alt_s_cp",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "partId": "m16_20_9"
     }
   ],
   "bundles": [
@@ -3499,6 +3532,15 @@
         "value": 300,
         "unit": "mm"
       }
+    },
+    {
+      "id": "b_bn_b_bp_1050__br_alt_s_cp",
+      "sourceId": "b_bp_1050",
+      "targetId": "br_alt_s_cp",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -3776,6 +3818,17 @@
       "manufacturer": "M22759",
       "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Black",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
       "gauge": {
         "value": 20,
         "unit": "AWG"

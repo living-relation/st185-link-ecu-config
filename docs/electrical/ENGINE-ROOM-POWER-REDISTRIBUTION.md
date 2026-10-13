@@ -361,7 +361,7 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI from loose
 | 22 | HAZ-HORN (+ horn relay) | gbx_body c6 15A | RFRM | Bus 1 + micro | 15 | horn | TE 4-1904124-3 (own) | 14 | coil − IE1-19 |
 | 23 | DOME | gbx_body c7 20A | RFRM | Bus 1 | 20 | — | — | 12 |  |
 | 24 | Wiper park | gbx_body c9 15A | RFRM | — (spare) | — | — | — | — | not used (2026-10-13): the wiper stays on J/B No.1 WIPER 20A (R61); park switch in the motor, relay in C16 |
-| 25 | Alt excite | research list (not drawn) | RFRM | Bus 1 | 5 | — | — | 18 | add to drawing if kept |
+| 25 | Alt S sense (was "alt excite") | research list | RFRM | Bus 1 | 2 | — | — | 20 | 2026-10-13 (S18): no excite fuse - the 1993 EWD p.74 feeds IG from J/B No.1 ECU-IG 15A (IG2-15); this slot is the S battery-sense fuse `alts` -> alternator G2-1 |
 | 26 | CAN-Lambda +12V (F5) | fusebox c5 10A | RFRM | Bus 2 | 7.5 | — | — | 14 | → bulkhead B c3 |
 | 27 | Switched sensor rail / relay coils sp_sw12 (F9) | fusebox c9 10A + gbx_body c3 | RFRM | Bus 2 | 7.5 | — | — | 16 in / 18-20 out |  |
 | 28 | COP coil bank (F10) | fusebox c10 20A | RFRM | Bus 2 | 15 | — | — | 14 trunk / 16 branches |  |
@@ -407,7 +407,7 @@ DECISIONS S6. Run lengths are estimates from the routes; re-check if a run grows
 
 **Spare capacity**
 
-- RFRM: 18 of 40 fuse slots used (2026-10-12: + alarm ALM / ALMS / ALMIG, - ECU permanent, + WL door lock / tilt-away R58; EPSEN now wired; 2026-10-13: WP not used), 6 of 10 micro relays (4 spare; 2026-10-13: + `k_rev`, - wiper park).
+- RFRM: 19 of 40 fuse slots used (+ ALTS 2026-10-13) (2026-10-12: + alarm ALM / ALMS / ALMIG, - ECU permanent, + WL door lock / tilt-away R58; EPSEN now wired; 2026-10-13: WP not used), 6 of 10 micro relays (4 spare; 2026-10-13: + `k_rev`, - wiper park).
 - MTA: 6 of 6 Maxi relays, 3 of 3 MaxiVal, 7 of 18 MiniVal, 2 of 3 micro (1 spare).
 - LMI: 7 fuses in two stacks, A 4 + B 3 (Eaton: max 7 modules per assembly including the input module); a spare means a longer bus bar and one more `LMI1-M-1-0`.
 
