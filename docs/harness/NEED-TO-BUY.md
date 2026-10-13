@@ -11,7 +11,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 |---|---|---|---:|---:|---:|
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 48 | 0 | **48** |
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 43 | 0 | **43** |
-| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 38 | 0 | **38** |
+| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 39 | 0 | **39** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
@@ -140,7 +140,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Modelled as | What it really is | Qty |
 |---|---|---:|
-| `(Eaton RFRM terminals - per the 15401 drawing)` | TERMINAL, FUSE AND RELAY MODULE, RFRM | 25 |
+| `(Eaton RFRM terminals - per the 15401 drawing)` | TERMINAL, FUSE AND RELAY MODULE, RFRM | 26 |
 | `(LED board indicator - 12 V, resistor on board)` | DIODE, LIGHT EMITTING, INDICATOR, 12 V | 6 |
 | `(MTA 0301491 terminals - per the MTA drawing)` | TERMINAL, FUSE AND RELAY MODULE, MTA | 42 |
 | `(Toyota TS terminals, supplied with owned housings)` | CONTACT, SOCKET, CRIMP, TOYOTA | 5 |
@@ -200,7 +200,7 @@ is in `interfaces.json` and in the build list's EWD column.
 | B-engine | 1 |
 | CSB3 | 6 |
 | ClusterLED | 6 |
-| EngineRoom-C | 14 |
+| EngineRoom-C | 15 |
 
 ## Screened cable pieces by owning harness
 

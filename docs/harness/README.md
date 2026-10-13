@@ -69,8 +69,8 @@ ground to the cluster. Interior cluster wiring lives only in
 The fuse box lives only in `ST185-CabinPower` (2026-10-11, Option B; slot map in
 `../electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §8.1).
 Loom C's old `gbx_body` glove-box body block and the PDB's fused AM1 / AM2 / OEM HOT
-outputs moved there; EngineRoom-C keeps the OEM ends (J/B2, IE1, J/B1, R/B2, R/B4,
-A/C pressure switch) and reaches the box through broken-off pairs. The PDB keeps only
+outputs moved there; EngineRoom-C keeps the cabin-side OEM ends (IE1, J/B1, the leads at the old R/B2 / R/B4
+spots, A/C pressure switch; J/B2 and the R/Bs themselves are removed, R12) and reaches the box through broken-off pairs. The PDB keeps only
 its battery, RADLOK and ground studs. Some wire ids still carry `pmu` (`w_pmu_hl` ...)
 from the PMU-16 days - names only, not a PMU.
 

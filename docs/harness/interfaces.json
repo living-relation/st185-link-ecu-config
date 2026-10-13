@@ -506,6 +506,20 @@
       }
     },
     {
+      "id": "FL_OEM_RB2_WL",
+      "type": "oem_flying_lead",
+      "harness": "EngineRoom-C",
+      "terminal": "fl_oem_rb2_wl",
+      "ewd": {
+        "page": "1993 p.137 / p.170",
+        "connector": "R/B2",
+        "pin": "2",
+        "color": "W-L",
+        "function": "always-hot door lock / auto tilt-away feed -> splice I1 -> door lock ECU D8-8 / tilt-away ECU (R/B2 removed; R58 new RFRM 15 A fuse)",
+        "method": "crimp butt splice into the factory cowl-side W-L lead at the left kick (cabin side)"
+      }
+    },
+    {
       "id": "FL_B4_C2",
       "type": "oem_flying_lead",
       "harness": "EngineRoom-C",
@@ -1721,6 +1735,21 @@
         {
           "harness": "EngineRoom-C",
           "terminal": "br_w_rb2"
+        }
+      ]
+    },
+    {
+      "id": "BR_W_RB2_WL",
+      "type": "broken_off",
+      "what": "RFRM WL 15A -> door lock / tilt-away always-hot W-L (ex-R/B2 pin 2, R58)",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_w_rb2_wl"
+        },
+        {
+          "harness": "EngineRoom-C",
+          "terminal": "br_w_rb2_wl"
         }
       ]
     },

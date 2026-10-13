@@ -21,6 +21,8 @@ Settled by the decision above; the old "keep the OEM looms + splice table" compa
 
 ## 2. How factory power works today
 
+*Factory layout, kept for reference. J/B No.2, R/B No.2-5 and the F11 fusible-link box are removed (DECISIONS R12); nothing lands on them. Every ex-J/B2 / R/B load lands per §5.4.*
+
 ![Current-flow chart, EWD p.36](ewd-snips/1990-st185-power-source-chart.png)
 
 ![Power-source circuit, EWD p.46](ewd-snips/1990-st185-power-source-circuit.png)
@@ -216,8 +218,9 @@ Drawn in `ST185-EngineRoom-C` (cabin and bay ends) and `ST185-CabinPower` (fuse 
 | J/B1 always-hot | LMI L6 60 A | 6 | J/B1 1I-1 | Cabin, left kick | p.62 |
 | Blower | MTA-2 HTR 40 A + heater relay | 8 | Blower motor B4 pin 2 | Cabin, behind the glove box | p.215-216 |
 | Power windows | LMI L2 30 A + MTA-3 power relay | 10 | W-G window feed (old R/B2 power main relay terminal 1) | Cabin, left kick | p.137 |
+| Door lock / tilt-away always-hot | RFRM WL 15 A (R58, drawn 2026-10-12) | 14 | W-L lead at old R/B2 pin 2 → splice I1 → door lock ECU D8-8 / tilt-away ECU | Cabin, left kick | p.137 / p.170 |
 
-Not landed yet (`docs/OPEN-ITEMS.md`): the always-hot W-L net that R/B2's POWER fuse also fed (door lock ECU D8-8, auto tilt-away, p.137 / p.170); relay coil wires (row 46); the rest of the bay circuits on the approved route — headlamp high / low returns, turn / clearance, side markers, retract-motor leads, wiper / washer (row 54).
+Not landed yet (`docs/OPEN-ITEMS.md`): relay coil wires (row 46); the rest of the bay circuits on the approved route — headlamp high / low returns, turn / clearance, side markers, retract-motor leads, wiper / washer (row 54).
 
 ### 5.5 Engine-room grounds (keep the OEM rings)
 
@@ -232,7 +235,7 @@ Not landed yet (`docs/OPEN-ITEMS.md`): the always-hot W-L net that R/B2's POWER 
 | **EC** | Intake manifold | Yes, leftover OEM engine-wire grounds | Do not put EPS / fan current on EC |
 | **ID** | Left kick panel | Yes | Strap from PDB (L8) |
 | **IE / IF** | Dash braces | Yes | Untouched |
-| **IG** | R/B No.4 set bolt | Yes | Strap from PDB |
+| **IG** | ex-R/B No.4 set bolt (the body bolt stays; the box is removed, R12) | Yes | Strap from PDB |
 
 ### 5.6 Deleted OEM circuits — do not restore
 
@@ -244,6 +247,7 @@ Not landed yet (`docs/OPEN-ITEMS.md`): the always-hot W-L net that R/B2's POWER 
 | SRS airbag / crash sensors | Center airbag sensor (dash, EWD p.17); yellow cowl airbag harness | Deleted. Do not refeed 7.5A IGN into the airbag ECU |
 | OEM EFI main / circuit opening / OEM ECU | J/B2 EFI fuse, R/B5 fuel-pump relay, C7 | Replaced by Link `k_efi` / `k_fp` |
 | OEM radiator / condenser fan relays in J/B2 and R/B5 | R/B5 fan relays 2 and 3; J/B2 RDI FAN relay | Replaced by `k_fan` / `k_fan2` |
+| Rear windshield wiper and washer | Rear wiper motor, rear washer pump, their switch outputs, fuse and relay | Deleted (DECISIONS R54, Daniel 2026-10-12). The FRONT wipers / washer stay (R53) |
 
 ### 5.7 New Engine Room C runs (the only new bay wiring)
 
@@ -331,7 +335,7 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI from loose
 | 7 | ETB power | fusebox c3 10A | MTA-2 | MiniVal 2 + micro | 10 MINI | k_etb | TE 4-1904124-2 (own) | 16 | Aux 2 A20 → B5 |
 | 8 | MR-S EPS enable logic (F13) | fusebox c14 7.5A | MTA-2 | MiniVal 3 | 7.5 MINI | — | — | 20 | fed from k_eps_en 87 |
 | 9 | Condenser fan | hcfb h3 30A | MTA-3 | MaxiVal + Maxi R1 | 30 MAXI | k_fan2 | TE 1-1393304-0 (own, bracket: test-fit) | 8 | Ign 5 B13; plain relay, no diode |
-| 10 | Power windows/locks + tilt-away (ex-R/B2 POWER) | pdb c3 → R/B2 | LMI → MTA-3 | L2 + Maxi R2 | 30 AMI | power | TE 1-1393304-0 (own, bracket: test-fit) | 10 | coil: key IG; ATAS tap before relay |
+| 10 | Power windows (ex-R/B2 POWER) | pdb c3 → R/B2 | LMI → MTA-3 | L2 + Maxi R2 | 30 AMI | power | TE 1-1393304-0 (own, bracket: test-fit) | 10 | coil: key IG; door lock / tilt-away W-L is RFRM WL 15 A (R58), not a tap |
 | 11 | A/C (ACPS) from heater-relay 87 | gbx_body c12 (5A drawn) | MTA-3 | MiniVal 1 | 10 MINI | — | — | 10 jumper / 18 out | plan 26.2 = 10 A; drawing 5 A → fix drawing |
 | 12 | B30 start request (ST1 tap) | Route 6/7 | MTA-3 | MiniVal 2 | 2 MINI | — | — | 20 | B-W from old R/B4 spot → DI7 B30 |
 | 13 | RTR pop-up headlights (OEM R8 relay) | gbx_body c8 30A | LMI | L3 | 30 AMI | — | no relay (OEM R8) | 10 | drawing shows relay 87 → remove |
@@ -355,10 +359,11 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI from loose
 | 31 | DEV: cluster + RealDash Pi | gbx_body c11 | RFRM | Bus 2 | 15 | — | — | 16 | one fuse as drawn |
 | 32 | k_eps_en contact feed | Route 7 / plan 18.1 | RFRM | Bus 2 + micro | 7.5 | k_eps_en | TE 6-1419137-4 (own) | 18 | Ign 6 B12; 87 → MTA-2 MRS IN (drawn 2026-10-12) |
 | 33 | k_acc A/C clutch | plan 9.3 | RFRM | Bus 2 + micro | 10 (verify) | k_acc | TE 6-1419137-4 (own) | 16 | Ign 8 B10; A5 in series |
+| 34 | Door lock / tilt-away always-hot W-L (R58) | R/B2 POWER fuse (removed) | RFRM | Bus 1 | 15 | — | — | 14 | flying lead into the factory W-L at old R/B2 pin 2 (EngineRoom-C `fl_oem_rb2_wl`) |
 
 **Feeds**
 
-- Trunk MEGA 300 A → 1/0 → Blue Sea 2127 + bus (glove box). That bus feeds: both LMI inputs (M8, one 4 AWG each), the 3 MTA module power inputs, and nothing else.
+- Trunk MEGA 300 A → 1/0 → one combined power + ground bus bar (glove box; part being picked, DECISIONS R57 / `docs/OPEN-ITEMS.md` row 88). That bus feeds: both LMI inputs (M8, one 4 AWG each), the 3 MTA module power inputs, and nothing else.
 - RFRM Bus 1 = permanent, from LMI L1 50 A. RFRM Bus 2 = switched, from k_efi 87 (MTA-1).
 - RFRM wire size (Daniel 2026-10-12, F2): the RFRM fuse and relay cavities take #12-22 AWG only (Aptiv / Delphi 280 Series terminals); power enters on the two bus input studs, M8 x 1.25, 100 A per bus bar (Eaton Series 15400 RFRM data sheet). So only the Bus 1 (8 AWG) and Bus 2 (10 AWG) feeds are heavier than 12 AWG, and they land on the studs with M8 ring lugs; every circuit drawn at 10 AWG or heavier (EFI main, fuel pump, starter, fans, heater, power windows, EPS, AM1 / AM2, OEM HOT, RTR) sits on an MTA Maxi / MiniVal position or the LMI. Gate: `docs/harness/audit_rfrm_gauge.py`.
 - MTA MiniVal positions are fed one by one (A/C from heater-relay 87, B30 from ST1, F13 from k_eps_en 87, k_fp/k_etb/k_efi/k_str from the + bus). Confirm the 0301491 internal bus on MTA's drawing.
@@ -390,7 +395,7 @@ DECISIONS S6. Run lengths are estimates from the routes; re-check if a run grows
 
 **Spare capacity**
 
-- RFRM: 18 of 40 fuse slots used (2026-10-12: + alarm ALM / ALMS / ALMIG, - ECU permanent), 6 of 10 micro relays (4 spare).
+- RFRM: 19 of 40 fuse slots used (2026-10-12: + alarm ALM / ALMS / ALMIG, - ECU permanent, + WL door lock / tilt-away R58; EPSEN now wired), 6 of 10 micro relays (4 spare).
 - MTA: 6 of 6 Maxi relays, 3 of 3 MaxiVal, 7 of 18 MiniVal, 2 of 3 micro (1 spare).
 - LMI: 7 fuses in two stacks, A 4 + B 3 (Eaton: max 7 modules per assembly including the input module); a spare means a longer bus bar and one more `LMI1-M-1-0`.
 

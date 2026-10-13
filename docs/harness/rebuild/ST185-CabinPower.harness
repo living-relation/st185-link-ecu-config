@@ -316,7 +316,7 @@
         {
           "id": "wp",
           "designation": "WP",
-          "signal": "Bus 1 15A + wiper-park micro relay (optional, not yet wired)"
+          "signal": "Bus 1 15A + wiper-park micro relay - front wiper (R53), drawn with the Route 2 wiper markup"
         },
         {
           "id": "lam",
@@ -375,6 +375,12 @@
           "id": "almig",
           "designation": "ALMIG",
           "signal": "Bus 2 2A - anti-theft alarm ignition sense (switched k_efi rail)"
+        },
+        {
+          "id": "wl",
+          "designation": "WL",
+          "signal": "Bus 1 15A - door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58)",
+          "propagate": false
         }
       ]
     },
@@ -1579,7 +1585,7 @@
       },
       "schematicPosition": {
         "x": 1200,
-        "y": 3570
+        "y": 3990
       },
       "propagate": false
     },
@@ -1610,6 +1616,21 @@
       "schematicPosition": {
         "x": 4200,
         "y": 4380
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_rb2_wl",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58): RFRM WL 15A",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1860,
+        "y": 1140
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 3420
       },
       "propagate": false
     }
@@ -2526,6 +2547,19 @@
         "handle": "Terminal"
       },
       "partId": "m16_20_7"
+    },
+    {
+      "id": "w_rb2_wl_cp",
+      "color": "Red",
+      "source": {
+        "id": "rfrm",
+        "handle": "wl"
+      },
+      "target": {
+        "id": "br_w_rb2_wl",
+        "handle": "Terminal"
+      },
+      "partId": "m16_14_2"
     }
   ],
   "bundles": [
@@ -3192,6 +3226,15 @@
       "targetId": "br_w_eps_rly",
       "length": {
         "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1065__br_w_rb2_wl",
+      "sourceId": "b_bp_1065",
+      "targetId": "br_w_rb2_wl",
+      "length": {
+        "value": 50,
         "unit": "mm"
       }
     }
