@@ -3,7 +3,7 @@
 Daniel (2026-10-04, approved doc-growth measure; built 2026-10-13). WARN-ONLY: prints
 GitHub warning annotations and always exits 0 (pass --strict to exit 1).
 
-  1. Any tracked .md file longer than MAX_LINES lines (archive/ excluded).
+  1. Any tracked .md file longer than MAX_LINES lines.
   2. Any tracked top-level .md file whose name is not mentioned in AGENTS.md (the project map).
 
 No auto-archiving and no "untouched for N days" sweep - those were rejected.

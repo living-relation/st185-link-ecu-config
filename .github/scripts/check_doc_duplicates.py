@@ -2,7 +2,7 @@
 
 Daniel (2026-10-04, approved doc-growth measure 1): a fact lives in ONE file; every other
 file links to it. This check lists passages of MIN_LINES or more identical lines that
-appear in two or more tracked .md files (archive/ excluded - it is never authoritative).
+appear in two or more tracked .md files.
 
 WARN-ONLY for now: it prints the duplicates (as GitHub warning annotations in CI) and
 always exits 0. Pass --strict to exit 1 when anything is found, once the current

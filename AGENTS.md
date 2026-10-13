@@ -29,7 +29,7 @@
 ## Project Map
 - **Core CAN contracts**: `link_g4x_can_setup.json` (ECU frames, PCLink encode form), `link_g4x_can_setup.lcs` (decode form), `switchboard_frames.json` (CSB3 0x640-0x643), `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`, `CAN-CONFIG-STATUS.md` (status note), `ECUMASTER_SWITCHBOARD_SETUP.md`, `CANBUS-ENCODE-DECODE-REFERENCE.html` (a POINTER page to the cluster repo's file - no cluster file is copied into this repo; CI reads the cluster repo read-only at run time).
 - **CAN parity gate**: `bench/check_parity.py` - JSON, `.lcs`, ID table, `bench/frames.py`, RealDash XML, sender UI and `switchboard_frames.json` must agree. Runs in CI (`.github/workflows/checks.yml`).
-- **Doc hygiene (warn-only, CI)**: `.github/scripts/check_doc_duplicates.py` - one owner per fact: lists any passage of 6+ identical lines copied between tracked `.md` files (`archive/` excluded). Keep the passage in one file and link to it from the others.
+- **Doc hygiene (warn-only, CI)**: `.github/scripts/check_doc_duplicates.py` - one owner per fact: lists any passage of 6+ identical lines copied between tracked `.md` files. Keep the passage in one file and link to it from the others.
 - **Doc size guard (warn-only, CI)**: `.github/scripts/check_doc_size.py` - warns when a tracked `.md` passes 1,500 lines, and when a top-level `.md` is not named in this file's project map (so add every new top-level doc here). No auto-archiving or age sweeps.
 - **RealDash contract**: `link_g4x_realdash.xml`, `REALDASH-LAYOUT.md`, `realdash-simulation.html`.
 - **Bench tooling**: `bench/can_bench.py`, `bench/frames.py`, `bench/requirements.txt`, `BENCH-TEST.md`.
@@ -43,8 +43,7 @@
 - **Project tracker**: `docs/OPEN-ITEMS.md` - THE one tracker: every unresolved item (owner, source, what unblocks it) plus the dated project history. Decisions and every binding rule live in `docs/harness/redesign/DECISIONS.md` ("Binding rules from Daniel" is the rules home).
 - **Route drawings**: `docs/harness/routes/` - Dan's approved route for each harness (one HTML per route, current version only); lint `docs/harness/check_route_drawings.py`.
 - **Handoffs**: none kept. A finished handoff is deleted; open work goes into `docs/OPEN-ITEMS.md` (`output/` is for a handoff in flight only).
-- **Archive**: `archive/` holds retired harness drawings only. **Do not read or search it during normal work**; it is excluded from agent context and nothing in it is authoritative. Consult it only when explicitly asked why a past decision was made, and if it disagrees with a current doc, the current doc wins.
-- **Agent ecosystem**: `.claude/skills/` (4 repo skills: `run-can-bench-scenarios`, `update-can-frame-contract`, `maintain-realdash-xml-mapping`, `extend-trackcluster-can-sender` - CAN/bench; see **Skills** below for the 5 global ST185 skills), `.claude/rules/` + `.cursor/rules/` (thin pointers to the rule owners - `DECISIONS.md`, `RECONCILIATION-RULES.md`, this file's Working Rules - never copies), `.claude/settings.json` (permission allow-list), `.cursor/environment.json` + `.cursor/install.sh` (Cursor Cloud bootstrap), `.claudeignore` (keeps `archive/` out of context), `.githooks/` (pre-commit refuses `docs/research-hub.html`). No agent hooks are configured.
+- **Agent ecosystem**: `.claude/skills/` (4 repo skills: `run-can-bench-scenarios`, `update-can-frame-contract`, `maintain-realdash-xml-mapping`, `extend-trackcluster-can-sender` - CAN/bench; see **Skills** below for the 5 global ST185 skills), `.claude/rules/` + `.cursor/rules/` (thin pointers to the rule owners - `DECISIONS.md`, `RECONCILIATION-RULES.md`, this file's Working Rules - never copies), `.claude/settings.json` (permission allow-list), `.cursor/environment.json` + `.cursor/install.sh` (Cursor Cloud bootstrap), `.githooks/` (pre-commit refuses `docs/research-hub.html`). No agent hooks are configured.
 
 ## Skills
 Five skills for this project are saved **globally** (user-level, not in this repo) at
@@ -82,7 +81,6 @@ and runs as a SOFT gate in `check_all.py`, since it's a test, not a skill.
   the build-rule log until 2026-10-12). It is **not a rules home any more**: the binding rules
   are `docs/harness/redesign/DECISIONS.md` "Binding rules from Daniel", and where §6 disagrees
   with them the plan doc is history.
-- `archive/` holds retired harness drawings only. They are not authoritative.
 
 ## Related Repos (mandatory for CAN bus / wiring work)
 This repo defines only one side of the CAN bus (ECU, RealDash, switchboard). The
@@ -246,4 +244,4 @@ If you still land in a conflict on one of these, do not resolve it by hand. Take
 side, re-run the generator, and stage the result.
 
 ## Wiring audit
-- `python docs/harness/check_all.py` is the wiring audit. The 2026-09-18 conflict sheet is archived; its bh_c questions are settled (bulkhead C deleted).
+- `python docs/harness/check_all.py` is the wiring audit. The 2026-09-18 conflict sheet is retired (git history); its bh_c questions are settled (bulkhead C deleted).

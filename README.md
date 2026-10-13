@@ -48,7 +48,6 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `tune/engine_constants.yaml` | Machine-readable engine constants (bore, cams, trigger, injectors, turbo, fuel, targets). Engine calibration only — not an I/O source. |
 | `tune/tables/` | PCLink table seeds — VE (93 + E85), ignition base, injector dead time. Conservative placeholders, not dyno data. See `tune/README.md`. |
 | `FUEL-SYSTEM.md` | Fuel system reference — AN hose sizing and pump capacity notes. Not part of the CAN bus contract. |
-| `archive/` | Retired harness drawings — **never authoritative**, excluded from agent context. Not for normal work. |
 | `docs/harness/redesign/DECISIONS.md` | Decision record and **the one home for every binding rule Daniel has set** (section "Binding rules from Daniel"). |
 | `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` | Dated harness decision history (2026-09-12 to 2026-10-11). Not a rules home: where its §6 disagrees with `DECISIONS.md` it is history. |
 | `docs/research-hub.html` | Index of everything under `docs/` plus interactive parts tables (on-hand BOM, harness buy list, enclosure BOMs). Open in any browser. The "Regenerate research hub" Action runs `python docs/build-research-hub.py` on PRs that touch `docs/**` and commits the HTML on `main` only — do not commit the HTML yourself. |
