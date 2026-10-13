@@ -11,7 +11,7 @@
         "handle": "Splice"
       },
       "target": {
-        "id": "m9_vrc_r_in",
+        "id": "lp16_vrc_r_in",
         "handle": "c3"
       },
       "color": "Black",
@@ -129,10 +129,10 @@
       }
     },
     {
-      "id": "m9_vrc_r_in",
+      "id": "lp16_vrc_r_in",
       "label": "VRC rear IN plug",
       "width": 390,
-      "partId": "cp_m9_5f",
+      "partId": "cp_lp16_5f",
       "layoutPosition": {
         "x": 390,
         "y": 0
@@ -170,10 +170,10 @@
       ]
     },
     {
-      "id": "m9_vrc_r_out",
+      "id": "lp16_vrc_r_out",
       "label": "VRC rear OUT plug",
       "width": 390,
-      "partId": "cp_m9_5f",
+      "partId": "cp_lp16_5f",
       "layoutPosition": {
         "x": 1230,
         "y": 0
@@ -233,7 +233,7 @@
             "handle": "c1"
           },
           "target": {
-            "id": "m9_vrc_r_in",
+            "id": "lp16_vrc_r_in",
             "handle": "c1"
           },
           "twistedWithNext": true
@@ -246,7 +246,7 @@
             "handle": "c2"
           },
           "target": {
-            "id": "m9_vrc_r_in",
+            "id": "lp16_vrc_r_in",
             "handle": "c2"
           }
         }
@@ -276,7 +276,7 @@
             "handle": "c1"
           },
           "target": {
-            "id": "m9_vrc_r_in",
+            "id": "lp16_vrc_r_in",
             "handle": "c4"
           },
           "twistedWithNext": true
@@ -289,7 +289,7 @@
             "handle": "c2"
           },
           "target": {
-            "id": "m9_vrc_r_in",
+            "id": "lp16_vrc_r_in",
             "handle": "c5"
           }
         }
@@ -315,7 +315,7 @@
           "id": "cab_rout_5v",
           "color": "Orange",
           "source": {
-            "id": "m9_vrc_r_out",
+            "id": "lp16_vrc_r_out",
             "handle": "c1"
           },
           "target": {
@@ -327,7 +327,7 @@
           "id": "cab_rout_gnd",
           "color": "Black",
           "source": {
-            "id": "m9_vrc_r_out",
+            "id": "lp16_vrc_r_out",
             "handle": "c2"
           },
           "target": {
@@ -339,7 +339,7 @@
           "id": "cab_rout_l",
           "color": "Blue",
           "source": {
-            "id": "m9_vrc_r_out",
+            "id": "lp16_vrc_r_out",
             "handle": "c3"
           },
           "target": {
@@ -351,7 +351,7 @@
           "id": "cab_rout_r",
           "color": "Violet",
           "source": {
-            "id": "m9_vrc_r_out",
+            "id": "lp16_vrc_r_out",
             "handle": "c4"
           },
           "target": {
@@ -364,7 +364,7 @@
         "id": "cab_rout_sh",
         "color": "Shield",
         "source": {
-          "id": "m9_vrc_r_out",
+          "id": "lp16_vrc_r_out",
           "handle": "c5"
         },
         "target": {
@@ -376,8 +376,8 @@
   ],
   "bundles": [
     {
-      "id": "bn_bp_r_out__m9_vrc_r_out",
-      "sourceId": "m9_vrc_r_out",
+      "id": "bn_bp_r_out__lp16_vrc_r_out",
+      "sourceId": "lp16_vrc_r_out",
       "targetId": "ix_ws_rear_r",
       "length": {
         "unit": "mm",
@@ -387,12 +387,12 @@
     {
       "id": "m-w4pP",
       "sourceId": "wss_rl",
-      "targetId": "m9_vrc_r_in"
+      "targetId": "lp16_vrc_r_in"
     },
     {
       "id": "sBWNAW",
       "sourceId": "wss_rr",
-      "targetId": "m9_vrc_r_in"
+      "targetId": "lp16_vrc_r_in"
     }
   ],
   "splices": [
@@ -426,7 +426,7 @@
         "x": 1740,
         "y": 210
       },
-      "text": "VRC NOT DRAWN. The VR conditioner and its enclosure belong to the enclosure build. This harness is two separate pieces with no drawn link (Daniel 2026-10-12): IN - the RL and RR legs land in the IN plug m9_vrc_r_in (pin 1 ABS+ RL, 2 ABS- RL, 3 shield drain, 4 ABS+ RR, 5 ABS- RR); OUT - the OUT plug m9_vrc_r_out (pin 1 +5V, 2 Gnd, 3 RL out, 4 RR out, 5 screen drain) -> 4-core screened cable -> IX_WS_REAR c1-c5 (c6 spare). Both plugs: binder 99 0414 00 05, M9 female, 5 pins, unshielded."
+      "text": "VRC NOT DRAWN. The VR conditioner and its enclosure belong to the enclosure build. This harness is two separate pieces with no drawn link (Daniel 2026-10-12): IN - the RL and RR legs land in the IN plug lp16_vrc_r_in (pin 1 ABS+ RL, 2 ABS- RL, 3 shield drain, 4 ABS+ RR, 5 ABS- RR); OUT - the OUT plug lp16_vrc_r_out (pin 1 +5V, 2 Gnd, 3 RL out, 4 RR out, 5 screen drain) -> 4-core screened cable -> IX_WS_REAR c1-c5 (c6 spare). Both plugs: CNLINKO LP-16-J05PE-02-001, female, 5 pins, unshielded, solder cups 22-20 AWG; the box takes the LP-16-C05SX-02-101 rear-nut panel socket."
     },
     {
       "id": "n_shield",
@@ -655,18 +655,14 @@
       "numberOfCavities": 6
     },
     {
-      "id": "cp_m9_5f",
-      "url": "https://www.binder-usa.com/us-en/products/subminiature-circular-connectors/m9-ip67/99-0414-00-05-m9-ip67-female-cable-connector-5-35-50-mm-unshielded-solder-ip67",
+      "id": "cp_lp16_5f",
+      "url": "https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/7d5b62abdd63e73884abd9dfc71b8b0e-1755574530.pdf",
       "color": "Black",
-      "image": {
-        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1791804249562.png",
-        "source": "cloud"
-      },
-      "price": 19.32,
       "gender": "Female",
-      "partNumber": "99 0414 00 05",
-      "description": "CONNECTOR, CIRCULAR, M9, CABLE CONNECTOR, FEMALE, 5 POS, UNSHIELDED, SOLDER, IP67",
-      "manufacturer": "binder",
+      "hasShell": false,
+      "partNumber": "LP-16-J05PE-02-001",
+      "description": "CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH",
+      "manufacturer": "CNLINKO",
       "numberOfCavities": 5,
       "configurations": []
     }

@@ -594,22 +594,6 @@
       "numberOfCavities": 4
     },
     {
-      "id": "UYLwFL7_IICzqQC-jd8zN",
-      "url": "https://www.binder-usa.com/us-en/products/subminiature-circular-connectors/m9-ip67/99-0414-00-05-m9-ip67-female-cable-connector-5-35-50-mm-unshielded-solder-ip67",
-      "color": "Black",
-      "image": {
-        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1791804249562.png",
-        "source": "cloud"
-      },
-      "price": 19.32,
-      "gender": "Female",
-      "partNumber": "99 0414 00 05",
-      "description": "CONNECTOR, CIRCULAR, M9, CABLE CONNECTOR, FEMALE, 5 POS, UNSHIELDED, SOLDER, IP67",
-      "manufacturer": "binder",
-      "numberOfCavities": 5,
-      "configurations": []
-    },
-    {
       "id": "cp_etb",
       "color": "Red",
       "image": {
@@ -1106,6 +1090,30 @@
           "contactPartId": "ct_ring_m8_4"
         }
       ]
+    },
+    {
+      "id": "cp_lp16_5m_panel",
+      "url": "https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/cd40c0469b895b5b8873f6364e9ae22b-1755575078.pdf",
+      "color": "Black",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "LP-16-C05SX-02-101",
+      "description": "CONNECTOR, CIRCULAR, LP-16, PANEL RECEPTACLE, MALE, 5 POS, PLASTIC, SOLDER, SINGLE HOLE REAR NUT M18X1.5, 22-20 AWG, IP68 MATED",
+      "manufacturer": "CNLINKO",
+      "numberOfCavities": 5,
+      "configurations": []
+    },
+    {
+      "id": "cp_lp16_5f",
+      "url": "https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/7d5b62abdd63e73884abd9dfc71b8b0e-1755574530.pdf",
+      "color": "Black",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "LP-16-J05PE-02-001",
+      "description": "CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH",
+      "manufacturer": "CNLINKO",
+      "numberOfCavities": 5,
+      "configurations": []
     },
     {
       "id": "cp_mrs_eps",

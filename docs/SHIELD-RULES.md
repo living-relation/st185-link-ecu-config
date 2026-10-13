@@ -17,7 +17,7 @@ quick install manual).
 ## No connector shells (R33)
 
 Every drain lands on a regular pin; no shell, backshell or shielding plate ever carries a
-screen (the VRC M9 plugs included). `lint_v09.py` rejects any connector `shell`;
+screen (the VRC LP-16 plugs included). `lint_v09.py` rejects any connector `shell`;
 `audit_shields.py` R3 rejects any screen on a shell.
 
 ## Shared drain pin: one splice (R29, R30, R32)
@@ -34,8 +34,8 @@ the one trunk screen splice (`sp_shield_can`).
 | ECU-A A7 | crank, cam, turbo, flex, ETB sensor, APS, front WS spur | `sp_shield_a` at `ecu_a` |
 | ECU-B B17 | knock, ETB motor, VSS, CAN trunk, rear WS spur, front WS FR spur | `sp_shield_b` at `ecu_b` |
 | CAN trunk drain `w_shd_can` | CAN trunk, ECU port, CSB3, cluster, RealDash, bulkhead / Lambda branches | `sp_shield_can` at the branch point |
-| VRC front IN pin 3 | FL and FR sensor cables | `sp_vrc_f_in_sh` at `m9_vrc_f_in` |
-| VRC rear IN pin 3 | RL and RR sensor cables | `sp_vrc_r_in_sh` at `m9_vrc_r_in` |
+| VRC front IN pin 3 | FL and FR sensor cables | `sp_vrc_f_in_sh` at `lp16_vrc_f_in` |
+| VRC rear IN pin 3 | RL and RR sensor cables | `sp_vrc_r_in_sh` at `lp16_vrc_r_in` |
 
 Every bulkhead drain has its own cavity, so no bulkhead cavity needs a shared splice.
 Gate: `validate_wheel_speed.py` W3 (each VRC harness has exactly one splice, which both sensor
@@ -122,7 +122,7 @@ box -> OUT plug pin 5 -> output cable screen -> `IX_WS_*` c5 -> `sp_shield_a` / 
 the two drain pins each box joins (`<plug>.<pin>`).
 
 The VRC and its panel sockets are not drawn. Each VRC harness is two separate pieces ending in
-two non-shielded 5-pin M9 plugs (binder `99 0414 00 05`, S8 / R34). Nothing bonds to the case
+two non-shielded 5-pin CNLINKO LP-16 plugs (`LP-16-J05PE-02-001`, S8 / R34 / S16). Nothing bonds to the case
 and no shell carries the screen (R33): the box is not part of the shield path, the PCB sits
 on nylon standoffs and grounds through the output cable only, and the box mounts on nylon
 hardware. There is no bare-metal landing to mask before powder coat. (The 2026-09-20 plan

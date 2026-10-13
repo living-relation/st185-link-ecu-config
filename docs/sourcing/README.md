@@ -114,7 +114,8 @@ One line per pick; OWN = on the on-hand list, BUY = not. Prices are estimates wi
 
 | Part | Maker | What | Used on | OWN / BUY | Est. price | Why this maker | Source |
 |---|---|---|---|---|---|---|---|
-| `99 0414 00 05` | binder | M9 female cable connector, 5 contacts, unshielded, solder, IP67, 3.5-5.0 mm cable; max 0.25 mm2 / AWG 24 per contact, 3.0 A, 125 V | VRC IN + OUT plugs, `ST185-WheelSpeed-Front` / `-Rear` (DECISIONS S8) | BUY x4 | USD 19.32 each (Daniel's part record, harness.design ZZxQ) | Daniel's own pick in his example drawing (2026-10-12); nothing on hand fits; not a TE part | [binder 99 0414 00 05](https://www.binder-usa.com/us-en/products/subminiature-circular-connectors/m9-ip67/99-0414-00-05-m9-ip67-female-cable-connector-5-35-50-mm-unshielded-solder-ip67) |
+| `LP-16-J05PE-02-001` | CNLINKO | LP-16 female cable plug, 5 contacts, plastic, unshielded, solder cups 0.34-0.5 mm2 / 22-20 AWG, 5 A 250 V AC, IP68 mated, latch; cable seal 3.0-5.0 / 5.0-7.0 / 7.0-9.0 mm | VRC IN + OUT plugs, `ST185-WheelSpeed-Front` / `-Rear` (DECISIONS S16) | BUY x4 | TBD (no price found) | Daniel's pick of the CNLINKO LP family (2026-10-12, R60); nothing on hand fits (the HDP20 pairs are shell 18/24, one pair each); TE M12 `T4110011051-000` looked at but TE lists it as not available and its panel mate is not picked; the approved suppliers (R38 step 3) were not searched for a solder jam-nut circular (ProWire blocked the fetch) | [CNLINKO drawing LP-16-xxxPE-02-0xxx](https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/7d5b62abdd63e73884abd9dfc71b8b0e-1755574530.pdf) |
+| `LP-16-C05SX-02-101` | CNLINKO | LP-16 male panel socket, 5 contacts, plastic, solder, single-hole rear nut M18 x 1.5; cutout D 18.5 mm / 16.5 mm across the flat, max panel 4.5 mm | VRC boxes, IN + OUT (`docs/enclosures/vr-conditioner-bom.csv`, S16) | BUY x4 | TBD (no price found) | Mates the plug above | [CNLINKO drawing LP-16-xxxSX-02-1xxx](https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/cd40c0469b895b5b8873f6364e9ae22b-1755575078.pdf) |
 
-Notes: The binder solder cups take AWG 24 at most while the VRC cables are 20 AWG -
-`docs/OPEN-ITEMS.md` row 76.
+Notes: The binder M9 `99 0414 00 05` used before took AWG 24 at most; the LP-16 cups take the
+20 AWG cores (OPEN-ITEMS row 76 closed 2026-10-12).
