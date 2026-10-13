@@ -1248,14 +1248,6 @@
       }
     },
     {
-      "id": "cp_opto6_tbd",
-      "partNumber": "TBD - 6-channel optoisolator module (Dan's, part number from his pictures)",
-      "description": "MODULE, OPTOISOLATOR, 6 CHANNEL, TYPE TBD",
-      "manufacturer": "TBD",
-      "numberOfCavities": 6,
-      "configurations": []
-    },
-    {
       "id": "cp_alt_round3",
       "partNumber": "90980-10341",
       "description": "CONNECTOR, PLUG, TOYOTA, ROUND, 3 POS",
@@ -1281,6 +1273,14 @@
           "contactPartId": "ct_lug_stud"
         }
       ]
+    },
+    {
+      "id": "cp_opto8_el814",
+      "partNumber": "(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)",
+      "description": "MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, EL814 AC INPUT, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR OUTPUT, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS",
+      "manufacturer": "generic",
+      "numberOfCavities": 20,
+      "configurations": []
     }
   ],
   "contactParts": [
