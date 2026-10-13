@@ -3627,7 +3627,7 @@
       "sourceId": "bp_300",
       "targetId": "bp_w1",
       "length": {
-        "value": 400,
+        "value": 500,
         "unit": "mm"
       }
     },
@@ -3650,11 +3650,11 @@
       }
     },
     {
-      "id": "bn_bp_fl_oem_ie1__bp_f9",
-      "sourceId": "bp_fl_oem_ie1",
+      "id": "bn_bp_l_pass__bp_f9",
+      "sourceId": "bp_l_pass",
       "targetId": "bp_f9",
       "length": {
-        "value": 600,
+        "value": 700,
         "unit": "mm"
       }
     },
@@ -4140,6 +4140,15 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_fl_oem_ie1__bp_l_pass",
+      "sourceId": "bp_fl_oem_ie1",
+      "targetId": "bp_l_pass",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -4471,6 +4480,13 @@
         "x": 3390,
         "y": -270
       }
+    },
+    {
+      "id": "bp_l_pass",
+      "layoutPosition": {
+        "x": 3900,
+        "y": -750
+      }
     }
   ],
   "schematicNotes": [
@@ -4485,7 +4501,7 @@
     },
     {
       "id": "n_split",
-      "text": "ROUTE: docs/harness/routes/ROUTE-2-HARNESS-C.html (approved, rev 9). Glove box -> right kick (blower) -> under the dash -> left kick (IE1 / J/B1 / old R/B2 landings); glove box -> RH fender grommet -> RH inner fender (A/C, EPS pump) -> fan branch -> across the front: RH corner (H2), horn branch (DT 2-way per horn), LH corner (H1). Heavy DC is ST185-HeavyDC (breaks H1/H2/H3/H6a). Front lighting, retract motors and wipers drawn 2026-10-13 (Route 2 rev 10): no side marker lights on the car (Dan); F7 / F8 turn + clearance (J/B1 1H-4 / 1H-8 turn, 1H-6 TAIL), H1 / H2 high / low returns to IE1-11 / IE1-18, retract motors R2 / R3 from the OEM R8 via IE1-7/8/9/14/15/16, front wiper F9 (J/B1 1H-5 WIPER 20A + IE1-6/13/20; park switch in the motor, no relay of ours) and washer W1 (cowl leads); grounds F7 / R2 / R3 to EB, F8 to EA. Rule R61: these stay fed from J/B No.1.",
+      "text": "ROUTE: docs/harness/routes/ROUTE-2-HARNESS-C.html (approved, rev 9). Glove box -> right kick (blower) -> under the dash -> left kick (IE1 / J/B1 / old R/B2 landings); glove box -> RH fender grommet -> RH inner fender (A/C, EPS pump) -> fan branch -> across the front: RH corner (H2), horn branch (DT 2-way per horn), LH corner (H1). Heavy DC is ST185-HeavyDC (breaks H1/H2/H3/H6a). Front lighting, retract motors and wipers drawn 2026-10-13 (Route 2 rev 10): no side marker lights on the car (Dan); F7 / F8 turn + clearance (J/B1 1H-4 / 1H-8 turn, 1H-6 TAIL), H1 / H2 high / low returns to IE1-11 / IE1-18, retract motors R2 / R3 from the OEM R8 via IE1-7/8/9/14/15/16, front wiper F9 (J/B1 1H-5 WIPER 20A + IE1-6/13/20; park switch in the motor, no relay of ours) and washer W1 (cowl leads); grounds F7 / R2 / R3 to EB, F8 to EA. Rule R61: these stay fed from J/B No.1. Wiper / washer spots (Dan 2026-10-13, Route 2 rev 11, DECISIONS S19): F9 under the windshield cowl, driver side - its leads leave the left-kick landings through the driver (LH) fender pass-through (bp_l_pass) and run up to the cowl; W1 at the passenger front corner, lower front fender, on a drop from the RH corner branch.",
       "width": 390,
       "schematicPosition": {
         "x": 3210,
