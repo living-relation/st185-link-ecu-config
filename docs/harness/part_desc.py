@@ -11,8 +11,9 @@ dates, plan references, assumptions or TBD reasoning. Those belong on the drawin
     python docs/harness/part_desc.py          # check every rebuild/ drawing
     python docs/harness/part_desc.py --fix    # rewrite descriptions to the standard
 
-Wires, cables and resistors are generated from the part's own fields, so every one
-of them reads the same; other parts are checked against the banned-content rules.
+Wires (M22759/16-<AWG>-<code>, DECISIONS R35), cables and resistors are generated from the
+part's own fields, so every one of them reads the same; other parts are checked against the
+banned-content rules. Rule owner: docs/harness/redesign/DECISIONS.md R48.
 """
 import json
 import os
@@ -70,7 +71,7 @@ def gauge_txt(g, pn=""):
     if m:
         return "%s AWG" % m.group(1)
     if not g:
-        m = re.search(r"-1C(\d+)-", pn or "")
+        m = re.search(r"M22759/16-(\d+)-", pn or "")
         return "%s AWG" % m.group(1) if m else "GAUGE TBD"
     return "%s %s" % (g["value"], "MM2" if g.get("unit") == "Metric" else "AWG")
 
@@ -82,14 +83,13 @@ def wire_desc(p):
     if pn.startswith("BC-"):
         return "CABLE, BATTERY, %s, %s, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV" % (
             gauge_txt(p.get("gauge"), pn), colour(p))
-    if not pn.startswith("EW-"):
+    # Wire = M22759/16-<AWG>-<MIL colour code> Tefzel (Daniel 2026-10-12, DECISIONS R35);
+    # the generic EW-1C* family is retired, so its description form is gone too.
+    m = re.match(r"M22759/16-(\d+)-(\d+)$", pn)
+    if not m:
         return None
-    c = colour(p)
-    m = re.match(r"EW-1C\d+-([A-Z]+)-([A-Z]+)$", pn)
-    if not p.get("stripeColor") and m and m.group(1) in CODES and m.group(2) in CODES:
-        c = "%s/%s" % (CODES[m.group(1)], CODES[m.group(2)])
-    return "WIRE, ELECTRICAL, %s, %s, ETFE (TEFZEL) INSULATED, 150 C, M22759/16 OR EQUIV" % (
-        gauge_txt(p.get("gauge"), pn), c)
+    return "WIRE, ELECTRICAL, %s AWG, %s, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V" % (
+        m.group(1), colour(p))
 
 
 def cable_desc(p):

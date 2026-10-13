@@ -16,19 +16,17 @@ It also runs first inside `python docs/harness/check_all.py`.
 
 ## The rule
 
-A channel's identity comes from the pin that owns it. For anything on the ECU
-that is the Link G4X XtremeX pin, because the pin decides what the channel can
-physically do - its pull-up, its drive type, its voltage range. A sensor cannot
-be "moved to loom A" as a matter of taste; it lives on whichever loom carries
-its ECU pin. Device-owned pins - the pin, the pin's name, and whether that
-device gets a shield - live in `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`.
-One shield flag per device or sensor, not per pin and not per wire. This CSV
-does not carry a shield flag. Which ECU pin a device wire lands on is owned
-by the ECU, from the Link documentation and the XtremeX quick install manual
-(this CSV). For everything else the owner is the device at the end that cannot
-move: the A/C amplifier owns
-the ambient sensor, the VR conditioner owns the raw wheel-speed pairs, the fuse
-box owns the OEM power splices.
+A channel's identity comes from the pin that owns it (rule R45 and Rule 3 in
+`docs/harness/redesign/DECISIONS.md` / `docs/RECONCILIATION-RULES.md`). For
+anything on the ECU that is the Link G4X XtremeX pin, because the pin decides
+what the channel can physically do - its pull-up, its drive type, its voltage
+range. A sensor cannot be "moved to loom A" as a matter of taste; it lives on
+whichever loom carries its ECU pin (the `conn` column, R1). Device-owned pins
+and the one shield flag per device live in
+`docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`; this CSV carries no shield
+flag. For everything else the owner is the device at the end that cannot
+move: the A/C amplifier owns the ambient sensor, the VR conditioner owns the
+raw wheel-speed pairs, the fuse box owns the OEM power splices.
 
 ## Columns
 

@@ -5,10 +5,9 @@ paths:
   - bench/**
 ---
 
-# Python Tooling Patterns
+# Python Tooling Patterns - pointer only
 
-- Follow existing adapter handling style in `apps/trackcluster-can-sender/app.py` (`gs_usb`, `slcan`, `seeedstudio`, vendor interfaces).
-- Keep CAN payload validation strict (`11-bit ID`, `8-byte payload`) before transmit.
-- Prefer small utility scripts with explicit CLI usage strings in `rd-build/tools/`.
-- Keep dependency docs aligned with `requirements.txt` files under `bench/`, `apps/trackcluster-can-sender/`, and `rd-build/tools/`.
-- For GUI automation scripts, preserve cross-platform caveats from `rd-build/tools/SETUP.md`.
+The Python tooling rules (adapter handling style, strict CAN payload validation, small
+usage-driven CLI scripts, dependencies documented in the nearest `requirements.txt`, the
+desktop-only constraints of `rd-build/`) are owned by `AGENTS.md` "Working Rules", under
+"Python tooling".

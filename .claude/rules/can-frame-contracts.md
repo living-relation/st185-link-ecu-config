@@ -1,47 +1,14 @@
-# CAN Frame Contracts
+# CAN Frame Contracts - pointer only
 
-**Canonical text: `docs/RECONCILIATION-RULES.md` Rule 2. Read it before finalizing any CAN
-change.** This file is a pointer plus the facts most often got wrong — deliberately not a
-second copy, so the two cannot drift.
+- **The rule** (any CAN change on any device reconciles against Link ECU, center cluster,
+  RealDash and CSB3; bus facts; authority order with the frozen cluster first):
+  `docs/RECONCILIATION-RULES.md` Rule 2.
+- **Who reads which frame** (CSB3 0x640-0x642 -> ECU only; cluster 0x3E8-0x3EB, 0x3EE;
+  RealDash 0x3EB gear byte + 0x3EF-0x3F1; cluster sends 0x3EC/0x3ED):
+  `docs/harness/redesign/DECISIONS.md` R51.
+- **Contract details** (IDs, encode/decode scale forms, BigEndian, `WARN_*` bits, which files
+  must agree) and the parity gate `python bench/check_parity.py`: `AGENTS.md` "Working Rules".
+- Cluster decode truth: `C:\projects\active\center-cluster-esp32-p4\main\canbus.c`.
 
-## The rule
-
-A CAN change on **any** device is not done until it has been reconciled against **all** the
-others — Link ECU, center cluster, RealDash, ECUMaster CSB3. Every time, not just the pair
-you were working on. This crosses repository boundaries: a change here that affects the
-cluster is incomplete until the cluster side is checked.
-
-For every frame touched, confirm across all participants: frame ID, byte offsets, field
-widths, endianness, scaling, offset, units, and which device transmits vs receives.
-
-## Bus facts
-
-- **Link CAN-Lambda is on CAN bus 1**, with everything else. Not a separate bus.
-- **CAN bus 2 is unused** — its ECU pins are free for any purpose. Do not reserve them.
-- Single bus, 1 Mbit/s.
-
-## Authority order
-
-1. **Center cluster firmware as flashed** — highest, and **frozen**.
-2. PCLink CAN configuration on the ECU.
-3. Everything else.
-
-Frozen means the *other* device changes on conflict. Reflashing the cluster is a last resort
-needing explicit approval from Daniel — never to clear a mismatch.
-
-## Contract details
-
-- Frame IDs `0x3E8`-`0x3F1` and `0x640`-`0x643` follow `link_g4x_can_setup.json`.
-- Keep CAN ID usage and field sizing aligned between `bench/frames.py` and that file.
-- BigEndian for multibyte fields unless a canonical doc says otherwise.
-- Warning bits stay in sync with `WARN_*` in `bench/frames.py`.
-- RealDash receives ECU-owned `0x3EF`-`0x3F1`; it does not read switchboard `0x640`-`0x642`.
-- `python bench/check_parity.py` is the parity gate (stdlib, also in CI): JSON, `.lcs`, `bench/frames.py`,
-  ID table, RealDash XML, sender UI profiles and `switchboard_frames.json` must all agree.
-- Scale convention: `link_g4x_can_setup.json` is PCLink ENCODE form (`raw = value*scale + offset`);
-  `.lcs`, ID table and `frames.py` are DECODE form. Switchboard `0x640`-`0x643` live in `switchboard_frames.json`.
-- RealDash also reads `0x3EB` (gear byte only). Cluster decode truth:
-  `C:\projects\active\center-cluster-esp32-p4\main\canbus.c` (decodes 0x3E8-0x3EB, 0x3EE).
-
-A mismatch found and not fixed in the same pass gets written down as an open item. Never
-leave it silent.
+This file restates nothing, so it cannot drift. A mismatch found and not fixed in the same
+pass goes into `docs/OPEN-ITEMS.md`, never left silent.

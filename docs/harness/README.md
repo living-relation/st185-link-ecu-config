@@ -5,7 +5,8 @@ opening any loom.
 
 **The wiring source of truth is `sot/channels.csv`** (every ECU pin and channel).
 The looms below are the physical build and must agree with it; `check_all.py`
-enforces that.
+enforces that. **Every rule for drawing them is in `redesign/DECISIONS.md` "Binding rules
+from Daniel" (R1-R52)** - this file is the file map and the workflow, and restates no rule.
 
 ## The short answer
 
@@ -93,14 +94,10 @@ How each kind of boundary is drawn is in `redesign/INTERFACES.md`. In short:
   with a "see ST185-<other>" note. See `redesign/DECISIONS.md`
   ("Bulkhead A/B + DTP replaced by a shared DRB102"). Real cavity numbers, sizes and
   spares: `DRB102-CAVITY-MAP.md` (gate `audit_mating.py` M8).
-- **Shared connectors** (Daniel, 2026-10-12, binding, all harnesses): any physical connector
-  used by more than one harness file is drawn as the WHOLE connector in every file - the real
-  part, its real cavity count, the same designations. Cavities another file owns are marked
-  Not Connected (harness.design N/C cavity, https://docs.harness.design/component/connector)
-  with a note "see ST185-<other file>"; they carry no signal, contact or plug, so the owning
-  file counts them. Never draw a partial connector or invent a split part. Register the
-  connector in `interfaces.json` "physicalPartGroups"; gate `audit_shared_connectors.py`.
-  Today the only shared connector is the DRB102 bulkhead.
+- **Shared connectors** - rule R10: drawn whole in every file, the other file's cavities N/C
+  (https://docs.harness.design/component/connector) with a "see ST185-<other file>" note.
+  Register the connector in `interfaces.json` "physicalPartGroups"; gate
+  `audit_shared_connectors.py`. Today the only shared connector is the DRB102 bulkhead.
 - **OEM flying lead** - a `Loose` terminal whose text is the EWD locator. No OEM housing
   is ever modelled or bought.
 - **Device endpoint** - the VRCs are not drawn; each lead ends at a labelled `Loose`
@@ -145,26 +142,17 @@ reader: it loads the registry and builds one electrical graph across every harne
 (bulkhead halves, interface halves, cross-references and VRC enclosures each collapse
 to one node).
 
-## Parts rules
+## Parts - how the gates count them
 
-1. **One cavity, one part.** A cavity holds a contact or a sealing plug, never
-   both. A cavity wired in *any* harness gets a contact; a cavity wired in *no*
-   harness gets a plug, in its own size. `audit_cavity_parts.py` and
-   `validate_interfaces.py` fail the build otherwise.
-2. **One physical connector, one part number, one counted copy.** A connector drawn
-   on more than one harness (the bulkheads, shared engine devices) carries the same
-   part everywhere and is counted on exactly one copy (`validate_ownership.py` O3).
-3. **Broken-off ends claim nothing.** A `br_` terminal has no part; the wire section on each
-   side is counted on its own harness.
-4. **Never invent a part number.** A part not checked against the manufacturer gets
-   `TBD ...` and the reason. Current example: the A/C coolant-switch connector on
-   A-engine (the RADLOK parts were picked in plan 6.51).
-5. **A description names the part, never its use.** `TYPE, SUBTYPE, key ratings`,
-   uppercase, at most 170 characters. Never a net, circuit, device, group, layer, sensor,
-   signal, harness, stock count, date or plan reference. Every wire of one part number
-   gets the same generated text (`WIRE, ELECTRICAL, 20 AWG, ORANGE, ...`). The same
-   rule applies to the cloud part library. `part_desc.py` is the gate, and
-   `part_desc.py --fix` rewrites to the standard text.
+The parts rules are R38 (never guess a part number), R39 (library is the master), R44 / R49
+(clean drawings, no unused parts), R48 (descriptions name the part) and R35 (wire part
+numbers) in `redesign/DECISIONS.md`. The counting mechanics the gates apply:
+
+1. A cavity holds a contact or a sealing plug, never both; a cavity wired in *any* harness
+   gets a contact (`audit_cavity_parts.py`, `validate_interfaces.py`).
+2. A connector drawn on more than one harness carries the same part everywhere and is counted
+   on exactly one copy (`validate_ownership.py` O3, `buylist.py`).
+3. A `br_` broken-off terminal has no part; each wire section is counted on its own harness.
 
 Adding up the parts lists off the individual drawings by hand will over-order.
 `NEED-TO-BUY.md` is the only correct total.
@@ -174,6 +162,7 @@ Adding up the parts lists off the individual drawings by hand will over-order.
 Files are not version-numbered. Git is the version history, and one folder means
 one generation:
 
-- a new generation gets a new folder, and the old one moves to `archive/`
+- a new generation gets a new folder, and the old one moves to `archive/` - only with
+  Daniel's OK (R46: never auto-archive)
 - nothing is ever copied sideways into the same folder with a suffix
 - `-v2`, `-new`, `-final`, `-copy` in a filename is a bug, not a version

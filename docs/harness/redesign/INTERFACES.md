@@ -29,10 +29,8 @@ harness.design JSON.
   the mating half. (`alsoDrawnOn`, an excluded copy of a half on a second harness, is still read
   by the tools but no longer used: a pin that belongs to another loom breaks off instead.)
 - `endpoints` — `device_endpoint` groups: `id` (`VRC_REAR_IN_L`), `harness`, `device`, `terminals`.
-- `enclosures` — screen landings a device case joins internally
-  (`SHIELD-RULES.md` §6.30: drain connected on both the VRC input and the VRC
-  output; ABS input drains splice together and terminate on a single pin). The
-  graph treats them as one node.
+- `enclosures` — the two drain pins a VRC box joins internally by wire (IN pin 3 to OUT
+  pin 5; `SHIELD-RULES.md` "VR conditioner boxes", R31). The graph treats them as one node.
 - `flyingLeads` — one per `Loose` terminal: `harness`, `terminal`, and `ewd`
   `{page, connector, pin, function, method}`. An unknown field is written `TBD` with the
   reason; `validate_oem_endpoints.py` lists every `TBD`.
@@ -43,8 +41,8 @@ harness.design JSON.
 - `inFileMates` — connector pairs mated inside one drawing (the pedal's DT06-6S / DT04-6P); the
   graph joins them cavity by cavity.
 - `references` — retired (empty); kept for `validate_ownership.py` O4.
-- `realConnectors` — connectors on OEM parts that the build physically plugs into (J/B2 dummy
-  headers) and the CSB3 plug, so they are not mistaken for flying-lead candidates.
+- `realConnectors` — connectors the build physically plugs into that are not flying-lead
+  candidates (today only the CSB3 plug; the J/B2 dummy headers were removed 2026-10-12, S15).
 - `shieldBothEndsOk` — screens allowed a landing at both ends, each with its reason. Only screen
   continuations through an inline interface or a VRC enclosure belong here.
 - `wheelSpeed` — the front/rear specification `validate_wheel_speed.py` checks.

@@ -1,7 +1,8 @@
 # ST185 shield rules — settled, do not re-ask
 
-Long form: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.27, §6.30, §6.31, §6.32.
-This is the short version so it stops getting re-litigated.
+The shield rules themselves are **R27-R34** in `docs/harness/redesign/DECISIONS.md` "Binding
+rules from Daniel" (the one rules home; it wins over this file). This file is the inventory
+and the build detail that apply them. The plan doc §6.27 / §6.30-6.32 is history.
 
 **`docs/harness/audit_shields.py` enforces R1, R2, R3, R5 and R6 mechanically, and
 `check_all.py` runs it.** If a change breaks one of these rules the build fails.
@@ -13,34 +14,20 @@ Device pin, pin name, and whether that device gets a shield:
 lands on is owned by the ECU (`sot/channels.csv`, Link documentation, XtremeX
 quick install manual).
 
-## No connector shells (Daniel, 2026-10-12, binding, project-wide)
+## No connector shells (R33)
 
-**Never rely on a connector shell for a screen.** Every cable drain / screen lands on a
-regular pin in the connector, the same way as any other conductor. No connector on this car
-is chosen for a shieldable shell, and no screen continuity runs through a connector body,
-backshell or shielding plate. This includes the VRC M8 plugs (DECISIONS S8): they are
-non-shielded, and their drains have their own pins. It supersedes the metal-shell reasoning
-in `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` 6.30 "Why M8 and not DT/DTM".
-`lint_v09.py` rejects any connector `shell`; `audit_shields.py` R3 rejects any screen on a shell.
+Every drain lands on a regular pin; no shell, backshell or shielding plate ever carries a
+screen (the VRC M9 plugs included). `lint_v09.py` rejects any connector `shell`;
+`audit_shields.py` R3 rejects any screen on a shell.
 
-## Shared drain pin: one splice (Daniel, 2026-10-12, binding)
+## Shared drain pin: one splice (R29, R30, R32)
 
-**Every shielded cable is drawn as if it had a drain wire.** Our Raychem cable has none, but
-the drawing does not show it: no SolderSleeve, no sleeve splice, no splice node whose only job
-is to terminate one screen. A cable's shield connects straight to its connector drain pin
-(`cab_*` shield source / target = the connector cavity), or to the ECU pin.
-
-- **Two or more screens on one pin: ONE splice node.** Every one of those screens goes into
-  that single splice and one drain wire runs from the splice to the pin. Never a chain of
-  splices, never one splice per cable, never two wires in one contact. (How it is built is
-  shop practice, not drawn.)
-- **Drain gauge does not scale with the number of screens.** Drains carry only noise current,
-  so the normal drain wire stays (`M22759/16-20-06`, 20 AWG black/blue Tefzel; Daniel, 2026-10-12). The combined-gauge splice rule
-  (`docs/RECONCILIATION-RULES.md` Rule 3) is for power and signal splices only, never drains.
-- **CAN:** every node branch shield goes into the one trunk screen splice (`sp_shield_can`).
-- Drawn as: a `GENERIC SOLDER SPLICE` (no covering) with its `locationId` on the pin's
-  connector where the pin is on a connector (harness.design "drag its location handle onto a
-  connector", https://docs.harness.design/component/splice).
+Every shielded cable is drawn as if it had a drain wire, straight to its pin; no sleeve, no
+splice just to end one screen. Two or more screens on one pin share ONE `GENERIC SOLDER
+SPLICE` (no covering), placed on the pin's connector through its `locationId`
+(https://docs.harness.design/component/splice), with one `M22759/16-20-06` drain wire to the
+pin. The T-splice is how it is built, not drawn (R30). Every CAN node branch shield goes into
+the one trunk screen splice (`sp_shield_can`).
 
 | Pin | Screens into the one splice | Splice |
 |---|---|---|
@@ -56,37 +43,18 @@ screens share); `audit_shields.py` for the rest.
 
 ## Vocabulary (Daniel)
 
-**Screen means shield.** A **drain** is the wire that connects the shield to the
-pin. Shields exist only on cables. Some cables have a shield and some do not.
-Not every shielded cable has a drain wire, but the drawings show every cable as if it had one
-(Daniel, 2026-10-12): no solder sleeves are drawn. Joining two or more drains on one pin is one
-splice (above).
+**Screen means shield.** A **drain** is the wire that connects the shield to the pin
+(`M22759/16-20-06`, R32). Shields exist only on cables; a device or sensor gets one shield
+flag (never per pin or per wire), in `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`.
 
-**Drain = `M22759/16-20-06`, black/blue, unique** (Daniel, 2026-10-12): every drain wire is that part, no other wire is black/blue, and the gates find drains by the part, never by colour (`lint_v09.py`).
+## The absolute rules (R27, R28, R33)
 
-## The five absolute rules
-
-1. **A shield is never connected at the sensor end.** It floats there. Always.
-2. **If a shield exists on a cable, or the device source of truth says that
-   device has a shield, the shield terminates at the ECU or at the destination
-   device.** Shields stay continuous unless Daniel has named a specific break.
-   He has not named one in this request, so do not invent break points.
-3. **No connector in this build has a shell for a shield.** Do not model one, do
-   not spec a connector that needs one, do not wire a drain to a connector body.
-4. **A shield exists only on a cable** — a core inside the cable, not a wire in
-   its own right, until a drain takes it to a pin.
-5. **Only a signal that already passes through both firewall bulkhead halves
-   must carry its shield through both halves,** on matching pins, not on the
-   bulkhead shell. That shield floats at the sensor, must not stop on either
-   half, and terminates at the ECU or at the destination device.
-
-A device or sensor gets one shield. Do not mark a shield on a pin or a wire.
-
-Anything in the source of truth that has a shield must not use individual
-wires. It must use a multi-conductor Tefzel Raychem cable.
-
-Also settled: the ABS wheel-speed sensors have **two wires**. No third conductor,
-no shield connection at the sensor.
+A shield floats at the sensor, runs unbroken as a multi-conductor Raychem cable, and
+terminates at an ECU shield pin (A7 / B17); the only device-end landing is the wheel-speed
+sensor shields on VRC IN pin 3 (R31). A shield that crosses the firewall does so on its own
+bulkhead pin, wired on both halves, never on a shell. Do not invent break points. The ABS
+wheel-speed sensors have **two wires**: no third conductor, no shield connection at the
+sensor.
 
 ## Bulkhead pass-through (Daniel, 2026-10-01, narrowed)
 
@@ -144,44 +112,22 @@ drawings (`docs/OPEN-ITEMS.md` row 31).
 `bh_a_fw` c1 / `bh_a_eng` c1 used to be a single shared drain. **Retired
 2026-09-22** when §6.32 first choice was finally applied. Both are spare.
 
-## §6.30 — VR conditioner enclosures
+## VR conditioner boxes (R31, R34)
 
-The VRC device gets one shield. Do not mark a shield on each wire. Do not
-record a separate shell flag.
-
-The VRC output cable is shielded, the same as the input. This is not a
-shell-only shield. The drain is connected on both the VRC input and the VRC
-output. The ABS input drains splice together and terminate on a single pin.
-Each ABS sensor shield terminates on the VRC connector.
-
-```
-  ABS sensor           VR conditioner                               ECU
-  (FLOAT) ═══ IN ── ABS input drains splice ── OUT ═══ shield splice ── A7 or B17
-                     drain on the VRC input and on the VRC output
-```
-
-Front box → `sp_shield_a` → **A7**; rear box → `sp_shield_b` → **B17**.
-`audit_shields.py` R6 reads the both-end VRC screens from `shieldBothEndsOk` in
-`docs/harness/interfaces.json`.
+The VRC device gets one shield flag. The sensor cables' screens and the output cable's screen
+are one continuous path: sensor (floats) -> IN plug pin 3 (one splice, R29) -> wire inside the
+box -> OUT plug pin 5 -> output cable screen -> `IX_WS_*` c5 -> `sp_shield_a` / `sp_shield_b`
+-> **A7** (front) / **B17** (rear). `audit_shields.py` R6 reads the both-end VRC screens from
+`shieldBothEndsOk` in `docs/harness/interfaces.json`; `interfaces.json` "enclosures" names
+the two drain pins each box joins (`<plug>.<pin>`).
 
 The VRC and its panel sockets are not drawn. Each VRC harness is two separate pieces ending in
-two non-shielded 5-pin M9 plugs (binder `99 0414 00 05`; DECISIONS S8, Daniel's example
-2026-10-12): both sensor cable screens go into one splice at the IN plug and one drain wire runs from it
-to IN pin 3 (DECISIONS S9 / S12); the output cable drain is OUT pin 5.
-Inside the box the build wires IN pin 3 to OUT pin 5 - drain continuity is by pin, never by a
-connector shell, and nothing bonds to the case. `interfaces.json` "enclosures" names the two
-drain pins each box joins (`<plug>.<pin>`). `audit_shields.py` traces on that one graph through
-the inline interfaces.
-
-Two isolation rules, both of which fail silently and read as a flaky sensor:
-
-- The **enclosure must not touch chassis**. It is part of the screen, not a ground.
-  Nylon mounting hardware.
-- The **PCB must not touch the enclosure**. Nylon standoffs. The board grounds
-  through the output cable only.
-
-Mask the three connector landings **and the case ring-terminal spot** before powder
-coat — a coated landing breaks the screen.
+two non-shielded 5-pin M9 plugs (binder `99 0414 00 05`, S8 / R34). Nothing bonds to the case
+and no shell carries the screen (R33): the box is not part of the shield path, the PCB sits
+on nylon standoffs and grounds through the output cable only, and the box mounts on nylon
+hardware. There is no bare-metal landing to mask before powder coat. (The 2026-09-20 plan
+§6.30 "enclosure is part of the screen" design is superseded; `docs/enclosures/` still
+describes it - OPEN-ITEMS row 75.)
 
 ## §6.31 — ABS routing
 

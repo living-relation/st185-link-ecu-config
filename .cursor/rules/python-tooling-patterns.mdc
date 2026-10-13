@@ -7,8 +7,9 @@ globs:
 alwaysApply: false
 ---
 
-- Follow existing adapter handling style in `apps/trackcluster-can-sender/app.py` (`gs_usb`, `slcan`, `seeedstudio`, vendor interfaces).
-- Keep CAN payload validation strict (`11-bit ID`, `8-byte payload`) before transmit.
-- Keep CLI scripts small, explicit, and usage-driven like `rd-build/tools/*.py`.
-- Keep dependencies documented in nearest `requirements.txt`.
-- Respect local desktop constraints documented in `rd-build/FINDINGS.md` and `rd-build/tools/SETUP.md`.
+# Python Tooling Patterns - pointer only
+
+The Python tooling rules (adapter handling style, strict CAN payload validation, small
+usage-driven CLI scripts, dependencies documented in the nearest `requirements.txt`, the
+desktop-only constraints of `rd-build/`) are owned by `AGENTS.md` "Working Rules", under
+"Python tooling".
