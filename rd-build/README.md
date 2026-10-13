@@ -42,7 +42,7 @@ a PC that has RealDash installed and a real GPU-backed desktop**. Everything the
 
 | What | Current | Older copies (history only) |
 |---|---|---|
-| Dashboard `.rd` | repo-root `st185_dash.rd` — the delivered build per `BUILD-NOTES.md` (2026-07-06) | `rd-build/realdash-root/st185_dash.rd` and `st185_dash_v2.rd` … `st185_dash_v10.rd` (intermediate editor saves; v10 is the last numbered save) |
+| Dashboard `.rd` | repo-root `st185_dash.rd` — the delivered build per `BUILD-NOTES.md` (2026-07-06) | `rd-build/realdash-root/st185_dash.rd` (the intermediate editor saves `st185_dash_v2.rd` … `v10.rd` were removed 2026-10-13; git history keeps them) |
 | Simulation / look-and-feel | repo-root `realdash-simulation.html` (no Cabin tile; linked from `REALDASH-LAYOUT.md`) | none (the older `rd-build/realdash-simulation-REFERENCE.html` with a Cabin tile was removed 2026-10-13; git history keeps it) |
 | CAN channel file | repo-root `link_g4x_realdash.xml` | none |
 

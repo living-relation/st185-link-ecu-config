@@ -71,8 +71,8 @@ TOPICS: list[dict] = [
         "dir": "../cad",
         "title": "CAD (custom parts)",
         "blurb": "Every custom-part CAD model, one folder per part: bus bar (five saved designs), "
-                 "fuse/relay box plan, VRC and CSB3 enclosures, DRB102 firewall plate. Fusion "
-                 ".f3d, STL and renders are in git; STEP files are local only (gitignored).",
+                 "fuse/relay box plan, VRC and CSB3 enclosures, DRB102 firewall plate. Pages, "
+                 "renders and build scripts are in git; model files (STEP, STL, .f3d) are local only.",
     },
     {
         "dir": "research",
