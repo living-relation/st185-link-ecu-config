@@ -1277,7 +1277,7 @@
     {
       "id": "cp_opto8_el814",
       "partNumber": "(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)",
-      "description": "MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, EL814 AC INPUT, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR OUTPUT, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS",
+      "description": "MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, 12 V INPUT, EL814, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS",
       "manufacturer": "generic",
       "numberOfCavities": 20,
       "configurations": []

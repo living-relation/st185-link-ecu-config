@@ -154,6 +154,7 @@ redesign and the check_all/check_parity/validate_tune/test_gates CI gates alread
 
 ## History
 
+- 2026-10-13 - Opto board follow-up (branch `harness/opto8-12v`): Daniel's close-ups confirm the A472J (4.7 kOhm) input pack and A103J (10 kOhm) output pull-ups; board recorded as the 12 V input version, EL814 IF rating cited from the Everlight datasheet (DECISIONS S25, library description). -- Claude Code
 - 2026-10-13 - Opto board (branch `harness/opto8-module`): the `opto6` TBD placeholder on `ST185-CSB3` replaced by Daniel's on-hand 8-channel EL814 board `opto8` (library part `cp_opto8_el814`, 20 screw terminals): brake / reverse on inputs 01 / 02, outputs 01 / 02 -> S7 / S8, VCC from the CSB3 +5V (c3), GND -> SGND, channels 03-08 N/C; DECISIONS S25; row 90 closed, row 101 added (bench check + mounting size). -- Claude Code
 - 2026-10-13 - Custom enclosure CAD (branch `docs/enclosure-cad-open-items`): rows 94-100 added from the VRC / CSB3 machined-box CAD (local `C:\projects\_scratch\enclosure-cad`, Fusion `ST185-VRC-Enclosure` / `ST185-CSB3-Enclosure`); Status counts set to the real open-row counts (Harness wiring 21, Parts 12, CAN 1, setup-time 13, Housekeeping 5; the hub generator now prints no count warnings).
 - 2026-10-13 - Med-fixes pass (branch `docs/audit-med-fixes`): G1-5 finished (b28 pull-up OFF in `sot/channels.csv`, setup-time checks = row 93, DECISIONS S24); stale-text MED rows of the rules audit fixed (see PR); row 75 enclosure README shell-screen text removed.
