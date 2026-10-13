@@ -8,10 +8,29 @@ Binding on every part choice in this project.
    that list will do the job, it wins - even over a "better" part.
 2. **TE Connectivity.** Preferred manufacturer for connectors, contacts, seals,
    backshells and heat shrink. Prefer parts TE offers **free samples** on.
-3. **Anything else**, and only then. Say in the BOM row why nothing above fit.
+3. **Daniel's approved suppliers** - the list in "Approved suppliers" below - when TE falls
+   short or has too few options.
+4. **Anything else**, and only then. Say in the BOM row why nothing above fit.
 
 Never spec a new connector family without checking step 1 first. This project
 already owns HDP20, HD30, Deutsch DT, SuperSeal and AMP MCP hardware.
+
+## Approved suppliers (Daniel, 2026-10-12)
+
+Step 3 of the selection order: use these when TE Connectivity falls short or has too few
+options. Fuse boxes, power distribution blocks, OEM and aftermarket connectors, wire, supplies.
+Rule: `docs/harness/redesign/DECISIONS.md` R38.
+
+- ProWire USA: fuse blocks https://www.prowireusa.com/fuse-blocks | clearance https://www.prowireusa.com/clearance-items | junction blocks https://www.prowireusa.com/c-210-junction-blocks.html | connectors https://www.prowireusa.com/c-2-wire-connectors.html | relays https://www.prowireusa.com/c-13-relays.html | aircraft/automotive wire https://www.prowireusa.com/c-15-aircraft-automotive-wire.html | circuit breakers https://www.prowireusa.com/c-7-circuit-breakers.html | heat shrink boots https://www.prowireusa.com/c-10-heat-shrink-boots.html | terminals https://www.prowireusa.com/c-11-terminal-connectors.html | fuses https://www.prowireusa.com/automotive-fuses.html | fire sleeve https://www.prowireusa.com/high-heat-fire-sleeve.html | heat shrink tubing https://www.prowireusa.com/c-9-heat-shrink-tubing.html
+- Find Pigtails (OEM pigtails): https://findpigtails.com/
+- KSV Looms: https://www.ksvlooms.com/collections/all
+- Connector Experts: https://connectorexperts.com/
+- Plimpton Innovations: https://www.plimptoninnovations.com/category/all-products
+- PT Motorsport (AU): power distribution https://www.ptmotorsport.com.au/product-category/powerdist/ | wiring https://www.ptmotorsport.com.au/product-category/wiring/
+- CrimpZone: https://www.crimpzone.com/
+- B Motorsports: https://www.bmotorsports.com/shop/index.php/cPath/150
+- Corsa Technic: https://www.corsa-technic.com/category.php?category_id=47
+- Crimp tool alternatives (reference): https://www.mattmillman.com/info/crimpconnectors/pc-modding-crimp-connectors-and-tools/
 
 ## Sources in Google Drive
 
