@@ -7,6 +7,107 @@
 The 2026-09-27 phased implementation plan is complete (deleted 2026-10-11); open work is in
 `docs/OPEN-ITEMS.md`.
 
+## Binding rules from Daniel
+
+**This section is the one home for every rule Daniel has set** (consolidated 2026-10-12 from his
+Dispatch notes; most of these were never written into the repo before, which is how stale docs
+survived). One dated line per rule, newest ruling wins. `AGENTS.md`, the per-tool rule files
+(`.claude/rules/`, `.cursor/rules/`), `docs/harness/README.md`, `sot/README.md` and the global
+`st185-*` / `harness-design` skills point here and do not restate these. The procedures that apply
+them live in `docs/RECONCILIATION-RULES.md` (how to reconcile, the surface table, Rule 3 detail)
+and `docs/SHIELD-RULES.md` (shield inventory and build detail); where either disagrees with a line
+here, this section wins. The `Sn` rows further down are the dated decision record behind many
+of these lines. Gates in brackets are the scripts in `docs/harness/` that check the rule.
+
+### Harness file split
+
+- **R1** (2026-09-27/28) The ECU connector letter decides loom and bulkhead: connector A -> `ST185-A-cabin` -> bulkhead A -> `ST185-A-engine`; B the same. Exactly four ECU files. A pin's letter is its `conn` column in `sot/channels.csv`. [`validate_bulkhead_letter.py`; detail: `docs/RECONCILIATION-RULES.md` Rule 3]
+- **R2** (2026-09-28) Non-ECU wires (fused 12V, relay outputs, grounds) follow the bulkhead of the ECU signal of the device they serve. Harness files are never merged or duplicated. [`validate_bulkhead_letter.py`]
+- **R3** (2026-09-28) A wire that runs between two harness files is drawn broken off in BOTH files, each end a noted `Loose` terminal naming the other file; where that cannot resolve, an inline connector pair where the wire leaves one file and enters the other, noted in both. Registered in `docs/harness/interfaces.json` "breaks" / "interfaces". [`validate_bulkhead_letter.py` L6/L7, `validate_interfaces.py`]
+- **R4** (2026-09-28, final wording) +5V (A32) is spliced at ECU A in the cabin and feeds both letters; its B leg leaves A-cabin broken off ("see other diagram"). Sensor ground is NOT shared across letters: loom A returns to A24, loom B to B22, no A24-B22 tie. *Conflict note: the 09-27 split note said "5V + sensor ground splice at ECU A"; the 09-28 ruling (ground back onto B22, `IX_B_RAIL` +5V only) is later and wins.* [crossover (a)]
+- **R5** (2026-09-28) ETB: the B18/B26 motor wires leave `ST185-B-engine` as a broken-off spur right after bulkhead B; `ST185-A-engine` shows them coming in and joining the A trunk under sheathing after bulkhead A, to the throttle body drawn there. All e-throttle BODY wires are engine-bay wiring. [crossover (b)]
+- **R6** (2026-09-28, pedal form superseded 2026-10-11) APS pedal: channel 1 on A14, channel 2 on B33. All e-throttle PEDAL wires stay in the cabin. *Conflict note: 09-28 said the pedal joins broken-off A and B spurs at one Deutsch pair (`IX_APS`); 2026-10-11 "pedal is one cable in A-cabin" wins - the BRZ pedal connector is drawn on `ST185-A-cabin`, only the B33 leg breaks off to `ST185-B-cabin`.* [crossover (c)]
+- **R7** (2026-09-28) No center-cluster harness is drawn in this repo (the cluster repo owns its interior wiring); the cluster appears only as a CAN node with power and ground. `ST185-ClusterLED` and `ST185-AntiTheft` stay here. `CabinAccessory` was dropped.
+- **R8** (2026-09-29) If bulkhead A or B runs out of pins or needs bigger contacts, a different connector may replace it or a second one may sit beside it, only as a complete compatible matching set for both sides (housings, inserts, contacts per gauge, seals, plugs, wedgelocks, gasket/backshell), every part number from the maker's datasheet.
+- **R9** (2026-10-03) A bulkhead pin is shared only by the same signal class and net: same rail, same ground, shield drain, CAN L, CAN H. If the combined AWG will not fit the contact, one short pigtail on the pin with a splice behind it. Never two different circuits on one cavity. [`audit_bh_collisions.py`, `audit_cavity_parts.py` K3]
+- **R10** (2026-10-12, S10/S11) A connector shared by more than one file is drawn WHOLE in every file: real part, real cavity count, same designations; the other file's cavities N/C with a note "see ST185-<other>". The DRB102 is ONE 102-position connector; A and B are only our names for its sections. [`audit_shared_connectors.py`, `audit_mating.py` M8]
+
+### OEM vehicle wiring
+
+- **R11** (2026-10-10, repeated 2026-10-12, S15) NO OEM engine-bay wire or connector is reused. Every engine-bay run (horn, lights, fans, fender leads included) is new wire in project colours; device-end connectors stay as recorded (OEM device plugs where chosen, DT where Daniel said DT). Cabin J/B and dash wiring reuse is unchanged - flying leads spliced into factory cabin leads stay normal. [`audit_dan_rules.py` D1]
+- **R12** (2026-09-29, 2026-10-12, S15) OEM boxes kept: only the cabin J/Bs (J/B No.1, No.3) and under-dash wiring. ALL OEM relay blocks (R/B No.2-5) and EVERY engine-bay box (J/B No.2, R/B No.5, F11 fusible-link box) are removed; nothing lands on them, no dummy headers. [`validate_oem_endpoints.py` E4]
+- **R13** (2026-09-29) Deleted OEM parts, never a source for a circuit: circuit opening relay, injector resistor pack, fuel pump resistor and relay, A15 A/C amplifier, J/B No.2, R/B No.5, F11, combination meter. Owner of the deleted list: `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §5.6.
+- **R14** (2026-09-29) No airbag/SRS, no ABS ECU, no cruise ECU. The combination meter and all its plugs and wires are gone; the charge lamp moves to `ST185-ClusterLED`. *Confirm note: `ST185-ClusterLED` taps the dash-harness side of C11/C12 at the meter as cabin flying leads - read here as the harness-side leads, not the meter's own plugs.*
+- **R15** (2026-09-29) All fuses and relays live in the cabin (the trunk battery area is fine for the main battery fuse). The alternator output is protected by a fusible link, inline fuse or breaker at the battery / on the + cable near the fuse box - never at the starter. [B5]
+- **R16** (2026-10-04) Use the 1993 model year wherever EWD years conflict; the updated ST185 repair manual (`C:\projects\active\st185-celica-repair-manual`) is the primary reference. Older EWD page citations (1990 book, 1992 EWD132U) are a reading aid only.
+- **R17** (2026-10-04) Alternator B+ and the OEM 1993 round 3-pin alternator plug run in `ST185-HeavyDC`. *Unclear - flagged, not guessed: `ST185-HeavyDC` today draws only the RADLOK pair and the jump post, and OPEN-ITEMS row 54 step 6 routes the alternator IG/L/S through bulkhead B spares. Daniel to confirm which.*
+- **R18** (2026-10-11) Cabin fuse box = Option B: Eaton RFRM `15401-1-2-1-0A` + 3x MTA modules + Eaton Bussmann LMI (loose LMI1 modules in two stacks, S14). The MTA module part number is under review (`0301491` not found). No battery box in the plan. Slot map: `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §8.1.
+- **R19** (2026-09-28) Battery is AGM. Kill: Longacre 4-terminal switch in the trunk plus the G4X Stop Switch input. [B6]
+- **R20** (2026-09-28) Raspberry Pi: on with the car, off when the car is off. NO hold relay or power-hold circuit. [B7]
+- **R21** (2026-10-04, §26.1) The ECU controls start (`k_str`, Aux 8 A26); no clutch-start interlock; the clutch switch is a CSB3 input.
+- **R22** (2026-10-04, §18) MR-S EHPS pump: A1 = battery 12V via a 40-50 A continuous-duty relay in the cabin plus fuse; A2 = ground; that relay's coil+ = 12V ignition, coil- switched by pump pin B5; C1 = 12V ignition via 7.5 A; B2 = road-speed pulse (Link Aux 7, A27). `k_eps_en` micro relay on Link Ign 6 (B12), on above ~400 rpm with a 1-2 s off-delay. *Conflict - flagged: `sot/channels.csv` still models `k_eps` with coil 85 driven straight by B12 and coil 86 from `sp_sw12` (OPEN-ITEMS row 40); this rule is the newer statement and the SoT needs Daniel's confirmed redraw via `st185-change-sot`.*
+- **R23** (2026-10-04, §3) A/C: keep the auto amplifier; A15 removed; the Link drives the clutch relay `k_acc` on Ign 8 (B10) with the dual pressure switch in series; A/C button V-G -> An Volt 10 (B31); evaporator thermistor (1.5 kOhm at 25 C) -> An Volt 11 (B32). Heater water sensor A25 stays.
+- **R24** (2026-09-28, B1) The Link CAN-Lambda stays in the bay; its CAN H/L, 12V and GND cross on bulkhead B, shielded the whole run.
+- **R25** (2026-09-26) Relays are active-low: the ECU sinks coil- (85); coil+ on 86. No external flyback diodes - the G4X outputs are internally suppressed and the 1ZZ coils have theirs built in. *Citation still to add: the exact PCLink G4X Help page (`sot/channels.csv` b12 cites "PCLink G4X Help 'Auxiliary Output Wiring'").*
+- **R26** (2026-10-04) Link G4X documentation only for pins and wiring - never G4 or G4+ pages; plug-in ECU manuals only for theory and features.
+
+### Shields and drains
+
+- **R27** (2026-10-03) A shielded device uses Raychem shielded cable, never loose hookup wire. The shield runs unbroken from the ECU to the device and terminates at an ECU shield-ground pin (A7 / B17), NOT at the device end; it floats at the sensor. *Wording note: the older "or at the destination device" (settled rule 5, SHIELD-RULES absolute rule 2) covers only R31's VRC IN pin.* [`audit_shields.py`, `audit_pin_names.py`]
+- **R28** (2026-10-03) Shield list: crank, cam, knock, wheel speed x4 (sensor -> VRC), VRC outputs, turbo speed, flex fuel, gearbox VSS, ETB, APS pedal, the CAN-Lambda run, ALL CAN bus runs (the CAN pair; +12V and ground stay plain). Injectors and coils: NO shields. Owner of the per-device flag: `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`.
+- **R29** (2026-10-12, S12/S9) No solder sleeves are drawn. Every shielded cable is drawn as if it had a drain wire: the shield goes straight to its pin. Only where 2+ shields share one pin: ONE splice (`GENERIC SOLDER SPLICE`, located on the pin's connector) and one drain wire to the pin. Never an extra splice, never a splice per cable, never a chain. [`validate_wheel_speed.py` W3, `audit_dan_rules.py` D2]
+- **R30** (2026-10-12, S9) Drain T-splice is the BUILD method, not drawn: one drain crimped into the pin, the other soldered onto it about 0.25 in (6 mm) behind the connector rear (about 0.25 in of insulation cut away). Drain gauge never scales with the shield count. The same for every CAN node drain onto the trunk drain.
+- **R31** (2026-10-03, 2026-10-12, S8) VRC: the L and R input shields terminate at the VRC IN connector pin 3 (one splice, R29); the VRC output cable is shielded and terminates at the VRC OUT connector pin 5 AND reaches an ECU shield pin. The VRC PCB is isolated from the enclosure and nothing bonds to the case; drain continuity inside the box is by wire, pin to pin. *Supersedes settled rule 6 ("enclosure may be part of the shield path").*
+- **R32** (2026-10-12, #110) Drain wire = `M22759/16-20-06`, 20 AWG black/blue Tefzel, unique to drains; gates find a drain by its part, never by colour. [`lint_v09.py`]
+- **R33** (2026-10-04, 2026-10-12, S8d) No connector is chosen for "shieldability"; never rely on a connector shell for screen continuity; every drain lands on a normal pin. [`lint_v09.py`, `audit_shields.py` R3]
+- **R34** (2026-10-12, S8) VRC drawing: exactly two plugs per VRC harness, both binder `99 0414 00 05` (M9 5-pin, unshielded, solder): one shared IN plug (the L and R legs run separately and meet only at it) and one OUT plug; IN and OUT drawn as separate pieces with no link; the VRC box is not drawn. M9 is kept only if its panel mate (binder `09 0415 00 05`) fits the enclosure. Open: M9 solder cups take AWG 24 max against 20 AWG cables (OPEN-ITEMS row 76). [`validate_wheel_speed.py` W8/W9]
+
+### Wire and parts
+
+- **R35** (2026-10-12, #108) Wire = `M22759/16-<AWG>-<MIL colour code>` Tefzel; no generic `EW-1C*` wire parts. Battery cable `BC-*` stays. *Supersedes plan §6.24 "wire and cable are generic in every BOM".* [`audit_dan_rules.py` D3, `part_desc.py`]
+- **R36** (2026-09-28) Power and signal splices are sized by the combined gauge of the wires they join (Wire Barn Combined Wire Gauge Calculator: 4 x 20 AWG = 14 AWG). Not for drains (R30). The harness.design per-wire splice warning is a known false alarm. [`audit_cavity_parts.py` K3]
+- **R37** (2026-10-11, S6) Heavy cable sizes are calculated from amps, run length and temperature; never asked.
+- **R38** (2026-10-10) Parts: Daniel's on-hand TE list first (`docs/sourcing/te-on-hand-bom.csv`; never ask for counts), then TE (prefer free samples), other makers only with a stated reason. Never guess a part number: an unverified part is `TBD` plus the reason; cite the datasheet. Procedure: `docs/sourcing/README.md`, skill `st185-pick-parts`.
+- **R39** (2026-10-12, #111) The part library `docs/harness/rebuild/ST185.harnesslib` is the master: change the library FIRST, then the drawings, in the same PR; any difference between a drawing's part and the library fails. Cloud 5LO8 and Daniel's app library are synced from it. [`check_harnesslib.py`]
+- **R40** (2026-10-12) Look up maker drawings yourself for dimensions; do not ask Daniel.
+
+### Drawing conventions
+
+- **R41** (2026-10-12) The harness.design docs and tutorials (https://docs.harness.design) are the authority for drawing conventions; if one of Daniel's rules conflicts with them, flag it in `docs/OPEN-ITEMS.md` with both sides and the doc link and ask - never pick silently.
+- **R42** (2026-10-12) Schematic: any direction that reads best (often centre-out). Layout: MUST read left to right along the physical route. [`audit_drawing_rules.py` L1]
+- **R43** (2026-10-12) Signals auto-propagate across a net; where a name changes across a device or plug, set each side explicitly with `propagate: false`. One propagating signal per net; terminals never propagate. [`audit_drawing_rules.py` S1-S3]
+- **R44** (2026-10-12, S13) CLEAN drawings: only parts Daniel asked for; no added coverings, boots, sleeves, seals, backshells or accessories; nothing labelled "not used"; no extra splices; unreferenced part definitions removed. The model is Daniel's own `ST185-WheelSpeed-Rear.harness`. Daniel's saved file wins over an agent's version: change the gate, not his drawing. [`audit_parts_layout.py` P1, `audit_dan_rules.py` D4]
+- **R45** (2026-10-04) `.harness` files are never a source of truth; they are built and checked against the SoT chain (`sot/channels.csv` -> `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` -> `XTREMEX-IO-TABLE.html` -> the drawings). New pin facts go into `sot/channels.csv` first (2026-09-25). [`validate_sot.py`, `sync_io_table.py --check`]
+- **R46** (2026-10-04) Never auto-archive a document. Moving anything into `archive/` (or `C:\projects\_archive\`) needs Daniel's OK; settled project content is never deleted outright.
+- **R47** (2026-10-10) The approved routes in `docs/harness/routes/` are Daniel's; agents do not change a route without his markup (blue line = route, blue arrow + black label = part spot, black box = instruction; every isometric figure gets a top view, §34). Skill: `st185-apply-route-markup`. [`check_route_drawings.py`, SOFT]
+- **R48** (2026-09-28) Part descriptions describe the part, never its use: `TYPE, SUBTYPE, key ratings`, uppercase, no nets, circuits, devices, groups, layers, sensors, signals, stock counts, dates or plan references; wire and cable text is generated from gauge and colour. [`part_desc.py`]
+- **R49** (2026-10-12) No unused part in any parts list; never join separate harnesses in one layout. [`audit_parts_layout.py` P1/P2]
+- **R50** (2026-10-12) Daniel edits the drawings in the harness.design desktop app on the live files in `docs/harness/rebuild/`; agents pause while he edits and the file saved to disk wins. Workflow: `docs/harness/README.md` "Open in the desktop app", global skill `harness-design`.
+
+### CAN data routing
+
+- **R51** (2026-06-16, 2026-10-03) Switchboard (CSB3) 0x640 / 0x641 / 0x642 go to the ECU only; the ECU echoes what it needs into its own TX frames. The cluster reads 0x3E8-0x3EB and 0x3EE; RealDash reads 0x3EB (gear byte only) and 0x3EF-0x3F1. The cluster sends 0x3EC / 0x3ED to the ECU (in the `.lcs` receive list). Cluster firmware as flashed is frozen and outranks every other device. Procedure: `docs/RECONCILIATION-RULES.md` Rule 2; contract details: `AGENTS.md` Working Rules. [`bench/check_parity.py`]
+
+### Setup time
+
+- **R52** (2026-10-11, S2/S7) All ECU settings (PCLink names, output configuration, tuning) happen at SETUP TIME, once the ECU is on the bench; outputs are named by connector + pin and/or the Quick Start Guide label ("B12 / Ign 6"). No configs are pending now: RealDash and the cluster are configured, the CSB3 is not bought. EPS speed signal: start from the MR-S VSS pulse rate and keep the ECU output adjustable (S1). Tracker: `docs/OPEN-ITEMS.md` setup-time table.
+
+### Rule conflicts found in the 2026-10-12 consolidation
+
+| Rules | What disagreed | Resolution |
+|---|---|---|
+| R4 | "5V + sensor ground splice at ECU A, B leg broken off" (09-27) vs "sensor ground never tied across letters" (09-28) | Newer wins: +5V only crosses; ground per letter. |
+| R6 | Pedal at one Deutsch pair `IX_APS` (09-28) vs "pedal is one cable in A-cabin" (10-11) | Newer wins; `IX_APS` retired. |
+| R27 / R31 | "terminates at the ECU or at the destination device" (09-19, 09-27) vs "at an ECU shield pin, NOT the device end" (10-03) and the VRC IN pin 3 landing (10-03, 10-12) | Read as: ECU pin always; the only device-end landing is the wheel-speed sensor shields at VRC IN pin 3. **Daniel to confirm the wording.** |
+| R31 vs settled rule 6 / plan §6.30 | "enclosure may be part of the shield path" (09-27) vs "nothing bonds to the case, no shell" (10-12) | Newer wins; rule 6 marked superseded, `docs/SHIELD-RULES.md` §6.30 rewritten, OPEN-ITEMS row 75 still covers `docs/enclosures/`. |
+| R17 | Alternator 3-pin plug "in ST185-HeavyDC" vs alternator IG/L/S "on bulkhead B spares" (OPEN-ITEMS row 54 step 6, DECISIONS §10/36) | **Unclear - Daniel decides** before the HeavyDC / B-cabin redraw. |
+| R22 | Two-relay EPS (k_eps coil- by pump B5, k_eps_en on B12) vs `sot/channels.csv` single stage (B12 straight to k_eps 85) | DAN-RULES is newer; `sot/channels.csv` rows b12 / k_eps c2-c3 need Daniel's confirmed redraw (OPEN-ITEMS row 40). |
+| R35 vs plan §6.24 | "wire and cable are generic in every BOM" (09-17) vs M22759/16 part numbers (10-12) | Newer wins; §6.24 is history. |
+| R34 vs DECISIONS §20/23/32 row | VRC box "one DTM 8-way IN + one OUT" (10-05) vs two binder M9 plugs (10-12, S8) | Newer wins; the enclosure BOM / Routes 9-10 text lag (OPEN-ITEMS rows 64, 70, 71). |
+| R29 / R30 vs OPEN-ITEMS row 73 | Row 73 still says "each cable has its own SolderSleeve ... T-spliced ... inside the transition boot" | Row 73 drain text corrected to S9/S12 (one splice drawn; T-splice is build method). |
+| R14 | "combo meter and all its plugs/wires gone" vs `ST185-ClusterLED` flying leads at C11/C12 "at the combination meter" | Read as the dash-harness side of those connectors (cabin reuse allowed). **Daniel to confirm.** |
+| R42 vs plan §6.33 | Fixed left-to-right schematic geometry (09-20) vs "schematic: any direction; layout: left to right" (10-12) | Newer wins; §6.33 is history. |
+
 ## Objective
 
 Rework the harness drawings so every file represents a physical harness that will actually be built. Electrical nets may cross harness boundaries, but each physical wire section, connector, cable, enclosure interface, and BOM item has one owner and is built once.
@@ -20,7 +121,7 @@ The drawings must remain useful for assembly: show real new connectors, exact OE
 3. Every crossover between separate new harnesses ends at a real inline connector. The mating half belongs to the receiving harness.
 4. A shared physical route is not shared ownership. Every physical cable section is drawn and built once.
 5. Shields float at the sensor and terminate at the ECU or at the destination device.
-6. The only shield exception is an inline electrical device with an enclosure; its enclosure may be part of the shield path. This applies to VRC boxes.
+6. ~~The only shield exception is an inline electrical device with an enclosure; its enclosure may be part of the shield path. This applies to VRC boxes.~~ **Superseded 2026-10-12 (R31, R33):** nothing bonds to a case and no shell carries a screen; VRC drain continuity is pin to pin by wire inside the box.
 7. Do not raise the CAN termination issue again. It is settled and is not an open repair item.
 8. OEM factory connectors and junction blocks are not new harness connectors unless the new harness physically plugs into them.
 9. Connections to existing OEM wires or connector points are flying leads. Each flying lead must include the EWD connector ID, pin, page, function, and splice or attachment method.
@@ -145,7 +246,7 @@ Every physical conductor should identify `physicalOwner`, `interfaceId` when app
 - OEM endpoints are flying leads with EWD connector/pin labels and no OEM BOM connector housing.
 - Every physical section has one owner and is counted once.
 - Bulkhead A/B mating and shield rules pass.
-- Shield drains float at device ends and reach the correct ECU shield ground, except for VRC enclosure paths.
+- Shield drains float at device ends and reach the correct ECU shield ground (the wheel-speed sensor shields land on the VRC IN pin, R31).
 - No unexplained direct cross-loom conductor remains.
 
 ## Harness checker and generator audit
@@ -264,12 +365,12 @@ become flying leads.~~ **Superseded 2026-10-12 (S15):** J/B2 is removed; no dumm
   (https://www.wirebarn.com/Combined-Wire-Gauge-Calculator_ep_42.html); the splice's range must
   cover that combined gauge (example: 4 x 20 AWG = 1 x 14 AWG, fits a 14-10 splice).
   harness.design's per-wire "wires are too thin" warning on splices is a known false alarm - do
-  not chase it. Owner text: `docs/RECONCILIATION-RULES.md` Rule 3. Shield drains are excepted (S9).
+  not chase it. Owner: R36 above (shield drains excepted, R30); detail in `docs/RECONCILIATION-RULES.md` Rule 3.
 - **Connector substitution - standing rule (Daniel, 2026-09-28):** if bulkhead A or B runs out
   of pins or needs higher-capacity contacts, spec a different connector or add a second one,
   with a complete compatible matching set for both sides (housings, inserts, contacts per wire
   gauge, seals / cavity plugs, wedgelocks, gasket or backshell), every part number from the
-  maker's datasheet. Owner text: `docs/RECONCILIATION-RULES.md` Rule 3.
+  maker's datasheet. Owner: R8 above.
 - **Q-RAIL - final (Daniel, 2026-09-28): the rails cross on the A side.** Daniel: "Apply it now
   to Q-RAIL: the injector (F11, 15A) and COP (F10, 20A) feeds belong on the A side per the
   ECU-letter rule. Find the simplest complete matching set that carries both 14 AWG feeds
@@ -398,7 +499,7 @@ there as rows.
 | # | Decision | Recorded detail |
 |---|---|---|
 | S8 | **Front and rear wheel speed, `ST185-WheelSpeed-Front` and `ST185-WheelSpeed-Rear`** (Daniel 2026-10-12; final = Daniel's own example drawing of the front, harness.design ZZxQ, export `_research/WS-FRONT-DAN-EXAMPLE-2026-10-12.json`, mirrored on the rear): (a) **two separate pieces, no drawn link** - IN: the L and R sensor cables run to a point by the IN plug (`bp_*_y`) and land in it; OUT: the OUT plug -> 4-core screened cable (1100 / 1880 mm + 300 mm) -> the inline DT04-6P c1-c5 (c6 spare). Layout note "VRC FRONT" / "VRC REAR" between the plugs. No bundle, branch point, wire or cable joins the IN plug to the OUT plug. (b) **two plugs, same part**: binder `99 0414 00 05`, M9 female cable connector, 5 contacts, unshielded, solder, IP67. IN (`m9_vrc_f_in` / `m9_vrc_r_in`): 1 ABS+ L, 2 ABS- L, 3 shield drain, 4 ABS+ R, 5 ABS- R. OUT (`m9_vrc_f_out` / `m9_vrc_r_out`): 1 +5V, 2 Gnd, 3 L out, 4 R out, 5 screen drain. (c) **screens**: both sensor cable screens go into ONE splice at the IN plug and one drain wire runs to IN pin 3 - no SolderSleeve (S12 final). (d) **no connector shells, project-wide** - every drain lands on a pin (`docs/SHIELD-RULES.md`). | Parts recorded in `docs/sourcing/README.md` "Picked parts not on hand". The binder solder cups take max 0.25 mm2 / AWG 24, below the 20 AWG cable cores and the 22 AWG sleeve lead - `docs/OPEN-ITEMS.md` row 76. Gates: `validate_wheel_speed.py` W1, W3 (both screens into one splice, one drain wire to the screen pin; legs meet only at a point by the IN plug), W8 (one shared IN + one OUT plug, same part), W9 (IN and OUT never joined); `lint_v09.py` / `audit_shields.py` R3 reject shells. Reverses the 2026-10-05 "one DTM 8-way IN + one OUT" entry below (row 20/23/32) and the IN text of Routes 9 / 10 - OPEN-ITEMS rows 70, 71, 73. |
-| S9 | **Shared drain pin = one splice** (Daniel 2026-10-12, binding; supersedes the earlier "drain T-splice" wording): where two or more screens land on one pin, all of them go into ONE splice node and one drain wire runs from it to the pin - no chain, no per-cable splice, no combined-gauge pigtail, no two wires in one contact. Drain gauge does not scale with the number of screens (noise current only). Every CAN node branch shield goes into the one trunk splice. Applied to A7, B17, the CAN screen splice and both VRC IN pin 3s. | Owner text: `docs/SHIELD-RULES.md` "Shared drain pin". Drawn as a `GENERIC SOLDER SPLICE` on the pin's connector (`locationId`). OPEN-ITEMS rows 73 / 76 noted (drain side only). |
+| S9 | **Shared drain pin = one splice** (Daniel 2026-10-12, binding; supersedes the earlier "drain T-splice" wording): where two or more screens land on one pin, all of them go into ONE splice node and one drain wire runs from it to the pin - no chain, no per-cable splice, no combined-gauge pigtail, no two wires in one contact. Drain gauge does not scale with the number of screens (noise current only). Every CAN node branch shield goes into the one trunk splice. Applied to A7, B17, the CAN screen splice and both VRC IN pin 3s. | Owner: R29 / R30 above; inventory in `docs/SHIELD-RULES.md` "Shared drain pin". Drawn as a `GENERIC SOLDER SPLICE` on the pin's connector (`locationId`). OPEN-ITEMS rows 73 / 76 noted (drain side only). |
 | S12 | **No SolderSleeves; every shielded cable is drawn as if it had a drain wire** (Daniel 2026-10-12, binding; the sleeve-per-screen idea of #103 / #104 is dropped): our Raychem cable has no drain wire, but the drawings do not show that. A cable's shield connects directly to its connector drain pin; no splice node exists just to terminate a shield and no sleeve is a covering anywhere. Only where 2+ shields share ONE pin: one splice, one wire to the pin (S9). Removed: `audit_solder_sleeves.py`, `cable_dimensions.json`, the sleeve splices on all looms, the `S200` sleeve and 22 AWG sleeve-lead parts from `ST185.harnesslib`. | `docs/SHIELD-RULES.md`; gate `validate_wheel_speed.py` W3. Cable OD / sleeve sizing work (OPEN-ITEMS row 81) closed as dropped. |
 | S13 | **Drawings stay clean** (Daniel 2026-10-12, binding; his own `ST185-WheelSpeed-Rear.harness` is the model): only parts Daniel asked for; no entry or cavity signal that says "not used" or is a placeholder; no coverings, boots, sleeves, seals or backshells added unasked; no splice unless 2+ wires or shields truly join; part definitions the drawing does not reference are removed (`ST185.harnesslib` holds only what the drawings use). Real spare cavities on real connectors stay, other files' cavities stay N/C, and spares get no extra parts. Gates relaxed to match: `audit_drawing_rules.py` G2 lists a bundle without a length instead of failing; `audit_cavity_parts.py` no longer requires a sealing plug on an unused bulkhead cavity. | Skills `harness-design` and `st185-build-harness-from-sot`; `docs/OPEN-ITEMS.md` history. |
 | S14 | **LMI fuse block = loose Eaton modules in two stacks** (Daniel 2026-10-12; closes OPEN-ITEMS row 78 item 2): Eaton Series LMI allows "maximum of seven modules per assembly" including the input module, so 7 fuses cannot share one input; assembled LMI units have a minimum order of 100, so the box is built from parts sold singly. Stack A: `LMI1-M-1-1` input + 4 x `LMI1-M-1-0` (L1 50, L4 40, L6 60, L7 60 A) on bus bar `B109-7046-5`; stack B: `LMI1-M-1-1` input + 3 x `LMI1-M-1-0` (L2 / L3 / L5, 30 A) on `B109-7046-4`; each input has its own 4 AWG feed from the PDB bus. Each module is its own drawn connector (`lmi_a_*`, `lmi_b_*`): input module 1 stud (M8), fuse module 2 studs (M5, BUS + OUT). Covers come with every module; bus bars are bought, not drawn. Source: Eaton Series LMI catalog page and spec sheet (https://www.eaton.com/us/en-us/catalog/emobility/series-lmi.html). | `ST185-CabinPower` |
@@ -427,7 +528,7 @@ this plan; the index below says what each section settled and where it lives now
 | 13.1 | ETB and APS: one shielded cable per device | `docs/SHIELD-RULES.md` |
 | 18, 18.1 | MR-S EHPS pump: `k_eps` coil - switched by pump B5; `k_eps_en` (Ign 6, B12) enables it above ~400 rpm | `sot/channels.csv` b12, `k_eps` rows; `docs/OPEN-ITEMS.md` row 40 |
 | 19 | Deleted: circuit opening relay, injector resistor pack, fuel pump resistor, fog lights | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §5.6 |
-| 20, 23, 32 | VRC boxes: Hammond 1590WUFL, one DTM 8-way IN (key A) + one OUT (key B); both VRCs mid-dash above the ECU; ECU at the factory ECM spot | VRC location: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md`; the 1590WUFL/DTM enclosure change is not yet in `docs/enclosures/` (`docs/OPEN-ITEMS.md`) |
+| 20, 23, 32 | VRC boxes: Hammond 1590WUFL; ~~one DTM 8-way IN (key A) + one OUT (key B)~~ (superseded by S8 / R34: two binder M9 plugs); both VRCs mid-dash above the ECU; ECU at the factory ECM spot | VRC location: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md`; the 1590WUFL/DTM enclosure change is not yet in `docs/enclosures/` (`docs/OPEN-ITEMS.md`) |
 | 25.1 | Doc policy: open questions may live in repo docs only if kept current; completed handoffs are removed; one project tracker | `docs/OPEN-ITEMS.md` |
 | 26.1 | Start is ECU-controlled (`k_str`, Aux 8 A26); no clutch-start interlock; clutch switch stays a CSB3 input | `sot/channels.csv`, `docs/harness/rebuild/ST185-CSB3.harness` |
 | 26.2 | OEM R/B No.2, No.3, No.4 removed; power windows/locks and blower get fuse + relay in the glove-box box; A/C fuse fed from the heater relay output | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §8 |
@@ -436,7 +537,7 @@ this plan; the index below says what each section settled and where it lives now
 | 35 | AntiTheft: status LED centre console, siren bay centre by the firewall, valet switch driver side, shock sensor beside the alarm module; siren/hood-pin leads through harness C's RH grommet | `docs/harness/rebuild/ST185-AntiTheft.harness` |
 | 36.5 | Process: one ordered question queue; nothing answerable from the EWD, datasheets or SoT is asked | `docs/OPEN-ITEMS.md` |
 | 38 | RTR fuse only (OEM R8 relay stays); tilt-away column on 30 A POWER; ECU wake IG2 -> diode, B28 before the diode, Aux 6 holds `k_efi`; B30 start request from ST1 through a 2 A box fuse | `sot/channels.csv` b28/b30, `ENGINE-ROOM-POWER-REDISTRIBUTION.md` §8.1 |
-| 39 | No factory engine-bay wire reused | `docs/RECONCILIATION-RULES.md` Rule 1, `.claude/rules/harness-wiring-conventions.md` |
+| 39 | No factory engine-bay wire reused | R11 above |
 | 40 | All 14 routes approved 2026-10-10; harness update pass checklist (steps 1-4, 8, 9, 11 and the shield redraw done in PRs #73-#83) | remaining steps: `docs/OPEN-ITEMS.md` |
 | 33, 36.4 | GEP PDM-R stack - superseded by fuse box Option B (2026-10-11) | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` §8.1 |
 

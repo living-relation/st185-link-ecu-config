@@ -2,7 +2,11 @@
 
 > ## Before any wiring or CAN change — binding on every agent
 >
-> Read **`docs/RECONCILIATION-RULES.md`**. Three rules, all non-optional:
+> **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules from Daniel"
+> (R1-R52).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
+> shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
+> this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
+> Three rules, all non-optional:
 >
 > 1. **Wiring** — a change to one wiring document is not done until it is checked against
 >    the source-of-truth chain and **every other wiring surface**, including ones you did
@@ -34,11 +38,11 @@
 - **Harness / electrical**: `docs/harness/rebuild/*.harness` - drawings, **not a source of truth** (Daniel, 2026-10-04: they follow `sot/channels.csv`; never generate truth docs from them) (one physical harness per file, ownership in `docs/harness/interfaces.json`; see `docs/harness/README.md`), gate `python docs/harness/check_all.py`. ECU looms follow the ECU connector letter (`ST185-A-cabin` / `-B-cabin` / `-A-engine` / `-B-engine`) - canonical rule `docs/RECONCILIATION-RULES.md` Rule 3, gate `validate_bulkhead_letter.py`; `docs/SHIELD-RULES.md`, `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - **Engine calibration**: `tune/engine_constants.yaml`, `tune/limits.yaml`, `tune/tables/*.csv`, `tune/docs/`, `tune/scripts/` (incl. `validate_tune.py`), `tune/README.md` — PCLink seeds only; not an I/O or CAN source. `FUEL-SYSTEM.md` is fuel hardware reference, not CAN.
 - **Other docs/**: `docs/devices/`, `docs/enclosures/`, `docs/sourcing/`, `docs/procedures/`, `docs/intercooler-turbo-study/`, `docs/5sgte-project-data/` (research), `docs/research-hub.html` (generated, see below).
-- **Project tracker**: `docs/OPEN-ITEMS.md` - THE one tracker: every unresolved item (owner, source, what unblocks it) plus the dated project history. Decisions live in `docs/harness/redesign/DECISIONS.md`.
+- **Project tracker**: `docs/OPEN-ITEMS.md` - THE one tracker: every unresolved item (owner, source, what unblocks it) plus the dated project history. Decisions and every binding rule live in `docs/harness/redesign/DECISIONS.md` ("Binding rules from Daniel" is the rules home).
 - **Route drawings**: `docs/harness/routes/` - Dan's approved route for each harness (one HTML per route, current version only); lint `docs/harness/check_route_drawings.py`.
 - **Handoffs**: none kept. A finished handoff is deleted; open work goes into `docs/OPEN-ITEMS.md` (`output/` is for a handoff in flight only).
 - **Archive**: `archive/` holds retired harness drawings only. **Do not read or search it during normal work**; it is excluded from agent context and nothing in it is authoritative. Consult it only when explicitly asked why a past decision was made, and if it disagrees with a current doc, the current doc wins.
-- **Agent ecosystem**: `.claude/skills/` (4 repo skills: `run-can-bench-scenarios`, `update-can-frame-contract`, `maintain-realdash-xml-mapping`, `extend-trackcluster-can-sender` - CAN/bench; see **Skills** below for the 5 global ST185 skills), `.claude/rules/` + `.cursor/rules/` (same rules, two tools), `.claude/settings.json` (permission allow-list), `.cursor/environment.json` + `.cursor/install.sh` (Cursor Cloud bootstrap), `.claudeignore` (keeps `archive/` out of context), `.githooks/` (pre-commit refuses `docs/research-hub.html`). No agent hooks are configured.
+- **Agent ecosystem**: `.claude/skills/` (4 repo skills: `run-can-bench-scenarios`, `update-can-frame-contract`, `maintain-realdash-xml-mapping`, `extend-trackcluster-can-sender` - CAN/bench; see **Skills** below for the 5 global ST185 skills), `.claude/rules/` + `.cursor/rules/` (thin pointers to the rule owners - `DECISIONS.md`, `RECONCILIATION-RULES.md`, this file's Working Rules - never copies), `.claude/settings.json` (permission allow-list), `.cursor/environment.json` + `.cursor/install.sh` (Cursor Cloud bootstrap), `.claudeignore` (keeps `archive/` out of context), `.githooks/` (pre-commit refuses `docs/research-hub.html`). No agent hooks are configured.
 
 ## Skills
 Five skills for this project are saved **globally** (user-level, not in this repo) at
@@ -68,13 +72,14 @@ and runs as a SOFT gate in `check_all.py`, since it's a test, not a skill.
 - Engine-room power splice table (kick-panel J/Bs, vacated J/B2): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - Wiring SoT (every ECU pin and channel): `sot/channels.csv`. Visual face: `XTREMEX-IO-TABLE.html` (gated by `docs/harness/sync_io_table.py --check`).
 - The harness drawings - **not a source of truth** (Daniel, 2026-10-04: they follow `sot/channels.csv`; never generate truth docs from them): `docs/harness/rebuild/*.harness` (14 files, one physical harness per file; wires between files are drawn broken off in both; the four ECU looms split by connector letter 2026-09-28; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
-- Wiring reconciliation rules: `docs/RECONCILIATION-RULES.md` Rule 1; ECU loom letter rule: Rule 3.
+- Every binding wiring / parts / drawing rule: `docs/harness/redesign/DECISIONS.md` "Binding rules from Daniel". Reconcile procedure: `docs/RECONCILIATION-RULES.md` Rule 1; ECU loom letter detail: Rule 3.
 
 ## Board / progress snapshot
 - Claude progress board is a **stale artifact** (last updated 2026-09-01). Do not treat it as SoT.
-- Harness build rules: `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6. The 2026-09-27
-  redesign (physical-harness-per-file, ownership/interface model) supersedes the file
-  inventory in §6.41; current decisions are `docs/harness/redesign/DECISIONS.md`.
+- `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` is the dated decision history (its §6 was
+  the build-rule log until 2026-10-12). It is **not a rules home any more**: the binding rules
+  are `docs/harness/redesign/DECISIONS.md` "Binding rules from Daniel", and where §6 disagrees
+  with them the plan doc is history.
 - `archive/` holds retired harness drawings only. They are not authoritative.
 
 ## Related Repos (mandatory for CAN bus / wiring work)
@@ -165,14 +170,23 @@ python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.
 - harness.design format / how-to: read its docs, never guess, and cite the page in the PR when it drives a format choice - https://docs.harness.design/feature/local-files/json-format (v0.9 `.harness` / `.harnesslib`), https://docs.harness.design/feature/part-libraries, https://docs.harness.design/feature/desktop, https://docs.harness.design/feature/pinouts, https://docs.harness.design/files/harness/editing-guide.md.
 - Dan edits the looms in the harness.design desktop app on the files in `docs/harness/rebuild/` (live files, no upload step; `docs/harness/README.md` "Open in the desktop app"); agents pause while he edits, the saved file wins. Drawing conventions: global skill `harness-design`; harness.design docs win.
 - The part library is the master (Daniel, 2026-10-12): change a part in `docs/harness/rebuild/ST185.harnesslib` FIRST, then copy it into the drawings, in the same PR; any difference between a drawing's part and the library fails, no exceptions (gate `docs/harness/check_harnesslib.py`, in `check_all.py`; `--add-missing` copies new parts).
-- Keep `ST185:` names in `link_g4x_realdash.xml` unchanged unless migration is explicitly requested.
-- Keep warning-bit mapping parity between XML and `bench/frames.py` bit constants.
+- Keep `ST185:` names in `link_g4x_realdash.xml` unchanged unless migration is explicitly requested (renames break `.rd` gauge bindings).
+- RealDash frame scope is the documented ECU streams `0x3EF`-`0x3F1` plus one approved exception (2026-09-04): the gear byte of `0x3EB` (`ST185: Gear`) for the reverse-camera auto-switch - see `CAN-CONFIG-STATUS.md` and the SCOPE note in the XML. Do not widen it to other `0x3E8`-`0x3EE` bytes without updating both.
+- Keep conversion parity between the XML formulas and `bench/frames.py` scaling, and warning-bit mapping parity (`startbit`) between XML and the `bench/frames.py` bit constants.
 - Prefer minimal targeted edits; avoid broad rewrites of stable docs.
 - main is protected (ruleset "Protect main"); all changes go through PRs with "Repo checks" and "Protect research hub" green; only the research-hub bot (deploy key `RESEARCH_HUB_DEPLOY_KEY`) bypasses.
 - Root `link_g4x_realdash.xml` is the single copy; do not reintroduce a duplicate under `rd-build/`.
 - Before any CAN ID/frame or wiring change, check compatibility against `center-cluster-esp32-p4` (see **Related Repos** above).
 - Keep all multibyte CAN fields BigEndian unless a source file explicitly documents otherwise.
 - For warnings in `0x3F1` byte 6, keep bit mapping consistent with `bench/frames.py` constants and `CAN-BUS-ID-ALLOCATION-TABLE.md`.
+- Frame routing (who reads which frame, cluster frozen and first): `docs/harness/redesign/DECISIONS.md` R51; procedure `docs/RECONCILIATION-RULES.md` Rule 2.
+
+### Python tooling
+- Follow the existing adapter handling style in `apps/trackcluster-can-sender/app.py` (`gs_usb`, `slcan`, `seeedstudio`, vendor interfaces).
+- Keep CAN payload validation strict (`11-bit ID`, `8-byte payload`) before transmit.
+- Keep CLI scripts small, explicit and usage-driven, like `rd-build/tools/*.py`.
+- Keep dependency docs aligned with the nearest `requirements.txt` (`bench/`, `apps/trackcluster-can-sender/`, `rd-build/tools/`).
+- GUI automation scripts keep the desktop-only constraints documented in `rd-build/FINDINGS.md` and `rd-build/tools/SETUP.md`.
 
 ## Known Gotchas
 - Older docs referenced removed paths like `apps/canbus-live-sender/`; use `apps/trackcluster-can-sender/`.

@@ -1,8 +1,10 @@
 # Reconciliation rules — binding on every agent
 
 Agent-agnostic. Claude Code, Cursor, Codex, or any other tool: these apply. The
-per-agent rule files (`.cursor/rules/`, `.claude/rules/`, `AGENTS.md`) all point here,
-and this file is the wording they defer to.
+per-agent rule files (`.cursor/rules/`, `.claude/rules/`, `AGENTS.md`) point here for the
+**procedure**. The rule statements themselves (what Daniel decided, dated, R1-R52) are
+owned by `docs/harness/redesign/DECISIONS.md` "Binding rules from Daniel"; this file says
+how to apply them and which surfaces must agree. Where the two disagree, `DECISIONS.md` wins.
 
 Three rules. Rules 1 and 2 exist because this project has repeatedly drifted: a change
 landed in one document and its siblings silently disagreed for weeks. Rule 3 is how the
@@ -60,10 +62,10 @@ every commit.
 | `docs/harness/interfaces.json` | Ownership registry: interfaces, endpoints, flying leads, references |
 | `docs/harness/rebuild/ST185-ClusterLED.harness` | Cluster warning LEDs |
 | `docs/harness/rebuild/ST185-AntiTheft.harness` | Anti-theft |
-| `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Kick-panel / J/B2 splice table |
+| `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Cabin landing table for every ex-J/B2 / R/B load (§5.4), fuse-box slot map (§8.1) |
 | `docs/harness/HARNESS-BUILD-LIST.csv` | Generated - re-run `buildlist.py` |
 | `docs/harness/NEED-TO-BUY.md` | Generated - re-run `buylist.py` |
-| `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` | Build rules (section 6) |
+| `docs/harness/redesign/DECISIONS.md` | The binding rules (R1-R52) and the dated decisions |
 | `docs/SHIELD-RULES.md` | Shield rules, enforced by the audits |
 | `docs/sourcing/te-on-hand-bom.csv` | Parts already owned - check before speccing anything new |
 
@@ -78,16 +80,12 @@ are not authoritative.
 
 Generated files are never hand-edited — re-run their script.
 
-### No factory engine-bay wire is reused (Daniel, 2026-10-04, binding)
+### No factory engine-bay wire is reused
 
-Every engine-bay circuit is new wire in project colors, terminated at the device's own
-plug (OEM or new) - never a solder-sleeve splice into an existing factory lead. This
-applies only to the **engine bay** (loom C's domain and the engine-side harnesses); cabin
-wiring still splices into factory leads normally (flying leads stay the usual method
-there). Device connectors stay as recorded where one is specified (DT for the horns and
-the fuel level sender). A circuit drawn with an `oem_flying_lead` method description in
-the engine bay after this date is either an oversight or predates the rule - check
-`docs/OPEN-ITEMS.md` before assuming it is current.
+Rule **R11** in `DECISIONS.md` (Daniel, 2026-10-04 / 2026-10-12). Applied here: an
+`oem_flying_lead` on an engine-bay harness (`EngineRoom-C`, `A-engine`, `B-engine`,
+`HeavyDC`) is a new-wire run to the device's own plug, never a splice into a factory lead;
+`audit_dan_rules.py` D1 checks the registered method text.
 
 ---
 
@@ -193,21 +191,11 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     bulkhead A c48 / c49 of the shared DRB102 (`docs/harness/DRB102-CAVITY-MAP.md`). The
     earlier `IX_RAIL_A` DTP pass-through is retired (2026-09-29). Crossover (d) is retired
     (Daniel, 2026-09-28; `docs/harness/redesign/DECISIONS.md` Q-RAIL).
-- **Splice sizing (Daniel, 2026-09-28, standing):** a splice is sized by the **combined** gauge
-  of the wires it joins, from the Wire Barn Combined Wire Gauge Calculator
-  (https://www.wirebarn.com/Combined-Wire-Gauge-Calculator_ep_42.html). The splice part's range
-  must cover the combined gauge, not each wire (4 x 20 AWG = 1 x 14 AWG, fits a 14-10 splice).
-  harness.design flags splices whose individual wires are below the part's minimum gauge
-  ("wires are too thin"); that per-wire warning is a known false alarm and is not chased.
-  **Not for shield drains** (Daniel, 2026-10-12): drains sharing a pin go into one splice and keep
-  their normal gauge - `docs/SHIELD-RULES.md` "Shared drain pin".
-- **Connector substitution (Daniel, 2026-09-28, standing):** if bulkhead A or B runs out of
-  pins or needs higher-capacity contacts, a different connector may replace it or a second
-  one may be added beside it - but only with a **complete, compatible matching set for both
-  sides**: housings, inserts, contacts for each wire gauge, seals and cavity plugs,
-  wedgelocks, mounting gasket or backshell where the family has one. Every part number comes
-  from the maker's datasheet or catalog; nothing is guessed. The pair is registered as an
-  inline interface in `docs/harness/interfaces.json` and counted on the buy list.
+- **Splice sizing:** rule **R36** (combined gauge, Wire Barn calculator; not for drains, R30).
+  Gate: `audit_cavity_parts.py` K3.
+- **Connector substitution:** rule **R8** (complete matching set, datasheet part numbers). The
+  pair is registered as an inline interface in `docs/harness/interfaces.json` and counted on
+  the buy list.
 - **ETB body (engine bay):** the B18 / B26 motor wires leave `ST185-B-engine` as a short spur
   right after bulkhead B, drawn broken off with a note; `ST185-A-engine` shows them broken
   off coming in from B-engine and takes them into the A trunk, under the sheathing, right

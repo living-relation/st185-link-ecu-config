@@ -24,7 +24,7 @@ What counts as a far end (C2): a connector cavity that is not a bulkhead, an inl
 interface or the ECU (the harness plug that mates to an undrawn device - sensors,
 modules, the CSB3), a Loose terminal (OEM flying lead or device endpoint lead), a
 resistor, or a device enclosure (VRC). A drawn device is never required - devices are
-never drawn (harness-wiring-conventions).
+never drawn (docs/harness/redesign/INTERFACES.md).
 
 Exit 1 on any finding.
 """

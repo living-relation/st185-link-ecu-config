@@ -1,7 +1,7 @@
 """Enforce SHIELD-RULES.md mechanically, so the rules stop getting re-litigated.
 
-The rules live in docs/SHIELD-RULES.md (short form) and plan 6.27 / 6.30 / 6.31 /
-6.32 (long form).  This script checks the ones a script can check:
+The rules are R27-R34 in docs/harness/redesign/DECISIONS.md "Binding rules from Daniel";
+docs/SHIELD-RULES.md holds the inventory.  This script checks the ones a script can check:
 
   R1  a screen never lands at the device end: every screen end is an ECU shield
       pin, a splice, a bulkhead or inline-interface cavity, a device-enclosure

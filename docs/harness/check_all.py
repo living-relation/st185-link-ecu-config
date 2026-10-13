@@ -32,6 +32,11 @@ What it runs, in order - every one in HARD is a hard gate:
   check_harnesslib.py      every part a drawing uses is in rebuild/ST185.harnesslib and equal to it
   audit_drawing_rules.py   signals (one propagating per net, terminals never, no empty wired
                            cavity), 30-unit grid, bundle lengths, layout left to right, no overlaps
+  audit_dan_rules.py       Daniel's text-level rules (DECISIONS R11, R26, R29, R35, R44): bay
+                           flying leads are new wire, no sleeve parts or coverings, wire part
+                           numbers, no "not used" / "reserved" cavity signals, no stale notes;
+                           its D2 / D4 / D5 lists are SOFT inside the script until the drawings
+                           they name are fixed
   buylist.py --check       buy list is current, and the shared-connector consistency check
   buildlist.py --check     per-wire build list is current
 
@@ -61,7 +66,8 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_shields.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["audit_shared_connectors.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
-        ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["buylist.py", "--check"],
+        ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"],
+        ["audit_dan_rules.py"], ["buylist.py", "--check"],
         ["buildlist.py", "--check"]]
 SOFT = [["check_route_drawings.py"]]  # 2026-10-11: routes tracked; 1 finding (Route 1 Fig. 4, an EWD sheet with no top view)
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy
