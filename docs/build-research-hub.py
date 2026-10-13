@@ -306,41 +306,49 @@ def load_status() -> dict | None:
     return {"buckets": buckets, "blockers": blockers}
 
 
-# Top view of the car, nose up (original outline, not to scale). Zone ids are the ones the
-# Status table in OPEN-ITEMS names in its "Car zones" column: label + SVG shape.
+# Top view of the car, nose up. The outline is the All Trac/4WD plan view on page IN-15
+# ("Vehicle lift and support locations") of the Toyota Celica repair manual, traced to its outer
+# silhouette only (no chassis, no glass) and scaled to viewBox 0 0 200 400. Zones are that
+# silhouette cut into bands along the car (nose = top); the Status table in OPEN-ITEMS names
+# them in its "Car zones" column. Each zone: label, SVG path, label position.
+CAR_OUTLINE = (
+    'M115.9 10.5 L100.7 10.0 L75.4 11.8 L56.1 15.5 L46.0 19.6 L41.0 23.8 L35.9 31.6 L31.8 45.4 L28.5 63.8 L26.7 86.7 L28.1 125.3 L27.6 136.4 L26.3 140.0 L27.6 145.1 L27.2 247.6 L25.8 249.4 L25.3 253.5 L27.2 258.1 L27.2 274.2 L25.8 283.4 L25.8 304.5 L28.5 323.8 L30.4 355.5 L33.6 370.2 L37.3 376.2 L41.0 379.9 L47.4 383.6 L69.0 388.2 L90.6 390.0 L116.3 389.5 L135.6 386.8 L150.8 383.1 L156.7 379.9 L162.7 373.9 L165.9 367.0 L168.2 354.6 L170.5 322.5 L172.4 312.8 L173.7 296.3 L173.3 277.4 L171.9 264.6 L172.4 144.2 L173.3 141.0 L172.4 137.3 L172.4 118.4 L174.2 104.2 L174.7 83.1 L172.8 59.6 L170.1 45.8 L165.5 31.6 L161.8 25.2 L158.1 21.5 L151.2 17.4 L141.6 14.6 Z'
+)
 CAR_ZONES = {
-    "bay": ("Engine bay",
-            '<path d="M62 52 Q100 36 138 52 L142 128 L58 128 Z"/>', (100, 92)),
-    "firewall": ("Firewall / bulkheads",
-                 '<rect x="58" y="128" width="84" height="14"/>', (100, 135)),
-    "dash": ("Dash / cabin front",
-             '<rect x="58" y="142" width="84" height="44"/>', (80, 166)),
-    "glove": ("Glove box (fuse box)",
-              '<rect x="104" y="156" width="36" height="26" rx="3"/>', (122, 169)),
-    "floor": ("Cabin floor / sills",
-              '<path d="M58 186 H142 V268 H58 Z M50 150 H58 V272 H50 Z M142 150 H150 V272 H142 Z"/>',
-              (100, 228)),
-    "rear": ("Rear / hatch",
-             '<path d="M58 268 H142 L146 316 H54 Z"/>', (100, 292)),
-    "trunk": ("Trunk (battery, kill switch)",
-              '<path d="M54 316 H146 Q148 346 138 362 Q100 372 62 362 Q52 346 54 316 Z"/>',
-              (100, 340)),
+    'bay': ('Engine bay',
+        'M39.1 26.1 L35.9 31.6 L33.6 38.5 L28.5 63.8 L26.7 86.7 L27.6 117.5 L172.8 117.5 L174.2 104.2 L174.2 73.9 L172.8 59.6 L170.1 45.8 L165.5 31.6 L161.8 25.2 L158.1 21.5 L44.2 21.0 Z',
+        (100, 70)),
+    'firewall': ('Firewall / bulkheads',
+        'M27.6 118.0 L27.6 134.5 L172.4 134.5 L172.8 118.0 Z',
+        (100, 129)),
+    'dash': ('Dash / cabin front',
+        'M26.3 140.0 L27.6 145.1 L27.6 169.0 L172.4 169.0 L172.4 144.2 L173.3 141.0 L172.4 135.0 L27.6 135.0 Z',
+        (70, 154)),
+    'glove': ('Glove box (fuse box)',
+        'M103.0 139.1 L103.0 165.3 L162.3 165.3 L162.3 139.1 Z',
+        (134, 154)),
+    'floor': ('Cabin floor / sills',
+        'M27.6 169.4 L27.2 244.8 L171.9 244.8 L172.4 169.4 Z',
+        (100, 208)),
+    'trunk': ('Trunk (battery, kill switch)',
+        'M27.2 245.3 L25.3 252.2 L27.2 258.1 L27.2 274.2 L25.8 283.4 L25.8 304.5 L26.7 313.3 L172.4 312.8 L173.7 285.7 L171.9 264.6 L171.9 245.3 Z',
+        (100, 280)),
+    'rear': ('Rear / hatch',
+        'M26.7 313.7 L28.5 323.8 L29.9 351.4 L32.7 367.5 L37.3 376.2 L43.7 381.7 L153.5 381.7 L160.9 376.2 L165.5 368.4 L168.2 354.6 L171.9 313.7 Z',
+        (100, 348)),
 }
 
 
 def car_svg() -> str:
     parts = "".join(
         f'<g class="zone" data-zone="{zid}" tabindex="-1"><title>{html.escape(label)}</title>'
-        f'{shape}<text x="{xy[0]}" y="{xy[1]}" text-anchor="middle">{html.escape(label.split(" (")[0].split(" / ")[0])}'
-        f'</text></g>'
-        for zid, (label, shape, xy) in CAR_ZONES.items())
+        f'<path d="{d}"/><text x="{xy[0]}" y="{xy[1]}" text-anchor="middle">'
+        f'{html.escape(label.split(" (")[0].split(" / ")[0])}</text></g>'
+        for zid, (label, d, xy) in CAR_ZONES.items())
     return (
         '<svg class="car" viewBox="0 0 200 400" role="img" '
-        'aria-label="Top view of the Celica, nose up, with the zones the open items touch">'
-        '<path class="body" d="M100 14 Q150 14 152 60 L156 150 L152 270 L156 330 '
-        'Q154 380 100 386 Q46 380 44 330 L48 270 L44 150 L48 60 Q50 14 100 14 Z"/>'
-        '<path class="glass" d="M66 144 H134 L128 124 H72 Z"/>'
-        f'{parts}</svg>')
+        'aria-label="Top view outline of the Celica, nose up, with the zones the open items touch">'
+        f'<path class="body" d="{CAR_OUTLINE}"/>{parts}</svg>')
 
 
 CAR_JS = """
@@ -846,11 +854,10 @@ HUB_CSS = """
   .carfig { margin:0; flex:0 0 190px; text-align:center; }
   svg.car { width:190px; height:auto; display:block; margin:0 auto; overflow:visible; }
   svg.car .body { fill:var(--panel); stroke:var(--muted); stroke-width:1.6; }
-  svg.car .glass { fill:var(--chip); stroke:var(--line); }
-  svg.car .zone path, svg.car .zone rect { fill:transparent; stroke:var(--line);
+  svg.car .zone path { fill:transparent; stroke:var(--line);
     stroke-width:1; transition:stroke .15s, fill .15s, filter .15s; }
   svg.car .zone text { font-size:8px; fill:var(--muted); pointer-events:none; }
-  svg.car .zone.on path, svg.car .zone.on rect { fill:var(--accent-soft); stroke:var(--accent);
+  svg.car .zone.on path { fill:var(--accent-soft); stroke:var(--accent);
     stroke-width:2; filter:drop-shadow(0 0 3px var(--accent)) drop-shadow(0 0 8px var(--accent)); }
   svg.car .zone.on text { fill:var(--accent); font-weight:600; }
   .car-legend { font-size:11.5px; color:var(--muted); margin-top:6px; min-height:2.6em; }
