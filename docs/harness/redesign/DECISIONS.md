@@ -122,7 +122,7 @@ of these lines. Gates in brackets are the scripts in `docs/harness/` that check 
 | R35 vs plan §6.24 | "wire and cable are generic in every BOM" (09-17) vs M22759/16 part numbers (10-12) | Newer wins; §6.24 is history. |
 | R34 vs DECISIONS §20/23/32 row | VRC box "one DTM 8-way IN + one OUT" (10-05) vs two VRC plugs (10-12, S8; CNLINKO LP-16 since S16) | Newer wins; the enclosure BOM / Routes 9-10 text lag (OPEN-ITEMS rows 64, 70, 71). |
 | R29 / R30 vs OPEN-ITEMS row 73 | Row 73 still says "each cable has its own SolderSleeve ... T-spliced ... inside the transition boot" | Row 73 drain text corrected to S9/S12 (one splice drawn; T-splice is build method). |
-| R14 | "combo meter and all its plugs/wires gone" vs `ST185-ClusterLED` flying leads at C11/C12 "at the combination meter" | Read as the dash-harness side of those connectors (cabin reuse allowed). **Daniel to confirm.** |
+| R14 | "combo meter and all its plugs/wires gone" vs `ST185-ClusterLED` flying leads at C11/C12 "at the combination meter" | Read as the dash-harness side of those connectors (cabin reuse allowed). **Confirmed by Daniel 2026-10-13**; ClusterLED lead text reworded to say so. |
 | R42 vs plan §6.33 | Fixed left-to-right schematic geometry (09-20) vs "schematic: any direction; layout: left to right" (10-12) | Newer wins; §6.33 is history. |
 | R60 vs R34 / S8 | Binder M9 `99 0414 00 05` plugs (10-12, morning) vs solder jam-nut panel connector (10-12, later) | Newer wins; answered by S16 (CNLINKO LP-16, drawings updated). |
 | R57 vs `buylist.py` EXTRA | Blue Sea 2127 PowerBar + 2719 cover (single polarity, 09-17) vs one combined power + ground bus bar (10-12) | Newer wins; the EXTRA lines and the `PDB-M8x8` placeholder are replaced when the part is picked. |
