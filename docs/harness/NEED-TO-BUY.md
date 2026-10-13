@@ -141,7 +141,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Modelled as | What it really is | Qty |
 |---|---|---:|
-| `(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)` | MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, EL814 AC INPUT, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR OUTPUT, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS | 1 |
+| `(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)` | MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, 12 V INPUT, EL814, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS | 1 |
 | `(Eaton RFRM terminals - per the 15401 drawing)` | TERMINAL, FUSE AND RELAY MODULE, RFRM | 31 |
 | `(LED board indicator - 12 V, resistor on board)` | DIODE, LIGHT EMITTING, INDICATOR, 12 V | 6 |
 | `(MTA 0301491 terminals - per the MTA drawing)` | TERMINAL, FUSE AND RELAY MODULE, MTA | 42 |
