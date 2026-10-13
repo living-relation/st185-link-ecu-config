@@ -254,7 +254,7 @@ Routed with the OEM engine-room main. Passenger fender / ABS trough for EPS; cor
 | C1 | EPS pump 12 V | 8 AWG (sized 2026-09-28 against the AMI-60, `sot/channels.csv` k_eps c1) | `k_eps` 87 (glove box) → passenger kick / EA1 → ABS trough → pump | `90980-12068` pin 1 (OWNED) |
 | C2 | EPS pump GND | 8 AWG | Pump pin 2 → engine-block stud (not EA) | `90980-12068` pin 2 |
 | C3 | EPS enable | 18 AWG | F13 7.5 A IG-switched → same trough | `90980-10942` pin 1 (OWNED) |
-| C4 | EPS relay request | 18 AWG | Pump connector B pin 6 → `k_eps` 85 | Already in Signal as `w_mrs_relay_req` |
+| C4 | EPS relay coil- (R22) | 20 AWG | Pump connector B pin 5 → bulkhead A c27 → `k_eps` coil- | `w_eps_rly_e` / `w_eps_rly_ae` / `w_eps_rly` / `w_eps_rly_cp` (2026-10-12) |
 | C5 | EPS speed | 18 AWG shielded | Pump connector B pin 2 → Aux 7 / A27 | Signal file, engine harness A — **not** C |
 | C6 | Rad fan 12 V | 8 AWG (size to the fan; OEM was 30 A FL) | `k_fan` 87 → core support | New DT 2-way at the fan |
 | C7 | Rad fan GND | 8 AWG | Fan → EA | |
@@ -338,7 +338,7 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI from loose
 | 14 | AM1 → IE1-10 / I13-4 | pdb c6 40A | LMI | L4 | 40 AMI | — | — | 8 |  |
 | 15 | AM2 → IE1-17 / I13-10 | pdb c7 30A | LMI | L5 | 30 AMI | — | — | 10 |  |
 | 16 | OEM HOT → J/B1 1I-1 | pdb c5 60A | LMI | L6 | 60 AMI | — | — | 6 |  |
-| 17 | EPS pump → HCR150 30 | hcfb h4 60A | LMI | L7 | 60 AMI | k_eps | TE HCR150 1416010-1 (own) | 8 | coil ← k_eps_en; mount beside |
+| 17 | EPS pump → HCR150 30 | hcfb h4 60A | LMI | L7 | 60 AMI | k_eps | TE HCR150 1416010-1 (own) | 8 | coil+ SW12, coil- ← pump B5 (R22); mount beside |
 | 18 | ~~ECU permanent +12V (F8)~~ | fusebox c8 10A | RFRM | — | — | — | — | — | Removed 2026-10-12: the XtremeX has one +14V input (A5, fed from SW12) and no keep-alive pin; this feed only served the CSB3, which moved to RFRM CSB |
 | 19 | Relay-coil perm feed k_efi 86 (F12) | fusebox c12 5A | RFRM | Bus 1 | 5 | — | — | 18 |  |
 | 20 | HEAD LH | gbx_body c4 15A | RFRM | Bus 1 + micro | 15 | HEAD LH | TE 5-1393292-8 (own, diode) | 14 | coil − IE1-2 |
@@ -353,7 +353,7 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI from loose
 | 29 | Injector bank (F11) | fusebox c11 15A | RFRM | Bus 2 | 15 | — | — | 14 trunk / 16 branches |  |
 | 30 | CSB3 | gbx_body c10 5A | RFRM | Bus 2 | 5 | — | — | 18 | now k_efi rail (decided), drawing says permanent |
 | 31 | DEV: cluster + RealDash Pi | gbx_body c11 | RFRM | Bus 2 | 15 | — | — | 16 | one fuse as drawn |
-| 32 | k_eps_en contact feed | Route 7 / plan 18.1 | RFRM | Bus 2 + micro | TBD | k_eps_en | TE 6-1419137-4 (own) | 18 | Ign 6 B12 |
+| 32 | k_eps_en contact feed | Route 7 / plan 18.1 | RFRM | Bus 2 + micro | 7.5 | k_eps_en | TE 6-1419137-4 (own) | 18 | Ign 6 B12; 87 → MTA-2 MRS IN (drawn 2026-10-12) |
 | 33 | k_acc A/C clutch | plan 9.3 | RFRM | Bus 2 + micro | 10 (verify) | k_acc | TE 6-1419137-4 (own) | 16 | Ign 8 B10; A5 in series |
 
 **Feeds**

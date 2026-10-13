@@ -352,7 +352,8 @@
         {
           "id": "epsen",
           "designation": "EPSEN",
-          "signal": "Bus 2 fuse TBD + k_eps_en micro relay (not yet wired)"
+          "signal": "Bus 2 7.5A - EPS enable relay k_eps_en 30 (micro relay)",
+          "propagate": false
         },
         {
           "id": "acc",
@@ -455,7 +456,13 @@
         {
           "id": "mrs",
           "designation": "MRS",
-          "signal": "MiniVal 7.5A - MRS EPS pump logic enable, fed from k_eps_en 87"
+          "signal": "MiniVal 7.5A - MRS EPS pump logic enable out (pump C1), fed from MRS IN"
+        },
+        {
+          "id": "mrsin",
+          "designation": "MRS IN",
+          "signal": "MRS MiniVal feed in - k_eps_en 87",
+          "propagate": false
         }
       ]
     },
@@ -774,7 +781,7 @@
     },
     {
       "id": "k_eps",
-      "label": "MR-S EHPS pump relay (HCR150, glove box) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V - HCR 150 coil is a 2-pole plug (TE terminals 1/2, not marked 85/86), resistor-suppressed so polarity-free",
+      "label": "MR-S EHPS pump relay (HCR150, glove box) - coil- (85) switched to ground by the MR-S pump pin B5 (R22); coil+ (86) switched 12 V - HCR 150 coil is a 2-pole plug (TE terminals 1/2, not marked 85/86), resistor-suppressed so polarity-free",
       "width": 390,
       "schematicPosition": {
         "x": 4200,
@@ -794,8 +801,9 @@
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) *",
-          "contactPartId": "ct_ss15"
+          "signal": "Coil - <- MR-S pump B5 (br_w_eps_rly, bulkhead A c27)",
+          "contactPartId": "ct_ss15",
+          "propagate": false
         },
         {
           "id": "c3",
@@ -854,6 +862,54 @@
       },
       "schematicPosition": {
         "x": 4800,
+        "y": 3900
+      },
+      "partId": "cp_rly_micro_co",
+      "width": 390
+    },
+    {
+      "id": "k_eps_en",
+      "label": "EPS Enable Relay (seated in RFRM micro) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "30",
+          "signal": "Fused +12V in (RFRM EPSEN 7.5A)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "85",
+          "signal": "ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "86",
+          "signal": "Coil + - ignition-switched 12V",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "87",
+          "signal": "+12V out -> MTA-2 MRS IN (pump enable C1)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "87a"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1740,
+        "y": 1020
+      },
+      "schematicPosition": {
+        "x": 5400,
         "y": 3900
       },
       "partId": "cp_rly_micro_co",
@@ -1365,7 +1421,7 @@
     {
       "id": "br_w_eps_trig",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: MR-S EHPS pump relay (HCR150, glove box) 85 (k_eps) <- ECU-B B12",
+      "signal": "Broken off - continues on ST185-B-cabin: EPS enable relay k_eps_en 85 <- ECU-B B12",
       "width": 390,
       "layoutPosition": {
         "x": 1860,
@@ -1539,6 +1595,21 @@
       "schematicPosition": {
         "x": 3300,
         "y": 3360
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_eps_rly",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1860,
+        "y": 690
+      },
+      "schematicPosition": {
+        "x": 4200,
+        "y": 4380
       },
       "propagate": false
     }
@@ -2255,7 +2326,7 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "k_eps",
+        "id": "k_eps_en",
         "handle": "c2"
       },
       "partId": "m16_18_7"
@@ -2403,6 +2474,58 @@
         "handle": "Terminal"
       },
       "partId": "m16_14_2"
+    },
+    {
+      "id": "w_fb_k_eps_en_30_cp",
+      "color": "Red",
+      "source": {
+        "id": "rfrm",
+        "handle": "epsen"
+      },
+      "target": {
+        "id": "k_eps_en",
+        "handle": "c1"
+      },
+      "partId": "m16_18_2"
+    },
+    {
+      "id": "w_k_eps_en_86_cp",
+      "color": "Red",
+      "source": {
+        "id": "sp_cp_sw12",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "k_eps_en",
+        "handle": "c3"
+      },
+      "partId": "m16_18_2"
+    },
+    {
+      "id": "w_k_eps_en_87_cp",
+      "color": "Red",
+      "source": {
+        "id": "k_eps_en",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "mta2",
+        "handle": "mrsin"
+      },
+      "partId": "m16_18_2"
+    },
+    {
+      "id": "w_eps_rly_cp",
+      "color": "Violet",
+      "source": {
+        "id": "k_eps",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "br_w_eps_rly",
+        "handle": "Terminal"
+      },
+      "partId": "m16_20_7"
     }
   ],
   "bundles": [
@@ -3051,6 +3174,24 @@
       "targetId": "br_w_haz",
       "length": {
         "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_b_bp_1050__k_eps_en",
+      "sourceId": "b_bp_1050",
+      "targetId": "k_eps_en",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_b_bp_1065__br_w_eps_rly",
+      "sourceId": "b_bp_1065",
+      "targetId": "br_w_eps_rly",
+      "length": {
+        "value": 300,
         "unit": "mm"
       }
     }
