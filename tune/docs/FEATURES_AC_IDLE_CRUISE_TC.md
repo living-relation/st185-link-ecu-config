@@ -32,15 +32,17 @@ Clutch + low TPS + decel → ETB blip to sync RPM for lower gear from speed tabl
 
 ## Cruise (optional — not required for startup map)
 
-ST185 EWD p116–121: OEM stalk resistor ladder → **AN9** if spare.
+ST185 EWD p.116 (book p.118), combination switch C14, three wires - full detail in `ECUMASTER_SWITCHBOARD_SETUP.md` Step 4.1 and DECISIONS S23. The ladder goes to CSB3 Analog 2, not an ECU An Volt.
 
-| Function | Approx. resistance |
-|----------|-------------------|
-| Cancel | ~413 Ω |
-| Resume | ~68 Ω |
-| Set | ~198 Ω |
+| Function | Resistance to ground | Wire |
+|----------|-------------------|------|
+| RES/ACC (hold = accelerate) | ~68 ohm | pin 5 W (ladder) |
+| SET/COAST (hold = decelerate) | ~198 ohm | pin 5 W (ladder) |
+| CANCEL | ~418 ohm | pin 5 W (ladder) |
+| MAIN on/off | contact to ground | pin 15 Y-B -> CSB3 S3 |
+| Ground | - | pin 17 BR |
 
-Pins 5–17 (cruise) vs 15–17 (main). Configure Link cruise after base idle is stable.
+Configure Link cruise after base idle is stable.
 
 ## Validation tests
 

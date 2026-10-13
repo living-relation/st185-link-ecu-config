@@ -650,13 +650,13 @@ def cmd_simulate_switchboard(args: argparse.Namespace) -> None:
         )
 
     def rotary_sw(t: float) -> Tuple[int, bytes]:
-        # Cycle the ASSIGNED switch bits one at a time (cruise, bits 2-4; bits 0-1
-        # are unassigned since 2026-09-27), then one all-off step. Sweep two rotaries.
+        # Cycle the ASSIGNED switch bits one at a time (cruise MAIN, bit 2; bits 0-1
+        # are unassigned since 2026-09-27, bits 3-4 since 2026-10-13), then one all-off step. Sweep two rotaries.
         rot = int(t) % 16
         rotaries = (rot, (rot + 4) % 16, 0, 0, 0, 0, 0, 0)
         sw_mask = 0
         if args.toggle_switches:
-            steps = (f.SW_CRUISE_ACTIVE, f.SW_CRUISE_SET_ACCEL, f.SW_CRUISE_RESUME_DECEL, 0)
+            steps = (f.SW_CRUISE_ACTIVE, 0)
             sw_mask = steps[int(t // 2) % len(steps)]
         hb = heartbeat["v"] & 0xFF
         heartbeat["v"] += 1
@@ -775,7 +775,7 @@ def build_parser() -> argparse.ArgumentParser:
     ss.add_argument("--duration", type=float, default=None,
                     help="seconds to run, then stop (default: run until Ctrl-C)")
     ss.add_argument("--toggle-switches", action="store_true",
-                    help="cycle the assigned SW_MASK bits (2-4, cruise) one at a time")
+                    help="cycle the assigned SW_MASK bit (2, cruise MAIN) on and off")
     ss.set_defaults(func=cmd_simulate_switchboard)
 
     il = sub.add_parser("inject-ls-command",

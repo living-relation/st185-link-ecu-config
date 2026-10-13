@@ -99,7 +99,7 @@ feeds the ECU's V-Ethrottle pin; the ECU's internal H-bridge drives the motor vi
 | Fuel + oil pressure | Lowdoller 7990150 ×2 | 0-150 psi, 0.5V = 0, 4.5V = 150 |
 | Coolant pressure | Ronybuy 150 psi | Same linear scaling, tolerates 5-16 VDC |
 | Fluid / oil temp | Lowdoller 153299 (Racepak 810-TR-300 equivalent) | 32°F = 1630Ω … 302°F = 4476Ω; PCLink likely has a matching preset |
-| Fuel level | OEM ST185 resistive float | 3Ω full / 110Ω empty — **needs an external pull-up**, on an An Volt channel, not a Temp channel |
+| Fuel level | OEM ST185 resistive float | 3Ω full / 31.6Ω half / 110Ω empty (FSM; the half point is from the ST205 supplement, measure the real sender) — **needs an external pull-up** (470Ω to +5V gives 0.032 / 0.315 / 0.948 V), on an An Volt channel, not a Temp channel; PCLink 3-point table in DECISIONS S23 |
 | Turbo speed | BorgWarner 179430 | See pin table |
 | Crank | DNA Motoring OEM-SS-112 | The actual Toyota crank reluctor, 2-wire passive |
 | Wheel speed ×4 | Camry / RAV4 / Highlander-family reluctors | 2-wire, therefore passive — an active Hall needs three |
@@ -416,7 +416,7 @@ vibration; the value is easy to change on the bench while setting the trigger up
 needs no bulkhead pins of its own - 8 V already crosses on bulkhead A pin 4 for the
 sensor's supply, and the cam signal already crosses on pin 32. Nothing new is added.
 
-`r_fuellvl` (470 Ohm) and `r_cruise` (10k) are wired correctly as pull-ups to A32 and do
+`r_fuellvl` (470 Ohm) and `r_cruise` (to change from 10k to 1k, DECISIONS S23; the drawing still shows 10k until the row 92 redraw) are wired correctly as pull-ups to A32 and do
 not need this change - only the cam one is wrong.
 
 ## VR conditioner (NCV1124 dual boards)

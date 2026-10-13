@@ -65,9 +65,9 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 |---|---|---|
 | 0 | Switch 1 | Unassigned (was Evaporator Core State; A/C is the OEM amplifier's, 2026-09-27) |
 | 1 | Switch 2 | Unassigned (was AC Request; same) |
-| 2 | Switch 3 | Cruise Control Active |
-| 3 | Switch 4 | Cruise Set / Accelerate |
-| 4 | Switch 5 | Cruise Resume / Decelerate |
+| 2 | Switch 3 | Cruise Control Active (MAIN, stalk pin 15) |
+| 3 | Switch 4 | Unassigned (was Cruise Set; the OEM stalk has no SET wire, S23) |
+| 4 | Switch 5 | Unassigned (was Cruise Resume; the OEM stalk has no RESUME wire, S23) |
 | 5-7 | Switch 6-8 | Unassigned — available for future accessory inputs |
 
 ### Heartbeat (0x642 byte7)
@@ -91,10 +91,10 @@ The Link G4X consumes two switchboard frames via PCLink "User Stream" inputs, co
 | 0 | VDI1 | Unassigned (was Evaporator Core State) |
 | 1 | VDI2 | Unassigned (was AC Request) |
 | 2 | VDI3 | Cruise Control Active |
-| 3 | VDI4 | Cruise Set / Accelerate |
-| 4 | VDI5 | Cruise Resume / Decelerate |
+| 3 | VDI4 | Unassigned |
+| 4 | VDI5 | Unassigned |
 
-- **Downstream use:** these VDIs feed the ECU's cruise-control logic (PCLink condition tables / virtual aux outputs) — VDI3=1 arms cruise, VDI4/VDI5 adjust the set speed. VDI1/VDI2 are unassigned; A/C request and evaporator control are the OEM A/C amplifier's.
+- **Downstream use:** these VDIs feed the ECU's cruise-control logic (PCLink condition tables / virtual aux outputs) — VDI3=1 arms cruise; SET/COAST, RES/ACC and CANCEL come from the stalk ladder on CSB3 Analog 2 (0x640 bytes 2-3), decoded in PCLink (ECUMASTER_SWITCHBOARD_SETUP.md Step 4.1). VDI1, VDI2, VDI4 and VDI5 are unassigned; A/C request and evaporator control are the OEM A/C amplifier's.
 
 Both User Streams require the ECU to be on the same physical bus as the switchboard (§3).
 

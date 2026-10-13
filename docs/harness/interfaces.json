@@ -305,11 +305,11 @@
       "harness": "CSB3",
       "terminal": "fl_cruise_stalk_c1",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
-        "connector": "Cruise control switch",
-        "pin": "TBD",
-        "color": "TBD",
-        "function": "cruise ladder signal -> sp_cruise_ladder -> CSB3 A2",
+        "page": "1990 ST185 EWD p.116 (book p.118, connector C14 'cruise control SW [COMB. SW]'); 1992 Celica EWD132U p.180 same pins; 1993 Mitchell Electrical p.98-99 switch tests (docs/OPEN-ITEMS.md row 6)",
+        "connector": "Cruise control switch (C14, comb. switch)",
+        "pin": "5",
+        "color": "W (white)",
+        "function": "cruise ladder signal (RES/ACC ~68 ohm, SET/COAST ~198 ohm, CANCEL ~418 ohm to ground) -> sp_cruise_ladder -> CSB3 A2; pull-up 1 kohm to +5V, not 10 kohm (S23)",
         "method": "solder sleeve into the factory lead"
       }
     },
@@ -319,11 +319,11 @@
       "harness": "CSB3",
       "terminal": "fl_cruise_stalk_c3",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
-        "connector": "Cruise control switch",
-        "pin": "TBD",
-        "color": "TBD",
-        "function": "cruise MAIN ON -> CSB3 S3",
+        "page": "1990 ST185 EWD p.116 (book p.118, connector C14 'cruise control SW [COMB. SW]'); 1992 Celica EWD132U p.180 same pins; 1993 Mitchell Electrical p.98-99 switch tests (docs/OPEN-ITEMS.md row 6)",
+        "connector": "Cruise control switch (C14, comb. switch)",
+        "pin": "15",
+        "color": "Y-B (yellow/black)",
+        "function": "cruise MAIN ON-OFF: contact to the pin 17 ground when ON -> CSB3 S3; the OEM CC ECU input is A8 (CMS)",
         "method": "solder sleeve into the factory lead"
       }
     },
@@ -333,11 +333,11 @@
       "harness": "CSB3",
       "terminal": "fl_cruise_stalk_c4",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
-        "connector": "Cruise control switch",
-        "pin": "TBD",
-        "color": "TBD",
-        "function": "cruise SET/ACCEL -> CSB3 S4",
+        "page": "1990 ST185 EWD p.116 (book p.118, connector C14 'cruise control SW [COMB. SW]'); 1992 Celica EWD132U p.180 same pins; 1993 Mitchell Electrical p.98-99 switch tests (docs/OPEN-ITEMS.md row 6)",
+        "connector": "Cruise control switch (C14, comb. switch)",
+        "pin": "none",
+        "color": "none",
+        "function": "NO OEM WIRE: SET/COAST is a step on the pin 5 ladder, not a wire. Delete this lead and CSB3 S4 (R66, S23). The OEM stalk ground, pin 17 BR (brown), replaces it as a CSB3 ground lead - redraw pending (OPEN-ITEMS row 92)",
         "method": "solder sleeve into the factory lead"
       }
     },
@@ -347,11 +347,11 @@
       "harness": "CSB3",
       "terminal": "fl_cruise_stalk_c5",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
-        "connector": "Cruise control switch",
-        "pin": "TBD",
-        "color": "TBD",
-        "function": "cruise RESUME/DECEL -> CSB3 S5",
+        "page": "1990 ST185 EWD p.116 (book p.118, connector C14 'cruise control SW [COMB. SW]'); 1992 Celica EWD132U p.180 same pins; 1993 Mitchell Electrical p.98-99 switch tests (docs/OPEN-ITEMS.md row 6)",
+        "connector": "Cruise control switch (C14, comb. switch)",
+        "pin": "none",
+        "color": "none",
+        "function": "NO OEM WIRE: RES/ACC is a step on the pin 5 ladder, not a wire. Delete this lead and CSB3 S5 (R66, S23)",
         "method": "solder sleeve into the factory lead"
       }
     },

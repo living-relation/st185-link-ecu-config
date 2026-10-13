@@ -56,7 +56,7 @@ ECU,DI 5,ecu_b,b20,DI5_WSS_RL,Wheel speed rear left,signal,in,freq-di,none,B,set
 ECU,DI 4,ecu_b,b21,DI4_WSS_FR,Wheel speed front right,signal,in,freq-di,none,B,set,QSG-IO,Square wave from front VRC out c4
 ECU,Gnd Out,ecu_b,b22,GNDOUT,Sensor return rail,rail,out,gnd,none,B,set,QSG-IO,"Loom B's own sensor ground: every B sensor, fuel level, knock SIG- and the rear VRC return here; no harness tie to A24 (Daniel 2026-09-28); 18 AWG lead (ct_ss10_075) to sp_gndout_b"
 ECU,An Volt 8,ecu_b,b23,AV8_CLNT_P,Coolant pressure,signal,in,0-5v,none,B,set,QSG-IO,5V jumpered from A32
-ECU,An Volt 9,ecu_b,b24,AV9_FUEL_LVL,Fuel level sender,signal,in,0-5v,ext-div-to-5v,B,set,QSG-IO,An Volt has no internal pull-up; 470R is the locked buy; the V-to-% cal table is still open
+ECU,An Volt 9,ecu_b,b24,AV9_FUEL_LVL,Fuel level sender,signal,in,0-5v,ext-div-to-5v,B,set,QSG-IO,An Volt has no internal pull-up; 470R to +5V (A32) is the locked buy. OEM sender 3 ohm full / 31.6 half / 110 ohm empty (FSM, DECISIONS S23) gives 0.032 / 0.315 / 0.948 V: PCLink table 0.032 V = 100 %, 0.315 V = 50 %, 0.948 V = 0 %
 ECU,Ground,ecu_b,b25,GND_ECU,ECU reference ground,ground,na,gnd,none,B,set,QSG-IO,ECU reference only - not a sensor return
 ECU,Aux 10,ecu_b,b26,AUX10_ETB_MN,ETB motor -,signal,out,hbridge-4a,none,B,set,QSG-IO,Committed to the Bosch ETB H-bridge
 ECU,DI 10,ecu_b,b27,DI10_ANTITHEFT,Anti-theft input,signal,in,switch-gnd,sel-4k7-to-12v,B,set,Daniel-lock-2026-09-25,Alarm immobiliser out grounds when armed; PCLink Anti-Theft DI with pull-up ON. CAN 2 unused so this is an ordinary DI

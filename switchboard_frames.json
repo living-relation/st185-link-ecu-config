@@ -15,7 +15,7 @@
       "dlc": 8,
       "channels": [
         { "byte": 0, "length": 2, "name": "Analog Input 1", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "Unassigned (was cabin temp; A/C belongs to the OEM amplifier, 2026-09-27)" },
-        { "byte": 2, "length": 2, "name": "Analog Input 2", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "OEM cruise stalk resistor ladder (ECUMASTER_SWITCHBOARD_SETUP.md Step 4.1)" },
+        { "byte": 2, "length": 2, "name": "Analog Input 2", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "OEM cruise stalk resistor ladder, C14 pin 5 (RES/ACC ~68, SET/COAST ~198, CANCEL ~418 ohm; ECUMASTER_SWITCHBOARD_SETUP.md Step 4.1)" },
         { "byte": 4, "length": 2, "name": "Analog Input 3", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "TBD" },
         { "byte": 6, "length": 2, "name": "Analog Input 4", "scale": 1, "offset": 0, "unit": "mV", "range": [0, 5000], "assignment": "TBD" }
       ]
@@ -47,9 +47,9 @@
         { "byte": 4, "length": 1, "name": "SW_MASK", "unit": "bits", "bits": {
             "0": "Switch 1 - unassigned (was evaporator core state)",
             "1": "Switch 2 - unassigned (was A/C request)",
-            "2": "Switch 3 - cruise MAIN on",
-            "3": "Switch 4 - cruise SET / ACCEL",
-            "4": "Switch 5 - cruise RESUME / DECEL",
+            "2": "Switch 3 - cruise MAIN on (stalk pin 15)",
+            "3": "Switch 4 - unassigned (was cruise SET; no such stalk wire)",
+            "4": "Switch 5 - unassigned (was cruise RESUME; no such stalk wire)",
             "5": "Switch 6 - unassigned",
             "6": "Switch 7 - unassigned",
             "7": "Switch 8 - unassigned" } },
