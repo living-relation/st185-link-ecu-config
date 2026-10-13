@@ -109,6 +109,10 @@ of these lines. Gates in brackets are the scripts in `docs/harness/` that check 
 
 - **R52** (2026-10-11, S2/S7) All ECU settings (PCLink names, output configuration, tuning) happen at SETUP TIME, once the ECU is on the bench; outputs are named by connector + pin and/or the Quick Start Guide label ("B12 / Ign 6"). No configs are pending now: RealDash and the cluster are configured, the CSB3 is not bought. EPS speed signal: start from the MR-S VSS pulse rate and keep the ECU output adjustable (S1). Tracker: `docs/OPEN-ITEMS.md` setup-time table.
 
+### Project files
+
+- **R67** (2026-10-13) Every ST185 file lives inside `C:\projects\active\st185-link-ecu-config`. No session creates a folder or file in the `C:\projects` root, `_scratch`, `_tools`, `cad` or `inbox` for ST185 work - working files go in this repo's local `_research\` (untracked) or the tracked folder they belong in. CAD models are project files, never scratch: design CAD lives in `docs/electrical/cad/` (busbar, fuse box) and `docs/enclosures/cad/` (VRC, CSB3); research and pick pages in `docs/research/`; the live dashboard in `tools/dashboard/`. Files too large for GitHub (every STEP, the busbar drawing PDFs, >5 MB STLs) stay local and gitignored, in the same design folder in the main checkout. [`.gitignore`]
+
 ### Rule conflicts found in the 2026-10-12 consolidation
 
 | Rules | What disagreed | Resolution |

@@ -123,7 +123,7 @@ html = ['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
         '<title>ST185 Bus Bar Designs</title><style>%s</style></head><body><main>' % CSS]
 html.append('''<h1>ST185 glove-box combined +/&minus; bus bar &mdash; all saved versions</h1>
 <p class="mut">Built in Fusion by Claude Code, 2026-10-13. Nothing is overwritten: each version has its own folder in
-<code>C:\\projects\\_scratch\\st185-busbar\\</code> (STEP for every part and the assembly, STL for the printed parts, .f3d, A3 drawing PDF with an isolation
+<code>docs\\electrical\\cad\\busbar\\</code> (.f3d, STL for the printed parts and renders in git; STEP for every part and the assembly and the A3 drawing PDF kept local, gitignored with an isolation
 sheet, renders) and its own Fusion document in Default Project.</p>''')
 
 # ---- side-by-side cards

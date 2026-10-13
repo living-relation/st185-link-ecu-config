@@ -3,7 +3,7 @@
 > ## Before any wiring or CAN change — binding on every agent
 >
 > **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules from Daniel"
-> (R1-R52).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
+> (R1-R67).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
 > shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
 > this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
 > Three rules, all non-optional:
@@ -38,6 +38,7 @@
 - **Wiring SoT**: `sot/channels.csv` (every ECU pin and channel). `XTREMEX-IO-TABLE.html` is its visual face. `WIRING.md` covers the cluster boards and the 5-node CAN topology.
 - **Harness / electrical**: `docs/harness/rebuild/*.harness` - drawings, **not a source of truth** (Daniel, 2026-10-04: they follow `sot/channels.csv`; never generate truth docs from them) (one physical harness per file, ownership in `docs/harness/interfaces.json`; see `docs/harness/README.md`), gate `python docs/harness/check_all.py`. ECU looms follow the ECU connector letter (`ST185-A-cabin` / `-B-cabin` / `-A-engine` / `-B-engine`) - canonical rule `docs/RECONCILIATION-RULES.md` Rule 3, gate `validate_bulkhead_letter.py`; `docs/SHIELD-RULES.md`, `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - **Engine calibration**: `tune/engine_constants.yaml`, `tune/limits.yaml`, `tune/tables/*.csv`, `tune/docs/`, `tune/scripts/` (incl. `validate_tune.py`), `tune/README.md` — PCLink seeds only; not an I/O or CAN source. `FUEL-SYSTEM.md` is fuel hardware reference, not CAN.
+- **Project files stay in this repo** (DECISIONS R67): nothing for ST185 goes in the `C:\projects` root, `_scratch`, `_tools`, `cad` or `inbox`. CAD: `docs/electrical/cad/` (busbar designs, fuse box plan) and `docs/enclosures/cad/` (VRC, CSB3). Research / pick pages: `docs/research/`. Live dashboard: `tools/dashboard/` (its JSON data is local only). Heavy CAD (every STEP, busbar drawing PDFs, >5 MB STLs) is gitignored and kept in the same folder of the main checkout. Local working files: `_research/` (untracked).
 - **Other docs/**: `docs/devices/`, `docs/enclosures/`, `docs/sourcing/`, `docs/procedures/`, `docs/intercooler-turbo-study/`, `docs/5sgte-project-data/` (research), `docs/research-hub.html` (generated, see below).
 - **Project tracker**: `docs/OPEN-ITEMS.md` - THE one tracker: every unresolved item (owner, source, what unblocks it) plus the dated project history. Decisions and every binding rule live in `docs/harness/redesign/DECISIONS.md` ("Binding rules from Daniel" is the rules home).
 - **Route drawings**: `docs/harness/routes/` - Dan's approved route for each harness (one HTML per route, current version only); lint `docs/harness/check_route_drawings.py`.

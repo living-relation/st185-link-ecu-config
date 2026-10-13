@@ -30,4 +30,4 @@ Both boxes are Hammond 1590WYFL (natural diecast Al, 92x92x42 mm, 122.2 mm outsi
 
 ## CAD
 
-Custom VRC and CSB3 enclosure CAD (Fusion `.f3d`, STEP, drawings, renders) and the plan notes are in [cad/](cad/). The custom fuse/relay box plan and the busbar designs (A, A-rev3, B, B-rev2, B-rev3: `.f3d`, STL, renders; STEP and PDF kept local, too large) are in `docs/electrical/cad/`. Added 2026-10-13 from `C:\projects\_scratch`.
+Custom VRC and CSB3 enclosure CAD (Fusion `.f3d`, drawings, renders) and the plan notes are in [cad/](cad/). The custom fuse/relay box plan and the busbar designs (A, A-rev3, B, B-rev2, B-rev3: `.f3d`, STL, renders) are in `docs/electrical/cad/`. Heavy CAD - every STEP file, the busbar drawing PDFs and the two >5 MB cover STLs - is gitignored and kept only in the local checkout, in the same design folder (DECISIONS R67).
