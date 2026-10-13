@@ -30,4 +30,4 @@ Both boxes are Hammond 1590WYFL (natural diecast Al, 92x92x42 mm, 122.2 mm outsi
 
 ## CAD
 
-Custom VRC and CSB3 enclosure CAD (Fusion `.f3d`, drawings, renders, plan notes) is in the repo CAD tree: [`cad/enclosures/`](../../cad/enclosures/). Heavy CAD (every STEP) is gitignored and kept only in the main checkout, in the same folder (DECISIONS R67).
+Custom VRC and CSB3 enclosure CAD (drawings, renders, plan notes) is in the repo CAD tree: [`cad/enclosures/`](../../cad/enclosures/). The model files (Fusion `.f3d`, every STEP) are gitignored and kept only in the main checkout, in the same folder (DECISIONS R67).
