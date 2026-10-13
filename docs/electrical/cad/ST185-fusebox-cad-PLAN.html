@@ -1,0 +1,604 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ST185 Fuse Box Plan</title><style>
+:root{--bg:#f6f5f1;--fg:#1d1d1b;--mut:#5d5b55;--card:#fff;--line:#d9d6cc;--acc:#b4441f;
+--grid:#e8e5dc;--gridM:#cfcabd;--box:#ecebe5;--deck:#fbfaf6;--ami:#f3c75a;--fuse:#f0a43a;--rly:#8fb4d9;
+--spare:#e2e0d8;--bus:#c9772b;--b1:#c0392b;--b2:#d98a1f;--b0:#7b2d26;--lid:#bfb9a8;--new:#cfe3c6;--cur:#e6d3c3;--hcr:#c8c8d8;--txt:#1d1d1b}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17171a;--fg:#ecebe6;--mut:#a7a49b;--card:#202024;--line:#36363b;--acc:#ff8a5c;
+--grid:#26262b;--gridM:#36363d;--box:#2b2b30;--deck:#232327;--ami:#a8822a;--fuse:#a8691f;--rly:#3f6588;--spare:#3a3a40;--bus:#b06523;--b1:#e0614f;--b2:#e5a03c;--b0:#c06a5e;--lid:#55524a;--new:#3d5a35;--cur:#5c4636;--hcr:#4a4a60;--txt:#ecebe6}}
+:root[data-theme="dark"]{--bg:#17171a;--fg:#ecebe6;--mut:#a7a49b;--card:#202024;--line:#36363b;--acc:#ff8a5c;
+--grid:#26262b;--gridM:#36363d;--box:#2b2b30;--deck:#232327;--ami:#a8822a;--fuse:#a8691f;--rly:#3f6588;--spare:#3a3a40;--bus:#b06523;--b1:#e0614f;--b2:#e5a03c;--b0:#c06a5e;--lid:#55524a;--new:#3d5a35;--cur:#5c4636;--hcr:#4a4a60;--txt:#ecebe6}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.6rem;margin:.2em 0}h2{font-size:1.25rem;margin:2em 0 .5em;border-bottom:2px solid var(--line);padding-bottom:.2em}
+h3{font-size:1.05rem;margin:1.4em 0 .4em}
+p,li{max-width:75ch}.mut{color:var(--mut)}.lead{font-size:1.05rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:12px 0}
+.warn{border-left:4px solid var(--acc)}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:8px;background:var(--card);margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:.86rem}th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{position:sticky;top:0;background:var(--card);white-space:nowrap}td{min-width:60px}
+.fig{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px;margin:12px 0;overflow-x:auto}
+.fig svg{display:block;width:100%;min-width:560px;height:auto}
+.cap{font-size:.85rem;color:var(--mut);margin:6px 4px 0}
+code{font-size:.9em;background:var(--box);padding:0 4px;border-radius:4px}
+.g{stroke:var(--grid);stroke-width:.25}.gM{stroke:var(--gridM);stroke-width:.45}
+.box{fill:var(--box);stroke:var(--fg);stroke-width:.8}.deck{fill:var(--deck);stroke:var(--line);stroke-width:.4}
+.ear{fill:var(--box);stroke:var(--fg);stroke-width:.6}.hole{fill:var(--bg);stroke:var(--fg);stroke-width:.4}
+.ami{fill:var(--ami);stroke:var(--fg);stroke-width:.5}.fuse{fill:var(--fuse);stroke:var(--fg);stroke-width:.35}
+.rly{fill:var(--rly);stroke:var(--fg);stroke-width:.5}.spare{fill:var(--spare);stroke:var(--mut);stroke-width:.5;stroke-dasharray:1.5 1}
+.bus{fill:var(--bus);opacity:.55;stroke:var(--bus);stroke-width:.6}
+.bus1{fill:var(--b1);opacity:.75}.bus2{fill:var(--b2);opacity:.75}.bus0{fill:var(--b0);opacity:.75}
+.stud{fill:#9a9a9a;stroke:var(--fg);stroke-width:.4}.studB{fill:#c9a227;stroke:var(--fg);stroke-width:.6}
+.jmp{stroke:var(--b1);stroke-width:.8;stroke-dasharray:2 1.2;fill:none}
+.jx{fill:none;stroke-width:1.2}.j1{stroke:var(--b1)}.j2{stroke:var(--b2)}.j0{stroke:var(--b0)}.j3{stroke:var(--acc)}
+.lid{fill:var(--lid);stroke:var(--fg);stroke-width:.5}.rlyband{fill:var(--rly);opacity:.55;stroke:var(--fg);stroke-width:.5}
+.wz{fill:none;stroke:var(--mut);stroke-width:.5;stroke-dasharray:2 1.5}
+.cur{fill:var(--cur);stroke:var(--fg);stroke-width:.6}.new{fill:var(--new);stroke:var(--fg);stroke-width:.8}.hcr{fill:var(--hcr);stroke:var(--fg);stroke-width:.6}
+.dm{stroke:var(--acc);stroke-width:.5}.ah{fill:var(--acc)}
+text{fill:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.tf,.tr{font-weight:500}.tfb{font-weight:700}.tb,.tb2{font-weight:600}.tx{fill:var(--mut)}.dt{fill:var(--acc);font-weight:600}.th{font-weight:700}.tj{font-weight:600}
+.key{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--mut);margin:6px 4px}
+.key span:before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-2px;background:var(--c);border:1px solid var(--fg)}
+ol.q li{margin:.5em 0}
+.zone{stroke:var(--mut);stroke-width:.8;stroke-dasharray:3 2}.lnk{fill:none;stroke:var(--acc);stroke-width:1;stroke-dasharray:2 1.2}.tl{fill:var(--acc);font-weight:600}.tz{fill:var(--mut);font-weight:700;letter-spacing:.5px}.arw{fill:none;stroke:var(--acc);stroke-width:1.6}</style></head><body><main>
+<p class="mut">ST185 glove box · plan only, no CAD yet · <b>rev 2</b>, Claude Code, 2026-10-13 · Dan's answers to L1-L5 applied · repo read at origin/main <code>e6e49e5</code></p>
+<h1>One custom fuse + relay box: plan and to-scale mock-up</h1>
+<p class="lead">One 3D-printed box replaces the Eaton RFRM, 3 MTA modules and both LMI stacks. It has a <b>power zone</b> (all fuses of 30 A and up, as AMI stud fuses on one copper bar, plus the six F7 relays) and a <b>logic zone</b> (mini fuses on two bus strips plus the micro relays). One M8 input, no box-to-box jumpers, one lid. The HCR150 EPS relay stays beside it. The fuel pump relay moves out to an SSR at the battery box.</p>
+
+<h2>What changed from rev 1 (Dan, 2026-10-13)</h2>
+<ul>
+<li><b>Custom, not off-the-shelf (L5):</b> R18 Option B is replaced. This needs a new DECISIONS rule and a CabinPower redraw, done in the repo when the CAD is approved.</li>
+<li><b>One box, not two:</b> fewer boxes is the goal. The four jumpers between the boxes (L1 to Bus 1, k_efi 87 to Bus 2, Bus 0 tap, heater 87) become short links inside the box.</li>
+<li><b>Fuel pump out (L3A):</b> k_fp and its 20 A fuse leave the box for an SSR at the battery box. ETB 10 A moves onto Bus 1. <b>Bus 0 and its unfused tap are gone</b>, which also settles L2.</li>
+<li><b>A/C pressure-switch fuse at its source (L3B):</b> the ACPS fuse sits at the end of the logic zone next to the heater relay. The old 10 AWG jumper becomes a ~50 mm 12 AWG link.</li>
+<li><b>Orientation from the approved routes (L4):</b> the power zone is at the outboard end, the logic zone inboard, and wires exit along the forward (firewall) edge.</li>
+</ul>
+
+<h2>1. What has to fit</h2>
+<div class="tw"><table><thead><tr><th>Part type</th><th>Used</th><th>Positions built</th></tr></thead><tbody>
+<tr><td>AMI stud fuse</td><td>12</td><td>15 (3 spare, 20 %)</td></tr>
+<tr><td>Mini blade fuse</td><td>22 (FP gone)</td><td>26 (4 spare, 15 %)</td></tr>
+<tr><td>F7 Maxi ISO relay</td><td>6</td><td>7 (1 spare)</td></tr>
+<tr><td>Micro ISO relay</td><td>7 (k_fp gone)</td><td>10 (3 spare)</td></tr>
+<tr><td>HCR150</td><td>1, beside the box</td><td>-</td></tr>
+<tr><td>Feeds from the bus bar</td><td>1 (M8)</td><td>today: 5</td></tr>
+</tbody></table></div>
+<h3>Circuit table</h3>
+<div class="tw"><table class="t1"><thead><tr><th>Circuit</th><th>Fuse</th><th>A</th><th>Relay</th><th>Relay part</th><th>Zone</th><th>Bus / feed</th><th>AWG in</th><th>AWG out</th><th>Lands on</th></tr></thead><tbody><tr><td>Bus 1 feed (permanent)</td><td>AMI</td><td>50</td><td>-</td><td>-</td><td>Power</td><td>main bar</td><td>-</td><td>8 (internal)</td><td>Logic Bus 1 bar</td></tr><tr><td>Power windows (ex-R/B2)</td><td>AMI</td><td>30</td><td>power</td><td>1-1393304-0 OWN</td><td>Power</td><td>main bar (L2)</td><td>-</td><td>10</td><td>W-G window feed (left kick)</td></tr><tr><td>RTR pop-up lights</td><td>AMI</td><td>30</td><td>- (OEM R8)</td><td>-</td><td>Power</td><td>main bar (L3)</td><td>-</td><td>10</td><td>IE1-3 -&gt; R8 (left kick)</td></tr><tr><td>AM1</td><td>AMI</td><td>40</td><td>-</td><td>-</td><td>Power</td><td>main bar (L4)</td><td>-</td><td>8</td><td>IE1-10 (left kick)</td></tr><tr><td>AM2</td><td>AMI</td><td>30</td><td>-</td><td>-</td><td>Power</td><td>main bar (L5)</td><td>-</td><td>10</td><td>IE1-17 (left kick)</td></tr><tr><td>OEM HOT to J/B No.1</td><td>AMI</td><td>60</td><td>-</td><td>-</td><td>Power</td><td>main bar (L6)</td><td>-</td><td>6</td><td>J/B1 1I-1 (left kick)</td></tr><tr><td>EPS pump power</td><td>AMI</td><td>60</td><td>k_eps HCR150 (beside box)</td><td>1416010-1 OWN</td><td>beside</td><td>main bar (L7)</td><td>-</td><td>8 / 8</td><td>HCR150 30; 87 -&gt; pump A1 via RH fender</td></tr><tr><td>Radiator fan</td><td>AMI (was MAXI)</td><td>40</td><td>k_fan</td><td>1-1414147-0 OWN</td><td>Power</td><td>main bar</td><td>-</td><td>8</td><td>fan via RH fender; Aux 5 A29</td></tr><tr><td>Condenser fan</td><td>AMI (was MAXI)</td><td>30</td><td>k_fan2</td><td>1-1393304-0 OWN</td><td>Power</td><td>main bar</td><td>-</td><td>8</td><td>fan via RH fender; Ign 5 B13</td></tr><tr><td>Blower / heater</td><td>AMI (was MAXI)</td><td>40</td><td>heater</td><td>1-1414147-0 OWN</td><td>Power</td><td>main bar</td><td>-</td><td>8</td><td>B4 pin 2 (right kick); 87 also -&gt; ACPS fuse</td></tr><tr><td>EFI main (makes Bus 2)</td><td>AMI (was MiniVal)</td><td>30</td><td>k_efi</td><td>1-1414147-0 OWN</td><td>Power</td><td>main bar</td><td>12</td><td>10 (internal)</td><td>Logic Bus 2 bar; Aux 6 A28</td></tr><tr><td>Starter S</td><td>AMI (was MiniVal)</td><td>30</td><td>k_str</td><td>1-1414147-0 BUY</td><td>Power</td><td>main bar</td><td>12</td><td>10</td><td>starter S; Aux 8 A26</td></tr><tr><td>A/C pressure switch</td><td>mini</td><td>10</td><td>-</td><td>-</td><td>Logic (next to Power)</td><td>own feed: heater 87</td><td>12 link ~50 mm</td><td>18</td><td>A5 pin 1</td></tr><tr><td>EFI relay coil feed 86</td><td>mini</td><td>5</td><td>-</td><td>-</td><td>Logic</td><td>Bus 1</td><td>-</td><td>18</td><td>k_efi 86</td></tr><tr><td>HEAD LH / HEAD RH</td><td>mini x2</td><td>15 / 15</td><td>HEAD LH / RH</td><td>5-1393292-8 OWN x2</td><td>Logic</td><td>Bus 1</td><td>-</td><td>14</td><td>H1 / H2 pin 3</td></tr><tr><td>HAZ-HORN</td><td>mini</td><td>15</td><td>horn</td><td>4-1904124-3 OWN</td><td>Logic</td><td>Bus 1</td><td>-</td><td>14</td><td>IE1-12; horn 87 -&gt; H3/H4</td></tr><tr><td>DOME</td><td>mini</td><td>20</td><td>-</td><td>-</td><td>Logic</td><td>Bus 1</td><td>-</td><td>12</td><td>J/B1 1H-2</td></tr><tr><td>Door lock / tilt-away W-L</td><td>mini</td><td>15</td><td>-</td><td>-</td><td>Logic</td><td>Bus 1</td><td>-</td><td>14</td><td>W-L, old R/B2 pin 2</td></tr><tr><td>Alarm const / shock</td><td>mini x2</td><td>5 / 2</td><td>-</td><td>-</td><td>Logic</td><td>Bus 1</td><td>-</td><td>20</td><td>AntiTheft</td></tr><tr><td>Alternator S sense</td><td>mini</td><td>2</td><td>-</td><td>-</td><td>Logic</td><td>Bus 1</td><td>-</td><td>20</td><td>G2-1</td></tr><tr><td>ETB power</td><td>mini</td><td>10</td><td>k_etb</td><td>4-1904124-2 OWN</td><td>Logic</td><td>Bus 1 (was Bus 0)</td><td>-</td><td>16</td><td>ECU B5; Aux 2 A20</td></tr><tr><td>CAN-Lambda +12V</td><td>mini</td><td>7.5</td><td>-</td><td>-</td><td>Logic</td><td>Bus 2</td><td>-</td><td>14</td><td>bulkhead B c3</td></tr><tr><td>SW12 / COP / INJ</td><td>mini x3</td><td>7.5 / 15 / 15</td><td>-</td><td>-</td><td>Logic</td><td>Bus 2</td><td>-</td><td>18 / 14 / 14</td><td>ECU rail, coils, injectors</td></tr><tr><td>CSB3 / DEV (cluster + Pi)</td><td>mini x2</td><td>5 / 15</td><td>-</td><td>-</td><td>Logic</td><td>Bus 2</td><td>-</td><td>20 / 16</td><td>CSB3, ST185-CAN sp_dev</td></tr><tr><td>EPS enable</td><td>mini</td><td>7.5</td><td>k_eps_en</td><td>6-1419137-4 OWN</td><td>Logic</td><td>Bus 2</td><td>-</td><td>18</td><td>87 -&gt; MRS fuse (internal)</td></tr><tr><td>A/C clutch</td><td>mini</td><td>10</td><td>k_acc</td><td>6-1419137-4 OWN</td><td>Logic</td><td>Bus 2</td><td>-</td><td>16</td><td>A4-4</td></tr><tr><td>Alarm ignition sense</td><td>mini</td><td>2</td><td>-</td><td>-</td><td>Logic</td><td>Bus 2</td><td>-</td><td>20</td><td>AntiTheft</td></tr><tr><td>MR-S pump logic</td><td>mini</td><td>7.5</td><td>-</td><td>-</td><td>Logic</td><td>own feed: k_eps_en 87</td><td>18</td><td>20</td><td>pump C1</td></tr><tr><td>B30 start request</td><td>mini</td><td>2</td><td>-</td><td>-</td><td>Logic</td><td>own feed: ST1 tap</td><td>20</td><td>20</td><td>ECU B30</td></tr><tr><td>Reverse lamps</td><td>none (J/B1 GAUGE 15A, R61)</td><td>-</td><td>k_rev</td><td>6-1419137-4 BUY</td><td>Logic</td><td>30 from J/B3 3B-9</td><td>16</td><td>16</td><td>R11 / R12 pin 4</td></tr><tr><td>Fuel pump (Walbro F90000295, 535 LPH; 19.0 A rated at 40 psi / 13.5 V, vendors quote up to 25 A)</td><td>MOVED OUT: MAXI</td><td>40 (was 20)</td><td>DC SSR at the battery box (Dan, 2026-10-13)</td><td>TBD: 40 A+ continuous after heat derating, surge rating above the measured inrush, freewheel diode across the pump</td><td>trunk</td><td>-</td><td>-</td><td>10</td><td>see L6</td></tr></tbody></table></div>
+
+<h2>2. Mock-up, to scale (1 grid square = 10 mm)</h2>
+<div class="key"><span style="--c:var(--ami)">AMI fuse</span><span style="--c:var(--fuse)">mini fuse</span><span style="--c:var(--rly)">relay</span><span style="--c:var(--spare)">spare position</span><span style="--c:var(--bus)">copper bus</span><span style="--c:var(--b1)">Bus 1 / jumper</span><span style="--c:var(--b2)">Bus 2</span><span style="--c:var(--b0)">Bus 0</span><span style="--c:#c9a227">feed stud</span></div>
+<div class="fig"><svg viewBox="-46 -46 462.0 252.0" role="img" aria-label="One box top view, to scale, 10 mm grid" xmlns="http://www.w3.org/2000/svg"><title>One box top view, to scale, 10 mm grid</title><defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs><g class="grid"><line x1="0" y1="0" x2="0" y2="160.0" class="gM"/>
+<line x1="10" y1="0" x2="10" y2="160.0" class="g"/>
+<line x1="20" y1="0" x2="20" y2="160.0" class="g"/>
+<line x1="30" y1="0" x2="30" y2="160.0" class="g"/>
+<line x1="40" y1="0" x2="40" y2="160.0" class="g"/>
+<line x1="50" y1="0" x2="50" y2="160.0" class="gM"/>
+<line x1="60" y1="0" x2="60" y2="160.0" class="g"/>
+<line x1="70" y1="0" x2="70" y2="160.0" class="g"/>
+<line x1="80" y1="0" x2="80" y2="160.0" class="g"/>
+<line x1="90" y1="0" x2="90" y2="160.0" class="g"/>
+<line x1="100" y1="0" x2="100" y2="160.0" class="gM"/>
+<line x1="110" y1="0" x2="110" y2="160.0" class="g"/>
+<line x1="120" y1="0" x2="120" y2="160.0" class="g"/>
+<line x1="130" y1="0" x2="130" y2="160.0" class="g"/>
+<line x1="140" y1="0" x2="140" y2="160.0" class="g"/>
+<line x1="150" y1="0" x2="150" y2="160.0" class="gM"/>
+<line x1="160" y1="0" x2="160" y2="160.0" class="g"/>
+<line x1="170" y1="0" x2="170" y2="160.0" class="g"/>
+<line x1="180" y1="0" x2="180" y2="160.0" class="g"/>
+<line x1="190" y1="0" x2="190" y2="160.0" class="g"/>
+<line x1="200" y1="0" x2="200" y2="160.0" class="gM"/>
+<line x1="210" y1="0" x2="210" y2="160.0" class="g"/>
+<line x1="220" y1="0" x2="220" y2="160.0" class="g"/>
+<line x1="230" y1="0" x2="230" y2="160.0" class="g"/>
+<line x1="240" y1="0" x2="240" y2="160.0" class="g"/>
+<line x1="250" y1="0" x2="250" y2="160.0" class="gM"/>
+<line x1="260" y1="0" x2="260" y2="160.0" class="g"/>
+<line x1="270" y1="0" x2="270" y2="160.0" class="g"/>
+<line x1="280" y1="0" x2="280" y2="160.0" class="g"/>
+<line x1="290" y1="0" x2="290" y2="160.0" class="g"/>
+<line x1="300" y1="0" x2="300" y2="160.0" class="gM"/>
+<line x1="310" y1="0" x2="310" y2="160.0" class="g"/>
+<line x1="320" y1="0" x2="320" y2="160.0" class="g"/>
+<line x1="330" y1="0" x2="330" y2="160.0" class="g"/>
+<line x1="340" y1="0" x2="340" y2="160.0" class="g"/>
+<line x1="350" y1="0" x2="350" y2="160.0" class="gM"/>
+<line x1="360" y1="0" x2="360" y2="160.0" class="g"/>
+<line x1="370" y1="0" x2="370" y2="160.0" class="g"/>
+<line x1="0" y1="0" x2="370.0" y2="0" class="gM"/>
+<line x1="0" y1="10" x2="370.0" y2="10" class="g"/>
+<line x1="0" y1="20" x2="370.0" y2="20" class="g"/>
+<line x1="0" y1="30" x2="370.0" y2="30" class="g"/>
+<line x1="0" y1="40" x2="370.0" y2="40" class="g"/>
+<line x1="0" y1="50" x2="370.0" y2="50" class="gM"/>
+<line x1="0" y1="60" x2="370.0" y2="60" class="g"/>
+<line x1="0" y1="70" x2="370.0" y2="70" class="g"/>
+<line x1="0" y1="80" x2="370.0" y2="80" class="g"/>
+<line x1="0" y1="90" x2="370.0" y2="90" class="g"/>
+<line x1="0" y1="100" x2="370.0" y2="100" class="gM"/>
+<line x1="0" y1="110" x2="370.0" y2="110" class="g"/>
+<line x1="0" y1="120" x2="370.0" y2="120" class="g"/>
+<line x1="0" y1="130" x2="370.0" y2="130" class="g"/>
+<line x1="0" y1="140" x2="370.0" y2="140" class="g"/>
+<line x1="0" y1="150" x2="370.0" y2="150" class="gM"/>
+<line x1="0" y1="160" x2="370.0" y2="160" class="g"/></g><rect x="0.00" y="0.00" width="370.00" height="148.00" rx="4" class="box" />
+<rect x="3.00" y="3.00" width="364.00" height="142.00" rx="2" class="deck" />
+<rect x="-12.00" y="29.00" width="12.00" height="16.00" rx="2" class="ear" />
+<circle cx="-6.00" cy="37.00" r="2.75" class="hole"/>
+<rect x="-12.00" y="103.00" width="12.00" height="16.00" rx="2" class="ear" />
+<circle cx="-6.00" cy="111.00" r="2.75" class="hole"/>
+<rect x="370.00" y="29.00" width="12.00" height="16.00" rx="2" class="ear" />
+<circle cx="376.00" cy="37.00" r="2.75" class="hole"/>
+<rect x="370.00" y="103.00" width="12.00" height="16.00" rx="2" class="ear" />
+<circle cx="376.00" cy="111.00" r="2.75" class="hole"/>
+<line x1="124.0" y1="6" x2="124.0" y2="142.0" class="zone"/>
+<text x="62.00" y="143.00" class="tz" font-size="3.6" text-anchor="middle">LOGIC ZONE</text>
+<text x="247.00" y="143.00" class="tz" font-size="3.6" text-anchor="middle">POWER ZONE</text>
+<rect x="7.09" y="21.50" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="10.20" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 10.20 20.50)">EFI86 5</text>
+<rect x="15.20" y="21.50" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="18.30" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 18.30 20.50)">HL 15</text>
+<rect x="23.29" y="21.50" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="26.40" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 26.40 20.50)">HR 15</text>
+<rect x="31.39" y="21.50" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="34.50" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 34.50 20.50)">HZ 15</text>
+<rect x="39.49" y="21.50" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="42.60" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 42.60 20.50)">DM 20</text>
+<rect x="47.59" y="21.50" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="50.70" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 50.70 20.50)">WL 15</text>
+<rect x="55.69" y="21.50" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="58.80" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 58.80 20.50)">ALM 5</text>
+<rect x="63.79" y="21.50" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="66.90" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 66.90 20.50)">ALMS 2</text>
+<rect x="71.89" y="21.50" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="75.00" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 75.00 20.50)">ALTS 2</text>
+<rect x="79.99" y="21.50" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="83.10" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 83.10 20.50)">ETB 10</text>
+<rect x="88.09" y="21.50" width="3.81" height="10.92" rx="0.5" class="spare" />
+<text x="91.20" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 91.20 20.50)">SP</text>
+<rect x="96.19" y="21.50" width="3.81" height="10.92" rx="0.5" class="spare" />
+<text x="99.30" y="20.50" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 99.30 20.50)">SP</text>
+<rect x="7.09" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="10.20" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 10.20 61.00)">LAM 7.5</text>
+<rect x="15.20" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="18.30" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 18.30 61.00)">SW12 7.5</text>
+<rect x="23.29" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="26.40" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 26.40 61.00)">COP 15</text>
+<rect x="31.39" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="34.50" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 34.50 61.00)">INJ 15</text>
+<rect x="39.49" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="42.60" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 42.60 61.00)">CSB 5</text>
+<rect x="47.59" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="50.70" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 50.70 61.00)">DEV 15</text>
+<rect x="55.69" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="58.80" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 58.80 61.00)">EPSEN 7.5</text>
+<rect x="63.79" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="66.90" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 66.90 61.00)">ACC 10</text>
+<rect x="71.89" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="75.00" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 75.00 61.00)">ALMIG 2</text>
+<rect x="79.99" y="62.00" width="3.81" height="10.92" rx="0.5" class="spare" />
+<text x="83.10" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 83.10 61.00)">SP</text>
+<rect x="88.09" y="62.00" width="3.81" height="10.92" rx="0.5" class="spare" />
+<text x="91.20" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 91.20 61.00)">SP</text>
+<rect x="100.19" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="103.30" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 103.30 61.00)">MRS 7.5</text>
+<rect x="108.29" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="111.40" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 111.40 61.00)">B30 2</text>
+<rect x="116.39" y="62.00" width="3.81" height="10.92" rx="0.5" class="fuse" />
+<text x="119.50" y="61.00" class="tf" font-size="3.1" text-anchor="start" transform="rotate(-90 119.50 61.00)">ACPS 10</text>
+<rect x="6.00" y="33.50" width="95.10" height="3" class="bus1"/><text x="6.00" y="40.70" class="tb2" font-size="2.8" text-anchor="start">BUS 1 permanent (L1 50 A, internal 8 AWG link)</text>
+<rect x="6.00" y="74.00" width="87.00" height="3" class="bus2"/><text x="6.00" y="81.20" class="tb2" font-size="2.8" text-anchor="start">BUS 2 switched (k_efi 87, internal 10 AWG link)</text>
+<text x="100.10" y="81.20" class="tb2" font-size="2.8" text-anchor="start">own feeds</text>
+<rect x="6.25" y="88.00" width="15.50" height="23.00" rx="1.2" class="rly" />
+<text x="14.00" y="95.00" class="tr" font-size="3.1" text-anchor="middle">HEAD</text>
+<text x="14.00" y="99.00" class="tr" font-size="3.1" text-anchor="middle">LH</text>
+<text x="14.00" y="104.00" class="tr" font-size="1.9" text-anchor="middle">5-1393292-8</text>
+<text x="14.00" y="107.50" class="tr" font-size="2.2" text-anchor="middle">OWN</text>
+<rect x="26.25" y="88.00" width="15.50" height="23.00" rx="1.2" class="rly" />
+<text x="34.00" y="95.00" class="tr" font-size="3.1" text-anchor="middle">HEAD</text>
+<text x="34.00" y="99.00" class="tr" font-size="3.1" text-anchor="middle">RH</text>
+<text x="34.00" y="104.00" class="tr" font-size="1.9" text-anchor="middle">5-1393292-8</text>
+<text x="34.00" y="107.50" class="tr" font-size="2.2" text-anchor="middle">OWN</text>
+<rect x="46.25" y="88.00" width="15.50" height="23.00" rx="1.2" class="rly" />
+<text x="54.00" y="95.00" class="tr" font-size="3.1" text-anchor="middle">horn</text>
+<text x="54.00" y="104.00" class="tr" font-size="1.9" text-anchor="middle">4-1904124-3</text>
+<text x="54.00" y="107.50" class="tr" font-size="2.2" text-anchor="middle">OWN</text>
+<rect x="66.25" y="88.00" width="15.50" height="23.00" rx="1.2" class="rly" />
+<text x="74.00" y="95.00" class="tr" font-size="3.1" text-anchor="middle">k_etb</text>
+<text x="74.00" y="104.00" class="tr" font-size="1.9" text-anchor="middle">4-1904124-2</text>
+<text x="74.00" y="107.50" class="tr" font-size="2.2" text-anchor="middle">OWN</text>
+<rect x="86.25" y="88.00" width="15.50" height="23.00" rx="1.2" class="rly" />
+<text x="94.00" y="95.00" class="tr" font-size="3.1" text-anchor="middle">k_acc</text>
+<text x="94.00" y="104.00" class="tr" font-size="1.9" text-anchor="middle">6-1419137-4</text>
+<text x="94.00" y="107.50" class="tr" font-size="2.2" text-anchor="middle">OWN</text>
+<rect x="6.25" y="115.00" width="15.50" height="23.00" rx="1.2" class="rly" />
+<text x="14.00" y="122.00" class="tr" font-size="3.1" text-anchor="middle">k_eps_en</text>
+<text x="14.00" y="131.00" class="tr" font-size="1.9" text-anchor="middle">6-1419137-4</text>
+<text x="14.00" y="134.50" class="tr" font-size="2.2" text-anchor="middle">OWN</text>
+<rect x="26.25" y="115.00" width="15.50" height="23.00" rx="1.2" class="rly" />
+<text x="34.00" y="122.00" class="tr" font-size="3.1" text-anchor="middle">k_rev</text>
+<text x="34.00" y="131.00" class="tr" font-size="1.9" text-anchor="middle">6-1419137-4</text>
+<text x="34.00" y="134.50" class="tr" font-size="2.2" text-anchor="middle">BUY</text>
+<rect x="46.25" y="115.00" width="15.50" height="23.00" rx="1.2" class="spare" />
+<text x="54.00" y="122.00" class="tr" font-size="3.1" text-anchor="middle">SPARE</text>
+<rect x="66.25" y="115.00" width="15.50" height="23.00" rx="1.2" class="spare" />
+<text x="74.00" y="122.00" class="tr" font-size="3.1" text-anchor="middle">SPARE</text>
+<rect x="86.25" y="115.00" width="15.50" height="23.00" rx="1.2" class="spare" />
+<text x="94.00" y="122.00" class="tr" font-size="3.1" text-anchor="middle">SPARE</text>
+<rect x="132.00" y="71.50" width="230.00" height="25.00" rx="1.5" class="bus" />
+<circle cx="352.00" cy="84.00" r="4" class="studB"/>
+<text x="352.00" y="77.50" class="tb" font-size="3.2" text-anchor="middle">M8 IN</text>
+<text x="352.00" y="93.50" class="tb" font-size="3" text-anchor="middle">1/0</text>
+<rect x="138.00" y="86.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="146.00" cy="92.00" r="2.5" class="stud"/>
+<circle cx="146.00" cy="122.00" r="2.5" class="stud"/>
+<text x="146.00" y="102.50" class="tf" font-size="3.3" text-anchor="middle">L1</text>
+<text x="146.00" y="107.00" class="tf" font-size="3" text-anchor="middle">BUS1</text>
+<text x="146.00" y="113.00" class="tfb" font-size="3.5" text-anchor="middle">50 A</text>
+<rect x="163.71" y="86.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="171.71" cy="92.00" r="2.5" class="stud"/>
+<circle cx="171.71" cy="122.00" r="2.5" class="stud"/>
+<text x="171.71" y="102.50" class="tf" font-size="3.3" text-anchor="middle">L3</text>
+<text x="171.71" y="107.00" class="tf" font-size="3" text-anchor="middle">RTR</text>
+<text x="171.71" y="113.00" class="tfb" font-size="3.5" text-anchor="middle">30 A</text>
+<rect x="189.43" y="86.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="197.43" cy="92.00" r="2.5" class="stud"/>
+<circle cx="197.43" cy="122.00" r="2.5" class="stud"/>
+<text x="197.43" y="102.50" class="tf" font-size="3.3" text-anchor="middle">L4</text>
+<text x="197.43" y="107.00" class="tf" font-size="3" text-anchor="middle">AM1</text>
+<text x="197.43" y="113.00" class="tfb" font-size="3.5" text-anchor="middle">40 A</text>
+<rect x="215.14" y="86.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="223.14" cy="92.00" r="2.5" class="stud"/>
+<circle cx="223.14" cy="122.00" r="2.5" class="stud"/>
+<text x="223.14" y="102.50" class="tf" font-size="3.3" text-anchor="middle">L5</text>
+<text x="223.14" y="107.00" class="tf" font-size="3" text-anchor="middle">AM2</text>
+<text x="223.14" y="113.00" class="tfb" font-size="3.5" text-anchor="middle">30 A</text>
+<rect x="240.86" y="86.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="248.86" cy="92.00" r="2.5" class="stud"/>
+<circle cx="248.86" cy="122.00" r="2.5" class="stud"/>
+<text x="248.86" y="102.50" class="tf" font-size="3.3" text-anchor="middle">L6</text>
+<text x="248.86" y="107.00" class="tf" font-size="3" text-anchor="middle">J/B1</text>
+<text x="248.86" y="113.00" class="tfb" font-size="3.5" text-anchor="middle">60 A</text>
+<rect x="266.57" y="86.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="274.57" cy="92.00" r="2.5" class="stud"/>
+<circle cx="274.57" cy="122.00" r="2.5" class="stud"/>
+<text x="274.57" y="102.50" class="tf" font-size="3.3" text-anchor="middle">L7</text>
+<text x="274.57" y="107.00" class="tf" font-size="3" text-anchor="middle">EPS</text>
+<text x="274.57" y="113.00" class="tfb" font-size="3.5" text-anchor="middle">60 A</text>
+<rect x="292.29" y="86.50" width="16.00" height="41.00" rx="2" class="spare" />
+<circle cx="300.29" cy="92.00" r="2.5" class="stud"/>
+<circle cx="300.29" cy="122.00" r="2.5" class="stud"/>
+<text x="300.29" y="102.50" class="tf" font-size="3.3" text-anchor="middle">SPARE</text>
+<rect x="318.00" y="86.50" width="16.00" height="41.00" rx="2" class="spare" />
+<circle cx="326.00" cy="92.00" r="2.5" class="stud"/>
+<circle cx="326.00" cy="122.00" r="2.5" class="stud"/>
+<text x="326.00" y="102.50" class="tf" font-size="3.3" text-anchor="middle">SPARE</text>
+<rect x="138.00" y="40.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="146.00" cy="46.00" r="2.5" class="stud"/>
+<circle cx="146.00" cy="76.00" r="2.5" class="stud"/>
+<text x="146.00" y="56.50" class="tf" font-size="3.3" text-anchor="middle">HTR</text>
+<text x="146.00" y="67.00" class="tfb" font-size="3.5" text-anchor="middle">40 A</text>
+<path d="M146.0,46.0 L146.0,30.200000000000003" class="jmp"/>
+<rect x="168.00" y="40.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="176.00" cy="46.00" r="2.5" class="stud"/>
+<circle cx="176.00" cy="76.00" r="2.5" class="stud"/>
+<text x="176.00" y="56.50" class="tf" font-size="3.3" text-anchor="middle">EFI</text>
+<text x="176.00" y="67.00" class="tfb" font-size="3.5" text-anchor="middle">30 A</text>
+<path d="M176.0,46.0 L176.0,30.200000000000003" class="jmp"/>
+<rect x="198.00" y="40.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="206.00" cy="46.00" r="2.5" class="stud"/>
+<circle cx="206.00" cy="76.00" r="2.5" class="stud"/>
+<text x="206.00" y="56.50" class="tf" font-size="3.3" text-anchor="middle">STR</text>
+<text x="206.00" y="67.00" class="tfb" font-size="3.5" text-anchor="middle">30 A</text>
+<path d="M206.0,46.0 L206.0,30.200000000000003" class="jmp"/>
+<rect x="228.00" y="40.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="236.00" cy="46.00" r="2.5" class="stud"/>
+<circle cx="236.00" cy="76.00" r="2.5" class="stud"/>
+<text x="236.00" y="56.50" class="tf" font-size="3.3" text-anchor="middle">FAN</text>
+<text x="236.00" y="67.00" class="tfb" font-size="3.5" text-anchor="middle">40 A</text>
+<path d="M236.0,46.0 L236.0,30.200000000000003" class="jmp"/>
+<rect x="258.00" y="40.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="266.00" cy="46.00" r="2.5" class="stud"/>
+<circle cx="266.00" cy="76.00" r="2.5" class="stud"/>
+<text x="266.00" y="56.50" class="tf" font-size="3.3" text-anchor="middle">FAN2</text>
+<text x="266.00" y="67.00" class="tfb" font-size="3.5" text-anchor="middle">30 A</text>
+<path d="M266.0,46.0 L266.0,30.200000000000003" class="jmp"/>
+<rect x="288.00" y="40.50" width="16.00" height="41.00" rx="2" class="ami" />
+<circle cx="296.00" cy="46.00" r="2.5" class="stud"/>
+<circle cx="296.00" cy="76.00" r="2.5" class="stud"/>
+<text x="296.00" y="56.50" class="tf" font-size="3.3" text-anchor="middle">PWR</text>
+<text x="296.00" y="61.00" class="tf" font-size="3" text-anchor="middle">L2</text>
+<text x="296.00" y="67.00" class="tfb" font-size="3.5" text-anchor="middle">30 A</text>
+<path d="M296.0,46.0 L296.0,30.200000000000003" class="jmp"/>
+<rect x="318.00" y="40.50" width="16.00" height="41.00" rx="2" class="spare" />
+<circle cx="326.00" cy="46.00" r="2.5" class="stud"/>
+<circle cx="326.00" cy="76.00" r="2.5" class="stud"/>
+<text x="326.00" y="56.50" class="tf" font-size="3.3" text-anchor="middle">SPARE</text>
+<rect x="132.90" y="8.00" width="26.20" height="26.20" rx="1.5" class="rly" />
+<text x="146.00" y="17.00" class="tr" font-size="4" text-anchor="middle">heater</text>
+<text x="146.00" y="23.00" class="tr" font-size="2.6" text-anchor="middle">1-1414147-0</text>
+<text x="146.00" y="28.00" class="tr" font-size="2.6" text-anchor="middle">OWN</text>
+<rect x="162.90" y="8.00" width="26.20" height="26.20" rx="1.5" class="rly" />
+<text x="176.00" y="17.00" class="tr" font-size="4" text-anchor="middle">k_efi</text>
+<text x="176.00" y="23.00" class="tr" font-size="2.6" text-anchor="middle">1-1414147-0</text>
+<text x="176.00" y="28.00" class="tr" font-size="2.6" text-anchor="middle">OWN</text>
+<rect x="192.90" y="8.00" width="26.20" height="26.20" rx="1.5" class="rly" />
+<text x="206.00" y="17.00" class="tr" font-size="4" text-anchor="middle">k_str</text>
+<text x="206.00" y="23.00" class="tr" font-size="2.6" text-anchor="middle">1-1414147-0</text>
+<text x="206.00" y="28.00" class="tr" font-size="2.6" text-anchor="middle">BUY</text>
+<rect x="222.90" y="8.00" width="26.20" height="26.20" rx="1.5" class="rly" />
+<text x="236.00" y="17.00" class="tr" font-size="4" text-anchor="middle">k_fan</text>
+<text x="236.00" y="23.00" class="tr" font-size="2.6" text-anchor="middle">1-1414147-0</text>
+<text x="236.00" y="28.00" class="tr" font-size="2.6" text-anchor="middle">OWN</text>
+<rect x="252.90" y="8.00" width="26.20" height="26.20" rx="1.5" class="rly" />
+<text x="266.00" y="17.00" class="tr" font-size="4" text-anchor="middle">k_fan2</text>
+<text x="266.00" y="23.00" class="tr" font-size="2.6" text-anchor="middle">1-1393304-0</text>
+<text x="266.00" y="28.00" class="tr" font-size="2.6" text-anchor="middle">OWN</text>
+<rect x="282.90" y="8.00" width="26.20" height="26.20" rx="1.5" class="rly" />
+<text x="296.00" y="17.00" class="tr" font-size="4" text-anchor="middle">power</text>
+<text x="296.00" y="23.00" class="tr" font-size="2.6" text-anchor="middle">1-1393304-0</text>
+<text x="296.00" y="28.00" class="tr" font-size="2.6" text-anchor="middle">OWN</text>
+<rect x="312.90" y="8.00" width="26.20" height="26.20" rx="1.5" class="spare" />
+<text x="326.00" y="17.00" class="tr" font-size="4" text-anchor="middle">SPARE</text>
+<text x="326.00" y="23.00" class="tr" font-size="2.6" text-anchor="middle">F7 pos.</text>
+<path d="M133.0,28.0 L118.3,28.0 L118.3,62.0" class="lnk"/>
+<text x="116.30" y="39.00" class="tl" font-size="2.6" text-anchor="end">heater 87 -&gt; ACPS</text>
+<text x="116.30" y="42.50" class="tl" font-size="2.6" text-anchor="end">12 AWG, ~50 mm</text>
+<line x1="0" y1="157.0" x2="370.0" y2="157.0" class="dm" marker-start="url(#a)" marker-end="url(#a)"/><text x="185.00" y="155.40" class="dt" font-size="4" text-anchor="middle">370 mm (body; 394 with ears)</text>
+<line x1="408.0" y1="0" x2="408.0" y2="148.0" class="dm" marker-start="url(#a)" marker-end="url(#a)"/><text x="406.00" y="74.00" class="dt" font-size="4" text-anchor="middle" transform="rotate(-90 406.00 74.00)">148 mm</text>
+<text x="185.00" y="-4.00" class="dt" font-size="3.6" text-anchor="middle">FORWARD EDGE (firewall side): wire exit channel - harness leaves here</text>
+<text x="-20.00" y="74.00" class="dt" font-size="3.6" text-anchor="middle" transform="rotate(-90 -20.00 74.00)">INBOARD (ECU, left kick)</text>
+<text x="390.00" y="74.00" class="dt" font-size="3.6" text-anchor="middle" transform="rotate(90 390.00 74.00)">OUTBOARD (RH kick, RH sill, bus bar)</text></svg></div>
+<p class="cap">Top of the drawing = forward (firewall), right = outboard (RH kick / RH sill). Power zone: relay row forward, row S AMI right behind each relay (dashed red = jumper under the deck to relay 30), copper bar, row N AMI. M8 input at the outboard end, nearest the bus bar. Logic zone: Bus 1 and Bus 2 rows, own-feed fuses (MRS, B30, ACPS) at the end next to the power zone, micro relays behind. Sizes as in rev 1: AMI 41 x 16 [S9], F7 26.2 sq [S5], mini fuse 3.81 x 10.92 on 8.1 mm [S7][S1], micro relay 15.5 x 23 [S4].</p>
+<div class="fig"><svg viewBox="-16 -16 402.0 148.2" role="img" aria-label="side view" xmlns="http://www.w3.org/2000/svg"><title>side view</title><defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<g class="grid"><line x1="0" y1="0" x2="0" y2="92.2" class="gM"/>
+<line x1="10" y1="0" x2="10" y2="92.2" class="g"/>
+<line x1="20" y1="0" x2="20" y2="92.2" class="g"/>
+<line x1="30" y1="0" x2="30" y2="92.2" class="g"/>
+<line x1="40" y1="0" x2="40" y2="92.2" class="g"/>
+<line x1="50" y1="0" x2="50" y2="92.2" class="gM"/>
+<line x1="60" y1="0" x2="60" y2="92.2" class="g"/>
+<line x1="70" y1="0" x2="70" y2="92.2" class="g"/>
+<line x1="80" y1="0" x2="80" y2="92.2" class="g"/>
+<line x1="90" y1="0" x2="90" y2="92.2" class="g"/>
+<line x1="100" y1="0" x2="100" y2="92.2" class="gM"/>
+<line x1="110" y1="0" x2="110" y2="92.2" class="g"/>
+<line x1="120" y1="0" x2="120" y2="92.2" class="g"/>
+<line x1="130" y1="0" x2="130" y2="92.2" class="g"/>
+<line x1="140" y1="0" x2="140" y2="92.2" class="g"/>
+<line x1="150" y1="0" x2="150" y2="92.2" class="gM"/>
+<line x1="160" y1="0" x2="160" y2="92.2" class="g"/>
+<line x1="170" y1="0" x2="170" y2="92.2" class="g"/>
+<line x1="180" y1="0" x2="180" y2="92.2" class="g"/>
+<line x1="190" y1="0" x2="190" y2="92.2" class="g"/>
+<line x1="200" y1="0" x2="200" y2="92.2" class="gM"/>
+<line x1="210" y1="0" x2="210" y2="92.2" class="g"/>
+<line x1="220" y1="0" x2="220" y2="92.2" class="g"/>
+<line x1="230" y1="0" x2="230" y2="92.2" class="g"/>
+<line x1="240" y1="0" x2="240" y2="92.2" class="g"/>
+<line x1="250" y1="0" x2="250" y2="92.2" class="gM"/>
+<line x1="260" y1="0" x2="260" y2="92.2" class="g"/>
+<line x1="270" y1="0" x2="270" y2="92.2" class="g"/>
+<line x1="280" y1="0" x2="280" y2="92.2" class="g"/>
+<line x1="290" y1="0" x2="290" y2="92.2" class="g"/>
+<line x1="300" y1="0" x2="300" y2="92.2" class="gM"/>
+<line x1="310" y1="0" x2="310" y2="92.2" class="g"/>
+<line x1="320" y1="0" x2="320" y2="92.2" class="g"/>
+<line x1="330" y1="0" x2="330" y2="92.2" class="g"/>
+<line x1="340" y1="0" x2="340" y2="92.2" class="g"/>
+<line x1="350" y1="0" x2="350" y2="92.2" class="gM"/>
+<line x1="360" y1="0" x2="360" y2="92.2" class="g"/>
+<line x1="370" y1="0" x2="370" y2="92.2" class="g"/>
+<line x1="0" y1="0" x2="370.0" y2="0" class="gM"/>
+<line x1="0" y1="10" x2="370.0" y2="10" class="g"/>
+<line x1="0" y1="20" x2="370.0" y2="20" class="g"/>
+<line x1="0" y1="30" x2="370.0" y2="30" class="g"/>
+<line x1="0" y1="40" x2="370.0" y2="40" class="g"/>
+<line x1="0" y1="50" x2="370.0" y2="50" class="gM"/>
+<line x1="0" y1="60" x2="370.0" y2="60" class="g"/>
+<line x1="0" y1="70" x2="370.0" y2="70" class="g"/>
+<line x1="0" y1="80" x2="370.0" y2="80" class="g"/>
+<line x1="0" y1="90" x2="370.0" y2="90" class="g"/></g>
+<rect x="0.00" y="25.00" width="370.00" height="3.00" rx="1" class="lid" />
+<rect x="10.00" y="32.00" width="350.00" height="25.20" rx="1" class="rlyband" />
+<text x="185.00" y="46.10" class="tr" font-size="4" text-anchor="middle">F7 relays 25.2 max (micro relays 25.4 max)</text>
+<rect x="0.00" y="57.20" width="370.00" height="30.00" rx="1.5" class="box" />
+<text x="185.00" y="73.70" class="tx" font-size="3.6" text-anchor="middle">base 30 mm: terminal cavities + printed TPA comb + floor</text>
+<rect x="0" y="87.2" width="370.0" height="22" class="wz"/>
+<text x="185.00" y="100.20" class="tx" font-size="3.4" text-anchor="middle">wire bend zone under the box (standoffs / wire channel), about 22 mm</text>
+<line x1="380.0" y1="25" x2="380.0" y2="87.2" class="dm" marker-start="url(#a)" marker-end="url(#a)"/><text x="378.00" y="56.10" class="dt" font-size="4" text-anchor="middle" transform="rotate(-90 378.00 56.10)">62 mm</text>
+</svg></div>
+<p class="cap">Height about 62 mm, set by the F7 relays. The 30 mm base is an allowance for terminals plus the TPA comb; set it in CAD from the TE terminal drawings.</p>
+
+<h2>3. Orientation, from the approved routes</h2>
+<div class="fig"><svg viewBox="-6 -6 432 242" role="img" aria-label="Box orientation from the approved routes" xmlns="http://www.w3.org/2000/svg"><title>Box orientation from the approved routes</title><defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<rect x="0.00" y="0.00" width="420.00" height="230.00" rx="6" class="deck" />
+<text x="210.00" y="14.00" class="th" font-size="7" text-anchor="middle">Dash, seen from above (schematic, not to scale). Front of car = top.</text>
+<rect x="10.00" y="26.00" width="400.00" height="18.00" rx="3" class="cur" />
+<text x="210.00" y="38.00" class="tx" font-size="5.2" text-anchor="middle">FIREWALL: bulkhead B (DRB102, RH) · RADLOK (RH) · RH fender grommet (harness C) · LH fender pass-through</text>
+<rect x="20.00" y="100.00" width="60.00" height="34.00" rx="3" class="cur" />
+<text x="50.00" y="113.00" class="tx" font-size="6" text-anchor="middle">LEFT KICK</text>
+<text x="50.00" y="123.00" class="tx" font-size="5" text-anchor="middle">J/B1, IE1, 1H/1I</text>
+<rect x="150.00" y="90.00" width="70.00" height="40.00" rx="3" class="cur" />
+<text x="185.00" y="106.00" class="tx" font-size="6" text-anchor="middle">ECU + A/C amp</text>
+<text x="185.00" y="116.00" class="tx" font-size="5" text-anchor="middle">centre dash</text>
+<rect x="255.00" y="80.00" width="135.00" height="58.00" rx="4" class="new" />
+<text x="322.00" y="100.00" class="tx" font-size="7" text-anchor="middle">ONE BOX (glove box)</text>
+<text x="285.00" y="120.00" class="tx" font-size="6" text-anchor="middle">LOGIC</text>
+<text x="360.00" y="120.00" class="tx" font-size="6" text-anchor="middle">POWER</text>
+<line x1="322" y1="84" x2="322" y2="134" class="zone"/>
+<rect x="395.00" y="150.00" width="20.00" height="50.00" rx="3" class="hcr" />
+<text x="405.00" y="210.00" class="tx" font-size="5" text-anchor="middle">RH sill</text>
+<rect x="345.00" y="150.00" width="45.00" height="22.00" rx="3" class="hcr" />
+<text x="367.00" y="164.00" class="tx" font-size="5" text-anchor="middle">bus bar</text>
+<path d="M322,80 L322,46" class="arw" marker-end="url(#a)"/>
+<path d="M262,108 L222,108" class="arw" marker-end="url(#a)"/>
+<path d="M262,130 C200,170 120,170 82,128" class="arw" marker-end="url(#a)"/>
+<path d="M405,150 L405,140 L390,140" class="arw" marker-end="url(#a)"/>
+<path d="M367,150 L367,138" class="arw" marker-end="url(#a)"/>
+<text x="318.00" y="62.00" class="tj" font-size="5" text-anchor="end">forward: bulkhead B, RH fender grommet, RADLOK</text>
+<text x="140.00" y="150.00" class="tj" font-size="5" text-anchor="start">inboard: ECU coils, SW12, INJ, COP, CSB, DEV</text>
+<text x="60.00" y="190.00" class="tj" font-size="5" text-anchor="start">under dash to LEFT KICK: AM1, AM2, J/B1 HOT, RTR, dome, hazard, W-G, W-L, reverse</text>
+<text x="250.00" y="222.00" class="tj" font-size="5" text-anchor="start">power in: 1/0 up the RH sill -&gt; bus bar -&gt; M8 IN at the outboard end</text></svg></div>
+<ul>
+<li><b>Outboard end = power zone + M8 input:</b> the 1/0 comes up the RH sill to the bus bar in the glove box (Route 1), and the heavy outputs leave nearby. Blower at the right kick (old R/B4 spot); fans, EPS, headlights and horns through harness C's RH fender grommet (Route 2); HCR150 for EPS on the same side.</li>
+<li><b>Inboard end = logic zone:</b> the relay coil wires and the ECU-rail fuses (SW12, INJ, COP, CSB, DEV) run to the ECU in the centre dash (Routes 5 / 6). LAM goes to bulkhead B on the RH firewall.</li>
+<li><b>Forward edge = wire exit:</b> every run leaves forward or down. The firewall items (bulkhead B, RADLOK, RH fender grommet) are ahead. The left-kick run (AM1, AM2, J/B1 HOT, RTR, dome, hazard, W-G, W-L, reverse) goes across under the dash, as harness C's cabin part already does (Route 2).</li>
+<li>The exact PDB / bus-bar spot in the glove box is still open in Route 1. The box only needs the bus bar at its outboard end.</li>
+</ul>
+
+<h2>4. L1: AMI vs MAXI cost (fuses + terminals, 12 used, 15 positions)</h2>
+<div class="tw"><table class="t1"><thead><tr><th>Item</th><th>AMI (studs)</th><th>AMI $</th><th>MAXI (blades)</th><th>MAXI $</th></tr></thead><tbody><tr><td>Fuses (12)</td><td>12 x Bussmann AMI: about $5.28 each at Waytek (min 5) [C1]</td><td>$63</td><td>12 x Bussmann MAX: about $1.90-4.95 each [C2]</td><td>$23-59</td></tr><tr><td>Fuse-holder metal</td><td>30 M5 studs + Keps nuts screwed into the copper bar (2 per position, 15 positions)</td><td>~$10 (estimate, not priced)</td><td>24 x F800 8 mm female terminals, 12 input + 12 output: MTA 07670 / 1107670 about $1.03 each (8-10 mm2) [C3]; 6 AWG (L6 60 A) needs the 16 mm2 size [C4]</td><td>~$25 + UK/AU shipping</td></tr><tr><td>Input side to the bar</td><td>nothing extra - the fuse bolts straight onto the bar</td><td>$0</td><td>12 short 10-8 AWG leads + 12 ring lugs on the bar (one per fuse)</td><td>~$10 (estimate)</td></tr><tr><td>Output side</td><td>12 ring lugs on the M5 output studs</td><td>~$6 (estimate)</td><td>the 12 output F800 terminals above</td><td>incl.</td></tr><tr><td>Tooling</td><td>standard lug crimper you already need for the 6-8 AWG</td><td>$0</td><td>F800 open-barrel crimper (MTA lists IWS-510C / IWS-5100A) [C4]</td><td>extra tool</td></tr><tr><td>Crimps to make</td><td>12</td><td></td><td>36</td><td></td></tr><tr><td>Box 1 / power-zone depth</td><td>two AMI rows: 87 mm</td><td></td><td>one MAXI row: about 35 mm</td><td>~50 mm less</td></tr><tr><td>TOTAL (parts only)</td><td></td><td>about $80</td><td></td><td>about $60-95 + tool + shipping</td></tr></tbody></table></div>
+<p><b>Recommendation: AMI.</b> Parts cost is about the same (about $80 vs about $60-95). AMI needs 12 crimps instead of 36 and no special crimper. The fuses bolt to the bar, so there is no blade contact to loosen. The MAXI terminals found so far are MTA parts from UK / AU sellers; none were found from TE or Dan's approved suppliers. MAXI saves about 50 mm of depth and has cheaper replacement fuses. "Estimate" rows are not priced from a source.</p>
+
+<h2>5. Build approach (unchanged from rev 1)</h2>
+<ul>
+<li><b>Wire side:</b> loose crimped terminals, rear-fed through the floor, held by printed front stops plus a sliding TPA comb. No edge connectors.</li>
+<li><b>Bussing:</b> power zone = one 25 x 3 mm C110 copper bar with M5 studs and the M8 input. Logic zone = two 8 x 4 mm bars under the fuse rows, one short lead + M3/M4 ring per bussed fuse. No PCB, no solder on power paths.</li>
+<li><b>Terminals:</b> TE 280756-4 / 280755-4 (F7 30/87), 42281-1 (F7 85/86, micro 30/87), 4.8 mm and 2.8 mm receptacles TBD, as in rev 1's parts table.</li>
+<li><b>Material:</b> ASA; PA6-GF for the power zone if the bar runs warm; not PA-CF (static-dissipative) [S13].</li>
+<li><b>Mounting:</b> 4 M5 ears; molded labels on the deck, legend on the lid.</li>
+</ul>
+
+<h2>6. Footprint</h2>
+<div class="fig"><svg viewBox="-14 -14 658.0 328" role="img" aria-label="Footprint now vs plan rev 2, same scale" xmlns="http://www.w3.org/2000/svg"><title>Footprint now vs plan rev 2, same scale</title><defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+<g class="grid"><line x1="0" y1="0" x2="0" y2="300" class="gM"/>
+<line x1="10" y1="0" x2="10" y2="300" class="g"/>
+<line x1="20" y1="0" x2="20" y2="300" class="g"/>
+<line x1="30" y1="0" x2="30" y2="300" class="g"/>
+<line x1="40" y1="0" x2="40" y2="300" class="g"/>
+<line x1="50" y1="0" x2="50" y2="300" class="gM"/>
+<line x1="60" y1="0" x2="60" y2="300" class="g"/>
+<line x1="70" y1="0" x2="70" y2="300" class="g"/>
+<line x1="80" y1="0" x2="80" y2="300" class="g"/>
+<line x1="90" y1="0" x2="90" y2="300" class="g"/>
+<line x1="100" y1="0" x2="100" y2="300" class="gM"/>
+<line x1="110" y1="0" x2="110" y2="300" class="g"/>
+<line x1="120" y1="0" x2="120" y2="300" class="g"/>
+<line x1="130" y1="0" x2="130" y2="300" class="g"/>
+<line x1="140" y1="0" x2="140" y2="300" class="g"/>
+<line x1="150" y1="0" x2="150" y2="300" class="gM"/>
+<line x1="160" y1="0" x2="160" y2="300" class="g"/>
+<line x1="170" y1="0" x2="170" y2="300" class="g"/>
+<line x1="180" y1="0" x2="180" y2="300" class="g"/>
+<line x1="190" y1="0" x2="190" y2="300" class="g"/>
+<line x1="200" y1="0" x2="200" y2="300" class="gM"/>
+<line x1="210" y1="0" x2="210" y2="300" class="g"/>
+<line x1="220" y1="0" x2="220" y2="300" class="g"/>
+<line x1="230" y1="0" x2="230" y2="300" class="g"/>
+<line x1="240" y1="0" x2="240" y2="300" class="g"/>
+<line x1="250" y1="0" x2="250" y2="300" class="gM"/>
+<line x1="260" y1="0" x2="260" y2="300" class="g"/>
+<line x1="270" y1="0" x2="270" y2="300" class="g"/>
+<line x1="280" y1="0" x2="280" y2="300" class="g"/>
+<line x1="290" y1="0" x2="290" y2="300" class="g"/>
+<line x1="300" y1="0" x2="300" y2="300" class="gM"/>
+<line x1="310" y1="0" x2="310" y2="300" class="g"/>
+<line x1="320" y1="0" x2="320" y2="300" class="g"/>
+<line x1="330" y1="0" x2="330" y2="300" class="g"/>
+<line x1="340" y1="0" x2="340" y2="300" class="g"/>
+<line x1="350" y1="0" x2="350" y2="300" class="gM"/>
+<line x1="360" y1="0" x2="360" y2="300" class="g"/>
+<line x1="370" y1="0" x2="370" y2="300" class="g"/>
+<line x1="380" y1="0" x2="380" y2="300" class="g"/>
+<line x1="390" y1="0" x2="390" y2="300" class="g"/>
+<line x1="400" y1="0" x2="400" y2="300" class="gM"/>
+<line x1="410" y1="0" x2="410" y2="300" class="g"/>
+<line x1="420" y1="0" x2="420" y2="300" class="g"/>
+<line x1="430" y1="0" x2="430" y2="300" class="g"/>
+<line x1="440" y1="0" x2="440" y2="300" class="g"/>
+<line x1="450" y1="0" x2="450" y2="300" class="gM"/>
+<line x1="460" y1="0" x2="460" y2="300" class="g"/>
+<line x1="470" y1="0" x2="470" y2="300" class="g"/>
+<line x1="480" y1="0" x2="480" y2="300" class="g"/>
+<line x1="490" y1="0" x2="490" y2="300" class="g"/>
+<line x1="500" y1="0" x2="500" y2="300" class="gM"/>
+<line x1="510" y1="0" x2="510" y2="300" class="g"/>
+<line x1="520" y1="0" x2="520" y2="300" class="g"/>
+<line x1="530" y1="0" x2="530" y2="300" class="g"/>
+<line x1="540" y1="0" x2="540" y2="300" class="g"/>
+<line x1="550" y1="0" x2="550" y2="300" class="gM"/>
+<line x1="560" y1="0" x2="560" y2="300" class="g"/>
+<line x1="570" y1="0" x2="570" y2="300" class="g"/>
+<line x1="580" y1="0" x2="580" y2="300" class="g"/>
+<line x1="590" y1="0" x2="590" y2="300" class="g"/>
+<line x1="600" y1="0" x2="600" y2="300" class="gM"/>
+<line x1="610" y1="0" x2="610" y2="300" class="g"/>
+<line x1="620" y1="0" x2="620" y2="300" class="g"/>
+<line x1="630" y1="0" x2="630" y2="300" class="g"/>
+<line x1="640" y1="0" x2="640" y2="300" class="g"/>
+<line x1="0" y1="0" x2="640" y2="0" class="gM"/>
+<line x1="0" y1="10" x2="640" y2="10" class="g"/>
+<line x1="0" y1="20" x2="640" y2="20" class="g"/>
+<line x1="0" y1="30" x2="640" y2="30" class="g"/>
+<line x1="0" y1="40" x2="640" y2="40" class="g"/>
+<line x1="0" y1="50" x2="640" y2="50" class="gM"/>
+<line x1="0" y1="60" x2="640" y2="60" class="g"/>
+<line x1="0" y1="70" x2="640" y2="70" class="g"/>
+<line x1="0" y1="80" x2="640" y2="80" class="g"/>
+<line x1="0" y1="90" x2="640" y2="90" class="g"/>
+<line x1="0" y1="100" x2="640" y2="100" class="gM"/>
+<line x1="0" y1="110" x2="640" y2="110" class="g"/>
+<line x1="0" y1="120" x2="640" y2="120" class="g"/>
+<line x1="0" y1="130" x2="640" y2="130" class="g"/>
+<line x1="0" y1="140" x2="640" y2="140" class="g"/>
+<line x1="0" y1="150" x2="640" y2="150" class="gM"/>
+<line x1="0" y1="160" x2="640" y2="160" class="g"/>
+<line x1="0" y1="170" x2="640" y2="170" class="g"/>
+<line x1="0" y1="180" x2="640" y2="180" class="g"/>
+<line x1="0" y1="190" x2="640" y2="190" class="g"/>
+<line x1="0" y1="200" x2="640" y2="200" class="gM"/>
+<line x1="0" y1="210" x2="640" y2="210" class="g"/>
+<line x1="0" y1="220" x2="640" y2="220" class="g"/>
+<line x1="0" y1="230" x2="640" y2="230" class="g"/>
+<line x1="0" y1="240" x2="640" y2="240" class="g"/>
+<line x1="0" y1="250" x2="640" y2="250" class="gM"/>
+<line x1="0" y1="260" x2="640" y2="260" class="g"/>
+<line x1="0" y1="270" x2="640" y2="270" class="g"/>
+<line x1="0" y1="280" x2="640" y2="280" class="g"/>
+<line x1="0" y1="290" x2="640" y2="290" class="g"/>
+<line x1="0" y1="300" x2="640" y2="300" class="gM"/></g>
+<text x="0.00" y="-5.00" class="th" font-size="6.4" text-anchor="start">NOW: RFRM + 3 MTA + 2 LMI (about 56,600 mm2 + brackets)</text>
+<rect x="0.00" y="0.00" width="235.00" height="124.40" rx="2" class="cur" />
+<text x="117.50" y="62.00" class="tx" font-size="6" text-anchor="middle">RFRM 235 x 124.4</text>
+<rect x="0.00" y="132.00" width="91.60" height="35.00" rx="1" class="cur" />
+<text x="45.80" y="151.00" class="tx" font-size="4.4" text-anchor="middle">MTA-1 91.6 x 35</text>
+<rect x="0.00" y="171.00" width="91.60" height="35.00" rx="1" class="cur" />
+<text x="45.80" y="190.00" class="tx" font-size="4.4" text-anchor="middle">MTA-2 91.6 x 35</text>
+<rect x="0.00" y="210.00" width="91.60" height="35.00" rx="1" class="cur" />
+<text x="45.80" y="229.00" class="tx" font-size="4.4" text-anchor="middle">MTA-3 91.6 x 35</text>
+<rect x="100.00" y="132.00" width="125.00" height="79.00" rx="1" class="cur" />
+<text x="162.50" y="172.00" class="tx" font-size="5" text-anchor="middle">LMI A 125 x 79</text>
+<rect x="100.00" y="216.00" width="100.00" height="79.00" rx="1" class="cur" />
+<text x="150.00" y="256.00" class="tx" font-size="5" text-anchor="middle">LMI B 100 x 79</text>
+<text x="260.00" y="-5.00" class="th" font-size="6.4" text-anchor="start">PLAN rev 2: ONE box (about 54,760 mm2)</text>
+<rect x="260.00" y="0.00" width="370.00" height="148.00" rx="3" class="new" />
+<text x="445.00" y="66.00" class="tx" font-size="7" text-anchor="middle">ONE BOX: logic zone | power zone</text>
+<text x="445.00" y="78.00" class="tx" font-size="5.5" text-anchor="middle">370 x 148 x ~62</text>
+<rect x="567.00" y="160.00" width="63.00" height="45.00" rx="1" class="hcr" />
+<text x="598.50" y="182.00" class="tx" font-size="4.4" text-anchor="middle">HCR150 63 x 45</text>
+<text x="598.50" y="189.00" class="tx" font-size="3.8" text-anchor="middle">both cases</text></svg></div>
+<p>One box: 370 x 148 = 54,760 mm², about 3 % less than today's kit (about 56,600 mm² plus MTA brackets). It also has 1 lid instead of 6 modules, 4 mounting screws, and 1 feed instead of 5.</p>
+
+<h2>7. Open questions for Dan</h2>
+<ol class="q">
+<li><b>L1 - AMI or MAXI?</b> Cost is now above; AMI is recommended.</li>
+<li value="6"><b>L6 - Fuel pump circuit at the battery box (sized for running current AND inrush):</b>
+<ul>
+<li><b>Running current:</b> 19.0 A rated at 40 psi / 13.5 V; up to 25 A quoted by vendors for this pump. It rises with pressure (up to 73.5 psi at 30 psi boost) and voltage (14+ V charging). Design figure: <b>25 A continuous</b>.</li>
+<li><b>Inrush:</b> no published figure for this pump (none found from Walbro, TI or vendors). A brushed motor starts at several times its running current for tens of ms. Measure it on the bench (clamp meter with inrush / peak capture, or shunt + scope) before the SSR is bought.</li>
+<li><b>Fuse: MAXI 40 A</b> (Bussmann MAX, 20-80 A range [S8]), not a 30 A mini. The mini range stops at 30 A (ATM 2-30 A [S7]), which would run at about 83 % of rating with 25 A in a warm trunk. ISO 8820-3 blade-fuse opening limits (Eaton ATM): 135 % opens in 0.75-600 s, 200 % in 0.15-5 s, 350 % in 0.04-0.5 s, 600 % in 0.02-0.1 s. With 40 A, 25 A running is 63 %, and a 150 A start spike is under 400 %, well clear of the 600 % / 20 ms minimum.</li>
+<li><b>Wire: 10 AWG</b>, protected by 40 A per the repo sizing table (10 AWG = 40 A max).</li>
+<li><b>SSR spec:</b> DC output, at least 40 A continuous AFTER its heat derating (needs a heatsink or a metal mount), a non-repetitive surge rating (usually given for 10 ms) above the measured inrush, low on-resistance (heat = I&sup2;R at 25 A), off-state leakage too small to turn the pump, and an input that works with the Link's low-side drive on A19.</li>
+<li><b>Turn-off spike:</b> switching off a motor makes an inductive voltage spike that can kill a DC SSR. Put a freewheel diode (rated for the pump current) across the pump feed at the battery box, unless the SSR's datasheet says it is built in. This is the load side; R25's "no flyback diodes" is about relay coils on the ECU side.</li>
+<li>Needs: an R15 exception (fuse in the trunk) and the SSR picked with <code>st185-pick-parts</code> once the inrush is measured.</li>
+</ul></li>
+</ol>
+<p class="mut">L2 (closed: Bus 0 removed), L3 (closed: answers A and B applied), L4 (closed: orientation from routes), L5 (closed: custom box).</p>
+
+<h2>Sources</h2>
+<div class="tw"><table><thead><tr><th>ID</th><th>What it gives</th><th>Link</th></tr></thead><tbody><tr><td>S1</td><td>Eaton Series 15400 RFRM data sheet: 235.0 x 124.4 x 70.0 REF, 8.1 mm fuse centre lines, 2.8 mm (mini) footprint, Delphi 280 Metri-Pack terminals, #12-22 AWG, 100 A per bus / 200 A max, M8 x 1.25 input studs, M5 / #10-32 mounting</td><td><a href="https://www.gsglobalresources.com/uploads/bus-cbt-ds-series-15400-rfrm.pdf">link</a></td></tr><tr><td>S2</td><td>Bussmann LMI catalog page: LMI1-M-1-0 (2 x M5 studs), LMI1-M-1-1 (1 x M8), bus bar 25 mm per position (2 pos 45 ... 7 pos 170), module ~79 long, 200 A per fuse block, 400 A max per assembly, max 7 modules</td><td><a href="https://www.swe-check.com.au/catalog/a95.pdf">link</a></td></tr><tr><td>S3</td><td>MTA fuse and relay modules catalog 9000 (Prolec): module 91.6 x 35; mini-fuse terminals 08330-08332 (F280); micro relay terminals 4.8 mm 08400-08402 / 6.3 mm 08500-08503; MAXI terminals 07650-07671 (F800). MTA 0301491 itself is not in it (also unfound by the repo, R18)</td><td><a href="https://www.swe-check.com.au/catalog/9000.pdf">link</a></td></tr><tr><td>S4</td><td>TE Micro Relay A (V23074) catalog 1308028-2: 23 max x 15.5 max x 25.4 max; terminals coil/break 4.8 x 0.8, load 6.3 x 0.8 (ISO 8092-1 style); terminal pattern 11.4 / 8 / 7.65 / 4.5 / 6 mm</td><td><a href="https://datasheet.octopart.com/V23074A1002A403-Tyco-Electronics-datasheet-8398330.pdf">link</a></td></tr><tr><td>S5</td><td>TE Power Relay F7 (V23134) data sheet: Plug-in Maxi ISO; 26.2 max x 26.2 max x 25.2 max; load terminals 9.5 x 1.2, coil 6.3 x 0.8; limiting continuous current 50 A; 1-1414147-0 = V23134-J0052-X429, 1-1393304-0 = V23134-J1052-X281 (bracket)</td><td><a href="https://docs.rs-online.com/d411/A700000011217893.pdf">link</a></td></tr><tr><td>S6</td><td>TE HCR 150 (1393315-x family): 63 x 45 x 40 mm, M6 load studs - from a distributor listing, check against the TE drawing</td><td><a href="https://datasheets.ibselectronics.com/product-1393315-2.datasheet.pdf">link</a></td></tr><tr><td>S7</td><td>Bussmann ATM mini blade fuse: 0.43 in (10.92 mm) L x 0.15 in (3.81 mm) W x 0.642 in (16.3 mm) H</td><td><a href="https://assets.rs-online.com/v1698854261/Datasheets/b651c746f5519cc1a67c785cb5e7c60a.pdf">link</a></td></tr><tr><td>S8</td><td>Bussmann MAX (MAXI) fuse: 20-80 A; body 1.15 x 0.35 x 1.35 in (29.2 x 8.9 x 34.3 mm) per distributor listing of the Eaton sheet</td><td><a href="https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/fuses/data-sheets/bus-ele-ds-2049-max.pdf">link</a></td></tr><tr><td>S9</td><td>Bussmann AMI bolt-in fuse: reference dims 41.0 / 30.0 / 16.0 / 12.0 / 9.5 / 6.0 mm, hole dia 5.5, 4 Nm max; ratings 30-150 A (30 orange, 40 lt green, 50 red, 60 yellow). Body 16 x 12 x 6 per Digi-Key AMI-50. Labels partly lost in the PDF text: 41 long and 30 stud centres are read from the layout - confirm on the drawing</td><td><a href="https://static.chipdip.ru/lib/665/DOC011665675.pdf">link</a></td></tr><tr><td>S10</td><td>TE FASTON receptacles: 280756-4 9.53 mm, 12-10 AWG; 280755-4 9.53 mm, 6-10 mm2; 42281-1 6.35 x 0.81 mm, 18-14 AWG; 160927-4 6.35 mm, 17-13 AWG</td><td><a href="https://www.te.com.cn/chn-zh/product-280756-4.datasheet.pdf">link</a></td></tr><tr><td>S11</td><td>TE 1393310-4 (VCF7-1000) Maxi ISO relay socket</td><td><a href="https://octopart.com/part/te-connectivity/1393310-4">link</a></td></tr><tr><td>S12</td><td>TE 2.8 mm receptacles 880398-2 (17-13 AWG, data sheet lists fuse-box parts) and 881572-3 (10-9 AWG) - search result, fit on a mini fuse blade not confirmed</td><td></td></tr><tr><td>S13</td><td>Materials: Polymaker PolyMide PA6-GF HDT 191 C at 0.45 MPa / 157 C at 1.8 MPa; ASA HDT 92 C at 0.45 MPa (Purefil), ~93 C (Prusament); carbon-fibre nylon is sold as ESD / static-dissipative (Polymaker PA612-ESD 10^4-10^7 ohm/sq)</td><td><a href="https://polymaker.com/wp-content/uploads/lana-downloads/PolyMide_PA6_GF_TDS_V5.4.pdf">link</a></td></tr><tr><td>S13b</td><td>Purefil ASA data sheet (HDT 0.45 MPa 92 C)</td><td><a href="https://cdn.shopify.com/s/files/1/0919/6571/8867/files/purefil_ASA_Material_data_sheet.pdf">link</a></td></tr><tr><td>S13c</td><td>Polymaker Fiberon PA612-ESD (CF nylon, 10^4-10^7 ohm/sq)</td><td><a href="https://www.partsbuilt.com/fiberon-pa612-esd-carbon-fiber-nylon">link</a></td></tr><tr><td>Repo</td><td>st185-link-ecu-config origin/main 2e143e8: docs/harness/rebuild/ST185-CabinPower.harness (every fuse and relay cavity), docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md §5.4 + §8.1, DECISIONS R15 R18 R20 R22 R25 R38 R57 R58 R61 R63 S14 S18, OPEN-ITEMS rows 46 48 53 88, docs/sourcing/te-on-hand-bom.csv, plan doc §6.54 (F7 socket contacts)</td><td></td></tr><tr><td>C1</td><td>Waytek: Bussmann AMI-40 about $5.28 each, min 5, $3.85 at 1,000</td><td><a href="https://www.waytekwire.com/product/eaton-s-bussmann-series-ami-40-bolt-down-fuse">link</a></td></tr><tr><td>C2</td><td>Bussmann MAX-40: $1.90 sale / $5.77 MSRP (Finditparts); $4.95 single (eBay)</td><td><a href="https://cf.finditparts.com/products/138885/bussmann-fuses-max-40">link</a></td></tr><tr><td>C3</td><td>MTA 1107670 maxi-fuse terminal, 8-10 mm2, about $1.03 (12voltplanet, UK)</td><td><a href="https://www.12voltplanet.co.uk/maxi-blade-fuse-terminal-8-10mm2-cable.html">link</a></td></tr><tr><td>C4</td><td>Jaydee Autocables MFHT 8-10 mm2 (MTA) AUD 2.60, MFHT-L 16 mm2, crimper IWS-510C / IWS-5100A</td><td><a href="https://jaydeeautocables.com.au/products/maxi-fuse-holder-termianls">link</a></td></tr><tr><td>Routes</td><td>st185-link-ecu-config origin/main e6e49e5: docs/harness/routes/ROUTE-1 (1/0 up the RH sill to the glove-box PDB, RADLOK on the RH firewall), ROUTE-2 (harness C starts at the glove box; RH kick blower / A/C; RH fender grommet; cabin part runs across under the dash to the left-kick landings), ROUTE-5 / 6 (glove-box relay coil wires from the ECU, centre dash; bulkhead B on the RH firewall), ROUTE-15 (k_rev output under the dash to the LH sill)</td><td><a href="https://github.com/living-relation/st185-link-ecu-config/tree/main/docs/harness/routes">link</a></td></tr></tbody></table></div>
+</main></body></html>
