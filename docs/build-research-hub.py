@@ -291,13 +291,87 @@ def load_status() -> dict | None:
             groups.setdefault(b, []).append(
                 {"id": rid, "item": item, "owner": owner, "status": st})
     buckets = []
-    for name, n, words in (r[:3] for r in status["rows"]):
+    for name, n, words, zones in (r[:4] for r in status["rows"]):
         found = len(groups.get(name, []))
         if str(found) != n:
             print(f"WARNING: OPEN-ITEMS Status says {name} = {n}, rows count {found}",
                   file=sys.stderr)
-        buckets.append({"name": name, "open": n, "words": words, "rows": groups.get(name, [])})
+        ids = [z.strip() for z in zones.split(",") if z.strip() not in ("", "-")]
+        for z in ids:
+            if z not in CAR_ZONES:
+                print(f"WARNING: OPEN-ITEMS Status zone '{z}' ({name}) is not a car zone",
+                      file=sys.stderr)
+        buckets.append({"name": name, "open": n, "words": words, "zones": ids,
+                        "rows": groups.get(name, [])})
     return {"buckets": buckets, "blockers": blockers}
+
+
+# Top view of the car, nose up (original outline, not to scale). Zone ids are the ones the
+# Status table in OPEN-ITEMS names in its "Car zones" column: label + SVG shape.
+CAR_ZONES = {
+    "bay": ("Engine bay",
+            '<path d="M62 52 Q100 36 138 52 L142 128 L58 128 Z"/>', (100, 92)),
+    "firewall": ("Firewall / bulkheads",
+                 '<rect x="58" y="128" width="84" height="14"/>', (100, 135)),
+    "dash": ("Dash / cabin front",
+             '<rect x="58" y="142" width="84" height="44"/>', (80, 166)),
+    "glove": ("Glove box (fuse box)",
+              '<rect x="104" y="156" width="36" height="26" rx="3"/>', (122, 169)),
+    "floor": ("Cabin floor / sills",
+              '<path d="M58 186 H142 V268 H58 Z M50 150 H58 V272 H50 Z M142 150 H150 V272 H142 Z"/>',
+              (100, 228)),
+    "rear": ("Rear / hatch",
+             '<path d="M58 268 H142 L146 316 H54 Z"/>', (100, 292)),
+    "trunk": ("Trunk (battery, kill switch)",
+              '<path d="M54 316 H146 Q148 346 138 362 Q100 372 62 362 Q52 346 54 316 Z"/>',
+              (100, 340)),
+}
+
+
+def car_svg() -> str:
+    parts = "".join(
+        f'<g class="zone" data-zone="{zid}" tabindex="-1"><title>{html.escape(label)}</title>'
+        f'{shape}<text x="{xy[0]}" y="{xy[1]}" text-anchor="middle">{html.escape(label.split(" (")[0].split(" / ")[0])}'
+        f'</text></g>'
+        for zid, (label, shape, xy) in CAR_ZONES.items())
+    return (
+        '<svg class="car" viewBox="0 0 200 400" role="img" '
+        'aria-label="Top view of the Celica, nose up, with the zones the open items touch">'
+        '<path class="body" d="M100 14 Q150 14 152 60 L156 150 L152 270 L156 330 '
+        'Q154 380 100 386 Q46 380 44 330 L48 270 L44 150 L48 60 Q50 14 100 14 Z"/>'
+        '<path class="glass" d="M66 144 H134 L128 124 H72 Z"/>'
+        f'{parts}</svg>')
+
+
+CAR_JS = """
+(function () {
+  var root = document.getElementById("status");
+  if (!root) return;
+  var rows = root.querySelectorAll("tr[data-zones]");
+  var legend = root.querySelector(".car-legend");
+  var picked = null, hover = null;
+  function show() {
+    var r = hover || picked, on = r ? r.dataset.zones.split(" ").filter(Boolean) : [];
+    root.querySelectorAll(".zone").forEach(function (z) {
+      z.classList.toggle("on", on.indexOf(z.dataset.zone) >= 0);
+    });
+    rows.forEach(function (x) { x.classList.toggle("sel", x === r); });
+    legend.textContent = !r ? "Tap or hover a bucket to light up where it lives on the car."
+      : on.length ? r.dataset.label + ": " + on.map(function (id) {
+          return root.querySelector('.zone[data-zone="' + id + '"] title').textContent; }).join(", ")
+      : r.dataset.label + ": nothing on the car";
+  }
+  rows.forEach(function (r) {
+    r.addEventListener("mouseenter", function () { hover = r; show(); });
+    r.addEventListener("mouseleave", function () { hover = null; show(); });
+    r.addEventListener("click", function (e) {
+      if (e.target.closest("a")) return;
+      picked = picked === r ? null : r; show();
+    });
+  });
+  show();
+})();
+"""
 
 
 def status_html(st: dict | None) -> str:
@@ -305,7 +379,8 @@ def status_html(st: dict | None) -> str:
     if not st:
         return ""
     body = "".join(
-        f'<tr><td><a href="#items-{_slug(b["name"])}">{html.escape(b["name"])}</a></td>'
+        f'<tr data-zones="{" ".join(b["zones"])}" data-label="{html.escape(b["name"])}">'
+        f'<td><a href="#items-{_slug(b["name"])}">{html.escape(b["name"])}</a></td>'
         f'<td class="num">{html.escape(b["open"])}</td><td>{_inline(b["words"])}</td></tr>'
         for b in st["buckets"])
     blockers = "".join(f"<li>{_inline(x)}</li>" for x in st["blockers"])
@@ -327,10 +402,14 @@ def status_html(st: dict | None) -> str:
         '<p class="blurb">Big picture, read from the <code>Status</code> section of '
         '<a href="../docs/OPEN-ITEMS.md">docs/OPEN-ITEMS.md</a> (the one tracker). '
         'Click a bucket for its open rows.</p>\n'
-        '<div class="twrap"><table class="data"><thead><tr><th>Bucket</th><th>Open</th>'
+        '<div class="statusrow"><div class="twrap"><table class="data statustbl"><thead><tr>'
+        '<th>Bucket</th><th>Open</th>'
         f'<th>In plain words</th></tr></thead><tbody>{body}</tbody></table></div>\n'
+        f'<figure class="carfig">{car_svg()}<figcaption class="car-legend"></figcaption>'
+        '</figure></div>\n'
         f'<h3 id="blockers">What blocks progress</h3>\n<ol class="blockers">{blockers}</ol>\n'
-        f'<h3 id="open-items">Open rows by bucket</h3>\n{groups}\n</section>\n')
+        f'<h3 id="open-items">Open rows by bucket</h3>\n{groups}\n'
+        f'<script>{CAR_JS}</script>\n</section>\n')
 
 
 def classify(p: Path, topic_dir: Path, rel: str) -> str:
@@ -760,6 +839,21 @@ HUB_CSS = """
     color:var(--muted); border-radius:7px; cursor:pointer; font-size:13px; }
   .toggle button[aria-pressed="true"] { background:var(--accent-soft);
     border-color:var(--accent); color:var(--accent); font-weight:600; }
+  .statusrow { display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; margin:0 0 14px; }
+  .statusrow .twrap { flex:1 1 380px; max-height:none; }
+  table.statustbl tbody tr { cursor:pointer; }
+  table.statustbl tr.sel td { background:var(--accent-soft); }
+  .carfig { margin:0; flex:0 0 190px; text-align:center; }
+  svg.car { width:190px; height:auto; display:block; margin:0 auto; overflow:visible; }
+  svg.car .body { fill:var(--panel); stroke:var(--muted); stroke-width:1.6; }
+  svg.car .glass { fill:var(--chip); stroke:var(--line); }
+  svg.car .zone path, svg.car .zone rect { fill:transparent; stroke:var(--line);
+    stroke-width:1; transition:stroke .15s, fill .15s, filter .15s; }
+  svg.car .zone text { font-size:8px; fill:var(--muted); pointer-events:none; }
+  svg.car .zone.on path, svg.car .zone.on rect { fill:var(--accent-soft); stroke:var(--accent);
+    stroke-width:2; filter:drop-shadow(0 0 3px var(--accent)) drop-shadow(0 0 8px var(--accent)); }
+  svg.car .zone.on text { fill:var(--accent); font-weight:600; }
+  .car-legend { font-size:11.5px; color:var(--muted); margin-top:6px; min-height:2.6em; }
   details.items { margin:0 0 12px; }
   details.items summary { cursor:pointer; font-weight:600; margin:0 0 6px; }
   ol.blockers { margin:0 0 14px; padding-left:20px; font-size:13px; }
