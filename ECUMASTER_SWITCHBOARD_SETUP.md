@@ -57,7 +57,7 @@ Each analog channel outputs raw mV (0–5000), uint16, BigEndian, at ~20 Hz.
 | CSB3 Analog Input | CAN Frame | Byte Offset | Connected Signal | Notes |
 |---|---|---|---|---|
 | Analog 1 | 0x640 | bytes 0-1 | Unassigned (brought out, spare) | Was cabin temp; A/C is the OEM amplifier's (2026-09-27) |
-| Analog 2 | 0x640 | bytes 2-3 | OEM cruise control stalk (resistor ladder signal) | See Step 4.1 |
+| Analog 2 | 0x640 | bytes 2-3 | OEM cruise control stalk (C14 pin 5 resistor ladder, 1 kohm pull-up to +5V) | See Step 4.1 |
 | Analog 3 | 0x640 | bytes 4-5 | TBD | |
 | Analog 4 | 0x640 | bytes 6-7 | TBD | |
 | Analog 5 | 0x641 | bytes 0-1 | TBD | |
@@ -70,108 +70,71 @@ Each analog channel outputs raw mV (0–5000), uint16, BigEndian, at ~20 Hz.
 
 ---
 
-## Step 4.1 — OEM Cruise Control Stalk (Resistor Ladder)
+## Step 4.1 — OEM Cruise Control Stalk (Resistor Ladder + MAIN)
 
-### Background
+Settled from the factory manual 2026-10-13 (`docs/harness/redesign/DECISIONS.md` R66, S23). All OEM stalk
+functions are kept: MAIN on/off, SET/COAST, RES/ACC, CANCEL. (Earlier text called these SET/ACCEL and
+RESUME/DECEL - backwards. Holding SET/COAST decelerates, holding RES/ACC accelerates.)
 
-The 1993 ST185 AllTrac cruise control stalk uses a **resistor ladder** — one signal wire that
-outputs different voltages for each switch position (SET/ACCEL, COAST/DECEL, RESUME/ACCEL,
-CANCEL). This is an analog signal, NOT a digital switch. It connects to a CSB3 **analog input**
-(Analog 2), not a digital input.
+### What the stalk really is
 
-The OEM cruise control ECU (C/C ECU) is bypassed entirely in this build. The Link G4X XtremeX
-handles cruise control natively via its own cruise control strategy once it receives the correct
-switch inputs.
+The stalk is connector **C14** of the combination switch. It has three wires (1990 ST185 EWD p.116, book p.118;
+1992 Celica EWD132U p.180 has the same pins):
 
-### What to look up in the ST185 electrical diagram
+| C14 pin | Colour | Function | Goes to |
+|---|---|---|---|
+| 5 | W (white) | Control ladder: a resistor to ground per position | CSB3 **A2** (`FL_CRUISE_STALK_C1`) |
+| 15 | Y-B (yellow / black) | MAIN on/off: a contact to the pin 17 ground when ON | CSB3 **S3** (`FL_CRUISE_STALK_C3`) |
+| 17 | BR (brown) | Switch ground (OEM: body ground IE) | CSB3 ground (a ground lead replaces the old C4 lead) |
 
-You need **two things** from the service manual (Electrical section, Cruise Control System):
+Ladder resistance to ground (1993 Mitchell Electrical p.98-99, switch test): OFF open, **RES/ACC about 68 ohm,
+SET/COAST about 198 ohm, CANCEL about 418 ohm**. There are no separate SET or RESUME wires, so CSB3 S4 / S5
+are not used. A car with an SRS column uses the same three wires on a 6-pin slip ring as pins 4 W / 5 Y-B / 3 BR
+(Mitchell); R14 says this car has no SRS, so use 5 / 15 / 17 and check the car's connector before soldering.
 
-1. **The signal wire** — which wire on the cruise stalk connector carries the resistor ladder
-   voltage. Common colors in that era: blue/white, blue/yellow. Look for a wire that goes from
-   the stalk to a "CRUISE CONTROL ECU" labeled connector, shown entering on an "STA" or similar
-   signal terminal.
+The OEM cruise ECU is bypassed. The Link G4X cruise strategy does the control; its brake and clutch cancels
+come from CSB3 S7 / S6 and the speed from the ECU.
 
-2. **The reference voltage and resistance values** — the table showing each switch state, its
-   resistance (kΩ), and the resulting voltage. This is sometimes labeled "Cruise Switch Voltage"
-   or "Multiswitch Resistance Table" in the electrical manual. Example format:
-   ```
-   Switch pressed    Resistance to GND    Voltage (5V ref)
-   None              Open                 5.0 V
-   CANCEL            3.3 kΩ              ~4.1 V
-   RESUME/ACCEL      1.0 kΩ              ~3.0 V
-   SET/COAST         0.27 kΩ             ~1.3 V
-   ```
-   **Do not assume the values above are correct for the ST185** — they are examples only.
-   Look up the actual values and add them to this table once found.
+### Pull-up for A2
 
-### Wiring to CSB3 Analog 2
+The OEM cruise ECU supplied the reference. Here a resistor from +5V (ECU A32, via `r_cruise` in `ST185-CSB3`)
+to the A2 junction forms the divider with the ladder. **Use 1 kohm, not 10 kohm.** A 10 kohm pull-up gives only
+34 / 98 / 400 mV, which a small ground offset between the stalk ground and the CSB3 ground would swamp.
 
-The OEM circuit uses a 5V reference from the cruise control ECU. Since you're bypassing that ECU,
-you need to provide the 5V pull-up yourself. Options:
+| Position | Ladder (ohm) | A2 with 1 kohm (mV) | A2 with 10 kohm (mV) |
+|---|---|---|---|
+| none (open) | open | 5000 | 5000 |
+| RES/ACC | 68 | 318 | 34 |
+| SET/COAST | 198 | 827 | 98 |
+| CANCEL | 418 | 1474 | 400 |
 
-**Option A — CSB3 provides 5V reference (check CSB3 manual):**
-Some CSB3 analog inputs have a configurable 5V pull-up. If available:
-- Connect the cruise stalk signal wire directly to CSB3 Analog 2 input
-- Enable the internal pull-up in the ECUMaster configurator
-- The voltage divider is formed internally
+Current through the 1 kohm is at most 5 mA, so the A32 +5V budget (OPEN-ITEMS row 69) is untouched. These are
+the Toyota nominal values ("approx."); measure the real stalk and tune the bands at setup. The CSB3 analog
+input impedance is not in the repo - check it in the CSB3 manual, since it loads the divider.
 
-**Option B — External pull-up resistor:**
-If CSB3 has no internal pull-up:
-- Add a 10 kΩ resistor from CSB3's 5V output to the Analog 2 input line
-- Connect the cruise stalk signal wire to that same junction
-- The stalk's ladder resistors then divide against this 10 kΩ to produce the voltage
-- Verify the resulting voltage levels still fall within distinct thresholds for each switch
+### Decoding - raw mV in PCLink (Option B, chosen)
 
-**If the OEM circuit is 12V-referenced** (verify in the diagram — look for a 12V supply to the
-cruise stalk connector):
-- Add a voltage divider to bring 12V max → 5V max before CSB3 Analog 2
-- Standard divider: 10 kΩ upper, 6.2 kΩ lower (roughly 3:2 ratio for 12→5V scale)
-- Recalculate all threshold voltages after the divider
+The CSB3 manual v2.1 says AS_MASK is one fixed 2 V / 3 V threshold per input, so it cannot split one ladder
+into three states. Option A (AS_MASK) is therefore not used.
 
-### Decoding approach — two options
+1. Analog 2 -> CSB3 -> 0x640 bytes 2-3 (raw mV, uint16, BigEndian).
+2. In PCLink receive it as a voltage channel ("Cruise Stalk mV") and decode with math channels. Starting bands,
+   from the 1 kohm table above (midpoints between positions), to be tuned on the car:
 
-**Option A — CSB3 AS_MASK threshold decoding (preferred, if supported):**
+   | mV | State |
+   |---|---|
+   | under 150 | fault (shorted ladder) |
+   | 150 - 570 | RES/ACC |
+   | 570 - 1150 | SET/COAST |
+   | 1150 - 3200 | CANCEL |
+   | over 3200 | none |
 
-The CSB3's AS_MASK field (0x642 **byte5**) suggests built-in support for analog switch decoding.
-**Manual v2.1 check (2026-10-03):** AS_MASK is one fixed threshold per input — the bit is 0 below 2 V
-and 1 above 3 V. It cannot split one resistor ladder into SET / RESUME / CANCEL, so Option A only
-works if each switch has its own analog input. With one ladder wire, use Option B.
-If supported:
-1. In the configurator, assign Analog 2 as an Analog Switch input
-2. Enter the voltage thresholds for each switch state (from the ST185 diagram)
-3. Assign each decoded state to an AS_MASK bit (bit0=SET, bit1=RESUME, bit2=CANCEL, etc.)
-4. In PCLink, extend the 0x642 CAN User Stream to include byte5 (AS_MASK):
-   - AS_MASK bit0 → VDI1 (cruise SET)
-   - AS_MASK bit1 → VDI2 (cruise RESUME; VDI2 is unassigned since A/C left the CSB3)
-   - AS_MASK bit2 → VDI3 (cruise CANCEL)
-5. In PCLink cruise control settings, map VDI1=SET, VDI2=RESUME, VDI3=CANCEL
-
-**⚠️ NOTE:** If AS_MASK decodes the cruise stalk, reassign the SW_MASK bits (Step 5) so they
-don't overlap with cruise functions. See Step 5 for the current VDI assignment table.
-
-**Option B — Raw mV decode in PCLink:**
-
-If CSB3 AS_MASK decoding is not available:
-1. Analog 2 → CSB3 → 0x640 bytes 2-3 (raw mV, uint16, BigEndian)
-2. In PCLink, receive 0x640 bytes 2-3 as a GP Voltage channel (e.g., "Cruise Stalk mV")
-3. Use PCLink's Math Channels (or Auxiliary Channels) to decode voltage ranges:
-   ```
-   If Cruise Stalk mV > [CANCEL_LOW] AND < [CANCEL_HIGH] → virtual output: CANCEL = ON
-   If Cruise Stalk mV > [RESUME_LOW] AND < [RESUME_HIGH] → virtual output: RESUME = ON
-   If Cruise Stalk mV > [SET_LOW]    AND < [SET_HIGH]    → virtual output: SET = ON
-   ```
-4. Map each virtual output to a PCLink VDI or directly to the cruise control function inputs
-5. Threshold values come from the ST185 electrical diagram (see table above)
-
-### MAIN switch
-
-The ST185 MAIN cruise on/off switch may be:
-- A separate discrete wire on the stalk connector (goes fully open/close, not through the resistor
-  ladder) → wire to a CSB3 digital input → SW_MASK bit per Step 5
-- OR embedded in the resistor ladder as the "full voltage = off" state (no separate wire needed)
-
-Verify in the ST185 electrical diagram which type the MAIN switch is.
+3. Map the decoded states to the Link cruise function inputs (SET/COAST, RES/ACC, CANCEL). Hold behaviour
+   (hold SET/COAST = slow down, hold RES/ACC = speed up) is a setting of the Link cruise strategy.
+4. MAIN is the CSB3 S3 input -> SW_MASK bit 2 -> VDI3 (Step 5). It is a contact to ground, so the CSB3 switch
+   input has to see ground as ON; confirm the input polarity and pull in the CSB3 manual (not recorded in the
+   repo). The OEM ECU also drops MAIN after an auto cancel until the ignition is cycled; set the same
+   re-arm in the Link cruise strategy if wanted.
 
 ---
 
@@ -184,9 +147,9 @@ PCLink reads this via a CAN User Stream: **0x642 byte4 bits0-4 → VDI1–VDI5**
 |---|---|---|---|
 | bit0 (LSB) | Switch 1 — unassigned (was evap core) | VDI1 | — |
 | bit1 | Switch 2 — unassigned (was A/C request) | VDI2 | — |
-| bit2 | Switch 3 — cruise MAIN on (CSB3 c17) | VDI3 | Cruise master on/off |
-| bit3 | Switch 4 — cruise SET/ACCEL (c18) | VDI4 | Cruise set / accelerate |
-| bit4 | Switch 5 — cruise RESUME/DECEL (c19) | VDI5 | Cruise resume / decelerate |
+| bit2 | Switch 3 — cruise MAIN on (CSB3 c17, stalk pin 15) | VDI3 | Cruise master on/off |
+| bit3 | Switch 4 — unassigned (was cruise SET; the stalk has no such wire) | VDI4 | — |
+| bit4 | Switch 5 — unassigned (was cruise RESUME; the stalk has no such wire) | VDI5 | — |
 | bit5–7 | Unused | — | Not read by PCLink |
 
 **Setup time (Dan, Route 15 C14, 2026-10-13 - no config now):** the brake switch is wired to CSB3 **S7 = SW_MASK bit 6** and
@@ -195,9 +158,7 @@ CAN user-stream mapping for bit 6 (brake pressed) - and bit 7 if the ECU wants r
 confirm then that the set bit means pressed / engaged. The CAN contract (`switchboard_frames.json`) is not changed until
 that mapping is made (`docs/OPEN-ITEMS.md` setup-time row 91).
 
-**Note:** If the cruise stalk AS_MASK decoding path is used (Step 4.1 Option A), the cruise
-SET/RESUME/CANCEL functions arrive via AS_MASK bits, NOT SW_MASK bits. In that case bit2 here
-only handles the MAIN on/off switch. Reassign VDI mapping in PCLink accordingly.
+**Note:** SET/COAST, RES/ACC and CANCEL do not arrive on SW_MASK or AS_MASK: they are decoded in PCLink from the A2 raw mV (Step 4.1). SW_MASK bit 2 carries only MAIN.
 
 In the configurator, map physical wires to digital input channels and confirm the bit ordering matches the table above.
 
@@ -298,7 +259,7 @@ Before first power-on with ECU on the bus:
 - [ ] CSB3 CAN speed confirmed **1000 kbps** in configurator
 - [ ] Base ID confirmed **0x640**
 - [ ] CSB3 termination jumper confirmed **OPEN (OFF)**
-- [ ] SW_MASK bits 2–4 wired to the cruise switches (bits 0–1 unassigned)
+- [ ] SW_MASK bit 2 wired to the cruise MAIN switch (bits 0–1 and 3–4 unassigned); stalk ladder on A2 with a 1 kohm pull-up
 - [ ] With CSB3 powered and isolated, 0x640 / 0x641 / 0x642 frames visible in CAN monitor at 1 Mbit/s
 - [ ] In PCLink — CAN User Stream 0x642 byte4 bits 0-4 → VDI1-5 configured
 - [ ] In PCLink — receive timeout 200 ms set for 0x640 / 0x641 / 0x642

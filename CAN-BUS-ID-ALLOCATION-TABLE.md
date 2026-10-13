@@ -148,9 +148,9 @@ Source: switchboard manual v2.1 (FW 3.0+), sections 5-6. Machine-readable copy: 
 |---|---|---|
 | 0 | Switch 1 | **Unassigned** — was Evaporator Core State |
 | 1 | Switch 2 | **Unassigned** — was AC Request |
-| 2 | Switch 3 | Cruise Control Active |
-| 3 | Switch 4 | Cruise Set / Accelerate |
-| 4 | Switch 5 | Cruise Resume / Decelerate |
+| 2 | Switch 3 | Cruise Control Active (MAIN, stalk pin 15) |
+| 3 | Switch 4 | Unassigned (was Cruise Set; the OEM stalk has no SET wire, S23) |
+| 4 | Switch 5 | Unassigned (was Cruise Resume; the OEM stalk has no RESUME wire, S23) |
 | 5-7 | Switch 6-8 | **Unassigned — available** |
 
 > **2026-09-27:** A/C is the OEM A/C amplifier's job, not the CSB3's (harness redesign,
