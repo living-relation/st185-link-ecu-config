@@ -379,8 +379,8 @@
         {
           "id": "c25",
           "designation": "62",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)",
+          "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c26",
@@ -469,7 +469,7 @@
           "id": "c12",
           "designation": "76",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECUMaster CSB3 - Power/CAN/Switch I/O SW"
+          "signal": "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
         },
         {
           "id": "c19",
@@ -892,7 +892,7 @@
       "id": "fl_reverse_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD Back-up light switch-TBD TBD reverse signal -> bulkhead B c12 -> CSB3 S8 - new-wire run terminated at the switch's own OEM mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); not a solder-sleeve splice",
+      "signal": "EWD 1992 p.132-133 / Mitchell 1993 Fig. 16 B1 pin 1 (R-B in the factory wiring, new wire here) back-up light switch out, +12V in reverse -> bulkhead B c12 -> reverse relay k_rev 86 + opto IN2 (CSB3 S8) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
       "schematicPosition": {
         "x": 990,
         "y": 870
@@ -1020,6 +1020,21 @@
       "schematicPosition": {
         "x": 480,
         "y": 4920
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_reverse_sw_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1992 p.132-133 / Mitchell 1993 Fig. 16 B1 pin 2 (R-L in the factory wiring, new wire here) back-up light switch feed <- bulkhead B c25 <- J/B No.1 GAUGE 15A (J/B3 3B-9) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 990,
+        "y": 930
+      },
+      "layoutPosition": {
+        "x": -1020,
+        "y": -390
       },
       "propagate": false
     }
@@ -1167,8 +1182,9 @@
         "id": "fl_reverse_sw_c1",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "partId": "m16_20_5"
+      "color": "Red",
+      "partId": "m16_16_20",
+      "stripeColor": "Black"
     },
     {
       "id": "w207",
@@ -1372,6 +1388,20 @@
       },
       "color": "Black",
       "partId": "m16_20_0"
+    },
+    {
+      "id": "w_rev_feed_e",
+      "source": {
+        "id": "bh_b_eng",
+        "handle": "c25"
+      },
+      "target": {
+        "id": "fl_reverse_sw_c2",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "stripeColor": "Blue",
+      "partId": "m16_16_26"
     }
   ],
   "cables": [
@@ -1883,11 +1913,11 @@
       }
     },
     {
-      "id": "bn_bh_b_eng__fl_reverse_sw_c1",
+      "id": "bn_bh_b_eng__bp_rev_sw",
       "sourceId": "bh_b_eng",
-      "targetId": "fl_reverse_sw_c1",
+      "targetId": "bp_rev_sw",
       "length": {
-        "value": 1580,
+        "value": 1530,
         "unit": "mm"
       }
     },
@@ -1949,6 +1979,24 @@
       "id": "bn_be_750__br_cab_lamcan_sh",
       "sourceId": "be_750",
       "targetId": "br_cab_lamcan_sh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rev_sw__fl_reverse_sw_c1",
+      "sourceId": "bp_rev_sw",
+      "targetId": "fl_reverse_sw_c1",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rev_sw__fl_reverse_sw_c2",
+      "sourceId": "bp_rev_sw",
+      "targetId": "fl_reverse_sw_c2",
       "length": {
         "value": 50,
         "unit": "mm"
@@ -2137,6 +2185,13 @@
         "x": 930,
         "y": 0
       }
+    },
+    {
+      "id": "bp_rev_sw",
+      "layoutPosition": {
+        "x": -960,
+        "y": -270
+      }
     }
   ],
   "schematicNotes": [
@@ -2166,17 +2221,6 @@
       "manufacturer": "M22759",
       "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Black",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_5",
-      "partNumber": "M22759/16-20-5",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
       "gauge": {
         "value": 20,
         "unit": "AWG"
@@ -2257,6 +2301,30 @@
       "color": "Black",
       "gauge": {
         "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_20",
+      "partNumber": "M22759/16-16-20",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_26",
+      "partNumber": "M22759/16-16-26",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 16,
         "unit": "AWG"
       }
     }

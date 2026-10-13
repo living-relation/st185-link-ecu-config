@@ -56,7 +56,11 @@
     },
     "CSB3": {
       "file": "ST185-CSB3.harness",
-      "physical": "ECUMaster CSB3 plug and switch inputs (cruise stalk, clutch, brake, cruise ladder); power, ground, reverse, LED and CAN wires arrive broken off"
+      "physical": "ECUMaster CSB3 plug and switch inputs (cruise stalk, clutch, brake, cruise ladder) and the 6-channel brake / reverse optoisolator inline at the plug; power, ground, reverse, LED and CAN wires arrive broken off"
+    },
+    "RearLights": {
+      "file": "ST185-RearLights.harness",
+      "physical": "Rear lighting (Route 15): J/B No.1 1F tail / turn and S9 stop flying leads, the reverse feed broken off from k_rev (CabinPower), LH sill to R11 / R12 rear combination lamps, L1 license light, H6 high-mount stop light (hatch), one rear ground BL"
     }
   },
   "interfaces": [
@@ -273,12 +277,12 @@
       "harness": "CSB3",
       "terminal": "fl_brake_sw_c1",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
-        "connector": "Stop lamp switch",
-        "pin": "TBD",
-        "color": "TBD",
-        "function": "brake switch signal -> CSB3 S7",
-        "method": "solder sleeve into the factory lead"
+        "page": "1993 p.126-127",
+        "connector": "S9",
+        "pin": "1",
+        "color": "G-W",
+        "function": "brake: +12V with the pedal pressed -> opto IN1 -> CSB3 S7 (ground-active, R56)",
+        "method": "soldered tap into the factory G-W lead at S9 (cabin)"
       }
     },
     {
@@ -385,12 +389,12 @@
       "harness": "B-engine",
       "terminal": "fl_reverse_sw_c1",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
-        "connector": "Back-up light switch",
-        "pin": "TBD",
-        "color": "TBD",
-        "function": "reverse signal -> bulkhead B c12 -> CSB3 S8",
-        "method": "new-wire run terminated at the switch's own OEM mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); not a solder-sleeve splice"
+        "page": "1992 p.132-133; Mitchell 1993 overall wiring Fig. 16 (grid 63)",
+        "connector": "B1",
+        "pin": "1",
+        "color": "R-B (factory wiring; new wire here)",
+        "function": "back-up switch out, +12V in reverse -> bulkhead B c12 -> reverse relay k_rev 86 + opto IN2 -> CSB3 S8",
+        "method": "new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
       }
     },
     {
@@ -741,6 +745,314 @@
         "color": "Y-R (factory wiring; new wire here)",
         "function": "A/C pressure switch switched return -> A18-13",
         "method": "new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_OEM_JB1_1F_C1",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_oem_jb1_1f_c1",
+      "ewd": {
+        "page": "1993 p.112-113",
+        "connector": "J/B1",
+        "pin": "1F-1",
+        "color": "G",
+        "function": "TAIL 15A out (TAIL relay, light switch TAIL/HEAD) -> rear tail lamps R11 / R12 pins 2-3, license L1 pin 1",
+        "method": "crimp butt splice into the factory 1F-1 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)"
+      }
+    },
+    {
+      "id": "FL_OEM_JB1_1F_C3",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_oem_jb1_1f_c3",
+      "ewd": {
+        "page": "1993 p.130-131",
+        "connector": "J/B1",
+        "pin": "1F-3",
+        "color": "G-B",
+        "function": "turn LH out (flasher T3 via H5 / C15) -> R11 pin 6",
+        "method": "crimp butt splice into the factory 1F-3 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)"
+      }
+    },
+    {
+      "id": "FL_OEM_JB1_1F_C2",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_oem_jb1_1f_c2",
+      "ewd": {
+        "page": "1993 p.130-131",
+        "connector": "J/B1",
+        "pin": "1F-2",
+        "color": "G-Y",
+        "function": "turn RH out (flasher T3 via H5 / C15) -> R12 pin 6",
+        "method": "crimp butt splice into the factory 1F-2 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)"
+      }
+    },
+    {
+      "id": "FL_OEM_S9_C1",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_oem_s9_c1",
+      "ewd": {
+        "page": "1993 p.126-127",
+        "connector": "S9",
+        "pin": "1",
+        "color": "G-W",
+        "function": "stop lamp feed: STOP 15A (J/B1 1B-7) through S9, +12V with the pedal pressed -> R11 / R12 pin 1, H6 pin 1",
+        "method": "soldered tap into the factory G-W lead at S9 pin 1 (cabin, under the dash; the CSB3 brake tap FL_BRAKE_SW_C1 lands on the same lead)"
+      }
+    },
+    {
+      "id": "FL_R11_C1",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r11_c1",
+      "ewd": {
+        "page": "1993 p.126",
+        "connector": "R11",
+        "pin": "1",
+        "color": "G-W (factory wiring; new wire here)",
+        "function": "stop LH <- sp_rl_stop",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R11_C2",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r11_c2",
+      "ewd": {
+        "page": "1993 p.113",
+        "connector": "R11",
+        "pin": "2",
+        "color": "G (factory wiring; new wire here)",
+        "function": "tail + rear side marker LH <- sp_rl_tail",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R11_C3",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r11_c3",
+      "ewd": {
+        "page": "1993 p.113",
+        "connector": "R11",
+        "pin": "3",
+        "color": "G (factory wiring; new wire here)",
+        "function": "tail + rear side marker LH <- sp_rl_tail",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R11_C4",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r11_c4",
+      "ewd": {
+        "page": "Mitchell 1993 Fig. 16 grid 63; 1992 p.132",
+        "connector": "R11",
+        "pin": "4",
+        "color": "R-B (factory wiring; new wire here)",
+        "function": "back-up LH <- sp_rl_rev (k_rev 87)",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R11_C5",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r11_c5",
+      "ewd": {
+        "page": "1993 p.113 / p.126",
+        "connector": "R11",
+        "pin": "5",
+        "color": "W-B (factory wiring; new wire here)",
+        "function": "ground LH -> sp_rl_gnd -> BL",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R11_C6",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r11_c6",
+      "ewd": {
+        "page": "1993 p.130",
+        "connector": "R11",
+        "pin": "6",
+        "color": "G-B (factory wiring; new wire here)",
+        "function": "turn LH <- J/B1 1F-3",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R12_C1",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r12_c1",
+      "ewd": {
+        "page": "1993 p.126",
+        "connector": "R12",
+        "pin": "1",
+        "color": "G-W (factory wiring; new wire here)",
+        "function": "stop RH <- sp_rl_stop",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R12_C2",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r12_c2",
+      "ewd": {
+        "page": "1993 p.113",
+        "connector": "R12",
+        "pin": "2",
+        "color": "G (factory wiring; new wire here)",
+        "function": "tail + rear side marker RH <- sp_rl_tail",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R12_C3",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r12_c3",
+      "ewd": {
+        "page": "1993 p.113",
+        "connector": "R12",
+        "pin": "3",
+        "color": "G (factory wiring; new wire here)",
+        "function": "tail + rear side marker RH <- sp_rl_tail",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R12_C4",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r12_c4",
+      "ewd": {
+        "page": "Mitchell 1993 Fig. 16 grid 63; 1992 p.132",
+        "connector": "R12",
+        "pin": "4",
+        "color": "R-B (factory wiring; new wire here)",
+        "function": "back-up RH <- sp_rl_rev (k_rev 87)",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R12_C5",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r12_c5",
+      "ewd": {
+        "page": "1993 p.113 / p.126",
+        "connector": "R12",
+        "pin": "5",
+        "color": "W-B (factory wiring; new wire here)",
+        "function": "ground RH -> sp_rl_gnd -> BL",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_R12_C6",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_r12_c6",
+      "ewd": {
+        "page": "1993 p.130",
+        "connector": "R12",
+        "pin": "6",
+        "color": "G-Y (factory wiring; new wire here)",
+        "function": "turn RH <- J/B1 1F-2",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_L1_C1",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_l1_c1",
+      "ewd": {
+        "page": "1993 p.113",
+        "connector": "L1",
+        "pin": "1",
+        "color": "G (factory wiring; new wire here)",
+        "function": "license plate light feed <- sp_rl_tail",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_L1_C2",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_l1_c2",
+      "ewd": {
+        "page": "1993 p.113",
+        "connector": "L1",
+        "pin": "2",
+        "color": "W-B (factory wiring; new wire here)",
+        "function": "license plate light ground -> sp_rl_gnd -> BL",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_H6_C1",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_h6_c1",
+      "ewd": {
+        "page": "1993 p.126",
+        "connector": "H6",
+        "pin": "A-1",
+        "color": "G-W (factory wiring; new wire here)",
+        "function": "high-mount stop light (spoiler) feed <- sp_rl_stop",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_H6_C2",
+      "type": "oem_flying_lead",
+      "harness": "RearLights",
+      "terminal": "fl_h6_c2",
+      "ewd": {
+        "page": "1993 p.126",
+        "connector": "H6",
+        "pin": "A-2",
+        "color": "W-B (factory wiring; new wire here)",
+        "function": "high-mount stop light ground -> sp_rl_gnd -> BL (one rear ground, C6; OEM went to BI)",
+        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_REVERSE_SW_C2",
+      "type": "oem_flying_lead",
+      "harness": "B-engine",
+      "terminal": "fl_reverse_sw_c2",
+      "ewd": {
+        "page": "1992 p.132-133; Mitchell 1993 overall wiring Fig. 16 (grid 63)",
+        "connector": "B1",
+        "pin": "2",
+        "color": "R-L (factory wiring; new wire here)",
+        "function": "back-up switch feed <- bulkhead B c25 <- J/B No.1 GAUGE 15A (J/B3 3B-9)",
+        "method": "new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+      }
+    },
+    {
+      "id": "FL_OEM_JB3_B9",
+      "type": "oem_flying_lead",
+      "harness": "CabinPower",
+      "terminal": "fl_oem_jb3_b9",
+      "ewd": {
+        "page": "Mitchell 1993 overall wiring Fig. 16 (grid 63, J/B #3 pin B9); 1992 p.132",
+        "connector": "J/B3",
+        "pin": "3B-9",
+        "color": "R-L",
+        "function": "GAUGE 15A (J/B1 1E-5, ignition) -> reverse relay k_rev 30 + back-up switch B1 pin 2",
+        "method": "crimp butt splice into the factory R-L lead at J/B3 3B-9 (cabin side; its engine-wire leg to the switch is gone)"
       }
     }
   ],
@@ -1096,7 +1408,7 @@
     {
       "id": "BR_W_SW7_C",
       "type": "broken_off",
-      "what": "reverse switch (bulkhead B c12) to CSB3 S8",
+      "what": "back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
       "ends": [
         {
           "harness": "B-cabin",
@@ -2020,6 +2332,51 @@
         {
           "harness": "CAN",
           "terminal": "br_w_dev"
+        }
+      ]
+    },
+    {
+      "id": "BR_RL_REV",
+      "type": "broken_off",
+      "what": "reverse relay k_rev 87 -> back-up lamps R11 / R12 pin 4",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_rl_rev"
+        },
+        {
+          "harness": "RearLights",
+          "terminal": "br_rl_rev"
+        }
+      ]
+    },
+    {
+      "id": "BR_REV_COIL",
+      "type": "broken_off",
+      "what": "back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86",
+      "ends": [
+        {
+          "harness": "B-cabin",
+          "terminal": "br_rev_coil"
+        },
+        {
+          "harness": "CabinPower",
+          "terminal": "br_rev_coil"
+        }
+      ]
+    },
+    {
+      "id": "BR_REV_FEED",
+      "type": "broken_off",
+      "what": "GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_rev_feed"
+        },
+        {
+          "harness": "B-cabin",
+          "terminal": "br_rev_feed"
         }
       ]
     }

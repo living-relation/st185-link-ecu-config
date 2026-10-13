@@ -379,8 +379,8 @@
         {
           "id": "c25",
           "designation": "62",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "signal": "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)",
+          "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c26",
@@ -469,7 +469,7 @@
           "id": "c12",
           "designation": "76",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECUMaster CSB3 - Power/CAN/Switch I/O SW"
+          "signal": "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
         },
         {
           "id": "c19",
@@ -1083,7 +1083,7 @@
     {
       "id": "br_w_sw7_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CSB3: reverse switch (bulkhead B c12) to CSB3 S8",
+      "signal": "Broken off - continues on ST185-CSB3: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
       "width": 390,
       "layoutPosition": {
         "x": 2460,
@@ -1289,6 +1289,36 @@
         "y": 1020
       },
       "propagate": false
+    },
+    {
+      "id": "br_rev_coil",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86",
+      "schematicPosition": {
+        "x": 1380,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 2460,
+        "y": 270
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_rev_feed",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2",
+      "schematicPosition": {
+        "x": 1380,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 2460,
+        "y": 330
+      },
+      "propagate": false
     }
   ],
   "splices": [
@@ -1355,6 +1385,19 @@
       "schematicPosition": {
         "x": 3000,
         "y": 2880
+      }
+    },
+    {
+      "id": "sp_rev_sw",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_1080",
+      "schematicPosition": {
+        "x": 1200,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 2400,
+        "y": 150
       }
     }
   ],
@@ -1508,15 +1551,16 @@
     {
       "id": "w_sw7_c",
       "source": {
+        "id": "sp_rev_sw",
+        "handle": "Splice"
+      },
+      "target": {
         "id": "br_w_sw7_c",
         "handle": "Terminal"
       },
-      "target": {
-        "id": "bh_b_fw",
-        "handle": "c12"
-      },
-      "color": "Green",
-      "partId": "m16_20_5"
+      "color": "Red",
+      "partId": "m16_16_20",
+      "stripeColor": "Black"
     },
     {
       "id": "w_start",
@@ -1931,6 +1975,48 @@
         "handle": "Terminal"
       },
       "partId": "m16_20_5"
+    },
+    {
+      "id": "w_rev_sw_c",
+      "source": {
+        "id": "bh_b_fw",
+        "handle": "c12"
+      },
+      "target": {
+        "id": "sp_rev_sw",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "stripeColor": "Black",
+      "partId": "m16_16_20"
+    },
+    {
+      "id": "w_rev_coil_c",
+      "source": {
+        "id": "sp_rev_sw",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_rev_coil",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "stripeColor": "Black",
+      "partId": "m16_16_20"
+    },
+    {
+      "id": "w_rev_feed_c",
+      "source": {
+        "id": "br_rev_feed",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "bh_b_fw",
+        "handle": "c25"
+      },
+      "color": "Red",
+      "stripeColor": "Blue",
+      "partId": "m16_16_26"
     }
   ],
   "cables": [
@@ -2572,6 +2658,24 @@
         "value": 300,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_b_bp_1080__br_rev_coil",
+      "sourceId": "b_bp_1080",
+      "targetId": "br_rev_coil",
+      "length": {
+        "value": 370,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1080__br_rev_feed",
+      "sourceId": "b_bp_1080",
+      "targetId": "br_rev_feed",
+      "length": {
+        "value": 370,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -3006,6 +3110,30 @@
       "color": "Blue",
       "gauge": {
         "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_20",
+      "partNumber": "M22759/16-16-20",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_26",
+      "partNumber": "M22759/16-16-26",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 16,
         "unit": "AWG"
       }
     }

@@ -189,6 +189,12 @@ PCLink reads this via a CAN User Stream: **0x642 byte4 bits0-4 → VDI1–VDI5**
 | bit4 | Switch 5 — cruise RESUME/DECEL (c19) | VDI5 | Cruise resume / decelerate |
 | bit5–7 | Unused | — | Not read by PCLink |
 
+**Setup time (Dan, Route 15 C14, 2026-10-13 - no config now):** the brake switch is wired to CSB3 **S7 = SW_MASK bit 6** and
+reverse to **S8 = bit 7**, both through the inline optoisolator (`ST185-CSB3`, DECISIONS S17 / R56). PCLink needs a
+CAN user-stream mapping for bit 6 (brake pressed) - and bit 7 if the ECU wants reverse - when the ECU is on the bench;
+confirm then that the set bit means pressed / engaged. The CAN contract (`switchboard_frames.json`) is not changed until
+that mapping is made (`docs/OPEN-ITEMS.md` setup-time row 91).
+
 **Note:** If the cruise stalk AS_MASK decoding path is used (Step 4.1 Option A), the cruise
 SET/RESUME/CANCEL functions arrive via AS_MASK bits, NOT SW_MASK bits. In that case bit2 here
 only handles the MAIN on/off switch. Reassign VDI mapping in PCLink accordingly.

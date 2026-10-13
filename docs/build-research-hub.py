@@ -44,7 +44,7 @@ TOPICS: list[dict] = [
         "dir": "harness",
         "title": "Harness & Wiring",
         "blurb": "Current harnesses live under rebuild/ (A/B cabin, A/B engine, CAN, EngineRoom-C, "
-                 "WheelSpeed front/rear, RearFuel, ACAmp-Spur, ClusterLED, AntiTheft). Buy list and per-wire build sheet "
+                 "WheelSpeed front/rear, RearFuel, ClusterLED, AntiTheft, RearLights). Buy list and per-wire build sheet "
                  "are generated — do not hand-edit them.",
     },
     {
