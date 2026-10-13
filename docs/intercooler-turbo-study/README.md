@@ -13,7 +13,7 @@ kept here as the build-reference location.
 | `THROTTLE-BODY-PLUMBING-SPEC.md` | Rev 3: 2.50 in both sides. 3.00 in cold withdrawn (volume / lag). |
 | `model/` | Single source of truth: `inputs.yaml`, MatchBot case/results, IC + pipes + power JSON. |
 
-`research/` is the old working trail (scripts, invoices, prior-turbo sources).
+`research/` keeps the round findings (`research/README.md`), the pipe-sizing source data and the prior-turbo images; the old round scripts were removed 2026-10-13 (git history keeps them).
 It is not the deliverable. Round 1/2/3/5 `.bak.html` copies and
 `PATCH-NOTE-intercooler-report.md` were removed after the 2026-09-09 rebuild.
 

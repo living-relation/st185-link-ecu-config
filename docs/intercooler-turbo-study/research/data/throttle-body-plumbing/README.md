@@ -20,21 +20,18 @@ on his order.
 All four are the vendor's own listing photographs for the 74 mm adapter.
 Source: Shopify CDN, `cdn.shopify.com/s/files/1/0435/8979/6001/files/`,
 uploaded by the vendor 9 October 2024, photographed 13 August 2024.
-`.webp` files are the originals as downloaded. `.png` files are the same images
-converted so they open in any viewer.
+Only the `.png` copies are kept (the `.webp` originals were byte-for-byte the same pictures; removed 2026-10-13, git history keeps them).
 
 | File | What it shows |
 |------|---------------|
-| `OG_74mm_adapter_HDclamp_silver.webp` / `.png` | The exact variant Dan owns — 3" HD Clamp, Silver. Shows the flat radial clamp face, the O-ring, the four bolt ears and the four long yellow-zinc cap screws |
-| `OG_74mm_adapter_HDclamp_black.webp` / `.png` | Same part in black. Clearer view of the clamp face profile |
-| `OG_74mm_adapter_hose_silver.webp` / `.png` | The 3" Hose variant for comparison — plain straight barrel with a retaining bead instead of a clamp face |
-| `OG_74mm_adapter_view2.webp` / `.png` | An adapter fitted to a Bosch throttle body, with a second adapter loose alongside. This is the picture that shows how the part mounts |
+| `OG_74mm_adapter_HDclamp_silver.png` | The exact variant Dan owns — 3" HD Clamp, Silver. Shows the flat radial clamp face, the O-ring, the four bolt ears and the four long yellow-zinc cap screws |
+| `OG_74mm_adapter_HDclamp_black.png` | Same part in black. Clearer view of the clamp face profile |
+| `OG_74mm_adapter_hose_silver.png` | The 3" Hose variant for comparison — plain straight barrel with a retaining bead instead of a clamp face |
+| `OG_74mm_adapter_view2.png` | An adapter fitted to a Bosch throttle body, with a second adapter loose alongside. This is the picture that shows how the part mounts |
 
 ## Order record
 
-| File | What it is | Source | Date |
-|------|-----------|--------|------|
-| `order-7870-line-items.md` | The three line items of order #7870, plus an index of every related Gmail thread that was checked | Gmail, thread `19b91aa70eff010b`, message `19b91bb8779f00ff` | Order placed 5 Jan 2026, email 6 Jan 2026 |
+Order #7870 (Outsider Garage, 5 Jan 2026: DBW manifold adapter, 74 mm hose / HD clamp adapter, Bosch 74 mm e-throttle). The line-item record cites Daniel's email, so it is kept local only (`_research/purchase-records/`, untracked) - this repo is public.
 
 ## Calculations
 
