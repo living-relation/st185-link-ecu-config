@@ -7,7 +7,7 @@ function Add($g, $f, $base) {
 }
 # Every ST185 file lives inside the project folder (DECISIONS R67); heavy CAD sits untracked beside its design
 Get-ChildItem "$r\docs\research" -File -Filter *.html | ForEach-Object { Add 'Research & picks' $_ $null }
-foreach ($d in 'docs\electrical\cad', 'docs\enclosures\cad') {
+foreach ($d in 'cad') {
   Get-ChildItem "$r\$d" -Recurse -File -Include *.html, *.pdf, *.f3d | ForEach-Object { Add 'CAD' $_ $r }
 }
 Get-ChildItem "$r\docs\harness\routes" -File -Filter ROUTE-*.html | Where-Object { $_.Name -notmatch '-rev\d' } | ForEach-Object { Add 'Routes (approved)' $_ $null }

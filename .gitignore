@@ -38,9 +38,9 @@ _cluster/
 *.stp
 *.STEP
 *.STP
-docs/electrical/cad/busbar/**/*_drawing.pdf
-docs/electrical/cad/busbar/design-B-rev2/B_rev2_Cover_printed_ASA.stl
-docs/electrical/cad/busbar/design-B-rev3/B_rev3_Cover_printed_ASA.stl
+cad/busbar/**/*_drawing.pdf
+cad/busbar/design-B-rev2/B_rev2_Cover_printed_ASA.stl
+cad/busbar/design-B-rev3/B_rev3_Cover_printed_ASA.stl
 
 # Live dashboard data (local only)
 tools/dashboard/dashboard-answers.json

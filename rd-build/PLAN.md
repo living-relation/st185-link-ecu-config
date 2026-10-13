@@ -127,7 +127,7 @@ Oil Pressure (secondary threshold) · bit5 Switchboard Comm Fault (ECU-set) · b
 ## 4. Build target — single-page dashboard, exact spec
 
 This is the current design — it matches the repo-root `realdash-simulation.html` (no Cabin Temp tile;
-the older `rd-build/realdash-simulation-REFERENCE.html` still shows one). Canvas **800×480, one page, no swipe/second page.**
+the older copy with a Cabin tile was removed 2026-10-13; git history keeps it). Canvas **800×480, one page, no swipe/second page.**
 
 ### 4.1 Palette
 | Token | Hex |

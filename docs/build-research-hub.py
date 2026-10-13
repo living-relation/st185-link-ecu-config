@@ -68,6 +68,19 @@ TOPICS: list[dict] = [
                  "trunk-battery / glove-box PDB move. Partial engine-room C is in docs/harness/.",
     },
     {
+        "dir": "../cad",
+        "title": "CAD (custom parts)",
+        "blurb": "Every custom-part CAD model, one folder per part: bus bar (five saved designs), "
+                 "fuse/relay box plan, VRC and CSB3 enclosures, DRB102 firewall plate. Fusion "
+                 ".f3d, STL and renders are in git; STEP files are local only (gitignored).",
+    },
+    {
+        "dir": "research",
+        "title": "Research & part picks",
+        "blurb": "Dated research, part-pick and audit pages - latest of each topic only. "
+                 "A decision they led to is recorded in DECISIONS / OPEN-ITEMS, and that record wins.",
+    },
+    {
         "dir": "devices",
         "title": "Sensors & Actuators",
         "blurb": "Per-device reference: part numbers, pinouts, calibrations and drive "
@@ -96,7 +109,8 @@ ROOT_NOTES = [
 
 # Files matching these are working artifacts, not things you read.
 SUPPORTING_SUFFIXES = {".py", ".js", ".json", ".csv", ".css", ".txt"}
-ASSET_SUFFIXES = {".png", ".svg", ".webp", ".jpg", ".jpeg", ".pdf", ".ico"}
+ASSET_SUFFIXES = {".png", ".svg", ".webp", ".jpg", ".jpeg", ".pdf", ".ico",
+                  ".f3d", ".stl", ".step", ".stp"}
 SKIP_NAMES = {"package-lock.json", "package.json"}
 SKIP_PATTERNS = [re.compile(r"\.bak\.html$"), re.compile(r"^__pycache__$")]
 
@@ -771,7 +785,7 @@ def build() -> dict:
 
     digests: dict[str, list[str]] = {}
     for t in spec:
-        tdir = DOCS / t["dir"]
+        tdir = (DOCS / t["dir"]).resolve()
         if not tdir.is_dir():
             continue
         docs = collect(tdir)

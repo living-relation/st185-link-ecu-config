@@ -30,10 +30,6 @@ a PC that has RealDash installed and a real GPU-backed desktop**. Everything the
 - The CAN channel file is the **repo-root** `link_g4x_realdash.xml` (single copy — there is no
   `rd-build/link_g4x_realdash.xml` any more). Import it so the `ST185:`-prefixed inputs exist for
   gauges to bind to (PLAN.md section 3).
-- `realdash-simulation-REFERENCE.html` - live HTML/JS preview of the dashboard's look & feel (open in
-  any browser). **Visual/style reference only** — it still shows a leftover "CABIN" tile that is NOT
-  in the final layout. The authoritative layout is PLAN.md section 4 (no Cabin tile; Trigger Errors
-  spans the freed slot).
 - `tools/` - desktop-automation tooling for the agent:
   - `automation_helper.py` - PyAutoGUI CLI: screenshot / click / type / key / pixel. This is the
     only tool the agent needs to drive the editor.
@@ -47,7 +43,7 @@ a PC that has RealDash installed and a real GPU-backed desktop**. Everything the
 | What | Current | Older copies (history only) |
 |---|---|---|
 | Dashboard `.rd` | repo-root `st185_dash.rd` — the delivered build per `BUILD-NOTES.md` (2026-07-06) | `rd-build/realdash-root/st185_dash.rd` and `st185_dash_v2.rd` … `st185_dash_v10.rd` (intermediate editor saves; v10 is the last numbered save) |
-| Simulation / look-and-feel | repo-root `realdash-simulation.html` (no Cabin tile; linked from `REALDASH-LAYOUT.md`) | `rd-build/realdash-simulation-REFERENCE.html` (still shows a Cabin tile) |
+| Simulation / look-and-feel | repo-root `realdash-simulation.html` (no Cabin tile; linked from `REALDASH-LAYOUT.md`) | none (the older `rd-build/realdash-simulation-REFERENCE.html` with a Cabin tile was removed 2026-10-13; git history keeps it) |
 | CAN channel file | repo-root `link_g4x_realdash.xml` | none |
 
 **Open item:** `BUILD-NOTES.md` says the root file and `realdash-root/st185_dash.rd` are the same
