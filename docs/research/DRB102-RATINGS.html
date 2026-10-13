@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Deutsch DRB 102-Way — Ratings Check vs Firewall Bulkhead Spot — 2026-09-29</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; background:#0b0d10; color:#e6e6e6; max-width:1100px; margin:0 auto; padding:24px; }
+  h1 { font-size:22px; border-bottom:2px solid #444; padding-bottom:8px; }
+  h2 { font-size:18px; margin-top:32px; color:#7fd7ff; }
+  table { border-collapse: collapse; width:100%; margin:12px 0 20px; }
+  th, td { border:1px solid #333; padding:7px 10px; text-align:left; font-size:13px; vertical-align:top; }
+  th { background:#1b1f24; }
+  tr:nth-child(even) { background:#14171a; }
+  code { background:#1b1f24; padding:1px 5px; border-radius:3px; font-size:12.5px; }
+  .pass { color:#7CFC00; font-weight:700; }
+  .gap { color:#ffb400; font-weight:700; }
+  .stopbox { background:#2a1414; border-left:4px solid #ff6b6b; padding:14px 18px; margin:16px 0; font-size:14px; }
+  .note { background:#1b1f24; border-left:3px solid #7fd7ff; padding:10px 14px; margin:10px 0; font-size:13.5px; }
+  a { color:#7fd7ff; }
+</style>
+</head>
+<body>
+
+<h1>Deutsch DRB 102-Way Bulkhead — Ratings Check</h1>
+<p>2026-09-29 · Parts checked: <code>DRB12-102PAE-L018</code> (firewall receptacle), <code>DRB16-102SAE-L018</code> (engine-side plug), <code>DRBF-1A</code> (flange), owned gold contacts size 16 (<code>0460-202-1631</code> / <code>0462-201-1631</code>) and size 12 (<code>0460-220-1231</code> / <code>0462-210-1231</code>). Sourced from TE's own product pages for these exact part numbers — series overview, Performance Specifications tab, FAQ page, and the <code>DRB12-102PAE-L018</code> part-detail page — not from resellers or catalogs.</p>
+
+<div class="note">
+<b>Status update, 2026-09-29 — implementation proceeded.</b><br><br>
+Daniel: "PROCEED with step 3 (implement), taking SAE J2030 compliance plus the strong pass on everything else as good enough." The DRB102 bulkhead migration is now in the repo (see <code>docs/harness/redesign/DECISIONS.md</code>). The six passing ratings below stand; the three gaps were chased further per his request, with the result below.
+</div>
+
+<div class="stopbox" style="border-left-color:#ffb400;background:#241f10;">
+<b>Gap-chasing result: still not published, but now the exact documents are identified.</b><br><br>
+TE's own <code>DRB12-102PAE-L018</code> part page links four deeper documents by exact number: Application Specification <b>114-151021</b>, Engineering Report <b>502-151021</b>, Product Specification <b>108-151021</b>, and Qualification Test Report <b>501-151021</b> — any of these could carry unmated sealing, an itemized fluid list, and salt-spray duration. All four are served through TE's <code>DocumentDelivery/DDEController</code> endpoint, which returned an empty response to a direct fetch (no readable text or PDF content) — same result as the first attempt. This looks like a JS-gated or session-gated delivery system rather than a plain static file link, so it is outside what an automated fetch can retrieve.<br><br>
+These three items are marked <b>"not published (per TE spec 108-151021 / 501-151021 — gated, not retrievable)"</b> below, rather than "not published" outright, so a follow-up request to TE support or a distributor (Digi-Key, Mouser, LADD) has the exact document numbers to ask for.
+</div>
+
+<h2>Ratings table</h2>
+<table>
+<tr><th>Spec</th><th>DRB 102-way value (TE's own data)</th><th>Firewall profile (~-40 to 125°C, splash/wash)</th><th>OK?</th></tr>
+<tr><td>Operating temperature range</td><td>-55°C to +125°C continuous at rated current (housing); contacts rated -55 to +150°C</td><td>~-40 to 125°C</td><td class="pass">PASS</td></tr>
+<tr><td>Sealing / IP rating — <b>mated</b></td><td><b>IP68 and IP6K9K</b> (stated directly on the <code>DRB12-102PAE-L018</code> part page, under Industry Standards). IP6K9K is the ISO 20653 high-pressure/steam-jet wash test — the exact scenario for a firewall spot that gets pressure-washed or splashed.</td><td>Splash + wash</td><td class="pass">PASS</td></tr>
+<tr><td>Sealing / IP rating — <b>unmated</b></td><td>Not published (per TE spec 108-151021 / 501-151021 — document-delivery gated, not retrievable). TE's moisture-resistance spec ("3 ft immersion, no loss of function") is explicitly qualified as "properly wired and <i>mated</i>" — no unmated figure is given anywhere reachable.</td><td>Connector may sit unmated during build/service</td><td class="gap">GAP — not published</td></tr>
+<tr><td>Fluid resistance (oil, fuel, coolant, brake fluid)</td><td>Not itemized (per TE spec 108-151021 / 501-151021 — document-delivery gated, not retrievable). TE's own text: "Connectors show no damage when exposed to most fluids used in industrial applications," no fluid list or durations. Listed compliant with <b>SAE J2030</b> (automotive connector systems standard, its own fluid-resistance test battery), but TE doesn't publish which fluids or results on the reachable page.</td><td>Oil/fuel/coolant/brake-fluid splash at firewall</td><td class="gap">GAP — not itemized</td></tr>
+<tr><td>Vibration</td><td>20 G's, sinusoidal, 10–2000 Hz, in each of 3 mutually perpendicular planes. No unlocking/unmating, no damage, no electrical discontinuity &gt;1 μs.</td><td>Engine-bay vibration</td><td class="pass">PASS</td></tr>
+<tr><td>Physical shock</td><td>50 G's in each of 3 planes, MIL-STD-202 Method 213 Condition C. No unlocking/unmating/damage, no discontinuity &gt;1 μs.</td><td>Road/engine shock loading</td><td class="pass">PASS</td></tr>
+<tr><td>Thermal shock / cycle</td><td>20 cycles, -55°C to +125°C: no cracking, chipping, or leaking.</td><td>Cold start → warm engine bay cycling</td><td class="pass">PASS</td></tr>
+<tr><td>Salt spray</td><td>Not published (per TE spec 108-151021 / 501-151021 — document-delivery gated, not retrievable).</td><td>Road salt exposure near firewall</td><td class="gap">GAP — not published</td></tr>
+<tr><td>Contact current — size 16 (gold, <code>0460-202-1631</code>/<code>0462-201-1631</code>)</td><td>13 A typical current rating; contact operating range -55 to 150°C. TE's DRB housing page independently confirms "Contact Current Rating (Max): 13 A" for size 16.</td><td>Signal/low-current circuits</td><td class="pass">PASS</td></tr>
+<tr><td>Contact current — size 12 (gold, <code>0460-220-1231</code>/<code>0462-210-1231</code>)</td><td>25 A typical current rating, confirmed on both the contact's own page and the DRB housing page. <i>Note: TE's own part page for 0460-220-1231 lists "Interface Plating: Palladium Nickel (PdNi)" in the Features/Characteristics section, even though the part's title and internal description both say "AU" (gold) — a discrepancy in TE's own listing, not something I resolved by guessing. Worth a quick confirm with TE or a physical check against stock before ordering more, since the visible plating on hand should already tell you which is correct.</i></td><td>Injector (F11) / COP (F10) 14 AWG feeds</td><td class="pass">PASS <span style="font-weight:400;">(see note)</span></td></tr>
+<tr><td>Durability (mating cycles)</td><td>100 cycles of engagement/disengagement, no electrical or mechanical defects.</td><td>Occasional service disconnects</td><td class="pass">PASS</td></tr>
+<tr><td>Insulation resistance</td><td>1000 megohms minimum at 25°C.</td><td>—</td><td class="pass">PASS (bonus)</td></tr>
+<tr><td>Dielectric withstanding voltage</td><td>&lt;2 mA leakage at 1500 VAC.</td><td>—</td><td class="pass">PASS (bonus)</td></tr>
+</table>
+
+<h2>Bottom line</h2>
+<p>On every spec that has a clear number from TE — temperature, mated sealing (IP68 + IP6K9K), vibration, shock, thermal cycling, mating durability, and per-size contact current — the DRB 102-way clears a firewall/engine-bay location with margin. Nothing found so far disqualifies it. Implementation proceeded on this basis, per Daniel's 2026-09-29 direction above.</p>
+<p>Three items (unmated sealing, an itemized fluid list, salt-spray duration) simply aren't published on TE's consumer-facing pages for this part, and a second attempt at the specific documents that likely carry them (Product Specification 108-151021, Qualification Test Report 501-151021) confirmed those documents exist and are named on TE's own part page, but are served through a document-delivery endpoint that returned nothing retrievable. That's a documentation-access gap, not a known failure. The connector's SAE J2030 compliance is a reasonable proxy that this kind of testing was done.</p>
+
+<h2>Open items</h2>
+<ol>
+<li><b>Unmated sealing, itemized fluid resistance, salt spray</b> — confirmed to live in TE's Product Specification (<b>108-151021</b>) and/or Qualification Test Report (<b>501-151021</b>), both named on the <code>DRB12-102PAE-L018</code> part page, but TE's <code>DocumentDelivery/DDEController</code> endpoint would not return content to an automated fetch on two attempts. If this still matters before ordering, request these two document numbers directly from TE support, a distributor (Digi-Key, Mouser), or LADD — they can very likely just email the PDFs. Per Daniel's 2026-09-29 direction, this is no longer blocking; implementation already proceeded.</li>
+<li><b>0460-220-1231 plating discrepancy</b> — TE's own page shows the part titled/described as "AU" (gold) but lists "Interface Plating: Palladium Nickel (PdNi)" under Features. Worth a 30-second look at physical stock (gold vs. dull silver-grey finish) before ordering more of this exact part number, so the buy list doesn't propagate whichever one is actually wrong.</li>
+</ol>
+
+</body>
+</html>

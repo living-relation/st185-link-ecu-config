@@ -4,7 +4,7 @@ Claude Code, 2026-10-13.
 """
 import adsk.core, adsk.fusion, math, os, sys, json, importlib
 
-SRC = os.path.dirname(os.path.abspath(__file__)) if '__file__' in globals() else r'C:\projects\active\st185-link-ecu-config\docs\electrical\cad\busbar\src'
+SRC = os.path.dirname(os.path.abspath(__file__)) if '__file__' in globals() else r'C:\projects\active\st185-link-ecu-config\cad\busbar\src'
 if SRC not in sys.path:
     sys.path.insert(0, SRC)
 import spec
