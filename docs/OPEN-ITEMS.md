@@ -13,16 +13,17 @@ agent can do once unblocked.
 ## Status (2026-10-13)
 
 The research hub (`docs/research-hub.html`) reads this section: keep the table and the numbered list in this shape.
+Car zones (the glow on the hub's car outline when a bucket is tapped or hovered; `-` = none) use these ids: `bay` engine bay, `firewall` firewall / bulkheads, `dash` dash / cabin front (CSB3, ECU spot, VRC boxes, clusters), `glove` glove box (fuse box), `floor` cabin floor / sills, `rear` rear / hatch, `trunk` trunk (battery, kill switch). Picked from the open rows: wiring rows span bay (EngineRoom-C), firewall (bulkheads), dash, glove (CabinPower), floor (A/B-cabin runs) and rear (RearLights); parts rows are the glove-box bus bar and MTA, the dash VRC box and optoisolator, and rear lamp plugs; CAN and RealDash rows are the dash clusters and CSB3; setup-time rows are the ECU and its bay outputs.
 Bucket = Area column (Research counts as Harness wiring; Tooling / Docs as Housekeeping); rows in the setup-time table below count as Tune-ECU setup-time (RealDash rows as RealDash); Deferred, Blocked and On hold rows count as open.
 
-| Bucket | Open | In plain words |
-|---|---|---|
-| Harness wiring | 21 | Drawings and wire facts: EWD pins to look up, relay coil returns, VRC plug and cable questions, route labels, lengths. |
-| Parts | 7 | Part numbers and test-fits: bus bar (on hold), MTA terminals, plugs, the optoisolator module, VRC box size. |
-| CAN | 2 | The cruise-stalk decode choice and the scale / unit flags left from the CAN audit. |
-| RealDash | 3 | Checks that need the Pi or the bench: which .rd file is live, real-frame test, headless editor limit. |
-| Tune-ECU setup-time | 11 | Done on the bench when the ECU and CSB3 arrive: PCLink imports, tables, outputs, switchboard mapping. |
-| Housekeeping | 4 | Tracker, docs and tooling chores, and what to do with old local files. |
+| Bucket | Open | In plain words | Car zones |
+|---|---|---|---|
+| Harness wiring | 21 | Drawings and wire facts: EWD pins to look up, relay coil returns, VRC plug and cable questions, route labels, lengths. | bay, firewall, dash, glove, floor, rear |
+| Parts | 7 | Part numbers and test-fits: bus bar (on hold), MTA terminals, plugs, the optoisolator module, VRC box size. | glove, dash, rear |
+| CAN | 2 | The cruise-stalk decode choice and the scale / unit flags left from the CAN audit. | dash |
+| RealDash | 3 | Checks that need the Pi or the bench: which .rd file is live, real-frame test, headless editor limit. | dash |
+| Tune-ECU setup-time | 11 | Done on the bench when the ECU and CSB3 arrive: PCLink imports, tables, outputs, switchboard mapping. | bay, dash |
+| Housekeeping | 4 | Tracker, docs and tooling chores, and what to do with old local files. | - |
 
 Blocks progress:
 
