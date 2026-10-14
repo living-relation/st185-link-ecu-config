@@ -1,8 +1,9 @@
-"""Build cad/fusebox/ST185-fusebox-summary.html: one page for Dan - his rev 3 review answered point by point, renders
-(closed, loaded, EMPTY, underneath), the bend-radius table, pieces and build order, slot map, printed parts, parts list,
-the copper stock picks and cut / drill drawings. Reads spec.py and the build's fusebox_report.json.
-Images stay as separate PNGs beside the page. Claude Code, 2026-10-14 (rev 4: base + snap cover, open underneath,
-bend radius, etched labels, Blue Sea-style battery block; rev 3 R75; rev 3.1 R76).
+"""Build cad/fusebox/ST185-fusebox-summary.html: one page for Dan - his rev 4 review answered point by point, renders
+(closed, open, EMPTY, underneath with and without the belly pans, every cable to the box edge, exploded and step-by-step
+install views with numbered callouts), the lid legends, the bend-radius table, the stud lengths, pieces and build order,
+slot map, printed parts, parts list, the copper stock picks and cut / drill drawings. Reads spec.py and the build's
+fusebox_report.json. Images stay as separate PNGs beside the page.
+Claude Code, 2026-10-14 (rev 5: Dan's review of rev 4; rev 4 R79; rev 3 R75; rev 3.1 R76).
     python cad/fusebox/src/summary_html.py <dir with fusebox_report.json + renders> <out html>
 """
 import os, sys, json, html
@@ -13,13 +14,15 @@ src_dir, out = sys.argv[1], sys.argv[2]
 rep = json.load(open(os.path.join(src_dir, 'fusebox_report.json')))
 E = lambda s: html.escape(str(s))
 
-REV3_H = 85.0
-REV3 = {'LOGIC': (79.0, 181.0, 85.0), 'POWER': (185.5, 181.0, 85.0), 'BATTRELAY': (150.0, 110.0, 53.5)}
+REV4 = {'LOGIC': (79.0, 181.0, 68.9), 'POWER': (172.0, 181.0, 77.8), 'BATTRELAY': (184.0, 92.0, 54.0)}
 boxes = rep.get('boxes_mm', {})
 live = rep.get('live_clearance', {})
 printed = rep.get('printed_parts', {})
-mass = rep.get('mass_g', {})
+mass = {k: v for k, v in rep.get('mass_g', {}).items() if S.BAR_METAL in k}
 cu_g = sum(mass.values())
+callouts = rep.get('callouts', {})
+legend = rep.get('legend', {})
+so = rep.get('standoffs', {})
 
 ami = {30: 0, 40: 0, 50: 0, 60: 0}
 for row in ('IN', 'OUT'):
@@ -34,27 +37,32 @@ for col, (x, fuses) in S.MINI_COLS.items():
             mini[a] = mini.get(a, 0) + 1
 mini[S.ACPS[1]] = mini.get(S.ACPS[1], 0) + 1
 n_pos = S.AMI_SLOTS['IN'] + S.AMI_SLOTS['OUT']
-n_used = sum(1 for row in ('IN', 'OUT') for nm, a in S.AMI_ROWS[row][:S.AMI_SLOTS[row]] if a)
+n_in_used = sum(1 for nm, a in S.AMI_ROWS['IN'][:S.AMI_SLOTS['IN']] if a)
+n_out_used = sum(1 for nm, a in S.AMI_ROWS['OUT'][:S.AMI_SLOTS['OUT']] if a)
+n_used = n_in_used + n_out_used
 n_12awg = sum(1 for nm, g in S.AMI_AWG.items() if g == 12)
 
 PRINTED_NOTE = {
-    'Power_Base': 'The deck on four corner legs: 6 mm top plate, 3 mm skirt, cavity towers, standoff and bolt-head bosses, ribs; open underneath. '
-                  'Six printed saddles (R16) and an outboard comb hang under it. Ears point front / rear, brass limiter in each.',
-    'Logic_Base': 'Same idea: deck on four legs, strip pockets open underneath, mini-fuse and micro-relay cavities through.',
-    'BattRelay_Base': 'Low floor plate, rim on the long sides only (both ends open), relay platform with 2 captured M6 nuts + limiters, '
-                      'pedestal under the bar and pad, 2 tabs (one each long side).',
-    'Cover': 'Rounded shell, 2.5 mm wall, R13 plan corners, R5 top edges; 4 snap tongues; labels etched 0.6 deep into the top.',
+    'Power_Base': 'The deck on four angular legs (front and rear faces): 6 mm top plate, 3 mm skirt, cavity towers, standoff and bolt-head bosses, ribs, '
+                  'six printed R16 saddles under it; open underneath. Brass limiter in each foot.',
+    'Logic_Base': 'Same idea: deck on four angular legs (on the two long sides), strip pockets open underneath, mini-fuse and micro-relay cavities through.',
+    'BattRelay_Base': 'Floor plate, rim on the long sides only (both ends open), relay platform with 2 captured M6 nuts + limiters, one ribbed fuse pedestal '
+                      'under the bar and pad, a tab on each short end.',
+    'Cover': 'Rounded shell, 2.5 mm wall, R13 plan corners, R5 top edges, a bumper band round the bottom and ribs up the walls; 4 snap tongues; '
+             'vent slots; numbers etched 0.6 deep.',
+    'Pan': 'NEW: a shallow tray under the open bottom (2.5 mm floor and wall). Its wall slides 4 mm up inside the skirt; 4 tongues catch in pockets '
+           'in the skirt. Notches in its wall let the bundles out.',
 }
 
 # OWN / BUY  (st185-pick-parts: on-hand CSV first, TE, approved suppliers, then others with a reason)
 PARTS = [
-    ('Relay F7 Mini ISO, 680 ohm', '1-1414147-0 (V23134-J0052-X429)', 'OWN 3', 'k_efi, k_str, k_fan. te-on-hand-bom.csv qty_ordered 3 - confirm on the shelf.'),
-    ('Relay F7 Mini ISO, bracket, 560 ohm', '1-1393304-0 (V23134-J1052-X281)', 'OWN 2', 'k_fan2, power. Bracket not used (cut off or fold flat).'),
-    ('Relay Power Relay B, 1 form C, 680 ohm', '1-1904020-2 (V23234-A0001-X032)', 'BUY 1', 'heater (87a to ground, row 106). TE (step 2). NO 35 A at 85 C.'),
-    ('Micro relay A, NO, diode', '5-1393292-8', 'OWN 2', 'HEAD LH / RH (LOGIC box)'),
-    ('Micro relay A, NO', '4-1904124-3', 'OWN 1', 'horn'),
-    ('Micro relay A, NO, resistor', '4-1904124-2', 'OWN 1', 'k_etb'),
-    ('Micro relay A, CO, diode', '6-1419137-4', 'OWN 2 + BUY 1', 'k_acc, k_eps_en (own); k_rev (buy)'),
+    ('Relay F7 Mini ISO, 680 ohm', '1-1414147-0 (V23134-J0052-X429)', 'OWN 3', 'R2 k_efi, R3 k_str, R4 k_fan. te-on-hand-bom.csv qty_ordered 3 - confirm on the shelf.'),
+    ('Relay F7 Mini ISO, bracket, 560 ohm', '1-1393304-0 (V23134-J1052-X281)', 'OWN 2', 'R5 k_fan2, R6 power. Bracket not used (cut off or fold flat).'),
+    ('Relay Power Relay B, 1 form C, 680 ohm', '1-1904020-2 (V23234-A0001-X032)', 'BUY 1', 'R1 heater (87a to ground, row 106). TE (step 2). NO 35 A at 85 C.'),
+    ('Micro relay A, NO, diode', '5-1393292-8', 'OWN 2', 'LOGIC R1 / R2 (HEAD LH / RH)'),
+    ('Micro relay A, NO', '4-1904124-3', 'OWN 1', 'LOGIC R3 horn'),
+    ('Micro relay A, NO, resistor', '4-1904124-2', 'OWN 1', 'LOGIC R4 k_etb'),
+    ('Micro relay A, CO, diode', '6-1419137-4', 'OWN 2 + BUY 1', 'LOGIC R5 k_acc, R6 k_eps_en (own); R7 k_rev (buy)'),
     ('HCR150 relay, 130 A, IP67', '1416010-1 (V23132-A2001-B200)', 'OWN 2', 'k_eps beside the POWER box; k_fp in the battery block.'),
     ('HCR150 coil plug: Superseal 1.5 2-pole housing', '282080-1', 'BUY 1', 'TE, from the HCR150 data sheet (k_fp).'),
     ('Superseal 1.5 contact / seal', '282110-1 / 281934-2', 'OWN 2 / BUY 2', '282110-1 is on hand (qty_ordered 10).'),
@@ -67,41 +75,49 @@ PARTS = [
     ('4.8 mm receptacle (micro coil blades)', 'TBD', '-', 'TBD: TE 4.8 x 0.8 receptacle for 18-20 AWG - pick in detail work.'),
     ('2.8 mm receptacle (mini fuse)', 'TBD', '-', 'TBD: 880398-2 is a candidate (plan S12), fit on an ATM blade not confirmed.'),
     ('Tubular lug 10 mm2 M5 (8-10 AWG)', 'Klauke 2R5', 'BUY %d' % (n_used - 1 - n_12awg + 2 + 1),
-     'AMI outputs and relay feeds on 8-10 AWG, the 2 LOGIC feeds, the battery block AMI out. All sit under the deck on a standoff.'),
+     'AMI outputs and relay feeds on 8-10 AWG, the 2 LOGIC feeds, the battery block AMI out.'),
     ('Ring lug M5 for 12 AWG (EFI, STR relay feeds)', 'TBD', 'BUY %d' % n_12awg,
      'TBD: a TE PIDG / Solistrand ring tongue for 12-10 AWG with an M5 hole - not checked against the TE catalog yet. Klauke 2R5 is for 10 mm2 and too big for 12 AWG.'),
     ('Tubular lug 16 mm2 M5 (J/B1 HOT, 6 AWG)', 'Klauke 3R5', 'BUY 1', 'b 13, l 26, d4 8.5, hole 5.5 (Klauke table, Kempston Controls 3R10.pdf).'),
     ('Tubular lug 50 mm2 M8 (1/0 input)', 'Klauke 6R8', 'BUY 1', 'b 20, l 47, hole 8.4 (RS 398-3015 listing).'),
     ('Ring lug M6, 10 AWG (battery block: feed in, relay 3, relay 5)', 'TBD', 'BUY 3', 'TBD: Klauke R series M6 for 6 mm2 - not checked against the Klauke sheet yet.'),
-    ('Brass hex standoff M5 female-female, 8 AF, 40 long', 'TBD', 'BUY %d' % n_pos,
-     'NEW in rev 4: carries each AMI output (and relay feed) from the pad down to its lug under the deck; its hex sits in a printed hex hole so it cannot turn. '
-     'TBD: not a TE line and none of the approved suppliers lists standoffs (R38 step 4) - pick a brass one from a maker sheet (e.g. Keystone / Wurth) in detail work. '
-     'Current: brass C360 hex, ~36 mm2 after the thread, 40 mm long = about 0.07 mOhm, 0.25 W at 60 A.'),
-    ('Brass hex standoff M5 female-female, 8 AF, 25 long', 'TBD', 'BUY 2', 'LOGIC strip feeds (Bus 1 / Bus 2), same pick as above.'),
-    ('Set screw M5 x 12 A2 (stud on top of each standoff)', 'ISO 4026 M5x12', 'BUY %d' % n_pos, 'Screws into the standoff top through the pad; AMI ear + Keps nut on it, 4 Nm max (AMI sheet).'),
-    ('Hex bolt M5 x 10 A2 (lug under each standoff)', 'ISO 4017 M5x10', 'BUY %d' % (n_used + 2), 'One per used AMI output + the 2 LOGIC feeds.'),
-    ('Hex bolt M5 x 16 A2 + Keps nut', 'ISO 4017 M5x16 + DIN 6923 M5', 'BUY %d' % (n_pos + 2 + 2),
-     'AMI input studs on the bars (POWER %d, battery 2) + the 2 LOGIC strip bolts (head on top). Head captured in a printed hex pocket.' % n_pos),
+    ('Brass hex standoff M5 female-female, 8 AF, 40 long', 'TBD', 'BUY %d' % S.AMI_SLOTS['IN'],
+     'IN row only now (the relay feeds, which must bend up into the relay). TBD: not a TE line and none of the approved suppliers lists standoffs (R38 step 4) - '
+     'pick a brass one from a maker sheet (e.g. Keystone / Wurth) in detail work. Brass C360 hex, 40 long = about 0.07 mOhm, 0.25 W at 60 A.'),
+    ('Brass hex standoff M5 female-female, 8 AF, 12 long', 'TBD', 'BUY %d' % (S.AMI_SLOTS['OUT'] + 2),
+     'NEW in rev 5: the OUT row (%d) and the 2 LOGIC strip feeds - their cables leave straight, so the lug sits right under the deck. Same pick as above.' % S.AMI_SLOTS['OUT']),
+    ('Set screw M5 x 12 A2 (stud on top of each standoff)', 'ISO 4026 M5x12', 'BUY %d' % n_pos, 'Through the pad into the standoff (5 mm of thread); AMI ear + Keps nut on it, 4 Nm max (AMI sheet).'),
+    ('Hex bolt M5 x 10 A2 (lug under a 40 mm standoff)', 'ISO 4017 M5x10', 'BUY %d' % n_in_used, 'IN-row (relay feed) lugs.'),
+    ('Hex bolt M5 x 8 A2 (lug under a 12 mm standoff; LOGIC strip bolts)', 'ISO 4017 M5x8', 'BUY %d' % (n_out_used + 2 + 2),
+     'OUT-row lugs (%d), LOGIC feed lugs (2) and strip bolts (2): 5 + 6 mm of thread in a 12 mm standoff, they never meet.' % n_out_used),
+    ('Hex bolt M5 x 16 A2 + Keps nut', 'ISO 4017 M5x16 + DIN 6923 M5', 'BUY %d' % (n_pos + 2),
+     'AMI input studs on the bars (POWER %d, battery 2). Head captured in a printed hex pocket.' % n_pos),
     ('Keps nut M5 A2', 'DIN 6923 M5', 'BUY %d' % (n_pos + 1), 'AMI output nuts.'),
     ('Hex bolt M8 x 20 / M6 x 16 A2 + nut + washer', 'ISO 4017 + ISO 4032 + ISO 7089', 'BUY 1 + 3', 'POWER 1/0 input (M8); battery feed stud + the 2 HCR150 flange bolts (M6, nut captured under the floor).'),
-    ('Brass compression limiter, M5 / M6', 'TBD (OD 8, ID 5.3, L 6 / OD 10, ID 6.5, L 4.6)', 'BUY 10 / 2', '8 glove-box ears + 2 battery tabs / the 2 HCR150 flange bolts.'),
+    ('Brass compression limiter, M5 / M6', 'TBD (OD 8, ID 5.3, L 6 / OD 10, ID 6.5, L 4.6)', 'BUY 10 / 2', '8 glove-box feet + 2 battery tabs / the 2 HCR150 flange bolts.'),
     ('Power bars, output pads, logic strips', 'tinned copper flat bar - see "Copper"', 'BUY 3 stock bars', 'Off the shelf; cut and drill only (R76).'),
-    ('Bases and covers', 'PA12, powder-bed (MJF / SLS)', 'print 6 parts', 'See "Printed parts". No screws, no heat-set inserts: the covers snap on.'),
+    ('Bases, covers, belly pans', 'PA12, powder-bed (MJF / SLS)', 'print 8 parts', 'See "Printed parts". No screws, no heat-set inserts: covers and pans snap on.'),
 ]
 
-imgs = {f: c for f, c in [
-    ('fusebox_render_iso_closed.png', 'Closed: rounded snap-on covers with every relay and fuse name etched in the top. LOGIC (left) and POWER on their corner legs; the 1/0 enters the POWER box end through an open notch.'),
-    ('fusebox_render_iso_open.png', 'Covers off, loaded. POWER: six Mini ISO relays inboard, the AMI bar outboard. LOGIC: mini fuses and micro relays.'),
-    ('fusebox_render_iso_empty.png', 'EMPTY - no relays or fuses, so you can see every terminal slot. Copper bar and pads are left in to show where they sit.'),
-    ('fusebox_render_top_empty.png', 'EMPTY, top view: the relay, mini-fuse and micro-relay cavities.'),
-    ('fusebox_render_under.png', 'Underneath (the open bottom): every AMI output lug on a brass standoff under the deck, cables leaving straight; '
-                                 'the relay feeds turning up round their printed saddles; LOGIC feeds leaving straight out the rear.'),
-    ('fusebox_render_power_bends.png', 'POWER box from below, relay feeds: each one runs straight off its lug, then one 90 deg bend round a printed R16 saddle into its relay terminal 30.'),
-    ('fusebox_render_iso_open_rear.png', 'From the rear / outboard corner.'),
-    ('battrelay_render_iso_closed.png', 'Battery relay block closed: Blue Sea 7720-style low cover, labels, two tabs (one each long side), cables only at the open ends.'),
-    ('battrelay_render_iso_open.png', 'Battery block, cover off: feed in at the -x end -> M6 stud -> AMI 40 -> one straight jumper -> HCR150 terminal 3; terminal 5 straight out to the pump; coil lead along the front.'),
-    ('battrelay_render_iso_empty.png', 'Battery block base EMPTY (no relay, no fuse): relay platform with the two flange-bolt bosses, pedestal under the bar and pad, open ends.'),
-] if os.path.exists(os.path.join(src_dir, f))}
+CAP = {
+    'fusebox_render_iso_closed.png': 'Closed: vent slots in both lids, numbers instead of names (legend below), bumper band and ribs, angular legs. Yellow = the harness '
+                                     'bundles leaving the LOGIC front edge and the POWER inboard end; red = the heavy cables.',
+    'fusebox_render_iso_closed_rear.png': 'From the rear / outboard corner: OUT-row cables leave the POWER end in a row right under the lid; Bus 1 / Bus 2 feeds leave the LOGIC rear.',
+    'fusebox_render_iso_open.png': 'Covers off, loaded. POWER relays are turned 90 deg from rev 4 (see point 5).',
+    'fusebox_render_iso_empty.png': 'EMPTY - no relays or fuses, every terminal slot visible. Copper and standoffs left in to show where they sit.',
+    'fusebox_render_top_empty.png': 'EMPTY, top view.',
+    'fusebox_render_under_pan.png': 'Underneath with the snap-on belly pans: nothing live can be touched. The bundles leave through notches in the pan wall.',
+    'fusebox_render_under_open.png': 'Underneath, pans off: every cable from every terminal, lug and stud, all the way to the box edge.',
+    'fusebox_render_power_bends.png': 'POWER from below, relay feeds only: each runs straight off its lug, then one 90 deg bend round a printed R16 saddle into terminal 30.',
+    'battrelay_render_iso_closed.png': 'Battery block with its lid (the snap-on cover - it was in rev 4 too, only in the closed view): plain words, side vents, a tab on each short end.',
+    'battrelay_render_iso_closed_rear.png': 'The other side and the +x end: pump cable and coil lead leave the end; the tab sits beside them, not under them.',
+    'battrelay_render_iso_open.png': 'Cover off: battery feed -> M6 stud on the bar -> AMI 40 -> straight jumper -> HCR150 terminal 3; terminal 5 straight out to the pump.',
+    'battrelay_render_iso_empty.png': 'Base EMPTY: relay platform, the one fuse pedestal, open ends, end tabs.',
+    'battrelay_render_under.png': 'Underneath: closed floor (nothing live), the two captured M6 flange nuts (not live), the end tabs.',
+    'fusebox_render_top_lid_power.png': 'POWER lid, top view - read the numbers against the legend.',
+    'fusebox_render_top_lid_logic.png': 'LOGIC lid, top view - read the numbers against the legend.',
+}
+imgs = {f for f in os.listdir(src_dir) if f.endswith('.png')}
 
 CSS = """
 :root{--bg:#fafaf8;--fg:#1d1d1b;--mut:#666;--line:#ddd;--acc:#b35c00;--card:#fff;--ok:#2e7d32;--bad:#c62828}
@@ -117,12 +133,21 @@ figcaption{color:var(--mut);font-size:13px}.kpi{display:flex;flex-wrap:wrap;gap:
 .kpi div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;min-width:150px}
 .kpi b{display:block;font-size:20px}ol li,ul li{margin-bottom:6px}h3{font-size:15px;margin:18px 0 6px}a{color:var(--acc)}
 .ok{color:var(--ok);font-weight:600}.bad{color:var(--bad);font-weight:600}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+ol.co{columns:2;column-gap:28px;font-size:13.5px;padding-left:22px}@media (max-width:640px){ol.co{columns:1}}
+.num{display:inline-block;min-width:22px;text-align:center;background:#ffd200;color:#141414;border-radius:11px;font-weight:700;font-size:12.5px;padding:0 4px}
 """
 
+h = []
 
-def fig(f):
-    if f in imgs:
-        h.append('<figure><img src="%s" alt="%s"><figcaption>%s</figcaption></figure>' % (E(f), E(imgs[f]), E(imgs[f])))
+
+def fig(f, cap=None):
+    if f not in imgs:
+        return
+    cap = cap or CAP.get(f, '')
+    h.append('<figure><img src="%s" alt="%s"><figcaption>%s</figcaption>' % (E(f), E(cap), E(cap)))
+    if f in callouts:
+        h.append('<ol class="co">%s</ol>' % ''.join('<li value="%d">%s</li>' % (n, E(t)) for (n, x, y, t) in sorted(callouts[f])))
+    h.append('</figure>')
 
 
 def size(k):
@@ -130,163 +155,222 @@ def size(k):
     return '%.0f x %.0f x %.1f' % (b.get('L', 0), b.get('D', 0), b.get('H', 0))
 
 
-PW, LG = boxes.get('POWER', {}), boxes.get('LOGIC', {})
-h = ['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
-     '<title>ST185 Fuse Box CAD</title><style>%s</style></head><body><main>' % CSS,
-     '<h1>ST185 fuse + relay boxes - CAD rev 4</h1>',
-     '<p class="mut">Claude Code, 2026-10-14. Rev 4 is your review of rev 3 (8 points, all binding), answered below. Same rules as before: PA12 '
-     'powder-bed print (R73), two glove-box boxes + a trunk relay block (R75), tinned copper stock cut and drilled only (R76). Fusion: the same document, '
-     'renamed <code>ST185_fusebox_rev4</code> (was rev 3; no new document, R74). Model files (STEP / STL / f3d) are local, untracked, in '
-     '<code>cad/fusebox/</code> of the main checkout. Build: <code>cad/fusebox/src/</code>.</p>',
-     '<div class="kpi">',
-     '<div>LOGIC box<b>%s</b><span class="mut">mm L x D x H (was 79 x 181 x 85)</span></div>' % size('LOGIC'),
-     '<div>POWER box<b>%s</b><span class="mut">mm L x D x H (was 185.5 x 181 x 85)</span></div>' % size('POWER'),
-     '<div>Battery block<b>%s</b><span class="mut">mm (was 150 x 110 x 53.5)</span></div>' % size('BATTRELAY'),
-     '<div>Printed pieces<b>2 + 2 + 2</b><span class="mut">base + cover per box (rev 3: 3 + 3 + 2)</span></div>',
-     '</div>']
+def legend_table(key, title):
+    rows = legend.get(key, [])
+    h.append('<h3>%s</h3><div class="wrap"><table><tr><th>On the lid</th><th>What it is</th><th>Rating</th><th>Part</th></tr>' % E(title))
+    for r in rows:
+        h.append('<tr><td><b>%s</b></td><td>%s</td><td>%s</td><td>%s</td></tr>' % tuple(E(x) for x in r))
+    h.append('</table></div>')
+
+
+PW, LGc, BR = boxes.get('POWER', {}), boxes.get('LOGIC', {}), boxes.get('BATTRELAY', {})
+SP, SL = so.get('POWER', {}), so.get('LOGIC', {})
+h += ['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
+      '<title>ST185 Fuse Box CAD</title><style>%s</style></head><body><main>' % CSS,
+      '<h1>ST185 fuse + relay boxes - CAD rev 5</h1>',
+      '<p class="mut">Claude Code, 2026-10-14. Rev 5 is your review of rev 4 (11 points, all binding), answered below. Everything else from rev 4 is kept: '
+      'open bottoms, snap-on covers, bend radius on every cable, the Blue Sea 7720 look for the battery block, AMI studs, tinned copper stock cut and drilled only '
+      '(R73, R75, R76, R79, S27). Fusion: the same document, renamed <code>ST185_fusebox_rev5</code> (no new document, R74). Model files (STEP / STL / f3d) are local, '
+      'untracked, in <code>cad/fusebox/</code> of the main checkout. Build: <code>cad/fusebox/src/</code>.</p>',
+      '<div class="kpi">',
+      '<div>LOGIC box<b>%s</b><span class="mut">mm L x D x H (rev 4: 79 x 181 x 68.9)</span></div>' % size('LOGIC'),
+      '<div>POWER box<b>%s</b><span class="mut">mm L x D x H (rev 4: 172 x 181 x 77.8)</span></div>' % size('POWER'),
+      '<div>Battery block<b>%s</b><span class="mut">mm, %.0f long with the end tabs (rev 4: 184 x 92 x 54)</span></div>' % (size('BATTRELAY'), BR.get('L_with_tabs', 0)),
+      '<div>Printed pieces<b>3 + 3 + 2</b><span class="mut">base + cover + belly pan per glove-box box; base + cover in the trunk</span></div>',
+      '</div>']
 fig('fusebox_render_iso_closed.png')
-fig('fusebox_render_iso_open.png')
+fig('battrelay_render_iso_closed.png')
 
 # ------------------------------------------------------------------ the review, point by point
-bends = rep.get('bends', [])
 h.append('<h2>Your review, point by point</h2><ol>')
-h.append('<li><b>Too tall - bottoms left open.</b> No tray floor and no side slot any more. Each box is now a <b>base</b> (the deck, standing on four corner legs) '
-         'and a <b>cover</b>. Mount face to cover top: POWER %.1f mm (was 85), LOGIC %.1f mm (was 85). Under the POWER deck is %.0f mm of open space and under '
-         'the LOGIC deck %.0f mm: that is the room the wires need to bend at your radius (point 4) - the 8 AWG relay feeds set the POWER number. '
-         'The printed cover itself is only about 42 mm tall.</li>' % (PW.get('H', 0), LG.get('H', 0), PW.get('z_d', 0), LG.get('z_d', 0)))
-h.append('<li><b>Rounded, modern.</b> Covers have R13 corners and R5 rounded top edges all round (no sharp edge anywhere on top), bases R10 corners, round legs; '
-         'the powder-bed freedom is used for the printed cable saddles and the outboard comb under the POWER deck, which also set the bend radius.</li>')
-h.append('<li><b>Snap-on covers.</b> Four cantilever tongues per cover (slotted into the skirt), each with a half-round catch that drops into a pocket in the base. '
-         'Off: push a small screwdriver into the slot beside a tongue. The battery block snaps the same way (a screw-down was allowed there; not needed).</li>')
-h.append('<li><b>Bend radius on every cable.</b> Every heavy cable now leaves its lug dead straight along the lug axis - the AMI output lugs moved under the deck '
-         'onto brass standoffs, so no cable is bent off a lug inside a box. The only in-box bends are the six relay feeds (AMI to relay terminal 30): one 90 deg bend each, '
-         'wrapped round a printed R16 saddle. Table below.</li>')
-h.append('<li><b>Empty renders.</b> Added: both glove-box boxes and the battery block with no relays or fuses, iso and top, plus an underside view.</li>')
-h.append('<li><b>Etched labels.</b> Every relay, fuse and spare position has its name etched 0.6 mm into the cover top, right above it '
-         '(%d labels on POWER, %d on LOGIC, %d on the battery block). List under "Labels".</li>'
-         % tuple(len(rep.get('labels', {}).get(k, [])) for k in ('Power_Cover_PA12_printed', 'Logic_Cover_PA12_printed', 'BattRelay_Cover_PA12_printed')))
-h.append('<li><b>Battery block.</b> Style: the <b>%s</b> - my pick (Z9), reasons under "Battery relay block". Open design: a low base with rims on the long sides only and both ends open; no cable holes - '
-         'cables come in under open notches in the cover ends. <b>Two tabs</b>, one on each long side at mid-length; every cable leaves an end, so nothing crosses a tab. '
-         'Re-laid on one straight line so its jumper has no bend at all (point 4).</li>' % E(S.REFERENCE_BRAND[0]))
-h.append('<li><b>Pieces and wiring.</b> Each box is 2 printed pieces (base, cover); the battery block too. You wire from below: the base is open underneath, so every '
-         'terminal cavity, standoff and lug is reachable from the wire side. Crimp, push the terminal up into its cavity until it clicks, bolt the lugs under the deck, '
-         'then mount the base, then plug the relays and fuses in from the top and snap the cover on. Full order under "How you build it".</li></ol>')
+h.append('<li><b>Vent slots on the lids.</b> Rows of 2.6 x 14 mm slots through every glove-box lid, placed between the numbers (over the gaps between relay '
+         'columns and along the outboard edge). 2.6 mm keeps fingers and tools out. The battery block in the trunk gets its slots in the long side walls instead of the '
+         'top, so a spill on the lid does not run in.</li>')
+h.append('<li><b>Where is the lid for the little one?</b> It was there in rev 4, but only in the one closed picture - the one you looked at was the open view. Rev 5 shows '
+         'it closed from both sides, from underneath, and lifted off in the exploded view (Battery relay block, below).</li>')
+h.append('<li><b>Little one: mounts on the short ends.</b> Done - one tab on each short end (M5, brass limiter), set at the rear half of the end so no cable '
+         'leaves over a tab (the cables leave the ends at the front half). The tabs on the long sides are gone.</li>')
+h.append('<li><b>How the bus bars, terminals and fuses go in.</b> New: an exploded view of each box with numbered parts, and four step pictures for the POWER box '
+         '(copper in; turn over, terminals and lugs from below; fuses and relays from the top; pan and cover on). See "How it goes together".</li>')
+h.append('<li><b>The rest of the cable routing.</b> Every wire is now drawn from its terminal to the box edge. Each harness wire drops straight out of its cavity, '
+         'bends once (3 x OD, tied into its bundle) and runs in a bundle to one exit: the LOGIC front edge (4 bundles) and the POWER inboard end (13 small bundles). '
+         'To make that work in the POWER box the relays are turned 90 deg: now no harness wire ever has to cross a relay feed. The bar moved 8.5 mm outboard for it. '
+         'Heavy cables: OUT row and the 1/0 out the outboard end, Bus feeds out the LOGIC rear. Table and pictures under "Cable routing".</li>')
+h.append('<li><b>More rugged.</b> Bumper band round the bottom of every lid, vertical ribs up the walls, angular legs (point 9), chamfered tabs, the battery block\'s two '
+         'risers joined into one ribbed fuse pedestal.</li>')
+h.append('<li><b>Why were the studs underneath so long?</b> They are brass standoffs that carry each AMI fuse output down to a cable lug under the deck, so the cable '
+         'can leave its lug dead straight (your bend-radius rule). In rev 4 every lug sat at the bottom, so every standoff was 40 mm (25 in LOGIC). Rev 5 makes each one only '
+         'as long as its cable needs:<ul>'
+         '<li><b>OUT row (%d) and the 2 LOGIC feeds: 12 mm.</b> Those cables run straight out of the box, so the lug now sits right under the deck '
+         '(lug at %.1f mm, just under the deck plate at %.1f).</li>'
+         '<li><b>IN row (%d, the relay feeds): still %.0f mm - that is what the stack needs.</b> Each feed has to turn up into its relay\'s terminal 30 from below. '
+         'Bottom up: lug at %.1f mm (just above the new belly pan), the R16 bend round its saddle (8 AWG needs 3 x 5.13 = 15.4) up to the deck underside at %.0f, '
+         'then the terminal cavity, %.1f mm, to the pad at %.1f. %.1f - %.1f - 2 mm of lug = %.0f mm. Shorter only if the 8 AWG feeds bend tighter than your rule.</li></ul></li>'
+         % (S.AMI_SLOTS['OUT'], SP.get('out_lug_z', 0), SP.get('plate_bottom', 0), S.AMI_SLOTS['IN'], SP.get('IN', 0), SP.get('in_lug_z', 0),
+            SP.get('z_d', 0), SP.get('pad_bottom', 0) - SP.get('z_d', 0), SP.get('pad_bottom', 0), SP.get('pad_bottom', 0), SP.get('in_lug_z', 0), SP.get('IN', 0)))
+h.append('<li><b>What are the other 2 parts on the smallest box?</b> The two grey blocks are <b>printed risers (pedestals)</b>, part of the base. The first carries the '
+         '<b>copper bar</b> with the battery stud (M6, battery feed in) and the fuse\'s input stud; the second carries the <b>copper pad</b> with the fuse\'s output stud. They lift '
+         'the AMI fuse so its output lug sits level with the relay\'s terminal 3, so the jumper is one straight piece of cable. In rev 5 they are one ribbed block (the fuse '
+         'pedestal) and they are numbered in the exploded view: 5 bar, 6 pad, 7 pedestal.</li>')
+h.append('<li><b>No more feet - angular legs.</b> Each leg is now a hollow tapered buttress on a skirt face (24 wide at the foot, 16 at the top, outer face sloping '
+         'out to the foot), with a flat foot and the M5 hole outside it. POWER: on the front and rear faces; LOGIC: on its two long sides, so the front edge and rear '
+         'stay clear for cables. Open underneath (no trapped powder).</li>')
+h.append('<li><b>Snap-on covers for everything live underneath.</b> New belly pan under each glove-box box: a 2.5 mm PA12 tray whose wall slides 4 mm up inside '
+         'the skirt and catches with 4 tongues. It covers every lug, standoff, bolt head and terminal crimp; nearest live part to the pan: %.1f mm. Cables leave '
+         'through notches in its wall. To make room under the IN-row bolt heads the boxes grew %.1f (POWER) and %.1f mm (LOGIC) in height. The battery block already '
+         'had a closed floor (nothing live underneath).</li>' % (live.get('pan_to_nearest_live_power_mm', 0), PW.get('H', 0) - REV4['POWER'][2], LGc.get('H', 0) - REV4['LOGIC'][2]))
+h.append('<li><b>Labels unreadable.</b> The lids now carry short numbers only - <b>R1-R7</b> and <b>F1-F15</b> on POWER, <b>F1-F25</b>, <b>R1-R10</b>, <b>B1 / B2</b> on '
+         'LOGIC - 5 mm tall (3.6 on the mini fuses), each right over its part, nothing overlapping. What each number is: the legend tables under "Lid legends". '
+         'POWER R<i>n</i> is fed by F<i>n</i>. The battery block keeps plain words - it has room for them.</li></ol>')
 
+h.append('<h2>Lid legends</h2>')
+fig('fusebox_render_top_lid_power.png')
+legend_table('POWER', 'POWER box')
+fig('fusebox_render_top_lid_logic.png')
+legend_table('LOGIC', 'LOGIC box')
+legend_table('BATTRELAY', 'Battery relay block (words on the lid)')
+
+# ------------------------------------------------------------------ cable routing
+h.append('<h2>Cable routing (point 5)</h2><p>Yellow = harness wires (each terminal\'s own wire), red = heavy cables. Gauges here follow the fuse rating '
+         '(2-5 A 20 AWG, 7.5-10 A 18, 15 A 16, 20 A 12; relay 87 = its feed; coils 20) - the harness drawings set the real gauge. Every bundle runs where no other cable '
+         'runs and leaves at one edge. Bundle size = 1.2 x the root of the summed squared ODs.</p>')
+fig('fusebox_render_under_open.png')
+fig('fusebox_render_routing_power.png', 'POWER box, wiring only, from below.')
+fig('fusebox_render_routing_logic.png', 'LOGIC box, wiring only, from below.')
+fig('fusebox_render_under_pan.png')
+for bx, edge in (('POWER', 'inboard end, at y'), ('LOGIC', 'front edge, at x')):
+    h.append('<h3>%s bundles (leave the %s)</h3><div class="wrap"><table><tr><th>At</th><th>Wires</th><th>Bundle mm</th><th>Spare room under the deck mm</th><th>Which</th></tr>' % (bx, edge))
+    for ln in rep.get('lanes', {}).get(bx, []):
+        h.append('<tr><td>%.0f</td><td>%d</td><td>%.1f</td><td>%.1f</td><td>%s</td></tr>' % (ln['at'], ln['wires'], ln['d'], ln['room'], E(', '.join(ln['what']))))
+    h.append('</table></div>')
+
+# ------------------------------------------------------------------ assembly
+h.append('<h2>How it goes together (point 4)</h2>')
+fig('fusebox_power_explode.png', 'POWER box, exploded.')
+fig('fusebox_power_step1.png', 'Step 1 - base right way up: copper and standoffs in.')
+fig('fusebox_power_step2.png', 'Step 2 - turned over (wire side up): terminals, lugs and bundles.')
+fig('fusebox_power_step3.png', 'Step 3 - right way up: fuses, relays, the 1/0.')
+fig('fusebox_power_step4.png', 'Step 4 - mount it, then pan and cover snap on.')
+fig('fusebox_logic_explode.png', 'LOGIC box, exploded.')
+h.append('<div class="grid"><div><h3>POWER box (3 printed pieces)</h3><ol>'
+         '<li>Press a brass limiter into each of the 4 feet.</li>'
+         '<li>Base right way up: lay the bar and the 14 pads in their pockets. From below, push the M5 x 16 bolts (and the M8 x 20 for the 1/0) up through the hex head '
+         'pockets and the bar holes. Slide a standoff up each hex hole (40 mm in the IN row, 12 mm in the OUT row) and screw a set screw down through each pad into it.</li>'
+         '<li>Turn the base over. Crimp the relay terminals, push each one up into its cavity until it clicks, and tie the wires into their bundles (they leave the inboard '
+         'end). Bolt the AMI output lugs under their standoffs (M5 x 10 IN row, M5 x 8 OUT row); each relay feed goes lug -> straight -> round its saddle -> terminal 30.</li>'
+         '<li>Right way up: AMI fuses on the studs, Keps nuts 4 Nm max; 1/0 lug on the M8.</li>'
+         '<li>Mount the base by its 4 feet, snap the belly pan up into the skirt, plug the relays and the ACPS fuse in, snap the cover on.</li></ol></div>'
+         '<div><h3>LOGIC box (3 printed pieces)</h3><ol>'
+         '<li>Limiters in the feet. From below, slide the two strips up into their pockets.</li>'
+         '<li>12 mm standoff under each strip end; M5 x 8 strip bolt down from the top (head in its pocket) into the standoff; feed lug under it (M5 x 8).</li>'
+         '<li>Wire side up: crimp and push in the mini-fuse and micro-relay terminals; tie each column\'s wires into its bundle (front edge).</li>'
+         '<li>Mount by the 4 feet (long sides), snap the pan on, fuses and micro relays in, snap the cover on.</li></ol></div>'
+         '<div><h3>Battery block (2 printed pieces)</h3><ol>'
+         '<li>From below, an M6 nut into each of the 2 hex pockets under the relay platform; limiters in the end tabs and the 2 flange bosses.</li>'
+         '<li>Drop the 3 bolt heads into the fuse pedestal pockets (top), lay the bar and the pad on.</li>'
+         '<li>HCR150 on its platform, 2 M6 bolts down through the flange into the captured nuts.</li>'
+         '<li>AMI 40 on, jumper (two lugs, one straight 18 mm cable) from the AMI out to terminal 3, pump cable on terminal 5, coil plug on.</li>'
+         '<li>Mount by the 2 end tabs (passenger side of the trunk, between the rear wall and the battery - Z4), snap the cover on.</li></ol></div></div>'
+         '<p class="mut">To service a terminal later: unsnap the pan - every cavity is right there.</p>')
+
+# ------------------------------------------------------------------ bends
+bends = rep.get('bends', [])
 h.append('<h2>Bend radius check (every cable at every lug, stud and terminal)</h2>'
          '<p>Rule: FAA AC 43.13-1B CHG 1, par. 11-96 aa (p. 11-44/45) - a bundle no tighter than <b>10 x the OD</b> of its largest wire; where a wire breaks out at a terminal '
          'and is <b>suitably supported</b>, <b>3 x OD</b>. No cable maker publishes a bend radius for M22759/16 Tefzel or for SGX battery cable (checked: Thermax / ProWire '
-         'M22759/16 sheet, Southwire SPEC 50050, AWC, Prestolite), so this installation rule is used. OD = maximum from the Thermax M22759/16 sheet; 1/0 SGX 13.6 mm. '
-         'Gauges from the slot map (ENGINE-ROOM-POWER-REDISTRIBUTION 8.1). "Inside R" is from the model; on the two "bend under the deck" rows it is the most room there is.</p><div class="wrap"><table>'
+         'M22759/16 sheet, Southwire SPEC 50050, AWC, Prestolite), so this installation rule is used. OD = maximum from the Thermax M22759/16 sheet; 1/0 SGX 13.6 mm.</p><div class="wrap"><table>'
          '<tr><th>Cable</th><th>AWG</th><th>OD mm</th><th>Path in the box</th><th>Inside R mm</th><th>Needed</th><th></th><th>Note</th></tr>')
 for b in bends:
     rr = 'no bend' if b['r_inside'] is None else '%.1f' % b['r_inside']
     need = '%.1f (%s)' % (b['need'], b['rule']) if b['r_inside'] is not None else '-'
     h.append('<tr><td>%s</td><td>%s</td><td>%.2f</td><td>%s</td><td>%s</td><td>%s</td><td class="%s">%s</td><td>%s</td></tr>'
              % (E(b['where']), E(b['awg']), b['od'], E(b['path']), rr, E(need), 'ok' if b['ok'] else 'bad', 'OK' if b['ok'] else 'FAIL', E(b['note'])))
-h.append('</table></div><p class="mut">Every cable stub was also checked against every printed part in Fusion: %s. The first bend outside a box is in the harness route: '
+h.append('</table></div><p class="mut">Every cable (heavy and harness) was also checked against every printed part in Fusion: %s. The first bend outside a box is in the harness route: '
          'keep it to the "Note" figure - 3 x OD with a P-clamp or tie each side of the bend, otherwise 10 x OD.</p>'
          % ('no contact' if not rep.get('wire_to_printed_contact') else E(rep['wire_to_printed_contact'])))
 fig('fusebox_render_power_bends.png')
-fig('fusebox_render_under.png')
 
 h.append('<h2>Empty boxes (terminal slots)</h2>')
 fig('fusebox_render_iso_empty.png')
 fig('fusebox_render_top_empty.png')
+fig('fusebox_render_iso_open.png')
+fig('fusebox_render_iso_closed_rear.png')
 
-h.append('<h2>How you build it</h2><div class="grid"><div><h3>POWER box (2 printed pieces)</h3><ol>'
-         '<li>Press a brass limiter into each of the 4 ears.</li>'
-         '<li>Bench, base right way up: lay the bar in its pocket and the 14 pads in theirs. From below, push the M5 x 16 bolts (and the M8 x 20 for the 1/0) up through '
-         'the hex head pockets and the bar holes.</li>'
-         '<li>From below, slide a brass standoff up each hex hole until it meets its pad; from the top, screw an M5 set screw through the pad into it.</li>'
-         '<li>Turn the base over (wire side up). Crimp the relay terminals, push each one up into its cavity until it clicks. Crimp the AMI output cables and '
-         'bolt each lug to the bottom of its standoff (M5 x 10; the hex hole holds the standoff). The six relay feeds go lug -> straight -> round their saddle -> into '
-         'terminal 30; tie each to its saddle.</li>'
-         '<li>Right way up: AMI fuses on the studs, Keps nuts 4 Nm max; 1/0 lug on the M8.</li>'
-         '<li>Mount the base in the glove box by its 4 ears (M5 through the limiters); the cables leave underneath between the legs.</li>'
-         '<li>Plug the relays and the ACPS fuse in from the top, snap the cover on.</li></ol></div>'
-         '<div><h3>LOGIC box (2 printed pieces)</h3><ol>'
-         '<li>Limiters in the ears. From below, slide the two strips up into their pockets.</li>'
-         '<li>Standoff under each strip end; M5 bolt down from the top (head in its hex pocket) into the standoff; feed lug under the standoff (M5 x 10).</li>'
-         '<li>Wire side up: crimp and push in the mini-fuse and micro-relay terminals from below.</li>'
-         '<li>Mount by the 4 ears (the two rear legs sit at x 45 / 70 so the Bus 1 / Bus 2 feeds leave the rear straight).</li>'
-         '<li>Fuses and micro relays in from the top, snap the cover on.</li></ol></div>'
-         '<div><h3>Battery block (2 printed pieces)</h3><ol>'
-         '<li>From below, an M6 nut into each of the 2 hex pockets under the relay platform; limiters in the tabs and the 2 flange bosses.</li>'
-         '<li>Drop the 3 bolt heads into the pedestal pockets (top), lay the bar and the pad on.</li>'
-         '<li>HCR150 on its platform, 2 M6 bolts down through the flange into the captured nuts.</li>'
-         '<li>AMI 40 on, jumper (two lugs, one straight 18 mm cable) from the AMI out to terminal 3, pump cable on terminal 5, coil plug on.</li>'
-         '<li>Mount by the 2 tabs (passenger side of the trunk, between the rear wall and the battery - Z4), snap the cover on.</li></ol></div></div>'
-         '<p class="mut">To service a relay terminal later: unbolt the base\'s ears and lift it - the bottom is open, nothing else holds it.</p>')
-
+# ------------------------------------------------------------------ battery block
 h.append('<h2>Battery relay block</h2>')
-h.append('<h3>Style pick (Z9: Dan left it to me) - %s</h3><p>%s</p><div class="wrap"><table><tr><th>Dan asked for</th><th>How the block meets it</th></tr>'
-         '<tr><td>Open frame</td><td>Low floor plate, rims on the two long sides only, both ends open - the cover is the only enclosure.</td></tr>'
-         '<tr><td>Snap or screw lid</td><td>Snap: 4 cantilever tongues into pockets in the side rims (no screws, no inserts).</td></tr>'
-         '<tr><td>2 tabs</td><td>One tab on each long side at mid-length (x %.0f), M5 through a brass limiter.</td></tr>'
-         '<tr><td>No cable over a tab</td><td>Battery feed in at the -x end, pump cable and coil lead out at the +x end; nothing leaves a long side.</td></tr>'
-         '<tr><td>No cable holes</td><td>Cables pass under open notches in the cover ends (the 7720 breakout idea); the base has no holes for cables.</td></tr></table></div>'
-         % (E(S.REFERENCE_BRAND[0]), E(S.REFERENCE_BRAND[1]), S.RB['tabs_x']))
-fig('battrelay_render_iso_closed.png')
+fig('battrelay_explode.png', 'Battery block, exploded: the lid (1) and every part, numbered.')
+fig('battrelay_render_iso_closed_rear.png')
+fig('battrelay_render_under.png')
 fig('battrelay_render_iso_open.png')
 fig('battrelay_render_iso_empty.png')
+h.append('<h3>Style (Z9: your pick, S27) - %s</h3><p>%s</p><div class="wrap"><table><tr><th>You asked for</th><th>How the block meets it</th></tr>'
+         '<tr><td>Open frame</td><td>Floor plate, rims on the two long sides only, both ends open - the cover is the only enclosure.</td></tr>'
+         '<tr><td>Snap or screw lid</td><td>Snap: 4 cantilever tongues into pockets in the side rims (no screws, no inserts).</td></tr>'
+         '<tr><td>2 tabs, on the short ends (rev 5)</td><td>One tab on each end at y %.0f (rear half), M5 through a brass limiter.</td></tr>'
+         '<tr><td>No cable over a tab</td><td>Battery feed in at the -x end, pump cable and coil lead out at the +x end, all at the front half; the tabs sit at the rear half.</td></tr>'
+         '<tr><td>No cable holes</td><td>Cables pass under open notches in the cover ends (the 7720 breakout idea); the base has no holes for cables.</td></tr></table></div>'
+         % (E(S.REFERENCE_BRAND[0]), E(S.REFERENCE_BRAND[1]), S.RB['tab_y']))
 
-h.append('<h2>Labels (etched in the covers)</h2>')
-for k, v in rep.get('labels', {}).items():
-    h.append('<p><b>%s:</b> %s</p>' % (E(k.split('_')[0]), E(', '.join(v))))
-
-h.append('<h2>Slot map</h2><div class="wrap"><table><tr><th>Unit</th><th>Position</th><th>Fuse / relay</th><th>Part</th><th>Wire</th></tr>')
+# ------------------------------------------------------------------ slot map
+h.append('<h2>Slot map</h2><div class="wrap"><table><tr><th>Unit</th><th>Lid</th><th>Fuse / relay</th><th>Part</th><th>Wire</th></tr>')
 for row in ('IN', 'OUT'):
     for i, (nm, a) in enumerate(S.AMI_ROWS[row][:S.AMI_SLOTS[row]]):
-        h.append('<tr><td>POWER</td><td>AMI %s-%d</td><td>%s</td><td>%s</td><td>%s</td></tr>'
-                 % (row, i + 1, E(nm if a else 'spare'), 'AMI-%d' % a if a else '-', ('%d AWG' % S.AMI_AWG[nm]) if a else '-'))
+        n = i + 1 + (0 if row == 'IN' else S.AMI_SLOTS['IN'])
+        h.append('<tr><td>POWER</td><td>F%d (AMI %s-%d)</td><td>%s</td><td>%s</td><td>%s</td></tr>'
+                 % (n, row, i + 1, E(nm if a else 'spare'), 'AMI-%d' % a if a else '-', ('%d AWG' % S.AMI_AWG[nm]) if a else '-'))
 for i, nm in enumerate(S.IN_RELAY):
     pn, own = S.RELAY_PN[nm]
-    h.append('<tr><td>POWER</td><td>R%d (column %s)</td><td>%s (fed by AMI IN-%d)</td><td>%s</td><td></td></tr>'
+    h.append('<tr><td>POWER</td><td>R%d (column %s)</td><td>%s (fed by F%d)</td><td>%s</td><td></td></tr>'
              % (i + 1, 'A' if i % 2 == 0 else 'B', E(nm), i + 1, E('%s (%s)' % (pn, own) if pn else '-')))
-h.append('<tr><td>POWER</td><td>front of column B</td><td>ACPS mini fuse (heater 87)</td><td>ATM-10</td><td></td></tr>')
+h.append('<tr><td>POWER</td><td>F15</td><td>ACPS mini fuse (heater 87)</td><td>ATM-10</td><td>%d AWG</td></tr>' % S.ACPS_AWG)
+n = 0
 for col, (cx, fuses) in S.MINI_COLS.items():
-    h.append('<tr><td>LOGIC</td><td>%s (%d)</td><td>%s</td><td>ATM</td><td>feed %d AWG</td></tr>'
-             % (col, len(fuses), E(', '.join('%s %s' % (nm, a) if a else 'spare' for nm, a in fuses)), S.FEEDS[col][1]))
+    for nm, a in fuses:
+        n += 1
+        h.append('<tr><td>LOGIC</td><td>F%d</td><td>%s (%s)</td><td>%s</td><td>%s</td></tr>'
+                 % (n, E(nm if a else 'spare'), 'Bus 1' if col == 'BUS1' else 'Bus 2', ('ATM-%g' % a) if a else '-', ('%d AWG' % S.MINI_AWG[a]) if a else '-'))
 k = 0
 for c, cx in enumerate(S.MICRO_COLS):
     for r, cy in enumerate(S.MICRO_Y):
         nm, pn, own = S.MICRO_POS[k]
         k += 1
-        h.append('<tr><td>LOGIC</td><td>M%d%d</td><td>%s</td><td>%s</td><td></td></tr>' % (c + 1, r + 1, E(nm if pn else 'spare'), E('%s (%s)' % (pn, own) if pn else '-')))
-h.append('<tr><td>BATTERY</td><td>F1</td><td>FP fuse 40 A</td><td>AMI-40</td><td>10 AWG</td></tr>'
-         '<tr><td>BATTERY</td><td>K1</td><td>k_fp fuel pump relay</td><td>1416010-1 HCR150 (OWN)</td><td>10 AWG</td></tr></table></div>')
+        h.append('<tr><td>LOGIC</td><td>R%d</td><td>%s</td><td>%s</td><td></td></tr>' % (k, E(nm if pn else 'spare'), E('%s (%s)' % (pn, own) if pn else '-')))
+h.append('<tr><td>BATTERY</td><td>FUSE 40A</td><td>FP fuse 40 A</td><td>AMI-40</td><td>10 AWG</td></tr>'
+         '<tr><td>BATTERY</td><td>FUEL PUMP RELAY</td><td>k_fp fuel pump relay</td><td>1416010-1 HCR150 (OWN)</td><td>10 AWG</td></tr></table></div>')
 
-h.append('<h2>Printed parts (PA12, powder-bed)</h2><div class="wrap"><table><tr><th>Part</th><th>File (STL + STEP)</th><th>Size mm (x y z, incl. ears / tabs)</th><th>Volume / mass</th><th>What it is</th></tr>')
-for n, pr in printed.items():
+# ------------------------------------------------------------------ printed parts
+h.append('<h2>Printed parts (PA12, powder-bed)</h2><div class="wrap"><table><tr><th>Part</th><th>File (STL + STEP)</th><th>Size mm (x y z, incl. legs / tabs)</th><th>Volume / mass</th><th>What it is</th></tr>')
+for nme, pr in printed.items():
     sz = ' x '.join('%.1f' % v for v in pr.get('size_mm', [])) or '-'
-    unit, rest = n.split('_', 1)
+    unit, rest = nme.split('_', 1)
     kind = rest.split('_')[0]
     note = PRINTED_NOTE.get('%s_%s' % (unit, kind), PRINTED_NOTE.get(kind, ''))
     h.append('<tr><td>%s %s</td><td><code>%s.stl</code><br><code>%s.step</code></td><td>%s</td><td>%s cm&sup3; / ~%s g</td><td>%s</td></tr>'
-             % (E(unit), E(kind), E(n), E(n), E(sz), E(pr.get('volume_cm3', '-')), E(int(pr.get('mass_g_pa12', 0))), E(note)))
+             % (E(unit), E(kind), E(nme), E(nme), E(sz), E(pr.get('volume_cm3', '-')), E(int(pr.get('mass_g_pa12', 0))), E(note)))
 h.append('</table></div><p class="mut">Mass at the HP PA12 density 1.01 g/cm&sup3;. Metal parts are STEP only, plus the whole assembly '
-         '(<code>ST185_fusebox_rev4_assembly.step</code>).</p>')
+         '(<code>ST185_fusebox_rev5_assembly.step</code>).</p>')
 
 h.append('<h2>Designed for powder-bed printing</h2><ul>'
-         '<li><b>Walls:</b> 3 mm base skirt, 6 mm deck plate, 2.5 mm towers, ribs, gussets and cover walls. Nothing under 2.0 mm.</li>'
-         '<li><b>No trapped powder:</b> bases are open underneath, covers are open shells; no closed cavity anywhere.</li>'
-         '<li><b>Fits:</b> %.2f mm per side printed to printed (cover over base); %.1f mm per side metal in a printed pocket.</li>'
-         '<li><b>Snaps:</b> tongue 12 wide, 11 long between two 1.2 slots, half-round catch 2.4, about 0.75 mm of engagement - within what PA12 takes repeatedly.</li>'
-         '<li><b>Threads:</b> none printed, and no heat-set inserts now (the covers snap). Every bolt goes into metal: standoffs, nuts, captured heads.</li>'
-         '<li><b>Torque into metal:</b> pad, standoff and lug are clamped metal to metal; the hex holes only stop the standoffs and bolt heads turning. '
-         'The HCR150 flange clamps onto brass limiters over captured nuts.</li>'
-         '<li><b>Heat:</b> PA12 HDT 95 &deg;C at 1.82 MPa. The 1" x 1/4" copper bar is three times the 1/0 copper; bench check at full load with a thermocouple anyway.</li>'
-         '<li><b>Live-part spacing (measured in Fusion):</b> AMI pads %.1f mm apart (printed rib between), bar to any output %.1f, 1/0 lug to nearest output %.1f, '
-         'output lugs under the deck %.1f, standoffs %.1f; Bus 1 / Bus 2 strips %.1f, their feed lugs %.1f; battery bar to pad %.1f, HCR150 lugs %.1f.</li>'
+         '<li><b>Walls:</b> 3 mm base skirt, 6 mm deck plate, 2.5 mm towers, ribs, cover and pan walls, 3 mm leg walls. Nothing under 2.0 mm.</li>'
+         '<li><b>No trapped powder:</b> bases, legs and pans are open, covers are open shells; no closed cavity anywhere.</li>'
+         '<li><b>Fits:</b> %.2f mm per side printed to printed (cover over base, pan inside the skirt); %.1f mm per side metal in a printed pocket.</li>'
+         '<li><b>Snaps:</b> tongue 12 wide, 11 long between two 1.2 slots, half-round catch 2.4 - covers and pans alike.</li>'
+         '<li><b>Threads:</b> none printed, no heat-set inserts. Every bolt goes into metal: standoffs, nuts, captured heads.</li>'
+         '<li><b>Heat:</b> PA12 HDT 95 &deg;C at 1.82 MPa. The 1" x 1/4" copper bar is three times the 1/0 copper; bench check at full load with a thermocouple anyway. '
+         'The vent slots let the relay coil heat out.</li>'
+         '<li><b>Live-part spacing (measured in Fusion):</b> AMI pads %.1f mm apart, bar to any output %.1f, 1/0 lug to nearest output %.1f, '
+         'output lugs %.1f, standoffs %.1f; Bus 1 / Bus 2 strips %.1f, their feed lugs %.1f; battery bar to pad %.1f, HCR150 lugs %.1f; belly pan to nearest live part %.1f.</li>'
          '</ul>' % (S.PCLR, S.CLR, live.get('pad_to_pad_min_mm', 0), live.get('bar_to_pad_min_mm', 0), live.get('input_lug_to_pad_min_mm', 0),
                     live.get('under_deck_lug_to_lug_min_mm', 0), live.get('standoff_to_standoff_min_mm', 0), live.get('logic_strip_to_strip_mm', 0),
-                    live.get('logic_feed_lug_to_lug_mm', 0), live.get('battrelay_bar_to_pad_mm', 0), live.get('battrelay_relay_lug_to_lug_mm', 0)))
+                    live.get('logic_feed_lug_to_lug_mm', 0), live.get('battrelay_bar_to_pad_mm', 0), live.get('battrelay_relay_lug_to_lug_mm', 0),
+                    live.get('pan_to_nearest_live_power_mm', 0)))
 if 'interference' in rep:
     h.append('<p><b>Interference check (all three units, every printed, copper and bought part):</b> %s.</p>'
              % ('none' if not rep['interference'] else E(rep['interference'])))
 
 h.append('<h2>Parts list (OWN / BUY)</h2><p class="mut">Order: on-hand TE list, then TE, then approved suppliers, then others with a reason (R38). '
-         '"OWN" counts are qty_ordered from te-on-hand-bom.csv - confirm on the shelf. TBD = not checked against a maker sheet yet. Rev 4 drops the M3 heat-set inserts and lid / deck screws.</p>'
+         '"OWN" counts are qty_ordered from te-on-hand-bom.csv - confirm on the shelf. TBD = not checked against a maker sheet yet. Rev 5 changes: 12 mm standoffs added, '
+         'fewer 40 mm ones, M5 x 8 bolts for the short standoffs.</p>'
          '<div class="wrap"><table><tr><th>Part</th><th>Part number</th><th>Qty</th><th>Note</th></tr>')
 for r in PARTS:
     h.append('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>' % tuple(E(x) for x in r))
@@ -343,15 +427,15 @@ SF = S.STRIP_FEED
 for col, (cx, fuses) in S.MINI_COLS.items():
     Ls = (len(fuses) - 1) * S.MINI['pitch'] + 12 + SF['ext'][col]
     drawing('LOGIC strip %s (%d fuses)' % (col, len(fuses)), 1, Ls, S.STRIP['w'], S.STRIP['t'], [(Ls - SF['hole_from_end'], 0.0, 5.5)],
-            S.STOCK['strip'][1][0][1], 'Hole = feed (M5 bolt, head on top, into the standoff below). The fuse-feed connections along the strip are detail work.')
+            S.STOCK['strip'][1][0][1], 'Hole = feed (M5 bolt, head on top, into the standoff below). Rev 5: longer, so the feed lug sits past the cavity tower. '
+            'The fuse-feed connections along the strip are detail work.')
 
 h.append('<h2>Not done yet (detail work, after your OK)</h2><ul>'
          '<li>Terminal cavity shapes, locks / TPA from the TE terminal drawings (cavities are placeholders at the right pin pattern); how each mini fuse picks up its strip.</li>'
-         '<li>Part numbers still TBD: brass standoffs, compression limiters, the 12 AWG M5 ring lug, the battery block M6 lugs, an 8 AWG 9.5 receptacle.</li>'
-         '<li>Mount face under the glove-box boxes: the legs need a flat face; tell me the panel and I will add the bolt pattern to the route drawing.</li>'
+         '<li>Part numbers still TBD: brass standoffs (40 and 12 mm), compression limiters, the 12 AWG M5 ring lug, the battery block M6 lugs, an 8 AWG 9.5 receptacle.</li>'
+         '<li>Mount face under the glove-box boxes: tell me the panel and I will add the bolt pattern to the route drawing.</li>'
          '<li>The 40 A AMI HTR fuse vs the heater relay\'s 35 A (keep or 30 A) - still your call.</li>'
-         '<li>Then drawings, and the harness redraws in OPEN-ITEMS row 108.</li></ul>')
-fig('fusebox_render_iso_open_rear.png')
+         '<li>Then drawings, and the harness redraws in OPEN-ITEMS row 108 (the harness gauges here are placeholders by fuse rating).</li></ul>')
 h.append('</main></body></html>')
 open(out, 'w', encoding='utf-8').write('\n'.join(h))
 print('wrote', out)
