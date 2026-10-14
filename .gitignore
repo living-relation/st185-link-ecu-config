@@ -45,3 +45,4 @@ cad/busbar/**/*_drawing.pdf
 # Live dashboard data (local only)
 tools/dashboard/dashboard-answers.json
 tools/dashboard/dashboard-sessions.json
+tools/dashboard/dashboard-questions.json

@@ -17,10 +17,14 @@ h2{font-size:16px;margin:0 0 8px;display:flex;align-items:center;gap:8px}
 .qtext{font-weight:600}
 .why{font-size:13px;color:#555;margin:2px 0 6px}
 .opts{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
-.opts label{border:1px solid #cbd5e1;border-radius:8px;padding:5px 9px;cursor:pointer;font-size:14px;background:#f8fafc}
-.opts input{margin-right:5px}
-.opts label.rec{border-color:#16a34a}
-.opts label.rec::after{content:" ✅";}
+.opts button.opt{border:1px solid #cbd5e1;border-radius:8px;padding:7px 11px;font-size:14px;background:#f8fafc;color:#111;text-align:left}
+.opts button.opt.rec{border-color:#16a34a}
+.opts button.opt.rec::after{content:" ✅ recommended";font-size:12px;color:#166534}
+.opts button.opt.on{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
+.opts button.opt.on::after{color:#fff}
+.q.done{opacity:.85}
+.ans{display:inline-block;background:#dcfce7;color:#166534;border-radius:8px;padding:3px 9px;font-size:14px;margin:4px 6px 4px 0}
+.topic{font-size:12px;color:#6b7280;margin-left:6px}
 textarea{width:100%;box-sizing:border-box;min-height:34px;font:inherit;font-size:14px;border:1px solid #cbd5e1;border-radius:8px;padding:6px}
 button{font:inherit;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;background:#1d4ed8;color:#fff}
 button.sec{background:#e5e7eb;color:#111}
@@ -43,11 +47,12 @@ details summary{cursor:pointer;font-weight:600;margin-top:8px}
 .muted{color:#6b7280;font-size:13px}
 </style></head>
 <body>
-<header><h1>ST185 live dashboard</h1><small id="head">loading…</small></header>
+<header><h1>ST185 live dashboard</h1><small id="head">loading…</small><button class="sec" id="refresh">Refresh</button></header>
 <main>
 
 <section id="qsec"><h2>Needs your answer <span class="badge" id="qcount">0</span></h2>
-<div class="muted">Pick an option or write your own. Nothing is sent until you press <b>Send all answers</b>.</div>
+<div class="muted" id="qinfo"></div>
+<div class="muted">Tap an option or write your own. Nothing is sent until you press <b>Send all answers</b>.</div>
 <div id="questions"></div></section>
 
 <section><h2>Sessions</h2>
@@ -70,18 +75,11 @@ details summary{cursor:pointer;font-weight:600;margin-top:8px}
 <div id="sendbar"><button id="send">Send all answers</button><button class="sec" id="clear">Clear</button><span id="sendmsg" class="muted"></span></div>
 
 <script>
-// ---- questions Dispatch is waiting on (Dispatch updates this list) ----
-const QUESTIONS = [
- {id:"L1", q:"Fuse box: 30-60 A fuses", why:"Stud fuses are sourced and solid but make Box 1 ~50 mm longer. MAXI blades are smaller/plug-in but their bussed terminals aren't sourced yet.", opts:["AMI stud fuses","MAXI blade fuses"], rec:0},
- {id:"L4", q:"Glove box space", why:"Usable length x width x height behind the glove box, and which side the harness enters. Sets the fuse box shape.", opts:[], write:true},
- {id:"L5", q:"Fuse box: replace the RFRM + MTA + LMI kit with the 2 custom printed boxes?", why:"The current kit doesn't fit 6 of your relays (RFRM takes 2.8 mm blades only). Custom boxes fit your relays, 1 power feed, ~6% smaller.", opts:["Yes, custom boxes","Keep the kit (fix the relay mismatch another way)"], rec:0},
- {id:"C12", q:"Optoisolator pictures (6-channel, for brake + reverse at the CSB3)", why:"Pictures with the part number/label visible. Send them in chat; mark here when sent.", opts:["Sent in chat","Later"], write:true},
- {id:"O1", q:"Bus bar pockets: lug tongue thickness + end mill size", why:"Caliper a real 6R10 / 4R8 / 2R8 lug tongue (3 mm pocket depth is assumed) and pick the end mill for pocket corners.", opts:["3 mm mill","4 mm mill","5 mm mill","6 mm mill"], write:true},
- {id:"E1", q:"VRC enclosure: the VR module has no mounting holes - use a small carrier board + socket?", why:"Needed so the module can be mounted on insulated standoffs.", opts:["Yes, carrier board + socket","Other (write in)"], rec:0, write:true},
- {id:"E2", q:"Which VRC board version do you have?", why:"Sets the board size/pinout in the enclosure.", opts:[], write:true},
- {id:"E4", q:"Enclosure O-ring material", why:"NBR if oil/fuel can reach it, EPDM for weather/coolant only.", opts:["NBR","EPDM"], rec:0},
- {id:"E5", q:"Enclosure mounting-tab screws", why:"Tabs are slotted for M5 now.", opts:["M5","M4","M6"], rec:0},
-];
+// ---- questions: Dispatch writes dashboard-questions.json; the page reads it on load + Refresh ----
+let QUESTIONS = [];
+let SAVED = {};   // answers already in dashboard-answers.json: id -> {choice,label,text,at}
+let SEL = {};     // unsent option picks: id -> {value,label}
+const QUESTIONS_FILE = "C:\projects\active\st185-link-ecu-config\tools\dashboard\dashboard-questions.json";
 const ANSWERS_FILE = "C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\dashboard-answers.json";
 const WAKE_TASK = "st185-session-watch";
 const DC = "host:Desktop_Commander";
@@ -117,27 +115,67 @@ const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 function renderQuestions(){
   const draft = store.get("st185-draft",{});
   const el = document.getElementById("questions"); el.innerHTML="";
+  let open=0;
   QUESTIONS.forEach(x=>{
     const d=document.createElement("div"); d.className="q";
-    let h=`<div><span class="qid">${x.id}</span><span class="qtext">${esc(x.q)}</span></div><div class="why">${esc(x.why)}</div>`;
-    if(x.opts.length){h+=`<div class="opts">`+x.opts.map((o,i)=>`<label class="${i===x.rec?'rec':''}"><input type="radio" name="${x.id}" value="${esc(o)}" ${draft[x.id]?.choice===o?'checked':''}>${esc(o)}</label>`).join("")+`</div>`;}
-    h+=`<textarea data-id="${x.id}" placeholder="${x.write?'Write your answer':'Optional note / other answer'}">${esc(draft[x.id]?.text||"")}</textarea>`;
+    const topic = x.topic ? `<span class="topic">${esc(x.topic)}</span>` : "";
+    const head=`<div><span class="qid">${esc(x.id)}</span><span class="qtext">${esc(x.text)}</span>${topic}</div>`;
+    const sv=SAVED[x.id];
+    if(sv && !x._redo){
+      d.className="q done";
+      d.innerHTML=head+`<span class="ans">✔ Answered: ${esc(sv.label||sv.choice||"")}${sv.text?(sv.choice||sv.label?" — ":"")+esc(sv.text):""}</span><button class="sec" data-redo="${esc(x.id)}">Change</button>`;
+      el.appendChild(d); return;
+    }
+    open++;
+    if(!SEL[x.id] && draft[x.id]?.choice){ const o=(x.options||[]).find(o=>o.value===draft[x.id].choice); if(o) SEL[x.id]={value:o.value,label:o.label}; }
+    let h=head;
+    const opts=x.options||[];
+    if(opts.length) h+=`<div class="opts">`+opts.map(o=>`<button type="button" class="opt ${o.recommended?'rec':''} ${SEL[x.id]?.value===o.value?'on':''}" data-q="${esc(x.id)}" data-v="${esc(o.value)}">${esc(o.value)}. ${esc(o.label)}</button>`).join("")+`</div>`;
+    if(x.allow_other || !opts.length) h+=`<textarea data-id="${esc(x.id)}" placeholder="${opts.length?'Optional note / other answer':'Write your answer'}">${esc(draft[x.id]?.text||"")}</textarea>`;
     d.innerHTML=h; el.appendChild(d);
   });
-  document.getElementById("qcount").textContent=QUESTIONS.length;
-  el.addEventListener("change",saveDraft); el.addEventListener("input",saveDraft);
+  document.getElementById("qcount").textContent=open;
+  if(!QUESTIONS.length) el.innerHTML='<div class="muted">No open questions.</div>';
 }
+document.getElementById("questions").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  if(b.dataset.redo){ const x=QUESTIONS.find(q=>q.id===b.dataset.redo); if(x){ x._redo=true; renderQuestions(); } return; }
+  if(b.dataset.q){
+    const x=QUESTIONS.find(q=>q.id===b.dataset.q), o=x.options.find(o=>o.value===b.dataset.v);
+    SEL[x.id] = (SEL[x.id]?.value===o.value) ? undefined : {value:o.value,label:o.label};  // tap again to unpick
+    saveDraft(); renderQuestions();
+  }
+});
+document.getElementById("questions").addEventListener("input",saveDraft);
 function collect(){
-  const out={};
+  const out={}, at=new Date().toISOString();
   QUESTIONS.forEach(x=>{
-    const c=document.querySelector(`input[name="${x.id}"]:checked`);
-    const t=document.querySelector(`textarea[data-id="${x.id}"]`).value.trim();
-    if(c||t) out[x.id]={choice:c?c.value:null,text:t||null};
+    if(SAVED[x.id] && !x._redo) return;
+    const c=SEL[x.id];
+    const ta=document.querySelector(`textarea[data-id="${x.id}"]`);
+    const t=ta?ta.value.trim():"";
+    if(c||t) out[x.id]={choice:c?c.value:null,label:c?c.label:null,text:t||null,at};
   });
-  document.querySelectorAll("textarea[data-row]").forEach(t=>{ if(t.value.trim()) out["row-"+t.dataset.row]={choice:null,text:t.value.trim()}; });
+  document.querySelectorAll("textarea[data-row]").forEach(t=>{ if(t.value.trim()) out["row-"+t.dataset.row]={choice:null,text:t.value.trim(),at}; });
   return out;
 }
 function saveDraft(){ store.set("st185-draft",collect()); }
+
+async function loadQuestions(){
+  const info=document.getElementById("qinfo");
+  try{
+    const txt=txtOf(await call(DC_READ,{path:QUESTIONS_FILE})); const j=txt.indexOf("{");
+    if(j<0) throw new Error("file empty or unreadable");
+    const q=JSON.parse(txt.slice(j));
+    QUESTIONS=(q.questions||[]);
+    info.textContent=q.updated?`Questions updated: ${q.updated}`:"";
+  }catch(e){ QUESTIONS=[]; info.textContent="Could not load dashboard-questions.json: "+e.message; }
+  try{
+    const txt=txtOf(await call(DC_READ,{path:ANSWERS_FILE})); const j=txt.indexOf("{");
+    SAVED = j<0 ? {} : (JSON.parse(txt.slice(j)).answers||{});
+  }catch(e){ SAVED={}; }
+  renderQuestions();
+}
 
 async function dc(cmd){
   return txtOf(await call(DC_START,{command:cmd,timeout_ms:60000,shell:"powershell.exe"}));
@@ -203,8 +241,10 @@ document.getElementById("send").onclick=async()=>{
   if(!Object.keys(ans).length){ msg.textContent="Nothing to send yet."; return; }
   msg.textContent="Saving…";
   try{
-    const payload={sent:new Date().toISOString(),answers:ans};
+    const merged=Object.assign({},SAVED,ans);   // keep earlier answers, newer ones win
+    const payload={sent:new Date().toISOString(),answers:merged};
     await call(DC_WRITE,{path:ANSWERS_FILE,content:JSON.stringify(payload,null,2),mode:"rewrite"});
+    SAVED=merged; SEL={}; QUESTIONS.forEach(x=>delete x._redo); store.set("st185-draft",{}); renderQuestions();
     msg.textContent=`Saved ${Object.keys(ans).length} answer(s) to dashboard-answers.json.`;
     // WAKE_TASK (local scheduled task) can't be fired from this runtime - see wakeDispatch()
     await wakeDispatch(msg, Object.keys(ans).length);
@@ -213,9 +253,17 @@ document.getElementById("send").onclick=async()=>{
 async function wakeDispatch(msg,n){
   msg.textContent=`Saved ${n} answer(s). Dispatch picks them up on its next "${WAKE_TASK}" run.`;
 }
-document.getElementById("clear").onclick=()=>{ store.set("st185-draft",{}); renderQuestions(); document.querySelectorAll("textarea[data-row]").forEach(t=>t.value=""); };
+document.getElementById("clear").onclick=()=>{ store.set("st185-draft",{}); SEL={}; renderQuestions(); document.querySelectorAll("textarea[data-row]").forEach(t=>t.value=""); };
 
+function refreshAll(){
+  saveDraft();
+  loadQuestions();
+  loadData().catch(e=>{document.getElementById("newfiles").textContent="Data error: "+e.message});
+  loadSessions();
+}
+document.getElementById("refresh").onclick=refreshAll;
 renderQuestions();
+loadQuestions();
 loadData().catch(e=>{document.getElementById("newfiles").textContent="Data error: "+e.message});
 loadSessions();
 </script>
