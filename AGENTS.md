@@ -20,6 +20,11 @@
 >    (c) APS A14 / B33 only. Gate: `docs/harness/validate_bulkhead_letter.py`.
 >
 > Link CAN-Lambda is on CAN bus 1. CAN bus 2 is unused and its ECU pins are free.
+>
+> **CAN config is never parked for setup time (DECISIONS R80):** an ECU CAN change (e.g. a CSB3
+> bit) is made now in the repo CAN files (`link_g4x_can_setup.json` / `.lcs`, `switchboard_frames.json`,
+> CAN docs) with `bench/check_parity.py` green; Daniel uploads the `.lcs` later. Only the import and
+> live tests wait for the ECU.
 
 ## Mission
 - Keep `Link G4X XtremeX` CAN configuration, `RealDash` channels, and bench tooling synchronized.
@@ -27,7 +32,7 @@
 - Preserve compatibility with frozen cluster firmware assumptions documented in `README.md` and the cluster repo's `CANBUS-ENCODE-DECODE-REFERENCE.html` (pointer only, never copied here).
 
 ## Project Map
-- **Core CAN contracts**: `link_g4x_can_setup.json` (ECU frames, PCLink encode form), `link_g4x_can_setup.lcs` (decode form), `switchboard_frames.json` (CSB3 0x640-0x643), `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`, `CAN-CONFIG-STATUS.md` (status note), `ECUMASTER_SWITCHBOARD_SETUP.md`, `CANBUS-ENCODE-DECODE-REFERENCE.html` (a POINTER page to the cluster repo's file - no cluster file is copied into this repo; CI reads the cluster repo read-only at run time).
+- **Core CAN contracts**: `link_g4x_can_setup.json` (ECU frames, PCLink encode form), `link_g4x_can_setup.lcs` (decode form; also the ECU receive channels 0x3EC/0x3ED and CSB3 0x640/0x642), `switchboard_frames.json` (CSB3 0x640-0x643 plus its `ecu_receive` map), `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`, `CAN-CONFIG-STATUS.md` (status note), `ECUMASTER_SWITCHBOARD_SETUP.md`, `CANBUS-ENCODE-DECODE-REFERENCE.html` (a POINTER page to the cluster repo's file - no cluster file is copied into this repo; CI reads the cluster repo read-only at run time).
 - **CAN parity gate**: `bench/check_parity.py` - JSON, `.lcs`, ID table, `bench/frames.py`, RealDash XML, sender UI and `switchboard_frames.json` must agree. Runs in CI (`.github/workflows/checks.yml`).
 - **Doc hygiene (warn-only, CI)**: `.github/scripts/check_doc_duplicates.py` - one owner per fact: lists any passage of 6+ identical lines copied between tracked `.md` files. Keep the passage in one file and link to it from the others.
 - **Doc size guard (warn-only, CI)**: `.github/scripts/check_doc_size.py` - warns when a tracked `.md` passes 1,500 lines, and when a top-level `.md` is not named in this file's project map (so add every new top-level doc here). No auto-archiving or age sweeps.

@@ -53,6 +53,9 @@ matching RealDash frame/value; do not point RealDash at `0x640`.
 - **2026-09-27 unassignments:** switchboard SW_MASK bits 0/1 (was evap core / A/C request) and Analog 1
   (was cabin temp) are unassigned — A/C is the OEM amplifier's job. `bench/frames.py` no longer defines
   `SW_EVAP_CORE` / `SW_AC_REQUEST`. (A/C wiring itself is being reworked in a separate harness plan.)
+- **2026-10-14 (DECISIONS R80):** CAN config is written in the repo now, not parked for setup. SW_MASK
+  bits 5 / 6 / 7 = clutch / brake / reverse, received with cruise main (bit 2) and the cruise stalk mV
+  (0x640 bytes 2-3) as `.lcs` receive channels 0x640 / 0x642; reverse sets 0x3EB Gear Position = 7.
 - **0x643:** source = ECU (decided 2026-06-14); L1–L4 unused / LED-only; 50 ms periodic PCLink TX.
   Byte layout (one byte per output) verified against the CSB3 manual v2.1.
 - **0x3EB:** RealDash reads the gear byte (see above); the sender app's RealDash profile now sends it.

@@ -141,7 +141,8 @@ into three states. Option A (AS_MASK) is therefore not used.
 ## Step 5 — Digital Switch Assignments (SW_MASK → 0x642 byte4)
 
 The CSB3 packs digital input states into byte4 of 0x642 as a bitmask (SW_MASK).
-PCLink reads this via a CAN User Stream: **0x642 byte4 bits0-4 → VDI1–VDI5**.
+PCLink reads this via a CAN User Stream: **0x642 byte4 bit 2 → VDI3, bits 5-7 → VDI6-VDI8** (the `.lcs`
+receive channel 0x642; canonical map `switchboard_frames.json` "ecu_receive").
 
 | SW_MASK Bit | Physical Signal | PCLink VDI | Function |
 |---|---|---|---|
@@ -150,19 +151,20 @@ PCLink reads this via a CAN User Stream: **0x642 byte4 bits0-4 → VDI1–VDI5**
 | bit2 | Switch 3 — cruise MAIN on (CSB3 c17, stalk pin 15) | VDI3 | Cruise master on/off |
 | bit3 | Switch 4 — unassigned (was cruise SET; the stalk has no such wire) | VDI4 | — |
 | bit4 | Switch 5 — unassigned (was cruise RESUME; the stalk has no such wire) | VDI5 | — |
-| bit5–7 | Unused | — | Not read by PCLink |
+| bit5 | Switch 6 — clutch pedal down (C11 pin 1, ground-active) | VDI6 | Cruise cancel; clutch input for flat shift / launch |
+| bit6 | Switch 7 — brake pedal pressed (opto IN1 from S9 pin 1) | VDI7 | Cruise cancel (the ECU's brake input) |
+| bit7 | Switch 8 — reverse engaged (opto IN2 from back-up switch B1 pin 1) | VDI8 | Gear Position = 7 (R) in 0x3EB: cluster R, RealDash reverse camera |
 
-**Setup time (Dan, Route 15 C14, 2026-10-13 - no config now):** the brake switch is wired to CSB3 **S7 = SW_MASK bit 6** and
-reverse to **S8 = bit 7**, both through the inline optoisolator (`ST185-CSB3`, DECISIONS S17 / R56). PCLink needs a
-CAN user-stream mapping for bit 6 (brake pressed) - and bit 7 if the ECU wants reverse - when the ECU is on the bench;
-confirm then that the set bit means pressed / engaged. The CAN contract (`switchboard_frames.json`) is not changed until
-that mapping is made (`docs/OPEN-ITEMS.md` setup-time row 91).
+**Mapped 2026-10-14 (DECISIONS R80, Route 15 C14):** brake (S7, bit 6) and reverse (S8, bit 7) arrive through the
+inline optoisolator (`ST185-CSB3`, DECISIONS S17 / R56); clutch (S6, bit 5) is a ground-active contact. All three
+are in the CAN contract and the `.lcs` receive channel now. Left for the bench: confirm a set bit means pressed /
+engaged (opto board check, `docs/OPEN-ITEMS.md` row 101) and that the receive channels import (row 2).
 
 **Note:** SET/COAST, RES/ACC and CANCEL do not arrive on SW_MASK or AS_MASK: they are decoded in PCLink from the A2 raw mV (Step 4.1). SW_MASK bit 2 carries only MAIN.
 
 In the configurator, map physical wires to digital input channels and confirm the bit ordering matches the table above.
 
-**PCLink VDI failsafe:** If CSB3 comm is lost (PCLink timeout 200 ms), VDI1–VDI5 default to **0** (all off). This is safe — cruise cancels.
+**PCLink VDI failsafe:** If CSB3 comm is lost (PCLink timeout 200 ms), VDI3 and VDI6–VDI8 default to **0** (all off). This is safe — cruise disarms (VDI3 = 0), and the gear is no longer forced to R.
 
 ---
 
@@ -218,7 +220,7 @@ when an LED is added, map its PCLink virtual output to the matching byte.
 0x642 byte7 is a rolling counter (0→255→0) that increments with every CSB3 transmission. The ECU monitors this automatically via the PCLink receive timeout setting.
 
 - **PCLink timeout:** 200 ms on CAN User Streams 0x640 / 0x641 / 0x642
-- **Fault action (automatic):** VDI1–5 reset to 0
+- **Fault action (automatic):** VDI3 / VDI6–8 and Cruise Stalk mV reset to 0
 - **Fault broadcast:** PCLink sets 0x3F1 byte6 bit5 ("Switchboard Comm Fault")
 
 The CSB3 needs no configuration for the heartbeat. PCLink side: see `CANBUS-LINK-G4X-CONFIG.md` for the receive timeout setting.

@@ -15,7 +15,8 @@
      DLC 1, byte 0 = 0-based index, once per confirmed button press (event - no cycle time).
      The ECU echoes them to RealDash in 0x3EF bytes 5 / 3. The Direction="Receive" channels
      at the end of CANModule 1 describe them; if a PCLink import does not take receive
-     channels from this file, enter them by hand in PCLink CAN receive with these values. -->
+     channels from this file, enter them by hand in PCLink CAN receive with these values.
+     The CSB3 switchboard receive channels (0x640 / 0x642) follow them. -->
 <LinkCANSetup Version="1">
   <CANModule Index="1">
     <!-- CAN1 — all nodes (ECU, cluster, CSB3, RealDash) share this bus -->
@@ -138,6 +139,24 @@
     </Channel>
     <Channel ID="0x3ED" Name="TC Slip Sel" Direction="Receive" Type="Custom" DLC="1">
       <Parameter Name="TC Slip Index"   StartBit="0"  Length="8"  Scale="1"    Offset="0"   ByteOrder="BigEndian" />
+    </Channel>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         RECEIVE 0x640 / 0x642 — ECUMaster CSB3 (Daniel 2026-10-14, DECISIONS R80)
+         Canonical source: switchboard_frames.json "ecu_receive". Switchboard -> ECU only (R51).
+         Timeout 200 ms on each; on timeout every channel below reads 0 (cruise disarmed).
+         Bit fields: StartBit = byte*8 + bit (bit 0 = LSB of that byte).
+         0x642 byte 4 (SW_MASK): bit 2 Cruise Main -> VDI3, bit 5 Clutch -> VDI6,
+         bit 6 Brake -> VDI7, bit 7 Reverse -> VDI8 (reverse sets Gear Position = 7 in 0x3EB).
+         ═══════════════════════════════════════════════════════════════════ -->
+    <Channel ID="0x640" Name="CSB3 Analog 1-4" Direction="Receive" Type="Custom" DLC="8" Timeout="200">
+      <Parameter Name="Cruise Stalk mV" StartBit="16" Length="16" Scale="1"    Offset="0"   ByteOrder="BigEndian" />
+    </Channel>
+    <Channel ID="0x642" Name="CSB3 Switches" Direction="Receive" Type="Custom" DLC="8" Timeout="200">
+      <Parameter Name="Cruise Main"     StartBit="34" Length="1"  Scale="1"    Offset="0"   ByteOrder="BigEndian" Target="VDI3" />
+      <Parameter Name="Clutch Switch"   StartBit="37" Length="1"  Scale="1"    Offset="0"   ByteOrder="BigEndian" Target="VDI6" />
+      <Parameter Name="Brake Switch"    StartBit="38" Length="1"  Scale="1"    Offset="0"   ByteOrder="BigEndian" Target="VDI7" />
+      <Parameter Name="Reverse Switch"  StartBit="39" Length="1"  Scale="1"    Offset="0"   ByteOrder="BigEndian" Target="VDI8" />
     </Channel>
 
   </CANModule>

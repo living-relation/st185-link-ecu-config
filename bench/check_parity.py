@@ -13,7 +13,8 @@ Standard library only (runs in CI with no pip step). What it compares:
   link_g4x_realdash.xml     RealDash frames: offset/length/signed/conversion, warn bits
   apps/trackcluster-can-sender/ui/index.html   both device profiles: byte/len/signed/bit,
                             and the RealDash profile's toRaw() at the same test value
-  switchboard_frames.json   0x640-0x643 vs frames.py and the ID table
+  switchboard_frames.json   0x640-0x643 vs frames.py and the ID table; its ecu_receive
+                            block vs the .lcs 0x640/0x642 receive channels and SW_MASK bits
   ECU receive 0x3EC/0x3ED   JSON dashboard_to_ecu vs .lcs Direction="Receive" channels vs
                             frames.py vs ID table section B (DLC 1, byte 0 = index)
 
@@ -221,8 +222,9 @@ def check_rx(rx, id_table_text):
     root = ET.fromstring(rd("link_g4x_can_setup.lcs").encode("utf-8"))
     lcs = {hexid(ch.get("ID")): ch for ch in root.iter("Channel")
            if (ch.get("Direction") or "").lower() == "receive"}
-    if set(lcs) != set(RX_ENC):
-        err(".lcs receive", "receive channels %s, expected 0x3EC/0x3ED" % sorted(map(hex, lcs)))
+    if set(lcs) != set(RX_ENC) | set(RX_SB):
+        err(".lcs receive", "receive channels %s, expected 0x3EC/0x3ED + switchboard 0x640/0x642"
+            % sorted(map(hex, lcs)))
     for fid, (enc, dec, key, const) in RX_ENC.items():
         where = "rx 0x%03X" % fid
         if getattr(F, const, None) != fid:
@@ -243,6 +245,55 @@ def check_rx(rx, id_table_text):
         row = re.search(r"^\|\s*0x%03X\s*\|[^|]*\|\s*1\s*\|\s*Byte0" % fid, id_table_text, re.M | re.I)
         if not row:
             err("ID table section B " + where, "row with DLC 1 / Byte0 not found")
+
+
+# --- 3c. ECU RECEIVE: switchboard 0x640 / 0x642 ------------------------------------------
+# Daniel 2026-10-14 (DECISIONS R80): the switchboard receive map is written now. The .lcs
+# receive channels must match switchboard_frames.json "ecu_receive", and every assigned
+# SW_MASK bit must be received (and nothing else). Bit N of byte B = StartBit B*8+N.
+RX_SB = (0x640, 0x642)
+
+
+def check_sb_rx(sb):
+    where = "switchboard ecu_receive"
+    er = sb.get("ecu_receive") or {}
+    want = {}
+    for c in er.get("channels", []):
+        fid = hexid(c["frame"])
+        if fid not in RX_SB:
+            err(where, "%s on 0x%03X, only 0x640/0x642 are received" % (c["name"], fid))
+            continue
+        if "bit" in c:
+            want[(fid, c["byte"] * 8 + c["bit"], 1)] = c["name"]
+        else:
+            want[(fid, c["byte"] * 8, c["length"] * 8)] = c["name"]
+    if er.get("timeout_ms") != 200 or er.get("timeout_value") != 0:
+        err(where, "timeout must be 200 ms with value 0 (master design section 6)")
+    fr = next((f for f in sb["frames"] if hexid(f["id"]) == 0x642), {})
+    swc = next((c for c in fr.get("channels", []) if c["byte"] == 4), {})
+    assigned = {int(k) for k, v in swc.get("bits", {}).items() if "unassigned" not in v.lower()}
+    got_bits = {sb_ - 32 for (fid, sb_, ln) in want if fid == 0x642 and ln == 1}
+    if got_bits != assigned:
+        err(where, "receives SW_MASK bits %s, assigned bits are %s" % (sorted(got_bits), sorted(assigned)))
+    root = ET.fromstring(rd("link_g4x_can_setup.lcs").encode("utf-8"))
+    have = {}
+    for ch in root.iter("Channel"):
+        fid = hexid(ch.get("ID"))
+        if (ch.get("Direction") or "").lower() != "receive" or fid not in RX_SB:
+            continue
+        if ch.get("Timeout") != str(er.get("timeout_ms")):
+            err(".lcs rx 0x%03X" % fid, "Timeout %s, json %s" % (ch.get("Timeout"), er.get("timeout_ms")))
+        for p in ch.iter("Parameter"):
+            have[(fid, int(p.get("StartBit")), int(p.get("Length")))] = p.get("Name")
+            if p.get("ByteOrder") != "BigEndian" or not close(p.get("Scale"), 1) or not close(p.get("Offset"), 0):
+                err(".lcs rx 0x%03X" % fid, "%s must be BigEndian, scale 1, offset 0" % p.get("Name"))
+    if set(have) != set(want):
+        err(".lcs switchboard receive", "fields %s, switchboard_frames.json ecu_receive %s"
+            % (sorted(have), sorted(want)))
+    for k, nm in want.items():
+        if k in have and have[k] != nm:
+            err(".lcs switchboard receive", "field %s named %r, json %r" % (k, have[k], nm))
+    return len(want)
 
 
 # --- 4. CAN-BUS-ID-ALLOCATION-TABLE.md -----------------------------------------------------
@@ -673,6 +724,7 @@ def main() -> int:
     check_switchboard(sb, text)
     rx = load_rx()
     check_rx(rx, text)
+    n_sb_rx = check_sb_rx(sb)
     cluster_seen = check_cluster_source(model, rx)
     j3f1 = model.get(0x3F1, {}).get("fields", {}).get(6, {})
     check_warn_text("json 0x3F1 byte 6 note", j3f1.get("note", ""), bits)
@@ -683,8 +735,9 @@ def main() -> int:
         for e in ERR:
             print("  " + e)
         return 1
-    print("CAN parity OK: %d ECU frames, 2 ECU receive frames, 4 switchboard frames, %d warning bits - "
-          "json / .lcs / frames.py / ID table / RealDash XML / sender UI agree" % (len(model), len(bits)))
+    print("CAN parity OK: %d ECU frames, 2 ECU receive frames, 4 switchboard frames (%d ECU receive fields), "
+          "%d warning bits - json / .lcs / frames.py / ID table / RealDash XML / sender UI agree"
+          % (len(model), n_sb_rx, len(bits)))
     print("cluster firmware: " + ("decode IDs, byte layouts, TX IDs/DLC and index ranges match (%s)"
                                   % CLUSTER_DIR if cluster_seen
                                   else "source not found at %s - reconcile by hand" % CLUSTER_DIR))

@@ -151,7 +151,13 @@ Source: switchboard manual v2.1 (FW 3.0+), sections 5-6. Machine-readable copy: 
 | 2 | Switch 3 | Cruise Control Active (MAIN, stalk pin 15) |
 | 3 | Switch 4 | Unassigned (was Cruise Set; the OEM stalk has no SET wire, S23) |
 | 4 | Switch 5 | Unassigned (was Cruise Resume; the OEM stalk has no RESUME wire, S23) |
-| 5-7 | Switch 6-8 | **Unassigned — available** |
+| 5 | Switch 6 | Clutch pedal down (C11 pin 1, ground-active) -> ECU VDI6 |
+| 6 | Switch 7 | Brake pedal pressed (opto IN1 from S9 pin 1) -> ECU VDI7 |
+| 7 | Switch 8 | Reverse engaged (opto IN2 from back-up switch B1 pin 1) -> ECU VDI8 |
+
+> **2026-10-14 (DECISIONS R80):** bits 5-7 assigned and mapped in the ECU receive config now
+> (`switchboard_frames.json` "ecu_receive", `.lcs` receive channel 0x642). Reverse also sets
+> 0x3EB Gear Position = 7, so the cluster and RealDash see it in an ECU frame (R51).
 
 > **2026-09-27:** A/C is the OEM A/C amplifier's job, not the CSB3's (harness redesign,
 > `docs/harness/redesign/DECISIONS.md`). Switch 1 / Switch 2 and Analog Input 1 (was cabin
