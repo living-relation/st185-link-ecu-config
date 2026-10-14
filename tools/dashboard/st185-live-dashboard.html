@@ -84,9 +84,28 @@ const QUESTIONS = [
 ];
 const ANSWERS_FILE = "C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\dashboard-answers.json";
 const WAKE_TASK = "st185-session-watch";
-const DC_START = "mcp__Desktop_Commander__start_process";
-const DC_WRITE = "mcp__Desktop_Commander__write_file";
-const DC_READ = "mcp__Desktop_Commander__read_file";
+const DC = "host:Desktop_Commander";
+const DC_START = "start_process";
+const DC_WRITE = "write_file";
+const DC_READ = "read_file";
+// new artifact runtime: one shared handle to the mcp capability
+const mcpP = window.claude ? window.claude.use("mcp") : Promise.resolve(null);
+const ERRMSG = {
+  server_not_connected:"Open this page in the Claude desktop app with Desktop Commander running.",
+  not_in_manifest:"Desktop Commander is turned off for this page (Permissions menu).",
+  not_granted:"This view can't reach Desktop Commander.",
+  capability_disabled:"This view can't reach Desktop Commander.",
+  cancelled:"You declined the request.",
+  approval_required:"Needs your approval - click again.",
+  tool_error:"Desktop Commander reported an error"
+};
+async function call(tool,input){
+  const mcp = await mcpP;
+  if(!mcp) throw new Error("Open this page in the Claude desktop app to load live data.");
+  try{ return await mcp.callTool(DC,tool,input,{cache:false}); }
+  catch(e){ const m=ERRMSG[e?.code]; throw new Error(m ? (e.code==="tool_error" ? m+": "+(e.message||"") : m) : (e?.message||"tool error")); }
+}
+const txtOf = r => (r.content||[]).filter(c=>c.type==="text").map(c=>c.text).join("\n");
 const SESS_FILE = "C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\dashboard-sessions.json";
 
 const store = {
@@ -121,9 +140,7 @@ function collect(){
 function saveDraft(){ store.set("st185-draft",collect()); }
 
 async function dc(cmd){
-  const r = await window.cowork.callMcpTool(DC_START,{command:cmd,timeout_ms:60000,shell:"powershell.exe"});
-  if(r.isError) throw new Error(r.content?.[0]?.text||"tool error");
-  return r.content[0].text;
+  return txtOf(await call(DC_START,{command:cmd,timeout_ms:60000,shell:"powershell.exe"}));
 }
 
 async function loadData(){
@@ -155,7 +172,7 @@ function fileRow(f,updated){
   const d=document.createElement("div"); d.className="file";
   d.innerHTML=`<span><a>${esc(f.n)}</a>${updated?'<span class="new">updated</span>':''}</span><span class="t">${f.t.replace('T',' ')}</span>`;
   d.querySelector("a").onclick=async()=>{
-    try{ await dc(`Start-Process -FilePath "${f.p}"`); }catch(e){ alert("Could not open: "+e.message); return; }
+    try{ await dc(`Start-Process -FilePath "${f.p}"`); }catch(e){ document.getElementById("sendmsg").textContent="Could not open: "+e.message; return; }
     const seen=store.get("st185-seen",{}); seen[f.p]=f.t; store.set("st185-seen",seen); loadData();
   };
   return d;
@@ -169,9 +186,7 @@ function renderRows(rows){
 async function loadSessions(){
   const el=document.getElementById("sessions");
   try{
-    const r=await window.cowork.callMcpTool(DC_READ,{path:SESS_FILE});
-    if(r.isError){ el.textContent="Session list unavailable: "+(r.content?.[0]?.text||""); return; }
-    const txt=r.content[0].text; const j=txt.indexOf("{");
+    const txt=txtOf(await call(DC_READ,{path:SESS_FILE})); const j=txt.indexOf("{");
     if(j<0){ el.textContent="Session file unreadable."; return; }
     const s=JSON.parse(txt.slice(j));
     const active=s.running, done=s.idle_code;
@@ -189,14 +204,15 @@ document.getElementById("send").onclick=async()=>{
   msg.textContent="Saving…";
   try{
     const payload={sent:new Date().toISOString(),answers:ans};
-    const w=await window.cowork.callMcpTool(DC_WRITE,{path:ANSWERS_FILE,content:JSON.stringify(payload,null,2),mode:"rewrite"});
-    if(w.isError) throw new Error(w.content?.[0]?.text||"write failed");
-    msg.textContent="Saved. Waking Dispatch…";
-    const t=await window.cowork.runScheduledTask(WAKE_TASK);
-    if(t?.isError) throw new Error(t.error||"wake failed");
-    msg.textContent=`Sent ${Object.keys(ans).length} answer(s). Dispatch will pick them up.`;
+    await call(DC_WRITE,{path:ANSWERS_FILE,content:JSON.stringify(payload,null,2),mode:"rewrite"});
+    msg.textContent=`Saved ${Object.keys(ans).length} answer(s) to dashboard-answers.json.`;
+    // WAKE_TASK (local scheduled task) can't be fired from this runtime - see wakeDispatch()
+    await wakeDispatch(msg, Object.keys(ans).length);
   }catch(e){ msg.textContent="Send failed: "+e.message; }
 };
+async function wakeDispatch(msg,n){
+  msg.textContent=`Saved ${n} answer(s). Dispatch picks them up on its next "${WAKE_TASK}" run.`;
+}
 document.getElementById("clear").onclick=()=>{ store.set("st185-draft",{}); renderQuestions(); document.querySelectorAll("textarea[data-row]").forEach(t=>t.value=""); };
 
 renderQuestions();
