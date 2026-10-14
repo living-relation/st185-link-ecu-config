@@ -846,6 +846,11 @@ CAD_MANIFEST = REPO / "cad" / "model-files.json"
 # Where the heavy (gitignored) model files live on Dan's PC; shown as the "full local path".
 DAN_ROOT = "C:/projects/active/st185-link-ecu-config"
 HANGER_RUN = Path("C:/projects/active/fairsolid/runs/fuel_hanger_billet_1014")
+# Trimetric pictures (DECISIONS R83): rendered by cad/render_trimetric.py, sources + dates here.
+TRIMETRICS = REPO / "cad" / "trimetrics.json"
+# GitHub Pages serves docs/ only; the page swaps "../" links and images to these on github.io.
+GH_BLOB = "https://github.com/living-relation/st185-link-ecu-config/blob/main/"
+GH_RAW = "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/"
 
 
 def _main_checkout() -> Path:
@@ -965,7 +970,14 @@ def load_cad() -> dict:
             if not names:
                 warnings.append(f"{model}: README lists {d} but no model files were found there.")
             folders.append({"path": shown, "names": names})
-        models.append({"model": model, "status": status[:260], "links": links,
+        pics = [{"src": "cad/" + src, "alt": html.unescape(alt)} for src, alt in
+                re.findall(r'<img src="([^"]+)" alt="([^"]*)"', r[6] if len(r) > 6 else "")]
+        if not pics and dirs:
+            warnings.append(f"{model}: no trimetric picture in cad/README.md (DECISIONS R83).")
+        for pic in pics:
+            if not (REPO / pic["src"]).is_file():
+                warnings.append(f"{model}: trimetric {pic['src']} is missing - run cad/render_trimetric.py.")
+        models.append({"model": model, "status": status[:260], "links": links, "pics": pics,
                        "folders": folders, "note": _plain(local) if not dirs else ""})
     f3d_text = CAD_INDEX.read_text(encoding="utf-8", errors="replace") if CAD_INDEX.is_file() else ""
     for d, names in sorted(files.items()):
@@ -975,9 +987,68 @@ def load_cad() -> dict:
         for n in names:
             if n.lower().endswith(".f3d") and n not in f3d_text:
                 warnings.append(f"{d}/{n} is not named in cad/README.md.")
+    trim = load_trimetrics(warnings)
+    package = load_power_package(text if CAD_INDEX.is_file() else "", trim, warnings)
     for w in warnings:
         print(f"WARNING (CAD index): {w}", file=sys.stderr)
-    return {"models": models, "warnings": warnings, "manifest": generated}
+    return {"models": models, "warnings": warnings, "manifest": generated,
+            "trimetrics": trim, "package": package}
+
+
+def load_trimetrics(warnings: list[str]) -> dict:
+    """cad/trimetrics.json, keyed by PNG path. On a PC with the STEP files, warn when a
+    source STEP is newer than the date its picture was rendered from (R83)."""
+    try:
+        meta = json.loads(TRIMETRICS.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        warnings.append("cad/trimetrics.json is missing - run cad/render_trimetric.py.")
+        return {}
+    out = {}
+    for mid, m in meta.items():
+        out[m["png"]] = {**m, "id": mid}
+        for src, stamp in m.get("sources", {}).items():
+            f = Path(src)
+            if f.is_file() and int(f.stat().st_mtime) > stamp:
+                warnings.append(f"Trimetric {m['png']} is older than {src} - re-run "
+                                f"cad/render_trimetric.py --only {mid}.")
+    return out
+
+
+def load_power_package(text: str, trim: dict, warnings: list[str]) -> list[dict]:
+    """cad/README.md "Power distribution package" table (R84) with a parts count per member:
+    a parts CSV (pieces = qty_need) or `model:<id>` (solids in the assembly STEP)."""
+    members = []
+    lines = text.splitlines()
+    for n, ln in enumerate(lines):
+        if ln.startswith("| Member |"):
+            for row in lines[n + 2:]:
+                if not row.startswith("|"):
+                    break
+                c = [x.strip() for x in row.strip().strip("|").split("|")]
+                if len(c) < 4:
+                    continue
+                png = "cad/" + c[1].strip("`")
+                per_car = _intish(c[2]) or 1
+                src = c[3].strip("`")
+                lines_n = pieces = 0
+                if src.startswith("model:"):
+                    m = next((t for t in trim.values() if t["id"] == src[6:]), None)
+                    if m:
+                        lines_n, pieces = m.get("part_types", 0), m.get("solids", 0)
+                    basis = "solids in the assembly STEP (no BOM yet)"
+                else:
+                    rows = _csv_rows(REPO / "cad" / src) if (REPO / "cad" / src).is_file() else []
+                    lines_n = len(rows)
+                    pieces = sum(_intish(r.get("qty_need")) for r in rows)
+                    basis = f"cad/{src}"
+                if not lines_n:
+                    warnings.append(f"Power package: no parts found for {_plain(c[0])} ({src}).")
+                members.append({"name": _plain(c[0]), "png": png, "per_car": per_car,
+                                "lines": lines_n, "pieces": pieces * per_car, "basis": basis})
+            break
+    if not members:
+        warnings.append("cad/README.md has no Power distribution package table (R84).")
+    return members
 
 
 def cad_files_html(folders: list[dict]) -> str:
@@ -985,7 +1056,8 @@ def cad_files_html(folders: list[dict]) -> str:
     out = ""
     for f in folders:
         names = f["names"]
-        key = [n for n in names if n.lower().endswith((".f3d", ".f3z")) or "assembly" in n.lower()]
+        key = names if f.get("all") else [
+            n for n in names if n.lower().endswith((".f3d", ".f3z")) or "assembly" in n.lower()]
         rest = [n for n in names if n not in key]
         counts = Counter(Path(n).suffix.lower().lstrip(".") for n in rest)
         more = ", ".join(f"{c} {k.upper()}" for k, c in sorted(counts.items()))
@@ -994,6 +1066,83 @@ def cad_files_html(folders: list[dict]) -> str:
                 + (f'<span class="muted">+ {len(rest)} part files in that folder ({e(more)})</span>'
                    if rest else "") + "</div>")
     return out
+
+
+def _img(src: str, alt: str) -> str:
+    """A repo image from docs/: relative path locally; on github.io (Pages serves docs/ only)
+    the page script swaps it to the raw GitHub copy via data-gh."""
+    e = html.escape
+    return (f'<img src="../{e(src)}" data-gh="{e(src)}" alt="{e(alt)}" loading="lazy" '
+            f'width="900" height="640">')
+
+
+def _pic_folders(folders: list[dict], pic: dict, trim: dict) -> list[dict]:
+    """For a row with several pictures (the three fuse boxes share one folder), show the
+    files that picture was rendered from (their common name prefix) plus the .f3d / assembly."""
+    srcs = [Path(k).name for k in trim.get(pic["src"], {}).get("sources", {})]
+    if len(srcs) < 2:
+        return folders
+    pre = srcs[0][:next((i for i, ch in enumerate(zip(*srcs)) if len(set(ch)) > 1), len(srcs[0]))]
+    if not pre:
+        return folders
+    return [{**f, "all": True, "names": [n for n in f["names"] if n.startswith(pre)
+                            or n.lower().endswith((".f3d", ".f3z")) or "assembly" in n.lower()]}
+            for f in folders]
+
+
+def cad_gallery_html(cadd: dict) -> str:
+    """One card per trimetric picture (a row with no model kept gets a card without one)."""
+    e = html.escape
+    out = ""
+    for c in cadd["models"]:
+        links = " ".join(
+            f'<a href="{e(h)}">{e(lbl)}</a>' if not re.match(r"[A-Za-z]:", h) else f"<code>{e(h)}</code>"
+            for h, lbl in c["links"]) or "&mdash;"
+        for pic in c["pics"] or [None]:
+            folders = _pic_folders(c["folders"], pic, cadd["trimetrics"]) if pic else c["folders"]
+            files = cad_files_html(folders) or f'<span class="muted">{e(c["note"] or "none kept")}</span>'
+            meta = cadd["trimetrics"].get(pic["src"], {}) if pic else {}
+            when = (f'<span class="muted">Rendered {e(meta["rendered"])} from the STEP.</span>'
+                    if meta.get("rendered") else "")
+            title = pic["alt"] if pic and len(c["pics"]) > 1 else c["model"]
+            sub = f' <span class="muted">({e(c["model"])})</span>' if title != c["model"] else ""
+            out += (f'<div class="cadcard">{_img(pic["src"], title) if pic else ""}'
+                    f'<div class="cadbody"><b>{e(title)}</b>{sub}<p>{e(c["status"])}</p>'
+                    f'<p>Summary: {links}</p><div class="cadpath">True location:{files}</div>'
+                    f'{when}</div></div>')
+    return out
+
+
+def power_package_html(cadd: dict) -> str:
+    """DECISIONS R84: the power distribution package, always shown as one, with a parts total."""
+    e = html.escape
+    mem = cadd["package"]
+    if not mem:
+        return ""
+    cards = "".join(
+        f'<div class="pkgitem">{_img(m["png"], m["name"])}<b>{e(m["name"])}</b>'
+        f'<span class="muted">{m["per_car"]} per car &middot; {m["pieces"]} pcs</span></div>'
+        for m in mem)
+    rows = "".join(
+        f'<tr><td>{e(m["name"])}</td><td class="num">{m["per_car"]}</td><td class="num">{m["lines"]}</td>'
+        f'<td class="num">{m["pieces"]}</td><td class="muted"><code>{e(m["basis"])}</code></td></tr>'
+        for m in mem)
+    lines = sum(m["lines"] for m in mem)
+    pieces = sum(m["pieces"] for m in mem)
+    units = sum(m["per_car"] for m in mem)
+    return (
+        '<div class="pkg" id="power-package"><h3>Power distribution package</h3>'
+        f'<p class="muted">The whole package as one (DECISIONS R84): {len(mem)} designs, {units} units '
+        f'in the car, <b>{pieces} parts</b> ({lines} part lines). Members: <code>cad/README.md</code> '
+        '"Power distribution package". A fuse box counts every line of its parts list (fuses, relays, '
+        'terminals, copper, printed parts); a model with no BOM yet counts the solids in its '
+        'assembly STEP.</p>'
+        f'<div class="pkggrid">{cards}</div>'
+        '<div class="twrap"><table class="data"><thead><tr><th>Member</th><th>Per car</th>'
+        '<th>Part lines</th><th>Pieces (car)</th><th>Counted from</th></tr></thead>'
+        f'<tbody>{rows}<tr><td><b>Total</b></td><td class="num"><b>{units}</b></td>'
+        f'<td class="num"><b>{lines}</b></td><td class="num"><b>{pieces}</b></td><td></td></tr>'
+        '</tbody></table></div></div>')
 
 
 def load_recent_prs() -> list[dict]:
@@ -1074,14 +1223,8 @@ def project_status_html(ps: dict) -> str:
     cwarn = ('<div class="cadwarn"><b>CAD index is out of date:</b><ul>' + warn + "</ul>"
              "Fix <code>cad/README.md</code> (and run the builder locally to refresh "
              "<code>cad/model-files.json</code>).</div>") if warn else ""
-    cad = ""
-    for c in cadd["models"]:
-        links = " ".join(
-            f'<a href="{e(h)}">{e(lbl)}</a>' if not re.match(r"[A-Za-z]:", h) else f"<code>{e(h)}</code>"
-            for h, lbl in ((h, lbl) for h, lbl in c["links"])) or "&mdash;"
-        files = cad_files_html(c["folders"]) or f'<span class="muted">{e(c["note"] or "none kept")}</span>'
-        cad += (f'<tr><td><b>{e(c["model"])}</b></td><td>{e(c["status"])}</td>'
-                f'<td>{links}</td><td>{files}</td></tr>')
+    cad = cad_gallery_html(cadd)
+    package = power_package_html(cadd)
     pr_url = "https://github.com/living-relation/st185-link-ecu-config/pull/"
     prs = "".join(
         f'<li><span class="muted">{e(p["date"])}</span> {e(p["title"])} '
@@ -1099,12 +1242,13 @@ def project_status_html(ps: dict) -> str:
         '<h3>Route drawings</h3>\n<div class="twrap"><table class="data"><thead><tr><th>#</th>'
         '<th>Route</th><th>Status</th><th>From the drawing</th></tr></thead>'
         f'<tbody>{routes}</tbody></table></div>\n'
-        '<h3>CAD models</h3>\n<p class="muted">From <code>cad/README.md</code> (the one CAD index) '
-        'and the model files found on disk. STEP, STL and Fusion <code>.f3d</code> files are '
-        '<b>local only</b>: they are gitignored and exist on Dan&rsquo;s PC, not in GitHub. '
+        '<h3 id="cad-models">CAD models</h3>\n<p class="muted">Every custom CAD model, one trimetric '
+        'each (same camera for all, rendered from the STEP by <code>cad/render_trimetric.py</code>; '
+        'DECISIONS R83), from <code>cad/README.md</code> (the one CAD index). The paths are the '
+        '<b>true location</b> of the STEP, STL and Fusion <code>.f3d</code> files: they are '
+        'gitignored and live on Dan&rsquo;s PC, not in GitHub. '
         f'File list last refreshed {e(cadd["manifest"] or "never")}.</p>\n{cwarn}\n'
-        '<div class="twrap"><table class="data"><thead><tr><th>Model</th><th>Status / rev</th>'
-        f'<th>Summary page</th><th>Local files</th></tr></thead><tbody>{cad}</tbody></table></div>\n'
+        f'{package}\n<div class="cadgrid">{cad}</div>\n'
         f'<h3>Recently merged</h3>\n<ul class="prs">{prs}</ul>\n</section>\n')
 
 
@@ -1130,8 +1274,34 @@ PSTATUS_CSS = """
     padding:8px 14px; border-radius:6px; margin:8px 0; }
   .pstatus .cadf { margin:0 0 8px; font-size:12px; word-break:break-all; }
   .pstatus .cadf ul { margin:2px 0 2px 16px; padding:0; }
-  @media (max-width:640px) { .pstatus td, .pstatus th { font-size:13px; } }
+  .pstatus .cadgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; margin:10px 0; }
+  .pstatus .cadcard { border:1px solid var(--line); background:var(--panel); border-radius:8px; overflow:hidden; min-width:0; }
+  .pstatus .cadcard img, .pstatus .pkgitem img { display:block; width:100%; height:auto; background:#fff; }
+  .pstatus .cadbody { padding:8px 12px 12px; } .pstatus .cadbody p { margin:6px 0; }
+  .pstatus .cadpath { font-size:12px; margin:6px 0; }
+  .pstatus .pkg { border:2px solid var(--line); border-radius:10px; padding:4px 14px 12px; margin:12px 0 18px; }
+  .pstatus .pkggrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; margin:8px 0 12px; }
+  .pstatus .pkgitem { border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--panel);
+    display:flex; flex-direction:column; gap:2px; padding-bottom:8px; }
+  .pstatus .pkgitem b, .pstatus .pkgitem span { padding:0 10px; font-size:13px; }
+  @media (max-width:640px) { .pstatus td, .pstatus th { font-size:13px; }
+    .pstatus .cadgrid { grid-template-columns:1fr; } .pstatus .pkggrid { grid-template-columns:1fr 1fr; } }
 """
+
+# On GitHub Pages only docs/ is served: send "../" links to GitHub and "../" images to raw.
+PAGES_JS = """
+(function () {
+  if (!/github\\.io$/.test(location.hostname)) return;
+  var BLOB = %s, RAW = %s;
+  document.querySelectorAll('img[data-gh]').forEach(function (i) { i.src = RAW + i.dataset.gh; });
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[href^="../"]');
+    if (!a) return;
+    ev.preventDefault();
+    window.open(BLOB + a.getAttribute('href').replace(/^(\\.\\.\\/)+/, ''), a.target || '_self');
+  });
+})();
+""" % (json.dumps(GH_BLOB), json.dumps(GH_RAW))
 
 
 def build() -> dict:
@@ -1756,6 +1926,7 @@ def render(data: dict) -> str:
         + payload
         + ";\n"
         + HUB_JS
+        + "\n" + PAGES_JS
         + "\n</script>\n</body>\n</html>\n"
     )
 
