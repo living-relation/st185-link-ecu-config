@@ -46,6 +46,17 @@ MODELS = {
     "enclosure-csb3": ("cad/enclosures/csb3/trimetric.png",   ["cad/enclosures/csb3/CSB3_assembly.step"]),
     "drb102-plate":   ("cad/drb102-plate/trimetric.png",      ["cad/drb102-plate/DRB102-firewall-plate-assembly.step"]),
     "fuel-hanger":    ("cad/fuel-hanger/trimetric.png",       ["HANGER/hanger_billet_assembly.step"]),
+    # rev 7 option (E2 = A): POWER box with the bus bar in it; its LOGIC box and battery block are rev 6's pictures
+    "fusebox-rev7-power": ("cad/fusebox/rev7/trimetric-power.png", ["cad/fusebox/rev7/Power_*.step"]),
+    # Package renders (R84): every member together. "path@x,y" = place that STEP with its bounding box corner at
+    # (x, y), z from 0 (the fuse box assembly STEP is already laid out in place).
+    "package-rev6":   ("cad/fusebox/package-rev6.png", ["cad/fusebox/ST185_fusebox_rev6_assembly.step",
+                       "cad/busbar/design-B-rev3/B_rev3_ASSEMBLY.step@0,280",
+                       "cad/enclosures/vrc/VRC_assembly.step@400,-170", "cad/enclosures/vrc/VRC_assembly.step@400,-70",
+                       "cad/enclosures/csb3/CSB3_assembly.step@400,30"]),
+    "package-rev7":   ("cad/fusebox/rev7/package-rev7.png", ["cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step",
+                       "cad/enclosures/vrc/VRC_assembly.step@400,-170", "cad/enclosures/vrc/VRC_assembly.step@400,-70",
+                       "cad/enclosures/csb3/CSB3_assembly.step@400,30"]),
 }
 # Models drawn upside down in their STEP: turned 180 deg about X so they show as installed.
 FLIP_X = {"fuel-hanger"}   # modelled flange-down; in the tank the flange is on top
@@ -58,6 +69,12 @@ BG = "#ffffff"
 
 # Colour by part name (labels survive in our STEP exports); fallback palette by size.
 MATERIALS = [
+    # loaded fuse box assemblies (package renders): cables, relays and fuses first, so "cu" / "a2" below do not catch them
+    (r"harness_wires", "#d9b43c"),
+    (r"wire_feed|wire_", "#b8443a"),
+    (r"relay_te|_relay_|coilplug|hcr150", "#26282b"),
+    (r"fuse_ami_orange", "#ee7a1c"), (r"fuse_ami_ltgreen", "#7fd07a"), (r"fuse_ami_red", "#cc3333"),
+    (r"fuse_ami_yellow", "#e6cc3a"), (r"fuse_atm", "#3d6fc4"),
     (r"cu|copper|c110|bar_power|pad_out|strip_logic", "#c8794a"),
     (r"al6061|_bar_|6061|billet|plate|strut|saddle|foot|lug_block|strap", "#a9b4bf"),
     (r"brass|insert", "#c9a64a"),
@@ -77,11 +94,14 @@ def _newest_hanger(run: str) -> str:
     return max(revs, key=lambda p: int(os.path.basename(p)[3:])) if revs else run
 
 
-def sources(model: str, src: str, hanger_run: str) -> list[str]:
+def sources(model: str, src: str, hanger_run: str, placed: bool = False) -> list:
+    """STEP paths for a model; placed=True gives (path, (x, y) or None) pairs ("path@x,y" in MODELS)."""
     out = []
     for g in MODELS[model][1]:
+        g, _, at = g.partition("@")
+        xy = tuple(float(v) for v in at.split(",")) if at else None
         pat = g.replace("HANGER/", _newest_hanger(hanger_run) + "/") if g.startswith("HANGER/") else os.path.join(src, g)
-        out += sorted(glob.glob(pat))
+        out += [(p, xy) if placed else p for p in sorted(glob.glob(pat))]
     return out
 
 
@@ -110,7 +130,17 @@ def _solids(path: str):
 
 
 def _tris(solid, tol: float) -> np.ndarray:
-    verts, faces = solid.tessellate(tol, 0.4)
+    try:
+        verts, faces = solid.tessellate(tol, 0.4)
+    except AttributeError:       # a face OCC cannot mesh (seen on a few wire / torus bodies of the loaded assemblies): per face
+        verts, faces = [], []
+        for fc in solid.faces():
+            try:
+                v_, f_ = fc.tessellate(tol, 0.4)
+            except AttributeError:
+                continue
+            faces += [tuple(i + len(verts) for i in t) for t in f_]
+            verts += list(v_)
     v = np.array([(p.X, p.Y, p.Z) for p in verts], dtype=float)
     f = np.array(faces, dtype=int)
     return v[f] if len(f) else np.zeros((0, 3, 3))
@@ -119,10 +149,19 @@ def _tris(solid, tol: float) -> np.ndarray:
 def tessellate(model: str, src: str, hanger_run: str, tmp: str) -> dict:
     """Stage 1 (OCP venv): STEP -> triangles + one colour per triangle, saved as .npz."""
     from matplotlib.colors import to_rgb
-    files = sources(model, src, hanger_run)
+    placed = sources(model, src, hanger_run, placed=True)
+    files = sorted({f for f, _ in placed})
     if not files:
         return {"model": model, "error": "no STEP found"}
-    solids = [x for f in files for x in _solids(f)]
+    solids = []
+    for f, xy in placed:
+        ss = _solids(f)
+        if xy is not None:      # package render: move this file's solids so its box corner sits at (x, y), z from 0
+            from build123d import Location
+            bb = [s.bounding_box() for _, s in ss]
+            mn = [min(b.min.X for b in bb), min(b.min.Y for b in bb), min(b.min.Z for b in bb)]
+            ss = [(n, s.moved(Location((xy[0] - mn[0], xy[1] - mn[1], -mn[2])))) for n, s in ss]
+        solids += ss
     solids.sort(key=lambda t: -t[1].volume)   # stable fallback colours run to run
     lo = np.full(3, np.inf); hi = np.full(3, -np.inf)
     for _, s in solids:

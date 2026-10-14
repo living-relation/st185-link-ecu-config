@@ -149,6 +149,19 @@
    "VRC_part_VRC-Lid.step",
    "VRC_part_VRC_carrier_board_34x30_placeholder.step"
   ],
+  "cad/fusebox/rev7": [
+   "Power_BarNeg_CuC110_25x6p35_L105.step",
+   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
+   "Power_Base_PA12_printed.step",
+   "Power_Base_PA12_printed.stl",
+   "Power_Cover_PA12_printed.step",
+   "Power_Cover_PA12_printed.stl",
+   "Power_Pad_Out_CuC110_15x3.step",
+   "Power_Pan_PA12_printed.step",
+   "Power_Pan_PA12_printed.stl",
+   "ST185_fusebox_rev7.f3d",
+   "ST185_fusebox_rev7_assembly.step"
+  ],
   "C:/projects/active/fairsolid/runs/fuel_hanger_billet_1014/rev7": [
    "hanger_band_clamp_worm_drive.step",
    "hanger_band_clamp_worm_drive.stl",

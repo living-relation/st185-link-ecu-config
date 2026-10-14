@@ -1,0 +1,171 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ST185 Fuse Box Rev 7</title><style>:root{--bg:#fafaf8;--fg:#1d1d1b;--mut:#666;--line:#ddd;--acc:#b35c00;--card:#fff;--ok:#2e7d32;--bad:#c62828}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1b1b1a;--fg:#ecece8;--mut:#a0a09a;--line:#3a3a38;--acc:#f0a050;--card:#242423;--ok:#81c784;--bad:#ef9a9a}}
+:root[data-theme=dark]{--bg:#1b1b1a;--fg:#ecece8;--mut:#a0a09a;--line:#3a3a38;--acc:#f0a050;--card:#242423;--ok:#81c784;--bad:#ef9a9a}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,Segoe UI,sans-serif;margin:0}
+main{max-width:1100px;margin:0 auto;padding:16px}
+h1{font-size:24px;margin:8px 0 2px}h2{font-size:18px;margin:28px 0 8px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.mut{color:var(--mut)}table{border-collapse:collapse;width:100%;font-size:13.5px}
+td,th{border-bottom:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600}
+.wrap{overflow-x:auto}figure{margin:12px 0}img{max-width:100%;border:1px solid var(--line);border-radius:6px;background:#888}
+img.w{background:#fff}figcaption{color:var(--mut);font-size:13px}.kpi{display:flex;flex-wrap:wrap;gap:10px}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;min-width:150px}
+.kpi b{display:block;font-size:20px}ol li,ul li{margin-bottom:6px}h3{font-size:15px;margin:18px 0 6px}a{color:var(--acc)}
+.ok{color:var(--ok);font-weight:600}.bad{color:var(--bad);font-weight:600}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+ol.co{columns:2;column-gap:28px;font-size:13.5px;padding-left:22px}@media (max-width:640px){ol.co{columns:1}}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:6px;padding:8px 12px}
+td.d{font-weight:700}</style></head><body><main>
+<h1>ST185 fuse boxes - rev 7 option (E2 = A)</h1>
+<p class="mut">Claude Code, 2026-10-14. Your E2 answer: "make a separate new version so I can see it". Rev 7 is that version. <b>Rev 6 is still the one selected for build</b> (<a href="../ST185-fusebox-summary.html">rev 6 page</a>); say "rev 7" and the flags in <code>cad/README.md</code> flip.</p>
+<div class="note"><b>The idea in one line:</b> the glove-box bus bar and the POWER box become one thing. The bus bar's + bar runs right through the POWER box and the AMI fuses bolt straight onto it. No second copper bar, no separate bus bar box, no thick cable between them.</div>
+<div class="kpi">
+<div>POWER box + bus bar<b>180 x 243 x 81.8</b><span class="mut">mm L x D x H (rev 6 POWER: 180 x 181 x 81.8, plus the B rev3 bus bar 345 x 120 x 55)</span></div>
+<div>1/0 cables at the glove box<b>6 (rev 6: 7)</b><span class="mut">one fewer: the bus bar to POWER box link is gone</span></div>
+<div>Boxes in the glove box<b>2 (rev 6: 3)</b><span class="mut">POWER (with the bus) + LOGIC</span></div>
+<div>POWER parts<b>182 pcs, $317</b><span class="mut">rev 6 POWER alone: 155 pcs, $257 (B rev3 bus bar had no parts list)</span></div>
+</div>
+<h2>The whole power distribution package, rev 7 next to rev 6</h2>
+<p class="mut">Same camera, same scale idea, every member together (R84): POWER (+ bus), LOGIC, battery relay block, 2 x VRC, CSB3. Rev 6 has the separate B rev3 bus bar (the long box at the back).</p><div class="grid">
+<figure><img class="w" src="package-rev7.png" alt="Rev 7: POWER box with the bus bar inside it, LOGIC box, battery relay block, 2 x VRC, CSB3."><figcaption>Rev 7: POWER box with the bus bar inside it, LOGIC box, battery relay block, 2 x VRC, CSB3.</figcaption>
+</figure>
+<figure><img class="w" src="../package-rev6.png" alt="Rev 6 (selected today): the same plus the separate B rev3 bus bar and the 1/0 link cable to the POWER box."><figcaption>Rev 6 (selected today): the same plus the separate B rev3 bus bar and the 1/0 link cable to the POWER box.</figcaption>
+</figure>
+</div>
+<h2>Wire count against rev 6</h2><div class="wrap"><table><tr><th>Wire / cable</th><th>Rev 6</th><th>Rev 7</th><th>Change</th><th>Why</th></tr>
+<tr><td>1/0 cables landing at the glove box (H1 BAT+, H2 BAT-, H3 RADLOK+, H6a RADLOK-, H7 GND ID / IG)</td><td>6</td><td>6</td><td class="d">0</td><td>same cables, now on M8 lugs in the POWER box bus zone</td></tr>
+<tr><td>1/0 link bus bar -&gt; POWER box bar (ST185-CabinPower w_fb_in)</td><td>1</td><td>0</td><td class="d">-1</td><td>the + bar is the AMI bar now</td></tr>
+<tr><td>1/0 lug ends in the glove box</td><td>8</td><td>6</td><td class="d">-2</td><td>the link cable had a lug at each end</td></tr>
+<tr><td>Relay feeds, AMI IN row -&gt; relay terminal 30</td><td>6</td><td>6</td><td class="d">0</td><td>unchanged (they already bolt onto the bar)</td></tr>
+<tr><td>AMI OUT row harness cables</td><td>6</td><td>6</td><td class="d">0</td><td>unchanged</td></tr>
+<tr><td>LOGIC feeds (BUS1 50 A, BUS2 k_efi 87)</td><td>2</td><td>2</td><td class="d">0</td><td>unchanged</td></tr>
+<tr><td>Small relay grounds to the NEG bar (k_htr 87a, k_pwr 85, k_rev 85)</td><td>3</td><td>3</td><td class="d">0</td><td>same 3 wires; the two POWER-box ones now end in the same box (shorter)</td></tr>
+<tr><td><b>Cables in total</b> (lug ends row not counted)</td><td><b>24</b></td><td><b>23</b></td><td class="d">-1</td><td>one heavy 1/0 cable and its 2 lugs fewer</td></tr>
+</table></div>
+<h2>What changed from rev 6</h2><ol>
+<li><b>No copper bar of its own in the POWER box.</b> The bus bar's + bar (POS) runs the whole length: 1" x 1/4" tinned copper, 226 mm long (rev 6 POWER bar: 148). The 14 AMI positions bolt onto it exactly as in rev 6 (same pads, standoffs, relays, saddles, harness bundles).</li>
+<li><b>A bus zone at the back of the box</b> (+62 mm deep). On the + bar: BAT+ IN, RADLOK+ and a spare M8 - those cables leave straight out of the outboard end. Beside it a NEG bar (same stock, 105 mm): BAT-, RADLOK-, GND ID, GND IG and one M8 for the small relay grounds - those leave straight out the back.</li>
+<li><b>A printed wall between NEG and POS</b> (2.5 mm, 20 mm above the deck). Closest NEG part to a POS part: <b>5.8 mm</b>, with the wall in between.</li>
+<li><b>B rev3 adapted to R76 (cut + drill only):</b> its machined aluminium bars and 1/0 set-screw port blocks become plain tinned copper bars with M8 bolts (head captured in the deck, like every other bolt) and Klauke 6R8 lugs. Its universal bar U and the link strap / AMG fuse option are dropped (question U1 below).</li>
+<li><b>Feet:</b> still four with M6 limiters; the rear-inboard foot moved round to the inboard end so no cable runs over a mounting bolt.</li>
+<li><b>Unchanged:</b> LOGIC box and battery relay block (their feeds do not move); bend radius rule, belly pan, PA12 print rules, M6 limiters, 40 mm standoffs.</li></ol>
+<h2>Rev 7 renders</h2>
+<figure><img src="fusebox_render_iso_closed.png" alt="Closed. The POWER box is 62 mm deeper; the bus terminals are etched on the lid."><figcaption>Closed. The POWER box is 62 mm deeper; the bus terminals are etched on the lid.</figcaption>
+</figure>
+<figure><img src="fusebox_render_iso_closed_rear.png" alt="From the back: the four NEG cables + the small ground bundle leave the rear, BAT+ IN and RADLOK+ the outboard end."><figcaption>From the back: the four NEG cables + the small ground bundle leave the rear, BAT+ IN and RADLOK+ the outboard end.</figcaption>
+</figure>
+<figure><img src="fusebox_render_iso_open.png" alt="Covers off: the + bar runs from the AMI fuses into the bus zone; NEG bar on the left of the barrier wall."><figcaption>Covers off: the + bar runs from the AMI fuses into the bus zone; NEG bar on the left of the barrier wall.</figcaption>
+</figure>
+<figure><img src="fusebox_render_top_lid_power.png" alt="POWER lid, top view: rev 6 names + the bus terminals."><figcaption>POWER lid, top view: rev 6 names + the bus terminals.</figcaption>
+</figure>
+<figure><img src="fusebox_render_iso_empty.png" alt="Empty: bars, pads, standoffs and the printed barrier."><figcaption>Empty: bars, pads, standoffs and the printed barrier.</figcaption>
+</figure>
+<figure><img src="fusebox_render_top_empty.png" alt="Empty, top view."><figcaption>Empty, top view.</figcaption>
+</figure>
+<figure><img src="fusebox_render_under_pan.png" alt="Underneath with the belly pans."><figcaption>Underneath with the belly pans.</figcaption>
+</figure>
+<figure><img src="fusebox_render_under_open.png" alt="Underneath, pans off."><figcaption>Underneath, pans off.</figcaption>
+</figure>
+<figure><img src="fusebox_render_routing_power.png" alt="POWER box cables (numbered)."><figcaption>POWER box cables (numbered).</figcaption>
+<ol class="co"><li value="1">harness bundles to the inboard edge</li><li value="2">relay feed: lug on the 40 mm standoff</li><li value="3">feed bends up R16 into terminal 30</li><li value="4">OUT lug on the 40 mm standoff</li><li value="5">OUT cables straight out the end</li><li value="6">1/0 battery feed in</li><li value="7">NEG bus: grounds straight out the rear</li></ol>
+</figure>
+<figure><img src="fusebox_render_power_bends.png" alt="Relay feed bends round their saddles (unchanged)."><figcaption>Relay feed bends round their saddles (unchanged).</figcaption>
+</figure>
+<figure><img src="fusebox_power_explode.png" alt="Exploded: how it goes together."><figcaption>Exploded: how it goes together.</figcaption>
+<ol class="co"><li value="1">cover (snaps on, 4 tongues)</li><li value="2">relays plug in from the top</li><li value="3">AMI fuses on the studs</li><li value="4">Keps nuts, 4 Nm max</li><li value="5">M5 set screws (studs)</li><li value="6">copper bar 25 x 6.35</li><li value="7">output pads 15 x 3</li><li value="8">base (deck on 4 angular legs)</li><li value="9">bar bolts up from below</li><li value="10">standoffs 40 mm (both rows, one part)</li><li value="11">cable lugs</li><li value="12">M5 x 10 lug bolts</li><li value="13">belly pan (snaps on)</li></ol>
+</figure>
+<figure><img src="fusebox_power_step1.png" alt="Step 1: bars, pads, bolts, standoffs."><figcaption>Step 1: bars, pads, bolts, standoffs.</figcaption>
+<ol class="co"><li value="1">lay the bar in its pocket</li><li value="2">lay the 14 pads in theirs</li><li value="3">bar bolts up through the hex head pockets</li><li value="4">40 mm standoffs up into the hex holes, both rows</li><li value="5">set screw down through each pad into its standoff</li><li value="6">base, right way up</li></ol>
+</figure>
+<figure><img src="fusebox_power_step2.png" alt="Step 2: harness terminals and the lugs under the deck."><figcaption>Step 2: harness terminals and the lugs under the deck.</figcaption>
+<ol class="co"><li value="1">crimp, push each terminal up into its cavity (wire side)</li><li value="2">relay feed lug on its long standoff (M5 x 10)</li><li value="3">feed round its saddle into terminal 30</li><li value="4">OUT lug on its standoff (M5 x 10)</li><li value="5">tie the bundles; they leave the inboard end</li></ol>
+</figure>
+<figure><img src="fusebox_power_step3.png" alt="Step 3: fuses, relays, the 1/0 bus lugs on top."><figcaption>Step 3: fuses, relays, the 1/0 bus lugs on top.</figcaption>
+<ol class="co"><li value="1">AMI fuses on the studs</li><li value="2">Keps nuts, 4 Nm max</li><li value="3">relays plug in</li><li value="4">ACPS mini fuse</li><li value="5">1/0 lug on the M8 stud</li></ol>
+</figure>
+<figure><img src="fusebox_power_step4.png" alt="Step 4: belly pan and cover."><figcaption>Step 4: belly pan and cover.</figcaption>
+<ol class="co"><li value="1">belly pan snaps up into the skirt</li><li value="2">cover snaps down over the deck</li><li value="3">M6 through each foot (4), steel limiter</li></ol>
+</figure>
+<div class="grid">
+<figure><img class="w" src="trimetric-power.png" alt="Trimetric, POWER box rev 7 (R83)."><figcaption>Trimetric, POWER box rev 7 (R83).</figcaption>
+</figure>
+<figure><img class="w" src="../trimetric-logic.png" alt="Trimetric, LOGIC box (rev 6, unchanged in rev 7)."><figcaption>Trimetric, LOGIC box (rev 6, unchanged in rev 7).</figcaption>
+</figure>
+<figure><img class="w" src="../trimetric-battrelay.png" alt="Trimetric, battery relay block (rev 6, unchanged in rev 7)."><figcaption>Trimetric, battery relay block (rev 6, unchanged in rev 7).</figcaption>
+</figure>
+</div>
+<h2>Bus zone terminals</h2><div class="wrap"><table><tr><th>Bar</th><th>Terminal</th><th>Cable</th><th>Lug</th><th>Leaves</th></tr>
+<tr><td>POS +</td><td>BAT+ IN</td><td>H1, 1/0</td><td>Klauke 6R8 (M8)</td><td>outboard end, straight</td></tr>
+<tr><td>POS +</td><td>RADLOK+</td><td>H3, 1/0</td><td>Klauke 6R8 (M8)</td><td>outboard end, straight</td></tr>
+<tr><td>POS +</td><td>SPARE</td><td>none yet</td><td>bolt + nut fitted</td><td>-</td></tr>
+<tr><td>NEG -</td><td>BAT-</td><td>H2, 1/0</td><td>Klauke 6R8 (M8)</td><td>rear, straight</td></tr>
+<tr><td>NEG -</td><td>RADLOK-</td><td>H6a, 1/0</td><td>Klauke 6R8 (M8)</td><td>rear, straight</td></tr>
+<tr><td>NEG -</td><td>GND ID</td><td>H7, 1/0</td><td>Klauke 6R8 (M8)</td><td>rear, straight</td></tr>
+<tr><td>NEG -</td><td>GND IG</td><td>H7, 1/0</td><td>Klauke 6R8 (M8)</td><td>rear, straight</td></tr>
+<tr><td>NEG -</td><td>GND</td><td>k_htr 87a 14 AWG, k_pwr 85 18 AWG, k_rev 85 20 AWG</td><td>their own M8 rings, stacked (harness parts)</td><td>rear, straight</td></tr>
+</table></div>
+<h2>Checks (Fusion, rev 7 build)</h2><div class="wrap"><table><tr><th>Check</th><th>Result</th></tr>
+<tr><td>POS 1/0 lug to lug (Dan&#x27;s rule: 3 mm)</td><td>4.00 mm</td></tr>
+<tr><td>NEG lug to lug (3 mm)</td><td>3.00 mm</td></tr>
+<tr><td>nearest NEG part to POS part (wall between)</td><td>5.80 mm</td></tr>
+<tr><td>POS bus lug to nearest AMI output pad</td><td>13.72 mm</td></tr>
+<tr><td>AMI output pad to pad</td><td>3.00 mm</td></tr>
+<tr><td>lugs under the deck</td><td>5.50 mm</td></tr>
+<tr><td>belly pan to nearest live part</td><td>0.59 mm</td></tr>
+<tr><td>Cable bends (3 x OD supported / 10 x OD free, FAA AC 43.13-1B)</td><td class="ok">63 checked, 0 fail</td></tr>
+<tr><td>Interference between solid parts</td><td class="ok">none</td></tr>
+<tr><td>Cable through printed plastic</td><td class="ok">none</td></tr>
+</table></div>
+<h2>Cut + drill (R76: no milling)</h2><div class="wrap"><table><tr><th>Piece</th><th>Stock</th><th>Length</th><th>Holes (from the front / inboard end, on the bar)</th></tr>
+<tr><td>POS bar (bus + AMI inputs)</td><td>1" x 1/4" tinned (MECCANIXITY B0CGJBRNJX), bar 1</td><td>226 mm</td><td>14 x 5.5 mm: pairs 6.25 mm either side of the centre line at 33, 51, 69, 87, 105, 123, 141; 3 x 8.5 mm on the centre line at 168, 192, 216</td></tr>
+<tr><td>NEG bar</td><td>same stock, bar 2</td><td>105 mm</td><td>5 x 8.5 mm on the centre line at 11.0, 34.0, 57.0, 80.0, 99.5</td></tr>
+<tr><td>Battery block bar</td><td>bar 1 (after the POS bar)</td><td>36.5 mm</td><td>as rev 6</td></tr>
+<tr><td>Output pads (14 + 1)</td><td>3 x 15 tinned (Bopaodao B09Z7NBLDK)</td><td>17.5 mm each</td><td>as rev 6</td></tr>
+</table></div>
+<h2>POWER box parts list, rev 7 (with the bus bar in it)</h2>
+<p class="mut">Every line a real part with a link (R82; <code>parts_lists.py --check</code>). CSV: <code>cad/fusebox/rev7/fusebox-parts-power.csv</code>. LOGIC and battery block: the rev 6 lists, unchanged (<code>cad/fusebox/fusebox-parts-logic.csv</code>, <code>-battrelay.csv</code>).</p>
+<div class="wrap"><table><tr><th>Group</th><th>Item</th><th>Part</th><th>Need</th><th>Own</th><th>Buy</th><th>$ line</th></tr>
+<tr><td>Printed</td><td>Power Base (with the bus zone)</td><td>Power_Base_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>44.68</td></tr>
+<tr><td>Printed</td><td>Power Pan (belly pan)</td><td>Power_Pan_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>15.72</td></tr>
+<tr><td>Printed</td><td>Power Cover</td><td>Power_Cover_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>19.59</td></tr>
+<tr><td>Copper</td><td>POS bus bar 25.4 x 6.35 x 226 mm + NEG bus bar 25.4 x 6.35 x 105 mm, tinned</td><td><a href="https://www.amazon.com/dp/B0CGJBRNJX">MECCANIXITY B0CGJBRNJX</a></td><td>2</td><td>0</td><td>2</td><td>52.38</td></tr>
+<tr><td>Copper</td><td>Output pads 15 x 3 x 17.5 mm, tinned (14 here + 1 in BATTRELAY)</td><td><a href="https://www.amazon.com/dp/B09Z7NBLDK">Bopaodao B09Z7NBLDK</a></td><td>1</td><td>0</td><td>1</td><td>51.99</td></tr>
+<tr><td>Fuses</td><td>AMI bolt-down fuse 30 A</td><td><a href="https://www.waytekwire.com/product/eaton-s-bussmann-series-ami-30-bolt-down-fuse">AMI-30</a></td><td>6</td><td>0</td><td>6</td><td>31.80</td></tr>
+<tr><td>Fuses</td><td>AMI bolt-down fuse 40 A</td><td><a href="https://www.waytekwire.com/product/eaton-s-bussmann-series-ami-40-bolt-down-fuse">AMI-40</a></td><td>3</td><td>0</td><td>3</td><td>15.90</td></tr>
+<tr><td>Fuses</td><td>AMI bolt-down fuse 50 A</td><td><a href="https://waytekwire.com/product/eaton-s-bussmann-series-ami-50-bolt-down-fuse">AMI-50</a></td><td>1</td><td>0</td><td>1</td><td>5.30</td></tr>
+<tr><td>Fuses</td><td>AMI bolt-down fuse 60 A</td><td><a href="https://www.waytekwire.com/product/eaton-s-bussmann-series-ami-60-bolt-down-fuse">AMI-60</a></td><td>2</td><td>0</td><td>2</td><td>10.60</td></tr>
+<tr><td>Fuses</td><td>ACPS mini blade fuse 10 A</td><td><a href="https://stanion.com/Product/atm10bus">ATM-10</a></td><td>1</td><td>0</td><td>1</td><td>0.55</td></tr>
+<tr><td>Relays</td><td>Heater relay k_htr, 1 form C, 12 V, 680 ohm</td><td><a href="https://www.te.com/en/product-1-1414687-0.html">1-1414687-0</a></td><td>1</td><td>0</td><td>1</td><td>9.00</td></tr>
+<tr><td>Relays</td><td>Relay k_efi / k_str / k_fan (Maxi ISO F7, 1 form A, 680 ohm)</td><td><a href="https://www.te.com/en/product-1-1414147-0.html">1-1414147-0</a></td><td>3</td><td>3</td><td>0</td><td></td></tr>
+<tr><td>Relays</td><td>Relay k_fan2 / power (Maxi ISO F7, bracket, 560 ohm)</td><td><a href="https://www.te.com/en/product-1-1393304-0.html">1-1393304-0</a></td><td>2</td><td>2</td><td>0</td><td></td></tr>
+<tr><td>Terminals</td><td>Maxi relay load receptacle 9.5 x 1.2, 12-10 AWG</td><td><a href="https://www.te.com/en/product-280756-4.html">280756-4</a></td><td>6</td><td>0</td><td>8</td><td>3.20</td></tr>
+<tr><td>Terminals</td><td>Maxi relay load receptacle 9.5 x 1.2, 10-7 AWG</td><td><a href="https://www.te.com/en/product-280755-4.html">280755-4</a></td><td>4</td><td>0</td><td>6</td><td>3.00</td></tr>
+<tr><td>Terminals</td><td>Relay coil receptacle 6.3 x 0.8, 20-18 AWG (F7 85/86 + heater 85/86)</td><td><a href="https://www.te.com/en/product-1-1393310-8.html">1-1393310-8</a></td><td>12</td><td>0</td><td>14</td><td>1.68</td></tr>
+<tr><td>Terminals</td><td>Heater relay load receptacle 6.3 x 0.8, 10-8 AWG (30, 87)</td><td><a href="https://www.te.com/en/product-62998-2.html">62998-2</a></td><td>2</td><td>0</td><td>4</td><td>1.20</td></tr>
+<tr><td>Terminals</td><td>Heater relay 87a receptacle 6.3 x 0.8, 18-14 AWG</td><td><a href="https://www.te.com/en/product-42281-1.html">42281-1</a></td><td>1</td><td>2</td><td>0</td><td>0.00</td></tr>
+<tr><td>Terminals</td><td>Mini fuse receptacle 2.8 x 0.8, 17-13 AWG (ACPS input, 14 AWG)</td><td><a href="https://www.te.com/en/product-880398-2.html">880398-2</a></td><td>1</td><td>0</td><td>2</td><td>0.30</td></tr>
+<tr><td>Terminals</td><td>Mini fuse receptacle 2.8, 20-18 AWG (ACPS output, 18 AWG)</td><td><a href="https://www.te.com/en/product-1241388-2.html">1241388-2</a></td><td>1</td><td>2</td><td>0</td><td>0.00</td></tr>
+<tr><td>Lugs</td><td>Tubular lug 10 mm2, M5 hole (8-10 AWG)</td><td><a href="https://www.buerklin.com/en/p/klauke/cable-lugs/2r5/07F2065/">Klauke 2R5</a></td><td>9</td><td>0</td><td>11</td><td>7.70</td></tr>
+<tr><td>Lugs</td><td>Tubular lug 16 mm2, M5 hole (6 AWG)</td><td><a href="https://buerklin.com/en/p/klauke/cable-lugs/3r5ms/07F9752">Klauke 3R5MS</a></td><td>1</td><td>0</td><td>2</td><td>2.20</td></tr>
+<tr><td>Lugs</td><td>Ring lug 12-10 AWG, M5 / #10 hole</td><td><a href="https://www.te.com/en/product-36161.html">36161</a></td><td>2</td><td>0</td><td>4</td><td>1.00</td></tr>
+<tr><td>Lugs</td><td>Tubular lug 50 mm2, M8 hole (the 6 1/0 bus cables)</td><td><a href="https://www.buerklin.com/en/p/klauke/cable-lugs/6r8/07F2081/">Klauke 6R8</a></td><td>6</td><td>0</td><td>7</td><td>18.20</td></tr>
+<tr><td>Standoffs</td><td>Brass hex standoff M5 female-female, 8 AF, 40 mm (ONE part number for all 14)</td><td><a href="https://www.essentracomponents.com/en-gb/p/standoffs/301540040050">Essentra 301540040050</a></td><td>14</td><td>0</td><td>14</td><td>8.40</td></tr>
+<tr><td>Fasteners</td><td>Set screw M5 x 12 (stud on each pad standoff)</td><td><a href="https://uk.rs-online.com/web/p/grub-screws-set-screws/0137809">RS 137-809</a></td><td>14</td><td>0</td><td>16</td><td>1.92</td></tr>
+<tr><td>Fasteners</td><td>Hex bolt M5 x 10 (lug under each standoff, IN and OUT rows)</td><td><a href="https://th.rs-online.com/web/p/hex-bolts/2873921">RS 287-3921</a></td><td>14</td><td>0</td><td>16</td><td>1.60</td></tr>
+<tr><td>Fasteners</td><td>Hex bolt M5 x 16 (AMI input stud on the bar, head captured)</td><td><a href="https://ph.rs-online.com/web/p/hex-bolts/2632205">RS 263-2205</a></td><td>14</td><td>0</td><td>16</td><td>1.92</td></tr>
+<tr><td>Fasteners</td><td>Keps nut M5 (AMI input + output ears, 2 per position)</td><td><a href="https://se.rs-online.com/web/p/products/2646432">RS 264-6432</a></td><td>28</td><td>0</td><td>31</td><td>2.17</td></tr>
+<tr><td>Fasteners</td><td>Hex bolt M8 x 25 (bus studs: 3 POS + 5 NEG, head captured)</td><td><a href="https://ph.rs-online.com/web/p/hex-bolts/0190276">RS 190-276</a></td><td>8</td><td>0</td><td>9</td><td>2.70</td></tr>
+<tr><td>Fasteners</td><td>Hex nut M8 (bus studs)</td><td><a href="https://hkcn.rs-online.com/web/p/products/530769">RS 530-769</a></td><td>8</td><td>0</td><td>9</td><td>0.72</td></tr>
+<tr><td>Fasteners</td><td>Plain washer M8 (bus studs)</td><td><a href="https://th.rs-online.com/web/p/washers/7976068">RS 797-6068</a></td><td>8</td><td>0</td><td>9</td><td>0.45</td></tr>
+<tr><td>Mounting</td><td>Compression limiter, feet (4)</td><td><a href="https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters">EFC 10S00056</a></td><td>4</td><td>0</td><td>5</td><td>1.50</td></tr>
+<tr><td></td><td><b>Total (est.)</b></td><td></td><td><b>182</b></td><td></td><td></td><td><b>$317.37</b></td></tr></table></div>
+<h2>Printed parts</h2><div class="wrap"><table><tr><th>Part</th><th>Rev 7 size (mm)</th><th>Rev 7 volume</th><th>Rev 6 volume</th></tr>
+<tr><td>Power_Base_PA12_printed</td><td>212 x 307 x 72</td><td>446.8 cm3</td><td>361.6 cm3</td></tr>
+<tr><td>Power_Pan_PA12_printed</td><td>174 x 238 x 34</td><td>157.2 cm3</td><td>120.4 cm3</td></tr>
+<tr><td>Power_Cover_PA12_printed</td><td>189 x 252 x 42</td><td>195.9 cm3</td><td>160.0 cm3</td></tr>
+</table></div><p class="mut">The base is 307 mm long over the feet: check it against the printer bed.</p>
+<h2>Files</h2><ul>
+<li>Fusion: <code>ST185_fusebox_rev7</code> (Default Project) - its own document, saved-as from rev 6; <code>ST185_fusebox_rev6</code> is untouched.</li>
+<li>Local model files: <code>C:\projects\active\st185-link-ecu-config\cad\fusebox\rev7\</code> (<code>ST185_fusebox_rev7.f3d</code>, <code>ST185_fusebox_rev7_assembly.step</code>, <code>Power_*</code> STEP / STL, the two bars as STEP). LOGIC / battery block files: rev 6, <code>C:\projects\active\st185-link-ecu-config\cad\fusebox\</code>.</li>
+<li>Build: <code>cad/fusebox/src/build_fusion.py</code> <code>build(out_dir, rev=7)</code>; spec: <code>spec.py</code> <code>REV7</code>.</li></ul>
+<h2>Open question</h2><p><b>U1 - the B rev3 universal bar U (the third bar, strap to + or -, or an AMG fuse):</b> A) leave it out - the 2 spare AMI positions and the spare M8 on the + bar cover a new fused or unfused feed <i>(recommended)</i>; B) add it back in the bus zone (box about 30 mm deeper); C) add only a second spare M8 on the NEG bar.</p>
+</main></body></html>

@@ -24,6 +24,8 @@ BT = adsk.fusion.BooleanTypes
 OPS = {'u': BT.UnionBooleanType, 's': BT.DifferenceBooleanType, 'i': BT.IntersectionBooleanType}
 DOC = 'ST185_fusebox_rev6'                                                   # rev 6: Dan's parts answers on rev 5
 DOC_OLD = ('ST185_fusebox_rev5', 'ST185_fusebox_rev4', 'ST185_fusebox_rev3', 'ST185_fusebox_rev2')  # the same Fusion document before the renames (R74)
+DOC7 = 'ST185_fusebox_rev7'   # rev 7 (E2 = A, bus bar POS bar = the AMI bar): its own document, saved-as from rev 6 (2 of 10 Fusion slots in use)
+REV = [6]                     # build(rev=7) builds rev 7; rev 6 output is unchanged
 
 
 def P(x, y, z):
@@ -207,20 +209,28 @@ def bundle_d(ods):
     return ods[0] if len(ods) == 1 else 1.2 * math.sqrt(sum(o * o for o in ods))
 
 
+def doc_name():
+    return DOC7 if REV[0] == 7 else DOC
+
+
 def open_doc():
-    names = (DOC,) + DOC_OLD
-    for i in range(app.documents.count):
-        dd = app.documents.item(i)
-        if dd.isSaved and dd.name.split(' v')[0] in names:
-            return dd
+    names = ((DOC7,) if REV[0] == 7 else ()) + (DOC,) + DOC_OLD
+    open_ = {app.documents.item(i).name.split(' v')[0]: app.documents.item(i) for i in range(app.documents.count) if app.documents.item(i).isSaved}
+    for n in names:
+        if n in open_:
+            return open_[n]
     proj = [pj for pj in app.data.dataProjects if pj.name == 'Default Project'][0]
-    for f in proj.rootFolder.dataFiles:
-        if f.name in names:
-            return app.documents.open(f, True)
+    files = {f.name: f for f in proj.rootFolder.dataFiles}
+    for n in names:                    # rev 7: its own document if saved already, else rev 6 (saved-as rev 7 at the end)
+        if n in files:
+            return app.documents.open(files[n], True)
     raise RuntimeError('fusebox document not found - R74: do not create a new one')
 
 
-def build(out_dir, save=True, renders=True):
+def build(out_dir, save=True, renders=True, rev=6):
+    REV[0] = rev
+    R7 = S.REV7 if rev == 7 else None
+    DIM = {'D': S.D, 'snaps_rear': None}   # rev 7: the POWER box is deeper; the shared shell / pan / cover helpers read DIM
     os.makedirs(out_dir, exist_ok=True)
     doc = open_doc()
     doc.activate()
@@ -395,12 +405,17 @@ def build(out_dir, save=True, renders=True):
     def snap_xs(L):
         return (L * 0.25, L * 0.75)
 
+    def cover_catches(L):
+        """(x, y face) of every cover catch: two on the front, two on the rear (rev 7 POWER: rear pair moved clear of the NEG cable notches)."""
+        rear = DIM['snaps_rear'] or snap_xs(L)
+        return [(x, 0.0) for x in snap_xs(L)] + [(x, DIM['D']) for x in rear]
+
     def base_shell(L, z_d, z_t, extra_parts):
         """Deck: top plate + perimeter skirt (rounded plan), open underneath; the skirt carries the snap pockets."""
         R = S.BASE_R
-        plate = rrect(0, 0, L, S.D, z_t - S.PLATE, z_t, R)
-        skirt = rrect(0, 0, L, S.D, z_d, z_t - S.PLATE + 0.01, R)
-        bo(skirt, rrect(S.SKIRT, S.SKIRT, L - S.SKIRT, S.D - S.SKIRT, z_d - 1, z_t, R - S.SKIRT), 's')
+        plate = rrect(0, 0, L, DIM['D'], z_t - S.PLATE, z_t, R)
+        skirt = rrect(0, 0, L, DIM['D'], z_d, z_t - S.PLATE + 0.01, R)
+        bo(skirt, rrect(S.SKIRT, S.SKIRT, L - S.SKIRT, DIM['D'] - S.SKIRT, z_d - 1, z_t, R - S.SKIRT), 's')
         return union_all([plate, skirt] + extra_parts)
 
     def base_snap_cuts(L, z_t, z_d, pan_faces):
@@ -408,19 +423,19 @@ def build(out_dir, save=True, renders=True):
         near the bottom). Also clears the ring inside the skirt where the pan wall slides up."""
         zc = z_t - S.SNAP['z_from_top']
         cuts = []
-        for x in snap_xs(L):
-            for y in (0.0, S.D):
+        for (x, y) in cover_catches(L):
+            if True:
                 cuts.append(cyl((x - S.SNAP['w'] / 2 - 0.5, y, zc), (x + S.SNAP['w'] / 2 + 0.5, y, zc), S.SNAP['bump'] + 0.2))
         g, t = W_CL, PN['t']
-        ring = rrect(S.SKIRT, S.SKIRT, L - S.SKIRT, S.D - S.SKIRT, z_d - 1, z_d + PN['over'] + g, S.BASE_R - S.SKIRT)
-        bo(ring, rrect(S.SKIRT + 2 * g + t, S.SKIRT + 2 * g + t, L - S.SKIRT - 2 * g - t, S.D - S.SKIRT - 2 * g - t, z_d - 2,
+        ring = rrect(S.SKIRT, S.SKIRT, L - S.SKIRT, DIM['D'] - S.SKIRT, z_d - 1, z_d + PN['over'] + g, S.BASE_R - S.SKIRT)
+        bo(ring, rrect(S.SKIRT + 2 * g + t, S.SKIRT + 2 * g + t, L - S.SKIRT - 2 * g - t, DIM['D'] - S.SKIRT - 2 * g - t, z_d - 2,
                        z_d + PN['over'] + 2, S.BASE_R - S.SKIRT - 2 * g - t), 's')
         cuts.append(ring)
         zp = z_d + PN['over'] / 2
         for (axis, pos) in pan_snaps(L, pan_faces):
             if axis == 'y':
                 cuts.append(cyl((pos - S.SNAP['w'] / 2 - 0.5, S.SKIRT, zp), (pos + S.SNAP['w'] / 2 + 0.5, S.SKIRT, zp), S.SNAP['bump'] + 0.2))
-                cuts.append(cyl((pos - S.SNAP['w'] / 2 - 0.5, S.D - S.SKIRT, zp), (pos + S.SNAP['w'] / 2 + 0.5, S.D - S.SKIRT, zp), S.SNAP['bump'] + 0.2))
+                cuts.append(cyl((pos - S.SNAP['w'] / 2 - 0.5, DIM['D'] - S.SKIRT, zp), (pos + S.SNAP['w'] / 2 + 0.5, DIM['D'] - S.SKIRT, zp), S.SNAP['bump'] + 0.2))
             else:
                 cuts.append(cyl((S.SKIRT, pos - S.SNAP['w'] / 2 - 0.5, zp), (S.SKIRT, pos + S.SNAP['w'] / 2 + 0.5, zp), S.SNAP['bump'] + 0.2))
                 cuts.append(cyl((L - S.SKIRT, pos - S.SNAP['w'] / 2 - 0.5, zp), (L - S.SKIRT, pos + S.SNAP['w'] / 2 + 0.5, zp), S.SNAP['bump'] + 0.2))
@@ -430,7 +445,7 @@ def build(out_dir, save=True, renders=True):
         """Belly-pan catch positions: faces 'y' -> two on the front and two on the rear wall (at x), 'x' -> on the end walls (at y)."""
         if faces == 'y':
             return [('y', x) for x in snap_xs(L)]
-        return [('x', S.D * 0.3), ('x', S.D * 0.7)]
+        return [('x', DIM['D'] * 0.3), ('x', DIM['D'] * 0.7)]
 
     def belly_pan(L, z_d, faces, exits, pre, sh):
         """Rev 5 (Dan: snap-on covers for every live point underneath): a shallow PA12 tray under the open bottom. Its wall
@@ -438,7 +453,7 @@ def build(out_dir, save=True, renders=True):
         at the top of the wall, where wires leave: (axis, u, z_bottom, width) - axis 'x' = an end wall (u = y), 'y' = front /
         rear wall (u = x); a 4th field picks the wall (-1 / +1)."""
         g, t = W_CL, PN['t']
-        x0, y0, x1, y1 = S.SKIRT + g, S.SKIRT + g, L - S.SKIRT - g, S.D - S.SKIRT - g
+        x0, y0, x1, y1 = S.SKIRT + g, S.SKIRT + g, L - S.SKIRT - g, DIM['D'] - S.SKIRT - g
         R = S.BASE_R - S.SKIRT - g
         ztop = z_d + PN['over']
         pan = rrect(x0, y0, x1, y1, PN['z0'], ztop, R)
@@ -505,8 +520,8 @@ def build(out_dir, save=True, renders=True):
         inn = rtop(x0 - g, y0 - g, x0 + L + g, y0 + D + g, zb - 1, z_top - t, R - t if inner_R is None else inner_R, r - t if inner_r is None else inner_r)
         bo(out, inn, 's')
         sw = S.SNAP
-        for x in snap_xs(L):
-            for (yf, sy) in ((y0 - g, -1), (y0 + D + g, 1)):                    # inner face of the front / rear wall
+        for (x, yface) in cover_catches(L):
+            for (yf, sy) in (((y0 - g, -1),) if yface == 0.0 else ((y0 + D + g, 1),)):   # inner face of the front / rear wall
                 for dx in (-1, 1):                                              # two slots free the tongue
                     xs = x0 + x + dx * (sw['w'] / 2 + sw['slot'] / 2)
                     ya, yb_ = (yf - t - bo_ - 1, yf + 1) if sy < 0 else (yf - 1, yf + t + bo_ + 1)
@@ -595,6 +610,9 @@ def build(out_dir, save=True, renders=True):
         L, xb, z_d, z_t, btop = PW['L'], PW['x_bar'], PW['z_d'], PW['z_t'], PW['bar_top']
         sh = S.PLACE['POWER']
         pre = 'Power_'
+        D7 = R7['D'] if R7 else S.D                              # rev 7: + the bus zone at the rear
+        DIM['D'] = D7
+        DIM['snaps_rear'] = R7['cover_snaps_rear'] if R7 else None
         bz0 = btop - S.BAR_T
         pz0 = btop - S.PAD['t']                                  # = standoff top
         plate_b = z_t - S.PLATE
@@ -633,13 +651,21 @@ def build(out_dir, save=True, renders=True):
         for a in ami:                                            # standoff bosses, both rows (hex hole = anti-rotation)
             if True:
                 parts.append(cylz(a['x_out'], a['y'], z_d, plate_b + 0.01, SO['af'] / math.cos(math.radians(30)) + 2 * S.CLR + 5.0))
-        bar_bolts = [(a['x_in'], a['y'], 5) for a in ami] + [(xb, S.IN_STUD_Y, 8)]
+        if R7:            # rev 7: the bus bar terminals - M8 on the POS bar (BAT+ IN, RADLOK+, spare) and on the NEG bar
+            NB = R7['neg_bar']
+            m8_pos = [(xb, y_, 8) for (y_, _n, _h) in R7['pos_studs']]
+            m8_neg = [(x_, NB['yc'], 8) for (x_, _n, _h, _g) in R7['neg_studs']]
+            bar_bolts = [(a['x_in'], a['y'], 5) for a in ami] + m8_pos + m8_neg
+        else:
+            bar_bolts = [(a['x_in'], a['y'], 5) for a in ami] + [(xb, S.IN_STUD_Y, 8)]
         for (bx_, by_, m) in bar_bolts:                          # head bosses under the bar
             parts.append(cylz(bx_, by_, z_d, plate_b + 0.01, HD[m]['af'] / math.cos(math.radians(30)) + 2 * S.CLR + 5.0))
         for x in (xb - 20.0, xb + 20.0):                         # ribs along y under the plate
-            parts.append(box(x - S.RIB / 2, S.SKIRT, z_d, x + S.RIB / 2, S.D - S.SKIRT, plate_b + 0.01))
-        for y in (S.AMI_Y0 - 9.0 + k * 36.0 for k in range(4)):  # ribs along x, between fuse lines
+            parts.append(box(x - S.RIB / 2, S.SKIRT, z_d, x + S.RIB / 2, D7 - S.SKIRT, plate_b + 0.01))
+        for y in [S.AMI_Y0 - 9.0 + k * 36.0 for k in range(4)] + ([190.0, 214.0] if R7 else []):  # ribs along x, between fuse lines (rev 7: + the bus zone)
             parts.append(box(S.SKIRT, y - S.RIB / 2, z_d, L - S.SKIRT, y + S.RIB / 2, plate_b + 0.01))
+        if R7:            # printed barrier wall between the NEG terminals and the POS bar, deck top to 20 above it (rev 7)
+            parts.append(box(R7['barrier'][0], 168.0, z_t - 0.01, R7['barrier'][1], D7, z_t + R7['barrier_h']))
         saddles = []
         for a in ami:            # saddles: one per relay feed, the inside of its bend (R_SADDLE), hanging under the deck
             if a['row'] != 'IN' or not a['amps']:
@@ -658,11 +684,15 @@ def build(out_dir, save=True, renders=True):
             saddles.append(core)
         parts += saddles
         z_leg = z_t - CV['over'] - 1.0
-        feet = [angular_leg(f, u, L, S.D, z_leg, parts, lims) for f in ('-y', '+y') for u in (30.0, L - 30.0)]
+        # rev 7: no foot under the NEG cables - the rear inboard foot moves round to the inboard end, behind the harness exits
+        leg_at = [('-y', 30.0), ('-y', L - 30.0), ('+y', L - 30.0), ('-x', D7 - 30.0)] if R7 else [(f, u) for f in ('-y', '+y') for u in (30.0, L - 30.0)]
+        feet = [angular_leg(f, u, L, D7, z_leg, parts, lims) for (f, u) in leg_at]
         deck = base_shell(L, z_d, z_t, parts)
         cuts = base_snap_cuts(L, z_t, z_d, 'y')
-        B_ = S.BAR
+        B_ = dict(S.BAR, y1=R7['bar_y1']) if R7 else S.BAR       # rev 7: the POS bar runs on into the bus zone
         cuts.append(box(xb - B_['w'] / 2 - S.CLR, B_['y0'] - S.CLR, bz0, xb + B_['w'] / 2 + S.CLR, B_['y1'] + S.CLR, z_t + 1))
+        if R7:
+            cuts.append(box(NB['x0'] - S.CLR, NB['yc'] - B_['w'] / 2 - S.CLR, bz0, NB['x1'] + S.CLR, NB['yc'] + B_['w'] / 2 + S.CLR, z_t + 1))
         for a in ami:
             cuts.append(pad_box(a, pz0, z_t + 1, S.CLR))
             xc = (a['x_in'] + a['x_out']) / 2
@@ -686,14 +716,20 @@ def build(out_dir, save=True, renders=True):
 
         # ---- copper, standoffs, bolts
         bar = box(xb - B_['w'] / 2, B_['y0'], bz0, xb + B_['w'] / 2, B_['y1'], btop)
-        bo(bar, cylz(xb, S.IN_STUD_Y, bz0 - 1, btop + 1, 8.5), 's')
+        for (bx_, by_, m) in (m8_pos if R7 else [(xb, S.IN_STUD_Y, 8)]):
+            bo(bar, cylz(bx_, by_, bz0 - 1, btop + 1, 8.5), 's')
         pads = []
         for a in ami:
             bo(bar, cylz(a['x_in'], a['y'], bz0 - 1, btop + 1, 5.5), 's')
             p = pad_box(a, pz0, btop)
             bo(p, cylz(a['x_out'], a['y'], pz0 - 1, btop + 1, 5.5), 's')
             pads.append(p)
-        comp(pre + 'Bar_Power_%s_25x6p35' % BM['name'], bar, AP['tin'], MAT['cu'], sh)
+        comp(pre + ('Bar_Power_%s_25x6p35%s' % (BM['name'], '_POS_bus_L226' if R7 else '')), bar, AP['tin'], MAT['cu'], sh)
+        if R7:            # NEG bar: same 1" x 1/4" stock on flat, M8 holes
+            nbar = box(NB['x0'], NB['yc'] - B_['w'] / 2, bz0, NB['x1'], NB['yc'] + B_['w'] / 2, btop)
+            for (bx_, by_, m) in m8_neg:
+                bo(nbar, cylz(bx_, by_, bz0 - 1, btop + 1, 8.5), 's')
+            comp(pre + 'BarNeg_%s_25x6p35_L105' % BM['name'], nbar, AP['tin'], MAT['cu'], sh)
         comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pads, AP['tin'], MAT['cu'], sh)
         comp(pre + 'Standoff_M5_FF_hex8_L%d_brass' % SO['long'], [bo(hexz(a['x_out'], a['y'], a['lz'] + 2.0, pz0, SO['af']), cylz(a['x_out'], a['y'], a['lz'], pz0 + 1, 4.2), 's')
                                                                  for a in ami], AP['brass'], MAT['brass'], sh)       # rev 6 (B5): one 40 mm standoff, both rows
@@ -706,7 +742,8 @@ def build(out_dir, save=True, renders=True):
                                           for a in ami if a['amps']], AP['al'], MAT['ss'], sh)      # M5 x 10 both rows (rev 6: 40 mm standoffs)
         nuts = [hexz(a['x_in'], a['y'], z_ear, z_ear + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami]
         nuts += [hexz(a['x_out'], a['y'], z_ear, z_ear + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami]
-        nuts.append(hexz(xb, S.IN_STUD_Y, btop + M8['t'], btop + M8['t'] + S.M8_NUT['h'], S.M8_NUT['af']))
+        for (bx_, by_, m) in ((m8_pos + m8_neg) if R7 else [(xb, S.IN_STUD_Y, 8)]):
+            nuts.append(hexz(bx_, by_, btop + M8['t'], btop + M8['t'] + S.M8_NUT['h'], S.M8_NUT['af']))
         comp(pre + 'Nut_Keps_M5_M8_A2', nuts, AP['al'], MAT['ss'], sh)
 
         # ---- fuses + relays
@@ -758,11 +795,35 @@ def build(out_dir, save=True, renders=True):
                 bend_row('POWER AMI IN %s (%dA) -> %s terminal 30' % (a['name'], a['amps'], r['name']), awg,
                          'straight %.0f mm, then 90 deg up round the printed saddle into the cavity' % (e[0] - r['x30'] - rcw),
                          S.R_SADDLE, True, 'saddle R%.0f under the deck sets and supports the bend' % S.R_SADDLE)
-        t, e = ring_lug(xb, S.IN_STUD_Y, btop, M8['b'], 8.4, M8['t'], M8['d4'], (1, 'x'), M8['l'] - M8['tip'], barrel=19.0)
-        lugs.append(t)
-        wires.append(cyl(e, (L + 30.0, S.IN_STUD_Y, e[2]), S.OD['1/0']))
-        bend_row('POWER 1/0 input (M8 on the bar)', '1/0', 'straight in through the cover end notch, lug axis', None, False,
-                 'no bend in the box; first bend outside >= %.0f supported / >= %.0f free' % (3 * S.OD['1/0'], 10 * S.OD['1/0']))
+        if not R7:
+            t, e = ring_lug(xb, S.IN_STUD_Y, btop, M8['b'], 8.4, M8['t'], M8['d4'], (1, 'x'), M8['l'] - M8['tip'], barrel=19.0)
+            lugs.append(t)
+            wires.append(cyl(e, (L + 30.0, S.IN_STUD_Y, e[2]), S.OD['1/0']))
+            bend_row('POWER 1/0 input (M8 on the bar)', '1/0', 'straight in through the cover end notch, lug axis', None, False,
+                     'no bend in the box; first bend outside >= %.0f supported / >= %.0f free' % (3 * S.OD['1/0'], 10 * S.OD['1/0']))
+        else:             # rev 7 bus zone: 1/0 lugs dead straight out of the box (POS out the outboard end, NEG out the rear)
+            bus_pos, bus_neg = [], []
+            for (y_, nm, h_) in R7['pos_studs']:
+                if nm == 'SPARE':
+                    continue
+                t, e = ring_lug(xb, y_, btop, M8['b'], 8.4, M8['t'], M8['d4'], (1, 'x'), M8['l'] - M8['tip'], barrel=19.0)
+                bus_pos.append(t)
+                wires.append(cyl(e, (L + 30.0, y_, e[2]), S.OD['1/0']))
+                bend_row('BUS POS %s (%s, 1/0, M8 on the POS bar)' % (nm, h_), '1/0', 'straight out through the cover end notch, lug axis', None, False,
+                         'no bend in the box; first bend outside >= %.0f supported / >= %.0f free' % (3 * S.OD['1/0'], 10 * S.OD['1/0']))
+            for (x_, nm, h_, g_) in R7['neg_studs']:
+                if g_ == '1/0':
+                    t, e = ring_lug(x_, NB['yc'], btop, M8['b'], 8.4, M8['t'], M8['d4'], (1, 'y'), M8['l'] - M8['tip'], barrel=19.0)
+                    od, awg_s = S.OD['1/0'], '1/0'
+                else:     # up to 3 small M8 rings stacked on one stud (CabinPower t_pdb_gnd_htr / _pwr / _rev); drawn as one ring + their bundle
+                    t, e = ring_lug(x_, NB['yc'], btop, R7['small_ring_b'], 8.4, 1.0, 5.3, (1, 'y'), 28.0, barrel=12.0)
+                    od, awg_s = bundle_d([S.OD[a_] for a_ in R7['small_awg']]), R7['small_awg'][0]
+                bus_neg.append(t)
+                wires.append(cyl(e, (x_, D7 + 30.0, e[2]), od))
+                bend_row('BUS NEG %s (%s, %s, M8 on the NEG bar)' % (nm, h_, awg_s), awg_s, 'straight out through the cover rear notch, lug axis', None, False,
+                         'no bend in the box; first bend outside >= %.0f supported / >= %.0f free' % (3 * S.OD[awg_s], 10 * S.OD[awg_s]))
+            comp(pre + 'Lug_BusPos_Klauke6R8', bus_pos, AP['cu'], None, sh)
+            comp(pre + 'Lug_BusNeg_Klauke6R8_PIDG', bus_neg, AP['cu'], None, sh)
         comp(pre + 'Lug_Klauke', lugs, AP['cu'], None, sh)
         comp(pre + 'Wire_feed', wires, AP['wire'], None, sh)
 
@@ -813,13 +874,33 @@ def build(out_dir, save=True, renders=True):
         for a in ami:
             xc = (a['x_in'] + a['x_out']) / 2
             labels.append((('%s %dA' % (a['name'], a['amps'])) if a['amps'] else 'SPARE', xc, a['y'], S.LABEL['h_ami']))
-        labels.append(('1/0 IN', xb + 24.0, S.IN_STUD_Y, S.LABEL['h_ami']))
+        if not R7:
+            labels.append(('1/0 IN', xb + 24.0, S.IN_STUD_Y, S.LABEL['h_ami']))
         labels.append(('POWER', xb - 50.0, 6.0, 5.0))
         vents = [(x, y, 'y') for x in (31.0, 76.0, 172.0) for y in (34.0 + k * S.VENT['pitch'] for k in range(8)) if not (x == 172.0 and y < 30)]
-        notches = [('x', L + W_CL + CV['t'] / 2, S.IN_STUD_Y, btop + M8['d4'] / 2 + S.OD['1/0'] / 2 + 1.5, S.OD['1/0'] + 2.0)]
-        cover(L, S.D, z_t, z_top, notches, labels, pre, sh, vents=vents,
-              ribs={'y': [15.0, 75.0, 105.0, L - 15.0], 'x': [34.0 + 36.0 * k for k in range(4)]})
-        return dict(L=L, D=S.D, H=z_top, z_d=z_d, z_t=z_t, cover_top=z_top, feet=feet, relays=relays, ami=ami, acps=acps)
+        zn = btop + M8['d4'] / 2 + S.OD['1/0'] / 2 + 1.5
+        if not R7:
+            notches = [('x', L + W_CL + CV['t'] / 2, S.IN_STUD_Y, zn, S.OD['1/0'] + 2.0)]
+            ribs = {'y': [15.0, 75.0, 105.0, L - 15.0], 'x': [34.0 + 36.0 * k for k in range(4)]}
+        else:
+            notches = [('x', L + W_CL + CV['t'] / 2, y_, zn, S.OD['1/0'] + 2.0) for (y_, nm, h_) in R7['pos_studs'] if nm != 'SPARE']
+            for (x_, nm, h_, g_) in R7['neg_studs']:
+                if g_ == '1/0':
+                    notches.append(('y', D7 + W_CL + CV['t'] / 2, x_, zn, S.OD['1/0'] + 2.0))
+                else:
+                    sd = bundle_d([S.OD[a_] for a_ in R7['small_awg']])
+                    notches.append(('y', D7 + W_CL + CV['t'] / 2, x_, btop + 2.65 + sd / 2 + 1.5, max(sd + 2.0, 7.0)))
+            for (y_, nm, h_) in R7['pos_studs']:
+                labels.append((nm if nm != 'SPARE' else 'SPARE M8', xb + 24.0, y_, S.LABEL['h_ami']))
+            for (x_, nm, h_, g_) in R7['neg_studs']:
+                labels.append((nm, x_, NB['yc'] - 17.0, 2.6))
+            labels.append(('NEG BUS', 55.0, 176.0, 4.0))
+            labels.append(('POS BUS', xb, 234.0, 3.0))
+            ribs = {'y': [26.5, 49.5, 72.5, 140.0, L - 15.0], 'x': [34.0 + 36.0 * k for k in range(4)] + [190.0, 214.0]}
+        cover(L, D7, z_t, z_top, notches, labels, pre, sh, vents=vents, ribs=ribs)
+        DIM['D'], DIM['snaps_rear'] = S.D, None
+        return dict(L=L, D=D7, H=z_top, z_d=z_d, z_t=z_t, cover_top=z_top, feet=feet, relays=relays, ami=ami, acps=acps,
+                    in_y=(R7['pos_studs'][0][0] if R7 else S.IN_STUD_Y))
 
     # ================================================================== LOGIC box
     def build_logic():
@@ -1209,15 +1290,19 @@ def build(out_dir, save=True, renders=True):
     keys = sorted(pad_bs, key=lambda b: (round(b.boundingBox.minPoint.x), b.boundingBox.minPoint.y))
     neigh = [dist(p1, p2) for i_, p1 in enumerate(keys) for p2 in keys[i_ + 1:]
              if abs(p1.boundingBox.minPoint.x - p2.boundingBox.minPoint.x) < 0.5 and abs(p1.boundingBox.minPoint.y - p2.boundingBox.minPoint.y) < 2.0]
-    lug_bs = bodies('Power_Lug_')
-    in_lug = max(lug_bs, key=lambda lb: lb.volume)
-    out_lugs = [lb for lb in lug_bs if lb is not in_lug]
+    lug_bs = bodies('Power_Lug_Klauke')
+    bus_lugs = bodies('Power_Lug_Bus')
+    if bus_lugs:          # rev 7: the 1/0 lugs are the bus terminals; every Lug_Klauke is under the deck
+        in_lugs, out_lugs = bus_lugs, lug_bs
+    else:
+        in_lugs = [max(lug_bs, key=lambda lb: lb.volume)]
+        out_lugs = [lb for lb in lug_bs if lb is not in_lugs[0]]
     so = bodies('Power_Standoff_')
     rb_lugs = bodies('BattRelay_Lug_')
     report['live_clearance'] = {
         'pad_to_pad_min_mm': min(neigh),
         'bar_to_pad_min_mm': min(dist(bodies('Power_Bar_')[0], pb) for pb in pad_bs),
-        'input_lug_to_pad_min_mm': min(dist(in_lug, pb) for pb in pad_bs),
+        'input_lug_to_pad_min_mm': min(dist(il, pb) for il in in_lugs for pb in pad_bs),
         'under_deck_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(out_lugs) for l2 in out_lugs[i_ + 1:]),
         'standoff_to_standoff_min_mm': min(dist(s1, s2) for i_, s1 in enumerate(so) for s2 in so[i_ + 1:]),
         'logic_strip_to_strip_mm': dist(*bodies('Logic_Strip_')[:2]),
@@ -1226,6 +1311,16 @@ def build(out_dir, save=True, renders=True):
         'battrelay_relay_lug_to_lug_mm': dist(rb_lugs[2], rb_lugs[3]),
         'pan_to_nearest_live_power_mm': min(dist(bodies('Power_Pan_')[0], b) for b in bodies('Power_LugBolt_') + bodies('Power_Lug_') + bodies('Power_Standoff_')),
     }
+    if bus_lugs:          # rev 7 bus zone: lug to lug on each bar (Dan's 3 mm), NEG parts to POS parts, to the barrier
+        pos_live = bodies('Power_Lug_BusPos') + bodies('Power_Bar_Power')
+        neg_live = bodies('Power_Lug_BusNeg') + bodies('Power_BarNeg_')
+        bp_, bn_ = bodies('Power_Lug_BusPos'), bodies('Power_Lug_BusNeg')
+        report['live_clearance'].update({
+            'bus_pos_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(bp_) for l2 in bp_[i_ + 1:]),
+            'bus_neg_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(bn_) for l2 in bn_[i_ + 1:]),
+            'bus_neg_to_pos_min_mm': min(dist(a_, b_) for a_ in neg_live for b_ in pos_live),
+            'bus_pos_lug_to_out_pad_min_mm': min(dist(l1, pb) for l1 in bp_ for pb in pad_bs),
+        })
     # rev 6 (C4): the jumper lugs - lug to lug on each strip (Dan's 3 mm), every jumper part to plastic and to the harness wires
     jl_bs = bodies('Logic_Lug_TE_PIDG')
     jpart = jl_bs + bodies('Logic_LugBolt_') + bodies('Logic_Washer_') + bodies('Logic_Lug_Klauke')
@@ -1271,14 +1366,16 @@ def build(out_dir, save=True, renders=True):
     except Exception as ex:   # report, do not hide
         report['interference_error'] = str(ex)
     report['mass_g'] = {o.component.name: round(o.component.physicalProperties.mass * 1000, 1) for o in root.occurrences
-                        if o.component.name.split('_', 1)[1].startswith(('Bar_', 'Pad_', 'Strip_'))}
+                        if o.component.name.split('_', 1)[1].startswith(('Bar_', 'BarNeg_', 'Pad_', 'Strip_'))}
 
     # ------------------------------------------------------------------ exports
     em = design.exportManager
     exported = []
     for o in root.occurrences:
         n = o.component.name
-        if n.endswith('_printed') or n.split('_', 1)[1].startswith(('Bar_', 'Pad_', 'Strip_')):
+        if REV[0] == 7 and not n.startswith('Power_'):   # rev 7: LOGIC / battery block part files are rev 6's (unchanged)
+            continue
+        if n.endswith('_printed') or n.split('_', 1)[1].startswith(('Bar_', 'BarNeg_', 'Pad_', 'Strip_')):
             p = os.path.join(out_dir, '%s.step' % n)
             em.execute(em.createSTEPExportOptions(p, o.component))
             exported.append(os.path.basename(p))
@@ -1288,17 +1385,23 @@ def build(out_dir, save=True, renders=True):
             so_.meshRefinement = adsk.fusion.MeshRefinementSettings.MeshRefinementHigh
             em.execute(so_)
             exported.append(os.path.basename(p))
-    p = os.path.join(out_dir, '%s_assembly.step' % DOC)
+    p = os.path.join(out_dir, '%s_assembly.step' % doc_name())
     em.execute(em.createSTEPExportOptions(p, root))
     exported.append(os.path.basename(p))
-    em.execute(em.createFusionArchiveExportOptions(os.path.join(out_dir, '%s.f3d' % DOC)))
-    exported.append('%s.f3d' % DOC)
+    em.execute(em.createFusionArchiveExportOptions(os.path.join(out_dir, '%s.f3d' % doc_name())))
+    exported.append('%s.f3d' % doc_name())
     report['exported'] = exported
 
     if renders:
         render_all(out_dir, root, report, sizes)
 
-    if save:
+    if save and REV[0] == 7:   # rev 7: its own document (rev 6 stays as saved); save-as the first time, R74 slot check done (2 of 10 editable)
+        if doc.dataFile.name == DOC7:
+            doc.save('rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)')
+        else:
+            doc.saveAs(DOC7, doc.dataFile.parentFolder, 'rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)', '')
+            report['saved_as'] = DOC7
+    elif save:
         try:
             if doc.dataFile.name != DOC:
                 doc.dataFile.name = DOC
@@ -1386,8 +1489,9 @@ def render_all(out_dir, root, report, sizes):
     shot('fusebox_render_top_empty.png', orient=VO.TopViewOrientation)
     show(lambda n: n.startswith('Power_') and not kind(n).startswith('Pan'))
     shot('fusebox_render_top_lid_power.png', orient=VO.TopViewOrientation)
-    show(lambda n: n.startswith('Logic_') and not kind(n).startswith('Pan'))
-    shot('fusebox_render_top_lid_logic.png', orient=VO.TopViewOrientation)
+    if REV[0] != 7:       # rev 7: LOGIC box and battery block are rev 6 unchanged - their own views stay rev 6's
+        show(lambda n: n.startswith('Logic_') and not kind(n).startswith('Pan'))
+        shot('fusebox_render_top_lid_logic.png', orient=VO.TopViewOrientation)
     show(GLOVE)
     shot('fusebox_render_under_pan.png', eye=(-260, -420, -260), target=(170.0, 90.0, 20.0))
     show(lambda n: GLOVE(n) and not kind(n).startswith('Pan'))
@@ -1398,9 +1502,11 @@ def render_all(out_dir, root, report, sizes):
     shot('fusebox_render_routing_power.png', eye=(-200, -330, -200), target=(PX + 90.0, 90.0, 25.0), callouts=[
         (1, (PX + 10.0, 52.0, 8.0), 'harness bundles to the inboard edge'), (2, (PX + 92.25, 61.0, 10.0), 'relay feed: lug on the 40 mm standoff'),
         (3, (PX + 62.0, 61.0, 20.0), 'feed bends up R16 into terminal 30'), (4, (PX + 164.75, 97.0, 11.0), 'OUT lug on the 40 mm standoff'),
-        (5, (PX + S.POWER['L'] + 20.0, 97.0, 13.0), 'OUT cables straight out the end'), (6, (PX + S.POWER['L'] + 20.0, S.IN_STUD_Y, S.POWER['bar_top'] + 8.0), '1/0 battery feed in')])
+        (5, (PX + S.POWER['L'] + 20.0, 97.0, 13.0), 'OUT cables straight out the end'), (6, (PX + S.POWER['L'] + 20.0, sizes['POWER']['in_y'], S.POWER['bar_top'] + 8.0), '1/0 battery feed in')]
+        + ([(7, (PX + 50.0, S.REV7['neg_bar']['yc'] + 40.0, S.POWER['bar_top'] + 8.0), 'NEG bus: grounds straight out the rear')] if REV[0] == 7 else []))
     show(lambda n: n.startswith('Logic_') and WIRING(n))
-    shot('fusebox_render_routing_logic.png', eye=(-230, -330, -200), target=(40.0, 90.0, 20.0), callouts=[
+    if REV[0] != 7:
+      shot('fusebox_render_routing_logic.png', eye=(-230, -330, -200), target=(40.0, 90.0, 20.0), callouts=[
         (1, (10.5, 60.0, 8.0), 'Bus 1 fuse wires'), (2, (38.0, 60.0, 8.0), 'Bus 2 fuse wires'), (3, (49.0, 40.0, 10.0), 'micro relay wires, inboard column'),
         (4, (67.5, 40.0, 10.0), 'micro relay wires, outboard column'), (5, (40.0, -20.0, 8.0), 'all leave the front edge'),
         (6, (16.5, 52.1, 28.0), 'fuse input jumpers drop straight into their lugs'), (7, (24.25, 70.0, 30.0), 'bus strips on edge, printed spine between'),
@@ -1414,7 +1520,7 @@ def render_all(out_dir, root, report, sizes):
     for n in names(pw):
         kd = kind(n)
         dz = {'Cover': 270, 'Relay': 185, 'SPARE': 185, 'Fuse_ATM': 185, 'Fuse_AMI': 125, 'Nut': 150, 'SetScrew': 95, 'BarBolt': -40, 'Bar': 55,
-              'Pad': 55, 'Standoff': -85, 'LugBolt': -150, 'Lug': -120, 'Pan': -200}
+              'Pad': 55, 'Standoff': -85, 'LugBolt': -150, 'Lug_Bus': 100, 'Lug': -120, 'Pan': -200}
         for kk, v in dz.items():
             if kd.startswith(kk):
                 ex_p[n] = (0, 0, v)
@@ -1461,13 +1567,16 @@ def render_all(out_dir, root, report, sizes):
     shot('fusebox_power_step3.png', callouts=[
         (1, c_of('Fuse_AMI_ltgreen'), 'AMI fuses on the studs'), (2, c_of('Nut'), 'Keps nuts, 4 Nm max'),
         (3, c_of('Relay_TE_F7'), 'relays plug in'), (4, c_of('Fuse_ATM'), 'ACPS mini fuse'),
-        (5, (pxp + S.POWER['x_bar'] + 30.0, S.IN_STUD_Y, S.POWER['bar_top'] + 6.0), '1/0 lug on the M8 stud')], **eye_ex)
+        (5, (pxp + S.POWER['x_bar'] + 30.0, sizes['POWER']['in_y'], S.POWER['bar_top'] + 6.0), '1/0 lug on the M8 stud')], **eye_ex)
     place({n: (0, 0, 70) for n in names(pw, 'Cover')} | {n: (0, 0, -70) for n in names(pw, 'Pan')})
     show(lambda n: n.startswith(pw))
     shot('fusebox_power_step4.png', callouts=[
         (1, c_of('Pan'), 'belly pan snaps up into the skirt'), (2, c_of('Cover', top=True), 'cover snaps down over the deck'),
         (3, (sizes['POWER']['feet'][0][0] + pxp, sizes['POWER']['feet'][0][1], 3.0), 'M6 through each foot (4), steel limiter')], **eye_ex)
     place({})
+    if REV[0] == 7:
+        show(lambda n: True)
+        return
 
     # ---- LOGIC explode
     lg = 'Logic_'

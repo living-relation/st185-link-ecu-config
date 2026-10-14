@@ -14,7 +14,9 @@ others with a reason. On-hand quantities are qty_ordered from docs/sourcing/te-o
 (POWER, LOGIC, BATTRELAY) so one shelf quantity is never counted twice. Prices: 'seen' = read on a listing 2026-10-14,
 'est' = typical distributor price, not checked (they move).
 
-    python cad/fusebox/src/parts_lists.py
+    python cad/fusebox/src/parts_lists.py            (rev 6, the selected build)
+    python cad/fusebox/src/parts_lists.py --rev 7    (rev 7 option: cad/fusebox/rev7/fusebox-parts-power.csv only - its LOGIC box
+                                                       and battery block are rev 6 unchanged; --check checks both revs)
 Claude Code, 2026-10-14. Rev 6 (DECISIONS R85): M6 limiters everywhere (C1), no mount bolts / nuts (C3: out of scope - the box
 lists hold the boxes only), mini fuse input jumpers (C4), one 40 mm standoff (B5).
 """
@@ -65,11 +67,18 @@ TE =  lambda pn: 'https://www.te.com/en/product-%s.html' % pn
 DS_V23136 = 'TE data sheet V23136X0000A004 (Power Relay F4 A, 2023-09)'
 DS_VCF = 'TE data sheet VCF7-X0000-A001 (Connectors for Mini / Maxi ISO relays)'
 
-try:
-    rep = json.load(open(os.path.join(FB, 'fusebox_report.json')))
-except OSError:
-    rep = {}
-PRINT = rep.get('printed_parts', {})
+REV7_DIR = os.path.join(FB, 'rev7')
+FILES7 = {'POWER': 'fusebox-parts-power.csv'}   # rev 7: only the POWER box (with the bus bar in it) changes
+
+
+def load_print(rev):
+    try:
+        return json.load(open(os.path.join(REV7_DIR if rev == 7 else FB, 'fusebox_report.json'))).get('printed_parts', {})
+    except OSError:
+        return {}
+
+
+PRINT = load_print(6)
 mass = lambda k: PRINT.get(k, {}).get('volume_cm3', 0.0)
 
 
@@ -139,24 +148,37 @@ def lug(L, box, key, item, need, spare, unit, desc, note='', checked=''):
     L.add(box, 'Lugs', item, pn, 'Klauke', desc, need, spare, unit=unit, basis='est', url=url, checked=checked or 'Buerklin / Voltus listing 2026-10-14', note=note)
 
 
-def build():
+def build(rev=6):
+    global PRINT
+    PRINT = load_print(rev)
+    R7 = rev == 7
     L = Lists()
     P, G, B = 'POWER', 'LOGIC', 'BATTRELAY'
     pr = lambda k: mass(k + '_PA12_printed')
-    PRINT_NOTE = 'est. $0.10/cm3 on the printer\'s material cost; file is the STL/STEP in cad/fusebox (rule R82: printed parts need no buy link)'
+    PRINT_NOTE = 'est. $0.10/cm3 on the printer\'s material cost; file is the STL/STEP in cad/fusebox%s (rule R82: printed parts need no buy link)' % ('/rev7' if R7 else '')
 
     def printed(box, key, item, desc):
         L.add(box, 'Printed', item, key + '_PA12_printed.stl + .step (PA12)', 'print (your PA12 powder-bed printer)', desc, 1,
               unit=round(pr(key) * 0.10, 2), basis='est', checked='report volume %.1f cm3; %s' % (pr(key), PRINT_NOTE))
 
     # ================================================================ POWER box
-    printed(P, 'Power_Base', 'Power Base', 'Deck on four angular legs, open underneath; PA12')
-    printed(P, 'Power_Pan', 'Power Pan (belly pan)', 'Snap-on belly pan, 4 integral tongues (no separate clips); PA12')
-    printed(P, 'Power_Cover', 'Power Cover', 'Snap-on cover, etched labels, vent slots; PA12')
-    L.add(P, 'Copper', 'Power bar 25.4 x 6.35 x 148 mm, tinned', 'MECCANIXITY B0CGJBRNJX', 'MECCANIXITY (Amazon)',
-          '12 in x 1 in x 1/4 in tinned copper flat bar: ONE bar makes the POWER bar (148 mm) and the battery block bar (36.5 mm)', 1, unit=26.19, basis='seen',
-          url='https://www.amazon.com/dp/B0CGJBRNJX', checked='summary "Copper" section; seller page 2026-10-14',
-          note='Cut + drill only (R76): 15 holes, drawing on the summary page. Stock bought here covers BATTRELAY too.')
+    if not R7:
+        printed(P, 'Power_Base', 'Power Base', 'Deck on four angular legs, open underneath; PA12')
+        printed(P, 'Power_Pan', 'Power Pan (belly pan)', 'Snap-on belly pan, 4 integral tongues (no separate clips); PA12')
+        printed(P, 'Power_Cover', 'Power Cover', 'Snap-on cover, etched labels, vent slots; PA12')
+        L.add(P, 'Copper', 'Power bar 25.4 x 6.35 x 148 mm, tinned', 'MECCANIXITY B0CGJBRNJX', 'MECCANIXITY (Amazon)',
+              '12 in x 1 in x 1/4 in tinned copper flat bar: ONE bar makes the POWER bar (148 mm) and the battery block bar (36.5 mm)', 1, unit=26.19, basis='seen',
+              url='https://www.amazon.com/dp/B0CGJBRNJX', checked='summary "Copper" section; seller page 2026-10-14',
+              note='Cut + drill only (R76): 15 holes, drawing on the summary page. Stock bought here covers BATTRELAY too.')
+    else:            # rev 7 (E2 = A): the bus bar lives in this box - its POS bar is the AMI bar, its NEG bar sits beside it
+        printed(P, 'Power_Base', 'Power Base (with the bus zone)', 'Deck on four angular legs, open underneath, 62 mm bus zone at the rear, printed barrier wall NEG / POS; PA12')
+        printed(P, 'Power_Pan', 'Power Pan (belly pan)', 'Snap-on belly pan, 4 integral tongues (no separate clips); PA12')
+        printed(P, 'Power_Cover', 'Power Cover', 'Snap-on cover, etched labels (AMI, relays, bus terminals), vent slots; PA12')
+        L.add(P, 'Copper', 'POS bus bar 25.4 x 6.35 x 226 mm + NEG bus bar 25.4 x 6.35 x 105 mm, tinned', 'MECCANIXITY B0CGJBRNJX', 'MECCANIXITY (Amazon)',
+              '12 in x 1 in x 1/4 in tinned copper flat bar: bar 1 = POS bar (226 mm) + battery block bar (36.5 mm); bar 2 = NEG bar (105 mm), 195 mm spare',
+              S.REV7_STOCK_BARS, unit=26.19, basis='seen', url='https://www.amazon.com/dp/B0CGJBRNJX', checked='summary "Copper" section; seller page 2026-10-14',
+              note='Cut + drill only (R76): POS bar 14 x 5.5 (AMI inputs) + 3 x 8.5 (BAT+ IN, RADLOK+, spare); NEG bar 5 x 8.5. 161 mm2 of copper each - '
+                   'three times the 1/0 cable (53 mm2). Replaces the B rev3 bus bar machined Al bars and set-screw port blocks (R76: no milling).')
     L.add(P, 'Copper', 'Output pads 15 x 3 x 17.5 mm, tinned (14 here + 1 in BATTRELAY)', 'Bopaodao B09Z7NBLDK', 'Bopaodao (Amazon)',
           'Tinned copper bus bar 3 x 15 x 1000 mm C110: ONE bar makes all 15 pads (290 mm with kerf)', 1, unit=51.99, basis='seen',
           url='https://www.amazon.com/dp/B09Z7NBLDK', checked='summary "Copper" section; seller page 2026-10-14', note='One drilled hole each (5.5 mm).')
@@ -222,7 +244,13 @@ def build():
     L.add(P, 'Lugs', 'Ring lug 12-10 AWG, M5 / #10 hole', '36161', 'TE Connectivity', 'PIDG closed ring tongue, 12-10 AWG, #10 (5 mm) stud, tin, partially insulated', n36161, spare(n36161), unit=0.25, basis='est',
           url=TE('36161'), checked='TE page (12-10 AWG, #10 / 5 mm stud, PIDG, Active); RS listings call the same family "M5 stud size"',
           note='EFI and STR feeds (12 AWG). Hole 5.1 mm over the 5 mm M5 bolt - snug, check a sample.')
-    lug(L, P, '6R8', 'Tubular lug 50 mm2, M8 hole (1/0 input)', 1, 0, 2.60, 'Tinned copper tubular ring lug, 50 mm2, M8, hole 8.4; b 20, l 47', checked='Buerklin listing 07F2081 (hole 8.4, M8)')
+    if not R7:
+        lug(L, P, '6R8', 'Tubular lug 50 mm2, M8 hole (1/0 input)', 1, 0, 2.60, 'Tinned copper tubular ring lug, 50 mm2, M8, hole 8.4; b 20, l 47', checked='Buerklin listing 07F2081 (hole 8.4, M8)')
+    else:
+        n10 = sum(1 for p_ in S.REV7['pos_studs'] if p_[1] != 'SPARE') + sum(1 for n_ in S.REV7['neg_studs'] if n_[3] == '1/0')
+        lug(L, P, '6R8', 'Tubular lug 50 mm2, M8 hole (the %d 1/0 bus cables)' % n10, n10, 1, 2.60, 'Tinned copper tubular ring lug, 50 mm2, M8, hole 8.4; b 20, l 47',
+            checked='Buerklin listing 07F2081 (hole 8.4, M8)',
+            note='BAT+ IN (H1), RADLOK+ (H3), BAT- (H2), RADLOK- (H6a), GND ID, GND IG (H7): the B rev3 set-screw ports become lugs. The small relay grounds keep their own M8 rings (harness parts).')
     # standoffs
     n_so = N_IN + N_OUT
     L.add(P, 'Standoffs', 'Brass hex standoff M5 female-female, 8 AF, 40 mm (ONE part number for all %d)' % n_so, 'Essentra 301540040050', 'Essentra Components',
@@ -235,14 +263,24 @@ def build():
     hw(L, P, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10 (lug under each standoff, IN and OUT rows)', N_IN + N_OUT, spare(N_IN + N_OUT), 0.10, note='One length for both rows now that every standoff is 40 mm.')
     hw(L, P, 'Fasteners', 'M5x16', 'Hex bolt M5 x 16 (AMI input stud on the bar, head captured)', N_POS, spare(N_POS), 0.12)
     hw(L, P, 'Fasteners', 'M5nut', 'Keps nut M5 (AMI input + output ears, 2 per position)', 2 * N_POS, spare(2 * N_POS), 0.07, note='4 Nm max (AMI sheet).')
-    hw(L, P, 'Fasteners', 'M8bolt', 'Hex bolt M8 x 25 (1/0 input stud)', 1, 1, 0.30, note='Rev 5 CAD draws M8 x 20; the nearest stocked stainless length is 25 (RS lists no M8 x 20).')
-    hw(L, P, 'Fasteners', 'M8nut', 'Hex nut M8 (1/0 input stud)', 1, 1, 0.08)
-    hw(L, P, 'Fasteners', 'M8wash', 'Plain washer M8 (1/0 input stud)', 1, 1, 0.05)
+    if not R7:
+        hw(L, P, 'Fasteners', 'M8bolt', 'Hex bolt M8 x 25 (1/0 input stud)', 1, 1, 0.30, note='Rev 5 CAD draws M8 x 20; the nearest stocked stainless length is 25 (RS lists no M8 x 20).')
+        hw(L, P, 'Fasteners', 'M8nut', 'Hex nut M8 (1/0 input stud)', 1, 1, 0.08)
+        hw(L, P, 'Fasteners', 'M8wash', 'Plain washer M8 (1/0 input stud)', 1, 1, 0.05)
+    else:
+        n8 = len(S.REV7['pos_studs']) + len(S.REV7['neg_studs'])
+        hw(L, P, 'Fasteners', 'M8bolt', 'Hex bolt M8 x 25 (bus studs: 3 POS + 5 NEG, head captured)', n8, 1, 0.30,
+           note='Up through the deck into the bar, head in a printed hex pocket (R76: plain holes, no tapping). The spare POS stud gets its bolt now.')
+        hw(L, P, 'Fasteners', 'M8nut', 'Hex nut M8 (bus studs)', n8, 1, 0.08)
+        hw(L, P, 'Fasteners', 'M8wash', 'Plain washer M8 (bus studs)', n8, 1, 0.05)
     # limiters + mount
     L.add(P, 'Mounting', 'Compression limiter, feet (4)', 'EFC 10S00056', 'EFC International',
           'Knurled solid compression limiter, M6, ID 6.80, OD 9.8, L 6 mm, zinc-plated steel', 4, 1, unit=0.30, basis='est', url=EFC_URL,
           checked='EFC comparison table 2026-10-14 (EFC lists no M5 limiter); CAD rev 6 foot: 10.2 press-fit pocket, 6 mm ear',
           note='C1 (Dan): M6 limiters in all 10 mount points. Mount bolts / nuts are not part of the box (C3).')
+
+    if R7:
+        return {P: L.rows[P]}
 
     # ================================================================ LOGIC box
     printed(G, 'Logic_Base', 'Logic Base', 'Deck on four angular legs, cavity towers, printed spine between the bus strips (lips under them); PA12')
@@ -345,9 +383,9 @@ def totals(rows):
     return out
 
 
-def write(rows):
-    for b, fn in FILES.items():
-        with open(os.path.join(FB, fn), 'w', encoding='utf-8', newline='') as fh:
+def write(rows, rev=6):
+    for b, fn in (FILES7 if rev == 7 else FILES).items():
+        with open(os.path.join(REV7_DIR if rev == 7 else FB, fn), 'w', encoding='utf-8', newline='') as fh:
             w = csv.DictWriter(fh, fieldnames=COLS, lineterminator='\n')
             w.writeheader()
             w.writerows(rows[b])
@@ -384,14 +422,18 @@ def render(rows, b):
 
 
 if __name__ == '__main__':
-    R = build()
+    REVN = 7 if '--rev' in sys.argv[1:] and sys.argv[sys.argv.index('--rev') + 1] == '7' else 6
+    R = build(REVN)
     bad = lint(R)
     if '--check' in sys.argv[1:]:
-        for b, fn in FILES.items():
-            fp = os.path.join(FB, fn)
-            old = open(fp, encoding='utf-8', newline='').read().replace(CRLF, NL) if os.path.exists(fp) else ''
-            if old != render(R, b):
-                bad.append('%s is stale: run python cad/fusebox/src/parts_lists.py and commit it' % fn)
+        R7 = build(7)
+        bad += ['rev 7 ' + m for m in lint(R7)]
+        for (rows, files, d, cmd) in ((build(6), FILES, FB, ''), (R7, FILES7, REV7_DIR, ' --rev 7')):
+            for b, fn in files.items():
+                fp = os.path.join(d, fn)
+                old = open(fp, encoding='utf-8', newline='').read().replace(CRLF, NL) if os.path.exists(fp) else ''
+                if old != render(rows, b):
+                    bad.append('%s%s is stale: run python cad/fusebox/src/parts_lists.py%s and commit it' % ('rev7/' if cmd else '', fn, cmd))
         for m in bad:
             print('PARTS LIST:', m)
         print('fuse box parts lists: %d problem(s)' % len(bad))
@@ -400,8 +442,8 @@ if __name__ == '__main__':
         for m in bad:
             print('PARTS LIST (R82):', m)
         sys.exit(1)
-    write(R)
+    write(R, REVN)
     T = totals(R)
-    for b in FILES:
+    for b in R:
         buy = sum(1 for r in R[b] if r['buy'] > 0)
         print('%-10s %2d lines, %2d with a BUY, est. $%.2f' % (b, len(R[b]), buy, T[b]))

@@ -176,5 +176,57 @@
    "C:/projects/active/st185-link-ecu-config/cad/fusebox/Power_Pan_PA12_printed.step": 1792012597
   },
   "rendered": "2026-10-14"
+ },
+ "fusebox-rev7-power": {
+  "png": "cad/fusebox/rev7/trimetric-power.png",
+  "solids": 19,
+  "part_types": 6,
+  "extent_mm": [
+   216.9,
+   307.0,
+   81.8
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_BarNeg_CuC110_25x6p35_L105.step": 1792017885,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step": 1792017885,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Base_PA12_printed.step": 1792017884,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Cover_PA12_printed.step": 1792017888,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Pad_Out_CuC110_15x3.step": 1792017885,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Pan_PA12_printed.step": 1792017885
+  },
+  "rendered": "2026-10-14"
+ },
+ "package-rev6": {
+  "png": "cad/fusebox/package-rev6.png",
+  "solids": 543,
+  "part_types": 84,
+  "extent_mm": [
+   549.2,
+   579.5,
+   89.9
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/busbar/design-B-rev3/B_rev3_ASSEMBLY.step": 1791931593,
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1791906601,
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1791902030,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/ST185_fusebox_rev6_assembly.step": 1792012597
+  },
+  "rendered": "2026-10-14"
+ },
+ "package-rev7": {
+  "png": "cad/fusebox/rev7/package-rev7.png",
+  "solids": 509,
+  "part_types": 73,
+  "extent_mm": [
+   549.2,
+   454.4,
+   89.9
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1791906601,
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1791902030,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step": 1792017898
+  },
+  "rendered": "2026-10-14"
  }
 }

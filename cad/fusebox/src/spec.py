@@ -247,3 +247,29 @@ STOCK = {
 }
 READY_MADE = ('Bussmann LMI (AMI modules on a common bus bar, B109-7046-x)', 'The only ready-made AMI bus found. It is R18 Option B, which R70 replaced: '
               '25 mm per position (vs 18 here) and its own housings, so it does not fit the printed boxes.')
+
+# ---------- rev 7 (Dan's E2 = A, 2026-10-14, "make a separate new version so I can see it"): NO separate glove-box bus bar and NO
+# copper bar of its own in the POWER box. The bus bar's POS bar (bus bar B rev3, Dan's E1 pick, re-made in tinned copper stock -
+# R76, cut + drilled only) IS the AMI bar: the AMI fuses bolt straight onto it, and the POWER box is the holder + cover round it.
+# The bar simply runs on past the last AMI position into a 62 mm "bus zone" at the rear of the box, where the B rev3 terminals
+# land: on the POS bar BAT+ IN (H1), RADLOK+ (H3) and a spare M8; on a NEG bar (same stock, on flat, inboard of the POS bar)
+# BAT- (H2), RADLOK- (H6a), GND ID / GND IG (H7) and one M8 for the small relay grounds (k_htr 87a, k_pwr 85, k_rev 85 - M8 rings
+# in ST185-CabinPower). Every B rev3 1/0 set-screw port becomes a Klauke 6R8 lug on an M8 bolt (the milled port blocks broke R76).
+# The B rev3 universal bar U + link strap / AMG fuse is dropped (the 2 spare AMI positions + the spare M8 stud take its place).
+# Removed against rev 6: the 1/0 cable bus bar -> POWER box (ST185-CabinPower w_fb_in) and its two 1/0 lugs, the POWER box's own
+# 148 mm copper bar, and the whole separate bus bar housing. LOGIC box and battery relay block: unchanged (their feeds do not move).
+# A printed barrier wall stands between the NEG terminals and the POS bar. Box frame as rev 6: x inboard -> outboard, y front -> rear.
+REV7 = dict(
+    D=243.0,                                   # POWER box depth: rev 6 181 + 62 bus zone at the rear (y > 181)
+    bar_y1=236.0,                              # POS bar: y 10 -> 236 (226 long), cut from 1" x 1/4" tinned (R76)
+    pos_studs=[(178.0, 'BAT+ IN', 'H1'), (202.0, 'RADLOK+', 'H3'), (226.0, 'SPARE', None)],   # M8 on the POS bar, 1/0 lugs out +x
+    neg_bar=dict(x0=4.0, x1=109.0, yc=205.0),  # NEG bar on flat along x (105 long, same stock), lugs out +y (rear end)
+    neg_studs=[(15.0, 'BAT-', 'H2', '1/0'), (38.0, 'RADLOK-', 'H6a', '1/0'), (61.0, 'GND ID', 'H7', '1/0'), (84.0, 'GND IG', 'H7', '1/0'),
+               (103.5, 'GND', 'relays', 'small')],   # 23 pitch = 20 lug + 3 gap (Dan's rule); GND: up to 3 small M8 rings
+    small_ring_b=13.0,                         # widest small M8 ring tongue (TE PIDG, 22-16 / 16-14 AWG M8 rings, ST185-CabinPower)
+    small_awg=(14, 18, 20),                    # k_htr 87a 14, k_pwr 85 18, k_rev 85 20 (CabinPower t_pdb_gnd_*)
+    barrier=(110.5, 113.0),                    # printed wall x between the NEG terminals and the POS bar pocket (115.4)
+    barrier_h=20.0,                            # wall above the deck top (lug barrels top out 13.9 above the bar)
+    cover_snaps_rear=(124.0, 160.0),           # rear-face cover catches moved clear of the NEG cable notches
+)
+REV7_STOCK_BARS = 2    # POS bar 226 + battery block bar 36.5 from bar 1; NEG bar 105 from bar 2 (MECCANIXITY B0CGJBRNJX, 305 long)

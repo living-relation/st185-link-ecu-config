@@ -1,0 +1,1485 @@
+{
+ "bends": [
+  {
+   "where": "LOGIC BUS1 EFI86 input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 HL input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 HR input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 HZ input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 DM input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 WL input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 ALM input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 ALMS input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 ALTS input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 ETB input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 LAM input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 SW12 input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 COP input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 INJ input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 CSB input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 DEV input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 EPSEN input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 ACC input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 ALMIG input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 feed (from AMI BUS1 50 A output)",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out the front end, lug axis, under the skirt",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported or >= 51 free"
+  },
+  {
+   "where": "LOGIC BUS2 feed (from k_efi 87)",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out the rear end, lug axis, under the skirt",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 11 supported or >= 36 free"
+  },
+  {
+   "where": "LOGIC harness bundle at x 10 (10 wires)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
+   "r_inside": 7.23,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 7.2 mm; 21.7 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
+  },
+  {
+   "where": "LOGIC harness bundle at x 38 (13 wires)",
+   "awg": "16",
+   "od": 2.06,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
+   "r_inside": 6.18,
+   "need": 6.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 7.9 mm; 22.5 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
+  },
+  {
+   "where": "LOGIC harness bundle at x 49 (21 wires)",
+   "awg": "16",
+   "od": 2.06,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
+   "r_inside": 6.18,
+   "need": 6.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 10.1 mm; 21.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
+  },
+  {
+   "where": "LOGIC harness bundle at x 68 (10 wires)",
+   "awg": "16",
+   "od": 2.06,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
+   "r_inside": 6.18,
+   "need": 6.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 7.1 mm; 22.9 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
+  },
+  {
+   "where": "LOGIC fuse / micro relay receptacles, largest 14 AWG",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down out of the cavity, one bend into its bundle (rows above)",
+   "r_inside": 7.23,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "one bundle per fuse column / relay column, straight to the front edge"
+  },
+  {
+   "where": "POWER AMI IN HTR (40A) -> heater terminal 30",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight 2 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN EFI (30A) -> k_efi terminal 30",
+   "awg": "12",
+   "od": 2.97,
+   "path": "straight 32 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 8.9,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN STR (30A) -> k_str terminal 30",
+   "awg": "12",
+   "od": 2.97,
+   "path": "straight 3 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 8.9,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN FAN (40A) -> k_fan terminal 30",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight 31 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN FAN2 (30A) -> k_fan2 terminal 30",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight 2 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN PWR (30A) -> power terminal 30",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight 32 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 10.8,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI OUT BUS1 (50A) -> harness",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported (P-clamp each side) or >= 51 free"
+  },
+  {
+   "where": "POWER AMI OUT RTR (30A) -> harness",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 11 supported (P-clamp each side) or >= 36 free"
+  },
+  {
+   "where": "POWER AMI OUT AM1 (40A) -> harness",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported (P-clamp each side) or >= 51 free"
+  },
+  {
+   "where": "POWER AMI OUT AM2 (30A) -> harness",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 11 supported (P-clamp each side) or >= 36 free"
+  },
+  {
+   "where": "POWER AMI OUT JB1 (60A) -> harness",
+   "awg": "6",
+   "od": 6.43,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 64.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 19 supported (P-clamp each side) or >= 64 free"
+  },
+  {
+   "where": "POWER AMI OUT EPS (60A) -> harness",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported (P-clamp each side) or >= 51 free"
+  },
+  {
+   "where": "BUS POS BAT+ IN (H1, 1/0, M8 on the POS bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover end notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS POS RADLOK+ (H3, 1/0, M8 on the POS bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover end notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS NEG BAT- (H2, 1/0, M8 on the NEG bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover rear notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS NEG RADLOK- (H6a, 1/0, M8 on the NEG bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover rear notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS NEG GND ID (H7, 1/0, M8 on the NEG bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover rear notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS NEG GND IG (H7, 1/0, M8 on the NEG bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover rear notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS NEG GND (relays, 14, M8 on the NEG bar)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight out through the cover rear notch, lug axis",
+   "r_inside": null,
+   "need": 24.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 7 supported / >= 24 free"
+  },
+  {
+   "where": "POWER harness bundle at y 35 (3 wires)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 7.23,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 4.5 mm; 16.5 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
+  },
+  {
+   "where": "POWER harness bundle at y 43 (2 wires)",
+   "awg": "8",
+   "od": 5.13,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 15.39,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 6.5 mm; 6.0 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 51"
+  },
+  {
+   "where": "POWER harness bundle at y 52 (2 wires)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 4.71,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 2.7 mm; 20.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 16"
+  },
+  {
+   "where": "POWER harness bundle at y 61 (1 wires)",
+   "awg": "12",
+   "od": 2.97,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 8.91,
+   "need": 8.9,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 3.0 mm; 15.3 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 30"
+  },
+  {
+   "where": "POWER harness bundle at y 70 (2 wires)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 4.71,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 2.7 mm; 20.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 16"
+  },
+  {
+   "where": "POWER harness bundle at y 79 (1 wires)",
+   "awg": "12",
+   "od": 2.97,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 8.91,
+   "need": 8.9,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 3.0 mm; 15.3 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 30"
+  },
+  {
+   "where": "POWER harness bundle at y 88 (2 wires)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 4.71,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 2.7 mm; 20.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 16"
+  },
+  {
+   "where": "POWER harness bundle at y 97 (1 wires)",
+   "awg": "8",
+   "od": 5.13,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 15.39,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 5.1 mm; 6.7 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 51"
+  },
+  {
+   "where": "POWER harness bundle at y 106 (2 wires)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 4.71,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 2.7 mm; 20.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 16"
+  },
+  {
+   "where": "POWER harness bundle at y 115 (1 wires)",
+   "awg": "8",
+   "od": 5.13,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 15.39,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 5.1 mm; 6.7 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 51"
+  },
+  {
+   "where": "POWER harness bundle at y 124 (2 wires)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 4.71,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 2.7 mm; 20.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 16"
+  },
+  {
+   "where": "POWER harness bundle at y 133 (1 wires)",
+   "awg": "10",
+   "od": 3.61,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 10.83,
+   "need": 10.8,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 3.6 mm; 12.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 36"
+  },
+  {
+   "where": "POWER harness bundle at y 142 (1 wires)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 4.71,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 1.6 mm; 20.9 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 16"
+  },
+  {
+   "where": "POWER relay terminals (85 / 86 / 87 / 87a), largest 8 AWG",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight down out of the cavity, one bend into its bundle (rows above)",
+   "r_inside": 15.39,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundles run where no feed wire runs (relays turned 90 deg)"
+  },
+  {
+   "where": "BATTERY feed in (kill switch load side) -> M6 stud",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight in at the open -x end, lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the block; first bend outside >= 11 supported / >= 36 free"
+  },
+  {
+   "where": "BATTERY AMI 40 out -> HCR150 terminal 3",
+   "awg": "10",
+   "od": 3.61,
+   "path": "one straight jumper, both lugs at the terminal height",
+   "r_inside": null,
+   "need": 10.8,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend (the fuse pedestal puts its lug level with terminal 3)"
+  },
+  {
+   "where": "BATTERY HCR150 terminal 5 -> pump",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out the open +x end, lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the block; first bend outside >= 11 supported / >= 36 free"
+  },
+  {
+   "where": "BATTERY coil lead (Superseal plug) -> Link Aux 3",
+   "awg": "20",
+   "od": 1.57,
+   "path": "one 90 deg turn, then along the front to the +x end",
+   "r_inside": 6.2,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "held by the plug and the cover notch; 3 x OD = 4.7"
+  }
+ ],
+ "labels": {
+  "Logic_Cover_PA12_printed": [
+   "HEAD L",
+   "HEAD R",
+   "HORN",
+   "ETB",
+   "A/C",
+   "EPS EN",
+   "REV",
+   "SPARE",
+   "SPARE",
+   "SPARE",
+   "EFI86 5",
+   "HL 15",
+   "HR 15",
+   "HZ 15",
+   "DM 20",
+   "WL 15",
+   "ALM 5",
+   "ALMS 2",
+   "ALTS 2",
+   "ETB 10",
+   "SP",
+   "SP",
+   "LAM 7.5",
+   "SW12 7.5",
+   "COP 15",
+   "INJ 15",
+   "CSB 5",
+   "DEV 15",
+   "EPSEN 7.5",
+   "ACC 10",
+   "ALMIG 2",
+   "SP",
+   "SP",
+   "MRS 7.5",
+   "B30 2",
+   "BUS1",
+   "BUS2",
+   "LOGIC"
+  ],
+  "Power_Cover_PA12_printed": [
+   "HEATER",
+   "EFI",
+   "STARTER",
+   "FAN",
+   "FAN 2",
+   "WINDOWS",
+   "SPARE",
+   "ACPS 10A",
+   "HTR 40A",
+   "EFI 30A",
+   "STR 30A",
+   "FAN 40A",
+   "FAN2 30A",
+   "PWR 30A",
+   "SPARE",
+   "BUS1 50A",
+   "RTR 30A",
+   "AM1 40A",
+   "AM2 30A",
+   "JB1 60A",
+   "EPS 60A",
+   "SPARE",
+   "POWER",
+   "BAT+ IN",
+   "RADLOK+",
+   "SPARE M8",
+   "BAT-",
+   "RADLOK-",
+   "GND ID",
+   "GND IG",
+   "GND",
+   "NEG BUS",
+   "POS BUS"
+  ],
+  "BattRelay_Cover_PA12_printed": [
+   "BATT +",
+   "FP 40A",
+   "K_FP  FUEL PUMP",
+   "3",
+   "5",
+   "PUMP",
+   "COIL"
+  ]
+ },
+ "lanes": {
+  "LOGIC": [
+   {
+    "at": 10.5,
+    "wires": 10,
+    "d": 7.2,
+    "z": 8.4,
+    "what": [
+     "EFI86",
+     "HL",
+     "HR",
+     "HZ",
+     "DM",
+     "WL",
+     "ALM",
+     "ALMS",
+     "ALTS",
+     "ETB"
+    ],
+    "room": 21.7
+   },
+   {
+    "at": 38.0,
+    "wires": 13,
+    "d": 7.9,
+    "z": 8.7,
+    "what": [
+     "LAM",
+     "SW12",
+     "COP",
+     "INJ",
+     "CSB",
+     "DEV",
+     "EPSEN",
+     "ACC",
+     "ALMIG",
+     "MRS",
+     "MRS in",
+     "B30",
+     "B30 in"
+    ],
+    "room": 22.5
+   },
+   {
+    "at": 49.0,
+    "wires": 21,
+    "d": 10.1,
+    "z": 9.9,
+    "what": [
+     "HEAD LH 30",
+     "HEAD LH 87",
+     "HEAD LH 85",
+     "HEAD LH 86",
+     "HEAD RH 30",
+     "HEAD RH 87",
+     "HEAD RH 85",
+     "HEAD RH 86",
+     "horn 30",
+     "horn 87",
+     "horn 85",
+     "horn 86",
+     "k_etb 30",
+     "k_etb 87",
+     "k_etb 85",
+     "k_etb 86",
+     "k_acc 30",
+     "k_acc 87",
+     "k_acc 87a",
+     "k_acc 85",
+     "k_acc 86"
+    ],
+    "room": 21.4
+   },
+   {
+    "at": 67.5,
+    "wires": 10,
+    "d": 7.1,
+    "z": 8.4,
+    "what": [
+     "k_eps_en 30",
+     "k_eps_en 87",
+     "k_eps_en 87a",
+     "k_eps_en 85",
+     "k_eps_en 86",
+     "k_rev 30",
+     "k_rev 87",
+     "k_rev 87a",
+     "k_rev 85",
+     "k_rev 86"
+    ],
+    "room": 22.9
+   }
+  ],
+  "POWER": [
+   {
+    "at": 35.0,
+    "wires": 3,
+    "d": 4.5,
+    "z": 7.1,
+    "what": [
+     "heater 85",
+     "ACPS",
+     "ACPS"
+    ],
+    "room": 16.5
+   },
+   {
+    "at": 43.0,
+    "wires": 2,
+    "d": 6.5,
+    "z": 8.1,
+    "what": [
+     "heater 87",
+     "heater 87a"
+    ],
+    "room": 6.0
+   },
+   {
+    "at": 52.0,
+    "wires": 2,
+    "d": 2.7,
+    "z": 6.1,
+    "what": [
+     "heater 86",
+     "k_efi 85"
+    ],
+    "room": 20.4
+   },
+   {
+    "at": 61.0,
+    "wires": 1,
+    "d": 3.0,
+    "z": 6.3,
+    "what": [
+     "k_efi 87"
+    ],
+    "room": 15.3
+   },
+   {
+    "at": 70.0,
+    "wires": 2,
+    "d": 2.7,
+    "z": 6.1,
+    "what": [
+     "k_efi 86",
+     "k_str 85"
+    ],
+    "room": 20.4
+   },
+   {
+    "at": 79.0,
+    "wires": 1,
+    "d": 3.0,
+    "z": 6.3,
+    "what": [
+     "k_str 87"
+    ],
+    "room": 15.3
+   },
+   {
+    "at": 88.0,
+    "wires": 2,
+    "d": 2.7,
+    "z": 6.1,
+    "what": [
+     "k_str 86",
+     "k_fan 85"
+    ],
+    "room": 20.4
+   },
+   {
+    "at": 97.0,
+    "wires": 1,
+    "d": 5.1,
+    "z": 7.4,
+    "what": [
+     "k_fan 87"
+    ],
+    "room": 6.7
+   },
+   {
+    "at": 106.0,
+    "wires": 2,
+    "d": 2.7,
+    "z": 6.1,
+    "what": [
+     "k_fan 86",
+     "k_fan2 85"
+    ],
+    "room": 20.4
+   },
+   {
+    "at": 115.0,
+    "wires": 1,
+    "d": 5.1,
+    "z": 7.4,
+    "what": [
+     "k_fan2 87"
+    ],
+    "room": 6.7
+   },
+   {
+    "at": 124.0,
+    "wires": 2,
+    "d": 2.7,
+    "z": 6.1,
+    "what": [
+     "k_fan2 86",
+     "power 85"
+    ],
+    "room": 20.4
+   },
+   {
+    "at": 133.0,
+    "wires": 1,
+    "d": 3.6,
+    "z": 6.6,
+    "what": [
+     "power 87"
+    ],
+    "room": 12.8
+   },
+   {
+    "at": 142.0,
+    "wires": 1,
+    "d": 1.6,
+    "z": 5.6,
+    "what": [
+     "power 86"
+    ],
+    "room": 20.9
+   }
+  ]
+ },
+ "callouts": {
+  "fusebox_render_routing_power.png": [
+   [
+    1,
+    806.4,
+    423.9,
+    "harness bundles to the inboard edge"
+   ],
+   [
+    2,
+    1080.0,
+    512.8,
+    "relay feed: lug on the 40 mm standoff"
+   ],
+   [
+    3,
+    972.2,
+    446.4,
+    "feed bends up R16 into terminal 30"
+   ],
+   [
+    4,
+    1261.2,
+    640.7,
+    "OUT lug on the 40 mm standoff"
+   ],
+   [
+    5,
+    1389.1,
+    669.1,
+    "OUT cables straight out the end"
+   ],
+   [
+    6,
+    1213.8,
+    618.2,
+    "1/0 battery feed in"
+   ],
+   [
+    7,
+    532.9,
+    579.1,
+    "NEG bus: grounds straight out the rear"
+   ]
+  ],
+  "fusebox_power_explode.png": [
+   [
+    1,
+    916.6,
+    127.9,
+    "cover (snaps on, 4 tongues)"
+   ],
+   [
+    2,
+    860.9,
+    302.0,
+    "relays plug in from the top"
+   ],
+   [
+    3,
+    1008.9,
+    387.2,
+    "AMI fuses on the studs"
+   ],
+   [
+    4,
+    903.6,
+    326.8,
+    "Keps nuts, 4 Nm max"
+   ],
+   [
+    5,
+    986.4,
+    420.4,
+    "M5 set screws (studs)"
+   ],
+   [
+    6,
+    965.1,
+    470.1,
+    "copper bar 25 x 6.35"
+   ],
+   [
+    7,
+    986.4,
+    478.4,
+    "output pads 15 x 3"
+   ],
+   [
+    8,
+    896.4,
+    586.2,
+    "base (deck on 4 angular legs)"
+   ],
+   [
+    9,
+    883.4,
+    608.7,
+    "bar bolts up from below"
+   ],
+   [
+    10,
+    986.4,
+    710.5,
+    "standoffs 40 mm (both rows, one part)"
+   ],
+   [
+    11,
+    993.6,
+    836.1,
+    "cable lugs"
+   ],
+   [
+    12,
+    993.6,
+    836.1,
+    "M5 x 10 lug bolts"
+   ],
+   [
+    13,
+    916.6,
+    895.3,
+    "belly pan (snaps on)"
+   ]
+  ],
+  "fusebox_power_step1.png": [
+   [
+    1,
+    1116.7,
+    241.6,
+    "lay the bar in its pocket"
+   ],
+   [
+    2,
+    1184.2,
+    248.7,
+    "lay the 14 pads in theirs"
+   ],
+   [
+    3,
+    858.6,
+    540.0,
+    "bar bolts up through the hex head pockets"
+   ],
+   [
+    4,
+    1184.2,
+    734.2,
+    "40 mm standoffs up into the hex holes, both rows"
+   ],
+   [
+    5,
+    1184.2,
+    246.3,
+    "set screw down through each pad into its standoff"
+   ],
+   [
+    6,
+    900.0,
+    502.1,
+    "base, right way up"
+   ]
+  ],
+  "fusebox_power_step2.png": [
+   [
+    1,
+    734.2,
+    499.7,
+    "crimp, push each terminal up into its cavity (wire side)"
+   ],
+   [
+    2,
+    980.5,
+    609.9,
+    "relay feed lug on its long standoff (M5 x 10)"
+   ],
+   [
+    3,
+    896.4,
+    522.2,
+    "feed round its saddle into terminal 30"
+   ],
+   [
+    4,
+    1119.1,
+    717.6,
+    "OUT lug on its standoff (M5 x 10)"
+   ],
+   [
+    5,
+    654.9,
+    523.4,
+    "tie the bundles; they leave the inboard end"
+   ]
+  ],
+  "fusebox_power_step3.png": [
+   [
+    1,
+    1132.1,
+    418.0,
+    "AMI fuses on the studs"
+   ],
+   [
+    2,
+    868.0,
+    356.4,
+    "Keps nuts, 4 Nm max"
+   ],
+   [
+    3,
+    761.4,
+    419.2,
+    "relays plug in"
+   ],
+   [
+    4,
+    842.0,
+    525.8,
+    "ACPS mini fuse"
+   ],
+   [
+    5,
+    1007.8,
+    421.6,
+    "1/0 lug on the M8 stud"
+   ]
+  ],
+  "fusebox_power_step4.png": [
+   [
+    1,
+    902.4,
+    776.8,
+    "belly pan snaps up into the skirt"
+   ],
+   [
+    2,
+    902.4,
+    230.9,
+    "cover snaps down over the deck"
+   ],
+   [
+    3,
+    975.8,
+    778.0,
+    "M6 through each foot (4), steel limiter"
+   ]
+  ]
+ },
+ "standoffs": {
+  "LOGIC": {
+   "feed": null,
+   "note": "rev 6: no standoffs - the feed lugs bolt straight onto the strips",
+   "z_d": 38.5,
+   "z_t": 60.5
+  },
+  "POWER": {
+   "IN": 40.0,
+   "OUT": 40.0,
+   "in_lug_z": 9.5,
+   "out_lug_z": 9.5,
+   "z_d": 32.0,
+   "z_t": 52.5,
+   "plate_bottom": 46.5,
+   "pad_bottom": 51.5
+  }
+ },
+ "logic_jumpers": {
+  "strips": {
+   "BUS1": {
+    "x": [
+     19.15,
+     22.35
+    ],
+    "y": [
+     8.0,
+     123.0
+    ]
+   },
+   "BUS2": {
+    "x": [
+     26.15,
+     29.35
+    ],
+    "y": [
+     21.0,
+     140.0
+    ]
+   }
+  },
+  "spine_x": 24.25,
+  "studs": 22,
+  "jumpers": 19,
+  "rows_z": [
+   10.0,
+   17.5
+  ]
+ },
+ "live_clearance": {
+  "pad_to_pad_min_mm": 3.0,
+  "bar_to_pad_min_mm": 17.05,
+  "input_lug_to_pad_min_mm": 13.72,
+  "under_deck_lug_to_lug_min_mm": 5.5,
+  "standoff_to_standoff_min_mm": 10.0,
+  "logic_strip_to_strip_mm": 3.8,
+  "logic_feed_lug_to_lug_mm": 106.83,
+  "battrelay_bar_to_pad_mm": 17.0,
+  "battrelay_relay_lug_to_lug_mm": 5.0,
+  "pan_to_nearest_live_power_mm": 0.59,
+  "bus_pos_lug_to_lug_min_mm": 4.0,
+  "bus_neg_lug_to_lug_min_mm": 3.0,
+  "bus_neg_to_pos_min_mm": 5.8,
+  "bus_pos_lug_to_out_pad_min_mm": 13.72,
+  "logic_jumper_lug_to_lug_min_mm": 1.86,
+  "logic_jumper_parts_to_printed_min_mm": 0.6,
+  "logic_jumper_parts_to_harness_min_mm": 0.56,
+  "logic_strip_to_printed_min_mm": 0.4,
+  "logic_bolt_to_other_strip_min_mm": 0.68
+ },
+ "wire_to_printed_contact": [],
+ "printed_parts": {
+  "Logic_Base_PA12_printed": {
+   "size_mm": [
+    143.0,
+    181.0,
+    60.5
+   ],
+   "volume_cm3": 237.1,
+   "mass_g_pa12": 239.0,
+   "bodies": 1
+  },
+  "Logic_Pan_PA12_printed": {
+   "size_mm": [
+    74.5,
+    174.1,
+    41.0
+   ],
+   "volume_cm3": 72.0,
+   "mass_g_pa12": 73.0,
+   "bodies": 1
+  },
+  "Logic_Cover_PA12_printed": {
+   "size_mm": [
+    87.9,
+    189.9,
+    42.4
+   ],
+   "volume_cm3": 93.5,
+   "mass_g_pa12": 94.0,
+   "bodies": 1
+  },
+  "Power_Base_PA12_printed": {
+   "size_mm": [
+    212.5,
+    307.0,
+    72.5
+   ],
+   "volume_cm3": 446.8,
+   "mass_g_pa12": 451.0,
+   "bodies": 1
+  },
+  "Power_Pan_PA12_printed": {
+   "size_mm": [
+    173.6,
+    238.5,
+    34.5
+   ],
+   "volume_cm3": 157.2,
+   "mass_g_pa12": 159.0,
+   "bodies": 1
+  },
+  "Power_Cover_PA12_printed": {
+   "size_mm": [
+    189.4,
+    251.9,
+    42.3
+   ],
+   "volume_cm3": 195.9,
+   "mass_g_pa12": 198.0,
+   "bodies": 1
+  },
+  "BattRelay_Base_PA12_printed": {
+   "size_mm": [
+    228.0,
+    92.0,
+    36.2
+   ],
+   "volume_cm3": 124.5,
+   "mass_g_pa12": 126.0,
+   "bodies": 1
+  },
+  "BattRelay_Cover_PA12_printed": {
+   "size_mm": [
+    192.9,
+    100.9,
+    47.5
+   ],
+   "volume_cm3": 107.0,
+   "mass_g_pa12": 108.0,
+   "bodies": 1
+  }
+ },
+ "boxes_mm": {
+  "LOGIC": {
+   "L": 79.0,
+   "D": 181.0,
+   "H": 89.9,
+   "z_d": 38.5,
+   "z_t": 60.5,
+   "cover_top": 89.9,
+   "spine_x": 24.2
+  },
+  "POWER": {
+   "L": 180.5,
+   "D": 243.0,
+   "H": 81.8,
+   "z_d": 32.0,
+   "z_t": 52.5,
+   "cover_top": 81.8,
+   "in_y": 178.0
+  },
+  "BATTRELAY": {
+   "L": 184.0,
+   "D": 92.0,
+   "H": 54.0,
+   "L_with_tabs": 228.0,
+   "D_with_tabs": 92.0
+  }
+ },
+ "bar_metal": "CuC110",
+ "interference": [],
+ "mass_g": {
+  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": 161.0,
+  "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": 297.3,
+  "Power_BarNeg_CuC110_25x6p35_L105": 135.3,
+  "Power_Pad_Out_CuC110_15x3": 89.6,
+  "BattRelay_Bar_Power_CuC110_25x6p35": 49.4,
+  "BattRelay_Pad_Out_CuC110_15x3": 6.4
+ },
+ "exported": [
+  "Logic_Base_PA12_printed.step",
+  "Logic_Base_PA12_printed.stl",
+  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step",
+  "Logic_Pan_PA12_printed.step",
+  "Logic_Pan_PA12_printed.stl",
+  "Logic_Cover_PA12_printed.step",
+  "Logic_Cover_PA12_printed.stl",
+  "Power_Base_PA12_printed.step",
+  "Power_Base_PA12_printed.stl",
+  "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
+  "Power_BarNeg_CuC110_25x6p35_L105.step",
+  "Power_Pad_Out_CuC110_15x3.step",
+  "Power_Pan_PA12_printed.step",
+  "Power_Pan_PA12_printed.stl",
+  "Power_Cover_PA12_printed.step",
+  "Power_Cover_PA12_printed.stl",
+  "BattRelay_Base_PA12_printed.step",
+  "BattRelay_Base_PA12_printed.stl",
+  "BattRelay_Bar_Power_CuC110_25x6p35.step",
+  "BattRelay_Pad_Out_CuC110_15x3.step",
+  "BattRelay_Cover_PA12_printed.step",
+  "BattRelay_Cover_PA12_printed.stl",
+  "ST185_fusebox_rev7_assembly.step",
+  "ST185_fusebox_rev7.f3d"
+ ],
+ "image_size": [
+  1800,
+  1056
+ ]
+}
