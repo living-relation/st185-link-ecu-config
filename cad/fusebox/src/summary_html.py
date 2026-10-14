@@ -43,7 +43,7 @@ PARTS = [
     ('FASTON 6.35 receptacle, 18-14 AWG', '42281-1', 'OWN 20 + BUY ~6', 'F7 85 / 86 (12) + micro 6.3 load blades (~14). qty_ordered 20.'),
     ('4.8 mm receptacle (micro coil blades)', 'TBD', '-', 'TBD: TE 4.8 x 0.8 receptacle for 18-20 AWG - pick in detail work.'),
     ('2.8 mm receptacle (mini fuse)', 'TBD', '-', 'TBD: 880398-2 is a candidate (plan S12), fit on an ATM blade not confirmed.'),
-    ('Tubular lug 10 mm2 M5 (AMI outputs, 8-10 AWG)', 'Klauke 2R5', 'BUY 10', 'Same lug family as the bus bar (Klauke R); TE SOLISTRAND alternative not checked yet.'),
+    ('Tubular lug 10 mm2 M5 (AMI outputs, 8-10 AWG)', 'Klauke 2R5', 'BUY 11', 'Same lug family as the bus bar (Klauke R); TE SOLISTRAND alternative not checked yet.'),
     ('Tubular lug 16 mm2 M5 (J/B1 HOT, 6 AWG)', 'Klauke 3R5', 'BUY 1', 'Hole 5.5 confirmed; tongue width NOT confirmed - pocket drawn for 12 mm.'),
     ('Tubular lug 50 mm2 M8 (1/0 input)', 'Klauke 6R8', 'BUY 1', 'b 20, l 47, hole 8.4 (RS 398-3015 listing).'),
     ('M5 A2 stud + Keps nut', 'TBD (ISO 4026 set screw M5x12 + DIN 6923 nut)', 'BUY 30 + 30', '2 per AMI position; 4 Nm max (AMI sheet).'),
@@ -140,12 +140,12 @@ h.append('</table></div>')
 h.append('<h2>Open choices for Dan</h2><ol>'
          '<li><b>One box or two?</b> The task card says "the 2 custom boxes"; plan rev 2 (your 10-13 answer, fewer boxes) is ONE box. Modeled as one. '
          'Splitting it at the F7 column gives a %0.f mm power box and a %0.f mm logic box, same depth.</li>'
-         '<li><b>Power bar metal:</b> aluminium 6061 here (matches the bus bar). Plan rev 2 said copper C110 25 x 3. Copper would be thinner (3 mm) but needs plating.</li>'
+         '<li><b>Power bar metal:</b> aluminium 6061 here (matches the bus bar). Plan rev 2 said copper C110 25 x 3. Copper carries more current for its size; aluminium is lighter and the same metal as the bus bar. 25 x 6 Al (150 mm2) carries more than the 1/0 copper (53 mm2) that feeds it.</li>'
          '</ol>' % (S.L - 72, 72 + 2 * S.WALL))
 h.append('<h2>Not done yet (detail work, after your OK)</h2><ul>'
          '<li>Terminal cavity shapes, TPA comb and front stops from the TE terminal drawings (cavities are placeholders at the right pin pattern).</li>'
          '<li>Deck and bar hold-down screws, lid gasket, molded labels; internal leads (relay-feed AMI to F7 pin 30, Bus 1 / Bus 2 links).</li>'
-         '<li>Drawings (PDF) and the CabinPower redraw (R70).</li></ul>')
+         '<li>Section renders (the section step ran Fusion out of memory and was dropped for rev 1), drawings (PDF), and the CabinPower redraw (R70).</li></ul>')
 for f, c in imgs[2:]:
     h.append('<figure><img src="%s" alt="%s"><figcaption>%s</figcaption></figure>' % (E(f), E(c), E(c)))
 h.append('</main></body></html>')

@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ST185 Fuse Box CAD</title><style>
+:root{--bg:#fafaf8;--fg:#1d1d1b;--mut:#666;--line:#ddd;--acc:#b35c00;--card:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1b1b1a;--fg:#ecece8;--mut:#a0a09a;--line:#3a3a38;--acc:#f0a050;--card:#242423}}
+:root[data-theme=dark]{--bg:#1b1b1a;--fg:#ecece8;--mut:#a0a09a;--line:#3a3a38;--acc:#f0a050;--card:#242423}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,Segoe UI,sans-serif;margin:0}
+main{max-width:1100px;margin:0 auto;padding:16px}
+h1{font-size:24px;margin:8px 0 2px}h2{font-size:18px;margin:28px 0 8px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.mut{color:var(--mut)}table{border-collapse:collapse;width:100%;font-size:13.5px}
+td,th{border-bottom:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600}
+.wrap{overflow-x:auto}figure{margin:12px 0}img{max-width:100%;border:1px solid var(--line);border-radius:6px;background:#888}
+figcaption{color:var(--mut);font-size:13px}.kpi{display:flex;flex-wrap:wrap;gap:10px}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;min-width:150px}
+.kpi b{display:block;font-size:20px}ol li{margin-bottom:6px}
+</style></head><body><main>
+<h1>ST185 glove-box fuse + relay box - CAD rev 1</h1>
+<p class="mut">Claude Code, 2026-10-14. One custom box (plan rev 2), modeled in Fusion from maker drawings. Dan's answers applied: L1 AMI studs (R71), L4 smallest sensible footprint (R72), L5 custom box (R70). Fusion: <code>ST185_fusebox_rev1</code> (Default Project). Model files (STEP / STL / f3d) are local, untracked, in <code>cad/fusebox/</code> of the main checkout. Build: <code>cad/fusebox/src/</code>.</p>
+<div class="kpi">
+<div>Outer size<b>254.5 x 170.0 x 82.5</b><span class="mut">mm, L x D x H closed</span></div>
+<div>With ears<b>290.5 mm</b><span class="mut">long</span></div>
+<div>Footprint<b>43,265 mm&sup2;</b><span class="mut">21 % less than plan rev 2 (370 x 148)</span></div>
+<div>Positions<b>15 AMI / 26 mini</b><span class="mut">7 F7 / 10 micro</span></div>
+</div>
+<figure><img src="fusebox_render_iso_open.png" alt="Lid off, from the forward / inboard corner. Forward wall: wire exit strip. Outboard end: 1/0 grommet."><figcaption>Lid off, from the forward / inboard corner. Forward wall: wire exit strip. Outboard end: 1/0 grommet.</figcaption></figure>
+<figure><img src="fusebox_render_top_open.png" alt="Top view, forward edge at the bottom. Left to right: logic zone (mini fuses, micro relays), F7 relays, AMI power zone."><figcaption>Top view, forward edge at the bottom. Left to right: logic zone (mini fuses, micro relays), F7 relays, AMI power zone.</figcaption></figure>
+<h2>How it is built</h2><ul><li><b>Tray + lid:</b> machined 6061, same style as the VRC / CSB3 enclosures. A 22 mm cable bay under the deck; every wire leaves through one grommet strip in the forward (firewall) wall. The 1/0 feed enters through its own grommet in the outboard end wall.</li><li><b>Isolation:</b> no conductor touches the aluminium. The printed PA6-GF deck carries every terminal, the bar and the pads; the box itself is isolated from the body by nylon shoulder washers on the 4 ears.</li><li><b>Power zone (outboard):</b> one 25 x 6 aluminium bar along the depth, M8 1/0 input at its forward end, AMI fuses on both sides. Inboard row feeds the F7 relays (short internal leads); outboard row is the direct outputs. Each output stud sits on an aluminium pad with a ring-lug inset machined in (bus bar design B style): the lug drops into the pocket, the fuse ear clamps it, the barrel exits straight into a wire hole through the deck.</li><li><b>F7 relays (middle):</b> 2 x 4 grid; the 8th spot is the ACPS mini fuse, beside the heater relay (L3B).</li><li><b>Logic zone (inboard):</b> Bus 1 and Bus 2 mini-fuse columns (8.1 mm pitch) on 8 x 4 aluminium strips inside the deck, then 10 micro relay positions.</li></ul>
+<h2>Dimensions</h2><div class="wrap"><table><tr><th>Item</th><th>mm</th><th>Source</th></tr>
+<tr><td>Box, closed (L x D x H)</td><td>254.5 x 170.0 x 82.5</td><td>model</td></tr>
+<tr><td>Cable bay / deck / parts above deck</td><td>22 / 26 / to 79.5</td><td>plan rev 2 allowance; terminal depths to set from TE drawings</td></tr>
+<tr><td>AMI fuse</td><td>41 long, 30 stud centres, body 16 x 12 x 6, hole 5.5, 4 Nm</td><td>Bussmann AMI sheet</td></tr>
+<tr><td>AMI pitch</td><td>16 (lug pocket 12.6 + 3.4 wall, gap &gt;= 3)</td><td>Klauke 2R5 b 12</td></tr>
+<tr><td>F7 relay</td><td>25.9 sq x 24.9, pitch 30 x 36</td><td>TE F7 data sheet 2023-03</td></tr>
+<tr><td>Micro relay</td><td>15.5 x 23 x 24.1, pitch 19 x 30</td><td>TE Micro Relay A 1308028</td></tr>
+<tr><td>Mini fuse</td><td>10.92 x 3.81, pitch 8.1</td><td>Bussmann ATM / Eaton 15400</td></tr>
+<tr><td>Ears</td><td>4 x 18 x 20 x 4, hole 10</td><td>model</td></tr>
+</table></div>
+<p><b>Isolation check (Fusion, measured):</b> closest conductor to the aluminium tray 5.0 mm, to the lid 15.5 mm; tray to the mounting face 1.5 mm.</p>
+<p><b>Interference check:</b> none between parts.</p>
+<p class="mut">Masses (g): Tray_Al6061 974.5, Lid_Al6061 350.2, LidScrew_M3x10_ISO7380 3.7, Deck_PA6GF_printed 1020.6, Bar_Power_Al6061_25x6 52.5, Pad_Out_Al6061 42.2, Strip_Logic_Al6061_8x4 18.2.</p>
+<h2>Parts list (OWN / BUY)</h2><p class="mut">Order: on-hand TE list, then TE, then approved suppliers, then others with a reason (R38). "OWN" counts are qty_ordered from te-on-hand-bom.csv - confirm on the shelf.</p><div class="wrap"><table><tr><th>Part</th><th>Part number</th><th>Qty</th><th>Note</th></tr>
+<tr><td>Relay F7 Maxi ISO, 680 ohm</td><td>1-1414147-0 (V23134-J0052-X429)</td><td>OWN 3 + BUY 1</td><td>heater, k_efi, k_fan (own); k_str (buy). te-on-hand-bom.csv: qty_ordered 3 - confirm on the shelf.</td></tr>
+<tr><td>Relay F7 Maxi ISO, bracket, 560 ohm</td><td>1-1393304-0 (V23134-J1052-X281)</td><td>OWN 2</td><td>k_fan2, power. Bracket not used in the box (cut off or fold flat).</td></tr>
+<tr><td>Micro relay A, NO, diode</td><td>5-1393292-8</td><td>OWN 2</td><td>HEAD LH / RH</td></tr>
+<tr><td>Micro relay A, NO</td><td>4-1904124-3</td><td>OWN 1</td><td>horn</td></tr>
+<tr><td>Micro relay A, NO, resistor</td><td>4-1904124-2</td><td>OWN 1</td><td>k_etb</td></tr>
+<tr><td>Micro relay A, CO, diode</td><td>6-1419137-4</td><td>OWN 2 + BUY 1</td><td>k_acc, k_eps_en (own); k_rev (buy)</td></tr>
+<tr><td>HCR150 relay</td><td>1416010-1</td><td>OWN 1</td><td>k_eps, mounted beside the box (not in it)</td></tr>
+<tr><td>AMI bolt-in fuse</td><td>Bussmann AMI-30 / -40 / -50 / -60</td><td>BUY 6 / 3 / 1 / 2</td><td>Other maker (R38 step 4): TE makes no bolt-in fuse. Part numbers from the Bussmann AMI sheet / Mouser list.</td></tr>
+<tr><td>Mini blade fuse (ATM)</td><td>Bussmann ATM-2 / 5 / 7.5 / 10 / 15 / 20</td><td>BUY 4 / 3 / 4 / 3 / 7 / 1</td><td>ratings 2A x4, 5A x3, 7.5A x4, 10A x3, 15A x7, 20A x1. Other maker: TE makes no blade fuse.</td></tr>
+<tr><td>FASTON 9.5 receptacle, 12-10 AWG</td><td>280756-4</td><td>BUY 12</td><td>F7 30 / 87 (6 relays). TE.</td></tr>
+<tr><td>FASTON 6.35 receptacle, 18-14 AWG</td><td>42281-1</td><td>OWN 20 + BUY ~6</td><td>F7 85 / 86 (12) + micro 6.3 load blades (~14). qty_ordered 20.</td></tr>
+<tr><td>4.8 mm receptacle (micro coil blades)</td><td>TBD</td><td>-</td><td>TBD: TE 4.8 x 0.8 receptacle for 18-20 AWG - pick in detail work.</td></tr>
+<tr><td>2.8 mm receptacle (mini fuse)</td><td>TBD</td><td>-</td><td>TBD: 880398-2 is a candidate (plan S12), fit on an ATM blade not confirmed.</td></tr>
+<tr><td>Tubular lug 10 mm2 M5 (AMI outputs, 8-10 AWG)</td><td>Klauke 2R5</td><td>BUY 11</td><td>Same lug family as the bus bar (Klauke R); TE SOLISTRAND alternative not checked yet.</td></tr>
+<tr><td>Tubular lug 16 mm2 M5 (J/B1 HOT, 6 AWG)</td><td>Klauke 3R5</td><td>BUY 1</td><td>Hole 5.5 confirmed; tongue width NOT confirmed - pocket drawn for 12 mm.</td></tr>
+<tr><td>Tubular lug 50 mm2 M8 (1/0 input)</td><td>Klauke 6R8</td><td>BUY 1</td><td>b 20, l 47, hole 8.4 (RS 398-3015 listing).</td></tr>
+<tr><td>M5 A2 stud + Keps nut</td><td>TBD (ISO 4026 set screw M5x12 + DIN 6923 nut)</td><td>BUY 30 + 30</td><td>2 per AMI position; 4 Nm max (AMI sheet).</td></tr>
+<tr><td>M8 A2 stud + nut + washer</td><td>TBD (ISO 4026 M8x20 + ISO 4032 + ISO 7089)</td><td>BUY 1</td><td>1/0 input</td></tr>
+<tr><td>Lid screw</td><td>ISO 7380 M3x10 A2</td><td>BUY 4</td><td></td></tr>
+<tr><td>Nylon shoulder washer, M5</td><td>TBD</td><td>BUY 8</td><td>2 per ear (above + below): box isolated from the body, floats 1.5 mm.</td></tr>
+<tr><td>Tray + lid</td><td>6061-T6, machined</td><td>make</td><td>walls 3, floor 3, lid 3</td></tr>
+<tr><td>Power bar, output pads, logic strips</td><td>6061-T6 25 x 6 bar, 15 pads, 2 x 8 x 4 strips</td><td>make</td><td>ring-lug insets machined in the Al (bus bar style)</td></tr>
+<tr><td>Deck</td><td>PA6-GF, printed</td><td>make</td><td>terminal cavities + TPA comb; holds every conductor off the tray</td></tr>
+</table></div>
+<h2>Open choices for Dan</h2><ol><li><b>One box or two?</b> The task card says "the 2 custom boxes"; plan rev 2 (your 10-13 answer, fewer boxes) is ONE box. Modeled as one. Splitting it at the F7 column gives a 182 mm power box and a 78 mm logic box, same depth.</li><li><b>Power bar metal:</b> aluminium 6061 here (matches the bus bar). Plan rev 2 said copper C110 25 x 3. Copper carries more current for its size; aluminium is lighter and the same metal as the bus bar. 25 x 6 Al (150 mm2) carries more than the 1/0 copper (53 mm2) that feeds it.</li></ol>
+<h2>Not done yet (detail work, after your OK)</h2><ul><li>Terminal cavity shapes, TPA comb and front stops from the TE terminal drawings (cavities are placeholders at the right pin pattern).</li><li>Deck and bar hold-down screws, lid gasket, molded labels; internal leads (relay-feed AMI to F7 pin 30, Bus 1 / Bus 2 links).</li><li>Section renders (the section step ran Fusion out of memory and was dropped for rev 1), drawings (PDF), and the CabinPower redraw (R70).</li></ul>
+<figure><img src="fusebox_render_iso_closed.png" alt="Closed, 4 isolated mounting ears."><figcaption>Closed, 4 isolated mounting ears.</figcaption></figure>
+<figure><img src="fusebox_render_iso_open_rear.png" alt="From the rear / outboard corner."><figcaption>From the rear / outboard corner.</figcaption></figure>
+</main></body></html>
