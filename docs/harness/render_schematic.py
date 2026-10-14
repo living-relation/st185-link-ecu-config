@@ -54,6 +54,7 @@ def _circuit_keys(d, fn):
     conds = list(d.get("wires", []))
     for c in d.get("cables", []):
         conds += c.get("cores", []) + ([c["shield"]] if c.get("shield") else [])
+    conds = [w for w in conds if w.get("source") and w.get("target")]   # a screen may float at one end
     for w in conds:
         if not (w.get("source") and w.get("target")):   # a screen left open at one end
             continue
