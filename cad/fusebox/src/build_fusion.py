@@ -252,6 +252,8 @@ def build(out_dir, SKIP_SECTIONS=False):
             micro.append((nm, pn, own, cx, cy))
             for (u, v, lx, ly) in ((0, 8.0, 8.3, 2.6), (0, -8.0, 8.3, 2.6), (-4.5, 0, 2.6, 6.8), (4.5, 0, 2.6, 6.8), (0, 0, 2.6, 4.0)):
                 cuts.append(cbox(cx + u, cy + v, S.DECK_Z0 - 1, S.DECK_Z1 + 1, lx, ly))
+    for col, (cx, fuses) in S.MINI_COLS.items():      # logic strip pockets, open underneath (strips slide in from below)
+        cuts.append(box(cx - 4.2, S.MINI_Y0 - 6.2, S.DECK_Z0 - 1, cx + 4.2, S.MINI_Y0 + (len(fuses) - 1) * S.MINI['pitch'] + 6.2, 44.2))
     sub_all(deck, cuts)
     deck_occ = comp('Deck_PA6GF_printed', deck, AP['deck'], MAT['pa'])
 
@@ -382,7 +384,11 @@ def build(out_dir, SKIP_SECTIONS=False):
     lid_b = lid_occ.bRepBodies.item(0)
     mount_b = mount_occ.bRepBodies.item(0)
     iso_r = {}
-    iso_r['min_conductor_to_tray_mm'] = round(min(mm.measureMinimumDistance(b, tray_b).value for _, b in cond) * 10, 2)
+    per = {}
+    for n, b in cond:
+        per[n] = min(per.get(n, 1e9), round(mm.measureMinimumDistance(b, tray_b).value * 10, 2))
+    iso_r['conductor_to_tray_mm'] = per
+    iso_r['min_conductor_to_tray_mm'] = min(per.values())
     iso_r['min_conductor_to_lid_mm'] = round(min(mm.measureMinimumDistance(b, lid_b).value for _, b in cond) * 10, 2)
     iso_r['tray_to_mount_face_mm'] = round(mm.measureMinimumDistance(tray_b, mount_b).value * 10, 2)
     report['isolation'] = iso_r

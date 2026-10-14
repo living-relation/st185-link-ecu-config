@@ -31,7 +31,7 @@ GAP = 3.0            # min gap between installed lugs (Dan's rule, bus bar)
 CLR = 0.3            # pocket clearance per side (bus bar POCKET clr)
 
 L = 254.5            # outer length (x)
-D = 163.0            # outer depth (y)
+D = 168.0            # outer depth (y): every conductor >= 5 mm from the Al tray
 H = LID_Z + LID_T    # 82.5 closed
 
 # ---------- logic zone (inboard): mini fuses + micro relays
@@ -60,7 +60,7 @@ F7_POS = [('k_efi', '1-1414147-0', 'OWN'), ('k_str', '1-1414147-0', 'BUY'), ('k_
 ACPS = ('ACPS', 10)
 
 # ---------- power zone (outboard): one Al bar along y, AMI both sides, M8 1/0 input at the forward end
-BAR = dict(x=190.0, w=25.0, y0=5.0, y1=158.0)
+BAR = dict(x=190.0, w=25.0, y0=5.0, y1=157.0)
 AMI = dict(L=41.0, c=30.0, body_l=16.0, body_w=12.0, body_h=6.0, ear_w=9.5, ear_t=0.8, hole=5.5)
 AMI_IN_OFF = 6.25    # input stud offset from the bar centre line (both rows on one 25 mm bar)
 AMI_PITCH = 16.0     # 2R5 pocket 12.6 + 3.4 wall >= GAP
@@ -80,7 +80,7 @@ M5_NUT = dict(af=8.0, h=4.0)
 M8_NUT = dict(af=13.0, h=6.5)
 
 # ---------- mounting: 4 Al ears, nylon shoulder washers above and below (box floats 1.5 mm off the mount face)
-EAR = dict(len=14.0, w=20.0, t=4.0, hole=10.0, ys=(30.0, 130.0))
+EAR = dict(len=18.0, w=20.0, t=4.0, hole=10.0, ys=(30.0, 130.0))
 ISO = dict(od=16.0, id=5.5, t=1.5, sleeve_od=9.5)
 LID_SCREWS = [(WALL + 3.2, WALL + 3.2), (L - WALL - 3.2, WALL + 3.2), (WALL + 3.2, D - WALL - 3.2), (L - WALL - 3.2, D - WALL - 3.2)]  # M3, in r7 corner bosses
 WIRE_EXIT = dict(x0=10.0, x1=L - 10.0, z0=6.0, z1=22.0)     # forward wall, under the deck
