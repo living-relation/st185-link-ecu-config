@@ -70,7 +70,7 @@ TOPICS: list[dict] = [
     {
         "dir": "../cad",
         "title": "CAD (custom parts)",
-        "blurb": "Every custom-part CAD model, one folder per part: bus bar (five saved designs), "
+        "blurb": "Every custom-part CAD model, one folder per part (index of all models: cad/README.md): bus bar (five saved designs), "
                  "fuse/relay box plan, VRC and CSB3 enclosures, DRB102 firewall plate. Pages, "
                  "renders and build scripts are in git; model files (STEP, STL, .f3d) are local only.",
     },
@@ -121,6 +121,7 @@ FORCE_RESEARCH: set[str] = set()
 FORCE_DELIVERABLE: set[str] = {
     "docs/sourcing/README.md",
     "docs/enclosures/README.md",
+    "cad/README.md",
 }
 
 # Card-level markdown tables (sensor pins, plumbing BOM, splice tables).
