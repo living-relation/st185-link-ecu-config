@@ -120,7 +120,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "S - battery sense <- RFRM ALTS 2A (Bus 1)",
+          "signal": "S - battery sense <- LOGIC ALTS 2A (Bus 1)",
           "propagate": false,
           "contactPartId": "ct_generic_skt"
         },
@@ -164,7 +164,7 @@
         {
           "id": "c2",
           "designation": "MAIN 2",
-          "signal": "LOAD -> H1 -> cabin PDB BAT+ (everything incl. alternator B+)",
+          "signal": "LOAD -> H1 -> cabin PDB BAT+ (everything incl. alternator B+) and -> battery relay block BATT + (fuel pump)",
           "propagate": false,
           "contactPartId": "ct_lug_stud"
         },
@@ -191,6 +191,81 @@
         "x": 5850,
         "y": 420
       }
+    },
+    {
+      "id": "fb_batt",
+      "label": "Battery relay block - fuel pump relay + its fuse, trunk, passenger side between the rear wall and the battery (cad/fusebox rev 5, DECISIONS R75, Z4)",
+      "cavities": [
+        {
+          "id": "in",
+          "designation": "BATT +",
+          "signal": "Battery feed in <- kill switch LOAD (MAIN 2), M6 stud on the bar - the kill switch also stops the pump",
+          "propagate": false
+        },
+        {
+          "id": "fp",
+          "designation": "FP 40A",
+          "signal": "AMI-40 FP fuse out -> fuel pump relay k_fp 30 (HCR150 terminal 3), one straight jumper",
+          "propagate": false,
+          "contactPartId": "ct_klauke_2r5"
+        }
+      ],
+      "layoutPosition": {
+        "x": 6000,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 1380
+      },
+      "partId": "cp_fb_batt",
+      "width": 390
+    },
+    {
+      "id": "k_fp",
+      "label": "Fuel Pump Relay, TE HCR150 (seated in the battery relay block K1) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V - HCR 150 coil is a 2-pole Superseal plug (TE terminals 1/2, not marked 85/86), resistor-suppressed so polarity-free",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "30",
+          "signal": "Fused +12V in (battery block FP 40A) - HCR150 terminal 3",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "85",
+          "signal": "ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4), from ST185-A-cabin",
+          "contactPartId": "ct_ss15",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "86",
+          "signal": "Coil + - ignition-switched 12V (LOGIC SW12), from ST185-CabinPower",
+          "contactPartId": "ct_ss15",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "87",
+          "signal": "+12V out -> fuel pump (HCR150 terminal 5), wire on ST185-RearFuel",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "87a"
+        }
+      ],
+      "layoutPosition": {
+        "x": 6150,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 480,
+        "y": 1380
+      },
+      "partId": "cp_rly_hcr150",
+      "width": 390
     }
   ],
   "terminals": [
@@ -366,7 +441,7 @@
       "id": "br_alt_s",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator S (G2-1) -> RFRM ALTS 2A, battery sense",
+      "signal": "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator S (G2-1) -> LOGIC ALTS 2A, battery sense",
       "schematicPosition": {
         "x": 480,
         "y": 1080
@@ -434,6 +509,51 @@
       "layoutPosition": {
         "x": 4560,
         "y": 510
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_fp85",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: Fuel Pump Relay 85 (k_fp) <- ECU-A A19",
+      "width": 390,
+      "layoutPosition": {
+        "x": 6300,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 990,
+        "y": 1380
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_fp86",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: SW12 (LOGIC SW12 7.5A) -> fuel pump relay k_fp coil + (86) in the battery relay block",
+      "width": 390,
+      "layoutPosition": {
+        "x": 6300,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 990,
+        "y": 1440
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_fp_pump",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-RearFuel: fuel pump relay k_fp 87 (HCR150 terminal 5) -> fuel pump c1",
+      "width": 390,
+      "layoutPosition": {
+        "x": 6300,
+        "y": 600
+      },
+      "schematicPosition": {
+        "x": 990,
+        "y": 1500
       },
       "propagate": false
     }
@@ -646,6 +766,71 @@
         "handle": "Terminal"
       },
       "partId": "m16_16_2"
+    },
+    {
+      "id": "w_fp_feed",
+      "color": "Red",
+      "source": {
+        "id": "kill_sw",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "fb_batt",
+        "handle": "in"
+      },
+      "partId": "m16_10_2"
+    },
+    {
+      "id": "w_fp_30",
+      "color": "Red",
+      "source": {
+        "id": "fb_batt",
+        "handle": "fp"
+      },
+      "target": {
+        "id": "k_fp",
+        "handle": "c1"
+      },
+      "partId": "m16_10_2"
+    },
+    {
+      "id": "w_fp85_h",
+      "color": "White",
+      "source": {
+        "id": "br_w_fp85",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_fp",
+        "handle": "c2"
+      },
+      "partId": "m16_18_9"
+    },
+    {
+      "id": "w_fp86_h",
+      "color": "Red",
+      "source": {
+        "id": "br_fp86",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_fp",
+        "handle": "c3"
+      },
+      "partId": "m16_18_2"
+    },
+    {
+      "id": "w_fp87_h",
+      "color": "Red",
+      "source": {
+        "id": "k_fp",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "br_fp_pump",
+        "handle": "Terminal"
+      },
+      "partId": "m16_10_2"
     }
   ],
   "branchPoints": [
@@ -897,6 +1082,51 @@
         "value": 60,
         "unit": "mm"
       }
+    },
+    {
+      "id": "b_bn_ks__fb_batt",
+      "sourceId": "kill_sw",
+      "targetId": "fb_batt",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_fb_batt__k_fp",
+      "sourceId": "fb_batt",
+      "targetId": "k_fp",
+      "length": {
+        "value": 60,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_k_fp__br_w_fp85",
+      "sourceId": "k_fp",
+      "targetId": "br_w_fp85",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_k_fp__br_fp86",
+      "sourceId": "k_fp",
+      "targetId": "br_fp86",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_k_fp__br_fp_pump",
+      "sourceId": "k_fp",
+      "targetId": "br_fp_pump",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
     }
   ],
   "schematicNotes": [
@@ -930,15 +1160,89 @@
     },
     {
       "id": "n_rev4",
-      "text": "ROUTE 1 REV 4 (Dan's mark-up, 2026-10-10): battery box moved to the passenger-side rear corner of the trunk (H1/H2 rerouted from there - bundle lengths above are inherited estimates from the prior ST185-EngineRoom-C drawing, not re-measured against the new spot - verify on the car). Starter moved to Dan's spot (lower-middle of the engine, p.29 leaders S2/S3). H4 (RADLOK+ -> starter) and H5 (alt B+ -> starter) now run as one bundle along the firewall and down to the starter (Dan: \"run 1 and 3 together\") - drawn as separate conductors here (H4 via RADLOK/rl_pos_eng, H5 via t_alt_b/w_alt) since harness.design has no native \"co-routed, not bundled-as-one-cable\" primitive; the physical bundling is a routing note, not a schema change. Alternator moved to the rear of the engine, RH side, under bulkheads A/B (MR2-style, rev 3 Dan mark-up 2026-10-04). The G2 round 3-pin plug (alt_plug, Toyota 90980-10341) is drawn here (Dan 2026-10-13, R17); its IG / L / S leads break off to ST185-EngineRoom-C and cross the firewall in harness C's own RH fender grommet (no ECU signal, so no bulkhead letter, R2) - IG and L to the cowl-side IG2-15 / IG2-16 leads under the ECU, S to the glove-box RFRM ALTS 2A.",
+      "text": "ROUTE 1 REV 4 (Dan's mark-up, 2026-10-10): battery box moved to the passenger-side rear corner of the trunk (H1/H2 rerouted from there - bundle lengths above are inherited estimates from the prior ST185-EngineRoom-C drawing, not re-measured against the new spot - verify on the car). Starter moved to Dan's spot (lower-middle of the engine, p.29 leaders S2/S3). H4 (RADLOK+ -> starter) and H5 (alt B+ -> starter) now run as one bundle along the firewall and down to the starter (Dan: \"run 1 and 3 together\") - drawn as separate conductors here (H4 via RADLOK/rl_pos_eng, H5 via t_alt_b/w_alt) since harness.design has no native \"co-routed, not bundled-as-one-cable\" primitive; the physical bundling is a routing note, not a schema change. Alternator moved to the rear of the engine, RH side, under bulkheads A/B (MR2-style, rev 3 Dan mark-up 2026-10-04). The G2 round 3-pin plug (alt_plug, Toyota 90980-10341) is drawn here (Dan 2026-10-13, R17); its IG / L / S leads break off to ST185-EngineRoom-C and cross the firewall in harness C's own RH fender grommet (no ECU signal, so no bulkhead letter, R2) - IG and L to the cowl-side IG2-15 / IG2-16 leads under the ECU, S to the glove-box LOGIC box ALTS 2A.",
       "schematicPosition": {
         "x": 1710,
         "y": 1080
       },
       "width": 390
+    },
+    {
+      "id": "n_batt_relay",
+      "schematicPosition": {
+        "x": 0,
+        "y": 1680
+      },
+      "text": "BATTERY RELAY BLOCK (DECISIONS R75, Z4; cad/fusebox rev 5, approved 2026-10-14): trunk, passenger side, between the rear wall and the battery. Kill switch MAIN 2 (LOAD) -> 10 AWG -> M6 stud on the block's copper bar -> AMI-40 FP -> one straight 10 AWG jumper -> HCR150 k_fp terminal 3; terminal 5 -> fuel pump (wire on ST185-RearFuel). Fed from the LOAD side, so the kill switch also stops the pump. Coil plug (Superseal 1.5, 282080-1): coil - from ECU A19 (ST185-A-cabin) and coil + from LOGIC SW12 (ST185-CabinPower) arrive broken off. The kill-switch stud carries the 1/0 H1 lug and the 10 AWG feed lug. Bundle lengths are estimates - measure at install."
     }
   ],
   "wireParts": [
+    {
+      "id": "m16_10_2",
+      "partNumber": "M22759/16-10-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 10 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_2",
+      "partNumber": "M22759/16-16-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_2",
+      "partNumber": "M22759/16-18-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_9",
+      "partNumber": "M22759/16-18-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_4",
+      "partNumber": "M22759/16-20-4",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Yellow",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
     {
       "id": "wp_1_0_blk",
       "partNumber": "BC-1/0-BLK",
@@ -971,39 +1275,6 @@
         "value": 2,
         "unit": "AWG"
       }
-    },
-    {
-      "id": "m16_20_9",
-      "partNumber": "M22759/16-20-9",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "White",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_4",
-      "partNumber": "M22759/16-20-4",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Yellow",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_16_2",
-      "partNumber": "M22759/16-16-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
     }
   ],
   "terminalParts": [
@@ -1024,20 +1295,20 @@
       "id": "tp_lug_m10_2"
     },
     {
-      "type": "Ring",
+      "id": "tp_lug_m10_50",
       "size": "M10",
-      "partNumber": "GENERIC LUG M10 50MM2",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 35,
-        "unit": "Metric"
-      },
+      "type": "Ring",
       "maxGauge": {
-        "value": 110,
-        "unit": "Metric"
+        "unit": "Metric",
+        "value": 110
       },
+      "minGauge": {
+        "unit": "Metric",
+        "value": 35
+      },
+      "partNumber": "GENERIC LUG M10 50MM2",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m10_50"
+      "manufacturer": "generic"
     },
     {
       "type": "Ring",
@@ -1058,6 +1329,33 @@
   ],
   "connectorParts": [
     {
+      "id": "cp_alt_round3",
+      "partNumber": "90980-10341",
+      "description": "CONNECTOR, PLUG, TOYOTA, ROUND, 3 POS",
+      "manufacturer": "Toyota",
+      "numberOfCavities": 3,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_generic_skt"
+        }
+      ]
+    },
+    {
+      "id": "cp_fb_batt",
+      "partNumber": "ST185-FB-BATT rev 5",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BLOCK, RELAY AND FUSE, PRINTED PA12, COPPER BAR, M6 STUD, 1 AMI FUSE, 1 HCR 150 RELAY",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_ring_m6_8"
+        }
+      ]
+    },
+    {
       "partNumber": "jump-post-M8",
       "manufacturer": "TBD",
       "description": "POST, JUMP START, M8, INSULATED",
@@ -1072,6 +1370,20 @@
         "source": "url",
         "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/jump-post-m8.png"
       }
+    },
+    {
+      "id": "cp_ks_longacre",
+      "partNumber": "52-45780",
+      "manufacturer": "Longacre",
+      "description": "SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE, 175 A CONTINUOUS, 1000 A PEAK, 20 A AUXILIARY POLE, 6-36 V",
+      "url": "https://www.ogracing.com/products/longacre-battery-disconnect-switch",
+      "numberOfCavities": 4,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_lug_stud"
+        }
+      ]
     },
     {
       "partNumber": "RL00801-50BK",
@@ -1108,42 +1420,57 @@
       }
     },
     {
-      "id": "cp_alt_round3",
-      "partNumber": "90980-10341",
-      "description": "CONNECTOR, PLUG, TOYOTA, ROUND, 3 POS",
-      "manufacturer": "Toyota",
-      "numberOfCavities": 3,
+      "id": "cp_rly_hcr150",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_high_current_150.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_high_current_150.jpg"
+      },
+      "partNumber": "V23132-A2001-B200",
+      "description": "RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS",
+      "manufacturer": "TE Connectivity",
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_generic_skt"
+          "contactPartId": "ct_ring_m6_8"
         }
-      ]
-    },
-    {
-      "id": "cp_ks_longacre",
-      "partNumber": "52-45780",
-      "manufacturer": "Longacre",
-      "description": "SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE, 175 A CONTINUOUS, 1000 A PEAK, 20 A AUXILIARY POLE, 6-36 V",
-      "url": "https://www.ogracing.com/products/longacre-battery-disconnect-switch",
-      "numberOfCavities": 4,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_lug_stud"
-        }
-      ]
+      ],
+      "numberOfCavities": 5
     }
   ],
   "contactParts": [
     {
-      "partNumber": "(ring lug, sized to cable)",
-      "manufacturer": "generic",
+      "id": "ct_generic_skt",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "(generic)",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
+      "manufacturer": "Generic"
+    },
+    {
+      "id": "ct_klauke_2r5",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "2R5",
+      "description": "TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD",
+      "manufacturer": "Klauke",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      }
+    },
+    {
+      "id": "ct_lug_stud",
       "type": "Other",
       "gender": "Socket",
-      "contactColor": "Silver",
+      "partNumber": "(ring lug, sized to cable)",
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK",
-      "id": "ct_lug_stud"
+      "contactColor": "Silver",
+      "manufacturer": "generic"
     },
     {
       "partNumber": "(integral - RL00801-50)",
@@ -1155,12 +1482,38 @@
       "id": "ct_radlok8"
     },
     {
-      "id": "ct_generic_skt",
+      "id": "ct_ring_m6_8",
+      "type": "Other",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "(ring lug, 8 AWG, M6)",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK",
+      "contactColor": "Silver",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "ct_ss15",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "(generic)",
-      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
-      "manufacturer": "Generic"
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "282110-1",
+      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2",
+      "contactColor": "Silver",
+      "manufacturer": "TE Connectivity"
     }
   ]
 }

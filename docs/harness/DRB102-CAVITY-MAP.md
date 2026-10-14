@@ -95,8 +95,8 @@ not list a plug by number - check one in the physical housing before buying more
 
 | DRB | Wedgelock | Size | Bulkhead | Cavity id | Use |
 |---|---|---|---|---|---|
-| 1 | right (1-51) | 12 | A | c48 | Switched 12V - INJECTOR power feed, fuse RFRM INJ 15A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way) |
-| 2 | right (1-51) | 12 | A | c49 | Switched 12V - COP / ignition coil power feed, fuse RFRM COP 20A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way) |
+| 1 | right (1-51) | 12 | A | c48 | Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way) |
+| 2 | right (1-51) | 12 | A | c49 | Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG) - moved in from retired IX_RAIL_A (DTP 4-way) |
 | 3 | right (1-51) | 12 | B | c38 | spare (size 12) |
 | 4 | right (1-51) | 12 | B | c39 | spare (size 12) |
 | 5 | right (1-51) | 12 | B | c40 | spare (size 12) |
@@ -136,7 +136,7 @@ not list a plug by number - check one in the physical housing before buying more
 | 39 | right (1-51) | 16 | A | c23 | ECU-A A21 |
 | 40 | right (1-51) | 16 | A | c25 | ECU-A A15 |
 | 41 | right (1-51) | 16 | A | c26 | ECU-A A16 |
-| 42 | right (1-51) | 16 | A | c35 | MRS EPS pump logic enable (fuse box MTA-2 MRS, 7.5A) * |
+| 42 | right (1-51) | 16 | A | c35 | MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) * |
 | 43 | right (1-51) | 4 | B | c52 | spare (size 4) |
 | 44 | right (1-51) | 16 | A | c36 | Aux 7 MRS speed-out (ECU A27) |
 | 45 | right (1-51) | 16 | A | c37 | A/C coolant switch signal -> A/C amplifier TW (not ECU) |

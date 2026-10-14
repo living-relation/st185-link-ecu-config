@@ -331,19 +331,19 @@ number is still unidentified; `90980-*` family, to confirm.
 ### Relay placement
 
 **Changed 2026-09-28 (Daniel): every relay is in the cabin.** `k_eps` (HCR 150) now sits
-in the glove box beside the fuse box LMI (was HCFB), drawn on `ST185-CabinPower`. The ECU active low, coil feed and LMI L7 feed (was HCFB H4) are cabin wires; the pump feed from
+in the glove box beside the POWER box (DECISIONS R75; was HCFB, then the LMI), drawn on `ST185-CabinPower`. The coil wires and the POWER AMI OUT-6 EPS feed (was LMI L7, HCFB H4) are cabin wires; the pump feed from
 contact 87 runs point-to-point on loom C through the firewall (no bulkhead), like the fan
 feeds. This replaces the 2026-09-17 "engine bay, next to the pump" placement.
 
-**Sized 2026-09-28:** Bussmann AMI-60 (60 A) at LMI L7 (was HCFB H4) and 8 AWG feed. Pump draw: about 4 A idle and under 40 A at full load on a stock pump (honda-tech 'EHPS Redone' write-up; diyelectriccar MR2 EHPS wiki), 70-80 A at maximum load on raised-pressure pumps (Alaria Tech FAQ); factory MR-S EHPS fuse 50 A (2002 MR2 EWD element list). Bussmann AMI time-current (Cooper Bussmann AMI series data sheet): 100% >= 100 h, 110% >= 4 h, 150% 90-3600 s, 200% 5-100 s - an 80 A peak is 133% of 60 A, so it holds well over 90 s, longer than any full-lock burst. Wire: 8 AWG 150 C single wire in free air 76 A (Thermal Wire and Cable ampacity table, AS50881 method) >= 60 A, so the fuse protects the wire; 10 AWG (55 A) would not. The HCR 150's own rating:  130 A at 85 C
+**Sized 2026-09-28:** Bussmann AMI-60 (60 A) at POWER AMI OUT-6 (was LMI L7, HCFB H4) and 8 AWG feed. Pump draw: about 4 A idle and under 40 A at full load on a stock pump (honda-tech 'EHPS Redone' write-up; diyelectriccar MR2 EHPS wiki), 70-80 A at maximum load on raised-pressure pumps (Alaria Tech FAQ); factory MR-S EHPS fuse 50 A (2002 MR2 EWD element list). Bussmann AMI time-current (Cooper Bussmann AMI series data sheet): 100% >= 100 h, 110% >= 4 h, 150% 90-3600 s, 200% 5-100 s - an 80 A peak is 133% of 60 A, so it holds well over 90 s, longer than any full-lock burst. Wire: 8 AWG 150 C single wire in free air 76 A (Thermal Wire and Cable ampacity table, AS50881 method) >= 60 A, so the fuse protects the wire; 10 AWG (55 A) would not. The HCR 150's own rating:  130 A at 85 C
 with a 25 mm2 load cable (TE datasheet V23132-X0000-A001). The longer heavy run from the
 glove box to the pump also makes voltage drop a sizing input once the current is known.
 
 **Two relays (DECISIONS R22, Daniel 2026-10-04; drawn 2026-10-12).** `k_eps` (HCR 150) carries
 the pump feed: coil+ = 12 V ignition (`sp_sw12`), coil- switched to ground by the pump's own pin
 B5 (net `MRS_RLY`, glove box -> `ST185-A-cabin` -> bulkhead A c27 -> `ST185-A-engine` ->
-`ST185-EngineRoom-C`). `k_eps_en` (TE `6-1419137-4` micro relay in an RFRM micro position, fed by
-RFRM EPSEN 7.5 A) is the ECU's enable: Link Ign 6 (B12) sinks its coil-, its 87 feeds the MTA-2
+`ST185-EngineRoom-C`). `k_eps_en` (TE `6-1419137-4` micro relay in LOGIC box M21, fed by
+LOGIC EPSEN 7.5 A) is the ECU's enable: Link Ign 6 (B12) sinks its coil-, its 87 feeds the LOGIC
 MRS 7.5 A fuse -> pump C1. So the ECU switches the pump on, and the pump switches its own main
 relay. Ign 6 runs on above ~400 rpm with a 1-2 s off-delay (setup time, R52). Older text named
 connector B pin 6 "relay request out"; R22 names B5 - see `docs/OPEN-ITEMS.md`.

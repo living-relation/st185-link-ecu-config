@@ -13,14 +13,14 @@
         {
           "id": "c48",
           "designation": "1",
-          "signal": "Switched 12V - INJECTOR power feed, fuse RFRM INJ 15A (14 AWG)",
+          "signal": "Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG)",
           "contactPartId": "ct_hdp12s",
           "propagate": false
         },
         {
           "id": "c49",
           "designation": "2",
-          "signal": "Switched 12V - COP / ignition coil power feed, fuse RFRM COP 15A (14 AWG)",
+          "signal": "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)",
           "contactPartId": "ct_hdp12s",
           "propagate": false
         },
@@ -289,7 +289,7 @@
         {
           "id": "c35",
           "designation": "42",
-          "signal": "MRS EPS pump logic enable (fuse box MTA-2 MRS, 7.5A) *",
+          "signal": "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -2082,7 +2082,7 @@
         "handle": "Terminal"
       },
       "color": "Violet",
-      "partId": "m16_20_7"
+      "partId": "m16_18_7"
     }
   ],
   "cables": [
@@ -3079,7 +3079,7 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead DRB102 - engine plug (section A) 35: MRS EPS pump logic enable - fuse box MTA-2 MRS 7.5A (fed from k_eps_en 87, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27); engine-side wire on ST185-EngineRoom-C (broken off)\nBulkhead DRB102 - engine plug (section A) 36: Aux 7 MRS speed-out (ECU A27) - engine-side wire on ST185-EngineRoom-C (broken off)",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead DRB102 - engine plug (section A) 35: MRS EPS pump logic enable - fuse box LOGIC MRS 7.5A (fed from k_eps_en 87, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27); engine-side wire on ST185-EngineRoom-C (broken off)\nBulkhead DRB102 - engine plug (section A) 36: Aux 7 MRS speed-out (ECU A27) - engine-side wire on ST185-EngineRoom-C (broken off)",
       "schematicPosition": {
         "x": 3570,
         "y": -120
@@ -3270,6 +3270,17 @@
       "color": "Red",
       "gauge": {
         "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_7",
+      "partNumber": "M22759/16-18-7",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, VIOLET, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Violet",
+      "gauge": {
+        "value": 18,
         "unit": "AWG"
       }
     }

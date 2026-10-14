@@ -12,7 +12,7 @@
     },
     "CabinPower": {
       "file": "ST185-CabinPower.harness",
-      "physical": "Cabin power (non-ECU): the glove-box fuse box (LMI + RFRM + 3x MTA, Option B) with the ECU-switched relays seated in it (k_fan2 / k_efi / k_fp / k_str / k_etb / k_fan / k_acc / k_eps_en, k_eps HCR150 beside), battery feed ring, fuel pump run to the trunk; ECU coil wires from A-cabin / B-cabin and the A-cabin, B-cabin, A-engine, CSB3 and EngineRoom-C ends arrive broken off"
+      "physical": "Cabin power (non-ECU): the two glove-box fuse + relay boxes (DECISIONS R75, cad/fusebox rev 5) - POWER box (copper bar fed 1/0 from the PDB bus, AMI IN relay feeds, AMI OUT, Mini ISO relays k_htr / k_efi / k_str / k_fan / k_fan2 / k_pwr, ACPS fuse) and LOGIC box (Bus 1 / Bus 2 mini fuses, micro relays k_hl / k_hr / k_horn / k_etb / k_acc / k_eps_en / k_rev), k_eps HCR150 beside them, battery feed ring; ECU coil wires from A-cabin / B-cabin and the A-cabin, B-cabin, A-engine, CSB3, CAN, AntiTheft, RearLights, HeavyDC and EngineRoom-C ends arrive broken off"
     },
     "A-engine": {
       "file": "ST185-A-engine.harness",
@@ -32,7 +32,7 @@
     },
     "HeavyDC": {
       "file": "ST185-HeavyDC.harness",
-      "physical": "Heavy DC chain (Route 1) - trunk battery, RADLOK firewall pair, starter, 160 A alternator B+, engine-bay jump post, engine block ground. Hands off to EngineRoom-C at the cabin PDB (breaks H1/H2/H3/H6a) - the PDB itself, and everything else it feeds (cabin fuse block, glove-box body block, OEM hot, AM1/AM2), stays on EngineRoom-C."
+      "physical": "Heavy DC chain (Route 1) - trunk battery, RADLOK firewall pair, starter, 160 A alternator B+, engine-bay jump post, engine block ground. Hands off to EngineRoom-C at the cabin PDB (breaks H1/H2/H3/H6a) - the PDB itself, and everything else it feeds (cabin fuse block, glove-box body block, OEM hot, AM1/AM2), stays on EngineRoom-C. Also the battery relay block in the trunk (DECISIONS R75, passenger side between the rear wall and the battery): fed from the kill switch LOAD side, AMI-40 FP fuse and the fuel pump relay k_fp (HCR150); its coil wires arrive broken off from A-cabin (A19) and CabinPower (SW12), its output breaks off to RearFuel."
     },
     "ClusterLED": {
       "file": "ST185-ClusterLED.harness",
@@ -48,7 +48,7 @@
     },
     "RearFuel": {
       "file": "ST185-RearFuel.harness",
-      "physical": "Rear Fuel - fuel level sender behind IX_FUEL_LVL (the pump run stays on ST185-A-cabin, plan 6.41)"
+      "physical": "Rear Fuel - fuel level sender behind IX_FUEL_LVL, and the fuel pump with its trunk ground; the pump feed arrives broken off from k_fp in the battery relay block (HeavyDC)"
     },
     "AntiTheft": {
       "file": "ST185-AntiTheft.harness",
@@ -505,7 +505,7 @@
         "connector": "R/B2",
         "pin": "2",
         "color": "W-L",
-        "function": "always-hot door lock / auto tilt-away feed -> splice I1 -> door lock ECU D8-8 / tilt-away ECU (R/B2 removed; R58 new RFRM 15 A fuse)",
+        "function": "always-hot door lock / auto tilt-away feed -> splice I1 -> door lock ECU D8-8 / tilt-away ECU (R/B2 removed; R58 new LOGIC 15 A fuse)",
         "method": "crimp butt splice into the factory cowl-side W-L lead at the left kick (cabin side)"
       }
     },
@@ -533,7 +533,7 @@
         "connector": "H1",
         "pin": "3",
         "color": "R (factory wiring; new wire here)",
-        "function": "headlight LH power <- RFRM HL",
+        "function": "headlight LH power <- LOGIC HL",
         "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
       }
     },
@@ -547,7 +547,7 @@
         "connector": "H2",
         "pin": "3",
         "color": "R-Y (factory wiring; new wire here)",
-        "function": "headlight RH power <- RFRM HR",
+        "function": "headlight RH power <- LOGIC HR",
         "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
       }
     },
@@ -1989,7 +1989,7 @@
     {
       "id": "BR_W_INJ_PWR_C",
       "type": "broken_off",
-      "what": "RFRM INJ 15A injector rail to bulkhead A firewall (bh_a_fw c48, shared DRB102)",
+      "what": "LOGIC INJ 15A injector rail to bulkhead A firewall (bh_a_fw c48, shared DRB102)",
       "ends": [
         {
           "harness": "A-cabin",
@@ -2004,7 +2004,7 @@
     {
       "id": "BR_W_COP_PWR_C",
       "type": "broken_off",
-      "what": "RFRM COP 15A COP rail to bulkhead A firewall (bh_a_fw c49, shared DRB102)",
+      "what": "LOGIC COP 15A COP rail to bulkhead A firewall (bh_a_fw c49, shared DRB102)",
       "ends": [
         {
           "harness": "A-cabin",
@@ -2064,7 +2064,7 @@
     {
       "id": "BR_W_CSB12",
       "type": "broken_off",
-      "what": "CSB3 +12V from RFRM CSB 5A (switched k_efi rail)",
+      "what": "CSB3 +12V from LOGIC CSB 5A (switched k_efi rail)",
       "ends": [
         {
           "harness": "CSB3",
@@ -2274,7 +2274,7 @@
     {
       "id": "BR_W_LAM12",
       "type": "broken_off",
-      "what": "CAN-Lambda +12V from RFRM LAM, bulkhead B c3",
+      "what": "CAN-Lambda +12V from LOGIC LAM, bulkhead B c3",
       "ends": [
         {
           "harness": "B-engine",
@@ -2394,7 +2394,7 @@
     {
       "id": "BR_W_FB_SW12",
       "type": "broken_off",
-      "what": "RFRM SW12 to sp_sw12",
+      "what": "LOGIC SW12 to sp_sw12",
       "ends": [
         {
           "harness": "A-cabin",
@@ -2409,7 +2409,7 @@
     {
       "id": "BR_W_FB_MRS_EN",
       "type": "broken_off",
-      "what": "MTA-2 MRS to Bulkhead A 35",
+      "what": "LOGIC MRS to Bulkhead A 35",
       "ends": [
         {
           "harness": "A-cabin",
@@ -2424,7 +2424,7 @@
     {
       "id": "BR_W_LAM12_C",
       "type": "broken_off",
-      "what": "CAN-Lambda +12V from RFRM LAM to bulkhead B c3",
+      "what": "CAN-Lambda +12V from LOGIC LAM to bulkhead B c3",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2559,7 +2559,7 @@
     {
       "id": "BR_W_PMU_HL",
       "type": "broken_off",
-      "what": "HEAD LH, RFRM HL 15A + relay -> headlight LH H1 pin 3",
+      "what": "HEAD LH, LOGIC HL 15A + relay -> headlight LH H1 pin 3",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2574,7 +2574,7 @@
     {
       "id": "BR_W_PMU_HR",
       "type": "broken_off",
-      "what": "HEAD RH, RFRM HR 15A + relay -> headlight RH H2 pin 3",
+      "what": "HEAD RH, LOGIC HR 15A + relay -> headlight RH H2 pin 3",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2589,7 +2589,7 @@
     {
       "id": "BR_W_PMU_HORN",
       "type": "broken_off",
-      "what": "horn relay 87 (RFRM HN, HAZ-HORN 15A) -> horns H3 / H4",
+      "what": "horn relay 87 (LOGIC HZ, HAZ-HORN 15A) -> horns H3 / H4",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2604,7 +2604,7 @@
     {
       "id": "BR_W_HAZ",
       "type": "broken_off",
-      "what": "HAZ-HORN, RFRM HZ 15A fuse out -> hazard feed IE1-12",
+      "what": "HAZ-HORN, LOGIC HZ 15A fuse out -> hazard feed IE1-12",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2619,7 +2619,7 @@
     {
       "id": "BR_W_PMU_DOME",
       "type": "broken_off",
-      "what": "DOME, RFRM DM 20A -> J/B1 1H-2",
+      "what": "DOME, LOGIC DM 20A -> J/B1 1H-2",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2634,7 +2634,7 @@
     {
       "id": "BR_W_PMU_RTR",
       "type": "broken_off",
-      "what": "RTR, LMI L3 30A -> IE1-3 (retract control relay R8)",
+      "what": "RTR, POWER RTR 30A -> IE1-3 (retract control relay R8)",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2649,7 +2649,7 @@
     {
       "id": "BR_W_ACP_1",
       "type": "broken_off",
-      "what": "A/C pressure switch +12V, MTA-3 ACPS 10A to A5-1",
+      "what": "A/C pressure switch +12V, POWER ACPS 10A to A5-1",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2664,7 +2664,7 @@
     {
       "id": "BR_W_PDB_AM1",
       "type": "broken_off",
-      "what": "AM1, LMI L4 40A to IE1-10",
+      "what": "AM1, POWER AM1 40A to IE1-10",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2679,7 +2679,7 @@
     {
       "id": "BR_W_PDB_AM2",
       "type": "broken_off",
-      "what": "AM2, LMI L5 30A to IE1-17",
+      "what": "AM2, POWER AM2 30A to IE1-17",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2694,7 +2694,7 @@
     {
       "id": "BR_W_PDB_JB1",
       "type": "broken_off",
-      "what": "OEM HOT, LMI L6 60A to J/B1 1I-1",
+      "what": "OEM HOT, POWER JB1 60A to J/B1 1I-1",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2709,7 +2709,7 @@
     {
       "id": "BR_W_RB4",
       "type": "broken_off",
-      "what": "heater relay 87 (MTA-2 HTR 40A) -> blower motor B4 pin 2",
+      "what": "heater relay 87 (POWER HTR 40A) -> blower motor B4 pin 2",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2724,7 +2724,7 @@
     {
       "id": "BR_W_RB2",
       "type": "broken_off",
-      "what": "power relay 87 (MTA-3 PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
+      "what": "power relay 87 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2739,7 +2739,7 @@
     {
       "id": "BR_W_RB2_WL",
       "type": "broken_off",
-      "what": "RFRM WL 15A -> door lock / tilt-away always-hot W-L (ex-R/B2 pin 2, R58)",
+      "what": "LOGIC WL 15A -> door lock / tilt-away always-hot W-L (ex-R/B2 pin 2, R58)",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2769,14 +2769,14 @@
     {
       "id": "BR_W_FP85",
       "type": "broken_off",
-      "what": "Fuel Pump Relay 85 (k_fp) <- ECU-A A19",
+      "what": "Fuel Pump Relay 85 (k_fp, battery relay block) <- ECU-A A19",
       "ends": [
         {
           "harness": "A-cabin",
           "terminal": "br_w_fp85"
         },
         {
-          "harness": "CabinPower",
+          "harness": "HeavyDC",
           "terminal": "br_w_fp85"
         }
       ]
@@ -2844,7 +2844,7 @@
     {
       "id": "BR_W_EPS_TRIG",
       "type": "broken_off",
-      "what": "EPS enable relay k_eps_en 85 (RFRM micro, glove box) <- ECU-B B12",
+      "what": "EPS enable relay k_eps_en 85 (LOGIC box M21, glove box) <- ECU-B B12",
       "ends": [
         {
           "harness": "B-cabin",
@@ -2934,7 +2934,7 @@
     {
       "id": "BR_W_START_IN",
       "type": "broken_off",
-      "what": "Ignition switch ST1 tap (fl_start_req_c1) -> MTA-3 B30 IN",
+      "what": "Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN",
       "ends": [
         {
           "harness": "B-cabin",
@@ -2949,7 +2949,7 @@
     {
       "id": "BR_W_START_OUT",
       "type": "broken_off",
-      "what": "MTA-3 B30 2A MiniVal out -> ECU-B B30 (DI 7)",
+      "what": "LOGIC B30 2A out -> ECU-B B30 (DI 7)",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2964,7 +2964,7 @@
     {
       "id": "BR_T_AT_12V",
       "type": "broken_off",
-      "what": "RFRM ALM 5A (Bus 1, permanent) -> alarm +12V constant",
+      "what": "LOGIC ALM 5A (Bus 1, permanent) -> alarm +12V constant",
       "ends": [
         {
           "harness": "AntiTheft",
@@ -2979,7 +2979,7 @@
     {
       "id": "BR_T_AT_12V_SHK",
       "type": "broken_off",
-      "what": "RFRM ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
+      "what": "LOGIC ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
       "ends": [
         {
           "harness": "AntiTheft",
@@ -2994,7 +2994,7 @@
     {
       "id": "BR_T_AT_IG",
       "type": "broken_off",
-      "what": "RFRM ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
+      "what": "LOGIC ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
       "ends": [
         {
           "harness": "AntiTheft",
@@ -3009,7 +3009,7 @@
     {
       "id": "BR_W_DEV",
       "type": "broken_off",
-      "what": "RFRM DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
+      "what": "LOGIC DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
       "ends": [
         {
           "harness": "CabinPower",
@@ -3129,7 +3129,7 @@
     {
       "id": "BR_ALT_S",
       "type": "broken_off",
-      "what": "alternator S (G2-1) -> RFRM ALTS 2A, battery sense",
+      "what": "alternator S (G2-1) -> LOGIC ALTS 2A, battery sense",
       "ends": [
         {
           "harness": "HeavyDC",
@@ -3144,7 +3144,7 @@
     {
       "id": "BR_ALT_S_CP",
       "type": "broken_off",
-      "what": "RFRM ALTS 2A (Bus 1) -> alternator S battery sense",
+      "what": "LOGIC ALTS 2A (Bus 1) -> alternator S battery sense",
       "ends": [
         {
           "harness": "EngineRoom-C",
@@ -3153,6 +3153,36 @@
         {
           "harness": "CabinPower",
           "terminal": "br_alt_s_cp"
+        }
+      ]
+    },
+    {
+      "id": "BR_FP86",
+      "type": "broken_off",
+      "what": "LOGIC SW12 -> fuel pump relay k_fp coil + (86), battery relay block",
+      "ends": [
+        {
+          "harness": "CabinPower",
+          "terminal": "br_fp86"
+        },
+        {
+          "harness": "HeavyDC",
+          "terminal": "br_fp86"
+        }
+      ]
+    },
+    {
+      "id": "BR_FP_PUMP",
+      "type": "broken_off",
+      "what": "fuel pump relay k_fp 87 (battery relay block) -> fuel pump c1",
+      "ends": [
+        {
+          "harness": "HeavyDC",
+          "terminal": "br_fp_pump"
+        },
+        {
+          "harness": "RearFuel",
+          "terminal": "br_fp_pump"
         }
       ]
     }

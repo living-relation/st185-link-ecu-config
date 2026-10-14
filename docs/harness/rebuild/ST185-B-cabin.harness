@@ -592,7 +592,7 @@
         {
           "id": "c3",
           "designation": "95",
-          "signal": "CAN-Lambda +12V, RFRM LAM 7.5A (14 AWG)",
+          "signal": "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)",
           "contactPartId": "ct_hdp12p"
         },
         {
@@ -1158,7 +1158,7 @@
     {
       "id": "br_w_lam12_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from RFRM LAM to bulkhead B c3",
+      "signal": "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3",
       "width": 390,
       "layoutPosition": {
         "x": 1020,
@@ -1263,7 +1263,7 @@
     {
       "id": "br_w_start_in",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Ignition switch ST1 tap (fl_start_req_c1) -> MTA-3 B30 IN",
+      "signal": "Broken off - continues on ST185-CabinPower: Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN",
       "width": 390,
       "layoutPosition": {
         "x": 2280,
@@ -1278,7 +1278,7 @@
     {
       "id": "br_w_start_out",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: MTA-3 B30 2A MiniVal out -> ECU-B B30 (DI 7)",
+      "signal": "Broken off - continues on ST185-CabinPower: LOGIC B30 2A out -> ECU-B B30 (DI 7)",
       "width": 390,
       "layoutPosition": {
         "x": 2280,

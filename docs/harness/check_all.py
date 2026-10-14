@@ -16,8 +16,8 @@ What it runs, in order - every one in HARD is a hard gate:
   validate_oem_endpoints.py OEM points are flying leads with EWD locators
   audit_cavity_parts.py    right part per cavity, and the contact fits: gender, wire gauge
                            (combined gauge for splices) in range, datasheet contact list (gaps listed)
-  audit_rfrm_gauge.py      no wire heavier than 12 AWG on an Eaton RFRM cavity; the bus input
-                           studs take M8 ring lugs (Daniel 2026-10-12)
+  audit_logic_gauge.py     no wire heavier than 12 AWG on a LOGIC box fuse / relay cavity; the
+                           strip feeds take M5 lugs (Daniel 2026-10-12, moved from the RFRM 2026-10-14)
   audit_shields.py         docs/SHIELD-RULES.md, enforced
   audit_pin_names.py       shield grounds carry drains only; one name per mating cavity
   audit_mating.py          A cabin mates A engine, B mates B
@@ -63,7 +63,7 @@ import subprocess, sys, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["validate_ownership.py"], ["validate_interfaces.py"], ["validate_wheel_speed.py"],
-        ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_rfrm_gauge.py"], ["audit_shields.py"],
+        ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_logic_gauge.py"], ["audit_shields.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["audit_shared_connectors.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"],

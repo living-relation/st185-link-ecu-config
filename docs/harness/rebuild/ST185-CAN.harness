@@ -58,7 +58,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Power +12V ign, RFRM LAM 7.5A *"
+          "signal": "Power +12V ign, LOGIC LAM 7.5A *"
         },
         {
           "id": "c2",
@@ -150,7 +150,7 @@
     {
       "id": "br_w_lam12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda +12V from RFRM LAM, bulkhead B c3",
+      "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda +12V from LOGIC LAM, bulkhead B c3",
       "width": 390,
       "layoutPosition": {
         "x": 450,
@@ -364,7 +364,7 @@
     {
       "id": "br_w_dev",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: RFRM DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
+      "signal": "Broken off - continues on ST185-CabinPower: LOGIC DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
       "width": 390,
       "layoutPosition": {
         "x": 1020,
@@ -996,7 +996,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, RFRM LAM 7.5A - broken off here, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse RFRM LAM\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)\nsp_shield_can (Splice): CAN drain T-splice at the bus branch point (Daniel 2026-10-12). The trunk drain w_shd_can runs on (broken off) to ST185-B-cabin and is T-spliced there onto the B17 drain; each node branch drain (ECU port, CSB3, cluster, RealDash, bulkhead / Lambda) is soldered onto the trunk drain here where 6 mm of its insulation is cut away. Drains stay 20 AWG - no combined-gauge pigtail.",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, LOGIC LAM 7.5A - broken off here, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse LOGIC LAM\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)\nsp_shield_can (Splice): CAN drain T-splice at the bus branch point (Daniel 2026-10-12). The trunk drain w_shd_can runs on (broken off) to ST185-B-cabin and is T-spliced there onto the B17 drain; each node branch drain (ECU port, CSB3, cluster, RealDash, bulkhead / Lambda) is soldered onto the trunk drain here where 6 mm of its insulation is cut away. Drains stay 20 AWG - no combined-gauge pigtail.",
       "schematicPosition": {
         "x": 3210,
         "y": 150

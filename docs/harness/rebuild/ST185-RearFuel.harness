@@ -74,6 +74,30 @@
           }
         }
       }
+    },
+    {
+      "id": "fuelpump",
+      "label": "Fuel Pump",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 600,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 270,
+        "y": 600
+      },
+      "partId": "cp_fuelpump",
+      "width": 150
     }
   ],
   "wires": [
@@ -103,6 +127,32 @@
       "color": "Black",
       "stripeColor": "White",
       "partId": "m16_20_09"
+    },
+    {
+      "id": "w_fpump_r",
+      "color": "Red",
+      "source": {
+        "id": "br_fp_pump",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fuelpump",
+        "handle": "c1"
+      },
+      "partId": "m16_10_2"
+    },
+    {
+      "id": "w_fpg",
+      "color": "Black",
+      "source": {
+        "id": "fuelpump",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "t_trunk_fp_gnd",
+        "handle": "Terminal"
+      },
+      "partId": "m16_12_0"
     }
   ],
   "bundles": [
@@ -110,6 +160,24 @@
       "id": "bn_ix_fuel_p__fuellvl",
       "sourceId": "ix_fuel_p",
       "targetId": "fuellvl",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_br_fp_pump__fuelpump",
+      "sourceId": "br_fp_pump",
+      "targetId": "fuelpump",
+      "length": {
+        "value": 1200,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_fuelpump__t_trunk_fp_gnd",
+      "sourceId": "fuelpump",
+      "targetId": "t_trunk_fp_gnd",
       "length": {
         "value": 300,
         "unit": "mm"
@@ -124,7 +192,7 @@
         "x": 660,
         "y": 0
       },
-      "text": "REAR FUEL - fuel level sender only, behind IX_FUEL_LVL (DT04-2P on the ECU/cabin harness, DT06-2S here). Rev 2 (Dan, 2026-10-10): the sender gets a DT 2-way instead of its OEM connector - DT04-2P + W2P on the sender lead, size-16 contacts 0460-202-1631 (owned); no OEM housing. Everything in the trunk (IX_FUEL_LVL, sender, pump, ground stud) also moved to the driver side - see docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md / Route 11. The fuel pump is NOT in this harness: its 12 AWG feed runs unbroken from k_fp to the pump's own connector on the ECU/cabin harness, per 6.41 (no extra joint in a 20 A circuit). Run length to the tank is an estimate - measure at install."
+      "text": "REAR FUEL - fuel level sender behind IX_FUEL_LVL (DT04-2P on the ECU/cabin harness, DT06-2S here), plus the fuel pump run. Rev 2 (Dan, 2026-10-10): the sender gets a DT 2-way instead of its OEM connector - DT04-2P + W2P on the sender lead, size-16 contacts 0460-202-1631 (owned); no OEM housing. Everything in the trunk (IX_FUEL_LVL, sender, pump, ground stud) also moved to the driver side - see docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md / Route 11. FUEL PUMP (DECISIONS R75, 2026-10-14): the pump feed starts at the fuel pump relay k_fp (HCR150 terminal 5) in the battery relay block, trunk passenger side (ST185-HeavyDC, broken off) and runs unbroken, 10 AWG, across the trunk to the pump's own connector - no extra joint in the pump circuit (plan 6.41); 12 AWG return to the trunk ground stud. Run lengths are estimates - measure at install."
     }
   ],
   "wireParts": [
@@ -148,6 +216,28 @@
       "stripeColor": "White",
       "gauge": {
         "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_10_2",
+      "partNumber": "M22759/16-10-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 10 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_0",
+      "partNumber": "M22759/16-12-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 12,
         "unit": "AWG"
       }
     }
@@ -229,6 +319,26 @@
         }
       ],
       "url": "https://www.te.com/usa-en/product-DT04-2P.html"
+    },
+    {
+      "id": "cp_fuelpump",
+      "image": {
+        "url": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/original/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg",
+        "source": "url",
+        "lowResUrl": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/80w/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "(pump pigtail - Walbro F90000295)",
+      "description": "CONNECTOR, PIGTAIL, 2 POS",
+      "manufacturer": "Walbro",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_generic_skt"
+        }
+      ],
+      "numberOfCavities": 2
     }
   ],
   "contactParts": [
@@ -265,6 +375,14 @@
       "contactColor": "Gold",
       "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
       "id": "ct_dt16p"
+    },
+    {
+      "id": "ct_generic_skt",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "(generic)",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
+      "manufacturer": "Generic"
     }
   ],
   "lockParts": [
@@ -287,6 +405,57 @@
       "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
+    }
+  ],
+  "terminals": [
+    {
+      "id": "br_fp_pump",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-HeavyDC: fuel pump relay k_fp 87 (HCR150 terminal 5, battery relay block) -> fuel pump c1",
+      "width": 390,
+      "layoutPosition": {
+        "x": 0,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": -300,
+        "y": 600
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_trunk_fp_gnd",
+      "type": "Ring",
+      "signal": "Trunk chassis ground stud - fuel pump return (plan 6.41; M6 assumed)",
+      "layoutPosition": {
+        "x": 900,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": -300,
+        "y": 750
+      },
+      "partId": "tp_ring_m6_12_10",
+      "width": 390,
+      "propagate": false
+    }
+  ],
+  "terminalParts": [
+    {
+      "id": "tp_ring_m6_12_10",
+      "size": "M6",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "partNumber": "GENERIC RING M6 12-10",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
+      "manufacturer": "generic"
     }
   ]
 }
