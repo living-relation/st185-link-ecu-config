@@ -1844,6 +1844,12 @@
       "description": "RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W"
     },
     {
+      "id": "rp_1k",
+      "partNumber": "1k 1/4W",
+      "manufacturer": "generic",
+      "description": "RESISTOR, FIXED, METAL FILM, 1 KOHM, 5 PCT, 1/4 W"
+    },
+    {
       "id": "rp_10k",
       "partNumber": "10k 1/4W",
       "manufacturer": "generic",

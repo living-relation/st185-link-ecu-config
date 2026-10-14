@@ -328,30 +328,16 @@
       }
     },
     {
-      "id": "FL_CRUISE_STALK_C4",
+      "id": "FL_CRUISE_STALK_C17",
       "type": "oem_flying_lead",
       "harness": "CSB3",
-      "terminal": "fl_cruise_stalk_c4",
+      "terminal": "fl_cruise_stalk_c17",
       "ewd": {
         "page": "1990 ST185 EWD p.116 (book p.118, connector C14 'cruise control SW [COMB. SW]'); 1992 Celica EWD132U p.180 same pins; 1993 Mitchell Electrical p.98-99 switch tests (docs/OPEN-ITEMS.md row 6)",
         "connector": "Cruise control switch (C14, comb. switch)",
-        "pin": "none",
-        "color": "none",
-        "function": "NO OEM WIRE: SET/COAST is a step on the pin 5 ladder, not a wire. Delete this lead and CSB3 S4 (R66, S23). The OEM stalk ground, pin 17 BR (brown), replaces it as a CSB3 ground lead - redraw pending (OPEN-ITEMS row 92)",
-        "method": "solder sleeve into the factory lead"
-      }
-    },
-    {
-      "id": "FL_CRUISE_STALK_C5",
-      "type": "oem_flying_lead",
-      "harness": "CSB3",
-      "terminal": "fl_cruise_stalk_c5",
-      "ewd": {
-        "page": "1990 ST185 EWD p.116 (book p.118, connector C14 'cruise control SW [COMB. SW]'); 1992 Celica EWD132U p.180 same pins; 1993 Mitchell Electrical p.98-99 switch tests (docs/OPEN-ITEMS.md row 6)",
-        "connector": "Cruise control switch (C14, comb. switch)",
-        "pin": "none",
-        "color": "none",
-        "function": "NO OEM WIRE: RES/ACC is a step on the pin 5 ladder, not a wire. Delete this lead and CSB3 S5 (R66, S23)",
+        "pin": "17",
+        "color": "BR (brown)",
+        "function": "stalk switch ground: return for the pin 5 ladder and the pin 15 MAIN contact -> sp_csb_gnd -> CSB3 ground (OEM: body ground IE). There are no separate SET / RESUME wires, so CSB3 S4 / S5 are not used (R66, S23)",
         "method": "solder sleeve into the factory lead"
       }
     },
