@@ -421,7 +421,7 @@ def status_html(st: dict | None) -> str:
             f'<th>Owner</th><th>Status</th></tr></thead><tbody>{rows}</tbody></table></div>'
             f'</details>')
     return (
-        '<section class="board" id="status">\n<h2>Project status</h2>\n'
+        '<section class="board" id="status">\n<h2>Open work by area</h2>\n'
         '<p class="blurb">Big picture, read from the <code>Status</code> section of '
         '<a href="../docs/OPEN-ITEMS.md">docs/OPEN-ITEMS.md</a> (the one tracker). '
         'Click a bucket for its open rows.</p>\n'
@@ -773,13 +773,211 @@ def _topic_rows(docs: list[Doc]) -> list[dict]:
     return rows
 
 
+# --- "Project status" page section for Dan (built from repo files at build time) ---
+QUESTIONS = DOCS / "status" / "questions.json"
+CAD_INDEX = REPO / "cad" / "README.md"
+ROUTES = DOCS / "harness" / "routes"
+RECENT_PRS = 15
+
+
+def _plain(s: str) -> str:
+    s = re.sub(r"<[^>]+>", " ", s).replace("**", "").replace("`", "")
+    return re.sub(r"\s+", " ", html.unescape(s)).strip()
+
+
+def load_questions() -> dict:
+    """Open questions for Dan: docs/status/questions.json (kept current by Dispatch)."""
+    try:
+        data = json.loads(QUESTIONS.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        print(f"WARNING: {QUESTIONS.name} unreadable: {e}", file=sys.stderr)
+        return {"updated": "", "questions": []}
+    qs = []
+    for q in data.get("questions", []):
+        if not isinstance(q, dict) or not q.get("id") or not q.get("text"):
+            print(f"WARNING: skipped malformed question {q!r}", file=sys.stderr)
+            continue
+        qs.append({
+            "id": str(q["id"]), "topic": str(q.get("topic", "")), "text": str(q["text"]),
+            "options": [{"value": str(o.get("value", "")), "label": str(o.get("label", "")),
+                         "recommended": bool(o.get("recommended"))}
+                        for o in q.get("options", []) if isinstance(o, dict)],
+        })
+    return {"updated": str(data.get("updated", "")), "questions": qs}
+
+
+def load_routes() -> list[dict]:
+    """Approval state of each route drawing, read from its own status text.
+
+    Order of evidence: a `Status (Dan, date):` box, then an APPROVED title, then an
+    `Approved` box, then a `Your decision:` box (still waiting on Dan). Otherwise unmarked.
+    """
+    out = []
+    files = sorted(ROUTES.glob("ROUTE-*.html"),
+                   key=lambda p: int(re.search(r"ROUTE-(\d+)", p.name).group(1)))
+    for p in files:
+        src = p.read_text(encoding="utf-8", errors="replace")
+        num = int(re.search(r"ROUTE-(\d+)", p.name).group(1))
+        h1 = re.search(r"<h1[^>]*>(.*?)</h1>", src, re.S)
+        title = _plain(h1.group(1)) if h1 else p.stem
+        boxes = [_plain(m) for m in
+                 re.findall(r'<div class="(?:box|banner)"[^>]*>(.*?)</div>', src, re.S)]
+        status_box = next((b for b in boxes if b.startswith("Status (")), "")
+        approved_box = next((b for b in boxes if re.match(r"Approved\b", b)), "")
+        decision_box = next((b for b in boxes if b.startswith("Your decision:")), "")
+        state, note = "unmarked", ""
+        if status_box:
+            m = re.match(r"Status \(([^)]*)\):\s*(.*)", status_box)
+            state = "approved" if m and m.group(2).upper().startswith("APPROVED") else "note"
+            note = f"{m.group(1)}: {m.group(2)}" if m else status_box
+        elif "APPROVED" in title:
+            state, note = "approved", title
+        elif approved_box:
+            state, note = "approved", approved_box
+        elif decision_box:
+            state, note = "waiting", decision_box
+        out.append({"num": num, "title": re.sub(r"^Route \d+\s*[—-]\s*", "", title)[:80],
+                    "file": p.name, "state": state, "note": note[:220]})
+    return out
+
+
+def load_cad() -> list[dict]:
+    """Status of each CAD model, from the table in cad/README.md."""
+    if not CAD_INDEX.is_file():
+        return []
+    text = CAD_INDEX.read_text(encoding="utf-8", errors="replace")
+    for t in parse_md_tables(text):
+        if t["columns"][:3] == ["Model", "What it is", "Status / rev"]:
+            return [{"model": _plain(r[0]), "status": _plain(r[2])[:200]} for r in t["rows"]]
+    return []
+
+
+def load_recent_prs() -> list[dict]:
+    """Last merged PR titles on main (squash merges end in "(#N)"). Empty without git."""
+    try:
+        out = subprocess.run(
+            ["git", "log", "--first-parent", "-n", "200", "--format=%cs\t%s"],
+            cwd=REPO, capture_output=True, text=True, timeout=20, check=True).stdout
+    except Exception as e:
+        print(f"WARNING: git log unavailable, no recent changes: {e}", file=sys.stderr)
+        return []
+    prs = []
+    for line in out.splitlines():
+        date, _, subj = line.partition("\t")
+        m = re.search(r"\(#(\d+)\)\s*$", subj)
+        if m and not subj.startswith("Auto-regenerate"):
+            prs.append({"date": date, "title": subj[:m.start()].strip(), "num": m.group(1)})
+        if len(prs) >= RECENT_PRS:
+            break
+    return prs
+
+
+def load_project_status(status: dict | None) -> dict:
+    dan = []
+    for b in (status or {}).get("buckets", []):
+        rows = [r for r in b["rows"] if r["owner"].strip().lower() in ("daniel", "dan")]
+        if rows:
+            dan.append({"name": b["name"], "rows": rows})
+    return {
+        "built": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+        "questions": load_questions(), "dan_items": dan, "routes": load_routes(),
+        "cad": load_cad(), "prs": load_recent_prs(),
+    }
+
+
+def project_status_html(ps: dict) -> str:
+    e = html.escape
+    qs = ps["questions"]["questions"]
+    if qs:
+        qhtml = ""
+        for q in qs:
+            opts = ""
+            for o in q["options"]:
+                tag = ' <span class="tag">recommended</span>' if o["recommended"] else ""
+                opts += (f'<li class="{"rec" if o["recommended"] else ""}">'
+                         f'<b>{e(o["value"])}</b> {e(o["label"])}{tag}</li>')
+            qhtml += (f'<div class="q"><div class="qh"><b>{e(q["id"])}</b>'
+                      f'<span class="muted"> &middot; {e(q["topic"])}</span></div>'
+                      f'<p>{e(q["text"])}</p><ul class="opts">{opts}</ul></div>')
+        qhtml += ('<p class="howto"><b>How to answer:</b> reply in the Dispatch chat with the '
+                  'question ID and the letter, e.g. <code>Z9: A</code>. Write-ins are fine.</p>')
+    else:
+        qhtml = '<p class="muted">No open questions right now.</p>'
+    upd = ps["questions"]["updated"]
+    upd_txt = f", updated {e(upd)}" if upd else ""
+
+    dan = ""
+    for g in ps["dan_items"]:
+        rows = "".join(
+            f'<tr><td class="num">{e(r["id"])}</td><td>{_inline(r["item"][:240])}'
+            f'{"&hellip;" if len(r["item"]) > 240 else ""}</td><td>{e(r["status"])}</td></tr>'
+            for r in g["rows"])
+        dan += (f'<details class="items" open><summary>{e(g["name"])} &middot; {len(g["rows"])}'
+                '</summary><div class="twrap"><table class="data"><thead><tr><th>#</th>'
+                f'<th>Item</th><th>Status</th></tr></thead><tbody>{rows}</tbody></table></div>'
+                '</details>')
+    dan = dan or '<p class="muted">Nothing open for Dan.</p>'
+
+    label = {"approved": "Approved", "waiting": "Decision box open", "note": "Note",
+             "unmarked": "No status"}
+    routes = "".join(
+        f'<tr><td class="num">{r["num"]}</td>'
+        f'<td><a href="harness/routes/{e(r["file"])}">{e(r["title"])}</a></td>'
+        f'<td><span class="pill {r["state"]}">{label[r["state"]]}</span></td>'
+        f'<td class="muted">{e(r["note"])}</td></tr>' for r in ps["routes"])
+    cad = "".join(f'<tr><td>{e(c["model"])}</td><td>{e(c["status"])}</td></tr>'
+                  for c in ps["cad"])
+    pr_url = "https://github.com/living-relation/st185-link-ecu-config/pull/"
+    prs = "".join(
+        f'<li><span class="muted">{e(p["date"])}</span> {e(p["title"])} '
+        f'<a href="{pr_url}{p["num"]}">#{p["num"]}</a></li>' for p in ps["prs"]
+    ) or '<li class="muted">Git history was not available when this page was built.</li>'
+    return (
+        '<section class="board pstatus" id="project-status">\n<h2>Project status</h2>\n'
+        f'<p class="blurb">Built {e(ps["built"])} from the repo. Nothing here is typed by '
+        'hand except the questions. Route status is read from each drawing\'s own status box; '
+        'a route with an open decision box may have been approved later, so check the history '
+        'in <a href="OPEN-ITEMS.md">OPEN-ITEMS</a>.</p>\n'
+        '<h3>Open questions for Dan</h3>\n<p class="muted">From '
+        f'<code>docs/status/questions.json</code>{upd_txt}.</p>\n{qhtml}\n'
+        f'<h3>Dan&rsquo;s open items</h3>\n{dan}\n'
+        '<h3>Route drawings</h3>\n<div class="twrap"><table class="data"><thead><tr><th>#</th>'
+        '<th>Route</th><th>Status</th><th>From the drawing</th></tr></thead>'
+        f'<tbody>{routes}</tbody></table></div>\n'
+        '<h3>CAD models</h3>\n<div class="twrap"><table class="data"><thead><tr><th>Model</th>'
+        f'<th>Status</th></tr></thead><tbody>{cad}</tbody></table></div>\n'
+        f'<h3>Recently merged</h3>\n<ul class="prs">{prs}</ul>\n</section>\n')
+
+
+PSTATUS_CSS = """
+  .topnav { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 18px; }
+  .topnav a { padding:8px 14px; border:1px solid var(--line); border-radius:999px;
+    background:var(--panel); color:var(--ink); text-decoration:none; font-weight:600; }
+  .pstatus .q { border:1px solid var(--line); background:var(--panel); border-radius:8px;
+    padding:10px 14px; margin:10px 0; }
+  .pstatus .qh { font-size:15px; } .pstatus .q p { margin:6px 0; }
+  .pstatus .opts { list-style:none; margin:6px 0 0; padding:0; }
+  .pstatus .opts li { padding:6px 8px; border-radius:6px; margin:3px 0; background:var(--chip); }
+  .pstatus .opts li.rec { background:var(--ok-soft); border-left:4px solid var(--ok); }
+  .pstatus .tag { font-size:11px; color:var(--ok); font-weight:700; text-transform:uppercase; }
+  .pstatus .howto { background:var(--info-soft); padding:8px 12px; border-radius:6px; }
+  .pstatus .muted { color:var(--muted); }
+  .pstatus .pill { padding:2px 8px; border-radius:999px; font-size:12px; font-weight:700;
+    white-space:nowrap; background:var(--chip); }
+  .pstatus .pill.approved { background:var(--ok-soft); color:var(--ok); }
+  .pstatus .pill.waiting { background:var(--warn-soft); color:var(--warn); }
+  .pstatus .prs { padding-left:18px; } .pstatus .prs li { margin:4px 0; }
+  @media (max-width:640px) { .pstatus td, .pstatus th { font-size:13px; } }
+"""
+
+
 def build() -> dict:
     topics = []
     seen_dirs = {t["dir"] for t in TOPICS}
     extra = sorted(
         (d.name for d in DOCS.iterdir()
          if d.is_dir() and d.name not in seen_dirs
-         and not d.name.startswith(".") and d.name != "__pycache__"),
+         and not d.name.startswith(".") and d.name not in ("__pycache__", "status")),
         key=str.lower,
     )
     spec = TOPICS + [{"dir": d, "title": d.replace("-", " ").title(), "blurb": ""} for d in extra]
@@ -821,7 +1019,9 @@ def build() -> dict:
         })
 
     dupes = {k: v for k, v in digests.items() if len(v) > 1}
-    return {"topics": topics, "dupes": dupes, "parts": load_parts(), "status": load_status()}
+    status = load_status()
+    return {"topics": topics, "dupes": dupes, "parts": load_parts(), "status": status,
+            "pstatus": load_project_status(status)}
 
 
 HUB_CSS = """
@@ -1356,7 +1556,7 @@ def render(data: dict) -> str:
         "<meta charset=\"utf-8\">\n"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
         "<title>ST185 Research Hub</title>\n<style>\n"
-        + HUB_CSS
+        + HUB_CSS + PSTATUS_CSS
         + "</style>\n</head>\n<body>\n<div class=\"wrap\">\n<header>\n"
         f"<h1>ST185 Research Hub</h1>\n"
         f"<p class=\"sub\">Sources last updated {html.escape(latest)} &middot; "
@@ -1366,6 +1566,9 @@ def render(data: dict) -> str:
         f"{stats.get('onhand_skus', 0)} on-hand SKUs &middot; regenerate with "
         f"<code>python docs/build-research-hub.py</code></p>\n"
         "</header>\n\n"
+        "<nav class=\"topnav\"><a href=\"#project-status\">Project status</a>"
+        "<a href=\"#status\">Open work by area</a><a href=\"#topic-nav\">Research docs</a></nav>\n"
+        + project_status_html(data["pstatus"]) + "\n"
         + status_html(data.get("status")) + "\n"
         "<div class=\"bar\">\n"
         "  <input id=\"q\" type=\"search\" placeholder=\"Filter titles, sections, tables, or filenames&hellip;\"\n"
