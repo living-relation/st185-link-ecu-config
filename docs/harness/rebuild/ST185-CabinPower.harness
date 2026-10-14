@@ -52,7 +52,7 @@
           "id": "c1",
           "designation": "30",
           "signal": "Fused +12V in (POWER AMI IN-4 FAN 40A)",
-          "contactPartId": "ct_faston95_8_tbd"
+          "contactPartId": "ct_faston95_8"
         },
         {
           "id": "c2",
@@ -71,7 +71,7 @@
           "id": "c4",
           "designation": "87",
           "signal": "+12V out -> radiator fan motor",
-          "contactPartId": "ct_faston95_8_tbd"
+          "contactPartId": "ct_faston95_8"
         }
       ],
       "layoutPosition": {
@@ -99,13 +99,13 @@
           "id": "c2",
           "designation": "85",
           "signal": "ACTIVE-LOW Coil - -> Aux 2 / A20 *",
-          "contactPartId": "ct_faston48_tbd"
+          "contactPartId": "ct_faston48"
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - ignition-switched 12V *",
-          "contactPartId": "ct_faston48_tbd",
+          "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
@@ -179,7 +179,7 @@
           "id": "c1",
           "designation": "30",
           "signal": "Fused +12V in (POWER AMI IN-5 FAN2 30A)",
-          "contactPartId": "ct_faston95_8_tbd"
+          "contactPartId": "ct_faston95_8"
         },
         {
           "id": "c2",
@@ -198,7 +198,7 @@
           "id": "c4",
           "designation": "87",
           "signal": "+12V out -> condenser fan motor",
-          "contactPartId": "ct_faston95_8_tbd"
+          "contactPartId": "ct_faston95_8"
         }
       ],
       "layoutPosition": {
@@ -270,13 +270,13 @@
           "id": "c2",
           "designation": "85",
           "signal": "ACTIVE-LOW Coil - <- ECU-B B10 (Ign 8) *",
-          "contactPartId": "ct_faston48_tbd"
+          "contactPartId": "ct_faston48"
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + <- A5 dual pressure switch pin 4 (via A-cabin sp_ac_psw, br_w_acc86) - hardware cut below 30 / above 384 psi; no A/C coolant switch in series *",
-          "contactPartId": "ct_faston48_tbd"
+          "contactPartId": "ct_faston48"
         },
         {
           "id": "c4",
@@ -315,14 +315,14 @@
           "id": "c2",
           "designation": "85",
           "signal": "ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6)",
-          "contactPartId": "ct_faston48_tbd",
+          "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + - ignition-switched 12V",
-          "contactPartId": "ct_faston48_tbd",
+          "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
@@ -363,14 +363,14 @@
           "id": "c2",
           "designation": "85",
           "signal": "Coil - -> glove-box PDB ground bus",
-          "contactPartId": "ct_faston48_tbd",
+          "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + <- back-up switch B1 pin 1, +12V in reverse (bulkhead B c12, br_rev_coil)",
-          "contactPartId": "ct_faston48_tbd",
+          "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
@@ -411,14 +411,14 @@
           "id": "c2",
           "designation": "85",
           "signal": "Coil - -> sp_head_coil -> IE1-2 R-Y: light control SW C15-14 HEAD / C15-13 FLASH (EWD 1993 p.116)",
-          "contactPartId": "ct_faston48_tbd",
+          "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + <- LOGIC HL 15A fuse out (permanent)",
-          "contactPartId": "ct_faston48_tbd",
+          "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
@@ -459,14 +459,14 @@
           "id": "c2",
           "designation": "85",
           "signal": "Coil - -> sp_head_coil -> IE1-2 R-Y: light control SW C15-14 HEAD / C15-13 FLASH (EWD 1993 p.116)",
-          "contactPartId": "ct_faston48_tbd",
+          "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + <- LOGIC HR 15A fuse out (permanent)",
-          "contactPartId": "ct_faston48_tbd",
+          "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
@@ -507,14 +507,14 @@
           "id": "c2",
           "designation": "85",
           "signal": "Coil - -> IE1-19 G -> horn SW C15-10 (EWD 1993 p.185)",
-          "contactPartId": "ct_faston48_tbd",
+          "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
           "signal": "Coil + <- LOGIC HZ 15A fuse out (permanent)",
-          "contactPartId": "ct_faston48_tbd",
+          "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
@@ -548,7 +548,7 @@
           "id": "c1",
           "designation": "30",
           "signal": "Fused +12V in (POWER AMI IN-1 HTR 40A)",
-          "contactPartId": "ct_faston95_8_tbd",
+          "contactPartId": "ct_faston63_8",
           "propagate": false
         },
         {
@@ -568,8 +568,8 @@
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> blower motor B4 pin 2 (br_w_rb4) and the POWER ACPS IN",
-          "contactPartId": "ct_faston95_8_tbd",
+          "signal": "+12V out -> sp_htr87 (TE 320238 4 AWG splice, 8 + 8 + 14 AWG = 37130 CMA) -> blower motor B4 pin 2 (br_w_rb4) + POWER ACPS IN (14 AWG)",
+          "contactPartId": "ct_faston63_8",
           "propagate": false
         },
         {
@@ -657,14 +657,14 @@
           "designation": "AMI IN-2",
           "signal": "AMI-30 EFI -> EFI main relay k_efi 30 (R2)",
           "propagate": false,
-          "contactPartId": "ct_ring_m5_12_tbd"
+          "contactPartId": "ct_ring_m5_12"
         },
         {
           "id": "in3",
           "designation": "AMI IN-3",
           "signal": "AMI-30 STR -> start relay k_str 30 (R3)",
           "propagate": false,
-          "contactPartId": "ct_ring_m5_12_tbd"
+          "contactPartId": "ct_ring_m5_12"
         },
         {
           "id": "in4",
@@ -726,14 +726,14 @@
           "designation": "ACPS IN",
           "signal": "ACPS mini fuse feed in - heater relay k_htr 87",
           "propagate": false,
-          "contactPartId": "ct_minifuse_tbd"
+          "contactPartId": "ct_minifuse_880398"
         },
         {
           "id": "acps",
           "designation": "ACPS",
           "signal": "ATM-10 ACPS - A/C pressure switch +12V (A5-1)",
           "propagate": false,
-          "contactPartId": "ct_minifuse_tbd"
+          "contactPartId": "ct_mcp28"
         }
       ],
       "layoutPosition": {
@@ -769,7 +769,8 @@
           "id": "efi86",
           "designation": "BUS1-1",
           "signal": "Bus 1 ATM-5 EFI86 - EFI main relay coil feed 86, PERMANENT *",
-          "propagate": false
+          "propagate": false,
+          "contactPartId": "ct_mcp28"
         },
         {
           "id": "hl",
@@ -805,19 +806,22 @@
           "id": "alm",
           "designation": "BUS1-7",
           "signal": "Bus 1 ATM-5 ALM - anti-theft alarm +12V constant (alarm c1)",
-          "propagate": false
+          "propagate": false,
+          "contactPartId": "ct_mcp28"
         },
         {
           "id": "alms",
           "designation": "BUS1-8",
           "signal": "Bus 1 ATM-2 ALMS - anti-theft shock sensor +12V constant",
-          "propagate": false
+          "propagate": false,
+          "contactPartId": "ct_mcp28"
         },
         {
           "id": "alts",
           "designation": "BUS1-9",
           "signal": "Bus 1 ATM-2 ALTS - alternator S battery sense (G2-1)",
-          "propagate": false
+          "propagate": false,
+          "contactPartId": "ct_mcp28"
         },
         {
           "id": "etb",
@@ -853,7 +857,8 @@
           "id": "csb",
           "designation": "BUS2-5",
           "signal": "Bus 2 ATM-5 CSB - CSB3 +12V (switched k_efi rail)",
-          "propagate": false
+          "propagate": false,
+          "contactPartId": "ct_mcp28"
         },
         {
           "id": "dev",
@@ -865,7 +870,8 @@
           "id": "epsen",
           "designation": "BUS2-7",
           "signal": "Bus 2 ATM-7.5 EPSEN - EPS enable relay k_eps_en 30 (M21)",
-          "propagate": false
+          "propagate": false,
+          "contactPartId": "ct_mcp28"
         },
         {
           "id": "acc",
@@ -877,31 +883,36 @@
           "id": "almig",
           "designation": "BUS2-9",
           "signal": "Bus 2 ATM-2 ALMIG - anti-theft alarm ignition sense (switched k_efi rail)",
-          "propagate": false
+          "propagate": false,
+          "contactPartId": "ct_mcp28"
         },
         {
           "id": "mrsin",
           "designation": "BUS2-12 IN",
           "signal": "MRS fuse feed in - k_eps_en 87 (this position is NOT on the Bus 2 strip) *",
-          "propagate": false
+          "propagate": false,
+          "contactPartId": "ct_mcp28"
         },
         {
           "id": "mrs",
           "designation": "BUS2-12",
           "signal": "ATM-7.5 MRS - MRS EPS pump logic enable out (pump C1), fed from MRS IN *",
-          "propagate": false
+          "propagate": false,
+          "contactPartId": "ct_mcp28"
         },
         {
           "id": "b30in",
           "designation": "BUS2-13 IN",
           "signal": "B30 fuse feed in - ignition switch ST1 tap (this position is NOT on the Bus 2 strip) *",
-          "propagate": false
+          "propagate": false,
+          "contactPartId": "ct_mcp28"
         },
         {
           "id": "b30",
           "designation": "BUS2-13",
           "signal": "ATM-2 B30 - start request out -> ECU-B B30 (DI 7) *",
-          "propagate": false
+          "propagate": false,
+          "contactPartId": "ct_mcp28"
         }
       ],
       "layoutPosition": {
@@ -1953,8 +1964,8 @@
       "id": "w_htr_acps",
       "color": "Red",
       "source": {
-        "id": "k_htr",
-        "handle": "c4"
+        "id": "sp_htr87",
+        "handle": "Splice"
       },
       "target": {
         "id": "fb_power",
@@ -2012,7 +2023,7 @@
         "id": "br_w_pmu_dome",
         "handle": "Terminal"
       },
-      "partId": "m16_12_2"
+      "partId": "m16_14_2"
     },
     {
       "id": "w_pmu_rtr_cp",
@@ -2080,11 +2091,24 @@
       "partId": "m16_6_9"
     },
     {
-      "id": "w_rb4_cp",
+      "id": "w_htr_87_cp",
       "color": "Red",
       "source": {
         "id": "k_htr",
         "handle": "c4"
+      },
+      "target": {
+        "id": "sp_htr87",
+        "handle": "Splice"
+      },
+      "partId": "m16_8_2"
+    },
+    {
+      "id": "w_rb4_cp",
+      "color": "Red",
+      "source": {
+        "id": "sp_htr87",
+        "handle": "Splice"
       },
       "target": {
         "id": "br_w_rb4",
@@ -2485,11 +2509,24 @@
       "partId": "m16_16_2"
     },
     {
-      "id": "w_haz_cp",
+      "id": "w_hz_cp",
       "color": "Red",
       "source": {
         "id": "fb_logic",
         "handle": "hz"
+      },
+      "target": {
+        "id": "sp_hz",
+        "handle": "Splice"
+      },
+      "partId": "m16_14_2"
+    },
+    {
+      "id": "w_haz_cp",
+      "color": "Red",
+      "source": {
+        "id": "sp_hz",
+        "handle": "Splice"
       },
       "target": {
         "id": "br_w_haz",
@@ -2753,8 +2790,8 @@
       "id": "w_horn_30_cp",
       "color": "Red",
       "source": {
-        "id": "fb_logic",
-        "handle": "hz"
+        "id": "sp_hz",
+        "handle": "Splice"
       },
       "target": {
         "id": "k_horn",
@@ -3848,7 +3885,7 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_minifuse_tbd"
+          "contactPartId": "ct_minifuse_880398"
         }
       ]
     },
@@ -3922,13 +3959,13 @@
     },
     {
       "id": "cp_rly_maxi_co",
-      "partNumber": "1-1904020-2",
-      "description": "RELAY, PLUG-IN, MINI ISO, TE POWER RELAY B V23234-A0001-X032, 1 FORM C, NO 35 A AT 85 C, 12 VDC COIL, 680 OHM PARALLEL RESISTOR",
+      "partNumber": "1-1414687-0",
+      "description": "RELAY, PLUG-IN, MINI ISO, TE POWER RELAY F4 A V23136-A0004-X059, 1 FORM C, NO 40 A / NC 30 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR",
       "manufacturer": "TE Connectivity",
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_f7_load"
+          "contactPartId": "ct_faston63_8"
         }
       ],
       "numberOfCavities": 5
@@ -4015,12 +4052,20 @@
       "manufacturer": "TE Connectivity"
     },
     {
-      "id": "ct_faston48_tbd",
+      "id": "ct_faston48",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "TBD - TE receptacle 4.8 x 0.8, 20-18 AWG",
-      "description": "TERMINAL, RECEPTACLE, 4.8 X 0.8 MM",
-      "manufacturer": "TE Connectivity"
+      "partNumber": "2293255-1",
+      "description": "TERMINAL, FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2)",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 15
+      }
     },
     {
       "id": "ct_faston63",
@@ -4039,12 +4084,20 @@
       }
     },
     {
-      "id": "ct_faston95_8_tbd",
+      "id": "ct_faston95_8",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "TBD - TE FASTON 9.5 receptacle, 8 AWG",
-      "description": "TERMINAL, FASTON, RECEPTACLE, 9.5 MM, 8 AWG",
-      "manufacturer": "TE Connectivity"
+      "partNumber": "280755-4",
+      "description": "TERMINAL, FASTON .375 (9.5 MM) RECEPTACLE, UNINSULATED, TIN, 10-7 AWG (5.3-10 MM2)",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 7
+      }
     },
     {
       "id": "ct_klauke_2r5",
@@ -4095,20 +4148,36 @@
       }
     },
     {
-      "id": "ct_minifuse_tbd",
+      "id": "ct_minifuse_880398",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "TBD - mini fuse receptacle 2.8 (880398-2 candidate)",
-      "description": "TERMINAL, RECEPTACLE, 2.8 MM, MINI BLADE FUSE",
-      "manufacturer": "TE Connectivity"
+      "partNumber": "880398-2",
+      "description": "TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG)",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 17
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 13
+      }
     },
     {
-      "id": "ct_ring_m5_12_tbd",
+      "id": "ct_ring_m5_12",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "TBD - TE ring tongue M5, 12-10 AWG",
-      "description": "TERMINAL, RING, M5 STUD, 12-10 AWG",
-      "manufacturer": "TE Connectivity"
+      "partNumber": "36161",
+      "description": "TERMINAL, RING TONGUE, PIDG, CLOSED, #10 (M5) STUD, 12-10 AWG, TIN, PARTIALLY INSULATED",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      }
     },
     {
       "id": "ct_ring_m6_8",
@@ -4143,6 +4212,38 @@
       "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2",
       "contactColor": "Silver",
       "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "ct_faston63_8",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "62998-2",
+      "description": "TERMINAL, FASTON .250 (6.35 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 10-8 AWG (5-8 MM2)",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      }
+    },
+    {
+      "id": "ct_mcp28",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "1241388-2",
+      "description": "TERMINAL, AMP MCP 2.8K RECEPTACLE, GOLD, TAB 2.8 (0.6 / 0.8), 0.5-1 MM2 (20-18 AWG)",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 18
+      }
     }
   ],
   "terminalParts": [
@@ -4173,9 +4274,9 @@
         "unit": "Metric",
         "value": 50
       },
-      "partNumber": "GENERIC LUG M8 50MM2",
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M8 STUD, ADHESIVE HEATSHRINK",
-      "manufacturer": "generic"
+      "partNumber": "132066-2",
+      "description": "TERMINAL, RING TONGUE, SOLISTRAND, CLOSED BARREL, UNINSULATED, 1/0 AWG (41-60 MM2), 5/16 (M8) STUD, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "TE Connectivity"
     },
     {
       "id": "tp_ring_m8_16_14",
@@ -4189,9 +4290,9 @@
         "unit": "AWG",
         "value": 16
       },
-      "partNumber": "GENERIC RING M8 16-14",
-      "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 16-14 AWG",
-      "manufacturer": "generic"
+      "partNumber": "320575",
+      "description": "TERMINAL, RING TONGUE, PIDG, CLOSED, 5/16 (M8) STUD, 16-14 AWG (1.25-2 MM2), TIN, PARTIALLY INSULATED",
+      "manufacturer": "TE Connectivity"
     },
     {
       "id": "tp_ring_m8_22_16",
@@ -4267,6 +4368,32 @@
         "x": 1770,
         "y": 270
       }
+    },
+    {
+      "id": "sp_htr87",
+      "layoutPosition": {
+        "x": 2220,
+        "y": 870
+      },
+      "schematicPosition": {
+        "x": 6450,
+        "y": 5100
+      },
+      "partId": "spp_te_320238",
+      "locationId": "b_bp_1065"
+    },
+    {
+      "id": "sp_hz",
+      "layoutPosition": {
+        "x": 1740,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 1680,
+        "y": 2040
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_1050"
     }
   ],
   "spliceParts": [
@@ -4275,6 +4402,20 @@
       "partNumber": "GENERIC SOLDER SPLICE",
       "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
       "manufacturer": "generic"
+    },
+    {
+      "id": "spp_te_320238",
+      "partNumber": "320238",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 5
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 3
+      },
+      "description": "SPLICE, BUTT, SOLISTRAND, CLOSED BARREL, SIGHT HOLE, UNINSULATED, 4 AWG (33100-52600 CMA = 5-3 AWG COMBINED), ADHESIVE HEATSHRINK OVER"
     }
   ]
 }

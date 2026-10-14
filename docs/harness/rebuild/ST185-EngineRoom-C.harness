@@ -2205,7 +2205,7 @@
         "id": "fl_oem_jb1_1h_c2",
         "handle": "Terminal"
       },
-      "partId": "m16_12_2"
+      "partId": "m16_14_2"
     },
     {
       "id": "w_pmu_hl",
@@ -4783,17 +4783,6 @@
       "color": "Gray",
       "gauge": {
         "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_12_2",
-      "partNumber": "M22759/16-12-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 12 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 12,
         "unit": "AWG"
       }
     },
