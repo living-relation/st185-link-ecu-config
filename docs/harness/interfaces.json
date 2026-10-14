@@ -3564,6 +3564,855 @@
           "w_fb_in"
         ]
       }
+    },
+    "A-engine": {
+      "ETBS": {
+        "bands": [
+          "Yellow"
+        ],
+        "wires": [
+          "w126",
+          "w127",
+          "w128_e",
+          "w129_e",
+          "cab_etbs_sh"
+        ]
+      },
+      "TURBO": {
+        "bands": [
+          "White"
+        ],
+        "wires": [
+          "w218",
+          "w17",
+          "w16_e",
+          "cab_turbo_sh"
+        ]
+      },
+      "SW12": {
+        "bands": [
+          "Blue"
+        ],
+        "wires": [
+          "w_rail_sp_sw12_e",
+          "w219",
+          "w217"
+        ]
+      },
+      "5V": {
+        "bands": [
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "w_5v_brail_e_c45",
+          "w_5v_brail_e_c46",
+          "w_5v_brail_e_c47"
+        ]
+      },
+      "CAM": {
+        "bands": [
+          "Yellow",
+          "Yellow"
+        ],
+        "wires": [
+          "cab_cam_c2",
+          "cab_cam_sh",
+          "w24"
+        ]
+      },
+      "CRANK": {
+        "bands": [
+          "Yellow",
+          "White"
+        ],
+        "wires": [
+          "cab_crank_c1",
+          "cab_crank_sh",
+          "w2"
+        ]
+      },
+      "ETBM": {
+        "bands": [
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w124_e_ae",
+          "w215_e_ae",
+          "cab_etbm_ae_sh"
+        ]
+      },
+      "FLEX": {
+        "bands": [
+          "White",
+          "Blue"
+        ],
+        "wires": [
+          "w47",
+          "w48_e",
+          "cab_flex_sh"
+        ]
+      },
+      "MAP": {
+        "bands": [
+          "White",
+          "White"
+        ],
+        "wires": [
+          "w26_e",
+          "w206",
+          "w27"
+        ]
+      },
+      "GNDOUT": {
+        "bands": [
+          "Yellow",
+          "Blue"
+        ],
+        "wires": [
+          "w_rail_sp_gndout_e",
+          "w_gnd_a_e_c44"
+        ]
+      },
+      "EPSEN": {
+        "bands": [
+          "Blue",
+          "White"
+        ],
+        "wires": [
+          "w_hv_mrs_en_e_ae"
+        ]
+      },
+      "STR": {
+        "bands": [
+          "White",
+          "Yellow"
+        ],
+        "wires": [
+          "w_strl"
+        ]
+      },
+      "COP": {
+        "bands": [
+          "Blue",
+          "White",
+          "Yellow"
+        ],
+        "wires": [
+          "w_cop_pwr_e_ae",
+          "w112",
+          "w113",
+          "w114",
+          "w115"
+        ]
+      },
+      "INJ": {
+        "bands": [
+          "Blue",
+          "White",
+          "Blue"
+        ],
+        "wires": [
+          "w_inj_pwr_e_ae",
+          "w211",
+          "w212",
+          "w213",
+          "w214"
+        ]
+      },
+      "COP1": {
+        "bands": [
+          "Blue",
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w120_e",
+          "w_cop1g"
+        ]
+      },
+      "COP2": {
+        "bands": [
+          "Blue",
+          "Blue",
+          "White"
+        ],
+        "wires": [
+          "w121_e",
+          "w_cop2g"
+        ]
+      },
+      "COP3": {
+        "bands": [
+          "Blue",
+          "Yellow",
+          "Blue"
+        ],
+        "wires": [
+          "w122_e",
+          "w_cop3g"
+        ]
+      },
+      "COP4": {
+        "bands": [
+          "Blue",
+          "Yellow",
+          "Yellow"
+        ],
+        "wires": [
+          "w123_e",
+          "w_cop4g"
+        ]
+      },
+      "ECT": {
+        "bands": [
+          "Blue",
+          "Yellow",
+          "White"
+        ],
+        "wires": [
+          "w201_e",
+          "w4"
+        ]
+      },
+      "IAT": {
+        "bands": [
+          "Blue",
+          "White",
+          "White"
+        ],
+        "wires": [
+          "w202_e",
+          "w6"
+        ]
+      },
+      "8V": {
+        "bands": [
+          "Yellow",
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w_rail_sp_8v_e"
+        ]
+      },
+      "BOOST": {
+        "bands": [
+          "Yellow",
+          "Blue",
+          "White"
+        ],
+        "wires": [
+          "w103_e"
+        ]
+      },
+      "EGND": {
+        "bands": [
+          "Yellow",
+          "Yellow",
+          "Blue"
+        ],
+        "wires": [
+          "w_eng_gnd"
+        ]
+      },
+      "EPS": {
+        "bands": [
+          "Blue",
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "w_eps_rly_ae"
+        ]
+      },
+      "INJ1": {
+        "bands": [
+          "Yellow",
+          "Yellow",
+          "Yellow"
+        ],
+        "wires": [
+          "w108_e"
+        ]
+      },
+      "INJ2": {
+        "bands": [
+          "Yellow",
+          "Yellow",
+          "White"
+        ],
+        "wires": [
+          "w109_e"
+        ]
+      },
+      "INJ3": {
+        "bands": [
+          "Yellow",
+          "White",
+          "Blue"
+        ],
+        "wires": [
+          "w110_e"
+        ]
+      },
+      "INJ4": {
+        "bands": [
+          "Yellow",
+          "White",
+          "Yellow"
+        ],
+        "wires": [
+          "w111_e"
+        ]
+      },
+      "MRS": {
+        "bands": [
+          "Yellow",
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "w_mrs_e_ae"
+        ]
+      }
+    },
+    "B-engine": {
+      "CAN": {
+        "bands": [
+          "Yellow"
+        ],
+        "wires": [
+          "wc_h_lam_be",
+          "wc_l_lam_be",
+          "cab_lamcan_be_sh"
+        ]
+      },
+      "REV": {
+        "bands": [
+          "White"
+        ],
+        "wires": [
+          "w_sw7_e",
+          "w_rev_feed_e"
+        ]
+      },
+      "SW12": {
+        "bands": [
+          "Blue"
+        ],
+        "wires": [
+          "w_vss_12v"
+        ]
+      },
+      "5V": {
+        "bands": [
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "w207",
+          "w208",
+          "w209"
+        ]
+      },
+      "ETBM": {
+        "bands": [
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w124_e",
+          "w215_e",
+          "cab_etbm_be_sh"
+        ]
+      },
+      "GNDOUT": {
+        "bands": [
+          "Yellow",
+          "Blue"
+        ],
+        "wires": [
+          "w_rail_gnd_b_e",
+          "w_gnd_b_e_c21",
+          "w_gnd_b_e_c19"
+        ]
+      },
+      "KNOCK1": {
+        "bands": [
+          "Blue",
+          "White"
+        ],
+        "wires": [
+          "cab_knock1_c1",
+          "cab_knock1_c2",
+          "cab_knock1_sh"
+        ]
+      },
+      "VSS": {
+        "bands": [
+          "Yellow",
+          "Yellow"
+        ],
+        "wires": [
+          "w_vss_gnd",
+          "w_vss_sig_e",
+          "cab_vss_sh"
+        ]
+      },
+      "CLNTP": {
+        "bands": [
+          "Yellow",
+          "White"
+        ],
+        "wires": [
+          "w35_e",
+          "w36"
+        ]
+      },
+      "CPIAT": {
+        "bands": [
+          "White",
+          "Blue"
+        ],
+        "wires": [
+          "w204_e",
+          "w10"
+        ]
+      },
+      "FUELP": {
+        "bands": [
+          "White",
+          "Yellow"
+        ],
+        "wires": [
+          "w32_e",
+          "w33"
+        ]
+      },
+      "OILP": {
+        "bands": [
+          "White",
+          "White"
+        ],
+        "wires": [
+          "w29_e",
+          "w30"
+        ]
+      },
+      "LAM": {
+        "bands": [
+          "Blue",
+          "White",
+          "White"
+        ],
+        "wires": [
+          "w_lam12_be14",
+          "w_lam12_be",
+          "w_lamg_be14",
+          "w_lamg_be"
+        ]
+      },
+      "OILT": {
+        "bands": [
+          "Blue",
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "w203_e",
+          "w8"
+        ]
+      }
+    },
+    "CAN": {
+      "CAN": {
+        "bands": [
+          "Yellow"
+        ],
+        "wires": [
+          "wc_term1",
+          "wc_term2",
+          "wc_term3",
+          "wc_term4",
+          "wc_h_lam_pin",
+          "wc_l_lam_pin",
+          "w_shd_can",
+          "wc_h_ecu",
+          "wc_l_ecu",
+          "cab_can_ecu_sh",
+          "wc_h_csb",
+          "wc_l_csb",
+          "cab_can_csb_sh",
+          "wc_h_clu",
+          "wc_l_clu",
+          "cab_can_clu_sh",
+          "wc_h_rd",
+          "wc_l_rd",
+          "cab_can_rd_sh",
+          "wc_h_bh",
+          "wc_l_bh",
+          "cab_can_bh_sh",
+          "wc_h_lam",
+          "wc_l_lam",
+          "cab_can_lam_sh"
+        ]
+      },
+      "DEV": {
+        "bands": [
+          "Yellow",
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w_dev",
+          "w_dev_clu",
+          "w_dev_rd",
+          "w_gnd_clu",
+          "w_gnd_rd"
+        ]
+      },
+      "LAM": {
+        "bands": [
+          "Blue",
+          "White",
+          "White"
+        ],
+        "wires": [
+          "w_lam12_can",
+          "w_lamg_can"
+        ]
+      }
+    },
+    "EngineRoom-C": {
+      "RTM": {
+        "bands": [
+          "Blue"
+        ],
+        "wires": [
+          "w_rtr_r2_4",
+          "w_rtr_r2_4_p",
+          "w_rtr_r2_2",
+          "w_rtr_r3_2",
+          "w_rtr_r3_4",
+          "w_rtr_r3_4_p",
+          "w_rtr_close",
+          "w_rtr_close_r2",
+          "w_rtr_close_r3",
+          "w_rtr_open",
+          "w_rtr_open_r2",
+          "w_rtr_open_r3",
+          "w_rtr_gnd_r2",
+          "w_rtr_gnd_r2_t",
+          "w_rtr_gnd_r3",
+          "w_rtr_gnd_r3_t"
+        ]
+      },
+      "CLR": {
+        "bands": [
+          "White"
+        ],
+        "wires": [
+          "w_clr",
+          "w_clr_f7",
+          "w_clr_f8",
+          "w_f7_gnd",
+          "w_f8_gnd"
+        ]
+      },
+      "HTR": {
+        "bands": [
+          "Yellow"
+        ],
+        "wires": [
+          "w_rb4"
+        ]
+      },
+      "HZ": {
+        "bands": [
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "w_haz",
+          "w_pmu_horn",
+          "w_horn_lh",
+          "w_horn_rh",
+          "w_horn_lh_g",
+          "w_horn_rh_g"
+        ]
+      },
+      "WIP": {
+        "bands": [
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w_wip_b",
+          "w_wip_hi",
+          "w_wip_lo",
+          "w_wip_park"
+        ]
+      },
+      "HHI": {
+        "bands": [
+          "White",
+          "Yellow"
+        ],
+        "wires": [
+          "w_hl_high_h1",
+          "w_hl_high_h2",
+          "w_hl_high"
+        ]
+      },
+      "HLO": {
+        "bands": [
+          "White",
+          "White"
+        ],
+        "wires": [
+          "w_hl_low_h1",
+          "w_hl_low_h2",
+          "w_hl_low"
+        ]
+      },
+      "ACC": {
+        "bands": [
+          "Yellow",
+          "Blue"
+        ],
+        "wires": [
+          "w_ac_psw",
+          "w_acc_clutch"
+        ]
+      },
+      "FAN": {
+        "bands": [
+          "Yellow",
+          "White"
+        ],
+        "wires": [
+          "w_fan_pwr",
+          "w_fan_gnd"
+        ]
+      },
+      "FAN2": {
+        "bands": [
+          "White",
+          "Blue"
+        ],
+        "wires": [
+          "w_fan2_pwr",
+          "w_fan2_gnd"
+        ]
+      },
+      "EPSEN": {
+        "bands": [
+          "Blue",
+          "White"
+        ],
+        "wires": [
+          "w_hv_mrs_en_e"
+        ]
+      },
+      "PWR": {
+        "bands": [
+          "Yellow",
+          "Yellow"
+        ],
+        "wires": [
+          "w_rb2"
+        ]
+      },
+      "EPS": {
+        "bands": [
+          "Blue",
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "w_eps_pwr",
+          "w_eps_gnd",
+          "w_eps_rly_e"
+        ]
+      },
+      "ALTIG": {
+        "bands": [
+          "Blue",
+          "Yellow",
+          "Blue"
+        ],
+        "wires": [
+          "w_alt_ig_ks",
+          "w_alt_ig_c"
+        ]
+      },
+      "TURN": {
+        "bands": [
+          "Blue",
+          "Yellow",
+          "Yellow"
+        ],
+        "wires": [
+          "w_turn_f7",
+          "w_turn_f8"
+        ]
+      },
+      "WSH": {
+        "bands": [
+          "Blue",
+          "White",
+          "Blue"
+        ],
+        "wires": [
+          "w_wash_pos",
+          "w_wash_neg"
+        ]
+      },
+      "ACMG": {
+        "bands": [
+          "Blue",
+          "White",
+          "Yellow"
+        ],
+        "wires": [
+          "w_ac_mg"
+        ]
+      },
+      "ACPS": {
+        "bands": [
+          "Blue",
+          "Yellow",
+          "White"
+        ],
+        "wires": [
+          "w_acp_1"
+        ]
+      },
+      "ALTL": {
+        "bands": [
+          "Blue",
+          "White",
+          "White"
+        ],
+        "wires": [
+          "w_alt_l_c"
+        ]
+      },
+      "ALTS": {
+        "bands": [
+          "White",
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w_alt_s_c"
+        ]
+      },
+      "AM1": {
+        "bands": [
+          "Yellow",
+          "Yellow",
+          "White"
+        ],
+        "wires": [
+          "w_pdb_am1"
+        ]
+      },
+      "AM2": {
+        "bands": [
+          "Yellow",
+          "White",
+          "Blue"
+        ],
+        "wires": [
+          "w_pdb_am2"
+        ]
+      },
+      "DM": {
+        "bands": [
+          "Yellow",
+          "Blue",
+          "White"
+        ],
+        "wires": [
+          "w_pmu_dome"
+        ]
+      },
+      "HL": {
+        "bands": [
+          "Blue",
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w_pmu_hl"
+        ]
+      },
+      "HR": {
+        "bands": [
+          "Blue",
+          "Blue",
+          "White"
+        ],
+        "wires": [
+          "w_pmu_hr"
+        ]
+      },
+      "MRS": {
+        "bands": [
+          "Yellow",
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "w_mrs_e"
+        ]
+      },
+      "RTR": {
+        "bands": [
+          "Yellow",
+          "Yellow",
+          "Yellow"
+        ],
+        "wires": [
+          "w_pmu_rtr"
+        ]
+      },
+      "WL": {
+        "bands": [
+          "Yellow",
+          "Yellow",
+          "Blue"
+        ],
+        "wires": [
+          "w_rb2_wl"
+        ]
+      },
+      "BATN": {
+        "bands": [],
+        "wires": [
+          "w_h2_pdb",
+          "w_pdb_rln",
+          "w_gnd_id",
+          "w_gnd_ig",
+          "w_gnd_eb"
+        ]
+      },
+      "BAT": {
+        "bands": [],
+        "wires": [
+          "w_h1_pdb",
+          "w_pdb_rlp"
+        ]
+      },
+      "JB1": {
+        "bands": [],
+        "wires": [
+          "w_pdb_jb1"
+        ]
+      }
     }
   }
 }

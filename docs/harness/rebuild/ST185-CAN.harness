@@ -2,6 +2,69 @@
   "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
   "version": 0.9,
   "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-CAN - CAN bus 1 loom: ECU, CSB3, cluster, RealDash, CAN-Lambda, terminators",
+    "drawingNumber": "ST185-CAN"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at the ECU COM and LAMBDA bundle ends.",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
   "connectors": [
     {
       "id": "ecu_com",
@@ -545,6 +608,9 @@
             "y": -90
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -595,6 +661,9 @@
             "y": -150
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -645,6 +714,9 @@
             "y": -30
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -667,6 +739,9 @@
             "y": 0
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -703,6 +778,9 @@
             "y": 120
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -739,6 +817,9 @@
             "y": 90
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -775,6 +856,11 @@
             "y": -60
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White",
+        "White"
       ]
     },
     {
@@ -811,6 +897,11 @@
             "y": 180
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White",
+        "White"
       ]
     },
     {
@@ -841,6 +932,9 @@
             "y": 120
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -884,6 +978,11 @@
             "y": 810
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -913,6 +1012,11 @@
             "y": 870
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -949,6 +1053,11 @@
             "y": 960
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -978,6 +1087,11 @@
             "y": 1020
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -1007,6 +1121,11 @@
             "y": 1050
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Yellow"
       ]
     }
   ],
@@ -1045,7 +1164,12 @@
       "length": {
         "value": 180,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "ECU COM",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_ecu_com__bp_1050",
@@ -1054,7 +1178,12 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "label": "ECU COM",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_390__lambda",
@@ -1063,7 +1192,12 @@
       "length": {
         "value": 90,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "LAMBDA",
+      "partIds": [
+        "cov_lbl_316"
+      ]
     },
     {
       "id": "bn_bp_930__t_cluster_can",
@@ -1298,16 +1432,16 @@
       "width": 390,
       "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Only the CAN-Lambda crosses the firewall, on bulkhead B c13 / c14 (CAN) and c3 / c4 (+12V / GND); the cluster and RealDash are CAN drops only - their devices and their power are not part of this harness. 120R termination at the ECU end and at the lambda end.",
       "schematicPosition": {
-        "x": 3210,
-        "y": -60
+        "x": 2700,
+        "y": 240
       }
     },
     {
       "id": "n_cavity_notes",
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, LOGIC LAM 7.5A - broken off here, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse LOGIC LAM\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)\nsp_shield_can (Splice): CAN drain T-splice at the bus branch point (Daniel 2026-10-12). The trunk drain w_shd_can runs on (broken off) to ST185-B-cabin and is T-spliced there onto the B17 drain; each node branch drain (ECU port, CSB3, cluster, RealDash, bulkhead / Lambda) is soldered onto the trunk drain here where 6 mm of its insulation is cut away. Drains stay 20 AWG - no combined-gauge pigtail.",
       "schematicPosition": {
-        "x": 3210,
-        "y": 150
+        "x": 2820,
+        "y": 420
       }
     }
   ],
@@ -1654,6 +1788,9 @@
                 "y": -180
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         },
         {
@@ -1726,6 +1863,9 @@
                 "y": 120
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         }
       ],
@@ -1758,6 +1898,9 @@
               "y": 240
             }
           }
+        ],
+        "identColors": [
+          "Yellow"
         ]
       }
     },
@@ -1854,6 +1997,9 @@
                 "y": -60
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         },
         {
@@ -1954,6 +2100,9 @@
                 "y": 180
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         }
       ],
@@ -2034,6 +2183,9 @@
               "y": 120
             }
           }
+        ],
+        "identColors": [
+          "Yellow"
         ]
       }
     },
@@ -2130,6 +2282,9 @@
                 "y": -150
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         },
         {
@@ -2216,6 +2371,9 @@
                 "y": 270
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         }
       ],
@@ -2241,6 +2399,9 @@
               "y": -30
             }
           }
+        ],
+        "identColors": [
+          "Yellow"
         ]
       }
     },
@@ -2316,6 +2477,9 @@
                 "y": -60
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         },
         {
@@ -2388,6 +2552,9 @@
                 "y": 360
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         }
       ],
@@ -2420,6 +2587,9 @@
               "y": 180
             }
           }
+        ],
+        "identColors": [
+          "Yellow"
         ]
       }
     },
@@ -2509,6 +2679,9 @@
                 "y": 60
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         },
         {
@@ -2602,6 +2775,9 @@
                 "y": -180
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         }
       ],
@@ -2689,6 +2865,9 @@
               "y": 120
             }
           }
+        ],
+        "identColors": [
+          "Yellow"
         ]
       }
     },
@@ -2785,6 +2964,9 @@
                 "y": -90
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         },
         {
@@ -2850,6 +3032,9 @@
                 "y": 60
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         }
       ],
@@ -2896,7 +3081,52 @@
               "y": 120
             }
           }
+        ],
+        "identColors": [
+          "Yellow"
         ]
+      }
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_316",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/16-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 1.6,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
       }
     }
   ]

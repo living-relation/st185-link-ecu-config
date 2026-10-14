@@ -55,10 +55,12 @@ def _circuit_keys(d, fn):
     for c in d.get("cables", []):
         conds += c.get("cores", []) + ([c["shield"]] if c.get("shield") else [])
     for w in conds:
+        if not (w.get("source") and w.get("target")):   # a screen left open at one end
+            continue
         a, b = [(e["id"],) if e["id"] in joins else (e["id"], e.get("handle")) for e in (w["source"], w["target"])]
         parent[find(a)] = find(b)
     for w in conds:
-        e = w["source"]
+        e = w.get("source") or w["target"]
         key.setdefault(w["id"], find((e["id"],) if e["id"] in joins else (e["id"], e.get("handle"))))
     return key
 
