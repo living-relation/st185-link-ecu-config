@@ -25,38 +25,38 @@
         {
           "id": "c38",
           "designation": "3",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c39",
           "designation": "4",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c40",
           "designation": "5",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c41",
           "designation": "6",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c42",
           "designation": "7",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c43",
           "designation": "8",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "nc9",
@@ -265,8 +265,8 @@
         {
           "id": "c52",
           "designation": "43",
-          "signal": "spare (size 4)",
-          "cavityPlugPartId": "pl_sz4"
+          "cavityPlugPartId": "pl_sz4",
+          "notConnected": true
         },
         {
           "id": "nc44",
@@ -295,14 +295,14 @@
         {
           "id": "c48",
           "designation": "48",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
         },
         {
           "id": "c49",
           "designation": "49",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
         },
         {
           "id": "nc50",
@@ -331,14 +331,14 @@
         {
           "id": "c50",
           "designation": "54",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
         },
         {
           "id": "c51",
           "designation": "55",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
         },
         {
           "id": "nc56",
@@ -367,8 +367,8 @@
         {
           "id": "c53",
           "designation": "60",
-          "signal": "spare (size 4)",
-          "cavityPlugPartId": "pl_sz4"
+          "cavityPlugPartId": "pl_sz4",
+          "notConnected": true
         },
         {
           "id": "nc61",
@@ -385,50 +385,50 @@
         {
           "id": "c26",
           "designation": "63",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c27",
           "designation": "64",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c28",
           "designation": "65",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c29",
           "designation": "66",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c30",
           "designation": "67",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c31",
           "designation": "68",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c32",
           "designation": "69",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c33",
           "designation": "70",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c7",
@@ -488,26 +488,26 @@
         {
           "id": "c34",
           "designation": "79",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c35",
           "designation": "80",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c36",
           "designation": "81",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c37",
           "designation": "82",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c16",
@@ -604,38 +604,38 @@
         {
           "id": "c1",
           "designation": "97",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c2",
           "designation": "98",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c44",
           "designation": "99",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c45",
           "designation": "100",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c46",
           "designation": "101",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c47",
           "designation": "102",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         }
       ],
       "layoutPosition": {
@@ -902,8 +902,8 @@
         {
           "id": "c6",
           "designation": "6",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         }
       ],
       "schematicPosition": {
@@ -950,7 +950,7 @@
     {
       "id": "t_ac_btn",
       "type": "Loose",
-      "signal": "A/C request button signal -> ECU-B B31 (An Volt 10) - device/pull-up TBD, docs/OPEN-ITEMS.md",
+      "signal": "A/C request: dash A/C switch output V-G (12 V when ON; old A15 pin 3 / IJ1-7) -> 10k / 3.9k divider -> ECU-B B31 (An Volt 10)",
       "schematicPosition": {
         "x": 660,
         "y": 1110
@@ -964,7 +964,7 @@
     {
       "id": "t_evap_temp",
       "type": "Loose",
-      "signal": "Evaporator thermistor signal -> ECU-B B32 (An Volt 11) - device/pull-up TBD, docs/OPEN-ITEMS.md",
+      "signal": "Evaporator thermistor A24 element 1 (1.5 kohm at 25 C) -> ECU-B B32 (An Volt 11), 2.2k pull-up to +5V",
       "schematicPosition": {
         "x": 660,
         "y": 1260
@@ -1319,6 +1319,20 @@
         "y": 330
       },
       "propagate": false
+    },
+    {
+      "id": "t_evap_rtn",
+      "type": "Loose",
+      "signal": "Evaporator thermistor A24 element 2 -> Gnd Out (sp_gndout_b)",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1320
+      },
+      "layoutPosition": {
+        "x": 1560,
+        "y": -420
+      },
+      "propagate": false
     }
   ],
   "splices": [
@@ -1399,6 +1413,32 @@
         "x": 2400,
         "y": 150
       }
+    },
+    {
+      "id": "sp_ac_btn",
+      "partId": "spp_solder_generic",
+      "locationId": "ecu_b",
+      "schematicPosition": {
+        "x": 1230,
+        "y": 1110
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": -270
+      }
+    },
+    {
+      "id": "sp_evap",
+      "partId": "spp_solder_generic",
+      "locationId": "ecu_b",
+      "schematicPosition": {
+        "x": 1230,
+        "y": 1260
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": -360
+      }
     }
   ],
   "resistors": [
@@ -1413,6 +1453,45 @@
       "schematicPosition": {
         "x": 510,
         "y": 150
+      }
+    },
+    {
+      "id": "r_ac_btn_hi",
+      "partId": "rp_10k",
+      "locationId": "ecu_b",
+      "schematicPosition": {
+        "x": 1080,
+        "y": 1170
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": -270
+      }
+    },
+    {
+      "id": "r_ac_btn_lo",
+      "partId": "rp_3k9",
+      "locationId": "ecu_b",
+      "schematicPosition": {
+        "x": 1380,
+        "y": 1170
+      },
+      "layoutPosition": {
+        "x": 1920,
+        "y": -270
+      }
+    },
+    {
+      "id": "r_evap",
+      "partId": "rp_2k2",
+      "locationId": "ecu_b",
+      "schematicPosition": {
+        "x": 1380,
+        "y": 1320
+      },
+      "layoutPosition": {
+        "x": 1920,
+        "y": -360
       }
     }
   ],
@@ -1822,8 +1901,8 @@
         "handle": "b31"
       },
       "target": {
-        "id": "t_ac_btn",
-        "handle": "Terminal"
+        "id": "sp_ac_btn",
+        "handle": "Splice"
       },
       "partId": "m16_20_8"
     },
@@ -1835,8 +1914,8 @@
         "handle": "b32"
       },
       "target": {
-        "id": "t_evap_temp",
-        "handle": "Terminal"
+        "id": "sp_evap",
+        "handle": "Splice"
       },
       "partId": "m16_20_8"
     },
@@ -2017,6 +2096,112 @@
       "color": "Red",
       "stripeColor": "Blue",
       "partId": "m16_16_26"
+    },
+    {
+      "id": "w_ac_btn_in",
+      "color": "Gray",
+      "source": {
+        "id": "t_ac_btn",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "r_ac_btn_hi",
+        "handle": "Left"
+      },
+      "partId": "m16_20_8"
+    },
+    {
+      "id": "w_ac_btn_hi",
+      "color": "Gray",
+      "source": {
+        "id": "r_ac_btn_hi",
+        "handle": "Right"
+      },
+      "target": {
+        "id": "sp_ac_btn",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_8"
+    },
+    {
+      "id": "w_ac_btn_lo",
+      "color": "Gray",
+      "source": {
+        "id": "sp_ac_btn",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "r_ac_btn_lo",
+        "handle": "Left"
+      },
+      "partId": "m16_20_8"
+    },
+    {
+      "id": "w_ac_btn_gnd",
+      "color": "Black",
+      "source": {
+        "id": "r_ac_btn_lo",
+        "handle": "Right"
+      },
+      "target": {
+        "id": "sp_gndout_b",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_09",
+      "stripeColor": "White"
+    },
+    {
+      "id": "w_evap_sig",
+      "color": "Gray",
+      "source": {
+        "id": "t_evap_temp",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_evap",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_8"
+    },
+    {
+      "id": "w_evap_pu",
+      "color": "Gray",
+      "source": {
+        "id": "sp_evap",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "r_evap",
+        "handle": "Left"
+      },
+      "partId": "m16_20_8"
+    },
+    {
+      "id": "w_evap_5v",
+      "color": "Orange",
+      "source": {
+        "id": "r_evap",
+        "handle": "Right"
+      },
+      "target": {
+        "id": "sp_5v_b",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_3"
+    },
+    {
+      "id": "w_evap_rtn",
+      "color": "Black",
+      "source": {
+        "id": "t_evap_rtn",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_gndout_b",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_09",
+      "stripeColor": "White"
     }
   ],
   "cables": [
@@ -3477,6 +3662,24 @@
       "partNumber": "470R 1/4W",
       "manufacturer": "generic",
       "description": "RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W"
+    },
+    {
+      "id": "rp_10k",
+      "partNumber": "10k 1/4W",
+      "manufacturer": "generic",
+      "description": "RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W"
+    },
+    {
+      "id": "rp_3k9",
+      "partNumber": "3.9k 1/4W",
+      "manufacturer": "generic",
+      "description": "RESISTOR, FIXED, METAL FILM, 3.9 KOHM, 5 PCT, 1/4 W"
+    },
+    {
+      "id": "rp_2k2",
+      "partNumber": "2.2k 1/4W 1%",
+      "manufacturer": "generic",
+      "description": "RESISTOR, FIXED, METAL FILM, 2.2 KOHM, 1 PCT, 1/4 W"
     }
   ],
   "mountParts": [

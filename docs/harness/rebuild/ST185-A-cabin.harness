@@ -507,14 +507,14 @@
         {
           "id": "c37",
           "designation": "45",
-          "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)",
-          "contactPartId": "ct_hdp16p"
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c38",
           "designation": "46",
-          "signal": "A/C coolant switch return -> A/C amplifier",
-          "contactPartId": "ct_hdp16p"
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c45",
@@ -552,14 +552,14 @@
         {
           "id": "c1",
           "designation": "52",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c12",
           "designation": "53",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "nc54",
@@ -583,20 +583,20 @@
         {
           "id": "c28",
           "designation": "57",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c30",
           "designation": "58",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c31",
           "designation": "59",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "nc60",
@@ -607,8 +607,8 @@
         {
           "id": "c32",
           "designation": "61",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "nc62",
@@ -904,7 +904,8 @@
         {
           "id": "c6",
           "designation": "6",
-          "signal": "spare, plugged - was the FR cable's own drain (B17) when FL/FR were two separate output cables; superseded 2026-10-10, Route 9 rev 3"
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
         }
       ],
       "schematicPosition": {
@@ -969,36 +970,6 @@
     }
   ],
   "terminals": [
-    {
-      "id": "fl_acamp_tw",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD p.150 A34-20 R-G TW water temp input <- A/C coolant switch - solder sleeve into the factory R-G lead at the amplifier",
-      "schematicPosition": {
-        "x": 4230,
-        "y": 1110
-      },
-      "layoutPosition": {
-        "x": 1680,
-        "y": 0
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_acamp_sg",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.148 + p.150 (1993 TIS EWD p.211-212 agrees) A34 (auto A/C amplifier conn C)-15 V-W sensor common SG - the TAM (A1 pin 1) and TW (A27 pin 3) returns join at splice I11 and land on A34-15 - solder sleeve into the factory sensor-return lead at the amplifier",
-      "schematicPosition": {
-        "x": 4230,
-        "y": 1170
-      },
-      "layoutPosition": {
-        "x": 1680,
-        "y": 60
-      },
-      "propagate": false
-    },
     {
       "id": "fl_acamp_act",
       "type": "Loose",
@@ -1975,32 +1946,6 @@
       "partId": "m16_20_6"
     },
     {
-      "id": "w_accts_sig_c",
-      "source": {
-        "id": "bh_a_fw",
-        "handle": "c37"
-      },
-      "target": {
-        "id": "fl_acamp_tw",
-        "handle": "Terminal"
-      },
-      "color": "Yellow",
-      "partId": "m16_20_4"
-    },
-    {
-      "id": "w_accts_rtn_c",
-      "source": {
-        "id": "bh_a_fw",
-        "handle": "c38"
-      },
-      "target": {
-        "id": "fl_acamp_sg",
-        "handle": "Terminal"
-      },
-      "color": "Brown",
-      "partId": "m16_20_1"
-    },
-    {
       "id": "w_ac_clutch_mg",
       "source": {
         "id": "fl_acamp_mg",
@@ -2885,24 +2830,6 @@
       "targetId": "ix_ws_front_p",
       "length": {
         "value": 300,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_acamp__fl_acamp_tw",
-      "sourceId": "bp_fl_acamp",
-      "targetId": "fl_acamp_tw",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_acamp__fl_acamp_sg",
-      "sourceId": "bp_fl_acamp",
-      "targetId": "fl_acamp_sg",
-      "length": {
-        "value": 50,
         "unit": "mm"
       }
     },

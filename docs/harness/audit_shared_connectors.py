@@ -10,9 +10,11 @@ https://docs.harness.design/component/connector), with a note naming that file.
   SC1  every member uses the same part (part number and every part field but the id)
   SC2  every member draws the full part: cavities == the part's numberOfCavities, each
        designation once, and the same designation set in every member
-  SC3  each designation is live (not N/C) in exactly one member of the group; every other
-       member marks it N/C
-  SC4  an N/C cavity carries no signal, no contact and no sealing plug (cavityPlugPartId null),
+  SC3  each designation is owned by exactly one member of the group - live (not N/C), or the
+       owner's own spare: N/C with its sealing plug (OPEN-ITEMS row 80, decided by Dispatch
+       2026-10-14) - and every other member marks it N/C with no plug
+  SC4  an N/C cavity carries no signal and no contact; only the owner's spare carries its
+       sealing plug (cavityPlugPartId), every other member's copy has cavityPlugPartId null,
        so the owning file is the only one that counts its contact or plug
   SC5  a file whose connector has N/C cavities has a schematic note saying "see ST185-<owner>"
        for every file that owns some of them
@@ -67,23 +69,25 @@ for pg, members in reg.get("physicalPartGroups", {}).items():
             bad.append("SC2 %s: %s %s repeats designation(s) %s" % (pg, loom, c["id"], ", ".join(sorted(dup))))
         if set(des) != {str(cv.get("designation")) for cv in ref[2]["cavities"]}:
             bad.append("SC2 %s: %s %s designations differ from %s" % (pg, loom, c["id"], ref[0]))
-    owner = collections.defaultdict(list)          # designation -> files where it is live
+    owner = collections.defaultdict(list)          # designation -> files that own it
     for loom, d, c, p in got:
         for cv in c["cavities"]:
-            if not cv.get("notConnected"):
+            if not cv.get("notConnected") or cv.get("cavityPlugPartId"):
                 owner[str(cv.get("designation"))].append(loom)
     for des in sorted({str(cv.get("designation")) for _, _, c, _ in got for cv in c["cavities"]}, key=lambda s: (len(s), s)):
         if len(owner.get(des, [])) != 1:
-            bad.append("SC3 %s: cavity %s is live in %d files (%s) - exactly one owns it, the rest mark it N/C"
+            bad.append("SC3 %s: cavity %s is owned by %d files (%s) - exactly one owns it (live, or N/C with its plug), the rest mark it N/C"
                        % (pg, des, len(owner.get(des, [])), ", ".join(owner.get(des, [])) or "none"))
     for loom, d, c, p in got:
         owners = set()
         for cv in c["cavities"]:
             if not cv.get("notConnected"):
                 continue
-            if cv.get("signal") or cv.get("contactPartId") or cv.get("cavityPlugPartId") is not None:
-                bad.append("SC4 %s: %s %s %s is N/C but carries a signal, contact or plug"
+            if cv.get("signal") or cv.get("contactPartId"):
+                bad.append("SC4 %s: %s %s %s is N/C but carries a signal or contact"
                            % (pg, loom, c["id"], cv["id"]))
+            if cv.get("cavityPlugPartId"):
+                continue          # the owner's own spare, plugged (row 80)
             owners.update(o for o in owner.get(str(cv.get("designation")), []) if o != loom)
         text = " ".join(n.get("text", "") for n in d.get("schematicNotes", []))
         for o in sorted(owners):

@@ -176,9 +176,15 @@ for cid, cc in copies.items():
             pid = cfg.get(key)
             if pid and pid in parts:
                 q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+        # harness.design accessories (coverings), each listed entry counts once
+        # (the VRC-IN / VRC-OUT plug labels and colour bands, row 71)
+        for acc in cfg.get("accessories", []):
+            pid = acc.get("partId")
+            if pid and pid in parts:
+                q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
     for cv in c.get("cavities", []):
-        if cv.get("notConnected"):
-            continue
+        if cv.get("notConnected") and not cv.get("cavityPlugPartId"):
+            continue          # another loom's cavity - counted there
         if "contactPartId" in cv or "cavityPlugPartId" in cv:
             pids = [cv.get("contactPartId"), cv.get("cavityPlugPartId")]
         elif any((cid, cv["id"]) in WIRED[l] for l, _, _ in cc):

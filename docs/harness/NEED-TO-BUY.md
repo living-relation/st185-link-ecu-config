@@ -9,9 +9,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 110 | 0 | **110** |
-| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 57 | 0 | **57** |
-| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 46 | 0 | **46** |
+| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 108 | 0 | **108** |
+| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 59 | 0 | **59** |
+| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 50 | 0 | **50** |
 | `RS 264-6432` | RS PRO | RS PRO A2/304 STAINLESS SERRATED FLANGE HEX NUT M5, DIN 6923 | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
@@ -59,6 +59,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `DTHD06-1-8S` | TE DEUTSCH | CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A | 4 | 0 | **4** |
 | `Klauke 1R6` | Klauke | TINNED COPPER TUBULAR RING LUG, 6 MM2, M6 STUD, HOLE 6.5, 27.5 LONG | 4 | 0 | **4** |
 | `LP-16-J05PE-02-001` | CNLINKO | CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH | 4 | 0 | **4** |
+| `RNF-100-3/8-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 9.5 MM EXPANDED ID, 4.8 MM RECOVERED ID, CUT 25 MM | 4 | 0 | **4** |
 | `RS 190-169` | RS PRO | RS PRO STAINLESS (A4 / 316) HEX BOLT M6 X 16, DIN 933 | 4 | 0 | **4** |
 | `RS 287-3962` | RS PRO | RS PRO A2/304 STAINLESS PLAIN WASHER M6, BS 4320C | 4 | 0 | **4** |
 | `RS 527-274` | RS PRO | RS PRO A2/304 STAINLESS HEX NUT M6, DIN 934 | 4 | 0 | **4** |
@@ -81,15 +82,21 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `Klauke 3R5MS` | Klauke | TINNED COPPER TUBULAR RING LUG WITH INSPECTION HOLE, 16 MM2, M5, HOLE 5.5; B 13, L 26 | 2 | 0 | **2** |
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK | 2 | 0 | **2** |
 | `RL00801-50RE` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED | 2 | 0 | **2** |
+| `RNF-100-3/8-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 9.5 MM EXPANDED ID, 4.8 MM RECOVERED ID, CUT 25 MM | 2 | 0 | **2** |
 | `RS 190-276` | RS PRO | RS PRO STAINLESS HEX BOLT M8 X 25, DIN 933 (GRADE NOT STATED ON THE LISTING) | 2 | 0 | **2** |
 | `RS 530-769` | RS PRO | RS PRO A2/304 STAINLESS HEX NUT M8, DIN 934 | 2 | 0 | **2** |
 | `RS 797-6068` | RS PRO | RS PRO STAINLESS PLAIN WASHER M8, DIN 125A | 2 | 0 | **2** |
+| `TMS-SCE-1/2-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 2 | 0 | **2** |
+| `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 2 | 0 | **2** |
 | `V23132-A2001-B200` | TE Connectivity | RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS | 2 | 0 | **2** |
 | `W3S` | Deutsch | WEDGELOCK, DT, 3 POS, PLUG | 2 | 0 | **2** |
 | `1-1414687-0` | TE Connectivity | RELAY, PLUG-IN, MINI ISO, TE POWER RELAY F4 A V23136-A0004-X059, 1 FORM C, NO 40 A / NC 30 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 1 | 0 | **1** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
+| `10k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `132066-2` | TE Connectivity | TERMINAL, RING TONGUE, SOLISTRAND, CLOSED BARREL, UNINSULATED, 1/0 AWG (41-60 MM2), 5/16 (M8) STUD, ADHESIVE HEATSHRINK OVER | 1 | 0 | **1** |
 | `1k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
+| `2.2k 1/4W 1%` | generic | RESISTOR, FIXED, METAL FILM, 2.2 KOHM, 1 PCT, 1/4 W | 1 | 0 | **1** |
+| `3.9k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 3.9 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `320238` | TE Connectivity | SPLICE, BUTT, SOLISTRAND, CLOSED BARREL, SIGHT HOLE, UNINSULATED, 4 AWG (33100-52600 CMA = 5-3 AWG COMBINED), ADHESIVE HEATSHRINK OVER | 1 | 0 | **1** |
 | `320575` | TE Connectivity | TERMINAL, RING TONGUE, PIDG, CLOSED, 5/16 (M8) STUD, 16-14 AWG (1.25-2 MM2), TIN, PARTIALLY INSULATED | 1 | 0 | **1** |
 | `3R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 16 MM2, M5 STUD | 1 | 0 | **1** |
@@ -151,9 +158,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 100 | 130 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 98 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 96 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 94 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS | 1 | 1 |
@@ -202,7 +209,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(pump pigtail - Walbro F90000295)` | CONNECTOR, PIGTAIL, 2 POS | 1 |
 | `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK | 5 |
 | `(ring lug, sized to cable)` | TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK | 8 |
-| `TBD - A/C coolant temperature switch connector` | CONNECTOR, 2 POS, TYPE TBD | 1 |
 
 ## Counted once, drawn more than once
 
@@ -246,7 +252,7 @@ is in `interfaces.json` and in the build list's EWD column.
 
 | Harness | Flying leads |
 |---|---:|
-| A-cabin | 5 |
+| A-cabin | 3 |
 | B-cabin | 2 |
 | B-engine | 2 |
 | CSB3 | 5 |

@@ -204,7 +204,7 @@ for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
             continue
         m = desig.setdefault(cn["id"], {})
         for cv in cn.get("cavities", []):
-            if cv.get("notConnected"):
+            if cv.get("notConnected") and not cv.get("cavityPlugPartId"):
                 continue          # the other section's cavity, live on the other loom (audit_shared_connectors.py)
             num = str(cv.get("designation", ""))
             if not num.isdigit() or int(num) not in DRB_SIZE:

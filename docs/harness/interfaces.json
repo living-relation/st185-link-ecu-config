@@ -636,34 +636,6 @@
       }
     },
     {
-      "id": "FL_ACAMP_TW",
-      "type": "oem_flying_lead",
-      "harness": "A-cabin",
-      "terminal": "fl_acamp_tw",
-      "ewd": {
-        "page": "p.150",
-        "connector": "A34 (auto A/C amplifier conn C)",
-        "pin": "20",
-        "color": "R-G",
-        "function": "TW water temp input <- A/C coolant switch",
-        "method": "solder sleeve into the factory R-G lead at the amplifier"
-      }
-    },
-    {
-      "id": "FL_ACAMP_SG",
-      "type": "oem_flying_lead",
-      "harness": "A-cabin",
-      "terminal": "fl_acamp_sg",
-      "ewd": {
-        "page": "1990 p.148 + p.150 (1993 TIS EWD p.211-212 agrees)",
-        "connector": "A34 (auto A/C amplifier conn C)",
-        "pin": "15",
-        "color": "V-W",
-        "function": "sensor common SG - the TAM (A1 pin 1) and TW (A27 pin 3) returns join at splice I11 and land on A34-15",
-        "method": "solder sleeve into the factory sensor-return lead at the amplifier"
-      }
-    },
-    {
       "id": "FL_ACAMP_MG",
       "type": "oem_flying_lead",
       "harness": "A-cabin",

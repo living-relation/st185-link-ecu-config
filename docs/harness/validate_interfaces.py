@@ -14,7 +14,7 @@
       net through that cavity reaches that ECU pin - and no cavity's net reaches an ECU pin
       that a DIFFERENT cavity of the same pair names (catches crossed / swapped pins)
   I10 a cavity left unwired on both halves is an explicit spare: its label says "spare" (or
-      "plug") on both halves
+      "plug") on both halves, or it is N/C with its sealing plug (row 80, 2026-10-14)
   The same I7 / I9 / I10 rules also cover connector pairs mated inside one drawing
   (interfaces.json "inFileMates"; none today - IX_APS was retired 2026-10-11).
 
@@ -135,6 +135,13 @@ def reached(node):
     return {m for m in net if m[0] == "ECU"}
 
 
+def label(cv):
+    """A cavity's label; an N/C cavity with its sealing plug is a plugged spare (row 80)."""
+    if cv.get("notConnected") and cv.get("cavityPlugPartId"):
+        return "N/C, plugged spare"
+    return cv.get("signal") or ""
+
+
 def pin_rules(name, node_of, cavs, labels, note):
     """cavs: cavity ids; labels: cav -> [label on each half]; node_of: cav -> graph node."""
     names = {cv: named_pins(note.get(cv, ""), *labels[cv]) for cv in cavs}
@@ -175,7 +182,7 @@ for ix in reg.get("interfaces", []):
     if len(cons) != 2:
         continue
     cavs = [x["id"] for x in cons[0]["cavities"]]
-    lab = {cv: [next((x.get("signal") or "" for x in c["cavities"] if x["id"] == cv), "")
+    lab = {cv: [next((label(x) for x in c["cavities"] if x["id"] == cv), "")
                 for c in cons] for cv in cavs}
     pin_rules(ix["id"], lambda cv, i=ix["id"]: ("IX", i, cv), cavs, lab, ix.get("pins", {}))
 
@@ -203,7 +210,7 @@ for m in reg.get("inFileMates", []):
     for cv in sorted(wired_by[0] ^ wired_by[1]):
         bad.append("I7 %s %s is wired on %s only" % (key, cv, cons[0]["id"] if cv in wired_by[0] else cons[1]["id"]))
     cavs = [x["id"] for x in cons[0]["cavities"]]
-    lab = {cv: [next((x.get("signal") or "" for x in c["cavities"] if x["id"] == cv), "")
+    lab = {cv: [next((label(x) for x in c["cavities"] if x["id"] == cv), "")
                 for c in cons] for cv in cavs}
     pin_rules(key, lambda cv, k=key: ("IX", k, cv), cavs, lab, {})
 
