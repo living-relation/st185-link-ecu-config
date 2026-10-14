@@ -3,7 +3,7 @@
 > ## Before any wiring or CAN change — binding on every agent
 >
 > **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules from Daniel"
-> (R1-R85).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
+> (R1-R86).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
 > shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
 > this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
 > Three rules, all non-optional:
@@ -155,6 +155,7 @@ $env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py
 ### Quick checks
 ```bash
 python docs/harness/check_all.py          # harness gates; --check mode, never writes
+python docs/harness/audit_wire_spacing.py # wire overlap / spacing only (R86)
 python bench/check_parity.py              # CAN contract parity
 python tune/scripts/validate_tune.py      # tune seed tables (needs PyYAML)
 python .github/scripts/check_doc_duplicates.py   # copied .md passages (warn-only)
@@ -177,6 +178,7 @@ python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.
 - Open items live in one table: `docs/OPEN-ITEMS.md`.
 - harness.design format / how-to: read its docs, never guess, and cite the page in the PR when it drives a format choice - https://docs.harness.design/feature/local-files/json-format (v0.9 `.harness` / `.harnesslib`), https://docs.harness.design/feature/part-libraries, https://docs.harness.design/feature/desktop, https://docs.harness.design/feature/pinouts, https://docs.harness.design/files/harness/editing-guide.md.
 - Dan edits the looms in the harness.design desktop app on the files in `docs/harness/rebuild/` (live files, no upload step; `docs/harness/README.md` "Open in the desktop app"); agents pause while he edits, the saved file wins. Drawing conventions: global skill `harness-design`; harness.design docs win.
+- Schematic wires never overlap and parallel runs keep a 3-line-width gap (DECISIONS R86, Daniel 2026-10-14; colour part open, OPEN-ITEMS row 115). After moving nodes or adding wires, re-route: `python docs/harness/route_wires.py rebuild/<file>.harness` (writes each wire's `layoutPoints`; `--check` = dry run), gate `docs/harness/audit_wire_spacing.py` (in `check_all.py`). Path model of the app's routing: `docs/harness/wire_paths.py`; snapshot PNGs: `docs/harness/render_schematic.py`.
 - The part library is the master (Daniel, 2026-10-12): change a part in `docs/harness/rebuild/ST185.harnesslib` FIRST, then copy it into the drawings, in the same PR; any difference between a drawing's part and the library fails, no exceptions (gate `docs/harness/check_harnesslib.py`, in `check_all.py`; `--add-missing` copies new parts).
 - Keep `ST185:` names in `link_g4x_realdash.xml` unchanged unless migration is explicitly requested (renames break `.rd` gauge bindings).
 - RealDash frame scope is the documented ECU streams `0x3EF`-`0x3F1` plus one approved exception (2026-09-04): the gear byte of `0x3EB` (`ST185: Gear`) for the reverse-camera auto-switch - see the CAN scope note in `REALDASH-LAYOUT.md` and the SCOPE note in the XML. Do not widen it to other `0x3E8`-`0x3EE` bytes without updating both.
