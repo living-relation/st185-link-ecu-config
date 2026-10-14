@@ -841,15 +841,159 @@ def load_routes() -> list[dict]:
     return out
 
 
-def load_cad() -> list[dict]:
-    """Status of each CAD model, from the table in cad/README.md."""
-    if not CAD_INDEX.is_file():
-        return []
-    text = CAD_INDEX.read_text(encoding="utf-8", errors="replace")
-    for t in parse_md_tables(text):
-        if t["columns"][:3] == ["Model", "What it is", "Status / rev"]:
-            return [{"model": _plain(r[0]), "status": _plain(r[2])[:200]} for r in t["rows"]]
-    return []
+MODEL_EXT = {".step", ".stp", ".stl", ".f3d", ".f3z"}
+CAD_MANIFEST = REPO / "cad" / "model-files.json"
+# Where the heavy (gitignored) model files live on Dan's PC; shown as the "full local path".
+DAN_ROOT = "C:/projects/active/st185-link-ecu-config"
+HANGER_RUN = Path("C:/projects/active/fairsolid/runs/fuel_hanger_billet_1014")
+
+
+def _main_checkout() -> Path:
+    """The main checkout holds the gitignored model files; a worktree has only tracked ones."""
+    try:
+        out = subprocess.run(["git", "rev-parse", "--git-common-dir"], cwd=REPO,
+                             capture_output=True, text=True, timeout=10, check=True).stdout.strip()
+        return (REPO / out).resolve().parent
+    except Exception:
+        return REPO
+
+
+def _model_names(d: Path) -> list[str]:
+    return sorted(p.name for p in d.iterdir() if p.suffix.lower() in MODEL_EXT) if d.is_dir() else []
+
+
+def scan_model_files() -> dict:
+    """Model files found on THIS disk: every cad/ folder holding STEP/STL/f3d, plus the
+    newest rev folder of the Fairsolid fuel hanger run. {} when none are present (CI)."""
+    found: dict[str, list[str]] = {}
+    for root in {REPO, _main_checkout()}:
+        cad = root / "cad"
+        if not cad.is_dir():
+            continue
+        for d in [cad, *[p for p in cad.rglob("*") if p.is_dir()]]:
+            names = _model_names(d)
+            if names:
+                rel = d.relative_to(root).as_posix()
+                found[rel] = sorted(set(found.get(rel, [])) | set(names))
+    if HANGER_RUN.is_dir():
+        revs = sorted((p for p in HANGER_RUN.glob("rev*") if re.fullmatch(r"rev\d+", p.name)),
+                      key=lambda p: int(p.name[3:]))
+        latest = revs[-1] if revs else HANGER_RUN
+        names = _model_names(latest)
+        if names:
+            found[latest.as_posix()] = names
+    return found
+
+
+def load_model_manifest() -> tuple[dict, str]:
+    """Model file lists: refreshed from disk when the files are here (a local build; commit
+    cad/model-files.json), otherwise the tracked copy (the bot's build has no heavy files)."""
+    found = scan_model_files()
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    if found:
+        old = {}
+        try:
+            old = json.loads(CAD_MANIFEST.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            pass
+        if old.get("files") != found:
+            CAD_MANIFEST.write_text(
+                json.dumps({"generated": today, "files": found}, indent=1) + "\n", encoding="utf-8")
+            print(f"updated {CAD_MANIFEST.relative_to(REPO)} - commit it with this change")
+            return found, today
+        return found, old.get("generated", today)
+    try:
+        old = json.loads(CAD_MANIFEST.read_text(encoding="utf-8"))
+        return old.get("files", {}), old.get("generated", "")
+    except (OSError, ValueError):
+        return {}, ""
+
+
+def _row_dirs(cell: str) -> list[str]:
+    """Folder paths named in a README 'Local model files' cell: `cad/...` or `C:\\...`."""
+    out = []
+    for tok in re.findall(r"`([^`]+)`", cell):
+        t = tok.replace("\\", "/").rstrip("/")
+        if (t.startswith("cad/") or re.match(r"[A-Za-z]:/", t)) and "." not in t.rsplit("/", 1)[-1]:
+            out.append(t)
+    return out
+
+
+def load_cad() -> dict:
+    """CAD models from cad/README.md, their summary links and local file lists, plus
+    warnings for anything on disk that the README does not cover."""
+    warnings: list[str] = []
+    files, generated = load_model_manifest()
+    rows = []
+    if CAD_INDEX.is_file():
+        text = CAD_INDEX.read_text(encoding="utf-8", errors="replace")
+        # Raw split, not parse_md_tables: that helper strips the backticks the paths sit in.
+        lines = text.splitlines()
+        for n, ln in enumerate(lines):
+            if ln.startswith("| Model |"):
+                for row in lines[n + 2:]:
+                    if not row.startswith("|"):
+                        break
+                    cells = [c.strip() for c in row.strip().strip("|").split("|")]
+                    if len(cells) >= 5:
+                        rows.append(cells)
+                break
+    if not rows:
+        warnings.append("cad/README.md has no model table.")
+    models, claimed = [], set()
+    for r in rows:
+        model, status, summary, local = _plain(r[0]), _plain(r[2]), r[3], r[4]
+        links = [("../cad/" + h if not re.match(r"[A-Za-z]:|https?:|\.\./", h) else h, lbl)
+                 for lbl, h in re.findall(r"\[([^\]]+)\]\(([^)]+)\)", summary)]
+        links += [(tok, tok) for tok in re.findall(r"`([A-Za-z]:[^`]+\.(?:md|html))`", summary)]
+        dirs = _row_dirs(local)
+        folders = []
+        for d in dirs:
+            claimed.add(d)
+            if re.match(r"[A-Za-z]:/", d):
+                # External run folder: README must name the newest rev folder on disk.
+                latest = next((k for k in files if re.match(r"[A-Za-z]:/", k)
+                               and k.startswith(d.rsplit("/rev", 1)[0])), "")
+                if latest and latest.rstrip("/") != d:
+                    warnings.append(f"{model}: README names {d}, newest on disk is {latest}.")
+                    claimed.add(latest)
+                    d = latest
+                shown = d
+            else:
+                shown = f"{DAN_ROOT}/{d}"
+            names = files.get(d, [])
+            if not names:
+                warnings.append(f"{model}: README lists {d} but no model files were found there.")
+            folders.append({"path": shown, "names": names})
+        models.append({"model": model, "status": status[:260], "links": links,
+                       "folders": folders, "note": _plain(local) if not dirs else ""})
+    f3d_text = CAD_INDEX.read_text(encoding="utf-8", errors="replace") if CAD_INDEX.is_file() else ""
+    for d, names in sorted(files.items()):
+        if d not in claimed:
+            warnings.append(f"Model files in {d} ({len(names)} files) have no row in cad/README.md.")
+            continue
+        for n in names:
+            if n.lower().endswith(".f3d") and n not in f3d_text:
+                warnings.append(f"{d}/{n} is not named in cad/README.md.")
+    for w in warnings:
+        print(f"WARNING (CAD index): {w}", file=sys.stderr)
+    return {"models": models, "warnings": warnings, "manifest": generated}
+
+
+def cad_files_html(folders: list[dict]) -> str:
+    e = html.escape
+    out = ""
+    for f in folders:
+        names = f["names"]
+        key = [n for n in names if n.lower().endswith((".f3d", ".f3z")) or "assembly" in n.lower()]
+        rest = [n for n in names if n not in key]
+        counts = Counter(Path(n).suffix.lower().lstrip(".") for n in rest)
+        more = ", ".join(f"{c} {k.upper()}" for k, c in sorted(counts.items()))
+        lines = "".join(f"<li><code>{e(f['path'])}/{e(n)}</code></li>" for n in key)
+        out += (f'<div class="cadf"><code>{e(f["path"])}/</code><ul>{lines}</ul>'
+                + (f'<span class="muted">+ {len(rest)} part files in that folder ({e(more)})</span>'
+                   if rest else "") + "</div>")
+    return out
 
 
 def load_recent_prs() -> list[dict]:
@@ -925,8 +1069,19 @@ def project_status_html(ps: dict) -> str:
         f'<td><a href="harness/routes/{e(r["file"])}">{e(r["title"])}</a></td>'
         f'<td><span class="pill {r["state"]}">{label[r["state"]]}</span></td>'
         f'<td class="muted">{e(r["note"])}</td></tr>' for r in ps["routes"])
-    cad = "".join(f'<tr><td>{e(c["model"])}</td><td>{e(c["status"])}</td></tr>'
-                  for c in ps["cad"])
+    cadd = ps["cad"]
+    warn = "".join(f"<li>{e(w)}</li>" for w in cadd["warnings"])
+    cwarn = ('<div class="cadwarn"><b>CAD index is out of date:</b><ul>' + warn + "</ul>"
+             "Fix <code>cad/README.md</code> (and run the builder locally to refresh "
+             "<code>cad/model-files.json</code>).</div>") if warn else ""
+    cad = ""
+    for c in cadd["models"]:
+        links = " ".join(
+            f'<a href="{e(h)}">{e(lbl)}</a>' if not re.match(r"[A-Za-z]:", h) else f"<code>{e(h)}</code>"
+            for h, lbl in ((h, lbl) for h, lbl in c["links"])) or "&mdash;"
+        files = cad_files_html(c["folders"]) or f'<span class="muted">{e(c["note"] or "none kept")}</span>'
+        cad += (f'<tr><td><b>{e(c["model"])}</b></td><td>{e(c["status"])}</td>'
+                f'<td>{links}</td><td>{files}</td></tr>')
     pr_url = "https://github.com/living-relation/st185-link-ecu-config/pull/"
     prs = "".join(
         f'<li><span class="muted">{e(p["date"])}</span> {e(p["title"])} '
@@ -944,8 +1099,12 @@ def project_status_html(ps: dict) -> str:
         '<h3>Route drawings</h3>\n<div class="twrap"><table class="data"><thead><tr><th>#</th>'
         '<th>Route</th><th>Status</th><th>From the drawing</th></tr></thead>'
         f'<tbody>{routes}</tbody></table></div>\n'
-        '<h3>CAD models</h3>\n<div class="twrap"><table class="data"><thead><tr><th>Model</th>'
-        f'<th>Status</th></tr></thead><tbody>{cad}</tbody></table></div>\n'
+        '<h3>CAD models</h3>\n<p class="muted">From <code>cad/README.md</code> (the one CAD index) '
+        'and the model files found on disk. STEP, STL and Fusion <code>.f3d</code> files are '
+        '<b>local only</b>: they are gitignored and exist on Dan&rsquo;s PC, not in GitHub. '
+        f'File list last refreshed {e(cadd["manifest"] or "never")}.</p>\n{cwarn}\n'
+        '<div class="twrap"><table class="data"><thead><tr><th>Model</th><th>Status / rev</th>'
+        f'<th>Summary page</th><th>Local files</th></tr></thead><tbody>{cad}</tbody></table></div>\n'
         f'<h3>Recently merged</h3>\n<ul class="prs">{prs}</ul>\n</section>\n')
 
 
@@ -967,6 +1126,10 @@ PSTATUS_CSS = """
   .pstatus .pill.approved { background:var(--ok-soft); color:var(--ok); }
   .pstatus .pill.waiting { background:var(--warn-soft); color:var(--warn); }
   .pstatus .prs { padding-left:18px; } .pstatus .prs li { margin:4px 0; }
+  .pstatus .cadwarn { background:var(--warn-soft); border:2px solid var(--warn); color:var(--ink);
+    padding:8px 14px; border-radius:6px; margin:8px 0; }
+  .pstatus .cadf { margin:0 0 8px; font-size:12px; word-break:break-all; }
+  .pstatus .cadf ul { margin:2px 0 2px 16px; padding:0; }
   @media (max-width:640px) { .pstatus td, .pstatus th { font-size:13px; } }
 """
 
