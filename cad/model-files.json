@@ -18,7 +18,7 @@
    "Logic_Cover_PA12_printed.stl",
    "Logic_Pan_PA12_printed.step",
    "Logic_Pan_PA12_printed.stl",
-   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step",
+   "Logic_Strip_Logic_CuC110_10x3.step",
    "Power_Bar_Power_CuC110_25x6p35.step",
    "Power_Base_PA12_printed.step",
    "Power_Base_PA12_printed.stl",
@@ -27,8 +27,8 @@
    "Power_Pad_Out_CuC110_15x3.step",
    "Power_Pan_PA12_printed.step",
    "Power_Pan_PA12_printed.stl",
-   "ST185_fusebox_rev6.f3d",
-   "ST185_fusebox_rev6_assembly.step"
+   "ST185_fusebox_rev5.f3d",
+   "ST185_fusebox_rev5_assembly.step"
   ],
   "cad/busbar/design-A": [
    "A_ASSEMBLY.step",
