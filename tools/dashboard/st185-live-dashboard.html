@@ -55,28 +55,37 @@ details summary{cursor:pointer;font-weight:600;margin-top:8px}
 <div class="muted">Tap an option or write your own. Nothing is sent until you press <b>Send all answers</b>.</div>
 <div id="questions"></div></section>
 
-<section><h2>Sessions</h2>
+<div class="muted" id="nodcnote" style="display:none;margin:12px 0">Live files, sessions and tracker items only show in the Claude desktop app. Questions below still work: tap your answers, then <b>Copy answers</b> and paste them into the Dispatch chat.</div>
+
+<section class="dcsec"><h2>Sessions</h2>
 <div class="muted">🟢 running · ⚪ finished · 🟠 blinking = may be waiting on you (open that chat in Claude). Permission prompts can only be approved inside the chat.</div>
 <div id="sessions" class="muted">loading…</div>
 <details><summary id="archsum">Finished code sessions you can archive</summary>
 <div class="muted">These are idle (done). Their PRs are merged unless the session said otherwise. Archive them in the Claude sidebar to free the locked folders.</div>
 <div id="archive"></div></details></section>
 
-<section class="files"><h2>New / updated files <span class="badge" id="newcount">0</span></h2>
+<section class="files dcsec"><h2>New / updated files <span class="badge" id="newcount">0</span></h2>
 <div class="muted">Click to open on your PC. Opened files move to "Already viewed".</div>
 <div id="newfiles">loading…</div>
 <details><summary>Already viewed</summary><div id="readfiles"></div></details></section>
 
-<section><h2>Tracker items owned by you (OPEN-ITEMS)</h2>
+<section class="dcsec"><h2>Tracker items owned by you (OPEN-ITEMS)</h2>
 <div class="muted">Live from the repo. Most are setup-time or data gaps; answer any of them in the box and it's sent with the rest.</div>
 <details><summary id="rowsum">show</summary><div id="rows"></div></details></section>
 
 </main>
-<div id="sendbar"><button id="send">Send all answers</button><button class="sec" id="clear">Clear</button><span id="sendmsg" class="muted"></span></div>
+<div id="sendbar"><button id="copy">Copy answers</button><button id="send">Send all answers</button><button class="sec" id="clear">Clear</button><span id="sendmsg" class="muted"></span></div>
 
 <script>
 // ---- questions: Dispatch writes dashboard-questions.json; the page reads it on load + Refresh ----
-let QUESTIONS = [];
+// Fallback baked in at publish time (phone / no Desktop Commander). When dashboard-questions.json can be read it overrides this.
+// Whoever republishes the artifact copies the current dashboard-questions.json into FALLBACK.
+const FALLBACK = {"updated":"2026-10-14 (baked in)","questions":[
+ {"id":"Z9","topic":"Fuel pump box","text":"Fuel pump box: which brand should it look like?","options":[{"value":"A","label":"Bussmann/Eaton RTMR","recommended":true},{"value":"B","label":"Blue Sea Systems"},{"value":"C","label":"Littelfuse"},{"value":"D","label":"Let the session pick"}],"allow_other":true},
+ {"id":"Z7","topic":"Fuel hanger","text":"Hanger rim is 1.2 mm thicker at the tank bolts - long enough?","options":[{"value":"A","label":"Yes","recommended":true},{"value":"B","label":"No, recess the rim at the bolts"},{"value":"C","label":"Check later"}],"allow_other":true}
+]};
+let QUESTIONS = FALLBACK.questions;
+let DC_OK = null;  // null = unknown, true/false once a Desktop Commander call has worked/failed
 let SAVED = {};   // answers already in dashboard-answers.json: id -> {choice,label,text,at}
 let SEL = {};     // unsent option picks: id -> {value,label}
 const QUESTIONS_FILE = "C:\projects\active\st185-link-ecu-config\tools\dashboard\dashboard-questions.json";
@@ -97,11 +106,19 @@ const ERRMSG = {
   approval_required:"Needs your approval - click again.",
   tool_error:"Desktop Commander reported an error"
 };
+const NODC = ["server_not_connected","not_in_manifest","not_granted","capability_disabled"];
+function setDC(ok){
+  if(DC_OK===ok) return; DC_OK=ok;
+  document.querySelectorAll(".dcsec").forEach(e=>e.style.display=ok?"":"none");
+  document.getElementById("nodcnote").style.display=ok?"none":"";
+  document.getElementById("copy").className = ok?"sec":"";
+  document.getElementById("send").className = ok?"":"sec";
+}
 async function call(tool,input){
   const mcp = await mcpP;
-  if(!mcp) throw new Error("Open this page in the Claude desktop app to load live data.");
-  try{ return await mcp.callTool(DC,tool,input,{cache:false}); }
-  catch(e){ const m=ERRMSG[e?.code]; throw new Error(m ? (e.code==="tool_error" ? m+": "+(e.message||"") : m) : (e?.message||"tool error")); }
+  if(!mcp){ setDC(false); throw new Error("Open this page in the Claude desktop app to load live data."); }
+  try{ const r=await mcp.callTool(DC,tool,input,{cache:false}); setDC(true); return r; }
+  catch(e){ if(NODC.includes(e?.code)) setDC(false); const m=ERRMSG[e?.code]; throw new Error(m ? (e.code==="tool_error" ? m+": "+(e.message||"") : m) : (e?.message||"tool error")); }
 }
 const txtOf = r => (r.content||[]).filter(c=>c.type==="text").map(c=>c.text).join("\n");
 const SESS_FILE = "C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\dashboard-sessions.json";
@@ -169,7 +186,7 @@ async function loadQuestions(){
     const q=JSON.parse(txt.slice(j));
     QUESTIONS=(q.questions||[]);
     info.textContent=q.updated?`Questions updated: ${q.updated}`:"";
-  }catch(e){ QUESTIONS=[]; info.textContent="Could not load dashboard-questions.json: "+e.message; }
+  }catch(e){ QUESTIONS=FALLBACK.questions; info.textContent=`Showing the questions baked into this page (${FALLBACK.updated}).`; }
   try{
     const txt=txtOf(await call(DC_READ,{path:ANSWERS_FILE})); const j=txt.indexOf("{");
     SAVED = j<0 ? {} : (JSON.parse(txt.slice(j)).answers||{});
@@ -248,11 +265,25 @@ document.getElementById("send").onclick=async()=>{
     msg.textContent=`Saved ${Object.keys(ans).length} answer(s) to dashboard-answers.json.`;
     // WAKE_TASK (local scheduled task) can't be fired from this runtime - see wakeDispatch()
     await wakeDispatch(msg, Object.keys(ans).length);
-  }catch(e){ msg.textContent="Send failed: "+e.message; }
+  }catch(e){ msg.textContent="Send failed: "+e.message+" Use Copy answers instead."; }
 };
 async function wakeDispatch(msg,n){
   msg.textContent=`Saved ${n} answer(s). Dispatch picks them up on its next "${WAKE_TASK}" run.`;
 }
+document.getElementById("copy").onclick=async()=>{
+  const ans=collect(), msg=document.getElementById("sendmsg");
+  const parts=Object.entries(ans).map(([id,a])=>{
+    const pick=a.choice?`${a.choice} ${a.label}`:"";
+    return `${id}: ${[pick,a.text].filter(Boolean).join(" - ")}`;
+  });
+  if(!parts.length){ msg.textContent="Nothing picked yet."; return; }
+  const text=parts.join(" | ");
+  try{ await navigator.clipboard.writeText(text); msg.textContent=`Copied ${parts.length} answer(s). Paste them into the Dispatch chat.`; }
+  catch(e){
+    msg.innerHTML=""; const t=document.createElement("textarea"); t.value=text; t.readOnly=true; t.style.width="100%"; msg.appendChild(t); t.focus(); t.select();
+    try{ document.execCommand("copy"); msg.insertAdjacentText("afterbegin","Copied (or long-press to copy): "); }catch(_){}
+  }
+};
 document.getElementById("clear").onclick=()=>{ store.set("st185-draft",{}); SEL={}; renderQuestions(); document.querySelectorAll("textarea[data-row]").forEach(t=>t.value=""); };
 
 function refreshAll(){
