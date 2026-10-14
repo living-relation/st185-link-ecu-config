@@ -6,7 +6,7 @@ cover shown from every side (it was only in the closed view) and its tabs moved 
 install views; every cable drawn to the box edge (harness wires drop out of each terminal, bend at 3 x OD and run in bundles
 to one exit edge); rugged look (bumper band + ribs on the covers, angular legs); short standoffs where a lug needs no bend
 (OUT row and LOGIC feeds: lug right under the deck, 12 mm); a snap-on belly pan under each glove-box box covers every live
-part underneath; numbers on the covers + a legend (no more crowded names). POWER relays turned 90 deg (30 / 87 along x) so
+part underneath; lid labels stay the rev 4 etched names (Dan: "the lid labels were fine as they were"). POWER relays turned 90 deg (30 / 87 along x) so
 the harness wires leave in straight bundles that never cross a feed wire; the bar moved 8.5 mm outboard for it.
 
 Rev 4 (Dan's review of rev 3, 2026-10-14, task card fusebox rev 4): bottoms left open (no tray floor, no side wire slot) -
@@ -50,7 +50,7 @@ D = 181.0            # base depth (y), both glove-box boxes
 BASE_R = 10.0        # base plan corner radius
 COVER = dict(t=2.5, R=BASE_R + 0.45 + 2.5, r=5.0, over=13.0, clear=1.5)   # wall, plan corner R, top edge round, skirt overlap below the deck top, over the tallest part
 SNAP = dict(w=12.0, slot=1.2, len=11.0, bump=2.4, z_from_top=10.0)         # cantilever tongue in the cover skirt, half-round bump into a pocket in the base skirt
-LABEL = dict(depth=0.6, h_num=5.0, h_mini=3.6, h_name=7.0, h_word=5.0)   # etched into the cover top (HP MJF: engraved text >= 0.5 deep); rev 5: numbers + legend
+LABEL = dict(depth=0.6, h_relay=3.6, h_ami=3.0, h_mini=2.4, h_micro=2.8)  # etched into the cover top (HP MJF: engraved text >= 0.5 deep); rev 4 names kept (Dan)
 VENT = dict(w=2.6, l=14.0, pitch=18.0)   # vent slot through the cover: 2.6 wide keeps fingers and tools out (IP2X finger probe is 12.5)
 RUG = dict(band_h=6.0, band_out=1.5, rib_w=3.0, rib_out=1.5, rib_pitch=30.0)   # cover bumper band + side ribs (rugged look)
 LEG = dict(w_bot=24.0, w_top=16.0, out_top=4.0, out_slope=18.0, foot_out=22.0, foot_w=20.0, ear_t=6.0, hole=8.4, wall=3.0,

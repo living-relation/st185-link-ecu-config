@@ -1,9 +1,9 @@
 """Build cad/fusebox/ST185-fusebox-summary.html: one page for Dan - his rev 4 review answered point by point, renders
 (closed, open, EMPTY, underneath with and without the belly pans, every cable to the box edge, exploded and step-by-step
-install views with numbered callouts), the lid legends, the bend-radius table, the stud lengths, pieces and build order,
+install views with numbered callouts), the lid labels, the bend-radius table, the stud lengths, pieces and build order,
 slot map, printed parts, parts list, the copper stock picks and cut / drill drawings. Reads spec.py and the build's
 fusebox_report.json. Images stay as separate PNGs beside the page.
-Claude Code, 2026-10-14 (rev 5: Dan's review of rev 4; rev 4 R79; rev 3 R75; rev 3.1 R76).
+Claude Code, 2026-10-14 (rev 5: Dan's review of rev 4, lid labels kept as rev 4; rev 4 R79; rev 3 R75; rev 3.1 R76).
     python cad/fusebox/src/summary_html.py <dir with fusebox_report.json + renders> <out html>
 """
 import os, sys, json, html
@@ -21,7 +21,6 @@ printed = rep.get('printed_parts', {})
 mass = {k: v for k, v in rep.get('mass_g', {}).items() if S.BAR_METAL in k}
 cu_g = sum(mass.values())
 callouts = rep.get('callouts', {})
-legend = rep.get('legend', {})
 so = rep.get('standoffs', {})
 
 ami = {30: 0, 40: 0, 50: 0, 60: 0}
@@ -49,20 +48,20 @@ PRINTED_NOTE = {
     'BattRelay_Base': 'Floor plate, rim on the long sides only (both ends open), relay platform with 2 captured M6 nuts + limiters, one ribbed fuse pedestal '
                       'under the bar and pad, a tab on each short end.',
     'Cover': 'Rounded shell, 2.5 mm wall, R13 plan corners, R5 top edges, a bumper band round the bottom and ribs up the walls; 4 snap tongues; '
-             'vent slots; numbers etched 0.6 deep.',
+             'vent slots; every relay and fuse name etched 0.6 deep (the rev 4 labels, unchanged).',
     'Pan': 'NEW: a shallow tray under the open bottom (2.5 mm floor and wall). Its wall slides 4 mm up inside the skirt; 4 tongues catch in pockets '
            'in the skirt. Notches in its wall let the bundles out.',
 }
 
 # OWN / BUY  (st185-pick-parts: on-hand CSV first, TE, approved suppliers, then others with a reason)
 PARTS = [
-    ('Relay F7 Mini ISO, 680 ohm', '1-1414147-0 (V23134-J0052-X429)', 'OWN 3', 'R2 k_efi, R3 k_str, R4 k_fan. te-on-hand-bom.csv qty_ordered 3 - confirm on the shelf.'),
-    ('Relay F7 Mini ISO, bracket, 560 ohm', '1-1393304-0 (V23134-J1052-X281)', 'OWN 2', 'R5 k_fan2, R6 power. Bracket not used (cut off or fold flat).'),
-    ('Relay Power Relay B, 1 form C, 680 ohm', '1-1904020-2 (V23234-A0001-X032)', 'BUY 1', 'R1 heater (87a to ground, row 106). TE (step 2). NO 35 A at 85 C.'),
-    ('Micro relay A, NO, diode', '5-1393292-8', 'OWN 2', 'LOGIC R1 / R2 (HEAD LH / RH)'),
-    ('Micro relay A, NO', '4-1904124-3', 'OWN 1', 'LOGIC R3 horn'),
-    ('Micro relay A, NO, resistor', '4-1904124-2', 'OWN 1', 'LOGIC R4 k_etb'),
-    ('Micro relay A, CO, diode', '6-1419137-4', 'OWN 2 + BUY 1', 'LOGIC R5 k_acc, R6 k_eps_en (own); R7 k_rev (buy)'),
+    ('Relay F7 Mini ISO, 680 ohm', '1-1414147-0 (V23134-J0052-X429)', 'OWN 3', 'k_efi, k_str, k_fan. te-on-hand-bom.csv qty_ordered 3 - confirm on the shelf.'),
+    ('Relay F7 Mini ISO, bracket, 560 ohm', '1-1393304-0 (V23134-J1052-X281)', 'OWN 2', 'k_fan2, power. Bracket not used (cut off or fold flat).'),
+    ('Relay Power Relay B, 1 form C, 680 ohm', '1-1904020-2 (V23234-A0001-X032)', 'BUY 1', 'heater (87a to ground, row 106). TE (step 2). NO 35 A at 85 C.'),
+    ('Micro relay A, NO, diode', '5-1393292-8', 'OWN 2', 'HEAD LH / RH (LOGIC box)'),
+    ('Micro relay A, NO', '4-1904124-3', 'OWN 1', 'horn'),
+    ('Micro relay A, NO, resistor', '4-1904124-2', 'OWN 1', 'k_etb'),
+    ('Micro relay A, CO, diode', '6-1419137-4', 'OWN 2 + BUY 1', 'k_acc, k_eps_en (own); k_rev (buy)'),
     ('HCR150 relay, 130 A, IP67', '1416010-1 (V23132-A2001-B200)', 'OWN 2', 'k_eps beside the POWER box; k_fp in the battery block.'),
     ('HCR150 coil plug: Superseal 1.5 2-pole housing', '282080-1', 'BUY 1', 'TE, from the HCR150 data sheet (k_fp).'),
     ('Superseal 1.5 contact / seal', '282110-1 / 281934-2', 'OWN 2 / BUY 2', '282110-1 is on hand (qty_ordered 10).'),
@@ -100,7 +99,7 @@ PARTS = [
 ]
 
 CAP = {
-    'fusebox_render_iso_closed.png': 'Closed: vent slots in both lids, numbers instead of names (legend below), bumper band and ribs, angular legs. Yellow = the harness '
+    'fusebox_render_iso_closed.png': 'Closed: vent slots in both lids, bumper band and ribs, angular legs; the etched names are the rev 4 labels, unchanged. Yellow = the harness '
                                      'bundles leaving the LOGIC front edge and the POWER inboard end; red = the heavy cables.',
     'fusebox_render_iso_closed_rear.png': 'From the rear / outboard corner: OUT-row cables leave the POWER end in a row right under the lid; Bus 1 / Bus 2 feeds leave the LOGIC rear.',
     'fusebox_render_iso_open.png': 'Covers off, loaded. POWER relays are turned 90 deg from rev 4 (see point 5).',
@@ -109,13 +108,13 @@ CAP = {
     'fusebox_render_under_pan.png': 'Underneath with the snap-on belly pans: nothing live can be touched. The bundles leave through notches in the pan wall.',
     'fusebox_render_under_open.png': 'Underneath, pans off: every cable from every terminal, lug and stud, all the way to the box edge.',
     'fusebox_render_power_bends.png': 'POWER from below, relay feeds only: each runs straight off its lug, then one 90 deg bend round a printed R16 saddle into terminal 30.',
-    'battrelay_render_iso_closed.png': 'Battery block with its lid (the snap-on cover - it was in rev 4 too, only in the closed view): plain words, side vents, a tab on each short end.',
+    'battrelay_render_iso_closed.png': 'Battery block with its lid (the snap-on cover - it was in rev 4 too, only in the closed view): rev 4 labels, side vents, a tab on each short end.',
     'battrelay_render_iso_closed_rear.png': 'The other side and the +x end: pump cable and coil lead leave the end; the tab sits beside them, not under them.',
     'battrelay_render_iso_open.png': 'Cover off: battery feed -> M6 stud on the bar -> AMI 40 -> straight jumper -> HCR150 terminal 3; terminal 5 straight out to the pump.',
     'battrelay_render_iso_empty.png': 'Base EMPTY: relay platform, the one fuse pedestal, open ends, end tabs.',
     'battrelay_render_under.png': 'Underneath: closed floor (nothing live), the two captured M6 flange nuts (not live), the end tabs.',
-    'fusebox_render_top_lid_power.png': 'POWER lid, top view - read the numbers against the legend.',
-    'fusebox_render_top_lid_logic.png': 'LOGIC lid, top view - read the numbers against the legend.',
+    'fusebox_render_top_lid_power.png': 'POWER lid, top view (rev 4 etched names).',
+    'fusebox_render_top_lid_logic.png': 'LOGIC lid, top view (rev 4 etched names).',
 }
 imgs = {f for f in os.listdir(src_dir) if f.endswith('.png')}
 
@@ -155,20 +154,12 @@ def size(k):
     return '%.0f x %.0f x %.1f' % (b.get('L', 0), b.get('D', 0), b.get('H', 0))
 
 
-def legend_table(key, title):
-    rows = legend.get(key, [])
-    h.append('<h3>%s</h3><div class="wrap"><table><tr><th>On the lid</th><th>What it is</th><th>Rating</th><th>Part</th></tr>' % E(title))
-    for r in rows:
-        h.append('<tr><td><b>%s</b></td><td>%s</td><td>%s</td><td>%s</td></tr>' % tuple(E(x) for x in r))
-    h.append('</table></div>')
-
-
 PW, LGc, BR = boxes.get('POWER', {}), boxes.get('LOGIC', {}), boxes.get('BATTRELAY', {})
 SP, SL = so.get('POWER', {}), so.get('LOGIC', {})
 h += ['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
       '<title>ST185 Fuse Box CAD</title><style>%s</style></head><body><main>' % CSS,
       '<h1>ST185 fuse + relay boxes - CAD rev 5</h1>',
-      '<p class="mut">Claude Code, 2026-10-14. Rev 5 is your review of rev 4 (11 points, all binding), answered below. Everything else from rev 4 is kept: '
+      '<p class="mut">Claude Code, 2026-10-14. Rev 5 is your review of rev 4 (11 points; point 11 dropped - your correction: the lid labels stay as they were), answered below. Everything else from rev 4 is kept: '
       'open bottoms, snap-on covers, bend radius on every cable, the Blue Sea 7720 look for the battery block, AMI studs, tinned copper stock cut and drilled only '
       '(R73, R75, R76, R79, S27). Fusion: the same document, renamed <code>ST185_fusebox_rev5</code> (no new document, R74). Model files (STEP / STL / f3d) are local, '
       'untracked, in <code>cad/fusebox/</code> of the main checkout. Build: <code>cad/fusebox/src/</code>.</p>',
@@ -183,7 +174,7 @@ fig('battrelay_render_iso_closed.png')
 
 # ------------------------------------------------------------------ the review, point by point
 h.append('<h2>Your review, point by point</h2><ol>')
-h.append('<li><b>Vent slots on the lids.</b> Rows of 2.6 x 14 mm slots through every glove-box lid, placed between the numbers (over the gaps between relay '
+h.append('<li><b>Vent slots on the lids.</b> Rows of 2.6 x 14 mm slots through every glove-box lid, placed clear of the etched names (over the gaps between relay '
          'columns and along the outboard edge). 2.6 mm keeps fingers and tools out. The battery block in the trunk gets its slots in the long side walls instead of the '
          'top, so a spill on the lid does not run in.</li>')
 h.append('<li><b>Where is the lid for the little one?</b> It was there in rev 4, but only in the one closed picture - the one you looked at was the open view. Rev 5 shows '
@@ -219,16 +210,14 @@ h.append('<li><b>Snap-on covers for everything live underneath.</b> New belly pa
          'the skirt and catches with 4 tongues. It covers every lug, standoff, bolt head and terminal crimp; nearest live part to the pan: %.1f mm. Cables leave '
          'through notches in its wall. To make room under the IN-row bolt heads the boxes grew %.1f (POWER) and %.1f mm (LOGIC) in height. The battery block already '
          'had a closed floor (nothing live underneath).</li>' % (live.get('pan_to_nearest_live_power_mm', 0), PW.get('H', 0) - REV4['POWER'][2], LGc.get('H', 0) - REV4['LOGIC'][2]))
-h.append('<li><b>Labels unreadable.</b> The lids now carry short numbers only - <b>R1-R7</b> and <b>F1-F15</b> on POWER, <b>F1-F25</b>, <b>R1-R10</b>, <b>B1 / B2</b> on '
-         'LOGIC - 5 mm tall (3.6 on the mini fuses), each right over its part, nothing overlapping. What each number is: the legend tables under "Lid legends". '
-         'POWER R<i>n</i> is fed by F<i>n</i>. The battery block keeps plain words - it has room for them.</li></ol>')
+h.append('<li><b>Lid labels:</b> unchanged - the rev 4 etched names (your correction: they were fine; the numbers / legend comment was about a route drawing).</li></ol>')
 
-h.append('<h2>Lid legends</h2>')
+h.append('<h2>Lids, top view</h2>')
 fig('fusebox_render_top_lid_power.png')
-legend_table('POWER', 'POWER box')
 fig('fusebox_render_top_lid_logic.png')
-legend_table('LOGIC', 'LOGIC box')
-legend_table('BATTRELAY', 'Battery relay block (words on the lid)')
+h.append('<h3>Labels (etched in the covers)</h3>')
+for k, v in rep.get('labels', {}).items():
+    h.append('<p><b>%s:</b> %s</p>' % (E(k.split('_')[0]), E(', '.join(v))))
 
 # ------------------------------------------------------------------ cable routing
 h.append('<h2>Cable routing (point 5)</h2><p>Yellow = harness wires (each terminal\'s own wire), red = heavy cables. Gauges here follow the fuse rating '
@@ -312,31 +301,30 @@ h.append('<h3>Style (Z9: your pick, S27) - %s</h3><p>%s</p><div class="wrap"><ta
          % (E(S.REFERENCE_BRAND[0]), E(S.REFERENCE_BRAND[1]), S.RB['tab_y']))
 
 # ------------------------------------------------------------------ slot map
-h.append('<h2>Slot map</h2><div class="wrap"><table><tr><th>Unit</th><th>Lid</th><th>Fuse / relay</th><th>Part</th><th>Wire</th></tr>')
+h.append('<h2>Slot map</h2><div class="wrap"><table><tr><th>Unit</th><th>Position</th><th>Fuse / relay</th><th>Part</th><th>Wire</th></tr>')
 for row in ('IN', 'OUT'):
     for i, (nm, a) in enumerate(S.AMI_ROWS[row][:S.AMI_SLOTS[row]]):
-        n = i + 1 + (0 if row == 'IN' else S.AMI_SLOTS['IN'])
-        h.append('<tr><td>POWER</td><td>F%d (AMI %s-%d)</td><td>%s</td><td>%s</td><td>%s</td></tr>'
-                 % (n, row, i + 1, E(nm if a else 'spare'), 'AMI-%d' % a if a else '-', ('%d AWG' % S.AMI_AWG[nm]) if a else '-'))
+        h.append('<tr><td>POWER</td><td>AMI %s-%d</td><td>%s</td><td>%s</td><td>%s</td></tr>'
+                 % (row, i + 1, E(nm if a else 'spare'), 'AMI-%d' % a if a else '-', ('%d AWG' % S.AMI_AWG[nm]) if a else '-'))
 for i, nm in enumerate(S.IN_RELAY):
     pn, own = S.RELAY_PN[nm]
-    h.append('<tr><td>POWER</td><td>R%d (column %s)</td><td>%s (fed by F%d)</td><td>%s</td><td></td></tr>'
+    h.append('<tr><td>POWER</td><td>R%d (column %s)</td><td>%s (fed by AMI IN-%d)</td><td>%s</td><td></td></tr>'
              % (i + 1, 'A' if i % 2 == 0 else 'B', E(nm), i + 1, E('%s (%s)' % (pn, own) if pn else '-')))
-h.append('<tr><td>POWER</td><td>F15</td><td>ACPS mini fuse (heater 87)</td><td>ATM-10</td><td>%d AWG</td></tr>' % S.ACPS_AWG)
+h.append('<tr><td>POWER</td><td>front of column B</td><td>ACPS mini fuse (heater 87)</td><td>ATM-10</td><td>%d AWG</td></tr>' % S.ACPS_AWG)
 n = 0
 for col, (cx, fuses) in S.MINI_COLS.items():
     for nm, a in fuses:
         n += 1
-        h.append('<tr><td>LOGIC</td><td>F%d</td><td>%s (%s)</td><td>%s</td><td>%s</td></tr>'
-                 % (n, E(nm if a else 'spare'), 'Bus 1' if col == 'BUS1' else 'Bus 2', ('ATM-%g' % a) if a else '-', ('%d AWG' % S.MINI_AWG[a]) if a else '-'))
+        h.append('<tr><td>LOGIC</td><td>%s-%d</td><td>%s (%s)</td><td>%s</td><td>%s</td></tr>'
+                 % (col, n if col == 'BUS1' else n - len(S.MINI_COLS['BUS1'][1]), E(nm if a else 'spare'), 'Bus 1' if col == 'BUS1' else 'Bus 2', ('ATM-%g' % a) if a else '-', ('%d AWG' % S.MINI_AWG[a]) if a else '-'))
 k = 0
 for c, cx in enumerate(S.MICRO_COLS):
     for r, cy in enumerate(S.MICRO_Y):
         nm, pn, own = S.MICRO_POS[k]
         k += 1
-        h.append('<tr><td>LOGIC</td><td>R%d</td><td>%s</td><td>%s</td><td></td></tr>' % (k, E(nm if pn else 'spare'), E('%s (%s)' % (pn, own) if pn else '-')))
-h.append('<tr><td>BATTERY</td><td>FUSE 40A</td><td>FP fuse 40 A</td><td>AMI-40</td><td>10 AWG</td></tr>'
-         '<tr><td>BATTERY</td><td>FUEL PUMP RELAY</td><td>k_fp fuel pump relay</td><td>1416010-1 HCR150 (OWN)</td><td>10 AWG</td></tr></table></div>')
+        h.append('<tr><td>LOGIC</td><td>M%d%d</td><td>%s</td><td>%s</td><td></td></tr>' % (c + 1, r + 1, E(nm if pn else 'spare'), E('%s (%s)' % (pn, own) if pn else '-')))
+h.append('<tr><td>BATTERY</td><td>F1</td><td>FP fuse 40 A</td><td>AMI-40</td><td>10 AWG</td></tr>'
+         '<tr><td>BATTERY</td><td>K1</td><td>k_fp fuel pump relay</td><td>1416010-1 HCR150 (OWN)</td><td>10 AWG</td></tr></table></div>')
 
 # ------------------------------------------------------------------ printed parts
 h.append('<h2>Printed parts (PA12, powder-bed)</h2><div class="wrap"><table><tr><th>Part</th><th>File (STL + STEP)</th><th>Size mm (x y z, incl. legs / tabs)</th><th>Volume / mass</th><th>What it is</th></tr>')
