@@ -1,6 +1,7 @@
 """Build cad/fusebox/ST185-fusebox-summary.html: one page for Dan - renders, sizes, slot map, printed parts, parts list,
-the Y2 bar-metal choice. Reads spec.py and the build's fusebox_report.json (main checkout cad/fusebox/, untracked).
-Images stay as separate PNGs beside the page. Claude Code, 2026-10-14 (rev 3: two boxes + battery relay block, R75).
+the copper stock picks and cut / drill drawings. Reads spec.py and the build's fusebox_report.json (main checkout cad/fusebox/, untracked).
+Images stay as separate PNGs beside the page. Claude Code, 2026-10-14 (rev 3: two boxes + battery relay block, R75;
+rev 3.1: tinned copper off-the-shelf flat bar, cut + drilled only, R76).
     python cad/fusebox/src/summary_html.py <dir with fusebox_report.json + renders> <out html>
 """
 import os, sys, json, html
@@ -29,13 +30,11 @@ for col, (x, fuses) in S.MINI_COLS.items():
         if a:
             mini[a] = mini.get(a, 0) + 1
 mini[S.ACPS[1]] = mini.get(S.ACPS[1], 0) + 1
-n_hold_box = len(S.BAR_SCREW_Y) + S.AMI_SLOTS['IN'] + S.AMI_SLOTS['OUT']
-n_hold = n_hold_box + 3
+n_pos = S.AMI_SLOTS['IN'] + S.AMI_SLOTS['OUT']
 n_posts = sum(len(b['posts']) for b in S.BOXES.values())
 n_lim5 = 4 * len(S.BOXES) + 2
-cu = S.METAL['CuC110']['density'] / S.METAL['Al6061']['density']
 mass = rep.get('mass_g', {})
-al_g = sum(mass.values())
+cu_g = sum(mass.values())
 
 PRINTED_NOTE = {
     'Tray': 'Open-top tub, 3 mm walls and floor, 4 gusseted ears (brass limiter in each), deck posts and 4 corner bosses with M3 heat-set inserts, forward wire-exit slot.',
@@ -65,20 +64,19 @@ PARTS = [
     ('FASTON 6.35 receptacle, 18-14 AWG', '42281-1', 'OWN 20 + BUY ~7', 'Mini ISO 85 / 86 (12) + heater 87a (1) + micro 6.3 load blades (~14). qty_ordered 20.'),
     ('4.8 mm receptacle (micro coil blades)', 'TBD', '-', 'TBD: TE 4.8 x 0.8 receptacle for 18-20 AWG - pick in detail work.'),
     ('2.8 mm receptacle (mini fuse)', 'TBD', '-', 'TBD: 880398-2 is a candidate (plan S12), fit on an ATM blade not confirmed.'),
-    ('Tubular lug 10 mm2 M5 (8-10 AWG)', 'Klauke 2R5', 'BUY 14', '11 AMI outputs + 2 LOGIC strip feeds + 1 battery block AMI out. b 12, l 22 (Klauke sheet via Rapid).'),
+    ('Tubular lug 10 mm2 M5 (8-10 AWG)', 'Klauke 2R5', 'BUY 14', '11 AMI outputs + 2 LOGIC strip feeds + 1 battery block AMI out; each sits on top of the fuse ear (no inset). b 12, l 22 (Klauke sheet via Rapid).'),
     ('Tubular lug 16 mm2 M5 (J/B1 HOT, 6 AWG)', 'Klauke 3R5', 'BUY 1', 'b 12 confirmed (Klauke table, Kempston Controls 3R10.pdf): a 13, l 26, d4 8.5, hole 5.5 - fits the 12.8 pocket.'),
     ('Tubular lug 50 mm2 M8 (1/0 input)', 'Klauke 6R8', 'BUY 1', 'b 20, l 47, hole 8.4 (RS 398-3015 listing).'),
     ('Ring lug M6, 10 AWG (battery block: feed in, relay 3, relay 5)', 'TBD', 'BUY 3', 'TBD: Klauke R series M6 for 6 mm2 - not checked against the Klauke sheet yet. HCR150 terminals take an M6 lug up to 25 mm2 (TE sheet).'),
-    ('M5 A2 stud + Keps nut', 'TBD (ISO 4026 set screw M5x12 + DIN 6923 nut)', 'BUY 32 + 32', '2 per AMI position (15 + 1), threaded into the bar / pads; 4 Nm max (AMI sheet).'),
-    ('M8 / M6 A2 stud + nut + washer', 'TBD (ISO 4026 + ISO 4032 + ISO 7089)', 'BUY 1 + 1', 'POWER box 1/0 input (M8); battery block feed (M6).'),
-    ('Hold-down screw M4x10 A2', 'ISO 7380', 'BUY %d' % n_hold, 'From below into the tapped bar and pads: POWER %d, battery block 3.' % n_hold_box),
-    ('Strip feed screw M5x8 A2', 'ISO 7380', 'BUY 2', 'LOGIC: feed lug under each strip end.'),
-    ('Brass compression limiter, M4', 'TBD (OD 7, ID 4.3, L 4)', 'BUY %d' % n_hold, 'Under every hold-down. TBD: no maker sheet checked yet (McMaster round brass spacers are the likely source).'),
-    ('Brass compression limiter, M5 / M6', 'TBD (OD 8, ID 5.3, L 6 / OD 10, ID 6.5, L 4)', 'BUY %d / 2' % n_lim5, 'Mounting ears / the HCR150 flange bolts.'),
+    ('Hex bolt M5 x 16 A2 + Keps nut', 'ISO 4017 M5x16 + DIN 6923 M5', 'BUY %d + %d' % (2 * n_pos + 2 + 2, 2 * n_pos + 2 + 2),
+     'Every AMI stud (POWER %d, battery block 2) + the 2 LOGIC strip feeds. Bolt up from below through a plain 5.5 hole, head captured in a printed hex pocket; '
+     'the nut clamps fuse ear / lug / copper onto the head - metal to metal, no tapping, no hold-down screws. 4 Nm max (AMI sheet).' % (2 * n_pos)),
+    ('Hex bolt M8 x 20 / M6 x 16 A2 + nut + washer', 'ISO 4017 + ISO 4032 + ISO 7089', 'BUY 1 + 1', 'POWER box 1/0 input (M8, 8.5 hole); battery block feed (M6, 6.5 hole). Same captured-head method.'),
+    ('Brass compression limiter, M5 / M6', 'TBD (OD 8, ID 5.3, L 6 / OD 10, ID 6.5, L 4)', 'BUY %d / 2' % n_lim5, 'Mounting ears / the HCR150 flange bolts (the copper needs none now).'),
     ('Brass heat-set insert, M3', 'McMaster 94459A130 (candidate)', 'BUY %d' % (12 + n_posts),
      'M3 x 0.5, 4.3 long, 4.0 hole per the Aboveboard Electronics cross-reference - confirm on the McMaster page before ordering. Other maker (R38 step 4): TE and the approved suppliers sell no heat-set inserts. Hole drawn 4.0 x 6 deep.'),
     ('Lid / deck screw', 'ISO 7380 M3x8 A2 (lid), M3x10 (deck)', 'BUY 12 + %d' % n_posts, ''),
-    ('Power bars, output pads, logic strips', '%s: 2 bars 25 x 6, 16 pads, 2 strips 8 x 4' % S.BAR_METAL, 'make', 'Metal is Y2 (below). Ring-lug insets machined in the POWER pads.'),
+    ('Power bars, output pads, logic strips', 'tinned copper flat bar - see "Copper (Y2)"', 'BUY 3 stock bars', 'Off the shelf; Dan cuts and drills only (R76). Cut / drill drawings below.'),
     ('Trays, decks, lids', 'PA12, powder-bed (MJF / SLS)', 'print 8 parts', 'See "Printed parts".'),
 ]
 
@@ -104,7 +102,7 @@ td,th{border-bottom:1px solid var(--line);padding:5px 8px;text-align:left;vertic
 .wrap{overflow-x:auto}figure{margin:12px 0}img{max-width:100%;border:1px solid var(--line);border-radius:6px;background:#888}
 figcaption{color:var(--mut);font-size:13px}.kpi{display:flex;flex-wrap:wrap;gap:10px}
 .kpi div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;min-width:150px}
-.kpi b{display:block;font-size:20px}ol li,ul li{margin-bottom:6px}
+.kpi b{display:block;font-size:20px}ol li,ul li{margin-bottom:6px}h3{font-size:15px;margin:18px 0 6px}a{color:var(--acc)}
 """
 
 
@@ -115,7 +113,7 @@ def size(k):
 
 h = ['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
      '<title>ST185 Fuse Box CAD</title><style>%s</style></head><body><main>' % CSS,
-     '<h1>ST185 fuse + relay boxes - CAD rev 3 (two boxes + battery relay block)</h1>',
+     '<h1>ST185 fuse + relay boxes - CAD rev 3.1 (two boxes + battery relay block, tinned copper)</h1>',
      '<p class="mut">Claude Code, 2026-10-14. Rev 3 follows Dan\'s Y1 answer (DECISIONS R75): the rev 2 box is split into a LOGIC box and a POWER box in '
      'the glove box, plus a small relay block at the battery (trunk) for the fuel pump relay. Same print rules as rev 2 (PA12 powder-bed, R73); only '
      'current-carrying parts are metal. Earlier answers: L1 AMI studs (R71), L4 smallest sensible footprint (R72), L5 custom boxes (R70). '
@@ -186,9 +184,9 @@ h.append('<h2>Designed for powder-bed printing (same rules as rev 2)</h2><ul>'
          '<li><b>No solid blocks, no trapped powder:</b> ribbed decks open underneath, open-top trays, ribbed lids; no closed cavity.</li>'
          '<li><b>Fits:</b> %.2f mm per side printed to printed; %.1f mm per side metal in a printed pocket.</li>'
          '<li><b>Threads:</b> none printed. M3 brass heat-set inserts for lids and deck posts; power studs thread into the metal.</li>'
-         '<li><b>Torque goes into metal:</b> AMI nuts on fuse ear / lug / metal; every bar, pad and strip held from below through brass limiters (strip feed screws clamp the lug straight to the strip); '
-         'the HCR150 bolts clamp its flange through brass limiters to the trunk floor.</li>'
-         '<li><b>Heat:</b> PA12 HDT 95 &deg;C at 1.82 MPa. Bench check the bar at full load with a thermocouple before the box goes in.</li>'
+         '<li><b>Torque goes into metal:</b> every copper joint is a plain hole with a hex bolt from below - head captured in a printed hex pocket (anti-rotation only, on a boss under the deck plate), '
+         'nut on top clamping fuse ear / lug / copper onto the head. No tapped copper, no hold-down screws. The HCR150 bolts clamp its flange through brass limiters to the trunk floor.</li>'
+         '<li><b>Heat:</b> PA12 HDT 95 &deg;C at 1.82 MPa. The 1" x 1/4" copper bar (161 mm&sup2;) is three times the 1/0 feed (53 mm&sup2;), so it runs far cooler than the cable. Bench check at full load with a thermocouple anyway.</li>'
          '<li><b>Live-part spacing (measured in Fusion):</b> AMI outputs %.1f mm apart with a printed rib between, bar to any output %.1f mm, 1/0 lug to nearest output %.1f mm, '
          'output lugs %.1f mm; Bus 1 to Bus 2 strip %.1f mm; battery block bar to pad %.1f mm, HCR150 lugs %.1f mm (set by the relay\'s 17 mm terminal pitch).</li>'
          '</ul>' % (S.PCLR, S.CLR, live.get('pad_to_pad_min_mm', 0), live.get('bar_to_pad_min_mm', 0), live.get('input_lug_to_pad_min_mm', 0),
@@ -219,20 +217,67 @@ h.append('</table></div><p class="mut">Heater relay vs fuse: the AMI HTR fuse is
          '(ISO 8820-3 overload 1.35 x 35 A for 30 min, so a 40 A fuse still protects it). The blower draws well under that; if the 40 A fuse is only there for '
          'wire size, a 30 A AMI would match the relay exactly - your call.</p>')
 
-h.append('<h2>Y2 - power bar: aluminium or copper?</h2><div class="wrap"><table><tr><th></th><th>Aluminium 6061 (modeled)</th><th>Tinned copper C110 (Dispatch pick)</th></tr>'
-         '<tr><td>Conductivity</td><td>about 43 %% IACS: needs the 25 x 6 section</td><td>100 %% IACS: 25 x 3 would do the same job; 25 x 6 runs much cooler</td></tr>'
-         '<tr><td>Joints</td><td>Tinned copper lugs on bare Al = galvanic pair; needs plating or contact grease; Al creeps under bolt clamp, so nuts lose preload over heat cycles</td>'
-         '<td>Tin to tin with the Klauke lugs - no galvanic pair, no creep worth worrying about</td></tr>'
-         '<tr><td>Stud threads (4 Nm AMI)</td><td>M5 in 6061 is fine at 4 Nm but strips sooner if over-torqued</td><td>Copper threads hold the same; C110 is gummy to tap - use C101 / C145 or a good tap</td></tr>'
-         '<tr><td>Weight (bars, pads, strips)</td><td>%d g</td><td>about %d g at the same sizes</td></tr>'
-         '<tr><td>Making it</td><td>Easy to machine, cheap, same metal as the bus bar</td><td>Costs more, harder to machine; tin plate after machining</td></tr>'
-         '<tr><td>Heat into the PA12</td><td>Runs warmer for the same section</td><td>Runs cooler - more margin to the 95 &deg;C PA12 limit</td></tr></table></div>'
-         '<p>Recommendation: tinned copper, mainly for the joints (no Al-to-tin pair, no creep). Weight is the only real cost. Switching is one line '
-         '(<code>BAR_METAL</code> in <code>spec.py</code>); the model is unchanged either way.</p>' % (round(al_g), round(al_g * cu)))
+h.append('<h2>Copper (Y2) - tinned, off the shelf, cut and drilled only</h2>'
+         '<p>Dan, 2026-10-14 (R76): tinned copper; buy ready stock, no machined bars - cutting, drilling and tapping are OK. So every copper part is a plain '
+         'rectangle with round holes: no milled lug insets (the lugs now sit on top of the fuse ear), no tapped holes (hex bolts come up from below), '
+         'no hold-down screws. The model is built around the picked stock. Copper in the model: %d g.</p>' % round(cu_g))
+for key in ('bar', 'pad', 'strip'):
+    title, opts = S.STOCK[key]
+    h.append('<h3>%s</h3><div class="wrap"><table><tr><th></th><th>Part</th><th>Seller / part number</th><th>Size mm (W x T x L)</th><th>Price</th><th>Note</th></tr>' % E(title))
+    for (tag, what, pn, size_, price, url, note) in opts:
+        h.append('<tr><td>%s</td><td><a href="%s">%s</a></td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>'
+                 % ('<b>PICK</b>' if tag == 'PICK' else 'runner-up', E(url), E(what), E(pn), E(size_), E(price), E(note)))
+    h.append('</table></div>')
+h.append('<p class="mut">Ready-made option checked: %s - %s Prices seen 2026-10-14, they move; current rating is not published for raw bar - '
+         'the copper.org bus bar ampacity table is the reference (1" x 1/4" carries far more than the 1/0 feed). None is a TE part: TE sells no bar stock (R38 step 4).</p>'
+         % (E(S.READY_MADE[0]), E(S.READY_MADE[1])))
+
+
+def drawing(name, qty, L, Wd, T, holes, stock, note=''):
+    """Top-view cut / drill drawing: L along x, Wd across; holes = [(from_end, from_centre_line, dia)]."""
+    sc = min(4.0, 640.0 / L)
+    pw, ph = L * sc, Wd * sc
+    ox, oy = 20, 34
+    svg = ['<svg viewBox="0 0 %d %d" width="100%%" style="max-width:%dpx" xmlns="http://www.w3.org/2000/svg" font-family="system-ui" font-size="11">'
+           % (pw + 60, ph + 80, pw + 60),
+           '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="#c9a26b" stroke="currentColor"/>' % (ox, oy, pw, ph)]
+    for (a, c, d) in holes:
+        svg.append('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="var(--bg)" stroke="currentColor"/>' % (ox + a * sc, oy + ph / 2 - c * sc, d * sc / 2))
+    svg.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="currentColor"/>' % (ox, oy + ph + 14, ox + pw, oy + ph + 14))
+    svg.append('<text x="%.1f" y="%.1f" text-anchor="middle" fill="currentColor">%.1f</text>' % (ox + pw / 2, oy + ph + 28, L))
+    svg.append('<text x="%.1f" y="%.1f" fill="currentColor">%.2f wide x %.2f thick</text>' % (ox, 20, Wd, T))
+    svg.append('<text x="%.1f" y="%.1f" fill="currentColor">end A</text>' % (ox - 14, oy + ph + 46))
+    svg.append('</svg>')
+    rows = ''.join('<tr><td>%d</td><td>%.1f</td><td>%s</td><td>%.1f</td></tr>' % (i + 1, a, ('%+.2f' % c) if c else 'on centre', d) for i, (a, c, d) in enumerate(holes))
+    h.append('<h3>%s - make %d</h3><p class="mut">From: %s. %s</p>%s<div class="wrap"><table><tr><th>Hole</th><th>mm from end A</th>'
+             '<th>mm from the centre line (+ = outboard / up in the view)</th><th>Drill dia</th></tr>%s</table></div>'
+             % (E(name), qty, E(stock), E(note), '\n'.join(svg), rows))
+
+
+h.append('<h2>Cut and drill drawings</h2><p class="mut">All holes are plain through holes, deburred, no tapping. Cut square, break the edges. '
+         'Re-tin cut ends and holes if you like (tinning pen or solder) - optional at 12 V inside a lid. End A is the forward (wire-exit) end in the box.</p>')
+B = S.BAR
+y_off = B['y0']
+ins = [(S.AMI_Y0 + i * S.AMI_PITCH - y_off, -S.AMI_IN_OFF, 5.5) for i in range(S.AMI_SLOTS['IN'])]
+outs = [(S.AMI_Y0 + i * S.AMI_PITCH - y_off, +S.AMI_IN_OFF, 5.5) for i in range(S.AMI_SLOTS['OUT'])]
+drawing('POWER box bar', 1, B['y1'] - B['y0'], B['w'], S.BAR_T, [(S.IN_STUD_Y - y_off, 0.0, 8.5)] + sorted(ins + outs),
+        S.STOCK['bar'][1][0][1], 'Hole 1 = 1/0 input (M8 bolt); the rest = AMI input studs (M5 bolts), inboard row at -6.25, outboard row at +6.25.')
+drawing('Output pad', S.AMI_SLOTS['IN'] + S.AMI_SLOTS['OUT'] + 1, S.PAD['inner'] + S.PAD['outer'], S.PAD['w'], S.PAD['t'],
+        [(S.PAD['inner'], 0.0, 5.5)], S.STOCK['pad'][1][0][1], '14 for the POWER box (2 are spares) + 1 for the battery block. End A faces the bar.')
+Rb = S.RB['bar']
+drawing('Battery block bar', 1, Rb['y1'] - Rb['y0'], Rb['w'], Rb['t'],
+        [(S.RB['in_stud_y'] - Rb['y0'], 0.0, 6.5), (S.RB['ami_in_y'] - Rb['y0'], 0.0, 5.5)], S.STOCK['bar'][1][0][1],
+        'Same stock as the POWER bar. Hole 1 = battery feed (M6), hole 2 = AMI 40 input (M5).')
+SF = S.STRIP_FEED
+for col, (cx, fuses) in S.MINI_COLS.items():
+    Ls = (len(fuses) - 1) * S.MINI['pitch'] + 12 + SF['ext']
+    drawing('LOGIC strip %s (%d fuses)' % (col, len(fuses)), 1, Ls, S.STRIP['w'], S.STRIP['t'], [(Ls - SF['hole_from_end'], 0.0, 5.5)],
+            S.STOCK['strip'][1][0][1], 'Hole = feed lug (M5 bolt, head on top). The fuse-feed connections along the strip are detail work (TBD with the terminal cavities).')
 
 h.append('<h2>Not done yet (detail work, after your OK)</h2><ul>'
          '<li>Terminal cavity shapes, TPA comb and front stops from the TE terminal drawings (cavities are placeholders at the right pin pattern).</li>'
-         '<li>Compression-limiter part numbers, M6 lugs for the battery block, the heat-set insert confirmed on the McMaster page; lid seals; molded labels; internal leads.</li>'
+         '<li>Compression-limiter part numbers, M6 lugs for the battery block, the heat-set insert confirmed on the McMaster page; lid seals; molded labels; internal leads; '
+         'how each mini fuse picks up its strip (cavity detail).</li>'
          '<li>Trunk mounting spot for the battery block (Route 1 area, near the kill switch) and a drip / splash check - the HCR150 is IP67, the block lid is not sealed.</li>'
          '<li>Drawings, and the harness redraws listed in OPEN-ITEMS row 107.</li></ul>')
 for f, c in imgs[3:]:

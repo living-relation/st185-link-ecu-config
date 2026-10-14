@@ -43,7 +43,7 @@ SKIRT = 3.0          # deck perimeter skirt
 RIB = 2.5            # rib thickness (deck, ears, lid)
 TOWER = 3.0          # wall around each terminal-cavity group, down to DECK_Z0
 DECK_RIBS_X = (162.0, 172.0, 208.0, 218.0)   # ribs under the power-zone plate, along y (parallel to the wire run)
-BAR_T = 6.0          # Al power bar / output pads thickness, sit in deck pockets
+BAR_T = 6.35         # power bar: 1" x 1/4" tinned copper flat bar (R76), sits in a deck pocket
 BAR_TOP = 53.0       # top of bar and pads (2 mm proud of the deck)
 LID_Z = 79.5         # lid underside (tallest part: micro relay 51 + 25.4 = 76.4)
 LID_T = 2.5
@@ -86,22 +86,21 @@ ACPS = ('ACPS', 10)
 RELAY_B = dict(body=28.5, h=25.3, pos='heater', v87a=7.65 - 8.35)
 
 # ---------- power zone (outboard): one Al bar along y, AMI both sides, M8 1/0 input at the forward end
-BAR = dict(x=190.0, w=25.0, y0=10.0, y1=170.0)
-BAR_METAL = 'Al6061'   # Y2 open (Dan): 'Al6061' or 'CuC110' (tinned). Same 25 x 6 section either way; only names, colour, mass change.
+BAR = dict(x=190.0, w=25.4, y0=10.0, y1=158.0)   # cut from 1" x 1/4" x 12" tinned bar
+BAR_METAL = 'CuC110'   # Y2 decided (Dan, 2026-10-14, R76): tinned copper, off-the-shelf flat bar, cut + drilled only
 METAL = {'Al6061': dict(name='Al6061', density=2.70, iacs=43), 'CuC110': dict(name='CuC110', density=8.89, iacs=100)}
-BAR_SCREW_Y = (30.0, 60.0, 95.0, 130.0, 163.0)   # M4 hold-downs from below, through brass limiters
 AMI = dict(L=41.0, c=30.0, body_l=16.0, body_w=12.0, body_h=6.0, ear_w=9.5, ear_t=0.8, hole=5.5)
 AMI_IN_OFF = 6.25    # input stud offset from the bar centre line (both rows on one 25 mm bar)
-AMI_PITCH = 17.5     # pad 14.5 + 3.0 gap (printed rib 2.2 between neighbouring outputs)
+AMI_PITCH = 18.0     # pad 15 (3 x 15 tinned stock) + 3.0 gap (printed rib 2.2 between neighbouring outputs)
 AMI_Y0 = 43.0        # first fuse position centre
 AMI_ROWS = {         # forward -> rear; amps None = spare position
     'IN':  [('HTR', 40), ('EFI', 30), ('STR', 30), ('FAN', 40), ('FAN2', 30), ('PWR', 30), ('SP', None), ('SP', None)],
     'OUT': [('BUS1', 50), ('RTR', 30), ('AM1', 40), ('AM2', 30), ('JB1', 60), ('EPS', 60), ('SP', None), ('SP', None)],
 }
 # 15 positions built (plan rev 2): the inboard row's 8th slot is left blank
-AMI_SLOTS = {'IN': 7, 'OUT': 8}
+AMI_SLOTS = {'IN': 7, 'OUT': 7}   # rev 3.1: 14 positions (2 spare) - the 18 mm pitch leaves no room for an 8th
 AMI_COLOUR = {30: 'orange', 40: 'ltgreen', 50: 'red', 60: 'yellow'}
-PAD = dict(inner=6.5, outer=11.0, w=14.5, screw=7.0)   # output pad extent from its stud (toward bar / away), width, M4 hold-down offset
+PAD = dict(inner=6.5, outer=11.0, w=15.0, t=3.0)   # output pad: 17.5 cut from 3 x 15 tinned bar; stud = M5 bolt from below
 LUG_M5 = dict(b=12.0, l=22.0, tip=6.0, t=2.0, d4=7.0)
 LUG_M8 = dict(b=20.0, l=47.0, tip=10.0, t=3.0, d4=14.0)
 IN_STUD_Y = 22.0
@@ -111,7 +110,8 @@ M8_NUT = dict(af=13.0, h=6.5)
 # ---------- mounting: 4 Al ears, nylon shoulder washers above and below (box floats 1.5 mm off the mount face)
 EAR = dict(len=18.0, w=22.0, t=6.0, hole=8.4, gusset_h=14.0, ys=(30.0, 150.0))   # printed, M5 through a brass limiter
 LIMITER_M5 = dict(od=8.0, id=5.3, l=6.0)    # ears
-LIMITER_M4 = dict(od=7.0, id=4.3, l=4.0)    # bar / pad hold-downs: clamp is metal to metal
+HEAD = {5: dict(af=8.0, k=3.5), 6: dict(af=10.0, k=4.0), 8: dict(af=13.0, k=5.3)}   # ISO 4017 hex bolt heads, captured in printed hex pockets
+STRIP = dict(w=10.0, t=3.0, z1=44.0)        # logic strips: 10 x 3 tinned bar, top at z1
 INSERT_M3 = dict(hole=4.0, depth=6.0)       # brass heat-set insert, M3 (lid + deck screws); hole per insert maker - TBD part
 POSTS = [(20.0, 13.0), (20.0, 165.0), (145.0, 14.0), (100.0, 167.0)]   # tray posts the deck screws into (M3 inserts)
 POST_D = 10.0
@@ -126,7 +126,7 @@ BOXES = {
     'POWER': dict(x0=69.0, x1=L, place=(140.0, 0.0),           # Mini ISO relays + ACPS + AMI bar (world x; LOGIC + ears end at 97)
                   posts=[(145.0, 14.0), (85.0, 165.0), (145.0, 167.0)], ears_y=(30.0, 150.0)),
 }
-STRIP_FEED = dict(ext=16.0, hole_from_end=7.0, tap=4.2)   # logic strip extended at the rear; M5 lug screwed on from below
+STRIP_FEED = dict(ext=16.0, hole_from_end=7.0)   # logic strip extended at the rear; M5 bolt down through it, feed lug + nut underneath
 FEEDS = {'BUS1': ('AMI BUS1 50 A output', 8), 'BUS2': ('k_efi 87', 10)}   # (from, AWG) - wires run box to box
 
 # ---------- battery relay block (trunk, near the battery): fuel pump relay + its fuse (R75; R15 exception)
@@ -139,7 +139,38 @@ HCR = dict(body_x=63.0, body_y=45.0, depth=40.0, holes=84.0, hole_d=6.5, hole_z=
 RB = dict(L=150.0, D=110.0, floor=4.0, wall=3.0, lid_z=48.0,  # tray outer; relay lies on its flange face (40 deep)
           relay_xy=(95.0, 62.0),                             # body centre; terminal edge toward -y (y 39.5)
           term_z=(14.0, 34.0),                               # terminal blocks set back 10 from the flange face (TE side view)
-          bar=dict(x=24.5, w=25.0, y0=18.0, y1=56.0, z0=14.0, t=6.0),     # small power bar on printed ribs
+          bar=dict(x=24.5, w=25.4, y0=18.0, y1=56.0, z0=14.0, t=6.35),    # cut from the same 1" x 1/4" tinned bar
           in_stud_y=28.0, ami_in_y=50.0,                     # M6 battery input stud, then the AMI along +y
           lim_m6=dict(od=10.0, id=6.5), ami_y=None, pedestal_ribs=3, ears_y=(25.0, 85.0),
           fuse=('FP', 40), place=(0.0, -170.0))
+
+# ---------- R76: off-the-shelf tinned copper stock (Dan: no machined bars; cut, drill and tap are OK). Picks first.
+# Prices seen on amazon.com / the seller page 2026-10-14 (they move); none of these is a TE part - TE sells no bar stock (R38 step 4).
+STOCK = {
+    'bar': ('Power bars (POWER box 148 mm + battery block 38 mm)', [
+        ('PICK', 'MECCANIXITY 12" x 1" copper flat bar, 1/4" thick, tinned', 'Amazon B0CGJBRNJX', '25.4 x 6.35 x 305', '$26.19',
+         'https://www.amazon.com/dp/B0CGJBRNJX', 'One bar makes both power bars with 120 mm left over.'),
+        ('alt', 'Tinned copper flat bus bar 3 x 25 x 200 mm, C110 (Bopaodao listing)', 'Amazon B09Z7KJV65', '25 x 3 x 200', '$27.79',
+         'https://www.amazon.com/dp/B09Z7KJV65', 'Thinner: still 75 mm2 of copper (> the 53 mm2 1/0 feed); 200 mm covers the POWER bar only.'),
+        ('alt', 'TEN-HIGH tinned copper flat bar 5 x 30 x 1000 mm', 'Amazon B08NT3YSXT', '30 x 5 x 1000', '$109.49',
+         'https://www.amazon.com/dp/B08NT3YSXT', 'Plenty of stock; 30 wide needs a 5 mm wider bar pocket.'),
+    ]),
+    'pad': ('Output pads (14 POWER + 1 battery block, 17.5 long each)', [
+        ('PICK', 'Tinned copper flat bus bar 3 x 15 x 1000 mm, C110 (Bopaodao listing)', 'Amazon B09Z7NBLDK', '15 x 3 x 1000', '$51.99',
+         'https://www.amazon.com/dp/B09Z7NBLDK', '15 pads use 290 mm with saw kerf; the rest is spare.'),
+        ('alt', 'Same stock, 3 x 15 x 200 mm', 'Amazon B09Z7N2CP6', '15 x 3 x 200', '$24.99 each (buy 2)',
+         'https://www.amazon.com/dp/B09Z7N2CP6', '10 pads per piece.'),
+        ('alt', 'MECCANIXITY 2 pcs 12" x 1" x 1/8" tinned', 'Amazon B0CGJC2S1L', '25.4 x 3.2 x 305 (2)', '$27.19',
+         'https://www.amazon.com/dp/B0CGJC2S1L', 'Pads would be 25.4 long, not 17.5 - the box grows about 8 mm; only if the 15 mm stock is gone.'),
+    ]),
+    'strip': ('Logic strips (Bus 1 117 mm, Bus 2 125 mm)', [
+        ('PICK', 'Tin-plated copper bus bar 716426, 1000 x 10 x 3 mm', 'Nassau National Cable 716426', '10 x 3 x 1000', '$60.09',
+         'https://nassaunationalcable.com/products/tin-plated-copper-bus-bar-716426-pack-of-3', 'Both strips from one length.'),
+        ('alt', 'Tinned C110 copper bus bar 3 x 10 x 1000 mm', 'Amazon B0GWHX98C1', '10 x 3 x 1000', '$166.91',
+         'https://www.amazon.com/dp/B0GWHX98C1', 'Same size, much dearer.'),
+        ('alt', 'Nickel-plated copper flat bus bar 3 x 10 x 1000 mm (Bopaodao listing)', 'Amazon B0B1VKYJS1', '10 x 3 x 1000', '$56.99',
+         'https://www.amazon.com/dp/B0B1VKYJS1', 'Nickel, not tin - fine against tinned terminals, but not what R76 asks for.'),
+    ]),
+}
+READY_MADE = ('Bussmann LMI (AMI modules on a common bus bar, B109-7046-x)', 'The only ready-made AMI bus found. It is R18 Option B, which R70 replaced: '
+              '25 mm per position (vs 18 here) and its own housings, so it does not fit the printed boxes.')
