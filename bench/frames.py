@@ -291,7 +291,12 @@ def decode_sb_analog(data: bytes, base_channel: int = 1) -> Dict[str, float]:
 # Bits 0 and 1 (was evaporator core / A/C request) are UNASSIGNED since
 # 2026-09-27 - A/C is the OEM amplifier's job, not the switchboard's. Only
 # assigned bits get a constant; check_parity.py compares this set to the JSON.
+# Bits 5-7 assigned 2026-10-14 (DECISIONS R80, Route 15 S17 C14): clutch S6, brake S7,
+# reverse S8 (brake / reverse through the inline optoisolator, R56).
 SW_CRUISE_ACTIVE = 1 << 2
+SW_CLUTCH = 1 << 5
+SW_BRAKE = 1 << 6
+SW_REVERSE = 1 << 7
 
 def encode_sb_rotary_sw(rotaries=(0, 0, 0, 0, 0, 0, 0, 0),
                         sw_mask: int = 0, as_mask: int = 0,

@@ -13,7 +13,7 @@
       "cycle_ms": 10,
       "channels": [
         { "byte": 0, "length": 2, "name": "Engine Speed",  "pclink_name": "Engine Speed",  "scale": 1,    "offset": 0,    "unit": "RPM",     "note": "raw RPM, no scaling" },
-        { "byte": 2, "length": 2, "name": "MAP Absolute",  "pclink_name": "MAP",            "scale": 1,    "offset": 0,    "unit": "kPa",     "note": "Use MAP (ABSOLUTE), not MGP. ~100 at idle, never negative. Firmware subtracts 100 kPa for gauge boost." },
+        { "byte": 2, "length": 2, "name": "MAP Absolute",  "pclink_name": "Math channel: MAP - Baro + 100",            "scale": 1,    "offset": 0,    "unit": "kPa",     "note": "Absolute-style kPa, not MGP. Source = a PCLink math channel MAP - Baro + 100 (2026-10-14, R80; OPEN-ITEMS 32 F1): the frozen firmware subtracts a fixed 100 kPa for gauge boost, so this gives true boost at any altitude (engine off = 0.0 psi). Wire format unchanged. Exact baro parameter name: OPEN-ITEMS 103." },
         { "byte": 4, "length": 1, "name": "ECT",           "pclink_name": "ECT",            "scale": 1,    "offset": 50,   "unit": "°C+50",   "note": "+50 PCLink offset; firmware subtracts 50 then converts to °F." },
         { "byte": 5, "length": 1, "name": "IAT",           "pclink_name": "IAT",            "scale": 1,    "offset": 50,   "unit": "°C+50",   "note": "Same offset as ECT." },
         { "byte": 6, "length": 1, "name": "Oil Temp",      "pclink_name": "Oil Temp",       "scale": 1,    "offset": 50,   "unit": "°C+50",   "note": "Same offset." },
@@ -51,8 +51,8 @@
       "name": "Gear / Fuel Level",
       "cycle_ms": 50,
       "channels": [
-        { "byte": 0, "length": 1, "name": "Gear Position", "pclink_name": "Gear Position",  "scale": 1,    "offset": 0,    "unit": "int",     "note": "0=N, 1-6=gears, 7=R. Firmware remaps 7→-1." },
-        { "byte": 1, "length": 1, "name": "Fuel Level",    "pclink_name": "An Volt x",      "scale": 1,    "offset": 0,    "unit": "%",       "note": "Wire tank sender to an AnVolt input; calibrate 0-100% in PCLink before assigning." },
+        { "byte": 0, "length": 1, "name": "Gear Position", "pclink_name": "Gear Position",  "scale": 1,    "offset": 0,    "unit": "int",     "note": "0=N, 1-6=gears, 7=R. Firmware remaps 7→-1. R comes from the CSB3 reverse switch (0x642 SW_MASK bit 7 -> VDI8, switchboard_frames.json ecu_receive)." },
+        { "byte": 1, "length": 1, "name": "Fuel Level",    "pclink_name": "An Volt 9 (B24) Fuel Level %",      "scale": 1,    "offset": 0,    "unit": "%",       "note": "Tank sender on An Volt 9 / B24 with 470R to +5V (sot/channels.csv b24). Calibration (FSM, DECISIONS S23): 0.032 V = 100 %, 0.315 V = 50 %, 0.948 V = 0 %." },
         { "byte": 2, "length": 0, "name": "(unassigned)" },
         { "byte": 3, "length": 0, "name": "(unassigned)" },
         { "byte": 4, "length": 0, "name": "(unassigned)" },

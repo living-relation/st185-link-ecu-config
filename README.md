@@ -56,8 +56,10 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 
 1. Set CAN Module 1 (CAN1) → **1 000 000 bps**, Custom stream type, BigEndian.
 2. File → Open → `link_g4x_can_setup.lcs` — verify all 8 TX channels appear.
-3. Add User Stream: 0x642 byte4 bits0-4 → VDI1-5 (VDI1/2 unassigned; the 0x640 cabin-temp stream is retired).
-4. Set CAN Receive Timeout: 200 ms on frames 0x640 / 0x641 / 0x642.
+3. Switchboard receive (already in the `.lcs`, 2026-10-14): 0x640 bytes 2-3 Cruise Stalk mV; 0x642 byte4
+   bit 2 → VDI3 (cruise main), bit 5 → VDI6 (clutch), bit 6 → VDI7 (brake), bit 7 → VDI8 (reverse).
+   Confirm they imported (or enter them by hand with the same values).
+4. CAN Receive Timeout: 200 ms on 0x640 / 0x642, value 0 on timeout (in the `.lcs`).
 5. Echo target: 0x3EF byte 3 (TC Setting) and byte 5 (Boost Map Index) are meant to carry the cluster's
    0x3ED / 0x3EC selections, re-broadcast by the ECU. The ECU **receives** 0x3EC/0x3ED (Daniel,
    2026-10-03) - set up the two receive channels at the end of the `.lcs` (DLC 1, byte 0 = index).

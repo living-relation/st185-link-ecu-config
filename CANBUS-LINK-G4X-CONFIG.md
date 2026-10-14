@@ -117,6 +117,20 @@ bytes 5 / 3 (no direct cluster↔RealDash CAN traffic).
 > **Decided (Daniel, 2026-10-03):** the ECU receives both. Receive channels are at the end of
 > `link_g4x_can_setup.lcs` (0x3EC "Boost Map Index", 0x3ED "TC Slip Index", byte 0, 8 bit, scale 1).
 
+### ECUMaster CSB3 switchboard (0x640 / 0x642)
+Receive channels at the end of `link_g4x_can_setup.lcs`, canonical map `switchboard_frames.json`
+"ecu_receive" (Daniel 2026-10-14, DECISIONS R80). Timeout 200 ms on each, value 0 on timeout.
+
+| Frame | Field | PCLink target | Use |
+|---|---|---|---|
+| 0x640 | bytes 2-3, u16 BE, mV | Cruise Stalk mV | math channels → SET/COAST, RES/ACC, CANCEL (`ECUMASTER_SWITCHBOARD_SETUP.md` Step 4.1) |
+| 0x642 | byte 4 bit 2 | VDI3 | cruise main |
+| 0x642 | byte 4 bit 5 | VDI6 | clutch: cruise cancel, flat shift / launch clutch input |
+| 0x642 | byte 4 bit 6 | VDI7 | brake: cruise cancel |
+| 0x642 | byte 4 bit 7 | VDI8 | reverse: Gear Position = 7 (R) in 0x3EB |
+
+Switchboard frames go to the ECU only (R51); what a display needs is echoed in ECU frames.
+
 ---
 
 ## Adding / removing a channel later

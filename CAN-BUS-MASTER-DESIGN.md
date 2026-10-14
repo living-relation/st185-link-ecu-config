@@ -68,7 +68,9 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 | 2 | Switch 3 | Cruise Control Active (MAIN, stalk pin 15) |
 | 3 | Switch 4 | Unassigned (was Cruise Set; the OEM stalk has no SET wire, S23) |
 | 4 | Switch 5 | Unassigned (was Cruise Resume; the OEM stalk has no RESUME wire, S23) |
-| 5-7 | Switch 6-8 | Unassigned — available for future accessory inputs |
+| 5 | Switch 6 | Clutch pedal down (2026-10-14, R80) |
+| 6 | Switch 7 | Brake pedal pressed (2026-10-14, R80) |
+| 7 | Switch 8 | Reverse engaged (2026-10-14, R80) |
 
 ### Heartbeat (0x642 byte7)
 Increments on every transmitted 0x642 frame (0-255, wraps). Nominal cycle: switchboard default 20 Hz (50 ms). Used in the fault-tolerance design (§6).
@@ -82,8 +84,8 @@ The Link G4X consumes two switchboard frames via PCLink "User Stream" inputs, co
 ### User Stream 1 — retired 2026-09-27
 - Analog Input 1 (0x640 bytes 0-1) used to carry a cabin thermistor into **GP Temp1**. Cabin, evaporator and A/C request belong to the OEM A/C amplifier, so no CSB3 input is wired for them and Analog Input 1 is unassigned. The frame layout is unchanged.
 
-### User Stream 2 — Accessory Switch States (VDI1-5)
-- **Source:** 0x642, byte 4 (SW_MASK), bits 0-4.
+### User Stream 2 — Accessory Switch States (VDI3, VDI6-8)
+- **Source:** 0x642, byte 4 (SW_MASK), bits 2 and 5-7 (receive channel 0x642 in the `.lcs`; canonical map `switchboard_frames.json` "ecu_receive").
 - **PCLink target:** Virtual Digital Inputs (VDI1-5), one bit per VDI:
 
 | SW_MASK bit | VDI | Meaning |
@@ -93,8 +95,11 @@ The Link G4X consumes two switchboard frames via PCLink "User Stream" inputs, co
 | 2 | VDI3 | Cruise Control Active |
 | 3 | VDI4 | Unassigned |
 | 4 | VDI5 | Unassigned |
+| 5 | VDI6 | Clutch Switch — cruise cancel; clutch input for flat shift / launch |
+| 6 | VDI7 | Brake Switch — cruise cancel (the ECU's brake input) |
+| 7 | VDI8 | Reverse Switch — sets Gear Position = 7 (R) in 0x3EB |
 
-- **Downstream use:** these VDIs feed the ECU's cruise-control logic (PCLink condition tables / virtual aux outputs) — VDI3=1 arms cruise; SET/COAST, RES/ACC and CANCEL come from the stalk ladder on CSB3 Analog 2 (0x640 bytes 2-3), decoded in PCLink (ECUMASTER_SWITCHBOARD_SETUP.md Step 4.1). VDI1, VDI2, VDI4 and VDI5 are unassigned; A/C request and evaporator control are the OEM A/C amplifier's.
+- **Downstream use:** these VDIs feed the ECU's cruise-control logic (PCLink condition tables / virtual aux outputs) — VDI3=1 arms cruise, VDI6 (clutch) and VDI7 (brake) cancel it; SET/COAST, RES/ACC and CANCEL come from the stalk ladder on CSB3 Analog 2 (0x640 bytes 2-3), decoded in PCLink (ECUMASTER_SWITCHBOARD_SETUP.md Step 4.1). VDI1, VDI2, VDI4 and VDI5 are unassigned; A/C request and evaporator control are the OEM A/C amplifier's.
 
 Both User Streams require the ECU to be on the same physical bus as the switchboard (§3).
 
@@ -108,7 +113,7 @@ Two independent layers protect against switchboard communication loss:
 - Configure a receive timeout on each switchboard frame (0x640, 0x641, 0x642) in PCLink's CAN setup. If a configured frame isn't received within its expected window, PCLink applies a configured default/hold value to the associated channels.
 - **Recommended timeout:** 200 ms (4× the switchboard's nominal 50 ms / 20 Hz cycle) — tolerates occasional dropped frames without false trips.
 - **Recommended defaults on timeout:**
-  - VDI3-5 → 0 (Cruise inactive/no set-resume) — this is the fail-safe state: cruise disengaged.
+  - Every switchboard receive channel → 0 (VDI3 = cruise disarmed, VDI6-8 off, Cruise Stalk mV = 0) — the fail-safe state: cruise disengaged.
 - This is the **primary safety net** and requires **no firmware changes** — pure PCLink configuration (Task #9).
 
 ### Layer 2 — heartbeat staleness check (secondary, ECU-side diagnostic)
@@ -187,8 +192,8 @@ The docx does not address the ECUMaster switchboard's bus segment or speed at al
 |---|---|---|
 | 1 | Reconfigure ECUMaster CAN Switch Board V3: bit rate 500 kbps → 1000 kbps | Hardware/config |
 | 2 | Add 0x3EF (50ms), 0x3F0 (100ms), 0x3F1 (50ms) Custom/BigEndian streams to `link_g4x_can_setup.lcs`/`.json` | PCLink config |
-| 3 | Configure PCLink User Stream 2 (0x642 byte4 bits0-4 → VDI1-5). User Stream 1 (cabin temp → GP Temp1) is retired, see §5 | PCLink config |
-| 4 | Configure PCLink receive timeouts (200ms) on 0x640/0x641/0x642 with fail-safe defaults (VDI1-5→0) | PCLink config |
+| 3 | User Stream 2 (0x642 byte4 bits 2, 5-7 → VDI3, VDI6-8) and the 0x640 Cruise Stalk mV channel — **written** in the `.lcs` receive channels (2026-10-14, R80); imported with the `.lcs`. User Stream 1 (cabin temp → GP Temp1) is retired, see §5 | PCLink config |
+| 4 | PCLink receive timeouts (200ms) on 0x640/0x642 with fail-safe value 0 — **written** in the `.lcs` (`Timeout="200"`) | PCLink config |
 | 5 | Cluster firmware: **no changes.** Cluster displays are unchanged — it keeps decoding 0x3E8–0x3EB and 0x3EE (`main/canbus.c`) and transmitting 0x3EC/0x3ED. The new 0x3EF/0x3F0/0x3F1 streams are ECU→RealDash only; switchboard comm-fault (§6) is ECU-detected and surfaced to RealDash via 0x3F1 byte6 bit5. | — (none) |
 | 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §9 — outputs unused/LED-only, low priority | PCLink config (deferred) |
 | 7 | RealDash XML frame/value definitions for 0x3EF-0x3F1 — **done** (`link_g4x_realdash.xml`). Build the dashboard per `REALDASH-LAYOUT.md`. 0x640-0x642 deliberately excluded (ECU echoes display-relevant values) | RealDash config |

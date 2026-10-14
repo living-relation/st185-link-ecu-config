@@ -6,6 +6,18 @@
   "bit_rate_bps": 1000000,
   "byte_order": "BigEndian",
   "cycle_wording": "0x640-0x642: periodic, switchboard 'CAN send rate' (default 20 Hz = 50 ms). 0x643: periodic 50 ms PCLink CAN TX stream from the ECU; the bytes only change when the ECU changes an output. The manual sets no required rate for 0x643.",
+  "ecu_receive": {
+    "_comment": "What the ECU takes from the switchboard frames (Daniel 2026-10-14, DECISIONS R80: CAN config is written here now, not parked for setup). Mirrored as Direction=\"Receive\" channels 0x640 / 0x642 in link_g4x_can_setup.lcs; bench/check_parity.py checks the .lcs against this block and the SW_MASK bits above. Bit numbering: bit N of byte B = .lcs StartBit B*8+N (bit 0 = LSB). Switchboard frames go to the ECU only (R51); the ECU echoes what displays need (reverse -> 0x3EB Gear Position = 7, comm fault -> 0x3F1 byte 6 bit 5).",
+    "timeout_ms": 200,
+    "timeout_value": 0,
+    "channels": [
+      { "frame": "0x640", "byte": 2, "length": 2, "name": "Cruise Stalk mV", "pclink_target": "CAN voltage channel, decoded by math channels into SET/COAST, RES/ACC, CANCEL (ECUMASTER_SWITCHBOARD_SETUP.md Step 4.1)", "scale": 1, "offset": 0, "unit": "mV" },
+      { "frame": "0x642", "byte": 4, "bit": 2, "name": "Cruise Main", "pclink_target": "VDI3", "use": "cruise master on/off" },
+      { "frame": "0x642", "byte": 4, "bit": 5, "name": "Clutch Switch", "pclink_target": "VDI6", "use": "cruise cancel; clutch switch for flat shift / launch" },
+      { "frame": "0x642", "byte": 4, "bit": 6, "name": "Brake Switch", "pclink_target": "VDI7", "use": "cruise cancel (the ECU's brake input)" },
+      { "frame": "0x642", "byte": 4, "bit": 7, "name": "Reverse Switch", "pclink_target": "VDI8", "use": "gear = R: drives 0x3EB Gear Position = 7 (cluster R display, RealDash reverse camera)" }
+    ]
+  },
   "frames": [
     {
       "id": "0x640",
@@ -50,9 +62,9 @@
             "2": "Switch 3 - cruise MAIN on (stalk pin 15)",
             "3": "Switch 4 - unassigned (was cruise SET; no such stalk wire)",
             "4": "Switch 5 - unassigned (was cruise RESUME; no such stalk wire)",
-            "5": "Switch 6 - unassigned",
-            "6": "Switch 7 - unassigned",
-            "7": "Switch 8 - unassigned" } },
+            "5": "Switch 6 - clutch pedal down (C11 clutch switch pin 1, ground-active; FL_CLUTCH_SW_C1)",
+            "6": "Switch 7 - brake pedal pressed (S9 pin 1 +12V -> opto IN1 -> S7; FL_BRAKE_SW_C1, R56)",
+            "7": "Switch 8 - reverse engaged (back-up switch B1 pin 1 +12V -> opto IN2 -> S8; R56)" } },
         { "byte": 5, "length": 1, "name": "AS_MASK", "unit": "bits", "note": "bit N = Analog State N+1 (per manual: 0 below 2 V, 1 above 3 V)" },
         { "byte": 6, "length": 1, "name": "LS_MASK", "unit": "bits", "note": "bits 0-3 = state of low-side outputs L1-L4" },
         { "byte": 7, "length": 1, "name": "Heartbeat", "unit": "count", "note": "increments every sent message, wraps 255 -> 0" }
