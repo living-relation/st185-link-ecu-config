@@ -14,7 +14,7 @@ the finished look is [`realdash-simulation.html`](realdash-simulation.html) (ope
 > The other cluster frames 0x3E8-0x3EE (RPM, boost, temps, speed, lambda, protection) belong to the
 > **center cluster** and are documented in
 > the cluster repo's [`CANBUS-ENCODE-DECODE-REFERENCE.html`](https://github.com/living-relation/center-cluster-esp32-p4/blob/main/CANBUS-ENCODE-DECODE-REFERENCE.html) — RealDash does not
-> display those (no duplication).
+> display those (no duplication). Fuel Level (0x3EB byte 1) is intentionally left out to keep the Gear carve-out minimal.
 
 ---
 
@@ -105,7 +105,7 @@ tiles). Cruise and A/C span two columns on the bottom row.
 > **Coolant Pressure** is now a **u16** wire value (0x3F0 bytes 2-3), so it is no longer capped at
 > 255 kPa. **Turbo Speed** is a single byte `raw x1000` -> 0-255,000 RPM (1,000 RPM resolution), covering an EFR's full spool range. **Cabin Temp was
 > dropped** from 0x3F0 to make room for the u16 coolant pressure and is no longer a RealDash input
-> (see `CAN-CONFIG-STATUS.md`); tile #11 uses the lateral accel input instead.
+> (see the 0x3F0 note in `CAN-BUS-ID-ALLOCATION-TABLE.md`); tile #11 uses the lateral accel input instead.
 
 ---
 
