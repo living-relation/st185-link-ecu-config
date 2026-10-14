@@ -16,12 +16,18 @@ on:
       - 'docs/**'
       - '!docs/research-hub.html'
       - 'cad/README.md'
+      - 'cad/trimetrics.json'
+      - 'cad/model-files.json'
+      - 'cad/**/*.csv'
       - '.github/workflows/research-hub.yml'
   pull_request:
     paths:
       - 'docs/**'
       - '!docs/research-hub.html'
       - 'cad/README.md'
+      - 'cad/trimetrics.json'
+      - 'cad/model-files.json'
+      - 'cad/**/*.csv'
       - '.github/workflows/research-hub.yml'
   workflow_dispatch:
 

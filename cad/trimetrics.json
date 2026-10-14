@@ -1,0 +1,177 @@
+{
+ "busbar-A": {
+  "png": "cad/busbar/design-A/trimetric.png",
+  "solids": 32,
+  "part_types": 11,
+  "extent_mm": [
+   262.0,
+   96.0,
+   62.0
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/busbar/design-A/A_ASSEMBLY.step": 1791931592
+  },
+  "rendered": "2026-10-14"
+ },
+ "busbar-A-rev3": {
+  "png": "cad/busbar/design-A-rev3/trimetric.png",
+  "solids": 38,
+  "part_types": 11,
+  "extent_mm": [
+   274.0,
+   96.0,
+   62.0
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/busbar/design-A-rev3/A_rev3_ASSEMBLY.step": 1791931592
+  },
+  "rendered": "2026-10-14"
+ },
+ "busbar-B": {
+  "png": "cad/busbar/design-B/trimetric.png",
+  "solids": 42,
+  "part_types": 11,
+  "extent_mm": [
+   261.0,
+   120.0,
+   52.0
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/busbar/design-B/B_ASSEMBLY.step": 1791931593
+  },
+  "rendered": "2026-10-14"
+ },
+ "busbar-B-rev2": {
+  "png": "cad/busbar/design-B-rev2/trimetric.png",
+  "solids": 53,
+  "part_types": 14,
+  "extent_mm": [
+   325.0,
+   120.0,
+   55.0
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/busbar/design-B-rev2/B_rev2_ASSEMBLY.step": 1791931593
+  },
+  "rendered": "2026-10-14"
+ },
+ "busbar-B-rev3": {
+  "png": "cad/busbar/design-B-rev3/trimetric.png",
+  "solids": 61,
+  "part_types": 14,
+  "extent_mm": [
+   345.0,
+   120.0,
+   55.0
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/busbar/design-B-rev3/B_rev3_ASSEMBLY.step": 1791931593
+  },
+  "rendered": "2026-10-14"
+ },
+ "drb102-plate": {
+  "png": "cad/drb102-plate/trimetric.png",
+  "solids": 11,
+  "part_types": 8,
+  "extent_mm": [
+   280.0,
+   220.0,
+   259.4
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/drb102-plate/DRB102-firewall-plate-assembly.step": 1790675555
+  },
+  "rendered": "2026-10-14"
+ },
+ "enclosure-csb3": {
+  "png": "cad/enclosures/csb3/trimetric.png",
+  "solids": 8,
+  "part_types": 6,
+  "extent_mm": [
+   70.0,
+   94.0,
+   78.2
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1791906601
+  },
+  "rendered": "2026-10-14"
+ },
+ "enclosure-vrc": {
+  "png": "cad/enclosures/vrc/trimetric.png",
+  "solids": 15,
+  "part_types": 8,
+  "extent_mm": [
+   117.2,
+   74.0,
+   45.0
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1791902030
+  },
+  "rendered": "2026-10-14"
+ },
+ "fuel-hanger": {
+  "png": "cad/fuel-hanger/trimetric.png",
+  "solids": 5,
+  "part_types": 2,
+  "extent_mm": [
+   149.6,
+   157.1,
+   303.0
+  ],
+  "sources": {
+   "C:/projects/active/fairsolid/runs/fuel_hanger_billet_1014/rev7/hanger_billet_assembly.step": 1792001115
+  },
+  "rendered": "2026-10-14"
+ },
+ "fusebox-battrelay": {
+  "png": "cad/fusebox/trimetric-battrelay.png",
+  "solids": 4,
+  "extent_mm": [
+   228.0,
+   100.9,
+   54.0
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/BattRelay_Bar_Power_CuC110_25x6p35.step": 1791999055,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/BattRelay_Base_PA12_printed.step": 1791999055,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/BattRelay_Cover_PA12_printed.step": 1791999055,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/BattRelay_Pad_Out_CuC110_15x3.step": 1791999055
+  },
+  "rendered": "2026-10-14"
+ },
+ "fusebox-logic": {
+  "png": "cad/fusebox/trimetric-logic.png",
+  "solids": 5,
+  "extent_mm": [
+   143.0,
+   189.9,
+   71.4
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/Logic_Base_PA12_printed.step": 1791999055,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/Logic_Cover_PA12_printed.step": 1791999055,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/Logic_Pan_PA12_printed.step": 1791999055,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/Logic_Strip_Logic_CuC110_10x3.step": 1791999055
+  },
+  "rendered": "2026-10-14"
+ },
+ "fusebox-power": {
+  "png": "cad/fusebox/trimetric-power.png",
+  "solids": 18,
+  "extent_mm": [
+   189.4,
+   245.0,
+   81.8
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/Power_Bar_Power_CuC110_25x6p35.step": 1791999055,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/Power_Base_PA12_printed.step": 1791999055,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/Power_Cover_PA12_printed.step": 1791999055,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/Power_Pad_Out_CuC110_15x3.step": 1791999055,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/Power_Pan_PA12_printed.step": 1791999055
+  },
+  "rendered": "2026-10-14"
+ }
+}
