@@ -341,8 +341,8 @@ Units: Eaton RFRM `15401-1-2-1-0A` + 3 x MTA `0301491` + Bussmann LMI from loose
 | 2 | Radiator fan | hcfb h2 40A | MTA-1 | MaxiVal + Maxi R1 | 40 MAXI | k_fan | TE 1-1414147-0 (own) | 8 | Link Aux 5 A29 |
 | 3 | k_efi EFI main (→ Bus 2) | fusebox c1 30A / c15 | MTA-1 | MiniVal 1 + Maxi R2 | 30 MINI | k_efi | TE 1-1414147-0 (own) | 12 in / 10 out | Aux 6 A28 hold; 87 → RFRM Bus 2 M8 input stud (ring lug) |
 | 4 | Fuel pump | fusebox c2 25A | MTA-1 | MiniVal 2 + micro | 20 MINI | k_fp | TE 4-1904124-2 (own) | 12 in / 10 out | Aux 3 A19; pump 14.4 A |
-| 5 | Blower / heater | pdb c3 → R/B4 (40A) | MTA-2 | MaxiVal + Maxi R1 | 40 MAXI | heater | TE 1-1414147-0 (own) | 8 | coil: auto amp HR path |
-| 6 | Starter S | fusebox c4 30A | MTA-2 | MiniVal 1 + Maxi R2 | 30 MINI | k_str | TE 1-1414147-0 (BUY) | 12 in / 10 out | Aux 8 A26 |
+| 5 | Blower / heater | pdb c3 → R/B4 (40A) | MTA-2 | MaxiVal + Maxi R1 | 40 MAXI | heater | 1 form C Maxi ISO, TBD (BUY; TE F7 is 1 form A only) | 8 | coil: auto amp HR path; changeover so the NC contact (87a) still grounds the blower + when off, as the OEM relay did (p.215; 10 AWG to the PDB ground bus) |
+| 6 | Starter S | fusebox c4 30A | MTA-2 | MiniVal 1 + Maxi R2 | 30 MINI | k_str | TE 1-1414147-0 (own - the one freed by the heater relay) | 12 in / 10 out | Aux 8 A26 |
 | 7 | ETB power | fusebox c3 10A | MTA-2 | MiniVal 2 + micro | 10 MINI | k_etb | TE 4-1904124-2 (own) | 16 | Aux 2 A20 → B5 |
 | 8 | MR-S EPS enable logic (F13) | fusebox c14 7.5A | MTA-2 | MiniVal 3 | 7.5 MINI | — | — | 20 | fed from k_eps_en 87 |
 | 9 | Condenser fan | hcfb h3 30A | MTA-3 | MaxiVal + Maxi R1 | 30 MAXI | k_fan2 | TE 1-1393304-0 (own, bracket: test-fit) | 8 | Ign 5 B13; plain relay, no diode |

@@ -30,15 +30,15 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `GENERIC RING M5 10-8` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 10-8 AWG, M5 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `GENERIC RING M8 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG | 6 | 0 | **6** |
-| `1393310-4` | TE Connectivity | SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS | 6 | 1 | **5** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
+| `GENERIC LUG M8 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK | 5 | 0 | **5** |
 | `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 5 | 0 | **5** |
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS | 4 | 0 | **4** |
+| `1393310-4` | TE Connectivity | SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS | 5 | 1 | **4** |
 | `15419715` | Aptiv | CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6 | 4 | 0 | **4** |
 | `90980-11062` | Toyota | CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS | 4 | 0 | **4** |
 | `90980-11885` | Toyota | CONNECTOR, PLUG, TOYOTA, 4 POS | 4 | 0 | **4** |
 | `DTHD06-1-8S` | TE DEUTSCH | CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A | 4 | 0 | **4** |
-| `GENERIC LUG M8 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK | 4 | 0 | **4** |
 | `LP-16-J05PE-02-001` | CNLINKO | CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH | 4 | 0 | **4** |
 | `0301491` | MTA | MODULE, FUSE AND RELAY, SEALED, 2 MAXI RELAY, 1 MAXI FUSE, 6 MINI FUSE | 3 | 0 | **3** |
 | `DT04-6P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY | 3 | 0 | **3** |
@@ -57,7 +57,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RL00801-50RE` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED | 2 | 0 | **2** |
 | `W3S` | Deutsch | WEDGELOCK, DT, 3 POS, PLUG | 2 | 0 | **2** |
 | `AMI-60` | Eaton Bussmann | FUSE, AMI, 60 A, M5 BOLT-DOWN | 2 | 0 | **2** |
-| `1-1414147-0` | TE Connectivity | RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 4 | 3 | **1** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `15401-1-2-1-0A` | Eaton Bussmann | MODULE, FUSE AND RELAY, RFRM, SEALED, 40 MINI FUSE, 10 MICRO RELAY, 2 BUS | 1 | 0 | **1** |
 | `1k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
@@ -113,6 +112,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS | 1 | 1 |
 | `1-1393304-0` | RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J1052-X281, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 560 OHM PARALLEL RESISTOR, MOUNTING BRACKET | 2 | 2 |
+| `1-1414147-0` | RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 3 | 3 |
 | `114018-ZZ` | PLUG, SEALING, CAVITY, SIZE 8, WHITE | 8 | 10 |
 | `114019-ZZ` | PLUG, SEALING, CAVITY, SIZE 4, WHITE | 4 | 10 |
 | `12052641` | CONNECTOR, 2 POS, SEALED | 1 | 1 |
@@ -146,7 +146,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)` | MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, 12 V INPUT, EL814, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS | 1 |
 | `(Eaton RFRM terminals - per the 15401 drawing)` | TERMINAL, FUSE AND RELAY MODULE, RFRM | 42 |
 | `(LED board indicator - 12 V, resistor on board)` | DIODE, LIGHT EMITTING, INDICATOR, 12 V | 6 |
-| `(MTA 0301491 terminals - per the MTA drawing)` | TERMINAL, FUSE AND RELAY MODULE, MTA | 49 |
+| `(MTA 0301491 terminals - per the MTA drawing)` | TERMINAL, FUSE AND RELAY MODULE, MTA | 50 |
 | `(Toyota TS terminals, supplied with owned housings)` | CONTACT, SOCKET, CRIMP, TOYOTA | 5 |
 | `(generic)` | CONTACT, SOCKET, CRIMP, GENERIC | 14 |
 | `(integral - RL00801-50)` | CONTACT, RADSOK 8.0, INTEGRAL TO RL00801-50 CABLE CONNECTOR, 50 MM2 (1/0) CRIMP BARREL | 4 |
@@ -155,6 +155,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(pump pigtail - Walbro F90000295)` | CONNECTOR, PIGTAIL, 2 POS | 1 |
 | `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK | 2 |
 | `(ring lug, sized to cable)` | TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK | 8 |
+| `TBD - 1 form C Maxi ISO relay (TE F7 V23134 is 1 form A only)` | RELAY, PLUG-IN, MAXI ISO, 1 FORM C, 5 POS, 12 VDC COIL, 40 A MIN NO CONTACT | 1 |
 | `TBD - A/C coolant temperature switch connector` | CONNECTOR, 2 POS, TYPE TBD | 1 |
 
 ## Counted once, drawn more than once

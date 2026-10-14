@@ -1110,7 +1110,7 @@
     },
     {
       "id": "k_htr",
-      "label": "Heater Relay (seated in MTA-2 Maxi R1) - coil+ (86) from the factory R-L lead, coil- (85) grounded by the auto A/C amplifier HR",
+      "label": "Heater Relay, 1 form C (seated in MTA-2 Maxi R1) - coil+ (86) from the factory R-L lead, coil- (85) grounded by the auto A/C amplifier HR, NC (87a) grounds the blower + when off",
       "cavities": [
         {
           "id": "c1",
@@ -1139,6 +1139,13 @@
           "signal": "+12V out -> blower motor B4 pin 2 (br_w_rb4) and MTA-3 ACIN",
           "contactPartId": "ct_mta",
           "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "87a",
+          "signal": "NC -> glove-box PDB ground bus: grounds the blower + when the relay is off (OEM heater relay pin 2 W-B, EWD 1993 p.215)",
+          "contactPartId": "ct_mta",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1149,7 +1156,7 @@
         "x": 6000,
         "y": 5100
       },
-      "partId": "cp_rly_f7_b",
+      "partId": "cp_rly_maxi_co",
       "width": 390
     },
     {
@@ -2094,6 +2101,22 @@
       "layoutPosition": {
         "x": 2460,
         "y": 1230
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_pdb_gnd_htr",
+      "type": "Ring",
+      "partId": "tp_lug_m8_8",
+      "width": 390,
+      "signal": "Glove-box PDB ground bus stud (M8) - heater relay NC (87a)",
+      "schematicPosition": {
+        "x": 6000,
+        "y": 5550
+      },
+      "layoutPosition": {
+        "x": 2460,
+        "y": 1110
       },
       "propagate": false
     }
@@ -3316,6 +3339,19 @@
       "partId": "m16_20_0"
     },
     {
+      "id": "w_htr_87a_cp",
+      "color": "Black",
+      "source": {
+        "id": "k_htr",
+        "handle": "c5"
+      },
+      "target": {
+        "id": "t_pdb_gnd_htr",
+        "handle": "Terminal"
+      },
+      "partId": "m16_10_0"
+    },
+    {
       "id": "w_pwr_30_cp",
       "color": "Red",
       "source": {
@@ -4166,6 +4202,15 @@
         "value": 300,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_b_bp_1065__t_pdb_gnd_htr",
+      "sourceId": "b_bp_1065",
+      "targetId": "t_pdb_gnd_htr",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -4458,6 +4503,17 @@
         "value": 20,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "m16_10_0",
+      "partNumber": "M22759/16-10-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 10 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
     }
   ],
   "connectorParts": [
@@ -4532,6 +4588,19 @@
         }
       ],
       "numberOfCavities": 4
+    },
+    {
+      "id": "cp_rly_maxi_co",
+      "partNumber": "TBD - 1 form C Maxi ISO relay (TE F7 V23134 is 1 form A only)",
+      "description": "RELAY, PLUG-IN, MAXI ISO, 1 FORM C, 5 POS, 12 VDC COIL, 40 A MIN NO CONTACT",
+      "manufacturer": "TBD",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_f7_load"
+        }
+      ],
+      "numberOfCavities": 5
     },
     {
       "id": "cp_rfrm",
