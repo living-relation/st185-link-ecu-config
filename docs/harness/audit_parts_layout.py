@@ -31,7 +31,7 @@ def refs(obj, out):
         for k, v in obj.items():
             if isinstance(v, str) and (k == "partId" or k.endswith("PartId")):
                 out.add(v)
-            elif k == "coveringIds" and isinstance(v, list):
+            elif k in ("coveringIds", "partIds") and isinstance(v, list):   # partIds: a bundle's coverings
                 out.update(x for x in v if isinstance(x, str))
             else:
                 refs(v, out)

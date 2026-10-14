@@ -202,6 +202,30 @@ for pn, mf, desc, n in DEVICE_SIDE:
     req[pn] += n
     meta.setdefault(pn, {"partNumber": pn, "manufacturer": mf, "description": desc})
 
+# 2026-10-14 (DECISIONS R87): ident bands. harness.design draws a wire's identColors as bands
+# but they carry no part, so they are counted here: every band is fitted at BOTH ends of the
+# wire, cut BAND_MM long from an RNF-100 stick sized to the wire (audit_ident_bands.SIZES).
+# Wire labels are bundle coverings (fixed-length TMS-SCE markers in a bundle's partIds), one each.
+import audit_ident_bands as IB
+LIBP = {q["partNumber"]: q for k, v in json.load(open(os.path.join(R, "ST185.harnesslib"), encoding="utf-8")).items()
+        if k.endswith("Parts") for q in v}
+BANDS = collections.Counter()
+for f in F:
+    d = json.load(open(os.path.join(R, f), encoding="utf-8"))
+    parts = {q["id"]: q for k in d if k.endswith("Parts") for q in d[k]}
+    for w, _, _ in model.conductors(d):
+        size = IB.band_size(w, parts)
+        for c in w.get("identColors") or []:
+            BANDS[IB.band_part(c, size)] += 2
+    for b in d.get("bundles", []):
+        for pid in b.get("partIds", []):
+            q = parts.get(pid)
+            if q:
+                req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+for pn, n in BANDS.items():
+    req[pn] += -(-n // IB.BANDS_PER_STICK)
+    meta[pn] = LIBP[pn]
+
 # 2026-10-14: the custom POWER / LOGIC / battery relay boxes (cad/fusebox, R70 / R75). One CSV per box, written by
 # cad/fusebox/src/parts_lists.py from the box spec; each line's qty_need + qty_spare is the order quantity. A part number
 # the harness drawings already count (the F7 relays, 42281-1, ...) is NOT added again: it is the same physical part, so
@@ -321,6 +345,13 @@ for pn, boxes in FB_ADDED.items():
 out += ["", "Fuse-box lines with no part number yet:", ""]
 for box, item, why in FB_OPEN:
     out.append("- %s: %s - %s" % (box, item, why))
+out += ["", "## Ident bands (DECISIONS R87)", "",
+ "Counted from each wire's `identColors`: one %d mm band per colour at BOTH ends of the wire, cut from a" % IB.BAND_MM,
+ "%.1f m RNF-100 stick (%d bands per stick after cut loss). 20-14 AWG takes 3/32, 12-8 AWG takes 3/16;" % (IB.STICK_MM / 1000.0, IB.BANDS_PER_STICK),
+ "6 AWG and heavier carry no band. The Buy column above is in sticks.", "",
+ "| Part number | Bands | Sticks |", "|---|---:|---:|"]
+for pn, n in sorted(BANDS.items()):
+    out.append("| `%s` | %d | %d |" % (pn, n, -(-n // IB.BANDS_PER_STICK)))
 out += ["", "## Still unspecified", "",
  "- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. "
  "Needs a real dash number per branch OD once the trunk diameters are known.",

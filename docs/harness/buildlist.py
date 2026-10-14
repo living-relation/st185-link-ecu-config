@@ -142,6 +142,8 @@ for tag, fn in F:
             conds.append((co, cb["id"]))
         if cb.get("shield"):
             conds.append((cb["shield"], cb["id"]))
+    CIRCUIT = {(tag, wid): name for name, c in (model.registry().get("identBands") or {}).get(tag, {}).items()
+               for wid in c.get("wires", [])}
     for w, cable in conds:
         rec = {"File": tag, "Wire": w["id"], "Cable": cable}
         for end, key in (("From","source"), ("To","target")):
@@ -170,6 +172,9 @@ for tag, fn in F:
         if w.get("stripeColor"):
             col += "/" + w["stripeColor"]
         rec["Colour"] = col
+        # DECISIONS R87: the circuit and its ident bands (both ends, band 1 next to the terminal)
+        rec["Circuit"] = CIRCUIT.get((tag, w["id"]), "")
+        rec["Ident bands"] = "-".join(w.get("identColors") or [])
         # gauge comes from the wire's part (cable cores from the cable part)
         gp = wparts.get(w.get("partId")) or {}
         gg = (gp.get("gauge") or {})
@@ -191,7 +196,7 @@ for tag, fn in F:
 
 COLS = ["File","Owner","Wire","Cable","From","From type","From pin","From signal","From terminal",
         "To","To type","To pin","To signal","To terminal",
-        "Colour","AWG","Route","Est mm","Splice","Handoff","EWD","Done"]
+        "Colour","Circuit","Ident bands","AWG","Route","Est mm","Splice","Handoff","EWD","Done"]
 
 p = os.path.join(os.path.dirname(R), "HARNESS-BUILD-LIST.csv")
 buf = io.StringIO(newline="")

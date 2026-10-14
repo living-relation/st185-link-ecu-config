@@ -6,7 +6,7 @@ opening any loom.
 **The wiring source of truth is `sot/channels.csv`** (every ECU pin and channel).
 The looms below are the physical build and must agree with it; `check_all.py`
 enforces that. **Every rule for drawing them is in `redesign/DECISIONS.md` "Binding rules
-from Daniel" (R1-R76)** - this file is the file map and the workflow, and restates no rule.
+from Daniel" (R1-R87)** - this file is the file map and the workflow, and restates no rule.
 
 ## The short answer
 
@@ -30,7 +30,8 @@ Dan edits the drawings in the harness.design **desktop app**, which opens the fi
 - **Open the files** in `docs/harness/rebuild/` (File > Open..., or double-click a `.harness`). The app opens one file at a time, watches it and reloads saved changes at once; `min/` no longer exists.
 - **Link the part library once:** Preferences > Part Libraries > Link existing > `rebuild/ST185.harnesslib`. The library wins on part data; it is committed with the drawings.
 - **Flow:** edit in the app (it saves the file itself), then run `python docs/harness/check_all.py`, commit the drawing and any `.harnesslib` change together.
-- **Wire routes (DECISIONS R86):** every wire carries right-angle `layoutPoints` so no two wires overlap. After moving nodes or adding wires, re-route the file: `python docs/harness/route_wires.py rebuild/<file>.harness` (rewrites the waypoints only; moves a cramped splice / cable / resistor / diode to clear space), then `check_all.py` (gate `audit_wire_spacing.py`). Review PNG without the app: `python docs/harness/render_schematic.py rebuild/<file>.harness out.png` (draws the app's own wire paths, `wire_paths.py`).
+- **Wire routes (DECISIONS R86):** every wire carries right-angle `layoutPoints` so no two wires overlap. After moving nodes or adding wires, re-route the file: `python docs/harness/route_wires.py rebuild/<file>.harness` (rewrites the waypoints only; moves a cramped splice / cable / resistor / diode to clear space), then `check_all.py` (gate `audit_wire_spacing.py`). Snapshot: the app's own Main Menu > Export > PDF (Schematic page). Agents, who cannot drive the app, use the fallback PNG `python docs/harness/render_schematic.py rebuild/<file>.harness out.png` (the app's wire paths, `wire_paths.py`; one dark display colour per circuit - its own colours, not the insulation; ident bands at both ends).
+- **Ident bands and wire labels (DECISIONS R87 - the scheme lives there):** every wire carries its circuit's band code in `identColors` (Blue / Yellow / White, 1-4 bands, same code both ends); the circuit list per harness is `interfaces.json` "identBands"; a bundle that ends at a connector carries an `endLabel` and a TMS-SCE marker. Gate `audit_ident_bands.py`.
 - **Agents pause while Dan edits.** The version saved to disk wins: if the app has unsaved edits when an agent saves, the app's edits are discarded. An agent never rewrites a file Dan has open with unsaved changes. The gates read the JSON, not its whitespace, so the app's own formatting never fails CI.
 - Free plan: 100 connections per harness also applies to local files. The app rejects unknown keys, so repo-only data lives in `interfaces.json`, never in a `.harness`.
 - Agents: use the global skill `harness-design` (`C:/Users/danie/.claude/skills/harness-design/SKILL.md`).
@@ -129,6 +130,7 @@ interfaces.json              <- and the ownership facts with them
         audit_bulkhead_pairs.py    no one-sided bulkhead cavity
         audit_bh_collisions.py     no two circuits on one cavity half
         audit_wire_spacing.py      schematic wires never overlap; parallel runs 3 line widths apart (R86)
+        audit_ident_bands.py       ident band codes: palette, one code per circuit, both sections of a break agree (R87)
         buylist.py                 writes NEED-TO-BUY.md
         buildlist.py               writes HARNESS-BUILD-LIST.csv
 ```

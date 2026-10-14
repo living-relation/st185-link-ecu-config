@@ -29,6 +29,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `880398-2` | TE Connectivity | TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG) | 13 | 0 | **13** |
 | `EFC 10S00056` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 6 MM, ZINC-PLATED STEEL | 13 | 0 | **13** |
 | `2R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD | 12 | 0 | **12** |
+| `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 12 | 0 | **12** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 11 | 0 | **11** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 11 | 2 | **9** |
@@ -46,6 +47,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC HEAVY FLYING LEAD 10-6` | generic | TERMINAL, FLYING LEAD, HEAVY | 6 | 0 | **6** |
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `GENERIC RING M8 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG | 6 | 0 | **6** |
+| `TMS-SCE-1/2-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 6 | 0 | **6** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
 | `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 5 | 0 | **5** |
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS | 4 | 0 | **4** |
@@ -86,8 +88,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RS 190-276` | RS PRO | RS PRO STAINLESS HEX BOLT M8 X 25, DIN 933 (GRADE NOT STATED ON THE LISTING) | 2 | 0 | **2** |
 | `RS 530-769` | RS PRO | RS PRO A2/304 STAINLESS HEX NUT M8, DIN 934 | 2 | 0 | **2** |
 | `RS 797-6068` | RS PRO | RS PRO STAINLESS PLAIN WASHER M8, DIN 125A | 2 | 0 | **2** |
-| `TMS-SCE-1/2-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 2 | 0 | **2** |
-| `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 2 | 0 | **2** |
 | `V23132-A2001-B200` | TE Connectivity | RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS | 2 | 0 | **2** |
 | `W3S` | Deutsch | WEDGELOCK, DT, 3 POS, PLUG | 2 | 0 | **2** |
 | `1-1414687-0` | TE Connectivity | RELAY, PLUG-IN, MINI ISO, TE POWER RELAY F4 A V23136-A0004-X059, 1 FORM C, NO 40 A / NC 30 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 1 | 0 | **1** |
@@ -132,6 +132,12 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `Power_Base_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | DECK ON FOUR ANGULAR LEGS, OPEN UNDERNEATH; PA12 | 1 | 0 | **1** |
 | `Power_Cover_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON COVER, ETCHED LABELS, VENT SLOTS; PA12 | 1 | 0 | **1** |
 | `Power_Pan_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON BELLY PAN, 4 INTEGRAL TONGUES (NO SEPARATE CLIPS); PA12 | 1 | 0 | **1** |
+| `RNF-100-3/16-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
+| `RNF-100-3/16-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
+| `RNF-100-3/16-9-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, WHITE, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
+| `RNF-100-3/32-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
+| `RNF-100-3/32-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
+| `RNF-100-3/32-9-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, WHITE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
 | `ST185-FB-BATT rev 5` | custom (PA12 print) | BLOCK, RELAY AND FUSE, PRINTED PA12, COPPER BAR, M6 STUD, 1 AMI FUSE, 1 HCR 150 RELAY | 1 | 0 | **1** |
 | `ST185-FB-LOGIC rev 5` | custom (PA12 print) | BOX, FUSE AND RELAY, LOGIC, PRINTED PA12, 2 COPPER STRIP, 25 MINI FUSE, 10 MICRO RELAY | 1 | 0 | **1** |
 | `ST185-FB-POWER rev 5` | custom (PA12 print) | BOX, FUSE AND RELAY, POWER, PRINTED PA12, COPPER BAR, 7 AMI IN, 7 AMI OUT, 7 MINI ISO RELAY, 1 MINI FUSE | 1 | 0 | **1** |
@@ -364,6 +370,21 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 
 Fuse-box lines with no part number yet:
 
+
+## Ident bands (DECISIONS R87)
+
+Counted from each wire's `identColors`: one 6 mm band per colour at BOTH ends of the wire, cut from a
+1.2 m RNF-100 stick (180 bands per stick after cut loss). 20-14 AWG takes 3/32, 12-8 AWG takes 3/16;
+6 AWG and heavier carry no band. The Buy column above is in sticks.
+
+| Part number | Bands | Sticks |
+|---|---:|---:|
+| `RNF-100-3/16-4-STK` | 38 | 1 |
+| `RNF-100-3/16-6-STK` | 24 | 1 |
+| `RNF-100-3/16-9-STK` | 20 | 1 |
+| `RNF-100-3/32-4-STK` | 76 | 1 |
+| `RNF-100-3/32-6-STK` | 136 | 1 |
+| `RNF-100-3/32-9-STK` | 66 | 1 |
 
 ## Still unspecified
 
