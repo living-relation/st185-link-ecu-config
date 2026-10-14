@@ -11,4 +11,4 @@ panel_nut,Panel nut size 24,TE Deutsch,112263-90,1,https://www.digikey.com/en/pr
 lockwasher,Lockwasher size 24,TE Deutsch,112264-ZZ,1,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/112264-ZZ/9923093,,DigiKey 1734-1940-ND; check live,buy,
 oring,"Lid face-seal O-ring, AS568-039 (69.57 ID x 1.78), NBR 70",Parker,N0674-70 2-039,1,,N/A,"Parker ORD 5700 Table 9-1 (size), compound NBR per S26 E4; check live",buy,Same size as the VRC boxes
 screw_lid,"Lid screw, countersunk socket head",generic,ISO 10642 M3 x 12 A2,4,,N/A,Any A2 stainless ISO 10642 M3 x 12,buy,"Corners, outside the O-ring"
-screw_tab,"Tab screw, nylon, M6 (box mounts on nylon)",TBD,"TBD - M6 nylon screw, not picked yet (OPEN-ITEMS row 97)",4,,N/A,,buy,S26 E5
+screw_tab,"Tab screw, nylon, M6 (box mounts on nylon)",Essentra,50M060100P030,4,https://www.essentracomponents.com/en-za/p/machine-screws-pan/50m060100p030,N/A,"M6 x 1.0 x 30 mm nylon 6/6 crossed pan head; length assumes a bracket about 20 mm thick or a nut behind it; no DigiKey listing found",buy,S26 E5
