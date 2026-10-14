@@ -317,7 +317,8 @@ if 'interference' in rep:
              % ('none' if not rep['interference'] else E(rep['interference'])))
 
 h.append('<h2>Parts lists (one per box, OWN / BUY)</h2><p class="mut">Order (R38): on-hand TE list, then TE, then the approved suppliers, then others with a reason. '
-         'Every part number below was checked against a maker sheet or listing (the "Checked against" column says which); TBD says why. "OWN" = on the shelf, '
+         'Rule R82 (Dan): every line is a real part you can buy, with a live source link and a part number checked against a maker sheet or listing (the "Checked against" column says which); '
+         'no TBD, no "or equivalent". The 3D-printed box parts are the one exception: the STL / STEP file + PA12, no link. "OWN" = on the shelf, '
          'qty_ordered from te-on-hand-bom.csv, handed out box by box (confirm on the shelf). Prices: seen = read on a listing 2026-10-14, est = typical price, '
          'not checked; both move. Spares are included in the quantity (10 %, at least 2, on small parts). The same lines are in the CSVs beside this page and the '
          'BUY lines are in the repo buy list (docs/harness/NEED-TO-BUY.md).</p>')
@@ -389,13 +390,13 @@ for col, (cx, fuses) in S.MINI_COLS.items():
             S.STOCK['strip'][1][0][1], 'Hole = feed (M5 bolt, head on top, into the standoff below). Rev 5: longer, so the feed lug sits past the cavity tower. '
             'The fuse-feed connections along the strip are detail work.')
 
-h.append('<h2>Not done yet (detail work, after your OK)</h2><ul>'
-         '<li>Terminal cavity shapes, locks / TPA from the TE terminal drawings (cavities are placeholders at the right pin pattern); how each mini fuse picks up its strip.</li>'
-         '<li>Part numbers: every TBD is now a checked number (parts lists above). Still open: the M5 / M6 limiter + mount-bolt size (no stocked M5 limiter exists - see the limiter lines), '
-         'whether the 12 mm standoffs become 40 mm (Dan: one 40 mm part number), the mount-screw lengths (panel unknown) and how each mini fuse picks up its strip.</li>'
-         '<li>Mount face under the glove-box boxes: tell me the panel and I will add the bolt pattern to the route drawing.</li>'
+h.append('<h2>Open before rev 5 is approved (R82)</h2><ul>'
+         '<li><b>Mini-fuse strip pickup:</b> no part yet for how each of the 21 mini fuses meets its copper strip. Needs your pick (question in the PR).</li>'
+         '<li><b>Limiters:</b> no stocked M5 compression limiter exists (EFC lists M6 only). Lists carry the M6 proposal (EFC 10S00056 / 10S00052) plus M6 mount bolts; the CAD pockets follow in rev 6.</li>'
+         '<li><b>Standoffs:</b> Dan wants ONE 40 mm part number (Essentra 301540040050, 16 pcs); the rev 5 CAD still draws 16 of them at 12 mm.</li>'
+         '<li><b>Mount bolts:</b> M6 x 25 is a placeholder length: the glove-box / trunk mount faces are not told yet.</li>'
          '<li>Heater fuse vs relay: fixed. The 35 A Power Relay B 1-1904020-2 is superseded at TE; its successor TE Power Relay F4 A 1-1414687-0 carries 40 A NO at 85 C, so the 40 A AMI HTR fuse stays. The CAD pocket still has the Power Relay B outline: check it against the F4 A drawing at the next Fusion rebuild.</li>'
-         '<li>Then drawings, and the harness redraws in OPEN-ITEMS row 108 (the harness gauges here are placeholders by fuse rating).</li></ul>')
+         '<li>Terminal cavity shapes, locks / TPA from the TE terminal drawings (cavities are placeholders at the right pin pattern).</li></ul>')
 h.append('</main></body></html>')
 open(out, 'w', encoding='utf-8').write('\n'.join(h))
 print('wrote', out)

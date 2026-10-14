@@ -12,24 +12,26 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 110 | 0 | **110** |
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 56 | 0 | **56** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 46 | 0 | **46** |
+| `RS 264-6432` | RS PRO | RS PRO A2/304 STAINLESS SERRATED FLANGE HEX NUT M5, DIN 6923 | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
-| `DIN 6923 M5 A2 (or ISO 7093 washer + nut)` | stock hardware | FLANGED HEX NUT, STAINLESS A2; 4 NM MAX (AMI SHEET) | 31 | 0 | **31** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
-| `ISO 4017 M5 x 16 A2` | stock hardware | HEX HEAD BOLT, STAINLESS A2 | 18 | 0 | **18** |
-| `ISO 4026 M5 x 12 A2` | stock hardware | HEX SOCKET SET SCREW, FLAT POINT, STAINLESS A2 | 18 | 0 | **18** |
+| `RS 287-3921` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M5 X 10, DIN 933 | 22 | 0 | **22** |
+| `RS 137-809` | RS PRO | RS PRO A2/304 STAINLESS HEX SOCKET SET SCREW M5 X 12, DIN 916 | 18 | 0 | **18** |
+| `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 18 | 0 | **18** |
+| `RS 287-3962` | RS PRO | RS PRO A2/304 STAINLESS PLAIN WASHER M6, BS 4320C | 17 | 0 | **17** |
+| `RS 527-274` | RS PRO | RS PRO A2/304 STAINLESS HEX NUT M6, DIN 934 | 17 | 0 | **17** |
 | `2293255-1` | TE Connectivity | FASTON .187 RECEPTACLE, UNINSULATED, 20-15 AWG (0.51-1.65 MM2), BRASS TIN | 16 | 0 | **16** |
 | `Essentra 301540040050` | Essentra Components | HEX STANDOFF, FEMALE-FEMALE M5, 8.0 AF, 40.0 MM, NICKEL-PLATED BRASS; SOLD IN 50S | 16 | 0 | **16** |
-| `Klauke 2R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 10 MM2, M5; B 12, L 22 | 16 | 0 | **16** |
-| `ISO 4017 M5 x 8 A2` | stock hardware | HEX HEAD BOLT, STAINLESS A2 | 15 | 0 | **15** |
+| `Klauke 2R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 10 MM2, M5, HOLE 5.3; B 12, L 22 | 16 | 0 | **16** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
 | `1-1393310-8` | TE Connectivity | CRIMP TERMINAL QC .250 (26A1348A) FOR 0.5-0.8 MM2, BRASS TIN | 14 | 0 | **14** |
 | `880398-2` | TE Connectivity | RECEPTACLE TAB 2.8 X 0.8 MM, 1-2.5 MM2, TIN, UNSEALED | 13 | 0 | **13** |
+| `RS 264-6468` | RS PRO | RS PRO STAINLESS (A4 / 316) HEX BOLT M6 X 25, DIN 933 | 13 | 0 | **13** |
 | `2R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD | 12 | 0 | **12** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 11 | 0 | **11** |
-| `EFC 10S00056` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 6 MM, ZINC STEEL | 10 | 0 | **10** |
+| `EFC 10S00056` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 6 MM, ZINC-PLATED STEEL | 10 | 0 | **10** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 11 | 2 | **9** |
-| `ISO 4017 M5 x 10 A2` | stock hardware | HEX HEAD BOLT, STAINLESS A2 | 9 | 0 | **9** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 14 | 6 | **8** |
 | `Jump lugs 1/0` | generic | LUG, RING, COPPER, 1/0 AWG | 8 | 0 | **8** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A | 19 | 12 | **7** |
@@ -47,7 +49,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `1241388-2` | TE Connectivity | AMP MCP 2.8K RECEPTACLE, GOLD, 0.5-1 MM2, TAB 2.8 (0.6 / 0.8 THICK) | 15 | 10 | **5** |
 | `62998-2` | TE Connectivity | FASTON .250 RECEPTACLE, UNINSULATED, 10-8 AWG (5-8 MM2), BRASS TIN | 5 | 0 | **5** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
-| `EFC 10S00052` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 4 MM, ZINC STEEL | 5 | 0 | **5** |
+| `EFC 10S00052` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 4 MM, ZINC-PLATED STEEL | 5 | 0 | **5** |
 | `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 5 | 0 | **5** |
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS | 4 | 0 | **4** |
 | `15419715` | Aptiv | CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6 | 4 | 0 | **4** |
@@ -56,14 +58,13 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `90980-11885` | Toyota | CONNECTOR, PLUG, TOYOTA, 4 POS | 4 | 0 | **4** |
 | `AMI-40` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 4 | 0 | **4** |
 | `ATM-2` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 4 | 0 | **4** |
-| `ATM-7.5` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 4 | 0 | **4** |
+| `ATM-7-1/2` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 4 | 0 | **4** |
 | `DTHD06-1-8S` | TE DEUTSCH | CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A | 4 | 0 | **4** |
-| `ISO 4017 M6 x 16 + ISO 4032 + ISO 7089 A2` | stock hardware | BOLT, NUT, WASHER, STAINLESS A2; FLANGE NUTS CAPTURED UNDER THE FLOOR | 4 | 0 | **4** |
-| `Klauke 1R6` | Klauke | TINNED COPPER TUBULAR RING LUG, 6 MM2, M6 STUD, HOLE 6.5 | 4 | 0 | **4** |
+| `Klauke 1R6` | Klauke | TINNED COPPER TUBULAR RING LUG, 6 MM2, M6 STUD, HOLE 6.5, 27.5 LONG | 4 | 0 | **4** |
 | `LP-16-J05PE-02-001` | CNLINKO | CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH | 4 | 0 | **4** |
+| `RS 190-169` | RS PRO | RS PRO STAINLESS (A4 / 316) HEX BOLT M6 X 16, DIN 933 | 4 | 0 | **4** |
 | `ATM-10` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 3 | 0 | **3** |
 | `ATM-5` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 3 | 0 | **3** |
-| `DIN 6923 M5 A2` | stock hardware | FLANGED HEX NUT, STAINLESS A2; 4 NM MAX | 3 | 0 | **3** |
 | `DT04-6P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY | 3 | 0 | **3** |
 | `DT06-6S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY | 3 | 0 | **3** |
 | `GENERIC LUG M8 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK | 3 | 0 | **3** |
@@ -74,10 +75,12 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `AMI-60` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 2 | 0 | **2** |
 | `BDK 2.8` | Bosch | CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG) | 2 | 0 | **2** |
 | `GENERIC LUG M10 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK | 2 | 0 | **2** |
-| `ISO 4017 M8 x 20 + ISO 4032 + ISO 7089 A2` | stock hardware | BOLT, NUT, WASHER, STAINLESS A2 | 2 | 0 | **2** |
-| `Klauke 3R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 16 MM2, M5; B 13, L 26 | 2 | 0 | **2** |
+| `Klauke 3R5MS` | Klauke | TINNED COPPER TUBULAR RING LUG WITH INSPECTION HOLE, 16 MM2, M5, HOLE 5.5; B 13, L 26 | 2 | 0 | **2** |
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK | 2 | 0 | **2** |
 | `RL00801-50RE` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED | 2 | 0 | **2** |
+| `RS 190-276` | RS PRO | RS PRO STAINLESS HEX BOLT M8 X 25, DIN 933 (GRADE NOT STATED ON THE LISTING) | 2 | 0 | **2** |
+| `RS 530-769` | RS PRO | RS PRO A2/304 STAINLESS HEX NUT M8, DIN 934 | 2 | 0 | **2** |
+| `RS 797-6068` | RS PRO | RS PRO STAINLESS PLAIN WASHER M8, DIN 125A | 2 | 0 | **2** |
 | `V23132-A2001-B200` | TE Connectivity | RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS | 2 | 0 | **2** |
 | `W3S` | Deutsch | WEDGELOCK, DT, 3 POS, PLUG | 2 | 0 | **2** |
 | `1-1904020-2` | TE Connectivity | RELAY, PLUG-IN, MINI ISO, TE POWER RELAY B V23234-A0001-X032, 1 FORM C, NO 35 A AT 85 C, 12 VDC COIL, 680 OHM PARALLEL RESISTOR | 1 | 0 | **1** |
@@ -92,8 +95,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `90980-11143` | Toyota | CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS | 1 | 0 | **1** |
 | `AMI-50` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 1 | 0 | **1** |
 | `ATM-20` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 1 | 0 | **1** |
-| `BattRelay_Base_PA12_printed` | print service | FLOOR PLATE, RELAY PLATFORM, FUSE PEDESTAL, 2 END TABS | 1 | 0 | **1** |
-| `BattRelay_Cover_PA12_printed` | print service | SNAP-ON COVER, SIDE VENTS | 1 | 0 | **1** |
+| `BattRelay_Base_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | FLOOR PLATE, RELAY PLATFORM, FUSE PEDESTAL, 2 END TABS; PA12 | 1 | 0 | **1** |
+| `BattRelay_Cover_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON COVER, SIDE VENTS; PA12 | 1 | 0 | **1** |
+| `Bopaodao B09Z7NBLDK` | Bopaodao (Amazon) | TINNED COPPER BUS BAR 3 X 15 X 1000 MM C110: ONE BAR MAKES ALL 15 PADS (290 MM WITH KERF) | 1 | 0 | **1** |
 | `DRB12-102PAE-L018` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT | 1 | 0 | **1** |
 | `DRB16-102SAE-L018` | TE DEUTSCH | CONNECTOR, PLUG, DRB, 102 POS, SOCKET CONTACTS, E SEAL, A KEY, WIRE ROUTER | 1 | 0 | **1** |
 | `DRBF-1A` | TE DEUTSCH | FLANGE, MOUNTING, DRB 102/128 SERIES | 1 | 0 | **1** |
@@ -106,22 +110,21 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC RING M8 16-14` | generic | TERMINAL, RING, INSULATED, NYLON, M8 STUD, 16-14 AWG | 1 | 0 | **1** |
 | `GENERIC SPADE RECEPTACLE 12-10` | generic | TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 6.3 MM (250) TAB, 12-10 AWG | 1 | 0 | **1** |
 | `HD36-24-33SE` | TE DEUTSCH | CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL | 1 | 0 | **1** |
-| `Klauke 6R8` | Klauke | TINNED COPPER TUBULAR RING LUG, 50 MM2, M8; B 20, L 47 | 1 | 0 | **1** |
-| `Logic_Base_PA12_printed` | print service | DECK ON FOUR ANGULAR LEGS, STRIP POCKETS OPEN UNDERNEATH | 1 | 0 | **1** |
-| `Logic_Cover_PA12_printed` | print service | SNAP-ON COVER, ETCHED LABELS, VENT SLOTS | 1 | 0 | **1** |
-| `Logic_Pan_PA12_printed` | print service | SNAP-ON BELLY PAN | 1 | 0 | **1** |
-| `MECCANIXITY 12 in x 1 in x 1/4 in tinned flat bar (Amazon B0CGJBRNJX)` | MECCANIXITY | ONE 305 MM BAR: THE POWER BAR (148 MM) AND THE BATTERY BLOCK BAR (36.5 MM) BOTH COME FROM IT | 1 | 0 | **1** |
+| `Klauke 6R8` | Klauke | TINNED COPPER TUBULAR RING LUG, 50 MM2, M8, HOLE 8.4; B 20, L 47 | 1 | 0 | **1** |
+| `Logic_Base_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | DECK ON FOUR ANGULAR LEGS, STRIP POCKETS OPEN UNDERNEATH; PA12 | 1 | 0 | **1** |
+| `Logic_Cover_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON COVER, ETCHED LABELS, VENT SLOTS; PA12 | 1 | 0 | **1** |
+| `Logic_Pan_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON BELLY PAN; PA12 | 1 | 0 | **1** |
+| `MECCANIXITY B0CGJBRNJX` | MECCANIXITY (Amazon) | 12 IN X 1 IN X 1/4 IN TINNED COPPER FLAT BAR: ONE BAR MAKES THE POWER BAR (148 MM) AND THE BATTERY BLOCK BAR (36.5 MM) | 1 | 0 | **1** |
 | `MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942` | Toyota / Sumitomo | CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS | 1 | 0 | **1** |
+| `Nassau National Cable 716426` | Nassau National Cable | TIN-PLATED COPPER BUS BAR 1000 X 10 X 3 MM: ONE BAR MAKES BOTH STRIPS | 1 | 0 | **1** |
 | `PDB-M8x8` | TBD | BLOCK, POWER DISTRIBUTION, 8 STUD M8, 150-250 A BUS | 1 | 0 | **1** |
-| `Power_Base_PA12_printed` | print service | DECK ON FOUR ANGULAR LEGS, OPEN UNDERNEATH | 1 | 0 | **1** |
-| `Power_Cover_PA12_printed` | print service | SNAP-ON COVER, ETCHED LABELS, VENT SLOTS | 1 | 0 | **1** |
-| `Power_Pan_PA12_printed` | print service | SNAP-ON BELLY PAN, 4 INTEGRAL TONGUES (NO SEPARATE CLIPS) | 1 | 0 | **1** |
+| `Power_Base_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | DECK ON FOUR ANGULAR LEGS, OPEN UNDERNEATH; PA12 | 1 | 0 | **1** |
+| `Power_Cover_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON COVER, ETCHED LABELS, VENT SLOTS; PA12 | 1 | 0 | **1** |
+| `Power_Pan_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON BELLY PAN, 4 INTEGRAL TONGUES (NO SEPARATE CLIPS); PA12 | 1 | 0 | **1** |
 | `ST185-FB-BATT rev 5` | custom (PA12 print) | BLOCK, RELAY AND FUSE, PRINTED PA12, COPPER BAR, M6 STUD, 1 AMI FUSE, 1 HCR 150 RELAY | 1 | 0 | **1** |
 | `ST185-FB-LOGIC rev 5` | custom (PA12 print) | BOX, FUSE AND RELAY, LOGIC, PRINTED PA12, 2 COPPER STRIP, 25 MINI FUSE, 10 MICRO RELAY | 1 | 0 | **1** |
 | `ST185-FB-POWER rev 5` | custom (PA12 print) | BOX, FUSE AND RELAY, POWER, PRINTED PA12, COPPER BAR, 7 AMI IN, 7 AMI OUT, 7 MINI ISO RELAY, 1 MINI FUSE | 1 | 0 | **1** |
 | `Sumitomo TS 025 6-way` | Sumitomo / Subaru | CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS | 1 | 0 | **1** |
-| `Tin-plated copper bus bar 716426, 1000 x 10 x 3 mm` | Nassau National Cable | ONE 1000 MM BAR MAKES BOTH STRIPS | 1 | 0 | **1** |
-| `Tinned copper bus bar 3 x 15 x 1000 mm C110 (Amazon B09Z7NBLDK)` | Bopaodao (Amazon) | ONE 1000 MM BAR MAKES ALL 15 PADS (290 MM WITH KERF) | 1 | 0 | **1** |
 | `W3P` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY RECEPTACLE | 1 | 0 | **1** |
 | `WM-4S` | TE DEUTSCH | WEDGELOCK, DTM, 4 POS, PLUG | 1 | 0 | **1** |
 | `WM-6S` | Deutsch | WEDGELOCK, DTM, 6 POS, PLUG | 1 | 0 | **1** |
@@ -297,11 +300,11 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `6-1419137-4` | LOGIC | 3 | the harness drawings |
 | `42281-1` | LOGIC | 19 | the harness drawings |
 | `282110-1` | BATTRELAY | 3 | the harness drawings |
-| `Power_Base_PA12_printed` | POWER | 1 | this section's CSVs |
-| `Power_Pan_PA12_printed` | POWER | 1 | this section's CSVs |
-| `Power_Cover_PA12_printed` | POWER | 1 | this section's CSVs |
-| `MECCANIXITY 12 in x 1 in x 1/4 in tinned flat bar (Amazon B0CGJBRNJX)` | POWER | 1 | this section's CSVs |
-| `Tinned copper bus bar 3 x 15 x 1000 mm C110 (Amazon B09Z7NBLDK)` | POWER | 1 | this section's CSVs |
+| `Power_Base_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
+| `Power_Pan_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
+| `Power_Cover_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
+| `MECCANIXITY B0CGJBRNJX` | POWER | 1 | this section's CSVs |
+| `Bopaodao B09Z7NBLDK` | POWER | 1 | this section's CSVs |
 | `AMI-30` | POWER | 6 | this section's CSVs |
 | `AMI-40` | BATTRELAY, POWER | 4 | this section's CSVs |
 | `AMI-50` | POWER | 1 | this section's CSVs |
@@ -312,44 +315,43 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `62998-2` | POWER | 5 | this section's CSVs |
 | `880398-2` | LOGIC, POWER | 13 | this section's CSVs |
 | `Klauke 2R5` | BATTRELAY, LOGIC, POWER | 16 | this section's CSVs |
-| `Klauke 3R5` | POWER | 2 | this section's CSVs |
+| `Klauke 3R5MS` | POWER | 2 | this section's CSVs |
 | `36161` | POWER | 4 | this section's CSVs |
 | `Klauke 6R8` | POWER | 1 | this section's CSVs |
 | `Essentra 301540040050` | LOGIC, POWER | 16 | this section's CSVs |
-| `ISO 4026 M5 x 12 A2` | BATTRELAY, POWER | 18 | this section's CSVs |
-| `ISO 4017 M5 x 10 A2` | POWER | 9 | this section's CSVs |
-| `ISO 4017 M5 x 8 A2` | LOGIC, POWER | 15 | this section's CSVs |
-| `ISO 4017 M5 x 16 A2` | BATTRELAY, POWER | 18 | this section's CSVs |
-| `DIN 6923 M5 A2 (or ISO 7093 washer + nut)` | POWER | 31 | this section's CSVs |
-| `ISO 4017 M8 x 20 + ISO 4032 + ISO 7089 A2` | POWER | 2 | this section's CSVs |
+| `RS 137-809` | BATTRELAY, POWER | 18 | this section's CSVs |
+| `RS 287-3921` | LOGIC, POWER | 22 | this section's CSVs |
+| `RS 263-2205` | BATTRELAY, POWER | 18 | this section's CSVs |
+| `RS 264-6432` | BATTRELAY, POWER | 34 | this section's CSVs |
+| `RS 190-276` | POWER | 2 | this section's CSVs |
+| `RS 530-769` | POWER | 2 | this section's CSVs |
+| `RS 797-6068` | POWER | 2 | this section's CSVs |
 | `EFC 10S00056` | LOGIC, POWER | 10 | this section's CSVs |
-| `Logic_Base_PA12_printed` | LOGIC | 1 | this section's CSVs |
-| `Logic_Pan_PA12_printed` | LOGIC | 1 | this section's CSVs |
-| `Logic_Cover_PA12_printed` | LOGIC | 1 | this section's CSVs |
-| `Tin-plated copper bus bar 716426, 1000 x 10 x 3 mm` | LOGIC | 1 | this section's CSVs |
+| `RS 264-6468` | BATTRELAY, LOGIC, POWER | 13 | this section's CSVs |
+| `RS 287-3962` | BATTRELAY, LOGIC, POWER | 17 | this section's CSVs |
+| `RS 527-274` | BATTRELAY, LOGIC, POWER | 17 | this section's CSVs |
+| `Logic_Base_PA12_printed.stl + .step (PA12)` | LOGIC | 1 | this section's CSVs |
+| `Logic_Pan_PA12_printed.stl + .step (PA12)` | LOGIC | 1 | this section's CSVs |
+| `Logic_Cover_PA12_printed.stl + .step (PA12)` | LOGIC | 1 | this section's CSVs |
+| `Nassau National Cable 716426` | LOGIC | 1 | this section's CSVs |
 | `ATM-2` | LOGIC | 4 | this section's CSVs |
 | `ATM-5` | LOGIC | 3 | this section's CSVs |
-| `ATM-7.5` | LOGIC | 4 | this section's CSVs |
+| `ATM-7-1/2` | LOGIC | 4 | this section's CSVs |
 | `ATM-15` | LOGIC | 7 | this section's CSVs |
 | `ATM-20` | LOGIC | 1 | this section's CSVs |
 | `2293255-1` | LOGIC | 16 | this section's CSVs |
 | `1241388-2` | LOGIC | 15 | this section's CSVs |
-| `BattRelay_Base_PA12_printed` | BATTRELAY | 1 | this section's CSVs |
-| `BattRelay_Cover_PA12_printed` | BATTRELAY | 1 | this section's CSVs |
+| `BattRelay_Base_PA12_printed.stl + .step (PA12)` | BATTRELAY | 1 | this section's CSVs |
+| `BattRelay_Cover_PA12_printed.stl + .step (PA12)` | BATTRELAY | 1 | this section's CSVs |
 | `1416010-1` | BATTRELAY | 1 | this section's CSVs |
 | `282080-1` | BATTRELAY | 1 | this section's CSVs |
 | `281934-2` | BATTRELAY | 3 | this section's CSVs |
 | `Klauke 1R6` | BATTRELAY | 4 | this section's CSVs |
-| `ISO 4017 M6 x 16 + ISO 4032 + ISO 7089 A2` | BATTRELAY | 4 | this section's CSVs |
-| `DIN 6923 M5 A2` | BATTRELAY | 3 | this section's CSVs |
+| `RS 190-169` | BATTRELAY | 4 | this section's CSVs |
 | `EFC 10S00052` | BATTRELAY | 5 | this section's CSVs |
 
 Fuse-box lines with no part number yet:
 
-- POWER: Mount screw, feet (4) - TBD: panel thickness / construction not known; ISO 4017 M6 x L A2 once the panel is told.
-- LOGIC: Strip-side pickup of each mini fuse - OPEN (design, not a part number): the summary page lists it as detail work. Needs a decision before the strip is cut.
-- LOGIC: Mount screw, feet (4) - length depends on the glove-box mount face (open item)
-- BATTRELAY: Mount screw, end tabs (2) - length depends on the trunk mount face (Z4 location, no panel drawn)
 
 ## Still unspecified
 
