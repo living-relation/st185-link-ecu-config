@@ -1,4 +1,41 @@
 {
   "updated": "2026-10-14",
-  "questions": []
+  "questions": [
+    {
+      "id": "P7",
+      "topic": "Fuse boxes: rev 6 or rev 7",
+      "text": "Rev 7 (your E2 = A) puts the AMI fuses straight on the bus bar's + bar: the POWER box holds the whole bus, the separate bus bar box and the 1/0 cable between them go (one heavy cable + 2 lugs fewer, 2 boxes in the glove box instead of 3). Cost: the POWER box is 62 mm deeper (180.5 x 243 mm; base 307 mm long over the feet). Pages: cad/fusebox/rev7/ST185-fusebox-rev7-summary.html vs cad/fusebox/ST185-fusebox-summary.html.",
+      "options": [
+        {
+          "value": "A",
+          "label": "Rev 7 - one POWER + bus box",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "Rev 6 - separate B rev3 bus bar + POWER box"
+        }
+      ]
+    },
+    {
+      "id": "U1",
+      "topic": "Rev 7: bus bar B rev3's universal bar U",
+      "text": "B rev3 had a third bar U (strap to + or -, or an AMG fuse). Rev 7 leaves it out: the 2 spare AMI positions and a spare M8 on the + bar cover a new feed.",
+      "options": [
+        {
+          "value": "A",
+          "label": "Leave U out",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "Add U back in the bus zone (box about 30 mm deeper)"
+        },
+        {
+          "value": "C",
+          "label": "Only add a second spare M8 on the NEG bar"
+        }
+      ]
+    }
+  ]
 }
