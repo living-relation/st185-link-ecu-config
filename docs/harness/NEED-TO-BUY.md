@@ -14,9 +14,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 50 | 0 | **50** |
 | `RS 264-6432` | RS PRO | RS PRO A2/304 STAINLESS SERRATED FLANGE HEX NUT M5, DIN 6923 | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
+| `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 29 | 0 | **29** |
 | `TMS-SCE-3/16-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 25 | 0 | **25** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
-| `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 23 | 0 | **23** |
 | `53941-1` | TE Connectivity | PIDG CLOSED RING TONGUE TERMINAL, 16-14 AWG, #8 / M4 STUD, BLUE, TIN | 21 | 0 | **21** |
 | `RS 231-0691` | RS PRO | RS PRO AISI 301 STAINLESS SPRING WASHER M4, DIN 127B, 0.9 THICK | 21 | 0 | **21** |
 | `RS 287-3915` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M4 X 8, DIN 933 | 21 | 0 | **21** |
@@ -383,9 +383,9 @@ Counted from each wire's `identColors`: one 6 mm band per colour at BOTH ends of
 | `RNF-100-3/16-4-STK` | 66 | 1 |
 | `RNF-100-3/16-6-STK` | 52 | 1 |
 | `RNF-100-3/16-9-STK` | 34 | 1 |
-| `RNF-100-3/32-4-STK` | 322 | 2 |
-| `RNF-100-3/32-6-STK` | 436 | 3 |
-| `RNF-100-3/32-9-STK` | 246 | 2 |
+| `RNF-100-3/32-4-STK` | 342 | 2 |
+| `RNF-100-3/32-6-STK` | 468 | 3 |
+| `RNF-100-3/32-9-STK` | 262 | 2 |
 
 ## Still unspecified
 

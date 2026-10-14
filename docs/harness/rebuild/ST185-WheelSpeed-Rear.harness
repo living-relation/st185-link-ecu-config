@@ -3,6 +3,12 @@
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
   "version": 0.9,
   "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-WheelSpeed-Rear - rear wheel speed harness: RL / RR ABS sensors to the rear VRC and the IX_WS_REAR inline",
+    "drawingNumber": "ST185-WheelSpeed-Rear"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Codes: WSS_RL White; WSS_RR Blue-Blue; VRC_R_DRAIN Yellow-Yellow; VRC_R_5V Blue-Yellow; VRC_R_GND Blue-White. Labels: printed TMS-SCE marker on each bundle end: RL WSS / RR WSS at the sensor plugs, IX WS REAR at the inline (the VRC plugs keep their VRC-IN / VRC-OUT markers).",
   "wires": [
     {
       "id": "_TXY7m",
@@ -15,6 +21,10 @@
         "handle": "c3"
       },
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Yellow"
+      ],
       "stripeColor": "Blue",
       "partId": "m16_20_06",
       "layoutPoints": [
@@ -239,6 +249,9 @@
         {
           "id": "cab_rl_p",
           "color": "White",
+          "identColors": [
+            "White"
+          ],
           "source": {
             "id": "wss_rl",
             "handle": "c1"
@@ -298,6 +311,9 @@
         {
           "id": "cab_rl_n",
           "color": "Green",
+          "identColors": [
+            "White"
+          ],
           "source": {
             "id": "wss_rl",
             "handle": "c2"
@@ -364,6 +380,9 @@
       "shield": {
         "id": "cab_rl_sh",
         "color": "Shield",
+        "identColors": [
+          "White"
+        ],
         "source": {
           "id": "I6r1ot",
           "handle": "Splice"
@@ -397,6 +416,10 @@
         {
           "id": "cab_rr_p",
           "color": "White",
+          "identColors": [
+            "Blue",
+            "Blue"
+          ],
           "source": {
             "id": "wss_rr",
             "handle": "c1"
@@ -463,6 +486,10 @@
         {
           "id": "cab_rr_n",
           "color": "Green",
+          "identColors": [
+            "Blue",
+            "Blue"
+          ],
           "source": {
             "id": "wss_rr",
             "handle": "c2"
@@ -522,6 +549,10 @@
       "shield": {
         "id": "cab_rr_sh",
         "color": "Shield",
+        "identColors": [
+          "Blue",
+          "Blue"
+        ],
         "source": {
           "id": "I6r1ot",
           "handle": "Splice"
@@ -562,6 +593,10 @@
         {
           "id": "cab_rout_5v",
           "color": "Orange",
+          "identColors": [
+            "Blue",
+            "Yellow"
+          ],
           "source": {
             "id": "lp16_vrc_r_out",
             "handle": "c1"
@@ -606,6 +641,10 @@
         {
           "id": "cab_rout_gnd",
           "color": "Black",
+          "identColors": [
+            "Blue",
+            "White"
+          ],
           "source": {
             "id": "lp16_vrc_r_out",
             "handle": "c2"
@@ -650,6 +689,9 @@
         {
           "id": "cab_rout_l",
           "color": "Blue",
+          "identColors": [
+            "White"
+          ],
           "source": {
             "id": "lp16_vrc_r_out",
             "handle": "c3"
@@ -694,6 +736,10 @@
         {
           "id": "cab_rout_r",
           "color": "Violet",
+          "identColors": [
+            "Blue",
+            "Blue"
+          ],
           "source": {
             "id": "lp16_vrc_r_out",
             "handle": "c4"
@@ -739,6 +785,10 @@
       "shield": {
         "id": "cab_rout_sh",
         "color": "Shield",
+        "identColors": [
+          "Yellow",
+          "Yellow"
+        ],
         "source": {
           "id": "lp16_vrc_r_out",
           "handle": "c5"
@@ -790,17 +840,32 @@
       "length": {
         "unit": "mm",
         "value": 2230
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "IX WS REAR",
+      "partIds": [
+        "cov_lbl_vrc_out"
+      ]
     },
     {
       "id": "m-w4pP",
       "sourceId": "wss_rl",
-      "targetId": "lp16_vrc_r_in"
+      "targetId": "lp16_vrc_r_in",
+      "separateLabels": true,
+      "label": "RL WSS",
+      "partIds": [
+        "cov_lbl_vrc_out"
+      ]
     },
     {
       "id": "sBWNAW",
       "sourceId": "wss_rr",
-      "targetId": "lp16_vrc_r_in"
+      "targetId": "lp16_vrc_r_in",
+      "separateLabels": true,
+      "label": "RR WSS",
+      "partIds": [
+        "cov_lbl_vrc_out"
+      ]
     }
   ],
   "splices": [
