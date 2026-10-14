@@ -80,10 +80,7 @@ details summary{cursor:pointer;font-weight:600;margin-top:8px}
 // ---- questions: Dispatch writes dashboard-questions.json; the page reads it on load + Refresh ----
 // Fallback baked in at publish time (phone / no Desktop Commander). When dashboard-questions.json can be read it overrides this.
 // Whoever republishes the artifact copies the current dashboard-questions.json into FALLBACK.
-const FALLBACK = {"updated":"2026-10-14 (baked in)","questions":[
- {"id":"Z9","topic":"Fuel pump box","text":"Fuel pump box: which brand should it look like?","options":[{"value":"A","label":"Bussmann/Eaton RTMR","recommended":true},{"value":"B","label":"Blue Sea Systems"},{"value":"C","label":"Littelfuse"},{"value":"D","label":"Let the session pick"}],"allow_other":true},
- {"id":"Z7","topic":"Fuel hanger","text":"Hanger rim is 1.2 mm thicker at the tank bolts - long enough?","options":[{"value":"A","label":"Yes","recommended":true},{"value":"B","label":"No, recess the rim at the bolts"},{"value":"C","label":"Check later"}],"allow_other":true}
-]};
+const FALLBACK = {"updated":"2026-10-14 (baked in)","questions":[]};
 let QUESTIONS = FALLBACK.questions;
 let DC_OK = null;  // null = unknown, true/false once a Desktop Commander call has worked/failed
 let SAVED = {};   // answers already in dashboard-answers.json: id -> {choice,label,text,at}
