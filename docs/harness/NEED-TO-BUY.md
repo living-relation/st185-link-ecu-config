@@ -19,6 +19,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RS 231-0691` | RS PRO | RS PRO AISI 301 STAINLESS SPRING WASHER M4, DIN 127B, 0.9 THICK | 21 | 0 | **21** |
 | `RS 287-3915` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M4 X 8, DIN 933 | 21 | 0 | **21** |
 | `RS 287-3921` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M5 X 10, DIN 933 | 20 | 0 | **20** |
+| `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 19 | 0 | **19** |
 | `RS 137-809` | RS PRO | RS PRO A2/304 STAINLESS HEX SOCKET SET SCREW M5 X 12, DIN 916 | 18 | 0 | **18** |
 | `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 18 | 0 | **18** |
 | `Klauke 2R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 10 MM2, M5, HOLE 5.3; B 12, L 22 | 16 | 0 | **16** |
@@ -29,11 +30,11 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `880398-2` | TE Connectivity | TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG) | 13 | 0 | **13** |
 | `EFC 10S00056` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 6 MM, ZINC-PLATED STEEL | 13 | 0 | **13** |
 | `2R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD | 12 | 0 | **12** |
-| `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 12 | 0 | **12** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 11 | 0 | **11** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 11 | 2 | **9** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 14 | 6 | **8** |
+| `TMS-SCE-3/16-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 8 | 0 | **8** |
 | `Jump lugs 1/0` | generic | LUG, RING, COPPER, 1/0 AWG | 8 | 0 | **8** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A | 19 | 12 | **7** |
 | `15326426` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM | 7 | 0 | **7** |
@@ -41,13 +42,13 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `ATM-15` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 7 | 0 | **7** |
 | `GENERIC RING M6 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG | 7 | 0 | **7** |
 | `M22759/16-14-2` | M22759 (Tefzel, red) | WIRE, 14 AWG, ETFE, TIN PLATED COPPER, 150 C, 600 V (THE HARNESS WIRE, ST185.HARNESSLIB M16_14_2) | 7 | 0 | **7** |
+| `TMS-SCE-1/2-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 7 | 0 | **7** |
 | `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) | 6 | 0 | **6** |
 | `AMI-30` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 6 | 0 | **6** |
 | `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER | 6 | 0 | **6** |
 | `GENERIC HEAVY FLYING LEAD 10-6` | generic | TERMINAL, FLYING LEAD, HEAVY | 6 | 0 | **6** |
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `GENERIC RING M8 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG | 6 | 0 | **6** |
-| `TMS-SCE-1/2-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 6 | 0 | **6** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
 | `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 5 | 0 | **5** |
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS | 4 | 0 | **4** |
@@ -84,6 +85,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `Klauke 3R5MS` | Klauke | TINNED COPPER TUBULAR RING LUG WITH INSPECTION HOLE, 16 MM2, M5, HOLE 5.5; B 13, L 26 | 2 | 0 | **2** |
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK | 2 | 0 | **2** |
 | `RL00801-50RE` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED | 2 | 0 | **2** |
+| `RNF-100-3/32-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 2 | 0 | **2** |
 | `RNF-100-3/8-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 9.5 MM EXPANDED ID, 4.8 MM RECOVERED ID, CUT 25 MM | 2 | 0 | **2** |
 | `RS 190-276` | RS PRO | RS PRO STAINLESS HEX BOLT M8 X 25, DIN 933 (GRADE NOT STATED ON THE LISTING) | 2 | 0 | **2** |
 | `RS 530-769` | RS PRO | RS PRO A2/304 STAINLESS HEX NUT M8, DIN 934 | 2 | 0 | **2** |
@@ -136,7 +138,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RNF-100-3/16-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
 | `RNF-100-3/16-9-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, WHITE, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
 | `RNF-100-3/32-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
-| `RNF-100-3/32-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
 | `RNF-100-3/32-9-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, WHITE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
 | `ST185-FB-BATT rev 5` | custom (PA12 print) | BLOCK, RELAY AND FUSE, PRINTED PA12, COPPER BAR, M6 STUD, 1 AMI FUSE, 1 HCR 150 RELAY | 1 | 0 | **1** |
 | `ST185-FB-LOGIC rev 5` | custom (PA12 print) | BOX, FUSE AND RELAY, LOGIC, PRINTED PA12, 2 COPPER STRIP, 25 MINI FUSE, 10 MICRO RELAY | 1 | 0 | **1** |
@@ -379,12 +380,12 @@ Counted from each wire's `identColors`: one 6 mm band per colour at BOTH ends of
 
 | Part number | Bands | Sticks |
 |---|---:|---:|
-| `RNF-100-3/16-4-STK` | 38 | 1 |
-| `RNF-100-3/16-6-STK` | 24 | 1 |
-| `RNF-100-3/16-9-STK` | 20 | 1 |
-| `RNF-100-3/32-4-STK` | 76 | 1 |
-| `RNF-100-3/32-6-STK` | 136 | 1 |
-| `RNF-100-3/32-9-STK` | 66 | 1 |
+| `RNF-100-3/16-4-STK` | 48 | 1 |
+| `RNF-100-3/16-6-STK` | 34 | 1 |
+| `RNF-100-3/16-9-STK` | 30 | 1 |
+| `RNF-100-3/32-4-STK` | 142 | 1 |
+| `RNF-100-3/32-6-STK` | 218 | 2 |
+| `RNF-100-3/32-9-STK` | 124 | 1 |
 
 ## Still unspecified
 

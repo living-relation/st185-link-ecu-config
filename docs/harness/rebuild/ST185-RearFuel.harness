@@ -2,6 +2,69 @@
   "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
   "version": 0.9,
   "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-RearFuel - rear fuel harness: fuel level sender and fuel pump",
+    "drawingNumber": "ST185-RearFuel"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at the sender plugs (IX FUEL LVL, FUEL SENDER) and on both pump leads (FUEL PUMP).",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
   "connectors": [
     {
       "id": "ix_fuel_p",
@@ -128,6 +191,11 @@
             "y": 30
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
       ]
     },
     {
@@ -158,6 +226,11 @@
             "y": 60
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
       ]
     },
     {
@@ -194,6 +267,11 @@
             "y": 630
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "White"
       ]
     },
     {
@@ -230,6 +308,11 @@
             "y": 750
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "White"
       ]
     }
   ],
@@ -241,7 +324,14 @@
       "length": {
         "value": 300,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "label": "IX FUEL LVL",
+      "endLabel": "FUEL SENDER",
+      "partIds": [
+        "cov_lbl_316",
+        "cov_lbl_316"
+      ]
     },
     {
       "id": "b_bn_br_fp_pump__fuelpump",
@@ -250,7 +340,12 @@
       "length": {
         "value": 1200,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "FUEL PUMP",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "b_bn_fuelpump__t_trunk_fp_gnd",
@@ -259,7 +354,12 @@
       "length": {
         "value": 300,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "label": "FUEL PUMP",
+      "partIds": [
+        "cov_lbl_316"
+      ]
     }
   ],
   "schematicNotes": [
@@ -267,8 +367,8 @@
       "id": "n_scope",
       "width": 390,
       "schematicPosition": {
-        "x": 660,
-        "y": 0
+        "x": -300,
+        "y": 120
       },
       "text": "REAR FUEL - fuel level sender behind IX_FUEL_LVL (DT04-2P on the ECU/cabin harness, DT06-2S here), plus the fuel pump run. Rev 2 (Dan, 2026-10-10): the sender gets a DT 2-way instead of its OEM connector - DT04-2P + W2P on the sender lead, size-16 contacts 0460-202-1631 (owned); no OEM housing. Everything in the trunk (IX_FUEL_LVL, sender, pump, ground stud) also moved to the driver side - see docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md / Route 11. FUEL PUMP (DECISIONS R75, 2026-10-14): the pump feed starts at the fuel pump relay k_fp (HCR150 terminal 5) in the battery relay block, trunk passenger side (ST185-HeavyDC, broken off) and runs unbroken, 10 AWG, across the trunk to the pump's own connector - no extra joint in the pump circuit (plan 6.41); 12 AWG return to the trunk ground stud. Run lengths are estimates - measure at install."
     }
@@ -534,6 +634,48 @@
       "partNumber": "GENERIC RING M6 12-10",
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
       "manufacturer": "generic"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_316",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/16-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 1.6,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ]
 }

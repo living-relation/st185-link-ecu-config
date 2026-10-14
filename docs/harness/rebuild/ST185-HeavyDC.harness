@@ -3,6 +3,69 @@
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
   "version": 0.9,
   "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-HeavyDC - heavy DC harness: trunk battery, kill switch, RADLOK bulkhead, starter / alternator cables, fuel pump relay",
+    "drawingNumber": "ST185-HeavyDC"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each fuel pump feed end (KILL SW C2, FB BATT IN, K_FP 30 ...) and at the jump post (JUMP +).",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
   "connectors": [
     {
       "id": "rl_pos_fw",
@@ -1017,6 +1080,11 @@
             "y": 1080
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -1046,6 +1114,11 @@
             "y": 1140
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Yellow",
+        "White"
       ]
     },
     {
@@ -1082,6 +1155,11 @@
             "y": 1170
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "White"
       ]
     },
     {
@@ -1111,6 +1189,11 @@
             "y": 450
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "White"
       ]
     },
     {
@@ -1140,6 +1223,11 @@
             "y": 720
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "White"
       ]
     },
     {
@@ -1190,6 +1278,11 @@
             "y": 1410
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "White"
       ]
     },
     {
@@ -1226,6 +1319,11 @@
             "y": 1410
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "White"
       ]
     },
     {
@@ -1262,6 +1360,11 @@
             "y": 1440
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "White"
       ]
     },
     {
@@ -1298,6 +1401,9 @@
             "y": 1470
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -1327,6 +1433,11 @@
             "y": 1500
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "White"
       ]
     }
   ],
@@ -1524,7 +1635,12 @@
       "length": {
         "value": 1340,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "JUMP +",
+      "partIds": [
+        "cov_lbl_12"
+      ]
     },
     {
       "id": "bn_alt_plug__br_alt_s",
@@ -1587,7 +1703,14 @@
       "length": {
         "value": 300,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "label": "KILL SW C2",
+      "endLabel": "FB BATT IN",
+      "partIds": [
+        "cov_lbl_38",
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "b_bn_fb_batt__k_fp",
@@ -1596,7 +1719,14 @@
       "length": {
         "value": 60,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "label": "FB BATT FP",
+      "endLabel": "K_FP 30",
+      "partIds": [
+        "cov_lbl_38",
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "b_bn_k_fp__br_w_fp85",
@@ -1623,54 +1753,60 @@
       "length": {
         "value": 150,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "label": "K_FP 87",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     }
   ],
   "schematicNotes": [
     {
-      "id": "n_heavy",
-      "text": "HEAVY DC: trunk battery -> cabin PDB (glove box, ST185-EngineRoom-C) -> RADLOK 5.7 mm through the firewall -> starter B+. 160 A alt B+ joins the starter post and does not recross; its protection is NOT at the starter (see n_alt_prot). Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. 2 AWG is OK for cranking; 160 A continuous charge may need 1/0 + 8 mm RADLOK - see the table. Moved out of ST185-EngineRoom-C into its own file 2026-10-11 (harness-reconcile pass, Section 40.1 step 4) - the cabin PDB (and everything it also feeds: cabin fuse block, glove-box body block, OEM hot, AM1/AM2) stays on EngineRoom-C; only the H1-H8 heavy-DC chain moved.",
-      "width": 390,
-      "schematicPosition": {
-        "x": 1710,
-        "y": 0
-      }
-    },
-    {
       "id": "n_alt_prot",
-      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. Size for the 160 A alternator (plan 6.20: 175 A). Battery is AGM.\nKILL SWITCH (Dan 2026-10-13, J2; DECISIONS S21 / R64): Longacre 52-45780 in the trunk (175 A main, 20 A alternator pole). Main pole: battery + -> MAIN 1, MAIN 2 (LOAD) -> H1 -> PDB BAT+ -> PDB ALT/STR -> H3 -> RADLOK -> starter B+, where the alternator B+ (w_alt) lands - so the alternator is on the LOAD side. Second pole: the alternator IG (excite, J/B No.1 ECU-IG 15A via IG2-15, 16 AWG for the 15 A fuse) runs glove box -> RH sill (with H1 / H2) -> ALT 1 / ALT 2 -> back -> RH fender grommet -> G2-3. Switch off = battery cut AND excite cut, so the alternator cannot keep the engine running; the G4X Stop Switch input stays as well (R19).\nSPIKE PROTECTION (info only, not drawn): opening the main pole while the alternator charges can load-dump into the loads. Option: a cutoff with alternator protection (Pegasus 4430 re-routes the alternator output to ground) - Daniel's call, not part of this build.",
       "width": 390,
       "schematicPosition": {
-        "x": 1710,
-        "y": 330
-      }
-    },
-    {
-      "id": "shdr_1",
-      "text": "FIREWALL RADLOK",
-      "width": 270,
-      "schematicPosition": {
-        "x": 1710,
-        "y": 960
+        "x": 990,
+        "y": 0
       },
-      "color": "Orange"
+      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. Size for the 160 A alternator (plan 6.20: 175 A). Battery is AGM.\nKILL SWITCH (Dan 2026-10-13, J2; DECISIONS S21 / R64): Longacre 52-45780 in the trunk (175 A main, 20 A alternator pole). Main pole: battery + -> MAIN 1, MAIN 2 (LOAD) -> H1 -> PDB BAT+ -> PDB ALT/STR -> H3 -> RADLOK -> starter B+, where the alternator B+ (w_alt) lands - so the alternator is on the LOAD side. Second pole: the alternator IG (excite, J/B No.1 ECU-IG 15A via IG2-15, 16 AWG for the 15 A fuse) runs glove box -> RH sill (with H1 / H2) -> ALT 1 / ALT 2 -> back -> RH fender grommet -> G2-3. Switch off = battery cut AND excite cut, so the alternator cannot keep the engine running; the G4X Stop Switch input stays as well (R19).\nSPIKE PROTECTION (info only, not drawn): opening the main pole while the alternator charges can load-dump into the loads. Option: a cutoff with alternator protection (Pegasus 4430 re-routes the alternator output to ground) - Daniel's call, not part of this build."
     },
     {
       "id": "n_rev4",
-      "text": "ROUTE 1 REV 4 (Dan's mark-up, 2026-10-10): battery box moved to the passenger-side rear corner of the trunk (H1/H2 rerouted from there - bundle lengths above are inherited estimates from the prior ST185-EngineRoom-C drawing, not re-measured against the new spot - verify on the car). Starter moved to Dan's spot (lower-middle of the engine, p.29 leaders S2/S3). H4 (RADLOK+ -> starter) and H5 (alt B+ -> starter) now run as one bundle along the firewall and down to the starter (Dan: \"run 1 and 3 together\") - drawn as separate conductors here (H4 via RADLOK/rl_pos_eng, H5 via t_alt_b/w_alt) since harness.design has no native \"co-routed, not bundled-as-one-cable\" primitive; the physical bundling is a routing note, not a schema change. Alternator moved to the rear of the engine, RH side, under bulkheads A/B (MR2-style, rev 3 Dan mark-up 2026-10-04). The G2 round 3-pin plug (alt_plug, Toyota 90980-10341) is drawn here (Dan 2026-10-13, R17); its IG / L / S leads break off to ST185-EngineRoom-C and cross the firewall in harness C's own RH fender grommet (no ECU signal, so no bulkhead letter, R2) - IG and L to the cowl-side IG2-15 / IG2-16 leads under the ECU, S to the glove-box LOGIC box ALTS 2A.",
+      "width": 390,
       "schematicPosition": {
-        "x": 1710,
-        "y": 1080
+        "x": 420,
+        "y": 450
       },
-      "width": 390
+      "text": "ROUTE 1 REV 4 (Dan's mark-up, 2026-10-10): battery box moved to the passenger-side rear corner of the trunk (H1/H2 rerouted from there - bundle lengths above are inherited estimates from the prior ST185-EngineRoom-C drawing, not re-measured against the new spot - verify on the car). Starter moved to Dan's spot (lower-middle of the engine, p.29 leaders S2/S3). H4 (RADLOK+ -> starter) and H5 (alt B+ -> starter) now run as one bundle along the firewall and down to the starter (Dan: \"run 1 and 3 together\") - drawn as separate conductors here (H4 via RADLOK/rl_pos_eng, H5 via t_alt_b/w_alt) since harness.design has no native \"co-routed, not bundled-as-one-cable\" primitive; the physical bundling is a routing note, not a schema change. Alternator moved to the rear of the engine, RH side, under bulkheads A/B (MR2-style, rev 3 Dan mark-up 2026-10-04). The G2 round 3-pin plug (alt_plug, Toyota 90980-10341) is drawn here (Dan 2026-10-13, R17); its IG / L / S leads break off to ST185-EngineRoom-C and cross the firewall in harness C's own RH fender grommet (no ECU signal, so no bulkhead letter, R2) - IG and L to the cowl-side IG2-15 / IG2-16 leads under the ECU, S to the glove-box LOGIC box ALTS 2A."
     },
     {
       "id": "n_batt_relay",
+      "width": 390,
       "schematicPosition": {
         "x": 0,
-        "y": 1680
+        "y": 780
       },
       "text": "BATTERY RELAY BLOCK (DECISIONS R75, Z4; cad/fusebox rev 5, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107)): trunk, passenger side, between the rear wall and the battery. Kill switch MAIN 2 (LOAD) -> 10 AWG -> M6 stud on the block's copper bar -> AMI-40 FP -> one straight 10 AWG jumper -> HCR150 k_fp terminal 3; terminal 5 -> fuel pump (wire on ST185-RearFuel). Fed from the LOAD side, so the kill switch also stops the pump. Coil plug (Superseal 1.5, 282080-1): coil - from ECU A19 (ST185-A-cabin) and coil + from LOGIC SW12 (ST185-CabinPower) arrive broken off. The kill-switch stud carries the 1/0 H1 lug and the 10 AWG feed lug. Bundle lengths are estimates - measure at install."
+    },
+    {
+      "id": "n_heavy",
+      "width": 390,
+      "schematicPosition": {
+        "x": 900,
+        "y": 1020
+      },
+      "text": "HEAVY DC: trunk battery -> cabin PDB (glove box, ST185-EngineRoom-C) -> RADLOK 5.7 mm through the firewall -> starter B+. 160 A alt B+ joins the starter post and does not recross; its protection is NOT at the starter (see n_alt_prot). Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. 2 AWG is OK for cranking; 160 A continuous charge may need 1/0 + 8 mm RADLOK - see the table. Moved out of ST185-EngineRoom-C into its own file 2026-10-11 (harness-reconcile pass, Section 40.1 step 4) - the cabin PDB (and everything it also feeds: cabin fuse block, glove-box body block, OEM hot, AM1/AM2) stays on EngineRoom-C; only the H1-H8 heavy-DC chain moved."
+    },
+    {
+      "id": "shdr_1",
+      "width": 150,
+      "schematicPosition": {
+        "x": 480,
+        "y": 360
+      },
+      "color": "Orange",
+      "text": "FIREWALL RADLOK"
     }
   ],
   "wireParts": [
@@ -2011,6 +2147,48 @@
       "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2",
       "contactColor": "Silver",
       "manufacturer": "TE Connectivity"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_12",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-1/2-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 4.3,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 12.7,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ]
 }

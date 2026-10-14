@@ -36,6 +36,26 @@
           "label": "Only add a second spare M8 on the NEG bar"
         }
       ]
+    },
+    {
+      "id": "I1",
+      "topic": "PDF export: notes on the compact AntiTheft and RearLights drawings",
+      "text": "The PDF export rule (R88) wants every note inside the drawing's frame. AntiTheft and RearLights are too tight: their notes only fit beside the drawing (AntiTheft's cavity-notes list alone is taller than the whole drawing). Both have their bands, title block and band legend; only the export setup waits. HeavyDC and RearFuel are done.",
+      "options": [
+        {
+          "value": "A",
+          "label": "Spread the parts a little to make room (layout only - same wires, pins and parts; wire paths re-routed)",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "Shorten the notes so they fit"
+        },
+        {
+          "value": "C",
+          "label": "Let notes sit beside the drawing (change the export check)"
+        }
+      ]
     }
   ]
 }

@@ -2,6 +2,12 @@
   "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
   "version": 0.9,
   "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-RearLights - rear lights harness: tail, stop, turn and back-up lamps",
+    "drawingNumber": "ST185-RearLights"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band.",
   "connectors": [],
   "terminals": [
     {
@@ -438,6 +444,9 @@
             "y": 0
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -481,6 +490,9 @@
             "y": 60
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -517,6 +529,9 @@
             "y": 120
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -567,6 +582,9 @@
             "y": 420
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -610,6 +628,9 @@
             "y": 480
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -660,6 +681,9 @@
             "y": 720
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -697,6 +721,10 @@
             "y": 150
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -734,6 +762,10 @@
             "y": 0
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -785,6 +817,10 @@
             "y": 360
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -843,6 +879,10 @@
             "y": 840
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -894,6 +934,10 @@
             "y": 300
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -945,6 +989,10 @@
             "y": 660
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White"
       ]
     },
     {
@@ -968,6 +1016,9 @@
             "y": 240
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     },
     {
@@ -1005,6 +1056,9 @@
             "y": 180
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     },
     {
@@ -1042,6 +1096,9 @@
             "y": 540
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     },
     {
@@ -1086,6 +1143,9 @@
             "y": 570
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -1109,6 +1169,9 @@
             "y": 600
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -1139,6 +1202,9 @@
             "y": 780
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -1176,6 +1242,9 @@
             "y": 660
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -1220,6 +1289,9 @@
             "y": 960
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     }
   ],
