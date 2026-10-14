@@ -10,7 +10,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 110 | 0 | **110** |
-| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 56 | 0 | **56** |
+| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 57 | 0 | **57** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 46 | 0 | **46** |
 | `RS 264-6432` | RS PRO | RS PRO A2/304 STAINLESS SERRATED FLANGE HEX NUT M5, DIN 6923 | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
@@ -20,12 +20,12 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 18 | 0 | **18** |
 | `RS 287-3962` | RS PRO | RS PRO A2/304 STAINLESS PLAIN WASHER M6, BS 4320C | 17 | 0 | **17** |
 | `RS 527-274` | RS PRO | RS PRO A2/304 STAINLESS HEX NUT M6, DIN 934 | 17 | 0 | **17** |
-| `2293255-1` | TE Connectivity | FASTON .187 RECEPTACLE, UNINSULATED, 20-15 AWG (0.51-1.65 MM2), BRASS TIN | 16 | 0 | **16** |
 | `Essentra 301540040050` | Essentra Components | HEX STANDOFF, FEMALE-FEMALE M5, 8.0 AF, 40.0 MM, NICKEL-PLATED BRASS; SOLD IN 50S | 16 | 0 | **16** |
 | `Klauke 2R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 10 MM2, M5, HOLE 5.3; B 12, L 22 | 16 | 0 | **16** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
 | `1-1393310-8` | TE Connectivity | CRIMP TERMINAL QC .250 (26A1348A) FOR 0.5-0.8 MM2, BRASS TIN | 14 | 0 | **14** |
-| `880398-2` | TE Connectivity | RECEPTACLE TAB 2.8 X 0.8 MM, 1-2.5 MM2, TIN, UNSEALED | 13 | 0 | **13** |
+| `2293255-1` | TE Connectivity | TERMINAL, FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2) | 14 | 0 | **14** |
+| `880398-2` | TE Connectivity | TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG) | 13 | 0 | **13** |
 | `RS 264-6468` | RS PRO | RS PRO STAINLESS (A4 / 316) HEX BOLT M6 X 25, DIN 933 | 13 | 0 | **13** |
 | `2R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD | 12 | 0 | **12** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
@@ -39,21 +39,18 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `42281-1` | TE Connectivity | TERMINAL, FASTON, RECEPTACLE, 6.35 MM, 18-14 AWG, TIN PLATED | 27 | 20 | **7** |
 | `ATM-15` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 7 | 0 | **7** |
 | `GENERIC RING M6 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG | 7 | 0 | **7** |
-| `280755-4` | TE Connectivity | FASTON .375 RECEPTACLE, UNINSULATED, 10-7 AWG (6-10 MM2), TIN | 6 | 0 | **6** |
 | `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) | 6 | 0 | **6** |
 | `AMI-30` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 6 | 0 | **6** |
 | `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER | 6 | 0 | **6** |
 | `GENERIC HEAVY FLYING LEAD 10-6` | generic | TERMINAL, FLYING LEAD, HEAVY | 6 | 0 | **6** |
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `GENERIC RING M8 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG | 6 | 0 | **6** |
-| `1241388-2` | TE Connectivity | AMP MCP 2.8K RECEPTACLE, GOLD, 0.5-1 MM2, TAB 2.8 (0.6 / 0.8 THICK) | 15 | 10 | **5** |
-| `62998-2` | TE Connectivity | FASTON .250 RECEPTACLE, UNINSULATED, 10-8 AWG (5-8 MM2), BRASS TIN | 5 | 0 | **5** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
 | `EFC 10S00052` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 4 MM, ZINC-PLATED STEEL | 5 | 0 | **5** |
 | `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 5 | 0 | **5** |
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS | 4 | 0 | **4** |
 | `15419715` | Aptiv | CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6 | 4 | 0 | **4** |
-| `36161` | TE Connectivity | PIDG CLOSED RING TONGUE, 12-10 AWG, #10 (5 MM) STUD, TIN, PARTIALLY INSULATED | 4 | 0 | **4** |
+| `280755-4` | TE Connectivity | TERMINAL, FASTON .375 (9.5 MM) RECEPTACLE, UNINSULATED, TIN, 10-7 AWG (5.3-10 MM2) | 4 | 0 | **4** |
 | `90980-11062` | Toyota | CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS | 4 | 0 | **4** |
 | `90980-11885` | Toyota | CONNECTOR, PLUG, TOYOTA, 4 POS | 4 | 0 | **4** |
 | `AMI-40` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 4 | 0 | **4** |
@@ -72,6 +69,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 3 | 0 | **3** |
 | `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 3 | 0 | **3** |
 | `120R 1/4W` | Generic | RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W | 2 | 0 | **2** |
+| `1241388-2` | TE Connectivity | TERMINAL, AMP MCP 2.8K RECEPTACLE, GOLD, TAB 2.8 (0.6 / 0.8), 0.5-1 MM2 (20-18 AWG) | 12 | 10 | **2** |
+| `36161` | TE Connectivity | TERMINAL, RING TONGUE, PIDG, CLOSED, #10 (M5) STUD, 12-10 AWG, TIN, PARTIALLY INSULATED | 2 | 0 | **2** |
+| `62998-2` | TE Connectivity | TERMINAL, FASTON .250 (6.35 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 10-8 AWG (5-8 MM2) | 2 | 0 | **2** |
 | `AMI-60` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 2 | 0 | **2** |
 | `BDK 2.8` | Bosch | CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG) | 2 | 0 | **2** |
 | `GENERIC LUG M10 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK | 2 | 0 | **2** |
@@ -83,9 +83,12 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RS 797-6068` | RS PRO | RS PRO STAINLESS PLAIN WASHER M8, DIN 125A | 2 | 0 | **2** |
 | `V23132-A2001-B200` | TE Connectivity | RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS | 2 | 0 | **2** |
 | `W3S` | Deutsch | WEDGELOCK, DT, 3 POS, PLUG | 2 | 0 | **2** |
-| `1-1904020-2` | TE Connectivity | RELAY, PLUG-IN, MINI ISO, TE POWER RELAY B V23234-A0001-X032, 1 FORM C, NO 35 A AT 85 C, 12 VDC COIL, 680 OHM PARALLEL RESISTOR | 1 | 0 | **1** |
+| `1-1414687-0` | TE Connectivity | RELAY, PLUG-IN, MINI ISO, TE POWER RELAY F4 A V23136-A0004-X059, 1 FORM C, NO 40 A / NC 30 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 1 | 0 | **1** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
+| `132066-2` | TE Connectivity | TERMINAL, RING TONGUE, SOLISTRAND, CLOSED BARREL, UNINSULATED, 1/0 AWG (41-60 MM2), 5/16 (M8) STUD, ADHESIVE HEATSHRINK OVER | 1 | 0 | **1** |
 | `1k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
+| `320238` | TE Connectivity | SPLICE, BUTT, SOLISTRAND, CLOSED BARREL, SIGHT HOLE, UNINSULATED, 4 AWG (33100-52600 CMA = 5-3 AWG COMBINED), ADHESIVE HEATSHRINK OVER | 1 | 0 | **1** |
+| `320575` | TE Connectivity | TERMINAL, RING TONGUE, PIDG, CLOSED, 5/16 (M8) STUD, 16-14 AWG (1.25-2 MM2), TIN, PARTIALLY INSULATED | 1 | 0 | **1** |
 | `3R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 16 MM2, M5 STUD | 1 | 0 | **1** |
 | `470R 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `52-45780` | Longacre | SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE, 175 A CONTINUOUS, 1000 A PEAK, 20 A AUXILIARY POLE, 6-36 V | 1 | 0 | **1** |
@@ -106,8 +109,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC LUG M10 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC LUG M8 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M8 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC LUG M8 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M8 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
-| `GENERIC LUG M8 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M8 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
-| `GENERIC RING M8 16-14` | generic | TERMINAL, RING, INSULATED, NYLON, M8 STUD, 16-14 AWG | 1 | 0 | **1** |
 | `GENERIC SPADE RECEPTACLE 12-10` | generic | TERMINAL, QUICK CONNECT, RECEPTACLE, INSULATED, 6.3 MM (250) TAB, 12-10 AWG | 1 | 0 | **1** |
 | `HD36-24-33SE` | TE DEUTSCH | CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL | 1 | 0 | **1** |
 | `Klauke 6R8` | Klauke | TINNED COPPER TUBULAR RING LUG, 50 MM2, M8, HOLE 8.4; B 20, L 47 | 1 | 0 | **1** |
@@ -199,10 +200,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK | 5 |
 | `(ring lug, sized to cable)` | TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK | 8 |
 | `TBD - A/C coolant temperature switch connector` | CONNECTOR, 2 POS, TYPE TBD | 1 |
-| `TBD - TE FASTON 9.5 receptacle, 8 AWG` | TERMINAL, FASTON, RECEPTACLE, 9.5 MM, 8 AWG | 6 |
-| `TBD - TE receptacle 4.8 x 0.8, 20-18 AWG` | TERMINAL, RECEPTACLE, 4.8 X 0.8 MM | 14 |
-| `TBD - TE ring tongue M5, 12-10 AWG` | TERMINAL, RING, M5 STUD, 12-10 AWG | 2 |
-| `TBD - mini fuse receptacle 2.8 (880398-2 candidate)` | TERMINAL, RECEPTACLE, 2.8 MM, MINI BLADE FUSE | 25 |
 
 ## Counted once, drawn more than once
 
@@ -290,15 +287,22 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 
 | Part number | Box | Qty (incl. spares) | Counted by |
 |---|---|---:|---|
-| `1-1414687-0 (drawn as superseded 1-1904020-2 - swap the drawing and library part)` | POWER | 1 | the harness drawings |
+| `1-1414687-0` | POWER | 1 | the harness drawings |
 | `1-1414147-0` | POWER | 3 | the harness drawings |
 | `1-1393304-0` | POWER | 2 | the harness drawings |
 | `280756-4` | POWER | 8 | the harness drawings |
+| `280755-4` | POWER | 6 | the harness drawings |
+| `62998-2` | POWER | 5 | the harness drawings |
+| `880398-2` | POWER | 3 | the harness drawings |
+| `36161` | POWER | 4 | the harness drawings |
 | `4-1904124-2` | LOGIC | 1 | the harness drawings |
 | `4-1904124-3` | LOGIC | 1 | the harness drawings |
 | `5-1393292-8` | LOGIC | 2 | the harness drawings |
 | `6-1419137-4` | LOGIC | 3 | the harness drawings |
+| `2293255-1` | LOGIC | 16 | the harness drawings |
 | `42281-1` | LOGIC | 19 | the harness drawings |
+| `1241388-2` | LOGIC | 15 | the harness drawings |
+| `880398-2` | LOGIC | 10 | the harness drawings |
 | `282110-1` | BATTRELAY | 3 | the harness drawings |
 | `Power_Base_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
 | `Power_Pan_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
@@ -310,13 +314,9 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `AMI-50` | POWER | 1 | this section's CSVs |
 | `AMI-60` | POWER | 2 | this section's CSVs |
 | `ATM-10` | LOGIC, POWER | 3 | this section's CSVs |
-| `280755-4` | POWER | 6 | this section's CSVs |
 | `1-1393310-8` | POWER | 14 | this section's CSVs |
-| `62998-2` | POWER | 5 | this section's CSVs |
-| `880398-2` | LOGIC, POWER | 13 | this section's CSVs |
 | `Klauke 2R5` | BATTRELAY, LOGIC, POWER | 16 | this section's CSVs |
 | `Klauke 3R5MS` | POWER | 2 | this section's CSVs |
-| `36161` | POWER | 4 | this section's CSVs |
 | `Klauke 6R8` | POWER | 1 | this section's CSVs |
 | `Essentra 301540040050` | LOGIC, POWER | 16 | this section's CSVs |
 | `RS 137-809` | BATTRELAY, POWER | 18 | this section's CSVs |
@@ -339,8 +339,6 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `ATM-7-1/2` | LOGIC | 4 | this section's CSVs |
 | `ATM-15` | LOGIC | 7 | this section's CSVs |
 | `ATM-20` | LOGIC | 1 | this section's CSVs |
-| `2293255-1` | LOGIC | 16 | this section's CSVs |
-| `1241388-2` | LOGIC | 15 | this section's CSVs |
 | `BattRelay_Base_PA12_printed.stl + .step (PA12)` | BATTRELAY | 1 | this section's CSVs |
 | `BattRelay_Cover_PA12_printed.stl + .step (PA12)` | BATTRELAY | 1 | this section's CSVs |
 | `1416010-1` | BATTRELAY | 1 | this section's CSVs |

@@ -204,8 +204,6 @@ for pn, mf, desc, n in DEVICE_SIDE:
 # under "Still unspecified" instead.
 FB_DIR = os.path.join(os.path.dirname(R), "..", "..", "cad", "fusebox")
 FB_ADDED, FB_DRAWN, FB_OPEN = collections.OrderedDict(), [], []
-# Superseded part still drawn: the new part number replaces it one for one, so the drawn count covers it too.
-FB_SWAP = {"1-1414687-0": "1-1904020-2"}   # heater relay k_htr: Power Relay F4 A replaces the superseded Power Relay B
 DRAWN = set(req)      # parts the harness files count; the box lines below must not be tested against their own additions
 for fn in ("fusebox-parts-power.csv", "fusebox-parts-logic.csv", "fusebox-parts-battrelay.csv"):
     fp = os.path.join(FB_DIR, fn)
@@ -218,8 +216,8 @@ for fn in ("fusebox-parts-power.csv", "fusebox-parts-logic.csv", "fusebox-parts-
             if re.match(r"^(TBD|not designed)", pn):
                 FB_OPEN.append((r["box"], r["item"], r["note"] or r["checked_against"]))
             continue
-        if pn in DRAWN or FB_SWAP.get(pn) in DRAWN:
-            FB_DRAWN.append((r["box"], pn if pn in DRAWN else "%s (drawn as superseded %s - swap the drawing and library part)" % (pn, FB_SWAP[pn]), n))
+        if pn in DRAWN:
+            FB_DRAWN.append((r["box"], pn, n))
             continue
         req[pn] += n
         meta.setdefault(pn, {"partNumber": pn, "manufacturer": r["maker"], "description": r["description"].upper()})

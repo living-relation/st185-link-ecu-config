@@ -364,13 +364,13 @@
     },
     {
       "id": "cp_rly_maxi_co",
-      "partNumber": "1-1904020-2",
-      "description": "RELAY, PLUG-IN, MINI ISO, TE POWER RELAY B V23234-A0001-X032, 1 FORM C, NO 35 A AT 85 C, 12 VDC COIL, 680 OHM PARALLEL RESISTOR",
+      "partNumber": "1-1414687-0",
+      "description": "RELAY, PLUG-IN, MINI ISO, TE POWER RELAY F4 A V23136-A0004-X059, 1 FORM C, NO 40 A / NC 30 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR",
       "manufacturer": "TE Connectivity",
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_f7_load"
+          "contactPartId": "ct_faston63_8"
         }
       ],
       "numberOfCavities": 5
@@ -1342,7 +1342,7 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_minifuse_tbd"
+          "contactPartId": "ct_minifuse_880398"
         }
       ]
     },
@@ -1841,28 +1841,52 @@
       }
     },
     {
-      "id": "ct_faston48_tbd",
+      "id": "ct_faston48",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "TBD - TE receptacle 4.8 x 0.8, 20-18 AWG",
-      "description": "TERMINAL, RECEPTACLE, 4.8 X 0.8 MM",
-      "manufacturer": "TE Connectivity"
+      "partNumber": "2293255-1",
+      "description": "TERMINAL, FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2)",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 15
+      }
     },
     {
-      "id": "ct_faston95_8_tbd",
+      "id": "ct_faston95_8",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "TBD - TE FASTON 9.5 receptacle, 8 AWG",
-      "description": "TERMINAL, FASTON, RECEPTACLE, 9.5 MM, 8 AWG",
-      "manufacturer": "TE Connectivity"
+      "partNumber": "280755-4",
+      "description": "TERMINAL, FASTON .375 (9.5 MM) RECEPTACLE, UNINSULATED, TIN, 10-7 AWG (5.3-10 MM2)",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 7
+      }
     },
     {
-      "id": "ct_minifuse_tbd",
+      "id": "ct_minifuse_880398",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "TBD - mini fuse receptacle 2.8 (880398-2 candidate)",
-      "description": "TERMINAL, RECEPTACLE, 2.8 MM, MINI BLADE FUSE",
-      "manufacturer": "TE Connectivity"
+      "partNumber": "880398-2",
+      "description": "TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG)",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 17
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 13
+      }
     },
     {
       "id": "ct_klauke_2r5",
@@ -1913,12 +1937,52 @@
       }
     },
     {
-      "id": "ct_ring_m5_12_tbd",
+      "id": "ct_ring_m5_12",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "TBD - TE ring tongue M5, 12-10 AWG",
-      "description": "TERMINAL, RING, M5 STUD, 12-10 AWG",
-      "manufacturer": "TE Connectivity"
+      "partNumber": "36161",
+      "description": "TERMINAL, RING TONGUE, PIDG, CLOSED, #10 (M5) STUD, 12-10 AWG, TIN, PARTIALLY INSULATED",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      }
+    },
+    {
+      "id": "ct_faston63_8",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "62998-2",
+      "description": "TERMINAL, FASTON .250 (6.35 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 10-8 AWG (5-8 MM2)",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      }
+    },
+    {
+      "id": "ct_mcp28",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "1241388-2",
+      "description": "TERMINAL, AMP MCP 2.8K RECEPTACLE, GOLD, TAB 2.8 (0.6 / 0.8), 0.5-1 MM2 (20-18 AWG)",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 18
+      }
     }
   ],
   "coveringParts": [],
@@ -2063,6 +2127,20 @@
       "partNumber": "GENERIC SOLDER SPLICE",
       "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
       "manufacturer": "generic"
+    },
+    {
+      "id": "spp_te_320238",
+      "partNumber": "320238",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 5
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 3
+      },
+      "description": "SPLICE, BUTT, SOLISTRAND, CLOSED BARREL, SIGHT HOLE, UNINSULATED, 4 AWG (33100-52600 CMA = 5-3 AWG COMBINED), ADHESIVE HEATSHRINK OVER"
     }
   ],
   "terminalParts": [
@@ -2283,9 +2361,9 @@
         "unit": "Metric",
         "value": 50
       },
-      "partNumber": "GENERIC LUG M8 50MM2",
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M8 STUD, ADHESIVE HEATSHRINK",
-      "manufacturer": "generic"
+      "partNumber": "132066-2",
+      "description": "TERMINAL, RING TONGUE, SOLISTRAND, CLOSED BARREL, UNINSULATED, 1/0 AWG (41-60 MM2), 5/16 (M8) STUD, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "TE Connectivity"
     },
     {
       "id": "tp_ring_m8_16_14",
@@ -2299,9 +2377,9 @@
         "unit": "AWG",
         "value": 16
       },
-      "partNumber": "GENERIC RING M8 16-14",
-      "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 16-14 AWG",
-      "manufacturer": "generic"
+      "partNumber": "320575",
+      "description": "TERMINAL, RING TONGUE, PIDG, CLOSED, 5/16 (M8) STUD, 16-14 AWG (1.25-2 MM2), TIN, PARTIALLY INSULATED",
+      "manufacturer": "TE Connectivity"
     }
   ],
   "wireParts": [
