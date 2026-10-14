@@ -1,4 +1,4 @@
-"""Build the ST185 fuse + relay boxes (rev 5: base + snap-on cover + snap-on belly pan; LOGIC box, POWER box, battery
+"""Build the ST185 fuse + relay boxes (rev 6 - rev 5 + Dan's parts answers C1 / C3 / C4 / B5 (DECISIONS R85); rev 5: base + snap-on cover + snap-on belly pan; LOGIC box, POWER box, battery
 relay block) in the existing Fusion fusebox document, export every part, render (closed, open, EMPTY, underneath with and
 without the belly pans, every cable to the box edge, exploded and step-by-step install views), check clearance,
 interference and every cable bend, and record the screen position of every numbered callout for summary_html.py.
@@ -7,7 +7,7 @@ Same toolkit as rev 3 / 4 (TemporaryBRepManager bodies, one component per part, 
 an identity transform; bodies are moved with tb.transform before they are added). Rounded shells are built from boxes,
 cylinders and tori (no fillet features); the angular legs are boxes cut by tilted half-spaces. Labels are sketch text cut
 into the cover top (the only features used).
-R74: never makes a new document - it opens the existing fusebox document (rev 4, renamed rev 5) and saves a new version.
+R74: never makes a new document - it opens the existing fusebox document (rev 5, renamed rev 6) and saves a new version.
 Claude Code, 2026-10-14.
 """
 import adsk.core, adsk.fusion, math, os, sys, json, importlib
@@ -22,8 +22,8 @@ app = adsk.core.Application.get()
 tb = adsk.fusion.TemporaryBRepManager.get()
 BT = adsk.fusion.BooleanTypes
 OPS = {'u': BT.UnionBooleanType, 's': BT.DifferenceBooleanType, 'i': BT.IntersectionBooleanType}
-DOC = 'ST185_fusebox_rev5'                                                   # rev 5: Dan's review of rev 4
-DOC_OLD = ('ST185_fusebox_rev4', 'ST185_fusebox_rev3', 'ST185_fusebox_rev2')  # the same Fusion document before the renames (R74)
+DOC = 'ST185_fusebox_rev6'                                                   # rev 6: Dan's parts answers on rev 5
+DOC_OLD = ('ST185_fusebox_rev5', 'ST185_fusebox_rev4', 'ST185_fusebox_rev3', 'ST185_fusebox_rev2')  # the same Fusion document before the renames (R74)
 
 
 def P(x, y, z):
@@ -71,6 +71,18 @@ def hexz(x, y, z0, z1, af):
     h = rbox(x, y, z0, z1, af * 2, af, 0)
     for ang in (60, 120):
         bo(h, rbox(x, y, z0, z1, af * 2, af, ang), 'i')
+    return h
+
+
+def hex_x(x0, x1, y, z, af):
+    """Hex prism along x (a bolt head lying on its side), across flats af."""
+    h = None
+    for ang in (0, 60, 120):
+        a = math.radians(ang)
+        obb = adsk.core.OrientedBoundingBox3D.create(P((x0 + x1) / 2, y, z), V(1, 0, 0), V(0, math.cos(a), math.sin(a)),
+                                                     abs(x1 - x0) / 10.0, af * 2 / 10.0, af / 10.0)
+        b = tb.createBox(obb)
+        h = b if h is None else bo(h, b, 'i')
     return h
 
 
@@ -308,7 +320,7 @@ def build(out_dir, save=True, renders=True):
     CV = S.COVER
     HD = S.HEAD
     LUG, M8 = S.LUG_M5, S.LUG_M8
-    l5 = S.LIMITER_M5
+    l6 = S.LIMITER_M6                    # rev 6 (C1): EFC 10S00056 M6 limiter in every foot / end tab
     LG = S.LEG
     SO = S.STANDOFF
     PN = S.PAN
@@ -375,9 +387,9 @@ def build(out_dir, save=True, renders=True):
             half_cut(foot, (qx, qy, LG['ear_t'] - 2.0), (tv[0] * sg, tv[1] * sg, 1.0))
         bo(leg, foot, 'u')
         bo(leg, cylz(hx, hy, -1, LG['ear_t'] + 1, LG['hole']), 's')
-        bo(leg, cylz(hx, hy, LG['ear_t'], z_top + 1, 14.0), 's')            # socket clearance above the foot
+        bo(leg, cylz(hx, hy, LG['ear_t'], z_top + 1, LG['socket']), 's')    # socket clearance above the foot (M6 head)
         parts.append(leg)
-        lims.append(bo(cylz(hx, hy, 0, l5['l'], l5['od']), cylz(hx, hy, -1, l5['l'] + 1, l5['id']), 's'))
+        lims.append(bo(cylz(hx, hy, 0, l6['l'], l6['od']), cylz(hx, hy, -1, l6['l'] + 1, l6['id']), 's'))
         return (hx, hy)
 
     def snap_xs(L):
@@ -593,8 +605,8 @@ def build(out_dir, save=True, renders=True):
                 y = S.AMI_Y0 + i * S.AMI_PITCH
                 x_in = xb + sgn * S.AMI_IN_OFF
                 ami.append(dict(row=row, i=i, name=name, amps=amps, y=y, x_in=x_in, x_out=x_in + sgn * S.AMI['c'], sgn=sgn,
-                                lz=S.LUG_Z if row == 'IN' else PW['out_lug_z'], so=SO['long'] if row == 'IN' else SO['short']))
-        report['standoffs']['POWER'] = dict(IN=SO['long'], OUT=SO['short'], in_lug_z=S.LUG_Z, out_lug_z=PW['out_lug_z'], z_d=z_d, z_t=z_t,
+                                lz=S.LUG_Z if row == 'IN' else PW['out_lug_z'], so=SO['long']))
+        report['standoffs']['POWER'] = dict(IN=SO['long'], OUT=SO['long'], in_lug_z=S.LUG_Z, out_lug_z=PW['out_lug_z'], z_d=z_d, z_t=z_t,
                                             plate_bottom=plate_b, pad_bottom=pz0)
         PD = S.PAD
 
@@ -618,8 +630,8 @@ def build(out_dir, save=True, renders=True):
         for r in relays:
             parts.append(cbox(r['cx'] + 1.3, r['cy'], z_d, plate_b + 0.01, 21.1 + 2 * T + (2.0 if r['B'] else 0), 19.7 + 2 * T))
         parts.append(cbox(acps[0], acps[1], z_d, plate_b + 0.01, 6.0 + 3.0 + 2 * T, 4.6 + 2 * T))
-        for a in ami:                                            # IN-row standoff bosses (hex hole = anti-rotation)
-            if a['row'] == 'IN':
+        for a in ami:                                            # standoff bosses, both rows (hex hole = anti-rotation)
+            if True:
                 parts.append(cylz(a['x_out'], a['y'], z_d, plate_b + 0.01, SO['af'] / math.cos(math.radians(30)) + 2 * S.CLR + 5.0))
         bar_bolts = [(a['x_in'], a['y'], 5) for a in ami] + [(xb, S.IN_STUD_Y, 8)]
         for (bx_, by_, m) in bar_bolts:                          # head bosses under the bar
@@ -655,7 +667,7 @@ def build(out_dir, save=True, renders=True):
             cuts.append(pad_box(a, pz0, z_t + 1, S.CLR))
             xc = (a['x_in'] + a['x_out']) / 2
             cuts.append(cbox(xc, a['y'], btop + S.AMI['ear_t'] / 2 - S.AMI['body_h'] / 2 - 0.6, z_t + 1, S.AMI['body_l'] + 1, S.AMI['body_w'] + 1))
-            cuts.append(hexz(a['x_out'], a['y'], (z_d if a['row'] == 'IN' else plate_b) - 1, pz0 + 0.01, SO['af'] + 2 * S.CLR))
+            cuts.append(hexz(a['x_out'], a['y'], z_d - 1, pz0 + 0.01, SO['af'] + 2 * S.CLR))
         for (bx_, by_, m) in bar_bolts:
             cuts.append(hexz(bx_, by_, z_d - 1, bz0 + 0.01, HD[m]['af'] + 2 * S.CLR))
             cuts.append(cylz(bx_, by_, z_d - 1, bz0 + 1, m + 0.5))
@@ -667,18 +679,10 @@ def build(out_dir, save=True, renders=True):
                 cuts.append(cbox(r['cx'] - v, r['cy'] + u, z_d - 1, z_t + 1, ly, lx))
         for dx in (-3.0, 3.0):
             cuts.append(cbox(acps[0] + dx, acps[1], z_d - 1, z_t + 1, 3.0, 4.6))
-        for a in ami:            # OUT row: lug barrels / cables leave straight through notches in the outboard skirt (open below)
-            if a['row'] == 'OUT':
-                awg = S.AMI_AWG.get(a['name'], 8)
-                lg = S.LUG_6AWG if awg == 6 else LUG
-                wd = max(lg['d4'], S.OD[awg]) + 1.2
-                zc_ = a['lz'] + lg['d4'] / 2
-                n = box(L - S.SKIRT - 1, a['y'] - wd / 2, z_d - 1, L + 1, a['y'] + wd / 2, zc_)
-                bo(n, cyl((L - S.SKIRT - 1, a['y'], zc_), (L + 1, a['y'], zc_), wd), 'u')
-                cuts.append(n)
+        # rev 6: the OUT-row lugs sit on 40 mm standoffs at the IN-row height, under the skirt: no skirt notches (belly pan exits below)
         sub_all(deck, cuts)
         comp(pre + 'Base_PA12_printed', deck, AP['pa12_lt'], MAT['pa'], sh)
-        comp(pre + 'Limiter_brass', lims, AP['brass'], MAT['brass'], sh)
+        comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
 
         # ---- copper, standoffs, bolts
         bar = box(xb - B_['w'] / 2, B_['y0'], bz0, xb + B_['w'] / 2, B_['y1'], btop)
@@ -691,16 +695,15 @@ def build(out_dir, save=True, renders=True):
             pads.append(p)
         comp(pre + 'Bar_Power_%s_25x6p35' % BM['name'], bar, AP['tin'], MAT['cu'], sh)
         comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pads, AP['tin'], MAT['cu'], sh)
-        for row, ln in (('IN', SO['long']), ('OUT', SO['short'])):
-            comp(pre + 'Standoff_M5_FF_hex8_L%d_brass' % ln, [bo(hexz(a['x_out'], a['y'], a['lz'] + 2.0, pz0, SO['af']), cylz(a['x_out'], a['y'], a['lz'], pz0 + 1, 4.2), 's')
-                                                              for a in ami if a['row'] == row], AP['brass'], MAT['brass'], sh)
+        comp(pre + 'Standoff_M5_FF_hex8_L%d_brass' % SO['long'], [bo(hexz(a['x_out'], a['y'], a['lz'] + 2.0, pz0, SO['af']), cylz(a['x_out'], a['y'], a['lz'], pz0 + 1, 4.2), 's')
+                                                                 for a in ami], AP['brass'], MAT['brass'], sh)       # rev 6 (B5): one 40 mm standoff, both rows
         z_ear = btop + S.AMI['ear_t']
         comp(pre + 'BarBolt_ISO4017_A2', [union_all([hexz(bx_, by_, bz0 - HD[m]['k'], bz0, HD[m]['af']), cylz(bx_, by_, bz0, btop + (12.0 if m == 5 else 16.0), float(m))])
                                           for (bx_, by_, m) in bar_bolts], AP['al'], MAT['ss'], sh)
         comp(pre + 'SetScrew_ISO4026_A2', [cylz(a['x_out'], a['y'], pz0 - 5.0, z_ear + 5.0, 5.0) for a in ami], AP['al'], MAT['ss'], sh)   # 5 into the standoff
         comp(pre + 'LugBolt_ISO4017_A2', [union_all([hexz(a['x_out'], a['y'], a['lz'] - HD[5]['k'], a['lz'], HD[5]['af']),
-                                                     cylz(a['x_out'], a['y'], a['lz'], a['lz'] + (10.0 if a['row'] == 'IN' else 8.0), 5.0)])
-                                          for a in ami if a['amps']], AP['al'], MAT['ss'], sh)      # IN M5 x 10, OUT M5 x 8 (12 mm standoff: 5 + 6 of thread)
+                                                     cylz(a['x_out'], a['y'], a['lz'], a['lz'] + 10.0, 5.0)])
+                                          for a in ami if a['amps']], AP['al'], MAT['ss'], sh)      # M5 x 10 both rows (rev 6: 40 mm standoffs)
         nuts = [hexz(a['x_in'], a['y'], z_ear, z_ear + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami]
         nuts += [hexz(a['x_out'], a['y'], z_ear, z_ear + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami]
         nuts.append(hexz(xb, S.IN_STUD_Y, btop + M8['t'], btop + M8['t'] + S.M8_NUT['h'], S.M8_NUT['af']))
@@ -741,7 +744,7 @@ def build(out_dir, save=True, renders=True):
             lugs.append(t)
             if a['row'] == 'OUT':
                 wires.append(cyl(e, (L + 30.0, a['y'], e[2]), od))
-                bend_row('POWER AMI %s %s (%dA) -> harness' % (a['row'], a['name'], a['amps']), awg, 'straight out through the outboard end, right under the deck, lug axis',
+                bend_row('POWER AMI %s %s (%dA) -> harness' % (a['row'], a['name'], a['amps']), awg, 'straight out through the outboard end, under the skirt (belly pan exit), lug axis',
                          None, False, 'no bend in the box; first bend in the harness: >= %.0f supported (P-clamp each side) or >= %.0f free' % (3 * od, 10 * od))
             else:
                 r = relays[a['i']]
@@ -782,6 +785,18 @@ def build(out_dir, save=True, renders=True):
                 t_['lane'] = acps[1]
         exits = harness_tails(tails, lambda t_: t_['lane'], z_d, 'x', 0.0, pre, sh, 'POWER')
         pan_exits = [('x', u, zb_, wd, -1) for (u, zb_, wd) in exits]
+        for a in ami:            # rev 6: OUT-row lugs / cables leave under the skirt, through the belly pan's outboard wall
+            if a['row'] == 'OUT' and a['amps']:
+                awg = S.AMI_AWG[a['name']]
+                lg = S.LUG_6AWG if awg == 6 else LUG
+                wall_in = L - S.SKIRT - W_CL - PN['t'] - 0.5
+                if a['x_out'] + (lg['l'] - lg['tip'] - 9.0) > wall_in:      # the flat tongue reaches the pan wall (JB1 3R5): notch round the tongue
+                    wd = 2 * max(math.hypot(lg['b'] / 2 + 0.6, 1.0), lg['d4'] / 2 + 0.6, S.OD[awg] / 2 + 0.6)
+                    zb_ = a['lz'] + 1.0 - wd / 2
+                else:
+                    wd = max(lg['d4'], S.OD[awg]) + 1.2
+                    zb_ = a['lz'] + lg['d4'] / 2 - wd / 2
+                pan_exits.append(('x', a['y'], zb_, wd, 1))
         belly_pan(L, z_d, 'y', pan_exits, pre, sh)
         bend_row('POWER relay terminals (85 / 86 / 87 / 87a), largest %d AWG' % S.RELAY_OUT_AWG, S.RELAY_OUT_AWG,
                  'straight down out of the cavity, one bend into its bundle (rows above)', 3.0 * S.OD[S.RELAY_OUT_AWG], True,
@@ -802,99 +817,173 @@ def build(out_dir, save=True, renders=True):
         labels.append(('POWER', xb - 50.0, 6.0, 5.0))
         vents = [(x, y, 'y') for x in (31.0, 76.0, 172.0) for y in (34.0 + k * S.VENT['pitch'] for k in range(8)) if not (x == 172.0 and y < 30)]
         notches = [('x', L + W_CL + CV['t'] / 2, S.IN_STUD_Y, btop + M8['d4'] / 2 + S.OD['1/0'] / 2 + 1.5, S.OD['1/0'] + 2.0)]
-        for a in ami:
-            if a['row'] == 'OUT' and a['amps']:
-                awg = S.AMI_AWG[a['name']]
-                lg = S.LUG_6AWG if awg == 6 else LUG
-                zc_ = a['lz'] + lg['d4'] / 2
-                notches.append(('x', L + W_CL + CV['t'] / 2, a['y'], zc_ + S.OD[awg] / 2 + 1.0, S.OD[awg] + 1.5))
         cover(L, S.D, z_t, z_top, notches, labels, pre, sh, vents=vents,
               ribs={'y': [15.0, 75.0, 105.0, L - 15.0], 'x': [34.0 + 36.0 * k for k in range(4)]})
         return dict(L=L, D=S.D, H=z_top, z_d=z_d, z_t=z_t, cover_top=z_top, feet=feet, relays=relays, ami=ami, acps=acps)
 
     # ================================================================== LOGIC box
     def build_logic():
+        """Rev 6 (C4): the mini fuses stay; every fuse input is a 14 AWG jumper - TE 880398-2 receptacle in the input cavity,
+        straight down into a TE PIDG 53941-1 ring lug bolted (M4 x 8 + spring washer) into its tapped bus strip. The two strips
+        stand on edge between the fuse columns, back to back either side of a printed spine (lips under both strips); lugs
+        alternate between two rows. Feed lugs (Klauke 2R5) bolt straight onto the strips (no standoffs in this box)."""
         LGc = S.LOGIC
-        L, z_d, z_t, s_top = LGc['L'], LGc['z_d'], LGc['z_t'], LGc['strip_top']
+        L, z_d, z_t = LGc['L'], LGc['z_d'], LGc['z_t']
         sh = S.PLACE['LOGIC']
         pre = 'Logic_'
-        lz = LGc['feed_lug_z']
-        ST, SF = S.STRIP, S.STRIP_FEED
-        s_bot = s_top - ST['t']
+        ST, JL, JB, JR, SP = S.STRIP, S.JLUG, S.JBOLT, S.JROW, S.SPINE
         plate_b = z_t - S.PLATE
-        report['standoffs']['LOGIC'] = dict(feed=SO['short'], feed_lug_z=lz, z_d=z_d, z_t=z_t, strip_bottom=s_bot)
+        s_z0, s_z1 = S.STRIP_Z0, S.STRIP_Z0 + ST['h']
         mini, micro = [], []
         n = 0
         for col, (cx, fuses) in S.MINI_COLS.items():
             for i, (nm, amps) in enumerate(fuses):
                 n += 1
-                mini.append((col, nm, amps, cx, S.MINI_Y0 + i * S.MINI['pitch'], n))
+                mini.append((col, nm, amps, cx, S.MINI_Y0 + i * S.MINI['pitch'], n, i))
         k = 0
         for cx in S.MICRO_COLS:
             for cy in S.MICRO_Y:
                 nm, pn, own = S.MICRO_POS[k]
                 k += 1
                 micro.append((nm, pn, own, cx, cy, k))
+        report['standoffs']['LOGIC'] = dict(feed=None, note='rev 6: no standoffs - the feed lugs bolt straight onto the strips', z_d=z_d, z_t=z_t)
 
-        def last_y(n_):
-            return S.MINI_Y0 + (n_ - 1) * S.MINI['pitch']
-
-        feeds = []
+        # ---- strips: lug face toward the column's input line
+        strips = {}
         for col, (cx, fuses) in S.MINI_COLS.items():
-            y1 = last_y(len(fuses)) + 6 + SF['ext'][col]
-            feeds.append((col, cx, y1, y1 - SF['hole_from_end'], last_y(len(fuses)) + 6.4 + S.TOWER))
+            sd = S.MINI_IN[col]
+            xin = cx + sd * 3.0                                 # input blade / jumper line
+            xpm = xin + sd * JL['ax']                           # lug palm mid-plane
+            face = xpm + sd * JL['t'] / 2                       # strip face the palms sit on
+            x0, x1 = sorted((face, face + sd * ST['t']))
+            strips[col] = dict(cx=cx, sd=sd, xin=xin, xpm=xpm, face=face, x0=x0, x1=x1, y0=S.STRIP_Y[col][0], y1=S.STRIP_Y[col][1])
+        sx_lo = strips['BUS1']['x1']                            # gap between the strips
+        sx_hi = strips['BUS2']['x0']
+        spx = (sx_lo + sx_hi) / 2
+        studs = []                                              # (col, i, y, z, fuse name or None)
+        for (col, nm, amps, cx, y, n_, i) in mini:
+            if i >= S.STUDS[col]:
+                continue
+            lower = (i % 2 == 0) == (col == 'BUS1')             # BUS1 even = lower row, BUS2 even = upper row (no tip meets a tip)
+            z = JR['z_lo'] + (0.0 if lower else JR['dz'])
+            studs.append(dict(col=col, i=i, y=y, z=z, fuse=nm if amps else None, amps=amps))
+        report['logic_jumpers'] = dict(strips={c: dict(x=[round(v['x0'], 2), round(v['x1'], 2)], y=[v['y0'], v['y1']]) for c, v in strips.items()},
+                                       spine_x=round(spx, 2), studs=len(studs), jumpers=sum(1 for s_ in studs if s_['fuse']),
+                                       rows_z=[JR['z_lo'], JR['z_lo'] + JR['dz']])
+
+        # ---- base
         parts, lims = [], []
         T = S.TOWER
-        for (col, cx, y1, yh, yt) in feeds:      # cavity tower ends at the last fuse; the strip runs on in a plate pocket to its feed
-            parts.append(box(cx - S.MINI['l'] / 2 - T, S.MINI_Y0 - 6.4 - T, z_d, cx + S.MINI['l'] / 2 + T, yt, plate_b + 0.01))
+        for col, (cx, fuses) in S.MINI_COLS.items():            # cavity tower over the whole fuse column
+            yl = S.MINI_Y0 + (len(fuses) - 1) * S.MINI['pitch']
+            parts.append(box(cx - S.MINI['l'] / 2 - T, S.MINI_Y0 - 6.4 - T, z_d, cx + S.MINI['l'] / 2 + T, yl + 6.4 + T, plate_b + 0.01))
         for (nm, pn, own, cx, cy, k_) in micro:
             parts.append(cbox(cx, cy, z_d, plate_b + 0.01, 11.6 + 2 * T, 18.6 + 2 * T))
+        ylo = min(v['y0'] for v in strips.values()) - 1.0
+        yhi = max(v['y1'] for v in strips.values()) + 1.0
+        lip_z1 = s_z0 - 0.4
+        lip_z0 = lip_z1 - SP['lip_t']
+        spine = box(spx - SP['t'] / 2, ylo, lip_z0, spx + SP['t'] / 2, yhi, plate_b + 0.01)
+        for c_, v in strips.items():                            # lips under each strip (the strips slide in from the rear)
+            xa = v['x0'] + 0.8 if c_ == 'BUS1' else v['x0']
+            xb_ = v['x1'] if c_ == 'BUS1' else v['x1'] - 0.8
+            bo(spine, box(min(xa, spx), v['y0'] - 0.5, lip_z0, max(xb_, spx), v['y1'] + 0.5, lip_z1), 'u')
+        parts.append(spine)
         z_leg = z_t - CV['over'] - 1.0
         feet = [angular_leg(f, u, L, S.D, z_leg, parts, lims) for f in ('-x', '+x') for u in (30.0, S.D - 30.0)]
         deck = base_shell(L, z_d, z_t, parts)
         cuts = base_snap_cuts(L, z_t, z_d, 'x')
-        for (col, nm, amps, cx, y, n_) in mini:      # 2 x 2.8 mm receptacles per mini fuse
+        for (col, nm, amps, cx, y, n_, i) in mini:              # 2 x 2.8 mm receptacles per mini fuse (input + output)
             for dx in (-3.0, 3.0):
                 cuts.append(cbox(cx + dx, y, z_d - 1, z_t + 1, 3.0, 4.6))
-        for (nm, pn, own, cx, cy, k_) in micro:      # approximate pattern from TE 1308028; set exactly in detail work
+        for (nm, pn, own, cx, cy, k_) in micro:                 # approximate pattern from TE 1308028; set exactly in detail work
             for (u, v, lx, ly) in ((0, 8.0, 8.3, 2.6), (0, -8.0, 8.3, 2.6), (-4.5, 0, 2.6, 6.8), (4.5, 0, 2.6, 6.8), (0, 0, 2.6, 4.0)):
                 cuts.append(cbox(cx + u, cy + v, z_d - 1, z_t + 1, lx, ly))
-        for (col, cx, y1, yh, yt) in feeds:          # strip pocket open underneath (strip goes in from below), standoff hex through
-            cuts.append(box(cx - ST['w'] / 2 - S.CLR, S.MINI_Y0 - 6 - S.CLR, z_d - 1, cx + ST['w'] / 2 + S.CLR, y1 + S.CLR, s_top + S.CLR))
-            cuts.append(hexz(cx, yh, s_top - 0.01, s_top + HD[5]['k'] + 0.3, HD[5]['af'] + 2 * S.CLR))        # feed bolt head above the strip
-            cuts.append(cylz(cx, yh, s_top, z_t + 1, 9.0))
-            awg = S.FEEDS[col][1]
-            wd = max(LUG['d4'], S.OD[awg]) + 1.2
-            zc_ = lz + LUG['d4'] / 2
-            nch = box(cx - wd / 2, S.D - S.SKIRT - 1, z_d - 1, cx + wd / 2, S.D + 1, zc_)         # rear skirt notch, open below
-            bo(nch, cyl((cx, S.D - S.SKIRT - 1, zc_), (cx, S.D + 1, zc_), wd), 'u')
-            cuts.append(nch)
+        for s_ in studs:                                        # bolt tips pass the spine
+            cuts.append(cyl((sx_lo - 1.0, s_['y'], s_['z']), (sx_hi + 1.0, s_['y'], s_['z']), JB['m'] + 1.6))
+        for col, f in S.FEED.items():
+            cuts.append(cyl((sx_lo - 1.0, f['y'], f['z']), (sx_hi + 1.0, f['y'], f['z']), 5.0 + 1.6))
         sub_all(deck, cuts)
         comp(pre + 'Base_PA12_printed', deck, AP['pa12_lt'], MAT['pa'], sh)
-        comp(pre + 'Limiter_brass', lims, AP['brass'], MAT['brass'], sh)
-        strips, sbolt, lbolt, lugs, wires = [], [], [], [], []
-        for (col, cx, y1, yh, yt) in feeds:
-            st = box(cx - ST['w'] / 2, S.MINI_Y0 - 6, s_bot, cx + ST['w'] / 2, y1, s_top)
-            bo(st, cylz(cx, yh, s_bot - 1, s_top + 1, 5.5), 's')
-            strips.append(st)
-            sbolt.append(union_all([hexz(cx, yh, s_top, s_top + HD[5]['k'], HD[5]['af']), cylz(cx, yh, s_bot - 5.0, s_top, 5.0)]))     # M5 x 8 down into the standoff (5 of thread)
-            lbolt.append(union_all([hexz(cx, yh, lz - HD[5]['k'], lz, HD[5]['af']), cylz(cx, yh, lz, lz + 8.0, 5.0)]))                  # M5 x 8 up through the lug (6 of thread)
+        comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
+
+        # ---- copper strips (tapped M4 at every stud, M5 at the feed)
+        sbodies = []
+        for col, v in strips.items():
+            st = box(v['x0'], v['y0'], s_z0, v['x1'], v['y1'], s_z1)
+            for s_ in studs:
+                if s_['col'] == col:
+                    bo(st, cyl((v['x0'] - 1, s_['y'], s_['z']), (v['x1'] + 1, s_['y'], s_['z']), JB['m']), 's')
+            f = S.FEED[col]
+            bo(st, cyl((v['x0'] - 1, f['y'], f['z']), (v['x1'] + 1, f['y'], f['z']), 5.0), 's')
+            sbodies.append(st)
+        comp(pre + 'Strip_Logic_%s_25p4x3p2_on_edge' % BM['name'], sbodies, AP['tin'], MAT['cu'], sh)
+
+        # ---- jumper lugs, bolts, washers, jumpers (straight down from the input cavity into the lug barrel)
+        jl, jb, jw, jwire = [], [], [], []
+        od_j = S.OD[S.JUMPER_AWG]
+        for s_ in studs:
+            v = strips[s_['col']]
+            sd, y, z = v['sd'], s_['y'], s_['z']
+            xa, xb_ = v['xpm'] - JL['t'] / 2, v['xpm'] + JL['t'] / 2
+            if s_['fuse']:
+                ring = cyl((xa, y, z), (xb_, y, z), JL['ring'])
+                bo(ring, box(xa, y - 2.25, z, xb_, y + 2.25, z + JL['ring'] / 2 + JL['neck'] + 0.5), 'u')     # neck
+                bo(ring, cyl((xa - 1, y, z), (xb_ + 1, y, z), JL['hole']), 's')
+                zb0 = z + JL['ring'] / 2 + JL['neck']
+                zb1 = z + JL['L'] - JL['ring'] / 2
+                bo(ring, cylz(v['xin'], y, zb0, zb1, JL['sleeve']), 'u')
+                jl.append(ring)
+                jwire.append(cylz(v['xin'], y, zb1 - 0.5, z_d - 0.2, od_j))
+                wx0 = v['xpm'] - sd * JL['t'] / 2                          # palm outer face (washer side)
+                jw.append(bo(cyl((wx0, y, z), (wx0 - sd * JB['washer_t'], y, z), JB['washer_od']), cyl((wx0 + sd, y, z), (wx0 - sd * 2, y, z), JB['m'] + 0.2), 's'))
+                xh = wx0 - sd * JB['washer_t']                              # under-head face
+            else:
+                continue                                                    # spare stud: tapped hole only - its bolt comes with its lug
+            head = hex_x(min(xh, xh - sd * HD[4]['k']), max(xh, xh - sd * HD[4]['k']), y, z, HD[4]['af'])
+            shank = cyl((xh, y, z), (xh + sd * JB['l'], y, z), float(JB['m']))
+            jb.append(union_all([head, shank]))
+            if s_['fuse']:
+                bend_row('LOGIC %s %s input jumper (%d AWG)' % (s_['col'], s_['fuse'], S.JUMPER_AWG), S.JUMPER_AWG,
+                         'straight down from the input receptacle into its PIDG lug barrel (%.1f mm of wire between them)' % (z_d - zb1),
+                         None, True, 'no bend: the lug barrel is right under the input blade')
+        comp(pre + 'Lug_TE_PIDG_53941-1', jl, AP['cu'], None, sh)
+        comp(pre + 'LugBolt_M4x8_A2', jb, AP['al'], MAT['ss'], sh)
+        comp(pre + 'Washer_DIN127B_M4', jw, AP['al'], MAT['ss'], sh)
+        comp(pre + 'Wire_jumper_14AWG', jwire, AP['wire'], None, sh)
+
+        # ---- feeds: Klauke 2R5 on the strip's lug face, M5 x 10 into the tapped strip; wire straight out (BUS1 front, BUS2 rear)
+        flugs, fbolts, fwires, pan_feed = [], [], [], []
+        for col, f in S.FEED.items():
+            v = strips[col]
+            sd = v['sd']
             awg = S.FEEDS[col][1]
             od = S.OD[awg]
-            t, e = ring_lug(cx, yh, lz, LUG['b'], 5.5, LUG['t'], LUG['d4'], (1, 'y'), LUG['l'] - LUG['tip'])
-            lugs.append(t)
-            wires.append(cyl(e, (cx, S.D + 30.0, e[2]), od))
-            bend_row('LOGIC %s feed (from %s)' % (col, S.FEEDS[col][0]), awg, 'straight out through the rear end, right under the deck, lug axis', None, False,
-                     'no bend in the box; first bend in the harness: >= %.0f supported or >= %.0f free' % (3 * od, 10 * od))
-        comp(pre + 'Strip_Logic_%s_10x3' % BM['name'], strips, AP['tin'], MAT['cu'], sh)
-        comp(pre + 'Standoff_M5_FF_hex8_L%d_brass' % SO['short'], [bo(hexz(cx, yh, lz + 2.0, s_bot, SO['af']), cylz(cx, yh, lz, s_bot + 1, 4.2), 's')
-                                                                   for (col, cx, y1, yh, yt) in feeds], AP['brass'], MAT['brass'], sh)
-        comp(pre + 'StripBolt_ISO4017_A2', sbolt, AP['al'], MAT['ss'], sh)
-        comp(pre + 'LugBolt_ISO4017_A2', lbolt, AP['al'], MAT['ss'], sh)
-        comp(pre + 'Lug_Klauke', lugs, AP['cu'], None, sh)
-        comp(pre + 'Wire_feed', wires, AP['wire'], None, sh)
+            pa, pb = v['face'] - sd * LUG['t'], v['face']
+            xpc = (pa + pb) / 2
+            y, z, dy = f['y'], f['z'], f['dir']
+            pa, pb = min(pa, pb), max(pa, pb)
+            lg = cyl((pa, y, z), (pb, y, z), LUG['b'])
+            bo(lg, box(min(pa, pb), min(y, y + dy * (LUG['l'] - LUG['tip'] - 9.0)), z - LUG['b'] / 2, max(pa, pb), max(y, y + dy * (LUG['l'] - LUG['tip'] - 9.0)), z + LUG['b'] / 2), 'u')
+            bo(lg, cyl((pa - 1, y, z), (pb + 1, y, z), 5.5), 's')
+            xbar = xpc - sd * (LUG['d4'] / 2 - LUG['t'] / 2)
+            yb0, yb1 = y + dy * (LUG['l'] - LUG['tip'] - 9.0), y + dy * (LUG['l'] - LUG['tip'])
+            bo(lg, cyl((xbar, yb0, z), (xbar, yb1, z), LUG['d4']), 'u')
+            flugs.append(lg)
+            yend = -30.0 if dy < 0 else S.D + 30.0
+            fwires.append(cyl((xbar, yb1, z), (xbar, yend, z), od))
+            xh = v['face'] - sd * LUG['t']
+            fbolts.append(union_all([hex_x(min(xh, xh - sd * HD[5]['k']), max(xh, xh - sd * HD[5]['k']), y, z, HD[5]['af']),
+                                     cyl((xh, y, z), (xh + sd * 10.0, y, z), 5.0)]))
+            pan_feed.append(('y', xbar, z - max(LUG['d4'], od) / 2 - 0.6, max(LUG['d4'], od) + 1.2, dy))
+            bend_row('LOGIC %s feed (from %s)' % (col, S.FEEDS[col][0]), awg, 'straight out the %s end, lug axis, under the skirt' % ('front' if dy < 0 else 'rear'),
+                     None, False, 'no bend in the box; first bend in the harness: >= %.0f supported or >= %.0f free' % (3 * od, 10 * od))
+        comp(pre + 'Lug_Klauke', flugs, AP['cu'], None, sh)
+        comp(pre + 'LugBolt_M5x10_A2', fbolts, AP['al'], MAT['ss'], sh)
+        comp(pre + 'Wire_feed', fwires, AP['wire'], None, sh)
+
         by_amp = {}
-        for (col, nm, amps, cx, y, n_) in mini:
+        for (col, nm, amps, cx, y, n_, i) in mini:
             if amps is not None:
                 by_amp.setdefault(amps, []).append(cbox(cx, y, z_t, z_t + S.MINI['h_above'], S.MINI['l'], S.MINI['w']))
         for amps, bodies in by_amp.items():
@@ -903,12 +992,16 @@ def build(out_dir, save=True, renders=True):
              AP['black'], MAT['abs'], sh)
         comp(pre + 'SPARE_positions', [cbox(cx, cy, z_t, z_t + 1.0, S.MICRO['x'], S.MICRO['y']) for (nm, pn, own, cx, cy, k_) in micro if not pn], AP['spare'], None, sh)
 
-        # ---- harness: one load wire per fuse (the other blade is the strip), 5 per micro relay; bundles to the front edge
-        lane_x = {'BUS1': S.MINI_COLS['BUS1'][0] + 3.0, 'BUS2': S.MINI_COLS['BUS2'][0] + 3.0}
+        # ---- harness: one load wire per fuse (output blade), MRS / B30 inputs, 5 per micro relay; bundles to the front edge
         tails = []
-        for (col, nm, amps, cx, y, n_) in mini:
-            if amps:
-                tails.append(dict(x=cx + 3.0, y=y, awg=S.MINI_AWG[amps], what=nm, lane=lane_x[col]))
+        for (col, nm, amps, cx, y, n_, i) in mini:
+            if not amps:
+                continue
+            sd = S.MINI_IN[col]
+            lane = cx - sd * 3.0
+            tails.append(dict(x=lane, y=y, awg=S.MINI_AWG[amps], what=nm, lane=lane))
+            if i >= S.STUDS[col] + (1 if col == 'BUS2' else 0):           # own input (MRS, B30): a harness wire, not a jumper
+                tails.append(dict(x=cx + sd * 3.0, y=y, awg=S.MINI_AWG[amps], what=nm + ' in', lane=lane))
         for (nm, pn, own, cx, cy, k_) in micro:
             if not pn:
                 continue
@@ -918,11 +1011,7 @@ def build(out_dir, save=True, renders=True):
                     continue                                     # NO relays: no 87a contact
                 tails.append(dict(x=cx + u, y=cy + v, awg=awg, what='%s %s' % (nm, tn), lane=cx))
         exits = harness_tails(tails, lambda t_: t_['lane'], z_d, 'y', 0.0, pre, sh, 'LOGIC')
-        pan_exits = [('y', u, zb_, wd, -1) for (u, zb_, wd) in exits]
-        for (col, cx, y1, yh, yt) in feeds:
-            od = S.OD[S.FEEDS[col][1]]
-            zc_ = lz + LUG['d4'] / 2
-            pan_exits.append(('y', cx, zc_ - od / 2 - 0.6, od + 1.2, 1))
+        pan_exits = [('y', u, zb_, wd, -1) for (u, zb_, wd) in exits] + pan_feed
         belly_pan(L, z_d, 'x', pan_exits, pre, sh)
         bend_row('LOGIC fuse / micro relay receptacles, largest %d AWG' % S.LOGIC_MAX_AWG, S.LOGIC_MAX_AWG, 'straight down out of the cavity, one bend into its bundle (rows above)',
                  3.0 * S.OD[S.LOGIC_MAX_AWG], True, 'one bundle per fuse column / relay column, straight to the front edge')
@@ -930,12 +1019,12 @@ def build(out_dir, save=True, renders=True):
         z_top = z_t + 25.4 + CV['clear'] + CV['t']          # micro relay 25.4 max (TE 1308028)
         short = {'HEAD LH': 'HEAD L', 'HEAD RH': 'HEAD R', 'horn': 'HORN', 'k_etb': 'ETB', 'k_acc': 'A/C', 'k_eps_en': 'EPS EN', 'k_rev': 'REV', 'SPARE': 'SPARE'}
         labels = [(short[nm], cx, cy, S.LABEL['h_micro']) for (nm, pn, own, cx, cy, k_) in micro]           # rev 4 etched names, unchanged
-        labels += [(('%s %s' % (nm, ('%g' % amps))) if amps else 'SP', cx, y, S.LABEL['h_mini']) for (col, nm, amps, cx, y, n_) in mini]
-        labels += [(col, cx, S.MINI_Y0 - 11.0, S.LABEL['h_mini']) for (col, cx, y1, yh, yt) in feeds]
-        labels.append(('LOGIC', 54.0, 168.0, 5.0))
-        vents = [(x, y, 'y') for x in (53.5, 74.0) for y in (30.0 + k * S.VENT['pitch'] for k in range(7))]    # clear of the rev 4 labels
-        cover(L, S.D, z_t, z_top, [], labels, pre, sh, vents=vents, ribs={'y': [39.5], 'x': [20.0, 50.0, 80.0, 110.0, 140.0, 165.0]})
-        return dict(L=L, D=S.D, H=z_top, z_d=z_d, z_t=z_t, cover_top=z_top, feet=feet)
+        labels += [(('%s %s' % (nm, ('%g' % amps))) if amps else 'SP', cx, y, S.LABEL['h_mini']) for (col, nm, amps, cx, y, n_, i) in mini]
+        labels += [(col, cx, S.MINI_Y0 - 11.0, S.LABEL['h_mini']) for col, (cx, fuses) in S.MINI_COLS.items()]
+        labels.append(('LOGIC', 58.25, 168.0, 5.0))
+        vents = [(x, y, 'y') for x in (spx, 58.25) for y in (30.0 + k * S.VENT['pitch'] for k in range(7))]    # clear of the labels
+        cover(L, S.D, z_t, z_top, [], labels, pre, sh, vents=vents, ribs={'y': [spx], 'x': [20.0, 50.0, 80.0, 110.0, 140.0, 165.0]})
+        return dict(L=L, D=S.D, H=z_top, z_d=z_d, z_t=z_t, cover_top=z_top, feet=feet, spine_x=spx)
 
     # ================================================================== battery relay block (trunk)
     def build_relay_block():
@@ -1006,13 +1095,14 @@ def build(out_dir, save=True, renders=True):
             bo(tab, cylz(hx, hy, -1, LG['ear_t'] + 1, LG['hole']), 's')
             parts.append(tab)
             tabs.append((hx, hy))
-            lims.append(bo(cylz(hx, hy, 0, l5['l'], l5['od']), cylz(hx, hy, -1, l5['l'] + 1, l5['id']), 's'))
+            lims.append(bo(cylz(hx, hy, 0, l6['l'], l6['od']), cylz(hx, hy, -1, l6['l'] + 1, l6['id']), 's'))
         base = union_all([base] + parts)
         cuts = []
-        for x in hxs:                                   # flange bolt: limiter 4.6 under the flange, M6 nut captured from below
-            cuts.append(cylz(x, fy, 5.4, zf + 1, LM['od'] + 2 * S.CLR))
-            cuts.append(hexz(x, fy, -1, 5.4, 10.0 + 2 * S.CLR))
-            lims.append(bo(cylz(x, fy, 5.4, zf, LM['od']), cylz(x, fy, 5.3, zf + 1, LM['id']), 's'))
+        zl0 = zf - LM['l']
+        for x in hxs:                                   # flange bolt: limiter (EFC 10S00052, L 4) under the flange, M6 nut captured from below
+            cuts.append(cylz(x, fy, zl0, zf + 1, LM['od'] + 2 * S.CLR))
+            cuts.append(hexz(x, fy, -1, zl0, 10.0 + 2 * S.CLR))
+            lims.append(bo(cylz(x, fy, zl0, zf, LM['od']), cylz(x, fy, zl0 - 0.1, zf + 1, LM['id']), 's'))
         for (px, m, zu) in rb_bolts:                    # bolt heads captured in hex pockets under the copper (dropped in from the top)
             cuts.append(hexz(px, tsy, zu - HD[m]['k'] - 0.3, zu + 0.01, HD[m]['af'] + 2 * S.CLR))
         for x in snap_xs(Lr):
@@ -1020,7 +1110,7 @@ def build(out_dir, save=True, renders=True):
                 cuts.append(cyl((x - S.SNAP['w'] / 2 - 0.5, y, R['rim'] - 3.0), (x + S.SNAP['w'] / 2 + 0.5, y, R['rim'] - 3.0), S.SNAP['bump'] + 0.2))
         sub_all(base, cuts)
         comp(pre + 'Base_PA12_printed', base, AP['pa12_lt'], MAT['pa'], sh)
-        comp(pre + 'Limiter_brass', lims, AP['brass'], MAT['brass'], sh)
+        comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
         # ---- HCR150 envelope from the TE drawing
         rel = box(px0, yb, zf, px1, yb + H_['body_y'], zf + H_['depth'])
         flg = box(hxs[0] - 8.0, fy - 9.0, zf, hxs[1] + 8.0, fy + 9.0, zf + H_['flange_t'])
@@ -1055,7 +1145,7 @@ def build(out_dir, save=True, renders=True):
         comp(pre + 'FlangeBolt_M6_ISO4017_A2', [union_all([hexz(x, fy, zf + H_['flange_t'], zf + H_['flange_t'] + 4.0, 10.0), cylz(x, fy, 0.5, zf + H_['flange_t'], 6.0)]) for x in hxs],
              AP['al'], MAT['ss'], sh)
         nuts = [hexz(a_in, tsy, lug_z, lug_z + S.M5_NUT['h'], S.M5_NUT['af']), hexz(a_out, tsy, lug_z + 2.0, lug_z + 2.0 + S.M5_NUT['h'], S.M5_NUT['af']),
-                hexz(xst, tsy, btop + 2.0, btop + 2.0 + 5.2, 10.0)] + [hexz(x, fy, 0.2, 5.4, 10.0) for x in hxs]
+                hexz(xst, tsy, btop + 2.0, btop + 2.0 + 5.2, 10.0)] + [hexz(x, fy, zl0 - 5.4, zl0 - 0.2, 10.0) for x in hxs]
         comp(pre + 'Nut_M5_M6_A2', nuts, AP['al'], MAT['ss'], sh)
         # ---- lugs + cables, all on the power line y = tsy, all straight
         lugs, wires = [], []
@@ -1131,11 +1221,23 @@ def build(out_dir, save=True, renders=True):
         'under_deck_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(out_lugs) for l2 in out_lugs[i_ + 1:]),
         'standoff_to_standoff_min_mm': min(dist(s1, s2) for i_, s1 in enumerate(so) for s2 in so[i_ + 1:]),
         'logic_strip_to_strip_mm': dist(*bodies('Logic_Strip_')[:2]),
-        'logic_feed_lug_to_lug_mm': dist(*bodies('Logic_Lug_')[:2]),
+        'logic_feed_lug_to_lug_mm': dist(*bodies('Logic_Lug_Klauke')[:2]),
         'battrelay_bar_to_pad_mm': dist(bodies('BattRelay_Bar_')[0], bodies('BattRelay_Pad_')[0]),
         'battrelay_relay_lug_to_lug_mm': dist(rb_lugs[2], rb_lugs[3]),
         'pan_to_nearest_live_power_mm': min(dist(bodies('Power_Pan_')[0], b) for b in bodies('Power_LugBolt_') + bodies('Power_Lug_') + bodies('Power_Standoff_')),
     }
+    # rev 6 (C4): the jumper lugs - lug to lug on each strip (Dan's 3 mm), every jumper part to plastic and to the harness wires
+    jl_bs = bodies('Logic_Lug_TE_PIDG')
+    jpart = jl_bs + bodies('Logic_LugBolt_') + bodies('Logic_Washer_') + bodies('Logic_Lug_Klauke')
+    jprinted = bodies('Logic_Base_') + bodies('Logic_Pan_')
+    strip_bs = bodies('Logic_Strip_')
+    report['live_clearance'].update({
+        'logic_jumper_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(jl_bs) for l2 in jl_bs[i_ + 1:]),
+        'logic_jumper_parts_to_printed_min_mm': min(dist(jp, pb) for jp in jpart for pb in jprinted),
+        'logic_jumper_parts_to_harness_min_mm': min(dist(jp, hb) for jp in jpart + bodies('Logic_Wire_') for hb in bodies('Logic_Harness_')),
+        'logic_strip_to_printed_min_mm': min(dist(sb, pb) for sb in strip_bs for pb in jprinted),
+        'logic_bolt_to_other_strip_min_mm': min(sorted(dist(bb, sb) for sb in strip_bs)[1] for bb in bodies('Logic_LugBolt_')),
+    })
     # every cable (feed and harness) against every printed part (a wire through plastic = a bad route)
     wire_hits = []
     for wpre in ('Power_', 'Logic_', 'BattRelay_'):
@@ -1203,7 +1305,7 @@ def build(out_dir, save=True, renders=True):
                 report['renamed_document_to'] = DOC
         except Exception as ex:   # report, do not hide
             report['rename_error'] = str(ex)
-        doc.save('rev 5: Dan review of rev 4 - vents, end tabs, belly pans, short standoffs, angular legs, numbers, cable routing (Claude Code 2026-10-14)')
+        doc.save('rev 6: Dan parts answers - M6 limiters (C1), mini fuse input jumpers on bus strips on edge (C4), one 40 mm standoff (B5) (Claude Code 2026-10-14)')
     with open(os.path.join(out_dir, 'fusebox_report.json'), 'w') as f:
         json.dump(report, f, indent=1)
     return report
@@ -1290,17 +1392,19 @@ def render_all(out_dir, root, report, sizes):
     shot('fusebox_render_under_pan.png', eye=(-260, -420, -260), target=(170.0, 90.0, 20.0))
     show(lambda n: GLOVE(n) and not kind(n).startswith('Pan'))
     shot('fusebox_render_under_open.png', eye=(-260, -420, -260), target=(170.0, 90.0, 20.0))
-    WIRING = lambda n: kind(n).startswith(('Wire', 'Harness', 'Lug', 'Bar', 'Pad', 'Strip', 'Standoff', 'Relay', 'Fuse', 'SPARE', 'LugBolt'))
+    WIRING = lambda n: kind(n).startswith(('Wire', 'Harness', 'Lug', 'Bar', 'Pad', 'Strip', 'Standoff', 'Relay', 'Fuse', 'SPARE', 'LugBolt', 'Washer'))
     PX = S.PLACE['POWER'][0]
     show(lambda n: n.startswith('Power_') and WIRING(n))
     shot('fusebox_render_routing_power.png', eye=(-200, -330, -200), target=(PX + 90.0, 90.0, 25.0), callouts=[
         (1, (PX + 10.0, 52.0, 8.0), 'harness bundles to the inboard edge'), (2, (PX + 92.25, 61.0, 10.0), 'relay feed: lug on the 40 mm standoff'),
-        (3, (PX + 62.0, 61.0, 20.0), 'feed bends up R16 into terminal 30'), (4, (PX + 164.75, 97.0, 38.0), 'OUT lug on the 12 mm standoff'),
-        (5, (PX + S.POWER['L'] + 20.0, 97.0, 41.0), 'OUT cables straight out the end'), (6, (PX + S.POWER['L'] + 20.0, S.IN_STUD_Y, S.POWER['bar_top'] + 8.0), '1/0 battery feed in')])
+        (3, (PX + 62.0, 61.0, 20.0), 'feed bends up R16 into terminal 30'), (4, (PX + 164.75, 97.0, 11.0), 'OUT lug on the 40 mm standoff'),
+        (5, (PX + S.POWER['L'] + 20.0, 97.0, 13.0), 'OUT cables straight out the end'), (6, (PX + S.POWER['L'] + 20.0, S.IN_STUD_Y, S.POWER['bar_top'] + 8.0), '1/0 battery feed in')])
     show(lambda n: n.startswith('Logic_') and WIRING(n))
     shot('fusebox_render_routing_logic.png', eye=(-230, -330, -200), target=(40.0, 90.0, 20.0), callouts=[
-        (1, (18.5, 60.0, 8.0), 'Bus 1 fuse wires'), (2, (30.0, 60.0, 8.0), 'Bus 2 fuse wires'), (3, (44.0, 40.0, 10.0), 'micro relay wires, inboard column'),
-        (4, (63.0, 40.0, 10.0), 'micro relay wires, outboard column'), (5, (40.0, -20.0, 8.0), 'all leave the front edge'), (6, (27.0, S.D + 15.0, 25.0), 'Bus feeds in at the rear')])
+        (1, (10.5, 60.0, 8.0), 'Bus 1 fuse wires'), (2, (38.0, 60.0, 8.0), 'Bus 2 fuse wires'), (3, (49.0, 40.0, 10.0), 'micro relay wires, inboard column'),
+        (4, (67.5, 40.0, 10.0), 'micro relay wires, outboard column'), (5, (40.0, -20.0, 8.0), 'all leave the front edge'),
+        (6, (16.5, 52.1, 28.0), 'fuse input jumpers drop straight into their lugs'), (7, (24.25, 70.0, 30.0), 'bus strips on edge, printed spine between'),
+        (8, (15.65, -15.0, 22.0), 'Bus 1 feed in at the front'), (9, (32.85, S.D + 15.0, 13.0), 'Bus 2 feed in at the rear')])
     show(lambda n: n.startswith('Power_') and kind(n).startswith(('Base', 'Wire', 'Lug', 'Standoff', 'LugBolt', 'Limiter', 'Harness')))
     shot('fusebox_render_power_bends.png', eye=(-120, -330, -150), target=(PX + 70.0, 80.0, 15.0))
 
@@ -1331,8 +1435,8 @@ def render_all(out_dir, root, report, sizes):
         (3, c_of('Fuse_AMI_ltgreen'), 'AMI fuses on the studs'), (4, c_of('Nut'), 'Keps nuts, 4 Nm max'),
         (5, c_of('SetScrew'), 'M5 set screws (studs)'), (6, c_of('Bar'), 'copper bar 25 x 6.35'), (7, c_of('Pad'), 'output pads 15 x 3'),
         (8, c_of('Base'), 'base (deck on 4 angular legs)'), (9, c_of('BarBolt'), 'bar bolts up from below'),
-        (10, c_of('Standoff_M5_FF_hex8_L40'), 'standoffs 40 mm (relay feeds)'), (11, c_of('Standoff_M5_FF_hex8_L12'), 'standoffs 12 mm (OUT row)'),
-        (12, c_of('Lug'), 'cable lugs'), (13, c_of('LugBolt'), 'M5 x 10 / x 8 lug bolts'), (14, c_of('Pan'), 'belly pan (snaps on)')], **eye_ex)
+        (10, c_of('Standoff_M5_FF_hex8_L40'), 'standoffs 40 mm (both rows, one part)'),
+        (11, c_of('Lug'), 'cable lugs'), (12, c_of('LugBolt'), 'M5 x 10 lug bolts'), (13, c_of('Pan'), 'belly pan (snaps on)')], **eye_ex)
     # steps 1-3
     place({})
     show(lambda n: n.startswith(pw) and kind(n).startswith(('Base', 'Limiter', 'Bar', 'Pad', 'BarBolt', 'Standoff', 'SetScrew')))
@@ -1340,16 +1444,16 @@ def render_all(out_dir, root, report, sizes):
           | {n: (0, 0, -45) for n in names(pw, 'Standoff')})
     shot('fusebox_power_step1.png', callouts=[
         (1, c_of('Bar'), 'lay the bar in its pocket'), (2, c_of('Pad'), 'lay the 14 pads in theirs'),
-        (3, c_of('BarBolt'), 'bar bolts up through the hex head pockets'), (4, c_of('Standoff_M5_FF_hex8_L40'), 'long standoffs up into the IN-row hex holes'),
-        (5, c_of('Standoff_M5_FF_hex8_L12'), 'short standoffs up into the OUT-row hex holes'), (6, c_of('SetScrew'), 'set screw down through each pad into its standoff'),
-        (7, c_of('Base'), 'base, right way up')], eye=(-360, -560, 90), target=(pxp + 90.0, 90.0, 25.0))
+        (3, c_of('BarBolt'), 'bar bolts up through the hex head pockets'), (4, c_of('Standoff_M5_FF_hex8_L40'), '40 mm standoffs up into the hex holes, both rows'),
+        (5, c_of('SetScrew'), 'set screw down through each pad into its standoff'),
+        (6, c_of('Base'), 'base, right way up')], eye=(-360, -560, 90), target=(pxp + 90.0, 90.0, 25.0))
     place({n: (0, 0, -40) for n in names(pw, 'Lug', 'LugBolt', 'Wire', 'Harness')})
     show(lambda n: n.startswith(pw) and kind(n).startswith(('Base', 'Limiter', 'Bar', 'Pad', 'BarBolt', 'Standoff', 'SetScrew', 'Lug', 'LugBolt', 'Wire', 'Harness')))
     shot('fusebox_power_step2.png', callouts=[
         (1, c_of('Harness', dz=0), 'crimp, push each terminal up into its cavity (wire side)'),
         (2, (pxp + 92.25, 79.0, 8.0 - 40.0), 'relay feed lug on its long standoff (M5 x 10)'),
         (3, (pxp + 62.0, 79.0, 30.0 - 40.0), 'feed round its saddle into terminal 30'),
-        (4, (pxp + 164.75, 115.0, 38.0 - 40.0), 'OUT lug on its short standoff'),
+        (4, (pxp + 164.75, 115.0, 11.0 - 40.0), 'OUT lug on its standoff (M5 x 10)'),
         (5, (pxp - 20.0, 88.0, 8.0 - 40.0), 'tie the bundles; they leave the inboard end')],
         eye=(-260, -420, -300), target=(pxp + 90.0, 90.0, 10.0))
     place({n: (0, 0, 45) for n in names(pw, 'Relay', 'SPARE', 'Fuse', 'Nut')})
@@ -1362,7 +1466,7 @@ def render_all(out_dir, root, report, sizes):
     show(lambda n: n.startswith(pw))
     shot('fusebox_power_step4.png', callouts=[
         (1, c_of('Pan'), 'belly pan snaps up into the skirt'), (2, c_of('Cover', top=True), 'cover snaps down over the deck'),
-        (3, (sizes['POWER']['feet'][0][0] + pxp, sizes['POWER']['feet'][0][1], 3.0), 'M5 through each foot (4)')], **eye_ex)
+        (3, (sizes['POWER']['feet'][0][0] + pxp, sizes['POWER']['feet'][0][1], 3.0), 'M6 through each foot (4), steel limiter')], **eye_ex)
     place({})
 
     # ---- LOGIC explode
@@ -1370,8 +1474,8 @@ def render_all(out_dir, root, report, sizes):
     ex_l = {}
     for n in names(lg):
         kd = kind(n)
-        for kk, v in {'Cover': 200, 'Relay': 120, 'SPARE': 120, 'Fuse': 95, 'StripBolt': 70, 'Strip_': -40, 'Standoff': -70, 'Lug_': -100,
-                      'LugBolt': -125, 'Pan': -170}.items():
+        for kk, v in {'Cover': 200, 'Relay': 120, 'SPARE': 120, 'Fuse': 95, 'Strip_': -70, 'Lug_TE': -70, 'LugBolt_M4': -70, 'Washer': -70,
+                      'Lug_Klauke': -70, 'LugBolt_M5': -70, 'Pan': -170}.items():
             if kd.startswith(kk):
                 ex_l[n] = (0, 0, v)
                 break
@@ -1383,8 +1487,9 @@ def render_all(out_dir, root, report, sizes):
         return occ_center(ns[0], top) if ns else (0, 0, 0)
     shot('fusebox_logic_explode.png', callouts=[
         (1, l_of('Cover', True), 'cover (snaps on)'), (2, l_of('Relay'), 'micro relays'), (3, l_of('Fuse_ATM_15A'), 'mini fuses'),
-        (4, l_of('StripBolt'), 'strip bolts, head on top'), (5, l_of('Base'), 'base (deck on 4 angular legs)'), (6, l_of('Strip_'), 'Bus 1 / Bus 2 strips, up from below'),
-        (7, l_of('Standoff'), 'standoffs 12 mm'), (8, l_of('Lug_'), 'feed lugs'), (9, l_of('LugBolt'), 'M5 x 8 lug bolts'), (10, l_of('Pan'), 'belly pan (snaps on)')],
+        (4, l_of('Base'), 'base: deck, cavity towers, spine between the strips'), (5, l_of('Strip_'), 'Bus 1 / Bus 2 strips on edge, slide in from the rear'),
+        (6, l_of('Lug_TE'), 'input jumper lugs, TE PIDG 53941-1'), (7, l_of('LugBolt_M4'), 'M4 x 8 + spring washer into the tapped strip'),
+        (8, l_of('Lug_Klauke'), 'feed lugs, M5 x 10 into the strip'), (9, l_of('Pan'), 'belly pan (snaps on)')],
         eye=(-330, -420, 240), target=(40.0, 90.0, 30.0))
     place({})
 
@@ -1418,7 +1523,7 @@ def render_all(out_dir, root, report, sizes):
         (2, bw(bp['relay'], 85), 'fuel pump relay, TE HCR150'), (3, bw(bp['plug'], 85), 'coil plug (Superseal 1.5)'),
         (4, bw(bp['fuse'], 45), 'AMI 40 A fuse'), (5, bw(bp['bar'], 25), 'copper bar: battery stud + fuse in'),
         (6, bw(bp['pad'], 25), 'copper pad: fuse out'), (7, bw(bp['ped'], 0), 'fuse pedestal (printed, part of the base)'),
-        (8, (sizes['BATTRELAY']['tabs'][0][0] + BX, sizes['BATTRELAY']['tabs'][0][1] + BY, 4.0), 'end tab, M5 (one each end)')],
+        (8, (sizes['BATTRELAY']['tabs'][0][0] + BX, sizes['BATTRELAY']['tabs'][0][1] + BY, 4.0), 'end tab, M6 + steel limiter (one each end)')],
         eye=(-260, -330, 200), target=(BX + 92.0, BY + 46.0, 80.0))
     place({})
     show(lambda n: True)
