@@ -22,6 +22,8 @@ Source: OpenLogicEFI KiCad files, `github.com/OpenLogicEFI/Hardware` → `Module
 
 **Which rev Dan has is unknown** (order #11139, `docs/devices/VR-WHEEL-SPEED-CONDITIONER.md`). Measure it, or read the rev on the silkscreen.
 
+**SUPERSEDED (DECISIONS S26, 2026-10-14): 3D-printed holder on the box floor, no carrier board; board = OpenLogicEFI Dual VR Conditioner (DetonationEMS). The rest of this section and sections 3-4 are the old reasoning, kept as history.**
+
 **Consequence:** the board is a plug-in module with no holes, so "standoffs matching the board's holes" is not possible as written. Proposed fix (Dan to approve):
 - a small carrier board (FR4 perfboard or a custom PCB) with a DIP-8 socket for the module and 4 x M3 holes on Keystone 25510 nylon standoffs, wires from the LP-16 cups to the carrier. The module stays removable and the carrier floats on nylon (R31: the PCB is isolated from the case).
 - The carrier size is a design choice, not a datasheet value. Proposed: 34 x 30 mm, holes 3.2 mm on a 28 x 24 mm grid.
@@ -80,7 +82,7 @@ Source: CNLINKO drawing **LP-16-xxxSX-02-1xxx, Rev A1, 2024-03-14**, sheets 1-2 
 2. **The VRC module has no mounting holes**, but vr-conditioner-bom.csv has 4 x standoffs and 4 x screws per box. A carrier board is needed (section 1).
 3. **vr-conditioner-bom.csv `ring_scr` row** runs a 22 AWG screen wire from the IN screens to an M6 ring "on bare case metal". DECISIONS R31 / R33 and SHIELD-RULES say nothing bonds to the case. Same family as OPEN-ITEMS row 75.
 4. **Box part:** the BOM says 1590WYFL, while DECISIONS rows 20/23/32 say 1590WUFL (OPEN-ITEMS row 64). A custom box would replace both.
-5. **SHIELD-RULES says the VRC box mounts on nylon hardware.** The tab slots below are sized for nylon M5 screws or shoulder washers, so the box stays isolated.
+5. **SHIELD-RULES says the VRC box mounts on nylon hardware.** The tab slots below were sized for nylon M5 screws (now M6, S26 E5; slots are 6.6 wide) or shoulder washers, so the box stays isolated.
 
 ---
 
@@ -94,8 +96,8 @@ connector back 12.6 + wire bend 8 + carrier 34 + wire bend 8 + connector back 12
 - Internal **76 x 36 x 32 mm**. Width and height cover the Ø30 nut zone and the 27.8 mm face height.
 - Walls 6 mm, floor 5 mm. The **end walls are counterbored Ø30 from the inside down to 3.5 mm** at each connector, which is within the 4.5 mm max and leaves thread for the rear nut. D-cutout Ø18.5 / flat 16.5, flat up.
 - Body outside about **88 x 48 x 37 mm**, plus a 6 mm lid, about **88 x 48 x 43 mm** closed.
-- Mounting: two tabs on the long sides at floor level, 12 mm out, 6 mm thick, slot 5.5 x 10 mm (M5 nylon). Footprint about **88 x 72 mm**.
-- Carrier on 4 x Keystone 25510 (10 mm) standing on M3 tapped bosses in the floor, with nylon screws from below, so no metal path reaches the carrier.
+- Mounting: two tabs on the long sides at floor level, 12 mm out, 6 mm thick, slot 6.6 x 10 mm (M6 nylon, S26 E5). Footprint about **88 x 72 mm**.
+- Board held by a 3D-printed holder fixed to the M3 tapped floor bosses with nylon M3 screws (S26 E1; was: carrier on 4 x Keystone 25510).
 - O-ring: groove centreline about 82 x 42 mm, corner R 10.7 (6W), length ≈ 229.6 mm. **AS568-039** (mean circumference 224.1 mm) gives about 2.4 % stretch, which holds it in the groove for inward pressure. Final groove numbers come from the CAD so the stretch lands at 1-3 %.
 - Six to eight M3 lid screws (4 corners, plus mid-sides if the span is over 60 mm).
 - Compared with the 1590WYFL (92 x 92 x 42, 122 mm over the flange), this is about 45 % of the footprint.
@@ -115,7 +117,7 @@ Fusion documents (new, my own): `ST185-VRC-Enclosure`, `ST185-CSB3-Enclosure`. T
 
 ---
 
-## 4. Questions for Dan
+## 4. Questions for Dan (all answered in DECISIONS S26: E1 printed holder, E2 Dual VR Conditioner, E4 NBR, E5 M6)
 1. VRC mounting: OK with a carrier board and DIP-8 socket (the module has no holes)? Or would you rather solder wires straight to the module pins and clamp the module in a nylon or POM cradle?
 2. Which VRC rev do you have (B2 or B3; the board is 24.1 x 22.6 or 24.1 x 24.1 mm)?
 3. OK to download TE's HD34-24-33PE STEP through the browser (needed for the CSB3 box depth)?
