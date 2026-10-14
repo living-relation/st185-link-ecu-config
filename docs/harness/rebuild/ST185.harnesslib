@@ -365,6 +365,19 @@
       "numberOfCavities": 4
     },
     {
+      "id": "cp_rly_maxi_co",
+      "partNumber": "TBD - 1 form C Maxi ISO relay (TE F7 V23134 is 1 form A only)",
+      "description": "RELAY, PLUG-IN, MAXI ISO, 1 FORM C, 5 POS, 12 VDC COIL, 40 A MIN NO CONTACT",
+      "manufacturer": "TBD",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_f7_load"
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
       "id": "4tMtF6fi0qAjcEn_edToC",
       "color": "Violet",
       "image": {

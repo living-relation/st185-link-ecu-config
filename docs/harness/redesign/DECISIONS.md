@@ -119,6 +119,7 @@ of these lines. Gates in brackets are the scripts in `docs/harness/` that check 
 ### Project files
 
 - **R67** (2026-10-13, layout updated 2026-10-13) Every ST185 file lives inside `C:\projects\active\st185-link-ecu-config`. No session creates a folder or file in the `C:\projects` root or in `C:\projects\_scratch`, `_tools`, `cad` or `inbox` for ST185 work - working files go in this repo's local `_research\` (untracked) or the tracked folder they belong in. CAD models are project files, never scratch: ALL CAD lives in the one repo `cad/` tree, by part (`cad/busbar/`, `cad/fusebox/`, `cad/enclosures/` (VRC, CSB3), `cad/drb102-plate/`), newest version of each model only (Daniel's named keepers excepted: all five bus bar versions); research and pick pages in `docs/research/` (latest of each topic only); route drawings in `docs/harness/routes/` (current revision only, git history keeps the rest); the live dashboard in `tools/dashboard/`. Heavy CAD - every model file (STEP, STL, Fusion `.f3d`) and the busbar drawing PDFs - stays local and gitignored (2026-10-13 deep dive), in the same `cad/` folder of the main checkout. [`.gitignore`]
+- **R74** (2026-10-14) Fusion has a 10 editable-document limit. CAD sessions reuse the existing Fusion documents (open and edit the one for that part), never create throwaway or test documents, and end by listing every finished document for Dan to set read-only so it stops counting against the limit. Dan's own wording: "Fusion has a 10 editable-file limit".
 
 ### Rule conflicts found in the 2026-10-12 consolidation
 
