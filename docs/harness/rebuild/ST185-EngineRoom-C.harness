@@ -123,7 +123,7 @@
         {
           "id": "c1",
           "designation": "C-1",
-          "signal": "[C 90980-10942 pin 1] IG-switched, MTA-2 MRS 7.5A *"
+          "signal": "[C 90980-10942 pin 1] IG-switched, LOGIC MRS 7.5A *"
         },
         {
           "id": "c2",
@@ -605,7 +605,7 @@
     {
       "id": "br_w_pmu_hl",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: HEAD LH, RFRM HL 15A + relay -> headlight LH H1 pin 3",
+      "signal": "Broken off - continues on ST185-CabinPower: HEAD LH, LOGIC HL 15A + relay -> headlight LH H1 pin 3",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -620,7 +620,7 @@
     {
       "id": "br_w_pmu_hr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: HEAD RH, RFRM HR 15A + relay -> headlight RH H2 pin 3",
+      "signal": "Broken off - continues on ST185-CabinPower: HEAD RH, LOGIC HR 15A + relay -> headlight RH H2 pin 3",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -635,7 +635,7 @@
     {
       "id": "br_w_pmu_horn",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: horn relay 87 (RFRM HN, HAZ-HORN 15A) -> horns H3 / H4",
+      "signal": "Broken off - continues on ST185-CabinPower: horn relay 87 (LOGIC HZ, HAZ-HORN 15A) -> horns H3 / H4",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -650,7 +650,7 @@
     {
       "id": "br_w_pmu_dome",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: DOME, RFRM DM 20A -> J/B1 1H-2",
+      "signal": "Broken off - continues on ST185-CabinPower: DOME, LOGIC DM 20A -> J/B1 1H-2",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -665,7 +665,7 @@
     {
       "id": "br_w_pmu_rtr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: RTR, LMI L3 30A -> IE1-3 (retract control relay R8)",
+      "signal": "Broken off - continues on ST185-CabinPower: RTR, POWER RTR 30A -> IE1-3 (retract control relay R8)",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -680,7 +680,7 @@
     {
       "id": "br_w_acp_1",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: A/C pressure switch +12V, MTA-3 ACPS 10A to A5-1",
+      "signal": "Broken off - continues on ST185-CabinPower: A/C pressure switch +12V, POWER ACPS 10A to A5-1",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -695,7 +695,7 @@
     {
       "id": "br_w_pdb_am1",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: AM1, LMI L4 40A to IE1-10",
+      "signal": "Broken off - continues on ST185-CabinPower: AM1, POWER AM1 40A to IE1-10",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -710,7 +710,7 @@
     {
       "id": "br_w_pdb_am2",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: AM2, LMI L5 30A to IE1-17",
+      "signal": "Broken off - continues on ST185-CabinPower: AM2, POWER AM2 30A to IE1-17",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -725,7 +725,7 @@
     {
       "id": "br_w_pdb_jb1",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: OEM HOT, LMI L6 60A to J/B1 1I-1",
+      "signal": "Broken off - continues on ST185-CabinPower: OEM HOT, POWER JB1 60A to J/B1 1I-1",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -740,7 +740,7 @@
     {
       "id": "br_w_rb4",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: heater relay 87 (MTA-2 HTR 40A) -> blower motor B4 pin 2",
+      "signal": "Broken off - continues on ST185-CabinPower: heater relay 87 (POWER HTR 40A) -> blower motor B4 pin 2",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -755,7 +755,7 @@
     {
       "id": "br_w_rb2",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: power relay 87 (MTA-3 PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
+      "signal": "Broken off - continues on ST185-CabinPower: power relay 87 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -800,7 +800,7 @@
     {
       "id": "br_w_haz",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: HAZ-HORN, RFRM HZ 15A fuse out -> hazard feed IE1-12",
+      "signal": "Broken off - continues on ST185-CabinPower: HAZ-HORN, LOGIC HZ 15A fuse out -> hazard feed IE1-12",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -891,7 +891,7 @@
       "id": "fl_h1_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.116 H1 pin 3 (R in the factory wiring, new wire here) headlight LH power <- RFRM HL - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "signal": "EWD 1993 p.116 H1 pin 3 (R in the factory wiring, new wire here) headlight LH power <- LOGIC HL - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
       "schematicPosition": {
         "x": 1320,
         "y": 540
@@ -906,7 +906,7 @@
       "id": "fl_h2_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.116 H2 pin 3 (R-Y in the factory wiring, new wire here) headlight RH power <- RFRM HR - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "signal": "EWD 1993 p.116 H2 pin 3 (R-Y in the factory wiring, new wire here) headlight RH power <- LOGIC HR - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
       "schematicPosition": {
         "x": 1320,
         "y": 600
@@ -967,7 +967,7 @@
     {
       "id": "br_w_rb2_wl",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58): RFRM WL 15A",
+      "signal": "Broken off - continues on ST185-CabinPower: door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58): LOGIC WL 15A",
       "width": 390,
       "layoutPosition": {
         "x": 3270,
@@ -1734,7 +1734,7 @@
       "id": "br_alt_s",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator S (G2-1) -> RFRM ALTS 2A, battery sense",
+      "signal": "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator S (G2-1) -> LOGIC ALTS 2A, battery sense",
       "schematicPosition": {
         "x": 4410,
         "y": 1800
@@ -1811,7 +1811,7 @@
       "id": "br_alt_s_cp",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: RFRM ALTS 2A (Bus 1) -> alternator S battery sense",
+      "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALTS 2A (Bus 1) -> alternator S battery sense",
       "schematicPosition": {
         "x": 3750,
         "y": 1920
@@ -2309,7 +2309,7 @@
         "id": "mrs_eps",
         "handle": "b5"
       },
-      "partId": "m16_20_7"
+      "partId": "m16_18_7"
     },
     {
       "id": "w_rb2_wl",
@@ -4691,7 +4691,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87 (glove box, ST185-CabinPower), passenger fender; 8 AWG (sized 2026-09-28 against the AMI-60 - sot/channels.csv k_eps c1)\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, MTA-2 MRS 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box MTA-3 ACPS, 10 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87 (glove box, ST185-CabinPower), passenger fender; 8 AWG (sized 2026-09-28 against the AMI-60 - sot/channels.csv k_eps c1)\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, LOGIC MRS 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box POWER box ACPS, 10 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.",
       "schematicPosition": {
         "x": 3210,
         "y": 2640
@@ -4714,7 +4714,7 @@
         "x": 4890,
         "y": 0
       },
-      "text": "RETRACT MOTOR WIRE SIZE (Dan 2026-10-13, J1; DECISIONS S20 / R63): RTR stays 30 A (LMI L3, factory value for the motor start current). The motor current path is R8 -> pin 4 -> motor -> pin 5 -> EB (1993 EWD p.117), so pin 4 and pin 5 run 12 AWG (good for 30 A) from the IE1 landing / EB to a splice at each motor breakout, then a SHORT 16 AWG pigtail into the Toyota 5-pin plug, which will not take 12 AWG. Pigtail 150 mm (6 in) max - keep it as short as the plug allows. Splices sp_rtr_r2_4 / sp_rtr_r3_4 / sp_rtr_gnd_r2 / sp_rtr_gnd_r3 = 12 + 16 AWG, combined 11 AWG (crimp splice 14-10, R36). Pin 2 (R8 relay coil through the motor's limit cam) and pins 1 / 3 (limit sense through the motor's diodes to R8-7 / R8-11) carry no motor current: they stay 16 / 18 AWG as drawn."
+      "text": "RETRACT MOTOR WIRE SIZE (Dan 2026-10-13, J1; DECISIONS S20 / R63): RTR stays 30 A (POWER RTR, factory value for the motor start current). The motor current path is R8 -> pin 4 -> motor -> pin 5 -> EB (1993 EWD p.117), so pin 4 and pin 5 run 12 AWG (good for 30 A) from the IE1 landing / EB to a splice at each motor breakout, then a SHORT 16 AWG pigtail into the Toyota 5-pin plug, which will not take 12 AWG. Pigtail 150 mm (6 in) max - keep it as short as the plug allows. Splices sp_rtr_r2_4 / sp_rtr_r3_4 / sp_rtr_gnd_r2 / sp_rtr_gnd_r3 = 12 + 16 AWG, combined 11 AWG (crimp splice 14-10, R36). Pin 2 (R8 relay coil through the motor's limit cam) and pins 1 / 3 (limit sense through the motor's diodes to R8-7 / R8-11) carry no motor current: they stay 16 / 18 AWG as drawn."
     }
   ],
   "wireParts": [

@@ -12,7 +12,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12V CONSTANT - RFRM ALM 5A *, broken off to ST185-CabinPower",
+          "signal": "+12V CONSTANT - LOGIC ALM 5A *, broken off to ST185-CabinPower",
           "designation": "1",
           "contactPartId": "ct_hdp16s"
         },
@@ -100,7 +100,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12V CONSTANT - RFRM ALMS 2A (ST185-CabinPower)",
+          "signal": "+12V CONSTANT - LOGIC ALMS 2A (ST185-CabinPower)",
           "designation": "A",
           "contactPartId": "ct_hdp16s"
         },
@@ -222,7 +222,7 @@
       "id": "t_at_12v",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: RFRM ALM 5A (Bus 1, permanent) -> alarm +12V constant",
+      "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALM 5A (Bus 1, permanent) -> alarm +12V constant",
       "layoutPosition": {
         "x": 1200,
         "y": 360
@@ -237,7 +237,7 @@
       "id": "t_at_ig",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: RFRM ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
+      "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
       "layoutPosition": {
         "x": 960,
         "y": 330
@@ -364,7 +364,7 @@
       "id": "t_at_12v_shk",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: RFRM ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
+      "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
       "layoutPosition": {
         "x": 1320,
         "y": 420
@@ -1120,7 +1120,7 @@
   "schematicNotes": [
     {
       "id": "note_at_scope",
-      "text": "ST185 ANTI-THEFT HARNESS\nHarness side = Deutsch DT sockets (TE), gold 0462-201-1631 (owned stock).\nDevice leads get DT04 pin mates - see NEED-TO-BUY.md, not drawn (device side).\nAll conductors 20 AWG to fit DT size-16 contacts (20-16 AWG).\nTIE-IN = generic butt splice onto the car lead. Fused feeds come from the RFRM (ALM 5A, ALMS 2A, ALMIG 2A) on ST185-CabinPower, broken off.\nGrounds: 3 generic M6 rings stacked on one cabin stud (max 2 x 20 AWG per ring).\nBundle lengths are estimates - final tape-measure pass sets them.\nFolds into ST185-CabinAccessory in the Option C restructure.",
+      "text": "ST185 ANTI-THEFT HARNESS\nHarness side = Deutsch DT sockets (TE), gold 0462-201-1631 (owned stock).\nDevice leads get DT04 pin mates - see NEED-TO-BUY.md, not drawn (device side).\nAll conductors 20 AWG to fit DT size-16 contacts (20-16 AWG).\nTIE-IN = generic butt splice onto the car lead. Fused feeds come from the LOGIC box (ALM 5A, ALMS 2A, ALMIG 2A) on ST185-CabinPower, broken off.\nGrounds: 3 generic M6 rings stacked on one cabin stud (max 2 x 20 AWG per ring).\nBundle lengths are estimates - final tape-measure pass sets them.\nFolds into ST185-CabinAccessory in the Option C restructure.",
       "schematicPosition": {
         "x": 2490,
         "y": 0
@@ -1136,7 +1136,7 @@
     },
     {
       "id": "note_at_bay",
-      "text": "NO RELAY OR FUSE IN THE ENGINE BAY.\nThe siren is in the bay but its feed comes from the cabin fuse box (RFRM).\nThe park-lamp flash output drives a relay in the CABIN block.",
+      "text": "NO RELAY OR FUSE IN THE ENGINE BAY.\nThe siren is in the bay but its feed comes from the cabin LOGIC box.\nThe park-lamp flash output drives a relay in the CABIN block.",
       "schematicPosition": {
         "x": 2490,
         "y": 810
@@ -1144,7 +1144,7 @@
     },
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nAlarm module - main harness (D 1: +12V CONSTANT - from the fuse box RFRM ALM 5A (ST185-CabinPower). Alarm must stay live with the key off.\nAlarm module - main harness (D 2: GROUND - cabin chassis stud, same stud as the rest of the accessory loom\nAlarm module - main harness (D 3: IGNITION SENSE - +12V key-on, tells the alarm the car is running\nAlarm module - main harness (D 4: SIREN + - switched +12V out, 2A. Siren is in the bay, this feed comes from the cabin.\nAlarm module - main harness (D 5: PARKING LIGHT OUT - flashes the park lamps on trigger. Drive the OEM circuit through a relay in the CABIN block, not a bay relay.\nAlarm module - main harness (D 6: DOOR TRIGGER IN - negative. OEM door courtesy switches.\nAlarm module - main harness (D 9: IMMOBILISER OUT - grounds when armed. Goes to a G4X DIGITAL INPUT, not a starter-kill relay. The ECU does the fuel and ignition cut.\nAlarm module - main harness (D 12: SHOCK SENSOR TRIGGER IN - negative, from the sensor's signal pin\nshock (label): Shock / tilt sensor (replaces the OEM glass-break sensor)\nStatus LED (dash) 2: LED cathode to ground. Kit LED - module limits the current.\nt_at_12v: +12V CONSTANT, RFRM ALM 5A (ST185-CabinPower, broken off). NOT the engine bay.\nt_at_gnd: Cabin chassis ground stud M6 - ring A (alarm + siren)\nt_at_door: OEM door courtesy switches - negative when a door opens\nt_at_hood: Hood pin switch - ADD ONE, the car has no factory hood pin\nt_at_park: Park lamp flash - to a relay in the CABIN block, never a bay relay\nt_at_gnd_b: Cabin chassis ground stud M6 - ring B (shock + LED)\nt_at_12v_shk: +12V CONSTANT, 2A fuse, RFRM ALMS 2A - shock sensor feed",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nAlarm module - main harness (D 1: +12V CONSTANT - from the fuse box LOGIC ALM 5A (ST185-CabinPower). Alarm must stay live with the key off.\nAlarm module - main harness (D 2: GROUND - cabin chassis stud, same stud as the rest of the accessory loom\nAlarm module - main harness (D 3: IGNITION SENSE - +12V key-on, tells the alarm the car is running\nAlarm module - main harness (D 4: SIREN + - switched +12V out, 2A. Siren is in the bay, this feed comes from the cabin.\nAlarm module - main harness (D 5: PARKING LIGHT OUT - flashes the park lamps on trigger. Drive the OEM circuit through a relay in the CABIN block, not a bay relay.\nAlarm module - main harness (D 6: DOOR TRIGGER IN - negative. OEM door courtesy switches.\nAlarm module - main harness (D 9: IMMOBILISER OUT - grounds when armed. Goes to a G4X DIGITAL INPUT, not a starter-kill relay. The ECU does the fuel and ignition cut.\nAlarm module - main harness (D 12: SHOCK SENSOR TRIGGER IN - negative, from the sensor's signal pin\nshock (label): Shock / tilt sensor (replaces the OEM glass-break sensor)\nStatus LED (dash) 2: LED cathode to ground. Kit LED - module limits the current.\nt_at_12v: +12V CONSTANT, LOGIC ALM 5A (ST185-CabinPower, broken off). NOT the engine bay.\nt_at_gnd: Cabin chassis ground stud M6 - ring A (alarm + siren)\nt_at_door: OEM door courtesy switches - negative when a door opens\nt_at_hood: Hood pin switch - ADD ONE, the car has no factory hood pin\nt_at_park: Park lamp flash - to a relay in the CABIN block, never a bay relay\nt_at_gnd_b: Cabin chassis ground stud M6 - ring B (shock + LED)\nt_at_12v_shk: +12V CONSTANT, 2A fuse, LOGIC ALMS 2A - shock sensor feed",
       "schematicPosition": {
         "x": 2490,
         "y": 990

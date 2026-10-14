@@ -51,14 +51,14 @@ every commit.
 | `XTREMEX-IO-TABLE.html` | Visual face of the ECU SoT, with a generated pin map |
 | `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: the A-pin relay coil wires (broken off to the box), the BRZ APS pedal connector (Rule 3 crossover c), front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
 | `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: the B-pin relay coil wires (broken off to the box), fuel level branch, rear wheel-speed spur, the APS B33 leg broken off from A-cabin (Rule 3 crossover c) |
-| `docs/harness/rebuild/ST185-CabinPower.harness` | Glove-box fuse box (LMI + RFRM + 3x MTA) with the ECU-switched relays seated in it, battery feed, fuel pump run (non-ECU) |
+| `docs/harness/rebuild/ST185-CabinPower.harness` | Glove-box POWER + LOGIC fuse boxes (DECISIONS R75, CAD rev 5) with the ECU-switched relays seated in them (all but `k_fp`), battery feed (non-ECU) |
 | `docs/harness/rebuild/ST185-CSB3.harness` | ECUMaster CSB3 plug and switch inputs (non-ECU) |
 | `docs/harness/rebuild/ST185-A-engine.harness` | Bulkhead A engine half to every A-letter engine device (Rule 3) |
 | `docs/harness/rebuild/ST185-B-engine.harness` | Bulkhead B engine half to every B-letter engine device, ETB motor (Rule 3) |
 | `docs/harness/rebuild/ST185-CAN.harness` | CAN backbone - the only drawing with CAN H/L |
 | `docs/harness/rebuild/ST185-EngineRoom-C.harness` | Loom C engine room, no bulkhead |
 | `docs/harness/rebuild/ST185-WheelSpeed-Front.harness` / `-Rear.harness` | Wheel-speed Y harnesses to VRC endpoints and `IX_WS_FRONT` / `IX_WS_REAR` |
-| `docs/harness/rebuild/ST185-RearFuel.harness` | Fuel level sender behind `IX_FUEL_LVL` |
+| `docs/harness/rebuild/ST185-RearFuel.harness` | Fuel level sender behind `IX_FUEL_LVL`; fuel pump + ground, fed from `k_fp` (HeavyDC battery relay block) |
 | `docs/harness/interfaces.json` | Ownership registry: interfaces, endpoints, flying leads, references |
 | `docs/harness/rebuild/ST185-ClusterLED.harness` | Cluster warning LEDs |
 | `docs/harness/rebuild/ST185-AntiTheft.harness` | Anti-theft |
@@ -187,7 +187,7 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     wire reaching a B-letter device cavity (`docs/harness/validate_bulkhead_letter.py`
     `ALLOW["c"]`). The throttle **body** (A20 relay trigger, B5 supply, B18/B26 motor,
     A22/A33 sensors) is engine-bay wiring.
-  - The injector rail (RFRM INJ 15 A) and COP rail (RFRM COP 20 A) are **not** a crossover:
+  - The injector rail (LOGIC INJ 15 A) and COP rail (LOGIC COP 15 A) are **not** a crossover:
     non-ECU power follows its device's ECU signal letter, so they cross on the A side, on
     bulkhead A c48 / c49 of the shared DRB102 (`docs/harness/DRB102-CAVITY-MAP.md`). The
     earlier `IX_RAIL_A` DTP pass-through is retired (2026-09-29). Crossover (d) is retired
@@ -211,10 +211,11 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
   them.
 - The ECUMaster CSB3 plug and its switch inputs are their own non-ECU harness,
   `ST185-CSB3` (keeps `ST185-A-cabin` under the harness.design 100-connection limit).
-- The glove-box fuse box (LMI + RFRM + 3x MTA, Option B 2026-10-11), battery feed ring and
-  fuel pump run are the non-ECU harness `ST185-CabinPower` (Daniel, 2026-09-28, same reason).
-  The box lives in that file only; every other file reaches it through broken-off pairs. The ECU-switched
-  relays sit in the box (Option B) and are drawn there; their ECU coil (85) wires stay on the ECU loom of
+- The glove-box POWER + LOGIC fuse boxes (DECISIONS R75, CAD rev 5) and the battery feed ring
+  are the non-ECU harness `ST185-CabinPower` (Daniel, 2026-09-28, same reason). The fuel pump
+  relay `k_fp` sits in the battery relay block in the trunk, drawn in `ST185-HeavyDC`; the pump
+  run is `ST185-RearFuel`. The boxes live in that file only; every other file reaches it through broken-off pairs. The ECU-switched
+  relays sit in the boxes and are drawn there; their ECU coil (85) wires stay on the ECU loom of
   the pin's letter (`ST185-A-cabin` / `ST185-B-cabin`) and break off to the box (2026-10-11, OPEN-ITEMS row 45).
 - Every other loom stays as it is: `EngineRoom-C`, `CAN`, `ClusterLED`, `AntiTheft`,
   `WheelSpeed-Front` / `-Rear`, `RearFuel`, `HeavyDC`, `RearLights` (added 2026-10-13). `ACAmp-Spur` and `APS-Pedal` were

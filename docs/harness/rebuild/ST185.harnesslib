@@ -339,7 +339,6 @@
       "configurations": [
         {
           "id": "cfg",
-          "mountPartId": "mt_vcf7",
           "contactPartId": "ct_f7_load"
         }
       ],
@@ -358,7 +357,6 @@
       "configurations": [
         {
           "id": "cfg",
-          "mountPartId": "mt_vcf7",
           "contactPartId": "ct_f7_load"
         }
       ],
@@ -366,9 +364,9 @@
     },
     {
       "id": "cp_rly_maxi_co",
-      "partNumber": "TBD - 1 form C Maxi ISO relay (TE F7 V23134 is 1 form A only)",
-      "description": "RELAY, PLUG-IN, MAXI ISO, 1 FORM C, 5 POS, 12 VDC COIL, 40 A MIN NO CONTACT",
-      "manufacturer": "TBD",
+      "partNumber": "1-1904020-2",
+      "description": "RELAY, PLUG-IN, MINI ISO, TE POWER RELAY B V23234-A0001-X032, 1 FORM C, NO 35 A AT 85 C, 12 VDC COIL, 680 OHM PARALLEL RESISTOR",
+      "manufacturer": "TE Connectivity",
       "configurations": [
         {
           "id": "cfg",
@@ -526,8 +524,7 @@
       "configurations": [
         {
           "id": "cfg",
-          "mountPartId": "mt_relay_skt",
-          "contactPartId": "ct_relay_63"
+          "contactPartId": "ct_faston63"
         }
       ],
       "numberOfCavities": 5
@@ -540,7 +537,7 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_rfrm"
+          "contactPartId": "ct_faston63"
         }
       ],
       "numberOfCavities": 5
@@ -553,7 +550,7 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_rfrm"
+          "contactPartId": "ct_faston63"
         }
       ],
       "numberOfCavities": 5
@@ -566,7 +563,7 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_rfrm"
+          "contactPartId": "ct_faston63"
         }
       ],
       "numberOfCavities": 5
@@ -1320,6 +1317,48 @@
       "manufacturer": "generic",
       "numberOfCavities": 20,
       "configurations": []
+    },
+    {
+      "id": "cp_fb_power",
+      "partNumber": "ST185-FB-POWER rev 5",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BOX, FUSE AND RELAY, POWER, PRINTED PA12, COPPER BAR, 7 AMI IN, 7 AMI OUT, 7 MINI ISO RELAY, 1 MINI FUSE",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_klauke_2r5"
+        }
+      ]
+    },
+    {
+      "id": "cp_fb_logic",
+      "partNumber": "ST185-FB-LOGIC rev 5",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BOX, FUSE AND RELAY, LOGIC, PRINTED PA12, 2 COPPER STRIP, 25 MINI FUSE, 10 MICRO RELAY",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_minifuse_tbd"
+        }
+      ]
+    },
+    {
+      "id": "cp_fb_batt",
+      "partNumber": "ST185-FB-BATT rev 5",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BLOCK, RELAY AND FUSE, PRINTED PA12, COPPER BAR, M6 STUD, 1 AMI FUSE, 1 HCR 150 RELAY",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_ring_m6_8"
+        }
+      ]
     }
   ],
   "contactParts": [
@@ -1784,6 +1823,102 @@
       "description": "TERMINAL, LUG, RING, COPPER, TINNED, 6 AWG, M5 STUD, ADHESIVE HEATSHRINK",
       "contactColor": "Silver",
       "manufacturer": "generic"
+    },
+    {
+      "id": "ct_faston63",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "42281-1",
+      "description": "TERMINAL, FASTON, RECEPTACLE, 6.35 MM, 18-14 AWG, TIN PLATED",
+      "manufacturer": "TE Connectivity",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 14
+      }
+    },
+    {
+      "id": "ct_faston48_tbd",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "TBD - TE receptacle 4.8 x 0.8, 20-18 AWG",
+      "description": "TERMINAL, RECEPTACLE, 4.8 X 0.8 MM",
+      "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "ct_faston95_8_tbd",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "TBD - TE FASTON 9.5 receptacle, 8 AWG",
+      "description": "TERMINAL, FASTON, RECEPTACLE, 9.5 MM, 8 AWG",
+      "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "ct_minifuse_tbd",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "TBD - mini fuse receptacle 2.8 (880398-2 candidate)",
+      "description": "TERMINAL, RECEPTACLE, 2.8 MM, MINI BLADE FUSE",
+      "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "ct_klauke_2r5",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "2R5",
+      "description": "TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD",
+      "manufacturer": "Klauke",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      }
+    },
+    {
+      "id": "ct_klauke_3r5",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "3R5",
+      "description": "TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 16 MM2, M5 STUD",
+      "manufacturer": "Klauke",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 6
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 6
+      }
+    },
+    {
+      "id": "ct_klauke_6r8",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "6R8",
+      "description": "TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 50 MM2, M8 STUD",
+      "manufacturer": "Klauke",
+      "minGauge": {
+        "unit": "Metric",
+        "value": 50
+      },
+      "maxGauge": {
+        "unit": "Metric",
+        "value": 50
+      }
+    },
+    {
+      "id": "ct_ring_m5_12_tbd",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "TBD - TE ring tongue M5, 12-10 AWG",
+      "description": "TERMINAL, RING, M5 STUD, 12-10 AWG",
+      "manufacturer": "TE Connectivity"
     }
   ],
   "coveringParts": [],
@@ -2134,6 +2269,38 @@
       },
       "partNumber": "GENERIC RING M8 22-16",
       "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_lug_m8_50",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "Metric",
+        "value": 50
+      },
+      "minGauge": {
+        "unit": "Metric",
+        "value": 50
+      },
+      "partNumber": "GENERIC LUG M8 50MM2",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M8 STUD, ADHESIVE HEATSHRINK",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_ring_m8_16_14",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "partNumber": "GENERIC RING M8 16-14",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 16-14 AWG",
       "manufacturer": "generic"
     }
   ],
