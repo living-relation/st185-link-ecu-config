@@ -988,7 +988,7 @@
       "id": "fl_acamp_sg",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD p.150 A34-TBD TBD A/C coolant switch return - solder sleeve into the factory sensor-return lead at the amplifier",
+      "signal": "EWD 1990 p.148 + p.150 (1993 TIS EWD p.211-212 agrees) A34 (auto A/C amplifier conn C)-15 V-W sensor common SG - the TAM (A1 pin 1) and TW (A27 pin 3) returns join at splice I11 and land on A34-15 - solder sleeve into the factory sensor-return lead at the amplifier",
       "schematicPosition": {
         "x": 4230,
         "y": 1170

@@ -22,7 +22,7 @@
       "id": "fl_cl_c11_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD C11-2 G-B Turn L - flasher LH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector",
+      "signal": "EWD 1993 p.206 (1993 code C13 (B)) C11-2 G-B Turn L - flasher LH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector",
       "schematicPosition": {
         "x": 0,
         "y": 0
@@ -37,7 +37,7 @@
       "id": "fl_cl_c11_c11",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD C11-11 G-Y Turn R - flasher RH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector",
+      "signal": "EWD 1993 p.206 (1993 code C13 (B)) C11-11 G-Y Turn R - flasher RH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector",
       "schematicPosition": {
         "x": 0,
         "y": 60
@@ -52,7 +52,7 @@
       "id": "fl_cl_c11_c12",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD C11-12 R-L High beam - body residual feed - solder sleeve into the factory lead on the dash-harness side of the meter connector",
+      "signal": "EWD 1993 p.206 (1993 code C13 (B)) C11-12 R-L High beam - body residual feed - solder sleeve into the factory lead on the dash-harness side of the meter connector",
       "schematicPosition": {
         "x": 0,
         "y": 120
@@ -67,7 +67,7 @@
       "id": "fl_cl_c12_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder sleeve into the factory lead on the dash-harness side of the meter connector",
+      "signal": "EWD 1993 p.206 (1993 code C14 (C)) C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder sleeve into the factory lead on the dash-harness side of the meter connector",
       "schematicPosition": {
         "x": 0,
         "y": 180

@@ -846,7 +846,7 @@
       "id": "fl_oem_jb1_1h_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.132 J/B1 1H-2 20A DOME feed into J/B1 (interior lights) - crimp butt splice into the factory 1H-2 lead at J/B1 (cabin side; engine-room main removed)",
+      "signal": "EWD 1993 p.132 J/B1 1H-2 L-Y 20A DOME feed into J/B1 (interior lights) - crimp butt splice into the factory 1H-2 lead at J/B1 (cabin side; engine-room main removed)",
       "schematicPosition": {
         "x": 1320,
         "y": 300
@@ -3629,37 +3629,65 @@
     {
       "id": "bn_bp_360__fl_h1_c3",
       "sourceId": "bp_360",
-      "targetId": "fl_h1_c3"
+      "targetId": "fl_h1_c3",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
     },
     {
       "id": "bn_bp_300__fl_h2_c3",
       "sourceId": "bp_300",
-      "targetId": "fl_h2_c3"
+      "targetId": "fl_h2_c3",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
     },
     {
       "id": "bn_bp_330__bp_horn",
       "sourceId": "bp_330",
-      "targetId": "bp_horn"
+      "targetId": "bp_horn",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
     },
     {
       "id": "bn_bp_horn__horn_lh",
       "sourceId": "bp_horn",
-      "targetId": "horn_lh"
+      "targetId": "horn_lh",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
     },
     {
       "id": "bn_bp_horn__horn_rh",
       "sourceId": "bp_horn",
-      "targetId": "horn_rh"
+      "targetId": "horn_rh",
+      "length": {
+        "value": 250,
+        "unit": "mm"
+      }
     },
     {
       "id": "bn_bp_240__t_gnd_ea_h3",
       "sourceId": "bp_240",
-      "targetId": "t_gnd_ea_h3"
+      "targetId": "t_gnd_ea_h3",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     },
     {
       "id": "bn_bp_270__t_gnd_ea_h4",
       "sourceId": "bp_270",
-      "targetId": "t_gnd_ea_h4"
+      "targetId": "t_gnd_ea_h4",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     },
     {
       "id": "bn_bp_900__br_w_eps_rly_e",
@@ -4141,17 +4169,29 @@
     {
       "id": "bn_bp_210__t_gnd_eb_f7",
       "sourceId": "bp_210",
-      "targetId": "t_gnd_eb_f7"
+      "targetId": "t_gnd_eb_f7",
+      "length": {
+        "value": 1430,
+        "unit": "mm"
+      }
     },
     {
       "id": "bn_bp_210__t_gnd_eb_rtr",
       "sourceId": "bp_210",
-      "targetId": "t_gnd_eb_rtr"
+      "targetId": "t_gnd_eb_rtr",
+      "length": {
+        "value": 1430,
+        "unit": "mm"
+      }
     },
     {
       "id": "bn_bp_240__t_gnd_ea_f8",
       "sourceId": "bp_240",
-      "targetId": "t_gnd_ea_f8"
+      "targetId": "t_gnd_ea_f8",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     },
     {
       "id": "bn_bp_450__bp_alt",

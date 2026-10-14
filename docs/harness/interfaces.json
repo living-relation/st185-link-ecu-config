@@ -291,11 +291,11 @@
       "harness": "CSB3",
       "terminal": "fl_clutch_sw_c1",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
-        "connector": "Clutch switch",
-        "pin": "TBD",
-        "color": "TBD",
-        "function": "clutch switch signal -> CSB3 S6",
+        "page": "1993 TIS EWD p.66 (Starting and Ignition, All-Trac)",
+        "connector": "C11 clutch start switch (1993 code)",
+        "pin": "1",
+        "color": "B",
+        "function": "clutch switch signal -> CSB3 S6 (switch closes with the pedal down; pin 2 W-B is its own ground to IG, so pin 1 reads ground-active; the old starter-relay coil lead, no clutch-start interlock R21)",
         "method": "solder sleeve into the factory lead"
       }
     },
@@ -347,11 +347,11 @@
       "harness": "B-cabin",
       "terminal": "fl_ign_sw_c1",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
-        "connector": "Ignition switch I13",
-        "pin": "TBD",
-        "color": "TBD",
-        "function": "IGN ON -> ECU-B B28",
+        "page": "1993 TIS EWD p.62 (Power Source)",
+        "connector": "J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5)",
+        "pin": "7",
+        "color": "B-O",
+        "function": "IGN ON (IG2) -> ECU-B B28",
         "method": "solder sleeve into the factory lead"
       }
     },
@@ -361,11 +361,11 @@
       "harness": "B-cabin",
       "terminal": "fl_start_req_c1",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
-        "connector": "Ignition switch (ST)",
-        "pin": "TBD",
-        "color": "TBD",
-        "function": "start request -> ECU-B B30",
+        "page": "1993 TIS EWD p.66 (Starting and Ignition, All-Trac)",
+        "connector": "R/B No.4 starter relay socket lead (block removed, R12; ST1 from I13 pin 7)",
+        "pin": "1",
+        "color": "B-W",
+        "function": "start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net)",
         "method": "solder sleeve into the factory lead"
       }
     },
@@ -476,7 +476,7 @@
         "page": "1993 p.132",
         "connector": "J/B1 1H",
         "pin": "2",
-        "color": "TBD - not read off the 1993 EWD page",
+        "color": "L-Y",
         "function": "20A DOME feed into J/B1 (interior lights)",
         "method": "crimp butt splice into the factory 1H-2 lead at J/B1 (cabin side; engine-room main removed)"
       }
@@ -557,7 +557,7 @@
       "harness": "ClusterLED",
       "terminal": "fl_cl_c11_c2",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
+        "page": "1993 TIS EWD p.206 (Combination Meter; the 1993 book codes this plug C13 (B))",
         "connector": "C11",
         "pin": "2",
         "color": "G-B",
@@ -571,7 +571,7 @@
       "harness": "ClusterLED",
       "terminal": "fl_cl_c11_c11",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
+        "page": "1993 TIS EWD p.206 (Combination Meter; the 1993 book codes this plug C13 (B))",
         "connector": "C11",
         "pin": "11",
         "color": "G-Y",
@@ -585,7 +585,7 @@
       "harness": "ClusterLED",
       "terminal": "fl_cl_c11_c12",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
+        "page": "1993 TIS EWD p.206 (Combination Meter; the 1993 book codes this plug C13 (B))",
         "connector": "C11",
         "pin": "12",
         "color": "R-L",
@@ -599,7 +599,7 @@
       "harness": "ClusterLED",
       "terminal": "fl_cl_c12_c1",
       "ewd": {
-        "page": "TBD - page not recorded in this repo yet",
+        "page": "1993 TIS EWD p.206 (Combination Meter; the 1993 book codes this plug C14 (C))",
         "connector": "C12",
         "pin": "1",
         "color": "R-G",
@@ -655,11 +655,11 @@
       "harness": "A-cabin",
       "terminal": "fl_acamp_sg",
       "ewd": {
-        "page": "p.150",
+        "page": "1990 p.148 + p.150 (1993 TIS EWD p.211-212 agrees)",
         "connector": "A34 (auto A/C amplifier conn C)",
-        "pin": "TBD - sensor-return pin is not on p.150",
-        "color": "TBD",
-        "function": "A/C coolant switch return",
+        "pin": "15",
+        "color": "V-W",
+        "function": "sensor common SG - the TAM (A1 pin 1) and TW (A27 pin 3) returns join at splice I11 and land on A34-15",
         "method": "solder sleeve into the factory sensor-return lead at the amplifier"
       }
     },

@@ -7,7 +7,7 @@ device-side leads (`fl_a4_3`, `fl_a5_4`) are on `ST185-EngineRoom-C`, crossing
 between the two files as broken-off pairs `BR_AC_MG` / `BR_AC_PSW`
 (`docs/harness/interfaces.json`). The pin/colour/source facts below are
 unchanged - only which file draws each terminal changed. No OEM A/C
-housings are in either file. Solar sensor is not drawn. Ambient (TAM / TAM_RTN) is
+housings are in either file. Solar sensor is not drawn. Ambient (TAM; return on the TW_RTN common) is
 not this pass.
 
 Daniel (2026-09-30): 1990–1993 A/C amplifier and auto A/C amplifier pinouts are
@@ -49,4 +49,4 @@ The flying-lead insulation on the VC-coil and pressure leads follows the factory
 ## Out of scope
 
 - Dashboard solar sensor — not drawn.
-- Ambient air temperature sensor (TAM / TAM_RTN, A34-6 / return TBD) — not added.
+- Ambient air temperature sensor (TAM, A34-6 / return A34-15 SG, the sensor common shared with TW - `sot/channels.csv` TW_RTN) — not added.

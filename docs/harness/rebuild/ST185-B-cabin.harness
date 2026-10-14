@@ -921,7 +921,7 @@
       "id": "fl_start_req_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD Ignition switch (ST)-TBD TBD start request -> ECU-B B30 - solder sleeve into the factory lead",
+      "signal": "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) R/B No.4 starter relay socket lead (block removed, R12; ST1 from I13 pin 7)-1 B-W start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net) - solder sleeve into the factory lead",
       "schematicPosition": {
         "x": 660,
         "y": 960
@@ -936,7 +936,7 @@
       "id": "fl_ign_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD Ignition switch I13-TBD TBD IGN ON -> ECU-B B28 - solder sleeve into the factory lead",
+      "signal": "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5)-7 B-O IGN ON (IG2) -> ECU-B B28 - solder sleeve into the factory lead",
       "schematicPosition": {
         "x": 660,
         "y": 810
