@@ -28,7 +28,6 @@ Bucket = Area column (Research counts as Harness wiring; Tooling / Docs as House
 Blocks progress:
 
 1. Row 88 - glove-box bus bar is on hold while Daniel finishes the custom CAD (placeholder `PDB-M8x8` and the Blue Sea EXTRA lines stay).
-2. Rows 11 / 12 - EWD page / pin / colour still TBD on 12 flying leads (no guessing); they keep the build list incomplete.
 
 | # | Area | Item | Owner | Source | Status | What unblocks it |
 |---|---|---|---|---|---|---|
