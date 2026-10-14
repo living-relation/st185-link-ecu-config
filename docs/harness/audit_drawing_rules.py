@@ -20,7 +20,7 @@ splices - a connector never joins its own cavities.
       piece, walking away from one end (the leftmost or the rightmost node), x never doubles back -
       a branch may drop straight up or down but never runs back past its parent. The SCHEMATIC has no
       direction rule (center-out around the main connector is fine); it only must not overlap
-  G3  no two schematic nodes (connectors, terminals, splices, notes) overlap
+  G3  no two schematic nodes (connectors, terminals, splices, cables, notes) overlap
       (estimated boxes - connector height = 30 per cavity + header, note height from its text)
 
 Exit 1 on any finding.
@@ -91,6 +91,10 @@ def boxes(d):
         p = s.get("schematicPosition")
         if p:
             out.append((s["id"], p["x"], p["y"], 30, 30))
+    for c in d.get("cables", []):      # app node: 60 wide, header + one row per core / screen
+        p = c.get("schematicPosition")
+        if p:
+            out.append((c["id"], p["x"], p["y"], 60, 30 * (len(c.get("cores", [])) + 1 + bool(c.get("shield")))))
     for n in d.get("schematicNotes", []):
         p = n.get("schematicPosition")
         if p:

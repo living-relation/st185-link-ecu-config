@@ -46,7 +46,7 @@ What it runs, in order - every one in HARD is a hard gate:
                            no broken attributes, a top view after every figure, no
                            overlapping markers in one figure)
 
-SOFT (reported, not failing): audit_wire_spacing.py, until the re-routed drawings land.
+SOFT (reported, not failing): none at present.
 
 The generators run in --check mode here: they rebuild in memory and fail
 if the committed file is stale, but never write. So check_all.py leaves the tree
@@ -68,11 +68,11 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_logic_gauge.py"], ["audit_shields.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["audit_shared_connectors.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
-        ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"],
+        ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["audit_wire_spacing.py"],
         ["audit_dan_rules.py"], ["buylist.py", "--check"],
         ["buildlist.py", "--check"], ["check_route_drawings.py"],
         ["../../cad/fusebox/src/parts_lists.py", "--check"]]   # DECISIONS R82: every fuse box part is real and buyable
-SOFT = [["audit_wire_spacing.py"]]   # DECISIONS R86: HARD once the re-routed drawings land
+SOFT = []
 # 2026-10-14: check_route_drawings went HARD - its last finding (Route 1 Fig. 4, an EWD
 # sheet with no top view) got a top view, so it reported zero (OPEN-ITEMS row 65).
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy

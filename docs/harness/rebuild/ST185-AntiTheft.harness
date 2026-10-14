@@ -496,7 +496,23 @@
       "target": {
         "id": "alarm",
         "handle": "c1"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_12v_lp1",
+          "schematicPosition": {
+            "x": 630,
+            "y": 0
+          }
+        },
+        {
+          "id": "w_at_12v_lp2",
+          "schematicPosition": {
+            "x": 630,
+            "y": 30
+          }
+        }
+      ]
     },
     {
       "id": "w_at_ig",
@@ -509,7 +525,23 @@
       "target": {
         "id": "alarm",
         "handle": "c3"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_ig_lp1",
+          "schematicPosition": {
+            "x": 570,
+            "y": 90
+          }
+        },
+        {
+          "id": "w_at_ig_lp2",
+          "schematicPosition": {
+            "x": 630,
+            "y": 90
+          }
+        }
+      ]
     },
     {
       "id": "w_at_siren",
@@ -522,7 +554,37 @@
       "target": {
         "id": "siren",
         "handle": "c1"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_siren_lp1",
+          "schematicPosition": {
+            "x": 1050,
+            "y": 120
+          }
+        },
+        {
+          "id": "w_at_siren_lp2",
+          "schematicPosition": {
+            "x": 1200,
+            "y": 120
+          }
+        },
+        {
+          "id": "w_at_siren_lp3",
+          "schematicPosition": {
+            "x": 1200,
+            "y": 30
+          }
+        },
+        {
+          "id": "w_at_siren_lp4",
+          "schematicPosition": {
+            "x": 1290,
+            "y": 30
+          }
+        }
+      ]
     },
     {
       "id": "w_at_park",
@@ -535,7 +597,23 @@
       "target": {
         "id": "sp_park",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_park_lp1",
+          "schematicPosition": {
+            "x": 1050,
+            "y": 150
+          }
+        },
+        {
+          "id": "w_at_park_lp2",
+          "schematicPosition": {
+            "x": 1170,
+            "y": 150
+          }
+        }
+      ]
     },
     {
       "id": "w_at_door",
@@ -548,7 +626,37 @@
       "target": {
         "id": "alarm",
         "handle": "c6"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_door_lp1",
+          "schematicPosition": {
+            "x": 480,
+            "y": 150
+          }
+        },
+        {
+          "id": "w_at_door_lp2",
+          "schematicPosition": {
+            "x": 570,
+            "y": 150
+          }
+        },
+        {
+          "id": "w_at_door_lp3",
+          "schematicPosition": {
+            "x": 570,
+            "y": 180
+          }
+        },
+        {
+          "id": "w_at_door_lp4",
+          "schematicPosition": {
+            "x": 630,
+            "y": 180
+          }
+        }
+      ]
     },
     {
       "id": "w_at_hood",
@@ -561,7 +669,30 @@
       "target": {
         "id": "alarm",
         "handle": "c7"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_hood_lp1",
+          "schematicPosition": {
+            "x": 540,
+            "y": 180
+          }
+        },
+        {
+          "id": "w_at_hood_lp2",
+          "schematicPosition": {
+            "x": 540,
+            "y": 210
+          }
+        },
+        {
+          "id": "w_at_hood_lp3",
+          "schematicPosition": {
+            "x": 630,
+            "y": 210
+          }
+        }
+      ]
     },
     {
       "id": "w_at_trunk",
@@ -574,7 +705,23 @@
       "target": {
         "id": "alarm",
         "handle": "c8"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_trunk_lp1",
+          "schematicPosition": {
+            "x": 540,
+            "y": 240
+          }
+        },
+        {
+          "id": "w_at_trunk_lp2",
+          "schematicPosition": {
+            "x": 630,
+            "y": 240
+          }
+        }
+      ]
     },
     {
       "id": "w_at_led",
@@ -587,7 +734,37 @@
       "target": {
         "id": "led_sts",
         "handle": "c1"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_led_lp1",
+          "schematicPosition": {
+            "x": 1050,
+            "y": 300
+          }
+        },
+        {
+          "id": "w_at_led_lp2",
+          "schematicPosition": {
+            "x": 1230,
+            "y": 300
+          }
+        },
+        {
+          "id": "w_at_led_lp3",
+          "schematicPosition": {
+            "x": 1230,
+            "y": 270
+          }
+        },
+        {
+          "id": "w_at_led_lp4",
+          "schematicPosition": {
+            "x": 1290,
+            "y": 270
+          }
+        }
+      ]
     },
     {
       "id": "w_at_valet",
@@ -600,7 +777,30 @@
       "target": {
         "id": "valet",
         "handle": "c1"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_valet_lp1",
+          "schematicPosition": {
+            "x": 1050,
+            "y": 330
+          }
+        },
+        {
+          "id": "w_at_valet_lp2",
+          "schematicPosition": {
+            "x": 1290,
+            "y": 330
+          }
+        },
+        {
+          "id": "w_at_valet_lp3",
+          "schematicPosition": {
+            "x": 1290,
+            "y": 420
+          }
+        }
+      ]
     },
     {
       "id": "w_at_shk_sig",
@@ -613,7 +813,30 @@
       "target": {
         "id": "alarm",
         "handle": "c12"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_shk_sig_lp1",
+          "schematicPosition": {
+            "x": 1290,
+            "y": 630
+          }
+        },
+        {
+          "id": "w_at_shk_sig_lp2",
+          "schematicPosition": {
+            "x": 1050,
+            "y": 630
+          }
+        },
+        {
+          "id": "w_at_shk_sig_lp3",
+          "schematicPosition": {
+            "x": 1050,
+            "y": 360
+          }
+        }
+      ]
     },
     {
       "id": "w_at_gnd_a1",
@@ -626,7 +849,44 @@
       "target": {
         "id": "t_at_gnd",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_gnd_a1_lp1",
+          "schematicPosition": {
+            "x": 1050,
+            "y": 60
+          }
+        },
+        {
+          "id": "w_at_gnd_a1_lp2",
+          "schematicPosition": {
+            "x": 1140,
+            "y": 60
+          }
+        },
+        {
+          "id": "w_at_gnd_a1_lp3",
+          "schematicPosition": {
+            "x": 1140,
+            "y": -60
+          }
+        },
+        {
+          "id": "w_at_gnd_a1_lp4",
+          "schematicPosition": {
+            "x": 1950,
+            "y": -60
+          }
+        },
+        {
+          "id": "w_at_gnd_a1_lp5",
+          "schematicPosition": {
+            "x": 1950,
+            "y": 0
+          }
+        }
+      ]
     },
     {
       "id": "w_at_gnd_a2",
@@ -639,7 +899,30 @@
       "target": {
         "id": "t_at_gnd",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_gnd_a2_lp1",
+          "schematicPosition": {
+            "x": 1710,
+            "y": 60
+          }
+        },
+        {
+          "id": "w_at_gnd_a2_lp2",
+          "schematicPosition": {
+            "x": 1950,
+            "y": 60
+          }
+        },
+        {
+          "id": "w_at_gnd_a2_lp3",
+          "schematicPosition": {
+            "x": 1950,
+            "y": 0
+          }
+        }
+      ]
     },
     {
       "id": "w_at_gnd_b1",
@@ -652,7 +935,37 @@
       "target": {
         "id": "t_at_gnd_b",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_gnd_b1_lp1",
+          "schematicPosition": {
+            "x": 1710,
+            "y": 600
+          }
+        },
+        {
+          "id": "w_at_gnd_b1_lp2",
+          "schematicPosition": {
+            "x": 1770,
+            "y": 600
+          }
+        },
+        {
+          "id": "w_at_gnd_b1_lp3",
+          "schematicPosition": {
+            "x": 1770,
+            "y": 90
+          }
+        },
+        {
+          "id": "w_at_gnd_b1_lp4",
+          "schematicPosition": {
+            "x": 1950,
+            "y": 90
+          }
+        }
+      ]
     },
     {
       "id": "w_at_gnd_b2",
@@ -665,7 +978,44 @@
       "target": {
         "id": "t_at_gnd_b",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_gnd_b2_lp1",
+          "schematicPosition": {
+            "x": 1710,
+            "y": 300
+          }
+        },
+        {
+          "id": "w_at_gnd_b2_lp2",
+          "schematicPosition": {
+            "x": 1800,
+            "y": 300
+          }
+        },
+        {
+          "id": "w_at_gnd_b2_lp3",
+          "schematicPosition": {
+            "x": 1800,
+            "y": 120
+          }
+        },
+        {
+          "id": "w_at_gnd_b2_lp4",
+          "schematicPosition": {
+            "x": 1950,
+            "y": 120
+          }
+        },
+        {
+          "id": "w_at_gnd_b2_lp5",
+          "schematicPosition": {
+            "x": 1950,
+            "y": 90
+          }
+        }
+      ]
     },
     {
       "id": "w_at_gnd_c1",
@@ -678,7 +1028,44 @@
       "target": {
         "id": "t_at_gnd_c",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_gnd_c1_lp1",
+          "schematicPosition": {
+            "x": 1590,
+            "y": 450
+          }
+        },
+        {
+          "id": "w_at_gnd_c1_lp2",
+          "schematicPosition": {
+            "x": 1890,
+            "y": 450
+          }
+        },
+        {
+          "id": "w_at_gnd_c1_lp3",
+          "schematicPosition": {
+            "x": 1890,
+            "y": 210
+          }
+        },
+        {
+          "id": "w_at_gnd_c1_lp4",
+          "schematicPosition": {
+            "x": 1950,
+            "y": 210
+          }
+        },
+        {
+          "id": "w_at_gnd_c1_lp5",
+          "schematicPosition": {
+            "x": 1950,
+            "y": 180
+          }
+        }
+      ]
     },
     {
       "id": "w_at_12v_shk",
@@ -691,7 +1078,23 @@
       "target": {
         "id": "shock",
         "handle": "c1"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_12v_shk_lp1",
+          "schematicPosition": {
+            "x": 1710,
+            "y": 420
+          }
+        },
+        {
+          "id": "w_at_12v_shk_lp2",
+          "schematicPosition": {
+            "x": 1710,
+            "y": 570
+          }
+        }
+      ]
     },
     {
       "id": "w_at_immob2",
@@ -704,7 +1107,44 @@
       "target": {
         "id": "br_w_at_immob2",
         "handle": "Terminal"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_immob2_lp1",
+          "schematicPosition": {
+            "x": 630,
+            "y": 270
+          }
+        },
+        {
+          "id": "w_at_immob2_lp2",
+          "schematicPosition": {
+            "x": 540,
+            "y": 270
+          }
+        },
+        {
+          "id": "w_at_immob2_lp3",
+          "schematicPosition": {
+            "x": 540,
+            "y": 480
+          }
+        },
+        {
+          "id": "w_at_immob2_lp4",
+          "schematicPosition": {
+            "x": 450,
+            "y": 480
+          }
+        },
+        {
+          "id": "w_at_immob2_lp5",
+          "schematicPosition": {
+            "x": 450,
+            "y": 510
+          }
+        }
+      ]
     },
     {
       "id": "w_at_12v_tie",
@@ -717,7 +1157,16 @@
       "target": {
         "id": "sp_at_12v",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_12v_tie_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 0
+          }
+        }
+      ]
     },
     {
       "id": "w_at_ig_tie",
@@ -730,7 +1179,23 @@
       "target": {
         "id": "sp_ig",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_ig_tie_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 90
+          }
+        },
+        {
+          "id": "w_at_ig_tie_lp2",
+          "schematicPosition": {
+            "x": 390,
+            "y": 60
+          }
+        }
+      ]
     },
     {
       "id": "w_at_door_tie",
@@ -744,7 +1209,23 @@
         "id": "sp_door",
         "handle": "Splice"
       },
-      "identLabel": "TIE-IN"
+      "identLabel": "TIE-IN",
+      "layoutPoints": [
+        {
+          "id": "w_at_door_tie_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 180
+          }
+        },
+        {
+          "id": "w_at_door_tie_lp2",
+          "schematicPosition": {
+            "x": 390,
+            "y": 120
+          }
+        }
+      ]
     },
     {
       "id": "w_at_hood_tie",
@@ -758,7 +1239,30 @@
         "id": "sp_hood",
         "handle": "Splice"
       },
-      "identLabel": "TIE-IN"
+      "identLabel": "TIE-IN",
+      "layoutPoints": [
+        {
+          "id": "w_at_hood_tie_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 270
+          }
+        },
+        {
+          "id": "w_at_hood_tie_lp2",
+          "schematicPosition": {
+            "x": 450,
+            "y": 270
+          }
+        },
+        {
+          "id": "w_at_hood_tie_lp3",
+          "schematicPosition": {
+            "x": 450,
+            "y": 150
+          }
+        }
+      ]
     },
     {
       "id": "w_at_trunk_tie",
@@ -772,7 +1276,23 @@
         "id": "sp_trunk",
         "handle": "Splice"
       },
-      "identLabel": "TIE-IN"
+      "identLabel": "TIE-IN",
+      "layoutPoints": [
+        {
+          "id": "w_at_trunk_tie_lp1",
+          "schematicPosition": {
+            "x": 150,
+            "y": 360
+          }
+        },
+        {
+          "id": "w_at_trunk_tie_lp2",
+          "schematicPosition": {
+            "x": 510,
+            "y": 360
+          }
+        }
+      ]
     },
     {
       "id": "w_at_park_tie",
@@ -786,7 +1306,30 @@
         "id": "t_at_park",
         "handle": "Terminal"
       },
-      "identLabel": "TIE-IN"
+      "identLabel": "TIE-IN",
+      "layoutPoints": [
+        {
+          "id": "w_at_park_tie_lp1",
+          "schematicPosition": {
+            "x": 1230,
+            "y": 90
+          }
+        },
+        {
+          "id": "w_at_park_tie_lp2",
+          "schematicPosition": {
+            "x": 1290,
+            "y": 90
+          }
+        },
+        {
+          "id": "w_at_park_tie_lp3",
+          "schematicPosition": {
+            "x": 1290,
+            "y": 150
+          }
+        }
+      ]
     },
     {
       "id": "w_at_12v_shk_tie",
@@ -799,7 +1342,23 @@
       "target": {
         "id": "sp_12v_shk",
         "handle": "Splice"
-      }
+      },
+      "layoutPoints": [
+        {
+          "id": "w_at_12v_shk_tie_lp1",
+          "schematicPosition": {
+            "x": 1950,
+            "y": 270
+          }
+        },
+        {
+          "id": "w_at_12v_shk_tie_lp2",
+          "schematicPosition": {
+            "x": 1830,
+            "y": 270
+          }
+        }
+      ]
     }
   ],
   "bundles": [

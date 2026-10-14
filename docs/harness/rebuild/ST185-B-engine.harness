@@ -1121,7 +1121,37 @@
         "handle": "c2"
       },
       "color": "White",
-      "partId": "m16_20_9"
+      "partId": "m16_20_9",
+      "layoutPoints": [
+        {
+          "id": "w29_e_lp1",
+          "schematicPosition": {
+            "x": 300,
+            "y": 3630
+          }
+        },
+        {
+          "id": "w29_e_lp2",
+          "schematicPosition": {
+            "x": -60,
+            "y": 3630
+          }
+        },
+        {
+          "id": "w29_e_lp3",
+          "schematicPosition": {
+            "x": -60,
+            "y": 750
+          }
+        },
+        {
+          "id": "w29_e_lp4",
+          "schematicPosition": {
+            "x": -30,
+            "y": 750
+          }
+        }
+      ]
     },
     {
       "id": "w32_e",
@@ -1134,7 +1164,37 @@
         "handle": "c2"
       },
       "color": "White",
-      "partId": "m16_20_9"
+      "partId": "m16_20_9",
+      "layoutPoints": [
+        {
+          "id": "w32_e_lp1",
+          "schematicPosition": {
+            "x": 300,
+            "y": 3660
+          }
+        },
+        {
+          "id": "w32_e_lp2",
+          "schematicPosition": {
+            "x": -120,
+            "y": 3660
+          }
+        },
+        {
+          "id": "w32_e_lp3",
+          "schematicPosition": {
+            "x": -120,
+            "y": 570
+          }
+        },
+        {
+          "id": "w32_e_lp4",
+          "schematicPosition": {
+            "x": -30,
+            "y": 570
+          }
+        }
+      ]
     },
     {
       "id": "w35_e",
@@ -1147,7 +1207,37 @@
         "handle": "c2"
       },
       "color": "White",
-      "partId": "m16_20_9"
+      "partId": "m16_20_9",
+      "layoutPoints": [
+        {
+          "id": "w35_e_lp1",
+          "schematicPosition": {
+            "x": 300,
+            "y": 3690
+          }
+        },
+        {
+          "id": "w35_e_lp2",
+          "schematicPosition": {
+            "x": -180,
+            "y": 3690
+          }
+        },
+        {
+          "id": "w35_e_lp3",
+          "schematicPosition": {
+            "x": -180,
+            "y": 210
+          }
+        },
+        {
+          "id": "w35_e_lp4",
+          "schematicPosition": {
+            "x": -30,
+            "y": 210
+          }
+        }
+      ]
     },
     {
       "id": "w203_e",
@@ -1160,7 +1250,37 @@
         "handle": "c1"
       },
       "color": "Yellow",
-      "partId": "m16_20_4"
+      "partId": "m16_20_4",
+      "layoutPoints": [
+        {
+          "id": "w203_e_lp1",
+          "schematicPosition": {
+            "x": 300,
+            "y": 3720
+          }
+        },
+        {
+          "id": "w203_e_lp2",
+          "schematicPosition": {
+            "x": -150,
+            "y": 3720
+          }
+        },
+        {
+          "id": "w203_e_lp3",
+          "schematicPosition": {
+            "x": -150,
+            "y": 360
+          }
+        },
+        {
+          "id": "w203_e_lp4",
+          "schematicPosition": {
+            "x": 30,
+            "y": 360
+          }
+        }
+      ]
     },
     {
       "id": "w204_e",
@@ -1173,7 +1293,37 @@
         "handle": "c1"
       },
       "color": "Yellow",
-      "partId": "m16_20_4"
+      "partId": "m16_20_4",
+      "layoutPoints": [
+        {
+          "id": "w204_e_lp1",
+          "schematicPosition": {
+            "x": 300,
+            "y": 3750
+          }
+        },
+        {
+          "id": "w204_e_lp2",
+          "schematicPosition": {
+            "x": -210,
+            "y": 3750
+          }
+        },
+        {
+          "id": "w204_e_lp3",
+          "schematicPosition": {
+            "x": -210,
+            "y": 30
+          }
+        },
+        {
+          "id": "w204_e_lp4",
+          "schematicPosition": {
+            "x": -30,
+            "y": 30
+          }
+        }
+      ]
     },
     {
       "id": "w_sw7_e",
@@ -1187,7 +1337,44 @@
       },
       "color": "Red",
       "partId": "m16_16_20",
-      "stripeColor": "Black"
+      "stripeColor": "Black",
+      "layoutPoints": [
+        {
+          "id": "w_sw7_e_lp1",
+          "schematicPosition": {
+            "x": 300,
+            "y": 3780
+          }
+        },
+        {
+          "id": "w_sw7_e_lp2",
+          "schematicPosition": {
+            "x": -90,
+            "y": 3780
+          }
+        },
+        {
+          "id": "w_sw7_e_lp3",
+          "schematicPosition": {
+            "x": -90,
+            "y": 900
+          }
+        },
+        {
+          "id": "w_sw7_e_lp4",
+          "schematicPosition": {
+            "x": 960,
+            "y": 900
+          }
+        },
+        {
+          "id": "w_sw7_e_lp5",
+          "schematicPosition": {
+            "x": 960,
+            "y": 870
+          }
+        }
+      ]
     },
     {
       "id": "w207",
@@ -1200,7 +1387,30 @@
         "id": "oilp",
         "handle": "c1"
       },
-      "partId": "m16_20_3"
+      "partId": "m16_20_3",
+      "layoutPoints": [
+        {
+          "id": "w207_lp1",
+          "schematicPosition": {
+            "x": 1500,
+            "y": 1530
+          }
+        },
+        {
+          "id": "w207_lp2",
+          "schematicPosition": {
+            "x": 1500,
+            "y": 720
+          }
+        },
+        {
+          "id": "w207_lp3",
+          "schematicPosition": {
+            "x": 210,
+            "y": 720
+          }
+        }
+      ]
     },
     {
       "id": "w208",
@@ -1213,7 +1423,37 @@
         "id": "fuelp",
         "handle": "c1"
       },
-      "partId": "m16_20_3"
+      "partId": "m16_20_3",
+      "layoutPoints": [
+        {
+          "id": "w208_lp1",
+          "schematicPosition": {
+            "x": 1500,
+            "y": 1560
+          }
+        },
+        {
+          "id": "w208_lp2",
+          "schematicPosition": {
+            "x": 1200,
+            "y": 1560
+          }
+        },
+        {
+          "id": "w208_lp3",
+          "schematicPosition": {
+            "x": 1200,
+            "y": 540
+          }
+        },
+        {
+          "id": "w208_lp4",
+          "schematicPosition": {
+            "x": 210,
+            "y": 540
+          }
+        }
+      ]
     },
     {
       "id": "w209",
@@ -1226,7 +1466,37 @@
         "id": "clntp",
         "handle": "c1"
       },
-      "partId": "m16_20_3"
+      "partId": "m16_20_3",
+      "layoutPoints": [
+        {
+          "id": "w209_lp1",
+          "schematicPosition": {
+            "x": 1500,
+            "y": 1590
+          }
+        },
+        {
+          "id": "w209_lp2",
+          "schematicPosition": {
+            "x": 1260,
+            "y": 1590
+          }
+        },
+        {
+          "id": "w209_lp3",
+          "schematicPosition": {
+            "x": 1260,
+            "y": 180
+          }
+        },
+        {
+          "id": "w209_lp4",
+          "schematicPosition": {
+            "x": 210,
+            "y": 180
+          }
+        }
+      ]
     },
     {
       "id": "w8",
@@ -1240,7 +1510,23 @@
         "handle": "Splice"
       },
       "stripeColor": "White",
-      "partId": "m16_20_09"
+      "partId": "m16_20_09",
+      "layoutPoints": [
+        {
+          "id": "w8_lp1",
+          "schematicPosition": {
+            "x": 210,
+            "y": 390
+          }
+        },
+        {
+          "id": "w8_lp2",
+          "schematicPosition": {
+            "x": 2250,
+            "y": 390
+          }
+        }
+      ]
     },
     {
       "id": "w10",
@@ -1254,7 +1540,44 @@
         "handle": "Splice"
       },
       "stripeColor": "White",
-      "partId": "m16_20_09"
+      "partId": "m16_20_09",
+      "layoutPoints": [
+        {
+          "id": "w10_lp1",
+          "schematicPosition": {
+            "x": 210,
+            "y": 60
+          }
+        },
+        {
+          "id": "w10_lp2",
+          "schematicPosition": {
+            "x": 240,
+            "y": 60
+          }
+        },
+        {
+          "id": "w10_lp3",
+          "schematicPosition": {
+            "x": 240,
+            "y": 150
+          }
+        },
+        {
+          "id": "w10_lp4",
+          "schematicPosition": {
+            "x": 2220,
+            "y": 150
+          }
+        },
+        {
+          "id": "w10_lp5",
+          "schematicPosition": {
+            "x": 2220,
+            "y": 1740
+          }
+        }
+      ]
     },
     {
       "id": "w30",
@@ -1268,7 +1591,30 @@
         "handle": "Splice"
       },
       "stripeColor": "White",
-      "partId": "m16_20_09"
+      "partId": "m16_20_09",
+      "layoutPoints": [
+        {
+          "id": "w30_lp1",
+          "schematicPosition": {
+            "x": 210,
+            "y": 780
+          }
+        },
+        {
+          "id": "w30_lp2",
+          "schematicPosition": {
+            "x": 2190,
+            "y": 780
+          }
+        },
+        {
+          "id": "w30_lp3",
+          "schematicPosition": {
+            "x": 2190,
+            "y": 2010
+          }
+        }
+      ]
     },
     {
       "id": "w33",
@@ -1282,7 +1628,30 @@
         "handle": "Splice"
       },
       "stripeColor": "White",
-      "partId": "m16_20_09"
+      "partId": "m16_20_09",
+      "layoutPoints": [
+        {
+          "id": "w33_lp1",
+          "schematicPosition": {
+            "x": 210,
+            "y": 600
+          }
+        },
+        {
+          "id": "w33_lp2",
+          "schematicPosition": {
+            "x": 2160,
+            "y": 600
+          }
+        },
+        {
+          "id": "w33_lp3",
+          "schematicPosition": {
+            "x": 2160,
+            "y": 2280
+          }
+        }
+      ]
     },
     {
       "id": "w36",
@@ -1296,7 +1665,30 @@
         "handle": "Splice"
       },
       "stripeColor": "White",
-      "partId": "m16_20_09"
+      "partId": "m16_20_09",
+      "layoutPoints": [
+        {
+          "id": "w36_lp1",
+          "schematicPosition": {
+            "x": 210,
+            "y": 240
+          }
+        },
+        {
+          "id": "w36_lp2",
+          "schematicPosition": {
+            "x": 2280,
+            "y": 240
+          }
+        },
+        {
+          "id": "w36_lp3",
+          "schematicPosition": {
+            "x": 2280,
+            "y": 1980
+          }
+        }
+      ]
     },
     {
       "id": "w_rail_gnd_b_e",
@@ -1310,7 +1702,8 @@
       },
       "color": "Black",
       "stripeColor": "White",
-      "partId": "m16_20_09"
+      "partId": "m16_20_09",
+      "layoutPoints": []
     },
     {
       "id": "w_gnd_b_e_c21",
@@ -1324,7 +1717,30 @@
       },
       "color": "Black",
       "stripeColor": "White",
-      "partId": "m16_20_09"
+      "partId": "m16_20_09",
+      "layoutPoints": [
+        {
+          "id": "w_gnd_b_e_c21_lp1",
+          "schematicPosition": {
+            "x": 720,
+            "y": 3840
+          }
+        },
+        {
+          "id": "w_gnd_b_e_c21_lp2",
+          "schematicPosition": {
+            "x": 720,
+            "y": 3870
+          }
+        },
+        {
+          "id": "w_gnd_b_e_c21_lp3",
+          "schematicPosition": {
+            "x": 2250,
+            "y": 3870
+          }
+        }
+      ]
     },
     {
       "id": "w_gnd_b_e_c19",
@@ -1338,7 +1754,30 @@
       },
       "color": "Black",
       "stripeColor": "White",
-      "partId": "m16_20_09"
+      "partId": "m16_20_09",
+      "layoutPoints": [
+        {
+          "id": "w_gnd_b_e_c19_lp1",
+          "schematicPosition": {
+            "x": 720,
+            "y": 3810
+          }
+        },
+        {
+          "id": "w_gnd_b_e_c19_lp2",
+          "schematicPosition": {
+            "x": 2220,
+            "y": 3810
+          }
+        },
+        {
+          "id": "w_gnd_b_e_c19_lp3",
+          "schematicPosition": {
+            "x": 2220,
+            "y": 2100
+          }
+        }
+      ]
     },
     {
       "id": "w_lam12_be14",
@@ -1351,7 +1790,30 @@
         "handle": "Splice"
       },
       "color": "Red",
-      "partId": "m16_14_2"
+      "partId": "m16_14_2",
+      "layoutPoints": [
+        {
+          "id": "w_lam12_be14_lp1",
+          "schematicPosition": {
+            "x": 720,
+            "y": 4350
+          }
+        },
+        {
+          "id": "w_lam12_be14_lp2",
+          "schematicPosition": {
+            "x": 1200,
+            "y": 4350
+          }
+        },
+        {
+          "id": "w_lam12_be14_lp3",
+          "schematicPosition": {
+            "x": 1200,
+            "y": 2100
+          }
+        }
+      ]
     },
     {
       "id": "w_lam12_be",
@@ -1364,7 +1826,44 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "partId": "m16_20_2"
+      "partId": "m16_20_2",
+      "layoutPoints": [
+        {
+          "id": "w_lam12_be_lp1",
+          "schematicPosition": {
+            "x": 960,
+            "y": 2130
+          }
+        },
+        {
+          "id": "w_lam12_be_lp2",
+          "schematicPosition": {
+            "x": 1260,
+            "y": 2130
+          }
+        },
+        {
+          "id": "w_lam12_be_lp3",
+          "schematicPosition": {
+            "x": 1260,
+            "y": 4710
+          }
+        },
+        {
+          "id": "w_lam12_be_lp4",
+          "schematicPosition": {
+            "x": 870,
+            "y": 4710
+          }
+        },
+        {
+          "id": "w_lam12_be_lp5",
+          "schematicPosition": {
+            "x": 870,
+            "y": 4740
+          }
+        }
+      ]
     },
     {
       "id": "w_lamg_be14",
@@ -1377,7 +1876,30 @@
         "handle": "c4"
       },
       "color": "Black",
-      "partId": "m16_14_0"
+      "partId": "m16_14_0",
+      "layoutPoints": [
+        {
+          "id": "w_lamg_be14_lp1",
+          "schematicPosition": {
+            "x": 1080,
+            "y": 2220
+          }
+        },
+        {
+          "id": "w_lamg_be14_lp2",
+          "schematicPosition": {
+            "x": 1080,
+            "y": 4380
+          }
+        },
+        {
+          "id": "w_lamg_be14_lp3",
+          "schematicPosition": {
+            "x": 720,
+            "y": 4380
+          }
+        }
+      ]
     },
     {
       "id": "w_lamg_be",
@@ -1390,7 +1912,44 @@
         "handle": "Splice"
       },
       "color": "Black",
-      "partId": "m16_20_0"
+      "partId": "m16_20_0",
+      "layoutPoints": [
+        {
+          "id": "w_lamg_be_lp1",
+          "schematicPosition": {
+            "x": 870,
+            "y": 4620
+          }
+        },
+        {
+          "id": "w_lamg_be_lp2",
+          "schematicPosition": {
+            "x": 990,
+            "y": 4620
+          }
+        },
+        {
+          "id": "w_lamg_be_lp3",
+          "schematicPosition": {
+            "x": 990,
+            "y": 3300
+          }
+        },
+        {
+          "id": "w_lamg_be_lp4",
+          "schematicPosition": {
+            "x": 960,
+            "y": 3300
+          }
+        },
+        {
+          "id": "w_lamg_be_lp5",
+          "schematicPosition": {
+            "x": 960,
+            "y": 2280
+          }
+        }
+      ]
     },
     {
       "id": "w_rev_feed_e",
@@ -1404,7 +1963,37 @@
       },
       "color": "Red",
       "stripeColor": "Blue",
-      "partId": "m16_16_26"
+      "partId": "m16_16_26",
+      "layoutPoints": [
+        {
+          "id": "w_rev_feed_e_lp1",
+          "schematicPosition": {
+            "x": 300,
+            "y": 3360
+          }
+        },
+        {
+          "id": "w_rev_feed_e_lp2",
+          "schematicPosition": {
+            "x": -30,
+            "y": 3360
+          }
+        },
+        {
+          "id": "w_rev_feed_e_lp3",
+          "schematicPosition": {
+            "x": -30,
+            "y": 930
+          }
+        },
+        {
+          "id": "w_rev_feed_e_lp4",
+          "schematicPosition": {
+            "x": 960,
+            "y": 930
+          }
+        }
+      ]
     }
   ],
   "cables": [
@@ -1412,8 +2001,8 @@
       "id": "cab_knock1",
       "partId": "cab_sh_2c",
       "schematicPosition": {
-        "x": 810,
-        "y": 1560
+        "x": 180,
+        "y": 3030
       },
       "cores": [
         {
@@ -1427,7 +2016,74 @@
             "id": "knock1",
             "handle": "c1"
           },
-          "twistedWithNext": true
+          "twistedWithNext": true,
+          "targetLayoutPoints": [
+            {
+              "id": "cab_knock1_c1_target_lp1",
+              "schematicPosition": {
+                "x": 240,
+                "y": 3060
+              }
+            },
+            {
+              "id": "cab_knock1_c1_target_lp2",
+              "schematicPosition": {
+                "x": 270,
+                "y": 3060
+              }
+            },
+            {
+              "id": "cab_knock1_c1_target_lp3",
+              "schematicPosition": {
+                "x": 270,
+                "y": 1650
+              }
+            },
+            {
+              "id": "cab_knock1_c1_target_lp4",
+              "schematicPosition": {
+                "x": 210,
+                "y": 1650
+              }
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "id": "cab_knock1_c1_source_lp1",
+              "schematicPosition": {
+                "x": 150,
+                "y": 3060
+              }
+            },
+            {
+              "id": "cab_knock1_c1_source_lp2",
+              "schematicPosition": {
+                "x": 60,
+                "y": 3060
+              }
+            },
+            {
+              "id": "cab_knock1_c1_source_lp3",
+              "schematicPosition": {
+                "x": 60,
+                "y": 3960
+              }
+            },
+            {
+              "id": "cab_knock1_c1_source_lp4",
+              "schematicPosition": {
+                "x": 300,
+                "y": 3960
+              }
+            },
+            {
+              "id": "cab_knock1_c1_source_lp5",
+              "schematicPosition": {
+                "x": 300,
+                "y": 3990
+              }
+            }
+          ]
         },
         {
           "id": "cab_knock1_c2",
@@ -1439,7 +2095,53 @@
           "target": {
             "id": "knock1",
             "handle": "c2"
-          }
+          },
+          "sourceLayoutPoints": [
+            {
+              "id": "cab_knock1_c2_source_lp1",
+              "schematicPosition": {
+                "x": 240,
+                "y": 3090
+              }
+            },
+            {
+              "id": "cab_knock1_c2_source_lp2",
+              "schematicPosition": {
+                "x": 240,
+                "y": 4020
+              }
+            },
+            {
+              "id": "cab_knock1_c2_source_lp3",
+              "schematicPosition": {
+                "x": 300,
+                "y": 4020
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "cab_knock1_c2_target_lp1",
+              "schematicPosition": {
+                "x": 150,
+                "y": 3090
+              }
+            },
+            {
+              "id": "cab_knock1_c2_target_lp2",
+              "schematicPosition": {
+                "x": 30,
+                "y": 3090
+              }
+            },
+            {
+              "id": "cab_knock1_c2_target_lp3",
+              "schematicPosition": {
+                "x": 30,
+                "y": 1680
+              }
+            }
+          ]
         }
       ],
       "shield": {
@@ -1448,7 +2150,30 @@
         "source": {
           "id": "bh_b_eng",
           "handle": "c18"
-        }
+        },
+        "sourceLayoutPoints": [
+          {
+            "id": "cab_knock1_sh_source_lp1",
+            "schematicPosition": {
+              "x": 150,
+              "y": 3120
+            }
+          },
+          {
+            "id": "cab_knock1_sh_source_lp2",
+            "schematicPosition": {
+              "x": 150,
+              "y": 4050
+            }
+          },
+          {
+            "id": "cab_knock1_sh_source_lp3",
+            "schematicPosition": {
+              "x": 300,
+              "y": 4050
+            }
+          }
+        ]
       }
     },
     {
@@ -1456,7 +2181,7 @@
       "partId": "cab_sh_2c_18",
       "schematicPosition": {
         "x": 810,
-        "y": 1680
+        "y": 3270
       },
       "cores": [
         {
@@ -1469,7 +2194,95 @@
           "target": {
             "id": "br_w124_e",
             "handle": "Terminal"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "id": "w124_e_target_lp1",
+              "schematicPosition": {
+                "x": 870,
+                "y": 3300
+              }
+            },
+            {
+              "id": "w124_e_target_lp2",
+              "schematicPosition": {
+                "x": 870,
+                "y": 3270
+              }
+            },
+            {
+              "id": "w124_e_target_lp3",
+              "schematicPosition": {
+                "x": 990,
+                "y": 3270
+              }
+            },
+            {
+              "id": "w124_e_target_lp4",
+              "schematicPosition": {
+                "x": 990,
+                "y": 1410
+              }
+            },
+            {
+              "id": "w124_e_target_lp5",
+              "schematicPosition": {
+                "x": 870,
+                "y": 1410
+              }
+            },
+            {
+              "id": "w124_e_target_lp6",
+              "schematicPosition": {
+                "x": 870,
+                "y": 1380
+              }
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "id": "w124_e_source_lp1",
+              "schematicPosition": {
+                "x": 780,
+                "y": 3300
+              }
+            },
+            {
+              "id": "w124_e_source_lp2",
+              "schematicPosition": {
+                "x": 720,
+                "y": 3300
+              }
+            },
+            {
+              "id": "w124_e_source_lp3",
+              "schematicPosition": {
+                "x": 720,
+                "y": 3420
+              }
+            },
+            {
+              "id": "w124_e_source_lp4",
+              "schematicPosition": {
+                "x": 780,
+                "y": 3420
+              }
+            },
+            {
+              "id": "w124_e_source_lp5",
+              "schematicPosition": {
+                "x": 780,
+                "y": 4080
+              }
+            },
+            {
+              "id": "w124_e_source_lp6",
+              "schematicPosition": {
+                "x": 720,
+                "y": 4080
+              }
+            }
+          ]
         },
         {
           "id": "w215_e",
@@ -1481,7 +2294,67 @@
           "target": {
             "id": "br_w215_e",
             "handle": "Terminal"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "id": "w215_e_target_lp1",
+              "schematicPosition": {
+                "x": 870,
+                "y": 3330
+              }
+            },
+            {
+              "id": "w215_e_target_lp2",
+              "schematicPosition": {
+                "x": 960,
+                "y": 3330
+              }
+            },
+            {
+              "id": "w215_e_target_lp3",
+              "schematicPosition": {
+                "x": 960,
+                "y": 4650
+              }
+            },
+            {
+              "id": "w215_e_target_lp4",
+              "schematicPosition": {
+                "x": 870,
+                "y": 4650
+              }
+            },
+            {
+              "id": "w215_e_target_lp5",
+              "schematicPosition": {
+                "x": 870,
+                "y": 4680
+              }
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "id": "w215_e_source_lp1",
+              "schematicPosition": {
+                "x": 870,
+                "y": 3330
+              }
+            },
+            {
+              "id": "w215_e_source_lp2",
+              "schematicPosition": {
+                "x": 870,
+                "y": 4110
+              }
+            },
+            {
+              "id": "w215_e_source_lp3",
+              "schematicPosition": {
+                "x": 720,
+                "y": 4110
+              }
+            }
+          ]
         }
       ],
       "shield": {
@@ -1494,7 +2367,81 @@
         "target": {
           "id": "br_cab_etbm_sh",
           "handle": "Terminal"
-        }
+        },
+        "targetLayoutPoints": [
+          {
+            "id": "cab_etbm_be_sh_target_lp1",
+            "schematicPosition": {
+              "x": 780,
+              "y": 3360
+            }
+          },
+          {
+            "id": "cab_etbm_be_sh_target_lp2",
+            "schematicPosition": {
+              "x": 750,
+              "y": 3360
+            }
+          },
+          {
+            "id": "cab_etbm_be_sh_target_lp3",
+            "schematicPosition": {
+              "x": 750,
+              "y": 1500
+            }
+          },
+          {
+            "id": "cab_etbm_be_sh_target_lp4",
+            "schematicPosition": {
+              "x": 870,
+              "y": 1500
+            }
+          },
+          {
+            "id": "cab_etbm_be_sh_target_lp5",
+            "schematicPosition": {
+              "x": 870,
+              "y": 1440
+            }
+          }
+        ],
+        "sourceLayoutPoints": [
+          {
+            "id": "cab_etbm_be_sh_source_lp1",
+            "schematicPosition": {
+              "x": 780,
+              "y": 3360
+            }
+          },
+          {
+            "id": "cab_etbm_be_sh_source_lp2",
+            "schematicPosition": {
+              "x": 780,
+              "y": 3390
+            }
+          },
+          {
+            "id": "cab_etbm_be_sh_source_lp3",
+            "schematicPosition": {
+              "x": 810,
+              "y": 3390
+            }
+          },
+          {
+            "id": "cab_etbm_be_sh_source_lp4",
+            "schematicPosition": {
+              "x": 810,
+              "y": 4140
+            }
+          },
+          {
+            "id": "cab_etbm_be_sh_source_lp5",
+            "schematicPosition": {
+              "x": 720,
+              "y": 4140
+            }
+          }
+        ]
       }
     },
     {
@@ -1502,7 +2449,7 @@
       "partId": "cab_sh_3c",
       "schematicPosition": {
         "x": 810,
-        "y": 1800
+        "y": 2310
       },
       "cores": [
         {
@@ -1515,7 +2462,88 @@
           "target": {
             "id": "vss",
             "handle": "c1"
-          }
+          },
+          "sourceLayoutPoints": [
+            {
+              "id": "w_vss_12v_source_lp1",
+              "schematicPosition": {
+                "x": 870,
+                "y": 2340
+              }
+            },
+            {
+              "id": "w_vss_12v_source_lp2",
+              "schematicPosition": {
+                "x": 1050,
+                "y": 2340
+              }
+            },
+            {
+              "id": "w_vss_12v_source_lp3",
+              "schematicPosition": {
+                "x": 1050,
+                "y": 4200
+              }
+            },
+            {
+              "id": "w_vss_12v_source_lp4",
+              "schematicPosition": {
+                "x": 720,
+                "y": 4200
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "w_vss_12v_target_lp1",
+              "schematicPosition": {
+                "x": 870,
+                "y": 2340
+              }
+            },
+            {
+              "id": "w_vss_12v_target_lp2",
+              "schematicPosition": {
+                "x": 870,
+                "y": 2070
+              }
+            },
+            {
+              "id": "w_vss_12v_target_lp3",
+              "schematicPosition": {
+                "x": 930,
+                "y": 2070
+              }
+            },
+            {
+              "id": "w_vss_12v_target_lp4",
+              "schematicPosition": {
+                "x": 930,
+                "y": 960
+              }
+            },
+            {
+              "id": "w_vss_12v_target_lp5",
+              "schematicPosition": {
+                "x": 900,
+                "y": 960
+              }
+            },
+            {
+              "id": "w_vss_12v_target_lp6",
+              "schematicPosition": {
+                "x": 900,
+                "y": 30
+              }
+            },
+            {
+              "id": "w_vss_12v_target_lp7",
+              "schematicPosition": {
+                "x": 720,
+                "y": 30
+              }
+            }
+          ]
         },
         {
           "id": "w_vss_gnd",
@@ -1527,7 +2555,74 @@
           "target": {
             "id": "sp_gndout_b_eng3",
             "handle": "Splice"
-          }
+          },
+          "sourceLayoutPoints": [
+            {
+              "id": "w_vss_gnd_source_lp1",
+              "schematicPosition": {
+                "x": 780,
+                "y": 2370
+              }
+            },
+            {
+              "id": "w_vss_gnd_source_lp2",
+              "schematicPosition": {
+                "x": 780,
+                "y": 2190
+              }
+            },
+            {
+              "id": "w_vss_gnd_source_lp3",
+              "schematicPosition": {
+                "x": 1230,
+                "y": 2190
+              }
+            },
+            {
+              "id": "w_vss_gnd_source_lp4",
+              "schematicPosition": {
+                "x": 1230,
+                "y": 60
+              }
+            },
+            {
+              "id": "w_vss_gnd_source_lp5",
+              "schematicPosition": {
+                "x": 720,
+                "y": 60
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "w_vss_gnd_target_lp1",
+              "schematicPosition": {
+                "x": 870,
+                "y": 2370
+              }
+            },
+            {
+              "id": "w_vss_gnd_target_lp2",
+              "schematicPosition": {
+                "x": 930,
+                "y": 2370
+              }
+            },
+            {
+              "id": "w_vss_gnd_target_lp3",
+              "schematicPosition": {
+                "x": 930,
+                "y": 2310
+              }
+            },
+            {
+              "id": "w_vss_gnd_target_lp4",
+              "schematicPosition": {
+                "x": 2190,
+                "y": 2310
+              }
+            }
+          ]
         },
         {
           "id": "w_vss_sig_e",
@@ -1539,7 +2634,81 @@
           "target": {
             "id": "bh_b_eng",
             "handle": "c15"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "id": "w_vss_sig_e_target_lp1",
+              "schematicPosition": {
+                "x": 780,
+                "y": 2400
+              }
+            },
+            {
+              "id": "w_vss_sig_e_target_lp2",
+              "schematicPosition": {
+                "x": 780,
+                "y": 3210
+              }
+            },
+            {
+              "id": "w_vss_sig_e_target_lp3",
+              "schematicPosition": {
+                "x": 930,
+                "y": 3210
+              }
+            },
+            {
+              "id": "w_vss_sig_e_target_lp4",
+              "schematicPosition": {
+                "x": 930,
+                "y": 4170
+              }
+            },
+            {
+              "id": "w_vss_sig_e_target_lp5",
+              "schematicPosition": {
+                "x": 720,
+                "y": 4170
+              }
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "id": "w_vss_sig_e_source_lp1",
+              "schematicPosition": {
+                "x": 870,
+                "y": 2400
+              }
+            },
+            {
+              "id": "w_vss_sig_e_source_lp2",
+              "schematicPosition": {
+                "x": 1020,
+                "y": 2400
+              }
+            },
+            {
+              "id": "w_vss_sig_e_source_lp3",
+              "schematicPosition": {
+                "x": 1020,
+                "y": 1020
+              }
+            },
+            {
+              "id": "w_vss_sig_e_source_lp4",
+              "schematicPosition": {
+                "x": 720,
+                "y": 1020
+              }
+            },
+            {
+              "id": "w_vss_sig_e_source_lp5",
+              "schematicPosition": {
+                "x": 720,
+                "y": 90
+              }
+            }
+          ]
         }
       ],
       "shield": {
@@ -1548,7 +2717,37 @@
         "source": {
           "id": "bh_b_eng",
           "handle": "c23"
-        }
+        },
+        "sourceLayoutPoints": [
+          {
+            "id": "cab_vss_sh_source_lp1",
+            "schematicPosition": {
+              "x": 870,
+              "y": 2430
+            }
+          },
+          {
+            "id": "cab_vss_sh_source_lp2",
+            "schematicPosition": {
+              "x": 1020,
+              "y": 2430
+            }
+          },
+          {
+            "id": "cab_vss_sh_source_lp3",
+            "schematicPosition": {
+              "x": 1020,
+              "y": 4230
+            }
+          },
+          {
+            "id": "cab_vss_sh_source_lp4",
+            "schematicPosition": {
+              "x": 720,
+              "y": 4230
+            }
+          }
+        ]
       }
     },
     {
@@ -1570,7 +2769,95 @@
             "id": "br_wc_h_lam",
             "handle": "Terminal"
           },
-          "twistedWithNext": true
+          "twistedWithNext": true,
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_h_lam_be_source_lp1",
+              "schematicPosition": {
+                "x": 870,
+                "y": 1950
+              }
+            },
+            {
+              "id": "wc_h_lam_be_source_lp2",
+              "schematicPosition": {
+                "x": 900,
+                "y": 1950
+              }
+            },
+            {
+              "id": "wc_h_lam_be_source_lp3",
+              "schematicPosition": {
+                "x": 900,
+                "y": 1920
+              }
+            },
+            {
+              "id": "wc_h_lam_be_source_lp4",
+              "schematicPosition": {
+                "x": 1140,
+                "y": 1920
+              }
+            },
+            {
+              "id": "wc_h_lam_be_source_lp5",
+              "schematicPosition": {
+                "x": 1140,
+                "y": 4260
+              }
+            },
+            {
+              "id": "wc_h_lam_be_source_lp6",
+              "schematicPosition": {
+                "x": 720,
+                "y": 4260
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "wc_h_lam_be_target_lp1",
+              "schematicPosition": {
+                "x": 870,
+                "y": 1950
+              }
+            },
+            {
+              "id": "wc_h_lam_be_target_lp2",
+              "schematicPosition": {
+                "x": 870,
+                "y": 1890
+              }
+            },
+            {
+              "id": "wc_h_lam_be_target_lp3",
+              "schematicPosition": {
+                "x": 1290,
+                "y": 1890
+              }
+            },
+            {
+              "id": "wc_h_lam_be_target_lp4",
+              "schematicPosition": {
+                "x": 1290,
+                "y": 4770
+              }
+            },
+            {
+              "id": "wc_h_lam_be_target_lp5",
+              "schematicPosition": {
+                "x": 870,
+                "y": 4770
+              }
+            },
+            {
+              "id": "wc_h_lam_be_target_lp6",
+              "schematicPosition": {
+                "x": 870,
+                "y": 4800
+              }
+            }
+          ]
         },
         {
           "id": "wc_l_lam_be",
@@ -1582,7 +2869,81 @@
           "target": {
             "id": "br_wc_l_lam",
             "handle": "Terminal"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "id": "wc_l_lam_be_target_lp1",
+              "schematicPosition": {
+                "x": 780,
+                "y": 1980
+              }
+            },
+            {
+              "id": "wc_l_lam_be_target_lp2",
+              "schematicPosition": {
+                "x": 780,
+                "y": 1860
+              }
+            },
+            {
+              "id": "wc_l_lam_be_target_lp3",
+              "schematicPosition": {
+                "x": 1320,
+                "y": 1860
+              }
+            },
+            {
+              "id": "wc_l_lam_be_target_lp4",
+              "schematicPosition": {
+                "x": 1320,
+                "y": 4830
+              }
+            },
+            {
+              "id": "wc_l_lam_be_target_lp5",
+              "schematicPosition": {
+                "x": 870,
+                "y": 4830
+              }
+            },
+            {
+              "id": "wc_l_lam_be_target_lp6",
+              "schematicPosition": {
+                "x": 870,
+                "y": 4860
+              }
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_l_lam_be_source_lp1",
+              "schematicPosition": {
+                "x": 870,
+                "y": 1980
+              }
+            },
+            {
+              "id": "wc_l_lam_be_source_lp2",
+              "schematicPosition": {
+                "x": 1170,
+                "y": 1980
+              }
+            },
+            {
+              "id": "wc_l_lam_be_source_lp3",
+              "schematicPosition": {
+                "x": 1170,
+                "y": 4290
+              }
+            },
+            {
+              "id": "wc_l_lam_be_source_lp4",
+              "schematicPosition": {
+                "x": 720,
+                "y": 4290
+              }
+            }
+          ]
         }
       ],
       "shield": {
@@ -1595,7 +2956,95 @@
         "target": {
           "id": "br_cab_lamcan_sh",
           "handle": "Terminal"
-        }
+        },
+        "sourceLayoutPoints": [
+          {
+            "id": "cab_lamcan_be_sh_source_lp1",
+            "schematicPosition": {
+              "x": 780,
+              "y": 2010
+            }
+          },
+          {
+            "id": "cab_lamcan_be_sh_source_lp2",
+            "schematicPosition": {
+              "x": 780,
+              "y": 2040
+            }
+          },
+          {
+            "id": "cab_lamcan_be_sh_source_lp3",
+            "schematicPosition": {
+              "x": 810,
+              "y": 2040
+            }
+          },
+          {
+            "id": "cab_lamcan_be_sh_source_lp4",
+            "schematicPosition": {
+              "x": 810,
+              "y": 2160
+            }
+          },
+          {
+            "id": "cab_lamcan_be_sh_source_lp5",
+            "schematicPosition": {
+              "x": 1110,
+              "y": 2160
+            }
+          },
+          {
+            "id": "cab_lamcan_be_sh_source_lp6",
+            "schematicPosition": {
+              "x": 1110,
+              "y": 4320
+            }
+          },
+          {
+            "id": "cab_lamcan_be_sh_source_lp7",
+            "schematicPosition": {
+              "x": 720,
+              "y": 4320
+            }
+          }
+        ],
+        "targetLayoutPoints": [
+          {
+            "id": "cab_lamcan_be_sh_target_lp1",
+            "schematicPosition": {
+              "x": 870,
+              "y": 2010
+            }
+          },
+          {
+            "id": "cab_lamcan_be_sh_target_lp2",
+            "schematicPosition": {
+              "x": 1350,
+              "y": 2010
+            }
+          },
+          {
+            "id": "cab_lamcan_be_sh_target_lp3",
+            "schematicPosition": {
+              "x": 1350,
+              "y": 4890
+            }
+          },
+          {
+            "id": "cab_lamcan_be_sh_target_lp4",
+            "schematicPosition": {
+              "x": 870,
+              "y": 4890
+            }
+          },
+          {
+            "id": "cab_lamcan_be_sh_target_lp5",
+            "schematicPosition": {
+              "x": 870,
+              "y": 4920
+            }
+          }
+        ]
       }
     }
   ],
