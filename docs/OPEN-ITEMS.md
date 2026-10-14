@@ -18,8 +18,8 @@ Bucket = Area column (Research counts as Harness wiring; Tooling / Docs as House
 
 | Bucket | Open | In plain words | Car zones |
 |---|---|---|---|
-| Harness wiring | 18 | Drawings and wire facts: pull-up values and relay coil choices to confirm, the TW sensor run, AntiTheft spots, VRC plug and cable questions, the R2 / R3 colours, maker contact data, and the route drawings still showing the old fuse box (row 111) and the fuel pump relay coil feed (row 112). | bay, firewall, dash, glove, floor, rear, trunk |
-| Parts | 9 | Part numbers and test-fits: the bus bar parts (design B rev3 picked, row 88), the fuse box CAD rev 5 review and follow-ups (rows 107, 110), DRB sealing plugs, rear lamp plugs, and the custom enclosure choices (rows 64, 94, 97, 98). | glove, dash, rear, trunk |
+| Harness wiring | 19 | Drawings and wire facts: pull-up values and relay coil choices to confirm, the TW sensor run, AntiTheft spots, VRC plug and cable questions, the R2 / R3 colours, maker contact data, and the route drawings still showing the old fuse box (row 111), the fuel pump relay coil feed (row 112) and the CabinPower notes for the fuse box rev 6 jumpers (row 113). | bay, firewall, dash, glove, floor, rear, trunk |
+| Parts | 8 | Part numbers and test-fits: the bus bar parts (design B rev3 picked, row 88), the fuse box CAD rev 6 review (row 107), DRB sealing plugs, rear lamp plugs, and the custom enclosure choices (rows 64, 94, 97, 98). | glove, dash, rear, trunk |
 | CAN | 3 | The scale / unit flags left from the CAN audit, the knock warning timing (row 102), and the cluster reflash after the N1 rounding fix. | dash |
 | RealDash | 3 | Checks that need the Pi or the bench: which .rd file is live, real-frame test, headless editor limit. | dash |
 | Tune-ECU setup-time | 13 | Done on the bench when the ECU and CSB3 arrive: PCLink imports, tables, outputs, live checks. CAN config itself is written now (R80). | bay, dash |
@@ -27,7 +27,7 @@ Bucket = Area column (Research counts as Harness wiring; Tooling / Docs as House
 
 Blocks progress:
 
-1. Row 107 - the fuse box CAD rev 5 is not approvable until Daniel answers its open points (the mini-fuse pickup part, M6 limiters, mount bolt length) and orders the copper; the drawings, parts lists and the bus bar parts (row 88) follow from it.
+1. Row 107 - the fuse box CAD rev 6 has every part real (R82, R85) and waits for Daniel's approval and the parts / copper order; the harness follow-ups (row 113) and the bus bar parts (row 88) follow from it.
 
 | # | Area | Item | Owner | Source | Status | What unblocks it |
 |---|---|---|---|---|---|---|
