@@ -1,144 +1,443 @@
 {
+ "bends": [
+  {
+   "where": "LOGIC BUS1 feed (from AMI BUS1 50 A output)",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out under the rear edge, lug axis",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported or >= 51 free"
+  },
+  {
+   "where": "LOGIC BUS2 feed (from k_efi 87)",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out under the rear edge, lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 11 supported or >= 36 free"
+  },
+  {
+   "where": "LOGIC fuse / micro relay receptacles, largest 12 AWG",
+   "awg": "12",
+   "od": 2.97,
+   "path": "straight down out of the cavity, bend under the deck",
+   "r_inside": 14.0,
+   "need": 8.9,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "room under the deck before the mount face"
+  },
+  {
+   "where": "POWER AMI IN HTR (40A) -> heater terminal 30",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight 2 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN EFI (30A) -> k_efi terminal 30",
+   "awg": "12",
+   "od": 2.97,
+   "path": "straight 33 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 8.9,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN STR (30A) -> k_str terminal 30",
+   "awg": "12",
+   "od": 2.97,
+   "path": "straight 3 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 8.9,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN FAN (40A) -> k_fan terminal 30",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight 32 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN FAN2 (30A) -> k_fan2 terminal 30",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight 2 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN PWR (30A) -> power terminal 30",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight 33 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 10.8,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI OUT BUS1 (50A) -> harness",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out under the outboard end, lug axis",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported (P-clamp each side) or >= 51 free"
+  },
+  {
+   "where": "POWER AMI OUT RTR (30A) -> harness",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out under the outboard end, lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 11 supported (P-clamp each side) or >= 36 free"
+  },
+  {
+   "where": "POWER AMI OUT AM1 (40A) -> harness",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out under the outboard end, lug axis",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported (P-clamp each side) or >= 51 free"
+  },
+  {
+   "where": "POWER AMI OUT AM2 (30A) -> harness",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out under the outboard end, lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 11 supported (P-clamp each side) or >= 36 free"
+  },
+  {
+   "where": "POWER AMI OUT JB1 (60A) -> harness",
+   "awg": "6",
+   "od": 6.43,
+   "path": "straight out under the outboard end, lug axis",
+   "r_inside": null,
+   "need": 64.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 19 supported (P-clamp each side) or >= 64 free"
+  },
+  {
+   "where": "POWER AMI OUT EPS (60A) -> harness",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out under the outboard end, lug axis",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported (P-clamp each side) or >= 51 free"
+  },
+  {
+   "where": "POWER 1/0 input (M8 on the bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight in through the cover end notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "POWER relay terminals (85 / 86 / 87 / 87a), largest 8 AWG",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight down out of the cavity, bend under the deck",
+   "r_inside": 23.4,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "room under the deck before the mount face; tie each bend to the saddle row / comb"
+  },
+  {
+   "where": "BATTERY feed in (kill switch load side) -> M6 stud",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight in at the open -x end, lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the block; first bend outside >= 11 supported / >= 36 free"
+  },
+  {
+   "where": "BATTERY AMI 40 out -> HCR150 terminal 3",
+   "awg": "10",
+   "od": 3.61,
+   "path": "one straight jumper, both lugs at the terminal height",
+   "r_inside": null,
+   "need": 10.8,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend (the AMI pedestal puts its lug level with terminal 3)"
+  },
+  {
+   "where": "BATTERY HCR150 terminal 5 -> pump",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out the open +x end, lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the block; first bend outside >= 11 supported / >= 36 free"
+  },
+  {
+   "where": "BATTERY coil lead (Superseal plug) -> Link Aux 3",
+   "awg": "20",
+   "od": 1.57,
+   "path": "one 90 deg turn, then along the front to the +x end",
+   "r_inside": 6.2,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "held by the plug and the cover notch; 3 x OD = 4.7"
+  }
+ ],
+ "labels": {
+  "Logic_Cover_PA12_printed": [
+   "HEAD L",
+   "HEAD R",
+   "HORN",
+   "ETB",
+   "A/C",
+   "EPS EN",
+   "REV",
+   "SPARE",
+   "SPARE",
+   "SPARE",
+   "EFI86 5",
+   "HL 15",
+   "HR 15",
+   "HZ 15",
+   "DM 20",
+   "WL 15",
+   "ALM 5",
+   "ALMS 2",
+   "ALTS 2",
+   "ETB 10",
+   "SP",
+   "SP",
+   "LAM 7.5",
+   "SW12 7.5",
+   "COP 15",
+   "INJ 15",
+   "CSB 5",
+   "DEV 15",
+   "EPSEN 7.5",
+   "ACC 10",
+   "ALMIG 2",
+   "SP",
+   "SP",
+   "MRS 7.5",
+   "B30 2",
+   "BUS1",
+   "BUS2",
+   "LOGIC"
+  ],
+  "Power_Cover_PA12_printed": [
+   "HEATER",
+   "EFI",
+   "STARTER",
+   "FAN",
+   "FAN 2",
+   "WINDOWS",
+   "SPARE",
+   "ACPS 10A",
+   "HTR 40A",
+   "EFI 30A",
+   "STR 30A",
+   "FAN 40A",
+   "FAN2 30A",
+   "PWR 30A",
+   "SPARE",
+   "BUS1 50A",
+   "RTR 30A",
+   "AM1 40A",
+   "AM2 30A",
+   "JB1 60A",
+   "EPS 60A",
+   "SPARE",
+   "1/0 IN",
+   "POWER"
+  ],
+  "BattRelay_Cover_PA12_printed": [
+   "BATT +",
+   "FP 40A",
+   "K_FP  FUEL PUMP",
+   "3",
+   "5",
+   "PUMP",
+   "COIL"
+  ]
+ },
  "live_clearance": {
   "pad_to_pad_min_mm": 3.0,
   "bar_to_pad_min_mm": 17.05,
   "input_lug_to_pad_min_mm": 8.21,
-  "output_lug_to_lug_min_mm": 6.0,
+  "under_deck_lug_to_lug_min_mm": 5.5,
+  "standoff_to_standoff_min_mm": 10.0,
   "logic_strip_to_strip_mm": 4.5,
-  "battrelay_bar_to_pad_mm": 17.5,
+  "logic_feed_lug_to_lug_mm": 5.13,
+  "battrelay_bar_to_pad_mm": 17.0,
   "battrelay_relay_lug_to_lug_mm": 5.0
  },
+ "wire_to_printed_contact": [],
  "printed_parts": {
-  "Logic_Tray_PA12_printed": {
+  "Logic_Base_PA12_printed": {
    "size_mm": [
-    115.0,
-    181.0,
-    79.5
+    81.0,
+    217.0,
+    39.5
    ],
-   "volume_cm3": 213.6,
-   "mass_g_pa12": 216.0
+   "volume_cm3": 190.7,
+   "mass_g_pa12": 193.0,
+   "bodies": 1
   },
-  "Logic_Lid_PA12_printed": {
+  "Logic_Cover_PA12_printed": {
    "size_mm": [
-    79.0,
-    181.0,
-    5.5
+    84.9,
+    186.9,
+    42.4
    ],
-   "volume_cm3": 40.9,
-   "mass_g_pa12": 41.0
+   "volume_cm3": 88.1,
+   "mass_g_pa12": 89.0,
+   "bodies": 1
   },
-  "Logic_Deck_PA12_printed": {
+  "Power_Base_PA12_printed": {
    "size_mm": [
-    72.1,
-    174.1,
-    26.0
+    174.0,
+    217.0,
+    48.5
    ],
-   "volume_cm3": 184.7,
-   "mass_g_pa12": 187.0
+   "volume_cm3": 372.7,
+   "mass_g_pa12": 376.0,
+   "bodies": 1
   },
-  "Power_Tray_PA12_printed": {
+  "Power_Cover_PA12_printed": {
    "size_mm": [
-    221.5,
-    181.0,
-    79.5
+    177.9,
+    186.9,
+    42.3
    ],
-   "volume_cm3": 321.1,
-   "mass_g_pa12": 324.0
+   "volume_cm3": 148.0,
+   "mass_g_pa12": 149.0,
+   "bodies": 1
   },
-  "Power_Lid_PA12_printed": {
+  "BattRelay_Base_PA12_printed": {
    "size_mm": [
-    185.5,
-    181.0,
-    5.5
+    184.0,
+    128.0,
+    36.2
    ],
-   "volume_cm3": 95.7,
-   "mass_g_pa12": 97.0
+   "volume_cm3": 112.5,
+   "mass_g_pa12": 114.0,
+   "bodies": 1
   },
-  "Power_Deck_PA12_printed": {
+  "BattRelay_Cover_PA12_printed": {
    "size_mm": [
-    178.6,
-    174.1,
-    26.0
+    189.9,
+    97.9,
+    47.5
    ],
-   "volume_cm3": 361.1,
-   "mass_g_pa12": 365.0
-  },
-  "BattRelay_Tray_PA12_printed": {
-   "size_mm": [
-    168.0,
-    110.0,
-    48.0
-   ],
-   "volume_cm3": 151.1,
-   "mass_g_pa12": 153.0
-  },
-  "BattRelay_Lid_PA12_printed": {
-   "size_mm": [
-    150.0,
-    110.0,
-    5.5
-   ],
-   "volume_cm3": 45.8,
-   "mass_g_pa12": 46.0
+   "volume_cm3": 102.4,
+   "mass_g_pa12": 103.0,
+   "bodies": 1
   }
  },
  "boxes_mm": {
   "LOGIC": {
    "L": 79.0,
    "D": 181.0,
-   "H": 85.0,
-   "L_with_ears": 115.0
+   "H": 68.9,
+   "z_d": 17.5,
+   "z_t": 39.5,
+   "cover_top": 68.9
   },
   "POWER": {
-   "L": 185.5,
+   "L": 172.0,
    "D": 181.0,
-   "H": 85.0,
-   "L_with_ears": 221.5
+   "H": 77.8,
+   "z_d": 28.0,
+   "z_t": 48.5,
+   "cover_top": 77.8,
+   "Rc": 18.6
   },
   "BATTRELAY": {
-   "L": 150.0,
-   "D": 110.0,
-   "H": 53.5,
-   "L_with_ears": 168.0
+   "L": 184.0,
+   "D": 92.0,
+   "H": 54.0,
+   "L_with_tabs": 184.0,
+   "D_with_tabs": 124.0
   }
- },
- "footprint_mm2": {
-  "LOGIC": 14299.0,
-  "POWER": 33576.0,
-  "BATTRELAY": 16500.0
  },
  "bar_metal": "CuC110",
  "interference": [],
  "mass_g": {
-  "Logic_Strip_Logic_CuC110_10x3": 63.7,
+  "Logic_Strip_Logic_CuC110_10x3": 61.8,
   "Power_Bar_Power_CuC110_25x6p35": 191.3,
   "Power_Pad_Out_CuC110_15x3": 89.6,
-  "BattRelay_Bar_Power_CuC110_25x6p35": 51.6,
+  "BattRelay_Bar_Power_CuC110_25x6p35": 49.4,
   "BattRelay_Pad_Out_CuC110_15x3": 6.4
  },
  "exported": [
-  "Logic_Tray_PA12_printed.step",
-  "Logic_Tray_PA12_printed.stl",
-  "Logic_Lid_PA12_printed.step",
-  "Logic_Lid_PA12_printed.stl",
-  "Logic_Deck_PA12_printed.step",
-  "Logic_Deck_PA12_printed.stl",
+  "Logic_Base_PA12_printed.step",
+  "Logic_Base_PA12_printed.stl",
   "Logic_Strip_Logic_CuC110_10x3.step",
-  "Power_Tray_PA12_printed.step",
-  "Power_Tray_PA12_printed.stl",
-  "Power_Lid_PA12_printed.step",
-  "Power_Lid_PA12_printed.stl",
-  "Power_Deck_PA12_printed.step",
-  "Power_Deck_PA12_printed.stl",
+  "Logic_Cover_PA12_printed.step",
+  "Logic_Cover_PA12_printed.stl",
+  "Power_Base_PA12_printed.step",
+  "Power_Base_PA12_printed.stl",
   "Power_Bar_Power_CuC110_25x6p35.step",
   "Power_Pad_Out_CuC110_15x3.step",
-  "BattRelay_Tray_PA12_printed.step",
-  "BattRelay_Tray_PA12_printed.stl",
-  "BattRelay_Lid_PA12_printed.step",
-  "BattRelay_Lid_PA12_printed.stl",
+  "Power_Cover_PA12_printed.step",
+  "Power_Cover_PA12_printed.stl",
+  "BattRelay_Base_PA12_printed.step",
+  "BattRelay_Base_PA12_printed.stl",
   "BattRelay_Bar_Power_CuC110_25x6p35.step",
   "BattRelay_Pad_Out_CuC110_15x3.step",
-  "ST185_fusebox_rev3_assembly.step",
-  "ST185_fusebox_rev3.f3d"
- ]
+  "BattRelay_Cover_PA12_printed.step",
+  "BattRelay_Cover_PA12_printed.stl",
+  "ST185_fusebox_rev4_assembly.step",
+  "ST185_fusebox_rev4.f3d"
+ ],
+ "renamed_document_to": "ST185_fusebox_rev4"
 }
