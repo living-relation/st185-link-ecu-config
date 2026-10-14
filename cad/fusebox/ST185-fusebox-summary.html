@@ -17,19 +17,19 @@ ol.co{columns:2;column-gap:28px;font-size:13.5px;padding-left:22px}@media (max-w
 .num{display:inline-block;min-width:22px;text-align:center;background:#ffd200;color:#141414;border-radius:11px;font-weight:700;font-size:12.5px;padding:0 4px}
 </style></head><body><main>
 <h1>ST185 fuse + relay boxes - CAD rev 5</h1>
-<p class="mut">Claude Code, 2026-10-14. Rev 5 is your review of rev 4 (11 points, all binding), answered below. Everything else from rev 4 is kept: open bottoms, snap-on covers, bend radius on every cable, the Blue Sea 7720 look for the battery block, AMI studs, tinned copper stock cut and drilled only (R73, R75, R76, R79, S27). Fusion: the same document, renamed <code>ST185_fusebox_rev5</code> (no new document, R74). Model files (STEP / STL / f3d) are local, untracked, in <code>cad/fusebox/</code> of the main checkout. Build: <code>cad/fusebox/src/</code>.</p>
+<p class="mut">Claude Code, 2026-10-14. Rev 5 is your review of rev 4 (11 points; point 11 dropped - your correction: the lid labels stay as they were), answered below. Everything else from rev 4 is kept: open bottoms, snap-on covers, bend radius on every cable, the Blue Sea 7720 look for the battery block, AMI studs, tinned copper stock cut and drilled only (R73, R75, R76, R79, S27). Fusion: the same document, renamed <code>ST185_fusebox_rev5</code> (no new document, R74). Model files (STEP / STL / f3d) are local, untracked, in <code>cad/fusebox/</code> of the main checkout. Build: <code>cad/fusebox/src/</code>.</p>
 <div class="kpi">
 <div>LOGIC box<b>79 x 181 x 71.4</b><span class="mut">mm L x D x H (rev 4: 79 x 181 x 68.9)</span></div>
 <div>POWER box<b>180 x 181 x 81.8</b><span class="mut">mm L x D x H (rev 4: 172 x 181 x 77.8)</span></div>
 <div>Battery block<b>184 x 92 x 54.0</b><span class="mut">mm, 228 long with the end tabs (rev 4: 184 x 92 x 54)</span></div>
 <div>Printed pieces<b>3 + 3 + 2</b><span class="mut">base + cover + belly pan per glove-box box; base + cover in the trunk</span></div>
 </div>
-<figure><img src="fusebox_render_iso_closed.png" alt="Closed: vent slots in both lids, numbers instead of names (legend below), bumper band and ribs, angular legs. Yellow = the harness bundles leaving the LOGIC front edge and the POWER inboard end; red = the heavy cables."><figcaption>Closed: vent slots in both lids, numbers instead of names (legend below), bumper band and ribs, angular legs. Yellow = the harness bundles leaving the LOGIC front edge and the POWER inboard end; red = the heavy cables.</figcaption>
+<figure><img src="fusebox_render_iso_closed.png" alt="Closed: vent slots in both lids, bumper band and ribs, angular legs; the etched names are the rev 4 labels, unchanged. Yellow = the harness bundles leaving the LOGIC front edge and the POWER inboard end; red = the heavy cables."><figcaption>Closed: vent slots in both lids, bumper band and ribs, angular legs; the etched names are the rev 4 labels, unchanged. Yellow = the harness bundles leaving the LOGIC front edge and the POWER inboard end; red = the heavy cables.</figcaption>
 </figure>
-<figure><img src="battrelay_render_iso_closed.png" alt="Battery block with its lid (the snap-on cover - it was in rev 4 too, only in the closed view): plain words, side vents, a tab on each short end."><figcaption>Battery block with its lid (the snap-on cover - it was in rev 4 too, only in the closed view): plain words, side vents, a tab on each short end.</figcaption>
+<figure><img src="battrelay_render_iso_closed.png" alt="Battery block with its lid (the snap-on cover - it was in rev 4 too, only in the closed view): rev 4 labels, side vents, a tab on each short end."><figcaption>Battery block with its lid (the snap-on cover - it was in rev 4 too, only in the closed view): rev 4 labels, side vents, a tab on each short end.</figcaption>
 </figure>
 <h2>Your review, point by point</h2><ol>
-<li><b>Vent slots on the lids.</b> Rows of 2.6 x 14 mm slots through every glove-box lid, placed between the numbers (over the gaps between relay columns and along the outboard edge). 2.6 mm keeps fingers and tools out. The battery block in the trunk gets its slots in the long side walls instead of the top, so a spill on the lid does not run in.</li>
+<li><b>Vent slots on the lids.</b> Rows of 2.6 x 14 mm slots through every glove-box lid, placed clear of the etched names (over the gaps between relay columns and along the outboard edge). 2.6 mm keeps fingers and tools out. The battery block in the trunk gets its slots in the long side walls instead of the top, so a spill on the lid does not run in.</li>
 <li><b>Where is the lid for the little one?</b> It was there in rev 4, but only in the one closed picture - the one you looked at was the open view. Rev 5 shows it closed from both sides, from underneath, and lifted off in the exploded view (Battery relay block, below).</li>
 <li><b>Little one: mounts on the short ends.</b> Done - one tab on each short end (M5, brass limiter), set at the rear half of the end so no cable leaves over a tab (the cables leave the ends at the front half). The tabs on the long sides are gone.</li>
 <li><b>How the bus bars, terminals and fuses go in.</b> New: an exploded view of each box with numbered parts, and four step pictures for the POWER box (copper in; turn over, terminals and lugs from below; fuses and relays from the top; pan and cover on). See "How it goes together".</li>
@@ -39,83 +39,16 @@ ol.co{columns:2;column-gap:28px;font-size:13.5px;padding-left:22px}@media (max-w
 <li><b>What are the other 2 parts on the smallest box?</b> The two grey blocks are <b>printed risers (pedestals)</b>, part of the base. The first carries the <b>copper bar</b> with the battery stud (M6, battery feed in) and the fuse's input stud; the second carries the <b>copper pad</b> with the fuse's output stud. They lift the AMI fuse so its output lug sits level with the relay's terminal 3, so the jumper is one straight piece of cable. In rev 5 they are one ribbed block (the fuse pedestal) and they are numbered in the exploded view: 5 bar, 6 pad, 7 pedestal.</li>
 <li><b>No more feet - angular legs.</b> Each leg is now a hollow tapered buttress on a skirt face (24 wide at the foot, 16 at the top, outer face sloping out to the foot), with a flat foot and the M5 hole outside it. POWER: on the front and rear faces; LOGIC: on its two long sides, so the front edge and rear stay clear for cables. Open underneath (no trapped powder).</li>
 <li><b>Snap-on covers for everything live underneath.</b> New belly pan under each glove-box box: a 2.5 mm PA12 tray whose wall slides 4 mm up inside the skirt and catches with 4 tongues. It covers every lug, standoff, bolt head and terminal crimp; nearest live part to the pan: 1.5 mm. Cables leave through notches in its wall. To make room under the IN-row bolt heads the boxes grew 4.0 (POWER) and 2.5 mm (LOGIC) in height. The battery block already had a closed floor (nothing live underneath).</li>
-<li><b>Labels unreadable.</b> The lids now carry short numbers only - <b>R1-R7</b> and <b>F1-F15</b> on POWER, <b>F1-F25</b>, <b>R1-R10</b>, <b>B1 / B2</b> on LOGIC - 5 mm tall (3.6 on the mini fuses), each right over its part, nothing overlapping. What each number is: the legend tables under "Lid legends". POWER R<i>n</i> is fed by F<i>n</i>. The battery block keeps plain words - it has room for them.</li></ol>
-<h2>Lid legends</h2>
-<figure><img src="fusebox_render_top_lid_power.png" alt="POWER lid, top view - read the numbers against the legend."><figcaption>POWER lid, top view - read the numbers against the legend.</figcaption>
+<li><b>Lid labels:</b> unchanged - the rev 4 etched names (your correction: they were fine; the numbers / legend comment was about a route drawing).</li></ol>
+<h2>Lids, top view</h2>
+<figure><img src="fusebox_render_top_lid_power.png" alt="POWER lid, top view (rev 4 etched names)."><figcaption>POWER lid, top view (rev 4 etched names).</figcaption>
 </figure>
-<h3>POWER box</h3><div class="wrap"><table><tr><th>On the lid</th><th>What it is</th><th>Rating</th><th>Part</th></tr>
-<tr><td><b>R1</b></td><td>Heater (blower) relay</td><td>fed by F1</td><td>1-1904020-2 (BUY)</td></tr>
-<tr><td><b>R2</b></td><td>EFI main relay</td><td>fed by F2</td><td>1-1414147-0 (OWN)</td></tr>
-<tr><td><b>R3</b></td><td>Starter relay</td><td>fed by F3</td><td>1-1414147-0 (OWN)</td></tr>
-<tr><td><b>R4</b></td><td>Radiator fan 1 relay</td><td>fed by F4</td><td>1-1414147-0 (OWN)</td></tr>
-<tr><td><b>R5</b></td><td>Radiator fan 2 relay</td><td>fed by F5</td><td>1-1393304-0 (OWN)</td></tr>
-<tr><td><b>R6</b></td><td>Power windows relay</td><td>fed by F6</td><td>1-1393304-0 (OWN)</td></tr>
-<tr><td><b>R7</b></td><td>spare relay position</td><td>-</td><td>-</td></tr>
-<tr><td><b>F1</b></td><td>HTR fuse (AMI IN row) -&gt; relay R1</td><td>40 A</td><td>AMI-40</td></tr>
-<tr><td><b>F2</b></td><td>EFI fuse (AMI IN row) -&gt; relay R2</td><td>30 A</td><td>AMI-30</td></tr>
-<tr><td><b>F3</b></td><td>STR fuse (AMI IN row) -&gt; relay R3</td><td>30 A</td><td>AMI-30</td></tr>
-<tr><td><b>F4</b></td><td>FAN fuse (AMI IN row) -&gt; relay R4</td><td>40 A</td><td>AMI-40</td></tr>
-<tr><td><b>F5</b></td><td>FAN2 fuse (AMI IN row) -&gt; relay R5</td><td>30 A</td><td>AMI-30</td></tr>
-<tr><td><b>F6</b></td><td>PWR fuse (AMI IN row) -&gt; relay R6</td><td>30 A</td><td>AMI-30</td></tr>
-<tr><td><b>F7</b></td><td>spare AMI position (IN row)</td><td>-</td><td>-</td></tr>
-<tr><td><b>F8</b></td><td>BUS1 fuse (AMI OUT row) -&gt; harness, 8 AWG</td><td>50 A</td><td>AMI-50</td></tr>
-<tr><td><b>F9</b></td><td>RTR fuse (AMI OUT row) -&gt; harness, 10 AWG</td><td>30 A</td><td>AMI-30</td></tr>
-<tr><td><b>F10</b></td><td>AM1 fuse (AMI OUT row) -&gt; harness, 8 AWG</td><td>40 A</td><td>AMI-40</td></tr>
-<tr><td><b>F11</b></td><td>AM2 fuse (AMI OUT row) -&gt; harness, 10 AWG</td><td>30 A</td><td>AMI-30</td></tr>
-<tr><td><b>F12</b></td><td>JB1 fuse (AMI OUT row) -&gt; harness, 6 AWG</td><td>60 A</td><td>AMI-60</td></tr>
-<tr><td><b>F13</b></td><td>EPS fuse (AMI OUT row) -&gt; harness, 8 AWG</td><td>60 A</td><td>AMI-60</td></tr>
-<tr><td><b>F14</b></td><td>spare AMI position (OUT row)</td><td>-</td><td>-</td></tr>
-<tr><td><b>F15</b></td><td>ACPS (A/C pressure switch) fuse, fed from the heater relay 87</td><td>10 A</td><td>ATM-10</td></tr>
-<tr><td><b>B+</b></td><td>1/0 battery feed in, M8 stud on the bar</td><td>-</td><td>Klauke 6R8 lug</td></tr>
-</table></div>
-<figure><img src="fusebox_render_top_lid_logic.png" alt="LOGIC lid, top view - read the numbers against the legend."><figcaption>LOGIC lid, top view - read the numbers against the legend.</figcaption>
+<figure><img src="fusebox_render_top_lid_logic.png" alt="LOGIC lid, top view (rev 4 etched names)."><figcaption>LOGIC lid, top view (rev 4 etched names).</figcaption>
 </figure>
-<h3>LOGIC box</h3><div class="wrap"><table><tr><th>On the lid</th><th>What it is</th><th>Rating</th><th>Part</th></tr>
-<tr><td><b>F1</b></td><td>EFI86 (Bus 1)</td><td>5 A</td><td>ATM-5</td></tr>
-<tr><td><b>F2</b></td><td>HL (Bus 1)</td><td>15 A</td><td>ATM-15</td></tr>
-<tr><td><b>F3</b></td><td>HR (Bus 1)</td><td>15 A</td><td>ATM-15</td></tr>
-<tr><td><b>F4</b></td><td>HZ (Bus 1)</td><td>15 A</td><td>ATM-15</td></tr>
-<tr><td><b>F5</b></td><td>DM (Bus 1)</td><td>20 A</td><td>ATM-20</td></tr>
-<tr><td><b>F6</b></td><td>WL (Bus 1)</td><td>15 A</td><td>ATM-15</td></tr>
-<tr><td><b>F7</b></td><td>ALM (Bus 1)</td><td>5 A</td><td>ATM-5</td></tr>
-<tr><td><b>F8</b></td><td>ALMS (Bus 1)</td><td>2 A</td><td>ATM-2</td></tr>
-<tr><td><b>F9</b></td><td>ALTS (Bus 1)</td><td>2 A</td><td>ATM-2</td></tr>
-<tr><td><b>F10</b></td><td>ETB (Bus 1)</td><td>10 A</td><td>ATM-10</td></tr>
-<tr><td><b>F11</b></td><td>spare (Bus 1)</td><td>-</td><td>-</td></tr>
-<tr><td><b>F12</b></td><td>spare (Bus 1)</td><td>-</td><td>-</td></tr>
-<tr><td><b>F13</b></td><td>LAM (Bus 2)</td><td>7.5 A</td><td>ATM-7.5</td></tr>
-<tr><td><b>F14</b></td><td>SW12 (Bus 2)</td><td>7.5 A</td><td>ATM-7.5</td></tr>
-<tr><td><b>F15</b></td><td>COP (Bus 2)</td><td>15 A</td><td>ATM-15</td></tr>
-<tr><td><b>F16</b></td><td>INJ (Bus 2)</td><td>15 A</td><td>ATM-15</td></tr>
-<tr><td><b>F17</b></td><td>CSB (Bus 2)</td><td>5 A</td><td>ATM-5</td></tr>
-<tr><td><b>F18</b></td><td>DEV (Bus 2)</td><td>15 A</td><td>ATM-15</td></tr>
-<tr><td><b>F19</b></td><td>EPSEN (Bus 2)</td><td>7.5 A</td><td>ATM-7.5</td></tr>
-<tr><td><b>F20</b></td><td>ACC (Bus 2)</td><td>10 A</td><td>ATM-10</td></tr>
-<tr><td><b>F21</b></td><td>ALMIG (Bus 2)</td><td>2 A</td><td>ATM-2</td></tr>
-<tr><td><b>F22</b></td><td>spare (Bus 2)</td><td>-</td><td>-</td></tr>
-<tr><td><b>F23</b></td><td>spare (Bus 2)</td><td>-</td><td>-</td></tr>
-<tr><td><b>F24</b></td><td>MRS (Bus 2)</td><td>7.5 A</td><td>ATM-7.5</td></tr>
-<tr><td><b>F25</b></td><td>B30 (Bus 2)</td><td>2 A</td><td>ATM-2</td></tr>
-<tr><td><b>R1</b></td><td>Headlight LH relay</td><td>-</td><td>5-1393292-8 (OWN)</td></tr>
-<tr><td><b>R2</b></td><td>Headlight RH relay</td><td>-</td><td>5-1393292-8 (OWN)</td></tr>
-<tr><td><b>R3</b></td><td>Horn relay</td><td>-</td><td>4-1904124-3 (OWN)</td></tr>
-<tr><td><b>R4</b></td><td>ETB relay</td><td>-</td><td>4-1904124-2 (OWN)</td></tr>
-<tr><td><b>R5</b></td><td>A/C clutch relay</td><td>-</td><td>6-1419137-4 (OWN)</td></tr>
-<tr><td><b>R6</b></td><td>EPS enable relay</td><td>-</td><td>6-1419137-4 (OWN)</td></tr>
-<tr><td><b>R7</b></td><td>Reverse relay</td><td>-</td><td>6-1419137-4 (BUY)</td></tr>
-<tr><td><b>R8</b></td><td>spare relay position</td><td>-</td><td>-</td></tr>
-<tr><td><b>R9</b></td><td>spare relay position</td><td>-</td><td>-</td></tr>
-<tr><td><b>R10</b></td><td>spare relay position</td><td>-</td><td>-</td></tr>
-<tr><td><b>B1</b></td><td>Bus 1 strip (fuses F1-F12), fed from POWER F8 (BUS1 50 A), 8 AWG</td><td>-</td><td>-</td></tr>
-<tr><td><b>B2</b></td><td>Bus 2 strip (fuses F13-F25), fed from POWER R2 (EFI relay) 87, 10 AWG</td><td>-</td><td>-</td></tr>
-</table></div>
-<h3>Battery relay block (words on the lid)</h3><div class="wrap"><table><tr><th>On the lid</th><th>What it is</th><th>Rating</th><th>Part</th></tr>
-<tr><td><b>BATT IN</b></td><td>battery feed from the kill switch load side, M6 stud on the copper bar</td><td>-</td><td>M6 ring lug (TBD)</td></tr>
-<tr><td><b>FUSE 40A</b></td><td>fuel pump fuse</td><td>40 A</td><td>AMI-40</td></tr>
-<tr><td><b>FUEL PUMP RELAY</b></td><td>k_fp, TE HCR150</td><td>130 A at 85 C</td><td>1416010-1 (OWN)</td></tr>
-<tr><td><b>PUMP OUT</b></td><td>fuel pump feed, relay terminal 5</td><td>-</td><td>M6 ring lug (TBD)</td></tr>
-<tr><td><b>COIL</b></td><td>relay coil plug lead to Link Aux 3</td><td>-</td><td>Superseal 1.5 282080-1</td></tr>
-</table></div>
+<h3>Labels (etched in the covers)</h3>
+<p><b>Logic:</b> HEAD L, HEAD R, HORN, ETB, A/C, EPS EN, REV, SPARE, SPARE, SPARE, EFI86 5, HL 15, HR 15, HZ 15, DM 20, WL 15, ALM 5, ALMS 2, ALTS 2, ETB 10, SP, SP, LAM 7.5, SW12 7.5, COP 15, INJ 15, CSB 5, DEV 15, EPSEN 7.5, ACC 10, ALMIG 2, SP, SP, MRS 7.5, B30 2, BUS1, BUS2, LOGIC</p>
+<p><b>Power:</b> HEATER, EFI, STARTER, FAN, FAN 2, WINDOWS, SPARE, ACPS 10A, HTR 40A, EFI 30A, STR 30A, FAN 40A, FAN2 30A, PWR 30A, SPARE, BUS1 50A, RTR 30A, AM1 40A, AM2 30A, JB1 60A, EPS 60A, SPARE, 1/0 IN, POWER</p>
+<p><b>BattRelay:</b> BATT +, FP 40A, K_FP  FUEL PUMP, 3, 5, PUMP, COIL</p>
 <h2>Cable routing (point 5)</h2><p>Yellow = harness wires (each terminal's own wire), red = heavy cables. Gauges here follow the fuse rating (2-5 A 20 AWG, 7.5-10 A 18, 15 A 16, 20 A 12; relay 87 = its feed; coils 20) - the harness drawings set the real gauge. Every bundle runs where no other cable runs and leaves at one edge. Bundle size = 1.2 x the root of the summed squared ODs.</p>
 <figure><img src="fusebox_render_under_open.png" alt="Underneath, pans off: every cable from every terminal, lug and stud, all the way to the box edge."><figcaption>Underneath, pans off: every cable from every terminal, lug and stud, all the way to the box edge.</figcaption>
 </figure>
@@ -123,30 +56,30 @@ ol.co{columns:2;column-gap:28px;font-size:13.5px;padding-left:22px}@media (max-w
 <ol class="co"><li value="1">harness bundles to the inboard edge</li><li value="2">relay feed: lug on the 40 mm standoff</li><li value="3">feed bends up R16 into terminal 30</li><li value="4">OUT lug on the 12 mm standoff</li><li value="5">OUT cables straight out the end</li><li value="6">1/0 battery feed in</li></ol>
 </figure>
 <figure><img src="fusebox_render_routing_logic.png" alt="LOGIC box, wiring only, from below."><figcaption>LOGIC box, wiring only, from below.</figcaption>
-<ol class="co"><li value="1">Bus 1 fuse wires</li><li value="2">Bus 2 fuse wires</li><li value="3">relay R1-R5 wires</li><li value="4">relay R6-R10 wires</li><li value="5">all leave the front edge</li><li value="6">Bus feeds in at the rear</li></ol>
+<ol class="co"><li value="1">Bus 1 fuse wires</li><li value="2">Bus 2 fuse wires</li><li value="3">micro relay wires, inboard column</li><li value="4">micro relay wires, outboard column</li><li value="5">all leave the front edge</li><li value="6">Bus feeds in at the rear</li></ol>
 </figure>
 <figure><img src="fusebox_render_under_pan.png" alt="Underneath with the snap-on belly pans: nothing live can be touched. The bundles leave through notches in the pan wall."><figcaption>Underneath with the snap-on belly pans: nothing live can be touched. The bundles leave through notches in the pan wall.</figcaption>
 </figure>
 <h3>POWER bundles (leave the inboard end, at y)</h3><div class="wrap"><table><tr><th>At</th><th>Wires</th><th>Bundle mm</th><th>Spare room under the deck mm</th><th>Which</th></tr>
-<tr><td>35</td><td>3</td><td>4.5</td><td>16.5</td><td>R1 heater 85, F15 ACPS, F15 ACPS</td></tr>
-<tr><td>43</td><td>2</td><td>6.5</td><td>6.0</td><td>R1 heater 87, R1 heater 87a</td></tr>
-<tr><td>52</td><td>2</td><td>2.7</td><td>20.4</td><td>R1 heater 86, R2 k_efi 85</td></tr>
-<tr><td>61</td><td>1</td><td>3.0</td><td>15.3</td><td>R2 k_efi 87</td></tr>
-<tr><td>70</td><td>2</td><td>2.7</td><td>20.4</td><td>R2 k_efi 86, R3 k_str 85</td></tr>
-<tr><td>79</td><td>1</td><td>3.0</td><td>15.3</td><td>R3 k_str 87</td></tr>
-<tr><td>88</td><td>2</td><td>2.7</td><td>20.4</td><td>R3 k_str 86, R4 k_fan 85</td></tr>
-<tr><td>97</td><td>1</td><td>5.1</td><td>6.7</td><td>R4 k_fan 87</td></tr>
-<tr><td>106</td><td>2</td><td>2.7</td><td>20.4</td><td>R4 k_fan 86, R5 k_fan2 85</td></tr>
-<tr><td>115</td><td>1</td><td>5.1</td><td>6.7</td><td>R5 k_fan2 87</td></tr>
-<tr><td>124</td><td>2</td><td>2.7</td><td>20.4</td><td>R5 k_fan2 86, R6 power 85</td></tr>
-<tr><td>133</td><td>1</td><td>3.6</td><td>12.8</td><td>R6 power 87</td></tr>
-<tr><td>142</td><td>1</td><td>1.6</td><td>20.9</td><td>R6 power 86</td></tr>
+<tr><td>35</td><td>3</td><td>4.5</td><td>16.5</td><td>heater 85, ACPS, ACPS</td></tr>
+<tr><td>43</td><td>2</td><td>6.5</td><td>6.0</td><td>heater 87, heater 87a</td></tr>
+<tr><td>52</td><td>2</td><td>2.7</td><td>20.4</td><td>heater 86, k_efi 85</td></tr>
+<tr><td>61</td><td>1</td><td>3.0</td><td>15.3</td><td>k_efi 87</td></tr>
+<tr><td>70</td><td>2</td><td>2.7</td><td>20.4</td><td>k_efi 86, k_str 85</td></tr>
+<tr><td>79</td><td>1</td><td>3.0</td><td>15.3</td><td>k_str 87</td></tr>
+<tr><td>88</td><td>2</td><td>2.7</td><td>20.4</td><td>k_str 86, k_fan 85</td></tr>
+<tr><td>97</td><td>1</td><td>5.1</td><td>6.7</td><td>k_fan 87</td></tr>
+<tr><td>106</td><td>2</td><td>2.7</td><td>20.4</td><td>k_fan 86, k_fan2 85</td></tr>
+<tr><td>115</td><td>1</td><td>5.1</td><td>6.7</td><td>k_fan2 87</td></tr>
+<tr><td>124</td><td>2</td><td>2.7</td><td>20.4</td><td>k_fan2 86, power 85</td></tr>
+<tr><td>133</td><td>1</td><td>3.6</td><td>12.8</td><td>power 87</td></tr>
+<tr><td>142</td><td>1</td><td>1.6</td><td>20.9</td><td>power 86</td></tr>
 </table></div>
 <h3>LOGIC bundles (leave the front edge, at x)</h3><div class="wrap"><table><tr><th>At</th><th>Wires</th><th>Bundle mm</th><th>Spare room under the deck mm</th><th>Which</th></tr>
-<tr><td>16</td><td>10</td><td>7.5</td><td>1.1</td><td>F1 EFI86, F2 HL, F3 HR, F4 HZ, F5 DM, F6 WL, F7 ALM, F8 ALMS, F9 ALTS, F10 ETB</td></tr>
-<tr><td>30</td><td>11</td><td>7.3</td><td>4.3</td><td>F13 LAM, F14 SW12, F15 COP, F16 INJ, F17 CSB, F18 DEV, F19 EPSEN, F20 ACC, F21 ALMIG, F24 MRS, F25 B30</td></tr>
-<tr><td>44</td><td>21</td><td>10.1</td><td>2.9</td><td>R1 HEAD LH 30, R1 HEAD LH 87, R1 HEAD LH 85, R1 HEAD LH 86, R2 HEAD RH 30, R2 HEAD RH 87, R2 HEAD RH 85, R2 HEAD RH 86, R3 horn 30, R3 horn 87, R3 horn 85, R3 horn 86, R4 k_etb 30, R4 k_etb 87, R4 k_etb 85, R4 k_etb 86, R5 k_acc 30, R5 k_acc 87, R5 k_acc 87a, R5 k_acc 85, R5 k_acc 86</td></tr>
-<tr><td>63</td><td>10</td><td>7.1</td><td>4.4</td><td>R6 k_eps_en 30, R6 k_eps_en 87, R6 k_eps_en 87a, R6 k_eps_en 85, R6 k_eps_en 86, R7 k_rev 30, R7 k_rev 87, R7 k_rev 87a, R7 k_rev 85, R7 k_rev 86</td></tr>
+<tr><td>16</td><td>10</td><td>7.5</td><td>1.1</td><td>EFI86, HL, HR, HZ, DM, WL, ALM, ALMS, ALTS, ETB</td></tr>
+<tr><td>30</td><td>11</td><td>7.3</td><td>4.3</td><td>LAM, SW12, COP, INJ, CSB, DEV, EPSEN, ACC, ALMIG, MRS, B30</td></tr>
+<tr><td>44</td><td>21</td><td>10.1</td><td>2.9</td><td>HEAD LH 30, HEAD LH 87, HEAD LH 85, HEAD LH 86, HEAD RH 30, HEAD RH 87, HEAD RH 85, HEAD RH 86, horn 30, horn 87, horn 85, horn 86, k_etb 30, k_etb 87, k_etb 85, k_etb 86, k_acc 30, k_acc 87, k_acc 87a, k_acc 85, k_acc 86</td></tr>
+<tr><td>63</td><td>10</td><td>7.1</td><td>4.4</td><td>k_eps_en 30, k_eps_en 87, k_eps_en 87a, k_eps_en 85, k_eps_en 86, k_rev 30, k_rev 87, k_rev 87a, k_rev 85, k_rev 86</td></tr>
 </table></div>
 <h2>How it goes together (point 4)</h2>
 <figure><img src="fusebox_power_explode.png" alt="POWER box, exploded."><figcaption>POWER box, exploded.</figcaption>
@@ -159,13 +92,13 @@ ol.co{columns:2;column-gap:28px;font-size:13.5px;padding-left:22px}@media (max-w
 <ol class="co"><li value="1">crimp, push each terminal up into its cavity (wire side)</li><li value="2">relay feed lug on its long standoff (M5 x 10)</li><li value="3">feed round its saddle into terminal 30</li><li value="4">OUT lug on its short standoff</li><li value="5">tie the bundles; they leave the inboard end</li></ol>
 </figure>
 <figure><img src="fusebox_power_step3.png" alt="Step 3 - right way up: fuses, relays, the 1/0."><figcaption>Step 3 - right way up: fuses, relays, the 1/0.</figcaption>
-<ol class="co"><li value="1">AMI fuses on the studs</li><li value="2">Keps nuts, 4 Nm max</li><li value="3">relays R1-R6 plug in</li><li value="4">F15 ACPS mini fuse</li><li value="5">1/0 lug on the M8 stud</li></ol>
+<ol class="co"><li value="1">AMI fuses on the studs</li><li value="2">Keps nuts, 4 Nm max</li><li value="3">relays plug in</li><li value="4">ACPS mini fuse</li><li value="5">1/0 lug on the M8 stud</li></ol>
 </figure>
 <figure><img src="fusebox_power_step4.png" alt="Step 4 - mount it, then pan and cover snap on."><figcaption>Step 4 - mount it, then pan and cover snap on.</figcaption>
 <ol class="co"><li value="1">belly pan snaps up into the skirt</li><li value="2">cover snaps down over the deck</li><li value="3">M5 through each foot (4)</li></ol>
 </figure>
 <figure><img src="fusebox_logic_explode.png" alt="LOGIC box, exploded."><figcaption>LOGIC box, exploded.</figcaption>
-<ol class="co"><li value="1">cover (snaps on)</li><li value="2">micro relays R1-R10</li><li value="3">mini fuses F1-F25</li><li value="4">strip bolts, head on top</li><li value="5">base (deck on 4 angular legs)</li><li value="6">Bus 1 / Bus 2 strips, up from below</li><li value="7">standoffs 12 mm</li><li value="8">feed lugs</li><li value="9">M5 x 8 lug bolts</li><li value="10">belly pan (snaps on)</li></ol>
+<ol class="co"><li value="1">cover (snaps on)</li><li value="2">micro relays</li><li value="3">mini fuses</li><li value="4">strip bolts, head on top</li><li value="5">base (deck on 4 angular legs)</li><li value="6">Bus 1 / Bus 2 strips, up from below</li><li value="7">standoffs 12 mm</li><li value="8">feed lugs</li><li value="9">M5 x 8 lug bolts</li><li value="10">belly pan (snaps on)</li></ol>
 </figure>
 <div class="grid"><div><h3>POWER box (3 printed pieces)</h3><ol><li>Press a brass limiter into each of the 4 feet.</li><li>Base right way up: lay the bar and the 14 pads in their pockets. From below, push the M5 x 16 bolts (and the M8 x 20 for the 1/0) up through the hex head pockets and the bar holes. Slide a standoff up each hex hole (40 mm in the IN row, 12 mm in the OUT row) and screw a set screw down through each pad into it.</li><li>Turn the base over. Crimp the relay terminals, push each one up into its cavity until it clicks, and tie the wires into their bundles (they leave the inboard end). Bolt the AMI output lugs under their standoffs (M5 x 10 IN row, M5 x 8 OUT row); each relay feed goes lug -> straight -> round its saddle -> terminal 30.</li><li>Right way up: AMI fuses on the studs, Keps nuts 4 Nm max; 1/0 lug on the M8.</li><li>Mount the base by its 4 feet, snap the belly pan up into the skirt, plug the relays and the ACPS fuse in, snap the cover on.</li></ol></div><div><h3>LOGIC box (3 printed pieces)</h3><ol><li>Limiters in the feet. From below, slide the two strips up into their pockets.</li><li>12 mm standoff under each strip end; M5 x 8 strip bolt down from the top (head in its pocket) into the standoff; feed lug under it (M5 x 8).</li><li>Wire side up: crimp and push in the mini-fuse and micro-relay terminals; tie each column's wires into its bundle (front edge).</li><li>Mount by the 4 feet (long sides), snap the pan on, fuses and micro relays in, snap the cover on.</li></ol></div><div><h3>Battery block (2 printed pieces)</h3><ol><li>From below, an M6 nut into each of the 2 hex pockets under the relay platform; limiters in the end tabs and the 2 flange bosses.</li><li>Drop the 3 bolt heads into the fuse pedestal pockets (top), lay the bar and the pad on.</li><li>HCR150 on its platform, 2 M6 bolts down through the flange into the captured nuts.</li><li>AMI 40 on, jumper (two lugs, one straight 18 mm cable) from the AMI out to terminal 3, pump cable on terminal 5, coil plug on.</li><li>Mount by the 2 end tabs (passenger side of the trunk, between the rear wall and the battery - Z4), snap the cover on.</li></ol></div></div><p class="mut">To service a terminal later: unsnap the pan - every cavity is right there.</p>
 <h2>Bend radius check (every cable at every lug, stud and terminal)</h2><p>Rule: FAA AC 43.13-1B CHG 1, par. 11-96 aa (p. 11-44/45) - a bundle no tighter than <b>10 x the OD</b> of its largest wire; where a wire breaks out at a terminal and is <b>suitably supported</b>, <b>3 x OD</b>. No cable maker publishes a bend radius for M22759/16 Tefzel or for SGX battery cable (checked: Thermax / ProWire M22759/16 sheet, Southwire SPEC 50050, AWC, Prestolite), so this installation rule is used. OD = maximum from the Thermax M22759/16 sheet; 1/0 SGX 13.6 mm.</p><div class="wrap"><table><tr><th>Cable</th><th>AWG</th><th>OD mm</th><th>Path in the box</th><th>Inside R mm</th><th>Needed</th><th></th><th>Note</th></tr>
@@ -232,85 +165,85 @@ ol.co{columns:2;column-gap:28px;font-size:13.5px;padding-left:22px}@media (max-w
 <figure><img src="battrelay_render_iso_empty.png" alt="Base EMPTY: relay platform, the one fuse pedestal, open ends, end tabs."><figcaption>Base EMPTY: relay platform, the one fuse pedestal, open ends, end tabs.</figcaption>
 </figure>
 <h3>Style (Z9: your pick, S27) - Blue Sea Systems 7720 Safety Fuse Block (AMI / MIDI)</h3><p>Chosen by Claude (Dan, Z9 2026-10-14: &quot;your pick&quot;; DECISIONS S27). It fits all four asks: open frame (a low base and a cover - no closed tub); lid on, no screws (the cover is a separate part that comes off by hand); no cable holes (its cover breakouts give wire access from three directions, so cables come in under the cover, not through the base); and it takes the same AMI fuse we use, built for wet, vibrating places (marine). 125 x 38 mm for one fuse (Blue Bottle Marine listing BS-7720). The one change: its 2 fixings become 2 end tabs (rev 5: Dan wants the mounts on the short ends), set beside the cables so none leaves over a tab. Not chosen: Bussmann RTMR (a Mini ISO / mini-fuse module - no room for the HCR150 and an AMI); MTA / Littelfuse sealed power-distribution boxes (closed tubs with cable seals, i.e. holes, the opposite of open); Blue Sea MRBF terminal blocks (they sit on the battery post).</p><div class="wrap"><table><tr><th>You asked for</th><th>How the block meets it</th></tr><tr><td>Open frame</td><td>Floor plate, rims on the two long sides only, both ends open - the cover is the only enclosure.</td></tr><tr><td>Snap or screw lid</td><td>Snap: 4 cantilever tongues into pockets in the side rims (no screws, no inserts).</td></tr><tr><td>2 tabs, on the short ends (rev 5)</td><td>One tab on each end at y 67 (rear half), M5 through a brass limiter.</td></tr><tr><td>No cable over a tab</td><td>Battery feed in at the -x end, pump cable and coil lead out at the +x end, all at the front half; the tabs sit at the rear half.</td></tr><tr><td>No cable holes</td><td>Cables pass under open notches in the cover ends (the 7720 breakout idea); the base has no holes for cables.</td></tr></table></div>
-<h2>Slot map</h2><div class="wrap"><table><tr><th>Unit</th><th>Lid</th><th>Fuse / relay</th><th>Part</th><th>Wire</th></tr>
-<tr><td>POWER</td><td>F1 (AMI IN-1)</td><td>HTR</td><td>AMI-40</td><td>8 AWG</td></tr>
-<tr><td>POWER</td><td>F2 (AMI IN-2)</td><td>EFI</td><td>AMI-30</td><td>12 AWG</td></tr>
-<tr><td>POWER</td><td>F3 (AMI IN-3)</td><td>STR</td><td>AMI-30</td><td>12 AWG</td></tr>
-<tr><td>POWER</td><td>F4 (AMI IN-4)</td><td>FAN</td><td>AMI-40</td><td>8 AWG</td></tr>
-<tr><td>POWER</td><td>F5 (AMI IN-5)</td><td>FAN2</td><td>AMI-30</td><td>8 AWG</td></tr>
-<tr><td>POWER</td><td>F6 (AMI IN-6)</td><td>PWR</td><td>AMI-30</td><td>10 AWG</td></tr>
-<tr><td>POWER</td><td>F7 (AMI IN-7)</td><td>spare</td><td>-</td><td>-</td></tr>
-<tr><td>POWER</td><td>F8 (AMI OUT-1)</td><td>BUS1</td><td>AMI-50</td><td>8 AWG</td></tr>
-<tr><td>POWER</td><td>F9 (AMI OUT-2)</td><td>RTR</td><td>AMI-30</td><td>10 AWG</td></tr>
-<tr><td>POWER</td><td>F10 (AMI OUT-3)</td><td>AM1</td><td>AMI-40</td><td>8 AWG</td></tr>
-<tr><td>POWER</td><td>F11 (AMI OUT-4)</td><td>AM2</td><td>AMI-30</td><td>10 AWG</td></tr>
-<tr><td>POWER</td><td>F12 (AMI OUT-5)</td><td>JB1</td><td>AMI-60</td><td>6 AWG</td></tr>
-<tr><td>POWER</td><td>F13 (AMI OUT-6)</td><td>EPS</td><td>AMI-60</td><td>8 AWG</td></tr>
-<tr><td>POWER</td><td>F14 (AMI OUT-7)</td><td>spare</td><td>-</td><td>-</td></tr>
-<tr><td>POWER</td><td>R1 (column A)</td><td>heater (fed by F1)</td><td>1-1904020-2 (BUY)</td><td></td></tr>
-<tr><td>POWER</td><td>R2 (column B)</td><td>k_efi (fed by F2)</td><td>1-1414147-0 (OWN)</td><td></td></tr>
-<tr><td>POWER</td><td>R3 (column A)</td><td>k_str (fed by F3)</td><td>1-1414147-0 (OWN)</td><td></td></tr>
-<tr><td>POWER</td><td>R4 (column B)</td><td>k_fan (fed by F4)</td><td>1-1414147-0 (OWN)</td><td></td></tr>
-<tr><td>POWER</td><td>R5 (column A)</td><td>k_fan2 (fed by F5)</td><td>1-1393304-0 (OWN)</td><td></td></tr>
-<tr><td>POWER</td><td>R6 (column B)</td><td>power (fed by F6)</td><td>1-1393304-0 (OWN)</td><td></td></tr>
-<tr><td>POWER</td><td>R7 (column A)</td><td>SPARE (fed by F7)</td><td>-</td><td></td></tr>
-<tr><td>POWER</td><td>F15</td><td>ACPS mini fuse (heater 87)</td><td>ATM-10</td><td>14 AWG</td></tr>
-<tr><td>LOGIC</td><td>F1</td><td>EFI86 (Bus 1)</td><td>ATM-5</td><td>20 AWG</td></tr>
-<tr><td>LOGIC</td><td>F2</td><td>HL (Bus 1)</td><td>ATM-15</td><td>16 AWG</td></tr>
-<tr><td>LOGIC</td><td>F3</td><td>HR (Bus 1)</td><td>ATM-15</td><td>16 AWG</td></tr>
-<tr><td>LOGIC</td><td>F4</td><td>HZ (Bus 1)</td><td>ATM-15</td><td>16 AWG</td></tr>
-<tr><td>LOGIC</td><td>F5</td><td>DM (Bus 1)</td><td>ATM-20</td><td>12 AWG</td></tr>
-<tr><td>LOGIC</td><td>F6</td><td>WL (Bus 1)</td><td>ATM-15</td><td>16 AWG</td></tr>
-<tr><td>LOGIC</td><td>F7</td><td>ALM (Bus 1)</td><td>ATM-5</td><td>20 AWG</td></tr>
-<tr><td>LOGIC</td><td>F8</td><td>ALMS (Bus 1)</td><td>ATM-2</td><td>20 AWG</td></tr>
-<tr><td>LOGIC</td><td>F9</td><td>ALTS (Bus 1)</td><td>ATM-2</td><td>20 AWG</td></tr>
-<tr><td>LOGIC</td><td>F10</td><td>ETB (Bus 1)</td><td>ATM-10</td><td>18 AWG</td></tr>
-<tr><td>LOGIC</td><td>F11</td><td>spare (Bus 1)</td><td>-</td><td>-</td></tr>
-<tr><td>LOGIC</td><td>F12</td><td>spare (Bus 1)</td><td>-</td><td>-</td></tr>
-<tr><td>LOGIC</td><td>F13</td><td>LAM (Bus 2)</td><td>ATM-7.5</td><td>18 AWG</td></tr>
-<tr><td>LOGIC</td><td>F14</td><td>SW12 (Bus 2)</td><td>ATM-7.5</td><td>18 AWG</td></tr>
-<tr><td>LOGIC</td><td>F15</td><td>COP (Bus 2)</td><td>ATM-15</td><td>16 AWG</td></tr>
-<tr><td>LOGIC</td><td>F16</td><td>INJ (Bus 2)</td><td>ATM-15</td><td>16 AWG</td></tr>
-<tr><td>LOGIC</td><td>F17</td><td>CSB (Bus 2)</td><td>ATM-5</td><td>20 AWG</td></tr>
-<tr><td>LOGIC</td><td>F18</td><td>DEV (Bus 2)</td><td>ATM-15</td><td>16 AWG</td></tr>
-<tr><td>LOGIC</td><td>F19</td><td>EPSEN (Bus 2)</td><td>ATM-7.5</td><td>18 AWG</td></tr>
-<tr><td>LOGIC</td><td>F20</td><td>ACC (Bus 2)</td><td>ATM-10</td><td>18 AWG</td></tr>
-<tr><td>LOGIC</td><td>F21</td><td>ALMIG (Bus 2)</td><td>ATM-2</td><td>20 AWG</td></tr>
-<tr><td>LOGIC</td><td>F22</td><td>spare (Bus 2)</td><td>-</td><td>-</td></tr>
-<tr><td>LOGIC</td><td>F23</td><td>spare (Bus 2)</td><td>-</td><td>-</td></tr>
-<tr><td>LOGIC</td><td>F24</td><td>MRS (Bus 2)</td><td>ATM-7.5</td><td>18 AWG</td></tr>
-<tr><td>LOGIC</td><td>F25</td><td>B30 (Bus 2)</td><td>ATM-2</td><td>20 AWG</td></tr>
-<tr><td>LOGIC</td><td>R1</td><td>HEAD LH</td><td>5-1393292-8 (OWN)</td><td></td></tr>
-<tr><td>LOGIC</td><td>R2</td><td>HEAD RH</td><td>5-1393292-8 (OWN)</td><td></td></tr>
-<tr><td>LOGIC</td><td>R3</td><td>horn</td><td>4-1904124-3 (OWN)</td><td></td></tr>
-<tr><td>LOGIC</td><td>R4</td><td>k_etb</td><td>4-1904124-2 (OWN)</td><td></td></tr>
-<tr><td>LOGIC</td><td>R5</td><td>k_acc</td><td>6-1419137-4 (OWN)</td><td></td></tr>
-<tr><td>LOGIC</td><td>R6</td><td>k_eps_en</td><td>6-1419137-4 (OWN)</td><td></td></tr>
-<tr><td>LOGIC</td><td>R7</td><td>k_rev</td><td>6-1419137-4 (BUY)</td><td></td></tr>
-<tr><td>LOGIC</td><td>R8</td><td>spare</td><td>-</td><td></td></tr>
-<tr><td>LOGIC</td><td>R9</td><td>spare</td><td>-</td><td></td></tr>
-<tr><td>LOGIC</td><td>R10</td><td>spare</td><td>-</td><td></td></tr>
-<tr><td>BATTERY</td><td>FUSE 40A</td><td>FP fuse 40 A</td><td>AMI-40</td><td>10 AWG</td></tr><tr><td>BATTERY</td><td>FUEL PUMP RELAY</td><td>k_fp fuel pump relay</td><td>1416010-1 HCR150 (OWN)</td><td>10 AWG</td></tr></table></div>
+<h2>Slot map</h2><div class="wrap"><table><tr><th>Unit</th><th>Position</th><th>Fuse / relay</th><th>Part</th><th>Wire</th></tr>
+<tr><td>POWER</td><td>AMI IN-1</td><td>HTR</td><td>AMI-40</td><td>8 AWG</td></tr>
+<tr><td>POWER</td><td>AMI IN-2</td><td>EFI</td><td>AMI-30</td><td>12 AWG</td></tr>
+<tr><td>POWER</td><td>AMI IN-3</td><td>STR</td><td>AMI-30</td><td>12 AWG</td></tr>
+<tr><td>POWER</td><td>AMI IN-4</td><td>FAN</td><td>AMI-40</td><td>8 AWG</td></tr>
+<tr><td>POWER</td><td>AMI IN-5</td><td>FAN2</td><td>AMI-30</td><td>8 AWG</td></tr>
+<tr><td>POWER</td><td>AMI IN-6</td><td>PWR</td><td>AMI-30</td><td>10 AWG</td></tr>
+<tr><td>POWER</td><td>AMI IN-7</td><td>spare</td><td>-</td><td>-</td></tr>
+<tr><td>POWER</td><td>AMI OUT-1</td><td>BUS1</td><td>AMI-50</td><td>8 AWG</td></tr>
+<tr><td>POWER</td><td>AMI OUT-2</td><td>RTR</td><td>AMI-30</td><td>10 AWG</td></tr>
+<tr><td>POWER</td><td>AMI OUT-3</td><td>AM1</td><td>AMI-40</td><td>8 AWG</td></tr>
+<tr><td>POWER</td><td>AMI OUT-4</td><td>AM2</td><td>AMI-30</td><td>10 AWG</td></tr>
+<tr><td>POWER</td><td>AMI OUT-5</td><td>JB1</td><td>AMI-60</td><td>6 AWG</td></tr>
+<tr><td>POWER</td><td>AMI OUT-6</td><td>EPS</td><td>AMI-60</td><td>8 AWG</td></tr>
+<tr><td>POWER</td><td>AMI OUT-7</td><td>spare</td><td>-</td><td>-</td></tr>
+<tr><td>POWER</td><td>R1 (column A)</td><td>heater (fed by AMI IN-1)</td><td>1-1904020-2 (BUY)</td><td></td></tr>
+<tr><td>POWER</td><td>R2 (column B)</td><td>k_efi (fed by AMI IN-2)</td><td>1-1414147-0 (OWN)</td><td></td></tr>
+<tr><td>POWER</td><td>R3 (column A)</td><td>k_str (fed by AMI IN-3)</td><td>1-1414147-0 (OWN)</td><td></td></tr>
+<tr><td>POWER</td><td>R4 (column B)</td><td>k_fan (fed by AMI IN-4)</td><td>1-1414147-0 (OWN)</td><td></td></tr>
+<tr><td>POWER</td><td>R5 (column A)</td><td>k_fan2 (fed by AMI IN-5)</td><td>1-1393304-0 (OWN)</td><td></td></tr>
+<tr><td>POWER</td><td>R6 (column B)</td><td>power (fed by AMI IN-6)</td><td>1-1393304-0 (OWN)</td><td></td></tr>
+<tr><td>POWER</td><td>R7 (column A)</td><td>SPARE (fed by AMI IN-7)</td><td>-</td><td></td></tr>
+<tr><td>POWER</td><td>front of column B</td><td>ACPS mini fuse (heater 87)</td><td>ATM-10</td><td>14 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS1-1</td><td>EFI86 (Bus 1)</td><td>ATM-5</td><td>20 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS1-2</td><td>HL (Bus 1)</td><td>ATM-15</td><td>16 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS1-3</td><td>HR (Bus 1)</td><td>ATM-15</td><td>16 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS1-4</td><td>HZ (Bus 1)</td><td>ATM-15</td><td>16 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS1-5</td><td>DM (Bus 1)</td><td>ATM-20</td><td>12 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS1-6</td><td>WL (Bus 1)</td><td>ATM-15</td><td>16 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS1-7</td><td>ALM (Bus 1)</td><td>ATM-5</td><td>20 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS1-8</td><td>ALMS (Bus 1)</td><td>ATM-2</td><td>20 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS1-9</td><td>ALTS (Bus 1)</td><td>ATM-2</td><td>20 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS1-10</td><td>ETB (Bus 1)</td><td>ATM-10</td><td>18 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS1-11</td><td>spare (Bus 1)</td><td>-</td><td>-</td></tr>
+<tr><td>LOGIC</td><td>BUS1-12</td><td>spare (Bus 1)</td><td>-</td><td>-</td></tr>
+<tr><td>LOGIC</td><td>BUS2-1</td><td>LAM (Bus 2)</td><td>ATM-7.5</td><td>18 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS2-2</td><td>SW12 (Bus 2)</td><td>ATM-7.5</td><td>18 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS2-3</td><td>COP (Bus 2)</td><td>ATM-15</td><td>16 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS2-4</td><td>INJ (Bus 2)</td><td>ATM-15</td><td>16 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS2-5</td><td>CSB (Bus 2)</td><td>ATM-5</td><td>20 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS2-6</td><td>DEV (Bus 2)</td><td>ATM-15</td><td>16 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS2-7</td><td>EPSEN (Bus 2)</td><td>ATM-7.5</td><td>18 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS2-8</td><td>ACC (Bus 2)</td><td>ATM-10</td><td>18 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS2-9</td><td>ALMIG (Bus 2)</td><td>ATM-2</td><td>20 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS2-10</td><td>spare (Bus 2)</td><td>-</td><td>-</td></tr>
+<tr><td>LOGIC</td><td>BUS2-11</td><td>spare (Bus 2)</td><td>-</td><td>-</td></tr>
+<tr><td>LOGIC</td><td>BUS2-12</td><td>MRS (Bus 2)</td><td>ATM-7.5</td><td>18 AWG</td></tr>
+<tr><td>LOGIC</td><td>BUS2-13</td><td>B30 (Bus 2)</td><td>ATM-2</td><td>20 AWG</td></tr>
+<tr><td>LOGIC</td><td>M11</td><td>HEAD LH</td><td>5-1393292-8 (OWN)</td><td></td></tr>
+<tr><td>LOGIC</td><td>M12</td><td>HEAD RH</td><td>5-1393292-8 (OWN)</td><td></td></tr>
+<tr><td>LOGIC</td><td>M13</td><td>horn</td><td>4-1904124-3 (OWN)</td><td></td></tr>
+<tr><td>LOGIC</td><td>M14</td><td>k_etb</td><td>4-1904124-2 (OWN)</td><td></td></tr>
+<tr><td>LOGIC</td><td>M15</td><td>k_acc</td><td>6-1419137-4 (OWN)</td><td></td></tr>
+<tr><td>LOGIC</td><td>M21</td><td>k_eps_en</td><td>6-1419137-4 (OWN)</td><td></td></tr>
+<tr><td>LOGIC</td><td>M22</td><td>k_rev</td><td>6-1419137-4 (BUY)</td><td></td></tr>
+<tr><td>LOGIC</td><td>M23</td><td>spare</td><td>-</td><td></td></tr>
+<tr><td>LOGIC</td><td>M24</td><td>spare</td><td>-</td><td></td></tr>
+<tr><td>LOGIC</td><td>M25</td><td>spare</td><td>-</td><td></td></tr>
+<tr><td>BATTERY</td><td>F1</td><td>FP fuse 40 A</td><td>AMI-40</td><td>10 AWG</td></tr><tr><td>BATTERY</td><td>K1</td><td>k_fp fuel pump relay</td><td>1416010-1 HCR150 (OWN)</td><td>10 AWG</td></tr></table></div>
 <h2>Printed parts (PA12, powder-bed)</h2><div class="wrap"><table><tr><th>Part</th><th>File (STL + STEP)</th><th>Size mm (x y z, incl. legs / tabs)</th><th>Volume / mass</th><th>What it is</th></tr>
 <tr><td>Logic Base</td><td><code>Logic_Base_PA12_printed.stl</code><br><code>Logic_Base_PA12_printed.step</code></td><td>143.0 x 181.0 x 42.0</td><td>182.0 cm&sup3; / ~184 g</td><td>Same idea: deck on four angular legs (on the two long sides), strip pockets open underneath, mini-fuse and micro-relay cavities through.</td></tr>
 <tr><td>Logic Pan</td><td><code>Logic_Pan_PA12_printed.stl</code><br><code>Logic_Pan_PA12_printed.step</code></td><td>74.5 x 174.1 x 22.5</td><td>52.9 cm&sup3; / ~53 g</td><td>NEW: a shallow tray under the open bottom (2.5 mm floor and wall). Its wall slides 4 mm up inside the skirt; 4 tongues catch in pockets in the skirt. Notches in its wall let the bundles out.</td></tr>
-<tr><td>Logic Cover</td><td><code>Logic_Cover_PA12_printed.stl</code><br><code>Logic_Cover_PA12_printed.step</code></td><td>87.9 x 189.9 x 42.4</td><td>92.8 cm&sup3; / ~94 g</td><td>Rounded shell, 2.5 mm wall, R13 plan corners, R5 top edges, a bumper band round the bottom and ribs up the walls; 4 snap tongues; vent slots; numbers etched 0.6 deep.</td></tr>
+<tr><td>Logic Cover</td><td><code>Logic_Cover_PA12_printed.stl</code><br><code>Logic_Cover_PA12_printed.step</code></td><td>87.9 x 189.9 x 42.4</td><td>93.5 cm&sup3; / ~94 g</td><td>Rounded shell, 2.5 mm wall, R13 plan corners, R5 top edges, a bumper band round the bottom and ribs up the walls; 4 snap tongues; vent slots; every relay and fuse name etched 0.6 deep (the rev 4 labels, unchanged).</td></tr>
 <tr><td>Power Base</td><td><code>Power_Base_PA12_printed.stl</code><br><code>Power_Base_PA12_printed.step</code></td><td>180.5 x 245.0 x 52.5</td><td>349.3 cm&sup3; / ~353 g</td><td>The deck on four angular legs (front and rear faces): 6 mm top plate, 3 mm skirt, cavity towers, standoff and bolt-head bosses, ribs, six printed R16 saddles under it; open underneath. Brass limiter in each foot.</td></tr>
 <tr><td>Power Pan</td><td><code>Power_Pan_PA12_printed.stl</code><br><code>Power_Pan_PA12_printed.step</code></td><td>173.6 x 176.5 x 34.5</td><td>124.2 cm&sup3; / ~125 g</td><td>NEW: a shallow tray under the open bottom (2.5 mm floor and wall). Its wall slides 4 mm up inside the skirt; 4 tongues catch in pockets in the skirt. Notches in its wall let the bundles out.</td></tr>
-<tr><td>Power Cover</td><td><code>Power_Cover_PA12_printed.stl</code><br><code>Power_Cover_PA12_printed.step</code></td><td>189.4 x 189.9 x 42.3</td><td>159.4 cm&sup3; / ~161 g</td><td>Rounded shell, 2.5 mm wall, R13 plan corners, R5 top edges, a bumper band round the bottom and ribs up the walls; 4 snap tongues; vent slots; numbers etched 0.6 deep.</td></tr>
+<tr><td>Power Cover</td><td><code>Power_Cover_PA12_printed.stl</code><br><code>Power_Cover_PA12_printed.step</code></td><td>189.4 x 189.9 x 42.3</td><td>159.4 cm&sup3; / ~161 g</td><td>Rounded shell, 2.5 mm wall, R13 plan corners, R5 top edges, a bumper band round the bottom and ribs up the walls; 4 snap tongues; vent slots; every relay and fuse name etched 0.6 deep (the rev 4 labels, unchanged).</td></tr>
 <tr><td>BattRelay Base</td><td><code>BattRelay_Base_PA12_printed.stl</code><br><code>BattRelay_Base_PA12_printed.step</code></td><td>228.0 x 92.0 x 36.2</td><td>124.8 cm&sup3; / ~126 g</td><td>Floor plate, rim on the long sides only (both ends open), relay platform with 2 captured M6 nuts + limiters, one ribbed fuse pedestal under the bar and pad, a tab on each short end.</td></tr>
-<tr><td>BattRelay Cover</td><td><code>BattRelay_Cover_PA12_printed.stl</code><br><code>BattRelay_Cover_PA12_printed.step</code></td><td>192.9 x 100.9 x 47.5</td><td>106.9 cm&sup3; / ~108 g</td><td>Rounded shell, 2.5 mm wall, R13 plan corners, R5 top edges, a bumper band round the bottom and ribs up the walls; 4 snap tongues; vent slots; numbers etched 0.6 deep.</td></tr>
+<tr><td>BattRelay Cover</td><td><code>BattRelay_Cover_PA12_printed.stl</code><br><code>BattRelay_Cover_PA12_printed.step</code></td><td>192.9 x 100.9 x 47.5</td><td>107.0 cm&sup3; / ~108 g</td><td>Rounded shell, 2.5 mm wall, R13 plan corners, R5 top edges, a bumper band round the bottom and ribs up the walls; 4 snap tongues; vent slots; every relay and fuse name etched 0.6 deep (the rev 4 labels, unchanged).</td></tr>
 </table></div><p class="mut">Mass at the HP PA12 density 1.01 g/cm&sup3;. Metal parts are STEP only, plus the whole assembly (<code>ST185_fusebox_rev5_assembly.step</code>).</p>
 <h2>Designed for powder-bed printing</h2><ul><li><b>Walls:</b> 3 mm base skirt, 6 mm deck plate, 2.5 mm towers, ribs, cover and pan walls, 3 mm leg walls. Nothing under 2.0 mm.</li><li><b>No trapped powder:</b> bases, legs and pans are open, covers are open shells; no closed cavity anywhere.</li><li><b>Fits:</b> 0.45 mm per side printed to printed (cover over base, pan inside the skirt); 0.4 mm per side metal in a printed pocket.</li><li><b>Snaps:</b> tongue 12 wide, 11 long between two 1.2 slots, half-round catch 2.4 - covers and pans alike.</li><li><b>Threads:</b> none printed, no heat-set inserts. Every bolt goes into metal: standoffs, nuts, captured heads.</li><li><b>Heat:</b> PA12 HDT 95 &deg;C at 1.82 MPa. The 1" x 1/4" copper bar is three times the 1/0 copper; bench check at full load with a thermocouple anyway. The vent slots let the relay coil heat out.</li><li><b>Live-part spacing (measured in Fusion):</b> AMI pads 3.0 mm apart, bar to any output 17.1, 1/0 lug to nearest output 8.2, output lugs 5.5, standoffs 10.0; Bus 1 / Bus 2 strips 4.5, their feed lugs 5.1; battery bar to pad 17.0, HCR150 lugs 5.0; belly pan to nearest live part 1.5.</li></ul>
 <p><b>Interference check (all three units, every printed, copper and bought part):</b> none.</p>
 <h2>Parts list (OWN / BUY)</h2><p class="mut">Order: on-hand TE list, then TE, then approved suppliers, then others with a reason (R38). "OWN" counts are qty_ordered from te-on-hand-bom.csv - confirm on the shelf. TBD = not checked against a maker sheet yet. Rev 5 changes: 12 mm standoffs added, fewer 40 mm ones, M5 x 8 bolts for the short standoffs.</p><div class="wrap"><table><tr><th>Part</th><th>Part number</th><th>Qty</th><th>Note</th></tr>
-<tr><td>Relay F7 Mini ISO, 680 ohm</td><td>1-1414147-0 (V23134-J0052-X429)</td><td>OWN 3</td><td>R2 k_efi, R3 k_str, R4 k_fan. te-on-hand-bom.csv qty_ordered 3 - confirm on the shelf.</td></tr>
-<tr><td>Relay F7 Mini ISO, bracket, 560 ohm</td><td>1-1393304-0 (V23134-J1052-X281)</td><td>OWN 2</td><td>R5 k_fan2, R6 power. Bracket not used (cut off or fold flat).</td></tr>
-<tr><td>Relay Power Relay B, 1 form C, 680 ohm</td><td>1-1904020-2 (V23234-A0001-X032)</td><td>BUY 1</td><td>R1 heater (87a to ground, row 106). TE (step 2). NO 35 A at 85 C.</td></tr>
-<tr><td>Micro relay A, NO, diode</td><td>5-1393292-8</td><td>OWN 2</td><td>LOGIC R1 / R2 (HEAD LH / RH)</td></tr>
-<tr><td>Micro relay A, NO</td><td>4-1904124-3</td><td>OWN 1</td><td>LOGIC R3 horn</td></tr>
-<tr><td>Micro relay A, NO, resistor</td><td>4-1904124-2</td><td>OWN 1</td><td>LOGIC R4 k_etb</td></tr>
-<tr><td>Micro relay A, CO, diode</td><td>6-1419137-4</td><td>OWN 2 + BUY 1</td><td>LOGIC R5 k_acc, R6 k_eps_en (own); R7 k_rev (buy)</td></tr>
+<tr><td>Relay F7 Mini ISO, 680 ohm</td><td>1-1414147-0 (V23134-J0052-X429)</td><td>OWN 3</td><td>k_efi, k_str, k_fan. te-on-hand-bom.csv qty_ordered 3 - confirm on the shelf.</td></tr>
+<tr><td>Relay F7 Mini ISO, bracket, 560 ohm</td><td>1-1393304-0 (V23134-J1052-X281)</td><td>OWN 2</td><td>k_fan2, power. Bracket not used (cut off or fold flat).</td></tr>
+<tr><td>Relay Power Relay B, 1 form C, 680 ohm</td><td>1-1904020-2 (V23234-A0001-X032)</td><td>BUY 1</td><td>heater (87a to ground, row 106). TE (step 2). NO 35 A at 85 C.</td></tr>
+<tr><td>Micro relay A, NO, diode</td><td>5-1393292-8</td><td>OWN 2</td><td>HEAD LH / RH (LOGIC box)</td></tr>
+<tr><td>Micro relay A, NO</td><td>4-1904124-3</td><td>OWN 1</td><td>horn</td></tr>
+<tr><td>Micro relay A, NO, resistor</td><td>4-1904124-2</td><td>OWN 1</td><td>k_etb</td></tr>
+<tr><td>Micro relay A, CO, diode</td><td>6-1419137-4</td><td>OWN 2 + BUY 1</td><td>k_acc, k_eps_en (own); k_rev (buy)</td></tr>
 <tr><td>HCR150 relay, 130 A, IP67</td><td>1416010-1 (V23132-A2001-B200)</td><td>OWN 2</td><td>k_eps beside the POWER box; k_fp in the battery block.</td></tr>
 <tr><td>HCR150 coil plug: Superseal 1.5 2-pole housing</td><td>282080-1</td><td>BUY 1</td><td>TE, from the HCR150 data sheet (k_fp).</td></tr>
 <tr><td>Superseal 1.5 contact / seal</td><td>282110-1 / 281934-2</td><td>OWN 2 / BUY 2</td><td>282110-1 is on hand (qty_ordered 10).</td></tr>

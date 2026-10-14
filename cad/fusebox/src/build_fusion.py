@@ -217,7 +217,7 @@ def build(out_dir, save=True, renders=True):
     root = design.rootComponent
     for i in range(root.occurrences.count - 1, -1, -1):
         root.occurrences.item(i).deleteMe()
-    report = {'bends': [], 'labels': {}, 'legend': {}, 'lanes': {}, 'callouts': {}, 'standoffs': {}}
+    report = {'bends': [], 'labels': {}, 'lanes': {}, 'callouts': {}, 'standoffs': {}}
 
     alib = app.materialLibraries.itemByName('Fusion Appearance Library')
     mlib = app.materialLibraries.itemByName('Fusion Material Library')
@@ -769,14 +769,14 @@ def build(out_dir, save=True, renders=True):
             if not r['pn']:
                 continue
             a87 = S.AMI_AWG[S.AMI_ROWS['IN'][r['i']][0]]
-            tails.append(dict(x=r['cx'] - 7.65, y=r['cy'], awg=a87, what='R%d %s 87' % (r['i'] + 1, r['name']), lane=r['cy']))
+            tails.append(dict(x=r['cx'] - 7.65, y=r['cy'], awg=a87, what='%s 87' % r['name'], lane=r['cy']))
             if r['B']:
-                tails.append(dict(x=r['cx'] - RBd['v87a'], y=r['cy'], awg=S.H87A_AWG, what='R%d %s 87a' % (r['i'] + 1, r['name']), lane=r['cy']))
+                tails.append(dict(x=r['cx'] - RBd['v87a'], y=r['cy'], awg=S.H87A_AWG, what='%s 87a' % r['name'], lane=r['cy']))
             for sg, tn in ((-1, '85'), (1, '86')):
-                tails.append(dict(x=r['cx'] + 0.25, y=r['cy'] + sg * 8.45, awg=S.COIL_AWG, what='R%d %s %s' % (r['i'] + 1, r['name'], tn),
+                tails.append(dict(x=r['cx'] + 0.25, y=r['cy'] + sg * 8.45, awg=S.COIL_AWG, what='%s %s' % (r['name'], tn),
                                   lane=r['cy'] + sg * 9.0))
         for dx in (-3.0, 3.0):
-            tails.append(dict(x=acps[0] + dx, y=acps[1], awg=S.ACPS_AWG, what='F15 ACPS', lane=acps[1]))
+            tails.append(dict(x=acps[0] + dx, y=acps[1], awg=S.ACPS_AWG, what='ACPS', lane=acps[1]))
         for t_ in tails:          # coil lanes half way between fuse lines; the heater 85 joins the ACPS lane
             if abs(t_['lane'] - acps[1]) < 1.0 or abs(t_['lane'] - (S.AMI_Y0 - 9.0)) < 0.1:
                 t_['lane'] = acps[1]
@@ -787,31 +787,19 @@ def build(out_dir, save=True, renders=True):
                  'straight down out of the cavity, one bend into its bundle (rows above)', 3.0 * S.OD[S.RELAY_OUT_AWG], True,
                  'bundles run where no feed wire runs (relays turned 90 deg)')
 
-        # ---- cover: numbers + legend (point 11), vents (point 1), rugged band + ribs (point 6)
+        # ---- cover: rev 4 etched names, unchanged (Dan 2026-10-14: "the lid labels were fine as they were"); vents (point 1), rugged band + ribs (point 6)
         tallest = max(z_t + RBd['h'], z_t + S.F7['h'])
         z_top = tallest + CV['clear'] + CV['t']
-        labels, legend = [], []
+        labels = []
         for r in relays:
-            labels.append(('R%d' % (r['i'] + 1), r['cx'], r['cy'], S.LABEL['h_num']))
-            legend.append(('R%d' % (r['i'] + 1), {'heater': 'Heater (blower) relay', 'k_efi': 'EFI main relay', 'k_str': 'Starter relay',
-                                                  'k_fan': 'Radiator fan 1 relay', 'k_fan2': 'Radiator fan 2 relay', 'power': 'Power windows relay',
-                                                  'SPARE': 'spare relay position'}[r['name']],
-                           'fed by F%d' % (r['i'] + 1) if r['pn'] else '-', ('%s (%s)' % (r['pn'], r['own'])) if r['pn'] else '-'))
+            labels.append(({'heater': 'HEATER', 'k_efi': 'EFI', 'k_str': 'STARTER', 'k_fan': 'FAN', 'k_fan2': 'FAN 2', 'power': 'WINDOWS',
+                            'SPARE': 'SPARE'}[r['name']], r['cx'], r['cy'], S.LABEL['h_relay']))
+        labels.append(('ACPS 10A', acps[0], acps[1], S.LABEL['h_ami']))
         for a in ami:
-            n = a['i'] + 1 + (0 if a['row'] == 'IN' else S.AMI_SLOTS['IN'])
             xc = (a['x_in'] + a['x_out']) / 2
-            labels.append(('F%d' % n, xc, a['y'], S.LABEL['h_num']))
-            if a['amps']:
-                to = ('relay R%d' % (a['i'] + 1)) if a['row'] == 'IN' else 'harness, %d AWG' % S.AMI_AWG[a['name']]
-                legend.append(('F%d' % n, '%s fuse (AMI %s row) -> %s' % (a['name'], a['row'], to), '%d A' % a['amps'], 'AMI-%d' % a['amps']))
-            else:
-                legend.append(('F%d' % n, 'spare AMI position (%s row)' % a['row'], '-', '-'))
-        labels.append(('F15', acps[0], acps[1], S.LABEL['h_num']))
-        legend.append(('F15', 'ACPS (A/C pressure switch) fuse, fed from the heater relay 87', '10 A', 'ATM-10'))
-        labels.append(('B+', xb + 24.0, S.IN_STUD_Y, S.LABEL['h_num']))
-        legend.append(('B+', '1/0 battery feed in, M8 stud on the bar', '-', 'Klauke 6R8 lug'))
-        labels.append(('POWER', 62.0, 13.0, S.LABEL['h_name']))
-        report['legend']['POWER'] = legend
+            labels.append((('%s %dA' % (a['name'], a['amps'])) if a['amps'] else 'SPARE', xc, a['y'], S.LABEL['h_ami']))
+        labels.append(('1/0 IN', xb + 24.0, S.IN_STUD_Y, S.LABEL['h_ami']))
+        labels.append(('POWER', xb - 50.0, 6.0, 5.0))
         vents = [(x, y, 'y') for x in (31.0, 76.0, 172.0) for y in (34.0 + k * S.VENT['pitch'] for k in range(8)) if not (x == 172.0 and y < 30)]
         notches = [('x', L + W_CL + CV['t'] / 2, S.IN_STUD_Y, btop + M8['d4'] / 2 + S.OD['1/0'] / 2 + 1.5, S.OD['1/0'] + 2.0)]
         for a in ami:
@@ -920,7 +908,7 @@ def build(out_dir, save=True, renders=True):
         tails = []
         for (col, nm, amps, cx, y, n_) in mini:
             if amps:
-                tails.append(dict(x=cx + 3.0, y=y, awg=S.MINI_AWG[amps], what='F%d %s' % (n_, nm), lane=lane_x[col]))
+                tails.append(dict(x=cx + 3.0, y=y, awg=S.MINI_AWG[amps], what=nm, lane=lane_x[col]))
         for (nm, pn, own, cx, cy, k_) in micro:
             if not pn:
                 continue
@@ -928,7 +916,7 @@ def build(out_dir, save=True, renders=True):
                                     (-4.5, 0, S.COIL_AWG, '85'), (4.5, 0, S.COIL_AWG, '86')):
                 if tn == '87a' and pn in ('5-1393292-8', '4-1904124-3', '4-1904124-2'):
                     continue                                     # NO relays: no 87a contact
-                tails.append(dict(x=cx + u, y=cy + v, awg=awg, what='R%d %s %s' % (k_, nm, tn), lane=cx))
+                tails.append(dict(x=cx + u, y=cy + v, awg=awg, what='%s %s' % (nm, tn), lane=cx))
         exits = harness_tails(tails, lambda t_: t_['lane'], z_d, 'y', 0.0, pre, sh, 'LOGIC')
         pan_exits = [('y', u, zb_, wd, -1) for (u, zb_, wd) in exits]
         for (col, cx, y1, yh, yt) in feeds:
@@ -940,22 +928,12 @@ def build(out_dir, save=True, renders=True):
                  3.0 * S.OD[S.LOGIC_MAX_AWG], True, 'one bundle per fuse column / relay column, straight to the front edge')
 
         z_top = z_t + 25.4 + CV['clear'] + CV['t']          # micro relay 25.4 max (TE 1308028)
-        long_nm = {'HEAD LH': 'Headlight LH relay', 'HEAD RH': 'Headlight RH relay', 'horn': 'Horn relay', 'k_etb': 'ETB relay',
-                   'k_acc': 'A/C clutch relay', 'k_eps_en': 'EPS enable relay', 'k_rev': 'Reverse relay', 'SPARE': 'spare relay position'}
-        labels, legend = [], []
-        for (col, nm, amps, cx, y, n_) in mini:
-            labels.append(('F%d' % n_, cx, y, S.LABEL['h_mini']))
-            legend.append(('F%d' % n_, ('%s (%s)' % (nm, 'Bus 1' if col == 'BUS1' else 'Bus 2')) if amps else 'spare (%s)' % ('Bus 1' if col == 'BUS1' else 'Bus 2'),
-                           ('%g A' % amps) if amps else '-', ('ATM-%g' % amps) if amps else '-'))
-        for (nm, pn, own, cx, cy, k_) in micro:
-            labels.append(('R%d' % k_, cx, cy, S.LABEL['h_num']))
-            legend.append(('R%d' % k_, long_nm[nm], '-', ('%s (%s)' % (pn, own)) if pn else '-'))
-        labels += [('B1', S.MINI_COLS['BUS1'][0], 15.0, S.LABEL['h_mini']), ('B2', S.MINI_COLS['BUS2'][0], 15.0, S.LABEL['h_mini'])]
-        legend += [('B1', 'Bus 1 strip (fuses F1-F%d), fed from POWER F8 (BUS1 50 A), 8 AWG' % len(S.MINI_COLS['BUS1'][1]), '-', '-'),
-                   ('B2', 'Bus 2 strip (fuses F%d-F%d), fed from POWER R2 (EFI relay) 87, 10 AWG' % (len(S.MINI_COLS['BUS1'][1]) + 1, n), '-', '-')]
-        labels.append(('LOGIC', 39.5, 168.0, S.LABEL['h_name']))
-        report['legend']['LOGIC'] = legend
-        vents = [(x, y, 'y') for x in (34.5, 53.5, 74.0) for y in (30.0 + k * S.VENT['pitch'] for k in range(7))]
+        short = {'HEAD LH': 'HEAD L', 'HEAD RH': 'HEAD R', 'horn': 'HORN', 'k_etb': 'ETB', 'k_acc': 'A/C', 'k_eps_en': 'EPS EN', 'k_rev': 'REV', 'SPARE': 'SPARE'}
+        labels = [(short[nm], cx, cy, S.LABEL['h_micro']) for (nm, pn, own, cx, cy, k_) in micro]           # rev 4 etched names, unchanged
+        labels += [(('%s %s' % (nm, ('%g' % amps))) if amps else 'SP', cx, y, S.LABEL['h_mini']) for (col, nm, amps, cx, y, n_) in mini]
+        labels += [(col, cx, S.MINI_Y0 - 11.0, S.LABEL['h_mini']) for (col, cx, y1, yh, yt) in feeds]
+        labels.append(('LOGIC', 54.0, 168.0, 5.0))
+        vents = [(x, y, 'y') for x in (53.5, 74.0) for y in (30.0 + k * S.VENT['pitch'] for k in range(7))]    # clear of the rev 4 labels
         cover(L, S.D, z_t, z_top, [], labels, pre, sh, vents=vents, ribs={'y': [39.5], 'x': [20.0, 50.0, 80.0, 110.0, 140.0, 165.0]})
         return dict(L=L, D=S.D, H=z_top, z_d=z_d, z_t=z_t, cover_top=z_top, feet=feet)
 
@@ -1116,14 +1094,8 @@ def build(out_dir, save=True, renders=True):
         z_top = zf + H_['depth'] + CV['clear'] + CV['t']
         notches = [('x', -W_CL - CV['t'] / 2, tsy, e_in[2] + odf / 2 + 2.0, 9.0), ('x', Lr + W_CL + CV['t'] / 2, tsy, e3[2] + odp / 2 + 2.0, 9.0),
                    ('x', Lr + W_CL + CV['t'] / 2, yl, zl + odc / 2 + 1.5, 5.0)]
-        labels = [('BATT IN', xst + 4.0, tsy + 24.0, S.LABEL['h_word']), ('FUSE 40A', (a_in + a_out) / 2, tsy - 2.0, S.LABEL['h_word']),
-                  ('FUEL PUMP RELAY', rx, yb + 24.0, S.LABEL['h_word']), ('PUMP OUT', Lr - 22.0, tsy - 2.0, S.LABEL['h_word'] - 1.0),
-                  ('COIL', Lr - 14.0, yl + 1.0, S.LABEL['h_word'] - 1.5)]
-        report['legend']['BATTRELAY'] = [('BATT IN', 'battery feed from the kill switch load side, M6 stud on the copper bar', '-', 'M6 ring lug (TBD)'),
-                                         ('FUSE 40A', 'fuel pump fuse', '40 A', 'AMI-40'),
-                                         ('FUEL PUMP RELAY', 'k_fp, TE HCR150', '130 A at 85 C', '1416010-1 (OWN)'),
-                                         ('PUMP OUT', 'fuel pump feed, relay terminal 5', '-', 'M6 ring lug (TBD)'),
-                                         ('COIL', 'relay coil plug lead to Link Aux 3', '-', 'Superseal 1.5 282080-1')]
+        labels = [('BATT +', xst, tsy + 20.0, 4.5), ('FP 40A', (a_in + a_out) / 2, tsy, 4.0), ('K_FP  FUEL PUMP', rx, yb + 26.0, 5.0),   # rev 4 labels, unchanged
+                  ('3', xs[0], tsy, 4.0), ('5', xs[1], tsy, 4.0), ('PUMP', Lr - 16.0, tsy + 20.0, 4.5), ('COIL', Lr - 16.0, yl + 8.0, 3.5)]
         zv = (6.5 + S.RUG['band_h'] + z_top - 6.0) / 2
         side_vents = [(f, u, z_) for f in ('-y', '+y') for u in (66.0, 84.0, 102.0, 120.0) for z_ in (zv - 4.0, zv + 4.0)]
         oc = cover(Lr, Dr, R['rim'], z_top, notches, labels, pre, sh, side_vents=side_vents, R=12.95, r=6.0, zb=LG['ear_t'] + 0.5,
@@ -1327,8 +1299,8 @@ def render_all(out_dir, root, report, sizes):
         (5, (PX + S.POWER['L'] + 20.0, 97.0, 41.0), 'OUT cables straight out the end'), (6, (PX + S.POWER['L'] + 20.0, S.IN_STUD_Y, S.POWER['bar_top'] + 8.0), '1/0 battery feed in')])
     show(lambda n: n.startswith('Logic_') and WIRING(n))
     shot('fusebox_render_routing_logic.png', eye=(-230, -330, -200), target=(40.0, 90.0, 20.0), callouts=[
-        (1, (18.5, 60.0, 8.0), 'Bus 1 fuse wires'), (2, (30.0, 60.0, 8.0), 'Bus 2 fuse wires'), (3, (44.0, 40.0, 10.0), 'relay R1-R5 wires'),
-        (4, (63.0, 40.0, 10.0), 'relay R6-R10 wires'), (5, (40.0, -20.0, 8.0), 'all leave the front edge'), (6, (27.0, S.D + 15.0, 25.0), 'Bus feeds in at the rear')])
+        (1, (18.5, 60.0, 8.0), 'Bus 1 fuse wires'), (2, (30.0, 60.0, 8.0), 'Bus 2 fuse wires'), (3, (44.0, 40.0, 10.0), 'micro relay wires, inboard column'),
+        (4, (63.0, 40.0, 10.0), 'micro relay wires, outboard column'), (5, (40.0, -20.0, 8.0), 'all leave the front edge'), (6, (27.0, S.D + 15.0, 25.0), 'Bus feeds in at the rear')])
     show(lambda n: n.startswith('Power_') and kind(n).startswith(('Base', 'Wire', 'Lug', 'Standoff', 'LugBolt', 'Limiter', 'Harness')))
     shot('fusebox_render_power_bends.png', eye=(-120, -330, -150), target=(PX + 70.0, 80.0, 15.0))
 
@@ -1384,7 +1356,7 @@ def render_all(out_dir, root, report, sizes):
     show(lambda n: n.startswith(pw) and not kind(n).startswith(('Cover', 'Pan')))
     shot('fusebox_power_step3.png', callouts=[
         (1, c_of('Fuse_AMI_ltgreen'), 'AMI fuses on the studs'), (2, c_of('Nut'), 'Keps nuts, 4 Nm max'),
-        (3, c_of('Relay_TE_F7'), 'relays R1-R6 plug in'), (4, c_of('Fuse_ATM'), 'F15 ACPS mini fuse'),
+        (3, c_of('Relay_TE_F7'), 'relays plug in'), (4, c_of('Fuse_ATM'), 'ACPS mini fuse'),
         (5, (pxp + S.POWER['x_bar'] + 30.0, S.IN_STUD_Y, S.POWER['bar_top'] + 6.0), '1/0 lug on the M8 stud')], **eye_ex)
     place({n: (0, 0, 70) for n in names(pw, 'Cover')} | {n: (0, 0, -70) for n in names(pw, 'Pan')})
     show(lambda n: n.startswith(pw))
@@ -1410,7 +1382,7 @@ def render_all(out_dir, root, report, sizes):
         ns = names(lg, k_)
         return occ_center(ns[0], top) if ns else (0, 0, 0)
     shot('fusebox_logic_explode.png', callouts=[
-        (1, l_of('Cover', True), 'cover (snaps on)'), (2, l_of('Relay'), 'micro relays R1-R10'), (3, l_of('Fuse_ATM_15A'), 'mini fuses F1-F25'),
+        (1, l_of('Cover', True), 'cover (snaps on)'), (2, l_of('Relay'), 'micro relays'), (3, l_of('Fuse_ATM_15A'), 'mini fuses'),
         (4, l_of('StripBolt'), 'strip bolts, head on top'), (5, l_of('Base'), 'base (deck on 4 angular legs)'), (6, l_of('Strip_'), 'Bus 1 / Bus 2 strips, up from below'),
         (7, l_of('Standoff'), 'standoffs 12 mm'), (8, l_of('Lug_'), 'feed lugs'), (9, l_of('LugBolt'), 'M5 x 8 lug bolts'), (10, l_of('Pan'), 'belly pan (snaps on)')],
         eye=(-330, -420, 240), target=(40.0, 90.0, 30.0))

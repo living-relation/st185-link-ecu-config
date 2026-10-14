@@ -421,475 +421,79 @@
  ],
  "labels": {
   "Logic_Cover_PA12_printed": [
-   "F1",
-   "F2",
-   "F3",
-   "F4",
-   "F5",
-   "F6",
-   "F7",
-   "F8",
-   "F9",
-   "F10",
-   "F11",
-   "F12",
-   "F13",
-   "F14",
-   "F15",
-   "F16",
-   "F17",
-   "F18",
-   "F19",
-   "F20",
-   "F21",
-   "F22",
-   "F23",
-   "F24",
-   "F25",
-   "R1",
-   "R2",
-   "R3",
-   "R4",
-   "R5",
-   "R6",
-   "R7",
-   "R8",
-   "R9",
-   "R10",
-   "B1",
-   "B2",
+   "HEAD L",
+   "HEAD R",
+   "HORN",
+   "ETB",
+   "A/C",
+   "EPS EN",
+   "REV",
+   "SPARE",
+   "SPARE",
+   "SPARE",
+   "EFI86 5",
+   "HL 15",
+   "HR 15",
+   "HZ 15",
+   "DM 20",
+   "WL 15",
+   "ALM 5",
+   "ALMS 2",
+   "ALTS 2",
+   "ETB 10",
+   "SP",
+   "SP",
+   "LAM 7.5",
+   "SW12 7.5",
+   "COP 15",
+   "INJ 15",
+   "CSB 5",
+   "DEV 15",
+   "EPSEN 7.5",
+   "ACC 10",
+   "ALMIG 2",
+   "SP",
+   "SP",
+   "MRS 7.5",
+   "B30 2",
+   "BUS1",
+   "BUS2",
    "LOGIC"
   ],
   "Power_Cover_PA12_printed": [
-   "R1",
-   "R2",
-   "R3",
-   "R4",
-   "R5",
-   "R6",
-   "R7",
-   "F1",
-   "F2",
-   "F3",
-   "F4",
-   "F5",
-   "F6",
-   "F7",
-   "F8",
-   "F9",
-   "F10",
-   "F11",
-   "F12",
-   "F13",
-   "F14",
-   "F15",
-   "B+",
+   "HEATER",
+   "EFI",
+   "STARTER",
+   "FAN",
+   "FAN 2",
+   "WINDOWS",
+   "SPARE",
+   "ACPS 10A",
+   "HTR 40A",
+   "EFI 30A",
+   "STR 30A",
+   "FAN 40A",
+   "FAN2 30A",
+   "PWR 30A",
+   "SPARE",
+   "BUS1 50A",
+   "RTR 30A",
+   "AM1 40A",
+   "AM2 30A",
+   "JB1 60A",
+   "EPS 60A",
+   "SPARE",
+   "1/0 IN",
    "POWER"
   ],
   "BattRelay_Cover_PA12_printed": [
-   "BATT IN",
-   "FUSE 40A",
-   "FUEL PUMP RELAY",
-   "PUMP OUT",
+   "BATT +",
+   "FP 40A",
+   "K_FP  FUEL PUMP",
+   "3",
+   "5",
+   "PUMP",
    "COIL"
-  ]
- },
- "legend": {
-  "LOGIC": [
-   [
-    "F1",
-    "EFI86 (Bus 1)",
-    "5 A",
-    "ATM-5"
-   ],
-   [
-    "F2",
-    "HL (Bus 1)",
-    "15 A",
-    "ATM-15"
-   ],
-   [
-    "F3",
-    "HR (Bus 1)",
-    "15 A",
-    "ATM-15"
-   ],
-   [
-    "F4",
-    "HZ (Bus 1)",
-    "15 A",
-    "ATM-15"
-   ],
-   [
-    "F5",
-    "DM (Bus 1)",
-    "20 A",
-    "ATM-20"
-   ],
-   [
-    "F6",
-    "WL (Bus 1)",
-    "15 A",
-    "ATM-15"
-   ],
-   [
-    "F7",
-    "ALM (Bus 1)",
-    "5 A",
-    "ATM-5"
-   ],
-   [
-    "F8",
-    "ALMS (Bus 1)",
-    "2 A",
-    "ATM-2"
-   ],
-   [
-    "F9",
-    "ALTS (Bus 1)",
-    "2 A",
-    "ATM-2"
-   ],
-   [
-    "F10",
-    "ETB (Bus 1)",
-    "10 A",
-    "ATM-10"
-   ],
-   [
-    "F11",
-    "spare (Bus 1)",
-    "-",
-    "-"
-   ],
-   [
-    "F12",
-    "spare (Bus 1)",
-    "-",
-    "-"
-   ],
-   [
-    "F13",
-    "LAM (Bus 2)",
-    "7.5 A",
-    "ATM-7.5"
-   ],
-   [
-    "F14",
-    "SW12 (Bus 2)",
-    "7.5 A",
-    "ATM-7.5"
-   ],
-   [
-    "F15",
-    "COP (Bus 2)",
-    "15 A",
-    "ATM-15"
-   ],
-   [
-    "F16",
-    "INJ (Bus 2)",
-    "15 A",
-    "ATM-15"
-   ],
-   [
-    "F17",
-    "CSB (Bus 2)",
-    "5 A",
-    "ATM-5"
-   ],
-   [
-    "F18",
-    "DEV (Bus 2)",
-    "15 A",
-    "ATM-15"
-   ],
-   [
-    "F19",
-    "EPSEN (Bus 2)",
-    "7.5 A",
-    "ATM-7.5"
-   ],
-   [
-    "F20",
-    "ACC (Bus 2)",
-    "10 A",
-    "ATM-10"
-   ],
-   [
-    "F21",
-    "ALMIG (Bus 2)",
-    "2 A",
-    "ATM-2"
-   ],
-   [
-    "F22",
-    "spare (Bus 2)",
-    "-",
-    "-"
-   ],
-   [
-    "F23",
-    "spare (Bus 2)",
-    "-",
-    "-"
-   ],
-   [
-    "F24",
-    "MRS (Bus 2)",
-    "7.5 A",
-    "ATM-7.5"
-   ],
-   [
-    "F25",
-    "B30 (Bus 2)",
-    "2 A",
-    "ATM-2"
-   ],
-   [
-    "R1",
-    "Headlight LH relay",
-    "-",
-    "5-1393292-8 (OWN)"
-   ],
-   [
-    "R2",
-    "Headlight RH relay",
-    "-",
-    "5-1393292-8 (OWN)"
-   ],
-   [
-    "R3",
-    "Horn relay",
-    "-",
-    "4-1904124-3 (OWN)"
-   ],
-   [
-    "R4",
-    "ETB relay",
-    "-",
-    "4-1904124-2 (OWN)"
-   ],
-   [
-    "R5",
-    "A/C clutch relay",
-    "-",
-    "6-1419137-4 (OWN)"
-   ],
-   [
-    "R6",
-    "EPS enable relay",
-    "-",
-    "6-1419137-4 (OWN)"
-   ],
-   [
-    "R7",
-    "Reverse relay",
-    "-",
-    "6-1419137-4 (BUY)"
-   ],
-   [
-    "R8",
-    "spare relay position",
-    "-",
-    "-"
-   ],
-   [
-    "R9",
-    "spare relay position",
-    "-",
-    "-"
-   ],
-   [
-    "R10",
-    "spare relay position",
-    "-",
-    "-"
-   ],
-   [
-    "B1",
-    "Bus 1 strip (fuses F1-F12), fed from POWER F8 (BUS1 50 A), 8 AWG",
-    "-",
-    "-"
-   ],
-   [
-    "B2",
-    "Bus 2 strip (fuses F13-F25), fed from POWER R2 (EFI relay) 87, 10 AWG",
-    "-",
-    "-"
-   ]
-  ],
-  "POWER": [
-   [
-    "R1",
-    "Heater (blower) relay",
-    "fed by F1",
-    "1-1904020-2 (BUY)"
-   ],
-   [
-    "R2",
-    "EFI main relay",
-    "fed by F2",
-    "1-1414147-0 (OWN)"
-   ],
-   [
-    "R3",
-    "Starter relay",
-    "fed by F3",
-    "1-1414147-0 (OWN)"
-   ],
-   [
-    "R4",
-    "Radiator fan 1 relay",
-    "fed by F4",
-    "1-1414147-0 (OWN)"
-   ],
-   [
-    "R5",
-    "Radiator fan 2 relay",
-    "fed by F5",
-    "1-1393304-0 (OWN)"
-   ],
-   [
-    "R6",
-    "Power windows relay",
-    "fed by F6",
-    "1-1393304-0 (OWN)"
-   ],
-   [
-    "R7",
-    "spare relay position",
-    "-",
-    "-"
-   ],
-   [
-    "F1",
-    "HTR fuse (AMI IN row) -> relay R1",
-    "40 A",
-    "AMI-40"
-   ],
-   [
-    "F2",
-    "EFI fuse (AMI IN row) -> relay R2",
-    "30 A",
-    "AMI-30"
-   ],
-   [
-    "F3",
-    "STR fuse (AMI IN row) -> relay R3",
-    "30 A",
-    "AMI-30"
-   ],
-   [
-    "F4",
-    "FAN fuse (AMI IN row) -> relay R4",
-    "40 A",
-    "AMI-40"
-   ],
-   [
-    "F5",
-    "FAN2 fuse (AMI IN row) -> relay R5",
-    "30 A",
-    "AMI-30"
-   ],
-   [
-    "F6",
-    "PWR fuse (AMI IN row) -> relay R6",
-    "30 A",
-    "AMI-30"
-   ],
-   [
-    "F7",
-    "spare AMI position (IN row)",
-    "-",
-    "-"
-   ],
-   [
-    "F8",
-    "BUS1 fuse (AMI OUT row) -> harness, 8 AWG",
-    "50 A",
-    "AMI-50"
-   ],
-   [
-    "F9",
-    "RTR fuse (AMI OUT row) -> harness, 10 AWG",
-    "30 A",
-    "AMI-30"
-   ],
-   [
-    "F10",
-    "AM1 fuse (AMI OUT row) -> harness, 8 AWG",
-    "40 A",
-    "AMI-40"
-   ],
-   [
-    "F11",
-    "AM2 fuse (AMI OUT row) -> harness, 10 AWG",
-    "30 A",
-    "AMI-30"
-   ],
-   [
-    "F12",
-    "JB1 fuse (AMI OUT row) -> harness, 6 AWG",
-    "60 A",
-    "AMI-60"
-   ],
-   [
-    "F13",
-    "EPS fuse (AMI OUT row) -> harness, 8 AWG",
-    "60 A",
-    "AMI-60"
-   ],
-   [
-    "F14",
-    "spare AMI position (OUT row)",
-    "-",
-    "-"
-   ],
-   [
-    "F15",
-    "ACPS (A/C pressure switch) fuse, fed from the heater relay 87",
-    "10 A",
-    "ATM-10"
-   ],
-   [
-    "B+",
-    "1/0 battery feed in, M8 stud on the bar",
-    "-",
-    "Klauke 6R8 lug"
-   ]
-  ],
-  "BATTRELAY": [
-   [
-    "BATT IN",
-    "battery feed from the kill switch load side, M6 stud on the copper bar",
-    "-",
-    "M6 ring lug (TBD)"
-   ],
-   [
-    "FUSE 40A",
-    "fuel pump fuse",
-    "40 A",
-    "AMI-40"
-   ],
-   [
-    "FUEL PUMP RELAY",
-    "k_fp, TE HCR150",
-    "130 A at 85 C",
-    "1416010-1 (OWN)"
-   ],
-   [
-    "PUMP OUT",
-    "fuel pump feed, relay terminal 5",
-    "-",
-    "M6 ring lug (TBD)"
-   ],
-   [
-    "COIL",
-    "relay coil plug lead to Link Aux 3",
-    "-",
-    "Superseal 1.5 282080-1"
-   ]
   ]
  },
  "lanes": {
@@ -900,16 +504,16 @@
     "d": 7.5,
     "z": 8.6,
     "what": [
-     "F1 EFI86",
-     "F2 HL",
-     "F3 HR",
-     "F4 HZ",
-     "F5 DM",
-     "F6 WL",
-     "F7 ALM",
-     "F8 ALMS",
-     "F9 ALTS",
-     "F10 ETB"
+     "EFI86",
+     "HL",
+     "HR",
+     "HZ",
+     "DM",
+     "WL",
+     "ALM",
+     "ALMS",
+     "ALTS",
+     "ETB"
     ],
     "room": 1.1
    },
@@ -919,17 +523,17 @@
     "d": 7.3,
     "z": 8.5,
     "what": [
-     "F13 LAM",
-     "F14 SW12",
-     "F15 COP",
-     "F16 INJ",
-     "F17 CSB",
-     "F18 DEV",
-     "F19 EPSEN",
-     "F20 ACC",
-     "F21 ALMIG",
-     "F24 MRS",
-     "F25 B30"
+     "LAM",
+     "SW12",
+     "COP",
+     "INJ",
+     "CSB",
+     "DEV",
+     "EPSEN",
+     "ACC",
+     "ALMIG",
+     "MRS",
+     "B30"
     ],
     "room": 4.3
    },
@@ -939,27 +543,27 @@
     "d": 10.1,
     "z": 9.9,
     "what": [
-     "R1 HEAD LH 30",
-     "R1 HEAD LH 87",
-     "R1 HEAD LH 85",
-     "R1 HEAD LH 86",
-     "R2 HEAD RH 30",
-     "R2 HEAD RH 87",
-     "R2 HEAD RH 85",
-     "R2 HEAD RH 86",
-     "R3 horn 30",
-     "R3 horn 87",
-     "R3 horn 85",
-     "R3 horn 86",
-     "R4 k_etb 30",
-     "R4 k_etb 87",
-     "R4 k_etb 85",
-     "R4 k_etb 86",
-     "R5 k_acc 30",
-     "R5 k_acc 87",
-     "R5 k_acc 87a",
-     "R5 k_acc 85",
-     "R5 k_acc 86"
+     "HEAD LH 30",
+     "HEAD LH 87",
+     "HEAD LH 85",
+     "HEAD LH 86",
+     "HEAD RH 30",
+     "HEAD RH 87",
+     "HEAD RH 85",
+     "HEAD RH 86",
+     "horn 30",
+     "horn 87",
+     "horn 85",
+     "horn 86",
+     "k_etb 30",
+     "k_etb 87",
+     "k_etb 85",
+     "k_etb 86",
+     "k_acc 30",
+     "k_acc 87",
+     "k_acc 87a",
+     "k_acc 85",
+     "k_acc 86"
     ],
     "room": 2.9
    },
@@ -969,16 +573,16 @@
     "d": 7.1,
     "z": 8.4,
     "what": [
-     "R6 k_eps_en 30",
-     "R6 k_eps_en 87",
-     "R6 k_eps_en 87a",
-     "R6 k_eps_en 85",
-     "R6 k_eps_en 86",
-     "R7 k_rev 30",
-     "R7 k_rev 87",
-     "R7 k_rev 87a",
-     "R7 k_rev 85",
-     "R7 k_rev 86"
+     "k_eps_en 30",
+     "k_eps_en 87",
+     "k_eps_en 87a",
+     "k_eps_en 85",
+     "k_eps_en 86",
+     "k_rev 30",
+     "k_rev 87",
+     "k_rev 87a",
+     "k_rev 85",
+     "k_rev 86"
     ],
     "room": 4.4
    }
@@ -990,9 +594,9 @@
     "d": 4.5,
     "z": 7.1,
     "what": [
-     "R1 heater 85",
-     "F15 ACPS",
-     "F15 ACPS"
+     "heater 85",
+     "ACPS",
+     "ACPS"
     ],
     "room": 16.5
    },
@@ -1002,8 +606,8 @@
     "d": 6.5,
     "z": 8.1,
     "what": [
-     "R1 heater 87",
-     "R1 heater 87a"
+     "heater 87",
+     "heater 87a"
     ],
     "room": 6.0
    },
@@ -1013,8 +617,8 @@
     "d": 2.7,
     "z": 6.1,
     "what": [
-     "R1 heater 86",
-     "R2 k_efi 85"
+     "heater 86",
+     "k_efi 85"
     ],
     "room": 20.4
    },
@@ -1024,7 +628,7 @@
     "d": 3.0,
     "z": 6.3,
     "what": [
-     "R2 k_efi 87"
+     "k_efi 87"
     ],
     "room": 15.3
    },
@@ -1034,8 +638,8 @@
     "d": 2.7,
     "z": 6.1,
     "what": [
-     "R2 k_efi 86",
-     "R3 k_str 85"
+     "k_efi 86",
+     "k_str 85"
     ],
     "room": 20.4
    },
@@ -1045,7 +649,7 @@
     "d": 3.0,
     "z": 6.3,
     "what": [
-     "R3 k_str 87"
+     "k_str 87"
     ],
     "room": 15.3
    },
@@ -1055,8 +659,8 @@
     "d": 2.7,
     "z": 6.1,
     "what": [
-     "R3 k_str 86",
-     "R4 k_fan 85"
+     "k_str 86",
+     "k_fan 85"
     ],
     "room": 20.4
    },
@@ -1066,7 +670,7 @@
     "d": 5.1,
     "z": 7.4,
     "what": [
-     "R4 k_fan 87"
+     "k_fan 87"
     ],
     "room": 6.7
    },
@@ -1076,8 +680,8 @@
     "d": 2.7,
     "z": 6.1,
     "what": [
-     "R4 k_fan 86",
-     "R5 k_fan2 85"
+     "k_fan 86",
+     "k_fan2 85"
     ],
     "room": 20.4
    },
@@ -1087,7 +691,7 @@
     "d": 5.1,
     "z": 7.4,
     "what": [
-     "R5 k_fan2 87"
+     "k_fan2 87"
     ],
     "room": 6.7
    },
@@ -1097,8 +701,8 @@
     "d": 2.7,
     "z": 6.1,
     "what": [
-     "R5 k_fan2 86",
-     "R6 power 85"
+     "k_fan2 86",
+     "power 85"
     ],
     "room": 20.4
    },
@@ -1108,7 +712,7 @@
     "d": 3.6,
     "z": 6.6,
     "what": [
-     "R6 power 87"
+     "power 87"
     ],
     "room": 12.8
    },
@@ -1118,7 +722,7 @@
     "d": 1.6,
     "z": 5.6,
     "what": [
-     "R6 power 86"
+     "power 86"
     ],
     "room": 20.9
    }
@@ -1180,13 +784,13 @@
     3,
     1096.6,
     561.3,
-    "relay R1-R5 wires"
+    "micro relay wires, inboard column"
    ],
    [
     4,
     1187.8,
     589.7,
-    "relay R6-R10 wires"
+    "micro relay wires, outboard column"
    ],
    [
     5,
@@ -1380,13 +984,13 @@
     3,
     677.4,
     374.2,
-    "relays R1-R6 plug in"
+    "relays plug in"
    ],
    [
     4,
     763.8,
     489.1,
-    "F15 ACPS mini fuse"
+    "ACPS mini fuse"
    ],
    [
     5,
@@ -1426,13 +1030,13 @@
     2,
     933.2,
     306.7,
-    "micro relays R1-R10"
+    "micro relays"
    ],
    [
     3,
     915.4,
     400.3,
-    "mini fuses F1-F25"
+    "mini fuses"
    ],
    [
     4,
@@ -1587,7 +1191,7 @@
     189.9,
     42.4
    ],
-   "volume_cm3": 92.8,
+   "volume_cm3": 93.5,
    "mass_g_pa12": 94.0,
    "bodies": 1
   },
@@ -1637,7 +1241,7 @@
     100.9,
     47.5
    ],
-   "volume_cm3": 106.9,
+   "volume_cm3": 107.0,
    "mass_g_pa12": 108.0,
    "bodies": 1
   }
@@ -1671,13 +1275,10 @@
  "interference": [],
  "mass_g": {
   "Logic_Strip_Logic_CuC110_10x3": 65.9,
-  "Logic_StripBolt_ISO4017_A2": 5.6,
   "Power_Bar_Power_CuC110_25x6p35": 191.3,
   "Power_Pad_Out_CuC110_15x3": 89.6,
-  "Power_BarBolt_ISO4017_A2": 77.3,
   "BattRelay_Bar_Power_CuC110_25x6p35": 49.4,
-  "BattRelay_Pad_Out_CuC110_15x3": 6.4,
-  "BattRelay_BarBolt_M5_M6_ISO4017_A2": 15.3
+  "BattRelay_Pad_Out_CuC110_15x3": 6.4
  },
  "exported": [
   "Logic_Base_PA12_printed.step",
