@@ -1,0 +1,52 @@
+{
+ "isolation": {
+  "conductor_to_tray_mm": {
+   "Bar_Power_Al6061_25x6": 5.0,
+   "Pad_Out_Al6061": 5.75,
+   "Strip_Logic_Al6061_8x4": 5.5,
+   "Stud_M5_M8_A2": 10.5,
+   "Nut_Keps_M5_M8_A2": 9.0,
+   "Lug_Klauke_2R5_6R8": 8.0,
+   "Fuse_AMI_ltgreen": 20.5,
+   "Fuse_AMI_orange": 20.5,
+   "Fuse_AMI_red": 20.5,
+   "Fuse_AMI_yellow": 20.5
+  },
+  "min_conductor_to_tray_mm": 5.0,
+  "min_conductor_to_lid_mm": 15.5,
+  "tray_to_mount_face_mm": 1.5
+ },
+ "outer_mm": {
+  "L": 254.5,
+  "D": 170.0,
+  "H": 82.5,
+  "L_with_ears": 290.5,
+  "bbox": [
+   314.5,
+   190.0,
+   88.7
+  ]
+ },
+ "footprint_mm2": 43265.0,
+ "interference": [],
+ "mass_g": {
+  "Tray_Al6061": 974.5,
+  "Lid_Al6061": 350.2,
+  "LidScrew_M3x10_ISO7380": 3.7,
+  "Deck_PA6GF_printed": 1020.6,
+  "Bar_Power_Al6061_25x6": 52.5,
+  "Pad_Out_Al6061": 42.2,
+  "Strip_Logic_Al6061_8x4": 18.2
+ },
+ "exported": [
+  "Tray_Al6061.step",
+  "Lid_Al6061.step",
+  "Deck_PA6GF_printed.step",
+  "Deck_PA6GF_printed.stl",
+  "Bar_Power_Al6061_25x6.step",
+  "Pad_Out_Al6061.step",
+  "Strip_Logic_Al6061_8x4.step",
+  "ST185_fusebox_rev1_assembly.step",
+  "ST185_fusebox_rev1.f3d"
+ ]
+}
