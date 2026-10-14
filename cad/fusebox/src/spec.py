@@ -158,10 +158,13 @@ RB = dict(L=184.0, D=92.0, floor=4.0, rim=12.0,     # base outer; relay on its f
           lim_m6=dict(od=10.0, id=6.5, l=4.6), tabs_x=92.0,
           cover_h=50.0, fuse=('FP', 40), awg_feed=10, awg_pump=10, awg_coil=20)
 REFERENCE_BRAND = ('Blue Sea Systems 7720 Safety Fuse Block (AMI / MIDI)',
-                   'Same AMI fuse family; a low base and a cover whose breakouts give wire access from three directions, '
-                   'so the base needs no cable holes; built for wet, vibrating places (marine). 125 x 38 mm for one fuse '
-                   '(Blue Bottle Marine listing BS-7720). Bussmann RTMR is the look for the glove-box boxes (base + snap '
-                   'cover, terminals from below), but it is a mini-fuse / relay module, not a big-relay block.')
+                   'Chosen by Claude (Dan, Z9 2026-10-14: "your pick"; DECISIONS S27). It fits all four asks: open frame (a low base and a '
+                   'cover - no closed tub); lid on, no screws (the cover is a separate part that comes off by hand); no cable holes (its cover '
+                   'breakouts give wire access from three directions, so cables come in under the cover, not through the base); and it takes '
+                   'the same AMI fuse we use, built for wet, vibrating places (marine). 125 x 38 mm for one fuse (Blue Bottle Marine listing '
+                   'BS-7720). The one change: its 2 fixings become 2 side tabs so no cable leaves over a tab. Not chosen: Bussmann RTMR (a '
+                   'Mini ISO / mini-fuse module - no room for the HCR150 and an AMI); MTA / Littelfuse sealed power-distribution boxes (closed '
+                   'tubs with cable seals, i.e. holes, the opposite of open); Blue Sea MRBF terminal blocks (they sit on the battery post).')
 
 # ---------- R76: off-the-shelf tinned copper stock (Dan: no machined bars; cut, drill and tap are OK). Picks first.
 # Prices seen on amazon.com / the seller page 2026-10-14 (they move); none of these is a TE part - TE sells no bar stock (R38 step 4).
