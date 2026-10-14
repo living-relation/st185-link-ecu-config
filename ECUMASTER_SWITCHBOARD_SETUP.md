@@ -219,7 +219,7 @@ when an LED is added, map its PCLink virtual output to the matching byte.
 
 0x642 byte7 is a rolling counter (0→255→0) that increments with every CSB3 transmission. The ECU monitors this automatically via the PCLink receive timeout setting.
 
-- **PCLink timeout:** 200 ms on CAN User Streams 0x640 / 0x641 / 0x642
+- **PCLink timeout:** 200 ms on the receive channels 0x640 / 0x642 (`Timeout="200"` in `link_g4x_can_setup.lcs`; 0x641 carries nothing the ECU reads)
 - **Fault action (automatic):** VDI3 / VDI6–8 and Cruise Stalk mV reset to 0
 - **Fault broadcast:** PCLink sets 0x3F1 byte6 bit5 ("Switchboard Comm Fault")
 
@@ -263,6 +263,6 @@ Before first power-on with ECU on the bus:
 - [ ] CSB3 termination jumper confirmed **OPEN (OFF)**
 - [ ] SW_MASK bit 2 wired to the cruise MAIN switch (bits 0–1 and 3–4 unassigned); stalk ladder on A2 with a 1 kohm pull-up
 - [ ] With CSB3 powered and isolated, 0x640 / 0x641 / 0x642 frames visible in CAN monitor at 1 Mbit/s
-- [ ] In PCLink — CAN User Stream 0x642 byte4 bits 0-4 → VDI1-5 configured
-- [ ] In PCLink — receive timeout 200 ms set for 0x640 / 0x641 / 0x642
+- [ ] In PCLink — the `.lcs` receive channels imported (written 2026-10-14, R80): 0x640 "Cruise Stalk mV"; 0x642 "CSB3 Switches" = "Cruise Main" → VDI3, "Clutch Switch" → VDI6, "Brake Switch" → VDI7, "Reverse Switch" → VDI8 (enter by hand with the same values if the import skips them)
+- [ ] In PCLink — receive timeout 200 ms on 0x640 / 0x642 came in with the import
 - [ ] In PCLink — 0x643 TX stream (50 ms) only once an output is assigned (L1-L4 unused / LED-only for now)
