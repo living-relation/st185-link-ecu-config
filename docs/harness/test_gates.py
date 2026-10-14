@@ -25,6 +25,7 @@ def sandbox():
     shutil.copytree(HERE, os.path.join(d, "docs", "harness"),
                     ignore=shutil.ignore_patterns("__pycache__"))
     shutil.copytree(os.path.join(ROOT, "sot"), os.path.join(d, "sot"))
+    shutil.copy(os.path.join(ROOT, "XTREMEX-IO-TABLE.html"), d)   # validate_sot.py H1 reads it
     return d
 
 
@@ -75,6 +76,18 @@ def run(d, script):
     r = subprocess.run([sys.executable, "-B", script], cwd=os.path.join(d, "docs", "harness"),
                        capture_output=True, text=True)
     return r.returncode, r.stdout
+
+
+def swap_cavities(d, loom, conn, a, b):
+    """Swap every conductor end on conn.a with conn.b (a crossed pair at a device plug)."""
+    p, doc = load(d, loom)
+    pool = doc.get("wires", []) + [c for cb in doc.get("cables", []) for c in cb.get("cores", [])]
+    for w in pool:
+        for k in ("source", "target"):
+            e = w.get(k) or {}
+            if e.get("id") == conn and e.get("handle") in (a, b):
+                e["handle"] = b if e["handle"] == a else a
+    save(p, doc)
 
 
 CASES = []
@@ -194,6 +207,21 @@ def unit_cases():
         got = bhc.judge(ends, "") is None
         out.append((name, ok, got))
     return out
+
+
+@case("SoT endpoint rows: drawings as committed", "validate_sot.py", 0)
+def _(d):
+    pass
+
+
+@case("SoT endpoint rows: k_eps_en coil- (B12) and coil+ (SW12) swapped", "validate_sot.py", 1)
+def _(d):
+    swap_cavities(d, "CabinPower", "k_eps_en", "c2", "c3")
+
+
+@case("SoT endpoint rows: front VRC OUT FL / FR crossed at the plug", "validate_sot.py", 1)
+def _(d):
+    swap_cavities(d, "WheelSpeed-Front", "lp16_vrc_f_out", "c3", "c4")
 
 
 def main():

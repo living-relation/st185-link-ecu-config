@@ -24,6 +24,22 @@ PASS 2 - do the drawings agree with the SoT?
       drawings. Two conductors on one signal pin is two sources shorted
       together. Rails, grounds and screens are shared by design and exempt.
 
+PASS 4 - do the drawings agree with the SoT's NON-ECU endpoint rows (relays, the
+MR-S EPS plug, the VRC plugs, the A/C amps)? Added 2026-10-14 for OPEN-ITEMS row 60
+(the reconcile plan's "endpoint pin list"): the list already exists - the SoT rows
+plus interfaces.json "endpoints" (role -> cavity for the VRC plugs) - so this pass
+gates it instead of a second document.
+  P1  a row's conn resolves: a connector drawn in some loom, or an interfaces.json
+      endpoint; its pin is a cavity there (an endpoint's role name, or "c<pin>").
+      A conn that is neither (an OEM device on factory wiring or a flying lead,
+      gated by validate_oem_endpoints.py) is listed, not failed.
+  P2  a resolved row with status=set is wired in some drawing.
+  P3  signal-class rows with the same net reach each other (through splices,
+      bulkheads, inline pairs, broken-off wires and enclosures).
+  P4  a row whose net is also an ECU pin's net reaches that ECU pin.
+  P5  a signal-class row never reaches an ECU signal pin with a different net
+      (crossed or swapped pins).
+
 Exit 1 on any finding. Read-only - it changes nothing.
 """
 import csv, json, pathlib, sys, collections
@@ -204,6 +220,76 @@ for tr in _re.findall(r"<tr[^>]*>(.*?)</tr>", IO.read_text(encoding="utf-8"), _r
         if r and r["status"] not in ("spare", "nc"):
             bad("H1", "IO table calls %s.%s free (%r) but the SoT has it %s as %s"
                 % (key + (cells[3], r["status"], r["label"])))
+
+# ---------------------------------------------------------------- pass 4
+# Non-ECU endpoint rows vs the drawings (OPEN-ITEMS row 60, 2026-10-14).
+_reg = model.registry()
+_ds = model.docs(_reg)
+_g = model.Graph(_reg, _ds)
+_drawn = {}
+for _loom, _d in _ds.items():
+    for _c in _d.get("connectors", []):
+        if not _c["id"].startswith("dm_") and not model.is_xref(_c):
+            _drawn.setdefault(_c["id"], (_loom, _c))
+_endpoints = {e["id"]: e for e in _reg.get("endpoints", []) if e.get("connector")}
+_THROUGH = ("SP", "BH", "IX", "BRK", "ENC")
+_ecu_net = collections.defaultdict(set)
+for r in rows:
+    if r["owner"] == "ECU" and r["net"] and r["status"] not in ("spare", "nc"):
+        _ecu_net[r["net"]].add(("ECU", r["conn"], r["pin"]))
+_ecu_sig = {("ECU", r["conn"], r["pin"]): r["net"] for r in rows
+            if r["owner"] == "ECU" and r["class"] == "signal" and r["net"]}
+
+
+def _resolve(r):
+    """(connector id, cavity id) for an endpoint row, or None if the conn is not drawn."""
+    if r["conn"] in _drawn:
+        return r["conn"], r["pin"]
+    ep = _endpoints.get(r["conn"])
+    if ep:
+        return ep["connector"], ep.get("pins", {}).get(r["pin"]) or "c" + r["pin"]
+    return None
+
+
+unresolved = []
+_nets = collections.defaultdict(list)
+for r in rows:
+    if r["owner"] == "ECU" or r["status"] in ("spare", "nc"):
+        continue
+    hit = _resolve(r)
+    if not hit:
+        unresolved.append("%s %s.%s" % (r["owner"], r["conn"], r["pin"]))
+        continue
+    conn, cav = hit
+    loom, c = _drawn.get(conn, (None, None))
+    if not c or cav not in {x["id"] for x in c.get("cavities", [])}:
+        bad("P1", "%s.%s (%s) -> %s.%s is not a drawn cavity" % (r["conn"], r["pin"], r["net"], conn, cav))
+        continue
+    node = _g.node(loom, {"id": conn, "handle": cav})
+    if node not in _g.adj:
+        bad("P2", "%s.%s (%s) is set in the SoT but %s.%s is wired in no drawing"
+            % (r["conn"], r["pin"], r["net"], conn, cav))
+        continue
+    net = _g.reach(node, stop=lambda m: m[0] not in _THROUGH)
+    want = _ecu_net.get(r["net"])
+    if want and not (want & net):
+        bad("P4", "%s.%s (%s) never reaches ECU %s" % (r["conn"], r["pin"], r["net"],
+            "/".join(sorted(p[2].upper() for p in want))))
+    if r["class"] == "signal":
+        _nets[r["net"]].append((r, node, net))
+        for m in net:
+            other = _ecu_sig.get(m)
+            if other and other != r["net"]:
+                bad("P5", "%s.%s (%s) reaches ECU %s, which the SoT calls %s"
+                    % (r["conn"], r["pin"], r["net"], m[2].upper(), other))
+for _net, lst in _nets.items():
+    for i, (a, na, ra) in enumerate(lst):
+        for b, nb, rb in lst[i + 1:]:
+            if nb not in ra:
+                bad("P3", "%s.%s and %s.%s are both %s in the SoT but are not joined in the drawings"
+                    % (a["conn"], a["pin"], b["conn"], b["pin"], _net))
+if unresolved:
+    print("P1 listed (conn not drawn - factory wiring or OEM flying leads): " + ", ".join(unresolved))
 
 # ---------------------------------------------------------------- report
 if findings:
