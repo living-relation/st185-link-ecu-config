@@ -45,13 +45,14 @@ details summary{cursor:pointer;font-weight:600;margin-top:8px}
 .row{font-size:13px;border-top:1px solid #f0f0f0;padding:6px 0}
 .row b{color:#1d4ed8}
 .muted{color:#6b7280;font-size:13px}
+.err{color:#b91c1c;font-size:13px;margin:4px 0}.err:empty{display:none}
 </style></head>
 <body>
 <header><h1>ST185 live dashboard</h1><small id="head">loading…</small><small id="auto" class="muted"></small><button class="sec" id="refresh">Refresh</button></header>
 <main>
 
 <section id="qsec"><h2>Needs your answer <span class="badge" id="qcount">0</span></h2>
-<div class="muted" id="qinfo"></div>
+<div class="muted" id="qinfo"></div><div class="err" id="err-q"></div>
 <div class="muted">Tap an option or write your own. Nothing is sent until you press <b>Send all answers</b>.</div>
 <div id="questions"></div></section>
 
@@ -59,19 +60,19 @@ details summary{cursor:pointer;font-weight:600;margin-top:8px}
 
 <section class="dcsec"><h2>Sessions</h2>
 <div class="muted">🟢 running · ⚪ finished · 🟠 blinking = may be waiting on you (open that chat in Claude). Permission prompts can only be approved inside the chat.</div>
-<div id="sessions" class="muted">loading…</div>
+<div class="err" id="err-sess"></div><div id="sessions" class="muted">loading…</div>
 <details><summary id="archsum">Finished code sessions you can archive</summary>
 <div class="muted">These are idle (done). Their PRs are merged unless the session said otherwise. Archive them in the Claude sidebar to free the locked folders.</div>
 <div id="archive"></div></details></section>
 
 <section class="files dcsec"><h2>New / updated files <span class="badge" id="newcount">0</span></h2>
 <div class="muted">Click to open on your PC. Opened files move to "Already viewed".</div>
-<div id="newfiles">loading…</div>
+<div class="err" id="err-files"></div><div id="newfiles">loading…</div>
 <details><summary>Already viewed</summary><div id="readfiles"></div></details></section>
 
 <section class="dcsec"><h2>Tracker items owned by you (OPEN-ITEMS)</h2>
 <div class="muted">Live from the repo. Most are setup-time or data gaps; answer any of them in the box and it's sent with the rest.</div>
-<details><summary id="rowsum">show</summary><div id="rows"></div></details></section>
+<div class="err" id="err-rows"></div><details><summary id="rowsum">show</summary><div id="rows"></div></details></section>
 
 </main>
 <div id="sendbar"><button id="copy">Copy answers</button><button id="send">Send all answers</button><button class="sec" id="clear">Clear</button><span id="sendmsg" class="muted"></span></div>
@@ -87,7 +88,7 @@ let SAVED = {};   // answers already in dashboard-answers.json: id -> {choice,la
 let REDO = new Set(); // ids the user clicked Change on; survives reloads of the question list
 let SENDING = false;  // a send is in progress: auto-refresh waits
 let SEL = {};     // unsent option picks: id -> {value,label}
-const QUESTIONS_FILE = "C:\projects\active\st185-link-ecu-config\tools\dashboard\dashboard-questions.json";
+const QUESTIONS_FILE = "C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\dashboard-questions.json";
 const ANSWERS_FILE = "C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\dashboard-answers.json";
 const WAKE_TASK = "st185-session-watch";
 const DC = "host:Desktop_Commander";
@@ -121,6 +122,10 @@ async function call(tool,input){
 }
 const txtOf = r => (r.content||[]).filter(c=>c.type==="text").map(c=>c.text).join("\n");
 const SESS_FILE = "C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\dashboard-sessions.json";
+
+// per-section error line: msg="" clears it. Failed loads keep the last good content on screen.
+function setErr(id,msg){ const e=document.getElementById(id); if(e) e.textContent=msg?("⚠ "+msg+" ("+new Date().toLocaleTimeString([],{hour12:false})+")"):""; }
+const MISSING = /ENOENT|no such file|not exist|cannot find|not found/i;
 
 const store = {
   get(k,d){try{return JSON.parse(localStorage.getItem(k)) ?? d}catch(e){return d}},
@@ -178,7 +183,7 @@ function collect(){
 function saveDraft(){ store.set("st185-draft",collect()); }
 
 async function loadQuestions(){
-  const info=document.getElementById("qinfo");
+  const info=document.getElementById("qinfo"); let ok=true, msgs=[];
   try{
     const txt=txtOf(await call(DC_READ,{path:QUESTIONS_FILE})); const j=txt.indexOf("{");
     if(j<0) throw new Error("file empty or unreadable");
@@ -186,12 +191,21 @@ async function loadQuestions(){
     QUESTIONS=(q.questions||[]);
     QUESTIONS.forEach(x=>{ if(REDO.has(x.id)) x._redo=true; });
     info.textContent=q.updated?`Questions updated: ${q.updated}`:"";
-  }catch(e){ QUESTIONS=FALLBACK.questions; info.textContent=`Showing the questions baked into this page (${FALLBACK.updated}).`; }
+  }catch(e){
+    ok=false; QUESTIONS=FALLBACK.questions;
+    info.textContent=`Showing the questions baked into this page (${FALLBACK.updated}).`;
+    msgs.push("dashboard-questions.json not loaded: "+e.message);
+  }
   try{
     const txt=txtOf(await call(DC_READ,{path:ANSWERS_FILE})); const j=txt.indexOf("{");
     SAVED = j<0 ? {} : (JSON.parse(txt.slice(j)).answers||{});
-  }catch(e){ SAVED={}; }
+  }catch(e){
+    if(!MISSING.test(e.message)){ ok=false; msgs.push("answers file not loaded: "+e.message); }
+    SAVED={};
+  }
+  setErr("err-q",msgs.join(" | "));
   renderQuestions();
+  return ok;
 }
 
 async function dc(cmd){
@@ -201,10 +215,11 @@ async function dc(cmd){
 async function loadData(){
   const txt = await dc("powershell -NoProfile -ExecutionPolicy Bypass -File C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\st185-dashboard-data.ps1");
   const i = txt.indexOf("##JSON##");
-  if(i<0){ document.getElementById("newfiles").textContent="Could not read data: "+txt.slice(0,300); return; }
+  if(i<0) throw new Error("data script returned no JSON: "+txt.slice(0,200));
   const data = JSON.parse(txt.slice(i+8).trim());
   document.getElementById("head").textContent = `repo ${data.head} · refreshed ${data.now.replace('T',' ')}`;
   renderFiles(data.files); renderRows(data.rows);
+  setErr("err-files",""); setErr("err-rows","");
 }
 
 function renderFiles(files){
@@ -244,15 +259,17 @@ async function loadSessions(){
   const el=document.getElementById("sessions");
   try{
     const txt=txtOf(await call(DC_READ,{path:SESS_FILE})); const j=txt.indexOf("{");
-    if(j<0){ el.textContent="Session file unreadable."; return; }
+    if(j<0) throw new Error("session file empty or unreadable");
     const s=JSON.parse(txt.slice(j));
-    const active=s.running, done=s.idle_code;
+    const active=s.running||[], done=s.idle_code||[];
+    el.className="";
     el.innerHTML = `<div class="muted">Updated: ${esc(s.updated)}</div>` + (active.length ? active.map(x=>
       `<div class="sess"><span class="led run"></span>${esc(x.title)} <span class="muted">running</span></div>`
     ).join("") : '<div class="muted">No sessions running right now.</div>');
     document.getElementById("archsum").textContent=`Finished code sessions you can archive (${done.length})`;
     document.getElementById("archive").innerHTML=done.map(x=>`<div class="sess"><span class="led idle"></span>${esc(x.title)}</div>`).join("");
-  }catch(e){ el.textContent="Session list unavailable: "+e.message; }
+    setErr("err-sess",""); return true;
+  }catch(e){ setErr("err-sess","Session list not loaded: "+e.message); return false; }
 }
 
 document.getElementById("send").onclick=async()=>{
@@ -289,35 +306,34 @@ document.getElementById("copy").onclick=async()=>{
 };
 document.getElementById("clear").onclick=()=>{ store.set("st185-draft",{}); SEL={}; renderQuestions(); document.querySelectorAll("textarea[data-row]").forEach(t=>t.value=""); };
 
+// One refresh at a time. Manual button, auto timer and first load all go through here, so every path
+// re-runs the same loaders (questions+answers, files+tracker rows, sessions) and updates the stamp.
+let inflight=null;
 function refreshAll(){
+  if(inflight) return inflight;
   saveDraft();
-  return Promise.all([
-    loadQuestions(),
-    loadData().catch(e=>{document.getElementById("newfiles").textContent="Data error: "+e.message}),
-    loadSessions()
-  ]);
+  const btn=document.getElementById("refresh"); btn.disabled=true; btn.textContent="Refreshing…";
+  const files=loadData().then(()=>true,e=>{ setErr("err-files","Files/tracker not loaded: "+e.message); return false; });
+  inflight=Promise.all([loadQuestions(),files,loadSessions()]).then(res=>{
+    showAuto(new Date().toLocaleTimeString([],{hour12:false}),res.filter(x=>!x).length);
+  }).finally(()=>{ inflight=null; btn.disabled=false; btn.textContent="Refresh"; });
+  return inflight;
 }
 document.getElementById("refresh").onclick=refreshAll;
 
-// ---- auto-refresh: same loaders as the Refresh button, every 60 s ----
+// ---- auto-refresh every 60 s ----
 const AUTO_MS = 60000;
 const autoEl = document.getElementById("auto");
-let autoBusy = false;
-function showAuto(t){ autoEl.textContent = ` · auto-refresh every 60 s - last: ${t||"-"}`; }
+function showAuto(t,bad){ autoEl.textContent = ` · last refreshed ${t||"-"} · auto-refresh every 60 s` + (bad?` · ${bad} section(s) failed`:""); autoEl.style.color = bad?"#fca5a5":""; }
 showAuto();
-async function autoTick(){
-  if(DC_OK===false || SENDING || autoBusy) return;   // phone / no Desktop Commander, send running, or previous tick still running
+function autoTick(){
+  if(DC_OK===false || SENDING || inflight) return;   // phone / no Desktop Commander, send running, or a refresh already running
   if(document.hidden) return;
   if(document.activeElement && document.activeElement.tagName==="TEXTAREA") return;   // don't rebuild the page under the cursor
-  autoBusy=true;
-  try{ await refreshAll(); if(DC_OK!==false) showAuto(new Date().toLocaleTimeString([],{hour12:false})); }
-  catch(e){}
-  finally{ autoBusy=false; }
+  refreshAll().catch(()=>{});
 }
 setInterval(autoTick,AUTO_MS);
 renderQuestions();
-loadQuestions();
-loadData().catch(e=>{document.getElementById("newfiles").textContent="Data error: "+e.message});
-loadSessions();
+refreshAll();
 </script>
 </body></html>
