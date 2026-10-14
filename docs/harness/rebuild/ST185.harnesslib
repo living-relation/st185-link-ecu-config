@@ -533,6 +533,32 @@
       "numberOfCavities": 5
     },
     {
+      "id": "cp_rly_micro_no_d",
+      "partNumber": "5-1393292-8",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A402, 1 FORM A (NO), 12 VDC COIL, DIODE SUPPRESSED (TE ON-HAND BOM)",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_rfrm"
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_rly_micro_no",
+      "partNumber": "4-1904124-3",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A403, 1 FORM A (NO), 12 VDC COIL (TE ON-HAND BOM)",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_rfrm"
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
       "id": "cp_toy2p",
       "color": "Orange",
       "image": {

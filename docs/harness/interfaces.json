@@ -1670,6 +1670,76 @@
         "function": "alternator L (G2-2) -> splice I5 -> combination meter lead C14-8 / C12-8 (ClusterLED charge LED)",
         "method": "crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)"
       }
+    },
+    {
+      "id": "FL_OEM_IE1_C2",
+      "type": "oem_flying_lead",
+      "harness": "CabinPower",
+      "terminal": "fl_oem_ie1_c2",
+      "ewd": {
+        "page": "1993 p.116",
+        "connector": "IE1",
+        "pin": "2",
+        "color": "R-Y",
+        "function": "headlight relay coil- line: splice I2 -> light control SW C15-14 HEAD / C15-13 FLASH to ground (also R8-8) <- sp_head_coil <- k_hl / k_hr 85",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_IE1_C19",
+      "type": "oem_flying_lead",
+      "harness": "CabinPower",
+      "terminal": "fl_oem_ie1_c19",
+      "ewd": {
+        "page": "1993 p.185",
+        "connector": "IE1",
+        "pin": "19",
+        "color": "G",
+        "function": "horn relay coil- line: horn SW C15-10 to ground <- k_horn 85",
+        "method": "crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+      }
+    },
+    {
+      "id": "FL_OEM_RB4_C1",
+      "type": "oem_flying_lead",
+      "harness": "CabinPower",
+      "terminal": "fl_oem_rb4_c1",
+      "ewd": {
+        "page": "1993 p.215",
+        "connector": "R/B4",
+        "pin": "heater relay terminal 1",
+        "color": "L-W",
+        "function": "heater relay coil- line: IQ2-9 -> auto A/C amplifier A32-11 HR (grounds it) <- k_htr 85 (R/B4 removed)",
+        "method": "crimp butt splice into the factory L-W lead at the old R/B4 spot (right kick panel)"
+      }
+    },
+    {
+      "id": "FL_OEM_RB4_C3",
+      "type": "oem_flying_lead",
+      "harness": "CabinPower",
+      "terminal": "fl_oem_rb4_c3",
+      "ewd": {
+        "page": "1993 p.215",
+        "connector": "R/B4",
+        "pin": "heater relay terminal 3",
+        "color": "R-L",
+        "function": "heater relay coil+ feed from junction connector J4 -> k_htr 86 (R/B4 removed)",
+        "method": "crimp butt splice into the factory R-L lead at the old R/B4 spot (right kick panel)"
+      }
+    },
+    {
+      "id": "FL_OEM_RB2_C2",
+      "type": "oem_flying_lead",
+      "harness": "CabinPower",
+      "terminal": "fl_oem_rb2_c2",
+      "ewd": {
+        "page": "1993 p.137-138",
+        "connector": "R/B2",
+        "pin": "power main relay terminal 2",
+        "color": "L-Y",
+        "function": "power main relay coil+ (GAUGE 15A, ignition on) -> k_pwr 86 (R/B2 removed)",
+        "method": "crimp butt splice into the factory cowl-side L-Y lead at the left kick"
+      }
     }
   ],
   "realConnectors": [
