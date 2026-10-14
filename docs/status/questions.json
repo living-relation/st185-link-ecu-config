@@ -36,6 +36,26 @@
           "label": "Only add a second spare M8 on the NEG bar"
         }
       ]
+    },
+    {
+      "id": "I4",
+      "topic": "PDF export: notes on the small harness drawings",
+      "text": "R88 wants every note inside the frame of the drawing's parts. On small drawings like WheelSpeed-Front/-Rear (1530 x 780) the 5 approved notes are about 890 tall, so they don't fit without covering wires or moving parts, and moving parts would change the approved routing (R90). RearLights has the same problem. Until you pick an option, these drawings ship with bands, labels and the title block, but without the PDF export setup.",
+      "options": [
+        {
+          "value": "A",
+          "label": "Allow one notes column right beside the drawing (page size Fit makes the sheet big enough for it); change the gate to match",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "Spread the parts out to make room inside the drawing (re-route; you approve the drawings again)"
+        },
+        {
+          "value": "C",
+          "label": "Cut the notes down until they fit in the gaps"
+        }
+      ]
     }
   ]
 }

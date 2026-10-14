@@ -4413,6 +4413,110 @@
           "w_pdb_jb1"
         ]
       }
+    },
+    "WheelSpeed-Front": {
+      "WSS_FL": {
+        "bands": [
+          "Blue"
+        ],
+        "wires": [
+          "cab_fl_p",
+          "cab_fl_n",
+          "cab_fl_sh",
+          "cab_fout_l"
+        ]
+      },
+      "WSS_FR": {
+        "bands": [
+          "Yellow"
+        ],
+        "wires": [
+          "cab_fr_p",
+          "cab_fr_n",
+          "cab_fr_sh",
+          "cab_fout_r"
+        ]
+      },
+      "VRC_F_DRAIN": {
+        "bands": [
+          "White"
+        ],
+        "wires": [
+          "e7gavP",
+          "cab_fout_sh"
+        ]
+      },
+      "VRC_F_5V": {
+        "bands": [
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "cab_fout_5v"
+        ]
+      },
+      "VRC_F_GND": {
+        "bands": [
+          "Blue",
+          "White"
+        ],
+        "wires": [
+          "cab_fout_gnd"
+        ]
+      }
+    },
+    "WheelSpeed-Rear": {
+      "WSS_RL": {
+        "bands": [
+          "White"
+        ],
+        "wires": [
+          "cab_rl_p",
+          "cab_rl_n",
+          "cab_rl_sh",
+          "cab_rout_l"
+        ]
+      },
+      "WSS_RR": {
+        "bands": [
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "cab_rr_p",
+          "cab_rr_n",
+          "cab_rr_sh",
+          "cab_rout_r"
+        ]
+      },
+      "VRC_R_DRAIN": {
+        "bands": [
+          "Yellow",
+          "Yellow"
+        ],
+        "wires": [
+          "_TXY7m",
+          "cab_rout_sh"
+        ]
+      },
+      "VRC_R_5V": {
+        "bands": [
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "cab_rout_5v"
+        ]
+      },
+      "VRC_R_GND": {
+        "bands": [
+          "Blue",
+          "White"
+        ],
+        "wires": [
+          "cab_rout_gnd"
+        ]
+      }
     }
   }
 }
