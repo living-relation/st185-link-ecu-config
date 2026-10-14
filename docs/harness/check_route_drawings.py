@@ -14,8 +14,14 @@ Checks, per file:
      tag (same attribute twice on one tag, or an unterminated quote)
   3. every isometric route figure ("Fig. <id>" caption) is followed, before
      the next one, by a top view ("Top view" caption) - Dan's top-view rule,
-     binding (route rules in docs/harness/redesign/DECISIONS.md)
+     binding (route rules in docs/harness/redesign/DECISIONS.md). Exception
+     (Dan, 2026-10-14): a figure whose caption says "connector sheet" is a
+     factory EWD connector page, not a route picture, and needs no top view
+     (the figure that locates the part already has one)
   4. no two numbered marker circles overlap within one figure (<svg>)
+  5. no two floating text labels overlap within one figure (<svg>); width is
+     estimated from the font size, so use numbered markers + a table instead
+     of long labels that crowd each other (Dan, 2026-10-14)
 
 Exit 0 if every file is clean, 1 otherwise.
 """
@@ -62,6 +68,9 @@ def check_file(path):
     tops = [m.start() for m in TOPVIEW_CAPTION.finditer(text)]
     for i, pos in enumerate(figs):
         nxt = figs[i + 1] if i + 1 < len(figs) else len(text)
+        cap_end = text.find('</figcaption>', pos)
+        if 'connector sheet' in text[pos:cap_end].lower():
+            continue
         if not any(pos < t < nxt for t in tops):
             bad.append("%s: isometric figure at offset %d has no top view before the next figure"
                        % (path, pos))
@@ -77,6 +86,24 @@ def check_file(path):
                 if abs(x1 - x2) < (r1 + r2) and abs(y1 - y2) < (r1 + r2):
                     bad.append("%s: marker labels overlap near (%.0f,%.0f) and (%.0f,%.0f)"
                                % (path, x1, y1, x2, y2))
+
+    # 5. floating text labels must not overlap (estimated boxes)
+    for svg in re.findall(r'<svg.*?</svg>', text, re.I | re.S):
+        boxes = []
+        for m in re.finditer(r'<text\b([^>]*)>([^<]*)</text>', svg, re.I):
+            a, label = m.group(1), re.sub(r'&\w+;', 'x', m.group(2)).strip()
+            if 'text-anchor' in a or len(label) < 4:
+                continue
+            xm, ym, fm = (re.search(r'\b%s="([\d.]+)"' % k, a) for k in ("x", "y", "font-size"))
+            if not (xm and ym and fm):
+                continue
+            x, y, fs = float(xm.group(1)), float(ym.group(1)), float(fm.group(1))
+            boxes.append((x, y - fs, x + len(label) * fs * 0.55, y + fs * 0.25, label))
+        for i in range(len(boxes)):
+            for j in range(i + 1, len(boxes)):
+                a, b = boxes[i], boxes[j]
+                if a[0] < b[2] and b[0] < a[2] and a[1] < b[3] and b[1] < a[3]:
+                    bad.append("%s: text labels overlap: %r and %r" % (path, a[4][:30], b[4][:30]))
 
     return bad
 
