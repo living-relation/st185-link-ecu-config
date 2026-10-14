@@ -291,22 +291,17 @@
         {
           "id": "hl",
           "designation": "HL",
-          "signal": "Bus 1 15A + HEAD LH micro relay 87 -> headlight LH H1 pin 3"
+          "signal": "Bus 1 15A HEAD LH fuse -> HEAD LH relay k_hl 30 + 86"
         },
         {
           "id": "hr",
           "designation": "HR",
-          "signal": "Bus 1 15A + HEAD RH micro relay 87 -> headlight RH H2 pin 3"
+          "signal": "Bus 1 15A HEAD RH fuse -> HEAD RH relay k_hr 30 + 86"
         },
         {
           "id": "hz",
           "designation": "HZ",
-          "signal": "Bus 1 15A HAZ-HORN fuse out -> hazard feed IE1-12 and horn micro relay 30"
-        },
-        {
-          "id": "hn",
-          "designation": "HN",
-          "signal": "HAZ-HORN horn micro relay 87 -> horns H3 / H4 (DT 2-way each)"
+          "signal": "Bus 1 15A HAZ-HORN fuse out -> hazard feed IE1-12 and horn relay k_horn 30 + 86"
         },
         {
           "id": "dm",
@@ -450,7 +445,7 @@
         {
           "id": "htr",
           "designation": "HTR",
-          "signal": "MaxiVal 40A + heater Maxi relay 87 -> blower motor B4 pin 2 (ex-R/B4 HEATER); coil from the auto amp HR path"
+          "signal": "MaxiVal 40A HEATER -> heater relay k_htr 30"
         },
         {
           "id": "str",
@@ -505,13 +500,8 @@
         {
           "id": "pin",
           "designation": "PWR IN",
-          "signal": "Power relay 30 in - 30A from LMI L2",
+          "signal": "Power relay feed in - 30A from LMI L2 -> power relay k_pwr 30",
           "propagate": false
-        },
-        {
-          "id": "pwr",
-          "designation": "PWR",
-          "signal": "Power Maxi relay 87 -> power-window feed W-G (ex-R/B2 power main relay terminal 1); coil key IG"
         },
         {
           "id": "acin",
@@ -972,6 +962,238 @@
         "y": 3900
       },
       "partId": "cp_rly_micro_co",
+      "width": 390
+    },
+    {
+      "id": "k_hl",
+      "label": "HEAD LH Relay (seated in RFRM micro) - coil+ (86) from its own HEAD LH 15A fuse, coil- (85) grounded by the light control switch via IE1-2",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "30",
+          "signal": "Fused +12V in (RFRM HL 15A)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "85",
+          "signal": "Coil - -> sp_head_coil -> IE1-2 R-Y: light control SW C15-14 HEAD / C15-13 FLASH (EWD 1993 p.116)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "86",
+          "signal": "Coil + <- RFRM HL 15A fuse out (permanent)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "87",
+          "signal": "+12V out -> headlight LH H1 pin 3 (br_w_pmu_hl, EngineRoom-C)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "87a"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2340,
+        "y": 600
+      },
+      "schematicPosition": {
+        "x": 4200,
+        "y": 5100
+      },
+      "partId": "cp_rly_micro_no_d",
+      "width": 390
+    },
+    {
+      "id": "k_hr",
+      "label": "HEAD RH Relay (seated in RFRM micro) - coil+ (86) from its own HEAD RH 15A fuse, coil- (85) grounded by the light control switch via IE1-2",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "30",
+          "signal": "Fused +12V in (RFRM HR 15A)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "85",
+          "signal": "Coil - -> sp_head_coil -> IE1-2 R-Y: light control SW C15-14 HEAD / C15-13 FLASH (EWD 1993 p.116)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "86",
+          "signal": "Coil + <- RFRM HR 15A fuse out (permanent)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "87",
+          "signal": "+12V out -> headlight RH H2 pin 3 (br_w_pmu_hr, EngineRoom-C)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "87a"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2340,
+        "y": 720
+      },
+      "schematicPosition": {
+        "x": 4800,
+        "y": 5100
+      },
+      "partId": "cp_rly_micro_no_d",
+      "width": 390
+    },
+    {
+      "id": "k_horn",
+      "label": "Horn Relay (seated in RFRM micro) - coil+ (86) from the HAZ-HORN 15A fuse, coil- (85) grounded by the horn switch via IE1-19",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "30",
+          "signal": "Fused +12V in (RFRM HZ 15A)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "85",
+          "signal": "Coil - -> IE1-19 G -> horn SW C15-10 (EWD 1993 p.185)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "86",
+          "signal": "Coil + <- RFRM HZ 15A fuse out (permanent)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "87",
+          "signal": "+12V out -> horns H3 / H4 (br_w_pmu_horn, EngineRoom-C)",
+          "contactPartId": "ct_rfrm",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "87a"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2340,
+        "y": 840
+      },
+      "schematicPosition": {
+        "x": 5400,
+        "y": 5100
+      },
+      "partId": "cp_rly_micro_no",
+      "width": 390
+    },
+    {
+      "id": "k_htr",
+      "label": "Heater Relay (seated in MTA-2 Maxi R1) - coil+ (86) from the factory R-L lead, coil- (85) grounded by the auto A/C amplifier HR",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "30",
+          "signal": "Fused +12V in (MTA-2 HTR 40A)",
+          "contactPartId": "ct_mta",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "85",
+          "signal": "Coil - -> old R/B4 pin 1 L-W -> auto A/C amplifier A32-11 HR (EWD 1993 p.215)",
+          "contactPartId": "ct_mta",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "86",
+          "signal": "Coil + <- old R/B4 pin 3 R-L (EWD 1993 p.215)",
+          "contactPartId": "ct_mta",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "87",
+          "signal": "+12V out -> blower motor B4 pin 2 (br_w_rb4) and MTA-3 ACIN",
+          "contactPartId": "ct_mta",
+          "propagate": false
+        }
+      ],
+      "layoutPosition": {
+        "x": 2340,
+        "y": 960
+      },
+      "schematicPosition": {
+        "x": 6000,
+        "y": 5100
+      },
+      "partId": "cp_rly_f7_b",
+      "width": 390
+    },
+    {
+      "id": "k_pwr",
+      "label": "Power Relay (seated in MTA-3 Maxi R2 (bracket relay: test-fit, OPEN-ITEMS row 53)) - coil+ (86) key IG from the factory L-Y lead, coil- (85) to ground",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "30",
+          "signal": "Fused +12V in (LMI L2 30A via MTA-3 PIN)",
+          "contactPartId": "ct_mta",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "85",
+          "signal": "Coil - -> glove-box PDB ground bus",
+          "contactPartId": "ct_mta",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "86",
+          "signal": "Coil + <- old R/B2 pin 2 L-Y, GAUGE 15A with the ignition on (EWD 1993 p.137-138)",
+          "contactPartId": "ct_mta",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "87",
+          "signal": "+12V out -> power-window feed W-G (br_w_rb2, EngineRoom-C)",
+          "contactPartId": "ct_mta",
+          "propagate": false
+        }
+      ],
+      "layoutPosition": {
+        "x": 2340,
+        "y": 1080
+      },
+      "schematicPosition": {
+        "x": 6600,
+        "y": 5100
+      },
+      "partId": "cp_rly_f7_a",
       "width": 390
     }
   ],
@@ -1778,6 +2000,102 @@
         "y": 660
       },
       "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.116 IE1-2 R-Y headlight relay coil- line (splice I2 -> light control SW C15-14 HEAD / C15-13 FLASH, also R8-8) <- sp_head_coil <- k_hl / k_hr 85 - crimp butt splice into the factory cowl-side lead at the left kick (engine-room main removed)",
+      "schematicPosition": {
+        "x": 4500,
+        "y": 5430
+      },
+      "layoutPosition": {
+        "x": 2460,
+        "y": 630
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_ie1_c19",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.185 IE1-19 G horn relay coil- line (horn SW C15-10) <- k_horn 85 - crimp butt splice into the factory cowl-side lead at the left kick (engine-room main removed)",
+      "schematicPosition": {
+        "x": 5400,
+        "y": 5430
+      },
+      "layoutPosition": {
+        "x": 2460,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_rb4_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.215 R/B4 heater relay terminal 1 L-W (-> auto A/C amplifier A32-11 HR) <- k_htr 85 - crimp butt splice into the factory lead at the old R/B4 spot (right kick panel; R/B4 removed)",
+      "schematicPosition": {
+        "x": 6000,
+        "y": 5430
+      },
+      "layoutPosition": {
+        "x": 2460,
+        "y": 870
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_rb4_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.215 R/B4 heater relay terminal 3 R-L (from junction connector J4) -> k_htr 86 - crimp butt splice into the factory lead at the old R/B4 spot (right kick panel; R/B4 removed)",
+      "schematicPosition": {
+        "x": 6000,
+        "y": 5490
+      },
+      "layoutPosition": {
+        "x": 2460,
+        "y": 990
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_rb2_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.137-138 R/B2 power main relay terminal 2 L-Y (GAUGE 15A, ignition on) -> k_pwr 86 - crimp butt splice into the factory cowl-side lead at the left kick (R/B2 removed)",
+      "schematicPosition": {
+        "x": 6600,
+        "y": 5430
+      },
+      "layoutPosition": {
+        "x": 2460,
+        "y": 1110
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_pdb_gnd_pwr",
+      "type": "Ring",
+      "partId": "tp_ring_m8_22_16",
+      "width": 390,
+      "signal": "Glove-box PDB ground bus stud (M8) - power relay coil-",
+      "schematicPosition": {
+        "x": 6600,
+        "y": 5490
+      },
+      "layoutPosition": {
+        "x": 2460,
+        "y": 1230
+      },
+      "propagate": false
     }
   ],
   "wires": [
@@ -2084,8 +2402,8 @@
       "id": "w_htr_acps",
       "color": "Red",
       "source": {
-        "id": "mta2",
-        "handle": "htr"
+        "id": "k_htr",
+        "handle": "c4"
       },
       "target": {
         "id": "mta3",
@@ -2097,8 +2415,8 @@
       "id": "w_pmu_hl_cp",
       "color": "Red",
       "source": {
-        "id": "rfrm",
-        "handle": "hl"
+        "id": "k_hl",
+        "handle": "c4"
       },
       "target": {
         "id": "br_w_pmu_hl",
@@ -2110,8 +2428,8 @@
       "id": "w_pmu_hr_cp",
       "color": "Red",
       "source": {
-        "id": "rfrm",
-        "handle": "hr"
+        "id": "k_hr",
+        "handle": "c4"
       },
       "target": {
         "id": "br_w_pmu_hr",
@@ -2123,8 +2441,8 @@
       "id": "w_pmu_horn_cp",
       "color": "Red",
       "source": {
-        "id": "rfrm",
-        "handle": "hn"
+        "id": "k_horn",
+        "handle": "c4"
       },
       "target": {
         "id": "br_w_pmu_horn",
@@ -2214,8 +2532,8 @@
       "id": "w_rb4_cp",
       "color": "Red",
       "source": {
-        "id": "mta2",
-        "handle": "htr"
+        "id": "k_htr",
+        "handle": "c4"
       },
       "target": {
         "id": "br_w_rb4",
@@ -2227,8 +2545,8 @@
       "id": "w_rb2_cp",
       "color": "Red",
       "source": {
-        "id": "mta3",
-        "handle": "pwr"
+        "id": "k_pwr",
+        "handle": "c4"
       },
       "target": {
         "id": "br_w_rb2",
@@ -2801,6 +3119,214 @@
       },
       "color": "White",
       "partId": "m16_20_9"
+    },
+    {
+      "id": "w_hl_30_cp",
+      "color": "Red",
+      "source": {
+        "id": "rfrm",
+        "handle": "hl"
+      },
+      "target": {
+        "id": "k_hl",
+        "handle": "c1"
+      },
+      "partId": "m16_14_2"
+    },
+    {
+      "id": "w_hl_86_cp",
+      "color": "Red",
+      "source": {
+        "id": "rfrm",
+        "handle": "hl"
+      },
+      "target": {
+        "id": "k_hl",
+        "handle": "c3"
+      },
+      "partId": "m16_18_2"
+    },
+    {
+      "id": "w_hl_85_cp",
+      "color": "Violet",
+      "source": {
+        "id": "k_hl",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_head_coil",
+        "handle": "Splice"
+      },
+      "partId": "m16_18_7"
+    },
+    {
+      "id": "w_hr_30_cp",
+      "color": "Red",
+      "source": {
+        "id": "rfrm",
+        "handle": "hr"
+      },
+      "target": {
+        "id": "k_hr",
+        "handle": "c1"
+      },
+      "partId": "m16_14_2"
+    },
+    {
+      "id": "w_hr_86_cp",
+      "color": "Red",
+      "source": {
+        "id": "rfrm",
+        "handle": "hr"
+      },
+      "target": {
+        "id": "k_hr",
+        "handle": "c3"
+      },
+      "partId": "m16_18_2"
+    },
+    {
+      "id": "w_hr_85_cp",
+      "color": "Violet",
+      "source": {
+        "id": "k_hr",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "sp_head_coil",
+        "handle": "Splice"
+      },
+      "partId": "m16_18_7"
+    },
+    {
+      "id": "w_head_coil_cp",
+      "color": "Violet",
+      "source": {
+        "id": "sp_head_coil",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_oem_ie1_c2",
+        "handle": "Terminal"
+      },
+      "partId": "m16_18_7"
+    },
+    {
+      "id": "w_horn_30_cp",
+      "color": "Red",
+      "source": {
+        "id": "rfrm",
+        "handle": "hz"
+      },
+      "target": {
+        "id": "k_horn",
+        "handle": "c1"
+      },
+      "partId": "m16_16_2"
+    },
+    {
+      "id": "w_horn_86_cp",
+      "color": "Red",
+      "source": {
+        "id": "k_horn",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "k_horn",
+        "handle": "c3"
+      },
+      "partId": "m16_18_2"
+    },
+    {
+      "id": "w_horn_85_cp",
+      "color": "Violet",
+      "source": {
+        "id": "k_horn",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "fl_oem_ie1_c19",
+        "handle": "Terminal"
+      },
+      "partId": "m16_18_7"
+    },
+    {
+      "id": "w_htr_30_cp",
+      "color": "Red",
+      "source": {
+        "id": "mta2",
+        "handle": "htr"
+      },
+      "target": {
+        "id": "k_htr",
+        "handle": "c1"
+      },
+      "partId": "m16_8_2"
+    },
+    {
+      "id": "w_htr_86_cp",
+      "color": "Red",
+      "source": {
+        "id": "fl_oem_rb4_c3",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_htr",
+        "handle": "c3"
+      },
+      "partId": "m16_18_2"
+    },
+    {
+      "id": "w_htr_85_cp",
+      "color": "Violet",
+      "source": {
+        "id": "k_htr",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "fl_oem_rb4_c1",
+        "handle": "Terminal"
+      },
+      "partId": "m16_18_7"
+    },
+    {
+      "id": "w_pwr_86_cp",
+      "color": "Red",
+      "source": {
+        "id": "fl_oem_rb2_c2",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_pwr",
+        "handle": "c3"
+      },
+      "partId": "m16_18_2"
+    },
+    {
+      "id": "w_pwr_85_cp",
+      "color": "Black",
+      "source": {
+        "id": "k_pwr",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "t_pdb_gnd_pwr",
+        "handle": "Terminal"
+      },
+      "partId": "m16_20_0"
+    },
+    {
+      "id": "w_pwr_30_cp",
+      "color": "Red",
+      "source": {
+        "id": "mta3",
+        "handle": "pin"
+      },
+      "target": {
+        "id": "k_pwr",
+        "handle": "c1"
+      },
+      "partId": "m16_10_2"
     }
   ],
   "bundles": [
@@ -3541,6 +4067,105 @@
         "value": 300,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_b_bp_1050__k_hl",
+      "sourceId": "b_bp_1050",
+      "targetId": "k_hl",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1050__k_hr",
+      "sourceId": "b_bp_1050",
+      "targetId": "k_hr",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1050__k_horn",
+      "sourceId": "b_bp_1050",
+      "targetId": "k_horn",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1065__k_htr",
+      "sourceId": "b_bp_1065",
+      "targetId": "k_htr",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1065__k_pwr",
+      "sourceId": "b_bp_1065",
+      "targetId": "k_pwr",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1050__fl_oem_ie1_c2",
+      "sourceId": "b_bp_1050",
+      "targetId": "fl_oem_ie1_c2",
+      "length": {
+        "value": 900,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1050__fl_oem_ie1_c19",
+      "sourceId": "b_bp_1050",
+      "targetId": "fl_oem_ie1_c19",
+      "length": {
+        "value": 900,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1065__fl_oem_rb4_c1",
+      "sourceId": "b_bp_1065",
+      "targetId": "fl_oem_rb4_c1",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1065__fl_oem_rb4_c3",
+      "sourceId": "b_bp_1065",
+      "targetId": "fl_oem_rb4_c3",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1065__fl_oem_rb2_c2",
+      "sourceId": "b_bp_1065",
+      "targetId": "fl_oem_rb2_c2",
+      "length": {
+        "value": 900,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_b_bp_1065__t_pdb_gnd_pwr",
+      "sourceId": "b_bp_1065",
+      "targetId": "t_pdb_gnd_pwr",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
     }
   ],
   "branchPoints": [
@@ -4009,6 +4634,32 @@
         }
       ],
       "numberOfCavities": 5
+    },
+    {
+      "id": "cp_rly_micro_no_d",
+      "partNumber": "5-1393292-8",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A402, 1 FORM A (NO), 12 VDC COIL, DIODE SUPPRESSED (TE ON-HAND BOM)",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_rfrm"
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_rly_micro_no",
+      "partNumber": "4-1904124-3",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A403, 1 FORM A (NO), 12 VDC COIL (TE ON-HAND BOM)",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_rfrm"
+        }
+      ],
+      "numberOfCavities": 5
     }
   ],
   "contactParts": [
@@ -4274,13 +4925,13 @@
         "x": 5910,
         "y": 0
       },
-      "text": "CABIN POWER HARNESS - non-ECU: the glove-box fuse box (Option B, _research FUSEBOX-B-SLOT-MAP 2026-10-11): Bussmann LMI, two stacks (lmi_a_*, lmi_b_*, DECISIONS S14), Eaton RFRM 15401-1-2-1-0A (rfrm) and 3x MTA 0301491 (mta1-mta3); the battery feed ring (PDB bus) and the fuel pump run to the trunk. The box lives only in this file. The ECU-switched relays are seated in the box and drawn here (k_fan / k_efi / k_fp on MTA-1, k_str / k_etb on MTA-2, k_fan2 on MTA-3, k_acc in the RFRM, k_eps HCR150 beside the box); their wires land on the module's own relay-position terminals. Fuse -> relay 30 and relay coil+ links are short jumpers inside the box (the MTA 0301491 internal bus is unconfirmed, OPEN-ITEMS row 48). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and A-cabin, B-cabin, CSB3 or EngineRoom-C is drawn broken off in both with a note naming the other file. RFRM / MTA slot numbers are not assigned: cavities are named by circuit."
+      "text": "CABIN POWER HARNESS - non-ECU: the glove-box fuse box (Option B, _research FUSEBOX-B-SLOT-MAP 2026-10-11): Bussmann LMI, two stacks (lmi_a_*, lmi_b_*, DECISIONS S14), Eaton RFRM 15401-1-2-1-0A (rfrm) and 3x MTA 0301491 (mta1-mta3); the battery feed ring (PDB bus) and the fuel pump run to the trunk. The box lives only in this file. The ECU-switched relays are seated in the box and drawn here (k_fan / k_efi / k_fp on MTA-1, k_str / k_etb on MTA-2, k_fan2 on MTA-3, k_acc in the RFRM, k_eps HCR150 beside the box), and so are the non-ECU relays with their coil circuits (EWD 1993: k_hl / k_hr HEAD, coil- to IE1-2 R-Y, p.116; k_horn, coil- to IE1-19 G, p.185; k_rev in the RFRM; k_htr heater on MTA-2, coil from the old R/B4 R-L / L-W leads to the A/C amplifier HR, p.215; k_pwr power on MTA-3, coil+ key IG from the old R/B2 L-Y lead, p.137); their wires land on the module's own relay-position terminals. Fuse -> relay 30 and relay coil+ links are short jumpers inside the box (the MTA 0301491 internal bus is unconfirmed, OPEN-ITEMS row 48). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and A-cabin, B-cabin, CSB3 or EngineRoom-C is drawn broken off in both with a note naming the other file. RFRM / MTA slot numbers are not assigned: cavities are named by circuit."
     },
     {
       "id": "n_cavity_notes",
       "schematicPosition": {
         "x": 5910,
-        "y": 600
+        "y": 900
       },
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nRFRM EFI86: 5A - relay coil feed, PERMANENT (EFI main relay 86)\nMTA-2 MRS: 7.5A - MRS EPS pump logic enable (fed from k_eps_en 87 per the slot map; k_eps_en not yet in the SoT, OPEN-ITEMS row 40)\nLMI L7: 60A AMI - EPS pump relay 30 (k_eps HCR150, beside the box), Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via RFRM EFI86 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nFuel Pump Relay 85: ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4)\nFuel Pump Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nCondenser Fan Relay (on/off) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression (on/off relay; INFERENCE from the G4X help Auxiliary Output Wiring PWM-only diode advice, not a Link statement) - TE 1-1393304-0, plain relay, no diode (slot map row 9)\nCondenser Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nMR-S EHPS pump relay (HCR150,  85: ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6) - EPS relay trigger; moved into the cabin 2026-09-28 (Daniel: every relay in the cabin)\nMR-S EHPS pump relay (HCR150,  30: LMI L7 - Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)"
     }
@@ -4309,6 +4960,19 @@
       },
       "layoutPosition": {
         "x": 1710,
+        "y": 270
+      }
+    },
+    {
+      "id": "sp_head_coil",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_1050",
+      "schematicPosition": {
+        "x": 4500,
+        "y": 5370
+      },
+      "layoutPosition": {
+        "x": 1770,
         "y": 270
       }
     }

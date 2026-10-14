@@ -58,7 +58,7 @@ not copied here; this is a pointer only.
 - [`st185-ship-change`](C:\Users\danie\.claude\skills\st185-ship-change\SKILL.md) - PR a finished change to protected `main`, squash-merge, clean up the worktree/branch.
 
 The route-drawing lint they call, `docs/harness/check_route_drawings.py`, lives in this repo
-and runs as a SOFT gate in `check_all.py`, since it's a test, not a skill.
+and runs as a HARD gate in `check_all.py`, since it's a test, not a skill.
 
 ## Scope
 - This repo is CAN configuration + bench/tooling for ST185 TrackCluster.
@@ -159,7 +159,7 @@ python rd-build/tools/automation_helper.py screenshot rd-build/rd_screen.png
 
 ### Route-drawing lint
 The approved route drawings are `docs/harness/routes/` (current version only; git history is
-the revision record). `check_all.py` runs the lint as a SOFT gate; by hand:
+the revision record). `check_all.py` runs the lint as a HARD gate; by hand:
 ```bash
 python docs/harness/check_route_drawings.py                      # all routes
 python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.html

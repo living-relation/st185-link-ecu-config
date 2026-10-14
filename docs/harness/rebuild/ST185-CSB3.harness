@@ -47,7 +47,7 @@
         },
         {
           "id": "c8",
-          "signal": "A2 - Cruise Ladder",
+          "signal": "A2 - Cruise ladder (stalk C14 pin 5 W; 1k pull-up to +5V)",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -92,17 +92,17 @@
         },
         {
           "id": "c17",
-          "signal": "S3 - Cruise Main On",
+          "signal": "S3 - Cruise MAIN on (stalk C14 pin 15 Y-B)",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c18",
-          "signal": "S4 - Cruise Set/Accel",
+          "signal": "S4 (brought out, spare)",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c19",
-          "signal": "S5 - Cruise Resume/Decel",
+          "signal": "S5 (brought out, spare)",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -314,7 +314,7 @@
       "id": "fl_cruise_stalk_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD Cruise control switch-TBD TBD cruise ladder signal -> sp_cruise_ladder -> CSB3 A2 - solder sleeve into the factory lead",
+      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 5 W - ladder to ground (RES/ACC ~68, SET/COAST ~198, CANCEL ~418 ohm) -> sp_cruise_ladder -> CSB3 A2 - solder sleeve into the factory lead",
       "schematicPosition": {
         "x": 660,
         "y": 570
@@ -329,7 +329,7 @@
       "id": "fl_cruise_stalk_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD Cruise control switch-TBD TBD cruise MAIN ON -> CSB3 S3 - solder sleeve into the factory lead",
+      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 15 Y-B - MAIN on/off, contact to the pin 17 ground when ON -> CSB3 S3 - solder sleeve into the factory lead",
       "schematicPosition": {
         "x": 660,
         "y": 630
@@ -341,10 +341,10 @@
       "propagate": false
     },
     {
-      "id": "fl_cruise_stalk_c4",
+      "id": "fl_cruise_stalk_c17",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD Cruise control switch-TBD TBD cruise SET/ACCEL -> CSB3 S4 - solder sleeve into the factory lead",
+      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 17 BR - stalk switch ground -> sp_csb_gnd (CSB3 ground) - solder sleeve into the factory lead",
       "schematicPosition": {
         "x": 660,
         "y": 690
@@ -352,21 +352,6 @@
       "layoutPosition": {
         "x": 1800,
         "y": -150
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_cruise_stalk_c5",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD TBD Cruise control switch-TBD TBD cruise RESUME/DECEL -> CSB3 S5 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 750
-      },
-      "layoutPosition": {
-        "x": 1800,
-        "y": -90
       },
       "propagate": false
     },
@@ -552,7 +537,7 @@
   "resistors": [
     {
       "id": "r_cruise",
-      "partId": "rp_10k",
+      "partId": "rp_1k",
       "locationId": "bp_1140",
       "layoutPosition": {
         "x": 2100,
@@ -592,30 +577,17 @@
       "partId": "m16_20_5"
     },
     {
-      "id": "w_sw3",
-      "color": "Green",
+      "id": "w_cru_gnd",
+      "color": "Black",
       "source": {
-        "id": "fl_cruise_stalk_c4",
+        "id": "fl_cruise_stalk_c17",
         "handle": "Terminal"
       },
       "target": {
-        "id": "csb3io",
-        "handle": "c18"
+        "id": "sp_csb_gnd",
+        "handle": "Splice"
       },
-      "partId": "m16_20_5"
-    },
-    {
-      "id": "w_sw4",
-      "color": "Green",
-      "source": {
-        "id": "fl_cruise_stalk_c5",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "csb3io",
-        "handle": "c19"
-      },
-      "partId": "m16_20_5"
+      "partId": "m16_20_0"
     },
     {
       "id": "w_sw5",
@@ -988,18 +960,9 @@
       }
     },
     {
-      "id": "bn_bp_fl_cruise_stalk__fl_cruise_stalk_c4",
+      "id": "bn_bp_fl_cruise_stalk__fl_cruise_stalk_c17",
       "sourceId": "bp_fl_cruise_stalk",
-      "targetId": "fl_cruise_stalk_c4",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_cruise_stalk__fl_cruise_stalk_c5",
-      "sourceId": "bp_fl_cruise_stalk",
-      "targetId": "fl_cruise_stalk_c5",
+      "targetId": "fl_cruise_stalk_c17",
       "length": {
         "value": 50,
         "unit": "mm"
@@ -1338,7 +1301,7 @@
         "x": 1890,
         "y": -60
       },
-      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk, clutch and brake switches, the cruise ladder pull-up, and ONE 8-channel optocoupler board inline at the plug (Dan's on-hand board, 2026-10-13, C10-C13): brake (S9, +12V-active) -> input 01 -> output 01 -> S7 and reverse (B1, +12V-active) -> input 02 -> output 02 -> S8, both ground-active inputs (R56). Input COM to ground; the board's own 4.7k input resistors set the LED current. Output VCC from the CSB3 +5V (c3), never 12V: the board's 10k pull-ups go to VCC and the CSB3 S inputs are 'switched to ground' with no 12V rating (CSB3 manual v2.1 pp.3-5). Output GND to SGND (c4). Channels 03-08 not connected. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse switch output from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
+      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk (C14: pin 5 W ladder -> A2 with a 1k pull-up to +5V, pin 15 Y-B MAIN -> S3, pin 17 BR ground; no separate SET / RESUME wires, so S4 / S5 are spare - DECISIONS S23, R66), clutch and brake switches, and ONE 8-channel optocoupler board inline at the plug (Dan's on-hand board, 2026-10-13, C10-C13): brake (S9, +12V-active) -> input 01 -> output 01 -> S7 and reverse (B1, +12V-active) -> input 02 -> output 02 -> S8, both ground-active inputs (R56). Input COM to ground; the board's own 4.7k input resistors set the LED current. Output VCC from the CSB3 +5V (c3), never 12V: the board's 10k pull-ups go to VCC and the CSB3 S inputs are 'switched to ground' with no 12V rating (CSB3 manual v2.1 pp.3-5). Output GND to SGND (c4). Channels 03-08 not connected. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse switch output from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
     },
     {
       "id": "n_cavity_notes",
@@ -1382,10 +1345,10 @@
   ],
   "resistorParts": [
     {
-      "id": "rp_10k",
-      "partNumber": "10k 1/4W",
+      "id": "rp_1k",
+      "partNumber": "1k 1/4W",
       "manufacturer": "generic",
-      "description": "RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W"
+      "description": "RESISTOR, FIXED, METAL FILM, 1 KOHM, 5 PCT, 1/4 W"
     }
   ],
   "cableParts": [

@@ -14,9 +14,9 @@
            a J/B2 landing (except as removed), the PMU, gbx_body, HDP2x bulkheads, powder-coat
            masking or a G4+ reference
 
-HARD: D1 (pure-bay harnesses), D2 (zero since 2026-10-12), D3. SOFT (printed, do not fail): D1 EngineRoom-C list, D4,
-D5 - these still name drawings that have not been redrawn since the rule; a SOFT check moves
-to HARD the day it first reports zero (check_all.py convention) - edit SOFT below.
+HARD: D1 (pure-bay harnesses), D2 (zero since 2026-10-12), D3, D4 and D5 (zero since 2026-10-14). SOFT
+(printed, do not fail): the D1 EngineRoom-C list. A SOFT check moves to HARD the day it first
+reports zero (check_all.py convention) - edit SOFT below.
 
 Exit 1 on any HARD finding.
 """
@@ -27,7 +27,7 @@ import sys
 
 import model
 
-SOFT = {"D4", "D5"}
+SOFT = set()
 BAY = {"A-engine", "B-engine", "HeavyDC", "WheelSpeed-Front", "WheelSpeed-Rear"}
 SPLICE_INTO = re.compile(r"solder.?sleeve into|splice[sd]? into|tap(ped)? into", re.I)
 WIRE_PN = re.compile(r"^(M22759/16-\d+-\d+|BC-)")

@@ -416,7 +416,7 @@ vibration; the value is easy to change on the bench while setting the trigger up
 needs no bulkhead pins of its own - 8 V already crosses on bulkhead A pin 4 for the
 sensor's supply, and the cam signal already crosses on pin 32. Nothing new is added.
 
-`r_fuellvl` (470 Ohm) and `r_cruise` (to change from 10k to 1k, DECISIONS S23; the drawing still shows 10k until the row 92 redraw) are wired correctly as pull-ups to A32 and do
+`r_fuellvl` (470 Ohm) and `r_cruise` (1k, DECISIONS S23; drawn 2026-10-14) are wired correctly as pull-ups to A32 and do
 not need this change - only the cam one is wrong.
 
 ## VR conditioner (NCV1124 dual boards)

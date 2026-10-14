@@ -37,16 +37,14 @@ What it runs, in order - every one in HARD is a hard gate:
   audit_dan_rules.py       Daniel's text-level rules (DECISIONS R11, R26, R29, R35, R44): bay
                            flying leads are new wire, no sleeve parts or coverings, wire part
                            numbers, no "not used" / "reserved" cavity signals, no stale notes;
-                           its D2 / D4 / D5 lists are SOFT inside the script until the drawings
-                           they name are fixed
+                           only its D1 EngineRoom-C list is SOFT inside the script (printed)
   buylist.py --check       buy list is current, and the shared-connector consistency check
   buildlist.py --check     per-wire build list is current
-
-SOFT (reported, not failing):
-
   check_route_drawings.py  the approved route drawings in routes/ (red route lines unfilled,
                            no broken attributes, a top view after every figure, no
                            overlapping markers in one figure)
+
+SOFT (reported, not failing): none at present.
 
 The generators run in --check mode here: they rebuild in memory and fail
 if the committed file is stale, but never write. So check_all.py leaves the tree
@@ -70,8 +68,10 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"],
         ["audit_dan_rules.py"], ["buylist.py", "--check"],
-        ["buildlist.py", "--check"]]
-SOFT = [["check_route_drawings.py"]]  # 2026-10-11: routes tracked; 1 finding (Route 1 Fig. 4, an EWD sheet with no top view)
+        ["buildlist.py", "--check"], ["check_route_drawings.py"]]
+SOFT = []
+# 2026-10-14: check_route_drawings went HARD - its last finding (Route 1 Fig. 4, an EWD
+# sheet with no top view) got a top view, so it reported zero (OPEN-ITEMS row 65).
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy
 # baseline cannot follow the redesign's intentional ownership and boundary moves.
 #
