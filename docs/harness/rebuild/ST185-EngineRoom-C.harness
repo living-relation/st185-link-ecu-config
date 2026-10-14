@@ -3,6 +3,69 @@
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
   "version": 0.9,
   "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-EngineRoom-C - engine room power loom: PDB, fans, EPS, lamps, wipers, alternator",
+    "drawingNumber": "ST185-EngineRoom-C"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each device connector bundle end (FAN, EPS, HORN LH ...).",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
   "connectors": [
     {
       "id": "pdb",
@@ -1896,6 +1959,11 @@
             "y": 1710
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White",
+        "Yellow"
       ]
     },
     {
@@ -1926,6 +1994,10 @@
             "y": 1770
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue"
       ]
     },
     {
@@ -2177,6 +2249,11 @@
             "y": 0
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "White"
       ]
     },
     {
@@ -2227,6 +2304,11 @@
             "y": 60
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White",
+        "Blue"
       ]
     },
     {
@@ -2263,6 +2345,11 @@
             "y": 270
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -2313,6 +2400,11 @@
             "y": 1140
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -2370,6 +2462,10 @@
             "y": 660
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White"
       ]
     },
     {
@@ -2420,6 +2516,10 @@
             "y": 990
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White"
       ]
     },
     {
@@ -2470,6 +2570,10 @@
             "y": 840
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Blue"
       ]
     },
     {
@@ -2499,6 +2603,10 @@
             "y": 1080
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Blue"
       ]
     },
     {
@@ -2542,6 +2650,9 @@
             "y": 420
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -2592,6 +2703,10 @@
             "y": 360
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Yellow"
       ]
     },
     {
@@ -2792,6 +2907,11 @@
             "y": 360
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -2842,6 +2962,10 @@
             "y": 510
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White"
       ]
     },
     {
@@ -2892,6 +3016,11 @@
             "y": 1650
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "White"
       ]
     },
     {
@@ -2921,6 +3050,10 @@
             "y": 1530
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue"
       ]
     },
     {
@@ -2978,6 +3111,11 @@
             "y": 120
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Yellow"
       ]
     },
     {
@@ -3028,6 +3166,10 @@
             "y": 180
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -3078,6 +3220,11 @@
             "y": 300
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "White"
       ]
     },
     {
@@ -3114,6 +3261,11 @@
             "y": 540
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -3150,6 +3302,11 @@
             "y": 600
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue",
+        "White"
       ]
     },
     {
@@ -3179,6 +3336,10 @@
             "y": 750
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -3208,6 +3369,10 @@
             "y": 720
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -3244,6 +3409,10 @@
             "y": 900
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -3294,6 +3463,10 @@
             "y": 1260
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -3337,6 +3510,10 @@
             "y": 1350
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -3380,6 +3557,11 @@
             "y": 450
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -3430,6 +3612,11 @@
             "y": 480
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
       ]
     },
     {
@@ -3459,6 +3646,9 @@
             "y": 0
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     },
     {
@@ -3495,6 +3685,9 @@
             "y": 0
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     },
     {
@@ -3531,6 +3724,9 @@
             "y": 180
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     },
     {
@@ -3575,6 +3771,11 @@
             "y": 120
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Yellow"
       ]
     },
     {
@@ -3626,6 +3827,11 @@
             "y": 300
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Yellow"
       ]
     },
     {
@@ -3691,6 +3897,9 @@
             "y": 1560
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     },
     {
@@ -3756,6 +3965,9 @@
             "y": 1680
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     },
     {
@@ -3800,6 +4012,10 @@
             "y": 300
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "White"
       ]
     },
     {
@@ -3844,6 +4060,10 @@
             "y": 240
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "White"
       ]
     },
     {
@@ -3888,6 +4108,10 @@
             "y": 420
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "White"
       ]
     },
     {
@@ -3911,6 +4135,10 @@
             "y": 360
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Yellow"
       ]
     },
     {
@@ -3955,6 +4183,10 @@
             "y": 420
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Yellow"
       ]
     },
     {
@@ -3992,6 +4224,10 @@
             "y": 480
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Yellow"
       ]
     },
     {
@@ -4028,6 +4264,9 @@
             "y": 750
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4057,6 +4296,9 @@
             "y": 780
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4101,6 +4343,9 @@
             "y": 660
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4159,6 +4404,9 @@
             "y": 960
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4203,6 +4451,9 @@
             "y": 900
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4240,6 +4491,9 @@
             "y": 1080
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4277,6 +4531,9 @@
             "y": 630
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4328,6 +4585,9 @@
             "y": 720
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4379,6 +4639,9 @@
             "y": 1020
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4416,6 +4679,9 @@
             "y": 690
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4453,6 +4719,9 @@
             "y": 600
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4511,6 +4780,9 @@
             "y": 900
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4548,6 +4820,9 @@
             "y": 1080
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4585,6 +4860,9 @@
             "y": 1620
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4615,6 +4893,9 @@
             "y": 1140
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4652,6 +4933,9 @@
             "y": 1620
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -4716,6 +5000,10 @@
             "y": 1500
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -4774,6 +5062,10 @@
             "y": 1320
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -4832,6 +5124,10 @@
             "y": 1380
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -4883,6 +5179,10 @@
             "y": 360
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -4933,6 +5233,11 @@
             "y": 1260
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White",
+        "Blue"
       ]
     },
     {
@@ -4970,6 +5275,11 @@
             "y": 960
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White",
+        "Blue"
       ]
     },
     {
@@ -5020,6 +5330,11 @@
             "y": 1980
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Blue"
       ]
     },
     {
@@ -5056,6 +5371,11 @@
             "y": 1920
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Blue"
       ]
     },
     {
@@ -5085,6 +5405,11 @@
             "y": 1860
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White",
+        "White"
       ]
     },
     {
@@ -5135,6 +5460,11 @@
             "y": 1800
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Blue",
+        "Yellow"
       ]
     }
   ],
@@ -5398,7 +5728,12 @@
       "length": {
         "value": 590,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "FAN2",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_150__bp_fl_ac_press",
@@ -5416,7 +5751,12 @@
       "length": {
         "value": 790,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "FAN",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_210__t_gnd_eb",
@@ -5452,7 +5792,12 @@
       "length": {
         "value": 50,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "EPS",
+      "partIds": [
+        "cov_lbl_12"
+      ]
     },
     {
       "id": "bn_bp_720__t_eng_block_2",
@@ -5587,7 +5932,12 @@
       "length": {
         "value": 790,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "FAN GND",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_120__bp_125",
@@ -5614,7 +5964,12 @@
       "length": {
         "value": 590,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "FAN2 GND",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_fl_ac_press__fl_a4_3",
@@ -5938,7 +6293,12 @@
       "length": {
         "value": 250,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "HORN LH",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_horn__horn_rh",
@@ -5947,7 +6307,12 @@
       "length": {
         "value": 250,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "HORN RH",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_240__t_gnd_ea_h3",
@@ -6963,17 +7328,18 @@
       "id": "note_acamp",
       "text": "A/C IS THE AMPLIFIERS' BUSINESS, NOT THE ECU'S OR THE CSB3'S - and there are TWO\nRead off the factory EWD automatic-A/C pages, saved in ewd-snips:\n  p150  AUTO A/C AMPLIFIER  A32=conn A, A33=conn B, A34=conn C\n        A1 Ambient Temp -> TAM, conn C pin 6, Y-B (via EA1 4, IQ1 1)\n        A27 Water Temp  -> TW,  conn C pin 20, R-G\n  p152  A/C AMPLIFIER A18 - a SEPARATE module\n        A5 Pressure SW  -> A18 pin 13, Y-R (via EB2 2, E10, IJ1 15)\nAmbient sensor -> amplifier stays FACTORY wiring (TAM not this pass, 2026-09-30).\nPressure switch A5-4 Y-R and clutch A4-3 Y-B land on ST185-ACAmp-Spur\nas flying leads at A/C AMPLIFIER A18 (pins 13 and 5); this loom does\nnot redraw them. New here: only the ACPS +12V feed, a flying lead into\nA5 pin 1 (V-R). TW (A27 here, A25 in the 1993 book) is the water temp sensor in the\ndash on factory wiring; the old Engine-A run via bulkhead A c37/c38 is\ndeleted (DECISIONS S35, 2026-10-14). The ECU's only\nA/C tie is Aux 4 ACT kill, broken off from ST185-A-cabin onto\nST185-ACAmp-Spur as A18-11. Labels: docs/harness/ACAMP-SPUR-LABELS.md.",
       "schematicPosition": {
-        "x": 3210,
-        "y": 1950
+        "x": 2490,
+        "y": 1410
       }
     },
     {
       "id": "n_cavity_notes",
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nCondenser fan relay (uprated, diode) 85: ACTIVE-LOW Coil - Ign 5 / B13, diode-suppressed relay fitted (TE 7-1904094-9)\nMR-S EHPS pump (A power / B si A-1: [A 90980-12068 pin 1] +12V from k_eps 87 (glove box, ST185-CabinPower), passenger fender; 8 AWG (sized 2026-09-28 against the AMI-60 - sot/channels.csv k_eps c1)\nMR-S EHPS pump (A power / B si A-2: [A 90980-12068 pin 2] GND, 8 AWG to engine block / EB\nMR-S EHPS pump (A power / B si B-2: [B 90980-10897 pin 2] SPD Out - speed-pulse output to ECU-A A27\nMR-S EHPS pump (A power / B si C-1: [C 90980-10942 pin 1] IG-switched, LOGIC MRS 7.5A - pump enable\nA/C Ambient Temp Sensor (EWD A 1: Ambient temp signal -> A/C amplifier. Thermistor, 2-wire. NOT an ECU input - the ECU has no use for outside air temp.\nA/C Ambient Temp Sensor (EWD A 2: Ambient temp sensor return -> A/C amplifier. The amp supplies its own sensor ground; do NOT tie this to chassis or to Gnd Out.\namb_temp (label): A/C Ambient Temp Sensor (EWD A1, behind front bumper)\nA/C Pressure Switch (EWD A5) - 1: +12V in, wire V-R. EWD p152. Fed from the glove-box POWER box ACPS, 10 A.\nA/C Pressure Switch (EWD A5) - 4: Switched out -> A/C AMPLIFIER A18 pin 13, wire Y-R. EWD p152.\nAUTO A/C AMPLIFIER A34 = conn  C-6: TAM - ambient temp in. EWD p150: A1 pin 2 -> EA1 4 -> IQ1 1 -> TAM, conn C pin 6, wire Y-B.\nA/C AMPLIFIER A18 (separate mo 13: A/C pressure switch in. EWD p152: A5 pin 4 -> EB2 2 -> E10 -> IJ1 15 -> A18 pin 13, wire Y-R. Shares this net with the A3 A/C idle-up VSV.",
       "schematicPosition": {
-        "x": 3210,
-        "y": 2640
-      }
+        "x": 2790,
+        "y": 1410
+      },
+      "width": 390
     },
     {
       "id": "n_jb_disposition",
@@ -6981,7 +7347,7 @@
       "width": 390,
       "schematicPosition": {
         "x": 3210,
-        "y": 4170
+        "y": 1530
       },
       "color": "Red"
     },
@@ -6989,8 +7355,8 @@
       "id": "n_rtr_gauge",
       "width": 390,
       "schematicPosition": {
-        "x": 4890,
-        "y": 0
+        "x": 2790,
+        "y": 330
       },
       "text": "RETRACT MOTOR WIRE SIZE (Dan 2026-10-13, J1; DECISIONS S20 / R63): RTR stays 30 A (POWER RTR, factory value for the motor start current). The motor current path is R8 -> pin 4 -> motor -> pin 5 -> EB (1993 EWD p.117), so pin 4 and pin 5 run 12 AWG (good for 30 A) from the IE1 landing / EB to a splice at each motor breakout, then a SHORT 16 AWG pigtail into the Toyota 5-pin plug, which will not take 12 AWG. Pigtail 150 mm (6 in) max - keep it as short as the plug allows. Splices sp_rtr_r2_4 / sp_rtr_r3_4 / sp_rtr_gnd_r2 / sp_rtr_gnd_r3 = 12 + 16 AWG, combined 11 AWG (crimp splice 14-10, R36). Pin 2 (R8 relay coil through the motor's limit cam) and pins 1 / 3 (limit sense through the motor's diodes to R8-7 / R8-11) carry no motor current: they stay 16 / 18 AWG as drawn."
     }
@@ -7904,6 +8270,48 @@
       "layoutPosition": {
         "x": 1200,
         "y": 660
+      }
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_12",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-1/2-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 4.3,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 12.7,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
       }
     }
   ]

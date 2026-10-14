@@ -3,6 +3,69 @@
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
   "version": 0.9,
   "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-B-engine - ECU connector B engine loom: bulkhead B to engine sensors, knock, VSS, lambda",
+    "drawingNumber": "ST185-B-engine"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each device connector bundle end (OILP, VSS ...).",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
   "connectors": [
     {
       "id": "bh_b_eng",
@@ -1151,6 +1214,10 @@
             "y": 750
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "White"
       ]
     },
     {
@@ -1194,6 +1261,10 @@
             "y": 570
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Yellow"
       ]
     },
     {
@@ -1237,6 +1308,10 @@
             "y": 210
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White"
       ]
     },
     {
@@ -1280,6 +1355,11 @@
             "y": 360
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -1323,6 +1403,10 @@
             "y": 30
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Blue"
       ]
     },
     {
@@ -1374,6 +1458,9 @@
             "y": 870
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     },
     {
@@ -1410,6 +1497,10 @@
             "y": 720
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -1453,6 +1544,10 @@
             "y": 540
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -1496,6 +1591,10 @@
             "y": 180
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -1526,6 +1625,11 @@
             "y": 390
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -1577,6 +1681,10 @@
             "y": 1740
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Blue"
       ]
     },
     {
@@ -1614,6 +1722,10 @@
             "y": 2010
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "White"
       ]
     },
     {
@@ -1651,6 +1763,10 @@
             "y": 2280
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Yellow"
       ]
     },
     {
@@ -1688,6 +1804,10 @@
             "y": 1980
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White"
       ]
     },
     {
@@ -1703,7 +1823,11 @@
       "color": "Black",
       "stripeColor": "White",
       "partId": "m16_20_09",
-      "layoutPoints": []
+      "layoutPoints": [],
+      "identColors": [
+        "Yellow",
+        "Blue"
+      ]
     },
     {
       "id": "w_gnd_b_e_c21",
@@ -1740,6 +1864,10 @@
             "y": 3870
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue"
       ]
     },
     {
@@ -1777,6 +1905,10 @@
             "y": 2100
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue"
       ]
     },
     {
@@ -1813,6 +1945,11 @@
             "y": 2100
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White",
+        "White"
       ]
     },
     {
@@ -1863,6 +2000,11 @@
             "y": 4740
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White",
+        "White"
       ]
     },
     {
@@ -1899,6 +2041,11 @@
             "y": 4380
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White",
+        "White"
       ]
     },
     {
@@ -1949,6 +2096,11 @@
             "y": 2280
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White",
+        "White"
       ]
     },
     {
@@ -1993,6 +2145,9 @@
             "y": 930
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     }
   ],
@@ -2083,6 +2238,10 @@
                 "y": 3990
               }
             }
+          ],
+          "identColors": [
+            "Blue",
+            "White"
           ]
         },
         {
@@ -2141,6 +2300,10 @@
                 "y": 1680
               }
             }
+          ],
+          "identColors": [
+            "Blue",
+            "White"
           ]
         }
       ],
@@ -2173,6 +2336,10 @@
               "y": 4050
             }
           }
+        ],
+        "identColors": [
+          "Blue",
+          "White"
         ]
       }
     },
@@ -2282,6 +2449,10 @@
                 "y": 4080
               }
             }
+          ],
+          "identColors": [
+            "Blue",
+            "Yellow"
           ]
         },
         {
@@ -2354,6 +2525,10 @@
                 "y": 4110
               }
             }
+          ],
+          "identColors": [
+            "Blue",
+            "Yellow"
           ]
         }
       ],
@@ -2441,6 +2616,10 @@
               "y": 4140
             }
           }
+        ],
+        "identColors": [
+          "Blue",
+          "Yellow"
         ]
       }
     },
@@ -2543,6 +2722,9 @@
                 "y": 30
               }
             }
+          ],
+          "identColors": [
+            "Blue"
           ]
         },
         {
@@ -2622,6 +2804,10 @@
                 "y": 2310
               }
             }
+          ],
+          "identColors": [
+            "Yellow",
+            "Yellow"
           ]
         },
         {
@@ -2708,6 +2894,10 @@
                 "y": 90
               }
             }
+          ],
+          "identColors": [
+            "Yellow",
+            "Yellow"
           ]
         }
       ],
@@ -2747,6 +2937,10 @@
               "y": 4230
             }
           }
+        ],
+        "identColors": [
+          "Yellow",
+          "Yellow"
         ]
       }
     },
@@ -2857,6 +3051,9 @@
                 "y": 4800
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         },
         {
@@ -2943,6 +3140,9 @@
                 "y": 4290
               }
             }
+          ],
+          "identColors": [
+            "Yellow"
           ]
         }
       ],
@@ -3044,6 +3244,9 @@
               "y": 4920
             }
           }
+        ],
+        "identColors": [
+          "Yellow"
         ]
       }
     }
@@ -3101,7 +3304,12 @@
       "length": {
         "value": 330,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "KNOCK1",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "be_bn_bp_330__bp_360",
@@ -3290,7 +3498,12 @@
       "length": {
         "value": 70,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "CPIAT",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "be_bn_bp_420__turbospd",
@@ -3308,7 +3521,12 @@
       "length": {
         "value": 330,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "OILT",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "be_bn_bp_510__oilp",
@@ -3317,7 +3535,12 @@
       "length": {
         "value": 220,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "OILP",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_570__clntp",
@@ -3326,7 +3549,12 @@
       "length": {
         "value": 790,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "CLNTP",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_870__fuelp",
@@ -3335,7 +3563,12 @@
       "length": {
         "value": 50,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "FUELP",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_930__vss",
@@ -3344,7 +3577,12 @@
       "length": {
         "value": 920,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "VSS",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_be_750__br_w124_e",
@@ -3380,7 +3618,12 @@
       "length": {
         "value": 100,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "5V RAIL",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_be_750__br_wc_h_lam",
@@ -3651,8 +3894,8 @@
       "id": "n_cavity_notes",
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nGearbox VSS (Toyota 83181-20040) - 3: SP1 speed output (pin 3) -> bulkhead B c15 -> ECU-B B29 (DI 8). Actual road speed. 12V direct, no divider - Link DI is +/-50V tolerant with a selectable 4k7 pull-up to 12V. PCLink DI 8 pull-up ON (sot/channels.csv B29).",
       "schematicPosition": {
-        "x": 2400,
-        "y": 0
+        "x": 1860,
+        "y": 840
       }
     },
     {
@@ -4156,6 +4399,28 @@
       "partNumber": "W6P",
       "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE",
       "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ]
 }
