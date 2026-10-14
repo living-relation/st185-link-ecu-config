@@ -359,7 +359,7 @@
       "id": "fl_clutch_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD TBD Clutch switch-TBD TBD clutch switch signal -> CSB3 S6 - solder sleeve into the factory lead",
+      "signal": "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) C11 clutch start switch (1993 code)-1 B clutch switch signal -> CSB3 S6 (switch closes with the pedal down; pin 2 W-B is its own ground to IG, so pin 1 reads ground-active; the old starter-relay coil lead, no clutch-start interlock R21) - solder sleeve into the factory lead",
       "schematicPosition": {
         "x": 660,
         "y": 420

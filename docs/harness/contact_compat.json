@@ -1,4 +1,211 @@
 {
   "_doc": "Contact part numbers the MAKER lists for each connector part number, copied from the maker's datasheet or catalog page - never inferred. audit_cavity_parts.py K4 fails a contact not listed here for its connector; a connector part number with no entry is reported as a GAP. Add one entry per connector part number: {\"contacts\": [\"<contact PN>\", ...], \"source\": \"<datasheet title, rev, page or URL>\"}.",
-  "connectors": {}
+  "connectors": {
+    "DRB12-102PAE-L018": {
+      "contacts": [
+        "0460-202-16141",
+        "0460-202-1631",
+        "0460-002-1631",
+        "0460-247-16141",
+        "0460-247-1631",
+        "0460-264-16141",
+        "0460-215-16141",
+        "0460-215-1631",
+        "1060-16-0122",
+        "1060-16-0144",
+        "1060-16-0622",
+        "1060-16-0644",
+        "1060-16-0688",
+        "1060-16-0988",
+        "1060-16-1222",
+        "1060-14-0122",
+        "1060-14-0144",
+        "0460-204-12141",
+        "0460-220-1231",
+        "0460-256-12233",
+        "1060-12-0144",
+        "1060-12-0166",
+        "1060-12-0222"
+      ],
+      "source": "TE Connectivity 'Common Contacts' set for ICT DEUTSCH housings, stated for the AEC, DRB, DRC, DT, HD10, HD30 (incl. HD34 / HD36), HDP20 and STRIKE series (as published on DigiKey TechForum 'Common Contacts for TE ICT Deutsch Housings', https://forum.digikey.com/t/common-contacts-for-te-ict-deutsch-housings/466, read 2026-10-14); size group per housing = the size its cavities take; DRB = size 16 and size 12 pins"
+    },
+    "DRB16-102SAE-L018": {
+      "contacts": [
+        "0462-201-16141",
+        "0462-201-1631",
+        "0462-004-1631",
+        "0462-221-1631",
+        "0462-209-16141",
+        "0462-209-1631",
+        "1062-16-0122",
+        "1062-16-0144",
+        "1062-16-0622",
+        "1062-16-0644",
+        "1062-16-0988",
+        "1062-16-1222",
+        "1062-16-1422",
+        "1062-16-1444",
+        "1062-14-0122",
+        "1062-14-0144",
+        "0462-203-12141",
+        "0462-210-1231",
+        "1062-12-0144",
+        "1062-12-0166",
+        "1062-12-0222"
+      ],
+      "source": "TE Connectivity 'Common Contacts' set for ICT DEUTSCH housings, stated for the AEC, DRB, DRC, DT, HD10, HD30 (incl. HD34 / HD36), HDP20 and STRIKE series (as published on DigiKey TechForum 'Common Contacts for TE ICT Deutsch Housings', https://forum.digikey.com/t/common-contacts-for-te-ict-deutsch-housings/466, read 2026-10-14); size group per housing = the size its cavities take; DRB = size 16 and size 12 sockets"
+    },
+    "DT04-2P": {
+      "contacts": [
+        "0460-202-16141",
+        "0460-202-1631",
+        "0460-002-1631",
+        "0460-247-16141",
+        "0460-247-1631",
+        "0460-264-16141",
+        "0460-215-16141",
+        "0460-215-1631",
+        "1060-16-0122",
+        "1060-16-0144",
+        "1060-16-0622",
+        "1060-16-0644",
+        "1060-16-0688",
+        "1060-16-0988",
+        "1060-16-1222",
+        "1060-14-0122",
+        "1060-14-0144"
+      ],
+      "source": "TE Connectivity 'Common Contacts' set for ICT DEUTSCH housings, stated for the AEC, DRB, DRC, DT, HD10, HD30 (incl. HD34 / HD36), HDP20 and STRIKE series (as published on DigiKey TechForum 'Common Contacts for TE ICT Deutsch Housings', https://forum.digikey.com/t/common-contacts-for-te-ict-deutsch-housings/466, read 2026-10-14); size group per housing = the size its cavities take; DT = size 16 pins"
+    },
+    "DT04-6P": {
+      "contacts": [
+        "0460-202-16141",
+        "0460-202-1631",
+        "0460-002-1631",
+        "0460-247-16141",
+        "0460-247-1631",
+        "0460-264-16141",
+        "0460-215-16141",
+        "0460-215-1631",
+        "1060-16-0122",
+        "1060-16-0144",
+        "1060-16-0622",
+        "1060-16-0644",
+        "1060-16-0688",
+        "1060-16-0988",
+        "1060-16-1222",
+        "1060-14-0122",
+        "1060-14-0144"
+      ],
+      "source": "TE Connectivity 'Common Contacts' set for ICT DEUTSCH housings, stated for the AEC, DRB, DRC, DT, HD10, HD30 (incl. HD34 / HD36), HDP20 and STRIKE series (as published on DigiKey TechForum 'Common Contacts for TE ICT Deutsch Housings', https://forum.digikey.com/t/common-contacts-for-te-ict-deutsch-housings/466, read 2026-10-14); size group per housing = the size its cavities take; DT = size 16 pins"
+    },
+    "DT06-12SA": {
+      "contacts": [
+        "0462-201-16141",
+        "0462-201-1631",
+        "0462-004-1631",
+        "0462-221-1631",
+        "0462-209-16141",
+        "0462-209-1631",
+        "1062-16-0122",
+        "1062-16-0144",
+        "1062-16-0622",
+        "1062-16-0644",
+        "1062-16-0988",
+        "1062-16-1222",
+        "1062-16-1422",
+        "1062-16-1444",
+        "1062-14-0122",
+        "1062-14-0144"
+      ],
+      "source": "TE Connectivity 'Common Contacts' set for ICT DEUTSCH housings, stated for the AEC, DRB, DRC, DT, HD10, HD30 (incl. HD34 / HD36), HDP20 and STRIKE series (as published on DigiKey TechForum 'Common Contacts for TE ICT Deutsch Housings', https://forum.digikey.com/t/common-contacts-for-te-ict-deutsch-housings/466, read 2026-10-14); size group per housing = the size its cavities take; DT = size 16 sockets"
+    },
+    "DT06-2S": {
+      "contacts": [
+        "0462-201-16141",
+        "0462-201-1631",
+        "0462-004-1631",
+        "0462-221-1631",
+        "0462-209-16141",
+        "0462-209-1631",
+        "1062-16-0122",
+        "1062-16-0144",
+        "1062-16-0622",
+        "1062-16-0644",
+        "1062-16-0988",
+        "1062-16-1222",
+        "1062-16-1422",
+        "1062-16-1444",
+        "1062-14-0122",
+        "1062-14-0144"
+      ],
+      "source": "TE Connectivity 'Common Contacts' set for ICT DEUTSCH housings, stated for the AEC, DRB, DRC, DT, HD10, HD30 (incl. HD34 / HD36), HDP20 and STRIKE series (as published on DigiKey TechForum 'Common Contacts for TE ICT Deutsch Housings', https://forum.digikey.com/t/common-contacts-for-te-ict-deutsch-housings/466, read 2026-10-14); size group per housing = the size its cavities take; DT = size 16 sockets"
+    },
+    "DT06-3S": {
+      "contacts": [
+        "0462-201-16141",
+        "0462-201-1631",
+        "0462-004-1631",
+        "0462-221-1631",
+        "0462-209-16141",
+        "0462-209-1631",
+        "1062-16-0122",
+        "1062-16-0144",
+        "1062-16-0622",
+        "1062-16-0644",
+        "1062-16-0988",
+        "1062-16-1222",
+        "1062-16-1422",
+        "1062-16-1444",
+        "1062-14-0122",
+        "1062-14-0144"
+      ],
+      "source": "TE Connectivity 'Common Contacts' set for ICT DEUTSCH housings, stated for the AEC, DRB, DRC, DT, HD10, HD30 (incl. HD34 / HD36), HDP20 and STRIKE series (as published on DigiKey TechForum 'Common Contacts for TE ICT Deutsch Housings', https://forum.digikey.com/t/common-contacts-for-te-ict-deutsch-housings/466, read 2026-10-14); size group per housing = the size its cavities take; DT = size 16 sockets"
+    },
+    "DT06-6S": {
+      "contacts": [
+        "0462-201-16141",
+        "0462-201-1631",
+        "0462-004-1631",
+        "0462-221-1631",
+        "0462-209-16141",
+        "0462-209-1631",
+        "1062-16-0122",
+        "1062-16-0144",
+        "1062-16-0622",
+        "1062-16-0644",
+        "1062-16-0988",
+        "1062-16-1222",
+        "1062-16-1422",
+        "1062-16-1444",
+        "1062-14-0122",
+        "1062-14-0144"
+      ],
+      "source": "TE Connectivity 'Common Contacts' set for ICT DEUTSCH housings, stated for the AEC, DRB, DRC, DT, HD10, HD30 (incl. HD34 / HD36), HDP20 and STRIKE series (as published on DigiKey TechForum 'Common Contacts for TE ICT Deutsch Housings', https://forum.digikey.com/t/common-contacts-for-te-ict-deutsch-housings/466, read 2026-10-14); size group per housing = the size its cavities take; DT = size 16 sockets"
+    },
+    "HD36-24-33SE": {
+      "contacts": [
+        "0462-201-20141",
+        "0462-201-2031",
+        "0462-005-20141",
+        "0462-005-2031",
+        "1062-20-0122",
+        "1062-20-0144",
+        "1062-20-0222",
+        "1062-20-0244",
+        "1062-20-0322",
+        "1062-20-0344",
+        "1062-20-0377",
+        "1062-20-0622"
+      ],
+      "source": "TE Connectivity 'Common Contacts' set for ICT DEUTSCH housings, stated for the AEC, DRB, DRC, DT, HD10, HD30 (incl. HD34 / HD36), HDP20 and STRIKE series (as published on DigiKey TechForum 'Common Contacts for TE ICT Deutsch Housings', https://forum.digikey.com/t/common-contacts-for-te-ict-deutsch-housings/466, read 2026-10-14); size group per housing = the size its cavities take; HD36-24-33 (HD30 series) = size 20 sockets"
+    },
+    "V23132-A2001-B200": {
+      "contacts": [
+        "282110-1",
+        "(ring lug, 8 AWG, M6)"
+      ],
+      "source": "TE datasheet V23132-X0000-A001 (HCR 150, rev 1403, _research/datasheets), 'Connector Information': coil side AMP SUPERSEAL 1.5 receptacle 282080-1, seal 281934-2, contact 282110-1; load side cable lug M6 on M6 screw terminals, max cable 25 mm2"
+    }
+  }
 }
