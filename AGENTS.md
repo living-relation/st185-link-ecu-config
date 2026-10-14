@@ -3,7 +3,7 @@
 > ## Before any wiring or CAN change — binding on every agent
 >
 > **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules from Daniel"
-> (R1-R76).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
+> (R1-R78).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
 > shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
 > this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
 > Three rules, all non-optional:
@@ -38,7 +38,7 @@
 - **Wiring SoT**: `sot/channels.csv` (every ECU pin and channel). `XTREMEX-IO-TABLE.html` is its visual face. `WIRING.md` covers the cluster boards and the 5-node CAN topology.
 - **Harness / electrical**: `docs/harness/rebuild/*.harness` - drawings, **not a source of truth** (Daniel, 2026-10-04: they follow `sot/channels.csv`; never generate truth docs from them) (one physical harness per file, ownership in `docs/harness/interfaces.json`; see `docs/harness/README.md`), gate `python docs/harness/check_all.py`. ECU looms follow the ECU connector letter (`ST185-A-cabin` / `-B-cabin` / `-A-engine` / `-B-engine`) - canonical rule `docs/RECONCILIATION-RULES.md` Rule 3, gate `validate_bulkhead_letter.py`; `docs/SHIELD-RULES.md`, `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
 - **Engine calibration**: `tune/engine_constants.yaml`, `tune/limits.yaml`, `tune/tables/*.csv`, `tune/docs/`, `tune/scripts/` (incl. `validate_tune.py`), `tune/README.md` — PCLink seeds only; not an I/O or CAN source. `FUEL-SYSTEM.md` is fuel hardware reference, not CAN.
-- **Project files stay in this repo** (DECISIONS R67): nothing for ST185 goes in the `C:\projects` root, `_scratch`, `_tools`, `C:\projects\cad` or `inbox`. CAD: the one `cad/` tree, by part - `cad/busbar/` (five designs + `src/`), `cad/fusebox/`, `cad/enclosures/` (VRC, CSB3), `cad/drb102-plate/`; newest version of each model only. Research / pick pages: `docs/research/` (latest per topic). Live dashboard: `tools/dashboard/` (its JSON data is local only). An in-flight handoff: `output/` (deleted when done). Heavy CAD (every STEP, STL and Fusion `.f3d`, plus the busbar drawing PDFs) is gitignored and kept in the same `cad/` folder of the main checkout. Fusion allows only 10 editable documents (DECISIONS R74): reuse the part's existing document, never make throwaway ones, and list finished documents for Dan to set read-only. Local-only working files and vendor downloads: `_research/` (untracked).
+- **Project files stay in this repo** (DECISIONS R67): nothing for ST185 goes in the `C:\projects` root, `_scratch`, `_tools`, `C:\projects\cad` or `inbox`. CAD: the one `cad/` tree, by part - `cad/busbar/` (five designs + `src/`), `cad/fusebox/`, `cad/enclosures/` (VRC, CSB3), `cad/drb102-plate/`; newest version of each model only. Research / pick pages: `docs/research/` (latest per topic). Live dashboard: `tools/dashboard/` (see **Dashboards** below; its two JSON files are local runtime state, gitignored). An in-flight handoff: `output/` (deleted when done). Heavy CAD (every STEP, STL and Fusion `.f3d`, plus the busbar drawing PDFs) is gitignored and kept in the same `cad/` folder of the main checkout. Fusion allows only 10 editable documents (DECISIONS R74): reuse the part's existing document, never make throwaway ones, and list finished documents for Dan to set read-only. Local-only working files and vendor downloads: `_research/` (untracked).
 - **Other docs/**: `docs/devices/`, `docs/enclosures/`, `docs/sourcing/`, `docs/procedures/`, `docs/intercooler-turbo-study/`, `docs/5sgte-project-data/` (research), `docs/research-hub.html` (generated, see below).
 - **CAD index**: `cad/README.md` - the ONE list of every CAD model (summary page, local STEP/STL/f3d paths, Fusion link, external fuel hanger); a new model gets a row in the same PR (DECISIONS R77).
 - **Project tracker**: `docs/OPEN-ITEMS.md` - THE one tracker: every unresolved item (owner, source, what unblocks it) plus the dated project history. Decisions and every binding rule live in `docs/harness/redesign/DECISIONS.md` ("Binding rules from Daniel" is the rules home).
@@ -226,11 +226,28 @@ Pin the model and effort level explicitly rather than relying on the upstream de
 (`/model` in Claude Code, the model picker in Cursor), so a vendor default change does not
 silently alter how this project is worked on.
 
+## Dashboards
+Two dashboards, different jobs. Each links to the other so an agent that finds one checks both.
+
+| Dashboard | What it is | Source of truth | Who updates it |
+|---|---|---|---|
+| **Research hub** | Static page of every research / pick page, generated | `docs/research-hub.html`, built by `docs/build-research-hub.py` | The "Regenerate research hub" Action only; never commit it (see **Generated files** below) |
+| **Live dashboard** | Dan's claude.ai live artifact <https://claude.ai/artifact/LfnTcsSHoE1mJ4CFiTHkwG>: file list, Dan's open questions, running sessions. Live data only shows inside the Claude desktop app (Desktop Commander). | `tools/dashboard/st185-live-dashboard.html` (PR #147 ported it to the artifact runtime) | Agents edit the repo file by PR; Dan republishes the artifact from the artifact chat |
+
+The live dashboard's inputs:
+- `tools/dashboard/st185-dashboard-data.ps1` (tracked) reads files inside the repo and the `docs/OPEN-ITEMS.md` rows whose owner is Daniel and whose status is not Closed/Done. **Keep the OPEN-ITEMS table format** (leading ID cell, owner in column 4, status in the third-from-last column) or Dan's questions vanish from the page.
+- `tools/dashboard/dashboard-sessions.json` (gitignored, runtime state): Dispatch rewrites it on each wake; the page shows it.
+- `tools/dashboard/dashboard-answers.json` (gitignored, runtime state): Dan's saved answers; Dispatch reads them. Do not commit either file, do not hand-edit the answers file.
+
+Update rule (DECISIONS R78): a change to the dashboard HTML or data script goes into the repo file first, by PR; only then is the published artifact republished to match (Dan does that). Never edit the artifact first. Every path the dashboard reads or writes stays inside this repo (R67). A change that moves, renames or adds a research page, route, CAD index entry or OPEN-ITEMS column also needs the data script checked.
+
+The research hub is regenerated by the bot; the live dashboard is not, it only reads files, so it needs no regeneration, only the republish above.
+
 ## Generated files - who owns them
 
 | File | Owner | Rule |
 |---|---|---|
-| `docs/research-hub.html` | **The "Regenerate research hub" Action** | **Never commit it.** Run `docs/build-research-hub.py` locally to preview, then `git checkout -- docs/research-hub.html` before you commit. PRs that touch `docs/**` (or the workflow) run the generator as a check and attach the HTML artifact. The bot commits the file to `main` only, after those changes merge. Committing it locally is what causes the rebase conflicts. |
+| `docs/research-hub.html` | **The "Regenerate research hub" Action** | **Never commit it.** (Sister dashboard: the live dashboard, see "Dashboards" above.) Run `docs/build-research-hub.py` locally to preview, then `git checkout -- docs/research-hub.html` before you commit. PRs that touch `docs/**` (or the workflow) run the generator as a check and attach the HTML artifact. The bot commits the file to `main` only, after those changes merge. Committing it locally is what causes the rebase conflicts. |
 | `docs/harness/HARNESS-BUILD-LIST.csv` | `docs/harness/buildlist.py` | Commit it, but always regenerate - never hand-edit, never hand-merge. |
 | `docs/harness/NEED-TO-BUY.md` | `docs/harness/buylist.py` | Same. |
 
