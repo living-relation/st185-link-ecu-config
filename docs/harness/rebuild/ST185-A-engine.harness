@@ -307,16 +307,14 @@
         {
           "id": "c37",
           "designation": "45",
-          "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c38",
           "designation": "46",
-          "signal": "A/C coolant switch return -> A/C amplifier",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c45",
@@ -351,14 +349,14 @@
         {
           "id": "c1",
           "designation": "52",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c12",
           "designation": "53",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "nc54",
@@ -382,20 +380,20 @@
         {
           "id": "c28",
           "designation": "57",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c30",
           "designation": "58",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c31",
           "designation": "59",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "nc60",
@@ -406,8 +404,8 @@
         {
           "id": "c32",
           "designation": "61",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "nc62",
@@ -1120,32 +1118,6 @@
       "width": 210
     },
     {
-      "id": "ac_cts",
-      "label": "A/C coolant temp switch (A/C amplifier's own; not the ECU ECT)",
-      "width": 270,
-      "partId": "cp_ac_cts",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "A/C coolant switch signal -> A/C amplifier TW (not ECU)"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "A/C coolant switch return -> A/C amplifier"
-        }
-      ],
-      "schematicPosition": {
-        "x": 1980,
-        "y": 2400
-      },
-      "layoutPosition": {
-        "x": 1290,
-        "y": -300
-      }
-    },
-    {
       "id": "crank",
       "label": "Crank VR Sensor (36-2)",
       "partId": "cp_dt2s",
@@ -1224,17 +1196,20 @@
         {
           "id": "c4",
           "designation": "4",
-          "signal": "spare"
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "spare"
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c6",
           "designation": "6",
-          "signal": "spare"
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
         }
       ],
       "layoutPosition": {
@@ -1620,32 +1595,6 @@
       },
       "color": "Yellow",
       "partId": "m16_20_4"
-    },
-    {
-      "id": "w_accts_sig_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c37"
-      },
-      "target": {
-        "id": "ac_cts",
-        "handle": "c1"
-      },
-      "color": "Yellow",
-      "partId": "m16_20_4"
-    },
-    {
-      "id": "w_accts_rtn_e",
-      "source": {
-        "id": "bh_a_eng",
-        "handle": "c38"
-      },
-      "target": {
-        "id": "ac_cts",
-        "handle": "c2"
-      },
-      "color": "Brown",
-      "partId": "m16_20_1"
     },
     {
       "id": "w219",
@@ -2685,15 +2634,6 @@
       "targetId": "bp_at_bh_b_eng",
       "length": {
         "value": 230,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_570__ac_cts",
-      "sourceId": "bp_570",
-      "targetId": "ac_cts",
-      "length": {
-        "value": 840,
         "unit": "mm"
       }
     },
@@ -3807,14 +3747,6 @@
         }
       ],
       "numberOfCavities": 2
-    },
-    {
-      "id": "cp_ac_cts",
-      "partNumber": "TBD - A/C coolant temperature switch connector",
-      "description": "CONNECTOR, 2 POS, TYPE TBD",
-      "manufacturer": "TBD",
-      "numberOfCavities": 2,
-      "configurations": []
     },
     {
       "id": "cp_dt06_6s",

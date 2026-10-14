@@ -25,38 +25,38 @@
         {
           "id": "c38",
           "designation": "3",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c39",
           "designation": "4",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c40",
           "designation": "5",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c41",
           "designation": "6",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c42",
           "designation": "7",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c43",
           "designation": "8",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "nc9",
@@ -265,8 +265,8 @@
         {
           "id": "c52",
           "designation": "43",
-          "signal": "spare (size 4)",
-          "cavityPlugPartId": "pl_sz4"
+          "cavityPlugPartId": "pl_sz4",
+          "notConnected": true
         },
         {
           "id": "nc44",
@@ -295,14 +295,14 @@
         {
           "id": "c48",
           "designation": "48",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
         },
         {
           "id": "c49",
           "designation": "49",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
         },
         {
           "id": "nc50",
@@ -331,14 +331,14 @@
         {
           "id": "c50",
           "designation": "54",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
         },
         {
           "id": "c51",
           "designation": "55",
-          "signal": "spare (size 8)",
-          "cavityPlugPartId": "pl_sz8"
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
         },
         {
           "id": "nc56",
@@ -367,8 +367,8 @@
         {
           "id": "c53",
           "designation": "60",
-          "signal": "spare (size 4)",
-          "cavityPlugPartId": "pl_sz4"
+          "cavityPlugPartId": "pl_sz4",
+          "notConnected": true
         },
         {
           "id": "nc61",
@@ -385,50 +385,50 @@
         {
           "id": "c26",
           "designation": "63",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c27",
           "designation": "64",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c28",
           "designation": "65",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c29",
           "designation": "66",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c30",
           "designation": "67",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c31",
           "designation": "68",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c32",
           "designation": "69",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c33",
           "designation": "70",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c7",
@@ -488,26 +488,26 @@
         {
           "id": "c34",
           "designation": "79",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c35",
           "designation": "80",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c36",
           "designation": "81",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c37",
           "designation": "82",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "c16",
@@ -600,38 +600,38 @@
         {
           "id": "c1",
           "designation": "97",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c2",
           "designation": "98",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c44",
           "designation": "99",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c45",
           "designation": "100",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c46",
           "designation": "101",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         },
         {
           "id": "c47",
           "designation": "102",
-          "signal": "spare (size 12)",
-          "cavityPlugPartId": "pl_sz12"
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
         }
       ],
       "layoutPosition": {
@@ -864,17 +864,20 @@
         {
           "id": "c4",
           "designation": "4",
-          "signal": "spare"
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "spare"
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
         },
         {
           "id": "c6",
           "designation": "6",
-          "signal": "spare"
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
         }
       ],
       "layoutPosition": {

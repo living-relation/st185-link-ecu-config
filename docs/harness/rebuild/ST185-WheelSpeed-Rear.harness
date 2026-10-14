@@ -115,8 +115,8 @@
         {
           "id": "c6",
           "designation": "6",
-          "signal": "spare (size 16)",
-          "cavityPlugPartId": "pl_sz16"
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         }
       ],
       "schematicPosition": {
@@ -167,7 +167,8 @@
           "designation": "5",
           "signal": "ABS- RR IN"
         }
-      ]
+      ],
+      "configurationId": "cfg_vrc_in"
     },
     {
       "id": "lp16_vrc_r_out",
@@ -213,7 +214,8 @@
           "signal": "screen drain",
           "propagate": false
         }
-      ]
+      ],
+      "configurationId": "cfg_vrc_out"
     }
   ],
   "cables": [
@@ -664,7 +666,48 @@
       "description": "CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH",
       "manufacturer": "CNLINKO",
       "numberOfCavities": 5,
-      "configurations": []
+      "configurations": [
+        {
+          "id": "cfg"
+        },
+        {
+          "id": "cfg_vrc_in",
+          "name": "VRC-IN: printed label VRC-IN + blue band on each sensor cable",
+          "accessories": [
+            {
+              "id": "acc_lbl",
+              "type": "CoveringPart",
+              "partId": "cov_lbl_vrc_in"
+            },
+            {
+              "id": "acc_band_l",
+              "type": "CoveringPart",
+              "partId": "cov_band_blue"
+            },
+            {
+              "id": "acc_band_r",
+              "type": "CoveringPart",
+              "partId": "cov_band_blue"
+            }
+          ]
+        },
+        {
+          "id": "cfg_vrc_out",
+          "name": "VRC-OUT: printed label VRC-OUT + yellow band",
+          "accessories": [
+            {
+              "id": "acc_lbl",
+              "type": "CoveringPart",
+              "partId": "cov_lbl_vrc_out"
+            },
+            {
+              "id": "acc_band",
+              "type": "CoveringPart",
+              "partId": "cov_band_yellow"
+            }
+          ]
+        }
+      ]
     }
   ],
   "lockParts": [
@@ -700,6 +743,88 @@
       "gauge": {
         "value": 20,
         "unit": "AWG"
+      }
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_vrc_in",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-1/2-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 4.3,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 12.7,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_vrc_out",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_band_blue",
+      "type": "HeatShrink",
+      "partNumber": "RNF-100-3/8-6-STK",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 9.5 MM EXPANDED ID, 4.8 MM RECOVERED ID, CUT 25 MM",
+      "minDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 25,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_band_yellow",
+      "type": "HeatShrink",
+      "partNumber": "RNF-100-3/8-4-STK",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 9.5 MM EXPANDED ID, 4.8 MM RECOVERED ID, CUT 25 MM",
+      "minDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 25,
+        "unit": "mm"
       }
     }
   ]
