@@ -1,7 +1,7 @@
 """Lints Dan's route-markup HTML drawings in docs/harness/routes/ (one file per
 route, current version only; git history is the revision record).
 
-A SOFT gate in docs/harness/check_all.py (no argument = docs/harness/routes/).
+A HARD gate in docs/harness/check_all.py (no argument = docs/harness/routes/).
 Run it by hand on one file or a directory:
 
     python docs/harness/check_route_drawings.py

@@ -17,7 +17,7 @@ a build product, or history.** The drawings are **not a source of truth** (Danie
 | Folder / file | What it is | Edit it? |
 |---|---|---|
 | **`rebuild/`** | The 15 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - edit the drawings here** (not a source of truth) |
-| **`routes/`** | Dan's approved route drawing for each harness (one HTML per route, current version only; git history keeps the revisions). A drawing's path must match its route. Lint: `check_route_drawings.py` (SOFT gate) | Only from Dan's markup (`st185-apply-route-markup`) |
+| **`routes/`** | Dan's approved route drawing for each harness (one HTML per route, current version only; git history keeps the revisions). A drawing's path must match its route. Lint: `check_route_drawings.py` (HARD gate) | Only from Dan's markup (`st185-apply-route-markup`) |
 | **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, broken-off pairs. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
 | `rebuild/ST185.harnesslib` | The harness.design local part library (same JSON as a `.harness`, part arrays only), kept next to the drawings so the desktop app links it from the folder it opens. Every part the drawings use, equal to the drawing; update it in the same PR as any part change | **Yes - with the drawings** (gate `check_harnesslib.py`) |
 | `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |

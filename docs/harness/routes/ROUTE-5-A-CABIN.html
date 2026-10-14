@@ -79,7 +79,7 @@
 <tr><td>ETB power</td><td><code>k_etb</code> 87</td><td>B-cabin &rarr; ECU B5 V-Ethrottle (crossover b)</td></tr>
 <tr><td>APS VPA2</td><td>Core of the pedal cable</td><td>B-cabin &rarr; B33 (crossover c)</td></tr>
 <tr><td>Front WS FR core + drain</td><td><code>IX_WS_FRONT</code> pins 4/6</td><td>B-cabin &rarr; B21 / B17</td></tr>
-<tr><td>Relay contacts and fuse feeds</td><td>Relay coils + coil feeds</td><td>CabinPower (fuse block: F1 EFI, F2 fuel pump, F3 ETB, F4 start, F8 ECU permanent, switched bus from <code>k_efi</code> 87)</td></tr>
+<tr><td>Relay contacts and fuse feeds</td><td>Relay coils + coil feeds</td><td>CabinPower (glove-box fuse box: MTA-1 EFI 30A, MTA-1 FP 20A, MTA-2 ETB 10A, MTA-2 STR 30A, RFRM SW12 7.5A for the ECU +14V; switched RFRM Bus 2 from <code>k_efi</code> 87)</td></tr>
 <tr><td><code>k_fan</code> 87, <code>k_str</code> 87</td><td>Relay outputs</td><td>Harness C (rad fan feed) / starter S terminal</td></tr>
 <tr><td><code>k_fp</code> 87</td><td>Relay output</td><td>CabinPower fuel pump run to the trunk</td></tr>
 </table>
@@ -88,7 +88,7 @@
 <h2>Remaining harnesses &mdash; proposed order</h2>
 <table><tr><th>#</th><th>Harness</th><th>Why this order</th></tr>
 <tr><td>6</td><td>B-cabin</td><td>Mirror of A-cabin; closes every A&harr;B crossover</td></tr>
-<tr><td>7</td><td>CabinPower</td><td>Fuse block / HCFB / relay feeds that A- and B-cabin hand off to</td></tr>
+<tr><td>7</td><td>CabinPower</td><td>Glove-box fuse box (LMI / RFRM / MTA) and relay feeds that A- and B-cabin hand off to</td></tr>
 <tr><td>8</td><td>CAN</td><td>Shielded trunk + drops (B17), CAN-Lambda leg</td></tr>
 <tr><td>9</td><td>WheelSpeed-Front</td><td>VRC front (1590WUFL), fender route</td></tr>
 <tr><td>10</td><td>WheelSpeed-Rear</td><td>VRC rear</td></tr>
