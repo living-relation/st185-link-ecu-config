@@ -32,7 +32,7 @@
 - Preserve compatibility with frozen cluster firmware assumptions documented in `README.md` and the cluster repo's `CANBUS-ENCODE-DECODE-REFERENCE.html` (pointer only, never copied here).
 
 ## Project Map
-- **Core CAN contracts**: `link_g4x_can_setup.json` (ECU frames, PCLink encode form), `link_g4x_can_setup.lcs` (decode form; also the ECU receive channels 0x3EC/0x3ED and CSB3 0x640/0x642), `switchboard_frames.json` (CSB3 0x640-0x643 plus its `ecu_receive` map), `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`, `CAN-CONFIG-STATUS.md` (status note), `ECUMASTER_SWITCHBOARD_SETUP.md`, `CANBUS-ENCODE-DECODE-REFERENCE.html` (a POINTER page to the cluster repo's file - no cluster file is copied into this repo; CI reads the cluster repo read-only at run time).
+- **Core CAN contracts**: `link_g4x_can_setup.json` (ECU frames, PCLink encode form), `link_g4x_can_setup.lcs` (decode form; also the ECU receive channels 0x3EC/0x3ED and CSB3 0x640/0x642), `switchboard_frames.json` (CSB3 0x640-0x643 plus its `ecu_receive` map), `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`, `ECUMASTER_SWITCHBOARD_SETUP.md`, `CANBUS-ENCODE-DECODE-REFERENCE.html` (a POINTER page to the cluster repo's file - no cluster file is copied into this repo; CI reads the cluster repo read-only at run time).
 - **CAN parity gate**: `bench/check_parity.py` - JSON, `.lcs`, ID table, `bench/frames.py`, RealDash XML, sender UI and `switchboard_frames.json` must agree. Runs in CI (`.github/workflows/checks.yml`).
 - **Doc hygiene (warn-only, CI)**: `.github/scripts/check_doc_duplicates.py` - one owner per fact: lists any passage of 6+ identical lines copied between tracked `.md` files. Keep the passage in one file and link to it from the others.
 - **Doc size guard (warn-only, CI)**: `.github/scripts/check_doc_size.py` - warns when a tracked `.md` passes 1,500 lines, and when a top-level `.md` is not named in this file's project map (so add every new top-level doc here). No auto-archiving or age sweeps.
@@ -99,7 +99,7 @@ Any time you are working with CAN bus IDs/frames/byte layouts, or with wiring
 before making changes:
 - Its `main/canbus.c` is the **decode truth** (reads 0x3E8-0x3EB and 0x3EE, sends 0x3EC/0x3ED);
   its `CANBUS-ENCODE-DECODE-REFERENCE.html` (https://github.com/living-relation/center-cluster-esp32-p4/blob/main/CANBUS-ENCODE-DECODE-REFERENCE.html) is the readable reference derived from it —
-  link to it, never copy cluster files here; see `CAN-CONFIG-STATUS.md` in this repo.
+  link to it, never copy cluster files here; the pointer page in this repo is `CANBUS-ENCODE-DECODE-REFERENCE.html`.
 - Its `sdkconfig` and `main/Kconfig.projbuild` define the
   cluster's TWAI GPIO pinout and transceiver wiring — see `WIRING.md` and
   `CAN-BUS-MASTER-DESIGN.md` in this repo for how it fits the 5-node topology.
@@ -178,7 +178,7 @@ python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.
 - Dan edits the looms in the harness.design desktop app on the files in `docs/harness/rebuild/` (live files, no upload step; `docs/harness/README.md` "Open in the desktop app"); agents pause while he edits, the saved file wins. Drawing conventions: global skill `harness-design`; harness.design docs win.
 - The part library is the master (Daniel, 2026-10-12): change a part in `docs/harness/rebuild/ST185.harnesslib` FIRST, then copy it into the drawings, in the same PR; any difference between a drawing's part and the library fails, no exceptions (gate `docs/harness/check_harnesslib.py`, in `check_all.py`; `--add-missing` copies new parts).
 - Keep `ST185:` names in `link_g4x_realdash.xml` unchanged unless migration is explicitly requested (renames break `.rd` gauge bindings).
-- RealDash frame scope is the documented ECU streams `0x3EF`-`0x3F1` plus one approved exception (2026-09-04): the gear byte of `0x3EB` (`ST185: Gear`) for the reverse-camera auto-switch - see `CAN-CONFIG-STATUS.md` and the SCOPE note in the XML. Do not widen it to other `0x3E8`-`0x3EE` bytes without updating both.
+- RealDash frame scope is the documented ECU streams `0x3EF`-`0x3F1` plus one approved exception (2026-09-04): the gear byte of `0x3EB` (`ST185: Gear`) for the reverse-camera auto-switch - see the CAN scope note in `REALDASH-LAYOUT.md` and the SCOPE note in the XML. Do not widen it to other `0x3E8`-`0x3EE` bytes without updating both.
 - Keep conversion parity between the XML formulas and `bench/frames.py` scaling, and warning-bit mapping parity (`startbit`) between XML and the `bench/frames.py` bit constants.
 - Prefer minimal targeted edits; avoid broad rewrites of stable docs.
 - main is protected (ruleset "Protect main"); all changes go through PRs with "Repo checks" and "Protect research hub" green; only the research-hub bot (deploy key `RESEARCH_HUB_DEPLOY_KEY`) bypasses.
@@ -203,7 +203,7 @@ python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.
 ## Change Workflow
 1. Identify scope: CAN contract, XML mapping, bench code, app behavior, or docs.
 2. Update the smallest authoritative source first (`link_g4x_can_setup.json` for wire contract, `link_g4x_realdash.xml` for RealDash input contract, `bench/frames.py` for encode/decode behavior).
-3. Propagate to dependents (`CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-CONFIG-STATUS.md`, `BENCH-TEST.md`, `REALDASH-LAYOUT.md`) only where drift appears.
+3. Propagate to dependents (`CAN-BUS-ID-ALLOCATION-TABLE.md`, `BENCH-TEST.md`, `REALDASH-LAYOUT.md`) only where drift appears.
 4. Run targeted command checks from **Fast Commands**.
 5. Report what changed and where parity was revalidated.
 

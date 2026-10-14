@@ -240,7 +240,7 @@
   <tr><th>Signal</th><th>Path</th><th>Notes</th></tr>
   <tr class="g-sb"><td class="chan">Clutch switch</td><td>SB → CAN → ECU</td><td>flat shift, launch, cruise cancel. CSB3 S6 = 0x642 bit 5; <code>link_g4x_can_setup.lcs</code> receive 0x642 &ldquo;Clutch Switch&rdquo; &rarr; VDI6</td></tr>
   <tr class="g-sb"><td class="chan">Brake switch</td><td>SB → CAN → ECU</td><td>cruise cancel. CSB3 S7 = 0x642 bit 6; <code>link_g4x_can_setup.lcs</code> receive 0x642 &ldquo;Brake Switch&rdquo; &rarr; VDI7</td></tr>
-  <tr class="g-sb"><td class="chan">Reverse switch</td><td>SB → CAN → ECU</td><td>CSB3 S8 = 0x642 bit 7; <code>link_g4x_can_setup.lcs</code> receive 0x642 &ldquo;Reverse Switch&rdquo; &rarr; VDI8. <strong>ECU sets Gear = 7 (R) on 0x3EB from VDI8 → cluster shows "R"</strong> (cluster remaps 7→−1). RealDash also reads this byte directly (added 2026-09-04) to drive a reverse-camera auto-switch — see <code>CAN-CONFIG-STATUS.md</code>.</td></tr>
+  <tr class="g-sb"><td class="chan">Reverse switch</td><td>SB → CAN → ECU</td><td>CSB3 S8 = 0x642 bit 7; <code>link_g4x_can_setup.lcs</code> receive 0x642 &ldquo;Reverse Switch&rdquo; &rarr; VDI8. <strong>ECU sets Gear = 7 (R) on 0x3EB from VDI8 → cluster shows "R"</strong> (cluster remaps 7→−1). RealDash also reads this byte directly (added 2026-09-04) to drive a reverse-camera auto-switch — see <code>REALDASH-LAYOUT.md</code> (CAN scope).</td></tr>
   <tr class="g-sb"><td class="chan">Cruise on/off + set/res ladder</td><td>SB → CAN → ECU</td><td>resistor ladder on a switchboard analog in</td></tr>
 </table>
 

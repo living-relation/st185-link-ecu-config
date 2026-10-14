@@ -241,7 +241,7 @@ Select the element → **Edit → Animations → Add → Fade**, opacity 100 →
 3. **Create a fresh feature branch** off the repo's current default branch (do not reuse any
    branch with pre-existing unrelated commits).
 4. Add the `.rd` + `_anim.xml` to the repo (e.g. `st185_dash.rd`, `st185_dash_anim.xml`), and add a
-   short note to `README.md`'s file table and `CAN-CONFIG-STATUS.md` recording that a built `.rd`
+   short note to `README.md`'s file table recording that a built `.rd`
    now exists alongside the buildable spec, plus which RealDash version built it.
 4. Push the branch and open a PR; also `SendUserFile` the `.rd`/`_anim.xml` directly so the user
    can copy them straight onto their Pi (per the existing install steps: copy both files onto the
