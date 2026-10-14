@@ -1,4 +1,4 @@
-import json, os, re, collections, sys, difflib
+import json, os, re, csv, collections, sys, difflib
 
 import model
 
@@ -25,21 +25,17 @@ ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "90980-12068":1,"90980-10897":1,"90980-10942":1,
  # 2026-09-25 from docs/sourcing/te-on-hand-bom.csv (not in the older xlsx pull)
  "1393310-4":1,"282080-1":2,"282110-1":10,"281934-2":10,
+ # 2026-10-14 fuse boxes: AMP MCP 2.8K receptacle, te-on-hand-bom.csv
+ "1241388-2":10,
 }
 EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  # 2026-09-25: the relays now sit in VCF7 sockets drawn as mount parts, so the
  # socket and its 280755-4 / 280756-4 / 42281-1 terminals come off the drawings.
  ("282080-1","TE Connectivity","HOUSING, PLUG, SUPERSEAL 1.5, 2 POS",1,2),
  ("281934-2","TE Connectivity","SEAL, WIRE, SUPERSEAL 1.5",2,10),
- # 2026-10-11: fuse box Option B - LMI L1 50, L2/L3/L5 30, L4 40, L6/L7 60 (FUSEBOX-B-SLOT-MAP).
- ("AMI-50","Eaton Bussmann","FUSE, AMI, 50 A, M5 BOLT-DOWN",1,0),
- ("AMI-40","Eaton Bussmann","FUSE, AMI, 40 A, M5 BOLT-DOWN",1,0),
- ("AMI-30","Eaton Bussmann","FUSE, AMI, 30 A, M5 BOLT-DOWN",3,0),
- ("AMI-60","Eaton Bussmann","FUSE, AMI, 60 A, M5 BOLT-DOWN",2,0),
- # 2026-10-12: LMI built from loose modules (drawn) in two stacks; bus bars are not drawable.
- # Eaton Series LMI: "bus bars can be individually ordered using part number B109-7046-x".
- ("B109-7046-5","Eaton Bussmann","BUS BAR, LMI, 5 MODULE",1,0),
- ("B109-7046-4","Eaton Bussmann","BUS BAR, LMI, 4 MODULE",1,0),
+ # 2026-10-14: the Option B AMI fuses (AMI-30/40/50/60) and the LMI bus bars B109-7046-x are gone from this list: the custom POWER / LOGIC /
+ # battery boxes (R70, R75) replace them and their fuses are counted from cad/fusebox/fusebox-parts-*.csv below.
+ # 2026-10-12: Option B bus bars are not drawable; RL9080 radlok receptacles below stay.
  ("RL9080-301-F1RE","Amphenol","RECEPTACLE, FEED-THROUGH, RADLOK 8.0, PANEL MOUNT, 200 A, 1 KV, RED, MATES RL00801-50RE",1,0),
  ("RL9080-301-F1","Amphenol","RECEPTACLE, FEED-THROUGH, RADLOK 8.0, PANEL MOUNT, 200 A, 1 KV, BLACK, MATES RL00801-50BK",1,0),
  ("1/0 AWG welding cable red/black","generic","CABLE, WELDING, 1/0 AWG, RED AND BLACK, APPROX 45 FT EACH COLOUR",1,0),
@@ -200,6 +196,35 @@ for pn, mf, desc, n in DEVICE_SIDE:
     req[pn] += n
     meta.setdefault(pn, {"partNumber": pn, "manufacturer": mf, "description": desc})
 
+# 2026-10-14: the custom POWER / LOGIC / battery relay boxes (cad/fusebox, R70 / R75). One CSV per box, written by
+# cad/fusebox/src/parts_lists.py from the box spec; each line's qty_need + qty_spare is the order quantity. A part number
+# the harness drawings already count (the F7 relays, 42281-1, ...) is NOT added again: it is the same physical part, so
+# the drawn count already covers it, and once the CabinPower redraw (OPEN-ITEMS row 108) removes it from the drawings the
+# next regeneration picks it up from here. Lines with no real part number (TBD / none / cut from stock) are listed
+# under "Still unspecified" instead.
+FB_DIR = os.path.join(os.path.dirname(R), "..", "..", "cad", "fusebox")
+FB_ADDED, FB_DRAWN, FB_OPEN = collections.OrderedDict(), [], []
+# Superseded part still drawn: the new part number replaces it one for one, so the drawn count covers it too.
+FB_SWAP = {"1-1414687-0": "1-1904020-2"}   # heater relay k_htr: Power Relay F4 A replaces the superseded Power Relay B
+DRAWN = set(req)      # parts the harness files count; the box lines below must not be tested against their own additions
+for fn in ("fusebox-parts-power.csv", "fusebox-parts-logic.csv", "fusebox-parts-battrelay.csv"):
+    fp = os.path.join(FB_DIR, fn)
+    if not os.path.exists(fp):
+        continue
+    for r in csv.DictReader(open(fp, encoding="utf-8", newline="")):
+        n = int(r["qty_need"]) + int(r["qty_spare"])
+        pn = r["part_number"]
+        if n == 0 or re.match(r"^(TBD|none$|not designed|cut from)", pn):
+            if re.match(r"^(TBD|not designed)", pn):
+                FB_OPEN.append((r["box"], r["item"], r["note"] or r["checked_against"]))
+            continue
+        if pn in DRAWN or FB_SWAP.get(pn) in DRAWN:
+            FB_DRAWN.append((r["box"], pn if pn in DRAWN else "%s (drawn as superseded %s - swap the drawing and library part)" % (pn, FB_SWAP[pn]), n))
+            continue
+        req[pn] += n
+        meta.setdefault(pn, {"partNumber": pn, "manufacturer": r["maker"], "description": r["description"].upper()})
+        FB_ADDED.setdefault(pn, []).append(r["box"])
+
 # things that are modelled as blocks but are not parts anyone buys for this harness:
 # OEM items already on the car, or device-side terminals that come with the device.
 NOT_A_PART = re.compile(r"^\(|^TBD\b")
@@ -279,6 +304,19 @@ out += ["", "## Screened cable pieces by owning harness", "",
  "| Harness | Cable | Pieces |", "|---|---|---:|"]
 for (loom, pn), n in sorted(cab.items()):
     out.append("| %s | `%s` | %d |" % (loom, pn, n))
+out += ["", "## Custom fuse + relay boxes (cad/fusebox)", "",
+ "The POWER, LOGIC and battery relay boxes have one parts list each, `cad/fusebox/fusebox-parts-*.csv`",
+ "(table on `cad/fusebox/ST185-fusebox-summary.html`). Their lines are counted in the tables above, with these",
+ "exceptions: a part number a harness drawing already counts is the same physical part and is not added a",
+ "second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the drawing, it moves here.", "",
+ "| Part number | Box | Qty (incl. spares) | Counted by |", "|---|---|---:|---|"]
+for box, pn, n in FB_DRAWN:
+    out.append("| `%s` | %s | %d | the harness drawings |" % (pn, box, n))
+for pn, boxes in FB_ADDED.items():
+    out.append("| `%s` | %s | %d | this section's CSVs |" % (pn, ", ".join(sorted(set(boxes))), req[pn]))
+out += ["", "Fuse-box lines with no part number yet:", ""]
+for box, item, why in FB_OPEN:
+    out.append("- %s: %s - %s" % (box, item, why))
 out += ["", "## Still unspecified", "",
  "- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. "
  "Needs a real dash number per branch OD once the trunk diameters are known.",

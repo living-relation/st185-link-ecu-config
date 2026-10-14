@@ -67,7 +67,7 @@ INSERT_M3 = dict(hole=4.0, depth=6.0)
 LUG_Z = PAN['z0'] + PAN['t'] + PAN['gap'] + 3.5   # palm underside of every IN-row (relay feed) lug = 9.5
 LUG_C = LUG_Z + 3.5              # barrel centre (Klauke d4 7)
 R_SADDLE = 16.0                  # printed saddle radius = inside bend radius of every relay feed (8 AWG needs 3 x 5.13 = 15.4)
-STANDOFF = dict(af=8.0, long=40.0, short=12.0, thread=5)    # brass hex standoff M5 female-female (TBD part): long = IN row (feeds that bend), short = OUT row + LOGIC feeds (straight)
+STANDOFF = dict(af=8.0, long=40.0, short=12.0, thread=5)    # brass hex standoff M5 female-female (Essentra 301540040050, 40 mm): long = IN row (feeds that bend); short = OUT row + LOGIC feeds (straight, 12 mm in this CAD rev - Dan wants one 40 mm part number, see parts_lists.py)
 TOWER_H = {'POWER': 20.5, 'LOGIC': 22.0}                     # deck top to deck underside (terminal cavity length)
 
 # ---------- logic zone (inboard): mini fuses + micro relays
@@ -92,11 +92,13 @@ F7_COLS = (87.0, 117.0)
 F7_ROWS = (26.0, 62.0, 98.0, 134.0)
 F7_POS = [('k_efi', '1-1414147-0', 'OWN'), ('k_str', '1-1414147-0', 'OWN'), ('k_fan', '1-1414147-0', 'OWN'),
           ('k_fan2', '1-1393304-0', 'OWN'), ('power', '1-1393304-0', 'OWN'), ('SPARE', None, None),
-          ('heater', '1-1904020-2', 'BUY'), ('ACPS', None, None)]   # col 0 rows 0-3, col 1 rows 0-3; ACPS beside heater (L3B)
+          ('heater', '1-1414687-0', 'BUY'), ('ACPS', None, None)]   # col 0 rows 0-3, col 1 rows 0-3; ACPS beside heater (L3B)
 ACPS = ('ACPS', 10)
-# heater relay = TE Power Relay B, 1 form C (V23234-A0001-X032 = 1-1904020-2, 680 ohm resistor, no bracket), data sheet
-# ENG_DS_V23234_X0000_A001 11-2018: body 28.5 (-1) square x 25.3 (-0.6); terminals 11.5 long; bottom view 85-86 16.8,
-# 87 7.9 from the 85/86 line, 87a 8.35 from 87, 30-87 17.9. Same ISO 7588 pattern as the F7 plus 87a. NO 35 A at 85 C.
+# heater relay = TE Power Relay F4 A, 1 form C, 680 ohm resistor (V23136-A0004-X059 = 1-1414687-0), data sheet V23136X0000A004 2023-09:
+# Mini ISO, 1 form C NO 40 A / NC 30 A limiting continuous at 85 C (= the 40 A AMI HTR fuse). It REPLACES the Power Relay B 1-1904020-2
+# (V23234-A0001-X032): TE lists every V23234 1 form C as Superseded. The pocket below is still the Power Relay B drawing (body 28.5
+# (-1) square x 25.3 (-0.6); 85-86 16.8, 87 7.9 from the 85/86 line, 87a 8.35 from 87, 30-87 17.9): same ISO 7588 Mini pattern, check the
+# F4 A drawing (V23136-A0004-X059-CD) against it at the next Fusion rebuild.
 RELAY_B = dict(body=28.5, h=25.3, pos='heater', v87a=7.65 - 8.35)
 # ---------- power zone (outboard): one Al bar along y, AMI both sides, M8 1/0 input at the forward end
 BAR_METAL = 'CuC110'   # Y2 decided (Dan, 2026-10-14, R76): tinned copper, off-the-shelf flat bar, cut + drilled only
@@ -137,7 +139,7 @@ F7_X = (16.5, 45.5)                                   # relay columns: B (odd fu
 ACPS_Y = 35.0                                         # ACPS mini fuse at the front of column B (fed from heater 87)
 # AMI IN-row fuse i feeds relay i; even i -> column A, odd -> column B
 IN_RELAY = ['heater', 'k_efi', 'k_str', 'k_fan', 'k_fan2', 'power', 'SPARE']
-RELAY_PN = {'heater': ('1-1904020-2', 'BUY'), 'k_efi': ('1-1414147-0', 'OWN'), 'k_str': ('1-1414147-0', 'OWN'),
+RELAY_PN = {'heater': ('1-1414687-0', 'BUY'), 'k_efi': ('1-1414147-0', 'OWN'), 'k_str': ('1-1414147-0', 'OWN'),
             'k_fan': ('1-1414147-0', 'OWN'), 'k_fan2': ('1-1393304-0', 'OWN'), 'power': ('1-1393304-0', 'OWN'), 'SPARE': (None, None)}
 LUG_6AWG = dict(b=13.0, l=26.0, tip=6.0, t=2.0, d4=8.5)   # Klauke 3R5 (JB1 HOT 60 A)
 

@@ -53,50 +53,10 @@ PRINTED_NOTE = {
            'in the skirt. Notches in its wall let the bundles out.',
 }
 
-# OWN / BUY  (st185-pick-parts: on-hand CSV first, TE, approved suppliers, then others with a reason)
-PARTS = [
-    ('Relay F7 Mini ISO, 680 ohm', '1-1414147-0 (V23134-J0052-X429)', 'OWN 3', 'k_efi, k_str, k_fan. te-on-hand-bom.csv qty_ordered 3 - confirm on the shelf.'),
-    ('Relay F7 Mini ISO, bracket, 560 ohm', '1-1393304-0 (V23134-J1052-X281)', 'OWN 2', 'k_fan2, power. Bracket not used (cut off or fold flat).'),
-    ('Relay Power Relay B, 1 form C, 680 ohm', '1-1904020-2 (V23234-A0001-X032)', 'BUY 1', 'heater (87a to ground, row 106). TE (step 2). NO 35 A at 85 C.'),
-    ('Micro relay A, NO, diode', '5-1393292-8', 'OWN 2', 'HEAD LH / RH (LOGIC box)'),
-    ('Micro relay A, NO', '4-1904124-3', 'OWN 1', 'horn'),
-    ('Micro relay A, NO, resistor', '4-1904124-2', 'OWN 1', 'k_etb'),
-    ('Micro relay A, CO, diode', '6-1419137-4', 'OWN 2 + BUY 1', 'k_acc, k_eps_en (own); k_rev (buy)'),
-    ('HCR150 relay, 130 A, IP67', '1416010-1 (V23132-A2001-B200)', 'OWN 2', 'k_eps beside the POWER box; k_fp in the battery block.'),
-    ('HCR150 coil plug: Superseal 1.5 2-pole housing', '282080-1', 'BUY 1', 'TE, from the HCR150 data sheet (k_fp).'),
-    ('Superseal 1.5 contact / seal', '282110-1 / 281934-2', 'OWN 2 / BUY 2', '282110-1 is on hand (qty_ordered 10).'),
-    ('AMI bolt-in fuse', 'Bussmann AMI-30 / -40 / -50 / -60', 'BUY %d / %d / %d / %d' % (ami[30], ami[40], ami[50], ami[60]),
-     'incl. the battery block AMI-40. Other maker (R38 step 4): TE makes no bolt-in fuse.'),
-    ('Mini blade fuse (ATM)', 'Bussmann ATM-2 / 5 / 7.5 / 10 / 15 / 20', 'BUY ' + ' / '.join('%s' % mini[k] for k in sorted(mini)),
-     'ratings ' + ', '.join('%sA x%d' % (k, mini[k]) for k in sorted(mini)) + '. Other maker: TE makes no blade fuse.'),
-    ('FASTON 9.5 receptacle, 12-10 AWG', '280756-4', 'BUY 12', 'Mini ISO 30 / 87 (6 relays). TE. Fans / heater 87 are 8 AWG: receptacle for 8 AWG TBD (check the TE range).'),
-    ('FASTON 6.35 receptacle, 18-14 AWG', '42281-1', 'OWN 20 + BUY ~7', 'Mini ISO 85 / 86 (12) + heater 87a (1) + micro 6.3 load blades (~14). qty_ordered 20.'),
-    ('4.8 mm receptacle (micro coil blades)', 'TBD', '-', 'TBD: TE 4.8 x 0.8 receptacle for 18-20 AWG - pick in detail work.'),
-    ('2.8 mm receptacle (mini fuse)', 'TBD', '-', 'TBD: 880398-2 is a candidate (plan S12), fit on an ATM blade not confirmed.'),
-    ('Tubular lug 10 mm2 M5 (8-10 AWG)', 'Klauke 2R5', 'BUY %d' % (n_used - 1 - n_12awg + 2 + 1),
-     'AMI outputs and relay feeds on 8-10 AWG, the 2 LOGIC feeds, the battery block AMI out.'),
-    ('Ring lug M5 for 12 AWG (EFI, STR relay feeds)', 'TBD', 'BUY %d' % n_12awg,
-     'TBD: a TE PIDG / Solistrand ring tongue for 12-10 AWG with an M5 hole - not checked against the TE catalog yet. Klauke 2R5 is for 10 mm2 and too big for 12 AWG.'),
-    ('Tubular lug 16 mm2 M5 (J/B1 HOT, 6 AWG)', 'Klauke 3R5', 'BUY 1', 'b 13, l 26, d4 8.5, hole 5.5 (Klauke table, Kempston Controls 3R10.pdf).'),
-    ('Tubular lug 50 mm2 M8 (1/0 input)', 'Klauke 6R8', 'BUY 1', 'b 20, l 47, hole 8.4 (RS 398-3015 listing).'),
-    ('Ring lug M6, 10 AWG (battery block: feed in, relay 3, relay 5)', 'TBD', 'BUY 3', 'TBD: Klauke R series M6 for 6 mm2 - not checked against the Klauke sheet yet.'),
-    ('Brass hex standoff M5 female-female, 8 AF, 40 long', 'TBD', 'BUY %d' % S.AMI_SLOTS['IN'],
-     'IN row only now (the relay feeds, which must bend up into the relay). TBD: not a TE line and none of the approved suppliers lists standoffs (R38 step 4) - '
-     'pick a brass one from a maker sheet (e.g. Keystone / Wurth) in detail work. Brass C360 hex, 40 long = about 0.07 mOhm, 0.25 W at 60 A.'),
-    ('Brass hex standoff M5 female-female, 8 AF, 12 long', 'TBD', 'BUY %d' % (S.AMI_SLOTS['OUT'] + 2),
-     'NEW in rev 5: the OUT row (%d) and the 2 LOGIC strip feeds - their cables leave straight, so the lug sits right under the deck. Same pick as above.' % S.AMI_SLOTS['OUT']),
-    ('Set screw M5 x 12 A2 (stud on top of each standoff)', 'ISO 4026 M5x12', 'BUY %d' % n_pos, 'Through the pad into the standoff (5 mm of thread); AMI ear + Keps nut on it, 4 Nm max (AMI sheet).'),
-    ('Hex bolt M5 x 10 A2 (lug under a 40 mm standoff)', 'ISO 4017 M5x10', 'BUY %d' % n_in_used, 'IN-row (relay feed) lugs.'),
-    ('Hex bolt M5 x 8 A2 (lug under a 12 mm standoff; LOGIC strip bolts)', 'ISO 4017 M5x8', 'BUY %d' % (n_out_used + 2 + 2),
-     'OUT-row lugs (%d), LOGIC feed lugs (2) and strip bolts (2): 5 + 6 mm of thread in a 12 mm standoff, they never meet.' % n_out_used),
-    ('Hex bolt M5 x 16 A2 + Keps nut', 'ISO 4017 M5x16 + DIN 6923 M5', 'BUY %d' % (n_pos + 2),
-     'AMI input studs on the bars (POWER %d, battery 2). Head captured in a printed hex pocket.' % n_pos),
-    ('Keps nut M5 A2', 'DIN 6923 M5', 'BUY %d' % (n_pos + 1), 'AMI output nuts.'),
-    ('Hex bolt M8 x 20 / M6 x 16 A2 + nut + washer', 'ISO 4017 + ISO 4032 + ISO 7089', 'BUY 1 + 3', 'POWER 1/0 input (M8); battery feed stud + the 2 HCR150 flange bolts (M6, nut captured under the floor).'),
-    ('Brass compression limiter, M5 / M6', 'TBD (OD 8, ID 5.3, L 6 / OD 10, ID 6.5, L 4.6)', 'BUY 10 / 2', '8 glove-box feet + 2 battery tabs / the 2 HCR150 flange bolts.'),
-    ('Power bars, output pads, logic strips', 'tinned copper flat bar - see "Copper"', 'BUY 3 stock bars', 'Off the shelf; cut and drill only (R76).'),
-    ('Bases, covers, belly pans', 'PA12, powder-bed (MJF / SLS)', 'print 8 parts', 'See "Printed parts". No screws, no heat-set inserts: covers and pans snap on.'),
-]
+import parts_lists as PL
+PARTS_BY_BOX = PL.build()          # per-box parts lists; PL.write() also writes the three CSVs
+PL.write(PARTS_BY_BOX)
+PART_TOTALS = PL.totals(PARTS_BY_BOX)
 
 CAP = {
     'fusebox_render_iso_closed.png': 'Closed: vent slots in both lids, bumper band and ribs, angular legs; the etched names are the rev 4 labels, unchanged. Yellow = the harness '
@@ -356,13 +316,24 @@ if 'interference' in rep:
     h.append('<p><b>Interference check (all three units, every printed, copper and bought part):</b> %s.</p>'
              % ('none' if not rep['interference'] else E(rep['interference'])))
 
-h.append('<h2>Parts list (OWN / BUY)</h2><p class="mut">Order: on-hand TE list, then TE, then approved suppliers, then others with a reason (R38). '
-         '"OWN" counts are qty_ordered from te-on-hand-bom.csv - confirm on the shelf. TBD = not checked against a maker sheet yet. Rev 5 changes: 12 mm standoffs added, '
-         'fewer 40 mm ones, M5 x 8 bolts for the short standoffs.</p>'
-         '<div class="wrap"><table><tr><th>Part</th><th>Part number</th><th>Qty</th><th>Note</th></tr>')
-for r in PARTS:
-    h.append('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>' % tuple(E(x) for x in r))
-h.append('</table></div>')
+h.append('<h2>Parts lists (one per box, OWN / BUY)</h2><p class="mut">Order (R38): on-hand TE list, then TE, then the approved suppliers, then others with a reason. '
+         'Every part number below was checked against a maker sheet or listing (the "Checked against" column says which); TBD says why. "OWN" = on the shelf, '
+         'qty_ordered from te-on-hand-bom.csv, handed out box by box (confirm on the shelf). Prices: seen = read on a listing 2026-10-14, est = typical price, '
+         'not checked; both move. Spares are included in the quantity (10 %, at least 2, on small parts). The same lines are in the CSVs beside this page and the '
+         'BUY lines are in the repo buy list (docs/harness/NEED-TO-BUY.md).</p>')
+for box, fn in PL.FILES.items():
+    rows_ = PARTS_BY_BOX[box]
+    h.append('<h3>%s - <a href="%s">%s</a> - est. $%.2f to buy</h3><div class="wrap"><table><tr><th>Group</th><th>Item</th><th>Part number</th><th>Maker</th>'
+             '<th>Need + spare</th><th>OWN</th><th>BUY</th><th>Unit $</th><th>Checked against / note</th></tr>' % (E(PL.BOX_NAME[box]), E(fn), E(fn), PART_TOTALS[box]))
+    for r in rows_:
+        pn = '<a href="%s">%s</a>' % (E(r['source_url']), E(r['part_number'])) if r['source_url'] else E(r['part_number'])
+        unit = ('%s <span class="mut">%s</span>' % (E(r['unit_usd']), E(r['price_basis'].split(' ')[0]))) if r['unit_usd'] else ''
+        h.append('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s + %s</td><td>%s</td><td><b>%s</b></td><td>%s</td><td>%s%s</td></tr>' % (
+            E(r['group']), E(r['item']), pn, E(r['maker']), E(r['qty_need']), E(r['qty_spare']), E(r['own']), E(r['buy']), unit,
+            E(r['checked_against']), ('<br><span class="mut">%s</span>' % E(r['note'])) if r['note'] else ''))
+    h.append('</table></div>')
+h.append('<p class="mut">Total to buy, all three boxes, est. $%.2f (copper stock $%.2f of it). Not in these lists: the harness wires, 1/0 and the battery cables, '
+         'and the k_eps HCR150 beside the POWER box (it is on a loom list).</p>' % (sum(PART_TOTALS.values()), 26.19 + 51.99 + 60.09))
 
 h.append('<h2>Copper - tinned, off the shelf, cut and drilled only (R76)</h2><p>Copper in the model: %d g.</p>' % round(cu_g))
 for key in ('bar', 'pad', 'strip'):
@@ -420,9 +391,10 @@ for col, (cx, fuses) in S.MINI_COLS.items():
 
 h.append('<h2>Not done yet (detail work, after your OK)</h2><ul>'
          '<li>Terminal cavity shapes, locks / TPA from the TE terminal drawings (cavities are placeholders at the right pin pattern); how each mini fuse picks up its strip.</li>'
-         '<li>Part numbers still TBD: brass standoffs (40 and 12 mm), compression limiters, the 12 AWG M5 ring lug, the battery block M6 lugs, an 8 AWG 9.5 receptacle.</li>'
+         '<li>Part numbers: every TBD is now a checked number (parts lists above). Still open: the M5 / M6 limiter + mount-bolt size (no stocked M5 limiter exists - see the limiter lines), '
+         'whether the 12 mm standoffs become 40 mm (Dan: one 40 mm part number), the mount-screw lengths (panel unknown) and how each mini fuse picks up its strip.</li>'
          '<li>Mount face under the glove-box boxes: tell me the panel and I will add the bolt pattern to the route drawing.</li>'
-         '<li>The 40 A AMI HTR fuse vs the heater relay\'s 35 A (keep or 30 A) - still your call.</li>'
+         '<li>Heater fuse vs relay: fixed. The 35 A Power Relay B 1-1904020-2 is superseded at TE; its successor TE Power Relay F4 A 1-1414687-0 carries 40 A NO at 85 C, so the 40 A AMI HTR fuse stays. The CAD pocket still has the Power Relay B outline: check it against the F4 A drawing at the next Fusion rebuild.</li>'
          '<li>Then drawings, and the harness redraws in OPEN-ITEMS row 108 (the harness gauges here are placeholders by fuse rating).</li></ul>')
 h.append('</main></body></html>')
 open(out, 'w', encoding='utf-8').write('\n'.join(h))
