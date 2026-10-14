@@ -87,7 +87,7 @@ def sub_all(target, tools):
     return target
 
 
-def build(out_dir):
+def build(out_dir, SKIP_SECTIONS=False):
     os.makedirs(out_dir, exist_ok=True)
     doc = app.documents.add(adsk.core.DocumentTypes.FusionDesignDocumentType)
     doc.activate()
@@ -460,6 +460,8 @@ def build(out_dir):
     shot('fusebox_render_iso_open_rear.png', eye=(300, 420, 330))
     shot('fusebox_render_top_open.png', VO.TopViewOrientation)
 
+    SECTION_PARTS = ('Tray', 'Deck', 'Bar_', 'Pad_', 'Strip_', 'Lug_', 'Stud_', 'Fuse_AMI', 'Relay_')
+
     def section(fn, axis, at, orient):
         sec = root.occurrences.addNewComponent(adsk.core.Matrix3D.create())
         sec.component.name = 'SECTION_tmp'
@@ -470,7 +472,7 @@ def build(out_dir):
             if o is sec:
                 continue
             vis[o.entityToken] = o.isLightBulbOn
-            if o.isLightBulbOn:
+            if o.isLightBulbOn and o.component.name.startswith(SECTION_PARTS):
                 for b in o.component.bRepBodies:
                     c = tb.copy(b)
                     if tb.booleanOperation(c, tb.copy(keep), BT.IntersectionBooleanType) and c.lumps.count > 0:
@@ -483,8 +485,9 @@ def build(out_dir):
             if o.entityToken in vis:
                 o.isLightBulbOn = vis[o.entityToken]
 
-    section('fusebox_section_power.png', 'y', S.AMI_Y0 + 2 * S.AMI_PITCH, VO.FrontViewOrientation)
-    section('fusebox_section_logic.png', 'y', S.MICRO_Y[1], VO.FrontViewOrientation)
+    if not SKIP_SECTIONS:
+        section('fusebox_section_power.png', 'y', S.AMI_Y0 + 2 * S.AMI_PITCH, VO.FrontViewOrientation)
+        section('fusebox_section_logic.png', 'y', S.MICRO_Y[1], VO.FrontViewOrientation)
     lid_occ.isLightBulbOn = True
     lid_screw_occ.isLightBulbOn = True
 
