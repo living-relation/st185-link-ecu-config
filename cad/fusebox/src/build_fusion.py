@@ -89,11 +89,19 @@ def sub_all(target, tools):
 
 def build(out_dir, SKIP_SECTIONS=False):
     os.makedirs(out_dir, exist_ok=True)
-    doc = app.documents.add(adsk.core.DocumentTypes.FusionDesignDocumentType)
+    doc = None
+    for i in range(app.documents.count):                 # rebuild in place while rev 1 is still a draft
+        dd = app.documents.item(i)
+        if dd.isSaved and dd.name.split(' v')[0] == DOC:
+            doc = dd
+    if doc is None:
+        doc = app.documents.add(adsk.core.DocumentTypes.FusionDesignDocumentType)
     doc.activate()
     design = adsk.fusion.Design.cast(app.activeProduct)
     design.designType = adsk.fusion.DesignTypes.DirectDesignType
     root = design.rootComponent
+    for i in range(root.occurrences.count - 1, -1, -1):
+        root.occurrences.item(i).deleteMe()
     report = {}
 
     alib = app.materialLibraries.itemByName('Fusion Appearance Library')
@@ -497,8 +505,11 @@ def build(out_dir, SKIP_SECTIONS=False):
     lid_occ.isLightBulbOn = True
     lid_screw_occ.isLightBulbOn = True
 
-    proj = [pj for pj in app.data.dataProjects if pj.name == 'Default Project'][0]
-    doc.saveAs(DOC, proj.rootFolder, 'ST185 glove-box fuse + relay box rev 1 (Claude Code 2026-10-14)', '')
+    if doc.isSaved:
+        doc.save('rebuild rev 1 (Claude Code)')
+    else:
+        proj = [pj for pj in app.data.dataProjects if pj.name == 'Default Project'][0]
+        doc.saveAs(DOC, proj.rootFolder, 'ST185 glove-box fuse + relay box rev 1 (Claude Code 2026-10-14)', '')
     with open(os.path.join(out_dir, 'fusebox_report.json'), 'w') as f:
         json.dump(report, f, indent=1)
     return report
