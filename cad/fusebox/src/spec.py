@@ -54,9 +54,9 @@ MICRO_POS = [('HEAD LH', '5-1393292-8', 'OWN'), ('HEAD RH', '5-1393292-8', 'OWN'
 F7 = dict(body=25.9, h=24.9)
 F7_COLS = (87.0, 117.0)
 F7_ROWS = (26.0, 62.0, 98.0, 134.0)
-F7_POS = [('heater', '1-1414147-0', 'OWN'), ('k_efi', '1-1414147-0', 'OWN'), ('k_str', '1-1414147-0', 'BUY'),
-          ('k_fan', '1-1414147-0', 'OWN'), ('k_fan2', '1-1393304-0', 'OWN'), ('power', '1-1393304-0', 'OWN'),
-          ('SPARE', None, None), ('ACPS', None, None)]   # order: col 0 rows 0-3, col 1 rows 0-3
+F7_POS = [('k_efi', '1-1414147-0', 'OWN'), ('k_str', '1-1414147-0', 'BUY'), ('k_fan', '1-1414147-0', 'OWN'),
+          ('k_fan2', '1-1393304-0', 'OWN'), ('power', '1-1393304-0', 'OWN'), ('SPARE', None, None),
+          ('heater', '1-1414147-0', 'OWN'), ('ACPS', None, None)]   # col 0 rows 0-3, col 1 rows 0-3; ACPS beside heater (L3B)
 ACPS = ('ACPS', 10)
 
 # ---------- power zone (outboard): one Al bar along y, AMI both sides, M8 1/0 input at the forward end
