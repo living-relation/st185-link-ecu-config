@@ -1,5 +1,68 @@
 {
   "version": 0.9,
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-ClusterLED - cluster warning LED loom: six indicator LEDs on the cluster flying leads",
+    "drawingNumber": "ST185-ClusterLED"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. No connectors: no bundle labels.",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
   "connectors": [],
   "terminals": [
     {
@@ -9,7 +72,7 @@
       "signal": "LED common return - OEM ground ID, left kick panel (M6, assumed)",
       "schematicPosition": {
         "x": 660,
-        "y": 0
+        "y": 1500
       },
       "layoutPosition": {
         "x": 1080,
@@ -118,7 +181,7 @@
         "y": 240
       },
       "schematicPosition": {
-        "x": 720,
+        "x": 1350,
         "y": 150
       },
       "propagate": false
@@ -242,6 +305,9 @@
     {
       "id": "w_hb_a",
       "color": "Red",
+      "identColors": [
+        "Yellow"
+      ],
       "source": {
         "id": "fl_cl_c11_c12",
         "handle": "Terminal"
@@ -278,6 +344,9 @@
     {
       "id": "w_hb_k",
       "color": "Black",
+      "identColors": [
+        "Yellow"
+      ],
       "source": {
         "id": "d_hb",
         "handle": "Right"
@@ -300,6 +369,10 @@
     {
       "id": "w_tl_a",
       "color": "Green",
+      "identColors": [
+        "Blue",
+        "Blue"
+      ],
       "source": {
         "id": "fl_cl_c11_c2",
         "handle": "Terminal"
@@ -336,6 +409,10 @@
     {
       "id": "w_tl_k",
       "color": "Black",
+      "identColors": [
+        "Blue",
+        "Blue"
+      ],
       "source": {
         "id": "d_tl",
         "handle": "Right"
@@ -365,6 +442,10 @@
     {
       "id": "w_tr_a",
       "color": "Green",
+      "identColors": [
+        "Blue",
+        "White"
+      ],
       "source": {
         "id": "fl_cl_c11_c11",
         "handle": "Terminal"
@@ -415,6 +496,10 @@
     {
       "id": "w_tr_k",
       "color": "Black",
+      "identColors": [
+        "Blue",
+        "White"
+      ],
       "source": {
         "id": "d_tr",
         "handle": "Right"
@@ -451,6 +536,10 @@
     {
       "id": "w_led_gnd_out",
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Blue"
+      ],
       "source": {
         "id": "sp_led_gnd",
         "handle": "Splice"
@@ -464,8 +553,29 @@
         {
           "id": "w_led_gnd_out_lp1",
           "schematicPosition": {
-            "x": 630,
+            "x": 660,
             "y": 0
+          }
+        },
+        {
+          "id": "w_led_gnd_out_lp2",
+          "schematicPosition": {
+            "x": 660,
+            "y": 1440
+          }
+        },
+        {
+          "id": "w_led_gnd_out_lp3",
+          "schematicPosition": {
+            "x": 630,
+            "y": 1440
+          }
+        },
+        {
+          "id": "w_led_gnd_out_lp4",
+          "schematicPosition": {
+            "x": 630,
+            "y": 1500
           }
         }
       ]
@@ -473,6 +583,9 @@
     {
       "id": "w_pk_a",
       "color": "Red",
+      "identColors": [
+        "White"
+      ],
       "source": {
         "id": "sp_led_12v",
         "handle": "Splice"
@@ -502,6 +615,9 @@
     {
       "id": "w_pk_k",
       "color": "Red",
+      "identColors": [
+        "White"
+      ],
       "source": {
         "id": "d_pk",
         "handle": "Right"
@@ -524,14 +640,14 @@
           "id": "w_pk_k_lp2",
           "schematicPosition": {
             "x": 480,
-            "y": 150
+            "y": 210
           }
         },
         {
           "id": "w_pk_k_lp3",
           "schematicPosition": {
             "x": 150,
-            "y": 150
+            "y": 210
           }
         },
         {
@@ -546,6 +662,9 @@
     {
       "id": "w_chg_a",
       "color": "Black",
+      "identColors": [
+        "Blue"
+      ],
       "source": {
         "id": "sp_led_12v",
         "handle": "Splice"
@@ -576,6 +695,9 @@
     {
       "id": "w_chg_k",
       "color": "Yellow",
+      "identColors": [
+        "Blue"
+      ],
       "source": {
         "id": "d_chg",
         "handle": "Right"
@@ -612,6 +734,10 @@
     {
       "id": "w_oil_a",
       "color": "Red",
+      "identColors": [
+        "Blue",
+        "Yellow"
+      ],
       "source": {
         "id": "sp_led_12v",
         "handle": "Splice"
@@ -625,19 +751,33 @@
         {
           "id": "w_oil_a_lp1",
           "schematicPosition": {
-            "x": 510,
-            "y": 120
+            "x": 450,
+            "y": 390
           }
         },
         {
           "id": "w_oil_a_lp2",
+          "schematicPosition": {
+            "x": 360,
+            "y": 390
+          }
+        },
+        {
+          "id": "w_oil_a_lp3",
+          "schematicPosition": {
+            "x": 360,
+            "y": 120
+          }
+        },
+        {
+          "id": "w_oil_a_lp4",
           "schematicPosition": {
             "x": 420,
             "y": 120
           }
         },
         {
-          "id": "w_oil_a_lp3",
+          "id": "w_oil_a_lp5",
           "schematicPosition": {
             "x": 420,
             "y": 90
@@ -648,6 +788,10 @@
     {
       "id": "w_oil_k",
       "color": "White",
+      "identColors": [
+        "Blue",
+        "Yellow"
+      ],
       "source": {
         "id": "d_oil",
         "handle": "Right"
@@ -668,14 +812,21 @@
         {
           "id": "w_oil_k_lp2",
           "schematicPosition": {
-            "x": 690,
-            "y": 90
+            "x": 480,
+            "y": 120
           }
         },
         {
           "id": "w_oil_k_lp3",
           "schematicPosition": {
-            "x": 690,
+            "x": 1320,
+            "y": 120
+          }
+        },
+        {
+          "id": "w_oil_k_lp4",
+          "schematicPosition": {
+            "x": 1320,
             "y": 150
           }
         }
@@ -684,6 +835,10 @@
     {
       "id": "w_ig_tap",
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Yellow"
+      ],
       "stripeColor": "Orange",
       "source": {
         "id": "fl_cl_c12_c9",
@@ -909,7 +1064,7 @@
       "id": "note_oem_filters",
       "text": "OEM FILTER PARTS CARRIED OVER (EWD 1990 ST185)\n- Charging p.52 (1993 Celica EWD Fig. 1/15 agrees): the C12 charge lamp sits\n  between pin 9 (IG, B-O) and pin 8 (alt L, Y) with a diode in series. The\n  IC regulator is powered from its own IG lead (B-R via J3), so the lamp is an\n  indicator the regulator sinks through L, not the excitation feed.\n  The LED alone drives it; no excite resistor (removed 2026-09-28, Daniel).\n  First-start check: docs/procedures/charge-led-test.html.\n- J/B No.1 p.19 holds a 3-terminal diode (common cathode on pin 2). It stays\n  inside the block we keep - do not inject power in a way that bypasses it.\n- J/B No.2 p.21, J/B No.3 p.22, Power source p.46: no diodes, no capacitors.\n- Starting p.48: the diode in the S2 start injector time switch is deleted\n  with the cold-start injector.",
       "schematicPosition": {
-        "x": 1230,
+        "x": 870,
         "y": 960
       }
     },
@@ -918,7 +1073,7 @@
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nt_led_gnd: LED common return - OEM ground point ID, left kick panel (assumed)",
       "schematicPosition": {
         "x": 1230,
-        "y": 1500
+        "y": 1200
       }
     },
     {
@@ -926,7 +1081,7 @@
       "width": 390,
       "schematicPosition": {
         "x": 1230,
-        "y": 1680
+        "y": 960
       },
       "text": "CHARGE LED (d_chg) - FIRST-START CHECK: run the LED test in docs/procedures/charge-led-test.html (st185-link-ecu-config repo). IF ANY STEP FAILS, fit the fallback resistor in parallel with this LED: 56 ohm, 5 W, wirewound, one end to C12 pin 9 (IG +12, BLK-ORG), the other to C12 pin 8 (alternator L, YEL). With the key on and the engine stopped it carries about 0.25 A and dissipates up to about 3.5 W, so mount it clear of the loom on a heat-safe surface. With the alternator charging it carries almost nothing."
     }

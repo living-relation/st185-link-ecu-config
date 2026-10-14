@@ -3,6 +3,69 @@
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
   "version": 0.9,
   "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-CSB3 - ECUMaster CSB3 switch board loom: cruise stalk, clutch / brake / reverse inputs, opto board",
+    "drawingNumber": "ST185-CSB3"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each connector bundle end (CSB3, OPTO8).",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
   "connectors": [
     {
       "id": "csb3io",
@@ -553,6 +616,9 @@
     {
       "id": "w_an2",
       "color": "White",
+      "identColors": [
+        "Blue"
+      ],
       "source": {
         "id": "fl_cruise_stalk_c1",
         "handle": "Terminal"
@@ -589,6 +655,9 @@
     {
       "id": "w_sw2",
       "color": "Green",
+      "identColors": [
+        "Blue"
+      ],
       "source": {
         "id": "fl_cruise_stalk_c3",
         "handle": "Terminal"
@@ -639,6 +708,11 @@
     {
       "id": "w_cru_gnd",
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Blue"
+      ],
       "source": {
         "id": "fl_cruise_stalk_c17",
         "handle": "Terminal"
@@ -668,6 +742,10 @@
     {
       "id": "w_sw5",
       "color": "Green",
+      "identColors": [
+        "Yellow",
+        "Yellow"
+      ],
       "source": {
         "id": "fl_clutch_sw_c1",
         "handle": "Terminal"
@@ -711,6 +789,10 @@
     {
       "id": "w_sw6",
       "color": "Green",
+      "identColors": [
+        "Blue",
+        "White"
+      ],
       "source": {
         "id": "fl_brake_sw_c1",
         "handle": "Terminal"
@@ -762,6 +844,9 @@
     {
       "id": "w_cru_sig",
       "color": "White",
+      "identColors": [
+        "Blue"
+      ],
       "source": {
         "id": "r_cruise",
         "handle": "Left"
@@ -798,6 +883,10 @@
     {
       "id": "w_cru_5v",
       "color": "Orange",
+      "identColors": [
+        "Blue",
+        "Blue"
+      ],
       "source": {
         "id": "r_cruise",
         "handle": "Right"
@@ -841,6 +930,9 @@
     {
       "id": "w_cru_ladder_out",
       "color": "White",
+      "identColors": [
+        "Blue"
+      ],
       "source": {
         "id": "sp_cruise_ladder",
         "handle": "Splice"
@@ -877,6 +969,11 @@
     {
       "id": "w_csb12",
       "color": "Red",
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Blue"
+      ],
       "source": {
         "id": "csb3io",
         "handle": "c1"
@@ -927,6 +1024,11 @@
     {
       "id": "w_csbg",
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Blue"
+      ],
       "source": {
         "id": "csb3io",
         "handle": "c2"
@@ -964,6 +1066,9 @@
         "handle": "i2"
       },
       "color": "Red",
+      "identColors": [
+        "White"
+      ],
       "partId": "m16_16_20",
       "stripeColor": "Black",
       "layoutPoints": [
@@ -1008,6 +1113,10 @@
         "handle": "Terminal"
       },
       "color": "White",
+      "identColors": [
+        "Blue",
+        "Yellow"
+      ],
       "partId": "m16_20_9",
       "layoutPoints": [
         {
@@ -1051,6 +1160,11 @@
         "handle": "Terminal"
       },
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Blue"
+      ],
       "partId": "m16_20_0",
       "layoutPoints": [
         {
@@ -1080,6 +1194,11 @@
         "handle": "com1"
       },
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Blue"
+      ],
       "partId": "m16_20_0",
       "layoutPoints": [
         {
@@ -1123,6 +1242,10 @@
         "handle": "c21"
       },
       "color": "Green",
+      "identColors": [
+        "Blue",
+        "White"
+      ],
       "partId": "m16_20_5",
       "layoutPoints": [
         {
@@ -1166,6 +1289,9 @@
         "handle": "c22"
       },
       "color": "Green",
+      "identColors": [
+        "White"
+      ],
       "partId": "m16_20_5",
       "layoutPoints": [
         {
@@ -1216,6 +1342,10 @@
         "handle": "c4"
       },
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Blue"
+      ],
       "partId": "m16_20_0",
       "layoutPoints": [
         {
@@ -1251,6 +1381,10 @@
     {
       "id": "w_opto_vcc",
       "color": "Orange",
+      "identColors": [
+        "Yellow",
+        "Blue"
+      ],
       "source": {
         "id": "csb3io",
         "handle": "c3"
@@ -1433,7 +1567,12 @@
       "length": {
         "value": 100,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "CSB3",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_fl_brake_sw__fl_brake_sw_c1",
@@ -1559,7 +1698,12 @@
       "length": {
         "value": 100,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "OPTO8",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     }
   ],
   "branchPoints": [
@@ -1810,18 +1954,19 @@
     {
       "id": "n_csb3",
       "schematicPosition": {
-        "x": 1890,
-        "y": -60
+        "x": 210,
+        "y": 270
       },
       "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk (C14: pin 5 W ladder -> A2 with a 1k pull-up to +5V, pin 15 Y-B MAIN -> S3, pin 17 BR ground; no separate SET / RESUME wires, so S4 / S5 are spare - DECISIONS S23, R66), clutch and brake switches, and ONE 8-channel optocoupler board inline at the plug (Dan's on-hand board, 2026-10-13, C10-C13): brake (S9, +12V-active) -> input 01 -> output 01 -> S7 and reverse (B1, +12V-active) -> input 02 -> output 02 -> S8, both ground-active inputs (R56). Input COM to ground; the board's own 4.7k input resistors set the LED current. Output VCC from the CSB3 +5V (c3), never 12V: the board's 10k pull-ups go to VCC and the CSB3 S inputs are 'switched to ground' with no 12V rating (CSB3 manual v2.1 pp.3-5). Output GND to SGND (c4). Channels 03-08 not connected. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse switch output from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
     },
     {
       "id": "n_cavity_notes",
       "schematicPosition": {
-        "x": 1890,
-        "y": 630
+        "x": 660,
+        "y": 750
       },
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (broken off)"
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (broken off)",
+      "width": 390
     }
   ],
   "connectorParts": [
@@ -1903,6 +2048,9 @@
         {
           "id": "wc_h_csb_csb",
           "color": "White",
+          "identColors": [
+            "Yellow"
+          ],
           "source": {
             "id": "csb3io",
             "handle": "c5"
@@ -1976,6 +2124,9 @@
         {
           "id": "wc_l_csb_csb",
           "color": "Green",
+          "identColors": [
+            "Yellow"
+          ],
           "source": {
             "id": "csb3io",
             "handle": "c6"
@@ -2070,6 +2221,9 @@
       "shield": {
         "id": "cab_can_csb_csb_sh",
         "color": "Shield",
+        "identColors": [
+          "Yellow"
+        ],
         "source": {
           "id": "br_cab_cancsb_sh",
           "handle": "Terminal"
@@ -2090,6 +2244,28 @@
             }
           }
         ]
+      }
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
       }
     }
   ]

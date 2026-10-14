@@ -3,6 +3,69 @@
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
   "version": 0.9,
   "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-B-cabin - ECU connector B cabin loom: ECU-B to bulkhead B, fuel level, rear wheel-speed spur, A/C inputs",
+    "drawingNumber": "ST185-B-cabin"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each connector bundle end (ECU-B, BH-B, IX WS-R, IX FUEL-R).",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
   "connectors": [
     {
       "id": "bh_b_fw",
@@ -1507,6 +1570,11 @@
         "handle": "Splice"
       },
       "color": "Black",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "White"
+      ],
       "partId": "m16_20_09",
       "stripeColor": "White",
       "layoutPoints": [
@@ -1544,6 +1612,11 @@
         "handle": "c7"
       },
       "color": "White",
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "White"
+      ],
       "partId": "m16_20_9",
       "layoutPoints": [
         {
@@ -1594,6 +1667,10 @@
         "handle": "c8"
       },
       "color": "White",
+      "identColors": [
+        "White",
+        "Yellow"
+      ],
       "partId": "m16_20_9",
       "layoutPoints": [
         {
@@ -1651,6 +1728,10 @@
         "handle": "c9"
       },
       "color": "White",
+      "identColors": [
+        "Yellow",
+        "White"
+      ],
       "partId": "m16_20_9",
       "layoutPoints": [
         {
@@ -1686,6 +1767,11 @@
     {
       "id": "w39",
       "color": "Blue",
+      "identColors": [
+        "White",
+        "Blue",
+        "Yellow"
+      ],
       "source": {
         "id": "br_w39",
         "handle": "Terminal"
@@ -1722,6 +1808,11 @@
     {
       "id": "w43",
       "color": "White",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Blue"
+      ],
       "source": {
         "id": "sp_fl_sig",
         "handle": "Splice"
@@ -1751,6 +1842,11 @@
     {
       "id": "w44",
       "color": "Orange",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Blue"
+      ],
       "source": {
         "id": "r_fuellvl",
         "handle": "Right"
@@ -1795,6 +1891,11 @@
         "handle": "c10"
       },
       "color": "Yellow",
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Blue"
+      ],
       "partId": "m16_20_4",
       "layoutPoints": [
         {
@@ -1838,6 +1939,11 @@
         "handle": "c11"
       },
       "color": "Yellow",
+      "identColors": [
+        "Blue",
+        "White",
+        "Yellow"
+      ],
       "partId": "m16_20_4",
       "layoutPoints": [
         {
@@ -1881,6 +1987,11 @@
         "handle": "c16"
       },
       "color": "Gray",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "White"
+      ],
       "partId": "m16_20_8",
       "layoutPoints": [
         {
@@ -1931,6 +2042,9 @@
         "handle": "Terminal"
       },
       "color": "Red",
+      "identColors": [
+        "White"
+      ],
       "partId": "m16_16_20",
       "stripeColor": "Black",
       "layoutPoints": [
@@ -1960,6 +2074,11 @@
     {
       "id": "w_start",
       "color": "Green",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Yellow"
+      ],
       "source": {
         "id": "br_w_start_out",
         "handle": "Terminal"
@@ -1996,6 +2115,10 @@
     {
       "id": "w_fan285",
       "color": "Violet",
+      "identColors": [
+        "White",
+        "Blue"
+      ],
       "source": {
         "id": "br_w_fan285",
         "handle": "Terminal"
@@ -2046,6 +2169,11 @@
     {
       "id": "w_fl_sig",
       "color": "White",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Blue"
+      ],
       "source": {
         "id": "ix_fuel_r",
         "handle": "c1"
@@ -2082,6 +2210,11 @@
     {
       "id": "w_ign",
       "color": "Green",
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Blue"
+      ],
       "source": {
         "id": "fl_ign_sw_c1",
         "handle": "Terminal"
@@ -2118,6 +2251,11 @@
     {
       "id": "w_drain_ecu_b",
       "color": "Black",
+      "identColors": [
+        "White",
+        "Yellow",
+        "Blue"
+      ],
       "stripeColor": "Blue",
       "source": {
         "id": "sp_shield_b",
@@ -2148,6 +2286,11 @@
     {
       "id": "w_shc_knock1",
       "color": "Black",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "White"
+      ],
       "stripeColor": "Blue",
       "source": {
         "id": "bh_b_fw",
@@ -2192,6 +2335,10 @@
     {
       "id": "w_vss_sig_c",
       "color": "Green",
+      "identColors": [
+        "Yellow",
+        "Yellow"
+      ],
       "source": {
         "id": "bh_b_fw",
         "handle": "c15"
@@ -2235,6 +2382,11 @@
     {
       "id": "w_fl_sig_pin",
       "color": "White",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Blue"
+      ],
       "source": {
         "id": "sp_fl_sig",
         "handle": "Splice"
@@ -2264,6 +2416,10 @@
     {
       "id": "w82",
       "color": "Red",
+      "identColors": [
+        "White",
+        "White"
+      ],
       "source": {
         "id": "br_w82",
         "handle": "Terminal"
@@ -2315,6 +2471,11 @@
     {
       "id": "w69",
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
       "source": {
         "id": "ecu_b",
         "handle": "b22"
@@ -2352,6 +2513,11 @@
     {
       "id": "w45",
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
       "source": {
         "id": "ix_fuel_r",
         "handle": "c2"
@@ -2389,6 +2555,11 @@
     {
       "id": "w_b25",
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "White",
+        "White"
+      ],
       "source": {
         "id": "ecu_b",
         "handle": "b25"
@@ -2439,6 +2610,11 @@
     {
       "id": "w_b34",
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "White",
+        "White"
+      ],
       "source": {
         "id": "ecu_b",
         "handle": "b34"
@@ -2489,6 +2665,10 @@
     {
       "id": "w124_c",
       "color": "White",
+      "identColors": [
+        "Blue",
+        "Yellow"
+      ],
       "source": {
         "id": "ecu_b",
         "handle": "b18"
@@ -2532,6 +2712,10 @@
     {
       "id": "w215_c",
       "color": "White",
+      "identColors": [
+        "Blue",
+        "Yellow"
+      ],
       "source": {
         "id": "ecu_b",
         "handle": "b26"
@@ -2583,6 +2767,10 @@
         "handle": "Splice"
       },
       "color": "Orange",
+      "identColors": [
+        "Blue",
+        "Blue"
+      ],
       "partId": "m16_18_3",
       "layoutPoints": [
         {
@@ -2605,6 +2793,9 @@
         "handle": "c20"
       },
       "color": "Red",
+      "identColors": [
+        "Blue"
+      ],
       "partId": "m16_20_2",
       "layoutPoints": [
         {
@@ -2633,6 +2824,10 @@
     {
       "id": "w_eps_trig",
       "color": "Violet",
+      "identColors": [
+        "Blue",
+        "White"
+      ],
       "source": {
         "id": "ecu_b",
         "handle": "b12"
@@ -2676,6 +2871,10 @@
     {
       "id": "w_acc_trig",
       "color": "Violet",
+      "identColors": [
+        "Yellow",
+        "Blue"
+      ],
       "source": {
         "id": "ecu_b",
         "handle": "b10"
@@ -2726,6 +2925,11 @@
     {
       "id": "w_ac_btn",
       "color": "Gray",
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Yellow"
+      ],
       "source": {
         "id": "ecu_b",
         "handle": "b31"
@@ -2755,6 +2959,11 @@
     {
       "id": "w_evap_temp",
       "color": "Gray",
+      "identColors": [
+        "Blue",
+        "Blue",
+        "White"
+      ],
       "source": {
         "id": "ecu_b",
         "handle": "b32"
@@ -2799,6 +3008,11 @@
         "handle": "Terminal"
       },
       "color": "Violet",
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Yellow"
+      ],
       "partId": "m16_20_7",
       "layoutPoints": [
         {
@@ -2842,6 +3056,11 @@
         "handle": "Splice"
       },
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
       "stripeColor": "White",
       "partId": "m16_18_09",
       "layoutPoints": [
@@ -2865,6 +3084,11 @@
         "handle": "c19"
       },
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
       "stripeColor": "White",
       "partId": "m16_20_09",
       "layoutPoints": [
@@ -2895,6 +3119,11 @@
         "handle": "c21"
       },
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
       "stripeColor": "White",
       "partId": "m16_20_09",
       "layoutPoints": [
@@ -2932,6 +3161,11 @@
         "handle": "c3"
       },
       "color": "Red",
+      "identColors": [
+        "Blue",
+        "White",
+        "White"
+      ],
       "partId": "m16_14_2",
       "layoutPoints": [
         {
@@ -2975,6 +3209,11 @@
         "handle": "Terminal"
       },
       "color": "Black",
+      "identColors": [
+        "Blue",
+        "White",
+        "White"
+      ],
       "partId": "m16_14_0",
       "layoutPoints": [
         {
@@ -3017,6 +3256,10 @@
     {
       "id": "w_shc_etbm",
       "color": "Black",
+      "identColors": [
+        "Blue",
+        "Yellow"
+      ],
       "stripeColor": "Blue",
       "source": {
         "id": "bh_b_fw",
@@ -3061,6 +3304,10 @@
     {
       "id": "w_shc_vss",
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Yellow"
+      ],
       "stripeColor": "Blue",
       "source": {
         "id": "bh_b_fw",
@@ -3098,6 +3345,9 @@
     {
       "id": "w_shd_can_bc",
       "color": "Black",
+      "identColors": [
+        "Yellow"
+      ],
       "stripeColor": "Blue",
       "source": {
         "id": "br_w_shd_can",
@@ -3135,6 +3385,11 @@
     {
       "id": "w_start_in",
       "color": "Green",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Yellow"
+      ],
       "source": {
         "id": "fl_start_req_c1",
         "handle": "Terminal"
@@ -3172,6 +3427,9 @@
         "handle": "Splice"
       },
       "color": "Red",
+      "identColors": [
+        "White"
+      ],
       "stripeColor": "Black",
       "partId": "m16_16_20",
       "layoutPoints": [
@@ -3209,6 +3467,9 @@
         "handle": "Terminal"
       },
       "color": "Red",
+      "identColors": [
+        "White"
+      ],
       "stripeColor": "Black",
       "partId": "m16_16_20",
       "layoutPoints": [
@@ -3232,6 +3493,9 @@
         "handle": "c25"
       },
       "color": "Red",
+      "identColors": [
+        "White"
+      ],
       "stripeColor": "Blue",
       "partId": "m16_16_26",
       "layoutPoints": [
@@ -3282,6 +3546,11 @@
     {
       "id": "w_ac_btn_in",
       "color": "Gray",
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Yellow"
+      ],
       "source": {
         "id": "t_ac_btn",
         "handle": "Terminal"
@@ -3325,6 +3594,11 @@
     {
       "id": "w_ac_btn_hi",
       "color": "Gray",
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Yellow"
+      ],
       "source": {
         "id": "r_ac_btn_hi",
         "handle": "Right"
@@ -3354,6 +3628,11 @@
     {
       "id": "w_ac_btn_lo",
       "color": "Gray",
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Yellow"
+      ],
       "source": {
         "id": "sp_ac_btn",
         "handle": "Splice"
@@ -3383,6 +3662,11 @@
     {
       "id": "w_ac_btn_gnd",
       "color": "Black",
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Yellow"
+      ],
       "source": {
         "id": "r_ac_btn_lo",
         "handle": "Right"
@@ -3420,6 +3704,11 @@
     {
       "id": "w_evap_sig",
       "color": "Gray",
+      "identColors": [
+        "Blue",
+        "Blue",
+        "White"
+      ],
       "source": {
         "id": "t_evap_temp",
         "handle": "Terminal"
@@ -3442,6 +3731,11 @@
     {
       "id": "w_evap_pu",
       "color": "Gray",
+      "identColors": [
+        "Blue",
+        "Blue",
+        "White"
+      ],
       "source": {
         "id": "sp_evap",
         "handle": "Splice"
@@ -3471,6 +3765,11 @@
     {
       "id": "w_evap_5v",
       "color": "Orange",
+      "identColors": [
+        "Blue",
+        "Blue",
+        "White"
+      ],
       "source": {
         "id": "r_evap",
         "handle": "Right"
@@ -3507,6 +3806,11 @@
     {
       "id": "w_evap_rtn",
       "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
       "source": {
         "id": "t_evap_rtn",
         "handle": "Terminal"
@@ -3554,6 +3858,10 @@
         {
           "id": "cab_rspur_5v",
           "color": "Orange",
+          "identColors": [
+            "Blue",
+            "Blue"
+          ],
           "source": {
             "id": "ix_ws_rear_p",
             "handle": "c1"
@@ -3619,6 +3927,11 @@
         {
           "id": "cab_rspur_gnd",
           "color": "Black",
+          "identColors": [
+            "Yellow",
+            "Yellow",
+            "Blue"
+          ],
           "source": {
             "id": "ix_ws_rear_p",
             "handle": "c2"
@@ -3719,6 +4032,11 @@
         {
           "id": "cab_rspur_l",
           "color": "Blue",
+          "identColors": [
+            "Blue",
+            "White",
+            "Blue"
+          ],
           "source": {
             "id": "ix_ws_rear_p",
             "handle": "c3"
@@ -3812,6 +4130,11 @@
         {
           "id": "cab_rspur_r",
           "color": "Violet",
+          "identColors": [
+            "Blue",
+            "White",
+            "Blue"
+          ],
           "source": {
             "id": "ix_ws_rear_p",
             "handle": "c4"
@@ -3899,6 +4222,11 @@
       "shield": {
         "id": "cab_rspur_sh",
         "color": "Shield",
+        "identColors": [
+          "Blue",
+          "White",
+          "Blue"
+        ],
         "source": {
           "id": "ix_ws_rear_p",
           "handle": "c5"
@@ -3966,6 +4294,11 @@
         {
           "id": "cab_fspur_r",
           "color": "Violet",
+          "identColors": [
+            "White",
+            "Blue",
+            "Blue"
+          ],
           "source": {
             "id": "br_cab_fspur_r",
             "handle": "Terminal"
@@ -4025,6 +4358,11 @@
       "shield": {
         "id": "cab_fspur_fr_sh",
         "color": "Shield",
+        "identColors": [
+          "White",
+          "Blue",
+          "Blue"
+        ],
         "source": {
           "id": "br_cab_fspur_fr_sh",
           "handle": "Terminal"
@@ -4113,6 +4451,9 @@
         {
           "id": "wc_h_bh_bc",
           "color": "White",
+          "identColors": [
+            "Yellow"
+          ],
           "source": {
             "id": "br_wc_h_bh",
             "handle": "Terminal"
@@ -4186,6 +4527,9 @@
         {
           "id": "wc_l_bh_bc",
           "color": "Green",
+          "identColors": [
+            "Yellow"
+          ],
           "source": {
             "id": "br_wc_l_bh",
             "handle": "Terminal"
@@ -4273,6 +4617,9 @@
       "shield": {
         "id": "cab_canbh_bc_sh",
         "color": "Shield",
+        "identColors": [
+          "Yellow"
+        ],
         "source": {
           "id": "br_cab_canbh_sh",
           "handle": "Terminal"
@@ -4433,7 +4780,12 @@
       "length": {
         "value": 70,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "BH-B",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_1020__bp_fl_ign_sw",
@@ -4460,7 +4812,12 @@
       "length": {
         "value": 300,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "IX WS-R",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_fl_ign_sw__fl_ign_sw_c1",
@@ -4613,7 +4970,12 @@
       "length": {
         "value": 70,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "BH-B",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "b_bn_bp_1080__ecu_b",
@@ -4622,7 +4984,12 @@
       "length": {
         "value": 70,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "ECU-B",
+      "partIds": [
+        "cov_lbl_12"
+      ]
     },
     {
       "id": "b_bn_bp_2130__ix_fuel_r",
@@ -4631,7 +4998,12 @@
       "length": {
         "value": 290,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "IX FUEL-R",
+      "partIds": [
+        "cov_lbl_316"
+      ]
     },
     {
       "id": "b_bn_bp_1050__bp_1065",
@@ -5067,8 +5439,8 @@
       "id": "n_cavity_notes",
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)\nsp_shield_b (Splice): drain T-splice about 6 mm (0.25 in) behind the ECU-B plug (Daniel 2026-10-12). The knock drain is the one crimped into B17 (w_drain_ecu_b is its last few mm); every other loom-B drain (ETB motor, VSS, CAN trunk drain from ST185-CAN, rear WS spur, front WS FR spur) is soldered onto it where 6 mm of its insulation is cut away. Drains stay 20 AWG - no combined-gauge pigtail, one wire per pin.",
       "schematicPosition": {
-        "x": 4650,
-        "y": -60
+        "x": 4260,
+        "y": 1740
       }
     },
     {
@@ -5675,6 +6047,68 @@
       "partNumber": "DRBF-1A",
       "description": "FLANGE, MOUNTING, DRB 102/128 SERIES",
       "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_12",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-1/2-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 4.3,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 12.7,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_316",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/16-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 1.6,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ]
 }
