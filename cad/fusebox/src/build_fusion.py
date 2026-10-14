@@ -467,10 +467,11 @@ def build(out_dir, SKIP_SECTIONS=False):
     for o in root.occurrences:
         n = o.component.name
         if n.endswith('_printed'):
-            bb_ = o.boundingBox
+            bbs = [b.boundingBox for b in o.bRepBodies]
+            lo = [min(getattr(q.minPoint, k) for q in bbs) for k in 'xyz']
+            hi = [max(getattr(q.maxPoint, k) for q in bbs) for k in 'xyz']
             vol = sum(b.volume for b in o.bRepBodies)
-            printed[n] = dict(size_mm=[round((bb_.maxPoint.x - bb_.minPoint.x) * 10, 1), round((bb_.maxPoint.y - bb_.minPoint.y) * 10, 1),
-                                       round((bb_.maxPoint.z - bb_.minPoint.z) * 10, 1)],
+            printed[n] = dict(size_mm=[round((hi[i] - lo[i]) * 10, 1) for i in range(3)],
                               volume_cm3=round(vol, 1), mass_g_pa12=round(vol * 1.01, 0))
     report['printed_parts'] = printed
     # interference: every solid pair that should not touch (cheap: deck vs everything above it, conductors vs relays)

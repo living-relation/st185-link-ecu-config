@@ -1,6 +1,6 @@
-"""Build cad/fusebox/ST185-fusebox-summary.html: one page for Dan - render, dimensions, parts list, open choices.
+"""Build cad/fusebox/ST185-fusebox-summary.html: one page for Dan - render, dimensions, printed parts, parts list, open choices.
 Reads spec.py and the build's fusebox_report.json (main checkout cad/fusebox/, untracked). Images stay as separate
-PNGs beside the page. Claude Code, 2026-10-14.
+PNGs beside the page. Claude Code, 2026-10-14 (rev 2: powder-bed printed PA12 housings, R73).
     python cad/fusebox/src/summary_html.py <dir with fusebox_report.json + renders> <out html>
 """
 import os, sys, json, html
@@ -25,6 +25,13 @@ for col, (x, fuses) in S.MINI_COLS.items():
         if a:
             mini[a] = mini.get(a, 0) + 1
 mini[S.ACPS[1]] = mini.get(S.ACPS[1], 0) + 1
+n_hold = len(S.BAR_SCREW_Y) + S.AMI_SLOTS['IN'] + S.AMI_SLOTS['OUT']
+
+PRINTED_NOTE = {
+    'Tray_PA12_printed': 'Open-top tub, 3 mm walls and floor, 4 gusseted mounting ears (brass limiter in each), 4 deck posts and 4 corner bosses with M3 heat-set inserts. Forward wire-exit slot, 1/0 grommet hole in the outboard end.',
+    'Deck_PA12_printed': '8 mm top plate on a 3 mm skirt; terminal-cavity towers under every relay / fuse group; 4 ribs under the power zone run front-to-back (with the wires). Open underneath: no closed cavity, no trapped powder.',
+    'Lid_PA12_printed': '2.5 mm plate with a 2 x 3 mm rib grid on top (stops a flat PA12 plate warping); 4 M3 screws into the tray inserts.',
+}
 
 # OWN / BUY  (st185-pick-parts: on-hand CSV first, TE, approved suppliers, then others with a reason)
 PARTS = [
@@ -46,24 +53,24 @@ PARTS = [
     ('Tubular lug 10 mm2 M5 (AMI outputs, 8-10 AWG)', 'Klauke 2R5', 'BUY 11', 'Same lug family as the bus bar (Klauke R); TE SOLISTRAND alternative not checked yet.'),
     ('Tubular lug 16 mm2 M5 (J/B1 HOT, 6 AWG)', 'Klauke 3R5', 'BUY 1', 'Hole 5.5 confirmed; tongue width NOT confirmed - pocket drawn for 12 mm.'),
     ('Tubular lug 50 mm2 M8 (1/0 input)', 'Klauke 6R8', 'BUY 1', 'b 20, l 47, hole 8.4 (RS 398-3015 listing).'),
-    ('M5 A2 stud + Keps nut', 'TBD (ISO 4026 set screw M5x12 + DIN 6923 nut)', 'BUY 30 + 30', '2 per AMI position; 4 Nm max (AMI sheet).'),
-    ('M8 A2 stud + nut + washer', 'TBD (ISO 4026 M8x20 + ISO 4032 + ISO 7089)', 'BUY 1', '1/0 input'),
-    ('Lid screw', 'ISO 7380 M3x10 A2', 'BUY 4', ''),
-    ('Nylon shoulder washer, M5', 'TBD', 'BUY 8', '2 per ear (above + below): box isolated from the body, floats 1.5 mm.'),
-    ('Tray + lid', '6061-T6, machined', 'make', 'walls 3, floor 3, lid 3'),
-    ('Power bar, output pads, logic strips', '6061-T6 25 x 6 bar, 15 pads, 2 x 8 x 4 strips', 'make', 'ring-lug insets machined in the Al (bus bar style)'),
-    ('Deck', 'PA6-GF, printed', 'make', 'terminal cavities + TPA comb; holds every conductor off the tray'),
+    ('M5 A2 stud + Keps nut', 'TBD (ISO 4026 set screw M5x12 + DIN 6923 nut)', 'BUY 30 + 30', '2 per AMI position, threaded into the Al bar / pads; 4 Nm max (AMI sheet).'),
+    ('M8 A2 stud + nut + washer', 'TBD (ISO 4026 M8x20 + ISO 4032 + ISO 7089)', 'BUY 1', '1/0 input, threaded into the Al bar'),
+    ('Hold-down screw M4x10 A2', 'ISO 7380', 'BUY %d' % n_hold, 'From below, into tapped Al bar (5) and pads (15).'),
+    ('Brass compression limiter, M4', 'TBD (OD 7, ID 4.3, L 4)', 'BUY %d' % n_hold, 'Under every hold-down: the clamp goes screw -> brass -> Al, never into bare nylon.'),
+    ('Brass compression limiter, M5', 'TBD (OD 8, ID 5.3, L 6)', 'BUY 4', 'One per mounting ear.'),
+    ('Brass heat-set insert, M3', 'TBD (hole 4.0 x 6 deep as drawn - set to the insert maker)', 'BUY 8', '4 lid corners + 4 deck posts. No printed threads.'),
+    ('Lid / deck screw', 'ISO 7380 M3x8 A2 (lid), M3x10 (deck)', 'BUY 4 + 4', ''),
+    ('Power bar, output pads, logic strips', '6061-T6: 25 x 6 bar, 15 pads, 2 strips 8 x 4', 'make', 'Ring-lug insets machined in the Al pads (bus bar style). The only metal besides studs, lugs and hardware.'),
+    ('Tray, deck, lid', 'PA12, powder-bed (MJF / SLS)', 'print', 'See "Printed parts" above.'),
 ]
 
-iso = rep.get('isolation', {})
-mass = rep.get('mass_g', {})
+live = rep.get('live_clearance', {})
+printed = rep.get('printed_parts', {})
 imgs = [(f, c) for f, c in [
     ('fusebox_render_iso_open.png', 'Lid off, from the forward / inboard corner. Forward wall: wire exit strip. Outboard end: 1/0 grommet.'),
     ('fusebox_render_top_open.png', 'Top view, forward edge at the bottom. Left to right: logic zone (mini fuses, micro relays), F7 relays, AMI power zone.'),
-    ('fusebox_render_iso_closed.png', 'Closed, 4 isolated mounting ears.'),
+    ('fusebox_render_iso_closed.png', 'Closed: ribbed PA12 lid, 4 gusseted ears with brass limiters.'),
     ('fusebox_render_iso_open_rear.png', 'From the rear / outboard corner.'),
-    ('fusebox_section_power.png', 'Section through the AMI rows: bar, pads, lug insets, deck, cable bay.'),
-    ('fusebox_section_logic.png', 'Section through the logic zone and the F7 relays.'),
 ] if os.path.exists(os.path.join(src_dir, f))]
 
 CSS = """
@@ -83,11 +90,11 @@ figcaption{color:var(--mut);font-size:13px}.kpi{display:flex;flex-wrap:wrap;gap:
 
 h = ['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
      '<title>ST185 Fuse Box CAD</title><style>%s</style></head><body><main>' % CSS,
-     '<h1>ST185 glove-box fuse + relay box - CAD rev 1</h1>',
-     '<p class="mut">Claude Code, 2026-10-14. One custom box (plan rev 2), modeled in Fusion from maker drawings. '
-     'Dan\'s answers applied: L1 AMI studs (R71), L4 smallest sensible footprint (R72), L5 custom box (R70). '
-     'Fusion: <code>ST185_fusebox_rev1</code> (Default Project). Model files (STEP / STL / f3d) are local, untracked, in '
-     '<code>cad/fusebox/</code> of the main checkout. Build: <code>cad/fusebox/src/</code>.</p>',
+     '<h1>ST185 glove-box fuse + relay box - CAD rev 2 (printed)</h1>',
+     '<p class="mut">Claude Code, 2026-10-14. One custom box (plan rev 2). Rev 2: tray, deck and lid are PA12 printed by powder-bed fusion '
+     '(Dan\'s HP printer, R73); only the current-carrying parts are metal. Dan\'s answers: L1 AMI studs (R71), L4 smallest sensible '
+     'footprint (R72), L5 custom box (R70). Fusion: <code>ST185_fusebox_rev2</code> (Default Project; rev 1 aluminium version kept there as history). '
+     'Model files (STEP / STL / f3d) are local, untracked, in <code>cad/fusebox/</code> of the main checkout. Build: <code>cad/fusebox/src/</code>.</p>',
      '<div class="kpi">',
      '<div>Outer size<b>%.1f x %.1f x %.1f</b><span class="mut">mm, L x D x H closed</span></div>' % (S.L, S.D, S.H),
      '<div>With ears<b>%.1f mm</b><span class="mut">long</span></div>' % (S.L + 2 * S.EAR['len']),
@@ -97,41 +104,56 @@ h = ['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="vie
 for f, c in imgs[:2]:
     h.append('<figure><img src="%s" alt="%s"><figcaption>%s</figcaption></figure>' % (E(f), E(c), E(c)))
 
-h.append('<h2>How it is built</h2><ul>'
-         '<li><b>Tray + lid:</b> machined 6061, same style as the VRC / CSB3 enclosures. A 22 mm cable bay under the deck; every wire leaves through one '
-         'grommet strip in the forward (firewall) wall. The 1/0 feed enters through its own grommet in the outboard end wall.</li>'
-         '<li><b>Isolation:</b> no conductor touches the aluminium. The printed PA6-GF deck carries every terminal, the bar and the pads; '
-         'the box itself is isolated from the body by nylon shoulder washers on the 4 ears.</li>'
+h.append('<h2>Printed parts (PA12, powder-bed)</h2><div class="wrap"><table><tr><th>Part</th><th>File (STL + STEP)</th><th>Size mm (L x D x H)</th><th>Volume / mass</th><th>What it is</th></tr>')
+for n in ('Tray_PA12_printed', 'Deck_PA12_printed', 'Lid_PA12_printed'):
+    pr = printed.get(n, {})
+    sz = ' x '.join('%.1f' % v for v in pr.get('size_mm', [])) or '-'
+    h.append('<tr><td>%s</td><td><code>%s.stl</code><br><code>%s.step</code></td><td>%s</td><td>%s cm&sup3; / ~%s g</td><td>%s</td></tr>'
+             % (E(n.split('_')[0]), E(n), E(n), E(sz), E(pr.get('volume_cm3', '-')), E(int(pr.get('mass_g_pa12', 0))), E(PRINTED_NOTE[n])))
+h.append('</table></div><p class="mut">Mass at the HP PA12 part density 1.01 g/cm&sup3;. Metal parts are exported as STEP only '
+         '(<code>Bar_Power_Al6061_25x6</code>, <code>Pad_Out_Al6061</code>, <code>Strip_Logic_Al6061_8x4</code>) plus the whole assembly '
+         '(<code>ST185_fusebox_rev2_assembly.step</code>).</p>')
+
+h.append('<h2>Designed for powder-bed printing</h2><ul>'
+         '<li><b>Walls:</b> 3 mm tray walls and floor (loaded), 2.5 mm ribs and gussets, 8 mm deck plate (4 mm under the metal pockets), 2.5 mm lid plus ribs. Nothing under 2.0 mm.</li>'
+         '<li><b>No solid blocks:</b> the deck is a ribbed shell with towers only where the terminal cavities are; the lid is ribbed instead of thick.</li>'
+         '<li><b>No trapped powder:</b> every printed part is open on one side (tray top, deck underside, lid is a plate); no closed cavity, so no escape holes are needed.</li>'
+         '<li><b>Fits:</b> %.2f mm per side between printed parts (deck in tray, around posts and bosses); %.1f mm per side for metal in a printed pocket.</li>'
+         '<li><b>Threads:</b> none printed. M3 brass heat-set inserts in the tray (lid corners, deck posts); all power studs thread into the aluminium bar and pads.</li>'
+         '<li><b>Torque goes into metal:</b> the AMI nuts (4 Nm) bear on the fuse ear, lug and Al pad / bar; the stud is threaded into the Al. The bar (5 screws) and every pad (1 screw) '
+         'are held down from below by M4 screws through brass compression limiters, so the clamp is screw -> brass -> Al and never crushes nylon. The mounting ears have brass limiters too.</li>'
+         '<li><b>Heat:</b> PA12 (HP 3D HR PA 12) deflects at 95 &deg;C under 1.82 MPa and 175 &deg;C under 0.45 MPa. The 25 x 6 Al bar (150 mm&sup2;) carries more than '
+         'the 1/0 copper (53 mm&sup2;) that feeds it, so the bar runs cooler than the feed cable. Keep it below 95 &deg;C: check with a thermocouple on the bench at full load before the box goes in.</li>'
+         '<li><b>Live-part spacing (measured in Fusion):</b> neighbouring AMI outputs %.1f mm apart with a printed rib between, input bar to any output %.1f mm, 1/0 lug to the nearest output %.1f mm, '
+         'output lugs %.1f mm apart. At 12-14 V these gaps are about keeping debris and a dropped tool from bridging, not about voltage.</li>'
+         '</ul>' % (S.PCLR, S.CLR, live.get('pad_to_pad_min_mm', 0), live.get('bar_to_pad_min_mm', 0), live.get('input_lug_to_pad_min_mm', 0), live.get('output_lug_to_lug_min_mm', 0)))
+
+h.append('<h2>How it is laid out</h2><ul>'
          '<li><b>Power zone (outboard):</b> one 25 x 6 aluminium bar along the depth, M8 1/0 input at its forward end, AMI fuses on both sides. '
          'Inboard row feeds the F7 relays (short internal leads); outboard row is the direct outputs. Each output stud sits on an aluminium pad with '
-         'a ring-lug inset machined in (bus bar design B style): the lug drops into the pocket, the fuse ear clamps it, the barrel exits straight '
-         'into a wire hole through the deck.</li>'
+         'a ring-lug inset machined in (bus bar design B style).</li>'
          '<li><b>F7 relays (middle):</b> 2 x 4 grid; the 8th spot is the ACPS mini fuse, beside the heater relay (L3B).</li>'
-         '<li><b>Logic zone (inboard):</b> Bus 1 and Bus 2 mini-fuse columns (8.1 mm pitch) on 8 x 4 aluminium strips inside the deck, then 10 micro relay positions.</li></ul>')
+         '<li><b>Logic zone (inboard):</b> Bus 1 and Bus 2 mini-fuse columns (8.1 mm pitch) on 8 x 4 aluminium strips that slide into the deck from below, then 10 micro relay positions.</li>'
+         '<li><b>Wiring:</b> every wire drops through the deck into the 22 mm cable bay and leaves through one grommet strip in the forward (firewall) wall.</li></ul>')
 
 h.append('<h2>Dimensions</h2><div class="wrap"><table><tr><th>Item</th><th>mm</th><th>Source</th></tr>')
 for r in [
     ('Box, closed (L x D x H)', '%.1f x %.1f x %.1f' % (S.L, S.D, S.H), 'model'),
     ('Cable bay / deck / parts above deck', '22 / 26 / to %.1f' % S.LID_Z, 'plan rev 2 allowance; terminal depths to set from TE drawings'),
     ('AMI fuse', '41 long, 30 stud centres, body 16 x 12 x 6, hole 5.5, 4 Nm', 'Bussmann AMI sheet'),
-    ('AMI pitch', '%.0f (lug pocket 12.6 + 3.4 wall, gap >= 3)' % S.AMI_PITCH, 'Klauke 2R5 b 12'),
+    ('AMI pitch', '%.1f (pad 14.5 + 3.0 gap)' % S.AMI_PITCH, 'Klauke 2R5 b 12 -> pocket 12.8'),
     ('F7 relay', '25.9 sq x 24.9, pitch 30 x 36', 'TE F7 data sheet 2023-03'),
     ('Micro relay', '15.5 x 23 x 24.1, pitch 19 x 30', 'TE Micro Relay A 1308028'),
     ('Mini fuse', '10.92 x 3.81, pitch 8.1', 'Bussmann ATM / Eaton 15400'),
-    ('Ears', '4 x %0.f x %0.f x %0.f, hole %0.f' % (S.EAR['len'], S.EAR['w'], S.EAR['t'], S.EAR['hole']), 'model'),
+    ('Ears', '4 x %0.f x %0.f x %0.f, 2 gussets each, hole %.1f for the M5 limiter' % (S.EAR['len'], S.EAR['w'], S.EAR['t'], S.EAR['hole']), 'model'),
 ]:
     h.append('<tr><td>%s</td><td>%s</td><td>%s</td></tr>' % tuple(E(x) for x in r))
 h.append('</table></div>')
-if iso:
-    h.append('<p><b>Isolation check (Fusion, measured):</b> closest conductor to the aluminium tray %.1f mm, to the lid %.1f mm; tray to the mounting face %.1f mm.</p>'
-             % (iso.get('min_conductor_to_tray_mm', 0), iso.get('min_conductor_to_lid_mm', 0), iso.get('tray_to_mount_face_mm', 0)))
 if 'interference' in rep:
     h.append('<p><b>Interference check:</b> %s.</p>' % ('none between parts' if not rep['interference'] else E(rep['interference'])))
-if mass:
-    h.append('<p class="mut">Masses (g): %s.</p>' % E(', '.join('%s %s' % (k, v) for k, v in mass.items())))
 
 h.append('<h2>Parts list (OWN / BUY)</h2><p class="mut">Order: on-hand TE list, then TE, then approved suppliers, then others with a reason (R38). '
-         '"OWN" counts are qty_ordered from te-on-hand-bom.csv - confirm on the shelf.</p><div class="wrap"><table>'
+         '"OWN" counts are qty_ordered from te-on-hand-bom.csv - confirm on the shelf. TBD = not checked against a maker sheet yet.</p><div class="wrap"><table>'
          '<tr><th>Part</th><th>Part number</th><th>Qty</th><th>Note</th></tr>')
 for r in PARTS:
     h.append('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>' % tuple(E(x) for x in r))
@@ -139,13 +161,15 @@ h.append('</table></div>')
 
 h.append('<h2>Open choices for Dan</h2><ol>'
          '<li><b>One box or two?</b> The task card says "the 2 custom boxes"; plan rev 2 (your 10-13 answer, fewer boxes) is ONE box. Modeled as one. '
-         'Splitting it at the F7 column gives a %0.f mm power box and a %0.f mm logic box, same depth.</li>'
-         '<li><b>Power bar metal:</b> aluminium 6061 here (matches the bus bar). Plan rev 2 said copper C110 25 x 3. Copper carries more current for its size; aluminium is lighter and the same metal as the bus bar. 25 x 6 Al (150 mm2) carries more than the 1/0 copper (53 mm2) that feeds it.</li>'
+         'Splitting it at the F7 column gives an about %0.f mm power box and an about %0.f mm logic box, same depth - and two smaller prints.</li>'
+         '<li><b>Power bar metal:</b> aluminium 6061 here (matches the bus bar). Plan rev 2 said copper C110. Copper carries more current for its size; '
+         'aluminium is lighter and the same metal as the bus bar.</li>'
+         '<li><b>PA12 or a glass-filled grade?</b> Plain PA12 assumed. HP\'s PA12 GB (glass beads) is stiffer but more brittle - say if your shop prefers it near the bar.</li>'
          '</ol>' % (S.L - 72, 72 + 2 * S.WALL))
 h.append('<h2>Not done yet (detail work, after your OK)</h2><ul>'
          '<li>Terminal cavity shapes, TPA comb and front stops from the TE terminal drawings (cavities are placeholders at the right pin pattern).</li>'
-         '<li>Deck and bar hold-down screws, lid gasket, molded labels; internal leads (relay-feed AMI to F7 pin 30, Bus 1 / Bus 2 links).</li>'
-         '<li>Section renders (the section step ran Fusion out of memory and was dropped for rev 1), drawings (PDF), and the CabinPower redraw (R70).</li></ul>')
+         '<li>Exact heat-set insert and compression-limiter part numbers (hole sizes drawn as placeholders); lid seal; molded labels; internal leads (relay-feed AMI to F7 pin 30, Bus 1 / Bus 2 links).</li>'
+         '<li>Section renders (that Fusion step ran out of memory in rev 1 and stays off), drawings, and the CabinPower redraw (R70).</li></ul>')
 for f, c in imgs[2:]:
     h.append('<figure><img src="%s" alt="%s"><figcaption>%s</figcaption></figure>' % (E(f), E(c), E(c)))
 h.append('</main></body></html>')
