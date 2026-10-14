@@ -208,13 +208,25 @@ def build(out_dir):
         return occ
 
     W, F, D = S.WALL, S.FLOOR, S.D
-    BZ0 = S.BAR_TOP - S.BAR_T                          # 47: bar / pad underside
+    BZ0 = S.BAR_TOP - S.BAR_T                          # 46.65: bar underside (1/4" stock)
+    PZ0 = S.BAR_TOP - S.PAD['t']                       # 50: pad underside (3 mm stock) - pad top level with the bar top
     LUG, M8 = S.LUG_M5, S.LUG_M8
-    HOLE_OFF = 15.0          # wire hole through the deck, from the output stud, away from the bar
+    HOLE_OFF = 17.0          # wire hole through the deck, from the output stud, just past the lug barrel
     WIRE_D = 6.0
-    gz = S.BAR_TOP - M8['t'] + M8['d4'] / 2
-    IN3, E, L4, l5 = S.INSERT_M3, S.EAR, S.LIMITER_M4, S.LIMITER_M5
+    gz = S.BAR_TOP + M8['d4'] / 2                      # 1/0 lug lies on top of the bar (no machined inset, R76)
+    IN3, E, l5 = S.INSERT_M3, S.EAR, S.LIMITER_M5
+    HD = S.HEAD
     occs = {}                                          # lids, hidden for the open renders
+
+    def bolt_up(x, y, z_under, m, length):
+        """ISO 4017 hex bolt pointing up, head under the metal (top of head at z_under)."""
+        h = HD[m]
+        return union_all([hexz(x, y, z_under - h['k'], z_under, h['af']), cylz(x, y, z_under, z_under + length, float(m))])
+
+    def head_pocket(x, y, z_under, m):
+        """Printed hex pocket that captures a bolt head (anti-rotation only; the clamp is metal to metal)."""
+        h = HD[m]
+        return hexz(x, y, z_under - h['k'] - 0.3, z_under + 0.01, h['af'] + 2 * S.CLR)
 
     # ------------------------------------------------------------------ derived positions (common x axis, rev 2 numbers)
     ami = []
@@ -315,6 +327,10 @@ def build(out_dir):
         screws = [union_all([cylz(sx, sy, S.LID_Z - 6, zt, 3.0), cylz(sx, sy, zt, zt + 1.65, 5.5)]) for (sx, sy) in lid_screws]
         occs[pre + 'LidScrew'] = comp(pre + 'LidScrew_M3x8_ISO7380', screws, AP['al'], MAT['ss'], sh)
 
+        B = S.BAR
+        # every metal joint is a plain drilled hole + an M5 / M8 hex bolt from below (head captured in the deck) - R76
+        bar_bolts = [(a['x_in'], a['y'], 5) for a in ami] + [(B['x'], S.IN_STUD_Y, 8)] if power else []
+        pad_bolts = [(a['x_out'], a['y'], 5) for a in ami] if power else []
         # ---- deck (PA12): 8 mm plate + skirt + cavity towers + ribs, open underneath (powder runs out)
         cl = S.PCLR
         dx0, dx1, dy0, dy1 = xi0 + cl, xi1 - cl, yi0 + cl, yi1 - cl
@@ -329,6 +345,8 @@ def build(out_dir):
             parts.append(cbox(ACPS_POS[0], ACPS_POS[1], S.DECK_Z0, S.PLATE_Z0 + 0.01, 6.0 + 3.0 + 2 * T, 4.6 + 2 * T))
             for (nm, pn, own, cx, cy) in f7:
                 parts.append(cbox(cx, cy, S.DECK_Z0, S.PLATE_Z0 + 0.01, 17.0 + 2.8 + 2 * T, 17.9 + 3.2 + 2 * T))
+            for (bx_, by_, m) in bar_bolts + pad_bolts:   # bosses under the head pockets (the plate alone is too thin)
+                parts.append(cylz(bx_, by_, S.PLATE_Z0 - 4.5, S.PLATE_Z0 + 0.01, HD[m]['af'] + 7.0))
         else:
             for col, (cx, fuses) in S.MINI_COLS.items():
                 parts.append(box(cx - S.MINI['l'] / 2 - T, S.MINI_Y0 - 6.4 - T, S.DECK_Z0, cx + S.MINI['l'] / 2 + T,
@@ -345,19 +363,15 @@ def build(out_dir):
             cuts.append(cylz(px, py, S.DECK_Z0 - 1, S.PLATE_Z0, S.POST_D + 2 * cl))
             cuts.append(cylz(px, py, S.PLATE_Z0 - 1, S.DECK_Z1 + 1, 3.4))
             cuts.append(cylz(px, py, S.DECK_Z1 - 3.5, S.DECK_Z1 + 1, 6.5))
-        hold = []
-        B = S.BAR
         if power:
             cuts.append(box(B['x'] - B['w'] / 2 - S.CLR, B['y0'] - S.CLR, BZ0, B['x'] + B['w'] / 2 + S.CLR, B['y1'] + S.CLR, S.DECK_Z1 + 1))
             for a in ami:
-                cuts.append(pad_box(a, BZ0, S.DECK_Z1 + 1, S.CLR))
+                cuts.append(pad_box(a, PZ0, S.DECK_Z1 + 1, S.CLR))
                 xc = (a['x_in'] + a['x_out']) / 2                                     # AMI body relief
                 cuts.append(cbox(xc, a['y'], S.BAR_TOP + S.AMI['ear_t'] / 2 - S.AMI['body_h'] / 2 - 0.6, S.DECK_Z1 + 1,
                                  S.AMI['body_l'] + 1, S.AMI['body_w'] + 1))
-                xh = a['x_out'] + a['sgn'] * HOLE_OFF                                 # barrel trough + wire hole
-                cuts.append(box(min(a['x_out'], xh), a['y'] - (LUG['d4'] + 1) / 2, S.DECK_Z1 - 4, max(a['x_out'], xh), a['y'] + (LUG['d4'] + 1) / 2, S.DECK_Z1 + 1))
-                cuts.append(cylz(xh, a['y'], S.DECK_Z0 - 1, S.DECK_Z1 + 1, 9.0))
-            cuts.append(box(B['x'] + B['w'] / 2, S.IN_STUD_Y - (M8['b'] / 2 + S.CLR), S.BAR_TOP - M8['t'] - 0.5, X1, S.IN_STUD_Y + (M8['b'] / 2 + S.CLR), S.DECK_Z1 + 1))
+                cuts.append(cylz(a['x_out'] + a['sgn'] * HOLE_OFF, a['y'], S.DECK_Z0 - 1, S.DECK_Z1 + 1, 9.0))   # wire hole
+            cuts += [head_pocket(bx_, by_, BZ0, m) for (bx_, by_, m) in bar_bolts] + [head_pocket(bx_, by_, PZ0, m) for (bx_, by_, m) in pad_bolts]
             for dx in (-3.0, 3.0):
                 cuts.append(cbox(ACPS_POS[0] + dx, ACPS_POS[1], S.DECK_Z0 - 1, S.DECK_Z1 + 1, 3.0, 4.6))
             for (nm, pn, own, cx, cy) in f7:      # Mini ISO cavities (F7 bottom view: 30 / 87 blades along x, 85 / 86 along y)
@@ -366,9 +380,6 @@ def build(out_dir):
                     pins.append((0, S.RELAY_B['v87a'], 8.3, 2.8))
                 for (u, v, lx, ly) in pins:
                     cuts.append(cbox(cx + u, cy + v, S.DECK_Z0 - 1, S.DECK_Z1 + 1, lx, ly))
-            hold = [(B['x'], y) for y in S.BAR_SCREW_Y] + [(a['x_out'] + a['sgn'] * S.PAD['screw'], a['y']) for a in ami]
-            for (hx, hy) in hold:
-                cuts.append(cylz(hx, hy, S.DECK_Z0 - 1, BZ0 + 0.01, L4['od'] + 2 * S.CLR))
         else:
             for (col, nm, amps, cx, y) in mini:   # 2 x 2.8 mm receptacles per mini fuse
                 for dx in (-3.0, 3.0):
@@ -378,55 +389,50 @@ def build(out_dir):
                     cuts.append(cbox(cx + u, cy + v, S.DECK_Z0 - 1, S.DECK_Z1 + 1, lx, ly))
             for col, (cx, fuses) in S.MINI_COLS.items():
                 y1 = strip_y1(len(fuses))         # strip pocket, open underneath (strips slide in from below)
-                cuts.append(box(cx - 4 - S.CLR, S.MINI_Y0 - 6 - S.CLR, S.DECK_Z0 - 1, cx + 4 + S.CLR, y1 + S.CLR, 44.0 + S.CLR))
+                ST = S.STRIP
+                cuts.append(box(cx - ST['w'] / 2 - S.CLR, S.MINI_Y0 - 6 - S.CLR, S.DECK_Z0 - 1, cx + ST['w'] / 2 + S.CLR, y1 + S.CLR, ST['z1'] + S.CLR))
                 yh = y1 - SF['hole_from_end']     # feed lug under the strip end: trough open to the cable bay
-                cuts.append(box(cx - LUG['b'] / 2 - 1, yh - LUG['b'] / 2 - 1, S.DECK_Z0 - 1, cx + LUG['b'] / 2 + 1, y1 + 14.0, 40.0 + 0.01))
+                cuts.append(box(cx - LUG['b'] / 2 - 1, yh - LUG['b'] / 2 - 1, S.DECK_Z0 - 1, cx + LUG['b'] / 2 + 1, y1 + 14.0, ST['z1'] - ST['t'] + 0.01))
+                h5 = HD[5]                        # feed bolt head sits ABOVE the strip end, captured in a hex pocket in the deck
+                cuts.append(hexz(cx, yh, ST['z1'] - 0.01, ST['z1'] + h5['k'] + 0.3, h5['af'] + 2 * S.CLR))
         sub_all(deck, cuts)
         comp(pre + 'Deck_PA12_printed', deck, AP['pa12_lt'], MAT['pa'], sh)
 
         # ---- conductors + hardware
         lugs, wires = [], []
         if power:
-            for (hx, hy) in hold:                 # bar + pads clamp metal to metal through brass limiters
-                lims.append(bo(cylz(hx, hy, BZ0 - L4['l'], BZ0, L4['od']), cylz(hx, hy, BZ0 - L4['l'] - 1, BZ0 + 1, L4['id']), 's'))
-            comp(pre + 'HoldDown_M4x10_ISO7380', [union_all([cylz(hx, hy, BZ0 - L4['l'] - 2.2, BZ0 + 3.5, 4.0),
-                                                             cylz(hx, hy, BZ0 - L4['l'] - 2.2, BZ0 - L4['l'], 7.0)]) for (hx, hy) in hold], AP['al'], MAT['ss'], sh)
-            bar = box(B['x'] - B['w'] / 2, B['y0'], BZ0, B['x'] + B['w'] / 2, B['y1'], S.BAR_TOP)
-            bo(bar, slot_x(B['x'] - (M8['tip'] - M8['b'] / 2), B['x'] + 40, S.IN_STUD_Y, S.BAR_TOP - M8['t'], S.BAR_TOP + 1, M8['b'] + 2 * S.CLR), 's')
-            bo(bar, cylz(B['x'], S.IN_STUD_Y, BZ0 - 1, S.BAR_TOP + 1, 8.0), 's')
+            bar = box(B['x'] - B['w'] / 2, B['y0'], BZ0, B['x'] + B['w'] / 2, B['y1'], S.BAR_TOP)      # plain cut + drilled flat bar
+            bo(bar, cylz(B['x'], S.IN_STUD_Y, BZ0 - 1, S.BAR_TOP + 1, 8.5), 's')
             pads = []
             for a in ami:
-                bo(bar, cylz(a['x_in'], a['y'], BZ0 - 1, S.BAR_TOP + 1, 5.0), 's')
-                p = pad_box(a, BZ0, S.BAR_TOP)    # ring-lug inset machined in the pad (bus bar design B style)
-                bo(p, box(min(a['x_out'], a['x_out'] + a['sgn'] * 40), a['y'] - (LUG['b'] / 2 + S.CLR), S.BAR_TOP - LUG['t'],
-                          max(a['x_out'], a['x_out'] + a['sgn'] * 40), a['y'] + (LUG['b'] / 2 + S.CLR), S.BAR_TOP + 1), 's')
-                bo(p, cylz(a['x_out'], a['y'], S.BAR_TOP - LUG['t'] - 0.01, S.BAR_TOP + 1, LUG['b'] + 2 * S.CLR), 's')
-                bo(p, cylz(a['x_out'], a['y'], BZ0 - 1, S.BAR_TOP + 1, 5.0), 's')
-                bo(p, cylz(a['x_out'] + a['sgn'] * S.PAD['screw'], a['y'], BZ0 - 1, BZ0 + 3.5, 3.3), 's')     # M4 tapped, blind
+                bo(bar, cylz(a['x_in'], a['y'], BZ0 - 1, S.BAR_TOP + 1, 5.5), 's')
+                p = pad_box(a, PZ0, S.BAR_TOP)    # plain cut piece of 3 x 15 stock, one 5.5 hole
+                bo(p, cylz(a['x_out'], a['y'], PZ0 - 1, S.BAR_TOP + 1, 5.5), 's')
                 pads.append(p)
-            for y in S.BAR_SCREW_Y:
-                bo(bar, cylz(B['x'], y, BZ0 - 1, BZ0 + 4.5, 3.3), 's')
-            comp(pre + 'Bar_Power_%s_25x6' % BM['name'], bar, AP_BAR, MAT_BAR, sh)
-            comp(pre + 'Pad_Out_%s' % BM['name'], pads, AP_BAR, MAT_BAR, sh)
-            stud_top = S.BAR_TOP + S.AMI['ear_t'] + S.M5_NUT['h'] + 1.5
-            studs = [cylz(a['x_in'], a['y'], BZ0, stud_top, 5.0) for a in ami] + [cylz(a['x_out'], a['y'], BZ0, stud_top, 5.0) for a in ami]
-            studs.append(cylz(B['x'], S.IN_STUD_Y, BZ0, S.BAR_TOP + 1.6 + S.M8_NUT['h'] + 2.5, 8.0))
-            nuts = [hexz(x, a['y'], S.BAR_TOP + S.AMI['ear_t'], S.BAR_TOP + S.AMI['ear_t'] + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami for x in (a['x_in'], a['x_out'])]
-            nuts.append(hexz(B['x'], S.IN_STUD_Y, S.BAR_TOP + 1.6, S.BAR_TOP + 1.6 + S.M8_NUT['h'], S.M8_NUT['af']))
-            comp(pre + 'Stud_M5_M8_A2', studs, AP['al'], MAT['ss'], sh)
+            comp(pre + 'Bar_Power_%s_25x6p35' % BM['name'], bar, AP_BAR, MAT_BAR, sh)
+            comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pads, AP_BAR, MAT_BAR, sh)
+            z_ear = S.BAR_TOP + S.AMI['ear_t']
+            studs = [bolt_up(a['x_in'], a['y'], BZ0, 5, 16.0) for a in ami] + [bolt_up(a['x_out'], a['y'], PZ0, 5, 16.0) for a in ami]
+            studs.append(bolt_up(B['x'], S.IN_STUD_Y, BZ0, 8, 20.0))
+            nuts = [hexz(a['x_in'], a['y'], z_ear, z_ear + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami]
+            for a in ami:
+                zn = z_ear + (LUG['t'] if a['amps'] else 0.0)
+                nuts.append(hexz(a['x_out'], a['y'], zn, zn + S.M5_NUT['h'], S.M5_NUT['af']))
+            nuts.append(hexz(B['x'], S.IN_STUD_Y, S.BAR_TOP + M8['t'], S.BAR_TOP + M8['t'] + S.M8_NUT['h'], S.M8_NUT['af']))
+            comp(pre + 'Bolt_M5x16_M8x20_ISO4017_A2', studs, AP['al'], MAT['ss'], sh)
             comp(pre + 'Nut_Keps_M5_M8_A2', nuts, AP['al'], MAT['ss'], sh)
-            for a in ami:                         # Klauke 2R5 output lugs in the insets, wire down through the deck
+            for a in ami:                         # Klauke 2R5 output lugs on top of the fuse ear, wire down through the deck
                 if a['amps'] is None:
                     continue
-                t, e = ring_lug(a['x_out'], a['y'], S.BAR_TOP - LUG['t'], LUG['b'], 5.5, LUG['t'], LUG['d4'], (a['sgn'], 'x'), LUG['l'] - LUG['tip'])
+                t, e = ring_lug(a['x_out'], a['y'], z_ear, LUG['b'], 5.5, LUG['t'], LUG['d4'], (a['sgn'], 'x'), LUG['l'] - LUG['tip'])
                 lugs.append(t)
                 xh = a['x_out'] + a['sgn'] * HOLE_OFF
                 w_ = cyl(e, (xh, a['y'], e[2]), WIRE_D)
                 bo(w_, cylz(xh, a['y'], S.DECK_Z0 - 8, e[2], WIRE_D), 'u')
                 bo(w_, tb.createSphere(P(xh, a['y'], e[2]), WIRE_D / 20.0), 'u')
                 wires.append(w_)
-            t, e = ring_lug(B['x'], S.IN_STUD_Y, S.BAR_TOP - M8['t'], M8['b'], 8.4, M8['t'], M8['d4'], (1, 'x'), M8['l'] - M8['tip'], barrel=19.0)
-            lugs.append(t)                        # 1/0 input lug (Klauke 6R8) in the bar inset
+            t, e = ring_lug(B['x'], S.IN_STUD_Y, S.BAR_TOP, M8['b'], 8.4, M8['t'], M8['d4'], (1, 'x'), M8['l'] - M8['tip'], barrel=19.0)
+            lugs.append(t)                        # 1/0 input lug (Klauke 6R8) on top of the bar
             comp(pre + 'Cable_1-0_input', cyl(e, (X1 + 25, S.IN_STUD_Y, e[2]), 13.0), AP['black'], None, sh)
             comp(pre + 'Grommet_1-0', bo(cyl((X1 - W - 2, S.IN_STUD_Y, gz), (X1 + 2, S.IN_STUD_Y, gz), S.IN_GROMMET['d']),
                                          cyl((X1 - W - 3, S.IN_STUD_Y, gz), (X1 + 3, S.IN_STUD_Y, gz), 13.0), 's'), AP['black'], None, sh)
@@ -457,20 +463,23 @@ def build(out_dir):
             for col, (cx, fuses) in S.MINI_COLS.items():
                 y1 = strip_y1(len(fuses))
                 yh = y1 - SF['hole_from_end']
-                st = box(cx - 4, S.MINI_Y0 - 6, 40.0, cx + 4, y1, 44.0)
-                bo(st, cylz(cx, yh, 39.0, 43.0, SF['tap']), 's')                     # M5 tapped, blind, from below
+                ST = S.STRIP
+                zs0 = ST['z1'] - ST['t']
+                st = box(cx - ST['w'] / 2, S.MINI_Y0 - 6, zs0, cx + ST['w'] / 2, y1, ST['z1'])      # plain cut 10 x 3 strip
+                bo(st, cylz(cx, yh, zs0 - 1, ST['z1'] + 1, 5.5), 's')
                 strips.append(st)
-                # feed lug (Klauke 2R5) screwed to the strip underside, barrel to the rear, wire drops into the cable bay
-                t, e = ring_lug(cx, yh, 40.0 - LUG['t'], LUG['b'], 5.5, LUG['t'], LUG['d4'], (1, 'y'), LUG['l'] - LUG['tip'], down=True)
+                # feed lug (Klauke 2R5) under the strip, barrel to the rear, wire drops into the cable bay
+                t, e = ring_lug(cx, yh, zs0 - LUG['t'], LUG['b'], 5.5, LUG['t'], LUG['d4'], (1, 'y'), LUG['l'] - LUG['tip'], down=True)
                 lugs.append(t)
                 w_ = cyl(e, (cx, e[1] + 4, e[2]), WIRE_D)
                 bo(w_, cylz(cx, e[1] + 4, S.DECK_Z0 - 10, e[2], WIRE_D), 'u')
                 bo(w_, tb.createSphere(P(cx, e[1] + 4, e[2]), WIRE_D / 20.0), 'u')
                 wires.append(w_)
-                zl = 40.0 - LUG['t']
-                fscrews.append(union_all([cylz(cx, yh, zl - 2.0, 43.0, 5.0), cylz(cx, yh, zl - 4.5, zl - 2.0, 9.5)]))
-            comp(pre + 'Strip_Logic_%s_8x4' % BM['name'], strips, AP_BAR, MAT_BAR, sh)
-            comp(pre + 'FeedScrew_M5x8_ISO7380', fscrews, AP['al'], MAT['ss'], sh)
+                zn = zs0 - LUG['t']               # M5 x 16 bolt down: head above the strip, nut under the lug
+                fscrews.append(union_all([hexz(cx, yh, ST['z1'], ST['z1'] + HD[5]['k'], HD[5]['af']), cylz(cx, yh, ST['z1'] - 16.0, ST['z1'], 5.0),
+                                          hexz(cx, yh, zn - S.M5_NUT['h'], zn, S.M5_NUT['af'])]))
+            comp(pre + 'Strip_Logic_%s_10x3' % BM['name'], strips, AP_BAR, MAT_BAR, sh)
+            comp(pre + 'FeedBolt_M5x16_ISO4017_nut', fscrews, AP['al'], MAT['ss'], sh)
             by_amp = {}
             for (col, nm, amps, cx, y) in mini:
                 if amps is not None:
@@ -512,16 +521,17 @@ def build(out_dir):
             cy = yi0 if sy < Dr / 2 else yi1
             bo(tray, bo(cylz(cx, cy, fl - 0.01, LZ, 14.0), box(xi0, yi0, 0, xi1, yi1, LZ), 'i'), 'u')
             bo(tray, cylz(sx, sy, LZ - IN3['depth'], LZ + 1, IN3['hole']), 's')
+        pz0 = bz1 - S.PAD['t']                          # pad (3 mm stock) top level with the bar top
         ped_y1 = ami_out + S.PAD['outer']
         nr = R['pedestal_ribs']
         for k_ in range(nr):
             x = Bb['x'] - Bb['w'] / 2 + 1.25 + k_ * (Bb['w'] - 2.5) / (nr - 1)
-            bo(tray, box(x - S.RIB / 2, Bb['y0'], fl - 0.01, x + S.RIB / 2, ped_y1, bz0), 'u')
-        holds = [(Bb['x'], Bb['y0'] + 6.0), (Bb['x'], Bb['y1'] - 4.0), (Bb['x'], ami_out + S.PAD['screw'])]
-        for (px, py) in holds:                          # hold-down bosses: M4 from below, brass limiter, into the metal
-            bo(tray, cylz(px, py, fl - 0.01, bz0, 11.0), 'u')
-            bo(tray, cylz(px, py, -1, bz0 + 1, L4['od'] + 2 * S.CLR), 's')
-            lims.append(bo(cylz(px, py, bz0 - L4['l'], bz0, L4['od']), cylz(px, py, bz0 - L4['l'] - 1, bz0 + 1, L4['id']), 's'))
+            bo(tray, box(x - S.RIB / 2, Bb['y0'], fl - 0.01, x + S.RIB / 2, Bb['y1'], bz0), 'u')
+            bo(tray, box(x - S.RIB / 2, ami_out - S.PAD['inner'], fl - 0.01, x + S.RIB / 2, ped_y1, pz0), 'u')
+        rb_bolts = [(Bb['x'], R['in_stud_y'], 6, bz0), (Bb['x'], ami_in, 5, bz0), (Bb['x'], ami_out, 5, pz0)]
+        for (px, py, m, zu) in rb_bolts:                # bolt bosses: hex head captured, bolt up through the copper
+            bo(tray, cylz(px, py, fl - 0.01, zu, HD[m]['af'] + 6.0), 'u')
+            bo(tray, head_pocket(px, py, zu, m), 's')
         LM = R['lim_m6']
         for x in hxs:                                   # relay flange bolts: M6 through the flange + a brass limiter into the trunk floor
             bo(tray, cylz(x, fy, -1, fl + 1, LM['od'] + 2 * S.CLR), 's')
@@ -568,18 +578,13 @@ def build(out_dir):
         bo(rel, box(gcoil[0] - 5.0, ty - H_['plug_to'], tz0, gcoil[0] + 5.0, ty + 0.01, tz0 + 9.0), 'u')    # Superseal 1.5 2-pole plug
         comp(pre + 'Relay_TE_HCR150_1416010-1', rel, AP['black'], MAT['abs'], sh)
         # ---- bar + pad + AMI 40 + studs, nuts
-        bar = box(Bb['x'] - Bb['w'] / 2, Bb['y0'], bz0, Bb['x'] + Bb['w'] / 2, Bb['y1'], bz1)
-        bo(bar, cylz(Bb['x'], R['in_stud_y'], bz0 - 1, bz1 + 1, 6.0), 's')
-        bo(bar, cylz(Bb['x'], ami_in, bz0 - 1, bz1 + 1, 5.0), 's')
-        for (px, py) in holds[:2]:
-            bo(bar, cylz(px, py, bz0 - 1, bz0 + 3.5, 3.3), 's')
-        pad = box(Bb['x'] - S.PAD['w'] / 2, ami_out - S.PAD['inner'], bz0, Bb['x'] + S.PAD['w'] / 2, ped_y1, bz1)
-        bo(pad, cylz(Bb['x'], ami_out, bz0 - 1, bz1 + 1, 5.0), 's')
-        bo(pad, cylz(holds[2][0], holds[2][1], bz0 - 1, bz0 + 3.5, 3.3), 's')
-        comp(pre + 'Bar_Power_%s_25x6' % BM['name'], bar, AP_BAR, MAT_BAR, sh)
-        comp(pre + 'Pad_Out_%s' % BM['name'], pad, AP_BAR, MAT_BAR, sh)
-        comp(pre + 'HoldDown_M4x10_ISO7380', [union_all([cylz(px, py, bz0 - L4['l'] - 2.2, bz0 + 3.5, 4.0), cylz(px, py, bz0 - L4['l'] - 2.2, bz0 - L4['l'], 7.0)])
-                                              for (px, py) in holds], AP['al'], MAT['ss'], sh)
+        bar = box(Bb['x'] - Bb['w'] / 2, Bb['y0'], bz0, Bb['x'] + Bb['w'] / 2, Bb['y1'], bz1)       # plain cut + drilled
+        bo(bar, cylz(Bb['x'], R['in_stud_y'], bz0 - 1, bz1 + 1, 6.5), 's')
+        bo(bar, cylz(Bb['x'], ami_in, bz0 - 1, bz1 + 1, 5.5), 's')
+        pad = box(Bb['x'] - S.PAD['w'] / 2, ami_out - S.PAD['inner'], pz0, Bb['x'] + S.PAD['w'] / 2, ped_y1, bz1)
+        bo(pad, cylz(Bb['x'], ami_out, pz0 - 1, bz1 + 1, 5.5), 's')
+        comp(pre + 'Bar_Power_%s_25x6p35' % BM['name'], bar, AP_BAR, MAT_BAR, sh)
+        comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pad, AP_BAR, MAT_BAR, sh)
         fe = slot_y(Bb['x'], ami_in, ami_out, bz1, bz1 + S.AMI['ear_t'], S.AMI['ear_w'])
         for y in (ami_in, ami_out):
             bo(fe, cylz(Bb['x'], y, bz1 - 1, bz1 + 2, S.AMI['hole']), 's')
@@ -588,12 +593,11 @@ def build(out_dir):
         bo(fb, fe, 'u')
         comp(pre + 'Fuse_AMI_ltgreen', fb, AP['ltgreen'], MAT['abs'], sh)
         lug_z = bz1 + S.AMI['ear_t']
-        studs = [cylz(Bb['x'], y, bz0, lug_z + 2.0 + S.M5_NUT['h'] + 1.5, 5.0) for y in (ami_in, ami_out)]
-        studs.append(cylz(Bb['x'], R['in_stud_y'], bz0, bz1 + 2.0 + 5.2 + 2.5, 6.0))
+        studs = [bolt_up(px, py, zu, m, {5: 16.0, 6: 16.0}[m]) for (px, py, m, zu) in rb_bolts]
         nuts = [hexz(Bb['x'], ami_in, lug_z, lug_z + S.M5_NUT['h'], S.M5_NUT['af']),
                 hexz(Bb['x'], ami_out, lug_z + 2.0, lug_z + 2.0 + S.M5_NUT['h'], S.M5_NUT['af']),
                 hexz(Bb['x'], R['in_stud_y'], bz1 + 2.0, bz1 + 2.0 + 5.2, 10.0)]
-        comp(pre + 'Stud_M5_M6_A2', studs, AP['al'], MAT['ss'], sh)
+        comp(pre + 'Bolt_M5x16_M6x16_ISO4017_A2', studs, AP['al'], MAT['ss'], sh)
         comp(pre + 'Nut_Keps_M5_M6_A2', nuts, AP['al'], MAT['ss'], sh)
         comp(pre + 'Limiter_brass', lims, AP['brass'], MAT['brass'], sh)
         # ---- lugs + wire stubs: battery feed in (end wall), AMI out -> relay 3, relay 5 -> pump (front wall)
@@ -674,7 +678,7 @@ def build(out_dir):
     report['bar_metal'] = S.BAR_METAL
     coll = adsk.core.ObjectCollection.create()
     for o in root.occurrences:
-        if not short(o.component.name).startswith(('Wire_', 'Cable_', 'Grommet_', 'LidScrew', 'Stud_', 'Nut_', 'Lug_', 'HoldDown_', 'FeedScrew_')):
+        if not short(o.component.name).startswith(('Wire_', 'Cable_', 'Grommet_', 'LidScrew', 'Bolt_', 'Nut_', 'Lug_', 'FeedBolt_')):
             coll.add(o)
     try:
         ir = design.analyzeInterference(design.createInterferenceInput(coll))
@@ -748,7 +752,7 @@ def build(out_dir):
             report['renamed_document_to'] = DOC
     except Exception as ex:   # report, do not hide
         report['rename_error'] = str(ex)
-    doc.save('rev 3: two boxes + battery relay block (Claude Code 2026-10-14)')
+    doc.save('rev 3.1: tinned copper flat-bar stock, bolts from below (Claude Code 2026-10-14)')
     with open(os.path.join(out_dir, 'fusebox_report.json'), 'w') as f:
         json.dump(report, f, indent=1)
     return report
