@@ -1,4 +1,4 @@
-"""Self-test for the bulkhead pin-sharing and contact-fit gates.
+"""Self-test for the bulkhead pin-sharing, contact-fit, mating and wire-spacing gates.
 
     python docs/harness/test_gates.py      exit 0 = every case behaved as expected
 
@@ -185,6 +185,33 @@ def _(d):
     for loom, half in (("B-cabin", "bh_b_fw"), ("B-engine", "bh_b_eng")):
         designate(d, loom, half, "c1", "62")
         designate(d, loom, half, "c25", "97")
+
+
+@case("R86: a second wire drawn on top of an existing one (W1 overlap)", "audit_wire_spacing.py", 1)
+def _(d):
+    p, doc = load(d, "CabinPower")
+    w = copy.deepcopy(doc["wires"][0])
+    w["id"] += "_dup"
+    for k, lp in enumerate(w.get("layoutPoints", [])):
+        lp["id"] += "_dup%d" % k
+    doc["wires"].append(w)
+    save(p, doc)
+
+
+@case("R86: a wire shifted 6 units beside its neighbour (W1 too close)", "audit_wire_spacing.py", 1)
+def _(d):
+    p, doc = load(d, "CabinPower")
+    w = copy.deepcopy(next(x for x in doc["wires"] if len(x.get("layoutPoints", [])) >= 2))
+    w["id"] += "_near"
+    lps = w["layoutPoints"]
+    for k, lp in enumerate(lps):
+        lp["id"] += "_near%d" % k
+    a, b = lps[0]["schematicPosition"], lps[1]["schematicPosition"]
+    ax = "x" if a["x"] == b["x"] else "y"            # shift the first run sideways by 6
+    a[ax] += 6
+    b[ax] += 6
+    doc["wires"].append(w)
+    save(p, doc)
 
 
 def unit_cases():

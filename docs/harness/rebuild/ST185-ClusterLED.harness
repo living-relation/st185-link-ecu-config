@@ -158,7 +158,7 @@
       "partId": "dp_led",
       "anodeOnRight": false,
       "schematicPosition": {
-        "x": 450,
+        "x": 360,
         "y": 0
       },
       "layoutPosition": {
@@ -172,8 +172,8 @@
       "partId": "dp_led",
       "anodeOnRight": false,
       "schematicPosition": {
-        "x": 570,
-        "y": 0
+        "x": 300,
+        "y": -90
       },
       "layoutPosition": {
         "x": 1020,
@@ -186,8 +186,8 @@
       "partId": "dp_led",
       "anodeOnRight": false,
       "schematicPosition": {
-        "x": 510,
-        "y": 60
+        "x": 180,
+        "y": -90
       },
       "layoutPosition": {
         "x": 1020,
@@ -250,7 +250,30 @@
         "id": "d_hb",
         "handle": "Left"
       },
-      "partId": "m16_20_2"
+      "partId": "m16_20_2",
+      "layoutPoints": [
+        {
+          "id": "w_hb_a_lp1",
+          "schematicPosition": {
+            "x": 150,
+            "y": 120
+          }
+        },
+        {
+          "id": "w_hb_a_lp2",
+          "schematicPosition": {
+            "x": 330,
+            "y": 120
+          }
+        },
+        {
+          "id": "w_hb_a_lp3",
+          "schematicPosition": {
+            "x": 330,
+            "y": 0
+          }
+        }
+      ]
     },
     {
       "id": "w_hb_k",
@@ -263,7 +286,16 @@
         "id": "sp_led_gnd",
         "handle": "Splice"
       },
-      "partId": "m16_20_0"
+      "partId": "m16_20_0",
+      "layoutPoints": [
+        {
+          "id": "w_hb_k_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 0
+          }
+        }
+      ]
     },
     {
       "id": "w_tl_a",
@@ -276,7 +308,30 @@
         "id": "d_tl",
         "handle": "Left"
       },
-      "partId": "m16_20_5"
+      "partId": "m16_20_5",
+      "layoutPoints": [
+        {
+          "id": "w_tl_a_lp1",
+          "schematicPosition": {
+            "x": 150,
+            "y": 0
+          }
+        },
+        {
+          "id": "w_tl_a_lp2",
+          "schematicPosition": {
+            "x": 270,
+            "y": 0
+          }
+        },
+        {
+          "id": "w_tl_a_lp3",
+          "schematicPosition": {
+            "x": 270,
+            "y": -90
+          }
+        }
+      ]
     },
     {
       "id": "w_tl_k",
@@ -289,7 +344,23 @@
         "id": "sp_led_gnd",
         "handle": "Splice"
       },
-      "partId": "m16_20_0"
+      "partId": "m16_20_0",
+      "layoutPoints": [
+        {
+          "id": "w_tl_k_lp1",
+          "schematicPosition": {
+            "x": 330,
+            "y": -90
+          }
+        },
+        {
+          "id": "w_tl_k_lp2",
+          "schematicPosition": {
+            "x": 510,
+            "y": -90
+          }
+        }
+      ]
     },
     {
       "id": "w_tr_a",
@@ -302,7 +373,44 @@
         "id": "d_tr",
         "handle": "Left"
       },
-      "partId": "m16_20_5"
+      "partId": "m16_20_5",
+      "layoutPoints": [
+        {
+          "id": "w_tr_a_lp1",
+          "schematicPosition": {
+            "x": 150,
+            "y": 60
+          }
+        },
+        {
+          "id": "w_tr_a_lp2",
+          "schematicPosition": {
+            "x": 210,
+            "y": 60
+          }
+        },
+        {
+          "id": "w_tr_a_lp3",
+          "schematicPosition": {
+            "x": 210,
+            "y": -30
+          }
+        },
+        {
+          "id": "w_tr_a_lp4",
+          "schematicPosition": {
+            "x": 150,
+            "y": -30
+          }
+        },
+        {
+          "id": "w_tr_a_lp5",
+          "schematicPosition": {
+            "x": 150,
+            "y": -90
+          }
+        }
+      ]
     },
     {
       "id": "w_tr_k",
@@ -315,7 +423,30 @@
         "id": "sp_led_gnd",
         "handle": "Splice"
       },
-      "partId": "m16_20_0"
+      "partId": "m16_20_0",
+      "layoutPoints": [
+        {
+          "id": "w_tr_k_lp1",
+          "schematicPosition": {
+            "x": 210,
+            "y": -90
+          }
+        },
+        {
+          "id": "w_tr_k_lp2",
+          "schematicPosition": {
+            "x": 210,
+            "y": -60
+          }
+        },
+        {
+          "id": "w_tr_k_lp3",
+          "schematicPosition": {
+            "x": 480,
+            "y": -60
+          }
+        }
+      ]
     },
     {
       "id": "w_led_gnd_out",
@@ -328,7 +459,16 @@
         "id": "t_led_gnd",
         "handle": "Terminal"
       },
-      "partId": "m16_20_0"
+      "partId": "m16_20_0",
+      "layoutPoints": [
+        {
+          "id": "w_led_gnd_out_lp1",
+          "schematicPosition": {
+            "x": 630,
+            "y": 0
+          }
+        }
+      ]
     },
     {
       "id": "w_pk_a",
@@ -341,7 +481,23 @@
         "id": "d_pk",
         "handle": "Left"
       },
-      "partId": "m16_20_2"
+      "partId": "m16_20_2",
+      "layoutPoints": [
+        {
+          "id": "w_pk_a_lp1",
+          "schematicPosition": {
+            "x": 420,
+            "y": 360
+          }
+        },
+        {
+          "id": "w_pk_a_lp2",
+          "schematicPosition": {
+            "x": 420,
+            "y": 180
+          }
+        }
+      ]
     },
     {
       "id": "w_pk_k",
@@ -355,7 +511,37 @@
         "handle": "Terminal"
       },
       "stripeColor": "Green",
-      "partId": "m16_20_25"
+      "partId": "m16_20_25",
+      "layoutPoints": [
+        {
+          "id": "w_pk_k_lp1",
+          "schematicPosition": {
+            "x": 480,
+            "y": 180
+          }
+        },
+        {
+          "id": "w_pk_k_lp2",
+          "schematicPosition": {
+            "x": 480,
+            "y": 150
+          }
+        },
+        {
+          "id": "w_pk_k_lp3",
+          "schematicPosition": {
+            "x": 150,
+            "y": 150
+          }
+        },
+        {
+          "id": "w_pk_k_lp4",
+          "schematicPosition": {
+            "x": 150,
+            "y": 180
+          }
+        }
+      ]
     },
     {
       "id": "w_chg_a",
@@ -369,7 +555,23 @@
         "handle": "Left"
       },
       "stripeColor": "Orange",
-      "partId": "m16_20_03"
+      "partId": "m16_20_03",
+      "layoutPoints": [
+        {
+          "id": "w_chg_a_lp1",
+          "schematicPosition": {
+            "x": 540,
+            "y": 300
+          }
+        },
+        {
+          "id": "w_chg_a_lp2",
+          "schematicPosition": {
+            "x": 540,
+            "y": 180
+          }
+        }
+      ]
     },
     {
       "id": "w_chg_k",
@@ -382,7 +584,30 @@
         "id": "fl_cl_c12_c8",
         "handle": "Terminal"
       },
-      "partId": "m16_20_4"
+      "partId": "m16_20_4",
+      "layoutPoints": [
+        {
+          "id": "w_chg_k_lp1",
+          "schematicPosition": {
+            "x": 600,
+            "y": 180
+          }
+        },
+        {
+          "id": "w_chg_k_lp2",
+          "schematicPosition": {
+            "x": 600,
+            "y": 240
+          }
+        },
+        {
+          "id": "w_chg_k_lp3",
+          "schematicPosition": {
+            "x": 150,
+            "y": 240
+          }
+        }
+      ]
     },
     {
       "id": "w_oil_a",
@@ -395,7 +620,30 @@
         "id": "d_oil",
         "handle": "Left"
       },
-      "partId": "m16_20_2"
+      "partId": "m16_20_2",
+      "layoutPoints": [
+        {
+          "id": "w_oil_a_lp1",
+          "schematicPosition": {
+            "x": 510,
+            "y": 120
+          }
+        },
+        {
+          "id": "w_oil_a_lp2",
+          "schematicPosition": {
+            "x": 420,
+            "y": 120
+          }
+        },
+        {
+          "id": "w_oil_a_lp3",
+          "schematicPosition": {
+            "x": 420,
+            "y": 90
+          }
+        }
+      ]
     },
     {
       "id": "w_oil_k",
@@ -408,7 +656,30 @@
         "id": "br_w_oil_k",
         "handle": "Terminal"
       },
-      "partId": "m16_20_9"
+      "partId": "m16_20_9",
+      "layoutPoints": [
+        {
+          "id": "w_oil_k_lp1",
+          "schematicPosition": {
+            "x": 480,
+            "y": 90
+          }
+        },
+        {
+          "id": "w_oil_k_lp2",
+          "schematicPosition": {
+            "x": 690,
+            "y": 90
+          }
+        },
+        {
+          "id": "w_oil_k_lp3",
+          "schematicPosition": {
+            "x": 690,
+            "y": 150
+          }
+        }
+      ]
     },
     {
       "id": "w_ig_tap",
@@ -422,7 +693,23 @@
         "id": "sp_led_12v",
         "handle": "Splice"
       },
-      "partId": "m16_20_03"
+      "partId": "m16_20_03",
+      "layoutPoints": [
+        {
+          "id": "w_ig_tap_lp1",
+          "schematicPosition": {
+            "x": 150,
+            "y": 300
+          }
+        },
+        {
+          "id": "w_ig_tap_lp2",
+          "schematicPosition": {
+            "x": 480,
+            "y": 300
+          }
+        }
+      ]
     }
   ],
   "bundles": [

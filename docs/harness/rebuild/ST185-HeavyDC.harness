@@ -570,7 +570,37 @@
         "id": "kill_sw",
         "handle": "c1"
       },
-      "partId": "wp_1_0_red"
+      "partId": "wp_1_0_red",
+      "layoutPoints": [
+        {
+          "id": "w_trunk_pos_lp1",
+          "schematicPosition": {
+            "x": -30,
+            "y": 0
+          }
+        },
+        {
+          "id": "w_trunk_pos_lp2",
+          "schematicPosition": {
+            "x": -90,
+            "y": 0
+          }
+        },
+        {
+          "id": "w_trunk_pos_lp3",
+          "schematicPosition": {
+            "x": -90,
+            "y": 390
+          }
+        },
+        {
+          "id": "w_trunk_pos_lp4",
+          "schematicPosition": {
+            "x": -30,
+            "y": 390
+          }
+        }
+      ]
     },
     {
       "id": "w_ks_h1",
@@ -583,7 +613,58 @@
         "id": "br_h1_batt_pos",
         "handle": "Terminal"
       },
-      "partId": "wp_1_0_red"
+      "partId": "wp_1_0_red",
+      "layoutPoints": [
+        {
+          "id": "w_ks_h1_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 420
+          }
+        },
+        {
+          "id": "w_ks_h1_lp2",
+          "schematicPosition": {
+            "x": 450,
+            "y": 420
+          }
+        },
+        {
+          "id": "w_ks_h1_lp3",
+          "schematicPosition": {
+            "x": 450,
+            "y": 300
+          }
+        },
+        {
+          "id": "w_ks_h1_lp4",
+          "schematicPosition": {
+            "x": 210,
+            "y": 300
+          }
+        },
+        {
+          "id": "w_ks_h1_lp5",
+          "schematicPosition": {
+            "x": 210,
+            "y": 180
+          }
+        },
+        {
+          "id": "w_ks_h1_lp6",
+          "schematicPosition": {
+            "x": 150,
+            "y": 180
+          }
+        },
+        {
+          "id": "w_ks_h1_lp7",
+          "schematicPosition": {
+            "x": 150,
+            "y": 150
+          }
+        }
+      ]
     },
     {
       "id": "w_trunk_neg",
@@ -596,7 +677,37 @@
         "id": "br_h2_batt_neg",
         "handle": "Terminal"
       },
-      "partId": "wp_1_0_blk"
+      "partId": "wp_1_0_blk",
+      "layoutPoints": [
+        {
+          "id": "w_trunk_neg_lp1",
+          "schematicPosition": {
+            "x": 270,
+            "y": 90
+          }
+        },
+        {
+          "id": "w_trunk_neg_lp2",
+          "schematicPosition": {
+            "x": 270,
+            "y": 210
+          }
+        },
+        {
+          "id": "w_trunk_neg_lp3",
+          "schematicPosition": {
+            "x": 150,
+            "y": 210
+          }
+        },
+        {
+          "id": "w_trunk_neg_lp4",
+          "schematicPosition": {
+            "x": 150,
+            "y": 240
+          }
+        }
+      ]
     },
     {
       "id": "w_h3_radlok_pos",
@@ -609,7 +720,30 @@
         "id": "rl_pos_fw",
         "handle": "c1"
       },
-      "partId": "wp_1_0_red"
+      "partId": "wp_1_0_red",
+      "layoutPoints": [
+        {
+          "id": "w_h3_radlok_pos_lp1",
+          "schematicPosition": {
+            "x": 480,
+            "y": 0
+          }
+        },
+        {
+          "id": "w_h3_radlok_pos_lp2",
+          "schematicPosition": {
+            "x": 630,
+            "y": 0
+          }
+        },
+        {
+          "id": "w_h3_radlok_pos_lp3",
+          "schematicPosition": {
+            "x": 630,
+            "y": 30
+          }
+        }
+      ]
     },
     {
       "id": "w_h6a_radlok_neg",
@@ -622,7 +756,30 @@
         "id": "rl_neg_fw",
         "handle": "c1"
       },
-      "partId": "wp_1_0_blk"
+      "partId": "wp_1_0_blk",
+      "layoutPoints": [
+        {
+          "id": "w_h6a_radlok_neg_lp1",
+          "schematicPosition": {
+            "x": 480,
+            "y": 240
+          }
+        },
+        {
+          "id": "w_h6a_radlok_neg_lp2",
+          "schematicPosition": {
+            "x": 630,
+            "y": 240
+          }
+        },
+        {
+          "id": "w_h6a_radlok_neg_lp3",
+          "schematicPosition": {
+            "x": 630,
+            "y": 270
+          }
+        }
+      ]
     },
     {
       "id": "w_rl_pos",
@@ -635,7 +792,23 @@
         "id": "rl_pos_eng",
         "handle": "c1"
       },
-      "partId": "wp_1_0_red"
+      "partId": "wp_1_0_red",
+      "layoutPoints": [
+        {
+          "id": "w_rl_pos_lp1",
+          "schematicPosition": {
+            "x": 630,
+            "y": 30
+          }
+        },
+        {
+          "id": "w_rl_pos_lp2",
+          "schematicPosition": {
+            "x": 630,
+            "y": 150
+          }
+        }
+      ]
     },
     {
       "id": "w_rlp_str",
@@ -648,7 +821,30 @@
         "id": "t_starter_b",
         "handle": "Terminal"
       },
-      "partId": "wp_1_0_red"
+      "partId": "wp_1_0_red",
+      "layoutPoints": [
+        {
+          "id": "w_rlp_str_lp1",
+          "schematicPosition": {
+            "x": 810,
+            "y": 150
+          }
+        },
+        {
+          "id": "w_rlp_str_lp2",
+          "schematicPosition": {
+            "x": 960,
+            "y": 150
+          }
+        },
+        {
+          "id": "w_rlp_str_lp3",
+          "schematicPosition": {
+            "x": 960,
+            "y": 480
+          }
+        }
+      ]
     },
     {
       "id": "w_alt",
@@ -661,7 +857,23 @@
         "id": "t_starter_b_2",
         "handle": "Terminal"
       },
-      "partId": "wp_2_red"
+      "partId": "wp_2_red",
+      "layoutPoints": [
+        {
+          "id": "w_alt_lp1",
+          "schematicPosition": {
+            "x": 960,
+            "y": 750
+          }
+        },
+        {
+          "id": "w_alt_lp2",
+          "schematicPosition": {
+            "x": 960,
+            "y": 570
+          }
+        }
+      ]
     },
     {
       "id": "w_jump",
@@ -674,7 +886,30 @@
         "id": "jump_pos",
         "handle": "c1"
       },
-      "partId": "wp_2_red"
+      "partId": "wp_2_red",
+      "layoutPoints": [
+        {
+          "id": "w_jump_lp1",
+          "schematicPosition": {
+            "x": 1380,
+            "y": 660
+          }
+        },
+        {
+          "id": "w_jump_lp2",
+          "schematicPosition": {
+            "x": 1590,
+            "y": 660
+          }
+        },
+        {
+          "id": "w_jump_lp3",
+          "schematicPosition": {
+            "x": 1590,
+            "y": 870
+          }
+        }
+      ]
     },
     {
       "id": "w_rln",
@@ -687,7 +922,23 @@
         "id": "rl_neg_eng",
         "handle": "c1"
       },
-      "partId": "wp_1_0_blk"
+      "partId": "wp_1_0_blk",
+      "layoutPoints": [
+        {
+          "id": "w_rln_lp1",
+          "schematicPosition": {
+            "x": 630,
+            "y": 270
+          }
+        },
+        {
+          "id": "w_rln_lp2",
+          "schematicPosition": {
+            "x": 630,
+            "y": 390
+          }
+        }
+      ]
     },
     {
       "id": "w_rln_blk",
@@ -700,7 +951,37 @@
         "id": "t_eng_block",
         "handle": "Terminal"
       },
-      "partId": "wp_1_0_blk"
+      "partId": "wp_1_0_blk",
+      "layoutPoints": [
+        {
+          "id": "w_rln_blk_lp1",
+          "schematicPosition": {
+            "x": 810,
+            "y": 390
+          }
+        },
+        {
+          "id": "w_rln_blk_lp2",
+          "schematicPosition": {
+            "x": 810,
+            "y": 930
+          }
+        },
+        {
+          "id": "w_rln_blk_lp3",
+          "schematicPosition": {
+            "x": 960,
+            "y": 930
+          }
+        },
+        {
+          "id": "w_rln_blk_lp4",
+          "schematicPosition": {
+            "x": 960,
+            "y": 960
+          }
+        }
+      ]
     },
     {
       "id": "w_alt_s_h",
@@ -713,7 +994,30 @@
         "handle": "Terminal"
       },
       "color": "White",
-      "partId": "m16_20_9"
+      "partId": "m16_20_9",
+      "layoutPoints": [
+        {
+          "id": "w_alt_s_h_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 1110
+          }
+        },
+        {
+          "id": "w_alt_s_h_lp2",
+          "schematicPosition": {
+            "x": 450,
+            "y": 1110
+          }
+        },
+        {
+          "id": "w_alt_s_h_lp3",
+          "schematicPosition": {
+            "x": 450,
+            "y": 1080
+          }
+        }
+      ]
     },
     {
       "id": "w_alt_l_h",
@@ -726,7 +1030,23 @@
         "handle": "Terminal"
       },
       "color": "Yellow",
-      "partId": "m16_20_4"
+      "partId": "m16_20_4",
+      "layoutPoints": [
+        {
+          "id": "w_alt_l_h_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 1140
+          }
+        },
+        {
+          "id": "w_alt_l_h_lp2",
+          "schematicPosition": {
+            "x": 450,
+            "y": 1140
+          }
+        }
+      ]
     },
     {
       "id": "w_alt_ig_h",
@@ -739,7 +1059,30 @@
         "handle": "c3"
       },
       "color": "Red",
-      "partId": "m16_16_2"
+      "partId": "m16_16_2",
+      "layoutPoints": [
+        {
+          "id": "w_alt_ig_h_lp1",
+          "schematicPosition": {
+            "x": 450,
+            "y": 1200
+          }
+        },
+        {
+          "id": "w_alt_ig_h_lp2",
+          "schematicPosition": {
+            "x": 390,
+            "y": 1200
+          }
+        },
+        {
+          "id": "w_alt_ig_h_lp3",
+          "schematicPosition": {
+            "x": 390,
+            "y": 1170
+          }
+        }
+      ]
     },
     {
       "id": "w_ig_ks_in",
@@ -752,7 +1095,23 @@
         "id": "kill_sw",
         "handle": "c3"
       },
-      "partId": "m16_16_2"
+      "partId": "m16_16_2",
+      "layoutPoints": [
+        {
+          "id": "w_ig_ks_in_lp1",
+          "schematicPosition": {
+            "x": -30,
+            "y": 660
+          }
+        },
+        {
+          "id": "w_ig_ks_in_lp2",
+          "schematicPosition": {
+            "x": -30,
+            "y": 450
+          }
+        }
+      ]
     },
     {
       "id": "w_ig_ks_out",
@@ -765,7 +1124,23 @@
         "id": "br_ig_ks_out",
         "handle": "Terminal"
       },
-      "partId": "m16_16_2"
+      "partId": "m16_16_2",
+      "layoutPoints": [
+        {
+          "id": "w_ig_ks_out_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 480
+          }
+        },
+        {
+          "id": "w_ig_ks_out_lp2",
+          "schematicPosition": {
+            "x": 390,
+            "y": 720
+          }
+        }
+      ]
     },
     {
       "id": "w_fp_feed",
@@ -778,7 +1153,44 @@
         "id": "fb_batt",
         "handle": "in"
       },
-      "partId": "m16_10_2"
+      "partId": "m16_10_2",
+      "layoutPoints": [
+        {
+          "id": "w_fp_feed_lp1",
+          "schematicPosition": {
+            "x": -30,
+            "y": 420
+          }
+        },
+        {
+          "id": "w_fp_feed_lp2",
+          "schematicPosition": {
+            "x": -90,
+            "y": 420
+          }
+        },
+        {
+          "id": "w_fp_feed_lp3",
+          "schematicPosition": {
+            "x": -90,
+            "y": 1380
+          }
+        },
+        {
+          "id": "w_fp_feed_lp4",
+          "schematicPosition": {
+            "x": -30,
+            "y": 1380
+          }
+        },
+        {
+          "id": "w_fp_feed_lp5",
+          "schematicPosition": {
+            "x": -30,
+            "y": 1410
+          }
+        }
+      ]
     },
     {
       "id": "w_fp_30",
@@ -791,7 +1203,30 @@
         "id": "k_fp",
         "handle": "c1"
       },
-      "partId": "m16_10_2"
+      "partId": "m16_10_2",
+      "layoutPoints": [
+        {
+          "id": "w_fp_30_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 1440
+          }
+        },
+        {
+          "id": "w_fp_30_lp2",
+          "schematicPosition": {
+            "x": 450,
+            "y": 1440
+          }
+        },
+        {
+          "id": "w_fp_30_lp3",
+          "schematicPosition": {
+            "x": 450,
+            "y": 1410
+          }
+        }
+      ]
     },
     {
       "id": "w_fp85_h",
@@ -804,7 +1239,30 @@
         "id": "k_fp",
         "handle": "c2"
       },
-      "partId": "m16_18_9"
+      "partId": "m16_18_9",
+      "layoutPoints": [
+        {
+          "id": "w_fp85_h_lp1",
+          "schematicPosition": {
+            "x": 960,
+            "y": 1380
+          }
+        },
+        {
+          "id": "w_fp85_h_lp2",
+          "schematicPosition": {
+            "x": 870,
+            "y": 1380
+          }
+        },
+        {
+          "id": "w_fp85_h_lp3",
+          "schematicPosition": {
+            "x": 870,
+            "y": 1440
+          }
+        }
+      ]
     },
     {
       "id": "w_fp86_h",
@@ -817,7 +1275,30 @@
         "id": "k_fp",
         "handle": "c3"
       },
-      "partId": "m16_18_2"
+      "partId": "m16_18_2",
+      "layoutPoints": [
+        {
+          "id": "w_fp86_h_lp1",
+          "schematicPosition": {
+            "x": 960,
+            "y": 1440
+          }
+        },
+        {
+          "id": "w_fp86_h_lp2",
+          "schematicPosition": {
+            "x": 960,
+            "y": 1470
+          }
+        },
+        {
+          "id": "w_fp86_h_lp3",
+          "schematicPosition": {
+            "x": 870,
+            "y": 1470
+          }
+        }
+      ]
     },
     {
       "id": "w_fp87_h",
@@ -830,7 +1311,23 @@
         "id": "br_fp_pump",
         "handle": "Terminal"
       },
-      "partId": "m16_10_2"
+      "partId": "m16_10_2",
+      "layoutPoints": [
+        {
+          "id": "w_fp87_h_lp1",
+          "schematicPosition": {
+            "x": 870,
+            "y": 1500
+          }
+        },
+        {
+          "id": "w_fp87_h_lp2",
+          "schematicPosition": {
+            "x": 960,
+            "y": 1500
+          }
+        }
+      ]
     }
   ],
   "branchPoints": [

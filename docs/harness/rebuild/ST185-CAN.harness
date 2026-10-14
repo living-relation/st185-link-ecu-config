@@ -413,8 +413,8 @@
     {
       "id": "sp_canh",
       "schematicPosition": {
-        "x": 510,
-        "y": 120
+        "x": 360,
+        "y": -120
       },
       "layoutPosition": {
         "x": 1080,
@@ -426,8 +426,8 @@
     {
       "id": "sp_canl",
       "schematicPosition": {
-        "x": 450,
-        "y": 120
+        "x": 210,
+        "y": -120
       },
       "layoutPosition": {
         "x": 1080,
@@ -472,7 +472,7 @@
       },
       "schematicPosition": {
         "x": 510,
-        "y": 180
+        "y": 150
       }
     },
     {
@@ -494,8 +494,8 @@
       "id": "r_term_ecu",
       "partId": "rp_120",
       "schematicPosition": {
-        "x": 510,
-        "y": 0
+        "x": 480,
+        "y": -90
       },
       "layoutPosition": {
         "x": 1320,
@@ -529,7 +529,23 @@
         "id": "sp_canh",
         "handle": "Splice"
       },
-      "partId": "m16_20_9"
+      "partId": "m16_20_9",
+      "layoutPoints": [
+        {
+          "id": "wc_term1_lp1",
+          "schematicPosition": {
+            "x": 450,
+            "y": -90
+          }
+        },
+        {
+          "id": "wc_term1_lp2",
+          "schematicPosition": {
+            "x": 420,
+            "y": -90
+          }
+        }
+      ]
     },
     {
       "id": "wc_term2",
@@ -542,7 +558,44 @@
         "id": "sp_canl",
         "handle": "Splice"
       },
-      "partId": "m16_20_5"
+      "partId": "m16_20_5",
+      "layoutPoints": [
+        {
+          "id": "wc_term2_lp1",
+          "schematicPosition": {
+            "x": 510,
+            "y": -90
+          }
+        },
+        {
+          "id": "wc_term2_lp2",
+          "schematicPosition": {
+            "x": 510,
+            "y": -120
+          }
+        },
+        {
+          "id": "wc_term2_lp3",
+          "schematicPosition": {
+            "x": 390,
+            "y": -120
+          }
+        },
+        {
+          "id": "wc_term2_lp4",
+          "schematicPosition": {
+            "x": 390,
+            "y": -150
+          }
+        },
+        {
+          "id": "wc_term2_lp5",
+          "schematicPosition": {
+            "x": 270,
+            "y": -150
+          }
+        }
+      ]
     },
     {
       "id": "wc_term3",
@@ -555,7 +608,44 @@
         "id": "sp_canh_lam",
         "handle": "Splice"
       },
-      "partId": "m16_20_9"
+      "partId": "m16_20_9",
+      "layoutPoints": [
+        {
+          "id": "wc_term3_lp1",
+          "schematicPosition": {
+            "x": 420,
+            "y": 0
+          }
+        },
+        {
+          "id": "wc_term3_lp2",
+          "schematicPosition": {
+            "x": 420,
+            "y": 30
+          }
+        },
+        {
+          "id": "wc_term3_lp3",
+          "schematicPosition": {
+            "x": 780,
+            "y": 30
+          }
+        },
+        {
+          "id": "wc_term3_lp4",
+          "schematicPosition": {
+            "x": 780,
+            "y": -30
+          }
+        },
+        {
+          "id": "wc_term3_lp5",
+          "schematicPosition": {
+            "x": 2430,
+            "y": -30
+          }
+        }
+      ]
     },
     {
       "id": "wc_term4",
@@ -568,7 +658,16 @@
         "id": "sp_canl_lam",
         "handle": "Splice"
       },
-      "partId": "m16_20_5"
+      "partId": "m16_20_5",
+      "layoutPoints": [
+        {
+          "id": "wc_term4_lp1",
+          "schematicPosition": {
+            "x": 480,
+            "y": 0
+          }
+        }
+      ]
     },
     {
       "id": "wc_h_lam_pin",
@@ -581,7 +680,30 @@
         "id": "lambda",
         "handle": "c4"
       },
-      "partId": "m16_20_9"
+      "partId": "m16_20_9",
+      "layoutPoints": [
+        {
+          "id": "wc_h_lam_pin_lp1",
+          "schematicPosition": {
+            "x": 2520,
+            "y": 60
+          }
+        },
+        {
+          "id": "wc_h_lam_pin_lp2",
+          "schematicPosition": {
+            "x": 2520,
+            "y": 120
+          }
+        },
+        {
+          "id": "wc_h_lam_pin_lp3",
+          "schematicPosition": {
+            "x": 2610,
+            "y": 120
+          }
+        }
+      ]
     },
     {
       "id": "wc_l_lam_pin",
@@ -594,7 +716,30 @@
         "id": "lambda",
         "handle": "c3"
       },
-      "partId": "m16_20_5"
+      "partId": "m16_20_5",
+      "layoutPoints": [
+        {
+          "id": "wc_l_lam_pin_lp1",
+          "schematicPosition": {
+            "x": 2490,
+            "y": 30
+          }
+        },
+        {
+          "id": "wc_l_lam_pin_lp2",
+          "schematicPosition": {
+            "x": 2490,
+            "y": 90
+          }
+        },
+        {
+          "id": "wc_l_lam_pin_lp3",
+          "schematicPosition": {
+            "x": 2610,
+            "y": 90
+          }
+        }
+      ]
     },
     {
       "id": "w_lam12_can",
@@ -607,7 +752,30 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "partId": "m16_20_2"
+      "partId": "m16_20_2",
+      "layoutPoints": [
+        {
+          "id": "w_lam12_can_lp1",
+          "schematicPosition": {
+            "x": 3030,
+            "y": 30
+          }
+        },
+        {
+          "id": "w_lam12_can_lp2",
+          "schematicPosition": {
+            "x": 3090,
+            "y": 30
+          }
+        },
+        {
+          "id": "w_lam12_can_lp3",
+          "schematicPosition": {
+            "x": 3090,
+            "y": -60
+          }
+        }
+      ]
     },
     {
       "id": "w_lamg_can",
@@ -620,7 +788,30 @@
         "handle": "Terminal"
       },
       "color": "Black",
-      "partId": "m16_20_0"
+      "partId": "m16_20_0",
+      "layoutPoints": [
+        {
+          "id": "w_lamg_can_lp1",
+          "schematicPosition": {
+            "x": 3030,
+            "y": 60
+          }
+        },
+        {
+          "id": "w_lamg_can_lp2",
+          "schematicPosition": {
+            "x": 3090,
+            "y": 60
+          }
+        },
+        {
+          "id": "w_lamg_can_lp3",
+          "schematicPosition": {
+            "x": 3090,
+            "y": 180
+          }
+        }
+      ]
     },
     {
       "id": "w_shd_can",
@@ -634,7 +825,23 @@
         "id": "br_w_shd_can",
         "handle": "Terminal"
       },
-      "partId": "m16_20_06"
+      "partId": "m16_20_06",
+      "layoutPoints": [
+        {
+          "id": "w_shd_can_lp1",
+          "schematicPosition": {
+            "x": 1350,
+            "y": 150
+          }
+        },
+        {
+          "id": "w_shd_can_lp2",
+          "schematicPosition": {
+            "x": 1350,
+            "y": 120
+          }
+        }
+      ]
     },
     {
       "id": "w_dev",
@@ -647,7 +854,37 @@
         "id": "sp_dev",
         "handle": "Splice"
       },
-      "partId": "m16_16_2"
+      "partId": "m16_16_2",
+      "layoutPoints": [
+        {
+          "id": "w_dev_lp1",
+          "schematicPosition": {
+            "x": -30,
+            "y": 330
+          }
+        },
+        {
+          "id": "w_dev_lp2",
+          "schematicPosition": {
+            "x": -150,
+            "y": 330
+          }
+        },
+        {
+          "id": "w_dev_lp3",
+          "schematicPosition": {
+            "x": -150,
+            "y": 810
+          }
+        },
+        {
+          "id": "w_dev_lp4",
+          "schematicPosition": {
+            "x": 600,
+            "y": 810
+          }
+        }
+      ]
     },
     {
       "id": "w_dev_clu",
@@ -660,7 +897,23 @@
         "id": "t_cluster_pwr",
         "handle": "Terminal"
       },
-      "partId": "m16_16_2"
+      "partId": "m16_16_2",
+      "layoutPoints": [
+        {
+          "id": "w_dev_clu_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 900
+          }
+        },
+        {
+          "id": "w_dev_clu_lp2",
+          "schematicPosition": {
+            "x": 390,
+            "y": 870
+          }
+        }
+      ]
     },
     {
       "id": "w_dev_rd",
@@ -673,7 +926,30 @@
         "id": "t_realdash_pwr",
         "handle": "Terminal"
       },
-      "partId": "m16_16_2"
+      "partId": "m16_16_2",
+      "layoutPoints": [
+        {
+          "id": "w_dev_rd_lp1",
+          "schematicPosition": {
+            "x": 540,
+            "y": 930
+          }
+        },
+        {
+          "id": "w_dev_rd_lp2",
+          "schematicPosition": {
+            "x": 390,
+            "y": 930
+          }
+        },
+        {
+          "id": "w_dev_rd_lp3",
+          "schematicPosition": {
+            "x": 390,
+            "y": 960
+          }
+        }
+      ]
     },
     {
       "id": "w_gnd_clu",
@@ -686,7 +962,23 @@
         "id": "t_cluster_gnd",
         "handle": "Terminal"
       },
-      "partId": "m16_16_0"
+      "partId": "m16_16_0",
+      "layoutPoints": [
+        {
+          "id": "w_gnd_clu_lp1",
+          "schematicPosition": {
+            "x": -30,
+            "y": 1110
+          }
+        },
+        {
+          "id": "w_gnd_clu_lp2",
+          "schematicPosition": {
+            "x": -30,
+            "y": 1020
+          }
+        }
+      ]
     },
     {
       "id": "w_gnd_rd",
@@ -699,7 +991,23 @@
         "id": "t_realdash_gnd",
         "handle": "Terminal"
       },
-      "partId": "m16_16_0"
+      "partId": "m16_16_0",
+      "layoutPoints": [
+        {
+          "id": "w_gnd_rd_lp1",
+          "schematicPosition": {
+            "x": 390,
+            "y": 1140
+          }
+        },
+        {
+          "id": "w_gnd_rd_lp2",
+          "schematicPosition": {
+            "x": 390,
+            "y": 1050
+          }
+        }
+      ]
     }
   ],
   "bundles": [
@@ -1257,8 +1565,8 @@
       "id": "cab_can_ecu",
       "partId": "cab_sh_2c",
       "schematicPosition": {
-        "x": 0,
-        "y": 0
+        "x": 480,
+        "y": 270
       },
       "cores": [
         {
@@ -1272,7 +1580,81 @@
             "id": "sp_canh",
             "handle": "Splice"
           },
-          "twistedWithNext": true
+          "twistedWithNext": true,
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_h_ecu_source_lp1",
+              "schematicPosition": {
+                "x": 450,
+                "y": 300
+              }
+            },
+            {
+              "id": "wc_h_ecu_source_lp2",
+              "schematicPosition": {
+                "x": -60,
+                "y": 300
+              }
+            },
+            {
+              "id": "wc_h_ecu_source_lp3",
+              "schematicPosition": {
+                "x": -60,
+                "y": 90
+              }
+            },
+            {
+              "id": "wc_h_ecu_source_lp4",
+              "schematicPosition": {
+                "x": -30,
+                "y": 90
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "wc_h_ecu_target_lp1",
+              "schematicPosition": {
+                "x": 450,
+                "y": 300
+              }
+            },
+            {
+              "id": "wc_h_ecu_target_lp2",
+              "schematicPosition": {
+                "x": 450,
+                "y": 210
+              }
+            },
+            {
+              "id": "wc_h_ecu_target_lp3",
+              "schematicPosition": {
+                "x": -240,
+                "y": 210
+              }
+            },
+            {
+              "id": "wc_h_ecu_target_lp4",
+              "schematicPosition": {
+                "x": -240,
+                "y": -360
+              }
+            },
+            {
+              "id": "wc_h_ecu_target_lp5",
+              "schematicPosition": {
+                "x": 330,
+                "y": -360
+              }
+            },
+            {
+              "id": "wc_h_ecu_target_lp6",
+              "schematicPosition": {
+                "x": 330,
+                "y": -180
+              }
+            }
+          ]
         },
         {
           "id": "wc_l_ecu",
@@ -1284,7 +1666,67 @@
           "target": {
             "id": "sp_canl",
             "handle": "Splice"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "id": "wc_l_ecu_target_lp1",
+              "schematicPosition": {
+                "x": 450,
+                "y": 330
+              }
+            },
+            {
+              "id": "wc_l_ecu_target_lp2",
+              "schematicPosition": {
+                "x": 450,
+                "y": 420
+              }
+            },
+            {
+              "id": "wc_l_ecu_target_lp3",
+              "schematicPosition": {
+                "x": -180,
+                "y": 420
+              }
+            },
+            {
+              "id": "wc_l_ecu_target_lp4",
+              "schematicPosition": {
+                "x": -180,
+                "y": -90
+              }
+            },
+            {
+              "id": "wc_l_ecu_target_lp5",
+              "schematicPosition": {
+                "x": 150,
+                "y": -90
+              }
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_l_ecu_source_lp1",
+              "schematicPosition": {
+                "x": 450,
+                "y": 330
+              }
+            },
+            {
+              "id": "wc_l_ecu_source_lp2",
+              "schematicPosition": {
+                "x": 390,
+                "y": 330
+              }
+            },
+            {
+              "id": "wc_l_ecu_source_lp3",
+              "schematicPosition": {
+                "x": 390,
+                "y": 120
+              }
+            }
+          ]
         }
       ],
       "shield": {
@@ -1293,15 +1735,38 @@
         "target": {
           "id": "sp_shield_can",
           "handle": "Splice"
-        }
+        },
+        "targetLayoutPoints": [
+          {
+            "id": "cab_can_ecu_sh_target_lp1",
+            "schematicPosition": {
+              "x": 540,
+              "y": 360
+            }
+          },
+          {
+            "id": "cab_can_ecu_sh_target_lp2",
+            "schematicPosition": {
+              "x": 540,
+              "y": 240
+            }
+          },
+          {
+            "id": "cab_can_ecu_sh_target_lp3",
+            "schematicPosition": {
+              "x": 510,
+              "y": 240
+            }
+          }
+        ]
       }
     },
     {
       "id": "cab_can_csb",
       "partId": "cab_sh_2c",
       "schematicPosition": {
-        "x": 0,
-        "y": 120
+        "x": 690,
+        "y": 270
       },
       "cores": [
         {
@@ -1315,7 +1780,81 @@
             "id": "br_wc_h_csb",
             "handle": "Terminal"
           },
-          "twistedWithNext": true
+          "twistedWithNext": true,
+          "targetLayoutPoints": [
+            {
+              "id": "wc_h_csb_target_lp1",
+              "schematicPosition": {
+                "x": 660,
+                "y": 300
+              }
+            },
+            {
+              "id": "wc_h_csb_target_lp2",
+              "schematicPosition": {
+                "x": 660,
+                "y": 60
+              }
+            },
+            {
+              "id": "wc_h_csb_target_lp3",
+              "schematicPosition": {
+                "x": 690,
+                "y": 60
+              }
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_h_csb_source_lp1",
+              "schematicPosition": {
+                "x": 660,
+                "y": 300
+              }
+            },
+            {
+              "id": "wc_h_csb_source_lp2",
+              "schematicPosition": {
+                "x": 600,
+                "y": 300
+              }
+            },
+            {
+              "id": "wc_h_csb_source_lp3",
+              "schematicPosition": {
+                "x": 600,
+                "y": 90
+              }
+            },
+            {
+              "id": "wc_h_csb_source_lp4",
+              "schematicPosition": {
+                "x": 450,
+                "y": 90
+              }
+            },
+            {
+              "id": "wc_h_csb_source_lp5",
+              "schematicPosition": {
+                "x": 450,
+                "y": 60
+              }
+            },
+            {
+              "id": "wc_h_csb_source_lp6",
+              "schematicPosition": {
+                "x": 390,
+                "y": 60
+              }
+            },
+            {
+              "id": "wc_h_csb_source_lp7",
+              "schematicPosition": {
+                "x": 390,
+                "y": -60
+              }
+            }
+          ]
         },
         {
           "id": "wc_l_csb",
@@ -1327,7 +1866,95 @@
           "target": {
             "id": "br_wc_l_csb",
             "handle": "Terminal"
-          }
+          },
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_l_csb_source_lp1",
+              "schematicPosition": {
+                "x": 660,
+                "y": 330
+              }
+            },
+            {
+              "id": "wc_l_csb_source_lp2",
+              "schematicPosition": {
+                "x": 630,
+                "y": 330
+              }
+            },
+            {
+              "id": "wc_l_csb_source_lp3",
+              "schematicPosition": {
+                "x": 630,
+                "y": 60
+              }
+            },
+            {
+              "id": "wc_l_csb_source_lp4",
+              "schematicPosition": {
+                "x": 540,
+                "y": 60
+              }
+            },
+            {
+              "id": "wc_l_csb_source_lp5",
+              "schematicPosition": {
+                "x": 540,
+                "y": -210
+              }
+            },
+            {
+              "id": "wc_l_csb_source_lp6",
+              "schematicPosition": {
+                "x": 210,
+                "y": -210
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "wc_l_csb_target_lp1",
+              "schematicPosition": {
+                "x": 750,
+                "y": 330
+              }
+            },
+            {
+              "id": "wc_l_csb_target_lp2",
+              "schematicPosition": {
+                "x": 900,
+                "y": 330
+              }
+            },
+            {
+              "id": "wc_l_csb_target_lp3",
+              "schematicPosition": {
+                "x": 900,
+                "y": 210
+              }
+            },
+            {
+              "id": "wc_l_csb_target_lp4",
+              "schematicPosition": {
+                "x": 1140,
+                "y": 210
+              }
+            },
+            {
+              "id": "wc_l_csb_target_lp5",
+              "schematicPosition": {
+                "x": 1140,
+                "y": 180
+              }
+            },
+            {
+              "id": "wc_l_csb_target_lp6",
+              "schematicPosition": {
+                "x": 1110,
+                "y": 180
+              }
+            }
+          ]
         }
       ],
       "shield": {
@@ -1340,15 +1967,82 @@
         "target": {
           "id": "br_cab_cancsb_sh",
           "handle": "Terminal"
-        }
+        },
+        "sourceLayoutPoints": [
+          {
+            "id": "cab_can_csb_sh_source_lp1",
+            "schematicPosition": {
+              "x": 750,
+              "y": 360
+            }
+          },
+          {
+            "id": "cab_can_csb_sh_source_lp2",
+            "schematicPosition": {
+              "x": 810,
+              "y": 360
+            }
+          },
+          {
+            "id": "cab_can_csb_sh_source_lp3",
+            "schematicPosition": {
+              "x": 810,
+              "y": 210
+            }
+          },
+          {
+            "id": "cab_can_csb_sh_source_lp4",
+            "schematicPosition": {
+              "x": 480,
+              "y": 210
+            }
+          }
+        ],
+        "targetLayoutPoints": [
+          {
+            "id": "cab_can_csb_sh_target_lp1",
+            "schematicPosition": {
+              "x": 750,
+              "y": 360
+            }
+          },
+          {
+            "id": "cab_can_csb_sh_target_lp2",
+            "schematicPosition": {
+              "x": 750,
+              "y": 450
+            }
+          },
+          {
+            "id": "cab_can_csb_sh_target_lp3",
+            "schematicPosition": {
+              "x": 1260,
+              "y": 450
+            }
+          },
+          {
+            "id": "cab_can_csb_sh_target_lp4",
+            "schematicPosition": {
+              "x": 1260,
+              "y": 120
+            }
+          },
+          {
+            "id": "cab_can_csb_sh_target_lp5",
+            "schematicPosition": {
+              "x": 1110,
+              "y": 120
+            }
+          }
+        ]
       }
     },
     {
       "id": "cab_can_clu",
       "partId": "cab_sh_2c",
       "schematicPosition": {
-        "x": 0,
-        "y": 240
+        "x": 630,
+        "y": -120
       },
       "cores": [
         {
@@ -1362,7 +2056,81 @@
             "id": "t_cluster_can",
             "handle": "Terminal"
           },
-          "twistedWithNext": true
+          "twistedWithNext": true,
+          "targetLayoutPoints": [
+            {
+              "id": "wc_h_clu_target_lp1",
+              "schematicPosition": {
+                "x": 600,
+                "y": -90
+              }
+            },
+            {
+              "id": "wc_h_clu_target_lp2",
+              "schematicPosition": {
+                "x": 600,
+                "y": -300
+              }
+            },
+            {
+              "id": "wc_h_clu_target_lp3",
+              "schematicPosition": {
+                "x": -150,
+                "y": -300
+              }
+            },
+            {
+              "id": "wc_h_clu_target_lp4",
+              "schematicPosition": {
+                "x": -150,
+                "y": 240
+              }
+            },
+            {
+              "id": "wc_h_clu_target_lp5",
+              "schematicPosition": {
+                "x": -30,
+                "y": 240
+              }
+            },
+            {
+              "id": "wc_h_clu_target_lp6",
+              "schematicPosition": {
+                "x": -30,
+                "y": 270
+              }
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_h_clu_source_lp1",
+              "schematicPosition": {
+                "x": 600,
+                "y": -90
+              }
+            },
+            {
+              "id": "wc_h_clu_source_lp2",
+              "schematicPosition": {
+                "x": 570,
+                "y": -90
+              }
+            },
+            {
+              "id": "wc_h_clu_source_lp3",
+              "schematicPosition": {
+                "x": 570,
+                "y": -150
+              }
+            },
+            {
+              "id": "wc_h_clu_source_lp4",
+              "schematicPosition": {
+                "x": 420,
+                "y": -150
+              }
+            }
+          ]
         },
         {
           "id": "wc_l_clu",
@@ -1374,7 +2142,81 @@
           "target": {
             "id": "t_cluster_can",
             "handle": "Terminal"
-          }
+          },
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_l_clu_source_lp1",
+              "schematicPosition": {
+                "x": 690,
+                "y": -60
+              }
+            },
+            {
+              "id": "wc_l_clu_source_lp2",
+              "schematicPosition": {
+                "x": 690,
+                "y": -270
+              }
+            },
+            {
+              "id": "wc_l_clu_source_lp3",
+              "schematicPosition": {
+                "x": 150,
+                "y": -270
+              }
+            },
+            {
+              "id": "wc_l_clu_source_lp4",
+              "schematicPosition": {
+                "x": 150,
+                "y": -150
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "wc_l_clu_target_lp1",
+              "schematicPosition": {
+                "x": 690,
+                "y": -60
+              }
+            },
+            {
+              "id": "wc_l_clu_target_lp2",
+              "schematicPosition": {
+                "x": 750,
+                "y": -60
+              }
+            },
+            {
+              "id": "wc_l_clu_target_lp3",
+              "schematicPosition": {
+                "x": 750,
+                "y": -330
+              }
+            },
+            {
+              "id": "wc_l_clu_target_lp4",
+              "schematicPosition": {
+                "x": -210,
+                "y": -330
+              }
+            },
+            {
+              "id": "wc_l_clu_target_lp5",
+              "schematicPosition": {
+                "x": -210,
+                "y": 270
+              }
+            },
+            {
+              "id": "wc_l_clu_target_lp6",
+              "schematicPosition": {
+                "x": -30,
+                "y": 270
+              }
+            }
+          ]
         }
       ],
       "shield": {
@@ -1383,15 +2225,31 @@
         "source": {
           "id": "sp_shield_can",
           "handle": "Splice"
-        }
+        },
+        "sourceLayoutPoints": [
+          {
+            "id": "cab_can_clu_sh_source_lp1",
+            "schematicPosition": {
+              "x": 600,
+              "y": -30
+            }
+          },
+          {
+            "id": "cab_can_clu_sh_source_lp2",
+            "schematicPosition": {
+              "x": 510,
+              "y": -30
+            }
+          }
+        ]
       }
     },
     {
       "id": "cab_can_rd",
       "partId": "cab_sh_2c",
       "schematicPosition": {
-        "x": 0,
-        "y": 360
+        "x": 360,
+        "y": 450
       },
       "cores": [
         {
@@ -1405,7 +2263,60 @@
             "id": "t_realdash_can",
             "handle": "Terminal"
           },
-          "twistedWithNext": true
+          "twistedWithNext": true,
+          "targetLayoutPoints": [
+            {
+              "id": "wc_h_rd_target_lp1",
+              "schematicPosition": {
+                "x": 420,
+                "y": 480
+              }
+            },
+            {
+              "id": "wc_h_rd_target_lp2",
+              "schematicPosition": {
+                "x": 420,
+                "y": 360
+              }
+            },
+            {
+              "id": "wc_h_rd_target_lp3",
+              "schematicPosition": {
+                "x": 390,
+                "y": 360
+              }
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_h_rd_source_lp1",
+              "schematicPosition": {
+                "x": 330,
+                "y": 480
+              }
+            },
+            {
+              "id": "wc_h_rd_source_lp2",
+              "schematicPosition": {
+                "x": -90,
+                "y": 480
+              }
+            },
+            {
+              "id": "wc_h_rd_source_lp3",
+              "schematicPosition": {
+                "x": -90,
+                "y": -60
+              }
+            },
+            {
+              "id": "wc_h_rd_source_lp4",
+              "schematicPosition": {
+                "x": 330,
+                "y": -60
+              }
+            }
+          ]
         },
         {
           "id": "wc_l_rd",
@@ -1417,7 +2328,67 @@
           "target": {
             "id": "t_realdash_can",
             "handle": "Terminal"
-          }
+          },
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_l_rd_source_lp1",
+              "schematicPosition": {
+                "x": 330,
+                "y": 510
+              }
+            },
+            {
+              "id": "wc_l_rd_source_lp2",
+              "schematicPosition": {
+                "x": -120,
+                "y": 510
+              }
+            },
+            {
+              "id": "wc_l_rd_source_lp3",
+              "schematicPosition": {
+                "x": -120,
+                "y": -120
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "wc_l_rd_target_lp1",
+              "schematicPosition": {
+                "x": 420,
+                "y": 510
+              }
+            },
+            {
+              "id": "wc_l_rd_target_lp2",
+              "schematicPosition": {
+                "x": 480,
+                "y": 510
+              }
+            },
+            {
+              "id": "wc_l_rd_target_lp3",
+              "schematicPosition": {
+                "x": 480,
+                "y": 390
+              }
+            },
+            {
+              "id": "wc_l_rd_target_lp4",
+              "schematicPosition": {
+                "x": 390,
+                "y": 390
+              }
+            },
+            {
+              "id": "wc_l_rd_target_lp5",
+              "schematicPosition": {
+                "x": 390,
+                "y": 360
+              }
+            }
+          ]
         }
       ],
       "shield": {
@@ -1426,15 +2397,38 @@
         "source": {
           "id": "sp_shield_can",
           "handle": "Splice"
-        }
+        },
+        "sourceLayoutPoints": [
+          {
+            "id": "cab_can_rd_sh_source_lp1",
+            "schematicPosition": {
+              "x": 420,
+              "y": 540
+            }
+          },
+          {
+            "id": "cab_can_rd_sh_source_lp2",
+            "schematicPosition": {
+              "x": 570,
+              "y": 540
+            }
+          },
+          {
+            "id": "cab_can_rd_sh_source_lp3",
+            "schematicPosition": {
+              "x": 570,
+              "y": 180
+            }
+          }
+        ]
       }
     },
     {
       "id": "cab_can_bh",
       "partId": "cab_sh_2c",
       "schematicPosition": {
-        "x": 0,
-        "y": 480
+        "x": 1020,
+        "y": 270
       },
       "cores": [
         {
@@ -1448,7 +2442,74 @@
             "id": "br_wc_h_bh",
             "handle": "Terminal"
           },
-          "twistedWithNext": true
+          "twistedWithNext": true,
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_h_bh_source_lp1",
+              "schematicPosition": {
+                "x": 1080,
+                "y": 300
+              }
+            },
+            {
+              "id": "wc_h_bh_source_lp2",
+              "schematicPosition": {
+                "x": 1170,
+                "y": 300
+              }
+            },
+            {
+              "id": "wc_h_bh_source_lp3",
+              "schematicPosition": {
+                "x": 1170,
+                "y": -180
+              }
+            },
+            {
+              "id": "wc_h_bh_source_lp4",
+              "schematicPosition": {
+                "x": 390,
+                "y": -180
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "wc_h_bh_target_lp1",
+              "schematicPosition": {
+                "x": 1080,
+                "y": 300
+              }
+            },
+            {
+              "id": "wc_h_bh_target_lp2",
+              "schematicPosition": {
+                "x": 1080,
+                "y": 270
+              }
+            },
+            {
+              "id": "wc_h_bh_target_lp3",
+              "schematicPosition": {
+                "x": 1230,
+                "y": 270
+              }
+            },
+            {
+              "id": "wc_h_bh_target_lp4",
+              "schematicPosition": {
+                "x": 1230,
+                "y": 60
+              }
+            },
+            {
+              "id": "wc_h_bh_target_lp5",
+              "schematicPosition": {
+                "x": 1350,
+                "y": 60
+              }
+            }
+          ]
         },
         {
           "id": "wc_l_bh",
@@ -1460,7 +2521,88 @@
           "target": {
             "id": "br_wc_l_bh",
             "handle": "Terminal"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "id": "wc_l_bh_target_lp1",
+              "schematicPosition": {
+                "x": 1080,
+                "y": 330
+              }
+            },
+            {
+              "id": "wc_l_bh_target_lp2",
+              "schematicPosition": {
+                "x": 1080,
+                "y": 390
+              }
+            },
+            {
+              "id": "wc_l_bh_target_lp3",
+              "schematicPosition": {
+                "x": 1290,
+                "y": 390
+              }
+            },
+            {
+              "id": "wc_l_bh_target_lp4",
+              "schematicPosition": {
+                "x": 1290,
+                "y": 210
+              }
+            },
+            {
+              "id": "wc_l_bh_target_lp5",
+              "schematicPosition": {
+                "x": 1350,
+                "y": 210
+              }
+            },
+            {
+              "id": "wc_l_bh_target_lp6",
+              "schematicPosition": {
+                "x": 1350,
+                "y": 180
+              }
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_l_bh_source_lp1",
+              "schematicPosition": {
+                "x": 1080,
+                "y": 330
+              }
+            },
+            {
+              "id": "wc_l_bh_source_lp2",
+              "schematicPosition": {
+                "x": 1200,
+                "y": 330
+              }
+            },
+            {
+              "id": "wc_l_bh_source_lp3",
+              "schematicPosition": {
+                "x": 1200,
+                "y": -240
+              }
+            },
+            {
+              "id": "wc_l_bh_source_lp4",
+              "schematicPosition": {
+                "x": 240,
+                "y": -240
+              }
+            },
+            {
+              "id": "wc_l_bh_source_lp5",
+              "schematicPosition": {
+                "x": 240,
+                "y": -180
+              }
+            }
+          ]
         }
       ],
       "shield": {
@@ -1473,7 +2615,81 @@
         "target": {
           "id": "br_cab_canbh_sh",
           "handle": "Terminal"
-        }
+        },
+        "targetLayoutPoints": [
+          {
+            "id": "cab_can_bh_sh_target_lp1",
+            "schematicPosition": {
+              "x": 990,
+              "y": 360
+            }
+          },
+          {
+            "id": "cab_can_bh_sh_target_lp2",
+            "schematicPosition": {
+              "x": 990,
+              "y": 420
+            }
+          },
+          {
+            "id": "cab_can_bh_sh_target_lp3",
+            "schematicPosition": {
+              "x": 1350,
+              "y": 420
+            }
+          },
+          {
+            "id": "cab_can_bh_sh_target_lp4",
+            "schematicPosition": {
+              "x": 1350,
+              "y": 240
+            }
+          }
+        ],
+        "sourceLayoutPoints": [
+          {
+            "id": "cab_can_bh_sh_source_lp1",
+            "schematicPosition": {
+              "x": 990,
+              "y": 360
+            }
+          },
+          {
+            "id": "cab_can_bh_sh_source_lp2",
+            "schematicPosition": {
+              "x": 870,
+              "y": 360
+            }
+          },
+          {
+            "id": "cab_can_bh_sh_source_lp3",
+            "schematicPosition": {
+              "x": 870,
+              "y": 240
+            }
+          },
+          {
+            "id": "cab_can_bh_sh_source_lp4",
+            "schematicPosition": {
+              "x": 690,
+              "y": 240
+            }
+          },
+          {
+            "id": "cab_can_bh_sh_source_lp5",
+            "schematicPosition": {
+              "x": 690,
+              "y": 120
+            }
+          },
+          {
+            "id": "cab_can_bh_sh_source_lp6",
+            "schematicPosition": {
+              "x": 570,
+              "y": 120
+            }
+          }
+        ]
       }
     },
     {
@@ -1495,7 +2711,81 @@
             "id": "sp_canh_lam",
             "handle": "Splice"
           },
-          "twistedWithNext": true
+          "twistedWithNext": true,
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_h_lam_source_lp1",
+              "schematicPosition": {
+                "x": 60,
+                "y": 630
+              }
+            },
+            {
+              "id": "wc_h_lam_source_lp2",
+              "schematicPosition": {
+                "x": 1920,
+                "y": 630
+              }
+            },
+            {
+              "id": "wc_h_lam_source_lp3",
+              "schematicPosition": {
+                "x": 1920,
+                "y": 90
+              }
+            },
+            {
+              "id": "wc_h_lam_source_lp4",
+              "schematicPosition": {
+                "x": 2010,
+                "y": 90
+              }
+            },
+            {
+              "id": "wc_h_lam_source_lp5",
+              "schematicPosition": {
+                "x": 2010,
+                "y": 60
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "wc_h_lam_target_lp1",
+              "schematicPosition": {
+                "x": 60,
+                "y": 630
+              }
+            },
+            {
+              "id": "wc_h_lam_target_lp2",
+              "schematicPosition": {
+                "x": 60,
+                "y": 570
+              }
+            },
+            {
+              "id": "wc_h_lam_target_lp3",
+              "schematicPosition": {
+                "x": 1860,
+                "y": 570
+              }
+            },
+            {
+              "id": "wc_h_lam_target_lp4",
+              "schematicPosition": {
+                "x": 1860,
+                "y": -90
+              }
+            },
+            {
+              "id": "wc_h_lam_target_lp5",
+              "schematicPosition": {
+                "x": 2490,
+                "y": -90
+              }
+            }
+          ]
         },
         {
           "id": "wc_l_lam",
@@ -1507,7 +2797,60 @@
           "target": {
             "id": "sp_canl_lam",
             "handle": "Splice"
-          }
+          },
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_l_lam_source_lp1",
+              "schematicPosition": {
+                "x": 60,
+                "y": 660
+              }
+            },
+            {
+              "id": "wc_l_lam_source_lp2",
+              "schematicPosition": {
+                "x": 2010,
+                "y": 660
+              }
+            },
+            {
+              "id": "wc_l_lam_source_lp3",
+              "schematicPosition": {
+                "x": 2010,
+                "y": 180
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "wc_l_lam_target_lp1",
+              "schematicPosition": {
+                "x": -30,
+                "y": 660
+              }
+            },
+            {
+              "id": "wc_l_lam_target_lp2",
+              "schematicPosition": {
+                "x": -30,
+                "y": 750
+              }
+            },
+            {
+              "id": "wc_l_lam_target_lp3",
+              "schematicPosition": {
+                "x": 2460,
+                "y": 750
+              }
+            },
+            {
+              "id": "wc_l_lam_target_lp4",
+              "schematicPosition": {
+                "x": 2460,
+                "y": 60
+              }
+            }
+          ]
         }
       ],
       "shield": {
@@ -1516,7 +2859,44 @@
         "source": {
           "id": "br_cab_lamcan_sh",
           "handle": "Terminal"
-        }
+        },
+        "sourceLayoutPoints": [
+          {
+            "id": "cab_can_lam_sh_source_lp1",
+            "schematicPosition": {
+              "x": 60,
+              "y": 690
+            }
+          },
+          {
+            "id": "cab_can_lam_sh_source_lp2",
+            "schematicPosition": {
+              "x": 1950,
+              "y": 690
+            }
+          },
+          {
+            "id": "cab_can_lam_sh_source_lp3",
+            "schematicPosition": {
+              "x": 1950,
+              "y": 150
+            }
+          },
+          {
+            "id": "cab_can_lam_sh_source_lp4",
+            "schematicPosition": {
+              "x": 2010,
+              "y": 150
+            }
+          },
+          {
+            "id": "cab_can_lam_sh_source_lp5",
+            "schematicPosition": {
+              "x": 2010,
+              "y": 120
+            }
+          }
+        ]
       }
     }
   ]

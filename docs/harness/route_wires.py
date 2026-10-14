@@ -33,6 +33,7 @@ import heapq
 import json
 import math
 import os
+import random
 import sys
 
 import audit_drawing_rules
@@ -253,7 +254,7 @@ def jobs(d):
                     yield "%s/%s" % (co["id"], end), co, key, (c["id"], co["id"]), (co[end]["id"], co[end]["handle"])
 
 
-def route(d, iters=80, log=None):
+def route(d, iters=80, log=None, seed=0):
     """Negotiated-congestion routing. Returns ({line id: (owner, key, lattice path)}, [clashing])."""
     r = Router(d)
     js = [j for j in jobs(d) if j[3][0] in r.ns and j[4][0] in r.ns]
@@ -268,9 +269,11 @@ def route(d, iters=80, log=None):
         b = wp.handle_center(r.ns[j[4][0]], j[4][1])
         return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
+    rnd = random.Random(seed)
+    tie = {j[0]: (rnd.random() if seed else 0.0) for j in js}   # seed 0: plain (span, id) order
     byid = {j[0]: j for j in js}
     paths, unroutable = {}, set()
-    todo = [j[0] for j in sorted(js, key=span)]
+    todo = [j[0] for j in sorted(js, key=lambda j: (span(j), tie[j[0]], j[0]))]
     for it in range(iters):
         for lid in todo:
             j = byid[lid]
@@ -291,7 +294,7 @@ def route(d, iters=80, log=None):
         for x in over:
             r.hist[x] = r.hist.get(x, 0.0) + 1.0
         r.pres *= 1.4
-        todo = sorted(bad, key=lambda l: span(byid[l]))
+        todo = sorted(bad, key=lambda l: (span(byid[l]), tie[l], l))
     bad, _ = r.conflicts()
     return ({lid: (byid[lid][1], byid[lid][2], p) for lid, p in paths.items()},
             sorted(unroutable | bad))
@@ -438,7 +441,10 @@ def main(argv):
         d = json.loads(raw)
         strip(d)
         moved = free_inline(d) + free_splices(d)
-        res, failed = route(d, log=print if "-v" in argv else None)
+        for seed in range(4):           # deterministic; a reshuffled tie order settles a leftover clash
+            res, failed = route(d, log=print if "-v" in argv else None, seed=seed)
+            if not failed:
+                break
         apply(res)
         print("%s: %d routed, %d clashing%s%s" % (
             os.path.basename(path), len(res), len(failed),
