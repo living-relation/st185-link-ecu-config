@@ -1196,7 +1196,7 @@
       "separateLabels": true,
       "endLabel": "LAMBDA",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_316"
       ]
     },
     {
@@ -3089,6 +3089,26 @@
     }
   ],
   "coveringParts": [
+    {
+      "id": "cov_lbl_316",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/16-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 1.6,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
     {
       "id": "cov_lbl_38",
       "type": "HeatShrink",
