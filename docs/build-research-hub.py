@@ -929,28 +929,35 @@ def load_cad() -> dict:
     warnings for anything on disk that the README does not cover."""
     warnings: list[str] = []
     files, generated = load_model_manifest()
-    rows = []
+    rows: list[dict] = []
+    text = ""
     if CAD_INDEX.is_file():
         text = CAD_INDEX.read_text(encoding="utf-8", errors="replace")
         # Raw split, not parse_md_tables: that helper strips the backticks the paths sit in.
+        # Cells are read by column name, so a new column never shifts the others.
         lines = text.splitlines()
         for n, ln in enumerate(lines):
             if ln.startswith("| Model |"):
+                head = [c.strip() for c in ln.strip().strip("|").split("|")]
                 for row in lines[n + 2:]:
                     if not row.startswith("|"):
                         break
                     cells = [c.strip() for c in row.strip().strip("|").split("|")]
                     if len(cells) >= 5:
-                        rows.append(cells)
+                        rows.append(dict(zip(head, cells)))
                 break
     if not rows:
         warnings.append("cad/README.md has no model table.")
     models, claimed = [], set()
     for r in rows:
-        model, status, summary, local = _plain(r[0]), _plain(r[2]), r[3], r[4]
+        model, status = _plain(r.get("Model", "")), _plain(r.get("Status / rev", ""))
+        summary, local = r.get("Summary page", ""), r.get("Local model files", "")
+        selected = _plain(r.get("Selected for build", "")).lower() == "yes"
         links = [("../cad/" + h if not re.match(r"[A-Za-z]:|https?:|\.\./", h) else h, lbl)
                  for lbl, h in re.findall(r"\[([^\]]+)\]\(([^)]+)\)", summary)]
         links += [(tok, tok) for tok in re.findall(r"`([A-Za-z]:[^`]+\.(?:md|html))`", summary)]
+        if not links and _plain(summary).lower().startswith("same page") and models:
+            links = models[-1]["links"]   # "same page" = the row above's summary page
         dirs = _row_dirs(local)
         folders = []
         for d in dirs:
@@ -971,15 +978,18 @@ def load_cad() -> dict:
                 warnings.append(f"{model}: README lists {d} but no model files were found there.")
             folders.append({"path": shown, "names": names})
         pics = [{"src": "cad/" + src, "alt": html.unescape(alt)} for src, alt in
-                re.findall(r'<img src="([^"]+)" alt="([^"]*)"', r[6] if len(r) > 6 else "")]
+                re.findall(r'<img src="([^"]+)" alt="([^"]*)"', r.get("Trimetric", ""))]
         if not pics and dirs:
             warnings.append(f"{model}: no trimetric picture in cad/README.md (DECISIONS R83).")
         for pic in pics:
             if not (REPO / pic["src"]).is_file():
                 warnings.append(f"{model}: trimetric {pic['src']} is missing - run cad/render_trimetric.py.")
         models.append({"model": model, "status": status[:260], "links": links, "pics": pics,
+                       "selected": selected,
                        "folders": folders, "note": _plain(local) if not dirs else ""})
-    f3d_text = CAD_INDEX.read_text(encoding="utf-8", errors="replace") if CAD_INDEX.is_file() else ""
+    if rows and not any(m["selected"] for m in models):
+        warnings.append("cad/README.md marks no model 'Selected for build' (DECISIONS R77).")
+    f3d_text = text
     for d, names in sorted(files.items()):
         if d not in claimed:
             warnings.append(f"Model files in {d} ({len(names)} files) have no row in cad/README.md.")
@@ -988,7 +998,8 @@ def load_cad() -> dict:
             if n.lower().endswith(".f3d") and n not in f3d_text:
                 warnings.append(f"{d}/{n} is not named in cad/README.md.")
     trim = load_trimetrics(warnings)
-    package = load_power_package(text if CAD_INDEX.is_file() else "", trim, warnings)
+    chosen = {p["src"] for m in models if m["selected"] for p in m["pics"]}
+    package = load_power_package(text, trim, chosen, warnings)
     for w in warnings:
         print(f"WARNING (CAD index): {w}", file=sys.stderr)
     return {"models": models, "warnings": warnings, "manifest": generated,
@@ -1014,9 +1025,10 @@ def load_trimetrics(warnings: list[str]) -> dict:
     return out
 
 
-def load_power_package(text: str, trim: dict, warnings: list[str]) -> list[dict]:
+def load_power_package(text: str, trim: dict, chosen: set[str], warnings: list[str]) -> list[dict]:
     """cad/README.md "Power distribution package" table (R84) with a parts count per member:
-    a parts CSV (pieces = qty_need) or `model:<id>` (solids in the assembly STEP)."""
+    a parts CSV (pieces = qty_need) or `model:<id>` (solids in the assembly STEP). Only
+    models marked "Selected for build" (R77) count; any other member is dropped with a warning."""
     members = []
     lines = text.splitlines()
     for n, ln in enumerate(lines):
@@ -1028,6 +1040,10 @@ def load_power_package(text: str, trim: dict, warnings: list[str]) -> list[dict]
                 if len(c) < 4:
                     continue
                 png = "cad/" + c[1].strip("`")
+                if png not in chosen:
+                    warnings.append(f"Power package: {_plain(c[0])} ({png}) is not a model marked "
+                                    "'Selected for build' in cad/README.md - left out (R77, R84).")
+                    continue
                 per_car = _intish(c[2]) or 1
                 src = c[3].strip("`")
                 lines_n = pieces = 0
@@ -1091,10 +1107,29 @@ def _pic_folders(folders: list[dict], pic: dict, trim: dict) -> list[dict]:
 
 
 def cad_gallery_html(cadd: dict) -> str:
+    """R77: the models selected for the build first, highlighted; every other version folded
+    into a greyed "Superseded / alternatives - not used" section."""
+    sel = [c for c in cadd["models"] if c["selected"]]
+    old = [c for c in cadd["models"] if not c["selected"]]
+    n_old = sum(len(c["pics"]) or 1 for c in old)
+    return (
+        '<h4 class="selhead">Selected for build</h4>\n<p class="muted">The one version of each '
+        'item being built (column "Selected for build" in <code>cad/README.md</code>, DECISIONS R77). '
+        'Build from these files.</p>\n'
+        f'<div class="cadgrid">{_cad_cards(sel, cadd, True)}</div>\n'
+        f'<details class="cadold"><summary>Superseded / alternatives - not used ({n_old})</summary>'
+        '<p class="muted">Older revisions and designs that were not picked. Kept for reference '
+        'only - do not build from these.</p>'
+        f'<div class="cadgrid">{_cad_cards(old, cadd, False)}</div></details>\n')
+
+
+def _cad_cards(models: list[dict], cadd: dict, selected: bool) -> str:
     """One card per trimetric picture (a row with no model kept gets a card without one)."""
     e = html.escape
     out = ""
-    for c in cadd["models"]:
+    badge = ('<span class="selbadge">SELECTED FOR BUILD</span>' if selected
+             else '<span class="oldbadge">NOT USED</span>')
+    for c in models:
         links = " ".join(
             f'<a href="{e(h)}">{e(lbl)}</a>' if not re.match(r"[A-Za-z]:", h) else f"<code>{e(h)}</code>"
             for h, lbl in c["links"]) or "&mdash;"
@@ -1106,8 +1141,9 @@ def cad_gallery_html(cadd: dict) -> str:
                     if meta.get("rendered") else "")
             title = pic["alt"] if pic and len(c["pics"]) > 1 else c["model"]
             sub = f' <span class="muted">({e(c["model"])})</span>' if title != c["model"] else ""
-            out += (f'<div class="cadcard">{_img(pic["src"], title) if pic else ""}'
-                    f'<div class="cadbody"><b>{e(title)}</b>{sub}<p>{e(c["status"])}</p>'
+            out += (f'<div class="cadcard{" sel" if selected else " old"}">'
+                    f'{_img(pic["src"], title) if pic else ""}'
+                    f'<div class="cadbody">{badge}<b>{e(title)}</b>{sub}<p>{e(c["status"])}</p>'
                     f'<p>Summary: {links}</p><div class="cadpath">True location:{files}</div>'
                     f'{when}</div></div>')
     return out
@@ -1248,7 +1284,7 @@ def project_status_html(ps: dict) -> str:
         '<b>true location</b> of the STEP, STL and Fusion <code>.f3d</code> files: they are '
         'gitignored and live on Dan&rsquo;s PC, not in GitHub. '
         f'File list last refreshed {e(cadd["manifest"] or "never")}.</p>\n{cwarn}\n'
-        f'{package}\n<div class="cadgrid">{cad}</div>\n'
+        f'{package}\n{cad}'
         f'<h3>Recently merged</h3>\n<ul class="prs">{prs}</ul>\n</section>\n')
 
 
@@ -1279,6 +1315,16 @@ PSTATUS_CSS = """
   .pstatus .cadcard img, .pstatus .pkgitem img { display:block; width:100%; height:auto; background:#fff; }
   .pstatus .cadbody { padding:8px 12px 12px; } .pstatus .cadbody p { margin:6px 0; }
   .pstatus .cadpath { font-size:12px; margin:6px 0; }
+  .pstatus .selhead { margin:14px 0 2px; color:var(--ok); }
+  .pstatus .cadcard.sel { border:3px solid var(--ok); box-shadow:0 0 0 3px var(--ok-soft); }
+  .pstatus .selbadge, .pstatus .oldbadge { display:inline-block; font-size:11px; font-weight:800;
+    letter-spacing:.04em; padding:2px 8px; border-radius:999px; margin:0 0 6px; }
+  .pstatus .selbadge { background:var(--ok); color:#fff; }
+  .pstatus .oldbadge { background:var(--chip); color:var(--muted); }
+  .pstatus .cadbody .selbadge + b, .pstatus .cadbody .oldbadge + b { display:block; }
+  .pstatus details.cadold { margin:16px 0; border:1px dashed var(--line); border-radius:8px; padding:6px 12px; }
+  .pstatus details.cadold > summary { cursor:pointer; font-weight:700; color:var(--muted); padding:4px 0; }
+  .pstatus .cadcard.old { opacity:.6; } .pstatus .cadcard.old img { filter:grayscale(1); }
   .pstatus .pkg { border:2px solid var(--line); border-radius:10px; padding:4px 14px 12px; margin:12px 0 18px; }
   .pstatus .pkggrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; margin:8px 0 12px; }
   .pstatus .pkgitem { border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--panel);
