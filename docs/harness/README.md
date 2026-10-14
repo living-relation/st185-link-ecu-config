@@ -30,6 +30,7 @@ Dan edits the drawings in the harness.design **desktop app**, which opens the fi
 - **Open the files** in `docs/harness/rebuild/` (File > Open..., or double-click a `.harness`). The app opens one file at a time, watches it and reloads saved changes at once; `min/` no longer exists.
 - **Link the part library once:** Preferences > Part Libraries > Link existing > `rebuild/ST185.harnesslib`. The library wins on part data; it is committed with the drawings.
 - **Flow:** edit in the app (it saves the file itself), then run `python docs/harness/check_all.py`, commit the drawing and any `.harnesslib` change together.
+- **Wire routes (DECISIONS R86):** every wire carries right-angle `layoutPoints` so no two wires overlap. After moving nodes or adding wires, re-route the file: `python docs/harness/route_wires.py rebuild/<file>.harness` (rewrites the waypoints only; moves a cramped splice / cable / resistor / diode to clear space), then `check_all.py` (gate `audit_wire_spacing.py`). Review PNG without the app: `python docs/harness/render_schematic.py rebuild/<file>.harness out.png` (draws the app's own wire paths, `wire_paths.py`).
 - **Agents pause while Dan edits.** The version saved to disk wins: if the app has unsaved edits when an agent saves, the app's edits are discarded. An agent never rewrites a file Dan has open with unsaved changes. The gates read the JSON, not its whitespace, so the app's own formatting never fails CI.
 - Free plan: 100 connections per harness also applies to local files. The app rejects unknown keys, so repo-only data lives in `interfaces.json`, never in a `.harness`.
 - Agents: use the global skill `harness-design` (`C:/Users/danie/.claude/skills/harness-design/SKILL.md`).
@@ -127,6 +128,7 @@ interfaces.json              <- and the ownership facts with them
         validate_bulkhead_letter.py ECU looms follow the connector letter (Rule 3)
         audit_bulkhead_pairs.py    no one-sided bulkhead cavity
         audit_bh_collisions.py     no two circuits on one cavity half
+        audit_wire_spacing.py      schematic wires never overlap; parallel runs 3 line widths apart (R86)
         buylist.py                 writes NEED-TO-BUY.md
         buildlist.py               writes HARNESS-BUILD-LIST.csv
 ```
