@@ -81,7 +81,7 @@ each cavity used once, contact/plug size matches this map).
 A cavity 56 (`c27`) carries the EPS relay coil- wire from the MR-S pump B5 since 2026-10-12 (DECISIONS R22).
 B cavity 62 (`c25`) carries the back-up switch feed since 2026-10-13 (DECISIONS S17 C4); cavity 76 (`c12`) is the switch output.
 The alternator IG/L/S do NOT cross here: DECISIONS R17 / S18 put the alternator plug in `ST185-HeavyDC`;
-its three wires pass the firewall in harness C's own RH fender grommet (`ST185-EngineRoom-C`).
+its three wires pass the firewall in the existing factory RH fender grommet that harness C uses (`ST185-EngineRoom-C`).
 
 ## Sealing plugs
 
