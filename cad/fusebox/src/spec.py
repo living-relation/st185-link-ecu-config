@@ -1,5 +1,13 @@
-"""ST185 glove-box fuse + relay boxes (rev 4: base + snap-on cover, open underneath; TWO boxes + a battery relay block):
+"""ST185 glove-box fuse + relay boxes (rev 5: base + snap-on cover + snap-on belly pan; TWO boxes + a battery relay block):
 layout spec shared by the Fusion build and the summary page.
+
+Rev 5 (Dan's review of rev 4, 2026-10-14, 11 points, task card fusebox rev 5): vent slots in every cover; the battery block's
+cover shown from every side (it was only in the closed view) and its tabs moved to the short ends; exploded and step-by-step
+install views; every cable drawn to the box edge (harness wires drop out of each terminal, bend at 3 x OD and run in bundles
+to one exit edge); rugged look (bumper band + ribs on the covers, angular legs); short standoffs where a lug needs no bend
+(OUT row and LOGIC feeds: lug right under the deck, 12 mm); a snap-on belly pan under each glove-box box covers every live
+part underneath; numbers on the covers + a legend (no more crowded names). POWER relays turned 90 deg (30 / 87 along x) so
+the harness wires leave in straight bundles that never cross a feed wire; the bar moved 8.5 mm outboard for it.
 
 Rev 4 (Dan's review of rev 3, 2026-10-14, task card fusebox rev 4): bottoms left open (no tray floor, no side wire slot) -
 each glove-box box is a printed BASE (the deck, on four corner legs with ears) and a snap-on printed COVER (rounded shell,
@@ -42,17 +50,25 @@ D = 181.0            # base depth (y), both glove-box boxes
 BASE_R = 10.0        # base plan corner radius
 COVER = dict(t=2.5, R=BASE_R + 0.45 + 2.5, r=5.0, over=13.0, clear=1.5)   # wall, plan corner R, top edge round, skirt overlap below the deck top, over the tallest part
 SNAP = dict(w=12.0, slot=1.2, len=11.0, bump=2.4, z_from_top=10.0)         # cantilever tongue in the cover skirt, half-round bump into a pocket in the base skirt
-LABEL = dict(depth=0.6, h_relay=3.6, h_ami=3.0, h_mini=2.4, h_micro=2.8)  # etched into the cover top (HP MJF: engraved text >= 0.5 deep)
-LEG = dict(d=18.0, ear_len=16.0, ear_w=20.0, ear_t=6.0, hole=8.4, gusset_h=12.0)   # corner legs, ears pointing +-y, M5 through a brass limiter
+LABEL = dict(depth=0.6, h_num=5.0, h_mini=3.6, h_name=7.0, h_word=5.0)   # etched into the cover top (HP MJF: engraved text >= 0.5 deep); rev 5: numbers + legend
+VENT = dict(w=2.6, l=14.0, pitch=18.0)   # vent slot through the cover: 2.6 wide keeps fingers and tools out (IP2X finger probe is 12.5)
+RUG = dict(band_h=6.0, band_out=1.5, rib_w=3.0, rib_out=1.5, rib_pitch=30.0)   # cover bumper band + side ribs (rugged look)
+LEG = dict(w_bot=24.0, w_top=16.0, out_top=4.0, out_slope=18.0, foot_out=22.0, foot_w=20.0, ear_t=6.0, hole=8.4, wall=3.0,
+           ear_len=16.0, ear_w=20.0)
+# rev 5 angular leg (Dan: "angular legs, less dumb looking"): a hollow buttress on a skirt face, 24 wide at the foot tapering
+# to 16 at the top, outer face sloping from 4 proud of the skirt (top) to 18 out (foot); a flat foot with the M5 hole 22 out
+# (brass limiter); open underneath (no closed cavity, R73). ear_len / ear_w: the battery block's flat end tabs.
+PAN = dict(t=2.5, z0=1.5, over=4.0, gap=2.0)   # belly pan: floor underside 1.5 above the mount face, wall slides 4 up inside the skirt
 LIMITER_M5 = dict(od=8.0, id=5.3, l=6.0)
 HEAD = {5: dict(af=8.0, k=3.5), 6: dict(af=10.0, k=4.0), 8: dict(af=13.0, k=5.3)}   # ISO 4017 hex bolt heads
 INSERT_M3 = dict(hole=4.0, depth=6.0)
 
-# ---------- heights (z, from the mount face). Lugs under the deck: bolt head 2-5.5, lug palm 5.5-7.5, barrel centre 9.
-LUG_Z = 5.5                      # palm underside of every under-deck lug
+# ---------- heights (z, from the mount face). Rev 5: belly pan floor 1.5-4.0, 2 mm air, IN-row lug bolt head 6-9.5, palm 9.5.
+LUG_Z = PAN['z0'] + PAN['t'] + PAN['gap'] + 3.5   # palm underside of every IN-row (relay feed) lug = 9.5
 LUG_C = LUG_Z + 3.5              # barrel centre (Klauke d4 7)
 R_SADDLE = 16.0                  # printed saddle radius = inside bend radius of every relay feed (8 AWG needs 3 x 5.13 = 15.4)
-STANDOFF = dict(af=8.0, power=40.0, logic=25.0, thread=5)   # brass hex standoff M5 female-female (TBD part)
+STANDOFF = dict(af=8.0, long=40.0, short=12.0, thread=5)    # brass hex standoff M5 female-female (TBD part): long = IN row (feeds that bend), short = OUT row + LOGIC feeds (straight)
+TOWER_H = {'POWER': 20.5, 'LOGIC': 22.0}                     # deck top to deck underside (terminal cavity length)
 
 # ---------- logic zone (inboard): mini fuses + micro relays
 MINI = dict(l=10.92, w=3.81, h_above=9.0, pitch=8.1)
@@ -106,12 +122,18 @@ M8_NUT = dict(af=13.0, h=6.5)
 # ---------- POWER box (local frame). Relays on the inboard half, AMI bar outboard. Each relay sits where its feed lands:
 # the AMI IN-row output lug points inboard, the wire runs straight under the deck and turns up round a saddle into the
 # relay's terminal 30 (30 is 10.25 off the relay centre, so the relay centre is the fuse line + 10.25).
-POWER = dict(L=172.0, x_bar=120.0, z_d=28.0)          # z_d = deck underside (receptacle wire exits) >= LUG_C + R_SADDLE + 8 AWG OD / 2
-POWER['bar_top'] = LUG_Z + 2.0 + STANDOFF['power'] + 3.0   # pad top: lug top + standoff + 3 mm pad; the bar top is level with it
-POWER['z_t'] = POWER['bar_top'] - 2.0                 # deck top: bar and pads 2 mm proud of it
+POWER = dict(L=180.5, x_bar=128.5)                   # rev 5: bar 8.5 outboard (relays turned 90 deg: the column A feed needs the room)
+POWER['z_d'] = 32.0                                   # deck underside >= LUG_C + R_SADDLE + 8 AWG OD / 2 = 31.6
+POWER['z_t'] = POWER['z_d'] + TOWER_H['POWER']        # deck top
+POWER['bar_top'] = POWER['z_t'] + 2.0                 # bar and pads 2 mm proud of the deck
+POWER['out_lug_z'] = POWER['bar_top'] - 3.0 - STANDOFF['short'] - 2.0   # OUT-row lug palm, right under the deck plate (6 AWG barrel top 0.5 under it)
+assert abs(POWER['bar_top'] - 3.0 - 2.0 - LUG_Z - STANDOFF['long']) < 0.01, 'IN-row standoff length'
+# Relays turned 90 deg in rev 5: terminal 30 on the +x side on its fuse line, 87 7.65 inboard of the centre, 85 / 86 at +-8.45 in y.
+# Then every harness wire (87, 87a, 85, 86, ACPS) drops, bends at 3 x OD toward -x and runs in a bundle along a line no feed wire
+# uses (87 on the fuse line inboard of the feed's bend; coils half way between fuse lines) out of the inboard end.
 BAR_T = 6.35                                          # power bar: 1" x 1/4" tinned copper flat bar (R76), in a deck pocket
 BAR = dict(w=25.4, y0=10.0, y1=158.0)                 # cut from 1" x 1/4" x 12" tinned bar (R76)
-F7_X = (17.15, 47.15)                                 # relay columns: B (odd fuse lines) inboard, A (even) right after the saddles
+F7_X = (16.5, 45.5)                                   # relay columns: B (odd fuse lines) inboard, A (even)
 ACPS_Y = 35.0                                         # ACPS mini fuse at the front of column B (fed from heater 87)
 # AMI IN-row fuse i feeds relay i; even i -> column A, odd -> column B
 IN_RELAY = ['heater', 'k_efi', 'k_str', 'k_fan', 'k_fan2', 'power', 'SPARE']
@@ -121,14 +143,15 @@ LUG_6AWG = dict(b=13.0, l=26.0, tip=6.0, t=2.0, d4=8.5)   # Klauke 3R5 (JB1 HOT 
 
 # ---------- LOGIC box (local frame): rev 3 zone positions kept; strip feeds on standoffs under the deck, lug to the rear
 STRIP = dict(w=10.0, t=3.0)                           # logic strips: 10 x 3 tinned bar
-LOGIC = dict(L=79.0, z_d=17.5)
-LOGIC['strip_top'] = LUG_Z + 2.0 + STANDOFF['logic'] + 3.0
-LOGIC['z_t'] = LOGIC['strip_top'] + 4.0               # strip 4 below the deck top (fuse receptacles above it)
+LOGIC = dict(L=79.0, z_d=20.0)                        # rev 5: z_d set by the harness bundles under the deck (checked in the build)
+LOGIC['z_t'] = LOGIC['z_d'] + TOWER_H['LOGIC']
+LOGIC['strip_top'] = LOGIC['z_t'] - 4.0               # strip 4 below the deck top (fuse receptacles above it)
+LOGIC['feed_lug_z'] = LOGIC['strip_top'] - 3.0 - STANDOFF['short'] - 2.0
 
-STRIP_FEED = dict(ext={'BUS1': 9.0, 'BUS2': 16.0}, hole_from_end=7.0)   # strip runs on past its last fuse; feed hole 7 from the end (Bus 1 shorter: feed lugs > 3 apart)
+STRIP_FEED = dict(ext={'BUS1': 16.5, 'BUS2': 23.5}, hole_from_end=7.0)  # strip runs on past its cavity tower; feed lugs > 3 apart
 FEEDS = {'BUS1': ('AMI BUS1 50 A output', 8), 'BUS2': ('k_efi 87', 10)}   # (from, AWG) - wires run box to box
 
-PLACE = {'LOGIC': (0.0, 0.0), 'POWER': (100.0, 0.0), 'BATTRELAY': (0.0, -150.0)}   # world (x, y) of each box's local origin (renders only)
+PLACE = {'LOGIC': (0.0, 0.0), 'POWER': (160.0, 0.0), 'BATTRELAY': (0.0, -175.0)}   # world (x, y) of each box's local origin (renders only)
 
 # ---------- wires at every lug / stud / terminal
 OD = {'1/0': 13.6, 6: 6.43, 8: 5.13, 10: 3.61, 12: 2.97, 14: 2.41, 16: 2.06, 18: 1.85, 20: 1.57}
@@ -137,11 +160,15 @@ AMI_AWG = {'HTR': 8, 'EFI': 12, 'STR': 12, 'FAN': 8, 'FAN2': 8, 'PWR': 10,
            'BUS1': 8, 'RTR': 10, 'AM1': 8, 'AM2': 10, 'JB1': 6, 'EPS': 8}
 RELAY_OUT_AWG = 8      # largest wire on any Mini ISO terminal (fan 87, heater 87): bends below the deck
 LOGIC_MAX_AWG = 12     # largest wire on a mini fuse / micro relay receptacle (DOME 12 AWG)
+# rev 5 harness tails (drawn to the box edge). Gauge per fuse rating in the usual ampacity steps - the harness files set the
+# real gauge. Relay 87 = the gauge of its AMI feed; coils 20 AWG; micro relay loads 16 AWG.
+MINI_AWG = {2: 20, 5: 20, 7.5: 18, 10: 18, 15: 16, 20: 12}
+COIL_AWG, MICRO_LOAD_AWG, ACPS_AWG, H87A_AWG = 20, 16, 14, 18
 
 # ---------- battery relay block (trunk, passenger side between rear wall and battery, Z4): HCR150 + AMI 40
 # One straight line along x: battery feed (-x end) -> M6 stud -> AMI 40 -> straight jumper -> HCR150 terminal 3;
 # terminal 5 -> pump cable straight out the +x end. The AMI sits on a printed pedestal so its lug is at the HCR150
-# terminal height: the jumper has no bend. Two tabs, one on each long side; every cable leaves an end.
+# terminal height: the jumper has no bend. Rev 5: two tabs, one on each SHORT end (Dan), at y 67, clear of the cables; every cable leaves an end.
 
 # ---------- battery relay block (trunk, near the battery): fuel pump relay + its fuse (R75; R15 exception)
 # Relay: TE HCR150 V23132-A2001-B200 = 1416010-1 (on hand, 2 ordered; the second was the dropped battery-kill relay).
@@ -155,14 +182,14 @@ RB = dict(L=184.0, D=92.0, floor=4.0, rim=12.0,     # base outer; relay on its f
           x_stud=20.0, x_ami_in=38.0, x_t3=118.0,    # M6 battery stud, AMI in (out = +30), HCR150 terminal 3 (5 = +17): 18 mm jumper
           bar=dict(x0=8.0, x1=44.5, w=25.4, t=6.35),       # ends 0.5 short of the AMI body
           term_z=(14.0, 34.0),                       # terminal blocks set back 10 from the flange face (TE side view)
-          lim_m6=dict(od=10.0, id=6.5, l=4.6), tabs_x=92.0,
+          lim_m6=dict(od=10.0, id=6.5, l=4.6), tab_y=67.0,   # rev 5: one tab on each SHORT end at y 67, clear of the cables (y 13-30)
           cover_h=50.0, fuse=('FP', 40), awg_feed=10, awg_pump=10, awg_coil=20)
 REFERENCE_BRAND = ('Blue Sea Systems 7720 Safety Fuse Block (AMI / MIDI)',
                    'Chosen by Claude (Dan, Z9 2026-10-14: "your pick"; DECISIONS S27). It fits all four asks: open frame (a low base and a '
                    'cover - no closed tub); lid on, no screws (the cover is a separate part that comes off by hand); no cable holes (its cover '
                    'breakouts give wire access from three directions, so cables come in under the cover, not through the base); and it takes '
                    'the same AMI fuse we use, built for wet, vibrating places (marine). 125 x 38 mm for one fuse (Blue Bottle Marine listing '
-                   'BS-7720). The one change: its 2 fixings become 2 side tabs so no cable leaves over a tab. Not chosen: Bussmann RTMR (a '
+                   'BS-7720). The one change: its 2 fixings become 2 end tabs (rev 5: Dan wants the mounts on the short ends), set beside the cables so none leaves over a tab. Not chosen: Bussmann RTMR (a '
                    'Mini ISO / mini-fuse module - no room for the HCR150 and an AMI); MTA / Littelfuse sealed power-distribution boxes (closed '
                    'tubs with cable seals, i.e. holes, the opposite of open); Blue Sea MRBF terminal blocks (they sit on the battery post).')
 
@@ -185,7 +212,7 @@ STOCK = {
         ('alt', 'MECCANIXITY 2 pcs 12" x 1" x 1/8" tinned', 'Amazon B0CGJC2S1L', '25.4 x 3.2 x 305 (2)', '$27.19',
          'https://www.amazon.com/dp/B0CGJC2S1L', 'Pads would be 25.4 long, not 17.5 - the box grows about 8 mm; only if the 15 mm stock is gone.'),
     ]),
-    'strip': ('Logic strips (Bus 1 110 mm, Bus 2 125 mm)', [
+    'strip': ('Logic strips (Bus 1 118 mm, Bus 2 133 mm)', [
         ('PICK', 'Tin-plated copper bus bar 716426, 1000 x 10 x 3 mm', 'Nassau National Cable 716426', '10 x 3 x 1000', '$60.09',
          'https://nassaunationalcable.com/products/tin-plated-copper-bus-bar-716426-pack-of-3', 'Both strips from one length.'),
         ('alt', 'Tinned C110 copper bus bar 3 x 10 x 1000 mm', 'Amazon B0GWHX98C1', '10 x 3 x 1000', '$166.91',
