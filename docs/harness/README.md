@@ -6,7 +6,7 @@ opening any loom.
 **The wiring source of truth is `sot/channels.csv`** (every ECU pin and channel).
 The looms below are the physical build and must agree with it; `check_all.py`
 enforces that. **Every rule for drawing them is in `redesign/DECISIONS.md` "Binding rules
-from Daniel" (R1-R87)** - this file is the file map and the workflow, and restates no rule.
+from Daniel" (R1-R88)** - this file is the file map and the workflow, and restates no rule.
 
 ## The short answer
 
@@ -32,6 +32,13 @@ Dan edits the drawings in the harness.design **desktop app**, which opens the fi
 - **Flow:** edit in the app (it saves the file itself), then run `python docs/harness/check_all.py`, commit the drawing and any `.harnesslib` change together.
 - **Wire routes (DECISIONS R86):** every wire carries right-angle `layoutPoints` so no two wires overlap. After moving nodes or adding wires, re-route the file: `python docs/harness/route_wires.py rebuild/<file>.harness` (rewrites the waypoints only; moves a cramped splice / cable / resistor / diode to clear space), then `check_all.py` (gate `audit_wire_spacing.py`). Snapshot: the app's own Main Menu > Export > PDF (Schematic page). Agents, who cannot drive the app, use the fallback PNG `python docs/harness/render_schematic.py rebuild/<file>.harness out.png` (the app's wire paths, `wire_paths.py`; one dark display colour per circuit - its own colours, not the insulation; ident bands at both ends).
 - **Ident bands and wire labels (DECISIONS R87 - the scheme lives there):** every wire carries its circuit's band code in `identColors` (Blue / Yellow / White, 1-4 bands, same code both ends); the circuit list per harness is `interfaces.json` "identBands"; a bundle that ends at a connector carries an `endLabel` and a TMS-SCE marker. Gate `audit_ident_bands.py`.
+- **Export the drawing package (DECISIONS R88)** - for a finished harness (its file carries `pdfExportSettings`; the page setup, title block and band legend are saved in it, so nothing needs setting):
+  1. Open `docs/harness/rebuild/ST185-<name>.harness` in the desktop app.
+  2. Main Menu (top left) > **Export** > **PDF**.
+  3. In the Export PDF panel check that Schematic, Layout, Parts, Connections, Title block and Notes are ticked and the title reads `ST185-<name> ...` (they load from the file; change nothing).
+  4. Click **Export** and save it as `ST185-<name>.pdf`.
+  5. Look at the bottom corners of the schematic and layout sheets: if the title block or the notes block covers a note or a wire, tell the agent (the corner sizes in `audit_export_sheet.py` are estimates).
+  Agents keep every finished harness on the R88 setup; gate `audit_export_sheet.py`.
 - **Agents pause while Dan edits.** The version saved to disk wins: if the app has unsaved edits when an agent saves, the app's edits are discarded. An agent never rewrites a file Dan has open with unsaved changes. The gates read the JSON, not its whitespace, so the app's own formatting never fails CI.
 - Free plan: 100 connections per harness also applies to local files. The app rejects unknown keys, so repo-only data lives in `interfaces.json`, never in a `.harness`.
 - Agents: use the global skill `harness-design` (`C:/Users/danie/.claude/skills/harness-design/SKILL.md`).
@@ -131,6 +138,7 @@ interfaces.json              <- and the ownership facts with them
         audit_bh_collisions.py     no two circuits on one cavity half
         audit_wire_spacing.py      schematic wires never overlap; parallel runs 3 line widths apart (R86)
         audit_ident_bands.py       ident band codes: palette, one code per circuit, both sections of a break agree (R87)
+        audit_export_sheet.py      finished harness: PDF export setup, title block, notes inside the view and readable (R88)
         buylist.py                 writes NEED-TO-BUY.md
         buildlist.py               writes HARNESS-BUILD-LIST.csv
 ```
