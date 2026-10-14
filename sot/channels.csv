@@ -49,7 +49,7 @@ ECU,Ign 5,ecu_b,b13,IGN5_FAN2,Condenser fan relay coil,signal,out,lowside-2a,non
 ECU,-,ecu_b,b14,,empty cavity,nc,na,none,none,B,nc,QSG-loom,Official B-loom drawing shows no terminal and no wire
 ECU,An Volt 6,ecu_b,b15,AV6_OIL_P,Oil pressure,signal,in,0-5v,none,B,set,QSG-IO,5V jumpered from A32
 ECU,An Volt 7,ecu_b,b16,AV7_FUEL_P,Fuel pressure,signal,in,0-5v,none,B,set,QSG-IO,5V jumpered from A32
-ECU,Shield/Gnd,ecu_b,b17,SHIELD_B,Loom B screen termination,screen,na,screen,none,B,set,QSG-IO,DRAIN ONLY - no signal and no current may land here
+ECU,Shield/Gnd,ecu_b,b17,SHIELD_B,Loom B screen termination,screen,na,screen,none,B,set,QSG-IO,DRAIN ONLY - no signal and no current may land here; also takes the FR wheel-speed spur screen (A-cabin cab_fspur_fr_sh -> B-cabin sp_shield_b; Route 9 rev 3) - moved here 2026-10-14 from a VRC_FRONT_OUT "shell-fr" row: no connector shells (DECISIONS S8 d) and it is not a VRC pin
 ECU,Aux 9,ecu_b,b18,AUX9_ETB_MP,ETB motor +,signal,out,hbridge-4a,none,B,set,QSG-IO,Committed to the Bosch ETB H-bridge
 ECU,DI 6,ecu_b,b19,DI6_WSS_RR,Wheel speed rear right,signal,in,freq-di,none,B,set,QSG-IO,Square wave from rear VRC out c4
 ECU,DI 5,ecu_b,b20,DI5_WSS_RL,Wheel speed rear left,signal,in,freq-di,none,B,set,QSG-IO,Square wave from rear VRC out c3
@@ -84,7 +84,6 @@ VRC,Front out,VRC_FRONT_OUT,Gnd,GNDOUT,Conditioner ground,rail,in,gnd,none,WS,se
 VRC,Front out,VRC_FRONT_OUT,FL,DI3_WSS_FL,Conditioned FL,signal,out,freq-di,none,WS,set,harness-WheelSpeed-Front,To ECU A23
 VRC,Front out,VRC_FRONT_OUT,FR,DI4_WSS_FR,Conditioned FR,signal,out,freq-di,none,WS,set,harness-WheelSpeed-Front,"To ECU B21. Leaves the combined 4-core front-VRC-out cable at the inline connector IX_WS_FRONT (pin 4) and continues as its own short shielded B-cabin spur, drain -> SHIELD_B/B17 (see FR spur screen row below), not the main cable drain. Route 9 rev 3, 2026-10-10."
 VRC,Front out screen,VRC_FRONT_OUT,5,SHIELD_A,Front output cable screen,screen,na,screen,none,WS,set,harness-WheelSpeed-Front,"Main 4-core output cable drain. Drain connected on the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (docs/SHIELD-RULES.md 6.30). 3 of the 4 cores (+5V, Gnd, FL) stay on the A side to A7; FR splits off at the inline splice onto its own B-cabin spur with its own drain (next row)."
-VRC,Front out FR spur screen,VRC_FRONT_OUT,shell-fr,SHIELD_B,FR spur cable screen (B-cabin),screen,na,screen,none,B,set,harness-WheelSpeed-Front,"FR's short shielded B-cabin spur (from the inline splice to ECU B21) has its own drain, landing on SHIELD_B (B17) - separate from the main cable's drain at SHIELD_A (A7). Route 9 rev 3, 2026-10-10."
 VRC,Rear in L,VRC_REAR_IN_L,+,WSS_RL_P,Rear left sensor +,signal,in,vr,none,WS,set,harness-WheelSpeed-Rear,Raw VR
 VRC,Rear in L,VRC_REAR_IN_L,-,WSS_RL_N,Rear left sensor -,signal,in,vr,none,WS,set,harness-WheelSpeed-Rear,Raw VR
 VRC,Rear in L screen,VRC_REAR_IN_L,3,SHIELD_B,Rear left sensor screen,screen,na,screen,none,WS,set,harness-WheelSpeed-Rear,Drain connected on the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (docs/SHIELD-RULES.md 6.30). Floats at the sensor.
