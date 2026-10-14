@@ -34,6 +34,8 @@ What it runs, in order - every one in HARD is a hard gate:
   check_harnesslib.py      every part a drawing uses is in rebuild/ST185.harnesslib and equal to it
   audit_drawing_rules.py   signals (one propagating per net, terminals never, no empty wired
                            cavity), 30-unit grid, bundle lengths, layout left to right, no overlaps
+  audit_wire_spacing.py    schematic wires never overlap; parallel runs at least 3 line widths
+                           apart (DECISIONS R86; paths per wire_paths.py, re-route with route_wires.py)
   audit_dan_rules.py       Daniel's text-level rules (DECISIONS R11, R26, R29, R35, R44): bay
                            flying leads are new wire, no sleeve parts or coverings, wire part
                            numbers, no "not used" / "reserved" cavity signals, no stale notes;
@@ -44,7 +46,7 @@ What it runs, in order - every one in HARD is a hard gate:
                            no broken attributes, a top view after every figure, no
                            overlapping markers in one figure)
 
-SOFT (reported, not failing): none at present.
+SOFT (reported, not failing): audit_wire_spacing.py, until the re-routed drawings land.
 
 The generators run in --check mode here: they rebuild in memory and fail
 if the committed file is stale, but never write. So check_all.py leaves the tree
@@ -70,7 +72,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["audit_dan_rules.py"], ["buylist.py", "--check"],
         ["buildlist.py", "--check"], ["check_route_drawings.py"],
         ["../../cad/fusebox/src/parts_lists.py", "--check"]]   # DECISIONS R82: every fuse box part is real and buyable
-SOFT = []
+SOFT = [["audit_wire_spacing.py"]]   # DECISIONS R86: HARD once the re-routed drawings land
 # 2026-10-14: check_route_drawings went HARD - its last finding (Route 1 Fig. 4, an EWD
 # sheet with no top view) got a top view, so it reported zero (OPEN-ITEMS row 65).
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy
