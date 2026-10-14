@@ -1,5 +1,11 @@
 """ST185 glove-box fuse + relay box (one box, plan rev 2): layout spec shared by the Fusion build and the summary page.
 
+Rev 2 (Dan, 2026-10-14, R73): every housing part is printed by powder-bed fusion (HP MJF / SLS, PA12): tray, deck, lid,
+mounting ears. Only current-carrying parts are metal (bar, pads, strips, studs, lugs). PA12 (HP 3D HR PA 12 data sheet):
+HDT 175 C at 0.45 MPa, 95 C at 1.82 MPa, tensile ~48 MPa. Design rules: walls >= 2.0 (>= 3 where loaded), ribs not
+solid blocks, no closed cavities (no trapped powder), 0.4-0.5 mm between printed parts, threads only in brass heat-set
+inserts, every bolted joint clamps metal-to-metal through brass compression limiters.
+
 All dimensions in mm. x = along the box, inboard (ECU side) -> outboard (RH kick / bus bar); y = depth, forward
 (firewall, wire exit) = 0 -> rearward; z = up, 0 = underside of the aluminium tray.
 Claude Code, 2026-10-14. Dan's answers: L1 AMI studs, L4 smallest sensible footprint (glove box is not a limit),
@@ -19,20 +25,27 @@ Maker drawings (no guessed dims; copies in the main checkout's untracked _resear
            for b 12, check on the 3R5 drawing before machining.
 """
 
-WALL = 3.0           # 6061 tray wall
-FLOOR = 3.0          # 6061 tray floor
+WALL = 3.0           # printed tray wall (loaded: >= 3)
+FLOOR = 3.0          # printed tray floor
 DECK_Z0 = 25.0       # underside of the printed PA6-GF deck (22 mm cable bay below it, plan rev 2)
-DECK_Z1 = 51.0       # deck top: terminal cavities + TPA comb live in these 26 mm
+DECK_Z1 = 51.0       # deck top: terminal cavities + TPA comb live in these 26 mm (towers, not a solid block)
+PLATE_Z0 = 43.0      # deck top plate underside (8 mm plate; 4 mm left under the bar / pad pockets)
+SKIRT = 3.0          # deck perimeter skirt
+RIB = 2.5            # rib thickness (deck, ears, lid)
+TOWER = 3.0          # wall around each terminal-cavity group, down to DECK_Z0
+DECK_RIBS_X = (162.0, 172.0, 208.0, 218.0)   # ribs under the power-zone plate, along y (parallel to the wire run)
 BAR_T = 6.0          # Al power bar / output pads thickness, sit in deck pockets
 BAR_TOP = 53.0       # top of bar and pads (2 mm proud of the deck)
 LID_Z = 79.5         # lid underside (tallest part: micro relay 51 + 25.4 = 76.4)
-LID_T = 3.0
+LID_T = 2.5
+LID_RIB = dict(h=3.0, w=2.0, pitch=40.0)   # ribs on top of the lid (flat PA12 plates warp)
 GAP = 3.0            # min gap between installed lugs (Dan's rule, bus bar)
-CLR = 0.3            # pocket clearance per side (bus bar POCKET clr)
+CLR = 0.4            # metal part in a printed pocket, per side (MJF)
+PCLR = 0.45          # printed part to printed part, per side
 
 L = 254.5            # outer length (x)
-D = 170.0            # outer depth (y): every conductor >= 5 mm from the Al tray
-H = LID_Z + LID_T    # 82.5 closed
+D = 181.0            # outer depth (y)
+H = LID_Z + LID_T + LID_RIB['h']   # 85.0 closed
 
 # ---------- logic zone (inboard): mini fuses + micro relays
 MINI = dict(l=10.92, w=3.81, h_above=9.0, pitch=8.1)
@@ -60,11 +73,12 @@ F7_POS = [('k_efi', '1-1414147-0', 'OWN'), ('k_str', '1-1414147-0', 'BUY'), ('k_
 ACPS = ('ACPS', 10)
 
 # ---------- power zone (outboard): one Al bar along y, AMI both sides, M8 1/0 input at the forward end
-BAR = dict(x=190.0, w=25.0, y0=8.0, y1=159.0)
+BAR = dict(x=190.0, w=25.0, y0=10.0, y1=170.0)
+BAR_SCREW_Y = (30.0, 60.0, 95.0, 130.0, 163.0)   # M4 hold-downs from below, through brass limiters
 AMI = dict(L=41.0, c=30.0, body_l=16.0, body_w=12.0, body_h=6.0, ear_w=9.5, ear_t=0.8, hole=5.5)
 AMI_IN_OFF = 6.25    # input stud offset from the bar centre line (both rows on one 25 mm bar)
-AMI_PITCH = 16.0     # 2R5 pocket 12.6 + 3.4 wall >= GAP
-AMI_Y0 = 42.0        # first fuse position centre
+AMI_PITCH = 17.5     # pad 14.5 + 3.0 gap (printed rib 2.2 between neighbouring outputs)
+AMI_Y0 = 43.0        # first fuse position centre
 AMI_ROWS = {         # forward -> rear; amps None = spare position
     'IN':  [('HTR', 40), ('EFI', 30), ('STR', 30), ('FAN', 40), ('FAN2', 30), ('PWR', 30), ('SP', None), ('SP', None)],
     'OUT': [('BUS1', 50), ('RTR', 30), ('AM1', 40), ('AM2', 30), ('JB1', 60), ('EPS', 60), ('SP', None), ('SP', None)],
@@ -72,16 +86,20 @@ AMI_ROWS = {         # forward -> rear; amps None = spare position
 # 15 positions built (plan rev 2): the inboard row's 8th slot is left blank
 AMI_SLOTS = {'IN': 7, 'OUT': 8}
 AMI_COLOUR = {30: 'orange', 40: 'ltgreen', 50: 'red', 60: 'yellow'}
-PAD = dict(inner=6.5, outer=11.0, w=14.5)   # output pad extent from its stud (toward bar / away from bar), width
+PAD = dict(inner=6.5, outer=11.0, w=14.5, screw=7.0)   # output pad extent from its stud (toward bar / away), width, M4 hold-down offset
 LUG_M5 = dict(b=12.0, l=22.0, tip=6.0, t=2.0, d4=7.0)
 LUG_M8 = dict(b=20.0, l=47.0, tip=10.0, t=3.0, d4=14.0)
-IN_STUD_Y = 21.0
+IN_STUD_Y = 22.0
 M5_NUT = dict(af=8.0, h=4.0)
 M8_NUT = dict(af=13.0, h=6.5)
 
 # ---------- mounting: 4 Al ears, nylon shoulder washers above and below (box floats 1.5 mm off the mount face)
-EAR = dict(len=18.0, w=20.0, t=4.0, hole=10.0, ys=(30.0, 130.0))
-ISO = dict(od=16.0, id=5.5, t=1.5, sleeve_od=9.5)
+EAR = dict(len=18.0, w=22.0, t=6.0, hole=8.4, gusset_h=14.0, ys=(30.0, 150.0))   # printed, M5 through a brass limiter
+LIMITER_M5 = dict(od=8.0, id=5.3, l=6.0)    # ears
+LIMITER_M4 = dict(od=7.0, id=4.3, l=4.0)    # bar / pad hold-downs: clamp is metal to metal
+INSERT_M3 = dict(hole=4.0, depth=6.0)       # brass heat-set insert, M3 (lid + deck screws); hole per insert maker - TBD part
+POSTS = [(20.0, 13.0), (20.0, 165.0), (145.0, 14.0), (100.0, 167.0)]   # tray posts the deck screws into (M3 inserts)
+POST_D = 10.0
 LID_SCREWS = [(WALL + 3.2, WALL + 3.2), (L - WALL - 3.2, WALL + 3.2), (WALL + 3.2, D - WALL - 3.2), (L - WALL - 3.2, D - WALL - 3.2)]  # M3, in r7 corner bosses
 WIRE_EXIT = dict(x0=10.0, x1=L - 10.0, z0=6.0, z1=22.0)     # forward wall, under the deck
 IN_GROMMET = dict(d=22.0)                                     # outboard end wall, 1/0 entry

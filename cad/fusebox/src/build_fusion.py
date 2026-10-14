@@ -15,7 +15,7 @@ app = adsk.core.Application.get()
 tb = adsk.fusion.TemporaryBRepManager.get()
 BT = adsk.fusion.BooleanTypes
 OPS = {'u': BT.UnionBooleanType, 's': BT.DifferenceBooleanType, 'i': BT.IntersectionBooleanType}
-DOC = 'ST185_fusebox_rev1'
+DOC = 'ST185_fusebox_rev2'   # rev 2: powder-bed printed PA12 housings (R73)
 
 
 def P(x, y, z):
@@ -130,11 +130,14 @@ def build(out_dir, SKIP_SECTIONS=False):
         'red': ap('Plastic - Glossy (Red)'), 'yellow': ap('Plastic - Glossy (Yellow)'),
         'nylon': tint('Plastic - Matte (White)', 'Nylon natural', (235, 228, 205)),
         'spare': tint('Plastic - Matte (Gray)', 'Spare position', (200, 200, 200)),
+        'pa12': tint('Plastic - Matte (Gray)', 'PA12 MJF grey', (95, 98, 102)),
+        'pa12_lt': tint('Plastic - Matte (Gray)', 'PA12 MJF light', (150, 154, 158)),
     }
     MINI_AP = {2: tint('Plastic - Glossy (Grey)', 'ATM 2A grey', (150, 150, 150)), 5: tint('Plastic - Glossy (Red)', 'ATM 5A tan', (205, 170, 120)),
                7.5: tint('Plastic - Glossy (Red)', 'ATM 7.5A brown', (120, 70, 40)), 10: ap('Plastic - Glossy (Red)'),
                15: ap('Plastic - Glossy (Blue)'), 20: ap('Plastic - Glossy (Yellow)')}
-    MAT = {'al': mlib.materials.itemByName('Aluminum 6061'), 'pa': mlib.materials.itemByName('Nylon 6/6'),
+    MAT = {'al': mlib.materials.itemByName('Aluminum 6061'), 'pa': mlib.materials.itemByName('Nylon 6/6'),   # PA12 stand-in
+           'brass': mlib.materials.itemByName('Brass'),
            'ss': mlib.materials.itemByName('Stainless Steel AISI 304'), 'abs': mlib.materials.itemByName('ABS Plastic')}
 
     def comp(cname, bodies, appearance=None, material=None):
@@ -170,7 +173,7 @@ def build(out_dir, SKIP_SECTIONS=False):
     def lug_end(a):          # barrel end x
         return a['x_out'] + a['sgn'] * (LUG['l'] - LUG['tip'])
 
-    # ------------------------------------------------------------------ 1. tray (6061, machined)
+    # ------------------------------------------------------------------ 1. tray (PA12, powder-bed printed, open top: no trapped powder)
     tray = box(0, 0, 0, L, D, S.LID_Z)
     bo(tray, box(xi0, yi0, S.DECK_Z0, xi1, yi1, S.LID_Z + 1), 's')                  # upper pocket: full inner
     bo(tray, box(xi0 + 3, yi0, F, xi1 - 3, yi1 - 3, S.DECK_Z0 + 0.01), 's')         # cable bay: 3 mm deck ledges ends + rear
@@ -178,36 +181,83 @@ def build(out_dir, SKIP_SECTIONS=False):
     bo(tray, box(we['x0'], -1, we['z0'], we['x1'], W + 1, we['z1']), 's')           # forward wire exit (grommet strip)
     gz = S.BAR_TOP - S.LUG_M8['t'] + S.LUG_M8['d4'] / 2
     bo(tray, cyl((L - W - 1, S.IN_STUD_Y, gz), (L + 1, S.IN_STUD_Y, gz), S.IN_GROMMET['d']), 's')   # 1/0 entry
-    for (sx, sy) in S.LID_SCREWS:                                                     # r7 corner bosses, M3 tapped
+    IN3 = S.INSERT_M3
+    for (sx, sy) in S.LID_SCREWS:                                                     # r7 corner bosses, M3 heat-set insert
         cx = xi0 if sx < L / 2 else xi1
         cy = yi0 if sy < D / 2 else yi1
         boss = bo(cylz(cx, cy, F, S.LID_Z, 14.0), box(xi0, yi0, F, xi1, yi1, S.LID_Z), 'i')
         bo(tray, boss, 'u')
-        bo(tray, cylz(sx, sy, S.LID_Z - 10, S.LID_Z + 1, 2.5), 's')
+        bo(tray, cylz(sx, sy, S.LID_Z - IN3['depth'], S.LID_Z + 1, IN3['hole']), 's')
+    for (px, py) in S.POSTS:                                                          # deck posts, M3 insert on top
+        bo(tray, cylz(px, py, F - 0.01, S.PLATE_Z0, S.POST_D), 'u')
+        bo(tray, cylz(px, py, S.PLATE_Z0 - IN3['depth'], S.PLATE_Z0 + 1, IN3['hole']), 's')
     E = S.EAR
     for ex0 in (-E['len'], L):
         for ey in E['ys']:
             ear = box(ex0, ey - E['w'] / 2, 0, ex0 + E['len'], ey + E['w'] / 2, E['t'])
-            bo(ear, cylz(ex0 + E['len'] / 2 if ex0 > 0 else -E['len'] / 2, ey, -1, E['t'] + 1, E['hole']), 's')
+            for gy in (ey - E['w'] / 2, ey + E['w'] / 2 - S.RIB):                        # gussets back to the wall
+                bo(ear, box(ex0, gy, 0, ex0 + E['len'], gy + S.RIB, E['gusset_h']), 'u')
+            bo(ear, cylz(ex0 + E['len'] / 2, ey, -1, E['gusset_h'] + 1, E['hole']), 's')
             bo(tray, ear, 'u')
-    tray_occ = comp('Tray_Al6061', tray, AP['al'], MAT['al'])
+    tray_occ = comp('Tray_PA12_printed', tray, AP['pa12'], MAT['pa'])
+    lims = []
+    l5 = S.LIMITER_M5
+    for ex0 in (-E['len'], L):
+        for ey in E['ys']:
+            lims.append(bo(cylz(ex0 + E['len'] / 2, ey, 0, l5['l'], l5['od']), cylz(ex0 + E['len'] / 2, ey, -1, l5['l'] + 1, l5['id']), 's'))
 
-    # ------------------------------------------------------------------ 2. lid
+    # ------------------------------------------------------------------ 2. lid (PA12, ribbed on top)
     lid = box(0, 0, S.LID_Z, L, D, S.LID_Z + S.LID_T)
+    LR = S.LID_RIB
+    zt = S.LID_Z + S.LID_T
+    n = int(L // LR['pitch'])
+    for i in range(1, n + 1):
+        x = i * L / (n + 1)
+        bo(lid, box(x - LR['w'] / 2, 6, zt - 0.01, x + LR['w'] / 2, D - 6, zt + LR['h']), 'u')
+    m = int(D // LR['pitch'])
+    for j in range(1, m + 1):
+        y = j * D / (m + 1)
+        bo(lid, box(6, y - LR['w'] / 2, zt - 0.01, L - 6, y + LR['w'] / 2, zt + LR['h']), 'u')
+    for rb in (box(6, 6, zt - 0.01, L - 6, 6 + LR['w'], zt + LR['h']), box(6, D - 6 - LR['w'], zt - 0.01, L - 6, D - 6, zt + LR['h']),
+               box(6, 6, zt - 0.01, 6 + LR['w'], D - 6, zt + LR['h']), box(L - 6 - LR['w'], 6, zt - 0.01, L - 6, D - 6, zt + LR['h'])):
+        bo(lid, rb, 'u')                                                                   # perimeter rib
     for (sx, sy) in S.LID_SCREWS:
         bo(lid, cylz(sx, sy, S.LID_Z - 1, S.H + 1, 3.4), 's')
-    lid_occ = comp('Lid_Al6061', lid, AP['al'], MAT['al'])
-    screws = [union_all([cylz(sx, sy, S.LID_Z - 8, S.H, 3.0), cylz(sx, sy, S.H, S.H + 1.65, 5.5)]) for (sx, sy) in S.LID_SCREWS]
-    lid_screw_occ = comp('LidScrew_M3x10_ISO7380', screws, AP['al'], MAT['ss'])
+    lid_occ = comp('Lid_PA12_printed', lid, AP['pa12'], MAT['pa'])
+    screws = [union_all([cylz(sx, sy, S.LID_Z - 6, zt, 3.0), cylz(sx, sy, zt, zt + 1.65, 5.5)]) for (sx, sy) in S.LID_SCREWS]
+    lid_screw_occ = comp('LidScrew_M3x8_ISO7380', screws, AP['al'], MAT['ss'])
 
-    # ------------------------------------------------------------------ 3. printed deck (PA6-GF)
-    cl = 0.2
-    deck = box(xi0 + cl, yi0 + cl, S.DECK_Z0, xi1 - cl, yi1 - cl, S.DECK_Z1)
+    # ------------------------------------------------------------------ 3. deck (PA12, printed): 8 mm plate + skirt + cavity towers + ribs,
+    #                                                                       open underneath (no closed cavity, powder runs out)
+    cl = S.PCLR
+    dx0, dx1, dy0, dy1 = xi0 + cl, xi1 - cl, yi0 + cl, yi1 - cl
+    parts = [box(dx0, dy0, S.PLATE_Z0, dx1, dy1, S.DECK_Z1)]
+    sk = S.SKIRT
+    parts += [box(dx0, dy0, S.DECK_Z0, dx1, dy0 + sk, S.PLATE_Z0 + 0.01), box(dx0, dy1 - sk, S.DECK_Z0, dx1, dy1, S.PLATE_Z0 + 0.01),
+              box(dx0, dy0, S.DECK_Z0, dx0 + sk, dy1, S.PLATE_Z0 + 0.01), box(dx1 - sk, dy0, S.DECK_Z0, dx1, dy1, S.PLATE_Z0 + 0.01)]
+    for rx in S.DECK_RIBS_X:
+        parts.append(box(rx - S.RIB / 2, dy0, S.DECK_Z0, rx + S.RIB / 2, dy1, S.PLATE_Z0 + 0.01))
+    T = S.TOWER
+    for col, (cx, fuses) in S.MINI_COLS.items():
+        parts.append(box(cx - S.MINI['l'] / 2 - T, S.MINI_Y0 - 6.4 - T, S.DECK_Z0, cx + S.MINI['l'] / 2 + T,
+                         S.MINI_Y0 + (len(fuses) - 1) * S.MINI['pitch'] + 6.4 + T, S.PLATE_Z0 + 0.01))
+    parts.append(cbox(S.F7_COLS[1], S.F7_ROWS[3], S.DECK_Z0, S.PLATE_Z0 + 0.01, 6.0 + 3.0 + 2 * T, 4.6 + 2 * T))   # ACPS
+    for cx in S.F7_COLS:
+        for cy in S.F7_ROWS:
+            parts.append(cbox(cx, cy, S.DECK_Z0, S.PLATE_Z0 + 0.01, 17.0 + 2.8 + 2 * T, 17.9 + 3.2 + 2 * T))
+    for cx in S.MICRO_COLS:
+        for cy in S.MICRO_Y:
+            parts.append(cbox(cx, cy, S.DECK_Z0, S.PLATE_Z0 + 0.01, 11.6 + 2 * T, 18.6 + 2 * T))
+    deck = union_all(parts)
     for (sx, sy) in S.LID_SCREWS:                       # clear the corner bosses
         cx = xi0 if sx < L / 2 else xi1
         cy = yi0 if sy < D / 2 else yi1
-        bo(deck, cylz(cx, cy, S.DECK_Z0 - 1, S.DECK_Z1 + 1, 15.0), 's')
+        bo(deck, cylz(cx, cy, S.DECK_Z0 - 1, S.DECK_Z1 + 1, 14.0 + 2 * cl), 's')
     cuts = []
+    for (px, py) in S.POSTS:                            # deck screws: M3 into the post inserts, counterbored
+        cuts.append(cylz(px, py, S.DECK_Z0 - 1, S.PLATE_Z0, S.POST_D + 2 * cl))
+        cuts.append(cylz(px, py, S.PLATE_Z0 - 1, S.DECK_Z1 + 1, 3.4))
+        cuts.append(cylz(px, py, S.DECK_Z1 - 3.5, S.DECK_Z1 + 1, 6.5))
     # bar + pads pockets
     B = S.BAR
     cuts.append(box(B['x'] - B['w'] / 2 - S.CLR, B['y0'] - S.CLR, BZ0, B['x'] + B['w'] / 2 + S.CLR, B['y1'] + S.CLR, S.DECK_Z1 + 1))
@@ -261,9 +311,20 @@ def build(out_dir, SKIP_SECTIONS=False):
             for (u, v, lx, ly) in ((0, 8.0, 8.3, 2.6), (0, -8.0, 8.3, 2.6), (-4.5, 0, 2.6, 6.8), (4.5, 0, 2.6, 6.8), (0, 0, 2.6, 4.0)):
                 cuts.append(cbox(cx + u, cy + v, S.DECK_Z0 - 1, S.DECK_Z1 + 1, lx, ly))
     for col, (cx, fuses) in S.MINI_COLS.items():      # logic strip pockets, open underneath (strips slide in from below)
-        cuts.append(box(cx - 4.2, S.MINI_Y0 - 6.2, S.DECK_Z0 - 1, cx + 4.2, S.MINI_Y0 + (len(fuses) - 1) * S.MINI['pitch'] + 6.2, 44.2))
+        cuts.append(box(cx - 4 - S.CLR, S.MINI_Y0 - 6 - S.CLR, S.DECK_Z0 - 1, cx + 4 + S.CLR,
+                        S.MINI_Y0 + (len(fuses) - 1) * S.MINI['pitch'] + 6 + S.CLR, 44.0 + S.CLR))
+    # hold-down limiters: bar + every pad clamp metal to metal (screw head -> brass limiter -> Al), never on bare nylon
+    L4 = S.LIMITER_M4
+    hold = [(B['x'], y) for y in S.BAR_SCREW_Y] + [(a['x_out'] + a['sgn'] * S.PAD['screw'], a['y']) for a in ami]
+    for (hx, hy) in hold:
+        cuts.append(cylz(hx, hy, S.DECK_Z0 - 1, BZ0 + 0.01, L4['od'] + 2 * S.CLR))
     sub_all(deck, cuts)
-    deck_occ = comp('Deck_PA6GF_printed', deck, AP['deck'], MAT['pa'])
+    deck_occ = comp('Deck_PA12_printed', deck, AP['pa12_lt'], MAT['pa'])
+    for (hx, hy) in hold:
+        lims.append(bo(cylz(hx, hy, BZ0 - L4['l'], BZ0, L4['od']), cylz(hx, hy, BZ0 - L4['l'] - 1, BZ0 + 1, L4['id']), 's'))
+    lim_occ = comp('Limiter_brass_M4_M5', lims, AP['brass'], MAT['brass'])
+    hs = [union_all([cylz(hx, hy, BZ0 - L4['l'] - 2.2, BZ0 + 3.5, 4.0), cylz(hx, hy, BZ0 - L4['l'] - 2.2, BZ0 - L4['l'], 7.0)]) for (hx, hy) in hold]
+    hold_occ = comp('HoldDown_M4x10_ISO7380', hs, AP['al'], MAT['ss'])
 
     # ------------------------------------------------------------------ 4. conductors
     bar = box(B['x'] - B['w'] / 2, B['y0'], BZ0, B['x'] + B['w'] / 2, B['y1'], S.BAR_TOP)
@@ -278,12 +339,15 @@ def build(out_dir, SKIP_SECTIONS=False):
                   max(a['x_out'], a['x_out'] + a['sgn'] * 40), a['y'] + (LUG['b'] / 2 + S.CLR), S.BAR_TOP + 1), 's')
         bo(p, cylz(a['x_out'], a['y'], S.BAR_TOP - LUG['t'] - 0.01, S.BAR_TOP + 1, LUG['b'] + 2 * S.CLR), 's')   # round end of the inset
         bo(p, cylz(a['x_out'], a['y'], BZ0 - 1, S.BAR_TOP + 1, 5.0), 's')
+        bo(p, cylz(a['x_out'] + a['sgn'] * S.PAD['screw'], a['y'], BZ0 - 1, BZ0 + 3.5, 3.3), 's')     # M4 tapped, blind
         pads.append(p)
     # logic bus strips inside the deck (embedded, Al 8 x 4)
     strips = []
     for col, (cx, fuses) in S.MINI_COLS.items():
         n = len(fuses)
         strips.append(box(cx - 4, S.MINI_Y0 - 6, 40.0, cx + 4, S.MINI_Y0 + (n - 1) * S.MINI['pitch'] + 6, 44.0))
+    for y in S.BAR_SCREW_Y:
+        bo(bar, cylz(B['x'], y, BZ0 - 1, BZ0 + 4.5, 3.3), 's')                                       # M4 tapped, blind
     bar_occ = comp('Bar_Power_Al6061_25x6', bar, AP['al_bar'], MAT['al'])
     pad_occ = comp('Pad_Out_Al6061', pads, AP['al_bar'], MAT['al'])
     strip_occ = comp('Strip_Logic_Al6061_8x4', strips, AP['al_bar'], MAT['al'])
@@ -366,40 +430,49 @@ def build(out_dir, SKIP_SECTIONS=False):
     comp('Relay_TE_MicroA_V23074', mi_used, AP['black'], MAT['abs'])
     comp('SPARE_positions', f7_spare + mi_spare, AP['spare'])
 
-    # isolators: nylon shoulder washers on each ear, above and below (box floats ISO t off the mount face)
-    I = S.ISO
-    isos = []
-    for ex in (-E['len'] / 2, L + E['len'] / 2):
-        for ey in E['ys']:
-            lo = bo(cylz(ex, ey, -I['t'], 0, I['od']), cylz(ex, ey, -I['t'] - 1, 1, I['id']), 's')
-            up = union_all([cylz(ex, ey, E['t'], E['t'] + I['t'], I['od']), cylz(ex, ey, 0.2, E['t'], I['sleeve_od'])])
-            bo(up, cylz(ex, ey, -1, E['t'] + I['t'] + 1, I['id']), 's')
-            isos += [lo, up]
-    iso_occ = comp('Isolator_nylon_shoulder_washer', isos, AP['nylon'], MAT['pa'])
-    mount = [box(-30, -10, -I['t'] - 3, L + 30, D + 10, -I['t'])]
-    mount_occ = comp('REF_MountFace_body', mount, AP['black'])
-    mount_occ.isLightBulbOn = False
-
     # ------------------------------------------------------------------ checks
     mm = app.measureManager
-    cond = []
+
+    def dist(b1, b2):
+        return round(mm.measureMinimumDistance(b1, b2).value * 10, 2)
+
+    def bodies(prefix):
+        return [b for o in root.occurrences if o.component.name.startswith(prefix) for b in o.bRepBodies]
+
+    # live-part clearance between DIFFERENT nets (input bar vs each output, neighbouring outputs)
+    bar_b = bodies('Bar_')[0]
+    pad_bs = bodies('Pad_')
+    pad_by_pos = {}
+    for pb in pad_bs:
+        c = pb.boundingBox
+        pad_by_pos[(round((c.minPoint.x + c.maxPoint.x) * 5), round((c.minPoint.y + c.maxPoint.y) * 5))] = pb
+    keys = sorted(pad_by_pos)
+    neigh = []
+    for k1 in keys:
+        for k2 in keys:
+            if k1 < k2 and abs(k1[0] - k2[0]) < 5 and abs(abs(k1[1] - k2[1]) - S.AMI_PITCH) < 1:
+                neigh.append(dist(pad_by_pos[k1], pad_by_pos[k2]))
+    lug_bs = bodies('Lug_')
+    in_lug = max(lug_bs, key=lambda lb: lb.volume)
+    live = {}
+    live['pad_to_pad_min_mm'] = min(neigh)
+    live['bar_to_pad_min_mm'] = min(dist(bar_b, pb) for pb in pad_bs)
+    live['input_lug_to_pad_min_mm'] = min(dist(in_lug, pb) for pb in pad_bs)
+    out_lugs = [lb for lb in lug_bs if lb is not in_lug]
+    live['output_lug_to_lug_min_mm'] = min(dist(l1, l2) for i_, l1 in enumerate(out_lugs) for l2 in out_lugs[i_ + 1:]
+                                           if abs(l1.boundingBox.minPoint.x - l2.boundingBox.minPoint.x) < 0.5)
+    report['live_clearance'] = live
+    # printed parts: size + volume (PA12 MJF part density 1.01 g/cm3)
+    printed = {}
     for o in root.occurrences:
         n = o.component.name
-        if n.startswith(('Bar_', 'Pad_', 'Strip_', 'Stud_', 'Nut_', 'Lug_', 'Fuse_AMI')):
-            for b in o.bRepBodies:
-                cond.append((n, b))
-    tray_b = tray_occ.bRepBodies.item(0)
-    lid_b = lid_occ.bRepBodies.item(0)
-    mount_b = mount_occ.bRepBodies.item(0)
-    iso_r = {}
-    per = {}
-    for n, b in cond:
-        per[n] = min(per.get(n, 1e9), round(mm.measureMinimumDistance(b, tray_b).value * 10, 2))
-    iso_r['conductor_to_tray_mm'] = per
-    iso_r['min_conductor_to_tray_mm'] = min(per.values())
-    iso_r['min_conductor_to_lid_mm'] = round(min(mm.measureMinimumDistance(b, lid_b).value for _, b in cond) * 10, 2)
-    iso_r['tray_to_mount_face_mm'] = round(mm.measureMinimumDistance(tray_b, mount_b).value * 10, 2)
-    report['isolation'] = iso_r
+        if n.endswith('_printed'):
+            bb_ = o.boundingBox
+            vol = sum(b.volume for b in o.bRepBodies)
+            printed[n] = dict(size_mm=[round((bb_.maxPoint.x - bb_.minPoint.x) * 10, 1), round((bb_.maxPoint.y - bb_.minPoint.y) * 10, 1),
+                                       round((bb_.maxPoint.z - bb_.minPoint.z) * 10, 1)],
+                              volume_cm3=round(vol, 1), mass_g_pa12=round(vol * 1.01, 0))
+    report['printed_parts'] = printed
     # interference: every solid pair that should not touch (cheap: deck vs everything above it, conductors vs relays)
     bb = root.boundingBox
     report['outer_mm'] = dict(L=S.L, D=S.D, H=S.H, L_with_ears=S.L + 2 * E['len'],
@@ -407,7 +480,7 @@ def build(out_dir, SKIP_SECTIONS=False):
     report['footprint_mm2'] = S.L * S.D
     ints = []
     for o in root.occurrences:
-        if o.component.name.startswith(('REF_', 'Wire_', 'Cable_', 'Grommet_', 'LidScrew', 'Stud_', 'Nut_', 'Lug_')):
+        if o.component.name.startswith(('REF_', 'Wire_', 'Cable_', 'Grommet_', 'LidScrew', 'Stud_', 'Nut_', 'Lug_', 'HoldDown_')):
             continue
         ints.append(o)
     coll = adsk.core.ObjectCollection.create()
@@ -423,7 +496,7 @@ def build(out_dir, SKIP_SECTIONS=False):
 
     # masses
     report['mass_g'] = {o.component.name: round(o.component.physicalProperties.mass * 1000, 1) for o in root.occurrences
-                        if o.component.name.startswith(('Tray', 'Lid', 'Deck', 'Bar', 'Pad', 'Strip'))}
+                        if o.component.name.startswith(('Bar', 'Pad', 'Strip'))}
 
     # ------------------------------------------------------------------ exports
     em = design.exportManager
@@ -432,11 +505,11 @@ def build(out_dir, SKIP_SECTIONS=False):
         n = o.component.name
         if n.startswith(('REF_', 'Wire_', 'Cable_')):
             continue
-        if n.startswith(('Tray', 'Lid_', 'Deck', 'Bar_', 'Pad_', 'Strip_')):
+        if n.endswith('_printed') or n.startswith(('Bar_', 'Pad_', 'Strip_')):
             p = os.path.join(out_dir, '%s.step' % n)
             em.execute(em.createSTEPExportOptions(p, o.component))
             exported.append(os.path.basename(p))
-        if n.startswith('Deck'):
+        if n.endswith('_printed'):
             p = os.path.join(out_dir, '%s.stl' % n)
             so = em.createSTLExportOptions(o, p)
             so.meshRefinement = adsk.fusion.MeshRefinementSettings.MeshRefinementHigh
