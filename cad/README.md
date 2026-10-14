@@ -1,0 +1,23 @@
+# ST185 CAD index
+
+The ONE list of every custom-part CAD model (DECISIONS R77). **A new CAD model gets a row here in the same PR that adds it.**
+
+- **Summary page** = tracked HTML in git (renders, drawings). Open it from the repo or the research hub.
+- **Model files** (STEP, STL, Fusion `.f3d`, busbar drawing PDFs) are **gitignored and local only**. They sit in the same `cad/` folder of the main checkout, `C:\projects\active\st185-link-ecu-config\cad\...` (a worktree has only the tracked files).
+- **Fusion cloud link**: none recorded for any model. Fusion links were not available when this index was made (no Fusion read access in that session); add the link to a row when it is known. Fusion allows 10 editable documents (R74): reuse a part's existing document, never make throwaway ones.
+
+| Model | What it is | Status / rev | Summary page | Local model files | Fusion cloud |
+|---|---|---|---|---|---|
+| Bus bar, design A | Printed ASA body + Al 6061 bars, first design | Superseded by A rev3 (kept for comparison) | [ST185-busbar-designs.html](busbar/ST185-busbar-designs.html) | `cad/busbar/design-A/` (`ST185_busbar_A.f3d`, `A_ASSEMBLY.step`, parts `.step`/`.stl`, `A_drawing.pdf`) | none recorded |
+| Bus bar, design A rev3 | Design A, third revision | Saved design | same page | `cad/busbar/design-A-rev3/` (`ST185_busbar_A_rev3.f3d`, `A_rev3_ASSEMBLY.step`, ...) | none recorded |
+| Bus bar, design B | Printed body, locators, Al bars, first B design | Superseded by B rev2/rev3 | same page | `cad/busbar/design-B/` (`ST185_busbar_B.f3d`, `B_ASSEMBLY.step`, ...) | none recorded |
+| Bus bar, design B rev2 | Design B, second revision (adds link strap, notch plugs) | Saved design | same page | `cad/busbar/design-B-rev2/` (`ST185_busbar_B_rev2.f3d`, `B_rev2_ASSEMBLY.step`, ...) | none recorded |
+| Bus bar, design B rev3 | Design B, third revision | Saved design (newest B) | same page | `cad/busbar/design-B-rev3/` (`ST185_busbar_B_rev3.f3d`, `B_rev3_ASSEMBLY.step`, ...) | none recorded |
+| VRC enclosure | VR-conditioner box (body, lid, O-ring, LP16 connectors) | Model + drawing done | [ST185-enclosures.html](enclosures/ST185-enclosures.html) | `cad/enclosures/vrc/` (`ST185-VRC-Enclosure.f3d`, `VRC_assembly.step`, `VRC_part_*.step`, drawing PDF) | none recorded |
+| CSB3 enclosure | ECUMaster CSB3 switchboard box (body, lid, HD34 connector) | Model + drawing done | same page | `cad/enclosures/csb3/` (`ST185-CSB3-Enclosure.f3d`, `CSB3_assembly.step`, `CSB3_part_*.step`, drawing PDF) | none recorded |
+| DRB102 firewall plate | Firewall mounting plate for the DRB102 | Model done | [DRB102-FIREWALL-PLATE.html](drb102-plate/DRB102-FIREWALL-PLATE.html) (build script `build_DRB102_plate.py` beside it) | `cad/drb102-plate/` (`DRB102-firewall-plate.step`, `DRB102-firewall-plate-assembly.step`; no `.f3d`) | none recorded |
+| Fuse boxes, rev 2 | ONE glove-box fuse + relay box (R70) | **Superseded by rev 3** (R75); plan page kept | [ST185-fusebox-cad-PLAN.html](fusebox/ST185-fusebox-cad-PLAN.html) | none kept (replaced by rev 3) | none recorded |
+| Fuse boxes, rev 3 / 3.1 | TWO printed PA12 boxes (power, logic) + battery relay block, tinned-copper stock bars (R73, R75, R76) | Current (rev 3.1) | [ST185-fusebox-summary.html](fusebox/ST185-fusebox-summary.html) | `cad/fusebox/` (`ST185_fusebox_rev3.f3d`, `ST185_fusebox_rev3_assembly.step`, `Power_*`, `Logic_*`, `BattRelay_*` `.step`/`.stl`) | none recorded |
+| Billet fuel hanger | In-tank pump hanger in billet 6061, Walbro F90000295; **outside this repo** (Fairsolid run) | First pass 2026-10-14; `rev2/` and `rev3/` subfolders hold later passes; no Fusion used (build123d script) | `C:\projects\active\fairsolid\runs\fuel_hanger_billet_1014\SUMMARY.md` and `hanger_viewer.html` (rev2 has its own `SUMMARY.md`) | `C:\projects\active\fairsolid\runs\fuel_hanger_billet_1014\` (`hanger_billet_assembly.step`/`.stl`, per-part files, `hanger_billet.py`) | none (no Fusion document) |
+
+External rows point at a local path only; that run folder is not in this repo and not in git here.
