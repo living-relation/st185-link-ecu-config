@@ -1,52 +1,68 @@
 {
- "isolation": {
-  "conductor_to_tray_mm": {
-   "Bar_Power_Al6061_25x6": 5.0,
-   "Pad_Out_Al6061": 5.75,
-   "Strip_Logic_Al6061_8x4": 5.5,
-   "Stud_M5_M8_A2": 10.5,
-   "Nut_Keps_M5_M8_A2": 9.0,
-   "Lug_Klauke_2R5_6R8": 8.0,
-   "Fuse_AMI_ltgreen": 20.5,
-   "Fuse_AMI_orange": 20.5,
-   "Fuse_AMI_red": 20.5,
-   "Fuse_AMI_yellow": 20.5
+ "live_clearance": {
+  "pad_to_pad_min_mm": 3.0,
+  "bar_to_pad_min_mm": 17.25,
+  "input_lug_to_pad_min_mm": 7.32,
+  "output_lug_to_lug_min_mm": 5.5
+ },
+ "printed_parts": {
+  "Tray_PA12_printed": {
+   "size_mm": [
+    290.5,
+    181.0,
+    79.5
+   ],
+   "volume_cm3": 394.5,
+   "mass_g_pa12": 398.0
   },
-  "min_conductor_to_tray_mm": 5.0,
-  "min_conductor_to_lid_mm": 15.5,
-  "tray_to_mount_face_mm": 1.5
+  "Lid_PA12_printed": {
+   "size_mm": [
+    254.5,
+    181.0,
+    5.5
+   ],
+   "volume_cm3": 131.3,
+   "mass_g_pa12": 133.0
+  },
+  "Deck_PA12_printed": {
+   "size_mm": [
+    247.6,
+    174.1,
+    26.0
+   ],
+   "volume_cm3": 516.0,
+   "mass_g_pa12": 521.0
+  }
  },
  "outer_mm": {
   "L": 254.5,
-  "D": 170.0,
-  "H": 82.5,
+  "D": 181.0,
+  "H": 85.0,
   "L_with_ears": 290.5,
   "bbox": [
-   314.5,
-   190.0,
-   88.7
+   297.5,
+   181.0,
+   85.1
   ]
  },
- "footprint_mm2": 43265.0,
+ "footprint_mm2": 46064.5,
  "interference": [],
  "mass_g": {
-  "Tray_Al6061": 974.5,
-  "Lid_Al6061": 350.2,
-  "LidScrew_M3x10_ISO7380": 3.7,
-  "Deck_PA6GF_printed": 1020.6,
-  "Bar_Power_Al6061_25x6": 52.5,
-  "Pad_Out_Al6061": 42.2,
+  "Bar_Power_Al6061_25x6": 55.7,
+  "Pad_Out_Al6061": 40.6,
   "Strip_Logic_Al6061_8x4": 18.2
  },
  "exported": [
-  "Tray_Al6061.step",
-  "Lid_Al6061.step",
-  "Deck_PA6GF_printed.step",
-  "Deck_PA6GF_printed.stl",
+  "Tray_PA12_printed.step",
+  "Tray_PA12_printed.stl",
+  "Lid_PA12_printed.step",
+  "Lid_PA12_printed.stl",
+  "Deck_PA12_printed.step",
+  "Deck_PA12_printed.stl",
   "Bar_Power_Al6061_25x6.step",
   "Pad_Out_Al6061.step",
   "Strip_Logic_Al6061_8x4.step",
-  "ST185_fusebox_rev1_assembly.step",
-  "ST185_fusebox_rev1.f3d"
+  "ST185_fusebox_rev2_assembly.step",
+  "ST185_fusebox_rev2.f3d"
  ]
 }
