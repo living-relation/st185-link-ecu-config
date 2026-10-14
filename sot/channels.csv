@@ -17,7 +17,7 @@ ECU,Temp 1,ecu_a,a15,TEMP1_ECT,Coolant temp,signal,in,ntc,sel-1k,A,set,QSG-IO,To
 ECU,Temp 2,ecu_a,a16,TEMP2_IAT,Manifold IAT,signal,in,ntc,sel-1k,A,set,QSG-IO,Set internal 1k to match Temp 3/4
 ECU,An Volt 1,ecu_a,a17,AV1_MAP,MAP,signal,in,0-5v,none,A,set,QSG-IO,+5V from A32
 ECU,Aux 4,ecu_a,a18,AUX4_AC_KILL,A/C kill to amp ACT,signal,out,lowside-2a,none,A,set,QSG-IO,Active-low sink; floats when off; ground = kill. Amp landing is A/C AMPLIFIER A18 pin 11 G-Y (1992 Celica EWD132U A17-11; 1990 book locator A18) - see docs/harness/ACAMP-SPUR-LABELS.md
-ECU,Aux 3,ecu_a,a19,AUX3_FP_RLY,Fuel pump relay coil,signal,out,lowside-2a,none,A,set,QSG-IO,Active-low; relay in cabin
+ECU,Aux 3,ecu_a,a19,AUX3_FP_RLY,Fuel pump relay coil,signal,out,lowside-2a,none,A,set,QSG-IO,Active-low; relay k_fp = TE HCR150 1416010-1 in the battery relay block at the battery (trunk), DECISIONS R75
 ECU,Aux 2,ecu_a,a20,AUX2_ETB_RLY,ETB power relay coil,signal,out,lowside-2a,none,A,set,QSG-IO,Active-low; feeds B5 V-Ethrottle
 ECU,Aux 1,ecu_a,a21,AUX1_BOOST,Boost solenoid,signal,out,lowside-2a,none,A,set,QSG-IO,Active-low
 ECU,An Volt 2,ecu_a,a22,AV2_TPS_MAIN,ETB TPS main,signal,in,0-5v,none,A,set,QSG-IO,Bosch 74.5mm ETB
@@ -132,7 +132,7 @@ PWR,Coil 30,k_horn,c1,RFRM_HZ,Horn relay fused feed,power,in,rail-12v,none,B,set
 PWR,Coil 85,k_horn,c2,HORN_SW,Horn relay coil- to the horn switch,signal,in,switch-gnd,none,B,set,EWD-1993-p116/p185/p215/p137,"Flying lead FL_OEM_IE1_C19 (IE1-19 G, cowl side) -> horn switch C15-10 to ground (1993 EWD p.185)"
 PWR,Coil 86,k_horn,c3,RFRM_HZ,Horn relay coil+,power,in,rail-12v,none,B,set,EWD-1993-p116/p185/p215/p137,From the RFRM HZ 15A fuse out; the OEM horn relay pin 3 feeds coil and contact from HAZ-HORN (1993 EWD p.185)
 PWR,Contact 87,k_horn,c4,HORN,Horn relay out to the horns,power,out,rail-12v,none,B,set,EWD-1993-p116/p185/p215/p137,To H3 / H4 on ST185-EngineRoom-C (BR_W_PMU_HORN)
-PWR,Coil 30,k_htr,c1,MTA2_HTR,Heater relay fused feed,power,in,rail-12v,none,B,set,EWD-1993-p116/p185/p215/p137,MTA-2 HTR 40A MaxiVal. k_htr is a 5-pin 1 form C Maxi ISO relay (part TBD: TE F7 is 1 form A only) in MTA-2 Maxi R1, so the factory NC ground path is kept (OPEN-ITEMS row 106)
+PWR,Coil 30,k_htr,c1,MTA2_HTR,Heater relay fused feed,power,in,rail-12v,none,B,set,EWD-1993-p116/p185/p215/p137,MTA-2 HTR 40A MaxiVal. k_htr is a 5-pin 1 form C Mini ISO relay - TE Power Relay B V23234-A0001-X032 = 1-1904020-2 (35 A NO at 85 C) - in the custom POWER box (R75; the MTA-2 slot is Option B, until the CabinPower redraw), so the factory NC ground path is kept (OPEN-ITEMS row 106)
 PWR,Coil 85,k_htr,c2,AC_HR,Heater relay coil- to the auto A/C amplifier HR,signal,in,switch-gnd,none,B,set,EWD-1993-p116/p185/p215/p137,"Flying lead FL_OEM_RB4_C1: factory L-W lead at the old R/B4 heater relay pin 1 -> IQ2-9 -> auto A/C amplifier A32-11 HR, which grounds it (1993 EWD p.215)"
 PWR,Coil 86,k_htr,c3,HTR_COIL_FEED,Heater relay coil+,power,in,rail-12v,none,B,set,EWD-1993-p116/p185/p215/p137,"Flying lead FL_OEM_RB4_C3: factory R-L lead at the old R/B4 heater relay pin 3 (from junction connector J4, 1993 EWD p.215)"
 PWR,Contact 87,k_htr,c4,BLOWER,Heater relay out to the blower and the A/C feed,power,out,rail-12v,none,B,set,EWD-1993-p116/p185/p215/p137,To blower motor B4 pin 2 on ST185-EngineRoom-C (BR_W_RB4) and MTA-3 ACIN

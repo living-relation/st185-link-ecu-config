@@ -3,66 +3,142 @@
   "pad_to_pad_min_mm": 3.0,
   "bar_to_pad_min_mm": 17.25,
   "input_lug_to_pad_min_mm": 7.32,
-  "output_lug_to_lug_min_mm": 5.5
+  "output_lug_to_lug_min_mm": 5.5,
+  "logic_strip_to_strip_mm": 6.5,
+  "battrelay_bar_to_pad_mm": 17.5,
+  "battrelay_relay_lug_to_lug_mm": 5.0
  },
  "printed_parts": {
-  "Tray_PA12_printed": {
+  "Logic_Tray_PA12_printed": {
    "size_mm": [
-    290.5,
+    115.0,
     181.0,
     79.5
    ],
-   "volume_cm3": 394.5,
-   "mass_g_pa12": 398.0
+   "volume_cm3": 213.6,
+   "mass_g_pa12": 216.0
   },
-  "Lid_PA12_printed": {
+  "Logic_Lid_PA12_printed": {
    "size_mm": [
-    254.5,
+    79.0,
     181.0,
     5.5
    ],
-   "volume_cm3": 131.3,
-   "mass_g_pa12": 133.0
+   "volume_cm3": 40.9,
+   "mass_g_pa12": 41.0
   },
-  "Deck_PA12_printed": {
+  "Logic_Deck_PA12_printed": {
    "size_mm": [
-    247.6,
+    72.1,
     174.1,
     26.0
    ],
-   "volume_cm3": 516.0,
-   "mass_g_pa12": 521.0
+   "volume_cm3": 193.5,
+   "mass_g_pa12": 195.0
+  },
+  "Power_Tray_PA12_printed": {
+   "size_mm": [
+    221.5,
+    181.0,
+    79.5
+   ],
+   "volume_cm3": 321.1,
+   "mass_g_pa12": 324.0
+  },
+  "Power_Lid_PA12_printed": {
+   "size_mm": [
+    185.5,
+    181.0,
+    5.5
+   ],
+   "volume_cm3": 95.7,
+   "mass_g_pa12": 97.0
+  },
+  "Power_Deck_PA12_printed": {
+   "size_mm": [
+    178.6,
+    174.1,
+    26.0
+   ],
+   "volume_cm3": 327.6,
+   "mass_g_pa12": 331.0
+  },
+  "BattRelay_Tray_PA12_printed": {
+   "size_mm": [
+    168.0,
+    110.0,
+    48.0
+   ],
+   "volume_cm3": 148.6,
+   "mass_g_pa12": 150.0
+  },
+  "BattRelay_Lid_PA12_printed": {
+   "size_mm": [
+    150.0,
+    110.0,
+    5.5
+   ],
+   "volume_cm3": 45.8,
+   "mass_g_pa12": 46.0
   }
  },
- "outer_mm": {
-  "L": 254.5,
-  "D": 181.0,
-  "H": 85.0,
-  "L_with_ears": 290.5,
-  "bbox": [
-   297.5,
-   181.0,
-   85.1
-  ]
+ "boxes_mm": {
+  "LOGIC": {
+   "L": 79.0,
+   "D": 181.0,
+   "H": 85.0,
+   "L_with_ears": 115.0
+  },
+  "POWER": {
+   "L": 185.5,
+   "D": 181.0,
+   "H": 85.0,
+   "L_with_ears": 221.5
+  },
+  "BATTRELAY": {
+   "L": 150.0,
+   "D": 110.0,
+   "H": 53.5,
+   "L_with_ears": 168.0
+  }
  },
- "footprint_mm2": 46064.5,
+ "footprint_mm2": {
+  "LOGIC": 14299.0,
+  "POWER": 33576.0,
+  "BATTRELAY": 16500.0
+ },
+ "bar_metal": "Al6061",
  "interference": [],
  "mass_g": {
-  "Bar_Power_Al6061_25x6": 55.7,
-  "Pad_Out_Al6061": 40.6,
-  "Strip_Logic_Al6061_8x4": 18.2
+  "Logic_Strip_Logic_Al6061_8x4": 20.7,
+  "Power_Bar_Power_Al6061_25x6": 55.7,
+  "Power_Pad_Out_Al6061": 40.6,
+  "BattRelay_Bar_Power_Al6061_25x6": 14.5,
+  "BattRelay_Pad_Out_Al6061": 3.7
  },
  "exported": [
-  "Tray_PA12_printed.step",
-  "Tray_PA12_printed.stl",
-  "Lid_PA12_printed.step",
-  "Lid_PA12_printed.stl",
-  "Deck_PA12_printed.step",
-  "Deck_PA12_printed.stl",
-  "Bar_Power_Al6061_25x6.step",
-  "Pad_Out_Al6061.step",
-  "Strip_Logic_Al6061_8x4.step",
-  "ST185_fusebox_rev2_assembly.step",
-  "ST185_fusebox_rev2.f3d"
+  "Logic_Tray_PA12_printed.step",
+  "Logic_Tray_PA12_printed.stl",
+  "Logic_Lid_PA12_printed.step",
+  "Logic_Lid_PA12_printed.stl",
+  "Logic_Deck_PA12_printed.step",
+  "Logic_Deck_PA12_printed.stl",
+  "Logic_Strip_Logic_Al6061_8x4.step",
+  "Power_Tray_PA12_printed.step",
+  "Power_Tray_PA12_printed.stl",
+  "Power_Lid_PA12_printed.step",
+  "Power_Lid_PA12_printed.stl",
+  "Power_Deck_PA12_printed.step",
+  "Power_Deck_PA12_printed.stl",
+  "Power_Bar_Power_Al6061_25x6.step",
+  "Power_Pad_Out_Al6061.step",
+  "BattRelay_Tray_PA12_printed.step",
+  "BattRelay_Tray_PA12_printed.stl",
+  "BattRelay_Lid_PA12_printed.step",
+  "BattRelay_Lid_PA12_printed.stl",
+  "BattRelay_Bar_Power_Al6061_25x6.step",
+  "BattRelay_Pad_Out_Al6061.step",
+  "ST185_fusebox_rev3_assembly.step",
+  "ST185_fusebox_rev3.f3d"
  ]
 }
