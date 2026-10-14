@@ -47,7 +47,7 @@ details summary{cursor:pointer;font-weight:600;margin-top:8px}
 .muted{color:#6b7280;font-size:13px}
 </style></head>
 <body>
-<header><h1>ST185 live dashboard</h1><small id="head">loading…</small><button class="sec" id="refresh">Refresh</button></header>
+<header><h1>ST185 live dashboard</h1><small id="head">loading…</small><small id="auto" class="muted"></small><button class="sec" id="refresh">Refresh</button></header>
 <main>
 
 <section id="qsec"><h2>Needs your answer <span class="badge" id="qcount">0</span></h2>
@@ -84,6 +84,8 @@ const FALLBACK = {"updated":"2026-10-14 (baked in)","questions":[]};
 let QUESTIONS = FALLBACK.questions;
 let DC_OK = null;  // null = unknown, true/false once a Desktop Commander call has worked/failed
 let SAVED = {};   // answers already in dashboard-answers.json: id -> {choice,label,text,at}
+let REDO = new Set(); // ids the user clicked Change on; survives reloads of the question list
+let SENDING = false;  // a send is in progress: auto-refresh waits
 let SEL = {};     // unsent option picks: id -> {value,label}
 const QUESTIONS_FILE = "C:\projects\active\st185-link-ecu-config\tools\dashboard\dashboard-questions.json";
 const ANSWERS_FILE = "C:\\projects\\active\\st185-link-ecu-config\\tools\\dashboard\\dashboard-answers.json";
@@ -153,7 +155,7 @@ function renderQuestions(){
 }
 document.getElementById("questions").addEventListener("click",e=>{
   const b=e.target.closest("button"); if(!b) return;
-  if(b.dataset.redo){ const x=QUESTIONS.find(q=>q.id===b.dataset.redo); if(x){ x._redo=true; renderQuestions(); } return; }
+  if(b.dataset.redo){ const x=QUESTIONS.find(q=>q.id===b.dataset.redo); if(x){ x._redo=true; REDO.add(x.id); renderQuestions(); } return; }
   if(b.dataset.q){
     const x=QUESTIONS.find(q=>q.id===b.dataset.q), o=x.options.find(o=>o.value===b.dataset.v);
     SEL[x.id] = (SEL[x.id]?.value===o.value) ? undefined : {value:o.value,label:o.label};  // tap again to unpick
@@ -182,6 +184,7 @@ async function loadQuestions(){
     if(j<0) throw new Error("file empty or unreadable");
     const q=JSON.parse(txt.slice(j));
     QUESTIONS=(q.questions||[]);
+    QUESTIONS.forEach(x=>{ if(REDO.has(x.id)) x._redo=true; });
     info.textContent=q.updated?`Questions updated: ${q.updated}`:"";
   }catch(e){ QUESTIONS=FALLBACK.questions; info.textContent=`Showing the questions baked into this page (${FALLBACK.updated}).`; }
   try{
@@ -232,7 +235,9 @@ function fileRow(f,updated){
 function renderRows(rows){
   const el=document.getElementById("rows");
   document.getElementById("rowsum").textContent=`show ${rows.length} items`;
+  const typed={}; el.querySelectorAll("textarea[data-row]").forEach(t=>{ if(t.value) typed[t.dataset.row]=t.value; });
   el.innerHTML=rows.map(r=>`<div class="row"><b>#${esc(r.id)}</b> [${esc(r.area)}] ${esc(r.text)}<br><span class="muted">${esc(r.status)}</span><textarea data-row="${esc(r.id)}" placeholder="Optional answer for #${esc(r.id)}"></textarea></div>`).join("");
+  el.querySelectorAll("textarea[data-row]").forEach(t=>{ if(typed[t.dataset.row]) t.value=typed[t.dataset.row]; });
 }
 
 async function loadSessions(){
@@ -253,16 +258,17 @@ async function loadSessions(){
 document.getElementById("send").onclick=async()=>{
   const ans=collect(); const msg=document.getElementById("sendmsg");
   if(!Object.keys(ans).length){ msg.textContent="Nothing to send yet."; return; }
-  msg.textContent="Saving…";
+  msg.textContent="Saving…"; SENDING=true;
   try{
     const merged=Object.assign({},SAVED,ans);   // keep earlier answers, newer ones win
     const payload={sent:new Date().toISOString(),answers:merged};
     await call(DC_WRITE,{path:ANSWERS_FILE,content:JSON.stringify(payload,null,2),mode:"rewrite"});
-    SAVED=merged; SEL={}; QUESTIONS.forEach(x=>delete x._redo); store.set("st185-draft",{}); renderQuestions();
+    SAVED=merged; SEL={}; REDO.clear(); QUESTIONS.forEach(x=>delete x._redo); store.set("st185-draft",{}); renderQuestions();
     msg.textContent=`Saved ${Object.keys(ans).length} answer(s) to dashboard-answers.json.`;
     // WAKE_TASK (local scheduled task) can't be fired from this runtime - see wakeDispatch()
     await wakeDispatch(msg, Object.keys(ans).length);
   }catch(e){ msg.textContent="Send failed: "+e.message+" Use Copy answers instead."; }
+  finally{ SENDING=false; }
 };
 async function wakeDispatch(msg,n){
   msg.textContent=`Saved ${n} answer(s). Dispatch picks them up on its next "${WAKE_TASK}" run.`;
@@ -285,11 +291,30 @@ document.getElementById("clear").onclick=()=>{ store.set("st185-draft",{}); SEL=
 
 function refreshAll(){
   saveDraft();
-  loadQuestions();
-  loadData().catch(e=>{document.getElementById("newfiles").textContent="Data error: "+e.message});
-  loadSessions();
+  return Promise.all([
+    loadQuestions(),
+    loadData().catch(e=>{document.getElementById("newfiles").textContent="Data error: "+e.message}),
+    loadSessions()
+  ]);
 }
 document.getElementById("refresh").onclick=refreshAll;
+
+// ---- auto-refresh: same loaders as the Refresh button, every 60 s ----
+const AUTO_MS = 60000;
+const autoEl = document.getElementById("auto");
+let autoBusy = false;
+function showAuto(t){ autoEl.textContent = ` · auto-refresh every 60 s - last: ${t||"-"}`; }
+showAuto();
+async function autoTick(){
+  if(DC_OK===false || SENDING || autoBusy) return;   // phone / no Desktop Commander, send running, or previous tick still running
+  if(document.hidden) return;
+  if(document.activeElement && document.activeElement.tagName==="TEXTAREA") return;   // don't rebuild the page under the cursor
+  autoBusy=true;
+  try{ await refreshAll(); if(DC_OK!==false) showAuto(new Date().toLocaleTimeString([],{hour12:false})); }
+  catch(e){}
+  finally{ autoBusy=false; }
+}
+setInterval(autoTick,AUTO_MS);
 renderQuestions();
 loadQuestions();
 loadData().catch(e=>{document.getElementById("newfiles").textContent="Data error: "+e.message});
