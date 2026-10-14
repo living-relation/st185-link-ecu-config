@@ -15,7 +15,8 @@ others with a reason. On-hand quantities are qty_ordered from docs/sourcing/te-o
 'est' = typical distributor price, not checked (they move).
 
     python cad/fusebox/src/parts_lists.py
-Claude Code, 2026-10-14.
+Claude Code, 2026-10-14. Rev 6 (DECISIONS R85): M6 limiters everywhere (C1), no mount bolts / nuts (C3: out of scope - the box
+lists hold the boxes only), mini fuse input jumpers (C4), one 40 mm standoff (B5).
 """
 import csv, json, math, os, sys
 
@@ -43,7 +44,12 @@ RS = {   # RS PRO stock numbers and the listing each was read on
     'M6bolt25': ('RS 264-6468', 'https://au.rs-online.com/web/p/hex-bolts/2646468', 'RS PRO stainless (A4 / 316) hex bolt M6 x 25, DIN 933'),
     'M6nut': ('RS 527-274', 'https://nl.rs-online.com/web/p/hex-nuts/0527274', 'RS PRO A2/304 stainless hex nut M6, DIN 934'),
     'M6wash': ('RS 287-3962', 'https://se.rs-online.com/web/p/washers/2873962', 'RS PRO A2/304 stainless plain washer M6, BS 4320C'),
+    'M4x8': ('RS 287-3915', 'https://uk.rs-online.com/web/p/hex-bolts/2873915', 'RS PRO A2/304 stainless hex bolt M4 x 8, DIN 933'),
+    'M4spring': ('RS 231-0691', 'https://se.rs-online.com/web/p/washers/2310691', 'RS PRO AISI 301 stainless spring washer M4, DIN 127B, 0.9 thick'),
 }
+EFC_URL = 'https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters'
+FUTURE_53941 = 'https://www.futureelectronics.com/p/interconnect--pin-and-socket-connectors--crimp-terminals/53941-1-te-connectivity-5139464'
+AWC_M22759_16_14 = 'https://www.awcwire.com/product/m22759_16-14'
 ATM_URL = {2: 'https://www.standardelectricsupply.com/Bussmann-ATM-2-Automotive-Fuse', 5: 'https://www.stanion.com/Product/atm5bus',
            7.5: 'https://www.stanion.com/Product/atm71-2bus', 10: 'https://stanion.com/Product/atm10bus',
            15: 'https://www.vanmeterinc.com/catalog/electrical/fuses/automotive-fuses/eaton-atm-15', 20: 'https://www.stanion.com/Product/atm20bus'}
@@ -191,13 +197,19 @@ def build():
           'Crimp terminal QC .250 (26A1348A) for 0.5-0.8 mm2, brass tin', n_f7_coil + 2, spare(n_f7_coil + 2), unit=0.12, basis='est', url=TE('1-1393310-8'),
           checked=DS_VCF + ' "Selection of fitting crimp terminals": 6.3 x 0.8, 0.5-0.8 mm2 (20-18), coil; TE page: Active',
           note='Coil wires are 20 AWG in spec.py (COIL_AWG). On-hand 42281-1 (18-14 AWG) is too big for 20 AWG, so it goes to the micro relay loads instead.')
-    L.add(P, 'Terminals', 'Heater relay load receptacle 6.3 x 0.8, 10-8 AWG (30, 87, 87a)', '62998-2', 'TE Connectivity',
-          'FASTON .250 receptacle, uninsulated, 10-8 AWG (5-8 mm2), brass tin', 3, spare(3), unit=0.30, basis='est', url=TE('62998-2'),
+    L.add(P, 'Terminals', 'Heater relay load receptacle 6.3 x 0.8, 10-8 AWG (30, 87)', '62998-2', 'TE Connectivity',
+          'FASTON .250 receptacle, uninsulated, 10-8 AWG (5-8 mm2), brass tin', 2, spare(2), unit=0.30, basis='est', url=TE('62998-2'),
           checked='TE page (tab 6.35 x 0.81, 10-8 AWG); relay drawing V23234-A0001-X040: DIN 46244 A6.3-0.8 blades on all 5 terminals; F4 A sheet: Mini ISO pattern',
-          note='Heater 30 / 87 are 8 AWG, 87a is 10 AWG (sot/channels.csv k_htr c5). A Mini ISO relay has no 9.5 blade.')
-    L.add(P, 'Terminals', 'Mini fuse receptacle 2.8 x 0.8, 17-13 AWG (ACPS)', '880398-2', 'TE Connectivity',
-          'Receptacle tab 2.8 x 0.8 mm, 1-2.5 mm2, tin, unsealed', 1, spare(1), unit=0.15, basis='est', url=TE('880398-2'),
-          checked='TE page (tab 2.8 x 0.8, 1-2.5 mm2, 17-13 AWG)', note='ACPS output, 14 AWG.')
+          note='Heater 30 / 87 are 8 AWG (ST185-CabinPower k_htr). 87a is 14 AWG: a 42281-1 (next line). A Mini ISO relay has no 9.5 blade.')
+    L.add(P, 'Terminals', 'Heater relay 87a receptacle 6.3 x 0.8, 18-14 AWG', '42281-1', 'TE Connectivity', 'FASTON .250 receptacle, uninsulated, 18-14 AWG, brass', 1, 1,
+          unit=0.10, basis='est', url=TE('42281-1'), checked='TE page (6.35 x 0.81, 18-14 AWG); te-on-hand-bom.csv qty_ordered 20; ST185-CabinPower k_htr 87a 14 AWG',
+          note='OPEN-ITEMS row 110 (c).')
+    L.add(P, 'Terminals', 'Mini fuse receptacle 2.8 x 0.8, 17-13 AWG (ACPS input, 14 AWG)', '880398-2', 'TE Connectivity',
+          'Receptacle tab 2.8 x 0.8 mm, 1-2.5 mm2, tin, unsealed', 1, 1, unit=0.15, basis='est', url=TE('880398-2'),
+          checked='TE page (tab 2.8 x 0.8, 1-2.5 mm2, 17-13 AWG); ST185-CabinPower ACPS in 14 AWG', note='ACPS input from heater 87 (row 110 (c)).')
+    L.add(P, 'Terminals', 'Mini fuse receptacle 2.8, 20-18 AWG (ACPS output, 18 AWG)', '1241388-2', 'TE Connectivity', 'AMP MCP 2.8K receptacle, gold, 0.5-1 mm2, tab 2.8 (0.6 / 0.8 thick)',
+          1, 1, unit=0.35, basis='est', url=TE('1241388-2'), checked='TE page (2.8 mm tab, 0.6 / 0.8 thick, 0.5-1 mm2); te-on-hand-bom.csv qty_ordered 10; ST185-CabinPower ACPS out 18 AWG',
+          note='Row 110 (c).')
     # lugs
     all_lugs = [(nm, S.AMI_AWG[nm]) for nm, a in IN_USED + OUT_USED]
     n2r5 = sum(1 for nm, g in all_lugs if lug_for(g) == '2R5')
@@ -212,12 +224,12 @@ def build():
           note='EFI and STR feeds (12 AWG). Hole 5.1 mm over the 5 mm M5 bolt - snug, check a sample.')
     lug(L, P, '6R8', 'Tubular lug 50 mm2, M8 hole (1/0 input)', 1, 0, 2.60, 'Tinned copper tubular ring lug, 50 mm2, M8, hole 8.4; b 20, l 47', checked='Buerklin listing 07F2081 (hole 8.4, M8)')
     # standoffs
-    n_so = N_IN + N_OUT + 2
+    n_so = N_IN + N_OUT
     L.add(P, 'Standoffs', 'Brass hex standoff M5 female-female, 8 AF, 40 mm (ONE part number for all %d)' % n_so, 'Essentra 301540040050', 'Essentra Components',
           'Hex standoff, female-female M5, 8.0 AF, 40.0 mm, nickel-plated brass; sold in 50s', N_IN + N_OUT, 0, unit=0.60, basis='est',
           url='https://www.essentracomponents.com/en-gb/p/standoffs/301540040050',
           checked='Essentra listing (female-female, M5, 8.0 AF, 40.0 mm, nickel-plated brass); no TE part and none of the R38 approved suppliers lists standoffs (step 4)',
-          note='Dan: one 40 mm part number for every standoff: %d IN row + %d OUT row here, 2 in LOGIC = %d; order one 50-pack. CAD rev 5 still draws the OUT row and the 2 LOGIC feeds at 12 mm.' % (N_IN, N_OUT, n_so))
+          note='B5 (Dan): one 40 mm part number for every standoff: %d IN row + %d OUT row = %d, all drawn 40 mm in CAD rev 6; the LOGIC box has none any more (its feed lugs bolt onto the strips). Sold in 50s.' % (N_IN, N_OUT, n_so))
     # fasteners
     hw(L, P, 'Fasteners', 'M5set', 'Set screw M5 x 12 (stud on each pad standoff)', N_POS, spare(N_POS), 0.12, note='Through the pad into the standoff (5 mm of thread); DIN 916 is a cup point - irrelevant for a stud.')
     hw(L, P, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10 (lug under each standoff, IN and OUT rows)', N_IN + N_OUT, spare(N_IN + N_OUT), 0.10, note='One length for both rows now that every standoff is 40 mm.')
@@ -228,23 +240,19 @@ def build():
     hw(L, P, 'Fasteners', 'M8wash', 'Plain washer M8 (1/0 input stud)', 1, 1, 0.05)
     # limiters + mount
     L.add(P, 'Mounting', 'Compression limiter, feet (4)', 'EFC 10S00056', 'EFC International',
-          'Knurled solid compression limiter, M6, ID 6.80, OD 9.8, L 6 mm, zinc-plated steel', 4, 1, unit=0.30, basis='est',
-          url='https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters',
-          checked='EFC comparison table 2026-10-14. EFC lists no M5 limiter and no brass limiter at 8 x 6 mm',
-          note='Proposed: M6 limiters in all 10 mounting points and M6 mount bolts (feet pocket OD 8 -> 9.8 in CAD rev 6). Dan to confirm (question in the PR).')
-    hw(L, P, 'Mounting', 'M6bolt25', 'Mount bolt M6 x 25 (feet, 4)', 4, 1, 0.45, note='Length is a placeholder: it depends on the glove-box mount face (panel not told yet) - Dan to confirm.')
-    hw(L, P, 'Mounting', 'M6wash', 'Plain washer M6 (feet, 4)', 4, 1, 0.05)
-    hw(L, P, 'Mounting', 'M6nut', 'Hex nut M6 (feet, 4)', 4, 1, 0.06)
+          'Knurled solid compression limiter, M6, ID 6.80, OD 9.8, L 6 mm, zinc-plated steel', 4, 1, unit=0.30, basis='est', url=EFC_URL,
+          checked='EFC comparison table 2026-10-14 (EFC lists no M5 limiter); CAD rev 6 foot: 10.2 press-fit pocket, 6 mm ear',
+          note='C1 (Dan): M6 limiters in all 10 mount points. Mount bolts / nuts are not part of the box (C3).')
 
     # ================================================================ LOGIC box
-    printed(G, 'Logic_Base', 'Logic Base', 'Deck on four angular legs, strip pockets open underneath; PA12')
+    printed(G, 'Logic_Base', 'Logic Base', 'Deck on four angular legs, cavity towers, printed spine between the bus strips (lips under them); PA12')
     printed(G, 'Logic_Pan', 'Logic Pan (belly pan)', 'Snap-on belly pan; PA12')
     printed(G, 'Logic_Cover', 'Logic Cover', 'Snap-on cover, etched labels, vent slots; PA12')
-    ls = {c: (len(f) - 1) * S.MINI['pitch'] + 12 + S.STRIP_FEED['ext'][c] for c, (x, f) in S.MINI_COLS.items()}
-    L.add(G, 'Copper', 'Logic strips 10 x 3 mm, tinned: BUS1 %.0f mm + BUS2 %.0f mm' % (ls['BUS1'], ls['BUS2']), 'Nassau National Cable 716426', 'Nassau National Cable',
-          'Tin-plated copper bus bar 1000 x 10 x 3 mm: ONE bar makes both strips', 1, unit=60.09, basis='seen',
-          url='https://nassaunationalcable.com/products/tin-plated-copper-bus-bar-716426-pack-of-3',
-          checked='summary "Copper" section; seller page 2026-10-14', note='Cut + drill (one 5.5 mm feed hole each). The listing title says "pack of 3": confirm the unit before ordering.')
+    ls = {c: S.STRIP_Y[c][1] - S.STRIP_Y[c][0] for c in S.MINI_COLS}
+    L.add(G, 'Copper', 'Logic strips 25.4 x 3.2 mm on edge, tinned: BUS1 %.0f mm + BUS2 %.0f mm' % (ls['BUS1'], ls['BUS2']), 'MECCANIXITY B0CGJC2S1L', 'MECCANIXITY (Amazon)',
+          '2 pcs 12 in x 1 in x 1/8 in tinned copper flat bar: ONE bar makes both strips', 1, unit=27.19, basis='seen',
+          url='https://www.amazon.com/dp/B0CGJC2S1L', checked='spec.py STOCK runner-up list 2026-10-14 (25.4 x 3.2 x 305, 2 pcs, $27.19)',
+          note='Rev 6 (C4): replaces the 10 x 3 Nassau bar. Cut, drill and tap (R76): M4 at each lug stud, M5 at the feed - drawing on the summary page.')
     for rating in sorted(mini_by_rating):
         k = mini_by_rating[rating]
         L.add(G, 'Fuses', 'Mini blade fuse %s A (ATM)' % rating, 'ATM-%s' % ('7-1/2' if rating == 7.5 else '%g' % rating), 'Eaton Bussmann', 'ATM mini blade fuse, blade 2.8 x 0.8 mm', k, unit=0.55, basis='est', url=ATM_URL[rating],
@@ -263,23 +271,31 @@ def build():
           note='2 per micro relay x %d relays; coil wire 20 AWG.' % len(MICRO_USED))
     L.add(G, 'Terminals', 'Micro relay load receptacle 6.3 x 0.8, 18-14 AWG', '42281-1', 'TE Connectivity', 'FASTON .250 receptacle, uninsulated, 18-14 AWG, brass', n_micro_load, spare(n_micro_load), unit=0.10, basis='est',
           url=TE('42281-1'), checked='TE page (6.35 x 0.81, 18-14 AWG); relay drawing load blades 6.3 x 0.8; te-on-hand-bom.csv qty_ordered 20', note='16 AWG loads (MICRO_LOAD_AWG). 2 on a form A, 3 on a form C.')
-    n_small = sum(mini_by_rating.get(r, 0) for r in (2, 5, 7.5, 10))
-    n_big = mini_by_rating.get(15, 0) + mini_by_rating.get(20, 0)
-    L.add(G, 'Terminals', 'Mini fuse receptacle 2.8, 20-18 AWG (2 / 5 / 7.5 / 10 A)', '1241388-2', 'TE Connectivity', 'AMP MCP 2.8K receptacle, gold, 0.5-1 mm2, tab 2.8 (0.6 / 0.8 thick)',
-          n_small, spare(n_small), unit=0.35, basis='est', url=TE('1241388-2'), checked='TE page (2.8 mm tab, 0.6 / 0.8 thick, 0.5-1 mm2); te-on-hand-bom.csv qty_ordered 10',
-          note='One per fuse (the output blade).')
-    L.add(G, 'Terminals', 'Mini fuse receptacle 2.8, 17-13 AWG (15 / 20 A)', '880398-2', 'TE Connectivity', 'Receptacle tab 2.8 x 0.8 mm, 1-2.5 mm2, tin, unsealed', n_big, spare(n_big), unit=0.15, basis='est',
-          url=TE('880398-2'), checked='TE page (2.8 x 0.8, 1-2.5 mm2, 17-13 AWG)',
-          note='DM 20 A: spec.py assumes 12 AWG, which is BIGGER than this receptacle takes (13 AWG max): the DM wire must be 14 AWG here (20 A in 14 AWG is fine for a chassis wire) - in OPEN-ITEMS row 107.')
+    outs = [(nm, a) for c, (x, f) in S.MINI_COLS.items() for nm, a in f if a]
+    own_in = [nm for c, (x, f) in S.MINI_COLS.items() for i, (nm, a) in enumerate(f) if a and i >= S.STUDS[c] + (1 if c == 'BUS2' else 0)]
+    jumpers = [nm for c, (x, f) in S.MINI_COLS.items() for i, (nm, a) in enumerate(f) if a and i < S.STUDS[c]]
+    n_small = sum(1 for nm, a in outs if nm in S.OUT_SMALL) + len(own_in)
+    n_big = sum(1 for nm, a in outs if nm not in S.OUT_SMALL)
+    L.add(G, 'Terminals', 'Mini fuse receptacle 2.8, 20-18 AWG (outputs + MRS / B30 inputs)', '1241388-2', 'TE Connectivity', 'AMP MCP 2.8K receptacle, gold, 0.5-1 mm2, tab 2.8 (0.6 / 0.8 thick)',
+          n_small, spare(n_small), unit=0.35, basis='est', url=TE('1241388-2'), checked='TE page (2.8 mm tab, 0.6 / 0.8 thick, 0.5-1 mm2); te-on-hand-bom.csv qty_ordered 10; ST185-CabinPower fb_logic contacts',
+          note='By wire gauge (row 110 (c)): outputs %s + inputs %s.' % (', '.join(sorted(n for n, a in outs if n in S.OUT_SMALL)), ', '.join(own_in)))
+    L.add(G, 'Terminals', 'Mini fuse receptacle 2.8, 17-13 AWG (16-14 AWG outputs + the %d input jumpers)' % len(jumpers), '880398-2', 'TE Connectivity', 'Receptacle tab 2.8 x 0.8 mm, 1-2.5 mm2, tin, unsealed',
+          n_big + len(jumpers), spare(n_big + len(jumpers)), unit=0.15, basis='est', url=TE('880398-2'), checked='TE page (2.8 x 0.8, 1-2.5 mm2, 17-13 AWG); ST185-CabinPower fb_logic contacts',
+          note='Outputs %s (%d) + one per input jumper (%d, 14 AWG, C4). DM is 14 AWG (13 AWG max here).' % (', '.join(n for n, a in outs if n not in S.OUT_SMALL), n_big, len(jumpers)))
+    L.add(G, 'Jumpers', 'Input jumper ring lug, 16-14 AWG, #8 / M4 (one per fuse input)', '53941-1', 'TE Connectivity',
+          'PIDG closed ring tongue terminal, 16-14 AWG, #8 / M4 stud, blue, tin', len(jumpers), spare(len(jumpers)), unit=0.37, basis='seen',
+          url=FUTURE_53941, checked='TE page 53941-1 2026-10-14 (PIDG, #8 / M4, 16-14, overall 20.65, tongue 0.78, Active); Future Electronics listing $0.37 at 50, 22,000 in stock',
+          note='C4 (Dan, option C). R38 step 2 (TE). TE sells it through distributors only ("not currently available" direct): Future link. Ring / sleeve size from the PIDG family - read off the first sample.')
+    L.add(G, 'Jumpers', 'Input jumper wire 14 AWG, ~60 mm each (%d), per foot' % len(jumpers), 'M22759/16-14-2', 'M22759 (Tefzel, red)', 'Wire, 14 AWG, ETFE, tin plated copper, 150 C, 600 V (the harness wire, ST185.harnesslib m16_14_2)',
+          5, 2, unit=1.00, basis='est', url=AWC_M22759_16_14, checked='ST185.harnesslib wire part m16_14_2; AWC M22759/16-14 listing (19 strands tinned copper, ETFE, 600 V, 150 C)',
+          note='%d x ~60 mm = %.1f m (5 ft) + spare. R38 step 4: no ProWire USA listing for M22759/16-14 confirmed; AWC sells it by the foot. The same reel as the harness 14 AWG if one is bought.' % (len(jumpers), len(jumpers) * 0.06))
+    hw(L, G, 'Jumpers', 'M4x8', 'Hex bolt M4 x 8, into the tapped strip (one per jumper lug)', len(jumpers), spare(len(jumpers)), 0.08,
+       note='Head on the lug side; 3.1 mm of thread past the strip, 0.68 mm short of the other strip (Fusion). Spare studs stay as tapped holes.')
+    hw(L, G, 'Jumpers', 'M4spring', 'Spring washer M4 under each jumper bolt head', len(jumpers), spare(len(jumpers)), 0.05)
     lug(L, G, '2R5', 'Tubular lug 10 mm2, M5 hole (BUS1 8 AWG, BUS2 10 AWG feeds)', 2, 1, 0.70, 'Tinned copper tubular ring lug, 10 mm2, M5, hole 5.3', checked='Buerklin listing 07F2065')
-    L.add(G, 'Standoffs', 'Brass hex standoff M5 f-f 8 AF 40 mm (strip feeds)', 'Essentra 301540040050', 'Essentra Components', 'Same part number as POWER (Dan: one standoff, all 40 mm)', 2, 0, unit=0.60, basis='est',
-          url='https://www.essentracomponents.com/en-gb/p/standoffs/301540040050', checked='see POWER list', note='14 + 2 = 16 pieces, one order (a 50-pack). Rev 5 CAD draws these two at 12 mm.')
-    hw(L, G, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10 (strip bolts 2 + feed lugs 2)', 4, spare(4), 0.10)
+    hw(L, G, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10, feed lug into the tapped strip (2)', 2, spare(2), 0.10, note='Rev 6: no standoffs in the LOGIC box; the feed lug bolts straight onto the strip face.')
     L.add(G, 'Mounting', 'Compression limiter, feet (4)', 'EFC 10S00056', 'EFC International', 'Knurled solid compression limiter, M6, ID 6.80, OD 9.8, L 6 mm, zinc-plated steel', 4, 1, unit=0.30, basis='est',
-          url='https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters', checked='see POWER list (same proposal)')
-    hw(L, G, 'Mounting', 'M6bolt25', 'Mount bolt M6 x 25 (feet, 4)', 4, 1, 0.45, note='Length placeholder, see POWER.')
-    hw(L, G, 'Mounting', 'M6wash', 'Plain washer M6 (feet, 4)', 4, 1, 0.05)
-    hw(L, G, 'Mounting', 'M6nut', 'Hex nut M6 (feet, 4)', 4, 1, 0.06)
+          url=EFC_URL, checked='see POWER list', note='C1. Mount bolts / nuts are not part of the box (C3).')
 
     # ================================================================ BATTERY relay block
     printed(B, 'BattRelay_Base', 'BattRelay Base', 'Floor plate, relay platform, fuse pedestal, 2 end tabs; PA12')
@@ -308,13 +324,13 @@ def build():
     hw(L, B, 'Fasteners', 'M5x16', 'Hex bolt M5 x 16 (AMI input stud on the bar)', 1, 1, 0.12)
     hw(L, B, 'Fasteners', 'M5nut', 'Keps nut M5 (AMI input + output ears)', 2, 1, 0.07)
     hw(L, B, 'Fasteners', 'M5set', 'Set screw M5 x 12 (AMI output stud on the pad)', 1, 1, 0.12, note='No standoff in this box: the pad sits on the printed pedestal.')
-    L.add(B, 'Mounting', 'Compression limiter, end tabs (2) and HCR150 flange bosses (2)', 'EFC 10S00052', 'EFC International',
-          'Knurled solid compression limiter, M6, ID 6.80, OD 9.8, L 4 mm, zinc-plated steel', 4, 1, unit=0.25, basis='est', url='https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters',
-          checked='EFC comparison table: the M6 flange pocket in the CAD is OD 10, ID 6.5, L 4.6 - this part is OD 9.8, ID 6.8, L 4 (CAD to follow)',
-          note='End tabs follow the glove-box feet proposal (M6 limiters).')
-    hw(L, B, 'Mounting', 'M6bolt25', 'Mount bolt M6 x 25 (end tabs, 2)', 2, 1, 0.45, note='Length placeholder: depends on the trunk mount face (no panel drawn) - Dan to confirm.')
-    hw(L, B, 'Mounting', 'M6wash', 'Plain washer M6 (end tabs, 2)', 2, 1, 0.05)
-    hw(L, B, 'Mounting', 'M6nut', 'Hex nut M6 (end tabs, 2)', 2, 1, 0.06)
+    L.add(B, 'Mounting', 'Compression limiter, end tabs (2)', 'EFC 10S00056', 'EFC International',
+          'Knurled solid compression limiter, M6, ID 6.80, OD 9.8, L 6 mm, zinc-plated steel', 2, 1, unit=0.30, basis='est', url=EFC_URL,
+          checked='EFC comparison table 2026-10-14; the end tab is 6 mm thick, so the L 6 part (rev 5 listed the L 4 one here)',
+          note='C1. Mount bolts / nuts are not part of the box (C3).')
+    L.add(B, 'Mounting', 'Compression limiter, HCR150 flange bosses (2)', 'EFC 10S00052', 'EFC International',
+          'Knurled solid compression limiter, M6, ID 6.80, OD 9.8, L 4 mm, zinc-plated steel', 2, 1, unit=0.25, basis='est', url=EFC_URL,
+          checked='EFC comparison table 2026-10-14; CAD rev 6 flange pocket OD 9.8 + 0.8, L 4', note='Under the relay flange, over the captured M6 nut.')
     return L.rows
 
 
