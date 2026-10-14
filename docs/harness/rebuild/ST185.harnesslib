@@ -2098,6 +2098,126 @@
         "value": 25,
         "unit": "mm"
       }
+    },
+    {
+      "id": "cov_ident_332_blue",
+      "type": "HeatShrink",
+      "partNumber": "RNF-100-3/32-6-STK",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK",
+      "minDiameter": {
+        "value": 1.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 2.4,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 1200,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_ident_332_yellow",
+      "type": "HeatShrink",
+      "partNumber": "RNF-100-3/32-4-STK",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK",
+      "minDiameter": {
+        "value": 1.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 2.4,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 1200,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_ident_332_white",
+      "type": "HeatShrink",
+      "partNumber": "RNF-100-3/32-9-STK",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, RNF-100, WHITE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK",
+      "minDiameter": {
+        "value": 1.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 2.4,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 1200,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_ident_316_blue",
+      "type": "HeatShrink",
+      "partNumber": "RNF-100-3/16-6-STK",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK",
+      "minDiameter": {
+        "value": 2.4,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 1200,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_ident_316_yellow",
+      "type": "HeatShrink",
+      "partNumber": "RNF-100-3/16-4-STK",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK",
+      "minDiameter": {
+        "value": 2.4,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 1200,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_ident_316_white",
+      "type": "HeatShrink",
+      "partNumber": "RNF-100-3/16-9-STK",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, RNF-100, WHITE, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK",
+      "minDiameter": {
+        "value": 2.4,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 1200,
+        "unit": "mm"
+      }
     }
   ],
   "diodeParts": [

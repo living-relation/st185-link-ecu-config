@@ -36,6 +36,8 @@ What it runs, in order - every one in HARD is a hard gate:
                            cavity), 30-unit grid, bundle lengths, layout left to right, no overlaps
   audit_wire_spacing.py    schematic wires never overlap; parallel runs at least 3 line widths
                            apart (DECISIONS R86; paths per wire_paths.py, re-route with route_wires.py)
+  audit_ident_bands.py     ident bands (DECISIONS R87): palette, one code per circuit per drawing, one code
+                           per circuit name everywhere, both sections of a break on one circuit
   audit_dan_rules.py       Daniel's text-level rules (DECISIONS R11, R26, R29, R35, R44): bay
                            flying leads are new wire, no sleeve parts or coverings, wire part
                            numbers, no "not used" / "reserved" cavity signals, no stale notes;
@@ -68,7 +70,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_logic_gauge.py"], ["audit_shields.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["audit_shared_connectors.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
-        ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["audit_wire_spacing.py"],
+        ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["audit_wire_spacing.py"], ["audit_ident_bands.py"],
         ["audit_dan_rules.py"], ["buylist.py", "--check"],
         ["buildlist.py", "--check"], ["check_route_drawings.py"],
         ["../../cad/fusebox/src/parts_lists.py", "--check"]]   # DECISIONS R82: every fuse box part is real and buyable
