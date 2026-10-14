@@ -165,9 +165,9 @@ h.append('<li><b>Empty renders.</b> Added: both glove-box boxes and the battery 
 h.append('<li><b>Etched labels.</b> Every relay, fuse and spare position has its name etched 0.6 mm into the cover top, right above it '
          '(%d labels on POWER, %d on LOGIC, %d on the battery block). List under "Labels".</li>'
          % tuple(len(rep.get('labels', {}).get(k, [])) for k in ('Power_Cover_PA12_printed', 'Logic_Cover_PA12_printed', 'BattRelay_Cover_PA12_printed')))
-h.append('<li><b>Battery block.</b> Modeled after the <b>%s</b>. Why: %s Open design: a low base with rims on the long sides only and both ends open; no cable holes - '
+h.append('<li><b>Battery block.</b> Style: the <b>%s</b> - my pick (Z9), reasons under "Battery relay block". Open design: a low base with rims on the long sides only and both ends open; no cable holes - '
          'cables come in under open notches in the cover ends. <b>Two tabs</b>, one on each long side at mid-length; every cable leaves an end, so nothing crosses a tab. '
-         'Re-laid on one straight line so its jumper has no bend at all (point 4).</li>' % (E(S.REFERENCE_BRAND[0]), E(S.REFERENCE_BRAND[1])))
+         'Re-laid on one straight line so its jumper has no bend at all (point 4).</li>' % E(S.REFERENCE_BRAND[0]))
 h.append('<li><b>Pieces and wiring.</b> Each box is 2 printed pieces (base, cover); the battery block too. You wire from below: the base is open underneath, so every '
          'terminal cavity, standoff and lug is reachable from the wire side. Crimp, push the terminal up into its cavity until it clicks, bolt the lugs under the deck, '
          'then mount the base, then plug the relays and fuses in from the top and snap the cover on. Full order under "How you build it".</li></ol>')
@@ -219,6 +219,13 @@ h.append('<h2>How you build it</h2><div class="grid"><div><h3>POWER box (2 print
          '<p class="mut">To service a relay terminal later: unbolt the base\'s ears and lift it - the bottom is open, nothing else holds it.</p>')
 
 h.append('<h2>Battery relay block</h2>')
+h.append('<h3>Style pick (Z9: Dan left it to me) - %s</h3><p>%s</p><div class="wrap"><table><tr><th>Dan asked for</th><th>How the block meets it</th></tr>'
+         '<tr><td>Open frame</td><td>Low floor plate, rims on the two long sides only, both ends open - the cover is the only enclosure.</td></tr>'
+         '<tr><td>Snap or screw lid</td><td>Snap: 4 cantilever tongues into pockets in the side rims (no screws, no inserts).</td></tr>'
+         '<tr><td>2 tabs</td><td>One tab on each long side at mid-length (x %.0f), M5 through a brass limiter.</td></tr>'
+         '<tr><td>No cable over a tab</td><td>Battery feed in at the -x end, pump cable and coil lead out at the +x end; nothing leaves a long side.</td></tr>'
+         '<tr><td>No cable holes</td><td>Cables pass under open notches in the cover ends (the 7720 breakout idea); the base has no holes for cables.</td></tr></table></div>'
+         % (E(S.REFERENCE_BRAND[0]), E(S.REFERENCE_BRAND[1]), S.RB['tabs_x']))
 fig('battrelay_render_iso_closed.png')
 fig('battrelay_render_iso_open.png')
 fig('battrelay_render_iso_empty.png')
