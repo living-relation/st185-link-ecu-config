@@ -37,8 +37,7 @@ What it runs, in order - every one in HARD is a hard gate:
   audit_dan_rules.py       Daniel's text-level rules (DECISIONS R11, R26, R29, R35, R44): bay
                            flying leads are new wire, no sleeve parts or coverings, wire part
                            numbers, no "not used" / "reserved" cavity signals, no stale notes;
-                           its D2 / D4 / D5 lists are SOFT inside the script until the drawings
-                           they name are fixed
+                           only its D1 EngineRoom-C list is SOFT inside the script (printed)
   buylist.py --check       buy list is current, and the shared-connector consistency check
   buildlist.py --check     per-wire build list is current
   check_route_drawings.py  the approved route drawings in routes/ (red route lines unfilled,

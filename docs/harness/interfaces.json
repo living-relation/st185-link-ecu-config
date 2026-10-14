@@ -518,7 +518,7 @@
         "page": "1993 p.215-216",
         "connector": "B4",
         "pin": "2",
-        "color": "TBD - not read off the 1993 EWD page",
+        "color": "B (black)",
         "function": "blower motor + (was R/B4 heater relay terminal 4 output; R/B4 removed)",
         "method": "heavy crimp butt splice into the factory lead at the blower motor (cabin, behind the glove box)"
       }

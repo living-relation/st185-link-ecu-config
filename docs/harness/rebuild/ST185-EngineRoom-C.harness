@@ -876,7 +876,7 @@
       "id": "fl_b4_c2",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD 1993 p.215-216 B4 pin 2 blower motor + (was R/B4 heater relay terminal 4 output; R/B4 removed) - heavy crimp butt splice into the factory lead at the blower motor (cabin, behind the glove box)",
+      "signal": "EWD 1993 p.215-216 B4 pin 2 B blower motor + (was R/B4 heater relay terminal 4 output; R/B4 removed) - heavy crimp butt splice into the factory lead at the blower motor (cabin, behind the glove box)",
       "schematicPosition": {
         "x": 1320,
         "y": 420

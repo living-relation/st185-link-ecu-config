@@ -231,7 +231,7 @@ Bay lighting and wipers (2026-10-13, Route 2 rev 10; no side markers, R62) - not
 | Front wiper | J/B1 1H-5 (WIPER 20A), IE1-20 / 13 / 6 | 14 | F9 pins 4 / 1 / 2 / 3 | Bay, under the windshield cowl, driver side; feed via the driver (LH) fender pass-through (S19) | p.148 |
 | Washer | cowl leads to W1 (L from splice I2, L-R from C16-8) | 14 | W1 pins 2 / 1 | Bay, passenger front corner, lower front fender (S19) | p.148 |
 
-Not landed yet (`docs/OPEN-ITEMS.md`): relay coil wires (row 46).
+Relay coil wires of the box non-ECU relays: drawn 2026-10-14 in `ST185-CabinPower.harness` (`k_hl` / `k_hr` coil- to IE1-2, `k_horn` to IE1-19, `k_htr` from the old R/B4 R-L / L-W leads, `k_pwr` coil+ from the old R/B2 L-Y lead; `docs/OPEN-ITEMS.md` rows 46, 106).
 
 ### 5.5 Engine-room grounds (keep the OEM rings)
 
