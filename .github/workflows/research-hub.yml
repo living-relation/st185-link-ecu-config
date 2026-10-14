@@ -15,11 +15,13 @@ on:
     paths:
       - 'docs/**'
       - '!docs/research-hub.html'
+      - 'cad/README.md'
       - '.github/workflows/research-hub.yml'
   pull_request:
     paths:
       - 'docs/**'
       - '!docs/research-hub.html'
+      - 'cad/README.md'
       - '.github/workflows/research-hub.yml'
   workflow_dispatch:
 
