@@ -1,5 +1,5 @@
 {
- "source": "cad/fusebox/src/render_wired_rev7.py in Fusion (ST185_fusebox_rev7, not saved), 2026-10-15 (ribs + saddles supported, R101; L1 16 AWG coil feeds)",
+ "source": "cad/fusebox/src/render_wired_rev7.py in Fusion (ST185_fusebox_rev7, not saved), 2026-10-15 (R101 tightened: only the floating pieces Dan marked)",
  "warn": [
   "w_hl_86_cp: segment 2 too short for its bends (13.4 < 14.8)"
  ],

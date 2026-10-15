@@ -305,6 +305,7 @@ TERM_DEFAULT = {'fuse in': ('880398-2', 14), 'fuse out': ('880398-2', 14), 'acps
                 'micro 30': ('42281-1', 14), 'micro 87': ('42281-1', 14), 'micro 87a': ('42281-1', 14), 'micro 85': ('2293255-1', 18),
                 'micro 86': ('2293255-1', 18), 'F7 30': ('280755-4', 8), 'F7 87': ('280755-4', 8), 'F7 87a': ('42281-1', 14),
                 'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
+FLOAT_BACKING = 0.5   # R101: a hanging feature with less of its top face on solid material than this is floating (Dan's marks: 5-15 %; the rest >= 76 %)
 GUIDE = dict(t=2.0, h=3.5, reach=12.0)     # J2: short guide walls under the deck between neighbouring holes (centres closer than reach)
 
 

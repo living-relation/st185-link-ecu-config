@@ -136,9 +136,9 @@ td.d{font-weight:700}</style></head><body><main>
 <p class="mut">The 87a cavities have no harness wire today, so they keep their plain blade slot: an 87a terminal next to 85 / 86 would leave only 0.4 mm of wall (the micro relay pin pattern), so a future 87a wire needs its own look.</p>
 <h2 id="r95">Ribs and saddles supported (DECISIONS R101)</h2>
 <p>Your markup 2026-10-15: "the little ribs and the wire radius runners are just floating. fill in the gaps between relay positions under the ribs and add material under the radius runners". They were joined to the base, but only by a sliver: a guide wall crossing the gap between two relay positions had cavity tower over its ends only, and each POWER bend saddle met the deck only where the relay tower was. Now:</p><ul>
-<li><b>LOGIC, 9 guide walls</b> (top face 5-99 % backed before): a web the size of the wall fills the gap between the towers, from the wall up into the deck plate.</li>
+<li><b>LOGIC, 5 guide walls</b> (top face 5-5 % backed before): a web the size of the wall fills the gap between the towers, from the wall up into the deck plate.</li>
 <li><b>POWER, 6 saddles</b> (top face 8-15 % backed before): the back of the saddle runs on up into the deck plate (it used to stop at the tower bottom).</li>
-<li>Every other hanging feature was already fully backed (LOGIC 168 of 177, POWER 19 of 25).</li>
+<li>Nothing else changed (your call: "i like them as they are. just fix the floating pieces i mentioned"). Floating = under 50 % of the top face on solid material; every other hanging feature is above that and stays as it was (LOGIC: 172 of 177 left alone, POWER: 19 of 25 left alone).</li>
 <li>Every printed part of all three boxes (POWER, LOGIC, battery relay block: base, pan, cover) is one solid - one body, one lump, one shell in Fusion and one connected mesh in its STL. New HARD gate <code>cad/fusebox/src/check_printed_solid.py</code> (in <code>check_all.py</code>) checks all three things.</li>
 <li>The LOGIC front channel floor is a shelf carried by the spine. It is connected, but nothing can go under it: the Bus 1 feed lug sits there.</li></ul>
 <div class="grid">
