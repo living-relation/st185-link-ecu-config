@@ -9,12 +9,13 @@ TE terminal data in spec.py (TERM, LOCK), what every cavity must be, and checks 
       barrels on the THICKEST insulation the terminal accepts, the wire behind them (880398-2: its stop flange) - + HOLE['clr'] per side
       (spec.hole); every zone above it as spec.zones. Today's wire is never the size: it (and its RNF-100 build-up) only has to fit (S1).
   H3  the hole is at least HOLE['lead_in'] deep at its mouth
-  L1  R121: a terminal with a locking lance keeps at least one ledge (the box-sized stretch under a window the lance springs into, the
-      lance reaching past the ledge edge by >= LOCK_MIN) that no neighbouring cavity is joined onto; a terminal with no lance (dimple) is
-      listed as PENDING (open question M8)
+  L1  R121 / R123: a terminal with a locking lance keeps at least one ledge (the box-sized stretch under a window the lance springs into,
+      the lance reaching past the ledge edge by >= LOCK_MIN) that no neighbouring cavity is joined onto in its box / lance zones; a cavity
+      on a relay in spec.RETAIN is held by the printed retainer clip instead; any other terminal with no lance fails
   W1  every wall between two cavities, zone by zone where they share a height, is at least HOLE['min_wall'] (R73) - or the two are
       joined into one (Dan: "join the two slots into one"); joins in the box / window zones (the relay and fuse pin spacing) are listed
   S1  the wire, with its RNF-100 build-up, fits the hole
+  R1  R123 B: a retainer clip's wire hole leaves the crimped insulation barrel >= RETAINER['bear'] a side to rest on
   G1  R120 / M6 = A: every wire thinner than its terminal's insulation range has an RNF-100 build-up that brings it into range
 A build from before R121 (report holes without "zones") cannot pass H2: its holes are listed as RECUT for the next rev 7 rebuild
 (build_fusion.build(rev=7)) and the gate stays green, and an L1 cavity left with no ledge is listed as RESOLVE (a layout / question to settle
@@ -85,8 +86,9 @@ def joins(cavs):
                     if min(za[1], zb[1]) <= max(lo_a, lo_b):
                         continue
                     g = gap(absz(a, za), absz(b, zb))
-                    if g < worst:
-                        worst, up = g, (za[0] is not None and zb[0] is not None)
+                    worst = min(worst, g)
+                    if za[0] is not None and zb[0] is not None and g + TOL < S.HOLE['min_wall']:
+                        up = True               # the box / lance zones themselves are joined (a lower-hole join leaves the ledges)
             if worst + TOL < S.HOLE['min_wall']:
                 out.append((a['box'], a['cav'], b['cav'], worst, up))
             else:
@@ -111,7 +113,7 @@ def main():
     rep = json.load(open(REPORT, encoding='utf-8'))
     plan = json.load(open(PLAN, encoding='utf-8'))
     holes = rep.get('terminal_holes') or {}
-    bad, info, recut, pending, rows, resolve = [], [], [], [], [], []
+    bad, info, recut, retained, rows, resolve, moved = [], [], [], [], [], [], []
     if not holes:
         print('check_terminal_holes: MISSING terminal_holes in %s - re-run the Fusion build (build_fusion.build(rev=7))' % os.path.relpath(REPORT, REPO))
         return 1
@@ -137,19 +139,24 @@ def main():
         cod = S.crimp_od(part, od)
         if cod + 2 * S.HOLE['clr'] > min(hx, hy) + TOL:
             bad.append('S1 %s %s: wire / build-up %.2f does not fit the %.2f x %.2f hole' % (k[0], r['cav'], cod, hx, hy))
-        c = dict(box=k[0], x=k[1], y=k[2], kind=kind, part=part, cav=r['cav'])
+        c = dict(box=k[0], x=k[1], y=k[2], kind=kind, part=part, cav=r['cav'], od=od)
         cavs.append(c)
         h = built.get(k)
-        if not h:
-            bad.append('H1 %s %s (%s, %s): no hole' % (k[0], r['cav'], part, ', '.join(ws) or 'spare'))
-            continue
-        c['built'] = h
         rows.append([k[0], r['cav'], part, od, cod, ' + '.join(seq) if seq else '-', None, hx, hy, ''])
         c['row'] = rows[-1]
         n_ok += 1
-    allc = [dict(box=c['box'], x=c['x'], y=c['y'], kind=c['kind']) for c in plan['cavities']]
+        if not h:
+            if any('zones' in h_ for L in holes.values() for h_ in L):
+                bad.append('H1 %s %s (%s, %s): no hole' % (k[0], r['cav'], part, ', '.join(ws) or 'spare'))
+            else:                       # the cavity moved in the source (R123 micro relay columns): cut at the next rebuild
+                moved.append((k[0], r['cav']))
+                c['row'][6] = 'MOVED'
+            continue
+        c['built'] = h
+    allc = [dict(box=c['box'], x=c['x'], y=c['y'], kind=c['kind'], part=c['part'], source=c['source']) for c in plan['cavities']]
     for c in cavs:
-        c['zs'] = S.zones(c['part'], c['kind'], S.lance_side(c, allc))
+        me = next(d for d in allc if d['box'] == c['box'] and round(d['x'], 2) == c['x'] and round(d['y'], 2) == c['y'])
+        c['zs'] = S.zones(c['part'], c['kind'], S.lance_side(me, allc))
         h = c.get('built')
         if not h:
             continue
@@ -167,14 +174,23 @@ def main():
     by = {(c['box'], c['cav']): c for c in cavs}
     partners = {}
     for (b, a_, c_, w, up) in joined:
+        if not up:
+            continue
         partners.setdefault((b, a_), []).append(by[(b, c_)])
         partners.setdefault((b, c_), []).append(by[(b, a_)])
     shared = [(b, a_, c_, w) for (b, a_, c_, w, up) in joined if up]
     for c in cavs:
         L_ = S.LOCK[c['part']]
+        if c['cav'].split()[0] in S.RETAIN.get(c['box'], []):
+            retained.append((c['box'], c['cav'], c['part']))
+            hd, bd = S.retainer_hole(c['part'], c['od'])
+            if hd + 2 * S.RETAINER['bear'] > bd + TOL:
+                bad.append('R1 %s %s: retainer hole %.2f leaves the %.2f crimped barrel under %.1f a side to rest on' % (
+                    c['box'], c['cav'], hd, bd, S.RETAINER['bear']))
+            c['row'][9] = 'retainer clip (R123 B)'
+            continue
         if L_['kind'] != 'lance':
-            pending.append((c['box'], c['cav'], c['part']))
-            c.get('row', [0] * 10)[9] = 'NO LANCE - pending M8'
+            bad.append('L1 %s %s: %s has no locking lance and no retainer clip (R121 / R123)' % (c['box'], c['cav'], c['part']))
             continue
         sides, keep = ledges(c, partners.get((c['box'], c['cav']), []))
         if L_['out'] - S.HOLE['clr'] + TOL < LOCK_MIN:
@@ -189,12 +205,15 @@ def main():
           'RNF-100 build-up' % (os.path.relpath(REPORT, REPO), n_ok, len(joined), len(shared), thin, S.HOLE['min_wall'], n_sl))
     for x in info:
         print('  info: ' + x)
-    if pending:
-        print('  PENDING: %d cavities hold a terminal with no locking lance (%s) - cannot self-lock (R121) until question M8 is answered' % (
-            len(pending), ', '.join(sorted({p for _, _, p in pending}))))
+    if retained:
+        print('  info: %d cavities held by a printed retainer clip (R123 B: %s)' % (len(retained), ', '.join(
+            sorted({'%s %s' % (b, cv.split()[0]) for b, cv, _ in retained}))))
     if recut:
         print('  RECUT: %d of %d cavities in the current build are from before R120 / R121 - every one is recut to its zones at the next '
               'rev 7 rebuild (build_fusion.build(rev=7)); --list shows each' % (len(recut), n_ok))
+    if moved:
+        print('  MOVED: %d cavities sit at a new position in the source (%s) - cut there at the next rev 7 rebuild' % (
+            len(moved), ', '.join(sorted({'%s %s' % (b, cv.split()[0]) for b, cv in moved}))))
     if '--list' in sys.argv[1:]:
         print('  box    cavity       terminal   wire  crimp OD  build-up                   built        R120 hole x x y   lock')
         for (b, cav, part, od, cod, sq, have, hx, hy, lock) in rows:

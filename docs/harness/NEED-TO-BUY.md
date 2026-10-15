@@ -23,6 +23,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RS 287-3921` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M5 X 10, DIN 933 | 20 | 0 | **20** |
 | `RS 137-809` | RS PRO | RS PRO A2/304 STAINLESS HEX SOCKET SET SCREW M5 X 12, DIN 916 | 18 | 0 | **18** |
 | `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 18 | 0 | **18** |
+| `280919-2` | TE Connectivity | FASTIN-FASTON .187 RECEPTACLE, UNINSULATED, 20-15 AWG (0.51-1.65 MM2), INSULATION 2.31-3.3 MM, LOCKING LANCE 1.2 MM, BRASS TIN | 16 | 0 | **16** |
 | `Klauke 2R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 10 MM2, M5, HOLE 5.3; B 12, L 22 | 16 | 0 | **16** |
 | `SSCF-M3-10-A4` | Accu | SOCKET HEAD CAP SCREW M3 X 10, DIN 912 / ISO 4762, A4 (316) STAINLESS | 15 | 0 | **15** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
@@ -137,6 +138,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `Power_Base_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | DECK ON FOUR ANGULAR LEGS, OPEN UNDERNEATH; PA12 | 1 | 0 | **1** |
 | `Power_Cover_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON COVER, ETCHED LABELS, VENT SLOTS; PA12 | 1 | 0 | **1** |
 | `Power_Pan_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON BELLY PAN, 4 INTEGRAL TONGUES (NO SEPARATE CLIPS); PA12 | 1 | 0 | **1** |
+| `Power_Retainer_R1_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | PLATE (2.0) WITH A HOLE PER R1 WIRE AND TWO BARBED LEGS THAT SNAP INTO THE CAVITY COLLAR: STOPS THE 62998-2 (NO LANCE MADE FOR 8 AWG ON A 6.3 BLADE) AND THE OTHER R1 TERMINALS BACKING OUT | 1 | 0 | **1** |
 | `RNF-100-1/4-0-STK` | TE Connectivity (Raychem) | RNF-100 HEAT SHRINK 2:1, BLACK, 4 FT STICK: ONE PIECE UNDER THE INSULATION CRIMP OF EACH THIN-WALL END | 1 | 0 | **1** |
 | `RNF-100-3/16-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
 | `RNF-100-3/16-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
@@ -319,7 +321,6 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `4-1904124-3` | LOGIC | 1 | the harness drawings |
 | `5-1393292-8` | LOGIC | 2 | the harness drawings |
 | `6-1419137-4` | LOGIC | 3 | the harness drawings |
-| `2293255-1` | LOGIC | 16 | the harness drawings |
 | `42281-1` | LOGIC | 19 | the harness drawings |
 | `1241388-2` | LOGIC | 13 | the harness drawings |
 | `880398-2` | LOGIC | 35 | the harness drawings |
@@ -337,6 +338,7 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `RNF-100-1/4-0-STK` | POWER | 1 | this section's CSVs |
 | `RNF-100-1/8-0-STK` | LOGIC, POWER | 2 | this section's CSVs |
 | `RNF-100-3/32-0-STK` | LOGIC, POWER | 2 | this section's CSVs |
+| `Power_Retainer_R1_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
 | `94459A140` | BATTRELAY, LOGIC, POWER | 12 | this section's CSVs |
 | `SSCF-M3-10-A4` | BATTRELAY, LOGIC, POWER | 15 | this section's CSVs |
 | `Klauke 2R5` | BATTRELAY, LOGIC, POWER | 16 | this section's CSVs |
@@ -360,6 +362,7 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `ATM-7-1/2` | LOGIC | 4 | this section's CSVs |
 | `ATM-15` | LOGIC | 7 | this section's CSVs |
 | `ATM-20` | LOGIC | 1 | this section's CSVs |
+| `280919-2` | LOGIC | 16 | this section's CSVs |
 | `53941-1` | LOGIC | 21 | this section's CSVs |
 | `M22759/16-14-2` | LOGIC | 7 | this section's CSVs |
 | `RS 287-3915` | LOGIC | 21 | this section's CSVs |

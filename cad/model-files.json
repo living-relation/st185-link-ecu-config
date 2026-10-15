@@ -1,26 +1,6 @@
 {
  "generated": "2026-10-15",
  "files": {
-  "cad/fusebox/rev7": [
-   "Logic_Base_PA12_printed.step",
-   "Logic_Base_PA12_printed.stl",
-   "Logic_Cover_PA12_printed.step",
-   "Logic_Cover_PA12_printed.stl",
-   "Logic_Pan_PA12_printed.step",
-   "Logic_Pan_PA12_printed.stl",
-   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step",
-   "Power_BarNeg_CuC110_25x6p35_L105.step",
-   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
-   "Power_Base_PA12_printed.step",
-   "Power_Base_PA12_printed.stl",
-   "Power_Cover_PA12_printed.step",
-   "Power_Cover_PA12_printed.stl",
-   "Power_Pad_Out_CuC110_15x3.step",
-   "Power_Pan_PA12_printed.step",
-   "Power_Pan_PA12_printed.stl",
-   "ST185_fusebox_rev7.f3d",
-   "ST185_fusebox_rev7_assembly.step"
-  ],
   "cad/drb102-plate": [
    "DRB102-firewall-plate-assembly.step",
    "DRB102-firewall-plate.step"
@@ -169,28 +149,25 @@
    "VRC_part_VRC-Body.step",
    "VRC_part_VRC-Lid.step"
   ],
-  "C:/projects/active/fairsolid/runs/fuel_hanger_billet_1014/rev7": [
-   "hanger_band_clamp_worm_drive.step",
-   "hanger_band_clamp_worm_drive.stl",
-   "hanger_billet_assembly.step",
-   "hanger_billet_assembly.stl",
-   "hanger_check_valve_radium_20-0598.step",
-   "hanger_check_valve_radium_20-0598.stl",
-   "hanger_foot.step",
-   "hanger_foot.stl",
-   "hanger_inside_keepouts.step",
-   "hanger_inside_keepouts.stl",
-   "hanger_lug_block.step",
-   "hanger_lug_block.stl",
-   "hanger_pump_f90000295.step",
-   "hanger_pump_f90000295.stl",
-   "hanger_saddle1.step",
-   "hanger_saddle1.stl",
-   "hanger_strut.step",
-   "hanger_strut.stl",
-   "hanger_top_plate.step",
-   "hanger_top_plate.stl",
-   "hanger_with_pump_fittings.stl"
+  "cad/fusebox/rev7": [
+   "Logic_Base_PA12_printed.step",
+   "Logic_Base_PA12_printed.stl",
+   "Logic_Cover_PA12_printed.step",
+   "Logic_Cover_PA12_printed.stl",
+   "Logic_Pan_PA12_printed.step",
+   "Logic_Pan_PA12_printed.stl",
+   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step",
+   "Power_BarNeg_CuC110_25x6p35_L105.step",
+   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
+   "Power_Base_PA12_printed.step",
+   "Power_Base_PA12_printed.stl",
+   "Power_Cover_PA12_printed.step",
+   "Power_Cover_PA12_printed.stl",
+   "Power_Pad_Out_CuC110_15x3.step",
+   "Power_Pan_PA12_printed.step",
+   "Power_Pan_PA12_printed.stl",
+   "ST185_fusebox_rev7.f3d",
+   "ST185_fusebox_rev7_assembly.step"
   ]
  }
 }

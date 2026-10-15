@@ -359,6 +359,38 @@ def build(out_dir, save=True, renders=True, rev=6):
                 y0_, y1_ = min(z[4] for z in h['abs']), max(z[5] for z in h['abs'])
                 m = HO['min_wall']
                 collars.append(box(x0_ - m, y0_ - m, z_d, x1_ + m, y1_ + m, plate_b + 0.01))
+        for rel in S.RETAIN.get(box_name, []):    # R123 B: printed retainer clip under a relay whose terminals cannot self-lock
+            rh = [h for h in hs if h['cav'].split()[0] == rel]
+            if not rh:
+                continue
+            RT, m = S.RETAINER, HO['min_wall']
+            x0_, x1_ = min(z[2] for h in rh for z in h['abs']) - m, max(z[3] for h in rh for z in h['abs']) + m
+            y0_, y1_ = min(z[4] for h in rh for z in h['abs']) - m, max(z[5] for h in rh for z in h['abs']) + m
+            ztop = min(zs_ - (S.TERM[h['part']]['L'] or S.L_EST) for h in rh) - RT['play']    # under the lowest terminal end
+            plate = box(x0_, y0_, ztop - RT['t'], x1_, y1_, ztop)
+            for h in rh:            # threaded onto the wires before crimping: bare wire + clr (the build-up ends inside the barrel)
+                bo(plate, cylz(h['x'], h['y'], ztop - RT['t'] - 1, ztop + 1, S.retainer_hole(h['part'], h['wire_od'])[0]), 's')
+            lw, ld = RT['leg']
+            long_x = (x1_ - x0_) >= (y1_ - y0_)
+            legs = [((x0_ + lw / 2, (y0_ + y1_) / 2), -1), ((x1_ - lw / 2, (y0_ + y1_) / 2), 1)] if long_x else                    [(((x0_ + x1_) / 2, y0_ + lw / 2), -1), (((x0_ + x1_) / 2, y1_ - lw / 2), 1)]
+            for ((lx, ly), sg) in legs:
+                sx_, sy_ = (lw, ld) if long_x else (ld, lw)
+                zt_ = z_d + RT['leg_h']
+                bo(plate, box(lx - sx_ / 2, ly - sy_ / 2, ztop - 0.01, lx + sx_ / 2, ly + sy_ / 2, zt_), 'u')     # leg up into the collar
+                bx_ = (lx + sg * (sx_ / 2), lx + sg * (sx_ / 2 + RT['barb'])) if long_x else (lx - sx_ / 2, lx + sx_ / 2)
+                by_ = (ly - sy_ / 2, ly + sy_ / 2) if long_x else (ly + sg * (sy_ / 2), ly + sg * (sy_ / 2 + RT['barb']))
+                bo(plate, box(min(bx_), min(by_), zt_ - RT['barb_h'], max(bx_), max(by_), zt_), 'u')          # barb, outward
+                c_ = RT['clr']           # pocket in a boss on the collar: leg + clr, the barb's undercut at its top
+                collars.append(box(lx - sx_ / 2 - c_ - RT['boss'] - (RT['barb'] if long_x else 0), ly - sy_ / 2 - c_ - RT['boss'] - (0 if long_x else RT['barb']),
+                                   z_d, lx + sx_ / 2 + c_ + RT['boss'] + (RT['barb'] if long_x else 0), ly + sy_ / 2 + c_ + RT['boss'] + (0 if long_x else RT['barb']),
+                                   plate_b + 0.01))
+                cuts.append(box(lx - sx_ / 2 - c_, ly - sy_ / 2 - c_, z_d - 1, lx + sx_ / 2 + c_, ly + sy_ / 2 + c_, zt_ + 0.3))
+                cuts.append(box(min(bx_) - c_, min(by_) - c_, zt_ - RT['barb_h'] - 0.3, max(bx_) + c_, max(by_) + c_, zt_ + 0.3))
+            comp('%s_Retainer_%s_PA12_printed' % (box_name.capitalize(), rel), plate, AP['pa12_pan'], MAT['pa'], S.PLACE[box_name])
+            report.setdefault('retainers', {}).setdefault(box_name, []).append(dict(
+                relay=rel, cavities=[h['cav'] for h in rh], plate=[round(v, 2) for v in (x0_, y0_, ztop - RT['t'], x1_, y1_, ztop)],
+                holes=[[h['cav'], round(S.retainer_hole(h['part'], h['wire_od'])[0], 2)] for h in rh], legs=[[round(lx, 2), round(ly, 2)] for ((lx, ly), _) in legs],
+                vol_cm3=round(((x1_ - x0_) * (y1_ - y0_) * RT['t'] + 2 * lw * ld * (RT['leg_h'] + z_d - ztop)) / 1000.0, 2)))
         gid = {}
         for i, h in enumerate(hs):
             h['group'] = gid.setdefault(root_(i), len(gid))

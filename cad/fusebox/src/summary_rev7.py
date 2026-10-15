@@ -242,8 +242,10 @@ A('<p><b>Hole (R120):</b> the largest cross-section, along the insertion axis, o
   'snaps in: above its neck (where the insulation barrel stops when seated) the cavity steps in to the box - the ledge - and opens a window from the '
   'lance tip up to the seat, so the lance springs out over the ledge; the deck blade slot above (narrower than the box) stops it the other way. Relays '
   'and fuses are held by blade friction only; the cover stays as it is. Where the relay / fuse pin spacing leaves under 2.0 mm, neighbouring cavities '
-  'share one opening (R73 kept) and each terminal locks on the side away from its neighbour (lance outward). Terminals with no lance (2293255-1, '
-  '62998-2) cannot self-lock yet - question M8. <b>Every cavity in the current STEP is from before R120 / R121: all %d are recut at the next rev 7 '
+  'share one opening (R73 kept) and each terminal locks on the side with room (lance that way). <b>M8 = A (R123):</b> the micro relay coil terminal is '
+  'TE 280919-2 (locking lance) instead of 2293255-1, and the micro relay columns sit 2.0 mm further out (LOGIC 2.0 wider) so the Bus 2 outputs keep '
+  'their ledges; <b>B</b> only where no lance terminal exists - the heater relay R1 (62998-2, 8 AWG on 6.3 blades): a printed retainer clip under it, '
+  'threaded onto its wires before crimping, snaps into its collar. <b>Every cavity in the current STEP is from before R120 / R121: all %d are recut at the next rev 7 '
   'Fusion rebuild</b> (<code>check_terminal_holes.py --list</code>).</p>'
   % (S.HOLE['clr'], sum(1 for c_ in plan['cavities'] if c_.get('hole') and not (c_['kind'].endswith('87a') and c_['source'] != 'harness'))))
 A('<div class="wrap"><table><tr><th>Terminal</th><th>Box W x H (TE drawing)</th><th>Insulation range</th><th>Lock</th><th>Holes (box: count x size x by y)</th></tr>')
@@ -255,7 +257,7 @@ for pn, t_ in S.TERM.items():
             use[k_] = use.get(k_, 0) + 1
     L_ = S.LOCK[pn]
     lk = ('lance %s, springs out %.2f, tip %.2f below the contact end%s' % ('both sides of the blade width' if L_['axis'] == 'W' else 'through the blade',
-          L_['out'], L_['tip'], ' (est.)' if L_.get('est') else '')) if L_['kind'] == 'lance' else 'no lance (dimple) - M8'
+          L_['out'], L_['tip'], ' (est.)' if L_.get('est') else '')) if L_['kind'] == 'lance' else ('retainer clip (R123 B)' if L_['kind'] == 'clip' else 'no lance - swapped (R123)')
     A('<tr><td>%s<br><span class="mut">%s</span></td><td>%.2f x %.2f%s</td><td>%.2f-%.2f mm</td><td>%s</td><td>%s</td></tr>' % (
       pn, E(t_['what']), t_['head'][0], t_['head'][1], ' (H est.)' if pn in S.HEAD_EST else '', t_['ins'][0], t_['ins'][1], E(lk),
       E('; '.join('%s %d x %.2f x %.2f' % (b_, n_, sl_[0], sl_[1]) for (b_, sl_), n_ in sorted(use.items()))) or '-'))
@@ -341,6 +343,10 @@ A('<tr><td>LOGIC wires that leave and come back in</td><td class="%s">%s</td></t
 A('</table></div>')
 A('<h3>Exits</h3><div class="wrap"><table><tr><th>Box</th><th>Exit (lane)</th><th>Wires (CAD drew)</th><th>Round bundle</th><th>Notch</th><th>Packed in the notch: top</th><th>Fits</th></tr>')
 for x in plan['exits']:
+    if x['opening'] is None:     # R123: the micro relay lanes moved in the source; the CAD notch follows at the rev 7 rebuild
+        A('<tr><td>%s</td><td>%.1f</td><td>%d (-)</td><td>%.1f mm</td><td>-</td><td>z %.1f (deck %.1f)</td><td class="mut">moved (R123): notch cut at the rev 7 rebuild</td></tr>' % (
+          x['box'], x['lane'], x['wires'], x['d'], x['stack_top'], x['deck']))
+        continue
     A('<tr><td>%s</td><td>%.1f</td><td>%d (%d)</td><td>%.1f mm</td><td>%.1f mm</td><td>z %.1f (deck %.1f)</td><td class="%s">%s</td></tr>' % (
       x['box'], x['lane'], x['wires'], x['cad_wires'], x['d'], x['opening'], x['stack_top'], x['deck'], 'ok' if x['fits'] else 'bad', 'yes' if x['fits'] else 'no'))
 A('</table></div>')

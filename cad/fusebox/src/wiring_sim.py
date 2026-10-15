@@ -23,7 +23,7 @@ OD = dict(S.OD)
 OD[16] = OD.get(16, 2.06)
 METRIC_OD = {53.5: OD['1/0']}            # 1/0 SGX, 53.5 mm2
 MM2 = {20: 0.52, 18: 0.82, 16: 1.31, 14: 2.08, 12: 3.31, 10: 5.26, 8: 8.37, 6: 13.3}
-TERM_RANGE = {'1241388-2': (0.5, 1.0), '880398-2': (1.0, 2.5), '42281-1': (0.8, 2.0), '2293255-1': (0.51, 1.65),
+TERM_RANGE = {'1241388-2': (0.5, 1.0), '880398-2': (1.0, 2.5), '42281-1': (0.8, 2.0), '2293255-1': (0.51, 1.65), '280919-2': (0.51, 1.65),
               '280756-4': (3.31, 5.26), '280755-4': (6.0, 10.0), '62998-2': (5.0, 8.0)}     # mm2, from the parts list / harness part text
 RELAY_NAMES = {'HEAD LH': 'k_hl', 'HEAD RH': 'k_hr', 'horn': 'k_horn', 'k_etb': 'k_etb', 'k_acc': 'k_acc', 'k_eps_en': 'k_eps_en', 'k_rev': 'k_rev',
                'heater': 'k_htr', 'k_efi': 'k_efi', 'k_str': 'k_str', 'k_fan': 'k_fan', 'k_fan2': 'k_fan2', 'power': 'k_pwr'}
@@ -183,6 +183,9 @@ def plan():
                 CH = S.CHANNEL
                 at = dict(x=CH['splice']['x0'], y=CH['y_sp'], lane=None, kind='splice', name=e['id'])
             part = e['part'] or fallback_part(e['box'], e, w['gauge'], w['unit'])
+            if e['box'] in ('LOGIC', 'POWER') and part in S.TERM_SWAP:      # R123: the box takes the self-locking swap (harness follow-up)
+                ends.append(dict(e, at=at, part=S.TERM_SWAP[part], harness_part=part, part_from='R123 swap'))
+                continue
             ends.append(dict(e, at=at, part=part, part_from='harness' if e['part'] else 'parts list'))
             if e['id'] not in S.CHANNEL_SPLICES:      # a splice takes any number of wires (that is what it is for)
                 term_load[(e['box'], e['id'], e['cav'])].append(w)
@@ -467,6 +470,7 @@ def terminal_cavities(wires):
         if hits:
             parts = sorted({e['part'] for (w, e) in hits if e['part']})
             part = parts[0] if parts else S.TERM_DEFAULT[c['kind']][0]
+            part = S.TERM_SWAP.get(part, part)          # R123: the box is built with the self-locking swap
             od = max(w['od'] for (w, e) in hits)
             src, wl = 'harness', [w['wire'] for (w, e) in hits]
         elif c.get('jumper'):
