@@ -475,7 +475,7 @@ def terminal_cavities(wires):
             part, g = S.TERM_DEFAULT[c['kind']]
             od, src, wl = OD[g], 'spare (largest wire it takes)', []
         out.append(dict(box=box, cav=key, x=round(c['x'], 3), y=round(c['y'], 3), kind=c['kind'], part=part, wire_od=od, source=src, wires=wl,
-                        hole_d=round(S.hole_d(part, od), 3) if part in S.TERM else None))
+                        slot=[round(v, 3) for v in S.slot(part, od, c['kind'])] if part in S.TERM else None))
     return out
 
 

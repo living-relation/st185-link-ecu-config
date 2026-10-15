@@ -182,7 +182,7 @@ for b_, L_ in TH.items():
     for i_ in range(len(L_)):
         for j_ in range(i_ + 1, len(L_)):
             a_, c_ = L_[i_], L_[j_]
-            if a_['group'] != c_['group']:
+            if a_['group'] != c_['group'] and 'd' in a_ and 'd' in c_:
                 walls.append(((a_['x'] - c_['x']) ** 2 + (a_['y'] - c_['y']) ** 2) ** 0.5 - (a_['d'] + c_['d']) / 2)
 CH = S.CHANNEL
 A('<div class="wrap"><table><tr><th>Question</th><th>Your answer</th><th>What changed</th></tr>')
@@ -208,17 +208,17 @@ A('<tr><td>J4 wires that left the box and came back in</td><td>B</td><td>A print
   'and comes back.</td></tr>' % (CH['floor'][0], CH['floor'][1], S.STRIP_Y['BUS1'][0], S.STRIP_Y['BUS2'][0], S.FEED['BUS1']['y'], S.FEED['BUS1']['z'],
   len(plan.get('channel', {})), E(', '.join('%s z %.1f' % (k, v) for k, v in sorted(CH['z'].items(), key=lambda kv: kv[1])))))
 A('</table></div>')
-A('<h3>Terminal holes: crimp barrel sizes (TE product pages, read 2026-10-14)</h3>')
+A('<h3>Terminal holes as built: crimp barrel sizes (TE product pages, read 2026-10-14) - superseded by R120 below</h3>')
 A('<p class="mut">Hole = the crimped barrel + %.1f mm a side. Barrel = the larger of the wire insulation and the smallest insulation the terminal is made for '
   '(an uninsulated terminal: the wire insulation still has to go in), plus the metal both sides. Round bore from under the deck up through the barrel zone '
   '(the lower %d %% of the terminal, est), at least %.0f mm deep. A spare cavity gets the hole of the largest wire it takes. Metal thickness or length not on '
-  'the TE page: %.2f mm / %.0f mm, marked est.</p>' % (S.HOLE['clr'], int(S.BARREL_FRAC * 100), S.HOLE['lead_in'], S.T_EST, S.L_EST))
+  'the TE page: %.2f mm / %.0f mm, marked est.</p>' % (S.HOLE['clr'], 45, S.HOLE['lead_in'], S.T_EST, S.L_EST))
 A('<div class="wrap"><table><tr><th>Terminal</th><th>Insulation range</th><th>Metal</th><th>Length</th><th>Holes (box: count x diameter)</th></tr>')
 for pn, t_ in S.TERM.items():
     use = {}
     for b_, L_ in TH.items():
         for h_ in L_:
-            if h_['part'] == pn:
+            if h_['part'] == pn and 'd' in h_:
                 use.setdefault((b_, h_['d']), 0)
                 use[(b_, h_['d'])] += 1
     A('<tr><td>%s<br><span class="mut">%s</span></td><td>%.2f-%.2f mm</td><td>%s</td><td>%s</td><td>%s</td></tr>' % (pn, E(t_['what']), t_['ins'][0], t_['ins'][1],
@@ -232,10 +232,36 @@ A('</div>')
 A('<p>Joined slots (wall under %.1f mm): %s.</p>' % (S.HOLE['min_wall'], E('; '.join(' + '.join(g) for b_ in slots for g in slots[b_])) or 'none'))
 grip = [(w_['wire'], e_['part'], w_['od']) for w_ in plan['wires'] for e_ in w_['ends'] if e_.get('at') and e_.get('box') in ('LOGIC', 'POWER')
         and e_.get('part') in S.TERM and w_['od'] < S.TERM[e_['part']]['ins'][0]]
-A('<div class="note"><b>Found while sizing the holes (OPEN-ITEMS row 121):</b> %d wire ends use wire thinner than their terminal\'s insulation range '
-  '(M22759/16 is thin-wall: 14 AWG is 2.41 mm, 18 AWG 1.85 mm), e.g. 18 AWG in a 42281-1 (made for 2.79-4.32 mm insulation). The insulation barrel cannot '
-  'grip it, so the wire is held by the conductor crimp alone. The holes are sized for the barrel as it closes, so they are right either way. Not changed here.</div>'
-  % len(grip))
+A('<div class="note"><b>Thin-wall wire, OPEN-ITEMS row 121 - your M6 = A (DECISIONS R120):</b> %d wire ends use wire thinner than their terminal&#39;s '
+  'insulation range (M22759/16 is thin-wall: 14 AWG is 2.41 mm, 18 AWG 1.85 mm), e.g. 18 AWG in a 42281-1 (made for 2.79-4.32 mm insulation). Each gets a '
+  'TE Raychem RNF-100 build-up sleeve under the insulation crimp (table below; on the POWER / LOGIC parts lists).</div>' % len(grip))
+A('<h3 id="r120">Terminal holes sized from the terminal (DECISIONS R120, Dan 2026-10-15)</h3>')
+A('<p>The crimped terminal goes up through its hole from under the deck, so the hole is sized from the widest part pushed through it - the '
+  'terminal itself (its head, or the crimped barrel where that is bigger) - + %.1f mm a side, a slot with its long side along the blade, up to the '
+  'receptacle seat. Never from the wire: the wire, sleeved or not, is always smaller. Head sizes from the TE customer drawings (max of tolerance, lance '
+  'included); 2293255-1 and 62998-2 head height is not dimensioned there, scaled off the drawing (est.). <b>Every hole in the current STEP is the old round '
+  'crimp-barrel hole: all %d are recut to these slots at the next rev 7 Fusion rebuild</b> (<code>check_terminal_holes.py --list</code>).</p>'
+  % (S.HOLE['clr'], sum(1 for c_ in plan['cavities'] if c_.get('slot') and not (c_['kind'].endswith('87a') and c_['source'] != 'harness'))))
+A('<div class="wrap"><table><tr><th>Terminal</th><th>Head W x H (TE drawing)</th><th>Insulation range</th><th>Slots (box: count x size x by y)</th></tr>')
+for pn, t_ in S.TERM.items():
+    use = {}
+    for c_ in plan['cavities']:
+        if c_['part'] == pn and c_.get('slot') and not (c_['kind'].endswith('87a') and c_['source'] != 'harness'):
+            k_ = (c_['box'], tuple(c_['slot']))
+            use[k_] = use.get(k_, 0) + 1
+    A('<tr><td>%s<br><span class="mut">%s</span></td><td>%.2f x %.2f%s</td><td>%.2f-%.2f mm</td><td>%s</td></tr>' % (
+      pn, E(t_['what']), t_['head'][0], t_['head'][1], ' (H est.)' if pn in S.HEAD_EST else '', t_['ins'][0], t_['ins'][1],
+      E('; '.join('%s %d x %.2f x %.2f' % (b_, n_, sl_[0], sl_[1]) for (b_, sl_), n_ in sorted(use.items()))) or '-'))
+A('</table></div>')
+sl = {}
+for (w_, pn, od) in grip:
+    seq, d2 = S.build_up(pn, od)
+    k_ = (pn, od, ' + '.join(seq) if seq else 'none fits', round(d2, 2))
+    sl[k_] = sl.get(k_, 0) + 1
+A('<div class="wrap"><table><tr><th>Terminal</th><th>Wire OD</th><th>RNF-100 build-up (under the insulation crimp)</th><th>Built-up OD (est.)</th><th>Ends</th></tr>')
+for (pn, od, sq, d2), n_ in sorted(sl.items()):
+    A('<tr><td>%s</td><td>%.2f</td><td>%s</td><td>%.2f</td><td>%d</td></tr>' % (pn, od, E(sq), d2, n_))
+A('</table></div>')
 A('<p class="mut">The 87a cavities have no harness wire today, so they keep their plain blade slot: an 87a terminal next to 85 / 86 would leave only 0.4 mm '
   'of wall (the micro relay pin pattern), so a future 87a wire needs its own look.</p>')
 

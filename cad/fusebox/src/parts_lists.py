@@ -109,6 +109,43 @@ MICRO_FORM_C = {'6-1419137-4'}
 n_micro_load = sum(3 if p[1] in MICRO_FORM_C else 2 for p in MICRO_USED)
 
 
+# R120 / OPEN-ITEMS row 121 (Dan M6 = A, 2026-10-15): an RNF-100 build-up sleeve under the insulation crimp of every thin-wall wire end below
+# its terminal's insulation range (spec.build_up), counted per box from the rev 7 wire plan. Sold as 4 ft (1220 mm) black sticks; one end
+# takes SLEEVE_CUT mm per layer. Newark listings read 2026-10-15 (R38: TE part, through a distributor - not on hand; the on-hand
+# RNF-100-3/64 is too small, 1.2 mm expanded).
+SLEEVE_CUT, STICK = 15.0, 1220.0
+SLEEVE_BUY = {'RNF-100-3/32': ('RNF-100-3/32-0-STK', 2.83, 'est', 'https://www.newark.com/raychem-te-connectivity/rnf-100-3-32-0-stk/heatshrink-2-4mm-black-1-2m/dp/01M8679',
+                               'TE page product-5052942064 (2.4 mm expanded / 1.2 mm recovered, wall 0.5, 1220 mm, black, Active); Newark 01M8679'),
+              'RNF-100-1/8': ('RNF-100-1/8-0-STK', 2.55, 'seen', 'https://www.newark.com/raychem-te-connectivity/rnf-100-1-8-0-stk/heatshrink-3-2mm-black-1-2m/dp/01M8658',
+                              'Newark 01M8658 2026-10-15: 3.2 mm / 1.6 mm recovered, 1.2 m, black, 3,383 in stock, $2.55 at 1'),
+              'RNF-100-1/4': ('RNF-100-1/4-0-STK', 2.53, 'seen', 'https://www.newark.com/search?st=RNF-100-1%2F4-0-STK',
+                              'Newark 01M8651 2026-10-15: 6.35 mm / 3.18 mm recovered, 1.2 m, black, $2.53 at 1')}
+
+
+def sleeve_ends():
+    """{box: {size: wire ends}} - every harness wire end in a POWER / LOGIC terminal below its insulation range, by build-up layer."""
+    plan = json.load(open(os.path.join(REV7_DIR, 'wiring_plan.json'), encoding='utf-8'))
+    out = {}
+    for w in plan['wires']:
+        for e in w['ends']:
+            if e.get('at') and e.get('box') in ('LOGIC', 'POWER') and e.get('part') in S.TERM and w['od'] < S.TERM[e['part']]['ins'][0]:
+                seq, _ = S.build_up(e['part'], w['od'])
+                for sz in seq or []:
+                    out.setdefault(e['box'], {}).setdefault(sz, 0)
+                    out[e['box']][sz] += 1
+    return out
+
+
+def sleeves(L, box):
+    for sz, n in sorted(sleeve_ends().get(box, {}).items()):
+        pn, unit, basis, url, checked = SLEEVE_BUY[sz]
+        sticks = int(math.ceil(n * SLEEVE_CUT / STICK))
+        L.add(box, 'Terminals', 'Insulation build-up sleeve %s, %d ends x %.0f mm' % (sz[8:], n, SLEEVE_CUT), pn, 'TE Connectivity (Raychem)',
+              'RNF-100 heat shrink 2:1, black, 4 ft stick: one piece under the insulation crimp of each thin-wall end', sticks, 0, unit=unit, basis=basis,
+              url=url, checked=checked, note='RNF-100 build-up sleeve under the insulation crimp (DECISIONS R120, OPEN-ITEMS row 121): M22759/16 is thin-wall, '
+              'below the terminal insulation range; every end and its layers: python cad/fusebox/src/check_terminal_holes.py --list.')
+
+
 def lug_for(awg):
     """Klauke tubular M5 lug by wire, TE PIDG for 12 AWG (a 10 mm2 barrel is too big for 12 AWG)."""
     return {12: '36161', 10: '2R5', 8: '2R5', 6: '3R5'}[awg]
@@ -232,6 +269,7 @@ def build(rev=6):
     L.add(P, 'Terminals', 'Mini fuse receptacle 2.8, 20-18 AWG (ACPS output, 18 AWG)', '1241388-2', 'TE Connectivity', 'AMP MCP 2.8K receptacle, gold, 0.5-1 mm2, tab 2.8 (0.6 / 0.8 thick)',
           1, 1, unit=0.35, basis='est', url=TE('1241388-2'), checked='TE page (2.8 mm tab, 0.6 / 0.8 thick, 0.5-1 mm2); te-on-hand-bom.csv qty_ordered 10; ST185-CabinPower ACPS out 18 AWG',
           note='Row 110 (c).')
+    sleeves(L, P)
     # lugs
     all_lugs = [(nm, S.AMI_AWG[nm]) for nm, a in IN_USED + OUT_USED]
     n2r5 = sum(1 for nm, g in all_lugs if lug_for(g) == '2R5')
@@ -320,6 +358,7 @@ def build(rev=6):
     L.add(G, 'Terminals', 'Mini fuse receptacle 2.8, 17-13 AWG (16-14 AWG outputs + the %d input jumpers)' % len(jumpers), '880398-2', 'TE Connectivity', 'Receptacle tab 2.8 x 0.8 mm, 1-2.5 mm2, tin, unsealed',
           n_big + len(jumpers), spare(n_big + len(jumpers)), unit=0.15, basis='est', url=TE('880398-2'), checked='TE page (2.8 x 0.8, 1-2.5 mm2, 17-13 AWG); ST185-CabinPower fb_logic contacts',
           note='Outputs %s (%d) + one per input jumper (%d, 14 AWG, C4). DM is 14 AWG (13 AWG max here).' % (', '.join(n for n, a in outs if n not in S.OUT_SMALL), n_big, len(jumpers)))
+    sleeves(L, G)
     L.add(G, 'Jumpers', 'Input jumper ring lug, 16-14 AWG, #8 / M4 (one per fuse input)', '53941-1', 'TE Connectivity',
           'PIDG closed ring tongue terminal, 16-14 AWG, #8 / M4 stud, blue, tin', len(jumpers), spare(len(jumpers)), unit=0.37, basis='seen',
           url=FUTURE_53941, checked='TE page 53941-1 2026-10-14 (PIDG, #8 / M4, 16-14, overall 20.65, tongue 0.78, Active); Future Electronics listing $0.37 at 50, 22,000 in stock',

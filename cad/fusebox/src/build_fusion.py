@@ -274,11 +274,11 @@ def build(out_dir, save=True, renders=True, rev=6):
         return u
 
     def crimp_holes(box_name, z_d, z_t, support=None, plate_b=None):
-        """J2 = B (Dan 2026-10-14, R94): every terminal hole in the base takes its crimp barrel - the insulation barrel closed on the
-        wire insulation (never below the smallest insulation the terminal is made for) plus the metal both sides, + CLR per side
-        (S.hole_d, TE page data in S.TERM). Round bore from under the deck up to the top of the barrel zone (the lower BARREL_FRAC of the
-        terminal, receptacle top 1 mm under the deck top), at least lead_in deep. Two holes with less than min_wall between them join
-        into one slot (Dan: "join the two slots into one"). Short guide walls hang under the deck between neighbouring holes (Dan:
+        """J2 = B (Dan 2026-10-14, R94), sized from the terminal (R120, Dan 2026-10-15: "the holes ... should be made based on the widest
+        part being inserted which would be the contact terminal itself"): every terminal hole in the base is a slot the crimped terminal
+        goes up through - max(head, crimped barrel) each way + CLR per side, the long side along the blade (S.slot, TE drawing data in
+        S.TERM) - from under the deck up to the receptacle seat (receptacle top HOLE['top_gap'] under the deck top). Two slots with less
+        than min_wall between them join into one (Dan: "join the two slots into one"), bridged across the gap between them. Short guide walls hang under the deck between neighbouring holes (Dan:
         "short separators or walls ... to help guide wires straight out"); the bores are cut through them, so a wall never narrows a
         hole. 87a cavities get a bore only when a harness wire lands there (none today: next to 85 / 86 it would leave 0.4 mm).
         R101 (Dan 2026-10-15: "the little ribs ... are just floating. fill in the gaps between relay positions under the ribs"; then "i
@@ -289,13 +289,23 @@ def build(out_dir, save=True, renders=True, rev=6):
         if not PLAN7:
             return [], []
         HO, G = S.HOLE, S.GUIDE
-        hs = [dict(c) for c in PLAN7['cavities'] if c['box'] == box_name and c['hole_d']
+        hs = [dict(c) for c in PLAN7['cavities'] if c['box'] == box_name and c['slot']
               and not (c['kind'].endswith('87a') and c['source'] != 'harness')]
         for h in hs:
             T = S.TERM[h['part']]
-            L_ = T['L'] or S.L_EST
-            h['z1'] = round(min(max(z_d + HO['lead_in'], z_t - HO['top_gap'] - L_ + S.BARREL_FRAC * L_), z_t - 3.0), 2)
-            h['est'] = T['L'] is None or T['t'] is None
+            h['sx'], h['sy'] = h['slot']
+            h['z1'] = round(z_t - HO['top_gap'], 2)
+            h['est'] = T['t'] is None or h['part'] in S.HEAD_EST
+
+        def gap_(a, b):   # printed wall between two axis-aligned slots; negative = overlap
+            gx = abs(a['x'] - b['x']) - (a['sx'] + b['sx']) / 2
+            gy = abs(a['y'] - b['y']) - (a['sy'] + b['sy']) / 2
+            return math.hypot(gx, gy) if gx > 0 and gy > 0 else max(gx, gy)
+
+        def span_(a, b, k, s_):   # bridge interval on one axis: the gap between the two slots, or their overlap
+            lo = max(a[k] - a[s_] / 2, b[k] - b[s_] / 2)
+            hi = min(a[k] + a[s_] / 2, b[k] + b[s_] / 2)
+            return min(lo, hi), max(lo, hi)
         par = list(range(len(hs)))
 
         def root_(i):
@@ -308,17 +318,18 @@ def build(out_dir, save=True, renders=True, rev=6):
             for j in range(i + 1, len(hs)):
                 a, b = hs[i], hs[j]
                 d = math.hypot(a['x'] - b['x'], a['y'] - b['y'])
-                if d - (a['hole_d'] + b['hole_d']) / 2 < HO['min_wall']:
+                if gap_(a, b) < HO['min_wall']:
                     edges.append((i, j, d))
                     par[root_(i)] = root_(j)
                 elif d < G['reach']:
                     near_.append((i, j, d))
         z0 = z_d - G['h'] - 1.0
-        cuts = [cylz(h['x'], h['y'], z0, h['z1'], h['hole_d']) for h in hs]
+        cuts = [cbox(h['x'], h['y'], z0, h['z1'], h['sx'], h['sy']) for h in hs]
         for (i, j, d) in edges:
             a, b = hs[i], hs[j]
-            cuts.append(rbox((a['x'] + b['x']) / 2, (a['y'] + b['y']) / 2, z0, min(a['z1'], b['z1']), d, min(a['hole_d'], b['hole_d']),
-                             math.degrees(math.atan2(b['y'] - a['y'], b['x'] - a['x']))))
+            if gap_(a, b) > 0:
+                (x0_, x1_), (y0_, y1_) = span_(a, b, 'x', 'sx'), span_(a, b, 'y', 'sy')
+                cuts.append(box(x0_, y0_, z0, x1_, y1_, min(a['z1'], b['z1'])))
         gid = {}
         for i, h in enumerate(hs):
             h['group'] = gid.setdefault(root_(i), len(gid))
@@ -328,7 +339,7 @@ def build(out_dir, save=True, renders=True, rev=6):
             if a['group'] == b['group']:
                 continue
             ang = math.degrees(math.atan2(b['y'] - a['y'], b['x'] - a['x'])) + 90.0
-            fd = ((a['x'] + b['x']) / 2, (a['y'] + b['y']) / 2, max(a['hole_d'], b['hole_d']) + 2.0, G['t'], ang)
+            fd = ((a['x'] + b['x']) / 2, (a['y'] + b['y']) / 2, max(a['sx'], a['sy'], b['sx'], b['sy']) + 2.0, G['t'], ang)
             fin_d.append(fd)
             fins.append(rbox(fd[0], fd[1], z_d - G['h'], z_d + 0.01, fd[2], fd[3], fd[4]))
         webs, sup = [], []
@@ -344,7 +355,7 @@ def build(out_dir, save=True, renders=True, rev=6):
                 s_['after'] = round(backing(f_, z_d + 0.01, U2), 3)
         report['feature_support'].setdefault(box_name, []).extend(sup)
         sh_ = S.PLACE[box_name]
-        report['terminal_holes'][box_name] = [dict(cav=h['cav'], kind=h['kind'], x=h['x'], y=h['y'], d=h['hole_d'], z0=round(z_d, 2), z1=h['z1'],
+        report['terminal_holes'][box_name] = [dict(cav=h['cav'], kind=h['kind'], x=h['x'], y=h['y'], sx=h['sx'], sy=h['sy'], z0=round(z_d, 2), z1=h['z1'],
                                                    group=h['group'], part=h['part'], wire_od=h['wire_od'], source=h['source'], est=h['est'])
                                               for h in hs]
         report['terminal_slots'][box_name] = [sorted(h['cav'] for h in hs if h['group'] == g) for g in range(len(gid))
