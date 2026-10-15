@@ -49,6 +49,8 @@ Maker drawings (no guessed dims; copies in the main checkout's untracked _resear
            18 AWG 1.85, 20 AWG 1.57. 1/0 SGX battery cable OD 13.3 nominal (Southwire SPEC 50050, 0.523 in); 13.6 used
            (Prestolite SGX up to 0.537 in).
 """
+import math
+
 
 CLR = 0.4            # metal part in a printed pocket, per side (MJF)
 PCLR = 0.45          # printed part to printed part, per side
@@ -196,6 +198,7 @@ LOGIC_MAX_AWG = 14     # largest wire on a mini fuse / micro relay receptacle (r
 # real gauge. Relay 87 = the gauge of its AMI feed; coils 20 AWG; micro relay loads 16 AWG.
 MINI_AWG = {2: 20, 5: 20, 7.5: 18, 10: 18, 15: 16, 20: 14}   # DM 20 A = 14 AWG (TE 880398-2 takes 13 AWG max; row 107)
 COIL_AWG, MICRO_LOAD_AWG, ACPS_AWG, H87A_AWG = 20, 16, 14, 18
+RELAY87_AWG = {'k_efi': 10}   # 87 tails whose harness gauge differs from the AMI feed (ST185-CabinPower w77_cp 10 AWG; OPEN-ITEMS 119 (a))
 
 # ---------- battery relay block (trunk, passenger side between rear wall and battery, Z4): HCR150 + AMI 40
 # One straight line along x: battery feed (-x end) -> M6 stud -> AMI 40 -> straight jumper -> HCR150 terminal 3;
@@ -215,7 +218,7 @@ RB = dict(L=184.0, D=92.0, floor=4.0, rim=12.0,     # base outer; relay on its f
           bar=dict(x0=8.0, x1=44.5, w=25.4, t=6.35),       # ends 0.5 short of the AMI body
           term_z=(14.0, 34.0),                       # terminal blocks set back 10 from the flange face (TE side view)
           lim_m6=LIMITER_M6_SHORT, tab_y=67.0,   # rev 5: one tab on each SHORT end at y 67, clear of the cables (y 13-30)
-          cover_h=50.0, fuse=('FP', 40), awg_feed=10, awg_pump=10, awg_coil=20)
+          cover_h=50.0, fuse=('FP', 40), awg_feed=10, awg_pump=10, awg_coil=18, n_coil=2)   # coil plug: two 18 AWG leads (ST185-HeavyDC w_fp85_h / w_fp86_h; 119 (b))
 REFERENCE_BRAND = ('Blue Sea Systems 7720 Safety Fuse Block (AMI / MIDI)',
                    'Chosen by Claude (Dan, Z9 2026-10-14: "your pick"; DECISIONS S27). It fits all four asks: open frame (a low base and a '
                    'cover - no closed tub); lid on, no screws (the cover is a separate part that comes off by hand); no cable holes (its cover '
@@ -307,6 +310,33 @@ TERM_DEFAULT = {'fuse in': ('880398-2', 14), 'fuse out': ('880398-2', 14), 'acps
                 'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
 FLOAT_BACKING = 0.5   # R101: a hanging feature with less of its top face on solid material than this is floating (Dan's marks: 5-15 %; the rest >= 76 %)
 GUIDE = dict(t=2.0, h=3.5, reach=12.0)     # J2: short guide walls under the deck between neighbouring holes (centres closer than reach)
+
+
+# OPEN-ITEMS row 121: insulation build-up sleeve for a thin-wall wire below its terminal's insulation range (option, not yet picked).
+# TE Raychem RNF-100 2:1 polyolefin (TE / distributor data sheets, read 2026-10-15): expanded ID min, recovered ID max, recovered wall nom.
+SLEEVE = {'RNF-100-3/32': (2.4, 1.2, 0.50), 'RNF-100-1/8': (3.2, 1.6, 0.50), 'RNF-100-1/4': (6.4, 3.2, 0.65)}
+
+
+def sleeved_od(wire_od, size):
+    """OD of one sleeve shrunk onto a wire (est.: the wall keeps its cross-section area when it stops short of full recovery)."""
+    _, rid, w = SLEEVE[size]
+    return math.sqrt(wire_od ** 2 + (rid + 2 * w) ** 2 - rid ** 2)
+
+
+def build_up(part, wire_od):
+    """Fewest RNF-100 layers that bring wire_od into the terminal's insulation range: ([sizes], OD), or (None, wire_od).
+    A layer must slide on (expanded ID >= OD) and grip (recovered ID <= OD)."""
+    lo, hi = TERM[part]['ins']
+    for seq in [[s] for s in SLEEVE] + [['RNF-100-3/32', 'RNF-100-1/8']]:
+        d = wire_od
+        for s in seq:
+            if not SLEEVE[s][1] <= d <= SLEEVE[s][0]:
+                break
+            d = sleeved_od(d, s)
+        else:
+            if lo <= d <= hi:
+                return seq, d
+    return None, wire_od
 
 
 def barrel_od(part, wire_od):

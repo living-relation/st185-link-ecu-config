@@ -945,7 +945,7 @@ def build(out_dir, save=True, renders=True, rev=6):
             bend_row('POWER 1/0 input (M8 on the bar)', '1/0', 'straight in through the cover end notch, lug axis', None, False,
                      'no bend in the box; first bend outside >= %.0f supported / >= %.0f free' % (3 * S.OD['1/0'], 10 * S.OD['1/0']))
         else:             # rev 7 bus zone: 1/0 lugs dead straight out of the box (POS out the outboard end, NEG out the rear)
-            bus_pos, bus_neg = [], []
+            bus_pos, bus_neg, neg_w = [], [], []
             for (y_, nm, h_) in R7['pos_studs']:
                 if nm == 'SPARE':
                     continue
@@ -962,11 +962,12 @@ def build(out_dir, save=True, renders=True, rev=6):
                     t, e = ring_lug(x_, NB['yc'], btop, R7['small_ring_b'], 8.4, 1.0, 5.3, (1, 'y'), 28.0, barrel=12.0)
                     od, awg_s = bundle_d([S.OD[a_] for a_ in R7['small_awg']]), R7['small_awg'][0]
                 bus_neg.append(t)
-                wires.append(cyl(e, (x_, D7 + 30.0, e[2]), od))
+                neg_w.append(cyl(e, (x_, D7 + 30.0, e[2]), od))     # 119 (d): the NEG cables black, as the harness has them
                 bend_row('BUS NEG %s (%s, %s, M8 on the NEG bar)' % (nm, h_, awg_s), awg_s, 'straight out through the cover rear notch, lug axis', None, False,
                          'no bend in the box; first bend outside >= %.0f supported / >= %.0f free' % (3 * S.OD[awg_s], 10 * S.OD[awg_s]))
             comp(pre + 'Lug_BusPos_Klauke6R8', bus_pos, AP['cu'], None, sh)
             comp(pre + 'Lug_BusNeg_Klauke6R8_PIDG', bus_neg, AP['cu'], None, sh)
+            comp(pre + 'Wire_neg', neg_w, AP['black'], None, sh)
         comp(pre + 'Lug_Klauke', lugs, AP['cu'], None, sh)
         comp(pre + 'Wire_feed', wires, AP['wire'], None, sh)
 
@@ -975,7 +976,7 @@ def build(out_dir, save=True, renders=True, rev=6):
         for r in relays:
             if not r['pn']:
                 continue
-            a87 = S.AMI_AWG[S.AMI_ROWS['IN'][r['i']][0]]
+            a87 = S.RELAY87_AWG.get(r['name'], S.AMI_AWG[S.AMI_ROWS['IN'][r['i']][0]])
             tails.append(dict(x=r['cx'] - 7.65, y=r['cy'], awg=a87, what='%s 87' % r['name'], lane=r['cy']))
             if r['B']:
                 tails.append(dict(x=r['cx'] - RBd['v87a'], y=r['cy'], awg=S.H87A_AWG, what='%s 87a' % r['name'], lane=r['cy']))
@@ -1398,25 +1399,31 @@ def build(out_dir, save=True, renders=True, rev=6):
         t, e3 = ring_lug(xs[1], tsy, tz1, 12.0, 6.5, 2.0, 7.0, (1, 'x'), 16.0)
         lugs.append(t)
         wires.append(cyl(e3, (Lr + 30.0, tsy, e3[2]), odp))
-        cy_ = yb - H_['plug_to']                         # coil lead: out of the plug toward -y, one R6 turn to +x, along the front to the +x end
+        cy_ = yb - H_['plug_to']                         # coil leads: out of the plug toward -y, one turn to +x, along the front to the +x end
         rcl = 7.0
         yl, zl = cy_ - rcl - 1.0, tz0 + 4.5
-        cw = cyl((gcx, cy_, zl), (gcx, yl + rcl, zl), odc)
-        tq = torus(gcx + rcl, yl + rcl, zl, V(0, 0, 1), rcl, odc / 2)
-        bo(tq, box(gcx - odc, yl - odc, zl - odc, gcx + rcl, yl + rcl, zl + odc), 'i')
-        bo(cw, tq, 'u')
-        bo(cw, cyl((gcx + rcl, yl, zl), (Lr + 30.0, yl, zl), odc), 'u')
-        wires.append(cw)
+        coil_w = []
+        for k in range(R['n_coil']):                     # 119 (b): two 18 AWG leads side by side, bends on one centre (nested)
+            dk = (k - (R['n_coil'] - 1) / 2) * (odc + 0.4)
+            xk, rk = gcx + dk, rcl - dk
+            cw = cyl((xk, cy_, zl), (xk, yl + rcl, zl), odc)
+            tq = torus(gcx + rcl, yl + rcl, zl, V(0, 0, 1), rk, odc / 2)
+            bo(tq, box(xk - odc, yl + rcl - rk - odc, zl - odc, gcx + rcl, yl + rcl, zl + odc), 'i')
+            bo(cw, tq, 'u')
+            bo(cw, cyl((gcx + rcl, yl + rcl - rk, zl), (Lr + 30.0, yl + rcl - rk, zl), odc), 'u')
+            coil_w.append(cw)
         comp(pre + 'Lug_Klauke', lugs, AP['cu'], None, sh)
         comp(pre + 'Wire_feed', wires, AP['wire'], None, sh)
+        comp(pre + 'Wire_coil', coil_w, AP['harness'], None, sh)
         bend_row('BATTERY feed in (kill switch load side) -> M6 stud', R['awg_feed'], 'straight in at the open -x end, lug axis', None, False,
                  'no bend in the block; first bend outside >= %.0f supported / >= %.0f free' % (3 * odf, 10 * odf))
         bend_row('BATTERY AMI 40 out -> HCR150 terminal 3', R['awg_feed'], 'one straight jumper, both lugs at the terminal height', None, True,
                  'no bend (the fuse pedestal puts its lug level with terminal 3)')
         bend_row('BATTERY HCR150 terminal 5 -> pump', R['awg_pump'], 'straight out the open +x end, lug axis', None, False,
                  'no bend in the block; first bend outside >= %.0f supported / >= %.0f free' % (3 * odp, 10 * odp))
-        bend_row('BATTERY coil lead (Superseal plug) -> Link Aux 3', R['awg_coil'], 'one 90 deg turn, then along the front to the +x end',
-                 round(rcl - odc / 2, 1), True, 'held by the plug and the cover notch; 3 x OD = %.1f' % (3 * odc))
+        bend_row('BATTERY coil leads (Superseal plug, %d x %d AWG) -> Link Aux 3' % (R['n_coil'], R['awg_coil']), R['awg_coil'],
+                 'one 90 deg turn, then along the front to the +x end', round(rcl - (R['n_coil'] - 1) / 2 * (odc + 0.4) - odc / 2, 1), True,
+                 'held by the plug and the cover notch; 3 x OD = %.1f' % (3 * odc))
         # ---- cover: Blue Sea 7720-style low pillow, end breakouts only; rev 5: band, ribs, side vents, plain words
         z_top = zf + H_['depth'] + CV['clear'] + CV['t']
         notches = [('x', -W_CL - CV['t'] / 2, tsy, e_in[2] + odf / 2 + 2.0, 9.0), ('x', Lr + W_CL + CV['t'] / 2, tsy, e3[2] + odp / 2 + 2.0, 9.0),

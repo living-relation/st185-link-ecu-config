@@ -7,8 +7,10 @@ Reads what the Fusion build cut (cad/fusebox/rev7/fusebox_report.json "terminal_
       both sides, + 0.4 per side (an uninsulated terminal: the wire insulation still goes in)
   H3  the hole is at least HOLE['lead_in'] deep at its mouth
   W1  the wall between two separate holes is at least HOLE['min_wall'] (R73); thinner walls must be joined into one slot (Dan)
-Information only: a wire thinner than its terminal's insulation range (the insulation barrel cannot grip it - OPEN-ITEMS).
+Information only: a wire thinner than its terminal's insulation range (the insulation barrel cannot grip it - OPEN-ITEMS row 121).
     python cad/fusebox/src/check_terminal_holes.py
+    python cad/fusebox/src/check_terminal_holes.py --list   # every such end, with the RNF-100 build-up (spec.build_up) and the hole it
+                                                            # would need (row 121 option A)
 Claude Code, 2026-10-14.
 """
 import json, math, os, sys
@@ -41,7 +43,7 @@ def main():
     rep = json.load(open(REPORT, encoding='utf-8'))
     plan = json.load(open(PLAN, encoding='utf-8'))
     holes = rep.get('terminal_holes') or {}
-    bad, info = [], []
+    bad, info, grip = [], [], []
     if not holes:
         print('check_terminal_holes: MISSING terminal_holes in %s - re-run the Fusion build (build_fusion.build(rev=7))' % os.path.relpath(REPORT, REPO))
         return 1
@@ -75,6 +77,7 @@ def main():
         if ws and od < lo:
             info.append('%s %s: %s on a %.2f mm wire, below the %.2f-%.2f mm insulation range of %s - its insulation barrel cannot grip it' % (
                 k[0], h['cav'], ', '.join(ws), od, lo, S.TERM[part]['ins'][1], part))
+            grip.append((k[0], h['cav'], ', '.join(ws), od, part, h['d']))
         n_ok += 1
     walls = []
     for b, L in holes.items():
@@ -97,6 +100,15 @@ def main():
     if n_grip:
         print('  info: %d wire end(s) thinner than their terminal\'s insulation range (OPEN-ITEMS row 121) - first: %s' % (
             n_grip, next(x for x in info if 'cannot grip' in x)))
+    if '--list' in sys.argv[1:]:
+        awg = {v: g for g, v in S.OD.items()}
+        print('  box    cavity      wire                    AWG  OD    terminal   ins. range   build-up (est.)            OD    hole  needs')
+        for (b, cav, ws, od, part, d) in sorted(grip):
+            seq, d2 = S.build_up(part, od)
+            need = S.hole_d(part, d2)
+            print('  %-6s %-11s %-23s %-4s %.2f  %-10s %.2f-%.2f  %-26s %.2f  %.2f  %s' % (
+                b, cav, ws, awg.get(od, '?'), od, part, S.TERM[part]['ins'][0], S.TERM[part]['ins'][1],
+                ' + '.join(seq) if seq else 'none fits', d2, d, ('%.2f (+%.2f)' % (need, need - d)) if need > d + TOL else 'fits'))
     for x in bad:
         print('  FAIL: ' + x)
     if bad:
