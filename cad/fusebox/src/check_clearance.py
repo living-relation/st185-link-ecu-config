@@ -6,7 +6,7 @@ printed for information only.
 SAME CIRCUIT (Dan's J1 = A, 2026-10-14, DECISIONS R94): the 3 mm rule is between different circuits. A gap between two live
 parts of ONE circuit (the jumper lugs on one bus strip) is printed, not gated - permanently. Only the keys in SAME_CIRCUIT get
 this; the build measures them on one strip only, and every gap between circuits (Bus 1 to Bus 2) stays gated.
-A WAIVER holds a failing key only while its question is still open in docs/status/questions.json (Dan has not answered
+A WAIVER holds a failing key only while its question is still open in the docs/OPEN-ITEMS.md Needs Dan table (Dan has not answered
 yet); once the question is answered the waiver expires and the key fails again until the model is fixed. None open today.
     python cad/fusebox/src/check_clearance.py
 Claude Code, 2026-10-14.
@@ -18,7 +18,8 @@ REPO = os.path.normpath(os.path.join(HERE, '..', '..', '..'))
 RULE = 3.0
 REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'fusebox_report.json')
 WIRING = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wiring_report.json')
-QUESTIONS = os.path.join(REPO, 'docs', 'status', 'questions.json')
+sys.path.insert(0, os.path.join(REPO, 'docs'))
+from needs_dan import open_questions  # noqa: E402
 
 LIVE_LIVE = {   # key -> what the two live parts are
     'pad_to_pad_min_mm': 'POWER: AMI output pad to the next pad',
@@ -50,10 +51,7 @@ def main():
     lc = rep.get('live_clearance', {})
     if os.path.exists(WIRING):
         lc = dict(lc, **json.load(open(WIRING, encoding='utf-8')).get('live_to_live', {}))
-    try:
-        open_q = {q['id'] for q in json.load(open(QUESTIONS, encoding='utf-8')).get('questions', [])}
-    except (OSError, ValueError):
-        open_q = set()
+    open_q = {q['id'] for q in open_questions()}
     bad, waived = [], []
     missing = [k for k in list(LIVE_LIVE) + list(SAME_CIRCUIT) if k not in lc]
     for k, what in LIVE_LIVE.items():
@@ -77,7 +75,7 @@ def main():
     for k in missing:
         print('  MISSING: %s - re-run the Fusion build (build_fusion.build(rev=7))' % k)
     for (k, v, what, q) in bad:
-        print('  FAIL: %s = %.2f mm < %.1f (%s)%s' % (k, v, RULE, what, ' - waiver %s needs that question open in questions.json' % q if q else ''))
+        print('  FAIL: %s = %.2f mm < %.1f (%s)%s' % (k, v, RULE, what, ' - waiver %s needs that question open in OPEN-ITEMS Needs Dan' % q if q else ''))
     if bad or missing:
         print('check_clearance: %d failure(s)' % (len(bad) + len(missing)))
         return 1

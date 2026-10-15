@@ -402,7 +402,9 @@ A('<li>Local model files: <code>%s\\fusebox\\rev7\\</code> (<code>ST185_fusebox_
 A('<li>Build: <code>cad/fusebox/src/build_fusion.py</code> <code>build(out_dir, rev=7)</code>; spec: <code>spec.py</code> <code>REV7</code>.</li></ul>')
 
 A('<h2>Open questions (batch J)</h2><ul>')
-for q in json.load(open(os.path.join(os.path.dirname(os.path.dirname(FB)), 'docs', 'status', 'questions.json')))['questions']:
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(FB)), 'docs'))
+from needs_dan import open_questions
+for q in open_questions():
     if q['id'].startswith('J'):
         A('<li><b>%s - %s:</b> %s<br>%s</li>' % (E(q['id']), E(q['topic']), E(q['text']), ' / '.join('%s) %s%s' % (o['value'], E(o['label']), ' <i>(recommended)</i>' if o.get('recommended') else '') for o in q['options'])))
 A('</ul>')

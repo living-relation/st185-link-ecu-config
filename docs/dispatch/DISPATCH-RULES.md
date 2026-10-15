@@ -16,8 +16,8 @@ A new Dispatch chat reads this file first, then the newest `_research\DISPATCH-H
 - Always multiple choice with a recommendation.
 - When a question is repeated, restate the full context and all options ("M1 is still open" alone is not OK).
 - If the only sensible answer is "yes", decide, act, and just report it.
-- Questions also go into `docs/status/questions.json` / OPEN-ITEMS.
-- On every check-in Dispatch keeps `docs/status/questions.json` current: add new questions, close answered ones, restate open ones, each with its ID (Dan, M3 option B). It goes through a PR like any change; a questions-only PR uses `Rows: none` and passes the existing checks (no wiring files touched, so the heavy gates skip).
+- Questions live ONLY in the `docs/OPEN-ITEMS.md` "Needs Dan" table (R119); there is no second list.
+- Dispatch keeps the OPEN-ITEMS Needs-Dan rows current on every check-in: add new questions, delete answered ones (the answer goes into DECISIONS), restate open ones, each with its ID. It goes through a PR like any change; a Needs-Dan-only PR uses `Rows: none` and passes the existing checks.
 
 ## Watching sessions
 - Keep a one-shot wake timer armed while any session runs (current: scheduled task `st185-dispatch-wake-3`, fireAt + notifyOnCompletion). Re-arm on every wake. Disable only when nothing runs.
@@ -34,7 +34,7 @@ A new Dispatch chat reads this file first, then the newest `_research\DISPATCH-H
 
 ## Repo hygiene + docs
 - Every wake: run `powershell -File tools\hygiene.ps1` in the main checkout (add `-WhatIf` to preview). It fetches --prune, fast-forwards main, removes merged worktrees and their local branches that no session is using, and deletes empty leftover folders (R118). Sessions never remove their own worktree. Never force-push.
-- After answers and finished runs, make sure OPEN-ITEMS, questions.json, DECISIONS and the research hub are updated.
+- After answers and finished runs, make sure OPEN-ITEMS (incl. Needs Dan), DECISIONS and the research hub are updated.
 - Every new Dan rule goes into DECISIONS "Binding rules from Daniel" the same day (Dispatch-only rules go in this file).
 
 ## Facts to remember
