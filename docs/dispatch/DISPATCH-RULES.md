@@ -32,7 +32,7 @@ A new Dispatch chat reads this file first, then the newest `_research\DISPATCH-H
 - start_code_task may time out but still start the session: check before retrying.
 
 ## Repo hygiene + docs
-- Every few runs: `git fetch --prune`, fast-forward main to origin/main, remove merged worktrees and branches (local + remote) not used by a running session. Never force-push.
+- Every wake: run `powershell -File tools\hygiene.ps1` in the main checkout (add `-WhatIf` to preview). It fetches --prune, fast-forwards main, removes merged worktrees and their local branches that no session is using, and deletes empty leftover folders (R118). Sessions never remove their own worktree. Never force-push.
 - After answers and finished runs, make sure OPEN-ITEMS, questions.json, DECISIONS and the research hub are updated.
 - Every new Dan rule goes into DECISIONS "Binding rules from Daniel" the same day (Dispatch-only rules go in this file).
 
