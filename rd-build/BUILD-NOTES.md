@@ -17,7 +17,7 @@ Built with RealDash 2.6.7 (Windows, Microsoft Store) via editor automation on Da
 - 13 tiles (4×4 grid, 3 span-2): background panels #2c3c50/#243243, dim labels #9fb1c6,
   large white value texts #f3f8ff bound to `ST185:` channels (rebound with "185:" prefix
   after discovering plain-name searches matched RealDash core channels first).
-- Alarm tiles (Charge IAT 50/60, Coolant P 150/250, Turbo 180k/190k, Fuel Temp 55/70,
+- Alarm tiles (Charge IAT 50/60, Coolant P 150/200 (red above 200 kPa as in REALDASH-LAYOUT.md, DECISIONS R105 / K9 = A, 2026-10-15; the tile was first built at 250 - set it to 200 when it is checked on the Pi), Turbo 180k/190k, Fuel Temp 55/70,
   Trigger Err 1/5): warning/critical set + dynamic text color white→red.
 
 ## Deviations from spec (documented per plan)

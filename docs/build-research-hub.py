@@ -297,6 +297,8 @@ def load_status() -> dict | None:
     for t in tables:
         if t["columns"][:2] != ["#", "Area"]:
             continue
+        if t["title"].lower().startswith("parked"):
+            continue  # out of scope (DECISIONS R102): kept in the tracker, not counted here
         setup = t["title"].lower().startswith("setup-time")
         for r in t["rows"]:
             rid, area, item, owner, _src, st = r[:6]
@@ -806,6 +808,52 @@ def load_questions() -> dict:
     return {"updated": str(data.get("updated", "")), "questions": qs}
 
 
+GROK_JOBS = DOCS / "status" / "grok-jobs.json"
+GROK_STATUS = ("queued", "sent", "returned", "accepted")
+
+
+def load_grok_jobs() -> dict:
+    """CAD jobs handed to the Grok bot as a handoff zip: docs/status/grok-jobs.json (DECISIONS R106)."""
+    try:
+        data = json.loads(GROK_JOBS.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        print(f"WARNING: {GROK_JOBS.name} unreadable: {e}", file=sys.stderr)
+        return {"updated": "", "base_kit": "", "jobs": []}
+    jobs = []
+    for j in data.get("jobs", []):
+        if not isinstance(j, dict) or not j.get("id") or not j.get("title"):
+            print(f"WARNING: skipped malformed Grok job {j!r}", file=sys.stderr)
+            continue
+        st = str(j.get("status", "")).lower()
+        if st not in GROK_STATUS:
+            print(f"WARNING: Grok job {j['id']} status '{st}' is not one of {', '.join(GROK_STATUS)}",
+                  file=sys.stderr)
+        jobs.append({k: str(j.get(k, "")) for k in ("id", "title", "goal", "zip", "date", "notes")}
+                    | {"status": st})
+    return {"updated": str(data.get("updated", "")), "base_kit": str(data.get("base_kit", "")),
+            "jobs": jobs}
+
+
+def grok_jobs_html(g: dict) -> str:
+    e = html.escape
+    pill = {"queued": "unmarked", "sent": "waiting", "returned": "note", "accepted": "approved"}
+    kit = f' Base kit: <code>{e(g["base_kit"])}</code>.' if g["base_kit"] else ""
+    upd = f', updated {e(g["updated"])}' if g["updated"] else ""
+    head = ('<h3 id="grok-jobs">Grok CAD jobs</h3>\n<p class="muted">Fairsolid CAD jobs handed to the '
+            'Grok bot as a handoff zip (DECISIONS R106), from <code>docs/status/grok-jobs.json</code>'
+            f'{upd}.{kit}</p>\n')
+    if not g["jobs"]:
+        return head + '<p class="muted">None queued.</p>\n'
+    rows = "".join(
+        f'<tr><td class="num">{e(j["id"])}</td><td>{e(j["title"])}</td><td>{e(j["goal"])}</td>'
+        f'<td><span class="pill {pill.get(j["status"], "unmarked")}">{e(j["status"] or "?")}</span></td>'
+        f'<td><code>{e(j["zip"])}</code></td><td>{e(j["date"])}</td>'
+        f'<td class="muted">{e(j["notes"])}</td></tr>' for j in g["jobs"])
+    return (head + '<div class="twrap"><table class="data"><thead><tr><th>#</th><th>Job</th>'
+            '<th>Goal</th><th>Status</th><th>Zip</th><th>Date</th><th>Notes</th></tr></thead>'
+            f'<tbody>{rows}</tbody></table></div>\n')
+
+
 def load_routes() -> list[dict]:
     """Approval state of each route drawing, read from its own status text.
 
@@ -1247,7 +1295,7 @@ def load_project_status(status: dict | None) -> dict:
     return {
         "built": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         "questions": load_questions(), "dan_items": dan, "routes": load_routes(),
-        "cad": load_cad(), "prs": load_recent_prs(),
+        "cad": load_cad(), "grok": load_grok_jobs(), "prs": load_recent_prs(),
     }
 
 
@@ -1322,6 +1370,7 @@ def project_status_html(ps: dict) -> str:
         'gitignored and live on Dan&rsquo;s PC, not in GitHub. '
         f'File list last refreshed {e(cadd["manifest"] or "never")}.</p>\n{cwarn}\n'
         f'{package}\n{cad}'
+        f'{grok_jobs_html(ps["grok"])}'
         f'<h3>Recently merged</h3>\n<ul class="prs">{prs}</ul>\n</section>\n')
 
 

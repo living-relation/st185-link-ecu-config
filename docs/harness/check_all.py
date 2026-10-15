@@ -38,8 +38,6 @@ What it runs, in order - every one in HARD is a hard gate:
                            apart (DECISIONS R86; paths per wire_paths.py, re-route with route_wires.py)
   audit_ident_bands.py     ident bands (DECISIONS R87): palette, one code per circuit per drawing, one code
                            per circuit name everywhere, both sections of a break on one circuit
-  audit_export_sheet.py    finished-harness PDF package (DECISIONS R88): export setup, title block, notes
-                           inside the view frame, clear of the title block corner, readable
   audit_dan_rules.py       Daniel's text-level rules (DECISIONS R11, R26, R29, R35, R44): bay
                            flying leads are new wire, no sleeve parts or coverings, wire part
                            numbers, no "not used" / "reserved" cavity signals, no stale notes;
@@ -72,7 +70,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_logic_gauge.py"], ["audit_shields.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["audit_shared_connectors.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
-        ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["audit_wire_spacing.py"], ["audit_ident_bands.py"], ["audit_export_sheet.py"],
+        ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["audit_wire_spacing.py"], ["audit_ident_bands.py"],
         ["audit_dan_rules.py"], ["buylist.py", "--check"],
         ["buildlist.py", "--check"], ["check_route_drawings.py"],
         ["../../cad/fusebox/src/parts_lists.py", "--check"],   # DECISIONS R82: every fuse box part is real and buyable
@@ -80,6 +78,8 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["../../cad/fusebox/src/check_terminal_holes.py"],     # Dan's J2 = B (R94): crimp-sized terminal holes, walls >= 2 mm
         ["../../cad/fusebox/src/check_printed_solid.py"]]      # R101: every printed part one solid, no floating rib / saddle
 SOFT = []
+# 2026-10-15: audit_export_sheet.py (R88 PDF export package) retired - Dan dropped the PDF
+# export step (K5); the .harness files in the repo are the deliverable.
 # 2026-10-14: check_route_drawings went HARD - its last finding (Route 1 Fig. 4, an EWD
 # sheet with no top view) got a top view, so it reported zero (OPEN-ITEMS row 65).
 # 2026-09-27: verify_connectivity replaced verify_rebuild, whose frozen legacy
