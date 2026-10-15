@@ -1039,7 +1039,7 @@
   "connectors": [
     {
       "id": "bh_b_eng",
-      "label": "Bulkhead DRB102 - engine plug (DRB16-102SAE-L018), all 102 cavities; section B wired here",
+      "label": "BH-ENG",
       "width": 390,
       "partId": "cp_drb_plug",
       "cavities": [
@@ -1412,7 +1412,7 @@
         {
           "id": "c25",
           "designation": "62",
-          "signal": "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)",
+          "signal": "B1 pin 2 feed",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -1502,19 +1502,19 @@
           "id": "c12",
           "designation": "76",
           "contactPartId": "ct_hdp16s",
-          "signal": "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
+          "signal": "B1 pin 1 out"
         },
         {
           "id": "c19",
           "designation": "77",
-          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
+          "signal": "Gnd Out",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "78",
-          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
+          "signal": "Gnd Out",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -1545,14 +1545,14 @@
         {
           "id": "c16",
           "designation": "83",
-          "signal": "Knock 1 SIG+ (ECU B9)",
+          "signal": "Knock 1 SIG+",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c17",
           "designation": "84",
-          "signal": "Knock 1 SIG- (to Gnd Out B22)",
+          "signal": "Knock 1 SIG-",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -1566,13 +1566,13 @@
           "id": "c5",
           "designation": "86",
           "contactPartId": "ct_hdp16s",
-          "signal": "ETB motor + (Aux 9, B18)"
+          "signal": "ETB motor +"
         },
         {
           "id": "c6",
           "designation": "87",
           "contactPartId": "ct_hdp16s",
-          "signal": "ETB motor - (Aux 10, B26)"
+          "signal": "ETB motor"
         },
         {
           "id": "c22",
@@ -1583,14 +1583,14 @@
         {
           "id": "c15",
           "designation": "89",
-          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
+          "signal": "Gearbox VSS signal",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c20",
           "designation": "90",
-          "signal": "Switched 12V to gearbox VSS (from sp_sw12)",
+          "signal": "Sw 12V VSS",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -1603,31 +1603,31 @@
         {
           "id": "c13",
           "designation": "92",
-          "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
+          "signal": "CAN H Lambda",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c14",
           "designation": "93",
-          "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
+          "signal": "CAN L Lambda",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c24",
           "designation": "94",
-          "signal": "CAN-Lambda CAN pair screen",
+          "signal": "Lambda CAN screen",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c3",
           "designation": "95",
-          "signal": "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)",
+          "signal": "CAN-Lambda +12V",
           "contactPartId": "ct_hdp12s"
         },
         {
           "id": "c4",
           "designation": "96",
-          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
+          "signal": "Lambda GND",
           "contactPartId": "ct_hdp12s"
         },
         {
@@ -1678,7 +1678,7 @@
     },
     {
       "id": "oilp",
-      "label": "Oil Pressure Sensor",
+      "label": "OIL PRESS",
       "partId": "cp_mp150_3",
       "cavities": [
         {
@@ -1707,7 +1707,7 @@
     },
     {
       "id": "fuelp",
-      "label": "Fuel Pressure Sensor",
+      "label": "FUEL PRESS",
       "partId": "cp_mp150_3",
       "cavities": [
         {
@@ -1735,7 +1735,7 @@
     },
     {
       "id": "clntp",
-      "label": "Coolant Pressure Sensor",
+      "label": "CLNT PRESS",
       "partId": "cp_mp150_3",
       "cavities": [
         {
@@ -1763,7 +1763,7 @@
     },
     {
       "id": "oilt",
-      "label": "Oil Temp Sensor",
+      "label": "OIL TEMP",
       "partId": "cp_toy2p",
       "cavities": [
         {
@@ -1788,7 +1788,7 @@
     },
     {
       "id": "rev_sw",
-      "label": "Back-up SW B1",
+      "label": "B1 REV SW",
       "partId": "cp_rev_sw2",
       "cavities": [
         {
@@ -1816,7 +1816,7 @@
     },
     {
       "id": "cpiat",
-      "label": "Charge-Pipe IAT Sensor",
+      "label": "CP IAT",
       "partId": "cp_toy2p",
       "cavities": [
         {
@@ -1841,7 +1841,7 @@
     },
     {
       "id": "vss",
-      "label": "Gearbox VSS (Toyota 83181-20040, 3-wire) - actual road speed, plug 90980-11143",
+      "label": "VSS",
       "width": 390,
       "partId": "cp_vss3",
       "schematicPosition": {
@@ -1856,7 +1856,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "IG +12V switched (pin 1)",
+          "signal": "IG +12V switched",
           "contactPartId": "ct_toy_ts"
         },
         {
@@ -1869,14 +1869,14 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "SP1 speed output (pin 3) -> bulkhead B c15 *",
+          "signal": "SP1 speed output",
           "contactPartId": "ct_toy_ts"
         }
       ]
     },
     {
       "id": "knock1",
-      "label": "Knock Sensor 1",
+      "label": "KNOCK1",
       "partId": "cp_knock",
       "cavities": [
         {
@@ -1900,26 +1900,26 @@
     },
     {
       "id": "ix_brail_p",
-      "label": "B sensor +5V - 6-way inline mate from ST185-A-engine (IX_B_RAIL)",
+      "label": "IX-B-RAIL",
       "width": 270,
       "partId": "cp_dt04_6p",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
+          "signal": "+5V Out B-eng sens",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
+          "signal": "+5V Out B-eng sens",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
+          "signal": "+5V Out B-eng sens",
           "propagate": false
         },
         {
@@ -1955,7 +1955,7 @@
     {
       "id": "br_w124_e",
       "type": "Loose",
-      "signal": "Broken off - spur continues on ST185-A-engine: ETB motor + (Aux 9, B18), bulkhead B c5",
+      "signal": "-> A-eng: ETB c4",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -1970,7 +1970,7 @@
     {
       "id": "br_w215_e",
       "type": "Loose",
-      "signal": "Broken off - spur continues on ST185-A-engine: ETB motor - (Aux 10, B26), bulkhead B c6",
+      "signal": "-> A-eng: ETB c1",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -1985,7 +1985,7 @@
     {
       "id": "br_wc_h_lam",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN H from bulkhead B c13 to the Lambda",
+      "signal": "-> CAN: SPL CANH_LAM",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -2000,7 +2000,7 @@
     {
       "id": "br_wc_l_lam",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN L from bulkhead B c14 to the Lambda",
+      "signal": "-> CAN: SPL CANL_LAM",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -2015,7 +2015,7 @@
     {
       "id": "br_w_lam12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda +12V from LOGIC LAM, bulkhead B c3",
+      "signal": "-> CAN: CAN-LAMBDA c1",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -2030,7 +2030,7 @@
     {
       "id": "br_w_lamg",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN-Lambda ground to cabin chassis ground, bulkhead B c4",
+      "signal": "-> CAN: CAN-LAMBDA c2",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -2045,7 +2045,7 @@
     {
       "id": "br_cab_etbm_sh",
       "type": "Loose",
-      "signal": "Broken off - screen continues on ST185-A-engine: ETB motor cable screen from bulkhead B c22",
+      "signal": "-> A-eng: screen open",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -2060,7 +2060,7 @@
     {
       "id": "br_cab_lamcan_sh",
       "type": "Loose",
-      "signal": "Broken off - screen continues on ST185-CAN: CAN-Lambda pair screen from bulkhead B c24",
+      "signal": "-> CAN: screen open",
       "width": 390,
       "layoutPosition": {
         "x": 2340,

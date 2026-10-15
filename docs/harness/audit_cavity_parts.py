@@ -19,11 +19,13 @@ look fine - but our buylist.py counts whatever the JSON says, so every cavity
 carrying both adds a plug nobody will ever fit.  Added 2026-09-22.
 """
 import json, glob, os, collections, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import model as _model  # full_text: long label / signal text (full_text.json)
 
 R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
 tot = 0
 for f in sorted(glob.glob(os.path.join(R, "*.harness"))):
-    d = json.load(open(f, encoding="utf-8"))
+    d = _model.full_text(json.load(open(f, encoding="utf-8")), f)
     hits = collections.Counter()
     for c in d.get("connectors", []):
         for cv in c.get("cavities", []):
@@ -44,7 +46,7 @@ print("%d cavities double-booked." % tot)
 # plugs and 10 spares carrying contacts - the buy list was counting both wrong.
 BH = ("bh_a_fw", "bh_a_eng", "bh_b_fw", "bh_b_eng")
 used = collections.defaultdict(set)
-docs = {os.path.basename(f)[6:-8]: json.load(open(f, encoding="utf-8"))
+docs = {os.path.basename(f)[6:-8]: _model.full_text(json.load(open(f, encoding="utf-8")), f)
         for f in sorted(glob.glob(os.path.join(R, "*.harness")))}
 for d in docs.values():
     conds = list(d.get("wires", []))

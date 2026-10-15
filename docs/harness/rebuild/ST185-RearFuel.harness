@@ -220,20 +220,20 @@
   "connectors": [
     {
       "id": "ix_fuel_p",
-      "label": "Fuel level - 2-way inline mate (IX_FUEL_LVL)",
+      "label": "IX-FUEL",
       "width": 270,
       "partId": "cp_dt2s",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)",
+          "signal": "Fuel level signal",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Fuel level ground -> Gnd Out",
+          "signal": "Fuel level ground",
           "propagate": false
         }
       ],
@@ -257,7 +257,7 @@
     },
     {
       "id": "fuellvl",
-      "label": "Fuel Level Sender - DT 2-way (Dan rev 2, 2026-10-10 - no OEM connector)",
+      "label": "FUEL LVL",
       "partId": "cp_dt04_2p",
       "cavities": [
         {
@@ -292,7 +292,7 @@
     },
     {
       "id": "fuelpump",
-      "label": "Fuel Pump",
+      "label": "FUEL PUMP",
       "cavities": [
         {
           "id": "c1",
@@ -319,7 +319,7 @@
     {
       "id": "br_fp_pump",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-HeavyDC: fuel pump relay k_fp 87 (HCR150 terminal 5, battery relay block) -> fuel pump c1",
+      "signal": "-> HeavyDC: BATT K1 87",
       "width": 390,
       "layoutPosition": {
         "x": 900,
@@ -334,7 +334,7 @@
     {
       "id": "t_trunk_fp_gnd",
       "type": "Ring",
-      "signal": "Trunk chassis ground stud - fuel pump return (plan 6.41; M6 assumed)",
+      "signal": "TRUNK GND M6",
       "layoutPosition": {
         "x": 810,
         "y": 780

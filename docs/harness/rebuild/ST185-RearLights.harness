@@ -950,7 +950,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.112-113 J/B1 1F-1 G TAIL 15A out (TAIL relay, light switch TAIL/HEAD) -> rear tail lamps R11 / R12 pins 2-3, license L1 pin 1 - crimp butt splice into the factory 1F-1 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)",
+      "signal": "OEM JB1 1F-1",
       "schematicPosition": {
         "x": 0,
         "y": 0
@@ -966,7 +966,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.130-131 J/B1 1F-3 G-B turn LH out (flasher T3 via H5 / C15) -> R11 pin 6 - crimp butt splice into the factory 1F-3 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)",
+      "signal": "OEM JB1 1F-3",
       "schematicPosition": {
         "x": 0,
         "y": 60
@@ -982,7 +982,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.130-131 J/B1 1F-2 G-Y turn RH out (flasher T3 via H5 / C15) -> R12 pin 6 - crimp butt splice into the factory 1F-2 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)",
+      "signal": "OEM JB1 1F-2",
       "schematicPosition": {
         "x": 0,
         "y": 120
@@ -998,7 +998,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.126-127 S9 1 G-W stop lamp feed: STOP 15A (J/B1 1B-7) through S9, +12V with the pedal pressed -> R11 / R12 pin 1, H6 pin 1 - soldered tap into the factory G-W lead at S9 pin 1 (cabin, under the dash; the CSB3 brake tap FL_BRAKE_SW_C1 lands on the same lead)",
+      "signal": "OEM S9-1",
       "schematicPosition": {
         "x": 0,
         "y": 180
@@ -1013,7 +1013,7 @@
       "id": "br_rl_rev",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: reverse relay k_rev 87 -> back-up lamps R11 / R12 pin 4",
+      "signal": "-> CabPwr: LOGIC M22 87",
       "schematicPosition": {
         "x": 0,
         "y": 240
@@ -1029,7 +1029,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.126 R11 pin 1 (G-W in the factory wiring, new wire here) stop LH <- sp_rl_stop - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R11-1",
       "schematicPosition": {
         "x": 750,
         "y": 0
@@ -1045,7 +1045,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.113 R11 pin 2 (G in the factory wiring, new wire here) tail + rear side marker LH <- sp_rl_tail - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R11-2",
       "schematicPosition": {
         "x": 750,
         "y": 60
@@ -1061,7 +1061,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.113 R11 pin 3 (G in the factory wiring, new wire here) tail + rear side marker LH <- sp_rl_tail - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R11-3",
       "schematicPosition": {
         "x": 750,
         "y": 120
@@ -1077,7 +1077,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD Mitchell 1993 Fig. 16 grid 63; 1992 p.132 R11 pin 4 (R-B in the factory wiring, new wire here) back-up LH <- sp_rl_rev (k_rev 87) - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R11-4",
       "schematicPosition": {
         "x": 750,
         "y": 180
@@ -1093,7 +1093,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.113 / p.126 R11 pin 5 (W-B in the factory wiring, new wire here) ground LH -> sp_rl_gnd -> BL - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R11-5",
       "schematicPosition": {
         "x": 750,
         "y": 240
@@ -1109,7 +1109,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.130 R11 pin 6 (G-B in the factory wiring, new wire here) turn LH <- J/B1 1F-3 - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R11-6",
       "schematicPosition": {
         "x": 750,
         "y": 300
@@ -1125,7 +1125,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.126 R12 pin 1 (G-W in the factory wiring, new wire here) stop RH <- sp_rl_stop - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R12-1",
       "schematicPosition": {
         "x": 750,
         "y": 360
@@ -1141,7 +1141,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.113 R12 pin 2 (G in the factory wiring, new wire here) tail + rear side marker RH <- sp_rl_tail - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R12-2",
       "schematicPosition": {
         "x": 750,
         "y": 420
@@ -1157,7 +1157,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.113 R12 pin 3 (G in the factory wiring, new wire here) tail + rear side marker RH <- sp_rl_tail - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R12-3",
       "schematicPosition": {
         "x": 750,
         "y": 480
@@ -1173,7 +1173,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD Mitchell 1993 Fig. 16 grid 63; 1992 p.132 R12 pin 4 (R-B in the factory wiring, new wire here) back-up RH <- sp_rl_rev (k_rev 87) - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R12-4",
       "schematicPosition": {
         "x": 750,
         "y": 540
@@ -1189,7 +1189,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.113 / p.126 R12 pin 5 (W-B in the factory wiring, new wire here) ground RH -> sp_rl_gnd -> BL - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R12-5",
       "schematicPosition": {
         "x": 750,
         "y": 600
@@ -1205,7 +1205,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.130 R12 pin 6 (G-Y in the factory wiring, new wire here) turn RH <- J/B1 1F-2 - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM R12-6",
       "schematicPosition": {
         "x": 750,
         "y": 660
@@ -1221,7 +1221,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.113 L1 pin 1 (G in the factory wiring, new wire here) license plate light feed <- sp_rl_tail - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM L1-1",
       "schematicPosition": {
         "x": 750,
         "y": 720
@@ -1237,7 +1237,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.113 L1 pin 2 (W-B in the factory wiring, new wire here) license plate light ground -> sp_rl_gnd -> BL - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM L1-2",
       "schematicPosition": {
         "x": 750,
         "y": 780
@@ -1253,7 +1253,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.126 H6 pin A-1 (G-W in the factory wiring, new wire here) high-mount stop light (spoiler) feed <- sp_rl_stop - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM H6-A-1",
       "schematicPosition": {
         "x": 750,
         "y": 840
@@ -1269,7 +1269,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "EWD 1993 p.126 H6 pin A-2 (W-B in the factory wiring, new wire here) high-mount stop light ground -> sp_rl_gnd -> BL (one rear ground, C6; OEM went to BI) - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)",
+      "signal": "OEM H6-A-2",
       "schematicPosition": {
         "x": 750,
         "y": 900
@@ -1285,7 +1285,7 @@
       "type": "Ring",
       "partId": "tp_ring_m6_22_16",
       "width": 390,
-      "signal": "Body ground BL, back panel center (EWD 1993 p.112 / p.126) - ONE rear ground for every rear lamp (Dan, C6); M6 ring, check the stud size at the build",
+      "signal": "GND BL",
       "schematicPosition": {
         "x": 750,
         "y": 960

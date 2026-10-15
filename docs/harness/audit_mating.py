@@ -29,6 +29,8 @@ it borrows A32 by design. Pin *names* across each mating pair are checked by
 audit_pin_names.py (rule 2); this file checks what the pins are wired to.
 """
 import collections, csv, glob, json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import model  # full_text: long label / signal text (full_text.json)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REB = os.path.join(HERE, "rebuild")
@@ -82,7 +84,7 @@ used = collections.defaultdict(lambda: collections.defaultdict(list))  # conn ->
 graphs = {}
 for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
     loom = os.path.basename(path)[6:-8]
-    d = json.load(open(path, encoding="utf-8"))
+    d = model.full_text(json.load(open(path, encoding="utf-8")), path)
     g = collections.defaultdict(set)
     for c in conductors(d):
         s, t = c.get("source") or {}, c.get("target") or {}
@@ -154,7 +156,7 @@ for loom, g in graphs.items():
 # of loom C, Daniel 2026-09-25) must never land on a bulkhead cavity.
 LOOM_C_ENDS = {"wss_fl", "wss_fr"}
 for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
-    d = json.load(open(path, encoding="utf-8"))
+    d = model.full_text(json.load(open(path, encoding="utf-8")), path)
     for c in conductors(d):
         ids = {(c.get(k) or {}).get("id", "") for k in ("source", "target")}
         if ids & LOOM_C_ENDS and any(i in LETTER or i.startswith("dm_bh_") for i in ids):
@@ -174,7 +176,7 @@ for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
 cav_owner = collections.defaultdict(set)
 for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
     loom = os.path.basename(path)[6:-8]
-    d = json.load(open(path, encoding="utf-8"))
+    d = model.full_text(json.load(open(path, encoding="utf-8")), path)
     for c in conductors(d):
         for e in (c.get("source") or {}, c.get("target") or {}):
             nid = e.get("id", "")
@@ -198,7 +200,7 @@ PART_SIZE = {"ct_hdp16p": 16, "ct_hdp16s": 16, "ct_hdp12p": 12, "ct_hdp12s": 12,
              "pl_sz16": 16, "pl_114017": 16, "pl_sz12": 12, "pl_sz8": 8, "pl_sz4": 4}
 desig = {}   # bulkhead id -> {cavity id: physical number}
 for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
-    d = json.load(open(path, encoding="utf-8"))
+    d = model.full_text(json.load(open(path, encoding="utf-8")), path)
     for cn in d.get("connectors", []):
         if cn["id"] not in LETTER:
             continue

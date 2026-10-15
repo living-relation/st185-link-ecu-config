@@ -7,6 +7,13 @@ that points to this file. Each section below belongs to one drawing in `docs/har
 the drawing keeps a short version of each note. The text is as it stood on the drawing before
 the move (nothing reworded). Change a fact here and on the drawing together.
 
+## Long labels and signals (every drawing)
+
+The long connector labels and cavity / terminal signals that made the wiring tables and
+"Show destinations" unreadable (DECISIONS R124) are kept word for word in
+`docs/harness/full_text.json`, one [short, long] pair per field, by drawing and component id.
+Read one connector with `python docs/harness/audit_destinations.py --table <harness> <id> --raw`.
+
 ## ST185-WheelSpeed-Front
 
 **Scope.** FRONT WHEEL SPEED - two pieces. IN: the FL and FR ABS drops run as separate cables to

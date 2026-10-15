@@ -888,13 +888,13 @@
   "connectors": [
     {
       "id": "csb3io",
-      "label": "ECUMaster CSB3 - Power/CAN/Switch I/O",
+      "label": "CSB3",
       "width": 390,
       "partId": "cp_csb3_plug",
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12V (ignition switched)",
+          "signal": "+12V",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -904,87 +904,87 @@
         },
         {
           "id": "c3",
-          "signal": "+5V sensor supply -> opto board VCC (its 10k output pull-ups; keeps S7 / S8 at 5 V max)",
+          "signal": "+5V sensor supply",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c4",
-          "signal": "SGND -> opto board output GND (phototransistor emitters)",
+          "signal": "SGND",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c5",
-          "signal": "CAN H - broken off, continues on ST185-CAN",
+          "signal": "CAN H",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c6",
-          "signal": "CAN L - broken off, continues on ST185-CAN",
+          "signal": "CAN L",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c7",
-          "signal": "A1 (brought out, spare)",
+          "signal": "A1",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c8",
-          "signal": "A2 - Cruise ladder (stalk C14 pin 5 W; 1k pull-up to +5V)",
+          "signal": "A2",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c9",
-          "signal": "A3 (brought out, spare)",
+          "signal": "A3",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c10",
-          "signal": "A4 (brought out, spare)",
+          "signal": "A4",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c11",
-          "signal": "A5 (brought out, spare)",
+          "signal": "A5",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c12",
-          "signal": "A6 (brought out, spare)",
+          "signal": "A6",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c13",
-          "signal": "A7 (brought out, spare)",
+          "signal": "A7",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c14",
-          "signal": "A8 (brought out, spare)",
+          "signal": "A8",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c15",
-          "signal": "S1 (brought out, spare)",
+          "signal": "S1",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c16",
-          "signal": "S2 (brought out, spare)",
+          "signal": "S2",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c17",
-          "signal": "S3 - Cruise MAIN on (stalk C14 pin 15 Y-B)",
+          "signal": "S3",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c18",
-          "signal": "S4 (brought out, spare)",
+          "signal": "S4",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c19",
-          "signal": "S5 (brought out, spare)",
+          "signal": "S5",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -994,12 +994,12 @@
         },
         {
           "id": "c21",
-          "signal": "S7 - Brake Switch (via opto O1; S9 is +12V-active, S7 is ground-active - R56)",
+          "signal": "S7",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c22",
-          "signal": "S8 - Reverse (via opto O2; back-up switch is +12V-active, S8 ground-active - R56)",
+          "signal": "S8",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -1019,7 +1019,7 @@
         },
         {
           "id": "c26",
-          "signal": "L4 low-side - oil pressure LED sink, wire on ST185-ClusterLED *",
+          "signal": "L4 low-side",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -1069,14 +1069,14 @@
     },
     {
       "id": "opto8",
-      "label": "Optocoupler board, 8 channel (Dan's, generic EL814) - inline at the CSB3",
+      "label": "OPTO8",
       "width": 390,
       "partId": "cp_opto8_el814",
       "cavities": [
         {
           "id": "com1",
           "designation": "COM",
-          "signal": "input COM (LED return) <- CSB3 ground (sp_csb_gnd); PNP / +12V-active inputs",
+          "signal": "input COM",
           "propagate": false
         },
         {
@@ -1087,13 +1087,13 @@
         {
           "id": "i1",
           "designation": "01",
-          "signal": "input 01 <- brake, S9 pin 1 (+12V with the pedal pressed)",
+          "signal": "input 01",
           "propagate": false
         },
         {
           "id": "i2",
           "designation": "02",
-          "signal": "input 02 <- reverse, back-up switch B1 pin 1 (+12V in R)",
+          "signal": "input 02",
           "propagate": false
         },
         {
@@ -1129,25 +1129,25 @@
         {
           "id": "vcc",
           "designation": "VCC",
-          "signal": "output VCC <- CSB3 +5V (c3): the board's 10k pull-ups",
+          "signal": "output VCC",
           "propagate": false
         },
         {
           "id": "gnd",
           "designation": "GND",
-          "signal": "output GND -> CSB3 SGND (c4)",
+          "signal": "output GND",
           "propagate": false
         },
         {
           "id": "o1",
           "designation": "01",
-          "signal": "output 01 (open collector, low when input 01 is on) -> CSB3 S7 (c21)",
+          "signal": "output 01",
           "propagate": false
         },
         {
           "id": "o2",
           "designation": "02",
-          "signal": "output 02 (open collector, low when input 02 is on) -> CSB3 S8 (c22)",
+          "signal": "output 02",
           "propagate": false
         },
         {
@@ -1196,7 +1196,7 @@
       "id": "fl_cruise_stalk_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 5 W - ladder to ground (RES/ACC ~68, SET/COAST ~198, CANCEL ~418 ohm) -> sp_cruise_ladder -> CSB3 A2 - solder sleeve into the factory lead",
+      "signal": "OEM C14-5",
       "schematicPosition": {
         "x": 660,
         "y": 570
@@ -1211,7 +1211,7 @@
       "id": "fl_cruise_stalk_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 15 Y-B - MAIN on/off, contact to the pin 17 ground when ON -> CSB3 S3 - solder sleeve into the factory lead",
+      "signal": "OEM C14-15",
       "schematicPosition": {
         "x": 660,
         "y": 630
@@ -1226,7 +1226,7 @@
       "id": "fl_cruise_stalk_c17",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 17 BR - stalk switch ground -> sp_csb_gnd (CSB3 ground) - solder sleeve into the factory lead",
+      "signal": "OEM C14-17",
       "schematicPosition": {
         "x": 660,
         "y": 690
@@ -1241,7 +1241,7 @@
       "id": "fl_clutch_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) C11 clutch start switch (1993 code)-1 B clutch switch signal -> CSB3 S6 (switch closes with the pedal down; pin 2 W-B is its own ground to IG, so pin 1 reads ground-active; the old starter-relay coil lead, no clutch-start interlock R21) - solder sleeve into the factory lead",
+      "signal": "OEM C11-1",
       "schematicPosition": {
         "x": 660,
         "y": 420
@@ -1256,7 +1256,7 @@
       "id": "fl_brake_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.126-127 S9 pin 1 G-W stop light switch lamp side, +12V with the pedal pressed -> opto IN1 -> CSB3 S7 - soldered tap into the factory G-W lead at S9 (cabin; RearLights' stop feed FL_OEM_S9_C1 lands on the same lead)",
+      "signal": "OEM S9-1",
       "schematicPosition": {
         "x": 660,
         "y": 270
@@ -1270,7 +1270,7 @@
     {
       "id": "br_w_cru_5v",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: +5V to the cruise ladder pull-up",
+      "signal": "-> A-cab: SPL 5V_2",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1285,7 +1285,7 @@
     {
       "id": "br_w_csb12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: CSB3 +12V from LOGIC CSB 5A (switched k_efi rail)",
+      "signal": "-> CabPwr: FB-LOGIC BUS2-5",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1300,7 +1300,7 @@
     {
       "id": "br_w_csbg",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: CSB3 ground to sp_chassis",
+      "signal": "-> A-cab: SPL CHASSIS",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1315,7 +1315,7 @@
     {
       "id": "br_w_sw7_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
+      "signal": "-> B-cab: SPL REV_SW",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1330,7 +1330,7 @@
     {
       "id": "br_w_oil_k",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-ClusterLED: oil pressure LED sink on CSB3 L4",
+      "signal": "-> ClustLED: D_OIL",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1345,7 +1345,7 @@
     {
       "id": "br_wc_h_csb",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN H into the CSB3 plug",
+      "signal": "-> CAN: SPL CANH",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1360,7 +1360,7 @@
     {
       "id": "br_wc_l_csb",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN L into the CSB3 plug",
+      "signal": "-> CAN: SPL CANL",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1375,7 +1375,7 @@
     {
       "id": "br_cab_cancsb_sh",
       "type": "Loose",
-      "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can",
+      "signal": "-> CAN: SPL SHIELD_CAN",
       "width": 390,
       "layoutPosition": {
         "x": 420,

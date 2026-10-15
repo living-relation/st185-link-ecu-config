@@ -4531,30 +4531,30 @@
   "connectors": [
     {
       "id": "k_efi",
-      "label": "EFI Main Relay (seated in the POWER box R2) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) permanent 12 V (LOGIC EFI86 5 A)",
+      "label": "POWER R2",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (POWER AMI IN-2 EFI 30A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_f7_load"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side *",
+          "signal": "ACTIVE-LOW Coil",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + - PERMANENT battery via LOGIC EFI86 5A *",
+          "signal": "Coil +",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> LOGIC Bus 2 IN (SW12 sensors/coils, COP, INJ)",
+          "signal": "+12V out",
           "contactPartId": "ct_f7_load"
         }
       ],
@@ -4571,31 +4571,31 @@
     },
     {
       "id": "k_fan",
-      "label": "Radiator Fan Relay (on/off) (seated in the POWER box R4) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
+      "label": "POWER R4",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (POWER AMI IN-4 FAN 40A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_faston95_8"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil - -> Aux 5 / A29 - low-side",
+          "signal": "ACTIVE-LOW Coil",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + - ignition-switched 12V *",
+          "signal": "Coil +",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> radiator fan motor",
+          "signal": "+12V out",
           "contactPartId": "ct_faston95_8"
         }
       ],
@@ -4612,31 +4612,31 @@
     },
     {
       "id": "k_etb",
-      "label": "ETB Power Relay (seated in the LOGIC box M14) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
+      "label": "LOGIC M14",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (LOGIC ETB 10A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil - -> Aux 2 / A20 *",
+          "signal": "ACTIVE-LOW Coil",
           "contactPartId": "ct_faston48"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + - ignition-switched 12V *",
+          "signal": "Coil +",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> ECU B5 V-Ethrottle",
+          "signal": "+12V out",
           "contactPartId": "ct_faston63"
         },
         {
@@ -4657,31 +4657,31 @@
     },
     {
       "id": "k_str",
-      "label": "Start Relay (seated in the POWER box R3) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
+      "label": "POWER R3",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (POWER AMI IN-3 STR 30A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_f7_load"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil - -> Aux 8 / A26 - low-side",
+          "signal": "ACTIVE-LOW Coil",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + - ignition-switched 12V *",
+          "signal": "Coil +",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> starter solenoid S - broken off, continues on ST185-A-engine",
+          "signal": "+12V out",
           "contactPartId": "ct_f7_load"
         }
       ],
@@ -4698,31 +4698,31 @@
     },
     {
       "id": "k_fan2",
-      "label": "Condenser Fan Relay (on/off) (seated in the POWER box R5) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
+      "label": "POWER R5",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (POWER AMI IN-5 FAN2 30A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_faston95_8"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side *",
+          "signal": "ACTIVE-LOW Coil",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + - ignition-switched 12V *",
+          "signal": "Coil +",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> condenser fan motor",
+          "signal": "+12V out",
           "contactPartId": "ct_faston95_8"
         }
       ],
@@ -4739,7 +4739,7 @@
     },
     {
       "id": "k_eps",
-      "label": "MR-S EHPS pump relay (HCR150, glove box, beside the POWER box) - coil- (85) switched to ground by the MR-S pump pin B5 (R22); coil+ (86) switched 12 V - HCR 150 coil is a 2-pole plug (TE terminals 1/2, not marked 85/86), resistor-suppressed so polarity-free",
+      "label": "EHPS RELAY",
       "width": 390,
       "schematicPosition": {
         "x": 4200,
@@ -4753,26 +4753,26 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (POWER AMI OUT-6 EPS, Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)) *",
+          "signal": "Fused +12V in",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil - <- MR-S pump B5 (br_w_eps_rly, bulkhead A c27)",
+          "signal": "Coil",
           "contactPartId": "ct_ss15",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + IG-switched 12V",
+          "signal": "Coil+ IG 12V",
           "contactPartId": "ct_ss15"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out to the pump - wire on ST185-EngineRoom-C, loom C through the firewall"
+          "signal": "+12V out to the pump"
         },
         {
           "id": "c5",
@@ -4783,30 +4783,30 @@
     },
     {
       "id": "k_acc",
-      "label": "A/C Clutch Relay (on/off) (seated in the LOGIC box M15) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) gated through the A5 dual pressure switch, not raw switched 12V",
+      "label": "LOGIC M15",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (LOGIC ACC 10A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil - <- ECU-B B10 (Ign 8) *",
+          "signal": "ACTIVE-LOW Coil",
           "contactPartId": "ct_faston48"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + <- A5 dual pressure switch pin 4 (via A-cabin sp_ac_psw, br_w_acc86) - hardware cut below 30 / above 384 psi; no A/C coolant switch in series *",
+          "signal": "Coil +",
           "contactPartId": "ct_faston48"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> A/C magnet clutch A4-4 (br_w_acc_clutch, EngineRoom-C)",
+          "signal": "+12V out",
           "contactPartId": "ct_faston63"
         },
         {
@@ -4827,33 +4827,33 @@
     },
     {
       "id": "k_eps_en",
-      "label": "EPS Enable Relay (seated in the LOGIC box M21) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V",
+      "label": "LOGIC M21",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (LOGIC EPSEN 7.5A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6)",
+          "signal": "ACTIVE-LOW Coil",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + - ignition-switched 12V",
+          "signal": "Coil +",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> LOGIC MRS IN (pump enable C1)",
+          "signal": "+12V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -4875,33 +4875,33 @@
     },
     {
       "id": "k_rev",
-      "label": "Reverse Relay (seated in the LOGIC box M22) - coil+ (86) from the back-up switch B1 pin 1 (+12V in R), coil- (85) to ground; contact fed from J/B No.1 GAUGE 15A",
+      "label": "LOGIC M22",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in - J/B No.1 GAUGE 15A via the factory R-L lead from J/B3 3B-9 (sp_rev_gauge)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil - -> POWER box NEG bar",
+          "signal": "Coil",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + <- back-up switch B1 pin 1, +12V in reverse (bulkhead B c12, br_rev_coil)",
+          "signal": "Coil +",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> back-up lamps R11 / R12 pin 4 (br_rl_rev, ST185-RearLights)",
+          "signal": "+12V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -4923,33 +4923,33 @@
     },
     {
       "id": "k_hl",
-      "label": "HEAD LH Relay (seated in the LOGIC box M11) - coil+ (86) from its own HEAD LH 15A fuse, coil- (85) grounded by the light control switch via IE1-2",
+      "label": "LOGIC M11",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (LOGIC HL 15A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil - -> sp_head_coil -> IE1-2 R-Y: light control SW C15-14 HEAD / C15-13 FLASH (EWD 1993 p.116)",
+          "signal": "Coil",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + <- LOGIC HL 15A fuse out (permanent)",
+          "signal": "Coil +",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> headlight LH H1 pin 3 (br_w_pmu_hl, EngineRoom-C)",
+          "signal": "+12V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -4971,33 +4971,33 @@
     },
     {
       "id": "k_hr",
-      "label": "HEAD RH Relay (seated in the LOGIC box M12) - coil+ (86) from its own HEAD RH 15A fuse, coil- (85) grounded by the light control switch via IE1-2",
+      "label": "LOGIC M12",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (LOGIC HR 15A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil - -> sp_head_coil -> IE1-2 R-Y: light control SW C15-14 HEAD / C15-13 FLASH (EWD 1993 p.116)",
+          "signal": "Coil",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + <- LOGIC HR 15A fuse out (permanent)",
+          "signal": "Coil +",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> headlight RH H2 pin 3 (br_w_pmu_hr, EngineRoom-C)",
+          "signal": "+12V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -5019,33 +5019,33 @@
     },
     {
       "id": "k_horn",
-      "label": "Horn Relay (seated in the LOGIC box M13) - coil+ (86) from the HAZ-HORN 15A fuse, coil- (85) grounded by the horn switch via IE1-19",
+      "label": "LOGIC M13",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (LOGIC HZ 15A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil - -> IE1-19 G -> horn SW C15-10 (EWD 1993 p.185)",
+          "signal": "Coil",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + <- LOGIC HZ 15A fuse out (permanent)",
+          "signal": "Coil +",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> horns H3 / H4 (br_w_pmu_horn, EngineRoom-C)",
+          "signal": "+12V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -5067,40 +5067,40 @@
     },
     {
       "id": "k_htr",
-      "label": "Heater Relay, 1 form C (seated in the POWER box R1) - coil+ (86) from the factory R-L lead, coil- (85) grounded by the auto A/C amplifier HR, NC (87a) grounds the blower + when off",
+      "label": "POWER R1",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (POWER AMI IN-1 HTR 40A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_faston63_8",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil - -> old R/B4 pin 1 L-W -> auto A/C amplifier A32-11 HR (EWD 1993 p.215)",
+          "signal": "Coil",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + <- old R/B4 pin 3 R-L (EWD 1993 p.215)",
+          "signal": "Coil +",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> sp_htr87 (TE 320238 4 AWG splice, 8 + 8 + 14 AWG = 37130 CMA) -> blower motor B4 pin 2 (br_w_rb4) + POWER ACPS IN (14 AWG)",
+          "signal": "+12V out",
           "contactPartId": "ct_faston63_8",
           "propagate": false
         },
         {
           "id": "c5",
           "designation": "87a",
-          "signal": "NC -> POWER box NEG bar: grounds the blower + when the relay is off (OEM heater relay pin 2 W-B, EWD 1993 p.215)",
+          "signal": "NC",
           "contactPartId": "ct_faston63",
           "propagate": false
         }
@@ -5118,33 +5118,33 @@
     },
     {
       "id": "k_pwr",
-      "label": "Power Relay (seated in the POWER box R6) - coil+ (86) key IG from the factory L-Y lead, coil- (85) to ground",
+      "label": "POWER R6",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (POWER AMI IN-6 PWR 30A)",
+          "signal": "Fused +12V in",
           "contactPartId": "ct_f7_load",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil - -> POWER box NEG bar",
+          "signal": "Coil",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + <- old R/B2 pin 2 L-Y, GAUGE 15A with the ignition on (EWD 1993 p.137-138)",
+          "signal": "Coil +",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> power-window feed W-G (br_w_rb2, EngineRoom-C)",
+          "signal": "+12V out",
           "contactPartId": "ct_f7_load",
           "propagate": false
         }
@@ -5162,94 +5162,94 @@
     },
     {
       "id": "fb_power",
-      "label": "POWER box with the bus bar in it - custom fuse + relay box, glove box outboard (cad/fusebox rev 7, DECISIONS R75, R91): the tinned copper + bar IS the AMI bar (7 AMI IN relay feeds, 7 AMI OUT; no 1/0 link cable), NEG bar in the rear bus zone, Mini ISO relays R1-R6, ACPS mini fuse",
+      "label": "FB-POWER",
       "cavities": [
         {
           "id": "in1",
           "designation": "AMI IN-1",
-          "signal": "AMI-40 HTR -> heater relay k_htr 30 (R1)",
+          "signal": "AMI-40 HTR",
           "propagate": false
         },
         {
           "id": "in2",
           "designation": "AMI IN-2",
-          "signal": "AMI-30 EFI -> EFI main relay k_efi 30 (R2)",
+          "signal": "AMI-30 EFI",
           "propagate": false,
           "contactPartId": "ct_ring_m5_12"
         },
         {
           "id": "in3",
           "designation": "AMI IN-3",
-          "signal": "AMI-30 STR -> start relay k_str 30 (R3)",
+          "signal": "AMI-30 STR",
           "propagate": false,
           "contactPartId": "ct_ring_m5_12"
         },
         {
           "id": "in4",
           "designation": "AMI IN-4",
-          "signal": "AMI-40 FAN -> radiator fan relay k_fan 30 (R4)",
+          "signal": "AMI-40 FAN",
           "propagate": false
         },
         {
           "id": "in5",
           "designation": "AMI IN-5",
-          "signal": "AMI-30 FAN2 -> condenser fan relay k_fan2 30 (R5)",
+          "signal": "AMI-30 FAN2",
           "propagate": false
         },
         {
           "id": "in6",
           "designation": "AMI IN-6",
-          "signal": "AMI-30 PWR -> power relay k_pwr 30 (R6)",
+          "signal": "AMI-30 PWR",
           "propagate": false
         },
         {
           "id": "out1",
           "designation": "AMI OUT-1",
-          "signal": "AMI-50 BUS1 -> LOGIC box Bus 1 feed (permanent)",
+          "signal": "AMI-50 BUS1",
           "propagate": false
         },
         {
           "id": "out2",
           "designation": "AMI OUT-2",
-          "signal": "AMI-30 RTR pop-up headlights -> IE1-3 -> retract control relay R8 (fuse only; the OEM R8 relay stays)",
+          "signal": "AMI-30 RTR",
           "propagate": false
         },
         {
           "id": "out3",
           "designation": "AMI OUT-3",
-          "signal": "AMI-40 AM1 -> IE1-10 / I13-4",
+          "signal": "AMI-40 AM1",
           "propagate": false
         },
         {
           "id": "out4",
           "designation": "AMI OUT-4",
-          "signal": "AMI-30 AM2 -> IE1-17 / I13-10",
+          "signal": "AMI-30 AM2",
           "propagate": false
         },
         {
           "id": "out5",
           "designation": "AMI OUT-5",
-          "signal": "AMI-60 JB1 OEM HOT -> J/B1 1I-1 (6 AWG)",
+          "signal": "AMI-60 JB1 OEM HOT",
           "propagate": false,
           "contactPartId": "ct_klauke_3r5"
         },
         {
           "id": "out6",
           "designation": "AMI OUT-6",
-          "signal": "AMI-60 EPS -> EPS pump relay k_eps 30 (HCR150 beside the box) *",
+          "signal": "AMI-60 EPS",
           "propagate": false
         },
         {
           "id": "acps_in",
           "designation": "ACPS IN",
-          "signal": "ACPS mini fuse feed in - heater relay k_htr 87",
+          "signal": "ACPS fuse feed in",
           "propagate": false,
           "contactPartId": "ct_minifuse_880398"
         },
         {
           "id": "acps",
           "designation": "ACPS",
-          "signal": "ATM-10 ACPS - A/C pressure switch +12V (A5-1)",
+          "signal": "ATM-10 ACPS",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         }
@@ -5267,168 +5267,168 @@
     },
     {
       "id": "fb_logic",
-      "label": "LOGIC box - custom fuse + relay box, glove box inboard (cad/fusebox rev 5, DECISIONS R75): Bus 1 (permanent) and Bus 2 (switched, k_efi 87) mini fuse strips, micro relays M11-M22",
+      "label": "FB-LOGIC",
       "cavities": [
         {
           "id": "b1",
           "designation": "BUS1",
-          "signal": "Bus 1 in (permanent) - from the POWER box AMI OUT-1 BUS1 50A, M5 feed lug",
+          "signal": "Bus 1 in",
           "propagate": false,
           "contactPartId": "ct_klauke_2r5"
         },
         {
           "id": "b2",
           "designation": "BUS2",
-          "signal": "Bus 2 in (switched) - EFI main relay k_efi 87, M5 feed lug",
+          "signal": "Bus 2 in",
           "propagate": false,
           "contactPartId": "ct_klauke_2r5"
         },
         {
           "id": "efi86",
           "designation": "BUS1-1",
-          "signal": "Bus 1 ATM-5 EFI86 - EFI main relay coil feed 86, PERMANENT *",
+          "signal": "Bus 1 ATM-5 EFI86",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "hl",
           "designation": "BUS1-2",
-          "signal": "Bus 1 ATM-15 HL - one wire to splice sp_hl (LOGIC box front channel), feeds HEAD LH relay k_hl 30 + 86",
+          "signal": "Bus 1 ATM-15 HL",
           "propagate": false
         },
         {
           "id": "hr",
           "designation": "BUS1-3",
-          "signal": "Bus 1 ATM-15 HR - one wire to splice sp_hr (LOGIC box front channel), feeds HEAD RH relay k_hr 30 + 86",
+          "signal": "Bus 1 ATM-15 HR",
           "propagate": false
         },
         {
           "id": "hz",
           "designation": "BUS1-4",
-          "signal": "Bus 1 ATM-15 HZ HAZ-HORN - hazard feed IE1-12 and horn relay k_horn 30 + 86",
+          "signal": "ATM-15 HAZ-HORN",
           "propagate": false
         },
         {
           "id": "dm",
           "designation": "BUS1-5",
-          "signal": "Bus 1 ATM-20 DM DOME, always-hot -> J/B1 1H-2",
+          "signal": "Bus 1 ATM-20 DM DOME",
           "propagate": false
         },
         {
           "id": "wl",
           "designation": "BUS1-6",
-          "signal": "Bus 1 ATM-15 WL - door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58)",
+          "signal": "Bus 1 ATM-15 WL",
           "propagate": false
         },
         {
           "id": "alm",
           "designation": "BUS1-7",
-          "signal": "Bus 1 ATM-5 ALM - anti-theft alarm +12V constant (alarm c1)",
+          "signal": "Bus 1 ATM-5 ALM",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "alms",
           "designation": "BUS1-8",
-          "signal": "Bus 1 ATM-2 ALMS - anti-theft shock sensor +12V constant",
+          "signal": "Bus 1 ATM-2 ALMS",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "alts",
           "designation": "BUS1-9",
-          "signal": "Bus 1 ATM-2 ALTS - alternator S battery sense (G2-1)",
+          "signal": "Bus 1 ATM-2 ALTS",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "etb",
           "designation": "BUS1-10",
-          "signal": "Bus 1 ATM-10 ETB - ETB power relay k_etb 30 (M14)",
+          "signal": "Bus 1 ATM-10 ETB",
           "propagate": false
         },
         {
           "id": "lam",
           "designation": "BUS2-1",
-          "signal": "Bus 2 ATM-7.5 LAM - Link CAN-Lambda +12V",
+          "signal": "Bus 2 ATM-7.5 LAM",
           "propagate": false
         },
         {
           "id": "sw12",
           "designation": "BUS2-2",
-          "signal": "Bus 2 ATM-7.5 SW12 - switched 12V sensor rail, ECU +14V, relay coils",
+          "signal": "Bus 2 ATM-7.5 SW12",
           "propagate": false
         },
         {
           "id": "cop",
           "designation": "BUS2-3",
-          "signal": "Bus 2 ATM-15 COP - COP / ignition coil bank",
+          "signal": "Bus 2 ATM-15 COP",
           "propagate": false
         },
         {
           "id": "inj",
           "designation": "BUS2-4",
-          "signal": "Bus 2 ATM-15 INJ - injector bank",
+          "signal": "Bus 2 ATM-15 INJ",
           "propagate": false
         },
         {
           "id": "csb",
           "designation": "BUS2-5",
-          "signal": "Bus 2 ATM-5 CSB - CSB3 +12V (switched k_efi rail)",
+          "signal": "Bus 2 ATM-5 CSB",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "dev",
           "designation": "BUS2-6",
-          "signal": "Bus 2 ATM-15 DEV - center cluster + RealDash Pi +12V (switched k_efi rail, decision B7) -> ST185-CAN sp_dev",
+          "signal": "Bus 2 ATM-15 DEV",
           "propagate": false
         },
         {
           "id": "epsen",
           "designation": "BUS2-7",
-          "signal": "Bus 2 ATM-7.5 EPSEN - EPS enable relay k_eps_en 30 (M21)",
+          "signal": "Bus 2 ATM-7.5 EPSEN",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "acc",
           "designation": "BUS2-8",
-          "signal": "Bus 2 ATM-10 ACC - A/C clutch relay k_acc 30 (M15)",
+          "signal": "Bus 2 ATM-10 ACC",
           "propagate": false
         },
         {
           "id": "almig",
           "designation": "BUS2-9",
-          "signal": "Bus 2 ATM-2 ALMIG - anti-theft alarm ignition sense (switched k_efi rail)",
+          "signal": "Bus 2 ATM-2 ALMIG",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "mrsin",
           "designation": "BUS2-12 IN",
-          "signal": "MRS fuse feed in - k_eps_en 87 (this position is NOT on the Bus 2 strip) *",
+          "signal": "MRS fuse feed in",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "mrs",
           "designation": "BUS2-12",
-          "signal": "ATM-7.5 MRS - MRS EPS pump logic enable out (pump C1), fed from MRS IN *",
+          "signal": "ATM-7.5 MRS",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "b30in",
           "designation": "BUS2-13 IN",
-          "signal": "B30 fuse feed in - ignition switch ST1 tap (this position is NOT on the Bus 2 strip) *",
+          "signal": "B30 fuse feed in",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "b30",
           "designation": "BUS2-13",
-          "signal": "ATM-2 B30 - start request out -> ECU-B B30 (DI 7) *",
+          "signal": "ATM-2 B30",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         }
@@ -5449,7 +5449,7 @@
     {
       "id": "br_w_inj_pwr_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: LOGIC INJ 15A injector rail to bulkhead A c48 (shared DRB102)",
+      "signal": "-> A-cab: BH-FW 1",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5464,7 +5464,7 @@
     {
       "id": "br_w_cop_pwr_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: LOGIC COP 15A COP rail to bulkhead A c49 (shared DRB102)",
+      "signal": "-> A-cab: BH-FW 2",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5479,7 +5479,7 @@
     {
       "id": "br_w_fb_sw12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: LOGIC SW12 to sp_sw12",
+      "signal": "-> A-cab: SPL SW12",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5494,7 +5494,7 @@
     {
       "id": "br_w_fb_mrs_en",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: LOGIC MRS to Bulkhead A 35",
+      "signal": "-> A-cab: BH-FW 42",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5509,7 +5509,7 @@
     {
       "id": "br_w_lam12_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3",
+      "signal": "-> B-cab: BH-FW 95",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5524,7 +5524,7 @@
     {
       "id": "br_w_pmu_hl",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: HEAD LH, LOGIC HL 15A + relay -> headlight LH H1 pin 3",
+      "signal": "-> EngRm-C: OEM H1-3",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5539,7 +5539,7 @@
     {
       "id": "br_w_pmu_hr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: HEAD RH, LOGIC HR 15A + relay -> headlight RH H2 pin 3",
+      "signal": "-> EngRm-C: OEM H2-3",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5554,7 +5554,7 @@
     {
       "id": "br_w_pmu_horn",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: horn relay 87 (LOGIC HZ, HAZ-HORN 15A) -> horns H3 / H4",
+      "signal": "-> EngRm-C: SPL HORN",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5569,7 +5569,7 @@
     {
       "id": "br_w_pmu_dome",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: DOME, LOGIC DM 20A -> J/B1 1H-2",
+      "signal": "-> EngRm-C: OEM JB1 1H-2",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5584,7 +5584,7 @@
     {
       "id": "br_w_pmu_rtr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: RTR, POWER RTR 30A -> IE1-3 (retract control relay R8)",
+      "signal": "-> EngRm-C: OEM IE1-3",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5599,7 +5599,7 @@
     {
       "id": "br_w_acp_1",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: A/C pressure switch +12V, POWER ACPS 10A to A5-1",
+      "signal": "-> EngRm-C: OEM A5-1",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5614,7 +5614,7 @@
     {
       "id": "br_w_pdb_am1",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: AM1, POWER AM1 40A to IE1-10",
+      "signal": "-> EngRm-C: OEM IE1-10",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5629,7 +5629,7 @@
     {
       "id": "br_w_pdb_am2",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: AM2, POWER AM2 30A to IE1-17",
+      "signal": "-> EngRm-C: OEM IE1-17",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5644,7 +5644,7 @@
     {
       "id": "br_w_pdb_jb1",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: OEM HOT, POWER JB1 60A to J/B1 1I-1",
+      "signal": "-> EngRm-C: OEM JB1 1I-1",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5659,7 +5659,7 @@
     {
       "id": "br_w_rb4",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: heater relay 87 (POWER HTR 40A) -> blower motor B4 pin 2",
+      "signal": "-> EngRm-C: OEM B4-2",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5674,7 +5674,7 @@
     {
       "id": "br_w_rb2",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: power relay 87 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
+      "signal": "-> EngRm-C: OEM RB2-1",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5689,7 +5689,7 @@
     {
       "id": "br_w_csb12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CSB3: CSB3 +12V, LOGIC CSB 5A (switched k_efi rail)",
+      "signal": "-> CSB3: CSB3 c1",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5704,7 +5704,7 @@
     {
       "id": "br_w76",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: EFI Main Relay 85 (k_efi) <- ECU-A A28",
+      "signal": "-> A-cab: ECU-A A28",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5719,7 +5719,7 @@
     {
       "id": "br_w_fan85",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: Radiator Fan Relay (on/off) 85 (k_fan) <- ECU-A A29",
+      "signal": "-> A-cab: ECU-A A29",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5734,7 +5734,7 @@
     {
       "id": "br_w_fan_pwr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: radiator fan relay 87 feed",
+      "signal": "-> EngRm-C: RAD FAN+ +",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5749,7 +5749,7 @@
     {
       "id": "br_w81",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: ETB Power Relay 85 (k_etb) <- ECU-A A20",
+      "signal": "-> A-cab: ECU-A A20",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5764,7 +5764,7 @@
     {
       "id": "br_w82",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: ETB relay 87 to ECU-B B5 (crossover b)",
+      "signal": "-> B-cab: ECU-B B5",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5779,7 +5779,7 @@
     {
       "id": "br_w_str85",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: Start Relay 85 (k_str) <- ECU-A A26",
+      "signal": "-> A-cab: ECU-A A26",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5794,7 +5794,7 @@
     {
       "id": "br_w_strl",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-engine: start relay 87 to the starter S terminal",
+      "signal": "-> A-eng: STARTER S",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5809,7 +5809,7 @@
     {
       "id": "br_w_fan285",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13",
+      "signal": "-> B-cab: ECU-B B13",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5824,7 +5824,7 @@
     {
       "id": "br_w_fan2_pwr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: condenser fan relay 87 feed",
+      "signal": "-> EngRm-C: COND FAN+ +",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5839,7 +5839,7 @@
     {
       "id": "br_w_eps_trig",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: EPS enable relay k_eps_en 85 <- ECU-B B12",
+      "signal": "-> B-cab: ECU-B B12",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5854,7 +5854,7 @@
     {
       "id": "br_w_eps_pwr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: EPS relay 87 feed to the pump",
+      "signal": "-> EngRm-C: EHPS PUMP A-1",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5869,7 +5869,7 @@
     {
       "id": "br_w_acc_trig",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: A/C Clutch Relay (on/off) 85 (k_acc) <- ECU-B B10",
+      "signal": "-> B-cab: ECU-B B10",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5884,7 +5884,7 @@
     {
       "id": "br_w_acc86",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: A/C dual pressure switch A5-4 (switched, via sp_ac_psw) -> A/C Clutch Relay 86 (k_acc c3)",
+      "signal": "-> A-cab: SPL AC_PSW",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5899,7 +5899,7 @@
     {
       "id": "br_w_acc_clutch",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: A/C Clutch Relay 87 (k_acc c4) -> A/C magnet clutch A4-4 (fl_a4_4)",
+      "signal": "-> EngRm-C: OEM A4-4",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5914,7 +5914,7 @@
     {
       "id": "br_w_start_in",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN",
+      "signal": "-> B-cab: OEM RB4-1",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5929,7 +5929,7 @@
     {
       "id": "br_w_start_out",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: LOGIC B30 2A out -> ECU-B B30 (DI 7)",
+      "signal": "-> B-cab: ECU-B B30",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5944,7 +5944,7 @@
     {
       "id": "t_at_12v",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-AntiTheft: LOGIC ALM 5A (Bus 1, permanent) -> alarm +12V constant",
+      "signal": "-> Alarm: SPL AT_12V",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5959,7 +5959,7 @@
     {
       "id": "t_at_12v_shk",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-AntiTheft: LOGIC ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
+      "signal": "-> Alarm: SPL 12V_SHK",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5974,7 +5974,7 @@
     {
       "id": "t_at_ig",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-AntiTheft: LOGIC ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
+      "signal": "-> Alarm: SPL IG",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5989,7 +5989,7 @@
     {
       "id": "br_w_dev",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: LOGIC DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
+      "signal": "-> CAN: SPL DEV",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -6004,7 +6004,7 @@
     {
       "id": "br_w_haz",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: HAZ-HORN, LOGIC HZ 15A fuse out -> hazard feed IE1-12",
+      "signal": "-> EngRm-C: OEM IE1-12",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -6019,7 +6019,7 @@
     {
       "id": "br_w_eps_rly",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
+      "signal": "-> A-cab: BH-FW 56",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -6034,7 +6034,7 @@
     {
       "id": "br_w_rb2_wl",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58): LOGIC WL 15A",
+      "signal": "-> EngRm-C: OEM RB2-2",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -6051,7 +6051,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD Mitchell 1993 Fig. 16 (grid 63) / 1992 p.132 J/B3 3B-9 R-L GAUGE 15A (J/B1 1E-5, ignition) -> reverse relay k_rev 30 + back-up switch B1 pin 2 - crimp butt splice into the factory R-L lead at J/B3 3B-9 (cabin side; its engine-wire leg to the switch is gone)",
+      "signal": "OEM JB3-3B-9",
       "schematicPosition": {
         "x": 6000,
         "y": 4170
@@ -6066,7 +6066,7 @@
       "id": "br_rev_feed",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-B-cabin: GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2",
+      "signal": "-> B-cab: BH-FW 62",
       "schematicPosition": {
         "x": 6000,
         "y": 4230
@@ -6081,7 +6081,7 @@
       "id": "br_rev_coil",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86",
+      "signal": "-> B-cab: SPL REV_SW",
       "schematicPosition": {
         "x": 6000,
         "y": 4290
@@ -6096,7 +6096,7 @@
       "id": "br_rl_rev",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-RearLights: reverse relay k_rev 87 -> back-up lamps R11 / R12 pin 4",
+      "signal": "-> RearLts: SPL RL_REV",
       "schematicPosition": {
         "x": 6000,
         "y": 4350
@@ -6112,7 +6112,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "POWER box NEG bar stud (M8) - reverse relay coil-",
+      "signal": "POWER NEG M8",
       "schematicPosition": {
         "x": 6000,
         "y": 4410
@@ -6127,7 +6127,7 @@
       "id": "br_alt_s_cp",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-EngineRoom-C: LOGIC ALTS 2A (Bus 1) -> alternator S battery sense (G2-1)",
+      "signal": "-> EngRm-C: BR_ALT_S",
       "schematicPosition": {
         "x": 1200,
         "y": 3660
@@ -6143,7 +6143,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.116 IE1-2 R-Y headlight relay coil- line (splice I2 -> light control SW C15-14 HEAD / C15-13 FLASH, also R8-8) <- sp_head_coil <- k_hl / k_hr 85 - crimp butt splice into the factory cowl-side lead at the left kick (engine-room main removed)",
+      "signal": "OEM IE1-2",
       "schematicPosition": {
         "x": 4500,
         "y": 5430
@@ -6159,7 +6159,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.185 IE1-19 G horn relay coil- line (horn SW C15-10) <- k_horn 85 - crimp butt splice into the factory cowl-side lead at the left kick (engine-room main removed)",
+      "signal": "OEM IE1-19",
       "schematicPosition": {
         "x": 5400,
         "y": 5430
@@ -6175,7 +6175,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.215 R/B4 heater relay terminal 1 L-W (-> auto A/C amplifier A32-11 HR) <- k_htr 85 - crimp butt splice into the factory lead at the old R/B4 spot (right kick panel; R/B4 removed)",
+      "signal": "OEM RB4-1",
       "schematicPosition": {
         "x": 6000,
         "y": 5430
@@ -6191,7 +6191,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.215 R/B4 heater relay terminal 3 R-L (from junction connector J4) -> k_htr 86 - crimp butt splice into the factory lead at the old R/B4 spot (right kick panel; R/B4 removed)",
+      "signal": "OEM RB4-3",
       "schematicPosition": {
         "x": 6000,
         "y": 5490
@@ -6207,7 +6207,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.137-138 R/B2 power main relay terminal 2 L-Y (GAUGE 15A, ignition on) -> k_pwr 86 - crimp butt splice into the factory cowl-side lead at the left kick (R/B2 removed)",
+      "signal": "OEM RB2-2",
       "schematicPosition": {
         "x": 6600,
         "y": 5430
@@ -6223,7 +6223,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "POWER box NEG bar stud (M8) - power relay coil-",
+      "signal": "POWER NEG M8",
       "schematicPosition": {
         "x": 6600,
         "y": 5490
@@ -6239,7 +6239,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_16_14",
       "width": 390,
-      "signal": "POWER box NEG bar stud (M8) - heater relay NC (87a)",
+      "signal": "POWER NEG M8",
       "schematicPosition": {
         "x": 6000,
         "y": 5550
@@ -6253,7 +6253,7 @@
     {
       "id": "br_fp86",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-HeavyDC: SW12 (LOGIC SW12 7.5A) -> fuel pump relay k_fp coil + (86) in the battery relay block",
+      "signal": "-> HeavyDC: BATT K1 86",
       "width": 390,
       "layoutPosition": {
         "x": 1740,

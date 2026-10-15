@@ -96,7 +96,7 @@
   "connectors": [
     {
       "id": "wss_rl",
-      "label": "ABS Wheel Speed RL",
+      "label": "WSS RL",
       "width": 210,
       "partId": "cp_dt2s_ni",
       "cavities": [
@@ -124,7 +124,7 @@
     },
     {
       "id": "wss_rr",
-      "label": "ABS Wheel Speed RR",
+      "label": "WSS RR",
       "width": 210,
       "partId": "cp_dt2s_ni",
       "cavities": [
@@ -152,38 +152,38 @@
     },
     {
       "id": "ix_ws_rear_r",
-      "label": "WS REAR OUT - 6-way inline to ECU spur (IX_WS_REAR)",
+      "label": "IX-WS-R",
       "width": 270,
       "partId": "cp_dt04_6p",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V - VRC rear supply (ECU sensor +5V)",
+          "signal": "+5V",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Gnd Out - VRC rear ground",
+          "signal": "Gnd Out",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "RL conditioned out -> ECU-B B20 (DI 5)",
+          "signal": "RL conditioned out",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "RR conditioned out -> ECU-B B19 (DI 6)",
+          "signal": "RR conditioned out",
           "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Screen drain -> SHIELD_B (B17)",
+          "signal": "Screen drain",
           "propagate": false
         },
         {
@@ -204,7 +204,7 @@
     },
     {
       "id": "lp16_vrc_r_in",
-      "label": "VRC rear IN plug",
+      "label": "VRC-R IN",
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
@@ -246,7 +246,7 @@
     },
     {
       "id": "lp16_vrc_r_out",
-      "label": "VRC rear OUT plug",
+      "label": "VRC-R OUT",
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {

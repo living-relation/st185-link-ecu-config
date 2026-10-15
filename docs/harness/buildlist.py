@@ -8,7 +8,7 @@ R = model.REB
 F = tuple(model.harness_files().items())
 
 def load(fn):
-    return json.load(open(os.path.join(R, fn), encoding="utf-8"))
+    return model.full_text(json.load(open(os.path.join(R, fn), encoding="utf-8")), fn)
 
 def node_index(d):
     """id -> (display label, kind)"""

@@ -616,7 +616,7 @@
   "connectors": [
     {
       "id": "ecu_com",
-      "label": "ECU Comms/Tuning Port",
+      "label": "ECU COMMS",
       "width": 390,
       "partId": "cp_dtm6s",
       "cavities": [
@@ -664,16 +664,16 @@
     },
     {
       "id": "lambda",
-      "label": "Link CAN-Lambda",
+      "label": "CAN-LAMBDA",
       "partId": "cp_dtm4s",
       "cavities": [
         {
           "id": "c1",
-          "signal": "Power +12V ign, LOGIC LAM 7.5A *"
+          "signal": "Power +12V ign"
         },
         {
           "id": "c2",
-          "signal": "GND - broken off, continues on ST185-B-engine"
+          "signal": "GND"
         },
         {
           "id": "c3",
@@ -708,7 +708,7 @@
         "x": 1950,
         "y": 1620
       },
-      "signal": "TrackCluster ESP32-P4 - CAN drop *",
+      "signal": "CLUSTER CAN",
       "partId": "tp_flying_lead",
       "propagate": false
     },
@@ -724,14 +724,14 @@
         "x": 2100,
         "y": 1230
       },
-      "signal": "RealDash Pi 5 - CAN drop *",
+      "signal": "REALDASH CAN",
       "partId": "tp_flying_lead",
       "propagate": false
     },
     {
       "id": "br_wc_h_csb",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CSB3: CAN H into the CSB3 plug",
+      "signal": "-> CSB3: CSB3 c5",
       "width": 390,
       "layoutPosition": {
         "x": 2100,
@@ -746,7 +746,7 @@
     {
       "id": "br_wc_l_csb",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CSB3: CAN L into the CSB3 plug",
+      "signal": "-> CSB3: CSB3 c6",
       "width": 390,
       "layoutPosition": {
         "x": 2100,
@@ -761,7 +761,7 @@
     {
       "id": "br_w_lam12",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda +12V from LOGIC LAM, bulkhead B c3",
+      "signal": "-> B-eng: SPL LAM12_B",
       "width": 390,
       "layoutPosition": {
         "x": 780,
@@ -776,7 +776,7 @@
     {
       "id": "br_w_lamg",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda ground to cabin chassis ground, bulkhead B c4",
+      "signal": "-> B-eng: SPL LAMG_B",
       "width": 390,
       "layoutPosition": {
         "x": 780,
@@ -791,7 +791,7 @@
     {
       "id": "br_wc_h_bh",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: CAN H through bulkhead B c13",
+      "signal": "-> B-cab: BH-FW 92",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -806,7 +806,7 @@
     {
       "id": "br_wc_l_bh",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: CAN L through bulkhead B c14",
+      "signal": "-> B-cab: BH-FW 93",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -821,7 +821,7 @@
     {
       "id": "br_wc_h_lam",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-engine: CAN H from bulkhead B c13 to the Lambda",
+      "signal": "-> B-eng: BH-ENG 92",
       "width": 390,
       "layoutPosition": {
         "x": 1230,
@@ -836,7 +836,7 @@
     {
       "id": "br_wc_l_lam",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-engine: CAN L from bulkhead B c14 to the Lambda",
+      "signal": "-> B-eng: BH-ENG 93",
       "width": 390,
       "layoutPosition": {
         "x": 1230,
@@ -851,7 +851,7 @@
     {
       "id": "br_cab_lamcan_sh",
       "type": "Loose",
-      "signal": "Broken off - screen comes in from ST185-B-engine: CAN-Lambda pair screen, bulkhead B c24",
+      "signal": "-> B-eng: BH-ENG 94",
       "width": 390,
       "layoutPosition": {
         "x": 1230,
@@ -866,7 +866,7 @@
     {
       "id": "br_cab_canbh_sh",
       "type": "Loose",
-      "signal": "Broken off - screen continues on ST185-B-cabin: CAN pair screen to bulkhead B c24",
+      "signal": "-> B-cab: BH-FW 94",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -881,7 +881,7 @@
     {
       "id": "br_w_shd_can",
       "type": "Loose",
-      "signal": "Broken off - drain continues on ST185-B-cabin: sp_shield_can to sp_shield_b (B17)",
+      "signal": "-> B-cab: SPL SHIELD_B",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -896,7 +896,7 @@
     {
       "id": "br_cab_cancsb_sh",
       "type": "Loose",
-      "signal": "Broken off - screen continues on ST185-CSB3: CAN pair screen into the CSB3 plug run",
+      "signal": "-> CSB3: screen open",
       "width": 390,
       "layoutPosition": {
         "x": 2100,
@@ -920,7 +920,7 @@
         "x": 1950,
         "y": 1920
       },
-      "signal": "TrackCluster ESP32-P4 - +12V switched (DEV)",
+      "signal": "CLUSTER +12V",
       "partId": "tp_flying_lead",
       "propagate": false
     },
@@ -936,7 +936,7 @@
         "x": 2100,
         "y": 1290
       },
-      "signal": "RealDash Pi 5 - +12V switched (DEV) into the Pi's 12 V to 5 V supply",
+      "signal": "REALDASH +12V",
       "partId": "tp_flying_lead",
       "propagate": false
     },
@@ -952,7 +952,7 @@
         "x": 1950,
         "y": 2100
       },
-      "signal": "Factory ground IF (I/P brace RH, 1993 EWD p.42) - cluster ground, check at build",
+      "signal": "GND IF",
       "partId": "tp_ring_m6_22_16",
       "propagate": false
     },
@@ -968,14 +968,14 @@
         "x": 2100,
         "y": 1140
       },
-      "signal": "Factory ground IF (I/P brace RH, 1993 EWD p.42) - RealDash Pi ground, check at build",
+      "signal": "GND IF",
       "partId": "tp_ring_m6_22_16",
       "propagate": false
     },
     {
       "id": "br_w_dev",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: LOGIC DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
+      "signal": "-> CabPwr: FB-LOGIC BUS2-6",
       "width": 390,
       "layoutPosition": {
         "x": 1950,
@@ -999,7 +999,7 @@
         "x": 1950,
         "y": 2310
       },
-      "signal": "TrackCluster ESP32-P4 - ground",
+      "signal": "CLUSTER GND",
       "partId": "tp_flying_lead",
       "propagate": false
     },
@@ -1015,7 +1015,7 @@
         "x": 2100,
         "y": 1020
       },
-      "signal": "RealDash Pi 5 - ground (Pi supply 0 V)",
+      "signal": "REALDASH GND",
       "partId": "tp_flying_lead",
       "propagate": false
     }

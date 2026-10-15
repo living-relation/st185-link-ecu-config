@@ -52,6 +52,9 @@ What it runs, in order - every one in HARD is a hard gate:
                            through a node or label, no bundle on top of another, no lone long
                            diagonal. Re-place with layout_tree.py (one straight tree) or
                            layout_trunk.py (keeps a bent trunk); snapshot render_layout.py.
+  audit_destinations.py    short destinations (Dan 2026-10-15): connector labels <= 12, label +
+                           designation and every signal <= 20, broken-off ends "-> <harness>: <device>
+                           <pin>" <= 30; long text in full_text.json, read back by model.full_text
 
 SOFT (reported, not failing): none at present.
 
@@ -77,12 +80,14 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["audit_wire_spacing.py"], ["audit_ident_bands.py"],
         ["audit_dan_rules.py"], ["buylist.py", "--check"],
-        ["buildlist.py", "--check"], ["check_route_drawings.py"], ["audit_layout.py"],
+        ["buildlist.py", "--check"], ["check_route_drawings.py"], ["audit_layout.py"], ["audit_destinations.py"],
         ["../../cad/fusebox/src/parts_lists.py", "--check"],   # DECISIONS R82: every fuse box part is real and buyable
         ["../../cad/fusebox/src/check_clearance.py"],          # Dan's 3 mm rule: no two live fuse box parts closer than 3 mm
         ["../../cad/fusebox/src/check_terminal_holes.py"],     # Dan's J2 = B (R94): crimp-sized terminal holes, walls >= 2 mm
         ["../../cad/fusebox/src/check_printed_solid.py"]]      # R101: every printed part one solid, no floating rib / saddle
 SOFT = []
+# 2026-10-15: audit_destinations started HARD (Dan: "I need the destination to be clear and list
+# the actual destination of that wire"); all 15 drawings shortened in the same PR.
 # 2026-10-15: audit_layout went HARD (R107) - all 15 drawings report zero after the G2
 # drawings (A-engine, B-engine, CAN, EngineRoom-C) were re-placed with layout_trunk.py.
 # 2026-10-15: audit_export_sheet.py (R88 PDF export package) retired - Dan dropped the PDF

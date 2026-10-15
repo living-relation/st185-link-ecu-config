@@ -1,0 +1,3160 @@
+{
+ "ST185-A-cabin.harness": {
+  "connectors": {
+   "bh_a_fw": {
+    "label": [
+     "BH-FW",
+     "Bulkhead DRB102 - firewall receptacle (DRB12-102PAE-L018 + DRBF-1A), all 102 cavities; section A wired here"
+    ],
+    "cavities": {
+     "c48": [
+      "Switched 12V",
+      "Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG)"
+     ],
+     "c49": [
+      "Switched 12V",
+      "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)"
+     ],
+     "c41": [
+      "Gnd Out eng sens",
+      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank"
+     ],
+     "c42": [
+      "Gnd Out eng sens",
+      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam"
+     ],
+     "c40": [
+      "+5V Out eng sens",
+      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed"
+     ],
+     "c43": [
+      "Gnd Out eng sens",
+      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed"
+     ],
+     "c5": [
+      "Sw 12V eng sens",
+      "Switched 12V to engine sensors"
+     ],
+     "c2": [
+      "+5V Out eng sens",
+      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB"
+     ],
+     "c3": [
+      "Gnd Out eng sens",
+      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch"
+     ],
+     "c11": [
+      "ETB sens screen",
+      "ETB sensor group screen"
+     ],
+     "c39": [
+      "+5V Out eng sens",
+      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP"
+     ],
+     "c44": [
+      "Gnd Out eng sens",
+      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch"
+     ],
+     "c35": [
+      "EHPS logic enable",
+      "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
+     ],
+     "c36": [
+      "Aux 7 MRS speed-out",
+      "Aux 7 MRS speed-out (ECU A27)"
+     ],
+     "c45": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
+     ],
+     "c46": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
+     ],
+     "c47": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
+     ],
+     "c27": [
+      "MR-S pump B5",
+      "MR-S pump B5 -> EPS relay k_eps coil- (85)"
+     ]
+    }
+   },
+   "ix_ws_front_p": {
+    "label": [
+     "IX-WS-F",
+     "WS FRONT spur - 6-way inline mate (IX_WS_FRONT)"
+    ],
+    "cavities": {
+     "c1": [
+      "+5V",
+      "+5V - VRC front supply (ECU sensor +5V)"
+     ],
+     "c2": [
+      "Gnd Out",
+      "Gnd Out - VRC front ground"
+     ],
+     "c3": [
+      "FL conditioned out",
+      "FL conditioned out -> ECU-A A23 (DI 3)"
+     ],
+     "c4": [
+      "FR conditioned out",
+      "FR conditioned out -> ECU-B B21 (DI 4)"
+     ],
+     "c5": [
+      "Screen drain",
+      "Screen drain, combined 4-core cable -> SHIELD_A (A7)"
+     ]
+    }
+   },
+   "aps": {
+    "label": [
+     "APS",
+     "BRZ e-throttle pedal (APS) - one 6-core shielded cable (cab_aps) to the ECU; screen floats at the pedal, drains at A7 (sp_shield_a); VPA2 core breaks off to ST185-B-cabin B33"
+    ],
+    "cavities": {
+     "c3": [
+      "VPA2 APS-S",
+      "VPA2 APS-S -> ECU-B B33 (br_w39, broken off to ST185-B-cabin)"
+     ],
+     "c6": [
+      "VPA1 APS-M",
+      "VPA1 APS-M -> ECU-A A14"
+     ]
+    }
+   }
+  },
+  "terminals": {
+   "fl_acamp_act": [
+    "OEM A18-11",
+    "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder sleeve into the factory G-Y lead at the A/C amplifier"
+   ],
+   "fl_acamp_mg": [
+    "OEM A18-5",
+    "EWD 1990 p.152 A18-5 Y-B magnetic clutch -> A4-3 - solder sleeve into the factory Y-B lead at the A/C amplifier"
+   ],
+   "fl_acamp_psw": [
+    "OEM A18-13",
+    "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder sleeve into the factory Y-R lead at the A/C amplifier"
+   ],
+   "br_ac_mg": [
+    "-> EngRm-C: OEM A4-3",
+    "Broken off - continues on ST185-EngineRoom-C: A/C VC control coil A4-3 (not fitted) <- A18-5 (fl_acamp_mg)"
+   ],
+   "br_ac_psw": [
+    "-> EngRm-C: OEM A5-4",
+    "Broken off - continues on ST185-EngineRoom-C: A/C pressure switch A5-4 -> A18-13 (fl_acamp_psw)"
+   ],
+   "chassis_ring": [
+    "CHASSIS GND",
+    "Chassis Ground Point"
+   ],
+   "br_w_b25": [
+    "-> B-cab: ECU-B B25",
+    "Broken off - continues on ST185-B-cabin: cabin chassis ground splice sp_chassis"
+   ],
+   "br_w_b34": [
+    "-> B-cab: ECU-B B34",
+    "Broken off - continues on ST185-B-cabin: cabin chassis ground splice sp_chassis"
+   ],
+   "br_w_rail_5v_b_c": [
+    "-> B-cab: SPL 5V_B",
+    "Broken off - continues on ST185-B-cabin: +5V from sp_5v at ECU A (crossover a)"
+   ],
+   "br_w_rail_sw12_b_c": [
+    "-> B-cab: BH-FW 90",
+    "Broken off - continues on ST185-B-cabin: switched 12V from sp_sw12 (cabin)"
+   ],
+   "br_cab_fspur_r": [
+    "-> B-cab: ECU-B B21",
+    "Broken off - continues on ST185-B-cabin: front wheel-speed FR core to ECU-B B21"
+   ],
+   "br_cab_fspur_fr_sh": [
+    "-> B-cab: SPL SHIELD_B",
+    "Broken off - continues on ST185-B-cabin: front wheel-speed FR shield to sp_shield_b (B17)"
+   ],
+   "br_w_cru_5v": [
+    "-> CSB3: R_CRUISE",
+    "Broken off - continues on ST185-CSB3: +5V to the cruise ladder pull-up"
+   ],
+   "br_w_csbg": [
+    "-> CSB3: SPL CSB_GND",
+    "Broken off - continues on ST185-CSB3: CSB3 ground to sp_chassis"
+   ],
+   "br_w39": [
+    "-> B-cab: ECU-B B33",
+    "Broken off - continues on ST185-B-cabin: e-throttle pedal pin 3 (VPA2) -> ECU-B B33"
+   ],
+   "br_w_fb_sw12": [
+    "-> CabPwr: SPL CP_SW12",
+    "Broken off - continues on ST185-CabinPower: LOGIC SW12 to sp_sw12"
+   ],
+   "br_w_fb_mrs_en": [
+    "-> CabPwr: FB-LOGIC BUS2-12",
+    "Broken off - continues on ST185-CabinPower: LOGIC MRS to Bulkhead A 35"
+   ],
+   "br_w_lamg_b": [
+    "-> B-cab: BH-FW 96",
+    "Broken off - continues on ST185-B-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis"
+   ],
+   "br_w_inj_pwr_c": [
+    "-> CabPwr: FB-LOGIC BUS2-4",
+    "Broken off - continues on ST185-CabinPower: LOGIC INJ 15A injector rail from the fuse box to bulkhead A c48 (shared DRB102)"
+   ],
+   "br_w_cop_pwr_c": [
+    "-> CabPwr: FB-LOGIC BUS2-3",
+    "Broken off - continues on ST185-CabinPower: LOGIC COP 15A COP rail from the fuse box to bulkhead A c49 (shared DRB102)"
+   ],
+   "br_w76": [
+    "-> CabPwr: POWER R2 85",
+    "Broken off - continues on ST185-CabinPower: EFI Main Relay 85 (k_efi) <- ECU-A A28"
+   ],
+   "br_w_fp85": [
+    "-> HeavyDC: BATT K1 85",
+    "Broken off - continues on ST185-HeavyDC: Fuel Pump Relay 85 (k_fp, battery relay block in the trunk) <- ECU-A A19"
+   ],
+   "br_w_fan85": [
+    "-> CabPwr: POWER R4 85",
+    "Broken off - continues on ST185-CabinPower: Radiator Fan Relay (on/off) 85 (k_fan) <- ECU-A A29"
+   ],
+   "br_w81": [
+    "-> CabPwr: LOGIC M14 85",
+    "Broken off - continues on ST185-CabinPower: ETB Power Relay 85 (k_etb) <- ECU-A A20"
+   ],
+   "br_w_str85": [
+    "-> CabPwr: POWER R3 85",
+    "Broken off - continues on ST185-CabinPower: Start Relay 85 (k_str) <- ECU-A A26"
+   ],
+   "br_w_acc86": [
+    "-> CabPwr: LOGIC M15 86",
+    "Broken off - continues on ST185-CabinPower: A/C dual pressure switch A5-4 (switched, via sp_ac_psw) -> A/C Clutch Relay 86 (k_acc c3)"
+   ],
+   "br_w_eps_rly": [
+    "-> CabPwr: EHPS RELAY 85",
+    "Broken off - continues on ST185-CabinPower: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27"
+   ]
+  }
+ },
+ "ST185-B-cabin.harness": {
+  "connectors": {
+   "bh_b_fw": {
+    "label": [
+     "BH-FW",
+     "Bulkhead DRB102 - firewall receptacle (DRB12-102PAE-L018 + DRBF-1A), all 102 cavities; section B wired here"
+    ],
+    "cavities": {
+     "c25": [
+      "B1 pin 2 feed",
+      "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)"
+     ],
+     "c12": [
+      "B1 pin 1 out",
+      "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
+     ],
+     "c19": [
+      "Gnd Out",
+      "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch"
+     ],
+     "c21": [
+      "Gnd Out",
+      "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch"
+     ],
+     "c16": [
+      "Knock 1 SIG+",
+      "Knock 1 SIG+ (ECU B9)"
+     ],
+     "c17": [
+      "Knock 1 SIG-",
+      "Knock 1 SIG- (to Gnd Out B22)"
+     ],
+     "c5": [
+      "ETB motor +",
+      "ETB motor + (Aux 9, B18)"
+     ],
+     "c6": [
+      "ETB motor",
+      "ETB motor - (Aux 10, B26)"
+     ],
+     "c15": [
+      "Gearbox VSS signal",
+      "Gearbox VSS signal (ECU B29, DI 8)"
+     ],
+     "c20": [
+      "Sw 12V VSS",
+      "Switched 12V to gearbox VSS (from sp_sw12)"
+     ],
+     "c13": [
+      "CAN H Lambda",
+      "CAN H to Link CAN-Lambda (ST185-CAN)"
+     ],
+     "c14": [
+      "CAN L Lambda",
+      "CAN L to Link CAN-Lambda (ST185-CAN)"
+     ],
+     "c24": [
+      "Lambda CAN screen",
+      "CAN-Lambda CAN pair screen"
+     ],
+     "c3": [
+      "CAN-Lambda +12V",
+      "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)"
+     ],
+     "c4": [
+      "Lambda GND",
+      "CAN-Lambda ground to cabin chassis ground (14 AWG)"
+     ]
+    }
+   },
+   "ecu_b": {
+    "cavities": {
+     "b10": [
+      "Ign 8",
+      "Ign 8 (A/C Clutch Rly)"
+     ],
+     "b28": [
+      "DI 9",
+      "DI 9 (Ignition Switch)"
+     ],
+     "b29": [
+      "DI 8",
+      "DI 8 (VSS - actual road speed)"
+     ],
+     "b32": [
+      "An Volt 11",
+      "An Volt 11 (Evap Temp)"
+     ]
+    }
+   },
+   "ix_fuel_r": {
+    "label": [
+     "IX-FUEL",
+     "Fuel level - 2-way inline to Rear Fuel harness (IX_FUEL_LVL)"
+    ],
+    "cavities": {
+     "c1": [
+      "Fuel level signal",
+      "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)"
+     ],
+     "c2": [
+      "Fuel level ground",
+      "Fuel level ground -> Gnd Out"
+     ]
+    }
+   },
+   "ix_ws_rear_p": {
+    "label": [
+     "IX-WS-R",
+     "WS REAR spur - 6-way inline mate (IX_WS_REAR)"
+    ],
+    "cavities": {
+     "c1": [
+      "+5V",
+      "+5V - VRC rear supply (ECU sensor +5V)"
+     ],
+     "c2": [
+      "Gnd Out",
+      "Gnd Out - VRC rear ground"
+     ],
+     "c3": [
+      "RL conditioned out",
+      "RL conditioned out -> ECU-B B20 (DI 5)"
+     ],
+     "c4": [
+      "RR conditioned out",
+      "RR conditioned out -> ECU-B B19 (DI 6)"
+     ],
+     "c5": [
+      "Screen drain",
+      "Screen drain -> SHIELD_B (B17)"
+     ]
+    }
+   }
+  },
+  "terminals": {
+   "fl_start_req_c1": [
+    "OEM RB4-1",
+    "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) R/B No.4 starter relay socket lead (block removed, R12; ST1 from I13 pin 7)-1 B-W start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net) - solder sleeve into the factory lead"
+   ],
+   "fl_ign_sw_c1": [
+    "OEM JB1 1H-7",
+    "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5)-7 B-O IGN ON (IG2) -> ECU-B B28 - solder sleeve into the factory lead"
+   ],
+   "t_ac_btn": [
+    "A/C SW V-G",
+    "A/C request: dash A/C switch output V-G (12 V when ON; old A15 pin 3 / IJ1-7) -> 10k / 3.9k divider -> ECU-B B31 (An Volt 10)"
+   ],
+   "t_evap_temp": [
+    "A24 EVAP 1",
+    "Evaporator thermistor A24 element 1 (1.5 kohm at 25 C) -> ECU-B B32 (An Volt 11), 2.2k pull-up to +5V"
+   ],
+   "br_w_b25": [
+    "-> A-cab: SPL CHASSIS",
+    "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis"
+   ],
+   "br_w_b34": [
+    "-> A-cab: SPL CHASSIS",
+    "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis"
+   ],
+   "br_w_rail_5v_b_c": [
+    "-> A-cab: SPL 5V",
+    "Broken off - continues on ST185-A-cabin: +5V from sp_5v at ECU A (crossover a)"
+   ],
+   "br_w_rail_sw12_b_c": [
+    "-> A-cab: SPL SW12",
+    "Broken off - continues on ST185-A-cabin: switched 12V from sp_sw12 (cabin)"
+   ],
+   "br_w82": [
+    "-> CabPwr: LOGIC M14 87",
+    "Broken off - continues on ST185-CabinPower: ETB relay 87 to ECU-B B5 (crossover b)"
+   ],
+   "br_cab_fspur_r": [
+    "-> A-cab: IX-WS-F 4",
+    "Broken off - continues on ST185-A-cabin: front wheel-speed FR core from IX_WS_FRONT pin 4"
+   ],
+   "br_cab_fspur_fr_sh": [
+    "-> A-cab: screen open",
+    "Broken off - continues on ST185-A-cabin: front wheel-speed FR shield from IX_WS_FRONT pin 6"
+   ],
+   "br_w_sw7_c": [
+    "-> CSB3: OPTO8 02",
+    "Broken off - continues on ST185-CSB3: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8"
+   ],
+   "br_w39": [
+    "-> A-cab: APS 3",
+    "Broken off - continues on ST185-A-cabin: e-throttle pedal pin 3 (VPA2) - folded in from ST185-APS-Pedal 2026-10-11"
+   ],
+   "br_w_at_immob2": [
+    "-> Alarm: ALARM 9",
+    "Broken off - continues on ST185-AntiTheft: immobiliser output to ECU-B B27 (DI 10)"
+   ],
+   "br_wc_h_bh": [
+    "-> CAN: SPL CANH",
+    "Broken off - continues on ST185-CAN: CAN H from the CAN bus splice to bulkhead B c13"
+   ],
+   "br_wc_l_bh": [
+    "-> CAN: SPL CANL",
+    "Broken off - continues on ST185-CAN: CAN L from the CAN bus splice to bulkhead B c14"
+   ],
+   "br_w_lam12_c": [
+    "-> CabPwr: FB-LOGIC BUS2-1",
+    "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3"
+   ],
+   "br_w_lamg_b": [
+    "-> A-cab: SPL CHASSIS",
+    "Broken off - continues on ST185-A-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis"
+   ],
+   "br_cab_canbh_sh": [
+    "-> CAN: SPL SHIELD_CAN",
+    "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can to bulkhead B c24"
+   ],
+   "br_w_shd_can": [
+    "-> CAN: SPL SHIELD_CAN",
+    "Broken off - drain comes in from ST185-CAN: CAN screen splice sp_shield_can to sp_shield_b (B17)"
+   ],
+   "br_w_fan285": [
+    "-> CabPwr: POWER R5 85",
+    "Broken off - continues on ST185-CabinPower: Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13"
+   ],
+   "br_w_eps_trig": [
+    "-> CabPwr: LOGIC M21 85",
+    "Broken off - continues on ST185-CabinPower: EPS enable relay k_eps_en 85 <- ECU-B B12"
+   ],
+   "br_w_acc_trig": [
+    "-> CabPwr: LOGIC M15 85",
+    "Broken off - continues on ST185-CabinPower: A/C Clutch Relay (on/off) 85 (k_acc) <- ECU-B B10"
+   ],
+   "br_w_start_in": [
+    "-> CabPwr: FB-LOGIC BUS2-13 IN",
+    "Broken off - continues on ST185-CabinPower: Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN"
+   ],
+   "br_w_start_out": [
+    "-> CabPwr: FB-LOGIC BUS2-13",
+    "Broken off - continues on ST185-CabinPower: LOGIC B30 2A out -> ECU-B B30 (DI 7)"
+   ],
+   "br_rev_coil": [
+    "-> CabPwr: LOGIC M22 86",
+    "Broken off - continues on ST185-CabinPower: back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86"
+   ],
+   "br_rev_feed": [
+    "-> CabPwr: SPL REV_GAUGE",
+    "Broken off - continues on ST185-CabinPower: GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2"
+   ],
+   "t_evap_rtn": [
+    "A24 EVAP 2",
+    "Evaporator thermistor A24 element 2 -> Gnd Out (sp_gndout_b)"
+   ]
+  }
+ },
+ "ST185-CabinPower.harness": {
+  "connectors": {
+   "k_efi": {
+    "label": [
+     "POWER R2",
+     "EFI Main Relay (seated in the POWER box R2) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) permanent 12 V (LOGIC EFI86 5 A)"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (POWER AMI IN-2 EFI 30A)"
+     ],
+     "c2": [
+      "ACTIVE-LOW Coil",
+      "ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side *"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + - PERMANENT battery via LOGIC EFI86 5A *"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> LOGIC Bus 2 IN (SW12 sensors/coils, COP, INJ)"
+     ]
+    }
+   },
+   "k_fan": {
+    "label": [
+     "POWER R4",
+     "Radiator Fan Relay (on/off) (seated in the POWER box R4) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (POWER AMI IN-4 FAN 40A)"
+     ],
+     "c2": [
+      "ACTIVE-LOW Coil",
+      "ACTIVE-LOW Coil - -> Aux 5 / A29 - low-side"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + - ignition-switched 12V *"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> radiator fan motor"
+     ]
+    }
+   },
+   "k_etb": {
+    "label": [
+     "LOGIC M14",
+     "ETB Power Relay (seated in the LOGIC box M14) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (LOGIC ETB 10A)"
+     ],
+     "c2": [
+      "ACTIVE-LOW Coil",
+      "ACTIVE-LOW Coil - -> Aux 2 / A20 *"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + - ignition-switched 12V *"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> ECU B5 V-Ethrottle"
+     ]
+    }
+   },
+   "k_str": {
+    "label": [
+     "POWER R3",
+     "Start Relay (seated in the POWER box R3) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (POWER AMI IN-3 STR 30A)"
+     ],
+     "c2": [
+      "ACTIVE-LOW Coil",
+      "ACTIVE-LOW Coil - -> Aux 8 / A26 - low-side"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + - ignition-switched 12V *"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> starter solenoid S - broken off, continues on ST185-A-engine"
+     ]
+    }
+   },
+   "k_fan2": {
+    "label": [
+     "POWER R5",
+     "Condenser Fan Relay (on/off) (seated in the POWER box R5) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (POWER AMI IN-5 FAN2 30A)"
+     ],
+     "c2": [
+      "ACTIVE-LOW Coil",
+      "ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side *"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + - ignition-switched 12V *"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> condenser fan motor"
+     ]
+    }
+   },
+   "k_eps": {
+    "label": [
+     "EHPS RELAY",
+     "MR-S EHPS pump relay (HCR150, glove box, beside the POWER box) - coil- (85) switched to ground by the MR-S pump pin B5 (R22); coil+ (86) switched 12 V - HCR 150 coil is a 2-pole plug (TE terminals 1/2, not marked 85/86), resistor-suppressed so polarity-free"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (POWER AMI OUT-6 EPS, Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)) *"
+     ],
+     "c2": [
+      "Coil",
+      "Coil - <- MR-S pump B5 (br_w_eps_rly, bulkhead A c27)"
+     ],
+     "c3": [
+      "Coil+ IG 12V",
+      "Coil + IG-switched 12V"
+     ],
+     "c4": [
+      "+12V out to the pump",
+      "+12V out to the pump - wire on ST185-EngineRoom-C, loom C through the firewall"
+     ]
+    }
+   },
+   "k_acc": {
+    "label": [
+     "LOGIC M15",
+     "A/C Clutch Relay (on/off) (seated in the LOGIC box M15) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) gated through the A5 dual pressure switch, not raw switched 12V"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (LOGIC ACC 10A)"
+     ],
+     "c2": [
+      "ACTIVE-LOW Coil",
+      "ACTIVE-LOW Coil - <- ECU-B B10 (Ign 8) *"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + <- A5 dual pressure switch pin 4 (via A-cabin sp_ac_psw, br_w_acc86) - hardware cut below 30 / above 384 psi; no A/C coolant switch in series *"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> A/C magnet clutch A4-4 (br_w_acc_clutch, EngineRoom-C)"
+     ]
+    }
+   },
+   "k_eps_en": {
+    "label": [
+     "LOGIC M21",
+     "EPS Enable Relay (seated in the LOGIC box M21) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (LOGIC EPSEN 7.5A)"
+     ],
+     "c2": [
+      "ACTIVE-LOW Coil",
+      "ACTIVE-LOW Coil - <- ECU-B B12 (Ign 6)"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + - ignition-switched 12V"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> LOGIC MRS IN (pump enable C1)"
+     ]
+    }
+   },
+   "k_rev": {
+    "label": [
+     "LOGIC M22",
+     "Reverse Relay (seated in the LOGIC box M22) - coil+ (86) from the back-up switch B1 pin 1 (+12V in R), coil- (85) to ground; contact fed from J/B No.1 GAUGE 15A"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in - J/B No.1 GAUGE 15A via the factory R-L lead from J/B3 3B-9 (sp_rev_gauge)"
+     ],
+     "c2": [
+      "Coil",
+      "Coil - -> POWER box NEG bar"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + <- back-up switch B1 pin 1, +12V in reverse (bulkhead B c12, br_rev_coil)"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> back-up lamps R11 / R12 pin 4 (br_rl_rev, ST185-RearLights)"
+     ]
+    }
+   },
+   "k_hl": {
+    "label": [
+     "LOGIC M11",
+     "HEAD LH Relay (seated in the LOGIC box M11) - coil+ (86) from its own HEAD LH 15A fuse, coil- (85) grounded by the light control switch via IE1-2"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (LOGIC HL 15A)"
+     ],
+     "c2": [
+      "Coil",
+      "Coil - -> sp_head_coil -> IE1-2 R-Y: light control SW C15-14 HEAD / C15-13 FLASH (EWD 1993 p.116)"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + <- LOGIC HL 15A fuse out (permanent)"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> headlight LH H1 pin 3 (br_w_pmu_hl, EngineRoom-C)"
+     ]
+    }
+   },
+   "k_hr": {
+    "label": [
+     "LOGIC M12",
+     "HEAD RH Relay (seated in the LOGIC box M12) - coil+ (86) from its own HEAD RH 15A fuse, coil- (85) grounded by the light control switch via IE1-2"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (LOGIC HR 15A)"
+     ],
+     "c2": [
+      "Coil",
+      "Coil - -> sp_head_coil -> IE1-2 R-Y: light control SW C15-14 HEAD / C15-13 FLASH (EWD 1993 p.116)"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + <- LOGIC HR 15A fuse out (permanent)"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> headlight RH H2 pin 3 (br_w_pmu_hr, EngineRoom-C)"
+     ]
+    }
+   },
+   "k_horn": {
+    "label": [
+     "LOGIC M13",
+     "Horn Relay (seated in the LOGIC box M13) - coil+ (86) from the HAZ-HORN 15A fuse, coil- (85) grounded by the horn switch via IE1-19"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (LOGIC HZ 15A)"
+     ],
+     "c2": [
+      "Coil",
+      "Coil - -> IE1-19 G -> horn SW C15-10 (EWD 1993 p.185)"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + <- LOGIC HZ 15A fuse out (permanent)"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> horns H3 / H4 (br_w_pmu_horn, EngineRoom-C)"
+     ]
+    }
+   },
+   "k_htr": {
+    "label": [
+     "POWER R1",
+     "Heater Relay, 1 form C (seated in the POWER box R1) - coil+ (86) from the factory R-L lead, coil- (85) grounded by the auto A/C amplifier HR, NC (87a) grounds the blower + when off"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (POWER AMI IN-1 HTR 40A)"
+     ],
+     "c2": [
+      "Coil",
+      "Coil - -> old R/B4 pin 1 L-W -> auto A/C amplifier A32-11 HR (EWD 1993 p.215)"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + <- old R/B4 pin 3 R-L (EWD 1993 p.215)"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> sp_htr87 (TE 320238 4 AWG splice, 8 + 8 + 14 AWG = 37130 CMA) -> blower motor B4 pin 2 (br_w_rb4) + POWER ACPS IN (14 AWG)"
+     ],
+     "c5": [
+      "NC",
+      "NC -> POWER box NEG bar: grounds the blower + when the relay is off (OEM heater relay pin 2 W-B, EWD 1993 p.215)"
+     ]
+    }
+   },
+   "k_pwr": {
+    "label": [
+     "POWER R6",
+     "Power Relay (seated in the POWER box R6) - coil+ (86) key IG from the factory L-Y lead, coil- (85) to ground"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (POWER AMI IN-6 PWR 30A)"
+     ],
+     "c2": [
+      "Coil",
+      "Coil - -> POWER box NEG bar"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + <- old R/B2 pin 2 L-Y, GAUGE 15A with the ignition on (EWD 1993 p.137-138)"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> power-window feed W-G (br_w_rb2, EngineRoom-C)"
+     ]
+    }
+   },
+   "fb_power": {
+    "label": [
+     "FB-POWER",
+     "POWER box with the bus bar in it - custom fuse + relay box, glove box outboard (cad/fusebox rev 7, DECISIONS R75, R91): the tinned copper + bar IS the AMI bar (7 AMI IN relay feeds, 7 AMI OUT; no 1/0 link cable), NEG bar in the rear bus zone, Mini ISO relays R1-R6, ACPS mini fuse"
+    ],
+    "cavities": {
+     "in1": [
+      "AMI-40 HTR",
+      "AMI-40 HTR -> heater relay k_htr 30 (R1)"
+     ],
+     "in2": [
+      "AMI-30 EFI",
+      "AMI-30 EFI -> EFI main relay k_efi 30 (R2)"
+     ],
+     "in3": [
+      "AMI-30 STR",
+      "AMI-30 STR -> start relay k_str 30 (R3)"
+     ],
+     "in4": [
+      "AMI-40 FAN",
+      "AMI-40 FAN -> radiator fan relay k_fan 30 (R4)"
+     ],
+     "in5": [
+      "AMI-30 FAN2",
+      "AMI-30 FAN2 -> condenser fan relay k_fan2 30 (R5)"
+     ],
+     "in6": [
+      "AMI-30 PWR",
+      "AMI-30 PWR -> power relay k_pwr 30 (R6)"
+     ],
+     "out1": [
+      "AMI-50 BUS1",
+      "AMI-50 BUS1 -> LOGIC box Bus 1 feed (permanent)"
+     ],
+     "out2": [
+      "AMI-30 RTR",
+      "AMI-30 RTR pop-up headlights -> IE1-3 -> retract control relay R8 (fuse only; the OEM R8 relay stays)"
+     ],
+     "out3": [
+      "AMI-40 AM1",
+      "AMI-40 AM1 -> IE1-10 / I13-4"
+     ],
+     "out4": [
+      "AMI-30 AM2",
+      "AMI-30 AM2 -> IE1-17 / I13-10"
+     ],
+     "out5": [
+      "AMI-60 JB1 OEM HOT",
+      "AMI-60 JB1 OEM HOT -> J/B1 1I-1 (6 AWG)"
+     ],
+     "out6": [
+      "AMI-60 EPS",
+      "AMI-60 EPS -> EPS pump relay k_eps 30 (HCR150 beside the box) *"
+     ],
+     "acps_in": [
+      "ACPS fuse feed in",
+      "ACPS mini fuse feed in - heater relay k_htr 87"
+     ],
+     "acps": [
+      "ATM-10 ACPS",
+      "ATM-10 ACPS - A/C pressure switch +12V (A5-1)"
+     ]
+    }
+   },
+   "fb_logic": {
+    "label": [
+     "FB-LOGIC",
+     "LOGIC box - custom fuse + relay box, glove box inboard (cad/fusebox rev 5, DECISIONS R75): Bus 1 (permanent) and Bus 2 (switched, k_efi 87) mini fuse strips, micro relays M11-M22"
+    ],
+    "cavities": {
+     "b1": [
+      "Bus 1 in",
+      "Bus 1 in (permanent) - from the POWER box AMI OUT-1 BUS1 50A, M5 feed lug"
+     ],
+     "b2": [
+      "Bus 2 in",
+      "Bus 2 in (switched) - EFI main relay k_efi 87, M5 feed lug"
+     ],
+     "efi86": [
+      "Bus 1 ATM-5 EFI86",
+      "Bus 1 ATM-5 EFI86 - EFI main relay coil feed 86, PERMANENT *"
+     ],
+     "hl": [
+      "Bus 1 ATM-15 HL",
+      "Bus 1 ATM-15 HL - one wire to splice sp_hl (LOGIC box front channel), feeds HEAD LH relay k_hl 30 + 86"
+     ],
+     "hr": [
+      "Bus 1 ATM-15 HR",
+      "Bus 1 ATM-15 HR - one wire to splice sp_hr (LOGIC box front channel), feeds HEAD RH relay k_hr 30 + 86"
+     ],
+     "hz": [
+      "ATM-15 HAZ-HORN",
+      "Bus 1 ATM-15 HZ HAZ-HORN - hazard feed IE1-12 and horn relay k_horn 30 + 86"
+     ],
+     "dm": [
+      "Bus 1 ATM-20 DM DOME",
+      "Bus 1 ATM-20 DM DOME, always-hot -> J/B1 1H-2"
+     ],
+     "wl": [
+      "Bus 1 ATM-15 WL",
+      "Bus 1 ATM-15 WL - door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58)"
+     ],
+     "alm": [
+      "Bus 1 ATM-5 ALM",
+      "Bus 1 ATM-5 ALM - anti-theft alarm +12V constant (alarm c1)"
+     ],
+     "alms": [
+      "Bus 1 ATM-2 ALMS",
+      "Bus 1 ATM-2 ALMS - anti-theft shock sensor +12V constant"
+     ],
+     "alts": [
+      "Bus 1 ATM-2 ALTS",
+      "Bus 1 ATM-2 ALTS - alternator S battery sense (G2-1)"
+     ],
+     "etb": [
+      "Bus 1 ATM-10 ETB",
+      "Bus 1 ATM-10 ETB - ETB power relay k_etb 30 (M14)"
+     ],
+     "lam": [
+      "Bus 2 ATM-7.5 LAM",
+      "Bus 2 ATM-7.5 LAM - Link CAN-Lambda +12V"
+     ],
+     "sw12": [
+      "Bus 2 ATM-7.5 SW12",
+      "Bus 2 ATM-7.5 SW12 - switched 12V sensor rail, ECU +14V, relay coils"
+     ],
+     "cop": [
+      "Bus 2 ATM-15 COP",
+      "Bus 2 ATM-15 COP - COP / ignition coil bank"
+     ],
+     "inj": [
+      "Bus 2 ATM-15 INJ",
+      "Bus 2 ATM-15 INJ - injector bank"
+     ],
+     "csb": [
+      "Bus 2 ATM-5 CSB",
+      "Bus 2 ATM-5 CSB - CSB3 +12V (switched k_efi rail)"
+     ],
+     "dev": [
+      "Bus 2 ATM-15 DEV",
+      "Bus 2 ATM-15 DEV - center cluster + RealDash Pi +12V (switched k_efi rail, decision B7) -> ST185-CAN sp_dev"
+     ],
+     "epsen": [
+      "Bus 2 ATM-7.5 EPSEN",
+      "Bus 2 ATM-7.5 EPSEN - EPS enable relay k_eps_en 30 (M21)"
+     ],
+     "acc": [
+      "Bus 2 ATM-10 ACC",
+      "Bus 2 ATM-10 ACC - A/C clutch relay k_acc 30 (M15)"
+     ],
+     "almig": [
+      "Bus 2 ATM-2 ALMIG",
+      "Bus 2 ATM-2 ALMIG - anti-theft alarm ignition sense (switched k_efi rail)"
+     ],
+     "mrsin": [
+      "MRS fuse feed in",
+      "MRS fuse feed in - k_eps_en 87 (this position is NOT on the Bus 2 strip) *"
+     ],
+     "mrs": [
+      "ATM-7.5 MRS",
+      "ATM-7.5 MRS - MRS EPS pump logic enable out (pump C1), fed from MRS IN *"
+     ],
+     "b30in": [
+      "B30 fuse feed in",
+      "B30 fuse feed in - ignition switch ST1 tap (this position is NOT on the Bus 2 strip) *"
+     ],
+     "b30": [
+      "ATM-2 B30",
+      "ATM-2 B30 - start request out -> ECU-B B30 (DI 7) *"
+     ]
+    }
+   }
+  },
+  "terminals": {
+   "br_w_inj_pwr_c": [
+    "-> A-cab: BH-FW 1",
+    "Broken off - continues on ST185-A-cabin: LOGIC INJ 15A injector rail to bulkhead A c48 (shared DRB102)"
+   ],
+   "br_w_cop_pwr_c": [
+    "-> A-cab: BH-FW 2",
+    "Broken off - continues on ST185-A-cabin: LOGIC COP 15A COP rail to bulkhead A c49 (shared DRB102)"
+   ],
+   "br_w_fb_sw12": [
+    "-> A-cab: SPL SW12",
+    "Broken off - continues on ST185-A-cabin: LOGIC SW12 to sp_sw12"
+   ],
+   "br_w_fb_mrs_en": [
+    "-> A-cab: BH-FW 42",
+    "Broken off - continues on ST185-A-cabin: LOGIC MRS to Bulkhead A 35"
+   ],
+   "br_w_lam12_c": [
+    "-> B-cab: BH-FW 95",
+    "Broken off - continues on ST185-B-cabin: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3"
+   ],
+   "br_w_pmu_hl": [
+    "-> EngRm-C: OEM H1-3",
+    "Broken off - continues on ST185-EngineRoom-C: HEAD LH, LOGIC HL 15A + relay -> headlight LH H1 pin 3"
+   ],
+   "br_w_pmu_hr": [
+    "-> EngRm-C: OEM H2-3",
+    "Broken off - continues on ST185-EngineRoom-C: HEAD RH, LOGIC HR 15A + relay -> headlight RH H2 pin 3"
+   ],
+   "br_w_pmu_horn": [
+    "-> EngRm-C: SPL HORN",
+    "Broken off - continues on ST185-EngineRoom-C: horn relay 87 (LOGIC HZ, HAZ-HORN 15A) -> horns H3 / H4"
+   ],
+   "br_w_pmu_dome": [
+    "-> EngRm-C: OEM JB1 1H-2",
+    "Broken off - continues on ST185-EngineRoom-C: DOME, LOGIC DM 20A -> J/B1 1H-2"
+   ],
+   "br_w_pmu_rtr": [
+    "-> EngRm-C: OEM IE1-3",
+    "Broken off - continues on ST185-EngineRoom-C: RTR, POWER RTR 30A -> IE1-3 (retract control relay R8)"
+   ],
+   "br_w_acp_1": [
+    "-> EngRm-C: OEM A5-1",
+    "Broken off - continues on ST185-EngineRoom-C: A/C pressure switch +12V, POWER ACPS 10A to A5-1"
+   ],
+   "br_w_pdb_am1": [
+    "-> EngRm-C: OEM IE1-10",
+    "Broken off - continues on ST185-EngineRoom-C: AM1, POWER AM1 40A to IE1-10"
+   ],
+   "br_w_pdb_am2": [
+    "-> EngRm-C: OEM IE1-17",
+    "Broken off - continues on ST185-EngineRoom-C: AM2, POWER AM2 30A to IE1-17"
+   ],
+   "br_w_pdb_jb1": [
+    "-> EngRm-C: OEM JB1 1I-1",
+    "Broken off - continues on ST185-EngineRoom-C: OEM HOT, POWER JB1 60A to J/B1 1I-1"
+   ],
+   "br_w_rb4": [
+    "-> EngRm-C: OEM B4-2",
+    "Broken off - continues on ST185-EngineRoom-C: heater relay 87 (POWER HTR 40A) -> blower motor B4 pin 2"
+   ],
+   "br_w_rb2": [
+    "-> EngRm-C: OEM RB2-1",
+    "Broken off - continues on ST185-EngineRoom-C: power relay 87 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)"
+   ],
+   "br_w_csb12": [
+    "-> CSB3: CSB3 c1",
+    "Broken off - continues on ST185-CSB3: CSB3 +12V, LOGIC CSB 5A (switched k_efi rail)"
+   ],
+   "br_w76": [
+    "-> A-cab: ECU-A A28",
+    "Broken off - continues on ST185-A-cabin: EFI Main Relay 85 (k_efi) <- ECU-A A28"
+   ],
+   "br_w_fan85": [
+    "-> A-cab: ECU-A A29",
+    "Broken off - continues on ST185-A-cabin: Radiator Fan Relay (on/off) 85 (k_fan) <- ECU-A A29"
+   ],
+   "br_w_fan_pwr": [
+    "-> EngRm-C: RAD FAN+ +",
+    "Broken off - continues on ST185-EngineRoom-C: radiator fan relay 87 feed"
+   ],
+   "br_w81": [
+    "-> A-cab: ECU-A A20",
+    "Broken off - continues on ST185-A-cabin: ETB Power Relay 85 (k_etb) <- ECU-A A20"
+   ],
+   "br_w82": [
+    "-> B-cab: ECU-B B5",
+    "Broken off - continues on ST185-B-cabin: ETB relay 87 to ECU-B B5 (crossover b)"
+   ],
+   "br_w_str85": [
+    "-> A-cab: ECU-A A26",
+    "Broken off - continues on ST185-A-cabin: Start Relay 85 (k_str) <- ECU-A A26"
+   ],
+   "br_w_strl": [
+    "-> A-eng: STARTER S",
+    "Broken off - continues on ST185-A-engine: start relay 87 to the starter S terminal"
+   ],
+   "br_w_fan285": [
+    "-> B-cab: ECU-B B13",
+    "Broken off - continues on ST185-B-cabin: Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13"
+   ],
+   "br_w_fan2_pwr": [
+    "-> EngRm-C: COND FAN+ +",
+    "Broken off - continues on ST185-EngineRoom-C: condenser fan relay 87 feed"
+   ],
+   "br_w_eps_trig": [
+    "-> B-cab: ECU-B B12",
+    "Broken off - continues on ST185-B-cabin: EPS enable relay k_eps_en 85 <- ECU-B B12"
+   ],
+   "br_w_eps_pwr": [
+    "-> EngRm-C: EHPS PUMP A-1",
+    "Broken off - continues on ST185-EngineRoom-C: EPS relay 87 feed to the pump"
+   ],
+   "br_w_acc_trig": [
+    "-> B-cab: ECU-B B10",
+    "Broken off - continues on ST185-B-cabin: A/C Clutch Relay (on/off) 85 (k_acc) <- ECU-B B10"
+   ],
+   "br_w_acc86": [
+    "-> A-cab: SPL AC_PSW",
+    "Broken off - continues on ST185-A-cabin: A/C dual pressure switch A5-4 (switched, via sp_ac_psw) -> A/C Clutch Relay 86 (k_acc c3)"
+   ],
+   "br_w_acc_clutch": [
+    "-> EngRm-C: OEM A4-4",
+    "Broken off - continues on ST185-EngineRoom-C: A/C Clutch Relay 87 (k_acc c4) -> A/C magnet clutch A4-4 (fl_a4_4)"
+   ],
+   "br_w_start_in": [
+    "-> B-cab: OEM RB4-1",
+    "Broken off - continues on ST185-B-cabin: Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN"
+   ],
+   "br_w_start_out": [
+    "-> B-cab: ECU-B B30",
+    "Broken off - continues on ST185-B-cabin: LOGIC B30 2A out -> ECU-B B30 (DI 7)"
+   ],
+   "t_at_12v": [
+    "-> Alarm: SPL AT_12V",
+    "Broken off - continues on ST185-AntiTheft: LOGIC ALM 5A (Bus 1, permanent) -> alarm +12V constant"
+   ],
+   "t_at_12v_shk": [
+    "-> Alarm: SPL 12V_SHK",
+    "Broken off - continues on ST185-AntiTheft: LOGIC ALMS 2A (Bus 1, permanent) -> shock sensor +12V"
+   ],
+   "t_at_ig": [
+    "-> Alarm: SPL IG",
+    "Broken off - continues on ST185-AntiTheft: LOGIC ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense"
+   ],
+   "br_w_dev": [
+    "-> CAN: SPL DEV",
+    "Broken off - continues on ST185-CAN: LOGIC DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)"
+   ],
+   "br_w_haz": [
+    "-> EngRm-C: OEM IE1-12",
+    "Broken off - continues on ST185-EngineRoom-C: HAZ-HORN, LOGIC HZ 15A fuse out -> hazard feed IE1-12"
+   ],
+   "br_w_eps_rly": [
+    "-> A-cab: BH-FW 56",
+    "Broken off - continues on ST185-A-cabin: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27"
+   ],
+   "br_w_rb2_wl": [
+    "-> EngRm-C: OEM RB2-2",
+    "Broken off - continues on ST185-EngineRoom-C: door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58): LOGIC WL 15A"
+   ],
+   "fl_oem_jb3_b9": [
+    "OEM JB3-3B-9",
+    "EWD Mitchell 1993 Fig. 16 (grid 63) / 1992 p.132 J/B3 3B-9 R-L GAUGE 15A (J/B1 1E-5, ignition) -> reverse relay k_rev 30 + back-up switch B1 pin 2 - crimp butt splice into the factory R-L lead at J/B3 3B-9 (cabin side; its engine-wire leg to the switch is gone)"
+   ],
+   "br_rev_feed": [
+    "-> B-cab: BH-FW 62",
+    "Broken off - continues on ST185-B-cabin: GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2"
+   ],
+   "br_rev_coil": [
+    "-> B-cab: SPL REV_SW",
+    "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86"
+   ],
+   "br_rl_rev": [
+    "-> RearLts: SPL RL_REV",
+    "Broken off - continues on ST185-RearLights: reverse relay k_rev 87 -> back-up lamps R11 / R12 pin 4"
+   ],
+   "t_pdb_gnd_rev": [
+    "POWER NEG M8",
+    "POWER box NEG bar stud (M8) - reverse relay coil-"
+   ],
+   "br_alt_s_cp": [
+    "-> EngRm-C: BR_ALT_S",
+    "Broken off - continues on ST185-EngineRoom-C: LOGIC ALTS 2A (Bus 1) -> alternator S battery sense (G2-1)"
+   ],
+   "fl_oem_ie1_c2": [
+    "OEM IE1-2",
+    "EWD 1993 p.116 IE1-2 R-Y headlight relay coil- line (splice I2 -> light control SW C15-14 HEAD / C15-13 FLASH, also R8-8) <- sp_head_coil <- k_hl / k_hr 85 - crimp butt splice into the factory cowl-side lead at the left kick (engine-room main removed)"
+   ],
+   "fl_oem_ie1_c19": [
+    "OEM IE1-19",
+    "EWD 1993 p.185 IE1-19 G horn relay coil- line (horn SW C15-10) <- k_horn 85 - crimp butt splice into the factory cowl-side lead at the left kick (engine-room main removed)"
+   ],
+   "fl_oem_rb4_c1": [
+    "OEM RB4-1",
+    "EWD 1993 p.215 R/B4 heater relay terminal 1 L-W (-> auto A/C amplifier A32-11 HR) <- k_htr 85 - crimp butt splice into the factory lead at the old R/B4 spot (right kick panel; R/B4 removed)"
+   ],
+   "fl_oem_rb4_c3": [
+    "OEM RB4-3",
+    "EWD 1993 p.215 R/B4 heater relay terminal 3 R-L (from junction connector J4) -> k_htr 86 - crimp butt splice into the factory lead at the old R/B4 spot (right kick panel; R/B4 removed)"
+   ],
+   "fl_oem_rb2_c2": [
+    "OEM RB2-2",
+    "EWD 1993 p.137-138 R/B2 power main relay terminal 2 L-Y (GAUGE 15A, ignition on) -> k_pwr 86 - crimp butt splice into the factory cowl-side lead at the left kick (R/B2 removed)"
+   ],
+   "t_pdb_gnd_pwr": [
+    "POWER NEG M8",
+    "POWER box NEG bar stud (M8) - power relay coil-"
+   ],
+   "t_pdb_gnd_htr": [
+    "POWER NEG M8",
+    "POWER box NEG bar stud (M8) - heater relay NC (87a)"
+   ],
+   "br_fp86": [
+    "-> HeavyDC: BATT K1 86",
+    "Broken off - continues on ST185-HeavyDC: SW12 (LOGIC SW12 7.5A) -> fuel pump relay k_fp coil + (86) in the battery relay block"
+   ]
+  }
+ },
+ "ST185-A-engine.harness": {
+  "connectors": {
+   "bh_a_eng": {
+    "label": [
+     "BH-ENG",
+     "Bulkhead DRB102 - engine plug (DRB16-102SAE-L018), all 102 cavities; section A wired here"
+    ],
+    "cavities": {
+     "c48": [
+      "Switched 12V",
+      "Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG)"
+     ],
+     "c49": [
+      "Switched 12V",
+      "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)"
+     ],
+     "c41": [
+      "Gnd Out eng sens",
+      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank"
+     ],
+     "c42": [
+      "Gnd Out eng sens",
+      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam"
+     ],
+     "c40": [
+      "+5V Out eng sens",
+      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed"
+     ],
+     "c43": [
+      "Gnd Out eng sens",
+      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed"
+     ],
+     "c5": [
+      "Sw 12V eng sens",
+      "Switched 12V to engine sensors"
+     ],
+     "c2": [
+      "+5V Out eng sens",
+      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB"
+     ],
+     "c3": [
+      "Gnd Out eng sens",
+      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch"
+     ],
+     "c11": [
+      "ETB sens screen",
+      "ETB sensor group screen"
+     ],
+     "c39": [
+      "+5V Out eng sens",
+      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP"
+     ],
+     "c44": [
+      "Gnd Out eng sens",
+      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch"
+     ],
+     "c35": [
+      "EHPS logic enable",
+      "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
+     ],
+     "c36": [
+      "Aux 7 MRS speed-out",
+      "Aux 7 MRS speed-out (ECU A27)"
+     ],
+     "c45": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
+     ],
+     "c46": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
+     ],
+     "c47": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
+     ],
+     "c27": [
+      "MR-S pump B5",
+      "MR-S pump B5 -> EPS relay k_eps coil- (85)"
+     ]
+    }
+   },
+   "turbospd": {
+    "label": [
+     "TURBO SPD",
+     "Turbo Speed Sensor"
+    ]
+   },
+   "map": {
+    "label": [
+     "MAP",
+     "MAP Sensor"
+    ]
+   },
+   "flex": {
+    "label": [
+     "FLEX",
+     "Flex Fuel Sensor"
+    ]
+   },
+   "inj1": {
+    "label": [
+     "INJ1",
+     "Injector 1"
+    ]
+   },
+   "inj2": {
+    "label": [
+     "INJ2",
+     "Injector 2"
+    ]
+   },
+   "inj3": {
+    "label": [
+     "INJ3",
+     "Injector 3"
+    ]
+   },
+   "inj4": {
+    "label": [
+     "INJ4",
+     "Injector 4"
+    ]
+   },
+   "cop1": {
+    "label": [
+     "COP1",
+     "COP 1 (1ZZ)"
+    ],
+    "cavities": {
+     "c1": [
+      "+B 12V",
+      "+B 12V (COP rail, spur from ST185-B-engine)"
+     ]
+    }
+   },
+   "cop2": {
+    "label": [
+     "COP2",
+     "COP 2 (1ZZ)"
+    ],
+    "cavities": {
+     "c1": [
+      "+B 12V",
+      "+B 12V (COP rail, spur from ST185-B-engine)"
+     ]
+    }
+   },
+   "cop3": {
+    "label": [
+     "COP3",
+     "COP 3 (1ZZ)"
+    ],
+    "cavities": {
+     "c1": [
+      "+B 12V",
+      "+B 12V (COP rail, spur from ST185-B-engine)"
+     ]
+    }
+   },
+   "cop4": {
+    "label": [
+     "COP4",
+     "COP 4 (1ZZ)"
+    ],
+    "cavities": {
+     "c1": [
+      "+B 12V",
+      "+B 12V (COP rail, spur from ST185-B-engine)"
+     ]
+    }
+   },
+   "etb": {
+    "label": [
+     "ETB",
+     "Bosch 74.5mm ETB"
+    ]
+   },
+   "boost": {
+    "label": [
+     "BOOST SOL",
+     "Boost Control Solenoid"
+    ]
+   },
+   "ect": {
+    "label": [
+     "ECT",
+     "ECT Sensor"
+    ]
+   },
+   "iat": {
+    "label": [
+     "IAT",
+     "IAT Sensor (Manifold)"
+    ]
+   },
+   "crank": {
+    "label": [
+     "CRANK",
+     "Crank VR Sensor (36-2)"
+    ]
+   },
+   "cam": {
+    "label": [
+     "CAM",
+     "Cam Hall Sensor (RacerX)"
+    ]
+   },
+   "ix_brail_s": {
+    "label": [
+     "IX-B-RAIL",
+     "B sensor +5V - 6-way inline to ST185-B-engine (IX_B_RAIL)"
+    ],
+    "cavities": {
+     "c1": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
+     ],
+     "c2": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
+     ],
+     "c3": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
+     ]
+    }
+   }
+  },
+  "terminals": {
+   "eng_gnd_ring": [
+    "ENG BLOCK GND",
+    "Engine block ground stud (power ground)"
+   ],
+   "starter_trigger": [
+    "STARTER S",
+    "Starter Solenoid Trigger (S)"
+   ],
+   "br_w_hv_mrs_en_e": [
+    "-> EngRm-C: EHPS PUMP C-1",
+    "Broken off - continues on ST185-EngineRoom-C: MRS enable, bulkhead A c35"
+   ],
+   "br_w_mrs_e": [
+    "-> EngRm-C: EHPS PUMP B-2",
+    "Broken off - continues on ST185-EngineRoom-C: MRS speed (ECU A27), bulkhead A c36"
+   ],
+   "br_w_strl": [
+    "-> CabPwr: POWER R3 87",
+    "Broken off - continues on ST185-CabinPower: start relay 87 to the starter S terminal"
+   ],
+   "br_w124_e": [
+    "-> B-eng: BH-ENG 86",
+    "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor + (Aux 9, B18), bulkhead B c5"
+   ],
+   "br_w215_e": [
+    "-> B-eng: BH-ENG 87",
+    "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor - (Aux 10, B26), bulkhead B c6"
+   ],
+   "br_cab_etbm_sh": [
+    "-> B-eng: BH-ENG 88",
+    "Broken off - screen comes in from ST185-B-engine: ETB motor cable screen, bulkhead B c22"
+   ],
+   "br_w_eps_rly_e": [
+    "-> EngRm-C: EHPS PUMP B-5",
+    "Broken off - continues on ST185-EngineRoom-C: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27"
+   ]
+  }
+ },
+ "ST185-B-engine.harness": {
+  "connectors": {
+   "bh_b_eng": {
+    "label": [
+     "BH-ENG",
+     "Bulkhead DRB102 - engine plug (DRB16-102SAE-L018), all 102 cavities; section B wired here"
+    ],
+    "cavities": {
+     "c25": [
+      "B1 pin 2 feed",
+      "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)"
+     ],
+     "c12": [
+      "B1 pin 1 out",
+      "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
+     ],
+     "c19": [
+      "Gnd Out",
+      "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch"
+     ],
+     "c21": [
+      "Gnd Out",
+      "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch"
+     ],
+     "c16": [
+      "Knock 1 SIG+",
+      "Knock 1 SIG+ (ECU B9)"
+     ],
+     "c17": [
+      "Knock 1 SIG-",
+      "Knock 1 SIG- (to Gnd Out B22)"
+     ],
+     "c5": [
+      "ETB motor +",
+      "ETB motor + (Aux 9, B18)"
+     ],
+     "c6": [
+      "ETB motor",
+      "ETB motor - (Aux 10, B26)"
+     ],
+     "c15": [
+      "Gearbox VSS signal",
+      "Gearbox VSS signal (ECU B29, DI 8)"
+     ],
+     "c20": [
+      "Sw 12V VSS",
+      "Switched 12V to gearbox VSS (from sp_sw12)"
+     ],
+     "c13": [
+      "CAN H Lambda",
+      "CAN H to Link CAN-Lambda (ST185-CAN)"
+     ],
+     "c14": [
+      "CAN L Lambda",
+      "CAN L to Link CAN-Lambda (ST185-CAN)"
+     ],
+     "c24": [
+      "Lambda CAN screen",
+      "CAN-Lambda CAN pair screen"
+     ],
+     "c3": [
+      "CAN-Lambda +12V",
+      "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)"
+     ],
+     "c4": [
+      "Lambda GND",
+      "CAN-Lambda ground to cabin chassis ground (14 AWG)"
+     ]
+    }
+   },
+   "oilp": {
+    "label": [
+     "OIL PRESS",
+     "Oil Pressure Sensor"
+    ]
+   },
+   "fuelp": {
+    "label": [
+     "FUEL PRESS",
+     "Fuel Pressure Sensor"
+    ]
+   },
+   "clntp": {
+    "label": [
+     "CLNT PRESS",
+     "Coolant Pressure Sensor"
+    ]
+   },
+   "oilt": {
+    "label": [
+     "OIL TEMP",
+     "Oil Temp Sensor"
+    ]
+   },
+   "rev_sw": {
+    "label": [
+     "B1 REV SW",
+     "Back-up SW B1"
+    ]
+   },
+   "cpiat": {
+    "label": [
+     "CP IAT",
+     "Charge-Pipe IAT Sensor"
+    ]
+   },
+   "vss": {
+    "label": [
+     "VSS",
+     "Gearbox VSS (Toyota 83181-20040, 3-wire) - actual road speed, plug 90980-11143"
+    ],
+    "cavities": {
+     "c1": [
+      "IG +12V switched",
+      "IG +12V switched (pin 1)"
+     ],
+     "c3": [
+      "SP1 speed output",
+      "SP1 speed output (pin 3) -> bulkhead B c15 *"
+     ]
+    }
+   },
+   "knock1": {
+    "label": [
+     "KNOCK1",
+     "Knock Sensor 1"
+    ]
+   },
+   "ix_brail_p": {
+    "label": [
+     "IX-B-RAIL",
+     "B sensor +5V - 6-way inline mate from ST185-A-engine (IX_B_RAIL)"
+    ],
+    "cavities": {
+     "c1": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
+     ],
+     "c2": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
+     ],
+     "c3": [
+      "+5V Out B-eng sens",
+      "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
+     ]
+    }
+   }
+  },
+  "terminals": {
+   "br_w124_e": [
+    "-> A-eng: ETB c4",
+    "Broken off - spur continues on ST185-A-engine: ETB motor + (Aux 9, B18), bulkhead B c5"
+   ],
+   "br_w215_e": [
+    "-> A-eng: ETB c1",
+    "Broken off - spur continues on ST185-A-engine: ETB motor - (Aux 10, B26), bulkhead B c6"
+   ],
+   "br_wc_h_lam": [
+    "-> CAN: SPL CANH_LAM",
+    "Broken off - continues on ST185-CAN: CAN H from bulkhead B c13 to the Lambda"
+   ],
+   "br_wc_l_lam": [
+    "-> CAN: SPL CANL_LAM",
+    "Broken off - continues on ST185-CAN: CAN L from bulkhead B c14 to the Lambda"
+   ],
+   "br_w_lam12": [
+    "-> CAN: CAN-LAMBDA c1",
+    "Broken off - continues on ST185-CAN: CAN-Lambda +12V from LOGIC LAM, bulkhead B c3"
+   ],
+   "br_w_lamg": [
+    "-> CAN: CAN-LAMBDA c2",
+    "Broken off - continues on ST185-CAN: CAN-Lambda ground to cabin chassis ground, bulkhead B c4"
+   ],
+   "br_cab_etbm_sh": [
+    "-> A-eng: screen open",
+    "Broken off - screen continues on ST185-A-engine: ETB motor cable screen from bulkhead B c22"
+   ],
+   "br_cab_lamcan_sh": [
+    "-> CAN: screen open",
+    "Broken off - screen continues on ST185-CAN: CAN-Lambda pair screen from bulkhead B c24"
+   ]
+  }
+ },
+ "ST185-CAN.harness": {
+  "connectors": {
+   "ecu_com": {
+    "label": [
+     "ECU COMMS",
+     "ECU Comms/Tuning Port"
+    ]
+   },
+   "lambda": {
+    "label": [
+     "CAN-LAMBDA",
+     "Link CAN-Lambda"
+    ],
+    "cavities": {
+     "c1": [
+      "Power +12V ign",
+      "Power +12V ign, LOGIC LAM 7.5A *"
+     ],
+     "c2": [
+      "GND",
+      "GND - broken off, continues on ST185-B-engine"
+     ]
+    }
+   }
+  },
+  "terminals": {
+   "t_cluster_can": [
+    "CLUSTER CAN",
+    "TrackCluster ESP32-P4 - CAN drop *"
+   ],
+   "t_realdash_can": [
+    "REALDASH CAN",
+    "RealDash Pi 5 - CAN drop *"
+   ],
+   "br_wc_h_csb": [
+    "-> CSB3: CSB3 c5",
+    "Broken off - continues on ST185-CSB3: CAN H into the CSB3 plug"
+   ],
+   "br_wc_l_csb": [
+    "-> CSB3: CSB3 c6",
+    "Broken off - continues on ST185-CSB3: CAN L into the CSB3 plug"
+   ],
+   "br_w_lam12": [
+    "-> B-eng: SPL LAM12_B",
+    "Broken off - continues on ST185-B-engine: CAN-Lambda +12V from LOGIC LAM, bulkhead B c3"
+   ],
+   "br_w_lamg": [
+    "-> B-eng: SPL LAMG_B",
+    "Broken off - continues on ST185-B-engine: CAN-Lambda ground to cabin chassis ground, bulkhead B c4"
+   ],
+   "br_wc_h_bh": [
+    "-> B-cab: BH-FW 92",
+    "Broken off - continues on ST185-B-cabin: CAN H through bulkhead B c13"
+   ],
+   "br_wc_l_bh": [
+    "-> B-cab: BH-FW 93",
+    "Broken off - continues on ST185-B-cabin: CAN L through bulkhead B c14"
+   ],
+   "br_wc_h_lam": [
+    "-> B-eng: BH-ENG 92",
+    "Broken off - continues on ST185-B-engine: CAN H from bulkhead B c13 to the Lambda"
+   ],
+   "br_wc_l_lam": [
+    "-> B-eng: BH-ENG 93",
+    "Broken off - continues on ST185-B-engine: CAN L from bulkhead B c14 to the Lambda"
+   ],
+   "br_cab_lamcan_sh": [
+    "-> B-eng: BH-ENG 94",
+    "Broken off - screen comes in from ST185-B-engine: CAN-Lambda pair screen, bulkhead B c24"
+   ],
+   "br_cab_canbh_sh": [
+    "-> B-cab: BH-FW 94",
+    "Broken off - screen continues on ST185-B-cabin: CAN pair screen to bulkhead B c24"
+   ],
+   "br_w_shd_can": [
+    "-> B-cab: SPL SHIELD_B",
+    "Broken off - drain continues on ST185-B-cabin: sp_shield_can to sp_shield_b (B17)"
+   ],
+   "br_cab_cancsb_sh": [
+    "-> CSB3: screen open",
+    "Broken off - screen continues on ST185-CSB3: CAN pair screen into the CSB3 plug run"
+   ],
+   "t_cluster_pwr": [
+    "CLUSTER +12V",
+    "TrackCluster ESP32-P4 - +12V switched (DEV)"
+   ],
+   "t_realdash_pwr": [
+    "REALDASH +12V",
+    "RealDash Pi 5 - +12V switched (DEV) into the Pi's 12 V to 5 V supply"
+   ],
+   "t_cluster_gnd": [
+    "GND IF",
+    "Factory ground IF (I/P brace RH, 1993 EWD p.42) - cluster ground, check at build"
+   ],
+   "t_realdash_gnd": [
+    "GND IF",
+    "Factory ground IF (I/P brace RH, 1993 EWD p.42) - RealDash Pi ground, check at build"
+   ],
+   "br_w_dev": [
+    "-> CabPwr: FB-LOGIC BUS2-6",
+    "Broken off - continues on ST185-CabinPower: LOGIC DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)"
+   ],
+   "t_cluster_gnd_lead": [
+    "CLUSTER GND",
+    "TrackCluster ESP32-P4 - ground"
+   ],
+   "t_realdash_gnd_lead": [
+    "REALDASH GND",
+    "RealDash Pi 5 - ground (Pi supply 0 V)"
+   ]
+  }
+ },
+ "ST185-EngineRoom-C.harness": {
+  "connectors": {
+   "pdb": {
+    "label": [
+     "POWER BUS",
+     "POWER box bus zone (rev 7, glove box)"
+    ],
+    "cavities": {
+     "c2": [
+      "To RADLOK +",
+      "To RADLOK +  (starter / 160 A alt)"
+     ]
+    }
+   },
+   "rad_fan": {
+    "label": [
+     "RAD FAN+",
+     "Uprated radiator fan (+)"
+    ]
+   },
+   "fan2": {
+    "label": [
+     "COND FAN+",
+     "Uprated condenser fan (+)"
+    ],
+    "cavities": {
+     "c1": [
+      "From k_fan2 87",
+      "From k_fan2 87, 8 AWG"
+     ]
+    }
+   },
+   "mrs_eps": {
+    "label": [
+     "EHPS PUMP",
+     "MR-S EHPS pump (A power / B signal / C ignition)"
+    ],
+    "cavities": {
+     "a1": [
+      "+12V EHPS relay 87",
+      "[A 90980-12068 pin 1] +12V from k_eps 87 *"
+     ],
+     "a2": [
+      "GND",
+      "[A 90980-12068 pin 2] GND *"
+     ],
+     "b2": [
+      "SPD Out",
+      "[B 90980-10897 pin 2] SPD Out *"
+     ],
+     "b5": [
+      "EHPS relay coil-",
+      "[B 90980-10897 pin 5] EPS relay k_eps coil- out (R22)"
+     ],
+     "c1": [
+      "IG-switched",
+      "[C 90980-10942 pin 1] IG-switched, LOGIC MRS 7.5A *"
+     ]
+    }
+   },
+   "rad_fan_g": {
+    "label": [
+     "RAD FAN-",
+     "Uprated radiator fan (GND)"
+    ],
+    "cavities": {
+     "c1": [
+      "GND EA",
+      "To EA / engine-room ground stud, 8 AWG"
+     ]
+    }
+   },
+   "fan2_g": {
+    "label": [
+     "COND FAN-",
+     "Uprated condenser fan (GND)"
+    ],
+    "cavities": {
+     "c1": [
+      "GND EA",
+      "To EA / engine-room ground stud, 8 AWG"
+     ]
+    }
+   },
+   "horn_lh": {
+    "label": [
+     "HORN LH",
+     "Horn LH (EWD H3) - custom DT 2-way"
+    ],
+    "cavities": {
+     "c1": [
+      "Horn +",
+      "Horn + (EWD 1993 p.185 H3 pin 1, G-R in the factory wiring) <- horn relay 87"
+     ],
+     "c2": [
+      "Horn ground",
+      "Horn ground -> EA bay ground (dedicated wire, Route 2 rev 8)"
+     ]
+    }
+   },
+   "horn_rh": {
+    "label": [
+     "HORN RH",
+     "Horn RH (EWD H4) - custom DT 2-way"
+    ],
+    "cavities": {
+     "c1": [
+      "Horn +",
+      "Horn + (EWD 1993 p.185 H4 pin 1, G-R in the factory wiring) <- horn relay 87"
+     ],
+     "c2": [
+      "Horn ground",
+      "Horn ground -> EA bay ground (dedicated wire, Route 2 rev 8)"
+     ]
+    }
+   }
+  },
+  "terminals": {
+   "br_h1_batt_pos": [
+    "-> HeavyDC: KILL SW MAIN 2",
+    "H1 - broken off, continues on ST185-HeavyDC: POWER box bus zone c1 (BAT+) <- trunk battery +"
+   ],
+   "br_h2_batt_neg": [
+    "-> HeavyDC: BATT -",
+    "H2 - broken off, continues on ST185-HeavyDC: POWER box bus zone c8 (NEG bar) <- trunk battery -"
+   ],
+   "br_h3_radlok_pos": [
+    "-> HeavyDC: RADLOK+ FW 1",
+    "H3 - broken off, continues on ST185-HeavyDC: POWER box bus zone c2 (ALT/STR) -> RADLOK +"
+   ],
+   "br_h6a_radlok_neg": [
+    "-> HeavyDC: RADLOK- FW 1",
+    "H6a - broken off, continues on ST185-HeavyDC: POWER box bus zone c8 (NEG bar) -> RADLOK -"
+   ],
+   "t_eng_block_2": [
+    "ENG BLOCK 2",
+    "Engine block stud - lug 2, 4 AWG to EB"
+   ],
+   "t_eng_block_3": [
+    "ENG BLOCK 3",
+    "Engine block stud - lug 3, 8 AWG EPS gnd"
+   ],
+   "t_gnd_ea": [
+    "GND EA",
+    "OEM ground EA - right front fender"
+   ],
+   "t_gnd_ea_2": [
+    "GND EA 2",
+    "OEM ground EA - lug 2, cond. fan 8 AWG"
+   ],
+   "t_gnd_eb": [
+    "GND EB",
+    "OEM ground EB - left front fender"
+   ],
+   "t_gnd_id": [
+    "GND ID",
+    "OEM ground ID - left kick panel"
+   ],
+   "t_gnd_ig": [
+    "GND IG",
+    "OEM ground IG - ex-R/B4 set bolt (box removed), right kick"
+   ],
+   "fl_ac_press_c1": [
+    "OEM A5-1",
+    "EWD p.152 A5-1 (V-R in the factory wiring, new wire here) A/C pressure switch +12V (ACPS 5 A, IG) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
+   ],
+   "fl_a4_3": [
+    "OEM A4-3",
+    "EWD 1990 p.152 A4-3 (Y-B in the factory wiring, new wire here) A/C magnetic clutch <- A18-5 (br_ac_mg) - new-wire run terminated at the clutch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
+   ],
+   "fl_a5_4": [
+    "OEM A5-4",
+    "EWD 1990 p.152 A5-4 (Y-R in the factory wiring, new wire here) A/C pressure switch switched return -> A18-13 (br_ac_psw) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
+   ],
+   "br_ac_mg": [
+    "-> A-cab: OEM A18-5",
+    "Broken off - continues on ST185-A-cabin: A/C VC control coil A4-3 (not fitted) (fl_a4_3) <- A18-5 (fl_acamp_mg)"
+   ],
+   "br_ac_psw": [
+    "-> A-cab: SPL AC_PSW",
+    "Broken off - continues on ST185-A-cabin: A/C pressure switch A5-4 (fl_a5_4) -> A18-13 (fl_acamp_psw)"
+   ],
+   "fl_oem_ie1_c10": [
+    "OEM IE1-10",
+    "EWD p.31 IE1-10 W AM1 to ignition switch I13-4 - heavy crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c17": [
+    "OEM IE1-17",
+    "EWD p.31 IE1-17 B-R AM2 to ignition switch I13-10 - heavy crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_jb1_1i_c1": [
+    "OEM JB1 1I-1",
+    "EWD p.18-19 / p.46 J/B1 1I-1 B J/B1 primary B+ (always hot; was FL ALT) - heavy crimp butt splice into the factory 1I-1 lead at J/B1 (cabin side; engine-room main removed)"
+   ],
+   "br_w_fan_pwr": [
+    "-> CabPwr: POWER R4 87",
+    "Broken off - continues on ST185-CabinPower: radiator fan relay 87 feed"
+   ],
+   "br_w_fan2_pwr": [
+    "-> CabPwr: POWER R5 87",
+    "Broken off - continues on ST185-CabinPower: condenser fan relay 87 feed"
+   ],
+   "br_w_eps_pwr": [
+    "-> CabPwr: EHPS RELAY 87",
+    "Broken off - continues on ST185-CabinPower: EPS relay 87 feed to the pump"
+   ],
+   "br_w_hv_mrs_en_e": [
+    "-> A-eng: BH-ENG 42",
+    "Broken off - continues on ST185-A-engine: MRS enable, bulkhead A c35"
+   ],
+   "br_w_mrs_e": [
+    "-> A-eng: BH-ENG 44",
+    "Broken off - continues on ST185-A-engine: MRS speed (ECU A27), bulkhead A c36"
+   ],
+   "br_w_pmu_hl": [
+    "-> CabPwr: LOGIC M11 87",
+    "Broken off - continues on ST185-CabinPower: HEAD LH, LOGIC HL 15A + relay -> headlight LH H1 pin 3"
+   ],
+   "br_w_pmu_hr": [
+    "-> CabPwr: LOGIC M12 87",
+    "Broken off - continues on ST185-CabinPower: HEAD RH, LOGIC HR 15A + relay -> headlight RH H2 pin 3"
+   ],
+   "br_w_pmu_horn": [
+    "-> CabPwr: LOGIC M13 87",
+    "Broken off - continues on ST185-CabinPower: horn relay 87 (LOGIC HZ, HAZ-HORN 15A) -> horns H3 / H4"
+   ],
+   "br_w_pmu_dome": [
+    "-> CabPwr: FB-LOGIC BUS1-5",
+    "Broken off - continues on ST185-CabinPower: DOME, LOGIC DM 20A -> J/B1 1H-2"
+   ],
+   "br_w_pmu_rtr": [
+    "-> CabPwr: FB-POWER AMI OUT-2",
+    "Broken off - continues on ST185-CabinPower: RTR, POWER RTR 30A -> IE1-3 (retract control relay R8)"
+   ],
+   "br_w_acp_1": [
+    "-> CabPwr: FB-POWER ACPS",
+    "Broken off - continues on ST185-CabinPower: A/C pressure switch +12V, POWER ACPS 10A to A5-1"
+   ],
+   "br_w_pdb_am1": [
+    "-> CabPwr: FB-POWER AMI OUT-3",
+    "Broken off - continues on ST185-CabinPower: AM1, POWER AM1 40A to IE1-10"
+   ],
+   "br_w_pdb_am2": [
+    "-> CabPwr: FB-POWER AMI OUT-4",
+    "Broken off - continues on ST185-CabinPower: AM2, POWER AM2 30A to IE1-17"
+   ],
+   "br_w_pdb_jb1": [
+    "-> CabPwr: FB-POWER AMI OUT-5",
+    "Broken off - continues on ST185-CabinPower: OEM HOT, POWER JB1 60A to J/B1 1I-1"
+   ],
+   "br_w_rb4": [
+    "-> CabPwr: SPL HTR87",
+    "Broken off - continues on ST185-CabinPower: heater relay 87 (POWER HTR 40A) -> blower motor B4 pin 2"
+   ],
+   "br_w_rb2": [
+    "-> CabPwr: POWER R6 87",
+    "Broken off - continues on ST185-CabinPower: power relay 87 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)"
+   ],
+   "fl_a4_4": [
+    "OEM A4-4",
+    "EWD 1990 p.152 A4-4 (B-W in the factory wiring, new wire here) A/C magnet clutch <- k_acc 87 (br_w_acc_clutch) - new-wire run terminated at the clutch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
+   ],
+   "br_w_acc_clutch": [
+    "-> CabPwr: LOGIC M15 87",
+    "Broken off - continues on ST185-CabinPower: A/C Clutch Relay 87 (k_acc c4) -> A/C magnet clutch A4-4 (fl_a4_4)"
+   ],
+   "br_w_haz": [
+    "-> CabPwr: SPL HZ",
+    "Broken off - continues on ST185-CabinPower: HAZ-HORN, LOGIC HZ 15A fuse out -> hazard feed IE1-12"
+   ],
+   "fl_oem_ie1_c3": [
+    "OEM IE1-3",
+    "EWD 1993 p.116 IE1-3 W 30A RTR -> retract control relay R8 pin 3 (OEM relay stays, fuse only) - heavy crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c12": [
+    "OEM IE1-12",
+    "EWD 1993 p.130 IE1-12 W HAZ-HORN feed -> hazard switch / turn flasher - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_jb1_1h_c2": [
+    "OEM JB1 1H-2",
+    "EWD 1993 p.132 J/B1 1H-2 L-Y 20A DOME feed into J/B1 (interior lights) - crimp butt splice into the factory 1H-2 lead at J/B1 (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_rb2_wg": [
+    "OEM RB2-1",
+    "EWD 1993 p.137 R/B2 power main relay terminal 1 output W-G -> power window master SW P6 (A)6 / RH SW P9-6 (R/B2 removed) - heavy crimp butt splice into the factory cowl-side W-G lead at the left kick"
+   ],
+   "fl_b4_c2": [
+    "OEM B4-2",
+    "EWD 1993 p.215-216 B4 pin 2 B blower motor + (was R/B4 heater relay terminal 4 output; R/B4 removed) - heavy crimp butt splice into the factory lead at the blower motor (cabin, behind the glove box)"
+   ],
+   "fl_h1_c3": [
+    "OEM H1-3",
+    "EWD 1993 p.116 H1 pin 3 (R in the factory wiring, new wire here) headlight LH power <- LOGIC HL - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
+   ],
+   "fl_h2_c3": [
+    "OEM H2-3",
+    "EWD 1993 p.116 H2 pin 3 (R-Y in the factory wiring, new wire here) headlight RH power <- LOGIC HR - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
+   ],
+   "t_gnd_ea_h3": [
+    "GND EA",
+    "OEM ground EA - horn ground"
+   ],
+   "t_gnd_ea_h4": [
+    "GND EA",
+    "OEM ground EA - horn ground"
+   ],
+   "br_w_eps_rly_e": [
+    "-> A-eng: BH-ENG 56",
+    "Broken off - continues on ST185-A-engine: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27"
+   ],
+   "br_w_rb2_wl": [
+    "-> CabPwr: FB-LOGIC BUS1-6",
+    "Broken off - continues on ST185-CabinPower: door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58): LOGIC WL 15A"
+   ],
+   "fl_oem_rb2_wl": [
+    "OEM RB2-2",
+    "EWD 1993 p.137 / p.170 R/B2 pin 2 W-L always-hot -> splice I1 -> door lock ECU D8-8 / auto tilt-away ECU (R/B2 removed) - crimp butt splice into the factory cowl-side W-L lead at the left kick"
+   ],
+   "fl_oem_jb1_1h_c6": [
+    "OEM JB1 1H-6",
+    "EWD 1993 p.112 J/B1-1H-6 G TAIL 15A out (TAIL relay) -> front clearance F7 / F8 pin 1 - crimp butt splice into the factory 1H-6 lead at J/B1 (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_jb1_1h_c4": [
+    "OEM JB1 1H-4",
+    "EWD 1993 p.130 J/B1-1H-4 G-B turn LH out (flasher) -> F7 pin 3 - crimp butt splice into the factory 1H-4 lead at J/B1 (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_jb1_1h_c8": [
+    "OEM JB1 1H-8",
+    "EWD 1993 p.130 J/B1-1H-8 G-Y turn RH out (flasher) -> F8 pin 3 - crimp butt splice into the factory 1H-8 lead at J/B1 (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_jb1_1h_c5": [
+    "OEM JB1 1H-5",
+    "EWD 1993 p.148 J/B1-1H-5 L WIPER 20A out -> front wiper motor F9 pin 4 (+B to the park switch) - crimp butt splice into the factory 1H-5 lead at J/B1 (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c20": [
+    "OEM IE1-20",
+    "EWD 1993 p.148 IE1-20 L-O wiper switch C16-13 (HIGH) -> F9 pin 1 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c13": [
+    "OEM IE1-13",
+    "EWD 1993 p.148 IE1-13 L-B wiper switch C16-7 (LOW / INT / MIST) -> F9 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c6": [
+    "OEM IE1-6",
+    "EWD 1993 p.148 IE1-6 L-W wiper switch C16-4 (park S) <- F9 pin 3 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c18": [
+    "OEM IE1-18",
+    "EWD 1993 p.116 IE1-18 R-W headlight low-beam return (C15-12 dimmer side) <- H1 / H2 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c11": [
+    "OEM IE1-11",
+    "EWD 1993 p.116 IE1-11 R-L headlight high-beam return (C15-3 dimmer / flash, high-beam indicator) <- H1 / H2 pin 1 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c14": [
+    "OEM IE1-14",
+    "EWD 1993 p.117 IE1-14 G retract control relay R8-1 -> retract motor LH R2 pin 4 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c15": [
+    "OEM IE1-15",
+    "EWD 1993 p.117 IE1-15 G-O retract control relay R8-2 -> retract motor LH R2 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c8": [
+    "OEM IE1-8",
+    "EWD 1993 p.117 IE1-8 G-B retract control relay R8-5 -> retract motor RH R3 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c7": [
+    "OEM IE1-7",
+    "EWD 1993 p.117 IE1-7 G-Y retract control relay R8-4 -> retract motor RH R3 pin 4 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c9": [
+    "OEM IE1-9",
+    "EWD 1993 p.117 IE1-9 G-Y retract control relay R8-11 (DOWN / close limit) <- R2 / R3 pin 3 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_oem_ie1_c16": [
+    "OEM IE1-16",
+    "EWD 1993 p.117 IE1-16 G-W retract control relay R8-7 (UP / open limit) <- R2 / R3 pin 1 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)"
+   ],
+   "fl_w1_cowl_c2": [
+    "OEM W1-2",
+    "EWD 1993 p.148 W1-2 (cowl lead) L WIPER 20A via cowl splice I2 -> washer motor W1 pin 2 - crimp butt splice into the factory cowl-wire lead to W1 at the firewall (cabin side; its bay run is removed)"
+   ],
+   "fl_w1_cowl_c1": [
+    "OEM W1-1",
+    "EWD 1993 p.148 W1-1 (cowl lead) L-R washer switch C16-8 <- washer motor W1 pin 1 - crimp butt splice into the factory cowl-wire lead to W1 at the firewall (cabin side; its bay run is removed)"
+   ],
+   "fl_f7_c1": [
+    "OEM F7-1",
+    "EWD 1993 p.112 F7 pin 1 (G in the factory wiring, new wire here) front clearance LH <- sp_clr - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_f7_c2": [
+    "OEM F7-2",
+    "EWD 1993 p.112 / p.130 F7 pin 2 (W-B in the factory wiring, new wire here) front turn / clearance LH ground -> EB - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_f7_c3": [
+    "OEM F7-3",
+    "EWD 1993 p.130 F7 pin 3 (G-B in the factory wiring, new wire here) front turn LH <- J/B1 1H-4 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_f8_c1": [
+    "OEM F8-1",
+    "EWD 1993 p.112 F8 pin 1 (G in the factory wiring, new wire here) front clearance RH <- sp_clr - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_f8_c2": [
+    "OEM F8-2",
+    "EWD 1993 p.112 / p.130 F8 pin 2 (W-B in the factory wiring, new wire here) front turn / clearance RH ground -> EA - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_f8_c3": [
+    "OEM F8-3",
+    "EWD 1993 p.130 F8 pin 3 (G-Y in the factory wiring, new wire here) front turn RH <- J/B1 1H-8 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_h1_c1": [
+    "OEM H1-1",
+    "EWD 1993 p.116 H1 pin 1 (R-L in the factory wiring, new wire here) headlight LH high-beam return -> sp_hl_high -> IE1-11 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_h1_c2": [
+    "OEM H1-2",
+    "EWD 1993 p.116 H1 pin 2 (R-W in the factory wiring, new wire here) headlight LH low-beam return -> sp_hl_low -> IE1-18 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_h2_c1": [
+    "OEM H2-1",
+    "EWD 1993 p.116 H2 pin 1 (R-L in the factory wiring, new wire here) headlight RH high-beam return -> sp_hl_high -> IE1-11 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_h2_c2": [
+    "OEM H2-2",
+    "EWD 1993 p.116 H2 pin 2 (R-W in the factory wiring, new wire here) headlight RH low-beam return -> sp_hl_low -> IE1-18 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_r2_c1": [
+    "OEM R2-1",
+    "EWD 1993 p.117 R2 pin 1 (G-W in the factory wiring, new wire here) retract motor LH UP / open limit -> sp_rtr_open -> IE1-16 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_r2_c2": [
+    "OEM R2-2",
+    "EWD 1993 p.117 R2 pin 2 (G-O in the factory wiring, new wire here) retract motor LH <- IE1-15 (R8-2) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_r2_c3": [
+    "OEM R2-3",
+    "EWD 1993 p.117 R2 pin 3 (G-Y in the factory wiring, new wire here) retract motor LH DOWN / close limit -> sp_rtr_close -> IE1-9 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_r2_c4": [
+    "OEM R2-4",
+    "EWD 1993 p.117 R2 pin 4 (G in the factory wiring, new wire here) retract motor LH <- sp_rtr_r2_4 <- 12 AWG <- IE1-14 (R8-1), 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_r2_c5": [
+    "OEM R2-5",
+    "EWD 1993 p.117 R2 pin 5 (W-B in the factory wiring, new wire here) retract motor LH ground -> sp_rtr_gnd_r2 -> 12 AWG -> EB, 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_r3_c1": [
+    "OEM R3-1",
+    "EWD 1993 p.117 R3 pin 1 (G-W in the factory wiring, new wire here) retract motor RH UP / open limit -> sp_rtr_open -> IE1-16 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_r3_c2": [
+    "OEM R3-2",
+    "EWD 1993 p.117 R3 pin 2 (G-B in the factory wiring, new wire here) retract motor RH <- IE1-8 (R8-5) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_r3_c3": [
+    "OEM R3-3",
+    "EWD 1993 p.117 R3 pin 3 (G-Y in the factory wiring, new wire here) retract motor RH DOWN / close limit -> sp_rtr_close -> IE1-9 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_r3_c4": [
+    "OEM R3-4",
+    "EWD 1993 p.117 R3 pin 4 (G-Y in the factory wiring, new wire here) retract motor RH <- sp_rtr_r3_4 <- 12 AWG <- IE1-7 (R8-4), 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_r3_c5": [
+    "OEM R3-5",
+    "EWD 1993 p.117 R3 pin 5 (W-B in the factory wiring, new wire here) retract motor RH ground -> sp_rtr_gnd_r3 -> 12 AWG -> EB, 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_w1_c1": [
+    "OEM W1-1",
+    "EWD 1993 p.148 W1 pin 1 (L-R in the factory wiring, new wire here) washer motor - <- washer switch C16-8 (cowl lead) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_w1_c2": [
+    "OEM W1-2",
+    "EWD 1993 p.148 W1 pin 2 (L in the factory wiring, new wire here) washer motor + <- WIPER 20A (cowl lead) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_f9_c1": [
+    "OEM F9-1",
+    "EWD 1993 p.148 F9 pin 1 (L-O in the factory wiring, new wire here) front wiper motor HIGH <- IE1-20 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_f9_c2": [
+    "OEM F9-2",
+    "EWD 1993 p.148 F9 pin 2 (L-B in the factory wiring, new wire here) front wiper motor LOW <- IE1-13 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_f9_c3": [
+    "OEM F9-3",
+    "EWD 1993 p.148 F9 pin 3 (L-W in the factory wiring, new wire here) front wiper motor park switch S -> IE1-6 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "fl_f9_c4": [
+    "OEM F9-4",
+    "EWD 1993 p.148 F9 pin 4 (L in the factory wiring, new wire here) front wiper motor +B (park switch) <- J/B1 1H-5 WIPER 20A - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
+   ],
+   "t_gnd_eb_f7": [
+    "GND EB",
+    "OEM ground EB - left front fender - front turn / clearance LH F7 ground"
+   ],
+   "t_gnd_eb_rtr": [
+    "GND EB M8",
+    "OEM ground EB - left front fender (M8) - retract motors R2 / R3 ground, two 12 AWG (one per motor) in one ring, combined 9 AWG (OEM E3 -> EB)"
+   ],
+   "t_gnd_ea_f8": [
+    "GND EA M8",
+    "OEM ground EA - right front fender (M8, R59) - front turn / clearance RH F8 ground"
+   ],
+   "br_alt_s": [
+    "-> HeavyDC: ALT G2 1",
+    "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator S (G2-1) -> LOGIC ALTS 2A, battery sense"
+   ],
+   "br_alt_l": [
+    "-> HeavyDC: ALT G2 2",
+    "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator L (G2-2) -> IG2-16 cowl lead -> charge LED"
+   ],
+   "br_alt_ig": [
+    "-> HeavyDC: ALT G2 3",
+    "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator IG (G2-3) <- kill switch 2nd pair <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A"
+   ],
+   "fl_oem_ig2_c15": [
+    "OEM IG2-15",
+    "EWD 1993 p.74 IG2-15 B-R J/B No.1 ECU-IG 15A (1B-8 via J3) -> trunk kill switch 2nd pair -> alternator IG (G2-3) - crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)"
+   ],
+   "fl_oem_ig2_c16": [
+    "OEM IG2-16",
+    "EWD 1993 p.74 IG2-16 Y alternator L (G2-2) -> splice I5 -> combination meter lead C14-8 / C12-8 (ClusterLED charge LED) - crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)"
+   ],
+   "br_alt_s_cp": [
+    "-> CabPwr: FB-LOGIC BUS1-9",
+    "Broken off - continues on ST185-CabinPower: LOGIC ALTS 2A (Bus 1) -> alternator S battery sense"
+   ],
+   "br_ig_ks_in": [
+    "-> HeavyDC: KILL SW ALT 1",
+    "Broken off - continues on ST185-HeavyDC (along H1 / H2 on the RH sill to the trunk): alternator IG <- IG2-15 cowl lead (J/B No.1 ECU-IG 15A) -> kill switch 2nd pair (ALT 1)"
+   ],
+   "br_ig_ks_out": [
+    "-> HeavyDC: KILL SW ALT 2",
+    "Broken off - continues on ST185-HeavyDC (back from the trunk along H1 / H2): kill switch 2nd pair (ALT 2) -> alternator IG, on through the RH fender grommet"
+   ]
+  }
+ },
+ "ST185-HeavyDC.harness": {
+  "connectors": {
+   "rl_pos_fw": {
+    "label": [
+     "RADLOK+ FW",
+     "RADLOK + firewall"
+    ]
+   },
+   "rl_pos_eng": {
+    "label": [
+     "RADLOK+ ENG",
+     "RADLOK + engine"
+    ]
+   },
+   "rl_neg_fw": {
+    "label": [
+     "RADLOK- FW",
+     "RADLOK - firewall"
+    ]
+   },
+   "rl_neg_eng": {
+    "label": [
+     "RADLOK- ENG",
+     "RADLOK - engine"
+    ]
+   },
+   "jump_pos": {
+    "label": [
+     "JUMP POST",
+     "Engine-bay jump post"
+    ],
+    "cavities": {
+     "c1": [
+      "Starter B+ / RADLOK+",
+      "Tied to starter B+ / RADLOK +"
+     ]
+    }
+   },
+   "alt_plug": {
+    "label": [
+     "ALT G2",
+     "Alternator G2 - round 3-pin plug (Toyota 90980-10341; 1993 EWD p.74-75 G2 (B) pinout)"
+    ],
+    "cavities": {
+     "c1": [
+      "S",
+      "S - battery sense <- LOGIC ALTS 2A (Bus 1)"
+     ],
+     "c2": [
+      "L",
+      "L - charge lamp -> IG2-16 cowl lead -> ClusterLED charge LED (C12-8)"
+     ],
+     "c3": [
+      "IG",
+      "IG - excite <- trunk kill switch 2nd pair <- J/B No.1 ECU-IG 15A (IG2-15)"
+     ]
+    }
+   },
+   "kill_sw": {
+    "label": [
+     "KILL SW",
+     "Kill switch - Longacre 52-45780, 4 terminal (trunk, passenger rear corner, Route 1)"
+    ],
+    "cavities": {
+     "c1": [
+      "Battery +",
+      "Battery + (LINE) <- trunk battery +"
+     ],
+     "c2": [
+      "LOAD",
+      "LOAD -> H1 -> POWER box bus zone BAT+ (everything incl. alternator B+) and -> battery relay block BATT + (fuel pump)"
+     ],
+     "c3": [
+      "Alternator IG in",
+      "Alternator IG in <- IG2-15 (J/B No.1 ECU-IG 15A)"
+     ],
+     "c4": [
+      "Alternator IG out",
+      "Alternator IG out -> alternator G2-3 (20 A pole)"
+     ]
+    }
+   },
+   "fb_batt": {
+    "label": [
+     "BATT RLY BLK",
+     "Battery relay block - fuel pump relay + its fuse, trunk, passenger side between the rear wall and the battery (cad/fusebox rev 5, DECISIONS R75, Z4)"
+    ],
+    "cavities": {
+     "in": [
+      "Battery feed in",
+      "Battery feed in <- kill switch LOAD (MAIN 2), M6 stud on the bar - the kill switch also stops the pump"
+     ],
+     "fp": [
+      "AMI-40 FP fuse out",
+      "AMI-40 FP fuse out -> fuel pump relay k_fp 30 (HCR150 terminal 3), one straight jumper"
+     ]
+    }
+   },
+   "k_fp": {
+    "label": [
+     "BATT K1",
+     "Fuel Pump Relay, TE HCR150 (seated in the battery relay block K1) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V - HCR 150 coil is a 2-pole Superseal plug (TE terminals 1/2, not marked 85/86), resistor-suppressed so polarity-free"
+    ],
+    "cavities": {
+     "c1": [
+      "Fused +12V in",
+      "Fused +12V in (battery block FP 40A) - HCR150 terminal 3"
+     ],
+     "c2": [
+      "ACTIVE-LOW Coil",
+      "ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4), from ST185-A-cabin"
+     ],
+     "c3": [
+      "Coil +",
+      "Coil + - ignition-switched 12V (LOGIC SW12), from ST185-CabinPower"
+     ],
+     "c4": [
+      "+12V out",
+      "+12V out -> fuel pump (HCR150 terminal 5), wire on ST185-RearFuel"
+     ]
+    }
+   }
+  },
+  "terminals": {
+   "br_h1_batt_pos": [
+    "-> EngRm-C: POWER BUS BAT+",
+    "H1 - broken off, continues on ST185-EngineRoom-C: trunk battery + -> POWER box bus zone c1 (BAT+)"
+   ],
+   "br_h2_batt_neg": [
+    "-> EngRm-C: POWER BUS GND",
+    "H2 - broken off, continues on ST185-EngineRoom-C: trunk battery - -> POWER box bus zone c8 (NEG bar)"
+   ],
+   "br_h3_radlok_pos": [
+    "-> EngRm-C: POWER BUS ALT/STR",
+    "H3 - broken off, continues on ST185-EngineRoom-C: POWER box bus zone c2 (ALT/STR) -> RADLOK +"
+   ],
+   "br_h6a_radlok_neg": [
+    "-> EngRm-C: POWER BUS GND",
+    "H6a - broken off, continues on ST185-EngineRoom-C: POWER box bus zone c8 (NEG bar) -> RADLOK -"
+   ],
+   "t_trunk_pos": [
+    "BATT +",
+    "Trunk battery +  (1/0, jump lug)"
+   ],
+   "t_trunk_neg": [
+    "BATT -",
+    "Trunk battery -  (1/0, jump lug)"
+   ],
+   "t_starter_b": [
+    "STARTER B+",
+    "Starter B+ post, jump lug, 1/0"
+   ],
+   "t_starter_b_2": [
+    "STARTER B+ 2",
+    "Starter B+ post - lug 2, 2 AWG from alt"
+   ],
+   "t_starter_b_3": [
+    "STARTER B+ 3",
+    "Starter B+ post - lug 3, 2 AWG to jump post"
+   ],
+   "t_alt_b": [
+    "ALT B+",
+    "160 A alternator B+, 2 AWG to starter B+ (rear of engine, RH, under bulkheads A/B - Route 1 rev 3/4)"
+   ],
+   "t_eng_block": [
+    "ENG BLOCK GND",
+    "Engine block ground stud, 1/0, jump lug"
+   ],
+   "br_alt_s": [
+    "-> EngRm-C: BR_ALT_S_CP",
+    "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator S (G2-1) -> LOGIC ALTS 2A, battery sense"
+   ],
+   "br_alt_l": [
+    "-> EngRm-C: OEM IG2-16",
+    "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator L (G2-2) -> IG2-16 cowl lead -> charge LED"
+   ],
+   "br_alt_ig": [
+    "-> EngRm-C: BR_IG_KS_OUT",
+    "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator IG (G2-3) <- kill switch 2nd pair <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A"
+   ],
+   "br_ig_ks_in": [
+    "-> EngRm-C: OEM IG2-15",
+    "Broken off - continues on ST185-EngineRoom-C (glove box): alternator IG <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A"
+   ],
+   "br_ig_ks_out": [
+    "-> EngRm-C: BR_ALT_IG",
+    "Broken off - continues on ST185-EngineRoom-C (glove box -> RH fender grommet): kill switch 2nd pair -> alternator IG (G2-3)"
+   ],
+   "br_w_fp85": [
+    "-> A-cab: ECU-A A19",
+    "Broken off - continues on ST185-A-cabin: Fuel Pump Relay 85 (k_fp) <- ECU-A A19"
+   ],
+   "br_fp86": [
+    "-> CabPwr: SPL CP_SW12",
+    "Broken off - continues on ST185-CabinPower: SW12 (LOGIC SW12 7.5A) -> fuel pump relay k_fp coil + (86) in the battery relay block"
+   ],
+   "br_fp_pump": [
+    "-> RearFuel: FUEL PUMP c1",
+    "Broken off - continues on ST185-RearFuel: fuel pump relay k_fp 87 (HCR150 terminal 5) -> fuel pump c1"
+   ]
+  }
+ },
+ "ST185-ClusterLED.harness": {
+  "connectors": {},
+  "terminals": {
+   "t_led_gnd": [
+    "GND ID",
+    "LED common return - OEM ground ID, left kick panel (M6, assumed)"
+   ],
+   "fl_cl_c11_c2": [
+    "OEM C11-2",
+    "EWD 1993 p.206 (1993 code C13 (B)) C11-2 G-B Turn L - flasher LH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+   ],
+   "fl_cl_c11_c11": [
+    "OEM C11-11",
+    "EWD 1993 p.206 (1993 code C13 (B)) C11-11 G-Y Turn R - flasher RH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+   ],
+   "fl_cl_c11_c12": [
+    "OEM C11-12",
+    "EWD 1993 p.206 (1993 code C13 (B)) C11-12 R-L High beam - body residual feed - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+   ],
+   "fl_cl_c12_c1": [
+    "OEM C12-1",
+    "EWD 1993 p.206 (1993 code C14 (C)) C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+   ],
+   "fl_cl_c12_c8": [
+    "OEM C12-8",
+    "EWD p.52 C12-8 Y Alt L - charge-lamp drive - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+   ],
+   "fl_cl_c12_c9": [
+    "OEM C12-9",
+    "EWD p.52 C12-9 B-O IG +12 - feeds every LED anode - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+   ],
+   "br_w_oil_k": [
+    "-> CSB3: CSB3 c26",
+    "Broken off - continues on ST185-CSB3: oil pressure LED sink on CSB3 L4"
+   ]
+  }
+ },
+ "ST185-WheelSpeed-Rear.harness": {
+  "connectors": {
+   "wss_rl": {
+    "label": [
+     "WSS RL",
+     "ABS Wheel Speed RL"
+    ]
+   },
+   "wss_rr": {
+    "label": [
+     "WSS RR",
+     "ABS Wheel Speed RR"
+    ]
+   },
+   "ix_ws_rear_r": {
+    "label": [
+     "IX-WS-R",
+     "WS REAR OUT - 6-way inline to ECU spur (IX_WS_REAR)"
+    ],
+    "cavities": {
+     "c1": [
+      "+5V",
+      "+5V - VRC rear supply (ECU sensor +5V)"
+     ],
+     "c2": [
+      "Gnd Out",
+      "Gnd Out - VRC rear ground"
+     ],
+     "c3": [
+      "RL conditioned out",
+      "RL conditioned out -> ECU-B B20 (DI 5)"
+     ],
+     "c4": [
+      "RR conditioned out",
+      "RR conditioned out -> ECU-B B19 (DI 6)"
+     ],
+     "c5": [
+      "Screen drain",
+      "Screen drain -> SHIELD_B (B17)"
+     ]
+    }
+   },
+   "lp16_vrc_r_in": {
+    "label": [
+     "VRC-R IN",
+     "VRC rear IN plug"
+    ]
+   },
+   "lp16_vrc_r_out": {
+    "label": [
+     "VRC-R OUT",
+     "VRC rear OUT plug"
+    ]
+   }
+  },
+  "terminals": {}
+ },
+ "ST185-WheelSpeed-Front.harness": {
+  "connectors": {
+   "wss_fl": {
+    "label": [
+     "WSS FL",
+     "ABS Wheel Speed FL"
+    ]
+   },
+   "wss_fr": {
+    "label": [
+     "WSS FR",
+     "ABS Wheel Speed FR"
+    ]
+   },
+   "ix_ws_front_r": {
+    "label": [
+     "IX-WS-F",
+     "WS FRONT OUT - 6-way inline to ECU spur (IX_WS_FRONT)"
+    ],
+    "cavities": {
+     "c1": [
+      "+5V",
+      "+5V - VRC front supply (ECU sensor +5V)"
+     ],
+     "c2": [
+      "Gnd Out",
+      "Gnd Out - VRC front ground"
+     ],
+     "c3": [
+      "FL conditioned out",
+      "FL conditioned out -> ECU-A A23 (DI 3)"
+     ],
+     "c4": [
+      "FR conditioned out",
+      "FR conditioned out -> ECU-B B21 (DI 4)"
+     ],
+     "c5": [
+      "Screen drain",
+      "Screen drain, combined 4-core cable -> SHIELD_A (A7)"
+     ]
+    }
+   },
+   "lp16_vrc_f_in": {
+    "label": [
+     "VRC-F IN",
+     "VRC front IN plug"
+    ]
+   },
+   "lp16_vrc_f_out": {
+    "label": [
+     "VRC-F OUT",
+     "VRC front OUT plug"
+    ]
+   }
+  },
+  "terminals": {}
+ },
+ "ST185-RearFuel.harness": {
+  "connectors": {
+   "ix_fuel_p": {
+    "label": [
+     "IX-FUEL",
+     "Fuel level - 2-way inline mate (IX_FUEL_LVL)"
+    ],
+    "cavities": {
+     "c1": [
+      "Fuel level signal",
+      "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)"
+     ],
+     "c2": [
+      "Fuel level ground",
+      "Fuel level ground -> Gnd Out"
+     ]
+    }
+   },
+   "fuellvl": {
+    "label": [
+     "FUEL LVL",
+     "Fuel Level Sender - DT 2-way (Dan rev 2, 2026-10-10 - no OEM connector)"
+    ]
+   },
+   "fuelpump": {
+    "label": [
+     "FUEL PUMP",
+     "Fuel Pump"
+    ]
+   }
+  },
+  "terminals": {
+   "br_fp_pump": [
+    "-> HeavyDC: BATT K1 87",
+    "Broken off - continues on ST185-HeavyDC: fuel pump relay k_fp 87 (HCR150 terminal 5, battery relay block) -> fuel pump c1"
+   ],
+   "t_trunk_fp_gnd": [
+    "TRUNK GND M6",
+    "Trunk chassis ground stud - fuel pump return (plan 6.41; M6 assumed)"
+   ]
+  }
+ },
+ "ST185-AntiTheft.harness": {
+  "connectors": {
+   "alarm": {
+    "label": [
+     "ALARM",
+     "Alarm module - main harness (DT06-12SA)"
+    ],
+    "cavities": {
+     "c1": [
+      "+12V CONSTANT",
+      "+12V CONSTANT - LOGIC ALM 5A *, broken off to ST185-CabinPower"
+     ],
+     "c2": [
+      "GROUND",
+      "GROUND - cabin chassis stud *"
+     ],
+     "c3": [
+      "IGNITION SENSE",
+      "IGNITION SENSE - +12V key-on *"
+     ],
+     "c4": [
+      "SIREN +",
+      "SIREN + - switched +12V out, 2A *"
+     ],
+     "c5": [
+      "PARKING LIGHT OUT",
+      "PARKING LIGHT OUT - flashes the park lamps on *"
+     ],
+     "c6": [
+      "DOOR TRIGGER IN",
+      "DOOR TRIGGER IN - negative *"
+     ],
+     "c7": [
+      "HOOD PIN IN",
+      "HOOD PIN IN - negative"
+     ],
+     "c8": [
+      "TRUNK PIN IN",
+      "TRUNK PIN IN - negative"
+     ],
+     "c9": [
+      "IMMOBILISER OUT",
+      "IMMOBILISER OUT - grounds when armed *"
+     ],
+     "c11": [
+      "VALET/PROGRAM SW",
+      "VALET / PROGRAM SWITCH"
+     ],
+     "c12": [
+      "SHOCK TRIGGER IN",
+      "SHOCK SENSOR TRIGGER IN - negative *"
+     ]
+    }
+   },
+   "shock": {
+    "label": [
+     "SHOCK SNSR",
+     "Shock / tilt sensor *"
+    ],
+    "cavities": {
+     "c1": [
+      "+12V CONSTANT",
+      "+12V CONSTANT - LOGIC ALMS 2A (ST185-CabinPower)"
+     ],
+     "c3": [
+      "Trigger out",
+      "Trigger out - negative pulse on impact"
+     ]
+    }
+   },
+   "siren": {
+    "label": [
+     "SIREN",
+     "Siren (engine bay, center firewall behind the engine) - leads cross via harness C's own RH fender grommet, decided 2026-10-10, not the FR wheel-speed grommet"
+    ],
+    "cavities": {
+     "c1": [
+      "+12V from ALARM 4",
+      "+12V switched from alarm c4"
+     ],
+     "c2": [
+      "Ground",
+      "Ground - returns to cabin ground stud (ring A)"
+     ]
+    }
+   },
+   "led_sts": {
+    "label": [
+     "STATUS LED",
+     "Status LED (dash)"
+    ],
+    "cavities": {
+     "c1": [
+      "LED anode",
+      "LED anode, from alarm c10"
+     ],
+     "c2": [
+      "LED cathode GND",
+      "LED cathode to ground. Kit LED *"
+     ]
+    }
+   },
+   "valet": {
+    "label": [
+     "VALET SW",
+     "Valet / program switch (hidden)"
+    ],
+    "cavities": {
+     "c1": [
+      "Switch",
+      "Switch, from alarm c11"
+     ]
+    }
+   }
+  },
+  "terminals": {
+   "t_at_12v": [
+    "-> CabPwr: FB-LOGIC BUS1-7",
+    "Broken off - continues on ST185-CabinPower: LOGIC ALM 5A (Bus 1, permanent) -> alarm +12V constant"
+   ],
+   "t_at_ig": [
+    "-> CabPwr: FB-LOGIC BUS2-9",
+    "Broken off - continues on ST185-CabinPower: LOGIC ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense"
+   ],
+   "t_at_gnd": [
+    "GND STUD M6 A",
+    "Cabin chassis ground stud M6 - ring A *"
+   ],
+   "t_at_door": [
+    "DOOR SW (OEM)",
+    "OEM door courtesy switches *"
+   ],
+   "t_at_hood": [
+    "HOOD PIN SW",
+    "Hood pin switch - ADD ONE *. Rides harness C down the RH fender to the front, same grommet as the siren leads - exact hood-pin mounting spot still TBD"
+   ],
+   "t_at_trunk": [
+    "TRUNK PIN SW",
+    "Trunk pin switch"
+   ],
+   "t_at_park": [
+    "PARK LAMP RLY",
+    "Park lamp flash - to a relay in the CABIN *"
+   ],
+   "t_at_gnd_b": [
+    "GND STUD M6 B",
+    "Cabin chassis ground stud M6 - ring B *"
+   ],
+   "t_at_gnd_c": [
+    "GND STUD M6 C",
+    "Cabin chassis ground stud M6 - ring C (valet)"
+   ],
+   "t_at_12v_shk": [
+    "-> CabPwr: FB-LOGIC BUS1-8",
+    "Broken off - continues on ST185-CabinPower: LOGIC ALMS 2A (Bus 1, permanent) -> shock sensor +12V"
+   ],
+   "br_w_at_immob2": [
+    "-> B-cab: ECU-B B27",
+    "Broken off - continues on ST185-B-cabin: immobiliser output to ECU-B B27 (DI 10)"
+   ]
+  }
+ },
+ "ST185-CSB3.harness": {
+  "connectors": {
+   "csb3io": {
+    "label": [
+     "CSB3",
+     "ECUMaster CSB3 - Power/CAN/Switch I/O"
+    ],
+    "cavities": {
+     "c1": [
+      "+12V",
+      "+12V (ignition switched)"
+     ],
+     "c3": [
+      "+5V sensor supply",
+      "+5V sensor supply -> opto board VCC (its 10k output pull-ups; keeps S7 / S8 at 5 V max)"
+     ],
+     "c4": [
+      "SGND",
+      "SGND -> opto board output GND (phototransistor emitters)"
+     ],
+     "c5": [
+      "CAN H",
+      "CAN H - broken off, continues on ST185-CAN"
+     ],
+     "c6": [
+      "CAN L",
+      "CAN L - broken off, continues on ST185-CAN"
+     ],
+     "c7": [
+      "A1",
+      "A1 (brought out, spare)"
+     ],
+     "c8": [
+      "A2",
+      "A2 - Cruise ladder (stalk C14 pin 5 W; 1k pull-up to +5V)"
+     ],
+     "c9": [
+      "A3",
+      "A3 (brought out, spare)"
+     ],
+     "c10": [
+      "A4",
+      "A4 (brought out, spare)"
+     ],
+     "c11": [
+      "A5",
+      "A5 (brought out, spare)"
+     ],
+     "c12": [
+      "A6",
+      "A6 (brought out, spare)"
+     ],
+     "c13": [
+      "A7",
+      "A7 (brought out, spare)"
+     ],
+     "c14": [
+      "A8",
+      "A8 (brought out, spare)"
+     ],
+     "c15": [
+      "S1",
+      "S1 (brought out, spare)"
+     ],
+     "c16": [
+      "S2",
+      "S2 (brought out, spare)"
+     ],
+     "c17": [
+      "S3",
+      "S3 - Cruise MAIN on (stalk C14 pin 15 Y-B)"
+     ],
+     "c18": [
+      "S4",
+      "S4 (brought out, spare)"
+     ],
+     "c19": [
+      "S5",
+      "S5 (brought out, spare)"
+     ],
+     "c21": [
+      "S7",
+      "S7 - Brake Switch (via opto O1; S9 is +12V-active, S7 is ground-active - R56)"
+     ],
+     "c22": [
+      "S8",
+      "S8 - Reverse (via opto O2; back-up switch is +12V-active, S8 ground-active - R56)"
+     ],
+     "c26": [
+      "L4 low-side",
+      "L4 low-side - oil pressure LED sink, wire on ST185-ClusterLED *"
+     ]
+    }
+   },
+   "opto8": {
+    "label": [
+     "OPTO8",
+     "Optocoupler board, 8 channel (Dan's, generic EL814) - inline at the CSB3"
+    ],
+    "cavities": {
+     "com1": [
+      "input COM",
+      "input COM (LED return) <- CSB3 ground (sp_csb_gnd); PNP / +12V-active inputs"
+     ],
+     "i1": [
+      "input 01",
+      "input 01 <- brake, S9 pin 1 (+12V with the pedal pressed)"
+     ],
+     "i2": [
+      "input 02",
+      "input 02 <- reverse, back-up switch B1 pin 1 (+12V in R)"
+     ],
+     "vcc": [
+      "output VCC",
+      "output VCC <- CSB3 +5V (c3): the board's 10k pull-ups"
+     ],
+     "gnd": [
+      "output GND",
+      "output GND -> CSB3 SGND (c4)"
+     ],
+     "o1": [
+      "output 01",
+      "output 01 (open collector, low when input 01 is on) -> CSB3 S7 (c21)"
+     ],
+     "o2": [
+      "output 02",
+      "output 02 (open collector, low when input 02 is on) -> CSB3 S8 (c22)"
+     ]
+    }
+   }
+  },
+  "terminals": {
+   "fl_cruise_stalk_c1": [
+    "OEM C14-5",
+    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 5 W - ladder to ground (RES/ACC ~68, SET/COAST ~198, CANCEL ~418 ohm) -> sp_cruise_ladder -> CSB3 A2 - solder sleeve into the factory lead"
+   ],
+   "fl_cruise_stalk_c3": [
+    "OEM C14-15",
+    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 15 Y-B - MAIN on/off, contact to the pin 17 ground when ON -> CSB3 S3 - solder sleeve into the factory lead"
+   ],
+   "fl_cruise_stalk_c17": [
+    "OEM C14-17",
+    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 17 BR - stalk switch ground -> sp_csb_gnd (CSB3 ground) - solder sleeve into the factory lead"
+   ],
+   "fl_clutch_sw_c1": [
+    "OEM C11-1",
+    "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) C11 clutch start switch (1993 code)-1 B clutch switch signal -> CSB3 S6 (switch closes with the pedal down; pin 2 W-B is its own ground to IG, so pin 1 reads ground-active; the old starter-relay coil lead, no clutch-start interlock R21) - solder sleeve into the factory lead"
+   ],
+   "fl_brake_sw_c1": [
+    "OEM S9-1",
+    "EWD 1993 p.126-127 S9 pin 1 G-W stop light switch lamp side, +12V with the pedal pressed -> opto IN1 -> CSB3 S7 - soldered tap into the factory G-W lead at S9 (cabin; RearLights' stop feed FL_OEM_S9_C1 lands on the same lead)"
+   ],
+   "br_w_cru_5v": [
+    "-> A-cab: SPL 5V_2",
+    "Broken off - continues on ST185-A-cabin: +5V to the cruise ladder pull-up"
+   ],
+   "br_w_csb12": [
+    "-> CabPwr: FB-LOGIC BUS2-5",
+    "Broken off - continues on ST185-CabinPower: CSB3 +12V from LOGIC CSB 5A (switched k_efi rail)"
+   ],
+   "br_w_csbg": [
+    "-> A-cab: SPL CHASSIS",
+    "Broken off - continues on ST185-A-cabin: CSB3 ground to sp_chassis"
+   ],
+   "br_w_sw7_c": [
+    "-> B-cab: SPL REV_SW",
+    "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8"
+   ],
+   "br_w_oil_k": [
+    "-> ClustLED: D_OIL",
+    "Broken off - continues on ST185-ClusterLED: oil pressure LED sink on CSB3 L4"
+   ],
+   "br_wc_h_csb": [
+    "-> CAN: SPL CANH",
+    "Broken off - continues on ST185-CAN: CAN H into the CSB3 plug"
+   ],
+   "br_wc_l_csb": [
+    "-> CAN: SPL CANL",
+    "Broken off - continues on ST185-CAN: CAN L into the CSB3 plug"
+   ],
+   "br_cab_cancsb_sh": [
+    "-> CAN: SPL SHIELD_CAN",
+    "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can"
+   ]
+  }
+ },
+ "ST185-RearLights.harness": {
+  "connectors": {},
+  "terminals": {
+   "fl_oem_jb1_1f_c1": [
+    "OEM JB1 1F-1",
+    "EWD 1993 p.112-113 J/B1 1F-1 G TAIL 15A out (TAIL relay, light switch TAIL/HEAD) -> rear tail lamps R11 / R12 pins 2-3, license L1 pin 1 - crimp butt splice into the factory 1F-1 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)"
+   ],
+   "fl_oem_jb1_1f_c3": [
+    "OEM JB1 1F-3",
+    "EWD 1993 p.130-131 J/B1 1F-3 G-B turn LH out (flasher T3 via H5 / C15) -> R11 pin 6 - crimp butt splice into the factory 1F-3 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)"
+   ],
+   "fl_oem_jb1_1f_c2": [
+    "OEM JB1 1F-2",
+    "EWD 1993 p.130-131 J/B1 1F-2 G-Y turn RH out (flasher T3 via H5 / C15) -> R12 pin 6 - crimp butt splice into the factory 1F-2 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)"
+   ],
+   "fl_oem_s9_c1": [
+    "OEM S9-1",
+    "EWD 1993 p.126-127 S9 1 G-W stop lamp feed: STOP 15A (J/B1 1B-7) through S9, +12V with the pedal pressed -> R11 / R12 pin 1, H6 pin 1 - soldered tap into the factory G-W lead at S9 pin 1 (cabin, under the dash; the CSB3 brake tap FL_BRAKE_SW_C1 lands on the same lead)"
+   ],
+   "br_rl_rev": [
+    "-> CabPwr: LOGIC M22 87",
+    "Broken off - continues on ST185-CabinPower: reverse relay k_rev 87 -> back-up lamps R11 / R12 pin 4"
+   ],
+   "fl_r11_c1": [
+    "OEM R11-1",
+    "EWD 1993 p.126 R11 pin 1 (G-W in the factory wiring, new wire here) stop LH <- sp_rl_stop - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_r11_c2": [
+    "OEM R11-2",
+    "EWD 1993 p.113 R11 pin 2 (G in the factory wiring, new wire here) tail + rear side marker LH <- sp_rl_tail - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_r11_c3": [
+    "OEM R11-3",
+    "EWD 1993 p.113 R11 pin 3 (G in the factory wiring, new wire here) tail + rear side marker LH <- sp_rl_tail - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_r11_c4": [
+    "OEM R11-4",
+    "EWD Mitchell 1993 Fig. 16 grid 63; 1992 p.132 R11 pin 4 (R-B in the factory wiring, new wire here) back-up LH <- sp_rl_rev (k_rev 87) - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_r11_c5": [
+    "OEM R11-5",
+    "EWD 1993 p.113 / p.126 R11 pin 5 (W-B in the factory wiring, new wire here) ground LH -> sp_rl_gnd -> BL - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_r11_c6": [
+    "OEM R11-6",
+    "EWD 1993 p.130 R11 pin 6 (G-B in the factory wiring, new wire here) turn LH <- J/B1 1F-3 - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_r12_c1": [
+    "OEM R12-1",
+    "EWD 1993 p.126 R12 pin 1 (G-W in the factory wiring, new wire here) stop RH <- sp_rl_stop - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_r12_c2": [
+    "OEM R12-2",
+    "EWD 1993 p.113 R12 pin 2 (G in the factory wiring, new wire here) tail + rear side marker RH <- sp_rl_tail - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_r12_c3": [
+    "OEM R12-3",
+    "EWD 1993 p.113 R12 pin 3 (G in the factory wiring, new wire here) tail + rear side marker RH <- sp_rl_tail - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_r12_c4": [
+    "OEM R12-4",
+    "EWD Mitchell 1993 Fig. 16 grid 63; 1992 p.132 R12 pin 4 (R-B in the factory wiring, new wire here) back-up RH <- sp_rl_rev (k_rev 87) - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_r12_c5": [
+    "OEM R12-5",
+    "EWD 1993 p.113 / p.126 R12 pin 5 (W-B in the factory wiring, new wire here) ground RH -> sp_rl_gnd -> BL - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_r12_c6": [
+    "OEM R12-6",
+    "EWD 1993 p.130 R12 pin 6 (G-Y in the factory wiring, new wire here) turn RH <- J/B1 1F-2 - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_l1_c1": [
+    "OEM L1-1",
+    "EWD 1993 p.113 L1 pin 1 (G in the factory wiring, new wire here) license plate light feed <- sp_rl_tail - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_l1_c2": [
+    "OEM L1-2",
+    "EWD 1993 p.113 L1 pin 2 (W-B in the factory wiring, new wire here) license plate light ground -> sp_rl_gnd -> BL - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_h6_c1": [
+    "OEM H6-A-1",
+    "EWD 1993 p.126 H6 pin A-1 (G-W in the factory wiring, new wire here) high-mount stop light (spoiler) feed <- sp_rl_stop - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "fl_h6_c2": [
+    "OEM H6-A-2",
+    "EWD 1993 p.126 H6 pin A-2 (W-B in the factory wiring, new wire here) high-mount stop light ground -> sp_rl_gnd -> BL (one rear ground, C6; OEM went to BI) - new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
+   ],
+   "t_rl_gnd_bl": [
+    "GND BL",
+    "Body ground BL, back panel center (EWD 1993 p.112 / p.126) - ONE rear ground for every rear lamp (Dan, C6); M6 ring, check the stud size at the build"
+   ]
+  }
+ }
+}

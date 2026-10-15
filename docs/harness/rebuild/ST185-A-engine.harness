@@ -2417,21 +2417,21 @@
   "connectors": [
     {
       "id": "bh_a_eng",
-      "label": "Bulkhead DRB102 - engine plug (DRB16-102SAE-L018), all 102 cavities; section A wired here",
+      "label": "BH-ENG",
       "width": 390,
       "partId": "cp_drb_plug",
       "cavities": [
         {
           "id": "c48",
           "designation": "1",
-          "signal": "Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG)",
+          "signal": "Switched 12V",
           "contactPartId": "ct_hdp12s",
           "propagate": false
         },
         {
           "id": "c49",
           "designation": "2",
-          "signal": "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)",
+          "signal": "Switched 12V",
           "contactPartId": "ct_hdp12s",
           "propagate": false
         },
@@ -2481,7 +2481,7 @@
         {
           "id": "c41",
           "designation": "10",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank",
+          "signal": "Gnd Out eng sens",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -2508,7 +2508,7 @@
         {
           "id": "c42",
           "designation": "14",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam",
+          "signal": "Gnd Out eng sens",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -2521,7 +2521,7 @@
         {
           "id": "c40",
           "designation": "16",
-          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed",
+          "signal": "+5V Out eng sens",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -2535,7 +2535,7 @@
         {
           "id": "c43",
           "designation": "18",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed",
+          "signal": "Gnd Out eng sens",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -2549,7 +2549,7 @@
           "id": "c5",
           "designation": "20",
           "contactPartId": "ct_hdp16s",
-          "signal": "Switched 12V to engine sensors",
+          "signal": "Sw 12V eng sens",
           "propagate": false
         },
         {
@@ -2569,7 +2569,7 @@
           "id": "c2",
           "designation": "23",
           "contactPartId": "ct_hdp16s",
-          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB",
+          "signal": "+5V Out eng sens",
           "propagate": false
         },
         {
@@ -2590,26 +2590,26 @@
           "id": "c3",
           "designation": "26",
           "contactPartId": "ct_hdp16s",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch",
+          "signal": "Gnd Out eng sens",
           "propagate": false
         },
         {
           "id": "c11",
           "designation": "27",
-          "signal": "ETB sensor group screen",
+          "signal": "ETB sens screen",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c39",
           "designation": "28",
-          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP",
+          "signal": "+5V Out eng sens",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c44",
           "designation": "29",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch",
+          "signal": "Gnd Out eng sens",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -2700,7 +2700,7 @@
         {
           "id": "c35",
           "designation": "42",
-          "signal": "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *",
+          "signal": "EHPS logic enable",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -2712,7 +2712,7 @@
         {
           "id": "c36",
           "designation": "44",
-          "signal": "Aux 7 MRS speed-out (ECU A27)",
+          "signal": "Aux 7 MRS speed-out",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -2730,7 +2730,7 @@
         {
           "id": "c45",
           "designation": "47",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
+          "signal": "+5V Out B-eng sens",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -2748,13 +2748,13 @@
         {
           "id": "c46",
           "designation": "50",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
+          "signal": "+5V Out B-eng sens",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c47",
           "designation": "51",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
+          "signal": "+5V Out B-eng sens",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -2784,7 +2784,7 @@
         {
           "id": "c27",
           "designation": "56",
-          "signal": "MR-S pump B5 -> EPS relay k_eps coil- (85)",
+          "signal": "MR-S pump B5",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -3076,7 +3076,7 @@
     },
     {
       "id": "turbospd",
-      "label": "Turbo Speed Sensor",
+      "label": "TURBO SPD",
       "partId": "cp_dt3s",
       "cavities": [
         {
@@ -3110,7 +3110,7 @@
     },
     {
       "id": "map",
-      "label": "MAP Sensor",
+      "label": "MAP",
       "partId": "cp_mp150_3",
       "cavities": [
         {
@@ -3139,7 +3139,7 @@
     },
     {
       "id": "flex",
-      "label": "Flex Fuel Sensor",
+      "label": "FLEX",
       "partId": "cp_gt150",
       "cavities": [
         {
@@ -3171,7 +3171,7 @@
     },
     {
       "id": "inj1",
-      "label": "Injector 1",
+      "label": "INJ1",
       "partId": "cp_inj",
       "cavities": [
         {
@@ -3197,7 +3197,7 @@
     },
     {
       "id": "inj2",
-      "label": "Injector 2",
+      "label": "INJ2",
       "partId": "cp_inj",
       "cavities": [
         {
@@ -3224,7 +3224,7 @@
     },
     {
       "id": "inj3",
-      "label": "Injector 3",
+      "label": "INJ3",
       "partId": "cp_inj",
       "cavities": [
         {
@@ -3251,7 +3251,7 @@
     },
     {
       "id": "inj4",
-      "label": "Injector 4",
+      "label": "INJ4",
       "partId": "cp_inj",
       "cavities": [
         {
@@ -3278,12 +3278,12 @@
     },
     {
       "id": "cop1",
-      "label": "COP 1 (1ZZ)",
+      "label": "COP1",
       "partId": "cp_cop",
       "cavities": [
         {
           "id": "c1",
-          "signal": "+B 12V (COP rail, spur from ST185-B-engine)"
+          "signal": "+B 12V"
         },
         {
           "id": "c2"
@@ -3309,12 +3309,12 @@
     },
     {
       "id": "cop2",
-      "label": "COP 2 (1ZZ)",
+      "label": "COP2",
       "partId": "cp_cop",
       "cavities": [
         {
           "id": "c1",
-          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
+          "signal": "+B 12V",
           "propagate": false
         },
         {
@@ -3342,12 +3342,12 @@
     },
     {
       "id": "cop3",
-      "label": "COP 3 (1ZZ)",
+      "label": "COP3",
       "partId": "cp_cop",
       "cavities": [
         {
           "id": "c1",
-          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
+          "signal": "+B 12V",
           "propagate": false
         },
         {
@@ -3375,12 +3375,12 @@
     },
     {
       "id": "cop4",
-      "label": "COP 4 (1ZZ)",
+      "label": "COP4",
       "partId": "cp_cop",
       "cavities": [
         {
           "id": "c1",
-          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
+          "signal": "+B 12V",
           "propagate": false
         },
         {
@@ -3408,7 +3408,7 @@
     },
     {
       "id": "etb",
-      "label": "Bosch 74.5mm ETB",
+      "label": "ETB",
       "width": 150,
       "partId": "cp_etb",
       "cavities": [
@@ -3455,7 +3455,7 @@
     },
     {
       "id": "boost",
-      "label": "Boost Control Solenoid",
+      "label": "BOOST SOL",
       "partId": "cp_mp150_2",
       "cavities": [
         {
@@ -3481,7 +3481,7 @@
     },
     {
       "id": "ect",
-      "label": "ECT Sensor",
+      "label": "ECT",
       "partId": "cp_toy2p",
       "cavities": [
         {
@@ -3505,7 +3505,7 @@
     },
     {
       "id": "iat",
-      "label": "IAT Sensor (Manifold)",
+      "label": "IAT",
       "partId": "cp_toy2p",
       "cavities": [
         {
@@ -3530,7 +3530,7 @@
     },
     {
       "id": "crank",
-      "label": "Crank VR Sensor (36-2)",
+      "label": "CRANK",
       "partId": "cp_dt2s",
       "cavities": [
         {
@@ -3554,7 +3554,7 @@
     },
     {
       "id": "cam",
-      "label": "Cam Hall Sensor (RacerX)",
+      "label": "CAM",
       "partId": "cp_camkit",
       "cavities": [
         {
@@ -3582,26 +3582,26 @@
     },
     {
       "id": "ix_brail_s",
-      "label": "B sensor +5V - 6-way inline to ST185-B-engine (IX_B_RAIL)",
+      "label": "IX-B-RAIL",
       "width": 270,
       "partId": "cp_dt06_6s",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
+          "signal": "+5V Out B-eng sens",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
+          "signal": "+5V Out B-eng sens",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
+          "signal": "+5V Out B-eng sens",
           "propagate": false
         },
         {
@@ -3637,7 +3637,7 @@
     {
       "id": "eng_gnd_ring",
       "type": "Ring",
-      "signal": "Engine block ground stud (power ground)",
+      "signal": "ENG BLOCK GND",
       "layoutPosition": {
         "x": 60,
         "y": 660
@@ -3653,7 +3653,7 @@
     {
       "id": "starter_trigger",
       "type": "Spade",
-      "signal": "Starter Solenoid Trigger (S)",
+      "signal": "STARTER S",
       "layoutPosition": {
         "x": 270,
         "y": 720
@@ -3669,7 +3669,7 @@
     {
       "id": "br_w_hv_mrs_en_e",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: MRS enable, bulkhead A c35",
+      "signal": "-> EngRm-C: EHPS PUMP C-1",
       "width": 390,
       "layoutPosition": {
         "x": 2520,
@@ -3684,7 +3684,7 @@
     {
       "id": "br_w_mrs_e",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: MRS speed (ECU A27), bulkhead A c36",
+      "signal": "-> EngRm-C: EHPS PUMP B-2",
       "width": 390,
       "layoutPosition": {
         "x": 2520,
@@ -3699,7 +3699,7 @@
     {
       "id": "br_w_strl",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: start relay 87 to the starter S terminal",
+      "signal": "-> CabPwr: POWER R3 87",
       "width": 390,
       "layoutPosition": {
         "x": 3240,
@@ -3714,7 +3714,7 @@
     {
       "id": "br_w124_e",
       "type": "Loose",
-      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor + (Aux 9, B18), bulkhead B c5",
+      "signal": "-> B-eng: BH-ENG 86",
       "width": 390,
       "layoutPosition": {
         "x": 2520,
@@ -3729,7 +3729,7 @@
     {
       "id": "br_w215_e",
       "type": "Loose",
-      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor - (Aux 10, B26), bulkhead B c6",
+      "signal": "-> B-eng: BH-ENG 87",
       "width": 390,
       "layoutPosition": {
         "x": 2520,
@@ -3744,7 +3744,7 @@
     {
       "id": "br_cab_etbm_sh",
       "type": "Loose",
-      "signal": "Broken off - screen comes in from ST185-B-engine: ETB motor cable screen, bulkhead B c22",
+      "signal": "-> B-eng: BH-ENG 88",
       "width": 390,
       "layoutPosition": {
         "x": 2520,
@@ -3759,7 +3759,7 @@
     {
       "id": "br_w_eps_rly_e",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
+      "signal": "-> EngRm-C: EHPS PUMP B-5",
       "width": 390,
       "layoutPosition": {
         "x": 2520,
