@@ -25,7 +25,7 @@ a build product, or history.** The drawings are **not a source of truth** (Danie
 ## Open in the desktop app
 
 Dan edits the drawings in the harness.design **desktop app**, which opens the files and reloads live
-(https://docs.harness.design/feature/desktop). No upload step and no cloud copy (K11, 2026-10-15): Dan opens the repo files directly.
+(https://docs.harness.design/feature/desktop). Cloud copies exist too (K11 = A, DECISIONS R110, 2026-10-15; IDs in `interfaces.json` `cloud`), but the repo files are the master: Dan opens them directly.
 
 - **Open the files** in `docs/harness/rebuild/` (File > Open..., or double-click a `.harness`). The app opens one file at a time, watches it and reloads saved changes at once; `min/` no longer exists.
 - **Link the part library once:** Preferences > Part Libraries > Link existing > `rebuild/ST185.harnesslib`. The library wins on part data; it is committed with the drawings.
