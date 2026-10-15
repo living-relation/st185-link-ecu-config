@@ -99,17 +99,32 @@
  },
  "enclosure-vrc": {
   "png": "cad/enclosures/vrc/trimetric.png",
-  "solids": 15,
-  "part_types": 8,
+  "solids": 12,
+  "part_types": 7,
   "extent_mm": [
    117.2,
    74.0,
    45.0
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1791902030
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1792063717
   },
-  "rendered": "2026-10-14"
+  "rendered": "2026-10-15"
+ },
+ "enclosure-vrc-holder": {
+  "png": "cad/enclosures/vrc/trimetric-holder.png",
+  "solids": 5,
+  "part_types": 2,
+  "extent_mm": [
+   35.0,
+   31.0,
+   17.4
+  ],
+  "sources": {
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_part_OpenLogicEFI_NCV1124_VR_module_RevB3.step": 1792062689,
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_part_VRC-Board-Holder.step": 1792062688
+  },
+  "rendered": "2026-10-15"
  },
  "fuel-hanger": {
   "png": "cad/fuel-hanger/trimetric.png",
@@ -215,8 +230,8 @@
  },
  "package-rev6": {
   "png": "cad/fusebox/package-rev6.png",
-  "solids": 543,
-  "part_types": 84,
+  "solids": 537,
+  "part_types": 83,
   "extent_mm": [
    549.2,
    579.5,
@@ -225,15 +240,15 @@
   "sources": {
    "C:/projects/active/st185-link-ecu-config/cad/busbar/design-B-rev3/B_rev3_ASSEMBLY.step": 1791931593,
    "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1791906601,
-   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1791902030,
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1792063717,
    "C:/projects/active/st185-link-ecu-config/cad/fusebox/ST185_fusebox_rev6_assembly.step": 1792012597
   },
-  "rendered": "2026-10-14"
+  "rendered": "2026-10-15"
  },
  "package-rev7": {
   "png": "cad/fusebox/rev7/package-rev7.png",
-  "solids": 495,
-  "part_types": 73,
+  "solids": 489,
+  "part_types": 72,
   "extent_mm": [
    549.2,
    454.4,
@@ -241,8 +256,8 @@
   ],
   "sources": {
    "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1791906601,
-   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1791902030,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step": 1792060040
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1792063717,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step": 1792063613
   },
   "rendered": "2026-10-15"
  }
