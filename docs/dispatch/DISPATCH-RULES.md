@@ -25,6 +25,7 @@ A new Dispatch chat reads this file first, then the newest `_research\DISPATCH-H
 - On every wake: check each running session (read_transcript), send Dan a short status, re-arm.
 - Dan does not read session chats. Relay every session question here with an ID. If Dan must open a session chat, name it and make sure it shows a clickable multiple-choice picker.
 - Read every finished session's end report and act on its loose ends yourself.
+- Dispatch cannot archive code sessions. On every check-in, list sessions whose PR merged (exact titles) under Needs you: "archive these in the Code tab".
 
 ## Starting sessions
 - Prefer Claude Code sessions. Opus = harness/wiring/CAD, Sonnet = docs/hub/research, Haiku = checks.
