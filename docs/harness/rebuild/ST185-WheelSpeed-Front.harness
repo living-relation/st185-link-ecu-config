@@ -174,13 +174,13 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V",
+          "signal": "VRC-F +5V",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Gnd Out",
+          "signal": "VRC-F GND",
           "propagate": false
         },
         {
@@ -198,7 +198,7 @@
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Screen drain",
+          "signal": "WS-F screen drain",
           "propagate": false
         },
         {
@@ -291,7 +291,7 @@
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Gnd",
+          "signal": "VRC-F OUT GND",
           "propagate": false
         },
         {

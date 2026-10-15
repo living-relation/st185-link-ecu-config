@@ -894,22 +894,22 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12V",
+          "signal": "CSB3 12V",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c2",
-          "signal": "GND",
+          "signal": "CSB3 GND",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c3",
-          "signal": "+5V sensor supply",
+          "signal": "CSB3 +5V opto",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c4",
-          "signal": "SGND",
+          "signal": "CSB3 SGND opto",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -929,7 +929,7 @@
         },
         {
           "id": "c8",
-          "signal": "A2",
+          "signal": "A2 cruise ladder",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -974,7 +974,7 @@
         },
         {
           "id": "c17",
-          "signal": "S3",
+          "signal": "S3 cruise MAIN",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -994,12 +994,12 @@
         },
         {
           "id": "c21",
-          "signal": "S7",
+          "signal": "S7 brake",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c22",
-          "signal": "S8",
+          "signal": "S8 reverse",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -1019,7 +1019,7 @@
         },
         {
           "id": "c26",
-          "signal": "L4 low-side",
+          "signal": "L4 oil LED sink",
           "contactPartId": "ct_hdp20s"
         },
         {
@@ -1076,7 +1076,7 @@
         {
           "id": "com1",
           "designation": "COM",
-          "signal": "input COM",
+          "signal": "Opto COM",
           "propagate": false
         },
         {
@@ -1087,13 +1087,13 @@
         {
           "id": "i1",
           "designation": "01",
-          "signal": "input 01",
+          "signal": "Opto in1 brake",
           "propagate": false
         },
         {
           "id": "i2",
           "designation": "02",
-          "signal": "input 02",
+          "signal": "Opto in2 reverse",
           "propagate": false
         },
         {
@@ -1129,25 +1129,25 @@
         {
           "id": "vcc",
           "designation": "VCC",
-          "signal": "output VCC",
+          "signal": "Opto VCC +5V",
           "propagate": false
         },
         {
           "id": "gnd",
           "designation": "GND",
-          "signal": "output GND",
+          "signal": "Opto GND",
           "propagate": false
         },
         {
           "id": "o1",
           "designation": "01",
-          "signal": "output 01",
+          "signal": "Opto out1 brake",
           "propagate": false
         },
         {
           "id": "o2",
           "designation": "02",
-          "signal": "output 02",
+          "signal": "Opto out2 reverse",
           "propagate": false
         },
         {
@@ -1196,7 +1196,7 @@
       "id": "fl_cruise_stalk_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM C14-5",
+      "signal": "Cruise ladder -> C14-5",
       "schematicPosition": {
         "x": 660,
         "y": 570
@@ -1211,7 +1211,7 @@
       "id": "fl_cruise_stalk_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM C14-15",
+      "signal": "Cruise MAIN -> C14-15",
       "schematicPosition": {
         "x": 660,
         "y": 630
@@ -1226,7 +1226,7 @@
       "id": "fl_cruise_stalk_c17",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM C14-17",
+      "signal": "Cruise GND -> C14-17",
       "schematicPosition": {
         "x": 660,
         "y": 690
@@ -1241,7 +1241,7 @@
       "id": "fl_clutch_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM C11-1",
+      "signal": "Clutch SW -> C11-1",
       "schematicPosition": {
         "x": 660,
         "y": 420
@@ -1256,7 +1256,7 @@
       "id": "fl_brake_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM S9-1",
+      "signal": "Brake SW -> S9-1",
       "schematicPosition": {
         "x": 660,
         "y": 270
@@ -1270,7 +1270,7 @@
     {
       "id": "br_w_cru_5v",
       "type": "Loose",
-      "signal": "-> A-cab: SPL 5V_2",
+      "signal": "Cruise +5V -> splice 5V 2",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1285,7 +1285,7 @@
     {
       "id": "br_w_csb12",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-LOGIC BUS2-5",
+      "signal": "CSB3 12V -> FB-LOGIC CSB 5A",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1300,7 +1300,7 @@
     {
       "id": "br_w_csbg",
       "type": "Loose",
-      "signal": "-> A-cab: SPL CHASSIS",
+      "signal": "CSB3 GND -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1315,7 +1315,7 @@
     {
       "id": "br_w_sw7_c",
       "type": "Loose",
-      "signal": "-> B-cab: SPL REV_SW",
+      "signal": "Reverse sig -> splice REV SW",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1330,7 +1330,7 @@
     {
       "id": "br_w_oil_k",
       "type": "Loose",
-      "signal": "-> ClustLED: D_OIL",
+      "signal": "Oil LED sink -> oil diode",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1345,7 +1345,7 @@
     {
       "id": "br_wc_h_csb",
       "type": "Loose",
-      "signal": "-> CAN: SPL CANH",
+      "signal": "CAN H -> splice CANH",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1360,7 +1360,7 @@
     {
       "id": "br_wc_l_csb",
       "type": "Loose",
-      "signal": "-> CAN: SPL CANL",
+      "signal": "CAN L -> splice CANL",
       "width": 390,
       "layoutPosition": {
         "x": 420,
@@ -1375,7 +1375,7 @@
     {
       "id": "br_cab_cancsb_sh",
       "type": "Loose",
-      "signal": "-> CAN: SPL SHIELD_CAN",
+      "signal": "CAN screen -> splice SHIELD CAN",
       "width": 390,
       "layoutPosition": {
         "x": 420,

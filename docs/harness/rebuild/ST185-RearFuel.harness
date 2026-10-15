@@ -268,7 +268,7 @@
         {
           "id": "c2",
           "designation": "2",
-          "signal": "GND"
+          "signal": "FUEL LVL GND"
         }
       ],
       "layoutPosition": {
@@ -296,11 +296,11 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V"
+          "signal": "FUEL PUMP 12V"
         },
         {
           "id": "c2",
-          "signal": "GND"
+          "signal": "FUEL PUMP GND"
         }
       ],
       "layoutPosition": {
@@ -319,7 +319,7 @@
     {
       "id": "br_fp_pump",
       "type": "Loose",
-      "signal": "-> HeavyDC: BATT K1 87",
+      "signal": "Fuel pump 12V -> BATT K1 87",
       "width": 390,
       "layoutPosition": {
         "x": 900,
@@ -334,7 +334,7 @@
     {
       "id": "t_trunk_fp_gnd",
       "type": "Ring",
-      "signal": "TRUNK GND M6",
+      "signal": "FP GND -> trunk stud M6",
       "layoutPosition": {
         "x": 810,
         "y": 780

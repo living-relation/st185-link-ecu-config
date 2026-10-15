@@ -2417,21 +2417,21 @@
   "connectors": [
     {
       "id": "bh_a_eng",
-      "label": "BH-ENG",
+      "label": "BH-A",
       "width": 390,
       "partId": "cp_drb_plug",
       "cavities": [
         {
           "id": "c48",
           "designation": "1",
-          "signal": "Switched 12V",
+          "signal": "INJ 12V",
           "contactPartId": "ct_hdp12s",
           "propagate": false
         },
         {
           "id": "c49",
           "designation": "2",
-          "signal": "Switched 12V",
+          "signal": "COP 12V",
           "contactPartId": "ct_hdp12s",
           "propagate": false
         },
@@ -2481,7 +2481,7 @@
         {
           "id": "c41",
           "designation": "10",
-          "signal": "Gnd Out eng sens",
+          "signal": "Gnd Out crank",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -2508,7 +2508,7 @@
         {
           "id": "c42",
           "designation": "14",
-          "signal": "Gnd Out eng sens",
+          "signal": "Gnd Out cam",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -2521,7 +2521,7 @@
         {
           "id": "c40",
           "designation": "16",
-          "signal": "+5V Out eng sens",
+          "signal": "+5V Out turbo",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -2535,7 +2535,7 @@
         {
           "id": "c43",
           "designation": "18",
-          "signal": "Gnd Out eng sens",
+          "signal": "Gnd Out turbo",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -2549,7 +2549,7 @@
           "id": "c5",
           "designation": "20",
           "contactPartId": "ct_hdp16s",
-          "signal": "Sw 12V eng sens",
+          "signal": "SW12 eng sens",
           "propagate": false
         },
         {
@@ -2569,7 +2569,7 @@
           "id": "c2",
           "designation": "23",
           "contactPartId": "ct_hdp16s",
-          "signal": "+5V Out eng sens",
+          "signal": "+5V Out ETB",
           "propagate": false
         },
         {
@@ -2590,7 +2590,7 @@
           "id": "c3",
           "designation": "26",
           "contactPartId": "ct_hdp16s",
-          "signal": "Gnd Out eng sens",
+          "signal": "Gnd Out IAT",
           "propagate": false
         },
         {
@@ -2602,14 +2602,14 @@
         {
           "id": "c39",
           "designation": "28",
-          "signal": "+5V Out eng sens",
+          "signal": "+5V Out MAP",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c44",
           "designation": "29",
-          "signal": "Gnd Out eng sens",
+          "signal": "Gnd Out flex",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -2700,7 +2700,7 @@
         {
           "id": "c35",
           "designation": "42",
-          "signal": "EHPS logic enable",
+          "signal": "EHPS enable",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -2730,7 +2730,7 @@
         {
           "id": "c45",
           "designation": "47",
-          "signal": "+5V Out B-eng sens",
+          "signal": "+5V oil press",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -2748,13 +2748,13 @@
         {
           "id": "c46",
           "designation": "50",
-          "signal": "+5V Out B-eng sens",
+          "signal": "+5V fuel press",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c47",
           "designation": "51",
-          "signal": "+5V Out B-eng sens",
+          "signal": "+5V coolant press",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -2784,7 +2784,7 @@
         {
           "id": "c27",
           "designation": "56",
-          "signal": "MR-S pump B5",
+          "signal": "EHPS coil-",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -3093,7 +3093,7 @@
         },
         {
           "id": "c3",
-          "signal": "GND",
+          "signal": "TURBO SPD GND",
           "designation": "C",
           "contactPartId": "ct_dt16s_ni"
         }
@@ -3123,7 +3123,7 @@
         },
         {
           "id": "c3",
-          "signal": "GND",
+          "signal": "MAP GND",
           "propagate": false
         }
       ],
@@ -3150,7 +3150,7 @@
         },
         {
           "id": "c2",
-          "signal": "GND",
+          "signal": "FLEX GND",
           "contactPartId": "ct_gt150_skt_05"
         },
         {
@@ -3176,7 +3176,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V",
+          "signal": "INJ1 12V",
           "contactPartId": "ct_gt150_skt"
         },
         {
@@ -3202,7 +3202,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V",
+          "signal": "INJ2 12V",
           "contactPartId": "ct_gt150_skt",
           "propagate": false
         },
@@ -3229,7 +3229,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V",
+          "signal": "INJ3 12V",
           "contactPartId": "ct_gt150_skt",
           "propagate": false
         },
@@ -3256,7 +3256,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V",
+          "signal": "INJ4 12V",
           "contactPartId": "ct_gt150_skt",
           "propagate": false
         },
@@ -3294,7 +3294,7 @@
         },
         {
           "id": "c4",
-          "signal": "GND"
+          "signal": "COP1 GND"
         }
       ],
       "layoutPosition": {
@@ -3326,7 +3326,7 @@
         },
         {
           "id": "c4",
-          "signal": "GND",
+          "signal": "COP2 GND",
           "propagate": false
         }
       ],
@@ -3359,7 +3359,7 @@
         },
         {
           "id": "c4",
-          "signal": "GND",
+          "signal": "COP3 GND",
           "propagate": false
         }
       ],
@@ -3392,7 +3392,7 @@
         },
         {
           "id": "c4",
-          "signal": "GND",
+          "signal": "COP4 GND",
           "propagate": false
         }
       ],
@@ -3460,7 +3460,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "12V",
+          "signal": "BOOST SOL 12V",
           "contactPartId": "ct_mp150_skt"
         },
         {
@@ -3490,7 +3490,7 @@
         },
         {
           "id": "c2",
-          "signal": "GND"
+          "signal": "ECT GND"
         }
       ],
       "layoutPosition": {
@@ -3514,7 +3514,7 @@
         },
         {
           "id": "c2",
-          "signal": "GND",
+          "signal": "IAT GND",
           "propagate": false
         }
       ],
@@ -3567,7 +3567,7 @@
         },
         {
           "id": "c3",
-          "signal": "GND"
+          "signal": "CAM GND"
         }
       ],
       "layoutPosition": {
@@ -3589,19 +3589,19 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V Out B-eng sens",
+          "signal": "+5V oil press",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "+5V Out B-eng sens",
+          "signal": "+5V fuel press",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "+5V Out B-eng sens",
+          "signal": "+5V coolant press",
           "propagate": false
         },
         {
@@ -3637,7 +3637,7 @@
     {
       "id": "eng_gnd_ring",
       "type": "Ring",
-      "signal": "ENG BLOCK GND",
+      "signal": "Power GND -> eng block",
       "layoutPosition": {
         "x": 60,
         "y": 660
@@ -3653,7 +3653,7 @@
     {
       "id": "starter_trigger",
       "type": "Spade",
-      "signal": "STARTER S",
+      "signal": "Start sig -> starter S",
       "layoutPosition": {
         "x": 270,
         "y": 720
@@ -3669,7 +3669,7 @@
     {
       "id": "br_w_hv_mrs_en_e",
       "type": "Loose",
-      "signal": "-> EngRm-C: EHPS PUMP C-1",
+      "signal": "EHPS enable -> EHPS PUMP C-1",
       "width": 390,
       "layoutPosition": {
         "x": 2520,
@@ -3684,7 +3684,7 @@
     {
       "id": "br_w_mrs_e",
       "type": "Loose",
-      "signal": "-> EngRm-C: EHPS PUMP B-2",
+      "signal": "EHPS speed -> EHPS PUMP B-2",
       "width": 390,
       "layoutPosition": {
         "x": 2520,
@@ -3699,7 +3699,7 @@
     {
       "id": "br_w_strl",
       "type": "Loose",
-      "signal": "-> CabPwr: POWER R3 87",
+      "signal": "Starter S -> POWER R3 87",
       "width": 390,
       "layoutPosition": {
         "x": 3240,
@@ -3714,7 +3714,7 @@
     {
       "id": "br_w124_e",
       "type": "Loose",
-      "signal": "-> B-eng: BH-ENG 86",
+      "signal": "ETB motor + -> BH-B 86",
       "width": 390,
       "layoutPosition": {
         "x": 2520,
@@ -3729,7 +3729,7 @@
     {
       "id": "br_w215_e",
       "type": "Loose",
-      "signal": "-> B-eng: BH-ENG 87",
+      "signal": "ETB motor - -> BH-B 87",
       "width": 390,
       "layoutPosition": {
         "x": 2520,
@@ -3744,7 +3744,7 @@
     {
       "id": "br_cab_etbm_sh",
       "type": "Loose",
-      "signal": "-> B-eng: BH-ENG 88",
+      "signal": "ETB screen -> BH-B 88",
       "width": 390,
       "layoutPosition": {
         "x": 2520,
@@ -3759,7 +3759,7 @@
     {
       "id": "br_w_eps_rly_e",
       "type": "Loose",
-      "signal": "-> EngRm-C: EHPS PUMP B-5",
+      "signal": "EHPS coil- -> EHPS PUMP B-5",
       "width": 390,
       "layoutPosition": {
         "x": 2520,

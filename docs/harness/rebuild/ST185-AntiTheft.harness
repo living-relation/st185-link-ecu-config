@@ -1050,13 +1050,13 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12V CONSTANT",
+          "signal": "Alarm 12V",
           "designation": "1",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c2",
-          "signal": "GROUND",
+          "signal": "ALARM GND",
           "designation": "2",
           "contactPartId": "ct_hdp16s"
         },
@@ -1110,13 +1110,13 @@
         },
         {
           "id": "c11",
-          "signal": "VALET/PROGRAM SW",
+          "signal": "Valet SW",
           "designation": "11",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c12",
-          "signal": "SHOCK TRIGGER IN",
+          "signal": "Shock trig in",
           "designation": "12",
           "contactPartId": "ct_hdp16s"
         }
@@ -1138,20 +1138,20 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12V CONSTANT",
+          "signal": "Shock 12V",
           "designation": "A",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c2",
-          "signal": "Ground",
+          "signal": "SHOCK SNSR GND",
           "designation": "B",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c3",
-          "signal": "Trigger out",
+          "signal": "Shock trig out",
           "designation": "C",
           "contactPartId": "ct_hdp16s",
           "propagate": false
@@ -1174,14 +1174,14 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12V from ALARM 4",
+          "signal": "Siren 12V",
           "designation": "1",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c2",
-          "signal": "Ground",
+          "signal": "SIREN GND",
           "designation": "2",
           "contactPartId": "ct_hdp16s",
           "propagate": false
@@ -1204,14 +1204,14 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "LED anode",
+          "signal": "Status LED +",
           "designation": "1",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c2",
-          "signal": "LED cathode GND",
+          "signal": "LED cathode",
           "designation": "2",
           "contactPartId": "ct_hdp16s"
         }
@@ -1233,14 +1233,14 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Switch",
+          "signal": "Valet SW sig",
           "designation": "1",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c2",
-          "signal": "Ground",
+          "signal": "VALET SW GND",
           "designation": "2",
           "contactPartId": "ct_hdp16s"
         }
@@ -1260,7 +1260,7 @@
       "id": "t_at_12v",
       "type": "Loose",
       "width": 390,
-      "signal": "-> CabPwr: FB-LOGIC BUS1-7",
+      "signal": "Alarm 12V -> FB-LOGIC ALM 5A",
       "layoutPosition": {
         "x": 1380,
         "y": -420
@@ -1275,7 +1275,7 @@
       "id": "t_at_ig",
       "type": "Loose",
       "width": 390,
-      "signal": "-> CabPwr: FB-LOGIC BUS2-9",
+      "signal": "Alarm IG -> FB-LOGIC ALMIG 2A",
       "layoutPosition": {
         "x": 870,
         "y": -480
@@ -1291,7 +1291,7 @@
       "type": "Ring",
       "width": 390,
       "partId": "tp_ring_m6_22_16",
-      "signal": "GND STUD M6 A",
+      "signal": "Alarm GND -> stud M6 A",
       "layoutPosition": {
         "x": 1380,
         "y": 900
@@ -1306,7 +1306,7 @@
       "id": "t_at_door",
       "type": "Loose",
       "width": 390,
-      "signal": "DOOR SW (OEM)",
+      "signal": "Door trig -> door SWs",
       "layoutPosition": {
         "x": 2100,
         "y": 540
@@ -1322,7 +1322,7 @@
       "id": "t_at_hood",
       "type": "Loose",
       "width": 390,
-      "signal": "HOOD PIN SW",
+      "signal": "Hood trig -> hood pin SW",
       "layoutPosition": {
         "x": 0,
         "y": -120
@@ -1338,7 +1338,7 @@
       "id": "t_at_trunk",
       "type": "Loose",
       "width": 150,
-      "signal": "TRUNK PIN SW",
+      "signal": "Trunk trig -> trunk pin SW",
       "layoutPosition": {
         "x": 2940,
         "y": 300
@@ -1354,7 +1354,7 @@
       "id": "t_at_park",
       "type": "Loose",
       "width": 390,
-      "signal": "PARK LAMP RLY",
+      "signal": "Park flash -> park relay",
       "layoutPosition": {
         "x": 1740,
         "y": -240
@@ -1371,7 +1371,7 @@
       "type": "Ring",
       "width": 390,
       "partId": "tp_ring_m6_22_16",
-      "signal": "GND STUD M6 B",
+      "signal": "Shock/LED GND -> M6 B",
       "layoutPosition": {
         "x": 1500,
         "y": 840
@@ -1387,7 +1387,7 @@
       "type": "Ring",
       "width": 390,
       "partId": "tp_ring_m6_22_16",
-      "signal": "GND STUD M6 C",
+      "signal": "Valet GND -> stud M6 C",
       "layoutPosition": {
         "x": 1740,
         "y": 720
@@ -1402,7 +1402,7 @@
       "id": "t_at_12v_shk",
       "type": "Loose",
       "width": 390,
-      "signal": "-> CabPwr: FB-LOGIC BUS1-8",
+      "signal": "Shock 12V -> FB-LOGIC ALMS 2A",
       "layoutPosition": {
         "x": 1500,
         "y": -360
@@ -1416,7 +1416,7 @@
     {
       "id": "br_w_at_immob2",
       "type": "Loose",
-      "signal": "-> B-cab: ECU-B B27",
+      "signal": "Immob out -> ECU-B B27",
       "width": 390,
       "layoutPosition": {
         "x": 1860,

@@ -950,7 +950,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM JB1 1F-1",
+      "signal": "Tail 15A -> JB1 1F-1",
       "schematicPosition": {
         "x": 0,
         "y": 0
@@ -966,7 +966,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM JB1 1F-3",
+      "signal": "Turn LH -> JB1 1F-3",
       "schematicPosition": {
         "x": 0,
         "y": 60
@@ -982,7 +982,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM JB1 1F-2",
+      "signal": "Turn RH -> JB1 1F-2",
       "schematicPosition": {
         "x": 0,
         "y": 120
@@ -998,7 +998,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM S9-1",
+      "signal": "Stop feed -> S9-1",
       "schematicPosition": {
         "x": 0,
         "y": 180
@@ -1013,7 +1013,7 @@
       "id": "br_rl_rev",
       "type": "Loose",
       "width": 390,
-      "signal": "-> CabPwr: LOGIC M22 87",
+      "signal": "Rev lamps -> LOGIC M22 87",
       "schematicPosition": {
         "x": 0,
         "y": 240
@@ -1029,7 +1029,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R11-1",
+      "signal": "Stop LH -> R11-1",
       "schematicPosition": {
         "x": 750,
         "y": 0
@@ -1045,7 +1045,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R11-2",
+      "signal": "Tail LH -> R11-2",
       "schematicPosition": {
         "x": 750,
         "y": 60
@@ -1061,7 +1061,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R11-3",
+      "signal": "Marker LH -> R11-3",
       "schematicPosition": {
         "x": 750,
         "y": 120
@@ -1077,7 +1077,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R11-4",
+      "signal": "Back-up LH -> R11-4",
       "schematicPosition": {
         "x": 750,
         "y": 180
@@ -1093,7 +1093,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R11-5",
+      "signal": "Lamp GND LH -> R11-5",
       "schematicPosition": {
         "x": 750,
         "y": 240
@@ -1109,7 +1109,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R11-6",
+      "signal": "Turn LH -> R11-6",
       "schematicPosition": {
         "x": 750,
         "y": 300
@@ -1125,7 +1125,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R12-1",
+      "signal": "Stop RH -> R12-1",
       "schematicPosition": {
         "x": 750,
         "y": 360
@@ -1141,7 +1141,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R12-2",
+      "signal": "Tail RH -> R12-2",
       "schematicPosition": {
         "x": 750,
         "y": 420
@@ -1157,7 +1157,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R12-3",
+      "signal": "Marker RH -> R12-3",
       "schematicPosition": {
         "x": 750,
         "y": 480
@@ -1173,7 +1173,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R12-4",
+      "signal": "Back-up RH -> R12-4",
       "schematicPosition": {
         "x": 750,
         "y": 540
@@ -1189,7 +1189,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R12-5",
+      "signal": "Lamp GND RH -> R12-5",
       "schematicPosition": {
         "x": 750,
         "y": 600
@@ -1205,7 +1205,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM R12-6",
+      "signal": "Turn RH -> R12-6",
       "schematicPosition": {
         "x": 750,
         "y": 660
@@ -1221,7 +1221,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM L1-1",
+      "signal": "Licence + -> L1-1",
       "schematicPosition": {
         "x": 750,
         "y": 720
@@ -1237,7 +1237,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM L1-2",
+      "signal": "Licence GND -> L1-2",
       "schematicPosition": {
         "x": 750,
         "y": 780
@@ -1253,7 +1253,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM H6-A-1",
+      "signal": "HMSL + -> H6-A-1",
       "schematicPosition": {
         "x": 750,
         "y": 840
@@ -1269,7 +1269,7 @@
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "OEM H6-A-2",
+      "signal": "HMSL GND -> H6-A-2",
       "schematicPosition": {
         "x": 750,
         "y": 900
@@ -1285,7 +1285,7 @@
       "type": "Ring",
       "partId": "tp_ring_m6_22_16",
       "width": 390,
-      "signal": "GND BL",
+      "signal": "Rear GND -> body GND BL",
       "schematicPosition": {
         "x": 750,
         "y": 960

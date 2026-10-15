@@ -3638,7 +3638,7 @@
         {
           "id": "c2",
           "designation": "ALT/STR",
-          "signal": "To RADLOK +"
+          "signal": "ALT/STR +"
         },
         {
           "id": "c8",
@@ -3686,7 +3686,7 @@
         {
           "id": "c1",
           "designation": "+",
-          "signal": "From k_fan2 87"
+          "signal": "Cond fan 12V"
         }
       ],
       "partId": "cp_dthd_1_8s"
@@ -3700,12 +3700,12 @@
         {
           "id": "a1",
           "designation": "A-1",
-          "signal": "+12V EHPS relay 87"
+          "signal": "EHPS 12V"
         },
         {
           "id": "a2",
           "designation": "A-2",
-          "signal": "GND"
+          "signal": "EHPS GND"
         },
         {
           "id": "b1",
@@ -3714,7 +3714,7 @@
         {
           "id": "b2",
           "designation": "B-2",
-          "signal": "SPD Out"
+          "signal": "EHPS speed"
         },
         {
           "id": "b3",
@@ -3727,7 +3727,7 @@
         {
           "id": "b5",
           "designation": "B-5",
-          "signal": "EHPS relay coil-",
+          "signal": "EHPS coil-",
           "propagate": false
         },
         {
@@ -3737,7 +3737,7 @@
         {
           "id": "c1",
           "designation": "C-1",
-          "signal": "IG-switched"
+          "signal": "EHPS IG"
         },
         {
           "id": "c2",
@@ -3769,7 +3769,7 @@
         {
           "id": "c1",
           "designation": "-",
-          "signal": "GND EA"
+          "signal": "Fan GND EA"
         }
       ],
       "partId": "cp_dthd_1_8s"
@@ -3790,7 +3790,7 @@
         {
           "id": "c1",
           "designation": "-",
-          "signal": "GND EA"
+          "signal": "Fan GND EA"
         }
       ],
       "partId": "cp_dthd_1_8s"
@@ -3812,13 +3812,13 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Horn +",
+          "signal": "Horn LH +",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Horn ground",
+          "signal": "Horn GND",
           "propagate": false
         }
       ]
@@ -3840,13 +3840,13 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Horn +",
+          "signal": "Horn RH +",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Horn ground",
+          "signal": "Horn GND",
           "propagate": false
         }
       ]
@@ -3856,7 +3856,7 @@
     {
       "id": "br_h1_batt_pos",
       "type": "Loose",
-      "signal": "-> HeavyDC: KILL SW MAIN 2",
+      "signal": "BATT + -> KILL SW MAIN 2",
       "schematicPosition": {
         "x": 0,
         "y": 0
@@ -3870,7 +3870,7 @@
     {
       "id": "br_h2_batt_neg",
       "type": "Loose",
-      "signal": "-> HeavyDC: BATT -",
+      "signal": "BATT - -> trunk batt -",
       "schematicPosition": {
         "x": 0,
         "y": 60
@@ -3884,7 +3884,7 @@
     {
       "id": "br_h3_radlok_pos",
       "type": "Loose",
-      "signal": "-> HeavyDC: RADLOK+ FW 1",
+      "signal": "ALT/STR + -> RADLOK+ FW 1",
       "schematicPosition": {
         "x": 0,
         "y": 120
@@ -3898,7 +3898,7 @@
     {
       "id": "br_h6a_radlok_neg",
       "type": "Loose",
-      "signal": "-> HeavyDC: RADLOK- FW 1",
+      "signal": "PWR NEG -> RADLOK- FW 1",
       "schematicPosition": {
         "x": 0,
         "y": 330
@@ -3912,7 +3912,7 @@
     {
       "id": "t_eng_block_2",
       "type": "Ring",
-      "signal": "ENG BLOCK 2",
+      "signal": "EB strap -> eng block 2",
       "width": 390,
       "schematicPosition": {
         "x": 660,
@@ -3928,7 +3928,7 @@
     {
       "id": "t_eng_block_3",
       "type": "Ring",
-      "signal": "ENG BLOCK 3",
+      "signal": "EHPS GND -> eng block 3",
       "width": 390,
       "schematicPosition": {
         "x": 660,
@@ -3944,7 +3944,7 @@
     {
       "id": "t_gnd_ea",
       "type": "Ring",
-      "signal": "GND EA",
+      "signal": "Rad fan GND -> EA",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -3960,7 +3960,7 @@
     {
       "id": "t_gnd_ea_2",
       "type": "Ring",
-      "signal": "GND EA 2",
+      "signal": "Cond fan GND -> EA 2",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -3976,7 +3976,7 @@
     {
       "id": "t_gnd_eb",
       "type": "Ring",
-      "signal": "GND EB",
+      "signal": "EB strap -> EB",
       "width": 270,
       "schematicPosition": {
         "x": 1980,
@@ -3992,7 +3992,7 @@
     {
       "id": "t_gnd_id",
       "type": "Ring",
-      "signal": "GND ID",
+      "signal": "PWR NEG -> GND ID",
       "width": 270,
       "schematicPosition": {
         "x": 1320,
@@ -4008,7 +4008,7 @@
     {
       "id": "t_gnd_ig",
       "type": "Ring",
-      "signal": "GND IG",
+      "signal": "PWR NEG -> GND IG",
       "width": 390,
       "schematicPosition": {
         "x": 1320,
@@ -4025,7 +4025,7 @@
       "id": "fl_ac_press_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM A5-1",
+      "signal": "A/C PSW 12V -> A5-1",
       "schematicPosition": {
         "x": 0,
         "y": 1650
@@ -4040,7 +4040,7 @@
       "id": "fl_a4_3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM A4-3",
+      "signal": "A/C VC coil -> A4-3",
       "schematicPosition": {
         "x": 0,
         "y": 1710
@@ -4055,7 +4055,7 @@
       "id": "fl_a5_4",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM A5-4",
+      "signal": "A/C PSW out -> A5-4",
       "schematicPosition": {
         "x": 0,
         "y": 1770
@@ -4069,7 +4069,7 @@
     {
       "id": "br_ac_mg",
       "type": "Loose",
-      "signal": "-> A-cab: OEM A18-5",
+      "signal": "A/C VC coil -> A18-5",
       "width": 390,
       "schematicPosition": {
         "x": 0,
@@ -4084,7 +4084,7 @@
     {
       "id": "br_ac_psw",
       "type": "Loose",
-      "signal": "-> A-cab: SPL AC_PSW",
+      "signal": "A/C PSW -> splice AC PSW",
       "width": 390,
       "schematicPosition": {
         "x": 0,
@@ -4100,7 +4100,7 @@
       "id": "fl_oem_ie1_c10",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "OEM IE1-10",
+      "signal": "AM1 feed -> IE1-10",
       "schematicPosition": {
         "x": 1320,
         "y": 0
@@ -4115,7 +4115,7 @@
       "id": "fl_oem_ie1_c17",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "OEM IE1-17",
+      "signal": "AM2 feed -> IE1-17",
       "schematicPosition": {
         "x": 1320,
         "y": 60
@@ -4130,7 +4130,7 @@
       "id": "fl_oem_jb1_1i_c1",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "OEM JB1 1I-1",
+      "signal": "JB1 B+ -> JB1 1I-1",
       "schematicPosition": {
         "x": 1320,
         "y": 240
@@ -4144,7 +4144,7 @@
     {
       "id": "br_w_fan_pwr",
       "type": "Loose",
-      "signal": "-> CabPwr: POWER R4 87",
+      "signal": "Rad fan 12V -> POWER R4 87",
       "width": 390,
       "layoutPosition": {
         "x": 4950,
@@ -4159,7 +4159,7 @@
     {
       "id": "br_w_fan2_pwr",
       "type": "Loose",
-      "signal": "-> CabPwr: POWER R5 87",
+      "signal": "Cond fan 12V -> POWER R5 87",
       "width": 390,
       "layoutPosition": {
         "x": 4950,
@@ -4174,7 +4174,7 @@
     {
       "id": "br_w_eps_pwr",
       "type": "Loose",
-      "signal": "-> CabPwr: EHPS RELAY 87",
+      "signal": "EHPS 12V -> EHPS RELAY 87",
       "width": 390,
       "layoutPosition": {
         "x": 2160,
@@ -4189,7 +4189,7 @@
     {
       "id": "br_w_hv_mrs_en_e",
       "type": "Loose",
-      "signal": "-> A-eng: BH-ENG 42",
+      "signal": "EHPS enable -> BH-A 42",
       "width": 390,
       "layoutPosition": {
         "x": 4440,
@@ -4204,7 +4204,7 @@
     {
       "id": "br_w_mrs_e",
       "type": "Loose",
-      "signal": "-> A-eng: BH-ENG 44",
+      "signal": "EHPS speed -> BH-A 44",
       "width": 390,
       "layoutPosition": {
         "x": 4440,
@@ -4219,7 +4219,7 @@
     {
       "id": "br_w_pmu_hl",
       "type": "Loose",
-      "signal": "-> CabPwr: LOGIC M11 87",
+      "signal": "Head LH 12V -> LOGIC M11 87",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4234,7 +4234,7 @@
     {
       "id": "br_w_pmu_hr",
       "type": "Loose",
-      "signal": "-> CabPwr: LOGIC M12 87",
+      "signal": "Head RH 12V -> LOGIC M12 87",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4249,7 +4249,7 @@
     {
       "id": "br_w_pmu_horn",
       "type": "Loose",
-      "signal": "-> CabPwr: LOGIC M13 87",
+      "signal": "Horn 12V -> LOGIC M13 87",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4264,7 +4264,7 @@
     {
       "id": "br_w_pmu_dome",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-LOGIC BUS1-5",
+      "signal": "Dome 12V -> FB-LOGIC DM 20A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4279,7 +4279,7 @@
     {
       "id": "br_w_pmu_rtr",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-POWER AMI OUT-2",
+      "signal": "RTR 12V -> FB-POWER RTR 30A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4294,7 +4294,7 @@
     {
       "id": "br_w_acp_1",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-POWER ACPS",
+      "signal": "A/C PSW 12V -> FB-POWER ACPS 10A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4309,7 +4309,7 @@
     {
       "id": "br_w_pdb_am1",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-POWER AMI OUT-3",
+      "signal": "AM1 12V -> FB-POWER AM1 40A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4324,7 +4324,7 @@
     {
       "id": "br_w_pdb_am2",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-POWER AMI OUT-4",
+      "signal": "AM2 12V -> FB-POWER AM2 30A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4339,7 +4339,7 @@
     {
       "id": "br_w_pdb_jb1",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-POWER AMI OUT-5",
+      "signal": "JB1 hot -> FB-POWER JB1 60A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4354,7 +4354,7 @@
     {
       "id": "br_w_rb4",
       "type": "Loose",
-      "signal": "-> CabPwr: SPL HTR87",
+      "signal": "Blower 12V -> splice HTR87",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4369,7 +4369,7 @@
     {
       "id": "br_w_rb2",
       "type": "Loose",
-      "signal": "-> CabPwr: POWER R6 87",
+      "signal": "P/W 12V -> POWER R6 87",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4385,7 +4385,7 @@
       "id": "fl_a4_4",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM A4-4",
+      "signal": "A/C clutch -> A4-4",
       "schematicPosition": {
         "x": 0,
         "y": 1530
@@ -4399,7 +4399,7 @@
     {
       "id": "br_w_acc_clutch",
       "type": "Loose",
-      "signal": "-> CabPwr: LOGIC M15 87",
+      "signal": "A/C clutch -> LOGIC M15 87",
       "width": 390,
       "layoutPosition": {
         "x": 1620,
@@ -4414,7 +4414,7 @@
     {
       "id": "br_w_haz",
       "type": "Loose",
-      "signal": "-> CabPwr: SPL HZ",
+      "signal": "Hazard 12V -> splice HZ",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4430,7 +4430,7 @@
       "id": "fl_oem_ie1_c3",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "OEM IE1-3",
+      "signal": "RTR 30A -> IE1-3",
       "schematicPosition": {
         "x": 1320,
         "y": 120
@@ -4445,7 +4445,7 @@
       "id": "fl_oem_ie1_c12",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM IE1-12",
+      "signal": "Hazard feed -> IE1-12",
       "schematicPosition": {
         "x": 1320,
         "y": 180
@@ -4460,7 +4460,7 @@
       "id": "fl_oem_jb1_1h_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM JB1 1H-2",
+      "signal": "Dome 20A -> JB1 1H-2",
       "schematicPosition": {
         "x": 1320,
         "y": 300
@@ -4475,7 +4475,7 @@
       "id": "fl_oem_rb2_wg",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "OEM RB2-1",
+      "signal": "P/W feed -> RB2-1",
       "schematicPosition": {
         "x": 1320,
         "y": 360
@@ -4490,7 +4490,7 @@
       "id": "fl_b4_c2",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "OEM B4-2",
+      "signal": "Blower + -> B4-2",
       "schematicPosition": {
         "x": 1320,
         "y": 420
@@ -4505,7 +4505,7 @@
       "id": "fl_h1_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM H1-3",
+      "signal": "Head LH + -> H1-3",
       "schematicPosition": {
         "x": 1320,
         "y": 540
@@ -4520,7 +4520,7 @@
       "id": "fl_h2_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM H2-3",
+      "signal": "Head RH + -> H2-3",
       "schematicPosition": {
         "x": 1320,
         "y": 600
@@ -4534,7 +4534,7 @@
     {
       "id": "t_gnd_ea_h3",
       "type": "Ring",
-      "signal": "GND EA",
+      "signal": "Horn LH GND -> EA",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -4550,7 +4550,7 @@
     {
       "id": "t_gnd_ea_h4",
       "type": "Ring",
-      "signal": "GND EA",
+      "signal": "Horn RH GND -> EA",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -4566,7 +4566,7 @@
     {
       "id": "br_w_eps_rly_e",
       "type": "Loose",
-      "signal": "-> A-eng: BH-ENG 56",
+      "signal": "EHPS coil- -> BH-A 56",
       "width": 390,
       "layoutPosition": {
         "x": 4440,
@@ -4581,7 +4581,7 @@
     {
       "id": "br_w_rb2_wl",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-LOGIC BUS1-6",
+      "signal": "Door lock 12V -> FB-LOGIC WL 15A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4597,7 +4597,7 @@
       "id": "fl_oem_rb2_wl",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM RB2-2",
+      "signal": "Door lock feed -> RB2-2",
       "schematicPosition": {
         "x": 1320,
         "y": 480
@@ -4613,7 +4613,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM JB1 1H-6",
+      "signal": "Tail 15A -> JB1 1H-6",
       "schematicPosition": {
         "x": 3750,
         "y": 0
@@ -4629,7 +4629,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM JB1 1H-4",
+      "signal": "Turn LH -> JB1 1H-4",
       "schematicPosition": {
         "x": 3750,
         "y": 60
@@ -4645,7 +4645,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM JB1 1H-8",
+      "signal": "Turn RH -> JB1 1H-8",
       "schematicPosition": {
         "x": 3750,
         "y": 120
@@ -4661,7 +4661,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM JB1 1H-5",
+      "signal": "Wiper 20A -> JB1 1H-5",
       "schematicPosition": {
         "x": 3750,
         "y": 180
@@ -4677,7 +4677,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-20",
+      "signal": "Wiper HI -> IE1-20",
       "schematicPosition": {
         "x": 3750,
         "y": 240
@@ -4693,7 +4693,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-13",
+      "signal": "Wiper LO -> IE1-13",
       "schematicPosition": {
         "x": 3750,
         "y": 300
@@ -4709,7 +4709,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-6",
+      "signal": "Wiper park -> IE1-6",
       "schematicPosition": {
         "x": 3750,
         "y": 360
@@ -4725,7 +4725,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-18",
+      "signal": "Low beam rtn -> IE1-18",
       "schematicPosition": {
         "x": 3750,
         "y": 420
@@ -4741,7 +4741,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-11",
+      "signal": "High beam rtn -> IE1-11",
       "schematicPosition": {
         "x": 3750,
         "y": 480
@@ -4757,7 +4757,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-14",
+      "signal": "RTR LH mtr+ -> IE1-14",
       "schematicPosition": {
         "x": 3750,
         "y": 540
@@ -4773,7 +4773,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-15",
+      "signal": "RTR LH mtr- -> IE1-15",
       "schematicPosition": {
         "x": 3750,
         "y": 600
@@ -4789,7 +4789,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-8",
+      "signal": "RTR RH mtr- -> IE1-8",
       "schematicPosition": {
         "x": 3750,
         "y": 660
@@ -4805,7 +4805,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-7",
+      "signal": "RTR RH mtr+ -> IE1-7",
       "schematicPosition": {
         "x": 3750,
         "y": 720
@@ -4821,7 +4821,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-9",
+      "signal": "RTR close lim -> IE1-9",
       "schematicPosition": {
         "x": 3750,
         "y": 780
@@ -4837,7 +4837,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-16",
+      "signal": "RTR open lim -> IE1-16",
       "schematicPosition": {
         "x": 3750,
         "y": 840
@@ -4853,7 +4853,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM W1-2",
+      "signal": "Washer + -> W1-2 cowl",
       "schematicPosition": {
         "x": 3750,
         "y": 900
@@ -4869,7 +4869,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM W1-1",
+      "signal": "Washer - -> W1-1 cowl",
       "schematicPosition": {
         "x": 3750,
         "y": 960
@@ -4885,7 +4885,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM F7-1",
+      "signal": "Clear LH -> F7-1",
       "schematicPosition": {
         "x": 4410,
         "y": 0
@@ -4901,7 +4901,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM F7-2",
+      "signal": "F7 GND -> F7-2",
       "schematicPosition": {
         "x": 4410,
         "y": 60
@@ -4917,7 +4917,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM F7-3",
+      "signal": "Turn LH -> F7-3",
       "schematicPosition": {
         "x": 4410,
         "y": 120
@@ -4933,7 +4933,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM F8-1",
+      "signal": "Clear RH -> F8-1",
       "schematicPosition": {
         "x": 4410,
         "y": 180
@@ -4949,7 +4949,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM F8-2",
+      "signal": "F8 GND -> F8-2",
       "schematicPosition": {
         "x": 4410,
         "y": 240
@@ -4965,7 +4965,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM F8-3",
+      "signal": "Turn RH -> F8-3",
       "schematicPosition": {
         "x": 4410,
         "y": 300
@@ -4981,7 +4981,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM H1-1",
+      "signal": "High LH rtn -> H1-1",
       "schematicPosition": {
         "x": 4410,
         "y": 360
@@ -4997,7 +4997,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM H1-2",
+      "signal": "Low LH rtn -> H1-2",
       "schematicPosition": {
         "x": 4410,
         "y": 420
@@ -5013,7 +5013,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM H2-1",
+      "signal": "High RH rtn -> H2-1",
       "schematicPosition": {
         "x": 4410,
         "y": 480
@@ -5029,7 +5029,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM H2-2",
+      "signal": "Low RH rtn -> H2-2",
       "schematicPosition": {
         "x": 4410,
         "y": 540
@@ -5045,7 +5045,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM R2-1",
+      "signal": "RTR LH open -> R2-1",
       "schematicPosition": {
         "x": 4410,
         "y": 600
@@ -5061,7 +5061,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM R2-2",
+      "signal": "RTR LH mtr- -> R2-2",
       "schematicPosition": {
         "x": 4410,
         "y": 660
@@ -5077,7 +5077,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM R2-3",
+      "signal": "RTR LH close -> R2-3",
       "schematicPosition": {
         "x": 4410,
         "y": 720
@@ -5093,7 +5093,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM R2-4",
+      "signal": "RTR LH mtr+ -> R2-4",
       "schematicPosition": {
         "x": 4410,
         "y": 780
@@ -5109,7 +5109,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM R2-5",
+      "signal": "RTR LH GND -> R2-5",
       "schematicPosition": {
         "x": 4410,
         "y": 840
@@ -5125,7 +5125,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM R3-1",
+      "signal": "RTR RH open -> R3-1",
       "schematicPosition": {
         "x": 4410,
         "y": 900
@@ -5141,7 +5141,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM R3-2",
+      "signal": "RTR RH mtr- -> R3-2",
       "schematicPosition": {
         "x": 4410,
         "y": 960
@@ -5157,7 +5157,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM R3-3",
+      "signal": "RTR RH close -> R3-3",
       "schematicPosition": {
         "x": 4410,
         "y": 1020
@@ -5173,7 +5173,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM R3-4",
+      "signal": "RTR RH mtr+ -> R3-4",
       "schematicPosition": {
         "x": 4410,
         "y": 1080
@@ -5189,7 +5189,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM R3-5",
+      "signal": "RTR RH GND -> R3-5",
       "schematicPosition": {
         "x": 4410,
         "y": 1140
@@ -5205,7 +5205,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM W1-1",
+      "signal": "Washer - -> W1-1",
       "schematicPosition": {
         "x": 4410,
         "y": 1200
@@ -5221,7 +5221,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM W1-2",
+      "signal": "Washer + -> W1-2",
       "schematicPosition": {
         "x": 4410,
         "y": 1260
@@ -5237,7 +5237,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM F9-1",
+      "signal": "Wiper HI -> F9-1",
       "schematicPosition": {
         "x": 4410,
         "y": 1320
@@ -5253,7 +5253,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM F9-2",
+      "signal": "Wiper LO -> F9-2",
       "schematicPosition": {
         "x": 4410,
         "y": 1380
@@ -5269,7 +5269,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM F9-3",
+      "signal": "Wiper park -> F9-3",
       "schematicPosition": {
         "x": 4410,
         "y": 1440
@@ -5285,7 +5285,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM F9-4",
+      "signal": "Wiper +B -> F9-4",
       "schematicPosition": {
         "x": 4410,
         "y": 1500
@@ -5301,7 +5301,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "GND EB",
+      "signal": "F7 GND -> EB",
       "schematicPosition": {
         "x": 4410,
         "y": 1560
@@ -5317,7 +5317,7 @@
       "type": "Ring",
       "partId": "tp_lug_m8_8",
       "width": 390,
-      "signal": "GND EB M8",
+      "signal": "RTR GND -> EB M8",
       "schematicPosition": {
         "x": 4410,
         "y": 1620
@@ -5333,7 +5333,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "GND EA M8",
+      "signal": "F8 GND -> EA M8",
       "schematicPosition": {
         "x": 4410,
         "y": 1680
@@ -5348,7 +5348,7 @@
       "id": "br_alt_s",
       "type": "Loose",
       "width": 390,
-      "signal": "-> HeavyDC: ALT G2 1",
+      "signal": "Alt S -> ALT G2 1",
       "schematicPosition": {
         "x": 4410,
         "y": 1800
@@ -5363,7 +5363,7 @@
       "id": "br_alt_l",
       "type": "Loose",
       "width": 390,
-      "signal": "-> HeavyDC: ALT G2 2",
+      "signal": "Alt L -> ALT G2 2",
       "schematicPosition": {
         "x": 4410,
         "y": 1860
@@ -5378,7 +5378,7 @@
       "id": "br_alt_ig",
       "type": "Loose",
       "width": 390,
-      "signal": "-> HeavyDC: ALT G2 3",
+      "signal": "Alt IG -> ALT G2 3",
       "schematicPosition": {
         "x": 4410,
         "y": 1920
@@ -5394,7 +5394,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IG2-15",
+      "signal": "ECU-IG 15A -> IG2-15",
       "schematicPosition": {
         "x": 3750,
         "y": 1800
@@ -5410,7 +5410,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IG2-16",
+      "signal": "Alt L -> IG2-16",
       "schematicPosition": {
         "x": 3750,
         "y": 1860
@@ -5425,7 +5425,7 @@
       "id": "br_alt_s_cp",
       "type": "Loose",
       "width": 390,
-      "signal": "-> CabPwr: FB-LOGIC BUS1-9",
+      "signal": "Alt S -> FB-LOGIC ALTS 2A",
       "schematicPosition": {
         "x": 3750,
         "y": 1920
@@ -5440,7 +5440,7 @@
       "id": "br_ig_ks_in",
       "type": "Loose",
       "width": 390,
-      "signal": "-> HeavyDC: KILL SW ALT 1",
+      "signal": "Alt IG in -> KILL SW ALT 1",
       "schematicPosition": {
         "x": 3750,
         "y": 1980
@@ -5455,7 +5455,7 @@
       "id": "br_ig_ks_out",
       "type": "Loose",
       "width": 390,
-      "signal": "-> HeavyDC: KILL SW ALT 2",
+      "signal": "Alt IG out -> KILL SW ALT 2",
       "schematicPosition": {
         "x": 3750,
         "y": 2040

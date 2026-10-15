@@ -1039,7 +1039,7 @@
   "connectors": [
     {
       "id": "bh_b_eng",
-      "label": "BH-ENG",
+      "label": "BH-B",
       "width": 390,
       "partId": "cp_drb_plug",
       "cavities": [
@@ -1412,7 +1412,7 @@
         {
           "id": "c25",
           "designation": "62",
-          "signal": "B1 pin 2 feed",
+          "signal": "Rev SW feed",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -1502,19 +1502,19 @@
           "id": "c12",
           "designation": "76",
           "contactPartId": "ct_hdp16s",
-          "signal": "B1 pin 1 out"
+          "signal": "Rev SW out"
         },
         {
           "id": "c19",
           "designation": "77",
-          "signal": "Gnd Out",
+          "signal": "Gnd Out B-eng",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "78",
-          "signal": "Gnd Out",
+          "signal": "Gnd Out B-eng",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -1572,7 +1572,7 @@
           "id": "c6",
           "designation": "87",
           "contactPartId": "ct_hdp16s",
-          "signal": "ETB motor"
+          "signal": "ETB motor -"
         },
         {
           "id": "c22",
@@ -1590,7 +1590,7 @@
         {
           "id": "c20",
           "designation": "90",
-          "signal": "Sw 12V VSS",
+          "signal": "VSS 12V",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -1691,7 +1691,7 @@
         },
         {
           "id": "c3",
-          "signal": "GND",
+          "signal": "OIL PRESS GND",
           "propagate": false
         }
       ],
@@ -1720,7 +1720,7 @@
         },
         {
           "id": "c3",
-          "signal": "GND"
+          "signal": "FUEL PRESS GND"
         }
       ],
       "layoutPosition": {
@@ -1748,7 +1748,7 @@
         },
         {
           "id": "c3",
-          "signal": "GND"
+          "signal": "CLNT PRESS GND"
         }
       ],
       "layoutPosition": {
@@ -1772,7 +1772,7 @@
         },
         {
           "id": "c2",
-          "signal": "GND",
+          "signal": "OIL TEMP GND",
           "propagate": false
         }
       ],
@@ -1825,7 +1825,7 @@
         },
         {
           "id": "c2",
-          "signal": "GND",
+          "signal": "CP IAT GND",
           "propagate": false
         }
       ],
@@ -1856,7 +1856,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "IG +12V switched",
+          "signal": "VSS 12V",
           "contactPartId": "ct_toy_ts"
         },
         {
@@ -1869,7 +1869,7 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "SP1 speed output",
+          "signal": "VSS speed out",
           "contactPartId": "ct_toy_ts"
         }
       ]
@@ -1907,19 +1907,19 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V Out B-eng sens",
+          "signal": "+5V oil press",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "+5V Out B-eng sens",
+          "signal": "+5V fuel press",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "+5V Out B-eng sens",
+          "signal": "+5V coolant press",
           "propagate": false
         },
         {
@@ -1955,7 +1955,7 @@
     {
       "id": "br_w124_e",
       "type": "Loose",
-      "signal": "-> A-eng: ETB c4",
+      "signal": "ETB motor + -> ETB c4",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -1970,7 +1970,7 @@
     {
       "id": "br_w215_e",
       "type": "Loose",
-      "signal": "-> A-eng: ETB c1",
+      "signal": "ETB motor - -> ETB c1",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -1985,7 +1985,7 @@
     {
       "id": "br_wc_h_lam",
       "type": "Loose",
-      "signal": "-> CAN: SPL CANH_LAM",
+      "signal": "CAN H Lambda -> splice CANH LAM",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -2000,7 +2000,7 @@
     {
       "id": "br_wc_l_lam",
       "type": "Loose",
-      "signal": "-> CAN: SPL CANL_LAM",
+      "signal": "CAN L Lambda -> splice CANL LAM",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -2015,7 +2015,7 @@
     {
       "id": "br_w_lam12",
       "type": "Loose",
-      "signal": "-> CAN: CAN-LAMBDA c1",
+      "signal": "Lambda 12V -> CAN-LAMBDA c1",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -2030,7 +2030,7 @@
     {
       "id": "br_w_lamg",
       "type": "Loose",
-      "signal": "-> CAN: CAN-LAMBDA c2",
+      "signal": "Lambda GND -> CAN-LAMBDA c2",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -2045,7 +2045,7 @@
     {
       "id": "br_cab_etbm_sh",
       "type": "Loose",
-      "signal": "-> A-eng: screen open",
+      "signal": "ETB screen -> A-engine open",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -2060,7 +2060,7 @@
     {
       "id": "br_cab_lamcan_sh",
       "type": "Loose",
-      "signal": "-> CAN: screen open",
+      "signal": "Lambda screen -> CAN open",
       "width": 390,
       "layoutPosition": {
         "x": 2340,

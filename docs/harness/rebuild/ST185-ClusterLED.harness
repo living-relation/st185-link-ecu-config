@@ -635,7 +635,7 @@
       "id": "t_led_gnd",
       "type": "Ring",
       "width": 390,
-      "signal": "GND ID",
+      "signal": "LED GND -> GND ID",
       "schematicPosition": {
         "x": 660,
         "y": 1500
@@ -651,7 +651,7 @@
       "id": "fl_cl_c11_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM C11-2",
+      "signal": "Turn L LED -> C11-2",
       "schematicPosition": {
         "x": 0,
         "y": 0
@@ -666,7 +666,7 @@
       "id": "fl_cl_c11_c11",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM C11-11",
+      "signal": "Turn R LED -> C11-11",
       "schematicPosition": {
         "x": 0,
         "y": 60
@@ -681,7 +681,7 @@
       "id": "fl_cl_c11_c12",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM C11-12",
+      "signal": "High beam LED -> C11-12",
       "schematicPosition": {
         "x": 0,
         "y": 120
@@ -696,7 +696,7 @@
       "id": "fl_cl_c12_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM C12-1",
+      "signal": "Park brake LED -> C12-1",
       "schematicPosition": {
         "x": 0,
         "y": 180
@@ -711,7 +711,7 @@
       "id": "fl_cl_c12_c8",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM C12-8",
+      "signal": "Charge LED -> C12-8",
       "schematicPosition": {
         "x": 0,
         "y": 240
@@ -726,7 +726,7 @@
       "id": "fl_cl_c12_c9",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM C12-9",
+      "signal": "LED IG +12V -> C12-9",
       "schematicPosition": {
         "x": 0,
         "y": 300
@@ -740,7 +740,7 @@
     {
       "id": "br_w_oil_k",
       "type": "Loose",
-      "signal": "-> CSB3: CSB3 c26",
+      "signal": "Oil LED sink -> CSB3 c26",
       "width": 390,
       "layoutPosition": {
         "x": 570,

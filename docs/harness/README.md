@@ -6,7 +6,7 @@ opening any loom.
 **The wiring source of truth is `sot/channels.csv`** (every ECU pin and channel).
 The looms below are the physical build and must agree with it; `check_all.py`
 enforces that. **Every rule for drawing them is in `redesign/DECISIONS.md` "Binding rules
-from Daniel" (R1-R124)** - this file is the file map and the workflow, and restates no rule.
+from Daniel" (R1-R125)** - this file is the file map and the workflow, and restates no rule.
 
 ## The short answer
 
@@ -135,7 +135,7 @@ interfaces.json              <- and the ownership facts with them
         audit_wire_spacing.py      schematic wires never overlap; parallel runs 3 line widths apart (R86);
                                    layout bundles 30 apart unless they end at the same connector / device (R107)
         audit_ident_bands.py       ident band codes: palette, one code per circuit, both sections of a break agree (R87)
-        audit_destinations.py      short destinations: labels <= 12, signals <= 20, "-> <harness>: <device> <pin>" (R124)
+        audit_destinations.py      short names: labels <= 12, signals <= 20, loose ends "<what> -> <where>" (R124, R125)
         buylist.py                 writes NEED-TO-BUY.md
         buildlist.py               writes HARNESS-BUILD-LIST.csv
 ```

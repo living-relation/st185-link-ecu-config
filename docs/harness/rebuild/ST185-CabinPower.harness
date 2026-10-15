@@ -4536,25 +4536,25 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "EFI 12V in",
           "contactPartId": "ct_f7_load"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil",
+          "signal": "EFI coil-",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
+          "signal": "EFI coil+",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "EFI 12V out",
           "contactPartId": "ct_f7_load"
         }
       ],
@@ -4576,26 +4576,26 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "Rad fan 12V in",
           "contactPartId": "ct_faston95_8"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil",
+          "signal": "Rad fan coil-",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
+          "signal": "Rad fan coil+",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "Rad fan 12V out",
           "contactPartId": "ct_faston95_8"
         }
       ],
@@ -4617,26 +4617,26 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "ETB 12V in",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil",
-          "contactPartId": "ct_faston48"
+          "signal": "ETB coil-",
+          "contactPartId": "ct_fastin48"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
-          "contactPartId": "ct_faston48",
+          "signal": "ETB coil+",
+          "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "ETB 12V out",
           "contactPartId": "ct_faston63"
         },
         {
@@ -4662,26 +4662,26 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "Start 12V in",
           "contactPartId": "ct_f7_load"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil",
+          "signal": "Start coil-",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
+          "signal": "Start coil+",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "Start 12V out",
           "contactPartId": "ct_f7_load"
         }
       ],
@@ -4703,26 +4703,26 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "Cond fan 12V in",
           "contactPartId": "ct_faston95_8"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil",
+          "signal": "Cond fan coil-",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
+          "signal": "Cond fan coil+",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "Cond fan 12V out",
           "contactPartId": "ct_faston95_8"
         }
       ],
@@ -4753,26 +4753,26 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "EHPS 12V in",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil",
+          "signal": "EHPS coil-",
           "contactPartId": "ct_ss15",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil+ IG 12V",
+          "signal": "EHPS coil+",
           "contactPartId": "ct_ss15"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out to the pump"
+          "signal": "EHPS 12V out"
         },
         {
           "id": "c5",
@@ -4788,25 +4788,25 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "A/C 12V in",
           "contactPartId": "ct_faston63"
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil",
-          "contactPartId": "ct_faston48"
+          "signal": "A/C coil-",
+          "contactPartId": "ct_fastin48"
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
-          "contactPartId": "ct_faston48"
+          "signal": "A/C coil+",
+          "contactPartId": "ct_fastin48"
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "A/C 12V out",
           "contactPartId": "ct_faston63"
         },
         {
@@ -4832,28 +4832,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "EPS EN 12V in",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil",
-          "contactPartId": "ct_faston48",
+          "signal": "EPS EN coil-",
+          "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
-          "contactPartId": "ct_faston48",
+          "signal": "EPS EN coil+",
+          "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "EPS EN 12V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -4880,28 +4880,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "Rev 12V in",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil",
-          "contactPartId": "ct_faston48",
+          "signal": "Rev coil-",
+          "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
-          "contactPartId": "ct_faston48",
+          "signal": "Rev coil+",
+          "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "Rev 12V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -4928,28 +4928,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "Head LH 12V in",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil",
-          "contactPartId": "ct_faston48",
+          "signal": "Head LH coil-",
+          "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
-          "contactPartId": "ct_faston48",
+          "signal": "Head LH coil+",
+          "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "Head LH 12V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -4976,28 +4976,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "Head RH 12V in",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil",
-          "contactPartId": "ct_faston48",
+          "signal": "Head RH coil-",
+          "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
-          "contactPartId": "ct_faston48",
+          "signal": "Head RH coil+",
+          "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "Head RH 12V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -5024,28 +5024,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "Horn 12V in",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil",
-          "contactPartId": "ct_faston48",
+          "signal": "Horn coil-",
+          "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
-          "contactPartId": "ct_faston48",
+          "signal": "Horn coil+",
+          "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "Horn 12V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -5072,35 +5072,35 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "Htr 12V in",
           "contactPartId": "ct_faston63_8",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil",
+          "signal": "Htr coil-",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
+          "signal": "Htr coil+",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "Htr 12V out",
           "contactPartId": "ct_faston63_8",
           "propagate": false
         },
         {
           "id": "c5",
           "designation": "87a",
-          "signal": "NC",
+          "signal": "Htr 87a",
           "contactPartId": "ct_faston63",
           "propagate": false
         }
@@ -5123,28 +5123,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in",
+          "signal": "PWR 12V in",
           "contactPartId": "ct_f7_load",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil",
+          "signal": "PWR coil-",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil +",
+          "signal": "PWR coil+",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out",
+          "signal": "PWR 12V out",
           "contactPartId": "ct_f7_load",
           "propagate": false
         }
@@ -5167,89 +5167,89 @@
         {
           "id": "in1",
           "designation": "AMI IN-1",
-          "signal": "AMI-40 HTR",
+          "signal": "HTR 40A",
           "propagate": false
         },
         {
           "id": "in2",
           "designation": "AMI IN-2",
-          "signal": "AMI-30 EFI",
+          "signal": "EFI 30A",
           "propagate": false,
           "contactPartId": "ct_ring_m5_12"
         },
         {
           "id": "in3",
           "designation": "AMI IN-3",
-          "signal": "AMI-30 STR",
+          "signal": "STR 30A",
           "propagate": false,
           "contactPartId": "ct_ring_m5_12"
         },
         {
           "id": "in4",
           "designation": "AMI IN-4",
-          "signal": "AMI-40 FAN",
+          "signal": "FAN 40A",
           "propagate": false
         },
         {
           "id": "in5",
           "designation": "AMI IN-5",
-          "signal": "AMI-30 FAN2",
+          "signal": "FAN2 30A",
           "propagate": false
         },
         {
           "id": "in6",
           "designation": "AMI IN-6",
-          "signal": "AMI-30 PWR",
+          "signal": "PWR 30A",
           "propagate": false
         },
         {
           "id": "out1",
           "designation": "AMI OUT-1",
-          "signal": "AMI-50 BUS1",
+          "signal": "BUS1 50A",
           "propagate": false
         },
         {
           "id": "out2",
           "designation": "AMI OUT-2",
-          "signal": "AMI-30 RTR",
+          "signal": "RTR 30A",
           "propagate": false
         },
         {
           "id": "out3",
           "designation": "AMI OUT-3",
-          "signal": "AMI-40 AM1",
+          "signal": "AM1 40A",
           "propagate": false
         },
         {
           "id": "out4",
           "designation": "AMI OUT-4",
-          "signal": "AMI-30 AM2",
+          "signal": "AM2 30A",
           "propagate": false
         },
         {
           "id": "out5",
           "designation": "AMI OUT-5",
-          "signal": "AMI-60 JB1 OEM HOT",
+          "signal": "JB1 60A",
           "propagate": false,
           "contactPartId": "ct_klauke_3r5"
         },
         {
           "id": "out6",
           "designation": "AMI OUT-6",
-          "signal": "AMI-60 EPS",
+          "signal": "EPS 60A",
           "propagate": false
         },
         {
           "id": "acps_in",
           "designation": "ACPS IN",
-          "signal": "ACPS fuse feed in",
+          "signal": "ACPS in",
           "propagate": false,
           "contactPartId": "ct_minifuse_880398"
         },
         {
           "id": "acps",
           "designation": "ACPS",
-          "signal": "ATM-10 ACPS",
+          "signal": "ACPS 10A",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         }
@@ -5286,149 +5286,149 @@
         {
           "id": "efi86",
           "designation": "BUS1-1",
-          "signal": "Bus 1 ATM-5 EFI86",
+          "signal": "EFI86 5A",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "hl",
           "designation": "BUS1-2",
-          "signal": "Bus 1 ATM-15 HL",
+          "signal": "HL 15A",
           "propagate": false
         },
         {
           "id": "hr",
           "designation": "BUS1-3",
-          "signal": "Bus 1 ATM-15 HR",
+          "signal": "HR 15A",
           "propagate": false
         },
         {
           "id": "hz",
           "designation": "BUS1-4",
-          "signal": "ATM-15 HAZ-HORN",
+          "signal": "HZ 15A",
           "propagate": false
         },
         {
           "id": "dm",
           "designation": "BUS1-5",
-          "signal": "Bus 1 ATM-20 DM DOME",
+          "signal": "DM 20A",
           "propagate": false
         },
         {
           "id": "wl",
           "designation": "BUS1-6",
-          "signal": "Bus 1 ATM-15 WL",
+          "signal": "WL 15A",
           "propagate": false
         },
         {
           "id": "alm",
           "designation": "BUS1-7",
-          "signal": "Bus 1 ATM-5 ALM",
+          "signal": "ALM 5A",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "alms",
           "designation": "BUS1-8",
-          "signal": "Bus 1 ATM-2 ALMS",
+          "signal": "ALMS 2A",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "alts",
           "designation": "BUS1-9",
-          "signal": "Bus 1 ATM-2 ALTS",
+          "signal": "ALTS 2A",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "etb",
           "designation": "BUS1-10",
-          "signal": "Bus 1 ATM-10 ETB",
+          "signal": "ETB 10A",
           "propagate": false
         },
         {
           "id": "lam",
           "designation": "BUS2-1",
-          "signal": "Bus 2 ATM-7.5 LAM",
+          "signal": "LAM 7.5A",
           "propagate": false
         },
         {
           "id": "sw12",
           "designation": "BUS2-2",
-          "signal": "Bus 2 ATM-7.5 SW12",
+          "signal": "SW12 7.5A",
           "propagate": false
         },
         {
           "id": "cop",
           "designation": "BUS2-3",
-          "signal": "Bus 2 ATM-15 COP",
+          "signal": "COP 15A",
           "propagate": false
         },
         {
           "id": "inj",
           "designation": "BUS2-4",
-          "signal": "Bus 2 ATM-15 INJ",
+          "signal": "INJ 15A",
           "propagate": false
         },
         {
           "id": "csb",
           "designation": "BUS2-5",
-          "signal": "Bus 2 ATM-5 CSB",
+          "signal": "CSB 5A",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "dev",
           "designation": "BUS2-6",
-          "signal": "Bus 2 ATM-15 DEV",
+          "signal": "DEV 15A",
           "propagate": false
         },
         {
           "id": "epsen",
           "designation": "BUS2-7",
-          "signal": "Bus 2 ATM-7.5 EPSEN",
+          "signal": "EPSEN 7.5A",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "acc",
           "designation": "BUS2-8",
-          "signal": "Bus 2 ATM-10 ACC",
+          "signal": "ACC 10A",
           "propagate": false
         },
         {
           "id": "almig",
           "designation": "BUS2-9",
-          "signal": "Bus 2 ATM-2 ALMIG",
+          "signal": "ALMIG 2A",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "mrsin",
           "designation": "BUS2-12 IN",
-          "signal": "MRS fuse feed in",
+          "signal": "MRS in",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "mrs",
           "designation": "BUS2-12",
-          "signal": "ATM-7.5 MRS",
+          "signal": "MRS 7.5A",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "b30in",
           "designation": "BUS2-13 IN",
-          "signal": "B30 fuse feed in",
+          "signal": "B30 in",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         },
         {
           "id": "b30",
           "designation": "BUS2-13",
-          "signal": "ATM-2 B30",
+          "signal": "B30 2A",
           "propagate": false,
           "contactPartId": "ct_mcp28"
         }
@@ -5449,7 +5449,7 @@
     {
       "id": "br_w_inj_pwr_c",
       "type": "Loose",
-      "signal": "-> A-cab: BH-FW 1",
+      "signal": "INJ 12V -> BH-A 1",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5464,7 +5464,7 @@
     {
       "id": "br_w_cop_pwr_c",
       "type": "Loose",
-      "signal": "-> A-cab: BH-FW 2",
+      "signal": "COP 12V -> BH-A 2",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5479,7 +5479,7 @@
     {
       "id": "br_w_fb_sw12",
       "type": "Loose",
-      "signal": "-> A-cab: SPL SW12",
+      "signal": "SW12 12V -> splice SW12",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5494,7 +5494,7 @@
     {
       "id": "br_w_fb_mrs_en",
       "type": "Loose",
-      "signal": "-> A-cab: BH-FW 42",
+      "signal": "EHPS enable -> BH-A 42",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5509,7 +5509,7 @@
     {
       "id": "br_w_lam12_c",
       "type": "Loose",
-      "signal": "-> B-cab: BH-FW 95",
+      "signal": "Lambda 12V -> BH-B 95",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5524,7 +5524,7 @@
     {
       "id": "br_w_pmu_hl",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM H1-3",
+      "signal": "Head LH 12V -> H1-3",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5539,7 +5539,7 @@
     {
       "id": "br_w_pmu_hr",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM H2-3",
+      "signal": "Head RH 12V -> H2-3",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5554,7 +5554,7 @@
     {
       "id": "br_w_pmu_horn",
       "type": "Loose",
-      "signal": "-> EngRm-C: SPL HORN",
+      "signal": "Horn 12V -> splice HORN",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5569,7 +5569,7 @@
     {
       "id": "br_w_pmu_dome",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM JB1 1H-2",
+      "signal": "Dome 12V -> JB1 1H-2",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5584,7 +5584,7 @@
     {
       "id": "br_w_pmu_rtr",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM IE1-3",
+      "signal": "RTR 12V -> IE1-3",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5599,7 +5599,7 @@
     {
       "id": "br_w_acp_1",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM A5-1",
+      "signal": "A/C PSW 12V -> A5-1",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5614,7 +5614,7 @@
     {
       "id": "br_w_pdb_am1",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM IE1-10",
+      "signal": "AM1 12V -> IE1-10",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5629,7 +5629,7 @@
     {
       "id": "br_w_pdb_am2",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM IE1-17",
+      "signal": "AM2 12V -> IE1-17",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5644,7 +5644,7 @@
     {
       "id": "br_w_pdb_jb1",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM JB1 1I-1",
+      "signal": "JB1 hot -> JB1 1I-1",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5659,7 +5659,7 @@
     {
       "id": "br_w_rb4",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM B4-2",
+      "signal": "Blower 12V -> B4-2",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5674,7 +5674,7 @@
     {
       "id": "br_w_rb2",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM RB2-1",
+      "signal": "P/W 12V -> RB2-1",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5689,7 +5689,7 @@
     {
       "id": "br_w_csb12",
       "type": "Loose",
-      "signal": "-> CSB3: CSB3 c1",
+      "signal": "CSB3 12V -> CSB3 c1",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5704,7 +5704,7 @@
     {
       "id": "br_w76",
       "type": "Loose",
-      "signal": "-> A-cab: ECU-A A28",
+      "signal": "EFI coil- -> ECU-A A28",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5719,7 +5719,7 @@
     {
       "id": "br_w_fan85",
       "type": "Loose",
-      "signal": "-> A-cab: ECU-A A29",
+      "signal": "Rad fan coil- -> ECU-A A29",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5734,7 +5734,7 @@
     {
       "id": "br_w_fan_pwr",
       "type": "Loose",
-      "signal": "-> EngRm-C: RAD FAN+ +",
+      "signal": "Rad fan 12V -> RAD FAN+ +",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5749,7 +5749,7 @@
     {
       "id": "br_w81",
       "type": "Loose",
-      "signal": "-> A-cab: ECU-A A20",
+      "signal": "ETB coil- -> ECU-A A20",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5764,7 +5764,7 @@
     {
       "id": "br_w82",
       "type": "Loose",
-      "signal": "-> B-cab: ECU-B B5",
+      "signal": "ETB 12V -> ECU-B B5",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5779,7 +5779,7 @@
     {
       "id": "br_w_str85",
       "type": "Loose",
-      "signal": "-> A-cab: ECU-A A26",
+      "signal": "Start coil- -> ECU-A A26",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5794,7 +5794,7 @@
     {
       "id": "br_w_strl",
       "type": "Loose",
-      "signal": "-> A-eng: STARTER S",
+      "signal": "Starter S -> starter S",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5809,7 +5809,7 @@
     {
       "id": "br_w_fan285",
       "type": "Loose",
-      "signal": "-> B-cab: ECU-B B13",
+      "signal": "Cond fan coil- -> ECU-B B13",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5824,7 +5824,7 @@
     {
       "id": "br_w_fan2_pwr",
       "type": "Loose",
-      "signal": "-> EngRm-C: COND FAN+ +",
+      "signal": "Cond fan 12V -> COND FAN+ +",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5839,7 +5839,7 @@
     {
       "id": "br_w_eps_trig",
       "type": "Loose",
-      "signal": "-> B-cab: ECU-B B12",
+      "signal": "EPS EN coil- -> ECU-B B12",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5854,7 +5854,7 @@
     {
       "id": "br_w_eps_pwr",
       "type": "Loose",
-      "signal": "-> EngRm-C: EHPS PUMP A-1",
+      "signal": "EHPS 12V -> EHPS PUMP A-1",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5869,7 +5869,7 @@
     {
       "id": "br_w_acc_trig",
       "type": "Loose",
-      "signal": "-> B-cab: ECU-B B10",
+      "signal": "A/C coil- -> ECU-B B10",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5884,7 +5884,7 @@
     {
       "id": "br_w_acc86",
       "type": "Loose",
-      "signal": "-> A-cab: SPL AC_PSW",
+      "signal": "A/C coil+ -> splice AC PSW",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5899,7 +5899,7 @@
     {
       "id": "br_w_acc_clutch",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM A4-4",
+      "signal": "A/C clutch -> A4-4",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5914,7 +5914,7 @@
     {
       "id": "br_w_start_in",
       "type": "Loose",
-      "signal": "-> B-cab: OEM RB4-1",
+      "signal": "Start req in -> RB4-1",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5929,7 +5929,7 @@
     {
       "id": "br_w_start_out",
       "type": "Loose",
-      "signal": "-> B-cab: ECU-B B30",
+      "signal": "Start req -> ECU-B B30",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -5944,7 +5944,7 @@
     {
       "id": "t_at_12v",
       "type": "Loose",
-      "signal": "-> Alarm: SPL AT_12V",
+      "signal": "Alarm 12V -> splice AT 12V",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5959,7 +5959,7 @@
     {
       "id": "t_at_12v_shk",
       "type": "Loose",
-      "signal": "-> Alarm: SPL 12V_SHK",
+      "signal": "Shock 12V -> splice 12V SHK",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5974,7 +5974,7 @@
     {
       "id": "t_at_ig",
       "type": "Loose",
-      "signal": "-> Alarm: SPL IG",
+      "signal": "Alarm IG -> splice IG",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -5989,7 +5989,7 @@
     {
       "id": "br_w_dev",
       "type": "Loose",
-      "signal": "-> CAN: SPL DEV",
+      "signal": "Dash 12V -> splice DEV",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -6004,7 +6004,7 @@
     {
       "id": "br_w_haz",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM IE1-12",
+      "signal": "Hazard 12V -> IE1-12",
       "width": 390,
       "layoutPosition": {
         "x": 1590,
@@ -6019,7 +6019,7 @@
     {
       "id": "br_w_eps_rly",
       "type": "Loose",
-      "signal": "-> A-cab: BH-FW 56",
+      "signal": "EHPS coil- -> BH-A 56",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -6034,7 +6034,7 @@
     {
       "id": "br_w_rb2_wl",
       "type": "Loose",
-      "signal": "-> EngRm-C: OEM RB2-2",
+      "signal": "Door lock 12V -> RB2-2",
       "width": 390,
       "layoutPosition": {
         "x": 600,
@@ -6051,7 +6051,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM JB3-3B-9",
+      "signal": "Gauge 15A -> JB3-3B-9",
       "schematicPosition": {
         "x": 6000,
         "y": 4170
@@ -6066,7 +6066,7 @@
       "id": "br_rev_feed",
       "type": "Loose",
       "width": 390,
-      "signal": "-> B-cab: BH-FW 62",
+      "signal": "Rev SW feed -> BH-B 62",
       "schematicPosition": {
         "x": 6000,
         "y": 4230
@@ -6081,7 +6081,7 @@
       "id": "br_rev_coil",
       "type": "Loose",
       "width": 390,
-      "signal": "-> B-cab: SPL REV_SW",
+      "signal": "Rev coil+ -> splice REV SW",
       "schematicPosition": {
         "x": 6000,
         "y": 4290
@@ -6096,7 +6096,7 @@
       "id": "br_rl_rev",
       "type": "Loose",
       "width": 390,
-      "signal": "-> RearLts: SPL RL_REV",
+      "signal": "Rev lamps -> splice RL REV",
       "schematicPosition": {
         "x": 6000,
         "y": 4350
@@ -6112,7 +6112,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "POWER NEG M8",
+      "signal": "Rev coil- -> POWER NEG M8",
       "schematicPosition": {
         "x": 6000,
         "y": 4410
@@ -6127,7 +6127,7 @@
       "id": "br_alt_s_cp",
       "type": "Loose",
       "width": 390,
-      "signal": "-> EngRm-C: BR_ALT_S",
+      "signal": "Alt S -> ALT G2 1",
       "schematicPosition": {
         "x": 1200,
         "y": 3660
@@ -6143,7 +6143,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-2",
+      "signal": "Head coil- -> IE1-2",
       "schematicPosition": {
         "x": 4500,
         "y": 5430
@@ -6159,7 +6159,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM IE1-19",
+      "signal": "Horn coil- -> IE1-19",
       "schematicPosition": {
         "x": 5400,
         "y": 5430
@@ -6175,7 +6175,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM RB4-1",
+      "signal": "Htr coil- -> RB4-1",
       "schematicPosition": {
         "x": 6000,
         "y": 5430
@@ -6191,7 +6191,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM RB4-3",
+      "signal": "Htr coil+ -> RB4-3",
       "schematicPosition": {
         "x": 6000,
         "y": 5490
@@ -6207,7 +6207,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "OEM RB2-2",
+      "signal": "PWR coil+ -> RB2-2",
       "schematicPosition": {
         "x": 6600,
         "y": 5430
@@ -6223,7 +6223,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "POWER NEG M8",
+      "signal": "PWR coil- -> POWER NEG M8",
       "schematicPosition": {
         "x": 6600,
         "y": 5490
@@ -6239,7 +6239,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_16_14",
       "width": 390,
-      "signal": "POWER NEG M8",
+      "signal": "Htr 87a -> POWER NEG M8",
       "schematicPosition": {
         "x": 6000,
         "y": 5550
@@ -6253,7 +6253,7 @@
     {
       "id": "br_fp86",
       "type": "Loose",
-      "signal": "-> HeavyDC: BATT K1 86",
+      "signal": "FP coil+ -> BATT K1 86",
       "width": 390,
       "layoutPosition": {
         "x": 1740,
@@ -7416,11 +7416,11 @@
       "manufacturer": "TE Connectivity"
     },
     {
-      "id": "ct_faston48",
+      "id": "ct_fastin48",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "2293255-1",
-      "description": "TERMINAL, FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2)",
+      "partNumber": "280919-2",
+      "description": "TERMINAL, FASTIN-FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, LOCKING LANCE, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2)",
       "manufacturer": "TE Connectivity",
       "minGauge": {
         "unit": "AWG",

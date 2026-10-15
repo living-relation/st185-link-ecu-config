@@ -669,11 +669,11 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Power +12V ign"
+          "signal": "Lambda 12V"
         },
         {
           "id": "c2",
-          "signal": "GND"
+          "signal": "Lambda GND"
         },
         {
           "id": "c3",
@@ -708,7 +708,7 @@
         "x": 1950,
         "y": 1620
       },
-      "signal": "CLUSTER CAN",
+      "signal": "CAN -> cluster",
       "partId": "tp_flying_lead",
       "propagate": false
     },
@@ -724,14 +724,14 @@
         "x": 2100,
         "y": 1230
       },
-      "signal": "REALDASH CAN",
+      "signal": "CAN -> RealDash Pi",
       "partId": "tp_flying_lead",
       "propagate": false
     },
     {
       "id": "br_wc_h_csb",
       "type": "Loose",
-      "signal": "-> CSB3: CSB3 c5",
+      "signal": "CAN H -> CSB3 c5",
       "width": 390,
       "layoutPosition": {
         "x": 2100,
@@ -746,7 +746,7 @@
     {
       "id": "br_wc_l_csb",
       "type": "Loose",
-      "signal": "-> CSB3: CSB3 c6",
+      "signal": "CAN L -> CSB3 c6",
       "width": 390,
       "layoutPosition": {
         "x": 2100,
@@ -761,7 +761,7 @@
     {
       "id": "br_w_lam12",
       "type": "Loose",
-      "signal": "-> B-eng: SPL LAM12_B",
+      "signal": "Lambda 12V -> splice LAM12 B",
       "width": 390,
       "layoutPosition": {
         "x": 780,
@@ -776,7 +776,7 @@
     {
       "id": "br_w_lamg",
       "type": "Loose",
-      "signal": "-> B-eng: SPL LAMG_B",
+      "signal": "Lambda GND -> splice LAMG B",
       "width": 390,
       "layoutPosition": {
         "x": 780,
@@ -791,7 +791,7 @@
     {
       "id": "br_wc_h_bh",
       "type": "Loose",
-      "signal": "-> B-cab: BH-FW 92",
+      "signal": "CAN H -> BH-B 92",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -806,7 +806,7 @@
     {
       "id": "br_wc_l_bh",
       "type": "Loose",
-      "signal": "-> B-cab: BH-FW 93",
+      "signal": "CAN L -> BH-B 93",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -821,7 +821,7 @@
     {
       "id": "br_wc_h_lam",
       "type": "Loose",
-      "signal": "-> B-eng: BH-ENG 92",
+      "signal": "CAN H Lambda -> BH-B 92",
       "width": 390,
       "layoutPosition": {
         "x": 1230,
@@ -836,7 +836,7 @@
     {
       "id": "br_wc_l_lam",
       "type": "Loose",
-      "signal": "-> B-eng: BH-ENG 93",
+      "signal": "CAN L Lambda -> BH-B 93",
       "width": 390,
       "layoutPosition": {
         "x": 1230,
@@ -851,7 +851,7 @@
     {
       "id": "br_cab_lamcan_sh",
       "type": "Loose",
-      "signal": "-> B-eng: BH-ENG 94",
+      "signal": "Lambda screen -> BH-B 94",
       "width": 390,
       "layoutPosition": {
         "x": 1230,
@@ -866,7 +866,7 @@
     {
       "id": "br_cab_canbh_sh",
       "type": "Loose",
-      "signal": "-> B-cab: BH-FW 94",
+      "signal": "CAN screen -> BH-B 94",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -881,7 +881,7 @@
     {
       "id": "br_w_shd_can",
       "type": "Loose",
-      "signal": "-> B-cab: SPL SHIELD_B",
+      "signal": "CAN drain -> splice SHIELD B",
       "width": 390,
       "layoutPosition": {
         "x": 1680,
@@ -896,7 +896,7 @@
     {
       "id": "br_cab_cancsb_sh",
       "type": "Loose",
-      "signal": "-> CSB3: screen open",
+      "signal": "CAN screen -> CSB3 open",
       "width": 390,
       "layoutPosition": {
         "x": 2100,
@@ -920,7 +920,7 @@
         "x": 1950,
         "y": 1920
       },
-      "signal": "CLUSTER +12V",
+      "signal": "Dash 12V -> cluster",
       "partId": "tp_flying_lead",
       "propagate": false
     },
@@ -936,7 +936,7 @@
         "x": 2100,
         "y": 1290
       },
-      "signal": "REALDASH +12V",
+      "signal": "Dash 12V -> RealDash Pi",
       "partId": "tp_flying_lead",
       "propagate": false
     },
@@ -952,7 +952,7 @@
         "x": 1950,
         "y": 2100
       },
-      "signal": "GND IF",
+      "signal": "Cluster GND -> GND IF",
       "partId": "tp_ring_m6_22_16",
       "propagate": false
     },
@@ -968,14 +968,14 @@
         "x": 2100,
         "y": 1140
       },
-      "signal": "GND IF",
+      "signal": "Pi GND -> GND IF",
       "partId": "tp_ring_m6_22_16",
       "propagate": false
     },
     {
       "id": "br_w_dev",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-LOGIC BUS2-6",
+      "signal": "Dash 12V -> FB-LOGIC DEV 15A",
       "width": 390,
       "layoutPosition": {
         "x": 1950,
@@ -999,7 +999,7 @@
         "x": 1950,
         "y": 2310
       },
-      "signal": "CLUSTER GND",
+      "signal": "Cluster GND -> ESP32-P4",
       "partId": "tp_flying_lead",
       "propagate": false
     },
@@ -1015,7 +1015,7 @@
         "x": 2100,
         "y": 1020
       },
-      "signal": "REALDASH GND",
+      "signal": "Pi GND -> RealDash Pi",
       "partId": "tp_flying_lead",
       "propagate": false
     }

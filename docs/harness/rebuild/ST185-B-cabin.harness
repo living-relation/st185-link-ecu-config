@@ -2355,7 +2355,7 @@
   "connectors": [
     {
       "id": "bh_b_fw",
-      "label": "BH-FW",
+      "label": "BH-B",
       "width": 390,
       "partId": "cp_drb_recept",
       "cavities": [
@@ -2728,7 +2728,7 @@
         {
           "id": "c25",
           "designation": "62",
-          "signal": "B1 pin 2 feed",
+          "signal": "Rev SW feed",
           "contactPartId": "ct_hdp16p"
         },
         {
@@ -2818,19 +2818,19 @@
           "id": "c12",
           "designation": "76",
           "contactPartId": "ct_hdp16p",
-          "signal": "B1 pin 1 out"
+          "signal": "Rev SW out"
         },
         {
           "id": "c19",
           "designation": "77",
-          "signal": "Gnd Out",
+          "signal": "Gnd Out B-eng",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "78",
-          "signal": "Gnd Out",
+          "signal": "Gnd Out B-eng",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -2890,7 +2890,7 @@
           "id": "c6",
           "designation": "87",
           "contactPartId": "ct_hdp16p",
-          "signal": "ETB motor",
+          "signal": "ETB motor -",
           "propagate": false
         },
         {
@@ -2910,7 +2910,7 @@
         {
           "id": "c20",
           "designation": "90",
-          "signal": "Sw 12V VSS",
+          "signal": "VSS 12V",
           "contactPartId": "ct_hdp16p"
         },
         {
@@ -3046,7 +3046,7 @@
         },
         {
           "id": "b10",
-          "signal": "Ign 8",
+          "signal": "Ign 8 A/C Clutch Rly",
           "designation": "B10",
           "contactPartId": "ct_ss10_075"
         },
@@ -3056,13 +3056,13 @@
         },
         {
           "id": "b12",
-          "signal": "Ign 6 (EPS En)",
+          "signal": "Ign 6 EPS En",
           "designation": "B12",
           "contactPartId": "ct_ss10_075"
         },
         {
           "id": "b13",
-          "signal": "Ign 5 (2nd Fan)",
+          "signal": "Ign 5 2nd Fan",
           "designation": "B13",
           "contactPartId": "ct_ss10_075"
         },
@@ -3072,12 +3072,12 @@
         },
         {
           "id": "b15",
-          "signal": "An Volt 6 (Oil P)",
+          "signal": "An Volt 6 Oil P",
           "designation": "B15"
         },
         {
           "id": "b16",
-          "signal": "An Volt 7 (Fuel P)",
+          "signal": "An Volt 7 Fuel P",
           "designation": "B16"
         },
         {
@@ -3087,23 +3087,23 @@
         },
         {
           "id": "b18",
-          "signal": "Aux 9 (ETB M+)",
+          "signal": "Aux 9 ETB M+",
           "designation": "B18",
           "contactPartId": "ct_ss10_075"
         },
         {
           "id": "b19",
-          "signal": "DI 6 (WSS RR)",
+          "signal": "DI 6 WSS RR",
           "designation": "B19"
         },
         {
           "id": "b20",
-          "signal": "DI 5 (WSS RL)",
+          "signal": "DI 5 WSS RL",
           "designation": "B20"
         },
         {
           "id": "b21",
-          "signal": "DI 4 (WSS FR)",
+          "signal": "DI 4 WSS FR",
           "designation": "B21"
         },
         {
@@ -3114,64 +3114,64 @@
         },
         {
           "id": "b23",
-          "signal": "An Volt 8 (Clnt P)",
+          "signal": "An Volt 8 Clnt P",
           "designation": "B23"
         },
         {
           "id": "b24",
-          "signal": "An Volt 9 (Fuel Lvl)",
+          "signal": "An Volt 9 Fuel Lvl",
           "designation": "B24"
         },
         {
           "id": "b25",
-          "signal": "Ground",
+          "signal": "ECU-B GND",
           "designation": "B25",
           "contactPartId": "ct_ss10_075"
         },
         {
           "id": "b26",
-          "signal": "Aux 10 (ETB M-)",
+          "signal": "Aux 10 ETB M-",
           "designation": "B26",
           "contactPartId": "ct_ss10_075"
         },
         {
           "id": "b27",
-          "signal": "DI 10 (Anti-Theft)",
+          "signal": "DI 10 Anti-Theft",
           "designation": "B27"
         },
         {
           "id": "b28",
           "designation": "B28",
-          "signal": "DI 9"
+          "signal": "DI 9 Ignition Switch"
         },
         {
           "id": "b29",
           "designation": "B29",
-          "signal": "DI 8"
+          "signal": "DI 8 VSS"
         },
         {
           "id": "b30",
-          "signal": "DI 7 (Start Req)",
+          "signal": "DI 7 Start Req",
           "designation": "B30"
         },
         {
           "id": "b31",
           "designation": "B31",
-          "signal": "An Volt 10 (A/C Btn)"
+          "signal": "An Volt 10 A/C Btn"
         },
         {
           "id": "b32",
           "designation": "B32",
-          "signal": "An Volt 11"
+          "signal": "An Volt 11 Evap Temp"
         },
         {
           "id": "b33",
-          "signal": "An Volt 5 (APS-S)",
+          "signal": "An Volt 5 APS-S",
           "designation": "B33"
         },
         {
           "id": "b34",
-          "signal": "Ground",
+          "signal": "ECU-B GND",
           "designation": "B34",
           "contactPartId": "ct_ss10_075"
         }
@@ -3222,12 +3222,12 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V"
+          "signal": "VRC-R +5V"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Gnd Out",
+          "signal": "VRC-R GND",
           "propagate": false
         },
         {
@@ -3245,7 +3245,7 @@
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Screen drain",
+          "signal": "WS-R screen drain",
           "propagate": false
         },
         {
@@ -3270,7 +3270,7 @@
       "id": "fl_start_req_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM RB4-1",
+      "signal": "Start req -> RB4-1",
       "schematicPosition": {
         "x": 660,
         "y": 960
@@ -3285,7 +3285,7 @@
       "id": "fl_ign_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "OEM JB1 1H-7",
+      "signal": "IGN ON -> JB1 1H-7",
       "schematicPosition": {
         "x": 660,
         "y": 810
@@ -3299,7 +3299,7 @@
     {
       "id": "t_ac_btn",
       "type": "Loose",
-      "signal": "A/C SW V-G",
+      "signal": "A/C req -> A/C SW V-G",
       "schematicPosition": {
         "x": 660,
         "y": 1110
@@ -3313,7 +3313,7 @@
     {
       "id": "t_evap_temp",
       "type": "Loose",
-      "signal": "A24 EVAP 1",
+      "signal": "Evap temp -> A24-1",
       "schematicPosition": {
         "x": 660,
         "y": 1260
@@ -3327,7 +3327,7 @@
     {
       "id": "br_w_b25",
       "type": "Loose",
-      "signal": "-> A-cab: SPL CHASSIS",
+      "signal": "ECU GND B25 -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3342,7 +3342,7 @@
     {
       "id": "br_w_b34",
       "type": "Loose",
-      "signal": "-> A-cab: SPL CHASSIS",
+      "signal": "ECU GND B34 -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3357,7 +3357,7 @@
     {
       "id": "br_w_rail_5v_b_c",
       "type": "Loose",
-      "signal": "-> A-cab: SPL 5V",
+      "signal": "+5V rail B -> splice 5V",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3372,7 +3372,7 @@
     {
       "id": "br_w_rail_sw12_b_c",
       "type": "Loose",
-      "signal": "-> A-cab: SPL SW12",
+      "signal": "SW12 rail B -> splice SW12",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3387,7 +3387,7 @@
     {
       "id": "br_w82",
       "type": "Loose",
-      "signal": "-> CabPwr: LOGIC M14 87",
+      "signal": "ETB 12V -> LOGIC M14 87",
       "width": 390,
       "layoutPosition": {
         "x": 1560,
@@ -3402,7 +3402,7 @@
     {
       "id": "br_cab_fspur_r",
       "type": "Loose",
-      "signal": "-> A-cab: IX-WS-F 4",
+      "signal": "WS FR sig -> IX-WS-F 4",
       "width": 390,
       "layoutPosition": {
         "x": 900,
@@ -3417,7 +3417,7 @@
     {
       "id": "br_cab_fspur_fr_sh",
       "type": "Loose",
-      "signal": "-> A-cab: screen open",
+      "signal": "WS FR screen -> A-cabin open",
       "width": 390,
       "layoutPosition": {
         "x": 900,
@@ -3432,7 +3432,7 @@
     {
       "id": "br_w_sw7_c",
       "type": "Loose",
-      "signal": "-> CSB3: OPTO8 02",
+      "signal": "Reverse sig -> OPTO8 02",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3447,7 +3447,7 @@
     {
       "id": "br_w39",
       "type": "Loose",
-      "signal": "-> A-cab: APS 3",
+      "signal": "APS VPA2 -> APS 3",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3462,7 +3462,7 @@
     {
       "id": "br_w_at_immob2",
       "type": "Loose",
-      "signal": "-> Alarm: ALARM 9",
+      "signal": "Immob out -> ALARM 9",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3477,7 +3477,7 @@
     {
       "id": "br_wc_h_bh",
       "type": "Loose",
-      "signal": "-> CAN: SPL CANH",
+      "signal": "CAN H -> splice CANH",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3492,7 +3492,7 @@
     {
       "id": "br_wc_l_bh",
       "type": "Loose",
-      "signal": "-> CAN: SPL CANL",
+      "signal": "CAN L -> splice CANL",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3507,7 +3507,7 @@
     {
       "id": "br_w_lam12_c",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-LOGIC BUS2-1",
+      "signal": "Lambda 12V -> FB-LOGIC LAM 7.5A",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3522,7 +3522,7 @@
     {
       "id": "br_w_lamg_b",
       "type": "Loose",
-      "signal": "-> A-cab: SPL CHASSIS",
+      "signal": "Lambda GND -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3537,7 +3537,7 @@
     {
       "id": "br_cab_canbh_sh",
       "type": "Loose",
-      "signal": "-> CAN: SPL SHIELD_CAN",
+      "signal": "CAN screen -> splice SHIELD CAN",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3552,7 +3552,7 @@
     {
       "id": "br_w_shd_can",
       "type": "Loose",
-      "signal": "-> CAN: SPL SHIELD_CAN",
+      "signal": "CAN drain -> splice SHIELD CAN",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3567,7 +3567,7 @@
     {
       "id": "br_w_fan285",
       "type": "Loose",
-      "signal": "-> CabPwr: POWER R5 85",
+      "signal": "Cond fan coil- -> POWER R5 85",
       "width": 390,
       "layoutPosition": {
         "x": 2160,
@@ -3582,7 +3582,7 @@
     {
       "id": "br_w_eps_trig",
       "type": "Loose",
-      "signal": "-> CabPwr: LOGIC M21 85",
+      "signal": "EPS EN coil- -> LOGIC M21 85",
       "width": 390,
       "layoutPosition": {
         "x": 2160,
@@ -3597,7 +3597,7 @@
     {
       "id": "br_w_acc_trig",
       "type": "Loose",
-      "signal": "-> CabPwr: LOGIC M15 85",
+      "signal": "A/C coil- -> LOGIC M15 85",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3612,7 +3612,7 @@
     {
       "id": "br_w_start_in",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-LOGIC BUS2-13 IN",
+      "signal": "Start req in -> FB-LOGIC B30 in",
       "width": 390,
       "layoutPosition": {
         "x": 1710,
@@ -3627,7 +3627,7 @@
     {
       "id": "br_w_start_out",
       "type": "Loose",
-      "signal": "-> CabPwr: FB-LOGIC BUS2-13",
+      "signal": "Start req -> FB-LOGIC B30 2A",
       "width": 390,
       "layoutPosition": {
         "x": 1710,
@@ -3643,7 +3643,7 @@
       "id": "br_rev_coil",
       "type": "Loose",
       "width": 390,
-      "signal": "-> CabPwr: LOGIC M22 86",
+      "signal": "Rev coil+ -> LOGIC M22 86",
       "schematicPosition": {
         "x": 1380,
         "y": 120
@@ -3658,7 +3658,7 @@
       "id": "br_rev_feed",
       "type": "Loose",
       "width": 390,
-      "signal": "-> CabPwr: SPL REV_GAUGE",
+      "signal": "Rev SW feed -> splice REV GAUGE",
       "schematicPosition": {
         "x": 1380,
         "y": 180
@@ -3672,7 +3672,7 @@
     {
       "id": "t_evap_rtn",
       "type": "Loose",
-      "signal": "A24 EVAP 2",
+      "signal": "Evap rtn -> A24-2",
       "schematicPosition": {
         "x": 660,
         "y": 1320

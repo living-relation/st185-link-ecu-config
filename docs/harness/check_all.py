@@ -52,9 +52,9 @@ What it runs, in order - every one in HARD is a hard gate:
                            through a node or label, no bundle on top of another, no lone long
                            diagonal. Re-place with layout_tree.py (one straight tree) or
                            layout_trunk.py (keeps a bent trunk); snapshot render_layout.py.
-  audit_destinations.py    short destinations (Dan 2026-10-15): connector labels <= 12, label +
-                           designation and every signal <= 20, broken-off ends "-> <harness>: <device>
-                           <pin>" <= 30; long text in full_text.json, read back by model.full_text
+  audit_destinations.py    short names (DECISIONS R124, R125): labels <= 12, label + designation and
+                           every signal <= 20, loose ends "<what> -> <where it lands>" <= 32 and unique,
+                           no generic words; long text in full_text.json, read back by model.full_text
 
 SOFT (reported, not failing): none at present.
 
