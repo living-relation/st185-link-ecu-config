@@ -63,7 +63,7 @@
 <text x="368" y="497" font-family="Arial" font-size="15" font-weight="bold" fill="#c00000">c13  CAN H &mdash; shielded twisted pair</text>
 <text x="368" y="518" font-family="Arial" font-size="15" font-weight="bold" fill="#c00000">c14  CAN L &mdash; shielded twisted pair</text>
 <text x="368" y="539" font-family="Arial" font-size="15" font-weight="bold" fill="#c00000">c1   shield drain (shared with VSS) &rarr; B17</text>
-<text x="368" y="560" font-family="Arial" font-size="15" font-weight="bold" fill="#0050c8">c3   +12V (CabinPower RFRM LAM 7.5A) &mdash; plain</text>
+<text x="368" y="560" font-family="Arial" font-size="15" font-weight="bold" fill="#0050c8">c3   +12V (CabinPower LOGIC LAM 7.5A) &mdash; plain</text>
 <text x="368" y="581" font-family="Arial" font-size="15" font-weight="bold" fill="#0050c8">c4   GND (chassis) &mdash; plain</text>
 <text x="368" y="602" font-family="Arial" font-size="15" font-weight="bold" fill="#555">Pink band = shield (floats at the Lambda)</text>
 </svg><figcaption>Fig. 2 &mdash; Engine compartment, 3S-GTE, TIS 1993 EWD p.29 (sheet 2). Firewall at top, driver side on the right. <b>Rev 4 (Dan&rsquo;s blue mark-up):</b> the CAN-Lambda run leaves bulkhead B (5), drops down along the existing factory harness through the middle of the bay, then turns over to the Link CAN-Lambda (6) &mdash; it does not cut straight across. Path is traced from Dan&rsquo;s mark-up, so it&rsquo;s approximate. red = CAN H / CAN L shielded twisted pair inside the shield (pink band), drain on the shared bulkhead B c1 pigtail &rarr; B17; blue dashed = +12V and ground, plain (no shield). 120&nbsp;&Omega; at the CAN-Lambda end.</figcaption></figure>
@@ -103,7 +103,7 @@
 <tr><td>Trunk &rarr; center cluster stub (<code>t_cluster_can</code>, part of the DT 6-way car-side cluster connector)</td><td>Shielded TP</td></tr>
 <tr><td>Trunk &rarr; Pi USB-CAN stub (<code>t_realdash_can</code>)</td><td>Shielded TP</td></tr>
 <tr><td>Trunk &rarr; CSB3 stub (CSB3 c5 / c6)</td><td>Shielded TP</td></tr>
-<tr><td>Trunk &rarr; bulkhead B c13/c14 &rarr; CAN-Lambda; 120&nbsp;&Omega; at the Lambda end</td><td>Shielded TP, CAN pair only</td><td>Shared bulkhead B c1 (with VSS), 14&nbsp;AWG pigtail &rarr; B17. +12V (RFRM LAM 7.5A, c3) and ground (c4) plain.</td></tr>
+<tr><td>Trunk &rarr; bulkhead B c13/c14 &rarr; CAN-Lambda; 120&nbsp;&Omega; at the Lambda end</td><td>Shielded TP, CAN pair only</td><td>Shared bulkhead B c1 (with VSS), 14&nbsp;AWG pigtail &rarr; B17. +12V (LOGIC LAM 7.5A, c3) and ground (c4) plain.</td></tr>
 </table>
 <h2>Broken-off hand-offs</h2>
 <table><tr><th>Hand-off</th><th>CAN side</th><th>Other side</th></tr>
@@ -111,7 +111,7 @@
 <tr><td>Cluster CAN H/L</td><td>Stub</td><td>Car-side cluster DT 6-way (ClusterLED / cluster feeds route)</td></tr>
 <tr><td>CAN drain</td><td><code>sp_shield_can</code></td><td>B-cabin <code>sp_shield_b</code> &rarr; B17</td></tr>
 <tr><td>Bulkhead B c13/c14</td><td>Cabin leg</td><td>B-cabin bulkhead half &rarr; B-engine &rarr; CAN-Lambda</td></tr>
-<tr><td>CAN-Lambda power</td><td>&mdash;</td><td>CabinPower RFRM LAM 7.5A / chassis ground</td></tr>
+<tr><td>CAN-Lambda power</td><td>&mdash;</td><td>CabinPower LOGIC LAM 7.5A / chassis ground</td></tr>
 </table>
 <div class="box"><b>Approved</b> (Dan 2026&#8209;10&#8209;10) with CSB3 under the center cluster.</div>
 </body></html>
