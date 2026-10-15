@@ -1,7 +1,7 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
-  "version": 0.9,
+  "version": 1.2,
   "lengthUnit": "mm",
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
@@ -9,6 +9,61 @@
     "drawingNumber": "ST185-WheelSpeed-Front"
   },
   "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Codes: WSS_FL Blue; WSS_FR Yellow; VRC_F_DRAIN White; VRC_F_5V Blue-Yellow; VRC_F_GND Blue-White. Labels: printed TMS-SCE marker on each bundle end: FL WSS / FR WSS at the sensor plugs, IX WS FRONT at the inline (the VRC plugs keep their VRC-IN / VRC-OUT markers).",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
   "wires": [
     {
       "id": "e7gavP",
@@ -1307,9 +1362,23 @@
       "configurations": [
         {
           "id": "cfg",
-          "lockPartId": "lp_w2s",
-          "contactPartId": "ct_dt16s_ni",
-          "cavityPlugPartId": "pl_sz16"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w2s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16s_ni"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
         }
       ],
       "numberOfCavities": 2,
@@ -1328,9 +1397,23 @@
       "configurations": [
         {
           "id": "cfg",
-          "lockPartId": "lp_w6p",
-          "contactPartId": "ct_dt16p",
-          "cavityPlugPartId": "pl_sz16"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w6p"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16p"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
         }
       ],
       "numberOfCavities": 6
@@ -1410,62 +1493,5 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "manufacturer": "TE DEUTSCH"
     }
-  ],
-  "pdfExportSettings": {
-    "includeSchematic": true,
-    "includeLayout": true,
-    "schematic": {
-      "showParts": true,
-      "showCoverings": true,
-      "showAccessories": true,
-      "showComponentIds": true,
-      "pageSize": "Fit"
-    },
-    "layout": {
-      "showParts": true,
-      "showCoverings": true,
-      "showAccessories": true,
-      "showComponentIds": true,
-      "pageSize": "Fit"
-    },
-    "wireThickness": "Thick",
-    "includeTitleBlock": true,
-    "includeNotes": true,
-    "includeParts": true,
-    "parts": {
-      "columns": [
-        "PartNumber",
-        "Manufacturer",
-        "Details",
-        "Description",
-        "Url",
-        "Quantity"
-      ],
-      "pageMode": "Multiple",
-      "pageSize": "A3"
-    },
-    "includeConnections": true,
-    "connections": {
-      "includeAll": true,
-      "includeComponents": true,
-      "columns": [
-        "Conductor",
-        "PartNumber",
-        "TwistedWith",
-        "Ident",
-        "Group",
-        "Net",
-        "Length",
-        "Contact"
-      ],
-      "showConductorIds": true,
-      "pageMode": "Multiple",
-      "pageSize": "A3",
-      "showPart": true,
-      "showPartImage": false,
-      "showAccessories": true,
-      "showPinout": true,
-      "showUnconnected": true
-    }
-  }
+  ]
 }

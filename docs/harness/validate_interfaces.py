@@ -88,8 +88,8 @@ for ix in reg.get("interfaces", []):
     for (h, c, p, d), w in (((ha, ca, pa, da), wa), ((hb, cb, pb, db), wb)):
         cfg = ((p.get(c["partId"]) or {}).get("configurations") or [{}])[0]
         for x in c["cavities"]:
-            ct = x.get("contactPartId") or (cfg.get("contactPartId") if "cavityPlugPartId" not in x else None)
-            pl = x.get("cavityPlugPartId") or (cfg.get("cavityPlugPartId") if "contactPartId" not in x else None)
+            ct = x.get("contactPartId") or (model.cfg_default(cfg, "ContactPart") if "cavityPlugPartId" not in x else None)
+            pl = x.get("cavityPlugPartId") or (model.cfg_default(cfg, "CavityPlugPart") if "contactPartId" not in x else None)
             if x["id"] in w and not ct:
                 bad.append("I8 %s/%s %s is wired but has no contact" % (h["harness"], c["id"], x["id"]))
             if x["id"] not in w and not pl:

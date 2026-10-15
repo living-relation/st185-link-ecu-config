@@ -1,7 +1,7 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
-  "version": 0.9,
+  "version": 1.2,
   "lengthUnit": "mm",
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
@@ -14,14 +14,12 @@
     "includeLayout": true,
     "schematic": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
     },
     "layout": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
@@ -66,1442 +64,6 @@
       "showUnconnected": true
     }
   },
-  "connectors": [
-    {
-      "id": "bh_a_eng",
-      "label": "Bulkhead DRB102 - engine plug (DRB16-102SAE-L018), all 102 cavities; section A wired here",
-      "width": 390,
-      "partId": "cp_drb_plug",
-      "cavities": [
-        {
-          "id": "c48",
-          "designation": "1",
-          "signal": "Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG)",
-          "contactPartId": "ct_hdp12s",
-          "propagate": false
-        },
-        {
-          "id": "c49",
-          "designation": "2",
-          "signal": "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)",
-          "contactPartId": "ct_hdp12s",
-          "propagate": false
-        },
-        {
-          "id": "nc3",
-          "designation": "3",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc4",
-          "designation": "4",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc5",
-          "designation": "5",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc6",
-          "designation": "6",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc7",
-          "designation": "7",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc8",
-          "designation": "8",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c24",
-          "designation": "9",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A8",
-          "propagate": false
-        },
-        {
-          "id": "c41",
-          "designation": "10",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c33",
-          "designation": "11",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Crank VR screen"
-        },
-        {
-          "id": "c4",
-          "designation": "12",
-          "contactPartId": "ct_hdp16s",
-          "signal": "+8V Out to cam Hall",
-          "propagate": false
-        },
-        {
-          "id": "c29",
-          "designation": "13",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A9",
-          "propagate": false
-        },
-        {
-          "id": "c42",
-          "designation": "14",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c34",
-          "designation": "15",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Cam Hall screen"
-        },
-        {
-          "id": "c40",
-          "designation": "16",
-          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c7",
-          "designation": "17",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A30",
-          "propagate": false
-        },
-        {
-          "id": "c43",
-          "designation": "18",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c6",
-          "designation": "19",
-          "signal": "Turbo speed screen",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c5",
-          "designation": "20",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Switched 12V to engine sensors",
-          "propagate": false
-        },
-        {
-          "id": "c9",
-          "designation": "21",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A31",
-          "propagate": false
-        },
-        {
-          "id": "c10",
-          "designation": "22",
-          "signal": "Flex fuel screen",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c2",
-          "designation": "23",
-          "contactPartId": "ct_hdp16s",
-          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB",
-          "propagate": false
-        },
-        {
-          "id": "c21",
-          "designation": "24",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A22",
-          "propagate": false
-        },
-        {
-          "id": "c22",
-          "designation": "25",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A33",
-          "propagate": false
-        },
-        {
-          "id": "c3",
-          "designation": "26",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch",
-          "propagate": false
-        },
-        {
-          "id": "c11",
-          "designation": "27",
-          "signal": "ETB sensor group screen",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c39",
-          "designation": "28",
-          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c44",
-          "designation": "29",
-          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c8",
-          "designation": "30",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A17",
-          "propagate": false
-        },
-        {
-          "id": "c13",
-          "designation": "31",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A4",
-          "propagate": false
-        },
-        {
-          "id": "c14",
-          "designation": "32",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A3",
-          "propagate": false
-        },
-        {
-          "id": "c15",
-          "designation": "33",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A2",
-          "propagate": false
-        },
-        {
-          "id": "c16",
-          "designation": "34",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A1",
-          "propagate": false
-        },
-        {
-          "id": "c17",
-          "designation": "35",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A13",
-          "propagate": false
-        },
-        {
-          "id": "c18",
-          "designation": "36",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A12",
-          "propagate": false
-        },
-        {
-          "id": "c19",
-          "designation": "37",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A11",
-          "propagate": false
-        },
-        {
-          "id": "c20",
-          "designation": "38",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A10",
-          "propagate": false
-        },
-        {
-          "id": "c23",
-          "designation": "39",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A21",
-          "propagate": false
-        },
-        {
-          "id": "c25",
-          "designation": "40",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A15",
-          "propagate": false
-        },
-        {
-          "id": "c26",
-          "designation": "41",
-          "contactPartId": "ct_hdp16s",
-          "signal": "ECU-A A16",
-          "propagate": false
-        },
-        {
-          "id": "c35",
-          "designation": "42",
-          "signal": "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "nc43",
-          "designation": "43",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c36",
-          "designation": "44",
-          "signal": "Aux 7 MRS speed-out (ECU A27)",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c37",
-          "designation": "45",
-          "notConnected": true,
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c38",
-          "designation": "46",
-          "notConnected": true,
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c45",
-          "designation": "47",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "nc48",
-          "designation": "48",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc49",
-          "designation": "49",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c46",
-          "designation": "50",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c47",
-          "designation": "51",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c1",
-          "designation": "52",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c12",
-          "designation": "53",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "nc54",
-          "designation": "54",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc55",
-          "designation": "55",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c27",
-          "designation": "56",
-          "signal": "MR-S pump B5 -> EPS relay k_eps coil- (85)",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c28",
-          "designation": "57",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c30",
-          "designation": "58",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c31",
-          "designation": "59",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "nc60",
-          "designation": "60",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c32",
-          "designation": "61",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "nc62",
-          "designation": "62",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc63",
-          "designation": "63",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc64",
-          "designation": "64",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc65",
-          "designation": "65",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc66",
-          "designation": "66",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc67",
-          "designation": "67",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc68",
-          "designation": "68",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc69",
-          "designation": "69",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc70",
-          "designation": "70",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc71",
-          "designation": "71",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc72",
-          "designation": "72",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc73",
-          "designation": "73",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc74",
-          "designation": "74",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc75",
-          "designation": "75",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc76",
-          "designation": "76",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc77",
-          "designation": "77",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc78",
-          "designation": "78",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc79",
-          "designation": "79",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc80",
-          "designation": "80",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc81",
-          "designation": "81",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc82",
-          "designation": "82",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc83",
-          "designation": "83",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc84",
-          "designation": "84",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc85",
-          "designation": "85",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc86",
-          "designation": "86",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc87",
-          "designation": "87",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc88",
-          "designation": "88",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc89",
-          "designation": "89",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc90",
-          "designation": "90",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc91",
-          "designation": "91",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc92",
-          "designation": "92",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc93",
-          "designation": "93",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc94",
-          "designation": "94",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc95",
-          "designation": "95",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc96",
-          "designation": "96",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc97",
-          "designation": "97",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc98",
-          "designation": "98",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc99",
-          "designation": "99",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc100",
-          "designation": "100",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc101",
-          "designation": "101",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc102",
-          "designation": "102",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        }
-      ],
-      "layoutPosition": {
-        "x": 2880,
-        "y": 450
-      },
-      "schematicPosition": {
-        "x": 3060,
-        "y": 0
-      }
-    },
-    {
-      "id": "turbospd",
-      "label": "Turbo Speed Sensor",
-      "partId": "cp_dt3s",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+5V",
-          "designation": "A",
-          "contactPartId": "ct_dt16s_ni"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG",
-          "designation": "B",
-          "contactPartId": "ct_dt16s_ni"
-        },
-        {
-          "id": "c3",
-          "signal": "GND",
-          "designation": "C",
-          "contactPartId": "ct_dt16s_ni"
-        }
-      ],
-      "layoutPosition": {
-        "x": 240,
-        "y": 1140
-      },
-      "schematicPosition": {
-        "x": 2580,
-        "y": 1020
-      },
-      "width": 210
-    },
-    {
-      "id": "map",
-      "label": "MAP Sensor",
-      "partId": "cp_mp150_3",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "5V"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG"
-        },
-        {
-          "id": "c3",
-          "signal": "GND",
-          "propagate": false
-        }
-      ],
-      "layoutPosition": {
-        "x": 2730,
-        "y": 1320
-      },
-      "schematicPosition": {
-        "x": 2640,
-        "y": 1770
-      },
-      "width": 150
-    },
-    {
-      "id": "flex",
-      "label": "Flex Fuel Sensor",
-      "partId": "cp_gt150",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V/8V",
-          "contactPartId": "ct_gt150_skt_05",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "signal": "GND",
-          "contactPartId": "ct_gt150_skt_05"
-        },
-        {
-          "id": "c3",
-          "signal": "FREQ OUT",
-          "contactPartId": "ct_gt150_skt_05"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2580,
-        "y": 1050
-      },
-      "schematicPosition": {
-        "x": 2640,
-        "y": 330
-      },
-      "width": 150
-    },
-    {
-      "id": "inj1",
-      "label": "Injector 1",
-      "partId": "cp_inj",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V",
-          "contactPartId": "ct_gt150_skt"
-        },
-        {
-          "id": "c2",
-          "signal": "INJ",
-          "contactPartId": "ct_gt150_skt_05"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1650,
-        "y": 1140
-      },
-      "schematicPosition": {
-        "x": 2100,
-        "y": 1320
-      },
-      "width": 150
-    },
-    {
-      "id": "inj2",
-      "label": "Injector 2",
-      "partId": "cp_inj",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V",
-          "contactPartId": "ct_gt150_skt",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "signal": "INJ",
-          "contactPartId": "ct_gt150_skt_05"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1980,
-        "y": 1140
-      },
-      "schematicPosition": {
-        "x": 2100,
-        "y": 1470
-      },
-      "width": 150
-    },
-    {
-      "id": "inj3",
-      "label": "Injector 3",
-      "partId": "cp_inj",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V",
-          "contactPartId": "ct_gt150_skt",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "signal": "INJ",
-          "contactPartId": "ct_gt150_skt_05"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2310,
-        "y": 1140
-      },
-      "schematicPosition": {
-        "x": 2100,
-        "y": 1620
-      },
-      "width": 150
-    },
-    {
-      "id": "inj4",
-      "label": "Injector 4",
-      "partId": "cp_inj",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V",
-          "contactPartId": "ct_gt150_skt",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "signal": "INJ",
-          "contactPartId": "ct_gt150_skt_05"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2730,
-        "y": 1140
-      },
-      "schematicPosition": {
-        "x": 2100,
-        "y": 1770
-      },
-      "width": 150
-    },
-    {
-      "id": "cop1",
-      "label": "COP 1 (1ZZ)",
-      "partId": "cp_cop",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+B 12V (COP rail, spur from ST185-B-engine)"
-        },
-        {
-          "id": "c2"
-        },
-        {
-          "id": "c3",
-          "signal": "IGT (TRIG)"
-        },
-        {
-          "id": "c4",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2580,
-        "y": 990
-      },
-      "schematicPosition": {
-        "x": 2100,
-        "y": 480
-      },
-      "width": 150
-    },
-    {
-      "id": "cop2",
-      "label": "COP 2 (1ZZ)",
-      "partId": "cp_cop",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
-          "propagate": false
-        },
-        {
-          "id": "c2"
-        },
-        {
-          "id": "c3",
-          "signal": "IGT (TRIG)"
-        },
-        {
-          "id": "c4",
-          "signal": "GND",
-          "propagate": false
-        }
-      ],
-      "layoutPosition": {
-        "x": 2430,
-        "y": 540
-      },
-      "schematicPosition": {
-        "x": 2100,
-        "y": 690
-      },
-      "width": 150
-    },
-    {
-      "id": "cop3",
-      "label": "COP 3 (1ZZ)",
-      "partId": "cp_cop",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
-          "propagate": false
-        },
-        {
-          "id": "c2"
-        },
-        {
-          "id": "c3",
-          "signal": "IGT (TRIG)"
-        },
-        {
-          "id": "c4",
-          "signal": "GND",
-          "propagate": false
-        }
-      ],
-      "layoutPosition": {
-        "x": 1980,
-        "y": 360
-      },
-      "schematicPosition": {
-        "x": 2100,
-        "y": 900
-      },
-      "width": 150
-    },
-    {
-      "id": "cop4",
-      "label": "COP 4 (1ZZ)",
-      "partId": "cp_cop",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
-          "propagate": false
-        },
-        {
-          "id": "c2"
-        },
-        {
-          "id": "c3",
-          "signal": "IGT (TRIG)"
-        },
-        {
-          "id": "c4",
-          "signal": "GND",
-          "propagate": false
-        }
-      ],
-      "layoutPosition": {
-        "x": 1650,
-        "y": 540
-      },
-      "schematicPosition": {
-        "x": 2100,
-        "y": 1110
-      },
-      "width": 150
-    },
-    {
-      "id": "etb",
-      "label": "Bosch 74.5mm ETB",
-      "width": 150,
-      "partId": "cp_etb",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "Motor-",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
-        },
-        {
-          "id": "c2",
-          "signal": "Poti- (GND)",
-          "contactPartId": "wbsN09tiboovqanDL_xZA",
-          "propagate": false
-        },
-        {
-          "id": "c3",
-          "signal": "Poti+ (5V)",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
-        },
-        {
-          "id": "c4",
-          "signal": "Motor+",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
-        },
-        {
-          "id": "c5",
-          "signal": "Poti2 (TPS-S)",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
-        },
-        {
-          "id": "c6",
-          "signal": "Poti1 (TPS-M)",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1650,
-        "y": 1440
-      },
-      "schematicPosition": {
-        "x": 2640,
-        "y": 1200
-      }
-    },
-    {
-      "id": "boost",
-      "label": "Boost Control Solenoid",
-      "partId": "cp_mp150_2",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V",
-          "contactPartId": "ct_mp150_skt"
-        },
-        {
-          "id": "c2",
-          "signal": "LS",
-          "contactPartId": "ct_mp150_skt"
-        }
-      ],
-      "layoutPosition": {
-        "x": -30,
-        "y": 1230
-      },
-      "schematicPosition": {
-        "x": 2580,
-        "y": 0
-      },
-      "width": 210
-    },
-    {
-      "id": "ect",
-      "label": "ECT Sensor",
-      "partId": "cp_toy2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1020,
-        "y": 1140
-      },
-      "schematicPosition": {
-        "x": 2100,
-        "y": 180
-      },
-      "width": 150
-    },
-    {
-      "id": "iat",
-      "label": "IAT Sensor (Manifold)",
-      "partId": "cp_toy2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG"
-        },
-        {
-          "id": "c2",
-          "signal": "GND",
-          "propagate": false
-        }
-      ],
-      "layoutPosition": {
-        "x": 1980,
-        "y": 1320
-      },
-      "schematicPosition": {
-        "x": 2580,
-        "y": 1470
-      },
-      "width": 210
-    },
-    {
-      "id": "crank",
-      "label": "Crank VR Sensor (36-2)",
-      "partId": "cp_dt2s",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "SIG+"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG-"
-        }
-      ],
-      "layoutPosition": {
-        "x": 540,
-        "y": 1320
-      },
-      "schematicPosition": {
-        "x": 2040,
-        "y": 1920
-      },
-      "width": 210
-    },
-    {
-      "id": "cam",
-      "label": "Cam Hall Sensor (RacerX)",
-      "partId": "cp_camkit",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+8V"
-        },
-        {
-          "id": "c2",
-          "signal": "SIG"
-        },
-        {
-          "id": "c3",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1320,
-        "y": 450
-      },
-      "schematicPosition": {
-        "x": 2040,
-        "y": 0
-      },
-      "width": 210
-    },
-    {
-      "id": "ix_brail_s",
-      "label": "B sensor +5V - 6-way inline to ST185-B-engine (IX_B_RAIL)",
-      "width": 270,
-      "partId": "cp_dt06_6s",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
-          "propagate": false
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
-          "propagate": false
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "notConnected": true,
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "notConnected": true,
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "notConnected": true,
-          "cavityPlugPartId": "pl_sz16"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2370,
-        "y": 210
-      },
-      "schematicPosition": {
-        "x": 2520,
-        "y": 2400
-      }
-    }
-  ],
-  "terminals": [
-    {
-      "id": "eng_gnd_ring",
-      "type": "Ring",
-      "signal": "Engine block ground stud (power ground)",
-      "layoutPosition": {
-        "x": 1320,
-        "y": 1770
-      },
-      "schematicPosition": {
-        "x": 1080,
-        "y": 330
-      },
-      "partId": "tp_ring_m6_12_10",
-      "width": 390,
-      "propagate": false
-    },
-    {
-      "id": "starter_trigger",
-      "type": "Spade",
-      "signal": "Starter Solenoid Trigger (S)",
-      "layoutPosition": {
-        "x": 1320,
-        "y": 1860
-      },
-      "schematicPosition": {
-        "x": 0,
-        "y": 150
-      },
-      "partId": "tp_spade_str",
-      "width": 270,
-      "propagate": false
-    },
-    {
-      "id": "br_w_hv_mrs_en_e",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: MRS enable, bulkhead A c35",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2580,
-        "y": 810
-      },
-      "schematicPosition": {
-        "x": 3000,
-        "y": -60
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_mrs_e",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: MRS speed (ECU A27), bulkhead A c36",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2580,
-        "y": 870
-      },
-      "schematicPosition": {
-        "x": 3000,
-        "y": 3120
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_strl",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: start relay 87 to the starter S terminal",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2700,
-        "y": 150
-      },
-      "schematicPosition": {
-        "x": 2340,
-        "y": 120
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w124_e",
-      "type": "Loose",
-      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor + (Aux 9, B18), bulkhead B c5",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2580,
-        "y": 630
-      },
-      "schematicPosition": {
-        "x": 2910,
-        "y": -120
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w215_e",
-      "type": "Loose",
-      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor - (Aux 10, B26), bulkhead B c6",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2580,
-        "y": 690
-      },
-      "schematicPosition": {
-        "x": 2910,
-        "y": 3180
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_cab_etbm_sh",
-      "type": "Loose",
-      "signal": "Broken off - screen comes in from ST185-B-engine: ETB motor cable screen, bulkhead B c22",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2580,
-        "y": 750
-      },
-      "schematicPosition": {
-        "x": 2910,
-        "y": 3240
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_eps_rly_e",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-EngineRoom-C: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2580,
-        "y": 930
-      },
-      "schematicPosition": {
-        "x": 2580,
-        "y": -60
-      },
-      "propagate": false
-    }
-  ],
-  "splices": [
-    {
-      "id": "sp_sw12_eng",
-      "layoutPosition": {
-        "x": 1860,
-        "y": 1320
-      },
-      "schematicPosition": {
-        "x": 1590,
-        "y": 390
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "be_660"
-    },
-    {
-      "id": "sp_gndout_eng",
-      "layoutPosition": {
-        "x": 1890,
-        "y": 1320
-      },
-      "schematicPosition": {
-        "x": 1590,
-        "y": 690
-      },
-      "partId": "spp_crimp_14_10",
-      "locationId": "be_660"
-    },
-    {
-      "id": "sp_chassis_eng",
-      "layoutPosition": {
-        "x": 2310,
-        "y": 270
-      },
-      "schematicPosition": {
-        "x": 930,
-        "y": 720
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "be_750"
-    },
-    {
-      "id": "sp_inj_eng",
-      "layoutPosition": {
-        "x": 2250,
-        "y": 1050
-      },
-      "schematicPosition": {
-        "x": 930,
-        "y": 1530
-      },
-      "partId": "spp_solder_generic"
-    },
-    {
-      "id": "sp_cop_eng",
-      "layoutPosition": {
-        "x": 2250,
-        "y": 330
-      },
-      "schematicPosition": {
-        "x": 930,
-        "y": 930
-      },
-      "partId": "spp_solder_generic"
-    },
-    {
-      "id": "sp_gndout_eng2",
-      "partId": "spp_solder_generic",
-      "locationId": "bp_750",
-      "layoutPosition": {
-        "x": 2910,
-        "y": 780
-      },
-      "schematicPosition": {
-        "x": 930,
-        "y": 2100
-      }
-    }
-  ],
   "wires": [
     {
       "id": "w26_e",
@@ -3850,6 +2412,1364 @@
         "Blue",
         "Blue"
       ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "bh_a_eng",
+      "label": "Bulkhead DRB102 - engine plug (DRB16-102SAE-L018), all 102 cavities; section A wired here",
+      "width": 390,
+      "partId": "cp_drb_plug",
+      "cavities": [
+        {
+          "id": "c48",
+          "designation": "1",
+          "signal": "Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG)",
+          "contactPartId": "ct_hdp12s",
+          "propagate": false
+        },
+        {
+          "id": "c49",
+          "designation": "2",
+          "signal": "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)",
+          "contactPartId": "ct_hdp12s",
+          "propagate": false
+        },
+        {
+          "id": "nc3",
+          "designation": "3",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc4",
+          "designation": "4",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc5",
+          "designation": "5",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc6",
+          "designation": "6",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc7",
+          "designation": "7",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc8",
+          "designation": "8",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c24",
+          "designation": "9",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A8",
+          "propagate": false
+        },
+        {
+          "id": "c41",
+          "designation": "10",
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c33",
+          "designation": "11",
+          "contactPartId": "ct_hdp16s",
+          "signal": "Crank VR screen"
+        },
+        {
+          "id": "c4",
+          "designation": "12",
+          "contactPartId": "ct_hdp16s",
+          "signal": "+8V Out to cam Hall",
+          "propagate": false
+        },
+        {
+          "id": "c29",
+          "designation": "13",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A9",
+          "propagate": false
+        },
+        {
+          "id": "c42",
+          "designation": "14",
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c34",
+          "designation": "15",
+          "contactPartId": "ct_hdp16s",
+          "signal": "Cam Hall screen"
+        },
+        {
+          "id": "c40",
+          "designation": "16",
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c7",
+          "designation": "17",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A30",
+          "propagate": false
+        },
+        {
+          "id": "c43",
+          "designation": "18",
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "19",
+          "signal": "Turbo speed screen",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c5",
+          "designation": "20",
+          "contactPartId": "ct_hdp16s",
+          "signal": "Switched 12V to engine sensors",
+          "propagate": false
+        },
+        {
+          "id": "c9",
+          "designation": "21",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A31",
+          "propagate": false
+        },
+        {
+          "id": "c10",
+          "designation": "22",
+          "signal": "Flex fuel screen",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c2",
+          "designation": "23",
+          "contactPartId": "ct_hdp16s",
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB",
+          "propagate": false
+        },
+        {
+          "id": "c21",
+          "designation": "24",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A22",
+          "propagate": false
+        },
+        {
+          "id": "c22",
+          "designation": "25",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A33",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "26",
+          "contactPartId": "ct_hdp16s",
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch",
+          "propagate": false
+        },
+        {
+          "id": "c11",
+          "designation": "27",
+          "signal": "ETB sensor group screen",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c39",
+          "designation": "28",
+          "signal": "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c44",
+          "designation": "29",
+          "signal": "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "30",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A17",
+          "propagate": false
+        },
+        {
+          "id": "c13",
+          "designation": "31",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A4",
+          "propagate": false
+        },
+        {
+          "id": "c14",
+          "designation": "32",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A3",
+          "propagate": false
+        },
+        {
+          "id": "c15",
+          "designation": "33",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A2",
+          "propagate": false
+        },
+        {
+          "id": "c16",
+          "designation": "34",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A1",
+          "propagate": false
+        },
+        {
+          "id": "c17",
+          "designation": "35",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A13",
+          "propagate": false
+        },
+        {
+          "id": "c18",
+          "designation": "36",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A12",
+          "propagate": false
+        },
+        {
+          "id": "c19",
+          "designation": "37",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A11",
+          "propagate": false
+        },
+        {
+          "id": "c20",
+          "designation": "38",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A10",
+          "propagate": false
+        },
+        {
+          "id": "c23",
+          "designation": "39",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A21",
+          "propagate": false
+        },
+        {
+          "id": "c25",
+          "designation": "40",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A15",
+          "propagate": false
+        },
+        {
+          "id": "c26",
+          "designation": "41",
+          "contactPartId": "ct_hdp16s",
+          "signal": "ECU-A A16",
+          "propagate": false
+        },
+        {
+          "id": "c35",
+          "designation": "42",
+          "signal": "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "nc43",
+          "designation": "43",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c36",
+          "designation": "44",
+          "signal": "Aux 7 MRS speed-out (ECU A27)",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c37",
+          "designation": "45",
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c38",
+          "designation": "46",
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c45",
+          "designation": "47",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "nc48",
+          "designation": "48",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc49",
+          "designation": "49",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c46",
+          "designation": "50",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c47",
+          "designation": "51",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c1",
+          "designation": "52",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c12",
+          "designation": "53",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "nc54",
+          "designation": "54",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc55",
+          "designation": "55",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c27",
+          "designation": "56",
+          "signal": "MR-S pump B5 -> EPS relay k_eps coil- (85)",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c28",
+          "designation": "57",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c30",
+          "designation": "58",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c31",
+          "designation": "59",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "nc60",
+          "designation": "60",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c32",
+          "designation": "61",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "nc62",
+          "designation": "62",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc63",
+          "designation": "63",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc64",
+          "designation": "64",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc65",
+          "designation": "65",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc66",
+          "designation": "66",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc67",
+          "designation": "67",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc68",
+          "designation": "68",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc69",
+          "designation": "69",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc70",
+          "designation": "70",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc71",
+          "designation": "71",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc72",
+          "designation": "72",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc73",
+          "designation": "73",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc74",
+          "designation": "74",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc75",
+          "designation": "75",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc76",
+          "designation": "76",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc77",
+          "designation": "77",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc78",
+          "designation": "78",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc79",
+          "designation": "79",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc80",
+          "designation": "80",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc81",
+          "designation": "81",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc82",
+          "designation": "82",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc83",
+          "designation": "83",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc84",
+          "designation": "84",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc85",
+          "designation": "85",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc86",
+          "designation": "86",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc87",
+          "designation": "87",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc88",
+          "designation": "88",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc89",
+          "designation": "89",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc90",
+          "designation": "90",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc91",
+          "designation": "91",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc92",
+          "designation": "92",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc93",
+          "designation": "93",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc94",
+          "designation": "94",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc95",
+          "designation": "95",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc96",
+          "designation": "96",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc97",
+          "designation": "97",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc98",
+          "designation": "98",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc99",
+          "designation": "99",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc100",
+          "designation": "100",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc101",
+          "designation": "101",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc102",
+          "designation": "102",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        }
+      ],
+      "layoutPosition": {
+        "x": 2880,
+        "y": 450
+      },
+      "schematicPosition": {
+        "x": 3060,
+        "y": 0
+      }
+    },
+    {
+      "id": "turbospd",
+      "label": "Turbo Speed Sensor",
+      "partId": "cp_dt3s",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+5V",
+          "designation": "A",
+          "contactPartId": "ct_dt16s_ni"
+        },
+        {
+          "id": "c2",
+          "signal": "SIG",
+          "designation": "B",
+          "contactPartId": "ct_dt16s_ni"
+        },
+        {
+          "id": "c3",
+          "signal": "GND",
+          "designation": "C",
+          "contactPartId": "ct_dt16s_ni"
+        }
+      ],
+      "layoutPosition": {
+        "x": 240,
+        "y": 1140
+      },
+      "schematicPosition": {
+        "x": 2580,
+        "y": 1020
+      },
+      "width": 210
+    },
+    {
+      "id": "map",
+      "label": "MAP Sensor",
+      "partId": "cp_mp150_3",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "5V"
+        },
+        {
+          "id": "c2",
+          "signal": "SIG"
+        },
+        {
+          "id": "c3",
+          "signal": "GND",
+          "propagate": false
+        }
+      ],
+      "layoutPosition": {
+        "x": 2730,
+        "y": 1320
+      },
+      "schematicPosition": {
+        "x": 2640,
+        "y": 1770
+      },
+      "width": 150
+    },
+    {
+      "id": "flex",
+      "label": "Flex Fuel Sensor",
+      "partId": "cp_gt150",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V/8V",
+          "contactPartId": "ct_gt150_skt_05",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "signal": "GND",
+          "contactPartId": "ct_gt150_skt_05"
+        },
+        {
+          "id": "c3",
+          "signal": "FREQ OUT",
+          "contactPartId": "ct_gt150_skt_05"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2580,
+        "y": 1050
+      },
+      "schematicPosition": {
+        "x": 2640,
+        "y": 330
+      },
+      "width": 150
+    },
+    {
+      "id": "inj1",
+      "label": "Injector 1",
+      "partId": "cp_inj",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V",
+          "contactPartId": "ct_gt150_skt"
+        },
+        {
+          "id": "c2",
+          "signal": "INJ",
+          "contactPartId": "ct_gt150_skt_05"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1650,
+        "y": 1140
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 1320
+      },
+      "width": 150
+    },
+    {
+      "id": "inj2",
+      "label": "Injector 2",
+      "partId": "cp_inj",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V",
+          "contactPartId": "ct_gt150_skt",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "signal": "INJ",
+          "contactPartId": "ct_gt150_skt_05"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1980,
+        "y": 1140
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 1470
+      },
+      "width": 150
+    },
+    {
+      "id": "inj3",
+      "label": "Injector 3",
+      "partId": "cp_inj",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V",
+          "contactPartId": "ct_gt150_skt",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "signal": "INJ",
+          "contactPartId": "ct_gt150_skt_05"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2310,
+        "y": 1140
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 1620
+      },
+      "width": 150
+    },
+    {
+      "id": "inj4",
+      "label": "Injector 4",
+      "partId": "cp_inj",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V",
+          "contactPartId": "ct_gt150_skt",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "signal": "INJ",
+          "contactPartId": "ct_gt150_skt_05"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2730,
+        "y": 1140
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 1770
+      },
+      "width": 150
+    },
+    {
+      "id": "cop1",
+      "label": "COP 1 (1ZZ)",
+      "partId": "cp_cop",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+B 12V (COP rail, spur from ST185-B-engine)"
+        },
+        {
+          "id": "c2"
+        },
+        {
+          "id": "c3",
+          "signal": "IGT (TRIG)"
+        },
+        {
+          "id": "c4",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2580,
+        "y": 990
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 480
+      },
+      "width": 150
+    },
+    {
+      "id": "cop2",
+      "label": "COP 2 (1ZZ)",
+      "partId": "cp_cop",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
+          "propagate": false
+        },
+        {
+          "id": "c2"
+        },
+        {
+          "id": "c3",
+          "signal": "IGT (TRIG)"
+        },
+        {
+          "id": "c4",
+          "signal": "GND",
+          "propagate": false
+        }
+      ],
+      "layoutPosition": {
+        "x": 2430,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 690
+      },
+      "width": 150
+    },
+    {
+      "id": "cop3",
+      "label": "COP 3 (1ZZ)",
+      "partId": "cp_cop",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
+          "propagate": false
+        },
+        {
+          "id": "c2"
+        },
+        {
+          "id": "c3",
+          "signal": "IGT (TRIG)"
+        },
+        {
+          "id": "c4",
+          "signal": "GND",
+          "propagate": false
+        }
+      ],
+      "layoutPosition": {
+        "x": 1980,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 900
+      },
+      "width": 150
+    },
+    {
+      "id": "cop4",
+      "label": "COP 4 (1ZZ)",
+      "partId": "cp_cop",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+B 12V (COP rail, spur from ST185-B-engine)",
+          "propagate": false
+        },
+        {
+          "id": "c2"
+        },
+        {
+          "id": "c3",
+          "signal": "IGT (TRIG)"
+        },
+        {
+          "id": "c4",
+          "signal": "GND",
+          "propagate": false
+        }
+      ],
+      "layoutPosition": {
+        "x": 1650,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 1110
+      },
+      "width": 150
+    },
+    {
+      "id": "etb",
+      "label": "Bosch 74.5mm ETB",
+      "width": 150,
+      "partId": "cp_etb",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Motor-",
+          "contactPartId": "wbsN09tiboovqanDL_xZA"
+        },
+        {
+          "id": "c2",
+          "signal": "Poti- (GND)",
+          "contactPartId": "wbsN09tiboovqanDL_xZA",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "signal": "Poti+ (5V)",
+          "contactPartId": "wbsN09tiboovqanDL_xZA"
+        },
+        {
+          "id": "c4",
+          "signal": "Motor+",
+          "contactPartId": "wbsN09tiboovqanDL_xZA"
+        },
+        {
+          "id": "c5",
+          "signal": "Poti2 (TPS-S)",
+          "contactPartId": "wbsN09tiboovqanDL_xZA"
+        },
+        {
+          "id": "c6",
+          "signal": "Poti1 (TPS-M)",
+          "contactPartId": "wbsN09tiboovqanDL_xZA"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1650,
+        "y": 1440
+      },
+      "schematicPosition": {
+        "x": 2640,
+        "y": 1200
+      }
+    },
+    {
+      "id": "boost",
+      "label": "Boost Control Solenoid",
+      "partId": "cp_mp150_2",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V",
+          "contactPartId": "ct_mp150_skt"
+        },
+        {
+          "id": "c2",
+          "signal": "LS",
+          "contactPartId": "ct_mp150_skt"
+        }
+      ],
+      "layoutPosition": {
+        "x": -30,
+        "y": 1230
+      },
+      "schematicPosition": {
+        "x": 2580,
+        "y": 0
+      },
+      "width": 210
+    },
+    {
+      "id": "ect",
+      "label": "ECT Sensor",
+      "partId": "cp_toy2p",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "SIG"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1020,
+        "y": 1140
+      },
+      "schematicPosition": {
+        "x": 2100,
+        "y": 180
+      },
+      "width": 150
+    },
+    {
+      "id": "iat",
+      "label": "IAT Sensor (Manifold)",
+      "partId": "cp_toy2p",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "SIG"
+        },
+        {
+          "id": "c2",
+          "signal": "GND",
+          "propagate": false
+        }
+      ],
+      "layoutPosition": {
+        "x": 1980,
+        "y": 1320
+      },
+      "schematicPosition": {
+        "x": 2580,
+        "y": 1470
+      },
+      "width": 210
+    },
+    {
+      "id": "crank",
+      "label": "Crank VR Sensor (36-2)",
+      "partId": "cp_dt2s",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "SIG+"
+        },
+        {
+          "id": "c2",
+          "signal": "SIG-"
+        }
+      ],
+      "layoutPosition": {
+        "x": 540,
+        "y": 1320
+      },
+      "schematicPosition": {
+        "x": 2040,
+        "y": 1920
+      },
+      "width": 210
+    },
+    {
+      "id": "cam",
+      "label": "Cam Hall Sensor (RacerX)",
+      "partId": "cp_camkit",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+8V"
+        },
+        {
+          "id": "c2",
+          "signal": "SIG"
+        },
+        {
+          "id": "c3",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1320,
+        "y": 450
+      },
+      "schematicPosition": {
+        "x": 2040,
+        "y": 0
+      },
+      "width": 210
+    },
+    {
+      "id": "ix_brail_s",
+      "label": "B sensor +5V - 6-way inline to ST185-B-engine (IX_B_RAIL)",
+      "width": 270,
+      "partId": "cp_dt06_6s",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2370,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 2520,
+        "y": 2400
+      }
+    }
+  ],
+  "terminals": [
+    {
+      "id": "eng_gnd_ring",
+      "type": "Ring",
+      "signal": "Engine block ground stud (power ground)",
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1770
+      },
+      "schematicPosition": {
+        "x": 1080,
+        "y": 330
+      },
+      "partId": "tp_ring_m6_12_10",
+      "width": 390,
+      "propagate": false
+    },
+    {
+      "id": "starter_trigger",
+      "type": "Spade",
+      "signal": "Starter Solenoid Trigger (S)",
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1860
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 150
+      },
+      "partId": "tp_spade_str",
+      "width": 270,
+      "propagate": false
+    },
+    {
+      "id": "br_w_hv_mrs_en_e",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: MRS enable, bulkhead A c35",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2580,
+        "y": 810
+      },
+      "schematicPosition": {
+        "x": 3000,
+        "y": -60
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_mrs_e",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: MRS speed (ECU A27), bulkhead A c36",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2580,
+        "y": 870
+      },
+      "schematicPosition": {
+        "x": 3000,
+        "y": 3120
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_strl",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: start relay 87 to the starter S terminal",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2700,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 2340,
+        "y": 120
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w124_e",
+      "type": "Loose",
+      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor + (Aux 9, B18), bulkhead B c5",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2580,
+        "y": 630
+      },
+      "schematicPosition": {
+        "x": 2910,
+        "y": -120
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w215_e",
+      "type": "Loose",
+      "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor - (Aux 10, B26), bulkhead B c6",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2580,
+        "y": 690
+      },
+      "schematicPosition": {
+        "x": 2910,
+        "y": 3180
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_cab_etbm_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen comes in from ST185-B-engine: ETB motor cable screen, bulkhead B c22",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2580,
+        "y": 750
+      },
+      "schematicPosition": {
+        "x": 2910,
+        "y": 3240
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_eps_rly_e",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-EngineRoom-C: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2580,
+        "y": 930
+      },
+      "schematicPosition": {
+        "x": 2580,
+        "y": -60
+      },
+      "propagate": false
     }
   ],
   "cables": [
@@ -6451,201 +6371,81 @@
       }
     }
   ],
-  "branchPoints": [
+  "splices": [
     {
-      "id": "bp_360",
+      "id": "sp_sw12_eng",
       "layoutPosition": {
-        "x": 120,
-        "y": 1230
-      }
+        "x": 1860,
+        "y": 1320
+      },
+      "schematicPosition": {
+        "x": 1590,
+        "y": 390
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "be_660"
     },
     {
-      "id": "bp_420",
+      "id": "sp_gndout_eng",
       "layoutPosition": {
-        "x": 390,
-        "y": 1230
-      }
+        "x": 1890,
+        "y": 1320
+      },
+      "schematicPosition": {
+        "x": 1590,
+        "y": 690
+      },
+      "partId": "spp_crimp_14_10",
+      "locationId": "be_660"
     },
     {
-      "id": "bp_450",
+      "id": "sp_chassis_eng",
       "layoutPosition": {
-        "x": 690,
-        "y": 1230
-      }
-    },
-    {
-      "id": "bp_480",
-      "layoutPosition": {
-        "x": 810,
-        "y": 1230
-      }
-    },
-    {
-      "id": "bp_510",
-      "layoutPosition": {
-        "x": 930,
-        "y": 1230
-      }
-    },
-    {
-      "id": "bp_540",
-      "layoutPosition": {
-        "x": 1050,
-        "y": 1230
-      }
-    },
-    {
-      "id": "bp_570",
-      "layoutPosition": {
-        "x": 1170,
-        "y": 1230
-      }
-    },
-    {
-      "id": "bp_600",
-      "layoutPosition": {
-        "x": 1470,
-        "y": 1230
-      }
-    },
-    {
-      "id": "bp_630",
-      "layoutPosition": {
-        "x": 1800,
-        "y": 1230
-      }
-    },
-    {
-      "id": "bp_660",
-      "layoutPosition": {
-        "x": 2130,
-        "y": 1230
-      }
-    },
-    {
-      "id": "bp_690",
-      "layoutPosition": {
-        "x": 2460,
-        "y": 1230
-      }
-    },
-    {
-      "id": "bp_720",
-      "layoutPosition": {
-        "x": 2880,
-        "y": 1230
-      }
-    },
-    {
-      "id": "bp_750",
-      "layoutPosition": {
-        "x": 2880,
-        "y": 840
-      }
-    },
-    {
-      "id": "bp_810",
-      "layoutPosition": {
-        "x": 2580,
-        "y": 450
-      }
-    },
-    {
-      "id": "bp_840",
-      "layoutPosition": {
-        "x": 2130,
-        "y": 450
-      }
-    },
-    {
-      "id": "bp_870",
-      "layoutPosition": {
-        "x": 1800,
-        "y": 450
-      }
-    },
-    {
-      "id": "bp_900",
-      "layoutPosition": {
-        "x": 1470,
-        "y": 450
-      }
-    },
-    {
-      "id": "be_660",
-      "layoutPosition": {
-        "x": 1830,
-        "y": 1380
-      }
-    },
-    {
-      "id": "be_750",
-      "layoutPosition": {
-        "x": 2370,
+        "x": 2310,
         "y": 270
-      }
+      },
+      "schematicPosition": {
+        "x": 930,
+        "y": 720
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "be_750"
     },
     {
-      "id": "be_870",
+      "id": "sp_inj_eng",
       "layoutPosition": {
-        "x": 1470,
-        "y": 1500
-      }
+        "x": 2250,
+        "y": 1050
+      },
+      "schematicPosition": {
+        "x": 930,
+        "y": 1530
+      },
+      "partId": "spp_solder_generic"
     },
     {
-      "id": "be_900",
+      "id": "sp_cop_eng",
       "layoutPosition": {
-        "x": 1470,
-        "y": 1590
-      }
+        "x": 2250,
+        "y": 330
+      },
+      "schematicPosition": {
+        "x": 930,
+        "y": 930
+      },
+      "partId": "spp_solder_generic"
     },
     {
-      "id": "be_930",
+      "id": "sp_gndout_eng2",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_750",
       "layoutPosition": {
-        "x": 1470,
-        "y": 1680
-      }
-    },
-    {
-      "id": "bp_960",
-      "layoutPosition": {
-        "x": 1470,
-        "y": 1770
-      }
-    },
-    {
-      "id": "bp_990",
-      "layoutPosition": {
-        "x": 1470,
-        "y": 1860
-      }
-    },
-    {
-      "id": "bp_1020",
-      "layoutPosition": {
-        "x": 2880,
-        "y": 150
-      }
-    },
-    {
-      "id": "bp_1050",
-      "layoutPosition": {
-        "x": 2880,
-        "y": 300
-      }
-    },
-    {
-      "id": "bp_at_fuelp",
-      "layoutPosition": {
-        "x": 1470,
-        "y": 1410
-      }
-    },
-    {
-      "id": "bp_at_bh_b_eng",
-      "layoutPosition": {
-        "x": 2580,
-        "y": 240
+        "x": 2910,
+        "y": 780
+      },
+      "schematicPosition": {
+        "x": 930,
+        "y": 2100
       }
     }
   ],
@@ -6858,6 +6658,124 @@
       }
     }
   ],
+  "cableParts": [
+    {
+      "id": "cab_sh_1c",
+      "partNumber": "GENERIC SHLD CABLE 1C 20AWG BLU",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, BLUE, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_3c",
+      "partNumber": "GENERIC SHLD CABLE 3C 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Orange",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_4c",
+      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Orange",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k4",
+          "color": "Violet",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_sh_2c_18",
+      "partNumber": "GENERIC SHLD CABLE 2C 18AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR, 18 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "value": 18,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 18,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    }
+  ],
   "spliceParts": [
     {
       "id": "spp_solder_generic",
@@ -6878,6 +6796,204 @@
       "partNumber": "GENERIC CRIMP SPLICE 14-10",
       "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
       "manufacturer": "generic"
+    }
+  ],
+  "branchPoints": [
+    {
+      "id": "bp_360",
+      "layoutPosition": {
+        "x": 120,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_420",
+      "layoutPosition": {
+        "x": 390,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_450",
+      "layoutPosition": {
+        "x": 690,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_480",
+      "layoutPosition": {
+        "x": 810,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_510",
+      "layoutPosition": {
+        "x": 930,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_540",
+      "layoutPosition": {
+        "x": 1050,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_570",
+      "layoutPosition": {
+        "x": 1170,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_600",
+      "layoutPosition": {
+        "x": 1470,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_630",
+      "layoutPosition": {
+        "x": 1800,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_660",
+      "layoutPosition": {
+        "x": 2130,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_690",
+      "layoutPosition": {
+        "x": 2460,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_720",
+      "layoutPosition": {
+        "x": 2880,
+        "y": 1230
+      }
+    },
+    {
+      "id": "bp_750",
+      "layoutPosition": {
+        "x": 2880,
+        "y": 840
+      }
+    },
+    {
+      "id": "bp_810",
+      "layoutPosition": {
+        "x": 2580,
+        "y": 450
+      }
+    },
+    {
+      "id": "bp_840",
+      "layoutPosition": {
+        "x": 2130,
+        "y": 450
+      }
+    },
+    {
+      "id": "bp_870",
+      "layoutPosition": {
+        "x": 1800,
+        "y": 450
+      }
+    },
+    {
+      "id": "bp_900",
+      "layoutPosition": {
+        "x": 1470,
+        "y": 450
+      }
+    },
+    {
+      "id": "be_660",
+      "layoutPosition": {
+        "x": 1830,
+        "y": 1380
+      }
+    },
+    {
+      "id": "be_750",
+      "layoutPosition": {
+        "x": 2370,
+        "y": 270
+      }
+    },
+    {
+      "id": "be_870",
+      "layoutPosition": {
+        "x": 1470,
+        "y": 1500
+      }
+    },
+    {
+      "id": "be_900",
+      "layoutPosition": {
+        "x": 1470,
+        "y": 1590
+      }
+    },
+    {
+      "id": "be_930",
+      "layoutPosition": {
+        "x": 1470,
+        "y": 1680
+      }
+    },
+    {
+      "id": "bp_960",
+      "layoutPosition": {
+        "x": 1470,
+        "y": 1770
+      }
+    },
+    {
+      "id": "bp_990",
+      "layoutPosition": {
+        "x": 1470,
+        "y": 1860
+      }
+    },
+    {
+      "id": "bp_1020",
+      "layoutPosition": {
+        "x": 2880,
+        "y": 150
+      }
+    },
+    {
+      "id": "bp_1050",
+      "layoutPosition": {
+        "x": 2880,
+        "y": 300
+      }
+    },
+    {
+      "id": "bp_at_fuelp",
+      "layoutPosition": {
+        "x": 1470,
+        "y": 1410
+      }
+    },
+    {
+      "id": "bp_at_bh_b_eng",
+      "layoutPosition": {
+        "x": 2580,
+        "y": 240
+      }
     }
   ],
   "contactParts": [
@@ -7024,12 +7140,46 @@
       "manufacturer": "TE DEUTSCH"
     }
   ],
-  "cavityPlugParts": [
+  "coveringParts": [
     {
-      "id": "pl_sz16",
-      "partNumber": "114017",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
-      "manufacturer": "TE DEUTSCH"
+      "id": "cov_lbl_316",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/16-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 1.6,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "terminalParts": [
@@ -7099,7 +7249,13 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_generic_skt"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_generic_skt"
+            }
+          ]
         }
       ],
       "numberOfCavities": 3
@@ -7120,7 +7276,13 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_toy_ts"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_toy_ts"
+            }
+          ]
         }
       ],
       "numberOfCavities": 4
@@ -7174,9 +7336,23 @@
       "configurations": [
         {
           "id": "cfg",
-          "lockPartId": "lp_w2s",
-          "contactPartId": "ct_dt16s_ni",
-          "cavityPlugPartId": "pl_sz16"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w2s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16s_ni"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
         }
       ],
       "numberOfCavities": 2,
@@ -7251,7 +7427,13 @@
       "configurations": [
         {
           "id": "cfg",
-          "lockPartId": "lp_w3s"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w3s"
+            }
+          ]
         }
       ],
       "numberOfCavities": 3,
@@ -7355,7 +7537,13 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_mp150_skt"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_mp150_skt"
+            }
+          ]
         }
       ],
       "numberOfCavities": 3
@@ -7376,7 +7564,13 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_toy_ts"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_toy_ts"
+            }
+          ]
         }
       ],
       "numberOfCavities": 2
@@ -7397,130 +7591,26 @@
       "configurations": [
         {
           "id": "cfg",
-          "lockPartId": "lp_w6s",
-          "contactPartId": "ct_hdp16s",
-          "cavityPlugPartId": "pl_sz16"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w6s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_hdp16s"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
         }
       ],
       "numberOfCavities": 6
-    }
-  ],
-  "cableParts": [
-    {
-      "id": "cab_sh_1c",
-      "partNumber": "GENERIC SHLD CABLE 1C 20AWG BLU",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, BLUE, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_3c",
-      "partNumber": "GENERIC SHLD CABLE 3C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_4c",
-      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k4",
-          "color": "Violet",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_2c_18",
-      "partNumber": "GENERIC SHLD CABLE 2C 18AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 2 CONDUCTOR, 18 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Red",
-          "gauge": {
-            "value": 18,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 18,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
     }
   ],
   "lockParts": [
@@ -7553,46 +7643,12 @@
       "manufacturer": "TE DEUTSCH"
     }
   ],
-  "coveringParts": [
+  "cavityPlugParts": [
     {
-      "id": "cov_lbl_316",
-      "type": "HeatShrink",
-      "partNumber": "TMS-SCE-3/16-2.0-9",
-      "manufacturer": "TE Connectivity (Raychem)",
-      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
-      "minDiameter": {
-        "value": 1.6,
-        "unit": "mm"
-      },
-      "maxDiameter": {
-        "value": 4.8,
-        "unit": "mm"
-      },
-      "isFixedLength": true,
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "cov_lbl_38",
-      "type": "HeatShrink",
-      "partNumber": "TMS-SCE-3/8-2.0-9",
-      "manufacturer": "TE Connectivity (Raychem)",
-      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
-      "minDiameter": {
-        "value": 3.2,
-        "unit": "mm"
-      },
-      "maxDiameter": {
-        "value": 9.5,
-        "unit": "mm"
-      },
-      "isFixedLength": true,
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
+      "id": "pl_sz16",
+      "partNumber": "114017",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
+      "manufacturer": "TE DEUTSCH"
     }
   ]
 }

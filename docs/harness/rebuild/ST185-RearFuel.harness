@@ -1,6 +1,7 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
-  "version": 0.9,
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
+  "version": 1.2,
   "lengthUnit": "mm",
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
@@ -13,14 +14,12 @@
     "includeLayout": true,
     "schematic": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
     },
     "layout": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
@@ -65,104 +64,6 @@
       "showUnconnected": true
     }
   },
-  "connectors": [
-    {
-      "id": "ix_fuel_p",
-      "label": "Fuel level - 2-way inline mate (IX_FUEL_LVL)",
-      "width": 270,
-      "partId": "cp_dt2s",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "Fuel level ground -> Gnd Out",
-          "propagate": false
-        }
-      ],
-      "schematicPosition": {
-        "x": 270,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 0,
-        "y": 600
-      },
-      "partImage": {
-        "schematic": {
-          "size": 270,
-          "position": {
-            "x": 270,
-            "y": -300
-          }
-        }
-      }
-    },
-    {
-      "id": "fuellvl",
-      "label": "Fuel Level Sender - DT 2-way (Dan rev 2, 2026-10-10 - no OEM connector)",
-      "partId": "cp_dt04_2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "SIG"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 390,
-        "y": 480
-      },
-      "schematicPosition": {
-        "x": -300,
-        "y": 0
-      },
-      "width": 150,
-      "partImage": {
-        "schematic": {
-          "size": 150,
-          "position": {
-            "x": -300,
-            "y": -180
-          }
-        }
-      }
-    },
-    {
-      "id": "fuelpump",
-      "label": "Fuel Pump",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "12V"
-        },
-        {
-          "id": "c2",
-          "signal": "GND"
-        }
-      ],
-      "layoutPosition": {
-        "x": 420,
-        "y": 780
-      },
-      "schematicPosition": {
-        "x": 270,
-        "y": 600
-      },
-      "partId": "cp_fuelpump",
-      "width": 150
-    }
-  ],
   "wires": [
     {
       "id": "w_fl_sig_r",
@@ -316,6 +217,137 @@
       ]
     }
   ],
+  "connectors": [
+    {
+      "id": "ix_fuel_p",
+      "label": "Fuel level - 2-way inline mate (IX_FUEL_LVL)",
+      "width": 270,
+      "partId": "cp_dt2s",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Fuel level ground -> Gnd Out",
+          "propagate": false
+        }
+      ],
+      "schematicPosition": {
+        "x": 270,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": 600
+      },
+      "partImage": {
+        "schematic": {
+          "size": 270,
+          "position": {
+            "x": 270,
+            "y": -300
+          }
+        }
+      }
+    },
+    {
+      "id": "fuellvl",
+      "label": "Fuel Level Sender - DT 2-way (Dan rev 2, 2026-10-10 - no OEM connector)",
+      "partId": "cp_dt04_2p",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "SIG"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 390,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": -300,
+        "y": 0
+      },
+      "width": 150,
+      "partImage": {
+        "schematic": {
+          "size": 150,
+          "position": {
+            "x": -300,
+            "y": -180
+          }
+        }
+      }
+    },
+    {
+      "id": "fuelpump",
+      "label": "Fuel Pump",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "12V"
+        },
+        {
+          "id": "c2",
+          "signal": "GND"
+        }
+      ],
+      "layoutPosition": {
+        "x": 420,
+        "y": 780
+      },
+      "schematicPosition": {
+        "x": 270,
+        "y": 600
+      },
+      "partId": "cp_fuelpump",
+      "width": 150
+    }
+  ],
+  "terminals": [
+    {
+      "id": "br_fp_pump",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-HeavyDC: fuel pump relay k_fp 87 (HCR150 terminal 5, battery relay block) -> fuel pump c1",
+      "width": 390,
+      "layoutPosition": {
+        "x": 900,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": -300,
+        "y": 600
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_trunk_fp_gnd",
+      "type": "Ring",
+      "signal": "Trunk chassis ground stud - fuel pump return (plan 6.41; M6 assumed)",
+      "layoutPosition": {
+        "x": 810,
+        "y": 780
+      },
+      "schematicPosition": {
+        "x": -300,
+        "y": 750
+      },
+      "partId": "tp_ring_m6_12_10",
+      "width": 390,
+      "propagate": false
+    }
+  ],
   "bundles": [
     {
       "id": "bn_ix_fuel_p__fuellvl",
@@ -429,6 +461,110 @@
       }
     }
   ],
+  "contactParts": [
+    {
+      "partNumber": "0462-201-16141",
+      "manufacturer": "TE DEUTSCH",
+      "type": "Crimp",
+      "gender": "Socket",
+      "minGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "contactColor": "Silver",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
+      "id": "ct_dt16s_ni"
+    },
+    {
+      "partNumber": "0460-202-1631",
+      "manufacturer": "TE DEUTSCH",
+      "type": "Crimp",
+      "gender": "Pin",
+      "minGauge": {
+        "value": 20,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 16,
+        "unit": "AWG"
+      },
+      "contactColor": "Gold",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "id": "ct_dt16p"
+    },
+    {
+      "id": "ct_generic_skt",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "(generic)",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
+      "manufacturer": "Generic"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_316",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/16-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 1.6,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    }
+  ],
+  "terminalParts": [
+    {
+      "id": "tp_ring_m6_12_10",
+      "size": "M6",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "partNumber": "GENERIC RING M6 12-10",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
+      "manufacturer": "generic"
+    }
+  ],
   "connectorParts": [
     {
       "partNumber": "DT06-2S",
@@ -440,9 +576,23 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_dt16s_ni",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w2s"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w2s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16s_ni"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
         }
       ],
       "url": "https://www.te.com/usa-en/product-DT06-2S.html",
@@ -500,9 +650,23 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_dt16p",
-          "cavityPlugPartId": "pl_sz16",
-          "lockPartId": "lp_w2p"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w2p"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16p"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
         }
       ],
       "url": "https://www.te.com/usa-en/product-DT04-2P.html"
@@ -522,54 +686,16 @@
       "configurations": [
         {
           "id": "cfg",
-          "contactPartId": "ct_generic_skt"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_generic_skt"
+            }
+          ]
         }
       ],
       "numberOfCavities": 2
-    }
-  ],
-  "contactParts": [
-    {
-      "partNumber": "0462-201-16141",
-      "manufacturer": "TE DEUTSCH",
-      "type": "Crimp",
-      "gender": "Socket",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "contactColor": "Silver",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
-      "id": "ct_dt16s_ni"
-    },
-    {
-      "partNumber": "0460-202-1631",
-      "manufacturer": "TE DEUTSCH",
-      "type": "Crimp",
-      "gender": "Pin",
-      "minGauge": {
-        "value": 20,
-        "unit": "AWG"
-      },
-      "maxGauge": {
-        "value": 16,
-        "unit": "AWG"
-      },
-      "contactColor": "Gold",
-      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
-      "id": "ct_dt16p"
-    },
-    {
-      "id": "ct_generic_skt",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "(generic)",
-      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
-      "manufacturer": "Generic"
     }
   ],
   "lockParts": [
@@ -592,99 +718,6 @@
       "manufacturer": "TE DEUTSCH",
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
-    }
-  ],
-  "terminals": [
-    {
-      "id": "br_fp_pump",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-HeavyDC: fuel pump relay k_fp 87 (HCR150 terminal 5, battery relay block) -> fuel pump c1",
-      "width": 390,
-      "layoutPosition": {
-        "x": 900,
-        "y": 0
-      },
-      "schematicPosition": {
-        "x": -300,
-        "y": 600
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_trunk_fp_gnd",
-      "type": "Ring",
-      "signal": "Trunk chassis ground stud - fuel pump return (plan 6.41; M6 assumed)",
-      "layoutPosition": {
-        "x": 810,
-        "y": 780
-      },
-      "schematicPosition": {
-        "x": -300,
-        "y": 750
-      },
-      "partId": "tp_ring_m6_12_10",
-      "width": 390,
-      "propagate": false
-    }
-  ],
-  "terminalParts": [
-    {
-      "id": "tp_ring_m6_12_10",
-      "size": "M6",
-      "type": "Ring",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 10
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 12
-      },
-      "partNumber": "GENERIC RING M6 12-10",
-      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
-      "manufacturer": "generic"
-    }
-  ],
-  "coveringParts": [
-    {
-      "id": "cov_lbl_38",
-      "type": "HeatShrink",
-      "partNumber": "TMS-SCE-3/8-2.0-9",
-      "manufacturer": "TE Connectivity (Raychem)",
-      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
-      "minDiameter": {
-        "value": 3.2,
-        "unit": "mm"
-      },
-      "maxDiameter": {
-        "value": 9.5,
-        "unit": "mm"
-      },
-      "isFixedLength": true,
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "cov_lbl_316",
-      "type": "HeatShrink",
-      "partNumber": "TMS-SCE-3/16-2.0-9",
-      "manufacturer": "TE Connectivity (Raychem)",
-      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
-      "minDiameter": {
-        "value": 1.6,
-        "unit": "mm"
-      },
-      "maxDiameter": {
-        "value": 4.8,
-        "unit": "mm"
-      },
-      "isFixedLength": true,
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
     }
   ]
 }

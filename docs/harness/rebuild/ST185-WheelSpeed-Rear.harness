@@ -1,7 +1,7 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
-  "version": 0.9,
+  "version": 1.2,
   "lengthUnit": "mm",
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
@@ -9,6 +9,61 @@
     "drawingNumber": "ST185-WheelSpeed-Rear"
   },
   "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Codes: WSS_RL White; WSS_RR Blue-Blue; VRC_R_DRAIN Yellow-Yellow; VRC_R_5V Blue-Yellow; VRC_R_GND Blue-White. Labels: printed TMS-SCE marker on each bundle end: RL WSS / RR WSS at the sensor plugs, IX WS REAR at the inline (the VRC plugs keep their VRC-IN / VRC-OUT markers).",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
   "wires": [
     {
       "id": "_TXY7m",
@@ -961,6 +1016,20 @@
       }
     }
   ],
+  "wireParts": [
+    {
+      "id": "m16_20_06",
+      "partNumber": "M22759/16-20-06",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    }
+  ],
   "cableParts": [
     {
       "id": "cab_sh_2c",
@@ -1066,174 +1135,6 @@
       "manufacturer": "TE DEUTSCH"
     }
   ],
-  "connectorParts": [
-    {
-      "id": "cp_dt2s_ni",
-      "url": "https://www.te.com/usa-en/product-DT06-2S.html",
-      "image": {
-        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014830313.png",
-        "source": "cloud"
-      },
-      "gender": "Female",
-      "pinout": {
-        "id": "te-deutsch-dt-2",
-        "name": "DT 2-way",
-        "pins": [
-          {
-            "x": 2.73,
-            "y": 0,
-            "size": 4.2
-          },
-          {
-            "x": -2.73,
-            "y": 0,
-            "size": 4.2
-          }
-        ],
-        "outline": {
-          "type": "rect",
-          "width": 15.1,
-          "height": 11.7,
-          "cornerRadius": 2.5
-        },
-        "features": [
-          {
-            "y": -5.85,
-            "layer": "behind",
-            "shape": {
-              "type": "rect",
-              "width": 8.5,
-              "height": 3
-            }
-          }
-        ],
-        "mirrored": true
-      },
-      "hasShell": false,
-      "partNumber": "DT06-2S",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_w2s",
-          "contactPartId": "ct_dt16s_ni",
-          "cavityPlugPartId": "pl_sz16"
-        }
-      ],
-      "numberOfCavities": 2,
-      "designationStrategy": {
-        "type": "sequential"
-      }
-    },
-    {
-      "id": "cp_dt04_6p",
-      "url": "https://www.te.com/usa-en/product-DT04-6P.html",
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DT04-6P",
-      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_w6p",
-          "contactPartId": "ct_dt16p",
-          "cavityPlugPartId": "pl_sz16"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_lp16_5f",
-      "url": "https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/7d5b62abdd63e73884abd9dfc71b8b0e-1755574530.pdf",
-      "color": "Black",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "LP-16-J05PE-02-001",
-      "description": "CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH",
-      "manufacturer": "CNLINKO",
-      "numberOfCavities": 5,
-      "configurations": [
-        {
-          "id": "cfg"
-        },
-        {
-          "id": "cfg_vrc_in",
-          "name": "VRC-IN: printed label VRC-IN + blue band on each sensor cable",
-          "accessories": [
-            {
-              "id": "acc_lbl",
-              "type": "CoveringPart",
-              "partId": "cov_lbl_vrc_in"
-            },
-            {
-              "id": "acc_band_l",
-              "type": "CoveringPart",
-              "partId": "cov_band_blue"
-            },
-            {
-              "id": "acc_band_r",
-              "type": "CoveringPart",
-              "partId": "cov_band_blue"
-            }
-          ]
-        },
-        {
-          "id": "cfg_vrc_out",
-          "name": "VRC-OUT: printed label VRC-OUT + yellow band",
-          "accessories": [
-            {
-              "id": "acc_lbl",
-              "type": "CoveringPart",
-              "partId": "cov_lbl_vrc_out"
-            },
-            {
-              "id": "acc_band",
-              "type": "CoveringPart",
-              "partId": "cov_band_yellow"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "lockParts": [
-    {
-      "id": "lp_w2s",
-      "partNumber": "W2S",
-      "description": "WEDGELOCK, DT, 2-WAY PLUG",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lp_w6p",
-      "partNumber": "W6P",
-      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE",
-      "manufacturer": "TE DEUTSCH"
-    }
-  ],
-  "cavityPlugParts": [
-    {
-      "id": "pl_sz16",
-      "partNumber": "114017",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
-      "manufacturer": "TE DEUTSCH"
-    }
-  ],
-  "wireParts": [
-    {
-      "id": "m16_20_06",
-      "partNumber": "M22759/16-20-06",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "stripeColor": "Blue",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    }
-  ],
   "coveringParts": [
     {
       "id": "cov_lbl_vrc_in",
@@ -1316,61 +1217,186 @@
       }
     }
   ],
-  "pdfExportSettings": {
-    "includeSchematic": true,
-    "includeLayout": true,
-    "schematic": {
-      "showParts": true,
-      "showCoverings": true,
-      "showAccessories": true,
-      "showComponentIds": true,
-      "pageSize": "Fit"
-    },
-    "layout": {
-      "showParts": true,
-      "showCoverings": true,
-      "showAccessories": true,
-      "showComponentIds": true,
-      "pageSize": "Fit"
-    },
-    "wireThickness": "Thick",
-    "includeTitleBlock": true,
-    "includeNotes": true,
-    "includeParts": true,
-    "parts": {
-      "columns": [
-        "PartNumber",
-        "Manufacturer",
-        "Details",
-        "Description",
-        "Url",
-        "Quantity"
+  "connectorParts": [
+    {
+      "id": "cp_dt2s_ni",
+      "url": "https://www.te.com/usa-en/product-DT06-2S.html",
+      "image": {
+        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014830313.png",
+        "source": "cloud"
+      },
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-2",
+        "name": "DT 2-way",
+        "pins": [
+          {
+            "x": 2.73,
+            "y": 0,
+            "size": 4.2
+          },
+          {
+            "x": -2.73,
+            "y": 0,
+            "size": 4.2
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 15.1,
+          "height": 11.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "y": -5.85,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 8.5,
+              "height": 3
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "hasShell": false,
+      "partNumber": "DT06-2S",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w2s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16s_ni"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
+        }
       ],
-      "pageMode": "Multiple",
-      "pageSize": "A3"
+      "numberOfCavities": 2,
+      "designationStrategy": {
+        "type": "sequential"
+      }
     },
-    "includeConnections": true,
-    "connections": {
-      "includeAll": true,
-      "includeComponents": true,
-      "columns": [
-        "Conductor",
-        "PartNumber",
-        "TwistedWith",
-        "Ident",
-        "Group",
-        "Net",
-        "Length",
-        "Contact"
+    {
+      "id": "cp_dt04_6p",
+      "url": "https://www.te.com/usa-en/product-DT04-6P.html",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-6P",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w6p"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16p"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
+        }
       ],
-      "showConductorIds": true,
-      "pageMode": "Multiple",
-      "pageSize": "A3",
-      "showPart": true,
-      "showPartImage": false,
-      "showAccessories": true,
-      "showPinout": true,
-      "showUnconnected": true
+      "numberOfCavities": 6
+    },
+    {
+      "id": "cp_lp16_5f",
+      "url": "https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/7d5b62abdd63e73884abd9dfc71b8b0e-1755574530.pdf",
+      "color": "Black",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "LP-16-J05PE-02-001",
+      "description": "CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH",
+      "manufacturer": "CNLINKO",
+      "numberOfCavities": 5,
+      "configurations": [
+        {
+          "id": "cfg"
+        },
+        {
+          "id": "cfg_vrc_in",
+          "name": "VRC-IN: printed label VRC-IN + blue band on each sensor cable",
+          "accessories": [
+            {
+              "id": "acc_lbl",
+              "type": "CoveringPart",
+              "partId": "cov_lbl_vrc_in"
+            },
+            {
+              "id": "acc_band_l",
+              "type": "CoveringPart",
+              "partId": "cov_band_blue"
+            },
+            {
+              "id": "acc_band_r",
+              "type": "CoveringPart",
+              "partId": "cov_band_blue"
+            }
+          ]
+        },
+        {
+          "id": "cfg_vrc_out",
+          "name": "VRC-OUT: printed label VRC-OUT + yellow band",
+          "accessories": [
+            {
+              "id": "acc_lbl",
+              "type": "CoveringPart",
+              "partId": "cov_lbl_vrc_out"
+            },
+            {
+              "id": "acc_band",
+              "type": "CoveringPart",
+              "partId": "cov_band_yellow"
+            }
+          ]
+        }
+      ]
     }
-  }
+  ],
+  "lockParts": [
+    {
+      "id": "lp_w2s",
+      "partNumber": "W2S",
+      "description": "WEDGELOCK, DT, 2-WAY PLUG",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "lp_w6p",
+      "partNumber": "W6P",
+      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "id": "pl_sz16",
+      "partNumber": "114017",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ]
 }

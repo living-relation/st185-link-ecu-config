@@ -1,7 +1,7 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
-  "version": 0.9,
+  "version": 1.2,
   "lengthUnit": "mm",
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
@@ -14,14 +14,12 @@
     "includeLayout": true,
     "schematic": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
     },
     "layout": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
@@ -66,1498 +64,6 @@
       "showUnconnected": true
     }
   },
-  "connectors": [
-    {
-      "id": "bh_b_fw",
-      "label": "Bulkhead DRB102 - firewall receptacle (DRB12-102PAE-L018 + DRBF-1A), all 102 cavities; section B wired here",
-      "width": 390,
-      "partId": "cp_drb_recept",
-      "cavities": [
-        {
-          "id": "nc1",
-          "designation": "1",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc2",
-          "designation": "2",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c38",
-          "designation": "3",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        },
-        {
-          "id": "c39",
-          "designation": "4",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        },
-        {
-          "id": "c40",
-          "designation": "5",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        },
-        {
-          "id": "c41",
-          "designation": "6",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        },
-        {
-          "id": "c42",
-          "designation": "7",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        },
-        {
-          "id": "c43",
-          "designation": "8",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        },
-        {
-          "id": "nc9",
-          "designation": "9",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc10",
-          "designation": "10",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc11",
-          "designation": "11",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc12",
-          "designation": "12",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc13",
-          "designation": "13",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc14",
-          "designation": "14",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc15",
-          "designation": "15",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc16",
-          "designation": "16",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc17",
-          "designation": "17",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc18",
-          "designation": "18",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc19",
-          "designation": "19",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc20",
-          "designation": "20",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc21",
-          "designation": "21",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc22",
-          "designation": "22",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc23",
-          "designation": "23",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc24",
-          "designation": "24",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc25",
-          "designation": "25",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc26",
-          "designation": "26",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc27",
-          "designation": "27",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc28",
-          "designation": "28",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc29",
-          "designation": "29",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc30",
-          "designation": "30",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc31",
-          "designation": "31",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc32",
-          "designation": "32",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc33",
-          "designation": "33",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc34",
-          "designation": "34",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc35",
-          "designation": "35",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc36",
-          "designation": "36",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc37",
-          "designation": "37",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc38",
-          "designation": "38",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc39",
-          "designation": "39",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc40",
-          "designation": "40",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc41",
-          "designation": "41",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc42",
-          "designation": "42",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c52",
-          "designation": "43",
-          "cavityPlugPartId": "pl_sz4",
-          "notConnected": true
-        },
-        {
-          "id": "nc44",
-          "designation": "44",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc45",
-          "designation": "45",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc46",
-          "designation": "46",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc47",
-          "designation": "47",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c48",
-          "designation": "48",
-          "cavityPlugPartId": "pl_sz8",
-          "notConnected": true
-        },
-        {
-          "id": "c49",
-          "designation": "49",
-          "cavityPlugPartId": "pl_sz8",
-          "notConnected": true
-        },
-        {
-          "id": "nc50",
-          "designation": "50",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc51",
-          "designation": "51",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc52",
-          "designation": "52",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc53",
-          "designation": "53",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c50",
-          "designation": "54",
-          "cavityPlugPartId": "pl_sz8",
-          "notConnected": true
-        },
-        {
-          "id": "c51",
-          "designation": "55",
-          "cavityPlugPartId": "pl_sz8",
-          "notConnected": true
-        },
-        {
-          "id": "nc56",
-          "designation": "56",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc57",
-          "designation": "57",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc58",
-          "designation": "58",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc59",
-          "designation": "59",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c53",
-          "designation": "60",
-          "cavityPlugPartId": "pl_sz4",
-          "notConnected": true
-        },
-        {
-          "id": "nc61",
-          "designation": "61",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c25",
-          "designation": "62",
-          "signal": "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)",
-          "contactPartId": "ct_hdp16p"
-        },
-        {
-          "id": "c26",
-          "designation": "63",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c27",
-          "designation": "64",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c28",
-          "designation": "65",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c29",
-          "designation": "66",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c30",
-          "designation": "67",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c31",
-          "designation": "68",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c32",
-          "designation": "69",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c33",
-          "designation": "70",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c7",
-          "designation": "71",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B15",
-          "propagate": false
-        },
-        {
-          "id": "c8",
-          "designation": "72",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B16",
-          "propagate": false
-        },
-        {
-          "id": "c9",
-          "designation": "73",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B23",
-          "propagate": false
-        },
-        {
-          "id": "c10",
-          "designation": "74",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B6",
-          "propagate": false
-        },
-        {
-          "id": "c11",
-          "designation": "75",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B7",
-          "propagate": false
-        },
-        {
-          "id": "c12",
-          "designation": "76",
-          "contactPartId": "ct_hdp16p",
-          "signal": "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
-        },
-        {
-          "id": "c19",
-          "designation": "77",
-          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c21",
-          "designation": "78",
-          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c34",
-          "designation": "79",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c35",
-          "designation": "80",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c36",
-          "designation": "81",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c37",
-          "designation": "82",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c16",
-          "designation": "83",
-          "signal": "Knock 1 SIG+ (ECU B9)",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c17",
-          "designation": "84",
-          "signal": "Knock 1 SIG- (to Gnd Out B22)",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c18",
-          "designation": "85",
-          "signal": "Knock 1 screen",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c5",
-          "designation": "86",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ETB motor + (Aux 9, B18)",
-          "propagate": false
-        },
-        {
-          "id": "c6",
-          "designation": "87",
-          "contactPartId": "ct_hdp16p",
-          "signal": "ETB motor - (Aux 10, B26)",
-          "propagate": false
-        },
-        {
-          "id": "c22",
-          "designation": "88",
-          "signal": "ETB motor screen",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c15",
-          "designation": "89",
-          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c20",
-          "designation": "90",
-          "signal": "Switched 12V to gearbox VSS (from sp_sw12)",
-          "contactPartId": "ct_hdp16p"
-        },
-        {
-          "id": "c23",
-          "designation": "91",
-          "signal": "Gearbox VSS screen",
-          "contactPartId": "ct_hdp16p",
-          "propagate": false
-        },
-        {
-          "id": "c13",
-          "designation": "92",
-          "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
-          "contactPartId": "ct_hdp16p"
-        },
-        {
-          "id": "c14",
-          "designation": "93",
-          "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
-          "contactPartId": "ct_hdp16p"
-        },
-        {
-          "id": "c24",
-          "designation": "94",
-          "signal": "CAN-Lambda CAN pair screen",
-          "contactPartId": "ct_hdp16p"
-        },
-        {
-          "id": "c3",
-          "designation": "95",
-          "signal": "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)",
-          "contactPartId": "ct_hdp12p"
-        },
-        {
-          "id": "c4",
-          "designation": "96",
-          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
-          "contactPartId": "ct_hdp12p"
-        },
-        {
-          "id": "c1",
-          "designation": "97",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        },
-        {
-          "id": "c2",
-          "designation": "98",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        },
-        {
-          "id": "c44",
-          "designation": "99",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        },
-        {
-          "id": "c45",
-          "designation": "100",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        },
-        {
-          "id": "c46",
-          "designation": "101",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        },
-        {
-          "id": "c47",
-          "designation": "102",
-          "cavityPlugPartId": "pl_sz12",
-          "notConnected": true
-        }
-      ],
-      "layoutPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "schematicPosition": {
-        "x": 3660,
-        "y": 1620
-      }
-    },
-    {
-      "id": "ecu_b",
-      "label": "ECU-B",
-      "width": 270,
-      "partId": "cp_ss34b",
-      "cavities": [
-        {
-          "id": "b1",
-          "designation": "B1"
-        },
-        {
-          "id": "b2",
-          "designation": "B2"
-        },
-        {
-          "id": "b3",
-          "designation": "B3"
-        },
-        {
-          "id": "b4",
-          "designation": "B4"
-        },
-        {
-          "id": "b5",
-          "signal": "V-Ethrottle In",
-          "designation": "B5",
-          "contactPartId": "ct_ss10_075"
-        },
-        {
-          "id": "b6",
-          "signal": "Temp 3 (Oil T)",
-          "designation": "B6"
-        },
-        {
-          "id": "b7",
-          "signal": "Temp 4 (Chg IAT)",
-          "designation": "B7"
-        },
-        {
-          "id": "b8",
-          "signal": "Knock 2 (spare)",
-          "designation": "B8"
-        },
-        {
-          "id": "b9",
-          "signal": "Knock 1",
-          "designation": "B9"
-        },
-        {
-          "id": "b10",
-          "signal": "Ign 8 (A/C Clutch Rly)",
-          "designation": "B10",
-          "contactPartId": "ct_ss10_075"
-        },
-        {
-          "id": "b11",
-          "designation": "B11"
-        },
-        {
-          "id": "b12",
-          "signal": "Ign 6 (EPS En)",
-          "designation": "B12",
-          "contactPartId": "ct_ss10_075"
-        },
-        {
-          "id": "b13",
-          "signal": "Ign 5 (2nd Fan)",
-          "designation": "B13",
-          "contactPartId": "ct_ss10_075"
-        },
-        {
-          "id": "b14",
-          "designation": "B14"
-        },
-        {
-          "id": "b15",
-          "signal": "An Volt 6 (Oil P)",
-          "designation": "B15"
-        },
-        {
-          "id": "b16",
-          "signal": "An Volt 7 (Fuel P)",
-          "designation": "B16"
-        },
-        {
-          "id": "b17",
-          "signal": "Shield/Gnd",
-          "designation": "B17"
-        },
-        {
-          "id": "b18",
-          "signal": "Aux 9 (ETB M+)",
-          "designation": "B18",
-          "contactPartId": "ct_ss10_075"
-        },
-        {
-          "id": "b19",
-          "signal": "DI 6 (WSS RR)",
-          "designation": "B19"
-        },
-        {
-          "id": "b20",
-          "signal": "DI 5 (WSS RL)",
-          "designation": "B20"
-        },
-        {
-          "id": "b21",
-          "signal": "DI 4 (WSS FR)",
-          "designation": "B21"
-        },
-        {
-          "id": "b22",
-          "signal": "Gnd Out",
-          "designation": "B22",
-          "contactPartId": "ct_ss10_075"
-        },
-        {
-          "id": "b23",
-          "signal": "An Volt 8 (Clnt P)",
-          "designation": "B23"
-        },
-        {
-          "id": "b24",
-          "signal": "An Volt 9 (Fuel Lvl)",
-          "designation": "B24"
-        },
-        {
-          "id": "b25",
-          "signal": "Ground",
-          "designation": "B25",
-          "contactPartId": "ct_ss10_075"
-        },
-        {
-          "id": "b26",
-          "signal": "Aux 10 (ETB M-)",
-          "designation": "B26",
-          "contactPartId": "ct_ss10_075"
-        },
-        {
-          "id": "b27",
-          "signal": "DI 10 (Anti-Theft)",
-          "designation": "B27"
-        },
-        {
-          "id": "b28",
-          "designation": "B28",
-          "signal": "DI 9 (Ignition Switch)"
-        },
-        {
-          "id": "b29",
-          "designation": "B29",
-          "signal": "DI 8 (VSS - actual road speed)"
-        },
-        {
-          "id": "b30",
-          "signal": "DI 7 (Start Req)",
-          "designation": "B30"
-        },
-        {
-          "id": "b31",
-          "designation": "B31",
-          "signal": "An Volt 10 (A/C Btn)"
-        },
-        {
-          "id": "b32",
-          "designation": "B32",
-          "signal": "An Volt 11 (Evap Temp)"
-        },
-        {
-          "id": "b33",
-          "signal": "An Volt 5 (APS-S)",
-          "designation": "B33"
-        },
-        {
-          "id": "b34",
-          "signal": "Ground",
-          "designation": "B34",
-          "contactPartId": "ct_ss10_075"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1320,
-        "y": 1080
-      },
-      "schematicPosition": {
-        "x": 3120,
-        "y": 0
-      }
-    },
-    {
-      "id": "ix_fuel_r",
-      "label": "Fuel level - 2-way inline to Rear Fuel harness (IX_FUEL_LVL)",
-      "width": 270,
-      "partId": "cp_dt04_2p",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "Fuel level ground -> Gnd Out",
-          "propagate": false
-        }
-      ],
-      "schematicPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 2400,
-        "y": 900
-      }
-    },
-    {
-      "id": "ix_ws_rear_p",
-      "label": "WS REAR spur - 6-way inline mate (IX_WS_REAR)",
-      "width": 270,
-      "partId": "cp_dt06_6s",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "+5V - VRC rear supply (ECU sensor +5V)"
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "Gnd Out - VRC rear ground",
-          "propagate": false
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "RL conditioned out -> ECU-B B20 (DI 5)",
-          "propagate": false
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "RR conditioned out -> ECU-B B19 (DI 6)",
-          "propagate": false
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "signal": "Screen drain -> SHIELD_B (B17)",
-          "propagate": false
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        }
-      ],
-      "schematicPosition": {
-        "x": 4080,
-        "y": 1200
-      },
-      "layoutPosition": {
-        "x": 900,
-        "y": 120
-      }
-    }
-  ],
-  "terminals": [
-    {
-      "id": "fl_start_req_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) R/B No.4 starter relay socket lead (block removed, R12; ST1 from I13 pin 7)-1 B-W start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net) - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 960
-      },
-      "layoutPosition": {
-        "x": 1710,
-        "y": 60
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_ign_sw_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5)-7 B-O IGN ON (IG2) -> ECU-B B28 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 810
-      },
-      "layoutPosition": {
-        "x": 990,
-        "y": 180
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_ac_btn",
-      "type": "Loose",
-      "signal": "A/C request: dash A/C switch output V-G (12 V when ON; old A15 pin 3 / IJ1-7) -> 10k / 3.9k divider -> ECU-B B31 (An Volt 10)",
-      "schematicPosition": {
-        "x": 660,
-        "y": 1110
-      },
-      "layoutPosition": {
-        "x": 1320,
-        "y": 1140
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_evap_temp",
-      "type": "Loose",
-      "signal": "Evaporator thermistor A24 element 1 (1.5 kohm at 25 C) -> ECU-B B32 (An Volt 11), 2.2k pull-up to +5V",
-      "schematicPosition": {
-        "x": 660,
-        "y": 1260
-      },
-      "layoutPosition": {
-        "x": 1320,
-        "y": 1200
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_b25",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1320,
-        "y": 570
-      },
-      "schematicPosition": {
-        "x": 1770,
-        "y": 2820
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_b34",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1320,
-        "y": 480
-      },
-      "schematicPosition": {
-        "x": 1770,
-        "y": 2880
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_rail_5v_b_c",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: +5V from sp_5v at ECU A (crossover a)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1320,
-        "y": 360
-      },
-      "schematicPosition": {
-        "x": 1770,
-        "y": 2760
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_rail_sw12_b_c",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: switched 12V from sp_sw12 (cabin)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1320,
-        "y": 240
-      },
-      "schematicPosition": {
-        "x": 1770,
-        "y": 3780
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w82",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: ETB relay 87 to ECU-B B5 (crossover b)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1560,
-        "y": 810
-      },
-      "schematicPosition": {
-        "x": 1260,
-        "y": 3750
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_cab_fspur_r",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR core from IX_WS_FRONT pin 4",
-      "width": 390,
-      "layoutPosition": {
-        "x": 900,
-        "y": -60
-      },
-      "schematicPosition": {
-        "x": 4140,
-        "y": 1620
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_cab_fspur_fr_sh",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR shield from IX_WS_FRONT pin 6",
-      "width": 390,
-      "layoutPosition": {
-        "x": 900,
-        "y": 0
-      },
-      "schematicPosition": {
-        "x": 4140,
-        "y": 1680
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_sw7_c",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CSB3: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1320,
-        "y": 1020
-      },
-      "schematicPosition": {
-        "x": 1380,
-        "y": 60
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w39",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: e-throttle pedal pin 3 (VPA2) - folded in from ST185-APS-Pedal 2026-10-11",
-      "width": 390,
-      "layoutPosition": {
-        "x": 360,
-        "y": 0
-      },
-      "schematicPosition": {
-        "x": 720,
-        "y": 60
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_at_immob2",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-AntiTheft: immobiliser output to ECU-B B27 (DI 10)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1320,
-        "y": 960
-      },
-      "schematicPosition": {
-        "x": 3180,
-        "y": -60
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_wc_h_bh",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN H from the CAN bus splice to bulkhead B c13",
-      "width": 390,
-      "layoutPosition": {
-        "x": 360,
-        "y": -420
-      },
-      "schematicPosition": {
-        "x": 3300,
-        "y": 1560
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_wc_l_bh",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN L from the CAN bus splice to bulkhead B c14",
-      "width": 390,
-      "layoutPosition": {
-        "x": 360,
-        "y": -510
-      },
-      "schematicPosition": {
-        "x": 3300,
-        "y": 1320
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_lam12_c",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3",
-      "width": 390,
-      "layoutPosition": {
-        "x": 360,
-        "y": -180
-      },
-      "schematicPosition": {
-        "x": 3300,
-        "y": 1380
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_lamg_b",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis",
-      "width": 390,
-      "layoutPosition": {
-        "x": 360,
-        "y": -240
-      },
-      "schematicPosition": {
-        "x": 3300,
-        "y": 1440
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_cab_canbh_sh",
-      "type": "Loose",
-      "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can to bulkhead B c24",
-      "width": 390,
-      "layoutPosition": {
-        "x": 360,
-        "y": -120
-      },
-      "schematicPosition": {
-        "x": 3300,
-        "y": 1500
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_shd_can",
-      "type": "Loose",
-      "signal": "Broken off - drain comes in from ST185-CAN: CAN screen splice sp_shield_can to sp_shield_b (B17)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 360,
-        "y": -330
-      },
-      "schematicPosition": {
-        "x": 3300,
-        "y": 1260
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_fan285",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2160,
-        "y": 780
-      },
-      "schematicPosition": {
-        "x": 3120,
-        "y": 1140
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_eps_trig",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: EPS enable relay k_eps_en 85 <- ECU-B B12",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2160,
-        "y": 840
-      },
-      "schematicPosition": {
-        "x": 3120,
-        "y": 1200
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_acc_trig",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: A/C Clutch Relay (on/off) 85 (k_acc) <- ECU-B B10",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1320,
-        "y": 1260
-      },
-      "schematicPosition": {
-        "x": 3120,
-        "y": 1080
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_start_in",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1710,
-        "y": 0
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 1080
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_start_out",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: LOGIC B30 2A out -> ECU-B B30 (DI 7)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1710,
-        "y": -90
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 1020
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_rev_coil",
-      "type": "Loose",
-      "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86",
-      "schematicPosition": {
-        "x": 1380,
-        "y": 120
-      },
-      "layoutPosition": {
-        "x": 1320,
-        "y": 750
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_rev_feed",
-      "type": "Loose",
-      "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2",
-      "schematicPosition": {
-        "x": 1380,
-        "y": 180
-      },
-      "layoutPosition": {
-        "x": 1320,
-        "y": 660
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_evap_rtn",
-      "type": "Loose",
-      "signal": "Evaporator thermistor A24 element 2 -> Gnd Out (sp_gndout_b)",
-      "schematicPosition": {
-        "x": 660,
-        "y": 1320
-      },
-      "layoutPosition": {
-        "x": 1320,
-        "y": 1320
-      },
-      "propagate": false
-    }
-  ],
-  "splices": [
-    {
-      "id": "sp_fl_sig",
-      "schematicPosition": {
-        "x": 1830,
-        "y": 0
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "bp_1200",
-      "layoutPosition": {
-        "x": 1350,
-        "y": 0
-      }
-    },
-    {
-      "id": "sp_shield_b",
-      "schematicPosition": {
-        "x": 3510,
-        "y": 750
-      },
-      "layoutPosition": {
-        "x": 1260,
-        "y": 1140
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "ecu_b"
-    },
-    {
-      "id": "sp_5v_b",
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_1080",
-      "layoutPosition": {
-        "x": 930,
-        "y": 960
-      },
-      "schematicPosition": {
-        "x": 2400,
-        "y": 2760
-      }
-    },
-    {
-      "id": "sp_gndout_b",
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_1080",
-      "layoutPosition": {
-        "x": 900,
-        "y": 840
-      },
-      "schematicPosition": {
-        "x": 2400,
-        "y": 2910
-      }
-    },
-    {
-      "id": "sp_gnd_bhb",
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_870",
-      "layoutPosition": {
-        "x": -60,
-        "y": 900
-      },
-      "schematicPosition": {
-        "x": 3000,
-        "y": 2880
-      }
-    },
-    {
-      "id": "sp_rev_sw",
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_1080",
-      "schematicPosition": {
-        "x": 1200,
-        "y": 120
-      },
-      "layoutPosition": {
-        "x": 990,
-        "y": 990
-      }
-    },
-    {
-      "id": "sp_ac_btn",
-      "partId": "spp_solder_generic",
-      "locationId": "ecu_b",
-      "schematicPosition": {
-        "x": 1230,
-        "y": 1110
-      },
-      "layoutPosition": {
-        "x": 1200,
-        "y": 1110
-      }
-    },
-    {
-      "id": "sp_evap",
-      "partId": "spp_solder_generic",
-      "locationId": "ecu_b",
-      "schematicPosition": {
-        "x": 1230,
-        "y": 1260
-      },
-      "layoutPosition": {
-        "x": 1260,
-        "y": 1200
-      }
-    }
-  ],
-  "resistors": [
-    {
-      "id": "r_fuellvl",
-      "partId": "rp_470",
-      "locationId": "bp_1230",
-      "layoutPosition": {
-        "x": 1680,
-        "y": 960
-      },
-      "schematicPosition": {
-        "x": 510,
-        "y": 150
-      }
-    },
-    {
-      "id": "r_ac_btn_hi",
-      "partId": "rp_10k",
-      "locationId": "ecu_b",
-      "schematicPosition": {
-        "x": 1080,
-        "y": 1170
-      },
-      "layoutPosition": {
-        "x": 1200,
-        "y": 1170
-      }
-    },
-    {
-      "id": "r_ac_btn_lo",
-      "partId": "rp_3k9",
-      "locationId": "ecu_b",
-      "schematicPosition": {
-        "x": 1380,
-        "y": 1170
-      },
-      "layoutPosition": {
-        "x": 1200,
-        "y": 1230
-      }
-    },
-    {
-      "id": "r_evap",
-      "partId": "rp_2k2",
-      "locationId": "ecu_b",
-      "schematicPosition": {
-        "x": 1380,
-        "y": 1320
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": 1080
-      }
-    }
-  ],
   "wires": [
     {
       "id": "w12_c",
@@ -3846,6 +2352,1338 @@
       ]
     }
   ],
+  "connectors": [
+    {
+      "id": "bh_b_fw",
+      "label": "Bulkhead DRB102 - firewall receptacle (DRB12-102PAE-L018 + DRBF-1A), all 102 cavities; section B wired here",
+      "width": 390,
+      "partId": "cp_drb_recept",
+      "cavities": [
+        {
+          "id": "nc1",
+          "designation": "1",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc2",
+          "designation": "2",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c38",
+          "designation": "3",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c39",
+          "designation": "4",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c40",
+          "designation": "5",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c41",
+          "designation": "6",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c42",
+          "designation": "7",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c43",
+          "designation": "8",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "nc9",
+          "designation": "9",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc10",
+          "designation": "10",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc11",
+          "designation": "11",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc12",
+          "designation": "12",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc13",
+          "designation": "13",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc14",
+          "designation": "14",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc15",
+          "designation": "15",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc16",
+          "designation": "16",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc17",
+          "designation": "17",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc18",
+          "designation": "18",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc19",
+          "designation": "19",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc20",
+          "designation": "20",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc21",
+          "designation": "21",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc22",
+          "designation": "22",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc23",
+          "designation": "23",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc24",
+          "designation": "24",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc25",
+          "designation": "25",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc26",
+          "designation": "26",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc27",
+          "designation": "27",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc28",
+          "designation": "28",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc29",
+          "designation": "29",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc30",
+          "designation": "30",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc31",
+          "designation": "31",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc32",
+          "designation": "32",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc33",
+          "designation": "33",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc34",
+          "designation": "34",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc35",
+          "designation": "35",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc36",
+          "designation": "36",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc37",
+          "designation": "37",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc38",
+          "designation": "38",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc39",
+          "designation": "39",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc40",
+          "designation": "40",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc41",
+          "designation": "41",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc42",
+          "designation": "42",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c52",
+          "designation": "43",
+          "cavityPlugPartId": "pl_sz4",
+          "notConnected": true
+        },
+        {
+          "id": "nc44",
+          "designation": "44",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc45",
+          "designation": "45",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc46",
+          "designation": "46",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc47",
+          "designation": "47",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c48",
+          "designation": "48",
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
+        },
+        {
+          "id": "c49",
+          "designation": "49",
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
+        },
+        {
+          "id": "nc50",
+          "designation": "50",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc51",
+          "designation": "51",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc52",
+          "designation": "52",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc53",
+          "designation": "53",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c50",
+          "designation": "54",
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
+        },
+        {
+          "id": "c51",
+          "designation": "55",
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
+        },
+        {
+          "id": "nc56",
+          "designation": "56",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc57",
+          "designation": "57",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc58",
+          "designation": "58",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc59",
+          "designation": "59",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c53",
+          "designation": "60",
+          "cavityPlugPartId": "pl_sz4",
+          "notConnected": true
+        },
+        {
+          "id": "nc61",
+          "designation": "61",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c25",
+          "designation": "62",
+          "signal": "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c26",
+          "designation": "63",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c27",
+          "designation": "64",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c28",
+          "designation": "65",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c29",
+          "designation": "66",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c30",
+          "designation": "67",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c31",
+          "designation": "68",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c32",
+          "designation": "69",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c33",
+          "designation": "70",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c7",
+          "designation": "71",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-B B15",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "72",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-B B16",
+          "propagate": false
+        },
+        {
+          "id": "c9",
+          "designation": "73",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-B B23",
+          "propagate": false
+        },
+        {
+          "id": "c10",
+          "designation": "74",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-B B6",
+          "propagate": false
+        },
+        {
+          "id": "c11",
+          "designation": "75",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ECU-B B7",
+          "propagate": false
+        },
+        {
+          "id": "c12",
+          "designation": "76",
+          "contactPartId": "ct_hdp16p",
+          "signal": "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
+        },
+        {
+          "id": "c19",
+          "designation": "77",
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c21",
+          "designation": "78",
+          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c34",
+          "designation": "79",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c35",
+          "designation": "80",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c36",
+          "designation": "81",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c37",
+          "designation": "82",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c16",
+          "designation": "83",
+          "signal": "Knock 1 SIG+ (ECU B9)",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c17",
+          "designation": "84",
+          "signal": "Knock 1 SIG- (to Gnd Out B22)",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c18",
+          "designation": "85",
+          "signal": "Knock 1 screen",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "86",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ETB motor + (Aux 9, B18)",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "87",
+          "contactPartId": "ct_hdp16p",
+          "signal": "ETB motor - (Aux 10, B26)",
+          "propagate": false
+        },
+        {
+          "id": "c22",
+          "designation": "88",
+          "signal": "ETB motor screen",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c15",
+          "designation": "89",
+          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c20",
+          "designation": "90",
+          "signal": "Switched 12V to gearbox VSS (from sp_sw12)",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c23",
+          "designation": "91",
+          "signal": "Gearbox VSS screen",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
+        },
+        {
+          "id": "c13",
+          "designation": "92",
+          "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c14",
+          "designation": "93",
+          "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c24",
+          "designation": "94",
+          "signal": "CAN-Lambda CAN pair screen",
+          "contactPartId": "ct_hdp16p"
+        },
+        {
+          "id": "c3",
+          "designation": "95",
+          "signal": "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)",
+          "contactPartId": "ct_hdp12p"
+        },
+        {
+          "id": "c4",
+          "designation": "96",
+          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
+          "contactPartId": "ct_hdp12p"
+        },
+        {
+          "id": "c1",
+          "designation": "97",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c2",
+          "designation": "98",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c44",
+          "designation": "99",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c45",
+          "designation": "100",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c46",
+          "designation": "101",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c47",
+          "designation": "102",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        }
+      ],
+      "layoutPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 3660,
+        "y": 1620
+      }
+    },
+    {
+      "id": "ecu_b",
+      "label": "ECU-B",
+      "width": 270,
+      "partId": "cp_ss34b",
+      "cavities": [
+        {
+          "id": "b1",
+          "designation": "B1"
+        },
+        {
+          "id": "b2",
+          "designation": "B2"
+        },
+        {
+          "id": "b3",
+          "designation": "B3"
+        },
+        {
+          "id": "b4",
+          "designation": "B4"
+        },
+        {
+          "id": "b5",
+          "signal": "V-Ethrottle In",
+          "designation": "B5",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b6",
+          "signal": "Temp 3 (Oil T)",
+          "designation": "B6"
+        },
+        {
+          "id": "b7",
+          "signal": "Temp 4 (Chg IAT)",
+          "designation": "B7"
+        },
+        {
+          "id": "b8",
+          "signal": "Knock 2 (spare)",
+          "designation": "B8"
+        },
+        {
+          "id": "b9",
+          "signal": "Knock 1",
+          "designation": "B9"
+        },
+        {
+          "id": "b10",
+          "signal": "Ign 8 (A/C Clutch Rly)",
+          "designation": "B10",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b11",
+          "designation": "B11"
+        },
+        {
+          "id": "b12",
+          "signal": "Ign 6 (EPS En)",
+          "designation": "B12",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b13",
+          "signal": "Ign 5 (2nd Fan)",
+          "designation": "B13",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b14",
+          "designation": "B14"
+        },
+        {
+          "id": "b15",
+          "signal": "An Volt 6 (Oil P)",
+          "designation": "B15"
+        },
+        {
+          "id": "b16",
+          "signal": "An Volt 7 (Fuel P)",
+          "designation": "B16"
+        },
+        {
+          "id": "b17",
+          "signal": "Shield/Gnd",
+          "designation": "B17"
+        },
+        {
+          "id": "b18",
+          "signal": "Aux 9 (ETB M+)",
+          "designation": "B18",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b19",
+          "signal": "DI 6 (WSS RR)",
+          "designation": "B19"
+        },
+        {
+          "id": "b20",
+          "signal": "DI 5 (WSS RL)",
+          "designation": "B20"
+        },
+        {
+          "id": "b21",
+          "signal": "DI 4 (WSS FR)",
+          "designation": "B21"
+        },
+        {
+          "id": "b22",
+          "signal": "Gnd Out",
+          "designation": "B22",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b23",
+          "signal": "An Volt 8 (Clnt P)",
+          "designation": "B23"
+        },
+        {
+          "id": "b24",
+          "signal": "An Volt 9 (Fuel Lvl)",
+          "designation": "B24"
+        },
+        {
+          "id": "b25",
+          "signal": "Ground",
+          "designation": "B25",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b26",
+          "signal": "Aux 10 (ETB M-)",
+          "designation": "B26",
+          "contactPartId": "ct_ss10_075"
+        },
+        {
+          "id": "b27",
+          "signal": "DI 10 (Anti-Theft)",
+          "designation": "B27"
+        },
+        {
+          "id": "b28",
+          "designation": "B28",
+          "signal": "DI 9 (Ignition Switch)"
+        },
+        {
+          "id": "b29",
+          "designation": "B29",
+          "signal": "DI 8 (VSS - actual road speed)"
+        },
+        {
+          "id": "b30",
+          "signal": "DI 7 (Start Req)",
+          "designation": "B30"
+        },
+        {
+          "id": "b31",
+          "designation": "B31",
+          "signal": "An Volt 10 (A/C Btn)"
+        },
+        {
+          "id": "b32",
+          "designation": "B32",
+          "signal": "An Volt 11 (Evap Temp)"
+        },
+        {
+          "id": "b33",
+          "signal": "An Volt 5 (APS-S)",
+          "designation": "B33"
+        },
+        {
+          "id": "b34",
+          "signal": "Ground",
+          "designation": "B34",
+          "contactPartId": "ct_ss10_075"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1080
+      },
+      "schematicPosition": {
+        "x": 3120,
+        "y": 0
+      }
+    },
+    {
+      "id": "ix_fuel_r",
+      "label": "Fuel level - 2-way inline to Rear Fuel harness (IX_FUEL_LVL)",
+      "width": 270,
+      "partId": "cp_dt04_2p",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Fuel level ground -> Gnd Out",
+          "propagate": false
+        }
+      ],
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 2400,
+        "y": 900
+      }
+    },
+    {
+      "id": "ix_ws_rear_p",
+      "label": "WS REAR spur - 6-way inline mate (IX_WS_REAR)",
+      "width": 270,
+      "partId": "cp_dt06_6s",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+5V - VRC rear supply (ECU sensor +5V)"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Gnd Out - VRC rear ground",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "RL conditioned out -> ECU-B B20 (DI 5)",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "RR conditioned out -> ECU-B B19 (DI 6)",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "Screen drain -> SHIELD_B (B17)",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        }
+      ],
+      "schematicPosition": {
+        "x": 4080,
+        "y": 1200
+      },
+      "layoutPosition": {
+        "x": 900,
+        "y": 120
+      }
+    }
+  ],
+  "terminals": [
+    {
+      "id": "fl_start_req_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) R/B No.4 starter relay socket lead (block removed, R12; ST1 from I13 pin 7)-1 B-W start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net) - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 960
+      },
+      "layoutPosition": {
+        "x": 1710,
+        "y": 60
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_ign_sw_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5)-7 B-O IGN ON (IG2) -> ECU-B B28 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 810
+      },
+      "layoutPosition": {
+        "x": 990,
+        "y": 180
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_ac_btn",
+      "type": "Loose",
+      "signal": "A/C request: dash A/C switch output V-G (12 V when ON; old A15 pin 3 / IJ1-7) -> 10k / 3.9k divider -> ECU-B B31 (An Volt 10)",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1110
+      },
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1140
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_evap_temp",
+      "type": "Loose",
+      "signal": "Evaporator thermistor A24 element 1 (1.5 kohm at 25 C) -> ECU-B B32 (An Volt 11), 2.2k pull-up to +5V",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1260
+      },
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1200
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_b25",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1320,
+        "y": 570
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2820
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_b34",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1320,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2880
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_rail_5v_b_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: +5V from sp_5v at ECU A (crossover a)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1320,
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 2760
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_rail_sw12_b_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: switched 12V from sp_sw12 (cabin)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1320,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 1770,
+        "y": 3780
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w82",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: ETB relay 87 to ECU-B B5 (crossover b)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1560,
+        "y": 810
+      },
+      "schematicPosition": {
+        "x": 1260,
+        "y": 3750
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_cab_fspur_r",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR core from IX_WS_FRONT pin 4",
+      "width": 390,
+      "layoutPosition": {
+        "x": 900,
+        "y": -60
+      },
+      "schematicPosition": {
+        "x": 4140,
+        "y": 1620
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_cab_fspur_fr_sh",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR shield from IX_WS_FRONT pin 6",
+      "width": 390,
+      "layoutPosition": {
+        "x": 900,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 4140,
+        "y": 1680
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_sw7_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CSB3: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1020
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 60
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w39",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: e-throttle pedal pin 3 (VPA2) - folded in from ST185-APS-Pedal 2026-10-11",
+      "width": 390,
+      "layoutPosition": {
+        "x": 360,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 720,
+        "y": 60
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_at_immob2",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-AntiTheft: immobiliser output to ECU-B B27 (DI 10)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1320,
+        "y": 960
+      },
+      "schematicPosition": {
+        "x": 3180,
+        "y": -60
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_wc_h_bh",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN H from the CAN bus splice to bulkhead B c13",
+      "width": 390,
+      "layoutPosition": {
+        "x": 360,
+        "y": -420
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1560
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_wc_l_bh",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN L from the CAN bus splice to bulkhead B c14",
+      "width": 390,
+      "layoutPosition": {
+        "x": 360,
+        "y": -510
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1320
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_lam12_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3",
+      "width": 390,
+      "layoutPosition": {
+        "x": 360,
+        "y": -180
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1380
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_lamg_b",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis",
+      "width": 390,
+      "layoutPosition": {
+        "x": 360,
+        "y": -240
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1440
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_cab_canbh_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can to bulkhead B c24",
+      "width": 390,
+      "layoutPosition": {
+        "x": 360,
+        "y": -120
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1500
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_shd_can",
+      "type": "Loose",
+      "signal": "Broken off - drain comes in from ST185-CAN: CAN screen splice sp_shield_can to sp_shield_b (B17)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 360,
+        "y": -330
+      },
+      "schematicPosition": {
+        "x": 3300,
+        "y": 1260
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_fan285",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2160,
+        "y": 780
+      },
+      "schematicPosition": {
+        "x": 3120,
+        "y": 1140
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_eps_trig",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: EPS enable relay k_eps_en 85 <- ECU-B B12",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2160,
+        "y": 840
+      },
+      "schematicPosition": {
+        "x": 3120,
+        "y": 1200
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_acc_trig",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: A/C Clutch Relay (on/off) 85 (k_acc) <- ECU-B B10",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1260
+      },
+      "schematicPosition": {
+        "x": 3120,
+        "y": 1080
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_start_in",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1710,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 1080
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_start_out",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: LOGIC B30 2A out -> ECU-B B30 (DI 7)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1710,
+        "y": -90
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 1020
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_rev_coil",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86",
+      "schematicPosition": {
+        "x": 1380,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 1320,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_rev_feed",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2",
+      "schematicPosition": {
+        "x": 1380,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 1320,
+        "y": 660
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_evap_rtn",
+      "type": "Loose",
+      "signal": "Evaporator thermistor A24 element 2 -> Gnd Out (sp_gndout_b)",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1320
+      },
+      "layoutPosition": {
+        "x": 1320,
+        "y": 1320
+      },
+      "propagate": false
+    }
+  ],
   "cables": [
     {
       "id": "cab_rspur",
@@ -5222,215 +5060,163 @@
       }
     }
   ],
-  "branchPoints": [
+  "splices": [
     {
-      "id": "bp_870",
-      "layoutPosition": {
-        "x": 0,
-        "y": -60
-      }
-    },
-    {
-      "id": "bp_900",
-      "layoutPosition": {
-        "x": 360,
-        "y": -60
-      }
-    },
-    {
-      "id": "bp_930",
-      "layoutPosition": {
-        "x": 450,
-        "y": -60
-      }
-    },
-    {
-      "id": "bp_1020",
-      "layoutPosition": {
-        "x": 660,
-        "y": 60
-      }
-    },
-    {
-      "id": "bp_1050",
-      "layoutPosition": {
-        "x": 900,
-        "y": 60
-      }
-    },
-    {
-      "id": "bp_1080",
-      "layoutPosition": {
-        "x": 990,
-        "y": 60
-      }
-    },
-    {
-      "id": "bp_1110",
-      "layoutPosition": {
-        "x": 1080,
-        "y": 60
-      }
-    },
-    {
-      "id": "bp_1140",
-      "layoutPosition": {
-        "x": 1170,
-        "y": 60
-      }
-    },
-    {
-      "id": "bp_1170",
-      "layoutPosition": {
-        "x": 1260,
-        "y": 60
-      }
-    },
-    {
-      "id": "bp_1200",
+      "id": "sp_fl_sig",
+      "schematicPosition": {
+        "x": 1830,
+        "y": 0
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_1200",
       "layoutPosition": {
         "x": 1350,
-        "y": 60
+        "y": 0
       }
     },
     {
-      "id": "bp_1230",
+      "id": "sp_shield_b",
+      "schematicPosition": {
+        "x": 3510,
+        "y": 750
+      },
       "layoutPosition": {
-        "x": 1740,
+        "x": 1260,
+        "y": 1140
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "ecu_b"
+    },
+    {
+      "id": "sp_5v_b",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_1080",
+      "layoutPosition": {
+        "x": 930,
         "y": 960
+      },
+      "schematicPosition": {
+        "x": 2400,
+        "y": 2760
       }
     },
     {
-      "id": "bp_fl_ign_sw",
+      "id": "sp_gndout_b",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_1080",
       "layoutPosition": {
         "x": 900,
-        "y": 180
+        "y": 840
+      },
+      "schematicPosition": {
+        "x": 2400,
+        "y": 2910
       }
     },
     {
-      "id": "bp_fl_start_req",
+      "id": "sp_gnd_bhb",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_870",
       "layoutPosition": {
-        "x": 1560,
-        "y": 60
-      }
-    },
-    {
-      "id": "b_bp_870",
-      "layoutPosition": {
-        "x": 0,
+        "x": -60,
         "y": 900
+      },
+      "schematicPosition": {
+        "x": 3000,
+        "y": 2880
       }
     },
     {
-      "id": "b_bp_900",
+      "id": "sp_rev_sw",
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_1080",
+      "schematicPosition": {
+        "x": 1200,
+        "y": 120
+      },
       "layoutPosition": {
-        "x": 120,
-        "y": 900
+        "x": 990,
+        "y": 990
       }
     },
     {
-      "id": "b_bp_930",
+      "id": "sp_ac_btn",
+      "partId": "spp_solder_generic",
+      "locationId": "ecu_b",
+      "schematicPosition": {
+        "x": 1230,
+        "y": 1110
+      },
       "layoutPosition": {
-        "x": 360,
-        "y": 900
+        "x": 1200,
+        "y": 1110
       }
     },
     {
-      "id": "b_bp_960",
+      "id": "sp_evap",
+      "partId": "spp_solder_generic",
+      "locationId": "ecu_b",
+      "schematicPosition": {
+        "x": 1230,
+        "y": 1260
+      },
       "layoutPosition": {
-        "x": 450,
-        "y": 900
+        "x": 1260,
+        "y": 1200
+      }
+    }
+  ],
+  "resistors": [
+    {
+      "id": "r_fuellvl",
+      "partId": "rp_470",
+      "locationId": "bp_1230",
+      "layoutPosition": {
+        "x": 1680,
+        "y": 960
+      },
+      "schematicPosition": {
+        "x": 510,
+        "y": 150
       }
     },
     {
-      "id": "b_bp_1020",
+      "id": "r_ac_btn_hi",
+      "partId": "rp_10k",
+      "locationId": "ecu_b",
+      "schematicPosition": {
+        "x": 1080,
+        "y": 1170
+      },
       "layoutPosition": {
-        "x": 660,
-        "y": 900
+        "x": 1200,
+        "y": 1170
       }
     },
     {
-      "id": "b_bp_1050",
+      "id": "r_ac_btn_lo",
+      "partId": "rp_3k9",
+      "locationId": "ecu_b",
+      "schematicPosition": {
+        "x": 1380,
+        "y": 1170
+      },
       "layoutPosition": {
-        "x": 780,
-        "y": 900
+        "x": 1200,
+        "y": 1230
       }
     },
     {
-      "id": "b_bp_1080",
+      "id": "r_evap",
+      "partId": "rp_2k2",
+      "locationId": "ecu_b",
+      "schematicPosition": {
+        "x": 1380,
+        "y": 1320
+      },
       "layoutPosition": {
-        "x": 960,
-        "y": 900
-      }
-    },
-    {
-      "id": "b_bp_1110",
-      "layoutPosition": {
-        "x": 1320,
-        "y": 900
-      }
-    },
-    {
-      "id": "b_bp_1140",
-      "layoutPosition": {
-        "x": 1410,
-        "y": 900
-      }
-    },
-    {
-      "id": "b_bp_1170",
-      "layoutPosition": {
-        "x": 1560,
-        "y": 900
-      }
-    },
-    {
-      "id": "b_bp_1200",
-      "layoutPosition": {
-        "x": 1650,
-        "y": 900
-      }
-    },
-    {
-      "id": "b_bp_1230",
-      "layoutPosition": {
-        "x": 1740,
-        "y": 900
-      }
-    },
-    {
-      "id": "b_bp_1260",
-      "layoutPosition": {
-        "x": 1830,
-        "y": 900
-      }
-    },
-    {
-      "id": "b_bp_2100",
-      "layoutPosition": {
-        "x": 2160,
-        "y": 900
-      }
-    },
-    {
-      "id": "b_bp_2130",
-      "layoutPosition": {
-        "x": 2250,
-        "y": 900
-      }
-    },
-    {
-      "id": "b_bp_1065",
-      "layoutPosition": {
-        "x": 870,
-        "y": 900
-      }
-    },
-    {
-      "id": "bp_at_ecu_a",
-      "layoutPosition": {
-        "x": 570,
-        "y": 900
+        "x": 1140,
+        "y": 1080
       }
     }
   ],
@@ -5682,87 +5468,90 @@
       }
     }
   ],
-  "connectorParts": [
+  "cableParts": [
     {
-      "id": "cp_drb_recept",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DRB12-102PAE-L018",
-      "description": "CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
+      "id": "cab_sh_1c_vio",
+      "partNumber": "GENERIC SHLD CABLE 1C 20AWG VIO",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, VIOLET, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
         {
-          "id": "cfg",
-          "mountPartId": "mt_drbf_1a"
+          "id": "k1",
+          "color": "Violet",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
         }
       ],
-      "numberOfCavities": 102
+      "shielded": true
     },
     {
-      "id": "cp_dt06_6s",
-      "url": "https://www.te.com/usa-en/product-DT06-6S.html",
-      "image": {
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/6/300/323/735/DT06-6S_web%28640x640%29.jpg",
-        "source": "url",
-        "lowResUrl": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/300/323/735/DT06-6S_sml%28200x200%29.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DT06-6S",
-      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
+      "id": "cab_sh_4c",
+      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
         {
-          "id": "cfg",
-          "lockPartId": "lp_w6s",
-          "contactPartId": "ct_hdp16s",
-          "cavityPlugPartId": "pl_sz16"
+          "id": "k1",
+          "color": "Orange",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Black",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k4",
+          "color": "Violet",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
         }
       ],
-      "numberOfCavities": 6
+      "shielded": true
     },
     {
-      "id": "cp_dt04_2p",
-      "url": "https://www.te.com/usa-en/product-DT04-2P.html",
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DT04-2P",
-      "description": "CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
+      "id": "cab_sh_2c",
+      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
         {
-          "id": "cfg",
-          "lockPartId": "lp_w2p",
-          "contactPartId": "ct_hdp16p",
-          "cavityPlugPartId": "pl_sz16"
+          "id": "k1",
+          "color": "White",
+          "twistedWithNext": true,
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Green",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
         }
       ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_ss34b",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/414/372/900/4-1437290-0-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/414/372/900/4-1437290-0-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "4-1437290-0",
-      "description": "CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET CONTACTS, BLUE",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_ss10"
-        }
-      ],
-      "numberOfCavities": 34
+      "shielded": true
     }
   ],
   "spliceParts": [
@@ -5771,6 +5560,218 @@
       "partNumber": "GENERIC SOLDER SPLICE",
       "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
       "manufacturer": "generic"
+    }
+  ],
+  "branchPoints": [
+    {
+      "id": "bp_870",
+      "layoutPosition": {
+        "x": 0,
+        "y": -60
+      }
+    },
+    {
+      "id": "bp_900",
+      "layoutPosition": {
+        "x": 360,
+        "y": -60
+      }
+    },
+    {
+      "id": "bp_930",
+      "layoutPosition": {
+        "x": 450,
+        "y": -60
+      }
+    },
+    {
+      "id": "bp_1020",
+      "layoutPosition": {
+        "x": 660,
+        "y": 60
+      }
+    },
+    {
+      "id": "bp_1050",
+      "layoutPosition": {
+        "x": 900,
+        "y": 60
+      }
+    },
+    {
+      "id": "bp_1080",
+      "layoutPosition": {
+        "x": 990,
+        "y": 60
+      }
+    },
+    {
+      "id": "bp_1110",
+      "layoutPosition": {
+        "x": 1080,
+        "y": 60
+      }
+    },
+    {
+      "id": "bp_1140",
+      "layoutPosition": {
+        "x": 1170,
+        "y": 60
+      }
+    },
+    {
+      "id": "bp_1170",
+      "layoutPosition": {
+        "x": 1260,
+        "y": 60
+      }
+    },
+    {
+      "id": "bp_1200",
+      "layoutPosition": {
+        "x": 1350,
+        "y": 60
+      }
+    },
+    {
+      "id": "bp_1230",
+      "layoutPosition": {
+        "x": 1740,
+        "y": 960
+      }
+    },
+    {
+      "id": "bp_fl_ign_sw",
+      "layoutPosition": {
+        "x": 900,
+        "y": 180
+      }
+    },
+    {
+      "id": "bp_fl_start_req",
+      "layoutPosition": {
+        "x": 1560,
+        "y": 60
+      }
+    },
+    {
+      "id": "b_bp_870",
+      "layoutPosition": {
+        "x": 0,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_900",
+      "layoutPosition": {
+        "x": 120,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_930",
+      "layoutPosition": {
+        "x": 360,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_960",
+      "layoutPosition": {
+        "x": 450,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_1020",
+      "layoutPosition": {
+        "x": 660,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_1050",
+      "layoutPosition": {
+        "x": 780,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_1080",
+      "layoutPosition": {
+        "x": 960,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_1110",
+      "layoutPosition": {
+        "x": 1320,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_1140",
+      "layoutPosition": {
+        "x": 1410,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_1170",
+      "layoutPosition": {
+        "x": 1560,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_1200",
+      "layoutPosition": {
+        "x": 1650,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_1230",
+      "layoutPosition": {
+        "x": 1740,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_1260",
+      "layoutPosition": {
+        "x": 1830,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_2100",
+      "layoutPosition": {
+        "x": 2160,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_2130",
+      "layoutPosition": {
+        "x": 2250,
+        "y": 900
+      }
+    },
+    {
+      "id": "b_bp_1065",
+      "layoutPosition": {
+        "x": 870,
+        "y": 900
+      }
+    },
+    {
+      "id": "bp_at_ecu_a",
+      "layoutPosition": {
+        "x": 570,
+        "y": 900
+      }
     }
   ],
   "contactParts": [
@@ -5867,188 +5868,6 @@
       "manufacturer": "TE Connectivity"
     }
   ],
-  "cavityPlugParts": [
-    {
-      "id": "pl_sz16",
-      "partNumber": "114017",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "pl_sz12",
-      "partNumber": "0413-214-1205",
-      "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "pl_sz4",
-      "partNumber": "114019-ZZ",
-      "description": "PLUG, SEALING, CAVITY, SIZE 4, WHITE",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "pl_sz8",
-      "partNumber": "114018-ZZ",
-      "description": "PLUG, SEALING, CAVITY, SIZE 8, WHITE",
-      "manufacturer": "TE DEUTSCH"
-    }
-  ],
-  "lockParts": [
-    {
-      "id": "lp_w6s",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W6S/W6S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W6S/W6S-t1.jpg/jcr:content/renditions/product-small.png"
-      },
-      "partNumber": "W6S",
-      "description": "WEDGELOCK, DT, 6-WAY PLUG",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lp_w2p",
-      "partNumber": "W2P",
-      "description": "WEDGELOCK, DT, 2-WAY RECEPTACLE",
-      "manufacturer": "TE DEUTSCH"
-    }
-  ],
-  "cableParts": [
-    {
-      "id": "cab_sh_1c_vio",
-      "partNumber": "GENERIC SHLD CABLE 1C 20AWG VIO",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, VIOLET, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Violet",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_4c",
-      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k4",
-          "color": "Violet",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_2c",
-      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "White",
-          "twistedWithNext": true,
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Green",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    }
-  ],
-  "terminalParts": [
-    {
-      "id": "tp_flying_lead",
-      "type": "Loose",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 12
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 22
-      },
-      "partNumber": "GENERIC FLYING LEAD",
-      "description": "TERMINAL, FLYING LEAD",
-      "manufacturer": "generic"
-    }
-  ],
-  "resistorParts": [
-    {
-      "id": "rp_470",
-      "partNumber": "470R 1/4W",
-      "manufacturer": "generic",
-      "description": "RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W"
-    },
-    {
-      "id": "rp_10k",
-      "partNumber": "10k 1/4W",
-      "manufacturer": "generic",
-      "description": "RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W"
-    },
-    {
-      "id": "rp_3k9",
-      "partNumber": "3.9k 1/4W",
-      "manufacturer": "generic",
-      "description": "RESISTOR, FIXED, METAL FILM, 3.9 KOHM, 5 PCT, 1/4 W"
-    },
-    {
-      "id": "rp_2k2",
-      "partNumber": "2.2k 1/4W 1%",
-      "manufacturer": "generic",
-      "description": "RESISTOR, FIXED, METAL FILM, 2.2 KOHM, 1 PCT, 1/4 W"
-    }
-  ],
-  "mountParts": [
-    {
-      "id": "mt_drbf_1a",
-      "partNumber": "DRBF-1A",
-      "description": "FLANGE, MOUNTING, DRB 102/128 SERIES",
-      "manufacturer": "TE DEUTSCH"
-    }
-  ],
   "coveringParts": [
     {
       "id": "cov_lbl_12",
@@ -6109,6 +5928,225 @@
         "value": 50,
         "unit": "mm"
       }
+    }
+  ],
+  "resistorParts": [
+    {
+      "id": "rp_470",
+      "partNumber": "470R 1/4W",
+      "manufacturer": "generic",
+      "description": "RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W"
+    },
+    {
+      "id": "rp_10k",
+      "partNumber": "10k 1/4W",
+      "manufacturer": "generic",
+      "description": "RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W"
+    },
+    {
+      "id": "rp_3k9",
+      "partNumber": "3.9k 1/4W",
+      "manufacturer": "generic",
+      "description": "RESISTOR, FIXED, METAL FILM, 3.9 KOHM, 5 PCT, 1/4 W"
+    },
+    {
+      "id": "rp_2k2",
+      "partNumber": "2.2k 1/4W 1%",
+      "manufacturer": "generic",
+      "description": "RESISTOR, FIXED, METAL FILM, 2.2 KOHM, 1 PCT, 1/4 W"
+    }
+  ],
+  "terminalParts": [
+    {
+      "id": "tp_flying_lead",
+      "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC FLYING LEAD",
+      "description": "TERMINAL, FLYING LEAD",
+      "manufacturer": "generic"
+    }
+  ],
+  "connectorParts": [
+    {
+      "id": "cp_drb_recept",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
+      },
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DRB12-102PAE-L018",
+      "description": "CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "MountPart",
+              "partId": "mt_drbf_1a"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 102
+    },
+    {
+      "id": "cp_dt06_6s",
+      "url": "https://www.te.com/usa-en/product-DT06-6S.html",
+      "image": {
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/6/300/323/735/DT06-6S_web%28640x640%29.jpg",
+        "source": "url",
+        "lowResUrl": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/300/323/735/DT06-6S_sml%28200x200%29.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DT06-6S",
+      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w6s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_hdp16s"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 6
+    },
+    {
+      "id": "cp_dt04_2p",
+      "url": "https://www.te.com/usa-en/product-DT04-2P.html",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-2P",
+      "description": "CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w2p"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_hdp16p"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_ss34b",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/414/372/900/4-1437290-0-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/414/372/900/4-1437290-0-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "4-1437290-0",
+      "description": "CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET CONTACTS, BLUE",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_ss10"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 34
+    }
+  ],
+  "lockParts": [
+    {
+      "id": "lp_w6s",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W6S/W6S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W6S/W6S-t1.jpg/jcr:content/renditions/product-small.png"
+      },
+      "partNumber": "W6S",
+      "description": "WEDGELOCK, DT, 6-WAY PLUG",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "lp_w2p",
+      "partNumber": "W2P",
+      "description": "WEDGELOCK, DT, 2-WAY RECEPTACLE",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "id": "pl_sz16",
+      "partNumber": "114017",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "pl_sz12",
+      "partNumber": "0413-214-1205",
+      "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "pl_sz4",
+      "partNumber": "114019-ZZ",
+      "description": "PLUG, SEALING, CAVITY, SIZE 4, WHITE",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "pl_sz8",
+      "partNumber": "114018-ZZ",
+      "description": "PLUG, SEALING, CAVITY, SIZE 8, WHITE",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "mountParts": [
+    {
+      "id": "mt_drbf_1a",
+      "partNumber": "DRBF-1A",
+      "description": "FLANGE, MOUNTING, DRB 102/128 SERIES",
+      "manufacturer": "TE DEUTSCH"
     }
   ]
 }

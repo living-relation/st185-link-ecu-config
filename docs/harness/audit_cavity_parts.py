@@ -168,7 +168,7 @@ for loom, d in ds.items():
             if key in seen_cav or key not in land:
                 continue
             seen_cav.add(key)
-            ctid = cv.get("contactPartId") or (cfg.get("contactPartId") if "cavityPlugPartId" not in cv else None)
+            ctid = cv.get("contactPartId") or (_model.cfg_default(cfg, "ContactPart") if "cavityPlugPartId" not in cv else None)
             ct = P.get(ctid)
             where = "%s/%s %s" % (loom, c["id"], cv["id"])
             if not ct:

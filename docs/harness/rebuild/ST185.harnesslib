@@ -1,7 +1,753 @@
 {
-  "version": 0.9,
+  "version": 1.2,
   "kind": "library",
   "currency": "$",
+  "wireParts": [
+    {
+      "id": "wp_1_0_blk",
+      "partNumber": "BC-1/0-BLK",
+      "manufacturer": "generic",
+      "description": "CABLE, BATTERY, 1/0 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 53.5,
+        "unit": "Metric"
+      }
+    },
+    {
+      "id": "wp_1_0_red",
+      "partNumber": "BC-1/0-RED",
+      "manufacturer": "generic",
+      "description": "CABLE, BATTERY, 1/0 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 53.5,
+        "unit": "Metric"
+      }
+    },
+    {
+      "id": "wp_2_red",
+      "partNumber": "BC-2-RED",
+      "manufacturer": "generic",
+      "description": "CABLE, BATTERY, 2 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 2,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_4_blk",
+      "partNumber": "BC-4-BLK",
+      "manufacturer": "generic",
+      "description": "CABLE, BATTERY, 4 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 4,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_4_red",
+      "partNumber": "BC-4-RED",
+      "manufacturer": "generic",
+      "description": "CABLE, BATTERY, 4 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 4,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_10_0",
+      "partNumber": "M22759/16-10-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 10 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_10_1",
+      "partNumber": "M22759/16-10-1",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 10 AWG, BROWN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Brown",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_10_2",
+      "partNumber": "M22759/16-10-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 10 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_0",
+      "partNumber": "M22759/16-12-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_2",
+      "partNumber": "M22759/16-12-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_0",
+      "partNumber": "M22759/16-14-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_2",
+      "partNumber": "M22759/16-14-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_0",
+      "partNumber": "M22759/16-16-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_2",
+      "partNumber": "M22759/16-16-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_0",
+      "partNumber": "M22759/16-18-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_09",
+      "partNumber": "M22759/16-18-09",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_2",
+      "partNumber": "M22759/16-18-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_29",
+      "partNumber": "M22759/16-18-29",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_3",
+      "partNumber": "M22759/16-18-3",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Orange",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_42",
+      "partNumber": "M22759/16-18-42",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, YELLOW/RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Yellow",
+      "stripeColor": "Red",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_7",
+      "partNumber": "M22759/16-18-7",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, VIOLET, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Violet",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_9",
+      "partNumber": "M22759/16-18-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_0",
+      "partNumber": "M22759/16-20-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_03",
+      "partNumber": "M22759/16-20-03",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "stripeColor": "Orange",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_06",
+      "partNumber": "M22759/16-20-06",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_09",
+      "partNumber": "M22759/16-20-09",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_1",
+      "partNumber": "M22759/16-20-1",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BROWN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Brown",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_2",
+      "partNumber": "M22759/16-20-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_25",
+      "partNumber": "M22759/16-20-25",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED/GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Green",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_3",
+      "partNumber": "M22759/16-20-3",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Orange",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_39",
+      "partNumber": "M22759/16-20-39",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Orange",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_4",
+      "partNumber": "M22759/16-20-4",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Yellow",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_40",
+      "partNumber": "M22759/16-20-40",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Yellow",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_42",
+      "partNumber": "M22759/16-20-42",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Yellow",
+      "stripeColor": "Red",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_5",
+      "partNumber": "M22759/16-20-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_6",
+      "partNumber": "M22759/16-20-6",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_7",
+      "partNumber": "M22759/16-20-7",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, VIOLET, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Violet",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_8",
+      "partNumber": "M22759/16-20-8",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GRAY, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Gray",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_6_9",
+      "partNumber": "M22759/16-6-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 6 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 6,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_8_0",
+      "partNumber": "M22759/16-8-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 8 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 8,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_8_2",
+      "partNumber": "M22759/16-8-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 8 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 8,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_8_9",
+      "partNumber": "M22759/16-8-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 8 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 8,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_5",
+      "partNumber": "M22759/16-16-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_59",
+      "partNumber": "M22759/16-16-59",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_50",
+      "partNumber": "M22759/16-18-50",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_54",
+      "partNumber": "M22759/16-18-54",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_20",
+      "partNumber": "M22759/16-16-20",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_90",
+      "partNumber": "M22759/16-16-90",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, WHITE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_26",
+      "partNumber": "M22759/16-16-26",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_29",
+      "partNumber": "M22759/16-16-29",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_29",
+      "partNumber": "M22759/16-14-29",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_26",
+      "partNumber": "M22759/16-14-26",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, RED/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_53",
+      "partNumber": "M22759/16-16-53",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Orange",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_50",
+      "partNumber": "M22759/16-16-50",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_54",
+      "partNumber": "M22759/16-16-54",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_59",
+      "partNumber": "M22759/16-18-59",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_6",
+      "partNumber": "M22759/16-14-6",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_63",
+      "partNumber": "M22759/16-14-63",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "Orange",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_60",
+      "partNumber": "M22759/16-14-60",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_69",
+      "partNumber": "M22759/16-14-69",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_62",
+      "partNumber": "M22759/16-14-62",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "stripeColor": "Red",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_5",
+      "partNumber": "M22759/16-12-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_54",
+      "partNumber": "M22759/16-12-54",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_90",
+      "partNumber": "M22759/16-12-90",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, WHITE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
+    }
+  ],
   "cableParts": [
     {
       "id": "cab_sh_1c",
@@ -220,1176 +966,48 @@
       "shielded": true
     }
   ],
-  "cavityPlugParts": [
+  "diodeParts": [
     {
-      "id": "pl_sz20",
-      "partNumber": "0413-204-2005",
-      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "pl_sz12",
-      "partNumber": "0413-214-1205",
-      "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "F6dRxdC4XlgPgmxZh_zyn",
-      "partNumber": "114017",
-      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "pl_sz8",
-      "partNumber": "114018-ZZ",
-      "description": "PLUG, SEALING, CAVITY, SIZE 8, WHITE",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "pl_sz4",
-      "partNumber": "114019-ZZ",
-      "description": "PLUG, SEALING, CAVITY, SIZE 4, WHITE",
-      "manufacturer": "TE DEUTSCH"
+      "id": "dp_led",
+      "partNumber": "(LED board indicator - 12 V, resistor on board)",
+      "manufacturer": "LED board",
+      "description": "DIODE, LIGHT EMITTING, INDICATOR, 12 V"
     }
   ],
-  "connectorParts": [
+  "spliceParts": [
     {
-      "id": "cp_camkit",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cam-sensor-kit-pigtail.png",
-        "source": "url"
+      "id": "spp_crimp_14_10",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
       },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(kit-supplied pigtail)",
-      "description": "CONNECTOR, PIGTAIL, 3 POS",
-      "manufacturer": "RacerX",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 3
+      "minGauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "partNumber": "GENERIC CRIMP SPLICE 14-10",
+      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
     },
     {
-      "id": "cp_fuelpump",
-      "image": {
-        "url": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/original/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg",
-        "source": "url",
-        "lowResUrl": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/80w/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "(pump pigtail - Walbro F90000295)",
-      "description": "CONNECTOR, PIGTAIL, 2 POS",
-      "manufacturer": "Walbro",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 2
+      "id": "HP4pP__XZ40Qy8PCarkKn",
+      "partNumber": "GENERIC SOLDER SPLICE",
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
     },
     {
-      "id": "cp_mta",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "0301491",
-      "description": "MODULE, FUSE AND RELAY, SEALED, 2 MAXI RELAY, 1 MAXI FUSE, 6 MINI FUSE",
-      "manufacturer": "MTA",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_mta"
-        }
-      ]
-    },
-    {
-      "id": "e1qTQ2m4X1fGCUCPrGLXm",
-      "image": {
-        "url": "https://www.automotiveconnectors.com/user/products/large/DA61-1928403874-H.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.automotiveconnectors.com/user/products/thumbnails/DA61-1928403874-H.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "1 928 403 874",
-      "description": "CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS",
-      "manufacturer": "Bosch (Compact 1.1a)",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "PgL0hZ8ZWBRVhWqCzipHn"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_rly_f7_a",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
-      },
-      "partNumber": "1-1393304-0",
-      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J1052-X281, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 560 OHM PARALLEL RESISTOR, MOUNTING BRACKET",
+      "id": "spp_te_320238",
+      "partNumber": "320238",
       "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_f7_load"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_rly_f7_b",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
+      "minGauge": {
+        "unit": "AWG",
+        "value": 5
       },
-      "partNumber": "1-1414147-0",
-      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_f7_load"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_rly_maxi_co",
-      "partNumber": "1-1414687-0",
-      "description": "RELAY, PLUG-IN, MINI ISO, TE POWER RELAY F4 A V23136-A0004-X059, 1 FORM C, NO 40 A / NC 30 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_faston63_8"
-        }
-      ],
-      "numberOfCavities": 5
-    },
-    {
-      "id": "4tMtF6fi0qAjcEn_edToC",
-      "color": "Violet",
-      "image": {
-        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/12052641982_SPL.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/12052641982_SPL.jpg"
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 3
       },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "12052641",
-      "description": "CONNECTOR, 2 POS, SEALED",
-      "manufacturer": "Aptiv (Delphi) Metri-Pack 150",
-      "configurations": [
-        {
-          "id": "cfg"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "2XI-qjk4y6hRnYt4r56cC",
-      "color": "Violet",
-      "image": {
-        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/121102-93982_SPL.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/121102-93982_SPL.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "12110293",
-      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS",
-      "manufacturer": "Aptiv",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "dIbtt1gC7OvKIxZqOiZ5-"
-        }
-      ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "84OztkWK4fJlwEcZMMyKM",
-      "color": "Violet",
-      "image": {
-        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/13519047982_SPL.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/13519047982_SPL.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "13519047",
-      "description": "CONNECTOR, PLUG, GT 150, 3 POS, SEALED, SOCKET CONTACTS",
-      "manufacturer": "Aptiv",
-      "configurations": [
-        {
-          "id": "cfg"
-        }
-      ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "cp_rfrm",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "15401-1-2-1-0A",
-      "description": "MODULE, FUSE AND RELAY, RFRM, SEALED, 40 MINI FUSE, 10 MICRO RELAY, 2 BUS",
-      "manufacturer": "Eaton Bussmann",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_rfrm"
-        }
-      ]
-    },
-    {
-      "id": "xZJUybU2kQtiOpevU9wqF",
-      "color": "Violet",
-      "image": {
-        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/15419715982_SPL.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/15419715982_SPL.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "15419715",
-      "description": "CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6",
-      "manufacturer": "Aptiv",
-      "configurations": [
-        {
-          "id": "cfg"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "sgv2Fm_H2lTBA0jR-iPA3",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/414/372/900/4-1437290-0-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/414/372/900/4-1437290-0-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "4-1437290-0",
-      "description": "CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET CONTACTS, BLUE",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "WpwdZPjfajpU_YueY8jIJ"
-        }
-      ],
-      "numberOfCavities": 34
-    },
-    {
-      "id": "v7L9yjGXZ7VwP0Jxmv96F",
-      "url": "https://www.te.com/en/product-4-1437290-1.html",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/414/372/901/4-1437290-1-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/414/372/901/4-1437290-1-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "4-1437290-1",
-      "description": "CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 2, SOCKET CONTACTS, BLUE",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "WpwdZPjfajpU_YueY8jIJ"
-        }
-      ],
-      "numberOfCavities": 34
-    },
-    {
-      "id": "cp_rly_nor",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/919/041/057/9-1904105-7-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/919/041/057/9-1904105-7-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "partNumber": "4-1904124-2",
-      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A402, 1 FORM A, 25 A, 12 VDC COIL 119 OHM, 680 OHM PARALLEL RESISTOR",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_faston63"
-        }
-      ],
-      "numberOfCavities": 5
-    },
-    {
-      "id": "cp_rly_micro_co",
-      "partNumber": "6-1419137-4",
-      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A403, 1 FORM C, 12 VDC COIL, DIODE SUPPRESSED",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_faston63"
-        }
-      ],
-      "numberOfCavities": 5
-    },
-    {
-      "id": "cp_rly_micro_no_d",
-      "partNumber": "5-1393292-8",
-      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A402, 1 FORM A (NO), 12 VDC COIL, DIODE SUPPRESSED (TE ON-HAND BOM)",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_faston63"
-        }
-      ],
-      "numberOfCavities": 5
-    },
-    {
-      "id": "cp_rly_micro_no",
-      "partNumber": "4-1904124-3",
-      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A403, 1 FORM A (NO), 12 VDC COIL (TE ON-HAND BOM)",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_faston63"
-        }
-      ],
-      "numberOfCavities": 5
-    },
-    {
-      "id": "cp_toy2p",
-      "color": "Orange",
-      "image": {
-        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399.webp",
-        "source": "url",
-        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399_200x.webp"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-11062",
-      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "cp_vss3",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/toyota-oval-3pos.png",
-        "source": "url"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-11143",
-      "description": "CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 3
-    },
-    {
-      "id": "cp_cop",
-      "color": "Orange",
-      "image": {
-        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/4-way-connector-kit-for-toyota-denso-90980-11885-ignition-coil-pack-22-20-awg-343.webp",
-        "source": "url",
-        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/4-way-connector-kit-for-toyota-denso-90980-11885-ignition-coil-pack-22-20-awg-343_200x.webp"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "90980-11885",
-      "description": "CONNECTOR, PLUG, TOYOTA, 4 POS",
-      "manufacturer": "Toyota",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_toy_ts"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_etb",
-      "color": "Red",
-      "image": {
-        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/6-way-connector-kit-same-as-bosch-d261-205-358-01-24-20-awg-285.webp",
-        "source": "url",
-        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/6-way-connector-kit-same-as-bosch-d261-205-358-01-24-20-awg-285_200x.webp"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "D 261 205 358-01",
-      "description": "CONNECTOR, PLUG, BOSCH MOTORSPORT KIT, 6 POS, SOCKET CONTACTS",
-      "manufacturer": "Bosch",
-      "configurations": [
-        {
-          "id": "cfg"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_drb12_102pae_l018",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
-      },
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DRB12-102PAE-L018",
-      "description": "CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "mountPartId": "mt_drbf_1a"
-        }
-      ],
-      "numberOfCavities": 102
-    },
-    {
-      "id": "cp_drb16_102sae_l018",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/161/02S/DRB16-102SAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DRB/161/02S/DRB16-102SAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DRB16-102SAE-L018",
-      "description": "CONNECTOR, PLUG, DRB, 102 POS, SOCKET CONTACTS, E SEAL, A KEY, WIRE ROUTER",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg"
-        }
-      ],
-      "numberOfCavities": 102
-    },
-    {
-      "id": "AfUoSdF5SmQt3lpefky6M",
-      "url": "https://www.te.com/usa-en/product-DT04-2P.html",
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DT04-2P",
-      "description": "CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "JKpRpw2mPdr84K7cVyFpj",
-          "contactPartId": "jbEmvVFIMtwgbQyl7PHUl",
-          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
-        }
-      ],
-      "numberOfCavities": 2
-    },
-    {
-      "id": "l6qW0gWoy4ikWTUN2be1P",
-      "url": "https://www.te.com/usa-en/product-DT04-6P.html",
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "DT04-6P",
-      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "rSeF6u1DSyLpofLhd7xBw",
-          "contactPartId": "jbEmvVFIMtwgbQyl7PHUl",
-          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_dt06_12sa",
-      "url": "https://www.te.com/usa-en/product-DT06-12SA.html",
-      "color": "Gray",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/0DT/061/2SA/DT06-12SA-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/0DT/061/2SA/DT06-12SA-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "pinout": {
-        "id": "te-deutsch-dt-12",
-        "name": "DT 12-way",
-        "pins": [
-          {
-            "x": -11.125,
-            "y": 4.56,
-            "size": 3.5
-          },
-          {
-            "x": -6.675,
-            "y": 4.56,
-            "size": 3.5
-          },
-          {
-            "x": -2.225,
-            "y": 4.56,
-            "size": 3.5
-          },
-          {
-            "x": 2.225,
-            "y": 4.56,
-            "size": 3.5
-          },
-          {
-            "x": 6.675,
-            "y": 4.56,
-            "size": 3.5
-          },
-          {
-            "x": 11.125,
-            "y": 4.56,
-            "size": 3.5
-          },
-          {
-            "x": 11.125,
-            "y": -4.56,
-            "size": 3.5
-          },
-          {
-            "x": 6.675,
-            "y": -4.56,
-            "size": 3.5
-          },
-          {
-            "x": 2.225,
-            "y": -4.56,
-            "size": 3.5
-          },
-          {
-            "x": -2.225,
-            "y": -4.56,
-            "size": 3.5
-          },
-          {
-            "x": -6.675,
-            "y": -4.56,
-            "size": 3.5
-          },
-          {
-            "x": -11.125,
-            "y": -4.56,
-            "size": 3.5
-          }
-        ],
-        "outline": {
-          "type": "rect",
-          "width": 32.3,
-          "height": 18.7,
-          "cornerRadius": 2.5
-        },
-        "features": [
-          {
-            "x": 16.15,
-            "layer": "behind",
-            "shape": {
-              "type": "rect",
-              "width": 3,
-              "height": 8
-            }
-          },
-          {
-            "x": -16.15,
-            "layer": "behind",
-            "shape": {
-              "type": "rect",
-              "width": 3,
-              "height": 8
-            }
-          },
-          {
-            "y": -9.35,
-            "layer": "behind",
-            "shape": {
-              "type": "rect",
-              "width": 3,
-              "height": 2
-            }
-          }
-        ],
-        "mirrored": true
-      },
-      "partNumber": "DT06-12SA",
-      "description": "CONNECTOR, PLUG, DT, 12 POS, SOCKET CONTACTS, N SEAL, KEY A, GRAY",
-      "manufacturer": "TE Connectivity DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg12",
-          "lockPartId": "lp_w12s"
-        }
-      ],
-      "numberOfCavities": 12
-    },
-    {
-      "id": "9ZUUE7W4KO7XV5_EclsXt",
-      "url": "https://www.te.com/usa-en/product-DT06-2S.html",
-      "image": {
-        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014830313.png",
-        "source": "cloud"
-      },
-      "gender": "Female",
-      "pinout": {
-        "id": "te-deutsch-dt-2",
-        "name": "DT 2-way",
-        "pins": [
-          {
-            "x": 2.73,
-            "y": 0,
-            "size": 4.2
-          },
-          {
-            "x": -2.73,
-            "y": 0,
-            "size": 4.2
-          }
-        ],
-        "outline": {
-          "type": "rect",
-          "width": 15.1,
-          "height": 11.7,
-          "cornerRadius": 2.5
-        },
-        "features": [
-          {
-            "y": -5.85,
-            "layer": "behind",
-            "shape": {
-              "type": "rect",
-              "width": 8.5,
-              "height": 3
-            }
-          }
-        ],
-        "mirrored": true
-      },
-      "hasShell": false,
-      "partNumber": "DT06-2S",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "Wr6W4NbhdPbClGtmLWBXH",
-          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
-          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
-        }
-      ],
-      "numberOfCavities": 2,
-      "designationStrategy": {
-        "type": "sequential"
-      }
-    },
-    {
-      "id": "cp_dt3s",
-      "url": "https://www.te.com/usa-en/product-DT06-3S.html",
-      "color": "Gray",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/DT0/63S/DT06-3S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/DT0/63S/DT06-3S-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "pinout": {
-        "id": "te-deutsch-dt-3",
-        "name": "DT 3-way",
-        "pins": [
-          {
-            "x": -4.33,
-            "y": -2.5,
-            "size": 5
-          },
-          {
-            "x": 4.33,
-            "y": -2.5,
-            "size": 5
-          },
-          {
-            "x": 0,
-            "y": 4.9,
-            "size": 5
-          }
-        ],
-        "outline": {
-          "type": "polygon",
-          "points": [
-            [
-              0,
-              14
-            ],
-            [
-              -11.2,
-              -7
-            ],
-            [
-              11.2,
-              -7
-            ]
-          ],
-          "cornerRadius": 4
-        },
-        "features": [
-          {
-            "y": -7,
-            "layer": "behind",
-            "shape": {
-              "type": "rect",
-              "width": 10,
-              "height": 3
-            }
-          }
-        ],
-        "mirrored": true
-      },
-      "partNumber": "DT06-3S",
-      "description": "CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE Connectivity DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dt3wl"
-        }
-      ],
-      "numberOfCavities": 3,
-      "designationStrategy": {
-        "type": "alphabetical"
-      }
-    },
-    {
-      "id": "Au4sf4H0Ng2qw34r8wneb",
-      "url": "https://www.te.com/usa-en/product-DT06-6S.html",
-      "image": {
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/6/300/323/735/DT06-6S_web%28640x640%29.jpg",
-        "source": "url",
-        "lowResUrl": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/300/323/735/DT06-6S_sml%28200x200%29.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DT06-6S",
-      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "SgWjOns8hjCkJhemuENz-",
-          "contactPartId": "n2P7k5Wp2TRezmHgd1q87",
-          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_dthd_1_8s",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/DTH/D06/18S/DTHD06-1-8S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DTH/D06/18S/DTHD06-1-8S-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTHD06-1-8S",
-      "description": "CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_hd8s"
-        }
-      ],
-      "numberOfCavities": 1
-    },
-    {
-      "id": "cp_dtm4s",
-      "color": "Green",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-4S",
-      "description": "CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_dtm20_skt",
-          "lockPartId": "lp_wm4s"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_dtm6s",
-      "color": "Green",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-6S",
-      "description": "CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_dtm6wl",
-          "contactPartId": "ct_dtm20_skt"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_csb3_plug",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/prhd36-24-33sn.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhd36-24-33sn.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "HD36-24-33SE",
-      "description": "CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_dtm20_skt",
-          "cavityPlugPartId": "pl_sz20"
-        }
-      ],
-      "numberOfCavities": 33
-    },
-    {
-      "id": "cp_lmi1_fm",
-      "url": "https://www.eaton.com/us/en-us/catalog/emobility/series-lmi.html",
-      "image": {
-        "url": "https://www.mouser.com/images/eatoncorporation/lrg/LMI1-series_SPL.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/eatoncorporation/sm/LMI1-series_SPL.jpg"
-      },
-      "partNumber": "LMI1-M-1-0",
-      "description": "FUSE HOLDER, MODULAR, LMI, AMI FUSE MODULE, 2 M5 STAINLESS STUDS, KEPS NUTS",
-      "manufacturer": "Eaton Bussmann",
-      "numberOfCavities": 2,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_ring_m5_10_8"
-        }
-      ]
-    },
-    {
-      "id": "cp_lmi1_in",
-      "url": "https://www.eaton.com/us/en-us/catalog/emobility/series-lmi.html",
-      "image": {
-        "url": "https://www.mouser.com/images/eatoncorporation/lrg/LMI1-series_SPL.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.mouser.com/images/eatoncorporation/sm/LMI1-series_SPL.jpg"
-      },
-      "partNumber": "LMI1-M-1-1",
-      "description": "FUSE HOLDER, MODULAR, LMI, INPUT MODULE, M8 X 1.25 STAINLESS STUD, KEPS NUT",
-      "manufacturer": "Eaton Bussmann",
-      "numberOfCavities": 1,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_ring_m8_4"
-        }
-      ]
-    },
-    {
-      "id": "cp_lp16_5m_panel",
-      "url": "https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/cd40c0469b895b5b8873f6364e9ae22b-1755575078.pdf",
-      "color": "Black",
-      "gender": "Male",
-      "hasShell": false,
-      "partNumber": "LP-16-C05SX-02-101",
-      "description": "CONNECTOR, CIRCULAR, LP-16, PANEL RECEPTACLE, MALE, 5 POS, PLASTIC, SOLDER, SINGLE HOLE REAR NUT M18X1.5, 22-20 AWG, IP68 MATED",
-      "manufacturer": "CNLINKO",
-      "numberOfCavities": 5,
-      "configurations": []
-    },
-    {
-      "id": "cp_lp16_5f",
-      "url": "https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/7d5b62abdd63e73884abd9dfc71b8b0e-1755574530.pdf",
-      "color": "Black",
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "LP-16-J05PE-02-001",
-      "description": "CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH",
-      "manufacturer": "CNLINKO",
-      "numberOfCavities": 5,
-      "configurations": [
-        {
-          "id": "cfg"
-        },
-        {
-          "id": "cfg_vrc_in",
-          "name": "VRC-IN: printed label VRC-IN + blue band on each sensor cable",
-          "accessories": [
-            {
-              "id": "acc_lbl",
-              "type": "CoveringPart",
-              "partId": "cov_lbl_vrc_in"
-            },
-            {
-              "id": "acc_band_l",
-              "type": "CoveringPart",
-              "partId": "cov_band_blue"
-            },
-            {
-              "id": "acc_band_r",
-              "type": "CoveringPart",
-              "partId": "cov_band_blue"
-            }
-          ]
-        },
-        {
-          "id": "cfg_vrc_out",
-          "name": "VRC-OUT: printed label VRC-OUT + yellow band",
-          "accessories": [
-            {
-              "id": "acc_lbl",
-              "type": "CoveringPart",
-              "partId": "cov_lbl_vrc_out"
-            },
-            {
-              "id": "acc_band",
-              "type": "CoveringPart",
-              "partId": "cov_band_yellow"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "cp_mrs_eps",
-      "image": {
-        "url": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/large/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/small/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942",
-      "description": "CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS",
-      "manufacturer": "Toyota / Sumitomo",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_mrs_ts"
-        }
-      ],
-      "numberOfCavities": 10
-    },
-    {
-      "partNumber": "RL00801-50BK",
-      "manufacturer": "Amphenol",
-      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_radlok8"
-        }
-      ],
-      "id": "cp_rl_blk_eng",
-      "image": {
-        "source": "url",
-        "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Black_SPL.jpg",
-        "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Black_SPL.jpg"
-      }
-    },
-    {
-      "partNumber": "RL00801-50RE",
-      "manufacturer": "Amphenol",
-      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_radlok8"
-        }
-      ],
-      "id": "cp_rl_red_eng",
-      "image": {
-        "source": "url",
-        "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Red_SPL.jpg",
-        "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Red_SPL.jpg"
-      }
-    },
-    {
-      "id": "jTV4wU6lZIq83T9i4jhak",
-      "image": {
-        "url": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring.jpg",
-        "source": "url",
-        "lowResUrl": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring_200x.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "Sumitomo TS 025 6-way",
-      "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS",
-      "manufacturer": "Sumitomo / Subaru",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ],
-      "numberOfCavities": 6
-    },
-    {
-      "id": "cp_rly_hcr150",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_high_current_150.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_high_current_150.jpg"
-      },
-      "partNumber": "V23132-A2001-B200",
-      "description": "RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS",
-      "manufacturer": "TE Connectivity",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_ring_m6_8"
-        }
-      ],
-      "numberOfCavities": 5
-    },
-    {
-      "partNumber": "jump-post-M8",
-      "manufacturer": "TBD",
-      "description": "POST, JUMP START, M8, INSULATED",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_lug_stud"
-        }
-      ],
-      "id": "cp_jump",
-      "image": {
-        "source": "url",
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/jump-post-m8.png"
-      }
-    },
-    {
-      "id": "cp_alt_round3",
-      "partNumber": "90980-10341",
-      "description": "CONNECTOR, PLUG, TOYOTA, ROUND, 3 POS",
-      "manufacturer": "Toyota",
-      "numberOfCavities": 3,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_generic_skt"
-        }
-      ]
-    },
-    {
-      "id": "cp_ks_longacre",
-      "partNumber": "52-45780",
-      "manufacturer": "Longacre",
-      "description": "SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE, 175 A CONTINUOUS, 1000 A PEAK, 20 A AUXILIARY POLE, 6-36 V",
-      "url": "https://www.ogracing.com/products/longacre-battery-disconnect-switch",
-      "numberOfCavities": 4,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_lug_stud"
-        }
-      ]
-    },
-    {
-      "id": "cp_opto8_el814",
-      "partNumber": "(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)",
-      "description": "MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, 12 V INPUT, EL814, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS",
-      "manufacturer": "generic",
-      "numberOfCavities": 20,
-      "configurations": []
-    },
-    {
-      "id": "cp_fb_power",
-      "partNumber": "ST185-FB-POWER rev 7",
-      "manufacturer": "custom (PA12 print)",
-      "description": "BOX, FUSE AND RELAY, POWER, PRINTED PA12, TINNED COPPER POS BAR AS AMI BAR + NEG BAR (BUS ZONE), 7 AMI IN, 7 AMI OUT, 7 MINI ISO RELAY, 1 MINI FUSE",
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_klauke_2r5"
-        }
-      ]
-    },
-    {
-      "id": "cp_fb_logic",
-      "partNumber": "ST185-FB-LOGIC rev 5",
-      "manufacturer": "custom (PA12 print)",
-      "description": "BOX, FUSE AND RELAY, LOGIC, PRINTED PA12, 2 COPPER STRIP, 25 MINI FUSE, 10 MICRO RELAY",
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_minifuse_880398"
-        }
-      ]
-    },
-    {
-      "id": "cp_fb_batt",
-      "partNumber": "ST185-FB-BATT rev 5",
-      "manufacturer": "custom (PA12 print)",
-      "description": "BLOCK, RELAY AND FUSE, PRINTED PA12, COPPER BAR, M6 STUD, 1 AMI FUSE, 1 HCR 150 RELAY",
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_ring_m6_8"
-        }
-      ]
-    },
-    {
-      "id": "cp_fb_bus",
-      "partNumber": "ST185-FB-POWER rev 7 BUS ZONE",
-      "manufacturer": "custom (PA12 print)",
-      "description": "BUS ZONE OF POWER BOX, PRINTED PA12, TINNED COPPER POS BAR (3 M8 STUDS) + NEG BAR (5 M8 STUDS)",
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_lug_stud"
-        }
-      ]
+      "description": "SPLICE, BUTT, SOLISTRAND, CLOSED BARREL, SIGHT HOLE, UNINSULATED, 4 AWG (33100-52600 CMA = 5-3 AWG COMBINED), ADHESIVE HEATSHRINK OVER"
     }
   ],
   "contactParts": [
@@ -2222,94 +1840,6 @@
       }
     }
   ],
-  "diodeParts": [
-    {
-      "id": "dp_led",
-      "partNumber": "(LED board indicator - 12 V, resistor on board)",
-      "manufacturer": "LED board",
-      "description": "DIODE, LIGHT EMITTING, INDICATOR, 12 V"
-    }
-  ],
-  "lockParts": [
-    {
-      "id": "lp_w12s",
-      "partNumber": "W12S",
-      "description": "WEDGELOCK, DT, 12 POS, PLUG",
-      "manufacturer": "Deutsch (TE Connectivity)"
-    },
-    {
-      "id": "JKpRpw2mPdr84K7cVyFpj",
-      "partNumber": "W2P",
-      "description": "WEDGELOCK, DT, 2-WAY RECEPTACLE",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "Wr6W4NbhdPbClGtmLWBXH",
-      "partNumber": "W2S",
-      "description": "WEDGELOCK, DT, 2-WAY PLUG",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lp_dt3wl",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W3S/W3S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W3S/W3S-t1.jpg/jcr:content/renditions/product-small.png"
-      },
-      "partNumber": "W3S",
-      "description": "WEDGELOCK, DT, 3 POS, PLUG",
-      "manufacturer": "Deutsch"
-    },
-    {
-      "id": "rSeF6u1DSyLpofLhd7xBw",
-      "partNumber": "W6P",
-      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "SgWjOns8hjCkJhemuENz-",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W6S/W6S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W6S/W6S-t1.jpg/jcr:content/renditions/product-small.png"
-      },
-      "partNumber": "W6S",
-      "description": "WEDGELOCK, DT, 6-WAY PLUG",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lp_wm4s",
-      "partNumber": "WM-4S",
-      "description": "WEDGELOCK, DTM, 4 POS, PLUG",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lp_dtm6wl",
-      "partNumber": "WM-6S",
-      "description": "WEDGELOCK, DTM, 6 POS, PLUG",
-      "manufacturer": "Deutsch"
-    }
-  ],
-  "mountParts": [
-    {
-      "id": "mt_relay_skt",
-      "partNumber": "1-1904045-6",
-      "description": "SOCKET, RELAY, MICRO ISO, 5 POS, WITH MOUNTING FLAP (V23333-Z0001-B046)",
-      "manufacturer": "TE Connectivity"
-    },
-    {
-      "id": "mt_vcf7",
-      "partNumber": "1393310-4",
-      "description": "SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS",
-      "manufacturer": "TE Connectivity"
-    },
-    {
-      "id": "mt_drbf_1a",
-      "partNumber": "DRBF-1A",
-      "description": "FLANGE, MOUNTING, DRB 102/128 SERIES",
-      "manufacturer": "TE DEUTSCH"
-    }
-  ],
   "resistorParts": [
     {
       "id": "rp_1k8",
@@ -2353,42 +1883,6 @@
       "partNumber": "2.2k 1/4W 1%",
       "manufacturer": "generic",
       "description": "RESISTOR, FIXED, METAL FILM, 2.2 KOHM, 1 PCT, 1/4 W"
-    }
-  ],
-  "spliceParts": [
-    {
-      "id": "spp_crimp_14_10",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 10
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 14
-      },
-      "partNumber": "GENERIC CRIMP SPLICE 14-10",
-      "description": "SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "generic"
-    },
-    {
-      "id": "HP4pP__XZ40Qy8PCarkKn",
-      "partNumber": "GENERIC SOLDER SPLICE",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "generic"
-    },
-    {
-      "id": "spp_te_320238",
-      "partNumber": "320238",
-      "manufacturer": "TE Connectivity",
-      "minGauge": {
-        "unit": "AWG",
-        "value": 5
-      },
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 3
-      },
-      "description": "SPLICE, BUTT, SOLISTRAND, CLOSED BARREL, SIGHT HOLE, UNINSULATED, 4 AWG (33100-52600 CMA = 5-3 AWG COMBINED), ADHESIVE HEATSHRINK OVER"
     }
   ],
   "terminalParts": [
@@ -2614,750 +2108,1558 @@
       "manufacturer": "TE Connectivity"
     }
   ],
-  "wireParts": [
+  "connectorParts": [
     {
-      "id": "wp_1_0_blk",
-      "partNumber": "BC-1/0-BLK",
-      "manufacturer": "generic",
-      "description": "CABLE, BATTERY, 1/0 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
-      "color": "Black",
-      "gauge": {
-        "value": 53.5,
-        "unit": "Metric"
-      }
+      "id": "cp_camkit",
+      "image": {
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/cam-sensor-kit-pigtail.png",
+        "source": "url"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "(kit-supplied pigtail)",
+      "description": "CONNECTOR, PIGTAIL, 3 POS",
+      "manufacturer": "RacerX",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_generic_skt"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 3
     },
     {
-      "id": "wp_1_0_red",
-      "partNumber": "BC-1/0-RED",
-      "manufacturer": "generic",
-      "description": "CABLE, BATTERY, 1/0 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 53.5,
-        "unit": "Metric"
-      }
+      "id": "cp_fuelpump",
+      "image": {
+        "url": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/original/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg",
+        "source": "url",
+        "lowResUrl": "https://cdn11.bigcommerce.com/s-f5wn3qdqza/images/stencil/80w/products/7809/601577/qfs-wiring-pigtail-connector-plug-for-walbro-f90000267-f90000274-f90000285-f90000295-hfp-w267p-qfs__10907.1751166744.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "(pump pigtail - Walbro F90000295)",
+      "description": "CONNECTOR, PIGTAIL, 2 POS",
+      "manufacturer": "Walbro",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_generic_skt"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2
     },
     {
-      "id": "wp_2_red",
-      "partNumber": "BC-2-RED",
-      "manufacturer": "generic",
-      "description": "CABLE, BATTERY, 2 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 2,
-        "unit": "AWG"
-      }
+      "id": "cp_mta",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "0301491",
+      "description": "MODULE, FUSE AND RELAY, SEALED, 2 MAXI RELAY, 1 MAXI FUSE, 6 MINI FUSE",
+      "manufacturer": "MTA",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_mta"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "wp_4_blk",
-      "partNumber": "BC-4-BLK",
-      "manufacturer": "generic",
-      "description": "CABLE, BATTERY, 4 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
-      "color": "Black",
-      "gauge": {
-        "value": 4,
-        "unit": "AWG"
-      }
+      "id": "e1qTQ2m4X1fGCUCPrGLXm",
+      "image": {
+        "url": "https://www.automotiveconnectors.com/user/products/large/DA61-1928403874-H.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.automotiveconnectors.com/user/products/thumbnails/DA61-1928403874-H.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "1 928 403 874",
+      "description": "CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS",
+      "manufacturer": "Bosch (Compact 1.1a)",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "PgL0hZ8ZWBRVhWqCzipHn"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2
     },
     {
-      "id": "wp_4_red",
-      "partNumber": "BC-4-RED",
-      "manufacturer": "generic",
-      "description": "CABLE, BATTERY, 4 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 4,
-        "unit": "AWG"
-      }
+      "id": "cp_rly_f7_a",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
+      },
+      "partNumber": "1-1393304-0",
+      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J1052-X281, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 560 OHM PARALLEL RESISTOR, MOUNTING BRACKET",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_f7_load"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 4
     },
     {
-      "id": "m16_10_0",
-      "partNumber": "M22759/16-10-0",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 10 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "gauge": {
-        "value": 10,
-        "unit": "AWG"
-      }
+      "id": "cp_rly_f7_b",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_power_f7.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_power_f7.jpg"
+      },
+      "partNumber": "1-1414147-0",
+      "description": "RELAY, PLUG-IN, MAXI ISO F7, TE V23134-J0052-X429, 1 FORM A, 70 A AT 23 C / 50 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_f7_load"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 4
     },
     {
-      "id": "m16_10_1",
-      "partNumber": "M22759/16-10-1",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 10 AWG, BROWN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Brown",
-      "gauge": {
-        "value": 10,
-        "unit": "AWG"
-      }
+      "id": "cp_rly_maxi_co",
+      "partNumber": "1-1414687-0",
+      "description": "RELAY, PLUG-IN, MINI ISO, TE POWER RELAY F4 A V23136-A0004-X059, 1 FORM C, NO 40 A / NC 30 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_faston63_8"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 5
     },
     {
-      "id": "m16_10_2",
-      "partNumber": "M22759/16-10-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 10 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 10,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_12_0",
-      "partNumber": "M22759/16-12-0",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 12 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "gauge": {
-        "value": 12,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_12_2",
-      "partNumber": "M22759/16-12-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 12 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 12,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_14_0",
-      "partNumber": "M22759/16-14-0",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_14_2",
-      "partNumber": "M22759/16-14-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_16_0",
-      "partNumber": "M22759/16-16-0",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_16_2",
-      "partNumber": "M22759/16-16-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_18_0",
-      "partNumber": "M22759/16-18-0",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 18 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_18_09",
-      "partNumber": "M22759/16-18-09",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 18 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_18_2",
-      "partNumber": "M22759/16-18-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 18 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_18_29",
-      "partNumber": "M22759/16-18-29",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 18 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_18_3",
-      "partNumber": "M22759/16-18-3",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 18 AWG, ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Orange",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_18_42",
-      "partNumber": "M22759/16-18-42",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 18 AWG, YELLOW/RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Yellow",
-      "stripeColor": "Red",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_18_7",
-      "partNumber": "M22759/16-18-7",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 18 AWG, VIOLET, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "id": "4tMtF6fi0qAjcEn_edToC",
       "color": "Violet",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
+      "image": {
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/12052641982_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/12052641982_SPL.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "12052641",
+      "description": "CONNECTOR, 2 POS, SEALED",
+      "manufacturer": "Aptiv (Delphi) Metri-Pack 150",
+      "configurations": [
+        {
+          "id": "cfg"
+        }
+      ],
+      "numberOfCavities": 2
     },
     {
-      "id": "m16_18_9",
-      "partNumber": "M22759/16-18-9",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 18 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "White",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_0",
-      "partNumber": "M22759/16-20-0",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_03",
-      "partNumber": "M22759/16-20-03",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "stripeColor": "Orange",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_06",
-      "partNumber": "M22759/16-20-06",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "stripeColor": "Blue",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_09",
-      "partNumber": "M22759/16-20-09",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_1",
-      "partNumber": "M22759/16-20-1",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BROWN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Brown",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_2",
-      "partNumber": "M22759/16-20-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_25",
-      "partNumber": "M22759/16-20-25",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED/GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "stripeColor": "Green",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_3",
-      "partNumber": "M22759/16-20-3",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Orange",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_39",
-      "partNumber": "M22759/16-20-39",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Orange",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_4",
-      "partNumber": "M22759/16-20-4",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Yellow",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_40",
-      "partNumber": "M22759/16-20-40",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Yellow",
-      "stripeColor": "Black",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_42",
-      "partNumber": "M22759/16-20-42",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Yellow",
-      "stripeColor": "Red",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_5",
-      "partNumber": "M22759/16-20-5",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_6",
-      "partNumber": "M22759/16-20-6",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Blue",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_7",
-      "partNumber": "M22759/16-20-7",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, VIOLET, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "id": "2XI-qjk4y6hRnYt4r56cC",
       "color": "Violet",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
+      "image": {
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/121102-93982_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/121102-93982_SPL.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "12110293",
+      "description": "CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS",
+      "manufacturer": "Aptiv",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "dIbtt1gC7OvKIxZqOiZ5-"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 3
     },
     {
-      "id": "m16_20_8",
-      "partNumber": "M22759/16-20-8",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GRAY, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "id": "84OztkWK4fJlwEcZMMyKM",
+      "color": "Violet",
+      "image": {
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/13519047982_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/13519047982_SPL.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "13519047",
+      "description": "CONNECTOR, PLUG, GT 150, 3 POS, SEALED, SOCKET CONTACTS",
+      "manufacturer": "Aptiv",
+      "configurations": [
+        {
+          "id": "cfg"
+        }
+      ],
+      "numberOfCavities": 3
+    },
+    {
+      "id": "cp_rfrm",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "15401-1-2-1-0A",
+      "description": "MODULE, FUSE AND RELAY, RFRM, SEALED, 40 MINI FUSE, 10 MICRO RELAY, 2 BUS",
+      "manufacturer": "Eaton Bussmann",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_rfrm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xZJUybU2kQtiOpevU9wqF",
+      "color": "Violet",
+      "image": {
+        "url": "https://www.mouser.com/images/delphiconnectionsystems/lrg/15419715982_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/delphiconnectionsystems/sm/15419715982_SPL.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "15419715",
+      "description": "CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6",
+      "manufacturer": "Aptiv",
+      "configurations": [
+        {
+          "id": "cfg"
+        }
+      ],
+      "numberOfCavities": 2
+    },
+    {
+      "id": "sgv2Fm_H2lTBA0jR-iPA3",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/414/372/900/4-1437290-0-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/414/372/900/4-1437290-0-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "4-1437290-0",
+      "description": "CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET CONTACTS, BLUE",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "WpwdZPjfajpU_YueY8jIJ"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 34
+    },
+    {
+      "id": "v7L9yjGXZ7VwP0Jxmv96F",
+      "url": "https://www.te.com/en/product-4-1437290-1.html",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/414/372/901/4-1437290-1-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/414/372/901/4-1437290-1-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "4-1437290-1",
+      "description": "CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 2, SOCKET CONTACTS, BLUE",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "WpwdZPjfajpU_YueY8jIJ"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 34
+    },
+    {
+      "id": "cp_rly_nor",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/919/041/057/9-1904105-7-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/919/041/057/9-1904105-7-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "partNumber": "4-1904124-2",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A402, 1 FORM A, 25 A, 12 VDC COIL 119 OHM, 680 OHM PARALLEL RESISTOR",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_faston63"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_rly_micro_co",
+      "partNumber": "6-1419137-4",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A403, 1 FORM C, 12 VDC COIL, DIODE SUPPRESSED",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_faston63"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_rly_micro_no_d",
+      "partNumber": "5-1393292-8",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A402, 1 FORM A (NO), 12 VDC COIL, DIODE SUPPRESSED (TE ON-HAND BOM)",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_faston63"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_rly_micro_no",
+      "partNumber": "4-1904124-3",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A403, 1 FORM A (NO), 12 VDC COIL (TE ON-HAND BOM)",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_faston63"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
+      "id": "cp_toy2p",
+      "color": "Orange",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399.webp",
+        "source": "url",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg-399_200x.webp"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "90980-11062",
+      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS",
+      "manufacturer": "Toyota",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_toy_ts"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_vss3",
+      "image": {
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/toyota-oval-3pos.png",
+        "source": "url"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "90980-11143",
+      "description": "CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS",
+      "manufacturer": "Toyota",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_toy_ts"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 3
+    },
+    {
+      "id": "cp_cop",
+      "color": "Orange",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/4-way-connector-kit-for-toyota-denso-90980-11885-ignition-coil-pack-22-20-awg-343.webp",
+        "source": "url",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/4-way-connector-kit-for-toyota-denso-90980-11885-ignition-coil-pack-22-20-awg-343_200x.webp"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "90980-11885",
+      "description": "CONNECTOR, PLUG, TOYOTA, 4 POS",
+      "manufacturer": "Toyota",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_toy_ts"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 4
+    },
+    {
+      "id": "cp_etb",
+      "color": "Red",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/2666/5282/files/6-way-connector-kit-same-as-bosch-d261-205-358-01-24-20-awg-285.webp",
+        "source": "url",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/2666/5282/files/6-way-connector-kit-same-as-bosch-d261-205-358-01-24-20-awg-285_200x.webp"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "D 261 205 358-01",
+      "description": "CONNECTOR, PLUG, BOSCH MOTORSPORT KIT, 6 POS, SOCKET CONTACTS",
+      "manufacturer": "Bosch",
+      "configurations": [
+        {
+          "id": "cfg"
+        }
+      ],
+      "numberOfCavities": 6
+    },
+    {
+      "id": "cp_drb12_102pae_l018",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DRB/121/02P/DRB12-102PAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
+      },
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DRB12-102PAE-L018",
+      "description": "CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "MountPart",
+              "partId": "mt_drbf_1a"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 102
+    },
+    {
+      "id": "cp_drb16_102sae_l018",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DRB/161/02S/DRB16-102SAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DRB/161/02S/DRB16-102SAE-L018-t1.jpg/jcr:content/renditions/product-high-res.png"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DRB16-102SAE-L018",
+      "description": "CONNECTOR, PLUG, DRB, 102 POS, SOCKET CONTACTS, E SEAL, A KEY, WIRE ROUTER",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg"
+        }
+      ],
+      "numberOfCavities": 102
+    },
+    {
+      "id": "AfUoSdF5SmQt3lpefky6M",
+      "url": "https://www.te.com/usa-en/product-DT04-2P.html",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-2P",
+      "description": "CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "JKpRpw2mPdr84K7cVyFpj"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "jbEmvVFIMtwgbQyl7PHUl"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "F6dRxdC4XlgPgmxZh_zyn"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2
+    },
+    {
+      "id": "l6qW0gWoy4ikWTUN2be1P",
+      "url": "https://www.te.com/usa-en/product-DT04-6P.html",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-6P",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "rSeF6u1DSyLpofLhd7xBw"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "jbEmvVFIMtwgbQyl7PHUl"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "F6dRxdC4XlgPgmxZh_zyn"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 6
+    },
+    {
+      "id": "cp_dt06_12sa",
+      "url": "https://www.te.com/usa-en/product-DT06-12SA.html",
       "color": "Gray",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/0DT/061/2SA/DT06-12SA-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/0DT/061/2SA/DT06-12SA-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-12",
+        "name": "DT 12-way",
+        "pins": [
+          {
+            "x": -11.125,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": -6.675,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": -2.225,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 2.225,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 6.675,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 11.125,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 11.125,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": 6.675,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": 2.225,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -2.225,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -6.675,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -11.125,
+            "y": -4.56,
+            "size": 3.5
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 32.3,
+          "height": 18.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "x": 16.15,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 8
+            }
+          },
+          {
+            "x": -16.15,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 8
+            }
+          },
+          {
+            "y": -9.35,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 2
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "partNumber": "DT06-12SA",
+      "description": "CONNECTOR, PLUG, DT, 12 POS, SOCKET CONTACTS, N SEAL, KEY A, GRAY",
+      "manufacturer": "TE Connectivity DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg12",
+          "accessories": [
+            {
+              "id": "cfg12-1",
+              "type": "LockPart",
+              "partId": "lp_w12s"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 12
+    },
+    {
+      "id": "9ZUUE7W4KO7XV5_EclsXt",
+      "url": "https://www.te.com/usa-en/product-DT06-2S.html",
+      "image": {
+        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014830313.png",
+        "source": "cloud"
+      },
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-2",
+        "name": "DT 2-way",
+        "pins": [
+          {
+            "x": 2.73,
+            "y": 0,
+            "size": 4.2
+          },
+          {
+            "x": -2.73,
+            "y": 0,
+            "size": 4.2
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 15.1,
+          "height": 11.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "y": -5.85,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 8.5,
+              "height": 3
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "hasShell": false,
+      "partNumber": "DT06-2S",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "Wr6W4NbhdPbClGtmLWBXH"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "F6dRxdC4XlgPgmxZh_zyn"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2,
+      "designationStrategy": {
+        "type": "sequential"
       }
     },
     {
-      "id": "m16_20_9",
-      "partNumber": "M22759/16-20-9",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "White",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
+      "id": "cp_dt3s",
+      "url": "https://www.te.com/usa-en/product-DT06-3S.html",
+      "color": "Gray",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/DT0/63S/DT06-3S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/DT0/63S/DT06-3S-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-3",
+        "name": "DT 3-way",
+        "pins": [
+          {
+            "x": -4.33,
+            "y": -2.5,
+            "size": 5
+          },
+          {
+            "x": 4.33,
+            "y": -2.5,
+            "size": 5
+          },
+          {
+            "x": 0,
+            "y": 4.9,
+            "size": 5
+          }
+        ],
+        "outline": {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              14
+            ],
+            [
+              -11.2,
+              -7
+            ],
+            [
+              11.2,
+              -7
+            ]
+          ],
+          "cornerRadius": 4
+        },
+        "features": [
+          {
+            "y": -7,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 10,
+              "height": 3
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "partNumber": "DT06-3S",
+      "description": "CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE Connectivity DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_dt3wl"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 3,
+      "designationStrategy": {
+        "type": "alphabetical"
       }
     },
     {
-      "id": "m16_6_9",
-      "partNumber": "M22759/16-6-9",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 6 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "White",
-      "gauge": {
-        "value": 6,
-        "unit": "AWG"
-      }
+      "id": "Au4sf4H0Ng2qw34r8wneb",
+      "url": "https://www.te.com/usa-en/product-DT06-6S.html",
+      "image": {
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/6/300/323/735/DT06-6S_web%28640x640%29.jpg",
+        "source": "url",
+        "lowResUrl": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/300/323/735/DT06-6S_sml%28200x200%29.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DT06-6S",
+      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "SgWjOns8hjCkJhemuENz-"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "n2P7k5Wp2TRezmHgd1q87"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "F6dRxdC4XlgPgmxZh_zyn"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 6
     },
     {
-      "id": "m16_8_0",
-      "partNumber": "M22759/16-8-0",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 8 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "id": "cp_dthd_1_8s",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/DTH/D06/18S/DTHD06-1-8S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/DTH/D06/18S/DTHD06-1-8S-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DTHD06-1-8S",
+      "description": "CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_hd8s"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 1
+    },
+    {
+      "id": "cp_dtm4s",
+      "color": "Green",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DTM06-4S",
+      "description": "CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY",
+      "manufacturer": "Deutsch",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_wm4s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dtm20_skt"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 4
+    },
+    {
+      "id": "cp_dtm6s",
+      "color": "Green",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DTM06-6S",
+      "description": "CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY",
+      "manufacturer": "Deutsch",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_dtm6wl"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dtm20_skt"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 6
+    },
+    {
+      "id": "cp_csb3_plug",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/prhd36-24-33sn.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhd36-24-33sn.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "HD36-24-33SE",
+      "description": "CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_dtm20_skt"
+            },
+            {
+              "id": "cfg-2",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz20"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 33
+    },
+    {
+      "id": "cp_lmi1_fm",
+      "url": "https://www.eaton.com/us/en-us/catalog/emobility/series-lmi.html",
+      "image": {
+        "url": "https://www.mouser.com/images/eatoncorporation/lrg/LMI1-series_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/eatoncorporation/sm/LMI1-series_SPL.jpg"
+      },
+      "partNumber": "LMI1-M-1-0",
+      "description": "FUSE HOLDER, MODULAR, LMI, AMI FUSE MODULE, 2 M5 STAINLESS STUDS, KEPS NUTS",
+      "manufacturer": "Eaton Bussmann",
+      "numberOfCavities": 2,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_ring_m5_10_8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cp_lmi1_in",
+      "url": "https://www.eaton.com/us/en-us/catalog/emobility/series-lmi.html",
+      "image": {
+        "url": "https://www.mouser.com/images/eatoncorporation/lrg/LMI1-series_SPL.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.mouser.com/images/eatoncorporation/sm/LMI1-series_SPL.jpg"
+      },
+      "partNumber": "LMI1-M-1-1",
+      "description": "FUSE HOLDER, MODULAR, LMI, INPUT MODULE, M8 X 1.25 STAINLESS STUD, KEPS NUT",
+      "manufacturer": "Eaton Bussmann",
+      "numberOfCavities": 1,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_ring_m8_4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cp_lp16_5m_panel",
+      "url": "https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/cd40c0469b895b5b8873f6364e9ae22b-1755575078.pdf",
       "color": "Black",
-      "gauge": {
-        "value": 8,
-        "unit": "AWG"
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "LP-16-C05SX-02-101",
+      "description": "CONNECTOR, CIRCULAR, LP-16, PANEL RECEPTACLE, MALE, 5 POS, PLASTIC, SOLDER, SINGLE HOLE REAR NUT M18X1.5, 22-20 AWG, IP68 MATED",
+      "manufacturer": "CNLINKO",
+      "numberOfCavities": 5,
+      "configurations": []
+    },
+    {
+      "id": "cp_lp16_5f",
+      "url": "https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/7d5b62abdd63e73884abd9dfc71b8b0e-1755574530.pdf",
+      "color": "Black",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "LP-16-J05PE-02-001",
+      "description": "CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH",
+      "manufacturer": "CNLINKO",
+      "numberOfCavities": 5,
+      "configurations": [
+        {
+          "id": "cfg"
+        },
+        {
+          "id": "cfg_vrc_in",
+          "name": "VRC-IN: printed label VRC-IN + blue band on each sensor cable",
+          "accessories": [
+            {
+              "id": "acc_lbl",
+              "type": "CoveringPart",
+              "partId": "cov_lbl_vrc_in"
+            },
+            {
+              "id": "acc_band_l",
+              "type": "CoveringPart",
+              "partId": "cov_band_blue"
+            },
+            {
+              "id": "acc_band_r",
+              "type": "CoveringPart",
+              "partId": "cov_band_blue"
+            }
+          ]
+        },
+        {
+          "id": "cfg_vrc_out",
+          "name": "VRC-OUT: printed label VRC-OUT + yellow band",
+          "accessories": [
+            {
+              "id": "acc_lbl",
+              "type": "CoveringPart",
+              "partId": "cov_lbl_vrc_out"
+            },
+            {
+              "id": "acc_band",
+              "type": "CoveringPart",
+              "partId": "cov_band_yellow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cp_mrs_eps",
+      "image": {
+        "url": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/large/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.toyotapartsdeal.com/resources/encry/actual-picture/tpd/small/b98eef393574b2bcce24042861cdfdf7/d639f96bb310fc75d1d06739c53ed204.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942",
+      "description": "CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS",
+      "manufacturer": "Toyota / Sumitomo",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_mrs_ts"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 10
+    },
+    {
+      "partNumber": "RL00801-50BK",
+      "manufacturer": "Amphenol",
+      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_radlok8"
+            }
+          ]
+        }
+      ],
+      "id": "cp_rl_blk_eng",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Black_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Black_SPL.jpg"
       }
     },
     {
-      "id": "m16_8_2",
-      "partNumber": "M22759/16-8-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 8 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 8,
-        "unit": "AWG"
+      "partNumber": "RL00801-50RE",
+      "manufacturer": "Amphenol",
+      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_radlok8"
+            }
+          ]
+        }
+      ],
+      "id": "cp_rl_red_eng",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Red_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Red_SPL.jpg"
       }
     },
     {
-      "id": "m16_8_9",
-      "partNumber": "M22759/16-8-9",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 8 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "White",
-      "gauge": {
-        "value": 8,
-        "unit": "AWG"
+      "id": "jTV4wU6lZIq83T9i4jhak",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring.jpg",
+        "source": "url",
+        "lowResUrl": "https://cdn.shopify.com/s/files/1/0907/7568/3414/files/gt86-brz-electronic-accelerator-pedal-connector-kit-ep-wiring_200x.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "Sumitomo TS 025 6-way",
+      "description": "CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS",
+      "manufacturer": "Sumitomo / Subaru",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_generic_skt"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 6
+    },
+    {
+      "id": "cp_rly_hcr150",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_high_current_150.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_high_current_150.jpg"
+      },
+      "partNumber": "V23132-A2001-B200",
+      "description": "RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_ring_m6_8"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 5
+    },
+    {
+      "partNumber": "jump-post-M8",
+      "manufacturer": "TBD",
+      "description": "POST, JUMP START, M8, INSULATED",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_lug_stud"
+            }
+          ]
+        }
+      ],
+      "id": "cp_jump",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/jump-post-m8.png"
       }
     },
     {
-      "id": "m16_16_5",
-      "partNumber": "M22759/16-16-5",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
+      "id": "cp_alt_round3",
+      "partNumber": "90980-10341",
+      "description": "CONNECTOR, PLUG, TOYOTA, ROUND, 3 POS",
+      "manufacturer": "Toyota",
+      "numberOfCavities": 3,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_generic_skt"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "m16_16_59",
-      "partNumber": "M22759/16-16-59",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
+      "id": "cp_ks_longacre",
+      "partNumber": "52-45780",
+      "manufacturer": "Longacre",
+      "description": "SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE, 175 A CONTINUOUS, 1000 A PEAK, 20 A AUXILIARY POLE, 6-36 V",
+      "url": "https://www.ogracing.com/products/longacre-battery-disconnect-switch",
+      "numberOfCavities": 4,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_lug_stud"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "m16_18_50",
-      "partNumber": "M22759/16-18-50",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "stripeColor": "Black",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
+      "id": "cp_opto8_el814",
+      "partNumber": "(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)",
+      "description": "MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, 12 V INPUT, EL814, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS",
+      "manufacturer": "generic",
+      "numberOfCavities": 20,
+      "configurations": []
     },
     {
-      "id": "m16_18_54",
-      "partNumber": "M22759/16-18-54",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
+      "id": "cp_fb_power",
+      "partNumber": "ST185-FB-POWER rev 7",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BOX, FUSE AND RELAY, POWER, PRINTED PA12, TINNED COPPER POS BAR AS AMI BAR + NEG BAR (BUS ZONE), 7 AMI IN, 7 AMI OUT, 7 MINI ISO RELAY, 1 MINI FUSE",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_klauke_2r5"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "m16_16_20",
-      "partNumber": "M22759/16-16-20",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "stripeColor": "Black",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
+      "id": "cp_fb_logic",
+      "partNumber": "ST185-FB-LOGIC rev 5",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BOX, FUSE AND RELAY, LOGIC, PRINTED PA12, 2 COPPER STRIP, 25 MINI FUSE, 10 MICRO RELAY",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_minifuse_880398"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "m16_16_90",
-      "partNumber": "M22759/16-16-90",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, WHITE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "White",
-      "stripeColor": "Black",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
+      "id": "cp_fb_batt",
+      "partNumber": "ST185-FB-BATT rev 5",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BLOCK, RELAY AND FUSE, PRINTED PA12, COPPER BAR, M6 STUD, 1 AMI FUSE, 1 HCR 150 RELAY",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_ring_m6_8"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "m16_16_26",
-      "partNumber": "M22759/16-16-26",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "stripeColor": "Blue",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
+      "id": "cp_fb_bus",
+      "partNumber": "ST185-FB-POWER rev 7 BUS ZONE",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BUS ZONE OF POWER BOX, PRINTED PA12, TINNED COPPER POS BAR (3 M8 STUDS) + NEG BAR (5 M8 STUDS)",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_lug_stud"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "lockParts": [
+    {
+      "id": "lp_w12s",
+      "partNumber": "W12S",
+      "description": "WEDGELOCK, DT, 12 POS, PLUG",
+      "manufacturer": "Deutsch (TE Connectivity)"
     },
     {
-      "id": "m16_16_29",
-      "partNumber": "M22759/16-16-29",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
+      "id": "JKpRpw2mPdr84K7cVyFpj",
+      "partNumber": "W2P",
+      "description": "WEDGELOCK, DT, 2-WAY RECEPTACLE",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "m16_14_29",
-      "partNumber": "M22759/16-14-29",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, RED/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
+      "id": "Wr6W4NbhdPbClGtmLWBXH",
+      "partNumber": "W2S",
+      "description": "WEDGELOCK, DT, 2-WAY PLUG",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "m16_14_26",
-      "partNumber": "M22759/16-14-26",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, RED/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "stripeColor": "Blue",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
+      "id": "lp_dt3wl",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W3S/W3S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W3S/W3S-t1.jpg/jcr:content/renditions/product-small.png"
+      },
+      "partNumber": "W3S",
+      "description": "WEDGELOCK, DT, 3 POS, PLUG",
+      "manufacturer": "Deutsch"
     },
     {
-      "id": "m16_16_53",
-      "partNumber": "M22759/16-16-53",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "stripeColor": "Orange",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
+      "id": "rSeF6u1DSyLpofLhd7xBw",
+      "partNumber": "W6P",
+      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "m16_16_50",
-      "partNumber": "M22759/16-16-50",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "stripeColor": "Black",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
+      "id": "SgWjOns8hjCkJhemuENz-",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W6S/W6S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/000/W6S/W6S-t1.jpg/jcr:content/renditions/product-small.png"
+      },
+      "partNumber": "W6S",
+      "description": "WEDGELOCK, DT, 6-WAY PLUG",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "m16_16_54",
-      "partNumber": "M22759/16-16-54",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
+      "id": "lp_wm4s",
+      "partNumber": "WM-4S",
+      "description": "WEDGELOCK, DTM, 4 POS, PLUG",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "m16_18_59",
-      "partNumber": "M22759/16-18-59",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 18,
-        "unit": "AWG"
-      }
+      "id": "lp_dtm6wl",
+      "partNumber": "WM-6S",
+      "description": "WEDGELOCK, DTM, 6 POS, PLUG",
+      "manufacturer": "Deutsch"
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "id": "pl_sz20",
+      "partNumber": "0413-204-2005",
+      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "m16_14_6",
-      "partNumber": "M22759/16-14-6",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Blue",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
+      "id": "pl_sz12",
+      "partNumber": "0413-214-1205",
+      "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "m16_14_63",
-      "partNumber": "M22759/16-14-63",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Blue",
-      "stripeColor": "Orange",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
+      "id": "F6dRxdC4XlgPgmxZh_zyn",
+      "partNumber": "114017",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "m16_14_60",
-      "partNumber": "M22759/16-14-60",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Blue",
-      "stripeColor": "Black",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
+      "id": "pl_sz8",
+      "partNumber": "114018-ZZ",
+      "description": "PLUG, SEALING, CAVITY, SIZE 8, WHITE",
+      "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "m16_14_69",
-      "partNumber": "M22759/16-14-69",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Blue",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
+      "id": "pl_sz4",
+      "partNumber": "114019-ZZ",
+      "description": "PLUG, SEALING, CAVITY, SIZE 4, WHITE",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "mountParts": [
+    {
+      "id": "mt_relay_skt",
+      "partNumber": "1-1904045-6",
+      "description": "SOCKET, RELAY, MICRO ISO, 5 POS, WITH MOUNTING FLAP (V23333-Z0001-B046)",
+      "manufacturer": "TE Connectivity"
     },
     {
-      "id": "m16_14_62",
-      "partNumber": "M22759/16-14-62",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, BLUE/RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Blue",
-      "stripeColor": "Red",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
+      "id": "mt_vcf7",
+      "partNumber": "1393310-4",
+      "description": "SOCKET, RELAY, MAXI ISO (VCF7-1000), 4 POS",
+      "manufacturer": "TE Connectivity"
     },
     {
-      "id": "m16_12_5",
-      "partNumber": "M22759/16-12-5",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 12 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "gauge": {
-        "value": 12,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_12_54",
-      "partNumber": "M22759/16-12-54",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 12 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "stripeColor": "Yellow",
-      "gauge": {
-        "value": 12,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_12_90",
-      "partNumber": "M22759/16-12-90",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 12 AWG, WHITE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "White",
-      "stripeColor": "Black",
-      "gauge": {
-        "value": 12,
-        "unit": "AWG"
-      }
+      "id": "mt_drbf_1a",
+      "partNumber": "DRBF-1A",
+      "description": "FLANGE, MOUNTING, DRB 102/128 SERIES",
+      "manufacturer": "TE DEUTSCH"
     }
   ]
 }

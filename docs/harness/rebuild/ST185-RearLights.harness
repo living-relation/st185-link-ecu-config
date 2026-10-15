@@ -1,6 +1,7 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
-  "version": 0.9,
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
+  "version": 1.2,
   "lengthUnit": "mm",
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
@@ -8,414 +9,61 @@
     "drawingNumber": "ST185-RearLights"
   },
   "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band.",
-  "connectors": [],
-  "terminals": [
-    {
-      "id": "fl_oem_jb1_1f_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.112-113 J/B1 1F-1 G TAIL 15A out (TAIL relay, light switch TAIL/HEAD) -> rear tail lamps R11 / R12 pins 2-3, license L1 pin 1 - crimp butt splice into the factory 1F-1 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)",
-      "schematicPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 390,
-        "y": 720
-      },
-      "propagate": false
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
     },
-    {
-      "id": "fl_oem_jb1_1f_c3",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.130-131 J/B1 1F-3 G-B turn LH out (flasher T3 via H5 / C15) -> R11 pin 6 - crimp butt splice into the factory 1F-3 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)",
-      "schematicPosition": {
-        "x": 0,
-        "y": 60
-      },
-      "layoutPosition": {
-        "x": 240,
-        "y": 810
-      },
-      "propagate": false
+    "layout": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
     },
-    {
-      "id": "fl_oem_jb1_1f_c2",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.130-131 J/B1 1F-2 G-Y turn RH out (flasher T3 via H5 / C15) -> R12 pin 6 - crimp butt splice into the factory 1F-2 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)",
-      "schematicPosition": {
-        "x": 0,
-        "y": 120
-      },
-      "layoutPosition": {
-        "x": 90,
-        "y": 900
-      },
-      "propagate": false
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
     },
-    {
-      "id": "fl_oem_s9_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.126-127 S9 1 G-W stop lamp feed: STOP 15A (J/B1 1B-7) through S9, +12V with the pedal pressed -> R11 / R12 pin 1, H6 pin 1 - soldered tap into the factory G-W lead at S9 pin 1 (cabin, under the dash; the CSB3 brake tap FL_BRAKE_SW_C1 lands on the same lead)",
-      "schematicPosition": {
-        "x": 0,
-        "y": 180
-      },
-      "layoutPosition": {
-        "x": 300,
-        "y": 300
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_rl_rev",
-      "type": "Loose",
-      "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: reverse relay k_rev 87 -> back-up lamps R11 / R12 pin 4",
-      "schematicPosition": {
-        "x": 0,
-        "y": 240
-      },
-      "layoutPosition": {
-        "x": 240,
-        "y": 0
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r11_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.126 R11 pin 1 (G-W in the factory wiring, new wire here) stop LH <- sp_rl_stop - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 2190,
-        "y": 660
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r11_c2",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.113 R11 pin 2 (G in the factory wiring, new wire here) tail + rear side marker LH <- sp_rl_tail - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 60
-      },
-      "layoutPosition": {
-        "x": 2130,
-        "y": 720
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r11_c3",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.113 R11 pin 3 (G in the factory wiring, new wire here) tail + rear side marker LH <- sp_rl_tail - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 120
-      },
-      "layoutPosition": {
-        "x": 2070,
-        "y": 780
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r11_c4",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD Mitchell 1993 Fig. 16 grid 63; 1992 p.132 R11 pin 4 (R-B in the factory wiring, new wire here) back-up LH <- sp_rl_rev (k_rev 87) - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 180
-      },
-      "layoutPosition": {
-        "x": 2010,
-        "y": 840
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r11_c5",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.113 / p.126 R11 pin 5 (W-B in the factory wiring, new wire here) ground LH -> sp_rl_gnd -> BL - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 240
-      },
-      "layoutPosition": {
-        "x": 1950,
-        "y": 900
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r11_c6",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.130 R11 pin 6 (G-B in the factory wiring, new wire here) turn LH <- J/B1 1F-3 - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 300
-      },
-      "layoutPosition": {
-        "x": 1890,
-        "y": 960
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r12_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.126 R12 pin 1 (G-W in the factory wiring, new wire here) stop RH <- sp_rl_stop - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 360
-      },
-      "layoutPosition": {
-        "x": 2190,
-        "y": -60
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r12_c2",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.113 R12 pin 2 (G in the factory wiring, new wire here) tail + rear side marker RH <- sp_rl_tail - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 420
-      },
-      "layoutPosition": {
-        "x": 2130,
-        "y": -120
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r12_c3",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.113 R12 pin 3 (G in the factory wiring, new wire here) tail + rear side marker RH <- sp_rl_tail - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 480
-      },
-      "layoutPosition": {
-        "x": 2070,
-        "y": -180
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r12_c4",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD Mitchell 1993 Fig. 16 grid 63; 1992 p.132 R12 pin 4 (R-B in the factory wiring, new wire here) back-up RH <- sp_rl_rev (k_rev 87) - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 540
-      },
-      "layoutPosition": {
-        "x": 2010,
-        "y": -240
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r12_c5",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.113 / p.126 R12 pin 5 (W-B in the factory wiring, new wire here) ground RH -> sp_rl_gnd -> BL - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 600
-      },
-      "layoutPosition": {
-        "x": 1950,
-        "y": -300
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_r12_c6",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.130 R12 pin 6 (G-Y in the factory wiring, new wire here) turn RH <- J/B1 1F-2 - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 660
-      },
-      "layoutPosition": {
-        "x": 1890,
-        "y": -360
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_l1_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.113 L1 pin 1 (G in the factory wiring, new wire here) license plate light feed <- sp_rl_tail - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 720
-      },
-      "layoutPosition": {
-        "x": 2190,
-        "y": 300
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_l1_c2",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.113 L1 pin 2 (W-B in the factory wiring, new wire here) license plate light ground -> sp_rl_gnd -> BL - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 780
-      },
-      "layoutPosition": {
-        "x": 2130,
-        "y": 360
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_h6_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.126 H6 pin A-1 (G-W in the factory wiring, new wire here) high-mount stop light (spoiler) feed <- sp_rl_stop - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 840
-      },
-      "layoutPosition": {
-        "x": 1410,
-        "y": -270
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_h6_c2",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "width": 390,
-      "signal": "EWD 1993 p.126 H6 pin A-2 (W-B in the factory wiring, new wire here) high-mount stop light ground -> sp_rl_gnd -> BL (one rear ground, C6; OEM went to BI) - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 750,
-        "y": 900
-      },
-      "layoutPosition": {
-        "x": 1320,
-        "y": -360
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_rl_gnd_bl",
-      "type": "Ring",
-      "partId": "tp_ring_m6_22_16",
-      "width": 390,
-      "signal": "Body ground BL, back panel center (EWD 1993 p.112 / p.126) - ONE rear ground for every rear lamp (Dan, C6); M6 ring, check the stud size at the build",
-      "schematicPosition": {
-        "x": 750,
-        "y": 960
-      },
-      "layoutPosition": {
-        "x": 2070,
-        "y": 420
-      },
-      "propagate": false
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
     }
-  ],
-  "splices": [
-    {
-      "id": "sp_rl_tail",
-      "partId": "spp_solder_generic",
-      "locationId": "bp_rl_rear",
-      "schematicPosition": {
-        "x": 480,
-        "y": -30
-      },
-      "layoutPosition": {
-        "x": 1770,
-        "y": 660
-      }
-    },
-    {
-      "id": "sp_rl_stop",
-      "partId": "spp_solder_generic",
-      "locationId": "bp_rl_hatch",
-      "schematicPosition": {
-        "x": 480,
-        "y": 120
-      },
-      "layoutPosition": {
-        "x": 1200,
-        "y": 660
-      }
-    },
-    {
-      "id": "sp_rl_rev",
-      "partId": "spp_solder_generic",
-      "locationId": "bp_rl_rear",
-      "schematicPosition": {
-        "x": 480,
-        "y": 240
-      },
-      "layoutPosition": {
-        "x": 1860,
-        "y": 570
-      }
-    },
-    {
-      "id": "sp_rl_gnd",
-      "partId": "spp_solder_generic",
-      "locationId": "bp_rl_center",
-      "schematicPosition": {
-        "x": 480,
-        "y": 600
-      },
-      "layoutPosition": {
-        "x": 1740,
-        "y": 300
-      }
-    }
-  ],
+  },
   "wires": [
     {
       "id": "w_rl_tail",
@@ -1295,6 +943,360 @@
       ]
     }
   ],
+  "connectors": [],
+  "terminals": [
+    {
+      "id": "fl_oem_jb1_1f_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.112-113 J/B1 1F-1 G TAIL 15A out (TAIL relay, light switch TAIL/HEAD) -> rear tail lamps R11 / R12 pins 2-3, license L1 pin 1 - crimp butt splice into the factory 1F-1 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)",
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 390,
+        "y": 720
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_jb1_1f_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.130-131 J/B1 1F-3 G-B turn LH out (flasher T3 via H5 / C15) -> R11 pin 6 - crimp butt splice into the factory 1F-3 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)",
+      "schematicPosition": {
+        "x": 0,
+        "y": 60
+      },
+      "layoutPosition": {
+        "x": 240,
+        "y": 810
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_jb1_1f_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.130-131 J/B1 1F-2 G-Y turn RH out (flasher T3 via H5 / C15) -> R12 pin 6 - crimp butt splice into the factory 1F-2 lead at J/B1 (cabin side, left kick; the rear floor wire is missing, R55)",
+      "schematicPosition": {
+        "x": 0,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 90,
+        "y": 900
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_oem_s9_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.126-127 S9 1 G-W stop lamp feed: STOP 15A (J/B1 1B-7) through S9, +12V with the pedal pressed -> R11 / R12 pin 1, H6 pin 1 - soldered tap into the factory G-W lead at S9 pin 1 (cabin, under the dash; the CSB3 brake tap FL_BRAKE_SW_C1 lands on the same lead)",
+      "schematicPosition": {
+        "x": 0,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 300,
+        "y": 300
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_rl_rev",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: reverse relay k_rev 87 -> back-up lamps R11 / R12 pin 4",
+      "schematicPosition": {
+        "x": 0,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 240,
+        "y": 0
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r11_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.126 R11 pin 1 (G-W in the factory wiring, new wire here) stop LH <- sp_rl_stop - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 2190,
+        "y": 660
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r11_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.113 R11 pin 2 (G in the factory wiring, new wire here) tail + rear side marker LH <- sp_rl_tail - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 60
+      },
+      "layoutPosition": {
+        "x": 2130,
+        "y": 720
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r11_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.113 R11 pin 3 (G in the factory wiring, new wire here) tail + rear side marker LH <- sp_rl_tail - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 2070,
+        "y": 780
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r11_c4",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD Mitchell 1993 Fig. 16 grid 63; 1992 p.132 R11 pin 4 (R-B in the factory wiring, new wire here) back-up LH <- sp_rl_rev (k_rev 87) - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 2010,
+        "y": 840
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r11_c5",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.113 / p.126 R11 pin 5 (W-B in the factory wiring, new wire here) ground LH -> sp_rl_gnd -> BL - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 1950,
+        "y": 900
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r11_c6",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.130 R11 pin 6 (G-B in the factory wiring, new wire here) turn LH <- J/B1 1F-3 - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 300
+      },
+      "layoutPosition": {
+        "x": 1890,
+        "y": 960
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r12_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.126 R12 pin 1 (G-W in the factory wiring, new wire here) stop RH <- sp_rl_stop - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": 2190,
+        "y": -60
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r12_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.113 R12 pin 2 (G in the factory wiring, new wire here) tail + rear side marker RH <- sp_rl_tail - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": 2130,
+        "y": -120
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r12_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.113 R12 pin 3 (G in the factory wiring, new wire here) tail + rear side marker RH <- sp_rl_tail - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 480
+      },
+      "layoutPosition": {
+        "x": 2070,
+        "y": -180
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r12_c4",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD Mitchell 1993 Fig. 16 grid 63; 1992 p.132 R12 pin 4 (R-B in the factory wiring, new wire here) back-up RH <- sp_rl_rev (k_rev 87) - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 540
+      },
+      "layoutPosition": {
+        "x": 2010,
+        "y": -240
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r12_c5",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.113 / p.126 R12 pin 5 (W-B in the factory wiring, new wire here) ground RH -> sp_rl_gnd -> BL - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 600
+      },
+      "layoutPosition": {
+        "x": 1950,
+        "y": -300
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_r12_c6",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.130 R12 pin 6 (G-Y in the factory wiring, new wire here) turn RH <- J/B1 1F-2 - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 660
+      },
+      "layoutPosition": {
+        "x": 1890,
+        "y": -360
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_l1_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.113 L1 pin 1 (G in the factory wiring, new wire here) license plate light feed <- sp_rl_tail - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 720
+      },
+      "layoutPosition": {
+        "x": 2190,
+        "y": 300
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_l1_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.113 L1 pin 2 (W-B in the factory wiring, new wire here) license plate light ground -> sp_rl_gnd -> BL - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 780
+      },
+      "layoutPosition": {
+        "x": 2130,
+        "y": 360
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_h6_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.126 H6 pin A-1 (G-W in the factory wiring, new wire here) high-mount stop light (spoiler) feed <- sp_rl_stop - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 840
+      },
+      "layoutPosition": {
+        "x": 1410,
+        "y": -270
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_h6_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "signal": "EWD 1993 p.126 H6 pin A-2 (W-B in the factory wiring, new wire here) high-mount stop light ground -> sp_rl_gnd -> BL (one rear ground, C6; OEM went to BI) - new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen",
+      "schematicPosition": {
+        "x": 750,
+        "y": 900
+      },
+      "layoutPosition": {
+        "x": 1320,
+        "y": -360
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_rl_gnd_bl",
+      "type": "Ring",
+      "partId": "tp_ring_m6_22_16",
+      "width": 390,
+      "signal": "Body ground BL, back panel center (EWD 1993 p.112 / p.126) - ONE rear ground for every rear lamp (Dan, C6); M6 ring, check the stud size at the build",
+      "schematicPosition": {
+        "x": 750,
+        "y": 960
+      },
+      "layoutPosition": {
+        "x": 2070,
+        "y": 420
+      },
+      "propagate": false
+    }
+  ],
   "bundles": [
     {
       "id": "bn_bp_rl_kick__bp_rl_hatch",
@@ -1540,47 +1542,57 @@
       }
     }
   ],
-  "branchPoints": [
+  "splices": [
     {
-      "id": "bp_rl_kick",
+      "id": "sp_rl_tail",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_rl_rear",
+      "schematicPosition": {
+        "x": 480,
+        "y": -30
+      },
       "layoutPosition": {
-        "x": 0,
-        "y": 600
+        "x": 1770,
+        "y": 660
       }
     },
     {
-      "id": "bp_rl_hatch",
+      "id": "sp_rl_stop",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_rl_hatch",
+      "schematicPosition": {
+        "x": 480,
+        "y": 120
+      },
       "layoutPosition": {
         "x": 1200,
+        "y": 660
+      }
+    },
+    {
+      "id": "sp_rl_rev",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_rl_rear",
+      "schematicPosition": {
+        "x": 480,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 1860,
+        "y": 570
+      }
+    },
+    {
+      "id": "sp_rl_gnd",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_rl_center",
+      "schematicPosition": {
+        "x": 480,
         "y": 600
-      }
-    },
-    {
-      "id": "bp_rl_h6",
+      },
       "layoutPosition": {
-        "x": 1200,
-        "y": -240
-      }
-    },
-    {
-      "id": "bp_rl_rear",
-      "layoutPosition": {
-        "x": 1800,
-        "y": 600
-      }
-    },
-    {
-      "id": "bp_rl_center",
-      "layoutPosition": {
-        "x": 1800,
+        "x": 1740,
         "y": 300
-      }
-    },
-    {
-      "id": "bp_rl_rh",
-      "layoutPosition": {
-        "x": 1800,
-        "y": 0
       }
     }
   ],
@@ -1686,6 +1698,58 @@
       }
     }
   ],
+  "spliceParts": [
+    {
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
+    }
+  ],
+  "branchPoints": [
+    {
+      "id": "bp_rl_kick",
+      "layoutPosition": {
+        "x": 0,
+        "y": 600
+      }
+    },
+    {
+      "id": "bp_rl_hatch",
+      "layoutPosition": {
+        "x": 1200,
+        "y": 600
+      }
+    },
+    {
+      "id": "bp_rl_h6",
+      "layoutPosition": {
+        "x": 1200,
+        "y": -240
+      }
+    },
+    {
+      "id": "bp_rl_rear",
+      "layoutPosition": {
+        "x": 1800,
+        "y": 600
+      }
+    },
+    {
+      "id": "bp_rl_center",
+      "layoutPosition": {
+        "x": 1800,
+        "y": 300
+      }
+    },
+    {
+      "id": "bp_rl_rh",
+      "layoutPosition": {
+        "x": 1800,
+        "y": 0
+      }
+    }
+  ],
   "terminalParts": [
     {
       "id": "tp_flying_lead",
@@ -1718,70 +1782,5 @@
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
       "manufacturer": "generic"
     }
-  ],
-  "spliceParts": [
-    {
-      "id": "spp_solder_generic",
-      "partNumber": "GENERIC SOLDER SPLICE",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "generic"
-    }
-  ],
-  "pdfExportSettings": {
-    "includeSchematic": true,
-    "includeLayout": true,
-    "schematic": {
-      "showParts": true,
-      "showCoverings": true,
-      "showAccessories": true,
-      "showComponentIds": true,
-      "pageSize": "Fit"
-    },
-    "layout": {
-      "showParts": true,
-      "showCoverings": true,
-      "showAccessories": true,
-      "showComponentIds": true,
-      "pageSize": "Fit"
-    },
-    "wireThickness": "Thick",
-    "includeTitleBlock": true,
-    "includeNotes": true,
-    "includeParts": true,
-    "parts": {
-      "columns": [
-        "PartNumber",
-        "Manufacturer",
-        "Details",
-        "Description",
-        "Url",
-        "Quantity"
-      ],
-      "pageMode": "Multiple",
-      "pageSize": "A3"
-    },
-    "includeConnections": true,
-    "connections": {
-      "includeAll": true,
-      "includeComponents": true,
-      "columns": [
-        "Conductor",
-        "PartNumber",
-        "TwistedWith",
-        "Ident",
-        "Group",
-        "Net",
-        "Length",
-        "Contact"
-      ],
-      "showConductorIds": true,
-      "pageMode": "Multiple",
-      "pageSize": "A3",
-      "showPart": true,
-      "showPartImage": false,
-      "showAccessories": true,
-      "showPinout": true,
-      "showUnconnected": true
-    }
-  }
+  ]
 }
