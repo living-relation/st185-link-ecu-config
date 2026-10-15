@@ -787,7 +787,7 @@
         "pin": "1",
         "color": "G-W (factory wiring; new wire here)",
         "function": "stop LH <- sp_rl_stop",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -801,7 +801,7 @@
         "pin": "2",
         "color": "G (factory wiring; new wire here)",
         "function": "tail + rear side marker LH <- sp_rl_tail",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -815,7 +815,7 @@
         "pin": "3",
         "color": "G (factory wiring; new wire here)",
         "function": "tail + rear side marker LH <- sp_rl_tail",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -829,7 +829,7 @@
         "pin": "4",
         "color": "R-B (factory wiring; new wire here)",
         "function": "back-up LH <- sp_rl_rev (k_rev 87)",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -843,7 +843,7 @@
         "pin": "5",
         "color": "W-B (factory wiring; new wire here)",
         "function": "ground LH -> sp_rl_gnd -> BL",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -857,7 +857,7 @@
         "pin": "6",
         "color": "G-B (factory wiring; new wire here)",
         "function": "turn LH <- J/B1 1F-3",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -871,7 +871,7 @@
         "pin": "1",
         "color": "G-W (factory wiring; new wire here)",
         "function": "stop RH <- sp_rl_stop",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -885,7 +885,7 @@
         "pin": "2",
         "color": "G (factory wiring; new wire here)",
         "function": "tail + rear side marker RH <- sp_rl_tail",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -899,7 +899,7 @@
         "pin": "3",
         "color": "G (factory wiring; new wire here)",
         "function": "tail + rear side marker RH <- sp_rl_tail",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -913,7 +913,7 @@
         "pin": "4",
         "color": "R-B (factory wiring; new wire here)",
         "function": "back-up RH <- sp_rl_rev (k_rev 87)",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -927,7 +927,7 @@
         "pin": "5",
         "color": "W-B (factory wiring; new wire here)",
         "function": "ground RH -> sp_rl_gnd -> BL",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -941,7 +941,7 @@
         "pin": "6",
         "color": "G-Y (factory wiring; new wire here)",
         "function": "turn RH <- J/B1 1F-2",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -955,7 +955,7 @@
         "pin": "1",
         "color": "G (factory wiring; new wire here)",
         "function": "license plate light feed <- sp_rl_tail",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -969,7 +969,7 @@
         "pin": "2",
         "color": "W-B (factory wiring; new wire here)",
         "function": "license plate light ground -> sp_rl_gnd -> BL",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -983,7 +983,7 @@
         "pin": "A-1",
         "color": "G-W (factory wiring; new wire here)",
         "function": "high-mount stop light (spoiler) feed <- sp_rl_stop",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
@@ -997,7 +997,7 @@
         "pin": "A-2",
         "color": "W-B (factory wiring; new wire here)",
         "function": "high-mount stop light ground -> sp_rl_gnd -> BL (one rear ground, C6; OEM went to BI)",
-        "method": "new-wire run terminated at the lamp's own mating plug (the rear wires and their plugs are missing, R55); plug part number not yet chosen"
+        "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
       }
     },
     {
