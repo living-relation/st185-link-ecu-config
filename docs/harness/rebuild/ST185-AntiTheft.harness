@@ -403,7 +403,7 @@
       "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": 1320,
-        "y": 180
+        "y": 240
       },
       "schematicPosition": {
         "x": 510,
@@ -415,8 +415,8 @@
       "id": "sp_ig",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 930,
-        "y": 60
+        "x": 870,
+        "y": 300
       },
       "schematicPosition": {
         "x": 510,
@@ -428,8 +428,8 @@
       "id": "sp_door",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 2040,
-        "y": 420
+        "x": 1860,
+        "y": 360
       },
       "schematicPosition": {
         "x": 450,
@@ -441,8 +441,8 @@
       "id": "sp_hood",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 600,
-        "y": -150
+        "x": 480,
+        "y": -60
       },
       "schematicPosition": {
         "x": 510,
@@ -454,8 +454,8 @@
       "id": "sp_trunk",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 2580,
-        "y": 390
+        "x": 2100,
+        "y": 240
       },
       "schematicPosition": {
         "x": 510,
@@ -467,8 +467,8 @@
       "id": "sp_park",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1680,
-        "y": 180
+        "x": 1440,
+        "y": 240
       },
       "schematicPosition": {
         "x": 1170,
@@ -480,8 +480,8 @@
       "id": "sp_12v_shk",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1440,
-        "y": 180
+        "x": 1800,
+        "y": 240
       },
       "schematicPosition": {
         "x": 1830,
