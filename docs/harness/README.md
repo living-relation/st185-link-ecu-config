@@ -6,7 +6,7 @@ opening any loom.
 **The wiring source of truth is `sot/channels.csv`** (every ECU pin and channel).
 The looms below are the physical build and must agree with it; `check_all.py`
 enforces that. **Every rule for drawing them is in `redesign/DECISIONS.md` "Binding rules
-from Daniel" (R1-R90)** - this file is the file map and the workflow, and restates no rule.
+from Daniel" (R1-R92)** - this file is the file map and the workflow, and restates no rule.
 
 ## The short answer
 
@@ -38,7 +38,7 @@ Dan edits the drawings in the harness.design **desktop app**, which opens the fi
   3. In the Export PDF panel check that Schematic, Layout, Parts, Connections, Title block and Notes are ticked and the title reads `ST185-<name> ...` (they load from the file; change nothing).
   4. Click **Export** and save it as `ST185-<name>.pdf`.
   5. Look at the bottom corners of the schematic and layout sheets: if the title block or the notes block covers a note or a wire, tell the agent (the corner sizes in `audit_export_sheet.py` are estimates).
-  Agents keep every finished harness on the R88 setup; gate `audit_export_sheet.py`.
+  Agents keep every finished harness on the R88 setup; gate `audit_export_sheet.py`. A note too long to fit inside the frame: widen it, then split it into the gaps, then move the long text to `HARNESS-NOTES.md` (one section per drawing) and leave a short pointer note (DECISIONS R92).
 - **Agents pause while Dan edits.** The version saved to disk wins: if the app has unsaved edits when an agent saves, the app's edits are discarded. An agent never rewrites a file Dan has open with unsaved changes. The gates read the JSON, not its whitespace, so the app's own formatting never fails CI.
 - Free plan: 100 connections per harness also applies to local files. The app rejects unknown keys, so repo-only data lives in `interfaces.json`, never in a `.harness`.
 - Agents: use the global skill `harness-design` (`C:/Users/danie/.claude/skills/harness-design/SKILL.md`).
