@@ -2557,6 +2557,28 @@
       "numberOfCavities": 2
     },
     {
+      "id": "cp_rev_sw2",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "90980-11250",
+      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS (HOUSING CONNECTOR F), BACK-UP LIGHT SWITCH",
+      "manufacturer": "Toyota",
+      "url": "https://www.bmotorsports.com/shop/product_info.php/products_id/3515",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_toy_ts"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2
+    },
+    {
       "id": "cp_vss3",
       "image": {
         "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/toyota-oval-3pos.png",

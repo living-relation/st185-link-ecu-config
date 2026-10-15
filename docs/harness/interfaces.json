@@ -385,20 +385,6 @@
       }
     },
     {
-      "id": "FL_REVERSE_SW_C1",
-      "type": "oem_flying_lead",
-      "harness": "B-engine",
-      "terminal": "fl_reverse_sw_c1",
-      "ewd": {
-        "page": "1992 p.132-133; Mitchell 1993 overall wiring Fig. 16 (grid 63)",
-        "connector": "B1",
-        "pin": "1",
-        "color": "R-B (factory wiring; new wire here)",
-        "function": "back-up switch out, +12V in reverse -> bulkhead B c12 -> reverse relay k_rev 86 + opto IN2 -> CSB3 S8",
-        "method": "new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
-      }
-    },
-    {
       "id": "FL_AC_PRESS_C1",
       "type": "oem_flying_lead",
       "harness": "EngineRoom-C",
@@ -998,20 +984,6 @@
         "color": "W-B (factory wiring; new wire here)",
         "function": "high-mount stop light ground -> sp_rl_gnd -> BL (one rear ground, C6; OEM went to BI)",
         "method": "new-wire flying lead, soldered by Dan to the factory bulb-socket pigtail + adhesive heat-shrink ATUM-4/1-0 (factory sockets kept, no plug; R117)"
-      }
-    },
-    {
-      "id": "FL_REVERSE_SW_C2",
-      "type": "oem_flying_lead",
-      "harness": "B-engine",
-      "terminal": "fl_reverse_sw_c2",
-      "ewd": {
-        "page": "1992 p.132-133; Mitchell 1993 overall wiring Fig. 16 (grid 63)",
-        "connector": "B1",
-        "pin": "2",
-        "color": "R-L (factory wiring; new wire here)",
-        "function": "back-up switch feed <- bulkhead B c25 <- J/B No.1 GAUGE 15A (J/B3 3B-9)",
-        "method": "new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen"
       }
     },
     {
