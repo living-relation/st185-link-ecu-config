@@ -243,7 +243,7 @@
    "note": "bundle 7.2 mm; 21.7 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
   },
   {
-   "where": "LOGIC harness bundle at x 38 (13 wires)",
+   "where": "LOGIC harness bundle at x 40 (13 wires)",
    "awg": "16",
    "od": 2.06,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
@@ -254,7 +254,7 @@
    "note": "bundle 7.9 mm; 22.5 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
   },
   {
-   "where": "LOGIC harness bundle at x 49 (21 wires)",
+   "where": "LOGIC harness bundle at x 52 (21 wires)",
    "awg": "16",
    "od": 2.06,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
@@ -265,7 +265,7 @@
    "note": "bundle 10.1 mm; 21.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
   },
   {
-   "where": "LOGIC harness bundle at x 68 (10 wires)",
+   "where": "LOGIC harness bundle at x 70 (10 wires)",
    "awg": "16",
    "od": 2.06,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
@@ -802,7 +802,7 @@
     "room": 21.7
    },
    {
-    "at": 38.0,
+    "at": 40.5,
     "wires": 13,
     "d": 7.9,
     "z": 8.7,
@@ -824,7 +824,7 @@
     "room": 22.5
    },
    {
-    "at": 49.0,
+    "at": 51.5,
     "wires": 21,
     "d": 10.1,
     "z": 9.9,
@@ -854,7 +854,7 @@
     "room": 21.4
    },
    {
-    "at": 67.5,
+    "at": 70.0,
     "wires": 10,
     "d": 7.1,
     "z": 8.4,
@@ -1059,6 +1059,62 @@
     "NEG bus: grounds straight out the rear"
    ]
   ],
+  "fusebox_render_routing_logic.png": [
+   [
+    1,
+    852.6,
+    600.4,
+    "Bus 1 fuse wires"
+   ],
+   [
+    2,
+    984.1,
+    640.7,
+    "Bus 2 fuse wires"
+   ],
+   [
+    3,
+    1094.2,
+    607.5,
+    "micro relay wires, inboard column"
+   ],
+   [
+    4,
+    1174.7,
+    632.4,
+    "micro relay wires, outboard column"
+   ],
+   [
+    5,
+    1226.8,
+    484.3,
+    "all leave the front edge"
+   ],
+   [
+    6,
+    903.6,
+    497.4,
+    "fuse input jumpers drop straight into their lugs"
+   ],
+   [
+    7,
+    888.2,
+    535.3,
+    "bus strips on edge, printed spine between"
+   ],
+   [
+    8,
+    1104.9,
+    394.3,
+    "Bus 1 feed in at the front"
+   ],
+   [
+    9,
+    545.9,
+    876.3,
+    "Bus 2 feed in at the rear"
+   ]
+  ],
   "fusebox_power_explode.png": [
    [
     1,
@@ -1260,6 +1316,62 @@
     778.0,
     "M6 through each foot (4), steel limiter"
    ]
+  ],
+  "fusebox_logic_explode.png": [
+   [
+    1,
+    900.0,
+    129.1,
+    "cover (snaps on)"
+   ],
+   [
+    2,
+    940.3,
+    294.9,
+    "micro relays"
+   ],
+   [
+    3,
+    921.3,
+    386.1,
+    "mini fuses"
+   ],
+   [
+    4,
+    900.0,
+    580.3,
+    "base: deck, cavity towers, spine between the strips"
+   ],
+   [
+    5,
+    896.4,
+    740.1,
+    "Bus 1 / Bus 2 strips on edge, slide in from the rear"
+   ],
+   [
+    6,
+    907.1,
+    742.5,
+    "input jumper lugs, TE PIDG 53941-1"
+   ],
+   [
+    7,
+    907.1,
+    754.3,
+    "M4 x 8 + spring washer into the tapped strip"
+   ],
+   [
+    8,
+    896.4,
+    741.3,
+    "feed lugs, M5 x 10 into the strip"
+   ],
+   [
+    9,
+    900.0,
+    890.5,
+    "belly pan (snaps on)"
+   ]
   ]
  },
  "standoffs": {
@@ -1294,8 +1406,8 @@
    },
    "BUS2": {
     "x": [
-     26.15,
-     29.35
+     28.65,
+     31.85
     ],
     "y": [
      21.0,
@@ -1303,7 +1415,7 @@
     ]
    }
   },
-  "spine_x": 24.25,
+  "spine_x": 25.5,
   "studs": 22,
   "jumpers": 19,
   "rows_z": [
@@ -1317,8 +1429,8 @@
   "input_lug_to_pad_min_mm": 13.72,
   "under_deck_lug_to_lug_min_mm": 5.5,
   "standoff_to_standoff_min_mm": 10.0,
-  "logic_strip_to_strip_mm": 3.8,
-  "logic_feed_lug_to_lug_mm": 106.83,
+  "logic_strip_to_strip_mm": 6.3,
+  "logic_feed_lug_to_lug_mm": 107.1,
   "battrelay_bar_to_pad_mm": 17.0,
   "battrelay_relay_lug_to_lug_mm": 5.0,
   "pan_to_nearest_live_power_mm": 0.59,
@@ -1330,38 +1442,39 @@
   "logic_jumper_parts_to_printed_min_mm": 0.6,
   "logic_jumper_parts_to_harness_min_mm": 0.56,
   "logic_strip_to_printed_min_mm": 0.4,
-  "logic_bolt_to_other_strip_min_mm": 0.68
+  "logic_bolt_to_other_strip_min_mm": 3.18,
+  "logic_bus1_to_bus2_min_mm": 3.18
  },
  "wire_to_printed_contact": [],
  "printed_parts": {
   "Logic_Base_PA12_printed": {
    "size_mm": [
-    143.0,
+    145.5,
     181.0,
     60.5
    ],
-   "volume_cm3": 237.1,
-   "mass_g_pa12": 239.0,
+   "volume_cm3": 240.3,
+   "mass_g_pa12": 243.0,
    "bodies": 1
   },
   "Logic_Pan_PA12_printed": {
    "size_mm": [
-    74.5,
+    77.0,
     174.1,
     41.0
    ],
-   "volume_cm3": 72.0,
-   "mass_g_pa12": 73.0,
+   "volume_cm3": 73.6,
+   "mass_g_pa12": 74.0,
    "bodies": 1
   },
   "Logic_Cover_PA12_printed": {
    "size_mm": [
-    87.9,
+    90.4,
     189.9,
     42.4
    ],
-   "volume_cm3": 93.5,
-   "mass_g_pa12": 94.0,
+   "volume_cm3": 95.1,
+   "mass_g_pa12": 96.0,
    "bodies": 1
   },
   "Power_Base_PA12_printed": {
@@ -1417,13 +1530,13 @@
  },
  "boxes_mm": {
   "LOGIC": {
-   "L": 79.0,
+   "L": 81.5,
    "D": 181.0,
    "H": 89.9,
    "z_d": 38.5,
    "z_t": 60.5,
    "cover_top": 89.9,
-   "spine_x": 24.2
+   "spine_x": 25.5
   },
   "POWER": {
    "L": 180.5,
@@ -1469,12 +1582,6 @@
   "Power_Pan_PA12_printed.stl",
   "Power_Cover_PA12_printed.step",
   "Power_Cover_PA12_printed.stl",
-  "BattRelay_Base_PA12_printed.step",
-  "BattRelay_Base_PA12_printed.stl",
-  "BattRelay_Bar_Power_CuC110_25x6p35.step",
-  "BattRelay_Pad_Out_CuC110_15x3.step",
-  "BattRelay_Cover_PA12_printed.step",
-  "BattRelay_Cover_PA12_printed.stl",
   "ST185_fusebox_rev7_assembly.step",
   "ST185_fusebox_rev7.f3d"
  ],

@@ -16,6 +16,12 @@ FB = os.path.dirname(HERE)
 D7 = os.path.join(FB, 'rev7')
 OUT = os.path.join(D7, 'ST185-fusebox-rev7-summary.html')
 rep = json.load(open(os.path.join(D7, 'fusebox_report.json')))
+plan = json.load(open(os.path.join(D7, 'wiring_plan.json')))
+wrep = json.load(open(os.path.join(D7, 'wiring_report.json')))
+# the rev 7 build before Dan's 3 mm fix (PR #214, cad/fusebox/rev7/fusebox_report.json at that commit)
+BEFORE = {'logic_strip_to_strip_mm': 3.8, 'logic_bolt_to_other_strip_min_mm': 0.68, 'logic_jumper_lug_to_lug_min_mm': 1.86,
+          'logic_strip_to_printed_min_mm': 0.4, 'logic_jumper_parts_to_printed_min_mm': 0.6, 'logic_jumper_parts_to_harness_min_mm': 0.56,
+          'pan_to_nearest_live_power_mm': 0.59}
 rep6 = json.load(open(os.path.join(FB, 'fusebox_report.json')))
 E = lambda s: html.escape(str(s))
 R7 = S.REV7
@@ -64,8 +70,9 @@ def fig(f, cap, cls=''):
 
 A('<h1>ST185 fuse boxes - rev 7 (selected for build)</h1>')
 A('<p class="mut">Claude Code, 2026-10-14. Your E2 answer: "make a separate new version so I can see it". Rev 7 is that version, and you picked it: '
-  '<b>P7 = A, U1 = A (DECISIONS R91)</b>. The POWER box below is selected for build; the LOGIC box and the battery relay block stay rev 6 '
-  '(<a href="../ST185-fusebox-summary.html">rev 6 page</a>, unchanged). <a href="#views">More views: sides, cables, typical arrangement</a>.</p>')
+  '<b>P7 = A, U1 = A (DECISIONS R91)</b>. The POWER box below is selected for build. The LOGIC box is rebuilt here for your 3 mm rule '
+  '(<a href="#clearance">3 mm fix</a>, R93); the battery relay block stays rev 6 (<a href="../ST185-fusebox-summary.html">rev 6 page</a>). '
+  '<a href="#views">Every wire simulated: sides, exploded, underneath, routing, the boxes cabled together</a>. Open questions: J1-J4.</p>')
 A('<div class="note"><b>The idea in one line:</b> the glove-box bus bar and the POWER box become one thing. The bus bar\'s + bar runs right '
   'through the POWER box and the AMI fuses bolt straight onto it. No second copper bar, no separate bus bar box, no thick cable between them.</div>')
 A('<div class="kpi">')
@@ -136,41 +143,98 @@ for f, cap in (('fusebox_render_iso_closed.png', 'Closed. The POWER box is 62 mm
     fig(f, cap)
 A('<div class="grid">')
 fig('trimetric-power.png', 'Trimetric, POWER box rev 7 (R83).', 'w')
-fig('../trimetric-logic.png', 'Trimetric, LOGIC box (rev 6, unchanged in rev 7).', 'w')
+fig('trimetric-logic.png', 'Trimetric, LOGIC box rev 7 (3 mm fix: 81.5 wide).', 'w')
 fig('../trimetric-battrelay.png', 'Trimetric, battery relay block (rev 6, unchanged in rev 7).', 'w')
 A('</div>')
 
-A('<h2 id="views">More views: sides, cables, typical arrangement</h2>')
-A('<div class="note">Render only - no design change. The cables are drawn in their real insulation colours with their ident bands '
-  '(from the harness drawings: <code>ST185-CabinPower</code>, <code>-EngineRoom-C</code>, <code>-HeavyDC</code>; R87). The other renders on this page '
-  'draw every feed cable red. Bends outside the boxes follow the bend rule: 1/0 at 3 x OD (41 mm) with a P-clamp each side, every other cable '
-  'and bundle at 10 x OD of its largest wire (FAA AC 43.13-1B 11-96). Every lug is the real part from the parts lists, already in the model: '
-  'Klauke 6R8 (M8) on the bus zone, Klauke 2R5 / 3R5MS (M5) on the AMI OUT row, Klauke 2R5 on the LOGIC feeds, Klauke 1R6 (M6) on the battery block. '
-  'Labels name the cable, gauge, colour and bands.</div>')
-A('<h3>Side views, one long side and one short end of each box</h3><div class="grid">')
-for f, cap in (('fusebox_power_side_long.png', 'POWER (rev 7), long side: AMI OUT row and + bar cables end-on, the 1/0 NEG cables and relay grounds out the rear.'),
-               ('fusebox_power_side_end.png', 'POWER (rev 7), short end: OUT row and + bar cables out the outboard end, relay + ACPS tails out the inboard end.'),
-               ('fusebox_logic_side_long.png', 'LOGIC, long side: Bus 1 feed and the 4 tail bundles out the front, Bus 2 feed in at the rear.'),
-               ('fusebox_logic_side_end.png', 'LOGIC, short end (front), off-axis.'),
-               ('battrelay_side_long.png', 'Battery relay block, long side: feed in at one end, pump + coil out the other.'),
-               ('battrelay_side_end.png', 'Battery relay block, short end (feed end), off-axis.')):
+A('<h2 id="clearance">LOGIC: the 3 mm fix (Dan\'s rule)</h2>')
+A('<p>Your question: do the bars under the LOGIC box touch? <b>No</b> - the Bus 1 and Bus 2 strips were 3.8 mm apart. But an M4 x 8 jumper bolt '
+  'sticks 3.1 mm out of its own strip, so its tip was <b>0.68 mm</b> from the other strip. Fix, same parts: the Bus 2 fuse column and both micro relay '
+  'columns sit 2.5 mm further outboard and the box is 2.5 mm wider (79 -&gt; 81.5). Bus 1 could not move inboard (its wire bundle meets the belly pan '
+  'wall) and Bus 2 could not move alone (its fuses would hit the micro relays). A gate now fails any live-to-live gap under 3 mm '
+  '(<code>cad/fusebox/src/check_clearance.py</code>, in <code>check_all.py</code>).</p>')
+A('<div class="wrap"><table><tr><th>Gap</th><th>Before</th><th>Now</th><th>Kind</th></tr>')
+for k, lbl, kind in (('logic_bolt_to_other_strip_min_mm', 'strip bolt tip to the OTHER strip', 'live to live (Bus 1 / Bus 2)'),
+                     ('logic_bus1_to_bus2_min_mm', 'any Bus 1 part to any Bus 2 part', 'live to live'),
+                     ('logic_strip_to_strip_mm', 'Bus 1 strip to Bus 2 strip', 'live to live'),
+                     ('logic_jumper_lug_to_lug_min_mm', 'jumper lug to the next lug, same strip', 'live to live, one circuit - question J1'),
+                     ('logic_strip_to_printed_min_mm', 'strip to its printed lips', 'live to plastic - question J2'),
+                     ('logic_jumper_parts_to_printed_min_mm', 'jumper parts to the deck', 'live to plastic - J2'),
+                     ('logic_jumper_parts_to_harness_min_mm', 'jumper parts to the CAD tail bundles', 'live to insulation - J2'),
+                     ('pan_to_nearest_live_power_mm', 'POWER belly pan to the nearest live part', 'live to plastic - J2')):
+    b_, n_ = BEFORE.get(k), live.get(k)
+    ok = n_ is not None and n_ >= 3.0
+    A('<tr><td>%s</td><td>%s</td><td class="%s">%s</td><td>%s</td></tr>' % (E(lbl), ('%.2f mm' % b_) if b_ is not None else 'not measured',
+      'ok' if ok else ('mut' if 'J' in kind else 'bad'), ('%.2f mm' % n_) if n_ is not None else '-', E(kind)))
+A('</table></div>')
+
+A('<h2 id="views">Every wire in place (simulation)</h2>')
+pb = plan['per_box_wire_ends']
+A('<div class="note">Your question: "aren\'t there going to be more wires in these? can you simulate that?" Every harness wire that lands in a box '
+  '(<code>ST185-CabinPower</code>, <code>-HeavyDC</code>, <code>-EngineRoom-C</code>), at its real cavity, with its real gauge (outside diameter), '
+  'insulation colour, ident bands and terminal part, bundled into the exit it leaves by (the CAD lanes) with the bend rule: 3 x OD where it is '
+  'tied into its bundle, 10 x OD free outside. <code>cad/fusebox/src/wiring_sim.py</code> plans it, <code>render_wired_rev7.py</code> draws and '
+  'checks it in Fusion (not saved). Nothing in the design was changed for it.</div>')
+A('<div class="kpi"><div>POWER<b>%d wire ends</b><span class="mut">%d drawn here + the CAD feeds, OUT row and 1/0</span></div>'
+  '<div>LOGIC<b>%d wire ends</b><span class="mut">%d drawn here + the 2 feeds and 19 jumpers</span></div>'
+  '<div>Battery relay block<b>%d wire ends</b><span class="mut">feed, jumper, pump + 2 coil wires</span></div></div>'
+  % (pb['POWER'], wrep['wires_drawn']['POWER'], pb['LOGIC'], wrep['wires_drawn']['LOGIC'], pb['BATT']))
+A('<h3>What the simulation found</h3><div class="wrap"><table><tr><th>Check</th><th>Result</th></tr>')
+fits = all(x['fits'] for x in plan['exits'])
+tight = min(plan['exits'], key=lambda x: (x['margin'] if x['margin'] is not None else 99))
+A('<tr><td>Do all wires fit through the exits / notches?</td><td class="%s">%s</td></tr>' % ('ok' if fits else 'bad',
+  ('yes - every exit. Tightest: %s exit at %.1f, %d wires, round bundle %.1f mm in a %.1f mm notch' % (tight['box'], tight['lane'], tight['wires'], tight['d'], tight['opening']))
+  if fits else 'no - see the exit table'))
+A('<tr><td>Does any wire block a fuse or relay from being pulled?</td><td class="%s">%s</td></tr>' % ('ok', 'no. (The only hits are the battery block HCR150 and '
+  'its own cables: a screw-terminal relay, its terminal nuts come off before it lifts out.)' if all('HCR150' in x[0] for x in wrep['pull']) else E(wrep['pull'])))
+A('<tr><td>Do the covers still close?</td><td class="%s">%s</td></tr>' % ('ok' if not wrep['cover'] else 'bad', 'yes - no wire touches a cover' if not wrep['cover'] else E(wrep['cover'])))
+A('<tr><td>Wire through printed plastic</td><td class="%s">%s</td></tr>' % ('ok' if not wrep['through_printed'] else 'bad',
+  'none' if not wrep['through_printed'] else '%d wires rub the LOGIC belly pan wall (the outboard relay column\'s 86 pins are 1 mm from it, as rev 6): %s - question J2'
+  % (len(wrep['through_printed']), E(', '.join(sorted(set(x[0] for x in wrep['through_printed'])))))))
+A('<tr><td>Wire insulation against bare live metal</td><td class="%s">%s</td></tr>' % ('ok' if not wrep['bare_metal_touch'] else 'bad',
+  'none' if not wrep['bare_metal_touch'] else '%s pass %.2f mm from the Bus 1 strip bolt heads - question J2' % (E(', '.join(sorted(set(x[0] for x in wrep['bare_metal_touch'])))),
+  min(x[2] for x in wrep['bare_metal_touch']))))
+A('<tr><td>Live to live (3 mm rule)</td><td class="ok">no new bare metal in the simulation; the gate result above stands (only J1 open)</td></tr>')
+A('<tr><td>Wire to wire</td><td>%d places where two modelled wires share space (they cross in the crowded LOGIC lanes and under the deck); '
+  'insulated wires crossing is normal, so the 3 mm rule does not apply. Closest: %.2f mm</td></tr>' % (len(wrep['wire_wire']['overlaps']), wrep['wire_wire']['min_mm'] or 0.0))
+A('<tr><td>Two wires crimped in one terminal</td><td class="bad">%s - question J3</td></tr>' % E('; '.join(
+  '%s: %s mm2 in %s (max %s)' % (d['cavity'], d['mm2'], d['part'], d['range'][1]) for d in plan['doubles'] if d['over'])))
+A('<tr><td>LOGIC wires that leave and come back in</td><td>%d (%s): Bus 1 fuse to a relay in the same box, the strips are in the way under the deck - question J4</td></tr>'
+  % (len(plan['loops']), E(', '.join(plan['loops']))))
+A('</table></div>')
+A('<h3>Exits</h3><div class="wrap"><table><tr><th>Box</th><th>Exit (lane)</th><th>Wires (CAD drew)</th><th>Round bundle</th><th>Notch</th><th>Packed in the notch: top</th><th>Fits</th></tr>')
+for x in plan['exits']:
+    A('<tr><td>%s</td><td>%.1f</td><td>%d (%d)</td><td>%.1f mm</td><td>%.1f mm</td><td>z %.1f (deck %.1f)</td><td class="%s">%s</td></tr>' % (
+      x['box'], x['lane'], x['wires'], x['cad_wires'], x['d'], x['opening'], x['stack_top'], x['deck'], 'ok' if x['fits'] else 'bad', 'yes' if x['fits'] else 'no'))
+A('</table></div>')
+A('<h3>Each box, wired</h3>')
+for key, nm in (('power', 'POWER (rev 7)'), ('logic', 'LOGIC (rev 7)')):
+    A('<div class="grid">')
+    for f, cap in (('fusebox_%s_wired_side_long.png' % key, '%s, long side.' % nm), ('fusebox_%s_wired_side_end.png' % key, '%s, short end.' % nm),
+                   ('fusebox_%s_wired_explode.png' % key, '%s, exploded (the wires stay with the base).' % nm), ('fusebox_%s_wired_under.png' % key, '%s, underneath, pan off.' % nm),
+                   ('fusebox_%s_wired_routing.png' % key, '%s, wire routing seen from below.' % nm)):
+        fig(f, cap)
+    A('</div>')
+A('<div class="grid">')
+for f, cap in (('battrelay_wired_side_long.png', 'Battery relay block, long side.'), ('battrelay_wired_side_end.png', 'Battery relay block, short end.'),
+               ('battrelay_wired_explode.png', 'Battery relay block, exploded.'), ('battrelay_wired_under.png', 'Battery relay block, underneath.'),
+               ('battrelay_wired_routing.png', 'Battery relay block, wiring from below.')):
     fig(f, cap)
-A('</div><h3>Typical arrangement</h3>')
-A('<p class="mut">The real mount spot in the glove box is still to be measured (Route 1), so the shelf and the trunk floor are stand-ins and '
-  'the LOGIC box sits 55 mm inboard of its render spot to leave bend room for the POWER box tails. The cable directions are the routes: '
-  'H1 / H2 back along the RH sill to the battery (Route 1), RADLOK + / - forward to the RH firewall, GND ID across to the left kick, '
-  'GND IG to the right kick (ex-R/B4 bolt), Bus 1 / Bus 2 box to box (<code>w_hc_fb</code>, <code>w77_cp</code>), tails forward into the CabinPower loom.</p>')
-for f, cap in (('fusebox_arrangement_glovebox.png', 'Glove box: POWER (rev 7) + LOGIC with every cable.'),
-               ('fusebox_arrangement_glovebox_rear.png', 'Glove box from the rear: the 1/0 cables out of the bus zone, P-clamps at the bends.'),
-               ('fusebox_arrangement_glovebox_open.png', 'Covers and belly pans off: the AMI fuses on the + bar and the LOGIC 14 AWG input jumpers.'),
-               ('fusebox_arrangement_glovebox_top.png', 'Top view (front of the car at the bottom, RH door on the right).'),
-               ('fusebox_arrangement_trunk.png', 'Trunk: the battery relay block on its own with its feed, pump and coil cables.')):
+A('</div><h3>Typical arrangement, cabled together</h3>')
+A('<p class="mut">The real mount spot in the glove box is still to be measured (Route 1), so the shelf and the trunk floor are stand-ins and the LOGIC box '
+  'sits 55 mm inboard of its render spot (bend room for the POWER box tails). Cable directions follow the routes: H1 / H2 back along the RH sill, '
+  'RADLOK + / - forward to the RH firewall, GND ID to the left kick, GND IG to the right kick; Bus 1 / Bus 2 and k_efi 86 box to box; the relay '
+  'grounds (k_htr 87a, k_pwr 85, k_rev 85) round to the NEG bar ring; the rest of the tails forward in grey looms (CabinPower). 1/0 bends at 3 x OD with a '
+  'P-clamp each side. Lugs: Klauke 6R8 (bus zone), 2R5 / 3R5MS (OUT row), 2R5 (LOGIC feeds), 1R6 (battery block) - the parts-list parts.</p>')
+for f, cap in (('fusebox_arrangement_wired_glovebox.png', 'Glove box: POWER (rev 7) + LOGIC cabled together.'),
+               ('fusebox_arrangement_wired_glovebox_rear.png', 'From the rear: the 1/0 cables and the relay grounds to the NEG bar.'),
+               ('fusebox_arrangement_wired_glovebox_open.png', 'Covers off: the box-to-box wires.'),
+               ('fusebox_arrangement_wired_glovebox_top.png', 'Top view (front of the car at the bottom, RH door on the right).'),
+               ('fusebox_arrangement_wired_trunk.png', 'Trunk: the battery relay block and its cables.')):
     fig(f, cap)
-A('<h3>Exploded and underneath, all three boxes</h3><div class="grid">')
-for f, cap in (('fusebox_power_explode.png', 'POWER (rev 7), exploded.'), ('fusebox_render_under_open.png', 'POWER (rev 7) + LOGIC underneath, pans off.'),
-               ('fusebox_render_under_pan.png', 'POWER (rev 7) + LOGIC underneath, with the belly pans.'),
-               ('../fusebox_logic_explode.png', 'LOGIC, exploded (rev 6, unchanged).'),
-               ('../battrelay_explode.png', 'Battery relay block, exploded (rev 6, unchanged).'),
+A('<h3>LOGIC rev 7 build renders</h3><div class="grid">')
+for f, cap in (('fusebox_logic_explode.png', 'LOGIC rev 7, exploded (numbered).'), ('fusebox_render_routing_logic.png', 'LOGIC rev 7 cables (CAD tails).'),
+               ('fusebox_render_top_lid_logic.png', 'LOGIC rev 7 lid.'), ('../battrelay_explode.png', 'Battery relay block, exploded (rev 6, unchanged).'),
                ('../battrelay_render_under.png', 'Battery relay block underneath (rev 6, unchanged).')):
     fig(f, cap)
 A('</div>')
@@ -185,7 +249,8 @@ for (x, nm, hh, g) in R7['neg_studs']:
 A('</table></div>')
 
 A('<h2>Checks (Fusion, rev 7 build)</h2><div class="wrap"><table><tr><th>Check</th><th>Result</th></tr>')
-for k, lbl in (('bus_pos_lug_to_lug_min_mm', 'POS 1/0 lug to lug (Dan\'s rule: 3 mm)'), ('bus_neg_lug_to_lug_min_mm', 'NEG lug to lug (3 mm)'),
+for k, lbl in (('logic_bus1_to_bus2_min_mm', 'LOGIC any Bus 1 part to any Bus 2 part (3 mm)'), ('logic_bolt_to_other_strip_min_mm', 'LOGIC strip bolt tip to the other strip (3 mm)'),
+               ('bus_pos_lug_to_lug_min_mm', 'POS 1/0 lug to lug (Dan\'s rule: 3 mm)'), ('bus_neg_lug_to_lug_min_mm', 'NEG lug to lug (3 mm)'),
                ('bus_neg_to_pos_min_mm', 'nearest NEG part to POS part (wall between)'), ('bus_pos_lug_to_out_pad_min_mm', 'POS bus lug to nearest AMI output pad'),
                ('pad_to_pad_min_mm', 'AMI output pad to pad'), ('under_deck_lug_to_lug_min_mm', 'lugs under the deck'),
                ('pan_to_nearest_live_power_mm', 'belly pan to nearest live part')):
@@ -232,6 +297,11 @@ A('<li>Local model files: <code>%s\\fusebox\\rev7\\</code> (<code>ST185_fusebox_
   '<code>Power_*</code> STEP / STL, the two bars as STEP). LOGIC / battery block files: rev 6, <code>%s\\fusebox\\</code>.</li>' % (MAIN, MAIN))
 A('<li>Build: <code>cad/fusebox/src/build_fusion.py</code> <code>build(out_dir, rev=7)</code>; spec: <code>spec.py</code> <code>REV7</code>.</li></ul>')
 
+A('<h2>Open questions (batch J)</h2><ul>')
+for q in json.load(open(os.path.join(os.path.dirname(os.path.dirname(FB)), 'docs', 'status', 'questions.json')))['questions']:
+    if q['id'].startswith('J'):
+        A('<li><b>%s - %s:</b> %s<br>%s</li>' % (E(q['id']), E(q['topic']), E(q['text']), ' / '.join('%s) %s%s' % (o['value'], E(o['label']), ' <i>(recommended)</i>' if o.get('recommended') else '') for o in q['options'])))
+A('</ul>')
 A('<h2>Answered</h2><p><b>P7 = A</b> (rev 7 selected) and <b>U1 = A</b> (the B rev3 universal bar U stays out: the 2 spare AMI positions and the '
   'spare M8 on the + bar cover a new feed), Dan 2026-10-14, DECISIONS R91. The harness redraws that follow are OPEN-ITEMS row 118.</p>')
 A('</main></body></html>')

@@ -1,4 +1,81 @@
 {
   "updated": "2026-10-14",
-  "questions": []
+  "questions": [
+    {
+      "id": "J1",
+      "topic": "LOGIC: fuse input jumper lugs 1.86 mm apart",
+      "text": "On each LOGIC bus strip, a jumper lug's ring sits 1.86 mm from the neck of the lug next to it (both on the SAME strip, so the same circuit: all Bus 1 or all Bus 2). With the same parts this cannot reach 3 mm: the fuses are 8.1 mm apart and the 1 in strip is too short for a higher second row. Bus 1 to Bus 2 is fixed (3.18 mm, was 0.68). Until you answer, the new 3 mm gate lets only this one gap through.",
+      "options": [
+        {
+          "value": "A",
+          "label": "Keep it: the 3 mm rule is between different circuits; lugs on one strip are one circuit",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "Spread the fuses to a 9.3 mm pitch: LOGIC box about 15 mm deeper"
+        },
+        {
+          "value": "C",
+          "label": "Taller strips (1.5 in bar, a new part) and a higher second lug row: LOGIC box about 16 mm taller"
+        }
+      ]
+    },
+    {
+      "id": "J2",
+      "topic": "Live parts touching plastic or wire insulation",
+      "text": "These are live metal against plastic or insulation, not against another live part: a strip resting on its spine lips (0.4 mm, that is how it is held), the POWER belly pan under the lug bolts (0.59 mm), LOGIC jumper parts to the deck (0.6 mm). The wire simulation adds: 2 Bus 1 fuse wires pass 0.2-0.3 mm from the Bus 1 strip bolt heads, and 3 wires on the LOGIC outboard relay column rub the belly pan wall (those relay pins are 1 mm from the wall, same as rev 6).",
+      "options": [
+        {
+          "value": "A",
+          "label": "Keep as is: plastic and insulation may touch live parts; the 3 mm rule stays live-to-live"
+        },
+        {
+          "value": "B",
+          "label": "Keep, but add rub protection: a printed rib between the Bus 1 wires and the strip bolt heads, and a relief in the pan wall at the outboard relay column",
+          "recommended": true
+        },
+        {
+          "value": "C",
+          "label": "3 mm air to every plastic part and wire too (strips on standoffs, pan lower, boxes about 3 mm taller)"
+        }
+      ]
+    },
+    {
+      "id": "J3",
+      "topic": "Two wires crimped in one terminal (overfilled)",
+      "text": "The harness puts two wires in one terminal at 3 places: LOGIC HL and HR fuse outputs (relay 30 + 86: 14 + 18 AWG = 2.9 mm2 in a TE 880398-2, max 2.5 mm2) and k_horn terminal 30 (16 + 18 AWG = 2.13 mm2 in a TE 42281-1, max 2.0 mm2).",
+      "options": [
+        {
+          "value": "A",
+          "label": "One wire per terminal: one wire out of the box to a splice that feeds relay 30 and 86 (ST185-CabinPower change)",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "A bigger terminal that takes both wires (new part, cavity check)"
+        },
+        {
+          "value": "C",
+          "label": "Feed each relay's 86 from its own small fuse"
+        }
+      ]
+    },
+    {
+      "id": "J4",
+      "topic": "LOGIC wires that go out and come back in",
+      "text": "5 wires run from a Bus 1 fuse to a relay in the same LOGIC box (HL 30 + 86, HR 30 + 86, ETB 30). The two copper strips stand between them under the deck, so the simulation takes them out of the front exit, round, and back in. They fit (Bus 1 exit: 12 wires in its 8.8 mm notch), but the loop sits outside the box.",
+      "options": [
+        {
+          "value": "A",
+          "label": "Keep the loops (tie them to the harness at the front)",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "Add a printed channel across the front of the strips so they stay inside the box"
+        }
+      ]
+    }
+  ]
 }

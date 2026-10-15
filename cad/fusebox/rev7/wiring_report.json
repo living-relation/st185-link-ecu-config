@@ -1,0 +1,773 @@
+{
+ "warn": [],
+ "through_printed": [
+  [
+   "w_eps_trig_cp",
+   "Pan"
+  ],
+  [
+   "w_k_eps_en_86_cp",
+   "Pan"
+  ],
+  [
+   "w_rev_86_cp",
+   "Pan"
+  ]
+ ],
+ "cover": [],
+ "pull": [
+  [
+   "BATT Relay_TE_HCR150_1416010-1",
+   "BattRelay_Wire_feed"
+  ],
+  [
+   "BATT Relay_TE_HCR150_1416010-1",
+   "BattRelay_Wire_feed"
+  ]
+ ],
+ "wire_wire": {
+  "pairs": 386,
+  "overlaps": [
+   [
+    "w_k_efi_86_cp#1",
+    "w_str85_cp"
+   ],
+   [
+    "w_htr_acps",
+    "w_acp_1_cp"
+   ],
+   [
+    "w_htr_acps",
+    "w_htr_85_cp"
+   ],
+   [
+    "w_acp_1_cp",
+    "w_htr_85_cp"
+   ],
+   [
+    "w_htr_87_cp",
+    "w_htr_87a_cp"
+   ],
+   [
+    "w_k_fan_86_cp",
+    "w_fan285_cp"
+   ],
+   [
+    "w_inj_pwr_c_ac",
+    "w_cop_pwr_c_ac"
+   ],
+   [
+    "w_inj_pwr_c_ac",
+    "w_cp_sw12_in"
+   ],
+   [
+    "w_inj_pwr_c_ac",
+    "w_dev_cp"
+   ],
+   [
+    "w_cop_pwr_c_ac",
+    "w_dev_cp"
+   ],
+   [
+    "w_k_efi_86_cp",
+    "w_hl_30_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_pmu_hl_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_pmu_hr_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_pmu_horn_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_k_etb_86_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_at_12v_shk_tie_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_rb2_wl_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_alt_s_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_hl_30_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_hl_86_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_hr_30_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_hr_86_cp"
+   ],
+   [
+    "w_fb_mrs_en_cp",
+    "w_csb12_cp"
+   ],
+   [
+    "w_fb_mrs_en_cp",
+    "w_start_in_cp"
+   ],
+   [
+    "w_fb_mrs_en_cp",
+    "w_start_cp"
+   ],
+   [
+    "w_pmu_hl_cp",
+    "w_hl_30_cp"
+   ],
+   [
+    "w_pmu_hl_cp",
+    "w_hl_86_cp"
+   ],
+   [
+    "w_pmu_hl_cp",
+    "w_hr_86_cp"
+   ],
+   [
+    "w_pmu_horn_cp",
+    "w_k_etb_86_cp"
+   ],
+   [
+    "w_pmu_horn_cp",
+    "w_hr_30_cp"
+   ],
+   [
+    "w_pmu_horn_cp",
+    "w_hr_86_cp"
+   ],
+   [
+    "w_pmu_horn_cp",
+    "w_horn_30_cp"
+   ],
+   [
+    "w_pmu_dome_cp",
+    "w_rb2_wl_cp"
+   ],
+   [
+    "w_csb12_cp",
+    "w_dev_cp"
+   ],
+   [
+    "w_fb_k_acc_30_cp",
+    "w_k_eps_en_87_cp"
+   ],
+   [
+    "w_fb_k_acc_30_cp",
+    "w_horn_86_cp"
+   ],
+   [
+    "w_k_etb_86_cp",
+    "w82_ac"
+   ],
+   [
+    "w_k_etb_86_cp",
+    "w_acc_trig_cp"
+   ],
+   [
+    "w82_ac",
+    "w_acc_trig_cp"
+   ],
+   [
+    "w_eps_trig_cp",
+    "w_fb_k_eps_en_30_cp"
+   ],
+   [
+    "w_acc_trig_cp",
+    "w_acc86_cp"
+   ],
+   [
+    "w_acc_trig_cp",
+    "w_acc_clutch_cp"
+   ],
+   [
+    "w_acc86_cp",
+    "w_acc_clutch_cp"
+   ],
+   [
+    "w_start_cp",
+    "w_at_ig_tie_cp"
+   ],
+   [
+    "w_at_12v_tie_cp",
+    "w_alt_s_cp"
+   ],
+   [
+    "w_hz_cp",
+    "w_rb2_wl_cp"
+   ],
+   [
+    "w_hz_cp",
+    "w_hr_30_cp"
+   ],
+   [
+    "w_k_eps_en_87_cp",
+    "w_horn_30_cp"
+   ],
+   [
+    "w_rb2_wl_cp",
+    "w_hr_30_cp"
+   ],
+   [
+    "w_hl_30_cp",
+    "w_hl_86_cp"
+   ],
+   [
+    "w_hl_30_cp",
+    "w_hr_30_cp"
+   ],
+   [
+    "w_hl_30_cp",
+    "w_hr_86_cp"
+   ],
+   [
+    "w_hl_86_cp",
+    "w_hr_30_cp"
+   ],
+   [
+    "w_hl_86_cp",
+    "w_hr_86_cp"
+   ],
+   [
+    "w_hl_85_cp",
+    "w_hr_85_cp"
+   ],
+   [
+    "w_hr_30_cp",
+    "w_hr_86_cp"
+   ],
+   [
+    "w_hr_86_cp",
+    "w_horn_30_cp"
+   ],
+   [
+    "w_horn_30_cp",
+    "w_horn_86_cp"
+   ]
+  ],
+  "min_mm": 0.0
+ },
+ "bare_metal_touch": [
+  [
+   "w_at_12v_tie_cp",
+   "LugBolt_M4x8_A2",
+   0.28
+  ],
+  [
+   "w_at_12v_tie_cp",
+   "LugBolt_M4x8_A2",
+   0.28
+  ],
+  [
+   "w_at_12v_tie_cp",
+   "LugBolt_M4x8_A2",
+   0.28
+  ],
+  [
+   "w_hz_cp",
+   "LugBolt_M4x8_A2",
+   0.21
+  ]
+ ],
+ "live_to_live": {},
+ "wires_drawn": {
+  "POWER": 21,
+  "LOGIC": 45,
+  "BATT": 2
+ },
+ "meta": {
+  "w_inj_pwr_c_ac": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_logic inj"
+  },
+  "w_cop_pwr_c_ac": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_logic cop"
+  },
+  "w77_cp": {
+   "box": "POWER",
+   "od": 3.61,
+   "colour": "Red",
+   "gauge": 10,
+   "end": "k_efi c4"
+  },
+  "w_k_efi_86_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "fb_logic efi86"
+  },
+  "w_k_efi_86_cp#1": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_efi c3"
+  },
+  "w_fb_k_etb_30_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": null
+  },
+  "w_fb_mrs_en_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Red",
+   "gauge": 20,
+   "end": "fb_logic mrs"
+  },
+  "w_lam12_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_logic lam"
+  },
+  "w_htr_acps": {
+   "box": "POWER",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_power acps_in"
+  },
+  "w_pmu_hl_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "k_hl c4"
+  },
+  "w_pmu_hr_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "k_hr c4"
+  },
+  "w_pmu_horn_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "k_horn c4"
+  },
+  "w_pmu_dome_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_logic dm"
+  },
+  "w_acp_1_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Violet",
+   "gauge": 18,
+   "end": "fb_power acps"
+  },
+  "w_htr_87_cp": {
+   "box": "POWER",
+   "od": 5.13,
+   "colour": "Red",
+   "gauge": 8,
+   "end": "k_htr c4"
+  },
+  "w_rb2_cp": {
+   "box": "POWER",
+   "od": 3.61,
+   "colour": "Red",
+   "gauge": 10,
+   "end": "k_pwr c4"
+  },
+  "w_csb12_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Red",
+   "gauge": 20,
+   "end": "fb_logic csb"
+  },
+  "w_fb_k_acc_30_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": null
+  },
+  "w_cp_sw12_in": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "fb_logic sw12"
+  },
+  "w76_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_efi c2"
+  },
+  "w_fan85_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_fan c2"
+  },
+  "w_k_fan_86_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_fan c3"
+  },
+  "w_fan_pwr_ac": {
+   "box": "POWER",
+   "od": 5.13,
+   "colour": "Red",
+   "gauge": 8,
+   "end": "k_fan c4"
+  },
+  "w81_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Gray",
+   "gauge": 20,
+   "end": "k_etb c2"
+  },
+  "w_k_etb_86_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Red",
+   "gauge": 20,
+   "end": "k_etb c3"
+  },
+  "w82_ac": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_etb c4"
+  },
+  "w_str85_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_str c2"
+  },
+  "w_k_str_86_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_str c3"
+  },
+  "w_strl_ac": {
+   "box": "POWER",
+   "od": 3.61,
+   "colour": "Red",
+   "gauge": 10,
+   "end": "k_str c4"
+  },
+  "w_fan285_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Violet",
+   "gauge": 18,
+   "end": "k_fan2 c2"
+  },
+  "w_k_fan2_86_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_fan2 c3"
+  },
+  "w_fan2_pwr_bc": {
+   "box": "POWER",
+   "od": 5.13,
+   "colour": "Red",
+   "gauge": 8,
+   "end": "k_fan2 c4"
+  },
+  "w_eps_trig_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Violet",
+   "gauge": 18,
+   "end": "k_eps_en c2"
+  },
+  "w_acc_trig_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Violet",
+   "gauge": 18,
+   "end": "k_acc c2"
+  },
+  "w_acc86_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Yellow",
+   "gauge": 18,
+   "end": "k_acc c3"
+  },
+  "w_acc_clutch_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "k_acc c4"
+  },
+  "w_start_in_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Green",
+   "gauge": 20,
+   "end": "fb_logic b30in"
+  },
+  "w_start_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Green",
+   "gauge": 20,
+   "end": "fb_logic b30"
+  },
+  "w_at_12v_tie_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Red",
+   "gauge": 20,
+   "end": "fb_logic alm"
+  },
+  "w_at_12v_shk_tie_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Red",
+   "gauge": 20,
+   "end": "fb_logic alms"
+  },
+  "w_at_ig_tie_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Gray",
+   "gauge": 20,
+   "end": "fb_logic almig"
+  },
+  "w_dev_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "fb_logic dev"
+  },
+  "w_hz_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_logic hz"
+  },
+  "w_fb_k_eps_en_30_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": null
+  },
+  "w_k_eps_en_86_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_eps_en c3"
+  },
+  "w_k_eps_en_87_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": null
+  },
+  "w_rb2_wl_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_logic wl"
+  },
+  "w_rev_30_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "k_rev c1"
+  },
+  "w_rev_86_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "k_rev c3"
+  },
+  "w_rev_85_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Black",
+   "gauge": 20,
+   "end": "k_rev c2"
+  },
+  "w_rev_87_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "k_rev c4"
+  },
+  "w_alt_s_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "White",
+   "gauge": 20,
+   "end": "fb_logic alts"
+  },
+  "w_hl_30_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": null
+  },
+  "w_hl_86_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": null
+  },
+  "w_hl_85_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Violet",
+   "gauge": 18,
+   "end": "k_hl c2"
+  },
+  "w_hr_30_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": null
+  },
+  "w_hr_86_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": null
+  },
+  "w_hr_85_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Violet",
+   "gauge": 18,
+   "end": "k_hr c2"
+  },
+  "w_horn_30_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "k_horn c1"
+  },
+  "w_horn_86_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": null
+  },
+  "w_horn_85_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Violet",
+   "gauge": 18,
+   "end": "k_horn c2"
+  },
+  "w_htr_86_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_htr c3"
+  },
+  "w_htr_85_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Violet",
+   "gauge": 18,
+   "end": "k_htr c2"
+  },
+  "w_pwr_86_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_pwr c3"
+  },
+  "w_pwr_85_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Black",
+   "gauge": 18,
+   "end": "k_pwr c2"
+  },
+  "w_htr_87a_cp": {
+   "box": "POWER",
+   "od": 2.41,
+   "colour": "Black",
+   "gauge": 14,
+   "end": "k_htr c5"
+  },
+  "w_fp85_h": {
+   "box": "BATT",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_fp coil plug"
+  },
+  "w_fp86_h": {
+   "box": "BATT",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_fp coil plug"
+  }
+ },
+ "source": "cad/fusebox/src/render_wired_rev7.py in Fusion (ST185_fusebox_rev7, not saved), 2026-10-14"
+}

@@ -1102,8 +1102,9 @@ def build(out_dir, save=True, renders=True, rev=6):
         labels = [(short[nm], cx, cy, S.LABEL['h_micro']) for (nm, pn, own, cx, cy, k_) in micro]           # rev 4 etched names, unchanged
         labels += [(('%s %s' % (nm, ('%g' % amps))) if amps else 'SP', cx, y, S.LABEL['h_mini']) for (col, nm, amps, cx, y, n_, i) in mini]
         labels += [(col, cx, S.MINI_Y0 - 11.0, S.LABEL['h_mini']) for col, (cx, fuses) in S.MINI_COLS.items()]
-        labels.append(('LOGIC', 58.25, 168.0, 5.0))
-        vents = [(x, y, 'y') for x in (spx, 58.25) for y in (30.0 + k * S.VENT['pitch'] for k in range(7))]    # clear of the labels
+        xm_ = sum(S.MICRO_COLS) / 2                     # between the micro relay columns (rev 6: 58.25)
+        labels.append(('LOGIC', xm_, 168.0, 5.0))
+        vents = [(x, y, 'y') for x in (spx, xm_) for y in (30.0 + k * S.VENT['pitch'] for k in range(7))]    # clear of the labels
         cover(L, S.D, z_t, z_top, [], labels, pre, sh, vents=vents, ribs={'y': [spx], 'x': [20.0, 50.0, 80.0, 110.0, 140.0, 165.0]})
         return dict(L=L, D=S.D, H=z_top, z_d=z_d, z_t=z_t, cover_top=z_top, feet=feet, spine_x=spx)
 
@@ -1333,6 +1334,12 @@ def build(out_dir, save=True, renders=True, rev=6):
         'logic_strip_to_printed_min_mm': min(dist(sb, pb) for sb in strip_bs for pb in jprinted),
         'logic_bolt_to_other_strip_min_mm': min(sorted(dist(bb, sb) for sb in strip_bs)[1] for bb in bodies('Logic_LugBolt_')),
     })
+    # rev 7 (3 mm gate): every Bus 1 live part against every Bus 2 live part (sides of the spine)
+    spx_ = sizes['LOGIC']['spine_x'] + S.PLACE['LOGIC'][0]
+    lg_live = strip_bs + bodies('Logic_LugBolt_') + bodies('Logic_Washer_') + bodies('Logic_Lug_TE') + bodies('Logic_Lug_Klauke')
+    xc_ = lambda b_: (b_.boundingBox.minPoint.x + b_.boundingBox.maxPoint.x) * 5
+    b1_, b2_ = [b_ for b_ in lg_live if xc_(b_) < spx_], [b_ for b_ in lg_live if xc_(b_) >= spx_]
+    report['live_clearance']['logic_bus1_to_bus2_min_mm'] = min(dist(a_, c_) for a_ in b1_ for c_ in b2_)
     # every cable (feed and harness) against every printed part (a wire through plastic = a bad route)
     wire_hits = []
     for wpre in ('Power_', 'Logic_', 'BattRelay_'):
@@ -1373,7 +1380,7 @@ def build(out_dir, save=True, renders=True, rev=6):
     exported = []
     for o in root.occurrences:
         n = o.component.name
-        if REV[0] == 7 and not n.startswith('Power_'):   # rev 7: LOGIC / battery block part files are rev 6's (unchanged)
+        if REV[0] == 7 and n.startswith('BattRelay_'):   # rev 7: battery block part files are rev 6's (unchanged); LOGIC is re-exported (clearance fix)
             continue
         if n.endswith('_printed') or n.split('_', 1)[1].startswith(('Bar_', 'BarNeg_', 'Pad_', 'Strip_')):
             p = os.path.join(out_dir, '%s.step' % n)
@@ -1489,9 +1496,8 @@ def render_all(out_dir, root, report, sizes):
     shot('fusebox_render_top_empty.png', orient=VO.TopViewOrientation)
     show(lambda n: n.startswith('Power_') and not kind(n).startswith('Pan'))
     shot('fusebox_render_top_lid_power.png', orient=VO.TopViewOrientation)
-    if REV[0] != 7:       # rev 7: LOGIC box and battery block are rev 6 unchanged - their own views stay rev 6's
-        show(lambda n: n.startswith('Logic_') and not kind(n).startswith('Pan'))
-        shot('fusebox_render_top_lid_logic.png', orient=VO.TopViewOrientation)
+    show(lambda n: n.startswith('Logic_') and not kind(n).startswith('Pan'))      # rev 7: LOGIC re-rendered (clearance fix); battery block stays rev 6's
+    shot('fusebox_render_top_lid_logic.png', orient=VO.TopViewOrientation)
     show(GLOVE)
     shot('fusebox_render_under_pan.png', eye=(-260, -420, -260), target=(170.0, 90.0, 20.0))
     show(lambda n: GLOVE(n) and not kind(n).startswith('Pan'))
@@ -1505,12 +1511,12 @@ def render_all(out_dir, root, report, sizes):
         (5, (PX + S.POWER['L'] + 20.0, 97.0, 13.0), 'OUT cables straight out the end'), (6, (PX + S.POWER['L'] + 20.0, sizes['POWER']['in_y'], S.POWER['bar_top'] + 8.0), '1/0 battery feed in')]
         + ([(7, (PX + 50.0, S.REV7['neg_bar']['yc'] + 40.0, S.POWER['bar_top'] + 8.0), 'NEG bus: grounds straight out the rear')] if REV[0] == 7 else []))
     show(lambda n: n.startswith('Logic_') and WIRING(n))
-    if REV[0] != 7:
-      shot('fusebox_render_routing_logic.png', eye=(-230, -330, -200), target=(40.0, 90.0, 20.0), callouts=[
-        (1, (10.5, 60.0, 8.0), 'Bus 1 fuse wires'), (2, (38.0, 60.0, 8.0), 'Bus 2 fuse wires'), (3, (49.0, 40.0, 10.0), 'micro relay wires, inboard column'),
-        (4, (67.5, 40.0, 10.0), 'micro relay wires, outboard column'), (5, (40.0, -20.0, 8.0), 'all leave the front edge'),
-        (6, (16.5, 52.1, 28.0), 'fuse input jumpers drop straight into their lugs'), (7, (24.25, 70.0, 30.0), 'bus strips on edge, printed spine between'),
-        (8, (15.65, -15.0, 22.0), 'Bus 1 feed in at the front'), (9, (32.85, S.D + 15.0, 13.0), 'Bus 2 feed in at the rear')])
+    c1, c2 = S.MINI_COLS['BUS1'][0], S.MINI_COLS['BUS2'][0]
+    shot('fusebox_render_routing_logic.png', eye=(-230, -330, -200), target=(40.0, 90.0, 20.0), callouts=[
+        (1, (c1 - 3.0, 60.0, 8.0), 'Bus 1 fuse wires'), (2, (c2 + 3.0, 60.0, 8.0), 'Bus 2 fuse wires'), (3, (S.MICRO_COLS[0], 40.0, 10.0), 'micro relay wires, inboard column'),
+        (4, (S.MICRO_COLS[1], 40.0, 10.0), 'micro relay wires, outboard column'), (5, (40.0, -20.0, 8.0), 'all leave the front edge'),
+        (6, (c1 + 3.0, 52.1, 28.0), 'fuse input jumpers drop straight into their lugs'), (7, ((c1 + c2) / 2, 70.0, 30.0), 'bus strips on edge, printed spine between'),
+        (8, (c1 + 2.15, -15.0, 22.0), 'Bus 1 feed in at the front'), (9, (c2 - 2.15, S.D + 15.0, 13.0), 'Bus 2 feed in at the rear')])
     show(lambda n: n.startswith('Power_') and kind(n).startswith(('Base', 'Wire', 'Lug', 'Standoff', 'LugBolt', 'Limiter', 'Harness')))
     shot('fusebox_render_power_bends.png', eye=(-120, -330, -150), target=(PX + 70.0, 80.0, 15.0))
 
@@ -1574,9 +1580,6 @@ def render_all(out_dir, root, report, sizes):
         (1, c_of('Pan'), 'belly pan snaps up into the skirt'), (2, c_of('Cover', top=True), 'cover snaps down over the deck'),
         (3, (sizes['POWER']['feet'][0][0] + pxp, sizes['POWER']['feet'][0][1], 3.0), 'M6 through each foot (4), steel limiter')], **eye_ex)
     place({})
-    if REV[0] == 7:
-        show(lambda n: True)
-        return
 
     # ---- LOGIC explode
     lg = 'Logic_'
@@ -1601,6 +1604,9 @@ def render_all(out_dir, root, report, sizes):
         (8, l_of('Lug_Klauke'), 'feed lugs, M5 x 10 into the strip'), (9, l_of('Pan'), 'belly pan (snaps on)')],
         eye=(-330, -420, 240), target=(40.0, 90.0, 30.0))
     place({})
+    if REV[0] == 7:
+        show(lambda n: True)
+        return
 
     # ---- battery block
     BX, BY = S.PLACE['BATTRELAY']

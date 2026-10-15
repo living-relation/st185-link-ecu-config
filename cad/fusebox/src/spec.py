@@ -84,15 +84,19 @@ TOWER_H = {'POWER': 20.5, 'LOGIC': 22.0}                     # deck top to deck 
 
 # ---------- logic zone (inboard): mini fuses + micro relays
 MINI = dict(l=10.92, w=3.81, h_above=9.0, pitch=8.1)
+# rev 7 LOGIC clearance fix (Dan, 2026-10-14: 3 mm rule): everything outboard of the spine (Bus 2 column, both micro relay columns) sits
+# 2.5 mm further outboard and the box is 2.5 mm wider (79 -> 81.5), so the Bus 1 / Bus 2 strips are 6.3 apart (rev 6: 3.8) and an M4 x 8
+# jumper bolt tip (3.1 past its own strip) stays >= 3 mm from the other strip. Bus 1 cannot move inboard (its tail bundle meets the
+# belly pan wall) and Bus 2 cannot move alone (its fuses would hit the micro relays), so the box grows instead. Same parts.
 MINI_COLS = {   # x centre, fuses forward -> rear: (label, amps or None for a spare position)
     'BUS1': (13.5, [('EFI86', 5), ('HL', 15), ('HR', 15), ('HZ', 15), ('DM', 20), ('WL', 15), ('ALM', 5),
                     ('ALMS', 2), ('ALTS', 2), ('ETB', 10), ('SP', None), ('SP', None)]),
-    'BUS2': (35.0, [('LAM', 7.5), ('SW12', 7.5), ('COP', 15), ('INJ', 15), ('CSB', 5), ('DEV', 15), ('EPSEN', 7.5),
+    'BUS2': (37.5, [('LAM', 7.5), ('SW12', 7.5), ('COP', 15), ('INJ', 15), ('CSB', 5), ('DEV', 15), ('EPSEN', 7.5),
                     ('ACC', 10), ('ALMIG', 2), ('SP', None), ('SP', None), ('MRS', 7.5), ('B30', 2)]),
 }
 MINI_Y0 = 28.0       # first fuse centre
 MICRO = dict(x=15.5, y=23.0, h=24.1)
-MICRO_COLS = (49.0, 67.5)    # rev 6: 5 / 4.5 mm outboard (the bus strips sit between the fuse columns)
+MICRO_COLS = (51.5, 70.0)    # rev 6: 5 / 4.5 mm outboard (the bus strips sit between the fuse columns); rev 7: + 2.5 (clearance fix)
 MICRO_Y = (21.0, 51.0, 81.0, 111.0, 141.0)
 MICRO_POS = [('HEAD LH', '5-1393292-8', 'OWN'), ('HEAD RH', '5-1393292-8', 'OWN'), ('horn', '4-1904124-3', 'OWN'),
              ('k_etb', '4-1904124-2', 'OWN'), ('k_acc', '6-1419137-4', 'OWN'), ('k_eps_en', '6-1419137-4', 'OWN'),
@@ -165,7 +169,7 @@ JLUG = dict(ring=8.0, t=0.78, L=20.65, neck=2.0, sleeve=5.3, hole=4.34, ax=2.26)
 JBOLT = dict(m=4, l=8.0, washer_t=0.9, washer_od=7.6)  # RS 287-3915 M4 x 8 A2 + RS 231-0691 DIN 127B spring washer, into the tapped strip
 JROW = dict(z_lo=10.0, dz=7.5)                        # palm centres: lower row, upper row = +7.5 (rings 11.0 apart diagonally = 3 mm gap)
 JUMPER_AWG = 14
-LOGIC = dict(L=79.0, z_d=38.5)                        # rev 6: deck 18.5 higher - upper lug barrel end 34.15 + 4 of jumper below the cavity
+LOGIC = dict(L=81.5, z_d=38.5)                        # rev 7: 2.5 wider (clearance fix; rev 6: 79.0); rev 6: deck 18.5 higher - upper lug barrel end 34.15 + 4 of jumper below the cavity
 LOGIC['z_t'] = LOGIC['z_d'] + TOWER_H['LOGIC']
 STRIP_Z0 = 5.9                                        # strip bottom edge, on the spine lips (pan floor top 4.0)
 SPINE = dict(t=2.2, lip=3.2, lip_t=0.9)               # printed wall between the strips, lips under both strips (strips slide in from the rear)

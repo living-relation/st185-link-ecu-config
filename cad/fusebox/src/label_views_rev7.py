@@ -1,30 +1,39 @@
-"""Put the cable labels (with leader lines), a title and a footer on the raw renders of render_views_rev7.py.
+"""Put the labels (with leader lines), a title and a footer on the raw renders of render_wired_rev7.py.
     python cad/fusebox/src/label_views_rev7.py cad/fusebox/rev7 [raw_dir]
 Claude Code, 2026-10-14."""
 import json, os, sys, tempfile
 from PIL import Image, ImageDraw, ImageFont
 
-RAW = sys.argv[2] if len(sys.argv) > 2 else os.path.join(tempfile.gettempdir(), 'st185_rev7_views')
+RAW = sys.argv[2] if len(sys.argv) > 2 else os.path.join(tempfile.gettempdir(), 'st185_rev7_wired')
 OUT = sys.argv[1]
 D = json.load(open(os.path.join(RAW, 'labels.json')))
 F = ImageFont.truetype(r'C:\Windows\Fonts\segoeui.ttf', 21)
 FB = ImageFont.truetype(r'C:\Windows\Fonts\segoeuib.ttf', 27)
 FS = ImageFont.truetype(r'C:\Windows\Fonts\segoeui.ttf', 19)
 
-NAMES = {   # raw -> (published name, title)
-    'power_side_long.png': ('fusebox_power_side_long.png', 'POWER box rev 7 - long side (outboard), 20 deg above: AMI OUT row and the + bar cables end-on, NEG cables out the rear'),
-    'power_side_end.png': ('fusebox_power_side_end.png', 'POWER box rev 7 - short end (front), 20 deg above: OUT row and + bar cables out the outboard end, relay tails out the inboard end'),
-    'logic_side_long.png': ('fusebox_logic_side_long.png', 'LOGIC box (rev 6, unchanged) - long side (inboard), 20 deg above: Bus 1 feed + tails out the front, Bus 2 feed in at the rear'),
-    'logic_side_end.png': ('fusebox_logic_side_end.png', 'LOGIC box - short end (front), 30 deg off-axis so the cables show'),
-    'battrelay_side_long.png': ('battrelay_side_long.png', 'Battery relay block (rev 6, unchanged) - long side (front), 20 deg above: feed in one end, pump + coil out the other'),
-    'battrelay_side_end.png': ('battrelay_side_end.png', 'Battery relay block - short end (feed end), off-axis'),
-    'arr_glove_closed.png': ('fusebox_arrangement_glovebox.png', 'Typical arrangement, glove box: POWER (rev 7) + LOGIC, every cable run on to where it leaves'),
-    'arr_glove_rear.png': ('fusebox_arrangement_glovebox_rear.png', 'Typical arrangement, glove box, from the rear: the 1/0 cables out of the bus zone'),
-    'arr_glove_open.png': ('fusebox_arrangement_glovebox_open.png', 'Typical arrangement, covers and belly pans off: AMI fuses on the + bar, LOGIC 14 AWG input jumpers'),
-    'arr_glove_top.png': ('fusebox_arrangement_glovebox_top.png', 'Typical arrangement, glove box, top view (front of the car at the bottom, outboard / RH door on the right)'),
-    'arr_trunk.png': ('fusebox_arrangement_trunk.png', 'Typical arrangement, trunk: battery relay block on its own with its 3 cables'),
+NAMES = {   # raw (render_wired_rev7.py) -> (published name in cad/fusebox/rev7, title)
+    'power_wired_explode.png': ('fusebox_power_wired_explode.png', 'POWER box rev 7, every wire in place, exploded (cover, relays and fuses up, belly pan down)'),
+    'power_wired_under.png': ('fusebox_power_wired_under.png', 'POWER box rev 7 underneath, belly pan off: every relay and ACPS wire, the relay feeds, the OUT row'),
+    'power_wired_side_long.png': ('fusebox_power_wired_side_long.png', 'POWER box rev 7 - long side (outboard), 20 deg above, wired'),
+    'power_wired_side_end.png': ('fusebox_power_wired_side_end.png', 'POWER box rev 7 - short end (front), 20 deg above, wired'),
+    'power_wired_routing.png': ('fusebox_power_wired_routing.png', 'POWER box rev 7 - wire routing seen from below (pan and cover off)'),
+    'logic_wired_explode.png': ('fusebox_logic_wired_explode.png', 'LOGIC box rev 7 (clearance fix), every wire in place, exploded'),
+    'logic_wired_under.png': ('fusebox_logic_wired_under.png', 'LOGIC box rev 7 underneath, belly pan off: 45 wires, 4 exit bundles, the out-and-back loops'),
+    'logic_wired_side_long.png': ('fusebox_logic_wired_side_long.png', 'LOGIC box rev 7 - long side (inboard), 20 deg above, wired'),
+    'logic_wired_side_end.png': ('fusebox_logic_wired_side_end.png', 'LOGIC box rev 7 - short end (front), off-axis, wired'),
+    'logic_wired_routing.png': ('fusebox_logic_wired_routing.png', 'LOGIC box rev 7 - wire routing seen from below (pan and cover off)'),
+    'battrelay_wired_explode.png': ('battrelay_wired_explode.png', 'Battery relay block, every wire in place, exploded'),
+    'battrelay_wired_under.png': ('battrelay_wired_under.png', 'Battery relay block underneath, wired'),
+    'battrelay_wired_side_long.png': ('battrelay_wired_side_long.png', 'Battery relay block - long side (front), 20 deg above, wired'),
+    'battrelay_wired_side_end.png': ('battrelay_wired_side_end.png', 'Battery relay block - short end (feed end), off-axis, wired'),
+    'battrelay_wired_routing.png': ('battrelay_wired_routing.png', 'Battery relay block - wiring seen from below'),
+    'arr_glove_wired.png': ('fusebox_arrangement_wired_glovebox.png', 'Typical arrangement, glove box: POWER rev 7 + LOGIC cabled together, every wire in place'),
+    'arr_glove_wired_rear.png': ('fusebox_arrangement_wired_glovebox_rear.png', 'Typical arrangement, glove box, from the rear: 1/0 cables, the relay grounds round to the NEG bar'),
+    'arr_glove_wired_open.png': ('fusebox_arrangement_wired_glovebox_open.png', 'Typical arrangement, covers off: the box-to-box wires (Bus 1, Bus 2, k_efi 86)'),
+    'arr_glove_wired_top.png': ('fusebox_arrangement_wired_glovebox_top.png', 'Typical arrangement, top view (front of the car at the bottom, RH door on the right)'),
+    'arr_trunk_wired.png': ('fusebox_arrangement_wired_trunk.png', 'Typical arrangement, trunk: battery relay block with its feed, pump and both coil wires'),
 }
-FOOT = 'Wire colours and ident bands from the harness drawings (CabinPower, EngineRoom-C, HeavyDC). Render only - no design change. Claude Code, 2026-10-14.'
+FOOT = 'Every harness wire that lands in the box: real gauge, colour and ident bands (CabinPower, HeavyDC, EngineRoom-C); wiring_sim.py + render_wired_rev7.py. Claude Code, 2026-10-14.'
 
 
 def wrap(text, n=44):
