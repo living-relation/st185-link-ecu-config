@@ -718,8 +718,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2010,
-        "y": 180
+        "x": 2880,
+        "y": 450
       },
       "schematicPosition": {
         "x": 3060,
@@ -751,8 +751,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 570,
-        "y": 90
+        "x": 240,
+        "y": 1140
       },
       "schematicPosition": {
         "x": 2580,
@@ -780,8 +780,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1770,
-        "y": 270
+        "x": 2730,
+        "y": 1320
       },
       "schematicPosition": {
         "x": 2640,
@@ -812,8 +812,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1890,
-        "y": 360
+        "x": 2580,
+        "y": 1050
       },
       "schematicPosition": {
         "x": 2640,
@@ -838,8 +838,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1410,
-        "y": -150
+        "x": 1650,
+        "y": 1140
       },
       "schematicPosition": {
         "x": 2100,
@@ -865,8 +865,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1530,
-        "y": -60
+        "x": 1980,
+        "y": 1140
       },
       "schematicPosition": {
         "x": 2100,
@@ -892,8 +892,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1650,
-        "y": 60
+        "x": 2310,
+        "y": 1140
       },
       "schematicPosition": {
         "x": 2100,
@@ -919,8 +919,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1770,
-        "y": -30
+        "x": 2730,
+        "y": 1140
       },
       "schematicPosition": {
         "x": 2100,
@@ -950,8 +950,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1890,
-        "y": -150
+        "x": 2580,
+        "y": 990
       },
       "schematicPosition": {
         "x": 2100,
@@ -983,8 +983,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2130,
-        "y": -60
+        "x": 2430,
+        "y": 540
       },
       "schematicPosition": {
         "x": 2100,
@@ -1016,8 +1016,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2250,
-        "y": 420
+        "x": 1980,
+        "y": 360
       },
       "schematicPosition": {
         "x": 2100,
@@ -1049,8 +1049,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2370,
-        "y": -30
+        "x": 1650,
+        "y": 540
       },
       "schematicPosition": {
         "x": 2100,
@@ -1097,8 +1097,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1410,
-        "y": 330
+        "x": 1650,
+        "y": 1440
       },
       "schematicPosition": {
         "x": 2640,
@@ -1122,8 +1122,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 450,
-        "y": 330
+        "x": -30,
+        "y": 1230
       },
       "schematicPosition": {
         "x": 2580,
@@ -1146,8 +1146,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1170,
-        "y": -240
+        "x": 1020,
+        "y": 1140
       },
       "schematicPosition": {
         "x": 2100,
@@ -1171,8 +1171,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1530,
-        "y": 270
+        "x": 1980,
+        "y": 1320
       },
       "schematicPosition": {
         "x": 2580,
@@ -1195,8 +1195,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 690,
-        "y": -210
+        "x": 540,
+        "y": 1320
       },
       "schematicPosition": {
         "x": 2040,
@@ -1223,8 +1223,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2490,
-        "y": -240
+        "x": 1320,
+        "y": 450
       },
       "schematicPosition": {
         "x": 2040,
@@ -1276,8 +1276,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2250,
-        "y": 480
+        "x": 2370,
+        "y": 210
       },
       "schematicPosition": {
         "x": 2520,
@@ -1291,8 +1291,8 @@
       "type": "Ring",
       "signal": "Engine block ground stud (power ground)",
       "layoutPosition": {
-        "x": 2850,
-        "y": -90
+        "x": 1320,
+        "y": 1770
       },
       "schematicPosition": {
         "x": 1080,
@@ -1307,8 +1307,8 @@
       "type": "Spade",
       "signal": "Starter Solenoid Trigger (S)",
       "layoutPosition": {
-        "x": 2970,
-        "y": -180
+        "x": 1320,
+        "y": 1860
       },
       "schematicPosition": {
         "x": 0,
@@ -1324,8 +1324,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: MRS enable, bulkhead A c35",
       "width": 390,
       "layoutPosition": {
-        "x": 2070,
-        "y": 120
+        "x": 2580,
+        "y": 810
       },
       "schematicPosition": {
         "x": 3000,
@@ -1339,8 +1339,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: MRS speed (ECU A27), bulkhead A c36",
       "width": 390,
       "layoutPosition": {
-        "x": 2070,
-        "y": 240
+        "x": 2580,
+        "y": 870
       },
       "schematicPosition": {
         "x": 3000,
@@ -1354,8 +1354,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: start relay 87 to the starter S terminal",
       "width": 390,
       "layoutPosition": {
-        "x": 3390,
-        "y": 450
+        "x": 2700,
+        "y": 150
       },
       "schematicPosition": {
         "x": 2340,
@@ -1369,8 +1369,8 @@
       "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor + (Aux 9, B18), bulkhead B c5",
       "width": 390,
       "layoutPosition": {
-        "x": 2160,
-        "y": 60
+        "x": 2580,
+        "y": 630
       },
       "schematicPosition": {
         "x": 2910,
@@ -1384,8 +1384,8 @@
       "signal": "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor - (Aux 10, B26), bulkhead B c6",
       "width": 390,
       "layoutPosition": {
-        "x": 2160,
-        "y": 300
+        "x": 2580,
+        "y": 690
       },
       "schematicPosition": {
         "x": 2910,
@@ -1399,8 +1399,8 @@
       "signal": "Broken off - screen comes in from ST185-B-engine: ETB motor cable screen, bulkhead B c22",
       "width": 390,
       "layoutPosition": {
-        "x": 2160,
-        "y": 360
+        "x": 2580,
+        "y": 750
       },
       "schematicPosition": {
         "x": 2910,
@@ -1414,8 +1414,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
       "width": 390,
       "layoutPosition": {
-        "x": 2070,
-        "y": 180
+        "x": 2580,
+        "y": 930
       },
       "schematicPosition": {
         "x": 2580,
@@ -1428,8 +1428,8 @@
     {
       "id": "sp_sw12_eng",
       "layoutPosition": {
-        "x": 1710,
-        "y": 60
+        "x": 1860,
+        "y": 1320
       },
       "schematicPosition": {
         "x": 1590,
@@ -1441,8 +1441,8 @@
     {
       "id": "sp_gndout_eng",
       "layoutPosition": {
-        "x": 1710,
-        "y": 120
+        "x": 1890,
+        "y": 1320
       },
       "schematicPosition": {
         "x": 1590,
@@ -1454,8 +1454,8 @@
     {
       "id": "sp_chassis_eng",
       "layoutPosition": {
-        "x": 2070,
-        "y": 60
+        "x": 2310,
+        "y": 270
       },
       "schematicPosition": {
         "x": 930,
@@ -1467,8 +1467,8 @@
     {
       "id": "sp_inj_eng",
       "layoutPosition": {
-        "x": 2340,
-        "y": 60
+        "x": 2250,
+        "y": 1050
       },
       "schematicPosition": {
         "x": 930,
@@ -1480,7 +1480,7 @@
       "id": "sp_cop_eng",
       "layoutPosition": {
         "x": 2250,
-        "y": 120
+        "y": 330
       },
       "schematicPosition": {
         "x": 930,
@@ -1493,8 +1493,8 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_750",
       "layoutPosition": {
-        "x": 2130,
-        "y": 60
+        "x": 2910,
+        "y": 780
       },
       "schematicPosition": {
         "x": 930,
@@ -6455,197 +6455,197 @@
     {
       "id": "bp_360",
       "layoutPosition": {
-        "x": 450,
-        "y": 180
+        "x": 120,
+        "y": 1230
       }
     },
     {
       "id": "bp_420",
       "layoutPosition": {
-        "x": 570,
-        "y": 180
+        "x": 390,
+        "y": 1230
       }
     },
     {
       "id": "bp_450",
       "layoutPosition": {
         "x": 690,
-        "y": 180
+        "y": 1230
       }
     },
     {
       "id": "bp_480",
       "layoutPosition": {
         "x": 810,
-        "y": 180
+        "y": 1230
       }
     },
     {
       "id": "bp_510",
       "layoutPosition": {
         "x": 930,
-        "y": 180
+        "y": 1230
       }
     },
     {
       "id": "bp_540",
       "layoutPosition": {
         "x": 1050,
-        "y": 180
+        "y": 1230
       }
     },
     {
       "id": "bp_570",
       "layoutPosition": {
         "x": 1170,
-        "y": 180
+        "y": 1230
       }
     },
     {
       "id": "bp_600",
       "layoutPosition": {
-        "x": 1290,
-        "y": 180
+        "x": 1470,
+        "y": 1230
       }
     },
     {
       "id": "bp_630",
       "layoutPosition": {
-        "x": 1410,
-        "y": 180
+        "x": 1800,
+        "y": 1230
       }
     },
     {
       "id": "bp_660",
       "layoutPosition": {
-        "x": 1530,
-        "y": 180
+        "x": 2130,
+        "y": 1230
       }
     },
     {
       "id": "bp_690",
       "layoutPosition": {
-        "x": 1650,
-        "y": 180
+        "x": 2460,
+        "y": 1230
       }
     },
     {
       "id": "bp_720",
       "layoutPosition": {
-        "x": 1770,
-        "y": 180
+        "x": 2880,
+        "y": 1230
       }
     },
     {
       "id": "bp_750",
       "layoutPosition": {
-        "x": 1890,
-        "y": 180
+        "x": 2880,
+        "y": 840
       }
     },
     {
       "id": "bp_810",
       "layoutPosition": {
-        "x": 2130,
-        "y": 180
+        "x": 2580,
+        "y": 450
       }
     },
     {
       "id": "bp_840",
       "layoutPosition": {
-        "x": 2250,
-        "y": 180
+        "x": 2130,
+        "y": 450
       }
     },
     {
       "id": "bp_870",
       "layoutPosition": {
-        "x": 2370,
-        "y": 180
+        "x": 1800,
+        "y": 450
       }
     },
     {
       "id": "bp_900",
       "layoutPosition": {
-        "x": 2490,
-        "y": 180
+        "x": 1470,
+        "y": 450
       }
     },
     {
       "id": "be_660",
       "layoutPosition": {
-        "x": 1650,
-        "y": 210
+        "x": 1830,
+        "y": 1380
       }
     },
     {
       "id": "be_750",
       "layoutPosition": {
-        "x": 2250,
-        "y": 210
+        "x": 2370,
+        "y": 270
       }
     },
     {
       "id": "be_870",
       "layoutPosition": {
-        "x": 2490,
-        "y": 210
+        "x": 1470,
+        "y": 1500
       }
     },
     {
       "id": "be_900",
       "layoutPosition": {
-        "x": 2610,
-        "y": 210
+        "x": 1470,
+        "y": 1590
       }
     },
     {
       "id": "be_930",
       "layoutPosition": {
-        "x": 2730,
-        "y": 210
+        "x": 1470,
+        "y": 1680
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
-        "x": 2850,
-        "y": 210
+        "x": 1470,
+        "y": 1770
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
-        "x": 2970,
-        "y": 210
+        "x": 1470,
+        "y": 1860
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 3330,
-        "y": 210
+        "x": 2880,
+        "y": 150
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 3210,
-        "y": 210
+        "x": 2880,
+        "y": 300
       }
     },
     {
       "id": "bp_at_fuelp",
       "layoutPosition": {
-        "x": 2490,
-        "y": 60
+        "x": 1470,
+        "y": 1410
       }
     },
     {
       "id": "bp_at_bh_b_eng",
       "layoutPosition": {
-        "x": 2130,
-        "y": 210
+        "x": 2580,
+        "y": 240
       }
     }
   ],
