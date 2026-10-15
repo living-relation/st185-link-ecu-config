@@ -25,16 +25,17 @@ A new Dispatch chat reads this file first, then the newest `_research\DISPATCH-H
 - On every wake: check each running session (read_transcript), send Dan a short status, re-arm.
 - Dan does not read session chats. Relay every session question here with an ID. If Dan must open a session chat, name it and make sure it shows a clickable multiple-choice picker.
 - Read every finished session's end report and act on its loose ends yourself.
-- Dispatch cannot archive code sessions. On every check-in, list sessions whose PR merged (exact titles) under Needs you: "archive these in the Code tab".
+- The desktop app auto-archives a session after its PR merges. A session that is NOT archived has uncommitted changes or is waiting for a reply: Dispatch checks it and handles it by chatting with it directly, and tells Dan only if it truly needs him.
 
 ## Starting sessions
+- One standing code session, "ST185 maintenance", runs hygiene, checks and small docs jobs. Dispatch sends it work; new sessions only for big tasks.
 - Prefer Claude Code sessions. Opus = harness/wiring/CAD, Sonnet = docs/hub/research, Haiku = checks.
 - Task details go in `_research\TASK-*.md`; the prompt is ~5 lines pointing at it + skills.
 - Give each session its own pre-made worktree (`git worktree add .claude\worktrees\<name> -b <branch> origin/main`).
 - start_code_task may time out but still start the session: check before retrying.
 
 ## Repo hygiene + docs
-- Every wake: run `powershell -File tools\hygiene.ps1` in the main checkout (add `-WhatIf` to preview). It fetches --prune, fast-forwards main, removes merged worktrees and their local branches that no session is using, and deletes empty leftover folders (R118). Sessions never remove their own worktree. Never force-push.
+- Every wake: run `powershell -File tools\hygiene.ps1` in the main checkout (add `-WhatIf` to preview). It fetches --prune, fast-forwards main, removes merged worktrees and their local branches that no session is using, and deletes empty leftover folders (R118). Sessions never remove their own worktree. Never force-push. The script has no skip list: to protect a worktree, `git worktree lock` it before the run and `git worktree unlock` it after.
 - After answers and finished runs, make sure OPEN-ITEMS (incl. Needs Dan), DECISIONS and the research hub are updated.
 - Every new Dan rule goes into DECISIONS "Binding rules from Daniel" the same day (Dispatch-only rules go in this file).
 
