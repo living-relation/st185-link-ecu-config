@@ -287,6 +287,11 @@ def build(rev=6):
           1, 1, unit=0.35, basis='est', url=TE('1241388-2'), checked='TE page (2.8 mm tab, 0.6 / 0.8 thick, 0.5-1 mm2); te-on-hand-bom.csv qty_ordered 10; ST185-CabinPower ACPS out 18 AWG',
           note='Row 110 (c).')
     sleeves(L, P)
+    L.add(P, 'Printed', 'Retainer clip under the heater relay R1 (R123 B)', 'Power_Retainer_R1_PA12_printed.stl + .step (PA12)', 'print (your PA12 powder-bed printer)',
+          'Plate (2.0) with a hole per R1 wire and two barbed legs that snap into the cavity collar: stops the 62998-2 (no lance made for 8 AWG on a 6.3 blade) '
+          'and the other R1 terminals backing out', 1, unit=0.20, basis='est',
+          checked='est. ~2 cm3 at $0.10/cm3 until the rev 7 rebuild reports its volume (R82: printed parts need no buy link)',
+          note='Threaded onto the 5 R1 wires BEFORE they are crimped; the R1 RNF-100 build-ups are cut to the insulation barrel length so only bare wire goes through.')
     cover_screws(L, P)
     # lugs
     all_lugs = [(nm, S.AMI_AWG[nm]) for nm, a in IN_USED + OUT_USED]
@@ -360,9 +365,12 @@ def build(rev=6):
         L.add(G, 'Relays', 'Micro relay: ' + who, p, 'TE Connectivity', desc, k, url=TE(p),
               checked='TE page; customer drawing V23074-A2001-A402-CD: terminals 1, 2 coil 4.8 x 0.8, 3, 5 load 6.3 x 0.8' if p == '5-1393292-8' else 'TE page; te-on-hand-bom.csv',
               note='On the shelf first (R38 step 1); the third 1 form C (k_rev) is the only buy.' if p == '6-1419137-4' else '')
-    L.add(G, 'Terminals', 'Micro relay coil receptacle 4.8 x 0.8, 20-15 AWG', '2293255-1', 'TE Connectivity', 'FASTON .187 receptacle, uninsulated, 20-15 AWG (0.51-1.65 mm2), brass tin',
-          n_micro_coil, spare(n_micro_coil), unit=0.10, basis='est', url=TE('2293255-1'), checked='TE page (4.75 mm tab, 20-15 AWG); relay drawing coil blades 4.8 x 0.8',
-          note='2 per micro relay x %d relays; coil wire 20 AWG, except the HEAD LH / HEAD RH / horn 86 feeds, 16 AWG behind their 15 A fuses (L1, DECISIONS R96).' % len(MICRO_USED))
+    L.add(G, 'Terminals', 'Micro relay coil receptacle 4.8 x 0.8, 20-15 AWG, self-locking', '280919-2', 'TE Connectivity',
+          'FASTIN-FASTON .187 receptacle, uninsulated, 20-15 AWG (0.51-1.65 mm2), insulation 2.31-3.3 mm, locking lance 1.2 mm, brass tin',
+          n_micro_coil, spare(n_micro_coil), unit=0.12, basis='est', url='https://www.newark.com/search?st=280919-2',
+          checked='TE page 280919-2 2026-10-15 (4.75 x 0.81 tab, 20-15 AWG, Mating Retention Type: Locking Lance, 1.2 mm; free samples) + drawing 280919 rev M2; Newark 70AH7385',
+          note='DECISIONS R123 (M8 = A): replaces 2293255-1 (dimple, cannot self-lock); same tab and wire range. TE lists it "not currently available" direct: Newark link (or TE free samples). '
+               '2 per micro relay x %d relays; coil wire 20 AWG, except the HEAD LH / HEAD RH / horn 86 feeds, 16 AWG behind their 15 A fuses (L1, DECISIONS R96). The .harness files still name 2293255-1 (follow-up).' % len(MICRO_USED))
     L.add(G, 'Terminals', 'Micro relay load receptacle 6.3 x 0.8, 18-14 AWG', '42281-1', 'TE Connectivity', 'FASTON .250 receptacle, uninsulated, 18-14 AWG, brass', n_micro_load, spare(n_micro_load), unit=0.10, basis='est',
           url=TE('42281-1'), checked='TE page (6.35 x 0.81, 18-14 AWG); relay drawing load blades 6.3 x 0.8; te-on-hand-bom.csv qty_ordered 20', note='16 AWG loads (MICRO_LOAD_AWG). 2 on a form A, 3 on a form C.')
     outs = [(nm, a) for c, (x, f) in S.MINI_COLS.items() for nm, a in f if a]

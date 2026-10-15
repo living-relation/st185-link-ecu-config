@@ -98,7 +98,8 @@ MINI_COLS = {   # x centre, fuses forward -> rear: (label, amps or None for a sp
 }
 MINI_Y0 = 28.0       # first fuse centre
 MICRO = dict(x=15.5, y=23.0, h=24.1)
-MICRO_COLS = (51.5, 70.0)    # rev 6: 5 / 4.5 mm outboard (the bus strips sit between the fuse columns); rev 7: + 2.5 (clearance fix)
+MICRO_COLS = (53.5, 72.0)    # rev 6: 5 / 4.5 mm outboard (the bus strips sit between the fuse columns); rev 7: + 2.5 (clearance fix);
+                             # R123: + 2.0 so the Bus 2 output terminals (880398-2) keep their lance ledges next to the micro relay 85 (R73 2.0 wall)
 MICRO_Y = (21.0, 51.0, 81.0, 111.0, 141.0)
 MICRO_POS = [('HEAD LH', '5-1393292-8', 'OWN'), ('HEAD RH', '5-1393292-8', 'OWN'), ('horn', '4-1904124-3', 'OWN'),
              ('k_etb', '4-1904124-2', 'OWN'), ('k_acc', '6-1419137-4', 'OWN'), ('k_eps_en', '6-1419137-4', 'OWN'),
@@ -171,7 +172,7 @@ JLUG = dict(ring=8.0, t=0.78, L=20.65, neck=2.0, sleeve=5.3, hole=4.34, ax=2.26)
 JBOLT = dict(m=4, l=8.0, washer_t=0.9, washer_od=7.6)  # RS 287-3915 M4 x 8 A2 + RS 231-0691 DIN 127B spring washer, into the tapped strip
 JROW = dict(z_lo=10.0, dz=7.5)                        # palm centres: lower row, upper row = +7.5 (rings 11.0 apart diagonally = 3 mm gap)
 JUMPER_AWG = 14
-LOGIC = dict(L=81.5, z_d=38.5)                        # rev 7: 2.5 wider (clearance fix; rev 6: 79.0); rev 6: deck 18.5 higher - upper lug barrel end 34.15 + 4 of jumper below the cavity
+LOGIC = dict(L=83.5, z_d=38.5)                        # R123: 2.0 wider (micro relay columns out, self-locking ledges); rev 7: 2.5 wider (clearance fix; rev 6: 79.0); rev 6: deck 18.5 higher - upper lug barrel end 34.15 + 4 of jumper below the cavity
 LOGIC['z_t'] = LOGIC['z_d'] + TOWER_H['LOGIC']
 STRIP_Z0 = 5.9                                        # strip bottom edge, on the spine lips (pan floor top 4.0)
 SPINE = dict(t=2.2, lip=3.2, lip_t=0.9)               # printed wall between the strips, lips under both strips (strips slide in from the rear)
@@ -295,6 +296,7 @@ TERM = {
     '1241388-2': dict(ins=(1.4, 2.1), t=None, L=None, head=(4.4, 4.4), what='MCP 2.8K receptacle 0.5-1 mm2, typical 15 A'),
     '42281-1': dict(ins=(2.79, 4.32), t=0.41, L=19.05, head=(7.49, 3.45), what='FASTON .250 receptacle 18-14 AWG'),
     '2293255-1': dict(ins=(2.3, 3.3), t=0.33, L=None, head=(5.6, 3.0), what='FASTON .187 receptacle 20-15 AWG'),
+    '280919-2': dict(ins=(2.31, 3.3), t=0.25, L=16.0, head=(5.6, 2.3), what='FASTIN-FASTON .187 receptacle 20-15 AWG, locking lance'),
     '280755-4': dict(ins=(5.0, 7.0), t=0.51, L=29.0, head=(11.10, 3.80), what='FASTON .375 receptacle 10-7 AWG'),
     '280756-4': dict(ins=(3.4, 5.1), t=0.51, L=29.0, head=(11.10, 3.80), what='FASTON .375 receptacle 12-10 AWG'),
     '62998-2': dict(ins=(5.84, 7.11), t=0.43, L=19.69, head=(7.62, 3.2), what='FASTON .250 receptacle 10-8 AWG'),
@@ -304,7 +306,7 @@ TERM = {
 # retention lances spread 8.21 and fold in as it goes through); 1241437 (MCP 2.8K group drawing that 1241388 refers to) 4.2+-0.2 x 4.4;
 # 42281 rev AN section A-A 7.49, side 4.70 max incl. lance; 2293255 rev A3 section Q-Q 5.6; 280755 / 280756 section A-A 11.10, side
 # 3.80 + 1.25+-0.2 lance; 62998 rev G section A-A 7.62. HEAD_EST: H not dimensioned on the drawing, scaled off it (est.).
-HEAD_EST = {'2293255-1', '62998-2', '42281-1'}
+HEAD_EST = {'2293255-1', '62998-2', '42281-1', '280919-2'}
 # R121 (2026-10-15): head = the RIGID contact box, the locking lance folded flat (it springs in as it goes through): 42281-1 4.70 over the
 # lance - 1.25 lance (est: the 280755 / 280756 lance height on their TE pages) = 3.45 est; 280755 / 280756 3.80 (the 1.25 lance is LOCK).
 T_EST, L_EST = 0.40, 20.0        # est: metal thickness / length where the TE page gives none
@@ -313,8 +315,8 @@ HOLE = dict(clr=CLR, min_wall=2.0, lead_in=2.0, top_gap=1.0)   # terminal hole (
                                                                 # receptacle top 1 below the deck top
 # Default terminal of a cavity with no harness wire yet (a spare): the largest wire it takes, so a later wire still fits.
 TERM_DEFAULT = {'fuse in': ('880398-2', 14), 'fuse out': ('880398-2', 14), 'acps in': ('880398-2', 14), 'acps out': ('880398-2', 14),
-                'micro 30': ('42281-1', 14), 'micro 87': ('42281-1', 14), 'micro 87a': ('42281-1', 14), 'micro 85': ('2293255-1', 18),
-                'micro 86': ('2293255-1', 18), 'F7 30': ('280755-4', 8), 'F7 87': ('280755-4', 8), 'F7 87a': ('42281-1', 14),
+                'micro 30': ('42281-1', 14), 'micro 87': ('42281-1', 14), 'micro 87a': ('42281-1', 14), 'micro 85': ('280919-2', 18),
+                'micro 86': ('280919-2', 18), 'F7 30': ('280755-4', 8), 'F7 87': ('280755-4', 8), 'F7 87a': ('42281-1', 14),
                 'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
 FLOAT_BACKING = 0.5   # R101: a hanging feature with less of its top face on solid material than this is floating (Dan's marks: 5-15 %; the rest >= 76 %)
 GUIDE = dict(t=2.0, h=3.5, reach=12.0)     # J2: short guide walls under the deck between neighbouring holes (centres closer than reach)
@@ -386,7 +388,8 @@ BLADE_AXIS = {'fuse in': 'x', 'fuse out': 'x', 'acps in': 'x', 'acps out': 'x', 
 #            width (880398-2: two side lances), 'H' = through it (FASTON / MCP: one lance, the window is cut both sides so the terminal
 #            goes in either way round)
 #   shoulder 880398-2 only: lance tip to its stop flange (3.8, dimensioned) - the printed shoulder between them; flange = flange width
-#   kind 'dimple': no lance (TE "Mating Retention Type: Dimple") - cannot self-lock, open question M8 (swap or printed latch)
+#   kind 'dimple': no lance (TE "Mating Retention Type: Dimple") - not used in the boxes (R123 swaps it, TERM_SWAP);
+#   kind 'clip': no lance terminal exists for that blade + wire - held by the R123 retainer clip (RETAIN)
 # Sources: 880398 (lance spread 8.21+-0.38 on a 5.4 box, 5.9 to the lance root, 3.8 tip to flange; tip 9.7 and flange 8.6 scaled, est);
 # 1241437 MCP 2.8K (contact zone 6.3, box 6.3 + 4.2; the steel overspring lance: tip / out est, check on the on-hand sample); 42281 rev AN
 # (19.05 long, 7.37 max contact end to lance tip; lance 1.25 est; insulation barrel ~4 scaled); 280755 / 280756 (TE page "Locking Lance
@@ -399,7 +402,8 @@ LOCK = {
     '280755-4': dict(kind='lance', axis='H', out=1.45, tip=10.65, neck=23.5, est=True),
     '280756-4': dict(kind='lance', axis='H', out=1.45, tip=10.65, neck=23.5, est=True),
     '2293255-1': dict(kind='dimple', neck=11.8, est=True),
-    '62998-2': dict(kind='dimple', neck=15.3, est=True),
+    '280919-2': dict(kind='lance', axis='H', out=1.2, tip=5.0, neck=12.5, est=True),
+    '62998-2': dict(kind='clip', neck=15.3, est=True),     # R123 B: no lance terminal exists for 8 AWG on a 6.3 blade - retainer clip
 }
 
 
@@ -422,14 +426,30 @@ def hole(part, kind):
 
 
 def lance_side(c, cavities):
-    """+1 / -1: the side of the H axis the lance window opens to - away from the cavity's neighbours (the centroid of the cavities within
-    NEAR mm in the same box), so the window never faces another cavity. c / cavities: dicts with box, x, y, kind."""
-    ax = 'y' if BLADE_AXIS[c['kind']] == 'x' else 'x'
-    nb = [d for d in cavities if d is not c and d['box'] == c['box'] and 0 < math.hypot(d['x'] - c['x'], d['y'] - c['y']) < NEAR]
-    if not nb:
+    """+1 / -1: the side of the H axis the lance window opens to - the side with the most room to the neighbouring cavities (their
+    R120 hole / box outlines within NEAR mm in the same box; an 87a with no harness wire is a plain blade slot and does not count).
+    c / cavities: dicts with box, x, y, kind (+ part, source when known)."""
+    part = c.get('part')
+    if part not in LOCK or LOCK[part]['kind'] != 'lance' or LOCK[part]['axis'] != 'H':
         return 1
-    m = sum(d[ax] for d in nb) / len(nb)
-    return 1 if c[ax] >= m else -1
+    nb = [d for d in cavities if d is not c and d['box'] == c['box'] and 0 < math.hypot(d['x'] - c['x'], d['y'] - c['y']) < NEAR
+          and d.get('part') in TERM and not (d['kind'].endswith('87a') and d.get('source') != 'harness')]
+    best, side = None, 1
+    for sd in (1, -1):
+        w = zones(part, c['kind'], sd)[-1]
+        r = (c['x'] + w[2], c['x'] + w[3], c['y'] + w[4], c['y'] + w[5])
+        room = 1e9
+        for d in nb:
+            hx, hy = hole(d['part'], d['kind'])
+            (bw, bh), cl = TERM[d['part']]['head'], 2 * HOLE['clr']
+            bx, by = _xy(bw + cl, bh + cl, d['kind'])
+            for (sx, sy) in ((bx, by),) if LOCK[d['part']]['neck'] > LOCK[part]['neck'] else ((bx, by), (hx, hy)):
+                q = (d['x'] - sx / 2, d['x'] + sx / 2, d['y'] - sy / 2, d['y'] + sy / 2)
+                gx, gy = max(r[0] - q[1], q[0] - r[1]), max(r[2] - q[3], q[2] - r[3])
+                room = min(room, math.hypot(gx, gy) if gx > 0 and gy > 0 else max(gx, gy))
+        if best is None or room > best + 1e-6:
+            best, side = room, sd
+    return side
 
 
 NEAR = 15.0
@@ -439,7 +459,7 @@ def zones(part, kind, side=1):
     """The cavity from the mouth up to the seat, as [(dz_lo, dz_hi, x0, x1, y0, y1)]: dz from the seat (the contact end), bottom up, dz_lo
     None = from the mouth; x / y offsets from the cavity centre. R120 hole below the neck; above it the box (+ clr) - the lance's ledge -
     and the R121 lance window from the tip up to the seat: both sides of the blade width for a 'W' lance (880398-2), the `side` of the H
-    axis for an 'H' lance (lance_side: away from the neighbours, so the terminal goes in lance outward). The deck's blade slot above the
+    axis for an 'H' lance (lance_side: the side with the most room, the terminal goes in lance that way). The deck's blade slot above the
     seat, narrower than the box, is the stop the other way."""
     L_, (w, h), c = LOCK[part], TERM[part]['head'], 2 * HOLE['clr']
 
@@ -477,13 +497,36 @@ SCREW = dict(off=13.0, d_ins=4.0, ins_depth=6.0, boss_w=8.6, boss_depth=5.0, bos
 # ins_depth: insert hole from the skirt's outer face (5.7 insert + 0.3); skirt 3.0 + boss 5.0 = 8.0, so 2.0 of wall stays behind it (R73)
 
 
+# R123 (Dan 2026-10-15, M8: "A. individually use B if a doesn't work. they do not have to be TE contacts"): every box terminal self-locks.
+# (A) a terminal with no lance is swapped, box side, for one with a locking lance on the same tab and wire range: TERM_SWAP maps the part the
+# harness drawing names to the one the box is built and bought with (the .harness files change later - Dan's review; follow-up list).
+# 2293255-1 (dimple) -> TE 280919-2 (FASTIN-FASTON .187, 4.75 x 0.81 tab, 20-15 AWG, ins 2.31-3.3, lance 1.2, 16 long; TE page + drawing
+# 280919 rev M2: box 5.6 wide, 6.4 long, 3.5 over the lance, lance tip 5 from the contact end; box height and neck est.).
+# (B) where no lance terminal exists - 62998-2 (8 AWG on the heater relay's 6.3 blades: TE FASTON / FASTIN-FASTON and Aptiv Metri-Pack 630
+# stop at 10 AWG with a lance) - and where a cavity cannot keep a ledge (the heater relay 87a, in the middle of its pin pattern): a printed
+# RETAINER clip under that relay. It is threaded onto the relay's wires before they are crimped, then pushed up under the deck after the
+# terminals are in; two barbed legs snap into pockets in the cavity collar; its plate stops every terminal on that relay from backing out.
+# Wire holes = the wire there + clr per side (smaller than the crimped insulation barrel it stops; a thicker-wire harness reprints the clip).
+TERM_SWAP = {'2293255-1': '280919-2'}
+RETAIN = {'POWER': ['R1']}      # relay positions whose terminals are held by a retainer clip (the heater relay k_htr)
+RETAINER = dict(t=2.0, play=0.2, leg=(2.5, 4.0), leg_h=6.0, barb=0.6, barb_h=1.5, clr=CLR, boss=2.0, bear=0.3)
+# t plate (R73 wall), play under the lowest terminal end, leg cross-section / height into its collar pocket, barb out / height at the leg
+# top (snaps over the pocket's undercut), boss = collar wall round each leg pocket, bear = least the crimped insulation barrel rests on
+# the plate each side. On a retained end the RNF-100 build-up is cut to the insulation barrel length, so only the bare wire goes through.
+
+
+def retainer_hole(part, wire_od):
+    """(hole d, crimped barrel d) at a retainer clip: the bare wire + clr per side, and the insulation barrel it stops."""
+    return wire_od + 2 * RETAINER['clr'], barrel_od(part, wire_od)
+
+
 # J4 = B: LOGIC front channel. Fuse-side wires come forward along x 7.4 (between the belly pan wall and the Bus 1 output risers), turn
 # along the front in front of the spine (y 7.25), each on its own level, over a printed floor (the Bus 1 feed lug is under it); the
 # HL / HR splices lie stacked in the channel past the spine; every branch then runs to its relay on its own level. Levels: centre z.
 CHANNEL = dict(x_fwd=7.4, y=7.25, y_sp=8.5, floor=(16.95, 18.95), floor_x=(8.5, 44.0), floor_y=(6.45, 10.6), wide_y=20.5, wide_x0=27.05,
                splice=dict(x0=27.5, x1=40.0, od=4.5, L=12.5),   # est: solder splice + adhesive heat shrink over 14 + 14 + 16 AWG (L1; combined 10 AWG)
                z=dict(ETB=20.18, HR=24.16, HL=28.86, HR30=23.1, HR86=25.45, HL30=27.8, HL86=29.95),
-               x_etb=44.0, x_hr=60.8)
+               x_etb=44.0, x_hr=62.8)    # x_hr between the micro relay columns (R123: + 2.0 with them)
 CHANNEL_SPLICES = ('sp_hl', 'sp_hr')
 # J2 = B rub protection. LOGIC: a rib on the belly pan between the Bus 1 output wires (kept at x <= lane_x_max) and the Bus 1 strip bolt
 # heads (x 14.67 up) - PAN_RIB; a relief (the pan wall thinned) at the outboard micro relay column, where the 86 wires drop 1 mm from the wall
