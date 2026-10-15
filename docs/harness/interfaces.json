@@ -5432,6 +5432,288 @@
           "w_ig_tap"
         ]
       }
+    },
+    "AntiTheft": {
+      "SIREN": {
+        "bands": [
+          "Blue"
+        ],
+        "wires": [
+          "w_at_siren",
+          "w_at_gnd_a2"
+        ]
+      },
+      "ALMLED": {
+        "bands": [
+          "Yellow"
+        ],
+        "wires": [
+          "w_at_led",
+          "w_at_gnd_b2"
+        ]
+      },
+      "VALET": {
+        "bands": [
+          "White"
+        ],
+        "wires": [
+          "w_at_valet",
+          "w_at_gnd_c1"
+        ]
+      },
+      "DOOR": {
+        "bands": [
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "w_at_door",
+          "w_at_door_tie"
+        ]
+      },
+      "HOOD": {
+        "bands": [
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w_at_hood",
+          "w_at_hood_tie"
+        ]
+      },
+      "TRUNK": {
+        "bands": [
+          "Blue",
+          "White"
+        ],
+        "wires": [
+          "w_at_trunk",
+          "w_at_trunk_tie"
+        ]
+      },
+      "PARK": {
+        "bands": [
+          "Yellow",
+          "Blue"
+        ],
+        "wires": [
+          "w_at_park",
+          "w_at_park_tie"
+        ]
+      },
+      "ALM": {
+        "bands": [
+          "Yellow",
+          "White",
+          "Yellow"
+        ],
+        "wires": [
+          "w_at_12v_tie",
+          "w_at_12v",
+          "w_at_gnd_a1"
+        ]
+      },
+      "ALMS": {
+        "bands": [
+          "Yellow",
+          "White",
+          "White"
+        ],
+        "wires": [
+          "w_at_12v_shk_tie",
+          "w_at_12v_shk",
+          "w_at_shk_sig",
+          "w_at_gnd_b1"
+        ]
+      },
+      "ALMIG": {
+        "bands": [
+          "White",
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "w_at_ig_tie",
+          "w_at_ig"
+        ]
+      },
+      "IMMOB": {
+        "bands": [
+          "Yellow",
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w_at_immob2"
+        ]
+      }
+    },
+    "HeavyDC": {
+      "SW12": {
+        "bands": [
+          "Blue"
+        ],
+        "wires": [
+          "w_fp86_h"
+        ]
+      },
+      "FP": {
+        "bands": [
+          "White",
+          "White",
+          "Blue"
+        ],
+        "wires": [
+          "w_fp_feed",
+          "w_fp_30",
+          "w_fp85_h",
+          "w_fp87_h"
+        ]
+      },
+      "ALTIG": {
+        "bands": [
+          "Blue",
+          "Yellow",
+          "Blue"
+        ],
+        "wires": [
+          "w_ig_ks_in",
+          "w_ig_ks_out",
+          "w_alt_ig_h"
+        ]
+      },
+      "ALTS": {
+        "bands": [
+          "White",
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w_alt_s_h"
+        ]
+      },
+      "ALTL": {
+        "bands": [
+          "Blue",
+          "White",
+          "White"
+        ],
+        "wires": [
+          "w_alt_l_h"
+        ]
+      },
+      "BAT": {
+        "bands": [],
+        "wires": [
+          "w_trunk_pos",
+          "w_ks_h1",
+          "w_h3_radlok_pos",
+          "w_rl_pos",
+          "w_rlp_str",
+          "w_alt",
+          "w_jump"
+        ]
+      },
+      "BATN": {
+        "bands": [],
+        "wires": [
+          "w_trunk_neg",
+          "w_h6a_radlok_neg",
+          "w_rln",
+          "w_rln_blk"
+        ]
+      }
+    },
+    "RearFuel": {
+      "FP": {
+        "bands": [
+          "White",
+          "White",
+          "Blue"
+        ],
+        "wires": [
+          "w_fpump_r",
+          "w_fpg"
+        ]
+      },
+      "FLVL": {
+        "bands": [
+          "Blue",
+          "Yellow",
+          "Blue"
+        ],
+        "wires": [
+          "w_fl_sig_r",
+          "w45_r"
+        ]
+      }
+    },
+    "RearLights": {
+      "TAIL": {
+        "bands": [
+          "Blue"
+        ],
+        "wires": [
+          "w_rl_tail",
+          "w_rl_tail_r11_c2",
+          "w_rl_tail_r11_c3",
+          "w_rl_tail_r12_c2",
+          "w_rl_tail_r12_c3",
+          "w_rl_tail_l1_c1"
+        ]
+      },
+      "RLGND": {
+        "bands": [
+          "Yellow"
+        ],
+        "wires": [
+          "w_rl_gnd_r11_c5",
+          "w_rl_gnd_r12_c5",
+          "w_rl_gnd_l1_c2",
+          "w_rl_gnd_h6_c2",
+          "w_rl_gnd_bl"
+        ]
+      },
+      "REV": {
+        "bands": [
+          "White"
+        ],
+        "wires": [
+          "w_rl_rev",
+          "w_rl_rev_r11_c4",
+          "w_rl_rev_r12_c4"
+        ]
+      },
+      "STOP": {
+        "bands": [
+          "Blue",
+          "Blue"
+        ],
+        "wires": [
+          "w_rl_stop",
+          "w_rl_stop_r11_c1",
+          "w_rl_stop_r12_c1",
+          "w_rl_stop_h6_c1"
+        ]
+      },
+      "TURNL": {
+        "bands": [
+          "Blue",
+          "Yellow"
+        ],
+        "wires": [
+          "w_rl_turn_l"
+        ]
+      },
+      "TURNR": {
+        "bands": [
+          "Blue",
+          "White"
+        ],
+        "wires": [
+          "w_rl_turn_r"
+        ]
+      }
     }
   }
 }

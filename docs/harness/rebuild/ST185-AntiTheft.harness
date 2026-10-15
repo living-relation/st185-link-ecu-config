@@ -3,6 +3,12 @@
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
   "version": 0.9,
   "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-AntiTheft - anti-theft harness: alarm brain, siren, shock sensor, status LED, valet switch",
+    "drawingNumber": "ST185-AntiTheft"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker on each bundle at its plug (ALARM, SIREN, STATUS LED, VALET SW, SHOCK SNSR).",
   "connectors": [
     {
       "id": "alarm",
@@ -512,6 +518,11 @@
             "y": 30
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White",
+        "Yellow"
       ]
     },
     {
@@ -541,6 +552,11 @@
             "y": 90
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -584,6 +600,9 @@
             "y": 30
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -613,6 +632,10 @@
             "y": 150
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue"
       ]
     },
     {
@@ -656,6 +679,10 @@
             "y": 180
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -692,6 +719,10 @@
             "y": 210
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -721,6 +752,10 @@
             "y": 240
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White"
       ]
     },
     {
@@ -764,6 +799,9 @@
             "y": 270
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -800,6 +838,9 @@
             "y": 420
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     },
     {
@@ -836,6 +877,11 @@
             "y": 360
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White",
+        "White"
       ]
     },
     {
@@ -886,6 +932,11 @@
             "y": 0
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White",
+        "Yellow"
       ]
     },
     {
@@ -922,6 +973,9 @@
             "y": 0
           }
         }
+      ],
+      "identColors": [
+        "Blue"
       ]
     },
     {
@@ -965,6 +1019,11 @@
             "y": 90
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White",
+        "White"
       ]
     },
     {
@@ -1015,6 +1074,9 @@
             "y": 90
           }
         }
+      ],
+      "identColors": [
+        "Yellow"
       ]
     },
     {
@@ -1065,6 +1127,9 @@
             "y": 180
           }
         }
+      ],
+      "identColors": [
+        "White"
       ]
     },
     {
@@ -1094,6 +1159,11 @@
             "y": 570
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White",
+        "White"
       ]
     },
     {
@@ -1144,6 +1214,11 @@
             "y": 510
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -1166,6 +1241,11 @@
             "y": 0
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White",
+        "Yellow"
       ]
     },
     {
@@ -1195,6 +1275,11 @@
             "y": 60
           }
         }
+      ],
+      "identColors": [
+        "White",
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -1225,6 +1310,10 @@
             "y": 120
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Blue"
       ]
     },
     {
@@ -1262,6 +1351,10 @@
             "y": 150
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "Yellow"
       ]
     },
     {
@@ -1292,6 +1385,10 @@
             "y": 360
           }
         }
+      ],
+      "identColors": [
+        "Blue",
+        "White"
       ]
     },
     {
@@ -1329,6 +1426,10 @@
             "y": 150
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "Blue"
       ]
     },
     {
@@ -1358,6 +1459,11 @@
             "y": 270
           }
         }
+      ],
+      "identColors": [
+        "Yellow",
+        "White",
+        "White"
       ]
     }
   ],
@@ -1387,7 +1493,12 @@
       "length": {
         "value": 40,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "ALARM",
+      "partIds": [
+        "cov_lbl_316"
+      ]
     },
     {
       "id": "bn_alarm__bp_990",
@@ -1396,7 +1507,12 @@
       "length": {
         "value": 20,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "label": "ALARM",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     },
     {
       "id": "bn_bp_990__bp_1020",
@@ -1477,7 +1593,12 @@
       "length": {
         "value": 110,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "SIREN",
+      "partIds": [
+        "cov_lbl_316"
+      ]
     },
     {
       "id": "bn_bp_930__t_at_ig",
@@ -1513,7 +1634,12 @@
       "length": {
         "value": 400,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "STATUS LED",
+      "partIds": [
+        "cov_lbl_316"
+      ]
     },
     {
       "id": "bn_bp_990__t_at_gnd",
@@ -1549,7 +1675,12 @@
       "length": {
         "value": 110,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "VALET SW",
+      "partIds": [
+        "cov_lbl_316"
+      ]
     },
     {
       "id": "bn_bp_1080__t_at_gnd_c",
@@ -1567,7 +1698,12 @@
       "length": {
         "value": 570,
         "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "SHOCK SNSR",
+      "partIds": [
+        "cov_lbl_316"
+      ]
     },
     {
       "id": "bn_bp_1260__t_at_door",
@@ -2183,6 +2319,48 @@
       "partNumber": "114017",
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_316",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/16-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 1.6,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ]
 }

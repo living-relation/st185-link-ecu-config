@@ -12,10 +12,10 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 108 | 0 | **108** |
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 59 | 0 | **59** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 50 | 0 | **50** |
-| `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 38 | 0 | **38** |
+| `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 45 | 0 | **45** |
+| `TMS-SCE-3/16-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 35 | 0 | **35** |
 | `RS 264-6432` | RS PRO | RS PRO A2/304 STAINLESS SERRATED FLANGE HEX NUT M5, DIN 6923 | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
-| `TMS-SCE-3/16-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 27 | 0 | **27** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
 | `53941-1` | TE Connectivity | PIDG CLOSED RING TONGUE TERMINAL, 16-14 AWG, #8 / M4 STUD, BLUE, TIN | 21 | 0 | **21** |
 | `RS 231-0691` | RS PRO | RS PRO AISI 301 STAINLESS SPRING WASHER M4, DIN 127B, 0.9 THICK | 21 | 0 | **21** |
@@ -32,8 +32,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `EFC 10S00056` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 6 MM, ZINC-PLATED STEEL | 13 | 0 | **13** |
 | `2R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD | 12 | 0 | **12** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
+| `TMS-SCE-1/2-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 11 | 0 | **11** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 11 | 0 | **11** |
-| `TMS-SCE-1/2-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 10 | 0 | **10** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 11 | 2 | **9** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 14 | 6 | **8** |
 | `Jump lugs 1/0` | generic | LUG, RING, COPPER, 1/0 AWG | 8 | 0 | **8** |
@@ -49,8 +49,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC HEAVY FLYING LEAD 10-6` | generic | TERMINAL, FLYING LEAD, HEAVY | 6 | 0 | **6** |
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `GENERIC RING M8 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG | 6 | 0 | **6** |
+| `RNF-100-3/32-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 6 | 0 | **6** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
-| `RNF-100-3/32-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 5 | 0 | **5** |
 | `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 5 | 0 | **5** |
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS | 4 | 0 | **4** |
 | `15419715` | Aptiv | CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6 | 4 | 0 | **4** |
@@ -381,11 +381,11 @@ Counted from each wire's `identColors`: one 6 mm band per colour at BOTH ends of
 | Part number | Bands | Sticks |
 |---|---:|---:|
 | `RNF-100-3/16-4-STK` | 68 | 1 |
-| `RNF-100-3/16-6-STK` | 52 | 1 |
-| `RNF-100-3/16-9-STK` | 38 | 1 |
-| `RNF-100-3/32-4-STK` | 630 | 4 |
-| `RNF-100-3/32-6-STK` | 850 | 5 |
-| `RNF-100-3/32-9-STK` | 446 | 3 |
+| `RNF-100-3/16-6-STK` | 62 | 1 |
+| `RNF-100-3/16-9-STK` | 58 | 1 |
+| `RNF-100-3/32-4-STK` | 690 | 4 |
+| `RNF-100-3/32-6-STK` | 944 | 6 |
+| `RNF-100-3/32-9-STK` | 498 | 3 |
 
 ## Still unspecified
 
