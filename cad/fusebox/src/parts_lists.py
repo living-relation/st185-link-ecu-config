@@ -146,11 +146,10 @@ def sleeves(L, box):
               'below the terminal insulation range; every end and its layers: python cad/fusebox/src/check_terminal_holes.py --list.')
 
 
-def cover_screws(L, box):
+def cover_screws(L, box, n=4):
     """R122 (Dan 2026-10-15: "add one small screw hole on each lid and base tab for extra support if needed"): OPTIONAL - one M3 screw into a
     brass heat-set insert beside each of the 4 cover catches (the snaps stay the main hold). R38: TE / the approved suppliers sell no
     screws or inserts - other makers (McMaster, Accu). R73: threads in metal (insert), never printed."""
-    n = 4
     L.add(box, 'Hardware (optional)', 'OPTIONAL cover backup: M3 brass heat-set insert, one beside each cover catch', '94459A140', 'McMaster-Carr',
           'Heat-set insert for plastic, brass, M3 x 0.5, 5.7 mm installed length, 4.0 mm hole (pack of 50 covers all three boxes)', n, 0, unit=0.40,
           basis='est', url='https://www.mcmaster.com/product/94459A140/',
@@ -404,7 +403,7 @@ def build(rev=6):
     # ================================================================ BATTERY relay block
     printed(B, 'BattRelay_Base', 'BattRelay Base', 'Floor plate, relay platform, fuse pedestal, 2 end tabs; PA12')
     printed(B, 'BattRelay_Cover', 'BattRelay Cover', 'Snap-on cover, side vents; PA12')
-    cover_screws(L, B)
+    cover_screws(L, B, n=3)     # the rear catch by the relay flange has none (spec.SCREW_SKIP_RB)
     L.add(B, 'Copper', 'Bar 25.4 x 6.35 x 36.5 mm, tinned (cut from the POWER bar stock)', 'MECCANIXITY B0CGJBRNJX', 'MECCANIXITY (Amazon)', 'Same 305 mm bar as the POWER bar: no extra stock to buy', 0,
           url='https://www.amazon.com/dp/B0CGJBRNJX', checked='stock bought in the POWER list', note='Holes: M6 feed 6.5, AMI 40 input 5.5.')
     L.add(B, 'Copper', 'Pad 15 x 3 x 17.5 mm, tinned (cut from the pad stock)', 'Bopaodao B09Z7NBLDK', 'Bopaodao (Amazon)', 'Same 1000 mm bar as the POWER pads: no extra stock to buy', 0,

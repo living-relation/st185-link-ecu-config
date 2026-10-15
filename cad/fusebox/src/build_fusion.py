@@ -308,6 +308,32 @@ def build(out_dir, save=True, renders=True, rev=6):
             h['sx'] = max(z[3] for z in h['abs']) - min(z[2] for z in h['abs'])
             h['sy'] = max(z[5] for z in h['abs']) - min(z[4] for z in h['abs'])
 
+        def fin_clip(fd, box_name, feet):
+            """A guide wall (cx, cy, length, t, angle) shortened to stay inside the belly pan's inner faces (it hangs below the deck,
+            where the pan wall slides up), or None when it crosses a retainer clip plate (R123 B: the plate is under there) or is left
+            under 2 mm long."""
+            Lb = (S.LOGIC if box_name == 'LOGIC' else S.POWER)['L']
+            m_ = S.SKIRT + 2 * W_CL + PN['t']                     # pan inner face + a clearance
+            xi0, xi1, yi0, yi1 = m_, Lb - m_, m_, DIM['D'] - m_
+            cx, cy, ln, t_, ang = fd
+            ux, uy = math.cos(math.radians(ang)), math.sin(math.radians(ang))
+            ends = []
+            for sg in (-1, 1):
+                k = ln / 2
+                for (c0, u, lo, hi) in ((cx, ux, xi0, xi1), (cy, uy, yi0, yi1)):
+                    if abs(u) > 1e-9:
+                        lim = ((hi if sg * u > 0 else lo) - c0) / (sg * u) - t_ / 2
+                        k = min(k, lim)
+                ends.append(k)
+            if ends[0] + ends[1] < 2.0:
+                return None
+            ncx, ncy = cx + (ends[1] - ends[0]) / 2 * ux, cy + (ends[1] - ends[0]) / 2 * uy
+            r_ = (ends[0] + ends[1]) / 2 + t_
+            for (fx0, fx1, fy0, fy1) in feet:
+                if fx0 - r_ < ncx < fx1 + r_ and fy0 - r_ < ncy < fy1 + r_:
+                    return None
+            return (ncx, ncy, ends[0] + ends[1], t_, ang)
+
         def rgap_(p, q):  # printed wall between two rects (x0, x1, y0, y1); negative = overlap
             gx, gy = max(p[0] - q[1], q[0] - p[1]), max(p[2] - q[3], q[2] - p[3])
             return math.hypot(gx, gy) if gx > 0 and gy > 0 else max(gx, gy)
@@ -359,6 +385,7 @@ def build(out_dir, save=True, renders=True, rev=6):
                 y0_, y1_ = min(z[4] for z in h['abs']), max(z[5] for z in h['abs'])
                 m = HO['min_wall']
                 collars.append(box(x0_ - m, y0_ - m, z_d, x1_ + m, y1_ + m, plate_b + 0.01))
+        clip_feet = []
         for rel in S.RETAIN.get(box_name, []):    # R123 B: printed retainer clip under a relay whose terminals cannot self-lock
             rh = [h for h in hs if h['cav'].split()[0] == rel]
             if not rh:
@@ -368,11 +395,13 @@ def build(out_dir, save=True, renders=True, rev=6):
             y0_, y1_ = min(z[4] for h in rh for z in h['abs']) - m, max(z[5] for h in rh for z in h['abs']) + m
             ztop = min(zs_ - (S.TERM[h['part']]['L'] or S.L_EST) for h in rh) - RT['play']    # under the lowest terminal end
             plate = box(x0_, y0_, ztop - RT['t'], x1_, y1_, ztop)
+            clip_feet.append((x0_ - RT['clr'], x1_ + RT['clr'], y0_ - RT['clr'], y1_ + RT['clr']))
             for h in rh:            # threaded onto the wires before crimping: bare wire + clr (the build-up ends inside the barrel)
                 bo(plate, cylz(h['x'], h['y'], ztop - RT['t'] - 1, ztop + 1, S.retainer_hole(h['part'], h['wire_od'])[0]), 's')
             lw, ld = RT['leg']
             long_x = (x1_ - x0_) >= (y1_ - y0_)
-            legs = [((x0_ + lw / 2, (y0_ + y1_) / 2), -1), ((x1_ - lw / 2, (y0_ + y1_) / 2), 1)] if long_x else                    [(((x0_ + x1_) / 2, y0_ + lw / 2), -1), (((x0_ + x1_) / 2, y1_ - lw / 2), 1)]
+            d0, d1 = RT['leg_shift'].get(rel, (0.0, 0.0))
+            legs = [((x0_ + lw / 2, (y0_ + y1_) / 2 + d0), -1), ((x1_ - lw / 2, (y0_ + y1_) / 2 + d1), 1)] if long_x else                    [(((x0_ + x1_) / 2 + d0, y0_ + lw / 2), -1), (((x0_ + x1_) / 2 + d1, y1_ - lw / 2), 1)]
             for ((lx, ly), sg) in legs:
                 sx_, sy_ = (lw, ld) if long_x else (ld, lw)
                 zt_ = z_d + RT['leg_h']
@@ -386,6 +415,8 @@ def build(out_dir, save=True, renders=True, rev=6):
                                    plate_b + 0.01))
                 cuts.append(box(lx - sx_ / 2 - c_, ly - sy_ / 2 - c_, z_d - 1, lx + sx_ / 2 + c_, ly + sy_ / 2 + c_, zt_ + 0.3))
                 cuts.append(box(min(bx_) - c_, min(by_) - c_, zt_ - RT['barb_h'] - 0.3, max(bx_) + c_, max(by_) + c_, zt_ + 0.3))
+            for sp in (support or []):          # notch round what hangs under the deck there (the feed-cable bend saddles)
+                bo(plate, tb.copy(sp), 's')
             comp('%s_Retainer_%s_PA12_printed' % (box_name.capitalize(), rel), plate, AP['pa12_pan'], MAT['pa'], S.PLACE[box_name])
             report.setdefault('retainers', {}).setdefault(box_name, []).append(dict(
                 relay=rel, cavities=[h['cav'] for h in rh], plate=[round(v, 2) for v in (x0_, y0_, ztop - RT['t'], x1_, y1_, ztop)],
@@ -401,6 +432,9 @@ def build(out_dir, save=True, renders=True, rev=6):
                 continue
             ang = math.degrees(math.atan2(b['y'] - a['y'], b['x'] - a['x'])) + 90.0
             fd = ((a['x'] + b['x']) / 2, (a['y'] + b['y']) / 2, max(a['sx'], a['sy'], b['sx'], b['sy']) + 2.0, G['t'], ang)
+            fd = fin_clip(fd, box_name, clip_feet)
+            if fd is None:
+                continue
             fin_d.append(fd)
             fins.append(rbox(fd[0], fd[1], z_d - G['h'], z_d + 0.01, fd[2], fd[3], fd[4]))
         webs, sup = [], []
@@ -594,30 +628,31 @@ def build(out_dir, save=True, renders=True, rev=6):
         rear = DIM['snaps_rear'] or snap_xs(L)
         return [(x, 0.0) for x in snap_xs(L)] + [(x, DIM['D']) for x in rear]
 
-    def screw_points(L, faces):
-        """R122: (x, face y, inward sign) of the optional backup screw beside each cover catch, `off` toward the middle of the wall."""
+    def screw_points(L, faces, outward=False):
+        """R122: (x, face y, inward sign) of the optional backup screw beside each cover catch, `off` toward the middle of the wall
+        (outward=True: toward the end - the battery block, where the relay flange sits by the middle of the rear rim)."""
         out = []
         for (x, yface) in faces:
-            xs = x + S.SCREW['off'] if x < L / 2 else x - S.SCREW['off']
+            xs = x + S.SCREW['off'] if (x < L / 2) != outward else x - S.SCREW['off']
             out.append((xs, yface, 1 if yface == 0.0 else -1))
         return out
 
-    def screw_bosses(L, D, z_t, wall, z_lo, z_hi, faces):
+    def screw_bosses(L, D, z_t, wall, z_lo, z_hi, faces, outward=False):
         """R122: the insert bosses - boss_w wide, boss_depth in from the inner face of a `wall` thick side, z_lo..z_hi (joined to the deck
         plate or the floor: never floating, R101)."""
         SC = S.SCREW
         out = []
-        for (xs, yf, sg) in screw_points(L, faces):
+        for (xs, yf, sg) in screw_points(L, faces, outward):
             yi = wall if sg > 0 else D - wall
             out.append(box(xs - SC['boss_w'] / 2, min(yi, yi + sg * SC['boss_depth']) - (0.01 if sg < 0 else 0), z_lo,
                            xs + SC['boss_w'] / 2, max(yi, yi + sg * SC['boss_depth']) + (0.01 if sg > 0 else 0), z_hi))
         return out
 
-    def screw_inserts(L, D, zc, faces):
+    def screw_inserts(L, D, zc, faces, outward=False):
         """R122: the heat-set insert holes, from the outer face inward (d_ins, ins_depth deep)."""
         SC = S.SCREW
         return [cyl((xs, (0.0 if sg > 0 else D) - sg * 0.5, zc), (xs, (0.0 if sg > 0 else D) + sg * SC['ins_depth'], zc), SC['d_ins'])
-                for (xs, yf, sg) in screw_points(L, faces)]
+                for (xs, yf, sg) in screw_points(L, faces, outward)]
 
     def base_shell(L, z_d, z_t, extra_parts):
         """Deck: top plate + perimeter skirt (rounded plan), open underneath; the skirt carries the snap pockets."""
@@ -706,7 +741,7 @@ def build(out_dir, save=True, renders=True, rev=6):
         return comp(pre + 'Pan_PA12_printed', pan, AP['pa12_pan'], MAT['pa'], sh)
 
     def cover(L, D, z_t, z_top, notches, label_list, pre, sh, vents=(), ribs=None, side_vents=(), x0=0.0, y0=0.0, R=None, r=None,
-              zb=None, zc=None, inner_R=None, inner_r=None, screw_z=None):
+              zb=None, zc=None, inner_R=None, inner_r=None, screw_z=None, screw_out=False, screw_faces=None):
         """Rounded snap-on cover over a base L x D (base outline from (x0, y0)). notches = [(axis, pos, centre_u, z_top_of_notch, width)]:
         a U-notch open at the bottom edge in the end (axis 'x') or side (axis 'y') wall. Rev 5: bumper band round the bottom,
         vertical ribs on the walls (ribs = {'y': [x...], 'x': [y...]}), vent slots through the top (vents = [(x, y, along)])
@@ -745,7 +780,7 @@ def build(out_dir, save=True, renders=True, rev=6):
                     bo(out, box(xs - sw['slot'] / 2, ya, zb - 1, xs + sw['slot'] / 2, yb_, zb + sw['len']), 's')
                 bo(out, cyl((x0 + x - sw['w'] / 2 + 0.5, yf, zc), (x0 + x + sw['w'] / 2 - 0.5, yf, zc), sw['bump']), 'u')
         zs_ = z_t - S.SCREW['z_from_top'] if screw_z is None else screw_z
-        for (xs, yface, sg) in screw_points(L, cover_catches(L)):    # R122: clearance hole for the optional backup screw
+        for (xs, yface, sg) in screw_points(L, screw_faces if screw_faces is not None else cover_catches(L), screw_out):    # R122: clearance hole for the optional backup screw
             yf = y0 - g if yface == 0.0 else y0 + D + g
             bo(out, cyl((x0 + xs, yf - sg * (t + bo_ + 1), zs_), (x0 + xs, yf + sg * 1.0, zs_), S.SCREW['d_clear']), 's')
         for (axis, pos, u, zn, wd) in notches:
@@ -1396,9 +1431,9 @@ def build(out_dir, save=True, renders=True, rev=6):
         base = rrect(0, 0, Lr, Dr, 0, fl, 10.0)
         rim = rrect(0, 0, Lr, Dr, fl - 0.01, R['rim'], 10.0)
         bo(rim, rrect(3, 3, Lr - 3, Dr - 3, 0, R['rim'] + 1, 7.0), 's')
-        rb_faces = [(x, y) for y in (0.0, Dr) for x in snap_xs(Lr)]
+        rb_faces = [(x, y) for y in (0.0, Dr) for x in snap_xs(Lr) if (x, y) not in S.SCREW_SKIP_RB(Lr, Dr)]
         rb_zs = (fl + R['rim']) / 2                         # R122: insert bosses standing on the floor against the rim, beside each catch
-        parts += screw_bosses(Lr, Dr, R['rim'], 3.0, fl - 0.01, R['rim'], rb_faces)
+        parts += screw_bosses(Lr, Dr, R['rim'], 3.0, fl - 0.01, R['rim'], rb_faces, outward=True)
         bo(rim, box(-1, 16.0, 0, 22.0, Dr - 16.0, R['rim'] + 1), 's')            # open -x end
         bo(rim, box(Lr - 22.0, 16.0, 0, Lr + 1, Dr - 16.0, R['rim'] + 1), 's')   # open +x end
         parts += [rim]
@@ -1454,7 +1489,7 @@ def build(out_dir, save=True, renders=True, rev=6):
         for x in snap_xs(Lr):
             for y in (0.0, Dr):
                 cuts.append(cyl((x - S.SNAP['w'] / 2 - 0.5, y, R['rim'] - 3.0), (x + S.SNAP['w'] / 2 + 0.5, y, R['rim'] - 3.0), S.SNAP['bump'] + 0.2))
-        cuts += screw_inserts(Lr, Dr, rb_zs, rb_faces)
+        cuts += screw_inserts(Lr, Dr, rb_zs, rb_faces, outward=True)
         sub_all(base, cuts)
         comp(pre + 'Base_PA12_printed', base, AP['pa12_lt'], MAT['pa'], sh)
         comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
@@ -1542,7 +1577,7 @@ def build(out_dir, save=True, renders=True, rev=6):
         zv = (6.5 + S.RUG['band_h'] + z_top - 6.0) / 2
         side_vents = [(f, u, z_) for f in ('-y', '+y') for u in (66.0, 84.0, 102.0, 120.0) for z_ in (zv - 4.0, zv + 4.0)]
         oc = cover(Lr, Dr, R['rim'], z_top, notches, labels, pre, sh, side_vents=side_vents, R=12.95, r=6.0, zb=LG['ear_t'] + 0.5,
-                   zc=R['rim'] - 3.0, inner_R=10.45, inner_r=3.5, ribs={'y': [22.0, Lr - 22.0], 'x': [50.0, 80.0]}, screw_z=rb_zs)
+                   zc=R['rim'] - 3.0, inner_R=10.45, inner_r=3.5, ribs={'y': [22.0, Lr - 22.0], 'x': [50.0, 80.0]}, screw_z=rb_zs, screw_out=True, screw_faces=rb_faces)
         return dict(L=Lr, D=Dr, H=z_top, L_with_tabs=Lr + 2 * (LG['ear_len'] + 6.0), D_with_tabs=Dr, tabs=tabs,
                     parts=dict(bar=((Bb['x0'] + Bb['x1']) / 2, tsy, btop), pad=(a_out + 2.0, tsy, btop), fuse=((a_in + a_out) / 2, tsy, btop + 4),
                                ped=(30.0, tsy - pw, bz0 - 8.0), relay=(rx, yb + 22.0, zf + 40.0), plug=(gcx, yb - H_['plug_to'] + 2, tz0 + 9.0)))
@@ -1660,8 +1695,6 @@ def build(out_dir, save=True, renders=True, rev=6):
     exported = []
     for o in root.occurrences:
         n = o.component.name
-        if REV[0] == 7 and n.startswith('BattRelay_'):   # rev 7: battery block part files are rev 6's (unchanged); LOGIC is re-exported (clearance fix)
-            continue
         if n.endswith('_printed') or n.split('_', 1)[1].startswith(('Bar_', 'BarNeg_', 'Pad_', 'Strip_')):
             p = os.path.join(out_dir, '%s.step' % n)
             em.execute(em.createSTEPExportOptions(p, o.component))
@@ -1684,7 +1717,8 @@ def build(out_dir, save=True, renders=True, rev=6):
 
     if save and REV[0] == 7:   # rev 7: its own document (rev 6 stays as saved); save-as the first time, R74 slot check done (2 of 10 editable)
         if doc.dataFile.name == DOC7:
-            doc.save('rev 7: R101 tightened - only the floating pieces Dan marked joined (5 LOGIC guide walls, 6 POWER saddles) (Claude Code 2026-10-15)')
+            doc.save('rev 7: R120-R123 - terminal cavities sized by everything that passes, self-locking lance ledges, heater relay retainer clip, '
+                     'micro relay columns +2 mm, optional M3 cover screws (Claude Code 2026-10-15)')
         else:
             doc.saveAs(DOC7, doc.dataFile.parentFolder, 'rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)', '')
             report['saved_as'] = DOC7
