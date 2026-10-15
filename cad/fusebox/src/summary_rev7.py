@@ -235,24 +235,35 @@ grip = [(w_['wire'], e_['part'], w_['od']) for w_ in plan['wires'] for e_ in w_[
 A('<div class="note"><b>Thin-wall wire, OPEN-ITEMS row 121 - your M6 = A (DECISIONS R120):</b> %d wire ends use wire thinner than their terminal&#39;s '
   'insulation range (M22759/16 is thin-wall: 14 AWG is 2.41 mm, 18 AWG 1.85 mm), e.g. 18 AWG in a 42281-1 (made for 2.79-4.32 mm insulation). Each gets a '
   'TE Raychem RNF-100 build-up sleeve under the insulation crimp (table below; on the POWER / LOGIC parts lists).</div>' % len(grip))
-A('<h3 id="r120">Terminal holes sized from the terminal (DECISIONS R120, Dan 2026-10-15)</h3>')
-A('<p>The crimped terminal goes up through its hole from under the deck, so the hole is sized from the widest part pushed through it - the '
-  'terminal itself (its head, or the crimped barrel where that is bigger) - + %.1f mm a side, a slot with its long side along the blade, up to the '
-  'receptacle seat. Never from the wire: the wire, sleeved or not, is always smaller. Head sizes from the TE customer drawings (max of tolerance, lance '
-  'included); 2293255-1 and 62998-2 head height is not dimensioned there, scaled off the drawing (est.). <b>Every hole in the current STEP is the old round '
-  'crimp-barrel hole: all %d are recut to these slots at the next rev 7 Fusion rebuild</b> (<code>check_terminal_holes.py --list</code>).</p>'
-  % (S.HOLE['clr'], sum(1 for c_ in plan['cavities'] if c_.get('slot') and not (c_['kind'].endswith('87a') and c_['source'] != 'harness'))))
-A('<div class="wrap"><table><tr><th>Terminal</th><th>Head W x H (TE drawing)</th><th>Insulation range</th><th>Slots (box: count x size x by y)</th></tr>')
+A('<h3 id="r120">Terminal cavities: hole sized by everything that passes, self-locking terminals (DECISIONS R120, R121, Dan 2026-10-15)</h3>')
+A('<p><b>Hole (R120):</b> the largest cross-section, along the insertion axis, of everything that goes through - the contact box, the crimped '
+  'barrels on the <b>thickest</b> insulation the terminal accepts (so GXL or thicker wire always fits), the wire behind them, and the 880398-2 stop '
+  'flange - + %.1f mm a side, a combined (rectangular) outline. <b>Lock (R121):</b> the terminal goes up from under the deck, contact box first, and '
+  'snaps in: above its neck (where the insulation barrel stops when seated) the cavity steps in to the box - the ledge - and opens a window from the '
+  'lance tip up to the seat, so the lance springs out over the ledge; the deck blade slot above (narrower than the box) stops it the other way. Relays '
+  'and fuses are held by blade friction only; the cover stays as it is. Where the relay / fuse pin spacing leaves under 2.0 mm, neighbouring cavities '
+  'share one opening (R73 kept) and each terminal locks on the side away from its neighbour (lance outward). Terminals with no lance (2293255-1, '
+  '62998-2) cannot self-lock yet - question M8. <b>Every cavity in the current STEP is from before R120 / R121: all %d are recut at the next rev 7 '
+  'Fusion rebuild</b> (<code>check_terminal_holes.py --list</code>).</p>'
+  % (S.HOLE['clr'], sum(1 for c_ in plan['cavities'] if c_.get('hole') and not (c_['kind'].endswith('87a') and c_['source'] != 'harness'))))
+A('<div class="wrap"><table><tr><th>Terminal</th><th>Box W x H (TE drawing)</th><th>Insulation range</th><th>Lock</th><th>Holes (box: count x size x by y)</th></tr>')
 for pn, t_ in S.TERM.items():
     use = {}
     for c_ in plan['cavities']:
-        if c_['part'] == pn and c_.get('slot') and not (c_['kind'].endswith('87a') and c_['source'] != 'harness'):
-            k_ = (c_['box'], tuple(c_['slot']))
+        if c_['part'] == pn and c_.get('hole') and not (c_['kind'].endswith('87a') and c_['source'] != 'harness'):
+            k_ = (c_['box'], tuple(c_['hole']))
             use[k_] = use.get(k_, 0) + 1
-    A('<tr><td>%s<br><span class="mut">%s</span></td><td>%.2f x %.2f%s</td><td>%.2f-%.2f mm</td><td>%s</td></tr>' % (
-      pn, E(t_['what']), t_['head'][0], t_['head'][1], ' (H est.)' if pn in S.HEAD_EST else '', t_['ins'][0], t_['ins'][1],
+    L_ = S.LOCK[pn]
+    lk = ('lance %s, springs out %.2f, tip %.2f below the contact end%s' % ('both sides of the blade width' if L_['axis'] == 'W' else 'through the blade',
+          L_['out'], L_['tip'], ' (est.)' if L_.get('est') else '')) if L_['kind'] == 'lance' else 'no lance (dimple) - M8'
+    A('<tr><td>%s<br><span class="mut">%s</span></td><td>%.2f x %.2f%s</td><td>%.2f-%.2f mm</td><td>%s</td><td>%s</td></tr>' % (
+      pn, E(t_['what']), t_['head'][0], t_['head'][1], ' (H est.)' if pn in S.HEAD_EST else '', t_['ins'][0], t_['ins'][1], E(lk),
       E('; '.join('%s %d x %.2f x %.2f' % (b_, n_, sl_[0], sl_[1]) for (b_, sl_), n_ in sorted(use.items()))) or '-'))
 A('</table></div>')
+A('<p><b>Optional cover screws (R122):</b> beside each of the 4 cover catches on every box, an M3 brass heat-set insert (McMaster 94459A140) in a boss '
+  'behind the base skirt (hung from the deck plate; on the battery block it stands on the floor) and an M3 x 10 cap screw (Accu SSCF-M3-10-A4) through '
+  'a 3.4 mm hole in the cover band, %.0f mm from the catch centre - clear of the tongue. The snaps stay the main hold. The belly pans have no tab, so no screw.</p>'
+  % S.SCREW['off'])
 sl = {}
 for (w_, pn, od) in grip:
     seq, d2 = S.build_up(pn, od)

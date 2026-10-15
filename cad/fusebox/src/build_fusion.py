@@ -274,38 +274,56 @@ def build(out_dir, save=True, renders=True, rev=6):
         return u
 
     def crimp_holes(box_name, z_d, z_t, support=None, plate_b=None):
-        """J2 = B (Dan 2026-10-14, R94), sized from the terminal (R120, Dan 2026-10-15: "the holes ... should be made based on the widest
-        part being inserted which would be the contact terminal itself"): every terminal hole in the base is a slot the crimped terminal
-        goes up through - max(head, crimped barrel) each way + CLR per side, the long side along the blade (S.slot, TE drawing data in
-        S.TERM) - from under the deck up to the receptacle seat (receptacle top HOLE['top_gap'] under the deck top). Two slots with less
-        than min_wall between them join into one (Dan: "join the two slots into one"), bridged across the gap between them. Short guide walls hang under the deck between neighbouring holes (Dan:
-        "short separators or walls ... to help guide wires straight out"); the bores are cut through them, so a wall never narrows a
-        hole. 87a cavities get a bore only when a harness wire lands there (none today: next to 85 / 86 it would leave 0.4 mm).
+        """J2 = B (Dan 2026-10-14, R94); hole rule R120 and self-locking terminals R121 (Dan 2026-10-15): every terminal cavity is cut
+        zone by zone from the plan (S.zones, written into wiring_plan.json by wiring_sim.py): from under the deck the R120 hole - the
+        largest cross-section of everything that passes (contact box, barrels on the THICKEST insulation, the wire, 880398-2's stop
+        flange) + CLR per side - up to the terminal's neck; above it the box-sized ledge and the lance window up to the seat (receptacle
+        top HOLE['top_gap'] under the deck top; the blade slot above, narrower than the box, is the stop the other way). Two cavities
+        with less than min_wall between zones at the same height join into one (Dan: "join the two slots into one"), bridged across the
+        gap over the heights they share. A collar of min_wall round every cavity outline keeps the tower wall >= 2.0 (R73) - unioned with
+        the towers, hanging from the deck plate (not floating, R101). Short guide walls hang under the deck between neighbouring holes
+        (Dan: "short separators or walls ... to help guide wires straight out"); the cavities are cut through them. 87a cavities get a
+        cavity only when a harness wire lands there.
         R101 (Dan 2026-10-15: "the little ribs ... are just floating. fill in the gaps between relay positions under the ribs"; then "i
         like them as they are. just fix the floating pieces i mentioned"): a FLOATING guide wall (less than S.FLOAT_BACKING of its top
         face on a cavity tower - it crosses the gap between two relay positions) gets a web of its own footprint from its top up into
         the deck plate. Every other wall is left exactly as it was.
-        Returns (cuts, guide walls + webs) and records every hole for check_terminal_holes.py."""
+        Returns (cuts, guide walls + webs + collars) and records every cavity for check_terminal_holes.py."""
         if not PLAN7:
             return [], []
         HO, G = S.HOLE, S.GUIDE
-        hs = [dict(c) for c in PLAN7['cavities'] if c['box'] == box_name and c['slot']
+        hs = [dict(c) for c in PLAN7['cavities'] if c['box'] == box_name and c.get('zones')
               and not (c['kind'].endswith('87a') and c['source'] != 'harness')]
+        z0 = z_d - G['h'] - 1.0
+        zs_ = z_t - HO['top_gap']
         for h in hs:
             T = S.TERM[h['part']]
-            h['sx'], h['sy'] = h['slot']
-            h['z1'] = round(z_t - HO['top_gap'], 2)
-            h['est'] = T['t'] is None or h['part'] in S.HEAD_EST
+            h['z1'] = round(zs_, 2)
+            h['est'] = T['t'] is None or h['part'] in S.HEAD_EST or S.LOCK[h['part']].get('est', False)
+            h['abs'] = []                                   # (z_lo, z_hi, x0, x1, y0, y1) in box coordinates
+            for (dlo, dhi, x0_, x1_, y0_, y1_) in h['zones']:
+                lo, hi = (z0 if dlo is None else max(z0, zs_ + dlo)), zs_ + dhi
+                if hi > lo + 0.01:
+                    h['abs'].append((lo, hi, h['x'] + x0_, h['x'] + x1_, h['y'] + y0_, h['y'] + y1_))
+            h['sx'] = max(z[3] for z in h['abs']) - min(z[2] for z in h['abs'])
+            h['sy'] = max(z[5] for z in h['abs']) - min(z[4] for z in h['abs'])
 
-        def gap_(a, b):   # printed wall between two axis-aligned slots; negative = overlap
-            gx = abs(a['x'] - b['x']) - (a['sx'] + b['sx']) / 2
-            gy = abs(a['y'] - b['y']) - (a['sy'] + b['sy']) / 2
+        def rgap_(p, q):  # printed wall between two rects (x0, x1, y0, y1); negative = overlap
+            gx, gy = max(p[0] - q[1], q[0] - p[1]), max(p[2] - q[3], q[2] - p[3])
             return math.hypot(gx, gy) if gx > 0 and gy > 0 else max(gx, gy)
 
-        def span_(a, b, k, s_):   # bridge interval on one axis: the gap between the two slots, or their overlap
-            lo = max(a[k] - a[s_] / 2, b[k] - b[s_] / 2)
-            hi = min(a[k] + a[s_] / 2, b[k] + b[s_] / 2)
-            return min(lo, hi), max(lo, hi)
+        def gap_(a, b):   # thinnest wall between two cavities over the heights they share, and the zone pairs under min_wall
+            w_, under = 1e9, []
+            for za in a['abs']:
+                for zb in b['abs']:
+                    lo, hi = max(za[0], zb[0]), min(za[1], zb[1])
+                    if hi <= lo:
+                        continue
+                    g = rgap_(za[2:], zb[2:])
+                    w_ = min(w_, g)
+                    if g < HO['min_wall']:
+                        under.append((lo, hi, za[2:], zb[2:], g))
+            return w_, under
         par = list(range(len(hs)))
 
         def root_(i):
@@ -318,18 +336,29 @@ def build(out_dir, save=True, renders=True, rev=6):
             for j in range(i + 1, len(hs)):
                 a, b = hs[i], hs[j]
                 d = math.hypot(a['x'] - b['x'], a['y'] - b['y'])
-                if gap_(a, b) < HO['min_wall']:
-                    edges.append((i, j, d))
+                if d > 40:
+                    continue
+                w_, under = gap_(a, b)
+                if under:
+                    edges.append((i, j, under))
                     par[root_(i)] = root_(j)
                 elif d < G['reach']:
                     near_.append((i, j, d))
-        z0 = z_d - G['h'] - 1.0
-        cuts = [cbox(h['x'], h['y'], z0, h['z1'], h['sx'], h['sy']) for h in hs]
-        for (i, j, d) in edges:
-            a, b = hs[i], hs[j]
-            if gap_(a, b) > 0:
-                (x0_, x1_), (y0_, y1_) = span_(a, b, 'x', 'sx'), span_(a, b, 'y', 'sy')
-                cuts.append(box(x0_, y0_, z0, x1_, y1_, min(a['z1'], b['z1'])))
+        cuts = [box(z[2], z[4], z[0], z[3], z[5], z[1]) for h in hs for z in h['abs']]
+        for (i, j, under) in edges:
+            for (lo, hi, p, q, g) in under:
+                if g <= 0:
+                    continue                                # the zones already overlap
+                xs_ = sorted([max(p[0], q[0]), min(p[1], q[1])]) if min(p[1], q[1]) > max(p[0], q[0]) else sorted([min(p[1], q[1]), max(p[0], q[0])])
+                ys_ = sorted([max(p[2], q[2]), min(p[3], q[3])]) if min(p[3], q[3]) > max(p[2], q[2]) else sorted([min(p[3], q[3]), max(p[2], q[2])])
+                cuts.append(box(xs_[0], ys_[0], lo, xs_[1], ys_[1], hi))
+        collars = []
+        if plate_b is not None:
+            for h in hs:      # R73: min_wall round every cavity, from the deck underside up into the deck plate
+                x0_, x1_ = min(z[2] for z in h['abs']), max(z[3] for z in h['abs'])
+                y0_, y1_ = min(z[4] for z in h['abs']), max(z[5] for z in h['abs'])
+                m = HO['min_wall']
+                collars.append(box(x0_ - m, y0_ - m, z_d, x1_ + m, y1_ + m, plate_b + 0.01))
         gid = {}
         for i, h in enumerate(hs):
             h['group'] = gid.setdefault(root_(i), len(gid))
@@ -355,13 +384,14 @@ def build(out_dir, save=True, renders=True, rev=6):
                 s_['after'] = round(backing(f_, z_d + 0.01, U2), 3)
         report['feature_support'].setdefault(box_name, []).extend(sup)
         sh_ = S.PLACE[box_name]
-        report['terminal_holes'][box_name] = [dict(cav=h['cav'], kind=h['kind'], x=h['x'], y=h['y'], sx=h['sx'], sy=h['sy'], z0=round(z_d, 2), z1=h['z1'],
-                                                   group=h['group'], part=h['part'], wire_od=h['wire_od'], source=h['source'], est=h['est'])
+        report['terminal_holes'][box_name] = [dict(cav=h['cav'], kind=h['kind'], x=h['x'], y=h['y'], sx=round(h['sx'], 3), sy=round(h['sy'], 3),
+                                                   zones=h['zones'], z0=round(z_d, 2), z1=h['z1'], group=h['group'], part=h['part'],
+                                                   wire_od=h['wire_od'], source=h['source'], est=h['est'])
                                               for h in hs]
         report['terminal_slots'][box_name] = [sorted(h['cav'] for h in hs if h['group'] == g) for g in range(len(gid))
                                               if sum(1 for h in hs if h['group'] == g) > 1]
         report['guide_walls'][box_name] = dict(n=len(fins), t=G['t'], h=G['h'], world_shift=sh_, webs=len(webs))
-        return cuts, fins + webs
+        return cuts, fins + webs + collars
 
     alib = app.materialLibraries.itemByName('Fusion Appearance Library')
     mlib = app.materialLibraries.itemByName('Fusion Material Library')
@@ -532,19 +562,46 @@ def build(out_dir, save=True, renders=True, rev=6):
         rear = DIM['snaps_rear'] or snap_xs(L)
         return [(x, 0.0) for x in snap_xs(L)] + [(x, DIM['D']) for x in rear]
 
+    def screw_points(L, faces):
+        """R122: (x, face y, inward sign) of the optional backup screw beside each cover catch, `off` toward the middle of the wall."""
+        out = []
+        for (x, yface) in faces:
+            xs = x + S.SCREW['off'] if x < L / 2 else x - S.SCREW['off']
+            out.append((xs, yface, 1 if yface == 0.0 else -1))
+        return out
+
+    def screw_bosses(L, D, z_t, wall, z_lo, z_hi, faces):
+        """R122: the insert bosses - boss_w wide, boss_depth in from the inner face of a `wall` thick side, z_lo..z_hi (joined to the deck
+        plate or the floor: never floating, R101)."""
+        SC = S.SCREW
+        out = []
+        for (xs, yf, sg) in screw_points(L, faces):
+            yi = wall if sg > 0 else D - wall
+            out.append(box(xs - SC['boss_w'] / 2, min(yi, yi + sg * SC['boss_depth']) - (0.01 if sg < 0 else 0), z_lo,
+                           xs + SC['boss_w'] / 2, max(yi, yi + sg * SC['boss_depth']) + (0.01 if sg > 0 else 0), z_hi))
+        return out
+
+    def screw_inserts(L, D, zc, faces):
+        """R122: the heat-set insert holes, from the outer face inward (d_ins, ins_depth deep)."""
+        SC = S.SCREW
+        return [cyl((xs, (0.0 if sg > 0 else D) - sg * 0.5, zc), (xs, (0.0 if sg > 0 else D) + sg * SC['ins_depth'], zc), SC['d_ins'])
+                for (xs, yf, sg) in screw_points(L, faces)]
+
     def base_shell(L, z_d, z_t, extra_parts):
         """Deck: top plate + perimeter skirt (rounded plan), open underneath; the skirt carries the snap pockets."""
         R = S.BASE_R
         plate = rrect(0, 0, L, DIM['D'], z_t - S.PLATE, z_t, R)
         skirt = rrect(0, 0, L, DIM['D'], z_d, z_t - S.PLATE + 0.01, R)
         bo(skirt, rrect(S.SKIRT, S.SKIRT, L - S.SKIRT, DIM['D'] - S.SKIRT, z_d - 1, z_t, R - S.SKIRT), 's')
-        return union_all([plate, skirt] + extra_parts)
+        zsc = z_t - S.SCREW['z_from_top']           # R122: insert bosses beside the cover catches, hanging from the deck plate
+        bosses = screw_bosses(L, DIM['D'], z_t, S.SKIRT, zsc - S.SCREW['boss_h'] / 2, z_t - S.PLATE + 0.01, cover_catches(L))
+        return union_all([plate, skirt] + extra_parts + bosses)
 
     def base_snap_cuts(L, z_t, z_d, pan_faces):
         """Pockets in the skirt: for the cover catches (outer face, near the top) and the belly-pan catches (inner face,
         near the bottom). Also clears the ring inside the skirt where the pan wall slides up."""
         zc = z_t - S.SNAP['z_from_top']
-        cuts = []
+        cuts = screw_inserts(L, DIM['D'], z_t - S.SCREW['z_from_top'], cover_catches(L))     # R122 heat-set insert holes
         for (x, y) in cover_catches(L):
             if True:
                 cuts.append(cyl((x - S.SNAP['w'] / 2 - 0.5, y, zc), (x + S.SNAP['w'] / 2 + 0.5, y, zc), S.SNAP['bump'] + 0.2))
@@ -617,7 +674,7 @@ def build(out_dir, save=True, renders=True, rev=6):
         return comp(pre + 'Pan_PA12_printed', pan, AP['pa12_pan'], MAT['pa'], sh)
 
     def cover(L, D, z_t, z_top, notches, label_list, pre, sh, vents=(), ribs=None, side_vents=(), x0=0.0, y0=0.0, R=None, r=None,
-              zb=None, zc=None, inner_R=None, inner_r=None):
+              zb=None, zc=None, inner_R=None, inner_r=None, screw_z=None):
         """Rounded snap-on cover over a base L x D (base outline from (x0, y0)). notches = [(axis, pos, centre_u, z_top_of_notch, width)]:
         a U-notch open at the bottom edge in the end (axis 'x') or side (axis 'y') wall. Rev 5: bumper band round the bottom,
         vertical ribs on the walls (ribs = {'y': [x...], 'x': [y...]}), vent slots through the top (vents = [(x, y, along)])
@@ -655,6 +712,10 @@ def build(out_dir, save=True, renders=True, rev=6):
                     ya, yb_ = (yf - t - bo_ - 1, yf + 1) if sy < 0 else (yf - 1, yf + t + bo_ + 1)
                     bo(out, box(xs - sw['slot'] / 2, ya, zb - 1, xs + sw['slot'] / 2, yb_, zb + sw['len']), 's')
                 bo(out, cyl((x0 + x - sw['w'] / 2 + 0.5, yf, zc), (x0 + x + sw['w'] / 2 - 0.5, yf, zc), sw['bump']), 'u')
+        zs_ = z_t - S.SCREW['z_from_top'] if screw_z is None else screw_z
+        for (xs, yface, sg) in screw_points(L, cover_catches(L)):    # R122: clearance hole for the optional backup screw
+            yf = y0 - g if yface == 0.0 else y0 + D + g
+            bo(out, cyl((x0 + xs, yf - sg * (t + bo_ + 1), zs_), (x0 + xs, yf + sg * 1.0, zs_), S.SCREW['d_clear']), 's')
         for (axis, pos, u, zn, wd) in notches:
             if axis == 'x':      # end wall at x = pos, notch centred on y = u
                 n = box(pos - 6, u - wd / 2, zb - 1, pos + 6, u + wd / 2, zn - wd / 2)
@@ -1281,6 +1342,7 @@ def build(out_dir, save=True, renders=True, rev=6):
         pre = 'BattRelay_'
         sh = S.PLACE['BATTRELAY']
         Lr, Dr, fl = R['L'], R['D'], R['floor']
+        DIM['D'], DIM['snaps_rear'] = Dr, None             # built after POWER: do not inherit its rear catch positions (cover_catches)
         zf = 10.0                                          # relay flange face (raised 6 on bosses: captured nut + limiter under it)
         tz0, tz1 = zf + 10.0, zf + 30.0                    # terminal blocks (TE side view: 10 back from the flange face, 20 tall)
         x3 = R['x_t3']
@@ -1302,6 +1364,9 @@ def build(out_dir, save=True, renders=True, rev=6):
         base = rrect(0, 0, Lr, Dr, 0, fl, 10.0)
         rim = rrect(0, 0, Lr, Dr, fl - 0.01, R['rim'], 10.0)
         bo(rim, rrect(3, 3, Lr - 3, Dr - 3, 0, R['rim'] + 1, 7.0), 's')
+        rb_faces = [(x, y) for y in (0.0, Dr) for x in snap_xs(Lr)]
+        rb_zs = (fl + R['rim']) / 2                         # R122: insert bosses standing on the floor against the rim, beside each catch
+        parts += screw_bosses(Lr, Dr, R['rim'], 3.0, fl - 0.01, R['rim'], rb_faces)
         bo(rim, box(-1, 16.0, 0, 22.0, Dr - 16.0, R['rim'] + 1), 's')            # open -x end
         bo(rim, box(Lr - 22.0, 16.0, 0, Lr + 1, Dr - 16.0, R['rim'] + 1), 's')   # open +x end
         parts += [rim]
@@ -1357,6 +1422,7 @@ def build(out_dir, save=True, renders=True, rev=6):
         for x in snap_xs(Lr):
             for y in (0.0, Dr):
                 cuts.append(cyl((x - S.SNAP['w'] / 2 - 0.5, y, R['rim'] - 3.0), (x + S.SNAP['w'] / 2 + 0.5, y, R['rim'] - 3.0), S.SNAP['bump'] + 0.2))
+        cuts += screw_inserts(Lr, Dr, rb_zs, rb_faces)
         sub_all(base, cuts)
         comp(pre + 'Base_PA12_printed', base, AP['pa12_lt'], MAT['pa'], sh)
         comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
@@ -1444,7 +1510,7 @@ def build(out_dir, save=True, renders=True, rev=6):
         zv = (6.5 + S.RUG['band_h'] + z_top - 6.0) / 2
         side_vents = [(f, u, z_) for f in ('-y', '+y') for u in (66.0, 84.0, 102.0, 120.0) for z_ in (zv - 4.0, zv + 4.0)]
         oc = cover(Lr, Dr, R['rim'], z_top, notches, labels, pre, sh, side_vents=side_vents, R=12.95, r=6.0, zb=LG['ear_t'] + 0.5,
-                   zc=R['rim'] - 3.0, inner_R=10.45, inner_r=3.5, ribs={'y': [22.0, Lr - 22.0], 'x': [50.0, 80.0]})
+                   zc=R['rim'] - 3.0, inner_R=10.45, inner_r=3.5, ribs={'y': [22.0, Lr - 22.0], 'x': [50.0, 80.0]}, screw_z=rb_zs)
         return dict(L=Lr, D=Dr, H=z_top, L_with_tabs=Lr + 2 * (LG['ear_len'] + 6.0), D_with_tabs=Dr, tabs=tabs,
                     parts=dict(bar=((Bb['x0'] + Bb['x1']) / 2, tsy, btop), pad=(a_out + 2.0, tsy, btop), fuse=((a_in + a_out) / 2, tsy, btop + 4),
                                ped=(30.0, tsy - pw, bz0 - 8.0), relay=(rx, yb + 22.0, zf + 40.0), plug=(gcx, yb - H_['plug_to'] + 2, tz0 + 9.0)))
