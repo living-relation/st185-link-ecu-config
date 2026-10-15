@@ -206,6 +206,40 @@
         "(ring lug, 8 AWG, M6)"
       ],
       "source": "TE datasheet V23132-X0000-A001 (HCR 150, rev 1403, _research/datasheets), 'Connector Information': coil side AMP SUPERSEAL 1.5 receptacle 282080-1, seal 281934-2, contact 282110-1; load side cable lug M6 on M6 screw terminals, max cable 25 mm2"
+    },
+    "DTM06-4S": {
+      "contacts": [
+        "0462-201-20141",
+        "0462-201-2031",
+        "0462-005-20141",
+        "0462-005-2031",
+        "1062-20-0122",
+        "1062-20-0144",
+        "1062-20-0222",
+        "1062-20-0244",
+        "1062-20-0322",
+        "1062-20-0344",
+        "1062-20-0377",
+        "1062-20-0622"
+      ],
+      "source": "TE Connectivity 'Common Contacts' set for ICT DEUTSCH housings (DigiKey TechForum 'Common Contacts for TE ICT Deutsch Housings', https://forum.digikey.com/t/common-contacts-for-te-ict-deutsch-housings/466, read 2026-10-15; page covers the DT series including DTM); DTM06-xS = size 20 cavities (TE DEUTSCH ICT Connector Product Guide Nov 2022, p.4 'DTM Series Configurations' 'DTM0*-6* 6 size 20' and p.8 'Contacts for DT Series' size 20 socket 0462-201-20**); size 20 sockets only"
+    },
+    "DTM06-6S": {
+      "contacts": [
+        "0462-201-20141",
+        "0462-201-2031",
+        "0462-005-20141",
+        "0462-005-2031",
+        "1062-20-0122",
+        "1062-20-0144",
+        "1062-20-0222",
+        "1062-20-0244",
+        "1062-20-0322",
+        "1062-20-0344",
+        "1062-20-0377",
+        "1062-20-0622"
+      ],
+      "source": "TE Connectivity 'Common Contacts' set for ICT DEUTSCH housings (DigiKey TechForum 'Common Contacts for TE ICT Deutsch Housings', https://forum.digikey.com/t/common-contacts-for-te-ict-deutsch-housings/466, read 2026-10-15; page covers the DT series including DTM); DTM06-xS = size 20 cavities (TE DEUTSCH ICT Connector Product Guide Nov 2022, p.4 'DTM Series Configurations' 'DTM0*-6* 6 size 20' and p.8 'Contacts for DT Series' size 20 socket 0462-201-20**); size 20 sockets only"
     }
   }
 }
