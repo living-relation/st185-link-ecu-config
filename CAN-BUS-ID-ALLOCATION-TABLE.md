@@ -23,7 +23,7 @@
 | 0x3EB | 1003 | Gear / Fuel | ECU → Cluster | 50 ms | Immutable — coded-complete |
 | 0x3EC | 1004 | Boost map selection | Cluster → ECU | event (on confirmed button press) | Immutable — coded-complete |
 | 0x3ED | 1005 | TC slip-angle/setting selection | Cluster → ECU | event (on confirmed button press) | Immutable — coded-complete |
-| 0x3EE | 1006 | Engine Protect | ECU → Cluster | 50 ms | Immutable — coded-complete |
+| 0x3EE | 1006 | Engine Protect | ECU → Cluster | 10 ms | Immutable — coded-complete |
 | **0x3EF** | **1007** | **Drive Assist & Status (NEW)** | ECU → RealDash | 50 ms | New — this allocation |
 | **0x3F0** | **1008** | **Extended Sensors (NEW)** | ECU → RealDash | 100 ms | New — this allocation |
 | **0x3F1** | **1009** | **IMU & Extended Warnings (NEW)** | ECU → RealDash | 50 ms | New — this allocation |
@@ -72,7 +72,8 @@ Source: `link_g4x_can_setup.lcs`, `CANBUS-LINK-G4X-CONFIG.md`. All streams are *
 | 1 | Fuel Level | uint8 | 1 | 0 | % |
 | 2–7 | — | — | — | — | **Free (6 bytes)** |
 
-### 0x3EE — Engine Protect (CycleTime 50ms)
+### 0x3EE — Engine Protect (CycleTime 10ms)
+Knock warning = fastest possible, never delayed (DECISIONS R98, 2026-10-15; was 50 ms).
 Drives the full-screen warning overlay (max 3 shown, priority-ordered). 0 = OK, nonzero = active.
 
 | Bytes | Field | Type | Notes |

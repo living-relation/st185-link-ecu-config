@@ -31,7 +31,7 @@ ID_ENGINE_FAST = 0x3E8      # 10 ms
 ID_SPEED_PRESS_IGN = 0x3E9  # 10 ms
 ID_LAMBDA = 0x3EA           # 10 ms
 ID_GEAR_FUEL = 0x3EB        # 50 ms
-ID_ENGINE_PROTECT = 0x3EE   # 50 ms
+ID_ENGINE_PROTECT = 0x3EE   # 10 ms (DECISIONS R98: knock never delayed)
 
 # Cluster -> ECU (event driven, button press)
 ID_BOOST_MAP_SEL = 0x3EC

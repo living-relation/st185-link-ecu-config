@@ -64,8 +64,8 @@
     {
       "id": "0x3EE",
       "name": "Engine Protection Status",
-      "cycle_ms": 50,
-      "_comment": "Engine-protection/limit flags ONLY. Each byte: 0=OK, nonzero=active. Firmware ORs each nonzero byte into one warning bit and shows the RIGHT-cluster full-screen warning (up to 3, highest priority first: knock > ign-cut > fuel-cut > boost-cut > sensor > throttle). Do NOT put gauge-shown conditions here (oil pressure, fuel level, coolant/oil/IAT temps) — those are already shown by gauge color. Map each byte to a Link limit/protection flag (Link broadcasts limit flags as a bit field; route the relevant bit/level to each byte, or send the limit % directly).",
+      "cycle_ms": 10,
+      "_comment": "10 ms (100 Hz) since 2026-10-15, DECISIONS R98: knock warning = fastest possible, never delayed (no hold, no debounce, no delay anywhere). Engine-protection/limit flags ONLY. Each byte: 0=OK, nonzero=active. Firmware ORs each nonzero byte into one warning bit and shows the RIGHT-cluster full-screen warning (up to 3, highest priority first: knock > ign-cut > fuel-cut > boost-cut > sensor > throttle). Do NOT put gauge-shown conditions here (oil pressure, fuel level, coolant/oil/IAT temps) — those are already shown by gauge color. Map each byte to a Link limit/protection flag (Link broadcasts limit flags as a bit field; route the relevant bit/level to each byte, or send the limit % directly).",
       "channels": [
         { "byte": 0, "length": 1, "name": "Knock",         "pclink_name": "Knock Level / Knock Limit",   "scale": 1, "offset": 0, "unit": "0/active", "note": "Nonzero = knock detected / knock retard active." },
         { "byte": 1, "length": 1, "name": "Ign Cut",       "pclink_name": "Ignition Cut %",              "scale": 1, "offset": 0, "unit": "0/active", "note": "Nonzero = ignition being cut (limiter active)." },

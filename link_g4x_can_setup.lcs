@@ -65,12 +65,12 @@
     </Channel>
 
     <!-- ═══════════════════════════════════════════════════════════════════
-         STREAM 0x3EE — Engine Protection Status  (50 ms cycle)
+         STREAM 0x3EE — Engine Protection Status  (10 ms cycle; DECISIONS R98: knock = fastest possible, never delayed)
          Each byte: 0 = OK, nonzero = limit/protection active.
          Map each parameter to the corresponding Link protection/limiting event.
          Drives the RIGHT cluster warning overlay.
          ═══════════════════════════════════════════════════════════════════ -->
-    <Channel ID="0x3EE" Name="Engine Protect" CycleTime="50" Type="Custom">
+    <Channel ID="0x3EE" Name="Engine Protect" CycleTime="10" Type="Custom">
       <Parameter Name="Knock"          StartBit="0"  Length="8" Scale="1" Offset="0" ByteOrder="BigEndian" />
       <Parameter Name="Ign Cut"        StartBit="8"  Length="8" Scale="1" Offset="0" ByteOrder="BigEndian" />
       <Parameter Name="Fuel Cut"       StartBit="16" Length="8" Scale="1" Offset="0" ByteOrder="BigEndian" />

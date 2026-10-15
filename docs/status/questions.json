@@ -2,66 +2,6 @@
   "updated": "2026-10-15",
   "questions": [
     {
-      "id": "K2",
-      "topic": "The ECU 'engine stop' input has no switch (row 50)",
-      "text": "Your rules say two things stop the engine: the trunk kill switch AND the ECU's Stop Switch input (R19, R64). The kill switch is drawn and works on its own (it cuts the battery and the alternator), so the CSB3 being on a switched feed is fine. But the ECU stop input is not connected to anything, and all 10 ECU digital inputs are already used. What should trigger it?",
-      "options": [
-        {
-          "value": "A",
-          "label": "A CSB3 button: a freed CSB3 input (S4 or S5) sends 'stop' to the ECU over CAN; no new ECU wire",
-          "recommended": true
-        },
-        {
-          "value": "B",
-          "label": "Drop the ECU stop input; the trunk kill switch is the only stop (changes R19 / R64)"
-        },
-        {
-          "value": "C",
-          "label": "A separate dash switch wired to the ECU (an ECU pin has to be moved to free a digital input)"
-        }
-      ]
-    },
-    {
-      "id": "K3",
-      "topic": "Knock warning: send it faster? (row 102)",
-      "text": "The cluster shows KNOCK and beeps the moment the ECU's 0x3EE message says knock. That message goes out every 50 ms, so the warning can lag up to 50 ms. The RPM and boost messages already go every 10 ms. The bus has plenty of room and the cluster needs no change.",
-      "options": [
-        {
-          "value": "A",
-          "label": "Yes, every 10 ms: an agent changes the 4 CAN files now and runs the parity check (R80)",
-          "recommended": true
-        },
-        {
-          "value": "B",
-          "label": "No, keep 50 ms"
-        },
-        {
-          "value": "C",
-          "label": "20 ms as a middle step"
-        }
-      ]
-    },
-    {
-      "id": "K4",
-      "topic": "When to build the circuit tracer (row 117)",
-      "text": "The circuit tracer (follows every circuit end to end, ECU on and off) was set to start once all drawings are final. All 15 are approved, but CabinPower will still change for the fuse box (row 113 and question J3).",
-      "options": [
-        {
-          "value": "A",
-          "label": "After the fuse box is approved and the CabinPower follow-ups land (rows 107, 113)",
-          "recommended": true
-        },
-        {
-          "value": "B",
-          "label": "Now, and run it again after CabinPower changes"
-        },
-        {
-          "value": "C",
-          "label": "Later; not needed before the build"
-        }
-      ]
-    },
-    {
       "id": "K5",
       "topic": "First PDF export: which drawing? (row 116)",
       "text": "harness.design's Export > PDF only works by hand in the app. Our checker guesses the size of the title block and notes block in the corners until it sees one real export.",
