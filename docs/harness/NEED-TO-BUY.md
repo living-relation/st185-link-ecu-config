@@ -24,15 +24,15 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RS 137-809` | RS PRO | RS PRO A2/304 STAINLESS HEX SOCKET SET SCREW M5 X 12, DIN 916 | 18 | 0 | **18** |
 | `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 18 | 0 | **18** |
 | `Klauke 2R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 10 MM2, M5, HOLE 5.3; B 12, L 22 | 16 | 0 | **16** |
-| `SSCF-M3-10-A4` | Accu | SOCKET HEAD CAP SCREW M3 X 10, DIN 912 / ISO 4762, A4 (316) STAINLESS | 15 | 0 | **15** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
 | `280919-2` | TE Connectivity | TERMINAL, FASTIN-FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, LOCKING LANCE, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2) | 14 | 0 | **14** |
 | `Essentra 301540040050` | Essentra Components | HEX STANDOFF, FEMALE-FEMALE M5, 8.0 AF, 40.0 MM, NICKEL-PLATED BRASS; SOLD IN 50S | 14 | 0 | **14** |
+| `SSCF-M3-10-A4` | Accu | SOCKET HEAD CAP SCREW M3 X 10, DIN 912 / ISO 4762, A4 (316) STAINLESS | 14 | 0 | **14** |
 | `880398-2` | TE Connectivity | TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG) | 13 | 0 | **13** |
 | `EFC 10S00056` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 6 MM, ZINC-PLATED STEEL | 13 | 0 | **13** |
 | `2R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD | 12 | 0 | **12** |
-| `94459A140` | McMaster-Carr | HEAT-SET INSERT FOR PLASTIC, BRASS, M3 X 0.5, 5.7 MM INSTALLED LENGTH, 4.0 MM HOLE (PACK OF 50 COVERS ALL THREE BOXES) | 12 | 0 | **12** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
+| `94459A140` | McMaster-Carr | HEAT-SET INSERT FOR PLASTIC, BRASS, M3 X 0.5, 5.7 MM INSTALLED LENGTH, 4.0 MM HOLE (PACK OF 50 COVERS ALL THREE BOXES) | 11 | 0 | **11** |
 | `TMS-SCE-1/2-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 11 | 0 | **11** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 11 | 0 | **11** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 11 | 2 | **9** |
@@ -339,8 +339,8 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `RNF-100-1/8-0-STK` | LOGIC, POWER | 2 | this section's CSVs |
 | `RNF-100-3/32-0-STK` | LOGIC, POWER | 2 | this section's CSVs |
 | `Power_Retainer_R1_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
-| `94459A140` | BATTRELAY, LOGIC, POWER | 12 | this section's CSVs |
-| `SSCF-M3-10-A4` | BATTRELAY, LOGIC, POWER | 15 | this section's CSVs |
+| `94459A140` | BATTRELAY, LOGIC, POWER | 11 | this section's CSVs |
+| `SSCF-M3-10-A4` | BATTRELAY, LOGIC, POWER | 14 | this section's CSVs |
 | `Klauke 2R5` | BATTRELAY, LOGIC, POWER | 16 | this section's CSVs |
 | `Klauke 3R5MS` | POWER | 2 | this section's CSVs |
 | `Klauke 6R8` | POWER | 1 | this section's CSVs |

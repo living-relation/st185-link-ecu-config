@@ -493,6 +493,12 @@ def outline(part, kind, side=1):
 # never floating (R101); walls round the insert >= 2.0 (R73). It sits `off` along the wall from the catch centre, clear of the tongue and
 # its two slots (half width 6 + 1.2 + the head), at the catch height. The belly-pan catches are tongues in the pan wall with no tab, so
 # they get no screw (Dan: "if they have tabs").
+def SCREW_SKIP_RB(L, D):
+    """Battery block cover catches with no backup screw: the rear one at 0.75 L - the HCR150 flange (x 76.5-176.5, from z 10) covers the
+    rear rim there and the cover skirt ends at z 6.5, so no insert boss fits (3 screws on that box)."""
+    return [(L * 0.75, D)]
+
+
 SCREW = dict(off=13.0, d_ins=4.0, ins_depth=6.0, boss_w=8.6, boss_depth=5.0, boss_h=8.0, d_clear=3.4, head_d=5.5, z_from_top=9.5)
 # ins_depth: insert hole from the skirt's outer face (5.7 insert + 0.3); skirt 3.0 + boss 5.0 = 8.0, so 2.0 of wall stays behind it (R73)
 
@@ -509,7 +515,8 @@ SCREW = dict(off=13.0, d_ins=4.0, ins_depth=6.0, boss_w=8.6, boss_depth=5.0, bos
 # Wire holes = the wire there + clr per side (smaller than the crimped insulation barrel it stops; a thicker-wire harness reprints the clip).
 TERM_SWAP = {'2293255-1': '280919-2'}
 RETAIN = {'POWER': ['R1']}      # relay positions whose terminals are held by a retainer clip (the heater relay k_htr)
-RETAINER = dict(t=2.0, play=0.2, leg=(2.5, 4.0), leg_h=6.0, barb=0.6, barb_h=1.5, clr=CLR, boss=2.0, bear=0.3)
+RETAINER = dict(t=2.0, play=0.2, leg=(2.5, 4.0), leg_h=6.0, barb=0.6, barb_h=1.5, clr=CLR, boss=2.0, bear=0.3,
+                leg_shift={'R1': (0.0, 10.5)})   # along the short side, per leg: R1's +x leg clears the heater feed-cable bend saddle (y 38.4-47.6)
 # t plate (R73 wall), play under the lowest terminal end, leg cross-section / height into its collar pocket, barb out / height at the leg
 # top (snaps over the pocket's undercut), boss = collar wall round each leg pocket, bear = least the crimped insulation barrel rests on
 # the plate each side. On a retained end the RNF-100 build-up is cut to the insulation barrel length, so only the bare wire goes through.

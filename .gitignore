@@ -42,3 +42,6 @@ _cluster/
 *.f3z
 cad/busbar/**/*_drawing.pdf
 
+
+# close-up render scratch (render_closeups.py raw output; the finished PNGs beside it are tracked)
+cad/fusebox/rev7/renders/closeups/raw/
