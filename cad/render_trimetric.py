@@ -43,6 +43,9 @@ MODELS = {
     "fusebox-logic":  ("cad/fusebox/trimetric-logic.png",     ["cad/fusebox/Logic_*.step"]),
     "fusebox-battrelay": ("cad/fusebox/trimetric-battrelay.png", ["cad/fusebox/BattRelay_*.step"]),
     "enclosure-vrc":  ("cad/enclosures/vrc/trimetric.png",    ["cad/enclosures/vrc/VRC_assembly.step"]),
+    # printed board holder of the VRC box (OPEN-ITEMS row 97, K7), shown with the board in it
+    "enclosure-vrc-holder": ("cad/enclosures/vrc/trimetric-holder.png", ["cad/enclosures/vrc/VRC_part_VRC-Board-Holder.step",
+                             "cad/enclosures/vrc/VRC_part_OpenLogicEFI_NCV1124_VR_module_RevB3.step"]),
     "enclosure-csb3": ("cad/enclosures/csb3/trimetric.png",   ["cad/enclosures/csb3/CSB3_assembly.step"]),
     "drb102-plate":   ("cad/drb102-plate/trimetric.png",      ["cad/drb102-plate/DRB102-firewall-plate-assembly.step"]),
     "fuel-hanger":    ("cad/fuel-hanger/trimetric.png",       ["HANGER/hanger_billet_assembly.step"]),
@@ -78,6 +81,7 @@ MATERIALS = [
     (r"fuse_ami_orange", "#ee7a1c"), (r"fuse_ami_ltgreen", "#7fd07a"), (r"fuse_ami_red", "#cc3333"),
     (r"fuse_ami_yellow", "#e6cc3a"), (r"fuse_atm", "#3d6fc4"),
     (r"cu|copper|c110|bar_power|pad_out|strip_logic", "#c8794a"),
+    (r"board.holder", "#8f918c"),        # printed PA12 VRC board holder (before "board" / "plate" catch it)
     (r"al6061|_bar_|6061|billet|plate|strut|saddle|foot|lug_block|strap", "#a9b4bf"),
     (r"brass|insert", "#c9a64a"),
     (r"bolt|screw|a2|iso|standoff|keystone|nut|setscrew|clamp", "#7d8590"),

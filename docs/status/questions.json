@@ -1,21 +1,4 @@
 {
   "updated": "2026-10-15",
-  "questions": [
-    {
-      "id": "K7",
-      "topic": "VRC board holder: model it now? (row 97)",
-      "text": "The 3D-printed holder for the VRC board is not modelled yet. The board's size is known from the maker's published design files (about 24 x 24 mm), but your board is the DetonationEMS build and nobody has measured it.",
-      "options": [
-        {
-          "value": "A",
-          "label": "Model it now from the published size with a little extra room; check the fit when the board is here (a reprint is cheap)",
-          "recommended": true
-        },
-        {
-          "value": "B",
-          "label": "Wait until you measure the board"
-        }
-      ]
-    }
-  ]
+  "questions": []
 }
