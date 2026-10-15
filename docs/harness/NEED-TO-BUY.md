@@ -9,14 +9,14 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 92 | 0 | **92** |
+| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 90 | 0 | **90** |
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 61 | 0 | **61** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 50 | 0 | **50** |
 | `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 45 | 0 | **45** |
-| `TMS-SCE-3/16-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 35 | 0 | **35** |
+| `TMS-SCE-3/16-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 36 | 0 | **36** |
 | `RS 264-6432` | RS PRO | RS PRO A2/304 STAINLESS SERRATED FLANGE HEX NUT M5, DIN 6923 | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
-| `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 23 | 0 | **23** |
+| `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 25 | 0 | **25** |
 | `53941-1` | TE Connectivity | PIDG CLOSED RING TONGUE TERMINAL, 16-14 AWG, #8 / M4 STUD, BLUE, TIN | 21 | 0 | **21** |
 | `RS 231-0691` | RS PRO | RS PRO AISI 301 STAINLESS SPRING WASHER M4, DIN 127B, 0.9 THICK | 21 | 0 | **21** |
 | `RS 287-3915` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M4 X 8, DIN 933 | 21 | 0 | **21** |
@@ -107,6 +107,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `6-1419137-4` | TE Connectivity | RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A403, 1 FORM C, 12 VDC COIL, DIODE SUPPRESSED | 3 | 2 | **1** |
 | `90980-10341` | Toyota | CONNECTOR, PLUG, TOYOTA, ROUND, 3 POS | 1 | 0 | **1** |
 | `90980-11143` | Toyota | CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS | 1 | 0 | **1** |
+| `90980-11250` | Toyota | CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS (HOUSING CONNECTOR F), BACK-UP LIGHT SWITCH | 1 | 0 | **1** |
 | `AMI-50` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 1 | 0 | **1** |
 | `ATM-20` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 1 | 0 | **1** |
 | `BattRelay_Base_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | FLOOR PLATE, RELAY PLATFORM, FUSE PEDESTAL, 2 END TABS; PA12 | 1 | 0 | **1** |
@@ -257,7 +258,6 @@ is in `interfaces.json` and in the build list's EWD column.
 |---|---:|
 | A-cabin | 3 |
 | B-cabin | 2 |
-| B-engine | 2 |
 | CSB3 | 5 |
 | CabinPower | 6 |
 | ClusterLED | 6 |

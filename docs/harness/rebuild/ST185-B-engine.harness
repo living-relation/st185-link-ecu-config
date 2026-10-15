@@ -308,8 +308,8 @@
         "handle": "c12"
       },
       "target": {
-        "id": "fl_reverse_sw_c1",
-        "handle": "Terminal"
+        "id": "rev_sw",
+        "handle": "c1"
       },
       "color": "Red",
       "partId": "m16_16_20",
@@ -333,18 +333,11 @@
           "id": "w_sw7_e_lp3",
           "schematicPosition": {
             "x": -90,
-            "y": 900
+            "y": 870
           }
         },
         {
           "id": "w_sw7_e_lp4",
-          "schematicPosition": {
-            "x": 960,
-            "y": 900
-          }
-        },
-        {
-          "id": "w_sw7_e_lp5",
           "schematicPosition": {
             "x": 960,
             "y": 870
@@ -1002,8 +995,8 @@
         "handle": "c25"
       },
       "target": {
-        "id": "fl_reverse_sw_c2",
-        "handle": "Terminal"
+        "id": "rev_sw",
+        "handle": "c2"
       },
       "color": "Red",
       "stripeColor": "Blue",
@@ -1027,14 +1020,14 @@
           "id": "w_rev_feed_e_lp3",
           "schematicPosition": {
             "x": -30,
-            "y": 930
+            "y": 900
           }
         },
         {
           "id": "w_rev_feed_e_lp4",
           "schematicPosition": {
             "x": 960,
-            "y": 930
+            "y": 900
           }
         }
       ],
@@ -1794,6 +1787,34 @@
       "width": 150
     },
     {
+      "id": "rev_sw",
+      "label": "Back-up SW B1",
+      "partId": "cp_rev_sw2",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "propagate": false,
+          "signal": "OUT +12V in R"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "propagate": false,
+          "signal": "FEED GAUGE 15A"
+        }
+      ],
+      "layoutPosition": {
+        "x": 2790,
+        "y": 450
+      },
+      "schematicPosition": {
+        "x": 990,
+        "y": 840
+      },
+      "width": 150
+    },
+    {
       "id": "cpiat",
       "label": "Charge-Pipe IAT Sensor",
       "partId": "cp_toy2p",
@@ -1932,21 +1953,6 @@
   ],
   "terminals": [
     {
-      "id": "fl_reverse_sw_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1992 p.132-133 / Mitchell 1993 Fig. 16 B1 pin 1 (R-B in the factory wiring, new wire here) back-up light switch out, +12V in reverse -> bulkhead B c12 -> reverse relay k_rev 86 + opto IN2 (CSB3 S8) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 990,
-        "y": 870
-      },
-      "layoutPosition": {
-        "x": 2790,
-        "y": 360
-      },
-      "propagate": false
-    },
-    {
       "id": "br_w124_e",
       "type": "Loose",
       "signal": "Broken off - spur continues on ST185-A-engine: ETB motor + (Aux 9, B18), bulkhead B c5",
@@ -2063,21 +2069,6 @@
       "schematicPosition": {
         "x": 480,
         "y": 4920
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_reverse_sw_c2",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1992 p.132-133 / Mitchell 1993 Fig. 16 B1 pin 2 (R-L in the factory wiring, new wire here) back-up light switch feed <- bulkhead B c25 <- J/B No.1 GAUGE 15A (J/B3 3B-9) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
-      "schematicPosition": {
-        "x": 990,
-        "y": 930
-      },
-      "layoutPosition": {
-        "x": 2790,
-        "y": 450
       },
       "propagate": false
     }
@@ -3611,22 +3602,18 @@
       }
     },
     {
-      "id": "bn_bp_rev_sw__fl_reverse_sw_c1",
+      "id": "bn_bp_rev_sw__rev_sw",
       "sourceId": "bp_rev_sw",
-      "targetId": "fl_reverse_sw_c1",
+      "targetId": "rev_sw",
       "length": {
         "value": 50,
         "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_rev_sw__fl_reverse_sw_c2",
-      "sourceId": "bp_rev_sw",
-      "targetId": "fl_reverse_sw_c2",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
+      },
+      "separateLabels": true,
+      "endLabel": "B1",
+      "partIds": [
+        "cov_lbl_316"
+      ]
     }
   ],
   "splices": [
@@ -4270,23 +4257,7 @@
       }
     }
   ],
-  "terminalParts": [
-    {
-      "id": "tp_flying_lead",
-      "type": "Loose",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 12
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 22
-      },
-      "partNumber": "GENERIC FLYING LEAD",
-      "description": "TERMINAL, FLYING LEAD",
-      "manufacturer": "generic"
-    }
-  ],
+  "terminalParts": [],
   "connectorParts": [
     {
       "id": "cp_drb_plug",
@@ -4347,6 +4318,28 @@
       "partNumber": "90980-11062",
       "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS",
       "manufacturer": "Toyota",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_toy_ts"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2
+    },
+    {
+      "id": "cp_rev_sw2",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "90980-11250",
+      "description": "CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS (HOUSING CONNECTOR F), BACK-UP LIGHT SWITCH",
+      "manufacturer": "Toyota",
+      "url": "https://www.bmotorsports.com/shop/product_info.php/products_id/3515",
       "configurations": [
         {
           "id": "cfg",
