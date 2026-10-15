@@ -887,7 +887,7 @@
   "connectors": [
     {
       "id": "rl_pos_fw",
-      "label": "RADLOK + firewall",
+      "label": "RADLOK+ FW",
       "width": 150,
       "schematicPosition": {
         "x": 660,
@@ -909,7 +909,7 @@
     },
     {
       "id": "rl_pos_eng",
-      "label": "RADLOK + engine",
+      "label": "RADLOK+ ENG",
       "width": 150,
       "schematicPosition": {
         "x": 660,
@@ -930,7 +930,7 @@
     },
     {
       "id": "rl_neg_fw",
-      "label": "RADLOK - firewall",
+      "label": "RADLOK- FW",
       "width": 150,
       "schematicPosition": {
         "x": 660,
@@ -952,7 +952,7 @@
     },
     {
       "id": "rl_neg_eng",
-      "label": "RADLOK - engine",
+      "label": "RADLOK- ENG",
       "width": 150,
       "schematicPosition": {
         "x": 660,
@@ -973,7 +973,7 @@
     },
     {
       "id": "jump_pos",
-      "label": "Engine-bay jump post",
+      "label": "JUMP POST",
       "width": 270,
       "schematicPosition": {
         "x": 1320,
@@ -987,7 +987,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Tied to starter B+ / RADLOK +"
+          "signal": "Starter B+ tie"
         }
       ],
       "partId": "cp_jump"
@@ -996,26 +996,26 @@
       "id": "alt_plug",
       "width": 390,
       "partId": "cp_alt_round3",
-      "label": "Alternator G2 - round 3-pin plug (Toyota 90980-10341; 1993 EWD p.74-75 G2 (B) pinout)",
+      "label": "ALT G2",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "S - battery sense <- LOGIC ALTS 2A (Bus 1)",
+          "signal": "Alt S sense",
           "propagate": false,
           "contactPartId": "ct_generic_skt"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "L - charge lamp -> IG2-16 cowl lead -> ClusterLED charge LED (C12-8)",
+          "signal": "Alt L lamp",
           "propagate": false,
           "contactPartId": "ct_generic_skt"
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "IG - excite <- trunk kill switch 2nd pair <- J/B No.1 ECU-IG 15A (IG2-15)",
+          "signal": "Alt IG excite",
           "propagate": false,
           "contactPartId": "ct_generic_skt"
         }
@@ -1033,33 +1033,33 @@
       "id": "kill_sw",
       "width": 390,
       "partId": "cp_ks_longacre",
-      "label": "Kill switch - Longacre 52-45780, 4 terminal (trunk, passenger rear corner, Route 1)",
+      "label": "KILL SW",
       "cavities": [
         {
           "id": "c1",
           "designation": "MAIN 1",
-          "signal": "Battery + (LINE) <- trunk battery +",
+          "signal": "Kill SW BATT+",
           "propagate": false,
           "contactPartId": "ct_lug_stud"
         },
         {
           "id": "c2",
           "designation": "MAIN 2",
-          "signal": "LOAD -> H1 -> POWER box bus zone BAT+ (everything incl. alternator B+) and -> battery relay block BATT + (fuel pump)",
+          "signal": "Kill SW LOAD",
           "propagate": false,
           "contactPartId": "ct_lug_stud"
         },
         {
           "id": "c3",
           "designation": "ALT 1",
-          "signal": "Alternator IG in <- IG2-15 (J/B No.1 ECU-IG 15A)",
+          "signal": "Alternator IG in",
           "propagate": false,
           "contactPartId": "ct_lug_stud"
         },
         {
           "id": "c4",
           "designation": "ALT 2",
-          "signal": "Alternator IG out -> alternator G2-3 (20 A pole)",
+          "signal": "Alternator IG out",
           "propagate": false,
           "contactPartId": "ct_lug_stud"
         }
@@ -1075,18 +1075,18 @@
     },
     {
       "id": "fb_batt",
-      "label": "Battery relay block - fuel pump relay + its fuse, trunk, passenger side between the rear wall and the battery (cad/fusebox rev 5, DECISIONS R75, Z4)",
+      "label": "BATT RLY BLK",
       "cavities": [
         {
           "id": "in",
           "designation": "BATT +",
-          "signal": "Battery feed in <- kill switch LOAD (MAIN 2), M6 stud on the bar - the kill switch also stops the pump",
+          "signal": "Battery feed in",
           "propagate": false
         },
         {
           "id": "fp",
           "designation": "FP 40A",
-          "signal": "AMI-40 FP fuse out -> fuel pump relay k_fp 30 (HCR150 terminal 3), one straight jumper",
+          "signal": "AMI-40 FP fuse out",
           "propagate": false,
           "contactPartId": "ct_klauke_2r5"
         }
@@ -1104,32 +1104,32 @@
     },
     {
       "id": "k_fp",
-      "label": "Fuel Pump Relay, TE HCR150 (seated in the battery relay block K1) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V - HCR 150 coil is a 2-pole Superseal plug (TE terminals 1/2, not marked 85/86), resistor-suppressed so polarity-free",
+      "label": "BATT K1",
       "cavities": [
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Fused +12V in (battery block FP 40A) - HCR150 terminal 3",
+          "signal": "FP 12V in",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ACTIVE-LOW Coil - -> Aux 3 / A19 - LOW-SIDE ONLY (Aux 1-4), from ST185-A-cabin",
+          "signal": "FP coil-",
           "contactPartId": "ct_ss15",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil + - ignition-switched 12V (LOGIC SW12), from ST185-CabinPower",
+          "signal": "FP coil+",
           "contactPartId": "ct_ss15",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "+12V out -> fuel pump (HCR150 terminal 5), wire on ST185-RearFuel",
+          "signal": "FP 12V out",
           "propagate": false
         },
         {
@@ -1153,7 +1153,7 @@
     {
       "id": "br_h1_batt_pos",
       "type": "Loose",
-      "signal": "H1 - broken off, continues on ST185-EngineRoom-C: trunk battery + -> POWER box bus zone c1 (BAT+)",
+      "signal": "BATT + -> POWER BUS BAT+",
       "schematicPosition": {
         "x": 0,
         "y": 150
@@ -1167,7 +1167,7 @@
     {
       "id": "br_h2_batt_neg",
       "type": "Loose",
-      "signal": "H2 - broken off, continues on ST185-EngineRoom-C: trunk battery - -> POWER box bus zone c8 (NEG bar)",
+      "signal": "BATT - -> POWER BUS GND",
       "schematicPosition": {
         "x": 0,
         "y": 240
@@ -1181,7 +1181,7 @@
     {
       "id": "br_h3_radlok_pos",
       "type": "Loose",
-      "signal": "H3 - broken off, continues on ST185-EngineRoom-C: POWER box bus zone c2 (ALT/STR) -> RADLOK +",
+      "signal": "ALT/STR + -> POWER BUS ALT/STR",
       "schematicPosition": {
         "x": 330,
         "y": 0
@@ -1195,7 +1195,7 @@
     {
       "id": "br_h6a_radlok_neg",
       "type": "Loose",
-      "signal": "H6a - broken off, continues on ST185-EngineRoom-C: POWER box bus zone c8 (NEG bar) -> RADLOK -",
+      "signal": "PWR NEG -> POWER BUS GND",
       "schematicPosition": {
         "x": 330,
         "y": 240
@@ -1209,7 +1209,7 @@
     {
       "id": "t_trunk_pos",
       "type": "Ring",
-      "signal": "Trunk battery +  (1/0, jump lug)",
+      "signal": "BATT + -> trunk batt +",
       "width": 270,
       "schematicPosition": {
         "x": 0,
@@ -1225,7 +1225,7 @@
     {
       "id": "t_trunk_neg",
       "type": "Ring",
-      "signal": "Trunk battery -  (1/0, jump lug)",
+      "signal": "BATT - -> trunk batt -",
       "width": 270,
       "schematicPosition": {
         "x": 0,
@@ -1241,7 +1241,7 @@
     {
       "id": "t_starter_b",
       "type": "Ring",
-      "signal": "Starter B+ post, jump lug, 1/0",
+      "signal": "B+ 1/0 -> starter B+",
       "width": 270,
       "schematicPosition": {
         "x": 990,
@@ -1257,7 +1257,7 @@
     {
       "id": "t_starter_b_2",
       "type": "Ring",
-      "signal": "Starter B+ post - lug 2, 2 AWG from alt",
+      "signal": "Alt B+ -> starter B+ 2",
       "width": 390,
       "schematicPosition": {
         "x": 990,
@@ -1273,7 +1273,7 @@
     {
       "id": "t_starter_b_3",
       "type": "Ring",
-      "signal": "Starter B+ post - lug 3, 2 AWG to jump post",
+      "signal": "Jump B+ -> starter B+ 3",
       "width": 390,
       "schematicPosition": {
         "x": 990,
@@ -1289,7 +1289,7 @@
     {
       "id": "t_alt_b",
       "type": "Ring",
-      "signal": "160 A alternator B+, 2 AWG to starter B+ (rear of engine, RH, under bulkheads A/B - Route 1 rev 3/4)",
+      "signal": "Alt B+ -> alternator B+",
       "width": 390,
       "schematicPosition": {
         "x": 990,
@@ -1305,7 +1305,7 @@
     {
       "id": "t_eng_block",
       "type": "Ring",
-      "signal": "Engine block ground stud, 1/0, jump lug",
+      "signal": "Eng GND 1/0 -> eng block",
       "width": 390,
       "schematicPosition": {
         "x": 990,
@@ -1322,7 +1322,7 @@
       "id": "br_alt_s",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator S (G2-1) -> LOGIC ALTS 2A, battery sense",
+      "signal": "Alt S -> FB-LOGIC ALTS 2A",
       "schematicPosition": {
         "x": 480,
         "y": 1080
@@ -1337,7 +1337,7 @@
       "id": "br_alt_l",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator L (G2-2) -> IG2-16 cowl lead -> charge LED",
+      "signal": "Alt L -> IG2-16",
       "schematicPosition": {
         "x": 480,
         "y": 1140
@@ -1352,7 +1352,7 @@
       "id": "br_alt_ig",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-EngineRoom-C (through its RH fender grommet): alternator IG (G2-3) <- kill switch 2nd pair <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
+      "signal": "Alt IG -> KILL SW ALT 2",
       "schematicPosition": {
         "x": 480,
         "y": 1200
@@ -1367,7 +1367,7 @@
       "id": "br_ig_ks_in",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-EngineRoom-C (glove box): alternator IG <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
+      "signal": "Alt IG in -> IG2-15",
       "schematicPosition": {
         "x": 0,
         "y": 660
@@ -1382,7 +1382,7 @@
       "id": "br_ig_ks_out",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-EngineRoom-C (glove box -> RH fender grommet): kill switch 2nd pair -> alternator IG (G2-3)",
+      "signal": "Alt IG out -> ALT G2 3",
       "schematicPosition": {
         "x": 0,
         "y": 720
@@ -1396,7 +1396,7 @@
     {
       "id": "br_w_fp85",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: Fuel Pump Relay 85 (k_fp) <- ECU-A A19",
+      "signal": "FP coil- -> ECU-A A19",
       "width": 390,
       "layoutPosition": {
         "x": 2400,
@@ -1411,7 +1411,7 @@
     {
       "id": "br_fp86",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: SW12 (LOGIC SW12 7.5A) -> fuel pump relay k_fp coil + (86) in the battery relay block",
+      "signal": "FP coil+ -> splice CP SW12",
       "width": 390,
       "layoutPosition": {
         "x": 2340,
@@ -1426,7 +1426,7 @@
     {
       "id": "br_fp_pump",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-RearFuel: fuel pump relay k_fp 87 (HCR150 terminal 5) -> fuel pump c1",
+      "signal": "Fuel pump 12V -> FUEL PUMP c1",
       "width": 390,
       "layoutPosition": {
         "x": 2280,

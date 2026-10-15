@@ -1490,11 +1490,11 @@
       }
     },
     {
-      "id": "ct_faston48",
+      "id": "ct_fastin48",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "2293255-1",
-      "description": "TERMINAL, FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2)",
+      "partNumber": "280919-2",
+      "description": "TERMINAL, FASTIN-FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, LOCKING LANCE, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2)",
       "manufacturer": "TE Connectivity",
       "minGauge": {
         "unit": "AWG",

@@ -38,7 +38,7 @@ COLORS = {"Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue",
 
 def check(fn):
     with open(os.path.join(SRC, fn), encoding="utf-8") as fh:
-        d = json.load(fh)
+        d = model.full_text(json.load(fh), fn)
     bad = []
     if d.get("version") != model.FORMAT_VERSION:
         bad.append("version is %r, not %s (DECISIONS R111)" % (d.get("version"), model.FORMAT_VERSION))

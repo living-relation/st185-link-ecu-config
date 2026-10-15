@@ -44,7 +44,40 @@ def harness_files(reg=None):
 
 def load(fn):
     with open(os.path.join(REB, fn), encoding="utf-8") as f:
-        return json.load(f)
+        return full_text(json.load(f), fn)
+
+
+# The app shows connector labels and cavity / terminal signals as the wiring table's
+# Destination and in layout "Show destinations", so the drawings carry short ones
+# (gate audit_destinations.py). The long text they replaced lives in full_text.json as
+# [short, long] pairs, and the gates read it back here so they see the long text as
+# before. A pair is put back only while the drawing still holds its short text: if Dan
+# renames something in the app, his name wins.
+FULL_TEXT = os.path.join(HERE, "full_text.json")
+_FULL = None
+
+
+def full_text(d, fn):
+    global _FULL
+    if _FULL is None:
+        with open(FULL_TEXT, encoding="utf-8") as f:
+            _FULL = json.load(f)
+    rec = _FULL.get(os.path.basename(fn))
+    if not rec:
+        return d
+
+    def put(obj, key, pair):
+        if pair and obj.get(key) == pair[0]:
+            obj[key] = pair[1]
+
+    for c in d.get("connectors", []):
+        r = rec["connectors"].get(c["id"], {})
+        put(c, "label", r.get("label"))
+        for x in c.get("cavities", []):
+            put(x, "signal", r.get("cavities", {}).get(x["id"]))
+    for t in d.get("terminals", []):
+        put(t, "signal", rec["terminals"].get(t["id"]))
+    return d
 
 
 def docs(reg=None):

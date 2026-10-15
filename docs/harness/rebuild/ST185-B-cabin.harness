@@ -2355,7 +2355,7 @@
   "connectors": [
     {
       "id": "bh_b_fw",
-      "label": "Bulkhead DRB102 - firewall receptacle (DRB12-102PAE-L018 + DRBF-1A), all 102 cavities; section B wired here",
+      "label": "BH-B",
       "width": 390,
       "partId": "cp_drb_recept",
       "cavities": [
@@ -2728,7 +2728,7 @@
         {
           "id": "c25",
           "designation": "62",
-          "signal": "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)",
+          "signal": "Rev SW feed",
           "contactPartId": "ct_hdp16p"
         },
         {
@@ -2818,19 +2818,19 @@
           "id": "c12",
           "designation": "76",
           "contactPartId": "ct_hdp16p",
-          "signal": "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
+          "signal": "Rev SW out"
         },
         {
           "id": "c19",
           "designation": "77",
-          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch",
+          "signal": "Gnd Out B-eng",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "78",
-          "signal": "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch",
+          "signal": "Gnd Out B-eng",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -2861,14 +2861,14 @@
         {
           "id": "c16",
           "designation": "83",
-          "signal": "Knock 1 SIG+ (ECU B9)",
+          "signal": "Knock 1 SIG+",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c17",
           "designation": "84",
-          "signal": "Knock 1 SIG- (to Gnd Out B22)",
+          "signal": "Knock 1 SIG-",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -2883,14 +2883,14 @@
           "id": "c5",
           "designation": "86",
           "contactPartId": "ct_hdp16p",
-          "signal": "ETB motor + (Aux 9, B18)",
+          "signal": "ETB motor +",
           "propagate": false
         },
         {
           "id": "c6",
           "designation": "87",
           "contactPartId": "ct_hdp16p",
-          "signal": "ETB motor - (Aux 10, B26)",
+          "signal": "ETB motor -",
           "propagate": false
         },
         {
@@ -2903,14 +2903,14 @@
         {
           "id": "c15",
           "designation": "89",
-          "signal": "Gearbox VSS signal (ECU B29, DI 8)",
+          "signal": "Gearbox VSS signal",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c20",
           "designation": "90",
-          "signal": "Switched 12V to gearbox VSS (from sp_sw12)",
+          "signal": "VSS 12V",
           "contactPartId": "ct_hdp16p"
         },
         {
@@ -2923,31 +2923,31 @@
         {
           "id": "c13",
           "designation": "92",
-          "signal": "CAN H to Link CAN-Lambda (ST185-CAN)",
+          "signal": "CAN H Lambda",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c14",
           "designation": "93",
-          "signal": "CAN L to Link CAN-Lambda (ST185-CAN)",
+          "signal": "CAN L Lambda",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c24",
           "designation": "94",
-          "signal": "CAN-Lambda CAN pair screen",
+          "signal": "Lambda CAN screen",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c3",
           "designation": "95",
-          "signal": "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)",
+          "signal": "CAN-Lambda +12V",
           "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c4",
           "designation": "96",
-          "signal": "CAN-Lambda ground to cabin chassis ground (14 AWG)",
+          "signal": "Lambda GND",
           "contactPartId": "ct_hdp12p"
         },
         {
@@ -3046,7 +3046,7 @@
         },
         {
           "id": "b10",
-          "signal": "Ign 8 (A/C Clutch Rly)",
+          "signal": "Ign 8 A/C Clutch Rly",
           "designation": "B10",
           "contactPartId": "ct_ss10_075"
         },
@@ -3056,13 +3056,13 @@
         },
         {
           "id": "b12",
-          "signal": "Ign 6 (EPS En)",
+          "signal": "Ign 6 EPS En",
           "designation": "B12",
           "contactPartId": "ct_ss10_075"
         },
         {
           "id": "b13",
-          "signal": "Ign 5 (2nd Fan)",
+          "signal": "Ign 5 2nd Fan",
           "designation": "B13",
           "contactPartId": "ct_ss10_075"
         },
@@ -3072,12 +3072,12 @@
         },
         {
           "id": "b15",
-          "signal": "An Volt 6 (Oil P)",
+          "signal": "An Volt 6 Oil P",
           "designation": "B15"
         },
         {
           "id": "b16",
-          "signal": "An Volt 7 (Fuel P)",
+          "signal": "An Volt 7 Fuel P",
           "designation": "B16"
         },
         {
@@ -3087,23 +3087,23 @@
         },
         {
           "id": "b18",
-          "signal": "Aux 9 (ETB M+)",
+          "signal": "Aux 9 ETB M+",
           "designation": "B18",
           "contactPartId": "ct_ss10_075"
         },
         {
           "id": "b19",
-          "signal": "DI 6 (WSS RR)",
+          "signal": "DI 6 WSS RR",
           "designation": "B19"
         },
         {
           "id": "b20",
-          "signal": "DI 5 (WSS RL)",
+          "signal": "DI 5 WSS RL",
           "designation": "B20"
         },
         {
           "id": "b21",
-          "signal": "DI 4 (WSS FR)",
+          "signal": "DI 4 WSS FR",
           "designation": "B21"
         },
         {
@@ -3114,64 +3114,64 @@
         },
         {
           "id": "b23",
-          "signal": "An Volt 8 (Clnt P)",
+          "signal": "An Volt 8 Clnt P",
           "designation": "B23"
         },
         {
           "id": "b24",
-          "signal": "An Volt 9 (Fuel Lvl)",
+          "signal": "An Volt 9 Fuel Lvl",
           "designation": "B24"
         },
         {
           "id": "b25",
-          "signal": "Ground",
+          "signal": "ECU-B GND",
           "designation": "B25",
           "contactPartId": "ct_ss10_075"
         },
         {
           "id": "b26",
-          "signal": "Aux 10 (ETB M-)",
+          "signal": "Aux 10 ETB M-",
           "designation": "B26",
           "contactPartId": "ct_ss10_075"
         },
         {
           "id": "b27",
-          "signal": "DI 10 (Anti-Theft)",
+          "signal": "DI 10 Anti-Theft",
           "designation": "B27"
         },
         {
           "id": "b28",
           "designation": "B28",
-          "signal": "DI 9 (Ignition Switch)"
+          "signal": "DI 9 Ignition Switch"
         },
         {
           "id": "b29",
           "designation": "B29",
-          "signal": "DI 8 (VSS - actual road speed)"
+          "signal": "DI 8 VSS"
         },
         {
           "id": "b30",
-          "signal": "DI 7 (Start Req)",
+          "signal": "DI 7 Start Req",
           "designation": "B30"
         },
         {
           "id": "b31",
           "designation": "B31",
-          "signal": "An Volt 10 (A/C Btn)"
+          "signal": "An Volt 10 A/C Btn"
         },
         {
           "id": "b32",
           "designation": "B32",
-          "signal": "An Volt 11 (Evap Temp)"
+          "signal": "An Volt 11 Evap Temp"
         },
         {
           "id": "b33",
-          "signal": "An Volt 5 (APS-S)",
+          "signal": "An Volt 5 APS-S",
           "designation": "B33"
         },
         {
           "id": "b34",
-          "signal": "Ground",
+          "signal": "ECU-B GND",
           "designation": "B34",
           "contactPartId": "ct_ss10_075"
         }
@@ -3187,20 +3187,20 @@
     },
     {
       "id": "ix_fuel_r",
-      "label": "Fuel level - 2-way inline to Rear Fuel harness (IX_FUEL_LVL)",
+      "label": "IX-FUEL",
       "width": 270,
       "partId": "cp_dt04_2p",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Fuel level signal -> ECU-B B24 (pull-up at sp_fl_sig)",
+          "signal": "Fuel level signal",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Fuel level ground -> Gnd Out",
+          "signal": "Fuel level ground",
           "propagate": false
         }
       ],
@@ -3215,37 +3215,37 @@
     },
     {
       "id": "ix_ws_rear_p",
-      "label": "WS REAR spur - 6-way inline mate (IX_WS_REAR)",
+      "label": "IX-WS-R",
       "width": 270,
       "partId": "cp_dt06_6s",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V - VRC rear supply (ECU sensor +5V)"
+          "signal": "VRC-R +5V"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Gnd Out - VRC rear ground",
+          "signal": "VRC-R GND",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "RL conditioned out -> ECU-B B20 (DI 5)",
+          "signal": "RL conditioned out",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "RR conditioned out -> ECU-B B19 (DI 6)",
+          "signal": "RR conditioned out",
           "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Screen drain -> SHIELD_B (B17)",
+          "signal": "WS-R screen drain",
           "propagate": false
         },
         {
@@ -3270,7 +3270,7 @@
       "id": "fl_start_req_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) R/B No.4 starter relay socket lead (block removed, R12; ST1 from I13 pin 7)-1 B-W start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net) - solder sleeve into the factory lead",
+      "signal": "Start req -> RB4-1",
       "schematicPosition": {
         "x": 660,
         "y": 960
@@ -3285,7 +3285,7 @@
       "id": "fl_ign_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5)-7 B-O IGN ON (IG2) -> ECU-B B28 - solder sleeve into the factory lead",
+      "signal": "IGN ON -> JB1 1H-7",
       "schematicPosition": {
         "x": 660,
         "y": 810
@@ -3299,7 +3299,7 @@
     {
       "id": "t_ac_btn",
       "type": "Loose",
-      "signal": "A/C request: dash A/C switch output V-G (12 V when ON; old A15 pin 3 / IJ1-7) -> 10k / 3.9k divider -> ECU-B B31 (An Volt 10)",
+      "signal": "A/C req -> A/C SW V-G",
       "schematicPosition": {
         "x": 660,
         "y": 1110
@@ -3313,7 +3313,7 @@
     {
       "id": "t_evap_temp",
       "type": "Loose",
-      "signal": "Evaporator thermistor A24 element 1 (1.5 kohm at 25 C) -> ECU-B B32 (An Volt 11), 2.2k pull-up to +5V",
+      "signal": "Evap temp -> A24-1",
       "schematicPosition": {
         "x": 660,
         "y": 1260
@@ -3327,7 +3327,7 @@
     {
       "id": "br_w_b25",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis",
+      "signal": "ECU GND B25 -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3342,7 +3342,7 @@
     {
       "id": "br_w_b34",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis",
+      "signal": "ECU GND B34 -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3357,7 +3357,7 @@
     {
       "id": "br_w_rail_5v_b_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: +5V from sp_5v at ECU A (crossover a)",
+      "signal": "+5V rail B -> splice 5V",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3372,7 +3372,7 @@
     {
       "id": "br_w_rail_sw12_b_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: switched 12V from sp_sw12 (cabin)",
+      "signal": "SW12 rail B -> splice SW12",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3387,7 +3387,7 @@
     {
       "id": "br_w82",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: ETB relay 87 to ECU-B B5 (crossover b)",
+      "signal": "ETB 12V -> LOGIC M14 87",
       "width": 390,
       "layoutPosition": {
         "x": 1560,
@@ -3402,7 +3402,7 @@
     {
       "id": "br_cab_fspur_r",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR core from IX_WS_FRONT pin 4",
+      "signal": "WS FR sig -> IX-WS-F 4",
       "width": 390,
       "layoutPosition": {
         "x": 900,
@@ -3417,7 +3417,7 @@
     {
       "id": "br_cab_fspur_fr_sh",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR shield from IX_WS_FRONT pin 6",
+      "signal": "WS FR screen -> A-cabin open",
       "width": 390,
       "layoutPosition": {
         "x": 900,
@@ -3432,7 +3432,7 @@
     {
       "id": "br_w_sw7_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CSB3: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
+      "signal": "Reverse sig -> OPTO8 02",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3447,7 +3447,7 @@
     {
       "id": "br_w39",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: e-throttle pedal pin 3 (VPA2) - folded in from ST185-APS-Pedal 2026-10-11",
+      "signal": "APS VPA2 -> APS 3",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3462,7 +3462,7 @@
     {
       "id": "br_w_at_immob2",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-AntiTheft: immobiliser output to ECU-B B27 (DI 10)",
+      "signal": "Immob out -> ALARM 9",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3477,7 +3477,7 @@
     {
       "id": "br_wc_h_bh",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN H from the CAN bus splice to bulkhead B c13",
+      "signal": "CAN H -> splice CANH",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3492,7 +3492,7 @@
     {
       "id": "br_wc_l_bh",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN L from the CAN bus splice to bulkhead B c14",
+      "signal": "CAN L -> splice CANL",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3507,7 +3507,7 @@
     {
       "id": "br_w_lam12_c",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3",
+      "signal": "Lambda 12V -> FB-LOGIC LAM 7.5A",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3522,7 +3522,7 @@
     {
       "id": "br_w_lamg_b",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis",
+      "signal": "Lambda GND -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3537,7 +3537,7 @@
     {
       "id": "br_cab_canbh_sh",
       "type": "Loose",
-      "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can to bulkhead B c24",
+      "signal": "CAN screen -> splice SHIELD CAN",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3552,7 +3552,7 @@
     {
       "id": "br_w_shd_can",
       "type": "Loose",
-      "signal": "Broken off - drain comes in from ST185-CAN: CAN screen splice sp_shield_can to sp_shield_b (B17)",
+      "signal": "CAN drain -> splice SHIELD CAN",
       "width": 390,
       "layoutPosition": {
         "x": 360,
@@ -3567,7 +3567,7 @@
     {
       "id": "br_w_fan285",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13",
+      "signal": "Cond fan coil- -> POWER R5 85",
       "width": 390,
       "layoutPosition": {
         "x": 2160,
@@ -3582,7 +3582,7 @@
     {
       "id": "br_w_eps_trig",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: EPS enable relay k_eps_en 85 <- ECU-B B12",
+      "signal": "EPS EN coil- -> LOGIC M21 85",
       "width": 390,
       "layoutPosition": {
         "x": 2160,
@@ -3597,7 +3597,7 @@
     {
       "id": "br_w_acc_trig",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: A/C Clutch Relay (on/off) 85 (k_acc) <- ECU-B B10",
+      "signal": "A/C coil- -> LOGIC M15 85",
       "width": 390,
       "layoutPosition": {
         "x": 1320,
@@ -3612,7 +3612,7 @@
     {
       "id": "br_w_start_in",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN",
+      "signal": "Start req in -> FB-LOGIC B30 in",
       "width": 390,
       "layoutPosition": {
         "x": 1710,
@@ -3627,7 +3627,7 @@
     {
       "id": "br_w_start_out",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: LOGIC B30 2A out -> ECU-B B30 (DI 7)",
+      "signal": "Start req -> FB-LOGIC B30 2A",
       "width": 390,
       "layoutPosition": {
         "x": 1710,
@@ -3643,7 +3643,7 @@
       "id": "br_rev_coil",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86",
+      "signal": "Rev coil+ -> LOGIC M22 86",
       "schematicPosition": {
         "x": 1380,
         "y": 120
@@ -3658,7 +3658,7 @@
       "id": "br_rev_feed",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2",
+      "signal": "Rev SW feed -> splice REV GAUGE",
       "schematicPosition": {
         "x": 1380,
         "y": 180
@@ -3672,7 +3672,7 @@
     {
       "id": "t_evap_rtn",
       "type": "Loose",
-      "signal": "Evaporator thermistor A24 element 2 -> Gnd Out (sp_gndout_b)",
+      "signal": "Evap rtn -> A24-2",
       "schematicPosition": {
         "x": 660,
         "y": 1320

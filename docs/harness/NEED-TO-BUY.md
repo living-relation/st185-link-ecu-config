@@ -23,11 +23,10 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RS 287-3921` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M5 X 10, DIN 933 | 20 | 0 | **20** |
 | `RS 137-809` | RS PRO | RS PRO A2/304 STAINLESS HEX SOCKET SET SCREW M5 X 12, DIN 916 | 18 | 0 | **18** |
 | `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 18 | 0 | **18** |
-| `280919-2` | TE Connectivity | FASTIN-FASTON .187 RECEPTACLE, UNINSULATED, 20-15 AWG (0.51-1.65 MM2), INSULATION 2.31-3.3 MM, LOCKING LANCE 1.2 MM, BRASS TIN | 16 | 0 | **16** |
 | `Klauke 2R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 10 MM2, M5, HOLE 5.3; B 12, L 22 | 16 | 0 | **16** |
 | `SSCF-M3-10-A4` | Accu | SOCKET HEAD CAP SCREW M3 X 10, DIN 912 / ISO 4762, A4 (316) STAINLESS | 15 | 0 | **15** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
-| `2293255-1` | TE Connectivity | TERMINAL, FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2) | 14 | 0 | **14** |
+| `280919-2` | TE Connectivity | TERMINAL, FASTIN-FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, LOCKING LANCE, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2) | 14 | 0 | **14** |
 | `Essentra 301540040050` | Essentra Components | HEX STANDOFF, FEMALE-FEMALE M5, 8.0 AF, 40.0 MM, NICKEL-PLATED BRASS; SOLD IN 50S | 14 | 0 | **14** |
 | `880398-2` | TE Connectivity | TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG) | 13 | 0 | **13** |
 | `EFC 10S00056` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 6 MM, ZINC-PLATED STEEL | 13 | 0 | **13** |
@@ -321,6 +320,7 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `4-1904124-3` | LOGIC | 1 | the harness drawings |
 | `5-1393292-8` | LOGIC | 2 | the harness drawings |
 | `6-1419137-4` | LOGIC | 3 | the harness drawings |
+| `280919-2` | LOGIC | 16 | the harness drawings |
 | `42281-1` | LOGIC | 19 | the harness drawings |
 | `1241388-2` | LOGIC | 13 | the harness drawings |
 | `880398-2` | LOGIC | 35 | the harness drawings |
@@ -362,7 +362,6 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `ATM-7-1/2` | LOGIC | 4 | this section's CSVs |
 | `ATM-15` | LOGIC | 7 | this section's CSVs |
 | `ATM-20` | LOGIC | 1 | this section's CSVs |
-| `280919-2` | LOGIC | 16 | this section's CSVs |
 | `53941-1` | LOGIC | 21 | this section's CSVs |
 | `M22759/16-14-2` | LOGIC | 7 | this section's CSVs |
 | `RS 287-3915` | LOGIC | 21 | this section's CSVs |

@@ -9,6 +9,8 @@ A `dm_bh_<bulkhead>_<cavity>` dummy (EngineRoom-C draws the MRS pump's engine
 halves this way) counts as that cavity. HARD gate since 2026-09-25.
 """
 import json, glob, os, sys, collections
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import model  # full_text: long label / signal text (full_text.json)
 
 R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
 PAIRS = (("bh_a_fw", "bh_a_eng"), ("bh_b_fw", "bh_b_eng"))
@@ -16,7 +18,7 @@ PAIRS = (("bh_a_fw", "bh_a_eng"), ("bh_b_fw", "bh_b_eng"))
 used = collections.defaultdict(set)
 sig = {}
 for f in sorted(glob.glob(os.path.join(R, "*.harness"))):
-    d = json.load(open(f, encoding="utf-8"))
+    d = model.full_text(json.load(open(f, encoding="utf-8")), f)
     conds = list(d.get("wires", []))
     for cb in d.get("cables", []):          # A-engine runs 7 bulkhead cavities
         conds += cb.get("cores", [])        # through cables, WheelSpeed is all

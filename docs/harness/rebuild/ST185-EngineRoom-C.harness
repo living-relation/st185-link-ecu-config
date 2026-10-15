@@ -3619,7 +3619,7 @@
   "connectors": [
     {
       "id": "pdb",
-      "label": "POWER box bus zone (rev 7, glove box)",
+      "label": "POWER BUS",
       "width": 390,
       "schematicPosition": {
         "x": 0,
@@ -3638,7 +3638,7 @@
         {
           "id": "c2",
           "designation": "ALT/STR",
-          "signal": "To RADLOK +  (starter / 160 A alt)"
+          "signal": "ALT/STR +"
         },
         {
           "id": "c8",
@@ -3651,7 +3651,7 @@
     },
     {
       "id": "rad_fan",
-      "label": "Uprated radiator fan (+)",
+      "label": "RAD FAN+",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -3672,7 +3672,7 @@
     },
     {
       "id": "fan2",
-      "label": "Uprated condenser fan (+)",
+      "label": "COND FAN+",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -3686,26 +3686,26 @@
         {
           "id": "c1",
           "designation": "+",
-          "signal": "From k_fan2 87, 8 AWG"
+          "signal": "Cond fan 12V"
         }
       ],
       "partId": "cp_dthd_1_8s"
     },
     {
       "id": "mrs_eps",
-      "label": "MR-S EHPS pump (A power / B signal / C ignition)",
+      "label": "EHPS PUMP",
       "width": 390,
       "partId": "cp_mrs_eps",
       "cavities": [
         {
           "id": "a1",
           "designation": "A-1",
-          "signal": "[A 90980-12068 pin 1] +12V from k_eps 87 *"
+          "signal": "EHPS 12V"
         },
         {
           "id": "a2",
           "designation": "A-2",
-          "signal": "[A 90980-12068 pin 2] GND *"
+          "signal": "EHPS GND"
         },
         {
           "id": "b1",
@@ -3714,7 +3714,7 @@
         {
           "id": "b2",
           "designation": "B-2",
-          "signal": "[B 90980-10897 pin 2] SPD Out *"
+          "signal": "EHPS speed"
         },
         {
           "id": "b3",
@@ -3727,7 +3727,7 @@
         {
           "id": "b5",
           "designation": "B-5",
-          "signal": "[B 90980-10897 pin 5] EPS relay k_eps coil- out (R22)",
+          "signal": "EHPS coil-",
           "propagate": false
         },
         {
@@ -3737,7 +3737,7 @@
         {
           "id": "c1",
           "designation": "C-1",
-          "signal": "[C 90980-10942 pin 1] IG-switched, LOGIC MRS 7.5A *"
+          "signal": "EHPS IG"
         },
         {
           "id": "c2",
@@ -3755,7 +3755,7 @@
     },
     {
       "id": "rad_fan_g",
-      "label": "Uprated radiator fan (GND)",
+      "label": "RAD FAN-",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -3769,14 +3769,14 @@
         {
           "id": "c1",
           "designation": "-",
-          "signal": "To EA / engine-room ground stud, 8 AWG"
+          "signal": "Fan GND EA"
         }
       ],
       "partId": "cp_dthd_1_8s"
     },
     {
       "id": "fan2_g",
-      "label": "Uprated condenser fan (GND)",
+      "label": "COND FAN-",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -3790,14 +3790,14 @@
         {
           "id": "c1",
           "designation": "-",
-          "signal": "To EA / engine-room ground stud, 8 AWG"
+          "signal": "Fan GND EA"
         }
       ],
       "partId": "cp_dthd_1_8s"
     },
     {
       "id": "horn_lh",
-      "label": "Horn LH (EWD H3) - custom DT 2-way",
+      "label": "HORN LH",
       "width": 390,
       "partId": "9ZUUE7W4KO7XV5_EclsXt",
       "schematicPosition": {
@@ -3812,20 +3812,20 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Horn + (EWD 1993 p.185 H3 pin 1, G-R in the factory wiring) <- horn relay 87",
+          "signal": "Horn LH +",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Horn ground -> EA bay ground (dedicated wire, Route 2 rev 8)",
+          "signal": "Horn GND",
           "propagate": false
         }
       ]
     },
     {
       "id": "horn_rh",
-      "label": "Horn RH (EWD H4) - custom DT 2-way",
+      "label": "HORN RH",
       "width": 390,
       "partId": "9ZUUE7W4KO7XV5_EclsXt",
       "schematicPosition": {
@@ -3840,13 +3840,13 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Horn + (EWD 1993 p.185 H4 pin 1, G-R in the factory wiring) <- horn relay 87",
+          "signal": "Horn RH +",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Horn ground -> EA bay ground (dedicated wire, Route 2 rev 8)",
+          "signal": "Horn GND",
           "propagate": false
         }
       ]
@@ -3856,7 +3856,7 @@
     {
       "id": "br_h1_batt_pos",
       "type": "Loose",
-      "signal": "H1 - broken off, continues on ST185-HeavyDC: POWER box bus zone c1 (BAT+) <- trunk battery +",
+      "signal": "BATT + -> KILL SW MAIN 2",
       "schematicPosition": {
         "x": 0,
         "y": 0
@@ -3870,7 +3870,7 @@
     {
       "id": "br_h2_batt_neg",
       "type": "Loose",
-      "signal": "H2 - broken off, continues on ST185-HeavyDC: POWER box bus zone c8 (NEG bar) <- trunk battery -",
+      "signal": "BATT - -> trunk batt -",
       "schematicPosition": {
         "x": 0,
         "y": 60
@@ -3884,7 +3884,7 @@
     {
       "id": "br_h3_radlok_pos",
       "type": "Loose",
-      "signal": "H3 - broken off, continues on ST185-HeavyDC: POWER box bus zone c2 (ALT/STR) -> RADLOK +",
+      "signal": "ALT/STR + -> RADLOK+ FW 1",
       "schematicPosition": {
         "x": 0,
         "y": 120
@@ -3898,7 +3898,7 @@
     {
       "id": "br_h6a_radlok_neg",
       "type": "Loose",
-      "signal": "H6a - broken off, continues on ST185-HeavyDC: POWER box bus zone c8 (NEG bar) -> RADLOK -",
+      "signal": "PWR NEG -> RADLOK- FW 1",
       "schematicPosition": {
         "x": 0,
         "y": 330
@@ -3912,7 +3912,7 @@
     {
       "id": "t_eng_block_2",
       "type": "Ring",
-      "signal": "Engine block stud - lug 2, 4 AWG to EB",
+      "signal": "EB strap -> eng block 2",
       "width": 390,
       "schematicPosition": {
         "x": 660,
@@ -3928,7 +3928,7 @@
     {
       "id": "t_eng_block_3",
       "type": "Ring",
-      "signal": "Engine block stud - lug 3, 8 AWG EPS gnd",
+      "signal": "EHPS GND -> eng block 3",
       "width": 390,
       "schematicPosition": {
         "x": 660,
@@ -3944,7 +3944,7 @@
     {
       "id": "t_gnd_ea",
       "type": "Ring",
-      "signal": "OEM ground EA - right front fender",
+      "signal": "Rad fan GND -> EA",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -3960,7 +3960,7 @@
     {
       "id": "t_gnd_ea_2",
       "type": "Ring",
-      "signal": "OEM ground EA - lug 2, cond. fan 8 AWG",
+      "signal": "Cond fan GND -> EA 2",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -3976,7 +3976,7 @@
     {
       "id": "t_gnd_eb",
       "type": "Ring",
-      "signal": "OEM ground EB - left front fender",
+      "signal": "EB strap -> EB",
       "width": 270,
       "schematicPosition": {
         "x": 1980,
@@ -3992,7 +3992,7 @@
     {
       "id": "t_gnd_id",
       "type": "Ring",
-      "signal": "OEM ground ID - left kick panel",
+      "signal": "PWR NEG -> GND ID",
       "width": 270,
       "schematicPosition": {
         "x": 1320,
@@ -4008,7 +4008,7 @@
     {
       "id": "t_gnd_ig",
       "type": "Ring",
-      "signal": "OEM ground IG - ex-R/B4 set bolt (box removed), right kick",
+      "signal": "PWR NEG -> GND IG",
       "width": 390,
       "schematicPosition": {
         "x": 1320,
@@ -4025,7 +4025,7 @@
       "id": "fl_ac_press_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD p.152 A5-1 (V-R in the factory wiring, new wire here) A/C pressure switch +12V (ACPS 5 A, IG) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "signal": "A/C PSW 12V -> A5-1",
       "schematicPosition": {
         "x": 0,
         "y": 1650
@@ -4040,7 +4040,7 @@
       "id": "fl_a4_3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.152 A4-3 (Y-B in the factory wiring, new wire here) A/C magnetic clutch <- A18-5 (br_ac_mg) - new-wire run terminated at the clutch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "signal": "A/C VC coil -> A4-3",
       "schematicPosition": {
         "x": 0,
         "y": 1710
@@ -4055,7 +4055,7 @@
       "id": "fl_a5_4",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.152 A5-4 (Y-R in the factory wiring, new wire here) A/C pressure switch switched return -> A18-13 (br_ac_psw) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "signal": "A/C PSW out -> A5-4",
       "schematicPosition": {
         "x": 0,
         "y": 1770
@@ -4069,7 +4069,7 @@
     {
       "id": "br_ac_mg",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: A/C VC control coil A4-3 (not fitted) (fl_a4_3) <- A18-5 (fl_acamp_mg)",
+      "signal": "A/C VC coil -> A18-5",
       "width": 390,
       "schematicPosition": {
         "x": 0,
@@ -4084,7 +4084,7 @@
     {
       "id": "br_ac_psw",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: A/C pressure switch A5-4 (fl_a5_4) -> A18-13 (fl_acamp_psw)",
+      "signal": "A/C PSW -> splice AC PSW",
       "width": 390,
       "schematicPosition": {
         "x": 0,
@@ -4100,7 +4100,7 @@
       "id": "fl_oem_ie1_c10",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.31 IE1-10 W AM1 to ignition switch I13-4 - heavy crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "AM1 feed -> IE1-10",
       "schematicPosition": {
         "x": 1320,
         "y": 0
@@ -4115,7 +4115,7 @@
       "id": "fl_oem_ie1_c17",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.31 IE1-17 B-R AM2 to ignition switch I13-10 - heavy crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "AM2 feed -> IE1-17",
       "schematicPosition": {
         "x": 1320,
         "y": 60
@@ -4130,7 +4130,7 @@
       "id": "fl_oem_jb1_1i_c1",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD p.18-19 / p.46 J/B1 1I-1 B J/B1 primary B+ (always hot; was FL ALT) - heavy crimp butt splice into the factory 1I-1 lead at J/B1 (cabin side; engine-room main removed)",
+      "signal": "JB1 B+ -> JB1 1I-1",
       "schematicPosition": {
         "x": 1320,
         "y": 240
@@ -4144,7 +4144,7 @@
     {
       "id": "br_w_fan_pwr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: radiator fan relay 87 feed",
+      "signal": "Rad fan 12V -> POWER R4 87",
       "width": 390,
       "layoutPosition": {
         "x": 4950,
@@ -4159,7 +4159,7 @@
     {
       "id": "br_w_fan2_pwr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: condenser fan relay 87 feed",
+      "signal": "Cond fan 12V -> POWER R5 87",
       "width": 390,
       "layoutPosition": {
         "x": 4950,
@@ -4174,7 +4174,7 @@
     {
       "id": "br_w_eps_pwr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: EPS relay 87 feed to the pump",
+      "signal": "EHPS 12V -> EHPS RELAY 87",
       "width": 390,
       "layoutPosition": {
         "x": 2160,
@@ -4189,7 +4189,7 @@
     {
       "id": "br_w_hv_mrs_en_e",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-engine: MRS enable, bulkhead A c35",
+      "signal": "EHPS enable -> BH-A 42",
       "width": 390,
       "layoutPosition": {
         "x": 4440,
@@ -4204,7 +4204,7 @@
     {
       "id": "br_w_mrs_e",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-engine: MRS speed (ECU A27), bulkhead A c36",
+      "signal": "EHPS speed -> BH-A 44",
       "width": 390,
       "layoutPosition": {
         "x": 4440,
@@ -4219,7 +4219,7 @@
     {
       "id": "br_w_pmu_hl",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: HEAD LH, LOGIC HL 15A + relay -> headlight LH H1 pin 3",
+      "signal": "Head LH 12V -> LOGIC M11 87",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4234,7 +4234,7 @@
     {
       "id": "br_w_pmu_hr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: HEAD RH, LOGIC HR 15A + relay -> headlight RH H2 pin 3",
+      "signal": "Head RH 12V -> LOGIC M12 87",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4249,7 +4249,7 @@
     {
       "id": "br_w_pmu_horn",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: horn relay 87 (LOGIC HZ, HAZ-HORN 15A) -> horns H3 / H4",
+      "signal": "Horn 12V -> LOGIC M13 87",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4264,7 +4264,7 @@
     {
       "id": "br_w_pmu_dome",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: DOME, LOGIC DM 20A -> J/B1 1H-2",
+      "signal": "Dome 12V -> FB-LOGIC DM 20A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4279,7 +4279,7 @@
     {
       "id": "br_w_pmu_rtr",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: RTR, POWER RTR 30A -> IE1-3 (retract control relay R8)",
+      "signal": "RTR 12V -> FB-POWER RTR 30A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4294,7 +4294,7 @@
     {
       "id": "br_w_acp_1",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: A/C pressure switch +12V, POWER ACPS 10A to A5-1",
+      "signal": "A/C PSW 12V -> FB-POWER ACPS 10A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4309,7 +4309,7 @@
     {
       "id": "br_w_pdb_am1",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: AM1, POWER AM1 40A to IE1-10",
+      "signal": "AM1 12V -> FB-POWER AM1 40A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4324,7 +4324,7 @@
     {
       "id": "br_w_pdb_am2",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: AM2, POWER AM2 30A to IE1-17",
+      "signal": "AM2 12V -> FB-POWER AM2 30A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4339,7 +4339,7 @@
     {
       "id": "br_w_pdb_jb1",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: OEM HOT, POWER JB1 60A to J/B1 1I-1",
+      "signal": "JB1 hot -> FB-POWER JB1 60A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4354,7 +4354,7 @@
     {
       "id": "br_w_rb4",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: heater relay 87 (POWER HTR 40A) -> blower motor B4 pin 2",
+      "signal": "Blower 12V -> splice HTR87",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4369,7 +4369,7 @@
     {
       "id": "br_w_rb2",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: power relay 87 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
+      "signal": "P/W 12V -> POWER R6 87",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4385,7 +4385,7 @@
       "id": "fl_a4_4",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.152 A4-4 (B-W in the factory wiring, new wire here) A/C magnet clutch <- k_acc 87 (br_w_acc_clutch) - new-wire run terminated at the clutch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "signal": "A/C clutch -> A4-4",
       "schematicPosition": {
         "x": 0,
         "y": 1530
@@ -4399,7 +4399,7 @@
     {
       "id": "br_w_acc_clutch",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: A/C Clutch Relay 87 (k_acc c4) -> A/C magnet clutch A4-4 (fl_a4_4)",
+      "signal": "A/C clutch -> LOGIC M15 87",
       "width": 390,
       "layoutPosition": {
         "x": 1620,
@@ -4414,7 +4414,7 @@
     {
       "id": "br_w_haz",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: HAZ-HORN, LOGIC HZ 15A fuse out -> hazard feed IE1-12",
+      "signal": "Hazard 12V -> splice HZ",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4430,7 +4430,7 @@
       "id": "fl_oem_ie1_c3",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD 1993 p.116 IE1-3 W 30A RTR -> retract control relay R8 pin 3 (OEM relay stays, fuse only) - heavy crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "RTR 30A -> IE1-3",
       "schematicPosition": {
         "x": 1320,
         "y": 120
@@ -4445,7 +4445,7 @@
       "id": "fl_oem_ie1_c12",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.130 IE1-12 W HAZ-HORN feed -> hazard switch / turn flasher - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "Hazard feed -> IE1-12",
       "schematicPosition": {
         "x": 1320,
         "y": 180
@@ -4460,7 +4460,7 @@
       "id": "fl_oem_jb1_1h_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.132 J/B1 1H-2 L-Y 20A DOME feed into J/B1 (interior lights) - crimp butt splice into the factory 1H-2 lead at J/B1 (cabin side; engine-room main removed)",
+      "signal": "Dome 20A -> JB1 1H-2",
       "schematicPosition": {
         "x": 1320,
         "y": 300
@@ -4475,7 +4475,7 @@
       "id": "fl_oem_rb2_wg",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD 1993 p.137 R/B2 power main relay terminal 1 output W-G -> power window master SW P6 (A)6 / RH SW P9-6 (R/B2 removed) - heavy crimp butt splice into the factory cowl-side W-G lead at the left kick",
+      "signal": "P/W feed -> RB2-1",
       "schematicPosition": {
         "x": 1320,
         "y": 360
@@ -4490,7 +4490,7 @@
       "id": "fl_b4_c2",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "EWD 1993 p.215-216 B4 pin 2 B blower motor + (was R/B4 heater relay terminal 4 output; R/B4 removed) - heavy crimp butt splice into the factory lead at the blower motor (cabin, behind the glove box)",
+      "signal": "Blower + -> B4-2",
       "schematicPosition": {
         "x": 1320,
         "y": 420
@@ -4505,7 +4505,7 @@
       "id": "fl_h1_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.116 H1 pin 3 (R in the factory wiring, new wire here) headlight LH power <- LOGIC HL - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "signal": "Head LH + -> H1-3",
       "schematicPosition": {
         "x": 1320,
         "y": 540
@@ -4520,7 +4520,7 @@
       "id": "fl_h2_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.116 H2 pin 3 (R-Y in the factory wiring, new wire here) headlight RH power <- LOGIC HR - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen",
+      "signal": "Head RH + -> H2-3",
       "schematicPosition": {
         "x": 1320,
         "y": 600
@@ -4534,7 +4534,7 @@
     {
       "id": "t_gnd_ea_h3",
       "type": "Ring",
-      "signal": "OEM ground EA - horn ground",
+      "signal": "Horn LH GND -> EA",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -4550,7 +4550,7 @@
     {
       "id": "t_gnd_ea_h4",
       "type": "Ring",
-      "signal": "OEM ground EA - horn ground",
+      "signal": "Horn RH GND -> EA",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -4566,7 +4566,7 @@
     {
       "id": "br_w_eps_rly_e",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-engine: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
+      "signal": "EHPS coil- -> BH-A 56",
       "width": 390,
       "layoutPosition": {
         "x": 4440,
@@ -4581,7 +4581,7 @@
     {
       "id": "br_w_rb2_wl",
       "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58): LOGIC WL 15A",
+      "signal": "Door lock 12V -> FB-LOGIC WL 15A",
       "width": 390,
       "layoutPosition": {
         "x": 5400,
@@ -4597,7 +4597,7 @@
       "id": "fl_oem_rb2_wl",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.137 / p.170 R/B2 pin 2 W-L always-hot -> splice I1 -> door lock ECU D8-8 / auto tilt-away ECU (R/B2 removed) - crimp butt splice into the factory cowl-side W-L lead at the left kick",
+      "signal": "Door lock feed -> RB2-2",
       "schematicPosition": {
         "x": 1320,
         "y": 480
@@ -4613,7 +4613,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.112 J/B1-1H-6 G TAIL 15A out (TAIL relay) -> front clearance F7 / F8 pin 1 - crimp butt splice into the factory 1H-6 lead at J/B1 (cabin side; engine-room main removed)",
+      "signal": "Tail 15A -> JB1 1H-6",
       "schematicPosition": {
         "x": 3750,
         "y": 0
@@ -4629,7 +4629,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.130 J/B1-1H-4 G-B turn LH out (flasher) -> F7 pin 3 - crimp butt splice into the factory 1H-4 lead at J/B1 (cabin side; engine-room main removed)",
+      "signal": "Turn LH -> JB1 1H-4",
       "schematicPosition": {
         "x": 3750,
         "y": 60
@@ -4645,7 +4645,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.130 J/B1-1H-8 G-Y turn RH out (flasher) -> F8 pin 3 - crimp butt splice into the factory 1H-8 lead at J/B1 (cabin side; engine-room main removed)",
+      "signal": "Turn RH -> JB1 1H-8",
       "schematicPosition": {
         "x": 3750,
         "y": 120
@@ -4661,7 +4661,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 J/B1-1H-5 L WIPER 20A out -> front wiper motor F9 pin 4 (+B to the park switch) - crimp butt splice into the factory 1H-5 lead at J/B1 (cabin side; engine-room main removed)",
+      "signal": "Wiper 20A -> JB1 1H-5",
       "schematicPosition": {
         "x": 3750,
         "y": 180
@@ -4677,7 +4677,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 IE1-20 L-O wiper switch C16-13 (HIGH) -> F9 pin 1 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "Wiper HI -> IE1-20",
       "schematicPosition": {
         "x": 3750,
         "y": 240
@@ -4693,7 +4693,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 IE1-13 L-B wiper switch C16-7 (LOW / INT / MIST) -> F9 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "Wiper LO -> IE1-13",
       "schematicPosition": {
         "x": 3750,
         "y": 300
@@ -4709,7 +4709,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 IE1-6 L-W wiper switch C16-4 (park S) <- F9 pin 3 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "Wiper park -> IE1-6",
       "schematicPosition": {
         "x": 3750,
         "y": 360
@@ -4725,7 +4725,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.116 IE1-18 R-W headlight low-beam return (C15-12 dimmer side) <- H1 / H2 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "Low beam rtn -> IE1-18",
       "schematicPosition": {
         "x": 3750,
         "y": 420
@@ -4741,7 +4741,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.116 IE1-11 R-L headlight high-beam return (C15-3 dimmer / flash, high-beam indicator) <- H1 / H2 pin 1 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "High beam rtn -> IE1-11",
       "schematicPosition": {
         "x": 3750,
         "y": 480
@@ -4757,7 +4757,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 IE1-14 G retract control relay R8-1 -> retract motor LH R2 pin 4 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "RTR LH mtr+ -> IE1-14",
       "schematicPosition": {
         "x": 3750,
         "y": 540
@@ -4773,7 +4773,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 IE1-15 G-O retract control relay R8-2 -> retract motor LH R2 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "RTR LH mtr- -> IE1-15",
       "schematicPosition": {
         "x": 3750,
         "y": 600
@@ -4789,7 +4789,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 IE1-8 G-B retract control relay R8-5 -> retract motor RH R3 pin 2 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "RTR RH mtr- -> IE1-8",
       "schematicPosition": {
         "x": 3750,
         "y": 660
@@ -4805,7 +4805,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 IE1-7 G-Y retract control relay R8-4 -> retract motor RH R3 pin 4 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "RTR RH mtr+ -> IE1-7",
       "schematicPosition": {
         "x": 3750,
         "y": 720
@@ -4821,7 +4821,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 IE1-9 G-Y retract control relay R8-11 (DOWN / close limit) <- R2 / R3 pin 3 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "RTR close lim -> IE1-9",
       "schematicPosition": {
         "x": 3750,
         "y": 780
@@ -4837,7 +4837,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 IE1-16 G-W retract control relay R8-7 (UP / open limit) <- R2 / R3 pin 1 - crimp butt splice into the factory cowl-side lead (cabin side; engine-room main removed)",
+      "signal": "RTR open lim -> IE1-16",
       "schematicPosition": {
         "x": 3750,
         "y": 840
@@ -4853,7 +4853,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 W1-2 (cowl lead) L WIPER 20A via cowl splice I2 -> washer motor W1 pin 2 - crimp butt splice into the factory cowl-wire lead to W1 at the firewall (cabin side; its bay run is removed)",
+      "signal": "Washer + -> W1-2 cowl",
       "schematicPosition": {
         "x": 3750,
         "y": 900
@@ -4869,7 +4869,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 W1-1 (cowl lead) L-R washer switch C16-8 <- washer motor W1 pin 1 - crimp butt splice into the factory cowl-wire lead to W1 at the firewall (cabin side; its bay run is removed)",
+      "signal": "Washer - -> W1-1 cowl",
       "schematicPosition": {
         "x": 3750,
         "y": 960
@@ -4885,7 +4885,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.112 F7 pin 1 (G in the factory wiring, new wire here) front clearance LH <- sp_clr - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Clear LH -> F7-1",
       "schematicPosition": {
         "x": 4410,
         "y": 0
@@ -4901,7 +4901,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.112 / p.130 F7 pin 2 (W-B in the factory wiring, new wire here) front turn / clearance LH ground -> EB - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "F7 GND -> F7-2",
       "schematicPosition": {
         "x": 4410,
         "y": 60
@@ -4917,7 +4917,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.130 F7 pin 3 (G-B in the factory wiring, new wire here) front turn LH <- J/B1 1H-4 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Turn LH -> F7-3",
       "schematicPosition": {
         "x": 4410,
         "y": 120
@@ -4933,7 +4933,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.112 F8 pin 1 (G in the factory wiring, new wire here) front clearance RH <- sp_clr - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Clear RH -> F8-1",
       "schematicPosition": {
         "x": 4410,
         "y": 180
@@ -4949,7 +4949,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.112 / p.130 F8 pin 2 (W-B in the factory wiring, new wire here) front turn / clearance RH ground -> EA - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "F8 GND -> F8-2",
       "schematicPosition": {
         "x": 4410,
         "y": 240
@@ -4965,7 +4965,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.130 F8 pin 3 (G-Y in the factory wiring, new wire here) front turn RH <- J/B1 1H-8 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Turn RH -> F8-3",
       "schematicPosition": {
         "x": 4410,
         "y": 300
@@ -4981,7 +4981,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.116 H1 pin 1 (R-L in the factory wiring, new wire here) headlight LH high-beam return -> sp_hl_high -> IE1-11 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "High LH rtn -> H1-1",
       "schematicPosition": {
         "x": 4410,
         "y": 360
@@ -4997,7 +4997,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.116 H1 pin 2 (R-W in the factory wiring, new wire here) headlight LH low-beam return -> sp_hl_low -> IE1-18 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Low LH rtn -> H1-2",
       "schematicPosition": {
         "x": 4410,
         "y": 420
@@ -5013,7 +5013,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.116 H2 pin 1 (R-L in the factory wiring, new wire here) headlight RH high-beam return -> sp_hl_high -> IE1-11 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "High RH rtn -> H2-1",
       "schematicPosition": {
         "x": 4410,
         "y": 480
@@ -5029,7 +5029,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.116 H2 pin 2 (R-W in the factory wiring, new wire here) headlight RH low-beam return -> sp_hl_low -> IE1-18 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Low RH rtn -> H2-2",
       "schematicPosition": {
         "x": 4410,
         "y": 540
@@ -5045,7 +5045,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R2 pin 1 (G-W in the factory wiring, new wire here) retract motor LH UP / open limit -> sp_rtr_open -> IE1-16 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "RTR LH open -> R2-1",
       "schematicPosition": {
         "x": 4410,
         "y": 600
@@ -5061,7 +5061,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R2 pin 2 (G-O in the factory wiring, new wire here) retract motor LH <- IE1-15 (R8-2) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "RTR LH mtr- -> R2-2",
       "schematicPosition": {
         "x": 4410,
         "y": 660
@@ -5077,7 +5077,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R2 pin 3 (G-Y in the factory wiring, new wire here) retract motor LH DOWN / close limit -> sp_rtr_close -> IE1-9 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "RTR LH close -> R2-3",
       "schematicPosition": {
         "x": 4410,
         "y": 720
@@ -5093,7 +5093,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R2 pin 4 (G in the factory wiring, new wire here) retract motor LH <- sp_rtr_r2_4 <- 12 AWG <- IE1-14 (R8-1), 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "RTR LH mtr+ -> R2-4",
       "schematicPosition": {
         "x": 4410,
         "y": 780
@@ -5109,7 +5109,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R2 pin 5 (W-B in the factory wiring, new wire here) retract motor LH ground -> sp_rtr_gnd_r2 -> 12 AWG -> EB, 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "RTR LH GND -> R2-5",
       "schematicPosition": {
         "x": 4410,
         "y": 840
@@ -5125,7 +5125,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R3 pin 1 (G-W in the factory wiring, new wire here) retract motor RH UP / open limit -> sp_rtr_open -> IE1-16 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "RTR RH open -> R3-1",
       "schematicPosition": {
         "x": 4410,
         "y": 900
@@ -5141,7 +5141,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R3 pin 2 (G-B in the factory wiring, new wire here) retract motor RH <- IE1-8 (R8-5) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "RTR RH mtr- -> R3-2",
       "schematicPosition": {
         "x": 4410,
         "y": 960
@@ -5157,7 +5157,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R3 pin 3 (G-Y in the factory wiring, new wire here) retract motor RH DOWN / close limit -> sp_rtr_close -> IE1-9 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "RTR RH close -> R3-3",
       "schematicPosition": {
         "x": 4410,
         "y": 1020
@@ -5173,7 +5173,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R3 pin 4 (G-Y in the factory wiring, new wire here) retract motor RH <- sp_rtr_r3_4 <- 12 AWG <- IE1-7 (R8-4), 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "RTR RH mtr+ -> R3-4",
       "schematicPosition": {
         "x": 4410,
         "y": 1080
@@ -5189,7 +5189,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.117 R3 pin 5 (W-B in the factory wiring, new wire here) retract motor RH ground -> sp_rtr_gnd_r3 -> 12 AWG -> EB, 16 AWG pigtail 150 mm (6 in) max - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "RTR RH GND -> R3-5",
       "schematicPosition": {
         "x": 4410,
         "y": 1140
@@ -5205,7 +5205,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 W1 pin 1 (L-R in the factory wiring, new wire here) washer motor - <- washer switch C16-8 (cowl lead) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Washer - -> W1-1",
       "schematicPosition": {
         "x": 4410,
         "y": 1200
@@ -5221,7 +5221,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 W1 pin 2 (L in the factory wiring, new wire here) washer motor + <- WIPER 20A (cowl lead) - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Washer + -> W1-2",
       "schematicPosition": {
         "x": 4410,
         "y": 1260
@@ -5237,7 +5237,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 F9 pin 1 (L-O in the factory wiring, new wire here) front wiper motor HIGH <- IE1-20 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Wiper HI -> F9-1",
       "schematicPosition": {
         "x": 4410,
         "y": 1320
@@ -5253,7 +5253,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 F9 pin 2 (L-B in the factory wiring, new wire here) front wiper motor LOW <- IE1-13 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Wiper LO -> F9-2",
       "schematicPosition": {
         "x": 4410,
         "y": 1380
@@ -5269,7 +5269,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 F9 pin 3 (L-W in the factory wiring, new wire here) front wiper motor park switch S -> IE1-6 - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Wiper park -> F9-3",
       "schematicPosition": {
         "x": 4410,
         "y": 1440
@@ -5285,7 +5285,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.148 F9 pin 4 (L in the factory wiring, new wire here) front wiper motor +B (park switch) <- J/B1 1H-5 WIPER 20A - new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, R11); plug part number not yet chosen",
+      "signal": "Wiper +B -> F9-4",
       "schematicPosition": {
         "x": 4410,
         "y": 1500
@@ -5301,7 +5301,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "OEM ground EB - left front fender - front turn / clearance LH F7 ground",
+      "signal": "F7 GND -> EB",
       "schematicPosition": {
         "x": 4410,
         "y": 1560
@@ -5317,7 +5317,7 @@
       "type": "Ring",
       "partId": "tp_lug_m8_8",
       "width": 390,
-      "signal": "OEM ground EB - left front fender (M8) - retract motors R2 / R3 ground, two 12 AWG (one per motor) in one ring, combined 9 AWG (OEM E3 -> EB)",
+      "signal": "RTR GND -> EB M8",
       "schematicPosition": {
         "x": 4410,
         "y": 1620
@@ -5333,7 +5333,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "OEM ground EA - right front fender (M8, R59) - front turn / clearance RH F8 ground",
+      "signal": "F8 GND -> EA M8",
       "schematicPosition": {
         "x": 4410,
         "y": 1680
@@ -5348,7 +5348,7 @@
       "id": "br_alt_s",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator S (G2-1) -> LOGIC ALTS 2A, battery sense",
+      "signal": "Alt S -> ALT G2 1",
       "schematicPosition": {
         "x": 4410,
         "y": 1800
@@ -5363,7 +5363,7 @@
       "id": "br_alt_l",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator L (G2-2) -> IG2-16 cowl lead -> charge LED",
+      "signal": "Alt L -> ALT G2 2",
       "schematicPosition": {
         "x": 4410,
         "y": 1860
@@ -5378,7 +5378,7 @@
       "id": "br_alt_ig",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-HeavyDC (alternator plug alt_plug): alternator IG (G2-3) <- kill switch 2nd pair <- IG2-15 cowl lead, J/B No.1 ECU-IG 15A",
+      "signal": "Alt IG -> ALT G2 3",
       "schematicPosition": {
         "x": 4410,
         "y": 1920
@@ -5394,7 +5394,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.74 IG2-15 B-R J/B No.1 ECU-IG 15A (1B-8 via J3) -> trunk kill switch 2nd pair -> alternator IG (G2-3) - crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)",
+      "signal": "ECU-IG 15A -> IG2-15",
       "schematicPosition": {
         "x": 3750,
         "y": 1800
@@ -5410,7 +5410,7 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "EWD 1993 p.74 IG2-16 Y alternator L (G2-2) -> splice I5 -> combination meter lead C14-8 / C12-8 (ClusterLED charge LED) - crimp butt splice into the factory cowl-side lead at IG2 (cabin, under the ECU; the engine wire is removed)",
+      "signal": "Alt L -> IG2-16",
       "schematicPosition": {
         "x": 3750,
         "y": 1860
@@ -5425,7 +5425,7 @@
       "id": "br_alt_s_cp",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALTS 2A (Bus 1) -> alternator S battery sense",
+      "signal": "Alt S -> FB-LOGIC ALTS 2A",
       "schematicPosition": {
         "x": 3750,
         "y": 1920
@@ -5440,7 +5440,7 @@
       "id": "br_ig_ks_in",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-HeavyDC (along H1 / H2 on the RH sill to the trunk): alternator IG <- IG2-15 cowl lead (J/B No.1 ECU-IG 15A) -> kill switch 2nd pair (ALT 1)",
+      "signal": "Alt IG in -> KILL SW ALT 1",
       "schematicPosition": {
         "x": 3750,
         "y": 1980
@@ -5455,7 +5455,7 @@
       "id": "br_ig_ks_out",
       "type": "Loose",
       "width": 390,
-      "signal": "Broken off - continues on ST185-HeavyDC (back from the trunk along H1 / H2): kill switch 2nd pair (ALT 2) -> alternator IG, on through the RH fender grommet",
+      "signal": "Alt IG out -> KILL SW ALT 2",
       "schematicPosition": {
         "x": 3750,
         "y": 2040

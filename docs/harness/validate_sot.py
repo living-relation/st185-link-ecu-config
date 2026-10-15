@@ -155,7 +155,7 @@ def ecu_ref(node_id):
 
 checked = 0
 for path in sorted(REB.glob("*.harness")):
-    d = json.loads(path.read_text(encoding="utf-8"))
+    d = model.full_text(json.loads(path.read_text(encoding="utf-8")), path.name)
     passives = passive_ends(d)
     for cond, cable_shield in conductors(d):
         for end in ("source", "target"):
