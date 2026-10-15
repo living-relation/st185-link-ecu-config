@@ -1,6 +1,7 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
-  "version": 0.9,
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
+  "version": 1.2,
   "lengthUnit": "mm",
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
@@ -13,14 +14,12 @@
     "includeLayout": true,
     "schematic": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
     },
     "layout": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
@@ -65,521 +64,6 @@
       "showUnconnected": true
     }
   },
-  "connectors": [
-    {
-      "id": "ecu_com",
-      "label": "ECU Comms/Tuning Port",
-      "width": 390,
-      "partId": "cp_dtm6s",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "Ground (Brown)",
-          "designation": "C1",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c2",
-          "designation": "C2",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c3",
-          "signal": "CAN 1 High (White)",
-          "designation": "C3"
-        },
-        {
-          "id": "c4",
-          "designation": "C4",
-          "signal": "CAN 1 Low (Green)",
-          "propagate": false
-        },
-        {
-          "id": "c5",
-          "designation": "C5",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c6",
-          "designation": "C6",
-          "cavityPlugPartId": "pl_sz20"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2490,
-        "y": 870
-      },
-      "schematicPosition": {
-        "x": 0,
-        "y": 0
-      }
-    },
-    {
-      "id": "lambda",
-      "label": "Link CAN-Lambda",
-      "partId": "cp_dtm4s",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "Power +12V ign, LOGIC LAM 7.5A *"
-        },
-        {
-          "id": "c2",
-          "signal": "GND - broken off, continues on ST185-B-engine"
-        },
-        {
-          "id": "c3",
-          "signal": "CAN L"
-        },
-        {
-          "id": "c4",
-          "signal": "CAN H"
-        }
-      ],
-      "layoutPosition": {
-        "x": 330,
-        "y": 390
-      },
-      "schematicPosition": {
-        "x": 2640,
-        "y": 0
-      },
-      "width": 390
-    }
-  ],
-  "terminals": [
-    {
-      "id": "t_cluster_can",
-      "type": "Loose",
-      "width": 390,
-      "schematicPosition": {
-        "x": 0,
-        "y": 270
-      },
-      "layoutPosition": {
-        "x": 1560,
-        "y": 990
-      },
-      "signal": "TrackCluster ESP32-P4 - CAN drop *",
-      "partId": "tp_flying_lead",
-      "propagate": false
-    },
-    {
-      "id": "t_realdash_can",
-      "type": "Loose",
-      "width": 390,
-      "schematicPosition": {
-        "x": 0,
-        "y": 360
-      },
-      "layoutPosition": {
-        "x": 2040,
-        "y": 930
-      },
-      "signal": "RealDash Pi 5 - CAN drop *",
-      "partId": "tp_flying_lead",
-      "propagate": false
-    },
-    {
-      "id": "br_wc_h_csb",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CSB3: CAN H into the CSB3 plug",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2040,
-        "y": 1170
-      },
-      "schematicPosition": {
-        "x": 720,
-        "y": 60
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_wc_l_csb",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CSB3: CAN L into the CSB3 plug",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2040,
-        "y": 1290
-      },
-      "schematicPosition": {
-        "x": 720,
-        "y": 180
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_lam12",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda +12V from LOGIC LAM, bulkhead B c3",
-      "width": 390,
-      "layoutPosition": {
-        "x": 330,
-        "y": 330
-      },
-      "schematicPosition": {
-        "x": 2700,
-        "y": -60
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_lamg",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda ground to cabin chassis ground, bulkhead B c4",
-      "width": 390,
-      "layoutPosition": {
-        "x": 330,
-        "y": 450
-      },
-      "schematicPosition": {
-        "x": 2700,
-        "y": 180
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_wc_h_bh",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: CAN H through bulkhead B c13",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1440,
-        "y": 150
-      },
-      "schematicPosition": {
-        "x": 1380,
-        "y": 60
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_wc_l_bh",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: CAN L through bulkhead B c14",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1440,
-        "y": 210
-      },
-      "schematicPosition": {
-        "x": 1380,
-        "y": 180
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_wc_h_lam",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-engine: CAN H from bulkhead B c13 to the Lambda",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1200,
-        "y": 450
-      },
-      "schematicPosition": {
-        "x": 2040,
-        "y": 60
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_wc_l_lam",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-engine: CAN L from bulkhead B c14 to the Lambda",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1200,
-        "y": 570
-      },
-      "schematicPosition": {
-        "x": 2040,
-        "y": 180
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_cab_lamcan_sh",
-      "type": "Loose",
-      "signal": "Broken off - screen comes in from ST185-B-engine: CAN-Lambda pair screen, bulkhead B c24",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1200,
-        "y": 510
-      },
-      "schematicPosition": {
-        "x": 2040,
-        "y": 120
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_cab_canbh_sh",
-      "type": "Loose",
-      "signal": "Broken off - screen continues on ST185-B-cabin: CAN pair screen to bulkhead B c24",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1440,
-        "y": 270
-      },
-      "schematicPosition": {
-        "x": 1380,
-        "y": 240
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_shd_can",
-      "type": "Loose",
-      "signal": "Broken off - drain continues on ST185-B-cabin: sp_shield_can to sp_shield_b (B17)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1440,
-        "y": 330
-      },
-      "schematicPosition": {
-        "x": 1380,
-        "y": 120
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_cab_cancsb_sh",
-      "type": "Loose",
-      "signal": "Broken off - screen continues on ST185-CSB3: CAN pair screen into the CSB3 plug run",
-      "width": 390,
-      "layoutPosition": {
-        "x": 2040,
-        "y": 1230
-      },
-      "schematicPosition": {
-        "x": 720,
-        "y": 120
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_cluster_pwr",
-      "type": "Loose",
-      "width": 390,
-      "schematicPosition": {
-        "x": 0,
-        "y": 870
-      },
-      "layoutPosition": {
-        "x": 1560,
-        "y": 1110
-      },
-      "signal": "TrackCluster ESP32-P4 - +12V switched (DEV)",
-      "partId": "tp_flying_lead",
-      "propagate": false
-    },
-    {
-      "id": "t_realdash_pwr",
-      "type": "Loose",
-      "width": 390,
-      "schematicPosition": {
-        "x": 0,
-        "y": 960
-      },
-      "layoutPosition": {
-        "x": 2040,
-        "y": 990
-      },
-      "signal": "RealDash Pi 5 - +12V switched (DEV) into the Pi's 12 V to 5 V supply",
-      "partId": "tp_flying_lead",
-      "propagate": false
-    },
-    {
-      "id": "t_cluster_gnd",
-      "type": "Ring",
-      "width": 390,
-      "schematicPosition": {
-        "x": 0,
-        "y": 1020
-      },
-      "layoutPosition": {
-        "x": 1560,
-        "y": 1170
-      },
-      "signal": "Factory ground IF (I/P brace RH, 1993 EWD p.42) - cluster ground, check at build",
-      "partId": "tp_ring_m6_22_16",
-      "propagate": false
-    },
-    {
-      "id": "t_realdash_gnd",
-      "type": "Ring",
-      "width": 390,
-      "schematicPosition": {
-        "x": 0,
-        "y": 1050
-      },
-      "layoutPosition": {
-        "x": 2040,
-        "y": 1050
-      },
-      "signal": "Factory ground IF (I/P brace RH, 1993 EWD p.42) - RealDash Pi ground, check at build",
-      "partId": "tp_ring_m6_22_16",
-      "propagate": false
-    },
-    {
-      "id": "br_w_dev",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: LOGIC DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1560,
-        "y": 1050
-      },
-      "schematicPosition": {
-        "x": 0,
-        "y": 330
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_cluster_gnd_lead",
-      "type": "Loose",
-      "width": 390,
-      "schematicPosition": {
-        "x": 0,
-        "y": 1110
-      },
-      "layoutPosition": {
-        "x": 1560,
-        "y": 1230
-      },
-      "signal": "TrackCluster ESP32-P4 - ground",
-      "partId": "tp_flying_lead",
-      "propagate": false
-    },
-    {
-      "id": "t_realdash_gnd_lead",
-      "type": "Loose",
-      "width": 390,
-      "schematicPosition": {
-        "x": 0,
-        "y": 1140
-      },
-      "layoutPosition": {
-        "x": 2040,
-        "y": 1110
-      },
-      "signal": "RealDash Pi 5 - ground (Pi supply 0 V)",
-      "partId": "tp_flying_lead",
-      "propagate": false
-    }
-  ],
-  "splices": [
-    {
-      "id": "sp_canh",
-      "schematicPosition": {
-        "x": 360,
-        "y": -120
-      },
-      "layoutPosition": {
-        "x": 1860,
-        "y": 810
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "bp_930"
-    },
-    {
-      "id": "sp_canl",
-      "schematicPosition": {
-        "x": 210,
-        "y": -120
-      },
-      "layoutPosition": {
-        "x": 1890,
-        "y": 810
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "bp_930"
-    },
-    {
-      "id": "sp_canh_lam",
-      "schematicPosition": {
-        "x": 2490,
-        "y": 0
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "bp_780",
-      "layoutPosition": {
-        "x": 1380,
-        "y": 450
-      }
-    },
-    {
-      "id": "sp_canl_lam",
-      "schematicPosition": {
-        "x": 2430,
-        "y": 0
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "bp_780",
-      "layoutPosition": {
-        "x": 1410,
-        "y": 450
-      }
-    },
-    {
-      "id": "sp_shield_can",
-      "partId": "spp_solder_generic",
-      "locationId": "bp_930",
-      "layoutPosition": {
-        "x": 1920,
-        "y": 810
-      },
-      "schematicPosition": {
-        "x": 510,
-        "y": 150
-      }
-    },
-    {
-      "id": "sp_dev",
-      "schematicPosition": {
-        "x": 600,
-        "y": 900
-      },
-      "layoutPosition": {
-        "x": 1950,
-        "y": 810
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "bp_930"
-    }
-  ],
-  "resistors": [
-    {
-      "id": "r_term_ecu",
-      "partId": "rp_120",
-      "schematicPosition": {
-        "x": 480,
-        "y": -90
-      },
-      "layoutPosition": {
-        "x": 2430,
-        "y": 1110
-      },
-      "locationId": "bp_1050"
-    },
-    {
-      "id": "r_term_end",
-      "partId": "rp_120",
-      "schematicPosition": {
-        "x": 450,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 540,
-        "y": 330
-      },
-      "locationId": "bp_390"
-    }
-  ],
   "wires": [
     {
       "id": "wc_term1",
@@ -1129,569 +613,411 @@
       ]
     }
   ],
-  "bundles": [
+  "connectors": [
     {
-      "id": "bn_bp_390__bp_780",
-      "sourceId": "bp_390",
-      "targetId": "bp_780",
-      "length": {
-        "value": 690,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_780__bp_840",
-      "sourceId": "bp_780",
-      "targetId": "bp_840",
-      "length": {
-        "value": 130,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_840__bp_930",
-      "sourceId": "bp_840",
-      "targetId": "bp_930",
-      "length": {
-        "value": 160,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_930__ecu_com",
-      "sourceId": "bp_930",
-      "targetId": "ecu_com",
-      "length": {
-        "value": 180,
-        "unit": "mm"
-      },
-      "separateLabels": true,
-      "endLabel": "ECU COM",
-      "partIds": [
-        "cov_lbl_38"
-      ]
-    },
-    {
-      "id": "bn_ecu_com__bp_1050",
-      "sourceId": "ecu_com",
-      "targetId": "bp_1050",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      },
-      "separateLabels": true,
-      "label": "ECU COM",
-      "partIds": [
-        "cov_lbl_38"
-      ]
-    },
-    {
-      "id": "bn_bp_390__lambda",
-      "sourceId": "bp_390",
-      "targetId": "lambda",
-      "length": {
-        "value": 90,
-        "unit": "mm"
-      },
-      "separateLabels": true,
-      "endLabel": "LAMBDA",
-      "partIds": [
-        "cov_lbl_316"
-      ]
-    },
-    {
-      "id": "bn_bp_930__t_cluster_can",
-      "sourceId": "bp_930",
-      "targetId": "t_cluster_can",
-      "length": {
-        "value": 660,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1050__t_realdash_can",
-      "sourceId": "bp_1050",
-      "targetId": "t_realdash_can",
-      "length": {
-        "value": 300,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1050__br_wc_h_csb",
-      "sourceId": "bp_1050",
-      "targetId": "br_wc_h_csb",
-      "length": {
-        "value": 90,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1050__br_wc_l_csb",
-      "sourceId": "bp_1050",
-      "targetId": "br_wc_l_csb",
-      "length": {
-        "value": 90,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_390__br_w_lam12",
-      "sourceId": "bp_390",
-      "targetId": "br_w_lam12",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_390__br_w_lamg",
-      "sourceId": "bp_390",
-      "targetId": "br_w_lamg",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_840__br_wc_h_bh",
-      "sourceId": "bp_840",
-      "targetId": "br_wc_h_bh",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_840__br_wc_l_bh",
-      "sourceId": "bp_840",
-      "targetId": "br_wc_l_bh",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_780__br_wc_h_lam",
-      "sourceId": "bp_780",
-      "targetId": "br_wc_h_lam",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_780__br_wc_l_lam",
-      "sourceId": "bp_780",
-      "targetId": "br_wc_l_lam",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_780__br_cab_lamcan_sh",
-      "sourceId": "bp_780",
-      "targetId": "br_cab_lamcan_sh",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_840__br_cab_canbh_sh",
-      "sourceId": "bp_840",
-      "targetId": "br_cab_canbh_sh",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_840__br_w_shd_can",
-      "sourceId": "bp_840",
-      "targetId": "br_w_shd_can",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_1050__br_cab_cancsb_sh",
-      "sourceId": "bp_1050",
-      "targetId": "br_cab_cancsb_sh",
-      "length": {
-        "value": 90,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "b_bn_bp_930__br_w_dev",
-      "sourceId": "bp_930",
-      "targetId": "br_w_dev",
-      "length": {
-        "value": 660,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "b_bn_bp_930__t_cluster_pwr",
-      "sourceId": "bp_930",
-      "targetId": "t_cluster_pwr",
-      "length": {
-        "value": 660,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "b_bn_bp_930__t_cluster_gnd",
-      "sourceId": "bp_930",
-      "targetId": "t_cluster_gnd",
-      "length": {
-        "value": 660,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "b_bn_bp_930__t_cluster_gnd_lead",
-      "sourceId": "bp_930",
-      "targetId": "t_cluster_gnd_lead",
-      "length": {
-        "value": 660,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "b_bn_bp_1050__t_realdash_pwr",
-      "sourceId": "bp_1050",
-      "targetId": "t_realdash_pwr",
-      "length": {
-        "value": 300,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "b_bn_bp_1050__t_realdash_gnd",
-      "sourceId": "bp_1050",
-      "targetId": "t_realdash_gnd",
-      "length": {
-        "value": 300,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "b_bn_bp_1050__t_realdash_gnd_lead",
-      "sourceId": "bp_1050",
-      "targetId": "t_realdash_gnd_lead",
-      "length": {
-        "value": 300,
-        "unit": "mm"
-      }
-    }
-  ],
-  "branchPoints": [
-    {
-      "id": "bp_390",
-      "layoutPosition": {
-        "x": 510,
-        "y": 390
-      }
-    },
-    {
-      "id": "bp_780",
-      "layoutPosition": {
-        "x": 1350,
-        "y": 390
-      }
-    },
-    {
-      "id": "bp_840",
-      "layoutPosition": {
-        "x": 1590,
-        "y": 390
-      }
-    },
-    {
-      "id": "bp_930",
-      "layoutPosition": {
-        "x": 1830,
-        "y": 870
-      }
-    },
-    {
-      "id": "bp_1050",
-      "layoutPosition": {
-        "x": 2370,
-        "y": 1110
-      }
-    }
-  ],
-  "schematicNotes": [
-    {
-      "id": "n_can",
+      "id": "ecu_com",
+      "label": "ECU Comms/Tuning Port",
       "width": 390,
-      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Only the CAN-Lambda crosses the firewall, on bulkhead B c13 / c14 (CAN) and c3 / c4 (+12V / GND); the cluster and RealDash are CAN drops only - their devices and their power are not part of this harness. 120R termination at the ECU end and at the lambda end.",
-      "schematicPosition": {
-        "x": 2700,
-        "y": 240
-      }
-    },
-    {
-      "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, LOGIC LAM 7.5A - broken off here, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse LOGIC LAM\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)\nsp_shield_can (Splice): CAN drain T-splice at the bus branch point (Daniel 2026-10-12). The trunk drain w_shd_can runs on (broken off) to ST185-B-cabin and is T-spliced there onto the B17 drain; each node branch drain (ECU port, CSB3, cluster, RealDash, bulkhead / Lambda) is soldered onto the trunk drain here where 6 mm of its insulation is cut away. Drains stay 20 AWG - no combined-gauge pigtail.",
-      "schematicPosition": {
-        "x": 2820,
-        "y": 420
-      }
-    }
-  ],
-  "wireParts": [
-    {
-      "id": "m16_20_0",
-      "partNumber": "M22759/16-20-0",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_5",
-      "partNumber": "M22759/16-20-5",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_9",
-      "partNumber": "M22759/16-20-9",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "White",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_2",
-      "partNumber": "M22759/16-20-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_06",
-      "partNumber": "M22759/16-20-06",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "stripeColor": "Blue",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_16_2",
-      "partNumber": "M22759/16-16-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_16_0",
-      "partNumber": "M22759/16-16-0",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
-    }
-  ],
-  "spliceParts": [
-    {
-      "id": "spp_solder_generic",
-      "partNumber": "GENERIC SOLDER SPLICE",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "generic"
-    }
-  ],
-  "terminalParts": [
-    {
-      "id": "tp_flying_lead",
-      "type": "Loose",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 12
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 22
-      },
-      "partNumber": "GENERIC FLYING LEAD",
-      "description": "TERMINAL, FLYING LEAD",
-      "manufacturer": "generic"
-    },
-    {
-      "id": "tp_ring_m6_22_16",
-      "size": "M6",
-      "type": "Ring",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 22
-      },
-      "partNumber": "GENERIC RING M6 22-16",
-      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
-      "manufacturer": "generic"
-    }
-  ],
-  "connectorParts": [
-    {
-      "id": "cp_dtm4s",
-      "color": "Green",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-4S",
-      "description": "CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY",
-      "manufacturer": "Deutsch",
-      "configurations": [
+      "partId": "cp_dtm6s",
+      "cavities": [
         {
-          "id": "cfg",
-          "contactPartId": "ct_hdp20s",
-          "lockPartId": "lp_wm4s"
-        }
-      ],
-      "numberOfCavities": 4
-    },
-    {
-      "id": "cp_dtm6s",
-      "color": "Green",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "DTM06-6S",
-      "description": "CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY",
-      "manufacturer": "Deutsch",
-      "configurations": [
-        {
-          "id": "cfg",
-          "lockPartId": "lp_wm6s",
-          "contactPartId": "ct_hdp20s"
-        }
-      ],
-      "numberOfCavities": 6
-    }
-  ],
-  "resistorParts": [
-    {
-      "id": "rp_120",
-      "partNumber": "120R 1/4W",
-      "manufacturer": "Generic",
-      "description": "RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W",
-      "resistance": 120
-    }
-  ],
-  "lockParts": [
-    {
-      "id": "lp_wm4s",
-      "partNumber": "WM-4S",
-      "description": "WEDGELOCK, DTM, 4 POS, PLUG",
-      "manufacturer": "TE DEUTSCH"
-    },
-    {
-      "id": "lp_wm6s",
-      "partNumber": "WM-6S",
-      "description": "WEDGELOCK, DTM, 6 POS, PLUG",
-      "manufacturer": "Deutsch"
-    }
-  ],
-  "cavityPlugParts": [
-    {
-      "id": "pl_sz20",
-      "partNumber": "0413-204-2005",
-      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
-      "manufacturer": "TE DEUTSCH"
-    }
-  ],
-  "contactParts": [
-    {
-      "id": "ct_hdp20s",
-      "type": "Crimp",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/pr0462-201-2031.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartImages/pr0462-201-2031.jpg"
-      },
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 20
-      },
-      "partNumber": "0462-201-2031",
-      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
-      "manufacturer": "TE DEUTSCH"
-    }
-  ],
-  "cableParts": [
-    {
-      "id": "cab_sh_2c",
-      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "White",
-          "twistedWithNext": true,
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
+          "id": "c1",
+          "signal": "Ground (Brown)",
+          "designation": "C1",
+          "cavityPlugPartId": "pl_sz20"
         },
         {
-          "id": "k2",
-          "color": "Green",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
+          "id": "c2",
+          "designation": "C2",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c3",
+          "signal": "CAN 1 High (White)",
+          "designation": "C3"
+        },
+        {
+          "id": "c4",
+          "designation": "C4",
+          "signal": "CAN 1 Low (Green)",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "C5",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c6",
+          "designation": "C6",
+          "cavityPlugPartId": "pl_sz20"
         }
       ],
-      "shielded": true
+      "layoutPosition": {
+        "x": 2490,
+        "y": 870
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "lambda",
+      "label": "Link CAN-Lambda",
+      "partId": "cp_dtm4s",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Power +12V ign, LOGIC LAM 7.5A *"
+        },
+        {
+          "id": "c2",
+          "signal": "GND - broken off, continues on ST185-B-engine"
+        },
+        {
+          "id": "c3",
+          "signal": "CAN L"
+        },
+        {
+          "id": "c4",
+          "signal": "CAN H"
+        }
+      ],
+      "layoutPosition": {
+        "x": 330,
+        "y": 390
+      },
+      "schematicPosition": {
+        "x": 2640,
+        "y": 0
+      },
+      "width": 390
+    }
+  ],
+  "terminals": [
+    {
+      "id": "t_cluster_can",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 270
+      },
+      "layoutPosition": {
+        "x": 1560,
+        "y": 990
+      },
+      "signal": "TrackCluster ESP32-P4 - CAN drop *",
+      "partId": "tp_flying_lead",
+      "propagate": false
+    },
+    {
+      "id": "t_realdash_can",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": 2040,
+        "y": 930
+      },
+      "signal": "RealDash Pi 5 - CAN drop *",
+      "partId": "tp_flying_lead",
+      "propagate": false
+    },
+    {
+      "id": "br_wc_h_csb",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CSB3: CAN H into the CSB3 plug",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2040,
+        "y": 1170
+      },
+      "schematicPosition": {
+        "x": 720,
+        "y": 60
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_wc_l_csb",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CSB3: CAN L into the CSB3 plug",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2040,
+        "y": 1290
+      },
+      "schematicPosition": {
+        "x": 720,
+        "y": 180
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_lam12",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda +12V from LOGIC LAM, bulkhead B c3",
+      "width": 390,
+      "layoutPosition": {
+        "x": 330,
+        "y": 330
+      },
+      "schematicPosition": {
+        "x": 2700,
+        "y": -60
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_lamg",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda ground to cabin chassis ground, bulkhead B c4",
+      "width": 390,
+      "layoutPosition": {
+        "x": 330,
+        "y": 450
+      },
+      "schematicPosition": {
+        "x": 2700,
+        "y": 180
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_wc_h_bh",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: CAN H through bulkhead B c13",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1440,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 60
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_wc_l_bh",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: CAN L through bulkhead B c14",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1440,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 180
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_wc_h_lam",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-engine: CAN H from bulkhead B c13 to the Lambda",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1200,
+        "y": 450
+      },
+      "schematicPosition": {
+        "x": 2040,
+        "y": 60
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_wc_l_lam",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-engine: CAN L from bulkhead B c14 to the Lambda",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1200,
+        "y": 570
+      },
+      "schematicPosition": {
+        "x": 2040,
+        "y": 180
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_cab_lamcan_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen comes in from ST185-B-engine: CAN-Lambda pair screen, bulkhead B c24",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1200,
+        "y": 510
+      },
+      "schematicPosition": {
+        "x": 2040,
+        "y": 120
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_cab_canbh_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen continues on ST185-B-cabin: CAN pair screen to bulkhead B c24",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1440,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 240
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_shd_can",
+      "type": "Loose",
+      "signal": "Broken off - drain continues on ST185-B-cabin: sp_shield_can to sp_shield_b (B17)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1440,
+        "y": 330
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 120
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_cab_cancsb_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen continues on ST185-CSB3: CAN pair screen into the CSB3 plug run",
+      "width": 390,
+      "layoutPosition": {
+        "x": 2040,
+        "y": 1230
+      },
+      "schematicPosition": {
+        "x": 720,
+        "y": 120
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_cluster_pwr",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 870
+      },
+      "layoutPosition": {
+        "x": 1560,
+        "y": 1110
+      },
+      "signal": "TrackCluster ESP32-P4 - +12V switched (DEV)",
+      "partId": "tp_flying_lead",
+      "propagate": false
+    },
+    {
+      "id": "t_realdash_pwr",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 960
+      },
+      "layoutPosition": {
+        "x": 2040,
+        "y": 990
+      },
+      "signal": "RealDash Pi 5 - +12V switched (DEV) into the Pi's 12 V to 5 V supply",
+      "partId": "tp_flying_lead",
+      "propagate": false
+    },
+    {
+      "id": "t_cluster_gnd",
+      "type": "Ring",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 1020
+      },
+      "layoutPosition": {
+        "x": 1560,
+        "y": 1170
+      },
+      "signal": "Factory ground IF (I/P brace RH, 1993 EWD p.42) - cluster ground, check at build",
+      "partId": "tp_ring_m6_22_16",
+      "propagate": false
+    },
+    {
+      "id": "t_realdash_gnd",
+      "type": "Ring",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 1050
+      },
+      "layoutPosition": {
+        "x": 2040,
+        "y": 1050
+      },
+      "signal": "Factory ground IF (I/P brace RH, 1993 EWD p.42) - RealDash Pi ground, check at build",
+      "partId": "tp_ring_m6_22_16",
+      "propagate": false
+    },
+    {
+      "id": "br_w_dev",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: LOGIC DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1560,
+        "y": 1050
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 330
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_cluster_gnd_lead",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 1110
+      },
+      "layoutPosition": {
+        "x": 1560,
+        "y": 1230
+      },
+      "signal": "TrackCluster ESP32-P4 - ground",
+      "partId": "tp_flying_lead",
+      "propagate": false
+    },
+    {
+      "id": "t_realdash_gnd_lead",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 1140
+      },
+      "layoutPosition": {
+        "x": 2040,
+        "y": 1110
+      },
+      "signal": "RealDash Pi 5 - ground (Pi supply 0 V)",
+      "partId": "tp_flying_lead",
+      "propagate": false
     }
   ],
   "cables": [
@@ -3088,6 +2414,569 @@
       }
     }
   ],
+  "bundles": [
+    {
+      "id": "bn_bp_390__bp_780",
+      "sourceId": "bp_390",
+      "targetId": "bp_780",
+      "length": {
+        "value": 690,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_780__bp_840",
+      "sourceId": "bp_780",
+      "targetId": "bp_840",
+      "length": {
+        "value": 130,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__bp_930",
+      "sourceId": "bp_840",
+      "targetId": "bp_930",
+      "length": {
+        "value": 160,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_930__ecu_com",
+      "sourceId": "bp_930",
+      "targetId": "ecu_com",
+      "length": {
+        "value": 180,
+        "unit": "mm"
+      },
+      "separateLabels": true,
+      "endLabel": "ECU COM",
+      "partIds": [
+        "cov_lbl_38"
+      ]
+    },
+    {
+      "id": "bn_ecu_com__bp_1050",
+      "sourceId": "ecu_com",
+      "targetId": "bp_1050",
+      "length": {
+        "value": 10,
+        "unit": "mm"
+      },
+      "separateLabels": true,
+      "label": "ECU COM",
+      "partIds": [
+        "cov_lbl_38"
+      ]
+    },
+    {
+      "id": "bn_bp_390__lambda",
+      "sourceId": "bp_390",
+      "targetId": "lambda",
+      "length": {
+        "value": 90,
+        "unit": "mm"
+      },
+      "separateLabels": true,
+      "endLabel": "LAMBDA",
+      "partIds": [
+        "cov_lbl_316"
+      ]
+    },
+    {
+      "id": "bn_bp_930__t_cluster_can",
+      "sourceId": "bp_930",
+      "targetId": "t_cluster_can",
+      "length": {
+        "value": 660,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1050__t_realdash_can",
+      "sourceId": "bp_1050",
+      "targetId": "t_realdash_can",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1050__br_wc_h_csb",
+      "sourceId": "bp_1050",
+      "targetId": "br_wc_h_csb",
+      "length": {
+        "value": 90,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1050__br_wc_l_csb",
+      "sourceId": "bp_1050",
+      "targetId": "br_wc_l_csb",
+      "length": {
+        "value": 90,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_390__br_w_lam12",
+      "sourceId": "bp_390",
+      "targetId": "br_w_lam12",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_390__br_w_lamg",
+      "sourceId": "bp_390",
+      "targetId": "br_w_lamg",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__br_wc_h_bh",
+      "sourceId": "bp_840",
+      "targetId": "br_wc_h_bh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__br_wc_l_bh",
+      "sourceId": "bp_840",
+      "targetId": "br_wc_l_bh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_780__br_wc_h_lam",
+      "sourceId": "bp_780",
+      "targetId": "br_wc_h_lam",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_780__br_wc_l_lam",
+      "sourceId": "bp_780",
+      "targetId": "br_wc_l_lam",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_780__br_cab_lamcan_sh",
+      "sourceId": "bp_780",
+      "targetId": "br_cab_lamcan_sh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__br_cab_canbh_sh",
+      "sourceId": "bp_840",
+      "targetId": "br_cab_canbh_sh",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_840__br_w_shd_can",
+      "sourceId": "bp_840",
+      "targetId": "br_w_shd_can",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_1050__br_cab_cancsb_sh",
+      "sourceId": "bp_1050",
+      "targetId": "br_cab_cancsb_sh",
+      "length": {
+        "value": 90,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_930__br_w_dev",
+      "sourceId": "bp_930",
+      "targetId": "br_w_dev",
+      "length": {
+        "value": 660,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_930__t_cluster_pwr",
+      "sourceId": "bp_930",
+      "targetId": "t_cluster_pwr",
+      "length": {
+        "value": 660,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_930__t_cluster_gnd",
+      "sourceId": "bp_930",
+      "targetId": "t_cluster_gnd",
+      "length": {
+        "value": 660,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_930__t_cluster_gnd_lead",
+      "sourceId": "bp_930",
+      "targetId": "t_cluster_gnd_lead",
+      "length": {
+        "value": 660,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1050__t_realdash_pwr",
+      "sourceId": "bp_1050",
+      "targetId": "t_realdash_pwr",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1050__t_realdash_gnd",
+      "sourceId": "bp_1050",
+      "targetId": "t_realdash_gnd",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_bp_1050__t_realdash_gnd_lead",
+      "sourceId": "bp_1050",
+      "targetId": "t_realdash_gnd_lead",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    }
+  ],
+  "splices": [
+    {
+      "id": "sp_canh",
+      "schematicPosition": {
+        "x": 360,
+        "y": -120
+      },
+      "layoutPosition": {
+        "x": 1860,
+        "y": 810
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_930"
+    },
+    {
+      "id": "sp_canl",
+      "schematicPosition": {
+        "x": 210,
+        "y": -120
+      },
+      "layoutPosition": {
+        "x": 1890,
+        "y": 810
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_930"
+    },
+    {
+      "id": "sp_canh_lam",
+      "schematicPosition": {
+        "x": 2490,
+        "y": 0
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_780",
+      "layoutPosition": {
+        "x": 1380,
+        "y": 450
+      }
+    },
+    {
+      "id": "sp_canl_lam",
+      "schematicPosition": {
+        "x": 2430,
+        "y": 0
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_780",
+      "layoutPosition": {
+        "x": 1410,
+        "y": 450
+      }
+    },
+    {
+      "id": "sp_shield_can",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_930",
+      "layoutPosition": {
+        "x": 1920,
+        "y": 810
+      },
+      "schematicPosition": {
+        "x": 510,
+        "y": 150
+      }
+    },
+    {
+      "id": "sp_dev",
+      "schematicPosition": {
+        "x": 600,
+        "y": 900
+      },
+      "layoutPosition": {
+        "x": 1950,
+        "y": 810
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_930"
+    }
+  ],
+  "resistors": [
+    {
+      "id": "r_term_ecu",
+      "partId": "rp_120",
+      "schematicPosition": {
+        "x": 480,
+        "y": -90
+      },
+      "layoutPosition": {
+        "x": 2430,
+        "y": 1110
+      },
+      "locationId": "bp_1050"
+    },
+    {
+      "id": "r_term_end",
+      "partId": "rp_120",
+      "schematicPosition": {
+        "x": 450,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 540,
+        "y": 330
+      },
+      "locationId": "bp_390"
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_can",
+      "width": 390,
+      "text": "CAN BUS harness. 1 Mbit/s ISO 11898-2. Only the CAN-Lambda crosses the firewall, on bulkhead B c13 / c14 (CAN) and c3 / c4 (+12V / GND); the cluster and RealDash are CAN drops only - their devices and their power are not part of this harness. 120R termination at the ECU end and at the lambda end.",
+      "schematicPosition": {
+        "x": 2700,
+        "y": 240
+      }
+    },
+    {
+      "id": "n_cavity_notes",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLink CAN-Lambda c1: Power +12V ign, LOGIC LAM 7.5A - broken off here, continues on ST185-B-engine, bulkhead B c3, ST185-B-cabin, from ST185-CabinPower fuse LOGIC LAM\nt_cluster_can: TrackCluster ESP32-P4 - CAN drop (device not in this harness)\nt_realdash_can: RealDash Pi 5 - CAN drop (device not in this harness)\nsp_shield_can (Splice): CAN drain T-splice at the bus branch point (Daniel 2026-10-12). The trunk drain w_shd_can runs on (broken off) to ST185-B-cabin and is T-spliced there onto the B17 drain; each node branch drain (ECU port, CSB3, cluster, RealDash, bulkhead / Lambda) is soldered onto the trunk drain here where 6 mm of its insulation is cut away. Drains stay 20 AWG - no combined-gauge pigtail.",
+      "schematicPosition": {
+        "x": 2820,
+        "y": 420
+      }
+    }
+  ],
+  "wireParts": [
+    {
+      "id": "m16_20_0",
+      "partNumber": "M22759/16-20-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_5",
+      "partNumber": "M22759/16-20-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_2",
+      "partNumber": "M22759/16-20-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_06",
+      "partNumber": "M22759/16-20-06",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_2",
+      "partNumber": "M22759/16-16-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_0",
+      "partNumber": "M22759/16-16-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_sh_2c",
+      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White",
+          "twistedWithNext": true,
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Green",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    }
+  ],
+  "spliceParts": [
+    {
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
+    }
+  ],
+  "branchPoints": [
+    {
+      "id": "bp_390",
+      "layoutPosition": {
+        "x": 510,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_780",
+      "layoutPosition": {
+        "x": 1350,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_840",
+      "layoutPosition": {
+        "x": 1590,
+        "y": 390
+      }
+    },
+    {
+      "id": "bp_930",
+      "layoutPosition": {
+        "x": 1830,
+        "y": 870
+      }
+    },
+    {
+      "id": "bp_1050",
+      "layoutPosition": {
+        "x": 2370,
+        "y": 1110
+      }
+    }
+  ],
+  "contactParts": [
+    {
+      "id": "ct_hdp20s",
+      "type": "Crimp",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr0462-201-2031.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartImages/pr0462-201-2031.jpg"
+      },
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-2031",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
   "coveringParts": [
     {
       "id": "cov_lbl_316",
@@ -3128,6 +3017,136 @@
         "value": 50,
         "unit": "mm"
       }
+    }
+  ],
+  "resistorParts": [
+    {
+      "id": "rp_120",
+      "partNumber": "120R 1/4W",
+      "manufacturer": "Generic",
+      "description": "RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W",
+      "resistance": 120
+    }
+  ],
+  "terminalParts": [
+    {
+      "id": "tp_flying_lead",
+      "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC FLYING LEAD",
+      "description": "TERMINAL, FLYING LEAD",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_ring_m6_22_16",
+      "size": "M6",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC RING M6 22-16",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
+      "manufacturer": "generic"
+    }
+  ],
+  "connectorParts": [
+    {
+      "id": "cp_dtm4s",
+      "color": "Green",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/64S/DTM06-4S-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DTM06-4S",
+      "description": "CONNECTOR, PLUG, DTM, 4 POS, SOCKET CONTACTS, GRAY",
+      "manufacturer": "Deutsch",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_wm4s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_hdp20s"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 4
+    },
+    {
+      "id": "cp_dtm6s",
+      "color": "Green",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/00D/TM0/66S/DTM06-6S-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DTM06-6S",
+      "description": "CONNECTOR, PLUG, DTM, 6 POS, SOCKET CONTACTS, GRAY",
+      "manufacturer": "Deutsch",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_wm6s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_hdp20s"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 6
+    }
+  ],
+  "lockParts": [
+    {
+      "id": "lp_wm4s",
+      "partNumber": "WM-4S",
+      "description": "WEDGELOCK, DTM, 4 POS, PLUG",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "lp_wm6s",
+      "partNumber": "WM-6S",
+      "description": "WEDGELOCK, DTM, 6 POS, PLUG",
+      "manufacturer": "Deutsch"
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "id": "pl_sz20",
+      "partNumber": "0413-204-2005",
+      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
+      "manufacturer": "TE DEUTSCH"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
-  "version": 0.9,
+  "version": 1.2,
   "lengthUnit": "mm",
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
@@ -14,14 +14,12 @@
     "includeLayout": true,
     "schematic": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
     },
     "layout": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
@@ -66,552 +64,6 @@
       "showUnconnected": true
     }
   },
-  "connectors": [
-    {
-      "id": "csb3io",
-      "label": "ECUMaster CSB3 - Power/CAN/Switch I/O",
-      "width": 390,
-      "partId": "cp_csb3_plug",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+12V (ignition switched)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c2",
-          "signal": "GND",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c3",
-          "signal": "+5V sensor supply -> opto board VCC (its 10k output pull-ups; keeps S7 / S8 at 5 V max)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c4",
-          "signal": "SGND -> opto board output GND (phototransistor emitters)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c5",
-          "signal": "CAN H - broken off, continues on ST185-CAN",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c6",
-          "signal": "CAN L - broken off, continues on ST185-CAN",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c7",
-          "signal": "A1 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c8",
-          "signal": "A2 - Cruise ladder (stalk C14 pin 5 W; 1k pull-up to +5V)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c9",
-          "signal": "A3 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c10",
-          "signal": "A4 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c11",
-          "signal": "A5 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c12",
-          "signal": "A6 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c13",
-          "signal": "A7 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c14",
-          "signal": "A8 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c15",
-          "signal": "S1 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c16",
-          "signal": "S2 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c17",
-          "signal": "S3 - Cruise MAIN on (stalk C14 pin 15 Y-B)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c18",
-          "signal": "S4 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c19",
-          "signal": "S5 (brought out, spare)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c20",
-          "signal": "S6 - Clutch Switch",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c21",
-          "signal": "S7 - Brake Switch (via opto O1; S9 is +12V-active, S7 is ground-active - R56)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c22",
-          "signal": "S8 - Reverse (via opto O2; back-up switch is +12V-active, S8 ground-active - R56)",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c23",
-          "signal": "L1 low-side - spare",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c24",
-          "signal": "L2 low-side - spare",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c25",
-          "signal": "L3 low-side - spare",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c26",
-          "signal": "L4 low-side - oil pressure LED sink, wire on ST185-ClusterLED *",
-          "contactPartId": "ct_hdp20s"
-        },
-        {
-          "id": "c27",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c28",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c29",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c30",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c31",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c32",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        },
-        {
-          "id": "c33",
-          "signal": "spare (size 20)",
-          "cavityPlugPartId": "pl_sz20"
-        }
-      ],
-      "layoutPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "schematicPosition": {
-        "x": 1320,
-        "y": 0
-      }
-    },
-    {
-      "id": "opto8",
-      "label": "Optocoupler board, 8 channel (Dan's, generic EL814) - inline at the CSB3",
-      "width": 390,
-      "partId": "cp_opto8_el814",
-      "cavities": [
-        {
-          "id": "com1",
-          "designation": "COM",
-          "signal": "input COM (LED return) <- CSB3 ground (sp_csb_gnd); PNP / +12V-active inputs",
-          "propagate": false
-        },
-        {
-          "id": "com2",
-          "designation": "COM",
-          "notConnected": true
-        },
-        {
-          "id": "i1",
-          "designation": "01",
-          "signal": "input 01 <- brake, S9 pin 1 (+12V with the pedal pressed)",
-          "propagate": false
-        },
-        {
-          "id": "i2",
-          "designation": "02",
-          "signal": "input 02 <- reverse, back-up switch B1 pin 1 (+12V in R)",
-          "propagate": false
-        },
-        {
-          "id": "i3",
-          "designation": "03",
-          "notConnected": true
-        },
-        {
-          "id": "i4",
-          "designation": "04",
-          "notConnected": true
-        },
-        {
-          "id": "i5",
-          "designation": "05",
-          "notConnected": true
-        },
-        {
-          "id": "i6",
-          "designation": "06",
-          "notConnected": true
-        },
-        {
-          "id": "i7",
-          "designation": "07",
-          "notConnected": true
-        },
-        {
-          "id": "i8",
-          "designation": "08",
-          "notConnected": true
-        },
-        {
-          "id": "vcc",
-          "designation": "VCC",
-          "signal": "output VCC <- CSB3 +5V (c3): the board's 10k pull-ups",
-          "propagate": false
-        },
-        {
-          "id": "gnd",
-          "designation": "GND",
-          "signal": "output GND -> CSB3 SGND (c4)",
-          "propagate": false
-        },
-        {
-          "id": "o1",
-          "designation": "01",
-          "signal": "output 01 (open collector, low when input 01 is on) -> CSB3 S7 (c21)",
-          "propagate": false
-        },
-        {
-          "id": "o2",
-          "designation": "02",
-          "signal": "output 02 (open collector, low when input 02 is on) -> CSB3 S8 (c22)",
-          "propagate": false
-        },
-        {
-          "id": "o3",
-          "designation": "03",
-          "notConnected": true
-        },
-        {
-          "id": "o4",
-          "designation": "04",
-          "notConnected": true
-        },
-        {
-          "id": "o5",
-          "designation": "05",
-          "notConnected": true
-        },
-        {
-          "id": "o6",
-          "designation": "06",
-          "notConnected": true
-        },
-        {
-          "id": "o7",
-          "designation": "07",
-          "notConnected": true
-        },
-        {
-          "id": "o8",
-          "designation": "08",
-          "notConnected": true
-        }
-      ],
-      "schematicPosition": {
-        "x": 660,
-        "y": 900
-      },
-      "layoutPosition": {
-        "x": 540,
-        "y": 540
-      }
-    }
-  ],
-  "terminals": [
-    {
-      "id": "fl_cruise_stalk_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 5 W - ladder to ground (RES/ACC ~68, SET/COAST ~198, CANCEL ~418 ohm) -> sp_cruise_ladder -> CSB3 A2 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 570
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": 660
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_cruise_stalk_c3",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 15 Y-B - MAIN on/off, contact to the pin 17 ground when ON -> CSB3 S3 - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 630
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": 750
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_cruise_stalk_c17",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 17 BR - stalk switch ground -> sp_csb_gnd (CSB3 ground) - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 690
-      },
-      "layoutPosition": {
-        "x": 1140,
-        "y": 840
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_clutch_sw_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) C11 clutch start switch (1993 code)-1 B clutch switch signal -> CSB3 S6 (switch closes with the pedal down; pin 2 W-B is its own ground to IG, so pin 1 reads ground-active; the old starter-relay coil lead, no clutch-start interlock R21) - solder sleeve into the factory lead",
-      "schematicPosition": {
-        "x": 660,
-        "y": 420
-      },
-      "layoutPosition": {
-        "x": 1800,
-        "y": 540
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_brake_sw_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.126-127 S9 pin 1 G-W stop light switch lamp side, +12V with the pedal pressed -> opto IN1 -> CSB3 S7 - soldered tap into the factory G-W lead at S9 (cabin; RearLights' stop feed FL_OEM_S9_C1 lands on the same lead)",
-      "schematicPosition": {
-        "x": 660,
-        "y": 270
-      },
-      "layoutPosition": {
-        "x": 2040,
-        "y": 600
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_cru_5v",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: +5V to the cruise ladder pull-up",
-      "width": 390,
-      "layoutPosition": {
-        "x": 420,
-        "y": 420
-      },
-      "schematicPosition": {
-        "x": 60,
-        "y": 60
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_csb12",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CabinPower: CSB3 +12V from LOGIC CSB 5A (switched k_efi rail)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 420,
-        "y": 330
-      },
-      "schematicPosition": {
-        "x": 60,
-        "y": 180
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_csbg",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-A-cabin: CSB3 ground to sp_chassis",
-      "width": 390,
-      "layoutPosition": {
-        "x": 420,
-        "y": 240
-      },
-      "schematicPosition": {
-        "x": 60,
-        "y": 120
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_sw7_c",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
-      "width": 390,
-      "layoutPosition": {
-        "x": 420,
-        "y": 150
-      },
-      "schematicPosition": {
-        "x": 1380,
-        "y": -60
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_oil_k",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-ClusterLED: oil pressure LED sink on CSB3 L4",
-      "width": 390,
-      "layoutPosition": {
-        "x": 420,
-        "y": 660
-      },
-      "schematicPosition": {
-        "x": 1380,
-        "y": 1050
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_wc_h_csb",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN H into the CSB3 plug",
-      "width": 390,
-      "layoutPosition": {
-        "x": 420,
-        "y": 60
-      },
-      "schematicPosition": {
-        "x": 1380,
-        "y": 1170
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_wc_l_csb",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CAN: CAN L into the CSB3 plug",
-      "width": 390,
-      "layoutPosition": {
-        "x": 420,
-        "y": -60
-      },
-      "schematicPosition": {
-        "x": 1380,
-        "y": 1230
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_cab_cancsb_sh",
-      "type": "Loose",
-      "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can",
-      "width": 390,
-      "layoutPosition": {
-        "x": 420,
-        "y": 480
-      },
-      "schematicPosition": {
-        "x": 1380,
-        "y": 1110
-      },
-      "propagate": false
-    }
-  ],
-  "splices": [
-    {
-      "id": "sp_cruise_ladder",
-      "layoutPosition": {
-        "x": 540,
-        "y": 720
-      },
-      "schematicPosition": {
-        "x": 1170,
-        "y": 300
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "bp_1170"
-    },
-    {
-      "id": "sp_csb_gnd",
-      "partId": "spp_solder_generic",
-      "locationId": "bp_1230",
-      "schematicPosition": {
-        "x": 510,
-        "y": 120
-      },
-      "layoutPosition": {
-        "x": -60,
-        "y": 600
-      }
-    }
-  ],
-  "resistors": [
-    {
-      "id": "r_cruise",
-      "partId": "rp_1k",
-      "locationId": "bp_1140",
-      "layoutPosition": {
-        "x": 630,
-        "y": 720
-      },
-      "schematicPosition": {
-        "x": 720,
-        "y": 180
-      }
-    }
-  ],
   "wires": [
     {
       "id": "w_an2",
@@ -1433,6 +885,720 @@
       ]
     }
   ],
+  "connectors": [
+    {
+      "id": "csb3io",
+      "label": "ECUMaster CSB3 - Power/CAN/Switch I/O",
+      "width": 390,
+      "partId": "cp_csb3_plug",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+12V (ignition switched)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c2",
+          "signal": "GND",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c3",
+          "signal": "+5V sensor supply -> opto board VCC (its 10k output pull-ups; keeps S7 / S8 at 5 V max)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c4",
+          "signal": "SGND -> opto board output GND (phototransistor emitters)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c5",
+          "signal": "CAN H - broken off, continues on ST185-CAN",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c6",
+          "signal": "CAN L - broken off, continues on ST185-CAN",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c7",
+          "signal": "A1 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c8",
+          "signal": "A2 - Cruise ladder (stalk C14 pin 5 W; 1k pull-up to +5V)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c9",
+          "signal": "A3 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c10",
+          "signal": "A4 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c11",
+          "signal": "A5 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c12",
+          "signal": "A6 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c13",
+          "signal": "A7 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c14",
+          "signal": "A8 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c15",
+          "signal": "S1 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c16",
+          "signal": "S2 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c17",
+          "signal": "S3 - Cruise MAIN on (stalk C14 pin 15 Y-B)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c18",
+          "signal": "S4 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c19",
+          "signal": "S5 (brought out, spare)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c20",
+          "signal": "S6 - Clutch Switch",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c21",
+          "signal": "S7 - Brake Switch (via opto O1; S9 is +12V-active, S7 is ground-active - R56)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c22",
+          "signal": "S8 - Reverse (via opto O2; back-up switch is +12V-active, S8 ground-active - R56)",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c23",
+          "signal": "L1 low-side - spare",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c24",
+          "signal": "L2 low-side - spare",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c25",
+          "signal": "L3 low-side - spare",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c26",
+          "signal": "L4 low-side - oil pressure LED sink, wire on ST185-ClusterLED *",
+          "contactPartId": "ct_hdp20s"
+        },
+        {
+          "id": "c27",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c28",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c29",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c30",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c31",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c32",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        },
+        {
+          "id": "c33",
+          "signal": "spare (size 20)",
+          "cavityPlugPartId": "pl_sz20"
+        }
+      ],
+      "layoutPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 0
+      }
+    },
+    {
+      "id": "opto8",
+      "label": "Optocoupler board, 8 channel (Dan's, generic EL814) - inline at the CSB3",
+      "width": 390,
+      "partId": "cp_opto8_el814",
+      "cavities": [
+        {
+          "id": "com1",
+          "designation": "COM",
+          "signal": "input COM (LED return) <- CSB3 ground (sp_csb_gnd); PNP / +12V-active inputs",
+          "propagate": false
+        },
+        {
+          "id": "com2",
+          "designation": "COM",
+          "notConnected": true
+        },
+        {
+          "id": "i1",
+          "designation": "01",
+          "signal": "input 01 <- brake, S9 pin 1 (+12V with the pedal pressed)",
+          "propagate": false
+        },
+        {
+          "id": "i2",
+          "designation": "02",
+          "signal": "input 02 <- reverse, back-up switch B1 pin 1 (+12V in R)",
+          "propagate": false
+        },
+        {
+          "id": "i3",
+          "designation": "03",
+          "notConnected": true
+        },
+        {
+          "id": "i4",
+          "designation": "04",
+          "notConnected": true
+        },
+        {
+          "id": "i5",
+          "designation": "05",
+          "notConnected": true
+        },
+        {
+          "id": "i6",
+          "designation": "06",
+          "notConnected": true
+        },
+        {
+          "id": "i7",
+          "designation": "07",
+          "notConnected": true
+        },
+        {
+          "id": "i8",
+          "designation": "08",
+          "notConnected": true
+        },
+        {
+          "id": "vcc",
+          "designation": "VCC",
+          "signal": "output VCC <- CSB3 +5V (c3): the board's 10k pull-ups",
+          "propagate": false
+        },
+        {
+          "id": "gnd",
+          "designation": "GND",
+          "signal": "output GND -> CSB3 SGND (c4)",
+          "propagate": false
+        },
+        {
+          "id": "o1",
+          "designation": "01",
+          "signal": "output 01 (open collector, low when input 01 is on) -> CSB3 S7 (c21)",
+          "propagate": false
+        },
+        {
+          "id": "o2",
+          "designation": "02",
+          "signal": "output 02 (open collector, low when input 02 is on) -> CSB3 S8 (c22)",
+          "propagate": false
+        },
+        {
+          "id": "o3",
+          "designation": "03",
+          "notConnected": true
+        },
+        {
+          "id": "o4",
+          "designation": "04",
+          "notConnected": true
+        },
+        {
+          "id": "o5",
+          "designation": "05",
+          "notConnected": true
+        },
+        {
+          "id": "o6",
+          "designation": "06",
+          "notConnected": true
+        },
+        {
+          "id": "o7",
+          "designation": "07",
+          "notConnected": true
+        },
+        {
+          "id": "o8",
+          "designation": "08",
+          "notConnected": true
+        }
+      ],
+      "schematicPosition": {
+        "x": 660,
+        "y": 900
+      },
+      "layoutPosition": {
+        "x": 540,
+        "y": 540
+      }
+    }
+  ],
+  "terminals": [
+    {
+      "id": "fl_cruise_stalk_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 5 W - ladder to ground (RES/ACC ~68, SET/COAST ~198, CANCEL ~418 ohm) -> sp_cruise_ladder -> CSB3 A2 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 570
+      },
+      "layoutPosition": {
+        "x": 1140,
+        "y": 660
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_cruise_stalk_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 15 Y-B - MAIN on/off, contact to the pin 17 ground when ON -> CSB3 S3 - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 630
+      },
+      "layoutPosition": {
+        "x": 1140,
+        "y": 750
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_cruise_stalk_c17",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 17 BR - stalk switch ground -> sp_csb_gnd (CSB3 ground) - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 690
+      },
+      "layoutPosition": {
+        "x": 1140,
+        "y": 840
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_clutch_sw_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) C11 clutch start switch (1993 code)-1 B clutch switch signal -> CSB3 S6 (switch closes with the pedal down; pin 2 W-B is its own ground to IG, so pin 1 reads ground-active; the old starter-relay coil lead, no clutch-start interlock R21) - solder sleeve into the factory lead",
+      "schematicPosition": {
+        "x": 660,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": 1800,
+        "y": 540
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_brake_sw_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 p.126-127 S9 pin 1 G-W stop light switch lamp side, +12V with the pedal pressed -> opto IN1 -> CSB3 S7 - soldered tap into the factory G-W lead at S9 (cabin; RearLights' stop feed FL_OEM_S9_C1 lands on the same lead)",
+      "schematicPosition": {
+        "x": 660,
+        "y": 270
+      },
+      "layoutPosition": {
+        "x": 2040,
+        "y": 600
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_cru_5v",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: +5V to the cruise ladder pull-up",
+      "width": 390,
+      "layoutPosition": {
+        "x": 420,
+        "y": 420
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 60
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_csb12",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CabinPower: CSB3 +12V from LOGIC CSB 5A (switched k_efi rail)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 420,
+        "y": 330
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 180
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_csbg",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-A-cabin: CSB3 ground to sp_chassis",
+      "width": 390,
+      "layoutPosition": {
+        "x": 420,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 120
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_sw7_c",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
+      "width": 390,
+      "layoutPosition": {
+        "x": 420,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": -60
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_oil_k",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-ClusterLED: oil pressure LED sink on CSB3 L4",
+      "width": 390,
+      "layoutPosition": {
+        "x": 420,
+        "y": 660
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 1050
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_wc_h_csb",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN H into the CSB3 plug",
+      "width": 390,
+      "layoutPosition": {
+        "x": 420,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 1170
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_wc_l_csb",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CAN: CAN L into the CSB3 plug",
+      "width": 390,
+      "layoutPosition": {
+        "x": 420,
+        "y": -60
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 1230
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_cab_cancsb_sh",
+      "type": "Loose",
+      "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can",
+      "width": 390,
+      "layoutPosition": {
+        "x": 420,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 1380,
+        "y": 1110
+      },
+      "propagate": false
+    }
+  ],
+  "cables": [
+    {
+      "id": "cab_can_csb_csb",
+      "partId": "cab_sh_2c",
+      "schematicPosition": {
+        "x": 1800,
+        "y": 870
+      },
+      "cores": [
+        {
+          "id": "wc_h_csb_csb",
+          "color": "White",
+          "identColors": [
+            "Yellow"
+          ],
+          "source": {
+            "id": "csb3io",
+            "handle": "c5"
+          },
+          "target": {
+            "id": "br_wc_h_csb",
+            "handle": "Terminal"
+          },
+          "twistedWithNext": true,
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_h_csb_csb_source_lp1",
+              "schematicPosition": {
+                "x": 1770,
+                "y": 900
+              }
+            },
+            {
+              "id": "wc_h_csb_csb_source_lp2",
+              "schematicPosition": {
+                "x": 1770,
+                "y": 150
+              }
+            },
+            {
+              "id": "wc_h_csb_csb_source_lp3",
+              "schematicPosition": {
+                "x": 1710,
+                "y": 150
+              }
+            }
+          ],
+          "targetLayoutPoints": [
+            {
+              "id": "wc_h_csb_csb_target_lp1",
+              "schematicPosition": {
+                "x": 1860,
+                "y": 900
+              }
+            },
+            {
+              "id": "wc_h_csb_csb_target_lp2",
+              "schematicPosition": {
+                "x": 1920,
+                "y": 900
+              }
+            },
+            {
+              "id": "wc_h_csb_csb_target_lp3",
+              "schematicPosition": {
+                "x": 1920,
+                "y": 1140
+              }
+            },
+            {
+              "id": "wc_h_csb_csb_target_lp4",
+              "schematicPosition": {
+                "x": 1770,
+                "y": 1140
+              }
+            },
+            {
+              "id": "wc_h_csb_csb_target_lp5",
+              "schematicPosition": {
+                "x": 1770,
+                "y": 1170
+              }
+            }
+          ]
+        },
+        {
+          "id": "wc_l_csb_csb",
+          "color": "Green",
+          "identColors": [
+            "Yellow"
+          ],
+          "source": {
+            "id": "csb3io",
+            "handle": "c6"
+          },
+          "target": {
+            "id": "br_wc_l_csb",
+            "handle": "Terminal"
+          },
+          "targetLayoutPoints": [
+            {
+              "id": "wc_l_csb_csb_target_lp1",
+              "schematicPosition": {
+                "x": 1860,
+                "y": 930
+              }
+            },
+            {
+              "id": "wc_l_csb_csb_target_lp2",
+              "schematicPosition": {
+                "x": 1860,
+                "y": 1200
+              }
+            },
+            {
+              "id": "wc_l_csb_csb_target_lp3",
+              "schematicPosition": {
+                "x": 1770,
+                "y": 1200
+              }
+            },
+            {
+              "id": "wc_l_csb_csb_target_lp4",
+              "schematicPosition": {
+                "x": 1770,
+                "y": 1230
+              }
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "id": "wc_l_csb_csb_source_lp1",
+              "schematicPosition": {
+                "x": 1770,
+                "y": 930
+              }
+            },
+            {
+              "id": "wc_l_csb_csb_source_lp2",
+              "schematicPosition": {
+                "x": 1740,
+                "y": 930
+              }
+            },
+            {
+              "id": "wc_l_csb_csb_source_lp3",
+              "schematicPosition": {
+                "x": 1740,
+                "y": 810
+              }
+            },
+            {
+              "id": "wc_l_csb_csb_source_lp4",
+              "schematicPosition": {
+                "x": 1800,
+                "y": 810
+              }
+            },
+            {
+              "id": "wc_l_csb_csb_source_lp5",
+              "schematicPosition": {
+                "x": 1800,
+                "y": 210
+              }
+            },
+            {
+              "id": "wc_l_csb_csb_source_lp6",
+              "schematicPosition": {
+                "x": 1710,
+                "y": 210
+              }
+            },
+            {
+              "id": "wc_l_csb_csb_source_lp7",
+              "schematicPosition": {
+                "x": 1710,
+                "y": 180
+              }
+            }
+          ]
+        }
+      ],
+      "shield": {
+        "id": "cab_can_csb_csb_sh",
+        "color": "Shield",
+        "identColors": [
+          "Yellow"
+        ],
+        "source": {
+          "id": "br_cab_cancsb_sh",
+          "handle": "Terminal"
+        },
+        "sourceLayoutPoints": [
+          {
+            "id": "cab_can_csb_csb_sh_source_lp1",
+            "schematicPosition": {
+              "x": 1770,
+              "y": 960
+            }
+          },
+          {
+            "id": "cab_can_csb_csb_sh_source_lp2",
+            "schematicPosition": {
+              "x": 1770,
+              "y": 1110
+            }
+          }
+        ]
+      }
+    }
+  ],
   "bundles": [
     {
       "id": "bn_bp_900__bp_930",
@@ -1706,6 +1872,185 @@
       ]
     }
   ],
+  "splices": [
+    {
+      "id": "sp_cruise_ladder",
+      "layoutPosition": {
+        "x": 540,
+        "y": 720
+      },
+      "schematicPosition": {
+        "x": 1170,
+        "y": 300
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_1170"
+    },
+    {
+      "id": "sp_csb_gnd",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_1230",
+      "schematicPosition": {
+        "x": 510,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": -60,
+        "y": 600
+      }
+    }
+  ],
+  "resistors": [
+    {
+      "id": "r_cruise",
+      "partId": "rp_1k",
+      "locationId": "bp_1140",
+      "layoutPosition": {
+        "x": 630,
+        "y": 720
+      },
+      "schematicPosition": {
+        "x": 720,
+        "y": 180
+      }
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_csb3",
+      "schematicPosition": {
+        "x": 210,
+        "y": 270
+      },
+      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk (C14: pin 5 W ladder -> A2 with a 1k pull-up to +5V, pin 15 Y-B MAIN -> S3, pin 17 BR ground; no separate SET / RESUME wires, so S4 / S5 are spare - DECISIONS S23, R66), clutch and brake switches, and ONE 8-channel optocoupler board inline at the plug (Dan's on-hand board, 2026-10-13, C10-C13): brake (S9, +12V-active) -> input 01 -> output 01 -> S7 and reverse (B1, +12V-active) -> input 02 -> output 02 -> S8, both ground-active inputs (R56). Input COM to ground; the board's own 4.7k input resistors set the LED current. Output VCC from the CSB3 +5V (c3), never 12V: the board's 10k pull-ups go to VCC and the CSB3 S inputs are 'switched to ground' with no 12V rating (CSB3 manual v2.1 pp.3-5). Output GND to SGND (c4). Channels 03-08 not connected. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse switch output from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
+    },
+    {
+      "id": "n_cavity_notes",
+      "schematicPosition": {
+        "x": 660,
+        "y": 750
+      },
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (broken off)",
+      "width": 390
+    }
+  ],
+  "wireParts": [
+    {
+      "id": "m16_20_0",
+      "partNumber": "M22759/16-20-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_5",
+      "partNumber": "M22759/16-20-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_3",
+      "partNumber": "M22759/16-20-3",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Orange",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_2",
+      "partNumber": "M22759/16-20-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_59",
+      "partNumber": "M22759/16-16-59",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_20",
+      "partNumber": "M22759/16-16-20",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_sh_2c",
+      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
+      "manufacturer": "generic",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White",
+          "twistedWithNext": true,
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Green",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    }
+  ],
+  "spliceParts": [
+    {
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
+    }
+  ],
   "branchPoints": [
     {
       "id": "bp_900",
@@ -1813,120 +2158,6 @@
       }
     }
   ],
-  "wireParts": [
-    {
-      "id": "m16_20_0",
-      "partNumber": "M22759/16-20-0",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_5",
-      "partNumber": "M22759/16-20-5",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_3",
-      "partNumber": "M22759/16-20-3",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, ORANGE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Orange",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_9",
-      "partNumber": "M22759/16-20-9",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "White",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_2",
-      "partNumber": "M22759/16-20-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_16_59",
-      "partNumber": "M22759/16-16-59",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Green",
-      "stripeColor": "White",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_16_20",
-      "partNumber": "M22759/16-16-20",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "stripeColor": "Black",
-      "gauge": {
-        "value": 16,
-        "unit": "AWG"
-      }
-    }
-  ],
-  "spliceParts": [
-    {
-      "id": "spp_solder_generic",
-      "partNumber": "GENERIC SOLDER SPLICE",
-      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "generic"
-    }
-  ],
-  "cavityPlugParts": [
-    {
-      "id": "pl_sz20",
-      "partNumber": "0413-204-2005",
-      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
-      "manufacturer": "TE DEUTSCH"
-    }
-  ],
-  "terminalParts": [
-    {
-      "id": "tp_flying_lead",
-      "type": "Loose",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 12
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 22
-      },
-      "partNumber": "GENERIC FLYING LEAD",
-      "description": "TERMINAL, FLYING LEAD",
-      "manufacturer": "generic"
-    }
-  ],
   "contactParts": [
     {
       "id": "ct_hdp20s",
@@ -1950,303 +2181,6 @@
       "manufacturer": "TE DEUTSCH"
     }
   ],
-  "schematicNotes": [
-    {
-      "id": "n_csb3",
-      "schematicPosition": {
-        "x": 210,
-        "y": 270
-      },
-      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk (C14: pin 5 W ladder -> A2 with a 1k pull-up to +5V, pin 15 Y-B MAIN -> S3, pin 17 BR ground; no separate SET / RESUME wires, so S4 / S5 are spare - DECISIONS S23, R66), clutch and brake switches, and ONE 8-channel optocoupler board inline at the plug (Dan's on-hand board, 2026-10-13, C10-C13): brake (S9, +12V-active) -> input 01 -> output 01 -> S7 and reverse (B1, +12V-active) -> input 02 -> output 02 -> S8, both ground-active inputs (R56). Input COM to ground; the board's own 4.7k input resistors set the LED current. Output VCC from the CSB3 +5V (c3), never 12V: the board's 10k pull-ups go to VCC and the CSB3 S inputs are 'switched to ground' with no 12V rating (CSB3 manual v2.1 pp.3-5). Output GND to SGND (c4). Channels 03-08 not connected. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse switch output from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
-    },
-    {
-      "id": "n_cavity_notes",
-      "schematicPosition": {
-        "x": 660,
-        "y": 750
-      },
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (broken off)",
-      "width": 390
-    }
-  ],
-  "connectorParts": [
-    {
-      "id": "cp_csb3_plug",
-      "image": {
-        "url": "https://www.te.com/catalog/common/images/PartImages/prhd36-24-33sn.jpg",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhd36-24-33sn.jpg"
-      },
-      "gender": "Female",
-      "hasShell": false,
-      "partNumber": "HD36-24-33SE",
-      "description": "CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_hdp20s",
-          "cavityPlugPartId": "pl_sz20"
-        }
-      ],
-      "numberOfCavities": 33
-    },
-    {
-      "id": "cp_opto8_el814",
-      "partNumber": "(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)",
-      "description": "MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, 12 V INPUT, EL814, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS",
-      "manufacturer": "generic",
-      "numberOfCavities": 20,
-      "configurations": []
-    }
-  ],
-  "resistorParts": [
-    {
-      "id": "rp_1k",
-      "partNumber": "1k 1/4W",
-      "manufacturer": "generic",
-      "description": "RESISTOR, FIXED, METAL FILM, 1 KOHM, 5 PCT, 1/4 W"
-    }
-  ],
-  "cableParts": [
-    {
-      "id": "cab_sh_2c",
-      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "White",
-          "twistedWithNext": true,
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Green",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    }
-  ],
-  "cables": [
-    {
-      "id": "cab_can_csb_csb",
-      "partId": "cab_sh_2c",
-      "schematicPosition": {
-        "x": 1800,
-        "y": 870
-      },
-      "cores": [
-        {
-          "id": "wc_h_csb_csb",
-          "color": "White",
-          "identColors": [
-            "Yellow"
-          ],
-          "source": {
-            "id": "csb3io",
-            "handle": "c5"
-          },
-          "target": {
-            "id": "br_wc_h_csb",
-            "handle": "Terminal"
-          },
-          "twistedWithNext": true,
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_h_csb_csb_source_lp1",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 900
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_source_lp2",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 150
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_source_lp3",
-              "schematicPosition": {
-                "x": 1710,
-                "y": 150
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "wc_h_csb_csb_target_lp1",
-              "schematicPosition": {
-                "x": 1860,
-                "y": 900
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_target_lp2",
-              "schematicPosition": {
-                "x": 1920,
-                "y": 900
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_target_lp3",
-              "schematicPosition": {
-                "x": 1920,
-                "y": 1140
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_target_lp4",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 1140
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_target_lp5",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 1170
-              }
-            }
-          ]
-        },
-        {
-          "id": "wc_l_csb_csb",
-          "color": "Green",
-          "identColors": [
-            "Yellow"
-          ],
-          "source": {
-            "id": "csb3io",
-            "handle": "c6"
-          },
-          "target": {
-            "id": "br_wc_l_csb",
-            "handle": "Terminal"
-          },
-          "targetLayoutPoints": [
-            {
-              "id": "wc_l_csb_csb_target_lp1",
-              "schematicPosition": {
-                "x": 1860,
-                "y": 930
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_target_lp2",
-              "schematicPosition": {
-                "x": 1860,
-                "y": 1200
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_target_lp3",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 1200
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_target_lp4",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 1230
-              }
-            }
-          ],
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_l_csb_csb_source_lp1",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 930
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp2",
-              "schematicPosition": {
-                "x": 1740,
-                "y": 930
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp3",
-              "schematicPosition": {
-                "x": 1740,
-                "y": 810
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp4",
-              "schematicPosition": {
-                "x": 1800,
-                "y": 810
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp5",
-              "schematicPosition": {
-                "x": 1800,
-                "y": 210
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp6",
-              "schematicPosition": {
-                "x": 1710,
-                "y": 210
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp7",
-              "schematicPosition": {
-                "x": 1710,
-                "y": 180
-              }
-            }
-          ]
-        }
-      ],
-      "shield": {
-        "id": "cab_can_csb_csb_sh",
-        "color": "Shield",
-        "identColors": [
-          "Yellow"
-        ],
-        "source": {
-          "id": "br_cab_cancsb_sh",
-          "handle": "Terminal"
-        },
-        "sourceLayoutPoints": [
-          {
-            "id": "cab_can_csb_csb_sh_source_lp1",
-            "schematicPosition": {
-              "x": 1770,
-              "y": 960
-            }
-          },
-          {
-            "id": "cab_can_csb_csb_sh_source_lp2",
-            "schematicPosition": {
-              "x": 1770,
-              "y": 1110
-            }
-          }
-        ]
-      }
-    }
-  ],
   "coveringParts": [
     {
       "id": "cov_lbl_38",
@@ -2267,6 +2201,80 @@
         "value": 50,
         "unit": "mm"
       }
+    }
+  ],
+  "resistorParts": [
+    {
+      "id": "rp_1k",
+      "partNumber": "1k 1/4W",
+      "manufacturer": "generic",
+      "description": "RESISTOR, FIXED, METAL FILM, 1 KOHM, 5 PCT, 1/4 W"
+    }
+  ],
+  "terminalParts": [
+    {
+      "id": "tp_flying_lead",
+      "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC FLYING LEAD",
+      "description": "TERMINAL, FLYING LEAD",
+      "manufacturer": "generic"
+    }
+  ],
+  "connectorParts": [
+    {
+      "id": "cp_csb3_plug",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/prhd36-24-33sn.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/thhd36-24-33sn.jpg"
+      },
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "HD36-24-33SE",
+      "description": "CONNECTOR, PLUG, HD30, SHELL 24, 33 POS, SOCKET CONTACTS, E SEAL",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_hdp20s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz20"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 33
+    },
+    {
+      "id": "cp_opto8_el814",
+      "partNumber": "(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)",
+      "description": "MODULE, OPTOCOUPLER ISOLATION, 8 CHANNEL, 12 V INPUT, EL814, 4.7 KOHM INPUT RESISTORS, OPEN COLLECTOR, 10 KOHM PULL-UP TO VCC, OUTPUT 3-24 V, SCREW TERMINALS, 20 POS",
+      "manufacturer": "generic",
+      "numberOfCavities": 20,
+      "configurations": []
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "id": "pl_sz20",
+      "partNumber": "0413-204-2005",
+      "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
+      "manufacturer": "TE DEUTSCH"
     }
   ]
 }

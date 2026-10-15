@@ -1,7 +1,7 @@
 {
-  "$schema": "https://docs.harness.design/files/harness/schema/v0.9.json",
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
   "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
-  "version": 0.9,
+  "version": 1.2,
   "lengthUnit": "mm",
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
@@ -9,487 +9,61 @@
     "drawingNumber": "ST185-AntiTheft"
   },
   "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker on each bundle at its plug (ALARM, SIREN, STATUS LED, VALET SW, SHOCK SNSR).",
-  "connectors": [
-    {
-      "id": "alarm",
-      "label": "Alarm module - main harness (DT06-12SA)",
-      "width": 390,
-      "partId": "cp_dt06_12sa",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+12V CONSTANT - LOGIC ALM 5A *, broken off to ST185-CabinPower",
-          "designation": "1",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c2",
-          "signal": "GROUND - cabin chassis stud *",
-          "designation": "2",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c3",
-          "signal": "IGNITION SENSE - +12V key-on *",
-          "designation": "3",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c4",
-          "signal": "SIREN + - switched +12V out, 2A *",
-          "designation": "4",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c5",
-          "signal": "PARKING LIGHT OUT - flashes the park lamps on *",
-          "designation": "5",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c6",
-          "signal": "DOOR TRIGGER IN - negative *",
-          "designation": "6",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c7",
-          "signal": "HOOD PIN IN - negative",
-          "designation": "7",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c8",
-          "signal": "TRUNK PIN IN - negative",
-          "designation": "8",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c9",
-          "signal": "IMMOBILISER OUT - grounds when armed *",
-          "designation": "9",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c10",
-          "signal": "STATUS LED +",
-          "designation": "10",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c11",
-          "signal": "VALET / PROGRAM SWITCH",
-          "designation": "11",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c12",
-          "signal": "SHOCK SENSOR TRIGGER IN - negative *",
-          "designation": "12",
-          "contactPartId": "ct_hdp16s"
-        }
-      ],
-      "layoutPosition": {
-        "x": 960,
-        "y": 300
-      },
-      "schematicPosition": {
-        "x": 660,
-        "y": 0
-      }
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
     },
-    {
-      "id": "shock",
-      "label": "Shock / tilt sensor *",
-      "width": 390,
-      "partId": "cp_dt3s",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+12V CONSTANT - LOGIC ALMS 2A (ST185-CabinPower)",
-          "designation": "A",
-          "contactPartId": "ct_hdp16s"
-        },
-        {
-          "id": "c2",
-          "signal": "Ground",
-          "designation": "B",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c3",
-          "signal": "Trigger out - negative pulse on impact",
-          "designation": "C",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        }
-      ],
-      "layoutPosition": {
-        "x": 1980,
-        "y": 600
-      },
-      "schematicPosition": {
-        "x": 1320,
-        "y": 540
-      }
+    "layout": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
     },
-    {
-      "id": "siren",
-      "label": "Siren (engine bay, center firewall behind the engine) - leads cross via harness C's own RH fender grommet, decided 2026-10-10, not the FR wheel-speed grommet",
-      "width": 390,
-      "partId": "pdfTYmAD2zDku_jfHqzBu",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "+12V switched from alarm c4",
-          "designation": "1",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "signal": "Ground - returns to cabin ground stud (ring A)",
-          "designation": "2",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        }
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
       ],
-      "layoutPosition": {
-        "x": 480,
-        "y": 270
-      },
-      "schematicPosition": {
-        "x": 1320,
-        "y": 0
-      }
+      "pageMode": "Multiple",
+      "pageSize": "A3"
     },
-    {
-      "id": "led_sts",
-      "label": "Status LED (dash)",
-      "width": 390,
-      "partId": "pdfTYmAD2zDku_jfHqzBu",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "LED anode, from alarm c10",
-          "designation": "1",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "signal": "LED cathode to ground. Kit LED *",
-          "designation": "2",
-          "contactPartId": "ct_hdp16s"
-        }
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
       ],
-      "layoutPosition": {
-        "x": 1620,
-        "y": -300
-      },
-      "schematicPosition": {
-        "x": 1320,
-        "y": 240
-      }
-    },
-    {
-      "id": "valet",
-      "label": "Valet / program switch (hidden)",
-      "width": 270,
-      "partId": "pdfTYmAD2zDku_jfHqzBu",
-      "cavities": [
-        {
-          "id": "c1",
-          "signal": "Switch, from alarm c11",
-          "designation": "1",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "signal": "Ground",
-          "designation": "2",
-          "contactPartId": "ct_hdp16s"
-        }
-      ],
-      "layoutPosition": {
-        "x": 1620,
-        "y": 780
-      },
-      "schematicPosition": {
-        "x": 1320,
-        "y": 390
-      }
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
     }
-  ],
-  "terminals": [
-    {
-      "id": "t_at_12v",
-      "type": "Loose",
-      "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALM 5A (Bus 1, permanent) -> alarm +12V constant",
-      "layoutPosition": {
-        "x": 1380,
-        "y": -420
-      },
-      "schematicPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_at_ig",
-      "type": "Loose",
-      "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
-      "layoutPosition": {
-        "x": 870,
-        "y": -480
-      },
-      "schematicPosition": {
-        "x": 0,
-        "y": 90
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_at_gnd",
-      "type": "Ring",
-      "width": 390,
-      "partId": "tp_ring_m6_22_16",
-      "signal": "Cabin chassis ground stud M6 - ring A *",
-      "layoutPosition": {
-        "x": 1380,
-        "y": 900
-      },
-      "schematicPosition": {
-        "x": 1980,
-        "y": 0
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_at_door",
-      "type": "Loose",
-      "width": 390,
-      "signal": "OEM door courtesy switches *",
-      "layoutPosition": {
-        "x": 2100,
-        "y": 540
-      },
-      "schematicPosition": {
-        "x": 0,
-        "y": 180
-      },
-      "partId": "tp_flying_lead",
-      "propagate": false
-    },
-    {
-      "id": "t_at_hood",
-      "type": "Loose",
-      "width": 390,
-      "signal": "Hood pin switch - ADD ONE *. Rides harness C down the RH fender to the front, same grommet as the siren leads - exact hood-pin mounting spot still TBD",
-      "layoutPosition": {
-        "x": 0,
-        "y": -120
-      },
-      "schematicPosition": {
-        "x": 0,
-        "y": 270
-      },
-      "partId": "tp_flying_lead",
-      "propagate": false
-    },
-    {
-      "id": "t_at_trunk",
-      "type": "Loose",
-      "width": 150,
-      "signal": "Trunk pin switch",
-      "layoutPosition": {
-        "x": 2940,
-        "y": 300
-      },
-      "schematicPosition": {
-        "x": 0,
-        "y": 360
-      },
-      "partId": "tp_flying_lead",
-      "propagate": false
-    },
-    {
-      "id": "t_at_park",
-      "type": "Loose",
-      "width": 390,
-      "signal": "Park lamp flash - to a relay in the CABIN *",
-      "layoutPosition": {
-        "x": 1740,
-        "y": -240
-      },
-      "schematicPosition": {
-        "x": 1320,
-        "y": 150
-      },
-      "partId": "tp_flying_lead",
-      "propagate": false
-    },
-    {
-      "id": "t_at_gnd_b",
-      "type": "Ring",
-      "width": 390,
-      "partId": "tp_ring_m6_22_16",
-      "signal": "Cabin chassis ground stud M6 - ring B *",
-      "layoutPosition": {
-        "x": 1500,
-        "y": 840
-      },
-      "schematicPosition": {
-        "x": 1980,
-        "y": 90
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_at_gnd_c",
-      "type": "Ring",
-      "width": 390,
-      "partId": "tp_ring_m6_22_16",
-      "signal": "Cabin chassis ground stud M6 - ring C (valet)",
-      "layoutPosition": {
-        "x": 1740,
-        "y": 720
-      },
-      "schematicPosition": {
-        "x": 1980,
-        "y": 180
-      },
-      "propagate": false
-    },
-    {
-      "id": "t_at_12v_shk",
-      "type": "Loose",
-      "width": 390,
-      "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
-      "layoutPosition": {
-        "x": 1500,
-        "y": -360
-      },
-      "schematicPosition": {
-        "x": 1980,
-        "y": 270
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_at_immob2",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-B-cabin: immobiliser output to ECU-B B27 (DI 10)",
-      "width": 390,
-      "layoutPosition": {
-        "x": 1860,
-        "y": -180
-      },
-      "schematicPosition": {
-        "x": 60,
-        "y": 510
-      },
-      "propagate": false
-    }
-  ],
-  "splices": [
-    {
-      "id": "sp_at_12v",
-      "partId": "spp_solder_generic",
-      "layoutPosition": {
-        "x": 1320,
-        "y": 240
-      },
-      "schematicPosition": {
-        "x": 510,
-        "y": 0
-      },
-      "locationId": "bp_990"
-    },
-    {
-      "id": "sp_ig",
-      "partId": "spp_solder_generic",
-      "layoutPosition": {
-        "x": 870,
-        "y": 300
-      },
-      "schematicPosition": {
-        "x": 510,
-        "y": 60
-      },
-      "locationId": "bp_930"
-    },
-    {
-      "id": "sp_door",
-      "partId": "spp_solder_generic",
-      "layoutPosition": {
-        "x": 1860,
-        "y": 360
-      },
-      "schematicPosition": {
-        "x": 450,
-        "y": 90
-      },
-      "locationId": "bp_1110"
-    },
-    {
-      "id": "sp_hood",
-      "partId": "spp_solder_generic",
-      "layoutPosition": {
-        "x": 480,
-        "y": -60
-      },
-      "schematicPosition": {
-        "x": 510,
-        "y": 120
-      },
-      "locationId": "bp_270"
-    },
-    {
-      "id": "sp_trunk",
-      "partId": "spp_solder_generic",
-      "layoutPosition": {
-        "x": 2100,
-        "y": 240
-      },
-      "schematicPosition": {
-        "x": 510,
-        "y": 180
-      },
-      "locationId": "bp_1260"
-    },
-    {
-      "id": "sp_park",
-      "partId": "spp_solder_generic",
-      "layoutPosition": {
-        "x": 1440,
-        "y": 240
-      },
-      "schematicPosition": {
-        "x": 1170,
-        "y": 60
-      },
-      "locationId": "bp_1020"
-    },
-    {
-      "id": "sp_12v_shk",
-      "partId": "spp_solder_generic",
-      "layoutPosition": {
-        "x": 1800,
-        "y": 240
-      },
-      "schematicPosition": {
-        "x": 1830,
-        "y": 420
-      },
-      "locationId": "bp_1110"
-    }
-  ],
+  },
   "wires": [
     {
       "id": "w_at_12v",
@@ -1467,6 +1041,394 @@
       ]
     }
   ],
+  "connectors": [
+    {
+      "id": "alarm",
+      "label": "Alarm module - main harness (DT06-12SA)",
+      "width": 390,
+      "partId": "cp_dt06_12sa",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+12V CONSTANT - LOGIC ALM 5A *, broken off to ST185-CabinPower",
+          "designation": "1",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c2",
+          "signal": "GROUND - cabin chassis stud *",
+          "designation": "2",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c3",
+          "signal": "IGNITION SENSE - +12V key-on *",
+          "designation": "3",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c4",
+          "signal": "SIREN + - switched +12V out, 2A *",
+          "designation": "4",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c5",
+          "signal": "PARKING LIGHT OUT - flashes the park lamps on *",
+          "designation": "5",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c6",
+          "signal": "DOOR TRIGGER IN - negative *",
+          "designation": "6",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c7",
+          "signal": "HOOD PIN IN - negative",
+          "designation": "7",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c8",
+          "signal": "TRUNK PIN IN - negative",
+          "designation": "8",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c9",
+          "signal": "IMMOBILISER OUT - grounds when armed *",
+          "designation": "9",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c10",
+          "signal": "STATUS LED +",
+          "designation": "10",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c11",
+          "signal": "VALET / PROGRAM SWITCH",
+          "designation": "11",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c12",
+          "signal": "SHOCK SENSOR TRIGGER IN - negative *",
+          "designation": "12",
+          "contactPartId": "ct_hdp16s"
+        }
+      ],
+      "layoutPosition": {
+        "x": 960,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 660,
+        "y": 0
+      }
+    },
+    {
+      "id": "shock",
+      "label": "Shock / tilt sensor *",
+      "width": 390,
+      "partId": "cp_dt3s",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+12V CONSTANT - LOGIC ALMS 2A (ST185-CabinPower)",
+          "designation": "A",
+          "contactPartId": "ct_hdp16s"
+        },
+        {
+          "id": "c2",
+          "signal": "Ground",
+          "designation": "B",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "signal": "Trigger out - negative pulse on impact",
+          "designation": "C",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        }
+      ],
+      "layoutPosition": {
+        "x": 1980,
+        "y": 600
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 540
+      }
+    },
+    {
+      "id": "siren",
+      "label": "Siren (engine bay, center firewall behind the engine) - leads cross via harness C's own RH fender grommet, decided 2026-10-10, not the FR wheel-speed grommet",
+      "width": 390,
+      "partId": "pdfTYmAD2zDku_jfHqzBu",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "+12V switched from alarm c4",
+          "designation": "1",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "signal": "Ground - returns to cabin ground stud (ring A)",
+          "designation": "2",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        }
+      ],
+      "layoutPosition": {
+        "x": 480,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 0
+      }
+    },
+    {
+      "id": "led_sts",
+      "label": "Status LED (dash)",
+      "width": 390,
+      "partId": "pdfTYmAD2zDku_jfHqzBu",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "LED anode, from alarm c10",
+          "designation": "1",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "signal": "LED cathode to ground. Kit LED *",
+          "designation": "2",
+          "contactPartId": "ct_hdp16s"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1620,
+        "y": -300
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 240
+      }
+    },
+    {
+      "id": "valet",
+      "label": "Valet / program switch (hidden)",
+      "width": 270,
+      "partId": "pdfTYmAD2zDku_jfHqzBu",
+      "cavities": [
+        {
+          "id": "c1",
+          "signal": "Switch, from alarm c11",
+          "designation": "1",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "signal": "Ground",
+          "designation": "2",
+          "contactPartId": "ct_hdp16s"
+        }
+      ],
+      "layoutPosition": {
+        "x": 1620,
+        "y": 780
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 390
+      }
+    }
+  ],
+  "terminals": [
+    {
+      "id": "t_at_12v",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALM 5A (Bus 1, permanent) -> alarm +12V constant",
+      "layoutPosition": {
+        "x": 1380,
+        "y": -420
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_at_ig",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
+      "layoutPosition": {
+        "x": 870,
+        "y": -480
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 90
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_at_gnd",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_ring_m6_22_16",
+      "signal": "Cabin chassis ground stud M6 - ring A *",
+      "layoutPosition": {
+        "x": 1380,
+        "y": 900
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 0
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_at_door",
+      "type": "Loose",
+      "width": 390,
+      "signal": "OEM door courtesy switches *",
+      "layoutPosition": {
+        "x": 2100,
+        "y": 540
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 180
+      },
+      "partId": "tp_flying_lead",
+      "propagate": false
+    },
+    {
+      "id": "t_at_hood",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Hood pin switch - ADD ONE *. Rides harness C down the RH fender to the front, same grommet as the siren leads - exact hood-pin mounting spot still TBD",
+      "layoutPosition": {
+        "x": 0,
+        "y": -120
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 270
+      },
+      "partId": "tp_flying_lead",
+      "propagate": false
+    },
+    {
+      "id": "t_at_trunk",
+      "type": "Loose",
+      "width": 150,
+      "signal": "Trunk pin switch",
+      "layoutPosition": {
+        "x": 2940,
+        "y": 300
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 360
+      },
+      "partId": "tp_flying_lead",
+      "propagate": false
+    },
+    {
+      "id": "t_at_park",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Park lamp flash - to a relay in the CABIN *",
+      "layoutPosition": {
+        "x": 1740,
+        "y": -240
+      },
+      "schematicPosition": {
+        "x": 1320,
+        "y": 150
+      },
+      "partId": "tp_flying_lead",
+      "propagate": false
+    },
+    {
+      "id": "t_at_gnd_b",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_ring_m6_22_16",
+      "signal": "Cabin chassis ground stud M6 - ring B *",
+      "layoutPosition": {
+        "x": 1500,
+        "y": 840
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 90
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_at_gnd_c",
+      "type": "Ring",
+      "width": 390,
+      "partId": "tp_ring_m6_22_16",
+      "signal": "Cabin chassis ground stud M6 - ring C (valet)",
+      "layoutPosition": {
+        "x": 1740,
+        "y": 720
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 180
+      },
+      "propagate": false
+    },
+    {
+      "id": "t_at_12v_shk",
+      "type": "Loose",
+      "width": 390,
+      "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
+      "layoutPosition": {
+        "x": 1500,
+        "y": -360
+      },
+      "schematicPosition": {
+        "x": 1980,
+        "y": 270
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_at_immob2",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-B-cabin: immobiliser output to ECU-B B27 (DI 10)",
+      "width": 390,
+      "layoutPosition": {
+        "x": 1860,
+        "y": -180
+      },
+      "schematicPosition": {
+        "x": 60,
+        "y": 510
+      },
+      "propagate": false
+    }
+  ],
   "bundles": [
     {
       "id": "bn_bp_180__bp_270",
@@ -1733,83 +1695,97 @@
       }
     }
   ],
-  "branchPoints": [
+  "splices": [
     {
-      "id": "bp_180",
+      "id": "sp_at_12v",
+      "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 360,
+        "x": 1320,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 510,
         "y": 0
-      }
+      },
+      "locationId": "bp_990"
     },
     {
-      "id": "bp_270",
-      "layoutPosition": {
-        "x": 480,
-        "y": 0
-      }
-    },
-    {
-      "id": "bp_930",
+      "id": "sp_ig",
+      "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": 870,
-        "y": 240
-      }
-    },
-    {
-      "id": "bp_990",
-      "layoutPosition": {
-        "x": 1380,
         "y": 300
-      }
+      },
+      "schematicPosition": {
+        "x": 510,
+        "y": 60
+      },
+      "locationId": "bp_930"
     },
     {
-      "id": "bp_1020",
-      "layoutPosition": {
-        "x": 1500,
-        "y": 300
-      }
-    },
-    {
-      "id": "bp_1050",
-      "layoutPosition": {
-        "x": 1620,
-        "y": 300
-      }
-    },
-    {
-      "id": "bp_1080",
-      "layoutPosition": {
-        "x": 1740,
-        "y": 300
-      }
-    },
-    {
-      "id": "bp_1110",
+      "id": "sp_door",
+      "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": 1860,
-        "y": 300
-      }
+        "y": 360
+      },
+      "schematicPosition": {
+        "x": 450,
+        "y": 90
+      },
+      "locationId": "bp_1110"
     },
     {
-      "id": "bp_1200",
+      "id": "sp_hood",
+      "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1980,
-        "y": 300
-      }
+        "x": 480,
+        "y": -60
+      },
+      "schematicPosition": {
+        "x": 510,
+        "y": 120
+      },
+      "locationId": "bp_270"
     },
     {
-      "id": "bp_1260",
+      "id": "sp_trunk",
+      "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": 2100,
-        "y": 300
-      }
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 510,
+        "y": 180
+      },
+      "locationId": "bp_1260"
     },
     {
-      "id": "bp_2520",
+      "id": "sp_park",
+      "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 2640,
-        "y": 300
-      }
+        "x": 1440,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 1170,
+        "y": 60
+      },
+      "locationId": "bp_1020"
+    },
+    {
+      "id": "sp_12v_shk",
+      "partId": "spp_solder_generic",
+      "layoutPosition": {
+        "x": 1800,
+        "y": 240
+      },
+      "schematicPosition": {
+        "x": 1830,
+        "y": 420
+      },
+      "locationId": "bp_1110"
     }
   ],
   "schematicNotes": [
@@ -1950,6 +1926,85 @@
       "manufacturer": "generic"
     }
   ],
+  "branchPoints": [
+    {
+      "id": "bp_180",
+      "layoutPosition": {
+        "x": 360,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_270",
+      "layoutPosition": {
+        "x": 480,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_930",
+      "layoutPosition": {
+        "x": 870,
+        "y": 240
+      }
+    },
+    {
+      "id": "bp_990",
+      "layoutPosition": {
+        "x": 1380,
+        "y": 300
+      }
+    },
+    {
+      "id": "bp_1020",
+      "layoutPosition": {
+        "x": 1500,
+        "y": 300
+      }
+    },
+    {
+      "id": "bp_1050",
+      "layoutPosition": {
+        "x": 1620,
+        "y": 300
+      }
+    },
+    {
+      "id": "bp_1080",
+      "layoutPosition": {
+        "x": 1740,
+        "y": 300
+      }
+    },
+    {
+      "id": "bp_1110",
+      "layoutPosition": {
+        "x": 1860,
+        "y": 300
+      }
+    },
+    {
+      "id": "bp_1200",
+      "layoutPosition": {
+        "x": 1980,
+        "y": 300
+      }
+    },
+    {
+      "id": "bp_1260",
+      "layoutPosition": {
+        "x": 2100,
+        "y": 300
+      }
+    },
+    {
+      "id": "bp_2520",
+      "layoutPosition": {
+        "x": 2640,
+        "y": 300
+      }
+    }
+  ],
   "contactParts": [
     {
       "id": "ct_hdp16s",
@@ -1989,6 +2044,48 @@
       "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
       "contactColor": "Silver",
       "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_316",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/16-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 1.6,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
     }
   ],
   "terminalParts": [
@@ -2092,7 +2189,13 @@
       "configurations": [
         {
           "id": "cfg",
-          "lockPartId": "lp_w3s"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w3s"
+            }
+          ]
         }
       ],
       "numberOfCavities": 3,
@@ -2218,7 +2321,13 @@
       "configurations": [
         {
           "id": "cfg12",
-          "lockPartId": "lp_w12s"
+          "accessories": [
+            {
+              "id": "cfg12-1",
+              "type": "LockPart",
+              "partId": "lp_w12s"
+            }
+          ]
         }
       ],
       "numberOfCavities": 12
@@ -2272,9 +2381,23 @@
       "configurations": [
         {
           "id": "cfg",
-          "lockPartId": "lp_w2s",
-          "contactPartId": "ct_dt16s_ni",
-          "cavityPlugPartId": "pl_sz16"
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w2s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16s_ni"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
         }
       ],
       "numberOfCavities": 2,
@@ -2315,104 +2438,5 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "manufacturer": "TE DEUTSCH"
     }
-  ],
-  "coveringParts": [
-    {
-      "id": "cov_lbl_38",
-      "type": "HeatShrink",
-      "partNumber": "TMS-SCE-3/8-2.0-9",
-      "manufacturer": "TE Connectivity (Raychem)",
-      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
-      "minDiameter": {
-        "value": 3.2,
-        "unit": "mm"
-      },
-      "maxDiameter": {
-        "value": 9.5,
-        "unit": "mm"
-      },
-      "isFixedLength": true,
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "cov_lbl_316",
-      "type": "HeatShrink",
-      "partNumber": "TMS-SCE-3/16-2.0-9",
-      "manufacturer": "TE Connectivity (Raychem)",
-      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
-      "minDiameter": {
-        "value": 1.6,
-        "unit": "mm"
-      },
-      "maxDiameter": {
-        "value": 4.8,
-        "unit": "mm"
-      },
-      "isFixedLength": true,
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    }
-  ],
-  "pdfExportSettings": {
-    "includeSchematic": true,
-    "includeLayout": true,
-    "schematic": {
-      "showParts": true,
-      "showCoverings": true,
-      "showAccessories": true,
-      "showComponentIds": true,
-      "pageSize": "Fit"
-    },
-    "layout": {
-      "showParts": true,
-      "showCoverings": true,
-      "showAccessories": true,
-      "showComponentIds": true,
-      "pageSize": "Fit"
-    },
-    "wireThickness": "Thick",
-    "includeTitleBlock": true,
-    "includeNotes": true,
-    "includeParts": true,
-    "parts": {
-      "columns": [
-        "PartNumber",
-        "Manufacturer",
-        "Details",
-        "Description",
-        "Url",
-        "Quantity"
-      ],
-      "pageMode": "Multiple",
-      "pageSize": "A3"
-    },
-    "includeConnections": true,
-    "connections": {
-      "includeAll": true,
-      "includeComponents": true,
-      "columns": [
-        "Conductor",
-        "PartNumber",
-        "TwistedWith",
-        "Ident",
-        "Group",
-        "Net",
-        "Length",
-        "Contact"
-      ],
-      "showConductorIds": true,
-      "pageMode": "Multiple",
-      "pageSize": "A3",
-      "showPart": true,
-      "showPartImage": false,
-      "showAccessories": true,
-      "showPinout": true,
-      "showUnconnected": true
-    }
-  }
+  ]
 }

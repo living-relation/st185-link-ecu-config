@@ -1,7 +1,11 @@
-"""Check every rebuild file against the v0.9 rules we have learned by
-rejection, so an upload is not a guess.
+"""Check every rebuild file against the harness.design format rules we have learned by
+rejection, so an upload is not a guess. (The name predates the v1.2 move; it is cited by
+DECISIONS, SHIELD-RULES and the skills, so it stays.)
 
-Each rule here cost a failed set_document_json at least once:
+  - every file is harness.design format v1.2 with the v1.2 $schema - the desktop app's
+    current schema, so the app never rewrites a file on open (DECISIONS R111)
+
+Each rule below cost a failed set_document_json at least once:
   - width is an enum, not a number
   - wire colour is an enum with no striped values; the stripe is its own field
   - wires take no 'signal'
@@ -36,6 +40,10 @@ def check(fn):
     with open(os.path.join(SRC, fn), encoding="utf-8") as fh:
         d = json.load(fh)
     bad = []
+    if d.get("version") != model.FORMAT_VERSION:
+        bad.append("version is %r, not %s (DECISIONS R111)" % (d.get("version"), model.FORMAT_VERSION))
+    if d.get("kind") != "library" and d.get("$schema") != model.FORMAT_SCHEMA:
+        bad.append("$schema is %r, not %s" % (d.get("$schema"), model.FORMAT_SCHEMA))
 
     parts = set()
     for key in ("connectorParts", "contactParts", "resistorParts",
@@ -65,12 +73,10 @@ def check(fn):
     # too - a connector part whose contact was trimmed out from under it still
     # looks fine on the connector, and the missing contact only shows up as a
     # short BOM.
-    for p in d.get("connectorParts", []):
+    for p in (q for k in d if k.endswith("Parts") for q in d[k]):
         for cfg in (p.get("configurations") or []):
-            for k in ("lockPartId", "contactPartId", "cavityPlugPartId",
-                      "bootPartId", "backshellPartId"):
-                v = cfg.get(k)
-                if v and v not in parts:
+            for k, v, _ in model.cfg_accessories(cfg):
+                if v not in parts:
                     bad.append("part %s config %s -> missing part %s"
                                % (p.get("id"), k, v))
 

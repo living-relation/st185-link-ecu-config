@@ -52,7 +52,7 @@ def contact_for(d, conn_id, cav_id=None):
             return ""
         cfgs = parts[pid].get("configurations") or []
         for cfg in cfgs:
-            ct = cfg.get("contactPartId")
+            ct = model.cfg_default(cfg, "ContactPart")
             if ct and ct in parts:
                 return parts[ct].get("partNumber", "")
     return ""

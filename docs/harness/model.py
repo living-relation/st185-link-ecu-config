@@ -60,6 +60,45 @@ def parts(d):
     return {p["id"]: p for k in d if k.endswith("Parts") for p in d[k]}
 
 
+# harness.design file format version of every file in rebuild/ (DECISIONS R111: the repo
+# follows the desktop app's current schema, so the app never rewrites a file on open).
+FORMAT_VERSION = 1.2
+FORMAT_SCHEMA = "https://docs.harness.design/files/harness/schema/v1.2.json"
+
+# Part configurations. The files are harness.design v1.2 (DECISIONS R111): a configuration's
+# parts are an ordered `accessories` list of {id, type, partId, rule?}. v0.9 held them as
+# single *PartId fields; those are still read so an old file does not silently lose its parts.
+# https://docs.harness.design/files/harness/part-library.md "Configurations and accessories"
+CFG_V09 = {"LockPart": "lockPartId", "DustCoverPart": "dustCoverPartId",
+           "BackshellPart": "backshellPartId", "ContactPart": "contactPartId",
+           "BootPart": "bootPartId", "MountPart": "mountPartId",
+           "CavityPlugPart": "cavityPlugPartId"}
+# Loaded per cavity by rule; every other accessory type counts once per component.
+CAVITY_TYPES = ("ContactPart", "CavityPlugPart", "CavitySealPart")
+
+
+def cfg_accessories(cfg):
+    """[(type, partId, rule)] of a part configuration, in list order, filled slots only."""
+    cfg = cfg or {}
+    out = [(a.get("type"), a.get("partId"), a.get("rule"))
+           for a in cfg.get("accessories") or [] if a.get("partId")]
+    return out + [(t, cfg[k], None) for t, k in CFG_V09.items() if cfg.get(k)]
+
+
+def cfg_default(cfg, typ):
+    """The part a configuration loads into a cavity by default: its first `typ` accessory
+    (ContactPart for a wired cavity, CavityPlugPart for an empty one), or None. The app's
+    rule matching (gauge / cavity size / apply) is not modelled here, so a rule fails loudly
+    instead of giving a wrong default."""
+    for t, pid, rule in cfg_accessories(cfg):
+        if t == typ:
+            if rule:
+                raise ValueError("configuration %s: %s %s has a rule - not modelled by model.py"
+                                 % ((cfg or {}).get("id"), typ, pid))
+            return pid
+    return None
+
+
 def conductors(d):
     """(conductor, cable id or None, is_screen) for every wire, core and screen."""
     for w in d.get("wires", []):

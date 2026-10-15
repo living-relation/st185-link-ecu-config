@@ -1,5 +1,7 @@
 {
-  "version": 0.9,
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
+  "version": 1.2,
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
     "title": "ST185-ClusterLED - cluster warning LED loom: six indicator LEDs on the cluster flying leads",
@@ -11,14 +13,12 @@
     "includeLayout": true,
     "schematic": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
     },
     "layout": {
       "showParts": true,
-      "showCoverings": true,
       "showAccessories": true,
       "showComponentIds": true,
       "pageSize": "Fit"
@@ -63,244 +63,6 @@
       "showUnconnected": true
     }
   },
-  "connectors": [],
-  "terminals": [
-    {
-      "id": "t_led_gnd",
-      "type": "Ring",
-      "width": 390,
-      "signal": "LED common return - OEM ground ID, left kick panel (M6, assumed)",
-      "schematicPosition": {
-        "x": 660,
-        "y": 1500
-      },
-      "layoutPosition": {
-        "x": 330,
-        "y": 60
-      },
-      "partId": "tp_ring_m6_22_16",
-      "propagate": false
-    },
-    {
-      "id": "fl_cl_c11_c2",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.206 (1993 code C13 (B)) C11-2 G-B Turn L - flasher LH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector",
-      "schematicPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 90,
-        "y": -600
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_cl_c11_c11",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.206 (1993 code C13 (B)) C11-11 G-Y Turn R - flasher RH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector",
-      "schematicPosition": {
-        "x": 0,
-        "y": 60
-      },
-      "layoutPosition": {
-        "x": 90,
-        "y": -300
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_cl_c11_c12",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.206 (1993 code C13 (B)) C11-12 R-L High beam - body residual feed - solder sleeve into the factory lead on the dash-harness side of the meter connector",
-      "schematicPosition": {
-        "x": 0,
-        "y": 120
-      },
-      "layoutPosition": {
-        "x": 90,
-        "y": 120
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_cl_c12_c1",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD 1993 p.206 (1993 code C14 (C)) C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder sleeve into the factory lead on the dash-harness side of the meter connector",
-      "schematicPosition": {
-        "x": 0,
-        "y": 180
-      },
-      "layoutPosition": {
-        "x": 300,
-        "y": -240
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_cl_c12_c8",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD p.52 C12-8 Y Alt L - charge-lamp drive - solder sleeve into the factory lead on the dash-harness side of the meter connector",
-      "schematicPosition": {
-        "x": 0,
-        "y": 240
-      },
-      "layoutPosition": {
-        "x": 300,
-        "y": -60
-      },
-      "propagate": false
-    },
-    {
-      "id": "fl_cl_c12_c9",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "signal": "EWD p.52 C12-9 B-O IG +12 - feeds every LED anode - solder sleeve into the factory lead on the dash-harness side of the meter connector",
-      "schematicPosition": {
-        "x": 0,
-        "y": 300
-      },
-      "layoutPosition": {
-        "x": 300,
-        "y": -150
-      },
-      "propagate": false
-    },
-    {
-      "id": "br_w_oil_k",
-      "type": "Loose",
-      "signal": "Broken off - continues on ST185-CSB3: oil pressure LED sink on CSB3 L4",
-      "width": 390,
-      "layoutPosition": {
-        "x": 570,
-        "y": 0
-      },
-      "schematicPosition": {
-        "x": 1350,
-        "y": 150
-      },
-      "propagate": false
-    }
-  ],
-  "splices": [
-    {
-      "id": "sp_led_gnd",
-      "schematicPosition": {
-        "x": 510,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": 180,
-        "y": 60
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "bp_990"
-    },
-    {
-      "id": "sp_led_12v",
-      "schematicPosition": {
-        "x": 510,
-        "y": 360
-      },
-      "layoutPosition": {
-        "x": 120,
-        "y": -150
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "bp_990"
-    }
-  ],
-  "diodes": [
-    {
-      "id": "d_hb",
-      "partId": "dp_led",
-      "anodeOnRight": false,
-      "schematicPosition": {
-        "x": 360,
-        "y": 0
-      },
-      "layoutPosition": {
-        "x": -30,
-        "y": 90
-      },
-      "locationId": "bp_960"
-    },
-    {
-      "id": "d_tl",
-      "partId": "dp_led",
-      "anodeOnRight": false,
-      "schematicPosition": {
-        "x": 300,
-        "y": -90
-      },
-      "layoutPosition": {
-        "x": -60,
-        "y": 0
-      },
-      "locationId": "bp_960"
-    },
-    {
-      "id": "d_tr",
-      "partId": "dp_led",
-      "anodeOnRight": false,
-      "schematicPosition": {
-        "x": 180,
-        "y": -90
-      },
-      "layoutPosition": {
-        "x": -60,
-        "y": -60
-      },
-      "locationId": "bp_960"
-    },
-    {
-      "id": "d_pk",
-      "partId": "dp_led",
-      "anodeOnRight": false,
-      "schematicPosition": {
-        "x": 450,
-        "y": 180
-      },
-      "layoutPosition": {
-        "x": 30,
-        "y": 150
-      },
-      "locationId": "bp_960"
-    },
-    {
-      "id": "d_chg",
-      "partId": "dp_led",
-      "anodeOnRight": false,
-      "schematicPosition": {
-        "x": 570,
-        "y": 180
-      },
-      "layoutPosition": {
-        "x": -60,
-        "y": -120
-      },
-      "locationId": "bp_960"
-    },
-    {
-      "id": "d_oil",
-      "partId": "dp_led",
-      "anodeOnRight": false,
-      "schematicPosition": {
-        "x": 450,
-        "y": 90
-      },
-      "layoutPosition": {
-        "x": 450,
-        "y": 120
-      },
-      "locationId": "bp_1020"
-    }
-  ],
   "wires": [
     {
       "id": "w_hb_a",
@@ -867,6 +629,216 @@
       ]
     }
   ],
+  "connectors": [],
+  "terminals": [
+    {
+      "id": "t_led_gnd",
+      "type": "Ring",
+      "width": 390,
+      "signal": "LED common return - OEM ground ID, left kick panel (M6, assumed)",
+      "schematicPosition": {
+        "x": 660,
+        "y": 1500
+      },
+      "layoutPosition": {
+        "x": 330,
+        "y": 60
+      },
+      "partId": "tp_ring_m6_22_16",
+      "propagate": false
+    },
+    {
+      "id": "fl_cl_c11_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 p.206 (1993 code C13 (B)) C11-2 G-B Turn L - flasher LH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector",
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 90,
+        "y": -600
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_cl_c11_c11",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 p.206 (1993 code C13 (B)) C11-11 G-Y Turn R - flasher RH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector",
+      "schematicPosition": {
+        "x": 0,
+        "y": 60
+      },
+      "layoutPosition": {
+        "x": 90,
+        "y": -300
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_cl_c11_c12",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 p.206 (1993 code C13 (B)) C11-12 R-L High beam - body residual feed - solder sleeve into the factory lead on the dash-harness side of the meter connector",
+      "schematicPosition": {
+        "x": 0,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 90,
+        "y": 120
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_cl_c12_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD 1993 p.206 (1993 code C14 (C)) C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder sleeve into the factory lead on the dash-harness side of the meter connector",
+      "schematicPosition": {
+        "x": 0,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 300,
+        "y": -240
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_cl_c12_c8",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.52 C12-8 Y Alt L - charge-lamp drive - solder sleeve into the factory lead on the dash-harness side of the meter connector",
+      "schematicPosition": {
+        "x": 0,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 300,
+        "y": -60
+      },
+      "propagate": false
+    },
+    {
+      "id": "fl_cl_c12_c9",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "signal": "EWD p.52 C12-9 B-O IG +12 - feeds every LED anode - solder sleeve into the factory lead on the dash-harness side of the meter connector",
+      "schematicPosition": {
+        "x": 0,
+        "y": 300
+      },
+      "layoutPosition": {
+        "x": 300,
+        "y": -150
+      },
+      "propagate": false
+    },
+    {
+      "id": "br_w_oil_k",
+      "type": "Loose",
+      "signal": "Broken off - continues on ST185-CSB3: oil pressure LED sink on CSB3 L4",
+      "width": 390,
+      "layoutPosition": {
+        "x": 570,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 1350,
+        "y": 150
+      },
+      "propagate": false
+    }
+  ],
+  "diodes": [
+    {
+      "id": "d_hb",
+      "partId": "dp_led",
+      "anodeOnRight": false,
+      "schematicPosition": {
+        "x": 360,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": -30,
+        "y": 90
+      },
+      "locationId": "bp_960"
+    },
+    {
+      "id": "d_tl",
+      "partId": "dp_led",
+      "anodeOnRight": false,
+      "schematicPosition": {
+        "x": 300,
+        "y": -90
+      },
+      "layoutPosition": {
+        "x": -60,
+        "y": 0
+      },
+      "locationId": "bp_960"
+    },
+    {
+      "id": "d_tr",
+      "partId": "dp_led",
+      "anodeOnRight": false,
+      "schematicPosition": {
+        "x": 180,
+        "y": -90
+      },
+      "layoutPosition": {
+        "x": -60,
+        "y": -60
+      },
+      "locationId": "bp_960"
+    },
+    {
+      "id": "d_pk",
+      "partId": "dp_led",
+      "anodeOnRight": false,
+      "schematicPosition": {
+        "x": 450,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": 30,
+        "y": 150
+      },
+      "locationId": "bp_960"
+    },
+    {
+      "id": "d_chg",
+      "partId": "dp_led",
+      "anodeOnRight": false,
+      "schematicPosition": {
+        "x": 570,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": -60,
+        "y": -120
+      },
+      "locationId": "bp_960"
+    },
+    {
+      "id": "d_oil",
+      "partId": "dp_led",
+      "anodeOnRight": false,
+      "schematicPosition": {
+        "x": 450,
+        "y": 90
+      },
+      "layoutPosition": {
+        "x": 450,
+        "y": 120
+      },
+      "locationId": "bp_1020"
+    }
+  ],
   "bundles": [
     {
       "id": "bn_bp_fl_cl_c11__bp_960",
@@ -977,41 +949,32 @@
       }
     }
   ],
-  "branchPoints": [
+  "splices": [
     {
-      "id": "bp_960",
-      "layoutPosition": {
-        "x": 90,
+      "id": "sp_led_gnd",
+      "schematicPosition": {
+        "x": 510,
         "y": 0
-      }
+      },
+      "layoutPosition": {
+        "x": 180,
+        "y": 60
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_990"
     },
     {
-      "id": "bp_990",
+      "id": "sp_led_12v",
+      "schematicPosition": {
+        "x": 510,
+        "y": 360
+      },
       "layoutPosition": {
-        "x": 210,
-        "y": 0
-      }
-    },
-    {
-      "id": "bp_1020",
-      "layoutPosition": {
-        "x": 330,
-        "y": 0
-      }
-    },
-    {
-      "id": "bp_fl_cl_c11",
-      "layoutPosition": {
-        "x": 0,
-        "y": 0
-      }
-    },
-    {
-      "id": "bp_fl_cl_c12",
-      "layoutPosition": {
-        "x": 210,
+        "x": 120,
         "y": -150
-      }
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_990"
     }
   ],
   "schematicNotes": [
@@ -1167,12 +1130,57 @@
       }
     }
   ],
+  "diodeParts": [
+    {
+      "id": "dp_led",
+      "partNumber": "(LED board indicator - 12 V, resistor on board)",
+      "manufacturer": "LED board",
+      "description": "DIODE, LIGHT EMITTING, INDICATOR, 12 V"
+    }
+  ],
   "spliceParts": [
     {
       "id": "spp_solder_generic",
       "partNumber": "GENERIC SOLDER SPLICE",
       "manufacturer": "generic",
       "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER"
+    }
+  ],
+  "branchPoints": [
+    {
+      "id": "bp_960",
+      "layoutPosition": {
+        "x": 90,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_990",
+      "layoutPosition": {
+        "x": 210,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_1020",
+      "layoutPosition": {
+        "x": 330,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_fl_cl_c11",
+      "layoutPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_fl_cl_c12",
+      "layoutPosition": {
+        "x": 210,
+        "y": -150
+      }
     }
   ],
   "terminalParts": [
@@ -1206,14 +1214,6 @@
       },
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
       "id": "tp_ring_m6_22_16"
-    }
-  ],
-  "diodeParts": [
-    {
-      "id": "dp_led",
-      "partNumber": "(LED board indicator - 12 V, resistor on board)",
-      "manufacturer": "LED board",
-      "description": "DIODE, LIGHT EMITTING, INDICATOR, 12 V"
     }
   ]
 }

@@ -1,7 +1,7 @@
 """The part library travels with the harness files (Daniel, 2026-10-12).
 
 docs/harness/rebuild/ST185.harnesslib is the harness.design local part library (same JSON as a
-.harness file, part arrays only, version 0.9). harness.design treats parts with the same part
+.harness file, part arrays only, version 1.2 - DECISIONS R111). harness.design treats parts with the same part
 number as the same part, so the library must hold exactly what the drawings use.
 
   H1  every part a drawing uses (type + partNumber) is in ST185.harnesslib
@@ -14,7 +14,7 @@ number as the same part, so the library must hold exactly what the drawings use.
       ignoring case or spacing - one spelling, one copy (Daniel, 2026-10-12)
   H3  the library itself: one entry per type + partNumber, every entry has a partNumber, every
       configuration reference resolves inside the library, ids are unique across the whole file,
-      and the header is the documented library form - "version": 0.9, "kind": "library",
+      and the header is the documented library form - "version": 1.2, "kind": "library",
       "currency", part arrays and nothing else
       (https://docs.harness.design/feature/local-files/json-format)
 
@@ -43,11 +43,24 @@ def arrays(d):
     return [k for k in d if k.endswith("Parts") and isinstance(d[k], list)]
 
 
+def cfg_refs(c):
+    """Every part id a configuration references: v0.9 *PartId fields and v1.2 accessories."""
+    return [v for k, v in c.items() if k in REF] + [a.get("partId") for a in c.get("accessories", [])]
+
+
+def remap(c, fn):
+    """Copy of configuration c with every part reference v replaced by fn(v)."""
+    out = {k: (fn(v) if k in REF else v) for k, v in c.items()}
+    if "accessories" in c:
+        out["accessories"] = [dict(a, partId=fn(a["partId"])) if "partId" in a else dict(a)
+                              for a in c["accessories"]]
+    return out
+
+
 def norm(p, idx):
     q = {k: v for k, v in p.items() if k != "id"}
     if "configurations" in q:
-        q["configurations"] = [{k: (idx.get(v, ("?", v)) if k in REF else v) for k, v in c.items()}
-                               for c in q["configurations"]]
+        q["configurations"] = [remap(c, lambda v: idx.get(v, ("?", v))) for c in q["configurations"]]
     return json.dumps(q, sort_keys=True)
 
 
@@ -56,8 +69,9 @@ def main():
     with open(LIB, encoding="utf-8") as f:
         lib = json.load(f)
     bad = []
-    if lib.get("version") != 0.9 or lib.get("kind") != "library" or "currency" not in lib:
-        bad.append("H3 library header must be version 0.9, kind library, currency (json-format docs)")
+    if lib.get("version") != model.FORMAT_VERSION or lib.get("kind") != "library" or "currency" not in lib:
+        bad.append("H3 library header must be version %s, kind library, currency (json-format docs)"
+                   % model.FORMAT_VERSION)
     extra = sorted(k for k in lib if k not in ("version", "kind", "currency") and k not in arrays(lib))
     if extra:
         bad.append("H3 library holds keys other than currency and part arrays: %s" % ", ".join(extra))
@@ -74,9 +88,10 @@ def main():
                 bad.append("H3 library has %s %s twice" % (t, p["partNumber"]))
             lpn[(t, p.get("partNumber"))] = p
             for c in p.get("configurations", []):
-                for k, v in c.items():
-                    if k in REF and v not in lidx:
-                        bad.append("H3 library %s %s %s -> %s does not resolve" % (t, p.get("partNumber"), k, v))
+                for v in cfg_refs(c):
+                    if v not in lidx:
+                        bad.append("H3 library %s %s config %s -> %s does not resolve"
+                                   % (t, p.get("partNumber"), c.get("id"), v))
     fold = {}
     for (t, pn) in lpn:
         k = (t, " ".join((pn or "").split()).upper())
@@ -105,12 +120,11 @@ def main():
                         q = copy.deepcopy(p)
                         if q["id"] in lidx:
                             q["id"] = "%s_%s" % (q["id"], loom.lower().replace("-", "_"))
-                        for c in q.get("configurations", []):
-                            for k, v in list(c.items()):
-                                if k in REF and v in fidx:
-                                    hit = lpn.get(fidx[v])
-                                    if hit:
-                                        c[k] = hit["id"]
+                        def to_lib(v):
+                            hit = lpn.get(fidx[v]) if v in fidx else None
+                            return hit["id"] if hit else v
+                        if "configurations" in q:
+                            q["configurations"] = [remap(c, to_lib) for c in q["configurations"]]
                         lib.setdefault(t, []).append(q)
                         lpn[key], lidx[q["id"]] = q, key
                         added += 1

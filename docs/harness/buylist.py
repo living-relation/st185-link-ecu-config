@@ -49,7 +49,7 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("generic","generic","CABLE, SHIELDED, 1 CONDUCTOR, 22 AWG, WHITE, ETFE (TEFZEL), TINNED COPPER BRAID",1,1),
  # 2026-09-29: HDP24 shell A/B bulkheads and their backshells/gasket/panel nuts
  # are retired - replaced by the shared DRB102 (see docs/harness/redesign/DECISIONS.md).
- # The DRB's own wedgelocks take their place; the .harness schema only holds one
+ # The DRB's own wedgelocks take their place; the v0.9 .harness schema only held one
  # lockPartId per connector configuration, but the DRB102 needs two per shell
  # (left + right), so all four are tracked here instead of in a lockParts config.
  ("WB-51PAL","TE DEUTSCH","WEDGELOCK, DRB 102/128, RECEPTACLE, LEFT",1,0),
@@ -170,15 +170,11 @@ for cid, cc in copies.items():
     cfgs = (parts.get(c.get("partId")) or {}).get("configurations") or []
     cfg = next((x for x in cfgs if x.get("id") == c.get("configurationId")), cfgs[0] if cfgs else {})
     if is_owner:
-        for key in ("lockPartId","bootPartId","backshellPartId","mountPartId","dustCoverPartId"):
-            pid = cfg.get(key)
-            if pid and pid in parts:
-                q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
-        # harness.design accessories (coverings), each listed entry counts once
-        # (the VRC-IN / VRC-OUT plug labels and colour bands, row 71)
-        for acc in cfg.get("accessories", []):
-            pid = acc.get("partId")
-            if pid and pid in parts:
+        # housing accessories (lock, boot, backshell, mount, dust cover, and coverings such
+        # as the VRC-IN / VRC-OUT plug labels and colour bands, row 71): each listed entry
+        # counts once. Contacts and plugs are per cavity, below.
+        for typ, pid, _ in model.cfg_accessories(cfg):
+            if typ not in model.CAVITY_TYPES and pid in parts:
                 q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
     for cv in c.get("cavities", []):
         if cv.get("notConnected") and not cv.get("cavityPlugPartId"):
@@ -186,9 +182,9 @@ for cid, cc in copies.items():
         if "contactPartId" in cv or "cavityPlugPartId" in cv:
             pids = [cv.get("contactPartId"), cv.get("cavityPlugPartId")]
         elif any((cid, cv["id"]) in WIRED[l] for l, _, _ in cc):
-            pids = [cfg.get("contactPartId")]
+            pids = [model.cfg_default(cfg, "ContactPart")]
         else:
-            pids = [cfg.get("cavityPlugPartId")]
+            pids = [model.cfg_default(cfg, "CavityPlugPart")]
         for pid in pids:
             if pid and pid in parts:
                 q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
