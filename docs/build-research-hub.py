@@ -1388,7 +1388,7 @@ def board_html(ps: dict) -> str:
             items += (f'<div class="q"><b>{e(q["id"])}</b> <span class="muted">{e(q["topic"])}</span>'
                       f'<p>{e(q["text"])}</p><ul class="opts">{opts}</ul></div>')
         need = (f'<div class="needdan hot"><h2>&#9888; Needs Dan &middot; {len(qs)}</h2>{items}'
-                '<p class="howto">Reply in Dispatch: ID + letter, e.g. <code>Z9: A</code>.</p></div>')
+                '<p class="howto">Reply in Dispatch: ID + letter, e.g. <code>M1: A</code>.</p></div>')
     else:
         n = sum(len(g["rows"]) for g in ps["dan_items"])
         need = ('<div class="needdan"><h2>&#10003; Nothing waiting on Dan</h2>'
