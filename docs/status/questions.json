@@ -1,15 +1,4 @@
 {
   "updated": "2026-10-15",
-  "questions": [
-    {
-      "id": "M1",
-      "topic": "Row 89 - rear lamp and back-up switch plugs",
-      "text": "The factory plugs went with the missing rear wires. How do we get the mating plugs for R11 / R12, L1, H6 and B1?",
-      "options": [
-        {"value": "A", "label": "Buy a used 90-93 Celica rear luggage-room harness (~$30-40 eBay; new Toyota 82181-20540 ~$80, check the VIN) plus Toyota 90980-11250 for B1 (~$14)", "recommended": true},
-        {"value": "B", "label": "Dan photos the plugs on the car"},
-        {"value": "C", "label": "Connect Claude in Chrome to search"}
-      ]
-    }
-  ]
+  "questions": []
 }
