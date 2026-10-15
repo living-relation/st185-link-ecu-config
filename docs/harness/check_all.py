@@ -34,7 +34,8 @@ What it runs, in order - every one in HARD is a hard gate:
   check_harnesslib.py      every part a drawing uses is in rebuild/ST185.harnesslib and equal to it
   audit_drawing_rules.py   signals (one propagating per net, terminals never, no empty wired
                            cavity), 30-unit grid, bundle lengths, layout left to right, no overlaps
-  audit_wire_spacing.py    schematic wires never overlap; parallel runs at least 3 line widths
+  audit_wire_spacing.py    W2: layout bundles 30 apart unless they end at the same connector / device
+                           (R107); W1: schematic wires never overlap; parallel runs at least 3 line widths
                            apart (DECISIONS R86; paths per wire_paths.py, re-route with route_wires.py)
   audit_ident_bands.py     ident bands (DECISIONS R87): palette, one code per circuit per drawing, one code
                            per circuit name everywhere, both sections of a break on one circuit
