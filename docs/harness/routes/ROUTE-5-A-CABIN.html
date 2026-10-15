@@ -62,7 +62,7 @@
 <tr><td>Glove-box relay bank</td><td><code>k_efi</code> (EFI main), <code>k_etb</code> (ETB power), <code>k_fp</code> (fuel pump), <code>k_fan</code> (rad fan), <code>k_str</code> (start) &mdash; all active-low, ECU sinks coil &minus;, no external diodes</td><td>Aux 6 A28, Aux 2 A20, Aux 3 A19, Aux 5 A29, Aux 8 A26</td><td>Relay contact sides are CabinPower / harness C</td></tr>
 <tr><td>APS pedal</td><td>One 6C shielded cable pedal &rarr; ECU (IX_APS deleted, 13.1). VPA1, VC1, GND1, VC2, GND2 land on A side; VPA2 core breaks off at the ECU into B33</td><td>A14 (+ VC/GND from the +5V / Gnd Out splices)</td><td>Drain &rarr; A7</td></tr>
 <tr><td>Front wheel-speed spur (rev 2: right above the ECU, at the front VRC)</td><td><code>IX_WS_FRONT</code> DT06-6S: 5V, Gnd, FL (A23), FR core (&rarr; B-cabin B21), drains pins 5/6. Very short run to the ECU.</td><td>A23</td><td>FL output-cable shield: terminated at the VRC OUT connector <b>and</b> A7. FR output-cable shield: VRC OUT <b>and</b> B17 via B-cabin. Letter rule holds (FL &rarr; A, FR &rarr; B).</td></tr>
-<tr><td>Power / grounds</td><td>14V+ main feed (A5) from the cabin fuse block; ECU grounds A25/A34 &rarr; chassis ring</td><td>A5, A25, A34</td><td>&mdash;</td></tr>
+<tr><td>Power / grounds</td><td>14V+ main feed (A5) from the LOGIC box SW12 fuse; ECU grounds A25/A34 &rarr; chassis ring</td><td>A5, A25, A34</td><td>&mdash;</td></tr>
 <tr><td>Splices at ECU A</td><td><code>sp_5v</code> (A32), <code>sp_gndout</code> (A24), <code>sp_8v</code> (A6), <code>sp_shield_a</code> &rarr; A7 (drain only), <code>sp_sw12</code> switched 12V</td><td>A32, A24, A6, A7</td><td>+5V trunk 18&nbsp;AWG leg to B (<code>sp_5v_b</code>); sensor grounds never tied A24&harr;B22</td></tr>
 <tr><td>Freed</td><td>Aux 4 (A18), the old A/C kill to A15 &mdash; now <b>spare</b></td><td>A18</td><td>&mdash;</td></tr>
 </table>
@@ -80,7 +80,7 @@
 <tr><td>ETB power</td><td><code>k_etb</code> 87</td><td>B-cabin &rarr; ECU B5 V-Ethrottle (crossover b)</td></tr>
 <tr><td>APS VPA2</td><td>Core of the pedal cable</td><td>B-cabin &rarr; B33 (crossover c)</td></tr>
 <tr><td>Front WS FR core + drain</td><td><code>IX_WS_FRONT</code> pins 4/6</td><td>B-cabin &rarr; B21 / B17</td></tr>
-<tr><td>Relay contacts and fuse feeds</td><td>Relay coils + coil feeds</td><td>CabinPower (glove-box fuse box: MTA-1 EFI 30A, MTA-1 FP 20A, MTA-2 ETB 10A, MTA-2 STR 30A, RFRM SW12 7.5A for the ECU +14V; switched RFRM Bus 2 from <code>k_efi</code> 87)</td></tr>
+<tr><td>Relay contacts and fuse feeds</td><td>Relay coils + coil feeds</td><td>CabinPower (POWER box: EFI 30A, STR 30A; LOGIC box: ETB 10A, SW12 7.5A for the ECU +14V; switched LOGIC BUS2 from <code>k_efi</code> 87; fuel pump FP 40A and <code>k_fp</code> are in the battery relay block)</td></tr>
 <tr><td><code>k_fan</code> 87, <code>k_str</code> 87</td><td>Relay outputs</td><td>Harness C (rad fan feed) / starter S terminal</td></tr>
 <tr><td><code>k_fp</code> 87</td><td>Relay output</td><td>CabinPower fuel pump run to the trunk</td></tr>
 </table>
@@ -89,7 +89,7 @@
 <h2>Remaining harnesses &mdash; proposed order</h2>
 <table><tr><th>#</th><th>Harness</th><th>Why this order</th></tr>
 <tr><td>6</td><td>B-cabin</td><td>Mirror of A-cabin; closes every A&harr;B crossover</td></tr>
-<tr><td>7</td><td>CabinPower</td><td>Glove-box fuse box (LMI / RFRM / MTA) and relay feeds that A- and B-cabin hand off to</td></tr>
+<tr><td>7</td><td>CabinPower</td><td>Glove-box POWER box and LOGIC box and relay feeds that A- and B-cabin hand off to</td></tr>
 <tr><td>8</td><td>CAN</td><td>Shielded trunk + drops (B17), CAN-Lambda leg</td></tr>
 <tr><td>9</td><td>WheelSpeed-Front</td><td>VRC front (1590WUFL), fender route</td></tr>
 <tr><td>10</td><td>WheelSpeed-Rear</td><td>VRC rear</td></tr>
