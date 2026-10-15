@@ -2,26 +2,6 @@
   "updated": "2026-10-15",
   "questions": [
     {
-      "id": "K1",
-      "topic": "Route drawings 1, 7 and 11 still show the old fuse box (row 111)",
-      "text": "The fuse box moved, so 3 approved route drawings are out of date: Route 1 has no battery relay block in the trunk, Route 7 shows the old one-piece fuse box, and Route 11 runs the fuel pump feed from the glove box instead of from the trunk. (12 routes also use old fuse box names in their labels; an agent fixes those either way, labels only.) The rules say agents do not change a route without your markup (R47). How do these 3 get fixed?",
-      "options": [
-        {
-          "value": "A",
-          "label": "An agent redraws them from the CAD and the approved harness drawings (relay block at the trunk battery corner, pump feed from it); you re-approve after",
-          "recommended": true
-        },
-        {
-          "value": "B",
-          "label": "You mark up Routes 1, 7 and 11 first; then an agent redraws them"
-        },
-        {
-          "value": "C",
-          "label": "Leave the pictures; fix the labels and add a note that points to the fuse box CAD"
-        }
-      ]
-    },
-    {
       "id": "K2",
       "topic": "The ECU 'engine stop' input has no switch (row 50)",
       "text": "Your rules say two things stop the engine: the trunk kill switch AND the ECU's Stop Switch input (R19, R64). The kill switch is drawn and works on its own (it cuts the battery and the alternator), so the CSB3 being on a switched feed is fine. But the ECU stop input is not connected to anything, and all 10 ECU digital inputs are already used. What should trigger it?",
