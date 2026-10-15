@@ -44,8 +44,6 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  ("8 AWG TXL red/black","generic","WIRE, ELECTRICAL, 8 AWG, RED AND BLACK, SAE J1128 TXL",1,0),
 
  ("Micro ISO relays x4","TE Connectivity","RELAY, PLUG-IN, MICRO ISO, 1 FORM A, 12 VDC COIL",4,4),
- ("2127","Blue Sea Systems","BUSBAR, POWERBAR, 250 A, FOUR 5/16-18 STUDS",1,0),
- ("2719","Blue Sea Systems","COVER, INSULATING, MAXIBUS, FITS 2127",1,0),
  ("ANL/MEGA 300A + holder","generic","FUSE, ANL OR MEGA, 300 A, WITH HOLDER",1,0),
  ("Alternator protection 175A","generic","FUSIBLE LINK OR INLINE FUSE / CIRCUIT BREAKER, 175 A",1,0),
  ("generic","generic","CABLE, SHIELDED, 1 CONDUCTOR, 22 AWG, WHITE, ETFE (TEFZEL), TINNED COPPER BRAID",1,1),

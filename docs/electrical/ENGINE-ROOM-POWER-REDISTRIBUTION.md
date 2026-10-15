@@ -378,7 +378,7 @@ Retired with Option B: the ECU permanent +12V (F8, removed 2026-10-12) and the w
 
 **Feeds**
 
-- Trunk MEGA 300 A → 1/0 → one combined power + ground bus bar (glove box; part being picked, DECISIONS R57 / `docs/OPEN-ITEMS.md` row 88). That bus feeds the POWER box bar (1/0 on its M8 bolt) and nothing else on the fuse side.
+- Trunk MEGA 300 A → 1/0 → one combined power + ground bus bar (glove box; part picked: the rev 7 POWER box's bus zone, DECISIONS R57 / R91, parts in `cad/fusebox/rev7/fusebox-parts-power.csv`). That bus feeds the POWER box bar (1/0 on its M8 bolt) and nothing else on the fuse side.
 - LOGIC Bus 1 = permanent, from POWER AMI OUT-1 BUS1 50 A (8 AWG). LOGIC Bus 2 = switched, from k_efi 87 (POWER R2, 10 AWG). Both land on M5 strip-feed bolts.
 - LOGIC wire size (Daniel 2026-10-12, F2, carried over from the RFRM): mini fuse and micro relay cavities take 12-22 AWG; only the two strip feeds are heavier. Every circuit drawn at 10 AWG or heavier sits in the POWER box. Gate: `docs/harness/audit_logic_gauge.py`.
 - Battery relay block (trunk, passenger side between the rear wall and the battery, Z4): kill switch MAIN 2 (LOAD) → 10 AWG → M6 stud → AMI-40 → straight jumper → HCR150 terminal 3; terminal 5 → pump.
