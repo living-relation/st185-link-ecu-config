@@ -1,7 +1,8 @@
 """Build cad/fusebox/rev7/ST185-fusebox-rev7-summary.html: Dan's E2 = A option side by side with rev 6 - what moved, the
 wire-count change, the whole power distribution package (R84) for both revs, the rev 7 renders, the bus zone terminals,
 the checks, the cut / drill list for the two copper bus bars and the rev 7 POWER parts list. Reads spec.py REV7, the rev 7
-build's fusebox_report.json and the parts lists. Rev 7 is an option: rev 6 stays "Selected for build" until Dan picks.
+build's fusebox_report.json and the parts lists. Rev 7 is selected for build (Dan's P7 = A, U1 = A, DECISIONS R91).
+The "More views" section shows the side views and the typical arrangement (render-only, cad/fusebox/rev7/*side* / *arrangement*).
     python cad/fusebox/src/summary_rev7.py
 Claude Code, 2026-10-14.
 """
@@ -61,10 +62,10 @@ def fig(f, cap, cls=''):
     A('</figure>')
 
 
-A('<h1>ST185 fuse boxes - rev 7 option (E2 = A)</h1>')
-A('<p class="mut">Claude Code, 2026-10-14. Your E2 answer: "make a separate new version so I can see it". Rev 7 is that version. '
-  '<b>Rev 6 is still the one selected for build</b> (<a href="../ST185-fusebox-summary.html">rev 6 page</a>); say "rev 7" and the flags in '
-  '<code>cad/README.md</code> flip.</p>')
+A('<h1>ST185 fuse boxes - rev 7 (selected for build)</h1>')
+A('<p class="mut">Claude Code, 2026-10-14. Your E2 answer: "make a separate new version so I can see it". Rev 7 is that version, and you picked it: '
+  '<b>P7 = A, U1 = A (DECISIONS R91)</b>. The POWER box below is selected for build; the LOGIC box and the battery relay block stay rev 6 '
+  '(<a href="../ST185-fusebox-summary.html">rev 6 page</a>, unchanged). <a href="#views">More views: sides, cables, typical arrangement</a>.</p>')
 A('<div class="note"><b>The idea in one line:</b> the glove-box bus bar and the POWER box become one thing. The bus bar\'s + bar runs right '
   'through the POWER box and the AMI fuses bolt straight onto it. No second copper bar, no separate bus bar box, no thick cable between them.</div>')
 A('<div class="kpi">')
@@ -80,7 +81,7 @@ A('<h2>The whole power distribution package, rev 7 next to rev 6</h2>')
 A('<p class="mut">Same camera, same scale idea, every member together (R84): POWER (+ bus), LOGIC, battery relay block, 2 x VRC, CSB3. '
   'Rev 6 has the separate B rev3 bus bar (the long box at the back).</p><div class="grid">')
 fig('package-rev7.png', 'Rev 7: POWER box with the bus bar inside it, LOGIC box, battery relay block, 2 x VRC, CSB3.', 'w')
-fig('../package-rev6.png', 'Rev 6 (selected today): the same plus the separate B rev3 bus bar and the 1/0 link cable to the POWER box.', 'w')
+fig('../package-rev6.png', 'Rev 6 (superseded): the same plus the separate B rev3 bus bar and the 1/0 link cable to the POWER box.', 'w')
 A('</div>')
 
 A('<h2>Wire count against rev 6</h2><div class="wrap"><table><tr><th>Wire / cable</th><th>Rev 6</th><th>Rev 7</th><th>Change</th><th>Why</th></tr>')
@@ -137,6 +138,41 @@ A('<div class="grid">')
 fig('trimetric-power.png', 'Trimetric, POWER box rev 7 (R83).', 'w')
 fig('../trimetric-logic.png', 'Trimetric, LOGIC box (rev 6, unchanged in rev 7).', 'w')
 fig('../trimetric-battrelay.png', 'Trimetric, battery relay block (rev 6, unchanged in rev 7).', 'w')
+A('</div>')
+
+A('<h2 id="views">More views: sides, cables, typical arrangement</h2>')
+A('<div class="note">Render only - no design change. The cables are drawn in their real insulation colours with their ident bands '
+  '(from the harness drawings: <code>ST185-CabinPower</code>, <code>-EngineRoom-C</code>, <code>-HeavyDC</code>; R87). The other renders on this page '
+  'draw every feed cable red. Bends outside the boxes follow the bend rule: 1/0 at 3 x OD (41 mm) with a P-clamp each side, every other cable '
+  'and bundle at 10 x OD of its largest wire (FAA AC 43.13-1B 11-96). Every lug is the real part from the parts lists, already in the model: '
+  'Klauke 6R8 (M8) on the bus zone, Klauke 2R5 / 3R5MS (M5) on the AMI OUT row, Klauke 2R5 on the LOGIC feeds, Klauke 1R6 (M6) on the battery block. '
+  'Labels name the cable, gauge, colour and bands.</div>')
+A('<h3>Side views, one long side and one short end of each box</h3><div class="grid">')
+for f, cap in (('fusebox_power_side_long.png', 'POWER (rev 7), long side: AMI OUT row and + bar cables end-on, the 1/0 NEG cables and relay grounds out the rear.'),
+               ('fusebox_power_side_end.png', 'POWER (rev 7), short end: OUT row and + bar cables out the outboard end, relay + ACPS tails out the inboard end.'),
+               ('fusebox_logic_side_long.png', 'LOGIC, long side: Bus 1 feed and the 4 tail bundles out the front, Bus 2 feed in at the rear.'),
+               ('fusebox_logic_side_end.png', 'LOGIC, short end (front), off-axis.'),
+               ('battrelay_side_long.png', 'Battery relay block, long side: feed in at one end, pump + coil out the other.'),
+               ('battrelay_side_end.png', 'Battery relay block, short end (feed end), off-axis.')):
+    fig(f, cap)
+A('</div><h3>Typical arrangement</h3>')
+A('<p class="mut">The real mount spot in the glove box is still to be measured (Route 1), so the shelf and the trunk floor are stand-ins and '
+  'the LOGIC box sits 55 mm inboard of its render spot to leave bend room for the POWER box tails. The cable directions are the routes: '
+  'H1 / H2 back along the RH sill to the battery (Route 1), RADLOK + / - forward to the RH firewall, GND ID across to the left kick, '
+  'GND IG to the right kick (ex-R/B4 bolt), Bus 1 / Bus 2 box to box (<code>w_hc_fb</code>, <code>w77_cp</code>), tails forward into the CabinPower loom.</p>')
+for f, cap in (('fusebox_arrangement_glovebox.png', 'Glove box: POWER (rev 7) + LOGIC with every cable.'),
+               ('fusebox_arrangement_glovebox_rear.png', 'Glove box from the rear: the 1/0 cables out of the bus zone, P-clamps at the bends.'),
+               ('fusebox_arrangement_glovebox_open.png', 'Covers and belly pans off: the AMI fuses on the + bar and the LOGIC 14 AWG input jumpers.'),
+               ('fusebox_arrangement_glovebox_top.png', 'Top view (front of the car at the bottom, RH door on the right).'),
+               ('fusebox_arrangement_trunk.png', 'Trunk: the battery relay block on its own with its feed, pump and coil cables.')):
+    fig(f, cap)
+A('<h3>Exploded and underneath, all three boxes</h3><div class="grid">')
+for f, cap in (('fusebox_power_explode.png', 'POWER (rev 7), exploded.'), ('fusebox_render_under_open.png', 'POWER (rev 7) + LOGIC underneath, pans off.'),
+               ('fusebox_render_under_pan.png', 'POWER (rev 7) + LOGIC underneath, with the belly pans.'),
+               ('../fusebox_logic_explode.png', 'LOGIC, exploded (rev 6, unchanged).'),
+               ('../battrelay_explode.png', 'Battery relay block, exploded (rev 6, unchanged).'),
+               ('../battrelay_render_under.png', 'Battery relay block underneath (rev 6, unchanged).')):
+    fig(f, cap)
 A('</div>')
 
 A('<h2>Bus zone terminals</h2><div class="wrap"><table><tr><th>Bar</th><th>Terminal</th><th>Cable</th><th>Lug</th><th>Leaves</th></tr>')
@@ -196,9 +232,8 @@ A('<li>Local model files: <code>%s\\fusebox\\rev7\\</code> (<code>ST185_fusebox_
   '<code>Power_*</code> STEP / STL, the two bars as STEP). LOGIC / battery block files: rev 6, <code>%s\\fusebox\\</code>.</li>' % (MAIN, MAIN))
 A('<li>Build: <code>cad/fusebox/src/build_fusion.py</code> <code>build(out_dir, rev=7)</code>; spec: <code>spec.py</code> <code>REV7</code>.</li></ul>')
 
-A('<h2>Open question</h2><p><b>U1 - the B rev3 universal bar U (the third bar, strap to + or -, or an AMG fuse):</b> '
-  'A) leave it out - the 2 spare AMI positions and the spare M8 on the + bar cover a new fused or unfused feed <i>(recommended)</i>; '
-  'B) add it back in the bus zone (box about 30 mm deeper); C) add only a second spare M8 on the NEG bar.</p>')
+A('<h2>Answered</h2><p><b>P7 = A</b> (rev 7 selected) and <b>U1 = A</b> (the B rev3 universal bar U stays out: the 2 spare AMI positions and the '
+  'spare M8 on the + bar cover a new feed), Dan 2026-10-14, DECISIONS R91. The harness redraws that follow are OPEN-ITEMS row 118.</p>')
 A('</main></body></html>')
 open(OUT, 'w', encoding='utf-8').write('\n'.join(h))
 print('wrote', os.path.relpath(OUT, os.path.dirname(os.path.dirname(FB))))
