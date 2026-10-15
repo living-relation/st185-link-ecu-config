@@ -251,6 +251,29 @@ def _(d):
     swap_cavities(d, "WheelSpeed-Front", "lp16_vrc_f_out", "c3", "c4")
 
 
+@case("R107: a layout bundle drawn on top of another, no shared end (W2)", "audit_wire_spacing.py", 1)
+def _(d):
+    p, doc = load(d, "A-cabin")
+    pos = {x["id"]: x["layoutPosition"] for k in ("connectors", "terminals", "branchPoints")
+           for x in doc.get(k, []) if x.get("layoutPosition")}
+    b = next(x for x in doc["bundles"] if x["sourceId"] in pos and x["targetId"] in pos
+             and pos[x["sourceId"]]["y"] == pos[x["targetId"]]["y"]
+             and abs(pos[x["sourceId"]]["x"] - pos[x["targetId"]]["x"]) >= 90)
+    for k, end in (("bp_t_w2a", b["sourceId"]), ("bp_t_w2b", b["targetId"])):
+        doc["branchPoints"].append({"id": k, "layoutPosition": dict(pos[end])})
+    doc["bundles"].append({"id": "bn_t_w2", "sourceId": "bp_t_w2a", "targetId": "bp_t_w2b"})
+    save(p, doc)
+
+
+@case("R107: two layout bundles ending at the same connector run together (W2 allows)", "audit_wire_spacing.py", 0)
+def _(d):
+    p, doc = load(d, "A-cabin")
+    b = copy.deepcopy(next(x for x in doc["bundles"] if "ecu_a" in (x["sourceId"], x["targetId"])))
+    b["id"] += "_twin"
+    doc["bundles"].append(b)
+    save(p, doc)
+
+
 def main():
     fails = 0
     for name, gate, expect, fn in CASES:

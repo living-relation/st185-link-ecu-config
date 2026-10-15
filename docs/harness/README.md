@@ -131,7 +131,8 @@ interfaces.json              <- and the ownership facts with them
         validate_bulkhead_letter.py ECU looms follow the connector letter (Rule 3)
         audit_bulkhead_pairs.py    no one-sided bulkhead cavity
         audit_bh_collisions.py     no two circuits on one cavity half
-        audit_wire_spacing.py      schematic wires never overlap; parallel runs 3 line widths apart (R86)
+        audit_wire_spacing.py      schematic wires never overlap; parallel runs 3 line widths apart (R86);
+                                   layout bundles 30 apart unless they end at the same connector / device (R107)
         audit_ident_bands.py       ident band codes: palette, one code per circuit, both sections of a break agree (R87)
         buylist.py                 writes NEED-TO-BUY.md
         buildlist.py               writes HARNESS-BUILD-LIST.csv
