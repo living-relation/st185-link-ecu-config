@@ -1000,10 +1000,11 @@ def load_cad() -> dict:
     trim = load_trimetrics(warnings)
     chosen = {p["src"] for m in models if m["selected"] for p in m["pics"]}
     package = load_power_package(text, trim, chosen, warnings)
+    views = load_power_views(text, warnings)
     for w in warnings:
         print(f"WARNING (CAD index): {w}", file=sys.stderr)
     return {"models": models, "warnings": warnings, "manifest": generated,
-            "trimetrics": trim, "package": package}
+            "trimetrics": trim, "package": package, "views": views}
 
 
 def load_trimetrics(warnings: list[str]) -> dict:
@@ -1065,6 +1066,28 @@ def load_power_package(text: str, trim: dict, chosen: set[str], warnings: list[s
     if not members:
         warnings.append("cad/README.md has no Power distribution package table (R84).")
     return members
+
+
+def load_power_views(text: str, warnings: list[str]) -> list[dict]:
+    """cad/README.md "Power package views" table: extra renders of the selected boxes (side views,
+    exploded, underneath, the typical arrangement), shown under the package on the hub."""
+    views = []
+    lines = text.splitlines()
+    for n, ln in enumerate(lines):
+        if ln.startswith("| View |"):
+            for row in lines[n + 2:]:
+                if not row.startswith("|"):
+                    break
+                c = [x.strip() for x in row.strip().strip("|").split("|")]
+                if len(c) < 2:
+                    continue
+                png = "cad/" + c[1].strip("`")
+                if not (REPO / png).is_file():
+                    warnings.append(f"Power package view {png} is missing.")
+                    continue
+                views.append({"caption": _plain(c[0]), "png": png})
+            break
+    return views
 
 
 def cad_files_html(folders: list[dict]) -> str:
@@ -1178,7 +1201,21 @@ def power_package_html(cadd: dict) -> str:
         '<th>Part lines</th><th>Pieces (car)</th><th>Counted from</th></tr></thead>'
         f'<tbody>{rows}<tr><td><b>Total</b></td><td class="num"><b>{units}</b></td>'
         f'<td class="num"><b>{lines}</b></td><td class="num"><b>{pieces}</b></td><td></td></tr>'
-        '</tbody></table></div></div>')
+        '</tbody></table></div>' + power_views_html(cadd) + '</div>')
+
+
+def power_views_html(cadd: dict) -> str:
+    """The "Power package views" pictures (cad/README.md), one card each."""
+    e = html.escape
+    vs = cadd.get("views") or []
+    if not vs:
+        return ""
+    cards = "".join(
+        f'<div class="pkgitem"><a href="../{e(v["png"])}">{_img(v["png"], v["caption"])}</a>'
+        f'<span class="muted">{e(v["caption"])}</span></div>' for v in vs)
+    return ('<h4>Views: sides, exploded, underneath, typical arrangement</h4>'
+            '<p class="muted">From <code>cad/README.md</code> "Power package views". Tap a picture for full size.</p>'
+            f'<div class="pkggrid">{cards}</div>')
 
 
 def load_recent_prs() -> list[dict]:

@@ -38,6 +38,29 @@ Always shown together, as one package (DECISIONS R84): the research hub's "Power
 
 **Package renders** (every member together, `cad/render_trimetric.py`): `fusebox/rev7/package-rev7.png` (the selected set above); `fusebox/package-rev6.png` is the superseded rev 6 set (separate B rev3 bus bar + rev 6 POWER box), kept for comparison. Dan picked rev 7 on 2026-10-14 (P7 = A, DECISIONS R91); the universal bar U stays out (U1 = A).
 
+## Power package views
+
+Extra renders of the selected fuse boxes, shown under the package on the research hub ("Views"; the hub warns if a picture is missing). Side views and the typical arrangement: `cad/fusebox/src/render_views_rev7.py` + `label_views_rev7.py` (render only, real wire colours and ident bands from the harness drawings); the rest come from the fuse box builds. All of them are also on the [rev 7 summary page](fusebox/rev7/ST185-fusebox-rev7-summary.html#views).
+
+| View | Picture |
+|---|---|
+| POWER box (rev 7), long side, cables labelled | `fusebox/rev7/fusebox_power_side_long.png` |
+| POWER box (rev 7), short end, cables labelled | `fusebox/rev7/fusebox_power_side_end.png` |
+| LOGIC box, long side, cables labelled | `fusebox/rev7/fusebox_logic_side_long.png` |
+| LOGIC box, short end (off-axis) | `fusebox/rev7/fusebox_logic_side_end.png` |
+| Battery relay block, long side, cables labelled | `fusebox/rev7/battrelay_side_long.png` |
+| Battery relay block, short end (off-axis) | `fusebox/rev7/battrelay_side_end.png` |
+| Typical arrangement, glove box (POWER + LOGIC, every cable) | `fusebox/rev7/fusebox_arrangement_glovebox.png` |
+| Typical arrangement, glove box from the rear (1/0 cables) | `fusebox/rev7/fusebox_arrangement_glovebox_rear.png` |
+| Typical arrangement, covers off | `fusebox/rev7/fusebox_arrangement_glovebox_open.png` |
+| Typical arrangement, top view | `fusebox/rev7/fusebox_arrangement_glovebox_top.png` |
+| Typical arrangement, trunk (battery relay block) | `fusebox/rev7/fusebox_arrangement_trunk.png` |
+| POWER box (rev 7), exploded | `fusebox/rev7/fusebox_power_explode.png` |
+| POWER (rev 7) + LOGIC underneath, pans off | `fusebox/rev7/fusebox_render_under_open.png` |
+| LOGIC box, exploded | `fusebox/fusebox_logic_explode.png` |
+| Battery relay block, exploded | `fusebox/battrelay_explode.png` |
+| Battery relay block, underneath | `fusebox/battrelay_render_under.png` |
+
 **File lists on the research hub's Project status page** come from `cad/model-files.json`, which `python docs/build-research-hub.py` rewrites whenever it is run on a PC that has the model files (commit the refreshed file with the change). The builder warns on the page and on stderr if a model file sits in a folder with no row here, an `.f3d` is not named here, or the hanger row is not the newest `revN` folder.
 
 External rows point at a local path only; that run folder is not in this repo and not in git here.
