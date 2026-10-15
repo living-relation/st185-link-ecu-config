@@ -1007,302 +1007,302 @@
   "fusebox_render_routing_power.png": [
    [
     1,
-    806.4,
-    423.9,
+    825.9,
+    335.6,
     "harness bundles to the inboard edge"
    ],
    [
     2,
-    1080.0,
-    512.8,
+    1042.5,
+    405.9,
     "relay feed: lug on the 40 mm standoff"
    ],
    [
     3,
-    972.2,
-    446.4,
+    957.2,
+    353.4,
     "feed bends up R16 into terminal 30"
    ],
    [
     4,
-    1261.2,
-    640.7,
+    1185.9,
+    507.2,
     "OUT lug on the 40 mm standoff"
    ],
    [
     5,
-    1389.1,
-    669.1,
+    1287.2,
+    529.7,
     "OUT cables straight out the end"
    ],
    [
     6,
-    1213.8,
-    618.2,
+    1148.4,
+    489.4,
     "1/0 battery feed in"
    ],
    [
     7,
-    532.9,
-    579.1,
+    609.4,
+    458.4,
     "NEG bus: grounds straight out the rear"
    ]
   ],
   "fusebox_render_routing_logic.png": [
    [
     1,
-    852.6,
-    600.4,
+    862.5,
+    475.3,
     "Bus 1 fuse wires"
    ],
    [
     2,
-    984.1,
-    640.7,
+    966.6,
+    507.2,
     "Bus 2 fuse wires"
    ],
    [
     3,
-    1094.2,
-    607.5,
+    1053.8,
+    480.9,
     "micro relay wires, inboard column"
    ],
    [
     4,
-    1174.7,
-    632.4,
+    1117.5,
+    500.6,
     "micro relay wires, outboard column"
    ],
    [
     5,
-    1226.8,
-    484.3,
+    1158.8,
+    383.4,
     "all leave the front edge"
    ],
    [
     6,
-    903.6,
-    497.4,
+    902.8,
+    393.8,
     "fuse input jumpers drop straight into their lugs"
    ],
    [
     7,
-    888.2,
-    535.3,
+    890.6,
+    423.8,
     "bus strips on edge, printed spine between"
    ],
    [
     8,
-    1104.9,
-    394.3,
+    1062.2,
+    312.2,
     "Bus 1 feed in at the front"
    ],
    [
     9,
-    545.9,
-    876.3,
+    619.7,
+    693.8,
     "Bus 2 feed in at the rear"
    ]
   ],
   "fusebox_power_explode.png": [
    [
     1,
-    916.6,
-    127.9,
+    913.1,
+    101.2,
     "cover (snaps on, 4 tongues)"
    ],
    [
     2,
-    860.9,
-    302.0,
+    869.1,
+    239.1,
     "relays plug in from the top"
    ],
    [
     3,
-    1008.9,
-    387.2,
+    986.2,
+    306.6,
     "AMI fuses on the studs"
    ],
    [
     4,
-    903.6,
-    326.8,
+    902.8,
+    258.8,
     "Keps nuts, 4 Nm max"
    ],
    [
     5,
-    986.4,
-    420.4,
+    968.4,
+    332.8,
     "M5 set screws (studs)"
    ],
    [
     6,
-    965.1,
-    470.1,
+    951.6,
+    372.2,
     "copper bar 25 x 6.35"
    ],
    [
     7,
-    986.4,
-    478.4,
+    968.4,
+    378.8,
     "output pads 15 x 3"
    ],
    [
     8,
-    896.4,
-    586.2,
+    897.2,
+    464.1,
     "base (deck on 4 angular legs)"
    ],
    [
     9,
-    883.4,
-    608.7,
+    886.9,
+    481.9,
     "bar bolts up from below"
    ],
    [
     10,
-    986.4,
-    710.5,
+    968.4,
+    562.5,
     "standoffs 40 mm (both rows, one part)"
    ],
    [
     11,
-    993.6,
-    836.1,
+    974.1,
+    661.9,
     "cable lugs"
    ],
    [
     12,
-    993.6,
-    836.1,
+    974.1,
+    661.9,
     "M5 x 10 lug bolts"
    ],
    [
     13,
-    916.6,
-    895.3,
+    913.1,
+    708.8,
     "belly pan (snaps on)"
    ]
   ],
   "fusebox_power_step1.png": [
    [
     1,
-    1116.7,
-    241.6,
+    1085.6,
+    171.6,
     "lay the bar in its pocket"
    ],
    [
     2,
-    1184.2,
-    248.7,
+    1144.7,
+    177.2,
     "lay the 14 pads in theirs"
    ],
    [
     3,
-    858.6,
-    540.0,
+    864.4,
+    428.4,
     "bar bolts up through the hex head pockets"
    ],
    [
     4,
-    1184.2,
-    734.2,
+    1144.7,
+    596.2,
     "40 mm standoffs up into the hex holes, both rows"
    ],
    [
     5,
-    1184.2,
-    246.3,
+    1144.7,
+    175.3,
     "set screw down through each pad into its standoff"
    ],
    [
     6,
     900.0,
-    502.1,
+    395.6,
     "base, right way up"
    ]
   ],
   "fusebox_power_step2.png": [
    [
     1,
-    734.2,
-    499.7,
+    768.8,
+    395.6,
     "crimp, push each terminal up into its cavity (wire side)"
    ],
    [
     2,
-    980.5,
-    609.9,
+    963.8,
+    482.8,
     "relay feed lug on its long standoff (M5 x 10)"
    ],
    [
     3,
-    896.4,
-    522.2,
+    897.2,
+    413.4,
     "feed round its saddle into terminal 30"
    ],
    [
     4,
-    1119.1,
-    717.6,
+    1073.4,
+    568.1,
     "OUT lug on its standoff (M5 x 10)"
    ],
    [
     5,
-    654.9,
-    523.4,
+    705.9,
+    414.4,
     "tie the bundles; they leave the inboard end"
    ]
   ],
   "fusebox_power_step3.png": [
    [
     1,
-    1132.1,
-    418.0,
+    1083.8,
+    330.9,
     "AMI fuses on the studs"
    ],
    [
     2,
-    868.0,
-    356.4,
+    874.7,
+    282.2,
     "Keps nuts, 4 Nm max"
    ],
    [
     3,
-    761.4,
-    419.2,
+    790.3,
+    331.9,
     "relays plug in"
    ],
    [
     4,
-    842.0,
-    525.8,
+    854.1,
+    416.2,
     "ACPS mini fuse"
    ],
    [
     5,
-    1007.8,
-    421.6,
+    985.3,
+    333.8,
     "1/0 lug on the M8 stud"
    ]
   ],
   "fusebox_power_step4.png": [
    [
     1,
-    902.4,
-    776.8,
+    901.9,
+    615.0,
     "belly pan snaps up into the skirt"
    ],
    [
     2,
-    902.4,
-    230.9,
+    901.9,
+    182.8,
     "cover snaps down over the deck"
    ],
    [
     3,
-    975.8,
-    778.0,
+    960.0,
+    615.9,
     "M6 through each foot (4), steel limiter"
    ]
   ],
@@ -1310,55 +1310,55 @@
    [
     1,
     900.0,
-    129.1,
+    102.2,
     "cover (snaps on)"
    ],
    [
     2,
-    940.3,
-    294.9,
+    931.9,
+    233.4,
     "micro relays"
    ],
    [
     3,
-    921.3,
-    386.1,
+    916.9,
+    305.6,
     "mini fuses"
    ],
    [
     4,
     900.0,
-    580.3,
+    459.4,
     "base: deck, cavity towers, spine between the strips"
    ],
    [
     5,
-    894.1,
-    738.9,
+    895.3,
+    585.0,
     "Bus 1 / Bus 2 strips on edge, slide in from the rear"
    ],
    [
     6,
-    907.1,
-    742.5,
+    905.6,
+    587.8,
     "input jumper lugs, TE PIDG 53941-1"
    ],
    [
     7,
-    907.1,
-    754.3,
+    905.6,
+    597.2,
     "M4 x 8 + spring washer into the tapped strip"
    ],
    [
     8,
-    894.1,
-    748.4,
+    895.3,
+    592.5,
     "feed lugs, M5 x 10 into the strip"
    ],
    [
     9,
     900.0,
-    890.5,
+    705.0,
     "belly pan (snaps on)"
    ]
   ]
@@ -3143,7 +3143,7 @@
     0.0,
     0.0
    ],
-   "webs": 9
+   "webs": 5
   },
   "POWER": {
    "n": 19,
@@ -3755,8 +3755,8 @@
      102.0
     ],
     "before": 0.937,
-    "web": true,
-    "after": 1.0
+    "web": false,
+    "after": 0.937
    },
    {
     "kind": "guide wall",
@@ -4135,8 +4135,8 @@
      59.7
     ],
     "before": 0.988,
-    "web": true,
-    "after": 1.0
+    "web": false,
+    "after": 0.988
    },
    {
     "kind": "guide wall",
@@ -4195,8 +4195,8 @@
      70.8
     ],
     "before": 0.761,
-    "web": true,
-    "after": 1.0
+    "web": false,
+    "after": 0.761
    },
    {
     "kind": "guide wall",
@@ -4375,8 +4375,8 @@
      90.9
     ],
     "before": 0.814,
-    "web": true,
-    "after": 1.0
+    "web": false,
+    "after": 0.814
    },
    {
     "kind": "guide wall",
@@ -5245,7 +5245,7 @@
     181.0,
     60.5
    ],
-   "volume_cm3": 244.6,
+   "volume_cm3": 244.5,
    "mass_g_pa12": 247.0,
    "bodies": 1,
    "lumps": 1,
@@ -5395,6 +5395,6 @@
  ],
  "image_size": [
   1800,
-  1056
+  836
  ]
 }

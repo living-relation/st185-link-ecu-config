@@ -251,8 +251,9 @@ for bx, kind, what in (('LOGIC', 'guide wall', 'a web the size of the wall fills
     if L_:
         A('<li><b>%s, %d %ss</b> (top face %.0f-%.0f %% backed before): %s.</li>' % (bx, len(L_), kind, 100 * min(f['before'] for f in L_),
           100 * max(f['before'] for f in L_), E(what)))
-A('<li>Every other hanging feature was already fully backed (%s).</li>' % ', '.join(
-    '%s %d of %d' % (bx, sum(1 for f in L_ if not f['web']), len(L_)) for bx, L_ in sorted(FS.items())))
+A('<li>Nothing else changed (your call: "i like them as they are. just fix the floating pieces i mentioned"). Floating = under %.0f %% of the top face on solid '
+  'material; every other hanging feature is above that and stays as it was (%s).</li>' % (100 * S.FLOAT_BACKING, ', '.join(
+    '%s: %d of %d left alone' % (bx, sum(1 for f in L_ if not f['web']), len(L_)) for bx, L_ in sorted(FS.items()))))
 A('<li>Every printed part of all three boxes (POWER, LOGIC, battery relay block: base, pan, cover) is one solid - one body, one lump, one shell '
   'in Fusion and one connected mesh in its STL. New HARD gate <code>cad/fusebox/src/check_printed_solid.py</code> (in <code>check_all.py</code>) '
   'checks all three things.</li>')
