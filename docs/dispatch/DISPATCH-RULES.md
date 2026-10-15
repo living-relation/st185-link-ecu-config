@@ -17,6 +17,7 @@ A new Dispatch chat reads this file first, then the newest `_research\DISPATCH-H
 - When a question is repeated, restate the full context and all options ("M1 is still open" alone is not OK).
 - If the only sensible answer is "yes", decide, act, and just report it.
 - Questions also go into `docs/status/questions.json` / OPEN-ITEMS.
+- On every check-in Dispatch keeps `docs/status/questions.json` current: add new questions, close answered ones, restate open ones, each with its ID (Dan, M3 option B). It goes through a PR like any change; a questions-only PR uses `Rows: none` and passes the existing checks (no wiring files touched, so the heavy gates skip).
 
 ## Watching sessions
 - Keep a one-shot wake timer armed while any session runs (current: scheduled task `st185-dispatch-wake-3`, fireAt + notifyOnCompletion). Re-arm on every wake. Disable only when nothing runs.
