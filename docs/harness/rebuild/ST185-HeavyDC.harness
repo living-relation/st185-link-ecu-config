@@ -76,8 +76,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 3510,
-        "y": 270
+        "x": 0,
+        "y": -60
       },
       "cavities": [
         {
@@ -98,8 +98,8 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": 1830,
-        "y": 270
+        "x": -390,
+        "y": -60
       },
       "cavities": [
         {
@@ -119,7 +119,7 @@
         "y": 240
       },
       "layoutPosition": {
-        "x": 3630,
+        "x": 0,
         "y": 180
       },
       "cavities": [
@@ -141,8 +141,8 @@
         "y": 360
       },
       "layoutPosition": {
-        "x": 3390,
-        "y": 180
+        "x": -390,
+        "y": -180
       },
       "cavities": [
         {
@@ -162,8 +162,8 @@
         "y": 840
       },
       "layoutPosition": {
-        "x": 2310,
-        "y": -330
+        "x": -900,
+        "y": 840
       },
       "cavities": [
         {
@@ -207,8 +207,8 @@
         "y": 1080
       },
       "layoutPosition": {
-        "x": 1500,
-        "y": -390
+        "x": -900,
+        "y": -120
       }
     },
     {
@@ -251,8 +251,8 @@
         "y": 360
       },
       "layoutPosition": {
-        "x": 5850,
-        "y": 420
+        "x": 1920,
+        "y": 180
       }
     },
     {
@@ -274,8 +274,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 6000,
-        "y": 480
+        "x": 2040,
+        "y": 300
       },
       "schematicPosition": {
         "x": 0,
@@ -320,8 +320,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 6150,
-        "y": 480
+        "x": 2160,
+        "y": 420
       },
       "schematicPosition": {
         "x": 480,
@@ -341,8 +341,8 @@
         "y": 150
       },
       "layoutPosition": {
-        "x": 4560,
-        "y": 330
+        "x": 1080,
+        "y": 180
       },
       "propagate": false
     },
@@ -355,8 +355,8 @@
         "y": 240
       },
       "layoutPosition": {
-        "x": 4560,
-        "y": 390
+        "x": 1020,
+        "y": 240
       },
       "propagate": false
     },
@@ -369,8 +369,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 5130,
-        "y": 270
+        "x": 960,
+        "y": 300
       },
       "propagate": false
     },
@@ -383,8 +383,8 @@
         "y": 240
       },
       "layoutPosition": {
-        "x": 5130,
-        "y": 180
+        "x": 900,
+        "y": 360
       },
       "propagate": false
     },
@@ -398,8 +398,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 5790,
-        "y": 240
+        "x": 1890,
+        "y": -150
       },
       "partId": "tp_lug_m10_50",
       "propagate": false
@@ -414,8 +414,8 @@
         "y": 90
       },
       "layoutPosition": {
-        "x": 5910,
-        "y": 150
+        "x": 1980,
+        "y": -60
       },
       "partId": "tp_lug_m10_50",
       "propagate": false
@@ -430,8 +430,8 @@
         "y": 480
       },
       "layoutPosition": {
-        "x": 2790,
-        "y": -120
+        "x": -780,
+        "y": 540
       },
       "partId": "tp_lug_m10_50",
       "propagate": false
@@ -446,8 +446,8 @@
         "y": 570
       },
       "layoutPosition": {
-        "x": 2550,
-        "y": -180
+        "x": -900,
+        "y": 300
       },
       "partId": "tp_lug_m10_2",
       "propagate": false
@@ -462,8 +462,8 @@
         "y": 660
       },
       "layoutPosition": {
-        "x": 2430,
-        "y": -240
+        "x": -900,
+        "y": 660
       },
       "partId": "tp_lug_m10_2",
       "propagate": false
@@ -478,8 +478,8 @@
         "y": 750
       },
       "layoutPosition": {
-        "x": 1620,
-        "y": -150
+        "x": -900,
+        "y": 30
       },
       "partId": "tp_lug_m8_2",
       "propagate": false
@@ -494,8 +494,8 @@
         "y": 960
       },
       "layoutPosition": {
-        "x": 2070,
-        "y": -90
+        "x": -660,
+        "y": -240
       },
       "partId": "tp_lug_m10_50",
       "propagate": false
@@ -510,8 +510,8 @@
         "y": 1080
       },
       "layoutPosition": {
-        "x": 1620,
-        "y": -450
+        "x": -660,
+        "y": -300
       },
       "propagate": false
     },
@@ -525,8 +525,8 @@
         "y": 1140
       },
       "layoutPosition": {
-        "x": 1650,
-        "y": -510
+        "x": -720,
+        "y": -360
       },
       "propagate": false
     },
@@ -540,8 +540,8 @@
         "y": 1200
       },
       "layoutPosition": {
-        "x": 1680,
-        "y": -570
+        "x": -780,
+        "y": -420
       },
       "propagate": false
     },
@@ -555,8 +555,8 @@
         "y": 660
       },
       "layoutPosition": {
-        "x": 4560,
-        "y": 450
+        "x": 840,
+        "y": 420
       },
       "propagate": false
     },
@@ -570,8 +570,8 @@
         "y": 720
       },
       "layoutPosition": {
-        "x": 4560,
-        "y": 510
+        "x": 780,
+        "y": 480
       },
       "propagate": false
     },
@@ -581,8 +581,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: Fuel Pump Relay 85 (k_fp) <- ECU-A A19",
       "width": 390,
       "layoutPosition": {
-        "x": 6300,
-        "y": 480
+        "x": 2400,
+        "y": 540
       },
       "schematicPosition": {
         "x": 990,
@@ -596,8 +596,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: SW12 (LOGIC SW12 7.5A) -> fuel pump relay k_fp coil + (86) in the battery relay block",
       "width": 390,
       "layoutPosition": {
-        "x": 6300,
-        "y": 540
+        "x": 2340,
+        "y": 600
       },
       "schematicPosition": {
         "x": 990,
@@ -611,8 +611,8 @@
       "signal": "Broken off - continues on ST185-RearFuel: fuel pump relay k_fp 87 (HCR150 terminal 5) -> fuel pump c1",
       "width": 390,
       "layoutPosition": {
-        "x": 6300,
-        "y": 600
+        "x": 2280,
+        "y": 660
       },
       "schematicPosition": {
         "x": 990,
@@ -1445,29 +1445,29 @@
     {
       "id": "bp_hdc_batt",
       "layoutPosition": {
-        "x": 5700,
-        "y": 210
+        "x": 1800,
+        "y": 60
       }
     },
     {
       "id": "bp_hdc_pdb_h",
       "layoutPosition": {
-        "x": 4500,
-        "y": 210
+        "x": 720,
+        "y": 60
       }
     },
     {
       "id": "bp_hdc_fw",
       "layoutPosition": {
-        "x": 3300,
-        "y": 210
+        "x": 0,
+        "y": 60
       }
     },
     {
       "id": "bp_hdc_str",
       "layoutPosition": {
-        "x": 2700,
-        "y": -210
+        "x": -420,
+        "y": 540
       }
     }
   ],

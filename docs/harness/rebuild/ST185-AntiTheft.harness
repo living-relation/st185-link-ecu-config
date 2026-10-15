@@ -90,8 +90,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1080,
-        "y": -300
+        "x": 960,
+        "y": 300
       },
       "schematicPosition": {
         "x": 660,
@@ -126,8 +126,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1800,
-        "y": 0
+        "x": 1980,
+        "y": 600
       },
       "schematicPosition": {
         "x": 1320,
@@ -156,8 +156,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 300,
-        "y": -390
+        "x": 480,
+        "y": 270
       },
       "schematicPosition": {
         "x": 1320,
@@ -185,8 +185,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1440,
-        "y": -120
+        "x": 1620,
+        "y": -300
       },
       "schematicPosition": {
         "x": 1320,
@@ -214,8 +214,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1440,
-        "y": -330
+        "x": 1620,
+        "y": 780
       },
       "schematicPosition": {
         "x": 1320,
@@ -230,8 +230,8 @@
       "width": 390,
       "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALM 5A (Bus 1, permanent) -> alarm +12V constant",
       "layoutPosition": {
-        "x": 1200,
-        "y": 360
+        "x": 1380,
+        "y": -420
       },
       "schematicPosition": {
         "x": 0,
@@ -245,8 +245,8 @@
       "width": 390,
       "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
       "layoutPosition": {
-        "x": 960,
-        "y": 330
+        "x": 870,
+        "y": -480
       },
       "schematicPosition": {
         "x": 0,
@@ -261,8 +261,8 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Cabin chassis ground stud M6 - ring A *",
       "layoutPosition": {
-        "x": 1200,
-        "y": -390
+        "x": 1380,
+        "y": 900
       },
       "schematicPosition": {
         "x": 1980,
@@ -276,8 +276,8 @@
       "width": 390,
       "signal": "OEM door courtesy switches *",
       "layoutPosition": {
-        "x": 1920,
-        "y": -420
+        "x": 2100,
+        "y": 540
       },
       "schematicPosition": {
         "x": 0,
@@ -292,8 +292,8 @@
       "width": 390,
       "signal": "Hood pin switch - ADD ONE *. Rides harness C down the RH fender to the front, same grommet as the siren leads - exact hood-pin mounting spot still TBD",
       "layoutPosition": {
-        "x": 180,
-        "y": 0
+        "x": 0,
+        "y": -120
       },
       "schematicPosition": {
         "x": 0,
@@ -308,8 +308,8 @@
       "width": 150,
       "signal": "Trunk pin switch",
       "layoutPosition": {
-        "x": 3180,
-        "y": 0
+        "x": 2940,
+        "y": 300
       },
       "schematicPosition": {
         "x": 0,
@@ -324,8 +324,8 @@
       "width": 390,
       "signal": "Park lamp flash - to a relay in the CABIN *",
       "layoutPosition": {
-        "x": 1560,
-        "y": 390
+        "x": 1740,
+        "y": -240
       },
       "schematicPosition": {
         "x": 1320,
@@ -341,8 +341,8 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Cabin chassis ground stud M6 - ring B *",
       "layoutPosition": {
-        "x": 1320,
-        "y": -450
+        "x": 1500,
+        "y": 840
       },
       "schematicPosition": {
         "x": 1980,
@@ -357,8 +357,8 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Cabin chassis ground stud M6 - ring C (valet)",
       "layoutPosition": {
-        "x": 1560,
-        "y": -270
+        "x": 1740,
+        "y": 720
       },
       "schematicPosition": {
         "x": 1980,
@@ -372,8 +372,8 @@
       "width": 390,
       "signal": "Broken off - continues on ST185-CabinPower: LOGIC ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
       "layoutPosition": {
-        "x": 1320,
-        "y": 420
+        "x": 1500,
+        "y": -360
       },
       "schematicPosition": {
         "x": 1980,
@@ -387,8 +387,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: immobiliser output to ECU-B B27 (DI 10)",
       "width": 390,
       "layoutPosition": {
-        "x": 1740,
-        "y": 360
+        "x": 1860,
+        "y": -180
       },
       "schematicPosition": {
         "x": 60,
@@ -402,8 +402,8 @@
       "id": "sp_at_12v",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1260,
-        "y": -390
+        "x": 1320,
+        "y": 180
       },
       "schematicPosition": {
         "x": 510,
@@ -415,8 +415,8 @@
       "id": "sp_ig",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1020,
-        "y": -390
+        "x": 930,
+        "y": 60
       },
       "schematicPosition": {
         "x": 510,
@@ -428,8 +428,8 @@
       "id": "sp_door",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1740,
-        "y": -390
+        "x": 2040,
+        "y": 420
       },
       "schematicPosition": {
         "x": 450,
@@ -441,8 +441,8 @@
       "id": "sp_hood",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 360,
-        "y": -390
+        "x": 600,
+        "y": -150
       },
       "schematicPosition": {
         "x": 510,
@@ -454,8 +454,8 @@
       "id": "sp_trunk",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1980,
-        "y": -390
+        "x": 2580,
+        "y": 390
       },
       "schematicPosition": {
         "x": 510,
@@ -467,8 +467,8 @@
       "id": "sp_park",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1380,
-        "y": -390
+        "x": 1680,
+        "y": 180
       },
       "schematicPosition": {
         "x": 1170,
@@ -480,8 +480,8 @@
       "id": "sp_12v_shk",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1740,
-        "y": -450
+        "x": 1440,
+        "y": 180
       },
       "schematicPosition": {
         "x": 1830,
@@ -1737,78 +1737,78 @@
     {
       "id": "bp_180",
       "layoutPosition": {
-        "x": 180,
-        "y": -300
+        "x": 360,
+        "y": 0
       }
     },
     {
       "id": "bp_270",
       "layoutPosition": {
-        "x": 300,
-        "y": -300
+        "x": 480,
+        "y": 0
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 960,
-        "y": -300
+        "x": 870,
+        "y": 240
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
-        "x": 1200,
-        "y": -300
+        "x": 1380,
+        "y": 300
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1320,
-        "y": -300
+        "x": 1500,
+        "y": 300
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1440,
-        "y": -300
+        "x": 1620,
+        "y": 300
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": 1560,
-        "y": -300
+        "x": 1740,
+        "y": 300
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": 1680,
-        "y": -300
+        "x": 1860,
+        "y": 300
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
-        "x": 1800,
-        "y": -300
+        "x": 1980,
+        "y": 300
       }
     },
     {
       "id": "bp_1260",
       "layoutPosition": {
-        "x": 1920,
-        "y": -300
+        "x": 2100,
+        "y": 300
       }
     },
     {
       "id": "bp_2520",
       "layoutPosition": {
-        "x": 3180,
-        "y": -300
+        "x": 2640,
+        "y": 300
       }
     }
   ],
