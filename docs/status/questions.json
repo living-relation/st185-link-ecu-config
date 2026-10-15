@@ -176,26 +176,6 @@
           "label": "Check or upgrade the Copilot plan so reviews arrive"
         }
       ]
-    },
-    {
-      "id": "L1",
-      "topic": "18 AWG relay coil feeds behind 15 A fuses (OPEN-ITEMS row 122)",
-      "text": "In ST185-CabinPower the HEAD LH / HEAD RH relay 86 wires (from the new HL / HR splices) and the horn relay 86 wire (from sp_hz) are 18 AWG, behind 15 A fuses. The coil only draws about 0.15 A, but in a short the fuse is what protects the wire, and the box uses 16 AWG for 15 A everywhere else. This was the same before J3.",
-      "options": [
-        {
-          "value": "A",
-          "label": "Keep 18 AWG: short branches inside / next to the LOGIC box, coil load only"
-        },
-        {
-          "value": "B",
-          "label": "Make the three coil feeds 16 AWG (the 2293255-1 coil terminal takes 20-15 AWG)",
-          "recommended": true
-        },
-        {
-          "value": "C",
-          "label": "Feed each coil from its own small fuse (a new 2 A fuse each)"
-        }
-      ]
     }
   ]
 }

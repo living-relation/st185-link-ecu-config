@@ -306,7 +306,7 @@ def build(rev=6):
               note='On the shelf first (R38 step 1); the third 1 form C (k_rev) is the only buy.' if p == '6-1419137-4' else '')
     L.add(G, 'Terminals', 'Micro relay coil receptacle 4.8 x 0.8, 20-15 AWG', '2293255-1', 'TE Connectivity', 'FASTON .187 receptacle, uninsulated, 20-15 AWG (0.51-1.65 mm2), brass tin',
           n_micro_coil, spare(n_micro_coil), unit=0.10, basis='est', url=TE('2293255-1'), checked='TE page (4.75 mm tab, 20-15 AWG); relay drawing coil blades 4.8 x 0.8',
-          note='2 per micro relay x %d relays; coil wire 20 AWG.' % len(MICRO_USED))
+          note='2 per micro relay x %d relays; coil wire 20 AWG, except the HEAD LH / HEAD RH / horn 86 feeds, 16 AWG behind their 15 A fuses (L1, DECISIONS R96).' % len(MICRO_USED))
     L.add(G, 'Terminals', 'Micro relay load receptacle 6.3 x 0.8, 18-14 AWG', '42281-1', 'TE Connectivity', 'FASTON .250 receptacle, uninsulated, 18-14 AWG, brass', n_micro_load, spare(n_micro_load), unit=0.10, basis='est',
           url=TE('42281-1'), checked='TE page (6.35 x 0.81, 18-14 AWG); relay drawing load blades 6.3 x 0.8; te-on-hand-bom.csv qty_ordered 20', note='16 AWG loads (MICRO_LOAD_AWG). 2 on a form A, 3 on a form C.')
     outs = [(nm, a) for c, (x, f) in S.MINI_COLS.items() for nm, a in f if a]
