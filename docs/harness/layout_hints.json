@@ -1,0 +1,133 @@
+{
+  "A-cabin": {
+    "route": "routes/ROUTE-5-A-CABIN.html",
+    "root": "bh_a_fw",
+    "toward": {
+      "CabinPower": "up",
+      "HeavyDC": "up",
+      "EngineRoom-C": "up",
+      "A-engine": "up",
+      "B-cabin": "down",
+      "CSB3": "down",
+      "ClusterLED": "down",
+      "AntiTheft": "down"
+    },
+    "nodes": {
+      "bh_a_fw": {
+        "down": [
+          "bp_840"
+        ]
+      },
+      "ecu_a": {
+        "up": [
+          "bp_1020"
+        ],
+        "down": [
+          "b_bp_1020"
+        ]
+      },
+      "bp_960": {
+        "main": "ecu_a",
+        "down": [
+          "aps",
+          "br_w39"
+        ]
+      }
+    }
+  },
+  "B-cabin": {
+    "route": "routes/ROUTE-6-B-CABIN.html",
+    "root": "bh_b_fw",
+    "toward": {
+      "CabinPower": "up",
+      "A-cabin": "up",
+      "CAN": "up",
+      "RearFuel": "up",
+      "HeavyDC": "up",
+      "EngineRoom-C": "up",
+      "CSB3": "down",
+      "AntiTheft": "down",
+      "ClusterLED": "down"
+    },
+    "nodes": {
+      "bh_b_fw": {
+        "up": [
+          "bp_870"
+        ],
+        "down": [
+          "b_bp_870"
+        ]
+      }
+    },
+    "loose": {
+      "t_ac_btn": "ecu_b",
+      "t_evap_temp": "ecu_b",
+      "t_evap_rtn": "ecu_b",
+      "br_w_acc_trig": "ecu_b",
+      "bp_1230": "b_bp_1230"
+    }
+  },
+  "CSB3": {
+    "route": "routes/ROUTE-12-CSB3.html",
+    "root": "csb3io",
+    "toward": {
+      "CabinPower": "up",
+      "A-cabin": "up",
+      "B-cabin": "up",
+      "CAN": "up",
+      "ClusterLED": "down"
+    },
+    "nodes": {
+      "csb3io": {
+        "down": [
+          "bp_1230"
+        ]
+      },
+      "bp_1080": {
+        "down": [
+          "bp_fl_cruise_stalk"
+        ]
+      }
+    }
+  },
+  "ClusterLED": {
+    "route": "routes/ROUTE-13-CLUSTERLED.html",
+    "root": "bp_fl_cl_c11",
+    "toward": {
+      "CSB3": "up"
+    },
+    "nodes": {
+      "bp_960": {
+        "main": "bp_990",
+        "up": [
+          "bp_fl_cl_c12"
+        ]
+      },
+      "bp_990": {
+        "down": [
+          "t_led_gnd"
+        ]
+      }
+    }
+  },
+  "CabinPower": {
+    "route": "routes/ROUTE-7-CABINPOWER.html",
+    "root": "b_bp_1065",
+    "toward": {
+      "EngineRoom-C": "up",
+      "HeavyDC": "up",
+      "A-engine": "up",
+      "RearLights": "up",
+      "A-cabin": "down",
+      "B-cabin": "down",
+      "CSB3": "down",
+      "CAN": "down",
+      "AntiTheft": "down"
+    },
+    "nodes": {
+      "b_bp_1065": {
+        "main_last": true
+      }
+    }
+  }
+}

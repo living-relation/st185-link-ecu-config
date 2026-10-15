@@ -255,8 +255,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1440,
-        "y": 240
+        "x": 630,
+        "y": 300
       },
       "schematicPosition": {
         "x": 2310,
@@ -921,8 +921,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1800,
-        "y": 150
+        "x": 0,
+        "y": 0
       },
       "schematicPosition": {
         "x": 1110,
@@ -976,8 +976,8 @@
         "y": 1560
       },
       "layoutPosition": {
-        "x": 1680,
-        "y": 540
+        "x": 780,
+        "y": -960
       }
     },
     {
@@ -1022,8 +1022,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 4440,
-        "y": 1560
+        "x": 630,
+        "y": 1320
       },
       "schematicPosition": {
         "x": 450,
@@ -1043,8 +1043,8 @@
         "y": 1230
       },
       "layoutPosition": {
-        "x": 1680,
-        "y": 120
+        "x": 1170,
+        "y": -660
       },
       "propagate": false
     },
@@ -1058,8 +1058,8 @@
         "y": 1290
       },
       "layoutPosition": {
-        "x": 1680,
-        "y": 180
+        "x": 1170,
+        "y": -960
       },
       "propagate": false
     },
@@ -1073,8 +1073,8 @@
         "y": 1350
       },
       "layoutPosition": {
-        "x": 1680,
-        "y": 240
+        "x": 1170,
+        "y": -720
       },
       "propagate": false
     },
@@ -1088,8 +1088,8 @@
         "y": 1410
       },
       "layoutPosition": {
-        "x": 1680,
-        "y": 840
+        "x": 1170,
+        "y": -1020
       },
       "propagate": false
     },
@@ -1103,8 +1103,8 @@
         "y": 1470
       },
       "layoutPosition": {
-        "x": 1680,
-        "y": 900
+        "x": 1170,
+        "y": -780
       },
       "propagate": false
     },
@@ -1113,8 +1113,8 @@
       "type": "Ring",
       "signal": "Chassis Ground Point",
       "layoutPosition": {
-        "x": 1560,
-        "y": 450
+        "x": 810,
+        "y": 540
       },
       "schematicPosition": {
         "x": 3750,
@@ -1130,8 +1130,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: cabin chassis ground splice sp_chassis",
       "width": 390,
       "layoutPosition": {
-        "x": 2400,
-        "y": 210
+        "x": 1290,
+        "y": 0
       },
       "schematicPosition": {
         "x": 3000,
@@ -1145,8 +1145,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: cabin chassis ground splice sp_chassis",
       "width": 390,
       "layoutPosition": {
-        "x": 2400,
-        "y": 330
+        "x": 1290,
+        "y": 150
       },
       "schematicPosition": {
         "x": 3000,
@@ -1160,8 +1160,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: +5V from sp_5v at ECU A (crossover a)",
       "width": 390,
       "layoutPosition": {
-        "x": 1920,
-        "y": 90
+        "x": 540,
+        "y": 1650
       },
       "schematicPosition": {
         "x": 3000,
@@ -1175,8 +1175,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: switched 12V from sp_sw12 (cabin)",
       "width": 390,
       "layoutPosition": {
-        "x": 2040,
-        "y": 270
+        "x": 1020,
+        "y": 480
       },
       "schematicPosition": {
         "x": 3000,
@@ -1190,8 +1190,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: front wheel-speed FR core to ECU-B B21",
       "width": 390,
       "layoutPosition": {
-        "x": 1620,
-        "y": 660
+        "x": 780,
+        "y": -210
       },
       "schematicPosition": {
         "x": 630,
@@ -1205,8 +1205,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: front wheel-speed FR shield to sp_shield_b (B17)",
       "width": 390,
       "layoutPosition": {
-        "x": 1620,
-        "y": 720
+        "x": 780,
+        "y": -300
       },
       "schematicPosition": {
         "x": 630,
@@ -1220,8 +1220,8 @@
       "signal": "Broken off - continues on ST185-CSB3: +5V to the cruise ladder pull-up",
       "width": 390,
       "layoutPosition": {
-        "x": 1920,
-        "y": 210
+        "x": 540,
+        "y": 1740
       },
       "schematicPosition": {
         "x": 3000,
@@ -1235,8 +1235,8 @@
       "signal": "Broken off - continues on ST185-CSB3: CSB3 ground to sp_chassis",
       "width": 390,
       "layoutPosition": {
-        "x": 2400,
-        "y": 150
+        "x": 1290,
+        "y": 420
       },
       "schematicPosition": {
         "x": 3000,
@@ -1250,8 +1250,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: e-throttle pedal pin 3 (VPA2) -> ECU-B B33",
       "width": 390,
       "layoutPosition": {
-        "x": 60,
-        "y": 60
+        "x": 630,
+        "y": 1590
       },
       "schematicPosition": {
         "x": 4710,
@@ -1265,8 +1265,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: LOGIC SW12 to sp_sw12",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 330
+        "x": 900,
+        "y": 1110
       },
       "schematicPosition": {
         "x": 3570,
@@ -1280,8 +1280,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: LOGIC MRS to Bulkhead A 35",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 390
+        "x": 900,
+        "y": 600
       },
       "schematicPosition": {
         "x": 3570,
@@ -1295,8 +1295,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis",
       "width": 390,
       "layoutPosition": {
-        "x": 2400,
-        "y": 30
+        "x": 1290,
+        "y": -90
       },
       "schematicPosition": {
         "x": 3000,
@@ -1310,8 +1310,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: LOGIC INJ 15A injector rail from the fuse box to bulkhead A c48 (shared DRB102)",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 300
+        "x": 90,
+        "y": 60
       },
       "schematicPosition": {
         "x": 1470,
@@ -1325,8 +1325,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: LOGIC COP 15A COP rail from the fuse box to bulkhead A c49 (shared DRB102)",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 450
+        "x": 90,
+        "y": 210
       },
       "schematicPosition": {
         "x": 1470,
@@ -1340,8 +1340,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: EFI Main Relay 85 (k_efi) <- ECU-A A28",
       "width": 390,
       "layoutPosition": {
-        "x": 1920,
-        "y": 360
+        "x": 960,
+        "y": -600
       },
       "schematicPosition": {
         "x": 2130,
@@ -1355,8 +1355,8 @@
       "signal": "Broken off - continues on ST185-HeavyDC: Fuel Pump Relay 85 (k_fp, battery relay block in the trunk) <- ECU-A A19",
       "width": 390,
       "layoutPosition": {
-        "x": 2400,
-        "y": 480
+        "x": 1260,
+        "y": -480
       },
       "schematicPosition": {
         "x": 2130,
@@ -1370,8 +1370,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: Radiator Fan Relay (on/off) 85 (k_fan) <- ECU-A A29",
       "width": 390,
       "layoutPosition": {
-        "x": 2880,
-        "y": 600
+        "x": 1560,
+        "y": -360
       },
       "schematicPosition": {
         "x": 2130,
@@ -1385,8 +1385,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: ETB Power Relay 85 (k_etb) <- ECU-A A20",
       "width": 390,
       "layoutPosition": {
-        "x": 2160,
-        "y": 420
+        "x": 1110,
+        "y": -540
       },
       "schematicPosition": {
         "x": 2130,
@@ -1400,8 +1400,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: Start Relay 85 (k_str) <- ECU-A A26",
       "width": 390,
       "layoutPosition": {
-        "x": 2640,
-        "y": 300
+        "x": 1410,
+        "y": -420
       },
       "schematicPosition": {
         "x": 2130,
@@ -1415,8 +1415,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: A/C dual pressure switch A5-4 (switched, via sp_ac_psw) -> A/C Clutch Relay 86 (k_acc c3)",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 780
+        "x": 1170,
+        "y": -870
       },
       "schematicPosition": {
         "x": 4110,
@@ -1430,8 +1430,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 510
+        "x": 900,
+        "y": 870
       },
       "schematicPosition": {
         "x": 3570,
@@ -1450,15 +1450,15 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_960",
       "layoutPosition": {
-        "x": 1380,
-        "y": 150
+        "x": 330,
+        "y": 360
       }
     },
     {
       "id": "sp_5v",
       "layoutPosition": {
-        "x": 1140,
-        "y": 150
+        "x": 450,
+        "y": 1590
       },
       "schematicPosition": {
         "x": 3480,
@@ -1474,8 +1474,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 1080,
-        "y": 210
+        "x": 570,
+        "y": 240
       },
       "partId": "spp_solder_generic",
       "locationId": "ecu_a"
@@ -1483,8 +1483,8 @@
     {
       "id": "sp_8v",
       "layoutPosition": {
-        "x": 1140,
-        "y": 90
+        "x": 390,
+        "y": 1590
       },
       "schematicPosition": {
         "x": 2940,
@@ -1496,8 +1496,8 @@
     {
       "id": "sp_sw12",
       "layoutPosition": {
-        "x": 1980,
-        "y": 150
+        "x": 900,
+        "y": -150
       },
       "schematicPosition": {
         "x": 3420,
@@ -1509,8 +1509,8 @@
     {
       "id": "sp_gndout",
       "layoutPosition": {
-        "x": 2220,
-        "y": 150
+        "x": 1110,
+        "y": -150
       },
       "schematicPosition": {
         "x": 4080,
@@ -1522,8 +1522,8 @@
     {
       "id": "sp_chassis",
       "layoutPosition": {
-        "x": 2340,
-        "y": 150
+        "x": 1200,
+        "y": -150
       },
       "schematicPosition": {
         "x": 3600,
@@ -1537,8 +1537,8 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_840",
       "layoutPosition": {
-        "x": 900,
-        "y": 150
+        "x": -60,
+        "y": 300
       },
       "schematicPosition": {
         "x": 2760,
@@ -1550,8 +1550,8 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_840",
       "layoutPosition": {
-        "x": 960,
-        "y": 150
+        "x": 0,
+        "y": 360
       },
       "schematicPosition": {
         "x": 2790,
@@ -1563,8 +1563,8 @@
       "partId": "spp_solder_generic",
       "locationId": "b_bp_900",
       "layoutPosition": {
-        "x": 1200,
-        "y": 150
+        "x": 390,
+        "y": 1710
       },
       "schematicPosition": {
         "x": 3450,
@@ -1574,8 +1574,8 @@
     {
       "id": "sp_ac_psw",
       "layoutPosition": {
-        "x": 1680,
-        "y": 300
+        "x": 900,
+        "y": -750
       },
       "schematicPosition": {
         "x": 4230,
@@ -1591,8 +1591,8 @@
       "partId": "rp_1k8",
       "locationId": "bp_1050",
       "layoutPosition": {
-        "x": 1740,
-        "y": 150
+        "x": 720,
+        "y": -420
       },
       "schematicPosition": {
         "x": 510,
@@ -6768,162 +6768,162 @@
     {
       "id": "bp_840",
       "layoutPosition": {
-        "x": 1800,
-        "y": 240
+        "x": 0,
+        "y": 300
       }
     },
     {
       "id": "bp_870",
       "layoutPosition": {
-        "x": 1680,
-        "y": 240
+        "x": 90,
+        "y": 300
       }
     },
     {
       "id": "bp_900",
       "layoutPosition": {
-        "x": 1560,
-        "y": 240
+        "x": 210,
+        "y": 300
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 1440,
-        "y": 240
+        "x": 300,
+        "y": 300
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
-        "x": 1320,
-        "y": 240
+        "x": 390,
+        "y": 300
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1560,
-        "y": 240
+        "x": 630,
+        "y": -360
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1680,
-        "y": 240
+        "x": 780,
+        "y": -360
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": 1800,
-        "y": 240
+        "x": 960,
+        "y": -360
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": 1920,
-        "y": 240
+        "x": 1110,
+        "y": -360
       }
     },
     {
       "id": "bp_1140",
       "layoutPosition": {
-        "x": 2040,
-        "y": 240
+        "x": 1260,
+        "y": -360
       }
     },
     {
       "id": "bp_1170",
       "layoutPosition": {
-        "x": 2160,
-        "y": 240
+        "x": 1410,
+        "y": -360
       }
     },
     {
       "id": "bp_fl_acamp",
       "layoutPosition": {
-        "x": 1680,
-        "y": 0
+        "x": 960,
+        "y": -720
       }
     },
     {
       "id": "b_bp_870",
       "layoutPosition": {
-        "x": 1680,
-        "y": 240
+        "x": 330,
+        "y": 1650
       }
     },
     {
       "id": "b_bp_900",
       "layoutPosition": {
-        "x": 1800,
-        "y": 240
+        "x": 450,
+        "y": 1650
       }
     },
     {
       "id": "b_bp_1020",
       "layoutPosition": {
-        "x": 1560,
-        "y": 240
+        "x": 630,
+        "y": 1110
       }
     },
     {
       "id": "b_bp_1050",
       "layoutPosition": {
-        "x": 1680,
-        "y": 240
+        "x": 810,
+        "y": 1110
       }
     },
     {
       "id": "b_bp_1080",
       "layoutPosition": {
-        "x": 1920,
-        "y": 240
+        "x": 900,
+        "y": -90
       }
     },
     {
       "id": "b_bp_1110",
       "layoutPosition": {
-        "x": 2040,
-        "y": 240
+        "x": 1020,
+        "y": -90
       }
     },
     {
       "id": "b_bp_1140",
       "layoutPosition": {
-        "x": 2160,
-        "y": 240
+        "x": 1110,
+        "y": -90
       }
     },
     {
       "id": "b_bp_1170",
       "layoutPosition": {
-        "x": 2280,
-        "y": 240
+        "x": 1200,
+        "y": -90
       }
     },
     {
       "id": "b_bp_1065",
       "layoutPosition": {
-        "x": 1800,
-        "y": 240
+        "x": 900,
+        "y": 1020
       }
     },
     {
       "id": "bp_at_bh_b_fw",
       "layoutPosition": {
-        "x": 1680,
-        "y": 90
+        "x": 210,
+        "y": 1650
       }
     },
     {
       "id": "bp_at_ecu_b",
       "layoutPosition": {
-        "x": 1560,
-        "y": 330
+        "x": 780,
+        "y": -90
       }
     }
   ],

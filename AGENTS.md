@@ -8,7 +8,7 @@
 > ## Before any wiring or CAN change — binding on every agent
 >
 > **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules from Daniel"
-> (R1-R106).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
+> (R1-R107).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
 > shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
 > this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
 > Three rules, all non-optional:
@@ -161,6 +161,7 @@ $env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py
 ```bash
 python docs/harness/check_all.py          # harness gates; --check mode, never writes
 python docs/harness/audit_wire_spacing.py # wire overlap / spacing only (R86)
+python docs/harness/audit_layout.py      # layout view: overlaps / hidden bundles (R107); re-place: layout_tree.py
 python bench/check_parity.py              # CAN contract parity
 python tune/scripts/validate_tune.py      # tune seed tables (needs PyYAML)
 python .github/scripts/check_doc_duplicates.py   # copied .md passages (warn-only)

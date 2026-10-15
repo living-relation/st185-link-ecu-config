@@ -97,8 +97,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1980,
-        "y": 810
+        "x": 600,
+        "y": -1200
       },
       "schematicPosition": {
         "x": 4200,
@@ -138,8 +138,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1980,
-        "y": 1050
+        "x": 600,
+        "y": 1350
       },
       "schematicPosition": {
         "x": 5400,
@@ -183,8 +183,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2100,
-        "y": 1170
+        "x": 600,
+        "y": -1350
       },
       "schematicPosition": {
         "x": 4200,
@@ -224,8 +224,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2100,
-        "y": 1290
+        "x": 600,
+        "y": 1650
       },
       "schematicPosition": {
         "x": 4800,
@@ -265,8 +265,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2220,
-        "y": 1530
+        "x": 600,
+        "y": -1500
       },
       "schematicPosition": {
         "x": 5400,
@@ -284,8 +284,8 @@
         "y": 3900
       },
       "layoutPosition": {
-        "x": 1860,
-        "y": 570
+        "x": 600,
+        "y": 1200
       },
       "cavities": [
         {
@@ -353,8 +353,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1740,
-        "y": 960
+        "x": 1590,
+        "y": 990
       },
       "schematicPosition": {
         "x": 4800,
@@ -401,8 +401,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1740,
-        "y": 1020
+        "x": 1590,
+        "y": -1110
       },
       "schematicPosition": {
         "x": 5400,
@@ -449,8 +449,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1740,
-        "y": 1080
+        "x": 1590,
+        "y": -1380
       },
       "schematicPosition": {
         "x": 6000,
@@ -497,8 +497,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2340,
-        "y": 600
+        "x": 1590,
+        "y": 1110
       },
       "schematicPosition": {
         "x": 4200,
@@ -545,8 +545,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2340,
-        "y": 720
+        "x": 1590,
+        "y": 1230
       },
       "schematicPosition": {
         "x": 4800,
@@ -593,8 +593,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2340,
-        "y": 840
+        "x": 1590,
+        "y": -1230
       },
       "schematicPosition": {
         "x": 5400,
@@ -644,8 +644,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2340,
-        "y": 960
+        "x": 600,
+        "y": 1500
       },
       "schematicPosition": {
         "x": 6000,
@@ -688,8 +688,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2340,
-        "y": 1080
+        "x": 600,
+        "y": -1650
       },
       "schematicPosition": {
         "x": 6600,
@@ -793,8 +793,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1800,
-        "y": 510
+        "x": 600,
+        "y": 840
       },
       "schematicPosition": {
         "x": 480,
@@ -972,8 +972,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1680,
-        "y": 360
+        "x": 1590,
+        "y": -660
       },
       "schematicPosition": {
         "x": 1200,
@@ -990,8 +990,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: LOGIC INJ 15A injector rail to bulkhead A c48 (shared DRB102)",
       "width": 390,
       "layoutPosition": {
-        "x": 1740,
-        "y": 840
+        "x": 1590,
+        "y": 750
       },
       "schematicPosition": {
         "x": 1260,
@@ -1005,8 +1005,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: LOGIC COP 15A COP rail to bulkhead A c49 (shared DRB102)",
       "width": 390,
       "layoutPosition": {
-        "x": 1740,
-        "y": 720
+        "x": 1590,
+        "y": 300
       },
       "schematicPosition": {
         "x": 1260,
@@ -1020,8 +1020,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: LOGIC SW12 to sp_sw12",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 330
+        "x": 1590,
+        "y": 660
       },
       "schematicPosition": {
         "x": 1710,
@@ -1035,8 +1035,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: LOGIC MRS to Bulkhead A 35",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 450
+        "x": 1590,
+        "y": 570
       },
       "schematicPosition": {
         "x": 3660,
@@ -1050,8 +1050,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 300
+        "x": 1590,
+        "y": 870
       },
       "schematicPosition": {
         "x": 1710,
@@ -1065,8 +1065,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: HEAD LH, LOGIC HL 15A + relay -> headlight LH H1 pin 3",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1020
+        "x": 1590,
+        "y": -390
       },
       "schematicPosition": {
         "x": 3300,
@@ -1080,8 +1080,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: HEAD RH, LOGIC HR 15A + relay -> headlight RH H2 pin 3",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1140
+        "x": 1590,
+        "y": -570
       },
       "schematicPosition": {
         "x": 3300,
@@ -1095,8 +1095,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: horn relay 87 (LOGIC HZ, HAZ-HORN 15A) -> horns H3 / H4",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1260
+        "x": 1590,
+        "y": -480
       },
       "schematicPosition": {
         "x": 3300,
@@ -1110,8 +1110,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: DOME, LOGIC DM 20A -> J/B1 1H-2",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1380
+        "x": 1590,
+        "y": -300
       },
       "schematicPosition": {
         "x": 3300,
@@ -1125,8 +1125,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: RTR, POWER RTR 30A -> IE1-3 (retract control relay R8)",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1500
+        "x": 600,
+        "y": -540
       },
       "schematicPosition": {
         "x": 3300,
@@ -1140,8 +1140,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: A/C pressure switch +12V, POWER ACPS 10A to A5-1",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1620
+        "x": 600,
+        "y": -30
       },
       "schematicPosition": {
         "x": 3300,
@@ -1155,8 +1155,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: AM1, POWER AM1 40A to IE1-10",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1560
+        "x": 600,
+        "y": -270
       },
       "schematicPosition": {
         "x": 3300,
@@ -1170,8 +1170,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: AM2, POWER AM2 30A to IE1-17",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1440
+        "x": 600,
+        "y": -360
       },
       "schematicPosition": {
         "x": 3300,
@@ -1185,8 +1185,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: OEM HOT, POWER JB1 60A to J/B1 1I-1",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1320
+        "x": 600,
+        "y": -450
       },
       "schematicPosition": {
         "x": 3300,
@@ -1200,8 +1200,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: heater relay 87 (POWER HTR 40A) -> blower motor B4 pin 2",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1200
+        "x": 600,
+        "y": -840
       },
       "schematicPosition": {
         "x": 3300,
@@ -1215,8 +1215,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: power relay 87 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1080
+        "x": 600,
+        "y": -630
       },
       "schematicPosition": {
         "x": 3300,
@@ -1230,7 +1230,7 @@
       "signal": "Broken off - continues on ST185-CSB3: CSB3 +12V, LOGIC CSB 5A (switched k_efi rail)",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
+        "x": 1590,
         "y": 390
       },
       "schematicPosition": {
@@ -1245,8 +1245,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: EFI Main Relay 85 (k_efi) <- ECU-A A28",
       "width": 390,
       "layoutPosition": {
-        "x": 1980,
-        "y": 990
+        "x": 600,
+        "y": 30
       },
       "schematicPosition": {
         "x": 4200,
@@ -1260,8 +1260,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: Radiator Fan Relay (on/off) 85 (k_fan) <- ECU-A A29",
       "width": 390,
       "layoutPosition": {
-        "x": 1980,
-        "y": 750
+        "x": 600,
+        "y": 450
       },
       "schematicPosition": {
         "x": 5400,
@@ -1275,8 +1275,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: radiator fan relay 87 feed",
       "width": 390,
       "layoutPosition": {
-        "x": 2580,
-        "y": 480
+        "x": 600,
+        "y": -210
       },
       "schematicPosition": {
         "x": 1260,
@@ -1290,8 +1290,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: ETB Power Relay 85 (k_etb) <- ECU-A A20",
       "width": 390,
       "layoutPosition": {
-        "x": 2100,
-        "y": 1350
+        "x": 600,
+        "y": 90
       },
       "schematicPosition": {
         "x": 4200,
@@ -1305,8 +1305,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: ETB relay 87 to ECU-B B5 (crossover b)",
       "width": 390,
       "layoutPosition": {
-        "x": 2220,
-        "y": 420
+        "x": 600,
+        "y": 150
       },
       "schematicPosition": {
         "x": 1260,
@@ -1320,8 +1320,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: Start Relay 85 (k_str) <- ECU-A A26",
       "width": 390,
       "layoutPosition": {
-        "x": 2100,
-        "y": 1230
+        "x": 600,
+        "y": 720
       },
       "schematicPosition": {
         "x": 4800,
@@ -1335,8 +1335,8 @@
       "signal": "Broken off - continues on ST185-A-engine: start relay 87 to the starter S terminal",
       "width": 390,
       "layoutPosition": {
-        "x": 2460,
-        "y": 390
+        "x": 600,
+        "y": -960
       },
       "schematicPosition": {
         "x": 1260,
@@ -1350,8 +1350,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13",
       "width": 390,
       "layoutPosition": {
-        "x": 2220,
-        "y": 1590
+        "x": 600,
+        "y": 360
       },
       "schematicPosition": {
         "x": 5400,
@@ -1365,8 +1365,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: condenser fan relay 87 feed",
       "width": 390,
       "layoutPosition": {
-        "x": 2700,
-        "y": 450
+        "x": 600,
+        "y": -150
       },
       "schematicPosition": {
         "x": 1260,
@@ -1380,8 +1380,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: EPS enable relay k_eps_en 85 <- ECU-B B12",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 630
+        "x": 600,
+        "y": 270
       },
       "schematicPosition": {
         "x": 4200,
@@ -1395,8 +1395,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: EPS relay 87 feed to the pump",
       "width": 390,
       "layoutPosition": {
-        "x": 2820,
-        "y": 510
+        "x": 600,
+        "y": -90
       },
       "schematicPosition": {
         "x": 1260,
@@ -1410,8 +1410,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: A/C Clutch Relay (on/off) 85 (k_acc) <- ECU-B B10",
       "width": 390,
       "layoutPosition": {
-        "x": 1740,
-        "y": 900
+        "x": 1590,
+        "y": 240
       },
       "schematicPosition": {
         "x": 4800,
@@ -1425,8 +1425,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: A/C dual pressure switch A5-4 (switched, via sp_ac_psw) -> A/C Clutch Relay 86 (k_acc c3)",
       "width": 390,
       "layoutPosition": {
-        "x": 1740,
-        "y": 780
+        "x": 1590,
+        "y": 180
       },
       "schematicPosition": {
         "x": 4800,
@@ -1440,8 +1440,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: A/C Clutch Relay 87 (k_acc c4) -> A/C magnet clutch A4-4 (fl_a4_4)",
       "width": 390,
       "layoutPosition": {
-        "x": 1740,
-        "y": 660
+        "x": 1590,
+        "y": -180
       },
       "schematicPosition": {
         "x": 4800,
@@ -1455,8 +1455,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN",
       "width": 390,
       "layoutPosition": {
-        "x": 2160,
-        "y": 1410
+        "x": 600,
+        "y": 540
       },
       "schematicPosition": {
         "x": 3180,
@@ -1470,8 +1470,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: LOGIC B30 2A out -> ECU-B B30 (DI 7)",
       "width": 390,
       "layoutPosition": {
-        "x": 2160,
-        "y": 1470
+        "x": 600,
+        "y": 630
       },
       "schematicPosition": {
         "x": 3180,
@@ -1485,8 +1485,8 @@
       "signal": "Broken off - continues on ST185-AntiTheft: LOGIC ALM 5A (Bus 1, permanent) -> alarm +12V constant",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 480
+        "x": 1590,
+        "y": 1380
       },
       "schematicPosition": {
         "x": 1200,
@@ -1500,8 +1500,8 @@
       "signal": "Broken off - continues on ST185-AntiTheft: LOGIC ALMS 2A (Bus 1, permanent) -> shock sensor +12V",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 600
+        "x": 1590,
+        "y": 1530
       },
       "schematicPosition": {
         "x": 1200,
@@ -1515,8 +1515,8 @@
       "signal": "Broken off - continues on ST185-AntiTheft: LOGIC ALMIG 2A (Bus 2, switched k_efi rail) -> alarm ignition sense",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 540
+        "x": 1590,
+        "y": 1680
       },
       "schematicPosition": {
         "x": 1200,
@@ -1530,8 +1530,8 @@
       "signal": "Broken off - continues on ST185-CAN: LOGIC DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 420
+        "x": 1590,
+        "y": 480
       },
       "schematicPosition": {
         "x": 1200,
@@ -1545,8 +1545,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: HAZ-HORN, LOGIC HZ 15A fuse out -> hazard feed IE1-12",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1680
+        "x": 1590,
+        "y": -240
       },
       "schematicPosition": {
         "x": 3300,
@@ -1560,8 +1560,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 690
+        "x": 600,
+        "y": 210
       },
       "schematicPosition": {
         "x": 4200,
@@ -1575,8 +1575,8 @@
       "signal": "Broken off - continues on ST185-EngineRoom-C: door lock / tilt-away always-hot W-L (ex-R/B2 POWER fuse, R58): LOGIC WL 15A",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": 1140
+        "x": 600,
+        "y": -720
       },
       "schematicPosition": {
         "x": 3300,
@@ -1595,8 +1595,8 @@
         "y": 4170
       },
       "layoutPosition": {
-        "x": 1740,
-        "y": 1140
+        "x": 1590,
+        "y": -990
       },
       "propagate": false
     },
@@ -1610,8 +1610,8 @@
         "y": 4230
       },
       "layoutPosition": {
-        "x": 1740,
-        "y": 1200
+        "x": 1590,
+        "y": 120
       },
       "propagate": false
     },
@@ -1625,8 +1625,8 @@
         "y": 4290
       },
       "layoutPosition": {
-        "x": 1740,
-        "y": 1260
+        "x": 1590,
+        "y": 60
       },
       "propagate": false
     },
@@ -1640,8 +1640,8 @@
         "y": 4350
       },
       "layoutPosition": {
-        "x": 1740,
-        "y": 1320
+        "x": 1590,
+        "y": -120
       },
       "propagate": false
     },
@@ -1656,8 +1656,8 @@
         "y": 4410
       },
       "layoutPosition": {
-        "x": 1740,
-        "y": 1380
+        "x": 1590,
+        "y": -1530
       },
       "propagate": false
     },
@@ -1671,8 +1671,8 @@
         "y": 3660
       },
       "layoutPosition": {
-        "x": 1680,
-        "y": 660
+        "x": 1590,
+        "y": -60
       },
       "propagate": false
     },
@@ -1687,8 +1687,8 @@
         "y": 5430
       },
       "layoutPosition": {
-        "x": 2460,
-        "y": 630
+        "x": 1590,
+        "y": -870
       },
       "propagate": false
     },
@@ -1703,8 +1703,8 @@
         "y": 5430
       },
       "layoutPosition": {
-        "x": 2460,
-        "y": 750
+        "x": 1590,
+        "y": -750
       },
       "propagate": false
     },
@@ -1719,8 +1719,8 @@
         "y": 5430
       },
       "layoutPosition": {
-        "x": 2460,
-        "y": 870
+        "x": 600,
+        "y": -1080
       },
       "propagate": false
     },
@@ -1735,8 +1735,8 @@
         "y": 5490
       },
       "layoutPosition": {
-        "x": 2460,
-        "y": 990
+        "x": 600,
+        "y": 1080
       },
       "propagate": false
     },
@@ -1751,8 +1751,8 @@
         "y": 5430
       },
       "layoutPosition": {
-        "x": 2460,
-        "y": 1110
+        "x": 600,
+        "y": 960
       },
       "propagate": false
     },
@@ -1767,8 +1767,8 @@
         "y": 5490
       },
       "layoutPosition": {
-        "x": 2460,
-        "y": 1230
+        "x": 600,
+        "y": 1830
       },
       "propagate": false
     },
@@ -1783,8 +1783,8 @@
         "y": 5550
       },
       "layoutPosition": {
-        "x": 2460,
-        "y": 1110
+        "x": 600,
+        "y": -1830
       },
       "propagate": false
     },
@@ -1794,8 +1794,8 @@
       "signal": "Broken off - continues on ST185-HeavyDC: SW12 (LOGIC SW12 7.5A) -> fuel pump relay k_fp coil + (86) in the battery relay block",
       "width": 390,
       "layoutPosition": {
-        "x": 3480,
-        "y": 30
+        "x": 1740,
+        "y": 0
       },
       "schematicPosition": {
         "x": 4800,
@@ -6992,22 +6992,22 @@
     {
       "id": "b_bp_1050",
       "layoutPosition": {
-        "x": 1680,
-        "y": 240
+        "x": 990,
+        "y": 0
       }
     },
     {
       "id": "b_bp_2100",
       "layoutPosition": {
-        "x": 3480,
-        "y": 240
+        "x": 1590,
+        "y": 0
       }
     },
     {
       "id": "b_bp_1065",
       "layoutPosition": {
-        "x": 1800,
-        "y": 240
+        "x": 0,
+        "y": 0
       }
     }
   ],
@@ -7688,8 +7688,8 @@
     {
       "id": "sp_cp_sw12",
       "layoutPosition": {
-        "x": 1740,
-        "y": 420
+        "x": 960,
+        "y": -90
       },
       "schematicPosition": {
         "x": 1500,
@@ -7707,8 +7707,8 @@
         "y": 4170
       },
       "layoutPosition": {
-        "x": 1710,
-        "y": 270
+        "x": 960,
+        "y": 90
       }
     },
     {
@@ -7720,15 +7720,15 @@
         "y": 5370
       },
       "layoutPosition": {
-        "x": 1770,
-        "y": 270
+        "x": 960,
+        "y": -150
       }
     },
     {
       "id": "sp_htr87",
       "layoutPosition": {
-        "x": 2220,
-        "y": 870
+        "x": -60,
+        "y": 0
       },
       "schematicPosition": {
         "x": 6450,
@@ -7740,8 +7740,8 @@
     {
       "id": "sp_hz",
       "layoutPosition": {
-        "x": 1740,
-        "y": 480
+        "x": 960,
+        "y": 150
       },
       "schematicPosition": {
         "x": 1680,
@@ -7759,8 +7759,8 @@
         "y": 1890
       },
       "layoutPosition": {
-        "x": 1800,
-        "y": 300
+        "x": 990,
+        "y": -210
       }
     },
     {
@@ -7772,8 +7772,8 @@
         "y": 2010
       },
       "layoutPosition": {
-        "x": 1830,
-        "y": 300
+        "x": 990,
+        "y": 210
       }
     }
   ],
