@@ -281,9 +281,10 @@ def build(out_dir, save=True, renders=True, rev=6):
         into one slot (Dan: "join the two slots into one"). Short guide walls hang under the deck between neighbouring holes (Dan:
         "short separators or walls ... to help guide wires straight out"); the bores are cut through them, so a wall never narrows a
         hole. 87a cavities get a bore only when a harness wire lands there (none today: next to 85 / 86 it would leave 0.4 mm).
-        R101 (Dan 2026-10-15: "the little ribs ... are just floating. fill in the gaps between relay positions under the ribs"): a guide
-        wall whose top is not fully backed by a cavity tower (it crosses the gap between two relay / fuse positions) gets a web of its
-        own footprint from its top up into the deck plate, so every wall stands on solid base material.
+        R101 (Dan 2026-10-15: "the little ribs ... are just floating. fill in the gaps between relay positions under the ribs"; then "i
+        like them as they are. just fix the floating pieces i mentioned"): a FLOATING guide wall (less than S.FLOAT_BACKING of its top
+        face on a cavity tower - it crosses the gap between two relay positions) gets a web of its own footprint from its top up into
+        the deck plate. Every other wall is left exactly as it was.
         Returns (cuts, guide walls + webs) and records every hole for check_terminal_holes.py."""
         if not PLAN7:
             return [], []
@@ -335,9 +336,9 @@ def build(out_dir, save=True, renders=True, rev=6):
             U = [support_union(support)]
             for (f_, fd) in zip(fins, fin_d):
                 c0 = backing(f_, z_d + 0.01, U)
-                if c0 < 0.999:     # the wall bridges a gap between two towers: web of its own footprint up into the deck plate
+                if c0 < S.FLOAT_BACKING:   # floating: the wall bridges a gap between two towers - web of its own footprint up into the deck plate
                     webs.append(rbox(fd[0], fd[1], z_d - 0.01, plate_b + 0.01, fd[2], fd[3], fd[4]))
-                sup.append(dict(kind='guide wall', at=[round(fd[0], 1), round(fd[1], 1)], before=round(c0, 3), web=c0 < 0.999))
+                sup.append(dict(kind='guide wall', at=[round(fd[0], 1), round(fd[1], 1)], before=round(c0, 3), web=c0 < S.FLOAT_BACKING))
             U2 = [support_union(support + webs)] if webs else U
             for s_, f_ in zip(sup, fins):
                 s_['after'] = round(backing(f_, z_d + 0.01, U2), 3)
@@ -813,10 +814,14 @@ def build(out_dir, save=True, renders=True, rev=6):
             top_ = box(ccx - rs, a['y'] - od / 2 - 2.0, ccz - 0.01, ccx, a['y'] + od / 2 + 2.0, z_d + 0.5)
             if R7:   # R101 (Dan 2026-10-15: "add material under the radius runners"): the saddle's back runs on up into the deck plate
                 c0 = backing(top_, z_d + 0.5, U_sad)
-                top_ = box(ccx - rs, a['y'] - od / 2 - 2.0, ccz - 0.01, ccx, a['y'] + od / 2 + 2.0, plate_b + 0.01)
+                if c0 < S.FLOAT_BACKING:    # floating: carry it up into the deck plate
+                    top_ = box(ccx - rs, a['y'] - od / 2 - 2.0, ccz - 0.01, ccx, a['y'] + od / 2 + 2.0, plate_b + 0.01)
+                    after = backing(top_, plate_b + 0.01, [box(0, 0, plate_b, L, D7, z_t)])
+                else:
+                    after = c0
                 report['feature_support'].setdefault('POWER', []).append(dict(
-                    kind='saddle', at=[round(ccx - rs / 2, 1), round(a['y'], 1)], before=round(c0, 3), web=True,
-                    after=round(backing(top_, plate_b + 0.01, [box(0, 0, plate_b, L, D7, z_t)]), 3)))
+                    kind='saddle', at=[round(ccx - rs / 2, 1), round(a['y'], 1)], before=round(c0, 3), web=c0 < S.FLOAT_BACKING,
+                    after=round(after, 3)))
             bo(core, top_, 'u')
             saddles.append(core)
         parts += saddles
@@ -1563,7 +1568,7 @@ def build(out_dir, save=True, renders=True, rev=6):
 
     if save and REV[0] == 7:   # rev 7: its own document (rev 6 stays as saved); save-as the first time, R74 slot check done (2 of 10 editable)
         if doc.dataFile.name == DOC7:
-            doc.save('rev 7: R101 - webs under the guide walls between relay positions, saddles carried up to the deck (Claude Code 2026-10-15)')
+            doc.save('rev 7: R101 tightened - only the floating pieces Dan marked joined (5 LOGIC guide walls, 6 POWER saddles) (Claude Code 2026-10-15)')
         else:
             doc.saveAs(DOC7, doc.dataFile.parentFolder, 'rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)', '')
             report['saved_as'] = DOC7
