@@ -76,7 +76,8 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["audit_dan_rules.py"], ["buylist.py", "--check"],
         ["buildlist.py", "--check"], ["check_route_drawings.py"],
         ["../../cad/fusebox/src/parts_lists.py", "--check"],   # DECISIONS R82: every fuse box part is real and buyable
-        ["../../cad/fusebox/src/check_clearance.py"]]          # Dan's 3 mm rule: no two live fuse box parts closer than 3 mm
+        ["../../cad/fusebox/src/check_clearance.py"],          # Dan's 3 mm rule: no two live fuse box parts closer than 3 mm
+        ["../../cad/fusebox/src/check_terminal_holes.py"]]     # Dan's J2 = B (R94): crimp-sized terminal holes, walls >= 2 mm
 SOFT = []
 # 2026-10-14: check_route_drawings went HARD - its last finding (Route 1 Fig. 4, an EWD
 # sheet with no top view) got a top view, so it reported zero (OPEN-ITEMS row 65).

@@ -215,6 +215,16 @@ def run(_context: str):
         W['BATT'].append((wid, tube(fillet(pts, 3 * od18 + od18 / 2, wid)[0], od18), colr))      # 3 x OD (tied at the plug)
         meta[wid] = dict(box='BATT', od=od18, colour=colr, gauge=18, end='k_fp coil plug')
         BANDS['BATT'] += bands_on(pts[0], (0, -1, 0), od18, bands)
+    # J3 / J4 (R94): the HL / HR splices in the LOGIC front channel (est size: solder splice + adhesive heat shrink over)
+    own_sp = {}
+    for w in plan['wires']:
+        for e in w['ends']:
+            if e['id'] in ('sp_hl', 'sp_hr'):
+                own_sp.setdefault(e['id'], set()).add(w['wire'])
+    for sp in plan.get('splices', []):
+        off = (PL[sp['box']][0], PL[sp['box']][1], 0.0)
+        W[sp['box']].append((sp['id'], [cyl(add(tuple(sp['p0']), off), add(tuple(sp['p1']), off), sp['od'])], 'clamp'))
+        meta[sp['id']] = dict(box=sp['box'], od=sp['od'], colour='clamp', gauge=None, end='splice (%s)' % sp['basis'])
     for box in W:
         o = root.occurrences.addNewComponent(adsk.core.Matrix3D.create())
         o.component.name = 'Tmp_W_' + box
@@ -300,6 +310,8 @@ def run(_context: str):
                 A, B = wb[ids[i]], wb[ids[j]]
                 if A[0] != B[0] or not near(A[2], B[2], 0.5):
                     continue
+                if ids[j] in own_sp.get(ids[i], ()) or ids[i] in own_sp.get(ids[j], ()):
+                    continue                                 # a wire ends inside its own splice
                 rep['wire_wire']['pairs'] += 1
                 d = mind(A[1], B[1])
                 mn = d if mn is None else min(mn, d)
@@ -355,9 +367,10 @@ def run(_context: str):
         'battrelay': ('BattRelay_', 'BATT', (BX + 92.0, BY + 46.0, 25.0), (0, -1, 0.36), (-1, -0.5, 0.3)),
     }
     LB = {   # a few labels per box (world points)
-        'logic': [((S.MINI_COLS['BUS1'][0] - 3.0, -14.0, 20.0), 'HL / HR / ETB feeds: out of the front exit and back in (they cannot cross the strips)'),
-                  ((S.MINI_COLS['BUS1'][0] - 3.0, S.MINI_Y0 + 1 * S.MINI['pitch'], S.LOGIC['z_d'] - 4.0), 'HL and HR outputs: 2 wires (14 + 18 AWG = 2.9 mm2) in one 880398-2 (max 2.5)'),
-                  ((S.MINI_COLS['BUS1'][0] - 3.0, -30.0, 9.0), 'Bus 1 exit: 12 wires, about 8.6 mm in an 8.8 mm notch')],
+        'logic': [((30.0, S.CHANNEL['y'], S.CHANNEL['floor'][1]), 'J4: front channel - HL, HR, ETB cross in front of the spine, inside the box'),
+                  ((34.0, S.CHANNEL['y_sp'], S.CHANNEL['z']['HR'] + 2.5), 'J3: HL and HR splices in the channel (one wire per fuse terminal)'),
+                  ((sum(S.PAN_RIB['x']) / 2, 60.0, S.PAN_RIB['z_top']), 'J2: pan rib between the Bus 1 wires and the strip bolt heads'),
+                  ((S.MINI_COLS['BUS1'][0] - 3.0, -30.0, 9.0), 'Bus 1 exit: %d wires' % next(x['wires'] for x in plan['exits'] if x['box'] == 'LOGIC' and abs(x['lane'] - 10.5) < 0.01))],
         'power': [((PX - 30.0, 43.0, 8.0), 'relay + ACPS wires: 21 into 12 bundles out of the inboard end')],
         'battrelay': [((214.0, -169.0, 24.5), 'coil plug: 85 white + 86 red, 18 AWG')],
     }
@@ -423,7 +436,8 @@ def run(_context: str):
     labels.append(((450.0, -20.0, 13.0), 'AMI OUT row (RTR, AM1, AM2, JB1, EPS) forward to the dash harness', 'FT'))
     cb1, cb2 = S.MINI_COLS['BUS1'][0], S.MINI_COLS['BUS2'][0]
     xb1, xb2 = cb1 + 2.15 + LX, cb2 - 2.15 + LX                  # LOGIC Bus 1 (front) / Bus 2 (rear) feed lug lines
-    cable('Bus1', [(PXE, 43, 13), (426.4, 43, 13), (426.4, -110, 13), (260, -110, 40), (xb1, -110, 40), (xb1, -48, 22), (xb1, -30, 22)], 5.13, 'Red', rf(5.13),
+    zf1 = S.FEED['BUS1']['z']                                    # J4 (R94): the Bus 1 feed lug sits lower (z 13)
+    cable('Bus1', [(PXE, 43, 13), (426.4, 43, 13), (426.4, -110, 13), (260, -110, 40), (xb1, -110, 40), (xb1, -48, zf1), (xb1, -30, zf1)], 5.13, 'Red', rf(5.13),
           'Bus 1 feed (8 AWG red): POWER BUS1 50 A -> LOGIC front', (150, -110, 40), v='FT', bands=['White', 'Blue', 'White'])
     # breakouts that leave the looms: from each wire's own slot at its box's exit (wiring_plan)
     slot_end = {}

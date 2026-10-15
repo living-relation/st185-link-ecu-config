@@ -31,7 +31,7 @@ Always shown together, as one package (DECISIONS R84): the research hub's "Power
 | Member | Trimetric | Per car | Parts from |
 |---|---|---|---|
 | POWER box with the bus bar in it (rev 7) | `fusebox/rev7/trimetric-power.png` | 1 | `fusebox/rev7/fusebox-parts-power.csv` |
-| LOGIC fuse + relay box (rev 7, 3 mm fix; same parts as rev 6) | `fusebox/rev7/trimetric-logic.png` | 1 | `fusebox/fusebox-parts-logic.csv` |
+| LOGIC fuse + relay box (rev 7: 3 mm fix + J answers R94 - crimp holes, front channel; same parts as rev 6) | `fusebox/rev7/trimetric-logic.png` | 1 | `fusebox/fusebox-parts-logic.csv` |
 | Battery relay block (rev 6) | `fusebox/trimetric-battrelay.png` | 1 | `fusebox/fusebox-parts-battrelay.csv` |
 | VRC enclosure | `enclosures/vrc/trimetric.png` | 2 | `model:enclosure-vrc` |
 | CSB3 enclosure | `enclosures/csb3/trimetric.png` | 1 | `model:enclosure-csb3` |
@@ -54,6 +54,8 @@ Extra renders of the selected fuse boxes, shown under the package on the researc
 | LOGIC box (rev 7), wired, exploded | `fusebox/rev7/fusebox_logic_wired_explode.png` |
 | LOGIC box (rev 7), wired, underneath | `fusebox/rev7/fusebox_logic_wired_under.png` |
 | LOGIC box (rev 7), wire routing from below | `fusebox/rev7/fusebox_logic_wired_routing.png` |
+| LOGIC base from below: crimp-sized terminal holes, guide walls, the J4 front channel (R94) | `fusebox/rev7/fusebox_logic_base_holes.png` |
+| POWER base from below: crimp-sized terminal holes and guide walls (R94) | `fusebox/rev7/fusebox_power_base_holes.png` |
 | Battery relay block, wired, long side | `fusebox/rev7/battrelay_wired_side_long.png` |
 | Battery relay block, wired, short end | `fusebox/rev7/battrelay_wired_side_end.png` |
 | Battery relay block, wired, exploded | `fusebox/rev7/battrelay_wired_explode.png` |

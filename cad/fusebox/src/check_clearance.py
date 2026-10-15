@@ -3,8 +3,11 @@ Reads the clearances the Fusion build measured (cad/fusebox/rev7/fusebox_report.
 the wire simulation (cad/fusebox/rev7/wiring_report.json "live_to_live"). Every live-to-live key listed below fails under
 3.0 mm. Live-to-plastic / live-to-insulation keys (a printed part or a wire's insulation, not a second live part) are
 printed for information only.
+SAME CIRCUIT (Dan's J1 = A, 2026-10-14, DECISIONS R94): the 3 mm rule is between different circuits. A gap between two live
+parts of ONE circuit (the jumper lugs on one bus strip) is printed, not gated - permanently. Only the keys in SAME_CIRCUIT get
+this; the build measures them on one strip only, and every gap between circuits (Bus 1 to Bus 2) stays gated.
 A WAIVER holds a failing key only while its question is still open in docs/status/questions.json (Dan has not answered
-yet); once the question is answered the waiver expires and the key fails again until the model is fixed.
+yet); once the question is answered the waiver expires and the key fails again until the model is fixed. None open today.
     python cad/fusebox/src/check_clearance.py
 Claude Code, 2026-10-14.
 """
@@ -31,14 +34,15 @@ LIVE_LIVE = {   # key -> what the two live parts are
     'logic_bolt_to_other_strip_min_mm': 'LOGIC: a strip bolt tip to the OTHER strip',
     'logic_bus1_to_bus2_min_mm': 'LOGIC: any Bus 1 part to any Bus 2 part',
     'logic_feed_lug_to_lug_mm': 'LOGIC: Bus 1 feed lug to Bus 2 feed lug',
-    'logic_jumper_lug_to_lug_min_mm': 'LOGIC: fuse input jumper lug to the next one (same strip)',
     'battrelay_bar_to_pad_mm': 'battery block: bar to output pad',
     'battrelay_relay_lug_to_lug_mm': 'battery block: HCR150 terminal 3 lug to terminal 5 lug',
 }
 LIVE_INSULATION = ('pan_to_nearest_live_power_mm', 'logic_jumper_parts_to_printed_min_mm', 'logic_jumper_parts_to_harness_min_mm',
-                   'logic_strip_to_printed_min_mm')
+                   'logic_strip_to_printed_min_mm', 'logic_pan_rib_to_live_min_mm', 'logic_base_to_live_min_mm')
+# J1 = A (R94): live to live inside ONE circuit - reported, never gated (the key must still be there)
+SAME_CIRCUIT = {'logic_jumper_lug_to_lug_min_mm': 'LOGIC: fuse input jumper lug to the next one on the SAME strip (one circuit, J1 = A)'}
 # key -> question id: the key may stay under 3 mm only while that question is open (Dan to decide)
-WAIVERS = {'logic_jumper_lug_to_lug_min_mm': 'J1'}
+WAIVERS = {}
 
 
 def main():
@@ -51,7 +55,7 @@ def main():
     except (OSError, ValueError):
         open_q = set()
     bad, waived = [], []
-    missing = [k for k in LIVE_LIVE if k not in lc]
+    missing = [k for k in list(LIVE_LIVE) + list(SAME_CIRCUIT) if k not in lc]
     for k, what in LIVE_LIVE.items():
         v = lc.get(k)
         if v is None or v >= RULE:
@@ -65,6 +69,9 @@ def main():
     for k in LIVE_INSULATION:
         if k in lc:
             print('  info (live to plastic / insulation, not gated): %s = %.2f mm' % (k, lc[k]))
+    for k, what in SAME_CIRCUIT.items():
+        if k in lc:
+            print('  same circuit (J1 = A, not gated): %s = %.2f mm (%s)' % (k, lc[k], what))
     for (k, v, what, q) in waived:
         print('  WAIVED while %s is open: %s = %.2f mm (%s)' % (q, k, v, what))
     for k in missing:

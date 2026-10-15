@@ -100,6 +100,8 @@ def box_of(ent):
         return 'LOGIC'
     if i in ('fb_batt', 'k_fp'):
         return 'BATT'
+    if i in S.CHANNEL_SPLICES:                   # J3 / J4 (R94): the HL / HR splices lie in the LOGIC front channel
+        return 'LOGIC'
     m = re.search(r'seated in the (POWER|LOGIC) box', lab)
     return m.group(1) if m else None
 
@@ -114,6 +116,7 @@ def harness_wires():
         tp = {p['id']: p for p in d.get('terminalParts', [])}
         ents = {c['id']: ('conn', c, {cv['id']: cv for cv in c.get('cavities', [])}) for c in d.get('connectors', [])}
         ents.update({t['id']: ('term', t, {}) for t in d.get('terminals', [])})
+        ents.update({t['id']: ('splice', t, {}) for t in d.get('splices', [])})
         for w in d['wires']:
             ends = []
             for side in ('source', 'target'):
@@ -126,6 +129,8 @@ def harness_wires():
                 cv = cavs.get(e.get('handle'), {})
                 if kind == 'conn':
                     pp = cp.get(cv.get('contactPartId'))
+                elif kind == 'splice':
+                    pp = None
                 else:
                     pp = tp.get(obj.get('partId'))
                 ends.append(dict(id=e['id'], cav=e.get('handle'), box=box_of(obj), part=pp.get('partNumber') if pp else None,
@@ -174,9 +179,13 @@ def plan():
                 at = pc.get((e['id'], e['cav']))
             elif e['id'] == 'fb_power' and e['cav'] in ('acps', 'acps_in'):
                 at = pc['ACPS' if e['cav'] == 'acps' else 'ACPS IN']
+            elif e['id'] in S.CHANNEL_SPLICES:
+                CH = S.CHANNEL
+                at = dict(x=CH['splice']['x0'], y=CH['y_sp'], lane=None, kind='splice', name=e['id'])
             part = e['part'] or fallback_part(e['box'], e, w['gauge'], w['unit'])
             ends.append(dict(e, at=at, part=part, part_from='harness' if e['part'] else 'parts list'))
-            term_load[(e['box'], e['id'], e['cav'])].append(w)
+            if e['id'] not in S.CHANNEL_SPLICES:      # a splice takes any number of wires (that is what it is for)
+                term_load[(e['box'], e['id'], e['cav'])].append(w)
         w2 = dict(w, ends=ends)
         boxes = [e['box'] for e in ends if e['box']]
         w2['kind'] = ('internal' if len(boxes) == 2 and boxes[0] == boxes[1] else 'cross-box' if len(boxes) == 2 else 'external')
@@ -203,7 +212,7 @@ PAN_TOP = S.PAN['z0'] + S.PAN['t']           # 4.0: belly pan floor top
 BUNDLE_Z0 = PAN_TOP + 0.8                    # bundle bottom (as the CAD lanes)
 EXIT_S = -30.0                               # every tail ends 30 mm past the box edge (as the CAD stubs)
 LOOP_Y, LOOP_Z = -28.0, 30.0                 # LOGIC out-and-back loops turn here, over the other tails
-JUMP_Z = S.LOGIC['z_d'] - 12.0               # LOGIC direct jumpers under the deck (over the bundles, under the cavities)
+JUMP_Z = 15.0                                # LOGIC direct jumpers under the deck: over the bundles, under the J4 channel levels (R94)
 FRAME = {'LOGIC': ('x', 'y'), 'POWER': ('y', 'x')}     # (lateral axis, along axis); every exit is toward - along
 
 
@@ -220,7 +229,7 @@ def pt(box, lat, along, z):
     return (lat, along, z) if FRAME[box][0] == 'x' else (along, lat, z)
 
 
-def pack_u(members, wd):
+def pack_u(members, wd, u_max=None, u_min=None):
     """Pack the wires into the exit's U-notch (round bottom of width wd on the pan floor, straight sides, open top): each wire,
     first joiner first, goes to the lowest free spot (then the most central), 0.2 mm off the notch and 0.15 off the next wire.
     Returns the top of the stack (z)."""
@@ -235,6 +244,8 @@ def pack_u(members, wd):
                 for sgn in ((1,) if il == 0 else (1, -1)):
                     u = sgn * il * 0.05
                     inside = (abs(u) + r <= rn) if z >= zc else (math.hypot(u, z - zc) + r <= rn)
+                    if (u_max is not None and u + r > u_max) or (u_min is not None and u - r < u_min):
+                        inside = False                           # J2 (R94): the pan rib on one side, the pan's rounded corner on the other
                     if not inside:
                         continue
                     if any(math.hypot(u - u2, z - z2) < r + r2 + 0.15 for (u2, z2, r2) in placed):
@@ -285,6 +296,8 @@ def riser(box, m, L0, z_d):
     lat_c, s_c = m['lat_c'], m['s_c']
     k = max(3.0 * R, 10.0)
     s2 = max(s_c - k, EXIT_S + 6.0)
+    if box == 'LOGIC':     # J2 (R94): the sideways ease into the slot ends inside the box, so no wire scrapes a notch edge in the pan wall
+        s2 = max(s2, S.SKIRT + S.PCLR + S.PAN['t'] + 1.5)
     return [pt(box, lat_c, s_c, z_d - 0.2), pt(box, lat_c, s_c, zs), pt(box, L0 + dl, s2, zs), pt(box, L0 + dl, EXIT_S, zs)], R
 
 
@@ -365,6 +378,107 @@ def direct_jumper(a, b, od, risers):
     return pts, hits
 
 
+def channel_route(w):
+    """J4 = B (R94): a LOGIC wire that has to cross the strips runs in the front channel (S.CHANNEL), each on its own level.
+    Fuse side: down out of the fuse cavity, sideways to x_fwd (between the belly pan wall and the Bus 1 output risers), forward,
+    round the corner along the front in front of the spine; a splice feed then steps into the splice line and ends at the splice.
+    Relay side: from the splice end (or straight on for ETB) to the relay cavity, the last straight long enough for the bend up."""
+    C, Z = S.CHANNEL, S.CHANNEL['z']
+    sp = C['splice']
+    zc = S.LOGIC['z_d'] - 0.2
+    fuse = next((e for e in w['ends'] if e['id'] == 'fb_logic' and e.get('at')), None)
+    spl = next((e for e in w['ends'] if e['id'] in S.CHANNEL_SPLICES), None)
+    rel = next((e for e in w['ends'] if e['id'].startswith('k_') and e.get('at')), None)
+
+    def fuse_side(at, z):
+        x, y = at['x'], at['y']
+        return [(x, y, zc), (x, y, z), (C['x_fwd'], y - 10.0, z), (C['x_fwd'], C['y'], z)]
+
+    def to_splice(z):
+        x_s = 18.0
+        return [(x_s, C['y'], z), (x_s + (C['y_sp'] - C['y']) / math.tan(math.radians(15.0)), C['y_sp'], z), (sp['x0'], C['y_sp'], z)]
+    if fuse and spl:                                       # HL / HR fuse out -> its splice
+        k = 'HL' if spl['id'] == 'sp_hl' else 'HR'
+        return fuse_side(fuse['at'], Z[k]) + to_splice(Z[k]), k
+    if fuse and rel:                                       # ETB: fuse -> along the front -> rearward at x_etb -> 45 deg into the relay
+        z = Z['ETB']
+        c = rel['at']
+        return fuse_side(fuse['at'], z) + [(C['x_etb'], C['y'], z), (C['x_etb'], c['y'] - (c['x'] - C['x_etb']), z), (c['x'], c['y'], z),
+                                           (c['x'], c['y'], zc)], 'ETB'
+    if spl and rel:                                        # splice -> relay 30 / 86
+        k = ('HL' if spl['id'] == 'sp_hl' else 'HR') + ('30' if rel['cav'] == 'c1' else '86')
+        z = Z[k]
+        c = rel['at']
+        p0 = (sp['x1'], C['y_sp'], z)
+        if k == 'HL30':
+            mid = [(42.0, C['y_sp'], z)]
+        elif k == 'HL86':
+            mid = [(c['x'], 7.6, z)]
+        elif k == 'HR30':
+            mid = [(C['x_hr'], C['y_sp'], z), (C['x_hr'], c['y'] - (C['x_hr'] - c['x']), z)]
+        else:
+            mid = [(C['x_hr'], C['y_sp'], z), (C['x_hr'], c['y'] - 2.0 * (C['x_hr'] - c['x']), z)]
+        return [p0] + mid + [(c['x'], c['y'], z), (c['x'], c['y'], zc)], k
+    raise ValueError('channel wire %s: no route for its ends %s' % (w['wire'], [(e['id'], e['cav']) for e in w['ends']]))
+
+
+def all_cavities():
+    """Every terminal cavity the bases cut (spare positions too), box-local mm: (box, key) -> dict(x, y, kind)."""
+    out = {}
+    for col, (cx, fuses) in S.MINI_COLS.items():
+        sd = S.MINI_IN[col]
+        for i, (nm, amps) in enumerate(fuses):
+            y = S.MINI_Y0 + i * S.MINI['pitch']
+            out[('LOGIC', '%s-%d' % (col, i + 1))] = dict(x=cx - sd * 3.0, y=y, kind='fuse out', fuse=nm, amps=amps)
+            out[('LOGIC', '%s-%d IN' % (col, i + 1))] = dict(x=cx + sd * 3.0, y=y, kind='fuse in', fuse=nm, amps=amps,
+                                                             jumper=bool(amps) and i < S.STUDS[col])
+    k = 0
+    for cx in S.MICRO_COLS:
+        for cy in S.MICRO_Y:
+            k += 1
+            for (u, v, tn) in ((0, -8.0, '30'), (0, 8.0, '87'), (0, 0, '87a'), (-4.5, 0, '85'), (4.5, 0, '86')):
+                out[('LOGIC', 'M%d %s' % (k, tn))] = dict(x=cx + u, y=cy + v, kind='micro ' + tn)
+    for i, nm in enumerate(S.IN_RELAY):
+        cx = S.F7_X[1] if i % 2 == 0 else S.F7_X[0]
+        cy = S.AMI_Y0 + i * S.AMI_PITCH
+        pins = [('87', cx - 7.65, cy), ('30', cx + 10.25, cy), ('85', cx + 0.25, cy - 8.45), ('86', cx + 0.25, cy + 8.45)]
+        if nm == S.RELAY_B['pos']:
+            pins.append(('87a', cx - S.RELAY_B['v87a'], cy))
+        for (tn, x, y) in pins:
+            out[('POWER', 'R%d %s' % (i + 1, tn))] = dict(x=x, y=y, kind='F7 ' + tn, relay=nm)
+    out[('POWER', 'ACPS IN')] = dict(x=S.F7_X[0] - 3.0, y=S.ACPS_Y, kind='acps in')
+    out[('POWER', 'ACPS')] = dict(x=S.F7_X[0] + 3.0, y=S.ACPS_Y, kind='acps out')
+    return out
+
+
+def terminal_cavities(wires):
+    """J2 = B (R94): the terminal in every cavity and the wire on it - the harness part and wire where a harness wire lands, the
+    cavity's default (S.TERM_DEFAULT, the largest it takes) for a spare, the 14 AWG CAD jumper on a LOGIC stud input."""
+    cav = all_cavities()
+    at = {}
+    for w in wires:
+        for e in w['ends']:
+            a = e.get('at')
+            if a and e['box'] in ('LOGIC', 'POWER') and a.get('kind') != 'splice':
+                at.setdefault((e['box'], round(a['x'], 2), round(a['y'], 2)), []).append((w, e))
+    out = []
+    for (box, key), c in sorted(cav.items()):
+        hits = at.get((box, round(c['x'], 2), round(c['y'], 2)), [])
+        if hits:
+            parts = sorted({e['part'] for (w, e) in hits if e['part']})
+            part = parts[0] if parts else S.TERM_DEFAULT[c['kind']][0]
+            od = max(w['od'] for (w, e) in hits)
+            src, wl = 'harness', [w['wire'] for (w, e) in hits]
+        elif c.get('jumper'):
+            part, od, src, wl = '880398-2', OD[S.JUMPER_AWG], 'CAD jumper', []
+        else:
+            part, g = S.TERM_DEFAULT[c['kind']]
+            od, src, wl = OD[g], 'spare (largest wire it takes)', []
+        out.append(dict(box=box, cav=key, x=round(c['x'], 3), y=round(c['y'], 3), kind=c['kind'], part=part, wire_od=od, source=src, wires=wl,
+                        hole_d=round(S.hole_d(part, od), 3) if part in S.TERM else None))
+    return out
+
+
 def main():
     wires, doubles = plan()
     per_box = collections.Counter()
@@ -378,15 +492,17 @@ def main():
     for w in wires:
         ats = [e for e in w['ends'] if e.get('at')]
         w['ats'] = ats
-        w['loop'] = w['direct'] = False
+        w['loop'] = w['direct'] = w['channel'] = False
         if w['kind'] == 'internal' and len(ats) == 2 and all(e['box'] == 'LOGIC' for e in ats):
             xs = sorted(e['at']['x'] for e in ats)
             crosses = any(xs[0] < sx < xs[1] for sx in (strip_x['BUS1'] + 6.0, strip_x['BUS2'] - 6.0))
-            w['loop'], w['direct'] = crosses, not crosses
+            # J4 = B (R94): a wire that crosses the strips, or ends at a channel splice, runs in the front channel
+            w['channel'] = crosses or any(e['id'] in S.CHANNEL_SPLICES for e in ats)
+            w['direct'] = not w['channel']
     # ---- lane members (one per wire end that leaves through an exit)
     lanes = collections.defaultdict(list)
     for w in wires:
-        if w['direct']:
+        if w['direct'] or w['channel']:
             continue
         for e in w['ats']:
             if e['at']['lane'] is None:
@@ -404,7 +520,8 @@ def main():
         c = cad_lanes.get((box, round(L0, 2)))
         cad_d = c['d'] if c else None
         opening = round(cad_d + 1.6, 2) if cad_d else None
-        top = pack_u(ms, opening) if opening else BUNDLE_Z0 + pack(ms)
+        xr = S.LANE_X.get((box, L0))
+        top = pack_u(ms, opening, *((xr[1] - L0, xr[0] - L0) if xr else (None, None))) if opening else BUNDLE_Z0 + pack(ms)
         wall_top = ZD[box] + S.PAN['over']            # the notch is open up to the pan wall top
         exits.append(dict(box=box, lane=L0, wires=len(ms), d=round(d, 2), stack_top=round(top, 2), pan_wall_top=wall_top, deck=ZD[box],
                           cad_wires=c['wires'] if c else 0, cad_d=cad_d, opening=opening, margin=round(opening - d, 2) if opening else None,
@@ -444,17 +561,30 @@ def main():
         pts, hits = direct_jumper((a['at']['x'], a['at']['y']), (b['at']['x'], b['at']['y']), w['od'], risers)
         jumper_hits[w['wire']] = hits
         box_paths[w['wire']] = [dict(box='LOGIC', lane=None, pts=pts, R=r_sup(w['od']), direct=True)]
+    # ---- J4 = B: the front channel
+    channel = {}
+    for w in wires:
+        if not w['channel']:
+            continue
+        pts, k = channel_route(w)
+        channel[w['wire']] = k
+        box_paths[w['wire']] = [dict(box='LOGIC', lane=None, pts=pts, R=r_sup(w['od']), channel=k)]
+    CH = S.CHANNEL
+    splices = [dict(id=sid, box='LOGIC', p0=(CH['splice']['x0'], CH['y_sp'], CH['z'][k]), p1=(CH['splice']['x1'], CH['y_sp'], CH['z'][k]),
+                    od=CH['splice']['od'], basis='est (generic solder splice, adhesive heat shrink over)') for sid, k in (('sp_hl', 'HL'), ('sp_hr', 'HR'))]
     for w in wires:
         w['box_paths'] = box_paths.get(w['wire'], [])
         w.pop('ats', None)
     res = dict(per_box_wire_ends=per_box, kinds=collections.Counter(w['kind'] for w in wires), wires=wires, doubles=doubles,
-               loops=[w['wire'] for w in wires if w['loop']], direct=jumper_hits, exits=exits,
+               loops=[w['wire'] for w in wires if w['loop']], direct=jumper_hits, exits=exits, channel=channel, splices=splices,
+               cavities=terminal_cavities(wires),
                constants=dict(EXIT_S=EXIT_S, BUNDLE_Z0=BUNDLE_Z0, LOOP_Y=LOOP_Y, LOOP_Z=LOOP_Z, JUMP_Z=JUMP_Z))
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump(res, open(OUT, 'w', encoding='utf-8'), indent=1, default=list)
     print('wire ends per box:', dict(per_box), '| wires:', dict(res['kinds']))
     print('LOGIC wires that loop out of the front exit and back in (they cannot cross the strips):', res['loops'])
     print('LOGIC direct jumpers under the deck (riser hits):', jumper_hits)
+    print('LOGIC front channel (J4 = B):', channel)
     for d_ in doubles:
         print('two wires in one terminal: %(box)s %(cavity)s %(wires)s = %(mm2)s mm2 in %(part)s range %(range)s over=%(over)s' % d_)
     for x in exits:
