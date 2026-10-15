@@ -119,8 +119,8 @@ left quarter panel (no inline connector, C2) -> hatch branch to H6 at the upper 
 C7) -> rear panel: R11, L1 + ground BL, R12.
 
 **Ground.** One rear ground for all rear lamps, H6 included (Dan C6) - sp_rl_gnd -> body ground
-BL, back panel center. Lamp plugs: the factory plugs are gone with the rear wires; their part
-numbers are not chosen yet (docs/OPEN-ITEMS.md). Lengths are route estimates - measure at the
-build.
+BL, back panel center. Lamp ends (R113): no lamp plugs - the factory bulb sockets stay and each
+end is a flying lead, soldered to the factory bulb-socket pigtail + adhesive heat-shrink
+(ATUM-4/1-0, 40 mm). Lengths are route estimates - measure at the build.
 
 (The FEEDS note stays on the drawing word for word.)

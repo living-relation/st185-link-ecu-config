@@ -9,7 +9,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 108 | 0 | **108** |
+| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 92 | 0 | **92** |
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 61 | 0 | **61** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 50 | 0 | **50** |
 | `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 45 | 0 | **45** |
@@ -185,6 +185,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `4-1904124-2` | RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A402, 1 FORM A, 25 A, 12 VDC COIL 119 OHM, 680 OHM PARALLEL RESISTOR | 1 | 2 |
 | `4-1904124-3` | RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A403, 1 FORM A (NO), 12 VDC COIL (TE ON-HAND BOM) | 1 | 2 |
 | `5-1393292-8` | RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A402, 1 FORM A (NO), 12 VDC COIL, DIODE SUPPRESSED (TE ON-HAND BOM) | 2 | 2 |
+| `ATUM-4/1-0` | TERMINAL, FLYING LEAD, SOLDERED TO FACTORY BULB-SOCKET PIGTAIL, ADHESIVE-LINED HEAT-SHRINK RAYCHEM ATUM-4/1-0, 4:1, 4.0 MM EXPANDED / 1.0 MM RECOVERED ID, 40 MM CUT | 16 | 50 |
 | `D 261 205 358-01` | CONNECTOR, PLUG, BOSCH MOTORSPORT KIT, 6 POS, SOCKET CONTACTS | 1 | 1 |
 | `DT04-12PA` | CONN RECP DT 12-WAY PIN SEALED A-KEY | 1 | 2 |
 | `DT06-12SA` | CONNECTOR, PLUG, DT, 12 POS, SOCKET CONTACTS, N SEAL, KEY A, GRAY | 1 | 2 |
@@ -248,7 +249,8 @@ mating half). Contacts and wedgelocks come from each half's part configuration a
 
 ## OEM flying leads - splice material only, no OEM housing
 
-Each lead is one solder sleeve (`GENERIC FLYING LEAD` above). The EWD locator for every lead
+Each lead is one `GENERIC FLYING LEAD` splice above; the rear lamp leads are soldered to the factory
+bulb-socket pigtails under a 40 mm `ATUM-4/1-0` cut (DECISIONS R113). The EWD locator for every lead
 is in `interfaces.json` and in the build list's EWD column.
 
 | Harness | Flying leads |

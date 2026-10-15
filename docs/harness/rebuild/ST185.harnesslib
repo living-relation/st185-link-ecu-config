@@ -1902,6 +1902,21 @@
       "manufacturer": "generic"
     },
     {
+      "id": "tp_lamp_pigtail_atum",
+      "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "ATUM-4/1-0",
+      "description": "TERMINAL, FLYING LEAD, SOLDERED TO FACTORY BULB-SOCKET PIGTAIL, ADHESIVE-LINED HEAT-SHRINK RAYCHEM ATUM-4/1-0, 4:1, 4.0 MM EXPANDED / 1.0 MM RECOVERED ID, 40 MM CUT",
+      "manufacturer": "TE Connectivity (Raychem)"
+    },
+    {
       "id": "rzySOkZzMMCBHZ83-BXDp",
       "type": "Loose",
       "maxGauge": {

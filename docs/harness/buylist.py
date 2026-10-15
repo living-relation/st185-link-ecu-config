@@ -27,6 +27,9 @@ ONHAND = {  # from TE_BOM_with_screenshots.xlsx + the three TE invoices in Drive
  "1393310-4":1,"282080-1":2,"282110-1":10,"281934-2":10,
  # 2026-10-14 fuse boxes: AMP MCP 2.8K receptacle, te-on-hand-bom.csv
  "1241388-2":10,
+ # 2026-10-15 rear lamp ends (R113): 40 mm cuts of ATUM-4/1-0, from te-on-hand-bom.csv NB11014001
+ # ATUM-4/1-0-SP qty_ordered 2 (sold by the metre, so read as 2 m = 50 cuts; an upper bound, check the shelf)
+ "ATUM-4/1-0":50,
 }
 EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
  # 2026-09-25: the relays now sit in VCF7 sockets drawn as mount parts, so the
@@ -309,7 +312,8 @@ for ix in REG.get("interfaces", []):
                % (ix["id"], ix.get("family", ""), s["connector"], s["harness"], r["connector"], r["harness"]))
 fl_by = collections.Counter(f["harness"] for f in REG.get("flyingLeads", []))
 out += ["", "## OEM flying leads - splice material only, no OEM housing", "",
- "Each lead is one solder sleeve (`GENERIC FLYING LEAD` above). The EWD locator for every lead",
+ "Each lead is one `GENERIC FLYING LEAD` splice above; the rear lamp leads are soldered to the factory",
+ "bulb-socket pigtails under a 40 mm `ATUM-4/1-0` cut (DECISIONS R113). The EWD locator for every lead",
  "is in `interfaces.json` and in the build list's EWD column.", "",
  "| Harness | Flying leads |", "|---|---:|"]
 for h, n in sorted(fl_by.items()):
