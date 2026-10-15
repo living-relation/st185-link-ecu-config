@@ -6852,7 +6852,10 @@
    "wires": [
     "w_k_efi_86_cp"
    ],
-   "hole_d": 3.45
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "LOGIC",
@@ -6864,7 +6867,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -6878,7 +6884,10 @@
    "wires": [
     "w_fb_k_etb_30_cp"
    ],
-   "hole_d": 3.9
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -6890,7 +6899,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -6902,7 +6914,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -6914,7 +6929,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -6926,7 +6944,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -6938,7 +6959,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -6952,7 +6976,10 @@
    "wires": [
     "w_hl_cp"
    ],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -6964,7 +6991,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -6978,7 +7008,10 @@
    "wires": [
     "w_hr_cp"
    ],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -6990,7 +7023,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7004,7 +7040,10 @@
    "wires": [
     "w_hz_cp"
    ],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7016,7 +7055,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7030,7 +7072,10 @@
    "wires": [
     "w_pmu_dome_cp"
    ],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7042,7 +7087,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7056,7 +7104,10 @@
    "wires": [
     "w_rb2_wl_cp"
    ],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7068,7 +7119,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7082,7 +7136,10 @@
    "wires": [
     "w_at_12v_tie_cp"
    ],
-   "hole_d": 3.17
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "LOGIC",
@@ -7094,7 +7151,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7108,7 +7168,10 @@
    "wires": [
     "w_at_12v_shk_tie_cp"
    ],
-   "hole_d": 3.17
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "LOGIC",
@@ -7120,7 +7183,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7134,7 +7200,10 @@
    "wires": [
     "w_alt_s_cp"
    ],
-   "hole_d": 3.17
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "LOGIC",
@@ -7146,7 +7215,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7160,7 +7232,10 @@
    "wires": [
     "w_lam12_cp"
    ],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7172,7 +7247,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7184,7 +7262,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7196,7 +7277,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7208,7 +7292,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7220,7 +7307,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7234,7 +7324,10 @@
    "wires": [
     "w_fb_mrs_en_cp"
    ],
-   "hole_d": 3.17
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "LOGIC",
@@ -7248,7 +7341,10 @@
    "wires": [
     "w_k_eps_en_87_cp"
    ],
-   "hole_d": 3.45
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "LOGIC",
@@ -7262,7 +7358,10 @@
    "wires": [
     "w_start_cp"
    ],
-   "hole_d": 3.17
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "LOGIC",
@@ -7276,7 +7375,10 @@
    "wires": [
     "w_start_in_cp"
    ],
-   "hole_d": 3.17
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "LOGIC",
@@ -7290,7 +7392,10 @@
    "wires": [
     "w_cp_sw12_in"
    ],
-   "hole_d": 3.9
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7302,7 +7407,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7316,7 +7424,10 @@
    "wires": [
     "w_cop_pwr_c_ac"
    ],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7328,7 +7439,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7342,7 +7456,10 @@
    "wires": [
     "w_inj_pwr_c_ac"
    ],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7354,7 +7471,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7368,7 +7488,10 @@
    "wires": [
     "w_csb12_cp"
    ],
-   "hole_d": 3.17
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "LOGIC",
@@ -7380,7 +7503,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7394,7 +7520,10 @@
    "wires": [
     "w_dev_cp"
    ],
-   "hole_d": 3.9
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7406,7 +7535,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7420,7 +7552,10 @@
    "wires": [
     "w_fb_k_eps_en_30_cp"
    ],
-   "hole_d": 3.45
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "LOGIC",
@@ -7432,7 +7567,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7446,7 +7584,10 @@
    "wires": [
     "w_fb_k_acc_30_cp"
    ],
-   "hole_d": 3.9
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7458,7 +7599,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7472,7 +7616,10 @@
    "wires": [
     "w_at_ig_tie_cp"
    ],
-   "hole_d": 3.17
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "LOGIC",
@@ -7484,7 +7631,10 @@
    "wire_od": 2.41,
    "source": "CAD jumper",
    "wires": [],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "LOGIC",
@@ -7498,7 +7648,10 @@
    "wires": [
     "w_hl_30_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7512,7 +7665,10 @@
    "wires": [
     "w_hl_85_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7526,7 +7682,10 @@
    "wires": [
     "w_hl_86_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    4.225,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7540,7 +7699,10 @@
    "wires": [
     "w_pmu_hl_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7552,7 +7714,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    5.5,
+    8.29
+   ]
   },
   {
    "box": "LOGIC",
@@ -7564,7 +7729,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7576,7 +7744,10 @@
    "wire_od": 1.85,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7588,7 +7759,10 @@
    "wire_od": 1.85,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7600,7 +7774,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7612,7 +7789,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    5.5,
+    8.29
+   ]
   },
   {
    "box": "LOGIC",
@@ -7626,7 +7806,10 @@
    "wires": [
     "w_hr_30_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7640,7 +7823,10 @@
    "wires": [
     "w_hr_85_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7654,7 +7840,10 @@
    "wires": [
     "w_hr_86_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    4.225,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7668,7 +7857,10 @@
    "wires": [
     "w_pmu_hr_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7680,7 +7872,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    5.5,
+    8.29
+   ]
   },
   {
    "box": "LOGIC",
@@ -7694,7 +7889,10 @@
    "wires": [
     "w_horn_30_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7708,7 +7906,10 @@
    "wires": [
     "w_horn_85_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7722,7 +7923,10 @@
    "wires": [
     "w_horn_86_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    4.225,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7736,7 +7940,10 @@
    "wires": [
     "w_pmu_horn_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7748,7 +7955,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    5.5,
+    8.29
+   ]
   },
   {
    "box": "LOGIC",
@@ -7762,7 +7972,10 @@
    "wires": [
     "w_fb_k_etb_30_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7776,7 +7989,10 @@
    "wires": [
     "w81_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    3.882,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7790,7 +8006,10 @@
    "wires": [
     "w_k_etb_86_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    3.882,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7804,7 +8023,10 @@
    "wires": [
     "w82_ac"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7816,7 +8038,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    5.5,
+    8.29
+   ]
   },
   {
    "box": "LOGIC",
@@ -7830,7 +8055,10 @@
    "wires": [
     "w_fb_k_acc_30_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7844,7 +8072,10 @@
    "wires": [
     "w_acc_trig_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7858,7 +8089,10 @@
    "wires": [
     "w_acc86_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7872,7 +8106,10 @@
    "wires": [
     "w_acc_clutch_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7884,7 +8121,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    5.5,
+    8.29
+   ]
   },
   {
    "box": "LOGIC",
@@ -7898,7 +8138,10 @@
    "wires": [
     "w_fb_k_eps_en_30_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7912,7 +8155,10 @@
    "wires": [
     "w_eps_trig_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7926,7 +8172,10 @@
    "wires": [
     "w_k_eps_en_86_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7940,7 +8189,10 @@
    "wires": [
     "w_k_eps_en_87_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7952,7 +8204,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    5.5,
+    8.29
+   ]
   },
   {
    "box": "LOGIC",
@@ -7966,7 +8221,10 @@
    "wires": [
     "w_rev_30_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -7980,7 +8238,10 @@
    "wires": [
     "w_rev_85_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    3.882,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -7994,7 +8255,10 @@
    "wires": [
     "w_rev_86_cp"
    ],
-   "hole_d": 3.76
+   "slot": [
+    4.225,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -8008,7 +8272,10 @@
    "wires": [
     "w_rev_87_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -8020,7 +8287,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    5.5,
+    8.29
+   ]
   },
   {
    "box": "LOGIC",
@@ -8032,7 +8302,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -8044,7 +8317,10 @@
    "wire_od": 1.85,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -8056,7 +8332,10 @@
    "wire_od": 1.85,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -8068,7 +8347,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -8080,7 +8362,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    5.5,
+    8.29
+   ]
   },
   {
    "box": "LOGIC",
@@ -8092,7 +8377,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -8104,7 +8392,10 @@
    "wire_od": 1.85,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -8116,7 +8407,10 @@
    "wire_od": 1.85,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 3.76
+   "slot": [
+    4.072,
+    6.4
+   ]
   },
   {
    "box": "LOGIC",
@@ -8128,7 +8422,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "LOGIC",
@@ -8140,7 +8437,10 @@
    "wire_od": 2.41,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    5.5,
+    8.29
+   ]
   },
   {
    "box": "POWER",
@@ -8154,7 +8454,10 @@
    "wires": [
     "w_acp_1_cp"
    ],
-   "hole_d": 3.45
+   "slot": [
+    5.2,
+    5.2
+   ]
   },
   {
    "box": "POWER",
@@ -8168,7 +8471,10 @@
    "wires": [
     "w_htr_acps"
    ],
-   "hole_d": 4.01
+   "slot": [
+    6.4,
+    4.9
+   ]
   },
   {
    "box": "POWER",
@@ -8182,7 +8488,10 @@
    "wires": [
     "w_htr_30_cp"
    ],
-   "hole_d": 7.5
+   "slot": [
+    7.687,
+    8.42
+   ]
   },
   {
    "box": "POWER",
@@ -8196,7 +8505,10 @@
    "wires": [
     "w_htr_85_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8210,7 +8522,10 @@
    "wires": [
     "w_htr_86_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8224,7 +8539,10 @@
    "wires": [
     "w_htr_87_cp"
    ],
-   "hole_d": 7.5
+   "slot": [
+    7.687,
+    8.42
+   ]
   },
   {
    "box": "POWER",
@@ -8238,7 +8556,10 @@
    "wires": [
     "w_htr_87a_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    5.5,
+    8.29
+   ]
   },
   {
    "box": "POWER",
@@ -8252,7 +8573,10 @@
    "wires": [
     "w_fb_k_efi_30_cp"
    ],
-   "hole_d": 5.22
+   "slot": [
+    6.05,
+    11.9
+   ]
   },
   {
    "box": "POWER",
@@ -8266,7 +8590,10 @@
    "wires": [
     "w76_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8280,7 +8607,10 @@
    "wires": [
     "w_k_efi_86_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8294,7 +8624,10 @@
    "wires": [
     "w77_cp"
    ],
-   "hole_d": 5.43
+   "slot": [
+    6.05,
+    11.9
+   ]
   },
   {
    "box": "POWER",
@@ -8308,7 +8641,10 @@
    "wires": [
     "w_fb_k_str_30_cp"
    ],
-   "hole_d": 5.22
+   "slot": [
+    6.05,
+    11.9
+   ]
   },
   {
    "box": "POWER",
@@ -8322,7 +8658,10 @@
    "wires": [
     "w_str85_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8336,7 +8675,10 @@
    "wires": [
     "w_k_str_86_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8350,7 +8692,10 @@
    "wires": [
     "w_strl_ac"
    ],
-   "hole_d": 5.43
+   "slot": [
+    6.05,
+    11.9
+   ]
   },
   {
    "box": "POWER",
@@ -8364,7 +8709,10 @@
    "wires": [
     "w_fb_k_fan_30_cp"
    ],
-   "hole_d": 6.95
+   "slot": [
+    6.95,
+    11.9
+   ]
   },
   {
    "box": "POWER",
@@ -8378,7 +8726,10 @@
    "wires": [
     "w_fan85_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8392,7 +8743,10 @@
    "wires": [
     "w_k_fan_86_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8406,7 +8760,10 @@
    "wires": [
     "w_fan_pwr_ac"
    ],
-   "hole_d": 6.95
+   "slot": [
+    6.95,
+    11.9
+   ]
   },
   {
    "box": "POWER",
@@ -8420,7 +8777,10 @@
    "wires": [
     "w_fb_k_fan2_30_ac"
    ],
-   "hole_d": 6.95
+   "slot": [
+    6.95,
+    11.9
+   ]
   },
   {
    "box": "POWER",
@@ -8434,7 +8794,10 @@
    "wires": [
     "w_fan285_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8448,7 +8811,10 @@
    "wires": [
     "w_k_fan2_86_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8462,7 +8828,10 @@
    "wires": [
     "w_fan2_pwr_bc"
    ],
-   "hole_d": 6.95
+   "slot": [
+    6.95,
+    11.9
+   ]
   },
   {
    "box": "POWER",
@@ -8476,7 +8845,10 @@
    "wires": [
     "w_pwr_30_cp"
    ],
-   "hole_d": 5.43
+   "slot": [
+    6.05,
+    11.9
+   ]
   },
   {
    "box": "POWER",
@@ -8490,7 +8862,10 @@
    "wires": [
     "w_pwr_85_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8504,7 +8879,10 @@
    "wires": [
     "w_pwr_86_cp"
    ],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8518,7 +8896,10 @@
    "wires": [
     "w_rb2_cp"
    ],
-   "hole_d": 5.43
+   "slot": [
+    6.05,
+    11.9
+   ]
   },
   {
    "box": "POWER",
@@ -8530,7 +8911,10 @@
    "wire_od": 5.13,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 6.95
+   "slot": [
+    6.95,
+    11.9
+   ]
   },
   {
    "box": "POWER",
@@ -8542,7 +8926,10 @@
    "wire_od": 1.85,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8554,7 +8941,10 @@
    "wire_od": 1.85,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 4.41
+   "slot": [
+    8.29,
+    5.5
+   ]
   },
   {
    "box": "POWER",
@@ -8566,7 +8956,10 @@
    "wire_od": 5.13,
    "source": "spare (largest wire it takes)",
    "wires": [],
-   "hole_d": 6.95
+   "slot": [
+    6.95,
+    11.9
+   ]
   }
  ],
  "constants": {

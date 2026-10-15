@@ -291,18 +291,24 @@ REV7_STOCK_BARS = 2    # POS bar 226 + battery block bar 36.5 from bar 1; NEG ba
 # Terminal data from the TE product pages, read 2026-10-14 (te.com/en/product-<pn>.html, "Features"): compatible insulation diameter
 # range (mm), terminal material thickness t (mm), product length L (mm). None = not on the TE page: T_EST / L_EST are used and marked est.
 TERM = {
-    '880398-2': dict(ins=(2.3, 3.5), t=None, L=26.5, what='2.8 receptacle 1-2.5 mm2 (17-13 AWG), typical 33 A'),
-    '1241388-2': dict(ins=(1.4, 2.1), t=None, L=None, what='MCP 2.8K receptacle 0.5-1 mm2, typical 15 A'),
-    '42281-1': dict(ins=(2.79, 4.32), t=0.41, L=19.05, what='FASTON .250 receptacle 18-14 AWG'),
-    '2293255-1': dict(ins=(2.3, 3.3), t=0.33, L=None, what='FASTON .187 receptacle 20-15 AWG'),
-    '280755-4': dict(ins=(5.0, 7.0), t=0.51, L=29.0, what='FASTON .375 receptacle 10-7 AWG'),
-    '280756-4': dict(ins=(3.4, 5.1), t=0.51, L=29.0, what='FASTON .375 receptacle 12-10 AWG'),
-    '62998-2': dict(ins=(5.84, 7.11), t=0.43, L=19.69, what='FASTON .250 receptacle 10-8 AWG'),
+    '880398-2': dict(ins=(2.3, 3.5), t=None, L=26.5, head=(5.6, 4.1), what='2.8 receptacle 1-2.5 mm2 (17-13 AWG), typical 33 A'),
+    '1241388-2': dict(ins=(1.4, 2.1), t=None, L=None, head=(4.4, 4.4), what='MCP 2.8K receptacle 0.5-1 mm2, typical 15 A'),
+    '42281-1': dict(ins=(2.79, 4.32), t=0.41, L=19.05, head=(7.49, 4.70), what='FASTON .250 receptacle 18-14 AWG'),
+    '2293255-1': dict(ins=(2.3, 3.3), t=0.33, L=None, head=(5.6, 3.0), what='FASTON .187 receptacle 20-15 AWG'),
+    '280755-4': dict(ins=(5.0, 7.0), t=0.51, L=29.0, head=(11.10, 5.25), what='FASTON .375 receptacle 10-7 AWG'),
+    '280756-4': dict(ins=(3.4, 5.1), t=0.51, L=29.0, head=(11.10, 5.25), what='FASTON .375 receptacle 12-10 AWG'),
+    '62998-2': dict(ins=(5.84, 7.11), t=0.43, L=19.69, head=(7.62, 3.2), what='FASTON .250 receptacle 10-8 AWG'),
 }
+# R120 (Dan 2026-10-15, M6): head = the receptacle's widest section (W across the tab, H through it, lance included), max of tolerance,
+# from the TE customer drawings (te.com DocumentDelivery "Customer Drawing", read 2026-10-15): 880398 box 5.4+-0.2 x 3.9+-0.2 (the two
+# retention lances spread 8.21 and fold in as it goes through); 1241437 (MCP 2.8K group drawing that 1241388 refers to) 4.2+-0.2 x 4.4;
+# 42281 rev AN section A-A 7.49, side 4.70 max incl. lance; 2293255 rev A3 section Q-Q 5.6; 280755 / 280756 section A-A 11.10, side
+# 3.80 + 1.25+-0.2 lance; 62998 rev G section A-A 7.62. HEAD_EST: H not dimensioned on the drawing, scaled off it (est.).
+HEAD_EST = {'2293255-1', '62998-2'}
 T_EST, L_EST = 0.40, 20.0        # est: metal thickness / length where the TE page gives none
-BARREL_FRAC = 0.45               # est: the wire + insulation barrels are the lower 45 % of a receptacle's length (the contact box the rest)
-HOLE = dict(clr=CLR, min_wall=2.0, lead_in=2.0, top_gap=1.0)   # crimp hole: barrel + 0.4 per side; walls >= 2.0 (R73) or the two holes
-                                                                # join into one slot (Dan); >= 2 mm deep at the mouth; receptacle top 1 below the deck top
+HOLE = dict(clr=CLR, min_wall=2.0, lead_in=2.0, top_gap=1.0)   # terminal hole (R120): slot = terminal envelope + 0.4 per side; walls >= 2.0
+                                                                # (R73) or the two holes join into one slot (Dan); >= 2 mm deep at the mouth;
+                                                                # receptacle top 1 below the deck top
 # Default terminal of a cavity with no harness wire yet (a spare): the largest wire it takes, so a later wire still fits.
 TERM_DEFAULT = {'fuse in': ('880398-2', 14), 'fuse out': ('880398-2', 14), 'acps in': ('880398-2', 14), 'acps out': ('880398-2', 14),
                 'micro 30': ('42281-1', 14), 'micro 87': ('42281-1', 14), 'micro 87a': ('42281-1', 14), 'micro 85': ('2293255-1', 18),
@@ -312,7 +318,8 @@ FLOAT_BACKING = 0.5   # R101: a hanging feature with less of its top face on sol
 GUIDE = dict(t=2.0, h=3.5, reach=12.0)     # J2: short guide walls under the deck between neighbouring holes (centres closer than reach)
 
 
-# OPEN-ITEMS row 121: insulation build-up sleeve for a thin-wall wire below its terminal's insulation range (option, not yet picked).
+# R120 / OPEN-ITEMS row 121 (Dan M6 = A, 2026-10-15): insulation build-up sleeve under the insulation crimp of a thin-wall wire below its
+# terminal's insulation range.
 # TE Raychem RNF-100 2:1 polyolefin (TE / distributor data sheets, read 2026-10-15): expanded ID min, recovered ID max, recovered wall nom.
 SLEEVE = {'RNF-100-3/32': (2.4, 1.2, 0.50), 'RNF-100-1/8': (3.2, 1.6, 0.50), 'RNF-100-1/4': (6.4, 3.2, 0.65)}
 
@@ -339,15 +346,40 @@ def build_up(part, wire_od):
     return None, wire_od
 
 
+def crimp_od(part, wire_od):
+    """OD the insulation barrel closes on (R120 / M6 = A): the wire, or the wire with its RNF-100 build-up when it is below the range."""
+    seq, d = build_up(part, wire_od) if wire_od < TERM[part]['ins'][0] else (None, wire_od)
+    return d
+
+
 def barrel_od(part, wire_od):
-    """Crimped barrel envelope (mm): the insulation barrel closes on the wire insulation, never below the smallest insulation
+    """Crimped barrel envelope (mm): the insulation barrel closes on the (sleeved) wire insulation, never below the smallest insulation
     it is made for, plus the metal on both sides."""
     t_ = TERM[part]
-    return max(wire_od, t_['ins'][0]) + 2 * (t_['t'] if t_['t'] is not None else T_EST)
+    return max(crimp_od(part, wire_od), t_['ins'][0]) + 2 * (t_['t'] if t_['t'] is not None else T_EST)
 
 
-def hole_d(part, wire_od):
-    return barrel_od(part, wire_od) + 2 * HOLE['clr']
+# R120 (Dan 2026-10-15: "the holes ... should be made based on the widest part being inserted which would be the contact terminal itself.
+# all wire OD would always be smaller in diameter than the contact."): the crimped terminal goes up through its hole from under the deck,
+# so the hole is a slot sized from the terminal's widest section - max(head, crimped barrel) each way - + HOLE['clr'] per side, the long
+# side along the blade width. The wire (or sleeved wire) only has to be smaller, which it always is. BLADE_AXIS: the box axis the blade
+# width (head W) runs along, from the cavity pockets in build_fusion.py (fuse / ACPS blades in the fuse plane; micro 30 / 87 across the
+# relay, 85 / 86 / 87a along it; F7 cavities turned 90 deg).
+BLADE_AXIS = {'fuse in': 'x', 'fuse out': 'x', 'acps in': 'x', 'acps out': 'x', 'micro 30': 'x', 'micro 87': 'x', 'micro 85': 'y',
+              'micro 86': 'y', 'micro 87a': 'y', 'F7 30': 'y', 'F7 87': 'y', 'F7 87a': 'y', 'F7 85': 'x', 'F7 86': 'x'}
+
+
+def envelope(part, wire_od):
+    """(W, H) of the crimped terminal: the head, or the crimped barrel where that is bigger."""
+    b, (w, h) = barrel_od(part, wire_od), TERM[part]['head']
+    return max(w, b), max(h, b)
+
+
+def slot(part, wire_od, kind):
+    """(size x, size y) of the terminal hole (R120): the envelope + clr per side, the long side along BLADE_AXIS[kind]."""
+    w, h = envelope(part, wire_od)
+    w, h = w + 2 * HOLE['clr'], h + 2 * HOLE['clr']
+    return (w, h) if BLADE_AXIS[kind] == 'x' else (h, w)
 
 
 # J4 = B: LOGIC front channel. Fuse-side wires come forward along x 7.4 (between the belly pan wall and the Bus 1 output risers), turn

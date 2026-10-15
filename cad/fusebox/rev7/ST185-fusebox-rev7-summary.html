@@ -22,7 +22,7 @@ td.d{font-weight:700}</style></head><body><main>
 <div>POWER box + bus bar<b>180 x 243 x 81.8</b><span class="mut">mm L x D x H (rev 6 POWER: 180 x 181 x 81.8, plus the B rev3 bus bar 345 x 120 x 55)</span></div>
 <div>1/0 cables at the glove box<b>6 (rev 6: 7)</b><span class="mut">one fewer: the bus bar to POWER box link is gone</span></div>
 <div>Boxes in the glove box<b>2 (rev 6: 3)</b><span class="mut">POWER (with the bus) + LOGIC</span></div>
-<div>POWER parts<b>182 pcs, $317</b><span class="mut">rev 6 POWER alone: 155 pcs, $255 (B rev3 bus bar had no parts list)</span></div>
+<div>POWER parts<b>185 pcs, $325</b><span class="mut">rev 6 POWER alone: 158 pcs, $263 (B rev3 bus bar had no parts list)</span></div>
 </div>
 <h2>The whole power distribution package, rev 7 next to rev 6</h2>
 <p class="mut">Same camera, same scale idea, every member together (R84): POWER (+ bus), LOGIC, battery relay block, 2 x VRC, CSB3. Rev 6 has the separate B rev3 bus bar (the long box at the back).</p><div class="grid">
@@ -114,7 +114,7 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>J3 two wires in one terminal</td><td>A, only if rated for the combined current</td><td>Done in <code>ST185-CabinPower</code>: HL and HR fuse outputs carry ONE 14 AWG wire each (<code>w_hl_cp</code>, <code>w_hr_cp</code>) to a splice (<code>sp_hl</code>, <code>sp_hr</code>) in the LOGIC front channel that feeds relay 30 and 86; the horn relay 86 now comes from the existing <code>sp_hz</code> splice (it was a jumper off its own terminal 30). Rating, combined current through the single wire and terminal: the ATM-15 fuse caps it at 15 A; 14 AWG M22759/16 is about 22 A as a single wire in free air at 80 C (<a href="https://www.hpacademy.com/assets/Course-Content/Wiring-Fundamentals/1dbddd6411/WireGauge-CurrentRating_CheatSheet.pdf">HP Academy M22759/16 sheet</a>), x 0.7 in a bundle (R89) = 15.4 A, so it passes; TE 880398-2: typical 33 A, 1-2.5 mm2 (TE page). No terminal holds two wires now.</td></tr>
 <tr><td>J4 wires that left the box and came back in</td><td>B</td><td>A printed <b>channel floor across the front</b> (z 16.95-18.95, over the Bus 1 feed lug). To make room in front of the spine the Bus 1 strip starts at y 11.5 (was 8), Bus 2 at y 23.5 (was 21) and the Bus 1 feed lug sits at y 18 / z 13 (was 15 / 22). 7 wires now cross there, each on its own level (ETB z 20.2, HR30 z 23.1, HR z 24.2, HR86 z 25.4, HL30 z 27.8, HL z 28.9, HL86 z 29.9), the two splices stacked in the channel past the spine; nothing leaves the box and comes back.</td></tr>
 </table></div>
-<h3>Terminal holes: crimp barrel sizes (TE product pages, read 2026-10-14)</h3>
+<h3>Terminal holes as built: crimp barrel sizes (TE product pages, read 2026-10-14) - superseded by R120 below</h3>
 <p class="mut">Hole = the crimped barrel + 0.4 mm a side. Barrel = the larger of the wire insulation and the smallest insulation the terminal is made for (an uninsulated terminal: the wire insulation still has to go in), plus the metal both sides. Round bore from under the deck up through the barrel zone (the lower 45 % of the terminal, est), at least 2 mm deep. A spare cavity gets the hole of the largest wire it takes. Metal thickness or length not on the TE page: 0.40 mm / 20 mm, marked est.</p>
 <div class="wrap"><table><tr><th>Terminal</th><th>Insulation range</th><th>Metal</th><th>Length</th><th>Holes (box: count x diameter)</th></tr>
 <tr><td>880398-2<br><span class="mut">2.8 receptacle 1-2.5 mm2 (17-13 AWG), typical 33 A</span></td><td>2.30-3.50 mm</td><td>0.40 est</td><td>26.5</td><td>LOGIC 4 x 3.90; LOGIC 35 x 4.01; POWER 1 x 4.01</td></tr>
@@ -132,7 +132,29 @@ td.d{font-weight:700}</style></head><body><main>
 </figure>
 </div>
 <p>Joined slots (wall under 2.0 mm): BUS1-11 + BUS1-11 IN; BUS1-12 + BUS1-12 IN; BUS1-2 + BUS1-2 IN; BUS1-3 + BUS1-3 IN; BUS1-4 + BUS1-4 IN; BUS1-5 + BUS1-5 IN; BUS1-6 + BUS1-6 IN; BUS2-1 + BUS2-1 IN; BUS2-10 + BUS2-10 IN; BUS2-11 + BUS2-11 IN; BUS2-3 + BUS2-3 IN; BUS2-4 + BUS2-4 IN.</p>
-<div class="note"><b>Found while sizing the holes (OPEN-ITEMS row 121):</b> 49 wire ends use wire thinner than their terminal's insulation range (M22759/16 is thin-wall: 14 AWG is 2.41 mm, 18 AWG 1.85 mm), e.g. 18 AWG in a 42281-1 (made for 2.79-4.32 mm insulation). The insulation barrel cannot grip it, so the wire is held by the conductor crimp alone. The holes are sized for the barrel as it closes, so they are right either way. Not changed here.</div>
+<div class="note"><b>Thin-wall wire, OPEN-ITEMS row 121 - your M6 = A (DECISIONS R120):</b> 49 wire ends use wire thinner than their terminal&#39;s insulation range (M22759/16 is thin-wall: 14 AWG is 2.41 mm, 18 AWG 1.85 mm), e.g. 18 AWG in a 42281-1 (made for 2.79-4.32 mm insulation). Each gets a TE Raychem RNF-100 build-up sleeve under the insulation crimp (table below; on the POWER / LOGIC parts lists).</div>
+<h3 id="r120">Terminal holes sized from the terminal (DECISIONS R120, Dan 2026-10-15)</h3>
+<p>The crimped terminal goes up through its hole from under the deck, so the hole is sized from the widest part pushed through it - the terminal itself (its head, or the crimped barrel where that is bigger) - + 0.4 mm a side, a slot with its long side along the blade, up to the receptacle seat. Never from the wire: the wire, sleeved or not, is always smaller. Head sizes from the TE customer drawings (max of tolerance, lance included); 2293255-1 and 62998-2 head height is not dimensioned there, scaled off the drawing (est.). <b>Every hole in the current STEP is the old round crimp-barrel hole: all 121 are recut to these slots at the next rev 7 Fusion rebuild</b> (<code>check_terminal_holes.py --list</code>).</p>
+<div class="wrap"><table><tr><th>Terminal</th><th>Head W x H (TE drawing)</th><th>Insulation range</th><th>Slots (box: count x size x by y)</th></tr>
+<tr><td>880398-2<br><span class="mut">2.8 receptacle 1-2.5 mm2 (17-13 AWG), typical 33 A</span></td><td>5.60 x 4.10</td><td>2.30-3.50 mm</td><td>LOGIC 39 x 6.40 x 4.90; POWER 1 x 6.40 x 4.90</td></tr>
+<tr><td>1241388-2<br><span class="mut">MCP 2.8K receptacle 0.5-1 mm2, typical 15 A</span></td><td>4.40 x 4.40</td><td>1.40-2.10 mm</td><td>LOGIC 11 x 5.20 x 5.20; POWER 1 x 5.20 x 5.20</td></tr>
+<tr><td>42281-1<br><span class="mut">FASTON .250 receptacle 18-14 AWG</span></td><td>7.49 x 4.70</td><td>2.79-4.32 mm</td><td>LOGIC 20 x 8.29 x 5.50; POWER 1 x 5.50 x 8.29; POWER 14 x 8.29 x 5.50</td></tr>
+<tr><td>2293255-1<br><span class="mut">FASTON .187 receptacle 20-15 AWG</span></td><td>5.60 x 3.00 (H est.)</td><td>2.30-3.30 mm</td><td>LOGIC 3 x 3.88 x 6.40; LOGIC 13 x 4.07 x 6.40; LOGIC 4 x 4.22 x 6.40</td></tr>
+<tr><td>280755-4<br><span class="mut">FASTON .375 receptacle 10-7 AWG</span></td><td>11.10 x 5.25</td><td>5.00-7.00 mm</td><td>POWER 6 x 6.95 x 11.90</td></tr>
+<tr><td>280756-4<br><span class="mut">FASTON .375 receptacle 12-10 AWG</span></td><td>11.10 x 5.25</td><td>3.40-5.10 mm</td><td>POWER 6 x 6.05 x 11.90</td></tr>
+<tr><td>62998-2<br><span class="mut">FASTON .250 receptacle 10-8 AWG</span></td><td>7.62 x 3.20 (H est.)</td><td>5.84-7.11 mm</td><td>POWER 2 x 7.69 x 8.42</td></tr>
+</table></div>
+<div class="wrap"><table><tr><th>Terminal</th><th>Wire OD</th><th>RNF-100 build-up (under the insulation crimp)</th><th>Built-up OD (est.)</th><th>Ends</th></tr>
+<tr><td>2293255-1</td><td>1.57</td><td>RNF-100-3/32</td><td>2.42</td><td>3</td></tr>
+<tr><td>2293255-1</td><td>1.85</td><td>RNF-100-3/32</td><td>2.61</td><td>7</td></tr>
+<tr><td>2293255-1</td><td>2.06</td><td>RNF-100-3/32</td><td>2.76</td><td>4</td></tr>
+<tr><td>280756-4</td><td>2.97</td><td>RNF-100-1/8</td><td>3.61</td><td>2</td></tr>
+<tr><td>42281-1</td><td>1.85</td><td>RNF-100-3/32 + RNF-100-1/8</td><td>3.32</td><td>15</td></tr>
+<tr><td>42281-1</td><td>2.06</td><td>RNF-100-1/8</td><td>2.91</td><td>6</td></tr>
+<tr><td>42281-1</td><td>2.41</td><td>RNF-100-1/8</td><td>3.16</td><td>6</td></tr>
+<tr><td>62998-2</td><td>5.13</td><td>RNF-100-1/4</td><td>6.03</td><td>2</td></tr>
+<tr><td>880398-2</td><td>2.06</td><td>RNF-100-3/32</td><td>2.76</td><td>4</td></tr>
+</table></div>
 <p class="mut">The 87a cavities have no harness wire today, so they keep their plain blade slot: an 87a terminal next to 85 / 86 would leave only 0.4 mm of wall (the micro relay pin pattern), so a future 87a wire needs its own look.</p>
 <h2 id="r95">Ribs and saddles supported (DECISIONS R101)</h2>
 <p>Your markup 2026-10-15: "the little ribs and the wire radius runners are just floating. fill in the gaps between relay positions under the ribs and add material under the radius runners". They were joined to the base, but only by a sliver: a guide wall crossing the gap between two relay positions had cavity tower over its ends only, and each POWER bend saddle met the deck only where the relay tower was. Now:</p><ul>
@@ -300,6 +322,9 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>Terminals</td><td>Heater relay 87a receptacle 6.3 x 0.8, 18-14 AWG</td><td><a href="https://www.te.com/en/product-42281-1.html">42281-1</a></td><td>1</td><td>2</td><td>0</td><td>0.00</td></tr>
 <tr><td>Terminals</td><td>Mini fuse receptacle 2.8 x 0.8, 17-13 AWG (ACPS input, 14 AWG)</td><td><a href="https://www.te.com/en/product-880398-2.html">880398-2</a></td><td>1</td><td>0</td><td>2</td><td>0.30</td></tr>
 <tr><td>Terminals</td><td>Mini fuse receptacle 2.8, 20-18 AWG (ACPS output, 18 AWG)</td><td><a href="https://www.te.com/en/product-1241388-2.html">1241388-2</a></td><td>1</td><td>2</td><td>0</td><td>0.00</td></tr>
+<tr><td>Terminals</td><td>Insulation build-up sleeve 1/4, 2 ends x 15 mm</td><td><a href="https://www.newark.com/search?st=RNF-100-1%2F4-0-STK">RNF-100-1/4-0-STK</a></td><td>1</td><td>0</td><td>1</td><td>2.53</td></tr>
+<tr><td>Terminals</td><td>Insulation build-up sleeve 1/8, 15 ends x 15 mm</td><td><a href="https://www.newark.com/raychem-te-connectivity/rnf-100-1-8-0-stk/heatshrink-3-2mm-black-1-2m/dp/01M8658">RNF-100-1/8-0-STK</a></td><td>1</td><td>0</td><td>1</td><td>2.55</td></tr>
+<tr><td>Terminals</td><td>Insulation build-up sleeve 3/32, 12 ends x 15 mm</td><td><a href="https://www.newark.com/raychem-te-connectivity/rnf-100-3-32-0-stk/heatshrink-2-4mm-black-1-2m/dp/01M8679">RNF-100-3/32-0-STK</a></td><td>1</td><td>0</td><td>1</td><td>2.83</td></tr>
 <tr><td>Lugs</td><td>Tubular lug 10 mm2, M5 hole (8-10 AWG)</td><td><a href="https://www.buerklin.com/en/p/klauke/cable-lugs/2r5/07F2065/">Klauke 2R5</a></td><td>9</td><td>0</td><td>11</td><td>7.70</td></tr>
 <tr><td>Lugs</td><td>Tubular lug 16 mm2, M5 hole (6 AWG)</td><td><a href="https://buerklin.com/en/p/klauke/cable-lugs/3r5ms/07F9752">Klauke 3R5MS</a></td><td>1</td><td>0</td><td>2</td><td>2.20</td></tr>
 <tr><td>Lugs</td><td>Ring lug 12-10 AWG, M5 / #10 hole</td><td><a href="https://www.te.com/en/product-36161.html">36161</a></td><td>2</td><td>0</td><td>4</td><td>1.00</td></tr>
@@ -313,7 +338,7 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>Fasteners</td><td>Hex nut M8 (bus studs)</td><td><a href="https://hkcn.rs-online.com/web/p/products/530769">RS 530-769</a></td><td>8</td><td>0</td><td>9</td><td>0.72</td></tr>
 <tr><td>Fasteners</td><td>Plain washer M8 (bus studs)</td><td><a href="https://th.rs-online.com/web/p/washers/7976068">RS 797-6068</a></td><td>8</td><td>0</td><td>9</td><td>0.45</td></tr>
 <tr><td>Mounting</td><td>Compression limiter, feet (4)</td><td><a href="https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters">EFC 10S00056</a></td><td>4</td><td>0</td><td>5</td><td>1.50</td></tr>
-<tr><td></td><td><b>Total (est.)</b></td><td></td><td><b>182</b></td><td></td><td></td><td><b>$316.60</b></td></tr></table></div>
+<tr><td></td><td><b>Total (est.)</b></td><td></td><td><b>185</b></td><td></td><td></td><td><b>$324.51</b></td></tr></table></div>
 <h2>Printed parts</h2><div class="wrap"><table><tr><th>Part</th><th>Rev 7 size (mm)</th><th>Rev 7 volume</th><th>Rev 6 volume</th></tr>
 <tr><td>Power_Base_PA12_printed</td><td>212 x 307 x 72</td><td>455.9 cm3</td><td>361.6 cm3</td></tr>
 <tr><td>Power_Pan_PA12_printed</td><td>174 x 238 x 34</td><td>157.2 cm3</td><td>120.4 cm3</td></tr>

@@ -87,6 +87,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `Klauke 3R5MS` | Klauke | TINNED COPPER TUBULAR RING LUG WITH INSPECTION HOLE, 16 MM2, M5, HOLE 5.5; B 13, L 26 | 2 | 0 | **2** |
 | `RL00801-50BK` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK | 2 | 0 | **2** |
 | `RL00801-50RE` | Amphenol | CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED | 2 | 0 | **2** |
+| `RNF-100-1/8-0-STK` | TE Connectivity (Raychem) | RNF-100 HEAT SHRINK 2:1, BLACK, 4 FT STICK: ONE PIECE UNDER THE INSULATION CRIMP OF EACH THIN-WALL END | 2 | 0 | **2** |
+| `RNF-100-3/32-0-STK` | TE Connectivity (Raychem) | RNF-100 HEAT SHRINK 2:1, BLACK, 4 FT STICK: ONE PIECE UNDER THE INSULATION CRIMP OF EACH THIN-WALL END | 2 | 0 | **2** |
 | `RNF-100-3/8-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 9.5 MM EXPANDED ID, 4.8 MM RECOVERED ID, CUT 25 MM | 2 | 0 | **2** |
 | `RS 190-276` | RS PRO | RS PRO STAINLESS HEX BOLT M8 X 25, DIN 933 (GRADE NOT STATED ON THE LISTING) | 2 | 0 | **2** |
 | `RS 530-769` | RS PRO | RS PRO A2/304 STAINLESS HEX NUT M8, DIN 934 | 2 | 0 | **2** |
@@ -133,6 +135,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `Power_Base_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | DECK ON FOUR ANGULAR LEGS, OPEN UNDERNEATH; PA12 | 1 | 0 | **1** |
 | `Power_Cover_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON COVER, ETCHED LABELS, VENT SLOTS; PA12 | 1 | 0 | **1** |
 | `Power_Pan_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON BELLY PAN, 4 INTEGRAL TONGUES (NO SEPARATE CLIPS); PA12 | 1 | 0 | **1** |
+| `RNF-100-1/4-0-STK` | TE Connectivity (Raychem) | RNF-100 HEAT SHRINK 2:1, BLACK, 4 FT STICK: ONE PIECE UNDER THE INSULATION CRIMP OF EACH THIN-WALL END | 1 | 0 | **1** |
 | `RNF-100-3/16-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
 | `RNF-100-3/16-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
 | `RNF-100-3/16-9-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, WHITE, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
@@ -329,6 +332,9 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `AMI-50` | POWER | 1 | this section's CSVs |
 | `AMI-60` | POWER | 2 | this section's CSVs |
 | `ATM-10` | LOGIC, POWER | 3 | this section's CSVs |
+| `RNF-100-1/4-0-STK` | POWER | 1 | this section's CSVs |
+| `RNF-100-1/8-0-STK` | LOGIC, POWER | 2 | this section's CSVs |
+| `RNF-100-3/32-0-STK` | LOGIC, POWER | 2 | this section's CSVs |
 | `Klauke 2R5` | BATTRELAY, LOGIC, POWER | 16 | this section's CSVs |
 | `Klauke 3R5MS` | POWER | 2 | this section's CSVs |
 | `Klauke 6R8` | POWER | 1 | this section's CSVs |
