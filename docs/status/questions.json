@@ -58,26 +58,6 @@
       ]
     },
     {
-      "id": "K8",
-      "topic": "Right cluster rounding bug: fix the frozen firmware? (row 104)",
-      "text": "On the right cluster, lambda 0.9995-0.9999 shows '0.000' (right at the normal cruise value), and boost or timing with .95-.99 shows one number low (12.97 psi shows '12.0'). The fix is a small code change in the right-side cluster, which is frozen, so it needs your OK. The CAN audit found it only on the right cluster.",
-      "options": [
-        {
-          "value": "A",
-          "label": "Yes: an agent fixes it in the right-side cluster repo; you reflash that cluster at the bench",
-          "recommended": true
-        },
-        {
-          "value": "B",
-          "label": "No: keep the cluster frozen and live with it"
-        },
-        {
-          "value": "C",
-          "label": "Later, after the car runs"
-        }
-      ]
-    },
-    {
       "id": "K9",
       "topic": "RealDash coolant pressure: when does it turn red? (row 32)",
       "text": "Two of our docs disagree: the layout doc says red above 200 kPa, the build notes say 250 kPa. (The layout doc calls 50-150 kPa normal.)",
