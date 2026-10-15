@@ -129,5 +129,54 @@
         "main_last": true
       }
     }
+  },
+  "A-engine": {
+    "route": "routes/ROUTE-3-A-ENGINE.html",
+    "root": "bh_a_eng",
+    "toward": {
+      "EngineRoom-C": "up",
+      "CabinPower": "up",
+      "B-engine": "down"
+    },
+    "mode": "trunk",
+    "fan_max": 10,
+    "dir": {
+      "bp_750": "left",
+      "bp_810": "up"
+    }
+  },
+  "B-engine": {
+    "route": "routes/ROUTE-4-B-ENGINE.html",
+    "root": "bh_b_eng",
+    "toward": {
+      "A-engine": "up",
+      "CAN": "down"
+    },
+    "mode": "trunk"
+  },
+  "CAN": {
+    "route": "routes/ROUTE-8-CAN.html",
+    "root": "lambda",
+    "toward": {
+      "CSB3": "down",
+      "B-engine": "up",
+      "B-cabin": "down",
+      "CabinPower": "up"
+    },
+    "mode": "trunk"
+  },
+  "EngineRoom-C": {
+    "route": "routes/ROUTE-2-HARNESS-C.html",
+    "root": "pdb",
+    "toward": {
+      "HeavyDC": "down",
+      "A-cabin": "down",
+      "CabinPower": "up",
+      "A-engine": "down"
+    },
+    "mode": "trunk",
+    "dir": {
+      "bp_fl_oem_ie1": "down"
+    }
   }
 }

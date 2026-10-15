@@ -16,7 +16,7 @@ and branch ends as the route's top view) is judged against the route figure by e
 right is gated by audit_drawing_rules.py L1. The routes carry no bundle lengths, so lengths are not
 compared here - a bundle keeps its own `length`.
 
-SOFT in check_all.py until every drawing reports zero, then HARD.
+HARD in check_all.py since 2026-10-15 (every drawing at zero).
 
     python docs/harness/audit_layout.py [ST185-A-cabin ...]
 """

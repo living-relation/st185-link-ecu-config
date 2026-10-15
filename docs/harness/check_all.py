@@ -48,12 +48,12 @@ What it runs, in order - every one in HARD is a hard gate:
   check_route_drawings.py  the approved route drawings in routes/ (red route lines unfilled,
                            no broken attributes, a top view after every figure, no
                            overlapping markers in one figure)
-
-SOFT (reported, not failing):
   audit_layout.py          layout view (DECISIONS R107): no node or label on another, no bundle
                            through a node or label, no bundle on top of another, no lone long
-                           diagonal. Re-place with layout_tree.py; snapshot render_layout.py.
-                           HARD the day all 15 drawings report zero.
+                           diagonal. Re-place with layout_tree.py (one straight tree) or
+                           layout_trunk.py (keeps a bent trunk); snapshot render_layout.py.
+
+SOFT (reported, not failing): none at present.
 
 The generators run in --check mode here: they rebuild in memory and fail
 if the committed file is stale, but never write. So check_all.py leaves the tree
@@ -77,12 +77,14 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["audit_wire_spacing.py"], ["audit_ident_bands.py"],
         ["audit_dan_rules.py"], ["buylist.py", "--check"],
-        ["buildlist.py", "--check"], ["check_route_drawings.py"],
+        ["buildlist.py", "--check"], ["check_route_drawings.py"], ["audit_layout.py"],
         ["../../cad/fusebox/src/parts_lists.py", "--check"],   # DECISIONS R82: every fuse box part is real and buyable
         ["../../cad/fusebox/src/check_clearance.py"],          # Dan's 3 mm rule: no two live fuse box parts closer than 3 mm
         ["../../cad/fusebox/src/check_terminal_holes.py"],     # Dan's J2 = B (R94): crimp-sized terminal holes, walls >= 2 mm
         ["../../cad/fusebox/src/check_printed_solid.py"]]      # R101: every printed part one solid, no floating rib / saddle
-SOFT = [["audit_layout.py"]]   # 2026-10-15, R107: G1 drawings at zero, others not yet
+SOFT = []
+# 2026-10-15: audit_layout went HARD (R107) - all 15 drawings report zero after the G2
+# drawings (A-engine, B-engine, CAN, EngineRoom-C) were re-placed with layout_trunk.py.
 # 2026-10-15: audit_export_sheet.py (R88 PDF export package) retired - Dan dropped the PDF
 # export step (K5); the .harness files in the repo are the deliverable.
 # 2026-10-14: check_route_drawings went HARD - its last finding (Route 1 Fig. 4, an EWD

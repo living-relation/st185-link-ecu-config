@@ -118,7 +118,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 2010,
+        "x": 1170,
         "y": 330
       }
     },
@@ -146,7 +146,7 @@
         "y": 270
       },
       "layoutPosition": {
-        "x": 2010,
+        "x": 1170,
         "y": -330
       }
     },
@@ -198,8 +198,8 @@
         "y": 510
       },
       "layoutPosition": {
-        "x": 1140,
-        "y": 0
+        "x": 660,
+        "y": -120
       }
     },
     {
@@ -250,8 +250,8 @@
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
-        "x": 720,
-        "y": 0
+        "x": 300,
+        "y": -120
       },
       "schematicPosition": {
         "x": 480,
@@ -896,6 +896,22 @@
         "unit": "mm",
         "value": 2230
       },
+      "layoutPoints": [
+        {
+          "id": "lp_r_o1",
+          "layoutPosition": {
+            "x": 300,
+            "y": -180
+          }
+        },
+        {
+          "id": "lp_r_o2",
+          "layoutPosition": {
+            "x": 660,
+            "y": -180
+          }
+        }
+      ],
       "separateLabels": true,
       "endLabel": "IX WS REAR",
       "partIds": [
@@ -929,14 +945,14 @@
         {
           "id": "lp_r_r1",
           "layoutPosition": {
-            "x": 1740,
+            "x": 1020,
             "y": -330
           }
         },
         {
           "id": "lp_r_r2",
           "layoutPosition": {
-            "x": 1740,
+            "x": 1020,
             "y": 270
           }
         },
@@ -951,6 +967,13 @@
           "id": "lp_r_r4",
           "layoutPosition": {
             "x": 360,
+            "y": 90
+          }
+        },
+        {
+          "id": "lp_r_r5",
+          "layoutPosition": {
+            "x": 330,
             "y": 60
           }
         }
@@ -1011,8 +1034,8 @@
       "color": "Orange",
       "width": 210,
       "layoutPosition": {
-        "x": 480,
-        "y": 30
+        "x": 330,
+        "y": -60
       }
     }
   ],

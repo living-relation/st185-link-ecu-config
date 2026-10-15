@@ -161,7 +161,7 @@ $env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py
 ```bash
 python docs/harness/check_all.py          # harness gates; --check mode, never writes
 python docs/harness/audit_wire_spacing.py # wire overlap / spacing: schematic W1 (R86), layout W2 (R107)
-python docs/harness/audit_layout.py      # layout view: overlaps / hidden bundles (R107); re-place: layout_tree.py
+python docs/harness/audit_layout.py      # layout view: overlaps / hidden bundles (R107); re-place: layout_tree.py / layout_trunk.py
 python bench/check_parity.py              # CAN contract parity
 python tune/scripts/validate_tune.py      # tune seed tables (needs PyYAML)
 python .github/scripts/check_doc_duplicates.py   # copied .md passages (warn-only)
