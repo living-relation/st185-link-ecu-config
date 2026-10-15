@@ -244,9 +244,9 @@ STOCK = {
         ('alt', 'MECCANIXITY 2 pcs 12" x 1" x 1/8" tinned', 'Amazon B0CGJC2S1L', '25.4 x 3.2 x 305 (2)', '$27.19',
          'https://www.amazon.com/dp/B0CGJC2S1L', 'Pads would be 25.4 long, not 17.5 - the box grows about 8 mm; only if the 15 mm stock is gone.'),
     ]),
-    'strip': ('Logic strips on edge (rev 6: Bus 1 115 mm, Bus 2 119 mm, 25.4 x 3.2)', [
+    'strip': ('Logic strips on edge (rev 7 J answers: Bus 1 111.5 mm, Bus 2 116.5 mm, 25.4 x 3.2)', [
         ('PICK', 'MECCANIXITY 2 pcs 12" x 1" x 1/8" tinned copper flat bar', 'Amazon B0CGJC2S1L', '25.4 x 3.2 x 305 (2)', '$27.19',
-         'https://www.amazon.com/dp/B0CGJC2S1L', 'Both strips from one bar (234 mm with kerf); the second bar is spare. Drill + tap M4 at each stud, M5 at the feed.'),
+         'https://www.amazon.com/dp/B0CGJC2S1L', 'Both strips from one bar (230 mm with kerf); the second bar is spare. Drill + tap M4 at each stud, M5 at the feed.'),
         ('alt', 'Tinned copper flat bus bar 3 x 25 x 200 mm, C110 (Bopaodao listing)', 'Amazon B09Z7KJV65', '25 x 3 x 200', '$27.79 each (buy 2)',
          'https://www.amazon.com/dp/B09Z7KJV65', 'One strip per piece; 3.0 thick (0.2 thinner - the lugs sit 0.2 further from their jumpers, fine).'),
     ]),

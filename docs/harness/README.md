@@ -6,7 +6,7 @@ opening any loom.
 **The wiring source of truth is `sot/channels.csv`** (every ECU pin and channel).
 The looms below are the physical build and must agree with it; `check_all.py`
 enforces that. **Every rule for drawing them is in `redesign/DECISIONS.md` "Binding rules
-from Daniel" (R1-R92)** - this file is the file map and the workflow, and restates no rule.
+from Daniel" (R1-R94)** - this file is the file map and the workflow, and restates no rule.
 
 ## The short answer
 

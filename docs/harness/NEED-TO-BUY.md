@@ -25,7 +25,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 18 | 0 | **18** |
 | `Klauke 2R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 10 MM2, M5, HOLE 5.3; B 12, L 22 | 16 | 0 | **16** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
-| `1-1393310-8` | TE Connectivity | CRIMP TERMINAL QC .250 (26A1348A) FOR 0.5-0.8 MM2, BRASS TIN | 14 | 0 | **14** |
 | `2293255-1` | TE Connectivity | TERMINAL, FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2) | 14 | 0 | **14** |
 | `Essentra 301540040050` | Essentra Components | HEX STANDOFF, FEMALE-FEMALE M5, 8.0 AF, 40.0 MM, NICKEL-PLATED BRASS; SOLD IN 50S | 14 | 0 | **14** |
 | `880398-2` | TE Connectivity | TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG) | 13 | 0 | **13** |
@@ -305,6 +304,7 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `1-1393304-0` | POWER | 2 | the harness drawings |
 | `280756-4` | POWER | 8 | the harness drawings |
 | `280755-4` | POWER | 6 | the harness drawings |
+| `42281-1` | POWER | 14 | the harness drawings |
 | `62998-2` | POWER | 4 | the harness drawings |
 | `42281-1` | POWER | 2 | the harness drawings |
 | `880398-2` | POWER | 2 | the harness drawings |
@@ -329,7 +329,6 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `AMI-50` | POWER | 1 | this section's CSVs |
 | `AMI-60` | POWER | 2 | this section's CSVs |
 | `ATM-10` | LOGIC, POWER | 3 | this section's CSVs |
-| `1-1393310-8` | POWER | 14 | this section's CSVs |
 | `Klauke 2R5` | BATTRELAY, LOGIC, POWER | 16 | this section's CSVs |
 | `Klauke 3R5MS` | POWER | 2 | this section's CSVs |
 | `Klauke 6R8` | POWER | 1 | this section's CSVs |
