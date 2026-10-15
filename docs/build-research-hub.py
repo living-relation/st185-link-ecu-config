@@ -20,6 +20,8 @@ from datetime import datetime, timezone
 from hashlib import md5
 from pathlib import Path
 import subprocess
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from needs_dan import open_questions  # noqa: E402
 
 DOCS = Path(__file__).resolve().parent
 REPO = DOCS.parent
@@ -782,7 +784,6 @@ def _topic_rows(docs: list[Doc]) -> list[dict]:
 
 
 # --- "Project status" page section for Dan (built from repo files at build time) ---
-QUESTIONS = DOCS / "status" / "questions.json"
 CAD_INDEX = REPO / "cad" / "README.md"
 ROUTES = DOCS / "harness" / "routes"
 RECENT_PRS = 15
@@ -794,24 +795,8 @@ def _plain(s: str) -> str:
 
 
 def load_questions() -> dict:
-    """Open questions for Dan: docs/status/questions.json (kept current by Dispatch)."""
-    try:
-        data = json.loads(QUESTIONS.read_text(encoding="utf-8"))
-    except (OSError, ValueError) as e:
-        print(f"WARNING: {QUESTIONS.name} unreadable: {e}", file=sys.stderr)
-        return {"updated": "", "questions": []}
-    qs = []
-    for q in data.get("questions", []):
-        if not isinstance(q, dict) or not q.get("id") or not q.get("text"):
-            print(f"WARNING: skipped malformed question {q!r}", file=sys.stderr)
-            continue
-        qs.append({
-            "id": str(q["id"]), "topic": str(q.get("topic", "")), "text": str(q["text"]),
-            "options": [{"value": str(o.get("value", "")), "label": str(o.get("label", "")),
-                         "recommended": bool(o.get("recommended"))}
-                        for o in q.get("options", []) if isinstance(o, dict)],
-        })
-    return {"updated": str(data.get("updated", "")), "questions": qs}
+    """Open questions for Dan: the "Needs Dan" table in docs/OPEN-ITEMS.md (docs/needs_dan.py)."""
+    return {"updated": "", "questions": open_questions(TRACKER)}
 
 
 GROK_JOBS = DOCS / "status" / "grok-jobs.json"

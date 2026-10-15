@@ -67,5 +67,24 @@ try:
 except SystemExit as e:
     check("hub: --strict exits 1 on a count problem", bool(e.code))
 
+# --- Needs Dan table in OPEN-ITEMS (R119) ---
+sys.path.insert(0, str(ROOT / "docs"))
+from needs_dan import open_questions  # noqa: E402
+
+with tempfile.TemporaryDirectory() as d:
+    t = Path(d) / "t.md"
+    hdr = "| ID | Topic | Question | Options | Recommended |\n|---|---|---|---|---|\n"
+    t.write_text(hdr, encoding="utf-8")
+    check("needs-dan: header only = nothing open", open_questions(t) == [])
+    t.write_text(hdr + "| M6 | topic | Do it; really? | A) yes; B) no, ok | B |\n", encoding="utf-8")
+    q = open_questions(t)
+    check("needs-dan: row parsed with options and recommended",
+          len(q) == 1 and q[0]["id"] == "M6" and q[0]["text"] == "Do it; really?"
+          and [o["value"] for o in q[0]["options"]] == ["A", "B"]
+          and [o["recommended"] for o in q[0]["options"]] == [False, True])
+check("needs-dan: real tracker has the section and no open question",
+      "| ID | Topic | Question | Options | Recommended |" in real and open_questions() == [])
+check("needs-dan: questions.json is gone", not (ROOT / "docs" / "status" / "questions.json").exists())
+
 print(f"\n{fails} failure(s).")
 sys.exit(1 if fails else 0)
