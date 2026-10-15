@@ -91,7 +91,7 @@
       },
       "layoutPosition": {
         "x": 0,
-        "y": 0
+        "y": 600
       },
       "partImage": {
         "schematic": {
@@ -120,8 +120,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
-        "y": 0
+        "x": 390,
+        "y": 480
       },
       "schematicPosition": {
         "x": -300,
@@ -152,8 +152,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
-        "y": 300
+        "x": 420,
+        "y": 780
       },
       "schematicPosition": {
         "x": 270,
@@ -345,6 +345,15 @@
       "endLabel": "FUEL PUMP",
       "partIds": [
         "cov_lbl_38"
+      ],
+      "layoutPoints": [
+        {
+          "id": "b_bn_br_fp_pump__fuelpump_lp1",
+          "layoutPosition": {
+            "x": 900,
+            "y": 600
+          }
+        }
       ]
     },
     {
@@ -592,8 +601,8 @@
       "signal": "Broken off - continues on ST185-HeavyDC: fuel pump relay k_fp 87 (HCR150 terminal 5, battery relay block) -> fuel pump c1",
       "width": 390,
       "layoutPosition": {
-        "x": 0,
-        "y": 300
+        "x": 900,
+        "y": 0
       },
       "schematicPosition": {
         "x": -300,
@@ -606,8 +615,8 @@
       "type": "Ring",
       "signal": "Trunk chassis ground stud - fuel pump return (plan 6.41; M6 assumed)",
       "layoutPosition": {
-        "x": 900,
-        "y": 300
+        "x": 810,
+        "y": 780
       },
       "schematicPosition": {
         "x": -300,
