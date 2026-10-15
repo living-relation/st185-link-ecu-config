@@ -3099,7 +3099,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 240,
+        "x": -510,
         "y": 1140
       },
       "schematicPosition": {
@@ -3186,7 +3186,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1650,
+        "x": 1290,
         "y": 1140
       },
       "schematicPosition": {
@@ -3213,7 +3213,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1980,
+        "x": 1770,
         "y": 1140
       },
       "schematicPosition": {
@@ -3240,7 +3240,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2310,
+        "x": 2250,
         "y": 1140
       },
       "schematicPosition": {
@@ -3445,7 +3445,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1650,
+        "x": 1290,
         "y": 1440
       },
       "schematicPosition": {
@@ -3470,7 +3470,7 @@
         }
       ],
       "layoutPosition": {
-        "x": -30,
+        "x": -990,
         "y": 1230
       },
       "schematicPosition": {
@@ -3494,7 +3494,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1020,
+        "x": 450,
         "y": 1140
       },
       "schematicPosition": {
@@ -3519,7 +3519,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1980,
+        "x": 1770,
         "y": 1320
       },
       "schematicPosition": {
@@ -3543,7 +3543,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 540,
+        "x": -30,
         "y": 1320
       },
       "schematicPosition": {
@@ -3639,7 +3639,7 @@
       "type": "Ring",
       "signal": "Engine block ground stud (power ground)",
       "layoutPosition": {
-        "x": 1320,
+        "x": 750,
         "y": 1770
       },
       "schematicPosition": {
@@ -3655,7 +3655,7 @@
       "type": "Spade",
       "signal": "Starter Solenoid Trigger (S)",
       "layoutPosition": {
-        "x": 1320,
+        "x": 750,
         "y": 1860
       },
       "schematicPosition": {
@@ -6375,7 +6375,7 @@
     {
       "id": "sp_sw12_eng",
       "layoutPosition": {
-        "x": 1860,
+        "x": 1650,
         "y": 1320
       },
       "schematicPosition": {
@@ -6388,7 +6388,7 @@
     {
       "id": "sp_gndout_eng",
       "layoutPosition": {
-        "x": 1890,
+        "x": 1680,
         "y": 1320
       },
       "schematicPosition": {
@@ -6802,77 +6802,77 @@
     {
       "id": "bp_360",
       "layoutPosition": {
-        "x": 120,
+        "x": -840,
         "y": 1230
       }
     },
     {
       "id": "bp_420",
       "layoutPosition": {
-        "x": 390,
+        "x": -360,
         "y": 1230
       }
     },
     {
       "id": "bp_450",
       "layoutPosition": {
-        "x": 690,
+        "x": 120,
         "y": 1230
       }
     },
     {
       "id": "bp_480",
       "layoutPosition": {
-        "x": 810,
+        "x": 240,
         "y": 1230
       }
     },
     {
       "id": "bp_510",
       "layoutPosition": {
-        "x": 930,
+        "x": 360,
         "y": 1230
       }
     },
     {
       "id": "bp_540",
       "layoutPosition": {
-        "x": 1050,
+        "x": 480,
         "y": 1230
       }
     },
     {
       "id": "bp_570",
       "layoutPosition": {
-        "x": 1170,
+        "x": 600,
         "y": 1230
       }
     },
     {
       "id": "bp_600",
       "layoutPosition": {
-        "x": 1470,
+        "x": 900,
         "y": 1230
       }
     },
     {
       "id": "bp_630",
       "layoutPosition": {
-        "x": 1800,
+        "x": 1440,
         "y": 1230
       }
     },
     {
       "id": "bp_660",
       "layoutPosition": {
-        "x": 2130,
+        "x": 1920,
         "y": 1230
       }
     },
     {
       "id": "bp_690",
       "layoutPosition": {
-        "x": 2460,
+        "x": 2400,
         "y": 1230
       }
     },
@@ -6921,7 +6921,7 @@
     {
       "id": "be_660",
       "layoutPosition": {
-        "x": 1830,
+        "x": 1620,
         "y": 1380
       }
     },
@@ -6935,35 +6935,35 @@
     {
       "id": "be_870",
       "layoutPosition": {
-        "x": 1470,
+        "x": 900,
         "y": 1500
       }
     },
     {
       "id": "be_900",
       "layoutPosition": {
-        "x": 1470,
+        "x": 900,
         "y": 1590
       }
     },
     {
       "id": "be_930",
       "layoutPosition": {
-        "x": 1470,
+        "x": 900,
         "y": 1680
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
-        "x": 1470,
+        "x": 900,
         "y": 1770
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
-        "x": 1470,
+        "x": 900,
         "y": 1860
       }
     },
@@ -6984,7 +6984,7 @@
     {
       "id": "bp_at_fuelp",
       "layoutPosition": {
-        "x": 1470,
+        "x": 900,
         "y": 1410
       }
     },

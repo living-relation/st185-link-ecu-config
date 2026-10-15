@@ -705,7 +705,7 @@
         "y": 270
       },
       "layoutPosition": {
-        "x": 1560,
+        "x": 1410,
         "y": 990
       },
       "signal": "TrackCluster ESP32-P4 - CAN drop *",
@@ -917,7 +917,7 @@
         "y": 870
       },
       "layoutPosition": {
-        "x": 1560,
+        "x": 1410,
         "y": 1110
       },
       "signal": "TrackCluster ESP32-P4 - +12V switched (DEV)",
@@ -949,7 +949,7 @@
         "y": 1020
       },
       "layoutPosition": {
-        "x": 1560,
+        "x": 1410,
         "y": 1170
       },
       "signal": "Factory ground IF (I/P brace RH, 1993 EWD p.42) - cluster ground, check at build",
@@ -978,7 +978,7 @@
       "signal": "Broken off - continues on ST185-CabinPower: LOGIC DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
       "width": 390,
       "layoutPosition": {
-        "x": 1560,
+        "x": 1410,
         "y": 1050
       },
       "schematicPosition": {
@@ -996,7 +996,7 @@
         "y": 1110
       },
       "layoutPosition": {
-        "x": 1560,
+        "x": 1410,
         "y": 1230
       },
       "signal": "TrackCluster ESP32-P4 - ground",
@@ -2682,7 +2682,7 @@
         "y": -120
       },
       "layoutPosition": {
-        "x": 1860,
+        "x": 1710,
         "y": 810
       },
       "partId": "spp_solder_generic",
@@ -2695,7 +2695,7 @@
         "y": -120
       },
       "layoutPosition": {
-        "x": 1890,
+        "x": 1740,
         "y": 810
       },
       "partId": "spp_solder_generic",
@@ -2732,7 +2732,7 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_930",
       "layoutPosition": {
-        "x": 1920,
+        "x": 1770,
         "y": 810
       },
       "schematicPosition": {
@@ -2747,7 +2747,7 @@
         "y": 900
       },
       "layoutPosition": {
-        "x": 1950,
+        "x": 1800,
         "y": 810
       },
       "partId": "spp_solder_generic",
@@ -2942,7 +2942,7 @@
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 1830,
+        "x": 1680,
         "y": 870
       }
     },
