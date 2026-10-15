@@ -148,8 +148,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `1/0 AWG welding cable red/black` | generic | CABLE, WELDING, 1/0 AWG, RED AND BLACK, APPROX 45 FT EACH COLOUR | 1 | 0 | **1** |
 | `2 AWG welding cable` | generic | CABLE, WELDING, 2 AWG | 1 | 0 | **1** |
 | `8 AWG TXL red/black` | generic | WIRE, ELECTRICAL, 8 AWG, RED AND BLACK, SAE J1128 TXL | 1 | 0 | **1** |
-| `2127` | Blue Sea Systems | BUSBAR, POWERBAR, 250 A, FOUR 5/16-18 STUDS | 1 | 0 | **1** |
-| `2719` | Blue Sea Systems | COVER, INSULATING, MAXIBUS, FITS 2127 | 1 | 0 | **1** |
 | `ANL/MEGA 300A + holder` | generic | FUSE, ANL OR MEGA, 300 A, WITH HOLDER | 1 | 0 | **1** |
 | `Alternator protection 175A` | generic | FUSIBLE LINK OR INLINE FUSE / CIRCUIT BREAKER, 175 A | 1 | 0 | **1** |
 | `WB-51PAL` | TE DEUTSCH | WEDGELOCK, DRB 102/128, RECEPTACLE, LEFT | 1 | 0 | **1** |
