@@ -69,8 +69,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": -30,
-        "y": -120
+        "x": 0,
+        "y": 330
       },
       "partImage": {
         "schematic": {
@@ -106,8 +106,8 @@
         "y": 270
       },
       "layoutPosition": {
-        "x": -30,
-        "y": 90
+        "x": 0,
+        "y": -330
       }
     },
     {
@@ -158,7 +158,7 @@
         "y": 510
       },
       "layoutPosition": {
-        "x": 1470,
+        "x": 1530,
         "y": 0
       },
       "partImage": {
@@ -177,7 +177,7 @@
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
-        "x": 540,
+        "x": 810,
         "y": 0
       },
       "schematicPosition": {
@@ -219,7 +219,7 @@
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
-        "x": 900,
+        "x": 1170,
         "y": 60
       },
       "schematicPosition": {
@@ -903,8 +903,8 @@
         {
           "id": "lp_f_l",
           "layoutPosition": {
-            "x": 420,
-            "y": 0
+            "x": 720,
+            "y": 330
           }
         }
       ],
@@ -926,8 +926,8 @@
         {
           "id": "lp_f_r",
           "layoutPosition": {
-            "x": 420,
-            "y": 0
+            "x": 720,
+            "y": -330
           }
         }
       ],
@@ -987,7 +987,7 @@
         "y": 210
       },
       "layoutPosition": {
-        "x": 510,
+        "x": 780,
         "y": 60
       }
     }
@@ -1028,7 +1028,7 @@
       "color": "Orange",
       "width": 210,
       "layoutPosition": {
-        "x": 630,
+        "x": 900,
         "y": 30
       }
     }
@@ -1120,21 +1120,21 @@
     {
       "id": "bp_f_y",
       "layoutPosition": {
-        "x": 510,
+        "x": 720,
         "y": 0
       }
     },
     {
       "id": "bp_f_out",
       "layoutPosition": {
-        "x": 930,
+        "x": 1200,
         "y": 0
       }
     },
     {
       "id": "bp_f_fwd",
       "layoutPosition": {
-        "x": 1440,
+        "x": 1500,
         "y": 0
       }
     }
