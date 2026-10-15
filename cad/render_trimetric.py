@@ -48,6 +48,8 @@ MODELS = {
     "fuel-hanger":    ("cad/fuel-hanger/trimetric.png",       ["HANGER/hanger_billet_assembly.step"]),
     # rev 7 option (E2 = A): POWER box with the bus bar in it; its LOGIC box and battery block are rev 6's pictures
     "fusebox-rev7-power": ("cad/fusebox/rev7/trimetric-power.png", ["cad/fusebox/rev7/Power_*.step"]),
+    # rev 7 LOGIC: the 3 mm clearance fix (Bus 2 + relay columns 2.5 mm outboard, box 81.5 wide); rev 6's LOGIC picture is history
+    "fusebox-rev7-logic": ("cad/fusebox/rev7/trimetric-logic.png", ["cad/fusebox/rev7/Logic_*.step"]),
     # Package renders (R84): every member together. "path@x,y" = place that STEP with its bounding box corner at
     # (x, y), z from 0 (the fuse box assembly STEP is already laid out in place).
     "package-rev6":   ("cad/fusebox/package-rev6.png", ["cad/fusebox/ST185_fusebox_rev6_assembly.step",

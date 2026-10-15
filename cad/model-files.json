@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-14",
+ "generated": "2026-10-15",
  "files": {
   "cad/drb102-plate": [
    "DRB102-firewall-plate-assembly.step",
@@ -150,6 +150,13 @@
    "VRC_part_VRC_carrier_board_34x30_placeholder.step"
   ],
   "cad/fusebox/rev7": [
+   "Logic_Base_PA12_printed.step",
+   "Logic_Base_PA12_printed.stl",
+   "Logic_Cover_PA12_printed.step",
+   "Logic_Cover_PA12_printed.stl",
+   "Logic_Pan_PA12_printed.step",
+   "Logic_Pan_PA12_printed.stl",
+   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step",
    "Power_BarNeg_CuC110_25x6p35_L105.step",
    "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
    "Power_Base_PA12_printed.step",
