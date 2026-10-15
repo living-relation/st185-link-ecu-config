@@ -12,7 +12,7 @@
     },
     "CabinPower": {
       "file": "ST185-CabinPower.harness",
-      "physical": "Cabin power (non-ECU): the two glove-box fuse + relay boxes (DECISIONS R75, cad/fusebox rev 5) - POWER box (copper bar fed 1/0 from the PDB bus, AMI IN relay feeds, AMI OUT, Mini ISO relays k_htr / k_efi / k_str / k_fan / k_fan2 / k_pwr, ACPS fuse) and LOGIC box (Bus 1 / Bus 2 mini fuses, micro relays k_hl / k_hr / k_horn / k_etb / k_acc / k_eps_en / k_rev), k_eps HCR150 beside them, battery feed ring; ECU coil wires from A-cabin / B-cabin and the A-cabin, B-cabin, A-engine, CSB3, CAN, AntiTheft, RearLights, HeavyDC and EngineRoom-C ends arrive broken off"
+      "physical": "Cabin power (non-ECU): the two glove-box fuse + relay boxes (DECISIONS R75, cad/fusebox rev 7) - POWER box (tinned copper + bar that is the AMI bar, no 1/0 link cable, AMI IN relay feeds, AMI OUT, Mini ISO relays k_htr / k_efi / k_str / k_fan / k_fan2 / k_pwr, ACPS fuse) and LOGIC box (Bus 1 / Bus 2 mini fuses, micro relays k_hl / k_hr / k_horn / k_etb / k_acc / k_eps_en / k_rev), k_eps HCR150 beside them, battery feed ring; ECU coil wires from A-cabin / B-cabin and the A-cabin, B-cabin, A-engine, CSB3, CAN, AntiTheft, RearLights, HeavyDC and EngineRoom-C ends arrive broken off"
     },
     "A-engine": {
       "file": "ST185-A-engine.harness",
@@ -32,7 +32,7 @@
     },
     "HeavyDC": {
       "file": "ST185-HeavyDC.harness",
-      "physical": "Heavy DC chain (Route 1) - trunk battery, RADLOK firewall pair, starter, 160 A alternator B+, engine-bay jump post, engine block ground. Hands off to EngineRoom-C at the cabin PDB (breaks H1/H2/H3/H6a) - the PDB itself, and everything else it feeds (cabin fuse block, glove-box body block, OEM hot, AM1/AM2), stays on EngineRoom-C. Also the battery relay block in the trunk (DECISIONS R75, passenger side between the rear wall and the battery): fed from the kill switch LOAD side, AMI-40 FP fuse and the fuel pump relay k_fp (HCR150); its coil wires arrive broken off from A-cabin (A19) and CabinPower (SW12), its output breaks off to RearFuel."
+      "physical": "Heavy DC chain (Route 1) - trunk battery, RADLOK firewall pair, starter, 160 A alternator B+, engine-bay jump post, engine block ground. Hands off to EngineRoom-C at the POWER box bus zone (breaks H1/H2/H3/H6a) - the POWER box bus zone itself, and everything else it feeds (cabin fuse block, glove-box body block, OEM hot, AM1/AM2), stays on EngineRoom-C. Also the battery relay block in the trunk (DECISIONS R75, passenger side between the rear wall and the battery): fed from the kill switch LOAD side, AMI-40 FP fuse and the fuel pump relay k_fp (HCR150); its coil wires arrive broken off from A-cabin (A19) and CabinPower (SW12), its output breaks off to RearFuel."
     },
     "ClusterLED": {
       "file": "ST185-ClusterLED.harness",
@@ -1826,7 +1826,7 @@
     {
       "id": "BR_H1_BATT_POS",
       "type": "broken_off",
-      "what": "H1 - trunk battery + to cabin PDB c1 (BAT+)",
+      "what": "H1 - trunk battery + to POWER box bus zone c1 (BAT+)",
       "ends": [
         {
           "harness": "HeavyDC",
@@ -1841,7 +1841,7 @@
     {
       "id": "BR_H2_BATT_NEG",
       "type": "broken_off",
-      "what": "H2 - trunk battery - to cabin PDB c8 (GND bus)",
+      "what": "H2 - trunk battery - to POWER box bus zone c8 (NEG bar)",
       "ends": [
         {
           "harness": "HeavyDC",
@@ -1856,7 +1856,7 @@
     {
       "id": "BR_H3_RADLOK_POS",
       "type": "broken_off",
-      "what": "H3 - cabin PDB c2 (ALT/STR) to RADLOK +",
+      "what": "H3 - POWER box bus zone c2 (ALT/STR) to RADLOK +",
       "ends": [
         {
           "harness": "EngineRoom-C",
@@ -1871,7 +1871,7 @@
     {
       "id": "BR_H6A_RADLOK_NEG",
       "type": "broken_off",
-      "what": "H6a - cabin PDB c8 (GND bus) to RADLOK -",
+      "what": "H6a - POWER box bus zone c8 (NEG bar) to RADLOK -",
       "ends": [
         {
           "harness": "EngineRoom-C",
@@ -3556,12 +3556,6 @@
         "bands": [],
         "wires": [
           "w_pdb_jb1_cp"
-        ]
-      },
-      "BAT": {
-        "bands": [],
-        "wires": [
-          "w_fb_in"
         ]
       }
     },

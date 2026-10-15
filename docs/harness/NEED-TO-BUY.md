@@ -97,7 +97,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `1-1414687-0` | TE Connectivity | RELAY, PLUG-IN, MINI ISO, TE POWER RELAY F4 A V23136-A0004-X059, 1 FORM C, NO 40 A / NC 30 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 1 | 0 | **1** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `10k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
-| `132066-2` | TE Connectivity | TERMINAL, RING TONGUE, SOLISTRAND, CLOSED BARREL, UNINSULATED, 1/0 AWG (41-60 MM2), 5/16 (M8) STUD, ADHESIVE HEATSHRINK OVER | 1 | 0 | **1** |
 | `1k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `2.2k 1/4W 1%` | generic | RESISTOR, FIXED, METAL FILM, 2.2 KOHM, 1 PCT, 1/4 W | 1 | 0 | **1** |
 | `3.9k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 3.9 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
@@ -107,7 +106,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `470R 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `52-45780` | Longacre | SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE, 175 A CONTINUOUS, 1000 A PEAK, 20 A AUXILIARY POLE, 6-36 V | 1 | 0 | **1** |
 | `6-1419137-4` | TE Connectivity | RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A403, 1 FORM C, 12 VDC COIL, DIODE SUPPRESSED | 3 | 2 | **1** |
-| `6R8` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 50 MM2, M8 STUD | 1 | 0 | **1** |
 | `90980-10341` | Toyota | CONNECTOR, PLUG, TOYOTA, ROUND, 3 POS | 1 | 0 | **1** |
 | `90980-11143` | Toyota | CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS | 1 | 0 | **1** |
 | `AMI-50` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 1 | 0 | **1** |
@@ -132,7 +130,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `MECCANIXITY B0CGJBRNJX` | MECCANIXITY (Amazon) | 12 IN X 1 IN X 1/4 IN TINNED COPPER FLAT BAR: ONE BAR MAKES THE POWER BAR (148 MM) AND THE BATTERY BLOCK BAR (36.5 MM) | 1 | 0 | **1** |
 | `MECCANIXITY B0CGJC2S1L` | MECCANIXITY (Amazon) | 2 PCS 12 IN X 1 IN X 1/8 IN TINNED COPPER FLAT BAR: ONE BAR MAKES BOTH STRIPS | 1 | 0 | **1** |
 | `MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942` | Toyota / Sumitomo | CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS | 1 | 0 | **1** |
-| `PDB-M8x8` | TBD | BLOCK, POWER DISTRIBUTION, 8 STUD M8, 150-250 A BUS | 1 | 0 | **1** |
 | `Power_Base_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | DECK ON FOUR ANGULAR LEGS, OPEN UNDERNEATH; PA12 | 1 | 0 | **1** |
 | `Power_Cover_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON COVER, ETCHED LABELS, VENT SLOTS; PA12 | 1 | 0 | **1** |
 | `Power_Pan_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON BELLY PAN, 4 INTEGRAL TONGUES (NO SEPARATE CLIPS); PA12 | 1 | 0 | **1** |
@@ -141,7 +138,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RNF-100-3/16-9-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, WHITE, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, 1.2 M STICK | 1 | 0 | **1** |
 | `ST185-FB-BATT rev 5` | custom (PA12 print) | BLOCK, RELAY AND FUSE, PRINTED PA12, COPPER BAR, M6 STUD, 1 AMI FUSE, 1 HCR 150 RELAY | 1 | 0 | **1** |
 | `ST185-FB-LOGIC rev 5` | custom (PA12 print) | BOX, FUSE AND RELAY, LOGIC, PRINTED PA12, 2 COPPER STRIP, 25 MINI FUSE, 10 MICRO RELAY | 1 | 0 | **1** |
-| `ST185-FB-POWER rev 5` | custom (PA12 print) | BOX, FUSE AND RELAY, POWER, PRINTED PA12, COPPER BAR, 7 AMI IN, 7 AMI OUT, 7 MINI ISO RELAY, 1 MINI FUSE | 1 | 0 | **1** |
+| `ST185-FB-POWER rev 7` | custom (PA12 print) | BOX, FUSE AND RELAY, POWER, PRINTED PA12, TINNED COPPER POS BAR AS AMI BAR + NEG BAR (BUS ZONE), 7 AMI IN, 7 AMI OUT, 7 MINI ISO RELAY, 1 MINI FUSE | 1 | 0 | **1** |
 | `Sumitomo TS 025 6-way` | Sumitomo / Subaru | CONNECTOR, PLUG, SUMITOMO TS 025, 6 POS, SOCKET CONTACTS | 1 | 0 | **1** |
 | `W3P` | TE DEUTSCH | WEDGELOCK, DT, 3-WAY RECEPTACLE | 1 | 0 | **1** |
 | `WM-4S` | TE DEUTSCH | WEDGELOCK, DTM, 4 POS, PLUG | 1 | 0 | **1** |
@@ -215,7 +212,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `(kit-supplied pigtail)` | CONNECTOR, PIGTAIL, 3 POS | 1 |
 | `(pump pigtail - Walbro F90000295)` | CONNECTOR, PIGTAIL, 2 POS | 1 |
 | `(ring lug, 8 AWG, M6)` | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK | 5 |
-| `(ring lug, sized to cable)` | TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK | 8 |
+| `(ring lug, sized to cable)` | TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK | 5 |
 
 ## Counted once, drawn more than once
 

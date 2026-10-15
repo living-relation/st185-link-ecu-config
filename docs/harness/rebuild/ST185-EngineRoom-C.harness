@@ -69,7 +69,7 @@
   "connectors": [
     {
       "id": "pdb",
-      "label": "Cabin PDB (glove box)",
+      "label": "POWER box bus zone (rev 7, glove box)",
       "width": 390,
       "schematicPosition": {
         "x": 0,
@@ -93,10 +93,11 @@
         {
           "id": "c8",
           "designation": "GND",
-          "signal": "Cabin ground bus"
+          "signal": "POWER box NEG bar"
         }
       ],
-      "partId": "cp_pdb"
+      "partId": "cp_fb_bus",
+      "excludeFromBom": true
     },
     {
       "id": "rad_fan",
@@ -305,7 +306,7 @@
     {
       "id": "br_h1_batt_pos",
       "type": "Loose",
-      "signal": "H1 - broken off, continues on ST185-HeavyDC: cabin PDB c1 (BAT+) <- trunk battery +",
+      "signal": "H1 - broken off, continues on ST185-HeavyDC: POWER box bus zone c1 (BAT+) <- trunk battery +",
       "schematicPosition": {
         "x": 0,
         "y": 0
@@ -319,7 +320,7 @@
     {
       "id": "br_h2_batt_neg",
       "type": "Loose",
-      "signal": "H2 - broken off, continues on ST185-HeavyDC: cabin PDB c8 (GND bus) <- trunk battery -",
+      "signal": "H2 - broken off, continues on ST185-HeavyDC: POWER box bus zone c8 (NEG bar) <- trunk battery -",
       "schematicPosition": {
         "x": 0,
         "y": 60
@@ -333,7 +334,7 @@
     {
       "id": "br_h3_radlok_pos",
       "type": "Loose",
-      "signal": "H3 - broken off, continues on ST185-HeavyDC: cabin PDB c2 (ALT/STR) -> RADLOK +",
+      "signal": "H3 - broken off, continues on ST185-HeavyDC: POWER box bus zone c2 (ALT/STR) -> RADLOK +",
       "schematicPosition": {
         "x": 0,
         "y": 120
@@ -347,7 +348,7 @@
     {
       "id": "br_h6a_radlok_neg",
       "type": "Loose",
-      "signal": "H6a - broken off, continues on ST185-HeavyDC: cabin PDB c8 (GND bus) -> RADLOK -",
+      "signal": "H6a - broken off, continues on ST185-HeavyDC: POWER box bus zone c8 (NEG bar) -> RADLOK -",
       "schematicPosition": {
         "x": 0,
         "y": 330
@@ -7950,22 +7951,6 @@
       "numberOfCavities": 10
     },
     {
-      "id": "cp_pdb",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/pdb-m8x8.png",
-        "source": "url"
-      },
-      "partNumber": "PDB-M8x8",
-      "description": "BLOCK, POWER DISTRIBUTION, 8 STUD M8, 150-250 A BUS",
-      "manufacturer": "TBD",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_lug_stud"
-        }
-      ]
-    },
-    {
       "id": "cp_dthd_1_8s",
       "image": {
         "url": "https://www.te.com/content/dam/te-com/catalog/part/DTH/D06/18S/DTHD06-1-8S-t1.jpg/jcr:content/renditions/product-high-res.png",
@@ -8043,6 +8028,20 @@
       "designationStrategy": {
         "type": "sequential"
       }
+    },
+    {
+      "id": "cp_fb_bus",
+      "partNumber": "ST185-FB-POWER rev 7 BUS ZONE",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BUS ZONE OF POWER BOX, PRINTED PA12, TINNED COPPER POS BAR (3 M8 STUDS) + NEG BAR (5 M8 STUDS)",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_lug_stud"
+        }
+      ]
     }
   ],
   "contactParts": [

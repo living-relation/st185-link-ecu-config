@@ -425,7 +425,7 @@
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil - -> glove-box PDB ground bus",
+          "signal": "Coil - -> POWER box NEG bar",
           "contactPartId": "ct_faston48",
           "propagate": false
         },
@@ -638,7 +638,7 @@
         {
           "id": "c5",
           "designation": "87a",
-          "signal": "NC -> glove-box PDB ground bus: grounds the blower + when the relay is off (OEM heater relay pin 2 W-B, EWD 1993 p.215)",
+          "signal": "NC -> POWER box NEG bar: grounds the blower + when the relay is off (OEM heater relay pin 2 W-B, EWD 1993 p.215)",
           "contactPartId": "ct_faston63",
           "propagate": false
         }
@@ -668,7 +668,7 @@
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil - -> glove-box PDB ground bus",
+          "signal": "Coil - -> POWER box NEG bar",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -700,15 +700,8 @@
     },
     {
       "id": "fb_power",
-      "label": "POWER box - custom fuse + relay box, glove box outboard (cad/fusebox rev 5, DECISIONS R75): copper bar with 7 AMI IN (relay feeds) and 7 AMI OUT, Mini ISO relays R1-R6, ACPS mini fuse",
+      "label": "POWER box with the bus bar in it - custom fuse + relay box, glove box outboard (cad/fusebox rev 7, DECISIONS R75, R91): the tinned copper + bar IS the AMI bar (7 AMI IN relay feeds, 7 AMI OUT; no 1/0 link cable), NEG bar in the rear bus zone, Mini ISO relays R1-R6, ACPS mini fuse",
       "cavities": [
-        {
-          "id": "in",
-          "designation": "1/0 IN",
-          "signal": "Battery feed in - 1/0 from the glove-box PDB bus onto the M8 bar bolt",
-          "propagate": false,
-          "contactPartId": "ct_klauke_6r8"
-        },
         {
           "id": "in1",
           "designation": "AMI IN-1",
@@ -991,22 +984,6 @@
     }
   ],
   "terminals": [
-    {
-      "id": "batt_ring",
-      "type": "Ring",
-      "signal": "Glove-box PDB bus stud (M8) - 1/0 feed to the POWER box bar",
-      "layoutPosition": {
-        "x": 1200,
-        "y": 390
-      },
-      "schematicPosition": {
-        "x": 0,
-        "y": 2700
-      },
-      "partId": "tp_lug_m8_50",
-      "width": 270,
-      "propagate": false
-    },
     {
       "id": "br_w_inj_pwr_c",
       "type": "Loose",
@@ -1673,7 +1650,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "Glove-box PDB ground bus stud (M8) - reverse relay coil-",
+      "signal": "POWER box NEG bar stud (M8) - reverse relay coil-",
       "schematicPosition": {
         "x": 6000,
         "y": 4410
@@ -1784,7 +1761,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "Glove-box PDB ground bus stud (M8) - power relay coil-",
+      "signal": "POWER box NEG bar stud (M8) - power relay coil-",
       "schematicPosition": {
         "x": 6600,
         "y": 5490
@@ -1800,7 +1777,7 @@
       "type": "Ring",
       "partId": "tp_ring_m8_16_14",
       "width": 390,
-      "signal": "Glove-box PDB ground bus stud (M8) - heater relay NC (87a)",
+      "signal": "POWER box NEG bar stud (M8) - heater relay NC (87a)",
       "schematicPosition": {
         "x": 6000,
         "y": 5550
@@ -1829,42 +1806,6 @@
   ],
   "wires": [
     {
-      "id": "w_fb_in",
-      "color": "Red",
-      "source": {
-        "id": "batt_ring",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "fb_power",
-        "handle": "in"
-      },
-      "partId": "wp_1_0_red",
-      "layoutPoints": [
-        {
-          "id": "w_fb_in_lp1",
-          "schematicPosition": {
-            "x": 270,
-            "y": 2700
-          }
-        },
-        {
-          "id": "w_fb_in_lp2",
-          "schematicPosition": {
-            "x": 450,
-            "y": 2700
-          }
-        },
-        {
-          "id": "w_fb_in_lp3",
-          "schematicPosition": {
-            "x": 450,
-            "y": 2730
-          }
-        }
-      ]
-    },
-    {
       "id": "w_hc_fb",
       "color": "Red",
       "identColors": [
@@ -1885,21 +1826,21 @@
         {
           "id": "w_hc_fb_lp1",
           "schematicPosition": {
-            "x": 450,
-            "y": 2940
+            "x": 870,
+            "y": 2910
           }
         },
         {
           "id": "w_hc_fb_lp2",
           "schematicPosition": {
-            "x": 300,
-            "y": 2940
+            "x": 960,
+            "y": 2910
           }
         },
         {
           "id": "w_hc_fb_lp3",
           "schematicPosition": {
-            "x": 300,
+            "x": 960,
             "y": 1890
           }
         },
@@ -1932,43 +1873,43 @@
         {
           "id": "w_fb_k_fan2_30_ac_lp1",
           "schematicPosition": {
-            "x": 870,
-            "y": 2880
+            "x": 450,
+            "y": 2850
           }
         },
         {
           "id": "w_fb_k_fan2_30_ac_lp2",
           "schematicPosition": {
-            "x": 1140,
-            "y": 2880
+            "x": 360,
+            "y": 2850
           }
         },
         {
           "id": "w_fb_k_fan2_30_ac_lp3",
           "schematicPosition": {
-            "x": 1140,
-            "y": 2940
+            "x": 360,
+            "y": 1800
           }
         },
         {
           "id": "w_fb_k_fan2_30_ac_lp4",
           "schematicPosition": {
-            "x": 3210,
-            "y": 2940
+            "x": 5280,
+            "y": 1800
           }
         },
         {
           "id": "w_fb_k_fan2_30_ac_lp5",
           "schematicPosition": {
-            "x": 3210,
-            "y": 2970
+            "x": 5280,
+            "y": 2940
           }
         },
         {
           "id": "w_fb_k_fan2_30_ac_lp6",
           "schematicPosition": {
             "x": 5370,
-            "y": 2970
+            "y": 2940
           }
         },
         {
@@ -2002,34 +1943,34 @@
           "id": "w_fb_k_eps_30_ac_lp1",
           "schematicPosition": {
             "x": 870,
-            "y": 3090
+            "y": 3060
           }
         },
         {
           "id": "w_fb_k_eps_30_ac_lp2",
           "schematicPosition": {
-            "x": 900,
-            "y": 3090
+            "x": 960,
+            "y": 3060
           }
         },
         {
           "id": "w_fb_k_eps_30_ac_lp3",
           "schematicPosition": {
-            "x": 900,
+            "x": 960,
             "y": 4050
           }
         },
         {
           "id": "w_fb_k_eps_30_ac_lp4",
           "schematicPosition": {
-            "x": 3060,
+            "x": 2190,
             "y": 4050
           }
         },
         {
           "id": "w_fb_k_eps_30_ac_lp5",
           "schematicPosition": {
-            "x": 3060,
+            "x": 2190,
             "y": 3930
           }
         },
@@ -2111,14 +2052,14 @@
         {
           "id": "w_cop_pwr_c_ac_lp2",
           "schematicPosition": {
-            "x": 990,
+            "x": 1080,
             "y": 2310
           }
         },
         {
           "id": "w_cop_pwr_c_ac_lp3",
           "schematicPosition": {
-            "x": 990,
+            "x": 1080,
             "y": 3840
           }
         },
@@ -2173,18 +2114,25 @@
           "id": "w77_cp_lp3",
           "schematicPosition": {
             "x": 4080,
-            "y": 1860
+            "y": 1980
           }
         },
         {
           "id": "w77_cp_lp4",
           "schematicPosition": {
-            "x": 1590,
-            "y": 1860
+            "x": 1770,
+            "y": 1980
           }
         },
         {
           "id": "w77_cp_lp5",
+          "schematicPosition": {
+            "x": 1770,
+            "y": 1920
+          }
+        },
+        {
+          "id": "w77_cp_lp6",
           "schematicPosition": {
             "x": 1590,
             "y": 1920
@@ -2266,14 +2214,14 @@
           "id": "w_fb_k_efi_30_cp_lp1",
           "schematicPosition": {
             "x": 870,
-            "y": 2790
+            "y": 2760
           }
         },
         {
           "id": "w_fb_k_efi_30_cp_lp2",
           "schematicPosition": {
             "x": 3150,
-            "y": 2790
+            "y": 2760
           }
         },
         {
@@ -2373,22 +2321,22 @@
         {
           "id": "w_fb_k_etb_30_cp_lp2",
           "schematicPosition": {
-            "x": 4050,
+            "x": 3990,
             "y": 2220
           }
         },
         {
           "id": "w_fb_k_etb_30_cp_lp3",
           "schematicPosition": {
-            "x": 4050,
-            "y": 3150
+            "x": 3990,
+            "y": 3180
           }
         },
         {
           "id": "w_fb_k_etb_30_cp_lp4",
           "schematicPosition": {
             "x": 4170,
-            "y": 3150
+            "y": 3180
           }
         },
         {
@@ -2421,34 +2369,34 @@
           "id": "w_fb_k_str_30_cp_lp1",
           "schematicPosition": {
             "x": 870,
-            "y": 2820
+            "y": 2790
           }
         },
         {
           "id": "w_fb_k_str_30_cp_lp2",
           "schematicPosition": {
-            "x": 3180,
-            "y": 2820
+            "x": 2970,
+            "y": 2790
           }
         },
         {
           "id": "w_fb_k_str_30_cp_lp3",
           "schematicPosition": {
-            "x": 3180,
-            "y": 2610
+            "x": 2970,
+            "y": 2580
           }
         },
         {
           "id": "w_fb_k_str_30_cp_lp4",
           "schematicPosition": {
-            "x": 4680,
-            "y": 2610
+            "x": 4710,
+            "y": 2580
           }
         },
         {
           "id": "w_fb_k_str_30_cp_lp5",
           "schematicPosition": {
-            "x": 4680,
+            "x": 4710,
             "y": 3300
           }
         },
@@ -2489,46 +2437,32 @@
           "id": "w_fb_k_fan_30_cp_lp1",
           "schematicPosition": {
             "x": 870,
-            "y": 2850
+            "y": 2820
           }
         },
         {
           "id": "w_fb_k_fan_30_cp_lp2",
           "schematicPosition": {
-            "x": 960,
-            "y": 2850
+            "x": 3180,
+            "y": 2820
           }
         },
         {
           "id": "w_fb_k_fan_30_cp_lp3",
           "schematicPosition": {
-            "x": 960,
-            "y": 2700
+            "x": 3180,
+            "y": 2610
           }
         },
         {
           "id": "w_fb_k_fan_30_cp_lp4",
           "schematicPosition": {
-            "x": 3060,
-            "y": 2700
+            "x": 5370,
+            "y": 2610
           }
         },
         {
           "id": "w_fb_k_fan_30_cp_lp5",
-          "schematicPosition": {
-            "x": 3060,
-            "y": 2580
-          }
-        },
-        {
-          "id": "w_fb_k_fan_30_cp_lp6",
-          "schematicPosition": {
-            "x": 5370,
-            "y": 2580
-          }
-        },
-        {
-          "id": "w_fb_k_fan_30_cp_lp7",
           "schematicPosition": {
             "x": 5370,
             "y": 2730
@@ -2604,14 +2538,14 @@
         {
           "id": "w_lam12_cp_lp2",
           "schematicPosition": {
-            "x": 2100,
+            "x": 1680,
             "y": 2250
           }
         },
         {
           "id": "w_lam12_cp_lp3",
           "schematicPosition": {
-            "x": 2100,
+            "x": 1680,
             "y": 3600
           }
         }
@@ -2637,21 +2571,28 @@
           "id": "w_htr_acps_lp1",
           "schematicPosition": {
             "x": 6450,
-            "y": 4650
+            "y": 4500
           }
         },
         {
           "id": "w_htr_acps_lp2",
           "schematicPosition": {
-            "x": 450,
-            "y": 4650
+            "x": 900,
+            "y": 4500
           }
         },
         {
           "id": "w_htr_acps_lp3",
           "schematicPosition": {
-            "x": 450,
-            "y": 3120
+            "x": 900,
+            "y": 3090
+          }
+        },
+        {
+          "id": "w_htr_acps_lp4",
+          "schematicPosition": {
+            "x": 870,
+            "y": 3090
           }
         }
       ]
@@ -2747,14 +2688,14 @@
           "id": "w_pmu_hr_cp_lp3",
           "schematicPosition": {
             "x": 4650,
-            "y": 4440
+            "y": 2940
           }
         },
         {
           "id": "w_pmu_hr_cp_lp4",
           "schematicPosition": {
             "x": 3840,
-            "y": 4440
+            "y": 2940
           }
         },
         {
@@ -2808,20 +2749,20 @@
           "id": "w_pmu_horn_cp_lp3",
           "schematicPosition": {
             "x": 5280,
-            "y": 3570
+            "y": 3630
           }
         },
         {
           "id": "w_pmu_horn_cp_lp4",
           "schematicPosition": {
-            "x": 3870,
-            "y": 3570
+            "x": 3780,
+            "y": 3630
           }
         },
         {
           "id": "w_pmu_horn_cp_lp5",
           "schematicPosition": {
-            "x": 3870,
+            "x": 3780,
             "y": 2850
           }
         },
@@ -2918,32 +2859,11 @@
           "id": "w_pmu_rtr_cp_lp1",
           "schematicPosition": {
             "x": 870,
-            "y": 2970
+            "y": 2940
           }
         },
         {
           "id": "w_pmu_rtr_cp_lp2",
-          "schematicPosition": {
-            "x": 3180,
-            "y": 2970
-          }
-        },
-        {
-          "id": "w_pmu_rtr_cp_lp3",
-          "schematicPosition": {
-            "x": 3180,
-            "y": 2910
-          }
-        },
-        {
-          "id": "w_pmu_rtr_cp_lp4",
-          "schematicPosition": {
-            "x": 3270,
-            "y": 2910
-          }
-        },
-        {
-          "id": "w_pmu_rtr_cp_lp5",
           "schematicPosition": {
             "x": 3270,
             "y": 2940
@@ -2973,14 +2893,14 @@
           "id": "w_acp_1_cp_lp1",
           "schematicPosition": {
             "x": 870,
-            "y": 3150
+            "y": 3120
           }
         },
         {
           "id": "w_acp_1_cp_lp2",
           "schematicPosition": {
             "x": 3210,
-            "y": 3150
+            "y": 3120
           }
         },
         {
@@ -3028,20 +2948,20 @@
           "id": "w_pdb_am1_cp_lp1",
           "schematicPosition": {
             "x": 870,
-            "y": 3000
+            "y": 2970
           }
         },
         {
           "id": "w_pdb_am1_cp_lp2",
           "schematicPosition": {
-            "x": 3000,
-            "y": 3000
+            "x": 3240,
+            "y": 2970
           }
         },
         {
           "id": "w_pdb_am1_cp_lp3",
           "schematicPosition": {
-            "x": 3000,
+            "x": 3240,
             "y": 3060
           }
         },
@@ -3076,25 +2996,32 @@
           "id": "w_pdb_am2_cp_lp1",
           "schematicPosition": {
             "x": 870,
-            "y": 3030
+            "y": 3000
           }
         },
         {
           "id": "w_pdb_am2_cp_lp2",
           "schematicPosition": {
-            "x": 2970,
-            "y": 3030
+            "x": 3120,
+            "y": 3000
           }
         },
         {
           "id": "w_pdb_am2_cp_lp3",
           "schematicPosition": {
-            "x": 2970,
-            "y": 3120
+            "x": 3120,
+            "y": 3090
           }
         },
         {
           "id": "w_pdb_am2_cp_lp4",
+          "schematicPosition": {
+            "x": 3270,
+            "y": 3090
+          }
+        },
+        {
+          "id": "w_pdb_am2_cp_lp5",
           "schematicPosition": {
             "x": 3270,
             "y": 3120
@@ -3119,20 +3046,20 @@
           "id": "w_pdb_jb1_cp_lp1",
           "schematicPosition": {
             "x": 870,
-            "y": 3060
+            "y": 3030
           }
         },
         {
           "id": "w_pdb_jb1_cp_lp2",
           "schematicPosition": {
-            "x": 2940,
-            "y": 3060
+            "x": 3090,
+            "y": 3030
           }
         },
         {
           "id": "w_pdb_jb1_cp_lp3",
           "schematicPosition": {
-            "x": 2940,
+            "x": 3090,
             "y": 3180
           }
         },
@@ -3196,40 +3123,26 @@
         {
           "id": "w_rb4_cp_lp1",
           "schematicPosition": {
-            "x": 6480,
-            "y": 5040
+            "x": 6510,
+            "y": 5070
           }
         },
         {
           "id": "w_rb4_cp_lp2",
           "schematicPosition": {
-            "x": 6480,
-            "y": 4470
+            "x": 6510,
+            "y": 3210
           }
         },
         {
           "id": "w_rb4_cp_lp3",
           "schematicPosition": {
-            "x": 3750,
-            "y": 4470
+            "x": 3690,
+            "y": 3210
           }
         },
         {
           "id": "w_rb4_cp_lp4",
-          "schematicPosition": {
-            "x": 3750,
-            "y": 3270
-          }
-        },
-        {
-          "id": "w_rb4_cp_lp5",
-          "schematicPosition": {
-            "x": 3690,
-            "y": 3270
-          }
-        },
-        {
-          "id": "w_rb4_cp_lp6",
           "schematicPosition": {
             "x": 3690,
             "y": 3240
@@ -3264,28 +3177,28 @@
         {
           "id": "w_rb2_cp_lp2",
           "schematicPosition": {
-            "x": 6510,
+            "x": 6480,
             "y": 5220
           }
         },
         {
           "id": "w_rb2_cp_lp3",
           "schematicPosition": {
-            "x": 6510,
-            "y": 3630
+            "x": 6480,
+            "y": 4470
           }
         },
         {
           "id": "w_rb2_cp_lp4",
           "schematicPosition": {
-            "x": 3780,
-            "y": 3630
+            "x": 3750,
+            "y": 4470
           }
         },
         {
           "id": "w_rb2_cp_lp5",
           "schematicPosition": {
-            "x": 3780,
+            "x": 3750,
             "y": 3330
           }
         },
@@ -3387,14 +3300,14 @@
         {
           "id": "w_fb_k_acc_30_cp_lp2",
           "schematicPosition": {
-            "x": 3930,
+            "x": 3960,
             "y": 2460
           }
         },
         {
           "id": "w_fb_k_acc_30_cp_lp3",
           "schematicPosition": {
-            "x": 3930,
+            "x": 3960,
             "y": 3750
           }
         },
@@ -3462,14 +3375,14 @@
           "id": "w_cp_sw12_in_lp5",
           "schematicPosition": {
             "x": 1710,
-            "y": 3180
+            "y": 3240
           }
         },
         {
           "id": "w_cp_sw12_in_lp6",
           "schematicPosition": {
             "x": 1470,
-            "y": 3180
+            "y": 3240
           }
         },
         {
@@ -3534,28 +3447,28 @@
           "id": "w_k_fp_86_cp_lp1",
           "schematicPosition": {
             "x": 1500,
-            "y": 3210
+            "y": 3270
           }
         },
         {
           "id": "w_k_fp_86_cp_lp2",
           "schematicPosition": {
-            "x": 3780,
-            "y": 3210
+            "x": 3900,
+            "y": 3270
           }
         },
         {
           "id": "w_k_fp_86_cp_lp3",
           "schematicPosition": {
-            "x": 3780,
-            "y": 2940
+            "x": 3900,
+            "y": 3000
           }
         },
         {
           "id": "w_k_fp_86_cp_lp4",
           "schematicPosition": {
             "x": 4770,
-            "y": 2940
+            "y": 3000
           }
         },
         {
@@ -3626,42 +3539,42 @@
         {
           "id": "w_k_fan_86_cp_lp2",
           "schematicPosition": {
-            "x": 2970,
+            "x": 3240,
             "y": 3450
           }
         },
         {
           "id": "w_k_fan_86_cp_lp3",
           "schematicPosition": {
-            "x": 2970,
+            "x": 3240,
             "y": 3510
           }
         },
         {
           "id": "w_k_fan_86_cp_lp4",
           "schematicPosition": {
-            "x": 3960,
+            "x": 3870,
             "y": 3510
           }
         },
         {
           "id": "w_k_fan_86_cp_lp5",
           "schematicPosition": {
-            "x": 3960,
-            "y": 3030
+            "x": 3870,
+            "y": 2970
           }
         },
         {
           "id": "w_k_fan_86_cp_lp6",
           "schematicPosition": {
-            "x": 5280,
-            "y": 3030
+            "x": 5250,
+            "y": 2970
           }
         },
         {
           "id": "w_k_fan_86_cp_lp7",
           "schematicPosition": {
-            "x": 5280,
+            "x": 5250,
             "y": 2790
           }
         },
@@ -3709,46 +3622,32 @@
           "id": "w_fan_pwr_ac_lp3",
           "schematicPosition": {
             "x": 5310,
-            "y": 3150
-          }
-        },
-        {
-          "id": "w_fan_pwr_ac_lp4",
-          "schematicPosition": {
-            "x": 4650,
-            "y": 3150
-          }
-        },
-        {
-          "id": "w_fan_pwr_ac_lp5",
-          "schematicPosition": {
-            "x": 4650,
             "y": 3720
           }
         },
         {
-          "id": "w_fan_pwr_ac_lp6",
+          "id": "w_fan_pwr_ac_lp4",
           "schematicPosition": {
             "x": 2190,
             "y": 3720
           }
         },
         {
-          "id": "w_fan_pwr_ac_lp7",
+          "id": "w_fan_pwr_ac_lp5",
           "schematicPosition": {
             "x": 2190,
             "y": 3900
           }
         },
         {
-          "id": "w_fan_pwr_ac_lp8",
+          "id": "w_fan_pwr_ac_lp6",
           "schematicPosition": {
             "x": 1650,
             "y": 3900
           }
         },
         {
-          "id": "w_fan_pwr_ac_lp9",
+          "id": "w_fan_pwr_ac_lp7",
           "schematicPosition": {
             "x": 1650,
             "y": 3930
@@ -3822,34 +3721,6 @@
         {
           "id": "w_k_etb_86_cp_lp3",
           "schematicPosition": {
-            "x": 3090,
-            "y": 3390
-          }
-        },
-        {
-          "id": "w_k_etb_86_cp_lp4",
-          "schematicPosition": {
-            "x": 3090,
-            "y": 3540
-          }
-        },
-        {
-          "id": "w_k_etb_86_cp_lp5",
-          "schematicPosition": {
-            "x": 4050,
-            "y": 3540
-          }
-        },
-        {
-          "id": "w_k_etb_86_cp_lp6",
-          "schematicPosition": {
-            "x": 4050,
-            "y": 3390
-          }
-        },
-        {
-          "id": "w_k_etb_86_cp_lp7",
-          "schematicPosition": {
             "x": 4170,
             "y": 3390
           }
@@ -3884,14 +3755,14 @@
         {
           "id": "w82_ac_lp2",
           "schematicPosition": {
-            "x": 4140,
+            "x": 4050,
             "y": 3420
           }
         },
         {
           "id": "w82_ac_lp3",
           "schematicPosition": {
-            "x": 4140,
+            "x": 4050,
             "y": 3780
           }
         },
@@ -3963,28 +3834,28 @@
         {
           "id": "w_k_str_86_cp_lp1",
           "schematicPosition": {
-            "x": 2220,
+            "x": 3990,
             "y": 3480
           }
         },
         {
           "id": "w_k_str_86_cp_lp2",
           "schematicPosition": {
-            "x": 2220,
-            "y": 3600
+            "x": 3990,
+            "y": 3240
           }
         },
         {
           "id": "w_k_str_86_cp_lp3",
           "schematicPosition": {
-            "x": 4710,
-            "y": 3600
+            "x": 4680,
+            "y": 3240
           }
         },
         {
           "id": "w_k_str_86_cp_lp4",
           "schematicPosition": {
-            "x": 4710,
+            "x": 4680,
             "y": 3390
           }
         },
@@ -4038,19 +3909,26 @@
         {
           "id": "w_strl_ac_lp4",
           "schematicPosition": {
-            "x": 3660,
+            "x": 2310,
             "y": 3840
           }
         },
         {
           "id": "w_strl_ac_lp5",
           "schematicPosition": {
-            "x": 3660,
-            "y": 4590
+            "x": 2310,
+            "y": 4560
           }
         },
         {
           "id": "w_strl_ac_lp6",
+          "schematicPosition": {
+            "x": 1650,
+            "y": 4560
+          }
+        },
+        {
+          "id": "w_strl_ac_lp7",
           "schematicPosition": {
             "x": 1650,
             "y": 4590
@@ -4117,47 +3995,33 @@
         {
           "id": "w_k_fan2_86_cp_lp2",
           "schematicPosition": {
-            "x": 3000,
+            "x": 2970,
             "y": 3420
           }
         },
         {
           "id": "w_k_fan2_86_cp_lp3",
           "schematicPosition": {
-            "x": 3000,
-            "y": 3480
+            "x": 2970,
+            "y": 3570
           }
         },
         {
           "id": "w_k_fan2_86_cp_lp4",
           "schematicPosition": {
-            "x": 3990,
-            "y": 3480
+            "x": 5280,
+            "y": 3570
           }
         },
         {
           "id": "w_k_fan2_86_cp_lp5",
           "schematicPosition": {
-            "x": 3990,
-            "y": 3240
-          }
-        },
-        {
-          "id": "w_k_fan2_86_cp_lp6",
-          "schematicPosition": {
-            "x": 5310,
-            "y": 3240
-          }
-        },
-        {
-          "id": "w_k_fan2_86_cp_lp7",
-          "schematicPosition": {
-            "x": 5310,
+            "x": 5280,
             "y": 3390
           }
         },
         {
-          "id": "w_k_fan2_86_cp_lp8",
+          "id": "w_k_fan2_86_cp_lp6",
           "schematicPosition": {
             "x": 5370,
             "y": 3390
@@ -4206,14 +4070,14 @@
         {
           "id": "w_fan2_pwr_bc_lp4",
           "schematicPosition": {
-            "x": 2280,
+            "x": 2220,
             "y": 3810
           }
         },
         {
           "id": "w_fan2_pwr_bc_lp5",
           "schematicPosition": {
-            "x": 2280,
+            "x": 2220,
             "y": 4080
           }
         },
@@ -4259,14 +4123,14 @@
         {
           "id": "w_k_eps_86_cp_lp2",
           "schematicPosition": {
-            "x": 3000,
+            "x": 2910,
             "y": 3540
           }
         },
         {
           "id": "w_k_eps_86_cp_lp3",
           "schematicPosition": {
-            "x": 3000,
+            "x": 2910,
             "y": 3990
           }
         },
@@ -4361,19 +4225,26 @@
         {
           "id": "w_eps_pwr_bc_lp2",
           "schematicPosition": {
-            "x": 3630,
+            "x": 2250,
             "y": 4020
           }
         },
         {
           "id": "w_eps_pwr_bc_lp3",
           "schematicPosition": {
-            "x": 3630,
-            "y": 4410
+            "x": 2250,
+            "y": 4380
           }
         },
         {
           "id": "w_eps_pwr_bc_lp4",
+          "schematicPosition": {
+            "x": 1650,
+            "y": 4380
+          }
+        },
+        {
+          "id": "w_eps_pwr_bc_lp5",
           "schematicPosition": {
             "x": 1650,
             "y": 4410
@@ -4401,14 +4272,28 @@
         {
           "id": "w_acc_trig_cp_lp1",
           "schematicPosition": {
-            "x": 5190,
+            "x": 4770,
             "y": 4170
           }
         },
         {
           "id": "w_acc_trig_cp_lp2",
           "schematicPosition": {
-            "x": 5190,
+            "x": 4710,
+            "y": 4170
+          }
+        },
+        {
+          "id": "w_acc_trig_cp_lp3",
+          "schematicPosition": {
+            "x": 4710,
+            "y": 3960
+          }
+        },
+        {
+          "id": "w_acc_trig_cp_lp4",
+          "schematicPosition": {
+            "x": 4770,
             "y": 3960
           }
         }
@@ -4435,28 +4320,35 @@
         {
           "id": "w_acc86_cp_lp1",
           "schematicPosition": {
-            "x": 4770,
+            "x": 5190,
             "y": 4230
           }
         },
         {
           "id": "w_acc86_cp_lp2",
           "schematicPosition": {
-            "x": 4740,
+            "x": 5250,
             "y": 4230
           }
         },
         {
           "id": "w_acc86_cp_lp3",
           "schematicPosition": {
-            "x": 4740,
-            "y": 3990
+            "x": 5250,
+            "y": 4050
           }
         },
         {
           "id": "w_acc86_cp_lp4",
           "schematicPosition": {
-            "x": 4770,
+            "x": 5190,
+            "y": 4050
+          }
+        },
+        {
+          "id": "w_acc86_cp_lp5",
+          "schematicPosition": {
+            "x": 5190,
             "y": 3990
           }
         }
@@ -4523,33 +4415,19 @@
         {
           "id": "w_start_in_cp_lp2",
           "schematicPosition": {
-            "x": 2310,
+            "x": 2340,
             "y": 4260
           }
         },
         {
           "id": "w_start_in_cp_lp3",
           "schematicPosition": {
-            "x": 2310,
-            "y": 2670
-          }
-        },
-        {
-          "id": "w_start_in_cp_lp4",
-          "schematicPosition": {
-            "x": 1680,
-            "y": 2670
-          }
-        },
-        {
-          "id": "w_start_in_cp_lp5",
-          "schematicPosition": {
-            "x": 1680,
+            "x": 2340,
             "y": 2580
           }
         },
         {
-          "id": "w_start_in_cp_lp6",
+          "id": "w_start_in_cp_lp4",
           "schematicPosition": {
             "x": 1590,
             "y": 2580
@@ -4585,14 +4463,14 @@
         {
           "id": "w_start_cp_lp2",
           "schematicPosition": {
-            "x": 3030,
+            "x": 3000,
             "y": 2610
           }
         },
         {
           "id": "w_start_cp_lp3",
           "schematicPosition": {
-            "x": 3030,
+            "x": 3000,
             "y": 4170
           }
         },
@@ -4640,22 +4518,22 @@
         {
           "id": "w_at_12v_tie_cp_lp2",
           "schematicPosition": {
-            "x": 1110,
+            "x": 900,
             "y": 2130
           }
         },
         {
           "id": "w_at_12v_tie_cp_lp3",
           "schematicPosition": {
-            "x": 1110,
-            "y": 2730
+            "x": 900,
+            "y": 2670
           }
         },
         {
           "id": "w_at_12v_tie_cp_lp4",
           "schematicPosition": {
             "x": 1170,
-            "y": 2730
+            "y": 2670
           }
         },
         {
@@ -4750,33 +4628,19 @@
         {
           "id": "w_at_ig_tie_cp_lp2",
           "schematicPosition": {
-            "x": 1140,
+            "x": 1110,
             "y": 2490
           }
         },
         {
           "id": "w_at_ig_tie_cp_lp3",
           "schematicPosition": {
-            "x": 1140,
-            "y": 2760
-          }
-        },
-        {
-          "id": "w_at_ig_tie_cp_lp4",
-          "schematicPosition": {
-            "x": 1110,
-            "y": 2760
-          }
-        },
-        {
-          "id": "w_at_ig_tie_cp_lp5",
-          "schematicPosition": {
             "x": 1110,
             "y": 3690
           }
         },
         {
-          "id": "w_at_ig_tie_cp_lp6",
+          "id": "w_at_ig_tie_cp_lp4",
           "schematicPosition": {
             "x": 1170,
             "y": 3690
@@ -4812,14 +4676,14 @@
         {
           "id": "w_dev_cp_lp2",
           "schematicPosition": {
-            "x": 930,
+            "x": 1020,
             "y": 2400
           }
         },
         {
           "id": "w_dev_cp_lp3",
           "schematicPosition": {
-            "x": 930,
+            "x": 1020,
             "y": 3960
           }
         },
@@ -4892,14 +4756,14 @@
         {
           "id": "w_haz_cp_lp2",
           "schematicPosition": {
-            "x": 3090,
+            "x": 3060,
             "y": 2190
           }
         },
         {
           "id": "w_haz_cp_lp3",
           "schematicPosition": {
-            "x": 3090,
+            "x": 3060,
             "y": 3330
           }
         },
@@ -5013,33 +4877,19 @@
         {
           "id": "w_k_eps_en_86_cp_lp4",
           "schematicPosition": {
-            "x": 5220,
+            "x": 5250,
             "y": 3660
           }
         },
         {
           "id": "w_k_eps_en_86_cp_lp5",
           "schematicPosition": {
-            "x": 5220,
-            "y": 3900
-          }
-        },
-        {
-          "id": "w_k_eps_en_86_cp_lp6",
-          "schematicPosition": {
-            "x": 5250,
-            "y": 3900
-          }
-        },
-        {
-          "id": "w_k_eps_en_86_cp_lp7",
-          "schematicPosition": {
             "x": 5250,
             "y": 3990
           }
         },
         {
-          "id": "w_k_eps_en_86_cp_lp8",
+          "id": "w_k_eps_en_86_cp_lp6",
           "schematicPosition": {
             "x": 5370,
             "y": 3990
@@ -5177,14 +5027,14 @@
         {
           "id": "w_rb2_wl_cp_lp2",
           "schematicPosition": {
-            "x": 3120,
+            "x": 3030,
             "y": 2100
           }
         },
         {
           "id": "w_rb2_wl_cp_lp3",
           "schematicPosition": {
-            "x": 3120,
+            "x": 3030,
             "y": 3420
           }
         },
@@ -5492,19 +5342,33 @@
         {
           "id": "w_alt_s_cp_lp2",
           "schematicPosition": {
-            "x": 1080,
+            "x": 1110,
             "y": 2190
           }
         },
         {
           "id": "w_alt_s_cp_lp3",
           "schematicPosition": {
-            "x": 1080,
-            "y": 3660
+            "x": 1110,
+            "y": 2460
           }
         },
         {
           "id": "w_alt_s_cp_lp4",
+          "schematicPosition": {
+            "x": 1140,
+            "y": 2460
+          }
+        },
+        {
+          "id": "w_alt_s_cp_lp5",
+          "schematicPosition": {
+            "x": 1140,
+            "y": 3660
+          }
+        },
+        {
+          "id": "w_alt_s_cp_lp6",
           "schematicPosition": {
             "x": 1170,
             "y": 3660
@@ -5540,26 +5404,40 @@
         {
           "id": "w_hl_30_cp_lp2",
           "schematicPosition": {
-            "x": 4020,
+            "x": 1740,
             "y": 1980
           }
         },
         {
           "id": "w_hl_30_cp_lp3",
           "schematicPosition": {
+            "x": 1740,
+            "y": 2040
+          }
+        },
+        {
+          "id": "w_hl_30_cp_lp4",
+          "schematicPosition": {
+            "x": 4020,
+            "y": 2040
+          }
+        },
+        {
+          "id": "w_hl_30_cp_lp5",
+          "schematicPosition": {
             "x": 4020,
             "y": 5100
           }
         },
         {
-          "id": "w_hl_30_cp_lp4",
+          "id": "w_hl_30_cp_lp6",
           "schematicPosition": {
             "x": 4170,
             "y": 5100
           }
         },
         {
-          "id": "w_hl_30_cp_lp5",
+          "id": "w_hl_30_cp_lp7",
           "schematicPosition": {
             "x": 4170,
             "y": 5130
@@ -5595,19 +5473,33 @@
         {
           "id": "w_hl_86_cp_lp2",
           "schematicPosition": {
-            "x": 360,
+            "x": 930,
             "y": 1980
           }
         },
         {
           "id": "w_hl_86_cp_lp3",
           "schematicPosition": {
-            "x": 360,
-            "y": 5190
+            "x": 930,
+            "y": 4950
           }
         },
         {
           "id": "w_hl_86_cp_lp4",
+          "schematicPosition": {
+            "x": 3990,
+            "y": 4950
+          }
+        },
+        {
+          "id": "w_hl_86_cp_lp5",
+          "schematicPosition": {
+            "x": 3990,
+            "y": 5190
+          }
+        },
+        {
+          "id": "w_hl_86_cp_lp6",
           "schematicPosition": {
             "x": 4170,
             "y": 5190
@@ -5643,15 +5535,15 @@
         {
           "id": "w_hl_85_cp_lp2",
           "schematicPosition": {
-            "x": 4620,
-            "y": 5160
+            "x": 4590,
+            "y": 5310
           }
         },
         {
           "id": "w_hl_85_cp_lp3",
           "schematicPosition": {
-            "x": 4620,
-            "y": 5370
+            "x": 4530,
+            "y": 5310
           }
         }
       ]
@@ -5684,22 +5576,22 @@
         {
           "id": "w_hr_30_cp_lp2",
           "schematicPosition": {
-            "x": 3900,
+            "x": 3930,
             "y": 2010
           }
         },
         {
           "id": "w_hr_30_cp_lp3",
           "schematicPosition": {
-            "x": 3900,
-            "y": 4980
+            "x": 3930,
+            "y": 4920
           }
         },
         {
           "id": "w_hr_30_cp_lp4",
           "schematicPosition": {
             "x": 4770,
-            "y": 4980
+            "y": 4920
           }
         },
         {
@@ -5747,14 +5639,14 @@
           "id": "w_hr_86_cp_lp3",
           "schematicPosition": {
             "x": 330,
-            "y": 5310
+            "y": 5040
           }
         },
         {
           "id": "w_hr_86_cp_lp4",
           "schematicPosition": {
             "x": 4710,
-            "y": 5310
+            "y": 5040
           }
         },
         {
@@ -5809,14 +5701,7 @@
           "id": "w_hr_85_cp_lp3",
           "schematicPosition": {
             "x": 4680,
-            "y": 5340
-          }
-        },
-        {
-          "id": "w_hr_85_cp_lp4",
-          "schematicPosition": {
-            "x": 4560,
-            "y": 5340
+            "y": 5370
           }
         }
       ]
@@ -5868,21 +5753,21 @@
         {
           "id": "w_horn_30_cp_lp1",
           "schematicPosition": {
-            "x": 5910,
-            "y": 2040
+            "x": 1680,
+            "y": 1890
           }
         },
         {
           "id": "w_horn_30_cp_lp2",
           "schematicPosition": {
             "x": 5910,
-            "y": 4050
+            "y": 1890
           }
         },
         {
           "id": "w_horn_30_cp_lp3",
           "schematicPosition": {
-            "x": 5880,
+            "x": 5910,
             "y": 4050
           }
         },
@@ -5890,18 +5775,25 @@
           "id": "w_horn_30_cp_lp4",
           "schematicPosition": {
             "x": 5880,
-            "y": 5100
+            "y": 4050
           }
         },
         {
           "id": "w_horn_30_cp_lp5",
+          "schematicPosition": {
+            "x": 5880,
+            "y": 5100
+          }
+        },
+        {
+          "id": "w_horn_30_cp_lp6",
           "schematicPosition": {
             "x": 5790,
             "y": 5100
           }
         },
         {
-          "id": "w_horn_30_cp_lp6",
+          "id": "w_horn_30_cp_lp7",
           "schematicPosition": {
             "x": 5790,
             "y": 5130
@@ -6016,28 +5908,28 @@
           "id": "w_htr_30_cp_lp1",
           "schematicPosition": {
             "x": 450,
-            "y": 2760
+            "y": 2730
           }
         },
         {
           "id": "w_htr_30_cp_lp2",
           "schematicPosition": {
             "x": 390,
-            "y": 2760
+            "y": 2730
           }
         },
         {
           "id": "w_htr_30_cp_lp3",
           "schematicPosition": {
             "x": 390,
-            "y": 5040
+            "y": 5010
           }
         },
         {
           "id": "w_htr_30_cp_lp4",
           "schematicPosition": {
             "x": 5970,
-            "y": 5040
+            "y": 5010
           }
         },
         {
@@ -6308,29 +6200,29 @@
         {
           "id": "w_pwr_30_cp_lp1",
           "schematicPosition": {
-            "x": 870,
-            "y": 2910
+            "x": 450,
+            "y": 2880
           }
         },
         {
           "id": "w_pwr_30_cp_lp2",
           "schematicPosition": {
-            "x": 960,
-            "y": 2910
+            "x": 360,
+            "y": 2880
           }
         },
         {
           "id": "w_pwr_30_cp_lp3",
           "schematicPosition": {
-            "x": 960,
-            "y": 5010
+            "x": 360,
+            "y": 4980
           }
         },
         {
           "id": "w_pwr_30_cp_lp4",
           "schematicPosition": {
             "x": 6570,
-            "y": 5010
+            "y": 4980
           }
         },
         {
@@ -6354,29 +6246,11 @@
       }
     },
     {
-      "id": "cp_bn_bp_930__bp_1050",
-      "sourceId": "b_bp_930",
-      "targetId": "b_bp_1050",
-      "length": {
-        "value": 170,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "cp_bn_bp_1050__bp_2100",
       "sourceId": "b_bp_1050",
       "targetId": "b_bp_2100",
       "length": {
         "value": 2150,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "b_bn_bp_930__batt_ring",
-      "sourceId": "b_bp_930",
-      "targetId": "batt_ring",
-      "length": {
-        "value": 260,
         "unit": "mm"
       }
     },
@@ -7083,13 +6957,6 @@
   ],
   "branchPoints": [
     {
-      "id": "b_bp_930",
-      "layoutPosition": {
-        "x": 1200,
-        "y": 240
-      }
-    },
-    {
       "id": "b_bp_1050",
       "layoutPosition": {
         "x": 1680,
@@ -7348,17 +7215,6 @@
       }
     },
     {
-      "id": "wp_1_0_red",
-      "partNumber": "BC-1/0-RED",
-      "manufacturer": "generic",
-      "description": "CABLE, BATTERY, 1/0 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
-      "color": "Red",
-      "gauge": {
-        "value": 53.5,
-        "unit": "Metric"
-      }
-    },
-    {
       "id": "m16_18_0",
       "partNumber": "M22759/16-18-0",
       "manufacturer": "M22759",
@@ -7382,20 +7238,6 @@
         {
           "id": "cfg",
           "contactPartId": "ct_minifuse_880398"
-        }
-      ]
-    },
-    {
-      "id": "cp_fb_power",
-      "partNumber": "ST185-FB-POWER rev 5",
-      "manufacturer": "custom (PA12 print)",
-      "description": "BOX, FUSE AND RELAY, POWER, PRINTED PA12, COPPER BAR, 7 AMI IN, 7 AMI OUT, 7 MINI ISO RELAY, 1 MINI FUSE",
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_klauke_2r5"
         }
       ]
     },
@@ -7522,6 +7364,20 @@
         }
       ],
       "numberOfCavities": 5
+    },
+    {
+      "id": "cp_fb_power",
+      "partNumber": "ST185-FB-POWER rev 7",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BOX, FUSE AND RELAY, POWER, PRINTED PA12, TINNED COPPER POS BAR AS AMI BAR + NEG BAR (BUS ZONE), 7 AMI IN, 7 AMI OUT, 7 MINI ISO RELAY, 1 MINI FUSE",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_klauke_2r5"
+        }
+      ]
     }
   ],
   "contactParts": [
@@ -7625,22 +7481,6 @@
       "maxGauge": {
         "unit": "AWG",
         "value": 6
-      }
-    },
-    {
-      "id": "ct_klauke_6r8",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "6R8",
-      "description": "TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 50 MM2, M8 STUD",
-      "manufacturer": "Klauke",
-      "minGauge": {
-        "unit": "Metric",
-        "value": 50
-      },
-      "maxGauge": {
-        "unit": "Metric",
-        "value": 50
       }
     },
     {
@@ -7759,22 +7599,6 @@
       "manufacturer": "generic"
     },
     {
-      "id": "tp_lug_m8_50",
-      "size": "M8",
-      "type": "Ring",
-      "maxGauge": {
-        "unit": "Metric",
-        "value": 50
-      },
-      "minGauge": {
-        "unit": "Metric",
-        "value": 50
-      },
-      "partNumber": "132066-2",
-      "description": "TERMINAL, RING TONGUE, SOLISTRAND, CLOSED BARREL, UNINSULATED, 1/0 AWG (41-60 MM2), 5/16 (M8) STUD, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "TE Connectivity"
-    },
-    {
       "id": "tp_ring_m8_16_14",
       "size": "M8",
       "type": "Ring",
@@ -7815,7 +7639,7 @@
         "x": 5910,
         "y": 0
       },
-      "text": "CABIN POWER HARNESS - non-ECU: the two glove-box fuse + relay boxes of DECISIONS R75 (cad/fusebox rev 5, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107); slot map in cad/fusebox/ST185-fusebox-summary.html): the POWER box (fb_power - copper bar fed 1/0 from the PDB bus, 7 AMI IN feeding the Mini ISO relays R1-R6, 7 AMI OUT, the ACPS mini fuse; outboard) and the LOGIC box (fb_logic - Bus 1 permanent from AMI OUT-1 BUS1 50A, Bus 2 switched from k_efi 87, mini fuses BUS1-n / BUS2-n, micro relays M11-M22; inboard). Both boxes live only in this file. Relays: k_htr R1, k_efi R2, k_str R3, k_fan R4, k_fan2 R5, k_pwr R6 (POWER); k_hl M11, k_hr M12, k_horn M13, k_etb M14, k_acc M15, k_eps_en M21, k_rev M22 (LOGIC); k_eps HCR150 beside the POWER box. The fuel pump relay k_fp is NOT here: it sits in the battery relay block in the trunk (ST185-HeavyDC); only its coil + (SW12) leaves this file, broken off (br_fp86). Each relay terminal is crimped and pushed into its printed cavity (no relay sockets); each relay feed is a cable from its AMI IN lug to terminal 30. The non-ECU relay coil circuits follow the EWD 1993 (k_hl / k_hr coil- to IE1-2 R-Y, p.116; k_horn coil- to IE1-19 G, p.185; k_htr coil from the old R/B4 R-L / L-W leads to the A/C amplifier HR, p.215; k_pwr coil+ key IG from the old R/B2 L-Y lead, p.137). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and another is drawn broken off in both with a note naming the other file. Gauges are this drawing's; the CAD summary's gauges are placeholders by fuse rating."
+      "text": "CABIN POWER HARNESS - non-ECU: the two glove-box fuse + relay boxes of DECISIONS R75 (cad/fusebox rev 7 POWER box (DECISIONS R91) + LOGIC box, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107); slot map in cad/fusebox/ST185-fusebox-summary.html): the POWER box (fb_power - tinned copper + bar that is the AMI bar (the bus bar is inside this box, no 1/0 link cable), 7 AMI IN feeding the Mini ISO relays R1-R6, 7 AMI OUT, the ACPS mini fuse; outboard) and the LOGIC box (fb_logic - Bus 1 permanent from AMI OUT-1 BUS1 50A, Bus 2 switched from k_efi 87, mini fuses BUS1-n / BUS2-n, micro relays M11-M22; inboard). Both boxes live only in this file. Relays: k_htr R1, k_efi R2, k_str R3, k_fan R4, k_fan2 R5, k_pwr R6 (POWER); k_hl M11, k_hr M12, k_horn M13, k_etb M14, k_acc M15, k_eps_en M21, k_rev M22 (LOGIC); k_eps HCR150 beside the POWER box. The fuel pump relay k_fp is NOT here: it sits in the battery relay block in the trunk (ST185-HeavyDC); only its coil + (SW12) leaves this file, broken off (br_fp86). Each relay terminal is crimped and pushed into its printed cavity (no relay sockets); each relay feed is a cable from its AMI IN lug to terminal 30. The non-ECU relay coil circuits follow the EWD 1993 (k_hl / k_hr coil- to IE1-2 R-Y, p.116; k_horn coil- to IE1-19 G, p.185; k_htr coil from the old R/B4 R-L / L-W leads to the A/C amplifier HR, p.215; k_pwr coil+ key IG from the old R/B2 L-Y lead, p.137). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and another is drawn broken off in both with a note naming the other file. Gauges are this drawing's; the CAD summary's gauges are placeholders by fuse rating."
     },
     {
       "id": "n_cavity_notes",
