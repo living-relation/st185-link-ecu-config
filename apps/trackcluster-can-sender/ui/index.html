@@ -429,7 +429,7 @@ const FRAMES_CLUSTER = [
     ]
   },
   {
-    id:'0x3EE', dec:1006, period:50,
+    id:'0x3EE', dec:1006, period:10,
     note:'Engine-protection warnings — each byte is its own on/off flag (0 = OK, nonzero = active). Drives the right-cluster full-screen "ECU WARNING" overlay. Only needs sending when a state changes.',
     signals:[
       { key:'warnknock', label:'Knock', gauge:'Warning overlay', byte:0, len:1, isBool:true, default:false, unit:'0=OK / 1=active', wire:'u8', rangeNote:'boolean' },
@@ -465,7 +465,7 @@ const PROFILES = {
       ['0x3E9 (10 ms)', 'Ignition, Speed, Oil Pressure, Fuel Pressure'],
       ['0x3EA (10 ms)', 'Lambda'],
       ['0x3EB (50 ms)', 'Gear, Fuel Level'],
-      ['0x3EE (50 ms)', '6 warning flags → right-screen overlay'],
+      ['0x3EE (10 ms)', '6 warning flags → right-screen overlay'],
     ],
     footer: '<b>Send once</b> transmits the frame’s current bytes one time. <b>Send continuously</b> auto-repeats at that frame’s documented period (10/50&#8202;ms) — matches what <code class="inline">g_dash.last_update_ms</code> needs to stay fresh; a gap over ~500&#8202;ms/2000&#8202;ms trips the UART-bridge staleness handling on the side clusters. "Stop all continuous sends" and Disconnect both halt every running timer. Formulas mirror <code class="inline">main/canbus.c</code> exactly, inverted to compute the raw wire bytes from the display value you type.',
     frames: FRAMES_CLUSTER,
