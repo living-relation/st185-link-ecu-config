@@ -997,50 +997,28 @@
       "id": "n_scope",
       "width": 390,
       "schematicPosition": {
-        "x": 1740,
-        "y": 0
+        "x": 0,
+        "y": 420
       },
-      "text": "FRONT WHEEL SPEED - two pieces. IN: the FL and FR ABS drops run as separate cables to a point by the IN plug and land in it. OUT: the OUT plug, the screened 4-core output cable and the 6-way inline DT04-6P near the ECU (IX_WS_FRONT). The ECU side owns only the short spur and the DT06-6S mating half. No bulkhead."
-    },
-    {
-      "id": "n_vrc",
-      "width": 390,
-      "color": "Orange",
-      "schematicPosition": {
-        "x": 1740,
-        "y": 210
-      },
-      "text": "VRC NOT DRAWN. The VR conditioner and its enclosure belong to the enclosure build. This harness is two separate pieces with no drawn link (Daniel 2026-10-12): IN - the FL and FR legs land in the IN plug lp16_vrc_f_in (pin 1 ABS+ FL, 2 ABS- FL, 3 shield drain, 4 ABS+ FR, 5 ABS- FR); OUT - the OUT plug lp16_vrc_f_out (pin 1 +5V, 2 Gnd, 3 FL out, 4 FR out, 5 screen drain) -> 4-core screened cable -> IX_WS_FRONT c1-c5 (c6 spare). Both plugs: CNLINKO LP-16-J05PE-02-001, female, 5 pins, unshielded, solder cups 22-20 AWG; the box takes the LP-16-C05SX-02-101 rear-nut panel socket."
+      "text": "FRONT WHEEL SPEED - two pieces, no drawn link, no bulkhead. IN: FL / FR ABS cables -> IN plug lp16_vrc_f_in. OUT: OUT plug lp16_vrc_f_out -> screened 4-core cable -> 6-way inline IX_WS_FRONT (DT04-6P) near the ECU. VRC and its box not drawn (enclosure build)."
     },
     {
       "id": "n_shield",
       "width": 390,
-      "color": "Orange",
       "schematicPosition": {
-        "x": 1740,
-        "y": 480
+        "x": 0,
+        "y": 150
       },
-      "text": "SHIELDS (docs/SHIELD-RULES.md; no connector shells, drains on pins). Each sensor screen floats at the sensor. Every screen is drawn as if it had a drain wire (R29): both sensor screens meet at ONE splice by the IN plug and one drain wire (M22759/16-20-06) runs from it to IN pin 3. Build method, not drawn (R30): the FL drain is the one crimped (soldered) into IN pin 3; the FR drain is soldered onto it about 6 mm (0.25 in) behind the rear of the plug, where 6 mm of the FL drain's insulation is cut away. The output cable screen lands straight on OUT pin 5 and on inline pin 5, which runs on to the ECU shield ground. Inside the VRC the build joins IN pin 3 to OUT pin 5 by wire. One screen node, grounded once, at the ECU."
+      "text": "SHIELD: one screen node, grounded once at the ECU. Sensor screens float at the sensor, splice by the IN plug, drain to IN pin 3. Output screen: OUT pin 5 -> inline pin 5. No shell or case landings."
     },
     {
-      "id": "n_iso",
+      "id": "n_notes_doc",
       "width": 390,
-      "color": "Red",
       "schematicPosition": {
-        "x": 1740,
-        "y": 870
+        "x": 810,
+        "y": 390
       },
-      "text": "ISOLATION. The PCB must not touch the enclosure - nylon standoffs; the board grounds through the output cable only. The screen never touches the case either: the drains run pin to pin inside the box. Mount the enclosure on nylon hardware."
-    },
-    {
-      "id": "n_coat",
-      "width": 390,
-      "color": "Red",
-      "schematicPosition": {
-        "x": 1740,
-        "y": 1080
-      },
-      "text": "NO CONNECTOR OR CASE LANDINGS FOR THE SCREEN. Drains run by pin (IN 3, OUT 5) and join inside the box by wire - nothing bonds to the case and no connector shell carries the screen, so there is no bare-metal spot to mask before powder coat."
+      "text": "Full notes - VRC plug pinouts and parts, drain build method, isolation, powder coat: docs/harness/HARNESS-NOTES.md, ST185-WheelSpeed-Front."
     }
   ],
   "layoutNotes": [
@@ -1432,5 +1410,62 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "manufacturer": "TE DEUTSCH"
     }
-  ]
+  ],
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  }
 }

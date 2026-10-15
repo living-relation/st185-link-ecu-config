@@ -1589,17 +1589,17 @@
       "id": "n_rl_scope",
       "width": 390,
       "schematicPosition": {
-        "x": 1290,
-        "y": 0
+        "x": 0,
+        "y": 300
       },
-      "text": "REAR LIGHTS HARNESS (Route 15, approved by Dan 2026-10-13). New harness: the original rear lighting wires are missing (R55); every wire is new, project colours follow the factory colours. Lift-back; tail, stop, high-mount stop (in the spoiler), back-up, rear turn L/R, license plate lights. Rear wiper / washer deleted (R54). Run: J/B No.1 / left kick panel -> LH sill -> left quarter panel (no inline connector, C2) -> hatch branch to H6 at the upper left (OEM path, C7) -> rear panel: R11, L1 + ground BL, R12."
+      "text": "REAR LIGHTS HARNESS (Route 15, approved 2026-10-13). All wires new (R55), factory colours. Run: J/B No.1 / left kick panel -> LH sill -> left quarter -> hatch branch to H6 -> rear panel: R11, L1, BL, R12."
     },
     {
       "id": "n_rl_feeds",
       "width": 390,
       "schematicPosition": {
-        "x": 1290,
-        "y": 330
+        "x": 0,
+        "y": 450
       },
       "text": "FEEDS (Dan C5, DECISIONS R61): tail, stop and turn stay fed from the kept OEM J/B No.1 - tail 15A TAIL / TAIL relay out 1F-1, turn LH / RH 1F-3 / 1F-2 (flasher T3, hazard H5 and switch C15 stay OEM, C8), stop 15A STOP through S9 pin 1. Back-up: reverse relay k_rev in the glove-box LOGIC box (ST185-CabinPower), its contact fed from the J/B No.1 GAUGE 15A fuse, coil from the back-up switch B1 on ST185-B-engine; 87 arrives broken off. 16 AWG behind the 15A fuses, 18 AWG behind the 10A TURN fuse (fuse protects the thinnest wire)."
     },
@@ -1607,10 +1607,10 @@
       "id": "n_rl_ground",
       "width": 390,
       "schematicPosition": {
-        "x": 1290,
-        "y": 660
+        "x": 0,
+        "y": 750
       },
-      "text": "GROUND: one rear ground for all rear lamps, H6 included (Dan C6) - sp_rl_gnd -> body ground BL, back panel center. Lamp plugs: the factory plugs are gone with the rear wires; their part numbers are not chosen yet (docs/OPEN-ITEMS.md). Lengths are route estimates - measure at the build."
+      "text": "GROUND: all rear lamps, H6 included -> sp_rl_gnd -> body ground BL. Full notes: docs/harness/HARNESS-NOTES.md, ST185-RearLights."
     }
   ],
   "wireParts": [
@@ -1726,5 +1726,62 @@
       "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
       "manufacturer": "generic"
     }
-  ]
+  ],
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showCoverings": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  }
 }
