@@ -28,6 +28,13 @@ K10 answered the same day; row 56 dismissed by Dan; rows 33, 88, 97 done by merg
 - **[G4] CSB3 config finished: 1** - row 101.
 - **Parked (out of scope): 10** - rows 9, 26, 62, 117, 119 and setup-time rows 4, 5, 7, 8, 10, moved to "Parked (out of scope)" at the end, not deleted.
 
+## Needs Dan
+
+Open questions for Dan, the ONLY place they live (DECISIONS R119); the research hub's "Needs Dan" box reads this table (`docs/needs_dan.py`). Dispatch keeps it current on every check-in: add a row with the next ID (R115), restate it in full when repeated, delete the row once Dan answers (the answer goes into DECISIONS). Options: `A) label; B) label`; Recommended: the letter. Header only = nothing waiting.
+
+| ID | Topic | Question | Options | Recommended |
+|---|---|---|---|---|
+
 ## Status (2026-10-15)
 
 The research hub (`docs/research-hub.html`) reads this section: keep the table and the numbered list in this shape.
