@@ -293,10 +293,10 @@ REV7_STOCK_BARS = 2    # POS bar 226 + battery block bar 36.5 from bar 1; NEG ba
 TERM = {
     '880398-2': dict(ins=(2.3, 3.5), t=None, L=26.5, head=(5.6, 4.1), what='2.8 receptacle 1-2.5 mm2 (17-13 AWG), typical 33 A'),
     '1241388-2': dict(ins=(1.4, 2.1), t=None, L=None, head=(4.4, 4.4), what='MCP 2.8K receptacle 0.5-1 mm2, typical 15 A'),
-    '42281-1': dict(ins=(2.79, 4.32), t=0.41, L=19.05, head=(7.49, 4.70), what='FASTON .250 receptacle 18-14 AWG'),
+    '42281-1': dict(ins=(2.79, 4.32), t=0.41, L=19.05, head=(7.49, 3.45), what='FASTON .250 receptacle 18-14 AWG'),
     '2293255-1': dict(ins=(2.3, 3.3), t=0.33, L=None, head=(5.6, 3.0), what='FASTON .187 receptacle 20-15 AWG'),
-    '280755-4': dict(ins=(5.0, 7.0), t=0.51, L=29.0, head=(11.10, 5.25), what='FASTON .375 receptacle 10-7 AWG'),
-    '280756-4': dict(ins=(3.4, 5.1), t=0.51, L=29.0, head=(11.10, 5.25), what='FASTON .375 receptacle 12-10 AWG'),
+    '280755-4': dict(ins=(5.0, 7.0), t=0.51, L=29.0, head=(11.10, 3.80), what='FASTON .375 receptacle 10-7 AWG'),
+    '280756-4': dict(ins=(3.4, 5.1), t=0.51, L=29.0, head=(11.10, 3.80), what='FASTON .375 receptacle 12-10 AWG'),
     '62998-2': dict(ins=(5.84, 7.11), t=0.43, L=19.69, head=(7.62, 3.2), what='FASTON .250 receptacle 10-8 AWG'),
 }
 # R120 (Dan 2026-10-15, M6): head = the receptacle's widest section (W across the tab, H through it, lance included), max of tolerance,
@@ -304,7 +304,9 @@ TERM = {
 # retention lances spread 8.21 and fold in as it goes through); 1241437 (MCP 2.8K group drawing that 1241388 refers to) 4.2+-0.2 x 4.4;
 # 42281 rev AN section A-A 7.49, side 4.70 max incl. lance; 2293255 rev A3 section Q-Q 5.6; 280755 / 280756 section A-A 11.10, side
 # 3.80 + 1.25+-0.2 lance; 62998 rev G section A-A 7.62. HEAD_EST: H not dimensioned on the drawing, scaled off it (est.).
-HEAD_EST = {'2293255-1', '62998-2'}
+HEAD_EST = {'2293255-1', '62998-2', '42281-1'}
+# R121 (2026-10-15): head = the RIGID contact box, the locking lance folded flat (it springs in as it goes through): 42281-1 4.70 over the
+# lance - 1.25 lance (est: the 280755 / 280756 lance height on their TE pages) = 3.45 est; 280755 / 280756 3.80 (the 1.25 lance is LOCK).
 T_EST, L_EST = 0.40, 20.0        # est: metal thickness / length where the TE page gives none
 HOLE = dict(clr=CLR, min_wall=2.0, lead_in=2.0, top_gap=1.0)   # terminal hole (R120): slot = terminal envelope + 0.4 per side; walls >= 2.0
                                                                 # (R73) or the two holes join into one slot (Dan); >= 2 mm deep at the mouth;
@@ -369,17 +371,110 @@ BLADE_AXIS = {'fuse in': 'x', 'fuse out': 'x', 'acps in': 'x', 'acps out': 'x', 
               'micro 86': 'y', 'micro 87a': 'y', 'F7 30': 'y', 'F7 87': 'y', 'F7 87a': 'y', 'F7 85': 'x', 'F7 86': 'x'}
 
 
-def envelope(part, wire_od):
-    """(W, H) of the crimped terminal: the head, or the crimped barrel where that is bigger."""
-    b, (w, h) = barrel_od(part, wire_od), TERM[part]['head']
-    return max(w, b), max(h, b)
+# R120 as Dan confirmed it (2026-10-15): "Hole size = the largest cross-section, seen along the wire's insertion axis, of everything that
+# passes through: the terminal's contact box, its crimped wire + insulation barrels, and the wire behind them - plus 0.4 mm per side (CLR).
+# For the wire, use the THICKEST insulation that terminal accepts (top of its insulation range ...), not today's thin-wall wire, so GXL or
+# thicker wire always fits. If the terminal's own outline is larger than any wire it accepts, the terminal sets the size. Holes need not be
+# round - use the combined outline."
+# R121 (Dan 2026-10-15: "for install, terminals have to be self locking"): the terminal goes up from under the deck, contact box first, and
+# snaps in. LOCK, per terminal, from its TE customer drawing / product page (read 2026-10-15), measured from the contact end (the seat):
+#   neck     contact end to the top of the insulation barrel (or the 880398-2 stop flange): the big parts of the terminal (insulation
+#            barrel on the thickest insulation, flange) never get higher than this when it is seated, so above it only the contact box and
+#            the small wire barrel pass and the cavity steps in to the box - that box-sized stretch is the lance's ledge (R120 still holds:
+#            each height is sized by everything that passes it). neck = TE length - insulation barrel length (est where scaled)
+#   tip      contact end to the lance tip; out = how far the lance springs out past the box (each side on its axis); 'W' = across the blade
+#            width (880398-2: two side lances), 'H' = through it (FASTON / MCP: one lance, the window is cut both sides so the terminal
+#            goes in either way round)
+#   shoulder 880398-2 only: lance tip to its stop flange (3.8, dimensioned) - the printed shoulder between them; flange = flange width
+#   kind 'dimple': no lance (TE "Mating Retention Type: Dimple") - cannot self-lock, open question M8 (swap or printed latch)
+# Sources: 880398 (lance spread 8.21+-0.38 on a 5.4 box, 5.9 to the lance root, 3.8 tip to flange; tip 9.7 and flange 8.6 scaled, est);
+# 1241437 MCP 2.8K (contact zone 6.3, box 6.3 + 4.2; the steel overspring lance: tip / out est, check on the on-hand sample); 42281 rev AN
+# (19.05 long, 7.37 max contact end to lance tip; lance 1.25 est; insulation barrel ~4 scaled); 280755 / 280756 (TE page "Locking Lance
+# Height 1.25 mm", 10.65 to the tip, 29 long, insulation barrel ~5.5 scaled); 2293255 rev A3 (15 long), 62998 rev G (19.69 long). Release: press the lance flat from the top through the blade
+# slot (MCP: TE extraction tool 5-1579008-7, AMP MCP 2.8 contact-to-wire; the others: TE tool per terminal TBD at the sample check).
+LOCK = {
+    '880398-2': dict(kind='lance', axis='W', out=1.6, tip=9.7, shoulder=3.8, flange=8.6, neck=13.5, est=True),
+    '1241388-2': dict(kind='lance', axis='H', out=0.8, tip=6.3, neck=15.0, est=True),
+    '42281-1': dict(kind='lance', axis='H', out=1.25, tip=7.37, neck=15.0, est=True),
+    '280755-4': dict(kind='lance', axis='H', out=1.45, tip=10.65, neck=23.5, est=True),
+    '280756-4': dict(kind='lance', axis='H', out=1.45, tip=10.65, neck=23.5, est=True),
+    '2293255-1': dict(kind='dimple', neck=11.8, est=True),
+    '62998-2': dict(kind='dimple', neck=15.3, est=True),
+}
 
 
-def slot(part, wire_od, kind):
-    """(size x, size y) of the terminal hole (R120): the envelope + clr per side, the long side along BLADE_AXIS[kind]."""
-    w, h = envelope(part, wire_od)
-    w, h = w + 2 * HOLE['clr'], h + 2 * HOLE['clr']
+def barrel_max(part):
+    """Crimped insulation barrel on the THICKEST insulation the terminal accepts (R120): top of its range + the metal both sides."""
+    t_ = TERM[part]
+    return t_['ins'][1] + 2 * (t_['t'] if t_['t'] is not None else T_EST)
+
+
+def _xy(w, h, kind):
     return (w, h) if BLADE_AXIS[kind] == 'x' else (h, w)
+
+
+def hole(part, kind):
+    """(size x, size y) of the hole (R120): the combined outline of the box, the barrels on the thickest insulation and (880398-2) the
+    stop flange, + clr per side, the long side along BLADE_AXIS[kind]. Never from today's wire: that only has to be smaller."""
+    (w, h), b, c = TERM[part]['head'], barrel_max(part), 2 * HOLE['clr']
+    w = max(w, b, LOCK[part].get('flange', 0.0))
+    return _xy(w + c, max(h, b) + c, kind)
+
+
+def lance_side(c, cavities):
+    """+1 / -1: the side of the H axis the lance window opens to - away from the cavity's neighbours (the centroid of the cavities within
+    NEAR mm in the same box), so the window never faces another cavity. c / cavities: dicts with box, x, y, kind."""
+    ax = 'y' if BLADE_AXIS[c['kind']] == 'x' else 'x'
+    nb = [d for d in cavities if d is not c and d['box'] == c['box'] and 0 < math.hypot(d['x'] - c['x'], d['y'] - c['y']) < NEAR]
+    if not nb:
+        return 1
+    m = sum(d[ax] for d in nb) / len(nb)
+    return 1 if c[ax] >= m else -1
+
+
+NEAR = 15.0
+
+
+def zones(part, kind, side=1):
+    """The cavity from the mouth up to the seat, as [(dz_lo, dz_hi, x0, x1, y0, y1)]: dz from the seat (the contact end), bottom up, dz_lo
+    None = from the mouth; x / y offsets from the cavity centre. R120 hole below the neck; above it the box (+ clr) - the lance's ledge -
+    and the R121 lance window from the tip up to the seat: both sides of the blade width for a 'W' lance (880398-2), the `side` of the H
+    axis for an 'H' lance (lance_side: away from the neighbours, so the terminal goes in lance outward). The deck's blade slot above the
+    seat, narrower than the box, is the stop the other way."""
+    L_, (w, h), c = LOCK[part], TERM[part]['head'], 2 * HOLE['clr']
+
+    def r(a, b, ea=0.0, eb=0.0):        # a x b (W x H frame) with the H side extended by ea (-) / eb (+), into box x / y
+        if BLADE_AXIS[kind] == 'x':
+            return (-a / 2, a / 2, -b / 2 - ea, b / 2 + eb)
+        return (-b / 2 - ea, b / 2 + eb, -a / 2, a / 2)
+    hx, hy = hole(part, kind)
+    out = [(None, -L_['neck'], -hx / 2, hx / 2, -hy / 2, hy / 2)]
+    box = r(w + c, h + c)
+    if L_['kind'] != 'lance':
+        return out + [(-L_['neck'], 0.0) + box]
+    o = L_['out']
+    if L_['axis'] == 'W':
+        win = r(w + c + 2 * o, h + c)
+    else:
+        win = r(w + c, h + c, o if side < 0 else 0.0, o if side > 0 else 0.0)
+    return out + [(-L_['neck'], -L_['tip']) + box, (-L_['tip'], 0.0) + win]
+
+
+def outline(part, kind, side=1):
+    """(x0, x1, y0, y1) that bounds every zone - for the collar round the cavity."""
+    zs = zones(part, kind, side)
+    return min(z[2] for z in zs), max(z[3] for z in zs), min(z[4] for z in zs), max(z[5] for z in zs)
+
+
+# R122 (Dan 2026-10-15: "add one small screw hole on each lid and base tab for extra support if needed"): beside every cover catch (all
+# three boxes) ONE optional M3 screw backs up the snap - an M3 brass heat-set insert (McMaster 94459A140: 5.7 installed, hole 4.0, 6.5 min
+# material; R73: threads in metal, never printed) pressed into a boss behind the base skirt, and an M3 x 10 cap screw through a clearance
+# hole in the cover wall + bumper band. The boss hangs from the deck plate (LOGIC / POWER) or stands on the floor (battery block), so it is
+# never floating (R101); walls round the insert >= 2.0 (R73). It sits `off` along the wall from the catch centre, clear of the tongue and
+# its two slots (half width 6 + 1.2 + the head), at the catch height. The belly-pan catches are tongues in the pan wall with no tab, so
+# they get no screw (Dan: "if they have tabs").
+SCREW = dict(off=13.0, d_ins=4.0, ins_depth=6.0, boss_w=8.6, boss_depth=5.0, boss_h=8.0, d_clear=3.4, head_d=5.5, z_from_top=9.5)
+# ins_depth: insert hole from the skirt's outer face (5.7 insert + 0.3); skirt 3.0 + boss 5.0 = 8.0, so 2.0 of wall stays behind it (R73)
 
 
 # J4 = B: LOGIC front channel. Fuse-side wires come forward along x 7.4 (between the belly pan wall and the Bus 1 output risers), turn

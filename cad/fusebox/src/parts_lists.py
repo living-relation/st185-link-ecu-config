@@ -146,6 +146,23 @@ def sleeves(L, box):
               'below the terminal insulation range; every end and its layers: python cad/fusebox/src/check_terminal_holes.py --list.')
 
 
+def cover_screws(L, box):
+    """R122 (Dan 2026-10-15: "add one small screw hole on each lid and base tab for extra support if needed"): OPTIONAL - one M3 screw into a
+    brass heat-set insert beside each of the 4 cover catches (the snaps stay the main hold). R38: TE / the approved suppliers sell no
+    screws or inserts - other makers (McMaster, Accu). R73: threads in metal (insert), never printed."""
+    n = 4
+    L.add(box, 'Hardware (optional)', 'OPTIONAL cover backup: M3 brass heat-set insert, one beside each cover catch', '94459A140', 'McMaster-Carr',
+          'Heat-set insert for plastic, brass, M3 x 0.5, 5.7 mm installed length, 4.0 mm hole (pack of 50 covers all three boxes)', n, 0, unit=0.40,
+          basis='est', url='https://www.mcmaster.com/product/94459A140/',
+          checked='McMaster product page 94459A140 (M3 x 0.5, 5.7 installed, max hole 4 mm, min material 6.5) via search 2026-10-15',
+          note='R122. Optional: pressed in with a soldering iron through the skirt into the boss (spec.SCREW). Other maker (R38 step 4): no TE / approved-supplier insert.')
+    L.add(box, 'Hardware (optional)', 'OPTIONAL cover backup: M3 x 10 cap screw, one beside each cover catch', 'SSCF-M3-10-A4', 'Accu',
+          'Socket head cap screw M3 x 10, DIN 912 / ISO 4762, A4 (316) stainless', n, 1, unit=0.50, basis='est',
+          url='https://accu-components.com/us/metric-cap-head-screws/3975-SSCF-M3-10-A4',
+          checked='Accu product page SSCF-M3-10-A4 2026-10-15 (title: M3 x 10mm full thread socket head cap screw, DIN 912, 316)',
+          note='R122. Optional: through the cover band + wall (3.4 clearance hole) into the insert. Other maker (R38 step 4).')
+
+
 def lug_for(awg):
     """Klauke tubular M5 lug by wire, TE PIDG for 12 AWG (a 10 mm2 barrel is too big for 12 AWG)."""
     return {12: '36161', 10: '2R5', 8: '2R5', 6: '3R5'}[awg]
@@ -270,6 +287,7 @@ def build(rev=6):
           1, 1, unit=0.35, basis='est', url=TE('1241388-2'), checked='TE page (2.8 mm tab, 0.6 / 0.8 thick, 0.5-1 mm2); te-on-hand-bom.csv qty_ordered 10; ST185-CabinPower ACPS out 18 AWG',
           note='Row 110 (c).')
     sleeves(L, P)
+    cover_screws(L, P)
     # lugs
     all_lugs = [(nm, S.AMI_AWG[nm]) for nm, a in IN_USED + OUT_USED]
     n2r5 = sum(1 for nm, g in all_lugs if lug_for(g) == '2R5')
@@ -359,6 +377,7 @@ def build(rev=6):
           n_big + len(jumpers), spare(n_big + len(jumpers)), unit=0.15, basis='est', url=TE('880398-2'), checked='TE page (2.8 x 0.8, 1-2.5 mm2, 17-13 AWG); ST185-CabinPower fb_logic contacts',
           note='Outputs %s (%d) + one per input jumper (%d, 14 AWG, C4). DM is 14 AWG (13 AWG max here).' % (', '.join(n for n, a in outs if n not in S.OUT_SMALL), n_big, len(jumpers)))
     sleeves(L, G)
+    cover_screws(L, G)
     L.add(G, 'Jumpers', 'Input jumper ring lug, 16-14 AWG, #8 / M4 (one per fuse input)', '53941-1', 'TE Connectivity',
           'PIDG closed ring tongue terminal, 16-14 AWG, #8 / M4 stud, blue, tin', len(jumpers), spare(len(jumpers)), unit=0.37, basis='seen',
           url=FUTURE_53941, checked='TE page 53941-1 2026-10-14 (PIDG, #8 / M4, 16-14, overall 20.65, tongue 0.78, Active); Future Electronics listing $0.37 at 50, 22,000 in stock',
@@ -377,6 +396,7 @@ def build(rev=6):
     # ================================================================ BATTERY relay block
     printed(B, 'BattRelay_Base', 'BattRelay Base', 'Floor plate, relay platform, fuse pedestal, 2 end tabs; PA12')
     printed(B, 'BattRelay_Cover', 'BattRelay Cover', 'Snap-on cover, side vents; PA12')
+    cover_screws(L, B)
     L.add(B, 'Copper', 'Bar 25.4 x 6.35 x 36.5 mm, tinned (cut from the POWER bar stock)', 'MECCANIXITY B0CGJBRNJX', 'MECCANIXITY (Amazon)', 'Same 305 mm bar as the POWER bar: no extra stock to buy', 0,
           url='https://www.amazon.com/dp/B0CGJBRNJX', checked='stock bought in the POWER list', note='Holes: M6 feed 6.5, AMI 40 input 5.5.')
     L.add(B, 'Copper', 'Pad 15 x 3 x 17.5 mm, tinned (cut from the pad stock)', 'Bopaodao B09Z7NBLDK', 'Bopaodao (Amazon)', 'Same 1000 mm bar as the POWER pads: no extra stock to buy', 0,
