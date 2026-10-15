@@ -404,7 +404,7 @@
         "x": 1020,
         "y": 30
       },
-      "signal": "Cabin chassis ground stud M6 - cluster ground",
+      "signal": "Factory ground IF (I/P brace RH, 1993 EWD p.42) - cluster ground, check at build",
       "partId": "tp_ring_m6_22_16",
       "propagate": false
     },
@@ -420,7 +420,7 @@
         "x": 1260,
         "y": 240
       },
-      "signal": "Cabin chassis ground stud M6 - RealDash Pi ground",
+      "signal": "Factory ground IF (I/P brace RH, 1993 EWD p.42) - RealDash Pi ground, check at build",
       "partId": "tp_ring_m6_22_16",
       "propagate": false
     },

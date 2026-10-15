@@ -2,7 +2,7 @@
 
 Agent-agnostic. Claude Code, Cursor, Codex, or any other tool: these apply. The
 per-agent rule files (`.cursor/rules/`, `.claude/rules/`, `AGENTS.md`) point here for the
-**procedure**. The rule statements themselves (what Daniel decided, dated, R1-R101) are
+**procedure**. The rule statements themselves (what Daniel decided, dated, R1-R106) are
 owned by `docs/harness/redesign/DECISIONS.md` "Binding rules from Daniel"; this file says
 how to apply them and which surfaces must agree. Where the two disagree, `DECISIONS.md` wins.
 
@@ -66,7 +66,7 @@ every commit.
 | `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Cabin landing table for every ex-J/B2 / R/B load (§5.4), fuse-box slot map (§8.1) |
 | `docs/harness/HARNESS-BUILD-LIST.csv` | Generated - re-run `buildlist.py` |
 | `docs/harness/NEED-TO-BUY.md` | Generated - re-run `buylist.py` |
-| `docs/harness/redesign/DECISIONS.md` | The binding rules (R1-R101) and the dated decisions |
+| `docs/harness/redesign/DECISIONS.md` | The binding rules (R1-R106) and the dated decisions |
 | `docs/SHIELD-RULES.md` | Shield rules, enforced by the audits |
 | `docs/sourcing/te-on-hand-bom.csv` | Parts already owned - check before speccing anything new |
 
