@@ -72,7 +72,7 @@ the center forwards in its UART bridge frames.
 | 0 | 1 | Gear Position | ×1 | 0 | 0=N, 1-6, 7=R (firmware 7→−1) |
 | 1 | 1 | Fuel Level | ×1 | 0 | % (calibrate the AnVolt tank sender 0–100% first) |
 
-### 0x3EE — engine protection (50 ms)  ← drives the right-screen warning overlay
+### 0x3EE — engine protection (10 ms, DECISIONS R98: knock never delayed)  ← drives the right-screen warning overlay
 One byte per alarm: **0 = OK, nonzero = active**. Map each byte to the matching Link limit /
 protection flag (Link broadcasts limit flags as a bit field — route the relevant bit/level to
 each byte, or send the limit % directly).
