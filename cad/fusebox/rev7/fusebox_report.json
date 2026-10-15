@@ -2121,7 +2121,7 @@
     "z1": 48.5,
     "group": 40,
     "part": "2293255-1",
-    "wire_od": 1.85,
+    "wire_od": 2.06,
     "source": "harness",
     "est": true
    },
@@ -2233,7 +2233,7 @@
     "z1": 48.5,
     "group": 48,
     "part": "2293255-1",
-    "wire_od": 1.85,
+    "wire_od": 2.06,
     "source": "harness",
     "est": true
    },
@@ -2289,7 +2289,7 @@
     "z1": 48.5,
     "group": 52,
     "part": "2293255-1",
-    "wire_od": 1.85,
+    "wire_od": 2.06,
     "source": "harness",
     "est": true
    },

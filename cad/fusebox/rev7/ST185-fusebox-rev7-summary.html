@@ -16,7 +16,7 @@ ol.co{columns:2;column-gap:28px;font-size:13.5px;padding-left:22px}@media (max-w
 .note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:6px;padding:8px 12px}
 td.d{font-weight:700}</style></head><body><main>
 <h1>ST185 fuse boxes - rev 7 (selected for build)</h1>
-<p class="mut">Claude Code, 2026-10-14. Your E2 answer: "make a separate new version so I can see it". Rev 7 is that version, and you picked it: <b>P7 = A, U1 = A (DECISIONS R91)</b>. The POWER box below is selected for build. The LOGIC box is rebuilt here for your 3 mm rule (<a href="#clearance">3 mm fix</a>, R93); the battery relay block stays rev 6 (<a href="../ST185-fusebox-summary.html">rev 6 page</a>). <a href="#views">Every wire simulated: sides, exploded, underneath, routing, the boxes cabled together</a>. Your J1-J4 answers are built in (DECISIONS R94): <a href="#janswers">J answers</a>. The floating ribs and saddles you marked are joined to the base (R95): <a href="#r95">ribs + saddles supported</a>.</p>
+<p class="mut">Claude Code, 2026-10-14. Your E2 answer: "make a separate new version so I can see it". Rev 7 is that version, and you picked it: <b>P7 = A, U1 = A (DECISIONS R91)</b>. The POWER box below is selected for build. The LOGIC box is rebuilt here for your 3 mm rule (<a href="#clearance">3 mm fix</a>, R93); the battery relay block stays rev 6 (<a href="../ST185-fusebox-summary.html">rev 6 page</a>). <a href="#views">Every wire simulated: sides, exploded, underneath, routing, the boxes cabled together</a>. Your J1-J4 answers are built in (DECISIONS R94): <a href="#janswers">J answers</a>. The floating ribs and saddles you marked are joined to the base (R101): <a href="#r95">ribs + saddles supported</a>.</p>
 <div class="note"><b>The idea in one line:</b> the glove-box bus bar and the POWER box become one thing. The bus bar's + bar runs right through the POWER box and the AMI fuses bolt straight onto it. No second copper bar, no separate bus bar box, no thick cable between them.</div>
 <div class="kpi">
 <div>POWER box + bus bar<b>180 x 243 x 81.8</b><span class="mut">mm L x D x H (rev 6 POWER: 180 x 181 x 81.8, plus the B rev3 bus bar 345 x 120 x 55)</span></div>
@@ -134,7 +134,7 @@ td.d{font-weight:700}</style></head><body><main>
 <p>Joined slots (wall under 2.0 mm): BUS1-11 + BUS1-11 IN; BUS1-12 + BUS1-12 IN; BUS1-2 + BUS1-2 IN; BUS1-3 + BUS1-3 IN; BUS1-4 + BUS1-4 IN; BUS1-5 + BUS1-5 IN; BUS1-6 + BUS1-6 IN; BUS2-1 + BUS2-1 IN; BUS2-10 + BUS2-10 IN; BUS2-11 + BUS2-11 IN; BUS2-3 + BUS2-3 IN; BUS2-4 + BUS2-4 IN.</p>
 <div class="note"><b>Found while sizing the holes (OPEN-ITEMS row 121):</b> 49 wire ends use wire thinner than their terminal's insulation range (M22759/16 is thin-wall: 14 AWG is 2.41 mm, 18 AWG 1.85 mm), e.g. 18 AWG in a 42281-1 (made for 2.79-4.32 mm insulation). The insulation barrel cannot grip it, so the wire is held by the conductor crimp alone. The holes are sized for the barrel as it closes, so they are right either way. Not changed here.</div>
 <p class="mut">The 87a cavities have no harness wire today, so they keep their plain blade slot: an 87a terminal next to 85 / 86 would leave only 0.4 mm of wall (the micro relay pin pattern), so a future 87a wire needs its own look.</p>
-<h2 id="r95">Ribs and saddles supported (DECISIONS R95)</h2>
+<h2 id="r95">Ribs and saddles supported (DECISIONS R101)</h2>
 <p>Your markup 2026-10-15: "the little ribs and the wire radius runners are just floating. fill in the gaps between relay positions under the ribs and add material under the radius runners". They were joined to the base, but only by a sliver: a guide wall crossing the gap between two relay positions had cavity tower over its ends only, and each POWER bend saddle met the deck only where the relay tower was. Now:</p><ul>
 <li><b>LOGIC, 9 guide walls</b> (top face 5-99 % backed before): a web the size of the wall fills the gap between the towers, from the wall up into the deck plate.</li>
 <li><b>POWER, 6 saddles</b> (top face 8-15 % backed before): the back of the saddle runs on up into the deck plate (it used to stop at the tower bottom).</li>
@@ -161,14 +161,14 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>Wire through printed plastic</td><td class="ok">none (J2 = B: the pan wall relief at the outboard relay column)</td></tr>
 <tr><td>Wire insulation against bare live metal</td><td class="ok">none (J2 = B: the pan rib keeps the Bus 1 wires off the strip bolt heads)</td></tr>
 <tr><td>Live to live (3 mm rule)</td><td class="ok">no new bare metal in the simulation; the gate result above stands (J1 = A: same-strip gaps reported, not gated)</td></tr>
-<tr><td>Wire to wire</td><td>40 places where two modelled wires share space (they cross in the crowded LOGIC lanes and under the deck); insulated wires crossing is normal, so the 3 mm rule does not apply. Closest: 0.00 mm</td></tr>
+<tr><td>Wire to wire</td><td>45 places where two modelled wires share space (they cross in the crowded LOGIC lanes and under the deck); insulated wires crossing is normal, so the 3 mm rule does not apply. Closest: 0.00 mm</td></tr>
 <tr><td>Two wires crimped in one terminal</td><td class="ok">none (J3 = A: one wire per terminal, the HL / HR splices)</td></tr>
 <tr><td>LOGIC wires that leave and come back in</td><td class="ok">none (J4 = B: 7 wires cross in the front channel - w_fb_k_etb_30_cp, w_hl_30_cp, w_hl_86_cp, w_hl_cp, w_hr_30_cp, w_hr_86_cp, w_hr_cp)</td></tr>
 </table></div>
 <h3>Exits</h3><div class="wrap"><table><tr><th>Box</th><th>Exit (lane)</th><th>Wires (CAD drew)</th><th>Round bundle</th><th>Notch</th><th>Packed in the notch: top</th><th>Fits</th></tr>
 <tr><td>LOGIC</td><td>10.5</td><td>7 (7)</td><td>6.4 mm</td><td>7.5 mm</td><td>z 12.7 (deck 38.5)</td><td class="ok">yes</td></tr>
 <tr><td>LOGIC</td><td>40.5</td><td>10 (13)</td><td>7.4 mm</td><td>9.5 mm</td><td>z 11.5 (deck 38.5)</td><td class="ok">yes</td></tr>
-<tr><td>LOGIC</td><td>51.5</td><td>14 (15)</td><td>8.9 mm</td><td>10.0 mm</td><td>z 13.0 (deck 38.5)</td><td class="ok">yes</td></tr>
+<tr><td>LOGIC</td><td>51.5</td><td>14 (15)</td><td>8.9 mm</td><td>10.0 mm</td><td>z 12.8 (deck 38.5)</td><td class="ok">yes</td></tr>
 <tr><td>LOGIC</td><td>70.0</td><td>6 (8)</td><td>5.6 mm</td><td>7.8 mm</td><td>z 9.2 (deck 38.5)</td><td class="ok">yes</td></tr>
 <tr><td>POWER</td><td>35.0</td><td>3 (3)</td><td>4.3 mm</td><td>6.1 mm</td><td>z 8.0 (deck 32.0)</td><td class="ok">yes</td></tr>
 <tr><td>POWER</td><td>43.0</td><td>2 (2)</td><td>6.8 mm</td><td>8.1 mm</td><td>z 11.8 (deck 32.0)</td><td class="ok">yes</td></tr>
@@ -268,7 +268,7 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>belly pan to nearest live part</td><td>0.59 mm</td></tr>
 <tr><td>Cable bends (3 x OD supported / 10 x OD free, FAA AC 43.13-1B)</td><td class="ok">63 checked, 0 fail</td></tr>
 <tr><td>Interference between solid parts</td><td class="ok">none</td></tr>
-<tr><td>Every printed part one solid, every rib / saddle backed (R95)</td><td class="ok">8 parts, 1 lump each</td></tr>
+<tr><td>Every printed part one solid, every rib / saddle backed (R101)</td><td class="ok">8 parts, 1 lump each</td></tr>
 <tr><td>Cable through printed plastic</td><td class="ok">none</td></tr>
 </table></div>
 <h2>Cut + drill (R76: no milling)</h2><div class="wrap"><table><tr><th>Piece</th><th>Stock</th><th>Length</th><th>Holes (from the front / inboard end, on the bar)</th></tr>
