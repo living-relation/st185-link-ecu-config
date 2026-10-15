@@ -28,10 +28,23 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+# Nothing may wait for input or a pager, and git/gh write progress ("From https://...") to
+# stderr, which Windows PowerShell 5.1 turns into a terminating error under 'Stop'. So native
+# calls run with 'Continue' and are judged by exit code only.
+$env:GIT_TERMINAL_PROMPT = '0'
+$env:GCM_INTERACTIVE = 'never'
+$env:GIT_PAGER = 'cat'
+$env:GH_PROMPT_DISABLED = '1'
+$env:GH_NO_UPDATE_NOTIFIER = '1'
+
 function Run-Git {
   param([string]$Dir, [Parameter(ValueFromRemainingArguments)][string[]]$GitArgs)
-  $out = & git -C $Dir @GitArgs 2>&1
-  [pscustomobject]@{ Code = $LASTEXITCODE; Out = ($out | Out-String).Trim() }
+  $old = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
+  try {
+    $out = & git --no-pager -C $Dir @GitArgs 2>&1 | ForEach-Object { "$_" }
+    $code = $LASTEXITCODE
+  } finally { $ErrorActionPreference = $old }
+  [pscustomobject]@{ Code = $code; Out = (($out | Out-String).Trim()) }
 }
 
 function Same-Path([string]$a, [string]$b) {
@@ -96,7 +109,8 @@ foreach ($t in $trees | Select-Object -Skip 1) {
       if ($track -notlike '*gone*') { $skip = 'branch not merged and still on the remote (or never pushed)' }
       elseif (-not $gh) { $skip = 'remote branch gone but gh is missing, cannot confirm a merged PR' }
       else {
-        $pr = & gh pr list --head $b --state merged --json number --jq 'length' 2>$null
+        $old = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
+        try { $pr = & gh pr list --head $b --state merged --json number --jq 'length' 2>$null } finally { $ErrorActionPreference = $old }
         if ("$pr" -notmatch '^[1-9]') { $skip = 'remote branch gone but no merged PR found' }
       }
     }
