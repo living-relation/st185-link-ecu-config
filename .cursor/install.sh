@@ -20,6 +20,8 @@ sudo apt-get install -y --no-install-recommends \
 
 # --- Python dependencies ---------------------------------------------------
 # No virtualenv: the base image's pip installs into the user site by default.
+# The pins support Python 3.12 (checked 2026-10-15: every pin lists 3.12 support or has no
+# upper bound; Pillow 12.2.0 needs >=3.10). CI and dansPC run 3.14.
 python3 -m pip install -r bench/requirements.txt
 python3 -m pip install -r apps/trackcluster-can-sender/requirements.txt
 python3 -m pip install -r rd-build/tools/requirements.txt

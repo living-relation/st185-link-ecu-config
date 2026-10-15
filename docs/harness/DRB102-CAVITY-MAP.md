@@ -88,8 +88,10 @@ its three wires pass the firewall in the existing factory RH fender grommet that
 Size 16 `114017` (to buy), size 12 `0413-214-1205`, size 8 `114018-ZZ`, size 4 `114019-ZZ`,
 all Deutsch; the last three are owned (`docs/sourcing/te-on-hand-bom.csv`). TE lists the size-8 and size-4 plugs by
 contact size for HD/HDP/DT; the DRB uses the same solid contact sizes, but TE's DRB page does
-not list a plug by number - check one in the physical housing before buying more
-(`docs/OPEN-ITEMS.md`).
+not list a plug by number. TE application spec 114-151021 (DRB) is the document that would
+name them, but TE serves it only through its gated document delivery (403 to a direct fetch,
+2026-10-15), so it is not cited here: test-fit one plug of each size in the physical housing
+before buying more (`docs/OPEN-ITEMS.md`).
 
 ## Full map
 
